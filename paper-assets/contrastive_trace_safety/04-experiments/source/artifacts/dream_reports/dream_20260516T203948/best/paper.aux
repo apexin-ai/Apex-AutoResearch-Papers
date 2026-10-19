@@ -1,0 +1,108 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{deepseek2025r1}
+\citation{qwq2024}
+\citation{jiang2025harmthoughts}
+\citation{zou2024improving}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{(1) Static probes are fundamentally limited.}{1}{section*.1}\protected@file@percent }
+\citation{adams2007bayesian}
+\citation{zou2023representation}
+\citation{arditi2024refusal}
+\citation{zou2024improving}
+\citation{jiang2025harmthoughts}
+\citation{hewitt2019structural}
+\citation{lightman2023lets}
+\citation{adams2007bayesian}
+\citation{jiang2025harmthoughts}
+\@writefile{toc}{\contentsline {paragraph}{(2) Temporal context saturates oracle coverage.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{(3) BOCPD enables reliable pre-textual detection.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Hidden-state safety detection.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Reasoning model safety.}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Probing methodology.}{2}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Change-point detection.}{2}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Problem Setup}{2}{section.3}\protected@file@percent }
+\newlabel{sec:setup}{{3}{2}{Problem Setup}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Safety Commitment in Reasoning Traces}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Commitment point.}{2}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Detection metrics.}{2}{section*.9}\protected@file@percent }
+\citation{adams2007bayesian}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Models and Data}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Models evaluated. R1-8B uses Llama-3.1 base; the remaining three use Qwen2.5 base at two scales.}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:models}{{1}{3}{Models evaluated. R1-8B uses Llama-3.1 base; the remaining three use Qwen2.5 base at two scales}{table.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Methods}{3}{section.4}\protected@file@percent }
+\newlabel{sec:methods}{{4}{3}{Methods}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Static Probes}{3}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:static}{{4.1}{3}{Static Probes}{subsection.4.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Temporal Window Probes}{3}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:temporal}{{4.2}{3}{Temporal Window Probes}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}GRU Sequence Probes}{3}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:gru}{{4.3}{3}{GRU Sequence Probes}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}BOCPD on Probe Score Sequences}{3}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:bocpd}{{4.4}{3}{BOCPD on Probe Score Sequences}{subsection.4.4}{}}
+\citation{zou2024improving}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Static probe results. Coverage remains below 0.50 across all models despite high Fisher discriminant ratios in full representation space. PCA-3D Fisher collapse ($\sim $1.0) confirms safety signal is distributed across minor principal components.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:static}{{2}{4}{Static probe results. Coverage remains below 0.50 across all models despite high Fisher discriminant ratios in full representation space. PCA-3D Fisher collapse ($\sim $1.0) confirms safety signal is distributed across minor principal components}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Temporal window LR (W=15) vs.\ static LR. The temporal advantage is consistent across all four models. AUROC values confirm strong discrimination independent of threshold.}}{4}{table.3}\protected@file@percent }
+\newlabel{tab:temporal}{{3}{4}{Temporal window LR (W=15) vs.\ static LR. The temporal advantage is consistent across all four models. AUROC values confirm strong discrimination independent of threshold}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Baselines}{4}{subsection.4.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{TrajGuard (Mahalanobis distance).}{4}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Text-based monitoring.}{4}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Experiments}{4}{section.5}\protected@file@percent }
+\newlabel{sec:experiments}{{5}{4}{Experiments}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Static Probes Achieve Limited Coverage}{4}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:exp-static}{{5.1}{4}{Static Probes Achieve Limited Coverage}{subsection.5.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Temporal Probes Saturate Oracle Coverage}{4}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:exp-temporal}{{5.2}{4}{Temporal Probes Saturate Oracle Coverage}{subsection.5.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces 2$\times $2 architecture$\times $scale matrix. Temporal context dominates over scale and architecture.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:2x2}{{4}{5}{2$\times $2 architecture$\times $scale matrix. Temporal context dominates over scale and architecture}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Lead time comparison. BOCPD achieves +8.4 mean lead time and 62\% early detection, substantially outperforming GRU (+4.7, 39\%) and CUSUM (+5.1, 48\%). BOCPD's advantage comes from detecting variance reduction in probe scores, not predicting future states.}}{5}{table.5}\protected@file@percent }
+\newlabel{tab:bocpd}{{5}{5}{Lead time comparison. BOCPD achieves +8.4 mean lead time and 62\% early detection, substantially outperforming GRU (+4.7, 39\%) and CUSUM (+5.1, 48\%). BOCPD's advantage comes from detecting variance reduction in probe scores, not predicting future states}{table.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{2$\times $2 architecture$\times $scale analysis.}{5}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}BOCPD Achieves Reliable Pre-Textual Detection}{5}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:exp-bocpd}{{5.3}{5}{BOCPD Achieves Reliable Pre-Textual Detection}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Oracle decomposition.}{5}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Baselines: TrajGuard and Text-Based Detection}{5}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:exp-baselines}{{5.4}{5}{Baselines: TrajGuard and Text-Based Detection}{subsection.5.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{TrajGuard (Mahalanobis distance).}{5}{section*.14}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Baseline comparison. TrajGuard and text-based methods achieve substantially lower coverage than hidden-state temporal probes.}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:baselines}{{6}{6}{Baseline comparison. TrajGuard and text-based methods achieve substantially lower coverage than hidden-state temporal probes}{table.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces False positive rates at operational threshold. Temporal LR and BOCPD maintain low FPR (3--7\%) while achieving high coverage. Safe traces produce mean probe score 0.35 vs.\ 0.78 for committed traces, providing comfortable operating margin.}}{6}{table.7}\protected@file@percent }
+\newlabel{tab:fpr}{{7}{6}{False positive rates at operational threshold. Temporal LR and BOCPD maintain low FPR (3--7\%) while achieving high coverage. Safe traces produce mean probe score 0.35 vs.\ 0.78 for committed traces, providing comfortable operating margin}{table.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{Text-based monitoring.}{6}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}False Positive Analysis}{6}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:exp-fpr}{{5.5}{6}{False Positive Analysis}{subsection.5.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Ablations}{6}{subsection.5.6}\protected@file@percent }
+\newlabel{sec:ablations}{{5.6}{6}{Ablations}{subsection.5.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Window size.}{6}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Layer selection.}{6}{section*.17}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Window size ablation on R1-8B. $W$=1 equals the static probe. Saturation at $W$=15 corresponds to the mean pre-CP safety reasoning streak length. Slight degradation at $W$=25 from dilution with non-predictive early-trace steps.}}{7}{table.8}\protected@file@percent }
+\newlabel{tab:window}{{8}{7}{Window size ablation on R1-8B. $W$=1 equals the static probe. Saturation at $W$=15 corresponds to the mean pre-CP safety reasoning streak length. Slight degradation at $W$=25 from dilution with non-predictive early-trace steps}{table.8}{}}
+\@writefile{toc}{\contentsline {paragraph}{Probe architecture.}{7}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Fine-grained supervision.}{7}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Cross-model transfer.}{7}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Statistical robustness.}{7}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{7}{section.6}\protected@file@percent }
+\newlabel{sec:discussion}{{6}{7}{Discussion}{section.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Why temporal context matters.}{7}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{BOCPD as methods contribution.}{7}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Principled limitations.}{7}{section*.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Deployment considerations.}{7}{section*.25}\protected@file@percent }
+\bibcite{adams2007bayesian}{{1}{}{{}}{{}}}
+\bibcite{arditi2024refusal}{{2}{}{{}}{{}}}
+\bibcite{deepseek2025r1}{{3}{}{{}}{{}}}
+\bibcite{hewitt2019structural}{{4}{}{{}}{{}}}
+\bibcite{jiang2025harmthoughts}{{5}{}{{}}{{}}}
+\bibcite{lightman2023lets}{{6}{}{{}}{{}}}
+\bibcite{qwq2024}{{7}{}{{}}{{}}}
+\bibcite{zou2023representation}{{8}{}{{}}{{}}}
+\bibcite{zou2024improving}{{9}{}{{}}{{}}}
+\providecommand\NAT@force@numbers{}\NAT@force@numbers
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{8}{section.7}\protected@file@percent }
+\newlabel{sec:conclusion}{{7}{8}{Conclusion}{section.7}{}}
+\gdef \@abspage@last{8}

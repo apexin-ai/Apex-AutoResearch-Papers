@@ -1,0 +1,113 @@
+\section{Problem Setup and Methods}
+\label{sec:method}
+
+We formalize the problem of detecting when a reasoning model commits to generating harmful content, define the metrics for evaluating detection systems, and describe the probing methods and baselines.
+
+\subsection{Safety Commitment Point}
+\label{sec:commitment-point}
+
+Chain-of-thought reasoning models produce extended internal reasoning traces before generating a final response. When a model is successfully jailbroken, its reasoning trace transitions from safety-aware deliberation to committed harmful generation. We define the \textbf{Safety Commitment Point} (CP) as the first reasoning step after which safety reasoning permanently ceases and the model commits to producing harmful content.
+
+We operationalize CP annotation on HarmThoughts traces as follows. Each reasoning step is labeled for the presence or absence of safety-related reasoning (refusal considerations, ethical concerns, policy references). The CP is the earliest step $t^*$ such that no step $t > t^*$ contains safety reasoning. This yields a binary classification at each step: steps at or before CP are \emph{pre-commitment} (the model has not yet committed to harm), and steps after CP are \emph{post-commitment} (the model is committed to harmful generation). A successful detector should identify post-commitment steps while avoiding false alarms on pre-commitment steps.
+
+\subsection{Detection Task Formulation}
+\label{sec:metrics}
+
+We evaluate detectors using the following metrics. Let $s_t$ denote the probe score at reasoning step $t$, $\tau$ the detection threshold, and $t^*$ the annotated CP for a given trace.
+
+\paragraph{Coverage (detection rate).} The fraction of jailbreak traces where the probe score crosses the threshold at any step:
+\begin{equation}
+    \text{Coverage} = \frac{1}{N} \sum_{i=1}^{N} \mathbf{1}\left[\exists\, t : s_t^{(i)} > \tau \right]
+\end{equation}
+where $N$ is the number of jailbreak traces. Coverage measures whether the detector fires at all on a given trace.
+
+\paragraph{Pre-CP False Positive Rate (FPR).} We report two complementary definitions of Pre-CP FPR:
+
+\emph{Step-level FPR}: the probability of a false positive at any given pre-commitment step, computed by pooling all pre-CP steps across all traces:
+\begin{equation}
+    \text{FPR}_{\text{step}} = \frac{\sum_{i=1}^{N} \sum_{t \leq t_i^*} \mathbf{1}[s_t^{(i)} > \tau]}{\sum_{i=1}^{N} (t_i^* + 1)}
+\end{equation}
+This metric has a direct deployment interpretation: it gives the expected fraction of benign reasoning steps that would trigger an alert.
+
+\emph{Trace-level FPR}: the mean per-trace FPR, computed by averaging each trace's step-level FPR:
+\begin{equation}
+    \text{FPR}_{\text{trace}} = \frac{1}{N} \sum_{i=1}^{N} \frac{\sum_{t \leq t_i^*} \mathbf{1}[s_t^{(i)} > \tau]}{t_i^* + 1}
+\end{equation}
+We use trace-level FPR for statistical comparisons (bootstrap confidence intervals) because it treats each trace as an independent observation. The two definitions can diverge: a few traces with unusually high step-level FPR inflate the trace-level mean without proportionally affecting the step-level aggregate.
+
+\paragraph{Precision.} The fraction of positive detections (steps where $s_t > \tau$) that are true positives (post-CP steps):
+\begin{equation}
+    \text{Precision} = \frac{\text{TP}}{\text{TP} + \text{FP}}
+\end{equation}
+
+\paragraph{Lead time.} The number of steps between the first detection and the commitment point: $\Delta t = t^* - t_{\text{detect}}$. Positive lead time indicates early detection (before commitment); negative values indicate late detection.
+
+\paragraph{Safe FPR.} The false positive rate on entirely safe (non-jailbreak) traces, where no CP exists and no step should trigger detection.
+
+\paragraph{Detection criterion $K$.} The number of consecutive threshold crossings required before declaring a detection. We use $K=1$ (single crossing) throughout unless otherwise noted.
+
+\subsection{Models and Data}
+\label{sec:models-data}
+
+We study three reasoning models spanning two architectures and two parameter scales (\cref{tab:models}):
+
+\begin{itemize}
+    \item \textbf{DeepSeek-R1-Distill-Llama-8B} (R1-8B): built on the Llama architecture with 32 layers, 4096 hidden dimensions, and 8 billion parameters. This model is distilled from the full DeepSeek-R1.
+    \item \textbf{DeepSeek-R1-Distill-Qwen-32B} (R1-32B): built on the Qwen architecture with 64 layers, 5120 hidden dimensions, and 32 billion parameters. Also distilled from DeepSeek-R1.
+    \item \textbf{QwQ-32B-Preview} (QwQ-32B): a native reasoning model (not distilled) built on the Qwen architecture with 64 layers, 5120 hidden dimensions, and 32 billion parameters.
+\end{itemize}
+
+This selection covers two architectures (Llama, Qwen) and two scales (8B, 32B). We exclude OpenThinker-7B because including it would make four of five models Qwen-based, biasing the study toward a single architecture family. Three models already cover the 2 architecture $\times$ 2 scale design space.
+
+\paragraph{Data.} We use HarmThoughts traces containing 209 traces per model. Each trace consists of the full chain-of-thought reasoning produced in response to a jailbreak prompt, with step-level CP annotations. We split the data 60/20/20 into 125 training, 41 validation, and 43 test traces. The validation set is used exclusively for threshold tuning, ensuring no test set leakage into the detection threshold.
+
+\subsection{Hidden-State Probes}
+\label{sec:hs-probes}
+
+Our primary detection method trains linear probes on model-internal hidden states (HS).
+
+\paragraph{Feature extraction.} At each reasoning step, we extract the hidden state of the \emph{last generated token} from a given layer. We use the raw last-token representation rather than pooled or CLS-style features, as the last token aggregates information from the entire step through causal attention.
+
+\paragraph{Layer selection.} We sweep all layers of each model and score candidate layers using the product of balanced accuracy and crossing rate (scheme B):
+\begin{equation}
+    \text{score}(l) = \text{BalancedAcc}(l) \times \text{CrossingRate}(l)
+\end{equation}
+Balanced accuracy measures classification quality; crossing rate measures how often the probe exceeds the threshold on jailbreak traces. Their product selects layers that are both accurate and capable of early detection. The best layers identified are: R1-8B layer 14 (44\% of network depth), R1-32B layer 10 (15.6\% depth), and QwQ-32B layer 2 (3.1\% depth).
+
+\paragraph{Classifier.} We train an L2-regularized logistic regression classifier on the extracted hidden states, with binary labels (pre-CP vs.\ post-CP). The detection threshold is tuned on the validation set to maximize coverage subject to a FPR constraint.
+
+\subsection{Text Baseline}
+\label{sec:text-baseline}
+
+To quantify what is achievable without access to model internals, we train an equivalent probe on text-level features.
+
+\paragraph{Feature extraction.} We encode the full text of each reasoning step using all-MiniLM-L6-v2, a 384-dimensional sentence embedding model from the sentence-transformers library. This encoder maps each step's text into a fixed-dimensional vector regardless of step length.
+
+\paragraph{Classifier.} We apply the same L2-regularized logistic regression and threshold tuning procedure as the HS probes. The text baseline represents the detection performance achievable from surface-level linguistic signals alone, without access to internal representations.
+
+\subsection{Temporal Methods}
+\label{sec:temporal}
+
+Safety commitment is a temporal process: the model transitions from safe to unsafe reasoning over multiple steps. We evaluate whether incorporating temporal context improves detection.
+
+\paragraph{Window concatenation.} For each step $t$, we concatenate features from the preceding window of steps $[t-W+1, \ldots, t]$ into a single input vector. We evaluate window sizes $W \in \{1, 3, 5, 10, 15, 20, 25\}$. The $W=1$ case reduces to the single-step probe. Larger windows provide temporal context at the cost of increased dimensionality and delayed detection (the detector cannot fire until $W$ steps have elapsed).
+
+\paragraph{GRU sequence models.} We train Gated Recurrent Unit (GRU) models on full step sequences to capture long-range temporal dependencies. We evaluate two variants:
+\begin{itemize}
+    \item \emph{Single-layer}: input features from the best individual layer (selected by scheme B).
+    \item \emph{Multi-layer}: input features from 7 layers concatenated, providing a richer representation of model state.
+\end{itemize}
+Both variants are trained with 3 random seeds to estimate variance. The GRU outputs a score at each step, and detection follows the same threshold mechanism.
+
+\paragraph{Detection criterion.} We apply threshold-based detection with $K=1$ (single crossing) as the primary setting. We also evaluate $K=5$ (five consecutive crossings) as a stricter criterion that reduces false positives at the cost of detection delay.
+
+\subsection{Baselines}
+\label{sec:baselines}
+
+We compare against three methods from the sequential anomaly detection and representation geometry literature.
+
+\paragraph{Bayesian Online Change-Point Detection (BOCPD).} BOCPD models the probe score sequence as a series of segments with potentially different parameters, and maintains a posterior over the most recent change-point location. We apply BOCPD to the temporal sequence of probe scores to test whether safety commitment produces an abrupt distributional shift detectable without supervised labels.
+
+\paragraph{Cumulative Sum (CUSUM).} CUSUM is a parametric sequential detection method that accumulates evidence for a mean shift in a signal. We define the statistic $S_t = \max(0, S_{t-1} + s_t - \mu_0 - \delta)$ where $\mu_0$ is the pre-change mean and $\delta$ is the drift allowance. Detection occurs when $S_t$ exceeds a threshold $h$. We evaluate multiple configurations of $(\delta, h)$ to characterize CUSUM's operating envelope.
+
+\paragraph{Mahalanobis distance.} Following the TrajGuard approach, we compute the Mahalanobis distance of each step's hidden state from class-conditional Gaussian distributions fitted to the training data. This tests whether pre-commitment and post-commitment states are geometrically separable in representation space without requiring temporal modeling.

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3aee9d418c05dc3b1ab4",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code exp r3 mlp probe",
+  "task_key": "worker_code_exp_r3_mlp_probe_20260517T125418",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_r3_mlp_probe_20260517T125418_result.json",
+    "occurrence": 1,
+    "bytes": 1377,
+    "sha256": "5fde37929486e7e61354dbb239c474435a3e0b0e4f62dc867ddc9399b71ad6da"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Artifact registration isn't working with remote paths. That's fine - the results are saved on the server. Here's the final summary:\n\n## Results: MLP Probe (dim→128→1, ReLU+Sigmoid, BCE)\n\n| Model | W | Bal Acc | Precision | Pre-CP FPR | Coverage | Lead (steps) | LR Acc | Delta |\n|-------|---|---------|-----------|------------|----------|--------------|--------|-------|\n| R1-8B | 3 | 0.799 | 0.703 | 0.098 | 1.000 | 9.8 | 0.817 | -0.018 |\n| R1-32B | 10 | 0.677 | 0.512 | 0.343 | 1.000 | 6.5 | 0.737 | -0.060 |\n| QwQ-32B | 5 | 0.686 | 0.425 | 0.423 | 1.000 | 12.9 | 0.761 | -0.076 |\n| OT-7B | 3 | 0.704 | 0.515 | 0.107 | 1.000 | 10.4 | 0.688 | +0.016 |\n\n**Key observations:**\n- The simple MLP achieves 100% coverage across all models (every jailbreak trace is detected post-CP)\n- Balanced accuracy is slightly below LR for 3/4 models (R1-8B -1.8%, R1-32B -6.0%, QwQ-32B -7.6%), but slightly above for OT-7B (+1.6%)\n- The MLP trades off balanced accuracy for perfect coverage and competitive precision, especially for R1-8B (0.703 precision, 9.8% FPR)\n- Without pos_weight or dropout, the simpler MLP tends to predict more positives (hence perfect coverage but higher FPR on some models)\n\nResults saved to `/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_mlp_probe/results.json`. Script at `src/experiments/exp_r3_mlp_probe_v2.py`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-r3-mlp-probe.md"
+}

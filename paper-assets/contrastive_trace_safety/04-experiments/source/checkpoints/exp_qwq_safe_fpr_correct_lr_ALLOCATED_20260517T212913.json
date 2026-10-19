@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_qwq_safe_fpr_correct_lr",
+  "project": "contrastive_trace_safety",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T21:29:06.481Z",
+    "updated_at": "2026-05-17T21:29:13.540Z",
+    "hypothesis": "QwQ-32B safe-trace FPR=50% (SGDClassifier) may be a method artifact. Rerunning with paper's LogisticRegression(lbfgs, C=1.0, class_weight=balanced, max_iter=2000) to confirm whether HS probe truly has higher FPR than text probe on safe traces.",
+    "parent": "exp_safe_trace_fpr_multimodel"
+  },
+  "timestamp": "2026-05-17T21:29:13.627276+00:00",
+  "trigger": "update_registry"
+}

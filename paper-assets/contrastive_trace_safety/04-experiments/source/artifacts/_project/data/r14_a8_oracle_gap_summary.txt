@@ -1,0 +1,6 @@
+Oracle Gap (K=5 consecutive trigger, early detection before CP) on test set 60/20/20 seed=42:
+R1-8B: 76.7% (33/43), mean lead=31.0 steps
+OT-7B: 93.6% (44/47), mean lead=50.0 steps
+R1-32B: 50.0% (10/20), mean lead=32.4 steps
+QwQ-32B: 84.2% (16/19), mean lead=24.4 steps
+Full results: artifacts/r14_a8_oracle_gap/oracle_gap_all_models.json

@@ -1,0 +1,52 @@
+{
+  "exp_id": "plan_003_swebench_eval",
+  "project": "structfuse-context",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T18:41:00.685Z",
+    "updated_at": "2026-05-16T02:53:10.970Z",
+    "hypothesis": "SWE-bench Lite 纯检索 eval：用 3 个 Qwen M2 checkpoints (random_s42, embed_s43, dataflow_s43) 在 100 个 SWE-bench Lite 实例上评估 file-level retrieval Recall@{1,5,10,20} 和 MRR。定位为外部泛化展示，不做控制对比 claim（3 checkpoint 用了不同 seed，策略对比 confound 了 seed）。",
+    "spec": {
+      "command": "python eval_swebench_retrieval.py (3 checkpoints sequential on GPU 0)",
+      "server": "bjb1-42106",
+      "data_path": "/root/autodl-tmp/structfuse/artifacts/swebench_retrieval_eval/",
+      "data_count": 100,
+      "model_name": "Qwen2.5-Coder-3B (3 M2 checkpoints: random_s42, embed_s43, dataflow_s43)",
+      "seed": "42,43,43",
+      "checkpoint_source": "/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/",
+      "eval_data": "princeton-nlp/SWE-bench_Lite (100 instances)"
+    },
+    "metrics": {
+      "checked_at": "2026-05-16T10:30 CST",
+      "pid_alive": true,
+      "eval_pid": 61328,
+      "gpu": "cuda:0 (shared with Qwen training)",
+      "current_checkpoint": "random_s42 (1/3)",
+      "progress": "99/100 instances",
+      "speed": "~12.7 inst/hr",
+      "eta_random_s42": "~2026-05-16T11:00 CST (last instance)",
+      "checkpoint_sequence": [
+        "random_s42 (running, 99/100)",
+        "embed_s43 (postponed)",
+        "dataflow_s43 (postponed)"
+      ],
+      "output_dir": "/root/autodl-tmp/structfuse/artifacts/swebench_retrieval_eval/",
+      "log": "/root/autodl-tmp/structfuse/logs/swebench_eval_all.log",
+      "bm25_baseline_300": {
+        "R@1": 0.2733,
+        "R@5": 0.4667,
+        "R@10": 0.55,
+        "R@20": 0.6467,
+        "n_instances": 300
+      },
+      "director_decision": "random_s42 完成后暂停 SWE-bench eval。剩余 2 checkpoints (embed_s43, dataflow_s43) 推迟到 Qwen chain 完成后无 GPU 竞争时再跑。",
+      "caveat": "3 checkpoints 使用不同 seed (s42/s43/s43)，策略对比 confound 了 seed。论文中定位为外部泛化展示，不做控制对比 claim。"
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-16T02:53:11.066054+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9faa823f1d2a5a1e2394",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "analysis gru per seed data",
+  "task_key": "worker_analysis_gru_per_seed_data_20260517T050103",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gru_per_seed_data_20260517T050103_result.json",
+    "occurrence": 1,
+    "bytes": 1140,
+    "sha256": "c3bc704fe1971c8b2ea61307a94a0739749c43f5cd26eeacdc7b5e67d652b204"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。Per-seed 数据已提取，LaTeX table 已生成。\n\n**结果摘要：**\n\n| Model | Acc | Prec | FPR | Cross.% | Lead |\n|-------|-----|------|-----|---------|------|\n| GRU-single | 0.799±0.035 | 0.528±0.091 | 0.178±0.028 | 68.2±2.9% | 6.46±2.10 |\n| GRU-multi | 0.789±0.027 | 0.510±0.075 | 0.189±0.018 | 68.2±4.4% | **7.01±1.40** |\n| LR-single | 0.803±0.037 | 0.547±0.108 | 0.141±0.035 | 47.3±4.8% | 2.40±3.16 |\n| LR-multi | 0.800±0.032 | 0.547±0.099 | 0.134±0.036 | 40.3±4.8% | 4.12±2.55 |\n\n**关键发现：**\n- GRU 的 crossing rate (68%) 显著高于 LR (40-47%)，说明 GRU 更频繁地触发早期检测\n- GRU-multi 的 lead time 最高 (7.01 steps)，且方差最小 (±1.40)，表明多层信息提升了稳定性\n- GRU 以更高 FPR 为代价换取了更早的检测（precision-lead tradeoff）\n- Seed 间变异性：accuracy 在 ±3.5% 范围内，lead time 变异较大（LR-single 标准差达 3.16）\n\n**产出文件：**\n- 服务器端 JSON: `artifacts/diagnostics/gru256_per_seed_results.json`\n- LaTeX table: `artifacts/exp_gru256_multilayer/per_seed_table.tex`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-gru-per-seed-data.md"
+}

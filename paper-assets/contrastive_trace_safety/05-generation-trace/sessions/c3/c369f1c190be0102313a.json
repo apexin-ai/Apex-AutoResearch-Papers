@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c369f1c190be0102313a",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code gemma2 dryrun and full",
+  "task_key": "worker_code_gemma2_dryrun_and_full_20260522T154643",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gemma2_dryrun_and_full_20260522T154643_result.json",
+    "occurrence": 1,
+    "bytes": 423,
+    "sha256": "fb76f47f3be09eb1f897066d8b46f96d56b36f1eb60ffd4047ac57d2ce811f7a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "模型下载 shard 3/4 在 98%，约 4 分钟后完成。已设置自动检查。当前状态：\n\n- **GPU**: cuda:0 完全空闲（0 MiB）\n- **模型下载**: shard 1/2/4 已完成，shard 3 下载中（98%，~380 kB/s）\n- **脚本**: v2 classifier 已确认（`refusal_count >= 1`），模型路径兼容 ModelScope 嵌套目录\n- **下一步**: 下载完成后 → dry-run 5 prompts → full 520 run"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-gemma2-dryrun-and-full.md"
+}

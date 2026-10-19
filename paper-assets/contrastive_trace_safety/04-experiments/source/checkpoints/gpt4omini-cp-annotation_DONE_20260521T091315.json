@@ -1,0 +1,35 @@
+{
+  "exp_id": "gpt4omini-cp-annotation",
+  "project": "contrastive_trace_safety",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T06:36:34.411Z",
+    "updated_at": "2026-05-21T09:13:15.422Z",
+    "spec": {
+      "command": "killed before run",
+      "server": "autodl-rtx6000",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "485758",
+      "log_path": "~/runs/contrastive_trace_safety/gpt4omini-cp-annotation.log",
+      "submitted_at": "2026-05-20T06:36:34.258Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "N/A",
+      "data_count": 0,
+      "model_name": "N/A",
+      "seed": 0,
+      "wall_clock_seconds": 95801.2,
+      "gpu_hours": 26.61
+    },
+    "conclusion": "killed",
+    "completed_at": "2026-05-21T09:13:15.422Z"
+  },
+  "timestamp": "2026-05-21T09:13:15.555709+00:00",
+  "trigger": "update_registry"
+}

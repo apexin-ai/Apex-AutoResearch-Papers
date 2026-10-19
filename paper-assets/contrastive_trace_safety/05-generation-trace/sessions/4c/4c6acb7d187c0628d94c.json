@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4c6acb7d187c0628d94c",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code exp 001a bootstrap supplement",
+  "task_key": "worker_code_exp_001a_bootstrap_supplement_20260516T222003",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_001a_bootstrap_supplement_20260516T222003_result.json",
+    "occurrence": 1,
+    "bytes": 896,
+    "sha256": "d9987fd3727269f05a9b05e3b333fe42cdb3a48936fcc72f02895d06fe2c084b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果：\n\n**R1-32B HS vs Text Pre-CP FPR Bootstrap Test**\n\n| Metric | Value |\n|--------|-------|\n| HS pre-CP FPR | 25.65% |\n| Text pre-CP FPR | 24.61% |\n| Difference (HS - Text) | +1.04% |\n| 95% CI | [-9.48%, +11.56%] |\n| **p-value** | **0.848** |\n\nR1-32B 上 HS probe 和 text probe 的 pre-CP FPR **无显著差异**。CI 跨越零，差异可忽略。这与 QwQ-32B (p=0.001, HS显著优于text) 形成对比。\n\n注意：QwQ-32B 的对比可能使用了 midpoint heuristic 而非真正的 sentence embedding probe（`exp_001b_bootstrap.py` 中 `text_baseline_predictions` 是 midpoint 预测）。R1-32B 这里使用了 all-MiniLM-L6-v2 sentence embedding temporal probe 作为公平对比。\n\n产出已注册:\n- JSON: `artifacts/exp_001a/bootstrap_hs_vs_text_fpr.json`\n- Report: `art_20260516_78b581`\n- Registry `exp_001a_r1_32b` metrics 已更新"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-001a-bootstrap-supplement.md"
+}

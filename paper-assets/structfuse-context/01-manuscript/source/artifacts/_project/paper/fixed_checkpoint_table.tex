@@ -1,0 +1,42 @@
+% Fixed-checkpoint comparison table (draft)
+% Eliminates checkpoint selection bias by comparing strategies at the same training step.
+% Data source: m2_full_qwen registry (Qwen2.5-Coder-3B, full M1 data ~11K train/seed)
+%
+% Status: PARTIAL — embedding runs still in progress.
+%   s43 embedding @500/@1000 available; @1500 pending.
+%   s42 embedding not started. s44 per-step data not recorded in registry.
+%   Table will be completed when all M2 subruns finish (~May 17).
+
+\begin{table}[t]
+\centering
+\caption{Fixed-checkpoint comparison on Qwen2.5-Coder-3B. Each row compares
+  embedding-distance and random negative strategies evaluated at the \emph{same}
+  training step, eliminating selection bias from best-checkpoint picking.
+  $\Delta$ = Embedding $-$ Random in percentage points (pp).}
+\label{tab:fixed-checkpoint}
+\begin{tabular}{cl ccc}
+\toprule
+Seed & Step & Embedding R@1 & Random R@1 & $\Delta$ \\
+\midrule
+\multirow{3}{*}{43}
+  & 500  & 0.5446 & 0.5357 & $+0.89$ \\
+  & 1000 & 0.5390 & 0.5285 & $+1.05$ \\
+  & 1500 & TBD    & 0.5554 & TBD     \\
+\midrule
+\multirow{3}{*}{42}
+  & 500  & ---    & 0.5330 & ---     \\
+  & 1000 & ---    & 0.5530 & ---     \\
+  & 1500 & ---    & 0.5230 & ---     \\
+\bottomrule
+\end{tabular}
+
+\vspace{2pt}
+{\footnotesize
+\textbf{Note:} Embedding-distance runs are still in progress.
+Seed~43 embedding step~1500 is pending (currently at step~1000).
+Seed~42 embedding has not started yet.
+Seed~44 random completed (best R@1\,=\,0.6009) but per-step breakdowns
+were not recorded; embedding not started.
+This table will be fully populated after all M2 subruns complete.
+}
+\end{table}

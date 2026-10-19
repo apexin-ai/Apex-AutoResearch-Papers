@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eac404bd6c1105bdc5f3",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "analysis gemma2 exit check",
+  "task_key": "worker_analysis_gemma2_exit_check_20260522T172105",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gemma2_exit_check_20260522T172105_result.json",
+    "occurrence": 1,
+    "bytes": 1611,
+    "sha256": "b0fc713ca14fa314bfd578e14025f7f408778b9becc45060605fc5c5d77716e9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 1. Gemma-2 实验状态：**SUCCESS**（修复后）\n- Phase 1 首次运行即成功（520 traces，2874s）\n- Phase 2 首次运行崩溃：随机 split 将所有 6 个 JB trace 分到 train+val，test 里 0 个 JB → `evaluate_layer` 全部返回 None → `best_key` 为 None → TypeError\n- **修复**：改为 stratified split，确保 test 有 1 个 JB trace；加 None guard\n- Phase 2 重跑成功（213s）\n\n### 2. Trace 数量 + JB/safe 分布\n- **520 traces**：6 jailbreak / 514 safe（JB rate = 1.15%）\n- JB trace indices: 26, 123, 185, 256, 289, 428\n- Gemma-2-9B-it 对 AdvBench 的对齐非常强，只有 6/520 被判定为 jailbreak\n\n### 3. Phase 2 Layer Selection 关键 Metrics\n\n| Metric | Best Layer | Depth | Value |\n|--------|-----------|-------|-------|\n| CR-composite | **L0** | 0.0% | 0.029 |\n| Precision | **L9** | 22.0% | 1.000 |\n| Bal. accuracy | **L9** | 22.0% | 1.000 |\n| Inv. FPR | **L9** | 22.0% | 0.000 |\n| AUROC | **L3** | 7.3% | 1.000 |\n\n**Layer selection bias: REPLICATED** — 22.0pp divergence (CR-composite → L0 vs precision → L9)\n\n⚠️ 注意：test 集只有 1 个 JB trace，metrics 容易 ceiling 到完美值，statistical power 有限。\n\n### 4. Cosine Compression 结果\n\n| 指标 | 值 |\n|------|-----|\n| Shallow (L0-L5) mean | 0.2373 |\n| Deep (L30-L41) mean | 0.3055 |\n| **Ratio (shallow/deep)** | **0.7766** |\n| **Compression magnitude** | **22.3%** |\n\n**Shallow compression CONFIRMED** — 浅层 step-to-step cosine 变化比深层少 22.3%，与 Qwen 模型的 compression 模式一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-gemma2-exit-check.md"
+}

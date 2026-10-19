@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5de7b98913185c4074cc",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code toc and term fix",
+  "task_key": "worker_code_toc_and_term_fix_20260520T160441",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_toc_and_term_fix_20260520T160441_result.json",
+    "occurrence": 1,
+    "bytes": 365,
+    "sha256": "08ca8b541246604f67fc1f59fb4ddcd5e8473fb477bc2550cf9fe53006d9ad24"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **appendix.tex**: TOC 补了 `app:cp_perturbation`、`app:random_projection`、`app:e5_mistral`、`app:hyperparameter_robustness` 4 条，按实际 section 顺序插入\n- **method.tex**: CP 定义处 \"safety reasoning\" → \"safety deliberation\"\n- 编译通过，无 undefined reference / citation 警告\n- 已 commit (`77b587f`)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-toc-and-term-fix.md"
+}

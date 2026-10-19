@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "60b6975804f5484b5f18",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code diag d3 step2",
+  "task_key": "worker_code_diag_d3_step2_20260516T193348",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_diag_d3_step2_20260516T193348_result.json",
+    "occurrence": 1,
+    "bytes": 1027,
+    "sha256": "af22fb37da9c9792dfa0e6ebb44fabc6a9d46dc5cbde8eccf908a51d75694b3e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## D3 结果：FAIL\n\n```\nMethod                 | Step Acc         | Crossing Rate | Lead Mean | Lead Median\n-----------------------|------------------|---------------|-----------|------------\nStatic LR (layer14)    | 0.8172+-0.1631   | 46.51%        | -2.00     | -2.0\nTemporal LR (w=5)      | 0.8274+-0.1906   | 65.12%        | -1.18     | -1.5\nTemporal LR (w=10)     | 0.8364+-0.1887   | 65.12%        | -0.61     | -1.0\nTemporal LR (w=15)     | 0.8478+-0.1736   | 76.74%        | -1.09     | -2.0\n```\n\n**判据**：best temporal (w=10) lead_mean=-0.61 vs static lead_mean=-2.00，delta=+1.39 steps。未达 >3 阈值，**FAIL**。\n\n**关键观察**：\n- 所有 lead_mean 均为负值，说明 crossing 发生在 commitment point **之后**，probes 整体偏迟\n- Temporal window 确实提升了 crossing rate（46%→77%）和 step accuracy（81.7%→84.8%），但 lead time 改善有限\n- 209 traces, 24.7% positive rate（类别不平衡明显）\n\nRegistry 已更新为 DONE/negative。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-diag-d3-step2.md"
+}

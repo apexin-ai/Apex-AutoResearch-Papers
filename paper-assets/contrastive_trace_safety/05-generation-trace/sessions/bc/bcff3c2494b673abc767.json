@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bcff3c2494b673abc767",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "ops kill bootstrap process",
+  "task_key": "worker_ops_kill_bootstrap_process_20260520T032603",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill_bootstrap_process_20260520T032603_result.json",
+    "occurrence": 1,
+    "bytes": 330,
+    "sha256": "5649311807b0e1f9a1a2280099cadda9f9219302e7629aa67121c0dfb7ec4f89"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已清理完毕：\n\n- **killed PID 470310** — `python scripts/advbench_preliminary_sweep_no_pca.py`（已运行约 7.4 小时，占用 ~5.8GB 内存）\n- **killed PID 470305** — 其父 bash 包装进程\n- 无 tmux sessions\n- 剩余 Python 进程仅为系统服务（tensorboard、jupyter-lab），未动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-bootstrap-process.md"
+}

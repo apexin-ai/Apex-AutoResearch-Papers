@@ -1,0 +1,28 @@
+{
+  "exp_id": "exp_ot7b_full_pipeline",
+  "project": "contrastive_trace_safety",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T06:13:10.826Z",
+    "updated_at": "2026-05-17T08:31:29.819Z",
+    "hypothesis": "If HS probe precision advantage generalizes beyond DeepSeek-R1 distilled models, OpenThinker-7B (STILL-trained, non-R1-distilled reasoning model on Qwen2.5-7B) should show HS vs text precision gap comparable to R1-8B, confirming the signal is inherent to reasoning models rather than R1-distillation-specific.",
+    "parent": "exp_001a_r1_32b",
+    "spec": {
+      "command": "python -u src/experiments/exp_ot7b_full_pipeline.py + exp_ot7b_continue_p4.py",
+      "server": "autodl-rtx6000",
+      "data_path": "ishitakakkar-10/HarmThoughts (ot-7b)",
+      "data_count": 228,
+      "model_name": "open-thoughts/OpenThinker-7B",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_ot7b/",
+      "log_path": "/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_ot7b_full_pipeline/pipeline.log",
+      "checkpoint_source": "trained_from_scratch",
+      "eval_data": "ishitakakkar-10/HarmThoughts ot-7b split (train=136, val=45, test=47)"
+    }
+  },
+  "timestamp": "2026-05-17T08:31:29.863879+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6fccad94cad252d939e6",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "analysis r14 a4 bca r1 8b fpr",
+  "task_key": "worker_analysis_r14_a4_bca_r1_8b_fpr_20260518T162942",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r14_a4_bca_r1_8b_fpr_20260518T162942_result.json",
+    "occurrence": 1,
+    "bytes": 954,
+    "sha256": "8ce7631e710d22397d75100e4c77222d3eacd799a38cf3618605dccd0e236920"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results:\n\n```\nBCa 95% CI for ΔFPR (text - HS): [0.005817, 0.158995]\nContains 0: No\nBCa p-value: 0.0331\n\nLeave-one-out sensitivity:\n- 5/43 traces: removal causes p > 0.05\n- Most influential trace: idx 3 (p without = 0.062)\n- Least influential: idx 30 (p without = 0.010)\n\nLeave-two-out:\n- 193/903 pairs: removal causes p > 0.05 (21.4%)\n```\n\nBCa CI excludes 0 with a tighter p-value (0.033) than the original percentile bootstrap (0.044), confirming the FPR difference is statistically robust. The bias correction (z0=0.037) and acceleration (a=0.021) are both small, indicating the original percentile CI was already reasonable.\n\nSensitivity: 5 individual traces (idx 3, 6, 8, 28, 38) can individually flip significance if removed. All 5 are high-leverage outliers with ΔFPR 0.5-0.7 (text FPR far exceeding HS FPR). 21.4% of trace pairs can flip significance. The signal is real but partly driven by these extreme cases."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-r14-a4-bca-r1-8b-fpr.md"
+}

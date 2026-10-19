@@ -1,0 +1,63 @@
+{
+  "exp_id": "exp_r3_qwq_l60_bootstrap",
+  "project": "contrastive_trace_safety",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T15:35:56.616Z",
+    "updated_at": "2026-05-17T15:38:04.794Z",
+    "hypothesis": "QwQ-32B at corrected Layer 60 (95% depth) should show significant HS vs text advantage with proper null-centered p-values, confirming that original p~0.5 was a computation bug (missing null-centering) not a genuine non-significance.",
+    "spec": {
+      "command": "python exp_r3_qwq_layer60_bootstrap_bugfix.py",
+      "server": "autodl-rtx6000",
+      "data_path": "/root/autodl-tmp/contrastive_trace_safety/data/qwq_32b/",
+      "data_count": 95,
+      "model_name": "QwQ-32B Layer 60",
+      "seed": 42,
+      "checkpoint_path": "N/A (CPU bootstrap)",
+      "log_path": "/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_qwq_l60_bootstrap/results.json"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "method": "null-centered two-sided bootstrap (bugfixed)",
+      "bug_fixed": "missing np.mean(bd) centering caused p~0.5",
+      "W1": {
+        "bal_acc_ci": "[0.15,0.29]",
+        "bal_acc_p": 0,
+        "precision_ci": "[0.21,0.39]",
+        "precision_p": 0,
+        "fpr_ci": "[-0.23,-0.12]",
+        "fpr_p": 0
+      },
+      "W3": {
+        "bal_acc_p": 0,
+        "precision_p": 0,
+        "fpr_p": 0.004,
+        "precision_delta": 0.236,
+        "fpr_delta": -0.098
+      },
+      "W5": {
+        "bal_acc_p": 0,
+        "precision_p": 0,
+        "fpr_p": 0.011
+      },
+      "W10": {
+        "bal_acc_p": 0,
+        "precision_p": 0.016,
+        "fpr_p": 0.009
+      },
+      "W15": {
+        "bal_acc_p": 0.004,
+        "precision_p": 0.003,
+        "fpr_p": 0.007
+      },
+      "bonferroni_summary": "15/15 pass (alpha=0.0167)",
+      "finding": "All 15 tests significant after bugfix. QwQ L60 shows robust HS advantage across all windows, consistent with OT-7B. scale-dependent claim falsified."
+    },
+    "completed_at": "2026-05-17T15:38:04.794Z"
+  },
+  "timestamp": "2026-05-17T15:38:04.867225+00:00",
+  "trigger": "update_registry"
+}

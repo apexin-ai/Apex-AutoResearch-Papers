@@ -1,0 +1,2871 @@
+\relax 
+\bibstyle{acl_natbib}
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{deepseekr1}
+\citation{qwq}
+\citation{harmthoughts,selfjailbreak}
+\citation{trajguard,safeswitch,saferemind}
+\@LN@col{1}
+\@LN{0}{0}
+\@LN{1}{0}
+\@LN{2}{0}
+\@LN{3}{0}
+\@LN{4}{0}
+\@LN{5}{0}
+\@LN{6}{0}
+\@LN{7}{0}
+\@LN{8}{0}
+\@LN{9}{0}
+\@LN{10}{0}
+\@LN{11}{0}
+\@LN{12}{0}
+\@LN{13}{0}
+\@LN{14}{0}
+\@LN{15}{0}
+\@LN{16}{0}
+\@LN{17}{0}
+\@LN{18}{0}
+\@LN{19}{0}
+\@LN{20}{0}
+\@LN{21}{0}
+\@LN{22}{0}
+\@LN{23}{0}
+\@LN{24}{0}
+\@LN{25}{0}
+\@LN{26}{0}
+\@LN{27}{0}
+\@LN{28}{0}
+\@LN{29}{0}
+\@LN{30}{0}
+\@LN{31}{0}
+\@LN{32}{0}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:introduction}{{1}{1}{Introduction}{section.1}{}}
+\newlabel{sec:introduction@cref}{{[section][1][]1}{[1][1][]1}{}{}{}}
+\@LN{33}{0}
+\@LN{34}{0}
+\@LN{35}{0}
+\@LN{36}{0}
+\@LN{37}{0}
+\@LN{38}{0}
+\@LN{39}{0}
+\@LN@col{2}
+\@LN{40}{0}
+\@LN{41}{0}
+\@LN{42}{0}
+\@LN{43}{0}
+\@LN{44}{0}
+\@LN{45}{0}
+\@LN{46}{0}
+\@LN{47}{0}
+\@LN{48}{0}
+\@LN{49}{0}
+\@LN{50}{0}
+\@LN{51}{0}
+\@LN{52}{0}
+\@LN{53}{0}
+\@LN{54}{0}
+\@LN{55}{0}
+\@LN{56}{0}
+\@LN{57}{0}
+\@LN{58}{0}
+\@LN{59}{0}
+\@LN{60}{0}
+\@LN{61}{0}
+\@LN{62}{0}
+\@LN{63}{0}
+\@LN{64}{0}
+\@LN{65}{0}
+\@LN{66}{0}
+\@LN{67}{0}
+\@LN{68}{0}
+\@LN{69}{0}
+\@LN{70}{0}
+\@LN{71}{0}
+\@LN{72}{0}
+\@LN{73}{0}
+\@LN{74}{0}
+\@LN{75}{0}
+\@LN{76}{0}
+\@LN{77}{0}
+\@LN{78}{0}
+\@LN{79}{0}
+\@LN{80}{0}
+\citation{wang2025lrmsafety}
+\citation{harmthoughts,selfjailbreak}
+\citation{chen2025unfaithful,turpin2023language}
+\citation{yin2025refusal_cliff,hagendorff2026lrm_jailbreak,hu2026refusal_dynamics,ahrend2026safer_traces}
+\citation{safethink}
+\citation{mao2025selfjailbreak_reasoning}
+\citation{zhou2024alignment}
+\citation{arditi2024refusal}
+\citation{zhao2025harmfulness,wollschlager2025geometry}
+\citation{trajguard}
+\citation{safeswitch}
+\citation{siren,safedream2026,jiang2025hiddendetect,safeint2025,rcs2026,zhou2025ghost}
+\citation{chan2025probing}
+\citation{clap2025}
+\citation{meyoyan2026bertology}
+\citation{alain2017understanding}
+\citation{conneau2018probing}
+\citation{belinkov2022probing,rogers2020primer}
+\citation{hewitt2019control}
+\citation{tenney2019bert,marks2024geometry}
+\citation{kaya2019shallow,zhou2020bert}
+\citation{boxo2025linear_probes}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Metric-induced layer selection reversal. The same hidden states, evaluated with different layer selection metrics, yield opposite conclusions about the hidden-state advantage. Crossing-rate composite selects shallow layers (L0--L10), where hidden-state and text probes perform equivalently; threshold-based metrics select deep layers (L14--L63), where hidden-state probes significantly outperform text (+20pp). The 14--61 layer gap arises from the metric alone.}}{2}{figure.caption.1}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:concept_overview}{{1}{2}{Metric-induced layer selection reversal. The same hidden states, evaluated with different layer selection metrics, yield opposite conclusions about the hidden-state advantage. Crossing-rate composite selects shallow layers (L0--L10), where hidden-state and text probes perform equivalently; threshold-based metrics select deep layers (L14--L63), where hidden-state probes significantly outperform text (+20pp). The 14--61 layer gap arises from the metric alone}{figure.caption.1}{}}
+\newlabel{fig:concept_overview@cref}{{[figure][1][]1}{[1][1][]2}{}{}{}}
+\@LN@col{1}
+\@LN{81}{1}
+\@LN{82}{1}
+\@LN{83}{1}
+\@LN{84}{1}
+\@LN{85}{1}
+\@LN{86}{1}
+\@LN{87}{1}
+\@LN{88}{1}
+\@LN{89}{1}
+\@LN{90}{1}
+\@LN{91}{1}
+\@LN{92}{1}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related-work}{{2}{2}{Related Work}{section.2}{}}
+\newlabel{sec:related-work@cref}{{[section][2][]2}{[1][2][]2}{}{}{}}
+\@writefile{toc}{\contentsline {paragraph}{Safety in Reasoning Models.}{2}{section*.2}\protected@file@percent }
+\@LN{93}{1}
+\@LN{94}{1}
+\@LN{95}{1}
+\@LN{96}{1}
+\@LN{97}{1}
+\@LN{98}{1}
+\@LN{99}{1}
+\@LN{100}{1}
+\@LN{101}{1}
+\@LN{102}{1}
+\@LN{103}{1}
+\@LN{104}{1}
+\@LN{105}{1}
+\@LN{106}{1}
+\@LN{107}{1}
+\@LN{108}{1}
+\@LN@col{2}
+\@LN{109}{1}
+\@LN{110}{1}
+\@writefile{toc}{\contentsline {paragraph}{Hidden-State Probing.}{2}{section*.3}\protected@file@percent }
+\@LN{111}{1}
+\@LN{112}{1}
+\@LN{113}{1}
+\@LN{114}{1}
+\@LN{115}{1}
+\@LN{116}{1}
+\@LN{117}{1}
+\@LN{118}{1}
+\@LN{119}{1}
+\@LN{120}{1}
+\@LN{121}{1}
+\@LN{122}{1}
+\@LN{123}{1}
+\@LN{124}{1}
+\@LN{125}{1}
+\@LN{126}{1}
+\@LN{127}{1}
+\@LN{128}{1}
+\@LN{129}{1}
+\@LN{130}{1}
+\@LN{131}{1}
+\@LN{132}{1}
+\@LN{133}{1}
+\@LN{134}{1}
+\@LN{135}{1}
+\@LN{136}{1}
+\citation{deepseekr1}
+\citation{qwq}
+\citation{openthinker}
+\citation{still}
+\citation{harmthoughts}
+\citation{deepseekr1}
+\citation{qwq}
+\citation{openthinker}
+\citation{still}
+\citation{harmthoughts}
+\citation{wang2020minilm}
+\citation{reimers2019sentence}
+\citation{belinkov2022probing}
+\citation{kaya2019shallow,zhou2020bert}
+\@LN@col{1}
+\@writefile{toc}{\contentsline {paragraph}{Probing Methodology and Layer Selection.}{3}{section*.4}\protected@file@percent }
+\@LN{137}{2}
+\@LN{138}{2}
+\@LN{139}{2}
+\@LN{140}{2}
+\@LN{141}{2}
+\@LN{142}{2}
+\@LN{143}{2}
+\@LN{144}{2}
+\@LN{145}{2}
+\@LN{146}{2}
+\@LN{147}{2}
+\@LN{148}{2}
+\@LN{149}{2}
+\@LN{150}{2}
+\@LN{151}{2}
+\@LN{152}{2}
+\@LN{153}{2}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Problem Setup and Methods}{3}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{3}{Problem Setup and Methods}{section.3}{}}
+\newlabel{sec:method@cref}{{[section][3][]3}{[1][3][]3}{}{}{}}
+\@LN{154}{2}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Safety Commitment Point}{3}{subsection.3.1}\protected@file@percent }
+\newlabel{sec:commitment-point}{{3.1}{3}{Safety Commitment Point}{subsection.3.1}{}}
+\newlabel{sec:commitment-point@cref}{{[subsection][1][3]3.1}{[1][3][]3}{}{}{}}
+\@LN{155}{2}
+\@LN{156}{2}
+\@LN{157}{2}
+\@LN{158}{2}
+\@LN{159}{2}
+\@LN{160}{2}
+\@LN{161}{2}
+\@LN{162}{2}
+\@LN{163}{2}
+\@LN{164}{2}
+\@LN{165}{2}
+\@LN{166}{2}
+\@LN{167}{2}
+\@LN{168}{2}
+\@LN{169}{2}
+\@LN{170}{2}
+\@LN{171}{2}
+\@LN{172}{2}
+\@LN{173}{2}
+\@LN{174}{2}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Probe Architecture}{3}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:probe-architecture}{{3.2}{3}{Probe Architecture}{subsection.3.2}{}}
+\newlabel{sec:probe-architecture@cref}{{[subsection][2][3]3.2}{[1][3][]3}{}{}{}}
+\@writefile{toc}{\contentsline {paragraph}{Hidden-state (HS) probes.}{3}{section*.6}\protected@file@percent }
+\@LN{175}{2}
+\@LN{176}{2}
+\@LN{177}{2}
+\@LN{178}{2}
+\@LN{179}{2}
+\@LN{180}{2}
+\@LN{181}{2}
+\@LN{182}{2}
+\@writefile{toc}{\contentsline {paragraph}{Text probes.}{3}{section*.7}\protected@file@percent }
+\@LN{183}{2}
+\@LN{184}{2}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Models studied. R1-8B and R1-32B are distilled from DeepSeek-R1~\citep  {deepseekr1}; QwQ-32B~\citep  {qwq} is a native reasoning model; OT-7B~\citep  {openthinker} is trained with STILL~\citep  {still} on Qwen2.5-7B. Data: HarmThoughts~\citep  {harmthoughts} with step-level CP annotations (CP = first reasoning step after which safety deliberation permanently ceases). Split: 60/20/20.}}{3}{table.caption.5}\protected@file@percent }
+\newlabel{tab:models}{{1}{3}{Models studied. R1-8B and R1-32B are distilled from DeepSeek-R1~\citep {deepseekr1}; QwQ-32B~\citep {qwq} is a native reasoning model; OT-7B~\citep {openthinker} is trained with STILL~\citep {still} on Qwen2.5-7B. Data: HarmThoughts~\citep {harmthoughts} with step-level CP annotations (CP = first reasoning step after which safety deliberation permanently ceases). Split: 60/20/20}{table.caption.5}{}}
+\newlabel{tab:models@cref}{{[table][1][]1}{[1][3][]3}{}{}{}}
+\@LN{185}{2}
+\@LN{186}{2}
+\@LN{187}{2}
+\@LN{188}{2}
+\@LN{189}{2}
+\@LN{190}{2}
+\@writefile{toc}{\contentsline {paragraph}{Temporal windowing.}{3}{section*.8}\protected@file@percent }
+\@LN{191}{2}
+\@LN{192}{2}
+\@LN{193}{2}
+\@LN{194}{2}
+\@LN{195}{2}
+\@LN{196}{2}
+\@LN{197}{2}
+\@LN{198}{2}
+\@LN{199}{2}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Layer Selection Sensitivity}{3}{subsection.3.3}\protected@file@percent }
+\newlabel{sec:layer-sensitivity}{{3.3}{3}{Layer Selection Sensitivity}{subsection.3.3}{}}
+\newlabel{sec:layer-sensitivity@cref}{{[subsection][3][3]3.3}{[1][3][]3}{}{}{}}
+\@LN{200}{2}
+\@LN{201}{2}
+\@LN{202}{2}
+\@LN{203}{2}
+\@LN{204}{2}
+\@LN{205}{2}
+\@LN{206}{2}
+\@LN{207}{2}
+\@LN{208}{2}
+\@LN{209}{2}
+\@LN{210}{2}
+\@LN{211}{2}
+\@LN{212}{2}
+\@LN{213}{2}
+\@LN{214}{2}
+\@LN{215}{2}
+\@LN{216}{2}
+\@LN{217}{2}
+\@LN{218}{2}
+\@LN{219}{2}
+\@LN{220}{2}
+\@LN{221}{2}
+\citation{adams2007bayesian}
+\citation{page1954cusum}
+\citation{trajguard}
+\citation{zou2023representation}
+\citation{burns2023discovering}
+\citation{efron1993bootstrap,diciccio1996bootstrap}
+\citation{hewitt2019control}
+\citation{openthinker}
+\@LN@col{1}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Cosine compression at shallow vs.\ deep layers. Shallow layers produce compressed representations (1.4--2.7$\times $ smaller inter-step cosine distances), causing spurious threshold crossings that inflate crossing rate. Layer indices below each bar; compression ratios above. Error bars: $\pm $1 std. Data from \cref  {tab:cosine_volatility}.}}{4}{figure.caption.9}\protected@file@percent }
+\newlabel{fig:cosine_compression}{{2}{4}{Cosine compression at shallow vs.\ deep layers. Shallow layers produce compressed representations (1.4--2.7$\times $ smaller inter-step cosine distances), causing spurious threshold crossings that inflate crossing rate. Layer indices below each bar; compression ratios above. Error bars: $\pm $1 std. Data from \cref {tab:cosine_volatility}}{figure.caption.9}{}}
+\newlabel{fig:cosine_compression@cref}{{[figure][2][]2}{[1][4][]4}{}{}{}}
+\@LN{222}{3}
+\@LN{223}{3}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Baseline Methods}{4}{subsection.3.4}\protected@file@percent }
+\newlabel{sec:baselines}{{3.4}{4}{Baseline Methods}{subsection.3.4}{}}
+\newlabel{sec:baselines@cref}{{[subsection][4][3]3.4}{[1][4][]4}{}{}{}}
+\@LN{224}{3}
+\@LN{225}{3}
+\@LN{226}{3}
+\@LN{227}{3}
+\@LN{228}{3}
+\@LN{229}{3}
+\@LN{230}{3}
+\@LN{231}{3}
+\@LN{232}{3}
+\@LN{233}{3}
+\@LN{234}{3}
+\@LN{235}{3}
+\@LN{236}{3}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Evaluation Protocol}{4}{subsection.3.5}\protected@file@percent }
+\newlabel{sec:evaluation}{{3.5}{4}{Evaluation Protocol}{subsection.3.5}{}}
+\newlabel{sec:evaluation@cref}{{[subsection][5][3]3.5}{[1][4][]4}{}{}{}}
+\@LN{237}{3}
+\@LN{238}{3}
+\@LN{239}{3}
+\@LN{240}{3}
+\@LN{241}{3}
+\@LN{242}{3}
+\@LN{243}{3}
+\@LN{244}{3}
+\@LN{245}{3}
+\@LN{246}{3}
+\@LN{247}{3}
+\@LN{248}{3}
+\@LN{249}{3}
+\@LN{250}{3}
+\@LN{251}{3}
+\@LN{252}{3}
+\@LN@col{2}
+\@LN{253}{3}
+\@LN{254}{3}
+\@LN{255}{3}
+\@LN{256}{3}
+\@LN{257}{3}
+\@LN{258}{3}
+\@LN{259}{3}
+\@LN{260}{3}
+\@LN{261}{3}
+\@LN{262}{3}
+\@LN{263}{3}
+\@LN{264}{3}
+\@LN{265}{3}
+\@LN{266}{3}
+\@LN{267}{3}
+\@LN{268}{3}
+\@LN{269}{3}
+\@LN{270}{3}
+\@LN{271}{3}
+\@LN{272}{3}
+\@writefile{toc}{\contentsline {paragraph}{Multiple comparisons.}{4}{section*.10}\protected@file@percent }
+\@LN{273}{3}
+\@LN{274}{3}
+\@LN{275}{3}
+\@LN{276}{3}
+\@LN{277}{3}
+\@LN{278}{3}
+\@LN{279}{3}
+\@LN{280}{3}
+\@LN{281}{3}
+\@LN{282}{3}
+\@LN{283}{3}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{4}{section.4}\protected@file@percent }
+\newlabel{sec:experiments}{{4}{4}{Experiments}{section.4}{}}
+\newlabel{sec:experiments@cref}{{[section][4][]4}{[1][4][]4}{}{}{}}
+\@LN{284}{3}
+\@LN{285}{3}
+\@LN{286}{3}
+\@LN{287}{3}
+\@LN{288}{3}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Setup}{4}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:setup}{{4.1}{4}{Setup}{subsection.4.1}{}}
+\newlabel{sec:setup@cref}{{[subsection][1][4]4.1}{[1][4][]4}{}{}{}}
+\@LN{289}{3}
+\@LN{290}{3}
+\@LN{291}{3}
+\@LN{292}{3}
+\@LN{293}{3}
+\@LN{294}{3}
+\@LN{295}{3}
+\@LN{296}{3}
+\@LN{297}{3}
+\@LN{298}{3}
+\@LN{299}{3}
+\@LN{300}{3}
+\@LN{301}{3}
+\citation{advbench}
+\@LN@col{1}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Per-layer metric heatmap. Each column: one of five metrics (min-max normalized). Red dashed: CR-composite layer; green dashed: threshold-based layer. CR-composite selections cluster near input layers; threshold-based metrics peak at deep layers.}}{5}{figure.caption.11}\protected@file@percent }
+\newlabel{fig:layer_heatmap}{{3}{5}{Per-layer metric heatmap. Each column: one of five metrics (min-max normalized). Red dashed: CR-composite layer; green dashed: threshold-based layer. CR-composite selections cluster near input layers; threshold-based metrics peak at deep layers}{figure.caption.11}{}}
+\newlabel{fig:layer_heatmap@cref}{{[figure][3][]3}{[1][5][]5}{}{}{}}
+\@LN{302}{4}
+\@LN{303}{4}
+\@LN{304}{4}
+\@LN{305}{4}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Layer Selection Results}{5}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:layer-results}{{4.2}{5}{Layer Selection Results}{subsection.4.2}{}}
+\newlabel{sec:layer-results@cref}{{[subsection][2][4]4.2}{[1][5][]5}{}{}{}}
+\@LN{306}{4}
+\@LN{307}{4}
+\@LN{308}{4}
+\@LN{309}{4}
+\@LN{310}{4}
+\@LN{311}{4}
+\@LN{312}{4}
+\@LN{313}{4}
+\@LN{314}{4}
+\@LN{315}{4}
+\@LN{316}{4}
+\@LN{317}{4}
+\@LN{318}{4}
+\@LN{319}{4}
+\@LN{320}{4}
+\@LN{321}{4}
+\@LN{322}{4}
+\@LN{323}{4}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Layer selection sensitivity. $^a$\,Crossing-rate composite. $^b$\,Threshold-based consensus. $^c$\,HS$-$text precision difference (pp) at threshold-based layer. $p$: HS vs.\ text at threshold-based layer. $\dagger $\,Sample-limited ($n \leq 20$).}}{5}{table.caption.12}\protected@file@percent }
+\newlabel{tab:layer_selection}{{2}{5}{Layer selection sensitivity. $^a$\,Crossing-rate composite. $^b$\,Threshold-based consensus. $^c$\,HS$-$text precision difference (pp) at threshold-based layer. $p$: HS vs.\ text at threshold-based layer. $\dagger $\,Sample-limited ($n \leq 20$)}{table.caption.12}{}}
+\newlabel{tab:layer_selection@cref}{{[table][2][]2}{[1][5][]5}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Multi-metric layer ensemble vs.\ best single metric and text baseline. All Ens--Text differences significant ($p \leq 0.002$); no Ens--Best difference significant ($p > 0.27$).}}{5}{table.caption.14}\protected@file@percent }
+\newlabel{tab:ensemble}{{3}{5}{Multi-metric layer ensemble vs.\ best single metric and text baseline. All Ens--Text differences significant ($p \leq 0.002$); no Ens--Best difference significant ($p > 0.27$)}{table.caption.14}{}}
+\newlabel{tab:ensemble@cref}{{[table][3][]3}{[1][5][]5}{}{}{}}
+\@LN{324}{4}
+\@LN{325}{4}
+\@LN{326}{4}
+\@LN{327}{4}
+\@LN{328}{4}
+\@LN{329}{4}
+\@LN{330}{4}
+\@LN{331}{4}
+\@LN{332}{4}
+\@writefile{toc}{\contentsline {paragraph}{Ensemble layer selection.}{5}{section*.13}\protected@file@percent }
+\@LN{333}{4}
+\@LN{334}{4}
+\@LN{335}{4}
+\@LN{336}{4}
+\@LN{337}{4}
+\@LN{338}{4}
+\@LN{339}{4}
+\@LN{340}{4}
+\@LN{341}{4}
+\@LN{342}{4}
+\@writefile{toc}{\contentsline {paragraph}{Cross-dataset replication (AdvBench).}{5}{section*.15}\protected@file@percent }
+\@LN{343}{4}
+\@LN{344}{4}
+\@LN{345}{4}
+\@LN{346}{4}
+\@LN{347}{4}
+\@LN{348}{4}
+\@LN{349}{4}
+\@LN{350}{4}
+\@LN{351}{4}
+\@LN{352}{4}
+\@LN{353}{4}
+\citation{xiao2023cpack}
+\citation{adams2007bayesian}
+\citation{zou2023representation}
+\@LN@col{1}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces HS precision advantage (pp) over text probes with 95\% bootstrap CI. Blue: vs.\ MiniLM-384d; orange: vs.\ BGE-1024d. Solid: survives Holm--Bonferroni correction; hollow: does not. The encoder-quality gradient is monotonic: all 384d comparisons significant; at 1024d only OT-7B survives.}}{6}{figure.caption.16}\protected@file@percent }
+\newlabel{fig:forest_precision}{{4}{6}{HS precision advantage (pp) over text probes with 95\% bootstrap CI. Blue: vs.\ MiniLM-384d; orange: vs.\ BGE-1024d. Solid: survives Holm--Bonferroni correction; hollow: does not. The encoder-quality gradient is monotonic: all 384d comparisons significant; at 1024d only OT-7B survives}{figure.caption.16}{}}
+\newlabel{fig:forest_precision@cref}{{[figure][4][]4}{[1][5][]6}{}{}{}}
+\@LN{354}{5}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}HS vs.\ Text Comparison}{6}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:hs-text}{{4.3}{6}{HS vs.\ Text Comparison}{subsection.4.3}{}}
+\newlabel{sec:hs-text@cref}{{[subsection][3][4]4.3}{[1][6][]6}{}{}{}}
+\@LN{355}{5}
+\@LN{356}{5}
+\@LN{357}{5}
+\@LN{358}{5}
+\@LN{359}{5}
+\@LN{360}{5}
+\@LN{361}{5}
+\@LN{362}{5}
+\@LN{363}{5}
+\@LN{364}{5}
+\@LN{365}{5}
+\@writefile{toc}{\contentsline {paragraph}{Capacity control.}{6}{section*.17}\protected@file@percent }
+\@LN{366}{5}
+\@LN{367}{5}
+\@LN{368}{5}
+\@LN{369}{5}
+\@LN{370}{5}
+\@LN{371}{5}
+\@LN{372}{5}
+\@LN{373}{5}
+\@LN{374}{5}
+\@LN{375}{5}
+\@LN{376}{5}
+\@LN{377}{5}
+\@writefile{toc}{\contentsline {paragraph}{Encoder robustness.}{6}{section*.18}\protected@file@percent }
+\@LN{378}{5}
+\@LN{379}{5}
+\@LN{380}{5}
+\@LN{381}{5}
+\@LN{382}{5}
+\@LN{383}{5}
+\@LN{384}{5}
+\@LN{385}{5}
+\@LN{386}{5}
+\@LN@col{2}
+\@writefile{toc}{\contentsline {paragraph}{Position mediation.}{6}{section*.19}\protected@file@percent }
+\@LN{387}{5}
+\@LN{388}{5}
+\@LN{389}{5}
+\@LN{390}{5}
+\@LN{391}{5}
+\@LN{392}{5}
+\@LN{393}{5}
+\@LN{394}{5}
+\@LN{395}{5}
+\@LN{396}{5}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}32B Scale}{6}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:32b-analysis}{{4.4}{6}{32B Scale}{subsection.4.4}{}}
+\newlabel{sec:32b-analysis@cref}{{[subsection][4][4]4.4}{[1][6][]6}{}{}{}}
+\@LN{397}{5}
+\@LN{398}{5}
+\@LN{399}{5}
+\@LN{400}{5}
+\@LN{401}{5}
+\@LN{402}{5}
+\@LN{403}{5}
+\@LN{404}{5}
+\@LN{405}{5}
+\@LN{406}{5}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Temporal Context}{6}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:temporal}{{4.5}{6}{Temporal Context}{subsection.4.5}{}}
+\newlabel{sec:temporal@cref}{{[subsection][5][4]4.5}{[1][6][]6}{}{}{}}
+\@LN{407}{5}
+\@LN{408}{5}
+\@LN{409}{5}
+\@LN{410}{5}
+\@LN{411}{5}
+\@LN{412}{5}
+\@LN{413}{5}
+\@LN{414}{5}
+\@LN{415}{5}
+\@LN{416}{5}
+\@LN{417}{5}
+\@LN{418}{5}
+\@LN{419}{5}
+\@LN{420}{5}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Negative Results}{6}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:negative}{{4.6}{6}{Negative Results}{subsection.4.6}{}}
+\newlabel{sec:negative@cref}{{[subsection][6][4]4.6}{[1][6][]6}{}{}{}}
+\@LN{421}{5}
+\@LN{422}{5}
+\@LN{423}{5}
+\@LN{424}{5}
+\@LN{425}{5}
+\@LN{426}{5}
+\@LN{427}{5}
+\@LN{428}{5}
+\@LN{429}{5}
+\@LN{430}{5}
+\@LN{431}{5}
+\@LN{432}{5}
+\@LN{433}{5}
+\@LN{434}{5}
+\citation{belinkov2022probing,voita2020information}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Temporal window effect on R1-8B HS probe (L14). Precision: 69.3\% ($W{=}1$) to 82.2\% ($W{=}25$); FPR: 9.65\% to 4.83\%.}}{7}{figure.caption.20}\protected@file@percent }
+\newlabel{fig:window_ablation}{{5}{7}{Temporal window effect on R1-8B HS probe (L14). Precision: 69.3\% ($W{=}1$) to 82.2\% ($W{=}25$); FPR: 9.65\% to 4.83\%}{figure.caption.20}{}}
+\newlabel{fig:window_ablation@cref}{{[figure][5][]5}{[1][6][]7}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces HS vs.\ text at threshold-based layers (logistic regression, 60/20/20 split, 10{,}000 bootstrap). Enc.: text encoder (384d = MiniLM, 1024d = BGE-large). $\Delta $: HS$-$text difference (pp); ``--'' = not computed (different calibration points). HB: \text  {$\mathsurround \z@ \mathchar "558$}{} = passes Holm--Bonferroni ($\alpha {=}0.05$). $^\dagger $\,Sample-limited ($n \leq 20$).}}{7}{table.caption.21}\protected@file@percent }
+\newlabel{tab:hs_vs_text}{{4}{7}{HS vs.\ text at threshold-based layers (logistic regression, 60/20/20 split, 10{,}000 bootstrap). Enc.: text encoder (384d = MiniLM, 1024d = BGE-large). $\Delta $: HS$-$text difference (pp); ``--'' = not computed (different calibration points). HB: \checkmark {} = passes Holm--Bonferroni ($\alpha {=}0.05$). $^\dagger $\,Sample-limited ($n \leq 20$)}{table.caption.21}{}}
+\newlabel{tab:hs_vs_text@cref}{{[table][4][]4}{[1][6][]7}{}{}{}}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Seven alternative approaches. $^a$\,RepE QwQ approaches supervised bal\_acc but precision is 0.512 vs.\ LR 0.700. $^b$\,Semi-supervised (requires CP labels). $^c$\,Best direct transfer 67.3\% but 1\% crossing rate.}}{7}{table.caption.22}\protected@file@percent }
+\newlabel{tab:negative}{{5}{7}{Seven alternative approaches. $^a$\,RepE QwQ approaches supervised bal\_acc but precision is 0.512 vs.\ LR 0.700. $^b$\,Semi-supervised (requires CP labels). $^c$\,Best direct transfer 67.3\% but 1\% crossing rate}{table.caption.22}{}}
+\newlabel{tab:negative@cref}{{[table][5][]5}{[1][6][]7}{}{}{}}
+\@LN{435}{6}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion and Conclusion}{7}{section.5}\protected@file@percent }
+\newlabel{sec:discussion}{{5}{7}{Discussion and Conclusion}{section.5}{}}
+\newlabel{sec:discussion@cref}{{[section][5][]5}{[1][7][]7}{}{}{}}
+\@writefile{toc}{\contentsline {paragraph}{Implications and novelty.}{7}{section*.24}\protected@file@percent }
+\@LN{436}{6}
+\@LN{437}{6}
+\@LN{438}{6}
+\@LN{439}{6}
+\@LN{440}{6}
+\@LN{441}{6}
+\@LN{442}{6}
+\@LN{443}{6}
+\@LN@col{2}
+\@LN{444}{6}
+\@LN{445}{6}
+\@LN{446}{6}
+\@LN{447}{6}
+\@LN{448}{6}
+\@LN{449}{6}
+\@LN{450}{6}
+\@LN{451}{6}
+\@LN{452}{6}
+\@LN{453}{6}
+\@LN{454}{6}
+\@writefile{toc}{\contentsline {paragraph}{Practical recommendations.}{7}{section*.25}\protected@file@percent }
+\@LN{455}{6}
+\@LN{456}{6}
+\@LN{457}{6}
+\@LN{458}{6}
+\@LN{459}{6}
+\@LN{460}{6}
+\@LN{461}{6}
+\@LN{462}{6}
+\@LN{463}{6}
+\@LN{464}{6}
+\@LN{465}{6}
+\@LN{466}{6}
+\@LN{467}{6}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces CP-aligned probe score trajectories. Each panel averages all test traces for one model, with step 0 at the true commitment point. HS probes (blue, solid) show a sharper score increase at CP than text probes (orange, dashed), with OT-7B showing the strongest separation and R1-32B the weakest, consistent with the evidence gradient. Shaded bands: $\pm $1 std. Points with $<$5 traces are omitted.}}{8}{figure.caption.23}\protected@file@percent }
+\newlabel{fig:trajectory}{{6}{8}{CP-aligned probe score trajectories. Each panel averages all test traces for one model, with step 0 at the true commitment point. HS probes (blue, solid) show a sharper score increase at CP than text probes (orange, dashed), with OT-7B showing the strongest separation and R1-32B the weakest, consistent with the evidence gradient. Shaded bands: $\pm $1 std. Points with $<$5 traces are omitted}{figure.caption.23}{}}
+\newlabel{fig:trajectory@cref}{{[figure][6][]6}{[1][6][]8}{}{}{}}
+\@LN@col{1}
+\@LN{468}{7}
+\@LN{469}{7}
+\@writefile{toc}{\contentsline {paragraph}{Boundary conditions.}{8}{section*.26}\protected@file@percent }
+\@LN{470}{7}
+\@LN{471}{7}
+\@LN{472}{7}
+\@LN{473}{7}
+\@LN{474}{7}
+\@LN{475}{7}
+\@LN{476}{7}
+\@LN{477}{7}
+\@LN{478}{7}
+\@LN{479}{7}
+\@LN{480}{7}
+\@LN{481}{7}
+\@writefile{toc}{\contentsline {paragraph}{Future work.}{8}{section*.27}\protected@file@percent }
+\@LN{482}{7}
+\@LN{483}{7}
+\@LN{484}{7}
+\@LN{485}{7}
+\@LN{486}{7}
+\@LN{487}{7}
+\@LN{488}{7}
+\@LN{489}{7}
+\newlabel{sec:limitations}{{5}{8}{Limitations}{section*.28}{}}
+\newlabel{sec:limitations@cref}{{[section][5][]5}{[1][8][]8}{}{}{}}
+\@LN{490}{7}
+\@LN{491}{7}
+\@LN@col{2}
+\@LN{492}{7}
+\@LN{493}{7}
+\@LN{494}{7}
+\@LN{495}{7}
+\@LN{496}{7}
+\@LN{497}{7}
+\@LN{498}{7}
+\@LN{499}{7}
+\@LN{500}{7}
+\@LN{501}{7}
+\@LN{502}{7}
+\@LN{503}{7}
+\@LN{504}{7}
+\@LN{505}{7}
+\@LN{506}{7}
+\@LN{507}{7}
+\newlabel{sec:ethics}{{5}{8}{Ethical Considerations}{section*.29}{}}
+\newlabel{sec:ethics@cref}{{[section][5][]5}{[1][8][]8}{}{}{}}
+\@LN{508}{7}
+\@LN{509}{7}
+\@LN{510}{7}
+\@LN{511}{7}
+\@LN{512}{7}
+\@LN{513}{7}
+\@LN{514}{7}
+\@LN{515}{7}
+\@LN{516}{7}
+\bibdata{references}
+\bibcite{adams2007bayesian}{{1}{2007}{{Adams and MacKay}}{{}}}
+\bibcite{ahrend2026safer_traces}{{2}{2026}{{Ahrend et~al.}}{{Ahrend, Eder, Yang, Pan, and Groh}}}
+\bibcite{alain2017understanding}{{3}{2017}{{Alain and Bengio}}{{}}}
+\bibcite{arditi2024refusal}{{4}{2024}{{Arditi et~al.}}{{Arditi, Obeso, Syed, Paleka, Panickssery, Gurnee, and Nanda}}}
+\bibcite{belinkov2022probing}{{5}{2022}{{Belinkov}}{{}}}
+\bibcite{boxo2025linear_probes}{{6}{2025}{{Boxo et~al.}}{{Boxo, Neelappa, and Raval}}}
+\bibcite{burns2023discovering}{{7}{2023}{{Burns et~al.}}{{Burns, Ye, Klein, and Steinhardt}}}
+\bibcite{carpenter2000bootstrap}{{8}{2000}{{Carpenter and Bithell}}{{}}}
+\bibcite{chan2025probing}{{9}{2025}{{Chan et~al.}}{{Chan, Yong, and Bach}}}
+\bibcite{chen2025unfaithful}{{10}{2025}{{Chen et~al.}}{{Chen, Benton, Radhakrishnan, Uesato, Denison, Schulman, Somani, Hase, Wagner, Roger, Mikulik, Bowman, Leike, Kaplan, and Perez}}}
+\bibcite{cohen1988statistical}{{11}{1988}{{Cohen}}{{}}}
+\bibcite{conneau2018probing}{{12}{2018}{{Conneau et~al.}}{{Conneau, Kruszewski, Lample, Barrault, and Baroni}}}
+\bibcite{deepseekr1}{{13}{2025}{{DeepSeek-AI}}{{}}}
+\bibcite{diciccio1996bootstrap}{{14}{1996}{{DiCiccio and Efron}}{{}}}
+\bibcite{efron1993bootstrap}{{15}{1993}{{Efron and Tibshirani}}{{}}}
+\bibcite{gelman2013garden}{{16}{2013}{{Gelman and Loken}}{{}}}
+\bibcite{safethink}{{17}{2026}{{Ghosal et~al.}}{{Ghosal, Chakraborty, Singh, Huang, Manocha, and Bedi}}}
+\bibcite{openthinker}{{18}{2025}{{Guha et~al.}}{{Guha, Marten, Keh, Raoof et~al.}}}
+\bibcite{hagendorff2026lrm_jailbreak}{{19}{2026}{{Hagendorff et~al.}}{{Hagendorff, Derner, and Oliver}}}
+\bibcite{safeswitch}{{20}{2025}{{Han et~al.}}{{Han, Qian, Chen, Zhang, Ji, and Zhang}}}
+\bibcite{hewitt2019control}{{21}{2019}{{Hewitt and Liang}}{{}}}
+\bibcite{hu2026refusal_dynamics}{{22}{2026}{{Hu et~al.}}{{Hu, Wang, Lim, Gao, and Chen}}}
+\@LN@col{1}
+\@LN{517}{8}
+\@LN{518}{8}
+\@LN{519}{8}
+\@LN{520}{8}
+\@LN{521}{8}
+\@LN{522}{8}
+\@LN{523}{8}
+\@LN{524}{8}
+\@LN{525}{8}
+\@LN{526}{8}
+\@LN{527}{8}
+\@LN{528}{8}
+\@LN{529}{8}
+\@LN{530}{8}
+\@LN{531}{8}
+\@LN{532}{8}
+\@LN{533}{8}
+\@LN{534}{8}
+\@LN{535}{8}
+\@LN{536}{8}
+\@LN{537}{8}
+\@LN{538}{8}
+\@LN{539}{8}
+\@LN{540}{8}
+\@LN{541}{8}
+\@LN{542}{8}
+\@LN{543}{8}
+\@LN{544}{8}
+\@LN{545}{8}
+\@LN{546}{8}
+\@LN{547}{8}
+\@LN{548}{8}
+\@LN{549}{8}
+\@LN{550}{8}
+\@LN{551}{8}
+\@LN{552}{8}
+\@LN{553}{8}
+\@LN{554}{8}
+\@LN{555}{8}
+\@LN{556}{8}
+\@LN{557}{8}
+\@LN{558}{8}
+\@LN{559}{8}
+\@LN{560}{8}
+\@LN{561}{8}
+\@LN{562}{8}
+\@LN{563}{8}
+\@LN{564}{8}
+\@LN{565}{8}
+\@LN{566}{8}
+\@LN{567}{8}
+\@LN{568}{8}
+\@LN@col{2}
+\@LN{569}{8}
+\@LN{570}{8}
+\@LN{571}{8}
+\@LN{572}{8}
+\@LN{573}{8}
+\@LN{574}{8}
+\@LN{575}{8}
+\@LN{576}{8}
+\@LN{577}{8}
+\@LN{578}{8}
+\@LN{579}{8}
+\@LN{580}{8}
+\@LN{581}{8}
+\@LN{582}{8}
+\@LN{583}{8}
+\@LN{584}{8}
+\@LN{585}{8}
+\@LN{586}{8}
+\@LN{587}{8}
+\@LN{588}{8}
+\@LN{589}{8}
+\@LN{590}{8}
+\@LN{591}{8}
+\@LN{592}{8}
+\@LN{593}{8}
+\@LN{594}{8}
+\@LN{595}{8}
+\@LN{596}{8}
+\@LN{597}{8}
+\@LN{598}{8}
+\@LN{599}{8}
+\@LN{600}{8}
+\@LN{601}{8}
+\@LN{602}{8}
+\@LN{603}{8}
+\@LN{604}{8}
+\@LN{605}{8}
+\@LN{606}{8}
+\@LN{607}{8}
+\@LN{608}{8}
+\@LN{609}{8}
+\@LN{610}{8}
+\@LN{611}{8}
+\@LN{612}{8}
+\@LN{613}{8}
+\@LN{614}{8}
+\@LN{615}{8}
+\@LN{616}{8}
+\@LN{617}{8}
+\@LN{618}{8}
+\@LN{619}{8}
+\@LN{620}{8}
+\@LN{621}{8}
+\@LN{622}{8}
+\bibcite{rcs2026}{{23}{2026}{{Hua et~al.}}{{Hua, Li, Shi, Yu, and Zhang}}}
+\bibcite{jiang2025hiddendetect}{{24}{2025}{{Jiang et~al.}}{{Jiang, Gao, Peng, Tan, Zhu, Zheng, and Yue}}}
+\bibcite{siren}{{25}{2026}{{Jiao et~al.}}{{Jiao, Liu, Yuan, Tang, Du, Wu, and Anderson}}}
+\bibcite{harmthoughts}{{26}{2026}{{Kakkar et~al.}}{{Kakkar, Zhang, Uppaal, and Hu}}}
+\bibcite{kaya2019shallow}{{27}{2019}{{Kaya et~al.}}{{Kaya, Hong, and Dumitras}}}
+\bibcite{saferemind}{{28}{2026}{{Kim et~al.}}{{Kim, Jin, Lee, and Han}}}
+\bibcite{trajguard}{{29}{2026}{{Liu et~al.}}{{Liu, Liu, Li, Xin, and Ding}}}
+\bibcite{mao2025selfjailbreak_reasoning}{{30}{2025}{{Mao et~al.}}{{Mao, Zhang, Wang, Guan, Cao, Lu, Lin, Han, and Sun}}}
+\bibcite{marks2024geometry}{{31}{2024}{{Marks and Tegmark}}{{}}}
+\bibcite{meyoyan2026bertology}{{32}{2026}{{Meyoyan and Del~Corro}}{{}}}
+\bibcite{still}{{33}{2024}{{Min et~al.}}{{Min, Chen, Jiang, Chen, Deng, Hu, Tang, Wang, Cheng, Song, Zhao, Liu, Wang, and Wen}}}
+\bibcite{page1954cusum}{{34}{1954}{{Page}}{{}}}
+\bibcite{qwq}{{35}{2024}{{Qwen Team}}{{}}}
+\bibcite{reimers2019sentence}{{36}{2019}{{Reimers and Gurevych}}{{}}}
+\bibcite{rogers2020primer}{{37}{2020}{{Rogers et~al.}}{{Rogers, Kovaleva, and Rumshisky}}}
+\bibcite{clap2025}{{38}{2025}{{Suresh et~al.}}{{Suresh, Aljundi, Nkisi-Orji, and Wiratunga}}}
+\bibcite{tenney2019bert}{{39}{2019}{{Tenney et~al.}}{{Tenney, Das, and Pavlick}}}
+\bibcite{turpin2023language}{{40}{2023}{{Turpin et~al.}}{{Turpin, Michael, Perez, and Bowman}}}
+\bibcite{voita2020information}{{41}{2020}{{Voita and Titov}}{{}}}
+\bibcite{wang2025lrmsafety}{{42}{2025}{{Wang et~al.}}{{Wang, Liu, Bi, Zhang, Li, Ma, He, Yu, Li, Fang, Zhang, and Hooi}}}
+\bibcite{wang2024e5mistral}{{43}{2024}{{Wang et~al.}}{{Wang, Yang, Huang, Yang, Majumder, and Wei}}}
+\bibcite{wang2020minilm}{{44}{2020}{{Wang et~al.}}{{Wang, Wei, Dong, Bao, Yang, and Zhou}}}
+\@LN@col{1}
+\@LN{623}{9}
+\@LN{624}{9}
+\@LN{625}{9}
+\@LN{626}{9}
+\@LN{627}{9}
+\@LN{628}{9}
+\@LN{629}{9}
+\@LN{630}{9}
+\@LN{631}{9}
+\@LN{632}{9}
+\@LN{633}{9}
+\@LN{634}{9}
+\@LN{635}{9}
+\@LN{636}{9}
+\@LN{637}{9}
+\@LN{638}{9}
+\@LN{639}{9}
+\@LN{640}{9}
+\@LN{641}{9}
+\@LN{642}{9}
+\@LN{643}{9}
+\@LN{644}{9}
+\@LN{645}{9}
+\@LN{646}{9}
+\@LN{647}{9}
+\@LN{648}{9}
+\@LN{649}{9}
+\@LN{650}{9}
+\@LN{651}{9}
+\@LN{652}{9}
+\@LN{653}{9}
+\@LN{654}{9}
+\@LN{655}{9}
+\@LN{656}{9}
+\@LN{657}{9}
+\@LN{658}{9}
+\@LN{659}{9}
+\@LN{660}{9}
+\@LN{661}{9}
+\@LN{662}{9}
+\@LN{663}{9}
+\@LN{664}{9}
+\@LN{665}{9}
+\@LN{666}{9}
+\@LN{667}{9}
+\@LN{668}{9}
+\@LN{669}{9}
+\@LN{670}{9}
+\@LN{671}{9}
+\@LN{672}{9}
+\@LN{673}{9}
+\@LN{674}{9}
+\@LN{675}{9}
+\@LN@col{2}
+\@LN{676}{9}
+\@LN{677}{9}
+\@LN{678}{9}
+\@LN{679}{9}
+\@LN{680}{9}
+\@LN{681}{9}
+\@LN{682}{9}
+\@LN{683}{9}
+\@LN{684}{9}
+\@LN{685}{9}
+\@LN{686}{9}
+\@LN{687}{9}
+\@LN{688}{9}
+\@LN{689}{9}
+\@LN{690}{9}
+\@LN{691}{9}
+\@LN{692}{9}
+\@LN{693}{9}
+\@LN{694}{9}
+\@LN{695}{9}
+\@LN{696}{9}
+\@LN{697}{9}
+\@LN{698}{9}
+\@LN{699}{9}
+\@LN{700}{9}
+\@LN{701}{9}
+\@LN{702}{9}
+\@LN{703}{9}
+\@LN{704}{9}
+\@LN{705}{9}
+\@LN{706}{9}
+\@LN{707}{9}
+\@LN{708}{9}
+\@LN{709}{9}
+\@LN{710}{9}
+\@LN{711}{9}
+\@LN{712}{9}
+\@LN{713}{9}
+\@LN{714}{9}
+\@LN{715}{9}
+\@LN{716}{9}
+\@LN{717}{9}
+\@LN{718}{9}
+\@LN{719}{9}
+\@LN{720}{9}
+\@LN{721}{9}
+\@LN{722}{9}
+\@LN{723}{9}
+\@LN{724}{9}
+\@LN{725}{9}
+\@LN{726}{9}
+\@LN{727}{9}
+\bibcite{wollschlager2025geometry}{{45}{2025}{{Wollschl\"{a}ger et~al.}}{{Wollschl\"{a}ger, Elstner, Geisler, Cohen-Addad, G\"{u}nnemann, and Gasteiger}}}
+\bibcite{safeint2025}{{46}{2025}{{Wu et~al.}}{{Wu, Chen, Hou, and Yuan}}}
+\bibcite{xiao2023cpack}{{47}{2024}{{Xiao et~al.}}{{Xiao, Liu, Zhang, Muennighoff, Lian, and Nie}}}
+\bibcite{safedream2026}{{48}{2026}{{Yan et~al.}}{{Yan, Lin, Zhu, and Wang}}}
+\bibcite{yin2025refusal_cliff}{{49}{2025}{{Yin et~al.}}{{Yin, Leong, Yang, Huang, Li, Wang, Yoon, Xing, Yu, and Gu}}}
+\bibcite{selfjailbreak}{{50}{2025}{{Yong and Bach}}{{}}}
+\bibcite{zhao2025harmfulness}{{51}{2025}{{Zhao et~al.}}{{Zhao, Huang, Wu, Bau, and Shi}}}
+\bibcite{zhou2025ghost}{{52}{2025}{{Zhou et~al.}}{{Zhou, Wang, Shi, and Wang}}}
+\bibcite{zhou2020bert}{{53}{2020}{{Zhou et~al.}}{{Zhou, Xu, Ge, McAuley, Xu, and Wei}}}
+\bibcite{zhou2024alignment}{{54}{2024}{{Zhou et~al.}}{{Zhou, Yu, Zhang, Xu, Huang, and Li}}}
+\bibcite{zou2023representation}{{55}{2023{a}}{{Zou et~al.}}{{Zou, Phan, Chen, Campbell, Guo, Ren, Pan, Yin, Mazeika, Dombrowski, Goel, Li, Byun, Wang, Mallen, Basart, Koyejo, Song, Fredrikson, Kolter, and Hendrycks}}}
+\bibcite{advbench}{{56}{2023{b}}{{Zou et~al.}}{{Zou, Wang, Carlini, Nasr, Kolter, and Fredrikson}}}
+\@LN@col{1}
+\@LN{728}{10}
+\@LN{729}{10}
+\@LN{730}{10}
+\@LN{731}{10}
+\@LN{732}{10}
+\@LN{733}{10}
+\@LN{734}{10}
+\@LN{735}{10}
+\@LN{736}{10}
+\@LN{737}{10}
+\@LN{738}{10}
+\@LN{739}{10}
+\@LN{740}{10}
+\@LN{741}{10}
+\@LN{742}{10}
+\@LN{743}{10}
+\@LN{744}{10}
+\@LN{745}{10}
+\@LN{746}{10}
+\@LN{747}{10}
+\@LN{748}{10}
+\@LN{749}{10}
+\@LN{750}{10}
+\@LN{751}{10}
+\@LN{752}{10}
+\@LN{753}{10}
+\@LN{754}{10}
+\@LN{755}{10}
+\@LN{756}{10}
+\@LN{757}{10}
+\@LN{758}{10}
+\@LN{759}{10}
+\@LN{760}{10}
+\@LN{761}{10}
+\@LN{762}{10}
+\@LN{763}{10}
+\@LN{764}{10}
+\@LN{765}{10}
+\@LN{766}{10}
+\@LN{767}{10}
+\@LN{768}{10}
+\@LN{769}{10}
+\@LN{770}{10}
+\@LN{771}{10}
+\@LN{772}{10}
+\@LN{773}{10}
+\@LN{774}{10}
+\@LN{775}{10}
+\@LN{776}{10}
+\@LN{777}{10}
+\@LN{778}{10}
+\@LN{779}{10}
+\@LN{780}{10}
+\@LN{781}{10}
+\@LN{782}{10}
+\@LN@col{2}
+\@LN{783}{10}
+\@LN{784}{10}
+\@LN{785}{10}
+\@LN{786}{10}
+\@LN{787}{10}
+\@LN{788}{10}
+\@LN{789}{10}
+\@LN{790}{10}
+\@LN{791}{10}
+\@LN{792}{10}
+\@LN{793}{10}
+\@LN{794}{10}
+\@LN{795}{10}
+\@LN{796}{10}
+\@LN{797}{10}
+\@LN{798}{10}
+\@LN{799}{10}
+\@LN{800}{10}
+\@LN{801}{10}
+\@LN{802}{10}
+\@LN{803}{10}
+\@LN{804}{10}
+\@LN{805}{10}
+\@LN{806}{10}
+\@LN{807}{10}
+\@LN{808}{10}
+\@LN{809}{10}
+\@LN{810}{10}
+\@LN{811}{10}
+\@LN{812}{10}
+\@LN{813}{10}
+\@LN{814}{10}
+\@LN{815}{10}
+\@LN{816}{10}
+\@LN{817}{10}
+\@LN{818}{10}
+\@LN{819}{10}
+\@LN{820}{10}
+\@LN{821}{10}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Layer Sweep Results}{11}{appendix.A}\protected@file@percent }
+\newlabel{app:layer_sweep}{{A}{11}{Layer Sweep Results}{appendix.A}{}}
+\newlabel{app:layer_sweep@cref}{{[section][1][]A}{[1][11][]11}{}{}{}}
+\@LN{822}{10}
+\@LN{823}{10}
+\@LN{824}{10}
+\@LN{825}{10}
+\@LN{826}{10}
+\@LN{827}{10}
+\@LN{828}{10}
+\@LN{829}{10}
+\@LN{830}{10}
+\@LN{831}{10}
+\@LN{832}{10}
+\@LN{833}{10}
+\@LN@col{1}
+\@LN{834}{11}
+\@LN{835}{11}
+\@LN{836}{11}
+\@LN{837}{11}
+\@LN{838}{11}
+\@LN{839}{11}
+\@writefile{toc}{\contentsline {paragraph}{Selected layers.}{12}{section*.31}\protected@file@percent }
+\@LN{840}{11}
+\@LN{841}{11}
+\@LN{842}{11}
+\@LN{843}{11}
+\@LN{844}{11}
+\@LN{845}{11}
+\@LN{846}{11}
+\@LN{847}{11}
+\@LN{848}{11}
+\@LN{849}{11}
+\@LN{850}{11}
+\@LN{851}{11}
+\@LN{852}{11}
+\@LN{853}{11}
+\@LN{854}{11}
+\@LN{855}{11}
+\@LN{856}{11}
+\@LN{857}{11}
+\@writefile{toc}{\contentsline {paragraph}{Impact on modality comparison.}{12}{section*.32}\protected@file@percent }
+\@LN{858}{11}
+\@LN{859}{11}
+\@LN{860}{11}
+\@LN{861}{11}
+\@LN{862}{11}
+\@LN{863}{11}
+\@LN{864}{11}
+\@LN{865}{11}
+\@LN{866}{11}
+\@writefile{toc}{\contentsline {paragraph}{Layer selection stability (LOO-CV).}{12}{section*.33}\protected@file@percent }
+\@LN{867}{11}
+\@LN{868}{11}
+\@LN{869}{11}
+\@LN{870}{11}
+\@LN{871}{11}
+\@LN{872}{11}
+\@LN{873}{11}
+\@LN{874}{11}
+\@LN{875}{11}
+\@LN{876}{11}
+\@LN{877}{11}
+\@LN{878}{11}
+\@LN{879}{11}
+\@LN{880}{11}
+\@LN{881}{11}
+\@LN{882}{11}
+\@LN{883}{11}
+\@LN@col{2}
+\@LN{884}{11}
+\@LN{885}{11}
+\@LN{886}{11}
+\@writefile{toc}{\contentsline {paragraph}{Joint (layer, $W$) sensitivity.}{12}{section*.34}\protected@file@percent }
+\@LN{887}{11}
+\@LN{888}{11}
+\@LN{889}{11}
+\@LN{890}{11}
+\@LN{891}{11}
+\@LN{892}{11}
+\@LN{893}{11}
+\@LN{894}{11}
+\@LN{895}{11}
+\@LN{896}{11}
+\@LN{897}{11}
+\@LN{898}{11}
+\@LN{899}{11}
+\@LN{900}{11}
+\@LN{901}{11}
+\@LN{902}{11}
+\@LN{903}{11}
+\@LN{904}{11}
+\@LN{905}{11}
+\@LN{906}{11}
+\@LN{907}{11}
+\@LN{908}{11}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces QwQ-32B joint (layer, $W$) grid search under 70/30 validation. L60 is near-optimal at recommended windows ($W{=}3$--$5$). L30 (LOO-CV selection at $W{=}1$) is suboptimal across all windows. Under the canonical 60/20/20 split, threshold-based metrics select L63.}}{12}{table.caption.35}\protected@file@percent }
+\newlabel{tab:joint_layer_w}{{6}{12}{QwQ-32B joint (layer, $W$) grid search under 70/30 validation. L60 is near-optimal at recommended windows ($W{=}3$--$5$). L30 (LOO-CV selection at $W{=}1$) is suboptimal across all windows. Under the canonical 60/20/20 split, threshold-based metrics select L63}{table.caption.35}{}}
+\newlabel{tab:joint_layer_w@cref}{{[table][6][]6}{[1][12][]12}{}{}{}}
+\newlabel{app:r18b_full_layer}{{A}{12}{R1-8B full-layer sweep}{section*.36}{}}
+\newlabel{app:r18b_full_layer@cref}{{[section][1][]A}{[1][12][]12}{}{}{}}
+\@writefile{toc}{\contentsline {paragraph}{R1-8B full-layer sweep.}{12}{section*.36}\protected@file@percent }
+\@LN{909}{11}
+\@LN{910}{11}
+\@LN{911}{11}
+\@LN{912}{11}
+\@LN{913}{11}
+\@LN{914}{11}
+\@LN{915}{11}
+\@LN{916}{11}
+\@LN{917}{11}
+\@LN{918}{11}
+\@LN{919}{11}
+\@LN{920}{11}
+\@LN{921}{11}
+\@LN{922}{11}
+\@LN{923}{11}
+\@LN@col{1}
+\@LN{924}{12}
+\@LN{925}{12}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces R1-8B full-layer sweep (L0--L24, extending the original L12--L24 range). Best layer selected by crossing rate vs.\ threshold-based metrics across four window sizes. Score = balanced accuracy at the threshold-based layer. Layer gap = crossing-rate layer minus threshold-based layer.}}{13}{table.caption.37}\protected@file@percent }
+\newlabel{tab:r18b_full_layer}{{7}{13}{R1-8B full-layer sweep (L0--L24, extending the original L12--L24 range). Best layer selected by crossing rate vs.\ threshold-based metrics across four window sizes. Score = balanced accuracy at the threshold-based layer. Layer gap = crossing-rate layer minus threshold-based layer}{table.caption.37}{}}
+\newlabel{tab:r18b_full_layer@cref}{{[table][7][]7}{[1][13][]13}{}{}{}}
+\@LN{926}{12}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.1}Random-Label Decomposition Control}{13}{subsection.A.1}\protected@file@percent }
+\newlabel{app:random_cp}{{A.1}{13}{Random-Label Decomposition Control}{subsection.A.1}{}}
+\newlabel{app:random_cp@cref}{{[subsection][1][1]A.1}{[1][13][]13}{}{}{}}
+\@LN{927}{12}
+\@LN{928}{12}
+\@LN{929}{12}
+\@LN{930}{12}
+\@LN{931}{12}
+\@LN{932}{12}
+\@LN{933}{12}
+\@LN{934}{12}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces QwQ-32B layer selection under random CP labels (10 repeats). Shallow\%: fraction selecting a layer L$\leq $10. Real-CP layer shown for reference.}}{13}{table.caption.38}\protected@file@percent }
+\newlabel{tab:random_cp}{{8}{13}{QwQ-32B layer selection under random CP labels (10 repeats). Shallow\%: fraction selecting a layer L$\leq $10. Real-CP layer shown for reference}{table.caption.38}{}}
+\newlabel{tab:random_cp@cref}{{[table][8][]8}{[1][13][]13}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces R1-8B layer selection under random CP labels (10 repeats). Shallow\%: fraction selecting L$\leq $4 (bottom quintile of 25 layers). $\dagger $: degenerate, all repeats select L0 with zero variance, indicating destroyed signal rather than shallow preference.}}{13}{table.caption.39}\protected@file@percent }
+\newlabel{tab:random_cp_r18b}{{9}{13}{R1-8B layer selection under random CP labels (10 repeats). Shallow\%: fraction selecting L$\leq $4 (bottom quintile of 25 layers). $\dagger $: degenerate, all repeats select L0 with zero variance, indicating destroyed signal rather than shallow preference}{table.caption.39}{}}
+\newlabel{tab:random_cp_r18b@cref}{{[table][9][]9}{[1][13][]13}{}{}{}}
+\@writefile{toc}{\contentsline {paragraph}{QwQ-32B (Qwen).}{13}{section*.40}\protected@file@percent }
+\@LN{935}{12}
+\@LN{936}{12}
+\@LN{937}{12}
+\@LN{938}{12}
+\@LN{939}{12}
+\@LN@col{2}
+\@LN{940}{12}
+\@LN{941}{12}
+\@LN{942}{12}
+\@LN{943}{12}
+\@LN{944}{12}
+\@LN{945}{12}
+\@LN{946}{12}
+\@LN{947}{12}
+\@LN{948}{12}
+\@LN{949}{12}
+\@LN{950}{12}
+\@writefile{toc}{\contentsline {paragraph}{R1-8B (Llama).}{13}{section*.41}\protected@file@percent }
+\@LN{951}{12}
+\@LN{952}{12}
+\@LN{953}{12}
+\@LN{954}{12}
+\@LN{955}{12}
+\@LN{956}{12}
+\@LN{957}{12}
+\@LN{958}{12}
+\@LN{959}{12}
+\@LN{960}{12}
+\@LN{961}{12}
+\@writefile{toc}{\contentsline {paragraph}{Cross-architecture summary.}{13}{section*.42}\protected@file@percent }
+\@LN{962}{12}
+\@LN{963}{12}
+\@LN{964}{12}
+\@LN{965}{12}
+\@LN{966}{12}
+\@LN{967}{12}
+\@LN{968}{12}
+\@LN{969}{12}
+\@LN{970}{12}
+\@LN{971}{12}
+\@LN{972}{12}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Representation Compression Analysis}{13}{appendix.B}\protected@file@percent }
+\newlabel{app:cosine_volatility}{{B}{13}{Representation Compression Analysis}{appendix.B}{}}
+\newlabel{app:cosine_volatility@cref}{{[section][2][]B}{[1][13][]13}{}{}{}}
+\@LN{973}{12}
+\@LN{974}{12}
+\@LN{975}{12}
+\@LN{976}{12}
+\@LN{977}{12}
+\@LN{978}{12}
+\@LN{979}{12}
+\@LN{980}{12}
+\@LN{981}{12}
+\@LN{982}{12}
+\@LN{983}{12}
+\@LN{984}{12}
+\@LN{985}{12}
+\@LN{986}{12}
+\@LN{987}{12}
+\@LN{988}{12}
+\citation{advbench}
+\citation{advbench}
+\citation{advbench}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Step-to-step cosine distance at shallow and threshold-based (deep) layers. Shallow layers produce highly compressed representations (1.4--2.7$\times $ smaller inter-step distances). Shallow layers are L2 for R1-8B/OT-7B/QwQ-32B and L10 for R1-32B; deep layers follow threshold-based consensus (\cref  {tab:layer_selection}).}}{14}{table.caption.43}\protected@file@percent }
+\newlabel{tab:cosine_volatility}{{10}{14}{Step-to-step cosine distance at shallow and threshold-based (deep) layers. Shallow layers produce highly compressed representations (1.4--2.7$\times $ smaller inter-step distances). Shallow layers are L2 for R1-8B/OT-7B/QwQ-32B and L10 for R1-32B; deep layers follow threshold-based consensus (\cref {tab:layer_selection})}{table.caption.43}{}}
+\newlabel{tab:cosine_volatility@cref}{{[table][10][]10}{[1][13][]14}{}{}{}}
+\@LN{989}{13}
+\@LN{990}{13}
+\@writefile{toc}{\contentsline {paragraph}{Cross-dataset evidence.}{14}{section*.44}\protected@file@percent }
+\@LN{991}{13}
+\@LN{992}{13}
+\@LN{993}{13}
+\@LN{994}{13}
+\@LN{995}{13}
+\@LN{996}{13}
+\@LN{997}{13}
+\@LN{998}{13}
+\@LN{999}{13}
+\@LN{1000}{13}
+\@LN{1001}{13}
+\@LN{1002}{13}
+\@LN{1003}{13}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.1}AdvBench Boundary Condition}{14}{subsection.B.1}\protected@file@percent }
+\newlabel{app:advbench_cp}{{B.1}{14}{AdvBench Boundary Condition}{subsection.B.1}{}}
+\newlabel{app:advbench_cp@cref}{{[subsection][1][2]B.1}{[1][14][]14}{}{}{}}
+\@LN{1004}{13}
+\@LN{1005}{13}
+\@LN{1006}{13}
+\@LN{1007}{13}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces R1-8B behavior on AdvBench adversarial prompts (388 substantive-response traces of 520 total). CP${=}0$ indicates the model produces harmful content from the first reasoning step without prior safety deliberation.}}{14}{table.caption.45}\protected@file@percent }
+\newlabel{tab:advbench_boundary}{{11}{14}{R1-8B behavior on AdvBench adversarial prompts (388 substantive-response traces of 520 total). CP${=}0$ indicates the model produces harmful content from the first reasoning step without prior safety deliberation}{table.caption.45}{}}
+\newlabel{tab:advbench_boundary@cref}{{[table][11][]11}{[1][14][]14}{}{}{}}
+\@LN{1008}{13}
+\@LN{1009}{13}
+\@LN@col{2}
+\@LN{1010}{13}
+\@LN{1011}{13}
+\@LN{1012}{13}
+\@LN{1013}{13}
+\@LN{1014}{13}
+\@LN{1015}{13}
+\@LN{1016}{13}
+\@LN{1017}{13}
+\@LN{1018}{13}
+\@LN{1019}{13}
+\@LN{1020}{13}
+\@LN{1021}{13}
+\@LN{1022}{13}
+\@LN{1023}{13}
+\@LN{1024}{13}
+\@LN{1025}{13}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.2}AdvBench Layer Selection Bias Replication}{14}{subsection.B.2}\protected@file@percent }
+\newlabel{app:advbench_layer_bias}{{B.2}{14}{AdvBench Layer Selection Bias Replication}{subsection.B.2}{}}
+\newlabel{app:advbench_layer_bias@cref}{{[subsection][2][2]B.2}{[1][14][]14}{}{}{}}
+\@LN{1026}{13}
+\@LN{1027}{13}
+\@LN{1028}{13}
+\@LN{1029}{13}
+\@LN{1030}{13}
+\@LN{1031}{13}
+\@LN{1032}{13}
+\@LN{1033}{13}
+\@LN{1034}{13}
+\@LN{1035}{13}
+\@LN{1036}{13}
+\@LN{1037}{13}
+\@writefile{toc}{\contentsline {paragraph}{Data distribution.}{14}{section*.46}\protected@file@percent }
+\@LN{1038}{13}
+\@LN{1039}{13}
+\@LN{1040}{13}
+\@LN{1041}{13}
+\@LN{1042}{13}
+\@LN{1043}{13}
+\@LN{1044}{13}
+\@LN{1045}{13}
+\@LN{1046}{13}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces AdvBench layer selection (R1-8B, 32 layers). CR-composite selects shallow layers; precision and inverse FPR select deep layers; AUROC selects mid-depth layers. Consistent with HarmThoughts (\cref  {tab:layer_selection}).}}{14}{table.caption.47}\protected@file@percent }
+\newlabel{tab:advbench_layer_selection}{{12}{14}{AdvBench layer selection (R1-8B, 32 layers). CR-composite selects shallow layers; precision and inverse FPR select deep layers; AUROC selects mid-depth layers. Consistent with HarmThoughts (\cref {tab:layer_selection})}{table.caption.47}{}}
+\newlabel{tab:advbench_layer_selection@cref}{{[table][12][]12}{[1][14][]14}{}{}{}}
+\@writefile{toc}{\contentsline {paragraph}{Crossing rate pattern.}{14}{section*.48}\protected@file@percent }
+\@LN{1047}{13}
+\@LN{1048}{13}
+\@LN@col{1}
+\@LN{1049}{14}
+\@LN{1050}{14}
+\@writefile{toc}{\contentsline {paragraph}{Per-window consistency.}{15}{section*.49}\protected@file@percent }
+\@LN{1051}{14}
+\@LN{1052}{14}
+\@LN{1053}{14}
+\@LN{1054}{14}
+\@LN{1055}{14}
+\@LN{1056}{14}
+\@LN{1057}{14}
+\@LN{1058}{14}
+\@LN{1059}{14}
+\@LN{1060}{14}
+\@LN{1061}{14}
+\@LN{1062}{14}
+\@LN{1063}{14}
+\@writefile{toc}{\contentsline {paragraph}{Bootstrap validation.}{15}{section*.50}\protected@file@percent }
+\@LN{1064}{14}
+\@LN{1065}{14}
+\@LN{1066}{14}
+\@LN{1067}{14}
+\@LN{1068}{14}
+\@LN{1069}{14}
+\@LN{1070}{14}
+\@LN{1071}{14}
+\@LN{1072}{14}
+\@LN{1073}{14}
+\@LN{1074}{14}
+\@LN{1075}{14}
+\@LN{1076}{14}
+\@LN{1077}{14}
+\@LN{1078}{14}
+\@LN{1079}{14}
+\@LN{1080}{14}
+\@LN{1081}{14}
+\@LN{1082}{14}
+\@LN{1083}{14}
+\@LN{1084}{14}
+\@LN{1085}{14}
+\@LN{1086}{14}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.3}Cross-Architecture Geometric Analysis (Gemma)}{15}{subsection.B.3}\protected@file@percent }
+\newlabel{app:gemma_cross_arch}{{B.3}{15}{Cross-Architecture Geometric Analysis (Gemma)}{subsection.B.3}{}}
+\newlabel{app:gemma_cross_arch@cref}{{[subsection][3][2]B.3}{[1][15][]15}{}{}{}}
+\@LN{1087}{14}
+\@LN{1088}{14}
+\@LN{1089}{14}
+\@LN{1090}{14}
+\@LN{1091}{14}
+\@LN{1092}{14}
+\@LN{1093}{14}
+\@LN{1094}{14}
+\@LN{1095}{14}
+\@LN{1096}{14}
+\@LN{1097}{14}
+\@LN{1098}{14}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Cross-architecture cosine compression. Deep/shallow ratio ${>}1$ indicates shallow-layer compression (the geometric precondition for crossing-rate inflation). Standard full attention consistently shows compression; Gemma-4's mixed sliding/full attention does not. $^a$\,Probe-selected layers from HarmThoughts (L2 vs.\ L14). $^b$\,Range-based windows (first 15\% vs.\ last 25\% of layers) due to insufficient jailbreak samples for probe-based selection.}}{15}{table.caption.51}\protected@file@percent }
+\newlabel{tab:gemma_compression}{{13}{15}{Cross-architecture cosine compression. Deep/shallow ratio ${>}1$ indicates shallow-layer compression (the geometric precondition for crossing-rate inflation). Standard full attention consistently shows compression; Gemma-4's mixed sliding/full attention does not. $^a$\,Probe-selected layers from HarmThoughts (L2 vs.\ L14). $^b$\,Range-based windows (first 15\% vs.\ last 25\% of layers) due to insufficient jailbreak samples for probe-based selection}{table.caption.51}{}}
+\newlabel{tab:gemma_compression@cref}{{[table][13][]13}{[1][15][]15}{}{}{}}
+\@LN{1099}{14}
+\@LN{1100}{14}
+\@LN{1101}{14}
+\@LN{1102}{14}
+\@LN{1103}{14}
+\@LN{1104}{14}
+\@LN{1105}{14}
+\@LN{1106}{14}
+\@LN{1107}{14}
+\@LN{1108}{14}
+\@LN{1109}{14}
+\@LN{1110}{14}
+\@LN{1111}{14}
+\@LN{1112}{14}
+\@LN{1113}{14}
+\@LN{1114}{14}
+\@LN{1115}{14}
+\@LN{1116}{14}
+\@LN{1117}{14}
+\@LN{1118}{14}
+\@writefile{toc}{\contentsline {section}{\numberline {C}Holm-Bonferroni Step-Down Correction}{15}{appendix.C}\protected@file@percent }
+\newlabel{app:holm_bonferroni}{{C}{15}{Holm-Bonferroni Step-Down Correction}{appendix.C}{}}
+\newlabel{app:holm_bonferroni@cref}{{[section][3][]C}{[1][15][]15}{}{}{}}
+\@LN{1119}{14}
+\@LN{1120}{14}
+\@LN{1121}{14}
+\@LN{1122}{14}
+\@LN{1123}{14}
+\@LN{1124}{14}
+\@LN{1125}{14}
+\@LN{1126}{14}
+\@LN{1127}{14}
+\@LN{1128}{14}
+\@LN{1129}{14}
+\@LN{1130}{14}
+\@LN{1131}{14}
+\@LN{1132}{14}
+\@LN{1133}{14}
+\@LN{1134}{14}
+\@LN{1135}{14}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Holm-Bonferroni step-down correction for 12 tests (4 models $\times $ 3 correlated metrics). Each test uses a two-sided null-centered bootstrap (10{,}000 resamples) on trace-level metric differences (HS minus text). All 12 pass at $\alpha {=}0.05$; a 4-test model-level correction (one per model, using the worst $p$-value) also passes.}}{16}{table.caption.52}\protected@file@percent }
+\newlabel{tab:holm_bonferroni}{{14}{16}{Holm-Bonferroni step-down correction for 12 tests (4 models $\times $ 3 correlated metrics). Each test uses a two-sided null-centered bootstrap (10{,}000 resamples) on trace-level metric differences (HS minus text). All 12 pass at $\alpha {=}0.05$; a 4-test model-level correction (one per model, using the worst $p$-value) also passes}{table.caption.52}{}}
+\newlabel{tab:holm_bonferroni@cref}{{[table][14][]14}{[1][15][]16}{}{}{}}
+\@LN{1136}{15}
+\@LN{1137}{15}
+\@LN{1138}{15}
+\@LN{1139}{15}
+\@LN{1140}{15}
+\@writefile{toc}{\contentsline {paragraph}{Exact sign-flip permutation test validation.}{16}{section*.53}\protected@file@percent }
+\@LN{1141}{15}
+\@LN{1142}{15}
+\@LN{1143}{15}
+\@LN{1144}{15}
+\@LN{1145}{15}
+\@LN{1146}{15}
+\@LN{1147}{15}
+\@LN{1148}{15}
+\@LN{1149}{15}
+\@LN{1150}{15}
+\@LN{1151}{15}
+\@LN{1152}{15}
+\@LN{1153}{15}
+\@LN{1154}{15}
+\@writefile{toc}{\contentsline {section}{\numberline {D}Window Size Ablation Details}{16}{appendix.D}\protected@file@percent }
+\newlabel{app:window_ablation}{{D}{16}{Window Size Ablation Details}{appendix.D}{}}
+\newlabel{app:window_ablation@cref}{{[section][4][]D}{[1][16][]16}{}{}{}}
+\@LN{1155}{15}
+\@LN{1156}{15}
+\@LN{1157}{15}
+\@LN{1158}{15}
+\@LN{1159}{15}
+\@LN{1160}{15}
+\@LN{1161}{15}
+\@LN{1162}{15}
+\@LN{1163}{15}
+\@writefile{toc}{\contentsline {paragraph}{R1-8B}{16}{section*.55}\protected@file@percent }
+\@LN{1164}{15}
+\@LN{1165}{15}
+\@LN{1166}{15}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces Window size ablation (step-level metrics): balanced accuracy, precision, pre-CP FPR, coverage ($K{=}1$), and mean detection lead across all models.}}{16}{table.caption.54}\protected@file@percent }
+\newlabel{tab:window_full}{{15}{16}{Window size ablation (step-level metrics): balanced accuracy, precision, pre-CP FPR, coverage ($K{=}1$), and mean detection lead across all models}{table.caption.54}{}}
+\newlabel{tab:window_full@cref}{{[table][15][]15}{[1][16][]16}{}{}{}}
+\@LN{1167}{15}
+\@LN{1168}{15}
+\@LN{1169}{15}
+\@LN{1170}{15}
+\@writefile{toc}{\contentsline {paragraph}{OT-7B}{16}{section*.56}\protected@file@percent }
+\@LN{1171}{15}
+\@LN{1172}{15}
+\@LN{1173}{15}
+\@LN{1174}{15}
+\@LN{1175}{15}
+\@LN{1176}{15}
+\@LN{1177}{15}
+\@LN{1178}{15}
+\@LN{1179}{15}
+\@LN{1180}{15}
+\@LN{1181}{15}
+\@LN{1182}{15}
+\@LN{1183}{15}
+\@LN{1184}{15}
+\@LN{1185}{15}
+\@writefile{toc}{\contentsline {paragraph}{R1-32B}{16}{section*.57}\protected@file@percent }
+\@LN{1186}{15}
+\@LN{1187}{15}
+\@LN{1188}{15}
+\@LN{1189}{15}
+\@LN{1190}{15}
+\@LN{1191}{15}
+\@LN{1192}{15}
+\@LN{1193}{15}
+\citation{still}
+\@LN@col{1}
+\@writefile{toc}{\contentsline {paragraph}{QwQ-32B}{17}{section*.58}\protected@file@percent }
+\@LN{1194}{16}
+\@LN{1195}{16}
+\@LN{1196}{16}
+\@LN{1197}{16}
+\@LN{1198}{16}
+\@LN{1199}{16}
+\@LN{1200}{16}
+\@LN{1201}{16}
+\@LN{1202}{16}
+\@writefile{toc}{\contentsline {paragraph}{Universal trends.}{17}{section*.59}\protected@file@percent }
+\@LN{1203}{16}
+\@LN{1204}{16}
+\@LN{1205}{16}
+\@LN{1206}{16}
+\@LN{1207}{16}
+\@LN{1208}{16}
+\@LN{1209}{16}
+\@LN{1210}{16}
+\@LN{1211}{16}
+\@LN{1212}{16}
+\@LN{1213}{16}
+\@writefile{toc}{\contentsline {subsection}{\numberline {D.1}Text Probe Window Ablation}{17}{subsection.D.1}\protected@file@percent }
+\newlabel{app:text_window}{{D.1}{17}{Text Probe Window Ablation}{subsection.D.1}{}}
+\newlabel{app:text_window@cref}{{[subsection][1][4]D.1}{[1][17][]17}{}{}{}}
+\@LN{1214}{16}
+\@LN{1215}{16}
+\@LN{1216}{16}
+\@LN{1217}{16}
+\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces Text probe window ablation on R1-8B (step-level metrics). Text probes gain +12.0pp accuracy from $W{=}1$ to $W{=}25$, compared to +3.2pp for HS probes over the same range. The larger marginal gain for text probes reflects their weaker single-step baseline.}}{17}{table.caption.60}\protected@file@percent }
+\newlabel{tab:text_window}{{16}{17}{Text probe window ablation on R1-8B (step-level metrics). Text probes gain +12.0pp accuracy from $W{=}1$ to $W{=}25$, compared to +3.2pp for HS probes over the same range. The larger marginal gain for text probes reflects their weaker single-step baseline}{table.caption.60}{}}
+\newlabel{tab:text_window@cref}{{[table][16][]16}{[1][17][]17}{}{}{}}
+\@LN{1218}{16}
+\@LN{1219}{16}
+\@LN{1220}{16}
+\@LN{1221}{16}
+\@LN{1222}{16}
+\@LN{1223}{16}
+\@LN{1224}{16}
+\@LN{1225}{16}
+\@LN{1226}{16}
+\@LN{1227}{16}
+\@LN@col{2}
+\@LN{1228}{16}
+\@LN{1229}{16}
+\@writefile{toc}{\contentsline {section}{\numberline {E}OpenThinker-7B Detailed Results}{17}{appendix.E}\protected@file@percent }
+\newlabel{app:ot7b_details}{{E}{17}{OpenThinker-7B Detailed Results}{appendix.E}{}}
+\newlabel{app:ot7b_details@cref}{{[section][5][]E}{[1][17][]17}{}{}{}}
+\@LN{1230}{16}
+\@LN{1231}{16}
+\@LN{1232}{16}
+\@LN{1233}{16}
+\@LN{1234}{16}
+\@LN{1235}{16}
+\@writefile{lot}{\contentsline {table}{\numberline {17}{\ignorespaces OT-7B layer sweep. Score = balanced accuracy $\times $ crossing rate. Layer 16 (57\% depth) is selected after correction; it achieves the highest balanced accuracy among transformer layers.}}{17}{table.caption.62}\protected@file@percent }
+\newlabel{tab:ot7b_layer_sweep}{{17}{17}{OT-7B layer sweep. Score = balanced accuracy $\times $ crossing rate. Layer 16 (57\% depth) is selected after correction; it achieves the highest balanced accuracy among transformer layers}{table.caption.62}{}}
+\newlabel{tab:ot7b_layer_sweep@cref}{{[table][17][]17}{[1][17][]17}{}{}{}}
+\@writefile{toc}{\contentsline {paragraph}{Layer sweep.}{17}{table.caption.62}\protected@file@percent }
+\@LN{1236}{16}
+\@LN{1237}{16}
+\@LN{1238}{16}
+\@LN{1239}{16}
+\@LN{1240}{16}
+\@LN{1241}{16}
+\@LN{1242}{16}
+\@LN{1243}{16}
+\@writefile{lot}{\contentsline {table}{\numberline {18}{\ignorespaces OT-7B text probe window ablation (step-level). Text probes improve monotonically with larger $W$, contrasting with the HS probes on this model which peak at $W{=}3$.}}{17}{table.caption.64}\protected@file@percent }
+\newlabel{tab:ot7b_text_window}{{18}{17}{OT-7B text probe window ablation (step-level). Text probes improve monotonically with larger $W$, contrasting with the HS probes on this model which peak at $W{=}3$}{table.caption.64}{}}
+\newlabel{tab:ot7b_text_window@cref}{{[table][18][]18}{[1][17][]17}{}{}{}}
+\@writefile{toc}{\contentsline {paragraph}{Text probe window ablation.}{17}{table.caption.64}\protected@file@percent }
+\@LN{1244}{16}
+\@LN{1245}{16}
+\@LN{1246}{16}
+\@LN{1247}{16}
+\@LN{1248}{16}
+\@LN@col{1}
+\@LN{1249}{17}
+\@LN{1250}{17}
+\@LN{1251}{17}
+\@LN{1252}{17}
+\@writefile{toc}{\contentsline {paragraph}{Bootstrap comparison (matched $W{=}3$).}{18}{section*.65}\protected@file@percent }
+\@LN{1253}{17}
+\@LN{1254}{17}
+\@LN{1255}{17}
+\@LN{1256}{17}
+\@LN{1257}{17}
+\@LN{1258}{17}
+\@LN{1259}{17}
+\@LN{1260}{17}
+\@LN{1261}{17}
+\@LN{1262}{17}
+\@LN{1263}{17}
+\@LN{1264}{17}
+\@LN{1265}{17}
+\@LN{1266}{17}
+\@LN{1267}{17}
+\@LN{1268}{17}
+\@LN{1269}{17}
+\@LN{1270}{17}
+\@LN{1271}{17}
+\@writefile{toc}{\contentsline {section}{\numberline {F}GRU Training Details}{18}{appendix.F}\protected@file@percent }
+\newlabel{app:gru_details}{{F}{18}{GRU Training Details}{appendix.F}{}}
+\newlabel{app:gru_details@cref}{{[section][6][]F}{[1][18][]18}{}{}{}}
+\@LN{1272}{17}
+\@LN{1273}{17}
+\@LN{1274}{17}
+\@LN{1275}{17}
+\@writefile{toc}{\contentsline {paragraph}{Data split.}{18}{section*.66}\protected@file@percent }
+\@LN{1276}{17}
+\@LN{1277}{17}
+\@LN{1278}{17}
+\@LN{1279}{17}
+\@LN{1280}{17}
+\@LN{1281}{17}
+\@LN{1282}{17}
+\@LN{1283}{17}
+\@LN{1284}{17}
+\@writefile{toc}{\contentsline {paragraph}{Architecture.}{18}{section*.67}\protected@file@percent }
+\@LN{1285}{17}
+\@LN{1286}{17}
+\@LN{1287}{17}
+\@LN{1288}{17}
+\@LN{1289}{17}
+\@LN{1290}{17}
+\@LN{1291}{17}
+\@LN{1292}{17}
+\@LN{1293}{17}
+\@writefile{toc}{\contentsline {paragraph}{Training procedure.}{18}{section*.68}\protected@file@percent }
+\@LN{1294}{17}
+\@LN{1295}{17}
+\@LN{1296}{17}
+\@LN@col{2}
+\@LN{1297}{17}
+\@LN{1298}{17}
+\@LN{1299}{17}
+\@LN{1300}{17}
+\@writefile{toc}{\contentsline {paragraph}{Evaluation.}{18}{section*.69}\protected@file@percent }
+\@LN{1301}{17}
+\@LN{1302}{17}
+\@LN{1303}{17}
+\@LN{1304}{17}
+\@LN{1305}{17}
+\@LN{1306}{17}
+\@writefile{lot}{\contentsline {table}{\numberline {19}{\ignorespaces R1-8B single-layer GRU results per seed. Lead is measured in steps before the commitment point.}}{18}{table.caption.71}\protected@file@percent }
+\newlabel{tab:gru_seeds}{{19}{18}{R1-8B single-layer GRU results per seed. Lead is measured in steps before the commitment point}{table.caption.71}{}}
+\newlabel{tab:gru_seeds@cref}{{[table][19][]19}{[1][18][]18}{}{}{}}
+\@writefile{toc}{\contentsline {paragraph}{Per-seed results for R1-8B (single-layer GRU).}{18}{table.caption.71}\protected@file@percent }
+\@LN{1307}{17}
+\@LN{1308}{17}
+\@LN{1309}{17}
+\@LN{1310}{17}
+\@LN{1311}{17}
+\@LN{1312}{17}
+\@LN{1313}{17}
+\@LN{1314}{17}
+\@LN{1315}{17}
+\@LN{1316}{17}
+\@LN{1317}{17}
+\@LN{1318}{17}
+\@writefile{lot}{\contentsline {table}{\numberline {20}{\ignorespaces Per-seed performance of GRU and logistic regression (LR) probes on R1-8B under a 60/20/20 cross-validation protocol (seeds 42, 123, 456). Single = layer 14 only; Multi = 7-layer concatenation (layers 12--24, stride 2). Lead = steps before CP at first sustained crossing. Main text results use a 70/30 train/test split with different test traces, accounting for the difference in lead values.}}{18}{table.caption.73}\protected@file@percent }
+\newlabel{tab:gru_multi_seeds}{{20}{18}{Per-seed performance of GRU and logistic regression (LR) probes on R1-8B under a 60/20/20 cross-validation protocol (seeds 42, 123, 456). Single = layer 14 only; Multi = 7-layer concatenation (layers 12--24, stride 2). Lead = steps before CP at first sustained crossing. Main text results use a 70/30 train/test split with different test traces, accounting for the difference in lead values}{table.caption.73}{}}
+\newlabel{tab:gru_multi_seeds@cref}{{[table][20][]20}{[1][18][]18}{}{}{}}
+\citation{hewitt2019control}
+\citation{hewitt2019control}
+\citation{hewitt2019control}
+\citation{hewitt2019control}
+\@LN@col{1}
+\@LN{1319}{18}
+\@writefile{toc}{\contentsline {paragraph}{Multi-layer GRU and baseline comparison (60/20/20 protocol).}{19}{table.caption.73}\protected@file@percent }
+\@LN{1320}{18}
+\@LN{1321}{18}
+\@LN{1322}{18}
+\@LN{1323}{18}
+\@LN{1324}{18}
+\@LN{1325}{18}
+\@LN{1326}{18}
+\@LN{1327}{18}
+\@LN{1328}{18}
+\@LN{1329}{18}
+\@LN{1330}{18}
+\@LN{1331}{18}
+\@writefile{toc}{\contentsline {paragraph}{OT-7B multi-layer GRU (layers 13--19, 3 seeds, 60/20/20 split).}{19}{section*.74}\protected@file@percent }
+\@LN{1332}{18}
+\@LN{1333}{18}
+\@LN{1334}{18}
+\@LN{1335}{18}
+\@LN{1336}{18}
+\@LN{1337}{18}
+\@LN{1338}{18}
+\@LN{1339}{18}
+\@LN{1340}{18}
+\@LN{1341}{18}
+\@LN{1342}{18}
+\@LN{1343}{18}
+\@LN{1344}{18}
+\@writefile{toc}{\contentsline {section}{\numberline {G}Control Task Methodology}{19}{appendix.G}\protected@file@percent }
+\newlabel{app:control}{{G}{19}{Control Task Methodology}{appendix.G}{}}
+\newlabel{app:control@cref}{{[section][7][]G}{[1][19][]19}{}{}{}}
+\@LN{1345}{18}
+\@LN{1346}{18}
+\@LN{1347}{18}
+\@LN{1348}{18}
+\@writefile{toc}{\contentsline {paragraph}{Procedure.}{19}{section*.75}\protected@file@percent }
+\@LN{1349}{18}
+\@LN{1350}{18}
+\@LN{1351}{18}
+\@LN{1352}{18}
+\@LN{1353}{18}
+\@LN{1354}{18}
+\@LN{1355}{18}
+\@LN{1356}{18}
+\@LN{1357}{18}
+\@LN{1358}{18}
+\@LN{1359}{18}
+\@LN{1360}{18}
+\@LN{1361}{18}
+\@LN{1362}{18}
+\@LN{1363}{18}
+\@LN{1364}{18}
+\@LN@col{2}
+\@writefile{toc}{\contentsline {paragraph}{Results.}{19}{section*.76}\protected@file@percent }
+\@LN{1365}{18}
+\@LN{1366}{18}
+\@LN{1367}{18}
+\@LN{1368}{18}
+\@LN{1369}{18}
+\@LN{1370}{18}
+\@LN{1371}{18}
+\@LN{1372}{18}
+\@LN{1373}{18}
+\@LN{1374}{18}
+\@LN{1375}{18}
+\@LN{1376}{18}
+\@LN{1377}{18}
+\@LN{1378}{18}
+\@writefile{toc}{\contentsline {paragraph}{Layer provenance note.}{19}{section*.77}\protected@file@percent }
+\@LN{1379}{18}
+\@LN{1380}{18}
+\@LN{1381}{18}
+\@LN{1382}{18}
+\@LN{1383}{18}
+\@LN{1384}{18}
+\@LN{1385}{18}
+\@LN{1386}{18}
+\@writefile{toc}{\contentsline {paragraph}{Position-only baseline.}{19}{section*.78}\protected@file@percent }
+\@LN{1387}{18}
+\@LN{1388}{18}
+\@LN{1389}{18}
+\@LN{1390}{18}
+\@LN{1391}{18}
+\@LN{1392}{18}
+\@LN{1393}{18}
+\@LN{1394}{18}
+\@LN{1395}{18}
+\@LN{1396}{18}
+\@LN{1397}{18}
+\@writefile{toc}{\contentsline {paragraph}{Residualized selectivity.}{19}{section*.79}\protected@file@percent }
+\@LN{1398}{18}
+\@LN{1399}{18}
+\@LN{1400}{18}
+\@LN{1401}{18}
+\@LN{1402}{18}
+\@LN{1403}{18}
+\@LN{1404}{18}
+\@LN{1405}{18}
+\@LN{1406}{18}
+\@LN{1407}{18}
+\@LN{1408}{18}
+\@LN{1409}{18}
+\@LN{1410}{18}
+\@writefile{toc}{\contentsline {section}{\numberline {H}Oracle Upper Bound Analysis}{19}{appendix.H}\protected@file@percent }
+\newlabel{sec:oracle}{{H}{19}{Oracle Upper Bound Analysis}{appendix.H}{}}
+\newlabel{sec:oracle@cref}{{[section][8][]H}{[1][19][]19}{}{}{}}
+\@LN{1411}{18}
+\@LN{1412}{18}
+\@LN{1413}{18}
+\citation{harmthoughts}
+\@LN@col{1}
+\@LN{1414}{19}
+\@LN{1415}{19}
+\@LN{1416}{19}
+\@LN{1417}{19}
+\@LN{1418}{19}
+\@LN{1419}{19}
+\@LN{1420}{19}
+\@LN{1421}{19}
+\@LN{1422}{19}
+\@LN{1423}{19}
+\@LN{1424}{19}
+\@LN{1425}{19}
+\@LN{1426}{19}
+\@LN{1427}{19}
+\@LN{1428}{19}
+\@LN{1429}{19}
+\@LN{1430}{19}
+\@LN{1431}{19}
+\@LN{1432}{19}
+\@LN{1433}{19}
+\@LN{1434}{19}
+\@LN{1435}{19}
+\@LN{1436}{19}
+\@LN{1437}{19}
+\@LN{1438}{19}
+\@LN{1439}{19}
+\@LN{1440}{19}
+\@LN{1441}{19}
+\@writefile{lot}{\contentsline {table}{\numberline {21}{\ignorespaces Oracle upper bound analysis. Detection rate: fraction of traces where the oracle finds a linearly separable boundary before or at CP. Early detection rate: fraction detected before CP. Mean lead: average steps before CP at first detection.}}{20}{table.caption.80}\protected@file@percent }
+\newlabel{tab:oracle}{{21}{20}{Oracle upper bound analysis. Detection rate: fraction of traces where the oracle finds a linearly separable boundary before or at CP. Early detection rate: fraction detected before CP. Mean lead: average steps before CP at first detection}{table.caption.80}{}}
+\newlabel{tab:oracle@cref}{{[table][21][]21}{[1][20][]20}{}{}{}}
+\@LN{1442}{19}
+\@writefile{toc}{\contentsline {section}{\numberline {I}CP Annotation Perturbation}{20}{appendix.I}\protected@file@percent }
+\newlabel{app:cp_perturbation}{{I}{20}{CP Annotation Perturbation}{appendix.I}{}}
+\newlabel{app:cp_perturbation@cref}{{[section][9][]I}{[1][20][]20}{}{}{}}
+\@LN{1443}{19}
+\@LN{1444}{19}
+\@LN{1445}{19}
+\@LN{1446}{19}
+\@LN{1447}{19}
+\@LN{1448}{19}
+\@LN{1449}{19}
+\@LN{1450}{19}
+\@LN{1451}{19}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {22}{\ignorespaces HS probe sensitivity to CP annotation shift ($\delta $ steps). BA is stable across all perturbations; precision degrades gradually without cliff effects.}}{20}{table.caption.81}\protected@file@percent }
+\newlabel{tab:cp_perturbation}{{22}{20}{HS probe sensitivity to CP annotation shift ($\delta $ steps). BA is stable across all perturbations; precision degrades gradually without cliff effects}{table.caption.81}{}}
+\newlabel{tab:cp_perturbation@cref}{{[table][22][]22}{[1][20][]20}{}{}{}}
+\@LN{1452}{19}
+\@writefile{toc}{\contentsline {subsection}{\numberline {I.1}Inter-Annotator Agreement on AdvBench}{20}{subsection.I.1}\protected@file@percent }
+\newlabel{app:iaa}{{I.1}{20}{Inter-Annotator Agreement on AdvBench}{subsection.I.1}{}}
+\newlabel{app:iaa@cref}{{[subsection][1][9]I.1}{[1][20][]20}{}{}{}}
+\@LN{1453}{19}
+\@LN{1454}{19}
+\@LN{1455}{19}
+\@LN{1456}{19}
+\@writefile{lot}{\contentsline {table}{\numberline {23}{\ignorespaces Inter-annotator agreement on AdvBench B-class traces (388 total). CP position metrics computed on 51 traces where both annotators identified a jailbreak.}}{20}{table.caption.82}\protected@file@percent }
+\newlabel{tab:iaa}{{23}{20}{Inter-annotator agreement on AdvBench B-class traces (388 total). CP position metrics computed on 51 traces where both annotators identified a jailbreak}{table.caption.82}{}}
+\newlabel{tab:iaa@cref}{{[table][23][]23}{[1][20][]20}{}{}{}}
+\@LN{1457}{19}
+\@LN{1458}{19}
+\@LN{1459}{19}
+\@LN{1460}{19}
+\@LN{1461}{19}
+\@LN{1462}{19}
+\@LN{1463}{19}
+\@LN{1464}{19}
+\@LN{1465}{19}
+\@LN{1466}{19}
+\@LN{1467}{19}
+\@LN@col{1}
+\@LN{1468}{20}
+\@LN{1469}{20}
+\@LN{1470}{20}
+\@LN{1471}{20}
+\@LN{1472}{20}
+\@writefile{toc}{\contentsline {section}{\numberline {J}BOCPD/CUSUM Configuration Sweep}{21}{appendix.J}\protected@file@percent }
+\newlabel{app:bocpd_config}{{J}{21}{BOCPD/CUSUM Configuration Sweep}{appendix.J}{}}
+\newlabel{app:bocpd_config@cref}{{[section][10][]J}{[1][21][]21}{}{}{}}
+\@LN{1473}{20}
+\@LN{1474}{20}
+\@LN{1475}{20}
+\@LN{1476}{20}
+\@writefile{toc}{\contentsline {paragraph}{BOCPD configurations.}{21}{section*.83}\protected@file@percent }
+\@LN{1477}{20}
+\@LN{1478}{20}
+\@LN{1479}{20}
+\@LN{1480}{20}
+\@LN{1481}{20}
+\@writefile{toc}{\contentsline {paragraph}{CUSUM configurations.}{21}{section*.84}\protected@file@percent }
+\@LN{1482}{20}
+\@LN{1483}{20}
+\@LN{1484}{20}
+\@LN{1485}{20}
+\@writefile{lot}{\contentsline {table}{\numberline {24}{\ignorespaces Change-point method configuration sweep on R1-8B. Detection rate is the fraction of jailbreak traces where the method fires. Lead is measured in steps before CP.}}{21}{table.caption.85}\protected@file@percent }
+\newlabel{tab:cpd_sweep}{{24}{21}{Change-point method configuration sweep on R1-8B. Detection rate is the fraction of jailbreak traces where the method fires. Lead is measured in steps before CP}{table.caption.85}{}}
+\newlabel{tab:cpd_sweep@cref}{{[table][24][]24}{[1][21][]21}{}{}{}}
+\@LN{1486}{20}
+\@LN{1487}{20}
+\@LN{1488}{20}
+\@LN{1489}{20}
+\@LN{1490}{20}
+\@LN{1491}{20}
+\@LN{1492}{20}
+\@LN{1493}{20}
+\@LN{1494}{20}
+\@LN{1495}{20}
+\@LN@col{2}
+\@LN{1496}{20}
+\@LN{1497}{20}
+\@LN{1498}{20}
+\@LN{1499}{20}
+\@LN{1500}{20}
+\@LN{1501}{20}
+\@LN{1502}{20}
+\@writefile{toc}{\contentsline {paragraph}{Other models.}{21}{section*.86}\protected@file@percent }
+\@LN{1503}{20}
+\@LN{1504}{20}
+\@LN{1505}{20}
+\@LN{1506}{20}
+\@LN{1507}{20}
+\@LN{1508}{20}
+\@LN{1509}{20}
+\@LN{1510}{20}
+\@LN{1511}{20}
+\@LN{1512}{20}
+\@LN{1513}{20}
+\@LN{1514}{20}
+\@LN{1515}{20}
+\@writefile{toc}{\contentsline {section}{\numberline {K}Detection Threshold ($K$) Ablation}{21}{appendix.K}\protected@file@percent }
+\newlabel{app:k_ablation}{{K}{21}{Detection Threshold ($K$) Ablation}{appendix.K}{}}
+\newlabel{app:k_ablation@cref}{{[section][11][]K}{[1][21][]21}{}{}{}}
+\@LN{1516}{20}
+\@LN{1517}{20}
+\@LN{1518}{20}
+\@LN{1519}{20}
+\@LN{1520}{20}
+\@writefile{lot}{\contentsline {table}{\numberline {25}{\ignorespaces Detection threshold ablation ($W{=}1$, HS probes at threshold-based layers). Coverage: fraction of jailbreak traces with $\geq K$ consecutive crossings. Safe FPR: fraction of safe traces with $\geq K$ consecutive false alarms.}}{21}{table.caption.87}\protected@file@percent }
+\newlabel{tab:k_ablation}{{25}{21}{Detection threshold ablation ($W{=}1$, HS probes at threshold-based layers). Coverage: fraction of jailbreak traces with $\geq K$ consecutive crossings. Safe FPR: fraction of safe traces with $\geq K$ consecutive false alarms}{table.caption.87}{}}
+\newlabel{tab:k_ablation@cref}{{[table][25][]25}{[1][21][]21}{}{}{}}
+\@LN{1521}{20}
+\@LN{1522}{20}
+\@LN{1523}{20}
+\@LN{1524}{20}
+\@LN{1525}{20}
+\@LN{1526}{20}
+\@LN{1527}{20}
+\@LN{1528}{20}
+\@LN{1529}{20}
+\@LN{1530}{20}
+\@LN{1531}{20}
+\@LN{1532}{20}
+\@LN{1533}{20}
+\@LN@col{1}
+\@LN{1534}{21}
+\@LN{1535}{21}
+\@LN{1536}{21}
+\@LN{1537}{21}
+\@LN{1538}{21}
+\@LN{1539}{21}
+\@LN{1540}{21}
+\@writefile{toc}{\contentsline {subsection}{\numberline {K.1}Deployment Operating Points}{22}{subsection.K.1}\protected@file@percent }
+\newlabel{app:deployment_operating_points}{{K.1}{22}{Deployment Operating Points}{subsection.K.1}{}}
+\newlabel{app:deployment_operating_points@cref}{{[subsection][1][11]K.1}{[1][22][]22}{}{}{}}
+\@LN{1541}{21}
+\@LN{1542}{21}
+\@LN{1543}{21}
+\@LN{1544}{21}
+\@LN{1545}{21}
+\@LN{1546}{21}
+\@LN{1547}{21}
+\@LN{1548}{21}
+\@LN{1549}{21}
+\@LN{1550}{21}
+\@LN{1551}{21}
+\@LN{1552}{21}
+\@LN{1553}{21}
+\@LN{1554}{21}
+\@LN{1555}{21}
+\@LN{1556}{21}
+\@LN{1557}{21}
+\@LN{1558}{21}
+\@LN{1559}{21}
+\@LN{1560}{21}
+\@LN{1561}{21}
+\@writefile{toc}{\contentsline {section}{\numberline {L}Decision Threshold Sensitivity}{22}{appendix.L}\protected@file@percent }
+\newlabel{app:threshold_sensitivity}{{L}{22}{Decision Threshold Sensitivity}{appendix.L}{}}
+\newlabel{app:threshold_sensitivity@cref}{{[section][12][]L}{[1][22][]22}{}{}{}}
+\@LN{1562}{21}
+\@LN{1563}{21}
+\@LN{1564}{21}
+\@LN{1565}{21}
+\@LN{1566}{21}
+\@LN{1567}{21}
+\@LN{1568}{21}
+\@LN{1569}{21}
+\@LN{1570}{21}
+\@LN{1571}{21}
+\@writefile{lot}{\contentsline {table}{\numberline {26}{\ignorespaces R1-32B threshold sensitivity (L63, $W{=}1$). HS BA varies by 1.1pp (0.741--0.752); the HS advantage is consistent across all thresholds.}}{22}{table.caption.88}\protected@file@percent }
+\newlabel{tab:threshold_r132b}{{26}{22}{R1-32B threshold sensitivity (L63, $W{=}1$). HS BA varies by 1.1pp (0.741--0.752); the HS advantage is consistent across all thresholds}{table.caption.88}{}}
+\newlabel{tab:threshold_r132b@cref}{{[table][26][]26}{[1][22][]22}{}{}{}}
+\@LN{1572}{21}
+\@LN{1573}{21}
+\@LN@col{2}
+\@LN{1574}{21}
+\@LN{1575}{21}
+\@LN{1576}{21}
+\@LN{1577}{21}
+\@LN{1578}{21}
+\@LN{1579}{21}
+\@writefile{toc}{\contentsline {section}{\numberline {M}Text Embedding Bug Disclosure}{22}{appendix.M}\protected@file@percent }
+\newlabel{app:bug}{{M}{22}{Text Embedding Bug Disclosure}{appendix.M}{}}
+\newlabel{app:bug@cref}{{[section][13][]M}{[1][22][]22}{}{}{}}
+\@LN{1580}{21}
+\@LN{1581}{21}
+\@writefile{toc}{\contentsline {paragraph}{Issue.}{22}{section*.89}\protected@file@percent }
+\@LN{1582}{21}
+\@LN{1583}{21}
+\@LN{1584}{21}
+\@LN{1585}{21}
+\@LN{1586}{21}
+\@LN{1587}{21}
+\@LN{1588}{21}
+\@LN{1589}{21}
+\@LN{1590}{21}
+\@LN{1591}{21}
+\@LN{1592}{21}
+\@writefile{toc}{\contentsline {paragraph}{Discovery and correction.}{22}{section*.90}\protected@file@percent }
+\@LN{1593}{21}
+\@LN{1594}{21}
+\@LN{1595}{21}
+\@LN{1596}{21}
+\@LN{1597}{21}
+\@LN{1598}{21}
+\@LN{1599}{21}
+\@LN{1600}{21}
+\@LN{1601}{21}
+\@LN{1602}{21}
+\@LN{1603}{21}
+\@LN{1604}{21}
+\@LN{1605}{21}
+\@LN{1606}{21}
+\@LN{1607}{21}
+\@LN{1608}{21}
+\@LN{1609}{21}
+\@LN{1610}{21}
+\@writefile{toc}{\contentsline {paragraph}{Impact on reported results.}{22}{section*.91}\protected@file@percent }
+\@LN{1611}{21}
+\@LN{1612}{21}
+\@LN{1613}{21}
+\@LN{1614}{21}
+\@LN{1615}{21}
+\@LN{1616}{21}
+\@LN{1617}{21}
+\@LN{1618}{21}
+\@LN{1619}{21}
+\@LN{1620}{21}
+\citation{trajguard}
+\citation{zou2023representation}
+\citation{wollschlager2025geometry}
+\@LN@col{1}
+\@writefile{toc}{\contentsline {paragraph}{Commitment to transparency.}{23}{section*.92}\protected@file@percent }
+\@LN{1621}{22}
+\@LN{1622}{22}
+\@LN{1623}{22}
+\@LN{1624}{22}
+\@writefile{toc}{\contentsline {section}{\numberline {N}Adaptive Two-Stage Detection}{23}{appendix.N}\protected@file@percent }
+\newlabel{app:two_stage}{{N}{23}{Adaptive Two-Stage Detection}{appendix.N}{}}
+\newlabel{app:two_stage@cref}{{[section][14][]N}{[1][23][]23}{}{}{}}
+\@LN{1625}{22}
+\@LN{1626}{22}
+\@LN{1627}{22}
+\@LN{1628}{22}
+\@LN{1629}{22}
+\@LN{1630}{22}
+\@LN{1631}{22}
+\@LN{1632}{22}
+\@LN{1633}{22}
+\@LN{1634}{22}
+\@LN{1635}{22}
+\@LN{1636}{22}
+\@LN{1637}{22}
+\@LN{1638}{22}
+\@LN{1639}{22}
+\@LN{1640}{22}
+\@LN{1641}{22}
+\@LN{1642}{22}
+\@LN{1643}{22}
+\@LN{1644}{22}
+\@LN{1645}{22}
+\@LN{1646}{22}
+\@LN{1647}{22}
+\@LN{1648}{22}
+\@LN{1649}{22}
+\@LN{1650}{22}
+\@LN{1651}{22}
+\@LN{1652}{22}
+\@LN{1653}{22}
+\@LN{1654}{22}
+\@LN{1655}{22}
+\@LN{1656}{22}
+\@LN{1657}{22}
+\@LN{1658}{22}
+\@LN{1659}{22}
+\@writefile{toc}{\contentsline {section}{\numberline {O}Temporal Ablation Details}{23}{appendix.O}\protected@file@percent }
+\newlabel{app:temporal_details}{{O}{23}{Temporal Ablation Details}{appendix.O}{}}
+\newlabel{app:temporal_details@cref}{{[section][15][]O}{[1][23][]23}{}{}{}}
+\@LN{1660}{22}
+\@LN{1661}{22}
+\@LN{1662}{22}
+\@LN{1663}{22}
+\@LN{1664}{22}
+\@LN{1665}{22}
+\@LN{1666}{22}
+\@LN{1667}{22}
+\@LN{1668}{22}
+\@LN{1669}{22}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Precision-coverage Pareto front comparing single-stage fixed-window detection against two-stage adaptive detection on R1-8B. The best two-stage configuration ($W_{\text  {screen}}{=}3$, $W_{\text  {confirm}}{=}15$, $k{=}1$) Pareto-dominates single-stage $W{=}15$ by +1.3pp precision at matched coverage. Higher $k$ values shift the tradeoff toward precision at the cost of unacceptable coverage loss.}}{23}{figure.caption.93}\protected@file@percent }
+\newlabel{fig:pareto_two_stage}{{7}{23}{Precision-coverage Pareto front comparing single-stage fixed-window detection against two-stage adaptive detection on R1-8B. The best two-stage configuration ($W_{\text {screen}}{=}3$, $W_{\text {confirm}}{=}15$, $k{=}1$) Pareto-dominates single-stage $W{=}15$ by +1.3pp precision at matched coverage. Higher $k$ values shift the tradeoff toward precision at the cost of unacceptable coverage loss}{figure.caption.93}{}}
+\newlabel{fig:pareto_two_stage@cref}{{[figure][7][]7}{[1][23][]23}{}{}{}}
+\@LN{1670}{22}
+\@LN{1671}{22}
+\@LN{1672}{22}
+\@LN{1673}{22}
+\@LN{1674}{22}
+\@LN{1675}{22}
+\@LN{1676}{22}
+\@LN{1677}{22}
+\@LN{1678}{22}
+\@LN{1679}{22}
+\@writefile{toc}{\contentsline {section}{\numberline {P}Negative Results Details}{23}{appendix.P}\protected@file@percent }
+\newlabel{app:negative_details}{{P}{23}{Negative Results Details}{appendix.P}{}}
+\newlabel{app:negative_details@cref}{{[section][16][]P}{[1][23][]23}{}{}{}}
+\@LN{1680}{22}
+\@LN{1681}{22}
+\@writefile{toc}{\contentsline {paragraph}{BOCPD/CUSUM.}{23}{section*.94}\protected@file@percent }
+\@LN{1682}{22}
+\@LN{1683}{22}
+\@LN{1684}{22}
+\@LN{1685}{22}
+\@LN{1686}{22}
+\@LN{1687}{22}
+\@LN{1688}{22}
+\@LN{1689}{22}
+\@LN{1690}{22}
+\@LN{1691}{22}
+\@writefile{toc}{\contentsline {paragraph}{Mahalanobis distance.}{23}{section*.95}\protected@file@percent }
+\@LN{1692}{22}
+\@LN{1693}{22}
+\@LN{1694}{22}
+\@LN{1695}{22}
+\@LN{1696}{22}
+\@LN{1697}{22}
+\@LN{1698}{22}
+\@LN{1699}{22}
+\citation{burns2023discovering}
+\@LN@col{1}
+\@writefile{toc}{\contentsline {paragraph}{RepE.}{24}{section*.96}\protected@file@percent }
+\@LN{1700}{23}
+\@LN{1701}{23}
+\@LN{1702}{23}
+\@LN{1703}{23}
+\@LN{1704}{23}
+\@LN{1705}{23}
+\@LN{1706}{23}
+\@LN{1707}{23}
+\@LN{1708}{23}
+\@LN{1709}{23}
+\@LN{1710}{23}
+\@LN{1711}{23}
+\@writefile{toc}{\contentsline {paragraph}{MLP probes.}{24}{section*.97}\protected@file@percent }
+\@LN{1712}{23}
+\@LN{1713}{23}
+\@LN{1714}{23}
+\@LN{1715}{23}
+\@LN{1716}{23}
+\@LN{1717}{23}
+\@LN{1718}{23}
+\@LN{1719}{23}
+\@LN{1720}{23}
+\@LN{1721}{23}
+\@writefile{toc}{\contentsline {paragraph}{CCS.}{24}{section*.98}\protected@file@percent }
+\@LN{1722}{23}
+\@LN{1723}{23}
+\@LN{1724}{23}
+\@LN{1725}{23}
+\@LN{1726}{23}
+\@LN{1727}{23}
+\@LN{1728}{23}
+\@LN{1729}{23}
+\@LN{1730}{23}
+\@LN{1731}{23}
+\@LN{1732}{23}
+\@LN{1733}{23}
+\@LN{1734}{23}
+\@LN{1735}{23}
+\@writefile{toc}{\contentsline {paragraph}{Cross-model transfer.}{24}{section*.99}\protected@file@percent }
+\@LN{1736}{23}
+\@LN{1737}{23}
+\@LN{1738}{23}
+\@LN{1739}{23}
+\@LN{1740}{23}
+\@LN{1741}{23}
+\@LN{1742}{23}
+\@LN{1743}{23}
+\@writefile{toc}{\contentsline {section}{\numberline {Q}Cross-Model Transfer Implementation Details}{24}{appendix.Q}\protected@file@percent }
+\newlabel{app:transfer_details}{{Q}{24}{Cross-Model Transfer Implementation Details}{appendix.Q}{}}
+\newlabel{app:transfer_details@cref}{{[section][17][]Q}{[1][24][]24}{}{}{}}
+\@LN{1744}{23}
+\@LN{1745}{23}
+\@LN{1746}{23}
+\@LN{1747}{23}
+\@LN@col{2}
+\@writefile{toc}{\contentsline {paragraph}{Method.}{24}{section*.100}\protected@file@percent }
+\@LN{1748}{23}
+\@LN{1749}{23}
+\@LN{1750}{23}
+\@LN{1751}{23}
+\@LN{1752}{23}
+\@LN{1753}{23}
+\@LN{1754}{23}
+\@LN{1755}{23}
+\@LN{1756}{23}
+\@LN{1757}{23}
+\@LN{1758}{23}
+\@LN{1759}{23}
+\@LN{1760}{23}
+\@LN{1761}{23}
+\@LN{1762}{23}
+\@writefile{toc}{\contentsline {paragraph}{Same-dimension pairs.}{24}{section*.101}\protected@file@percent }
+\@LN{1763}{23}
+\@LN{1764}{23}
+\@LN{1765}{23}
+\@LN{1766}{23}
+\@LN{1767}{23}
+\@LN{1768}{23}
+\@LN{1769}{23}
+\@writefile{toc}{\contentsline {paragraph}{Results.}{24}{section*.102}\protected@file@percent }
+\@LN{1770}{23}
+\@LN{1771}{23}
+\@LN{1772}{23}
+\@LN{1773}{23}
+\@LN{1774}{23}
+\@LN{1775}{23}
+\@LN{1776}{23}
+\@LN{1777}{23}
+\@LN{1778}{23}
+\@LN{1779}{23}
+\@LN{1780}{23}
+\@LN{1781}{23}
+\@LN{1782}{23}
+\@LN{1783}{23}
+\@LN{1784}{23}
+\@LN{1785}{23}
+\@LN{1786}{23}
+\@LN{1787}{23}
+\@LN{1788}{23}
+\@LN{1789}{23}
+\@LN{1790}{23}
+\@LN{1791}{23}
+\@LN{1792}{23}
+\@LN{1793}{23}
+\@LN{1794}{23}
+\@LN{1795}{23}
+\citation{wang2024e5mistral}
+\@LN@col{1}
+\@LN{1796}{24}
+\@writefile{toc}{\contentsline {section}{\numberline {R}Encoder Robustness Analysis}{25}{appendix.R}\protected@file@percent }
+\newlabel{app:encoder_robustness}{{R}{25}{Encoder Robustness Analysis}{appendix.R}{}}
+\newlabel{app:encoder_robustness@cref}{{[section][18][]R}{[1][24][]25}{}{}{}}
+\@LN{1797}{24}
+\@LN{1798}{24}
+\@LN{1799}{24}
+\@LN{1800}{24}
+\@LN{1801}{24}
+\@LN{1802}{24}
+\@LN{1803}{24}
+\@writefile{lot}{\contentsline {table}{\numberline {27}{\ignorespaces HS vs.\ BGE-large (1024d) text probe precision. $\Delta $: HS minus BGE-large. Bootstrap: 10{,}000 resamples, two-sided null-centered. HB: survives Holm-Bonferroni correction (4 tests, $\alpha {=}0.05$).}}{25}{table.caption.103}\protected@file@percent }
+\newlabel{tab:encoder_robustness}{{27}{25}{HS vs.\ BGE-large (1024d) text probe precision. $\Delta $: HS minus BGE-large. Bootstrap: 10{,}000 resamples, two-sided null-centered. HB: survives Holm-Bonferroni correction (4 tests, $\alpha {=}0.05$)}{table.caption.103}{}}
+\newlabel{tab:encoder_robustness@cref}{{[table][27][]27}{[1][25][]25}{}{}{}}
+\@LN{1804}{24}
+\@LN{1805}{24}
+\@LN{1806}{24}
+\@LN{1807}{24}
+\@LN{1808}{24}
+\@LN{1809}{24}
+\@LN{1810}{24}
+\@LN{1811}{24}
+\@LN{1812}{24}
+\@LN{1813}{24}
+\@LN{1814}{24}
+\@LN{1815}{24}
+\@LN{1816}{24}
+\@writefile{toc}{\contentsline {paragraph}{Balanced accuracy and FPR.}{25}{section*.104}\protected@file@percent }
+\@LN{1817}{24}
+\@LN{1818}{24}
+\@LN{1819}{24}
+\@LN{1820}{24}
+\@LN{1821}{24}
+\@LN{1822}{24}
+\@LN{1823}{24}
+\@LN{1824}{24}
+\@LN{1825}{24}
+\@LN{1826}{24}
+\@LN{1827}{24}
+\@writefile{toc}{\contentsline {section}{\numberline {S}Random Projection Baseline}{25}{appendix.S}\protected@file@percent }
+\newlabel{app:random_projection}{{S}{25}{Random Projection Baseline}{appendix.S}{}}
+\newlabel{app:random_projection@cref}{{[section][19][]S}{[1][25][]25}{}{}{}}
+\@LN{1828}{24}
+\@LN{1829}{24}
+\@LN{1830}{24}
+\@LN{1831}{24}
+\@LN{1832}{24}
+\@LN{1833}{24}
+\@LN{1834}{24}
+\@LN{1835}{24}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {28}{\ignorespaces HS vs.\ BGE-large (1024d): balanced accuracy and FPR differences. Bootstrap: 10{,}000 resamples, two-sided null-centered. HB: Holm-Bonferroni correction (4 tests per metric, $\alpha {=}0.05$).}}{25}{table.caption.105}\protected@file@percent }
+\newlabel{tab:bge_ba_fpr}{{28}{25}{HS vs.\ BGE-large (1024d): balanced accuracy and FPR differences. Bootstrap: 10{,}000 resamples, two-sided null-centered. HB: Holm-Bonferroni correction (4 tests per metric, $\alpha {=}0.05$)}{table.caption.105}{}}
+\newlabel{tab:bge_ba_fpr@cref}{{[table][28][]28}{[1][25][]25}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {29}{\ignorespaces Random projection (RP, 384d) vs.\ text (384d MiniLM). All $p < 0.001$ (1{,}000 bootstrap resamples). R1-8B uses $W{=}15$ (\cref  {tab:hs_vs_text}: $W{=}3$); QwQ-32B evaluated at L60 (\cref  {tab:hs_vs_text}: L63). 60/20/20 split.}}{25}{table.caption.106}\protected@file@percent }
+\newlabel{tab:random_projection}{{29}{25}{Random projection (RP, 384d) vs.\ text (384d MiniLM). All $p < 0.001$ (1{,}000 bootstrap resamples). R1-8B uses $W{=}15$ (\cref {tab:hs_vs_text}: $W{=}3$); QwQ-32B evaluated at L60 (\cref {tab:hs_vs_text}: L63). 60/20/20 split}{table.caption.106}{}}
+\newlabel{tab:random_projection@cref}{{[table][29][]29}{[1][25][]25}{}{}{}}
+\@LN{1836}{24}
+\@LN{1837}{24}
+\@LN{1838}{24}
+\@LN{1839}{24}
+\@LN{1840}{24}
+\@LN{1841}{24}
+\@LN{1842}{24}
+\@LN{1843}{24}
+\@LN{1844}{24}
+\@LN{1845}{24}
+\@LN{1846}{24}
+\@writefile{toc}{\contentsline {section}{\numberline {T}LLM-Based Text Encoder Comparison}{25}{appendix.T}\protected@file@percent }
+\newlabel{app:e5_mistral}{{T}{25}{LLM-Based Text Encoder Comparison}{appendix.T}{}}
+\newlabel{app:e5_mistral@cref}{{[section][20][]T}{[1][25][]25}{}{}{}}
+\@LN{1847}{24}
+\@LN{1848}{24}
+\@LN{1849}{24}
+\@LN{1850}{24}
+\@LN{1851}{24}
+\@LN{1852}{24}
+\@LN{1853}{24}
+\@writefile{lot}{\contentsline {table}{\numberline {30}{\ignorespaces HS vs.\ E5-Mistral-7B (PCA 384d) precision. HB: Holm-Bonferroni adjusted (4 tests, $\alpha {=}0.05$). MiniLM precision from \cref  {tab:hs_vs_text} for reference. 60/20/20 split.}}{25}{table.caption.107}\protected@file@percent }
+\newlabel{tab:e5_mistral}{{30}{25}{HS vs.\ E5-Mistral-7B (PCA 384d) precision. HB: Holm-Bonferroni adjusted (4 tests, $\alpha {=}0.05$). MiniLM precision from \cref {tab:hs_vs_text} for reference. 60/20/20 split}{table.caption.107}{}}
+\newlabel{tab:e5_mistral@cref}{{[table][30][]30}{[1][25][]25}{}{}{}}
+\@LN{1854}{24}
+\@LN{1855}{24}
+\citation{cohen1988statistical}
+\@LN@col{1}
+\@LN{1856}{25}
+\@LN{1857}{25}
+\@LN{1858}{25}
+\@LN{1859}{25}
+\@LN{1860}{25}
+\@LN{1861}{25}
+\@LN{1862}{25}
+\@LN{1863}{25}
+\@LN{1864}{25}
+\@LN{1865}{25}
+\@LN{1866}{25}
+\@LN{1867}{25}
+\@writefile{toc}{\contentsline {section}{\numberline {U}Position-Residualized Probing}{26}{appendix.U}\protected@file@percent }
+\newlabel{app:position_residual}{{U}{26}{Position-Residualized Probing}{appendix.U}{}}
+\newlabel{app:position_residual@cref}{{[section][21][]U}{[1][26][]26}{}{}{}}
+\@LN{1868}{25}
+\@LN{1869}{25}
+\@LN{1870}{25}
+\@LN{1871}{25}
+\@LN{1872}{25}
+\@writefile{lot}{\contentsline {table}{\numberline {31}{\ignorespaces Position-residualized probe balanced accuracy. All residualized HS probes are above chance ($p{<}0.001$). 3/4 models retain significant non-positional HS advantage over text (gap +3.7 to +6.9pp, HB corrected); R1-32B is the exception (+1.9pp, $p{=}0.914$).}}{26}{table.caption.108}\protected@file@percent }
+\newlabel{tab:position_residual}{{31}{26}{Position-residualized probe balanced accuracy. All residualized HS probes are above chance ($p{<}0.001$). 3/4 models retain significant non-positional HS advantage over text (gap +3.7 to +6.9pp, HB corrected); R1-32B is the exception (+1.9pp, $p{=}0.914$)}{table.caption.108}{}}
+\newlabel{tab:position_residual@cref}{{[table][31][]31}{[1][26][]26}{}{}{}}
+\@LN{1873}{25}
+\@LN{1874}{25}
+\@LN{1875}{25}
+\@LN{1876}{25}
+\@LN{1877}{25}
+\@LN{1878}{25}
+\@LN{1879}{25}
+\@LN{1880}{25}
+\@LN{1881}{25}
+\@LN{1882}{25}
+\@LN{1883}{25}
+\@LN{1884}{25}
+\@LN{1885}{25}
+\@LN{1886}{25}
+\@LN{1887}{25}
+\@LN{1888}{25}
+\@LN{1889}{25}
+\@LN{1890}{25}
+\@LN{1891}{25}
+\@LN{1892}{25}
+\@LN{1893}{25}
+\@LN{1894}{25}
+\@LN@col{2}
+\@LN{1895}{25}
+\@LN{1896}{25}
+\@writefile{toc}{\contentsline {paragraph}{Non-linear position terms.}{26}{section*.109}\protected@file@percent }
+\@LN{1897}{25}
+\@LN{1898}{25}
+\@LN{1899}{25}
+\@LN{1900}{25}
+\@LN{1901}{25}
+\@LN{1902}{25}
+\@LN{1903}{25}
+\@LN{1904}{25}
+\@LN{1905}{25}
+\@LN{1906}{25}
+\@LN{1907}{25}
+\@writefile{lot}{\contentsline {table}{\numberline {32}{\ignorespaces Linear vs.\ quadratic position residualization (residualized HS$-$text gap, L60 for QwQ-32B). Both 7--8B models are robust to either specification. QwQ-32B's advantage survives linear but not quadratic control; R1-32B is non-significant under both.}}{26}{table.caption.110}\protected@file@percent }
+\newlabel{tab:position_quadratic}{{32}{26}{Linear vs.\ quadratic position residualization (residualized HS$-$text gap, L60 for QwQ-32B). Both 7--8B models are robust to either specification. QwQ-32B's advantage survives linear but not quadratic control; R1-32B is non-significant under both}{table.caption.110}{}}
+\newlabel{tab:position_quadratic@cref}{{[table][32][]32}{[1][26][]26}{}{}{}}
+\@LN{1908}{25}
+\@LN{1909}{25}
+\@LN{1910}{25}
+\@LN{1911}{25}
+\@LN{1912}{25}
+\@writefile{toc}{\contentsline {paragraph}{Effect size.}{26}{section*.111}\protected@file@percent }
+\@LN{1913}{25}
+\@LN{1914}{25}
+\@LN{1915}{25}
+\@LN{1916}{25}
+\@LN{1917}{25}
+\@LN{1918}{25}
+\@LN{1919}{25}
+\@LN{1920}{25}
+\@writefile{toc}{\contentsline {section}{\numberline {V}Hyperparameter Robustness}{26}{appendix.V}\protected@file@percent }
+\newlabel{app:hyperparameter_robustness}{{V}{26}{Hyperparameter Robustness}{appendix.V}{}}
+\newlabel{app:hyperparameter_robustness@cref}{{[section][22][]V}{[1][26][]26}{}{}{}}
+\@LN{1921}{25}
+\@LN{1922}{25}
+\@LN{1923}{25}
+\@LN{1924}{25}
+\@LN{1925}{25}
+\@LN{1926}{25}
+\@LN{1927}{25}
+\@LN{1928}{25}
+\@writefile{toc}{\contentsline {paragraph}{Threshold-based metrics converge to a deep-layer band.}{26}{section*.112}\protected@file@percent }
+\@LN{1929}{25}
+\@LN{1930}{25}
+\@LN{1931}{25}
+\@LN{1932}{25}
+\citation{efron1993bootstrap,carpenter2000bootstrap}
+\citation{gelman2013garden}
+\@LN@col{1}
+\@LN{1933}{26}
+\@LN{1934}{26}
+\@LN{1935}{26}
+\@LN{1936}{26}
+\@LN{1937}{26}
+\@LN{1938}{26}
+\@LN{1939}{26}
+\@LN{1940}{26}
+\@LN{1941}{26}
+\@writefile{toc}{\contentsline {paragraph}{BA-optimal layer instability is the finding, not a confound.}{27}{section*.113}\protected@file@percent }
+\@LN{1942}{26}
+\@LN{1943}{26}
+\@LN{1944}{26}
+\@LN{1945}{26}
+\@LN{1946}{26}
+\@LN{1947}{26}
+\@LN{1948}{26}
+\@LN{1949}{26}
+\@LN{1950}{26}
+\@LN{1951}{26}
+\@LN{1952}{26}
+\@LN{1953}{26}
+\@LN{1954}{26}
+\@writefile{lot}{\contentsline {table}{\numberline {33}{\ignorespaces BA-optimal layer per fold (5-fold CV, 32B models). Per-fold selections span 24 layers, but mean-BA landscape peaks are stable.}}{27}{table.caption.114}\protected@file@percent }
+\newlabel{tab:fold_ba_layers}{{33}{27}{BA-optimal layer per fold (5-fold CV, 32B models). Per-fold selections span 24 layers, but mean-BA landscape peaks are stable}{table.caption.114}{}}
+\newlabel{tab:fold_ba_layers@cref}{{[table][33][]33}{[1][27][]27}{}{}{}}
+\@writefile{toc}{\contentsline {paragraph}{Bootstrap CIs quantify statistical uncertainty.}{27}{section*.115}\protected@file@percent }
+\@LN{1955}{26}
+\@LN{1956}{26}
+\@LN{1957}{26}
+\@LN{1958}{26}
+\@LN{1959}{26}
+\@LN{1960}{26}
+\@LN{1961}{26}
+\@LN{1962}{26}
+\@LN{1963}{26}
+\@LN{1964}{26}
+\@LN{1965}{26}
+\@writefile{toc}{\contentsline {paragraph}{Effective degrees of freedom.}{27}{section*.116}\protected@file@percent }
+\@LN{1966}{26}
+\@LN{1967}{26}
+\@LN{1968}{26}
+\@LN{1969}{26}
+\@LN{1970}{26}
+\@LN{1971}{26}
+\@LN{1972}{26}
+\@LN{1973}{26}
+\@LN{1974}{26}
+\@LN{1975}{26}
+\@LN@col{2}
+\@LN{1976}{26}
+\@LN{1977}{26}
+\@LN{1978}{26}
+\@LN{1979}{26}
+\@LN{1980}{26}
+\@LN{1981}{26}
+\@LN{1982}{26}
+\@LN{1983}{26}
+\@LN{1984}{26}
+\@LN{1985}{26}
+\@LN{1986}{26}
+\@LN{1987}{26}
+\@LN{1988}{26}
+\@LN{1989}{26}
+\@writefile{toc}{\contentsline {subsection}{\numberline {V.1}Nested Cross-Validation}{27}{subsection.V.1}\protected@file@percent }
+\newlabel{app:nested_cv}{{V.1}{27}{Nested Cross-Validation}{subsection.V.1}{}}
+\newlabel{app:nested_cv@cref}{{[subsection][1][22]V.1}{[1][27][]27}{}{}{}}
+\@LN{1990}{26}
+\@LN{1991}{26}
+\@LN{1992}{26}
+\@LN{1993}{26}
+\@LN{1994}{26}
+\@LN{1995}{26}
+\@LN{1996}{26}
+\@LN{1997}{26}
+\@writefile{lot}{\contentsline {table}{\numberline {34}{\ignorespaces Nested 5-fold CV: per-fold HS$-$text precision difference (pp). Layer and $W$ selected independently per fold. All 10/10 folds favor HS.}}{27}{table.caption.117}\protected@file@percent }
+\newlabel{tab:nested_cv}{{34}{27}{Nested 5-fold CV: per-fold HS$-$text precision difference (pp). Layer and $W$ selected independently per fold. All 10/10 folds favor HS}{table.caption.117}{}}
+\newlabel{tab:nested_cv@cref}{{[table][34][]34}{[1][27][]27}{}{}{}}
+\@LN{1998}{26}
+\@LN{1999}{26}
+\@LN{2000}{26}
+\@LN{2001}{26}
+\@LN{2002}{26}
+\@LN{2003}{26}
+\@LN{2004}{26}
+\@LN{2005}{26}
+\@LN{2006}{26}
+\@LN{2007}{26}
+\@LN{2008}{26}
+\@LN{2009}{26}
+\@LN{2010}{26}
+\@LN{2011}{26}
+\@LN{2012}{26}
+\@writefile{toc}{\contentsline {paragraph}{Formal test.}{27}{section*.118}\protected@file@percent }
+\@LN{2013}{26}
+\@LN{2014}{26}
+\@LN{2015}{26}
+\@LN{2016}{26}
+\@LN@col{1}
+\@LN{2017}{27}
+\@LN{2018}{27}
+\@LN{2019}{27}
+\@LN{2020}{27}
+\@LN{2021}{27}
+\@LN{2022}{27}
+\@writefile{toc}{\contentsline {section}{\numberline {W}Multi-Seed Stability}{28}{appendix.W}\protected@file@percent }
+\newlabel{app:multi_seed}{{W}{28}{Multi-Seed Stability}{appendix.W}{}}
+\newlabel{app:multi_seed@cref}{{[section][23][]W}{[1][28][]28}{}{}{}}
+\@LN{2023}{27}
+\@LN{2024}{27}
+\@LN{2025}{27}
+\@writefile{lot}{\contentsline {table}{\numberline {35}{\ignorespaces LR probe stability across 5 random seeds (threshold-based layers, optimal $W$). 7--8B models are stable; R1-32B shows high variance due to small sample ($n{=}20$).}}{28}{table.caption.119}\protected@file@percent }
+\newlabel{tab:multi_seed}{{35}{28}{LR probe stability across 5 random seeds (threshold-based layers, optimal $W$). 7--8B models are stable; R1-32B shows high variance due to small sample ($n{=}20$)}{table.caption.119}{}}
+\newlabel{tab:multi_seed@cref}{{[table][35][]35}{[1][28][]28}{}{}{}}
+\@LN{2026}{27}
+\@LN{2027}{27}
+\@LN{2028}{27}
+\@LN{2029}{27}
+\@LN{2030}{27}
+\@LN{2031}{27}
+\@writefile{toc}{\contentsline {paragraph}{5-seed Holm-Bonferroni pass rates.}{28}{section*.120}\protected@file@percent }
+\@LN{2032}{27}
+\@LN{2033}{27}
+\@LN{2034}{27}
+\@LN{2035}{27}
+\@writefile{lot}{\contentsline {table}{\numberline {36}{\ignorespaces 5-seed HB pass rates (3/3 metrics per seed). R1-8B failures are FPR-specific.}}{28}{table.caption.121}\protected@file@percent }
+\newlabel{tab:seed_hb}{{36}{28}{5-seed HB pass rates (3/3 metrics per seed). R1-8B failures are FPR-specific}{table.caption.121}{}}
+\newlabel{tab:seed_hb@cref}{{[table][36][]36}{[1][28][]28}{}{}{}}
+\@writefile{toc}{\contentsline {paragraph}{R1-8B FPR per-seed breakdown.}{28}{section*.122}\protected@file@percent }
+\@LN{2036}{27}
+\@LN{2037}{27}
+\@LN{2038}{27}
+\@LN{2039}{27}
+\@LN{2040}{27}
+\@LN{2041}{27}
+\@LN{2042}{27}
+\@LN{2043}{27}
+\@LN{2044}{27}
+\@LN{2045}{27}
+\@writefile{toc}{\contentsline {paragraph}{R1-8B per-metric HB pass rates.}{28}{section*.124}\protected@file@percent }
+\@LN{2046}{27}
+\@LN{2047}{27}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {37}{\ignorespaces R1-8B FPR per-seed comparison (L14, $W{=}15$; main text \cref  {tab:hs_vs_text} reports $W{=}3$ after 5-seed validation). Direction is consistent (5/5 HS $\leq $ Text); 2/5 reach $p{<}0.05$ uncorrected, 1/5 after Bonferroni correction (5 seeds, $\alpha {=}0.01$).}}{28}{table.caption.123}\protected@file@percent }
+\newlabel{tab:r18b_fpr_seeds}{{37}{28}{R1-8B FPR per-seed comparison (L14, $W{=}15$; main text \cref {tab:hs_vs_text} reports $W{=}3$ after 5-seed validation). Direction is consistent (5/5 HS $\leq $ Text); 2/5 reach $p{<}0.05$ uncorrected, 1/5 after Bonferroni correction (5 seeds, $\alpha {=}0.01$)}{table.caption.123}{}}
+\newlabel{tab:r18b_fpr_seeds@cref}{{[table][37][]37}{[1][28][]28}{}{}{}}
+\@LN{2048}{27}
+\@LN{2049}{27}
+\@writefile{lot}{\contentsline {table}{\numberline {38}{\ignorespaces R1-8B per-metric$\times $seed HB pass rates. Precision is robust (5/5); FPR is fragile (3/5). FPR std across seeds is 0.040 vs.\ text FPR std 0.007, consistent with a proportion near boundary (${\sim }$12\%) amplified at $n{=}43$.}}{28}{table.caption.125}\protected@file@percent }
+\newlabel{tab:r18b_metric_hb}{{38}{28}{R1-8B per-metric$\times $seed HB pass rates. Precision is robust (5/5); FPR is fragile (3/5). FPR std across seeds is 0.040 vs.\ text FPR std 0.007, consistent with a proportion near boundary (${\sim }$12\%) amplified at $n{=}43$}{table.caption.125}{}}
+\newlabel{tab:r18b_metric_hb@cref}{{[table][38][]38}{[1][28][]28}{}{}{}}
+\@LN{2050}{27}
+\@LN{2051}{27}
+\@LN{2052}{27}
+\@LN{2053}{27}
+\@LN{2054}{27}
+\@LN{2055}{27}
+\@LN{2056}{27}
+\@LN{2057}{27}
+\@LN{2058}{27}
+\@writefile{toc}{\contentsline {paragraph}{R1-32B per-seed breakdown.}{28}{section*.126}\protected@file@percent }
+\@LN{2059}{27}
+\@LN{2060}{27}
+\@LN{2061}{27}
+\@LN{2062}{27}
+\@LN{2063}{27}
+\@writefile{lot}{\contentsline {table}{\numberline {39}{\ignorespaces R1-32B per-seed performance (L63, $W{=}1$). Seed 0 is an outlier driven by test-set trace allocation.}}{28}{table.caption.127}\protected@file@percent }
+\newlabel{tab:r132b_seeds}{{39}{28}{R1-32B per-seed performance (L63, $W{=}1$). Seed 0 is an outlier driven by test-set trace allocation}{table.caption.127}{}}
+\newlabel{tab:r132b_seeds@cref}{{[table][39][]39}{[1][28][]28}{}{}{}}
+\@LN@col{1}
+\@LN{2064}{28}
+\@writefile{toc}{\contentsline {subsection}{\numberline {W.1}Split-Half Internal Validity (OT-7B)}{29}{subsection.W.1}\protected@file@percent }
+\newlabel{app:split_half}{{W.1}{29}{Split-Half Internal Validity (OT-7B)}{subsection.W.1}{}}
+\newlabel{app:split_half@cref}{{[subsection][1][23]W.1}{[1][29][]29}{}{}{}}
+\@LN{2065}{28}
+\@LN{2066}{28}
+\@LN{2067}{28}
+\@LN{2068}{28}
+\@LN{2069}{28}
+\@LN{2070}{28}
+\@LN{2071}{28}
+\@LN{2072}{28}
+\@LN{2073}{28}
+\@LN{2074}{28}
+\@LN{2075}{28}
+\@writefile{lot}{\contentsline {table}{\numberline {40}{\ignorespaces Split-half internal validity on OT-7B. Both halves reproduce CR$\to $shallow / threshold$\to $deep divergence with consistent HS advantage direction.}}{29}{table.caption.128}\protected@file@percent }
+\newlabel{tab:split_half_ot7b}{{40}{29}{Split-half internal validity on OT-7B. Both halves reproduce CR$\to $shallow / threshold$\to $deep divergence with consistent HS advantage direction}{table.caption.128}{}}
+\newlabel{tab:split_half_ot7b@cref}{{[table][40][]40}{[1][29][]29}{}{}{}}
+\@LN{2076}{28}
+\@writefile{toc}{\contentsline {section}{\numberline {X}BA-Layer Modality Comparison}{29}{appendix.X}\protected@file@percent }
+\newlabel{app:ba_layer_comparison}{{X}{29}{BA-Layer Modality Comparison}{appendix.X}{}}
+\newlabel{app:ba_layer_comparison@cref}{{[section][24][]X}{[1][29][]29}{}{}{}}
+\@LN{2077}{28}
+\@LN{2078}{28}
+\@LN{2079}{28}
+\@LN{2080}{28}
+\@LN{2081}{28}
+\@LN{2082}{28}
+\@LN{2083}{28}
+\@LN{2084}{28}
+\@LN{2085}{28}
+\@LN{2086}{28}
+\@writefile{lot}{\contentsline {table}{\numberline {41}{\ignorespaces HS vs.\ text at BA-selected layers (60/20/20 split, same as main results). 14/16 per-model tests pass Holm-Bonferroni ($\alpha {=}0.05$); two FPR failures from underpowered 32B sets. BA-L: layer selected by pure balanced accuracy. Depth varies from 7\% to 98\%.}}{29}{table.caption.129}\protected@file@percent }
+\newlabel{tab:ba_layer_results}{{41}{29}{HS vs.\ text at BA-selected layers (60/20/20 split, same as main results). 14/16 per-model tests pass Holm-Bonferroni ($\alpha {=}0.05$); two FPR failures from underpowered 32B sets. BA-L: layer selected by pure balanced accuracy. Depth varies from 7\% to 98\%}{table.caption.129}{}}
+\newlabel{tab:ba_layer_results@cref}{{[table][41][]41}{[1][29][]29}{}{}{}}
+\@LN{2087}{28}
+\@LN{2088}{28}
+\@LN{2089}{28}
+\@LN{2090}{28}
+\@LN{2091}{28}
+\@LN{2092}{28}
+\@LN{2093}{28}
+\@LN@col{2}
+\@LN{2094}{28}
+\@LN{2095}{28}
+\@LN{2096}{28}
+\@LN{2097}{28}
+\@LN{2098}{28}
+\@LN{2099}{28}
+\@LN{2100}{28}
+\@LN{2101}{28}
+\@LN{2102}{28}
+\@LN{2103}{28}
+\@writefile{toc}{\contentsline {subsection}{\numberline {X.1}AUROC Layer Selection}{29}{subsection.X.1}\protected@file@percent }
+\newlabel{app:auroc_layer}{{X.1}{29}{AUROC Layer Selection}{subsection.X.1}{}}
+\newlabel{app:auroc_layer@cref}{{[subsection][1][24]X.1}{[1][29][]29}{}{}{}}
+\@LN{2104}{28}
+\@LN{2105}{28}
+\@LN{2106}{28}
+\@LN{2107}{28}
+\@writefile{lot}{\contentsline {table}{\numberline {42}{\ignorespaces AUROC-optimal vs.\ threshold-based layer selection. AUROC selects mid-depth layers for 32B models (${\sim }$50\%), diverging from threshold-based deep layers ($>$90\%). PCA-256 applied to 32B models for tractability.}}{29}{table.caption.130}\protected@file@percent }
+\newlabel{tab:auroc_layer}{{42}{29}{AUROC-optimal vs.\ threshold-based layer selection. AUROC selects mid-depth layers for 32B models (${\sim }$50\%), diverging from threshold-based deep layers ($>$90\%). PCA-256 applied to 32B models for tractability}{table.caption.130}{}}
+\newlabel{tab:auroc_layer@cref}{{[table][42][]42}{[1][29][]29}{}{}{}}
+\@LN{2108}{28}
+\@LN{2109}{28}
+\@LN{2110}{28}
+\@LN{2111}{28}
+\@LN{2112}{28}
+\@LN{2113}{28}
+\@LN{2114}{28}
+\@LN{2115}{28}
+\@LN{2116}{28}
+\@LN{2117}{28}
+\@LN{2118}{28}
+\@writefile{toc}{\contentsline {subsection}{\numberline {X.2}Effective Independent Tests}{29}{subsection.X.2}\protected@file@percent }
+\newlabel{app:effective_tests}{{X.2}{29}{Effective Independent Tests}{subsection.X.2}{}}
+\newlabel{app:effective_tests@cref}{{[subsection][2][24]X.2}{[1][29][]29}{}{}{}}
+\@LN{2119}{28}
+\@LN{2120}{28}
+\@LN{2121}{28}
+\@LN{2122}{28}
+\@LN{2123}{28}
+\@LN{2124}{28}
+\@writefile{toc}{\contentsline {paragraph}{Metric redundancy.}{29}{section*.131}\protected@file@percent }
+\@LN{2125}{28}
+\@LN{2126}{28}
+\@LN{2127}{28}
+\@LN{2128}{28}
+\@LN{2129}{28}
+\@LN{2130}{28}
+\citation{efron1993bootstrap}
+\@LN@col{1}
+\@LN{2131}{29}
+\@LN{2132}{29}
+\@LN{2133}{29}
+\@LN{2134}{29}
+\@LN{2135}{29}
+\@LN{2136}{29}
+\@LN{2137}{29}
+\@writefile{toc}{\contentsline {paragraph}{Layer autocorrelation.}{30}{section*.132}\protected@file@percent }
+\@LN{2138}{29}
+\@LN{2139}{29}
+\@LN{2140}{29}
+\@LN{2141}{29}
+\@LN{2142}{29}
+\@LN{2143}{29}
+\@LN{2144}{29}
+\@writefile{toc}{\contentsline {paragraph}{Two-stage protection.}{30}{section*.133}\protected@file@percent }
+\@LN{2145}{29}
+\@LN{2146}{29}
+\@LN{2147}{29}
+\@LN{2148}{29}
+\@LN{2149}{29}
+\@LN{2150}{29}
+\@LN{2151}{29}
+\@LN{2152}{29}
+\@LN{2153}{29}
+\@LN{2154}{29}
+\@LN{2155}{29}
+\@LN{2156}{29}
+\@writefile{toc}{\contentsline {paragraph}{Conditional inference.}{30}{section*.134}\protected@file@percent }
+\@LN{2157}{29}
+\@LN{2158}{29}
+\@LN{2159}{29}
+\@LN{2160}{29}
+\@LN{2161}{29}
+\@LN{2162}{29}
+\@LN{2163}{29}
+\@LN{2164}{29}
+\@LN{2165}{29}
+\@LN{2166}{29}
+\@LN{2167}{29}
+\@LN{2168}{29}
+\@writefile{toc}{\contentsline {paragraph}{Effect sizes.}{30}{section*.135}\protected@file@percent }
+\@LN{2169}{29}
+\@LN{2170}{29}
+\@LN{2171}{29}
+\@LN{2172}{29}
+\@LN{2173}{29}
+\@LN{2174}{29}
+\@LN{2175}{29}
+\@LN{2176}{29}
+\@LN{2177}{29}
+\@LN{2178}{29}
+\@LN{2179}{29}
+\@LN{2180}{29}
+\@LN@col{2}
+\@LN{2181}{29}
+\@LN{2182}{29}
+\@LN{2183}{29}
+\@writefile{toc}{\contentsline {section}{\numberline {Y}Post-Hoc Power Analysis}{30}{appendix.Y}\protected@file@percent }
+\newlabel{app:power_analysis}{{Y}{30}{Post-Hoc Power Analysis}{appendix.Y}{}}
+\newlabel{app:power_analysis@cref}{{[section][25][]Y}{[1][30][]30}{}{}{}}
+\@LN{2184}{29}
+\@LN{2185}{29}
+\@LN{2186}{29}
+\@LN{2187}{29}
+\@writefile{lot}{\contentsline {table}{\numberline {43}{\ignorespaces Post-hoc power analysis. MDE: minimum detectable effect (balanced accuracy, pp) at 80\% power given each model's test-set size and observed variance. Effects smaller than the MDE cannot be reliably detected.}}{30}{table.caption.136}\protected@file@percent }
+\newlabel{tab:power_analysis}{{43}{30}{Post-hoc power analysis. MDE: minimum detectable effect (balanced accuracy, pp) at 80\% power given each model's test-set size and observed variance. Effects smaller than the MDE cannot be reliably detected}{table.caption.136}{}}
+\newlabel{tab:power_analysis@cref}{{[table][43][]43}{[1][30][]30}{}{}{}}
+\@LN{2188}{29}
+\@LN{2189}{29}
+\@LN{2190}{29}
+\@LN{2191}{29}
+\@LN{2192}{29}
+\@LN{2193}{29}
+\@LN{2194}{29}
+\@LN{2195}{29}
+\@LN{2196}{29}
+\@LN{2197}{29}
+\@writefile{toc}{\contentsline {subsection}{\numberline {Y.1}Multi-Metric Layer Ensemble}{30}{subsection.Y.1}\protected@file@percent }
+\newlabel{app:ensemble}{{Y.1}{30}{Multi-Metric Layer Ensemble}{subsection.Y.1}{}}
+\newlabel{app:ensemble@cref}{{[subsection][1][25]Y.1}{[1][30][]30}{}{}{}}
+\@LN{2198}{29}
+\@LN{2199}{29}
+\@LN{2200}{29}
+\@LN{2201}{29}
+\@LN{2202}{29}
+\@LN{2203}{29}
+\@LN{2204}{29}
+\@LN{2205}{29}
+\@LN{2206}{29}
+\@LN{2207}{29}
+\@LN{2208}{29}
+\@LN{2209}{29}
+\@LN{2210}{29}
+\@LN{2211}{29}
+\@LN{2212}{29}
+\@LN{2213}{29}
+\@LN{2214}{29}
+\@LN{2215}{29}
+\@LN{2216}{29}
+\@LN@col{1}
+\@LN{2217}{30}
+\@LN{2218}{30}
+\@LN{2219}{30}
+\@LN{2220}{30}
+\@LN{2221}{30}
+\@LN{2222}{30}
+\@LN{2223}{30}
+\@LN{2224}{30}
+\@LN{2225}{30}
+\@LN{2226}{30}
+\@writefile{toc}{\contentsline {subsection}{\numberline {Y.2}Practical Mitigation Levels}{31}{subsection.Y.2}\protected@file@percent }
+\newlabel{app:practical_mitigation}{{Y.2}{31}{Practical Mitigation Levels}{subsection.Y.2}{}}
+\newlabel{app:practical_mitigation@cref}{{[subsection][2][25]Y.2}{[1][31][]31}{}{}{}}
+\@LN{2227}{30}
+\@LN{2228}{30}
+\@LN{2229}{30}
+\@LN{2230}{30}
+\@LN{2231}{30}
+\@LN{2232}{30}
+\@LN{2233}{30}
+\@LN{2234}{30}
+\@LN{2235}{30}
+\@LN{2236}{30}
+\@LN{2237}{30}
+\@LN{2238}{30}
+\@LN{2239}{30}
+\@LN{2240}{30}
+\@LN{2241}{30}
+\@LN{2242}{30}
+\@LN{2243}{30}
+\@LN{2244}{30}
+\@LN{2245}{30}
+\@writefile{toc}{\contentsline {section}{\numberline {Z}32B Model-Specific Analysis (Full)}{31}{appendix.Z}\protected@file@percent }
+\newlabel{app:32b_full}{{Z}{31}{32B Model-Specific Analysis (Full)}{appendix.Z}{}}
+\newlabel{app:32b_full@cref}{{[section][26][]Z}{[1][31][]31}{}{}{}}
+\@LN{2246}{30}
+\@LN{2247}{30}
+\@LN{2248}{30}
+\@LN{2249}{30}
+\@LN{2250}{30}
+\@LN{2251}{30}
+\@LN{2252}{30}
+\@LN{2253}{30}
+\@LN{2254}{30}
+\@LN{2255}{30}
+\@LN{2256}{30}
+\@LN{2257}{30}
+\@LN{2258}{30}
+\@LN{2259}{30}
+\@LN{2260}{30}
+\@LN{2261}{30}
+\@writefile{toc}{\contentsline {section}{Consolidated Per-Model Results}{31}{section*.137}\protected@file@percent }
+\newlabel{app:consolidated}{{Z}{31}{Consolidated Per-Model Results}{section*.137}{}}
+\newlabel{app:consolidated@cref}{{[section][26][]Z}{[1][31][]31}{}{}{}}
+\@LN{2262}{30}
+\@LN{2263}{30}
+\@LN{2264}{30}
+\@writefile{lot}{\contentsline {table}{\numberline {44}{\ignorespaces Consolidated findings across contributions. Layer gap: crossing-rate composite vs.\ threshold-based selection (C1). $\Delta $Prec: HS$-$text precision advantage at threshold-based layers; \text  {$\mathsurround \z@ \mathchar "558$}/{\relax \fontsize  {7}{8pt}\selectfont  $\times $} = survives/fails Holm--Bonferroni (C2). Pos.\ resid.: HS advantage survives linear/quadratic position residualization. $^\dagger $Sample-limited ($n \leq 20$).}}{31}{table.caption.138}\protected@file@percent }
+\newlabel{tab:consolidated}{{44}{31}{Consolidated findings across contributions. Layer gap: crossing-rate composite vs.\ threshold-based selection (C1). $\Delta $Prec: HS$-$text precision advantage at threshold-based layers; \checkmark /{\scriptsize $\times $} = survives/fails Holm--Bonferroni (C2). Pos.\ resid.: HS advantage survives linear/quadratic position residualization. $^\dagger $Sample-limited ($n \leq 20$)}{table.caption.138}{}}
+\newlabel{tab:consolidated@cref}{{[table][44][]44}{[1][31][]31}{}{}{}}
+\gdef \@abspage@last{31}

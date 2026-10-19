@@ -1,0 +1,26 @@
+{
+  "exp_id": "exp_r3_bocpd_ot7b_w15",
+  "project": "contrastive_trace_safety",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T12:53:19.311Z",
+    "updated_at": "2026-05-17T12:53:32.604Z",
+    "hypothesis": "BOCPD/CUSUM on OT-7B probe scores with W=15 can detect safety commitment change points earlier than simple threshold crossing, extending negative-result coverage beyond R1-8B.",
+    "spec": {
+      "command": "python run_bocpd_cusum_ot7b.py --W 15",
+      "server": "autodl-rtx6000",
+      "data_path": "/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_ot7b_full_pipeline",
+      "data_count": 228,
+      "model_name": "OpenThinker-7B",
+      "seed": 42,
+      "checkpoint_path": "N/A",
+      "log_path": "artifacts/ot7b_bocpd_cusum/results.json"
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-17T12:53:32.655529+00:00",
+  "trigger": "update_registry"
+}

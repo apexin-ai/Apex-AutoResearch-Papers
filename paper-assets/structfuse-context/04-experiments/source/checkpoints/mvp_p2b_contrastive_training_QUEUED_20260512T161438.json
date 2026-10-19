@@ -1,0 +1,38 @@
+{
+  "exp_id": "mvp_p2b_contrastive_training",
+  "project": "structfuse-context",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 2,
+    "created_at": "2026-05-12T12:37:44.628Z",
+    "updated_at": "2026-05-12T16:14:38.753Z",
+    "reproduce": {
+      "finished_at": "2026-05-12T15:15:46.635Z"
+    },
+    "failure_reason": "EXIT_CODE=2 (shell misuse / syntax)",
+    "completed_at": "2026-05-12T13:16:21.735Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-12T13:16:22.517958+00:00"
+        },
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-12T15:15:47.933008+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "第2次失败: random策略3seeds全部完成(s42跳过/s123 recall@5=0.984/s456 recall@5=0.992), 但embedding策略s42启动即EXIT_CODE=2(shell syntax error). Worker worker_diagnose_mvp_p2b_contrastive_training_v2 正在诊断和修复run_p2b_all.sh的embedding配置部分"
+      }
+    },
+    "notes": "第2次失败: random策略3seeds全部完成(s42跳过/s123 recall@5=0.984/s456 recall@5=0.992), 但embedding策略s42启动即EXIT_CODE=2(shell syntax error). Worker worker_diagnose_mvp_p2b_contrastive_training_v2 正在诊断和修复run_p2b_all.sh的embedding配置部分"
+  },
+  "timestamp": "2026-05-12T16:14:38.772241+00:00",
+  "trigger": "update_registry"
+}

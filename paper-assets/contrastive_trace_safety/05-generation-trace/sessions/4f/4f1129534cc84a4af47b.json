@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4f1129534cc84a4af47b",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "paper writing experiments d032",
+  "task_key": "worker_paper_writing_experiments_d032_20260517T154238",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_experiments_d032_20260517T154238_result.json",
+    "occurrence": 1,
+    "bytes": 1509,
+    "sha256": "37723497aef7f76b2e923196f02a0cc0c1224fc26a0821f1125d2910e83a194d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Labels and cross-references are all correct. Key labels defined:\n- `sec:experiments`, `sec:setup`, `sec:layer-results`, `sec:hs-text`, `sec:temporal`, `sec:32b-analysis`, `sec:negative`\n- `tab:layer_selection`, `tab:hs_vs_text`, `tab:32b_divergence`, `tab:negative`, `fig:window_ablation`\n\nThe method section's cross-references to `\\cref{sec:layer-results}` and `\\cref{tab:layer_selection}` will resolve correctly.\n\nThe complete experiments.tex is written to the target path. Structure:\n\n- **4.1 Experimental Setup** (~280w): Models, training protocol, layer selection overview\n- **4.2 Layer Selection Results** (~370w): Primary contribution. Table `tab:layer_selection` shows biased vs corrected layers with downstream p-value impact. Key finding: crossing rate component reverses 32B conclusions\n- **4.3 HS vs Text Comparison** (~480w): Secondary contribution. Table `tab:hs_vs_text` with 12/12 Holm-Bonferroni. Precision +15.4 to +23.6pp across all 4 models. Caveats: different W per model, R1-32B 25% coverage, QwQ negative lead time\n- **4.4 Temporal Context Effects** (~370w): Universal text probe benefit, 3/4 HS probe benefit, OT-7B exception detailed. Figure `fig:window_ablation`\n- **4.5 32B Model-Specific Analysis** (~290w): Table `tab:32b_divergence`. R1-32B: excellent lead time, narrow coverage. QwQ: robust significance, poor timing\n- **4.6 Negative Results** (~300w): Table `tab:negative`. 7 methods fail: BOCPD, CUSUM, Mahalanobis, RepE, MLP, CCS, cross-transfer"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-experiments-d032.md"
+}

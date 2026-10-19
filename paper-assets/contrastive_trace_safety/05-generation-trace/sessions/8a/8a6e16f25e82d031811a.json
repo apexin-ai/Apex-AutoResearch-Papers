@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "id": "8a6e16f25e82d031811a",
+  "project": "contrastive_trace_safety",
+  "kind": "worker",
+  "title": "code r11 residualized precision",
+  "task_key": "worker_code_r11_residualized_precision_20260518T122109",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r11_residualized_precision_20260518T122109.log",
+    "occurrence": 1,
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "statistics": {
+    "messages": 0,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {},
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [],
+  "readable_path": "readable/worker-executions/code-r11-residualized-precision.md"
+}

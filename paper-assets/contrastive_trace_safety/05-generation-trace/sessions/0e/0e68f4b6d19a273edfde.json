@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0e68f4b6d19a273edfde",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "gpu advbench hs extraction",
+  "task_key": "worker_gpu_advbench_hs_extraction_20260519T235952",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu_advbench_hs_extraction_20260519T235952_result.json",
+    "occurrence": 1,
+    "bytes": 675,
+    "sha256": "c41c45dd1f9030fd3c1a38eeb0567f3376c22fc82f40d0725b0b724971c4f2bb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Phase 2A + 2B 完成\n\n### Hidden States（Phase 2A）\n| 指标 | 值 |\n|------|-----|\n| 提取 traces | **520/520** |\n| 输出路径 | `artifacts/hidden_states_advbench/` |\n| 格式 | `.pt`，shape `[T, 25, 4096]` fp16 |\n| Steps/trace | min=2, mean=19.3, max=61 |\n| 总大小 | 1957 MB |\n| 耗时 | ~54s/shard（双 GPU 并行） |\n\n### Text Embeddings（Phase 2B）\n| 指标 | 值 |\n|------|-----|\n| 提取 traces | **520/520** |\n| 输出路径 | `artifacts/text_embeddings_advbench/` |\n| 格式 | `.pkl`，shape `(T, 384)` float32 |\n| Steps/trace | min=2, mean=19.3, max=61 |\n| 总大小 | 14.7 MB |\n| 耗时 | ~2s（MiniLM 极快） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-advbench-hs-extraction.md"
+}

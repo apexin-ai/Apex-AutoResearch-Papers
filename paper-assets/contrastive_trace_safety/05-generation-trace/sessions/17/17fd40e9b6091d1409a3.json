@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "17fd40e9b6091d1409a3",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "analysis harmthoughts r1 8b full layer",
+  "task_key": "worker_analysis_harmthoughts_r1_8b_full_layer_20260519T194656",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_harmthoughts_r1_8b_full_layer_20260519T194656_result.json",
+    "occurrence": 1,
+    "bytes": 169,
+    "sha256": "80b69dc276c70623022bef1fb7998542721f3c322046e2feed9d1f0d5e2bc68f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "12526 — W=15 L24 done! All layers complete. The script is now running the analysis and writing output files. Should see SWEEP_COMPLETE on the next poll."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-harmthoughts-r1-8b-full-layer.md"
+}

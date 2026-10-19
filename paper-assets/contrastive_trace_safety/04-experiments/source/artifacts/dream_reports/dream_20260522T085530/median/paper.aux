@@ -1,0 +1,78 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Hidden-state safety monitoring.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Reasoning model safety.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Layer selection in probing.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Hidden-State Extraction and Probing}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Layer Selection Metrics}{2}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:layer-metrics}{{3.2}{2}{Layer Selection Metrics}{subsection.3.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces AdvBench R1-8B layer sweep (top-5 by balanced accuracy). The layer landscape is flatter than the original dataset ($\sim $7pp range vs.\ $\sim $15pp).}}{3}{table.caption.4}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:layer-sweep}{{1}{3}{AdvBench R1-8B layer sweep (top-5 by balanced accuracy). The layer landscape is flatter than the original dataset ($\sim $7pp range vs.\ $\sim $15pp)}{table.caption.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Evaluation Protocol}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\newlabel{sec:experiments}{{4}{3}{Experiments}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Original Dataset Summary}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}AdvBench Replication Setup}{3}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Layer Sweep and Static Probing}{3}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:layer-sweep}{{4.3}{3}{Layer Sweep and Static Probing}{subsection.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces AdvBench 5-metric layer selection (R1-8B). CR-composite selects shallower (L5) than threshold-dependent metrics (L11--L12), replicating the directional bias.}}{4}{table.caption.5}\protected@file@percent }
+\newlabel{tab:five-metric}{{2}{4}{AdvBench 5-metric layer selection (R1-8B). CR-composite selects shallower (L5) than threshold-dependent metrics (L11--L12), replicating the directional bias}{table.caption.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Layer selection bias gap: original CP-labeled vs.\ AdvBench binary.}}{4}{table.caption.6}\protected@file@percent }
+\newlabel{tab:bias-gap}{{3}{4}{Layer selection bias gap: original CP-labeled vs.\ AdvBench binary}{table.caption.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Five-Metric Layer Selection Bias (Core Result)}{4}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:five-metric}{{4.4}{4}{Five-Metric Layer Selection Bias (Core Result)}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}HS vs.\ Text at Selected Layers}{4}{subsection.4.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Temporal Window Ablation}{4}{subsection.4.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces AdvBench HS vs.\ Text at each selected layer (R1-8B, $W{=}3$).}}{5}{table.caption.7}\protected@file@percent }
+\newlabel{tab:hs-text-layer}{{4}{5}{AdvBench HS vs.\ Text at each selected layer (R1-8B, $W{=}3$)}{table.caption.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces AdvBench temporal ablation (R1-8B, L12). $W{=}3$ optimal.}}{5}{table.caption.8}\protected@file@percent }
+\newlabel{tab:temporal}{{5}{5}{AdvBench temporal ablation (R1-8B, L12). $W{=}3$ optimal}{table.caption.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Bootstrap Statistical Comparison}{5}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:bootstrap}{{4.7}{5}{Bootstrap Statistical Comparison}{subsection.4.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}HS--Text Gap Compression}{5}{subsection.4.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.9}OT-7B Cross-Model Extension}{5}{subsection.4.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Combined Holm--Bonferroni.}{5}{section*.12}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces AdvBench bootstrap comparison (R1-8B, L12, $W{=}3$, 1000 resamples, $n{=}36$ test). Only precision passes Holm--Bonferroni.}}{6}{table.caption.9}\protected@file@percent }
+\newlabel{tab:bootstrap}{{6}{6}{AdvBench bootstrap comparison (R1-8B, L12, $W{=}3$, 1000 resamples, $n{=}36$ test). Only precision passes Holm--Bonferroni}{table.caption.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces HS--Text gap compression: original CP-labeled vs.\ AdvBench binary (R1-8B, temporal $W{=}3$).}}{6}{table.caption.10}\protected@file@percent }
+\newlabel{tab:gap-compression}{{7}{6}{HS--Text gap compression: original CP-labeled vs.\ AdvBench binary (R1-8B, temporal $W{=}3$)}{table.caption.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.10}Early Detection Timing}{6}{subsection.4.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.11}Oracle Ceiling Analysis}{6}{subsection.4.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.12}Negative Results}{6}{subsection.4.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Mahalanobis distance.}{6}{section*.16}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces OT-7B AdvBench 5-metric layer selection.}}{7}{table.caption.11}\protected@file@percent }
+\newlabel{tab:ot7b-metrics}{{8}{7}{OT-7B AdvBench 5-metric layer selection}{table.caption.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces AdvBench combined Holm--Bonferroni (2 models, 6 tests). Only R1-8B precision passes.}}{7}{table.caption.13}\protected@file@percent }
+\newlabel{tab:combined-hb}{{9}{7}{AdvBench combined Holm--Bonferroni (2 models, 6 tests). Only R1-8B precision passes}{table.caption.13}{}}
+\@writefile{toc}{\contentsline {paragraph}{GRU sequence model.}{7}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{False positive rate analysis.}{7}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{7}{section.5}\protected@file@percent }
+\newlabel{sec:discussion}{{5}{7}{Discussion}{section.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{Layer selection bias is probe-task-modulated.}{7}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{HS advantage depends on supervision quality.}{7}{section*.23}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces AdvBench early detection (R1-8B, L12, $W{=}3$, $n{=}36$ test).}}{8}{table.caption.14}\protected@file@percent }
+\newlabel{tab:early-detection}{{10}{8}{AdvBench early detection (R1-8B, L12, $W{=}3$, $n{=}36$ test)}{table.caption.14}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces AdvBench classification ceiling under binary labels (R1-8B).}}{8}{table.caption.15}\protected@file@percent }
+\newlabel{tab:ceiling}{{11}{8}{AdvBench classification ceiling under binary labels (R1-8B)}{table.caption.15}{}}
+\@writefile{toc}{\contentsline {paragraph}{Statistical power and the median tier.}{8}{section*.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Implications for deployment.}{8}{section*.25}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{8}{section.6}\protected@file@percent }
+\newlabel{sec:conclusion}{{6}{8}{Conclusion}{section.6}{}}
+\bibstyle{plainnat}
+\bibdata{references}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces AdvBench Mahalanobis separation by PCA dimension (R1-8B, L12).}}{9}{table.caption.17}\protected@file@percent }
+\newlabel{tab:mahalanobis}{{12}{9}{AdvBench Mahalanobis separation by PCA dimension (R1-8B, L12)}{table.caption.17}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces AdvBench GRU vs.\ LR (R1-8B, L12).}}{9}{table.caption.19}\protected@file@percent }
+\newlabel{tab:gru}{{13}{9}{AdvBench GRU vs.\ LR (R1-8B, L12)}{table.caption.19}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces FPR comparison: original vs.\ AdvBench (R1-8B).}}{10}{table.caption.21}\protected@file@percent }
+\newlabel{tab:fpr}{{14}{10}{FPR comparison: original vs.\ AdvBench (R1-8B)}{table.caption.21}{}}
+\gdef \@abspage@last{10}

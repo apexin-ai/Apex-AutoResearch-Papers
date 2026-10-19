@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5d8e339b637bc792886c",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "diagnose 32b text window config",
+  "task_key": "worker_diagnose_32b_text_window_config_20260517T022011",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_32b_text_window_config_20260517T022011_result.json",
+    "occurrence": 1,
+    "bytes": 1071,
+    "sha256": "09741c082c6e2b3fbf8b2238b27f3ce1eb313a703af9868f6b2c8d2d8850999f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本和日志已经完全确认。关键信息如下：\n\n## 结果\n\n`run_bootstrap.py` 中 `MODEL_CONFIGS` 明确定义了每个模型的 window，且 **HS probe 和 Text probe 使用相同的 window**（脚本中 `build_temporal_features` 对 HS 和 Text 都传入同一个 `window` 参数）。\n\n| 模型 | HS probe W | Text probe W | 一致？ |\n|------|-----------|-------------|--------|\n| R1-8B | 15 | 15 | ✅ |\n| **R1-32B** | **10** | **10** | ✅ |\n| **QwQ-32B** | **5** | **5** | ✅ |\n\nrun.log 也确认了实际执行：\n- R1-32B: `Training HS temporal probe (layer_idx=10, W=10)` + `Training Text temporal probe (W=10)`\n- QwQ-32B: `Training HS temporal probe (layer_idx=2, W=5)` + `Training Text temporal probe (W=5)`\n\n**结论**：每个模型内部 HS 和 Text 使用了相同的 W，对比条件公平。但三个模型之间 W 不同（15/10/5），这是因为每个模型有不同的最优 window（根据之前的 hyperparameter search）。tab:hs_vs_text 中的对比是 within-model 的，所以这不构成问题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-32b-text-window-config.md"
+}

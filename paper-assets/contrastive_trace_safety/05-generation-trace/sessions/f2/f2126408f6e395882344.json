@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f2126408f6e395882344",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code r7 layer sweep heatmap",
+  "task_key": "worker_code_r7_layer_sweep_heatmap_20260518T055430",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r7_layer_sweep_heatmap_20260518T055430_result.json",
+    "occurrence": 1,
+    "bytes": 881,
+    "sha256": "33ead58806cd4e1cc44a564f71ca34ead9836e4f44e72aab1ba39bf7770fcd0f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure generated successfully. The visualization clearly shows the narrative: across all 4 models, biased shallow layers (red dashed) have lower precision and higher FPR, while corrected deep layers (green dashed) consistently achieve higher precision and lower FPR.\n\nKey metrics at marked layers:\n\n| Model | Biased Layer | Precision | FPR | Corrected Layer | Precision | FPR |\n|-------|-------------|-----------|-----|----------------|-----------|-----|\n| R1-8B | L2 | 0.60 | 0.14 | L14 | 0.69 | 0.10 |\n| OT-7B | L2 | 0.37 | 0.16 | L16 | 0.43 | 0.12 |\n| QwQ-32B | L2 | 0.54 | 0.19 | L60 | 0.66 | 0.10 |\n| R1-32B | L10 | 0.55 | 0.28 | L63 | 0.59 | 0.23 |\n\nOutput files:\n- PDF: `/root/autodl-tmp/contrastive_trace_safety/docs/paper/figures/fig_layer_heatmap.pdf`\n- PNG: `/root/autodl-tmp/contrastive_trace_safety/docs/paper/figures/fig_layer_heatmap.png`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r7-layer-sweep-heatmap.md"
+}

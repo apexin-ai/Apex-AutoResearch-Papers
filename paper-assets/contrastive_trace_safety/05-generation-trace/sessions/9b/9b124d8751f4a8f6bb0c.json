@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "9b124d8751f4a8f6bb0c",
+  "project": "contrastive_trace_safety",
+  "kind": "worker",
+  "title": "code r1 8b balanced recompute",
+  "task_key": "worker_code_r1_8b_balanced_recompute_20260516T222042",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r1_8b_balanced_recompute_20260516T222042.log",
+    "occurrence": 1,
+    "bytes": 586984,
+    "sha256": "0bd869613413eb48e2f133606646484d978aa6e4413bf57ba5b49da9b6bcce86"
+  },
+  "statistics": {
+    "messages": 291,
+    "user_turns": 0,
+    "tool_calls": 117,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 53,
+      "tool_call": 117,
+      "tool_result": 117,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 291,
+      "chunks": [
+        {
+          "path": "9b124d8751f4a8f6bb0c-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "9b124d8751f4a8f6bb0c-part-0002.json",
+          "message_count": 111
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-r1-8b-balanced-recompute.md"
+}

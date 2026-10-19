@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "29feb7f5d15e055b0f4e",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "analysis table3 r1 8b 60 20 20",
+  "task_key": "worker_analysis_table3_r1_8b_60_20_20_20260518T172824",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_table3_r1_8b_60_20_20_20260518T172824_result.json",
+    "occurrence": 1,
+    "bytes": 905,
+    "sha256": "c2ac884a211cba02f9e358e6d7c4874cd0e39bcb6e5dc0dca9698f590d8d72c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果如下（完整 JSON 已保存至服务器 `artifacts/table3_r1_8b_60_20_20/results.json`）：\n\n```\nR1-8B (W=3, L14, 60/20/20, PCA=100d, 10k bootstrap):\n  n_test = 1961 steps from 43 traces\n  HS Prec: 0.629 [0.495, 0.766]\n  Text Prec: 0.429 [0.301, 0.571]\n  ΔPrec: +0.201pp, p<0.0001\n\n  HS BA: 0.823 [0.776, 0.869]\n  Text BA: 0.648 [0.586, 0.709]\n  ΔBA: +0.175pp, p<0.0001\n\n  HS FPR: 0.158 [0.096, 0.225]\n  Text FPR: 0.237 [0.161, 0.322]\n  ΔFPR: -0.079pp, p=0.0140\n\n  HS AUROC: 0.903 [0.864, 0.941]\n  Text AUROC: 0.719 [0.640, 0.794]\n  ΔAUROC: +0.184pp, p<0.0001\n\n  HB (3 tests: Prec, BA, FPR): 3/3 pass\n```\n\n配置细节：\n- 209 traces → split 125/41/43, train+val=166 用于训练, test=43 traces (1961 steps)\n- PCA explained variance: 49.5%\n- HB adj p-values: Prec<0.0001, BA<0.0001, FPR=0.0140\n- 全部 4 个指标 HS 显著优于 text baseline"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-table3-r1-8b-60-20-20.md"
+}

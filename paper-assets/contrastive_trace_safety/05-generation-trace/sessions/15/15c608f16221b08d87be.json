@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "15c608f16221b08d87be",
+  "project": "contrastive_trace_safety",
+  "kind": "worker",
+  "title": "code bootstrap 10k resamples",
+  "task_key": "worker_code_bootstrap_10k_resamples_20260517T175254",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_bootstrap_10k_resamples_20260517T175254.log",
+    "occurrence": 1,
+    "bytes": 576426,
+    "sha256": "894a4d473916896646305222a8a38d9cec867a9d9498a1a1db1c265b4d3a15c8"
+  },
+  "statistics": {
+    "messages": 219,
+    "user_turns": 0,
+    "tool_calls": 79,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 57,
+      "tool_call": 79,
+      "tool_result": 79,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 219,
+      "chunks": [
+        {
+          "path": "15c608f16221b08d87be-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "15c608f16221b08d87be-part-0002.json",
+          "message_count": 39
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-bootstrap-10k-resamples.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e8a613d786684986adf9",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "paper figure fig1 overview",
+  "task_key": "worker_paper_figure_fig1_overview_20260516T234406",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig1_overview_20260516T234406_result.json",
+    "occurrence": 1,
+    "bytes": 658,
+    "sha256": "463e09c988b1ccc0dc5450c608a01a523961317b84f0761846921083b7c6923f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图已生成并注册。\n\n**输出文件**:\n- PDF: `artifacts/figures/paper/fig1_overview.pdf` (35 KB, 矢量)\n- PNG: `artifacts/figures/paper/fig1_overview.png` (183 KB, 300 DPI)\n\n**图表内容**:\n- 左侧: 6 步 Reasoning Trace，括号标注 \"Safe reasoning\" (Steps 1-3) 和 \"Committed\" (Steps 5-6)，虚线标注 CP (commitment point)\n- 中间: Feature Extraction 分叉为 Hidden State (d=4096) 和 Text Embedding (d=384) 双路径\n- 核心高亮: Temporal Windowing (W=15) 加粗蓝色边框 + 浅蓝背景，标注 \"+15-30pp coverage\" 和 \"modality-agnostic\"\n- 右侧: Probe → Committed / Safe 二分类检测输出"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig1-overview.md"
+}

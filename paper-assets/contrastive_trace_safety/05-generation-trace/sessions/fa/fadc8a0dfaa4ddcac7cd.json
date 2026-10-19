@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fadc8a0dfaa4ddcac7cd",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code repe direction probe v3",
+  "task_key": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_repe_direction_probe_v3_20260517T121511_result.json",
+    "occurrence": 1,
+    "bytes": 1109,
+    "sha256": "a519480e38f418887b6c4a3e0743c483c1ec73e698bbbdadc54ccdfc37c5152a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "运行完成。结果已保存到 `results_repe_direction.json`。\n\n**4 模型 RepE 方向探针结果：**\n\n| Model | bal_acc | precision | pre_cp_fpr | coverage | lead_mean |\n|-------|---------|-----------|------------|----------|-----------|\n| r1-8b | 0.7491 | 0.5160 | 0.2264 | 0.3953 | +9.7 |\n| r1-32b | 0.6707 | 0.5538 | 0.2423 | 0.4500 | +6.3 |\n| qwq-32b | 0.6661 | 0.4193 | 0.3997 | 0.7368 | +13.4 |\n| ot-7b | 0.7180 | 0.3733 | 0.2573 | 0.5319 | +26.1 |\n\n**与 LR Probe 对比（r1-8b）：**\n- bal_acc: RepE 0.749 vs LR 0.817 (-0.068)\n- precision: RepE 0.516 vs LR 0.693 (-0.177)\n- pre_cp_fpr: RepE 0.226 vs LR 0.097 (+0.130, worse)\n- coverage: RepE 0.395 vs LR 0.465 (-0.070)\n- lead_mean: RepE +9.7 vs LR -2.0 (RepE detects much earlier when it does detect)\n\nRepE 方向探针整体 accuracy/precision 低于 LR probe，但 lead_mean 显著更大（检测更早）。这符合预期：单方向投影是比 LR 更弱的线性分类器，但它提取的 \"safety direction\" 在 commitment 之前就已经有信号，所以 crossing 更早（代价是更高 FPR）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-repe-direction-probe-v3.md"
+}

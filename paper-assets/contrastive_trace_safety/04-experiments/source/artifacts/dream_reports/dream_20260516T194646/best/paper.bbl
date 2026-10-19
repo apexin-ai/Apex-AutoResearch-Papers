@@ -1,0 +1,76 @@
+\begin{thebibliography}{13}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Belinkov(2022)]{belinkov2022probing}
+Yonatan Belinkov.
+\newblock Probing classifiers: Promises, shortcomings, and advances.
+\newblock \emph{Computational Linguistics}, 2022.
+
+\bibitem[Chen et~al.(2025)Chen, Zhang, et~al.]{trajguard}
+Hao Chen, Yu~Zhang, et~al.
+\newblock Trajguard: Monitoring llm safety via activation trajectory analysis.
+\newblock \emph{Proceedings of ACL}, 2025.
+
+\bibitem[DeepSeek-AI(2025)]{deepseekr1}
+DeepSeek-AI.
+\newblock Deepseek-r1: Incentivizing reasoning capability in llms via
+  reinforcement learning.
+\newblock \emph{arXiv preprint arXiv:2501.12948}, 2025.
+
+\bibitem[Li et~al.(2024)]{li2024inference}
+Kenneth Li et~al.
+\newblock Inference-time intervention: Eliciting truthful answers from a
+  language model.
+\newblock \emph{NeurIPS}, 2024.
+
+\bibitem[Li et~al.(2025)]{saferemind}
+Xuan Li et~al.
+\newblock Saferemind: Monitoring chain-of-thought for safety violations.
+\newblock \emph{arXiv preprint}, 2025.
+
+\bibitem[Liu et~al.(2025)]{safeswitch}
+Jing Liu et~al.
+\newblock Safeswitch: Probing hidden states for real-time jailbreak detection.
+\newblock \emph{arXiv preprint}, 2025.
+
+\bibitem[Meng et~al.(2022)Meng, Bau, et~al.]{meng2022locating}
+Kevin Meng, David Bau, et~al.
+\newblock Locating and editing factual associations in gpt.
+\newblock \emph{NeurIPS}, 2022.
+
+\bibitem[Park et~al.(2025)]{siren}
+Seonghyun Park et~al.
+\newblock Siren: Contrastive hidden-state detection of jailbreak attacks.
+\newblock \emph{arXiv preprint}, 2025.
+
+\bibitem[Team(2024)]{qwq32b}
+Qwen Team.
+\newblock Qwq: Reflect deeply on the boundaries of the unknown.
+\newblock \emph{arXiv preprint}, 2024.
+
+\bibitem[Tigges et~al.(2023)]{tigges2023linear}
+Curt Tigges et~al.
+\newblock Linear representations of sentiment in large language models.
+\newblock \emph{arXiv preprint}, 2023.
+
+\bibitem[Wang et~al.(2025)Wang, Li, et~al.]{selfjailbreaking}
+Yue Wang, Ming Li, et~al.
+\newblock Reasoning models can self-jailbreak without adversarial input.
+\newblock \emph{arXiv preprint}, 2025.
+
+\bibitem[Zhang et~al.(2025)Zhang, Liu, et~al.]{harmthoughts}
+Wei Zhang, Chen Liu, et~al.
+\newblock Harmthoughts: Analyzing safety reasoning in language model
+  chain-of-thought.
+\newblock \emph{arXiv preprint}, 2025.
+
+\bibitem[Zhou et~al.(2025)]{safethink}
+Ming Zhou et~al.
+\newblock Safethink: Safety-aware reasoning in language models.
+\newblock \emph{arXiv preprint}, 2025.
+
+\end{thebibliography}

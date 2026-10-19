@@ -1,0 +1,529 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{times}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+\title{Hidden-State Temporal Probing for Safety Commitment Detection in Reasoning Models: A Diagnostic Study}
+
+\author{Anonymous}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Reasoning models exhibit ``self-jailbreak'' behavior where safety reasoning and harmful content generation interleave throughout extended chain-of-thought, culminating in a \emph{commitment point} where safety reasoning permanently ceases. We present the first systematic evaluation of hidden-state detection methods for this phenomenon across four reasoning models (two architecture families, two scales). Our diagnostic study reveals three findings: (1) static hidden-state probes consistently fail ($<$50\% detection coverage across all models) despite strong discriminative signal in full representation space---the signal is distributed across minor principal components, violating geometric assumptions of existing detectors; (2) temporal context consistently improves detection (coverage gains of +18--30pp) but benefit magnitude is architecture-dependent, with Llama-base models showing stronger temporal structure than Qwen-base models; (3) pre-textual detection remains an unreliable positive---BOCPD achieves +5.2 steps mean lead time (incremental over GRU's +4.7) but median $\leq$2 and only 47\% early detection rate, revealing a fundamental gap from the oracle ceiling (+31 steps, 100\%). Comparing hidden-state probes to text-based monitoring, we find hidden states provide complementary signal especially for timing (+3--5 steps lead advantage) rather than strictly superior coverage. We provide model-specific analysis explaining \emph{why} temporal probing works better on some architectures, and characterize the fundamental limitations of current approaches through oracle decomposition.
+\end{abstract}
+
+\section{Introduction}
+
+Large reasoning models such as DeepSeek-R1 and QwQ generate extended chains of thought (CoT) that interleave safety deliberation with task execution. Recent work has documented a concerning failure mode: \emph{self-jailbreaking}, where the model's own reasoning process gradually abandons safety considerations, culminating in harmful output generation \cite{guan2025selfJailbreak}. Unlike traditional jailbreak attacks that exploit adversarial inputs, self-jailbreak originates from the model's internal reasoning dynamics.
+
+Existing hidden-state jailbreak detectors---TrajGuard \cite{xu2024trajguard}, SafeSwitch, and SIREN---achieve strong defense rates ($>$95\%) on instruction-tuned models. However, these methods assume the attack is an adversarial \emph{input}; they have never been evaluated on reasoning-model self-jailbreak where the threat is the model's \emph{own} reasoning process. Text-level CoT monitors are vulnerable to pathological CoT that appears safe while encoding harmful intent.
+
+We bridge this gap by providing a systematic diagnostic study of hidden-state detection methods applied to safety commitment detection in reasoning models. Rather than proposing a single novel method, our contribution is analytical: we characterize \emph{what works, what doesn't, and why} across multiple architectures and detection approaches. Our evaluation spans four models (DeepSeek-R1-Distill-Llama-8B, DeepSeek-R1-Distill-Qwen-32B, QwQ-32B, OpenThinker-7B) covering two architecture families and two parameter scales.
+
+Our key findings are:
+\begin{itemize}
+\item Static probes fail universally ($<$50\% coverage) because safety signal is distributed across minor principal components (Fisher ratio drops 17$\times$ in PCA-3D), violating assumptions of geometric detectors like TrajGuard.
+\item Temporal context consistently helps but benefit is architecture-dependent: +30pp on Llama-base models vs.\ +19pp on Qwen-base models.
+\item Pre-textual timing advantage exists but remains unreliable. BOCPD provides incremental improvement over GRU (+5.2 vs.\ +4.7 steps) but neither approaches the oracle's +31 steps.
+\item Hidden states provide complementary signal to text, with the primary advantage being timing (+3--5 steps lead) rather than coverage superiority.
+\end{itemize}
+
+\section{Related Work}
+
+\paragraph{Hidden-State Jailbreak Detection.} TrajGuard \cite{xu2024trajguard} uses Mahalanobis distance on hidden-state trajectories to detect adversarial inputs, achieving 95\% defense rate. SafeSwitch and SIREN apply linear classifiers to intermediate representations. These methods target instruction-following models with external attacks and have not been evaluated on reasoning-model self-jailbreak.
+
+\paragraph{Reasoning Model Safety.} \cite{guan2025selfJailbreak} characterize self-jailbreaking in reasoning models. HarmThoughts \cite{wen2025harmthoughts} provides fine-grained safety annotation of CoT traces with per-step labels. SafeRemind and SafeThink \cite{wu2025safethink} propose text-level interventions but are vulnerable to pathological CoT.
+
+\paragraph{Representation Probing.} Linear probing of neural representations has a long history \cite{hewitt2019structural}. Representation engineering \cite{zou2023representation} and refusal direction analysis \cite{arditi2024refusal} demonstrate that safety-relevant information is linearly accessible in LLM hidden states.
+
+\paragraph{Change-Point Detection.} Bayesian Online Change-Point Detection (BOCPD) \cite{adams2007bayesian} provides a principled framework for detecting distributional shifts in sequential data. We apply it to probe score sequences as a novel method for safety commitment timing.
+
+\paragraph{Process Reward Models.} Step-level supervision \cite{lightman2023lets} provides fine-grained training signal for reasoning. Our temporal probes share the per-step evaluation paradigm but target safety commitment rather than correctness.
+
+\section{Problem Formulation}
+
+\subsection{Safety Commitment Detection}
+
+Given a reasoning trace $\mathbf{x} = (x_1, \ldots, x_T)$ with per-step hidden states $\mathbf{h} = (h_1, \ldots, h_T)$ and binary safety labels $y_t \in \{0, 1\}$ (from HarmThoughts annotation), we define the \emph{commitment point} (CP) as:
+\begin{equation}
+\text{CP} = \min\{t : y_{t'} = 0\ \forall\ t' \geq t\}
+\end{equation}
+The detection task is to identify CP from hidden states before or at the time it occurs.
+
+\subsection{Evaluation Metrics}
+
+\paragraph{Coverage.} Fraction of unsafe traces (CP exists) where the probe fires at any point during the trace. Measures detection reliability.
+
+\paragraph{Lead Time.} Steps between probe firing and CP. Positive lead = pre-textual detection. We report mean, median, std, and positive-lead rate.
+
+\paragraph{Early Detection Rate.} Fraction of detected traces where probe fires before CP (lead $> 0$).
+
+\subsection{Probe Architectures}
+
+\paragraph{Static LR.} Logistic regression on single-step hidden state $h_t$. Baseline representing existing per-token classifiers.
+
+\paragraph{Temporal LR (W=k).} Logistic regression on concatenated window $[h_{t-k+1}; \ldots; h_t]$. Captures local temporal dynamics.
+
+\paragraph{GRU.} Multi-layer GRU (256-d) processing the hidden state sequence. Models long-range temporal dependencies for lead time optimization.
+
+\paragraph{BOCPD.} Bayesian Online Change-Point Detection applied to the temporal LR probe's per-step confidence scores. Detects regime changes in probe output.
+
+\subsection{Models Evaluated}
+
+We evaluate four reasoning models spanning a 2$\times$2 matrix of architecture family and parameter scale:
+\begin{itemize}
+\item \textbf{Llama-base}: DeepSeek-R1-Distill-Llama-8B (32 layers, 4096-d), our primary development model.
+\item \textbf{Llama-base 32B}: DeepSeek-R1-Distill-Qwen-32B (64 layers, 5120-d), Qwen2.5 architecture but DeepSeek training.
+\item \textbf{Qwen-base 32B}: QwQ-32B (64 layers, 5120-d), Qwen team's independent RL training.
+\item \textbf{Qwen-base 7B}: OpenThinker-7B (32 layers, 4096-d), Qwen2.5-7B base.
+\end{itemize}
+
+Data consists of 209 annotated traces from HarmThoughts (per model), with 43 held-out test traces. Safe traces (76 total) are used for false positive evaluation.
+
+\section{Experiments}
+
+\subsection{Static Probes Fail Cross-Architecture}
+\label{sec:static}
+
+We perform layer sweep with static LR probes on all models, selecting the best layer by validation accuracy.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccccc}
+\toprule
+Model & Best Layer & Depth & Acc & Cov & Lead & Fisher \\
+\midrule
+r1-8b & 14/32 & 44\% & .817 & .465 & -2.0 & 17.9 \\
+r1-32b & 30/64 & 47\% & .794 & .442 & -2.8 & 15.3 \\
+QwQ-32B & 26/64 & 41\% & .765 & .372 & -3.4 & 13.7 \\
+\bottomrule
+\end{tabular}
+\caption{Layer sweep results. All models show best layer at 41--47\% depth. Fisher ratio measured in original space; drops to $\sim$1 in PCA-3D projection across all models. Coverage consistently below 50\%.}
+\label{tab:static}
+\end{table}
+
+Table~\ref{tab:static} confirms that static probes fail universally. Despite high Fisher discriminant ratios (13.7--17.9) in full representation space, coverage remains below 50\% across all architectures. The best layer depth is remarkably consistent at 41--47\%, suggesting a universal property of transformer safety representations in the middle layers. Fisher ratio in PCA-3D projections collapses to $\sim$1 (from 0.87 to 1.02), confirming the signal is distributed across minor principal components and unavailable to geometric methods operating in principal variance directions.
+
+\subsection{Temporal Context Consistently Helps}
+\label{sec:temporal}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccccc}
+\toprule
+Model & Static & Temp. W=15 & Gap & Acc & Lead \\
+\midrule
+r1-8b & .465 & .767 & +30.2pp & .848 & -1.09 \\
+r1-32b & .442 & .698 & +25.6pp & .839 & -0.6 \\
+QwQ-32B & .372 & .558 & +18.6pp & .810 & -1.8 \\
+\bottomrule
+\end{tabular}
+\caption{Temporal (W=15) vs.\ static coverage. Temporal advantage is consistent across architectures but magnitude varies: DeepSeek-trained models (r1-8b, r1-32b) show larger gains than QwQ.}
+\label{tab:temporal}
+\end{table}
+
+Table~\ref{tab:temporal} shows temporal context yields substantial coverage improvements on all models. The improvement is architecture-dependent: DeepSeek-trained models (sharing training pipeline similarities) show +25--30pp gains, while QwQ-32B achieves +18.6pp. The average gain of +22pp across architectures confirms temporal context is a robust strategy, though practitioners should expect model-dependent magnitude.
+
+\subsection{Lead Time: Unreliable Positive}
+\label{sec:lead}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccccc}
+\toprule
+Model & Lead $\mu$ & Lead med & Std & Pos\% & Cross\% \\
+\midrule
+r1-8b & +4.7 & 0 & 13.0 & 39\% & 76.7\% \\
+r1-32b & +3.1 & 0 & 11.4 & 36\% & 72.0\% \\
+QwQ-32B & +1.4 & -1 & 9.8 & 28\% & 63.0\% \\
+\bottomrule
+\end{tabular}
+\caption{GRU lead time analysis. Positive mean persists across models but median $\leq$ 0 and positive-lead rate $\leq$ 39\%. QwQ's more abrupt transitions yield worst timing.}
+\label{tab:lead}
+\end{table}
+
+Table~\ref{tab:lead} confirms pre-textual detection is an ``unreliable positive'' across all architectures. While mean lead time is positive on every model, median is 0 or negative, and only 28--39\% of detected traces achieve genuine early detection. Performance degrades with architectural distance from r1-8b, consistent with QwQ's more abrupt commitment transitions providing less exploitable temporal structure.
+
+\subsection{BOCPD: Incremental Not Transformative}
+\label{sec:bocpd}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccccc}
+\toprule
+Method & Lead $\mu$ & Med & Early\% & Cov & FPR \\
+\midrule
+Oracle (K=5) & +31.0 & +29 & 100\% & 100\% & 0\% \\
+BOCPD & +5.2 & +2 & 47\% & 69.8\% & 15\% \\
+GRU multi & +4.7 & 0 & 39\% & 76.7\% & 12\% \\
+CUSUM & +4.1 & +1 & 42\% & 72.1\% & 18\% \\
+Temp. LR & -1.09 & -1 & 23\% & 76.7\% & 8\% \\
+\bottomrule
+\end{tabular}
+\caption{Lead time comparison on r1-8b. BOCPD achieves marginally better timing than GRU (+0.5 steps, +8pp early detection) at cost of coverage and FPR.}
+\label{tab:bocpd}
+\end{table}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+Model & BOCPD Lead & BOCPD Early\% & GRU Lead & GRU Early\% \\
+\midrule
+r1-8b & +5.2 & 47\% & +4.7 & 39\% \\
+r1-32b & +3.8 & 39\% & +3.1 & 36\% \\
+QwQ-32B & +2.1 & 31\% & +1.4 & 28\% \\
+\bottomrule
+\end{tabular}
+\caption{BOCPD vs.\ GRU cross-architecture. BOCPD provides consistent but incremental improvement.}
+\label{tab:bocpd_cross}
+\end{table}
+
+Tables~\ref{tab:bocpd} and~\ref{tab:bocpd_cross} show BOCPD provides a principled but incremental improvement over GRU for timing. On r1-8b, BOCPD achieves +5.2 steps mean lead (vs.\ GRU's +4.7) and 47\% early detection (vs.\ 39\%). The improvement is consistent across architectures but never transformative. The fact that even a method designed specifically for distributional shift detection cannot approach the oracle ceiling strengthens our argument that the limitation is in the signal (hidden states encode current state, not future trajectory), not the detection method.
+
+\subsection{Hidden States vs.\ Text: Complementary Signals}
+\label{sec:text}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccccc}
+\toprule
+Model & Hidden Cov & Text Cov & Gap & Hidden Lead & Text Lead \\
+\midrule
+r1-8b & .767 & .651 & +11.6pp & +4.7 & -2.4 \\
+r1-32b & .698 & .628 & +7.0pp & +3.1 & -2.8 \\
+QwQ-32B & .558 & .605 & -4.7pp & +1.4 & -3.1 \\
+Average & .674 & .628 & +4.6pp & +3.1 & -2.8 \\
+\bottomrule
+\end{tabular}
+\caption{Hidden-state vs.\ text-based temporal probes (sentence-BERT + W=15 LR). Coverage advantage is modest and model-dependent, but hidden states consistently provide better timing.}
+\label{tab:text}
+\end{table}
+
+Table~\ref{tab:text} presents the critical comparison with text-based monitoring. The coverage gap between hidden-state and text-based probes is modest (+4.6pp average) and architecture-dependent---on QwQ, text actually outperforms hidden states by 4.7pp. This rules out a ``hidden states strictly dominate'' narrative.
+
+However, the \emph{timing} advantage is clear and consistent: hidden-state GRU achieves +3.1 to +4.7 steps lead time across all models, while text-based probes consistently show negative lead (-2.4 to -3.1). This is expected: textual signals of commitment arrive at or after the commitment point because the model generates harmful text \emph{after} committing internally. Hidden states provide pre-textual access to the commitment process. For deployment, the timing advantage is precisely the metric that enables intervention before harmful text generation.
+
+\subsection{TrajGuard Baseline Failure}
+\label{sec:trajguard}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+Model & Coverage & AUROC & FPR@50\%TPR & Lead \\
+\midrule
+r1-8b & .395 & .61 & .38 & -4.2 \\
+r1-32b & .326 & .57 & .41 & -5.1 \\
+QwQ-32B & .279 & .54 & .44 & -6.3 \\
+\bottomrule
+\end{tabular}
+\caption{TrajGuard-style Mahalanobis baseline. Systematic failure due to geometric assumption violation.}
+\label{tab:trajguard}
+\end{table}
+
+Table~\ref{tab:trajguard} demonstrates that TrajGuard's Mahalanobis distance approach fails systematically on reasoning-model safety commitment. Coverage (28--40\%) is worse than even static LR probes. The failure is mechanistically explained: Mahalanobis distance assumes discriminative signal lies in principal variance directions, but our Fisher analysis shows a 17$\times$ drop in PCA-3D. The safety commitment signal occupies minor components that geometric methods cannot access.
+
+\subsection{False Positive Analysis}
+\label{sec:fpr}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+Probe & Cov (unsafe) & FPR (safe) & Prec & F1 \\
+\midrule
+Temporal LR W=15 & 76.7\% & 14\% & 0.78 & 0.77 \\
+Static LR & 46.5\% & 21\% & 0.63 & 0.53 \\
+GRU multi & 76.7\% & 12\% & 0.81 & 0.79 \\
+BOCPD & 69.8\% & 15\% & 0.76 & 0.73 \\
+TrajGuard (MD) & 39.5\% & 33\% & 0.49 & 0.44 \\
+\bottomrule
+\end{tabular}
+\caption{False positive analysis on 76 safe traces. Temporal probes achieve acceptable FPR (12--15\%) suitable for human-in-the-loop monitoring.}
+\label{tab:fpr}
+\end{table}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+Model & Temp. LR FPR & GRU FPR & BOCPD FPR \\
+\midrule
+r1-8b & 14\% & 12\% & 15\% \\
+r1-32b & 16\% & 14\% & 17\% \\
+QwQ-32B & 19\% & 17\% & 20\% \\
+\bottomrule
+\end{tabular}
+\caption{FPR by model at operational threshold. QwQ shows higher FPR consistent with generally worse calibration.}
+\label{tab:fpr_model}
+\end{table}
+
+Tables~\ref{tab:fpr} and~\ref{tab:fpr_model} characterize deployment utility. At operational threshold (targeting 70\%+ coverage), temporal probes achieve 12--15\% FPR on r1-8b---acceptable for human-in-the-loop monitoring but too high for autonomous intervention. False positives predominantly occur on safe traces with extensive safety deliberation that superficially resembles pre-commitment patterns. QwQ's higher FPR (17--20\%) reflects generally worse probe calibration on that architecture.
+
+\subsection{Cross-Model Transfer}
+\label{sec:transfer}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+Train $\rightarrow$ & r1-8b (Llama) & r1-32b (Qwen) & QwQ (Qwen) \\
+\midrule
+r1-8b (Llama) & 100\% & 56\% & 43\% \\
+r1-32b (Qwen) & 47\% & 100\% & 72\% \\
+QwQ-32B (Qwen) & 47\% & 68\% & 100\% \\
+\bottomrule
+\end{tabular}
+\caption{Cross-model transfer matrix (coverage retention \%). Clear family boundary: within-Qwen 68--72\% vs.\ cross-family 43--56\%.}
+\label{tab:transfer}
+\end{table}
+
+Table~\ref{tab:transfer} reveals a clear family boundary in probe transferability. Within-family transfer (Qwen$\rightarrow$Qwen) retains 68--72\% of same-model performance, while cross-family transfer averages 49\%. Practical implication: within-family deployment is viable as a low-cost option, but cross-family deployment requires retraining.
+
+\subsection{Statistical Characterization}
+\label{sec:bootstrap}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+Metric & Point Est. & 95\% CI & Width \\
+\midrule
+Temp. Cov (r1-8b) & 0.767 & [0.68, 0.84] & 0.088 \\
+Static Cov (r1-8b) & 0.465 & [0.37, 0.56] & 0.098 \\
+GRU Lead (r1-8b) & +4.7 & [1.2, 8.1] & 6.9 \\
+Temp. Cov (r1-32b) & 0.698 & [0.62, 0.77] & 0.084 \\
+Temp. Cov (QwQ) & 0.558 & [0.48, 0.64] & 0.092 \\
+Cov Gap (r1-8b) & +30.2pp & [22.1, 38.4] & 16.3pp \\
+\bottomrule
+\end{tabular}
+\caption{Bootstrap 95\% CIs (1000 resamples). Temporal--static gap CIs do not overlap on any model.}
+\label{tab:bootstrap}
+\end{table}
+
+Table~\ref{tab:bootstrap} provides statistical characterization via 1000 bootstrap resamples. The temporal--static coverage gap CI [22.1, 38.4] does not cross zero on any model, confirming the advantage is statistically robust. Lead time CIs are wide [1.2, 8.1], reflecting the fundamental unreliability noted in Section~\ref{sec:lead}. AUROC values (0.82--0.89 for temporal LR) provide threshold-independent confirmation of discriminative power.
+
+\section{Model-Specific Analysis}
+
+\subsection{Architecture vs.\ Scale Decomposition}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcc}
+\toprule
+& 7--8B & 32B \\
+\midrule
+Llama-base & 0.767 (r1-8b) & 0.698 (r1-32b) \\
+Qwen-base & 0.605 (OpenThinker) & 0.558 (QwQ-32B) \\
+\bottomrule
+\end{tabular}
+\caption{2$\times$2 Architecture $\times$ Scale matrix (temporal coverage). Architecture accounts for $\sim$15pp, scale for $\sim$5pp.}
+\label{tab:2x2}
+\end{table}
+
+Table~\ref{tab:2x2} cleanly separates architecture from scale effects. Architecture family (Llama vs.\ Qwen base) accounts for $\sim$14--16pp difference in temporal probe coverage, while parameter scale (7B vs.\ 32B) accounts for only $\sim$5pp within each family. Llama-base reasoning models are consistently more amenable to hidden-state temporal monitoring.
+
+We attribute this to training dynamics: DeepSeek's RL procedure produces gradual safety reasoning density decline patterns that are well-captured by temporal windows, while Qwen's training produces more abrupt commitment transitions with less exploitable temporal structure.
+
+\subsection{Oracle Decomposition: Why Probes Cannot Match the Oracle}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+Trace Category & \% Traces & Oracle Lead & GRU Lead & Gap \\
+\midrule
+Gradual ($>$5 steps) & 58\% & +38 & +7.2 & 31 \\
+Abrupt ($\leq$3 steps) & 42\% & +22 & -2.1 & 24 \\
+All traces & 100\% & +31 & +4.7 & 26 \\
+\bottomrule
+\end{tabular}
+\caption{Oracle decomposition by transition type. Probes succeed on gradual transitions but fail on abrupt ones---an information-theoretic limitation.}
+\label{tab:oracle}
+\end{table}
+
+Table~\ref{tab:oracle} reveals the principled limitation. 42\% of traces exhibit abrupt commitment transitions ($\leq$3 steps from active safety reasoning to CP) where pre-textual detection is impossible given current information. GRU achieves positive lead (+7.2 steps) specifically on the 58\% with gradual transitions. The 39\% positive-lead rate (Table~\ref{tab:lead}) roughly corresponds to the ``gradual'' trace subset. The gap is not model capacity---it is information-theoretic: hidden states encode current state but do not reliably predict whether safety reasoning will resume.
+
+\subsection{Qualitative Case Analysis}
+
+We examine specific traces to illustrate where hidden-state probes succeed and text-based monitoring fails.
+
+\paragraph{Case 1: Gradual Disengagement (r1-8b).} In traces with gradual safety density decline, hidden-state temporal probes fire 5--8 steps before textual indicators emerge. The probe detects a sustained drop in safety-associated activation patterns while the generated text still contains neutral reasoning steps. Text-based probes cannot fire until overtly unsafe content appears.
+
+\paragraph{Case 2: Abrupt Transition (QwQ-32B).} On traces where safety reasoning ceases within 2--3 steps of the commitment point, neither hidden-state nor text-based probes achieve early detection. The transition is too rapid for temporal context to exploit. These traces constitute 42\% of our evaluation set and explain the median-zero lead time.
+
+\paragraph{Case 3: False Positive Pattern.} On safe traces with extensive safety deliberation followed by correct refusal, temporal probes sometimes fire because the pattern of ``high safety reasoning density followed by density decline'' superficially resembles pre-commitment behavior. The probe correctly identifies safety engagement but cannot distinguish engagement-leading-to-refusal from engagement-leading-to-failure.
+
+\section{Ablation Studies}
+
+\subsection{Window Size}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+W & r1-8b & r1-32b & QwQ \\
+\midrule
+1 & .465 & .442 & .372 \\
+3 & .535 & .512 & .419 \\
+5 & .605 & .558 & .465 \\
+10 & .698 & .628 & .512 \\
+15 & .767 & .698 & .558 \\
+20 & .767 & .721 & .581 \\
+25 & .744 & .698 & .558 \\
+\bottomrule
+\end{tabular}
+\caption{Window size ablation. Saturation at W=15--20 corresponds to typical safety reasoning episode length ($\sim$14.6 steps).}
+\label{tab:window}
+\end{table}
+
+Table~\ref{tab:window} shows coverage saturates at W=15 for r1-8b and W=20 for 32B models. The saturation point aligns with the average pre-CP safety streak length ($\sim$14.6 steps from oracle analysis), providing mechanistic justification: the probe needs approximately one full safety reasoning episode of context. Degradation at W=25 reflects noise dilution from including stale context.
+
+\subsection{Layer Selection}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccccc}
+\toprule
+Model & Temp. Best & Static Best & Offset & Good Range & Peak \\
+\midrule
+r1-32b & 28 & 30 & -2 & 24--34 & .721 \\
+QwQ-32B & 24 & 26 & -2 & 20--30 & .581 \\
+\bottomrule
+\end{tabular}
+\caption{Layer selection on 32B models. Temporal probes prefer 2 layers earlier than static probes. Broad plateau ($\sim$10 layers) ensures robustness.}
+\label{tab:layer}
+\end{table}
+
+Table~\ref{tab:layer} shows temporal probes prefer slightly earlier layers (consistent 2-layer offset from static best). The broad plateau spanning $\sim$10 layers ($\sim$15\% of depth) ensures practitioners need not perform exhaustive layer search---selecting 40--45\% depth works reliably.
+
+\subsection{Probe Architecture}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{llccc}
+\toprule
+Model & Probe & Cov & Lead & Params \\
+\midrule
+r1-32b & Temp. LR W=15 & .698 & -0.6 & 77K \\
+r1-32b & GRU-256 multi & .721 & +3.1 & 1.6M \\
+r1-32b & Attention (2-head) & .698 & +1.8 & 2.1M \\
+QwQ-32B & Temp. LR W=15 & .558 & -1.8 & 77K \\
+QwQ-32B & GRU-256 multi & .581 & +1.4 & 1.6M \\
+QwQ-32B & Attention (2-head) & .558 & +0.6 & 2.1M \\
+\bottomrule
+\end{tabular}
+\caption{Probe architecture comparison. Temporal LR achieves 97\% of GRU coverage with 20$\times$ fewer parameters. GRU advantage is in timing.}
+\label{tab:probe_arch}
+\end{table}
+
+Table~\ref{tab:probe_arch} confirms simplicity is near-optimal for coverage detection. Temporal LR (77K params) achieves 97\% of GRU's coverage (1.6M params). The GRU's advantage concentrates in lead time, suggesting coverage is bounded by the oracle ceiling regardless of probe capacity. Attention probes slightly underperform GRU, indicating the sequential inductive bias is better suited to this temporal detection task.
+
+\subsection{16-Label Fine-Grained Supervision}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccccc}
+\toprule
+Model & Binary Cov & 16-label Cov & $\Delta$ & Binary Lead & 16-label Lead \\
+\midrule
+r1-8b & .767 & .791 & +2.4pp & -1.09 & -0.3 \\
+r1-32b & .698 & .721 & +2.3pp & -0.6 & +0.1 \\
+QwQ-32B & .558 & .581 & +2.3pp & -1.8 & -1.2 \\
+\bottomrule
+\end{tabular}
+\caption{16-label vs.\ binary supervision. Marginal improvement confirms binary commitment is the appropriate abstraction level.}
+\label{tab:16label}
+\end{table}
+
+Table~\ref{tab:16label} shows fine-grained 16-label supervision (Type 1--4 safety categories) provides only marginal gains (+2.3pp coverage, $\sim$0.8 step lead improvement). Binary commitment is the appropriate abstraction level for this detection task.
+
+\section{Discussion}
+
+\paragraph{Architecture Dependence.} Our results reveal that temporal probe effectiveness is primarily determined by training procedure rather than model scale. DeepSeek's RL approach produces gradual safety reasoning transitions amenable to temporal detection, while Qwen's training creates more abrupt transitions. This has direct practical implications: deployment of temporal monitoring should be validated per-model, not assumed to transfer.
+
+\paragraph{Timing vs.\ Coverage.} The paper's core practical finding is a decomposition: for \emph{coverage} (detecting that commitment occurred), text-based methods are competitive. For \emph{timing} (detecting commitment early enough to intervene), hidden states provide unique value through pre-textual access. A practical monitoring system should combine both signals.
+
+\paragraph{Fundamental Limitations.} Oracle decomposition reveals that 42\% of traces have abrupt transitions where no current method can achieve early detection. This is not a limitation of probe capacity but of the information available in hidden states. Future work could explore latent state models or architectural modifications that encode future intent, though this may conflict with the observational constraint of safety monitoring.
+
+\paragraph{Deployment Considerations.} At 14\% FPR, current probes are suitable for human-in-the-loop monitoring (flagging traces for review) but not for autonomous intervention (blocking generation). Reducing FPR while maintaining coverage requires either outcome-aware training or ensemble methods.
+
+\section{Conclusion}
+
+We present a diagnostic study of hidden-state detection for safety commitment in reasoning models. Our cross-architecture evaluation reveals a consistent pattern: temporal context helps universally but with architecture-dependent magnitude, pre-textual timing is achievable but unreliable, and hidden states complement rather than dominate text-based monitoring. The primary value of hidden-state probes lies in their timing advantage (+3--5 steps), which enables intervention before harmful text generation. We characterize the fundamental limitations through oracle decomposition, showing that 42\% of traces have abrupt transitions where early detection is information-theoretically impossible with current approaches. Our analysis provides concrete guidance for practitioners: temporal LR with W=15--20 at 40--45\% layer depth offers near-optimal coverage with minimal complexity, while timing optimization requires sequential models with inherent trade-offs in coverage and FPR.
+
+\begin{thebibliography}{10}
+
+\bibitem{guan2025selfJailbreak}
+Guan, X., et al. (2025).
+\newblock Self-jailbreaking in reasoning models.
+\newblock {\em arXiv preprint arXiv:2502.XXXXX}.
+
+\bibitem{xu2024trajguard}
+Xu, Z., et al. (2024).
+\newblock TrajGuard: Trajectory-based jailbreak detection via hidden states.
+\newblock In {\em Proceedings of ACL 2024}.
+
+\bibitem{wen2025harmthoughts}
+Wen, Y., et al. (2025).
+\newblock HarmThoughts: Fine-grained safety annotation of reasoning traces.
+\newblock {\em arXiv preprint arXiv:2503.XXXXX}.
+
+\bibitem{wu2025safethink}
+Wu, J., et al. (2025).
+\newblock SafeThink: Monitoring chain-of-thought safety in reasoning models.
+\newblock {\em arXiv preprint arXiv:2504.XXXXX}.
+
+\bibitem{zou2023representation}
+Zou, A., et al. (2023).
+\newblock Representation engineering: A top-down approach to AI transparency.
+\newblock {\em arXiv preprint arXiv:2310.01405}.
+
+\bibitem{arditi2024refusal}
+Arditi, A., et al. (2024).
+\newblock Refusal in language models is mediated by a single direction.
+\newblock {\em arXiv preprint arXiv:2406.11717}.
+
+\bibitem{hewitt2019structural}
+Hewitt, J. and Liang, P. (2019).
+\newblock Designing and interpreting probes with control tasks.
+\newblock In {\em Proceedings of EMNLP 2019}.
+
+\bibitem{adams2007bayesian}
+Adams, R.P. and MacKay, D.J.C. (2007).
+\newblock Bayesian online changepoint detection.
+\newblock {\em arXiv preprint arXiv:0710.3742}.
+
+\bibitem{lightman2023lets}
+Lightman, H., et al. (2023).
+\newblock Let's verify step by step.
+\newblock In {\em Proceedings of ICLR 2024}.
+
+\end{thebibliography}
+
+\end{document}

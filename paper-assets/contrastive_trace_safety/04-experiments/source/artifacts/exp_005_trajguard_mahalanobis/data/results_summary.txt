@@ -1,0 +1,12 @@
+EXP-005 TrajGuard Mahalanobis Distance Baseline - NEGATIVE RESULT
+
+MD distributions nearly identical for safe/jailbreak-pre/jailbreak-post:
+  PCA-64: safe=6.66+/-0.79, jb_pre=6.73+/-0.74, jb_post=6.64+/-0.86
+
+Best K=5 (standard window): pca_64 p75 -> crossing_rate=30.2%, lead=+16.4
+Best K=3: pca_128 p75 -> crossing_rate=60.5%, lead=+20.4
+Delta approach: max 2.3% crossing rate
+
+High rates with K=1 (100%) are false - detection happens at trace start (lead=+30), not at commitment point.
+
+Full results JSON on server: /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_005_trajguard/results.json

@@ -1,0 +1,9 @@
+Remote files on bjb1-42106:
+- PNG: /root/autodl-tmp/structfuse/artifacts/neg_difficulty_margin_comparison.png (152.1 KB)
+- PDF: /root/autodl-tmp/structfuse/artifacts/neg_difficulty_margin_comparison.pdf (29.8 KB)
+
+Data source: neg_difficulty_stats_v3_2048.json (2048-token analysis)
+Layout: 1×2 subplot, left=Qwen (pos_sim=0.9855, saturated), right=StarCoder (pos_sim=0.80, healthy)
+Stacked bars: neg_sim (light) + margin (dark), pos_sim dashed line
+Strategies: Random, Embedding, Dataflow (Okabe-Ito colors)
+300 DPI, DejaVu Sans, color-blind friendly

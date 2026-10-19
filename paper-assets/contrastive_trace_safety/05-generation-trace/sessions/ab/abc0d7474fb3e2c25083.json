@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "abc0d7474fb3e2c25083",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "exp advbench phase4 layer sweep",
+  "task_key": "worker_exp_advbench_phase4_layer_sweep_20260520T063330",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_advbench_phase4_layer_sweep_20260520T063330_result.json",
+    "occurrence": 1,
+    "bytes": 769,
+    "sha256": "ed29ec010b2c17b4c05a5d5fd67bed3f4bfadf31a5f9cfd0b44a970605f93c82"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Job submitted.\n\n- **exp_id**: `advbench_phase4_layer_sweep`\n- **tmux session**: `advbench_phase4_layer_sweep`\n- **log**: `~/runs/contrastive_trace_safety/advbench_phase4_layer_sweep.log`\n- **GPU**: cuda:0\n\nKey changes from the pseudo-CP version:\n1. Reads LLM CP annotations (`llm_cp_annotations_qwen3.json`) instead of heuristic pseudo-CP\n2. Filters for `is_jailbreak=True` only → 52 traces\n3. Allows CP=0 (removed `cp < 1` filter) — 47/52 traces have CP=0\n4. `crossing_rate` denominator uses only traces with CP>0 (avoids division by traces where early crossing is undefined)\n5. Output → `artifacts/advbench_layer_sweep/`\n6. `--dry-run` CLI flag added\n\n25 layers × 4 windows × bootstrap 1000 on 52 traces — estimated ~1-2 hours."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-advbench-phase4-layer-sweep.md"
+}

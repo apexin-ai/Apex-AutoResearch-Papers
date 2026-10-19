@@ -1,0 +1,484 @@
+# StructFuse — Related Work Literature Map
+# 最后更新: 2026-05-14
+# 说明: 只收录已验证存在的论文。每篇均经 WebSearch 确认标题/venue/year。
+# 总计: 60 entries (含 2 个软件工具引用)
+
+categories:
+
+  # ==========================================================================
+  # Category 1: Code Retrieval for Bug Fixing / SWE-bench Ecosystem
+  # ==========================================================================
+  code_retrieval_bug_fixing:
+    description: "SWE-bench 及相关 repo-level 自动修复系统中的代码检索方法"
+    papers:
+
+      - title: "SWE-bench: Can Language Models Resolve Real-World GitHub Issues?"
+        authors: "Carlos E. Jimenez, John Yang, Alexander Wettig, Shunyu Yao, Kexin Pei, Ofir Press, Karthik Narasimhan"
+        venue: ICLR
+        year: 2024
+        relation: baseline
+        summary: "从 GitHub issues 构建 repo-level bug fixing benchmark，成为自动修复领域标准评估集。"
+
+      - title: "SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering"
+        authors: "John Yang, Carlos E. Jimenez, Alexander Wettig, Kilian Lieret, Shunyu Yao, Karthik Narasimhan, Ofir Press"
+        venue: NeurIPS
+        year: 2024
+        relation: competitor
+        summary: "基于 LLM agent 的交互式 bug fixing 系统，定义了 ACI 接口范式。"
+
+      - title: "AutoCodeRover: Autonomous Program Improvement"
+        authors: "Yuntong Zhang, Haifeng Ruan, Zhiyu Fan, Abhik Roychoudhury"
+        venue: ISSTA
+        year: 2024
+        relation: competitor
+        summary: "结合代码搜索与 spectrum-based fault localization，利用程序分析缩小修复范围。"
+
+      - title: "Agentless: Demystifying LLM-based Software Engineering Agents"
+        authors: "Chunqiu Steven Xia, Yinlin Deng, Soren Dunn, Lingming Zhang"
+        venue: arXiv
+        year: 2024
+        relation: competitor
+        summary: "无 agent 架构的 two-phase localize-then-repair 方法，在 SWE-bench 上取得强 baseline。"
+
+      - title: "SWE-smith: Scaling Data for Software Engineering Agents"
+        authors: "John Yang, Kilian Lieret, Carlos E. Jimenez, Alexander Wettig, Kabir Khandpur, Yanzhe Zhang, Binyuan Hui, Ofir Press, Ludwig Schmidt, Diyi Yang"
+        venue: "NeurIPS (Datasets & Benchmarks, Spotlight)"
+        year: 2025
+        relation: building-block
+        summary: "自动从 GitHub 生成大规模 SWE-bench 风格训练数据，StructFuse 用其 repos 做 data-flow 提取。"
+
+      - title: "RepoBench: Benchmarking Repository-Level Code Auto-Completion Systems"
+        authors: "Tianyang Liu, Canwen Xu, Julian McAuley"
+        venue: ICLR
+        year: 2024
+        relation: baseline
+        summary: "Repo-level 代码补全/检索 benchmark，含 RepoBench-R 检索子任务。"
+
+      - title: "SweRank: Software Issue Localization with Code Ranking"
+        authors: "Revanth Gangi Reddy, Tarun Suresh, JaeHyeok Doo, Ye Liu, Xuan Phi Nguyen, Yingbo Zhou, Semih Yavuz, Caiming Xiong, Heng Ji, Shafiq Joty"
+        venue: arXiv
+        year: 2025
+        relation: competitor
+        summary: "Retrieve-and-rerank 框架用于 software issue localization，在 SWE-Bench-Lite 和 LocBench 上 SOTA，text-based retrieval baseline。"
+
+      - title: "SWE-Fixer: Training Open-Source LLMs for Effective and Efficient GitHub Issue Resolution"
+        authors: "Chengxing Xie, Bowen Li, Chang Gao, He Du, Wai Lam, Difan Zou, Kai Chen"
+        venue: "ACL (Findings)"
+        year: 2025
+        relation: competitor
+        summary: "BM25 + LLM retriever 的 coarse-to-fine file retrieval pipeline，在 SWE-Bench Verified 上 30.2%。"
+
+  # ==========================================================================
+  # Category 2: Hard Negative Mining in Contrastive Learning
+  # ==========================================================================
+  hard_negative_mining:
+    description: "对比学习中 hard negative 挖掘策略，以及密集检索中的负样本选择"
+    papers:
+
+      - title: "Dense Passage Retrieval for Open-Domain Question Answering"
+        authors: "Vladimir Karpukhin, Barlas Oguz, Sewon Min, Patrick Lewis, Ledell Wu, Sergey Edunov, Danqi Chen, Wen-tau Yih"
+        venue: EMNLP
+        year: 2020
+        relation: background
+        summary: "DPR 开创了 in-batch negatives + BM25 hard negatives 的双塔检索范式。"
+
+      - title: "Approximate Nearest Neighbor Negative Contrastive Learning for Dense Text Retrieval"
+        authors: "Lee Xiong, Chenyan Xiong, Ye Li, Kwok-Fung Tang, Jialin Liu, Paul Bennett, Junaid Ahmed, Arnold Overwijk"
+        venue: ICLR
+        year: 2021
+        relation: background
+        summary: "ANCE 用 ANN index 动态挖掘 embedding-distance hard negatives，StructFuse 的 baseline negative 策略之一。"
+
+      - title: "A Simple Framework for Contrastive Learning of Visual Representations"
+        authors: "Ting Chen, Simon Kornblith, Mohammad Norouzi, Geoffrey Hinton"
+        venue: ICML
+        year: 2020
+        relation: background
+        summary: "SimCLR 视觉对比学习奠基工作，证明 hard negatives 和大 batch size 对对比学习的重要性。"
+
+      - title: "Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks"
+        authors: "Nils Reimers, Iryna Gurevych"
+        venue: EMNLP
+        year: 2019
+        relation: background
+        summary: "Siamese/triplet 网络训练句子嵌入，StructFuse 的对比训练框架与其类似。"
+
+      - title: "Curriculum Learning for Dense Retrieval Distillation"
+        authors: "Hansi Zeng, Hamed Zamani, Vishwa Vinay"
+        venue: "SIGIR (Best Short Paper)"
+        year: 2022
+        relation: background
+        summary: "CL-DRD: 课程学习式知识蒸馏用于密集检索，从粗粒度到细粒度逐步增加训练难度。"
+
+      - title: "Effective Hard Negative Mining for Contrastive Learning-Based Code Search"
+        authors: "Fan Y., Li C., Ge J., Huang L., Luo B."
+        venue: "ACM TOSEM"
+        year: 2025
+        relation: contrast-target
+        summary: "CoCoHaNeRe: 提出可微分 hard negative 机制用于代码搜索对比学习。其对 hard negative 机制的处理与 StructFuse 的发现形成关键对照——StructFuse 证明 true embedding-distance mining 即可持续提升性能。"
+        note: "关键引用：StructFuse Claim 1 的 correction target。CoCoHaNeRe 论点是非可微 embedding negatives 学习'slow and ineffective'，StructFuse 证明用 true embedding distance mining 仍然有效。"
+
+      - title: "Representation Learning with Contrastive Predictive Coding"
+        authors: "Aaron van den Oord, Yazhe Li, Oriol Vinyals"
+        venue: arXiv
+        year: 2018
+        relation: background
+        summary: "InfoNCE 损失函数：对比预测编码的无监督表示学习。StructFuse 训练目标的理论根基。"
+
+      - title: "Contrastive Learning with Hard Negative Samples"
+        authors: "Joshua David Robinson, Ching-Yao Chuang, Suvrit Sra, Stefanie Jegelka"
+        venue: ICLR
+        year: 2021
+        relation: method-component
+        summary: "HCL: 可控 hard negative 采样，证明更难的 negatives 加速和改善学习，但暗示过度 hard 会导致问题。StructFuse difficulty analysis 的理论起点。"
+
+      - title: "Debiased Contrastive Learning"
+        authors: "Ching-Yao Chuang, Joshua Robinson, Yen-Chen Lin, Antonio Torralba, Stefanie Jegelka"
+        venue: NeurIPS
+        year: 2020
+        relation: method-component
+        summary: "DCL: 去偏对比目标，修正 false negatives（同类样本被当作 negatives）问题。False negative 是 hard negative 过拟合的重要来源。"
+
+      - title: "Hard Negative Mixing for Contrastive Learning"
+        authors: "Yannis Kalantidis, Mert Bulent Sariyildiz, Noe Pion, Philippe Weinzaepfel, Diane Larlus"
+        venue: NeurIPS
+        year: 2020
+        relation: method-component
+        summary: "MoCHi: feature-level hard negative 混合合成，开销极小。与 StructFuse 的 structure-based negative mining 形成对比。"
+
+      - title: "Understanding Hard Negatives in Noise Contrastive Estimation"
+        authors: "Wenzheng Zhang, Karl Stratos"
+        venue: NAACL
+        year: 2021
+        relation: background
+        summary: "理论分析：用模型分布作为 negative 分布可减少梯度偏差。为 hard negative 作用提供理论解释。"
+
+      - title: "ProGCL: Rethinking Hard Negative Mining in Graph Contrastive Learning"
+        authors: "Jun Xia, Lirong Wu, Ge Wang, Jintao Chen, Stan Z. Li"
+        venue: ICML
+        year: 2022
+        relation: method-component
+        summary: "揭示图对比学习中 hard negative = false negative 的陷阱，提出基于概率的 hardness 区分 true/false negatives。与 StructFuse difficulty-overfitting 发现呼应。"
+
+      - title: "Difficulty-Based Sampling for Debiased Contrastive Representation Learning"
+        authors: "Taeuk Jang, Xiaoqian Wang"
+        venue: CVPR
+        year: 2023
+        relation: method-component
+        summary: "WCL: 用 difficulty 分层采样 + bias-amplifying encoder 找信息性 hard negatives 同时避免 false negatives。与 StructFuse difficulty stratification 思路最接近。"
+
+      - title: "CAPSTONE: Curriculum Sampling for Dense Retrieval with Document Expansion"
+        authors: "Xingwei He, Yeyun Gong, A-Long Jin, Hang Zhang, Anlei Dong, Jian Jiao, Siu Ming Yiu, Nan Duan"
+        venue: EMNLP
+        year: 2023
+        relation: background
+        summary: "课程采样策略 + pseudo-query 文档扩展，解决双塔检索训练-推理差异。StructFuse 的 structure-grounded negatives 提供正交的课程形式。"
+
+  # ==========================================================================
+  # Category 3: Contrastive Learning for Code
+  # ==========================================================================
+  contrastive_code_learning:
+    description: "代码领域的对比学习方法，训练时利用代码特性构建正负样本"
+    papers:
+
+      - title: "Contrastive Code Representation Learning"
+        authors: "Paras Jain, Ajay Jain, Tianjun Zhang, Pieter Abbeel, Joseph Gonzalez, Ion Stoica"
+        venue: EMNLP
+        year: 2021
+        relation: background
+        summary: "ContraCode: 自监督对比预训练，通过编译器变换生成功能等价的程序变体，学习代码功能而非表面形式。"
+
+      - title: "CodeRetriever: A Large Scale Contrastive Pre-Training Method for Code Search"
+        authors: "Xiaonan Li, Yeyun Gong, Yelong Shen, Xipeng Qiu, Hang Zhang, Bolun Yao, Weizhen Qi, Daxin Jiang, Weizhu Chen, Nan Duan"
+        venue: EMNLP
+        year: 2022
+        relation: background
+        summary: "结合 unimodal (code-code) 和 bimodal (code-text) 对比学习预训练代码表示，在 11 个代码搜索 benchmark 上 SOTA。"
+
+      - title: "Towards Learning (Dis)-Similarity of Source Code from Program Contrasts"
+        authors: "Yangruibo Ding, Luca Buratti, Saurabh Pujar, Alessandro Morari, Baishakhi Ray, Saikat Chakraborty"
+        venue: "ACL (Long Papers)"
+        year: 2022
+        relation: background
+        summary: "利用程序结构和功能属性构建对比样本对，学习代码相似性/差异性表示。"
+
+      - title: "CoCoSoDa: Effective Contrastive Learning for Code Search"
+        authors: "Ensheng Shi, Yanlin Wang, Wenchao Gu, Lun Du, Hongyu Zhang, Shi Han, Dongmei Zhang, Hongbin Sun"
+        venue: ICSE
+        year: 2023
+        relation: direct-competitor
+        summary: "对比代码搜索 + soft data augmentation + momentum-based negative enrichment。在 negative 数量维度与 StructFuse 互补（momentum queue vs. difficulty-aware selection）。"
+
+      - title: "SynCoBERT: Syntax-Guided Multi-Modal Contrastive Pre-Training for Code Representation"
+        authors: "Xin Wang, Yasheng Wang, Fei Mi, Pingyi Zhou, Yao Wan, Xiao Liu, Li Li, Hao Wu, Jin Liu, Xin Jiang"
+        venue: arXiv
+        year: 2021
+        relation: background
+        summary: "语法引导的多模态对比预训练，对齐 code/NL/AST 三模态。通过 identifier prediction 和 AST edge prediction 显式编码句法结构。"
+
+      - title: "ContraBERT: Enhancing Code Pre-trained Models via Contrastive Learning"
+        authors: "Shangqing Liu, Bozhi Wu, Xiaofei Xie, Guozhu Meng, Yang Liu"
+        venue: ICSE
+        year: 2023
+        relation: background
+        summary: "鲁棒性导向的对比预训练，设计 9 种对抗增强算子（identifier renaming, dead code insertion, operand swapping 等），提升模型对对抗攻击的鲁棒性。"
+
+  # ==========================================================================
+  # Category 4: Program Analysis for ML
+  # ==========================================================================
+  program_analysis_for_ml:
+    description: "静态分析辅助 ML，结构信息在代码表示学习中的应用"
+    papers:
+
+      - title: "CodeQL: Semantic Code Analysis Engine"
+        authors: "GitHub / Semmle"
+        venue: "Tool (open-source)"
+        year: 2019
+        relation: building-block
+        summary: "基于 Datalog 的代码查询引擎，支持 inter-procedural data-flow 分析。StructFuse 用它提取 scope-bounded data-flow graph。"
+
+      - title: "code2vec: Learning Distributed Representations of Code"
+        authors: "Uri Alon, Meital Zilberstein, Omer Levy, Eran Yahav"
+        venue: POPL
+        year: 2019
+        relation: background
+        summary: "用 AST path 学习代码向量表示，首次大规模证明结构信息对代码表示学习的价值。"
+
+      - title: "code2seq: Generating Sequences from Structured Representations of Code"
+        authors: "Uri Alon, Shaked Brody, Omer Levy, Eran Yahav"
+        venue: ICLR
+        year: 2019
+        relation: background
+        summary: "code2vec 的序列生成扩展，用 AST path attention 生成方法名摘要。"
+
+      - title: "Detecting Code Clones with Graph Neural Network and Flow-Augmented Abstract Syntax Tree"
+        authors: "Wenhan Wang, Ge Li, Bo Ma, Xin Xia, Zhi Jin"
+        venue: SANER
+        year: 2020
+        relation: background
+        summary: "FA-AST: 用 data-flow 增强 AST 进行代码克隆检测，与 StructFuse 用 data-flow 做 hard negative 挖掘思路相关。"
+
+      - title: "GraphCodeBERT: Pre-training Code Representations with Data Flow"
+        authors: "Daya Guo, Shuo Ren, Shuai Lu, Zhangyin Feng, Duyu Tang, Shujie Liu, Long Zhou, Nan Duan, Alexey Svyatkovskiy, Shengyu Fu, Michele Tufano, Shao Kun Deng, Colin Clement, Dawn Drain, Neel Sundaresan, Jian Yin, Daxin Jiang, Ming Zhou"
+        venue: ICLR
+        year: 2021
+        relation: background
+        summary: "在预训练中引入 data-flow edge，证明 data-flow 信息提升代码理解任务。StructFuse 的 insight 与此相关但用途不同（hard negative mining vs pre-training）。"
+
+      - title: "ARISE: A Repository-level Graph Representation and Toolset for Agentic Fault Localization and Program Repair"
+        authors: "Shahd Seddik, Fatemeh Fard"
+        venue: arXiv
+        year: 2026
+        relation: contrast
+        summary: "用 multi-granularity program graph（含 intra-procedural def-use edges）辅助 LLM agent 做 fault localization。仅 intra-procedural + runtime tool calls，与 StructFuse 的 inter-procedural static mining 互补。"
+
+      - title: "ProGraML: A Graph-based Program Representation for Data Flow Analysis and Compiler Optimization"
+        authors: "Chris Cummins, Zacharias V. Fisches, Tal Ben-Nun, Torsten Hoefler, Michael FP O'Boyle, Hugh Leather"
+        venue: ICML
+        year: 2021
+        relation: background
+        summary: "语言无关的全程序图表示（control-flow + data-flow + call relations），证明整程序结构表示可学习且有效。StructFuse 使用 inter-procedural data-flow 的概念根基。"
+
+      - title: "CrossCodeEval: A Diverse and Multilingual Benchmark for Cross-File Code Completion"
+        authors: "Yangruibo Ding, Zijian Wang, Wasi Uddin Ahmad, Hantian Ding, Ming Tan, Nihal Jain, Murali Krishna Ramanathan, Ramesh Nallapati, Parminder Bhatia, Dan Roth, Bing Xiang"
+        venue: NeurIPS
+        year: 2023
+        relation: background
+        summary: "多语言 cross-file 代码补全 benchmark，用静态分析确定需 cross-file 依赖的补全目标。验证了跨文件上下文对代码任务的关键性。"
+
+  # ==========================================================================
+  # Category 5: Code Embeddings / Code Search
+  # ==========================================================================
+  code_embeddings_search:
+    description: "代码嵌入模型和代码搜索方法"
+    papers:
+
+      - title: "CodeSearchNet Challenge: Evaluating the State of Semantic Code Search"
+        authors: "Hamel Husain, Ho-Hsiang Wu, Tiferet Gazit, Miltiadis Allamanis, Marc Brockschmidt"
+        venue: arXiv
+        year: 2019
+        relation: background
+        summary: "代码语义搜索 benchmark 和数据集，推动了代码嵌入模型的发展。"
+
+      - title: "CodeBERT: A Pre-Trained Model for Programming and Natural Languages"
+        authors: "Zhangyin Feng, Daya Guo, Duyu Tang, Nan Duan, Xiaocheng Feng, Ming Gong, Lixin Zou, Bing Qin, Ting Liu, Daxin Jiang, Ming Zhou"
+        venue: "EMNLP (Findings)"
+        year: 2020
+        relation: background
+        summary: "首个编程语言-自然语言双模态预训练模型，代码嵌入的早期里程碑。"
+
+      - title: "UniXcoder: Unified Cross-Modal Pre-training for Code Representation"
+        authors: "Daya Guo, Shuai Lu, Nan Duan, Yanlin Wang, Ming Zhou, Jian Yin"
+        venue: ACL
+        year: 2022
+        relation: background
+        summary: "统一跨模态代码预训练，在代码搜索等任务上取得 SOTA。"
+
+      - title: "StarCoder: May the Source Be with You!"
+        authors: "Raymond Li, Loubna Ben Allal, et al. (BigCode)"
+        venue: TMLR
+        year: 2023
+        relation: building-block
+        summary: "大规模开源代码 LLM，StructFuse 用 StarCoder2-3B 作为对比学习检索器的 backbone 之一。"
+
+      - title: "Code Llama: Open Foundation Models for Code"
+        authors: "Baptiste Roziere, Jonas Gehring, Fabian Gloeckle, et al. (Meta AI)"
+        venue: arXiv
+        year: 2023
+        relation: background
+        summary: "Meta 的代码大模型系列，基于 Llama 2 微调。"
+
+      - title: "Qwen2.5-Coder Technical Report"
+        authors: "Binyuan Hui, Jian Yang, Zeyu Cui, et al. (Qwen Team, Alibaba)"
+        venue: arXiv
+        year: 2024
+        relation: building-block
+        summary: "Qwen 代码模型系列，StructFuse 用 Qwen2.5-Coder-3B 作为对比学习检索器的 backbone。"
+
+      - title: "DeepSeek-Coder: When the Large Language Model Meets Programming -- The Rise of Code Intelligence"
+        authors: "Daya Guo, Qihao Zhu, Dejian Yang, Zhenda Xie, Kai Dong, Wentao Zhang, Guanting Chen, Xiao Bi, Yu Wu, Y.K. Li, Fuli Luo, Yingfei Xiong, Wenfeng Liang"
+        venue: arXiv
+        year: 2024
+        relation: background
+        summary: "开源代码 LLM 系列 (1.3B-33B)，project-level 代码训练 + 16K context + fill-in-the-blank 预训练。"
+
+      - title: "RepoFusion: Training Code Models to Understand Your Repository"
+        authors: "Disha Shrivastava, Denis Kocetkov, Harm de Vries, Dzmitry Bahdanau, Torsten Scholak"
+        venue: arXiv
+        year: 2023
+        relation: background
+        summary: "训练代码模型融合多个 cross-file repo context 进行代码补全，小模型 + repo context 可匹配大模型性能。"
+
+      - title: "BM25"
+        authors: "Stephen Robertson, Hugo Zaragoza"
+        venue: "Foundations and Trends in Information Retrieval"
+        year: 2009
+        relation: baseline
+        summary: "经典稀疏检索方法，StructFuse 的 baseline 之一。"
+
+      - title: "CoSQA: 20,000+ Web Queries for Code Search and Question Answering"
+        authors: "Junjie Huang, Duyu Tang, Linjun Shou, Ming Gong, Ke Xu, Daxin Jiang, Ming Zhou, Nan Duan"
+        venue: ACL
+        year: 2021
+        relation: background
+        summary: "20,000+ 真实 web 查询与 Python 代码配对的大规模数据集，弥合合成 benchmark 与真实开发者需求的差距。"
+
+  # ==========================================================================
+  # Category 6: Graph-Guided Code Navigation (Inference-Time)
+  # ==========================================================================
+  graph_guided_inference:
+    description: "推理时利用代码结构图辅助导航/检索的方法（与 StructFuse 的训练时结构信号互补）"
+    papers:
+
+      - title: "LocAgent: Graph-Guided LLM Agents for Code Localization"
+        authors: "Zhaoling Chen, Robert Tang, Gangda Deng, Fang Wu, Jialong Wu, Zhiwei Jiang, Viktor Prasanna, Arman Cohan, Xingyao Wang"
+        venue: ACL
+        year: 2025
+        relation: contrast
+        summary: "将代码库解析为有向异构图，LLM agent 通过 multi-hop 推理在图上导航做代码定位。推理时用结构图，StructFuse 训练时用。"
+
+      - title: "CodexGraph: Bridging Large Language Models and Code Repositories via Code Graph Databases"
+        authors: "Xiangyan Liu, Bo Lan, Zhiyuan Hu, Yang Liu, Zhicheng Zhang, Fei Wang, Michael Qizhe Shieh, Wenmeng Zhou"
+        venue: NAACL
+        year: 2025
+        relation: contrast
+        summary: "将代码库索引到图数据库，LLM agent 通过 graph query 接口检索结构化上下文。"
+
+      - title: "RANGER: Repository-Level Agent for Graph-Enhanced Retrieval"
+        authors: "Pratik Shah, Rajat Ghosh, Aryan Singhal, Debojyoti Dutta"
+        venue: arXiv
+        year: 2025
+        relation: contrast
+        summary: "构建 repo 知识图（含 variable-level 节点），dual-stage retrieval: Cypher lookup + MCTS-guided graph exploration。"
+
+      - title: "RepoGraph: Enhancing AI Software Engineering with Repository-level Code Graph"
+        authors: "Siru Ouyang, Wenhao Yu, Kaixin Ma, Zilin Xiao, Zhihan Zhang, Mengzhao Jia, Jiawei Han, Hongming Zhang, Dong Yu"
+        venue: ICLR
+        year: 2025
+        relation: contrast
+        summary: "以代码行为节点构建 repo-level 代码图，作为 SE agent 的 plug-in 导航模块。推理时逐行图导航，与 StructFuse 训练时批量提取结构信号互补。"
+
+      - title: "GraphCoder: Enhancing Repository-Level Code Completion via Coarse-to-fine Retrieval Based on Code Context Graph"
+        authors: "Wei Liu, Ailun Yu, Daoguang Zan, Bo Shen, Wei Zhang, Haiyan Zhao, Zhi Jin, Qianxiang Wang"
+        venue: ASE
+        year: 2024
+        relation: contrast
+        summary: "构建 code context graph（含 control-flow 和 data-dependence edges）进行 coarse-to-fine 检索辅助代码补全。使用 intra-procedural data-flow，与 StructFuse 的 inter-procedural scope 形成对比。"
+
+      - title: "GRACE: Graph-Guided Repository-Aware Code Completion through Hierarchical Code Fusion"
+        authors: "Xingliang Wang, Baoyi Wang, Chen Zhi, Junxiao Han, Xinkui Zhao, Jianwei Yin, Shuiguang Deng"
+        venue: arXiv
+        year: 2025
+        relation: contrast
+        summary: "构建 repo/module/function 三层多语义代码图（AST + CFG + DFG + call graph + class hierarchy），用 GNN-based hybrid retriever 做层次化检索增强代码补全。推理时图方法，与 StructFuse 训练时结构信号互补。"
+
+  # ==========================================================================
+  # Category 7: Representation Geometry / Similarity Saturation
+  # ==========================================================================
+  representation_geometry:
+    description: "预训练模型表示空间几何分析及各向异性修正方法"
+    papers:
+
+      - title: "Understanding Contrastive Representation Learning through Alignment and Uniformity on the Hypersphere"
+        authors: "Tongzhou Wang, Phillip Isola"
+        venue: ICML
+        year: 2020
+        relation: method-component
+        summary: "定义 alignment/uniformity 两个对比学习关键属性，证明对比损失渐近优化两者。StructFuse 分析 embedding space 质量的理论工具。"
+
+      - title: "Representation Degeneration Problem in Training Natural Language Generation Models"
+        authors: "Jun Gao, Di He, Xu Tan, Tao Qin, Liwei Wang, Tie-Yan Liu"
+        venue: ICLR
+        year: 2019
+        relation: background
+        summary: "揭示预训练 LM embedding 退化为窄锥的现象，StructFuse 观察到的 similarity saturation 可追溯到此。"
+
+      - title: "How Contextual are Contextualized Word Representations? Comparing the Geometry of BERT, ELMo, and GPT-2 Embeddings"
+        authors: "Kawin Ethayarajh"
+        venue: EMNLP
+        year: 2019
+        relation: background
+        summary: "实证发现 BERT/ELMo/GPT-2 表示占据窄锥（各向异性），StructFuse 使用的 code encoder 继承此问题。"
+
+      - title: "On the Sentence Embeddings from Pre-trained Language Models"
+        authors: "Bohan Li, Hao Zhou, Junxian He, Mingxuan Wang, Yiming Yang, Lei Li"
+        venue: EMNLP
+        year: 2020
+        relation: method-component
+        summary: "BERT-flow: 用 normalizing flows 将各向异性句子嵌入变换为各向同性高斯分布。"
+
+      - title: "SimCSE: Simple Contrastive Learning of Sentence Embeddings"
+        authors: "Tianyu Gao, Xingcheng Yao, Danqi Chen"
+        venue: EMNLP
+        year: 2021
+        relation: method-component
+        summary: "用 dropout 作为最小增强的对比学习，直接证明 contrastive learning 改善 anisotropy。StructFuse 可引用其 uniformity 分析框架。"
+
+      - title: "Whitening Sentence Representations for Better Semantics and Faster Retrieval"
+        authors: "Jianlin Su, Jiarun Cao, Weijie Liu, Yangyiwen Ou"
+        venue: arXiv
+        year: 2021
+        relation: method-component
+        summary: "白化操作增强句子表示各向同性并降维，与 StructFuse embedding post-processing 讨论相关。"
+
+  # ==========================================================================
+  # Category 8: Infrastructure / Tools
+  # ==========================================================================
+  infrastructure:
+    description: "StructFuse 依赖的核心基础设施和工具"
+    papers:
+
+      - title: "Billion-Scale Similarity Search with GPUs"
+        authors: "Jeff Johnson, Matthijs Douze, Herve Jegou"
+        venue: "IEEE Transactions on Big Data"
+        year: 2021
+        relation: building-block
+        summary: "FAISS: GPU 加速的大规模向量相似度搜索库，StructFuse 用于 ANN-based hard negative mining。"
+
+      - title: "Tree-sitter: An Incremental Parsing System for Programming Tools"
+        authors: "Max Brunsfeld et al."
+        venue: "Software (Zenodo DOI: 10.5281/zenodo.13375512)"
+        year: 2018
+        relation: building-block
+        summary: "增量解析库，高效构建和更新 concrete syntax trees。与 CodeQL 互补用于代码结构提取。"
+        note: "软件工具，无正式论文。引用 Zenodo DOI 或 GitHub repo。"

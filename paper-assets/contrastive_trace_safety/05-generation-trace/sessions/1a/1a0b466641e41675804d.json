@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1a0b466641e41675804d",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "research path b data utilization",
+  "task_key": "worker_research_path_b_data_utilization_20260517T060123",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_path_b_data_utilization_20260517T060123_result.json",
+    "occurrence": 1,
+    "bytes": 514,
+    "sha256": "45328276fcbf21fe1c874e418295efa8487dfa85e275dd8b1d2737651959c649"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入。核心结论：\n\n**所有符合条件的 traces 已 100% 提取完毕。** 8,525/7,007 是 sentence 数不是 trace 数。实际只有 R1-32B=100 条、QwQ=95 条符合 jailbreak+CP 条件的 traces，已全部提取。\n\n瓶颈是数据集规模，不是提取率。扩展 test set 到 n≥40 的最快路径是：调整 train/test split 比例（从 60/20/20 改为 50/10/40），或合并 R1-32B 和 QwQ-32B 数据（两者同为 Qwen2-32B 架构，64 layers，5120 dim）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-path-b-data-utilization.md"
+}

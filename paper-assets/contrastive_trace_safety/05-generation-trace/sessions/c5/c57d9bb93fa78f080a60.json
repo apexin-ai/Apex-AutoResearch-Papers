@@ -1,0 +1,87 @@
+{
+  "schema_version": "1.0",
+  "id": "c57d9bb93fa78f080a60",
+  "project": "contrastive_trace_safety",
+  "kind": "worker",
+  "title": "analysis sf3 quadratic position residual",
+  "task_key": "worker_analysis_sf3_quadratic_position_residual_20260519T143405",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_sf3_quadratic_position_residual_20260519T143405.log",
+    "occurrence": 1,
+    "bytes": 941066,
+    "sha256": "37c92e3259daca4a47f3d0029d321ba69954fa4e6b84e52ec60e8df776d64f23"
+  },
+  "statistics": {
+    "messages": 474,
+    "user_turns": 3,
+    "tool_calls": 159,
+    "roles": {
+      "log": 1,
+      "system": 104,
+      "record": 1,
+      "assistant": 46,
+      "tool_call": 159,
+      "user": 3,
+      "tool_result": 159,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "c57d9bb93fa78f080a60-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 113,
+      "chunks": [
+        {
+          "path": "c57d9bb93fa78f080a60-part-0001.json",
+          "message_count": 113
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 145,
+      "chunks": [
+        {
+          "path": "c57d9bb93fa78f080a60-part-0001.json",
+          "message_count": 60
+        },
+        {
+          "path": "c57d9bb93fa78f080a60-part-0002.json",
+          "message_count": 85
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 209,
+      "chunks": [
+        {
+          "path": "c57d9bb93fa78f080a60-part-0002.json",
+          "message_count": 95
+        },
+        {
+          "path": "c57d9bb93fa78f080a60-part-0003.json",
+          "message_count": 114
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-sf3-quadratic-position-residual-copy-2.md"
+}

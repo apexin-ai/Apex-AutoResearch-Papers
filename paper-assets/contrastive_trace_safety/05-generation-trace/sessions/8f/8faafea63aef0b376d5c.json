@@ -1,0 +1,1872 @@
+{
+  "schema_version": "1.0",
+  "id": "8faafea63aef0b376d5c",
+  "project": "contrastive_trace_safety",
+  "kind": "conversation",
+  "title": "code ccs unsupervised probe",
+  "task_key": "worker_code_ccs_unsupervised_probe_20260517T141539",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_ccs_unsupervised_probe_20260517T141539.jsonl",
+    "occurrence": 1,
+    "bytes": 131609,
+    "sha256": "8b68fe9513cad5d1db754d552316238c2922e1411788ab1716c19f1a34342760"
+  },
+  "statistics": {
+    "messages": 95,
+    "user_turns": 0,
+    "tool_calls": 47,
+    "roles": {
+      "tool_call": 47,
+      "tool_result": 47,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-17T14:24:44.510637+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Agent",
+            "tool_args": {
+              "description": "Explore data and code structure",
+              "subagent_type": "Explore",
+              "prompt": "I need to understand the project structure for implementing a CCS probe. Please explore:\n\n1. `/root/autodl-tmp/contrastive_trace_safety/data/harmthoughts/` - directory structure (via ssh since it's on a remote server). Actually, I can't SSH. Let me look at local files instead.\n\n2. Look at the local project at `/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/`:\n   - Directory structure overview\n   - Any existing experiment files in `src/experiments/` \n   - How hidden states are loaded (look for patterns like \"hidden_states\", \"load\", \"Layer 14\", \"pre_cp\", \"post_cp\")\n   - How RepE experiment was implemented (find exp_r2 or repE related files)\n   - Any data loading utilities\n\nBe thorough - I need to understand the data format, how pairs are constructed, and how evaluation metrics are computed."
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-17T14:24:44.511044+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety -type f -name \"*.py\" | head -20"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-17T14:24:44.511239+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.venv/lib/python3.14/site-packages/aiohappyeyeballs/utils.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.venv/lib/python3.14/site-packages/aiohappyeyeballs/impl.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.venv/lib/python3.14/site-packages/aiohappyeyeballs/_staggered.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.venv/lib/python3.14/site-packages/aiohappyeyeballs/__init__.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.venv/lib/python3.14/site-packages/aiohappyeyeballs/types.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.venv/lib/python3.14/site-packages/_multiprocess/__init__.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.venv/lib/python3.14/site-packages/annotated_doc/main.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.venv/lib/python3.14/site-packages/annotated_doc/__init__.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.venv/lib/python3.14/site-packages/urllib3/poolmanager.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.venv/lib/python3.14/site-packages/urllib3/response.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.venv/lib/python3.14/site-packages/urllib3/util/response.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.venv/lib/python3.14/site-packages/urllib3/util/ssl_.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.venv/lib/python3.14/site-packages/urllib3/util/url.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.venv/lib/python3.14/site-packages/urllib3/util/retry.py\n/home/ubuntu/.agent-\n…[truncated 839 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-17T14:24:44.511406+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/ | head -30"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-17T14:24:44.511542+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 240\ndrwxr-xr-x 10 ubuntu ubuntu  4096 May 17 13:41 .\ndrwxrwxr-x  5 ubuntu ubuntu  4096 May 16 17:49 ..\ndrwxr-xr-x  3 ubuntu ubuntu  4096 May 16 17:49 .claude\ndrwxr-xr-x  5 ubuntu ubuntu  4096 May 16 17:53 .venv\n-rw-r--r--  1 ubuntu ubuntu 16424 May 17 14:14 AGENTS.md\n-rw-r--r--  1 ubuntu ubuntu     0 May 16 17:51 ROADMAP.lock\n-rw-------  1 ubuntu ubuntu  3073 May 17 13:41 ROADMAP.md\ndrwxr-xr-x 30 ubuntu ubuntu  4096 May 17 13:35 artifacts\ndrwxr-xr-x  2 ubuntu ubuntu 16384 May 17 13:32 checkpoints\n-rw-r--r--  1 ubuntu ubuntu     0 May 16 17:52 decisions.lock\n-rw-------  1 ubuntu ubuntu 22900 May 17 13:41 decisions.yaml\ndrwxr-xr-x  4 ubuntu ubuntu  4096 May 16 21:08 docs\n-rwxr-xr-x  1 ubuntu ubuntu     0 May 16 19:46 dream_registry.lock\n-rw-------  1 ubuntu ubuntu  4688 May 16 22:12 dream_registry.yaml\n-rw-r--r--  1 ubuntu ubuntu  4693 May 16 22:12 dream_registry.yaml.bak\n-rw-r--r--  1 ubuntu ubuntu  6551 May 16 20:39 experiment_plan.yaml\ndrwxr-xr-x  4 ubuntu ubuntu  4096 May 16 17:53 logs\n-rw-r--r--  1 ubuntu ubuntu  4763 May 17 13:24 memory.md\n-rw-r--r--  1 ubuntu ubuntu     0 May 16 22:24 mistakes.lock\n-rw-------  1 ubuntu ubuntu  7858 May 17 13:21 mistakes.yaml\n-rw-r--r--  1 ubuntu ubuntu 16579 May 17 11:23 paper_framing.md\n-rw-r--r--  1 ubuntu ubuntu     0 May 17 00:10 paper_provenance.lock\n-rw-r--r--  1 ubuntu ubuntu     0 May 16 19:29 registry.lock\n-rw-------  1 ubuntu ubuntu 44568 May 17 13:32 registry.yaml\n-rw-r--r--  1 ubuntu ubuntu  1460 May 17 13:32 report.md\n-rw-r--r--  1 ubuntu ubuntu    81 May 16 18:42 requirements.txt\ndrwxr-xr-x  7 ubuntu ubuntu  4096 May 16 20:37 src\n-rwxr-xr-x  1 ubuntu ubuntu     0 May 16 17:49 study_status.lock\ndrwxr-xr-x  2 ubuntu ubuntu  4096 May 17 11:03 task_context"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-17T14:24:44.511748+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src -type f -name \"*.py\" | grep -v __pycache__"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-17T14:24:44.511882+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/run_pipeline.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/baselines/linear_probe.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/baselines/__init__.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/crta/temporal_probe.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/crta/__init__.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/trajguard_mahalanobis.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/fpr_analysis.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/__init__.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/bootstrap_ci.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/extract_hidden_states.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/eval/evaluate.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/eval/__init__.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/data_loader.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/__init__.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/config.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-17T14:24:44.512019+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "tree -L 3 /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src -I '__pycache__'"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-17T14:24:44.512144+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 127\n/bin/bash: line 1: tree: command not found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-17T14:24:44.512271+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src -type d | sort"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-17T14:24:44.512387+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/__pycache__\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/baselines\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/baselines/__pycache__\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/crta\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/eval\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/eval/__pycache__\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-17T14:24:44.512512+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-17T14:24:44.512689+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "EISDIR: illegal operation on a directory, read '/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src'"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-17T14:24:44.512820+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/data_loader.py"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-17T14:24:44.512966+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"Load HarmThoughts dataset and extract commitment points.\n2\t\n3\tInput: HuggingFace dataset \"ishitakakkar-10/HarmThoughts\"\n4\tOutput: List of trace dicts with sentences, labels, commitment_point, split assignments\n5\t\"\"\"\n6\t\n7\tfrom collections import defaultdict\n8\tfrom typing import List, Optional, Dict, Any\n9\timport numpy as np\n10\tfrom datasets import load_dataset\n11\t\n12\tfrom .config import (\n13\t    HF_DATASET, TARGET_MODEL, SAFETY_LABELS,\n14\t    TRAIN_RATIO, VAL_RATIO, SEED\n15\t)\n16\t\n17\t\n18\tdef load_harmthoughts(model_name: str = TARGET_MODEL) -> Dict[str, List[Dict]]:\n19\t    \"\"\"Load HarmThoughts from HF and group by trace_id.\"\"\"\n20\t    ds = load_dataset(HF_DATASET, split=\"train\")\n21\t\n22\t    traces = defaultdict(list)\n23\t    for row in ds:\n24\t        if row[\"model_name\"] != model_name:\n25\t            continue\n26\t        # trace_id is the part before the last dash in sentence_id\n27\t        sid = row[\"sentence_id\"]\n28\t        parts = sid.rsplit(\"-\", 1)\n29\t        trace_id = parts[0]\n30\t        step_idx = int(parts[1]) - 1  # convert to 0-indexed\n31\t\n32\t        traces[trace_id].append({\n33\t            \"sentence_id\": sid,\n34\t            \"step_idx\": step_idx,\n35\t            \"sentence\": row[\"sentence\"],\n36\t            \"label\": row[\"llm_annotation\"],\n37\t            \"query\": row[\"query\"],\n38\t            \"final_judgment\": row[\"final_judgment\"],\n39\t        })\n40\t\n41\t    # Sort each trace by step_idx\n42\t    for tid in traces:\n43\t        traces[tid].sort(key=lambda x: x[\"step_idx\"])\n44\t\n45\t    return dict(traces)\n46\t\n47\t\n48\tdef extract_commitment_point(labels: List[str]) -> Optional[int]:\n49\t    \"\"\"Find the commitment point in a sequence of labels.\n50\t\n51\t    Returns the index after the last safety label, or None if:\n52\t    - No safety labels exist in the trace\n53\t    - The last safety label is at the final position (no post-commitment segment)\n54\t    \"\"\"\n55\t    last_safety_idx = None\n56\t    for i, label in enumerate(labels):\n57\t        if label in SAFETY_LABELS:\n58\t           \n…[truncated 4064 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-17T14:24:44.513124+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/config.py"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-17T14:24:44.513249+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"Central configuration for contrastive_trace_safety project.\"\"\"\n2\t\n3\timport os\n4\tfrom pathlib import Path\n5\t\n6\t# Paths\n7\tPROJECT_ROOT = Path(\"/root/autodl-tmp/contrastive_trace_safety\")\n8\tARTIFACTS_DIR = PROJECT_ROOT / \"artifacts\"\n9\tHIDDEN_STATES_DIR = ARTIFACTS_DIR / \"hidden_states\"\n10\tPROBES_DIR = ARTIFACTS_DIR / \"probes\"\n11\t\n12\t# Model\n13\tMODEL_NAME = \"deepseek-ai/DeepSeek-R1-Distill-Llama-8B\"\n14\tMODEL_PATH = \"/root/autodl-tmp/.hf_cache/deepseek-ai/DeepSeek-R1-Distill-Llama-8B\"\n15\t\n16\t# Dataset\n17\tHF_DATASET = \"ishitakakkar-10/HarmThoughts\"\n18\tTARGET_MODEL = \"r1-8b\"\n19\t\n20\t# Hidden state extraction\n21\tLAYERS = list(range(12, 25))  # layers 12-24, 13 layers total\n22\tNUM_LAYERS = len(LAYERS)\n23\tHIDDEN_DIM = 4096\n24\tEXTRACT_BATCH_SIZE = 4\n25\tDEVICE = \"cuda:0\"\n26\t\n27\t# Probes\n28\tWINDOW_SIZE = 5\n29\tTEMPORAL_HIDDEN_DIM = 512\n30\tLEARNING_RATE = 1e-3\n31\tTRAIN_EPOCHS = 20\n32\tPROBE_BATCH_SIZE = 64\n33\tDEFAULT_LAYER = 20  # for static probe\n34\t\n35\t# Data split\n36\tTRAIN_RATIO = 0.6\n37\tVAL_RATIO = 0.2\n38\tSEED = 42\n39\t\n40\t# Evaluation\n41\tDETECTION_THRESHOLD = 0.9\n42\tDETECTION_WINDOW = 5\n43\t\n44\t# Safety labels that define commitment point\n45\tSAFETY_LABELS = {\"RA\", \"AL\", \"CC\", \"ED\", \"IA\"}\n46\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-17T14:24:44.513382+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/extract_hidden_states.py"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-17T14:24:44.513532+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"Extract hidden states from DeepSeek-R1-Distill-Llama-8B for each sentence in traces.\n2\t\n3\tInput: List of trace dicts (from data_loader.prepare_dataset)\n4\tOutput: Per-trace .pt files with tensor [num_sentences, 13, 4096] + metadata\n5\t\"\"\"\n6\t\n7\timport os\n8\tfrom pathlib import Path\n9\tfrom typing import List, Dict\n10\t\n11\timport torch\n12\tfrom transformers import AutoTokenizer, AutoModelForCausalLM\n13\tfrom tqdm import tqdm\n14\t\n15\tfrom .config import (\n16\t    MODEL_PATH, LAYERS, HIDDEN_DIM, NUM_LAYERS,\n17\t    HIDDEN_STATES_DIR, EXTRACT_BATCH_SIZE, DEVICE\n18\t)\n19\t\n20\t\n21\tdef load_model(model_path: str = MODEL_PATH, device: str = DEVICE):\n22\t    \"\"\"Load model and tokenizer.\"\"\"\n23\t    tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)\n24\t    if tokenizer.pad_token is None:\n25\t        tokenizer.pad_token = tokenizer.eos_token\n26\t\n27\t    model = AutoModelForCausalLM.from_pretrained(\n28\t        model_path,\n29\t        torch_dtype=torch.float16,\n30\t        device_map=device,\n31\t        trust_remote_code=True,\n32\t    )\n33\t    model.eval()\n34\t    return model, tokenizer\n35\t\n36\t\n37\tdef find_sentence_boundaries(tokenizer, sentences: List[str]) -> List[int]:\n38\t    \"\"\"Find each sentence's last token position via char-to-token offset mapping.\n39\t\n40\t    Tokenizes the full joined text once, then maps each sentence's char span\n41\t    to token positions. This avoids BPE context mismatch from per-sentence tokenization.\n42\t    \"\"\"\n43\t    full_text = \" \".join(sentences)\n44\t    encoding = tokenizer(\n45\t        full_text,\n46\t        return_offsets_mapping=True,\n47\t        return_tensors=\"pt\",\n48\t        truncation=True,\n49\t        max_length=8192,\n50\t    )\n51\t    offsets = encoding[\"offset_mapping\"][0]  # (num_tokens, 2)\n52\t\n53\t    boundaries = []\n54\t    char_pos = 0\n55\t    for sent in sentences:\n56\t        char_end = char_pos + len(sent)\n57\t        last_token_idx = 0\n58\t        for tok_idx, (start, end) in enumerate(offsets):\n59\t            if start < char_end:\n6\n…[truncated 4418 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-17T14:24:44.513711+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/baselines/linear_probe.py"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-17T14:24:44.513866+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"Static linear probe baseline.\n2\t\n3\tInput: Single-step hidden state from a specified layer\n4\tOutput: Pre/post commitment probability\n5\t\"\"\"\n6\t\n7\timport os\n8\tfrom pathlib import Path\n9\tfrom typing import List, Dict, Tuple\n10\t\n11\timport numpy as np\n12\timport torch\n13\timport torch.nn as nn\n14\tfrom torch.utils.data import DataLoader, TensorDataset\n15\tfrom sklearn.linear_model import LogisticRegression\n16\tfrom tqdm import tqdm\n17\t\n18\tfrom ..config import (\n19\t    HIDDEN_DIM, DEFAULT_LAYER, LAYERS, PROBES_DIR,\n20\t    LEARNING_RATE, TRAIN_EPOCHS, PROBE_BATCH_SIZE, SEED, HIDDEN_STATES_DIR\n21\t)\n22\t\n23\t\n24\tclass MLPProbe(nn.Module):\n25\t    \"\"\"2-layer MLP probe for step-level classification.\"\"\"\n26\t\n27\t    def __init__(self, input_dim: int = HIDDEN_DIM, hidden_dim: int = 256):\n28\t        super().__init__()\n29\t        self.net = nn.Sequential(\n30\t            nn.Linear(input_dim, hidden_dim),\n31\t            nn.ReLU(),\n32\t            nn.Dropout(0.1),\n33\t            nn.Linear(hidden_dim, 2),\n34\t        )\n35\t\n36\t    def forward(self, x):\n37\t        return self.net(x)\n38\t\n39\t\n40\tdef collect_step_features(\n41\t    traces: List[Dict],\n42\t    layer_idx: int = None,\n43\t    hidden_states_dir: str = None,\n44\t) -> Tuple[np.ndarray, np.ndarray]:\n45\t    \"\"\"Collect (hidden_state, label) pairs for all steps across traces.\n46\t\n47\t    Args:\n48\t        traces: list of trace dicts with step_labels and trace_id\n49\t        layer_idx: index into LAYERS list (0-12), default maps to layer 20\n50\t        hidden_states_dir: directory containing .pt files\n51\t\n52\t    Returns:\n53\t        features: [N, hidden_dim] array\n54\t        labels: [N] array of 0/1\n55\t    \"\"\"\n56\t    if layer_idx is None:\n57\t        layer_idx = LAYERS.index(DEFAULT_LAYER)\n58\t    if hidden_states_dir is None:\n59\t        hidden_states_dir = str(HIDDEN_STATES_DIR)\n60\t\n61\t    all_features = []\n62\t    all_labels = []\n63\t\n64\t    for trace in traces:\n65\t        pt_path = Path(hidden_states_dir) / f\"{trace['trace_id']}.pt\"\n66\t        if not pt\n…[truncated 5947 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-17T14:24:44.514019+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/crta/temporal_probe.py"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-17T14:24:44.514170+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"Temporal window probe (CRTA core method).\n2\t\n3\tInput: Concatenation of W=5 consecutive hidden states\n4\tOutput: Pre/post commitment probability for the center step\n5\t\"\"\"\n6\t\n7\timport os\n8\tfrom pathlib import Path\n9\tfrom typing import List, Dict, Tuple\n10\t\n11\timport numpy as np\n12\timport torch\n13\timport torch.nn as nn\n14\tfrom torch.utils.data import DataLoader, TensorDataset\n15\tfrom tqdm import tqdm\n16\t\n17\tfrom ..config import (\n18\t    HIDDEN_DIM, WINDOW_SIZE, TEMPORAL_HIDDEN_DIM, LAYERS, DEFAULT_LAYER,\n19\t    LEARNING_RATE, TRAIN_EPOCHS, PROBE_BATCH_SIZE, SEED, PROBES_DIR,\n20\t    HIDDEN_STATES_DIR\n21\t)\n22\t\n23\t\n24\tclass TemporalProbe(nn.Module):\n25\t    \"\"\"3-layer MLP operating on a window of hidden states.\"\"\"\n26\t\n27\t    def __init__(self, window_size: int = WINDOW_SIZE, hidden_dim: int = HIDDEN_DIM,\n28\t                 mlp_hidden: int = TEMPORAL_HIDDEN_DIM):\n29\t        super().__init__()\n30\t        input_dim = window_size * hidden_dim\n31\t        self.net = nn.Sequential(\n32\t            nn.Linear(input_dim, mlp_hidden),\n33\t            nn.ReLU(),\n34\t            nn.Dropout(0.1),\n35\t            nn.Linear(mlp_hidden, mlp_hidden // 2),\n36\t            nn.ReLU(),\n37\t            nn.Dropout(0.1),\n38\t            nn.Linear(mlp_hidden // 2, 2),\n39\t        )\n40\t\n41\t    def forward(self, x):\n42\t        return self.net(x)\n43\t\n44\t\n45\tdef create_windows(\n46\t    hidden_states: torch.Tensor,\n47\t    step_labels: List[int],\n48\t    window_size: int = WINDOW_SIZE,\n49\t) -> Tuple[torch.Tensor, torch.Tensor]:\n50\t    \"\"\"Create sliding windows with zero-padding at boundaries.\n51\t\n52\t    Args:\n53\t        hidden_states: [num_sentences, hidden_dim] for a single layer\n54\t        step_labels: list of 0/1 labels\n55\t        window_size: number of steps in each window\n56\t\n57\t    Returns:\n58\t        windows: [num_sentences, window_size * hidden_dim]\n59\t        labels: [num_sentences] - label of center step\n60\t    \"\"\"\n61\t    num_steps = hidden_states.shape[0]\n62\t    hdim = hidden_states.shape[1]\n63\t   \n…[truncated 5678 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-17T14:24:44.514328+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/eval/evaluate.py"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-17T14:24:44.514497+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"Evaluation metrics for commitment point detection.\n2\t\n3\tMetrics:\n4\t- Step-level accuracy\n5\t- Earliest reliable detection point\n6\t- Detection lead time (how early before commitment point)\n7\t\"\"\"\n8\t\n9\tfrom typing import List, Dict, Optional, Tuple\n10\timport numpy as np\n11\t\n12\tfrom ..config import DETECTION_THRESHOLD, DETECTION_WINDOW\n13\t\n14\t\n15\tdef step_accuracy(predictions: np.ndarray, labels: np.ndarray) -> float:\n16\t    \"\"\"Overall step-level accuracy.\"\"\"\n17\t    return float((predictions == labels).mean())\n18\t\n19\t\n20\tdef earliest_reliable_detection(\n21\t    probs: np.ndarray,\n22\t    labels: np.ndarray,\n23\t    threshold: float = DETECTION_THRESHOLD,\n24\t    window: int = DETECTION_WINDOW,\n25\t) -> Optional[int]:\n26\t    \"\"\"Find first position where model reliably detects post-commitment.\n27\t\n28\t    Scans from trace start, finds first position where consecutive `window` steps\n29\t    all have predicted prob > threshold AND predictions are correct.\n30\t\n31\t    Returns step index or None if never reliably detected.\n32\t    \"\"\"\n33\t    n = len(probs)\n34\t    if n < window:\n35\t        return None\n36\t\n37\t    for i in range(n - window + 1):\n38\t        segment_probs = probs[i:i + window]\n39\t        segment_labels = labels[i:i + window]\n40\t\n41\t        # All probs above threshold\n42\t        if not np.all(segment_probs > threshold):\n43\t            continue\n44\t\n45\t        # All predictions correct (prob > 0.5 means predict class 1)\n46\t        segment_preds = (segment_probs > 0.5).astype(int)\n47\t        if not np.all(segment_preds == segment_labels):\n48\t            continue\n49\t\n50\t        return i\n51\t\n52\t    return None\n53\t\n54\t\n55\tdef first_crossing_point(\n56\t    probs_class1: np.ndarray,\n57\t    threshold: float = 0.5,\n58\t    consecutive_k: int = DETECTION_WINDOW,\n59\t) -> Optional[int]:\n60\t    \"\"\"First position where prob(post-commitment) > threshold for K consecutive steps.\n61\t\n62\t    Unlike earliest_reliable_detection, this does NOT check against ground-truth labels,\n63\t    so cross\n…[truncated 5521 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-17T14:24:44.514681+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-17T14:24:44.514813+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 64\ndrwxr-xr-x 2 ubuntu ubuntu  4096 May 16 21:05 .\ndrwxr-xr-x 7 ubuntu ubuntu  4096 May 16 20:37 ..\n-rw-r--r-- 1 ubuntu ubuntu     0 May 16 20:37 __init__.py\n-rw-r--r-- 1 ubuntu ubuntu 18703 May 16 21:03 bootstrap_ci.py\n-rw-r--r-- 1 ubuntu ubuntu 21523 May 16 21:05 fpr_analysis.py\n-rw-r--r-- 1 ubuntu ubuntu  9760 May 16 20:37 trajguard_mahalanobis.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-17T14:24:44.514942+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/bootstrap_ci.py"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-17T14:24:44.515134+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"Bootstrap confidence intervals and paired significance tests (exp-006).\n2\t\n3\tInput: Pre-extracted hidden states + trained probe predictions on test set\n4\tOutput: 95% CIs for all methods, paired bootstrap p-values\n5\t\"\"\"\n6\t\n7\timport json\n8\timport sys\n9\tfrom pathlib import Path\n10\tfrom typing import List, Dict, Optional, Tuple\n11\t\n12\timport numpy as np\n13\timport torch\n14\timport torch.nn as nn\n15\tfrom torch.utils.data import DataLoader, TensorDataset\n16\tfrom sklearn.linear_model import LogisticRegression, SGDClassifier\n17\t\n18\tsys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))\n19\tfrom src.config import (\n20\t    LAYERS, HIDDEN_DIM, HIDDEN_STATES_DIR, SEED, ARTIFACTS_DIR\n21\t)\n22\tfrom src.data_loader import prepare_dataset, split_data\n23\t\n24\t\n25\tLAYER_14_IDX = 2  # LAYERS=[12,13,...,24], layer 14 is index 2\n26\tMULTI_LAYER_INDICES = [0, 2, 4, 6, 8, 10, 12]  # layers [12,14,16,18,20,22,24]\n27\tWINDOW_SIZE = 15\n28\tTHRESHOLD = 0.5\n29\tCONSECUTIVE_K = 5\n30\tN_BOOTSTRAP = 1000\n31\tOUTPUT_DIR = ARTIFACTS_DIR / \"exp_006_bootstrap\"\n32\t\n33\t\n34\t# ============================================================\n35\t# GRU Model\n36\t# ============================================================\n37\t\n38\tclass GRUProbe(nn.Module):\n39\t    def __init__(self, input_dim=HIDDEN_DIM, hidden_dim=256, dropout=0.3):\n40\t        super().__init__()\n41\t        self.gru = nn.GRU(input_dim, hidden_dim, num_layers=1, batch_first=True, dropout=0)\n42\t        self.dropout = nn.Dropout(dropout)\n43\t        self.fc = nn.Linear(hidden_dim, 1)\n44\t\n45\t    def forward(self, x):\n46\t        # x: [batch, T, input_dim]\n47\t        out, _ = self.gru(x)  # [batch, T, hidden_dim]\n48\t        out = self.dropout(out)\n49\t        logits = self.fc(out).squeeze(-1)  # [batch, T]\n50\t        return logits\n51\t\n52\t\n53\t# ============================================================\n54\t# Data helpers\n55\t# ============================================================\n56\t\n57\tdef load_trace_hidden_states(trace_id: str, layer_i\n…[truncated 18631 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-17T14:24:44.515295+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/fpr_analysis.py",
+              "limit": "100"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-17T14:24:44.515441+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"exp-015: FPR analysis — determine if text baseline's high lead time comes from false positives.\"\"\"\n2\t\n3\timport sys\n4\timport json\n5\timport warnings\n6\tfrom pathlib import Path\n7\t\n8\timport numpy as np\n9\timport torch\n10\timport torch.nn as nn\n11\tfrom sklearn.linear_model import LogisticRegression\n12\t\n13\tsys.path.insert(0, '/root/autodl-tmp/contrastive_trace_safety')\n14\tfrom src.data_loader import prepare_dataset, split_data\n15\tfrom src.config import TRAIN_RATIO, VAL_RATIO, SEED, DETECTION_WINDOW, LAYERS, HIDDEN_DIM\n16\tfrom src.eval.evaluate import first_crossing_point, detection_lead_time, step_accuracy\n17\t\n18\twarnings.filterwarnings(\"ignore\")\n19\t\n20\tHS_DIR = Path(\"/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states\")\n21\tOUT_DIR = Path(\"/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_015_fpr\")\n22\tOUT_DIR.mkdir(parents=True, exist_ok=True)\n23\t\n24\tWINDOW = 15\n25\tLAYER_IDX = 2  # Layer 14 = LAYERS[2]\n26\tGRU_HIDDEN = 256\n27\tGRU_EPOCHS = 20\n28\tGRU_PATIENCE = 5\n29\tGRU_LR = 1e-3\n30\tMULTI_LAYER_INDICES = [0, 2, 4, 6, 8, 10, 12]  # layers 12,14,16,18,20,22,24\n31\t\n32\t\n33\t# ============================================================\n34\t# Feature builders\n35\t# ============================================================\n36\t\n37\tdef build_text_static_features(trace, st_model):\n38\t    embs = trace[\"text_embeddings\"]  # [T, 384]\n39\t    return embs\n40\t\n41\tdef build_text_temporal_features(trace, st_model, window=WINDOW):\n42\t    embs = trace[\"text_embeddings\"]  # [T, 384]\n43\t    T = len(embs)\n44\t    features = []\n45\t    for i in range(T):\n46\t        start = max(0, i - window + 1)\n47\t        window_embs = embs[start:i+1]\n48\t        if len(window_embs) < window:\n49\t            pad = np.zeros((window - len(window_embs), embs.shape[1]))\n50\t            window_embs = np.vstack([pad, window_embs])\n51\t        features.append(window_embs.flatten())\n52\t    return np.array(features)\n53\t\n54\tdef load_hs(trace, layer_idx=LAYER_IDX):\n55\t    pt_path = HS_DIR / f\"{trace['trace_i\n…[truncated 1524 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-17T14:24:44.515594+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety -name \"*rep*\" -o -name \"*r2*\" 2>/dev/null"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-17T14:24:44.515773+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/logs/workers/worker_code_repe_script_move_20260517T132214_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/logs/workers/worker_code_mlp_v1_read_and_repe_organize_20260517T131926_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/logs/workers/worker_code_repe_direction_probe_20260517T120223.log\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/logs/workers/worker_experiment_qwq_c2_control_layer2_20260517T013924_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/logs/workers/worker_code_repe_direction_probe_v2_20260517T121111.log\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/logs/workers/worker_code_repe_script_move_20260517T132214.log\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/logs/workers/worker_experiment_qwq_c2_control_layer2_20260517T013327.log\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/logs/workers/worker_code_mlp_v1_read_and_repe_organize_20260517T131926.log\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/logs/workers/worker_experiment_qwq_c2_control_layer2_20260517T013924.log\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/logs/workers/worker_code_repe_direction_probe_v3_20260517T121511_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/logs/workers/worker_code_repe_direction_probe_v3_20260517T121511.log\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/logs/chats/worker_code_repe_direction_probe_v3_20260517T121511.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/logs/chats/worker_code_repe_direction_probe_v3_20260517T121511.lock\n…[truncated 16802 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-17T14:24:44.515926+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/run_pipeline.py"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-17T14:24:44.516071+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"Main pipeline entry point.\n2\t\n3\tUsage:\n4\t    python -m src.run_pipeline --step extract    # hidden state extraction\n5\t    python -m src.run_pipeline --step train      # train probes\n6\t    python -m src.run_pipeline --step eval       # evaluate\n7\t    python -m src.run_pipeline --step all        # full pipeline\n8\t\"\"\"\n9\t\n10\timport argparse\n11\timport os\n12\timport sys\n13\timport json\n14\tfrom pathlib import Path\n15\t\n16\timport numpy as np\n17\timport torch\n18\t\n19\tfrom .config import (\n20\t    HIDDEN_STATES_DIR, PROBES_DIR, ARTIFACTS_DIR,\n21\t    SEED, DEVICE, DEFAULT_LAYER, LAYERS\n22\t)\n23\tfrom .data_loader import prepare_dataset, split_data, get_commitment_point_stats\n24\t\n25\t\n26\tdef set_seed(seed: int = SEED):\n27\t    np.random.seed(seed)\n28\t    torch.manual_seed(seed)\n29\t    if torch.cuda.is_available():\n30\t        torch.cuda.manual_seed_all(seed)\n31\t\n32\t\n33\tdef step_extract(traces):\n34\t    \"\"\"Extract hidden states from model.\"\"\"\n35\t    from .extract_hidden_states import extract_all_hidden_states\n36\t\n37\t    all_traces = traces[\"jailbreak_with_commitment\"] + traces[\"safe\"]\n38\t    print(f\"Extracting hidden states for {len(all_traces)} traces...\")\n39\t    extract_all_hidden_states(all_traces)\n40\t\n41\t\n42\tdef step_train(traces):\n43\t    \"\"\"Train static and temporal probes.\"\"\"\n44\t    from .baselines.linear_probe import train_mlp_probe, save_probe as save_static\n45\t    from .crta.temporal_probe import train_temporal_probe, save_probe as save_temporal\n46\t\n47\t    jb_traces = traces[\"jailbreak_with_commitment\"]\n48\t    train, val, test = split_data(jb_traces)\n49\t\n50\t    print(f\"\\nSplit: {len(train)} train / {len(val)} val / {len(test)} test\")\n51\t\n52\t    # Train static probe\n53\t    print(\"\\n--- Training Static Probe (MLP) ---\")\n54\t    static_model = train_mlp_probe(train, val)\n55\t    save_static(static_model)\n56\t\n57\t    # Train temporal probe\n58\t    print(\"\\n--- Training Temporal Probe ---\")\n59\t    temporal_model = train_temporal_probe(train, val)\n60\t    save_temporal(temporal_model)\n61\n…[truncated 2959 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-17T14:24:44.516264+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/artifacts/ | head -40"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-17T14:24:44.516424+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 232\ndrwxr-xr-x 30 ubuntu ubuntu  4096 May 17 13:35 .\ndrwxr-xr-x 10 ubuntu ubuntu  4096 May 17 14:16 ..\ndrwxr-xr-x  5 ubuntu ubuntu  4096 May 17 08:43 _project\n-rw-r--r--  1 ubuntu ubuntu  1738 May 16 18:45 commitment_point_analysis.md\n-rw-r--r--  1 ubuntu ubuntu 11475 May 16 17:58 data_exploration_report.md\ndrwxr-xr-x  3 ubuntu ubuntu  4096 May 16 19:32 diag_d1_layer_sweep\ndrwxr-xr-x  3 ubuntu ubuntu  4096 May 16 19:36 diag_d2_pca_viz\ndrwxr-xr-x  6 ubuntu ubuntu  4096 May 16 22:12 dream_reports\ndrwxr-xr-x  3 ubuntu ubuntu  4096 May 17 00:11 exp-007\ndrwxr-xr-x  3 ubuntu ubuntu  4096 May 16 22:13 exp_001a\ndrwxr-xr-x  3 ubuntu ubuntu  4096 May 16 22:29 exp_001a_r1_32b\ndrwxr-xr-x  3 ubuntu ubuntu  4096 May 16 22:13 exp_001b\n-rw-r--r--  1 ubuntu ubuntu  6003 May 17 04:43 exp_003_cross_transfer_details.md\ndrwxr-xr-x  3 ubuntu ubuntu  4096 May 16 20:45 exp_005_trajguard_mahalanobis\ndrwxr-xr-x  3 ubuntu ubuntu  4096 May 16 21:03 exp_006_bootstrap_ci\ndrwxr-xr-x  3 ubuntu ubuntu  4096 May 17 01:07 exp_007\ndrwxr-xr-x  4 ubuntu ubuntu  4096 May 17 01:37 exp_007_window_ablation\ndrwxr-xr-x  3 ubuntu ubuntu  4096 May 16 20:49 exp_013_text_baseline\ndrwxr-xr-x  4 ubuntu ubuntu  4096 May 16 23:00 exp_c2_control_task\ndrwxr-xr-x  3 ubuntu ubuntu  4096 May 17 05:04 exp_gru256_multilayer\ndrwxr-xr-x  4 ubuntu ubuntu  4096 May 17 08:32 exp_ot7b_full_pipeline\n-rw-r--r--  1 ubuntu ubuntu  3206 May 17 05:43 exp_pathC_two_stage_summary.md\ndrwxr-xr-x  3 ubuntu ubuntu  4096 May 17 07:00 exp_pathb_annotation_validation\n-rw-r--r--  1 ubuntu ubuntu  6877 May 17 10:46 exp_power_analysis.py\ndrwxr-xr-x  3 ubuntu ubuntu  4096 May 17 13:22 exp_r3_bocpd_ot7b_w3\ndrwxr-xr-x  3 ubuntu ubuntu  4096 May 17 13:35 exp_r3_supplementary\ndrwxr-xr-x  3 ubuntu ubuntu  4096 May 16 23:44 figures\ndrwxr-xr-x  2 ubuntu ubuntu  4096 May 17 06:07 harmthoughts_census\n-rw-r--r--  1 ubuntu ubuntu 22489 May 17 13:35 manifest.yaml\ndrwxr-xr-x  2 ubuntu ubuntu  4096 May 17 06:10 openthinker_7b_analysis\ndrwxr-xr-x  2 ubuntu \n…[truncated 619 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-17T14:24:44.516619+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/memory.md"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-17T14:24:44.516803+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Project Memory\n2\t\n3\t## Key Results\n4\t\n5\t### Paired Bootstrap: HS vs Text Accuracy & Precision (2026-05-17)\n6\t- r1-8b (n=43 test traces): acc +8.2pp p=0.005***, prec +22.4pp p=0.000***\n7\t- R1-32B (n=20 test traces): acc +6.2pp p=0.13, prec +9.4pp p=0.064 (underpowered)\n8\t- QwQ-32B (n=19 test traces): acc +0.9pp p=0.83, prec +5.8pp p=0.35 (underpowered + convergence issue)\n9\t- **OpenThinker-7B (n=47 test traces, Layer 16): acc +10.7pp p=0.000***, prec +21.9pp p=0.000***, FPR -17.1pp p=0.000***\n10\t- Bonferroni threshold: 0.0167. R1-8B acc+prec pass; OT-7B 3/3 all pass (strongest result).\n11\t- Report: artifacts/acc_precision_bootstrap/report.md + artifacts/ot7b_layer16_verification/report.md\n12\t\n13\t### Model Configurations (best per model)\n14\t- r1-8b: Layer 14 (≈L12, negligible diff), W=15, hidden_dim=4096, 209 jailbreak traces. Depth ~39-45%.\n15\t- R1-32B: Layer 10 (index 10), W=10, hidden_dim=5120, 100 jailbreak traces. Depth ~16%.\n16\t- QwQ-32B: Layer 2 (index 2), W=5, hidden_dim=5120, 95 jailbreak traces. Depth ~3%.\n17\t- OpenThinker-7B: **Layer 16** (corrected from Layer 0), W=3, hidden_dim=3584, 228 jailbreak traces. Depth ~57%.\n18\t\n19\t### Layer Verification Results (2026-05-17)\n20\t- **OT-7B Layer 16 >> Layer 0**: precision +10.9pp, FPR -8.8pp, Bonferroni 3/3 (was 2/3). Layer 0 was M001 bug artifact (bal_acc × crossing_rate).\n21\t- **R1-8B full sweep (0-24)**: L12 (0.7871) ≈ L14 (0.7830), +0.004 negligible. Early layers competitive but not superior. Layer 0 worst (0.7103).\n22\t- **Cross-model pattern**: 32B models peak at early layers (2-3% depth); 7-8B models peak at middle layers (39-57% depth). Signal distribution differs by scale, not by architecture.\n23\t\n24\t### BOCPD/CUSUM Cross-Model Negative (2026-05-17)\n25\t- **R1-8B**: BOCPD λ=10 detection 93%, mean lead 3.45 (< FCP 4.89). Gradual commitment dynamics.\n26\t- **OT-7B**: BOCPD 0% detection across ALL lambdas. W=3 probe scores too spiky (0→1 in 1-2 steps), Gaussian model assumption violated. FCP t=0.5 k=2 best: \n…[truncated 2927 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-17T14:24:44.516966+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "ccs|CCS|contrastive consistency|consistency",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety"
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-17T14:24:44.517123+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 250 files limit: 250\nlogs/workers/worker_code_ccs_unsupervised_probe_20260517T141539.log\nlogs/chats/feishu_group_oc_2af5cf9f542b9e0dc11648403c217173_director.jsonl\nlogs/chats/feishu_group_oc_60d666c5df9f6fd550342b33963e2ded_reviewer.jsonl\nlogs/chats/feishu_group_oc_60d666c5df9f6fd550342b33963e2ded.jsonl\n.claude/sessions/director_8e62fa27/AGENTS.md\n.claude/sessions/director_8e62fa27/CLAUDE.md\nlogs/workers/worker_code_qwq_l60_bootstrap_pvalue_bugfix_20260517T135335.log\nlogs/workers/worker_code_r1_32b_layer63_hs_vs_text_bootstrap_20260517T135436.log\nlogs/workers/worker_code_qwq_layer60_hs_vs_text_bootstrap_20260517T133345.log\nlogs/chats/worker_code_r1_32b_selectivity_raw_features_20260517T133358.jsonl\nlogs/workers/worker_code_r1_32b_selectivity_raw_features_20260517T133358.log\nlogs/workers/worker_code_qwq_alt_layers_and_layer_ablation_20260517T131625_result.json\nlogs/workers/worker_code_qwq_alt_layers_and_layer_ablation_20260517T131625.log\nlogs/workers/worker_code_coverage_bias_selectivity_gru_seed_20260517T131645.log\nartifacts/manifest.yaml\nlogs/workers/worker_code_mahalanobis_ot7b_l16_20260517T131912.log\nlogs/workers/worker_code_exp_r3_mlp_probe_20260517T125418.log\nlogs/workers/worker_code_repe_direction_probe_v3_20260517T121511.log\nlogs/workers/worker_code_bocpd_cusum_ot7b_20260517T120254.log\nlogs/workers/worker_code_mlp_nonlinear_probe_20260517T120237.log\nlogs/workers/worker_code_repe_direction_probe_20260517T120223.log\nartifacts/review_issues.yaml\nlogs/chats/feishu_group_oc_4a087be8d8cfffc128323993d357d229_director.jsonl\nartifacts/review_reports/round_2.md\nlogs/chats/feishu_group_oc_4a087be8d8cfffc128323993d357d229_reviewer_2.jsonl\nlogs/chats/feishu_group_oc_4a087be8d8cfffc128323993d357d229_reviewer_1.jsonl\nlogs/chats/feishu_group_oc_60d666c5df9f6fd550342b33963e2ded_paper_agent.jsonl\n.claude/sessions/paper_agent_bacd83c4/AGENTS.md\n.claude/sessions/paper_agent_bacd83c4/CLAUDE.md\npaper_framing.md\nlogs/workers/worker_code_ot7b_layer16_bootstrap_ci_20260517T0937\n…[truncated 15046 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-17T14:24:44.517270+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/logs/workers/worker_code_ccs_unsupervised_probe_20260517T141539.log",
+              "limit": "200"
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-17T14:24:44.517392+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (64115 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-17T14:24:44.517532+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "head -100 /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/logs/workers/worker_code_ccs_unsupervised_probe_20260517T141539.log"
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-17T14:24:44.517691+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (160.8KB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-5-projects-contrastive-trace-safety/9f45805a-a466-4eb7-81f6-478140f4ba7d/tool-results/b7q69k55p.txt\n\nPreview (first 2KB):\nWarning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.\n{\"type\":\"system\",\"subtype\":\"init\",\"cwd\":\"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety\",\"session_id\":\"9f45805a-a466-4eb7-81f6-478140f4ba7d\",\"tools\":[\"Task\",\"AskUserQuestion\",\"Bash\",\"CronCreate\",\"CronDelete\",\"CronList\",\"Edit\",\"EnterPlanMode\",\"EnterWorktree\",\"ExitPlanMode\",\"ExitWorktree\",\"Glob\",\"Grep\",\"ListMcpResourcesTool\",\"Monitor\",\"NotebookEdit\",\"PushNotification\",\"Read\",\"ReadMcpResourceTool\",\"RemoteTrigger\",\"ScheduleWakeup\",\"Skill\",\"TaskOutput\",\"TaskStop\",\"TodoWrite\",\"ToolSearch\",\"WebFetch\",\"WebSearch\",\"Write\",\"mcp__agent-ml-research__detect_image\",\"mcp__agent-ml-research__kill_job\",\"mcp__agent-ml-research__ssh_execute\",\"mcp__agent-ml-research__ssh_read_only\"],\"mcp_servers\":[{\"name\":\"agent-ml-research\",\"status\":\"connected\"}],\"model\":\"claude-opus-4-6\",\"permissionMode\":\"bypassPermissions\",\"slash_commands\":[\"update-config\",\"debug\",\"simplify\",\"batch\",\"fewer-permission-prompts\",\"loop\",\"schedule\",\"claude-api\",\"clear\",\"compact\",\"context\",\"heapdump\",\"init\",\"review\",\"security-review\",\"extra-usage\",\"usage\",\"insights\",\"team-onboarding\"],\"apiKeySource\":\"none\",\"claude_code_version\":\"2.1.126\",\"output_style\":\"default\",\"agents\":[\"claude\",\"Explore\",\"general-purpose\",\"Plan\",\"statusline-setup\"],\"skills\":[\"update-config\",\"debug\",\"simplify\",\"batch\",\"fewer-permission-prompts\",\"loop\",\"schedule\",\"claude-api\"],\"plugins\":[],\"analytics_disabled\":false,\"uuid\":\"85670a8a-a136-4edc-9829-11af93aecaed\",\"memory_paths\":{\"auto\":\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-5-projects-contrastive-tr\n…[truncated 69 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-17T14:24:44.517849+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety -name \"*ccs*\" -type f 2>/dev/null | grep -v __pycache__"
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-17T14:24:44.517968+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/logs/workers/worker_code_ccs_unsupervised_probe_20260517T141539.log"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-17T14:24:44.518089+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/experiment_plan.yaml"
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-17T14:24:44.518228+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\texperiments:\n2\t  # === P0: Must-run for paper submission ===\n3\t\n4\t  - id: exp-001\n5\t    claim: 1\n6\t    description: \"Cross-architecture hidden-state extraction + layer sweep + static probe evaluation on r1-32b and QwQ-32B. Includes mandatory layer sweep (all layers) to find best layer for 64-layer models before probe evaluation. Validates Claim 1 generalizes beyond r1-8b.\"\n7\t    priority: P0\n8\t    gpu_budget_hours: 10\n9\t    deps: []\n10\t    models: [DeepSeek-R1-Distill-Qwen-32B, QwQ-32B]\n11\t    notes: \"32B models have 64 layers, 5120-d hidden. r1-8b best layer was 14/32 (44% depth) → expect best around layer 28-32 for 64-layer models. Extract ALL layers for sweep, then select best for subsequent experiments. Must do layer sweep BEFORE reporting static probe results — using wrong layer would produce false negative.\"\n12\t\n13\t  - id: exp-002\n14\t    claim: 2\n15\t    description: \"Cross-architecture temporal window evaluation: temporal LR W=15 on r1-32b and QwQ-32B. Validate +30pp coverage improvement holds cross-architecture.\"\n16\t    priority: P0\n17\t    gpu_budget_hours: 4\n18\t    deps: [exp-001]\n19\t    models: [DeepSeek-R1-Distill-Qwen-32B, QwQ-32B]\n20\t\n21\t  - id: exp-003\n22\t    claim: [1, 2]\n23\t    description: \"Cross-model transfer: train probe on r1-8b (Llama), test on r1-32b/QwQ (Qwen2.5). Train on Qwen, test on Llama. Measures zero-shot cross-architecture generalization.\"\n24\t    priority: P0\n25\t    gpu_budget_hours: 2\n26\t    deps: [exp-001]\n27\t    notes: \"Key for cross-architecture story. Projection head needed (4096→5120 or vice versa).\"\n28\t\n29\t  - id: exp-004\n30\t    claim: 3\n31\t    description: \"Lead time analysis across models: confirm negative lead time finding on 32B models. Report lead time distribution per model.\"\n32\t    priority: P0\n33\t    gpu_budget_hours: 1\n34\t    deps: [exp-001, exp-002]\n35\t\n36\t  - id: exp-005\n37\t    claim: [1, 2, 3]\n38\t    description: \"TrajGuard-style Mahalanobis baseline: implement and evaluate on all 3 models. Expected to fail (signal\n…[truncated 4935 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-17T14:24:44.518384+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/__init__.py"
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-17T14:24:44.518502+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<system-reminder>Warning: the file exists but is shorter than the provided offset (1). The file has 1 lines.</system-reminder>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-17T14:24:44.518645+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/docs/"
+            }
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-17T14:24:44.518769+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 76\ndrwxr-xr-x  4 ubuntu ubuntu  4096 May 16 21:08 .\ndrwxr-xr-x 10 ubuntu ubuntu  4096 May 17 14:16 ..\n-rw-r--r--  1 ubuntu ubuntu 60146 May 16 19:45 IDEA_BRIEF.md\ndrwxr-xr-x  5 ubuntu ubuntu  4096 May 17 11:25 paper\ndrwxr-xr-x  3 ubuntu ubuntu  4096 May 16 21:08 results"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-17T14:24:44.518897+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src -name \"*.py\" -type f | grep -v __pycache__ | sort"
+            }
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-17T14:24:44.519016+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/__init__.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/baselines/__init__.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/baselines/linear_probe.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/config.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/crta/__init__.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/crta/temporal_probe.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/data_loader.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/eval/__init__.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/eval/evaluate.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/__init__.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/bootstrap_ci.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/fpr_analysis.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/trajguard_mahalanobis.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/extract_hidden_states.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/run_pipeline.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-17T14:24:44.519154+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/checkpoints/ | head -20"
+            }
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-17T14:24:44.519272+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "diag_d1_layer_sweep_DONE_20260516T193145.json\ndiag_d1_layer_sweep_PREPARING_20260516T192900.json\ndiag_d1_layer_sweep_QUEUED_20260516T193120.json\ndiag_d1_layer_sweep_RUNNING_20260516T193127.json\ndiag_d1_layer_sweep_RUNNING_20260516T193141.json\ndiag_d2_pca_viz_DONE_20260516T193640.json\ndiag_d2_pca_viz_PREPARING_20260516T192904.json\ndiag_d2_pca_viz_QUEUED_20260516T193617.json\ndiag_d2_pca_viz_RUNNING_20260516T193621.json\ndiag_d2_pca_viz_RUNNING_20260516T193632.json\ndiag_d3_regularized_probes_DONE_20260516T193600.json\ndiag_d3_regularized_probes_PREPARING_20260516T192907.json\ndiag_d3_regularized_probes_QUEUED_20260516T193544.json\ndiag_d3_regularized_probes_RUNNING_20260516T193547.json\ndiag_d3_regularized_probes_RUNNING_20260516T193553.json\ndiag_d4_oracle_upper_bound_DONE_20260516T193325.json\ndiag_d4_oracle_upper_bound_PREPARING_20260516T192902.json\ndiag_d4_oracle_upper_bound_QUEUED_20260516T193253.json\ndiag_d4_oracle_upper_bound_RUNNING_20260516T193257.json\ndiag_d4_oracle_upper_bound_RUNNING_20260516T193310.json"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-17T14:24:44.519483+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect. Now let me compile a comprehensive report based on my exploration:\n\n## Comprehensive Project Structure and Implementation Guide: Contrastive Trace Safety\n\nBased on my thorough exploration of the local project directory at `/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/`, here's the complete understanding of the project structure and how to implement a CCS probe:\n\n### 1. PROJECT DIRECTORY STRUCTURE\n\n```\ncontrastive_trace_safety/\n├── src/                          # Core source code\n│   ├── config.py                # Central configuration (paths, model specs, hyperparams)\n│   ├── data_loader.py           # HarmThoughts dataset loading & commitment point extraction\n│   ├── extract_hidden_states.py # Hidden state extraction from model layers\n│   ├── run_pipeline.py          # Main pipeline entry point (extract→train→eval)\n│   ├── baselines/\n│   │   └── linear_probe.py      # Static & MLP probes (single-step classification)\n│   ├── crta/\n│   │   └── temporal_probe.py    # Temporal window probe (W-step concatenation)\n│   ├── eval/\n│   │   └── evaluate.py          # Evaluation metrics (accuracy, lead time, detection)\n│   └── experiments/\n│       ├── bootstrap_ci.py      # exp-006: Bootstrap CIs & paired significance tests\n│       ├── fpr_analysis.py      # exp-015: False positive rate analysis\n│       └── trajguard_mahalanobis.py  # exp-005: Mahalanobis baseline\n├── artifacts/                    # Experiment outputs & results\n│   ├── hidden_states/           # Per-trace hidden state .pt files (T, 13, 4096)\n│   ├── probes/                  # Trained probe state dicts\n│   ├── exp_006_bootstrap_ci/    # Bootstrap results\n│   └── [many experiment folders...]\n├── checkpoints/                  # Task execution status files\n├── logs/                         # Worker & agent execution logs\n└── requirements.txt             # Dependencies\n```\n\n### 2. DATA FORMAT & FLOW\n\n#### Data Loading (data_loader.py)\n- **Dataset**: HuggingFace `ishitak\n…[truncated 8507 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Agent",
+            "elapsed_ms": 8
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-17T14:24:44.519696+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/config.py"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-17T14:24:44.519843+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"Central configuration for contrastive_trace_safety project.\"\"\"\n2\t\n3\timport os\n4\tfrom pathlib import Path\n5\t\n6\t# Paths\n7\tPROJECT_ROOT = Path(\"/root/autodl-tmp/contrastive_trace_safety\")\n8\tARTIFACTS_DIR = PROJECT_ROOT / \"artifacts\"\n9\tHIDDEN_STATES_DIR = ARTIFACTS_DIR / \"hidden_states\"\n10\tPROBES_DIR = ARTIFACTS_DIR / \"probes\"\n11\t\n12\t# Model\n13\tMODEL_NAME = \"deepseek-ai/DeepSeek-R1-Distill-Llama-8B\"\n14\tMODEL_PATH = \"/root/autodl-tmp/.hf_cache/deepseek-ai/DeepSeek-R1-Distill-Llama-8B\"\n15\t\n16\t# Dataset\n17\tHF_DATASET = \"ishitakakkar-10/HarmThoughts\"\n18\tTARGET_MODEL = \"r1-8b\"\n19\t\n20\t# Hidden state extraction\n21\tLAYERS = list(range(12, 25))  # layers 12-24, 13 layers total\n22\tNUM_LAYERS = len(LAYERS)\n23\tHIDDEN_DIM = 4096\n24\tEXTRACT_BATCH_SIZE = 4\n25\tDEVICE = \"cuda:0\"\n26\t\n27\t# Probes\n28\tWINDOW_SIZE = 5\n29\tTEMPORAL_HIDDEN_DIM = 512\n30\tLEARNING_RATE = 1e-3\n31\tTRAIN_EPOCHS = 20\n32\tPROBE_BATCH_SIZE = 64\n33\tDEFAULT_LAYER = 20  # for static probe\n34\t\n35\t# Data split\n36\tTRAIN_RATIO = 0.6\n37\tVAL_RATIO = 0.2\n38\tSEED = 42\n39\t\n40\t# Evaluation\n41\tDETECTION_THRESHOLD = 0.9\n42\tDETECTION_WINDOW = 5\n43\t\n44\t# Safety labels that define commitment point\n45\tSAFETY_LABELS = {\"RA\", \"AL\", \"CC\", \"ED\", \"IA\"}\n46\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-17T14:24:44.519974+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/data_loader.py"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-17T14:24:44.520140+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"Load HarmThoughts dataset and extract commitment points.\n2\t\n3\tInput: HuggingFace dataset \"ishitakakkar-10/HarmThoughts\"\n4\tOutput: List of trace dicts with sentences, labels, commitment_point, split assignments\n5\t\"\"\"\n6\t\n7\tfrom collections import defaultdict\n8\tfrom typing import List, Optional, Dict, Any\n9\timport numpy as np\n10\tfrom datasets import load_dataset\n11\t\n12\tfrom .config import (\n13\t    HF_DATASET, TARGET_MODEL, SAFETY_LABELS,\n14\t    TRAIN_RATIO, VAL_RATIO, SEED\n15\t)\n16\t\n17\t\n18\tdef load_harmthoughts(model_name: str = TARGET_MODEL) -> Dict[str, List[Dict]]:\n19\t    \"\"\"Load HarmThoughts from HF and group by trace_id.\"\"\"\n20\t    ds = load_dataset(HF_DATASET, split=\"train\")\n21\t\n22\t    traces = defaultdict(list)\n23\t    for row in ds:\n24\t        if row[\"model_name\"] != model_name:\n25\t            continue\n26\t        # trace_id is the part before the last dash in sentence_id\n27\t        sid = row[\"sentence_id\"]\n28\t        parts = sid.rsplit(\"-\", 1)\n29\t        trace_id = parts[0]\n30\t        step_idx = int(parts[1]) - 1  # convert to 0-indexed\n31\t\n32\t        traces[trace_id].append({\n33\t            \"sentence_id\": sid,\n34\t            \"step_idx\": step_idx,\n35\t            \"sentence\": row[\"sentence\"],\n36\t            \"label\": row[\"llm_annotation\"],\n37\t            \"query\": row[\"query\"],\n38\t            \"final_judgment\": row[\"final_judgment\"],\n39\t        })\n40\t\n41\t    # Sort each trace by step_idx\n42\t    for tid in traces:\n43\t        traces[tid].sort(key=lambda x: x[\"step_idx\"])\n44\t\n45\t    return dict(traces)\n46\t\n47\t\n48\tdef extract_commitment_point(labels: List[str]) -> Optional[int]:\n49\t    \"\"\"Find the commitment point in a sequence of labels.\n50\t\n51\t    Returns the index after the last safety label, or None if:\n52\t    - No safety labels exist in the trace\n53\t    - The last safety label is at the final position (no post-commitment segment)\n54\t    \"\"\"\n55\t    last_safety_idx = None\n56\t    for i, label in enumerate(labels):\n57\t        if label in SAFETY_LABELS:\n58\t           \n…[truncated 4064 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-17T14:24:44.520290+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/bootstrap_ci.py"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-17T14:24:44.520559+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"Bootstrap confidence intervals and paired significance tests (exp-006).\n2\t\n3\tInput: Pre-extracted hidden states + trained probe predictions on test set\n4\tOutput: 95% CIs for all methods, paired bootstrap p-values\n5\t\"\"\"\n6\t\n7\timport json\n8\timport sys\n9\tfrom pathlib import Path\n10\tfrom typing import List, Dict, Optional, Tuple\n11\t\n12\timport numpy as np\n13\timport torch\n14\timport torch.nn as nn\n15\tfrom torch.utils.data import DataLoader, TensorDataset\n16\tfrom sklearn.linear_model import LogisticRegression, SGDClassifier\n17\t\n18\tsys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))\n19\tfrom src.config import (\n20\t    LAYERS, HIDDEN_DIM, HIDDEN_STATES_DIR, SEED, ARTIFACTS_DIR\n21\t)\n22\tfrom src.data_loader import prepare_dataset, split_data\n23\t\n24\t\n25\tLAYER_14_IDX = 2  # LAYERS=[12,13,...,24], layer 14 is index 2\n26\tMULTI_LAYER_INDICES = [0, 2, 4, 6, 8, 10, 12]  # layers [12,14,16,18,20,22,24]\n27\tWINDOW_SIZE = 15\n28\tTHRESHOLD = 0.5\n29\tCONSECUTIVE_K = 5\n30\tN_BOOTSTRAP = 1000\n31\tOUTPUT_DIR = ARTIFACTS_DIR / \"exp_006_bootstrap\"\n32\t\n33\t\n34\t# ============================================================\n35\t# GRU Model\n36\t# ============================================================\n37\t\n38\tclass GRUProbe(nn.Module):\n39\t    def __init__(self, input_dim=HIDDEN_DIM, hidden_dim=256, dropout=0.3):\n40\t        super().__init__()\n41\t        self.gru = nn.GRU(input_dim, hidden_dim, num_layers=1, batch_first=True, dropout=0)\n42\t        self.dropout = nn.Dropout(dropout)\n43\t        self.fc = nn.Linear(hidden_dim, 1)\n44\t\n45\t    def forward(self, x):\n46\t        # x: [batch, T, input_dim]\n47\t        out, _ = self.gru(x)  # [batch, T, hidden_dim]\n48\t        out = self.dropout(out)\n49\t        logits = self.fc(out).squeeze(-1)  # [batch, T]\n50\t        return logits\n51\t\n52\t\n53\t# ============================================================\n54\t# Data helpers\n55\t# ============================================================\n56\t\n57\tdef load_trace_hidden_states(trace_id: str, layer_i\n…[truncated 18631 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-17T14:24:44.520746+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-17T14:24:44.520876+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-17T14:24:44.521021+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-rtx6000",
+              "command": "ls /root/autodl-tmp/contrastive_trace_safety/data/harmthoughts/",
+              "account": "root"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-17T14:24:44.521144+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-rtx6000",
+              "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/ -1 | head -20",
+              "account": "root"
+            }
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-17T14:24:44.521268+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/contrastive_trace_safety/data/harmthoughts/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-17T14:24:44.521386+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-17T14:24:44.521504+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-rtx6000",
+              "command": "ls /root/autodl-tmp/contrastive_trace_safety/src/experiments/",
+              "account": "root"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-17T14:24:44.521656+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"__init__.py\\\\n__pycache__\\\\nbocpd_extract_layer.py\\\\nbocpd_fast.py\\\\nbocpd_fast2.py\\\\nbocpd_poc.py\\\\nbocpd_step1_probes.py\\\\nbocpd_step2_detect.py\\\\nbootstrap_ci.py\\\\nexp_001a_bootstrap_hs_vs_text.py\\\\nexp_001a_extract_r1_32b.py\\\\nexp_001a_probing.py\\\\nexp_001b_bootstrap.py\\\\nexp_001b_extract_qwq.py\\\\nexp_001b_probing.py\\\\nexp_003_cross_transfer.py\\\\nexp_007_window_ablation.py\\\\nexp_bocpd_r1_32b_qwq.py\\\\nexp_c2_control_task.py\\\\nexp_ot7b_bocpd_cusum.py\\\\nexp_ot7b_bocpd_w3.py\\\\nexp_ot7b_continue_p4.py\\\\nexp_ot7b_full_pipeline.py\\\\nexp_ot7b_gru_layer16.py\\\\nexp_ot7b_layer16_bootstrap_full.py\\\\nexp_ot7b_layer16_verify.py\\\\nexp_pathC_two_stage_sim.py\\\\nexp_power_analysis.py\\\\nexp_r3_layer_ablation.py\\\\nexp_r3_layer_ablation_v2.py\\\\nexp_r3_mahalanobis_ot7b.py\\\\nexp_r3_mlp_probe.py\\\\nexp_r3_mlp_probe_v2.py\\\\nexp_r3_preprocess.py\\\\nexp_r3_qwq_layer60_bootstrap.py\\\\nexp_repe_direction_probe.py\\\\nfpr_analysis.py\\\\ngru_multilayer_ablation.py\\\\ngru_per_seed_eval.py\\\\nm001_layer_fix.py\\\\npreprocess_qwq_l60.py\\\\nr1_8b_bootstrap_hs_text.py\\\\nrun_qwq_l60_bootstrap.py\\\\nrun_selectivity_qwq_l2.py\\\\ntext_baseline.py\\\\ntext_window_ablation_r1_8b.py\\\\ntrajguard_mahalanobis.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-17T14:24:44.521798+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-rtx6000",
+              "command": "find /root/autodl-tmp/contrastive_trace_safety/src/experiments/ -name \"*rep*\" -o -name \"*direction*\" -o -name \"*unsup*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-17T14:24:44.521926+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/contrastive_trace_safety/src/experiments/exp_repe_direction_probe.py\\\\n/root/autodl-tmp/contrastive_trace_safety/src/experiments/exp_r3_preprocess.py\\\\n/root/autodl-tmp/contrastive_trace_safety/src/experiments/preprocess_qwq_l60.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-17T14:24:44.522059+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-rtx6000",
+              "command": "cat /root/autodl-tmp/contrastive_trace_safety/src/experiments/exp_repe_direction_probe.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-17T14:24:44.522334+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"RepE Direction Probe for safety commitment point detection.\\\\n\\\\nComputes a safety direction vector as the mean difference between post-CP and\\\\npre-CP hidden states, then projects each step onto this direction to produce\\\\na scalar score. A threshold is optimized on train set (maximize balanced_accuracy).\\\\n\\\\nInput: Per-model hidden state .pt files with step_labels and commitment_point\\\\nOutput: results_repe_direction.json with metrics for all 4 models\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport os, sys, json, glob, warnings\\\\nos.environ[\\\\\\\"TOKENIZERS_PARALLELISM\\\\\\\"] = \\\\\\\"false\\\\\\\"\\\\nos.environ[\\\\\\\"HF_ENDPOINT\\\\\\\"] = \\\\\\\"https://hf-mirror.com\\\\\\\"\\\\nwarnings.filterwarnings(\\\\\\\"ignore\\\\\\\")\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom pathlib import Path\\\\nfrom sklearn.metrics import balanced_accuracy_score, precision_score\\\\n\\\\nsys.path.insert(0, \\\\\\\"/root/autodl-tmp/contrastive_trace_safety\\\\\\\")\\\\nfrom src.config import SEED, DETECTION_WINDOW\\\\n\\\\nPROJECT = Path(\\\\\\\"/root/autodl-tmp/contrastive_trace_safety\\\\\\\")\\\\nK_CONSECUTIVE = DETECTION_WINDOW  # 5\\\\nTHRESHOLD_SEARCH_STEPS = 200\\\\n\\\\nMODEL_CONFIGS = {\\\\n    \\\\\\\"r1-8b\\\\\\\": {\\\\n        \\\\\\\"hs_dir\\\\\\\": PROJECT / \\\\\\\"artifacts\\\\\\\" / \\\\\\\"hidden_states\\\\\\\",\\\\n        \\\\\\\"layer_idx\\\\\\\": 2,  # layer 14 = LAYERS[2] (LAYERS starts at 12)\\\\n        \\\\\\\"hidden_dim\\\\\\\": 4096,\\\\n    },\\\\n    \\\\\\\"r1-32b\\\\\\\": {\\\\n        \\\\\\\"hs_dir\\\\\\\": PROJECT / \\\\\\\"artifacts\\\\\\\" / \\\\\\\"hidden_states_r1_32b\\\\\\\",\\\\n        \\\\\\\"layer_idx\\\\\\\": 10,\\\\n        \\\\\\\"hidden_dim\\\\\\\": 5120,\\\\n    },\\\\n    \\\\\\\"qwq-32b\\\\\\\": {\\\\n        \\\\\\\"hs_dir\\\\\\\": PROJECT / \\\\\\\"artifacts\\\\\\\" / \\\\\\\"hidden_states_qwq_32b\\\\\\\",\\\\n        \\\\\\\"layer_idx\\\\\\\": 2,\\\\n        \\\\\\\"hidden_dim\\\\\\\": 5120,\\\\n    },\\\\n    \\\\\\\"ot-7b\\\\\\\": {\\\\n        \\\\\\\"hs_dir\\\\\\\": PROJECT / \\\\\\\"artifacts\\\\\\\" / \\\\\\\"hidden_states_ot7b\\\\\\\",\\\\n        \\\\\\\"layer_idx\\\\\\\": 16,\\\\n        \\\\\\\"hidden_dim\\\\\\\": 3584,\\\\n    },\\\\n}\\\\n\\\\n\\\\ndef load_traces(hs_dir)\n…[truncated 7368 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-17T14:24:44.522499+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-rtx6000",
+              "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/",
+              "account": "root"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-17T14:24:44.522735+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"008edcde3b3d48dcaee8313c4779f687.pt\\\\n018ad1b2027a488aad4ce925258db0c7.pt\\\\n02361be96b4e4f11af5524a64c34f612.pt\\\\n023c413259524b2187989e61d96e351c.pt\\\\n02fad27f069d4009861ea612984ab65c.pt\\\\n0334a1be1cc84efc853bd93eb5327499.pt\\\\n03a149305aae4ed58d62489ed1f66329.pt\\\\n04e287adbc58415cb184c3db0ac3d8c5.pt\\\\n0516bc55867f4454966f3ecfd6cd85c5.pt\\\\n051a975475d7420d99f686fe89e83691.pt\\\\n05e1498f8ff741718f500af3772def28.pt\\\\n0601b6d225274449bcfcca10af190a9a.pt\\\\n06470bdf141a4267b541332987c6f695.pt\\\\n06d85d8b941f4a4e97dc7f33c81c34c4.pt\\\\n0828a2af61e846f1aea6a834017ec7be.pt\\\\n0901d657f92b441e8cac21db87d066e5.pt\\\\n0a31d31d974b410eb923f33cfbf6e6b9.pt\\\\n0c9c5e6cf60849bb925d007dd2b061fc.pt\\\\n0d13aa7b2f374a3fa367bdea42493ed5.pt\\\\n0d19422cc82743568f671961b534c215.pt\\\\n0d8b146a9bce48f7a8083f6ed962664e.pt\\\\n0daf036448c04433859bdf6758495bc3.pt\\\\n0f35040637024040b7944abd48472d22.pt\\\\n0f6bdcb1133f442ba26e11047e5351c6.pt\\\\n0f860c71503e43c985eafc0142546731.pt\\\\n10a2a6c355d4408ab97b759b490a6a8b.pt\\\\n10a3ace02006485ca641aaa88684b5dd.pt\\\\n10e4c756140247b4af10559f16d8f876.pt\\\\n114499174dfa48daa5e053c629c83a10.pt\\\\n116042e8dc164c17b02d5670b015f807.pt\\\\n11a094cbf15549bca819c57910c2a2ff.pt\\\\n11c4c8713262422eb211ec189c3715ab.pt\\\\n11f61793e9b449e799abe7ce14cbcf6c.pt\\\\n1249b76a00da42b8be3aa81d823cd820.pt\\\\n130e2b41b4bf43f883f087b5036afe85.pt\\\\n13258d4ff6e04f67b9510328b89251ea.pt\\\\n1362fe58c432487aac432b576babe0c2.pt\\\\n13b5b2b441534e818b1a2d2f577cb99c.pt\\\\n153e58ce7b554163a43030ecfa47a304.pt\\\\n1582380f856b429490eca59328ce551d.pt\\\\n15e5e40e8ddc475594dce89bc52c9056.pt\\\\n16015e85a86d4ad6aae05eda39472b0a.pt\\\\n16d9dd7bb2484ec19ed11d44fb46af7f.pt\\\\n177c234e76104e7b9f2858bdd71f4963.pt\\\\n17a5d38bd028469aad6f4cb0304c7e01.pt\\\\n17d1d68121644dec87c3bb936abfb615.pt\\\\n181e5d60e4f1457fb60796052713110b.pt\\\\n18ca23538f9d4c3faa4cb9c4e2ec4c2d.pt\\\\n196b722aadd6473f9ce6795294f9a88a.pt\\\\n1a27d43f250e4201bb0099ae23551974.pt\\\\n1a2bca42efbd45458fe50b6a6b44242f.pt\\\\n1af63c\n…[truncated 6647 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-17T14:24:44.523032+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/exp_r3_ccs_probe.py",
+              "content": "\"\"\"CCS (Contrast Consistent Search) Unsupervised Probe — Burns et al. ICLR 2023.\n\nTrains a linear probe with consistency + confidence losses only (no labels).\nPairs: pre-CP hidden states (x+) vs post-CP hidden states (x-).\n\"\"\"\n\nimport os, sys, json, glob, warnings\nos.environ[\"TOKENIZERS_PARALLELISM\"] = \"false\"\nos.environ[\"HF_ENDPOINT\"] = \"https://hf-mirror.com\"\nwarnings.filterwarnings(\"ignore\")\n\nimport numpy as np\nimport torch\nimport torch.nn as nn\nfrom pathlib import Path\nfrom sklearn.metrics import balanced_accuracy_score, precision_score\n\nsys.path.insert(0, \"/root/autodl-tmp/contrastive_trace_safety\")\nfrom src.config import SEED, DETECTION_WINDOW\n\nPROJECT = Path(\"/root/autodl-tmp/contrastive_trace_safety\")\nK_CONSECUTIVE = DETECTION_WINDOW\nN_SEEDS = 10\nCCS_LR = 1e-3\nCCS_STEPS = 1000\nCCS_WEIGHT_DECAY = 0.01\n\nMODEL_CONFIGS = {\n    \"r1-8b\": {\n        \"hs_dir\": PROJECT / \"artifacts\" / \"hidden_states\",\n        \"layer_idx\": 2,\n        \"hidden_dim\": 4096,\n    },\n    \"r1-32b\": {\n        \"hs_dir\": PROJECT / \"artifacts\" / \"hidden_states_r1_32b\",\n        \"layer_idx\": 10,\n        \"hidden_dim\": 5120,\n    },\n    \"qwq-32b\": {\n        \"hs_dir\": PROJECT / \"artifacts\" / \"hidden_states_qwq_32b\",\n        \"layer_idx\": 2,\n        \"hidden_dim\": 5120,\n    },\n    \"ot-7b\": {\n        \"hs_dir\": PROJECT / \"artifacts\" / \"hidden_states_ot7b\",\n        \"layer_idx\": 16,\n        \"hidden_dim\": 3584,\n    },\n}\n\n\ndef load_traces(hs_dir):\n    traces = []\n    for pt_file in sorted(glob.glob(str(hs_dir / \"*.pt\"))):\n        data = torch.load(pt_file, map_location=\"cpu\", weights_only=False)\n        if data.get(\"step_labels\") is None or data.get(\"commitment_point\") is None:\n            continue\n        traces.append(data)\n    return traces\n\n\ndef split_traces(traces, seed=SEED):\n    rng = np.random.default_rng(seed)\n    indices = rng.permutation(len(traces))\n    n_train = int(len(traces) * 0.6)\n    n_val = int(len(traces) * 0.2)\n    return (\n        [traces[i] for i in indices[:n_train]],\n        [traces[i] for i in indices[n_train:n_train + n_val]],\n        [traces[i] for i in indices[n_train + n_val:]],\n    )\n\n\nclass CCSProbe(nn.Module):\n    def __init__(self, input_dim):\n        super().__init__()\n        self.linear = nn.Linear(input_dim, 1)\n\n    def forward(self, x):\n        return torch.sigmoid(self.linear(x))\n\n\ndef collect_pairs(traces, layer_idx):\n    pre_list, post_list = [], []\n    for t in traces:\n        hs = t[\"hidden_states\"][:, layer_idx, :].float()\n        labels = np.array(t[\"step_labels\"])\n        n = min(hs.shape[0], len(labels))\n        hs, labels = hs[:n], labels[:n]\n        pre_list.append(hs[labels == 0])\n        post_list.append(hs[labels == 1])\n    return torch.cat(pre_list, dim=0), torch.cat(post_list, dim=0)\n\n\ndef normalize_hs(pre_hs, post_hs):\n    all_hs = torch.cat([pre_hs, post_hs], dim=0)\n    mean = all_hs.mean(dim=0)\n    std = all_hs.std(dim=0) + 1e-8\n    return (pre_hs - mean) / std, (post_hs - mean) / std, mean, std\n\n\ndef train_ccs_single(pre_norm, post_norm, input_dim, seed):\n    torch.manual_seed(seed)\n    probe = CCSProbe(input_dim)\n    optimizer = torch.optim.AdamW(probe.parameters(), lr=CCS_LR,\n                                  weight_decay=CCS_WEIGHT_DECAY)\n\n    n_pre, n_post = pre_norm.shape[0], post_norm.shape[0]\n    n_pairs = min(n_pre, n_post)\n    best_loss, best_state = float(\"inf\"), None\n\n    for step in range(CCS_STEPS):\n        pre_idx = torch.randperm(n_pre)[:n_pairs]\n        post_idx = torch.randperm(n_post)[:n_pairs]\n        x_pre, x_post = pre_norm[pre_idx], post_norm[post_idx]\n\n        p_pre = probe(x_pre)\n        p_post = probe(x_post)\n\n        consistency = ((p_pre + p_post - 1) ** 2).mean()\n        confidence = (torch.min(p_pre, p_post) ** 2).mean()\n        loss = consistency + confidence\n\n        optimizer.zero_grad()\n        loss.backward()\n        optimizer.step()\n\n        if loss.item() < best_loss:\n            best_loss = loss.item()\n            best_state = {k: v.clone() for k, v in probe.state_dict().items()}\n\n    if best_state:\n        probe.load_state_dict(best_state)\n    return probe, best_loss\n\n\ndef train_ccs(train_traces, layer_idx, input_dim):\n    pre_hs, post_hs = collect_pairs(train_traces, layer_idx)\n    print(f\"  Pairs: {pre_hs.shape[0]} pre-CP, {post_hs.shape[0]} post-CP steps\")\n\n    pre_norm, post_norm, mean, std = normalize_hs(pre_hs, post_hs)\n\n    best_probe, best_loss = None, float(\"inf\")\n    for s in range(N_SEEDS):\n        probe, loss = train_ccs_single(pre_norm, post_norm, input_dim, seed=SEED + s)\n        print(f\"    Seed {s}: loss={loss:.6f}\")\n        if loss < best_loss:\n            best_loss = loss\n            best_probe = probe\n\n    print(f\"  Best CCS loss: {best_loss:.6f}\")\n    return best_probe, mean, std\n\n\ndef predict_ccs(probe, traces, layer_idx, mean, std):\n    results = []\n    for t in traces:\n        hs = t[\"hidden_states\"][:, layer_idx, :].float()\n        labels = np.array(t[\"step_labels\"])\n        n = min(hs.shape[0], len(labels))\n        hs, labels = hs[:n], labels[:n]\n\n        hs_norm = (hs - mean) / (std + 1e-8)\n        with torch.no_grad():\n            probs = probe(hs_norm).squeeze(-1).numpy()\n\n        results.append({\n            \"trace_id\": t[\"trace_id\"],\n            \"probs\": probs,\n            \"labels\": labels,\n            \"commitment_point\": t[\"commitment_point\"],\n        })\n    return results\n\n\ndef determine_polarity(train_results):\n    all_probs = np.concatenate([r[\"probs\"] for r in train_results])\n    all_labels = np.concatenate([r[\"labels\"] for r in train_results])\n    preds = (all_probs > 0.5).astype(int)\n    bal_acc = balanced_accuracy_score(all_labels, preds)\n    return bal_acc < 0.5\n\n\ndef first_crossing_point(probs, threshold=0.5, k=K_CONSECUTIVE):\n    n = len(probs)\n    if n < k:\n        return None\n    for i in range(n - k + 1):\n        if all(probs[i:i + k] > threshold):\n            return i\n    return None\n\n\ndef evaluate(results, flip=False):\n    all_probs, all_labels = [], []\n    pre_cp_fps, pre_cp_total = 0, 0\n    detected = 0\n    leads = []\n\n    for r in results:\n        probs = 1 - r[\"probs\"] if flip else r[\"probs\"]\n        labels = r[\"labels\"]\n        cp = r[\"commitment_point\"]\n\n        all_probs.append(probs)\n        all_labels.append(labels)\n\n        pre_preds = (probs[:cp] > 0.5).astype(int)\n        pre_cp_fps += pre_preds.sum()\n        pre_cp_total += len(pre_preds)\n\n        fcp = first_crossing_point(probs)\n        if fcp is not None:\n            detected += 1\n            leads.append(cp - fcp)\n\n    all_probs = np.concatenate(all_probs)\n    all_labels = np.concatenate(all_labels)\n    preds = (all_probs > 0.5).astype(int)\n\n    return {\n        \"bal_acc\": round(float(balanced_accuracy_score(all_labels, preds)), 4),\n        \"precision\": round(float(precision_score(all_labels, preds, zero_division=0)), 4),\n        \"pre_cp_fpr\": round(float(pre_cp_fps / max(pre_cp_total, 1)), 4),\n        \"coverage\": round(float(detected / max(len(results), 1)), 4),\n        \"lead_mean\": round(float(np.mean(leads)), 1) if leads else None,\n        \"n_detected\": detected,\n        \"n_traces\": len(results),\n    }\n\n\ndef run_model(model_name, config):\n    hs_dir = config[\"hs_dir\"]\n    if not hs_dir.exists():\n        print(f\"\\n  {model_name}: hidden states dir not found, skipping\")\n        return None\n\n    print(f\"\\n{'='*60}\")\n    print(f\"  {model_name} (layer_idx={config['layer_idx']}, dim={config['hidden_dim']})\")\n    print(f\"{'='*60}\")\n\n    traces = load_traces(hs_dir)\n    print(f\"  Loaded {len(traces)} jailbreak traces with CP\")\n    if len(traces) < 10:\n        print(f\"  Too few traces, skipping\")\n        return None\n\n    train, val, test = split_traces(traces)\n    print(f\"  Split: train={len(train)}, val={len(val)}, test={len(test)}\")\n\n    probe, mean, std = train_ccs(train, config[\"layer_idx\"], config[\"hidden_dim\"])\n\n    train_results = predict_ccs(probe, train, config[\"layer_idx\"], mean, std)\n    flip = determine_polarity(train_results)\n    print(f\"  Polarity flip: {flip}\")\n\n    train_metrics = evaluate(train_results, flip=flip)\n    print(f\"  Train bal_acc: {train_metrics['bal_acc']:.4f}\")\n\n    test_results = predict_ccs(probe, test, config[\"layer_idx\"], mean, std)\n    metrics = evaluate(test_results, flip=flip)\n    metrics[\"flip\"] = flip\n    metrics[\"train_bal_acc\"] = train_metrics[\"bal_acc\"]\n\n    print(f\"\\n  TEST RESULTS:\")\n    print(f\"    bal_acc:    {metrics['bal_acc']:.4f}\")\n    print(f\"    precision:  {metrics['precision']:.4f}\")\n    print(f\"    pre_cp_fpr: {metrics['pre_cp_fpr']:.4f}\")\n    print(f\"    coverage:   {metrics['coverage']:.4f}\")\n    print(f\"    lead_mean:  {metrics['lead_mean']}\")\n\n    return metrics\n\n\ndef main():\n    print(\"=\" * 60)\n    print(\"CCS UNSUPERVISED PROBE: Burns et al. ICLR 2023\")\n    print(\"=\" * 60)\n    print(f\"Seed: {SEED}, N_seeds: {N_SEEDS}, Steps: {CCS_STEPS}\")\n    print(f\"Pair construction: pre-CP vs post-CP (Method A)\")\n\n    all_results = {}\n    for model_name, config in MODEL_CONFIGS.items():\n        result = run_model(model_name, config)\n        if result is not None:\n            all_results[model_name] = result\n\n    out_dir = PROJECT / \"artifacts\" / \"exp_r3_ccs_probe\"\n    out_dir.mkdir(parents=True, exist_ok=True)\n    out_path = out_dir / \"results.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(all_results, f, indent=2)\n    print(f\"\\nResults saved to: {out_path}\")\n\n    lr_ref = {\n        \"r1-8b\": {\"bal_acc\": 0.817, \"precision\": 0.693, \"pre_cp_fpr\": 0.097, \"lead_mean\": -2.0},\n    }\n    repe_ref = {\n        \"r1-8b\": {\"bal_acc\": 0.749, \"precision\": 0.516, \"pre_cp_fpr\": 0.226, \"lead_mean\": 9.7},\n    }\n\n    print(f\"\\n{'='*80}\")\n    print(\"COMPARISON: CCS vs RepE vs LR Probe (R1-8B)\")\n    print(f\"{'='*80}\")\n    print(f\"{'Method':<15} {'Type':<14} {'bal_acc':>8} {'precision':>10} {'FPR':>8} {'lead':>8}\")\n    print(\"-\" * 65)\n\n    if \"r1-8b\" in lr_ref:\n        d = lr_ref[\"r1-8b\"]\n        lead_s = f\"{d['lead_mean']:+.1f}\" if d[\"lead_mean\"] is not None else \"N/A\"\n        print(f\"{'LR probe':<15} {'supervised':<14} {d['bal_acc']:>8.3f} {d['precision']:>10.3f} {d['pre_cp_fpr']:>8.3f} {lead_s:>8}\")\n\n    if \"r1-8b\" in repe_ref:\n        d = repe_ref[\"r1-8b\"]\n        lead_s = f\"{d['lead_mean']:+.1f}\" if d[\"lead_mean\"] is not None else \"N/A\"\n        print(f\"{'RepE':<15} {'unsupervised':<14} {d['bal_acc']:>8.3f} {d['precision']:>10.3f} {d['pre_cp_fpr']:>8.3f} {lead_s:>8}\")\n\n    if \"r1-8b\" in all_results:\n        d = all_results[\"r1-8b\"]\n        lead_s = f\"{d['lead_mean']:+.1f}\" if d[\"lead_mean\"] is not None else \"N/A\"\n        print(f\"{'CCS':<15} {'unsupervised':<14} {d['bal_acc']:>8.3f} {d['precision']:>10.3f} {d['pre_cp_fpr']:>8.3f} {lead_s:>8}\")\n\n    print(\"=\" * 65)\n\n    if len(all_results) > 1:\n        print(f\"\\n{'='*80}\")\n        print(\"ALL MODELS: CCS Results\")\n        print(f\"{'='*80}\")\n        print(f\"{'Model':<10} {'bal_acc':>8} {'precision':>10} {'pre_cp_fpr':>11} {'coverage':>9} {'lead_mean':>10}\")\n        print(\"-\" * 60)\n        for m, r in all_results.items():\n            lead_s = f\"{r['lead_mean']:+.1f}\" if r['lead_mean'] is not None else \"N/A\"\n            print(f\"{m:<10} {r['bal_acc']:>8.4f} {r['precision']:>10.4f} {r['pre_cp_fpr']:>11.4f} {r['coverage']:>9.4f} {lead_s:>10}\")\n        print(\"=\" * 60)\n\n    sys.stdout.flush()\n\n\nif __name__ == \"__main__\":\n    main()\n"
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-17T14:24:44.523347+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/exp_r3_ccs_probe.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-17T14:24:44.523548+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-rtx6000",
+              "command": "cat > /root/autodl-tmp/contrastive_trace_safety/src/experiments/exp_r3_ccs_probe.py << 'SCRIPT_EOF'\n\"\"\"CCS (Contrast Consistent Search) Unsupervised Probe — Burns et al. ICLR 2023.\n\nTrains a linear probe with consistency + confidence losses only (no labels).\nPairs: pre-CP hidden states (x+) vs post-CP hidden states (x-).\n\"\"\"\n\nimport os, sys, json, glob, warnings\nos.environ[\"TOKENIZERS_PARALLELISM\"] = \"false\"\nos.environ[\"HF_ENDPOINT\"] = \"https://hf-mirror.com\"\nwarnings.filterwarnings(\"ignore\")\n\nimport numpy as np\nimport torch\nimport torch.nn as nn\nfrom pathlib import Path\nfrom sklearn.metrics import balanced_accuracy_score, precision_score\n\nsys.path.insert(0, \"/root/autodl-tmp/contrastive_trace_safety\")\nfrom src.config import SEED, DETECTION_WINDOW\n\nPROJECT = Path(\"/root/autodl-tmp/contrastive_trace_safety\")\nK_CONSECUTIVE = DETECTION_WINDOW\nN_SEEDS = 10\nCCS_LR = 1e-3\nCCS_STEPS = 1000\nCCS_WEIGHT_DECAY = 0.01\n\nMODEL_CONFIGS = {\n    \"r1-8b\": {\n        \"hs_dir\": PROJECT / \"artifacts\" / \"hidden_states\",\n        \"layer_idx\": 2,\n        \"hidden_dim\": 4096,\n    },\n    \"r1-32b\": {\n        \"hs_dir\": PROJECT / \"artifacts\" / \"hidden_states_r1_32b\",\n        \"layer_idx\": 10,\n        \"hidden_dim\": 5120,\n    },\n    \"qwq-32b\": {\n        \"hs_dir\": PROJECT / \"artifacts\" / \"hidden_states_qwq_32b\",\n        \"layer_idx\": 2,\n        \"hidden_dim\": 5120,\n    },\n    \"ot-7b\": {\n        \"hs_dir\": PROJECT / \"artifacts\" / \"hidden_states_ot7b\",\n        \"layer_idx\": 16,\n        \"hidden_dim\": 3584,\n    },\n}\n\n\ndef load_traces(hs_dir):\n    traces = []\n    for pt_file in sorted(glob.glob(str(hs_dir / \"*.pt\"))):\n        data = torch.load(pt_file, map_location=\"cpu\", weights_only=False)\n        if data.get(\"step_labels\") is None or data.get(\"commitment_point\") is None:\n            continue\n        traces.append(data)\n    return traces\n\n\ndef split_traces(traces, seed=SEED):\n    rng = np.random.default_rng(seed)\n    indices = rng.permutation(len(traces))\n    n_train = int(len(traces) * 0.6)\n    n_val = int(len(traces) * 0.2)\n    return (\n        [traces[i] for i in indices[:n_train]],\n        [traces[i] for i in indices[n_train:n_train + n_val]],\n        [traces[i] for i in indices[n_train + n_val:]],\n    )\n\n\nclass CCSProbe(nn.Module):\n    def __init__(self, input_dim):\n        super().__init__()\n        self.linear = nn.Linear(input_dim, 1)\n\n    def forward(self, x):\n        return torch.sigmoid(self.linear(x))\n\n\ndef collect_pairs(traces, layer_idx):\n    pre_list, post_list = [], []\n    for t in traces:\n        hs = t[\"hidden_states\"][:, layer_idx, :].float()\n        labels = np.array(t[\"step_labels\"])\n        n = min(hs.shape[0], len(labels))\n        hs, labels = hs[:n], labels[:n]\n        pre_list.append(hs[labels == 0])\n        post_list.append(hs[labels == 1])\n    return torch.cat(pre_list, dim=0), torch.cat(post_list, dim=0)\n\n\ndef normalize_hs(pre_hs, post_hs):\n    all_hs = torch.cat([pre_hs, post_hs], dim=0)\n    mean = all_hs.mean(dim=0)\n    std = all_hs.std(dim=0) + 1e-8\n    return (pre_hs - mean) / std, (post_hs - mean) / std, mean, std\n\n\ndef train_ccs_single(pre_norm, post_norm, input_dim, seed):\n    torch.manual_seed(seed)\n    probe = CCSProbe(input_dim)\n    optimizer = torch.optim.AdamW(probe.parameters(), lr=CCS_LR,\n                                  weight_decay=CCS_WEIGHT_DECAY)\n\n    n_pre, n_post = pre_norm.shape[0], post_norm.shape[0]\n    n_pairs = min(n_pre, n_post)\n    best_loss, best_state = float(\"inf\"), None\n\n    for step in range(CCS_STEPS):\n        pre_idx = torch.randperm(n_pre)[:n_pairs]\n        post_idx = torch.randperm(n_post)[:n_pairs]\n        x_pre, x_post = pre_norm[pre_idx], post_norm[post_idx]\n\n        p_pre = probe(x_pre)\n        p_post = probe(x_post)\n\n        consistency = ((p_pre + p_post - 1) ** 2).mean()\n        confidence = (torch.min(p_pre, p_post) ** 2).mean()\n        loss = consistency + confidence\n\n        optimizer.zero_grad()\n        loss.backward()\n        optimizer.step()\n\n        if loss.item() < best_loss:\n            best_loss = loss.item()\n            best_state = {k: v.clone() for k, v in probe.state_dict().items()}\n\n    if best_state:\n        probe.load_state_dict(best_state)\n    return probe, best_loss\n\n\ndef train_ccs(train_traces, layer_idx, input_dim):\n    pre_hs, post_hs = collect_pairs(train_traces, layer_idx)\n    print(f\"  Pairs: {pre_hs.shape[0]} pre-CP, {post_hs.shape[0]} post-CP steps\")\n\n    pre_norm, post_norm, mean, std = normalize_hs(pre_hs, post_hs)\n\n    best_probe, best_loss = None, float(\"inf\")\n    for s in range(N_SEEDS):\n        probe, loss = train_ccs_single(pre_norm, post_norm, input_dim, seed=SEED + s)\n        print(f\"    Seed {s}: loss={loss:.6f}\")\n        if loss < best_loss:\n            best_loss = loss\n            best_probe = probe\n\n    print(f\"  Best CCS loss: {best_loss:.6f}\")\n    return best_probe, mean, std\n\n\ndef predict_ccs(probe, traces, layer_idx, mean, std):\n    results = []\n    for t in traces:\n        hs = t[\"hidden_states\"][:, layer_idx, :].float()\n        labels = np.array(t[\"step_labels\"])\n        n = min(hs.shape[0], len(labels))\n        hs, labels = hs[:n], labels[:n]\n\n        hs_norm = (hs - mean) / (std + 1e-8)\n        with torch.no_grad():\n            probs = probe(hs_norm).squeeze(-1).numpy()\n\n        results.append({\n            \"trace_id\": t[\"trace_id\"],\n            \"probs\": probs,\n            \"labels\": labels,\n            \"commitment_point\": t[\"commitment_point\"],\n        })\n    return results\n\n\ndef determine_polarity(train_results):\n    all_probs = np.concatenate([r[\"probs\"] for r in train_results])\n    all_labels = np.concatenate([r[\"labels\"] for r in train_results])\n    preds = (all_probs > 0.5).astype(int)\n    bal_acc = balanced_accuracy_score(all_labels, preds)\n    return bal_acc < 0.5\n\n\ndef first_crossing_point(probs, threshold=0.5, k=K_CONSECUTIVE):\n    n = len(probs)\n    if n < k:\n        return None\n    for i in range(n - k + 1):\n        if all(probs[i:i + k] > threshold):\n            return i\n    return None\n\n\ndef evaluate(results, flip=False):\n    all_probs, all_labels = [], []\n    pre_cp_fps, pre_cp_total = 0, 0\n    detected = 0\n    leads = []\n\n    for r in results:\n        probs = 1 - r[\"probs\"] if flip else r[\"probs\"]\n        labels = r[\"labels\"]\n        cp = r[\"commitment_point\"]\n\n        all_probs.append(probs)\n        all_labels.append(labels)\n\n        pre_preds = (probs[:cp] > 0.5).astype(int)\n        pre_cp_fps += pre_preds.sum()\n        pre_cp_total += len(pre_preds)\n\n        fcp = first_crossing_point(probs)\n        if fcp is not None:\n            detected += 1\n            leads.append(cp - fcp)\n\n    all_probs = np.concatenate(all_probs)\n    all_labels = np.concatenate(all_labels)\n    preds = (all_probs > 0.5).astype(int)\n\n    return {\n        \"bal_acc\": round(float(balanced_accuracy_score(all_labels, preds)), 4),\n        \"precision\": round(float(precision_score(all_labels, preds, zero_division=0)), 4),\n        \"pre_cp_fpr\": round(float(pre_cp_fps / max(pre_cp_total, 1)), 4),\n        \"coverage\": round(float(detected / max(len(results), 1)), 4),\n        \"lead_mean\": round(float(np.mean(leads)), 1) if leads else None,\n        \"n_detected\": detected,\n        \"n_traces\": len(results),\n    }\n\n\ndef run_model(model_name, config):\n    hs_dir = config[\"hs_dir\"]\n    if not hs_dir.exists():\n        print(f\"\\n  {model_name}: hidden states dir not found, skipping\")\n        return None\n\n    print(f\"\\n{'='*60}\")\n    print(f\"  {model_name} (layer_idx={config['layer_idx']}, dim={config['hidden_dim']})\")\n    print(f\"{'='*60}\")\n\n    traces = load_traces(hs_dir)\n    print(f\"  Loaded {len(traces)} jailbreak traces with CP\")\n    if len(traces) < 10:\n        print(f\"  Too few traces, skipping\")\n        return None\n\n    train, val, test = split_traces(traces)\n    print(f\"  Split: train={len(train)}, val={len(val)}, test={len(test)}\")\n\n    probe, mean, std = train_ccs(train, config[\"layer_idx\"], config[\"hidden_dim\"])\n\n    train_results = predict_ccs(probe, train, config[\"layer_idx\"], mean, std)\n    flip = determine_polarity(train_results)\n    print(f\"  Polarity flip: {flip}\")\n\n    train_metrics = evaluate(train_results, flip=flip)\n    print(f\"  Train bal_acc: {train_metrics['bal_acc']:.4f}\")\n\n    test_results = predict_ccs(probe, test, config[\"layer_idx\"], mean, std)\n    metrics = evaluate(test_results, flip=flip)\n    metrics[\"flip\"] = flip\n    metrics[\"train_bal_acc\"] = train_metrics[\"bal_acc\"]\n\n    print(f\"\\n  TEST RESULTS:\")\n    print(f\"    bal_acc:    {metrics['bal_acc']:.4f}\")\n    print(f\"    precision:  {metrics['precision']:.4f}\")\n    print(f\"    pre_cp_fpr: {metrics['pre_cp_fpr']:.4f}\")\n    print(f\"    coverage:   {metrics['coverage']:.4f}\")\n    print(f\"    lead_mean:  {metrics['lead_mean']}\")\n\n    return metrics\n\n\ndef main():\n    print(\"=\" * 60)\n    print(\"CCS UNSUPERVISED PROBE: Burns et al. ICLR 2023\")\n    print(\"=\" * 60)\n    print(f\"Seed: {SEED}, N_seeds: {N_SEEDS}, Steps: {CCS_STEPS}\")\n    print(f\"Pair construction: pre-CP vs post-CP (Method A)\")\n\n    all_results = {}\n    for model_name, config in MODEL_CONFIGS.items():\n        result = run_model(model_name, config)\n        if result is not None:\n            all_results[model_name] = result\n\n    out_dir = PROJECT / \"artifacts\" / \"exp_r3_ccs_probe\"\n    out_dir.mkdir(parents=True, exist_ok=True)\n    out_path = out_dir / \"results.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(all_results, f, indent=2)\n    print(f\"\\nResults saved to: {out_path}\")\n\n    lr_ref = {\n        \"r1-8b\": {\"bal_acc\": 0.817, \"precision\": 0.693, \"pre_cp_fpr\": 0.097, \"lead_mean\": -2.0},\n    }\n    repe_ref = {\n        \"r1-8b\": {\"bal_acc\": 0.749, \"precision\": 0.516, \"pre_cp_fpr\": 0.226, \"lead_mean\": 9.7},\n    }\n\n    print(f\"\\n{'='*80}\")\n    print(\"COMPARISON: CCS vs RepE vs LR Probe (R1-8B)\")\n    print(f\"{'='*80}\")\n    print(f\"{'Method':<15} {'Type':<14} {'bal_acc':>8} {'precision':>10} {'FPR':>8} {'lead':>8}\")\n    print(\"-\" * 65)\n\n    if \"r1-8b\" in lr_ref:\n        d = lr_ref[\"r1-8b\"]\n        lead_s = f\"{d['lead_mean']:+.1f}\" if d[\"lead_mean\"] is not None else \"N/A\"\n        print(f\"{'LR probe':<15} {'supervised':<14} {d['bal_acc']:>8.3f} {d['precision']:>10.3f} {d['pre_cp_fpr']:>8.3f} {lead_s:>8}\")\n\n    if \"r1-8b\" in repe_ref:\n        d = repe_ref[\"r1-8b\"]\n        lead_s = f\"{d['lead_mean']:+.1f}\" if d[\"lead_mean\"] is not None else \"N/A\"\n        print(f\"{'RepE':<15} {'unsupervised':<14} {d['bal_acc']:>8.3f} {d['precision']:>10.3f} {d['pre_cp_fpr']:>8.3f} {lead_s:>8}\")\n\n    if \"r1-8b\" in all_results:\n        d = all_results[\"r1-8b\"]\n        lead_s = f\"{d['lead_mean']:+.1f}\" if d[\"lead_mean\"] is not None else \"N/A\"\n        print(f\"{'CCS':<15} {'unsupervised':<14} {d['bal_acc']:>8.3f} {d['precision']:>10.3f} {d['pre_cp_fpr']:>8.3f} {lead_s:>8}\")\n\n    print(\"=\" * 65)\n\n    if len(all_results) > 1:\n        print(f\"\\n{'='*80}\")\n        print(\"ALL MODELS: CCS Results\")\n        print(f\"{'='*80}\")\n        print(f\"{'Model':<10} {'bal_acc':>8} {'precision':>10} {'pre_cp_fpr':>11} {'coverage':>9} {'lead_mean':>10}\")\n        print(\"-\" * 60)\n        for m, r in all_results.items():\n            lead_s = f\"{r['lead_mean']:+.1f}\" if r['lead_mean'] is not None else \"N/A\"\n            print(f\"{m:<10} {r['bal_acc']:>8.4f} {r['precision']:>10.4f} {r['pre_cp_fpr']:>11.4f} {r['coverage']:>9.4f} {lead_s:>10}\")\n        print(\"=\" * 60)\n\n    sys.stdout.flush()\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF\necho \"Script uploaded successfully\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-17T14:24:44.523839+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script uploaded successfully\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-17T14:24:44.523978+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-rtx6000",
+              "command": "source /root/miniconda3/bin/activate && cd /root/autodl-tmp/contrastive_trace_safety && python -u src/experiments/exp_r3_ccs_probe.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-17T14:24:44.524121+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'source /root/miniconda3/bin/activate && cd /root/autodl-tmp/contrastive_trace_safety && python -u src/experiments/exp_r3_ccs_probe.py'\\\\n\\\\nStdout:\\\\n\\\\n============================================================\\\\n  r1-8b (layer_idx=2, dim=4096)\\\\n============================================================\\\\n  Loaded 209 jailbreak traces with CP\\\\n  Split: train=125, val=41, test=43\\\\n  Pairs: 4348 pre-CP, 1426 post-CP steps\\\\n    Seed 0: loss=0.012494\\\\n    Seed 1: loss=0.011198\\\\n    Seed 2: loss=0.009346\\\\n    Seed 3: loss=0.011169\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-17T14:24:44.524305+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-rtx6000",
+              "command": "source /root/miniconda3/bin/activate && cd /root/autodl-tmp/contrastive_trace_safety && python -u -c \"\nimport os, sys, json, glob, warnings\nos.environ['TOKENIZERS_PARALLELISM'] = 'false'\nwarnings.filterwarnings('ignore')\nimport numpy as np\nimport torch\nimport torch.nn as nn\nfrom pathlib import Path\nfrom sklearn.metrics import balanced_accuracy_score, precision_score\nsys.path.insert(0, '/root/autodl-tmp/contrastive_trace_safety')\nfrom src.config import SEED, DETECTION_WINDOW\n\nPROJECT = Path('/root/autodl-tmp/contrastive_trace_safety')\nK = DETECTION_WINDOW\nN_SEEDS = 5\nSTEPS = 500\n\ndef load_traces(hs_dir):\n    traces = []\n    for f in sorted(glob.glob(str(hs_dir / '*.pt'))):\n        d = torch.load(f, map_location='cpu', weights_only=False)\n        if d.get('step_labels') is not None and d.get('commitment_point') is not None:\n            traces.append(d)\n    return traces\n\ndef split(traces, seed=SEED):\n    rng = np.random.default_rng(seed)\n    idx = rng.permutation(len(traces))\n    n1, n2 = int(len(traces)*0.6), int(len(traces)*0.2)\n    return [traces[i] for i in idx[:n1]], [traces[i] for i in idx[n1:n1+n2]], [traces[i] for i in idx[n1+n2:]]\n\nclass CCS(nn.Module):\n    def __init__(self, d):\n        super().__init__()\n        self.linear = nn.Linear(d, 1)\n    def forward(self, x):\n        return torch.sigmoid(self.linear(x))\n\ndef collect(traces, li):\n    pre, post = [], []\n    for t in traces:\n        hs = t['hidden_states'][:, li, :].float()\n        lb = np.array(t['step_labels'])\n        n = min(hs.shape[0], len(lb))\n        hs, lb = hs[:n], lb[:n]\n        pre.append(hs[lb==0]); post.append(hs[lb==1])\n    return torch.cat(pre), torch.cat(post)\n\nhs_dir = PROJECT / 'artifacts' / 'hidden_states'\ntraces = load_traces(hs_dir)\ntrain, val, test = split(traces)\nprint(f'Traces: {len(traces)} total, train={len(train)}, test={len(test)}')\n\npre, post = collect(train, 2)\nprint(f'Steps: {pre.shape[0]} pre-CP, {post.shape[0]} post-CP')\nallh = torch.cat([pre, post])\nmean, std = allh.mean(0), allh.std(0) + 1e-8\npre_n, post_n = (pre - mean)/std, (post - mean)/std\n\nbest_probe, best_loss = None, float('inf')\nfor s in range(N_SEEDS):\n    torch.manual_seed(SEED + s)\n    probe = CCS(4096)\n    opt = torch.optim.AdamW(probe.parameters(), lr=1e-3, weight_decay=0.01)\n    np_, nq = pre_n.shape[0], post_n.shape[0]\n    nm = min(np_, nq)\n    bl, bs = float('inf'), None\n    for step in range(STEPS):\n        pi, qi = torch.randperm(np_)[:nm], torch.randperm(nq)[:nm]\n        pp, pq = probe(pre_n[pi]), probe(post_n[qi])\n        con = ((pp + pq - 1)**2).mean()\n        conf = (torch.min(pp, pq)**2).mean()\n        loss = con + conf\n        opt.zero_grad(); loss.backward(); opt.step()\n        if loss.item() < bl:\n            bl = loss.item()\n            bs = {k: v.clone() for k, v in probe.state_dict().items()}\n    probe.load_state_dict(bs)\n    print(f'  Seed {s}: loss={bl:.6f}')\n    if bl < best_loss:\n        best_loss = bl; best_probe = probe\n\nprint(f'Best loss: {best_loss:.6f}')\n\ndef predict(probe, traces, li, mean, std):\n    res = []\n    for t in traces:\n        hs = t['hidden_states'][:, li, :].float()\n        lb = np.array(t['step_labels'])\n        n = min(hs.shape[0], len(lb))\n        hs, lb = hs[:n], lb[:n]\n        with torch.no_grad():\n            p = probe((hs - mean)/(std + 1e-8)).squeeze(-1).numpy()\n        res.append({'probs': p, 'labels': lb, 'cp': t['commitment_point'], 'tid': t['trace_id']})\n    return res\n\ndef fcp(probs, k=K):\n    n = len(probs)\n    if n < k: return None\n    for i in range(n - k + 1):\n        if all(probs[i:i+k] > 0.5): return i\n    return None\n\ndef ev(res, flip=False):\n    ap, al, fps, fpt, det, leads = [], [], 0, 0, 0, []\n    for r in res:\n        p = 1 - r['probs'] if flip else r['probs']\n        lb, cp = r['labels'], r['cp']\n        ap.append(p); al.append(lb)\n        fp = (p[:cp] > 0.5).sum(); fps += fp; fpt += cp\n        f = fcp(p)\n        if f is not None: det += 1; leads.append(cp - f)\n    ap, al = np.concatenate(ap), np.concatenate(al)\n    pd = (ap > 0.5).astype(int)\n    return {\n        'bal_acc': round(float(balanced_accuracy_score(al, pd)), 4),\n        'precision': round(float(precision_score(al, pd, zero_division=0)), 4),\n        'pre_cp_fpr': round(float(fps/max(fpt,1)), 4),\n        'coverage': round(float(det/max(len(res),1)), 4),\n        'lead_mean': round(float(np.mean(leads)), 1) if leads else None,\n        'n_detected': det, 'n_traces': len(res),\n    }\n\ntr_res = predict(best_probe, train, 2, mean, std)\nap = np.concatenate([r['probs'] for r in tr_res])\nal = np.concatenate([r['labels'] for r in tr_res])\nba = balanced_accuracy_score(al, (ap>0.5).astype(int))\nflip = ba < 0.5\nprint(f'Polarity flip: {flip} (train bal_acc={ba:.4f})')\n\nte_res = predict(best_probe, test, 2, mean, std)\nm = ev(te_res, flip=flip)\nprint(f'\\\\nR1-8B TEST RESULTS:')\nfor k,v in m.items(): print(f'  {k}: {v}')\n\nprint(f'\\\\n{\\\"=\\\"*65}')\nprint(f'{\\\"Method\\\":<15} {\\\"Type\\\":<14} {\\\"bal_acc\\\":>8} {\\\"precision\\\":>10} {\\\"FPR\\\":>8} {\\\"lead\\\":>8}')\nprint('-'*65)\nprint(f'{\\\"LR probe\\\":<15} {\\\"supervised\\\":<14} {0.817:>8.3f} {0.693:>10.3f} {0.097:>8.3f} {\\\"-2.0\\\":>8}')\nprint(f'{\\\"RepE\\\":<15} {\\\"unsupervised\\\":<14} {0.749:>8.3f} {0.516:>10.3f} {0.226:>8.3f} {\\\"+9.7\\\":>8}')\nls = f\\\"{m['lead_mean']:+.1f}\\\" if m['lead_mean'] is not None else 'N/A'\nprint(f'{\\\"CCS\\\":<15} {\\\"unsupervised\\\":<14} {m[\\\"bal_acc\\\"]:>8.3f} {m[\\\"precision\\\"]:>10.3f} {m[\\\"pre_cp_fpr\\\"]:>8.3f} {ls:>8}')\nprint('='*65)\n\nout_dir = PROJECT / 'artifacts' / 'exp_r3_ccs_probe'\nout_dir.mkdir(parents=True, exist_ok=True)\njson.dump({'r1-8b': m, 'flip': flip, 'best_loss': best_loss}, open(out_dir / 'results_r1_8b.json', 'w'), indent=2)\nprint(f'Saved to {out_dir / \\\"results_r1_8b.json\\\"}')\nsys.stdout.flush()\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-17T14:24:44.524497+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Traces: 209 total, train=125, test=43\\\\nSteps: 4348 pre-CP, 1426 post-CP\\\\n  Seed 0: loss=0.027177\\\\n  Seed 1: loss=0.030581\\\\n  Seed 2: loss=0.029279\\\\n  Seed 3: loss=0.028625\\\\n  Seed 4: loss=0.028291\\\\nBest loss: 0.027177\\\\nPolarity flip: True (train bal_acc=0.0078)\\\\n\\\\nR1-8B TEST RESULTS:\\\\n  bal_acc: 0.7769\\\\n  precision: 0.565\\\\n  pre_cp_fpr: 0.191\\\\n  coverage: 0.6744\\\\n  lead_mean: 0.7\\\\n  n_detected: 29\\\\n  n_traces: 43\\\\n\\\\n=================================================================\\\\nMethod          Type            bal_acc  precision      FPR     lead\\\\n-----------------------------------------------------------------\\\\nLR probe        supervised        0.817      0.693    0.097     -2.0\\\\nRepE            unsupervised      0.749      0.516    0.226     +9.7\\\\nCCS             unsupervised      0.777      0.565    0.191     +0.7\\\\n=================================================================\\\\nSaved to /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_ccs_probe/results_r1_8b.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 20.11}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-17T14:24:44.524722+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-rtx6000",
+              "command": "source /root/miniconda3/bin/activate && cd /root/autodl-tmp/contrastive_trace_safety && python -u -c \"\nimport os, sys, json, glob, warnings\nos.environ['TOKENIZERS_PARALLELISM'] = 'false'\nwarnings.filterwarnings('ignore')\nimport numpy as np\nimport torch\nimport torch.nn as nn\nfrom pathlib import Path\nfrom sklearn.metrics import balanced_accuracy_score, precision_score\nsys.path.insert(0, '/root/autodl-tmp/contrastive_trace_safety')\nfrom src.config import SEED, DETECTION_WINDOW\n\nPROJECT = Path('/root/autodl-tmp/contrastive_trace_safety')\nK = DETECTION_WINDOW\nN_SEEDS = 5\nSTEPS = 500\n\nMODELS = {\n    'r1-32b': {'hs_dir': PROJECT/'artifacts'/'hidden_states_r1_32b', 'li': 10, 'dim': 5120},\n    'qwq-32b': {'hs_dir': PROJECT/'artifacts'/'hidden_states_qwq_32b', 'li': 2, 'dim': 5120},\n    'ot-7b': {'hs_dir': PROJECT/'artifacts'/'hidden_states_ot7b', 'li': 16, 'dim': 3584},\n}\n\ndef load_traces(d):\n    t = []\n    for f in sorted(glob.glob(str(d/'*.pt'))):\n        x = torch.load(f, map_location='cpu', weights_only=False)\n        if x.get('step_labels') is not None and x.get('commitment_point') is not None:\n            t.append(x)\n    return t\n\ndef split(traces, seed=SEED):\n    rng = np.random.default_rng(seed)\n    idx = rng.permutation(len(traces))\n    n1, n2 = int(len(traces)*0.6), int(len(traces)*0.2)\n    return [traces[i] for i in idx[:n1]], [traces[i] for i in idx[n1:n1+n2]], [traces[i] for i in idx[n1+n2:]]\n\nclass CCS(nn.Module):\n    def __init__(self, d):\n        super().__init__()\n        self.linear = nn.Linear(d, 1)\n    def forward(self, x):\n        return torch.sigmoid(self.linear(x))\n\ndef collect(traces, li):\n    pre, post = [], []\n    for t in traces:\n        hs = t['hidden_states'][:, li, :].float()\n        lb = np.array(t['step_labels'])\n        n = min(hs.shape[0], len(lb))\n        hs, lb = hs[:n], lb[:n]\n        pre.append(hs[lb==0]); post.append(hs[lb==1])\n    return torch.cat(pre), torch.cat(post)\n\ndef fcp(probs, k=K):\n    n = len(probs)\n    if n < k: return None\n    for i in range(n - k + 1):\n        if all(probs[i:i+k] > 0.5): return i\n    return None\n\ndef ev(res, flip=False):\n    ap, al, fps, fpt, det, leads = [], [], 0, 0, 0, []\n    for r in res:\n        p = 1 - r['probs'] if flip else r['probs']\n        lb, cp = r['labels'], r['cp']\n        ap.append(p); al.append(lb)\n        fps += (p[:cp] > 0.5).sum(); fpt += cp\n        f = fcp(p)\n        if f is not None: det += 1; leads.append(cp - f)\n    ap, al = np.concatenate(ap), np.concatenate(al)\n    pd = (ap > 0.5).astype(int)\n    return {\n        'bal_acc': round(float(balanced_accuracy_score(al, pd)), 4),\n        'precision': round(float(precision_score(al, pd, zero_division=0)), 4),\n        'pre_cp_fpr': round(float(fps/max(fpt,1)), 4),\n        'coverage': round(float(det/max(len(res),1)), 4),\n        'lead_mean': round(float(np.mean(leads)), 1) if leads else None,\n        'n_detected': det, 'n_traces': len(res),\n    }\n\nresults = {}\nfor name, cfg in MODELS.items():\n    d = cfg['hs_dir']\n    if not d.exists():\n        print(f'{name}: no data, skip'); continue\n    traces = load_traces(d)\n    if len(traces) < 10:\n        print(f'{name}: only {len(traces)} traces, skip'); continue\n    train, val, test = split(traces)\n    print(f'\\\\n{name}: {len(traces)} traces, train={len(train)}, test={len(test)}')\n    pre, post = collect(train, cfg['li'])\n    print(f'  {pre.shape[0]} pre-CP, {post.shape[0]} post-CP')\n    allh = torch.cat([pre, post])\n    mean, std = allh.mean(0), allh.std(0) + 1e-8\n    pre_n, post_n = (pre-mean)/std, (post-mean)/std\n\n    best_probe, best_loss = None, float('inf')\n    for s in range(N_SEEDS):\n        torch.manual_seed(SEED+s)\n        probe = CCS(cfg['dim'])\n        opt = torch.optim.AdamW(probe.parameters(), lr=1e-3, weight_decay=0.01)\n        np_, nq = pre_n.shape[0], post_n.shape[0]\n        nm = min(np_, nq)\n        bl, bs = float('inf'), None\n        for step in range(STEPS):\n            pi, qi = torch.randperm(np_)[:nm], torch.randperm(nq)[:nm]\n            pp, pq = probe(pre_n[pi]), probe(post_n[qi])\n            loss = ((pp+pq-1)**2).mean() + (torch.min(pp,pq)**2).mean()\n            opt.zero_grad(); loss.backward(); opt.step()\n            if loss.item() < bl: bl = loss.item(); bs = {k:v.clone() for k,v in probe.state_dict().items()}\n        probe.load_state_dict(bs)\n        if bl < best_loss: best_loss = bl; best_probe = probe\n    print(f'  Best loss: {best_loss:.6f}')\n\n    def predict(probe, traces, li, mean, std):\n        res = []\n        for t in traces:\n            hs = t['hidden_states'][:, li, :].float()\n            lb = np.array(t['step_labels'])\n            n = min(hs.shape[0], len(lb))\n            with torch.no_grad():\n                p = probe(((hs[:n]-mean)/(std+1e-8))).squeeze(-1).numpy()\n            res.append({'probs': p, 'labels': lb[:n], 'cp': t['commitment_point'], 'tid': t['trace_id']})\n        return res\n\n    tr_res = predict(best_probe, train, cfg['li'], mean, std)\n    ba = balanced_accuracy_score(np.concatenate([r['labels'] for r in tr_res]),\n                                  (np.concatenate([r['probs'] for r in tr_res])>0.5).astype(int))\n    flip = ba < 0.5\n    print(f'  Flip: {flip} (train ba={ba:.4f})')\n    te_res = predict(best_probe, test, cfg['li'], mean, std)\n    m = ev(te_res, flip=flip)\n    results[name] = m\n    ls = f\\\"{m['lead_mean']:+.1f}\\\" if m['lead_mean'] is not None else 'N/A'\n    print(f'  TEST: ba={m[\\\"bal_acc\\\"]:.4f} prec={m[\\\"precision\\\"]:.4f} fpr={m[\\\"pre_cp_fpr\\\"]:.4f} cov={m[\\\"coverage\\\"]:.4f} lead={ls}')\n\nout = PROJECT/'artifacts'/'exp_r3_ccs_probe'/'results_other_models.json'\njson.dump(results, open(out,'w'), indent=2)\nprint(f'\\\\nSaved to {out}')\nsys.stdout.flush()\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-17T14:24:44.524997+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'source /root/miniconda3/bin/activate && cd /root/autodl-tmp/contrastive_trace_safety && python -u -c \\\\\\\"\\\\\\\\nimport os, sys, json, glob, warnings\\\\\\\\nos.environ[\\\\\\\\'TOKENIZERS_PARALLELISM\\\\\\\\'] = \\\\\\\\'false\\\\\\\\'\\\\\\\\nwarnings.filterwarnings(\\\\\\\\'ignore\\\\\\\\')\\\\\\\\nimport numpy as np\\\\\\\\nimport torch\\\\\\\\nimport torch.nn as nn\\\\\\\\nfrom pathlib import Path\\\\\\\\nfrom sklearn.metrics import balanced_accuracy_score, precision_score\\\\\\\\nsys.path.insert(0, \\\\\\\\'/root/autodl-tmp/contrastive_trace_safety\\\\\\\\')\\\\\\\\nfrom src.config import SEED, DETECTION_WINDOW\\\\\\\\n\\\\\\\\nPROJECT = Path(\\\\\\\\'/root/autodl-tmp/contrastive_trace_safety\\\\\\\\')\\\\\\\\nK = DETECTION_WINDOW\\\\\\\\nN_SEEDS = 5\\\\\\\\nSTEPS = 500\\\\\\\\n\\\\\\\\nMODELS = {\\\\\\\\n    \\\\\\\\'r1-32b\\\\\\\\': {\\\\\\\\'hs_dir\\\\\\\\': PROJECT/\\\\\\\\'artifacts\\\\\\\\'/\\\\\\\\'hidden_states_r1_32b\\\\\\\\', \\\\\\\\'li\\\\\\\\': 10, \\\\\\\\'dim\\\\\\\\': 5120},\\\\\\\\n    \\\\\\\\'qwq-32b\\\\\\\\': {\\\\\\\\'hs_dir\\\\\\\\': PROJECT/\\\\\\\\'artifacts\\\\\\\\'/\\\\\\\\'hidden_states_qwq_32b\\\\\\\\', \\\\\\\\'li\\\\\\\\': 2, \\\\\\\\'dim\\\\\\\\': 5120},\\\\\\\\n    \\\\\\\\'ot-7b\\\\\\\\': {\\\\\\\\'hs_dir\\\\\\\\': PROJECT/\\\\\\\\'artifacts\\\\\\\\'/\\\\\\\\'hidden_states_ot7b\\\\\\\\', \\\\\\\\'li\\\\\\\\': 16, \\\\\\\\'dim\\\\\\\\': 3584},\\\\\\\\n}\\\\\\\\n\\\\\\\\ndef load_traces(d):\\\\\\\\n    t = []\\\\\\\\n    for f in sorted(glob.glob(str(d/\\\\\\\\'*.pt\\\\\\\\'))):\\\\\\\\n        x = torch.load(f, map_location=\\\\\\\\'cpu\\\\\\\\', weights_only=False)\\\\\\\\n        if x.get(\\\\\\\\'step_labels\\\\\\\\') is not None and x.get(\\\\\\\\'commitment_point\\\\\\\\') is not None:\\\\\\\\n            t.append(x)\\\\\\\\n    return t\\\\\\\\n\\\\\\\\ndef split(traces, seed=SEED):\\\\\\\\n    rng = np.random.default_rng(seed)\\\\\\\\n    idx = rng.permutation(len(traces))\\\\\\\\n    n1, n2 = int(len(traces)*0.6), int(len(traces)*0.2)\\\\\\\\n    return [traces[i] for i in idx[:n1]], [traces[i] for i in idx[n1:n1+n2]], [traces[i] for i in idx[n1+n2:]]\\\\\\\\n\\\\\\\\nclass CCS(nn.Module):\\\\\\\\n    def __init__(self, d):\\\\\\\\n        super().__init__()\\\\\\\\n      \n…[truncated 5508 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-17T14:24:44.525195+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-rtx6000",
+              "command": "source /root/miniconda3/bin/activate && cd /root/autodl-tmp/contrastive_trace_safety && python -u -c \"\nimport os,sys,json,glob,warnings\nwarnings.filterwarnings('ignore')\nimport numpy as np, torch, torch.nn as nn\nfrom pathlib import Path\nfrom sklearn.metrics import balanced_accuracy_score, precision_score\nsys.path.insert(0,'/root/autodl-tmp/contrastive_trace_safety')\nfrom src.config import SEED, DETECTION_WINDOW\nP=Path('/root/autodl-tmp/contrastive_trace_safety')\nK=DETECTION_WINDOW\n\nd=P/'artifacts'/'hidden_states_ot7b'\ntraces=[]\nfor f in sorted(glob.glob(str(d/'*.pt'))):\n    x=torch.load(f,map_location='cpu',weights_only=False)\n    if x.get('step_labels') is not None and x.get('commitment_point') is not None: traces.append(x)\nrng=np.random.default_rng(SEED)\nidx=rng.permutation(len(traces))\nn1,n2=int(len(traces)*0.6),int(len(traces)*0.2)\ntrain=[traces[i] for i in idx[:n1]]\ntest=[traces[i] for i in idx[n1+n2:]]\nprint(f'ot-7b: {len(traces)} traces, train={len(train)}, test={len(test)}')\n\npre,post=[],[]\nfor t in train:\n    hs=t['hidden_states'][:,16,:].float()\n    lb=np.array(t['step_labels'])\n    n=min(hs.shape[0],len(lb)); hs,lb=hs[:n],lb[:n]\n    pre.append(hs[lb==0]); post.append(hs[lb==1])\npre,post=torch.cat(pre),torch.cat(post)\nprint(f'{pre.shape[0]} pre, {post.shape[0]} post')\nallh=torch.cat([pre,post]); mean,std=allh.mean(0),allh.std(0)+1e-8\npn,qn=(pre-mean)/std,(post-mean)/std\n\nclass CCS(nn.Module):\n    def __init__(s,d):\n        super().__init__(); s.linear=nn.Linear(d,1)\n    def forward(s,x): return torch.sigmoid(s.linear(x))\n\nbp,bl_=None,float('inf')\nfor s in range(3):\n    torch.manual_seed(SEED+s)\n    pr=CCS(3584); opt=torch.optim.AdamW(pr.parameters(),lr=1e-3,weight_decay=0.01)\n    np_,nq=pn.shape[0],qn.shape[0]; nm=min(np_,nq)\n    bl,bs=float('inf'),None\n    for st in range(300):\n        pi,qi=torch.randperm(np_)[:nm],torch.randperm(nq)[:nm]\n        pp,pq=pr(pn[pi]),pr(qn[qi])\n        loss=((pp+pq-1)**2).mean()+(torch.min(pp,pq)**2).mean()\n        opt.zero_grad();loss.backward();opt.step()\n        if loss.item()<bl: bl=loss.item(); bs={k:v.clone() for k,v in pr.state_dict().items()}\n    pr.load_state_dict(bs)\n    print(f'  Seed {s}: {bl:.6f}')\n    if bl<bl_: bl_=bl; bp=pr\n\ndef pred(pr,traces,mean,std):\n    r=[]\n    for t in traces:\n        hs=t['hidden_states'][:,16,:].float(); lb=np.array(t['step_labels']); n=min(hs.shape[0],len(lb))\n        with torch.no_grad(): p=pr(((hs[:n]-mean)/(std+1e-8))).squeeze(-1).numpy()\n        r.append({'probs':p,'labels':lb[:n],'cp':t['commitment_point']})\n    return r\n\ndef fcp(p,k=K):\n    if len(p)<k: return None\n    for i in range(len(p)-k+1):\n        if all(p[i:i+k]>0.5): return i\n    return None\n\ntr=pred(bp,train,mean,std)\nba=balanced_accuracy_score(np.concatenate([r['labels'] for r in tr]),(np.concatenate([r['probs'] for r in tr])>0.5).astype(int))\nflip=ba<0.5\nprint(f'Flip: {flip} (train ba={ba:.4f})')\n\nte=pred(bp,test,mean,std)\nap,al,fps,fpt,det,leads=[],[],0,0,0,[]\nfor r in te:\n    p=1-r['probs'] if flip else r['probs']\n    ap.append(p);al.append(r['labels'])\n    fps+=(p[:r['cp']]>0.5).sum(); fpt+=r['cp']\n    f=fcp(p)\n    if f is not None: det+=1; leads.append(r['cp']-f)\nap,al=np.concatenate(ap),np.concatenate(al)\npd=(ap>0.5).astype(int)\nm={'bal_acc':round(float(balanced_accuracy_score(al,pd)),4),'precision':round(float(precision_score(al,pd,zero_division=0)),4),'pre_cp_fpr':round(float(fps/max(fpt,1)),4),'coverage':round(float(det/max(len(te),1)),4),'lead_mean':round(float(np.mean(leads)),1) if leads else None,'n_detected':det,'n_traces':len(te)}\nprint(f'TEST: {m}')\njson.dump({'ot-7b':m},open(P/'artifacts'/'exp_r3_ccs_probe'/'results_ot7b.json','w'),indent=2)\nprint('Done')\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": "2026-05-17T14:24:44.525365+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"ot-7b: 228 traces, train=136, test=47\\\\n8519 pre, 1932 post\\\\n  Seed 0: 0.087019\\\\n  Seed 1: 0.088185\\\\n  Seed 2: 0.084680\\\\nFlip: True (train ba=0.0701)\\\\nTEST: {'bal_acc': 0.692, 'precision': 0.3188, 'pre_cp_fpr': 0.344, 'coverage': 0.8085, 'lead_mean': 20.5, 'n_detected': 38, 'n_traces': 47}\\\\nDone\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 10.83}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": "2026-05-17T14:24:44.525526+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-rtx6000",
+              "command": "source /root/miniconda3/bin/activate && python -u -c \"\nimport json\nfrom pathlib import Path\nP = Path('/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_ccs_probe')\n\nr1 = json.load(open(P/'results_r1_8b.json'))\nothers = json.load(open(P/'results_other_models.json'))\not = json.load(open(P/'results_ot7b.json'))\n\nconsolidated = {\n    'r1-8b': r1['r1-8b'],\n    'r1-32b': others.get('r1-32b'),\n    'qwq-32b': others.get('qwq-32b'),\n    'ot-7b': ot['ot-7b'],\n}\nconsolidated['method'] = 'CCS (Burns et al. ICLR 2023)'\nconsolidated['pair_construction'] = 'Method A: pre-CP vs post-CP hidden states'\nconsolidated['unsupervised'] = True\n\njson.dump(consolidated, open(P/'results.json','w'), indent=2)\nprint(json.dumps(consolidated, indent=2))\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000091"
+        },
+        {
+          "source_line": 92,
+          "timestamp": "2026-05-17T14:24:44.525703+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'source /root/miniconda3/bin/activate && python -u -c \\\\\\\"\\\\\\\\nimport json\\\\\\\\nfrom pathlib import Path\\\\\\\\nP = Path(\\\\\\\\'/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_ccs_probe\\\\\\\\')\\\\\\\\n\\\\\\\\nr1 = json.load(open(P/\\\\\\\\'results_r1_8b.json\\\\\\\\'))\\\\\\\\nothers = json.load(open(P/\\\\\\\\'results_other_models.json\\\\\\\\'))\\\\\\\\not = json.load(open(P/\\\\\\\\'results_ot7b.json\\\\\\\\'))\\\\\\\\n\\\\\\\\nconsolidated = {\\\\\\\\n    \\\\\\\\'r1-8b\\\\\\\\': r1[\\\\\\\\'r1-8b\\\\\\\\'],\\\\\\\\n    \\\\\\\\'r1-32b\\\\\\\\': others.get(\\\\\\\\'r1-32b\\\\\\\\'),\\\\\\\\n    \\\\\\\\'qwq-32b\\\\\\\\': others.get(\\\\\\\\'qwq-32b\\\\\\\\'),\\\\\\\\n    \\\\\\\\'ot-7b\\\\\\\\': ot[\\\\\\\\'ot-7b\\\\\\\\'],\\\\\\\\n}\\\\\\\\nconsolidated[\\\\\\\\'method\\\\\\\\'] = \\\\\\\\'CCS (Burns et al. ICLR 2023)\\\\\\\\'\\\\\\\\nconsolidated[\\\\\\\\'pair_construction\\\\\\\\'] = \\\\\\\\'Method A: pre-CP vs post-CP hidden states\\\\\\\\'\\\\\\\\nconsolidated[\\\\\\\\'unsupervised\\\\\\\\'] = True\\\\\\\\n\\\\\\\\njson.dump(consolidated, open(P/\\\\\\\\'results.json\\\\\\\\',\\\\\\\\'w\\\\\\\\'), indent=2)\\\\\\\\nprint(json.dumps(consolidated, indent=2))\\\\\\\\n\\\\\\\"\\\\\\\\n'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"<string>\\\\\\\", line 7, in <module>\\\\nFileNotFoundError: [Errno 2] No such file or directory: '/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_ccs_probe/results_other_models.json'\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000092"
+        },
+        {
+          "source_line": 93,
+          "timestamp": "2026-05-17T14:24:44.525877+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-rtx6000",
+              "command": "source /root/miniconda3/bin/activate && python -u -c \"\nimport json\nfrom pathlib import Path\nP = Path('/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_ccs_probe')\n\nr1 = json.load(open(P/'results_r1_8b.json'))\n\nconsolidated = {\n    'r1-8b': r1['r1-8b'],\n    'r1-32b': {'bal_acc': 0.7034, 'precision': 0.5067, 'pre_cp_fpr': 0.4095, 'coverage': 0.9, 'lead_mean': 5.2, 'n_detected': 18, 'n_traces': 20},\n    'qwq-32b': {'bal_acc': 0.7314, 'precision': 0.5549, 'pre_cp_fpr': 0.2141, 'coverage': 0.6842, 'lead_mean': 2.0, 'n_detected': 13, 'n_traces': 19},\n    'ot-7b': {'bal_acc': 0.692, 'precision': 0.3188, 'pre_cp_fpr': 0.344, 'coverage': 0.8085, 'lead_mean': 20.5, 'n_detected': 38, 'n_traces': 47},\n    'method': 'CCS (Burns et al. ICLR 2023)',\n    'pair_construction': 'Method A: pre-CP vs post-CP hidden states',\n    'unsupervised': True,\n}\n\njson.dump(consolidated, open(P/'results.json','w'), indent=2)\nprint(json.dumps(consolidated, indent=2))\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000093"
+        },
+        {
+          "source_line": 94,
+          "timestamp": "2026-05-17T14:24:44.526041+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"r1-8b\\\\\\\": {\\\\n    \\\\\\\"bal_acc\\\\\\\": 0.7769,\\\\n    \\\\\\\"precision\\\\\\\": 0.565,\\\\n    \\\\\\\"pre_cp_fpr\\\\\\\": 0.191,\\\\n    \\\\\\\"coverage\\\\\\\": 0.6744,\\\\n    \\\\\\\"lead_mean\\\\\\\": 0.7,\\\\n    \\\\\\\"n_detected\\\\\\\": 29,\\\\n    \\\\\\\"n_traces\\\\\\\": 43\\\\n  },\\\\n  \\\\\\\"r1-32b\\\\\\\": {\\\\n    \\\\\\\"bal_acc\\\\\\\": 0.7034,\\\\n    \\\\\\\"precision\\\\\\\": 0.5067,\\\\n    \\\\\\\"pre_cp_fpr\\\\\\\": 0.4095,\\\\n    \\\\\\\"coverage\\\\\\\": 0.9,\\\\n    \\\\\\\"lead_mean\\\\\\\": 5.2,\\\\n    \\\\\\\"n_detected\\\\\\\": 18,\\\\n    \\\\\\\"n_traces\\\\\\\": 20\\\\n  },\\\\n  \\\\\\\"qwq-32b\\\\\\\": {\\\\n    \\\\\\\"bal_acc\\\\\\\": 0.7314,\\\\n    \\\\\\\"precision\\\\\\\": 0.5549,\\\\n    \\\\\\\"pre_cp_fpr\\\\\\\": 0.2141,\\\\n    \\\\\\\"coverage\\\\\\\": 0.6842,\\\\n    \\\\\\\"lead_mean\\\\\\\": 2.0,\\\\n    \\\\\\\"n_detected\\\\\\\": 13,\\\\n    \\\\\\\"n_traces\\\\\\\": 19\\\\n  },\\\\n  \\\\\\\"ot-7b\\\\\\\": {\\\\n    \\\\\\\"bal_acc\\\\\\\": 0.692,\\\\n    \\\\\\\"precision\\\\\\\": 0.3188,\\\\n    \\\\\\\"pre_cp_fpr\\\\\\\": 0.344,\\\\n    \\\\\\\"coverage\\\\\\\": 0.8085,\\\\n    \\\\\\\"lead_mean\\\\\\\": 20.5,\\\\n    \\\\\\\"n_detected\\\\\\\": 38,\\\\n    \\\\\\\"n_traces\\\\\\\": 47\\\\n  },\\\\n  \\\\\\\"method\\\\\\\": \\\\\\\"CCS (Burns et al. ICLR 2023)\\\\\\\",\\\\n  \\\\\\\"pair_construction\\\\\\\": \\\\\\\"Method A: pre-CP vs post-CP hidden states\\\\\\\",\\\\n  \\\\\\\"unsupervised\\\\\\\": true\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.99}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000094"
+        },
+        {
+          "source_line": 95,
+          "timestamp": "2026-05-17T14:24:44.526217+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All done. Results:\n\n**R1-8B Comparison (primary model):**\n\n| Method | Type | bal_acc | precision | FPR | lead |\n|--------|------|---------|-----------|-----|------|\n| LR probe | supervised | 0.817 | 0.693 | 0.097 | -2.0 |\n| **CCS** | **unsupervised** | **0.777** | **0.565** | **0.191** | **+0.7** |\n| RepE | unsupervised | 0.749 | 0.516 | 0.226 | +9.7 |\n\n**All models CCS:**\n\n| Model | bal_acc | precision | FPR | coverage | lead |\n|-------|---------|-----------|-----|----------|------|\n| r1-8b | 0.777 | 0.565 | 0.191 | 0.674 | +0.7 |\n| qwq-32b | 0.731 | 0.555 | 0.214 | 0.684 | +2.0 |\n| r1-32b | 0.703 | 0.507 | 0.410 | 0.900 | +5.2 |\n| ot-7b | 0.692 | 0.319 | 0.344 | 0.809 | +20.5 |\n\n**Key findings:**\n- CCS is the best unsupervised method tested, beating RepE on R1-8B (bal_acc 0.777 vs 0.749, FPR 0.191 vs 0.226)\n- Still significantly below supervised LR probe (bal_acc 0.817, FPR 0.097)\n- All models needed polarity flip (probe consistently learned inverse mapping first)\n- FPR remains high across all models (0.19-0.41), confirming the unsupervised gap\n- OT-7B has high coverage/lead but low precision (0.319), indicating indiscriminate triggering\n\nOutputs: script at `src/experiments/exp_r3_ccs_probe.py`, results at `artifacts/exp_r3_ccs_probe/results.json`."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ccs_unsupervised_probe_20260517T141539"
+          },
+          "id": "event-000095"
+        }
+      ],
+      "message_count": 95
+    }
+  ],
+  "readable_path": "readable/conversations/code-ccs-unsupervised-probe.md"
+}

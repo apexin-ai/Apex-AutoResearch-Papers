@@ -1,0 +1,53 @@
+{
+  "exp_id": "exp_r3_selectivity_corrected",
+  "project": "contrastive_trace_safety",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T18:13:59.672Z",
+    "updated_at": "2026-05-17T18:14:25.912Z",
+    "hypothesis": "Selectivity at corrected deep layers (QwQ L60, R1-32B L63) should equal or exceed selectivity at biased shallow layers (QwQ L2, R1-32B L10), because deeper layers encode stronger safety-specific signal beyond positional confounds. Both should pass the 5pp threshold from Hewitt et al. 2019.",
+    "spec": {
+      "command": "python exp_r3_selectivity_corrected.py",
+      "server": "autodl-rtx6000",
+      "data_path": "/root/autodl-tmp/contrastive_trace_safety/data/",
+      "data_count": 195,
+      "model_name": "QwQ-32B L60 + R1-32B L63",
+      "seed": 42,
+      "checkpoint_path": "N/A (CPU analysis)",
+      "log_path": "/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_selectivity_corrected/results.json"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "qwq_32b_l60": {
+        "real_acc": 0.667,
+        "random_mean": 0.523,
+        "random_std": 0.051,
+        "selectivity_pp": 14.4,
+        "position_baseline_acc": 0.705,
+        "layer": 60
+      },
+      "r1_32b_l63": {
+        "real_acc": 0.746,
+        "random_mean": 0.549,
+        "random_std": 0.06,
+        "selectivity_pp": 19.7,
+        "position_baseline_acc": 0.624,
+        "layer": 63
+      },
+      "comparison": {
+        "qwq_old_l2": 15.3,
+        "qwq_new_l60": 14.4,
+        "r1_32b_old_l10": 7.5,
+        "r1_32b_new_l63": 19.7
+      },
+      "both_pass_5pp": true,
+      "finding": "Both corrected layers pass 5pp threshold. R1-32B selectivity dramatically improves from 7.5pp (L10) to 19.7pp (L63). QwQ stable (15.3→14.4pp). Deep layers encode stronger safety signal beyond positional confounds."
+    },
+    "completed_at": "2026-05-17T18:14:25.912Z"
+  },
+  "timestamp": "2026-05-17T18:14:25.987730+00:00",
+  "trigger": "update_registry"
+}

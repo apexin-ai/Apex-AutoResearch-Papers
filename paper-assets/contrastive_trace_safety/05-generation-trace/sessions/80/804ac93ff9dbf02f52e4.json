@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "804ac93ff9dbf02f52e4",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "review citation audit",
+  "task_key": "worker_review_citation_audit_20260518T221539",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_review_citation_audit_20260518T221539_result.json",
+    "occurrence": 1,
+    "bytes": 571,
+    "sha256": "5e92b8eb9e6c676ab309991f430a4a418cffbb08dd992a35a1f9a200d64c96b3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计结果：\n\n| 项目 | 数量 |\n|------|------|\n| Bib entries | 63 |\n| Cited keys | 60 |\n| Missing (cited but no bib) | 0 |\n| Orphan (bib but never cited) | **3** |\n| Format issues | **3** |\n\n**Orphan entries**（bib 中有但未被任何 tex 引用）:\n- `bansal2021stitching`\n- `efron1993bootstrap`\n- `kornblith2019cka`\n\n**Title case protection**（专有名词未用 `{}` 保护，BibTeX 可能自动小写化）:\n- `safeswitch`: LLM\n- `siren`: LLM\n- `zhou2024alignment`: LLM\n\n报告已保存至 `artifacts/citation_audit.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/review-citation-audit.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "da3c990d5491fcda83ce",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "analysis metric correlation",
+  "task_key": "worker_analysis_metric_correlation_20260517T044054",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_metric_correlation_20260517T044054_result.json",
+    "occurrence": 1,
+    "bytes": 1681,
+    "sha256": "54a64977c92b07f258d60802fdf9c6c06474ce0c35689508d38b999e8980eb6f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results saved. Here's the output:\n\n## Metric Correlation Matrix (Pearson r across 1000 bootstrap resamples)\n\n### R1-8B (n_valid=33)\n```\n              Acc      Prec      FPR\n    Acc     1.0000   +0.3803   -0.3983\n    Prec   +0.3803    1.0000   -0.4212\n    FPR    -0.3983   -0.4212    1.0000\n    p: acc-prec=9.33e-36, acc-fpr=2.35e-39, prec-fpr=2.87e-44\n    |r| > 0.5: NONE\n```\n\n### R1-32B (n_valid=20)\n```\n              Acc      Prec      FPR\n    Acc     1.0000   +0.5459   -0.4216\n    Prec   +0.5459    1.0000   -0.6724\n    FPR    -0.4216   -0.6724    1.0000\n    p: acc-prec=9.57e-79, acc-fpr=2.33e-44, prec-fpr=1.45e-132\n    |r| > 0.5: acc_prec (r=+0.5459), prec_fpr (r=-0.6724)\n```\n\n### QwQ-32B (n_valid=18)\n```\n              Acc      Prec      FPR\n    Acc     1.0000   +0.3672   +0.0839\n    Prec   +0.3672    1.0000   -0.6851\n    FPR    +0.0839   -0.6851    1.0000\n    p: acc-prec=2.82e-33, acc-fpr=7.97e-03, prec-fpr=1.79e-139\n    |r| > 0.5: prec_fpr (r=-0.6851)\n```\n\n## 结论\n\n**Metrics 非独立，存在显著相关性。** 所有 p-values 均极小（< 0.01），表明三指标间的 bootstrap 分布高度相关。\n\n关键发现：\n- **Precision-FPR 相关性最强**：三个模型中 |r| 分别为 0.42, 0.67, 0.69，其中 R1-32B 和 QwQ-32B 的 |r| > 0.5\n- **Acc-Prec 中等相关**：|r| 为 0.38, 0.55, 0.37，R1-32B 的 |r| > 0.5\n- **Acc-FPR 相关性最弱**：|r| 为 0.40, 0.42, 0.08\n\n由于三指标普遍存在中到强相关（尤其 prec-FPR 在 2/3 模型上 |r| > 0.5），Bonferroni 只校正模型数（3）而非指标×模型（9）是合理的。对独立测试校正 9 次会过度保守。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-metric-correlation.md"
+}

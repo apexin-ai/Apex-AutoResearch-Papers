@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "809d5063af78b6fbc2b8",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code ot7b layer16 verification",
+  "task_key": "worker_code_ot7b_layer16_verification_20260517T084857",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_ot7b_layer16_verification_20260517T084857_result.json",
+    "occurrence": 1,
+    "bytes": 612,
+    "sha256": "a2a894f427d051a68329f8dd7880bb13cb76142f3b0c6a71643364d5b9df8ec6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成。结果摘要：\n\n**Layer 16 (W=3) 全面优于 Layer 0 (W=3)**：\n\n| 指标 | Layer 0 | Layer 16 | 改善 |\n|------|---------|----------|------|\n| bal_acc | 0.672 | **0.688** | +1.6 pp |\n| precision | 0.357 | **0.466** | +10.9 pp |\n| pre_cp_fpr | 0.188 | **0.100** | -8.8 pp |\n| Bonferroni pass | 2/3 | **3/3** | +1 |\n\nLayer 16 bootstrap 三个指标全部 p=0.000，均通过 Bonferroni 校正（Layer 0 的 precision p=0.056 未通过）。\n\n报告已保存至 `artifacts/ot7b_layer16_verification/report.md`，建议论文中 OT-7B 全部替换为 Layer 16 结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-ot7b-layer16-verification.md"
+}

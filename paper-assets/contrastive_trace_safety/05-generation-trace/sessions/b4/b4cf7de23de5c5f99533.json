@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b4cf7de23de5c5f99533",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code advbench hs extraction",
+  "task_key": "worker_code_advbench_hs_extraction_20260519T193710",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_advbench_hs_extraction_20260519T193710_result.json",
+    "occurrence": 1,
+    "bytes": 1087,
+    "sha256": "7a5bc2401c712b1dd3f2b53f9566ec864ecca6a953df008e457adcffdbc6282b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both scripts verified. Summary:\n\n**`src/advbench/extract_hidden_states.py`**\n- Extracts L0-L24 (25 of 33 layers) from R1-8B\n- Output: `artifacts/hidden_states_all25/{trace_id}.pt` — dict with `hidden_states: [T, 25, 4096]` fp16 + metadata\n- Dry-run confirmed: `[57, 25, 4096]`, `[38, 25, 4096]`\n- Supports `--dry-run`, `--start/--end`, `--batch-size`\n\n**`src/advbench/extract_text_embeddings.py`**\n- Uses all-MiniLM-L6-v2 (384d)\n- Output: `artifacts/r1_8b_text_emb_all.pkl` — dict `trace_id → ndarray(T, 384)` float32\n- Format matches existing `r1_8b_text_emb.pkl`\n- Dry-run confirmed: `(57, 384)`, `(38, 384)`\n\n324 traces total. Full extraction commands:\n```bash\ncd /root/autodl-tmp/contrastive_trace_safety\nsource /etc/network_turbo\nexport REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n\n# HS extraction (~1-2 min per trace with GPU)\npython -m src.advbench.extract_hidden_states\n\n# Text embeddings (~30s total)\npython -m src.advbench.extract_text_embeddings\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-advbench-hs-extraction.md"
+}

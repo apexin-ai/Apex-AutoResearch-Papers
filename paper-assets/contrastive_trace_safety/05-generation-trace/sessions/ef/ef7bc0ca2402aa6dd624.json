@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0",
+  "id": "ef7bc0ca2402aa6dd624",
+  "project": "contrastive_trace_safety",
+  "kind": "worker",
+  "title": "gpu advbench heuristic cp sweep",
+  "task_key": "worker_gpu_advbench_heuristic_cp_sweep_20260520T022513",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu_advbench_heuristic_cp_sweep_20260520T022513.log",
+    "occurrence": 1,
+    "bytes": 1486697,
+    "sha256": "f8ccdeb21bdd4815c955ac2a2ba68ff95aaca64e61d706fb56767a7c66eaf12e"
+  },
+  "statistics": {
+    "messages": 611,
+    "user_turns": 2,
+    "tool_calls": 234,
+    "roles": {
+      "log": 1,
+      "system": 39,
+      "record": 2,
+      "assistant": 98,
+      "tool_call": 234,
+      "user": 2,
+      "tool_result": 234,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "ef7bc0ca2402aa6dd624-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 464,
+      "chunks": [
+        {
+          "path": "ef7bc0ca2402aa6dd624-part-0001.json",
+          "message_count": 173
+        },
+        {
+          "path": "ef7bc0ca2402aa6dd624-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "ef7bc0ca2402aa6dd624-part-0003.json",
+          "message_count": 111
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 140,
+      "chunks": [
+        {
+          "path": "ef7bc0ca2402aa6dd624-part-0003.json",
+          "message_count": 69
+        },
+        {
+          "path": "ef7bc0ca2402aa6dd624-part-0004.json",
+          "message_count": 71
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/gpu-advbench-heuristic-cp-sweep.md"
+}

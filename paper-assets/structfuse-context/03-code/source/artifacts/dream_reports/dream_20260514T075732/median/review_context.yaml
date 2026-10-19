@@ -1,0 +1,638 @@
+narrative_guidance: 'Claim 1 降级为 "directional evidence"——embedding mining 方向一致但 95%
+  CI 宽，至少一个编码器包含零。 Claim 2 降为 "exploratory observation"——dataflow 在 Qwen 上方向正确但不显著，StarCoder
+  上甚至略负。 论文重心转向方法论贡献（controlled comparison framework + representation geometry analysis），
+  效果量作为 preliminary evidence 呈现。SWE-bench 未能提供有说服力的下游验证。 "tends to improve" 替代 "consistently
+  improves"。仍投 EMNLP Main，定位 analysis paper。
+
+  '
+imagined_experiments:
+- name: SWE-bench Lite end-to-end evaluation
+  plan_id: plan_003
+  description: 3 strategies × best checkpoint, Qwen3.6-27B agent, 300 SWE-bench Lite
+    instances
+  expected_results:
+    random_resolve_rate_pct: 18.3
+    embedding_distance_resolve_rate_pct: 18.7
+    dataflow_aware_resolve_rate_pct: 18.0
+    embed_vs_random_delta_pp: 0.4
+    dataflow_vs_random_delta_pp: -0.3
+    retrieval_recall_at_5_random: 0.41
+    retrieval_recall_at_5_embed: 0.43
+    retrieval_recall_at_5_dataflow: 0.42
+    instances_evaluated: 287
+    instances_failed_agent_error: 13
+  result_rationale: 'median 档下 SWE-bench Δ ≤ 1pp。原因：(1) 300 实例中仅 ~50% 的 bug 与 retrieval
+    质量相关， 其余受 patch generation 瓶颈限制——retriever 的 +1pp R@1 优势在 end-to-end pipeline
+    中被稀释； (2) SWE-bench 的 repo 分布与训练集 SWE-smith 有 domain shift， m2_full 训练中观测到的 step
+    1000 后过拟合加剧了这种 gap； (3) agent 的 file selection 依赖多轮交互，单次 retrieval 改进的边际效用递减。
+    embedding 略优于 random 但幅度 <1pp，dataflow 因在 unseen repos 上结构信号噪声更大反而微跌。 整体 resolve
+    rate ~18% 处于 baseline agent 的正常水平，无法宣称下游收益。
+
+    '
+  tables:
+  - name: 'Table: SWE-bench Lite Resolve Rate by Strategy'
+    columns:
+    - Strategy
+    - Resolve Rate (%)
+    - Δ vs Random (pp)
+    - Retrieval R@5
+    rows:
+    - - random
+      - '18.3'
+      - —
+      - '0.41'
+    - - embedding_distance
+      - '18.7'
+      - '+0.4'
+      - '0.43'
+    - - dataflow_aware
+      - '18.0'
+      - −0.3
+      - '0.42'
+  figures_description:
+  - 'Bar chart: resolve rate ± 95% binomial CI per strategy, 三根 bar 的 CI 完全重叠'
+  analysis: 'SWE-bench 无法区分三种策略。写入论文时定位为 "downstream evaluation shows no statistically
+    distinguishable difference"，并 acknowledge retrieval gains 在 end-to-end pipeline
+    中 被 generation bottleneck 稀释。这不否定 retrieval 改进，但不能用作 downstream evidence。
+
+    '
+- name: RepoBench-R cross-file retrieval evaluation
+  plan_id: plan_004
+  description: retrieval-only evaluation on RepoBench-R, 3 strategies × best checkpoint,
+    两个编码器
+  expected_results:
+    qwen_random_R1: 0.312
+    qwen_embed_R1: 0.325
+    qwen_dataflow_R1: 0.318
+    starcoder_random_R1: 0.274
+    starcoder_embed_R1: 0.279
+    starcoder_dataflow_R1: 0.268
+    qwen_embed_vs_random_delta_pp: 1.3
+    starcoder_embed_vs_random_delta_pp: 0.5
+    qwen_dataflow_vs_random_delta_pp: 0.6
+    starcoder_dataflow_vs_random_delta_pp: -0.6
+  result_rationale: 'RepoBench-R 的 cross-file retrieval 与 SWE-smith 训练分布差异显著——RepoBench
+    侧重 next-line completion 的上下文文件，粒度更细且不直接对应 bug-fix file selection。 median 档下 embedding
+    优势方向保持但缩水：Qwen ~+1.3pp（pilot 中 +2.0pp 缩水约 35%， 因 domain shift 和 evaluation granularity
+    不同），StarCoder ~+0.5pp（CI 将包含零）。 Dataflow 在 Qwen 上仅 +0.6pp（RepoBench 的文件间 dataflow
+    关系与训练时 CodeQL 提取的 分布不匹配），StarCoder 上略负。绝对 R@1 水平较低（0.27-0.33）因 RepoBench candidate
+    pool 远大于 m2 验证集的 pool=50。方向一致性为 "directional evidence" 叙事提供第二个 benchmark 支持， 但效果量不足以做强声明。
+
+    '
+  tables:
+  - name: 'Table: RepoBench-R R@1 by Encoder × Strategy'
+    columns:
+    - Encoder
+    - random
+    - embedding
+    - dataflow
+    - embed Δ
+    - dataflow Δ
+    rows:
+    - - Qwen2.5-Coder-3B
+      - '0.312'
+      - '0.325'
+      - '0.318'
+      - +1.3pp
+      - +0.6pp
+    - - StarCoder2-3B
+      - '0.274'
+      - '0.279'
+      - '0.268'
+      - +0.5pp
+      - −0.6pp
+  figures_description:
+  - 'Grouped bar chart: R@1 per encoder × strategy，附 bootstrap 95% CI'
+  analysis: 'RepoBench-R 结果与 SWE-smith eval 方向一致但效果量更小，增强 "directional evidence" 论点。
+    写入论文时强调 cross-benchmark consistency of direction 而非 magnitude。
+
+    '
+- name: Embedding vs random deep analysis by repo complexity
+  plan_id: plan_005
+  description: 按 repo size/complexity 分层分析 embedding negatives 的效果
+  expected_results:
+    small_repos_lt50_embed_delta_pp: 2.1
+    medium_repos_50_200_embed_delta_pp: 1.0
+    large_repos_200_500_embed_delta_pp: 0.3
+    xlarge_repos_500plus_embed_delta_pp: -0.2
+    complexity_correlation_r: -0.41
+    complexity_correlation_p: 0.08
+  result_rationale: 'median 档下 embedding benefit 在小 repo 上最明显（candidate pool 小，embedding
+    distance 能有效区分 near-miss），但随 repo 规模增大效果递减甚至反转。原因：大 repo 中 embedding space 拥挤程度更高，pretrained
+    encoder 的 representation 更接近 saturation， embedding-distance mining 选出的 negatives
+    与 random 的 difficulty 差异缩小。 相关性方向正确（r ≈ −0.41）但 p=0.08 不显著——样本量仅 123 repos 中有结构数据的子集，
+    power 不足。此分析为 Claim 2 的 saturation 机制提供 supporting but inconclusive evidence。
+
+    '
+  tables:
+  - name: 'Table: Embedding Δ by Repo Size Tier (Qwen)'
+    columns:
+    - Tier
+    - N repos
+    - embed Δ R@1 (pp)
+    - mean neg_difficulty margin
+    rows:
+    - - <50 instances
+      - '1'
+      - '+2.1'
+      - '0.068'
+    - - 50–200
+      - '17'
+      - '+1.0'
+      - '0.032'
+    - - 200–500
+      - '40'
+      - '+0.3'
+      - '0.019'
+    - - 500+
+      - '29'
+      - −0.2
+      - '0.014'
+  figures_description:
+  - 'Scatter plot: repo size (x) vs embedding benefit Δ (y), with regression line
+    and 95% CI band'
+  - 'Box plot: neg_difficulty margin distribution by repo size tier'
+  analysis: '趋势方向支持 saturation hypothesis 但统计力度不足（p=0.08）。 论文中作为 "exploratory analysis
+    suggesting repo complexity moderates embedding benefit"， n=2 编码器 × uneven tier
+    sizes 限制了因果推断。
+
+    '
+- name: 1-hop vs 2-hop vs 3-hop call-graph bounding ablation
+  plan_id: plan_007
+  description: 测试不同 call-graph 深度对 dataflow negative 质量的影响
+  expected_results:
+    hop1_qwen_R1: 0.531
+    hop2_qwen_R1: 0.538
+    hop3_qwen_R1: 0.534
+    hop1_coverage_pct: 42.1
+    hop2_coverage_pct: 34.3
+    hop3_coverage_pct: 28.7
+    hop2_vs_hop1_delta_pp: 0.7
+    hop3_vs_hop2_delta_pp: -0.4
+  result_rationale: 'median 档下 hop 数的 ablation 呈倒 U 型但差异不大。2-hop（当前设置）略优于 1-hop 因为覆盖了更多真实的
+    transitive dependencies，但 3-hop 引入过多 spurious connections （大 repo 中 3-hop 几乎把所有文件连通），diluting
+    structural signal。 差异仅 ~0.7pp，在 cross-seed 方差 1.5-3.0pp 的背景下不显著。 Coverage 随 hop
+    增加而下降（disconnected files 减少 → 可选 negative 减少）。 这说明当前 2-hop 设置合理但并非 critical design
+    choice。
+
+    '
+  tables:
+  - name: 'Table: Hop Depth Ablation (Qwen, dataflow strategy)'
+    columns:
+    - Hops
+    - R@1
+    - Coverage (%)
+    - Avg negatives/query
+    rows:
+    - - 1-hop
+      - '0.531'
+      - '42.1'
+      - '8.3'
+    - - 2-hop
+      - '0.538'
+      - '34.3'
+      - '5.7'
+    - - 3-hop
+      - '0.534'
+      - '28.7'
+      - '3.9'
+  figures_description:
+  - 'Line plot: R@1 vs hop depth, with error bars from 3 seeds'
+  analysis: '2-hop 是 sweet spot 但差异在噪声范围内。论文中简要报告作为 design justification， 不作为独立 finding。
+
+    '
+- name: Training data size scaling ablation
+  plan_id: plan_008
+  description: 1K vs 3K vs 5K training instances, 测试 data scaling behavior
+  expected_results:
+    size_1k_qwen_R1: 0.518
+    size_3k_qwen_R1: 0.541
+    size_5k_qwen_R1: 0.538
+    size_1k_embed_delta_pp: 1.8
+    size_3k_embed_delta_pp: 1.1
+    size_5k_embed_delta_pp: 0.9
+    size_1k_starcoder_R1: 0.432
+    size_3k_starcoder_R1: 0.451
+    size_5k_starcoder_R1: 0.448
+  result_rationale: 'median 档下 data scaling 呈 diminishing returns：1K→3K 有明显提升（+2.3pp），
+    3K→5K 几乎持平甚至微降（过拟合加剧，与 m2_full 观察到的 step 1000 后过拟合一致）。 更关键的是 embedding benefit
+    Δ 随数据量增加而缩小：1K 时 Δ=1.8pp（小数据下 hard negative 质量差异被放大），5K 时 Δ=0.9pp（更多数据提供足够 coverage，减少对
+    mining 策略的依赖）。 这对 median 叙事不利——暗示在更大数据规模下 embedding benefit 可能进一步缩水。
+
+    '
+  tables:
+  - name: 'Table: Data Scaling × Strategy (Qwen, embedding strategy)'
+    columns:
+    - Train Size
+    - random R@1
+    - embed R@1
+    - Δ (pp)
+    rows:
+    - - 1K
+      - '0.500'
+      - '0.518'
+      - '+1.8'
+    - - 3K
+      - '0.530'
+      - '0.541'
+      - '+1.1'
+    - - 5K
+      - '0.529'
+      - '0.538'
+      - '+0.9'
+  figures_description:
+  - 'Line plot: R@1 vs training data size, separate lines for random/embed/dataflow'
+  - 'Bar chart: embed Δ at each data size, showing diminishing gap'
+  analysis: 'Diminishing benefit at larger data scale 是 median 档的典型特征——方向正确但实际意义 随
+    scale 递减。论文中诚实报告，作为 limitation 的一部分。
+
+    '
+- name: Fusion head ablation
+  plan_id: plan_009
+  description: embedding-only vs structural-features-only vs combined scoring
+  expected_results:
+    embed_only_qwen_R1: 0.538
+    struct_only_qwen_R1: 0.489
+    combined_qwen_R1: 0.541
+    embed_only_starcoder_R1: 0.451
+    struct_only_starcoder_R1: 0.412
+    combined_starcoder_R1: 0.448
+    combined_vs_embed_only_delta_pp: 0.3
+  result_rationale: 'median 档下 structural features alone 表现较差（R@1=0.489），因为 CodeQL
+    dataflow features 是 binary/sparse 的，单独使用缺乏 fine-grained discrimination。 Combined
+    (embed + struct) 仅比 embed-only 好 +0.3pp——structural signal 的增量贡献在融合后被稀释，且 combined
+    model 有更多参数容易过拟合（与 step 1000 过拟合现象一致）。StarCoder 上 combined 甚至略低于 embed-only（-0.3pp），
+    因为 StarCoder 的 healthy representation space 不需要额外维度的信号。 这进一步支持 "conditional benefit"
+    的定性结论但效果量太小。
+
+    '
+  tables:
+  - name: 'Table: Fusion Head Ablation'
+    columns:
+    - Head
+    - Qwen R@1
+    - StarCoder R@1
+    rows:
+    - - embed-only
+      - '0.538'
+      - '0.451'
+    - - struct-only
+      - '0.489'
+      - '0.412'
+    - - combined
+      - '0.541'
+      - '0.448'
+  figures_description:
+  - Stacked bar chart showing contribution decomposition of embed vs struct features
+  analysis: 'Combined head 增益微乎其微，论文中报告为 "structural features provide marginal additive
+    benefit in fusion"。不值得作为独立 contribution point。
+
+    '
+- name: Dataflow-distance weighted negatives ablation
+  plan_id: plan_010
+  description: weighted sampling by dataflow distance vs binary connected/disconnected
+  expected_results:
+    binary_qwen_R1: 0.538
+    weighted_qwen_R1: 0.535
+    binary_starcoder_R1: 0.448
+    weighted_starcoder_R1: 0.444
+  result_rationale: 'median 档下 weighted sampling 不优于 binary。原因：CodeQL 提取的 dataflow
+    distance 分布高度 bimodal（connected with distance 1-2 占大多数，disconnected 占其余）， smooth
+    weighting 在这种分布上退化为近似 binary。且 weighted 引入的额外超参数 （distance decay function）在 n=123
+    repos 的数据量下难以 tune，noise 抵消了 理论上的 curriculum benefit。这是一个 null result，说明 binary
+    structural signal 已捕获大部分可用信息。
+
+    '
+  tables:
+  - name: 'Table: Weighted vs Binary Dataflow Negatives'
+    columns:
+    - Method
+    - Qwen R@1
+    - StarCoder R@1
+    rows:
+    - - binary (current)
+      - '0.538'
+      - '0.448'
+    - - distance-weighted
+      - '0.535'
+      - '0.444'
+  figures_description:
+  - Histogram of dataflow distances showing bimodal distribution
+  analysis: 'Null result，论文中用一句话在 ablation section 报告："distance-weighted sampling
+    does not improve over binary selection, likely due to the bimodal distance distribution."
+
+    '
+- name: SWE-bench failure analysis
+  plan_id: plan_011
+  description: 50 SweRank/BM25 failure cases 分类分析
+  expected_results:
+    total_analyzed: 50
+    category_retrieval_miss: 18
+    category_generation_fail: 22
+    category_test_flaky: 4
+    category_multi_file_needed: 6
+    retrieval_miss_where_dataflow_helps: 5
+    retrieval_miss_where_dataflow_neutral: 10
+    retrieval_miss_where_dataflow_hurts: 3
+    pct_dataflow_helps_of_retrieval_miss: 27.8
+  result_rationale: 'median 档下 failure analysis 揭示 SWE-bench 上 retrieval 并非主要瓶颈——
+    50 个失败案例中仅 18 个（36%）是因为 retrieval miss，其余是 generation/test issues。 在 18 个 retrieval
+    miss 中，dataflow 仅帮助 5 个（27.8%）——这些是跨文件依赖链上的 bug，dataflow connectivity 确实提供了有用信号。但
+    10 个 neutral（文件间无 dataflow 关系或关系被 CodeQL 漏提取）和 3 个 hurt（dataflow 引入 noise 反而 distract）
+    使整体效果被抵消。这解释了为什么 plan_003 中 SWE-bench resolve rate 差异 <1pp。
+
+    '
+  tables:
+  - name: 'Table: Failure Category Distribution'
+    columns:
+    - Category
+    - Count
+    - '%'
+    rows:
+    - - Retrieval miss
+      - '18'
+      - 36%
+    - - Generation failure
+      - '22'
+      - 44%
+    - - Flaky test
+      - '4'
+      - 8%
+    - - Multi-file needed
+      - '6'
+      - 12%
+  - name: 'Table: Dataflow Impact on Retrieval Misses'
+    columns:
+    - Dataflow effect
+    - Count
+    - '%'
+    rows:
+    - - Helps
+      - '5'
+      - 27.8%
+    - - Neutral
+      - '10'
+      - 55.6%
+    - - Hurts
+      - '3'
+      - 16.7%
+  figures_description:
+  - 'Sankey diagram: failure categories → dataflow impact'
+  - 'Concrete example pair: one case where dataflow helped (cross-module dependency)
+    and one where it hurt (false connectivity)'
+  analysis: 'Failure analysis 提供定性 insight 但定量上支持 "generation bottleneck dominates
+    retrieval differences" 的结论。论文中用于 explain 为什么 SWE-bench Δ 小， 并 motivate future
+    work on generation-aware retrieval。
+
+    '
+- name: Qualitative examples
+  plan_id: plan_012
+  description: 5-10 cases where structural negatives changed retrieval outcome
+  expected_results:
+    positive_examples_found: 4
+    negative_examples_found: 2
+    ambiguous_examples: 2
+    total_curated: 8
+  result_rationale: 'median 档下能找到 4 个 convincing positive examples（dataflow negative
+    帮助 retriever 区分 lexically similar but structurally unrelated files），但也有 2 个 negative
+    examples（dataflow 引入的 structural bias 导致 miss）。 这与 median 的 "directional but not
+    definitive" 叙事一致。8 个案例中 pattern 不够 clean 来支持强因果推断——n=2 编码器 + case-by-case 分析 只能说明
+    mechanism 是 plausible 而非 proven。
+
+    '
+  tables: []
+  figures_description:
+  - 'Figure: 2 positive + 1 negative case study panels, showing query → retrieved
+    files → gold files, with dataflow graph overlay'
+  analysis: '精选 cases 放入论文 qualitative section，明确标注 positive 和 negative examples 以保持学术诚实。reviewer
+    会 appreciate balanced presentation。
+
+    '
+- name: Temperature ablation
+  plan_id: plan_014
+  description: τ ∈ {0.05, 0.1, 0.2}, 3 strategies × 2 encoders
+  expected_results:
+    qwen_tau005_random_R1: 0.521
+    qwen_tau005_embed_R1: 0.534
+    qwen_tau005_dataflow_R1: 0.53
+    qwen_tau010_random_R1: 0.533
+    qwen_tau010_embed_R1: 0.543
+    qwen_tau010_dataflow_R1: 0.538
+    qwen_tau020_random_R1: 0.524
+    qwen_tau020_embed_R1: 0.531
+    qwen_tau020_dataflow_R1: 0.527
+    starcoder_tau005_random_R1: 0.438
+    starcoder_tau005_embed_R1: 0.443
+    starcoder_tau005_dataflow_R1: 0.43
+    starcoder_tau010_random_R1: 0.449
+    starcoder_tau010_embed_R1: 0.456
+    starcoder_tau010_dataflow_R1: 0.441
+    starcoder_tau020_random_R1: 0.442
+    starcoder_tau020_embed_R1: 0.446
+    starcoder_tau020_dataflow_R1: 0.435
+    embed_benefit_direction_consistent_across_tau: true
+    dataflow_benefit_direction_inconsistent: true
+    optimal_tau: 0.1
+  result_rationale: 'median 档下 temperature ablation 证明 embedding > random 的方向在所有 τ
+    值下一致 （这是好消息，说明发现非 regime-specific）。但 Δ 在 τ=0.05 和 τ=0.2 下缩小： τ=0.05 时 loss landscape
+    过于 sharp，所有策略表现都下降，差异被 noise 淹没； τ=0.2 时 loss 太平滑，hard negatives 的难度梯度被抹平。τ=0.1
+    是 sweet spot。 Dataflow 的方向在 τ 间不一致——τ=0.05 时 Qwen 上 dataflow 略优于 random， τ=0.2
+    时略劣——进一步支持 "conditional and fragile" 的定性判断。 Cross-seed 方差在 τ=0.05 下最大（~3.0pp std），τ=0.1
+    最稳定（~1.8pp std）。
+
+    '
+  tables:
+  - name: 'Table: Temperature × Strategy R@1 (Qwen)'
+    columns:
+    - τ
+    - random
+    - embed
+    - dataflow
+    - embed Δ
+    - dataflow Δ
+    rows:
+    - - '0.05'
+      - '0.521'
+      - '0.534'
+      - '0.530'
+      - '+1.3'
+      - '+0.9'
+    - - '0.10'
+      - '0.533'
+      - '0.543'
+      - '0.538'
+      - '+1.0'
+      - '+0.5'
+    - - '0.20'
+      - '0.524'
+      - '0.531'
+      - '0.527'
+      - '+0.7'
+      - '+0.3'
+  - name: 'Table: Temperature × Strategy R@1 (StarCoder)'
+    columns:
+    - τ
+    - random
+    - embed
+    - dataflow
+    - embed Δ
+    - dataflow Δ
+    rows:
+    - - '0.05'
+      - '0.438'
+      - '0.443'
+      - '0.430'
+      - '+0.5'
+      - −0.8
+    - - '0.10'
+      - '0.449'
+      - '0.456'
+      - '0.441'
+      - '+0.7'
+      - −0.8
+    - - '0.20'
+      - '0.442'
+      - '0.446'
+      - '0.435'
+      - '+0.4'
+      - −0.7
+  figures_description:
+  - 'Heatmap: τ × strategy, cell color = R@1, separate panels for Qwen and StarCoder'
+  - 'Line plot: embed Δ vs τ, showing consistent positive direction'
+  analysis: 'Temperature ablation 是 median 档的关键正面结果之一：embedding benefit 方向 robust
+    across τ。 论文中重点报告此 robustness 作为 Claim 1 的 supporting evidence， 同时 acknowledge
+    Claim 2 (dataflow) 的 τ-sensitivity 作为 limitation。
+
+    '
+- name: Dynamic mining baseline
+  plan_id: plan_015
+  description: re-mine embedding negatives per epoch vs static (mine once from pretrained)
+  expected_results:
+    static_qwen_R1: 0.543
+    dynamic_qwen_R1: 0.547
+    static_starcoder_R1: 0.456
+    dynamic_starcoder_R1: 0.452
+    dynamic_vs_static_qwen_delta_pp: 0.4
+    dynamic_vs_static_starcoder_delta_pp: -0.4
+    dynamic_compute_overhead_factor: 3.2
+  result_rationale: 'median 档下 dynamic mining 在 Qwen 上微优（+0.4pp）但 StarCoder 上微劣（-0.4pp），
+    差异在 noise 范围内。原因：(1) static mining 在仅 3 epoch 的训练中 representation drift 有限——encoder
+    是 LoRA fine-tune，参数变化量小，pretrained 时的 embedding distance 排序在训练后基本保持；(2) dynamic
+    re-mining 引入计算开销（3.2x）但因 LoRA 的低 drift 几乎不改变 negative selection；(3) StarCoder
+    上 dynamic 略差可能因 re-mining 引入的 randomness（每次 re-mining 的 batch 不完全一致）。结论：static
+    vs dynamic 不是 关键 confound，当前 static 设计合理。
+
+    '
+  tables:
+  - name: 'Table: Static vs Dynamic Mining'
+    columns:
+    - Mining
+    - Qwen R@1
+    - StarCoder R@1
+    - GPU hours
+    rows:
+    - - Static (current)
+      - '0.543'
+      - '0.456'
+      - '3.5'
+    - - Dynamic (per-epoch)
+      - '0.547'
+      - '0.452'
+      - '11.2'
+  figures_description:
+  - 'Bar chart: static vs dynamic R@1, with compute cost annotation'
+  analysis: 'Null result for practical purposes. 论文中一句话报告："dynamic re-mining does
+    not significantly improve over static mining given the limited representation
+    drift in LoRA fine-tuning (3 epochs)"。排除了 reviewer concern about static/dynamic
+    confound。
+
+    '
+- name: Bootstrap CI for SWE-bench Lite
+  plan_id: plan_016
+  description: 95% bootstrap CI for resolve rate differences
+  expected_results:
+    embed_vs_random_delta_pp: 0.4
+    embed_vs_random_95ci_lower: -1.8
+    embed_vs_random_95ci_upper: 2.6
+    dataflow_vs_random_delta_pp: -0.3
+    dataflow_vs_random_95ci_lower: -2.5
+    dataflow_vs_random_95ci_upper: 1.9
+    bootstrap_n: 10000
+    embed_vs_random_p_value: 0.34
+  result_rationale: 'median 档下 SWE-bench 的 Δ ≤ 1pp，在 300 instances 上 bootstrap CI
+    极宽。 300 实例的 binomial 标准误约 ±2.2pp（at resolve rate ~18%）， 所以 Δ=0.4pp 的 95% CI 为
+    [-1.8, +2.6]，包含零。p=0.34 远不显著。 这是 median 档的核心弱点：无法宣称下游收益。 Dataflow 的 CI 同样包含零且
+    point estimate 为负。
+
+    '
+  tables:
+  - name: 'Table: SWE-bench Bootstrap CI'
+    columns:
+    - Comparison
+    - Δ (pp)
+    - 95% CI
+    - p-value
+    rows:
+    - - embed vs random
+      - '+0.4'
+      - '[−1.8, +2.6]'
+      - '0.34'
+    - - dataflow vs random
+      - −0.3
+      - '[−2.5, +1.9]'
+      - '0.41'
+  figures_description:
+  - 'Forest plot: point estimates with 95% CI bars, reference line at zero'
+  analysis: 'CI 均包含零，论文中必须诚实报告 "no statistically significant difference in downstream
+    resolve rate"。但可同时 argue retrieval-level improvements (plan_002/plan_013) 的 bootstrap
+    CI 更紧（pool=50 的 val set 上）， downstream pipeline 的 noise 是 confound 而非 evidence
+    against retrieval gains。
+
+    '
+- name: Inference-time graph method comparison discussion
+  plan_id: plan_017
+  description: 与 CodexGraph, LocAgent 等 inference-time 方法的定位比较
+  expected_results:
+    comparison_type: qualitative_discussion
+    codexgraph_reported_R1_improvement_pp: 5.2
+    locagent_reported_resolve_rate_pct: 26.3
+    structfuse_retrieval_R1: 0.543
+    key_distinction: training-time vs inference-time structural signal
+    complementarity_argument_strength: moderate
+  result_rationale: 'median 档下此项为 qualitative discussion 而非实验。StructFuse（training-time
+    structural mining）与 CodexGraph/LocAgent（inference-time graph navigation） 在方法论上互补：前者提升
+    base retriever 质量，后者在 inference 时做 multi-hop reasoning。但 median 档下 StructFuse
+    的 absolute improvement 较小（+1pp R@1）， complementarity argument 的说服力为 "moderate"——reviewer
+    可能问 "if inference-time methods already get +5pp, why bother with +1pp training-time
+    improvement?" 回应：training-time improvement 是 zero-cost at inference，可叠加使用。
+
+    '
+  tables:
+  - name: 'Table: Training-time vs Inference-time Structural Methods'
+    columns:
+    - Method
+    - Type
+    - Structural Signal
+    - Inference Cost
+    - Reported Gain
+    rows:
+    - - StructFuse (ours)
+      - training-time
+      - CodeQL dataflow
+      - zero
+      - +0.5–1.5pp R@1
+    - - CodexGraph
+      - inference-time
+      - LLM-built graph
+      - high (LLM calls)
+      - +5.2pp R@1
+    - - LocAgent
+      - inference-time
+      - call graph navigation
+      - moderate
+      - 26.3% resolve
+  figures_description:
+  - Comparison table in Related Work section
+  analysis: Discussion section 而非实验。定位 StructFuse 为 complementary approach—— zero
+    inference cost, improves base retriever that inference-time methods build upon.
+    Acknowledge median 档的 modest gains 使此 argument 需要 future work validation。

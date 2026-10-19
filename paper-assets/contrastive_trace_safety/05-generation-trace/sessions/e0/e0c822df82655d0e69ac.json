@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e0c822df82655d0e69ac",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code mvp implementation",
+  "task_key": "worker_code_mvp_implementation_20260516T184012",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mvp_implementation_20260516T184012_result.json",
+    "occurrence": 1,
+    "bytes": 1180,
+    "sha256": "62171bdfbb5ebdeefe51f67e1bb05b05f0889f4ef3325f4a4d0b9734a54aeb31"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结果汇总：\n\n**已创建文件：**\n- `src/config.py` — 集中配置\n- `src/data_loader.py` — 加载 HarmThoughts，提取 commitment point（使用 `llm_annotation` 字段）\n- `src/extract_hidden_states.py` — 模型 forward pass 提取 hidden states\n- `src/baselines/linear_probe.py` — 静态 linear/MLP probe\n- `src/crta/temporal_probe.py` — 5-step 时序窗口 MLP probe\n- `src/eval/evaluate.py` — step accuracy, earliest reliable detection, lead time\n- `src/run_pipeline.py` — 主入口（`--step extract/train/eval/all`）\n- `requirements.txt`\n\n**Commitment Point 分布关键数据：**\n\n| 指标 | 值 |\n|------|---|\n| 覆盖率 | 78.9% (209/265) ✓ |\n| CP 绝对位置 mean/median | 34.4 / 34.0 |\n| CP 相对位置 mean/median | 70.5% / 86.1% |\n| [90%-100%) 区间 | 41.6% (87 traces) |\n| 步骤标签平衡 | 74.5% pre / 25.5% post |\n\n**注意事项：**\n- 分布是双峰的：18.2% 早期 CP + 41.6% 末尾 CP，中间稀疏\n- 41.6% 的 trace CP 在最后 10% 处——temporal probe 对这些 trace 的提前检测能力有限\n- 训练时建议用 class weighting 缓解 3:1 的类别不平衡"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mvp-implementation.md"
+}

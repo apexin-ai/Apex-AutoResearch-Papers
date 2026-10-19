@@ -1,0 +1,40 @@
+{
+  "exp_id": "split_half_ot7b",
+  "project": "contrastive_trace_safety",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T12:25:54.594Z",
+    "updated_at": "2026-05-19T12:26:30.416Z",
+    "hypothesis": "The metric disagreement pattern (CR-composite selecting shallow layers vs threshold-based metrics selecting deep layers) in OT-7B is replicable across independent data halves, ruling out sample-specific artifacts. If both halves independently produce the same shallow/deep split and HS>Text direction, the pattern is robust to data partitioning.",
+    "spec": {
+      "command": "split_half_layer_selection.py (OT-7B, 228 traces → 114+114)",
+      "server": "autodl-rtx6000",
+      "data_path": "/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/",
+      "data_count": "228 traces split into 114+114",
+      "model_name": "OT-7B",
+      "seed": 42
+    },
+    "conclusion": "success",
+    "metrics": {
+      "half1_cr_composite_layer": 0,
+      "half2_cr_composite_layer": 0,
+      "half1_precision_layer": 22,
+      "half2_precision_layer": 24,
+      "half1_delta_prec": 0.181,
+      "half2_delta_prec": 0.349,
+      "cr_composite_both_shallow": true,
+      "threshold_both_deep": true,
+      "delta_precision_same_direction": true,
+      "delta_ba_same_direction": true,
+      "all_checkpoints_pass": true
+    },
+    "checkpoint_path": "/root/autodl-tmp/contrastive_trace_safety/artifacts/split_half_replication/",
+    "log_path": "/root/autodl-tmp/contrastive_trace_safety/artifacts/split_half_replication/report.txt",
+    "completed_at": "2026-05-19T12:26:30.416Z"
+  },
+  "timestamp": "2026-05-19T12:26:30.515347+00:00",
+  "trigger": "update_registry"
+}

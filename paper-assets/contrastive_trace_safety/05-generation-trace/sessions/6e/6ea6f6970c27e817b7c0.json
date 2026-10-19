@@ -1,0 +1,302 @@
+{
+  "schema_version": "1.0",
+  "id": "6ea6f6970c27e817b7c0",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "ssh read exp files",
+  "task_key": "worker_ssh_read_exp_files_20260517T083443",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_read_exp_files_20260517T083443_result.json",
+    "occurrence": 1,
+    "bytes": 15913,
+    "sha256": "23c0e64446a74e88ff986a484c5e68e8a26b25177a49e1b0fe812a272b2b574f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n### File 1: `/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_ot7b_full_pipeline/results.json`\n\n```json\n{\n  \"experiment\": \"exp_ot7b_full_pipeline\",\n  \"model\": \"open-thoughts/OpenThinker-7B\",\n  \"n_traces\": 228,\n  \"split\": {\n    \"train\": 136,\n    \"val\": 45,\n    \"test\": 47\n  },\n  \"phase2_layer_sweep\": {\n    \"best_layer\": 0,\n    \"best_depth_pct\": 0,\n    \"results\": [\n      {\n        \"layer\": 0,\n        \"bal_acc\": 0.6671,\n        \"crossing_rate\": 0.5319,\n        \"lead_mean\": 29.8,\n        \"pre_cp_fpr\": 0.2186,\n        \"score\": 0.3549\n      },\n      {\n        \"layer\": 4,\n        \"bal_acc\": 0.663,\n        \"crossing_rate\": 0.4043,\n        \"lead_mean\": 25.6,\n        \"pre_cp_fpr\": 0.1538,\n        \"score\": 0.268\n      },\n      {\n        \"layer\": 8,\n        \"bal_acc\": 0.664,\n        \"crossing_rate\": 0.2553,\n        \"lead_mean\": 23.4,\n        \"pre_cp_fpr\": 0.14,\n        \"score\": 0.1695\n      },\n      {\n        \"layer\": 12,\n        \"bal_acc\": 0.6752,\n        \"crossing_rate\": 0.3191,\n        \"lead_mean\": 15.6,\n        \"pre_cp_fpr\": 0.1242,\n        \"score\": 0.2155\n      },\n      {\n        \"layer\": 16,\n        \"bal_acc\": 0.6816,\n        \"crossing_rate\": 0.3191,\n        \"lead_mean\": 16.1,\n        \"pre_cp_fpr\": 0.12,\n        \"score\": 0.2175\n      },\n      {\n        \"layer\": 20,\n        \"bal_acc\": 0.6551,\n        \"crossing_rate\": 0.3191,\n        \"lead_mean\": 13.8,\n        \"pre_cp_fpr\": 0.1355,\n        \"score\": 0.2091\n      },\n      {\n        \"layer\": 24,\n        \"bal_acc\": 0.6686,\n        \"crossing_rate\": 0.2979,\n        \"lead_mean\": 26.5,\n        \"pre_cp_fpr\": 0.1324,\n        \"score\": 0.1992\n      },\n      {\n        \"layer\": 27,\n        \"bal_acc\": 0.6299,\n        \"crossing_rate\": 0.3191,\n        \"lead_mean\": 29.5,\n        \"pre_cp_fpr\": 0.1524,\n        \"score\": 0.201\n      }\n    ]\n  },\n  \"phase3_temporal_probes\": {\n    \"best_window\": 3,\n    \"best_layer\": 0,\n    \"results\": [\n      {\n        \"window\": 1,\n        \"bal_acc\": 0.6671,\n        \"precision\": 0.3369,\n        \"coverage\": 0.6809,\n        \"pre_cp_fpr\": 0.2186,\n        \"lead_mean\": 29.8\n      },\n      {\n        \"window\": 3,\n        \"bal_acc\": 0.6721,\n        \"precision\": 0.3571,\n        \"coverage\": 0.5957,\n        \"pre_cp_fpr\": 0.1877,\n        \"lead_mean\": 32.9\n      },\n      {\n        \"window\": 5,\n        \"bal_acc\": 0.6668,\n        \"precision\": 0.3598,\n        \"coverage\": 0.617,\n        \"pre_cp_fpr\": 0.1782,\n        \"lead_mean\": 33.7\n      },\n      {\n        \"window\": 10,\n        \"bal_acc\": 0.6636,\n        \"precision\": 0.3635,\n        \"coverage\": 0.617,\n        \"pre_cp_fpr\": 0.1728,\n        \"lead_mean\": 32.3\n      },\n      {\n        \"window\": 15,\n        \"bal_acc\": 0.657,\n        \"precision\": 0.3556,\n        \"coverage\": 0.6383,\n        \"pre_cp_fpr\": 0.1789,\n        \"lead_mean\": 31.6\n      },\n      {\n        \"window\": 20,\n        \"bal_acc\": 0.6314,\n        \"precision\": 0.333,\n        \"coverage\": 0.5745,\n        \"pre_cp_fpr\": 0.1811,\n        \"lead_mean\": 32.9\n      },\n      {\n        \"window\": 25,\n        \"bal_acc\": 0.6305,\n        \"precision\": 0.331,\n        \"coverage\": 0.5957,\n        \"pre_cp_fpr\": 0.1802,\n        \"lead_mean\": 31.3\n      }\n    ]\n  },\n  \"phase4_text_probes\": [\n    {\n      \"window\": 1,\n      \"bal_acc\": 0.5810269175108538,\n      \"precision\": 0.24462924462924462,\n      \"coverage\": 0.6382978723404256,\n      \"pre_cp_fpr\": 0.3448561527812028,\n      \"lead_mean\": 37.083333333333336\n    },\n    {\n      \"window\": 3,\n      \"bal_acc\": 0.5788797684515196,\n      \"precision\": 0.25365853658536586,\n      \"coverage\": 0.7446808510638298,\n      \"pre_cp_fpr\": 0.2709037727203341,\n      \"lead_mean\": 41.57142857142857\n    },\n    {\n      \"window\": 5,\n      \"bal_acc\": 0.5689643994211289,\n      \"precision\": 0.24744897959183673,\n      \"coverage\": 0.7021276595744681,\n      \"pre_cp_fpr\": 0.254684434724532,\n      \"lead_mean\": 50.851851851851855\n    },\n    {\n      \"window\": 10,\n      \"bal_acc\": 0.5826192764109985,\n      \"precision\": 0.26996197718631176,\n      \"coverage\": 0.7021276595744681,\n      \"pre_cp_fpr\": 0.22232284961863977,\n      \"lead_mean\": 45.592592592592595\n    },\n    {\n      \"window\": 15,\n      \"bal_acc\": 0.5892485094066571,\n      \"precision\": 0.28269617706237427,\n      \"coverage\": 0.6595744680851063,\n      \"pre_cp_fpr\": 0.20037626046595514,\n      \"lead_mean\": 46.52\n    },\n    {\n      \"window\": 20,\n      \"bal_acc\": 0.6091172214182344,\n      \"precision\": 0.3161925601750547,\n      \"coverage\": 0.6595744680851063,\n      \"pre_cp_fpr\": 0.1758008391112723,\n      \"lead_mean\": 39.375\n    },\n    {\n      \"window\": 25,\n      \"bal_acc\": 0.6140700434153401,\n      \"precision\": 0.3291284403669725,\n      \"coverage\": 0.6595744680851063,\n      \"pre_cp_fpr\": 0.1605430087993206,\n      \"lead_mean\": 45.476190476190474\n    }\n  ],\n  \"phase5_bootstrap\": {\n    \"bal_acc\": {\n      \"hs_mean\": 0.7372878502504099,\n      \"text_mean\": 0.6557832624037719,\n      \"delta\": 0.08150458784663794,\n      \"ci_95\": [\n        0.028372540246562543,\n        0.13588955303691563\n      ],\n      \"p_value\": 0.001,\n      \"bonferroni_sig\": \"Yes\"\n    },\n    \"precision\": {\n      \"hs_mean\": 0.42492856373959575,\n      \"text_mean\": 0.3458941700046874,\n      \"delta\": 0.07903439373490834,\n      \"ci_95\": [\n        -0.00498217647350165,\n        0.15817691203377748\n      ],\n      \"p_value\": 0.056,\n      \"bonferroni_sig\": \"No\"\n    },\n    \"pre_cp_fpr\": {\n      \"hs_mean\": 0.18767066132639668,\n      \"text_mean\": 0.2709037727203341,\n      \"delta\": -0.08323311139393744,\n      \"ci_95\": [\n        -0.1398406438408706,\n        -0.02360816993128593\n      ],\n      \"p_value\": 0.007,\n      \"bonferroni_sig\": \"Yes\"\n    }\n  },\n  \"phase6_selectivity\": {\n    \"real_acc\": 0.6720576555716353,\n    \"random_mean\": 0.48699563531114326,\n    \"random_std\": 0.014265457001283764,\n    \"selectivity_pp\": 18.506202026049206,\n    \"n_perms\": 10,\n    \"random_accs\": [\n      0.4764624023154848,\n      0.47802396526772795,\n      0.4941962373371925,\n      0.49634292329956586,\n      0.4810044573082489,\n      0.46669013024602024,\n      0.5106239073806078,\n      0.4970116353111433,\n      0.501945470332851,\n      0.46765522431259043\n    ]\n  }\n}\n```\n\n---\n\n### File 2: `/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_ot7b_full_pipeline/report.md`\n\n```markdown\n# OpenThinker-7B Commitment Detection Pipeline Report\n\n**Model**: open-thoughts/OpenThinker-7B\n**Traces**: 228 (train=136, val=45, test=47)\n**Date**: 2026-05-17 16:29\n\n## Phase 2: Layer Sweep\n\nBest layer: **0** (depth=0%)\n\n| Layer | Bal Acc | Crossing Rate | Lead | Pre-CP FPR | Score |\n|-------|---------|---------------|------|-----------|-------|\n|  0 | 0.6671 | 0.5319 | 29.8 | 0.2186 | 0.3549 |\n|  4 | 0.6630 | 0.4043 | 25.6 | 0.1538 | 0.2680 |\n|  8 | 0.6640 | 0.2553 | 23.4 | 0.1400 | 0.1695 |\n| 12 | 0.6752 | 0.3191 | 15.6 | 0.1242 | 0.2155 |\n| 16 | 0.6816 | 0.3191 | 16.1 | 0.1200 | 0.2175 |\n| 20 | 0.6551 | 0.3191 | 13.8 | 0.1355 | 0.2091 |\n| 24 | 0.6686 | 0.2979 | 26.5 | 0.1324 | 0.1992 |\n| 27 | 0.6299 | 0.3191 | 29.5 | 0.1524 | 0.2010 |\n\n## Phase 3: Hidden State Temporal Probes (layer=0)\n\nBest window: **W=3**\n\n| W | Bal Acc | Precision | Coverage | Pre-CP FPR | Lead |\n|---|---------|-----------|----------|-----------|------|\n|  1 | 0.6671 | 0.3369 | 0.6809 | 0.2186 | 29.8 |\n|  3 | 0.6721 | 0.3571 | 0.5957 | 0.1877 | 32.9 |\n|  5 | 0.6668 | 0.3598 | 0.6170 | 0.1782 | 33.7 |\n| 10 | 0.6636 | 0.3635 | 0.6170 | 0.1728 | 32.3 |\n| 15 | 0.6570 | 0.3556 | 0.6383 | 0.1789 | 31.6 |\n| 20 | 0.6314 | 0.3330 | 0.5745 | 0.1811 | 32.9 |\n| 25 | 0.6305 | 0.3310 | 0.5957 | 0.1802 | 31.3 |\n\n## Phase 4: Text Baseline Probes\n\nBest window: **W=25**\n\n| W | Bal Acc | Precision | Coverage | Pre-CP FPR | Lead |\n|---|---------|-----------|----------|-----------|------|\n|  1 | 0.5810 | 0.2446 | 0.6383 | 0.3449 | 37.1 |\n|  3 | 0.5789 | 0.2537 | 0.7447 | 0.2709 | 41.6 |\n|  5 | 0.5690 | 0.2474 | 0.7021 | 0.2547 | 50.9 |\n| 10 | 0.5826 | 0.2700 | 0.7021 | 0.2223 | 45.6 |\n| 15 | 0.5892 | 0.2827 | 0.6596 | 0.2004 | 46.5 |\n| 20 | 0.6091 | 0.3162 | 0.6596 | 0.1758 | 39.4 |\n| 25 | 0.6141 | 0.3291 | 0.6596 | 0.1605 | 45.5 |\n\n## Phase 5: Paired Bootstrap (HS vs Text)\n\n| Metric | HS | Text | Delta | CI 95% | p-value | Bonf. Sig |\n|--------|-----|------|-------|--------|---------|-----------|\n| bal_acc | 0.7373 | 0.6558 | 0.0815 | [0.0284, 0.1359] | 0.0010 | Yes |\n| precision | 0.4249 | 0.3459 | 0.0790 | [-0.0050, 0.1582] | 0.0560 | No |\n| pre_cp_fpr | 0.1877 | 0.2709 | -0.0832 | [-0.1398, -0.0236] | 0.0070 | Yes |\n\n## Phase 6: Selectivity Control\n\n- Real accuracy: 0.6721\n- Random mean: 0.4870 +/- 0.0143\n- **Selectivity: 18.5 pp**\n- N permutations: 10\n\n## Summary\n\n- Best layer: 0 (depth 0%)\n- Best HS probe: W=3, bal_acc=0.6721\n- Best text probe: W=25, bal_acc=0.6141\n- Selectivity: 18.5 pp above random\n- HS vs Text: HS > Text\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "experiment": "exp_ot7b_full_pipeline",
+              "model": "open-thoughts/OpenThinker-7B",
+              "n_traces": 228,
+              "split": {
+                "train": 136,
+                "val": 45,
+                "test": 47
+              },
+              "phase2_layer_sweep": {
+                "best_layer": 0,
+                "best_depth_pct": 0,
+                "results": [
+                  {
+                    "layer": 0,
+                    "bal_acc": 0.6671,
+                    "crossing_rate": 0.5319,
+                    "lead_mean": 29.8,
+                    "pre_cp_fpr": 0.2186,
+                    "score": 0.3549
+                  },
+                  {
+                    "layer": 4,
+                    "bal_acc": 0.663,
+                    "crossing_rate": 0.4043,
+                    "lead_mean": 25.6,
+                    "pre_cp_fpr": 0.1538,
+                    "score": 0.268
+                  },
+                  {
+                    "layer": 8,
+                    "bal_acc": 0.664,
+                    "crossing_rate": 0.2553,
+                    "lead_mean": 23.4,
+                    "pre_cp_fpr": 0.14,
+                    "score": 0.1695
+                  },
+                  {
+                    "layer": 12,
+                    "bal_acc": 0.6752,
+                    "crossing_rate": 0.3191,
+                    "lead_mean": 15.6,
+                    "pre_cp_fpr": 0.1242,
+                    "score": 0.2155
+                  },
+                  {
+                    "layer": 16,
+                    "bal_acc": 0.6816,
+                    "crossing_rate": 0.3191,
+                    "lead_mean": 16.1,
+                    "pre_cp_fpr": 0.12,
+                    "score": 0.2175
+                  },
+                  {
+                    "layer": 20,
+                    "bal_acc": 0.6551,
+                    "crossing_rate": 0.3191,
+                    "lead_mean": 13.8,
+                    "pre_cp_fpr": 0.1355,
+                    "score": 0.2091
+                  },
+                  {
+                    "layer": 24,
+                    "bal_acc": 0.6686,
+                    "crossing_rate": 0.2979,
+                    "lead_mean": 26.5,
+                    "pre_cp_fpr": 0.1324,
+                    "score": 0.1992
+                  },
+                  {
+                    "layer": 27,
+                    "bal_acc": 0.6299,
+                    "crossing_rate": 0.3191,
+                    "lead_mean": 29.5,
+                    "pre_cp_fpr": 0.1524,
+                    "score": 0.201
+                  }
+                ]
+              },
+              "phase3_temporal_probes": {
+                "best_window": 3,
+                "best_layer": 0,
+                "results": [
+                  {
+                    "window": 1,
+                    "bal_acc": 0.6671,
+                    "precision": 0.3369,
+                    "coverage": 0.6809,
+                    "pre_cp_fpr": 0.2186,
+                    "lead_mean": 29.8
+                  },
+                  {
+                    "window": 3,
+                    "bal_acc": 0.6721,
+                    "precision": 0.3571,
+                    "coverage": 0.5957,
+                    "pre_cp_fpr": 0.1877,
+                    "lead_mean": 32.9
+                  },
+                  {
+                    "window": 5,
+                    "bal_acc": 0.6668,
+                    "precision": 0.3598,
+                    "coverage": 0.617,
+                    "pre_cp_fpr": 0.1782,
+                    "lead_mean": 33.7
+                  },
+                  {
+                    "window": 10,
+                    "bal_acc": 0.6636,
+                    "precision": 0.3635,
+                    "coverage": 0.617,
+                    "pre_cp_fpr": 0.1728,
+                    "lead_mean": 32.3
+                  },
+                  {
+                    "window": 15,
+                    "bal_acc": 0.657,
+                    "precision": 0.3556,
+                    "coverage": 0.6383,
+                    "pre_cp_fpr": 0.1789,
+                    "lead_mean": 31.6
+                  },
+                  {
+                    "window": 20,
+                    "bal_acc": 0.6314,
+                    "precision": 0.333,
+                    "coverage": 0.5745,
+                    "pre_cp_fpr": 0.1811,
+                    "lead_mean": 32.9
+                  },
+                  {
+                    "window": 25,
+                    "bal_acc": 0.6305,
+                    "precision": 0.331,
+                    "coverage": 0.5957,
+                    "pre_cp_fpr": 0.1802,
+                    "lead_mean": 31.3
+                  }
+                ]
+              },
+              "phase4_text_probes": [
+                {
+                  "window": 1,
+                  "bal_acc": 0.5810269175108538,
+                  "precision": 0.24462924462924462,
+                  "coverage": 0.6382978723404256,
+                  "pre_cp_fpr": 0.3448561527812028,
+                  "lead_mean": 37.083333333333336
+                },
+                {
+                  "window": 3,
+                  "bal_acc": 0.5788797684515196,
+                  "precision": 0.25365853658536586,
+                  "coverage": 0.7446808510638298,
+                  "pre_cp_fpr": 0.2709037727203341,
+                  "lead_mean": 41.57142857142857
+                },
+                {
+                  "window": 5,
+                  "bal_acc": 0.5689643994211289,
+                  "precision": 0.24744897959183673,
+                  "coverage": 0.7021276595744681,
+                  "pre_cp_fpr": 0.254684434724532,
+                  "lead_mean": 50.851851851851855
+                },
+                {
+                  "window": 10,
+                  "bal_acc": 0.5826192764109985,
+                  "precision": 0.26996197718631176,
+                  "coverage": 0.7021276595744681,
+                  "pre_cp_fpr": 0.22232284961863977,
+                  "lead_mean": 45.592592592592595
+                },
+                {
+                  "window": 15,
+                  "bal_acc": 0.5892485094066571,
+                  "precision": 0.28269617706237427,
+                  "coverage": 0.6595744680851063,
+                  "pre_cp_fpr": 0.20037626046595514,
+                  "lead_mean": 46.52
+                },
+                {
+                  "window": 20,
+                  "bal_acc": 0.6091172214182344,
+                  "precision": 0.3161925601750547,
+                  "coverage": 0.6595744680851063,
+                  "pre_cp_fpr": 0.1758008391112723,
+                  "lead_mean": 39.375
+                },
+                {
+                  "window": 25,
+                  "bal_acc": 0.6140700434153401,
+                  "precision": 0.3291284403669725,
+                  "coverage": 0.6595744680851063,
+                  "pre_cp_fpr": 0.1605430087993206,
+                  "lead_mean": 45.476190476190474
+                }
+              ],
+              "phase5_bootstrap": {
+                "bal_acc": {
+                  "hs_mean": 0.7372878502504099,
+                  "text_mean": 0.6557832624037719,
+                  "delta": 0.08150458784663794,
+                  "ci_95": [
+                    0.028372540246562543,
+                    0.13588955303691563
+                  ],
+                  "p_value": 0.001,
+                  "bonferroni_sig": "Yes"
+                },
+                "precision": {
+                  "hs_mean": 0.42492856373959575,
+                  "text_mean": 0.3458941700046874,
+                  "delta": 0.07903439373490834,
+                  "ci_95": [
+                    -0.00498217647350165,
+                    0.15817691203377748
+                  ],
+                  "p_value": 0.056,
+                  "bonferroni_sig": "No"
+                },
+                "pre_cp_fpr": {
+                  "hs_mean": 0.18767066132639668,
+                  "text_mean": 0.2709037727203341,
+                  "delta": -0.08323311139393744,
+                  "ci_95": [
+                    -0.1398406438408706,
+                    -0.02360816993128593
+                  ],
+                  "p_value": 0.007,
+                  "bonferroni_sig": "Yes"
+                }
+              },
+              "phase6_selectivity": {
+                "real_acc": 0.6720576555716353,
+                "random_mean": 0.48699563531114326,
+                "random_std": 0.014265457001283764,
+                "selectivity_pp": 18.506202026049206,
+                "n_perms": 10,
+                "random_accs": [
+                  0.4764624023154848,
+                  0.47802396526772795,
+                  0.4941962373371925,
+                  0.49634292329956586,
+                  0.4810044573082489,
+                  0.46669013024602024,
+                  0.5106239073806078,
+                  0.4970116353111433,
+                  0.501945470332851,
+                  0.46765522431259043
+                ]
+              }
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-read-exp-files.md"
+}

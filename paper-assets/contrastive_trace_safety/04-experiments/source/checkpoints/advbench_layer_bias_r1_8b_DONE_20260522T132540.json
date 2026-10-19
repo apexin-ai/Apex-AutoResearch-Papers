@@ -1,0 +1,61 @@
+{
+  "exp_id": "advbench_layer_bias_r1_8b",
+  "project": "contrastive_trace_safety",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T09:36:49.176Z",
+    "updated_at": "2026-05-22T13:25:40.013Z",
+    "hypothesis": "CR-composite layer selection bias (shallow preference due to cosine compression) replicates on AdvBench binary jailbreak/safe labels without CP annotations, confirming the phenomenon generalizes beyond HarmThoughts step-level CP labels to a second dataset with simpler binary supervision.",
+    "parent": "n6_multi_metric_ensemble",
+    "spec": {
+      "checkpoint_path": "/root/autodl-tmp/contrastive_trace_safety/artifacts/advbench_layer_bias_results.json",
+      "log_path": "/root/autodl-tmp/contrastive_trace_safety/artifacts/advbench_layer_bias_log.txt"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-22T10:17:09.434Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-22T09:42:02.970168+00:00"
+        },
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-22T10:17:12.032469+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "completed_at": null,
+    "metrics": {
+      "n_traces": 520,
+      "n_jailbreak": 412,
+      "n_safe": 108,
+      "jb_rate": 0.792,
+      "cr_composite_layer": 9,
+      "cr_composite_depth_pct": 29,
+      "precision_layer": 22,
+      "precision_depth_pct": 71,
+      "inv_fpr_layer": 29,
+      "inv_fpr_depth_pct": 93.5,
+      "crossing_rate_layer": 1,
+      "crossing_rate_depth_pct": 3.2,
+      "bal_acc_layer": 22,
+      "bal_acc_depth_pct": 71,
+      "auroc_layer": 31,
+      "auroc_depth_pct": 100,
+      "cr_vs_threshold_divergence_pp": 42,
+      "best_bal_acc": 0.7141,
+      "best_precision": 0.9299,
+      "best_auroc": 0.7547
+    }
+  },
+  "timestamp": "2026-05-22T13:25:40.321507+00:00",
+  "trigger": "update_registry"
+}

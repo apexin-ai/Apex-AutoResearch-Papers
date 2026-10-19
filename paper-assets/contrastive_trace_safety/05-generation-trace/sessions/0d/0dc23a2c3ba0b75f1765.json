@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0dc23a2c3ba0b75f1765",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "analysis r14 a1 check and resume",
+  "task_key": "worker_analysis_r14_a1_check_and_resume_20260518T162850",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r14_a1_check_and_resume_20260518T162850_result.json",
+    "occurrence": 1,
+    "bytes": 1524,
+    "sha256": "8074796879fd13d43ac04ecc8c128870310398d874bdcd5be283228ea921e33e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "R14-A1 实验全部完成。结果汇总：\n\n## R14-A1 Results: BA-Optimal Layer + HS vs Text Probe\n\n| Model | BA-opt Layer | HS Prec | Text Prec | ΔPrec | p | HS FPR | Text FPR | ΔFPR | p | HS BA | Text BA | ΔBA | p | HS AUROC | Text AUROC | ΔAUROC | p | HB |\n|-------|-------------|---------|-----------|-------|------|--------|----------|------|------|-------|---------|-----|------|----------|------------|--------|------|-----|\n| R1-8B | L17 | .633 | .472 | +.186 | .0001 | .114 | .205 | -.070 | .0433 | .737 | .673 | +.084 | .0062 | .857 | .736 | +.121 | .0089 | 2/3 |\n| OT-7B | L2 | .377 | .254 | +.185 | .0000 | .181 | .294 | -.133 | .0001 | .657 | .580 | +.080 | .0060 | .733 | .604 | +.128 | .0031 | **3/3** |\n| R1-32B | L46 | .558 | .441 | +.128 | .0143 | .306 | .382 | -.122 | .0829 | .723 | .601 | +.176 | .0000 | .788 | .637 | +.151 | .0086 | 1/3 |\n| QwQ-32B | L63 | .660 | .460 | +.181 | .0008 | .134 | .202 | -.064 | .0878 | .763 | .617 | +.135 | .0000 | .840 | .689 | +.151 | .0012 | 2/3 |\n\n**8/12 HB pass, 14/16 raw significant**\n\n- Precision 和 BA：所有 4 个模型 HS > Text，大部分通过 HB（R1-32B precision 除外）\n- FPR：仅 OT-7B 通过 HB，其余 3 个模型 FPR 改善不显著\n- AUROC：全部 4 个模型 raw significant（不在 HB family 内）\n- BA-optimal layer 跨模型差异大：小模型偏浅层（L2, L17），32B 模型偏深层（L46, L63）\n- 注意：脚本使用 `max_iter=500`（非 spec 的 2000），存在 convergence warnings"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-r14-a1-check-and-resume.md"
+}

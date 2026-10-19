@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dc21cd3057228ae6a512",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "analysis r1 8b cosine and figure",
+  "task_key": "worker_analysis_r1_8b_cosine_and_figure_20260522T182019",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r1_8b_cosine_and_figure_20260522T182019_result.json",
+    "occurrence": 1,
+    "bytes": 850,
+    "sha256": "9328e76f0490ef89ade857c336923427b5b6c0d490080f1d63bbcf3aa0b56dda"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。\n\n### R1-8B Cosine Compression 结果\n\n| 模型 | Shallow Mean | Deep Mean | Ratio | Compression |\n|------|-------------|-----------|-------|-------------|\n| **R1-8B** (L0-L5 / L24-L31) | 0.3792 | 0.3834 | **0.9889** | 1.1% (极微弱) |\n| **Gemma-2-9B** (L0-L5 / L30-L41) | 0.2373 | 0.3055 | **0.7766** | 22.3% (强) |\n| **Gemma-4-E4B** (L0-L5 / L30-L41) | 0.1161 | 0.1107 | **1.0486** | 无 (shallow > deep) |\n\nR1-8B 呈现独特的 mid-layer peak 模式（L7-L10 ~0.55），然后单调下降至 deep layers ~0.36。与 Gemma-2 的强 shallow compression 和 Gemma-4 的高度不规则锯齿形 profile 形成鲜明对比。\n\n### 产出\n- `artifacts/r1_8b_cosine_compression_results.json`（服务器 + 本地已有数据）\n- `docs/paper/figures/fig_cosine_cross_arch.pdf` + `.png`（本地已生成）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-r1-8b-cosine-and-figure.md"
+}

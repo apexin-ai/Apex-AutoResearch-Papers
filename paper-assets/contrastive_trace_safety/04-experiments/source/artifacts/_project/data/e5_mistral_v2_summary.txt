@@ -1,0 +1,22 @@
+E5-Mistral Comparison v2 (Corrected HS Layers)
+Server: /root/autodl-tmp/contrastive_trace_safety/artifacts/e5_mistral_comparison_v2/
+
+Layer mapping:
+  R1-8B:   layer_idx=2, W=3  → L14
+  OT-7B:   layer_idx=16, W=3 → L16
+  R1-32B:  layer_idx=63, W=1 → L63
+  QwQ-32B: layer_idx=63, W=5 → L63 (unchanged from v1)
+
+Results (v2):
+  R1-8B:  HS BA=0.757, Prec=0.630, FPR=0.125 | E5 BA=0.601, MiniLM BA=0.614
+  OT-7B:  HS BA=0.682, Prec=0.446, FPR=0.138 | E5 BA=0.631, MiniLM BA=0.575
+  R1-32B: HS BA=0.742, Prec=0.588, FPR=0.273 | E5 BA=0.667, MiniLM BA=0.627
+  QwQ-32B:HS BA=0.719, Prec=0.515, FPR=0.259 | E5 BA=0.630, MiniLM BA=0.543
+
+Permutation (E5 vs HS):
+  R1-8B:  BA p=0.0041*, Prec p=0.0013*, FPR p=0.0214*
+  OT-7B:  BA p=0.804, Prec p=0.0089*, FPR p=0.0066*
+  R1-32B: BA p=0.0910, Prec p=0.535, FPR p=0.912
+  QwQ-32B:BA p=0.076, Prec p=0.368, FPR p=0.901
+
+Sanity: QwQ-32B v1==v2 (all deltas=0)

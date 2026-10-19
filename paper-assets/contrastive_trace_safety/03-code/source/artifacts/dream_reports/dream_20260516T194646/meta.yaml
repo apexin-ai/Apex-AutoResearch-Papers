@@ -1,0 +1,3547 @@
+dream_id: dream_20260516T194646
+project: contrastive_trace_safety
+venue: ''
+focus: 'Key risks: (1) method is too simple (temporal LR) — reviewers may say no novelty;
+  (2) negative lead time finding may be seen as limitation not contribution; (3) cross-architecture
+  results unknown — if temporal advantage doesn''t hold on Qwen2.5 models, Claim 2
+  weakens significantly. Evaluate whether coverage story + negative finding + cross-architecture
+  empirical study is enough for EMNLP Main vs Findings.'
+review_mode: full
+review_visible: true
+writing_visible: true
+what_if: []
+tier_definitions:
+  tiers:
+    best:
+      tier: best
+      meaning: 'Cross-architecture experiments fully replicate r1-8b findings: static
+        probes fail, temporal window saturates coverage, lead time stays negative
+        on all models'
+      key_assumptions:
+      - Safety signal distribution in minor PCs is an architectural universal (not
+        Llama-specific)
+      - Temporal density decline pattern exists in Qwen2.5-based reasoning traces
+      - Hidden-state lead time limitation is fundamental (not model-specific artifact)
+      - Cross-model transfer with projection head achieves non-trivial generalization
+      number_ranges:
+        cross_arch_static_coverage:
+        - 0.35
+        - 0.5
+        cross_arch_temporal_w15_coverage:
+        - 0.7
+        - 0.82
+        cross_arch_temporal_minus_static_delta:
+        - 0.25
+        - 0.35
+        cross_arch_lead_time_mean:
+        - -3.0
+        - 0.0
+        cross_transfer_zero_shot_coverage:
+        - 0.55
+        - 0.7
+        mahalanobis_baseline_coverage:
+        - 0.2
+        - 0.4
+        fisher_orig_qwen:
+        - 12.0
+        - 20.0
+        fisher_pca3_qwen:
+        - 0.5
+        - 1.5
+      narrative_direction: Original 3-claim structure holds at full strength. Frame
+        as first cross-architecture empirical study establishing universal properties
+        of hidden-state safety monitoring in reasoning models. Method simplicity is
+        the finding (reviewer concern 1 preempted). Negative lead time is a principled
+        boundary result. EMNLP Main with high confidence.
+    median:
+      tier: median
+      meaning: Temporal advantage exists on Qwen2.5 but is attenuated (~15-20pp vs
+        30pp); one sub-finding is ambiguous (e.g., lead time slightly positive on
+        one model, or Mahalanobis partially works)
+      key_assumptions:
+      - Safety signal distribution varies by architecture — Qwen2.5 concentrates slightly
+        more in top PCs
+      - Temporal patterns exist cross-architecture but with different optimal window
+        sizes
+      - Lead time limitation may be soft (architecture-dependent) rather than fundamental
+      - Cross-model transfer is weak without fine-tuning
+      number_ranges:
+        cross_arch_static_coverage:
+        - 0.45
+        - 0.6
+        cross_arch_temporal_w15_coverage:
+        - 0.6
+        - 0.72
+        cross_arch_temporal_minus_static_delta:
+        - 0.12
+        - 0.22
+        cross_arch_lead_time_mean:
+        - -1.0
+        - 2.0
+        cross_transfer_zero_shot_coverage:
+        - 0.35
+        - 0.5
+        mahalanobis_baseline_coverage:
+        - 0.3
+        - 0.5
+        fisher_orig_qwen:
+        - 8.0
+        - 14.0
+        fisher_pca3_qwen:
+        - 1.5
+        - 4.0
+      narrative_direction: Soften Claim 2 from 'saturates oracle ceiling cross-architecture'
+        to 'consistently improves coverage with architecture-dependent magnitude.'
+        Claim 3 becomes 'lead time is near-zero across architectures' (directional
+        finding, not absolute impossibility). Add architecture-comparative analysis
+        as new contribution axis — WHY does signal distribution differ? Reframe as
+        'characterization + practical method' paper. Strengthen with window ablation
+        (exp-007) showing architecture-specific optimal W. Still viable for EMNLP
+        Main but needs tighter empirical packaging; Findings is realistic fallback.
+    worst:
+      tier: worst
+      meaning: Temporal advantage does not generalize — Qwen2.5 models either have
+        easily separable static signal OR temporal context provides negligible benefit,
+        invalidating the core 'temporal is critical' story
+      key_assumptions:
+      - Static probe failure is Llama-architecture-specific (Qwen2.5 hidden states
+        are more linearly separable for safety)
+      - Temporal density decline pattern is an artifact of Llama-3.1 representation
+        geometry
+      - The r1-8b findings describe one model's quirk, not a general property of reasoning-model
+        safety
+      - Cross-model transfer fails — architectures encode safety incommensurably
+      number_ranges:
+        cross_arch_static_coverage:
+        - 0.6
+        - 0.75
+        cross_arch_temporal_w15_coverage:
+        - 0.62
+        - 0.78
+        cross_arch_temporal_minus_static_delta:
+        - 0.0
+        - 0.1
+        cross_arch_lead_time_mean:
+        - 0.0
+        - 5.0
+        cross_transfer_zero_shot_coverage:
+        - 0.2
+        - 0.35
+        mahalanobis_baseline_coverage:
+        - 0.45
+        - 0.65
+        fisher_orig_qwen:
+        - 5.0
+        - 10.0
+        fisher_pca3_qwen:
+        - 3.0
+        - 7.0
+      narrative_direction: 'Abandon ''temporal is universally critical'' framing.
+        Reframe as: ''Hidden-state safety monitoring in reasoning models is architecture-dependent
+        — we identify two regimes (distributed-signal/Llama where temporal context
+        is essential, vs concentrated-signal/Qwen where static probes suffice) and
+        characterize when each applies.'' New Claim 2 becomes ''architecture determines
+        monitoring strategy.'' Emphasize the diagnostic framework (Fisher ratio, PCA
+        variance as predictors of which regime applies) as the transferable contribution.
+        The Llama temporal finding + Qwen static finding together tell a richer story
+        than either alone. Reposition as empirical characterization paper with practical
+        deployment implications. Still target EMNLP Main via the comparative-analysis
+        angle — reviewer appetite for ''when does X work vs not'' papers is strong
+        in the security track.'
+scenarios:
+- tier: best
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/artifacts/dream_reports/dream_20260516T194646/best/paper.pdf
+  imagined_experiments:
+  - name: Cross-architecture static probe evaluation
+    plan_id: exp-001
+    description: Train static LR on r1-32b and QwQ-32B hidden states, measure per-step
+      classification accuracy and detection coverage.
+    expected_results:
+      r1_32b_static_acc: 0.8243
+      r1_32b_static_coverage: 0.4419
+      r1_32b_fisher_orig_L14: 16.3
+      r1_32b_fisher_orig_L20: 17.1
+      r1_32b_fisher_pca3_L14: 0.87
+      r1_32b_var_explained_3pc: 0.142
+      qwq_32b_static_acc: 0.8091
+      qwq_32b_static_coverage: 0.3953
+      qwq_32b_fisher_orig_L14: 14.8
+      qwq_32b_fisher_orig_L20: 15.6
+      qwq_32b_fisher_pca3_L14: 0.72
+      qwq_32b_var_explained_3pc: 0.128
+      mean_cross_arch_static_coverage: 0.4186
+    result_rationale: Qwen2.5 架构使用 GQA 且 hidden dimension 为 5120（vs Llama-3.1 的 4096），导致
+      safety signal 分布在更多维度上。Fisher 判别比在原始空间仍然很高（14-17），证明 safety signal 存在但同样集中在
+      minor PCs——PCA top-3 解释方差更低（12-14% vs 16.6%），因为 5120 维空间中信号散布更广。静态 LR 仍能达到 ~81%
+      accuracy（因为 majority class baseline 高），但 coverage 低于 50% 因为单步分类无法捕捉 safety reasoning
+      density decline 的渐变模式。QwQ-32B 略低于 r1-32b 因为其推理链更长更多样，commitment boundary 更模糊。
+    tables:
+    - caption: 'Table 3: Static probe performance across architectures'
+      columns:
+      - Model
+      - Base Arch
+      - Hidden Dim
+      - Static Acc
+      - Static Coverage
+      - Fisher (orig)
+      - Fisher (PCA-3)
+      - Var Explained (3PC)
+      rows:
+      - - r1-8b
+        - Llama-3.1
+        - 4096
+        - 0.8172
+        - 0.4651
+        - 17.88
+        - 0.928
+        - 0.166
+      - - r1-32b
+        - Qwen2.5
+        - 5120
+        - 0.8243
+        - 0.4419
+        - 17.1
+        - 0.87
+        - 0.142
+      - - QwQ-32B
+        - Qwen2.5
+        - 5120
+        - 0.8091
+        - 0.3953
+        - 15.6
+        - 0.72
+        - 0.128
+    figures_description:
+    - 'Figure 4: Fisher discriminant ratio vs PCA dimensionality for all 3 models.
+      Shows consistent collapse from 15-18 (full space) to <1.5 (PCA-3) across architectures,
+      confirming signal-in-minor-PCs is universal.'
+    - 'Figure 5: PCA-3D scatter of safe vs unsafe steps for r1-32b and QwQ-32B (analogous
+      to Figure 2 from r1-8b). Both show overlapping clusters confirming geometric
+      separation fails in low-D projection.'
+    analysis: 'Static probe failure replicates perfectly: all models show coverage
+      <50% despite high-dimensional Fisher ratios >14. The pattern is architecture-independent
+      — safety signal exists in hidden states but is distributed across minor principal
+      components in both Llama and Qwen2.5 backbones. This directly validates Claim
+      1 as an architectural universal.'
+  - name: Cross-architecture temporal window evaluation
+    plan_id: exp-002
+    description: Train temporal LR W=15 on r1-32b and QwQ-32B. Validate +25-35pp coverage
+      improvement holds cross-architecture.
+    expected_results:
+      r1_32b_temporal_w15_acc: 0.8512
+      r1_32b_temporal_w15_coverage: 0.7907
+      r1_32b_temporal_minus_static_delta: 0.3488
+      r1_32b_temporal_w15_lead_mean: -1.32
+      qwq_32b_temporal_w15_acc: 0.8389
+      qwq_32b_temporal_w15_coverage: 0.7442
+      qwq_32b_temporal_minus_static_delta: 0.3489
+      qwq_32b_temporal_w15_lead_mean: -0.87
+      mean_cross_arch_temporal_coverage: 0.7674
+      mean_cross_arch_delta: 0.3489
+    result_rationale: Temporal window 捕捉的是 safety reasoning density decline 模式——连续
+      15 步内 safety-labeled 步骤的密度从高到低的趋势。这个模式是推理模型 self-jailbreak 的固有特征：模型先进行 safety
+      reasoning，然后逐渐过渡到 harmful execution。无论底层架构是 Llama 还是 Qwen2.5，这个 behavioral pattern
+      都会被 encoded 进 hidden states 的时序轨迹中。r1-32b 略高于 QwQ 因为 DeepSeek 蒸馏对齐更干净，commitment
+      boundary 更 sharp；QwQ 的推理链更长更弯曲但仍然满足 saturation。Delta 在两个模型上都 ~35pp 因为 static
+      baseline 和 temporal ceiling 的 gap 反映的是同一个结构性限制。
+    tables:
+    - caption: 'Table 4: Temporal window probe performance across architectures'
+      columns:
+      - Model
+      - Static Cov
+      - Temporal W15 Cov
+      - Delta
+      - Temporal Acc
+      - Lead Time (mean)
+      rows:
+      - - r1-8b
+        - 0.4651
+        - 0.7674
+        - +30.2pp
+        - 0.8478
+        - -1.09
+      - - r1-32b
+        - 0.4419
+        - 0.7907
+        - +34.9pp
+        - 0.8512
+        - -1.32
+      - - QwQ-32B
+        - 0.3953
+        - 0.7442
+        - +34.9pp
+        - 0.8389
+        - -0.87
+    figures_description:
+    - 'Figure 6: Coverage vs window size W for all 3 models (W=1,5,10,15,20). Shows
+      consistent saturation at W≈15 across architectures, with diminishing returns
+      beyond.'
+    - 'Figure 7: Per-trace detection timeline comparison (static vs temporal W=15)
+      on representative QwQ-32B traces. Shows temporal probe crossing commitment boundary
+      while static probe misses.'
+    analysis: Temporal advantage replicates with even larger delta on Qwen2.5 models
+      (+34.9pp vs +30.2pp on r1-8b). This is because Qwen2.5-based models have slightly
+      lower static baselines (due to more distributed signal) but temporal probes
+      still saturate near oracle ceiling. The consistency of saturation at W=15 across
+      architectures confirms that safety reasoning density decline operates at a universal
+      timescale (~15 reasoning steps). Claim 2 is fully validated cross-architecture.
+  - name: Cross-model transfer with projection head
+    plan_id: exp-003
+    description: Train probe on r1-8b (Llama, 4096-dim), test on r1-32b/QwQ (Qwen2.5,
+      5120-dim) via learned linear projection. Bidirectional transfer.
+    expected_results:
+      llama_to_qwen_r1_32b_coverage: 0.6279
+      llama_to_qwen_qwq_coverage: 0.5814
+      qwen_to_llama_r1_8b_coverage: 0.6512
+      qwen_r1_32b_to_qwq_coverage: 0.7209
+      mean_cross_transfer_coverage: 0.6454
+      projection_head_params: 20971520
+      projection_training_traces: 30
+    result_rationale: Cross-transfer 成功（coverage 0.55-0.72）因为 safety signal 的时序结构是
+      universal 的——density decline pattern 在投影后仍可识别。Llama→Qwen 方向略低于 Qwen→Llama 因为
+      4096→5120 投影是升维（信息无损），而 5120→4096 是降维但 safety signal 主要在 minor PCs 所以投影头学到了保留关键维度。同族模型间转移（r1-32b→QwQ，都是
+      Qwen2.5）效果最好（0.72）因为不需要跨架构投影，只需对齐同架构的不同微调变体。Zero-shot 不达到 in-distribution 水平（0.77）是因为不同模型的
+      commitment 边界位置和 hidden state 表征存在分布偏移，但 >55% 证明 safety monitoring 有跨架构泛化潜力。
+    tables:
+    - caption: 'Table 5: Cross-architecture transfer matrix (temporal W=15 coverage)'
+      columns:
+      - Train →
+      - 'Test: r1-8b'
+      - 'Test: r1-32b'
+      - 'Test: QwQ-32B'
+      rows:
+      - - r1-8b (Llama)
+        - 0.767 (in-dist)
+        - '0.628'
+        - '0.581'
+      - - r1-32b (Qwen2.5)
+        - '0.651'
+        - 0.791 (in-dist)
+        - '0.721'
+      - - QwQ-32B (Qwen2.5)
+        - '0.605'
+        - '0.698'
+        - 0.744 (in-dist)
+    figures_description:
+    - 'Figure 8: Transfer matrix heatmap showing coverage degradation from in-distribution
+      (diagonal) to cross-architecture (off-diagonal). Intra-family transfer (Qwen↔Qwen)
+      degrades less than cross-family (Llama↔Qwen).'
+    analysis: Non-trivial cross-architecture transfer (mean 0.645) demonstrates that
+      safety commitment signal has a shared geometric structure across model families.
+      The projection head successfully maps between representation spaces while preserving
+      the temporal density decline pattern. This is the strongest evidence for 'architectural
+      universal' framing — a probe trained on one model family can monitor another
+      with >55% coverage without any target-domain labels.
+  - name: Lead time analysis across architectures
+    plan_id: exp-004
+    description: Measure detection lead time (steps before/after textual commitment
+      point) for all methods on r1-32b and QwQ-32B.
+    expected_results:
+      r1_32b_static_lead_mean: -2.8
+      r1_32b_static_lead_median: -3
+      r1_32b_temporal_w15_lead_mean: -1.32
+      r1_32b_temporal_w15_lead_median: -1
+      r1_32b_gru_lead_mean: -0.9
+      r1_32b_positive_lead_rate: 0.29
+      qwq_32b_static_lead_mean: -1.9
+      qwq_32b_static_lead_median: -2
+      qwq_32b_temporal_w15_lead_mean: -0.87
+      qwq_32b_temporal_w15_lead_median: -1
+      qwq_32b_gru_lead_mean: -0.5
+      qwq_32b_positive_lead_rate: 0.33
+      all_models_max_lead_mean: -0.2
+      oracle_lead_mean: 31
+    result_rationale: Negative lead time 在所有模型上持续出现因为这反映了一个根本性限制：hidden states encode
+      当前 safety state 而非未来 safety trajectory。模型在 commitment point 处才在 hidden space
+      中完成从 safety→unsafe 的转变——这个转变是 concurrent with（而非 prior to）文本层面的 commitment。Oracle
+      能提前 31 步检测是因为它直接观察 label sequence 中的 density decline pattern（这是定义层面的优势，不依赖 hidden
+      representation）。QwQ 的 lead time 略好于 r1-32b（-0.87 vs -1.32）因为 QwQ 的推理链更长，commitment
+      boundary 更 gradual，给 temporal probe 更多 context 来识别过渡区。但无论哪个模型，mean lead time
+      都不超过 0，确认 pre-textual detection limitation 是 fundamental 的。
+    tables:
+    - caption: 'Table 6: Detection lead time across architectures (steps relative
+        to commitment point)'
+      columns:
+      - Model
+      - Method
+      - Lead Mean
+      - Lead Median
+      - Positive Lead %
+      - Coverage
+      rows:
+      - - r1-8b
+        - Static LR
+        - -2.0
+        - -2
+        - 30%
+        - 0.465
+      - - r1-8b
+        - Temporal W15
+        - -1.09
+        - -1
+        - 34%
+        - 0.767
+      - - r1-8b
+        - GRU
+        - -0.21
+        - -1
+        - 34.5%
+        - 0.674
+      - - r1-32b
+        - Static LR
+        - -2.8
+        - -3
+        - 25%
+        - 0.442
+      - - r1-32b
+        - Temporal W15
+        - -1.32
+        - -1
+        - 29%
+        - 0.791
+      - - r1-32b
+        - GRU
+        - -0.9
+        - -1
+        - 29%
+        - 0.721
+      - - QwQ-32B
+        - Static LR
+        - -1.9
+        - -2
+        - 28%
+        - 0.395
+      - - QwQ-32B
+        - Temporal W15
+        - -0.87
+        - -1
+        - 33%
+        - 0.744
+      - - QwQ-32B
+        - GRU
+        - -0.5
+        - 0
+        - 33%
+        - 0.698
+      - - All
+        - Oracle (K=5)
+        - 31
+        - 29
+        - 100%
+        - 1.0
+    figures_description:
+    - 'Figure 9: Lead time distribution (violin plot) across 3 models × 3 methods.
+      All method distributions centered at or below 0; oracle distribution centered
+      at +31. Clear separation between hidden-state methods and label-oracle.'
+    - 'Figure 10: Lead time vs coverage scatter for all model×method combinations.
+      Shows Pareto frontier: higher coverage methods have slightly less negative lead
+      time, but none cross zero mean.'
+    analysis: 'Negative lead time is confirmed as architecture-independent. The gap
+      between oracle (+31 steps) and best hidden-state method (≈-0.5 steps) is >30
+      steps across all models. This ''lead time wall'' at zero confirms Claim 3: hidden
+      states encode current safety commitment state but not future trajectory. The
+      finding is now established on both Llama-3.1 and Qwen2.5 architectures, ruling
+      out model-specific artifact explanations.'
+  - name: TrajGuard-style Mahalanobis distance baseline
+    plan_id: exp-005
+    description: Estimate safe-trace covariance, compute Mahalanobis distance per
+      step on all models. Evaluate as anomaly detector for commitment point.
+    expected_results:
+      r1_8b_mahalanobis_coverage: 0.3256
+      r1_8b_mahalanobis_auroc: 0.612
+      r1_32b_mahalanobis_coverage: 0.2791
+      r1_32b_mahalanobis_auroc: 0.583
+      qwq_32b_mahalanobis_coverage: 0.2326
+      qwq_32b_mahalanobis_auroc: 0.561
+      mean_mahalanobis_coverage: 0.2791
+      mahalanobis_vs_temporal_gap: -0.488
+    result_rationale: Mahalanobis distance 失败因为它本质上依赖 covariance structure（等价于所有 PCs
+      的加权距离），而 safety signal 集中在 minor PCs（解释 <17% variance）。在 full-dimensional MD
+      中，major PCs 主导距离计算——一个步骤在 top PCs 上的偏移（反映 topic/position/syntax 变化）远大于 minor
+      PCs 上的 safety signal 偏移。这导致 false positives（topic shift 被标记为 anomaly）和 false
+      negatives（真正的 safety transition 在 minor PCs 上太弱）。32B 模型更差因为 5120 维空间中 minor
+      PCs 的相对贡献更小。这直接类比了 TrajGuard 在标准 LLM 上成功但在 reasoning model 上失败的原因：reasoning
+      model 的 safety signal 不在 geometric outlier direction 上。
+    tables:
+    - caption: 'Table 7: Mahalanobis distance baseline vs temporal probe'
+      columns:
+      - Model
+      - MD Coverage
+      - MD AUROC
+      - Temporal W15 Cov
+      - Gap
+      rows:
+      - - r1-8b
+        - 0.326
+        - 0.612
+        - 0.767
+        - -44.1pp
+      - - r1-32b
+        - 0.279
+        - 0.583
+        - 0.791
+        - -51.2pp
+      - - QwQ-32B
+        - 0.233
+        - 0.561
+        - 0.744
+        - -51.1pp
+    figures_description:
+    - 'Figure 11: ROC curves for Mahalanobis distance vs temporal LR on all 3 models.
+      MD curves barely above diagonal, temporal LR curves in upper-left region.'
+    - 'Figure 12: Mahalanobis distance time series on example traces. Shows MD fluctuates
+      with topic changes but doesn''t spike at commitment point, confirming geometric
+      methods fail when signal is in minor PCs.'
+    analysis: 'Mahalanobis baseline coverage (23-33%) is substantially below even
+      static LR (40-47%), confirming that TrajGuard-style geometric anomaly detection
+      is fundamentally unsuited for reasoning-model safety monitoring. The failure
+      mode is precise and interpretable: safety signal lives in minor PCs that contribute
+      negligibly to Mahalanobis distance. This preempts reviewer concern about comparison
+      to existing detectors — they fail for principled geometric reasons, not implementation
+      issues.'
+  - name: Bootstrap confidence intervals
+    plan_id: exp-006
+    description: 1000 bootstrap resamples on all key metrics for all methods × models.
+      Report 95% CIs.
+    expected_results:
+      r1_8b_temporal_coverage_ci:
+      - 0.674
+      - 0.86
+      r1_32b_temporal_coverage_ci:
+      - 0.698
+      - 0.884
+      qwq_32b_temporal_coverage_ci:
+      - 0.651
+      - 0.837
+      r1_8b_static_coverage_ci:
+      - 0.349
+      - 0.581
+      r1_32b_static_coverage_ci:
+      - 0.326
+      - 0.558
+      cross_transfer_mean_ci:
+      - 0.558
+      - 0.733
+      lead_time_r1_8b_ci:
+      - -2.8
+      - 0.6
+      lead_time_r1_32b_ci:
+      - -3.1
+      - 0.5
+      delta_temporal_minus_static_ci:
+      - 0.186
+      - 0.512
+      all_deltas_exclude_zero: true
+    result_rationale: Bootstrap CIs 较宽（±9-12pp）因为测试集只有 43 traces（r1-8b）和类似规模的 32B
+      test sets。但关键比较（temporal vs static delta）的 CI 不包含 0，因为 +30pp 的效应量远大于采样噪声。Coverage
+      CI 上界不超过 oracle ceiling（76.7%的中心点 + ~9pp = ~86% upper bound，仍合理）。Lead time CI
+      包含少量正值（upper bound ~0.5）反映了个别 traces 的 positive lead，但均值 CI 中心始终为负。209 traces
+      的限制是真实的——CIs acknowledge this honestly——但效应量足够大使得所有核心 claims 在 p<0.05 下显著。
+    tables:
+    - caption: 'Table 8: Bootstrap 95% confidence intervals for key metrics'
+      columns:
+      - Metric
+      - r1-8b
+      - r1-32b
+      - QwQ-32B
+      rows:
+      - - Static Coverage
+        - '[0.349, 0.581]'
+        - '[0.326, 0.558]'
+        - '[0.279, 0.512]'
+      - - Temporal W15 Coverage
+        - '[0.674, 0.860]'
+        - '[0.698, 0.884]'
+        - '[0.651, 0.837]'
+      - - Delta (Temp-Static)
+        - '[0.209, 0.488]'
+        - '[0.233, 0.512]'
+        - '[0.233, 0.512]'
+      - - Lead Time (mean)
+        - '[-2.8, 0.6]'
+        - '[-3.1, 0.5]'
+        - '[-2.3, 0.7]'
+      - - Cross-transfer Cov
+        - '[0.558, 0.733]'
+        - —
+        - —
+    figures_description:
+    - 'Figure 13: Forest plot of coverage estimates with 95% bootstrap CIs. Static
+      and temporal CI ranges do not overlap for any model, confirming significant
+      separation.'
+    analysis: All core claims survive bootstrap validation. Temporal > static delta
+      CIs exclude zero (minimum lower bound +18.6pp). Lead time CIs are centered negative
+      with upper bounds near zero but never significantly positive. The wide CIs are
+      an honest reflection of sample size — acknowledged in limitations but don't
+      threaten claims because effect sizes are large relative to uncertainty.
+  - name: Window size ablation across architectures
+    plan_id: exp-007
+    description: Temporal LR with W=1,3,5,10,15,20,25 on all 3 models.
+    expected_results:
+      r1_8b_w1: 0.465
+      r1_8b_w3: 0.535
+      r1_8b_w5: 0.651
+      r1_8b_w10: 0.651
+      r1_8b_w15: 0.767
+      r1_8b_w20: 0.767
+      r1_8b_w25: 0.744
+      r1_32b_w1: 0.442
+      r1_32b_w5: 0.628
+      r1_32b_w10: 0.698
+      r1_32b_w15: 0.791
+      r1_32b_w20: 0.791
+      r1_32b_w25: 0.767
+      qwq_32b_w1: 0.395
+      qwq_32b_w5: 0.581
+      qwq_32b_w10: 0.651
+      qwq_32b_w15: 0.744
+      qwq_32b_w20: 0.744
+      qwq_32b_w25: 0.721
+      optimal_w_all_models: 15
+    result_rationale: W=15 是所有模型的饱和点因为 safety reasoning density decline 的时间尺度是 ~15
+      步——这反映了推理模型从 safety reasoning 到 harmful execution 过渡的典型长度。W<15 时 probe 看不到完整的
+      decline pattern（只看到局部），W>15 时额外 context 引入噪声（更早的步骤与 commitment 无关）且增加过拟合风险（特征维度
+      = W × hidden_dim 在小数据集上）。W=25 时 coverage 轻微下降（-2-3pp）证实了过拟合假说。三个模型在同一 W 饱和证明这个时间尺度是
+      behavioral universal，不依赖架构。
+    tables:
+    - caption: 'Table 9: Coverage vs window size across architectures'
+      columns:
+      - W
+      - r1-8b
+      - r1-32b
+      - QwQ-32B
+      - Mean
+      rows:
+      - - 1
+        - 0.465
+        - 0.442
+        - 0.395
+        - 0.434
+      - - 3
+        - 0.535
+        - 0.512
+        - 0.465
+        - 0.504
+      - - 5
+        - 0.651
+        - 0.628
+        - 0.581
+        - 0.62
+      - - 10
+        - 0.651
+        - 0.698
+        - 0.651
+        - 0.667
+      - - 15
+        - 0.767
+        - 0.791
+        - 0.744
+        - 0.767
+      - - 20
+        - 0.767
+        - 0.791
+        - 0.744
+        - 0.767
+      - - 25
+        - 0.744
+        - 0.767
+        - 0.721
+        - 0.744
+    figures_description:
+    - 'Figure 14: Coverage vs window size curve for all 3 models. Shows consistent
+      saturation at W=15 with slight decline at W=25. All curves have same shape shifted
+      vertically.'
+    analysis: Universal saturation at W=15 across architectures is a key finding supporting
+      the 'method simplicity' narrative. The window size doesn't need architecture-specific
+      tuning — the optimal temporal context is determined by the behavioral phenomenon
+      (safety reasoning decline duration), not the model's internal representation.
+      This directly preempts reviewer concern about hyperparameter sensitivity.
+  - name: Layer selection ablation on 32B models
+    plan_id: exp-008
+    description: Evaluate temporal probe at all layers (not just layer 14) on r1-32b
+      and QwQ-32B to confirm middle-layer optimality generalizes.
+    expected_results:
+      r1_32b_best_layer: 22
+      r1_32b_best_layer_coverage: 0.814
+      r1_32b_layer_14_coverage: 0.721
+      r1_32b_layer_range_good: 18-26
+      qwq_32b_best_layer: 24
+      qwq_32b_best_layer_coverage: 0.791
+      qwq_32b_layer_14_coverage: 0.698
+      qwq_32b_layer_range_good: 20-28
+      relative_best_layer_r1_32b: 34% depth (layer 22/64)
+      relative_best_layer_qwq_32b: 37% depth (layer 24/64)
+      relative_best_layer_r1_8b: 44% depth (layer 14/32)
+    result_rationale: 32B 模型有 64 层（vs r1-8b 的 32 层），最佳层在相对深度 34-37% 处（layer 22-24/64），与
+      r1-8b 的 44%（layer 14/32）一致——都在 middle layers。Middle layers 最优因为：early layers
+      encode 低级语法特征（与 safety 无关），deep layers encode 高度 task-specific 的输出特征（过于细粒度）。Middle
+      layers 恰好在抽象 semantic level 上 encode safety reasoning state。绝对层数不同但相对位置一致证明这是
+      transformer depth-dependent 的 universal 现象。报告中使用 per-model best layer 结果，同时证明
+      default 中间层选择是 robust 的 heuristic。
+    tables:
+    - caption: 'Table 10: Layer ablation (temporal W=15 coverage by layer)'
+      columns:
+      - Relative Depth
+      - r1-8b (L/32)
+      - r1-32b (L/64)
+      - QwQ-32B (L/64)
+      rows:
+      - - 10%
+        - 0.442 (L3)
+        - 0.395 (L6)
+        - 0.372 (L6)
+      - - 25%
+        - 0.605 (L8)
+        - 0.581 (L16)
+        - 0.558 (L16)
+      - - 35%
+        - 0.721 (L11)
+        - 0.814 (L22)
+        - 0.744 (L22)
+      - - 44%
+        - 0.767 (L14)
+        - 0.791 (L28)
+        - 0.791 (L28)
+      - - 50%
+        - 0.744 (L16)
+        - 0.767 (L32)
+        - 0.767 (L32)
+      - - 75%
+        - 0.628 (L24)
+        - 0.651 (L48)
+        - 0.628 (L48)
+    figures_description:
+    - 'Figure 15: Coverage vs relative layer depth (normalized 0-1) for all 3 models.
+      Peak region 30-45% for all architectures, confirming middle-layer universality.'
+    analysis: Middle-layer optimality generalizes to 32B models when measured in relative
+      depth. The best layer at ~35-44% depth captures the 'sweet spot' between low-level
+      and task-specific representations. This supports using a simple heuristic (pick
+      middle third) for layer selection without architecture-specific tuning, further
+      strengthening the 'simplicity' narrative.
+  - name: 16-label taxonomy supervision
+    plan_id: exp-009
+    description: Replace binary commitment label with fine-grained 16-label taxonomy
+      (Type 1-4 safety labels). Train temporal probe with richer supervision signal.
+    expected_results:
+      r1_8b_16label_coverage: 0.791
+      r1_8b_16label_lead_mean: -0.7
+      r1_8b_binary_coverage: 0.767
+      r1_8b_binary_lead_mean: -1.09
+      r1_32b_16label_coverage: 0.814
+      r1_32b_16label_lead_mean: -0.9
+      improvement_over_binary: +2.4pp coverage, +0.3 lead time
+      16label_accuracy_per_type:
+        type1: 0.72
+        type2: 0.68
+        type3: 0.61
+        type4: 0.54
+    result_rationale: 16-label supervision 提供 marginal improvement（+2-3pp coverage）而非
+      dramatic improvement 因为：(1) commitment detection 的瓶颈不是 label granularity 而是
+      hidden state 的 temporal encoding 能力——更细粒度的标签帮助 probe 学到更精确的 safety state representation，但不能突破
+      hidden state 本身的信息限制；(2) 16 labels 在 209 traces 上意味着每个类别只有 ~13 traces，加剧了数据稀缺问题；(3)
+      Type 3/4（更细微的 safety reasoning 类型）更难分类因为其 hidden state 表征与 Type 1/2 高度重叠。Lead
+      time 略有改善因为 fine-grained labels 让 probe 能更早识别到从 Type 1→Type 4 的渐变过程。
+    tables:
+    - caption: 'Table 11: Binary vs 16-label supervision (temporal W=15)'
+      columns:
+      - Model
+      - Binary Cov
+      - 16-label Cov
+      - Binary Lead
+      - 16-label Lead
+      rows:
+      - - r1-8b
+        - 0.767
+        - 0.791
+        - -1.09
+        - -0.7
+      - - r1-32b
+        - 0.791
+        - 0.814
+        - -1.32
+        - -0.9
+    figures_description:
+    - 'Figure 16: Per-type classification accuracy showing graceful degradation from
+      Type 1 (clearest safety signal) to Type 4 (most subtle). Confirms that fine-grained
+      safety states are partially distinguishable but with diminishing separability.'
+    analysis: '16-label supervision offers marginal but not transformative improvement,
+      addressing reviewer concern about underutilized supervision. The modest gains
+      (+2-3pp) support rather than undermine our narrative: even with optimal supervision,
+      the fundamental bottleneck is the temporal information capacity of hidden states,
+      not label quality. This result goes in the ablation section as confirmatory
+      evidence.'
+  - name: Oracle decomposition analysis
+    plan_id: exp-010
+    description: Analyze what label-sequence patterns the oracle exploits that hidden
+      states cannot. Decompose oracle's +31 step advantage.
+    expected_results:
+      oracle_uses_streak_pattern: true
+      oracle_mean_streak_before_cp: 14.6
+      oracle_detects_via: consecutive safe-label absence (K=5 consecutive non-safety
+        steps)
+      hidden_state_encodes_current_label: true
+      hidden_state_encodes_future_trajectory: false
+      mutual_info_hs_current_label: 0.42
+      mutual_info_hs_next5_labels: 0.08
+      mutual_info_hs_next15_labels: 0.03
+    result_rationale: Oracle 的优势来源于直接观察 label sequence 的 streak pattern：它在看到连续 K=5
+      个非 safety 步骤时就能判定 commitment（因为在训练数据中，连续 5 步无 safety label 后恢复 safety reasoning
+      的概率 <5%）。Hidden states 无法复制这个优势因为它们 encode 的是当前步的语义状态而非 future label trajectory
+      的统计规律。互信息分析证实：hidden state 与当前步 label 高度相关（MI=0.42），但与未来 5-15 步的 label 几乎无关（MI→0）。这说明
+      pre-textual detection 需要的信息（future trajectory）根本不存在于当前步的 hidden state 中——这是因果性限制，不是模型能力限制。
+    tables:
+    - caption: 'Table 12: Mutual information between hidden states and label sequences'
+      columns:
+      - Target
+      - MI with Hidden State
+      - MI with Label History (W=15)
+      rows:
+      - - Current label
+        - 0.42
+        - 0.89
+      - - Next 5 labels
+        - 0.08
+        - 0.31
+      - - Next 15 labels
+        - 0.03
+        - 0.12
+      - - Commitment (binary)
+        - 0.15
+        - 0.67
+    figures_description:
+    - 'Figure 17: Information decay curve — MI between hidden state at step t and
+      labels at step t+k, for k=0..30. Shows rapid exponential decay, reaching floor
+      by k≈5. Contrasts with label-history MI which decays slowly.'
+    analysis: 'The oracle decomposition reveals that the +31 step advantage is not
+      ''intelligence'' but structural: label sequences are autocorrelated (safety
+      labels cluster), so observing K consecutive absences is a powerful predictor
+      of permanent absence. Hidden states lack this look-ahead because they encode
+      single-step semantic state, not multi-step trajectory statistics. This establishes
+      the principled impossibility of pre-textual detection from hidden states alone,
+      providing theoretical grounding for Claim 3''s empirical finding.'
+  - name: OpenThinker-7B scale control
+    plan_id: exp-011
+    description: 4th model (Qwen2.5-7B base) for 2×2 architecture×scale matrix. Controls
+      for scale confound in cross-architecture comparison.
+    expected_results:
+      openthinker_7b_static_coverage: 0.4186
+      openthinker_7b_temporal_w15_coverage: 0.7209
+      openthinker_7b_lead_mean: -1.5
+      openthinker_7b_fisher_orig: 13.2
+      openthinker_7b_fisher_pca3: 0.68
+      scale_effect_llama: r1-8b vs (none) — N/A
+      scale_effect_qwen: '7B→32B: +7pp temporal coverage'
+      arch_effect_7b: 'Llama-8b (0.767) vs Qwen-7b (0.721): -4.6pp'
+      arch_effect_32b: N/A (no Llama-32B)
+    result_rationale: OpenThinker-7B（Qwen2.5-7B base）的表现略低于 r1-8b（Llama-8B）因为 Qwen2.5-7B
+      的 hidden dimension 是 3584（vs Llama 4096），且作为较小的 Qwen 模型其 safety reasoning 能力可能略弱——表现为更短、更不一致的
+      safety reasoning 序列。但关键模式仍然成立：static < 50%，temporal saturates at W=15，lead time
+      negative。2×2 矩阵表明 scale 效应（+7pp from 7B→32B in Qwen family）大于 architecture 效应（-4.6pp
+      Llama vs Qwen at 7-8B），但两者都远小于 method 效应（+30pp temporal vs static）。这排除了 scale
+      confound 解释。
+    tables:
+    - caption: 'Table 13: 2×2 Architecture × Scale matrix'
+      columns:
+      - ''
+      - 7-8B
+      - 32B
+      rows:
+      - - Llama-3.1
+        - 'r1-8b: 0.767'
+        - — (not available)
+      - - Qwen2.5
+        - 'OpenThinker-7B: 0.721'
+        - 'r1-32b: 0.791'
+    figures_description:
+    - 'Figure 18: Bar chart showing temporal coverage across 2×2 matrix. Method effect
+      (temporal vs static) dominates over both architecture and scale effects.'
+    analysis: The 2×2 matrix demonstrates that temporal advantage is robust to both
+      architecture and scale variations. Scale provides modest improvement (+7pp within
+      Qwen family) but the fundamental pattern (static fails, temporal saturates,
+      lead time negative) holds at both scales. This controls for the confound that
+      32B models might simply be 'easier to probe' due to richer representations.
+  - name: GRU/Attention probe upper bound on 32B models
+    plan_id: exp-012
+    description: Train GRU probe on r1-32b and QwQ-32B. Verify that complex architectures
+      still don't outperform temporal LR at current data scale.
+    expected_results:
+      r1_32b_gru_coverage: 0.7674
+      r1_32b_gru_acc: 0.8421
+      r1_32b_gru_lead_mean: -0.6
+      r1_32b_lr_temporal_coverage: 0.7907
+      r1_32b_gru_vs_lr_delta: -0.023
+      qwq_32b_gru_coverage: 0.7209
+      qwq_32b_gru_acc: 0.8312
+      qwq_32b_gru_lead_mean: -0.4
+      qwq_32b_lr_temporal_coverage: 0.7442
+      qwq_32b_gru_vs_lr_delta: -0.023
+      gru_overfitting_rate: 0.35
+    result_rationale: GRU 在 32B 模型上不优于（甚至略低于）temporal LR 因为：(1) 209 traces × ~50 steps/trace
+      的训练数据不足以让 1.6M 参数的 GRU 学到 LR 不能捕捉的非线性模式——GRU 的额外容量只增加了过拟合风险；(2) safety reasoning
+      density decline 本身是近似线性的时序模式（密度从高到低单调递减），LR 足以捕捉；(3) r1-8b 上已观察到 GRU coverage
+      (0.674) < temporal LR (0.767)，32B 模型上 gap 更小（-2.3pp）因为 5120-dim hidden states
+      给 GRU 更多信息，但仍不足以超越 LR 在小数据上的 regularization 优势。Lead time 略好于 LR（-0.4~-0.6 vs
+      -0.87~-1.32）但仍为负，证明 architecture complexity 不能解决 fundamental lead time limitation。
+    tables:
+    - caption: 'Table 14: GRU vs Temporal LR on 32B models'
+      columns:
+      - Model
+      - Method
+      - Coverage
+      - Accuracy
+      - Lead Mean
+      - Params
+      rows:
+      - - r1-32b
+        - Temporal LR W=15
+        - 0.791
+        - 0.851
+        - -1.32
+        - 76.8K
+      - - r1-32b
+        - GRU-256
+        - 0.767
+        - 0.842
+        - -0.6
+        - 1.62M
+      - - QwQ-32B
+        - Temporal LR W=15
+        - 0.744
+        - 0.839
+        - -0.87
+        - 76.8K
+      - - QwQ-32B
+        - GRU-256
+        - 0.721
+        - 0.831
+        - -0.4
+        - 1.62M
+    figures_description:
+    - 'Figure 19: Learning curves (train vs val loss) for GRU on 32B models. Shows
+      overfitting onset at epoch 8-10, confirming data insufficiency. LR does not
+      exhibit this behavior.'
+    analysis: 'GRU''s failure to improve over temporal LR on 32B models (actually
+      -2.3pp) definitively supports the ''simplicity is optimal'' narrative. At current
+      data scales (209 traces), the additional model complexity of GRU (21× more parameters)
+      only increases overfitting. This finding is strengthened by being replicated
+      across architectures: it''s not that GRU fails on a specific model, but that
+      the data regime makes complex temporal models counterproductive. This directly
+      preempts reviewer concern #1 about method novelty — simplicity isn''t a limitation,
+      it''s the correct choice given the data-method trade-off.'
+  review_report: '---
+
+    dream_id: dream_20260516T194646
+
+    tier: best
+
+    overall_score: Weak Reject (3/6)
+
+    timestamp: 2026-05-16T20:15:19.928368+00:00
+
+    ---
+
+
+    # Dream Review Report: Contrastive Trace Probing for Safety Commitment Detection
+
+
+    **Paper**: "Contrastive Trace Probing for Safety Commitment Detection in Reasoning
+    Models: A Cross-Architecture Empirical Study"
+
+    **Review mode**: Full (2 Reviewers, complete roundtable)
+
+    **Date**: 2026-05-16
+
+
+    ---
+
+
+    ## Roundtable Process
+
+
+    - **R1** (Methods + Experiments): Evaluated experimental design, statistical rigor,
+    reproducibility, and whether claims are supported by evidence.
+
+    - **R2** (Novelty + Related Work): Evaluated methodological novelty, significance
+    of contributions, and positioning against prior work.
+
+    - **Step 1**: Independent reviews completed.
+
+    - **Step 2**: Cross-sharing of findings.
+
+    - **Step 3**: Convergence on key agreements/disagreements.
+
+    - **Step 4**: Consolidated synthesis below.
+
+
+    ---
+
+
+    ## Overall Assessment
+
+
+    **Score: 3/6 — Weak Reject** (unanimous across both reviewers)
+
+
+    The paper addresses a timely and important problem — safety monitoring for reasoning
+    models that exhibit self-jailbreak — and presents a well-structured empirical
+    study with a clear three-claim framework. The cross-architecture consistency of
+    findings (4 models, 2 families, 2 scales) and the principled negative result on
+    lead time are genuine contributions. However, the combination of limited methodological
+    novelty, a very small dataset (209 traces), missing critical baselines (text-based
+    detection), and concerns about the empirical provenance of cross-architecture
+    results places this below the acceptance bar for a top ML venue.
+
+
+    ---
+
+
+    ## Reviewer R1: Methods and Experiments
+
+
+    ### Summary
+
+    The paper presents a cross-architecture empirical study of hidden-state probing
+    methods for detecting safety commitment points in reasoning model traces. The
+    temporal window LR (W=15) achieves oracle-ceiling coverage (+30pp over static
+    probes) but no method achieves positive lead time. The experimental design covers
+    4 models with appropriate ablations, though the small dataset and possible simulated
+    nature of 32B results raise concerns.
+
+
+    ### Strengths
+
+    - **Comprehensive experimental matrix**: The 2×2 architecture-scale design with
+    OpenThinker-7B as scale control is well-motivated. All 12 planned experiments
+    are reported.
+
+    - **Appropriate baselines and upper bounds**: Mahalanobis distance (principled
+    baseline expected to fail) and GRU (upper bound that also fails due to overfitting)
+    bracket the design space convincingly. The oracle decomposition via MI provides
+    theoretical grounding.
+
+    - **Statistical validation**: Bootstrap CIs (1000 resamples) reported for all
+    key metrics; authors honestly acknowledge wide intervals (±9-12pp). Critical temporal-vs-static
+    deltas exclude zero.
+
+    - **Clear ablation structure**: Window size (W=1-25), layer selection (10-75%
+    depth), 16-label supervision, and GRU capacity comparisons address the most obvious
+    reviewer concerns.
+
+    - **Principled negative result**: MI analysis showing hidden states encode current
+    label (MI=0.42) but not future trajectory (MI→0.03) provides mechanistic explanation
+    for the lead-time wall.
+
+    - **Honest framing**: The paper does not oversell — acknowledging GRU underperformance
+    as data-regime-dependent, negative lead time, and wide CIs.
+
+
+    ### Weaknesses
+
+    - **Dataset size (critical)**: 209 traces / ~43 test traces is extremely small.
+    Temporal LR has 76.8K parameters trained on ~6,250 training steps — borderline
+    even for logistic regression. The "oracle ceiling" match may partly be an artifact
+    of calibration on the same small test set. Cross-validation with per-fold variance
+    should be reported.
+
+    - **Coverage metric is threshold-dependent**: The primary metric "coverage" depends
+    on decision boundary without adequate specification. Is it fixed at 0.5 or tuned
+    on validation? AUROC and precision-recall curves should be reported for all methods,
+    not just Mahalanobis.
+
+    - **Possible data leakage / metric ambiguity in temporal window**: The paper should
+    confirm train/test split is trace-level and that the window does not peek beyond
+    step t. More critically, a probe that fires 20 steps after commitment still counts
+    as "detected" — the distribution of detection delay is missing.
+
+    - **Empirical provenance unclear for 32B results**: The reported numbers for r1-32b,
+    QwQ-32B, and OpenThinker-7B match pre-experiment simulation projections exactly.
+    If these are projected rather than actually measured from extracted hidden states,
+    this is a fundamental validity concern.
+
+    - **GRU number discrepancy**: Project artifacts suggest GRU achieved +4.7 steps
+    lead time on r1-8b in earlier experiments, but the paper reports -0.21. This needs
+    reconciliation — different configurations? different evaluation protocols?
+
+    - **Commitment point definition has survivorship bias**: 56/265 traces excluded
+    for lacking valid CP; 41.6% of included traces have CP in last 10% of steps (nearly
+    trivial detection). Coverage should be stratified by CP position.
+
+
+    ### Questions for Authors
+
+    1. Are the 32B model results from actual hidden-state extraction or projected/simulated?
+
+    2. How is the detection threshold set for coverage? What happens at matched false-positive
+    rates?
+
+    3. Why does the paper''s GRU lead time (-0.21 for r1-8b) differ from earlier experimental
+    records (+4.7)?
+
+    4. What is the detection delay distribution (CDF of detection_step − commitment_step)?
+
+    5. How sensitive is the oracle ceiling to K (K=3, K=7)?
+
+
+    ### Scores (R1)
+
+    | Criterion | Score |
+
+    |-----------|-------|
+
+    | Soundness | 3/5 |
+
+    | Empirical rigor | 3/5 |
+
+    | Clarity | 4/5 |
+
+    | Overall | 3/6 (Weak Reject) |
+
+    | Confidence | 4/5 |
+
+
+    ---
+
+
+    ## Reviewer R2: Novelty, Significance, and Related Work
+
+
+    ### Summary
+
+    The paper frames "commitment point detection" as a new task distinct from token-level
+    jailbreak detection, tests four standard probing methods across four reasoning
+    models, and establishes three findings about static probe failure, temporal probe
+    saturation, and lead-time limitations. The problem formulation is novel; the methods
+    are not.
+
+
+    ### Strengths
+
+    - **Novel problem formulation**: Identifying commitment point detection as structurally
+    distinct from adversarial-input jailbreak detection is well-motivated. No prior
+    work bridges hidden-state methods to reasoning-model self-jailbreak.
+
+    - **Principled negative result**: The MI decomposition (hidden states encode current
+    state, MI→0.03 for future labels) provides genuine mechanistic insight, not just
+    a method failure report. This is a useful boundary result for the community.
+
+    - **Cross-architecture validation**: Consistent patterns across 4 models, 2 families,
+    2 scales elevate this beyond a single-model case study. Universal saturation at
+    W=15 is a clean, reproducible finding.
+
+    - **Clear failure mechanism identification**: Safety signal concentrating in minor
+    PCs (Fisher drops from >14 to <1 in PCA-3) concretely explains why geometric methods
+    like TrajGuard fail.
+
+    - **Cross-architecture transfer (64.5% coverage)**: Non-trivial result suggesting
+    shared geometric structure of safety signals across model families.
+
+
+    ### Weaknesses
+
+    - **Limited methodological novelty (major)**: The core method is feature concatenation
+    (sliding window) followed by logistic regression — standard in NLP probing since
+    at least 2017. The paper frames "simplicity is the finding," but a top venue expects
+    either method innovation or depth of insight that exceeds what standard tools
+    reveal. The temporal window probe is not "contrastive" despite the title.
+
+    - **Negative lead-time result may be definitionally expected**: If commitment
+    point is defined as "the last step with safety reasoning," then hidden states
+    before that point naturally encode ongoing safety reasoning. The "principled limitation"
+    may be a tautological consequence of the task definition rather than a deep finding
+    about representations.
+
+    - **Missing text-based baseline (critical)**: The paper never compares to text-based
+    CoT monitors (TF-IDF, sentence-embedding classifier on step text). If a simple
+    text classifier achieves comparable coverage with positive lead time by detecting
+    declining safety language, the motivation for hidden-state monitoring collapses
+    entirely.
+
+    - **Coverage vs deployment utility gap**: 76.7% coverage with negative lead time
+    means the monitor fires late on 77% of harmful traces and misses 23% entirely.
+    The practical significance is limited, but the paper does not sufficiently discuss
+    this.
+
+    - **Small dataset undermines "universality" claims**: Making claims about "architectural
+    universals" and "fundamental limitations" from 209 traces from a single annotation
+    source is overclaimed.
+
+    - **Overclaimed "first" contributions**: The specific combination is novel by
+    construction, but individual components (linear probing, safety detection, cross-model
+    transfer) are all well-established. Novelty lies in application domain, not methodology.
+
+
+    ### Missing Related Work
+
+    - **Representation engineering**: Zou et al. 2023, Turner et al. 2023 — safety-relevant
+    directions in representation space directly relate to the Fisher discriminant
+    analysis.
+
+    - **Process reward models (PRMs)**: Lightman et al. 2023 — step-level reward models
+    on reasoning traces are directly relevant as they perform step-level classification.
+
+    - **Change-point detection**: Classical methods (CUSUM, Bayesian online CPD) applied
+    to hidden-state features are natural alternatives.
+
+    - **Probing methodology critique**: Hewitt & Liang 2019 — control tasks needed
+    to verify probe selectivity (is temporal window exploiting hidden-state information
+    or memorizing window structure patterns?).
+
+    - **Attention-pattern-based detection**: Gurnee et al. 2023 — attention heads
+    might capture inter-step dependencies hidden states at a single position cannot.
+
+
+    ### Questions for Authors
+
+    1. How does a text-based probe (TF-IDF / sentence-embedding classifier) perform
+    on the same metrics? What is the unique value of hidden-state monitoring?
+
+    2. Could you train a probe that predicts "current step has no safety content"
+    and apply the oracle''s K=5 consecutive-absence rule? This would be a hidden-state
+    method mimicking oracle logic.
+
+    3. How robust is the commitment point to annotation noise? Inter-annotator agreement?
+    Lead-time measurements of 0-2 steps are within annotation error.
+
+    4. The cross-architecture transfer uses 30 traces to train a 20M-parameter projection.
+    How is this regularized? Isn''t severe overfitting expected?
+
+    5. Is the "simplicity wins" narrative a fundamental finding or a dataset-size
+    confound?
+
+
+    ### Scores (R2)
+
+    | Criterion | Score |
+
+    |-----------|-------|
+
+    | Novelty | 2.5/5 |
+
+    | Significance | 3/5 |
+
+    | Related work coverage | 3/5 |
+
+    | Overall | 3/6 (Weak Reject) |
+
+    | Confidence | 4/5 |
+
+
+    ---
+
+
+    ## Roundtable Convergence
+
+
+    ### Points of Agreement (both reviewers)
+
+    1. **Dataset size is the primary empirical concern**: 209 traces (43 test) is
+    too small for "architectural universal" claims. Both reviewers flagged this independently.
+
+    2. **Missing text-based baseline is a critical gap**: Neither reviewer could assess
+    whether hidden-state monitoring adds value over simple text-based methods. This
+    is a "must-have" for revision.
+
+    3. **The coverage metric needs better specification**: Threshold dependence, missing
+    detection delay distribution, and potential conflation with easy late-CP traces
+    all undermine interpretability.
+
+    4. **Claim 3 (negative lead time) is the strongest contribution** but may be partially
+    tautological given task definition.
+
+    5. **Cross-architecture consistency is valuable** and elevates the study beyond
+    a single-model report.
+
+    6. **Methodological novelty is limited**: Temporal window LR is standard feature
+    engineering. The paper''s value is empirical, not methodological.
+
+
+    ### Points of Disagreement
+
+    - **R1** is more concerned about **empirical provenance** (are 32B results actually
+    measured?) and **internal consistency** (GRU number discrepancy). These are verifiable
+    issues that could either be resolved or would be fatal.
+
+    - **R2** is more concerned about **novelty bar** and **missing related work**.
+    Even if all numbers are confirmed empirical, R2 questions whether the contribution
+    is sufficient for a top venue.
+
+
+    ### Consensus Score Justification
+
+    Both reviewers independently arrived at **3/6 (Weak Reject)**. The paper is below
+    the acceptance threshold because:
+
+    - The methodological contribution is minimal (standard probing techniques applied
+    to a new domain)
+
+    - The dataset is too small for the scope of claims
+
+    - A critical baseline (text-based detection) is missing
+
+    - Empirical provenance of cross-architecture results is uncertain
+
+    - The lead-time negative result, while well-analyzed, may be definitionally expected
+
+
+    ### What Would Change the Score
+
+    - **To 4 (Weak Accept)**: Confirm all 32B results are empirically measured; add
+    text-based baseline showing hidden states provide unique information; report AUROC
+    + detection delay distributions; discuss CP annotation reliability
+
+    - **To 5 (Accept)**: All of the above, plus larger dataset (500+ traces), a novel
+    method component (e.g., change-point detection adapted to hidden-state trajectories),
+    and deeper engagement with representation engineering literature
+
+
+    ---
+
+
+    ## Experiment Coverage Assessment
+
+
+    Comparing against the planned experiment list (exp-001 through exp-012):
+
+
+    | Experiment | Status in Paper | Assessment |
+
+    |-----------|----------------|------------|
+
+    | exp-001: Cross-arch static probe | ✅ Table 1 | Fully covered |
+
+    | exp-002: Cross-arch temporal | ✅ Table 3 | Fully covered |
+
+    | exp-003: Cross-model transfer | ✅ Table 7 | Covered, but regularization details
+    for 20M-param projection on 30 traces missing |
+
+    | exp-004: Lead time analysis | ✅ Table 5 | Covered, but detection delay distribution
+    missing |
+
+    | exp-005: Mahalanobis baseline | ✅ Table 2 | Fully covered |
+
+    | exp-006: Bootstrap CIs | ✅ Table 12 | Covered, but per-fold cross-validation
+    variance not reported |
+
+    | exp-007: Window size ablation | ✅ Table 8 | Fully covered |
+
+    | exp-008: Layer selection ablation | ✅ Table 9 | Fully covered |
+
+    | exp-009: 16-label supervision | ✅ Table 11 | Covered, but only for r1-8b and
+    r1-32b (not QwQ/OT-7B) |
+
+    | exp-010: Oracle decomposition | ✅ Table 6 | Covered |
+
+    | exp-011: OpenThinker-7B control | ✅ Table 4 | Covered, but only coverage reported
+    (no full ablation) |
+
+    | exp-012: GRU on 32B | ✅ Table 10 | Covered, but GRU config discrepancy with
+    earlier results unresolved |
+
+
+    **Overall experiment coverage**: 12/12 planned experiments appear in the paper.
+    However, several lack full detail (regularization, delay distributions, stratification).
+    The paper matches the planned scope but execution depth is sometimes shallow.
+
+
+    ---
+
+
+    ## Summary for Authors
+
+
+    This is a well-organized empirical study on a timely problem. The three-claim
+    structure is clear, the cross-architecture design is appropriate, and the negative
+    result on lead time is well-analyzed. However, the paper falls short of the top-venue
+    bar due to limited methodological novelty, small dataset, missing text baseline,
+    and uncertain empirical provenance of cross-architecture results. The most impactful
+    revision would be: (1) confirm all results are from actual hidden-state extraction,
+    (2) add a text-based detection baseline, (3) report threshold-independent metrics
+    and detection delay distributions, and (4) engage more deeply with representation
+    engineering and change-point detection literature.
+
+    '
+  error: ''
+- tier: median
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/artifacts/dream_reports/dream_20260516T194646/median/paper.pdf
+  imagined_experiments:
+  - name: Cross-architecture static probe evaluation
+    plan_id: exp-001
+    description: Train static LogisticRegression on hidden states from DeepSeek-R1-Distill-Qwen-32B
+      and QwQ-32B at layer 20 (proportional mid-layer for 64-layer model). Evaluate
+      coverage (crossing rate), accuracy, and Fisher discriminant ratio in original
+      and PCA-reduced spaces.
+    expected_results:
+      r1_32b_static_acc: 0.8341
+      r1_32b_static_coverage: 0.5283
+      r1_32b_static_lead_mean: -1.4
+      r1_32b_fisher_orig_L32: 11.23
+      r1_32b_fisher_orig_L40: 12.07
+      r1_32b_fisher_pca3_L32: 2.61
+      r1_32b_fisher_pca3_L40: 2.84
+      r1_32b_var_explained_3pc: 0.231
+      qwq_32b_static_acc: 0.8189
+      qwq_32b_static_coverage: 0.4815
+      qwq_32b_static_lead_mean: -1.8
+      qwq_32b_fisher_orig_L32: 9.74
+      qwq_32b_fisher_orig_L40: 10.52
+      qwq_32b_fisher_pca3_L32: 2.19
+      qwq_32b_fisher_pca3_L40: 2.43
+      qwq_32b_var_explained_3pc: 0.214
+      num_traces_r1_32b: 187
+      num_traces_qwq: 192
+      split_ratio: 112/37/38 and 115/38/39
+    result_rationale: Qwen2.5 architecture distributes safety signal differently than
+      Llama — Fisher discriminant in original space is 9-12 (vs Llama's 17-18) because
+      Qwen2.5's wider MLP and GQA attention spread safety-relevant features across
+      more dimensions with lower per-dimension separability. However, PCA top-3 captures
+      more variance (21-23% vs Llama's 16.6%) and Fisher in PCA space is higher (2.2-2.8
+      vs Llama's ~1), indicating Qwen2.5 concentrates safety signal slightly MORE
+      in leading PCs. Static coverage is marginally higher than Llama (48-53% vs 46.5%)
+      because this higher PCA concentration gives a linear probe slightly more accessible
+      signal, but still below 60% — confirming Claim 1 generalizes. The lower full-space
+      Fisher explains why the absolute coverage remains limited despite better geometric
+      accessibility.
+    tables:
+    - name: 'Table 3: Static Probe Results Across Architectures'
+      columns:
+      - Model
+      - Base Arch
+      - Hidden Dim
+      - Best Layer
+      - Accuracy
+      - Coverage
+      - Lead Time
+      - Fisher_orig
+      - Fisher_PCA3
+      - Var_3PC
+      rows:
+      - - r1-8b
+        - Llama-3.1
+        - 4096
+        - L14
+        - 0.817
+        - 0.465
+        - -2.0
+        - 17.88
+        - 0.93
+        - 0.166
+      - - r1-32b
+        - Qwen2.5
+        - 5120
+        - L32
+        - 0.834
+        - 0.528
+        - -1.4
+        - 12.07
+        - 2.84
+        - 0.231
+      - - QwQ-32B
+        - Qwen2.5
+        - 5120
+        - L32
+        - 0.819
+        - 0.482
+        - -1.8
+        - 10.52
+        - 2.43
+        - 0.214
+    figures_description:
+    - 'Fig 3a: PCA scatter (PC1 vs PC2) for r1-32b showing safety/unsafe step clusters
+      — more visible separation than r1-8b but still substantial overlap'
+    - 'Fig 3b: Fisher discriminant ratio by layer (all 64 layers of r1-32b) — peak
+      at L32-L40, values 10-12, contrasting with r1-8b peak of 17-18'
+    - 'Fig 3c: Variance explained by top-k PCs — Qwen2.5 curve above Llama curve,
+      crossing 50% at k=15 vs k=22'
+    analysis: 'Claim 1 validated cross-architecture: static probes achieve 48-53%
+      coverage on Qwen2.5 models, remaining below 60% threshold. Architectural difference
+      in signal distribution is quantifiable — Qwen2.5 has lower full-space Fisher
+      (signal more diffuse per-dimension) but higher PCA-space Fisher (signal more
+      concentrated in leading components). This sets up the key cross-architecture
+      comparison: Qwen2.5''s different signal geometry may alter temporal probe dynamics.'
+  - name: Cross-architecture temporal window evaluation
+    plan_id: exp-002
+    description: Train temporal window LogisticRegression with W=15 on r1-32b and
+      QwQ-32B hidden states. Compare coverage improvement (delta over static) to r1-8b's
+      +30pp.
+    expected_results:
+      r1_32b_temporal_w15_acc: 0.8512
+      r1_32b_temporal_w15_coverage: 0.6792
+      r1_32b_temporal_w15_lead_mean: 0.52
+      r1_32b_temporal_w15_lead_median: 0
+      r1_32b_delta_over_static: 0.1509
+      qwq_32b_temporal_w15_acc: 0.8421
+      qwq_32b_temporal_w15_coverage: 0.6481
+      qwq_32b_temporal_w15_lead_mean: -0.73
+      qwq_32b_temporal_w15_lead_median: -1
+      qwq_32b_delta_over_static: 0.1666
+      r1_8b_temporal_w15_coverage_ref: 0.7674
+      r1_8b_delta_ref: 0.3023
+      attenuation_factor_r1_32b: 0.5
+      attenuation_factor_qwq: 0.55
+    result_rationale: 'Temporal advantage exists but is attenuated to ~15-17pp (vs
+      30pp on Llama). The attenuation occurs because Qwen2.5''s higher PCA concentration
+      means static probes already capture more of the accessible signal — there''s
+      less ''headroom'' for temporal context to add. The temporal probe still helps
+      because safety reasoning density decline patterns exist cross-architecture,
+      but the already-higher static baseline leaves less room for improvement. Coverage
+      reaches 65-68% rather than 77% — this does NOT saturate the oracle ceiling (which
+      would be ~77% if oracle patterns are similar). The r1-32b result of +0.52 lead
+      time is the ''ambiguous'' sub-finding: slightly positive but within noise given
+      bootstrap CI will span [-1.5, 2.5]. QwQ remains clearly negative. This architecture-dependent
+      magnitude is the key finding that reshapes Claim 2.'
+    tables:
+    - name: 'Table 4: Temporal Window Probe (W=15) Across Architectures'
+      columns:
+      - Model
+      - Static Cov
+      - Temporal Cov
+      - Delta
+      - Lead Mean
+      - Lead Median
+      - Acc
+      rows:
+      - - r1-8b (Llama)
+        - 0.465
+        - 0.767
+        - +30.2pp
+        - -1.09
+        - -1
+        - 0.848
+      - - r1-32b (Qwen2.5)
+        - 0.528
+        - 0.679
+        - +15.1pp
+        - 0.52
+        - 0
+        - 0.851
+      - - QwQ-32B (Qwen2.5)
+        - 0.482
+        - 0.648
+        - +16.7pp
+        - -0.73
+        - -1
+        - 0.842
+    figures_description:
+    - 'Fig 4a: Coverage bar chart — static vs temporal for all 3 models, showing consistent
+      improvement but magnitude varies by architecture'
+    - 'Fig 4b: Per-trace detection visualization — 5 example traces from r1-32b showing
+      temporal probe crossing commitment point where static probe misses'
+    analysis: 'Temporal advantage is real and consistent (+15-17pp) but architecture-dependent
+      in magnitude. The 30pp gain on Llama attenuates to ~16pp on Qwen2.5, likely
+      because Qwen2.5''s signal geometry (higher PCA concentration) gives static probes
+      a head start. Claim 2 must be softened: temporal probes ''consistently improve
+      coverage with architecture-dependent magnitude'' rather than ''saturate oracle
+      ceiling cross-architecture.'' The r1-32b slightly positive lead time (0.52 steps)
+      is intriguing but not statistically robust — this becomes the directional sub-finding
+      that motivates future work.'
+  - name: Cross-model transfer evaluation
+    plan_id: exp-003
+    description: 'Zero-shot cross-architecture transfer: train probe on r1-8b (Llama,
+      dim=4096), test on r1-32b/QwQ (Qwen2.5, dim=5120) via learned linear projection.
+      And reverse direction. Evaluate with both static and temporal probes.'
+    expected_results:
+      llama_to_qwen_static_coverage: 0.372
+      llama_to_qwen_temporal_coverage: 0.426
+      qwen_to_llama_static_coverage: 0.349
+      qwen_to_llama_temporal_coverage: 0.401
+      within_arch_qwen_to_qwen_static: 0.491
+      within_arch_qwen_to_qwen_temporal: 0.612
+      projection_dim: 512
+      projection_method: learned linear (trained on 50 aligned traces)
+      random_baseline_coverage: 0.167
+    result_rationale: Cross-architecture zero-shot transfer is weak (35-43% coverage)
+      because the safety signal occupies architecture-specific subspaces — a linear
+      projection trained on few aligned samples cannot fully recover the mapping between
+      Llama and Qwen2.5 hidden state geometries. The projection captures gross safe/unsafe
+      distinctions (well above random baseline of 16.7%) but loses the fine-grained
+      temporal patterns that drive the +15-30pp temporal advantage. Within-architecture
+      transfer (Qwen→Qwen, r1-32b→QwQ) performs substantially better (49-61%) because
+      both Qwen2.5 models share similar signal geometry. This confirms the hypothesis
+      that cross-architecture transfer requires architecture-specific fine-tuning
+      — the safety concept is universal but its geometric instantiation is architecture-dependent.
+    tables:
+    - name: 'Table 5: Cross-Architecture Transfer Results'
+      columns:
+      - Train Model
+      - Test Model
+      - Probe Type
+      - Coverage
+      - vs In-Domain
+      rows:
+      - - r1-8b (Llama)
+        - r1-32b (Qwen)
+        - Static
+        - 0.372
+        - 0.528 (-15.6pp)
+      - - r1-8b (Llama)
+        - r1-32b (Qwen)
+        - Temporal W=15
+        - 0.426
+        - 0.679 (-25.3pp)
+      - - r1-32b (Qwen)
+        - r1-8b (Llama)
+        - Static
+        - 0.349
+        - 0.465 (-11.6pp)
+      - - r1-32b (Qwen)
+        - r1-8b (Llama)
+        - Temporal W=15
+        - 0.401
+        - 0.767 (-36.6pp)
+      - - r1-32b (Qwen)
+        - QwQ-32B (Qwen)
+        - Static
+        - 0.491
+        - 0.482 (+0.9pp)
+      - - r1-32b (Qwen)
+        - QwQ-32B (Qwen)
+        - Temporal W=15
+        - 0.612
+        - 0.648 (-3.6pp)
+    figures_description:
+    - 'Fig 5: Transfer matrix heatmap — coverage for all train/test model pairs, clearly
+      showing within-architecture block is warmer than cross-architecture block'
+    analysis: Cross-architecture transfer confirms the 'architecture-specific signal
+      geometry' hypothesis. Within-architecture transfer nearly matches in-domain
+      performance (especially Qwen→Qwen), while cross-architecture transfer drops
+      12-37pp. This supports framing cross-architecture validation as characterization
+      rather than claiming a universal detector — practical deployment requires per-architecture
+      probe training. The finding strengthens the architectural analysis contribution
+      axis.
+  - name: Lead time analysis across models
+    plan_id: exp-004
+    description: Analyze lead time distributions for temporal probes on all 3 models.
+      Report per-model distributions, positive lead rate, and compare to oracle's
+      +31 step advantage.
+    expected_results:
+      r1_8b_lead_mean: -1.09
+      r1_8b_lead_median: -1
+      r1_8b_positive_lead_rate: 0.302
+      r1_32b_lead_mean: 0.52
+      r1_32b_lead_median: 0
+      r1_32b_positive_lead_rate: 0.421
+      qwq_lead_mean: -0.73
+      qwq_lead_median: -1
+      qwq_positive_lead_rate: 0.333
+      oracle_lead_mean_all_models: 31
+      gap_probe_vs_oracle: 29-32 steps across models
+      r1_32b_lead_std: 4.8
+      qwq_lead_std: 5.1
+      r1_32b_lead_p25: -2
+      r1_32b_lead_p75: 3
+    result_rationale: Lead time remains near-zero across all architectures, confirming
+      the fundamental limitation of hidden-state approaches. The r1-32b result (+0.52
+      mean) is the one 'ambiguous' sub-finding — technically positive but the distribution
+      spans [-8, +12] with median at 0, so it's not practically meaningful. The slight
+      positive tendency on r1-32b may reflect Qwen2.5's more concentrated signal geometry
+      making the commitment transition slightly more abrupt (and thus detectable 1-2
+      steps earlier in some traces). However, this does NOT constitute reliable pre-textual
+      detection — the oracle still achieves +31 steps via label-sequence patterns
+      invisible to hidden states. Claim 3 generalizes but should be stated as 'near-zero'
+      rather than 'strictly negative' to accommodate the r1-32b directional finding.
+    tables:
+    - name: 'Table 6: Lead Time Distribution by Model'
+      columns:
+      - Model
+      - Mean
+      - Median
+      - Std
+      - P25
+      - P75
+      - '% Positive'
+      - Oracle Mean
+      rows:
+      - - r1-8b
+        - -1.09
+        - -1
+        - 4.2
+        - -4
+        - 1
+        - 30.2%
+        - 31
+      - - r1-32b
+        - 0.52
+        - 0
+        - 4.8
+        - -2
+        - 3
+        - 42.1%
+        - 31
+      - - QwQ-32B
+        - -0.73
+        - -1
+        - 5.1
+        - -3
+        - 2
+        - 33.3%
+        - 31
+    figures_description:
+    - 'Fig 6a: Lead time violin plots — all 3 models side by side, showing distributions
+      centered near zero with heavy tails in both directions'
+    - 'Fig 6b: Lead time vs oracle lead time scatter — each trace as a point, showing
+      no correlation between probe lead and oracle lead'
+    analysis: The near-zero lead time generalizes cross-architecture. The r1-32b slightly
+      positive mean is a directional curiosity — 42% of traces show positive lead
+      (vs 30% on Llama) but the absolute values remain too small for practical early
+      warning. The 30-step gap between probe and oracle persists uniformly, confirming
+      hidden states encode CURRENT safety state but not FUTURE trajectory. Claim 3
+      reframed as 'lead time is near-zero across architectures' — a softer statement
+      that accommodates the r1-32b sub-finding while maintaining the core limitation
+      message.
+  - name: TrajGuard-style Mahalanobis baseline
+    plan_id: exp-005
+    description: Implement Mahalanobis distance detector using safe-trace covariance
+      estimation. Compute per-step MD, threshold for anomaly detection on all 3 models.
+      Expected to partially work on Qwen2.5 (higher PCA concentration) but fail on
+      Llama.
+    expected_results:
+      r1_8b_mahalanobis_coverage: 0.302
+      r1_8b_mahalanobis_acc: 0.714
+      r1_8b_mahalanobis_auroc: 0.683
+      r1_32b_mahalanobis_coverage: 0.453
+      r1_32b_mahalanobis_acc: 0.779
+      r1_32b_mahalanobis_auroc: 0.752
+      qwq_mahalanobis_coverage: 0.407
+      qwq_mahalanobis_acc: 0.761
+      qwq_mahalanobis_auroc: 0.734
+      num_safe_traces_covariance: 70/65/68 per model
+      threshold_method: 95th percentile of safe-trace MD distribution
+      pca_reduced_md_r1_8b: 0.256
+      pca_reduced_md_r1_32b: 0.372
+    result_rationale: 'Mahalanobis distance PARTIALLY works on Qwen2.5 (40-45% coverage)
+      but fails on Llama (30%). This is directly explained by the PCA concentration
+      difference: Qwen2.5''s higher Fisher in PCA space (2.4-2.8 vs Llama''s ~1) means
+      the covariance-based geometric detector can capture more of the safety signal,
+      since more signal lives in the directions that dominate the covariance matrix.
+      On Llama, safety signal is distributed across minor PCs that the covariance
+      matrix effectively ignores — Mahalanobis detects gross distribution shifts but
+      misses the subtle safety-specific directions. This is the ''ambiguous'' result
+      for this experiment: Mahalanobis doesn''t completely fail on Qwen2.5 (as we''d
+      predicted from Llama-only results), complicating the ''existing detectors fail''
+      narrative. Must reframe as ''architecture-dependent failure mode'' rather than
+      universal failure.'
+    tables:
+    - name: 'Table 7: Mahalanobis Distance Baseline'
+      columns:
+      - Model
+      - Coverage
+      - Accuracy
+      - AUROC
+      - vs Static LR
+      - vs Temporal LR
+      rows:
+      - - r1-8b (Llama)
+        - 0.302
+        - 0.714
+        - 0.683
+        - -16.3pp
+        - -46.5pp
+      - - r1-32b (Qwen2.5)
+        - 0.453
+        - 0.779
+        - 0.752
+        - -7.5pp
+        - -22.6pp
+      - - QwQ-32B (Qwen2.5)
+        - 0.407
+        - 0.761
+        - 0.734
+        - -7.5pp
+        - -24.1pp
+    figures_description:
+    - 'Fig 7a: MD distribution for safe vs unsafe steps — separation visible on Qwen2.5,
+      near-overlapping on Llama'
+    - 'Fig 7b: ROC curves for Mahalanobis vs static LR vs temporal LR — showing Mahalanobis
+      between random and LR on Qwen2.5, near random on Llama'
+    analysis: Mahalanobis partially works on Qwen2.5 (40-45% coverage, AUROC 0.73-0.75)
+      — this is the 'ambiguous sub-finding' of the median tier. The result is architecturally
+      explained by signal concentration in leading PCs, which means TrajGuard-style
+      detectors would have partial success on Qwen2.5 reasoning models but near-complete
+      failure on Llama-based ones. Reframe Claim 1 to note that 'geometric detectors
+      show architecture-dependent effectiveness correlated with PCA concentration
+      of safety signal' rather than blanket failure. Temporal probes still dominate
+      in all cases, preserving the core story.
+  - name: Bootstrap confidence intervals
+    plan_id: exp-006
+    description: 1000 bootstrap resamples on all key metrics across all models and
+      methods. Report 95% CIs to support statistical claims.
+    expected_results:
+      r1_8b_temporal_coverage_ci:
+      - 0.651
+      - 0.872
+      r1_32b_temporal_coverage_ci:
+      - 0.553
+      - 0.789
+      qwq_temporal_coverage_ci:
+      - 0.526
+      - 0.763
+      r1_8b_delta_ci:
+      - 0.198
+      - 0.412
+      r1_32b_delta_ci:
+      - 0.068
+      - 0.237
+      qwq_delta_ci:
+      - 0.089
+      - 0.251
+      r1_32b_lead_time_ci:
+      - -1.47
+      - 2.51
+      qwq_lead_time_ci:
+      - -2.83
+      - 1.38
+      r1_8b_lead_time_ci:
+      - -2.91
+      - 0.73
+      cross_transfer_llama_to_qwen_ci:
+      - 0.289
+      - 0.553
+      mahalanobis_r1_32b_ci:
+      - 0.329
+      - 0.574
+      n_resamples: 1000
+      ci_method: percentile bootstrap
+    result_rationale: 'CIs are wide due to small test sets (38-43 traces) — this is
+      expected and honest. Key implications: (1) The temporal advantage on Qwen2.5
+      is statistically significant (delta CI lower bound > 0 for both models), confirming
+      the effect is real even if attenuated. (2) The r1-32b lead time CI spans [-1.47,
+      2.51], meaning the slightly positive mean (0.52) is NOT statistically distinguishable
+      from zero — supporting ''near-zero'' rather than ''positive'' framing. (3) The
+      delta CIs for Qwen2.5 [0.07, 0.24] vs Llama [0.20, 0.41] overlap at the boundary
+      but are clearly shifted, supporting ''architecture-dependent magnitude'' claim.
+      (4) Mahalanobis CI on r1-32b spans 0.33-0.57, overlapping with static LR CI
+      — the partial success claim needs careful hedging.'
+    tables:
+    - name: 'Table 8: Bootstrap 95% Confidence Intervals for Key Metrics'
+      columns:
+      - Metric
+      - r1-8b
+      - r1-32b
+      - QwQ-32B
+      rows:
+      - - Static Coverage
+        - '[0.326, 0.605]'
+        - '[0.395, 0.658]'
+        - '[0.351, 0.612]'
+      - - Temporal W=15 Coverage
+        - '[0.651, 0.872]'
+        - '[0.553, 0.789]'
+        - '[0.526, 0.763]'
+      - - Delta (Temporal - Static)
+        - '[0.198, 0.412]'
+        - '[0.068, 0.237]'
+        - '[0.089, 0.251]'
+      - - Lead Time Mean
+        - '[-2.91, 0.73]'
+        - '[-1.47, 2.51]'
+        - '[-2.83, 1.38]'
+      - - Mahalanobis Coverage
+        - '[0.186, 0.421]'
+        - '[0.329, 0.574]'
+        - '[0.284, 0.532]'
+    figures_description:
+    - 'Fig 8: Forest plot showing point estimates with 95% CIs for all methods across
+      all models — visual summary of effect sizes and uncertainty'
+    analysis: 'Bootstrap CIs confirm: (1) temporal advantage is statistically real
+      on all architectures; (2) lead time is not distinguishable from zero on any
+      model; (3) the attenuation on Qwen2.5 is real (non-overlapping CI centers) but
+      not conclusively ''different'' from Llama given sample sizes. This is methodologically
+      honest — the paper can claim consistent improvement direction but must acknowledge
+      power limitations. Recommend framing magnitude difference as ''observed'' rather
+      than ''statistically established'' to avoid reviewer pushback on underpowered
+      comparison.'
+  - name: Window size ablation
+    plan_id: exp-007
+    description: Sweep W=1,3,5,10,15,20,25 on all 3 models. Identify architecture-specific
+      optimal window and diminishing returns curve.
+    expected_results:
+      r1_8b_optimal_W: 15
+      r1_8b_W_curve:
+        1: 0.465
+        3: 0.535
+        5: 0.651
+        10: 0.698
+        15: 0.767
+        20: 0.744
+        25: 0.721
+      r1_32b_optimal_W: 10
+      r1_32b_W_curve:
+        1: 0.528
+        3: 0.566
+        5: 0.623
+        10: 0.689
+        15: 0.679
+        20: 0.66
+        25: 0.642
+      qwq_optimal_W: 10
+      qwq_W_curve:
+        1: 0.482
+        3: 0.519
+        5: 0.593
+        10: 0.667
+        15: 0.648
+        20: 0.63
+        25: 0.611
+      r1_8b_saturation_W: 15
+      qwen_saturation_W: 10
+      overshoot_at_W25_qwen: -3-4pp vs optimal
+    result_rationale: 'Architecture-specific optimal windows emerge: Llama peaks at
+      W=15, Qwen2.5 peaks at W=10. This reflects Qwen2.5''s more concentrated signal
+      geometry — shorter temporal context suffices because the safety-relevant information
+      is more geometrically accessible per-step. Longer windows on Qwen2.5 actually
+      HURT (overfitting to noise in the padded features) because the per-step signal
+      is stronger, making the temporal redundancy in larger windows counterproductive.
+      On Llama, the signal is more diffuse, requiring longer temporal context to accumulate
+      enough evidence. This finding directly supports the ''architecture-specific
+      optimal W'' narrative and provides a practical recommendation for deployment
+      (tune W per architecture). The diminishing returns curves have different shapes
+      — Llama is concave with late saturation, Qwen2.5 saturates earlier and then
+      declines.'
+    tables:
+    - name: 'Table 9: Window Size Ablation'
+      columns:
+      - W
+      - r1-8b Cov
+      - r1-32b Cov
+      - QwQ Cov
+      rows:
+      - - 1
+        - 0.465
+        - 0.528
+        - 0.482
+      - - 3
+        - 0.535
+        - 0.566
+        - 0.519
+      - - 5
+        - 0.651
+        - 0.623
+        - 0.593
+      - - 10
+        - 0.698
+        - 0.689
+        - 0.667
+      - - 15
+        - 0.767
+        - 0.679
+        - 0.648
+      - - 20
+        - 0.744
+        - 0.66
+        - 0.63
+      - - 25
+        - 0.721
+        - 0.642
+        - 0.611
+    figures_description:
+    - 'Fig 9a: Coverage vs window size curves for all 3 models — showing different
+      peaks and saturation patterns'
+    - 'Fig 9b: Normalized coverage (each model scaled to its maximum) — showing Qwen2.5
+      saturates 5 steps earlier than Llama'
+    analysis: Window ablation is the strongest evidence for architecture-specific
+      signal dynamics. The finding that Qwen2.5 peaks at W=10 (vs Llama at W=15) is
+      non-trivial and provides both theoretical insight (signal concentration determines
+      required temporal context) and practical guidance (don't blindly use the same
+      W cross-architecture). This supports reframing the paper's contribution as 'characterization
+      + practical method' — the characterization reveals WHY architectures differ
+      and HOW to adapt.
+  - name: Layer selection ablation
+    plan_id: exp-008
+    description: 'Evaluate temporal probe at all 64 layers of r1-32b (sampling every
+      4th layer: L4,L8,...,L64). Confirm middle-layer optimality finding generalizes
+      from r1-8b.'
+    expected_results:
+      best_layer_r1_32b: L32
+      best_coverage_L32: 0.689
+      layer_coverage_curve:
+        4: 0.412
+        8: 0.478
+        12: 0.534
+        16: 0.587
+        20: 0.623
+        24: 0.651
+        28: 0.672
+        32: 0.689
+        36: 0.681
+        40: 0.668
+        44: 0.645
+        48: 0.612
+        52: 0.578
+        56: 0.534
+        60: 0.489
+        64: 0.423
+      relative_best_position: 0.5
+      r1_8b_relative_best_position: 0.5
+      early_layer_coverage: 0.412
+      final_layer_coverage: 0.423
+    result_rationale: 'Middle-layer optimality generalizes: both architectures peak
+      at the relative midpoint (L14/28 for r1-8b = 50%, L32/64 for r1-32b = 50%).
+      This is expected from representation learning theory — middle layers encode
+      semantic abstractions before task-specific decoding in later layers, and the
+      safety reasoning state is a semantic-level concept. Early layers encode surface
+      features (token identity), late layers encode output logits. The smooth bell
+      curve with ~28pp range (41% to 69%) confirms layer choice matters and the finding
+      is robust. This adds a practical recommendation: for new architectures, start
+      at the 50% depth point.'
+    tables:
+    - name: 'Table 10: Layer Selection (r1-32b, W=10)'
+      columns:
+      - Layer
+      - Relative Depth
+      - Coverage
+      - Accuracy
+      rows:
+      - - L8
+        - 0.125
+        - 0.478
+        - 0.784
+      - - L16
+        - 0.25
+        - 0.587
+        - 0.812
+      - - L24
+        - 0.375
+        - 0.651
+        - 0.834
+      - - L32
+        - 0.5
+        - 0.689
+        - 0.851
+      - - L40
+        - 0.625
+        - 0.668
+        - 0.841
+      - - L48
+        - 0.75
+        - 0.612
+        - 0.819
+      - - L56
+        - 0.875
+        - 0.534
+        - 0.793
+    figures_description:
+    - 'Fig 10: Coverage by relative layer depth — both r1-8b and r1-32b on same axis
+      (normalized to 0-1 depth), showing overlapping bell curves peaking at 0.5'
+    analysis: 'Middle-layer optimality is a robust cross-architecture finding. The
+      symmetric bell shape suggests safety state is encoded as a mid-level semantic
+      abstraction, consistent across Llama and Qwen2.5. Practical implication: the
+      50% depth heuristic provides a reliable starting point for new architectures
+      without expensive layer sweeps.'
+  - name: 16-label taxonomy supervision
+    plan_id: exp-009
+    description: Replace binary commitment labels with fine-grained 16-label taxonomy
+      (Type 1-4 safety reasoning categories) for temporal probe training. Test whether
+      richer supervision improves coverage or timing.
+    expected_results:
+      r1_8b_16label_coverage: 0.791
+      r1_8b_16label_lead_mean: -0.82
+      r1_8b_16label_acc_macro: 0.623
+      r1_8b_binary_from_16label_coverage: 0.767
+      r1_32b_16label_coverage: 0.704
+      r1_32b_16label_lead_mean: 0.38
+      r1_32b_binary_from_16label_coverage: 0.679
+      improvement_over_binary: +2.4pp on r1-8b, +2.5pp on r1-32b
+      label_confusion: Type 2 (acknowledging harm) and Type 3 (refusing) most separable;
+        Type 1 (reasoning about safety) confused with harmful reasoning
+    result_rationale: '16-label supervision provides marginal improvement (+2-3pp
+      coverage) because the additional label structure helps the probe distinguish
+      ''safety reasoning declining'' from ''safety reasoning changing type.'' However,
+      the improvement is small because the binary commitment label already captures
+      the key transition — the 16 categories provide redundant signal once the main
+      safe→unsafe boundary is learned. Lead time doesn''t meaningfully improve because
+      the fundamental limitation (hidden states don''t encode future trajectory) applies
+      regardless of label granularity. The real value is interpretability: we can
+      now characterize WHICH types of safety reasoning decline first (Type 1 reasoning-about-safety
+      disappears before Type 3 refusal). This informs the Discussion but doesn''t
+      change core claims.'
+    tables:
+    - name: 'Table 11: Fine-Grained Label Supervision'
+      columns:
+      - Model
+      - Supervision
+      - Coverage
+      - Lead Mean
+      - Macro Acc
+      rows:
+      - - r1-8b
+        - Binary
+        - 0.767
+        - -1.09
+        - 0.848
+      - - r1-8b
+        - 16-label
+        - 0.791
+        - -0.82
+        - 0.623
+      - - r1-32b
+        - Binary
+        - 0.679
+        - 0.52
+        - 0.851
+      - - r1-32b
+        - 16-label
+        - 0.704
+        - 0.38
+        - 0.631
+    figures_description:
+    - 'Fig 11: Confusion matrix for 16-label classifier showing which safety reasoning
+      types are distinguishable in hidden-state space'
+    analysis: Fine-grained labels offer marginal quantitative improvement but meaningful
+      qualitative insight. The finding that Type 1 (safety reasoning) is confused
+      with harmful reasoning in hidden-state space is theoretically interesting —
+      it suggests the model uses similar computational circuits for both. This supports
+      including the 16-label experiment in the paper for interpretability value, but
+      it doesn't change the core quantitative story.
+  - name: Oracle decomposition analysis
+    plan_id: exp-010
+    description: Analyze WHY the text-label oracle achieves +31 step lead time while
+      hidden-state probes achieve ~0. Decompose oracle's advantage into specific label
+      pattern features.
+    expected_results:
+      oracle_key_features:
+      - consecutive_safe_count_decline
+      - safe_label_density_in_window
+      - longest_unsafe_streak
+      feature_importance_ranking:
+        consecutive_safe_decline: 0.41
+        density_in_W10: 0.28
+        longest_unsafe_streak: 0.19
+        type_diversity_decline: 0.12
+      oracle_ablation_no_future: lead_mean drops from +31 to +2.1 when oracle only
+        sees past labels
+      oracle_ablation_current_only: lead_mean = -0.5 (similar to probe)
+      information_gap: 28.9 steps of lead come from FUTURE label visibility
+      hidden_state_mutual_info_with_future_labels: 0.043
+    result_rationale: 'The oracle''s advantage is almost entirely from seeing FUTURE
+      labels (+28.9 of +31 steps). When restricted to past-only labels, the oracle
+      drops to +2.1 steps — only marginally better than hidden-state probes. This
+      confirms the limitation is NOT that probes miss something in current hidden
+      states, but that hidden states simply don''t encode future safety trajectory.
+      The mutual information between current hidden state and future labels (t+5 to
+      t+15) is near-zero (0.043 bits), confirming there''s no recoverable signal about
+      the future. The implication: closing the gap requires either (a) future-label
+      information (text monitoring), (b) multiple-step autoregressive hidden-state
+      prediction, or (c) auxiliary training objectives that force the model to encode
+      future safety trajectory.'
+    tables:
+    - name: 'Table 12: Oracle Decomposition'
+      columns:
+      - Oracle Variant
+      - Lead Mean
+      - Coverage
+      - Information Source
+      rows:
+      - - Full oracle (past+future)
+        - 31
+        - 1.0
+        - Complete label sequence
+      - - Past-only oracle
+        - 2.1
+        - 0.82
+        - Only labels at t≤current
+      - - Current-step oracle
+        - -0.5
+        - 0.73
+        - Only label at t=current
+      - - Hidden-state probe (W=15)
+        - -1.09
+        - 0.767
+        - Hidden states only
+    figures_description:
+    - 'Fig 12: Stacked bar showing lead time decomposition — past-label contribution
+      (2.1 steps) vs future-label contribution (28.9 steps)'
+    analysis: 'The decomposition conclusively establishes WHY pre-textual detection
+      fails: 93% of the oracle''s lead comes from future information that hidden states
+      cannot contain. This is a principled impossibility argument — not a method failure
+      but a fundamental information-theoretic limitation. The past-only oracle''s
+      +2.1 steps suggests a small ceiling for any hidden-state approach that could
+      additionally incorporate label history (i.e., hybrid text+hidden-state monitors).
+      This motivates future work directions in the Discussion section.'
+  - name: OpenThinker-7B evaluation
+    plan_id: exp-011
+    description: '4th model (Qwen2.5-7B base) to complete 2×2 architecture×scale matrix:
+      {Llama-8B, Qwen2.5-7B} × {7-8B, 32B}. Controls for scale confound in cross-architecture
+      comparison.'
+    expected_results:
+      openthinker_7b_static_coverage: 0.512
+      openthinker_7b_temporal_w10_coverage: 0.654
+      openthinker_7b_temporal_w15_coverage: 0.641
+      openthinker_7b_delta: 0.142
+      openthinker_7b_lead_mean: -0.91
+      openthinker_7b_fisher_orig: 10.12
+      openthinker_7b_fisher_pca3: 2.37
+      openthinker_7b_optimal_W: 10
+      scale_effect_llama: 8B→32B not applicable (different base arch)
+      scale_effect_qwen: 7B vs 32B — coverage +1.6pp static, +3.5pp temporal (minimal
+        scale effect)
+      architecture_effect_at_7_8B: 'Llama-8B vs Qwen2.5-7B: -4.7pp static, +12.6pp
+        temporal delta difference'
+    result_rationale: 'OpenThinker-7B (Qwen2.5-7B base) confirms the architecture
+      effect is NOT a scale confound. At matched scale (7-8B), the same pattern holds:
+      Qwen2.5 has higher static coverage (51% vs 47%) but lower temporal delta (14pp
+      vs 30pp). The optimal window is W=10 (same as Qwen2.5-32B), further confirming
+      this is an architecture-level property. Scale effect within Qwen2.5 is minimal
+      (+1.6pp static, +3.5pp temporal from 7B→32B), ruling out the hypothesis that
+      ''Qwen2.5 only attenuates because 32B models have different dynamics.'' The
+      2×2 matrix cleanly separates architecture effect (dominant) from scale effect
+      (minimal), strengthening the architectural analysis contribution.'
+    tables:
+    - name: 'Table 13: 2×2 Architecture × Scale Matrix'
+      columns:
+      - Model
+      - Architecture
+      - Scale
+      - Static Cov
+      - Temporal Cov
+      - Delta
+      - Optimal W
+      rows:
+      - - r1-8b
+        - Llama-3.1
+        - 8B
+        - 0.465
+        - 0.767
+        - +30.2pp
+        - 15
+      - - OpenThinker-7B
+        - Qwen2.5
+        - 7B
+        - 0.512
+        - 0.654
+        - +14.2pp
+        - 10
+      - - r1-32b
+        - Qwen2.5
+        - 32B
+        - 0.528
+        - 0.689
+        - +16.1pp
+        - 10
+      - - QwQ-32B
+        - Qwen2.5
+        - 32B
+        - 0.482
+        - 0.648
+        - +16.6pp
+        - 10
+    figures_description:
+    - 'Fig 13: 2×2 interaction plot — architecture on x-axis, lines for 7-8B and 32B
+      scale, showing parallel lines (no interaction) for temporal delta'
+    analysis: 'The 2×2 matrix is clean: architecture determines temporal advantage
+      magnitude (30pp Llama vs 14-17pp Qwen2.5), while scale has minimal effect within
+      architecture. This eliminates a key confound and strengthens the characterization
+      story. The paper can now claim that the temporal advantage difference is an
+      architecture-level property, likely related to how safety signal is geometrically
+      organized in the representation space.'
+  - name: GRU/Attention probe upper bound on 32B models
+    plan_id: exp-012
+    description: Train GRU (hidden=256) and self-attention probes on r1-32b and QwQ-32B
+      to verify whether complex architectures offer improvement over temporal LR on
+      Qwen2.5 base models.
+    expected_results:
+      r1_32b_gru_coverage: 0.698
+      r1_32b_gru_lead_mean: 0.89
+      r1_32b_gru_acc: 0.847
+      r1_32b_attention_coverage: 0.685
+      r1_32b_attention_lead_mean: 0.31
+      qwq_gru_coverage: 0.667
+      qwq_gru_lead_mean: -0.42
+      qwq_attention_coverage: 0.654
+      qwq_attention_lead_mean: -0.58
+      gru_vs_lr_delta_r1_32b: +1.9pp coverage
+      gru_vs_lr_delta_qwq: +1.9pp coverage
+      gru_params: 1622913
+      attention_params: 2105344
+      lr_temporal_params: 77025
+    result_rationale: GRU provides marginal improvement (+1.9pp) over temporal LR
+      on Qwen2.5, consistent with the r1-8b finding that complex architectures don't
+      substantially help. The improvement is smaller than on Llama (where GRU gained
+      ~3.7pp) because Qwen2.5's more concentrated signal is already well-captured
+      by linear methods — the nonlinear capacity of GRU has less to exploit. Self-attention
+      probe performs slightly WORSE than GRU (expected at this data scale — attention
+      is data-hungry). The 'simplicity is optimal at current data scales' conclusion
+      holds cross-architecture. The 20× parameter count of GRU (1.6M vs 77K) for <2pp
+      improvement confirms the cost-benefit analysis favors temporal LR for practical
+      deployment.
+    tables:
+    - name: 'Table 14: Complex Probe Architectures on Qwen2.5 Models'
+      columns:
+      - Model
+      - Method
+      - Params
+      - Coverage
+      - Lead Mean
+      - vs Temporal LR
+      rows:
+      - - r1-32b
+        - Temporal LR (W=10)
+        - 77K
+        - 0.689
+        - 0.52
+        - baseline
+      - - r1-32b
+        - GRU-256
+        - 1.6M
+        - 0.698
+        - 0.89
+        - +0.9pp
+      - - r1-32b
+        - Self-Attention
+        - 2.1M
+        - 0.685
+        - 0.31
+        - -0.4pp
+      - - QwQ-32B
+        - Temporal LR (W=10)
+        - 77K
+        - 0.667
+        - -0.73
+        - baseline
+      - - QwQ-32B
+        - GRU-256
+        - 1.6M
+        - 0.667
+        - -0.42
+        - +0.0pp
+      - - QwQ-32B
+        - Self-Attention
+        - 2.1M
+        - 0.654
+        - -0.58
+        - -1.3pp
+    figures_description:
+    - 'Fig 14: Pareto frontier (parameters vs coverage) — temporal LR dominates the
+      efficiency frontier across all models'
+    analysis: 'Complex probes don''t help on Qwen2.5, confirming the ''simplicity
+      is optimal'' finding generalizes. The slightly larger GRU improvement on r1-32b
+      (+0.9pp coverage, +0.37 lead) compared to QwQ (+0.0pp, +0.31 lead) is within
+      noise. Key takeaway: the 30pp temporal advantage ceiling on Llama and 15-17pp
+      ceiling on Qwen2.5 appear to be INFORMATION limits, not model capacity limits
+      — better probes can''t extract signal that isn''t there.'
+  review_report: '---
+
+    dream_id: dream_20260516T194646
+
+    tier: median
+
+    overall_score: 3/6 — Borderline Reject
+
+    timestamp: 2026-05-16T20:19:56.580501+00:00
+
+    ---
+
+
+    # Dream Review Report: Contrastive Trace Safety
+
+
+    **Paper:** Contrastive Trace Safety: Characterizing Hidden-State Detection of
+    Safety Commitment in Reasoning Models
+
+    **Review mode:** full (2 Reviewers + Roundtable)
+
+    **Date:** 2026-05-16
+
+
+    ---
+
+
+    ## Reviewer Assignments
+
+
+    - **R1** — Methods and Experiments (Score: 4/6, Confidence: 4/5)
+
+    - **R2** — Novelty and Related Work (Score: 3/6, Confidence: 4/5)
+
+
+    ---
+
+
+    ## R1: Methods and Experiments
+
+
+    ### Summary
+
+    The experimental suite is comprehensive (12 experiments, 4 models, 2 architecture
+    families, 2 scales), and the core finding—that temporal window probes saturate
+    oracle-achievable coverage while pre-textual lead time remains near-zero—is well-supported
+    by ablations and controls. However, several methodological concerns related to
+    commitment point definition circularity, small sample sizes, potential positional
+    confounds, and a possible misrepresentation of the temporal probe architecture
+    undermine confidence in generalizability.
+
+
+    ### Strengths
+
+    - **Thorough experimental coverage**: All 12 planned experiments are executed
+    and reported, including a 2×2 architecture-by-scale matrix, cross-architecture
+    transfer, and multiple ablation axes (window size, layer selection, supervision
+    granularity).
+
+    - **Appropriate baselines and upper bounds**: Mahalanobis distance baseline (TrajGuard-style),
+    label-sequence oracle, and complex sequence models (GRU-256, self-attention) properly
+    calibrate what temporal LR achieves.
+
+    - **Honest uncertainty quantification**: Table 12 reports 95% bootstrap CIs from
+    1000 resamples, and the authors acknowledge wide CIs (~9-12pp) due to small test
+    sets. Key delta CIs exclude zero.
+
+    - **Architecture vs. scale properly disentangled**: The 2×2 matrix separates architecture
+    effects from scale effects, showing architecture determines temporal advantage
+    magnitude.
+
+    - **Oracle decomposition is principled**: The 93% attribution of oracle advantage
+    to future label visibility gives a mechanistic explanation for near-zero lead
+    time.
+
+
+    ### Weaknesses
+
+    1. **Circular evaluation via commitment point definition (major)**: The commitment
+    point is defined as "last safety label + 1" from HarmThoughts annotations. The
+    temporal probe''s coverage improvement (+14-30pp) measures ability to detect sustained
+    absence of safety labels—essentially the same pattern the oracle exploits. The
+    probe may be learning to detect the annotation scheme rather than a genuine latent
+    safety state transition. The paper does not verify that the commitment point corresponds
+    to any behavioral discontinuity (e.g., whether intervening at the detected point
+    actually prevents harmful output).
+
+
+    2. **Positional confound not controlled (major)**: Hidden states encode absolute/relative
+    position in the trace. Since commitment points cluster near trace-end, the temporal
+    window probe with W=15 on 4096-dim hidden states (61,440 total features) trained
+    on ~6,000 step-level samples from ~125 training traces could learn a positional
+    heuristic: "near end of trace → post-commitment." No position-controlled ablation
+    (e.g., residualizing position, or testing on traces with unusual commitment point
+    positions) is provided.
+
+
+    3. **Small test sets undermine per-model claims (major)**: Test sets of 38-42
+    traces yield ~8pp standard error on coverage. Architecture-dependent differences
+    (Llama W*=15 vs Qwen2.5 W*=10) may be noise. Bootstrap CIs are on point estimates,
+    not on *differences between architectures*. No formal statistical test of the
+    interaction effect supports the claim that "architecture determines temporal advantage."
+
+
+    4. **Class imbalance handling unclear**: With 74.5% pre / 25.5% post class distribution
+    and a 0.9 detection threshold, coverage is sensitive to threshold calibration.
+    Whether the main temporal LR results use class weighting is not clarified.
+
+
+    5. **"Temporal LR" may be misrepresented**: The paper describes the temporal method
+    as "LogisticRegression on concatenated windows," but if the actual implementation
+    is a multi-layer MLP (as suggested by codebase inspection), the "simplicity is
+    optimal" narrative and the <2pp gap to GRU/attention are less meaningful since
+    both would be multi-layer neural networks.
+
+
+    ### Questions for Authors
+
+    1. Have you verified that the HarmThoughts commitment point corresponds to an
+    actual behavioral discontinuity (e.g., intervention at the detected point prevents
+    harmful output)?
+
+    2. What is temporal probe coverage when tested only on traces where the commitment
+    point falls in the first quartile (relative position < 0.25)?
+
+    3. Is the temporal probe actually sklearn LogisticRegression, or a multi-layer
+    MLP? If MLP, do results change with true LR?
+
+
+    ### Minor Issues
+
+    - Table 4 window ablation shows W*=15 for Llama and W*=10 for Qwen2.5, but if
+    the codebase default is W=5, reproducibility concerns arise.
+
+    - Fisher discriminant ratios computed on training set without cross-validation
+    may overstate separability.
+
+    - Oracle uses K=5 consecutive non-safety steps; sensitivity to K is not ablated.
+
+    - The 2×2 matrix is unbalanced (no Llama-32B model exists), confounding the factorial
+    decomposition.
+
+
+    ### Score: 4/6 | Confidence: 4/5
+
+
+    ---
+
+
+    ## R2: Novelty and Related Work
+
+
+    ### Summary
+
+    The paper identifies a genuine gap (hidden-state detectors have not been applied
+    to reasoning-model self-jailbreak) and provides useful empirical characterization.
+    However, the methodological novelty is limited to applying standard probing techniques
+    to a new task domain, and several important lines of related work are absent.
+
+
+    ### Strengths
+
+    - **Genuine gap identification**: The observation that existing hidden-state jailbreak
+    detectors target adversarial-input attacks and have never been applied to reasoning-model
+    self-jailbreak is correct and well-articulated.
+
+    - **Principled limitation result**: The oracle decomposition showing 93% of advantage
+    comes from future labels, combined with near-zero MI between hidden states and
+    future labels (0.043 bits), establishes a concrete information-theoretic boundary.
+
+    - **Cross-architecture consistency**: Universal patterns across 4 models, 2 architecture
+    families, and 2 scales elevate the empirical findings beyond single-model observation.
+
+    - **Signal geometry insight**: The Fisher discriminant analysis in full vs. PCA
+    space provides a transferable explanation for why covariance-based detectors show
+    architecture-dependent effectiveness.
+
+    - **Appropriate framing**: The paper correctly positions itself as empirical characterization
+    rather than overclaiming a novel method.
+
+
+    ### Weaknesses
+
+    1. **Temporal window probe is not methodologically novel (major)**: Concatenating
+    features from a sliding window and applying logistic regression is textbook feature
+    engineering (Ratnaparkhi 1996, Conneau et al. 2018). Calling this a "contribution"
+    stretches the definition. A top venue expects either methodological innovation
+    or insight depth beyond what off-the-shelf tools provide.
+
+
+    2. **Missing critical related work on representation engineering (major)**: Zou
+    et al. 2023 ("Representation Engineering") identifies safety-relevant directions
+    in activation space using contrastive pairs—directly relevant given the paper''s
+    title includes "contrastive" and the Fisher discriminant analysis is closely related.
+    Turner et al. 2023 (activation addition/steering) shows safety behavior can be
+    controlled via representation-space interventions. These works provide the theoretical
+    foundation for why safety signals exist in hidden states and are conspicuously
+    absent.
+
+
+    3. **Missing related work on step-level reasoning supervision (major)**: Process
+    Reward Models (Lightman et al. 2023, "Let''s Verify Step by Step") perform step-level
+    classification on reasoning traces—structurally identical to this paper''s task.
+    OmegaPRM and Math-Shepherd extend this to automated step-level annotation. The
+    connection between PRMs (classifying reasoning steps as correct/incorrect) and
+    this paper''s probe (classifying steps as pre/post-commitment) is deep and unexplored.
+
+
+    4. **Negative lead-time result is partially tautological (moderate)**: The commitment
+    point is defined as "last step with safety reasoning." Hidden states at pre-commitment
+    steps encode ongoing safety reasoning *by definition*—that is why they are labeled
+    pre-commitment. The finding that probes detect commitment only at/after the point
+    may simply reflect definitional circularity. The oracle achieves early detection
+    by exploiting label-sequence autocorrelation (predicting a gap will become permanent),
+    which is a fundamentally different information source.
+
+
+    5. **Missing change-point detection baselines (moderate)**: The "commitment point"
+    is a structural change point in a time series. Classical methods (CUSUM, Bayesian
+    Online Change-Point Detection — Adams & MacKay 2007) are natural baselines. Applying
+    BOCPD to per-step probe scores could potentially achieve positive lead time by
+    detecting distributional shifts before textual commitment.
+
+
+    6. **Title-content mismatch**: "Contrastive" is unexplained. The methods contain
+    no contrastive learning, contrastive loss, or contrastive pair construction. Fisher
+    discriminant analysis comparing class means is not "contrastive" in the modern
+    ML sense.
+
+
+    ### Questions for Authors
+
+    1. How does a text-based baseline (e.g., sentence-BERT embeddings of CoT text
+    + temporal window LR) perform? If text achieves comparable performance, what is
+    the unique value of hidden-state monitoring?
+
+    2. Have you considered Bayesian Online Change-Point Detection on per-step probe
+    scores to achieve positive lead time?
+
+    3. Why does the title use "contrastive" when no contrastive learning is employed?
+
+
+    ### Minor Issues
+
+    - Only 11 references is unusually sparse for an empirical study of this scope
+    (typical: 30-50).
+
+    - Hewitt & Liang 2019 (control tasks for probing) is relevant for validating whether
+    probes exploit genuine information vs. structural artifacts.
+
+    - The cross-architecture transfer experiment (Table 7) trains a learned linear
+    projection on 50 traces—the parameter-to-data ratio warrants skepticism.
+
+    - OpenThinker-7B accuracy is missing from Table 1 (shown as "—").
+
+
+    ### Score: 3/6 | Confidence: 4/5
+
+
+    ---
+
+
+    ## Roundtable Discussion
+
+
+    ### Step 2: Cross-Sharing
+
+
+    After exchanging reviews, both reviewers noted reinforcing concerns:
+
+
+    - **R1''s MLP misrepresentation concern strengthens R2''s novelty critique**:
+    If the "temporal LR" is actually a multi-layer MLP, the paper''s claim that "simplicity
+    is optimal" is weakened, and the methods contribution becomes even more incremental.
+    R2 agrees this is significant.
+
+    - **R2''s tautology concern reinforces R1''s circularity worry**: Both reviewers
+    independently identified that the commitment point definition creates evaluation
+    circularity. R1 framed it as "learning the annotation pattern"; R2 framed it as
+    "definitional tautology." These are the same fundamental concern from different
+    angles.
+
+    - **R1 acknowledges R2''s missing baselines point**: R1 agrees that change-point
+    detection methods (BOCPD on probe score sequences) and text-based baselines would
+    meaningfully strengthen the experimental evaluation.
+
+    - **R2 acknowledges R1''s experimental thoroughness**: R2 concedes that the 12-experiment
+    suite with proper ablations is above-average for characterization papers, but
+    maintains this does not compensate for novelty limitations.
+
+
+    ### Step 3: Convergence
+
+
+    **Areas of agreement (strong consensus):**
+
+    1. The paper identifies a real and timely problem (hidden-state detection for
+    reasoning-model self-jailbreak).
+
+    2. The oracle decomposition is the strongest individual contribution—a useful
+    negative result with information-theoretic grounding.
+
+    3. The commitment point definition creates evaluation circularity that is not
+    addressed.
+
+    4. Small sample sizes (38-42 test traces) weaken architecture-dependent claims.
+
+    5. The paper is better framed as empirical characterization than methods contribution—which
+    the authors already do.
+
+    6. Missing related work is a significant gap (representation engineering, PRMs,
+    change-point detection).
+
+    7. The paper is below the bar for a top venue main track but could be appropriate
+    for a findings/workshop track.
+
+
+    **Areas of disagreement (resolved):**
+
+    - R1 initially rated 4/6 based on experimental quality; R2 rated 3/6 based on
+    novelty. After cross-sharing, R1 lowered to 3-4/6 after accepting the novelty
+    concerns, while R2 maintained 3/6. Consensus converges at **3/6 (Borderline Reject)**.
+
+
+    ### Step 4: Consolidated Assessment
+
+
+    **Overall Score: 3/6 (Borderline Reject)**
+
+
+    **Summary judgment:** This is a well-executed empirical study of a genuine problem—detecting
+    safety commitment in reasoning model chain-of-thought via hidden states. The experimental
+    suite is comprehensive (12 experiments, 4 models, 2 architectures, 2 scales),
+    and the oracle decomposition establishing an information-theoretic limitation
+    is a useful contribution. However, the paper falls short of the top venue bar
+    due to: (1) limited methodological novelty (temporal window probes are standard
+    feature engineering), (2) evaluation circularity from the commitment point definition,
+    (3) missing important baselines (change-point detection, text-based) and related
+    work (representation engineering, PRMs), (4) small sample sizes that weaken architecture-dependent
+    claims, and (5) a potentially misleading description of the probe architecture.
+
+
+    **What would raise the score:**
+
+    1. **Add a text-based baseline** (sentence embeddings + same temporal window)
+    to demonstrate unique value of hidden-state access.
+
+    2. **Add change-point detection** (BOCPD on probe score sequences) as a method
+    that could achieve positive lead time.
+
+    3. **Validate the commitment point** with behavioral experiments (intervention
+    at detected point → does model still produce harm?).
+
+    4. **Control for positional confounds** with position-residualized ablation.
+
+    5. **Fix related work gaps**: cite Zou et al. 2023 (RepE), Turner et al. 2023
+    (activation steering), Lightman et al. 2023 (PRMs), Adams & MacKay 2007 (BOCPD).
+
+    6. **Clarify the probe architecture** — if it''s an MLP, say so; if it''s truly
+    LR, verify.
+
+    7. **Explain or change "Contrastive" in the title** — current methods are not
+    contrastive.
+
+
+    **Venue recommendation:** In current form, this paper is appropriate for an **EMNLP
+    Findings** or **workshop** (e.g., SoLaR, TrustNLP). With the improvements above—especially
+    text baselines, change-point detection, and commitment point validation—it could
+    reach the bar for **EMNLP Main**.
+
+
+    ---
+
+
+    ### Key Metrics Summary
+
+
+    | Criterion | Rating | Notes |
+
+    |-----------|--------|-------|
+
+    | Novelty | Low-Medium | Standard methods applied to new domain; oracle decomposition
+    is genuinely useful |
+
+    | Soundness | Medium | Comprehensive experiments but circularity and small-sample
+    concerns |
+
+    | Significance | Medium | Real problem, useful negative result, but limited practical
+    impact |
+
+    | Clarity | High | Well-written, honest about limitations, appropriate hedging
+    |
+
+    | Reproducibility | Medium | Most details present but probe architecture discrepancy
+    and missing code details |
+
+    | **Overall** | **3/6** | **Borderline Reject — resubmit to Findings or strengthen
+    for Main** |
+
+    '
+  error: ''
+- tier: worst
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/artifacts/dream_reports/dream_20260516T194646/worst/paper.pdf
+  imagined_experiments:
+  - name: Cross-architecture static probe evaluation
+    plan_id: exp-001
+    description: Train static LR on r1-32b and QwQ-32B hidden states, measure coverage.
+    expected_results:
+      r1_32b_static_lr_acc: 0.891
+      r1_32b_static_lr_coverage: 0.698
+      r1_32b_fisher_orig_L14: 8.3
+      r1_32b_fisher_pca3_L14: 5.1
+      r1_32b_var_explained_3pc: 0.38
+      qwq_32b_static_lr_acc: 0.903
+      qwq_32b_static_lr_coverage: 0.721
+      qwq_32b_fisher_orig_L14: 6.7
+      qwq_32b_fisher_pca3_L14: 4.2
+      qwq_32b_var_explained_3pc: 0.41
+    result_rationale: Qwen2.5 architecture concentrates safety-relevant signal into
+      top principal components (PCA top-3 explains ~38-41% variance vs 16.6% for Llama).
+      Fisher discriminant ratio drops from 17-18 (Llama full-space) to only 6-8 (Qwen
+      full-space), but critically the PCA-3 Fisher ratio RISES to 4-5 (vs ~1 for Llama).
+      This means safety signal in Qwen2.5 is geometrically concentrated rather than
+      distributed across minor components. Static LR exploits this concentrated signal
+      directly, achieving 70%+ coverage — far above the 46.5% seen on r1-8b/Llama.
+      The architecture's representation geometry makes safety states linearly separable
+      without temporal context.
+    tables:
+    - name: 'Table: Static Probe Cross-Architecture Comparison'
+      columns:
+      - Model
+      - Architecture
+      - Static Coverage
+      - Fisher (full)
+      - Fisher (PCA-3)
+      - PCA Var Explained
+      rows:
+      - - r1-8b
+        - Llama-3.1
+        - 46.5%
+        - '17.9'
+        - '0.93'
+        - 16.6%
+      - - r1-32b
+        - Qwen2.5
+        - 69.8%
+        - '8.3'
+        - '5.1'
+        - 38.0%
+      - - QwQ-32B
+        - Qwen2.5
+        - 72.1%
+        - '6.7'
+        - '4.2'
+        - 41.0%
+    figures_description:
+    - PCA scatter plot (PC1 vs PC2) showing safety/unsafe step embeddings for all
+      3 models. Llama shows overlapping clusters; Qwen2.5 models show clear separation
+      with decision boundary visible in 2D.
+    - 'Fisher ratio comparison: bar chart showing full-space Fisher (Llama >> Qwen)
+      vs PCA-3 Fisher (Qwen >> Llama), illustrating signal concentration difference.'
+    analysis: 'Static probes achieve 70%+ coverage on Qwen2.5 models, dramatically
+      above the 46.5% on Llama. This directly contradicts the universality of Claim
+      1. The explanation lies in representation geometry: Qwen2.5 concentrates safety
+      signal into dominant PCs (41% variance in top-3 vs 17% for Llama), making it
+      accessible to linear classifiers without temporal aggregation. The lower full-space
+      Fisher ratio (6-8 vs 17-18) is misleading — what matters is where the signal
+      lives relative to the principal subspace.'
+  - name: Cross-architecture temporal window evaluation
+    plan_id: exp-002
+    description: Temporal LR W=15 on r1-32b and QwQ-32B. Test whether +30pp improvement
+      holds.
+    expected_results:
+      r1_32b_temporal_w15_acc: 0.901
+      r1_32b_temporal_w15_coverage: 0.744
+      r1_32b_temporal_delta_over_static: 0.046
+      qwq_32b_temporal_w15_acc: 0.912
+      qwq_32b_temporal_w15_coverage: 0.767
+      qwq_32b_temporal_delta_over_static: 0.046
+    result_rationale: Temporal window adds only +4-5pp coverage on Qwen2.5 models
+      (vs +30pp on Llama). The 'safety reasoning density decline' pattern that temporal
+      probes exploit on Llama is either absent or already captured by static signal
+      in Qwen2.5. Because safety signal is concentrated in top PCs, a single-step
+      snapshot already contains sufficient discriminative information — the temporal
+      context provides marginal smoothing benefit rather than genuinely new signal.
+      The temporal-minus-static delta of ~0.05 is within noise range for these sample
+      sizes, meaning temporal context is effectively unnecessary for Qwen2.5.
+    tables:
+    - name: 'Table: Temporal Advantage Cross-Architecture'
+      columns:
+      - Model
+      - Static Coverage
+      - Temporal W15 Coverage
+      - Delta
+      - Llama Baseline Delta
+      rows:
+      - - r1-8b (Llama)
+        - 46.5%
+        - 76.7%
+        - +30.2pp
+        - —
+      - - r1-32b (Qwen2.5)
+        - 69.8%
+        - 74.4%
+        - +4.6pp
+        - —
+      - - QwQ-32B (Qwen2.5)
+        - 72.1%
+        - 76.7%
+        - +4.6pp
+        - —
+    figures_description:
+    - 'Bar chart: static vs temporal coverage across 3 models. Llama shows dramatic
+      temporal lift; Qwen2.5 models show near-flat bars with minimal gap.'
+    - 'Density decline pattern visualization: rolling window safety-label density
+      for representative traces. Llama traces show gradual decline pattern; Qwen2.5
+      traces show sharper step-function transitions.'
+    analysis: 'The +30pp temporal advantage is Llama-specific. Qwen2.5 models show
+      only +4-5pp marginal improvement from temporal context, within bootstrap CI
+      overlap. The ''safety reasoning density decline'' pattern — the mechanism temporal
+      probes exploit — manifests differently in Qwen2.5: transitions are sharper (step-function
+      rather than gradual decline), meaning a single step already captures the transition.
+      This invalidates Claim 2 as a general finding but opens the architecture-dependent
+      monitoring story.'
+  - name: Cross-model transfer
+    plan_id: exp-003
+    description: Train on r1-8b (Llama), test on r1-32b/QwQ (Qwen2.5) and vice versa.
+    expected_results:
+      llama_to_qwen_static_coverage: 0.256
+      llama_to_qwen_temporal_coverage: 0.279
+      qwen_to_llama_static_coverage: 0.302
+      qwen_to_llama_temporal_coverage: 0.326
+      projection_head_dim_match_loss: 0.42
+      within_qwen_transfer_coverage: 0.651
+    result_rationale: Cross-architecture transfer fails catastrophically (25-33% coverage)
+      because the architectures encode safety in fundamentally different geometric
+      subspaces. Llama distributes signal across minor PCs; Qwen2.5 concentrates it
+      in major PCs. A learned projection head cannot bridge this because the signal
+      dimensions are incommensurable — it's not a rotation/scaling problem but a rank
+      mismatch. Within-family transfer (r1-32b ↔ QwQ-32B, both Qwen2.5) works reasonably
+      (65%) because representation geometry is shared within architecture family.
+      This confirms safety encoding is architecture-determined, not model-determined.
+    tables:
+    - name: 'Table: Zero-Shot Cross-Architecture Transfer'
+      columns:
+      - Train Model
+      - Test Model
+      - Method
+      - Coverage
+      - vs In-Domain
+      rows:
+      - - r1-8b (Llama)
+        - r1-32b (Qwen)
+        - Static LR
+        - 25.6%
+        - 69.8%
+      - - r1-8b (Llama)
+        - r1-32b (Qwen)
+        - Temporal W15
+        - 27.9%
+        - 74.4%
+      - - r1-32b (Qwen)
+        - r1-8b (Llama)
+        - Static LR
+        - 30.2%
+        - 46.5%
+      - - r1-32b (Qwen)
+        - r1-8b (Llama)
+        - Temporal W15
+        - 32.6%
+        - 76.7%
+      - - r1-32b (Qwen)
+        - QwQ-32B (Qwen)
+        - Static LR
+        - 65.1%
+        - 72.1%
+    figures_description:
+    - 'Transfer matrix heatmap: rows = train model, columns = test model, cell color
+      = coverage. Diagonal (in-domain) is hot; cross-architecture cells are cold;
+      within-Qwen transfer is warm.'
+    analysis: Zero-shot transfer between architectures is near-random, confirming
+      safety signal is encoded architecture-specifically. The slight above-chance
+      performance (25-33% vs ~20% random baseline) suggests some universal safety
+      features exist but are insufficient for practical detection. Within-family transfer
+      (65%) demonstrates that models sharing architecture share representation geometry
+      for safety, supporting the 'architecture determines monitoring strategy' reframing.
+  - name: Lead time analysis across models
+    plan_id: exp-004
+    description: Confirm negative lead time finding on 32B models.
+    expected_results:
+      r1_32b_static_lead_mean: 2.1
+      r1_32b_temporal_lead_mean: 3.4
+      r1_32b_positive_lead_rate: 0.52
+      qwq_32b_static_lead_mean: 3.8
+      qwq_32b_temporal_lead_mean: 4.2
+      qwq_32b_positive_lead_rate: 0.58
+    result_rationale: Qwen2.5 models show POSITIVE lead time (mean 2-4 steps), contradicting
+      the negative lead time finding on Llama. Because safety signal is concentrated
+      and linearly separable in Qwen2.5, probes can detect commitment approaching
+      before it occurs — the hidden state shifts are more abrupt and precede the textual
+      commitment point. This further undermines the universality of Claim 3 (pre-textual
+      detection is fundamentally limited). On Qwen2.5, the limitation doesn't hold
+      — it's a Llama-specific artifact of distributed signal requiring temporal aggregation,
+      which inherently introduces detection lag.
+    tables:
+    - name: 'Table: Lead Time Distribution Across Models'
+      columns:
+      - Model
+      - Method
+      - Lead Mean
+      - Lead Median
+      - Positive Lead Rate
+      rows:
+      - - r1-8b (Llama)
+        - Static LR
+        - '-2.0'
+        - '-2'
+        - 30%
+      - - r1-8b (Llama)
+        - Temporal W15
+        - '-1.09'
+        - '-1'
+        - 34.5%
+      - - r1-32b (Qwen)
+        - Static LR
+        - '+2.1'
+        - '+1'
+        - 52%
+      - - r1-32b (Qwen)
+        - Temporal W15
+        - '+3.4'
+        - '+2'
+        - 55%
+      - - QwQ-32B (Qwen)
+        - Static LR
+        - '+3.8'
+        - '+3'
+        - 58%
+      - - QwQ-32B (Qwen)
+        - Temporal W15
+        - '+4.2'
+        - '+3'
+        - 60%
+    figures_description:
+    - Lead time distribution violin plots per model. Llama distribution centered below
+      0; Qwen2.5 distributions centered above 0 with right skew.
+    analysis: 'The negative lead time finding is Llama-specific. Qwen2.5''s concentrated
+      signal geometry enables genuine pre-textual detection with positive lead times.
+      This is the most damaging result for the original framing — it means Claim 3
+      cannot stand as a universal limitation. However, it opens a richer story: architecture
+      determines not just WHAT method works but WHETHER pre-textual detection is possible
+      at all. The lead time difference directly correlates with PCA signal concentration
+      (r=0.89 across models).'
+  - name: TrajGuard-style Mahalanobis baseline
+    plan_id: exp-005
+    description: Implement Mahalanobis distance baseline on all 3 models.
+    expected_results:
+      r1_8b_mahalanobis_coverage: 0.349
+      r1_32b_mahalanobis_coverage: 0.558
+      qwq_32b_mahalanobis_coverage: 0.605
+      r1_8b_mahalanobis_fpr: 0.23
+      r1_32b_mahalanobis_fpr: 0.14
+      qwq_32b_mahalanobis_fpr: 0.11
+    result_rationale: Mahalanobis distance partially succeeds on Qwen2.5 (55-60% coverage)
+      because the concentrated signal creates genuine distributional shift detectable
+      by covariance-based methods. On Llama, signal is distributed across minor PCs
+      that contribute little to Mahalanobis distance (dominated by top eigenvalues),
+      so coverage remains low (35%). This means TrajGuard-style approaches — which
+      the paper claims categorically fail — actually work reasonably on Qwen2.5. The
+      'existing detectors fail' claim (part of Claim 1's story) doesn't generalize.
+    tables:
+    - name: 'Table: Mahalanobis Baseline Performance'
+      columns:
+      - Model
+      - Architecture
+      - MD Coverage
+      - FPR
+      - vs Static LR
+      rows:
+      - - r1-8b
+        - Llama-3.1
+        - 34.9%
+        - 23%
+        - -11.6pp
+      - - r1-32b
+        - Qwen2.5
+        - 55.8%
+        - 14%
+        - -14.0pp
+      - - QwQ-32B
+        - Qwen2.5
+        - 60.5%
+        - 11%
+        - -11.6pp
+    figures_description:
+    - ROC curves for Mahalanobis detection across models. Qwen2.5 curves significantly
+      above Llama curve, approaching useful AUC.
+    - Eigenspectrum of safe-trace covariance matrix per model. Llama shows flatter
+      spectrum (signal buried); Qwen2.5 shows steeper drop-off (signal in top eigenvalues
+      accessible to MD).
+    analysis: 'Mahalanobis baseline achieves 55-60% coverage on Qwen2.5, undermining
+      the ''geometric methods categorically fail'' narrative. While still below static
+      LR, the gap is modest (~12pp) rather than catastrophic. This means for Qwen2.5-based
+      models, even unsupervised anomaly detection provides practical coverage. The
+      original paper''s ''you need supervised temporal probes'' message is architecture-specific.
+      Reframe: ''We characterize when geometric baselines suffice vs when supervised
+      temporal methods are needed.'''
+  - name: Bootstrap confidence intervals
+    plan_id: exp-006
+    description: 1000 bootstrap resamples on all metrics across all methods and models.
+    expected_results:
+      r1_8b_temporal_coverage_ci:
+      - 0.651
+      - 0.884
+      r1_32b_static_coverage_ci:
+      - 0.581
+      - 0.814
+      r1_32b_temporal_coverage_ci:
+      - 0.628
+      - 0.86
+      qwq_32b_static_coverage_ci:
+      - 0.605
+      - 0.837
+      qwq_32b_temporal_coverage_ci:
+      - 0.651
+      - 0.884
+      temporal_delta_qwen_ci:
+      - -0.02
+      - 0.12
+      temporal_delta_llama_ci:
+      - 0.19
+      - 0.42
+      cross_transfer_coverage_ci:
+      - 0.14
+      - 0.37
+    result_rationale: 'Bootstrap CIs confirm the worst-case interpretation: temporal
+      delta on Qwen2.5 has CI crossing zero ([-0.02, 0.12]), meaning we cannot reject
+      the null that temporal context provides no benefit. Meanwhile Llama temporal
+      delta CI is solidly positive ([0.19, 0.42]). The wide CIs (±12pp) reflect small
+      sample sizes (43 test traces) and high variance across traces. Cross-transfer
+      CI confirms below-chance performance is genuine. These CIs statistically formalize
+      the architecture-dependent story — the difference between architectures IS significant,
+      but the temporal advantage within Qwen2.5 IS NOT.'
+    tables:
+    - name: 'Table: Bootstrap 95% CIs for Key Comparisons'
+      columns:
+      - Comparison
+      - Point Estimate
+      - 95% CI
+      - Significant?
+      rows:
+      - - Temporal delta (Llama r1-8b)
+        - +30.2pp
+        - '[+19, +42]'
+        - 'Yes'
+      - - Temporal delta (Qwen r1-32b)
+        - +4.6pp
+        - '[-2, +12]'
+        - 'No'
+      - - Temporal delta (Qwen QwQ-32B)
+        - +4.6pp
+        - '[-2, +12]'
+        - 'No'
+      - - 'Static: Qwen vs Llama'
+        - +23.3pp
+        - '[+11, +36]'
+        - 'Yes'
+      - - Cross-arch transfer vs random
+        - +7.6pp
+        - '[-4, +17]'
+        - 'No'
+    figures_description:
+    - 'Forest plot: temporal-minus-static delta with 95% CIs per model. Llama CI clearly
+      above zero; Qwen CIs straddle zero.'
+    analysis: 'CIs definitively show: (1) temporal advantage is significant on Llama
+      but not on Qwen2.5; (2) the architecture difference in static performance IS
+      significant; (3) cross-architecture transfer is not significantly above chance.
+      This provides rigorous statistical backing for the two-regime story. Reviewers
+      cannot dismiss the architecture difference as noise — the effect size is large
+      and CIs don''t overlap.'
+  - name: Window size ablation
+    plan_id: exp-007
+    description: W=1,3,5,10,15,20,25 on all 3 models.
+    expected_results:
+      r1_8b_coverage_by_w:
+        1: 0.465
+        3: 0.535
+        5: 0.651
+        10: 0.651
+        15: 0.767
+        20: 0.767
+        25: 0.744
+      r1_32b_coverage_by_w:
+        1: 0.698
+        3: 0.721
+        5: 0.721
+        10: 0.744
+        15: 0.744
+        20: 0.744
+        25: 0.721
+      qwq_32b_coverage_by_w:
+        1: 0.721
+        3: 0.744
+        5: 0.744
+        10: 0.767
+        15: 0.767
+        20: 0.767
+        25: 0.744
+    result_rationale: 'Llama shows steep improvement with window size (46.5%→76.7%
+      from W=1 to W=15), saturating around W=15. Qwen2.5 models show nearly flat curves
+      — W=1 already achieves ~70% coverage, and additional window context adds only
+      2-5pp across the full range. This directly visualizes the architectural difference:
+      Llama NEEDS temporal aggregation to resolve the distributed signal; Qwen2.5
+      has already-concentrated signal that doesn''t benefit from temporal smoothing.
+      The slight improvement at larger W on Qwen is likely just regularization from
+      more features.'
+    tables:
+    - name: 'Table: Coverage by Window Size'
+      columns:
+      - W
+      - r1-8b (Llama)
+      - r1-32b (Qwen)
+      - QwQ-32B (Qwen)
+      rows:
+      - - '1'
+        - 46.5%
+        - 69.8%
+        - 72.1%
+      - - '3'
+        - 53.5%
+        - 72.1%
+        - 74.4%
+      - - '5'
+        - 65.1%
+        - 72.1%
+        - 74.4%
+      - - '10'
+        - 65.1%
+        - 74.4%
+        - 76.7%
+      - - '15'
+        - 76.7%
+        - 74.4%
+        - 76.7%
+      - - '20'
+        - 76.7%
+        - 74.4%
+        - 76.7%
+      - - '25'
+        - 74.4%
+        - 72.1%
+        - 76.7%
+    figures_description:
+    - 'Line plot: coverage vs window size for all 3 models. Llama shows sigmoid-shaped
+      curve; Qwen2.5 models show flat lines with slight positive slope. Clearly different
+      regimes.'
+    analysis: Window size ablation is the single most compelling visualization for
+      the two-regime story. The divergent curve shapes directly demonstrate that temporal
+      context's importance is architecture-dependent. This figure alone could anchor
+      the reframed paper's central argument. Note the slight overfitting at W=25 (coverage
+      drops on Llama/r1-32b), suggesting W=15 is near-optimal for both architectures
+      but for different reasons (signal extraction vs regularization).
+  - name: Layer selection ablation
+    plan_id: exp-008
+    description: All layers for temporal probe on 32B models.
+    expected_results:
+      r1_32b_best_layer: 18
+      r1_32b_layer_range_above_70:
+      - 14
+      - 24
+      qwq_32b_best_layer: 16
+      qwq_32b_layer_range_above_70:
+      - 12
+      - 22
+      r1_32b_early_layer_coverage: 0.558
+      r1_32b_late_layer_coverage: 0.628
+      qwq_32b_early_layer_coverage: 0.581
+      qwq_32b_late_layer_coverage: 0.605
+    result_rationale: Qwen2.5 models show broader effective layer ranges and less
+      sensitivity to layer choice. Because signal is concentrated in dominant PCs
+      regardless of layer, most middle-to-late layers provide sufficient information.
+      The best layer shifts slightly later (L16-18 vs L14 for Llama 8B) reflecting
+      the deeper architecture, but the key finding is robustness — any layer from
+      14-24 provides >70% coverage. This contrasts with Llama where layer choice matters
+      more (layer 14 is specifically optimal). Adds to the 'Qwen2.5 is easier to monitor'
+      narrative.
+    tables:
+    - name: 'Table: Layer Sensitivity Comparison'
+      columns:
+      - Model
+      - Best Layer
+      - Coverage Range (all layers)
+      - Layers >70% Coverage
+      rows:
+      - - r1-8b (Llama)
+        - '14'
+        - 38-77%
+        - 1 (only L14 temporal)
+      - - r1-32b (Qwen)
+        - '18'
+        - 52-74%
+        - 10 (L14-L24)
+      - - QwQ-32B (Qwen)
+        - '16'
+        - 55-77%
+        - 10 (L12-L22)
+    figures_description:
+    - 'Line plot: temporal W15 coverage vs layer index for all models. Llama shows
+      sharp peak at L14; Qwen2.5 models show broad plateau across middle layers.'
+    analysis: 'Layer robustness further supports the ''Qwen2.5 is easier to monitor''
+      story. Practitioners don''t need careful layer selection for Qwen2.5 models
+      — any middle layer suffices. This has direct deployment implications: Qwen2.5-based
+      monitors are more robust to architectural details, reducing engineering effort.'
+  - name: 16-label taxonomy supervision
+    plan_id: exp-009
+    description: Fine-grained labels (Type 1/2/3/4) for richer training signal.
+    expected_results:
+      r1_8b_16label_coverage: 0.791
+      r1_8b_16label_lead_mean: -0.5
+      r1_32b_16label_coverage: 0.767
+      qwq_32b_16label_coverage: 0.791
+      r1_8b_16label_delta_over_binary: 0.024
+      r1_32b_16label_delta_over_binary: 0.023
+    result_rationale: 'Fine-grained labels provide marginal improvement (~2pp) on
+      all models. On Llama, the 16-label signal helps slightly because it decomposes
+      the distributed safety signal into more learnable sub-patterns. On Qwen2.5,
+      the improvement is similar in absolute terms but proportionally smaller (already
+      near ceiling). The key insight: richer supervision doesn''t fundamentally change
+      the architecture-dependent story — the bottleneck on Llama isn''t label quality
+      but signal geometry, and on Qwen2.5 the static probe was already near-optimal.
+      This addresses reviewer concern without changing conclusions.'
+    tables:
+    - name: 'Table: 16-Label vs Binary Supervision'
+      columns:
+      - Model
+      - Binary Coverage
+      - 16-Label Coverage
+      - Delta
+      rows:
+      - - r1-8b (Llama) Temporal
+        - 76.7%
+        - 79.1%
+        - +2.4pp
+      - - r1-32b (Qwen) Temporal
+        - 74.4%
+        - 76.7%
+        - +2.3pp
+      - - QwQ-32B (Qwen) Temporal
+        - 76.7%
+        - 79.1%
+        - +2.4pp
+    figures_description:
+    - Confusion matrix for 16-label classification on each model, showing which safety
+      sub-types are most confused.
+    analysis: Fine-grained supervision is a modest universal improvement (~2pp) that
+      doesn't interact with the architecture-dependent story. Useful for completeness
+      but doesn't change the narrative. The finding that both architectures benefit
+      equally suggests the 2pp comes from better label alignment rather than resolving
+      the geometric problem.
+  - name: Oracle decomposition
+    plan_id: exp-010
+    description: Why can oracle but not probes achieve positive lead time? Architecture-specific
+      analysis.
+    expected_results:
+      llama_oracle_lead_advantage_source: density_decline_gradient
+      qwen_oracle_lead_advantage_source: transition_sharpness
+      llama_hidden_state_gradient_correlation: 0.21
+      qwen_hidden_state_gradient_correlation: 0.67
+      llama_pre_cp_label_entropy: 1.83
+      qwen_pre_cp_label_entropy: 0.94
+    result_rationale: 'Oracle decomposition reveals WHY Qwen2.5 enables positive lead
+      time: the label sequence has lower pre-commitment-point entropy (0.94 vs 1.83),
+      meaning safety reasoning cessation is more predictable. On Qwen2.5, hidden states
+      correlate well with the oracle''s prediction signal (r=0.67) because both exploit
+      the same sharp transition. On Llama, hidden states poorly correlate with oracle
+      signal (r=0.21) because the oracle uses cumulative density decline patterns
+      that require sequence-level context unavailable in single hidden states. This
+      mechanistically explains the architecture difference.'
+    tables:
+    - name: 'Table: Oracle vs Probe Signal Source Analysis'
+      columns:
+      - Model
+      - Oracle Signal
+      - Hidden-State Correlation
+      - Pre-CP Entropy
+      rows:
+      - - r1-8b (Llama)
+        - Density gradient
+        - '0.21'
+        - '1.83'
+      - - r1-32b (Qwen)
+        - Sharp transition
+        - '0.67'
+        - '0.94'
+      - - QwQ-32B (Qwen)
+        - Sharp transition
+        - '0.67'
+        - '0.94'
+    figures_description:
+    - 'Scatter plot: hidden-state probe confidence vs oracle confidence, per model.
+      Llama shows weak correlation; Qwen2.5 shows strong linear relationship.'
+    - Label entropy over time (relative to commitment point) for representative traces
+      per architecture.
+    analysis: 'The oracle decomposition provides the mechanistic foundation for the
+      two-regime theory. Llama''s gradual density decline requires temporal context
+      to detect; Qwen2.5''s sharp transitions are directly readable from instantaneous
+      hidden states. This explains ALL findings: why static probes work on Qwen, why
+      temporal context doesn''t help much on Qwen, and why lead time is positive on
+      Qwen but negative on Llama.'
+  - name: OpenThinker-7B scale control
+    plan_id: exp-011
+    description: 4th model (Qwen2.5-7B base) for 2×2 architecture×scale matrix.
+    expected_results:
+      openthinker_7b_static_coverage: 0.674
+      openthinker_7b_temporal_w15_coverage: 0.698
+      openthinker_7b_temporal_delta: 0.024
+      openthinker_7b_fisher_orig: 7.2
+      openthinker_7b_fisher_pca3: 4.8
+    result_rationale: OpenThinker-7B (Qwen2.5-7B base) confirms the pattern is architecture-dependent,
+      not scale-dependent. Even at 7B scale matching Llama-8B, the Qwen2.5 architecture
+      shows concentrated signal (Fisher PCA-3 = 4.8 >> 0.93 for Llama) and static
+      coverage ~67%. The temporal delta remains minimal (+2.4pp). This rules out the
+      confound that 32B models are simply easier due to scale — it's genuinely the
+      architecture. The 2×2 matrix (Llama-8B, r1-32b-Qwen, QwQ-32B-Qwen, OpenThinker-7B-Qwen)
+      cleanly isolates architecture as the determining factor.
+    tables:
+    - name: 'Table: 2×2 Architecture × Scale Matrix'
+      columns:
+      - ''
+      - Small (7-8B)
+      - Large (32B)
+      rows:
+      - - Llama
+        - 'r1-8b: Δ=+30pp'
+        - —
+      - - Qwen2.5
+        - 'OpenThinker: Δ=+2.4pp'
+        - 'r1-32b: Δ=+4.6pp / QwQ: Δ=+4.6pp'
+    figures_description:
+    - '2×2 panel: temporal delta (bar height) across architecture × scale. Llama column
+      shows tall bar; Qwen column shows uniformly short bars regardless of scale.'
+    analysis: The scale-controlled comparison definitively attributes the temporal
+      advantage difference to architecture rather than model size. This is essential
+      for the reframed paper's claim that 'architecture determines monitoring strategy'
+      — without it, reviewers could argue 32B models are simply easier and temporal
+      probes are needed for smaller models regardless of architecture.
+  - name: GRU/Attention probe upper bound on 32B
+    plan_id: exp-012
+    description: Verify GRU offers no improvement over LR on Qwen2.5 models.
+    expected_results:
+      r1_32b_gru_coverage: 0.744
+      r1_32b_gru_delta_over_lr_temporal: 0.0
+      qwq_32b_gru_coverage: 0.767
+      qwq_32b_gru_delta_over_lr_temporal: 0.0
+      r1_32b_gru_vs_static_lr_delta: 0.046
+      qwq_32b_gru_vs_static_lr_delta: 0.046
+    result_rationale: GRU provides zero improvement over temporal LR on Qwen2.5, consistent
+      with the Llama finding but for different reasons. On Llama, GRU doesn't help
+      because temporal LR already captures the relevant density decline pattern (linear
+      in the temporal feature space). On Qwen2.5, GRU doesn't help because the task
+      is already near-solved by static LR — there's no complex temporal dynamic to
+      model. The ceiling is determined by label noise and trace difficulty, not model
+      capacity. This strengthens the 'simplicity is optimal' message while noting
+      it means different things per architecture.
+    tables:
+    - name: 'Table: Model Complexity Comparison (32B Models)'
+      columns:
+      - Method
+      - r1-32b Coverage
+      - QwQ-32B Coverage
+      - Parameters
+      rows:
+      - - Static LR
+        - 69.8%
+        - 72.1%
+        - ~5K
+      - - Temporal LR W=15
+        - 74.4%
+        - 76.7%
+        - ~77K
+      - - GRU-256
+        - 74.4%
+        - 76.7%
+        - ~1.6M
+    figures_description:
+    - Coverage vs model complexity (log-scale params) for each model. All curves flatten
+      after static LR for Qwen2.5; Llama curve rises to temporal LR then flattens.
+    analysis: 'GRU confirms the ceiling is architecture-determined, not capacity-determined.
+      For Qwen2.5, even static LR is near-ceiling, so no amount of model complexity
+      helps. The ''simplicity is optimal'' finding holds universally but has different
+      practical implications: on Llama, you need temporal LR (not GRU); on Qwen2.5,
+      you need only static LR (temporal is optional). This informs the practical deployment
+      recommendation: monitor architecture → select minimal sufficient method.'
+  review_report: "---\ndream_id: dream_20260516T194646\ntier: worst\noverall_score:\
+    \ weak reject\ntimestamp: 2026-05-16T20:23:28.591894+00:00\n---\n\n# Dream Review\
+    \ Report\n\n**Paper:** Architecture Determines Safety Monitoring Strategy: Hidden-State\
+    \ Detection in Reasoning Models Reveals Two Distinct Regimes\n\n**Review Mode:**\
+    \ Full (2 Reviewers + Roundtable)\n\n**Overall Score:** 3/6 (Weak Reject)\n\n\
+    ---\n\n## Paper Summary\n\nThe paper presents a cross-architecture evaluation\
+    \ of hidden-state safety monitoring for reasoning models exhibiting \"self-jailbreak\"\
+    \ behavior. Testing across 4 models in 2 architecture families (Llama-3.1, Qwen2.5)\
+    \ at 2 scales (7–8B, 32B), it claims to identify two monitoring regimes: a \"\
+    distributed-signal\" regime (Llama, requiring temporal context for +30.2pp improvement)\
+    \ and a \"concentrated-signal\" regime (Qwen2.5, where static probes achieve 70%+\
+    \ coverage). The paper proposes a diagnostic framework using PCA variance concentration\
+    \ and Fisher discriminant ratio, demonstrates cross-architecture transfer failure,\
+    \ and shows architecture-dependent lead time behavior. 12 experiments are reported\
+    \ across 8 pages.\n\n---\n\n## R1 Review: Methods & Experiments\n\n**Soundness:\
+    \ 2/5 | Overall: 3/6 | Confidence: 4/5**\n\n### Strengths\n\n- **S1: Comprehensive\
+    \ experiment matrix.** All 12 planned experiments are executed, covering ablations\
+    \ (window size, layer selection), baselines (Mahalanobis, GRU), transfer, and\
+    \ statistical validation.\n- **S2: Appropriate bootstrap CI usage.** The authors\
+    \ correctly identify that the temporal advantage for Qwen crosses zero and refrain\
+    \ from overclaiming. The honesty about non-significant results (Table 4) is commendable.\n\
+    - **S3: Actionable diagnostic framework.** PCA variance concentration threshold\
+    \ (>30%) paired with Fisher ratio gives practitioners a concrete decision procedure.\n\
+    - **S4: Well-designed cross-transfer experiment.** Testing both directions plus\
+    \ within-family transfer provides clean evidence that probes are architecture-specific.\n\
+    \n### Weaknesses\n\n- **W1: Critically small test set (n=43).** Each coverage\
+    \ percentage point corresponds to <0.5 traces. Bootstrap CIs of [+19, +42] for\
+    \ Llama temporal delta span 23pp — insufficient precision for title-level claims\
+    \ about \"two distinct regimes.\" The 209-trace training set is similarly small\
+    \ for temporal features (W=15 → ~77K parameters).\n- **W2: Architecture vs. training\
+    \ procedure confound.** Llama-3.1 and Qwen2.5 differ in training data, RLHF procedure,\
+    \ tokenizer, and safety training — not just architecture. The OpenThinker-7B control\
+    \ shares Qwen2.5 architecture AND pre-training, so it does not isolate architecture\
+    \ from training. The title claim \"architecture determines\" is unsupported without\
+    \ same-architecture-different-training controls.\n- **W3: Coverage metric poorly\
+    \ motivated.** ±3 steps tolerance is never justified. No sensitivity analysis\
+    \ at different thresholds (±1, ±2, ±5). Step duration in tokens is unreported.\
+    \ \"Coverage\" conflates detection rate with precision — no false positive analysis\
+    \ whatsoever. A probe that fires everywhere achieves 100% coverage.\n- **W4: No\
+    \ false positive analysis.** The paper never reports FPR on safe traces or non-commitment\
+    \ locations in unsafe traces. Without this, practical utility is unknowable.\n\
+    - **W5: Single dataset (HarmThoughts).** All traces come from one dataset with\
+    \ one \"self-jailbreak\" definition. Different harmful content categories or elicitation\
+    \ strategies could change the signal structure entirely.\n- **W6: Missing standard\
+    \ baselines.** No comparison to token-level text classifiers on CoT, attention-pattern\
+    \ based detection, or simple hidden-state norm thresholds. Cannot assess whether\
+    \ hidden-state probing is necessary vs. cheaper text monitoring.\n\n### Key Questions\n\
+    \n- Q1: How are commitment points annotated? What is inter-annotator agreement?\
+    \ ±3 tolerance is meaningless without knowing annotation noise.\n- Q2: What is\
+    \ the FPR when running probes on full traces, including safe/benign traces?\n\
+    - Q3: The 2×2 matrix is imbalanced (3 Qwen, 1 Llama). Why no Llama-32B model?\n\
+    - Q4: GRU = temporal LR exactly — does this mean temporal patterns are purely\
+    \ linear? If so, this deserves more discussion.\n\n---\n\n## R2 Review: Novelty\
+    \ & Related Work\n\n**Novelty: 2/5 | Overall: 3/6 | Confidence: 4/5**\n\n### Strengths\n\
+    \n- **S1: Clean conceptual abstraction.** The distributed/concentrated two-regime\
+    \ framing, if it generalizes, would give practitioners an actionable decision\
+    \ procedure.\n- **S2: Good scale control.** OpenThinker-7B inclusion to disentangle\
+    \ architecture from scale is sound experimental design.\n- **S3: Practical transfer\
+    \ failure documentation.** Cross-architecture transfer failure (25–33%) with CIs\
+    \ has deployment value — warns against naive probe reuse.\n\n### Weaknesses\n\n\
+    - **W1: Core claim built on n=2 architecture families.** \"Architecture determines\
+    \ monitoring strategy\" is stated as general principle, but evidence supports\
+    \ only \"Llama-3.1 and Qwen2.5 differ.\" With two data points on the independent\
+    \ variable, \"two distinct regimes\" risks severe overfitting. Missing: Mistral,\
+    \ Gemma, Phi, Yi, or any third family.\n- **W2: Alarmingly thin related work (7\
+    \ references, all Anonymous 2025).** Critical missing bodies of work:\n  - *Probing\
+    \ literature*: Alain & Bengio (2017), Belinkov (2022) survey, Hewitt & Manning\
+    \ (2019), Burns et al. (2023) \"Discovering Latent Knowledge,\" Li et al. (2024)\
+    \ \"Inference-Time Intervention\"\n  - *Representation geometry*: Park et al.\
+    \ (2024) geometry of truth, Marks & Tegmark (2023) representation engineering\n\
+    \  - *Mechanistic interpretability*: Elhage et al. (2022) superposition, Bricken\
+    \ et al. (2023) monosemanticity\n  - *Safety probing*: Zou et al. (2023) \"Representation\
+    \ Engineering,\" Arditi et al. (2024) \"Refusal Is Mediated by a Single Direction\"\
+    \ — the latter directly complicates the \"distributed signal\" finding for Llama\n\
+    - **W3: Limited novelty.** Different model families learning different internal\
+    \ representations is well-established. The finding that Qwen2.5 concentrates while\
+    \ Llama distributes could reflect RLHF/safety training differences rather than\
+    \ architecture. The two-regime characterization is observational, not explanatory.\n\
+    - **W4: Non-standard evaluation metric.** ±3 step coverage is not comparable to\
+    \ standard detection metrics (AUROC, F1, precision-recall curves), hindering comparison\
+    \ to prior work and raising questions about metric selection bias.\n\n### Key\
+    \ Questions\n\n- Q1: Arditi et al. (2024) showed refusal in Llama-family models\
+    \ is mediated by a single direction. How does this reconcile with your \"distributed\
+    \ signal\" finding? Is the difference because you study commitment points rather\
+    \ than refusal per se?\n- Q2: How do you disentangle \"architecture\" from \"\
+    safety training procedure\"? Could the regime difference be entirely explained\
+    \ by how safety was trained into each model?\n- Q3: With 43 test traces, what\
+    \ is the statistical power to detect a meaningful difference between 70% and 75%\
+    \ coverage?\n\n---\n\n## Roundtable Synthesis\n\n### Convergence Points (Both\
+    \ Reviewers Agree)\n\n1. **Architecture-vs-training confound is the most critical\
+    \ flaw.** The title claim \"architecture determines\" is not supported because\
+    \ architecture and training procedure are perfectly confounded in this study.\
+    \ Neither the OpenThinker-7B control nor any other experiment isolates architecture\
+    \ from training. This is a fatal threat to the paper's central thesis.\n\n2. **n=43\
+    \ test traces are insufficient for the strength of claims.** Wide bootstrap CIs\
+    \ (23pp span for the flagship result) and per-trace granularity (<0.5 traces per\
+    \ coverage point) make quantitative comparisons unreliable. The paper acknowledges\
+    \ this but does not temper its claims accordingly.\n\n3. **n=2 architecture families\
+    \ cannot support a \"general regime\" taxonomy.** Two data points on the independent\
+    \ variable (architecture family) cannot establish a general principle. The \"\
+    two distinct regimes\" framing overfits to this specific comparison.\n\n4. **Missing\
+    \ false positive analysis undermines practical claims.** Coverage alone cannot\
+    \ assess monitoring utility. Without FPR on safe traces and non-commitment regions,\
+    \ deployment recommendations are premature.\n\n5. **Related work gaps are severe.**\
+    \ 7 anonymous references is inadequate. The paper ignores foundational probing\
+    \ literature, representation geometry work, and directly relevant safety probing\
+    \ findings (Arditi et al.) that may contradict its claims.\n\n### Disagreement\
+    \ Resolution\n\nNo substantive disagreements between reviewers. R1 emphasizes\
+    \ missing baselines (text classifiers) and FPR; R2 emphasizes literature gaps\
+    \ and the Arditi et al. tension. Both concerns are valid and complementary.\n\n\
+    ### Final Assessment\n\n**Overall Score: 3/6 (Weak Reject)**\n\nThe paper asks\
+    \ a timely and relevant question — whether safety monitoring strategies should\
+    \ be architecture-specific — and provides systematic experiments. The diagnostic\
+    \ framework (PCA variance + Fisher ratio) is a practical contribution. However,\
+    \ the evidence base is insufficient to support the broad claims:\n\n- The core\
+    \ confound (architecture vs. training) is unresolved\n- The sample size (43 test\
+    \ traces) cannot support the precision of claims made\n- Two architecture families\
+    \ cannot establish a general taxonomy\n- Missing FPR analysis makes deployment\
+    \ recommendations premature\n- Related work coverage has severe gaps in probing,\
+    \ representation engineering, and mechanistic interpretability literature\n\n\
+    **Path to acceptance:** (1) Add ≥1 additional architecture family (Mistral/Gemma);\
+    \ (2) Include false positive analysis; (3) Add text-based baseline comparisons;\
+    \ (4) Substantially expand related work, especially probing literature and Arditi\
+    \ et al.; (5) Retitle to avoid claiming general principles from n=2 observations;\
+    \ (6) If possible, control for training procedure vs. architecture.\n\n### Experiment\
+    \ Coverage\n\nAll 12 planned experiments from the design document are present\
+    \ in the paper:\n- exp-001 through exp-012: ✓ All covered (Tables 1–12)\n\nThe\
+    \ paper is thorough in executing the planned experiments but the fundamental design\
+    \ limitations (small n, 2 families, confounded variables) cannot be overcome by\
+    \ adding more experiments within the same setup.\n"
+  error: ''
+errors: {}
+score_anomaly: ''
+created_at: '2026-05-16T20:23:40+00:00'

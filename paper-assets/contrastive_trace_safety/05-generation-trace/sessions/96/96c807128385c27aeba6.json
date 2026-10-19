@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "96c807128385c27aeba6",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "analysis advbench layer bias r1 8b",
+  "task_key": "worker_analysis_advbench_layer_bias_r1_8b_20260522T094258",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_advbench_layer_bias_r1_8b_20260522T094258_result.json",
+    "occurrence": 1,
+    "bytes": 853,
+    "sha256": "4e14f0b6a6c6afa03eb7d53f808bdfb41b80130402102d869058e65a27c411a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**实验 `advbench_layer_bias_r1_8b` 完全失败。**\n\n**核心事实**：520 条 AdvBench prompts 在 1.2 秒内全部报错，错误消息为空（`ERROR —`），0 条 trace 生成成功。Phase 2 因无数据崩溃。\n\n**最可能原因**：服务器上安装的 **transformers 5.9.0** 与模型保存时的 **4.43.0** 存在 API 不兼容。每条 prompt 仅需 ~2ms 就失败，说明异常发生在推理之前（可能是 `apply_chat_template` 返回类型变更或 `model.generate` 参数验证）。`except Exception as e` 吞掉了详细堆栈，且 `str(e)` 为空。\n\n**修复方向**：\n1. 改错误处理为 `traceback.print_exc()` 获取完整堆栈\n2. 用单条 prompt 最小复现\n3. 可能需要降级 transformers 到 4.46.x\n\n分析报告已写入 `artifacts/worker_output_advbench_layer_bias_r1_8b.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-advbench-layer-bias-r1-8b.md"
+}

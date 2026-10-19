@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f847fdc8643e10fb8da4",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code 32b power analysis",
+  "task_key": "worker_code_32b_power_analysis_20260517T104240",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_32b_power_analysis_20260517T104240_result.json",
+    "occurrence": 1,
+    "bytes": 1143,
+    "sha256": "2c31c47f033c0891bb0268cba426f5f10475729b15ddaae54085a623db9e8f20"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n### R1-32B (n=20, current power ~40%)\n\n| Metric | Delta | σ_boot | α=0.05 需要 n | α=0.017 (Bonf) 需要 n |\n|--------|-------|--------|---------------|----------------------|\n| bal_acc | +0.084 | 0.050 | **55** | **74** |\n| precision | +0.094 | 0.052 | **49** | **65** |\n| pre_cp_fpr | -0.084 | 0.049 | **54** | **72** |\n\nR1-32B 效果中等，当前 n=20 power 约 40%，**增加到 ~55-75 条 traces 即可达到 80% power**。\n\n### QwQ-32B (n=19, current power 6-17%)\n\n| Metric | Delta | σ_boot | α=0.05 需要 n | α=0.017 (Bonf) 需要 n |\n|--------|-------|--------|---------------|----------------------|\n| bal_acc | +0.009 | 0.035 | **2365** | **3155** |\n| precision | +0.057 | 0.058 | **142** | **190** |\n| pre_cp_fpr | -0.030 | 0.038 | **243** | **324** |\n\nQwQ-32B 的 effect size 极小（尤其 bal_acc delta 仅 0.009），precision 需要 ~142-190 条，而 bal_acc 需要 ~2400+ 条才能达到 80% power，基本说明 HS 对 QwQ 没有实质性优势。\n\n- 脚本: `src/experiments/exp_power_analysis.py`\n- 结果: `artifacts/power_analysis/results.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-32b-power-analysis.md"
+}

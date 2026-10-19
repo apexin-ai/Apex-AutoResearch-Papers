@@ -1,0 +1,41 @@
+{
+  "exp_id": "mvp_p1_codeql_feasibility",
+  "project": "structfuse-context",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-12T11:30:45.938Z",
+    "updated_at": "2026-05-12T11:31:16.335Z",
+    "spec": {
+      "command": "python extraction/extract_dataflow.py + codeql query run (call_graph.ql + bounded_dataflow.ql)",
+      "server": "cqa1-21977",
+      "data_path": "/root/structfuse/mvp_data/repos (8 SWE-smith instances: flask, requests, pytest, pylint, xarray, astropy, sphinx, matplotlib)",
+      "data_count": 8,
+      "model_name": "N/A (CPU pipeline)",
+      "seed": null,
+      "hypothesis": "H1: CodeQL 2-hop bounded data-flow timeout <30%; H2: connected files gold patch coverage significantly > disconnected",
+      "plan_id": "mvp_p1_codeql_feasibility"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "timeout_rate": 0,
+      "repos_processed": 8,
+      "repos_skipped": 2,
+      "cg_mean_s": 29.6,
+      "cg_max_s": 119.8,
+      "df_mean_s": 43.4,
+      "df_max_s": 167.1,
+      "h2_connected_coverage": 0.0144,
+      "h2_disconnected_coverage": 0,
+      "h2_fisher_p": 0,
+      "h2_gold_in_connected_ratio": 0.75
+    },
+    "log_path": "/root/autodl-tmp/mvp_results/mvp_phase1_report.json",
+    "checkpoint_path": "N/A (CPU pipeline, no model checkpoint)",
+    "completed_at": "2026-05-12T11:31:16.335Z"
+  },
+  "timestamp": "2026-05-12T11:31:16.344256+00:00",
+  "trigger": "update_registry"
+}

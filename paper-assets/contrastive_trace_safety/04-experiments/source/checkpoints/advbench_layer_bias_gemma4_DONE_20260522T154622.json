@@ -1,0 +1,48 @@
+{
+  "exp_id": "advbench_layer_bias_gemma4",
+  "project": "contrastive_trace_safety",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T13:37:39.426Z",
+    "updated_at": "2026-05-22T15:46:22.800Z",
+    "hypothesis": "CR-composite layer selection bias replicates on Gemma-4-E4B (Google architecture, reasoning model with channel-based thinking) using AdvBench binary labels, confirming the phenomenon generalizes beyond Llama/Qwen architectures to a third model family.",
+    "spec": {
+      "command": "python -u scripts/advbench_layer_bias_gemma4.py --phase both",
+      "server": "westd-15904",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "gemma4_full",
+      "log_path": "/tmp/gemma4_full.log",
+      "data_path": "AdvBench harmful_behaviors.csv (auto-downloaded)",
+      "data_count": 520,
+      "model_name": "google/gemma-4-E4B-it",
+      "seed": 42,
+      "checkpoint_source": "N/A - generation from scratch",
+      "eval_data": "AdvBench 520 harmful behavior prompts"
+    },
+    "metrics": {
+      "cr_composite_best_layer": "L0",
+      "cr_composite_best_pct": "0.0%",
+      "precision_best_layer": "L14",
+      "precision_best_pct": "34.1%",
+      "bal_accuracy_best_layer": "L7",
+      "bal_accuracy_best_pct": "17.1%",
+      "inv_fpr_best_layer": "L3",
+      "inv_fpr_best_pct": "7.3%",
+      "divergence_pp": 34.1,
+      "traces_completed": 520,
+      "phase2_combinations": 168,
+      "result": "REPLICATED"
+    },
+    "conclusion": "success",
+    "log_path": "/tmp/gemma4_full.log",
+    "checkpoint_path": "/root/autodl-tmp/contrastive_trace_safety/artifacts/advbench_layer_bias_gemma4_results.json",
+    "completed_at": "2026-05-22T15:46:22.800Z"
+  },
+  "timestamp": "2026-05-22T15:46:22.918912+00:00",
+  "trigger": "update_registry"
+}

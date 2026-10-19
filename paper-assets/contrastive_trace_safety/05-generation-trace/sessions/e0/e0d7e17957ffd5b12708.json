@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e0d7e17957ffd5b12708",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code prewrite reviewer scripts",
+  "task_key": "worker_code_prewrite_reviewer_scripts_20260517T234542",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prewrite_reviewer_scripts_20260517T234542_result.json",
+    "occurrence": 1,
+    "bytes": 603,
+    "sha256": "2ca5cd9e7b4efdcc9b63897818b9224fd14b8a609f3ceaf3d200e0791160654e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个脚本已写入并通过语法验证：\n\n- `scripts/stronger_text_encoder_comparison.py` — 用 BGE-large-en-v1.5 (768d) 替代 MiniLM-L6，对 4 个模型跑 HS vs Text paired bootstrap，输出 precision diff + Holm-Bonferroni 校正\n- `scripts/multi_split_robustness.py` — 5 个 random seed 划分，每个 split 独立跑 HS vs Text bootstrap，汇总全局 HB 校正 (5 splits × 4 models = 20 tests)\n\n两者都使用 moving-average windowed features（与 `selectivity_corrected_layers.py` 一致），对 5120d 的 32B 模型 lbfgs 失败时 fallback 到 liblinear。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prewrite-reviewer-scripts.md"
+}

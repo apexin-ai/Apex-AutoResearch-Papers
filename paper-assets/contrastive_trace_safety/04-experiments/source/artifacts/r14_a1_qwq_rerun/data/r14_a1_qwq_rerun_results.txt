@@ -1,0 +1,17 @@
+Results stored on autodl-rtx6000 at /root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a1_qwq_rerun/results.json
+
+Key results:
+- BA-optimal layer: L63 (BA=0.8933, range=13.3pp across 64 layers)
+- 95 traces, 60/20/20 split (57/19/19), seed=42
+- HS features: concat W=5 -> StandardScaler -> PCA 100d
+- Text features: all-MiniLM-L6-v2, avg W=5 -> StandardScaler -> 384d
+- Probe: LogisticRegression(C=1.0, class_weight='balanced', max_iter=2000, solver='lbfgs')
+
+HS vs Text on L63 (10k bootstrap, trace-level):
+| Metric | HS    | Text  | Delta  | p-value | HB? |
+|--------|-------|-------|--------|---------|-----|
+| Prec   | 0.521 | 0.330 | +0.192 | 0.0057  | Y   |
+| BA     | 0.673 | 0.543 | +0.130 | 0.0000  | Y   |
+| FPR    | 0.197 | 0.347 | -0.150 | 0.0003  | Y   |
+| AUROC  | 0.812 | 0.554 | +0.258 | 0.0000  | -   |
+HB pass: 3/3

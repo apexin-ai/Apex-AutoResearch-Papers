@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "54b619b49a9f70f882fe",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "ops s3 backup final",
+  "task_key": "worker_ops_s3-backup-final_20260525T210641",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_s3-backup-final_20260525T210641_result.json",
+    "occurrence": 1,
+    "bytes": 949,
+    "sha256": "a60b7924362d3a4a8c8c6a94760e0c72fb54caf3fd31c0de65b6d9bb8a935188"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n**Step 5: 备份汇报**\n\n**(a) Tarball**\n- 路径: `/home/ubuntu/contrastive_trace_safety-final.tar.gz`（已上传后清理）\n- 大小: **7.15 GB**\n\n**(b) S3 URI**\n```\ns3://agent-ml-manager-backups-emnlp/manager-backup/backends/contrastive_trace_safety/manual-backup/2026/05/25/contrastive_trace_safety-final.tar.gz\n```\n\n**(c) 备份内容清单**\n\n| 部分 | 路径 | 内容 |\n|------|------|------|\n| **Server** (`cts_final/server/`) | `contrastive_trace_safety_archive/` | `code/`（源码）、`data/`（数据集/trace）、`results/`（实验结果）、`paper/`（论文相关） |\n| **Local** (`cts_final/local/project/`) | 完整 BE 项目目录 | `.git/`（完整 git 历史）、`docs/paper/`（LaTeX 论文）、`artifacts/`（58 个子目录）、`checkpoints/`、实验配置（`experiment_plan.yaml`、`decisions.yaml`、`dream_registry.yaml`）、`memory.md`、`ROADMAP.md`、`.claude/` 等 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-s3-backup-final.md"
+}

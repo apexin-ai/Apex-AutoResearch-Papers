@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6006aa71c6d2f3376d44",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "analysis advbench layer bias results",
+  "task_key": "worker_analysis_advbench_layer_bias_results_20260522T095045",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_advbench_layer_bias_results_20260522T095045_result.json",
+    "occurrence": 1,
+    "bytes": 843,
+    "sha256": "acf08d5662f855a74933820725717ff1742d090866cdba4ed703fa741d7b4b0f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "本地脚本已同步修复。\n\n**状态总结：**\n\n实验 `advbench_layer_bias_r1_8b` 第一次运行失败，根因有两个：\n\n1. **`apply_chat_template` 返回类型变更** — transformers 5.9.0 返回 `BatchEncoding` 而非 `Tensor`，导致 `AttributeError`（空错误消息，所有 520 样本立即失败）\n2. **tokenizer decode 损坏** — transformers 5.9.0 + tokenizers 0.22.2 组合导致 byte-level BPE 字符未被还原（`Ġ`→空格, `Ċ`→换行全部丢失）\n\n**已修复：**\n- 修改 `generate_trace` 兼容 `BatchEncoding` 和 `Tensor` 两种返回类型\n- 降级 transformers 到 4.46.3（tokenizers 0.20.3），tokenizer 恢复正常\n\n**实验已重新启动：** PID 51252，第一条 trace 成功（20 steps, 18.7s），ETA ~162 分钟。需要约 2.7 小时后再取回结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-advbench-layer-bias-results.md"
+}

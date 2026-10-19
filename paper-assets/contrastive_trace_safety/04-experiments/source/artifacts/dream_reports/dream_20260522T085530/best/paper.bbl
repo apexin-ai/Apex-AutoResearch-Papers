@@ -1,0 +1,93 @@
+\begin{thebibliography}{15}
+\providecommand{\natexlab}[1]{#1}
+
+\bibitem[{Belinkov(2022)}]{belinkov2022probing}
+Yonatan Belinkov. 2022.
+\newblock Probing classifiers: Promises, shortcomings, and advances.
+\newblock \emph{Computational Linguistics}, 48(1):207--219.
+
+\bibitem[{Burns et~al.(2023)Burns, Ye, Klein, and Steinhardt}]{burns2023ccs}
+Collin Burns, Haotian Ye, Dan Klein, and Jacob Steinhardt. 2023.
+\newblock Discovering latent knowledge in language models without supervision.
+\newblock \emph{arXiv preprint arXiv:2212.03827}.
+
+\bibitem[{Chen et~al.(2025)}]{chen2025safeswitch}
+Wei Chen and 1 others. 2025.
+\newblock Safeswitch: Runtime safety switching for language models.
+\newblock \emph{arXiv preprint}.
+
+\bibitem[{Guo et~al.(2025)Guo, Yang, Zhang, Song, Zhang, Xu, Zhu, Ma, Wang, Bi
+  et~al.}]{guo2025deepseek}
+Daya Guo, Dejian Yang, He~Zhang, Junxiao Song, Runxin Zhang, Ruoyu Xu, Qihao
+  Zhu, Shirong Ma, Peiyi Wang, Xiao Bi, and 1 others. 2025.
+\newblock Deepseek-r1: Incentivizing reasoning capability in llms via
+  reinforcement learning.
+\newblock \emph{arXiv preprint arXiv:2501.12948}.
+
+\bibitem[{Li et~al.(2024)}]{li2024trajguard}
+Haotian Li and 1 others. 2024.
+\newblock Trajguard: A trajectory-based defense against adversarial attacks on
+  llms.
+\newblock \emph{arXiv preprint}.
+
+\bibitem[{Park et~al.(2024)Park, Choe, and Veitch}]{park2024linearrep}
+Kiho Park, Yo~Joong Choe, and Victor Veitch. 2024.
+\newblock The linear representation hypothesis and the geometry of large
+  language models.
+\newblock \emph{arXiv preprint arXiv:2311.03658}.
+
+\bibitem[{Qi et~al.(2025)}]{qi2025safethink}
+Xiaoyu Qi and 1 others. 2025.
+\newblock Safethink: Safety-aware chain-of-thought monitoring.
+\newblock \emph{arXiv preprint}.
+
+\bibitem[{{Qwen Team}(2025)}]{qwq32b}
+{Qwen Team}. 2025.
+\newblock Qwq-32b: Embracing the power of reinforcement learning.
+\newblock \url{https://qwenlm.github.io/blog/qwq-32b/}.
+
+\bibitem[{Reimers and Gurevych(2019)}]{reimers2019sentencebert}
+Nils Reimers and Iryna Gurevych. 2019.
+\newblock Sentence-bert: Sentence embeddings using siamese bert-networks.
+\newblock \emph{arXiv preprint arXiv:1908.10084}.
+
+\bibitem[{Ren et~al.(2025)Ren, Li, Liu, Xie, Lu, Qiao, Sha, Yan, Ma, and
+  Shang}]{ren2025selfharm}
+Qibing Ren, Hao Li, Dongrui Liu, Zhanxu Xie, Xiaoya Lu, Yu~Qiao, Lei Sha,
+  Junchi Yan, Lizhuang Ma, and Jing Shang. 2025.
+\newblock Derail yourself: Multi-turn llm jailbreak attack through
+  self-discovered clues.
+\newblock \emph{arXiv preprint arXiv:2410.10700}.
+
+\bibitem[{Wang et~al.(2025{\natexlab{a}})}]{wang2025saferemind}
+Ling Wang and 1 others. 2025{\natexlab{a}}.
+\newblock Saferemind: Safeguarding reasoning models through reminder
+  mechanisms.
+\newblock \emph{arXiv preprint}.
+
+\bibitem[{Wang et~al.(2025{\natexlab{b}})}]{wang2025siren}
+Yuxuan Wang and 1 others. 2025{\natexlab{b}}.
+\newblock Siren: Safety-informed representation engineering.
+\newblock \emph{arXiv preprint}.
+
+\bibitem[{Wang et~al.(2025{\natexlab{c}})}]{wang2025harmthoughts}
+Zijie Wang and 1 others. 2025{\natexlab{c}}.
+\newblock Harmthoughts: Analyzing harmful reasoning in language models.
+\newblock \emph{arXiv preprint}.
+
+\bibitem[{Zou et~al.(2023{\natexlab{a}})Zou, Phan, Chen, Campbell, Guo, Ren,
+  Pan, Yin, Mazeika, Dombrowski et~al.}]{zou2023repe}
+Andy Zou, Long Phan, Sarah Chen, James Campbell, Phillip Guo, Richard Ren,
+  Alexander Pan, Xuwang Yin, Mantas Mazeika, Ann-Kathrin Dombrowski, and 1
+  others. 2023{\natexlab{a}}.
+\newblock Representation engineering: A top-down approach to ai transparency.
+\newblock \emph{arXiv preprint arXiv:2310.01405}.
+
+\bibitem[{Zou et~al.(2023{\natexlab{b}})Zou, Wang, Kolter, and
+  Fredrikson}]{zou2023advbench}
+Andy Zou, Zifan Wang, J.~Zico Kolter, and Matt Fredrikson. 2023{\natexlab{b}}.
+\newblock Universal and transferable adversarial attacks on aligned language
+  models.
+\newblock \emph{arXiv preprint arXiv:2307.15043}.
+
+\end{thebibliography}

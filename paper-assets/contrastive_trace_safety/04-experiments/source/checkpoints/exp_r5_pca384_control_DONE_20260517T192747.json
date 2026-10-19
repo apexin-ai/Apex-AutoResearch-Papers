@@ -1,0 +1,123 @@
+{
+  "exp_id": "exp_r5_pca384_control",
+  "project": "contrastive_trace_safety",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T19:27:16.709Z",
+    "updated_at": "2026-05-17T19:27:47.745Z",
+    "hypothesis": "HS advantage over text probes may be driven by dimensionality gap (4096-5120d vs 384d). PCA-reducing HS to 384d and re-running bootstrap comparison tests whether the modality advantage persists at matched dimensionality.",
+    "spec": {
+      "command": "python src/experiments/exp_r5_pca384_control.py",
+      "server": "autodl-rtx6000",
+      "data_path": "/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states*/",
+      "data_count": 632,
+      "model_name": "r1-8b,ot-7b,qwq-32b,r1-32b",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r5_pca384/results.json",
+      "log_path": "/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r5_pca384/"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "holm_bonferroni": "10/12 reject",
+      "tests": {
+        "r1_8b_bal_acc": {
+          "pca384": 0.7001,
+          "text": 0.6875,
+          "delta": 0.0126,
+          "p": 0.731,
+          "reject": false
+        },
+        "r1_8b_precision": {
+          "pca384": 0.8162,
+          "text": 0.5852,
+          "delta": 0.231,
+          "p": 0,
+          "reject": true
+        },
+        "r1_8b_fpr": {
+          "pca384": 0.0668,
+          "text": 0.1614,
+          "delta": -0.0947,
+          "p": 0.003,
+          "reject": true
+        },
+        "ot_7b_bal_acc": {
+          "pca384": 0.7558,
+          "text": 0.643,
+          "delta": 0.1128,
+          "p": 0,
+          "reject": true
+        },
+        "ot_7b_precision": {
+          "pca384": 0.5225,
+          "text": 0.3545,
+          "delta": 0.1681,
+          "p": 0,
+          "reject": true
+        },
+        "ot_7b_fpr": {
+          "pca384": 0.1207,
+          "text": 0.2477,
+          "delta": -0.127,
+          "p": 0,
+          "reject": true
+        },
+        "qwq_bal_acc": {
+          "pca384": 0.8116,
+          "text": 0.6504,
+          "delta": 0.1612,
+          "p": 0,
+          "reject": true
+        },
+        "qwq_precision": {
+          "pca384": 0.608,
+          "text": 0.4213,
+          "delta": 0.1867,
+          "p": 0,
+          "reject": true
+        },
+        "qwq_fpr": {
+          "pca384": 0.173,
+          "text": 0.2871,
+          "delta": -0.1141,
+          "p": 0.038,
+          "reject": false
+        },
+        "r1_32b_bal_acc": {
+          "pca384": 0.7471,
+          "text": 0.6461,
+          "delta": 0.1011,
+          "p": 0.011,
+          "reject": true
+        },
+        "r1_32b_precision": {
+          "pca384": 0.6343,
+          "text": 0.4503,
+          "delta": 0.184,
+          "p": 0.002,
+          "reject": true
+        },
+        "r1_32b_fpr": {
+          "pca384": 0.2256,
+          "text": 0.3809,
+          "delta": -0.1553,
+          "p": 0.006,
+          "reject": true
+        }
+      },
+      "pca_explained_variance": {
+        "r1_8b": 0.793,
+        "ot_7b": 0.828,
+        "qwq_32b": 0.881,
+        "r1_32b": 0.924
+      },
+      "finding": "Modality advantage persists at matched 384d dimensionality. 10/12 Holm-Bonferroni reject. Precision gains +16.8 to +23.1pp across all 4 models. Two non-rejections: R1-8B bal_acc (small delta 1.3pp) and QwQ FPR (raw p=0.038, adj threshold too strict)."
+    },
+    "completed_at": "2026-05-17T19:27:47.745Z"
+  },
+  "timestamp": "2026-05-17T19:27:47.829044+00:00",
+  "trigger": "update_registry"
+}

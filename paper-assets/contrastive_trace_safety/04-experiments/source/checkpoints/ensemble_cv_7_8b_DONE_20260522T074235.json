@@ -1,0 +1,91 @@
+{
+  "exp_id": "ensemble_cv_7_8b",
+  "project": "contrastive_trace_safety",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T23:10:19.299Z",
+    "updated_at": "2026-05-22T07:42:35.183Z",
+    "hypothesis": "Multi-metric ensemble layer selection (precision-best + BA-best + FPR-best averaged) improves LOO-CV probe performance over single-metric selection for R1-8B and OT-7B hidden state probes.",
+    "parent": "n6_multi_metric_ensemble",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/contrastive_trace_safety && python scripts/n7_ensemble_loocv.py\"",
+      "server": "westd-15904",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "4044",
+      "log_path": "/root/autodl-tmp/contrastive_trace_safety/artifacts/ensemble_cv_results.json",
+      "submitted_at": "2026-05-22T03:48:03.349Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "conclusion": "success",
+      "checkpoint_path": "N/A (evaluation only)",
+      "metrics": {
+        "ensemble_cv": {
+          "bal_acc": 0.711,
+          "precision": 0.5516,
+          "fpr": 0.1631
+        },
+        "single_precision_cv": {
+          "bal_acc": 0.7119,
+          "precision": 0.5417,
+          "fpr": 0.1731
+        },
+        "single_ba_cv": {
+          "bal_acc": 0.6982,
+          "precision": 0.515,
+          "fpr": 0.1891
+        },
+        "single_fpr_cv": {
+          "bal_acc": 0.7002,
+          "precision": 0.5257,
+          "fpr": 0.1793
+        }
+      },
+      "layer_stability": {
+        "precision_layers": [
+          22,
+          18,
+          23,
+          22,
+          24
+        ],
+        "ba_layers": [
+          15,
+          17,
+          23,
+          22,
+          15
+        ],
+        "fpr_layers": [
+          13,
+          18,
+          19,
+          24,
+          22
+        ]
+      },
+      "runtime_seconds": 466.2,
+      "wall_clock_seconds": 14071.8,
+      "gpu_hours": 3.91
+    },
+    "failure_reason": "Hard deadline kill: LOO-CV 209 folds × 13 layers × 4096d LogisticRegression 超时（3h32m vs 预估60min）。计算量远超预期，需改用 k-fold CV 或降维后重试。",
+    "conclusion": "killed",
+    "completed_at": "2026-05-22T00:19:21.066Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-22T00:19:23.002277+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-22T07:42:35.297262+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "70bb3d87c3ba8dd85f28",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "ops gpt4omini final and cleanup",
+  "task_key": "worker_ops_gpt4omini_final_and_cleanup_20260520T065640",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpt4omini_final_and_cleanup_20260520T065640_result.json",
+    "occurrence": 1,
+    "bytes": 921,
+    "sha256": "7ae235647b66e176c357f19682c354ea4ccbd0cc9118e3a81aedfae9a7a9a701"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n---\n\n## 完整摘要\n\n### gpt-4o-mini 标注结果\n| 指标 | 值 |\n|------|-----|\n| 总标注数 | 388/520 |\n| Jailbreak | 99 (25.5%) |\n| CP mean/median | 10.3 / 10.0 |\n| CP range | 0–40 |\n\n### IAA（Qwen3 vs gpt-4o-mini）\n| 指标 | 值 |\n|------|-----|\n| 共同样本 | 388 |\n| **is_jailbreak κ** | **0.6063**（moderate） |\n| Agreement | 87.4% |\n| Qwen3 JB / gpt4omini JB | 52 / 99 |\n| TP/TN/FP/FN | 51 / 288 / 48 / 1 |\n\ngpt-4o-mini 明显更激进——把 48 个 Qwen3 认为非 jailbreak 的样本判为 jailbreak（FP=48），而 Qwen3 几乎没有独判的（FN=1）。\n\n**CP 位置一致性**（51 个双方均判 jailbreak 的样本）：\n- Exact match: 37%\n- Within 2 steps: 39%\n- Within 5 steps: 47%\n- Mean abs diff: 8.5 steps\n\n### API key 清理\n3 个脚本中的硬编码 key 已全部替换为 `REMOVED_KEY`，grep 确认 `ALL_CLEAN`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpt4omini-final-and-cleanup.md"
+}

@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_r3_repe_direction",
+  "project": "contrastive_trace_safety",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T12:34:17.057Z",
+    "updated_at": "2026-05-17T12:34:22.679Z",
+    "hypothesis": "RepE mean-difference direction probe (a single safety direction in activation space) should underperform trained LR probes on accuracy/precision but may achieve longer lead times, because the safety direction captures a coarser signal that emerges earlier in the reasoning trace."
+  },
+  "timestamp": "2026-05-17T12:34:22.727063+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a7cd804bc5ae470867d5",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "writing path c appendix",
+  "task_key": "worker_writing_path_c_appendix_20260517T055959",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_path_c_appendix_20260517T055959_result.json",
+    "occurrence": 1,
+    "bytes": 699,
+    "sha256": "5d5bbffb280c5fc541ee38f886ff541234522cc0244d443d65bdbeeafe602d49"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Summary of changes:\n\n1. **Appendix** (`appendix.tex`): Added `\\section{Adaptive Two-Stage Detection}` with method description, key results (best two-stage config achieves +1.3pp precision over single-stage W=15 at matched 76.9% coverage), a figure reference, and the conclusion that the marginal gain does not justify the added complexity.\n\n2. **Discussion** (`discussion.tex`): Added 3 sentences to the oracle gap paragraph noting the adaptive exploration, the near-ceiling result, and open directions (learned stopping rules, attention-based temporal pooling).\n\n3. **Figure**: Copied `pareto_comparison.pdf` from the server to `docs/paper/figures/pareto_two_stage.pdf`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-path-c-appendix.md"
+}

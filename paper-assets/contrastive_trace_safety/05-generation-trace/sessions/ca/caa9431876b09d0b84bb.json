@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "caa9431876b09d0b84bb",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "analysis classifier sensitivity",
+  "task_key": "worker_analysis_classifier_sensitivity_20260522T182035",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_classifier_sensitivity_20260522T182035_result.json",
+    "occurrence": 1,
+    "bytes": 1177,
+    "sha256": "04ba70fb39bf915298535b64f1e9b937562b5a6174fdd99093d17439b84c20fc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 分类器敏感性分析结果（R1-8B AdvBench, 520 traces）\n\n| Threshold | JB Rate | CR-composite Best | Precision Best | Divergence | Replicated (>15pp) |\n|-----------|---------|-------------------|----------------|------------|-------------------|\n| ≥1 | 30.6% (159/361) | L3 (9.7%) | L21 (67.7%) | **58.0pp** | **Yes** |\n| ≥2 | 58.5% (304/216) | L6 (19.4%) | L1 (3.2%) | **16.2pp** | **Yes** |\n| ≥3 | 87.1% (453/67) | L9 (29.0%) | L13 (41.9%) | 12.9pp | No |\n\n**Key findings:**\n\n- **≥1（最严格）**和 **≥2（论文使用的 threshold）** 均 replicate divergence >15pp，方向一致：composite 和 precision 的 best layer 选择不同深度\n- **≥3** divergence 降至 12.9pp，低于 15pp 阈值——但此时 87.1% JB rate 导致 safe class 只剩 67 个样本，统计力不足\n- Divergence 随 threshold 放宽（JB rate 升高）而单调递减：58.0 → 16.2 → 12.9pp\n- 结论支持论文使用的 ≥2 threshold：它平衡了分类严格性（58.5% JB rate）与 divergence 显著性（16.2pp）\n\n运行时间 9922s（~2.75 小时），结果已保存至 `artifacts/advbench_classifier_sensitivity.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-classifier-sensitivity.md"
+}

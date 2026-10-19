@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6ed28219c8963e62f867",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code repe script move",
+  "task_key": "worker_code_repe_script_move_20260517T132214",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_repe_script_move_20260517T132214_result.json",
+    "occurrence": 1,
+    "bytes": 268,
+    "sha256": "3b5a773e71be265267bd6b07dc15e5fb86cdb11e6aea0e24fa96699a0340e833"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。文件已就位：\n\n- 脚本：`src/experiments/exp_repe_direction_probe.py`\n- 结果：`artifacts/exp_r3_repe_direction/results.json`\n\n原文件 `/root/autodl-tmp/contrastive_trace_safety/exp_repe_direction_probe.py` 保留作为备份。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-repe-script-move.md"
+}

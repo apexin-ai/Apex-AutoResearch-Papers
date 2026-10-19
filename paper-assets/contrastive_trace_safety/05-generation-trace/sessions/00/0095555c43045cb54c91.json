@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0095555c43045cb54c91",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code r8 bge indexing bug audit",
+  "task_key": "worker_code_r8_bge_indexing_bug_audit_20260518T072917",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r8_bge_indexing_bug_audit_20260518T072917_result.json",
+    "occurrence": 1,
+    "bytes": 2317,
+    "sha256": "32256e56ebe999debd09fe09d65a9ece79eda99a58496d5551f170342349a8c0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the complete audit:\n\n---\n\n## 审计结果\n\n### 1. `hs` 的实际 data structure 和 shape\n\n所有 tensor 均为 `(steps, layers, hidden_dim)` 格式：\n\n| Model | Shape (示例) | 含义 |\n|-------|-------------|------|\n| r1_8b | `(46, 13, 4096)` | 46 steps, 13 layers (L12-24), 4096d |\n| ot_7b | `(59, 28, 3584)` | 59 steps, 28 layers, 3584d |\n| qwq_32b | `(48, 64, 5120)` | 48 steps, 64 layers, 5120d |\n| r1_32b | `(36, 64, 5120)` | 36 steps, 64 layers, 5120d |\n\n### 2. 原脚本的 indexing 方式\n\n`stronger_text_encoder_comparison.py` 第 135 行：\n```python\nhs = d[\"hidden_states\"][:n_steps, layer_idx, :].float().numpy()\n```\n**已经是正确的 `[:, layer_idx, :]` 语义**（第一维 steps，第二维选 layer，第三维 hidden_dim）。\n\n### 3. E3 新脚本的 indexing 方式\n\n`bge_bootstrap_bal_acc_fpr.py` 第 94 行：\n```python\nhs = hs[:, layer_idx, :]\n```\n与原脚本语义完全相同。\n\n### 4. `hs[layer_idx]` 模式是否存在？\n\n**不存在。** 对 `scripts/` 目录全文 grep `hs[layer_idx]`，返回零结果。所有脚本一致使用 `[:, layer_idx, :]` 或 `[:n_steps, layer_idx, :]`。服务器无 git 历史，无法追溯是否曾经存在过。\n\n### 5. 结果逐项对比\n\n| Model | Metric | 原始结果 | E3 结果 | 一致？ |\n|-------|--------|---------|---------|--------|\n| r1_8b | HS prec | 0.4971 | 0.4971 | ✓ |\n| r1_8b | BGE prec | 0.4358 | 0.4358 | ✓ |\n| ot_7b | HS prec | 0.4460 | 0.4460 | ✓ |\n| ot_7b | BGE prec | 0.2629 | 0.2629 | ✓ |\n| qwq_32b | HS prec | 0.5455 | 0.5455 | ✓ |\n| qwq_32b | BGE prec | 0.4540 | 0.4540 | ✓ |\n| r1_32b | HS prec | 0.5882 | 0.5882 | ✓ |\n| r1_32b | BGE prec | 0.4750 | 0.4750 | ✓ |\n\n所有 point estimates 精确到 6 位小数完全一致。\n\n### 6. 结论\n\n**没有 bug。** E3 worker 声称修复了 `hs[layer_idx]` → `hs[:, layer_idx, :]`，但原脚本 `stronger_text_encoder_comparison.py` 在第 135 行已经使用了正确的 `[:n_steps, layer_idx, :]` indexing。E3 的 \"修复\" 是一个 no-op，这正好解释了为什么结果完全一致。\n\n**论文 Table 2 的 BGE precision 数字可信。** 原始实验就使用了正确的 layer indexing，E3 独立复现了相同结果。影响范围为零。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r8-bge-indexing-bug-audit.md"
+}

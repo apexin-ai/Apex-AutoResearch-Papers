@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "02fb71cc6e03a958b8be",
+  "project": "contrastive_trace_safety",
+  "kind": "worker",
+  "title": "sync fig3 to local",
+  "task_key": "worker_sync_fig3_to_local_20260517T034515",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_sync_fig3_to_local_20260517T034515.log",
+    "occurrence": 1,
+    "bytes": 670751,
+    "sha256": "50843ea66a350dc4d0c8efe97e1a4b1b6d32cea564676b13c148c38514ab33fc"
+  },
+  "statistics": {
+    "messages": 208,
+    "user_turns": 1,
+    "tool_calls": 75,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 50,
+      "tool_call": 75,
+      "tool_result": 75,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 90,
+      "chunks": [
+        {
+          "path": "02fb71cc6e03a958b8be-part-0001.json",
+          "message_count": 90
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 118,
+      "chunks": [
+        {
+          "path": "02fb71cc6e03a958b8be-part-0001.json",
+          "message_count": 58
+        },
+        {
+          "path": "02fb71cc6e03a958b8be-part-0002.json",
+          "message_count": 60
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/sync-fig3-to-local.md"
+}

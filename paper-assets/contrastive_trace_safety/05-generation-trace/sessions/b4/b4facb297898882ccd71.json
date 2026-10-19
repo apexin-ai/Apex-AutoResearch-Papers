@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b4facb297898882ccd71",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code r1 32b layer63 hs vs text bootstrap",
+  "task_key": "worker_code_r1_32b_layer63_hs_vs_text_bootstrap_20260517T135436",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r1_32b_layer63_hs_vs_text_bootstrap_20260517T135436_result.json",
+    "occurrence": 1,
+    "bytes": 2468,
+    "sha256": "e2cc4ca8e5e5715d845b3866f0f15a25cf6e2039705a422afd5257b0b06f0390"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验全部完成。结果 JSON 已保存。以下是完整汇总：\n\n---\n\n## R1-32B Layer 63 HS vs Text Paired Bootstrap 结果\n\n### A. Layer 63 HS Probe 各 Window 结果\n\n| W | HS step_bal_acc | HS trace_bal_acc | HS prec | HS FPR | Coverage | Lead |\n|---|---|---|---|---|---|---|\n| 1 | 0.7511 | 0.8259 | 0.6027 | 0.2347 | 25% | 13.0 |\n| 3 | 0.7309 | 0.8064 | 0.6342 | 0.2298 | 35% | 11.7 |\n| 5 | 0.7210 | 0.8000 | 0.6213 | 0.2438 | 45% | 12.0 |\n| 10 | 0.7003 | 0.7538 | 0.6098 | 0.2719 | 50% | 13.0 |\n| 15 | 0.7086 | 0.7568 | 0.6336 | 0.2619 | 45% | 12.0 |\n\n### B+C. Paired Bootstrap (1000 resamples, one-sided p, Bonferroni=0.0167)\n\n| W | BalAcc D | p | Prec D | p | FPR D | p | Bonf |\n|---|---|---|---|---|---|---|---|\n| **1** | **+18.7pp** | **0.000** | **+15.4pp** | **0.000** | **-14.6pp** | **0.004** | **3/3** |\n| **3** | **+11.2pp** | **0.009** | **+13.0pp** | **0.004** | -11.4pp | 0.037 | **2/3** |\n| 5 | +9.7pp | 0.018 | +13.1pp | 0.022 | -7.7pp | 0.120 | 0/3 |\n| 10 | +4.3pp | 0.188 | +9.4pp | 0.106 | -5.4pp | 0.232 | 0/3 |\n| 15 | +7.8pp | 0.027 | +11.2pp | 0.058 | -7.8pp | 0.166 | 0/3 |\n\n### D. Position Baseline\n- Position baseline bal_acc = **0.6842**\n- L63 W=1 HS probe (0.7511) > position baseline (+6.7pp)\n\n### E. Layer 63 vs Layer 10 对比 (W=10)\n\n| | L63 W=10 | L10 W=10 | Diff |\n|---|---|---|---|\n| step_bal_acc | 0.7003 | 0.7092 | -0.9pp |\n| BalAcc p | 0.188 | 0.040 | L10 更好 |\n| Bonf pass | 0/3 | 0/3 | 均未通过 |\n\n**但** L63 W=1 (3/3 Bonf pass) 远超 L10 W=10 (0/3)。\n\n---\n\n### 关键判断\n\n1. **Layer 63 W=1 将 R1-32B 从 \"inconclusive\" 变为 \"significant\"**: 3/3 Bonferroni pass，所有 CI 排除 0，p-value 一致。这是整个 R1-32B 上首次达到 Bonferroni 显著性。\n\n2. **Temporal window 稀释 L63 信号**: W 增大后效果单调下降。L63 是最后一层（100% depth），其 per-step representation 已包含完整信息，temporal concatenation 引入噪声维度，增加 overfitting。\n\n3. **\"scale-dependent\" claim 需要修正**: Layer 63 W=1 > Layer 10 W=10，说明 L10 的弱结果不是因为模型规模，而是因为 layer+window 选择不佳。正确的 framing 是 \"layer selection matters, and optimal layer shifts with model depth\"。\n\n4. **L10 vs L63 在 W=10 下 L10 反而略优**（step bal_acc 0.709 vs 0.700），但这是因为 W=10 对 L63 不利。核心 insight 是 layer-window interaction effect。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r1-32b-layer63-hs-vs-text-bootstrap.md"
+}

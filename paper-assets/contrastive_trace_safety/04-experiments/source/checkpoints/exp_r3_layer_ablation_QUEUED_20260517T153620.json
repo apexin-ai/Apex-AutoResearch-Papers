@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_r3_layer_ablation",
+  "project": "contrastive_trace_safety",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T15:35:59.921Z",
+    "updated_at": "2026-05-17T15:36:20.459Z",
+    "hypothesis": "The bal_acc x crossing_rate layer selection metric systematically biases toward shallow layers because crossing_rate correlates with early threshold crossing. Ablating across 5 metrics on 4 models should reveal that pure bal_acc or precision metrics select mid-to-deep layers (40-95% depth), exposing the metric as confounded."
+  },
+  "timestamp": "2026-05-17T15:36:20.518567+00:00",
+  "trigger": "update_registry"
+}

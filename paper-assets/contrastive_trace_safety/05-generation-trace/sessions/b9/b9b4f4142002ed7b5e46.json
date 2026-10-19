@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "id": "b9b4f4142002ed7b5e46",
+  "project": "contrastive_trace_safety",
+  "kind": "worker",
+  "title": "analysis split half rerun",
+  "task_key": "worker_analysis_split_half_rerun_20260519T115508",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_split_half_rerun_20260519T115508.log",
+    "occurrence": 1,
+    "bytes": 1032309,
+    "sha256": "1e14dd7831e8b548cc194d9e573018e02ae66c96e3a18075cd33a51c1aac0ce1"
+  },
+  "statistics": {
+    "messages": 683,
+    "user_turns": 1,
+    "tool_calls": 270,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 136,
+      "tool_call": 270,
+      "tool_result": 270,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 643,
+      "chunks": [
+        {
+          "path": "b9b4f4142002ed7b5e46-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "b9b4f4142002ed7b5e46-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "b9b4f4142002ed7b5e46-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "b9b4f4142002ed7b5e46-part-0004.json",
+          "message_count": 103
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 40,
+      "chunks": [
+        {
+          "path": "b9b4f4142002ed7b5e46-part-0004.json",
+          "message_count": 40
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-split-half-rerun.md"
+}

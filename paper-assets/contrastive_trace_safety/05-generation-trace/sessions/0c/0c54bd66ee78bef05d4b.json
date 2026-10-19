@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0c54bd66ee78bef05d4b",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "fix fig3 json qwq fpr",
+  "task_key": "worker_fix_fig3_json_qwq_fpr_20260517T035717",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_fig3_json_qwq_fpr_20260517T035717_result.json",
+    "occurrence": 1,
+    "bytes": 94,
+    "sha256": "d502b485bd2eb7356f834d65db26ade35e1bb4505460494b9ee3260bfc3fc712"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "QwQ-32B FPR 已更新：hs=0.208, text=0.178, p=0.43, ci95=[-0.1053, 0.0447]。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-fig3-json-qwq-fpr.md"
+}

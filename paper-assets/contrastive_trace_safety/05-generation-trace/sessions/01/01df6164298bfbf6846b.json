@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "01df6164298bfbf6846b",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "diagnose hs vs text data verify",
+  "task_key": "worker_diagnose_hs_vs_text_data_verify_20260517T021545",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_hs_vs_text_data_verify_20260517T021545_result.json",
+    "occurrence": 1,
+    "bytes": 1824,
+    "sha256": "52445bcfac43c76facf57e7e65a1bbffc913e3e6478081efbe078979935e9439"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "现在有了两组数据来源。让我整理结果：\n\n## 结果汇总\n\n### 数据源 1: `hs_vs_text_acc_prec.json`（全数据集 train+test 汇总指标）\n\n| 模型 | text bal_acc | text precision |\n|------|-------------|----------------|\n| R1-32B | 67.30% | 50.19% |\n| QwQ-32B | 61.73% | 46.01% |\n\n### 数据源 2: `acc_precision_bootstrap/results.json`（仅 test split，bootstrap 均值）\n\n| 模型 | text_acc_mean | text_prec_mean |\n|------|--------------|----------------|\n| R1-32B | 64.12% | 51.60% |\n| QwQ-32B | 67.08% | 52.52% |\n\n---\n\n## 与 Paper Agent 使用值的对比\n\n| 模型 | 指标 | Paper Agent 值 | 数据源1 | 数据源2 |\n|------|------|---------------|---------|---------|\n| R1-32B | bal_acc | **67.5%** | 67.30% | 64.12% |\n| R1-32B | precision | **51.5%** | 50.19% | 51.60% |\n| QwQ-32B | bal_acc | **75.2%** | 61.73% | 67.08% |\n| QwQ-32B | precision | **51.5%** | 46.01% | 52.52% |\n\n---\n\n## 关键发现\n\n1. **R1-32B text probe bal_acc 67.5%**：接近数据源1的 67.30%，可能是四舍五入后的值。合理。\n\n2. **R1-32B text probe precision 51.5%**：介于数据源1 (50.19%) 和数据源2 (51.60%) 之间。数据源2 最接近。\n\n3. **QwQ-32B text probe bal_acc 75.2%：与实际数据严重不符。** 两个数据源分别为 61.73% 和 67.08%，都远低于 75.2%。这个值没有实验数据支撑。\n\n4. **QwQ-32B text probe precision 51.5%**：与实际值不符。数据源1 为 46.01%，数据源2 为 52.52%。\n\n**结论**：QwQ-32B 的 text probe bal_acc = 75.2% 是明确的错误值，与所有实验数据不一致。建议使用的修正值：\n- R1-32B text: bal_acc = 67.3%, precision = 51.6%（取 bootstrap test split）\n- QwQ-32B text: bal_acc = 67.1%, precision = 52.5%（取 bootstrap test split）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-hs-vs-text-data-verify.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3f76d5def1c9c80ea8e1",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code final compile check",
+  "task_key": "worker_code_final_compile_check_20260517T223444",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_final_compile_check_20260517T223444_result.json",
+    "occurrence": 1,
+    "bytes": 1586,
+    "sha256": "83a2663dcc1c4768e64ae955696e37f4be916e453e2575d58ee7c036dc2a70f2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译完成。最终报告：\n\n---\n\n## 最终编译结果\n\n| 项目 | 结果 |\n|------|------|\n| 总页数 | 17 |\n| 正文结束（不含 Limitations） | 第 7 页上半部分 (~6.5页) |\n| Limitations 起始 | 第 7 页中部 |\n| References 起始 | 第 7 页下部 |\n| Appendix 起始 | 第 9 页 (Checklist) / 第 10 页+ (technical appendix) |\n| **正文 ≤ 8 页** | **通过** (约 6.5 页，不含 Limitations) |\n| Undefined references | 0 |\n| Missing citations | 0 |\n| Overfull hbox > 10pt | **0** (修复前 7 处，全部修复) |\n| 剩余 overfull hbox | 3 处 (3.8pt, 7.5pt, 0.5pt，均 < 10pt) |\n| 其他 warnings | 4 个 float specifier `h` → `ht` (无害)，若干 underfull hbox (正常) |\n\n## 修复内容\n\n1. `experiments.tex` 表格：添加 `\\setlength{\\tabcolsep}{4pt}` (10.46pt → 消除)\n2. `appendix.tex` Holm-Bonferroni 表：缩短表头 + `\\tabcolsep` (29.46pt → 消除)\n3. `appendix.tex` Window ablation 表：`\\resizebox{\\columnwidth}{!}{}` (58.59pt → 消除)\n4. `appendix.tex` OT-7B layer sweep 表：缩短表头 + `\\tabcolsep` (23.16pt → 消除)\n5. `appendix.tex` GRU seeds 表：缩短表头 + `\\tabcolsep` (35.88pt → 消除)\n6. `appendix.tex` CPD sweep 表：缩短 caption 和表头 + `\\tabcolsep` (34.68pt → 消除)\n7. `appendix.tex` 32B divergence 表：缩短表头 + `\\tabcolsep{3pt}` (55.18pt → 0.51pt)\n\n## 交叉引用检查\n\n所有 `app:*` 和 `sec:*` 标签均有对应定义，所有 appendix tables/figures 都有 `\\label` 和 `\\caption`，PDF 中无 `??` 出现。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-final-compile-check.md"
+}

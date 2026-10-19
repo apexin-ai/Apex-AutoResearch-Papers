@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "105817ccfd1c56a94a27",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "paper figure fig3 model dependency",
+  "task_key": "worker_paper_figure_fig3_model_dependency_20260517T000455",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig3_model_dependency_20260517T000455_result.json",
+    "occurrence": 1,
+    "bytes": 431,
+    "sha256": "934e90f687726f7dd33f3ec226aa22004fcea2b4eb62a7c39b06eae58a5567de"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表已生成并注册。\n\n输出文件：\n- PDF: `artifacts/figures/paper/fig3_model_dependency.pdf` (20KB)\n- PNG: `artifacts/figures/paper/fig3_model_dependency.png` (78KB, 300 DPI)\n\n视觉要点：r1-8b 组 HS bar (14.8%) 明显低于 Text bar (22.2%)，带 bracket 标注 *p*=0.044 * 和 Δ=7.4pp；QwQ-32B 和 R1-32B 两组 bar 近乎等高，标注 n.s.。Legend 水平居上，所有标注无遮挡。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig3-model-dependency.md"
+}

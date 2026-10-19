@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e8d21a49a6130bf1640e",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code r9 r1 32b outlier seed",
+  "task_key": "worker_code_r9_r1_32b_outlier_seed_20260518T083609",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r9_r1_32b_outlier_seed_20260518T083609_result.json",
+    "occurrence": 1,
+    "bytes": 955,
+    "sha256": "017bef67ef68af4d519c2403340868661e1edfa12e488bbcbe863b252007d1cb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nR1-32B Outlier Seed Analysis:\n  Outlier seed: 0\n  Outlier: precision=0.4412, bal_acc=0.5940, FPR=0.4827\n  Seed 42 (main): precision=0.7521, bal_acc=0.7422, FPR=0.1415\n  \n  Diagnosis: Seed 0 的 test set 中 11/20 traces 的 per-trace FPR > 30%。\n  关键问题不是训练集类别不平衡（各 seed 训练集 pos_rate 0.27-0.34 相近），\n  而是 seed 0 的 test set 分到了几条长且几乎全为 negative 的 trace，\n  分类器在这些 trace 上系统性地把 safe steps 误判为 unsafe：\n    - 2d3d6eec: 103 neg steps, FPR=64.1%\n    - 4a0e76a2: 49 neg steps, FPR=75.5%\n    - 42ce50f5: 21 neg steps, FPR=85.7%\n    - 23ceb4de: 21 neg steps, FPR=71.4%\n  \n  排除 seed 0 后，其余 4 seed 的 FPR std 从 0.145 降至 0.046。\n  100 traces / 20 test traces 的小样本量下，单条异常 trace 对 FPR 影响很大。\n```\n\n结果已保存到 `artifacts/exp_r9_r1_32b_outlier_seed/results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r9-r1-32b-outlier-seed.md"
+}

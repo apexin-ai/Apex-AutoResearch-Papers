@@ -1,0 +1,54 @@
+{
+  "experiment": "exp_r8_qwq_position_control",
+  "model": "QwQ-32B",
+  "layer": 60,
+  "window": 3,
+  "seed": 42,
+  "k_consecutive": 3,
+  "lr_config": {
+    "C": 1.0,
+    "class_weight": "balanced",
+    "solver": "lbfgs",
+    "max_iter": 2000
+  },
+  "n_train": 57,
+  "n_val": 19,
+  "n_test": 19,
+  "hs_only": {
+    "bal_acc": 0.7955,
+    "crossing_rate": 0.9474,
+    "lead_mean": 11.56,
+    "pre_cp_fpr": 0.2165,
+    "precision": 0.5640,
+    "n_traces": 19
+  },
+  "position_only": {
+    "bal_acc": 0.8320,
+    "crossing_rate": 1.0,
+    "lead_mean": 8.05,
+    "pre_cp_fpr": 0.2414,
+    "precision": 0.5192,
+    "n_traces": 19
+  },
+  "residualized_hs": {
+    "bal_acc": 0.6124,
+    "crossing_rate": 1.0,
+    "lead_mean": 22.95,
+    "pre_cp_fpr": 0.3415,
+    "precision": 0.3606,
+    "n_traces": 19
+  },
+  "hs_plus_position": {
+    "bal_acc": 0.7939,
+    "crossing_rate": 0.9474,
+    "lead_mean": 11.56,
+    "pre_cp_fpr": 0.2197,
+    "precision": 0.5570,
+    "n_traces": 19
+  },
+  "interpretation": {
+    "resid_vs_hs_bal_acc_drop_pp": 18.31,
+    "joint_vs_max_bal_acc_pp": -3.81
+  },
+  "elapsed_seconds": 13.8
+}

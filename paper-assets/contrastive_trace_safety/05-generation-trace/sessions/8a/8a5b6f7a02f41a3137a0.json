@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8a5b6f7a02f41a3137a0",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "analysis collect supplementary results",
+  "task_key": "worker_analysis_collect_supplementary_results_20260522T182558",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_collect_supplementary_results_20260522T182558_result.json",
+    "occurrence": 1,
+    "bytes": 1277,
+    "sha256": "435e30f960f1382fee839e8900ab0e984487b30df9f6eb5336329013bc22305b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### Worker A — 跨架构 Cosine Profile 图 ✅ 完成\n\n**文件生成：**\n- `fig_cosine_cross_arch.pdf` (20K)\n- `fig_cosine_cross_arch.png` (235K)\n- 时间：May 23 02:22\n\n**R1-8B Cosine Compression 关键数据：**\n- 520 traces, 403,776 step pairs, 32 layers\n- Shallow (L0-L5) mean cosine dist: **0.3792**\n- Deep (L24-L31) mean cosine dist: **0.3834**\n- **Shallow/Deep ratio: 0.9889** → compression confirmed, magnitude 1.1%\n- Profile 峰值在 L7-L8 (~0.56)，之后单调递减到 deep layers (~0.36-0.39)\n\n---\n\n### Worker B — Bootstrap CI ⏳ 运行中\n\n- PID 93618, 启动 02:22, 已消耗 ~50 min CPU (1067%)\n- 日志停在 \"Finding reference layers on full data...\" — 正在执行 1000 次 bootstrap 计算\n- 无需干预，等待完成即可\n\n---\n\n### Worker C — 分类器敏感性 ⏳ 运行中\n\n- PID 93351, 启动 02:21, 已消耗 ~59 min CPU (1171%)\n- 日志停在 \"Threshold >= 1: 159 JB / 361 safe (30.6%)\" — 正在对每个 threshold 做全量分析\n- 无需干预，等待完成即可\n\n---\n\n两个脚本都在高 CPU 利用率下正常运行，未 hang。由于使用 nohup 后台执行，会自动写 JSON 结果到 `artifacts/` 目录。建议 20-30 分钟后再查一次。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-collect-supplementary-results.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0d865251bf127bb14a87",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code paper data json",
+  "task_key": "worker_code_paper_data_json_20260517T005602",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_paper_data_json_20260517T005602_result.json",
+    "occurrence": 1,
+    "bytes": 1474,
+    "sha256": "e54594f465efe5806d9e7a9c7e198fc0cd7fd2b1ce1647ac91908b67bd02a292"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件已成功创建。\n\n## 数据提取报告\n\n### 成功提取\n\n**fig2_temporal_improvement.json** — 全部字段已填充：\n- `r1_8b_hs`: 来自 `exp_007_window_ablation/results.json` (precp_fpr_trace 作为 precp_fpr)\n- `r1_8b_text`: 来自 `text_window_ablation_r1_8b/results.json`\n- `r1_32b_best`: layer=10/window=10，bal_acc 和 precp_fpr 来自 `m001_layer_fix/temporal_lr_r1_32b.json`，precision 和 coverage 来自 `exp_007_window_ablation/results.json`（两文件 bal_acc/precp_fpr 一致，确认使用相同配置）\n- `qwq_32b_best`: layer=2/window=5，同上逻辑\n\n**fig3_bootstrap_ci.json** — 全部字段已填充：\n- `r1_8b` accuracy/precision: `acc_precision_bootstrap/results.json`；fpr: `r1_8b_bootstrap_hs_text/results.json`\n- `r1_32b` accuracy/precision: `acc_precision_bootstrap/results.json`；fpr: `m001_layer_fix/bootstrap_hs_vs_text_r1_32b.json`\n- `qwq_32b` accuracy/precision: `acc_precision_bootstrap/results.json`；fpr: `qwq_text_verify/bootstrap_results.json`\n\n### 注意事项\n\n- fig2 中 `precp_fpr` 对于 HS 方法使用的是 `precp_fpr_trace`（trace-level FPR），与 text baseline 的 `precp_fpr` 定义一致\n- fig2 中 R1-32B/QwQ-32B 的 `coverage` 使用 exp_007 中的值（与 m001_layer_fix 中的 `crossing_rate` 定义略有不同：0.7 vs 0.5 for R1-32B）\n- fig3 中 R1-32B 和 QwQ-32B 的 FPR 差异不显著（p=0.999 和 p=0.904），HS 优势仅在 R1-8B 上显著"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-paper-data-json.md"
+}

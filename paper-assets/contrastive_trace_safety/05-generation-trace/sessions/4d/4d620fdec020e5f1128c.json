@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4d620fdec020e5f1128c",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code rewrite fig2 temporal improvement",
+  "task_key": "worker_code_rewrite_fig2_temporal_improvement_20260517T013054",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_rewrite_fig2_temporal_improvement_20260517T013054_result.json",
+    "occurrence": 1,
+    "bytes": 377,
+    "sha256": "fb6a763ab6dd3465c7587476bc590eaa06f9887fbb39410ce46352fdcfd0987f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。三个文件均已生成且非空：\n\n- `fig2_temporal_improvement.py` (1.5KB)\n- `fig2_temporal_improvement.pdf` (17.6KB)\n- `fig2_temporal_improvement.png` (112KB)\n\n脚本从 JSON 读取 r1-8b 的 HS/Text probe 数据，绘制 3 个 subplot（Balanced Accuracy / Precision / Step-level FPR vs W），使用 Okabe-Ito 色板，无硬编码数据。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-rewrite-fig2-temporal-improvement.md"
+}

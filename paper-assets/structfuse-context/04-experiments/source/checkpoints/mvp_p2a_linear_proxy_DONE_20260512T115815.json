@@ -1,0 +1,41 @@
+{
+  "exp_id": "mvp_p2a_linear_proxy",
+  "project": "structfuse-context",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-12T11:53:42.223Z",
+    "updated_at": "2026-05-12T11:58:15.436Z",
+    "spec": {
+      "command": "python evaluation/linear_proxy.py (logistic regression on data-flow features + BM25)",
+      "server": "cqa1-21977",
+      "data_path": "/root/autodl-tmp/mvp_results/ + /root/structfuse/mvp_data/bm25/",
+      "data_count": 8,
+      "model_name": "LogisticRegression (scikit-learn)",
+      "seed": null,
+      "hypothesis": "H2-confirm: data-flow features 的线性分类器预测 bug-relevant 文件优于纯 BM25 baseline",
+      "plan_id": "mvp_p2a_linear_proxy"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "df_bm25_auc": 0.78,
+      "bm25_only_auc": 0.476,
+      "auc_delta": 0.304,
+      "df_bm25_mrr": 0.556,
+      "bm25_only_mrr": 0.115,
+      "mrr_delta": 0.441,
+      "df_bm25_f1": 0.143,
+      "bm25_only_f1": 0.039,
+      "top_feature": "is_connected (+2.82)",
+      "repos_evaluated": 3,
+      "note": "3 repos / 3 positive samples, directional evidence"
+    },
+    "checkpoint_path": "N/A (logistic regression, no checkpoint)",
+    "log_path": "/root/structfuse/evaluation/linear_proxy.py output",
+    "completed_at": "2026-05-12T11:58:15.436Z"
+  },
+  "timestamp": "2026-05-12T11:58:15.446287+00:00",
+  "trigger": "update_registry"
+}

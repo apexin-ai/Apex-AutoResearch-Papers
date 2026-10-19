@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b87742a7b9b0e4c81f06",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code advbench reclassify phase2 v2",
+  "task_key": "worker_code_advbench_reclassify_phase2_v2_20260522T135840",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_advbench_reclassify_phase2_v2_20260522T135840_result.json",
+    "occurrence": 1,
+    "bytes": 1459,
+    "sha256": "5a90878c600616e16972e25b9ea71aa20043614fab1e4c98495faf1af2de8ef4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Phase 2 v2 完成。结果汇总：\n\n---\n\n### 1. JB/Safe 分布\n\n| | v1 | v2 |\n|--|---|---|\n| Total traces | 520 | 520 |\n| JB | (原始分类) | **159** |\n| Safe | (原始分类) | **361** |\n| JB rate | — | **30.6%** |\n| Reclassified | — | 271 traces |\n\n---\n\n### 2. 5-Metric Layer Selection 表\n\n| Metric | Best Layer | Window | Depth% | Score |\n|--------|-----------|--------|--------|-------|\n| Bal. accuracy | L9 | W15 | 29.0% | 0.7331 |\n| Precision | L21 | W15 | 67.7% | 0.7279 |\n| Inv. FPR | L21 | W15 | 67.7% | 0.1944 |\n| CR-composite | L3 | W5 | 9.7% | 0.2991 |\n| AUROC | L11 | W15 | 35.5% | 0.8053 |\n| Crossing rate | L0 | W5 | 0.0% | 0.4519 |\n\n---\n\n### 3. v1 vs v2 对比\n\n| | v1 | v2 | 变化 |\n|--|---|---|---|\n| CR-composite best | **L9** (29.0%) | **L3** (9.7%) | 向更浅层偏移 |\n| Precision best | **L22** (71.0%) | **L21** (67.7%) | 基本不变 |\n| **Divergence** | **42pp** | **58pp** | **+16pp，偏差加剧** |\n\n关键发现：修正 trace 分类器后，divergence 从 42pp **扩大到 58pp**。CR-composite 最优层从 L9 大幅下移到 L3（更浅），而 Precision 最优层基本稳定在 L21-22（深层）。这说明 v1 的分类噪声实际上**掩盖了**一部分 layer selection bias——清洗标签后，crossing-rate 主导的 composite 指标更加偏向浅层，与 precision/FPR 等判别性指标的分歧更大。Bias replication 结论不变且更强。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-advbench-reclassify-phase2-v2.md"
+}

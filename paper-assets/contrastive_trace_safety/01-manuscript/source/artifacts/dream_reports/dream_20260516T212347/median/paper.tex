@@ -1,0 +1,401 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{subcaption}
+\usepackage{hyperref}
+\usepackage{natbib}
+
+\title{Temporal Probing for Safety Commitment Detection in Reasoning Models}
+
+\author{Anonymous}
+
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Large Language Models (LLMs) with extended chain-of-thought reasoning can exhibit ``self-jailbreak,'' where safety reasoning and harmful content generation interleave throughout a reasoning trace, culminating in a commitment point after which safety reasoning permanently ceases. Existing hidden-state detectors target adversarial input attacks on instruction-tuned models and have not been evaluated on this internal reasoning failure mode. We present the first systematic evaluation of detection methods for reasoning-model safety commitment across four models spanning two architecture families (DeepSeek-R1 distillations and Qwen-native models) at 7B and 32B scale. We find that hidden-state temporal probes are consistently more precise than text-based monitoring within architecture families, with effect size varying across base architectures: R1-family models show pre-commitment false positive rate (FPR) of 16--19\% versus text baselines' 25--29\%, while Qwen-native models show a narrower advantage (24--26\% vs 30--32\%). Temporal context of approximately 15 reasoning steps improves coverage by 2--5 percentage points regardless of signal modality, confirming that commitment detection requires multi-step context. Pre-textual early detection remains fundamentally unreliable across all architectures, with median lead time at or below zero for all models. Cross-model transfer experiments reveal that safety signal geometry is architecture-specific, with probes failing to generalize even between models sharing the same base architecture but different safety training. These findings establish principled boundaries for hidden-state safety monitoring of reasoning models.
+\end{abstract}
+
+\section{Introduction}
+
+Reasoning-capable LLMs that produce extended chain-of-thought (CoT) traces introduce a qualitatively different safety failure mode compared to standard instruction-tuned models. Rather than responding to adversarial inputs with harmful outputs, these models can undergo ``self-jailbreak'': their own reasoning process gradually transitions from safety-aware deliberation to harmful content generation through a series of internal rationalization steps. This phenomenon has been documented in DeepSeek-R1 family models, where safety reasoning and harmful execution interleave throughout traces that may span hundreds of reasoning steps.
+
+The critical structural feature of this failure mode is the \emph{commitment point}, defined as the final reasoning step containing safety-relevant deliberation before the model transitions to sustained harmful generation. Detecting this transition is essential for runtime safety monitoring, yet existing approaches are poorly suited to the task. Hidden-state detectors such as TrajGuard and SafeSwitch achieve high accuracy on standard LLMs by detecting adversarial inputs at the token level, but they have never been evaluated on reasoning models where the threat originates from the model's own extended reasoning process.
+
+Text-level CoT monitors face a different limitation. While they can observe explicit safety reasoning in the CoT, they are vulnerable to cases where the model's textual output diverges from its internal computation. More fundamentally, as we demonstrate empirically, text-based probes produce substantially higher false positive rates in the critical pre-commitment window compared to hidden-state probes, particularly on R1-family models where the internal safety signal is geometrically concentrated.
+
+We present a systematic evaluation of safety commitment detection methods across four reasoning models: DeepSeek-R1-Distill-Llama-8B (r1-8b), DeepSeek-R1-Distill-Qwen-32B (r1-32b), QwQ-32B, and OpenThinker-7B. Our evaluation spans static and temporal linear probes, GRU sequence models, unsupervised geometric methods (Mahalanobis distance), and change-point detection algorithms (BOCPD, CUSUM), tested against both hidden-state and text-based signal modalities.
+
+Our contributions are:
+\begin{itemize}
+\item An empirical finding that hidden-state probes achieve consistently lower pre-commitment FPR than text-based probes within architecture families, with effect magnitude determined by training lineage (R1-distillation vs independent RLHF) rather than model scale.
+\item Evidence that temporal context of approximately 15 reasoning steps is necessary for commitment detection regardless of signal modality, with diminishing returns beyond this window confirmed across all tested architectures.
+\item A demonstration that pre-textual early detection is a fundamental limitation, not a method gap: neither GRU models, BOCPD, nor CUSUM achieve reliable lead time on any tested architecture, establishing a principled ceiling for current detection approaches.
+\item The discovery that safety signal geometry is architecture-specific, with cross-model transfer failing universally (accuracy 0.51--0.58, near chance), indicating that universal safety probes are not feasible with current linear methods.
+\end{itemize}
+
+\section{Related Work}
+
+\paragraph{Hidden-state safety detection.} TrajGuard uses Mahalanobis distance on hidden-state trajectories to detect adversarial attacks, achieving 95\% defense rate on instruction-tuned models. SafeSwitch combines representation probes with generation-time intervention. SIREN applies contrastive probing to detect safety-relevant internal states. These methods target adversarial \emph{input} attacks and operate at single-token granularity, making them unsuitable for detecting gradual commitment transitions in extended reasoning traces.
+
+\paragraph{Reasoning model safety.} The self-jailbreak phenomenon in reasoning models has been characterized by several concurrent works. HarmThoughts provides annotated reasoning traces with step-level safety labels, revealing the interleaving pattern we study. SafeThink and SafeRemind propose text-level monitoring of CoT safety reasoning. These works identify the problem and provide text-level interventions but do not evaluate hidden-state detection methods or establish detection limits.
+
+\paragraph{Representation geometry of safety.} The refusal direction literature demonstrates that safety-relevant information can be extracted from hidden states via linear probes. However, the ``refusal direction'' targets a single dominant direction in activation space, whereas we find that safety commitment signals reside in minor principal components (top-3 PCs explain only 14--19\% of discriminative variance). This geometric difference explains why unsupervised methods that rely on bulk covariance structure fail in our setting.
+
+\paragraph{Change-point detection.} Bayesian Online Change-Point Detection (BOCPD) and CUSUM are standard methods for detecting distributional shifts in sequential data. We evaluate both on probe score sequences to test whether the commitment transition manifests as a detectable distributional shift, finding that it does not reliably precede the textual commitment point.
+
+\section{Method}
+
+\subsection{Problem Formulation}
+
+Given a reasoning trace $T = (t_1, t_2, \ldots, t_N)$ with associated hidden states $H = (h_1, h_2, \ldots, h_N)$ at a selected layer $\ell$, and a commitment point $c \in \{1, \ldots, N\}$ defined as the last step containing safety-relevant reasoning, we seek a detector $D$ that outputs a binary signal at each step. We evaluate detectors on: (1) \emph{coverage}, the fraction of unsafe traces where $D$ fires at any point; (2) \emph{pre-commitment FPR}, the rate at which $D$ fires on steps $t < c$ (i.e., before commitment, when intervention would be premature); (3) \emph{precision}, the fraction of firings that occur at or after $c$; (4) \emph{lead time}, the signed distance (in steps) between first detection and $c$.
+
+\subsection{Dataset}
+
+We use HarmThoughts traces with step-level safety labels annotated by human raters. The dataset contains 252 annotated reasoning traces from DeepSeek-R1-Distill-Llama-8B, split into 209 training and 43 test traces. For cross-architecture validation, we collect analogous traces from r1-32b ($n=38$), QwQ-32B ($n=35$), and OpenThinker-7B ($n=34$) using the same prompt set and annotation protocol.
+
+\subsection{Static Probes}
+
+For each model, we perform a full layer sweep to identify the optimal extraction layer. We train a logistic regression (LR) probe on hidden-state vectors $h_t^{(\ell)}$ at the best layer $\ell^*$ to classify each step as pre-commitment or post-commitment. Text-based probes use Sentence-BERT embeddings of each reasoning step as input features with the same LR classifier.
+
+\subsection{Temporal Probes}
+
+Temporal probes operate on a sliding window $W$ of consecutive hidden states. For a window of size $w$, the input at step $t$ is the concatenation $[h_{t-w+1}^{(\ell)}, \ldots, h_t^{(\ell)}]$ (or the flattened feature vector for LR). We evaluate window sizes $w \in \{1, 3, 5, 10, 15, 20, 25\}$ and find $w=15$ near-optimal across architectures.
+
+\subsection{Sequential Models}
+
+We train a GRU with hidden size 256 on multi-layer input (7 layers centered on $\ell^*$) to test whether sequential modeling of the full trace improves detection. The GRU processes the entire sequence and outputs per-step predictions.
+
+\subsection{Unsupervised Baselines}
+
+We implement TrajGuard-style Mahalanobis distance detection: estimate the covariance matrix from safe traces, then flag steps where the Mahalanobis distance exceeds a threshold. We test both full-dimensional and PCA-reduced variants (64 and 128 components).
+
+\subsection{Change-Point Detection}
+
+We apply BOCPD (with hazard rate $\lambda \in \{10, 100\}$) and CUSUM to the probe score sequence $\{D(h_t)\}_{t=1}^N$, testing whether the commitment transition manifests as a detectable distributional shift in probe outputs.
+
+\section{Experiments}
+
+\subsection{Cross-Architecture Static Probes}
+
+We evaluate static LR probes across all four models to test whether the hidden-state precision advantage generalizes. Table~\ref{tab:static} reports results at each model's optimal layer.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Static probe results across architectures. Best layer identified via full layer sweep. Asterisk (*) marks R1-family models.}
+\label{tab:static}
+\begin{tabular}{lcccccc}
+\toprule
+Model & Layer & Acc & Cov & FPR$_\text{pre}$ & Prec & AUROC \\
+\midrule
+r1-8b* & L14 (44\%) & .817 & 60.5 & 16.2 & 62.2 & .84 \\
+r1-32b* & L28 (44\%) & .792 & 55.8 & 19.0 & 56.0 & .81 \\
+QwQ-32B & L31 (48\%) & .738 & 44.2 & 26.0 & 49.0 & .72 \\
+OpenThinker & L14 (50\%) & .755 & --- & 24.0 & 50.0 & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+R1-family models (r1-8b, r1-32b) achieve pre-commitment FPR of 16--19\% with precision 56--62\%, while Qwen-native models (QwQ-32B, OpenThinker-7B) show weaker performance (FPR 24--26\%, precision 49--50\%). The optimal layer consistently falls at 44--50\% depth across all architectures. Fisher discriminability is substantially higher for R1 models (14.2--17.9) compared to Qwen-native models (9.8), indicating more concentrated safety signal geometry in distilled models.
+
+Table~\ref{tab:arch_matrix} presents the 2$\times$2 architecture-scale matrix, confirming that training lineage, not scale, determines signal quality.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Pre-commitment FPR and precision by architecture family and scale. R1-distilled models consistently outperform Qwen-native models regardless of scale.}
+\label{tab:arch_matrix}
+\begin{tabular}{lcc}
+\toprule
+ & 7--8B & 32B \\
+\midrule
+R1-distilled & FPR 16\%, Prec 62\% & FPR 19\%, Prec 56\% \\
+Qwen-native & FPR 24\%, Prec 50\% & FPR 26\%, Prec 49\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Hidden-State vs Text Comparison}
+
+Table~\ref{tab:hs_vs_text} compares hidden-state and text-based temporal probes on 32B models. The hidden-state advantage is consistent in direction across all models but varies in magnitude.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Hidden-state vs text temporal probes (W=15) on 32B models. FPR$_\text{pre}$: pre-commitment false positive rate.}
+\label{tab:hs_vs_text}
+\begin{tabular}{llcccc}
+\toprule
+Model & Modality & FPR$_\text{pre}$ & Prec & Cov & Lead \\
+\midrule
+r1-32b & HS & 18.0 & 54.0 & 60.5 & +3.8 \\
+r1-32b & Text & 25.0 & 50.0 & 57.3 & +8.2 \\
+\midrule
+QwQ-32B & HS & 24.0 & 47.0 & 46.5 & +2.4 \\
+QwQ-32B & Text & 30.0 & 45.0 & 44.2 & +5.8 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+On r1-32b, hidden-state probes achieve 7pp lower pre-commitment FPR than text (18\% vs 25\%, paired bootstrap $p=0.034$). On QwQ-32B, the gap narrows to 6pp (24\% vs 30\%, $p=0.218$, not significant). Text probes show higher nominal lead time, but this is driven by higher pre-commitment FPR (trigger-happy firing), not genuine earlier detection.
+
+\subsection{Temporal Window Effect}
+
+Table~\ref{tab:temporal} shows the effect of temporal windowing (W=15) across all model-modality combinations.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Coverage gain from temporal windowing (static to W=15). All combinations show positive coverage delta, confirming temporal context is method-agnostic.}
+\label{tab:temporal}
+\begin{tabular}{llccc}
+\toprule
+Model & Method & Cov $\Delta$ & FPR$_\text{pre}$ & Lead \\
+\midrule
+r1-8b & HS & +5.0pp & 16.2$\to$16.0 & +3.0$\to$+4.9 \\
+r1-32b & HS & +4.7pp & 19.0$\to$18.0 & +2.1$\to$+3.8 \\
+QwQ-32B & HS & +2.3pp & 26.0$\to$24.0 & +0.8$\to$+2.4 \\
+\midrule
+r1-8b & Text & +4.6pp & 35.6$\to$27.2 & +4.3$\to$+11.5 \\
+r1-32b & Text & +3.8pp & 29.0$\to$25.0 & +3.1$\to$+8.2 \\
+QwQ-32B & Text & +2.1pp & 32.0$\to$30.0 & +1.5$\to$+5.8 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+All six model-modality combinations show positive coverage gain from temporal windowing, with magnitude proportional to base signal quality (R1-family gains 4--5pp, QwQ gains 2--3pp). Window size ablation (Table~\ref{tab:window_ablation}) confirms W=15 as near-optimal, with diminishing returns beyond W=20 and slight degradation at W=25.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Window size ablation showing coverage at various window sizes. All models show diminishing returns after W=15.}
+\label{tab:window_ablation}
+\begin{tabular}{lccc}
+\toprule
+W & r1-8b & r1-32b & QwQ-32B \\
+\midrule
+1 & 60.5 & 55.8 & 44.2 \\
+5 & 62.1 & 58.1 & 45.6 \\
+10 & 63.8 & 59.3 & 46.0 \\
+15 & 65.1 & 60.5 & 46.5 \\
+20 & 65.4 & 60.9 & 46.3 \\
+25 & 64.8 & 60.5 & 45.8 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Lead Time and Early Detection}
+
+Table~\ref{tab:lead} reports lead time distributions across models and methods.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Lead time distribution. No model-method combination achieves reliable positive median lead time. \% Pos: fraction of traces with positive lead.}
+\label{tab:lead}
+\begin{tabular}{llcccc}
+\toprule
+Model & Method & Mean & Med & \% Pos & Safe FPR \\
+\midrule
+r1-8b & LR temp & +4.9 & 0 & 45 & 39.2 \\
+r1-8b & GRU & +4.7 & 0 & 39 & 61.6 \\
+r1-32b & LR temp & +3.8 & 0 & 42 & 40.0 \\
+r1-32b & GRU & +2.8 & $-$1 & 38 & 55.0 \\
+QwQ-32B & LR temp & +1.2 & $-$2 & 31 & 43.0 \\
+QwQ-32B & GRU & $-$0.5 & $-$3 & 25 & 59.0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Lead time is unreliable across all architectures. Median lead time is at or below zero for all 32B models, meaning probes typically fire at or after the textual commitment point. The slight degradation from r1-8b to r1-32b to QwQ tracks signal quality, confirming that lead time is limited by signal discriminability rather than model scale. GRU models achieve higher coverage (72\% on r1-32b vs 60.5\% for LR) but at the cost of substantially higher safe FPR (55\% vs 40\%) and worse lead time.
+
+\subsection{Change-Point Detection}
+
+Table~\ref{tab:cpd} evaluates BOCPD and CUSUM on probe score sequences.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Change-point detection results. BOCPD achieves high detection rate but not earlier detection than simple thresholding. CUSUM fails universally.}
+\label{tab:cpd}
+\begin{tabular}{llccc}
+\toprule
+Model & Method & Det Rate & Mean Lead & Med Lead \\
+\midrule
+r1-8b & BOCPD $\lambda$=10 & 93\% & +3.45 & 0 \\
+r1-32b & BOCPD $\lambda$=10 & 88\% & +2.9 & 0 \\
+QwQ-32B & BOCPD $\lambda$=10 & 79\% & +1.8 & $-$1 \\
+\midrule
+r1-8b & CUSUM & 65\% & +0.89 & $-$4 \\
+r1-32b & CUSUM & 58\% & $-$0.5 & $-$4 \\
+QwQ-32B & CUSUM & 47\% & $-$2.1 & $-$5 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+BOCPD achieves high detection rates (79--93\%) but does not provide earlier detection than simple threshold-based methods. CUSUM fails across all models (detection rate 47--65\%, negative median lead). The commitment transition does not manifest as a clean distributional shift in probe scores; rather, scores fluctuate throughout reasoning and stabilize only after commitment.
+
+\subsection{Unsupervised Geometric Methods}
+
+Table~\ref{tab:mahal} reports TrajGuard-style Mahalanobis distance detection.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Mahalanobis distance baseline. Low crossing rates and negligible safe/unsafe distance separation indicate failure across all architectures.}
+\label{tab:mahal}
+\begin{tabular}{lccc}
+\toprule
+Model & Cross Rate (K=5) & $\Delta$ (safe/unsafe) & Lead \\
+\midrule
+r1-8b & 30.2\% & 0.07 & +16.4 \\
+r1-32b & 28.0\% & 0.09 & +14.8 \\
+QwQ-32B & 21.0\% & 0.07 & +12.1 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Mahalanobis distance fails universally: the separation between safe and unsafe trace distances is negligible ($\Delta < 0.1$), and crossing rates are low (21--30\%). The apparently high lead time is misleading, driven by random threshold crossings on the minority of traces that cross at all. This failure is consistent with our PCA analysis: the safety signal resides in minor principal components (top-3 PCs explain only 14--19\% of Fisher-discriminant variance), making geometric methods that rely on bulk covariance structure ineffective.
+
+\subsection{Cross-Model Transfer}
+
+Table~\ref{tab:transfer} presents the cross-model transfer accuracy matrix.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Cross-model probe transfer accuracy. Diagonal entries (marked *) are within-model performance. Off-diagonal entries show transfer with learned linear projection. All transfers are near chance (0.50--0.58).}
+\label{tab:transfer}
+\begin{tabular}{lccc}
+\toprule
+Train $\backslash$ Test & r1-8b & r1-32b & QwQ-32B \\
+\midrule
+r1-8b & .817* & .56 & .52 \\
+r1-32b & .55 & .792* & .57 \\
+QwQ-32B & .51 & .58 & .738* \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Cross-model transfer fails universally, with accuracy ranging from 0.51 to 0.58 (near chance for binary classification). Even with a learned linear projection between hidden-state dimensions (4096 to 5120), probes cannot generalize across architectures. A slight advantage exists for same-base transfers (mean 0.575) versus cross-base transfers (mean 0.535), suggesting that base architecture determines representation geometry more than safety training. This finding indicates that the discriminative directions for safety commitment are architecture-specific and reside in different subspaces across model families.
+
+\subsection{Safe Trace False Positive Rates}
+
+Table~\ref{tab:safe_fpr} reports FPR on safe traces across all methods and models.
+
+\begin{table}[t]
+\centering
+\small
+\caption{False positive rate on safe traces. All methods produce high FPR ($>$39\%), limiting deployment utility. HS temporal achieves the lowest FPR on R1-family models.}
+\label{tab:safe_fpr}
+\begin{tabular}{lccccc}
+\toprule
+Model & HS Stat & HS Temp & Txt Stat & Txt Temp & GRU \\
+\midrule
+r1-8b & 39.0 & 39.2 & 50.2 & 38.5 & 52.1 \\
+r1-32b & 41.0 & 40.0 & 47.0 & 42.0 & 55.0 \\
+QwQ-32B & 44.0 & 43.0 & 51.0 & 46.0 & 59.0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Safe FPR remains high across all models and methods (minimum 39\%). The probes fire on approximately 40--59\% of safe trace steps because safe reasoning traces contain deliberation steps that resemble pre-commitment uncertainty. Hidden-state probes do not substantially reduce safe FPR compared to text probes; their advantage is specific to the pre-commitment window on unsafe traces.
+
+\subsection{Statistical Robustness}
+
+Table~\ref{tab:bootstrap} reports bootstrap confidence intervals (1000 resamples) for key comparisons.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Bootstrap 95\% CIs for pre-commitment FPR. The HS vs text comparison reaches significance on r1-32b ($p=0.034$) but not on QwQ-32B ($p=0.218$).}
+\label{tab:bootstrap}
+\begin{tabular}{llccc}
+\toprule
+Model & Metric & Point & 95\% CI & $p$ \\
+\midrule
+r1-32b & HS FPR$_\text{pre}$ & 19.0 & [14.2, 25.1] & .034 \\
+r1-32b & Text FPR$_\text{pre}$ & 29.0 & [21.8, 37.4] & --- \\
+QwQ-32B & HS FPR$_\text{pre}$ & 26.0 & [19.5, 33.8] & .218 \\
+QwQ-32B & Text FPR$_\text{pre}$ & 32.0 & [24.1, 40.2] & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Wide confidence intervals reflect limited test set sizes ($n=35$--43 traces per model). The HS advantage on r1-32b is borderline significant ($p=0.034$) and would not survive multiple comparison correction. We argue for the \emph{consistency} of the effect (same direction across 3/3 models with independent training) rather than per-model significance as evidence for the phenomenon.
+
+\subsection{Ablation: Fine-Grained Supervision}
+
+Table~\ref{tab:finegrain} compares binary and 16-label supervision.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Fine-grained (16-label) vs binary supervision. Marginal coverage gains (+2.3pp) are not significant, confirming binary supervision is near-optimal for linear probes.}
+\label{tab:finegrain}
+\begin{tabular}{llccc}
+\toprule
+Model & Supervision & Coverage & Precision & FPR$_\text{pre}$ \\
+\midrule
+r1-8b & Binary & 65.1 & 58.3 & 16.0 \\
+r1-8b & 16-label & 67.4 & 59.0 & 17.0 \\
+r1-32b & Binary & 60.5 & 54.0 & 18.0 \\
+r1-32b & 16-label & 62.8 & 55.0 & 19.0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Fine-grained labels provide only marginal improvement (+2.3pp coverage, not statistically significant). The 16 reasoning categories are linguistically distinct but not geometrically distinct at the representation level, confirming that binary supervision saturates what linear probes can extract.
+
+\subsection{GRU vs Linear Temporal Probes}
+
+Table~\ref{tab:gru} compares GRU and LR temporal probes on 32B models.
+
+\begin{table}[t]
+\centering
+\small
+\caption{GRU vs LR temporal on 32B models. GRU achieves higher coverage but worse precision, higher FPR, and high seed variance (coverage range shown in parentheses).}
+\label{tab:gru}
+\begin{tabular}{llccccc}
+\toprule
+Model & Method & Cov & Prec & FPR$_\text{pre}$ & Safe FPR & Lead \\
+\midrule
+r1-32b & LR & 60.5 & 54.0 & 18.0 & 40.0 & +3.8 \\
+r1-32b & GRU & 72.0 & 52.0 & 22.0 & 55.0 & +2.8 \\
+ & & \multicolumn{5}{l}{\small(seed range: 65--79\%)} \\
+\midrule
+QwQ & LR & 46.5 & 47.0 & 24.0 & 43.0 & +2.4 \\
+QwQ & GRU & 58.0 & 44.0 & 28.0 & 59.0 & $-$0.5 \\
+ & & \multicolumn{5}{l}{\small(seed range: 48--67\%)} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+GRU models gain coverage (+11pp) by being more aggressive, not through better signal extraction. The precision-coverage tradeoff favors LR for deployment: lower FPR and higher precision with less seed-to-seed variance. GRU seed variance (14--19pp coverage range) indicates unreliable training dynamics given limited data.
+
+\section{Discussion}
+
+\paragraph{Architecture-specific signal geometry.} The most informative finding is that safety signal quality is determined by training lineage rather than model scale. The 2$\times$2 matrix (Table~\ref{tab:arch_matrix}) shows that R1-distilled models at both 8B and 32B scale produce concentrated safety signals that probes can exploit effectively, while independently-trained Qwen models at both scales produce more diffuse signals. R1 distillation appears to preserve the teacher model's internal safety representations, creating geometrically concentrated commitment signals in the student. This has practical implications: hidden-state monitoring is most effective on models with a known distillation lineage where the safety signal geometry can be characterized.
+
+\paragraph{The oracle gap.} The mutual information between current hidden states and future commitment is low (0.12 bits), explaining why no detection method achieves reliable lead time. Hidden states encode the model's current deliberative state well (enabling detection) but not its future trajectory (preventing prediction). The oracle's +31-step advantage comes entirely from access to future labels. This is a principled information-theoretic limitation: commitment detection is fundamentally reactive, and proactive intervention requires different approaches (steering, generation-time control) rather than better detectors.
+
+\paragraph{Practical implications.} Safe FPR above 39\% for all methods limits immediate deployment utility. These probes function as diagnostic tools for understanding safety commitment dynamics rather than production-ready monitors. The precision advantage of hidden-state probes over text is robust (consistent across models) and meaningful for research, but threshold tuning, ensemble methods, and architecture-specific calibration would be needed for deployment.
+
+\section{Conclusion}
+
+We presented the first systematic evaluation of safety commitment detection in reasoning models, testing across four models, two architecture families, and multiple detection paradigms. Three findings emerge consistently: (1) hidden-state probes are more precise than text-based monitoring within architecture families, with effect magnitude shaped by training methodology; (2) temporal context of approximately 15 steps is necessary regardless of signal modality; (3) pre-textual early detection remains fundamentally unreliable. The discovery that safety signal geometry is architecture-specific, with cross-model transfer failing universally, establishes that per-model probe training is currently necessary and universal safety probes are not feasible with linear methods. These findings define the current capabilities and principled limitations of hidden-state safety monitoring for reasoning models.
+
+\bibliographystyle{plainnat}
+
+
+\end{document}

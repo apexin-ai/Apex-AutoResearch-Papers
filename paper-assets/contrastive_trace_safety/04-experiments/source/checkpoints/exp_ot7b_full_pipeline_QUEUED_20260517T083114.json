@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_ot7b_full_pipeline",
+  "project": "contrastive_trace_safety",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T06:13:10.826Z",
+    "updated_at": "2026-05-17T08:31:14.794Z",
+    "hypothesis": "If HS probe precision advantage generalizes beyond DeepSeek-R1 distilled models, OpenThinker-7B (STILL-trained, non-R1-distilled reasoning model on Qwen2.5-7B) should show HS vs text precision gap comparable to R1-8B, confirming the signal is inherent to reasoning models rather than R1-distillation-specific.",
+    "parent": "exp_001a_r1_32b"
+  },
+  "timestamp": "2026-05-17T08:31:14.891962+00:00",
+  "trigger": "update_registry"
+}

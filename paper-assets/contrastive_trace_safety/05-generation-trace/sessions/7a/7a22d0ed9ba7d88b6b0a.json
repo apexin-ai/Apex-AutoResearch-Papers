@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7a22d0ed9ba7d88b6b0a",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "paper figure fig4 window ablation",
+  "task_key": "worker_paper_figure_fig4_window_ablation_20260517T001114",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig4_window_ablation_20260517T001114_result.json",
+    "occurrence": 1,
+    "bytes": 404,
+    "sha256": "530239ec3520e2c1f233c8a3fd31e75dabbcfd314fd096080cf49fa7a0bbcb85"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表已生成并注册。\n\n- PDF: 30.2 KB, PNG: 213.5 KB\n- 3 条线：Balanced Accuracy (蓝, 上升 77.8→81.2), Precision (绿, 上升 69.3→82.2), Pre-CP FPR (橙虚线, 下降 9.65→4.83)\n- 右上角注释标注 coverage 从 72.1% 降至 48.8%\n- 底部斜体注释 \"Trend consistent across 3 models\"\n- 输出路径: `artifacts/figures/paper/fig4_window_ablation.{pdf,png}`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig4-window-ablation.md"
+}

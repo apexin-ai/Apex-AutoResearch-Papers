@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ac3db6c374d0c5cb59c4",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "review ai writing audit",
+  "task_key": "worker_review_ai_writing_audit_20260518T221534",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_review_ai_writing_audit_20260518T221534_result.json",
+    "occurrence": 1,
+    "bytes": 671,
+    "sha256": "0f98a5e59af7621c28dffd8324bb6975809998199cdcb6c9e94cae63ba228b95"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成，结果保存在 `artifacts/ai_writing_audit.md`。\n\n核心发现：\n- **33 个问题**，集中在一个类别\n- **Em-dash / En-dash**: 0（干净）\n- **-ing 分词短语**: 29 个（最严重问题，主体 6 个 + 附录 23 个）。\"`, confirming that...`\" 模式出现 10+ 次，重复度高，是最显眼的 AI 痕迹\n- **连续过渡词**: 0\n- **AI 黑名单词**: 1 个（\"notably\"，附录中）\n- **过度分段**: 0\n- **代词指代不清**: 3 个\n\n修复优先级：先批量处理 -ing 短语（尤其是 `, confirming` → `which confirms` / `and confirms` / `so`），这是审稿人最容易识别的模式。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/review-ai-writing-audit.md"
+}

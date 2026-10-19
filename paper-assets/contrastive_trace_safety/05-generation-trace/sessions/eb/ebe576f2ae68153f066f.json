@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ebe576f2ae68153f066f",
+  "project": "contrastive_trace_safety",
+  "kind": "history",
+  "title": "director / loop_7.md",
+  "task_key": "loop_7",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_7.md",
+    "occurrence": 1,
+    "bytes": 2602,
+    "sha256": "2a1420d2d52bc1cac5e7160f3560421b594d7d20b06533a1b6d8fd0e374d1e4d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: max_messages\nupdated: '2026-05-24T19:14:09+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目无 GPU 分配（纯论文写作阶段），不要尝试分配或使用任何 GPU\n- 匿名仓库 URL 和 token 存在 `_anonymous_repo.json`（已 .gitignore），push 时从该文件读 push_url，不要硬编码 token\n- EMNLP 2026 ARR DDL 2026-05-25，8 页正文限制，Abstract ≤ 200 words\n- 论文编译路径：`docs/paper/main.tex`，编译用 `paper_compile_and_check`\n\n### 2. 🖥️ 基础设施快照\n- 本地工作目录：`/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety`\n- 无远程服务器（59 个实验全部完成，AutoDL 实例已释放）\n- PaperBanana venv：`/tmp/pb_venv/`（已安装 0.1.2）\n- GOOGLE_API_KEY 已存储（`list_secrets` 可查）\n- 匿名 GitHub：`anonymous-nlp-2026-2/contrastive_trace_safety`，本地 master 分支，远程 main 分支\n- 无活跃进程 / tmux / cron\n\n### 3. 📊 当前状态\n本轮完成了用户曹晓玉的 3 项修改 + 运维的缩写自检：\n1. Abstract 字数确认 189 words ✓\n2. Table 20/21 float 排版修复 ✓\n3. Figure 1 用 PaperBanana v3 重绘（3 轮迭代）→ commit `44f0aec` + push `c331805` ✓\n4. 缩写/专有名词自检：11 处修复（FPR/BOCPD/CUSUM/AUROC/MCC/BCa/HB/CV/MDE/SSMs/LR）✓\n\nRegistry: 59 个实验全部 DONE，无 RUNNING/PREPARING。\n无等待中的 Worker 回调 / Cron / Director 决策。\n\n### 4. 📋 待办\n- 用户/运维确认 OpenReview 提交完成 → 项目进入等待审稿阶段\n- 用户要求再改论文 → 派 Agent 修改 + 编译 + push 匿名仓库\n- 收到审稿报告 → Read `review-report-action.skill.md`，按 Holistic Pass + Per-Comment Action Matrix 处理\n- Manager 问 GPU 归还 → 本项目无 GPU，直接确认\n\n### 5. 🎯 战略上下文\n- 论文核心发现：metric choice（CR-composite vs threshold metrics）导致 layer selection reversal，同一 hidden states 得出相反结论\n- 3 个 contributions：C1 layer selection bias, C2 boundary conditions (encoder-conditional), C3 negative results (7 方法系统失败)\n- 统计严谨性是核心卖点：Holm-Bonferroni 14/16 pass, BCa bootstrap, nested CV, 5-seed stability, power analysis\n- R1-32B 的 position confound 是已知弱点（residualized 后 NS），论文已 transparent 报告为 \"qualified\"\n- `artifacts/rebuttal_prep.md` 有完整 rebuttal 准备（5 个预期 reviewer 问题 + 20 个 negative 实验归类）\n- 易错点：cqa1-21977 和 westd-49253 不是本项目 GPU，系统 keepalive 反复误报，不要理会\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7.md"
+}

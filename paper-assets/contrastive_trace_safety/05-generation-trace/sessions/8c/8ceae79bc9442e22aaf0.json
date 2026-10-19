@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8ceae79bc9442e22aaf0",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "ops check gpt4omini iaa progress",
+  "task_key": "worker_ops_check_gpt4omini_iaa_progress_20260520T065503",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_gpt4omini_iaa_progress_20260520T065503_result.json",
+    "occurrence": 1,
+    "bytes": 245,
+    "sha256": "cb204c2f5b23faf1ca4eb0e8c88e1dba5ebe3717ee452de01d0cb78ea868bfec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**STILL_RUNNING** — 当前进度：\n\n| 指标 | 值 |\n|------|-----|\n| 已标注 | 305 / 520 (58.7%) |\n| Jailbreak | 70 (23.0%) |\n| CP mean | 10.87, median 11.0 |\n| CP relative mean | 0.439 |\n\n还剩 215 条待标注。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-gpt4omini-iaa-progress.md"
+}

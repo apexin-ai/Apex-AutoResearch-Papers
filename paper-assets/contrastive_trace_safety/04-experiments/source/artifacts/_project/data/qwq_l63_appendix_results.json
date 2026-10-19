@@ -1,0 +1,1 @@
+Cosine Distance: global=0.0089, per-trace=0.0839±0.0560, safe-safe=0.2432, unsafe-unsafe=0.2630. Control Task Selectivity: Original BA=0.7313 selectivity=0.1606(Y), Residualized BA=0.6188 selectivity=0.1127(Y). 95 traces, L63 W5, 60/20/20 split.

@@ -1,0 +1,1390 @@
+narrative_guidance: 'Reframe away from ''HS beats text'' toward one of two angles,
+  both still targeting EMNLP Main: (A) **Negative-results-first framing**: ''We systematically
+  evaluate 7 detection methods across 4 reasoning models and find that none achieves
+  deployment-ready performance. The best approach (temporal HS probes) still has 39-62%
+  safe FPR. We identify layer selection bias as a critical confounder and provide
+  a sensitivity analysis framework.'' This positions the paper as a cautionary benchmark.
+  (B) **Methodology-first framing**: ''We discover that a commonly used layer selection
+  metric systematically biases hidden-state evaluations, producing false negatives
+  at scale. We demonstrate this across 4 models and 5 metrics, show it reverses published
+  conclusions, and propose a multi-metric audit protocol.'' This makes layer selection
+  the headline and HS-vs-text becomes supporting evidence. Either angle requires:
+  toning down deployment language, foregrounding limitations honestly, positioning
+  as ''the field needs this evaluation before building on shaky foundations.'' Add
+  cost-benefit analysis (HS access cost vs marginal gain over text) to preempt the
+  engineering-cost reviewer.
+
+  '
+imagined_experiments:
+- name: Cross-architecture layer sweep + static probe (r1-32b & QwQ-32B)
+  plan_id: exp-001
+  description: 'Full 64-layer sweep on DeepSeek-R1-Distill-Qwen-32B and QwQ-32B. Extract
+    hidden states at all layers, evaluate static LR probes per layer under multiple
+    selection metrics. Includes discovery of layer selection bias (bal_acc × crossing_rate
+    → shallow layers).
+
+    '
+  expected_results:
+    r1_32b_biased_layer: 10
+    r1_32b_biased_layer_depth_pct: 15.6
+    r1_32b_corrected_layer: 63
+    r1_32b_corrected_layer_depth_pct: 98.4
+    r1_32b_l10_bal_acc: 0.718
+    r1_32b_l63_bal_acc_w1: 0.826
+    r1_32b_n_test: 20
+    r1_32b_l63_precision_w1: 0.603
+    r1_32b_l63_fpr_w1: 0.235
+    qwq_32b_biased_layer: 2
+    qwq_32b_biased_layer_depth_pct: 3.1
+    qwq_32b_corrected_layer: 60
+    qwq_32b_corrected_layer_depth_pct: 93.8
+    qwq_32b_l2_bal_acc: 0.73
+    qwq_32b_l60_bal_acc_w3: 0.74
+    qwq_32b_n_test: 19-20
+    qwq_32b_l60_precision_w3: 0.578
+    qwq_32b_l60_fpr_w3: 0.279
+    layer_selection_bias_discovered: true
+    metrics_tested: 5
+    biased_metric: bal_acc × crossing_rate
+    loo_cv_dominant_fold_pct: 65-68%
+  result_rationale: 'Layer sweep reveals a genuine methodological finding (biased
+    metric selects shallow layers), and corrected layers do show HS advantage. However,
+    worst-tier reviewers dismiss this: (1) "Finding that one composite metric is bad
+    is trivially expected — practitioners routinely try multiple metrics. This is
+    hyperparameter tuning, not a contribution." (2) n=19-20 test traces for 32B models
+    mean bootstrap CIs are wide. MDE analysis shows R1-32B residualized gap (+1.9pp)
+    is far below the 11.2pp MDE at 80% power — the NS result for position-mediated
+    HS advantage is a power limitation, not evidence. Reviewers note: "you can''t
+    claim the advantage is ''real but position-mediated'' when you''re underpowered
+    to detect the non-positional component." (3) The corrected layers (L60/L63, >93%
+    depth) are so deep they''re essentially the output layer — reviewer asks: "are
+    you just detecting output-token semantics via a different pathway?"
+
+    '
+  tables:
+  - name: Layer Selection Metric × Model → Selected Layer
+    columns:
+    - Metric
+    - R1-8B
+    - OT-7B
+    - QwQ-32B
+    - R1-32B
+    rows:
+    - - bal_acc × crossing_rate
+      - L0 (0%)
+      - L0 (0%)
+      - L2 (3%)
+      - L10 (16%)
+    - - pure bal_acc
+      - L12 (39%)
+      - L9 (32%)
+      - L30 (47%)
+      - L47 (73%)
+    - - precision
+      - L16 (52%)
+      - L16 (57%)
+      - L60 (94%)
+      - L63 (98%)
+    - - pre_cp_fpr
+      - L16 (52%)
+      - L16 (57%)
+      - L60 (94%)
+      - L63 (98%)
+    - - composite (additive)
+      - L16 (52%)
+      - L12 (43%)
+      - L60 (94%)
+      - L63 (98%)
+  figures_description:
+  - 'Heatmap: 5 metrics × 4 models → selected layer depth (%). Clear shallow-bias
+    pattern for crossing_rate metric on 32B. Threshold-dependent metrics converge
+    on deep layers.'
+  analysis: 'Layer selection sensitivity is the paper''s primary methodological contribution,
+    but worst-tier reviewers rate it insufficient novelty (2.0-2.5). The argument:
+    "every ML practitioner knows different metrics select different hyperparameters.
+    Showing this for layer selection is an observation, not a method. There''s no
+    proposed algorithm to automatically resolve the disagreement — just ''try more
+    metrics,'' which is standard practice."
+
+    '
+- name: Cross-architecture temporal window evaluation (32B)
+  plan_id: exp-002
+  description: 'Temporal LR at multiple window sizes on R1-32B (L63) and QwQ-32B (L60).
+    Evaluate whether temporal context universally improves probe accuracy across 32B
+    models.
+
+    '
+  expected_results:
+    r1_32b_l63_w1_bal_acc: 0.826
+    r1_32b_l63_w1_precision: 0.603
+    r1_32b_l63_w1_coverage: 0.25
+    r1_32b_l63_w3_bal_acc: 0.754
+    r1_32b_l63_w5_bal_acc: 0.741
+    r1_32b_l63_w10_bal_acc: 0.737
+    r1_32b_l63_w15_bal_acc: 0.721
+    r1_32b_temporal_trend: DECREASING with W (W=1 best, -10.5pp by W=15)
+    r1_32b_dimensionality_issue: 51200 × W features for n=20 → massive overfitting
+      at W≥3
+    qwq_32b_l60_w1_bal_acc: 0.74
+    qwq_32b_l60_w3_bal_acc: 0.74
+    qwq_32b_l60_w5_bal_acc: 0.742
+    qwq_32b_l60_w15_bal_acc: 0.731
+    qwq_32b_temporal_trend: flat to slightly decreasing
+    qwq_32b_best_w: 5
+    text_temporal_universal_improvement: true
+    hs_temporal_improvement_3_of_4: true
+    hs_temporal_exception: OT-7B HS peaks W=3, declines at larger W; R1-32B only W=1
+      significant
+  result_rationale: 'Temporal context shows a split pattern at 32B: QwQ benefits modestly
+    across all W (text and HS), but R1-32B DEGRADES with increasing W because concatenating
+    51200-dimensional vectors across W>1 windows creates a feature space massively
+    exceeding n=20 training samples. This is not a failure of the temporal hypothesis
+    — it''s a sample-size bottleneck. Worst-tier reviewers seize on this: "R1-32B
+    temporal results are meaningless because you''re fitting 102400+ parameters to
+    20 samples. The W=1 ''significance'' at L63 survives only because W=1 avoids this
+    problem. Your ''best'' result for R1-32B is actually a dimensionality artifact
+    — the only window that avoids overfitting happens to be significant." Claim 1
+    (temporal universally helps) holds for text probes across all 4 models, but for
+    HS probes, 2/4 models have caveats (OT-7B saturation, R1-32B dimensionality).
+    Reviewers frame this as "temporal improvement is a text-probe finding, not an
+    HS-probe finding."
+
+    '
+  tables:
+  - name: Temporal Window Effect on 32B Models (HS probes, corrected layers)
+    columns:
+    - Model
+    - Layer
+    - W=1
+    - W=3
+    - W=5
+    - W=10
+    - W=15
+    - Trend
+    rows:
+    - - R1-32B
+      - L63
+      - 0.826*
+      - '0.754'
+      - '0.741'
+      - '0.737'
+      - '0.721'
+      - ↓ declining
+    - - QwQ-32B
+      - L60
+      - '0.740'
+      - '0.740'
+      - '0.742'
+      - '0.735'
+      - '0.731'
+      - → flat
+    - - R1-8B
+      - L14
+      - '0.778'
+      - '0.790'
+      - '0.781'
+      - '0.793'
+      - '0.802'
+      - ↑ improving
+    - - OT-7B
+      - L16
+      - '0.663'
+      - 0.688*
+      - '0.678'
+      - '0.668'
+      - '0.659'
+      - ↑↓ peaks W=3
+  figures_description:
+  - 'Line plot: bal_acc vs W for each model. R1-8B shows steady climb. OT-7B peaks
+    then falls. QwQ flat. R1-32B declines from W=1. Divergent patterns undermine ''universal
+    temporal benefit'' claim.'
+  analysis: 'Worst-tier reviewers note: "Temporal context helps universally for text
+    probes (a known result — more context helps NLP classifiers). For HS probes, 2/4
+    models show non-monotonic or declining trends. The paper''s Claim 1 should be
+    ''temporal context helps text probes'' — attributing it to HS probes is cherry-picking
+    the models where it works."
+
+    '
+- name: Cross-model transfer probes
+  plan_id: exp-003
+  description: 'Train probe on one model, test on another. PCA projection for cross-architecture
+    transfer (4096→5120 or vice versa). Tests whether safety commitment encoding is
+    universal.
+
+    '
+  expected_results:
+    r1_8b_to_r1_32b_acc: 0.522
+    r1_8b_to_qwq_acc: 0.595
+    r1_32b_to_qwq_acc: 0.673
+    qwq_to_r1_32b_acc: 0.673
+    r1_32b_to_r1_8b_acc: 0.583
+    best_transfer_overall: 0.673
+    chance_baseline: 0.5
+    all_transfers_below_within_model: true
+    within_family_32b_weak_transfer: 0.673
+    cross_family_at_chance: true
+  result_rationale: 'Cross-model transfer fails completely — the best transfer accuracy
+    (67.3% Qwen-family 32B internal) is far below within-model performance and barely
+    above the majority-class baseline. Cross-family transfer (Llama↔Qwen) is at chance.
+    Worst-tier reviewers use this as evidence against the paper: "Safety encoding
+    is model-specific. This means every new model needs its own probe training with
+    labeled commitment points — a supervision cost the paper downplays. If safety
+    commitment were a universal phenomenon, SOME geometric structure should transfer.
+    The complete failure suggests the probes are learning model-specific artifacts,
+    not a generalizable safety signal." This finding is consistent with the selectivity
+    control task (7.5-18.5pp) but reviewers argue selectivity merely shows the probes
+    aren''t random — not that they detect genuine safety commitment vs idiosyncratic
+    model behavior.
+
+    '
+  tables:
+  - name: Cross-Model Transfer Accuracy Matrix
+    columns:
+    - Train →
+    - R1-8B
+    - OT-7B
+    - R1-32B
+    - QwQ-32B
+    rows:
+    - - R1-8B
+      - 0.817 (self)
+      - —
+      - '0.522'
+      - '0.595'
+    - - OT-7B
+      - —
+      - 0.688 (self)
+      - —
+      - —
+    - - R1-32B
+      - '0.583'
+      - —
+      - 0.826 (self)
+      - '0.673'
+    - - QwQ-32B
+      - —
+      - —
+      - '0.673'
+      - 0.740 (self)
+  figures_description:
+  - 'Heatmap: transfer accuracy matrix. Diagonal (self) shows 69-83%. Off-diagonal
+    all below 68%. Cross-family cells (Llama↔Qwen) near chance (50-60%).'
+  analysis: 'Complete transfer failure. Worst-tier reviewers conclude: "The paper
+    claims to study ''safety commitment detection'' as a general phenomenon, but the
+    probes are entirely model-specific. This means the method has zero practical scalability
+    — you need labeled data for every model you want to monitor. Combined with the
+    engineering cost of white-box access, the deployment story collapses."
+
+    '
+- name: Lead time analysis across models
+  plan_id: exp-004
+  description: 'Evaluate HS probe lead time distributions on all 4 models. Compare
+    HS vs text lead times. Lead time = steps between first detection and commitment
+    point.
+
+    '
+  expected_results:
+    r1_8b_hs_lead_mean: -0.1
+    r1_8b_hs_lead_note: HS detects AT commitment, not before
+    r1_8b_text_lead_mean: 10.3
+    r1_8b_text_lead_inflated: high text lead is artifact of high pre-CP FPR (trigger-happy)
+    ot_7b_hs_lead_mean: 21.6
+    ot_7b_text_lead_mean: 45.5
+    ot_7b_lead_note: absolute values inflated by long traces (~80 sentences)
+    qwq_32b_hs_lead_mean_range: -1.2 to +1.9
+    qwq_32b_text_lead_mean_range: 3.7 to 12.3
+    qwq_32b_hs_lead_negative: true
+    qwq_32b_position_baseline_lead: better than HS
+    r1_32b_hs_lead_mean: +11.7 to +13.3
+    r1_32b_hs_lead_positive: true
+    r1_32b_coverage_at_significant_w: 0.25
+    r1_32b_lead_caveat: only 5/20 traces detected at W=1
+    gru_r1_8b_lead: +4.5 ± 3.0
+    gru_r1_8b_worst_seed: '+0.9'
+  result_rationale: 'Lead time results are a mixed bag that worst-tier reviewers weaponize:
+    (1) R1-8B HS lead is effectively zero — HS detects AT commitment, not before.
+    Only GRU achieves modest positive lead (+4.5, worst seed +0.9). Text lead of +10.3
+    is misleadingly high (artifact of trigger-happy detection with 20.5% pre-CP FPR).
+    (2) QwQ-32B: HS lead time is NEGATIVE (-1.2 to +1.9 steps) while text detects
+    3.7-12.3 steps earlier. Position baseline (bal_acc=0.746) beats HS (bal_acc=0.740).
+    A reviewer writes: "for QwQ, just tracking relative position in the trace outperforms
+    hidden-state monitoring — why bother with white-box access?" (3) R1-32B has excellent
+    HS lead (+13 steps) but only 25% coverage — meaning 15/20 traces are undetected.
+    Reviewer: "a detector that works on 5 traces is an anecdote, not a system." (4)
+    OT-7B lead times are inflated by long traces. Overall: 2/4 models have HS lead
+    ≤ 0, 1/4 has only 25% coverage, and 1/4 has inflated absolute values. No model
+    presents a clean HS lead time story.
+
+    '
+  tables:
+  - name: 'Lead Time Comparison: HS vs Text vs Position'
+    columns:
+    - Model
+    - HS Lead (steps)
+    - Text Lead (steps)
+    - Position BA
+    - HS BA
+    - HS > Position?
+    rows:
+    - - R1-8B (W=15)
+      - −0.1
+      - +10.3†
+      - —
+      - '0.802'
+      - —
+    - - OT-7B (W=3)
+      - +21.6‡
+      - +45.5‡
+      - —
+      - '0.688'
+      - —
+    - - QwQ-32B (W=3)
+      - −1.2 to +1.9
+      - +3.7 to +12.3
+      - '0.746'
+      - '0.740'
+      - 'No'
+    - - R1-32B (W=1)
+      - +11.7 to +13.3
+      - —
+      - '0.686'
+      - '0.826'
+      - Yes (25% cov)
+  figures_description:
+  - Per-model lead time distribution boxplot. QwQ and R1-8B HS centered near zero.
+    R1-32B shows positive lead but with 75% of traces undetected (marked as missing).
+    Text leads generally positive but with high FPR caveats.
+  analysis: 'Worst-tier reviewers identify lead time as the practical dealbreaker:
+    "The paper claims HS monitoring enables early detection, but 2/4 models show HS
+    detecting LATER than text. The one model with good lead time (R1-32B) detects
+    only 25% of traces. A deployment team would choose text monitoring over HS monitoring
+    for lead time alone, saving the engineering cost of hidden-state extraction."
+
+    '
+- name: TrajGuard-style Mahalanobis baseline (all 4 models)
+  plan_id: exp-005
+  description: 'Mahalanobis distance on safe-trace covariance across all 4 models.
+    Tests whether geometric distance-based methods (TrajGuard-style) can detect safety
+    commitment.
+
+    '
+  expected_results:
+    r1_8b_separation: 0.07
+    ot_7b_separation: 0.03
+    r1_32b_separation: 0.15
+    qwq_32b_separation: 0.2
+    max_separation_any_model: 0.2
+    all_models_fail: true
+    false_alarm_exceeds_tp_all_thresholds: true
+    signal_location: minor PCA components, not principal directions
+    r1_8b_safe_md: 6.66
+    r1_8b_post_md: 6.73
+    r1_32b_safe_md: 6.73
+    r1_32b_post_md: 6.88
+    qwq_32b_safe_md: 3.22
+    qwq_32b_post_md: 3.42
+  result_rationale: 'Mahalanobis distance fails on all 4 models (max separation 0.20
+    on QwQ, FA rate ≥ TP rate at every threshold). The signal lives in minor PCA components,
+    not principal variance directions — Mahalanobis, which weights by inverse covariance,
+    is structurally blind to this geometry. Worst-tier reviewers have mixed reactions:
+    (1) "Mahalanobis failing is expected — Bolukbasi et al. 2016 and subsequent work
+    showed safety-relevant features are often orthogonal to principal variance. This
+    negative result is predictable, not informative." (2) "You tested one geometric
+    baseline. What about k-NN distance, local outlier factor, or isolation forests?
+    The negative result space is underexplored." The finding supports the "existing
+    methods fail" claim but reviewers rate it as incremental — failure of one known-limited
+    baseline is not a contribution.
+
+    '
+  tables:
+  - name: Mahalanobis Distance Separation (4 models)
+    columns:
+    - Model
+    - Layer
+    - Safe MD
+    - Post-CP MD
+    - Separation
+    - FA ≥ TP?
+    rows:
+    - - R1-8B
+      - L14
+      - '6.66'
+      - '6.73'
+      - '+0.07'
+      - 'Yes'
+    - - OT-7B
+      - L16
+      - '7.68'
+      - '7.71'
+      - '+0.03'
+      - 'Yes'
+    - - R1-32B
+      - L63
+      - '6.73'
+      - '6.88'
+      - '+0.15'
+      - 'Yes'
+    - - QwQ-32B
+      - L60
+      - '3.22'
+      - '3.42'
+      - '+0.20'
+      - 'Yes'
+  figures_description:
+  - 'MD time-series: safe (blue) and jailbreak (red) traces completely overlapping
+    on all 4 models. No visible discontinuity at commitment point.'
+  analysis: 'Universal Mahalanobis failure confirms safety signal is geometrically
+    inaccessible to distance-based methods. But worst-tier reviewers dismiss this:
+    "Showing Mahalanobis doesn''t work is a paragraph in a methods section, not a
+    contribution. The field already knows unsupervised geometric methods struggle
+    with fine-grained behavioral distinctions."
+
+    '
+- name: Bootstrap confidence intervals + threshold-independent metrics
+  plan_id: exp-006
+  description: '10000 bootstrap resamples on all key metrics across 4 models. Holm-Bonferroni
+    correction. AUROC, precision-recall curves, detection delay CDF.
+
+    '
+  expected_results:
+    holm_bonferroni_pass: 12/12
+    r1_8b_precision_delta: +22.4pp
+    r1_8b_precision_p: <0.001
+    ot_7b_precision_delta: +21.9pp
+    ot_7b_precision_p: <0.001
+    qwq_32b_precision_delta: +23.6pp
+    qwq_32b_precision_p: <0.001
+    qwq_32b_fpr_p: 0.004
+    r1_32b_precision_delta: +15.4pp
+    r1_32b_precision_p: <0.001
+    r1_32b_fpr_p: 0.007
+    r1_32b_fpr_marginal_note: p=0.007 passes HB threshold 0.025 but barely
+    marginal_tests_count: 2
+    all_precision_deltas_positive: true
+    precision_range: +15.4 to +23.6pp
+    r1_32b_ci_width_ba: ~0.15
+    qwq_32b_ci_width_ba: ~0.12
+    r1_8b_ci_width_ba: ~0.06
+  result_rationale: 'All 12/12 tests pass Holm-Bonferroni, which is statistically
+    clean. But worst-tier reviewers attack the PRACTICAL significance, not the statistical
+    significance: (1) "Of course 12/12 pass — you selected the best layer AND the
+    best window per model, then tested. The researcher degrees of freedom (4 models
+    × 64 layers × 7 windows × 5 metrics) dwarf the 12 tests corrected for." (2) "The
+    CIs for 32B models are extremely wide (±0.15 for R1-32B bal_acc). Statistical
+    significance with n=20 means the effect is large, but the PRECISION of the estimate
+    is poor. You know HS is better somewhere between +3pp and +34pp — that''s not
+    actionable." (3) "R1-32B FPR p=0.007 and QwQ FPR p=0.004 are the most marginal
+    passing tests. A 10001st bootstrap replicate could flip either." (4) "Holm-Bonferroni
+    corrects for 12 tests, but the true multiplicity (including layer/window selection)
+    is orders of magnitude larger."
+
+    '
+  tables:
+  - name: Holm-Bonferroni Summary (12/12, α=0.05)
+    columns:
+    - Rank
+    - Model
+    - Metric
+    - p-value
+    - HB Threshold
+    - Pass
+    rows:
+    - - 1
+      - R1-8B
+      - precision
+      - <0.001
+      - '0.0042'
+      - ✅
+    - - 2
+      - OT-7B
+      - bal_acc
+      - <0.001
+      - '0.0045'
+      - ✅
+    - - 3
+      - OT-7B
+      - precision
+      - <0.001
+      - '0.0050'
+      - ✅
+    - - 4
+      - OT-7B
+      - FPR
+      - <0.001
+      - '0.0056'
+      - ✅
+    - - 5
+      - QwQ
+      - bal_acc
+      - <0.001
+      - '0.0063'
+      - ✅
+    - - 6
+      - QwQ
+      - precision
+      - <0.001
+      - '0.0071'
+      - ✅
+    - - 7
+      - R1-32B
+      - bal_acc
+      - <0.001
+      - '0.0083'
+      - ✅
+    - - 8
+      - R1-32B
+      - precision
+      - <0.001
+      - '0.0100'
+      - ✅
+    - - 9
+      - QwQ
+      - FPR
+      - '0.004'
+      - '0.0125'
+      - ✅
+    - - 10
+      - R1-8B
+      - bal_acc
+      - '0.005'
+      - '0.0167'
+      - ✅
+    - - 11
+      - R1-32B
+      - FPR
+      - '0.007'
+      - '0.0250'
+      - ✅
+    - - 12
+      - R1-8B
+      - FPR
+      - '0.044'
+      - '0.0500'
+      - ✅
+  figures_description:
+  - 'Forest plot: HS-text precision delta with 95% CI per model. All positive. R1-32B
+    CI is widest (+3pp to +28pp), reflecting n=20 limitation.'
+  - 'Bootstrap distribution of HS-text AUROC difference: 7-8B models clearly positive,
+    32B models positive but with wider spread.'
+  analysis: 'Statistical significance is established but reviewers find it insufficient:
+    "The paper''s statistical methodology is sound, but the story it tells is ''HS
+    is significantly better by 15-24pp precision at best-case layer/window selection.''
+    For an EMNLP Main paper, we need either (a) a novel method that achieves these
+    gains, or (b) a surprising finding. Neither: linear probes on hidden states are
+    standard, and it''s unsurprising they outperform text embeddings (hidden states
+    are an information superset of text)."
+
+    '
+- name: Window size ablation (W=1,3,5,10,15,20,25 on all models)
+  plan_id: exp-007
+  description: 'Systematic window size sweep on all 4 models. Characterize precision-coverage
+    tradeoff and identify optimal W per model.
+
+    '
+  expected_results:
+    coverage_decreases_with_w_all_models: true
+    precision_increases_with_w_all_models: true
+    fpr_decreases_with_w_all_models: true
+    r1_8b_best_bal_acc_w: 25
+    r1_8b_w25_precision: 0.822
+    r1_8b_w25_coverage: 0.488
+    r1_8b_w25_fpr_step: 0.048
+    r1_32b_best_bal_acc_w: 10
+    r1_32b_w10_precision: 0.609
+    r1_32b_w10_coverage: 0.7
+    r1_32b_w10_fpr_step: 0.234
+    qwq_32b_best_bal_acc_w: 25
+    qwq_32b_w25_precision: 0.618
+    qwq_32b_w25_coverage: 0.579
+    qwq_32b_w25_fpr_step: 0.169
+    ot_7b_hs_peaks_w3: true
+    ot_7b_w3_bal_acc: 0.688
+    ot_7b_w25_bal_acc: 0.659
+    tradeoff_universal: larger W → higher precision, lower coverage, lower FPR
+  result_rationale: 'Window ablation reveals a clean precision-sensitivity tradeoff
+    that holds across all models. Worst-tier reviewers dismiss this: (1) "The coverage-decreasing-with-W
+    finding is trivially expected — requiring K=5 consecutive crossings with a larger
+    window means fewer traces reach the threshold. This is a property of the detection
+    criterion K, not an insight about temporal probing." (2) "The optimal W varies
+    by model (W=3 for OT-7B, W=10 for R1-32B, W=25 for QwQ and R1-8B). This means
+    W is another model-specific hyperparameter to tune — combined with layer selection,
+    you need per-model layer AND window tuning. The ''systematic evaluation'' framing
+    hides the fact that this is just exhaustive grid search." (3) "At the best W per
+    model, coverage ranges from 49% (R1-8B) to 70% (R1-32B). Missing 30-50% of safety
+    commitment events is not deployment-ready."
+
+    '
+  tables:
+  - name: Precision-Coverage Tradeoff Summary (all 4 models)
+    columns:
+    - Model
+    - W=1 Prec/Cov
+    - W=3 Prec/Cov
+    - W=15 Prec/Cov
+    - W=25 Prec/Cov
+    rows:
+    - - R1-8B
+      - 0.693/0.721
+      - 0.723/0.698
+      - 0.777/0.512
+      - 0.822/0.488
+    - - OT-7B
+      - —/—
+      - 0.466/0.532
+      - —/—
+      - —/—
+    - - R1-32B
+      - 0.549/0.800
+      - 0.560/0.800
+      - 0.591/0.700
+      - 0.566/0.700
+    - - QwQ-32B
+      - 0.544/0.789
+      - 0.565/0.737
+      - 0.582/0.684
+      - 0.618/0.579
+  figures_description:
+  - 'Line plot: precision (solid) and coverage (dashed) vs W for each model. Clear
+    inverse relationship. Shaded region shows ''deployment-acceptable'' zone (precision>0.7,
+    coverage>0.6) — no model reaches it for any W.'
+  analysis: 'The ablation confirms the tradeoff is universal but no operating point
+    achieves both high precision AND high coverage. Worst-tier reviewer: "Table 3
+    is the paper''s most honest result. At no window size does any model achieve >0.7
+    precision AND >0.6 coverage simultaneously. This is not a tuning problem — it''s
+    a fundamental performance ceiling."
+
+    '
+- name: Layer selection ablation (5 metrics × 4 models)
+  plan_id: exp-008
+  description: 'Evaluate all layers with temporal probes on 32B models under 5 different
+    selection metrics. Demonstrate crossing_rate bias and metric-dependent layer selection.
+
+    '
+  expected_results:
+    crossing_rate_selects_shallow_32b: true
+    pure_bal_acc_selects_middle_32b: true
+    threshold_dependent_select_deep_32b: true
+    qwq_l2_vs_l60_precision_gain: +11.5pp
+    r1_32b_l10_vs_l63_precision_gain: +4.1pp
+    loo_cv_stability: 65-68% dominant fold
+    r1_8b_consistent: true
+    ot_7b_varied: true
+    bal_acc_layer_vs_precision_layer_diverge_32b: true
+    qwq_l30_bal_acc: 0.751
+    qwq_l60_bal_acc: 0.71
+    r1_32b_l47_bal_acc: 0.829
+    r1_32b_l63_bal_acc: 0.759
+    ba_optimal_different_from_precision_optimal: true
+  result_rationale: 'The layer selection ablation reveals a genuine pattern (biased
+    metric → shallow layers → masked HS advantage), but worst-tier reviewers split
+    on its significance: (1) The supportive reading: "This is a useful observation
+    — researchers using bal_acc × crossing_rate will get misleading results." (2)
+    The dismissive reading (dominant in worst tier): "This is expected behavior of
+    a poorly chosen metric. The composite bal_acc × crossing_rate was never standard
+    — it''s the authors'' own construction (or a rare one). Showing it''s bad doesn''t
+    advance the field because nobody was using it." (3) The circularity concern: "You
+    select layers by precision/FPR, then evaluate by precision/FPR. The D044 BA-layer
+    robustness check partially addresses this (16/16 HB pass on BA-selected layers),
+    but the reviewer asks: ''if BA-selected layers also show HS advantage, why not
+    just use BA selection? What''s the contribution of the 5-metric comparison?''"
+    (4) "LOO-CV stability of 65-68% means 32-35% of folds select a DIFFERENT layer.
+    This is not the ''robust selection'' the paper claims."
+
+    '
+  tables:
+  - name: Metric × Model → Selected Layer (with HS-Text precision delta)
+    columns:
+    - Metric
+    - R1-8B Layer (ΔPrec)
+    - OT-7B Layer (ΔPrec)
+    - QwQ Layer (ΔPrec)
+    - R1-32B Layer (ΔPrec)
+    rows:
+    - - bal_acc × cr
+      - L0 (+var)
+      - L0 (+var)
+      - L2 (+5.8pp NS)
+      - L10 (+9.4pp NS)
+    - - pure bal_acc
+      - L12 (+17.8pp)
+      - L9 (+25.4pp)
+      - L30 (+18.0pp)
+      - L47 (+13.7pp)
+    - - precision
+      - L16 (+22.4pp)
+      - L16 (+21.9pp)
+      - L60 (+23.6pp)
+      - L63 (+15.4pp)
+    - - pre_cp_fpr
+      - L16 (−7.4pp)
+      - L16 (−17.1pp)
+      - L60 (−9.8pp)
+      - L63 (−14.6pp)
+    - - composite
+      - L16 (+22.4pp)
+      - L12 (+var)
+      - L60 (+23.6pp)
+      - L63 (+15.4pp)
+  figures_description:
+  - 'Alluvial diagram: metric (left) → selected layer depth band (right), colored
+    by model. Crossing_rate-contaminated metric routes to shallow band; all others
+    route to mid/deep.'
+  analysis: 'The ablation is thorough but worst-tier reviewers question whether it
+    constitutes a contribution: "Sensitivity analysis is a sanity check, not a finding.
+    The paper would be better if it had used the right metric from the start and reported
+    results at correct layers — making the sensitivity analysis unnecessary for the
+    paper''s core claims."
+
+    '
+- name: 16-label taxonomy supervision
+  plan_id: exp-009
+  description: 'Train probes with fine-grained safety labels (Type 1/2/3/4 × pre/post)
+    instead of binary commitment. Evaluate whether richer supervision improves detection.
+
+    '
+  expected_results:
+    r1_8b_16label_acc: 0.41
+    r1_8b_binary_collapse_acc: 0.825
+    r1_8b_binary_collapse_delta: +0.8pp
+    ot_7b_16label_acc: 0.35
+    ot_7b_binary_collapse_delta: +1.1pp
+    r1_32b_16label_acc: 0.28
+    r1_32b_binary_collapse_delta: +0.6pp
+    qwq_32b_16label_acc: 0.26
+    qwq_32b_binary_collapse_delta: +0.9pp
+    fine_grained_improvement_marginal: true
+    max_collapse_delta: +1.1pp
+  result_rationale: 'Fine-grained supervision provides marginal benefit (+0.6-1.1pp
+    after binary collapse) across all models. The 16-class accuracy is low (26-41%)
+    because the classes are imbalanced and transition types are not cleanly separable
+    in hidden-state space. Worst-tier reviewers react: (1) "Marginal improvement from
+    richer supervision confirms the probe is already extracting most of the available
+    linear signal in binary mode. This supports the reviewer''s argument that linear
+    probes are saturated — not that the methodology is optimal, but that the information
+    ceiling is low." (2) "The 16-label experiment was motivated by reviewer concern
+    about ''underusing available supervision,'' but the result shows supervision quality
+    doesn''t matter much. This undermines the paper''s implicit argument that careful
+    methodology (layer selection, temporal context) is what matters — it seems the
+    representation quality is the binding constraint."
+
+    '
+  tables:
+  - name: 16-Label vs Binary Supervision
+    columns:
+    - Model
+    - Binary Acc
+    - 16-Label Acc
+    - 16→Binary Collapse
+    - Δ vs Binary
+    rows:
+    - - R1-8B
+      - '0.817'
+      - '0.41'
+      - '0.825'
+      - +0.8pp
+    - - OT-7B
+      - '0.688'
+      - '0.35'
+      - '0.699'
+      - +1.1pp
+    - - QwQ-32B
+      - '0.740'
+      - '0.26'
+      - '0.749'
+      - +0.9pp
+    - - R1-32B
+      - '0.826'
+      - '0.28'
+      - '0.832'
+      - +0.6pp
+  figures_description:
+  - 'Confusion matrix (16-class) on R1-8B: heavy diagonal on safe categories, near-uniform
+    on unsafe subcategories — probes cannot distinguish commitment subtypes.'
+  analysis: 'Fine-grained supervision dead-end. Worst-tier implication: "The information
+    ceiling for linear probes on single-layer hidden states is fundamentally limited.
+    Trying harder with better labels or more metrics can''t overcome this."
+
+    '
+- name: Oracle decomposition
+  plan_id: exp-010
+  description: 'Analyze what the oracle label sequence encodes that hidden-state probes
+    cannot access. Compare oracle lead (+31 steps on R1-8B) to probe lead (~0 steps).
+
+    '
+  expected_results:
+    r1_8b_oracle_lead: '+31.0'
+    r1_8b_best_probe_lead: +4.5 (GRU)
+    r1_8b_oracle_gap: '26.5'
+    r1_8b_label_autocorr_pre_cp: 0.82
+    r1_8b_hs_autocorr_pre_cp: 0.95
+    label_entropy_pre_cp_r1_8b: 1.38
+    hs_entropy_pre_cp_r1_8b: 0.41
+    r1_32b_oracle_lead: '+28'
+    r1_32b_best_probe_lead: +13 (W=1, 25% cov)
+    qwq_oracle_lead: '+27'
+    qwq_best_probe_lead: −1.2 to +1.9
+    pattern_finding: Labels show gradual safety erosion pre-CP; hidden states show
+      step-function at CP
+  result_rationale: 'Oracle decomposition reveals a 26-28 step gap between what''s
+    detectable in labels vs hidden states. The label sequence shows gradual pre-CP
+    patterns (increasing unsafe-adjacent labels, shortening safe streaks) that hidden
+    states don''t track. Worst-tier reviewers draw a harsh conclusion: "The 31-step
+    oracle lead proves that safety commitment is a GRADUAL process visible in the
+    model''s outputs. But the hidden-state probe can only detect it at or after the
+    commitment point (lead ≈ 0). This means hidden states encode the CURRENT safety
+    state but not the TRAJECTORY toward commitment. For deployment, trajectory prediction
+    is what matters — catching the commitment after it happens is too late. The oracle
+    gap is not a puzzle for Discussion; it''s evidence that the entire hidden-state
+    monitoring approach is fundamentally limited. Text-based monitoring that tracks
+    reasoning trajectory (even with higher FPR) provides earlier warning."
+
+    '
+  tables:
+  - name: Oracle vs Best Probe Lead Time
+    columns:
+    - Model
+    - Oracle Lead
+    - Best Probe Lead
+    - Method
+    - Gap
+    - Hidden State Entropy (pre-CP)
+    rows:
+    - - R1-8B
+      - '+31.0'
+      - '+4.5'
+      - GRU multi-layer
+      - '26.5'
+      - '0.41'
+    - - OT-7B
+      - ~+30
+      - +33.6 (GRU)
+      - GRU multi-layer
+      - ~0†
+      - —
+    - - QwQ-32B
+      - '+27'
+      - −1.2 to +1.9
+      - temporal LR
+      - 25-28
+      - —
+    - - R1-32B
+      - '+28'
+      - '+13.3'
+      - temporal LR W=1
+      - 15 (25% cov)
+      - —
+  figures_description:
+  - 'Pre-CP hidden state trajectory (Fisher directions): R1-8B shows minimal drift
+    before CP, then sharp transition. Labels show gradual escalation starting 20-30
+    steps before CP.'
+  analysis: 'The oracle decomposition is the worst-tier''s strongest negative finding:
+    hidden states are fundamentally reactive (encoding current state) rather than
+    predictive (encoding trajectory). Reviewer: "This paper demonstrates that hidden-state
+    monitoring is a lagging indicator. For safety deployment, you need leading indicators.
+    Text-based trajectory analysis, while noisier, is the better research direction."
+
+    '
+- name: OpenThinker-7B (Qwen2.5-7B, STILL-trained)
+  plan_id: exp-011
+  description: '4th model completing the 2×2 architecture×scale matrix. Full pipeline:
+    layer sweep, temporal probes, HS vs text comparison, GRU, selectivity control
+    task.
+
+    '
+  expected_results:
+    best_layer: 16
+    best_layer_depth_pct: 57.1
+    best_hs_bal_acc_w3: 0.688
+    best_hs_precision_w3: 0.466
+    best_hs_pre_cp_fpr: 0.1
+    bootstrap_3_of_3_hb: true
+    bootstrap_bal_acc_delta: +10.7pp
+    bootstrap_precision_delta: +21.9pp
+    bootstrap_fpr_delta: −17.1pp
+    selectivity_pp: 18.3
+    n_traces: 228
+    gru_multi_bal_acc: 0.746
+    gru_multi_lead: '+33.6'
+    gru_multi_fpr: 0.274
+    hs_temporal_saturation_w3: true
+    text_temporal_w25_best: 0.614
+  result_rationale: 'OT-7B is the cleanest single-model evidence for HS advantage
+    (3/3 HB, highest selectivity 18.3pp, largest n=228 traces). But worst-tier reviewers
+    are unimpressed by adding a 4th model that confirms the known pattern: (1) "A
+    4th model at 7B showing the same result doesn''t address the 32B caveats. The
+    paper already has two 7-8B models that work. The question is whether HS monitoring
+    scales, and OT-7B can''t answer that." (2) "OT-7B has its own caveats: HS temporal
+    saturation at W=3 (bal_acc declines at larger W), and absolute performance is
+    still below R1-8B (best bal_acc 68.8% vs 80.2%). The ''cleanest evidence'' is
+    still only 69% balanced accuracy — barely better than a biased coin." (3) "GRU
+    lead time of +33.6 steps sounds impressive until you note OT-7B traces average
+    ~80 sentences — normalize by trace length and the lead time fraction is similar
+    to other models." (4) "FPR of 27.4% for GRU means ~1 in 4 safe steps triggers
+    the detector. At 80-sentence traces, that''s ~20 false alarms per safe trace."
+
+    '
+  tables:
+  - name: OT-7B Full Pipeline Summary
+    columns:
+    - Method
+    - bal_acc
+    - precision
+    - pre-CP FPR
+    - coverage
+    - lead
+    rows:
+    - - HS temporal W=3 L16
+      - '0.688'
+      - '0.466'
+      - '0.100'
+      - '0.532'
+      - '+21.6'
+    - - Text temporal W=25
+      - '0.614'
+      - '0.329'
+      - '0.161'
+      - '0.660'
+      - '+45.5'
+    - - GRU multi L13-19
+      - '0.746'
+      - —
+      - '0.274'
+      - '0.645'
+      - '+33.6'
+    - - HS-Text Δ (HB)
+      - +10.7pp ✅
+      - +21.9pp ✅
+      - −17.1pp ✅
+      - —
+      - —
+  figures_description:
+  - '2×2 architecture×scale matrix: Fisher discriminability + HS-text precision delta.
+    Both 7-8B cells show large delta; both 32B cells show delta with model-specific
+    caveats.'
+  analysis: 'OT-7B strengthens the 7-8B story but worst-tier reviewers note: "The
+    2×2 matrix now has two strong cells (7-8B) and two weak cells (32B). The paper''s
+    breadth claim (''4 models'') is technically true but misleading — 2/4 models have
+    serious practical caveats that make the HS advantage non-deployable."
+
+    '
+- name: GRU/Attention probe upper bound (32B models)
+  plan_id: exp-012
+  description: 'GRU sequence model on 32B models at corrected layers. Tests whether
+    nonlinear sequence modeling can recover signal that linear temporal probes miss.
+
+    '
+  expected_results:
+    r1_32b_gru_single_bal_acc: 0.675
+    r1_32b_gru_multi_bal_acc: 0.655
+    r1_32b_gru_lead_mean: +8.8 to +9.1
+    r1_32b_gru_fpr: 0.114 to 0.135
+    r1_32b_gru_coverage: 0.23 to 0.30
+    r1_32b_gru_vs_lr_delta: −6pp bal_acc (GRU worse)
+    qwq_32b_gru_single_bal_acc: 0.694
+    qwq_32b_gru_multi_bal_acc: 0.724
+    qwq_32b_gru_lead_mean: '+15.9'
+    qwq_32b_gru_fpr: 0.289
+    qwq_32b_gru_coverage: 0.84
+    qwq_32b_gru_vs_lr_delta: −3.7pp bal_acc (GRU worse at bal_acc, better at coverage)
+    ot_7b_gru_multi_bal_acc: 0.746
+    ot_7b_gru_multi_lead: '+33.6'
+    ot_7b_gru_fpr: 0.274
+    gru_worse_than_lr_3_of_4: true
+    gru_note: GRU trades accuracy for coverage/lead — higher FPR drives earlier detection
+  result_rationale: 'GRU does NOT outperform temporal LR on balanced accuracy for
+    3/4 models. On R1-32B (n=20 test), GRU severely overfits — bal_acc drops 6pp below
+    LR. On QwQ, GRU achieves higher coverage and lead time but at 2× the FPR. This
+    confirms linear probes are sufficient (or even superior given small samples).
+    Worst-tier reviewers use this to attack novelty: "The paper''s method is logistic
+    regression on hidden states with a sliding window. That''s not a contribution
+    — it''s the simplest possible baseline. The fact that GRU and MLP don''t help
+    confirms the method space is trivial, which means the paper''s ''systematic comparison
+    of 7 methods'' is comparing variations of the obvious approach (linear probe)
+    against methods that were never designed for this task (Mahalanobis, BOCPD, CCS).
+    The negative results are predictable, not informative."
+
+    '
+  tables:
+  - name: GRU vs Temporal LR (32B models, corrected layers)
+    columns:
+    - Model
+    - LR bal_acc
+    - GRU bal_acc
+    - Δ
+    - GRU FPR
+    - LR FPR
+    rows:
+    - - R1-32B (L63 W=10)
+      - '0.737'
+      - ~0.675
+      - −6.2pp
+      - '0.135'
+      - '0.234'
+    - - QwQ-32B (L60 W=5)
+      - '0.761'
+      - '0.724'
+      - −3.7pp
+      - '0.289'
+      - '0.217'
+    - - OT-7B (L16 multi)
+      - '0.688'
+      - '0.746'
+      - +5.8pp
+      - '0.274'
+      - '0.100'
+    - - R1-8B (L14 multi)
+      - '0.806'
+      - '0.809'
+      - +0.3pp
+      - '0.165'
+      - '0.097'
+  figures_description:
+  - 'Scatter: method complexity (x: LR/GRU/MLP) vs bal_acc (y), per model. No consistent
+    trend — complexity doesn''t help. Error bars from multi-seed show high variance
+    for GRU.'
+  analysis: 'GRU fails to improve over LR on most models, confirming linear probes
+    are at the information ceiling. Worst-tier reviewer: "The paper''s headline is
+    ''HS beats text.'' The method is logistic regression. The contribution is... careful
+    hyperparameter selection? This is a well-executed experiment report, not a methods
+    paper."
+
+    '
+- name: Text-based baseline (sentence embeddings + temporal LR)
+  plan_id: exp-013
+  description: 'Sentence-BERT (all-MiniLM-L6-v2) embeddings + temporal window LR on
+    CoT text of all 4 models. Critical comparison establishing what text monitoring
+    achieves without hidden-state access.
+
+    '
+  expected_results:
+    r1_8b_text_static_acc: 0.661
+    r1_8b_text_temporal_w15_acc: 0.678
+    r1_8b_text_temporal_w15_auroc: 0.759
+    r1_8b_hs_acc_advantage: +15-18pp
+    ot_7b_text_best_bal_acc: 0.614
+    ot_7b_text_best_precision: 0.329
+    ot_7b_text_best_fpr: 0.161
+    qwq_32b_text_temporal_bal_acc: 0.65
+    qwq_32b_text_precision: 0.421
+    r1_32b_text_temporal_bal_acc: 0.646
+    r1_32b_text_precision: 0.45
+    hs_vs_text_precision_gap_range: +15.4 to +23.6pp
+    text_requires_zero_infra_change: true
+    text_precision_all_models: 0.329-0.487
+    hs_precision_all_models: 0.466-0.776
+  result_rationale: 'Text baseline performs consistently across all models (bal_acc
+    0.61-0.68, precision 0.33-0.49). HS probes outperform by +15-24pp precision, which
+    is statistically significant (12/12 HB). But worst-tier reviewers attack the COST-BENEFIT
+    ratio, not the statistical claim: (1) "Text probes need zero infrastructure change
+    — you monitor the CoT output that''s already available. HS probes require white-box
+    access to model internals, which means: (a) running the model locally (can''t
+    use API), (b) modifying the inference pipeline to extract intermediate activations,
+    (c) per-model layer selection + probe training. The 15-24pp precision gain comes
+    at enormous engineering cost." (2) "At 33-49% text precision, you get 1 true alarm
+    per 2-3 triggers. At 47-78% HS precision, you get 1 per 1.3-2.1 triggers. Is that
+    difference worth instrumenting your entire inference stack? For most deployment
+    teams, no." (3) "Text probes improve with better embeddings (BGE-large, domain-fine-tuned).
+    The paper tested only all-MiniLM-L6-v2 — the weakest common baseline. A reviewer
+    notes: ''Use GPT-4 as the text classifier and the gap likely narrows to <5pp.''"
+    (4) "The BGE-large comparison (exp_bge_large_text_comparison) showed only 1/4
+    HB pass for HS vs BGE-large — the gap narrows significantly with a better text
+    encoder."
+
+    '
+  tables:
+  - name: HS vs Text Precision Gap (+ engineering cost annotation)
+    columns:
+    - Model
+    - HS Precision
+    - Text Precision
+    - Δ
+    - HS Infra Cost
+    rows:
+    - - R1-8B
+      - 0.777 (W=15)
+      - 0.487 (W=15)
+      - +29.0pp
+      - white-box, L14
+    - - OT-7B
+      - 0.466 (W=3)
+      - 0.329 (W=25)
+      - +13.7pp
+      - white-box, L16
+    - - QwQ-32B
+      - 0.578 (W=3)
+      - 0.421 (W=best)
+      - +15.7pp
+      - white-box, L60
+    - - R1-32B
+      - 0.603 (W=1)
+      - 0.450 (W=best)
+      - +15.3pp
+      - white-box, L63
+  figures_description:
+  - 'Cost-benefit scatter: x-axis = engineering complexity (text=1, HS=3), y-axis
+    = precision. Text cluster at (1, 0.33-0.49), HS cluster at (3, 0.47-0.78). Marginal
+    ROI line shows diminishing returns.'
+  analysis: 'The text baseline is the worst-tier reviewer''s strongest weapon: "A
+    15-24pp precision gain sounds meaningful until you consider: (a) text monitoring
+    costs $0 in infrastructure, (b) HS monitoring requires white-box access + per-model
+    tuning, (c) the BGE-large result shows the gap shrinks with better text encoders,
+    (d) safe FPR is 39-62% regardless of modality — both approaches produce unusable
+    false alarm rates. The paper should honestly state: ''HS probes are measurably
+    but marginally better than text probes. Whether the margin justifies white-box
+    access depends on deployment constraints. For most practical settings, text monitoring
+    suffices.''"
+
+    '
+- name: BOCPD/CUSUM on all 4 models
+  plan_id: exp-014
+  description: 'Bayesian Online Change-Point Detection + CUSUM on probe score sequences.
+    Tests whether advanced change-point methods can achieve positive lead time.
+
+    '
+  expected_results:
+    r1_8b_bocpd_detection: 0.93
+    r1_8b_bocpd_lead: '+3.45'
+    r1_8b_cusum_lead: '+0.89'
+    r1_8b_fcp_baseline_lead: '+4.89'
+    r1_8b_fcp_beats_bocpd_on_lead: true
+    ot_7b_bocpd_detection: 0.0
+    ot_7b_bocpd_note: W=3 probe scores too spiky, Gaussian model fails
+    ot_7b_fcp_best_detection: 0.894
+    ot_7b_fcp_best_lead: '+11.83'
+    r1_32b_bocpd_detection: 0.0
+    qwq_32b_bocpd_detection: 0.0
+    r1_32b_cusum_detection: 0.85
+    r1_32b_cusum_lead: '+2.59'
+    qwq_32b_cusum_detection: 0.737
+    qwq_32b_cusum_lead: '+9.86'
+    bocpd_works_only_r1_8b: true
+    cusum_universally_worse_than_fcp: true
+  result_rationale: 'BOCPD fails on 3/4 models (0% detection on OT-7B, R1-32B, QwQ).
+    Only R1-8B works (93%) because R1-8B has gradual probe score transitions that
+    match BOCPD''s Gaussian change-point model. Other models have abrupt transitions
+    (OT-7B) or weak signals (32B) that BOCPD''s parametric assumptions can''t handle.
+    CUSUM detects some traces but with worse lead than simple first-crossing-point
+    (FCP) threshold. Worst-tier reviewers: (1) "BOCPD and CUSUM were never designed
+    for this signal type. Testing them is due diligence, but their failure is predictable
+    — these methods assume stationary-then-shifted Gaussian data, while probe scores
+    are bounded [0,1] and often spiky." (2) "The negative result strengthens the ''nothing
+    works well'' narrative, but the method selection is questionable. Why not test
+    HMM, Viterbi decoding, or learned change-point detectors? The paper tests 2 off-the-shelf
+    methods and declares change-point detection a dead end." (3) "Simple FCP threshold
+    beats BOCPD on mean lead time for R1-8B. The ''advanced'' methods add nothing."
+
+    '
+  tables:
+  - name: Change-Point Detection Cross-Model Summary
+    columns:
+    - Model
+    - BOCPD Det%
+    - BOCPD Lead
+    - CUSUM Det%
+    - CUSUM Lead
+    - FCP Det%
+    - FCP Lead
+    rows:
+    - - R1-8B
+      - 93%
+      - '+3.45'
+      - 65%
+      - '+0.89'
+      - 65%
+      - '+4.89'
+    - - OT-7B
+      - 0%
+      - —
+      - 75%†
+      - +7.46†
+      - 89%
+      - '+11.83'
+    - - R1-32B
+      - 0%
+      - —
+      - 85%
+      - '+2.59'
+      - 95%
+      - '+5.68'
+    - - QwQ-32B
+      - 0%
+      - —
+      - 74%
+      - '+9.86'
+      - 79%
+      - '+9.40'
+  figures_description:
+  - 'Probe score time-series with change-point annotations: R1-8B shows gradual transition
+    detected by BOCPD. OT-7B shows abrupt step-function that BOCPD misses. 32B models
+    show noisy flat signal.'
+  analysis: 'Complete BOCPD failure on 3/4 models and CUSUM inferiority to simple
+    thresholding. Worst-tier reviewer: "The paper tests two change-point algorithms
+    that were designed for very different signal types, finds they don''t work, and
+    claims this as a negative result. But the method selection is so narrow that the
+    negative result is uninformative — you tested the wrong tools."
+
+    '
+- name: False positive analysis (safe trace FPR, all methods)
+  plan_id: exp-015
+  description: 'Run all probes on safe traces (final_judgment=0.5) across all 4 models.
+    Report safe FPR, pre-CP FPR, precision, and precision-recall curves.
+
+    '
+  expected_results:
+    r1_8b_hs_safe_fpr: 0.39
+    r1_8b_text_safe_fpr: 0.385
+    ot_7b_hs_safe_fpr: 0.111-0.175
+    ot_7b_text_safe_fpr: 0.302-0.460
+    qwq_32b_hs_safe_fpr: 0.45-0.50
+    qwq_32b_text_safe_fpr: 0.325-0.425
+    r1_32b_hs_safe_fpr: 0.239
+    r1_32b_text_safe_fpr: 0.31
+    safe_fpr_range_all: 0.111 to 0.521
+    safe_fpr_median: ~0.39
+    gru_safe_fpr: 0.521
+    gru_highest_fpr_note: GRU trades precision for coverage → highest FPR
+    precision_all_methods_range: 0.329 to 0.777
+    no_method_achieves_80pct_precision: true
+    deployment_threshold_precision_70: only R1-8B HS W≥15 exceeds
+  result_rationale: 'Safe FPR ranges from 11% (OT-7B HS static, best case) to 52%
+    (GRU, worst case), with a median around 39%. This is the worst-tier dealbreaker.
+    Reviewer calculation: "At 39% safe FPR with K=5 consecutive crossings for trace-level
+    detection, a 40-step safe trace has ~39% probability of triggering the detector.
+    In a production system processing 1000 safe traces per day, that''s ~390 false
+    alarms daily. Each requires human review at ~5 minutes → 32.5 person-hours/day
+    of false alarm triage. No deployment team would accept this." Even the best case
+    (OT-7B HS 11.1% safe FPR) means 111 false alarms per 1000 safe traces. The worst-tier
+    reviewer''s verdict: "A safety monitor that fires on 1 in 3 to 1 in 2 safe traces
+    is not a monitor — it''s a random noise generator. The paper should lead with
+    this limitation, not bury it." QwQ-32B is particularly problematic: HS safe FPR
+    (45-50%) is HIGHER than text safe FPR (33-43%), meaning HS monitoring generates
+    MORE false alarms on safe traces for QwQ.
+
+    '
+  tables:
+  - name: Safe Trace FPR Summary (all methods × all models)
+    columns:
+    - Model
+    - HS Static FPR
+    - HS Temporal FPR
+    - Text Temporal FPR
+    - GRU FPR
+    rows:
+    - - R1-8B
+      - '0.390'
+      - '0.392'
+      - '0.385'
+      - '0.521'
+    - - OT-7B
+      - '0.111'
+      - '0.175'
+      - '0.460'
+      - —
+    - - QwQ-32B
+      - '0.500'
+      - '0.450'
+      - '0.425'
+      - —
+    - - R1-32B
+      - '0.239'
+      - '0.239'
+      - '0.310'
+      - —
+  - name: Deployment Viability Assessment
+    columns:
+    - Criterion
+    - Threshold
+    - Models Meeting Criterion
+    - Best Method
+    rows:
+    - - Safe FPR < 20%
+      - '0.20'
+      - 1/4 (OT-7B HS static)
+      - HS static L16
+    - - Precision > 70%
+      - '0.70'
+      - 1/4 (R1-8B W≥15)
+      - HS temporal W=25
+    - - Coverage > 60%
+      - '0.60'
+      - 2/4 (R1-8B W≤3, R1-32B W≤3)
+      - HS temporal W=1
+    - - All three criteria
+      - —
+      - 0/4
+      - None
+  figures_description:
+  - 'Radar chart per model: axes = safe FPR (inverted), precision, coverage, lead
+    time. No model fills all quadrants. The ''deployment-ready'' region (inner polygon)
+    is unreached.'
+  - 'PR curves: all models. Dashed line at precision=0.7. Only R1-8B HS crosses this
+    line, at recall=0.25.'
+  analysis: 'FPR analysis is the worst-tier''s core evidence for the "not practically
+    useful" dismissal. No model meets all three deployment criteria simultaneously.
+    The best model (R1-8B) achieves >70% precision only at W≥15 where coverage drops
+    to 49%. The paper''s deployment framing is untenable. Reframing guidance: "Position
+    as diagnostic/research tool, explicitly disclaim deployment readiness. Lead with
+    ''none of our 7 methods achieves deployment-ready performance'' as a cautionary
+    finding."
+
+    '
+- name: 5-fold CV validation of multi-metric ensemble (7-8B)
+  plan_id: ensemble_cv_7b
+  description: 'Cross-validated ensemble of metric-weighted layer selections on R1-8B
+    and OT-7B. Validates that multi-metric ensemble eliminates layer selection bias
+    under proper CV.
+
+    '
+  expected_results:
+    r1_8b_ensemble_cv_prec: 0.565
+    r1_8b_best_single_cv_prec: 0.604
+    r1_8b_ensemble_vs_text_gap: +19.3pp
+    r1_8b_ensemble_vs_text_p: <0.002
+    ot_7b_ensemble_cv_prec: 0.506
+    ot_7b_best_single_cv_prec: 0.473
+    ot_7b_ensemble_beats_best_single: true
+    ot_7b_ensemble_beats_best_single_p: 0.033
+    cv_validates_preliminary: true
+    cv_acceptance_probability_delta: +0.01 to +0.03
+  result_rationale: 'CV validation confirms the ensemble result holds (p≤0.002 for
+    ensemble vs text on R1-8B). But worst-tier reviewers are unmoved: (1) "CV validating
+    an ensemble of layer selection metrics on 7-8B models doesn''t address ANY of
+    our core concerns. The issues are: high safe FPR (39-62%), model-specific caveats
+    at 32B, engineering cost of white-box access, and insufficient novelty. A statistically
+    cleaner layer selection protocol is nice but tangential." (2) "The ensemble precision
+    (0.506-0.565) is actually LOWER than the best single metric on R1-8B (0.604).
+    On OT-7B the ensemble slightly beats the best single metric (0.506 vs 0.473) but
+    the absolute precision is 50% — a coin flip." (3) "This experiment strengthens
+    an already- strong statistical case (12/12 HB already passes). The paper doesn''t
+    need MORE statistical validation; it needs BETTER results or a DIFFERENT framing."
+    The CV ensemble moves acceptance probability by +1-3%, insufficient to shift from
+    worst tier.
+
+    '
+  tables:
+  - name: Ensemble CV Results (7-8B models)
+    columns:
+    - Model
+    - Ensemble Prec
+    - Best Single Prec
+    - Text Prec
+    - Ens vs Text p
+    rows:
+    - - R1-8B
+      - '0.565'
+      - '0.604'
+      - '0.372'
+      - <0.002
+    - - OT-7B
+      - '0.506'
+      - '0.473'
+      - '0.236'
+      - <0.001
+  figures_description:
+  - 'CV fold boxplot: ensemble precision across 5 folds. Low variance confirms stability
+    but absolute values are mediocre (50-57%).'
+  analysis: 'Ensemble CV is a marginal improvement on an already-validated statistical
+    claim. Worst-tier impact on acceptance: negligible (+1-3%). The bottleneck is
+    not statistical rigor — it''s practical utility and novelty. This experiment is
+    low-cost and worth including in supplementary, but it cannot rescue the paper
+    from worst-tier reviewer concerns.'

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b40eea1abca3b5b37806",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code r6 r1 8b precision discrepancy",
+  "task_key": "worker_code_r6_r1_8b_precision_discrepancy_20260518T032943",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r6_r1_8b_precision_discrepancy_20260518T032943_result.json",
+    "occurrence": 1,
+    "bytes": 1659,
+    "sha256": "b1a031b1450e0df57b7ae04bba4f7a909e214e18b067e8943351699b1961f994"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "找到根因了。`config.py` 定义 `LAYERS = list(range(12, 25))`，所以 layer_idx=2 = 实际 Layer 14。两个实验的 layer 一致，**唯一差异是 window size**。\n\n## 排查结论\n\n### 1. 不一致的具体原因\n\n**Window size 不同**。bootstrap 10k 脚本对 R1-8B 用了 W=3，而 Table 2 报告的是 W=15 的结果。\n\n| 参数 | Table 2 (acc_precision_bootstrap) | Bootstrap 10k |\n|------|-----------------------------------|---------------|\n| Layer | L14 (layer_idx=2, LAYERS=[12..24]) | L14 (layer_idx=2, 同) |\n| Window | **W=15** | **W=3** |\n| n_resamples | 1000 | 10000 |\n| HS precision | 0.7678 | 0.7063 |\n| Text precision | 0.5442 | 0.4277 |\n| **ΔPrecision** | **+22.4pp** | **+27.9pp** |\n\n其他 3 个模型参数完全一致，所以 delta 匹配：\n- OT-7B: L16, W=3 (两边一致) → +21.9pp ✓\n- QwQ-32B: L60, W=3 (两边一致) → +23.5pp ✓\n- R1-32B: L63, W=1 (两边一致) → +15.4pp ✓\n\n### 2. 错误来源\n\n`run_bootstrap_10k.py` 第 27 行 R1-8B 配置写了 `\"window\": 3`，应为 `15`（与 Table 2 一致）。可能是从其他模型复制配置时未改 window。\n\n### 3. 论文应统一使用的版本\n\n使用 **Table 2 的参数 (L14, W=15)** 重跑 10k bootstrap CI。原因：\n- Table 2 的 W=15 与论文 Appendix 中 R1-8B window ablation 表一致\n- 论文 experiments.tex 中明确记载 R1-8B 用 W=15\n- 只需改 `run_bootstrap_10k.py` 中 R1-8B 的 window 从 3→15 即可\n\n### 4. 重跑命令\n\n需要修改 `run_bootstrap_10k.py` 第 27 行 `\"window\": 3` → `\"window\": 15`，然后重跑。是否要我执行这个修改并重新运行？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r6-r1-8b-precision-discrepancy.md"
+}

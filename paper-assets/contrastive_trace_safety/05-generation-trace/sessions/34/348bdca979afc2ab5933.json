@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "348bdca979afc2ab5933",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code mahalanobis ot7b l16",
+  "task_key": "worker_code_mahalanobis_ot7b_l16_20260517T131912",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mahalanobis_ot7b_l16_20260517T131912_result.json",
+    "occurrence": 1,
+    "bytes": 1483,
+    "sha256": "71645c8d1aa362dc80e4c45e6d70d2cd7b2dd84ebc2c7b4b068fe3a0d8e3f1b3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。\n\n## 结果总结\n\n**Mahalanobis distance 在 OT-7B 上同样失败，失败模式与 R1-8B 完全一致。**\n\n### MD 分布统计 (pca_64)\n\n| 指标 | R1-8B | OT-7B |\n|------|-------|-------|\n| safe_md_mean | 6.66 | 7.68 |\n| post_md_mean | 6.73 (jb_pre) / 6.64 (jb_post) | 7.71 |\n| **separation** | **~0.07** | **~0.03** |\n\n### 跨所有 PCA 维度的 separation\n\n| PCA dim | safe MD | post MD | separation |\n|---------|---------|---------|-----------|\n| 16 | 3.85 | 3.80 | **-0.048** |\n| 32 | 5.46 | 5.48 | +0.012 |\n| 64 | 7.68 | 7.71 | +0.031 |\n| 128 | 10.70 | 10.71 | +0.004 |\n| 256 | 14.90 | 14.80 | **-0.093** |\n\n### False Alarm vs True Positive (pca_64, k=3)\n\n| Threshold | False Alarm Rate | True Positive Rate |\n|-----------|-----------------|-------------------|\n| p50 | **87.2%** | 38.5% |\n| p75 | **57.4%** | 23.1% |\n| p90 | **17.0%** | 15.4% |\n| p95 | **4.3%** | 0.0% |\n\nFalse alarm rate ≥ true positive rate at **every** threshold — detector 在 pre-commitment 段比 post-commitment 段触发更频繁。\n\n### 结论\n\n1. OT-7B 上 Mahalanobis 完全无判别力（separation ≈ 0）\n2. 失败原因与 R1-8B 一致：判别信号在 PCA minor components 中，principal directions 无法捕获\n3. 表面上的高 crossing rate (p50) 纯粹是长序列 + 低阈值的统计伪影\n\n结果已保��至 `/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_mahalanobis_ot7b/results.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mahalanobis-ot7b-l16.md"
+}

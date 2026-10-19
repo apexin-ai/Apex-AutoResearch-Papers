@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "4fada31d86329efbb3cc",
+  "project": "contrastive_trace_safety",
+  "kind": "worker",
+  "title": "code m001 layer selection fix",
+  "task_key": "worker_code_m001_layer_selection_fix_20260516T222709",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_m001_layer_selection_fix_20260516T222709.log",
+    "occurrence": 1,
+    "bytes": 1280846,
+    "sha256": "3683731668dcbe7afd5a701dee33664b03ad1b9f793149e53e9e5eb95cf844fe"
+  },
+  "statistics": {
+    "messages": 625,
+    "user_turns": 1,
+    "tool_calls": 278,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 61,
+      "tool_call": 278,
+      "tool_result": 278,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 579,
+      "chunks": [
+        {
+          "path": "4fada31d86329efbb3cc-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "4fada31d86329efbb3cc-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "4fada31d86329efbb3cc-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "4fada31d86329efbb3cc-part-0004.json",
+          "message_count": 39
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 46,
+      "chunks": [
+        {
+          "path": "4fada31d86329efbb3cc-part-0004.json",
+          "message_count": 46
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-m001-layer-selection-fix.md"
+}

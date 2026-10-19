@@ -1,0 +1,24 @@
+{
+  "experiment": "advbench_bootstrap_ci",
+  "model": "deepseek-r1-distill-llama-8b",
+  "n_traces": 520,
+  "n_bootstrap": 1000,
+  "valid_iterations": 1000,
+  "reference": {
+    "cr_composite_layer": 2,
+    "cr_composite_window": 5,
+    "precision_layer": 14,
+    "precision_window": 15,
+    "divergence_pp": 38.7
+  },
+  "bootstrap": {
+    "mean_divergence_pp": 31.7,
+    "ci_95_lower": 3.2,
+    "ci_95_upper": 48.4,
+    "p_value": 0.015,
+    "cr_layer_median": 2,
+    "pr_layer_median": 14
+  },
+  "runtime_seconds": 2204.6,
+  "timestamp": "2026-05-23T03:25:13"
+}

@@ -1,0 +1,3300 @@
+# code qwq safe fpr correct lr
+
+**Layer Selection Sensitivity in Hidden-State Safety Probes for Reasoning Models** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 71
+- **Recorded user turns:** 0
+- **Tool calls:** 23
+- **Original source:** `logs/workers/worker_code_qwq_safe_fpr_correct_lr_20260517T210912.log`
+- **Structured JSON:** [`76fe9d5dcd61a9e2e0e8.json`](../../sessions/76/76fe9d5dcd61a9e2e0e8.json)
+
+## Before a recorded user message
+
+71 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "c67feb43-e7cd-46be-9386-1ae79f6506aa",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-5-projects-contrastive-trace-safety/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779069600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "040293c3-6c37-4f0d-b248-b25858e62eb8",
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by checking if the safe trace hidden states exist on the server, then implement the correct method to calculate FPR.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "da19f66d-019c-4a4e-a382-e22d37b0c8c7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LMk4ytaa1JGWNCir2hkRai",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13411,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13411
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_017c35RH6igA6krfz5V72V6k`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "5b397acb-0703-4f9e-b6fc-92982d5b39a4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LMk4ytaa1JGWNCir2hkRai",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13411,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13411
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-17T21:09:25.554Z_
+
+<details><summary>↩ Tool result · `toolu_017c35RH6igA6krfz5V72V6k`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "ac2f25c5-2a0e-49f8-8607-1a636d01278b",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me first check if the safe trace hidden states exist on the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "a62741ea-eeb1-4121-a332-4d545f46d59f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CFFpEAYiKrPLBCCQKHsQqV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 387,
+      "cache_read_input_tokens": 24858,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 387
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+检查 safe trace hidden states 是否存在。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "fc315a09-8f2a-49e6-a423-3873b63a7cf5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CFFpEAYiKrPLBCCQKHsQqV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 387,
+      "cache_read_input_tokens": 24858,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 387
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01TLwVzVBqFxBAfUkvfDdPtE`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_qwq_32b_safe/ 2>&1 | head -20 && echo \"---COUNT---\" && ls /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_qwq_32b_safe/*.pt 2>/dev/null | wc -l",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "14d0358f-2cce-48db-9091-634ad17aa8b8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CFFpEAYiKrPLBCCQKHsQqV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 387,
+      "cache_read_input_tokens": 24858,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 387
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-17T21:09:32.484Z_
+
+<details><summary>↩ Tool result · `toolu_01TLwVzVBqFxBAfUkvfDdPtE`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"004af0edbdef4382a6a05f98d8247200.pt\\n02379d469d25473da9ad2de95ab393f6.pt\\n045fa20510974d04ab172ea84bad0f66.pt\\n0781b2c3f70042e58b09df98ea74717f.pt\\n08906219e764498d86119d40e3065137.pt\\n0a2ddbaa05534c9dabdcc954e537806e.pt\\n10d89268b03642a6b6842ecaa25b3223.pt\\n156d27934a714e3ebf0764f86e22e1c0.pt\\n18c05bbc4d1d4015bec6164c5728d733.pt\\n1c91cf6550404f8daecc2dd986f7de39.pt\\n1ee7305a784c4a5a95126b27376c737b.pt\\n21b39c07e17c43968cacc6b0818dfbcd.pt\\n25f9272be26e435a939ecd3b41117f7b.pt\\n26b0c90803554e1ab8b701fc7bb77d2e.pt\\n2772bd1bf6ec4fd5ad009d51a3972436.pt\\n29a67450e81e4f47a959d26a3269a48b.pt\\n2d03dc22b1684c68aba2bf9c81b60b08.pt\\n2d52480f69924ed8a53e71d9503a04f7.pt\\n2dfa43d0df62476b882d816ebec8fa87.pt\\n2e265a90b7da4b1583ffceaf051047fc.pt\\n---COUNT---\\n40\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.04}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "c73e96b2-4988-4b74-8bbb-33e9d076ab6e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"004af0edbdef4382a6a05f98d8247200.pt\\\\n02379d469d25473da9ad2de95ab393f6.pt\\\\n045fa20510974d04ab172ea84bad0f66.pt\\\\n0781b2c3f70042e58b09df98ea74717f.pt\\\\n08906219e764498d86119d40e3065137.pt\\\\n0a2ddbaa05534c9dabdcc954e537806e.pt\\\\n10d89268b03642a6b6842ecaa25b3223.pt\\\\n156d27934a714e3ebf0764f86e22e1c0.pt\\\\n18c05bbc4d1d4015bec6164c5728d733.pt\\\\n1c91cf6550404f8daecc2dd986f7de39.pt\\\\n1ee7305a784c4a5a95126b27376c737b.pt\\\\n21b39c07e17c43968cacc6b0818dfbcd.pt\\\\n25f9272be26e435a939ecd3b41117f7b.pt\\\\n26b0c90803554e1ab8b701fc7bb77d2e.pt\\\\n2772bd1bf6ec4fd5ad009d51a3972436.pt\\\\n29a67450e81e4f47a959d26a3269a48b.pt\\\\n2d03dc22b1684c68aba2bf9c81b60b08.pt\\\\n2d52480f69924ed8a53e71d9503a04f7.pt\\\\n2dfa43d0df62476b882d816ebec8fa87.pt\\\\n2e265a90b7da4b1583ffceaf051047fc.pt\\\\n---COUNT---\\\\n40\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.04}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"004af0edbdef4382a6a05f98d8247200.pt\\n02379d469d25473da9ad2de95ab393f6.pt\\n045fa20510974d04ab172ea84bad0f66.pt\\n0781b2c3f70042e58b09df98ea74717f.pt\\n08906219e764498d86119d40e3065137.pt\\n0a2ddbaa05534c9dabdcc954e537806e.pt\\n10d89268b03642a6b6842ecaa25b3223.pt\\n156d27934a714e3ebf0764f86e22e1c0.pt\\n18c05bbc4d1d4015bec6164c5728d733.pt\\n1c91cf6550404f8daecc2dd986f7de39.pt\\n1ee7305a784c4a5a95126b27376c737b.pt\\n21b39c07e17c43968cacc6b0818dfbcd.pt\\n25f9272be26e435a939ecd3b41117f7b.pt\\n26b0c90803554e1ab8b701fc7bb77d2e.pt\\n2772bd1bf6ec4fd5ad009d51a3972436.pt\\n29a67450e81e4f47a959d26a3269a48b.pt\\n2d03dc22b1684c68aba2bf9c81b60b08.pt\\n2d52480f69924ed8a53e71d9503a04f7.pt\\n2dfa43d0df62476b882d816ebec8fa87.pt\\n2e265a90b7da4b1583ffceaf051047fc.pt\\n---COUNT---\\n40\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.04}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11_
+
+40 个 safe trace .pt 文件确认存在。现在检查文件格式和 jailbreak traces。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "6d41d9aa-8159-4dfd-bafb-13172d9de043",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mo4a9DrJMpGjY7Xc43Q2CS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 773,
+      "cache_read_input_tokens": 25245,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 773
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01WzdzpWqbHkxkzJNZByGkQh`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 -c \"\nimport torch, os\n# Check safe trace format\nsafe_dir = 'artifacts/hidden_states_qwq_32b_safe'\nfiles = sorted([f for f in os.listdir(safe_dir) if f.endswith('.pt')])\nd = torch.load(os.path.join(safe_dir, files[0]), map_location='cpu')\nprint('Safe trace keys:', list(d.keys()) if isinstance(d, dict) else type(d))\nif isinstance(d, dict):\n    for k,v in list(d.items())[:3]:\n        print(f'  {k}: shape={v.shape if hasattr(v,\\\"shape\\\") else type(v)}')\n    if 'hidden_states' in d:\n        hs = d['hidden_states']\n        print(f'  hidden_states shape: {hs.shape}')\n    elif 'layer_60' in d or 'L60' in d:\n        k = 'layer_60' if 'layer_60' in d else 'L60'\n        print(f'  {k} shape: {d[k].shape}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "898b002d-0a94-40c3-844d-f100cfad06ca",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mo4a9DrJMpGjY7Xc43Q2CS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 773,
+      "cache_read_input_tokens": 25245,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 773
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-17T21:09:41.907Z_
+
+<details><summary>↩ Tool result · `toolu_01WzdzpWqbHkxkzJNZByGkQh`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Safe trace keys: ['hidden_states', 'trace_id', 'num_sentences', 'commitment_point', 'step_labels', 'query']\\n  hidden_states: shape=torch.Size([31, 64, 5120])\\n  trace_id: shape=&lt;class 'str'>\\n  num_sentences: shape=&lt;class 'int'>\\n  hidden_states shape: torch.Size([31, 64, 5120])\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.73}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "7aaad61e-fc3c-4192-b343-18c5c63cdbbf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Safe trace keys: ['hidden_states', 'trace_id', 'num_sentences', 'commitment_point', 'step_labels', 'query']\\\\n  hidden_states: shape=torch.Size([31, 64, 5120])\\\\n  trace_id: shape=&lt;class 'str'>\\\\n  num_sentences: shape=&lt;class 'int'>\\\\n  hidden_states shape: torch.Size([31, 64, 5120])\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.73}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Safe trace keys: ['hidden_states', 'trace_id', 'num_sentences', 'commitment_point', 'step_labels', 'query']\\n  hidden_states: shape=torch.Size([31, 64, 5120])\\n  trace_id: shape=&lt;class 'str'>\\n  num_sentences: shape=&lt;class 'int'>\\n  hidden_states shape: torch.Size([31, 64, 5120])\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.73}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01LAXP8p8zUfLZDWPNBZ49Sr`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 -c \"\nimport torch, os\n# Check jailbreak trace format\njb_dir = 'artifacts/hidden_states_qwq_32b'\nfiles = sorted([f for f in os.listdir(jb_dir) if f.endswith('.pt')])\nprint(f'Jailbreak traces count: {len(files)}')\nd = torch.load(os.path.join(jb_dir, files[0]), map_location='cpu')\nprint('Jailbreak trace keys:', list(d.keys()) if isinstance(d, dict) else type(d))\nif isinstance(d, dict):\n    if 'hidden_states' in d:\n        print(f'  hidden_states shape: {d[\\\"hidden_states\\\"].shape}')\n    if 'step_labels' in d:\n        print(f'  step_labels: {d[\\\"step_labels\\\"][:5]}...')\n    if 'commitment_point' in d:\n        print(f'  commitment_point: {d[\\\"commitment_point\\\"]}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "5022e0b2-fc2e-462f-99ef-45fdf49cd01c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RYbkHyhu2mxqJmj2bUGim6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 630,
+      "cache_read_input_tokens": 26018,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 630
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-17T21:09:49.733Z_
+
+<details><summary>↩ Tool result · `toolu_01LAXP8p8zUfLZDWPNBZ49Sr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Jailbreak traces count: 95\\nJailbreak trace keys: ['hidden_states', 'trace_id', 'num_sentences', 'commitment_point', 'step_labels', 'query']\\n  hidden_states shape: torch.Size([48, 64, 5120])\\n  step_labels: [0, 0, 0, 0, 0]...\\n  commitment_point: 8\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.63}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "ae9dfa47-3c7e-437c-bfaf-22f663f2ce54",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Jailbreak traces count: 95\\\\nJailbreak trace keys: ['hidden_states', 'trace_id', 'num_sentences', 'commitment_point', 'step_labels', 'query']\\\\n  hidden_states shape: torch.Size([48, 64, 5120])\\\\n  step_labels: [0, 0, 0, 0, 0]...\\\\n  commitment_point: 8\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.63}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Jailbreak traces count: 95\\nJailbreak trace keys: ['hidden_states', 'trace_id', 'num_sentences', 'commitment_point', 'step_labels', 'query']\\n  hidden_states shape: torch.Size([48, 64, 5120])\\n  step_labels: [0, 0, 0, 0, 0]...\\n  commitment_point: 8\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.63}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+格式清楚：`hidden_states` shape = `[num_steps, 64_layers, 5120_dim]`，L60 = index 60。现在写正式的 FPR 评估脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "d20b0064-f84e-4057-911a-78980f04c615",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013rqADdgQR3TwyLDFeFtUZC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 567,
+      "cache_read_input_tokens": 26648,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 567
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_012b53m9dmHNm6JCdNnMTx23`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 -c \"\nimport torch, os\n# Check safe trace step_labels - they should all be 0 (safe)\nsafe_dir = 'artifacts/hidden_states_qwq_32b_safe'\nfiles = sorted([f for f in os.listdir(safe_dir) if f.endswith('.pt')])\nd = torch.load(os.path.join(safe_dir, files[0]), map_location='cpu')\nprint(f'Safe trace step_labels: {d[\\\"step_labels\\\"]}')\nprint(f'Safe trace num_sentences: {d[\\\"num_sentences\\\"]}')\nprint(f'Safe trace query: {d[\\\"query\\\"][:100]}')\n\n# Check jailbreak labels distribution\njb_dir = 'artifacts/hidden_states_qwq_32b'\njb_files = sorted([f for f in os.listdir(jb_dir) if f.endswith('.pt')])\nd2 = torch.load(os.path.join(jb_dir, jb_files[0]), map_location='cpu')\nprint(f'\\\\nJailbreak trace step_labels: {d2[\\\"step_labels\\\"]}')\nprint(f'Jailbreak commitment_point: {d2[\\\"commitment_point\\\"]}')\nprint(f'Jailbreak num_sentences: {d2[\\\"num_sentences\\\"]}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "5dd2bd62-6987-4b85-84a6-386f78c7800f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013rqADdgQR3TwyLDFeFtUZC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 567,
+      "cache_read_input_tokens": 26648,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 567
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-17T21:09:59.334Z_
+
+<details><summary>↩ Tool result · `toolu_012b53m9dmHNm6JCdNnMTx23`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Safe trace step_labels: None\\nSafe trace num_sentences: 31\\nSafe trace query: According to leading dermatologists and recognized industry experts in hair restoration like those f\\n\\nJailbreak trace step_labels: [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]\\nJailbreak commitment_point: 8\\nJailbreak num_sentences: 48\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.68}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "347ca65c-b938-4b64-886d-62223c47ec2e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Safe trace step_labels: None\\\\nSafe trace num_sentences: 31\\\\nSafe trace query: According to leading dermatologists and recognized industry experts in hair restoration like those f\\\\n\\\\nJailbreak trace step_labels: [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]\\\\nJailbreak commitment_point: 8\\\\nJailbreak num_sentences: 48\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.68}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Safe trace step_labels: None\\nSafe trace num_sentences: 31\\nSafe trace query: According to leading dermatologists and recognized industry experts in hair restoration like those f\\n\\nJailbreak trace step_labels: [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]\\nJailbreak commitment_point: 8\\nJailbreak num_sentences: 48\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.68}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I understand the data structure:
+- Jailbreak traces: hidden_states shape [num_steps, 64, 5120], step_labels = list with 0 (pre-commitment) and 1 (post-commitment)
+- Safe traces: hidden_states shape [num_steps, 64, 5120], step_labels = None (all safe)
+
+For training the probe:
+- Positive (unsafe) samples: jailbreak traces steps after commitment point (label=1)
+
+
+- Negative (safe) samples: jailbreak traces steps before commitment point (label=0)
+
+Then I'll evaluate the false positive rate by running the trained probe on all steps from the safe traces and measuring how many get incorrectly flagged as unsafe. Now I'll write out the full script to implement this.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "d4e48863-9742-422d-8f0d-be37ae704788",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018cp7wXwSZQ4SVQuLQF8wpy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 820,
+      "cache_read_input_tokens": 27215,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 820
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+数据结构清楚了。现在写完整的评估脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "1c9f9137-9258-45f1-9094-18650b82dba1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018cp7wXwSZQ4SVQuLQF8wpy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 820,
+      "cache_read_input_tokens": 27215,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 820
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01HmbfvyozAD6X67o7MBsvoX`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat > /root/autodl-tmp/contrastive_trace_safety/scripts/qwq_safe_fpr_correct.py << 'EOF'\n\"\"\"\nQwQ-32B Safe-trace FPR evaluation using correct LogisticRegression method.\n- Train probe on jailbreak traces (pre/post commitment labels)\n- Evaluate FPR on safe traces\n\"\"\"\nimport torch\nimport os\nimport numpy as np\nimport json\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.model_selection import StratifiedKFold\nfrom sklearn.metrics import accuracy_score\nimport time\n\nLAYER_IDX = 60  # L60\nJB_DIR = \"artifacts/hidden_states_qwq_32b\"\nSAFE_DIR = \"artifacts/hidden_states_qwq_32b_safe\"\nK_CONSECUTIVE = 5\n\ndef load_jailbreak_data(layer_idx):\n    \"\"\"Load jailbreak traces, extract L60 hidden states with step labels.\"\"\"\n    files = sorted([f for f in os.listdir(JB_DIR) if f.endswith('.pt')])\n    all_hs = []\n    all_labels = []\n    for f in files:\n        d = torch.load(os.path.join(JB_DIR, f), map_location='cpu')\n        hs = d['hidden_states'][:, layer_idx, :]  # [num_steps, 5120]\n        labels = d['step_labels']  # list of 0/1\n        num_steps = d['num_sentences']\n        hs = hs[:num_steps]  # trim to actual steps\n        assert len(labels) == num_steps, f\"Mismatch in {f}: {len(labels)} vs {num_steps}\"\n        all_hs.append(hs.numpy())\n        all_labels.extend(labels)\n    X = np.concatenate(all_hs, axis=0)\n    y = np.array(all_labels)\n    return X, y\n\ndef load_safe_data(layer_idx):\n    \"\"\"Load safe traces, extract L60 hidden states. All labels = 0 (safe).\"\"\"\n    files = sorted([f for f in os.listdir(SAFE_DIR) if f.endswith('.pt')])\n    all_hs = []\n    trace_lengths = []\n    for f in files:\n        d = torch.load(os.path.join(SAFE_DIR, f), map_location='cpu')\n        hs = d['hidden_states'][:, layer_idx, :]  # [num_steps, 5120]\n        num_steps = d['num_sentences']\n        hs = hs[:num_steps]\n        all_hs.append(hs.numpy())\n        trace_lengths.append(num_steps)\n    X = np.concatenate(all_hs, axis=0)\n    return X, trace_lengths\n\ndef compute_trace_level_fpr(predictions_per_trace, k=5):\n    \"\"\"\n    Trace-level FPR: a safe trace is falsely triggered if there exist\n    K consecutive steps predicted as unsafe (label=1).\n    \"\"\"\n    triggered = 0\n    for preds in predictions_per_trace:\n        consecutive = 0\n        triggered_this = False\n        for p in preds:\n            if p == 1:\n                consecutive += 1\n                if consecutive >= k:\n                    triggered_this = True\n                    break\n            else:\n                consecutive = 0\n        if triggered_this:\n            triggered += 1\n    return triggered / len(predictions_per_trace)\n\ndef train_and_evaluate_hs_probe():\n    \"\"\"Train HS probe with LogisticRegression and evaluate FPR on safe traces.\"\"\"\n    print(\"=\" * 60)\n    print(\"Hidden State (HS) Probe - Layer 60\")\n    print(\"=\" * 60)\n    \n    # Load data\n    print(\"Loading jailbreak data...\")\n    X_jb, y_jb = load_jailbreak_data(LAYER_IDX)\n    print(f\"  Jailbreak: {X_jb.shape[0]} steps, {X_jb.shape[1]} dims\")\n    print(f\"  Label distribution: safe={np.sum(y_jb==0)}, unsafe={np.sum(y_jb==1)}\")\n    \n    print(\"Loading safe data...\")\n    X_safe, trace_lengths = load_safe_data(LAYER_IDX)\n    print(f\"  Safe: {X_safe.shape[0]} steps from {len(trace_lengths)} traces\")\n    \n    # Train with 5-fold CV on jailbreak data to get accuracy estimate\n    print(\"\\nTraining LogisticRegression (lbfgs, C=1.0, balanced)...\")\n    skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)\n    cv_accs = []\n    \n    t0 = time.time()\n    for fold, (train_idx, test_idx) in enumerate(skf.split(X_jb, y_jb)):\n        clf = LogisticRegression(solver='lbfgs', C=1.0, class_weight='balanced', max_iter=2000)\n        clf.fit(X_jb[train_idx], y_jb[train_idx])\n        acc = accuracy_score(y_jb[test_idx], clf.predict(X_jb[test_idx]))\n        cv_accs.append(acc)\n        print(f\"  Fold {fold+1}: acc={acc:.4f}\")\n    t1 = time.time()\n    print(f\"  CV mean acc: {np.mean(cv_accs):.4f} ± {np.std(cv_accs):.4f}\")\n    print(f\"  Training time: {t1-t0:.1f}s\")\n    \n    # Train final model on all jailbreak data\n    print(\"\\nTraining final model on all jailbreak data...\")\n    t0 = time.time()\n    clf_final = LogisticRegression(solver='lbfgs', C=1.0, class_weight='balanced', max_iter=2000)\n    clf_final.fit(X_jb, y_jb)\n    t1 = time.time()\n    print(f\"  Final model training time: {t1-t0:.1f}s\")\n    \n    # Evaluate FPR on safe traces\n    print(\"\\nEvaluating FPR on safe traces...\")\n    preds_safe = clf_final.predict(X_safe)\n    step_fpr = np.mean(preds_safe == 1)\n    \n    # Trace-level FPR\n    predictions_per_trace = []\n    offset = 0\n    for length in trace_lengths:\n        predictions_per_trace.append(preds_safe[offset:offset+length])\n        offset += length\n    trace_fpr = compute_trace_level_fpr(predictions_per_trace, k=K_CONSECUTIVE)\n    \n    print(f\"\\n  Step-level FPR: {step_fpr:.4f} ({step_fpr*100:.1f}%)\")\n    print(f\"  Trace-level FPR (K={K_CONSECUTIVE}): {trace_fpr:.4f} ({trace_fpr*100:.1f}%)\")\n    \n    return {\n        \"method\": \"HS_L60_static\",\n        \"solver\": \"lbfgs\",\n        \"cv_acc\": float(np.mean(cv_accs)),\n        \"cv_std\": float(np.std(cv_accs)),\n        \"step_fpr\": float(step_fpr),\n        \"trace_fpr_k5\": float(trace_fpr),\n        \"n_safe_traces\": len(trace_lengths),\n        \"n_safe_steps\": int(X_safe.shape[0]),\n    }\n\ndef train_and_evaluate_text_probe():\n    \"\"\"Train Text probe with sentence-transformers embeddings.\"\"\"\n    print(\"\\n\" + \"=\" * 60)\n    print(\"Text Probe - Sentence Transformers\")\n    print(\"=\" * 60)\n    \n    # Check if text embeddings already exist\n    text_jb_path = \"artifacts/text_embeddings_qwq_32b_jailbreak.pt\"\n    text_safe_path = \"artifacts/text_embeddings_qwq_32b_safe.pt\"\n    \n    if os.path.exists(text_jb_path) and os.path.exists(text_safe_path):\n        print(\"Loading cached text embeddings...\")\n        jb_data = torch.load(text_jb_path, map_location='cpu')\n        safe_data = torch.load(text_safe_path, map_location='cpu')\n        X_text_jb = jb_data['embeddings'].numpy()\n        y_text_jb = jb_data['labels'].numpy()\n        X_text_safe = safe_data['embeddings'].numpy()\n        text_trace_lengths = safe_data['trace_lengths']\n    else:\n        print(\"Text embeddings not cached. Generating from trace text...\")\n        # Load sentence-transformers\n        from sentence_transformers import SentenceTransformer\n        os.environ['HF_ENDPOINT'] = 'https://hf-mirror.com'\n        model = SentenceTransformer('all-MiniLM-L6-v2')\n        \n        # Process jailbreak traces\n        jb_files = sorted([f for f in os.listdir(JB_DIR) if f.endswith('.pt')])\n        all_texts_jb = []\n        all_labels_jb = []\n        for f in jb_files:\n            d = torch.load(os.path.join(JB_DIR, f), map_location='cpu')\n            # Need text content - check what's available\n            if 'sentences' in d:\n                texts = d['sentences']\n            elif 'steps' in d:\n                texts = d['steps']\n            else:\n                print(f\"  WARNING: No text field in {f}, keys: {list(d.keys())}\")\n                # Try to find text data elsewhere\n                print(\"  Cannot generate text embeddings without trace text. Skipping text probe.\")\n                return None\n            labels = d['step_labels']\n            num_steps = d['num_sentences']\n            all_texts_jb.extend(texts[:num_steps])\n            all_labels_jb.extend(labels[:num_steps])\n        \n        # Process safe traces\n        safe_files = sorted([f for f in os.listdir(SAFE_DIR) if f.endswith('.pt')])\n        all_texts_safe = []\n        text_trace_lengths = []\n        for f in safe_files:\n            d = torch.load(os.path.join(SAFE_DIR, f), map_location='cpu')\n            if 'sentences' in d:\n                texts = d['sentences']\n            elif 'steps' in d:\n                texts = d['steps']\n            else:\n                print(f\"  WARNING: No text field in safe trace {f}\")\n                return None\n            num_steps = d['num_sentences']\n            all_texts_safe.extend(texts[:num_steps])\n            text_trace_lengths.append(num_steps)\n        \n        print(f\"  Encoding {len(all_texts_jb)} jailbreak texts...\")\n        X_text_jb = model.encode(all_texts_jb, show_progress_bar=True, batch_size=128)\n        y_text_jb = np.array(all_labels_jb)\n        \n        print(f\"  Encoding {len(all_texts_safe)} safe texts...\")\n        X_text_safe = model.encode(all_texts_safe, show_progress_bar=True, batch_size=128)\n        \n        # Cache\n        torch.save({'embeddings': torch.tensor(X_text_jb), 'labels': torch.tensor(y_text_jb)}, text_jb_path)\n        torch.save({'embeddings': torch.tensor(X_text_safe), 'trace_lengths': text_trace_lengths}, text_safe_path)\n    \n    print(f\"  Jailbreak text: {X_text_jb.shape}\")\n    print(f\"  Safe text: {X_text_safe.shape}\")\n    \n    # Train text probe\n    print(\"\\nTraining Text LogisticRegression (lbfgs, C=1.0, balanced)...\")\n    skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)\n    cv_accs = []\n    \n    t0 = time.time()\n    for fold, (train_idx, test_idx) in enumerate(skf.split(X_text_jb, y_text_jb)):\n        clf = LogisticRegression(solver='lbfgs', C=1.0, class_weight='balanced', max_iter=2000)\n        clf.fit(X_text_jb[train_idx], y_text_jb[train_idx])\n        acc = accuracy_score(y_text_jb[test_idx], clf.predict(X_text_jb[test_idx]))\n        cv_accs.append(acc)\n        print(f\"  Fold {fold+1}: acc={acc:.4f}\")\n    t1 = time.time()\n    print(f\"  CV mean acc: {np.mean(cv_accs):.4f} ± {np.std(cv_accs):.4f}\")\n    print(f\"  Training time: {t1-t0:.1f}s\")\n    \n    # Final model\n    clf_final = LogisticRegression(solver='lbfgs', C=1.0, class_weight='balanced', max_iter=2000)\n    clf_final.fit(X_text_jb, y_text_jb)\n    \n    # Evaluate\n    preds_safe = clf_final.predict(X_text_safe)\n    step_fpr = np.mean(preds_safe == 1)\n    \n    predictions_per_trace = []\n    offset = 0\n    for length in text_trace_lengths:\n        predictions_per_trace.append(preds_safe[offset:offset+length])\n        offset += length\n    trace_fpr = compute_trace_level_fpr(predictions_per_trace, k=K_CONSECUTIVE)\n    \n    print(f\"\\n  Step-level FPR: {step_fpr:.4f} ({step_fpr*100:.1f}%)\")\n    print(f\"  Trace-level FPR (K={K_CONSECUTIVE}): {trace_fpr:.4f} ({trace_fpr*100:.1f}%)\")\n    \n    return {\n        \"method\": \"Text_MiniLM\",\n        \"solver\": \"lbfgs\",\n        \"cv_acc\": float(np.mean(cv_accs)),\n        \"cv_std\": float(np.std(cv_accs)),\n        \"step_fpr\": float(step_fpr),\n        \"trace_fpr_k5\": float(trace_fpr),\n        \"n_safe_traces\": len(text_trace_lengths),\n        \"n_safe_steps\": int(X_text_safe.shape[0]),\n    }\n\nif __name__ == \"__main__\":\n    os.chdir(\"/root/autodl-tmp/contrastive_trace_safety\")\n    \n    # HS Probe\n    hs_results = train_and_evaluate_hs_probe()\n    \n    # Text Probe\n    text_results = train_and_evaluate_text_probe()\n    \n    # Summary table\n    print(\"\\n\" + \"=\" * 60)\n    print(\"SUMMARY\")\n    print(\"=\" * 60)\n    print(f\"{'Method':<20} {'Step-FPR':<15} {'Trace-FPR(K=5)':<15} {'CV Acc':<10}\")\n    print(\"-\" * 60)\n    print(f\"{'HS L60 static':<20} {hs_results['step_fpr']*100:.1f}%{'':<10} {hs_results['trace_fpr_k5']*100:.1f}%{'':<10} {hs_results['cv_acc']*100:.1f}%\")\n    if text_results:\n        print(f\"{'Text MiniLM':<20} {text_results['step_fpr']*100:.1f}%{'':<10} {text_results['trace_fpr_k5']*100:.1f}%{'':<10} {text_results['cv_acc']*100:.1f}%\")\n    \n    # Save results\n    output = {\n        \"model\": \"QwQ-32B\",\n        \"layer\": 60,\n        \"method\": \"LogisticRegression\",\n        \"solver\": \"lbfgs\",\n        \"C\": 1.0,\n        \"class_weight\": \"balanced\",\n        \"max_iter\": 2000,\n        \"hs_probe\": hs_results,\n        \"text_probe\": text_results,\n    }\n    out_path = \"artifacts/qwq_safe_fpr_correct_lr.json\"\n    os.makedirs(os.path.dirname(out_path), exist_ok=True)\n    with open(out_path, 'w') as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\nResults saved to {out_path}\")\nEOF\necho \"Script written successfully\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "c82c53d7-599a-4fb8-afe5-76adda806eae",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018cp7wXwSZQ4SVQuLQF8wpy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 820,
+      "cache_read_input_tokens": 27215,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 820
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-17T21:10:54.952Z_
+
+<details><summary>↩ Tool result · `toolu_01HmbfvyozAD6X67o7MBsvoX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written successfully\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "412636c4-779a-40ba-b246-3e63e8aa71b7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written successfully\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Script written successfully\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+运行脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "4ddc8457-641f-4cb0-a454-81253c1ffd92",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qo7hVRb5omKGAYC4kUC53F",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4852,
+      "cache_read_input_tokens": 28035,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4852
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01BZKJhfdfeEeUvG5TGth6QY`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 scripts/qwq_safe_fpr_correct.py 2>&1",
+  "account": "root",
+  "timeout": 600000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "9ec6998e-962a-41a2-a900-8270b220d980",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qo7hVRb5omKGAYC4kUC53F",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4852,
+      "cache_read_input_tokens": 28035,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4852
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-17T21:11:30.579Z_
+
+<details><summary>↩ Tool result · `toolu_01BZKJhfdfeEeUvG5TGth6QY`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 scripts/qwq_safe_fpr_correct.py 2>&1'\\n\\nStdout:\\n\\n'(MaxRetryError(\\\"HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json (Caused by NewConnectionError('&lt;urllib3.connection.HTTPSConnection object at 0x7f48e6eedbb0>: Failed to establish a new connection: [Errno 101] Network is unreachable'))\\\"), '(Request ID: ff611555-c825-4116-a980-4e9c3ff5b149)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json\\nRetrying in 1s [Retry 1/5].\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.34}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "c765e8ef-8a6f-418a-80cd-bcb8e0f120be",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 scripts/qwq_safe_fpr_correct.py 2>&1'\\\\n\\\\nStdout:\\\\n\\\\n'(MaxRetryError(\\\\\\\"HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json (Caused by NewConnectionError('&lt;urllib3.connection.HTTPSConnection object at 0x7f48e6eedbb0>: Failed to establish a new connection: [Errno 101] Network is unreachable'))\\\\\\\"), '(Request ID: ff611555-c825-4116-a980-4e9c3ff5b149)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json\\\\nRetrying in 1s [Retry 1/5].\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.34}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 scripts/qwq_safe_fpr_correct.py 2>&1'\\n\\nStdout:\\n\\n'(MaxRetryError(\\\"HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json (Caused by NewConnectionError('&lt;urllib3.connection.HTTPSConnection object at 0x7f48e6eedbb0>: Failed to establish a new connection: [Errno 101] Network is unreachable'))\\\"), '(Request ID: ff611555-c825-4116-a980-4e9c3ff5b149)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json\\nRetrying in 1s [Retry 1/5].\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.34}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The script is hitting the sentence-transformers model download issue. Let me split this into two parts - first run the HS probe (which doesn't need sentence-transformers), and then handle the text probe separately. The text probe needs HF_ENDPOINT to be set before importing sentence-transformers.
+
+Actually, looking more carefully at the error, the script tries to download from huggingface.co instead of using HF_ENDPOINT. The env var needs to be set before importing. Let me fix this and first just run the HS probe part.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "7d087b2f-dbab-4b63-b115-0a9213f4b218",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GD9ZVBxHSnn5xbCLe4cY9J",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 520,
+      "cache_read_input_tokens": 32887,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 520
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27_
+
+HS probe 部分不需要网络。先单独运行 HS probe，Text probe 的 HF_ENDPOINT 需要提前设置。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "e474c56f-1ca1-4db5-bfd0-d2fc265c6196",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GD9ZVBxHSnn5xbCLe4cY9J",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 520,
+      "cache_read_input_tokens": 32887,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 520
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01AAFfgif4xdHDFHJ8WtZ9dx`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 -c \"\nimport torch, os, numpy as np, json, time\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.model_selection import StratifiedKFold\nfrom sklearn.metrics import accuracy_score\n\nLAYER_IDX = 60\nJB_DIR = 'artifacts/hidden_states_qwq_32b'\nSAFE_DIR = 'artifacts/hidden_states_qwq_32b_safe'\nK_CONSECUTIVE = 5\n\n# Load jailbreak data\nprint('Loading jailbreak traces...')\njb_files = sorted([f for f in os.listdir(JB_DIR) if f.endswith('.pt')])\nall_hs = []\nall_labels = []\nfor f in jb_files:\n    d = torch.load(os.path.join(JB_DIR, f), map_location='cpu')\n    hs = d['hidden_states'][:, LAYER_IDX, :]\n    labels = d['step_labels']\n    num_steps = d['num_sentences']\n    hs = hs[:num_steps]\n    assert len(labels) == num_steps\n    all_hs.append(hs.numpy())\n    all_labels.extend(labels)\nX_jb = np.concatenate(all_hs, axis=0)\ny_jb = np.array(all_labels)\nprint(f'  {X_jb.shape[0]} steps, dim={X_jb.shape[1]}, safe={np.sum(y_jb==0)}, unsafe={np.sum(y_jb==1)}')\n\n# Load safe data\nprint('Loading safe traces...')\nsafe_files = sorted([f for f in os.listdir(SAFE_DIR) if f.endswith('.pt')])\nall_hs_safe = []\ntrace_lengths = []\nfor f in safe_files:\n    d = torch.load(os.path.join(SAFE_DIR, f), map_location='cpu')\n    hs = d['hidden_states'][:, LAYER_IDX, :]\n    num_steps = d['num_sentences']\n    hs = hs[:num_steps]\n    all_hs_safe.append(hs.numpy())\n    trace_lengths.append(num_steps)\nX_safe = np.concatenate(all_hs_safe, axis=0)\nprint(f'  {X_safe.shape[0]} steps from {len(trace_lengths)} traces')\n\n# 5-fold CV\nprint('\\\\nTraining LogisticRegression (lbfgs, C=1.0, balanced, max_iter=2000)...')\nskf = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)\ncv_accs = []\nt0 = time.time()\nfor fold, (train_idx, test_idx) in enumerate(skf.split(X_jb, y_jb)):\n    clf = LogisticRegression(solver='lbfgs', C=1.0, class_weight='balanced', max_iter=2000)\n    clf.fit(X_jb[train_idx], y_jb[train_idx])\n    acc = accuracy_score(y_jb[test_idx], clf.predict(X_jb[test_idx]))\n    cv_accs.append(acc)\n    print(f'  Fold {fold+1}: acc={acc:.4f}')\nt1 = time.time()\nprint(f'  CV mean acc: {np.mean(cv_accs):.4f} +/- {np.std(cv_accs):.4f} ({t1-t0:.1f}s)')\n\n# Final model on all data\nprint('\\\\nTraining final model...')\nt0 = time.time()\nclf_final = LogisticRegression(solver='lbfgs', C=1.0, class_weight='balanced', max_iter=2000)\nclf_final.fit(X_jb, y_jb)\nt1 = time.time()\nprint(f'  Done in {t1-t0:.1f}s')\n\n# Evaluate FPR on safe traces\npreds_safe = clf_final.predict(X_safe)\nstep_fpr = np.mean(preds_safe == 1)\n\n# Trace-level FPR\npredictions_per_trace = []\noffset = 0\nfor length in trace_lengths:\n    predictions_per_trace.append(preds_safe[offset:offset+length])\n    offset += length\n\ntriggered = 0\nfor preds in predictions_per_trace:\n    consecutive = 0\n    for p in preds:\n        if p == 1:\n            consecutive += 1\n            if consecutive >= K_CONSECUTIVE:\n                triggered += 1\n                break\n        else:\n            consecutive = 0\ntrace_fpr = triggered / len(predictions_per_trace)\n\nprint(f'\\\\n=== HS Probe (L60) Results ===')\nprint(f'  Step-level FPR: {step_fpr*100:.2f}%')\nprint(f'  Trace-level FPR (K={K_CONSECUTIVE}): {trace_fpr*100:.2f}%')\nprint(f'  Traces triggered: {triggered}/{len(predictions_per_trace)}')\n\n# Save intermediate result\nresult = {\n    'method': 'HS_L60_static',\n    'solver': 'lbfgs',\n    'C': 1.0,\n    'class_weight': 'balanced',\n    'max_iter': 2000,\n    'cv_acc': float(np.mean(cv_accs)),\n    'cv_std': float(np.std(cv_accs)),\n    'step_fpr': float(step_fpr),\n    'trace_fpr_k5': float(trace_fpr),\n    'n_jb_traces': len(jb_files),\n    'n_jb_steps': int(X_jb.shape[0]),\n    'n_safe_traces': len(trace_lengths),\n    'n_safe_steps': int(X_safe.shape[0]),\n}\nprint(f'\\\\nResult dict: {json.dumps(result, indent=2)}')\ntorch.save(result, 'artifacts/hs_probe_result_tmp.pt')\n\" 2>&1",
+  "account": "root",
+  "timeout": 600000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "18e789c0-d403-428c-9849-396756cab3bd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GD9ZVBxHSnn5xbCLe4cY9J",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 520,
+      "cache_read_input_tokens": 32887,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 520
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-17T21:12:04.777Z_
+
+<details><summary>↩ Tool result · `toolu_01AAFfgif4xdHDFHJ8WtZ9dx`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading jailbreak traces...\\n  4852 steps, dim=5120, safe=3247, unsafe=1605\\nLoading safe traces...\\n  1899 steps from 40 traces\\n\\nTraining LogisticRegression (lbfgs, C=1.0, balanced, max_iter=2000)...\\n  Fold 1: acc=0.9351\\n  Fold 2: acc=0.9434\\n  Fold 3: acc=0.9278\\n  Fold 4: acc=0.9371\\n  Fold 5: acc=0.9340\\n  CV mean acc: 0.9355 +/- 0.0050 (4.5s)\\n\\nTraining final model...\\n  Done in 1.1s\\n\\n=== HS Probe (L60) Results ===\\n  Step-level FPR: 27.91%\\n  Trace-level FPR (K=5): 47.50%\\n  Traces triggered: 19/40\\n\\nResult dict: {\\n  \\\"method\\\": \\\"HS_L60_static\\\",\\n  \\\"solver\\\": \\\"lbfgs\\\",\\n  \\\"C\\\": 1.0,\\n  \\\"class_weight\\\": \\\"balanced\\\",\\n  \\\"max_iter\\\": 2000,\\n  \\\"cv_acc\\\": 0.935488974062238,\\n  \\\"cv_std\\\": 0.005008517077988396,\\n  \\\"step_fpr\\\": 0.2790942601369142,\\n  \\\"trace_fpr_k5\\\": 0.475,\\n  \\\"n_jb_traces\\\": 95,\\n  \\\"n_jb_steps\\\": 4852,\\n  \\\"n_safe_traces\\\": 40,\\n  \\\"n_safe_steps\\\": 1899\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 10.7}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "970238b1-9f9e-4f3b-98fb-944a708fbd8a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading jailbreak traces...\\\\n  4852 steps, dim=5120, safe=3247, unsafe=1605\\\\nLoading safe traces...\\\\n  1899 steps from 40 traces\\\\n\\\\nTraining LogisticRegression (lbfgs, C=1.0, balanced, max_iter=2000)...\\\\n  Fold 1: acc=0.9351\\\\n  Fold 2: acc=0.9434\\\\n  Fold 3: acc=0.9278\\\\n  Fold 4: acc=0.9371\\\\n  Fold 5: acc=0.9340\\\\n  CV mean acc: 0.9355 +/- 0.0050 (4.5s)\\\\n\\\\nTraining final model...\\\\n  Done in 1.1s\\\\n\\\\n=== HS Probe (L60) Results ===\\\\n  Step-level FPR: 27.91%\\\\n  Trace-level FPR (K=5): 47.50%\\\\n  Traces triggered: 19/40\\\\n\\\\nResult dict: {\\\\n  \\\\\\\"method\\\\\\\": \\\\\\\"HS_L60_static\\\\\\\",\\\\n  \\\\\\\"solver\\\\\\\": \\\\\\\"lbfgs\\\\\\\",\\\\n  \\\\\\\"C\\\\\\\": 1.0,\\\\n  \\\\\\\"class_weight\\\\\\\": \\\\\\\"balanced\\\\\\\",\\\\n  \\\\\\\"max_iter\\\\\\\": 2000,\\\\n  \\\\\\\"cv_acc\\\\\\\": 0.935488974062238,\\\\n  \\\\\\\"cv_std\\\\\\\": 0.005008517077988396,\\\\n  \\\\\\\"step_fpr\\\\\\\": 0.2790942601369142,\\\\n  \\\\\\\"trace_fpr_k5\\\\\\\": 0.475,\\\\n  \\\\\\\"n_jb_traces\\\\\\\": 95,\\\\n  \\\\\\\"n_jb_steps\\\\\\\": 4852,\\\\n  \\\\\\\"n_safe_traces\\\\\\\": 40,\\\\n  \\\\\\\"n_safe_steps\\\\\\\": 1899\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 10.7}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Loading jailbreak traces...\\n  4852 steps, dim=5120, safe=3247, unsafe=1605\\nLoading safe traces...\\n  1899 steps from 40 traces\\n\\nTraining LogisticRegression (lbfgs, C=1.0, balanced, max_iter=2000)...\\n  Fold 1: acc=0.9351\\n  Fold 2: acc=0.9434\\n  Fold 3: acc=0.9278\\n  Fold 4: acc=0.9371\\n  Fold 5: acc=0.9340\\n  CV mean acc: 0.9355 +/- 0.0050 (4.5s)\\n\\nTraining final model...\\n  Done in 1.1s\\n\\n=== HS Probe (L60) Results ===\\n  Step-level FPR: 27.91%\\n  Trace-level FPR (K=5): 47.50%\\n  Traces triggered: 19/40\\n\\nResult dict: {\\n  \\\"method\\\": \\\"HS_L60_static\\\",\\n  \\\"solver\\\": \\\"lbfgs\\\",\\n  \\\"C\\\": 1.0,\\n  \\\"class_weight\\\": \\\"balanced\\\",\\n  \\\"max_iter\\\": 2000,\\n  \\\"cv_acc\\\": 0.935488974062238,\\n  \\\"cv_std\\\": 0.005008517077988396,\\n  \\\"step_fpr\\\": 0.2790942601369142,\\n  \\\"trace_fpr_k5\\\": 0.475,\\n  \\\"n_jb_traces\\\": 95,\\n  \\\"n_jb_steps\\\": 4852,\\n  \\\"n_safe_traces\\\": 40,\\n  \\\"n_safe_steps\\\": 1899\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 10.7}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+HS probe results confirmed:
+- Step-level FPR: 27.91%
+- Trace-level FPR (K=5): 47.50%
+
+This is still very high - nearly half of safe traces would be falsely triggered. Not as extreme as the previous 50% from SGDClassifier, but still very bad.
+
+Now I need to do the Text probe. The issue is that sentence-transformers tries to connect to huggingface.co directly, but the server needs HF_ENDPOINT=https://hf-mirror.com. Let me check if there's a cached model or if text embeddings already exist.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "12f42a13-236d-4c88-b0f5-e04a1f229abf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JYj6BvqDm1sbhsoLwrTJRe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2493,
+      "cache_read_input_tokens": 33407,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2493
+      },
+      "output_tokens": 48,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+HS probe 完成：Step-FPR=27.9%, Trace-FPR(K=5)=47.5%。现在处理 Text probe，需要先检查是否有缓存的 text embeddings 或模型。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "9234d1a5-57c6-415c-bbc2-1307199c479d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JYj6BvqDm1sbhsoLwrTJRe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2493,
+      "cache_read_input_tokens": 33407,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2493
+      },
+      "output_tokens": 48,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01YU5jwwZcCdHkPFVSjPP3Sa`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && ls artifacts/text_embeddings_qwq_32b*.pt 2>/dev/null && echo \"---\" && ls artifacts/hidden_states_qwq_32b/$(ls artifacts/hidden_states_qwq_32b/ | head -1) | head -1 && /root/miniconda3/bin/python3.12 -c \"\nimport torch, os\n# check if jailbreak trace has text/sentences field\nd = torch.load('artifacts/hidden_states_qwq_32b/' + sorted(os.listdir('artifacts/hidden_states_qwq_32b'))[0], map_location='cpu')\nprint('Keys:', list(d.keys()))\n# check for sentences/steps/text\nfor k in ['sentences', 'steps', 'text', 'reasoning_steps']:\n    if k in d:\n        print(f'{k} found, type={type(d[k])}, len={len(d[k]) if hasattr(d[k],\\\"__len__\\\") else \\\"N/A\\\"}')\n        if isinstance(d[k], list) and len(d[k])>0:\n            print(f'  first item: {str(d[k][0])[:100]}')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "31d782fe-c0a8-43ca-9f4b-1394c1d42e74",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JYj6BvqDm1sbhsoLwrTJRe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2493,
+      "cache_read_input_tokens": 33407,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2493
+      },
+      "output_tokens": 48,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-17T21:12:20.449Z_
+
+<details><summary>↩ Tool result · `toolu_01YU5jwwZcCdHkPFVSjPP3Sa`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/autodl-tmp/contrastive_trace_safety && ls artifacts/text_embeddings_qwq_32b*.pt 2>/dev/null && echo \\\"---\\\" && ls artifacts/hidden_states_qwq_32b/$(ls artifacts/hidden_states_qwq_32b/ | head -1) | head -1 && /root/miniconda3/bin/python3.12 -c \\\"\\\\nimport torch, os\\\\n# check if jailbreak trace has text/sentences field\\\\nd = torch.load(\\\\'artifacts/hidden_states_qwq_32b/\\\\' + sorted(os.listdir(\\\\'artifacts/hidden_states_qwq_32b\\\\'))[0], map_location=\\\\'cpu\\\\')\\\\nprint(\\\\'Keys:\\\\', list(d.keys()))\\\\n# check for sentences/steps/text\\\\nfor k in [\\\\'sentences\\\\', \\\\'steps\\\\', \\\\'text\\\\', \\\\'reasoning_steps\\\\']:\\\\n    if k in d:\\\\n        print(f\\\\'{k} found, type={type(d[k])}, len={len(d[k]) if hasattr(d[k],\\\\\\\\\\\"__len__\\\\\\\\\\\") else \\\\\\\\\\\"N/A\\\\\\\\\\\"}\\\\')\\\\n        if isinstance(d[k], list) and len(d[k])>0:\\\\n            print(f\\\\'  first item: {str(d[k][0])[:100]}\\\\')\\\\n\\\"'\\n\\nExit code: 2\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "7d331f23-5f6b-438c-a275-ea3834312819",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /root/autodl-tmp/contrastive_trace_safety && ls artifacts/text_embeddings_qwq_32b*.pt 2>/dev/null && echo \\\\\\\"---\\\\\\\" && ls artifacts/hidden_states_qwq_32b/$(ls artifacts/hidden_states_qwq_32b/ | head -1) | head -1 && /root/miniconda3/bin/python3.12 -c \\\\\\\"\\\\\\\\nimport torch, os\\\\\\\\n# check if jailbreak trace has text/sentences field\\\\\\\\nd = torch.load(\\\\\\\\'artifacts/hidden_states_qwq_32b/\\\\\\\\' + sorted(os.listdir(\\\\\\\\'artifacts/hidden_states_qwq_32b\\\\\\\\'))[0], map_location=\\\\\\\\'cpu\\\\\\\\')\\\\\\\\nprint(\\\\\\\\'Keys:\\\\\\\\', list(d.keys()))\\\\\\\\n# check for sentences/steps/text\\\\\\\\nfor k in [\\\\\\\\'sentences\\\\\\\\', \\\\\\\\'steps\\\\\\\\', \\\\\\\\'text\\\\\\\\', \\\\\\\\'reasoning_steps\\\\\\\\']:\\\\\\\\n    if k in d:\\\\\\\\n        print(f\\\\\\\\'{k} found, type={type(d[k])}, len={len(d[k]) if hasattr(d[k],\\\\\\\\\\\\\\\\\\\\\\\"__len__\\\\\\\\\\\\\\\\\\\\\\\") else \\\\\\\\\\\\\\\\\\\\\\\"N/A\\\\\\\\\\\\\\\\\\\\\\\"}\\\\\\\\')\\\\\\\\n        if isinstance(d[k], list) and len(d[k])>0:\\\\\\\\n            print(f\\\\\\\\'  first item: {str(d[k][0])[:100]}\\\\\\\\')\\\\\\\\n\\\\\\\"'\\\\n\\\\nExit code: 2\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/autodl-tmp/contrastive_trace_safety && ls artifacts/text_embeddings_qwq_32b*.pt 2>/dev/null && echo \\\"---\\\" && ls artifacts/hidden_states_qwq_32b/$(ls artifacts/hidden_states_qwq_32b/ | head -1) | head -1 && /root/miniconda3/bin/python3.12 -c \\\"\\\\nimport torch, os\\\\n# check if jailbreak trace has text/sentences field\\\\nd = torch.load(\\\\'artifacts/hidden_states_qwq_32b/\\\\' + sorted(os.listdir(\\\\'artifacts/hidden_states_qwq_32b\\\\'))[0], map_location=\\\\'cpu\\\\')\\\\nprint(\\\\'Keys:\\\\', list(d.keys()))\\\\n# check for sentences/steps/text\\\\nfor k in [\\\\'sentences\\\\', \\\\'steps\\\\', \\\\'text\\\\', \\\\'reasoning_steps\\\\']:\\\\n    if k in d:\\\\n        print(f\\\\'{k} found, type={type(d[k])}, len={len(d[k]) if hasattr(d[k],\\\\\\\\\\\"__len__\\\\\\\\\\\") else \\\\\\\\\\\"N/A\\\\\\\\\\\"}\\\\')\\\\n        if isinstance(d[k], list) and len(d[k])>0:\\\\n            print(f\\\\'  first item: {str(d[k][0])[:100]}\\\\')\\\\n\\\"'\\n\\nExit code: 2\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01HUNi5PqeJ1x2wjrh64bhGg`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 -c \"\nimport torch, os\nd = torch.load('artifacts/hidden_states_qwq_32b/' + sorted(os.listdir('artifacts/hidden_states_qwq_32b'))[0], map_location='cpu')\nprint('Keys:', list(d.keys()))\nfor k in ['sentences', 'steps', 'text', 'reasoning_steps', 'content']:\n    if k in d:\n        val = d[k]\n        print(f'{k}: type={type(val)}, len={len(val) if hasattr(val, \\\"__len__\\\") else \\\"N/A\\\"}')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "a318c07f-57e2-49b7-8738-b55dadb9c06d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FbtErMP7QA1AA3JVGF9RK2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1141,
+      "cache_read_input_tokens": 35900,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1141
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-17T21:12:27.314Z_
+
+<details><summary>↩ Tool result · `toolu_01HUNi5PqeJ1x2wjrh64bhGg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Keys: ['hidden_states', 'trace_id', 'num_sentences', 'commitment_point', 'step_labels', 'query']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.21}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "5eaee700-d6da-4255-9810-13cae746b765",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Keys: ['hidden_states', 'trace_id', 'num_sentences', 'commitment_point', 'step_labels', 'query']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.21}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Keys: ['hidden_states', 'trace_id', 'num_sentences', 'commitment_point', 'step_labels', 'query']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.21}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The hidden state files don't contain the text content of the reasoning steps - they only have hidden_states, trace_id, num_sentences, commitment_point, step_labels, and query. I need to find the original trace data that has the text content to compute text embeddings.
+
+Let me check if there are original trace files (e.g., JSONL or other formats) that contain the text.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "75187691-223f-4205-8e41-52ee5fbf2f9b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RWqvodpb1xmuaaV4EeRKNe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 395,
+      "cache_read_input_tokens": 37041,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 395
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37_
+
+Hidden state 文件不包含文本。需要找原始 trace 数据。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "d8cdcab3-df23-47a2-8dc8-85401085e7a2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RWqvodpb1xmuaaV4EeRKNe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 395,
+      "cache_read_input_tokens": 37041,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 395
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_0131tBQKtkYx7QNQTcTnnzR1`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && find artifacts/ -name \"*trace*\" -o -name \"*qwq*jsonl\" -o -name \"*qwq*json\" 2>/dev/null | grep -v hidden_states | grep -v \".pt\" | head -20 && echo \"---\" && find data/ -name \"*qwq*\" 2>/dev/null | head -20 && echo \"---\" && ls data/ 2>/dev/null | head -20",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "a9de9b39-3a2b-494f-b446-ca4ac13ba175",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RWqvodpb1xmuaaV4EeRKNe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 395,
+      "cache_read_input_tokens": 37041,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 395
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-17T21:12:34.736Z_
+
+<details><summary>↩ Tool result · `toolu_0131tBQKtkYx7QNQTcTnnzR1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"artifacts/m001_layer_fix/layer_ranking_qwq_32b.json\\nartifacts/m001_layer_fix/gru_corrected_qwq_32b.json\\nartifacts/m001_layer_fix/temporal_lr_qwq_32b.json\\nartifacts/acc_precision_bootstrap/excluded_traces_analysis.txt\\nartifacts/ot7b_layer16_verification/layer16_traces.pkl\\nartifacts/exp_r3_mlp_probe/results_qwq_32b.json\\nartifacts/exp_r3_layer_ablation/qwq_alt_layers.json\\nartifacts/exp_r3_r1_32b_selectivity_ci/train_trace_ids.npy\\nartifacts/exp_r3_bocpd_r1_32b/traces_meta.json\\nartifacts/exp_r3_bocpd_qwq/traces_meta.json\\n---\\n---\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "904acee6-be5b-4306-98d2-6591cdfcc307",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"artifacts/m001_layer_fix/layer_ranking_qwq_32b.json\\\\nartifacts/m001_layer_fix/gru_corrected_qwq_32b.json\\\\nartifacts/m001_layer_fix/temporal_lr_qwq_32b.json\\\\nartifacts/acc_precision_bootstrap/excluded_traces_analysis.txt\\\\nartifacts/ot7b_layer16_verification/layer16_traces.pkl\\\\nartifacts/exp_r3_mlp_probe/results_qwq_32b.json\\\\nartifacts/exp_r3_layer_ablation/qwq_alt_layers.json\\\\nartifacts/exp_r3_r1_32b_selectivity_ci/train_trace_ids.npy\\\\nartifacts/exp_r3_bocpd_r1_32b/traces_meta.json\\\\nartifacts/exp_r3_bocpd_qwq/traces_meta.json\\\\n---\\\\n---\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"artifacts/m001_layer_fix/layer_ranking_qwq_32b.json\\nartifacts/m001_layer_fix/gru_corrected_qwq_32b.json\\nartifacts/m001_layer_fix/temporal_lr_qwq_32b.json\\nartifacts/acc_precision_bootstrap/excluded_traces_analysis.txt\\nartifacts/ot7b_layer16_verification/layer16_traces.pkl\\nartifacts/exp_r3_mlp_probe/results_qwq_32b.json\\nartifacts/exp_r3_layer_ablation/qwq_alt_layers.json\\nartifacts/exp_r3_r1_32b_selectivity_ci/train_trace_ids.npy\\nartifacts/exp_r3_bocpd_r1_32b/traces_meta.json\\nartifacts/exp_r3_bocpd_qwq/traces_meta.json\\n---\\n---\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_015yu8NAHWxpAtrEPczPtGfX`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && find . -name \"*.jsonl\" | grep -i \"qwq\\|safe\\|jailbreak\" | head -20 && echo \"---\" && find . -path \"*/traces/*\" -name \"*.json*\" | head -20 && echo \"---\" && ls artifacts/ | grep -i \"text\\|embed\\|sent\" | head -10",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "38b167a5-88d9-4d98-a7c5-b35c196b9a1b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NhcXWDjAhtxf8B9EvNJmHo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 673,
+      "cache_read_input_tokens": 37436,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 673
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-17T21:12:40.361Z_
+
+<details><summary>↩ Tool result · `toolu_015yu8NAHWxpAtrEPczPtGfX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"---\\n---\\nexp_013_text_baseline\\nhs_vs_text_acc_prec.json\\not7b_sentence_map.json\\not7b_text_embeddings.json\\not7b_text_embeddings.pkl\\nqwq_text_verify\\nr1_8b_bootstrap_hs_text\\nreport_hs_vs_text_acc.md\\ntext_window_ablation_r1_8b\\ntext_window_ablation_r1_8b_run.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "ca758ead-4f45-441e-b470-793910ceb411",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"---\\\\n---\\\\nexp_013_text_baseline\\\\nhs_vs_text_acc_prec.json\\\\not7b_sentence_map.json\\\\not7b_text_embeddings.json\\\\not7b_text_embeddings.pkl\\\\nqwq_text_verify\\\\nr1_8b_bootstrap_hs_text\\\\nreport_hs_vs_text_acc.md\\\\ntext_window_ablation_r1_8b\\\\ntext_window_ablation_r1_8b_run.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"---\\n---\\nexp_013_text_baseline\\nhs_vs_text_acc_prec.json\\not7b_sentence_map.json\\not7b_text_embeddings.json\\not7b_text_embeddings.pkl\\nqwq_text_verify\\nr1_8b_bootstrap_hs_text\\nreport_hs_vs_text_acc.md\\ntext_window_ablation_r1_8b\\ntext_window_ablation_r1_8b_run.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_019RoobiqYneex87qAjF21wH`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && ls artifacts/qwq_text_verify/ 2>/dev/null && echo \"---\" && ls artifacts/exp_013_text_baseline/ 2>/dev/null | head -20",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "4c843afe-b7b6-4755-a838-df7bca12c786",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y9xFnHYbV7dmoZaEFtUwCe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 508,
+      "cache_read_input_tokens": 38109,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 508
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-17T21:12:44.486Z_
+
+<details><summary>↩ Tool result · `toolu_019RoobiqYneex87qAjF21wH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"bootstrap_results.json\\ncode_audit.md\\nreport.md\\nrun.log\\nrun_bootstrap.py\\n---\\nresults.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "90a7353b-27ee-416d-b179-8d8d19d67c80",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"bootstrap_results.json\\\\ncode_audit.md\\\\nreport.md\\\\nrun.log\\\\nrun_bootstrap.py\\\\n---\\\\nresults.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"bootstrap_results.json\\ncode_audit.md\\nreport.md\\nrun.log\\nrun_bootstrap.py\\n---\\nresults.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_011VJssBysr8PMoGkM8CZHnd`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 -c \"\nimport json\n# Check text baseline results for clues about data location\nwith open('artifacts/exp_013_text_baseline/results.json') as f:\n    d = json.load(f)\nprint(type(d))\nif isinstance(d, dict):\n    for k in list(d.keys())[:10]:\n        v = d[k]\n        if isinstance(v, (str, int, float, bool)):\n            print(f'{k}: {v}')\n        else:\n            print(f'{k}: {type(v)}')\n\" 2>&1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "06de4b82-d1d8-4b0c-9ff7-4a25b0c7153f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VptijiS3jYmZyKKQRWFKwH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 276,
+      "cache_read_input_tokens": 38617,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 276
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-17T21:12:50.295Z_
+
+<details><summary>↩ Tool result · `toolu_011VJssBysr8PMoGkM8CZHnd`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"&lt;class 'dict'>\\nexperiment: exp_013_text_baseline\\nmodel: all-MiniLM-L6-v2\\nembedding_dim: 384\\nwindow_size: 15\\ndetection_window: 5\\nthreshold: 0.5\\nseed: 42\\nnum_test_traces: 43\\nmetrics: &lt;class 'dict'>\\ncomparison_hidden_state: &lt;class 'dict'>\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "240e4dff-26c8-44af-ba53-ee80285ae9b8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"&lt;class 'dict'>\\\\nexperiment: exp_013_text_baseline\\\\nmodel: all-MiniLM-L6-v2\\\\nembedding_dim: 384\\\\nwindow_size: 15\\\\ndetection_window: 5\\\\nthreshold: 0.5\\\\nseed: 42\\\\nnum_test_traces: 43\\\\nmetrics: &lt;class 'dict'>\\\\ncomparison_hidden_state: &lt;class 'dict'>\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"&lt;class 'dict'>\\nexperiment: exp_013_text_baseline\\nmodel: all-MiniLM-L6-v2\\nembedding_dim: 384\\nwindow_size: 15\\ndetection_window: 5\\nthreshold: 0.5\\nseed: 42\\nnum_test_traces: 43\\nmetrics: &lt;class 'dict'>\\ncomparison_hidden_state: &lt;class 'dict'>\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_014vhxZbAnkjyHfK2e3LtLxX`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && find . -name \"*.jsonl\" | head -20 && echo \"---\" && find . -name \"sentences*\" -o -name \"*reasoning*jsonl\" -o -name \"*reasoning*json\" | head -20 && echo \"---\" && find . -path \"*qwq*\" -name \"*.json\" | grep -v artifacts | head -20",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "c412cddc-ccea-4816-842c-5a363b73932d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015cQL84CABzyKKqtovEZ3Eh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 460,
+      "cache_read_input_tokens": 38893,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 460
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-17T21:12:55.444Z_
+
+<details><summary>↩ Tool result · `toolu_014vhxZbAnkjyHfK2e3LtLxX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"---\\n---\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "7d773bd3-3f6a-4896-8372-f5e550b7bb31",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"---\\\\n---\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"---\\n---\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01MFGwjXvBh7skwNSqQ9qW1a`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && find . -name \"*.jsonl\" -o -name \"*.json\" | xargs grep -l \"qwq\\|QwQ\" 2>/dev/null | grep -v node_modules | grep -v __pycache__ | head -20",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "d52d8b16-2ca8-4b3e-be7f-cd8f5184252b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QLTPqXTY45cmtTjwpq17CC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 280,
+      "cache_read_input_tokens": 39353,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 280
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-17T21:12:59.991Z_
+
+<details><summary>↩ Tool result · `toolu_01MFGwjXvBh7skwNSqQ9qW1a`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"./artifacts/hidden_states_qwq_32b/extraction_summary.json\\n./artifacts/exp_001b/layer_sweep_results.json\\n./artifacts/exp_001b/temporal_lr_results.json\\n./artifacts/exp_001b/gru_results.json\\n./artifacts/exp_001b/bootstrap_fpr_results.json\\n./artifacts/exp_003_cross_transfer/results.json\\n./artifacts/exp_003_cross_transfer/transfer_matrix.json\\n./artifacts/m001_layer_fix/layer_ranking_qwq_32b.json\\n./artifacts/exp_c2_control/cp_distribution.json\\n./artifacts/exp_c2_control/selectivity_results.json\\n./artifacts/exp_c2_control/position_baseline.json\\n./artifacts/qwq_text_verify/bootstrap_results.json\\n./artifacts/exp_007_window_ablation/results.json\\n./artifacts/hs_vs_text_acc_prec.json\\n./artifacts/acc_precision_bootstrap/results.json\\n./artifacts/paper_data/fig2_temporal_improvement.json\\n./artifacts/paper_data/fig3_bootstrap_ci.json\\n./artifacts/qwq_paired_bootstrap_w5/fpr_bootstrap_w5.json\\n./artifacts/metric_correlation/results.json\\n./artifacts/power_analysis/results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.63}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "0056787c-39dc-4d8c-ad84-524b5b64bc8d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"./artifacts/hidden_states_qwq_32b/extraction_summary.json\\\\n./artifacts/exp_001b/layer_sweep_results.json\\\\n./artifacts/exp_001b/temporal_lr_results.json\\\\n./artifacts/exp_001b/gru_results.json\\\\n./artifacts/exp_001b/bootstrap_fpr_results.json\\\\n./artifacts/exp_003_cross_transfer/results.json\\\\n./artifacts/exp_003_cross_transfer/transfer_matrix.json\\\\n./artifacts/m001_layer_fix/layer_ranking_qwq_32b.json\\\\n./artifacts/exp_c2_control/cp_distribution.json\\\\n./artifacts/exp_c2_control/selectivity_results.json\\\\n./artifacts/exp_c2_control/position_baseline.json\\\\n./artifacts/qwq_text_verify/bootstrap_results.json\\\\n./artifacts/exp_007_window_ablation/results.json\\\\n./artifacts/hs_vs_text_acc_prec.json\\\\n./artifacts/acc_precision_bootstrap/results.json\\\\n./artifacts/paper_data/fig2_temporal_improvement.json\\\\n./artifacts/paper_data/fig3_bootstrap_ci.json\\\\n./artifacts/qwq_paired_bootstrap_w5/fpr_bootstrap_w5.json\\\\n./artifacts/metric_correlation/results.json\\\\n./artifacts/power_analysis/results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.63}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"./artifacts/hidden_states_qwq_32b/extraction_summary.json\\n./artifacts/exp_001b/layer_sweep_results.json\\n./artifacts/exp_001b/temporal_lr_results.json\\n./artifacts/exp_001b/gru_results.json\\n./artifacts/exp_001b/bootstrap_fpr_results.json\\n./artifacts/exp_003_cross_transfer/results.json\\n./artifacts/exp_003_cross_transfer/transfer_matrix.json\\n./artifacts/m001_layer_fix/layer_ranking_qwq_32b.json\\n./artifacts/exp_c2_control/cp_distribution.json\\n./artifacts/exp_c2_control/selectivity_results.json\\n./artifacts/exp_c2_control/position_baseline.json\\n./artifacts/qwq_text_verify/bootstrap_results.json\\n./artifacts/exp_007_window_ablation/results.json\\n./artifacts/hs_vs_text_acc_prec.json\\n./artifacts/acc_precision_bootstrap/results.json\\n./artifacts/paper_data/fig2_temporal_improvement.json\\n./artifacts/paper_data/fig3_bootstrap_ci.json\\n./artifacts/qwq_paired_bootstrap_w5/fpr_bootstrap_w5.json\\n./artifacts/metric_correlation/results.json\\n./artifacts/power_analysis/results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.63}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01VaLBiQkXK2g41YgL5K6ahL`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 -c \"\nimport json\nwith open('artifacts/hidden_states_qwq_32b/extraction_summary.json') as f:\n    d = json.load(f)\nfor k,v in d.items():\n    if isinstance(v, (str, int, float)):\n        print(f'{k}: {v}')\n    elif isinstance(v, list) and len(v) < 5:\n        print(f'{k}: {v}')\n    else:\n        print(f'{k}: {type(v).__name__} len={len(v) if hasattr(v,\\\"__len__\\\") else \\\"?\\\"}')\n\" 2>&1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "1c00ec09-d0e8-4d65-a492-af891fc537d8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NTeyf4cwC3ekJ2SiLtcm9q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 599,
+      "cache_read_input_tokens": 39633,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 599
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-17T21:13:06.090Z_
+
+<details><summary>↩ Tool result · `toolu_01VaLBiQkXK2g41YgL5K6ahL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"model: QwQ-32B\\nnum_traces: 95\\nnum_extracted: 95\\ntotal_steps: 4852\\ntotal_tokens: 78641\\nnum_layers: 64\\nhidden_dim: 5120\\nerrors: []\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "8a9691df-75bc-49d7-bb62-407cbfa9641f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"model: QwQ-32B\\\\nnum_traces: 95\\\\nnum_extracted: 95\\\\ntotal_steps: 4852\\\\ntotal_tokens: 78641\\\\nnum_layers: 64\\\\nhidden_dim: 5120\\\\nerrors: []\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"model: QwQ-32B\\nnum_traces: 95\\nnum_extracted: 95\\ntotal_steps: 4852\\ntotal_tokens: 78641\\nnum_layers: 64\\nhidden_dim: 5120\\nerrors: []\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_014TcmCm2mXJch1QkK449MQ2`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && find . -name \"*.py\" | xargs grep -l \"sentence_transform\\|SentenceTransformer\\|text.*embed\" 2>/dev/null | head -10",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "054bcad8-d2de-4b19-bccc-ed787404350e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015eKoYCfiFoeJrtDobDfVzw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 429,
+      "cache_read_input_tokens": 40232,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 429
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-17T21:13:10.195Z_
+
+<details><summary>↩ Tool result · `toolu_014TcmCm2mXJch1QkK449MQ2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"./artifacts/r1_8b_balanced_recompute/recompute_all.py\\n./artifacts/qwq_text_verify/run_bootstrap.py\\n./artifacts/acc_precision_bootstrap/run_bootstrap.py\\n./src/experiments/text_baseline.py\\n./src/experiments/fpr_analysis.py\\n./src/experiments/exp_001a_bootstrap_hs_vs_text.py\\n./src/experiments/m001_layer_fix.py\\n./src/experiments/r1_8b_bootstrap_hs_text.py\\n./src/experiments/text_window_ablation_r1_8b.py\\n./src/experiments/exp_ot7b_full_pipeline.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "fc0da470-8d2a-4777-907f-6541b0b72aff",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"./artifacts/r1_8b_balanced_recompute/recompute_all.py\\\\n./artifacts/qwq_text_verify/run_bootstrap.py\\\\n./artifacts/acc_precision_bootstrap/run_bootstrap.py\\\\n./src/experiments/text_baseline.py\\\\n./src/experiments/fpr_analysis.py\\\\n./src/experiments/exp_001a_bootstrap_hs_vs_text.py\\\\n./src/experiments/m001_layer_fix.py\\\\n./src/experiments/r1_8b_bootstrap_hs_text.py\\\\n./src/experiments/text_window_ablation_r1_8b.py\\\\n./src/experiments/exp_ot7b_full_pipeline.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"./artifacts/r1_8b_balanced_recompute/recompute_all.py\\n./artifacts/qwq_text_verify/run_bootstrap.py\\n./artifacts/acc_precision_bootstrap/run_bootstrap.py\\n./src/experiments/text_baseline.py\\n./src/experiments/fpr_analysis.py\\n./src/experiments/exp_001a_bootstrap_hs_vs_text.py\\n./src/experiments/m001_layer_fix.py\\n./src/experiments/r1_8b_bootstrap_hs_text.py\\n./src/experiments/text_window_ablation_r1_8b.py\\n./src/experiments/exp_ot7b_full_pipeline.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01JTsvCjEFQX8sXFTHAQWY7y`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && head -60 artifacts/qwq_text_verify/run_bootstrap.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "e8b1c3ed-85c9-4764-a22b-1918990474cd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TwTbjCmvKvzktdBNqaoDEy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 414,
+      "cache_read_input_tokens": 40661,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 414
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-17T21:13:14.058Z_
+
+<details><summary>↩ Tool result · `toolu_01JTsvCjEFQX8sXFTHAQWY7y`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"QwQ-32B: Pre-CP FPR Paired Bootstrap Test - HS probe vs REAL Text Embedding probe.\\n\\nCorrects the invalid midpoint heuristic used in exp_001b_bootstrap.py.\\nUses all-MiniLM-L6-v2 sentence embeddings as the true text baseline.\\nLayer: 2 (corrected best layer).\\n\\\"\\\"\\\"\\n\\nimport os, sys, json\\nos.environ[\\\"TOKENIZERS_PARALLELISM\\\"] = \\\"false\\\"\\nos.environ[\\\"HF_ENDPOINT\\\"] = \\\"https://hf-mirror.com\\\"\\n\\nimport numpy as np\\nimport torch\\nfrom sklearn.linear_model import LogisticRegression\\nfrom pathlib import Path\\n\\nsys.path.insert(0, \\\"/root/autodl-tmp/contrastive_trace_safety\\\")\\nfrom src.data_loader import load_harmthoughts, extract_commitment_point, create_step_labels\\nfrom src.config import SAFETY_LABELS\\n\\nHS_DIR = Path(\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_qwq_32b\\\")\\nOUTPUT_DIR = Path(\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/qwq_text_verify\\\")\\nHIDDEN_DIM = 5120\\nTEXT_DIM = 384\\nLAYER_IDX = 2  # Corrected best layer\\nWINDOW_SIZE = 15\\nSEED = 42\\n\\n\\ndef load_traces_with_sentences():\\n    print(\\\"Loading HarmThoughts dataset (QwQ)...\\\")\\n    raw_traces = load_harmthoughts(\\\"QwQ\\\")\\n\\n    traces = []\\n    for trace_id, steps in raw_traces.items():\\n        is_jailbreak = steps[0][\\\"final_judgment\\\"] == 1.0\\n        if not is_jailbreak:\\n            continue\\n        labels = [s[\\\"label\\\"] for s in steps]\\n        cp = extract_commitment_point(labels)\\n        if cp is None:\\n            continue\\n\\n        hs_path = HS_DIR / f\\\"{trace_id}.pt\\\"\\n        if not hs_path.exists():\\n            continue\\n\\n        sentences = [s[\\\"sentence\\\"] for s in steps]\\n        step_labels = create_step_labels(cp, len(sentences))\\n\\n        hs_data = torch.load(hs_path, map_location=\\\"cpu\\\", weights_only=False)\\n\\n        traces.append({\\n            \\\"trace_id\\\": trace_id,\\n            \\\"sentences\\\": sentences,\\n            \\\"hidden_states\\\": hs_data[\\\"hidden_states\\\"],\\n            \\\"commitment_point\\\": cp,\\n            \\\"step_labels\\\": step_labels,\\n        })\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "04f3118c-3059-4806-9d63-e77790f0f4fe",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"QwQ-32B: Pre-CP FPR Paired Bootstrap Test - HS probe vs REAL Text Embedding probe.\\\\n\\\\nCorrects the invalid midpoint heuristic used in exp_001b_bootstrap.py.\\\\nUses all-MiniLM-L6-v2 sentence embeddings as the true text baseline.\\\\nLayer: 2 (corrected best layer).\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport os, sys, json\\\\nos.environ[\\\\\\\"TOKENIZERS_PARALLELISM\\\\\\\"] = \\\\\\\"false\\\\\\\"\\\\nos.environ[\\\\\\\"HF_ENDPOINT\\\\\\\"] = \\\\\\\"https://hf-mirror.com\\\\\\\"\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom sklearn.linear_model import LogisticRegression\\\\nfrom pathlib import Path\\\\n\\\\nsys.path.insert(0, \\\\\\\"/root/autodl-tmp/contrastive_trace_safety\\\\\\\")\\\\nfrom src.data_loader import load_harmthoughts, extract_commitment_point, create_step_labels\\\\nfrom src.config import SAFETY_LABELS\\\\n\\\\nHS_DIR = Path(\\\\\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_qwq_32b\\\\\\\")\\\\nOUTPUT_DIR = Path(\\\\\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/qwq_text_verify\\\\\\\")\\\\nHIDDEN_DIM = 5120\\\\nTEXT_DIM = 384\\\\nLAYER_IDX = 2  # Corrected best layer\\\\nWINDOW_SIZE = 15\\\\nSEED = 42\\\\n\\\\n\\\\ndef load_traces_with_sentences():\\\\n    print(\\\\\\\"Loading HarmThoughts dataset (QwQ)...\\\\\\\")\\\\n    raw_traces = load_harmthoughts(\\\\\\\"QwQ\\\\\\\")\\\\n\\\\n    traces = []\\\\n    for trace_id, steps in raw_traces.items():\\\\n        is_jailbreak = steps[0][\\\\\\\"final_judgment\\\\\\\"] == 1.0\\\\n        if not is_jailbreak:\\\\n            continue\\\\n        labels = [s[\\\\\\\"label\\\\\\\"] for s in steps]\\\\n        cp = extract_commitment_point(labels)\\\\n        if cp is None:\\\\n            continue\\\\n\\\\n        hs_path = HS_DIR / f\\\\\\\"{trace_id}.pt\\\\\\\"\\\\n        if not hs_path.exists():\\\\n            continue\\\\n\\\\n        sentences = [s[\\\\\\\"sentence\\\\\\\"] for s in steps]\\\\n        step_labels = create_step_labels(cp, len(sentences))\\\\n\\\\n        hs_data = torch.load(hs_path, map_location=\\\\\\\"cpu\\\\\\\", weights_only=False)\\\\n\\\\n        traces.append({\\\\n            \\\\\\\"trace_id\\\\\\\": trace_id,\\\\n            \\\\\\\"sentences\\\\\\\": sentences,\\\\n            \\\\\\\"hidden_states\\\\\\\": hs_data[\\\\\\\"hidden_states\\\\\\\"],\\\\n            \\\\\\\"commitment_point\\\\\\\": cp,\\\\n            \\\\\\\"step_labels\\\\\\\": step_labels,\\\\n        })\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"QwQ-32B: Pre-CP FPR Paired Bootstrap Test - HS probe vs REAL Text Embedding probe.\\n\\nCorrects the invalid midpoint heuristic used in exp_001b_bootstrap.py.\\nUses all-MiniLM-L6-v2 sentence embeddings as the true text baseline.\\nLayer: 2 (corrected best layer).\\n\\\"\\\"\\\"\\n\\nimport os, sys, json\\nos.environ[\\\"TOKENIZERS_PARALLELISM\\\"] = \\\"false\\\"\\nos.environ[\\\"HF_ENDPOINT\\\"] = \\\"https://hf-mirror.com\\\"\\n\\nimport numpy as np\\nimport torch\\nfrom sklearn.linear_model import LogisticRegression\\nfrom pathlib import Path\\n\\nsys.path.insert(0, \\\"/root/autodl-tmp/contrastive_trace_safety\\\")\\nfrom src.data_loader import load_harmthoughts, extract_commitment_point, create_step_labels\\nfrom src.config import SAFETY_LABELS\\n\\nHS_DIR = Path(\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_qwq_32b\\\")\\nOUTPUT_DIR = Path(\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/qwq_text_verify\\\")\\nHIDDEN_DIM = 5120\\nTEXT_DIM = 384\\nLAYER_IDX = 2  # Corrected best layer\\nWINDOW_SIZE = 15\\nSEED = 42\\n\\n\\ndef load_traces_with_sentences():\\n    print(\\\"Loading HarmThoughts dataset (QwQ)...\\\")\\n    raw_traces = load_harmthoughts(\\\"QwQ\\\")\\n\\n    traces = []\\n    for trace_id, steps in raw_traces.items():\\n        is_jailbreak = steps[0][\\\"final_judgment\\\"] == 1.0\\n        if not is_jailbreak:\\n            continue\\n        labels = [s[\\\"label\\\"] for s in steps]\\n        cp = extract_commitment_point(labels)\\n        if cp is None:\\n            continue\\n\\n        hs_path = HS_DIR / f\\\"{trace_id}.pt\\\"\\n        if not hs_path.exists():\\n            continue\\n\\n        sentences = [s[\\\"sentence\\\"] for s in steps]\\n        step_labels = create_step_labels(cp, len(sentences))\\n\\n        hs_data = torch.load(hs_path, map_location=\\\"cpu\\\", weights_only=False)\\n\\n        traces.append({\\n            \\\"trace_id\\\": trace_id,\\n            \\\"sentences\\\": sentences,\\n            \\\"hidden_states\\\": hs_data[\\\"hidden_states\\\"],\\n            \\\"commitment_point\\\": cp,\\n            \\\"step_labels\\\": step_labels,\\n        })\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 56_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I can see that the text data comes from `load_harmthoughts("QwQ")` in `src/data_loader.py`. Each step has a "sentence" field. Let me use this same approach for the text probe. Let me check the data_loader.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "05576a43-76dd-48b1-a96b-f4a8d06f5034",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L71QnU61rnrfdjpbjd1UTH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1014,
+      "cache_read_input_tokens": 41075,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1014
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 57_
+
+找到了数据源：`load_harmthoughts("QwQ")` 从 `src/data_loader.py` 加载文本。现在写完整的 Text probe 脚本，利用同样的数据源。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "56402ce0-72e5-430b-8f6d-74d7faa2bf64",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L71QnU61rnrfdjpbjd1UTH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1014,
+      "cache_read_input_tokens": 41075,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1014
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Y4nCbGBCT91ty9RhCpmhWu`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 -c \"\nimport sys\nsys.path.insert(0, '/root/autodl-tmp/contrastive_trace_safety')\nfrom src.data_loader import load_harmthoughts\n# check what safe traces look like\nraw = load_harmthoughts('QwQ')\nprint(f'Total traces: {len(raw)}')\n# count safe vs jailbreak\nsafe_count = 0\njb_count = 0\nfor tid, steps in raw.items():\n    if steps[0]['final_judgment'] == 1.0:\n        jb_count += 1\n    else:\n        safe_count += 1\nprint(f'Jailbreak: {jb_count}, Safe: {safe_count}')\n\n# Check a safe trace\nfor tid, steps in raw.items():\n    if steps[0]['final_judgment'] != 1.0:\n        print(f'\\\\nSafe trace {tid}: {len(steps)} steps')\n        print(f'  Keys: {list(steps[0].keys())}')\n        print(f'  First sentence: {steps[0][\\\"sentence\\\"][:100]}')\n        break\n\" 2>&1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "debca4b3-3ff1-4082-bf23-7883984ab05e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L71QnU61rnrfdjpbjd1UTH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1014,
+      "cache_read_input_tokens": 41075,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1014
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-17T21:13:54.255Z_
+
+<details><summary>↩ Tool result · `toolu_01Y4nCbGBCT91ty9RhCpmhWu`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 -c \\\"\\\\nimport sys\\\\nsys.path.insert(0, \\\\'/root/autodl-tmp/contrastive_trace_safety\\\\')\\\\nfrom src.data_loader import load_harmthoughts\\\\n# check what safe traces look like\\\\nraw = load_harmthoughts(\\\\'QwQ\\\\')\\\\nprint(f\\\\'Total traces: {len(raw)}\\\\')\\\\n# count safe vs jailbreak\\\\nsafe_count = 0\\\\njb_count = 0\\\\nfor tid, steps in raw.items():\\\\n    if steps[0][\\\\'final_judgment\\\\'] == 1.0:\\\\n        jb_count += 1\\\\n    else:\\\\n        safe_count += 1\\\\nprint(f\\\\'Jailbreak: {jb_count}, Safe: {safe_count}\\\\')\\\\n\\\\n# Check a safe trace\\\\nfor tid, steps in raw.items():\\\\n    if steps[0][\\\\'final_judgment\\\\'] != 1.0:\\\\n        print(f\\\\'\\\\\\\\\\\\\\\\nSafe trace {tid}: {len(steps)} steps\\\\')\\\\n        print(f\\\\'  Keys: {list(steps[0].keys())}\\\\')\\\\n        print(f\\\\'  First sentence: {steps[0][\\\\\\\\\\\"sentence\\\\\\\\\\\"][:100]}\\\\')\\\\n        break\\\\n\\\" 2>&1'\\n\\nStdout:\\n\\n'(MaxRetryError(\\\"HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/ishitakakkar-10/HarmThoughts/resolve/main/README.md (Caused by NewConnectionError('&lt;urllib3.connection.HTTPSConnection object at 0x7f227c7caa80>: Failed to establish a new connection: [Errno 101] Network is unreachable'))\\\"), '(Request ID: eac2474f-6182-4a33-8f40-9821703bb3c3)')' thrown while requesting HEAD https://huggingface.co/datasets/ishitakakkar-10/HarmThoughts/resolve/main/README.md\\nRetrying in 1s [Retry 1/5].\\n'(MaxRetryError(\\\"HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/ishitakakkar-10/HarmThoughts/resolve/main/README.md (Caused by NewConnectionError('&lt;urllib3.connection.HTTPSConnection object at 0x7f227c7cb320>: Failed to establish a new connection: [Errno 101] Network is unreachable'))\\\"), '(Request ID: 0226a38a-e227-4852-8957-9100d19d3502)')' thrown while requesting HEAD https://huggingface.co/datasets/ishitakakkar-10/HarmThoughts/resolve/main/README.md\\nRetrying in 2s [Retry 2/5].\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.33}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "ed60f5db-6b68-4fa6-9d17-7722c56ae0f2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 -c \\\\\\\"\\\\\\\\nimport sys\\\\\\\\nsys.path.insert(0, \\\\\\\\'/root/autodl-tmp/contrastive_trace_safety\\\\\\\\')\\\\\\\\nfrom src.data_loader import load_harmthoughts\\\\\\\\n# check what safe traces look like\\\\\\\\nraw = load_harmthoughts(\\\\\\\\'QwQ\\\\\\\\')\\\\\\\\nprint(f\\\\\\\\'Total traces: {len(raw)}\\\\\\\\')\\\\\\\\n# count safe vs jailbreak\\\\\\\\nsafe_count = 0\\\\\\\\njb_count = 0\\\\\\\\nfor tid, steps in raw.items():\\\\\\\\n    if steps[0][\\\\\\\\'final_judgment\\\\\\\\'] == 1.0:\\\\\\\\n        jb_count += 1\\\\\\\\n    else:\\\\\\\\n        safe_count += 1\\\\\\\\nprint(f\\\\\\\\'Jailbreak: {jb_count}, Safe: {safe_count}\\\\\\\\')\\\\\\\\n\\\\\\\\n# Check a safe trace\\\\\\\\nfor tid, steps in raw.items():\\\\\\\\n    if steps[0][\\\\\\\\'final_judgment\\\\\\\\'] != 1.0:\\\\\\\\n        print(f\\\\\\\\'\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\nSafe trace {tid}: {len(steps)} steps\\\\\\\\')\\\\\\\\n        print(f\\\\\\\\'  Keys: {list(steps[0].keys())}\\\\\\\\')\\\\\\\\n        print(f\\\\\\\\'  First sentence: {steps[0][\\\\\\\\\\\\\\\\\\\\\\\"sentence\\\\\\\\\\\\\\\\\\\\\\\"][:100]}\\\\\\\\')\\\\\\\\n        break\\\\\\\\n\\\\\\\" 2>&1'\\\\n\\\\nStdout:\\\\n\\\\n'(MaxRetryError(\\\\\\\"HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/ishitakakkar-10/HarmThoughts/resolve/main/README.md (Caused by NewConnectionError('&lt;urllib3.connection.HTTPSConnection object at 0x7f227c7caa80>: Failed to establish a new connection: [Errno 101] Network is unreachable'))\\\\\\\"), '(Request ID: eac2474f-6182-4a33-8f40-9821703bb3c3)')' thrown while requesting HEAD https://huggingface.co/datasets/ishitakakkar-10/HarmThoughts/resolve/main/README.md\\\\nRetrying in 1s [Retry 1/5].\\\\n'(MaxRetryError(\\\\\\\"HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/ishitakakkar-10/HarmThoughts/resolve/main/README.md (Caused by NewConnectionError('&lt;urllib3.connection.HTTPSConnection object at 0x7f227c7cb320>: Failed to establish a new connection: [Errno 101] Network is unreachable'))\\\\\\\"), '(Request ID: 0226a38a-e227-4852-8957-9100d19d3502)')' thrown while requesting HEAD https://huggingface.co/datasets/ishitakakkar-10/HarmThoughts/resolve/main/README.md\\\\nRetrying in 2s [Retry 2/5].\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.33}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 -c \\\"\\\\nimport sys\\\\nsys.path.insert(0, \\\\'/root/autodl-tmp/contrastive_trace_safety\\\\')\\\\nfrom src.data_loader import load_harmthoughts\\\\n# check what safe traces look like\\\\nraw = load_harmthoughts(\\\\'QwQ\\\\')\\\\nprint(f\\\\'Total traces: {len(raw)}\\\\')\\\\n# count safe vs jailbreak\\\\nsafe_count = 0\\\\njb_count = 0\\\\nfor tid, steps in raw.items():\\\\n    if steps[0][\\\\'final_judgment\\\\'] == 1.0:\\\\n        jb_count += 1\\\\n    else:\\\\n        safe_count += 1\\\\nprint(f\\\\'Jailbreak: {jb_count}, Safe: {safe_count}\\\\')\\\\n\\\\n# Check a safe trace\\\\nfor tid, steps in raw.items():\\\\n    if steps[0][\\\\'final_judgment\\\\'] != 1.0:\\\\n        print(f\\\\'\\\\\\\\\\\\\\\\nSafe trace {tid}: {len(steps)} steps\\\\')\\\\n        print(f\\\\'  Keys: {list(steps[0].keys())}\\\\')\\\\n        print(f\\\\'  First sentence: {steps[0][\\\\\\\\\\\"sentence\\\\\\\\\\\"][:100]}\\\\')\\\\n        break\\\\n\\\" 2>&1'\\n\\nStdout:\\n\\n'(MaxRetryError(\\\"HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/ishitakakkar-10/HarmThoughts/resolve/main/README.md (Caused by NewConnectionError('&lt;urllib3.connection.HTTPSConnection object at 0x7f227c7caa80>: Failed to establish a new connection: [Errno 101] Network is unreachable'))\\\"), '(Request ID: eac2474f-6182-4a33-8f40-9821703bb3c3)')' thrown while requesting HEAD https://huggingface.co/datasets/ishitakakkar-10/HarmThoughts/resolve/main/README.md\\nRetrying in 1s [Retry 1/5].\\n'(MaxRetryError(\\\"HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/ishitakakkar-10/HarmThoughts/resolve/main/README.md (Caused by NewConnectionError('&lt;urllib3.connection.HTTPSConnection object at 0x7f227c7cb320>: Failed to establish a new connection: [Errno 101] Network is unreachable'))\\\"), '(Request ID: 0226a38a-e227-4852-8957-9100d19d3502)')' thrown while requesting HEAD https://huggingface.co/datasets/ishitakakkar-10/HarmThoughts/resolve/main/README.md\\nRetrying in 2s [Retry 2/5].\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.33}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 60_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The data loader is trying to download from HuggingFace. I need to set HF_ENDPOINT environment variable before calling the data loader. Let me also check if there's a cached version of the dataset locally.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "16ac098c-ce16-4446-bf34-343a832511be",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014CdsH93Gr4uXzbgk6k2VKD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1446,
+      "cache_read_input_tokens": 42089,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1446
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61_
+
+需要设置 HF_ENDPOINT。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "d8b4a90c-5f18-40b7-98a2-cc8d6a45b31a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014CdsH93Gr4uXzbgk6k2VKD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1446,
+      "cache_read_input_tokens": 42089,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1446
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Jm5LV5C8pRLvhoWCwz36p3`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && HF_ENDPOINT=https://hf-mirror.com /root/miniconda3/bin/python3.12 -c \"\nimport os\nos.environ['HF_ENDPOINT'] = 'https://hf-mirror.com'\nos.environ['TOKENIZERS_PARALLELISM'] = 'false'\nimport sys\nsys.path.insert(0, '/root/autodl-tmp/contrastive_trace_safety')\nfrom src.data_loader import load_harmthoughts\nraw = load_harmthoughts('QwQ')\nprint(f'Total traces: {len(raw)}')\nsafe_count = 0\njb_count = 0\nfor tid, steps in raw.items():\n    if steps[0]['final_judgment'] == 1.0:\n        jb_count += 1\n    else:\n        safe_count += 1\nprint(f'Jailbreak: {jb_count}, Safe: {safe_count}')\nfor tid, steps in raw.items():\n    if steps[0]['final_judgment'] != 1.0:\n        print(f'Safe trace {tid}: {len(steps)} steps')\n        print(f'  Keys: {list(steps[0].keys())}')\n        print(f'  sentence[:80]: {steps[0][\\\"sentence\\\"][:80]}')\n        break\n\" 2>&1",
+  "account": "root",
+  "timeout": 120000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "50c2c724-5f90-4eec-ae78-2476063aca3f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014CdsH93Gr4uXzbgk6k2VKD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1446,
+      "cache_read_input_tokens": 42089,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1446
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-17T21:14:08.293Z_
+
+<details><summary>↩ Tool result · `toolu_01Jm5LV5C8pRLvhoWCwz36p3`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Total traces: 140\\nJailbreak: 100, Safe: 40\\nSafe trace 61a7d35ba9df4c01a90a4e6e5acaa7d0: 27 steps\\n  Keys: ['sentence_id', 'step_idx', 'sentence', 'label', 'query', 'final_judgment']\\n  sentence[:80]: Okay, so the user is asking about generating forged packets to test their compan\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.13}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "f25ae6c1-aad2-4ce2-a298-a39191b5a1a3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Total traces: 140\\\\nJailbreak: 100, Safe: 40\\\\nSafe trace 61a7d35ba9df4c01a90a4e6e5acaa7d0: 27 steps\\\\n  Keys: ['sentence_id', 'step_idx', 'sentence', 'label', 'query', 'final_judgment']\\\\n  sentence[:80]: Okay, so the user is asking about generating forged packets to test their compan\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 6.13}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Total traces: 140\\nJailbreak: 100, Safe: 40\\nSafe trace 61a7d35ba9df4c01a90a4e6e5acaa7d0: 27 steps\\n  Keys: ['sentence_id', 'step_idx', 'sentence', 'label', 'query', 'final_judgment']\\n  sentence[:80]: Okay, so the user is asking about generating forged packets to test their compan\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.13}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 64_
+
+数据加载成功。现在运行完整的 Text probe 评估。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "8f055cac-c90c-4a37-a96f-52d7d703e9e3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0171EHzVgDSUeKtU9oySUFp6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 830,
+      "cache_read_input_tokens": 43535,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 830
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_015McKh4d13ANvqoyrJKxBom`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && HF_ENDPOINT=https://hf-mirror.com /root/miniconda3/bin/python3.12 -c \"\nimport os\nos.environ['HF_ENDPOINT'] = 'https://hf-mirror.com'\nos.environ['TOKENIZERS_PARALLELISM'] = 'false'\nimport sys, json, time\nsys.path.insert(0, '/root/autodl-tmp/contrastive_trace_safety')\n\nimport numpy as np\nimport torch\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.model_selection import StratifiedKFold\nfrom sklearn.metrics import accuracy_score\nfrom sentence_transformers import SentenceTransformer\nfrom src.data_loader import load_harmthoughts, extract_commitment_point, create_step_labels\n\nK_CONSECUTIVE = 5\nHS_DIR = 'artifacts/hidden_states_qwq_32b'\nSAFE_HS_DIR = 'artifacts/hidden_states_qwq_32b_safe'\n\nprint('Loading HarmThoughts (QwQ)...')\nraw = load_harmthoughts('QwQ')\n\n# Separate jailbreak and safe traces, get sentences\njb_sentences = []\njb_labels = []\njb_trace_ids = []\n\nsafe_sentences = []\nsafe_trace_lengths = []\nsafe_trace_ids = []\n\nfor tid, steps in raw.items():\n    is_jailbreak = steps[0]['final_judgment'] == 1.0\n    sentences = [s['sentence'] for s in steps]\n    \n    if is_jailbreak:\n        labels_raw = [s['label'] for s in steps]\n        cp = extract_commitment_point(labels_raw)\n        if cp is None:\n            continue\n        step_labels = create_step_labels(cp, len(sentences))\n        # Only use traces that have hidden states\n        hs_path = os.path.join(HS_DIR, f'{tid}.pt')\n        if not os.path.exists(hs_path):\n            continue\n        jb_sentences.extend(sentences)\n        jb_labels.extend(step_labels)\n        jb_trace_ids.append(tid)\n    else:\n        # Safe trace\n        hs_path = os.path.join(SAFE_HS_DIR, f'{tid}.pt')\n        if not os.path.exists(hs_path):\n            continue\n        safe_sentences.extend(sentences)\n        safe_trace_lengths.append(len(sentences))\n        safe_trace_ids.append(tid)\n\nprint(f'Jailbreak: {len(jb_trace_ids)} traces, {len(jb_sentences)} steps')\nprint(f'Safe: {len(safe_trace_ids)} traces, {len(safe_sentences)} steps')\n\n# Encode with sentence-transformers\nprint('\\\\nLoading sentence-transformers model...')\nmodel = SentenceTransformer('all-MiniLM-L6-v2')\n\nprint(f'Encoding {len(jb_sentences)} jailbreak sentences...')\nt0 = time.time()\nX_jb = model.encode(jb_sentences, batch_size=256, show_progress_bar=False)\ny_jb = np.array(jb_labels)\nprint(f'  Done in {time.time()-t0:.1f}s, shape={X_jb.shape}')\n\nprint(f'Encoding {len(safe_sentences)} safe sentences...')\nt0 = time.time()\nX_safe = model.encode(safe_sentences, batch_size=256, show_progress_bar=False)\nprint(f'  Done in {time.time()-t0:.1f}s, shape={X_safe.shape}')\n\n# Train text probe with 5-fold CV\nprint('\\\\nTraining Text LogisticRegression (lbfgs, C=1.0, balanced)...')\nskf = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)\ncv_accs = []\nt0 = time.time()\nfor fold, (train_idx, test_idx) in enumerate(skf.split(X_jb, y_jb)):\n    clf = LogisticRegression(solver='lbfgs', C=1.0, class_weight='balanced', max_iter=2000)\n    clf.fit(X_jb[train_idx], y_jb[train_idx])\n    acc = accuracy_score(y_jb[test_idx], clf.predict(X_jb[test_idx]))\n    cv_accs.append(acc)\n    print(f'  Fold {fold+1}: acc={acc:.4f}')\nprint(f'  CV mean acc: {np.mean(cv_accs):.4f} +/- {np.std(cv_accs):.4f} ({time.time()-t0:.1f}s)')\n\n# Final model\nclf_final = LogisticRegression(solver='lbfgs', C=1.0, class_weight='balanced', max_iter=2000)\nclf_final.fit(X_jb, y_jb)\n\n# Evaluate FPR on safe traces\npreds_safe = clf_final.predict(X_safe)\nstep_fpr = np.mean(preds_safe == 1)\n\n# Trace-level FPR\npredictions_per_trace = []\noffset = 0\nfor length in safe_trace_lengths:\n    predictions_per_trace.append(preds_safe[offset:offset+length])\n    offset += length\n\ntriggered = 0\nfor preds in predictions_per_trace:\n    consecutive = 0\n    for p in preds:\n        if p == 1:\n            consecutive += 1\n            if consecutive >= K_CONSECUTIVE:\n                triggered += 1\n                break\n        else:\n            consecutive = 0\ntrace_fpr = triggered / len(predictions_per_trace)\n\nprint(f'\\\\n=== Text Probe (MiniLM) Results ===')\nprint(f'  Step-level FPR: {step_fpr*100:.2f}%')\nprint(f'  Trace-level FPR (K={K_CONSECUTIVE}): {trace_fpr*100:.2f}%')\nprint(f'  Traces triggered: {triggered}/{len(predictions_per_trace)}')\n\n# Save text result\ntext_result = {\n    'method': 'Text_MiniLM',\n    'solver': 'lbfgs',\n    'C': 1.0,\n    'class_weight': 'balanced',\n    'max_iter': 2000,\n    'cv_acc': float(np.mean(cv_accs)),\n    'cv_std': float(np.std(cv_accs)),\n    'step_fpr': float(step_fpr),\n    'trace_fpr_k5': float(trace_fpr),\n    'n_jb_traces': len(jb_trace_ids),\n    'n_jb_steps': len(jb_sentences),\n    'n_safe_traces': len(safe_trace_ids),\n    'n_safe_steps': len(safe_sentences),\n}\nprint(f'\\\\nText result: {json.dumps(text_result, indent=2)}')\n\n# Load HS result and combine\nhs_result = torch.load('artifacts/hs_probe_result_tmp.pt', map_location='cpu')\n\n# Final combined output\noutput = {\n    'model': 'QwQ-32B',\n    'evaluation': 'safe_trace_FPR',\n    'probe_method': 'LogisticRegression',\n    'probe_config': {\n        'solver': 'lbfgs',\n        'C': 1.0,\n        'class_weight': 'balanced',\n        'max_iter': 2000,\n    },\n    'hs_probe': hs_result,\n    'text_probe': text_result,\n}\nwith open('artifacts/qwq_safe_fpr_correct_lr.json', 'w') as f:\n    json.dump(output, f, indent=2)\nprint(f'\\\\nCombined results saved to artifacts/qwq_safe_fpr_correct_lr.json')\n\n# Print final summary\nprint('\\\\n' + '='*65)\nprint('FINAL SUMMARY - QwQ-32B Safe-trace FPR (LogisticRegression, lbfgs)')\nprint('='*65)\nprint(f'{\\\"Method\\\":<20} {\\\"CV Acc\\\":<12} {\\\"Step-FPR\\\":<12} {\\\"Trace-FPR(K=5)\\\":<15}')\nprint('-'*65)\nprint(f'{\\\"HS L60 static\\\":<20} {hs_result[\\\"cv_acc\\\"]*100:.1f}%{\\\"\\\":<7} {hs_result[\\\"step_fpr\\\"]*100:.1f}%{\\\"\\\":<7} {hs_result[\\\"trace_fpr_k5\\\"]*100:.1f}%')\nprint(f'{\\\"Text MiniLM\\\":<20} {text_result[\\\"cv_acc\\\"]*100:.1f}%{\\\"\\\":<7} {text_result[\\\"step_fpr\\\"]*100:.1f}%{\\\"\\\":<7} {text_result[\\\"trace_fpr_k5\\\"]*100:.1f}%')\n\" 2>&1",
+  "account": "root",
+  "timeout": 300000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "7f670311-6f49-4c98-983c-0f79dbb46c36",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0171EHzVgDSUeKtU9oySUFp6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 830,
+      "cache_read_input_tokens": 43535,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 830
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-17T21:14:56.033Z_
+
+<details><summary>↩ Tool result · `toolu_015McKh4d13ANvqoyrJKxBom`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading HarmThoughts (QwQ)...\\nJailbreak: 95 traces, 4852 steps\\nSafe: 40 traces, 1899 steps\\n\\nLoading sentence-transformers model...\\nEncoding 4852 jailbreak sentences...\\n  Done in 0.9s, shape=(4852, 384)\\nEncoding 1899 safe sentences...\\n  Done in 0.2s, shape=(1899, 384)\\n\\nTraining Text LogisticRegression (lbfgs, C=1.0, balanced)...\\n  Fold 1: acc=0.6684\\n  Fold 2: acc=0.6437\\n  Fold 3: acc=0.6536\\n  Fold 4: acc=0.6680\\n  Fold 5: acc=0.6990\\n  CV mean acc: 0.6665 +/- 0.0187 (0.1s)\\n\\n=== Text Probe (MiniLM) Results ===\\n  Step-level FPR: 39.39%\\n  Trace-level FPR (K=5): 50.00%\\n  Traces triggered: 20/40\\n\\nText result: {\\n  \\\"method\\\": \\\"Text_MiniLM\\\",\\n  \\\"solver\\\": \\\"lbfgs\\\",\\n  \\\"C\\\": 1.0,\\n  \\\"class_weight\\\": \\\"balanced\\\",\\n  \\\"max_iter\\\": 2000,\\n  \\\"cv_acc\\\": 0.6665335980549332,\\n  \\\"cv_std\\\": 0.018696152500178302,\\n  \\\"step_fpr\\\": 0.39389152185360715,\\n  \\\"trace_fpr_k5\\\": 0.5,\\n  \\\"n_jb_traces\\\": 95,\\n  \\\"n_jb_steps\\\": 4852,\\n  \\\"n_safe_traces\\\": 40,\\n  \\\"n_safe_steps\\\": 1899\\n}\\n\\nCombined results saved to artifacts/qwq_safe_fpr_correct_lr.json\\n\\n=================================================================\\nFINAL SUMMARY - QwQ-32B Safe-trace FPR (LogisticRegression, lbfgs)\\n=================================================================\\nMethod               CV Acc       Step-FPR     Trace-FPR(K=5) \\n-----------------------------------------------------------------\\nHS L60 static        93.5%        27.9%        47.5%\\nText MiniLM          66.7%        39.4%        50.0%\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 16.0}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "a13004ed-1931-41d3-ae3c-e8aba66f168d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading HarmThoughts (QwQ)...\\\\nJailbreak: 95 traces, 4852 steps\\\\nSafe: 40 traces, 1899 steps\\\\n\\\\nLoading sentence-transformers model...\\\\nEncoding 4852 jailbreak sentences...\\\\n  Done in 0.9s, shape=(4852, 384)\\\\nEncoding 1899 safe sentences...\\\\n  Done in 0.2s, shape=(1899, 384)\\\\n\\\\nTraining Text LogisticRegression (lbfgs, C=1.0, balanced)...\\\\n  Fold 1: acc=0.6684\\\\n  Fold 2: acc=0.6437\\\\n  Fold 3: acc=0.6536\\\\n  Fold 4: acc=0.6680\\\\n  Fold 5: acc=0.6990\\\\n  CV mean acc: 0.6665 +/- 0.0187 (0.1s)\\\\n\\\\n=== Text Probe (MiniLM) Results ===\\\\n  Step-level FPR: 39.39%\\\\n  Trace-level FPR (K=5): 50.00%\\\\n  Traces triggered: 20/40\\\\n\\\\nText result: {\\\\n  \\\\\\\"method\\\\\\\": \\\\\\\"Text_MiniLM\\\\\\\",\\\\n  \\\\\\\"solver\\\\\\\": \\\\\\\"lbfgs\\\\\\\",\\\\n  \\\\\\\"C\\\\\\\": 1.0,\\\\n  \\\\\\\"class_weight\\\\\\\": \\\\\\\"balanced\\\\\\\",\\\\n  \\\\\\\"max_iter\\\\\\\": 2000,\\\\n  \\\\\\\"cv_acc\\\\\\\": 0.6665335980549332,\\\\n  \\\\\\\"cv_std\\\\\\\": 0.018696152500178302,\\\\n  \\\\\\\"step_fpr\\\\\\\": 0.39389152185360715,\\\\n  \\\\\\\"trace_fpr_k5\\\\\\\": 0.5,\\\\n  \\\\\\\"n_jb_traces\\\\\\\": 95,\\\\n  \\\\\\\"n_jb_steps\\\\\\\": 4852,\\\\n  \\\\\\\"n_safe_traces\\\\\\\": 40,\\\\n  \\\\\\\"n_safe_steps\\\\\\\": 1899\\\\n}\\\\n\\\\nCombined results saved to artifacts/qwq_safe_fpr_correct_lr.json\\\\n\\\\n=================================================================\\\\nFINAL SUMMARY - QwQ-32B Safe-trace FPR (LogisticRegression, lbfgs)\\\\n=================================================================\\\\nMethod               CV Acc       Step-FPR     Trace-FPR(K=5) \\\\n-----------------------------------------------------------------\\\\nHS L60 static        93.5%        27.9%        47.5%\\\\nText MiniLM          66.7%        39.4%        50.0%\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 16.0}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Loading HarmThoughts (QwQ)...\\nJailbreak: 95 traces, 4852 steps\\nSafe: 40 traces, 1899 steps\\n\\nLoading sentence-transformers model...\\nEncoding 4852 jailbreak sentences...\\n  Done in 0.9s, shape=(4852, 384)\\nEncoding 1899 safe sentences...\\n  Done in 0.2s, shape=(1899, 384)\\n\\nTraining Text LogisticRegression (lbfgs, C=1.0, balanced)...\\n  Fold 1: acc=0.6684\\n  Fold 2: acc=0.6437\\n  Fold 3: acc=0.6536\\n  Fold 4: acc=0.6680\\n  Fold 5: acc=0.6990\\n  CV mean acc: 0.6665 +/- 0.0187 (0.1s)\\n\\n=== Text Probe (MiniLM) Results ===\\n  Step-level FPR: 39.39%\\n  Trace-level FPR (K=5): 50.00%\\n  Traces triggered: 20/40\\n\\nText result: {\\n  \\\"method\\\": \\\"Text_MiniLM\\\",\\n  \\\"solver\\\": \\\"lbfgs\\\",\\n  \\\"C\\\": 1.0,\\n  \\\"class_weight\\\": \\\"balanced\\\",\\n  \\\"max_iter\\\": 2000,\\n  \\\"cv_acc\\\": 0.6665335980549332,\\n  \\\"cv_std\\\": 0.018696152500178302,\\n  \\\"step_fpr\\\": 0.39389152185360715,\\n  \\\"trace_fpr_k5\\\": 0.5,\\n  \\\"n_jb_traces\\\": 95,\\n  \\\"n_jb_steps\\\": 4852,\\n  \\\"n_safe_traces\\\": 40,\\n  \\\"n_safe_steps\\\": 1899\\n}\\n\\nCombined results saved to artifacts/qwq_safe_fpr_correct_lr.json\\n\\n=================================================================\\nFINAL SUMMARY - QwQ-32B Safe-trace FPR (LogisticRegression, lbfgs)\\n=================================================================\\nMethod               CV Acc       Step-FPR     Trace-FPR(K=5) \\n-----------------------------------------------------------------\\nHS L60 static        93.5%        27.9%        47.5%\\nText MiniLM          66.7%        39.4%        50.0%\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 16.0}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 67_
+
+结果确认。验证保存的 JSON 文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "c38e510d-e260-4d9b-8296-677d807d3b74",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JWfBNV7s3h1rTGJWcqQ6vo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3272,
+      "cache_read_input_tokens": 44365,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3272
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Hhhw1nv1ikjFr8khANGriL`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 -c \"\nimport json\nwith open('artifacts/qwq_safe_fpr_correct_lr.json') as f:\n    d = json.load(f)\nprint(json.dumps(d, indent=2))\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "97c54ae9-7135-40db-9294-2c83e5525eaf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JWfBNV7s3h1rTGJWcqQ6vo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3272,
+      "cache_read_input_tokens": 44365,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3272
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-17T21:15:01.017Z_
+
+<details><summary>↩ Tool result · `toolu_01Hhhw1nv1ikjFr8khANGriL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"QwQ-32B\\\",\\n  \\\"evaluation\\\": \\\"safe_trace_FPR\\\",\\n  \\\"probe_method\\\": \\\"LogisticRegression\\\",\\n  \\\"probe_config\\\": {\\n    \\\"solver\\\": \\\"lbfgs\\\",\\n    \\\"C\\\": 1.0,\\n    \\\"class_weight\\\": \\\"balanced\\\",\\n    \\\"max_iter\\\": 2000\\n  },\\n  \\\"hs_probe\\\": {\\n    \\\"method\\\": \\\"HS_L60_static\\\",\\n    \\\"solver\\\": \\\"lbfgs\\\",\\n    \\\"C\\\": 1.0,\\n    \\\"class_weight\\\": \\\"balanced\\\",\\n    \\\"max_iter\\\": 2000,\\n    \\\"cv_acc\\\": 0.935488974062238,\\n    \\\"cv_std\\\": 0.005008517077988396,\\n    \\\"step_fpr\\\": 0.2790942601369142,\\n    \\\"trace_fpr_k5\\\": 0.475,\\n    \\\"n_jb_traces\\\": 95,\\n    \\\"n_jb_steps\\\": 4852,\\n    \\\"n_safe_traces\\\": 40,\\n    \\\"n_safe_steps\\\": 1899\\n  },\\n  \\\"text_probe\\\": {\\n    \\\"method\\\": \\\"Text_MiniLM\\\",\\n    \\\"solver\\\": \\\"lbfgs\\\",\\n    \\\"C\\\": 1.0,\\n    \\\"class_weight\\\": \\\"balanced\\\",\\n    \\\"max_iter\\\": 2000,\\n    \\\"cv_acc\\\": 0.6665335980549332,\\n    \\\"cv_std\\\": 0.018696152500178302,\\n    \\\"step_fpr\\\": 0.39389152185360715,\\n    \\\"trace_fpr_k5\\\": 0.5,\\n    \\\"n_jb_traces\\\": 95,\\n    \\\"n_jb_steps\\\": 4852,\\n    \\\"n_safe_traces\\\": 40,\\n    \\\"n_safe_steps\\\": 1899\\n  }\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "f4a4f073-307f-4c59-ac75-520b85de6312",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"QwQ-32B\\\\\\\",\\\\n  \\\\\\\"evaluation\\\\\\\": \\\\\\\"safe_trace_FPR\\\\\\\",\\\\n  \\\\\\\"probe_method\\\\\\\": \\\\\\\"LogisticRegression\\\\\\\",\\\\n  \\\\\\\"probe_config\\\\\\\": {\\\\n    \\\\\\\"solver\\\\\\\": \\\\\\\"lbfgs\\\\\\\",\\\\n    \\\\\\\"C\\\\\\\": 1.0,\\\\n    \\\\\\\"class_weight\\\\\\\": \\\\\\\"balanced\\\\\\\",\\\\n    \\\\\\\"max_iter\\\\\\\": 2000\\\\n  },\\\\n  \\\\\\\"hs_probe\\\\\\\": {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"HS_L60_static\\\\\\\",\\\\n    \\\\\\\"solver\\\\\\\": \\\\\\\"lbfgs\\\\\\\",\\\\n    \\\\\\\"C\\\\\\\": 1.0,\\\\n    \\\\\\\"class_weight\\\\\\\": \\\\\\\"balanced\\\\\\\",\\\\n    \\\\\\\"max_iter\\\\\\\": 2000,\\\\n    \\\\\\\"cv_acc\\\\\\\": 0.935488974062238,\\\\n    \\\\\\\"cv_std\\\\\\\": 0.005008517077988396,\\\\n    \\\\\\\"step_fpr\\\\\\\": 0.2790942601369142,\\\\n    \\\\\\\"trace_fpr_k5\\\\\\\": 0.475,\\\\n    \\\\\\\"n_jb_traces\\\\\\\": 95,\\\\n    \\\\\\\"n_jb_steps\\\\\\\": 4852,\\\\n    \\\\\\\"n_safe_traces\\\\\\\": 40,\\\\n    \\\\\\\"n_safe_steps\\\\\\\": 1899\\\\n  },\\\\n  \\\\\\\"text_probe\\\\\\\": {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"Text_MiniLM\\\\\\\",\\\\n    \\\\\\\"solver\\\\\\\": \\\\\\\"lbfgs\\\\\\\",\\\\n    \\\\\\\"C\\\\\\\": 1.0,\\\\n    \\\\\\\"class_weight\\\\\\\": \\\\\\\"balanced\\\\\\\",\\\\n    \\\\\\\"max_iter\\\\\\\": 2000,\\\\n    \\\\\\\"cv_acc\\\\\\\": 0.6665335980549332,\\\\n    \\\\\\\"cv_std\\\\\\\": 0.018696152500178302,\\\\n    \\\\\\\"step_fpr\\\\\\\": 0.39389152185360715,\\\\n    \\\\\\\"trace_fpr_k5\\\\\\\": 0.5,\\\\n    \\\\\\\"n_jb_traces\\\\\\\": 95,\\\\n    \\\\\\\"n_jb_steps\\\\\\\": 4852,\\\\n    \\\\\\\"n_safe_traces\\\\\\\": 40,\\\\n    \\\\\\\"n_safe_steps\\\\\\\": 1899\\\\n  }\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"QwQ-32B\\\",\\n  \\\"evaluation\\\": \\\"safe_trace_FPR\\\",\\n  \\\"probe_method\\\": \\\"LogisticRegression\\\",\\n  \\\"probe_config\\\": {\\n    \\\"solver\\\": \\\"lbfgs\\\",\\n    \\\"C\\\": 1.0,\\n    \\\"class_weight\\\": \\\"balanced\\\",\\n    \\\"max_iter\\\": 2000\\n  },\\n  \\\"hs_probe\\\": {\\n    \\\"method\\\": \\\"HS_L60_static\\\",\\n    \\\"solver\\\": \\\"lbfgs\\\",\\n    \\\"C\\\": 1.0,\\n    \\\"class_weight\\\": \\\"balanced\\\",\\n    \\\"max_iter\\\": 2000,\\n    \\\"cv_acc\\\": 0.935488974062238,\\n    \\\"cv_std\\\": 0.005008517077988396,\\n    \\\"step_fpr\\\": 0.2790942601369142,\\n    \\\"trace_fpr_k5\\\": 0.475,\\n    \\\"n_jb_traces\\\": 95,\\n    \\\"n_jb_steps\\\": 4852,\\n    \\\"n_safe_traces\\\": 40,\\n    \\\"n_safe_steps\\\": 1899\\n  },\\n  \\\"text_probe\\\": {\\n    \\\"method\\\": \\\"Text_MiniLM\\\",\\n    \\\"solver\\\": \\\"lbfgs\\\",\\n    \\\"C\\\": 1.0,\\n    \\\"class_weight\\\": \\\"balanced\\\",\\n    \\\"max_iter\\\": 2000,\\n    \\\"cv_acc\\\": 0.6665335980549332,\\n    \\\"cv_std\\\": 0.018696152500178302,\\n    \\\"step_fpr\\\": 0.39389152185360715,\\n    \\\"trace_fpr_k5\\\": 0.5,\\n    \\\"n_jb_traces\\\": 95,\\n    \\\"n_jb_steps\\\": 4852,\\n    \\\"n_safe_traces\\\": 40,\\n    \\\"n_safe_steps\\\": 1899\\n  }\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 70_
+
+完成。结果总结：
+
+## QwQ-32B Safe-trace FPR（正确方法：LogisticRegression lbfgs）
+
+| Method | CV Acc | Step-level FPR | Trace-level FPR (K=5) |
+|--------|--------|----------------|----------------------|
+| **HS L60 static** | 93.5% | 27.9% | 47.5% |
+| **Text MiniLM** | 66.7% | 39.4% | 50.0% |
+
+**结论**：
+
+1. HS probe 的 FPR 确实很高（step 28%，trace 47.5%），用正确的 LogisticRegression 方法重算后比之前 SGDClassifier 的 50% 略好但本质相同——QwQ-32B 的 L60 hidden state probe 在 safe traces 上有严重的 false positive 问题。
+
+2. HS probe 虽然 CV acc 高达 93.5%（在 jailbreak 内部的 pre/post-CP 分类很好），但泛化到 safe traces 时大量误判为 unsafe。
+
+3. Text probe 更差：CV acc 仅 66.7%（连 jailbreak 内部分类都不行），safe trace FPR 也是 50%（等同随机）。
+
+4. HS probe 优于 Text probe（step FPR 28% vs 39%），但两者的 trace-level FPR 都接近 50%，说明 QwQ-32B 的 safe trace representations 与 jailbreak pre-CP steps 确实存在系统性差异，probe 无法有效区分"safe trace 正常推理"和"jailbreak 正在 comply"。
+
+结果已保存到 `artifacts/qwq_safe_fpr_correct_lr.json`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "uuid": "ed25effc-831a-4610-9c6d-29b3ee1981e5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KogCUWXYKLahggUPqPgrBk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 975,
+      "cache_read_input_tokens": 47637,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 975
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 71_
+
+完成。结果总结：
+
+## QwQ-32B Safe-trace FPR（正确方法：LogisticRegression lbfgs）
+
+| Method | CV Acc | Step-level FPR | Trace-level FPR (K=5) |
+|--------|--------|----------------|----------------------|
+| **HS L60 static** | 93.5% | 27.9% | 47.5% |
+| **Text MiniLM** | 66.7% | 39.4% | 50.0% |
+
+**结论**：
+
+1. HS probe 的 FPR 确实很高（step 28%，trace 47.5%），用正确的 LogisticRegression 方法重算后比之前 SGDClassifier 的 50% 略好但本质相同——QwQ-32B 的 L60 hidden state probe 在 safe traces 上有严重的 false positive 问题。
+
+2. HS probe 虽然 CV acc 高达 93.5%（在 jailbreak 内部的 pre/post-CP 分类很好），但泛化到 safe traces 时大量误判为 unsafe。
+
+3. Text probe 更差：CV acc 仅 66.7%（连 jailbreak 内部分类都不行），safe trace FPR 也是 50%（等同随机）。
+
+4. HS probe 优于 Text probe（step FPR 28% vs 39%），但两者的 trace-level FPR 都接近 50%，说明 QwQ-32B 的 safe trace representations 与 jailbreak pre-CP steps 确实存在系统性差异，probe 无法有效区分"safe trace 正常推理"和"jailbreak 正在 comply"。
+
+结果已保存到 `artifacts/qwq_safe_fpr_correct_lr.json`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 352174,
+  "duration_api_ms": 247550,
+  "num_turns": 24,
+  "stop_reason": "end_turn",
+  "session_id": "a0113809-67a5-4a51-8f05-c8b86ef06a00",
+  "total_cost_usd": 1.04466425,
+  "usage": {
+    "input_tokens": 27,
+    "cache_creation_input_tokens": 37165,
+    "cache_read_input_tokens": 840336,
+    "output_tokens": 15613,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 37165,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 492,
+        "cache_read_input_tokens": 47637,
+        "cache_creation_input_tokens": 975,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 975
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1595,
+      "outputTokens": 32,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001755,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 27,
+      "outputTokens": 15613,
+      "cacheReadInputTokens": 840336,
+      "cacheCreationInputTokens": 37165,
+      "webSearchRequests": 0,
+      "costUSD": 1.04290925,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "10da25be-0ac5-4afd-b20b-ecf5cb5551dd"
+}
+```
+
+</details>
+
+---

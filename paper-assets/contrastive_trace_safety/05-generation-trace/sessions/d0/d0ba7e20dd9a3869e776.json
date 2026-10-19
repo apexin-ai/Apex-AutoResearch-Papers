@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d0ba7e20dd9a3869e776",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code iaa framework",
+  "task_key": "worker_code_iaa_framework_20260518T203341",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_iaa_framework_20260518T203341_result.json",
+    "occurrence": 1,
+    "bytes": 1148,
+    "sha256": "d7ce08c02dce37d100a785b41a89ad8728debca8f9f825c201549b78e9e7eaad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三项验证全部通过。\n\n### 结果总结\n\n**创建文件** (`/root/autodl-tmp/contrastive_trace_safety/src/iaa/`):\n\n| 文件 | 功能 |\n|---|---|\n| `sample_traces.py` | 从 HarmThoughts 按模型均衡抽样 100 条 jailbreak trace（各 25 条） |\n| `prompt_template.py` | CP 标注 prompt 模板，`format_prompt()` + `get_system_prompt()` |\n| `annotate.py` | 多 backend 标注（Groq/Anthropic/Google），支持断点续传、`--dry-run` |\n| `compute_kappa.py` | Cohen's kappa（exact + 3-class binned）、window agreement、Pearson/Spearman 相关、MAE，支持 `--dummy` |\n| `run_iaa.sh` | 一键执行全流程 |\n\n**验证结果**:\n1. `sample_traces.py` — 输出 100 条 trace（R1-8B/OT-7B/QwQ-32B/R1-32B 各 25 条）\n2. `annotate.py --dry-run` — prompt 格式正确（1.3k-18.5k chars），4/4 parsing 测试通过\n3. `compute_kappa.py --dummy` — dummy 数据 kappa 计算正常（exact kappa=0.17，binned kappa=0.86，Pearson r=0.97）\n\n**已安装依赖**: `google-generativeai`（`sklearn`, `openai`, `anthropic`, `scipy` 已有）\n\n**Groq model ID**: `qwen/qwen3-32b`（已确认）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-iaa-framework.md"
+}

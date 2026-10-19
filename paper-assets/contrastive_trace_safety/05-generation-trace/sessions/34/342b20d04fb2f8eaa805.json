@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "342b20d04fb2f8eaa805",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "experiment qwq c2 control layer2",
+  "task_key": "worker_experiment_qwq_c2_control_layer2_20260517T013924",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_qwq_c2_control_layer2_20260517T013924_result.json",
+    "occurrence": 1,
+    "bytes": 764,
+    "sha256": "956b7ed7ab1ca686a8dd41adbe366d3d4683a09b67a9a413772a9625059723c0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。QwQ-32B Layer 2 selectivity 重算结果：\n\n| Metric | Value |\n|--------|-------|\n| Real probe bal_acc | 67.8% |\n| Random probe mean | 52.6% ± 7.6% |\n| **Selectivity** | **15.3pp** |\n| Position baseline bal_acc | 70.6% |\n| Position pre-CP FPR | 0.2500 |\n| HS probe pre-CP FPR | 0.2903 |\n\n**关键发现**：Layer 2 selectivity = 15.3pp，比之前错误的 layer 1 结果（18.9pp）低 3.6pp。\n\n**问题**：Position baseline (70.6%) 高于 HS probe (67.8%)，说明在 layer 2 上，hidden states probe 的分类能力不如简单的位置特征。这意味着 layer 2 的 selectivity 15.3pp 可能主要来自位置信号而非真正的语义内容编码，对论文的 \"selectivity 12-19pp\" claim 需要谨慎解读。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-qwq-c2-control-layer2.md"
+}

@@ -1,0 +1,50 @@
+Nested 5-fold CV Results
+========================================
+
+Setup: Outer=5-fold StratifiedKFold, Inner=4-fold StratifiedKFold (seed=42)
+Search: all layers x W=[1,3,5], inner metric=precision
+Probe: LogisticRegression(C=1.0, class_weight='balanced', max_iter=2000)
+Features: PCA(100d) + window concat (HS) / window mean (text, MiniLM 384d)
+
+R1-8B (n_traces=209, n_steps=9667, 13 stored layers = actual L12-L24):
+  Outer fold results:
+    Fold 0: best=(L12, W_hs=3, W_txt=3) -> HS p=0.6634 ba=0.7633, Txt p=0.4427 ba=0.6187, Dp=+0.2206
+    Fold 1: best=(L12, W_hs=3, W_txt=1) -> HS p=0.5701 ba=0.7909, Txt p=0.4257 ba=0.6660, Dp=+0.1444
+    Fold 2: best=(L12, W_hs=5, W_txt=3) -> HS p=0.5437 ba=0.7831, Txt p=0.3688 ba=0.6457, Dp=+0.1750
+    Fold 3: best=(L13, W_hs=5, W_txt=3) -> HS p=0.5786 ba=0.7517, Txt p=0.4082 ba=0.6423, Dp=+0.1704
+    Fold 4: best=(L14, W_hs=3, W_txt=3) -> HS p=0.4580 ba=0.7244, Txt p=0.2985 ba=0.5719, Dp=+0.1595
+  Summary:
+    HS prec:   0.5628 +/- 0.0660
+    Txt prec:  0.3888 +/- 0.0514
+    D prec:    +0.1740 +/- 0.0256 (HS>Txt 5/5)
+    HS BA:     0.7627 +/- 0.0237
+    Txt BA:    0.6289 +/- 0.0322
+    D BA:      +0.1337 +/- 0.0152
+    Layers: [12, 12, 12, 13, 14] (L12 in 3/5 folds)
+    W_hs: [3, 3, 5, 5, 3], W_txt: [3, 1, 3, 3, 3]
+    Total time: 358s
+
+OT-7B (n_traces=228, n_steps=18260, 28 layers = L0-L27):
+  Outer fold results:
+    Fold 0: best=(L23, W_hs=5, W_txt=3) -> HS p=0.3755 ba=0.7132, Txt p=0.2432 ba=0.5873, Dp=+0.1323
+    Fold 1: best=(L21, W_hs=5, W_txt=3) -> HS p=0.5327 ba=0.7216, Txt p=0.3184 ba=0.5754, Dp=+0.2143
+    Fold 2: best=(L27, W_hs=5, W_txt=3) -> HS p=0.4455 ba=0.6984, Txt p=0.2577 ba=0.5597, Dp=+0.1877
+    Fold 3: best=(L26, W_hs=5, W_txt=3) -> HS p=0.3806 ba=0.7456, Txt p=0.2543 ba=0.5938, Dp=+0.1263
+    Fold 4: best=(L26, W_hs=5, W_txt=3) -> HS p=0.3715 ba=0.7463, Txt p=0.2134 ba=0.6080, Dp=+0.1581
+  Summary:
+    HS prec:   0.4212 +/- 0.0620
+    Txt prec:  0.2574 +/- 0.0343
+    D prec:    +0.1637 +/- 0.0333 (HS>Txt 5/5)
+    HS BA:     0.7250 +/- 0.0186
+    Txt BA:    0.5848 +/- 0.0164
+    D BA:      +0.1402 +/- 0.0087
+    Layers: [23, 21, 27, 26, 26] (late layers L21-L27, L26 in 2/5)
+    W_hs: [5, 5, 5, 5, 5], W_txt: [3, 3, 3, 3, 3]
+    Total time: 1283s
+
+Cross-model comparison:
+  Both models: HS > Text in all 10/10 folds
+  R1-8B: higher absolute HS precision (0.56 vs 0.42), similar delta (+0.174 vs +0.164)
+  R1-8B: consistent early layers (L12-L14), OT-7B: consistent late layers (L21-L27)
+  OT-7B: W=5 universally selected for HS; R1-8B: mixed W=[3,5]
+  OT-7B: W=3 universally for text; R1-8B: mostly W=3 (4/5)

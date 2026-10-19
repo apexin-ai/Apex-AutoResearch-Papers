@@ -1,0 +1,1217 @@
+# code 32b power analysis
+
+**Layer Selection Sensitivity in Hidden-State Safety Probes for Reasoning Models** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 41
+- **Recorded user turns:** 0
+- **Tool calls:** 20
+- **Original source:** `logs/chats/worker_code_32b_power_analysis_20260517T104240.jsonl`
+- **Structured JSON:** [`bcd6b34f1aecc41b6287.json`](../../sessions/bc/bcd6b34f1aecc41b6287.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+41 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-17T10:47:10.202410+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__read_project_file",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_32b_power_analysis_20260517T104240",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__read_project_file",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-17T10:47:10.202798+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_32b_power_analysis_20260517T104240",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-17T10:47:10.202995+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/r1_32b_paired_bootstrap/results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_32b_power_analysis_20260517T104240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/r1_32b_paired_bootstrap/results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-17T10:47:10.203132+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_32b_power_analysis_20260517T104240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-17T10:47:10.203298+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"R1-32B\\\",\\n  \\\"layer\\\": 10,\\n  \\\"window\\\": 10,\\n  \\\"n_test_traces\\\": 20,\\n  \\\"n_bootstrap\\\": 1000,\\n  \\\"text_encoder\\\": \\\"all-MiniLM-L6-v2\\\",\\n  \\\"lr_config\\\": \\\"LogisticRegression(C=1.0, class_weight='balanced', solver='liblinear', dual=True)\\\",\\n  \\\"balanced_accuracy\\\": {\\n    \\\"hs_mean\\\": 0.7944889506046227,\\n    \\\"text_mean\\\": 0.7105417058755193,\\n    \\\"diff_mean\\\": 0.08394724472910307,\\n    \\\"diff_ci95\\\": [\\n      -0.00739012028719695,\\n      0.1869552919395588\\n    ],\\n    \\\"p_value\\\": 0.04,\\n    \\\"n_valid\\\": 20,\\n    \\\"significant_bonferroni\\\": false\\n  },\\n  \\\"precision\\\": {\\n    \\\"hs_mean\\\": 0.6099723631631526,\\n    \\\"text_mean\\\": 0.5160197368421053,\\n    \\\"diff_mean\\\": 0.09395262632104737,\\n    \\\"diff_ci95\\\": [\\n      0.00028475517538017916,\\n      0.2046046650717703\\n    ],\\n    \\\"p_value\\\": 0.025,\\n    \\\"n_valid\\\": 20,\\n    \\\"significant_bonferroni\\\": false\\n  },\\n  \\\"precp_fpr\\\": {\\n    \\\"hs_mean\\\": 0.24150901996431445,\\n    \\\"text_mean\\\": 0.3258651566476885,\\n    \\\"diff_mean\\\": -0.08435613668337405,\\n    \\\"diff_ci95\\\": [\\n      -0.1785502486902183,\\n      0.015354214559140633\\n    ],\\n    \\\"p_value\\\": 0.057,\\n    \\\"n_valid\\\": 20,\\n    \\\"significant_bonferroni\\\": false\\n  },\\n  \\\"bonferroni_alpha\\\": 0.016666666666666666\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.94}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_32b_power_analysis_20260517T104240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-17T10:47:10.203459+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"acc_precision_bootstrap\\ndiagnostics\\neval_results.json\\nexp_001a\\nexp_001a_extraction.log\\nexp_001a_probing.log\\nexp_001b\\nexp_003_cross_transfer\\nexp_005_trajguard\\nexp_006_bootstrap\\nexp_007_window_ablation\\nexp_013_text_baseline\\nexp_014_bocpd\\nexp_015_fpr\\nexp_c2_control\\nexp_ot7b_full_pipeline\\nexp_ot7b_full_pipeline.log\\nexp_pathC_two_stage\\nfigures\\nhidden_states\\nhidden_states_early_r1_8b\\nhidden_states_ot7b\\nhidden_states_qwq_32b\\nhidden_states_r1_32b\\nhs_vs_text_acc_prec.json\\nm001_layer_fix\\nmetric_correlation\\not7b_layer16_hs_probes.json\\not7b_layer16_verification\\not7b_layer16_verification_split.pt\\not7b_sentence_map.json\\not7b_text_embeddings.json\\not7b_text_embeddings.pkl\\npaper_data\\nprobes\\nqwq_paired_bootstrap_w5\\nqwq_text_verify\\nr1_32b_paired_bootstrap\\nr1_8b_balanced_recompute\\nr1_8b_bootstrap_hs_text\\nr1_8b_bootstrap_run.log\\nr1_8b_layer_supplement\\nr1_8b_supplement.log\\nreport_hs_vs_text_acc.md\\nreport_r1_32b_selectivity_l10.md\\ntext_window_ablation_r1_8b\\ntext_window_ablation_r1_8b_run.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_32b_power_analysis_20260517T104240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-17T10:47:10.203654+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/qwq_paired_bootstrap_w5/results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_32b_power_analysis_20260517T104240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/qwq_paired_bootstrap_w5/results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-17T10:47:10.203828+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/autodl-tmp/contrastive_trace_safety/artifacts/qwq_paired_bootstrap_w5/results.json: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_32b_power_analysis_20260517T104240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-17T10:47:10.203956+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/r1_32b_paired_bootstrap/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_32b_power_analysis_20260517T104240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/r1_32b_paired_bootstrap/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-17T10:47:10.204079+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"results.json\\nrun.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_32b_power_analysis_20260517T104240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-17T10:47:10.204196+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/qwq_paired_bootstrap_w5/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_32b_power_analysis_20260517T104240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/qwq_paired_bootstrap_w5/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-17T10:47:10.204317+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"fpr_bootstrap_w5.json\\nrun.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_32b_power_analysis_20260517T104240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-17T10:47:10.204442+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/qwq_paired_bootstrap_w5/fpr_bootstrap_w5.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_32b_power_analysis_20260517T104240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/qwq_paired_bootstrap_w5/fpr_bootstrap_w5.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-17T10:47:10.204645+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"QwQ-32B\\\",\\n  \\\"layer\\\": 2,\\n  \\\"window\\\": 5,\\n  \\\"text_encoder\\\": \\\"all-MiniLM-L6-v2\\\",\\n  \\\"metric\\\": \\\"pre_cp_fpr\\\",\\n  \\\"n_test_traces\\\": 19,\\n  \\\"n_valid_fpr_traces\\\": 19,\\n  \\\"hs_fpr_mean\\\": 0.20806433119963985,\\n  \\\"text_fpr_mean\\\": 0.17807380948471244,\\n  \\\"fpr_diff_mean\\\": -0.029990521714927408,\\n  \\\"fpr_diff_ci95\\\": [\\n    -0.10526870153904903,\\n    0.044656378832572056\\n  ],\\n  \\\"fpr_p_value\\\": 0.785,\\n  \\\"n_resamples\\\": 1000,\\n  \\\"method\\\": \\\"paired_bootstrap\\\",\\n  \\\"per_trace_hs_fprs\\\": [\\n    0.13333333333333333,\\n    0.0,\\n    0.5,\\n    0.390625,\\n    0.12121212121212122,\\n    0.3783783783783784,\\n    0.14893617021276595,\\n    0.0,\\n    0.0,\\n    0.0,\\n    0.3953488372093023,\\n    0.0,\\n    0.49056603773584906,\\n    0.29545454545454547,\\n    0.5957446808510638,\\n    0.35,\\n    0.0,\\n    0.08695652173913043,\\n    0.06666666666666667\\n  ],\\n  \\\"per_trace_text_fprs\\\": [\\n    0.2,\\n    0.03508771929824561,\\n    0.14285714285714285,\\n    0.09375,\\n    0.0,\\n    0.5675675675675675,\\n    0.14893617021276595,\\n    0.023255813953488372,\\n    0.0,\\n    0.0,\\n    0.06976744186046512,\\n    0.3333333333333333,\\n    0.4339622641509434,\\n    0.4090909090909091,\\n    0.44680851063829785,\\n    0.15,\\n    0.0,\\n    0.1956521739130435,\\n    0.13333333333333333\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_32b_power_analysis_20260517T104240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-17T10:47:10.204851+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "find /root/autodl-tmp/contrastive_trace_safety/artifacts/ -name \"*.json\" -path \"*qwq*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_32b_power_analysis_20260517T104240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "find /root/autodl-tmp/contrastive_trace_safety/artifacts/ -name \"*.json\" -path \"*qwq*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-17T10:47:10.204990+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_qwq_32b/extraction_summary.json\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/m001_layer_fix/layer_ranking_qwq_32b.json\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/m001_layer_fix/gru_corrected_qwq_32b.json\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/m001_layer_fix/temporal_lr_qwq_32b.json\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/qwq_text_verify/bootstrap_results.json\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/qwq_paired_bootstrap_w5/fpr_bootstrap_w5.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_32b_power_analysis_20260517T104240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-17T10:47:10.205115+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/qwq_text_verify/bootstrap_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_32b_power_analysis_20260517T104240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/qwq_text_verify/bootstrap_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-17T10:47:10.205270+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"QwQ-32B\\\",\\n  \\\"layer\\\": 2,\\n  \\\"window\\\": 15,\\n  \\\"text_encoder\\\": \\\"all-MiniLM-L6-v2\\\",\\n  \\\"hs_precp_fpr_mean\\\": 0.22397713953038592,\\n  \\\"hs_precp_fpr_std\\\": 0.2628430075122786,\\n  \\\"text_precp_fpr_mean\\\": 0.21436948715736381,\\n  \\\"text_precp_fpr_std\\\": 0.23946422462498512,\\n  \\\"bootstrap_test\\\": {\\n    \\\"difference_mean\\\": 0.00960765237302208,\\n    \\\"difference_ci_95\\\": [\\n      -0.09964627049073238,\\n      0.12019239937600912\\n    ],\\n    \\\"p_value\\\": 0.904,\\n    \\\"n_traces\\\": 19,\\n    \\\"n_resamples\\\": 1000\\n  },\\n  \\\"n_traces_total\\\": 95,\\n  \\\"n_traces_train\\\": 57,\\n  \\\"n_traces_test\\\": 19,\\n  \\\"per_trace_hs_fprs\\\": [\\n    0.20588235294117646,\\n    0.0,\\n    0.0,\\n    0.36363636363636365,\\n    0.0,\\n    0.0,\\n    0.0,\\n    0.014925373134328358,\\n    0.15384615384615385,\\n    0.8333333333333334,\\n    0.23076923076923078,\\n    0.28888888888888886,\\n    0.0,\\n    0.5714285714285714,\\n    0.0,\\n    0.4878048780487805,\\n    0.0,\\n    0.37777777777777777,\\n    0.7272727272727273\\n  ],\\n  \\\"per_trace_text_fprs\\\": [\\n    0.17647058823529413,\\n    0.0,\\n    0.0,\\n    0.0,\\n    0.0,\\n    0.0,\\n    0.038461538461538464,\\n    0.08955223880597014,\\n    0.5769230769230769,\\n    0.6851851851851852,\\n    0.3076923076923077,\\n    0.5333333333333333,\\n    0.0,\\n    0.5,\\n    0.0,\\n    0.4024390243902439,\\n    0.5185185185185185,\\n    0.24444444444444444,\\n    0.0\\n  ],\\n  \\\"original_invalid_result\\\": {\\n    \\\"note\\\": \\\"Original exp_001b_bootstrap.py used midpoint heuristic, not real text embeddings\\\",\\n    \\\"original_p_value\\\": 0.001,\\n    \\\"original_text_baseline\\\": \\\"predict 1 if step_index >= n//2 (midpoint heuristic)\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}
+…[truncated 2 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_32b_power_analysis_20260517T104240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-17T10:47:10.205437+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/acc_precision_bootstrap/results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_32b_power_analysis_20260517T104240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/acc_precision_bootstrap/results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-17T10:47:10.205625+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"r1_8b\\\": {\\n    \\\"n_test_traces\\\": 43,\\n    \\\"n_prec_valid_traces\\\": 33,\\n    \\\"n_prec_excluded\\\": 10,\\n    \\\"hs_acc_mean\\\": 0.8125516424642037,\\n    \\\"text_acc_mean\\\": 0.7307081928314669,\\n    \\\"acc_diff_mean\\\": 0.08184344963273703,\\n    \\\"acc_diff_ci95\\\": [\\n      0.02632531340338604,\\n      0.13837524447558702\\n    ],\\n    \\\"acc_p_value\\\": 0.005,\\n    \\\"hs_prec_mean\\\": 0.7677909809488757,\\n    \\\"text_prec_mean\\\": 0.5442063152123122,\\n    \\\"prec_diff_mean\\\": 0.2235846657365634,\\n    \\\"prec_diff_ci95\\\": [\\n      0.12454858435000564,\\n      0.3341096182721348\\n    ],\\n    \\\"prec_p_value\\\": 0.0\\n  },\\n  \\\"r1_32b\\\": {\\n    \\\"n_test_traces\\\": 20,\\n    \\\"n_prec_valid_traces\\\": 20,\\n    \\\"n_prec_excluded\\\": 0,\\n    \\\"hs_acc_mean\\\": 0.70354812452159,\\n    \\\"text_acc_mean\\\": 0.6412063820072131,\\n    \\\"acc_diff_mean\\\": 0.0623417425143768,\\n    \\\"acc_diff_ci95\\\": [\\n      -0.01705401275573909,\\n      0.14586188358742705\\n    ],\\n    \\\"acc_p_value\\\": 0.13,\\n    \\\"hs_prec_mean\\\": 0.6099723631631526,\\n    \\\"text_prec_mean\\\": 0.5160197368421053,\\n    \\\"prec_diff_mean\\\": 0.09395262632104737,\\n    \\\"prec_diff_ci95\\\": [\\n      0.00028475517538017916,\\n      0.2046046650717703\\n    ],\\n    \\\"prec_p_value\\\": 0.064\\n  },\\n  \\\"qwq_32b\\\": {\\n    \\\"n_test_traces\\\": 19,\\n    \\\"n_prec_valid_traces\\\": 18,\\n    \\\"n_prec_excluded\\\": 1,\\n    \\\"hs_acc_mean\\\": 0.6794778205841906,\\n    \\\"text_acc_mean\\\": 0.6708109256303593,\\n    \\\"acc_diff_mean\\\": 0.008666894953831205,\\n    \\\"acc_diff_ci95\\\": [\\n      -0.06183913243706158,\\n      0.07344865829081285\\n    ],\\n    \\\"acc_p_value\\\": 0.828,\\n    \\\"hs_prec_mean\\\": 0.5826768733759271,\\n    \\\"text_prec_mean\\\": 0.5251866615592106,\\n    \\\"prec_diff_mean\\\": 0.05749021181671662,\\n  
+…[truncated 529 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_32b_power_analysis_20260517T104240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-17T10:47:10.205792+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/acc_precision_bootstrap/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_32b_power_analysis_20260517T104240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/acc_precision_bootstrap/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-17T10:47:10.205923+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"excluded_traces_analysis.txt\\nreport.md\\nresults.json\\nrun.log\\nrun_bootstrap.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_32b_power_analysis_20260517T104240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-17T10:47:10.206147+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "/root/miniconda3/bin/python3.12 -c \"from scipy import stats; print('scipy OK')\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_32b_power_analysis_20260517T104240",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "/root/miniconda3/bin/python3.12 -c \"from scipy import stats; print('scipy OK')\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-17T10:47:10.206288+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"scipy OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_32b_power_analysis_20260517T104240",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-17T10:47:10.206412+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "mkdir -p /root/autodl-tmp/contrastive_trace_safety/artifacts/power_analysis",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_32b_power_analysis_20260517T104240",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "mkdir -p /root/autodl-tmp/contrastive_trace_safety/artifacts/power_analysis",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-17T10:47:10.206536+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_32b_power_analysis_20260517T104240",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-17T10:47:10.206814+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/artifacts/exp_power_analysis.py",
+  "content": "#!/usr/bin/env python3\n\"\"\"Post-hoc power analysis for R1-32B and QwQ-32B.\n\nEstimates required test set size for 80% power using normal approximation\nbased on bootstrap CI-derived standard errors.\n\"\"\"\n\nimport json\nimport math\nimport os\nfrom scipy import stats\n\nARTIFACTS = \"/root/autodl-tmp/contrastive_trace_safety/artifacts\"\nR1_BOOTSTRAP = f\"{ARTIFACTS}/r1_32b_paired_bootstrap/results.json\"\nQWQ_ACC_PREC = f\"{ARTIFACTS}/acc_precision_bootstrap/results.json\"\nQWQ_FPR = f\"{ARTIFACTS}/qwq_paired_bootstrap_w5/fpr_bootstrap_w5.json\"\nOUTPUT_DIR = f\"{ARTIFACTS}/power_analysis\"\nOUTPUT_FILE = f\"{OUTPUT_DIR}/results.json\"\n\n\ndef load_json(path):\n    with open(path) as f:\n        return json.load(f)\n\n\ndef sigma_from_ci(ci_lower, ci_upper, alpha=0.05):\n    \"\"\"Estimate SE of delta from bootstrap percentile CI (normal approx).\"\"\"\n    z = stats.norm.ppf(1 - alpha / 2)\n    return (ci_upper - ci_lower) / (2 * z)\n\n\ndef sigma_from_pvalue(delta, p_value):\n    \"\"\"Fallback: estimate SE from two-sided p-value.\"\"\"\n    if p_value <= 0 or p_value >= 1 or abs(delta) < 1e-12:\n        return None\n    z_p = stats.norm.ppf(1 - p_value / 2)\n    if abs(z_p) < 1e-10:\n        return None\n    return abs(delta) / abs(z_p)\n\n\ndef required_n(n_obs, delta, sigma, alpha=0.05, power=0.80):\n    \"\"\"Required n for target power.\n\n    Bootstrap SE scales as sigma(n) = sigma(n_obs) * sqrt(n_obs/n).\n    Solving |delta| / sigma(n) >= z_alpha + z_beta gives:\n      n = n_obs * ((z_alpha + z_beta) / z_obs)^2\n    where z_obs = |delta| / sigma(n_obs).\n    \"\"\"\n    if abs(delta) < 1e-12 or sigma < 1e-12:\n        return float(\"inf\")\n    z_alpha = stats.norm.ppf(1 - alpha / 2)\n    z_beta = stats.norm.ppf(power)\n    z_obs = abs(delta) / sigma\n    n_req = n_obs * ((z_alpha + z_beta) / z_obs) ** 2\n    return math.ceil(n_req)\n\n\ndef check_for_bootstrap_deltas(data, keys_to_check):\n    \"\"\"Check if raw bootstrap delta arrays exist in the JSON.\"\"\"\n    for k in keys_to_check:\n        if k in data and isinstance(data[k], list) and len(data[k]) > 10:\n            return k\n    return None\n\n\n# --- Load data ---\nr1 = load_json(R1_BOOTSTRAP)\nqwq_ap = load_json(QWQ_ACC_PREC)\nqwq_fpr = load_json(QWQ_FPR)\n\n# Check for raw bootstrap deltas (preferred but not expected)\nfor name, data in [(\"R1\", r1), (\"QwQ_acc_prec\", qwq_ap), (\"QwQ_fpr\", qwq_fpr)]:\n    found = check_for_bootstrap_deltas(data, [\"bootstrap_deltas\", \"deltas\", \"diff_samples\"])\n    if found:\n        print(f\"[INFO] Found bootstrap deltas in {name} under key '{found}'\")\n    else:\n        print(f\"[INFO] No bootstrap delta arrays in {name} — using CI-based sigma\")\n\nprint()\n\n# --- Build records ---\nrecords = []\n\n# R1-32B from dedicated paired bootstrap file\nfor key, metric in [(\"balanced_accuracy\", \"bal_acc\"), (\"precision\", \"precision\"), (\"precp_fpr\", \"pre_cp_fpr\")]:\n    m = r1[key]\n    records.append({\n        \"model\": \"R1-32B\",\n        \"metric\": metric,\n        \"delta\": m[\"diff_mean\"],\n        \"n_obs\": m[\"n_valid\"],\n        \"ci_lower\": m[\"diff_ci95\"][0],\n        \"ci_upper\": m[\"diff_ci95\"][1],\n        \"p_value\": m[\"p_value\"],\n    })\n\n# QwQ-32B balanced accuracy & precision\nq = qwq_ap[\"qwq_32b\"]\nrecords.append({\n    \"model\": \"QwQ-32B\",\n    \"metric\": \"bal_acc\",\n    \"delta\": q[\"acc_diff_mean\"],\n    \"n_obs\": q[\"n_test_traces\"],\n    \"ci_lower\": q[\"acc_diff_ci95\"][0],\n    \"ci_upper\": q[\"acc_diff_ci95\"][1],\n    \"p_value\": q[\"acc_p_value\"],\n})\nrecords.append({\n    \"model\": \"QwQ-32B\",\n    \"metric\": \"precision\",\n    \"delta\": q[\"prec_diff_mean\"],\n    \"n_obs\": q[\"n_prec_valid_traces\"],\n    \"ci_lower\": q[\"prec_diff_ci95\"][0],\n    \"ci_upper\": q[\"prec_diff_ci95\"][1],\n    \"p_value\": q[\"prec_p_value\"],\n})\n\n# QwQ-32B FPR (file convention: diff = some_sign, we use |delta| for power)\nrecords.append({\n    \"model\": \"QwQ-32B\",\n    \"metric\": \"pre_cp_fpr\",\n    \"delta\": qwq_fpr[\"fpr_diff_mean\"],\n    \"n_obs\": qwq_fpr[\"n_valid_fpr_traces\"],\n    \"ci_lower\": qwq_fpr[\"fpr_diff_ci95\"][0],\n    \"ci_upper\": qwq_fpr[\"fpr_diff_ci95\"][1],\n    \"p_value\": qwq_fpr[\"fpr_p_value\"],\n})\n\n# --- Compute sigma and required n ---\nfor r in records:\n    r[\"sigma_from_ci\"] = sigma_from_ci(r[\"ci_lower\"], r[\"ci_upper\"])\n    r[\"sigma_from_pvalue\"] = sigma_from_pvalue(r[\"delta\"], r[\"p_value\"])\n    r[\"sigma_used\"] = r[\"sigma_from_ci\"]  # prefer CI-based\n    r[\"observed_z\"] = abs(r[\"delta\"]) / r[\"sigma_used\"] if r[\"sigma_used\"] > 1e-12 else 0\n    r[\"observed_power\"] = stats.norm.cdf(r[\"observed_z\"] - 1.96) + stats.norm.cdf(-r[\"observed_z\"] - 1.96)\n    r[\"required_n_005\"] = required_n(r[\"n_obs\"], r[\"delta\"], r[\"sigma_used\"], alpha=0.05)\n    r[\"required_n_017\"] = required_n(r[\"n_obs\"], r[\"delta\"], r[\"sigma_used\"], alpha=0.05 / 3)\n\n# --- Print tables ---\ndef fmt_n(n):\n    if n == float(\"inf\") or n > 100000:\n        return \">100k\"\n    return str(n)\n\n\ndef print_table(recs, alpha_key, title):\n    print(f\"{'=' * 95}\")\n    print(f\"  {title}\")\n    print(f\"{'=' * 95}\")\n    print(f\"  {'Model':<10} {'Metric':<12} {'Obs Delta':>10} {'n_obs':>6} {'σ_boot':>8} {'Obs z':>7} {'Obs Pwr':>8} {'Req n':>8}\")\n    print(f\"  {'-'*10} {'-'*12} {'-'*10} {'-'*6} {'-'*8} {'-'*7} {'-'*8} {'-'*8}\")\n    for r in recs:\n        print(\n            f\"  {r['model']:<10} {r['metric']:<12} {r['delta']:>+10.4f} \"\n            f\"{r['n_obs']:>6d} {r['sigma_used']:>8.4f} \"\n            f\"{r['observed_z']:>7.3f} {r['observed_power']:>8.1%} \"\n            f\"{fmt_n(r[alpha_key]):>8}\"\n        )\n    print()\n\n\nprint_table(records, \"required_n_005\", \"Table 1: α=0.05 (uncorrected), target 80% power\")\nprint_table(records, \"required_n_017\", \"Table 2: α=0.017 (Bonferroni, k=3), target 80% power\")\n\n# --- Summary interpretation ---\nprint(\"=\" * 95)\nprint(\"  Interpretation\")\nprint(\"=\" * 95)\nfor r in records:\n    n5 = r[\"required_n_005\"]\n    n17 = r[\"required_n_017\"]\n    pwr = r[\"observed_power\"]\n    print(\n        f\"  {r['model']:10s} {r['metric']:12s}: \"\n        f\"current power={pwr:.1%}, \"\n        f\"need {fmt_n(n5):>6s} (α=.05) / {fmt_n(n17):>6s} (Bonf) traces\"\n    )\nprint()\n\n# --- Save JSON ---\nos.makedirs(OUTPUT_DIR, exist_ok=True)\noutput = {\n    \"method\": \"normal_approximation_from_bootstrap_CI\",\n    \"power_target\": 0.80,\n    \"alpha_uncorrected\": 0.05,\n    \"alpha_bonferroni\": 0.016667,\n    \"records\": [\n        {\n            \"model\": r[\"model\"],\n            \"metric\": r[\"metric\"],\n            \"observed_delta\": round(r[\"delta\"], 5),\n            \"n_obs\": r[\"n_obs\"],\n            \"sigma_bootstrap\": round(r[\"sigma_used\"], 5),\n            \"observed_z\": round(r[\"observed_z\"], 3),\n            \"observed_power\": round(r[\"observed_power\"], 4),\n            \"required_n_alpha005\": r[\"required_n_005\"] if r[\"required_n_005\"] != float(\"inf\") else None,\n            \"required_n_alpha017\": r[\"required_n_017\"] if r[\"required_n_017\"] != float(\"inf\") else None,\n        }\n        for r in records\n    ],\n}\nwith open(OUTPUT_FILE, \"w\") as f:\n    json.dump(output, f, indent=2)\nprint(f\"Saved: {OUTPUT_FILE}\")\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_32b_power_analysis_20260517T104240",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/artifacts/exp_power_analysis.py",
+    "content": "#!/usr/bin/env python3\n\"\"\"Post-hoc power analysis for R1-32B and QwQ-32B.\n\nEstimates required test set size for 80% power using normal approximation\nbased on bootstrap CI-derived standard errors.\n\"\"\"\n\nimport json\nimport math\nimport os\nfrom scipy import stats\n\nARTIFACTS = \"/root/autodl-tmp/contrastive_trace_safety/artifacts\"\nR1_BOOTSTRAP = f\"{ARTIFACTS}/r1_32b_paired_bootstrap/results.json\"\nQWQ_ACC_PREC = f\"{ARTIFACTS}/acc_precision_bootstrap/results.json\"\nQWQ_FPR = f\"{ARTIFACTS}/qwq_paired_bootstrap_w5/fpr_bootstrap_w5.json\"\nOUTPUT_DIR = f\"{ARTIFACTS}/power_analysis\"\nOUTPUT_FILE = f\"{OUTPUT_DIR}/results.json\"\n\n\ndef load_json(path):\n    with open(path) as f:\n        return json.load(f)\n\n\ndef sigma_from_ci(ci_lower, ci_upper, alpha=0.05):\n    \"\"\"Estimate SE of delta from bootstrap percentile CI (normal approx).\"\"\"\n    z = stats.norm.ppf(1 - alpha / 2)\n    return (ci_upper - ci_lower) / (2 * z)\n\n\ndef sigma_from_pvalue(delta, p_value):\n    \"\"\"Fallback: estimate SE from two-sided p-value.\"\"\"\n    if p_value <= 0 or p_value >= 1 or abs(delta) < 1e-12:\n        return None\n    z_p = stats.norm.ppf(1 - p_value / 2)\n    if abs(z_p) < 1e-10:\n        return None\n    return abs(delta) / abs(z_p)\n\n\ndef required_n(n_obs, delta, sigma, alpha=0.05, power=0.80):\n    \"\"\"Required n for target power.\n\n    Bootstrap SE scales as sigma(n) = sigma(n_obs) * sqrt(n_obs/n).\n    Solving |delta| / sigma(n) >= z_alpha + z_beta gives:\n      n = n_obs * ((z_alpha + z_beta) / z_obs)^2\n    where z_obs = |delta| / sigma(n_obs).\n    \"\"\"\n    if abs(delta) < 1e-12 or sigma < 1e-12:\n        return float(\"inf\")\n    z_alpha = stats.norm.ppf(1 - alpha / 2)\n    z_beta = stats.norm.ppf(power)\n    z_obs = abs(delta) / sigma\n    n_req = n_obs * ((z_alpha + z_beta) / z_obs) ** 2\n    return math.ceil(n_req)\n\n\ndef check_for_bootstrap_deltas(data, keys_to_check):\n    \"\"\"Check if raw bootstrap delta arrays exist in the JSON.\"\"\"\n    for k in keys_to_check:\n        if k in data and isinstance(data[k], list) and len(data[k]) > 10:\n            return k\n    return None\n\n\n# --- Load data ---\nr1 = load_json(R1_BOOTSTRAP)\nqwq_ap = load_json(QWQ_ACC_PREC)\nqwq_fpr = load_json(QWQ_FPR)\n\n# Check for raw bootstrap deltas (preferred but not expected)\nfor name, data in [(\"R1\", r1), (\"QwQ_acc_prec\", qwq_ap), (\"QwQ_fpr\", qwq_fpr)]:\n    found = check_for_bootstrap_deltas(data, [\"bootstrap_deltas\", \"deltas\", \"diff_samples\"])\n    if found:\n        print(f\"[INFO] Found bootstrap deltas in {name} under key '{found}'\")\n    else:\n        print(f\"[INFO] No bootstrap delta arrays in {name} — using CI-based sigma\")\n\nprint()\n\n# --- Build records ---\nrecords = []\n\n# R1-32B from dedicated paired bootstrap file\nfor key, metric in [(\"balanced_accuracy\", \"bal_acc\"), (\"precision\", \"precision\"), (\"precp_fpr\", \"pre_cp_fpr\")]:\n    m = r1[key]\n    records.append({\n        \"model\": \"R1-32B\",\n        \"metric\": metric,\n        \"delta\": m[\"diff_mean\"],\n        \"n_obs\": m[\"n_valid\"],\n        \"ci_lower\": m[\"diff_ci95\"][0],\n        \"ci_upper\": m[\"diff_ci95\"][1],\n        \"p_value\": m[\"p_value\"],\n    })\n\n# QwQ-32B balanced accuracy & precision\nq = qwq_ap[\"qwq_32b\"]\nrecords.append({\n    \"model\": \"QwQ-32B\",\n    \"metric\": \"bal_acc\",\n    \"delta\": q[\"acc_diff_mean\"],\n    \"n_obs\": q[\"n_test_traces\"],\n    \"ci_lower\": q[\"acc_diff_ci95\"][0],\n    \"ci_upper\": q[\"acc_diff_ci95\"][1],\n    \"p_value\": q[\"acc_p_value\"],\n})\nrecords.append({\n    \"model\": \"QwQ-32B\",\n    \"metric\": \"precision\",\n    \"delta\": q[\"prec_diff_mean\"],\n    \"n_obs\": q[\"n_prec_valid_traces\"],\n    \"ci_lower\": q[\"prec_diff_ci95\"][0],\n    \"ci_upper\": q[\"prec_diff_ci95\"][1],\n    \"p_value\": q[\"prec_p_value\"],\n})\n\n# QwQ-32B FPR (file convention: diff = some_sign, we use |delta| for power)\nrecords.append({\n    \"model\": \"QwQ-32B\",\n    \"metric\": \"pre_cp_fpr\",\n    \"delta\": qwq_fpr[\"fpr_diff_mean\"],\n    \"n_obs\": qwq_fpr[\"n_valid_fpr_traces\"],\n    \"ci_lower\": qwq_fpr[\"fpr_diff_ci95\"][0],\n    \"ci_upper\": qwq_fpr[\"fpr_diff_ci95\"][1],\n    \"p_value\": qwq_fpr[\"fpr_p_value\"],\n})\n\n# --- Compute sigma and required n ---\nfor r in records:\n    r[\"sigma_from_ci\"] = sigma_from_ci(r[\"ci_lower\"], r[\"ci_upper\"])\n    r[\"sigma_from_pvalue\"] = sigma_from_pvalue(r[\"delta\"], r[\"p_value\"])\n    r[\"sigma_used\"] = r[\"sigma_from_ci\"]  # prefer CI-based\n    r[\"observed_z\"] = abs(r[\"delta\"]) / r[\"sigma_used\"] if r[\"sigma_used\"] > 1e-12 else 0\n    r[\"observed_power\"] = stats.norm.cdf(r[\"observed_z\"] - 1.96) + stats.norm.cdf(-r[\"observed_z\"] - 1.96)\n    r[\"required_n_005\"] = required_n(r[\"n_obs\"], r[\"delta\"], r[\"sigma_used\"], alpha=0.05)\n    r[\"required_n_017\"] = required_n(r[\"n_obs\"], r[\"delta\"], r[\"sigma_used\"], alpha=0.05 / 3)\n\n# --- Print tables ---\ndef fmt_n(n):\n    if n == float(\"inf\") or n > 100000:\n        return \">100k\"\n    return str(n)\n\n\ndef print_table(recs, alpha_key, title):\n    print(f\"{'=' * 95}\")\n    print(f\"  {title}\")\n    print(f\"{'=' * 95}\")\n    print(f\"  {'Model':<10} {'Metric':<12} {'Obs Delta':>10} {'n_obs':>6} {'σ_boot':>8} {'Obs z':>7} {'Obs Pwr':>8} {'Req n':>8}\")\n    print(f\"  {'-'*10} {'-'*12} {'-'*10} {'-'*6} {'-'*8} {'-'*7} {'-'*8} {'-'*8}\")\n    for r in recs:\n        print(\n            f\"  {r['model']:<10} {r['metric']:<12} {r['delta']:>+10.4f} \"\n            f\"{r['n_obs']:>6d} {r['sigma_used']:>8.4f} \"\n            f\"{r['observed_z']:>7.3f} {r['observed_power']:>8.1%} \"\n            f\"{fmt_n(r[alpha_key]):>8}\"\n        )\n    print()\n\n\nprint_table(records, \"required_n_005\", \"Table 1: α=0.05 (uncorrected), target 80% power\")\nprint_table(records, \"required_n_017\", \"Table 2: α=0.017 (Bonferroni, k=3), target 80% power\")\n\n# --- Summary interpretation ---\nprint(\"=\" * 95)\nprint(\"  Interpretation\")\nprint(\"=\" * 95)\nfor r in records:\n    n5 = r[\"required_n_005\"]\n    n17 = r[\"required_n_017\"]\n    pwr = r[\"observed_power\"]\n    print(\n        f\"  {r['model']:10s} {r['metric']:12s}: \"\n        f\"current power={pwr:.1%}, \"\n        f\"need {fmt_n(n5):>6s} (α=.05) / {fmt_n(n17):>6s} (Bonf) traces\"\n    )\nprint()\n\n# --- Save JSON ---\nos.makedirs(OUTPUT_DIR, exist_ok=True)\noutput = {\n    \"method\": \"normal_approximation_from_bootstrap_CI\",\n    \"power_target\": 0.80,\n    \"alpha_uncorrected\": 0.05,\n    \"alpha_bonferroni\": 0.016667,\n    \"records\": [\n        {\n            \"model\": r[\"model\"],\n            \"metric\": r[\"metric\"],\n            \"observed_delta\": round(r[\"delta\"], 5),\n            \"n_obs\": r[\"n_obs\"],\n            \"sigma_bootstrap\": round(r[\"sigma_used\"], 5),\n            \"observed_z\": round(r[\"observed_z\"], 3),\n            \"observed_power\": round(r[\"observed_power\"], 4),\n            \"required_n_alpha005\": r[\"required_n_005\"] if r[\"required_n_005\"] != float(\"inf\") else None,\n            \"required_n_alpha017\": r[\"required_n_017\"] if r[\"required_n_017\"] != float(\"inf\") else None,\n        }\n        for r in records\n    ],\n}\nwith open(OUTPUT_FILE, \"w\") as f:\n    json.dump(output, f, indent=2)\nprint(f\"Saved: {OUTPUT_FILE}\")\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-17T10:47:10.207114+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/artifacts/exp_power_analysis.py
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_32b_power_analysis_20260517T104240",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-17T10:47:10.207302+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat > /root/autodl-tmp/contrastive_trace_safety/src/experiments/exp_power_analysis.py << 'PYEOF'\n#!/usr/bin/env python3\n\"\"\"Post-hoc power analysis for R1-32B and QwQ-32B.\n\nEstimates required test set size for 80% power using normal approximation\nbased on bootstrap CI-derived standard errors.\n\"\"\"\n\nimport json\nimport math\nimport os\nfrom scipy import stats\n\nARTIFACTS = \"/root/autodl-tmp/contrastive_trace_safety/artifacts\"\nR1_BOOTSTRAP = f\"{ARTIFACTS}/r1_32b_paired_bootstrap/results.json\"\nQWQ_ACC_PREC = f\"{ARTIFACTS}/acc_precision_bootstrap/results.json\"\nQWQ_FPR = f\"{ARTIFACTS}/qwq_paired_bootstrap_w5/fpr_bootstrap_w5.json\"\nOUTPUT_DIR = f\"{ARTIFACTS}/power_analysis\"\nOUTPUT_FILE = f\"{OUTPUT_DIR}/results.json\"\n\n\ndef load_json(path):\n    with open(path) as f:\n        return json.load(f)\n\n\ndef sigma_from_ci(ci_lower, ci_upper, alpha=0.05):\n    \"\"\"Estimate SE of delta from bootstrap percentile CI (normal approx).\"\"\"\n    z = stats.norm.ppf(1 - alpha / 2)\n    return (ci_upper - ci_lower) / (2 * z)\n\n\ndef sigma_from_pvalue(delta, p_value):\n    \"\"\"Fallback: estimate SE from two-sided p-value.\"\"\"\n    if p_value <= 0 or p_value >= 1 or abs(delta) < 1e-12:\n        return None\n    z_p = stats.norm.ppf(1 - p_value / 2)\n    if abs(z_p) < 1e-10:\n        return None\n    return abs(delta) / abs(z_p)\n\n\ndef required_n(n_obs, delta, sigma, alpha=0.05, power=0.80):\n    \"\"\"Required n for target power.\n\n    Bootstrap SE scales as sigma(n) = sigma(n_obs) * sqrt(n_obs/n).\n    Solving |delta| / sigma(n) >= z_alpha + z_beta gives:\n      n = n_obs * ((z_alpha + z_beta) / z_obs)^2\n    where z_obs = |delta| / sigma(n_obs).\n    \"\"\"\n    if abs(delta) < 1e-12 or sigma < 1e-12:\n        return float(\"inf\")\n    z_alpha = stats.norm.ppf(1 - alpha / 2)\n    z_beta = stats.norm.ppf(power)\n    z_obs = abs(delta) / sigma\n    n_req = n_obs * ((z_alpha + z_beta) / z_obs) ** 2\n    return math.ceil(n_req)\n\n\ndef check_for_bootstrap_deltas(data, keys_to_check):\n    \"\"\"Check if raw bootstrap delta arrays exist in the JSON.\"\"\"\n    for k in keys_to_check:\n        if k in data and isinstance(data[k], list) and len(data[k]) > 10:\n            return k\n    return None\n\n\n# --- Load data ---\nr1 = load_json(R1_BOOTSTRAP)\nqwq_ap = load_json(QWQ_ACC_PREC)\nqwq_fpr = load_json(QWQ_FPR)\n\n# Check for raw bootstrap deltas (preferred but not expected)\nfor name, data in [(\"R1\", r1), (\"QwQ_acc_prec\", qwq_ap), (\"QwQ_fpr\", qwq_fpr)]:\n    found = check_for_bootstrap_deltas(data, [\"bootstrap_deltas\", \"deltas\", \"diff_samples\"])\n    if found:\n        print(f\"[INFO] Found bootstrap deltas in {name} under key '{found}'\")\n    else:\n        print(f\"[INFO] No bootstrap delta arrays in {name} -- using CI-based sigma\")\n\nprint()\n\n# --- Build records ---\nrecords = []\n\n# R1-32B from dedicated paired bootstrap file\nfor key, metric in [(\"balanced_accuracy\", \"bal_acc\"), (\"precision\", \"precision\"), (\"precp_fpr\", \"pre_cp_fpr\")]:\n    m = r1[key]\n    records.append({\n        \"model\": \"R1-32B\",\n        \"metric\": metric,\n        \"delta\": m[\"diff_mean\"],\n        \"n_obs\": m[\"n_valid\"],\n        \"ci_lower\": m[\"diff_ci95\"][0],\n        \"ci_upper\": m[\"diff_ci95\"][1],\n        \"p_value\": m[\"p_value\"],\n    })\n\n# QwQ-32B balanced accuracy & precision\nq = qwq_ap[\"qwq_32b\"]\nrecords.append({\n    \"model\": \"QwQ-32B\",\n    \"metric\": \"bal_acc\",\n    \"delta\": q[\"acc_diff_mean\"],\n    \"n_obs\": q[\"n_test_traces\"],\n    \"ci_lower\": q[\"acc_diff_ci95\"][0],\n    \"ci_upper\": q[\"acc_diff_ci95\"][1],\n    \"p_value\": q[\"acc_p_value\"],\n})\nrecords.append({\n    \"model\": \"QwQ-32B\",\n    \"metric\": \"precision\",\n    \"delta\": q[\"prec_diff_mean\"],\n    \"n_obs\": q[\"n_prec_valid_traces\"],\n    \"ci_lower\": q[\"prec_diff_ci95\"][0],\n    \"ci_upper\": q[\"prec_diff_ci95\"][1],\n    \"p_value\": q[\"prec_p_value\"],\n})\n\n# QwQ-32B FPR\nrecords.append({\n    \"model\": \"QwQ-32B\",\n    \"metric\": \"pre_cp_fpr\",\n    \"delta\": qwq_fpr[\"fpr_diff_mean\"],\n    \"n_obs\": qwq_fpr[\"n_valid_fpr_traces\"],\n    \"ci_lower\": qwq_fpr[\"fpr_diff_ci95\"][0],\n    \"ci_upper\": qwq_fpr[\"fpr_diff_ci95\"][1],\n    \"p_value\": qwq_fpr[\"fpr_p_value\"],\n})\n\n# --- Compute sigma and required n ---\nfor r in records:\n    r[\"sigma_from_ci\"] = sigma_from_ci(r[\"ci_lower\"], r[\"ci_upper\"])\n    r[\"sigma_from_pvalue\"] = sigma_from_pvalue(r[\"delta\"], r[\"p_value\"])\n    r[\"sigma_used\"] = r[\"sigma_from_ci\"]\n    r[\"observed_z\"] = abs(r[\"delta\"]) / r[\"sigma_used\"] if r[\"sigma_used\"] > 1e-12 else 0\n    r[\"observed_power\"] = stats.norm.cdf(r[\"observed_z\"] - 1.96) + stats.norm.cdf(-r[\"observed_z\"] - 1.96)\n    r[\"required_n_005\"] = required_n(r[\"n_obs\"], r[\"delta\"], r[\"sigma_used\"], alpha=0.05)\n    r[\"required_n_017\"] = required_n(r[\"n_obs\"], r[\"delta\"], r[\"sigma_used\"], alpha=0.05 / 3)\n\n# --- Print tables ---\ndef fmt_n(n):\n    if n == float(\"inf\") or n > 100000:\n        return \">100k\"\n    return str(n)\n\n\ndef print_table(recs, alpha_key, title):\n    print(f\"{'=' * 95}\")\n    print(f\"  {title}\")\n    print(f\"{'=' * 95}\")\n    print(f\"  {'Model':<10} {'Metric':<12} {'Obs Delta':>10} {'n_obs':>6} {'sigma_boot':>10} {'Obs z':>7} {'Obs Pwr':>8} {'Req n':>8}\")\n    print(f\"  {'-'*10} {'-'*12} {'-'*10} {'-'*6} {'-'*10} {'-'*7} {'-'*8} {'-'*8}\")\n    for r in recs:\n        print(\n            f\"  {r['model']:<10} {r['metric']:<12} {r['delta']:>+10.4f} \"\n            f\"{r['n_obs']:>6d} {r['sigma_used']:>10.5f} \"\n            f\"{r['observed_z']:>7.3f} {r['observed_power']:>8.1%} \"\n            f\"{fmt_n(r[alpha_key]):>8}\"\n        )\n    print()\n\n\nprint_table(records, \"required_n_005\", \"Table 1: alpha=0.05 (uncorrected), target 80% power\")\nprint_table(records, \"required_n_017\", \"Table 2: alpha=0.017 (Bonferroni, k=3), target 80% power\")\n\n# --- Summary ---\nprint(\"=\" * 95)\nprint(\"  Interpretation\")\nprint(\"=\" * 95)\nfor r in records:\n    n5 = r[\"required_n_005\"]\n    n17 = r[\"required_n_017\"]\n    pwr = r[\"observed_power\"]\n    print(\n        f\"  {r['model']:10s} {r['metric']:12s}: \"\n        f\"current power={pwr:.1%}, \"\n        f\"need {fmt_n(n5):>6s} (alpha=.05) / {fmt_n(n17):>6s} (Bonf) traces\"\n    )\nprint()\n\n# --- Save JSON ---\nos.makedirs(OUTPUT_DIR, exist_ok=True)\noutput = {\n    \"method\": \"normal_approximation_from_bootstrap_CI\",\n    \"power_target\": 0.80,\n    \"alpha_uncorrected\": 0.05,\n    \"alpha_bonferroni\": 0.016667,\n    \"source_files\": {\n        \"r1_32b\": R1_BOOTSTRAP,\n        \"qwq_acc_prec\": QWQ_ACC_PREC,\n        \"qwq_fpr\": QWQ_FPR,\n    },\n    \"records\": [\n        {\n            \"model\": r[\"model\"],\n            \"metric\": r[\"metric\"],\n            \"observed_delta\": round(r[\"delta\"], 5),\n            \"n_obs\": r[\"n_obs\"],\n            \"sigma_bootstrap\": round(r[\"sigma_used\"], 5),\n            \"observed_z\": round(r[\"observed_z\"], 3),\n            \"observed_power\": round(r[\"observed_power\"], 4),\n            \"required_n_alpha005\": r[\"required_n_005\"] if r[\"required_n_005\"] != float(\"inf\") else None,\n            \"required_n_alpha017\": r[\"required_n_017\"] if r[\"required_n_017\"] != float(\"inf\") else None,\n        }\n        for r in records\n    ],\n}\nwith open(OUTPUT_FILE, \"w\") as f:\n    json.dump(output, f, indent=2)\nprint(f\"Saved: {OUTPUT_FILE}\")\nPYEOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_32b_power_analysis_20260517T104240",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat > /root/autodl-tmp/contrastive_trace_safety/src/experiments/exp_power_analysis.py << 'PYEOF'\n#!/usr/bin/env python3\n\"\"\"Post-hoc power analysis for R1-32B and QwQ-32B.\n\nEstimates required test set size for 80% power using normal approximation\nbased on bootstrap CI-derived standard errors.\n\"\"\"\n\nimport json\nimport math\nimport os\nfrom scipy import stats\n\nARTIFACTS = \"/root/autodl-tmp/contrastive_trace_safety/artifacts\"\nR1_BOOTSTRAP = f\"{ARTIFACTS}/r1_32b_paired_bootstrap/results.json\"\nQWQ_ACC_PREC = f\"{ARTIFACTS}/acc_precision_bootstrap/results.json\"\nQWQ_FPR = f\"{ARTIFACTS}/qwq_paired_bootstrap_w5/fpr_bootstrap_w5.json\"\nOUTPUT_DIR = f\"{ARTIFACTS}/power_analysis\"\nOUTPUT_FILE = f\"{OUTPUT_DIR}/results.json\"\n\n\ndef load_json(path):\n    with open(path) as f:\n        return json.load(f)\n\n\ndef sigma_from_ci(ci_lower, ci_upper, alpha=0.05):\n    \"\"\"Estimate SE of delta from bootstrap percentile CI (normal approx).\"\"\"\n    z = stats.norm.ppf(1 - alpha / 2)\n    return (ci_upper - ci_lower) / (2 * z)\n\n\ndef sigma_from_pvalue(delta, p_value):\n    \"\"\"Fallback: estimate SE from two-sided p-value.\"\"\"\n    if p_value <= 0 or p_value >= 1 or abs(delta) < 1e-12:\n        return None\n    z_p = stats.norm.ppf(1 - p_value / 2)\n    if abs(z_p) < 1e-10:\n        return None\n    return abs(delta) / abs(z_p)\n\n\ndef required_n(n_obs, delta, sigma, alpha=0.05, power=0.80):\n    \"\"\"Required n for target power.\n\n    Bootstrap SE scales as sigma(n) = sigma(n_obs) * sqrt(n_obs/n).\n    Solving |delta| / sigma(n) >= z_alpha + z_beta gives:\n      n = n_obs * ((z_alpha + z_beta) / z_obs)^2\n    where z_obs = |delta| / sigma(n_obs).\n    \"\"\"\n    if abs(delta) < 1e-12 or sigma < 1e-12:\n        return float(\"inf\")\n    z_alpha = stats.norm.ppf(1 - alpha / 2)\n    z_beta = stats.norm.ppf(power)\n    z_obs = abs(delta) / sigma\n    n_req = n_obs * ((z_alpha + z_beta) / z_obs) ** 2\n    return math.ceil(n_req)\n\n\ndef check_for_bootstrap_deltas(data, keys_to_check):\n    \"\"\"Check if raw bootstrap delta arrays exist in the JSON.\"\"\"\n    for k in keys_to_check:\n        if k in data and isinstance(data[k], list) and len(data[k]) > 10:\n            return k\n    return None\n\n\n# --- Load data ---\nr1 = load_json(R1_BOOTSTRAP)\nqwq_ap = load_json(QWQ_ACC_PREC)\nqwq_fpr = load_json(QWQ_FPR)\n\n# Check for raw bootstrap deltas (preferred but not expected)\nfor name, data in [(\"R1\", r1), (\"QwQ_acc_prec\", qwq_ap), (\"QwQ_fpr\", qwq_fpr)]:\n    found = check_for_bootstrap_deltas(data, [\"bootstrap_deltas\", \"deltas\", \"diff_samples\"])\n    if found:\n        print(f\"[INFO] Found bootstrap deltas in {name} under key '{found}'\")\n    else:\n        print(f\"[INFO] No bootstrap delta arrays in {name} -- using CI-based sigma\")\n\nprint()\n\n# --- Build records ---\nrecords = []\n\n# R1-32B from dedicated paired bootstrap file\nfor key, metric in [(\"balanced_accuracy\", \"bal_acc\"), (\"precision\", \"precision\"), (\"precp_fpr\", \"pre_cp_fpr\")]:\n    m = r1[key]\n    records.append({\n        \"model\": \"R1-32B\",\n        \"metric\": metric,\n        \"delta\": m[\"diff_mean\"],\n        \"n_obs\": m[\"n_valid\"],\n        \"ci_lower\": m[\"diff_ci95\"][0],\n        \"ci_upper\": m[\"diff_ci95\"][1],\n        \"p_value\": m[\"p_value\"],\n    })\n\n# QwQ-32B balanced accuracy & precision\nq = qwq_ap[\"qwq_32b\"]\nrecords.append({\n    \"model\": \"QwQ-32B\",\n    \"metric\": \"bal_acc\",\n    \"delta\": q[\"acc_diff_mean\"],\n    \"n_obs\": q[\"n_test_traces\"],\n    \"ci_lower\": q[\"acc_diff_ci95\"][0],\n    \"ci_upper\": q[\"acc_diff_ci95\"][1],\n    \"p_value\": q[\"acc_p_value\"],\n})\nrecords.append({\n    \"model\": \"QwQ-32B\",\n    \"metric\": \"precision\",\n    \"delta\": q[\"prec_diff_mean\"],\n    \"n_obs\": q[\"n_prec_valid_traces\"],\n    \"ci_lower\": q[\"prec_diff_ci95\"][0],\n    \"ci_upper\": q[\"prec_diff_ci95\"][1],\n    \"p_value\": q[\"prec_p_value\"],\n})\n\n# QwQ-32B FPR\nrecords.append({\n    \"model\": \"QwQ-32B\",\n    \"metric\": \"pre_cp_fpr\",\n    \"delta\": qwq_fpr[\"fpr_diff_mean\"],\n    \"n_obs\": qwq_fpr[\"n_valid_fpr_traces\"],\n    \"ci_lower\": qwq_fpr[\"fpr_diff_ci95\"][0],\n    \"ci_upper\": qwq_fpr[\"fpr_diff_ci95\"][1],\n    \"p_value\": qwq_fpr[\"fpr_p_value\"],\n})\n\n# --- Compute sigma and required n ---\nfor r in records:\n    r[\"sigma_from_ci\"] = sigma_from_ci(r[\"ci_lower\"], r[\"ci_upper\"])\n    r[\"sigma_from_pvalue\"] = sigma_from_pvalue(r[\"delta\"], r[\"p_value\"])\n    r[\"sigma_used\"] = r[\"sigma_from_ci\"]\n    r[\"observed_z\"] = abs(r[\"delta\"]) / r[\"sigma_used\"] if r[\"sigma_used\"] > 1e-12 else 0\n    r[\"observed_power\"] = stats.norm.cdf(r[\"observed_z\"] - 1.96) + stats.norm.cdf(-r[\"observed_z\"] - 1.96)\n    r[\"required_n_005\"] = required_n(r[\"n_obs\"], r[\"delta\"], r[\"sigma_used\"], alpha=0.05)\n    r[\"required_n_017\"] = required_n(r[\"n_obs\"], r[\"delta\"], r[\"sigma_used\"], alpha=0.05 / 3)\n\n# --- Print tables ---\ndef fmt_n(n):\n    if n == float(\"inf\") or n > 100000:\n        return \">100k\"\n    return str(n)\n\n\ndef print_table(recs, alpha_key, title):\n    print(f\"{'=' * 95}\")\n    print(f\"  {title}\")\n    print(f\"{'=' * 95}\")\n    print(f\"  {'Model':<10} {'Metric':<12} {'Obs Delta':>10} {'n_obs':>6} {'sigma_boot':>10} {'Obs z':>7} {'Obs Pwr':>8} {'Req n':>8}\")\n    print(f\"  {'-'*10} {'-'*12} {'-'*10} {'-'*6} {'-'*10} {'-'*7} {'-'*8} {'-'*8}\")\n    for r in recs:\n        print(\n            f\"  {r['model']:<10} {r['metric']:<12} {r['delta']:>+10.4f} \"\n            f\"{r['n_obs']:>6d} {r['sigma_used']:>10.5f} \"\n            f\"{r['observed_z']:>7.3f} {r['observed_power']:>8.1%} \"\n            f\"{fmt_n(r[alpha_key]):>8}\"\n        )\n    print()\n\n\nprint_table(records, \"required_n_005\", \"Table 1: alpha=0.05 (uncorrected), target 80% power\")\nprint_table(records, \"required_n_017\", \"Table 2: alpha=0.017 (Bonferroni, k=3), target 80% power\")\n\n# --- Summary ---\nprint(\"=\" * 95)\nprint(\"  Interpretation\")\nprint(\"=\" * 95)\nfor r in records:\n    n5 = r[\"required_n_005\"]\n    n17 = r[\"required_n_017\"]\n    pwr = r[\"observed_power\"]\n    print(\n        f\"  {r['model']:10s} {r['metric']:12s}: \"\n        f\"current power={pwr:.1%}, \"\n        f\"need {fmt_n(n5):>6s} (alpha=.05) / {fmt_n(n17):>6s} (Bonf) traces\"\n    )\nprint()\n\n# --- Save JSON ---\nos.makedirs(OUTPUT_DIR, exist_ok=True)\noutput = {\n    \"method\": \"normal_approximation_from_bootstrap_CI\",\n    \"power_target\": 0.80,\n    \"alpha_uncorrected\": 0.05,\n    \"alpha_bonferroni\": 0.016667,\n    \"source_files\": {\n        \"r1_32b\": R1_BOOTSTRAP,\n        \"qwq_acc_prec\": QWQ_ACC_PREC,\n        \"qwq_fpr\": QWQ_FPR,\n    },\n    \"records\": [\n        {\n            \"model\": r[\"model\"],\n            \"metric\": r[\"metric\"],\n            \"observed_delta\": round(r[\"delta\"], 5),\n            \"n_obs\": r[\"n_obs\"],\n            \"sigma_bootstrap\": round(r[\"sigma_used\"], 5),\n            \"observed_z\": round(r[\"observed_z\"], 3),\n            \"observed_power\": round(r[\"observed_power\"], 4),\n            \"required_n_alpha005\": r[\"required_n_005\"] if r[\"required_n_005\"] != float(\"inf\") else None,\n            \"required_n_alpha017\": r[\"required_n_017\"] if r[\"required_n_017\"] != float(\"inf\") else None,\n        }\n        for r in records\n    ],\n}\nwith open(OUTPUT_FILE, \"w\") as f:\n    json.dump(output, f, indent=2)\nprint(f\"Saved: {OUTPUT_FILE}\")\nPYEOF",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-17T10:47:10.207505+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_32b_power_analysis_20260517T104240",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-17T10:47:10.207689+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "/root/miniconda3/bin/python3.12 /root/autodl-tmp/contrastive_trace_safety/src/experiments/exp_power_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_32b_power_analysis_20260517T104240",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "/root/miniconda3/bin/python3.12 /root/autodl-tmp/contrastive_trace_safety/src/experiments/exp_power_analysis.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-17T10:47:10.207884+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[INFO] No bootstrap delta arrays in R1 -- using CI-based sigma\\n[INFO] No bootstrap delta arrays in QwQ_acc_prec -- using CI-based sigma\\n[INFO] No bootstrap delta arrays in QwQ_fpr -- using CI-based sigma\\n\\n===============================================================================================\\n  Table 1: alpha=0.05 (uncorrected), target 80% power\\n===============================================================================================\\n  Model      Metric        Obs Delta  n_obs sigma_boot   Obs z  Obs Pwr    Req n\\n  ---------- ------------ ---------- ------ ---------- ------- -------- --------\\n  R1-32B     bal_acc         +0.0839     20    0.04958   1.693    39.5%       55\\n  R1-32B     precision       +0.0940     20    0.05212   1.803    43.8%       49\\n  R1-32B     pre_cp_fpr      -0.0844     20    0.04947   1.705    40.0%       54\\n  QwQ-32B    bal_acc         +0.0087     19    0.03451   0.251     5.7%     2365\\n  QwQ-32B    precision       +0.0575     18    0.05762   0.998    17.0%      142\\n  QwQ-32B    pre_cp_fpr      -0.0300     19    0.03825   0.784    12.3%      243\\n\\n===============================================================================================\\n  Table 2: alpha=0.017 (Bonferroni, k=3), target 80% power\\n===============================================================================================\\n  Model      Metric        Obs Delta  n_obs sigma_boot   Obs z  Obs Pwr    Req n\\n  ---------- ------------ ---------- ------ ---------- ------- -------- --------\\n  R1-32B     bal_acc         +0.0839     20    0.04958   1.693    39.5%       74\\n  R1-32B     precision       +0.0940     20    0.05212   1.803    43.8%       65\\n  R1-32B     pre_cp_fpr      -0.0844     20    0.04947   1.705    40.0%       72\\n  QwQ-32B    bal_acc         +0.0087     19    0.03451   0.251     5.7%     3155\\n  QwQ-32B    precision       +0.0575     18    0.05762   
+…[truncated 1104 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_32b_power_analysis_20260517T104240",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-17T10:47:10.208052+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__append_idea",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_32b_power_analysis_20260517T104240",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__append_idea",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-17T10:47:10.208176+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_32b_power_analysis_20260517T104240",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-17T10:47:10.208311+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "register artifact",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_32b_power_analysis_20260517T104240",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "register artifact",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-17T10:47:10.208428+00:00_
+
+No matching deferred tools found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_32b_power_analysis_20260517T104240",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-17T10:47:10.208568+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "register",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_32b_power_analysis_20260517T104240",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "register",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-17T10:47:10.208759+00:00_
+
+No matching deferred tools found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_32b_power_analysis_20260517T104240",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-17T10:47:10.208900+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/power_analysis/results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_32b_power_analysis_20260517T104240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/power_analysis/results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-17T10:47:10.209088+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"method\\\": \\\"normal_approximation_from_bootstrap_CI\\\",\\n  \\\"power_target\\\": 0.8,\\n  \\\"alpha_uncorrected\\\": 0.05,\\n  \\\"alpha_bonferroni\\\": 0.016667,\\n  \\\"source_files\\\": {\\n    \\\"r1_32b\\\": \\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/r1_32b_paired_bootstrap/results.json\\\",\\n    \\\"qwq_acc_prec\\\": \\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/acc_precision_bootstrap/results.json\\\",\\n    \\\"qwq_fpr\\\": \\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/qwq_paired_bootstrap_w5/fpr_bootstrap_w5.json\\\"\\n  },\\n  \\\"records\\\": [\\n    {\\n      \\\"model\\\": \\\"R1-32B\\\",\\n      \\\"metric\\\": \\\"bal_acc\\\",\\n      \\\"observed_delta\\\": 0.08395,\\n      \\\"n_obs\\\": 20,\\n      \\\"sigma_bootstrap\\\": 0.04958,\\n      \\\"observed_z\\\": 1.693,\\n      \\\"observed_power\\\": 0.3949,\\n      \\\"required_n_alpha005\\\": 55,\\n      \\\"required_n_alpha017\\\": 74\\n    },\\n    {\\n      \\\"model\\\": \\\"R1-32B\\\",\\n      \\\"metric\\\": \\\"precision\\\",\\n      \\\"observed_delta\\\": 0.09395,\\n      \\\"n_obs\\\": 20,\\n      \\\"sigma_bootstrap\\\": 0.05212,\\n      \\\"observed_z\\\": 1.803,\\n      \\\"observed_power\\\": 0.4375,\\n      \\\"required_n_alpha005\\\": 49,\\n      \\\"required_n_alpha017\\\": 65\\n    },\\n    {\\n      \\\"model\\\": \\\"R1-32B\\\",\\n      \\\"metric\\\": \\\"pre_cp_fpr\\\",\\n      \\\"observed_delta\\\": -0.08436,\\n      \\\"n_obs\\\": 20,\\n      \\\"sigma_bootstrap\\\": 0.04947,\\n      \\\"observed_z\\\": 1.705,\\n      \\\"observed_power\\\": 0.3996,\\n      \\\"required_n_alpha005\\\": 54,\\n      \\\"required_n_alpha017\\\": 72\\n    },\\n    {\\n      \\\"model\\\": \\\"QwQ-32B\\\",\\n      \\\"metric\\\": \\\"bal_acc\\\",\\n      \\\"observed_delta\\\": 0.00867,\\n      \\\"n_obs\\\": 19,\\n      \\\"sigma_bootstrap\\\": 0.03451,\\n      \\\"observed_z\\\": 0.251,\\n  
+…[truncated 980 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_32b_power_analysis_20260517T104240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41 · 2026-05-17T10:47:10.209280+00:00_
+
+完成。结果汇总：
+
+### R1-32B (n=20, current power ~40%)
+
+| Metric | Delta | σ_boot | α=0.05 需要 n | α=0.017 (Bonf) 需要 n |
+|--------|-------|--------|---------------|----------------------|
+| bal_acc | +0.084 | 0.050 | **55** | **74** |
+| precision | +0.094 | 0.052 | **49** | **65** |
+| pre_cp_fpr | -0.084 | 0.049 | **54** | **72** |
+
+R1-32B 效果中等，当前 n=20 power 约 40%，**增加到 ~55-75 条 traces 即可达到 80% power**。
+
+### QwQ-32B (n=19, current power 6-17%)
+
+| Metric | Delta | σ_boot | α=0.05 需要 n | α=0.017 (Bonf) 需要 n |
+|--------|-------|--------|---------------|----------------------|
+| bal_acc | +0.009 | 0.035 | **2365** | **3155** |
+| precision | +0.057 | 0.058 | **142** | **190** |
+| pre_cp_fpr | -0.030 | 0.038 | **243** | **324** |
+
+QwQ-32B 的 effect size 极小（尤其 bal_acc delta 仅 0.009），precision 需要 ~142-190 条，而 bal_acc 需要 ~2400+ 条才能达到 80% power，基本说明 HS 对 QwQ 没有实质性优势。
+
+- 脚本: `src/experiments/exp_power_analysis.py`
+- 结果: `artifacts/power_analysis/results.json`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_code_32b_power_analysis_20260517T104240"
+}
+```
+
+</details>
+
+---

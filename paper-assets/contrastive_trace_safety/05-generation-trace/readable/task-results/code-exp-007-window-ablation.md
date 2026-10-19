@@ -1,0 +1,64 @@
+# code exp 007 window ablation
+
+**Layer Selection Sensitivity in Hidden-State Safety Probes for Reasoning Models** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_code_exp_007_window_ablation_20260516T233543_result.json`
+- **Structured JSON:** [`bf3290ff8f2ec1d0d71b.json`](../../sessions/bf/bf3290ff8f2ec1d0d71b.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+实验完成。以下是分析总结：
+
+---
+
+## Exp-007 结果：假设被否定
+
+**原始假设**: Coverage 随 window size W 单调递增，在 W=10-15 plateau。
+
+**实际结果**: Coverage 随 W **单调递减**，所有 3 个模型一致。
+
+### 核心数据
+
+| Model | W=1 Coverage | W=10 Coverage | W=25 Coverage | W=1→25 FPR Change |
+|-------|-------------|--------------|--------------|-------------------|
+| r1_8b | **72.1%** | 55.8% | 48.8% | 9.65% → 4.83% |
+| r1_32b | **80.0%** | 70.0% | 70.0% | 32.0% → 26.5% |
+| qwq_32b | **78.9%** | 73.7% | 57.9% | 22.8% → 16.9% |
+
+### 4 个分析问题的回答
+
+1. **Coverage vs W**: 单调递减，无 plateau。更大的 window 让 probe 更保守，延迟检测触发。
+
+2. **Pre-CP FPR vs W**: r1_8b 和 qwq_32b 单调递减（好）。r1_32b 在 W=10 达最优后反弹（高维特征 + 小数据集导致过拟合）。
+
+3. **跨模型一致性**: 3 个模型 NOT converging on an optimal W for coverage。Balanced accuracy 最优点：r1_8b=W25, r1_32b=W10, qwq_32b=W25。不同模型表现不一致。
+
+4. **Diminishing returns (W=10→W=25)**: FPR 仅降 2-4pp，但 coverage 损失 7-16pp。W=10 之后边际收益极低。
+
+### 关键洞察
+
+Temporal context (concatenation) 创造的是 **precision-sensitivity tradeoff**，不是普适提升。机制是平滑效应：大窗口削弱瞬态信号，同时减少真阳性早期检测和假阳性。
+
+**论文 framing 建议**: "temporal context 是最鲁棒的改进" 这个 claim 需要修改。更准确的说法是 temporal context 的主要价值在于 **FPR 抑制**（r1_8b 降 50%），而不是 coverage 提升。可以 reframe 为 "temporal context enables tunable precision-sensitivity operating points for deployment"。
+
+---
+
+输出文件:
+- `artifacts/exp_007_window_ablation/results.json`
+- `artifacts/exp_007_window_ablation/summary_table.md`
+- 实验代码: `src/experiments/exp_007_window_ablation.py`
+
+---

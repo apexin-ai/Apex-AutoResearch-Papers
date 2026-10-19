@@ -1,0 +1,1306 @@
+_next_id: 67
+decisions:
+- id: D001
+  date: 2026-05-12 09:57 UTC
+  summary: 'MVP 设计: CodeQL 试点(10 repos) + 迷你对比训练(500 instances) 验证核心假设'
+  rationale: 13 天 DDL，需要最快速验证核心假设链：(1) CodeQL inter-procedural data-flow 在 Python
+    repos 上可行（timeout < 30%），(2) data-flow hard negatives 比 random negatives 提升检索
+    recall。两个 phase 串行，总计约 1 天。通过后立即进入全量数据提取和训练。
+  related_experiments: []
+  depends_on: []
+- id: D002
+  date: 2026-05-12 10:01 UTC
+  summary: '采纳 Reviewer 反馈: MVP Phase 2 增加线性分类器 proxy 验证 + 3-seed 训练 + 显式 kill criteria'
+  rationale: 'Reviewer 指出 Phase 2 原方案（500 instances, ~100 held-out, 2pp gate）统计效力不足，2pp
+    差异在随机噪声范围内。增加: (1) Phase 2a 线性分类器 proxy 验证解耦特征质量与训练策略；(2) 3-seed 训练要求 ≥2/3 seed
+    提升；(3) 每个 phase 的 fail→kill/fallback 路径。防止 13 天 DDL 下的沉没成本陷阱。'
+  related_experiments: []
+  depends_on:
+  - D001
+- id: D003
+  date: 2026-05-12 10:02 UTC
+  summary: 'H2 验证并入 Phase 1: 提取后立即统计 data-flow 连通文件 vs 不连通文件的 gold patch 覆盖率差异'
+  rationale: Reviewer 指出 H2（特征区分度）在原 MVP 中无独立验证，Phase 2 失败时无法区分是 H2 还是 H3 问题。零成本 sanity
+    check（统计连通/不连通文件的 gold patch 覆盖率）可在 Phase 1 提取完后立即执行，不需要训练。这比 Phase 2a 的线性分类器更早给出诊断信号。
+  related_experiments: []
+  depends_on:
+  - D002
+- id: D004
+  date: 2026-05-12 11:21 UTC
+  summary: 'Phase 1 gate PASS: timeout 0%, H2 Fisher p=1.54e-7, 75% instance recall.
+    进入 Phase 2。'
+  rationale: 10 repos 中 8 个成功提取（2 个 skip 因 buggy file 路径不存在，非 CodeQL 限制）。timeout rate
+    0% 远低于 30% 阈值。H2 sanity check：连通文件 gold 覆盖 1.44% vs 不连通 0.00%，Fisher p=1.54e-7。75%
+    instance recall（6/8 gold file 在连通集）。数据质量问题（路径匹配、skip rate、registry 注册）并行修复，不阻塞
+    Phase 2。
+  related_experiments: []
+  depends_on: []
+- id: D005
+  date: 2026-05-12 11:35 UTC
+  summary: 'CRITICAL: GPU 越界 PID 59170 跑在 GPU 5 而非分配的 cuda:4，立即 kill + 全脚本修复 CUDA_VISIBLE_DEVICES'
+  rationale: Reviewer 核实 nvidia-smi 发现 run_mvp.py 在 GPU 5 上运行 9.3GB，而项目分配的 cuda:4
+    完全空闲。违反 L1 红线（GPU 资源边界）。要求 Agent 立即 kill 进程、修复所有脚本强制 CUDA_VISIBLE_DEVICES=4、排查
+    dry-run 是否也越界。
+  related_experiments: []
+  depends_on: []
+- id: D006
+  date: 2026-05-12 17:24 UTC
+  summary: P2b pass criteria 调整：recall@5→recall@1，pool_size 26→50+，阈值 ≥2pp 不变
+  rationale: Eval v2 (pool_size=26) 显示 random recall@5 已达 98.4-99.2%，原标准"dataflow
+    recall@5 > random ≥2pp"数学上几乎不可能达标（天花板仅 0.8-1.6pp 空间）。recall@1 有更大区分度（random mean
+    93.97%），且是更严格的排序指标。同时扩大 pool_size 至 50+ 使 recall@5/10 也获得有效梯度。新标准：dataflow_aware
+    recall@1 > random recall@1 ≥2pp in ≥2/3 seeds，pool_size=50。
+  related_experiments:
+  - exp_id: mvp_p2b_contrastive_training
+    role: trigger
+    result: random recall@1 mean=0.940, emb_dist recall@1=0.669 at pool=26; recall@5
+      ceiling
+  depends_on:
+  - D002
+- id: D007
+  date: 2026-05-12 19:52 UTC
+  summary: MVP P2b dataflow 策略不可验证：connected⊆gold 导致数据相同。决定：50-repo 规模验证 + Scheme
+    B 备份
+  rationale: 修复 build_p2b_data.py 后重新生成数据，train_dataflow.jsonl 仍与 train_embedding.jsonl
+    完全相同。根因：8 个 MVP repos 中 dataflow 连接文件全部是 gold 文件的子集（connected-but-not-gold = 0），non_pos
+    过滤无差异。这不是方法缺陷而是规模问题——小 repo 紧耦合，2-hop 连接集≈gold 集。P1（Fisher p=1.54e-7）和 P2a（AUC=0.78）仍有效，说明
+    dataflow connectivity 有信号，只是 MVP 规模不足以分离 connected-but-not-gold 子集。决策：(1) 立即跑
+    50-repo 样本的 overlap 统计（CPU, ~2-4h），确认大规模下 connected⊃gold；(2) 并行准备 Scheme B（distance-weighted
+    negatives）作为 pivot 备选；(3) overlap>20% 实例有 connected≠gold → 进入全量 M1 提取；overlap≈100%
+    → pivot to Scheme B。
+  related_experiments:
+  - exp_id: mvp_p2b_contrastive_training
+    role: trigger
+    result: dataflow≡embedding 因 connected⊆gold
+  depends_on:
+  - D006
+  - D004
+- id: D008
+  date: 2026-05-12 20:38 UTC
+  summary: MVP 条件性通过：P1+P2a PASS，P2b dataflow 在 MVP 规模不可测但 50-repo 规模验证确认方法可行（Z=40.8%）。进入
+    research 阶段。
+  rationale: MVP 三阶段结果：P1 PASS（timeout 0%, Fisher p=1.54e-7, 75% instance recall）；P2a
+    PASS（AUC 0.78, BM25 系数为负）；P2b 部分有效——random>>embedding（-27pp recall@1 at pool=26,
+    -3.7pp at pool=50）确认 naive hard negatives 有害，但 dataflow vs random 因 connected⊆gold
+    无法在 8 repos 上区分。50-repo 规模验证 Z=40.8%（中型 repo 55.7%），timeout 4%，确认方法在全量数据上可行。Kill
+    criteria 均未触发。P2b dataflow 对比将在 M2 全量训练中完成。
+  related_experiments:
+  - exp_id: mvp_p1_codeql_feasibility
+    role: evidence
+    result: PASS
+  - exp_id: mvp_p2a_linear_proxy
+    role: evidence
+    result: PASS
+  - exp_id: mvp_p2b_contrastive_training
+    role: evidence
+    result: partial - random>>emb confirmed, dataflow untestable at MVP scale
+  depends_on:
+  - D007
+  - D006
+  - D004
+- id: D009
+  date: 2026-05-12 22:04 UTC
+  summary: Dream 审稿完成：best=Weak Accept, median=Weak Reject, worst=Reject。批准 P0 启动，但
+    plan 需增补 5 个 dream-derived 实验
+  rationale: 三档共识问题：(1) 单编码器无法支撑 generality claim，需加 StarCoder/CodeBERT；(2) static
+    vs dynamic embedding mining 是潜在 confound；(3) τ=0.05 可能 regime-specific；(4) SWE-bench
+    +2pp 需 bootstrap CI；(5) abstract "complementary" 需降调。关键风险变量是 M1 的 Z%：≥35% best
+    framing 成立，20-35% pivot 到 Claim 2 headline，<20% 需重大调整。已在 experiment_plan.yaml
+    增加 plan_013-017（+35h GPU），paper_framing.md 增加 contingency framing。P0 实验（M1 已在跑）可继续，不需
+    re-dream。
+  related_experiments:
+  - exp_id: dream_20260512T204322
+    role: dream_simulate
+    result: best=WA, median=WR, worst=R
+  depends_on:
+  - D008
+- id: D010
+  date: 2026-05-12 22:09 UTC
+  summary: plan_013 (second encoder) 从 P1 升级至 P0，headline template 降调修复
+  rationale: Reviewer 指出 single encoder 是 best→accept 的关键区分因素，在 best-R1-W1 和 median-R2-W5
+    两档都出现。P1 排期可能导致论文缺少 generality 证据而被 WR。升级后 M2 完成即可并行启动 plan_013。同时修复 headline
+    template "cannot recover" → "complementary signal not captured by"。
+  related_experiments:
+  - exp_id: plan_013
+    role: priority_upgrade
+    result: P1→P0
+  depends_on:
+  - D009
+- id: D011
+  date: 2026-05-13 01:38 UTC
+  summary: Z%=74.0% 确认 Best Framing — Claim 1 为 headline，批准 M2 早期训练
+  rationale: M1 部分数据（24/222 repos, 5128 instances）Z%=74.0%，远超 ≥35% 阈值。对比 D007 的 40.8%（50
+    SWE-bench repos），SWE-Smith 数据集跨文件依赖密度更高。Best framing 成立：Claim 1 ("structure-grounded
+    negatives outperform") 为 headline。批准在当前 5K instances 上做 M2 早期训练 pilot（3 strategies
+    × 1 seed），利用 cuda:4 空闲期获取早期信号，不等全量 M1（还需 ~46h）。磁盘已清理至 61GB free (64%)，足够训练。
+  related_experiments:
+  - exp_id: m1_extraction
+    role: data_source
+    result: Z%=74.0% at 24/222 repos
+  - exp_id: d007_50repo_overlap
+    role: baseline
+    result: Z%=40.8% on SWE-bench 50 repos
+  depends_on:
+  - D009
+  - D010
+- id: D012
+  date: 2026-05-13 02:11 UTC
+  summary: Kill m2_early_pilot_v3 (PID 897752) — 第二次 GPU 越界 (cuda:0)
+  rationale: Reviewer 发现 m2_early_pilot_v3 在 cuda:0 运行（PID 897752, 17100 MiB），项目仅分配
+    cuda:4。这是第二次 GPU 越界（第一次 D005 在 GPU 5）。立即 kill 并标记 killed。同时 m2_early_pilot_v2
+    因 wandb API key error 已崩溃标记 FAILED。当前唯一合法训练为 PID 795791 (m2_early_pilot, cuda:4)。要求
+    Agent 排查越界原因并确保后续脚本强制 CUDA_VISIBLE_DEVICES=4。
+  related_experiments:
+  - exp_id: m2_early_pilot_v3
+    role: violated
+    result: killed - GPU 越界 cuda:0
+  - exp_id: m2_early_pilot_v2
+    role: failed
+    result: wandb API key error
+  - exp_id: m2_early_pilot
+    role: active
+    result: PID 795791 on cuda:4, running
+  depends_on:
+  - D011
+- id: D013
+  date: 2026-05-13 02:50 UTC
+  summary: 服务器迁移：cqa1-21977 cuda:4 → bjb1-42106 cuda:0/1 (RTX PRO 6000 96GB×2)
+  rationale: Manager 分配独立服务器 bjb1-42106（2x RTX PRO 6000 96GB）。迁移策略：(1) M1 提取继续在 cqa1-21977
+    CPU 上完成（不中断），(2) 新服务器立即搭建环境+同步代码+下载模型，(3) M2 early pilot 在 cqa1-21977 cuda:4 跑完后所有
+    GPU 工作转到新服务器，(4) 通知 Manager 释放 cuda:4。RTX PRO 6000 96GB 彻底解决 M3a VRAM 问题（Qwen3.6-27B
+    不再需要 fallback），2 卡可并行 M2 全量 + plan_013。
+  related_experiments:
+  - exp_id: m2_early_pilot
+    role: in_progress
+    result: finishing on cqa1-21977 cuda:4
+  - exp_id: m1_extraction
+    role: in_progress
+    result: CPU only, stays on cqa1-21977
+  depends_on:
+  - D011
+- id: D014
+  date: 2026-05-13 04:44 UTC
+  summary: Kill m2_early_pilot (PID 795791) — 过拟合+卡死，bjb1 m2_embed_verify 取代
+  rationale: m2_early_pilot 在 cqa1 cuda:4 上仅完成 random 策略（best val_loss=0.5879 at step
+    1500，之后持续过拟合到 0.728）。进程在 step 4000 卡死 45+ min。OOM 干扰（另一进程在同 GPU 启动）。embedding_distance
+    和 dataflow_aware 策略未启动。bjb1 上的 m2_embed_verify 使用 true embedding mining + 更大参数（negatives=7,
+    seq_len=2048, batch=8）+ eval bug fix，将完全取代此 pilot。通知 Manager 释放 cqa1 cuda:4。
+  related_experiments:
+  - exp_id: m2_early_pilot
+    role: killed
+    result: random best val_loss=0.5879, overfitting after step 1500
+  - exp_id: m2_embed_verify
+    role: replacement
+    result: preparing on bjb1 cuda:1
+  depends_on:
+  - D011
+  - D013
+- id: D015
+  date: 2026-05-13 11:43 UTC
+  summary: 全量 Z%=78.0%（条件）确认 Best Framing；Coverage 34.3% 需论文讨论
+  rationale: 全量 M1（123/131 repos, 44,173 instances）统计：15,153 instances 有结构数据（34.3%），其中
+    11,825 有 connected-but-not-gold 文件（条件 Z%=78.0%，高于 pilot 72.5%）。条件 Z% 远超 35% 阈值，Best
+    Framing（Claim 1 as headline）完全成立。但 Coverage 仅 34.3%——65.7% instances CodeQL/Beniget
+    未产出结构连接，论文需讨论此局限性并限定 claim 范围为"有结构数据的 instances"。
+  related_experiments:
+  - exp_id: m1_extraction
+    role: data_source
+    result: 123/131 repos, 44173 instances, 15897 structural
+  - exp_id: plan_006_scalability
+    role: prior_pilot
+    result: pilot Z%=72.5% on 29 repos
+  depends_on:
+  - D011
+- id: D016
+  date: 2026-05-13 15:24 UTC
+  summary: 'Reviewer Critical: m2_embed_verify 和 plan_013_starcoder 实际已完成全部 3 策略，registry
+    错误标记为 failed'
+  rationale: Reviewer 直接从服务器日志验证：两个实验的 dataflow 策略均已完成（"All 3 strategies completed"），EXIT_CODE
+    异常发生在训练完成之后（wrapper 脚本问题）。关键数据：(1) Qwen dataflow peak R@1=0.5584 (+2.27pp vs random)，支撑
+    Claim 1；(2) StarCoder dataflow R@1=0.4869 < random 0.4922，encoder-agnostic claim
+    受挑战；(3) 两个编码器的 dataflow 策略均严重过拟合（train loss→0）。已派 Agent 紧急修正 registry + 收集完整 metrics
+    + 验证 StarCoder random 数据来源。方向决策待 Agent 汇报验证数据后确定。
+  related_experiments:
+  - exp_id: m2_embed_verify
+    role: primary
+    result: 实际完成（3 strategies all done），Qwen dataflow peak R@1=0.5584
+  - exp_id: plan_013_starcoder
+    role: primary
+    result: 实际完成（3 strategies all done），StarCoder dataflow R@1=0.4869 < random 0.4922
+  depends_on: []
+- id: D017
+  date: 2026-05-13 16:03 UTC
+  summary: Pilot 结果验证完成：embedding > random 跨编码器一致；dataflow 需按两种 checkpoint 标准报告；Claim
+    2 需修订
+  rationale: 'Reviewer 验证 18 个指标全部精确匹配。核心发现：(1) embedding > random 在 Qwen (+2.0pp)
+    和 StarCoder (+1.6pp) 上一致，是最稳健结论；(2) dataflow 排名取决于 checkpoint 选择——按 val_loss:
+    embedding > dataflow > random (Qwen)，按 peak R@1: dataflow > embedding > random
+    (Qwen)；(3) StarCoder dataflow final eval 追平 embedding (0.5078=0.5078)，"embedding
+    consistently beats dataflow" 不成立；(4) Claim 2 ("embedding harms") 在 true embedding
+    mining 下不复现，仅在 MVP BM25 proxy 下成立。全量 M2 训练需报告两种 checkpoint 标准下的结果，避免 cherry-picking
+    质疑。Paper framing 修订延后至全量 M2 结果出来后。'
+  related_experiments:
+  - exp_id: m2_embed_verify
+    role: primary
+    result: 'Qwen: embedding(0.5557) > dataflow(0.5436) > random(0.5357) by val_loss;
+      dataflow peak(0.5584) > embedding(0.5557) by R@1'
+  - exp_id: plan_013_starcoder
+    role: primary
+    result: 'StarCoder: embedding(0.5078) > random(0.4922) > dataflow(0.4869) by val_loss;
+      dataflow final(0.5078) = embedding'
+  depends_on:
+  - D016
+- id: D018
+  date: 2026-05-13 16:04 UTC
+  summary: 不做预判性 framing pivot，full M2 (18 runs) 是 go/no-go 唯一判据；双 checkpoint 标准；准备
+    B/C 两条后备路线
+  rationale: Pilot 仅 24 repos / 1 seed，<2pp delta 统计功效不足以支持强 claim 或否决原假设。Full M2
+    (131 repos × 3 strategies × 3 seeds × 2 encoders = 18 runs) 提供 3-seed 统计功效，是唯一可信判据。不选
+    Agent 提议的 A/B/C 任何一个——过早锁定叙事会限制后续解读空间。数据构建已在进行，不浪费时间在 framing 讨论上。Full M2 结果出来后根据实际数据
+    pattern 决定：(a) dataflow 跨编码器一致 > random → 原 framing 修正后可用；(b) dataflow 不一致但 embedding
+    一致 → 方案 B 或 C；(c) 所有差异不显著 → 需要更大规模实验或 pivot。同时要求 dual checkpoint (best-val-loss
+    + best-R@1) 和 3-seed CI 确保结果可信。
+  related_experiments:
+  - exp_id: m2_embed_verify
+    role: evidence
+    result: pilot underpowered (1 seed, 24 repos)
+  - exp_id: plan_013_starcoder
+    role: evidence
+    result: pilot underpowered (1 seed, 24 repos)
+  depends_on:
+  - D017
+- id: D019
+  date: 2026-05-13 18:08 UTC
+  summary: D018 补充：Full M2 go/no-go 量化阈值 + 统计检验方案
+  rationale: 'Reviewer 指出 D018 缺量化阈值，go/no-go 判据需在结果出来前明确，避免事后 rationalization。
+
+
+    **统计方法**：每个 encoder 3 seeds 的 R@1 (best-by-val-loss checkpoint) 做 paired difference，bootstrap
+    95% CI + paired t-test (p<0.05)。同时报告 best-by-R@1 checkpoint 结果作为透明度补充。
+
+
+    **Go/No-Go 阈值**：
+
+    (A) Go — 原 framing 可用：dataflow > random 的 95% CI 在两个 encoder 上均 > 0
+
+    (B) Conditional Go — 修正 framing：dataflow > random 在至少一个 encoder 上 CI > 0，另一个 CI
+    含 0（差异不显著）
+
+    (C) No-Go for Claim 1：dataflow ≤ random 在两个 encoder 上 CI 均含 0 或为负 → Claim 1 失效，pivot
+    到 "mining strategy × architecture" 分析论文
+
+
+    **Claim 2 判据**：若 full M2 显示 embedding > random 且 CI > 0 → 原 Claim 2 ("embedding
+    harms") 被否定。新 Claim 2 候选："true embedding mining helps, but BM25 proxy harms" 或
+    "hard negative mining method matters more than hard negative source"
+
+
+    **跨 encoder 一致性规则**：
+
+    - 同方向同显著 → 强泛化 claim
+
+    - 同方向不同显著 → 条件 claim + architecture discussion
+
+    - 反方向 → Claim 1 原形式被拒，需 conditional reframe
+
+
+    阈值在 full M2 结果出来前锁定，不允许事后修改。'
+  related_experiments:
+  - exp_id: m2_full_qwen
+    role: primary
+    result: RUNNING - random_s42 in progress
+  - exp_id: m2_full_starcoder
+    role: primary
+    result: RUNNING - data build phase
+  depends_on:
+  - D018
+- id: D020
+  date: 2026-05-13 18:10 UTC
+  summary: D019 补充：Claim 2 完整判定矩阵 + n=3 功效限制声明
+  rationale: 'Reviewer 指出 D019 的 Claim 2 阈值不完整 + n=3 统计功效天然受限。补充如下：
+
+
+    **Claim 2 完整判定矩阵**（3 seeds, paired bootstrap 95% CI）：
+
+    (i) random > embedding CI>0 → Claim 2 confirmed（embedding harms，与 MVP 一致）
+
+    (ii) embedding > random CI>0 → Claim 2 falsified（true embedding mining helps，需
+    reframe）
+
+    (iii) CI 含 0 → inconclusive（效应存在但检测不到或确实无差异，论文报告为 "no significant difference"
+    + 报告 effect size）
+
+
+    **n=3 功效限制**（显式承认，不修改阈值）：
+
+    - df=2 时 t 临界值 4.303，pilot 级别差异（<2pp）极难达到 p<0.05
+
+    - Bootstrap n=3 仅 27 种重采样，CI 估计粗糙
+
+    - 阈值框架偏向 No-Go（Type II error 高）
+
+    - 若结果落入 (C) No-Go，论文 Discussion 必须讨论功效限制，不能简单声明 "dataflow 无效"
+
+    - 这是算力约束下的合理选择，不改阈值，但明确风险
+
+
+    **plan_014 排期**：Full M2 完成后优先启动 plan_014（temperature ablation, ~10h）——无论 Claim
+    2 reframe 成哪个方向，temperature regime-specificity 都需要回答。'
+  related_experiments:
+  - exp_id: m2_full_qwen
+    role: primary
+    result: RUNNING
+  - exp_id: m2_full_starcoder
+    role: primary
+    result: RUNNING
+  depends_on:
+  - D019
+- id: D021
+  date: 2026-05-13 19:10 UTC
+  summary: Negative difficulty 分析揭示 encoder capacity 差异是 dataflow 效果不一致的根因
+  rationale: '预训练模型 cosine similarity 分析显示：Qwen pretrained embeddings 分辨力弱（random
+    cosine sim 0.899），StarCoder 分辨力强（random cosine sim 0.553）。Dataflow negatives 在两个模型上都比
+    random 更难（higher sim），说明方法设计正确。但 StarCoder 已经"懂"结构差异（所有策略 sim 都低），额外训练信号边际收益小。这解释了
+    pilot 中 StarCoder dataflow < random 的现象：不是方法问题，是 encoder 已有足够 capacity。
+
+
+    论文价值：(1) 从 negative result 中提取 mechanistic explanation；(2) 定义 method applicability
+    condition："structure-grounded negatives benefit most when pretrained encoder has
+    limited structural separability"；(3) 产出论文级图表（Figure: Negative Difficulty Distributions）；(4)
+    无论 full M2 落入 A/B/C，这个分析都增加论文深度。不修改 go/no-go 阈值，但丰富解读框架。'
+  related_experiments:
+  - exp_id: m2_embed_verify
+    role: context
+    result: 'Qwen: dataflow > random (+0.8~2.3pp)'
+  - exp_id: plan_013_starcoder
+    role: context
+    result: 'StarCoder: dataflow < random (-0.5pp), explained by high pretrained separability'
+  depends_on:
+  - D018
+  - D019
+- id: D022
+  date: 2026-05-13 19:25 UTC
+  summary: M1 28K instances 可恢复（运行时故障非数据问题）；当前 M2 继续，并行后台重跑 M1 提取
+  rationale: 'Fuzzy match 抽查 10/10 发现 buggy_file 全部存在——28,276 个 "error" 是 CodeQL 并行提取时的运行时故障（磁盘/存储瞬态），不是
+    SWE-smith 数据质量问题。训练数据潜在从 15,897 → ~44,173（2.8x）。
+
+
+    决策：不中断当前 M2 训练 + 并行后台重跑 M1 提取。理由：
+
+    (1) 当前 M2 已在双卡运行，中断重来延期 3-7 天超出 DDL
+
+    (2) M1 重提取是 CPU 工作，可在 bjb1-42106 后台运行不影响 GPU 训练
+
+    (3) 如果当前 M2 结果落入 (C) No-Go 或 effect size 太小，扩展数据集是 natural next step
+
+    (4) 2.8x 数据量可能显著缓解 dataflow 过拟合问题（D021 中的核心风险）
+
+
+    Claim 3 叙事需修正："64% failure 是上游数据问题" → "64% 是运行时提取故障，CodeQL 本身在有效输入上 100% 成功，可通过重跑恢复"。这是
+    engineering limitation with clear fix，不是方法局限。'
+  related_experiments:
+  - exp_id: m1_extraction
+    role: primary
+    result: 28,276 instances recoverable - runtime failure, not data quality
+  - exp_id: plan_006_scalability
+    role: affected
+    result: 'error classification needs correction: buggy_file_not_found was misattributed'
+  depends_on:
+  - D018
+  - D019
+- id: D023
+  date: 2026-05-13 19:43 UTC
+  summary: Kill M1 重提取：bjb1 CodeQL 查询 100% 失败，D022 前提不成立需诊断后重新评估
+  rationale: Reviewer CRITICAL 发现 bjb1-42106 上 CodeQL call_graph.ql 查询全部 exit status
+    2，317/325 行失败，零有效结构数据产出。原 M1 在 cqa1-21977 成功，迁移后 CodeQL 版本/QL pack 可能不兼容。立即 kill
+    进程释放 CPU/RAM，诊断 CodeQL 配置后决定修复或换服务器。
+  related_experiments:
+  - exp_id: m1_reextract
+    role: subject
+    result: killed - CodeQL incompatible on bjb1
+  depends_on:
+  - D022
+- id: D024
+  date: 2026-05-14 00:49 UTC
+  summary: 'Major paper framing rewrite: drop falsified "embedding harms" claim, pivot
+    to "systematic analysis + mechanistic insight" narrative'
+  rationale: 'Reviewer deep assessment confirmed Claim 2 ("embedding actively harms",
+    -27pp) was built on BM25-proxy mislabeled as embedding-distance in MVP. D017 proved
+    true embedding mining helps (+1.6-2.0pp). New framing: (1) embedding universally
+    helps (corrects misconception), (2) dataflow conditionally helps (mediated by
+    representation saturation), (3) CodeQL scalable. This is a stronger, more honest
+    paper type for EMNLP — empirical analysis with mechanistic depth rather than false
+    "our method beats all" claim.'
+  related_experiments:
+  - exp_id: m2_embed_verify
+    role: evidence
+    result: embedding > random confirmed for both encoders
+  - exp_id: plan_013_starcoder
+    role: evidence
+    result: dataflow helps Qwen only, not StarCoder — conditional benefit
+  - exp_id: neg_difficulty_analysis
+    role: evidence
+    result: pos_sim saturation explains strategy-encoder interaction
+  depends_on: []
+- id: D025
+  date: 2026-05-14 01:01 UTC
+  summary: Plan_014 temperature ablation 缩减为 2 strategies × 3τ × 2 epochs = 6 runs
+    (~70h)，deadline 可达
+  rationale: 原方案 9 runs × 3 epochs = 157h GPU，超出 May 25 ARR 截稿。缩减理由：(1) 回答 Dream reviewer
+    的 regime-specificity concern 只需证明 embedding vs random 的相对优势跨 τ 一致，不需要 3 策略全跑；(2)
+    M2 和 pilot 均显示 epoch 3 过拟合无收益，2 epochs 足够；(3) τ=0.07 已由 M2 覆盖，只需 {0.05, 0.1, 0.2}。6
+    runs × ~11.7h = ~70h → 双卡并行 35h wall time，M2 完成后 ~1.5 天可跑完。Dataflow strategy 的
+    τ ablation 降为 P2，时间充裕再补。
+  related_experiments:
+  - exp_id: m2_full_qwen
+    role: evidence
+    result: step 1000 best, epoch 3 overfitting → 2 epochs sufficient
+  - exp_id: plan_014
+    role: target
+    result: budget revised from 10h to 70h, scope from 9 to 6 runs
+  depends_on:
+  - D024
+- id: D026
+  date: 2026-05-14 02:56 UTC
+  summary: Qwen eval@2000 确认过拟合，后续 M2 runs 从 3 epochs 减至 2 epochs
+  rationale: 'eval@2000: val_loss=0.5162, R@1=0.5228（与 @1500 持平，未恢复）。Best 锁定 step
+    1000 (epoch 1 中段)。train_loss=0.04 vs val_loss=0.52，gap 持续扩大。模式与 pilot 一致（best
+    at ~25% training）。当前 s42 保留 3 epochs 完整跑完（提供 full overfitting curve 数据），后续 8 runs/encoder
+    设 max_epochs=2。节省 ~48h/GPU，M2 完成时间从 ~May 20-21 提前到 ~May 18-19。'
+  related_experiments:
+  - exp_id: m2_full_qwen
+    role: evidence
+    result: eval@2000 R@1=0.5228 flat, overfitting confirmed
+  - exp_id: m2_full_starcoder
+    role: pending
+    result: eval@1000 still improving, apply 2-epoch precaution for subsequent seeds
+  depends_on:
+  - D025
+- id: D027
+  date: 2026-05-14 08:13 UTC
+  summary: M2 剩余 runs 加 early stopping (patience=2 evals)，加速关键路径
+  rationale: Reviewer 计算 M2 全 18 runs 需 ~5.5 天（StarCoder 瓶颈 ~133h）。两个编码器 best checkpoint
+    均在 step 1000，之后 val_loss 持续上升。加 early stopping（patience=2，即连续 2 次 eval@500 无改善即停）预计在
+    step 2000 左右停止（vs 2828 full 2-epoch），节省 ~30% 时间（~1.5 天），M2 从 May 19.5 提前到 ~May
+    18。关键路径 May 25 ARR 余量从 5 天增至 7 天。风险低：仅影响未启动的 runs，不改已跑数据。
+  related_experiments:
+  - exp_id: m2_full_qwen
+    role: target
+    result: running, best@1000, overfitting confirmed
+  - exp_id: m2_full_starcoder
+    role: target
+    result: running, best@1000, overfitting confirmed
+  depends_on:
+  - D026
+- id: D028
+  date: 2026-05-14 11:09 UTC
+  summary: Claim 2 降级待定：M2 full 结果决定 "conditional benefit" 是独立 claim 还是降为 observation
+  rationale: Reviewer 覆盖率审查指出 Claim 2 最薄弱：n=2 encoders 交互效应无统计功效，neg_difficulty 是描述性非实验性证据。建议降为
+    "observation + mechanistic hypothesis"。决策延迟到 M2 full 18 runs 完成后：若 Qwen dataflow>random
+    p<0.05 则保持 conditional claim；否则降级为 observation。
+  related_experiments:
+  - exp_id: m2_embed_verify
+    role: Qwen pilot positive
+    result: dataflow > random +0.8pp val_loss
+  - exp_id: plan_013_starcoder
+    role: StarCoder pilot negative
+    result: dataflow < random -0.5pp
+  - exp_id: m2_full_qwen
+    role: go/no-go for claim strength
+    result: RUNNING
+  - exp_id: m2_full_starcoder
+    role: encoder generality test
+    result: RUNNING
+  depends_on:
+  - D018
+  - D019
+- id: D029
+  date: 2026-05-14 16:23 UTC
+  summary: Dream full review 完成：7 条三档一致结构性问题确认，BM25 baseline 升为 P0，pool size sensitivity
+    新增 plan_019
+  rationale: 'dream_20260514T075732 (full review mode) 三档评分: Best 4/6 WA, Median 3/6
+    WR, Worst 3/6 WR。跨三档一致的结构性问题 7 条：(1) 缺 BM25 baseline 是 #1 共识——论文核心叙事（纠正 CoCoHaNeRe）无实证支撑，已加
+    plan_018 P0；(2) N=2 编码器限制——保持 honest framing，无法加更多编码器；(3) StarCoder 误标为 encoder-decoder——已修正为
+    decoder-only；(4) RepoBench-R 无 CIs——plan_004 已标注多 seed 要求；(5) Pool=50 太小——新增 plan_019
+    P1；(6) 34% structural coverage 未分层——plan_005 已扩展；(7) Checkpoint selection criterion
+    未指定——写作时明确。观察项：effect sizes 太小（等 M2 真实数据）、overfitting 分析（提取现有训练 log）。忽略项：broken
+    bibliography（dream artifact）、0 figures（dream artifact）。评分顺序正常（best≥median=worst）。下一步：派
+    Agent 准备 BM25 mining（CPU），M2 完成后立即执行 plan_018 training phase。'
+  related_experiments:
+  - exp_id: plan_018
+    role: new P0 experiment added
+    result: planned
+  - exp_id: plan_019
+    role: new P1 experiment added
+    result: planned
+  - exp_id: plan_004
+    role: updated with multi-seed CI requirement
+    result: planned
+  - exp_id: plan_005
+    role: extended with structural coverage stratification
+    result: planned
+  depends_on:
+  - D024
+  - D028
+- id: D030
+  date: 2026-05-14 16:23 UTC
+  summary: Dream dream_20260514T075732 分析完成：7 项确认行动 + 5 项观察项 + re-dream 后批准新 P0
+  rationale: 'Dream full review (2 Reviewers roundtable) 三档评分: Best=4/6(WA), Median=3/6(WR),
+    Worst=3/6(WR)。Median 未达 borderline，需修复结构性问题后 re-dream。
+
+
+    **三档一致的结构性问题（7 项确认行动）：**
+
+    1. [EXP] 缺 BM25 negative baseline — 论文核心 narrative (correcting CoCoHaNeRe) 无实证。加
+    plan_018, P0, Phase1 CPU 立即启动
+
+    2. [EXP] RepoBench-R 缺 CIs — plan_004 增加多 seed 评估
+
+    3. [EXP] Pool size 50 过小 — 加 plan_019 sensitivity analysis
+
+    4. [EXP] 34% structural coverage 未分层 — 扩展 plan_005 加 structural-available vs fallback
+    stratum + neg_difficulty quartile
+
+    5. [FRAMING] N=2 encoders → 降级为 "observation + hypothesis"，非 validated mechanism
+
+    6. [FRAMING] StarCoder 架构 → 修正为 "decoder-only"（已改）
+
+    7. [FRAMING] Claim 3 (CodeQL pipeline) → 降为 supporting methodology（已改）
+
+
+    **观察项（等真实数据）：**
+
+    1. Effect sizes marginal [M][W] — 等 M2 full 统计结果
+
+    2. Dataflow claim strength [M][W] — D028 已 plan
+
+    3. "Scaling law" [W] → 用 "trend" + CIs
+
+    4. Temperature ablation contradiction [W] — plan_014 结果决定
+
+    5. Zero method contribution [M][W] — framing 强度决定
+
+
+    **Re-dream 要求：** framing + plan 修改完成后需 re-dream，best ≥ WA 且 median ≥ borderline
+    后才批准新 P0 实验。已在跑的实验继续。'
+  related_experiments:
+  - exp_id: dream_20260514T075732
+    role: trigger
+    result: best=4/6 WA, median=3/6 WR, worst=3/6 WR
+  - exp_id: plan_018
+    role: new_from_dream
+    result: planned — BM25 baseline
+  - exp_id: plan_019
+    role: new_from_dream
+    result: planned — pool size sensitivity
+  depends_on:
+  - D028
+  - D024
+- id: D031
+  date: 2026-05-14 17:02 UTC
+  summary: 'BM25 Phase 1 完成: 87% overlap with embedding_distance，预示论文叙事可能从 "纠正误标"
+    转向 "受控对比证明 hard negatives 普遍有效"'
+  rationale: 'plan_018 Phase 1 (CPU) 完成。3 seeds BM25 negatives 已生成，与 embedding_distance
+    negatives 重叠率高达 87.1%。小 repo 候选池 ≤50 导致所有策略完全重合，BM25 differentiation 主要在大 repo
+    上体现。
+
+
+    Phase 2 训练结果预期 3 种可能：
+
+    A) BM25 harm (BM25 << random) → 原叙事成立（"BM25 proxy 导致 CoCoHaNeRe 错误结论"）
+
+    B) BM25 ≈ random → contingency per D030（叙事降为 "systematic comparison"）
+
+    C) BM25 ≈ embedding_distance (87% overlap 强烈预示) → 叙事升级为"BM25 和 embedding mining
+    高度重叠，两者在受控环境下都优于 random；CoCoHaNeRe 的负面结论源于实验控制不足而非 BM25-proxy 本身"
+
+
+    Scenario C 实际上比 A 更强——我们提供的不只是标签纠正，而是受控对比 + 叙事升级。
+
+
+    附带决策：plan_015 暂缓至 camera-ready（44h 超预算 + DDL 紧），Limitations 中承认 static vs dynamic
+    confound。'
+  related_experiments:
+  - exp_id: plan_018
+    role: phase1_complete
+    result: BM25 data ready, 87% overlap with embedding_distance
+  - exp_id: plan_015
+    role: deferred
+    result: design complete, execution deferred to camera-ready
+  depends_on:
+  - D030
+- id: D032
+  date: 2026-05-14 17:02 UTC
+  summary: plan_015 缩减为 1 seed × dynamic_ep (~11h)；BM25 overlap 87% 需分层验证
+  rationale: 'plan_015 原设计 3 variants × 多 seeds = 44h，DDL May 25 前 GPU 时间不够。缩减为 dynamic_ep
+    × 1 seed (Qwen s42) ~11h，足以排除 static vs dynamic confound。预期 dynamic ≈ static（<1pp），在
+    Limitation 段写实验证据。
+
+
+    BM25 Phase 1 完成：BM25 vs embedding overlap 87.1%。但 Agent 指出小 repo (pool ≤50) 导致所有策略
+    negatives 重合——overlap 被拉高。已派补充分析按 repo 大小分层统计真实差异化程度。Phase 2 训练结果将决定 CoCoHaNeRe
+    narrative 是否需要 pivot（contingency 已在 paper_framing.md）。'
+  related_experiments:
+  - exp_id: plan_015
+    role: scope_reduction
+    result: 44h→11h, 1 seed × dynamic_ep only
+  - exp_id: plan_018
+    role: phase1_complete
+    result: BM25 vs embedding overlap 87.1%, 3 seeds done
+  depends_on:
+  - D030
+- id: D033
+  date: 2026-05-14 17:10 UTC
+  summary: D031 修正：BM25 top-7 overlap 远低于 k=50 的 87%，大 repo 仅 30%，Phase 2 将有区分度
+  rationale: '分层 Jaccard 分析（top-7, seed 42, 2920 matched queries）显示 BM25 vs embedding_distance
+    重叠率：small=67%, medium=38%, large=30%。之前报告的 87% 是 k=50 全候选重叠，训练实际用 top-7 negatives
+    差异大得多。
+
+
+    关键修正：D031 中预判的 "BM25 ≈ embedding_distance" 不再成立。Phase 2 训练预期结果重新开放为三种可能（BM25 harm
+    / neutral / help），实验区分度足够。
+
+
+    方法论 flag: BM25 使用 whitespace tokenization (str.split())，不处理 camelCase/snake_case。如果
+    BM25 表现差，tokenization 可能是 confound。论文中需标注。Reviewer 已指出。
+
+
+    24% match rate 源于 BM25 mining 使用了不同 train/val split，不影响分层趋势结论但如需严格配对可重新生成。'
+  related_experiments:
+  - exp_id: plan_018
+    role: phase1_analysis
+    result: 'stratified overlap: large_repo BM25-vs-embedding=30%, BM25-vs-random=0.7%'
+  depends_on:
+  - D031
+- id: D034
+  date: 2026-05-14 17:50 UTC
+  summary: Re-dream gate 未通过但决定继续：median=WR 由不可修复因素驱动（novelty/effect-size/n=2），override
+    gate 推进 Phase 2
+  rationale: 'Re-dream dream_20260514T162530 评分：Best=4/6(WA), Median=3/6(WR), Worst=3/6(WR)。与首次
+    dream 完全一致，修复 BM25 baseline + pool size + framing 降级未改变评分。
+
+
+    Gate 要求 median ≥ borderline。分析 median WR 原因：
+
+    1. Novelty ("ANCE for code") — 不可修复，是 framing 层面问题
+
+    2. Effect sizes (pool=200: +0.4~0.7pp) — 数据决定，不可修复
+
+    3. N=2 encoders — DDL 前不可加
+
+    4. Dataflow null — 数据已确定
+
+    5. Bibliography (2 citations) — dream artifact，实际论文可修
+
+
+    因素 1-4 是 dream 模拟的固有限制（无论怎么改 plan，dream 想象的 median/worst 数据都会是 marginal），而非实验设计缺陷。Best
+    case 达到 WA=4/6 并且 R1 明确给出 "specify K + checkpoint criterion → 5/6" 路径。
+
+
+    决策：Override gate，允许 Phase 2 在 GPU 空闲时执行。理由：
+
+    (a) 阻塞因素为写作/scope 层面，非实验层面，更多 dream 不会改变
+
+    (b) Best case BM25 baseline 被评为 "paper''s most clean-cut contribution"
+
+    (c) ARR May 25 DDL 时间紧，Phase 2 是关键路径
+
+    (d) Writing 层面的修复（related work, specification）会在实际论文中自然解决'
+  related_experiments:
+  - exp_id: dream_20260514T162530
+    role: re-dream
+    result: best=4/6 WA, median=3/6 WR, worst=3/6 WR — unchanged from first dream
+  - exp_id: plan_018
+    role: gate_override
+    result: Phase 2 approved despite gate not passing
+  depends_on:
+  - D030
+  - D031
+  - D033
+- id: D035
+  date: 2026-05-14 18:48 UTC
+  summary: Claim 2 降级：从 "conditional benefit beyond embedding mining" 降为 "exploratory
+    observation"
+  rationale: Reviewer 覆盖率审查发现 pilot 数据不支持 "beyond embedding mining"——两个编码器都是 dataflow
+    < embedding (Qwen -1.2pp, StarCoder -1.0pp)。0/3 支撑实验完成。降级为观察+机制假说，不再作为核心贡献。paper_framing.md
+    已更新。
+  related_experiments:
+  - exp_id: m2_embed_verify
+    role: evidence
+    result: embedding > dataflow on both encoders
+  - exp_id: plan_013_starcoder
+    role: evidence
+    result: 'StarCoder: embedding 0.5174 > dataflow 0.5078'
+  depends_on:
+  - D028
+- id: D036
+  date: 2026-05-14 19:10 UTC
+  summary: M2 checkpoint 选择统一用 R@1 而非 val_loss 作为 primary criterion
+  rationale: Reviewer 核实 s43 发现 val_loss 最优在 step 500、R@1 最优在 step 1500，两个 criterion
+    给出不同最优点。检索任务的目标指标是 R@1，val_loss 仅反映语言建模质量，不直接对应下游检索性能。统一用 R@1 选 checkpoint 确保论文报告一致性，后续所有
+    M2 实验沿用此标准。
+  related_experiments:
+  - exp_id: m2_full_qwen_continued
+    role: 触发
+    result: s43 val_loss best@500 vs R@1 best@1500
+  - exp_id: m2_full_starcoder_resumed
+    role: 同步适用
+    result: 进行中
+  depends_on: []
+- id: D037
+  date: 2026-05-14 19:13 UTC
+  summary: 'D037: M2 checkpoint 改为只存 LoRA adapter weights，不存 merged 完整模型'
+  rationale: 磁盘剩余 43GB，后续 18 runs 需 ~249GB checkpoint 空间。根因：LoRA rank=16 的 3B 模型存完整
+    float16 merged weights (5.8GB/checkpoint)，但 adapter 仅 ~100MB。改为 PeftModel.save_pretrained
+    只存 adapter，18 runs × 2 checkpoints × 100MB ≈ 3.6GB，彻底解决。同时删旧 pilot 输出 (+66GB)
+    和 final 目录 (+11.6GB) 作为即时缓解。与 mvp_p2b_contrastive_training 磁盘满崩溃为同一 failure pattern。
+  related_experiments:
+  - exp_id: m2_full_qwen_continued
+    role: 受影响
+    result: 剩余 7 runs 将受益于 adapter-only saving
+  - exp_id: m2_full_starcoder_resumed
+    role: 受影响
+    result: 剩余 7 runs 同样受益
+  depends_on: []
+- id: D038
+  date: 2026-05-14 20:39 UTC
+  summary: Plan 005 分层分析需额外控制 pool_size；dataflow richness 维度不单独做 claim
+  rationale: Confound 分析显示 rich-dataflow 实例的候选池远大于 moderate（46-50 vs 17-37），pool_size
+    机械性驱动 R@1 差异。控制 repo_size 后模式不消失，确认 pool_size 才是真正 confound。论文中 dataflow richness
+    维度需 pool_size-matched 对比后才能下结论。
+  related_experiments:
+  - exp_id: plan_005_stratified
+    role: evidence
+    result: dry-run 确认 confound 存在
+  depends_on: []
+- id: D039
+  date: 2026-05-14 20:40 UTC
+  summary: 分层分析 R@1 数据无效：dry-run mock predictions，非真实模型结果。confound 分布结构(repo_size×dataflow)有效保留。
+  rationale: Reviewer critical 审查确认：stratified_dryrun v1/v2 和 confound_analysis 的所有
+    R@1 值均来自 dry-run mock predictions。策略排序模式和优势幅度需用 M2 真实 checkpoint 重新验证。仅 cross-tabulation
+    分布结构（rich dataflow 99.3% 集中在 large/xlarge repos, Spearman ρ=0.077）为真实数据，可用于论文写作中声明
+    confound 关系。plan_005_stratified 必须等 M2 真实 checkpoint 完成后执行。
+  related_experiments:
+  - exp_id: worker_analysis_dataflow_reposize_confound
+    role: invalidated_analysis
+    result: R@1 from mock data, distribution structure valid
+  - exp_id: m2_full_qwen_continued
+    role: dependency
+    result: running - provides real checkpoints
+  - exp_id: m2_full_starcoder_resumed
+    role: dependency
+    result: running - provides real checkpoints
+  depends_on: []
+- id: D040
+  date: 2026-05-14 21:27 UTC
+  summary: Claim 1 framing 微调：从"纠正 embedding negatives 不行的误解"改为"挑战必须用昂贵 gradient-based
+    方法的假设"
+  rationale: CoCoHaNeRe (ACM TOSEM 2025) 实际论点是 non-differentiable embedding negatives
+    "slow and ineffective"（相对 gradient-based），并非说 embedding negatives 有害。原 Claim 1
+    "correcting misconception" 措辞会被审稿人以 CoCoHaNeRe 原文反驳。新措辞"simple static embedding-distance
+    mining suffices, challenging the assumption that expensive gradient-based hard
+    negative methods are necessary"更准确、更defensible，且保留 contribution。
+  related_experiments:
+  - exp_id: plan_017_literature
+    role: evidence
+    result: CoCoHaNeRe framing conflict identified during related work expansion
+  depends_on: []
+- id: D041
+  date: 2026-05-15 02:08 UTC
+  summary: Dataflow-aware 策略论文描述改为 BM25 排序（匹配代码实现），不重建数据
+  rationale: Reviewer critical 发现：代码用 BM25 top-K 排序，论文写 embedding similarity。M2 训练已过半、DDL
+    May 25，重建数据+重跑不可行。实验结果有效（基于 BM25 数据训练的对比结论成立）。难度梯度叙事调整为三策略探索不同维度的难度（random=无信号,
+    embedding=语义, dataflow=结构过滤+词法）。需修改 paper_framing.md §3.4 公式、difficulty gradient
+    论述、method 初稿。
+  related_experiments:
+  - exp_id: m1_reextract_v2
+    role: data_source
+    result: running
+  - exp_id: m2_full_qwen_continued
+    role: affected_training
+    result: running
+  - exp_id: m2_full_starcoder_resumed
+    role: affected_training
+    result: running
+  depends_on: []
+- id: D042
+  date: 2026-05-15 02:10 UTC
+  summary: 实现 pool=50 独立评估脚本，重新评估所有 best checkpoints；删除 R@10 报告
+  rationale: Reviewer critical：当前 eval pool=8（1+7 negatives），R@10 恒为 1.0 无意义，R@1 区分度不足审稿人会质疑。无需重训，只需对已有
+    best checkpoints 做 pool=50 的独立推理评估。训练本身用 num_negatives=7 是合理的（InfoNCE），但评估指标报告必须基于更大
+    candidate pool。
+  related_experiments:
+  - exp_id: m2_full_qwen_continued
+    role: affected_evaluation
+    result: running
+  - exp_id: m2_full_starcoder_resumed
+    role: affected_evaluation
+    result: running
+  depends_on:
+  - D041
+- id: D043
+  date: 2026-05-15 02:10 UTC
+  summary: 实现 pool=50 独立评估替代当前 pool=8；删除 R@10 报告；数据管道数字等 M1v2 完成后统一重算
+  rationale: 'Reviewer critical: 当前 eval pool=8（1+7 negatives），论文误写 pool=50。pool=8
+    下 R@10 恒为 1.0 无意义，R@1 区分度也受质疑。实现 pool=50 独立评估只需推理（不重训练），在已保存 checkpoints 上跑即可。数据管道数字（15133/15897/14288）存在多处不一致，根因是
+    M1 reextract v2 尚未完成，完成后全链路重算一次统一。'
+  related_experiments:
+  - exp_id: m2_full_qwen_continued
+    role: checkpoints_source
+    result: running
+  - exp_id: m2_full_starcoder_resumed
+    role: checkpoints_source
+    result: running
+  - exp_id: m1_reextract_v2
+    role: data_source
+    result: running
+  depends_on:
+  - D041
+- id: D044
+  date: 2026-05-15 04:18 UTC
+  summary: s44 outlier 处理：双指标报告（best_by_R@1 + converged_R@1），附 leave-one-out sensitivity
+    和训练动态分析
+  rationale: Qwen random_s44 best_by_R@1=0.6009 仅出现在 step 500（最早评估点），之后单调下降至 0.5542。converged
+    performance 与 s42(0.5527)/s43(0.5554) 一致，stable std<0.002。D019 协议锁定 best_by_R@1
+    导致 3-seed mean 被拉高到 0.5697、std≈0.027，可能丧失 embedding vs random 统计显著性。解决方案：(1) 主表报
+    best_by_R@1 遵守协议，同时报 converged_R@1（最后 2 次 eval 均值）作为 robustness metric；(2) leave-one-out
+    sensitivity analysis；(3) 论文 appendix 展示 s44 训练曲线（val_loss 0.4252→0.4918 单调恶化）。不加第
+    4 seed——converged metric 方差极低，加 seed 成本不值。审稿人问 seed variance 时，dual-metric + training
+    dynamics 是更有说服力的回应。
+  related_experiments:
+  - exp_id: m2_full_qwen_continued
+    role: source
+    result: random_s44 peak=0.6009@500, converged=0.5542; s42=0.5527; s43=0.5554
+  depends_on:
+  - D036
+- id: D045
+  date: 2026-05-15 04:21 UTC
+  summary: 修正 D044：放弃 converged_R@1 指标，改为 best_by_R@1 + leave-one-out + 训练动态透明化；"不加第
+    4 seed"改为 conditional
+  rationale: Reviewer 核实发现 D044 的 converged_R@1 定义不一致：声称的 s42=0.5527/s43=0.5554/s44=0.5542
+    分别来自 best_by_R@1、best_by_R@1、final eval——三个数来自不同定义。s42 实际跑了 3 epochs（D026 保留 full
+    curve），按"最后 2 次 eval 均值"定义应为 0.5315。强造一个定义不一致的 metric 比 outlier 本身更危险（审稿人追溯计算会发现）。采用方案
+    C：(1) 主指标仍为 best_by_R@1（D019 协议），如实报告含 s44=0.6009；(2) leave-one-out sensitivity
+    analysis 展示排除 s44 后 mean shift；(3) s44 训练动态透明报告（peak@500 + monotonic decline +
+    val_loss 恶化曲线）；(4) 不再造 converged_R@1 避免方法论漏洞。此外，D044 的"不加第 4 seed"前提是 random converged
+    std<0.002——该前提已被证伪，改为 conditional：等 M2 全部 9 策略×3 seed = 18 runs 完成后评估所有策略的 seed
+    variance，再决策是否需要额外 seeds。
+  related_experiments:
+  - exp_id: m2_full_qwen_continued
+    role: source
+    result: 's42 跑 3 epochs 无 early stop: eval@500=0.533, @1000=0.553, @1500=0.523,
+      @2000=0.523, @2500=0.527, @3000=0.536; s43 early stop@1500 best=0.5554; s44
+      early stop@1500 peak=0.6009@500 final=0.5542'
+  depends_on:
+  - D044
+  - D036
+  - D026
+- id: D046
+  date: 2026-05-15 05:02 UTC
+  summary: D045 补充：增加 fixed-checkpoint 分析（@500/@1000/@1500 共有评估点），回应训练 regime 不一致攻击面；Claim
+    1 措辞分级待 pool=50 评估后定
+  rationale: 'Reviewer 审查 D045 发现三个审稿人攻击面，其中 #1 最危险：s42 跑 3 epochs 无 early stop（D026）有
+    6 次 eval，s43/s44 跑 2 epochs + early stop 仅 3 次，best_by_R@1 在不同 eval 频次下有 selection
+    bias。解决方案：论文主表增加 fixed-checkpoint 分析——所有 seeds 在共有评估点（@500, @1000, @1500）的 R@1
+    对比，作为 best_by_R@1 的 sanity check。s42 的 @2000+ 数据作为 overfitting curve 在 appendix
+    展示。同时采纳：(1) leave-one-out 定位为 sensitivity analysis 而非 robustness test；(2) 论文标注
+    seeds pre-specified before training；(3) Claim 1 措辞分级表——≥2pp+CI>0 可用 consistently
+    improves，1-2pp+CI含0 降为 positive trend，<1pp 为 marginal。最终措辞等 M2 完成后 pool=50 独立评估（D042
+    脚本）结果决定，不依赖 in-training pool=8 数字。'
+  related_experiments:
+  - exp_id: m2_full_qwen_continued
+    role: source
+    result: s42 3-epoch 6 evals vs s43/s44 2-epoch 3 evals; embedding_s43 eval@500
+      delta=+0.89pp vs random
+  - exp_id: m2_full_starcoder_resumed
+    role: pending
+    result: awaiting completion for cross-encoder delta comparison
+  depends_on:
+  - D045
+  - D042
+  - D026
+  - D021
+- id: D047
+  date: 2026-05-15 06:01 UTC
+  summary: 'D046: D045 confirmed superior to D044; s42 regime 不一致需重跑; 采用两层统计设计'
+  rationale: Reviewer 正式审查结论：(1) D045 (best_by_R@1 + leave-one-out) 明确优于 D044 (converged_R@1)——D044
+    有定义错误且非标准指标。(2) 必须补 fixed-checkpoint 对比表消除 checkpoint 选择偏差。(3) s42 用 3-epoch regime
+    (D026) 与 s43/s44 的 2-epoch+early-stop 不一致，是最大攻击面——GPU 释放后用相同 2-epoch+early-stop
+    regime 重跑 s42。(4) n=3 seed-level CI 极可能过零（需 mean>2.5×std），采用两层统计：seed-level (n=3,
+    展示鲁棒性) + query-level paired test at pool=50 (n=1000+, 展示显著性)。(5) val_loss 与 R@1
+    divergence 需在论文 §4 讨论。
+  related_experiments:
+  - exp_id: m2_full_qwen_continued
+    role: evidence
+    result: running — s43 fixed-checkpoint delta expanding (+0.89pp→+1.05pp)
+  - exp_id: m2_full_qwen
+    role: evidence
+    result: s42 ran 3-epoch regime, incompatible with s43/s44
+  depends_on:
+  - D045
+  - D044
+  - D036
+  - D026
+- id: D048
+  date: 2026-05-15 07:00 UTC
+  summary: 'D048: Seed 43 best_by_R@1 delta 仅 +0.52pp，低于 1pp 门槛；pool=50 评估升为最高优先级'
+  rationale: embedding_s43 完成：best_by_R@1=0.5606 vs random=0.5554，Δ=+0.52pp。三个问题：(1)
+    delta 从 pilot +2.0pp 缩水 >70%，低于 D019 的 ≥1pp 实际显著性门槛；(2) pool=8 评估噪声 ~±0.5pp（同一模型两次
+    eval 差 0.49pp），delta 与噪声同阶，当前数据无法支撑任何统计 claim；(3) Claim 1 进入 Reviewer Scenario
+    B——方向正确但不足以用 "consistently outperforms by meaningful margin"。行动：pool=50 评估升最高优先级（GPU
+    释放后第一个跑），paper_framing.md 的 "+1.6-2.0pp" 数字在全 seed 出齐后更新，提前准备 Scenario B 措辞。
+  related_experiments:
+  - exp_id: m2_full_qwen_continued
+    role: evidence
+    result: s43 embedding best_by_R@1=0.5606, delta=+0.52pp vs random
+  - exp_id: m2_full_qwen
+    role: evidence
+    result: s42 random complete, embedding pending
+  depends_on:
+  - D047
+  - D045
+  - D042
+  - D019
+- id: D049
+  date: 2026-05-15 07:54 UTC
+  summary: 'D049: Claim 1 采用双轨并报 + 软化 framing；paper_framing.md 立即标注 pilot 数字过时'
+  rationale: 采纳 Reviewer 全部建议：(1) 双轨并报 best_by_R@1 + fixed-checkpoint，避免 goalpost-moving
+    嫌疑（仅在 delta 缩水后转向 training dynamics 叙事会被审稿人察觉）；(2) 证据链重排：pool=50 query-level paired
+    test（最高优先级）→ fixed-checkpoint sign test → best_by_R@1 方向一致性 → honest limitation；(3)
+    Claim 1 从 "challenges the assumption that gradient-based methods are necessary"
+    软化为 "reliable improvement at zero additional cost, establishing strong baseline"——+0.5pp
+    不足以 "challenge" 任何东西；(4) paper_framing.md 立即标注 "+1.6-2.0pp" 为 pilot 数字并加 provisional
+    M2 范围，防止并行写作任务引用错误数字。
+  related_experiments:
+  - exp_id: m2_full_qwen_continued
+    role: evidence
+    result: s43 delta +0.52pp best_by_R@1, +0.82pp mean fixed-checkpoint
+  depends_on:
+  - D048
+  - D047
+  - D045
+- id: D050
+  date: 2026-05-15 10:09 UTC
+  summary: BM25 watcher 脚本需修复 s42 regime：统一为 2 epochs + patience=2，防止 D047 不一致被传播到
+    plan_018 Phase 2
+  rationale: Reviewer 发现 BM25 watcher 脚本硬编码 EPOCHS[42]=3, PATIENCE[42]=0（旧 regime），与
+    s43/s44 的 2 epochs+patience=2 不一致。D047 已决定 s42 regime 需统一，但 BM25 脚本未联动修改。watcher
+    将在 M2 链完成后自动触发（Qwen ~May 17），必须在此之前修复。同时 Reviewer 量化了 regime 对 StarCoder s42 的影响：+0.67pp
+    伪优势（patience=2 会在 step 2000 停，miss step 2500 best），StarCoder inter-seed variance
+    3.75pp（s42 corrected=0.4537 vs s43=0.4912），远大于 regime 影响。
+  related_experiments:
+  - exp_id: plan_018_bm25
+    role: affected
+    result: watcher scripts need regime fix before auto-trigger
+  - exp_id: m2_full_starcoder_resumed
+    role: context
+    result: random_s42=0.4604(0.4537 corrected), random_s43=0.4912, variance=3.75pp
+  depends_on:
+  - D047
+- id: D051
+  date: 2026-05-15 10:26 UTC
+  summary: 论文结果必须报告 mean ± std across seeds，禁止 cherry-pick 单 seed；plan_005 需增加 per-seed
+    val set 难度分析
+  rationale: Reviewer 核实发现跨 seed R@1 方差远大于 treatment effect：Qwen random 三 seed 0.5527/0.5554/0.6009（s44
+    高出 ~4.5pp），StarCoder 两 seed 0.4604/0.4912（+3.1pp），而 embedding vs random within-seed
+    effect 仅 +0.52pp (Qwen s43)。s44 异常高可能源于 val split 难度差异，必须在 plan_005 中检验。
+  related_experiments:
+  - exp_id: m2_full_qwen_continued
+    role: evidence
+    result: cross-seed variance ~4.5pp > treatment effect ~0.5pp
+  - exp_id: m2_full_starcoder_resumed
+    role: evidence
+    result: cross-seed variance ~3.1pp
+  depends_on: []
+- id: D052
+  date: 2026-05-15 10:57 UTC
+  summary: Claim 1 Scenario C/D 应急方案：mean Δ<0.5pp 或 CI 跨零时的措辞与实验触发条件
+  rationale: 'Reviewer 指出跨 seed 方差 (range=4.8pp) 远大于 treatment Δ (~0.52pp)，需预先明确应急方案。
+
+
+    Scenario C (mean Δ<0.5pp, CI 跨零):
+
+    1. 切换主指标为 fixed-checkpoint 分析（s43 均值 ~0.82pp，更稳定）
+
+    2. pool=50 重评估（减少 pool=8 噪声 ±0.5pp 的干扰）
+
+    3. 若 pool=50 下 fixed-checkpoint Δ 仍显著 → framing 改为 "improvement visible at matched
+    training checkpoints, attenuated at best-checkpoint selection due to seed variance"
+
+    4. 若 pool=50 也无显著 → 降为 "comparable performance with qualitatively different training
+    dynamics"
+
+
+    Scenario D (mean Δ≈0 或负):
+
+    1. 同上 pool=50 + fixed-checkpoint
+
+    2. 若两条路均失败 → Claim 1 从 "reliable improvement" 改为 "mining strategy selection affects
+    training dynamics but not final retrieval quality under current scale"
+
+    3. 论文叙事重心转移到 Claim 2 (encoder geometry × strategy interaction) + Claim 3 (BM25
+    structural comparison)
+
+
+    触发条件: M2 Qwen 3-seed 完成后立即执行 D045 统计分析，结果决定走哪个 scenario。'
+  related_experiments:
+  - exp_id: m2_full_qwen_continued
+    role: primary
+    result: s43 Δ+0.52pp, s44 pending
+  - exp_id: m2_full_starcoder_resumed
+    role: cross-validation
+    result: running
+  depends_on:
+  - D049
+  - D051
+  - D048
+- id: D053
+  date: 2026-05-15 10:57 UTC
+  summary: plan_005 分层分析升 P0：Claim 2 唯一定量支撑，M2 完成后立即执行
+  rationale: Reviewer 指出 Claim 2 (dataflow × encoder geometry interaction) 目前仅有 pilot
+    + neg_difficulty 分析支撑，缺多 seed 分层数据。plan_005 是唯一定量支撑实验且为 0h GPU 分析任务（仅需 M2 checkpoint），不应排在
+    P1。升 P0 确保 M2 完成后与 D045 统计分析同步执行。
+  related_experiments:
+  - exp_id: m2_full_qwen_continued
+    role: dependency
+    result: running
+  - exp_id: m2_full_starcoder_resumed
+    role: dependency
+    result: running
+  depends_on:
+  - D035
+- id: D054
+  date: 2026-05-15 13:43 UTC
+  summary: embed_s42 + dataflow_s42 作为 P0 排在 Qwen chain 完成后立即执行，优先于 BM25 watcher
+  rationale: embed_s42 是 Claim 1 三 seed 统计的决定性数据点，当前仅有 s43(+0.52pp) 和 s44(可能负向)，两个
+    seed 无法做 mean±std。Qwen chain ~May 17 21:00 完成后接跑 embed_s42+dataflow_s42（~4h），~May
+    18 凌晨可齐。不中断当前链（风险大），不申请额外 GPU（时间充裕）。StarCoder s42 runs 同步统一 2ep+patience=2（D050
+    全覆盖）。
+  related_experiments:
+  - exp_id: m2_full_qwen_continued
+    role: parent_chain
+    result: running
+  - exp_id: embed_s42
+    role: planned_p0
+    result: pending
+  depends_on:
+  - D050
+  - D047
+  - D051
+- id: D055
+  date: 2026-05-15 14:02 UTC
+  summary: 统计检验改为 instance-level cluster bootstrap (by repo) 作为主要方法，seed-level 作为辅助
+  rationale: 'Experiments v1 Reviewer CRITICAL: seed variance (4.82pp) >> treatment
+    effect (0.52pp)，n=3 seeds 的 bootstrap CI 必然跨零。但 seed-level variance 包含训练随机性，与
+    mining method 效果正交。Instance-level cluster bootstrap (123 repos, 数千 instances)
+    统计力远强于 seed-level，且更能反映 mining method 的真实效果。增加 seed 数 (5-7) 代价过高且不如换统计方法根本。仍执行
+    D054 (embed_s42) 完善 3-seed 矩阵作为辅助。'
+  related_experiments:
+  - exp_id: m2_full_qwen_continued
+    role: primary
+    result: running
+  - exp_id: embed_s42
+    role: planned_p0
+    result: pending
+  depends_on:
+  - D054
+  - D051
+  - D052
+- id: D056
+  date: 2026-05-15 15:45 UTC
+  summary: embed_s44 delta -0.67pp，2-seed mean ≈ 0。Claim 1 seed-level evidence 进一步恶化，embed_s42
+    + pool=50 cluster bootstrap 成为唯一翻盘路径
+  rationale: embed_s44 best_by_R@1=0.5942 vs random_s44=0.6009 → Δ=-0.67pp。结合 s43
+    Δ=+0.52pp，2-seed mean=-0.08pp。s44 random 是 outlier high (0.6009 vs s42/s43 均值
+    0.5541)。三条路径仍开放：(1) embed_s42 若 Δ≥+1pp 可拉回 3-seed mean 为正；(2) pool=50 + instance-level
+    cluster bootstrap (D055) 可能在 seed-level mean 不显著时仍显示 instance-level 显著性；(3) D052
+    Scenario C (fixed-checkpoint) / D (叙事转 Claim 2+3) 作为应急。不提前 pivot，等数据。Qwen ETA
+    提前到 May 16 08:00。
+  related_experiments:
+  - exp_id: m2_full_qwen_continued
+    role: evidence
+    result: embed_s44 R@1=0.5942, Δ=-0.67pp vs random_s44=0.6009
+  - exp_id: m2_full_qwen
+    role: context
+    result: embed_s43 Δ=+0.52pp, random_s42=0.5527
+  depends_on:
+  - D048
+  - D049
+  - D052
+  - D055
+- id: D057
+  date: 2026-05-15 15:55 UTC
+  summary: embed_s44 展示 R@1/val_loss 指标分歧：R@1 峰值 step 500 而 val_loss 最优 step 1000。harder
+    negatives 加速 R@1 overfitting，paper §4.3.1 用此作 dual-checkpoint 必要性案例
+  rationale: 'embed_s44 训练轨迹: step 500 R@1=0.5942 (峰值) → step 1000 R@1=0.5813 (-1.29pp)
+    但 val_loss=0.4341 (最优)。random_s44 同样有分歧但程度更轻。这说明 embedding-distance 策略产生的 harder
+    negatives 导致 InfoNCE loss 优化方向与检索排名出现更大 misalignment。这是 Claim 2 (why embedding
+    negatives behave differently) 的直接证据，同时支撑 dual-checkpoint protocol 不仅是 robustness
+    check 而是 harder negative 策略的必需品。'
+  related_experiments:
+  - exp_id: m2_full_qwen_continued
+    role: evidence
+    result: 'embed_s44: R@1 peak@500=0.5942, loss best@1000=0.4341, R@1@1000=0.5813
+      (-1.29pp from peak)'
+  depends_on:
+  - D056
+  - D049
+- id: D058
+  date: 2026-05-15 16:35 UTC
+  summary: D057 trajectory 发现重新定位：从 Claim 2 evidence 降级为 §4.3.1 checkpoint criterion
+    + §4.3.3 general training dynamics 素材。Claim 2 措辞不变，等 plan_005
+  rationale: Reviewer 审查发现 R@1/val_loss 分离在 3/5 runs (60%) 中出现，包括 random_s43（与 embed_s43
+    完全相同的分离模式）。embed_s44 的分离方向甚至是反例（R@1 先达峰）。分离由 seed/数据划分驱动而非策略效应。将 trajectory 分析归入
+    strategy-specific Claim 2 有 rationalization 风险。正确定位：dual-checkpoint protocol 必要性的
+    general evidence + training dynamics observation。Claim 2 等 plan_005 分层分析提供真正的
+    strategy-specific 证据。
+  related_experiments:
+  - exp_id: m2_full_qwen_continued
+    role: evidence
+    result: 5 runs 中 3 个有 metric separation，不分策略
+  depends_on:
+  - D057
+- id: D059
+  date: 2026-05-15 21:24 UTC
+  summary: 确认 A/B 双轨叙事策略：A=stratified 揭示异质性，B=B1+Claim2 hybrid (explain when/why mining
+    doesn't differentiate)
+  rationale: 三组数据（Qwen s43 +0.52pp, Qwen s44 -0.67pp, StarCoder s42 +0.22pp）一致显示 aggregate
+    treatment effect <1pp，seed variance (~2.5pp) 远大于策略效应。当前实验同时服务 A/B 两条叙事，无需新增实验。决策节点：Qwen
+    chain 完成后（~May 17）跑 Qwen-only stratified 分析，结果决定走 A 还是 B。B 路线核心论点："we explain
+    when and why mining doesn't differentiate"，基于 neg_difficulty 机制分析 + encoder representation
+    geometry 对比。
+  related_experiments:
+  - exp_id: m2_full_qwen_continued
+    role: evidence
+    result: embed vs random Δ <1pp across seeds
+  - exp_id: m2_full_starcoder_resumed
+    role: evidence
+    result: embed_s42 eval@500 Δ=+0.22pp
+  - exp_id: plan_005_stratified
+    role: pending
+    result: 决定性实验，决定 A/B 走向
+  depends_on: []
+- id: D060
+  date: 2026-05-16 03:13 UTC
+  summary: 'D060: in-training eval R@1 不可靠（val negative 非确定性 ±0.5pp），pool=50 post-hoc
+    eval 升为唯一可信 strategy 对比基础'
+  rationale: 发现 val_ds.__getitem__ 用 random.shuffle 动态采样 negatives，全局 random 状态随训练变化，导致同一模型两次
+    eval R@1 差 ±0.5pp。Claim 1 strategy delta (mean ≈ 0, range -0.67~+0.52pp) 与此 noise
+    同量级，in-training eval 无法区分 strategies。pool=50 eval 使用预定义 negatives，确定性，是唯一可靠对比方式。
+  related_experiments:
+  - exp_id: m2_full_qwen_continued
+    role: evidence
+    result: embed_s43 同模型 re-eval 差 0.49pp
+  - exp_id: plan_005_stratified
+    role: blocked_by
+    result: 必须等 pool=50 eval 才有意义
+  depends_on:
+  - D059
+- id: D061
+  date: 2026-05-16 05:15 UTC
+  summary: 'D061: pool=50 eval 首批结果——统一用 best_by_val_loss 选 checkpoint，random_s42
+    异常需排查'
+  rationale: pool=50 eval 揭示两个关键发现：(1) best_by_recall_at_1 基于 pool=8 noisy eval 选的
+    checkpoint 不可靠（embed_s44 差 5.2pp），best_by_val_loss 更反映真实质量且不受 pool size 影响；(2)
+    Qwen random_s42 pool=50 R@1=0.2730 异常低（其他 seed 0.31-0.38），且 by_R@1 和 by_val 给出完全相同值（可能指向同一
+    checkpoint），与其 3-epoch 无 early stopping 旧 regime 有关。Qwen embedding > random 在
+    s43 (+1.93pp) s44 (+5.13pp) 成立 (by_val_loss)，但 StarCoder embedding < random (-1.4~1.9pp)。
+  related_experiments:
+  - exp_id: m2_full_qwen_continued
+    role: evidence
+    result: pool=50 embed>random s43+1.93pp s44+5.13pp (by_val_loss)
+  - exp_id: m2_full_starcoder_resumed
+    role: evidence
+    result: pool=50 embed<random s42 -1.4~1.9pp
+  depends_on:
+  - D060
+- id: D062
+  date: 2026-05-16 06:06 UTC
+  summary: 'D062: Checkpoint 选择采用方案 2——从 2980 val queries 分出 500-query selection set
+    + 2480-query test set'
+  rationale: Reviewer 发现 best_by_val_loss 和 best_by_pool8_R@1 都不可靠作为 checkpoint 选择标准（random_s43
+    by_R@1 赢 +6.9pp，embed_s44 by_val_loss 赢 +5.2pp，方向相反）。方案 2 最干净：500 queries 用于 checkpoint
+    selection（明确定义的 held-out selection criterion），2480 queries 报告最终 test 指标。需要重跑 eval（用
+    2480-query test set），但脚本零改动（只需 query 分割）。
+  related_experiments:
+  - exp_id: m2_full_qwen_continued
+    role: evidence
+    result: random_s43 by_R@1=0.3829 vs by_val=0.3138 差 6.9pp，证明 val_loss 不是可靠代理
+  - exp_id: plan_005_stratified
+    role: blocked_by
+    result: 必须用新的 2480-query test set 重跑
+  depends_on:
+  - D061
+- id: D063
+  date: 2026-05-16 06:32 UTC
+  summary: 'D063: 实验缺口补充——新增 plan_020 (UniXcoder multi-seed) + plan_021 (温度 ablation
+    缩减版)，升级 RepoBench-R/Pool sensitivity 为立即启动'
+  rationale: '用户要求"在时间允许下尽量补实验"。Gap analysis: (1) UniXcoder 只有 s42 单 seed 无法做统计检验，需
+    s43/s44; (2) Dream 三档均质疑 τ=0.05 regime-specificity，需温度 ablation 验证; (3) RepoBench-R
+    和 Pool sensitivity 脚本就绪且有 checkpoint 可用，不应等全部 M2 完成。9天 × 2GPU = 432h，总需 ~177h，余量充足。'
+  related_experiments:
+  - exp_id: plan_020
+    role: new
+    result: planned
+  - exp_id: plan_021
+    role: new
+    result: planned
+  - exp_id: plan_004
+    role: upgraded
+    result: immediate_start
+  - exp_id: plan_019
+    role: upgraded
+    result: immediate_start
+  depends_on:
+  - D059
+  - D062
+- id: D064
+  date: 2026-05-16 09:28 UTC
+  summary: 'D064: UniXcoder s42 null result (Δ<0.4pp) 支撑 Track B narrative; 批准 s43/s44
+    统计确认; pool=50 eval conditional on 3-seed null'
+  rationale: UniXcoder 125M encoder-only 三策略 R@1 跨度仅 0.37pp（pool=8 噪声范围内），与 Qwen 3B
+    (+2pp) 和 StarCoder 3B (-1.9pp) 形成 architecture/scale-dependent 模式。3-seed 统计确认
+    null 对论文说服力关键（成本仅 6h）。若 3 seed 均 null 则跳过 pool=50 独立 eval。Paper framing 无需调整——D059
+    dual-track 已预见此情况。
+  related_experiments:
+  - exp_id: unixcoder_3strat_s42
+    role: evidence
+    result: null (Δ<0.4pp)
+  - exp_id: plan_020
+    role: approved
+    result: s43/s44 immediate start
+  depends_on:
+  - D059
+  - D063
+- id: D065
+  date: 2026-05-16 11:08 UTC
+  summary: 'D065: Checkpoint selection criterion effect (+16.3pp) 可能是论文独立贡献点，强化 Track
+    B 解释力'
+  rationale: D062 eval 早期结果显示：Qwen random_s43 by_recall_at_1=0.504 vs by_val_loss=0.341（+16.3pp），而
+    s42 两标准选到同一 checkpoint（0.2302）。这意味着：(1) checkpoint 选择标准的效应 >> mining strategy
+    差异，(2) 这解释了为什么文献中 aggregate delta 小——如果用 val_loss 选 checkpoint，mining 的收益被掩盖，(3)
+    query-split 方法论本身是独立贡献。等 14 checkpoint 全部完成后做 criterion × strategy × seed 交互分析确认。跨
+    seed 方差大（s42=0.23, s43=0.50, s44=0.35）需要全数据解释。
+  related_experiments:
+  - exp_id: d062_qwen_query_split_eval
+    role: evidence
+    result: 6/14 done, criterion effect +16.3pp on s43
+  depends_on:
+  - D062
+  - D059
+- id: D066
+  date: 2026-05-16 16:02 UTC
+  summary: 'D066: D062 eval 8/14 失败（adapter format bug），16.3pp criterion gap 仅 s43
+    独有，需要重新评估 D065 方法论贡献假设'
+  rationale: 'Reviewer critical: evaluate_pool50.py 无法加载 adapter-only checkpoints
+    (embed/dataflow 33MB vs random 6.2GB full model)，导致只有 random 有 D062 数据。更重要的是，s44
+    的 best_by_val_loss 和 best_by_recall_at_1 给出相同 R@1=0.3532（与 s42 一样），只有 s43 展示 16.3pp
+    gap。这意味着 criterion effect 可能不是普遍现象，而是 s43 特有的——D065 的"方法论贡献"假设需要降低信心度，等 embed/dataflow
+    数据出来后再判断。修复 eval 脚本后重跑 items 7-14 (~5h)。'
+  related_experiments:
+  - exp_id: d062_qwen_query_split_eval
+    role: blocker
+    result: 8/14 failed due to adapter format mismatch
+  depends_on:
+  - D065
+  - D062

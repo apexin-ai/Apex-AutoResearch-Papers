@@ -1,0 +1,11 @@
+Server path: /root/autodl-tmp/contrastive_trace_safety/artifacts/advbench_layer_bias_gemma2_results.json
+
+Key results:
+- Model: gemma-2-9b-it, 42 layers, AdvBench dataset
+- 520 traces: 6 jailbreak, 514 safe
+- Layer selection bias: REPLICATED (22.0pp divergence > 15pp threshold)
+- CR-composite selects L0 (0.0% depth)
+- Precision selects L9 (22.0% depth), W=15, perfect precision=1.0
+- Bal accuracy selects L9 (22.0%), W=15, ba=1.0
+- AUROC selects L3 (7.3%), W=15, auroc=1.0
+- Caveat: only 1 JB trace in test set, metrics ceiling easily

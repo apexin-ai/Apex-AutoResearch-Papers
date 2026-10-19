@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0d5bf03b44e5062216f2",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "diagnose advbench layer bias gemma2",
+  "task_key": "worker_diagnose_advbench_layer_bias_gemma2_20260522T173007",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_advbench_layer_bias_gemma2_20260522T173007_result.json",
+    "occurrence": 1,
+    "bytes": 494,
+    "sha256": "01b9fbfdde576c6af1b6fcca1c714f9f81e957472587c0a48461c230411419d7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**根因**：代码 bug — `phase_analyze()` 中 `best_key` 为 None 时未做 guard 直接下标访问，触发 `TypeError: 'NoneType' object is not subscriptable`。极端类不平衡（6 JB / 514 safe）+ 非 stratified split 导致某些评估返回空结果。\n\n**现状**：已修复（添加 None guard + stratified split）。Phase 2 已单独重跑成功，layer selection bias 结论：Divergence = 22.0pp — REPLICATED。无需进一步操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-advbench-layer-bias-gemma2.md"
+}

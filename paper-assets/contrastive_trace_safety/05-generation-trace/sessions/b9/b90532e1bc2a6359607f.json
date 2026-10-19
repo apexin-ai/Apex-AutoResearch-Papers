@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b90532e1bc2a6359607f",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code exp pathb annotation validation",
+  "task_key": "worker_code_exp_pathb_annotation_validation_20260517T065326",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_pathb_annotation_validation_20260517T065326_result.json",
+    "occurrence": 1,
+    "bytes": 690,
+    "sha256": "2f67ba824ffc314ebfabff9edbf02427ce2beab99a5657f964c47c1a2829d530"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。\n\n## 结果总结\n\n**exp_pathb_annotation_validation: NEGATIVE**\n\n| 方法 | F1 (safety) | CP Agreement (±1) | 判定 |\n|------|------------|-------------------|------|\n| TF-IDF + LR | 0.5899 | 56.1% | FAIL |\n| MiniLM + LR | 0.5149 | 53.4% | FAIL |\n\n**阈值**: F1 >= 0.90, CP >= 85%\n\n**核心失败原因**: Safety recall 极低（41-46%），简单分类器无法区分 CoT 中语义细微的安全意识表达与普通推理。CP MAE 达 5-6 句，预测的 critical point 偏离严重。\n\n**结论**: 本地分类器方法不可行。Path B 数据生成需要 LLM-based annotation（API 调用或 fine-tune DeBERTa 做 16-class 分类）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-pathb-annotation-validation.md"
+}

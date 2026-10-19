@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "da885324cb11fdec7c0a",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "paper writing introduction d032",
+  "task_key": "worker_paper_writing_introduction_d032_20260517T160030",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_introduction_d032_20260517T160030_result.json",
+    "occurrence": 1,
+    "bytes": 1043,
+    "sha256": "bc46abd29d9875d3d2f95787116945aa9cc8a1f1109f432fe161033d10cd7060"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Introduction written to `docs/paper/sections/introduction.tex`. ~1000 words (LaTeX markup included), 4 narrative paragraphs + contributions list.\n\nStructure:\n1. **Self-jailbreak problem** (~210 words): CoT reasoning, CP definition, cites deepseekr1/qwq/harmthoughts/selfjailbreak\n2. **Wrong threat model** (~160 words): TrajGuard/SafeSwitch vs SafeRemind/SafeThink, input attacks vs internal commitment\n3. **Comparison gap** (~150 words): no controlled HS-vs-text evaluation, layer selection as unexamined variable, cites belinkov2019analysis\n4. **Our discovery** (~220 words): 4-model evaluation, biased metric mechanism, 5/12 vs 12/12 Holm-Bonferroni, precision +15-24pp, references `tab:layer_selection` and `tab:hs_vs_text`\n5. **Contributions** (3 items): each with section/table references (`sec:layer-results`, `sec:hs-text`, `sec:32b-analysis`, `sec:negative`, `tab:negative`, `app:control`)\n\nStyle checks pass: zero em-dashes, zero en-dashes, zero banned phrases, zero transition chains, no -ing phrase endings."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-introduction-d032.md"
+}

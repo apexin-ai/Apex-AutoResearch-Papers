@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3c59837bb2c49375fc56",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "ops arr submission package",
+  "task_key": "worker_ops_arr_submission_package_20260520T043855",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_arr_submission_package_20260520T043855_result.json",
+    "occurrence": 1,
+    "bytes": 1274,
+    "sha256": "e99e40868c3b67fc331395d120e1ee276b49afea6567c1dc9248d93572276489"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Submission package is complete. Summary:\n\n**`artifacts/submission_package/`** — 34 files:\n\n| Component | Contents |\n|---|---|\n| **code/src/** | 17 anonymized Python files (core library: config, data loader, hidden state extraction, probes, evaluation, baselines, experiments) |\n| **code/scripts/** | 10 experiment scripts (layer sweep, ensemble, residualization, random projection, threshold sensitivity, etc.) |\n| **code/reproduce/** | 3 shell scripts: `reproduce_table2.sh` (HS vs text), `reproduce_table3.sh` (layer selection), `reproduce_table4.sh` (ensemble) |\n| **code/requirements.txt** | 9 dependencies (torch, transformers, datasets, scikit-learn, etc.) |\n| **code/README.md** | Setup guide, directory structure, reproduction instructions |\n| **DATA_STATEMENT.md** | License/usage info for HarmThoughts, AdvBench, all 4 models, and text encoders |\n| **openreview_metadata.json** | Title, abstract, keywords, ethical considerations, formatting spec |\n\n**Anonymization verified:**\n- No `/root/autodl-tmp/` paths (replaced with `DATA_DIR`/`MODEL_DIR` env vars)\n- No API keys, tokens, passwords, emails, or author names\n- No `.git/`, `__pycache__/`, or `.pyc` files\n- No wandb project/entity references\n- HF mirror URLs commented out"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-arr-submission-package.md"
+}

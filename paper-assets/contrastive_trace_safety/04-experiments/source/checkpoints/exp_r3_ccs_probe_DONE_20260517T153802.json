@@ -1,0 +1,68 @@
+{
+  "exp_id": "exp_r3_ccs_probe",
+  "project": "contrastive_trace_safety",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T15:35:52.139Z",
+    "updated_at": "2026-05-17T15:38:02.913Z",
+    "hypothesis": "CCS (Burns et al. 2023) adapted for temporal safety probing should underperform supervised LR probes because the consistency+confidence loss lacks access to commitment point labels. If CCS still outperforms RepE/Mahalanobis, it represents the best unsupervised baseline but confirms the supervised gap.",
+    "spec": {
+      "command": "python src/experiments/exp_r3_ccs_probe.py",
+      "server": "autodl-rtx6000",
+      "data_path": "/root/autodl-tmp/contrastive_trace_safety/data/",
+      "data_count": 632,
+      "model_name": "CCS-adapted (Burns et al. 2023)",
+      "seed": 42,
+      "checkpoint_path": "N/A (CPU probe)",
+      "log_path": "/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_ccs_probe/results.json"
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "r1_8b": {
+        "bal_acc": 0.777,
+        "precision": 0.565,
+        "fpr": 0.191,
+        "coverage": 0.674,
+        "lead": 0.7
+      },
+      "qwq_32b": {
+        "bal_acc": 0.731,
+        "precision": 0.555,
+        "fpr": 0.214,
+        "coverage": 0.684,
+        "lead": 2
+      },
+      "r1_32b": {
+        "bal_acc": 0.703,
+        "precision": 0.507,
+        "fpr": 0.41,
+        "coverage": 0.9,
+        "lead": 5.2
+      },
+      "ot_7b": {
+        "bal_acc": 0.692,
+        "precision": 0.319,
+        "fpr": 0.344,
+        "coverage": 0.809,
+        "lead": 20.5
+      },
+      "vs_supervised_lr_r1_8b": {
+        "lr_bal_acc": 0.817,
+        "lr_precision": 0.693,
+        "lr_fpr": 0.097,
+        "ccs_weaker": true
+      },
+      "vs_repe_r1_8b": {
+        "repe_bal_acc": 0.749,
+        "ccs_better": true
+      },
+      "finding": "CCS is best unsupervised method (beats RepE) but still significantly below supervised LR. All models needed polarity flip. FPR 0.19-0.41 across all models confirms unsupervised gap."
+    },
+    "completed_at": "2026-05-17T15:38:02.913Z"
+  },
+  "timestamp": "2026-05-17T15:38:02.989774+00:00",
+  "trigger": "update_registry"
+}

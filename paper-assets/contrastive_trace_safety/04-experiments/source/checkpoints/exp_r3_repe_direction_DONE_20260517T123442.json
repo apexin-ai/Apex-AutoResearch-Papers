@@ -1,0 +1,65 @@
+{
+  "exp_id": "exp_r3_repe_direction",
+  "project": "contrastive_trace_safety",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T12:34:17.057Z",
+    "updated_at": "2026-05-17T12:34:42.403Z",
+    "hypothesis": "RepE mean-difference direction probe (a single safety direction in activation space) should underperform trained LR probes on accuracy/precision but may achieve longer lead times, because the safety direction captures a coarser signal that emerges earlier in the reasoning trace.",
+    "spec": {
+      "command": "python repe_direction_probe.py (via worker_code_repe_direction_probe_v3)",
+      "server": "autodl-rtx6000",
+      "data_path": "artifacts/hidden_states/ + hidden_states_r1_32b/ + hidden_states_qwq_32b/ + hidden_states_ot7b/",
+      "data_count": 632,
+      "model_name": "RepE direction probe on 4 models",
+      "seed": 42,
+      "checkpoint_path": "results_repe_direction.json",
+      "log_path": "worker output"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "r1_8b": {
+        "bal_acc": 0.7491,
+        "precision": 0.516,
+        "pre_cp_fpr": 0.2264,
+        "coverage": 0.3953,
+        "lead_mean": 9.7
+      },
+      "r1_32b": {
+        "bal_acc": 0.6707,
+        "precision": 0.5538,
+        "pre_cp_fpr": 0.2423,
+        "coverage": 0.45,
+        "lead_mean": 6.3
+      },
+      "qwq_32b": {
+        "bal_acc": 0.6661,
+        "precision": 0.4193,
+        "pre_cp_fpr": 0.3997,
+        "coverage": 0.7368,
+        "lead_mean": 13.4
+      },
+      "ot_7b": {
+        "bal_acc": 0.718,
+        "precision": 0.3733,
+        "pre_cp_fpr": 0.2573,
+        "coverage": 0.5319,
+        "lead_mean": 26.1
+      },
+      "vs_lr_r1_8b": {
+        "lr_bal_acc": 0.817,
+        "lr_precision": 0.693,
+        "lr_fpr": 0.097,
+        "repe_weaker_acc": true,
+        "repe_weaker_precision": true,
+        "repe_higher_lead": true
+      }
+    },
+    "completed_at": "2026-05-17T12:34:42.403Z"
+  },
+  "timestamp": "2026-05-17T12:34:42.451050+00:00",
+  "trigger": "update_registry"
+}

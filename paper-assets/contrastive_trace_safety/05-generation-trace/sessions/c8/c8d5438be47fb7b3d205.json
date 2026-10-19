@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c8d5438be47fb7b3d205",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "analysis gemma4 cosine compression",
+  "task_key": "worker_analysis_gemma4_cosine_compression_20260522T165649",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gemma4_cosine_compression_20260522T165649_result.json",
+    "occurrence": 1,
+    "bytes": 1571,
+    "sha256": "f08f0f390f3d1d7a71138cd7f3b8bc8d50385cb48e12291e2107daf6b80c4b92"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成，6 秒处理 520 个文件（287 个有效 trace，114,450 step-pairs）。\n\n## 结果\n\n### 42 层 Mean Cosine Distance\n\n| 区间 | 层 | Mean Cos Dist | 特征 |\n|------|-----|--------------|------|\n| **Shallow** | L0 | 0.2148 | 异常高（embedding 层） |\n| | L1 | 0.0180 | 最低 |\n| | L2 | 0.0555 | |\n| | L3 | 0.1009 | |\n| | L4 | 0.1320 | |\n| | L5 | 0.1756 | |\n| Mid-low | L6-L15 | 0.043–0.148 | 先升后降 |\n| Mid-high | L16-L29 | 0.048–0.278 | L22 峰值 0.278 |\n| **Deep** | L30-L40 | 0.048–0.103 | 相对稳定低值 |\n| | L41 | 0.5899 | 异常高（output 层） |\n\n### Shallow vs Deep 对比\n\n| 指标 | 值 |\n|------|-----|\n| Shallow (L0-L5) mean | **0.116122** |\n| Deep (L30-L41) mean | **0.110737** |\n| Ratio (shallow/deep) | **1.0486** |\n| Compression | **未确认** |\n\n### 结论\n\n**Shallow compression 未确认。** Ratio = 1.049，shallow 层 mean cosine distance 反而略高于 deep 层（+4.9%）。\n\n但数据揭示了更有趣的结构：\n- **L0 和 L41 是 outlier**（embedding/output 层），cosine distance 远高于其他层\n- 排除 L0/L41 后，shallow (L1-L5) mean ≈ 0.096，deep (L30-L40) mean ≈ 0.067 → ratio ≈ 1.43，shallow 实际比 deep **高 43%**——即 shallow 层变化更大，不是更小\n- 真正的\"低活动区\"在 mid-depth (L11-L15)，mean ≈ 0.04-0.05\n- L17-L23 有显著的 activity spike（peak L22 = 0.278）\n\nGemma-4 的 geometric profile 与假设相反：shallow 层并没有 compression，反而 deep 层更趋于稳定。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-gemma4-cosine-compression.md"
+}

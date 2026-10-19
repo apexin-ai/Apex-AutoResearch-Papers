@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "49f430c69d961a7bf49f",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code advbench data prep",
+  "task_key": "worker_code_advbench_data_prep_20260519T193636",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_advbench_data_prep_20260519T193636_result.json",
+    "occurrence": 1,
+    "bytes": 841,
+    "sha256": "177d8d44e6b11694dfab26dffbb2a5652d185b8bd162fe81e22a4da21703b553"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。产出汇总：\n\n| 文件 | 状态 |\n|------|------|\n| `data/advbench/harmful_behaviors.csv` | 520 prompts (header + 520 rows) |\n| `src/advbench/__init__.py` | 已创建 |\n| `src/advbench/generate_traces.py` | `--help` 通过 |\n| `src/advbench/annotate_cp.py` | `--help` 通过 |\n| `src/iaa/__init__.py` | 已创建（之前缺失） |\n| `from src.iaa.prompt_template import ...` | import 成功 |\n\n关键设计：\n- **generate_traces.py**: greedy decoding, `<think>` 块内按双换行分步, 支持 `--start/--end` 分片 + `--dry-run`, 自动跳过已生成的 trace（resume）\n- **annotate_cp.py**: 从 `src.iaa.prompt_template` import `format_prompt`/`get_system_prompt`, Groq Qwen3-32B, 指数退避重试, 跳过已标注 trace（resume）, JSON 响应解析兼容 markdown code block"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-advbench-data-prep.md"
+}

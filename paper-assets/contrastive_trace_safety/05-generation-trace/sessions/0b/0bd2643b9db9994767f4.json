@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0bd2643b9db9994767f4",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "research related work literature",
+  "task_key": "worker_research_related_work_literature_20260517T003552",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_related_work_literature_20260517T003552_result.json",
+    "occurrence": 1,
+    "bytes": 260,
+    "sha256": "f72ff59a104744a5f929ae21cb3ae63596b7c9ddc2f3d8d5713055b076ac6109"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。文件写入 `artifacts/report_related_work_refs.md`，共 44 篇引用（去重约 42 篇），覆盖 6 个类别，每类 6-9 篇，均为 2007-2026 年工作（绝大多数 2023-2025）。每篇标注了与本文的具体关系。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-related-work-literature.md"
+}

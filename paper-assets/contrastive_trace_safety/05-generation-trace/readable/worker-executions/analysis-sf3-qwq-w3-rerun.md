@@ -1,0 +1,2600 @@
+# analysis sf3 qwq w3 rerun
+
+**Layer Selection Sensitivity in Hidden-State Safety Probes for Reasoning Models** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 55
+- **Recorded user turns:** 0
+- **Tool calls:** 18
+- **Original source:** `logs/workers/worker_analysis_sf3_qwq_w3_rerun_20260519T145600.log`
+- **Structured JSON:** [`3188d721722623803dbd.json`](../../sessions/31/3188d721722623803dbd.json)
+
+## Before a recorded user message
+
+55 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "session_id": "e8ae03d2-e8dd-4a3b-b4b9-1d4bab2ce8a0",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "1c253e1f-cf7f-4685-9619-4fac5eede0a6",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-5-projects-contrastive-trace-safety/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779220200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "62346716-206e-437b-be74-72d29f4ccaf5",
+  "session_id": "e8ae03d2-e8dd-4a3b-b4b9-1d4bab2ce8a0"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+Looking at the task, I need to find the SF3 script on the server, modify it for QwQ-32B with W=3, and run it. Let me start by detecting the image and finding the relevant scripts.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e8ae03d2-e8dd-4a3b-b4b9-1d4bab2ce8a0",
+  "uuid": "f3b06620-a51d-43bd-a1aa-cbe194e2e2a5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WEDnUtodUs3s37UsnByJwe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13568,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13568
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01RHtwamqX8vYTKLV3HsCDm4`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__detect_image,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e8ae03d2-e8dd-4a3b-b4b9-1d4bab2ce8a0",
+  "uuid": "d31ff7de-c4d8-4902-907f-947b8af507ea",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WEDnUtodUs3s37UsnByJwe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13568,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13568
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-19T14:56:14.388Z_
+
+<details><summary>↩ Tool result · `toolu_01RHtwamqX8vYTKLV3HsCDm4`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e8ae03d2-e8dd-4a3b-b4b9-1d4bab2ce8a0",
+  "uuid": "feae0120-92f2-4958-92c2-730d49e8342b",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__detect_image,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me detect the image and find the SF3 scripts in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e8ae03d2-e8dd-4a3b-b4b9-1d4bab2ce8a0",
+  "uuid": "79bd1ad1-f9b3-45e8-968d-922433ea73e0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QP1R4gFXhqz7fMHZX4kQP4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14489,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14489
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "previous_message_not_found"
+      }
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__detect_image · `toolu_015kwJDRXXHGHauehAS9h8Hx`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e8ae03d2-e8dd-4a3b-b4b9-1d4bab2ce8a0",
+  "uuid": "111d9b21-7a3a-4ec2-a9b9-386f8d838f7a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QP1R4gFXhqz7fMHZX4kQP4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14489,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14489
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "previous_message_not_found"
+      }
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RVRdMFVS8ABozJTQ3YZDSC`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "find /root/autodl-tmp/contrastive_trace_safety/ -name \"*sf3*\" -o -name \"*quadratic*\" -o -name \"*position_residual*\" 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e8ae03d2-e8dd-4a3b-b4b9-1d4bab2ce8a0",
+  "uuid": "f9c6c1e2-3ca3-4b30-ad36-609d72aba8bf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QP1R4gFXhqz7fMHZX4kQP4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14489,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14489
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "previous_message_not_found"
+      }
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-19T14:56:19.149Z_
+
+<details><summary>↩ Tool result · `toolu_015kwJDRXXHGHauehAS9h8Hx`</summary>
+
+```text
+{"result":"{\n  \"detected\": false,\n  \"status\": \"unknown\",\n  \"skip_base_setup\": false,\n  \"message\": \"No image marker file found. Use traditional env-setup flow.\"\n}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e8ae03d2-e8dd-4a3b-b4b9-1d4bab2ce8a0",
+  "uuid": "7d75c95c-9ce5-418a-bd7e-a2e9ba2ab74e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\n  \\\"detected\\\": false,\\n  \\\"status\\\": \\\"unknown\\\",\\n  \\\"skip_base_setup\\\": false,\\n  \\\"message\\\": \\\"No image marker file found. Use traditional env-setup flow.\\\"\\n}\"}",
+    "structuredContent": {
+      "result": "{\n  \"detected\": false,\n  \"status\": \"unknown\",\n  \"skip_base_setup\": false,\n  \"message\": \"No image marker file found. Use traditional env-setup flow.\"\n}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-19T14:56:19.162Z_
+
+<details><summary>↩ Tool result · `toolu_01RVRdMFVS8ABozJTQ3YZDSC`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e8ae03d2-e8dd-4a3b-b4b9-1d4bab2ce8a0",
+  "uuid": "a3abdfc0-780c-4097-a963-c8105f164b6a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The `-o` flag with find is using shell metacharacters. Let me try a different approach.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e8ae03d2-e8dd-4a3b-b4b9-1d4bab2ce8a0",
+  "uuid": "07166448-9874-4726-b9f8-cf5e7dbd2372",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BDahoBGaVKocNSW7eFMgmX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 476,
+      "cache_read_input_tokens": 25936,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 476
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011fdoBrjdJTqvtmg3wZHGjD`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "find /root/autodl-tmp/contrastive_trace_safety/ -name \"*sf3*\" 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e8ae03d2-e8dd-4a3b-b4b9-1d4bab2ce8a0",
+  "uuid": "667cae46-0d01-4aab-b77c-4ccff0dcd236",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BDahoBGaVKocNSW7eFMgmX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 476,
+      "cache_read_input_tokens": 25936,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 476
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-19T14:56:22.830Z_
+
+<details><summary>↩ Tool result · `toolu_011fdoBrjdJTqvtmg3wZHGjD`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e8ae03d2-e8dd-4a3b-b4b9-1d4bab2ce8a0",
+  "uuid": "81593d61-1dc8-421a-942b-9cbf70af5040",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FVDWmYJLartWStQQZsWMmj`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "find /root/autodl-tmp/contrastive_trace_safety/ -name \"*quadratic*\" 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e8ae03d2-e8dd-4a3b-b4b9-1d4bab2ce8a0",
+  "uuid": "d60c6da9-421a-463e-b80b-5ae4ee493fdc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BDahoBGaVKocNSW7eFMgmX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 476,
+      "cache_read_input_tokens": 25936,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 476
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-19T14:56:23.777Z_
+
+<details><summary>↩ Tool result · `toolu_01FVDWmYJLartWStQQZsWMmj`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e8ae03d2-e8dd-4a3b-b4b9-1d4bab2ce8a0",
+  "uuid": "7cb2d19f-e72d-4c1e-a05a-f994d18f5d3f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01ScD9CadoVPtA5GKBgdoWkM`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "find /root/autodl-tmp/contrastive_trace_safety/ -name \"*position_residual*\" 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e8ae03d2-e8dd-4a3b-b4b9-1d4bab2ce8a0",
+  "uuid": "25ad7515-baf0-48a5-a2aa-b2068c469d26",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BDahoBGaVKocNSW7eFMgmX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 476,
+      "cache_read_input_tokens": 25936,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 476
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-19T14:56:24.282Z_
+
+<details><summary>↩ Tool result · `toolu_01ScD9CadoVPtA5GKBgdoWkM`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e8ae03d2-e8dd-4a3b-b4b9-1d4bab2ce8a0",
+  "uuid": "86882cfc-4404-4eb5-8dc8-1dbbd20738ac",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The `2>/dev/null` has `>` which is blocked. Let me try without the redirect.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e8ae03d2-e8dd-4a3b-b4b9-1d4bab2ce8a0",
+  "uuid": "cd0025ca-55a6-44d3-86c6-b4e43c4fc117",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017L7zmoCLtEHogJtLLrX7gz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 764,
+      "cache_read_input_tokens": 26412,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 764
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Up7bP8zBAKKjx2JHbGCXuE`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "find /root/autodl-tmp/contrastive_trace_safety/ -name \"*sf3*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e8ae03d2-e8dd-4a3b-b4b9-1d4bab2ce8a0",
+  "uuid": "039badbb-b708-41d0-95fc-3ff9e6578dbb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017L7zmoCLtEHogJtLLrX7gz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 764,
+      "cache_read_input_tokens": 26412,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 764
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-19T14:56:28.518Z_
+
+<details><summary>↩ Tool result · `toolu_01Up7bP8zBAKKjx2JHbGCXuE`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/contrastive_trace_safety/artifacts/sf3_quadratic_residual\\n/root/autodl-tmp/contrastive_trace_safety/scripts/sf3_quadratic_residual.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e8ae03d2-e8dd-4a3b-b4b9-1d4bab2ce8a0",
+  "uuid": "3d782c3f-fcfc-4ead-b53b-1226aa060e00",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/sf3_quadratic_residual\\\\n/root/autodl-tmp/contrastive_trace_safety/scripts/sf3_quadratic_residual.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/contrastive_trace_safety/artifacts/sf3_quadratic_residual\\n/root/autodl-tmp/contrastive_trace_safety/scripts/sf3_quadratic_residual.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LvshXD9Rcebwj4pa7rfUdd`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "find /root/autodl-tmp/contrastive_trace_safety/ -name \"*quadratic*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e8ae03d2-e8dd-4a3b-b4b9-1d4bab2ce8a0",
+  "uuid": "9226f1ef-5729-410b-bde8-695dbea438dd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017L7zmoCLtEHogJtLLrX7gz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 764,
+      "cache_read_input_tokens": 26412,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 764
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-19T14:56:29.461Z_
+
+<details><summary>↩ Tool result · `toolu_01LvshXD9Rcebwj4pa7rfUdd`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/contrastive_trace_safety/artifacts/sf3_quadratic_residual\\n/root/autodl-tmp/contrastive_trace_safety/scripts/sf3_quadratic_residual.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e8ae03d2-e8dd-4a3b-b4b9-1d4bab2ce8a0",
+  "uuid": "00cd8935-8254-4f67-9f20-bd71e783d70c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/sf3_quadratic_residual\\\\n/root/autodl-tmp/contrastive_trace_safety/scripts/sf3_quadratic_residual.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/contrastive_trace_safety/artifacts/sf3_quadratic_residual\\n/root/autodl-tmp/contrastive_trace_safety/scripts/sf3_quadratic_residual.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Ajbo6HssVSMCz5sTLEa66T`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "find /root/autodl-tmp/contrastive_trace_safety/artifacts -type d",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e8ae03d2-e8dd-4a3b-b4b9-1d4bab2ce8a0",
+  "uuid": "c0e0ec44-2cb4-4ee9-8eff-7fb1e2de7740",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017L7zmoCLtEHogJtLLrX7gz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 764,
+      "cache_read_input_tokens": 26412,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 764
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-19T14:56:29.955Z_
+
+<details><summary>↩ Tool result · `toolu_01Ajbo6HssVSMCz5sTLEa66T`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/contrastive_trace_safety/artifacts\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/probes\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/diagnostics\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_005_trajguard\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_013_text_baseline\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_006_bootstrap\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_014_bocpd\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_015_fpr\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_qwq_32b\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_001b\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_r1_32b\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_001a\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r1_8b_balanced_recompute\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_003_cross_transfer\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/m001_layer_fix\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_c2_control\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r1_8b_bootstrap_hs_text\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/qwq_text_verify\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_007_window_ablation\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/acc_precision_bootstrap\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/text_window_ablation_r1_8b\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/paper_data\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/figures\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/figures/paper\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/qwq_paired_bootstrap_w5\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r1_32b_paired_bootstrap\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/metric_correlation\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_pathC_two_stage\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_ot7b_full_pipeline\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_ot7b\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/ot7b_layer16_verification\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_early_r1_8b\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r1_8b_layer_supplement\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/power_analysis\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/ot7b_gru_layer16\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/ot7b_layer16_bootstrap\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/ot7b_bocpd_cusum\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_mlp_probe\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_bocpd_ot7b_w3\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_repe_direction\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_layer_ablation\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_layer_ablation/cache\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_supplementary\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_mahalanobis_ot7b\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_selectivity_ci\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_qwq_layer60_bootstrap\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_layer63_bootstrap\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_bocpd_r1_32b\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_bocpd_r1_32b/compact_hs\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_bocpd_qwq\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_bocpd_qwq/compact_hs\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_ccs_probe\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_l63_bootstrap_v2\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_l63_pvalue_unified\\n/root/autodl-tmp/contrastive_trace_saf\\n\\n... [截断: 输出过长，省略 482 字符] ...\\n\\nexp_r5_pca384\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r5_auroc_sweep\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_ot7b_safe\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_qwq_32b_safe\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_r1_32b_safe\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r6_c_sweep\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r6_r1_8b_bootstrap_fix\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r7_k_ablation\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r7_multiseed_lr\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r7_k_ablation_optimal_w\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r7_cosine_volatility\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r7_qwq_position_baseline\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r8_exact_permutation\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r8_qwq_position_control\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r8_bge_bootstrap_ci\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r8_loo_layer_stability\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r9_qwq_residualized_significance\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r9_r1_8b_fpr_seed_pvalues\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r9_qwq_hs_vs_position\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r9_r1_32b_outlier_seed\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r9_joint_loo_cv\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r9_threshold_sensitivity\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r9_r1_32b_w1_threshold\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r11_position_residualization\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r11_r1_8b_w15_residualization\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r12_qwq_position_residualized\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r12_5seed_hb\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r12_r1_32b_position_residualized\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r13_power_analysis\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r13_ba_layer_modality\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a1_ba_layer_canonical\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a3_r1_32b_grid\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a2_per_fold_ba_layer\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a4_bca_fpr\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a5_residualized_control\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a1_ot7b_rerun\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a1_r1_32b_rerun\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/table3_qwq_60_20_20\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/table3_r1_8b_60_20_20\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a1_qwq_rerun\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/table3_qwq_l63_corrected\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a6_cp_perturbation\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a7_random_projection\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/qwq_l63_appendix\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a8_oracle_gap\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/e5_mistral_comparison\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/bge_large_60_20_20\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/iaa\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/e5_mistral_comparison_v2\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/nested_cv\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/split_half_replication\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/random_cp_control\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/random_cp_control/qwq_32b\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/sf3_quadratic_residual\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e8ae03d2-e8dd-4a3b-b4b9-1d4bab2ce8a0",
+  "uuid": "b23aabec-9701-4fdb-a609-ad3ed14f5abf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/contrastive_trace_safety/artifacts\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/probes\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/diagnostics\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_005_trajguard\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_013_text_baseline\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_006_bootstrap\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_014_bocpd\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_015_fpr\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_qwq_32b\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_001b\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_r1_32b\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_001a\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r1_8b_balanced_recompute\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_003_cross_transfer\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/m001_layer_fix\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_c2_control\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r1_8b_bootstrap_hs_text\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/qwq_text_verify\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_007_window_ablation\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/acc_precision_bootstrap\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/text_window_ablation_r1_8b\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/paper_data\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/figures\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/figures/paper\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/qwq_paired_bootstrap_w5\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r1_32b_paired_bootstrap\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/metric_correlation\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_pathC_two_stage\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_ot7b_full_pipeline\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_ot7b\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/ot7b_layer16_verification\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_early_r1_8b\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r1_8b_layer_supplement\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/power_analysis\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/ot7b_gru_layer16\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/ot7b_layer16_bootstrap\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/ot7b_bocpd_cusum\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_mlp_probe\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_bocpd_ot7b_w3\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_repe_direction\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_layer_ablation\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_layer_ablation/cache\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_supplementary\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_mahalanobis_ot7b\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_selectivity_ci\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_qwq_layer60_bootstrap\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_layer63_bootstrap\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_bocpd_r1_32b\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_bocpd_r1_32b/compact_hs\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_bocpd_qwq\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_bocpd_qwq/compact_hs\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_ccs_probe\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_l63_bootstrap_v2\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_l63_pvalue_unified\\\\n/root/autodl-tmp/contrastive_trace_saf\\\\n\\\\n... [截断: 输出过长，省略 482 字符] ...\\\\n\\\\nexp_r5_pca384\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r5_auroc_sweep\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_ot7b_safe\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_qwq_32b_safe\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_r1_32b_safe\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r6_c_sweep\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r6_r1_8b_bootstrap_fix\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r7_k_ablation\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r7_multiseed_lr\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r7_k_ablation_optimal_w\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r7_cosine_volatility\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r7_qwq_position_baseline\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r8_exact_permutation\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r8_qwq_position_control\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r8_bge_bootstrap_ci\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r8_loo_layer_stability\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r9_qwq_residualized_significance\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r9_r1_8b_fpr_seed_pvalues\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r9_qwq_hs_vs_position\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r9_r1_32b_outlier_seed\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r9_joint_loo_cv\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r9_threshold_sensitivity\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r9_r1_32b_w1_threshold\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r11_position_residualization\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r11_r1_8b_w15_residualization\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r12_qwq_position_residualized\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r12_5seed_hb\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r12_r1_32b_position_residualized\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r13_power_analysis\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r13_ba_layer_modality\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a1_ba_layer_canonical\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a3_r1_32b_grid\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a2_per_fold_ba_layer\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a4_bca_fpr\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a5_residualized_control\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a1_ot7b_rerun\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a1_r1_32b_rerun\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/table3_qwq_60_20_20\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/table3_r1_8b_60_20_20\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a1_qwq_rerun\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/table3_qwq_l63_corrected\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a6_cp_perturbation\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a7_random_projection\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/qwq_l63_appendix\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a8_oracle_gap\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/e5_mistral_comparison\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/bge_large_60_20_20\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/iaa\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/e5_mistral_comparison_v2\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/nested_cv\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/split_half_replication\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/random_cp_control\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/random_cp_control/qwq_32b\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/sf3_quadratic_residual\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/contrastive_trace_safety/artifacts\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/probes\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/diagnostics\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_005_trajguard\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_013_text_baseline\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_006_bootstrap\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_014_bocpd\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_015_fpr\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_qwq_32b\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_001b\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_r1_32b\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_001a\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r1_8b_balanced_recompute\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_003_cross_transfer\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/m001_layer_fix\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_c2_control\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r1_8b_bootstrap_hs_text\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/qwq_text_verify\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_007_window_ablation\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/acc_precision_bootstrap\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/text_window_ablation_r1_8b\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/paper_data\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/figures\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/figures/paper\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/qwq_paired_bootstrap_w5\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r1_32b_paired_bootstrap\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/metric_correlation\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_pathC_two_stage\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_ot7b_full_pipeline\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_ot7b\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/ot7b_layer16_verification\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_early_r1_8b\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r1_8b_layer_supplement\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/power_analysis\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/ot7b_gru_layer16\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/ot7b_layer16_bootstrap\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/ot7b_bocpd_cusum\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_mlp_probe\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_bocpd_ot7b_w3\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_repe_direction\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_layer_ablation\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_layer_ablation/cache\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_supplementary\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_mahalanobis_ot7b\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_selectivity_ci\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_qwq_layer60_bootstrap\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_layer63_bootstrap\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_bocpd_r1_32b\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_bocpd_r1_32b/compact_hs\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_bocpd_qwq\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_bocpd_qwq/compact_hs\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_ccs_probe\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_l63_bootstrap_v2\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_l63_pvalue_unified\\n/root/autodl-tmp/contrastive_trace_saf\\n\\n... [截断: 输出过长，省略 482 字符] ...\\n\\nexp_r5_pca384\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r5_auroc_sweep\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_ot7b_safe\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_qwq_32b_safe\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_r1_32b_safe\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r6_c_sweep\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r6_r1_8b_bootstrap_fix\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r7_k_ablation\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r7_multiseed_lr\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r7_k_ablation_optimal_w\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r7_cosine_volatility\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r7_qwq_position_baseline\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r8_exact_permutation\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r8_qwq_position_control\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r8_bge_bootstrap_ci\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r8_loo_layer_stability\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r9_qwq_residualized_significance\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r9_r1_8b_fpr_seed_pvalues\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r9_qwq_hs_vs_position\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r9_r1_32b_outlier_seed\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r9_joint_loo_cv\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r9_threshold_sensitivity\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r9_r1_32b_w1_threshold\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r11_position_residualization\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r11_r1_8b_w15_residualization\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r12_qwq_position_residualized\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r12_5seed_hb\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r12_r1_32b_position_residualized\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r13_power_analysis\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r13_ba_layer_modality\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a1_ba_layer_canonical\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a3_r1_32b_grid\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a2_per_fold_ba_layer\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a4_bca_fpr\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a5_residualized_control\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a1_ot7b_rerun\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a1_r1_32b_rerun\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/table3_qwq_60_20_20\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/table3_r1_8b_60_20_20\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a1_qwq_rerun\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/table3_qwq_l63_corrected\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a6_cp_perturbation\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a7_random_projection\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/qwq_l63_appendix\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a8_oracle_gap\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/e5_mistral_comparison\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/bge_large_60_20_20\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/iaa\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/e5_mistral_comparison_v2\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/nested_cv\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/split_half_replication\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/random_cp_control\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/random_cp_control/qwq_32b\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/sf3_quadratic_residual\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+Found the script at `/root/autodl-tmp/contrastive_trace_safety/scripts/sf3_quadratic_residual.py` and output dir at `artifacts/sf3_quadratic_residual/`. Let me read the script and existing output.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e8ae03d2-e8dd-4a3b-b4b9-1d4bab2ce8a0",
+  "uuid": "6c3b2c12-1c2d-45fa-bb46-02a56aaba17b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016QGV3i1ARFS9QVVERQN4Fb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4172,
+      "cache_read_input_tokens": 27176,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4172
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MbvEnDn9vK1rt1NxMiGnQ6`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/scripts/sf3_quadratic_residual.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e8ae03d2-e8dd-4a3b-b4b9-1d4bab2ce8a0",
+  "uuid": "b934fda2-167b-4b53-bb80-2c5cb47327f4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016QGV3i1ARFS9QVVERQN4Fb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4172,
+      "cache_read_input_tokens": 27176,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4172
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-19T14:56:35.206Z_
+
+<details><summary>↩ Tool result · `toolu_01MbvEnDn9vK1rt1NxMiGnQ6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"SF3: Nonlinear (Quadratic) Position Residualization.\\n\\nCompares linear [t/T] vs quadratic [t/T, (t/T)^2] residualization\\nof HS and Text features across 4 models. For R19 review revision.\\n\\\"\\\"\\\"\\n\\nimport os, sys, json, time, warnings, pickle\\nos.environ[\\\"TOKENIZERS_PARALLELISM\\\"] = \\\"false\\\"\\nwarnings.filterwarnings(\\\"ignore\\\")\\n\\nimport numpy as np\\nimport torch\\nfrom pathlib import Path\\nfrom sklearn.linear_model import LogisticRegression, LinearRegression\\nfrom sklearn.decomposition import PCA\\nfrom sklearn.metrics import balanced_accuracy_score\\n\\nPROJECT = Path(\\\"/root/autodl-tmp/contrastive_trace_safety\\\")\\nARTIFACTS = PROJECT / \\\"artifacts\\\"\\nOUT_DIR = ARTIFACTS / \\\"sf3_quadratic_residual\\\"\\nOUT_DIR.mkdir(parents=True, exist_ok=True)\\n\\nSEED = 42\\nN_PCA = 50\\nN_BOOTSTRAP = 10000\\n\\nMODEL_CONFIGS = {\\n    \\\"R1-8B\\\": {\\n        \\\"hs_dir\\\": ARTIFACTS / \\\"hidden_states\\\",\\n        \\\"layer_idx\\\": 2,\\n        \\\"hidden_dim\\\": 4096,\\n        \\\"window\\\": 3,\\n        \\\"text_emb_pkl\\\": ARTIFACTS / \\\"r12_5seed_hb\\\" / \\\"r1_8b_text_emb.pkl\\\",\\n    },\\n    \\\"OT-7B\\\": {\\n        \\\"hs_dir\\\": ARTIFACTS / \\\"hidden_states_ot7b\\\",\\n        \\\"layer_idx\\\": 16,\\n        \\\"hidden_dim\\\": 3584,\\n        \\\"window\\\": 3,\\n        \\\"text_emb_pkl\\\": ARTIFACTS / \\\"ot7b_text_embeddings.pkl\\\",\\n    },\\n    \\\"R1-32B\\\": {\\n        \\\"hs_dir\\\": ARTIFACTS / \\\"hidden_states_r1_32b\\\",\\n        \\\"layer_idx\\\": 63,\\n        \\\"hidden_dim\\\": 5120,\\n        \\\"window\\\": 1,\\n        \\\"text_emb_pkl\\\": ARTIFACTS / \\\"r12_5seed_hb\\\" / \\\"r1_32b_text_emb.pkl\\\",\\n    },\\n    \\\"QwQ-32B\\\": {\\n        \\\"hs_dir\\\": ARTIFACTS / \\\"hidden_states_qwq_32b\\\",\\n        \\\"layer_idx\\\": 63,\\n        \\\"hidden_dim\\\": 5120,\\n        \\\"window\\\": 5,\\n        \\\"text_emb_pkl\\\": ARTIFACTS / \\\"r12_5seed_hb\\\" / \\\"qwq_text_emb.pkl\\\",\\n    },\\n}\\n\\n\\ndef load_traces(hs_dir):\\n    traces = []\\n    for pt_file in sorted(hs_dir.glob(\\\"*.pt\\\")):\\n        data = torch.load(pt_file, map_location=\\\"cpu\\\", weights_only=False)\\n        if data.get(\\\"step_labels\\\") is None or data.get(\\\"commitment_point\\\") is None:\\n            continue\\n        traces.append(data)\\n    return traces\\n\\n\\ndef get_labels(t):\\n    sl = t[\\\"step_labels\\\"]\\n    return sl.tolist() if isinstance(sl, torch.Tensor) else list(sl)\\n\\n\\ndef split_traces(traces, seed=SEED):\\n    rng = np.random.default_rng(seed)\\n    idx = rng.permutation(len(traces))\\n    n_tr = int(len(traces) * 0.6)\\n    n_va = int(len(traces) * 0.2)\\n    return (\\n        [traces[i] for i in idx[:n_tr]],\\n        [traces[i] for i in idx[n_tr:n_tr + n_va]],\\n        [traces[i] for i in idx[n_tr + n_va:]],\\n    )\\n\\n\\ndef apply_window(feats, window):\\n    if window == 1:\\n        return feats\\n    n, dim = feats.shape\\n    half_w = window // 2\\n    padded = np.zeros((n + window - 1, dim), dtype=np.float32)\\n    padded[half_w:half_w + n] = feats\\n    return np.array([padded[i:i + window].flatten() for i in range(n)])\\n\\n\\ndef residualize_linear(features):\\n    T = len(features)\\n    t_norm = np.arange(T, dtype=np.float64) / T\\n    X_reg = t_norm.reshape(-1, 1)\\n    reg = LinearRegression().fit(X_reg, features)\\n    return (features - reg.predict(X_reg)).astype(np.float32)\\n\\n\\ndef residualize_quadratic(features):\\n    T = len(features)\\n    t_norm = np.arange(T, dtype=np.float64) / T\\n    X_reg = np.column_stack([t_norm, t_norm ** 2])\\n    reg = LinearRegression().fit(X_reg, features)\\n    return (features - reg.predict(X_reg)).astype(np.float32)\\n\\n\\ndef extract_hs(trace, layer_idx):\\n    hs = trace[\\\"hidden_states\\\"][:, layer_idx, :].float().numpy()\\n    labels = np.array(get_labels(trace))\\n    n = min(hs.shape[0], len(labels))\\n    return hs[:n].astype(np.float32), labels[:n]\\n\\n\\ndef per_trace_ba(preds, labels):\\n    preds, labels = np.asarray(preds), np.asarray(labels)\\n    tp = ((preds == 1) & (labels == 1)).sum()\\n    fp = ((preds == 1) & (labels == 0)).sum()\\n    tn = ((preds == 0) & (labels == 0)).sum()\\n    fn = ((preds == 0) & (labels == 1)).sum()\\n    tpr = tp / (tp + fn) if (tp + fn) > 0 else 0.0\\n    tnr = tn / (tn + fp) if (tn + fp) > 0 else 0.0\\n    return (tpr + tnr) / 2\\n\\n\\ndef build_hs_features(traces, layer_idx, window, resid_fn):\\n    X_list, y_list = [], []\\n    for\\n\\n... [截断: 输出过长，省略 5141 字符] ...\\n\\n    t_start = time.time()\\n\\n    all_results = {}\\n\\n    for model_name, cfg in MODEL_CONFIGS.items():\\n        print(f\\\"\\\\nLoading text embeddings for {model_name}...\\\")\\n        text_emb_dict = pickle.load(open(cfg[\\\"text_emb_pkl\\\"], \\\"rb\\\"))\\n        print(f\\\"  {len(text_emb_dict)} text traces loaded\\\")\\n\\n        r = run_model(model_name, cfg, text_emb_dict)\\n        all_results[model_name] = r\\n\\n    # Holm-Bonferroni for linear\\n    linear_pvals = {m: r[\\\"linear\\\"][\\\"p_value\\\"] for m, r in all_results.items()}\\n    hb_linear = holm_bonferroni(linear_pvals)\\n    for m in all_results:\\n        all_results[m][\\\"linear\\\"][\\\"hb_reject\\\"] = hb_linear[m][\\\"reject\\\"]\\n        all_results[m][\\\"linear\\\"][\\\"hb_adjusted_p\\\"] = hb_linear[m][\\\"adjusted_p\\\"]\\n\\n    # Holm-Bonferroni for quadratic\\n    quad_pvals = {m: r[\\\"quadratic\\\"][\\\"p_value\\\"] for m, r in all_results.items()}\\n    hb_quad = holm_bonferroni(quad_pvals)\\n    for m in all_results:\\n        all_results[m][\\\"quadratic\\\"][\\\"hb_reject\\\"] = hb_quad[m][\\\"reject\\\"]\\n        all_results[m][\\\"quadratic\\\"][\\\"hb_adjusted_p\\\"] = hb_quad[m][\\\"adjusted_p\\\"]\\n\\n    elapsed = time.time() - t_start\\n\\n    # Save results.json\\n    out = {\\n        \\\"experiment\\\": \\\"sf3_quadratic_residual\\\",\\n        \\\"seed\\\": SEED,\\n        \\\"n_pca\\\": N_PCA,\\n        \\\"n_bootstrap\\\": N_BOOTSTRAP,\\n        \\\"lr_params\\\": {\\\"C\\\": 1.0, \\\"class_weight\\\": \\\"balanced\\\", \\\"max_iter\\\": 2000},\\n        \\\"split\\\": \\\"60/20/20 trace-level\\\",\\n        \\\"models\\\": all_results,\\n        \\\"holm_bonferroni_linear\\\": hb_linear,\\n        \\\"holm_bonferroni_quadratic\\\": hb_quad,\\n        \\\"elapsed_seconds\\\": round(elapsed, 1),\\n    }\\n    with open(OUT_DIR / \\\"results.json\\\", \\\"w\\\") as f:\\n        json.dump(out, f, indent=2)\\n\\n    # Save comparison_table.csv\\n    import csv\\n    with open(OUT_DIR / \\\"comparison_table.csv\\\", \\\"w\\\", newline=\\\"\\\") as f:\\n        w = csv.writer(f)\\n        w.writerow([\\\"Model\\\", \\\"Method\\\", \\\"HS_BA_mean\\\", \\\"Text_BA_mean\\\", \\\"HS_BA_pooled\\\", \\\"Text_BA_pooled\\\",\\n                    \\\"Gap_pp\\\", \\\"p_value\\\", \\\"HB_adjusted_p\\\", \\\"HB_reject\\\"])\\n        for m in MODEL_CONFIGS:\\n            for method in [\\\"linear\\\", \\\"quadratic\\\"]:\\n                r = all_results[m][method]\\n                w.writerow([\\n                    m, method,\\n                    r[\\\"hs_ba_mean_per_trace\\\"], r[\\\"text_ba_mean_per_trace\\\"],\\n                    r[\\\"hs_ba_pooled\\\"], r[\\\"text_ba_pooled\\\"],\\n                    r[\\\"ba_gap_pp\\\"], r[\\\"p_value\\\"],\\n                    r[\\\"hb_adjusted_p\\\"], r[\\\"hb_reject\\\"],\\n                ])\\n\\n    # Save report.txt\\n    lines = [\\n        \\\"SF3: Nonlinear (Quadratic) Position Residualization\\\",\\n        \\\"=\\\" * 55,\\n        f\\\"Seed: {SEED}, PCA: {N_PCA}, Bootstrap: {N_BOOTSTRAP}\\\",\\n        f\\\"Probe: LogReg(C=1.0, balanced, max_iter=2000)\\\",\\n        f\\\"Split: 60/20/20 trace-level, train+val for training\\\",\\n        \\\"\\\",\\n        \\\"Per-trace mean balanced accuracy (gap = mean per-trace difference):\\\",\\n        \\\"\\\",\\n        f\\\"{'Model':<10} {'Method':<12} {'HS BA':>7} {'Txt BA':>7} {'Gap':>7} {'p':>8} {'HB p':>8} {'Pass':>5}\\\",\\n        \\\"-\\\" * 67,\\n    ]\\n    for m in MODEL_CONFIGS:\\n        for method in [\\\"linear\\\", \\\"quadratic\\\"]:\\n            r = all_results[m][method]\\n            lines.append(\\n                f\\\"{m:<10} {method:<12} {r['hs_ba_mean_per_trace']:>7.4f} {r['text_ba_mean_per_trace']:>7.4f} \\\"\\n                f\\\"{r['ba_gap_pp']:>6.1f}pp {r['p_value']:>8.4f} {r['hb_adjusted_p']:>8.4f} \\\"\\n                f\\\"{'Y' if r['hb_reject'] else 'N':>5}\\\"\\n            )\\n        lines.append(\\\"\\\")\\n\\n    lines.append(\\\"\\\")\\n    lines.append(\\\"Key: HS/Txt BA = mean of per-trace balanced accuracies\\\")\\n    lines.append(\\\"     Gap = mean(HS_BA_i - Txt_BA_i), positive = HS advantage\\\")\\n    lines.append(\\\"     p = paired permutation test (10K, one-sided, H0: HS <= Text)\\\")\\n    lines.append(\\\"     HB p = Holm-Bonferroni adjusted (across 4 models, alpha=0.05)\\\")\\n    lines.append(f\\\"\\\\nElapsed: {elapsed:.0f}s\\\")\\n\\n    with open(OUT_DIR / \\\"report.txt\\\", \\\"w\\\") as f:\\n        f.write(\\\"\\\\n\\\".join(lines))\\n\\n    print(f\\\"\\\\n{'='*65}\\\")\\n    print(\\\"\\\\n\\\".join(lines))\\n    print(f\\\"\\\\nSaved to {OUT_DIR}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e8ae03d2-e8dd-4a3b-b4b9-1d4bab2ce8a0",
+  "uuid": "e8c6079a-3418-48e8-9a8d-20532a2f6593",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"SF3: Nonlinear (Quadratic) Position Residualization.\\\\n\\\\nCompares linear [t/T] vs quadratic [t/T, (t/T)^2] residualization\\\\nof HS and Text features across 4 models. For R19 review revision.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport os, sys, json, time, warnings, pickle\\\\nos.environ[\\\\\\\"TOKENIZERS_PARALLELISM\\\\\\\"] = \\\\\\\"false\\\\\\\"\\\\nwarnings.filterwarnings(\\\\\\\"ignore\\\\\\\")\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom pathlib import Path\\\\nfrom sklearn.linear_model import LogisticRegression, LinearRegression\\\\nfrom sklearn.decomposition import PCA\\\\nfrom sklearn.metrics import balanced_accuracy_score\\\\n\\\\nPROJECT = Path(\\\\\\\"/root/autodl-tmp/contrastive_trace_safety\\\\\\\")\\\\nARTIFACTS = PROJECT / \\\\\\\"artifacts\\\\\\\"\\\\nOUT_DIR = ARTIFACTS / \\\\\\\"sf3_quadratic_residual\\\\\\\"\\\\nOUT_DIR.mkdir(parents=True, exist_ok=True)\\\\n\\\\nSEED = 42\\\\nN_PCA = 50\\\\nN_BOOTSTRAP = 10000\\\\n\\\\nMODEL_CONFIGS = {\\\\n    \\\\\\\"R1-8B\\\\\\\": {\\\\n        \\\\\\\"hs_dir\\\\\\\": ARTIFACTS / \\\\\\\"hidden_states\\\\\\\",\\\\n        \\\\\\\"layer_idx\\\\\\\": 2,\\\\n        \\\\\\\"hidden_dim\\\\\\\": 4096,\\\\n        \\\\\\\"window\\\\\\\": 3,\\\\n        \\\\\\\"text_emb_pkl\\\\\\\": ARTIFACTS / \\\\\\\"r12_5seed_hb\\\\\\\" / \\\\\\\"r1_8b_text_emb.pkl\\\\\\\",\\\\n    },\\\\n    \\\\\\\"OT-7B\\\\\\\": {\\\\n        \\\\\\\"hs_dir\\\\\\\": ARTIFACTS / \\\\\\\"hidden_states_ot7b\\\\\\\",\\\\n        \\\\\\\"layer_idx\\\\\\\": 16,\\\\n        \\\\\\\"hidden_dim\\\\\\\": 3584,\\\\n        \\\\\\\"window\\\\\\\": 3,\\\\n        \\\\\\\"text_emb_pkl\\\\\\\": ARTIFACTS / \\\\\\\"ot7b_text_embeddings.pkl\\\\\\\",\\\\n    },\\\\n    \\\\\\\"R1-32B\\\\\\\": {\\\\n        \\\\\\\"hs_dir\\\\\\\": ARTIFACTS / \\\\\\\"hidden_states_r1_32b\\\\\\\",\\\\n        \\\\\\\"layer_idx\\\\\\\": 63,\\\\n        \\\\\\\"hidden_dim\\\\\\\": 5120,\\\\n        \\\\\\\"window\\\\\\\": 1,\\\\n        \\\\\\\"text_emb_pkl\\\\\\\": ARTIFACTS / \\\\\\\"r12_5seed_hb\\\\\\\" / \\\\\\\"r1_32b_text_emb.pkl\\\\\\\",\\\\n    },\\\\n    \\\\\\\"QwQ-32B\\\\\\\": {\\\\n        \\\\\\\"hs_dir\\\\\\\": ARTIFACTS / \\\\\\\"hidden_states_qwq_32b\\\\\\\",\\\\n        \\\\\\\"layer_idx\\\\\\\": 63,\\\\n        \\\\\\\"hidden_dim\\\\\\\": 5120,\\\\n        \\\\\\\"window\\\\\\\": 5,\\\\n        \\\\\\\"text_emb_pkl\\\\\\\": ARTIFACTS / \\\\\\\"r12_5seed_hb\\\\\\\" / \\\\\\\"qwq_text_emb.pkl\\\\\\\",\\\\n    },\\\\n}\\\\n\\\\n\\\\ndef load_traces(hs_dir):\\\\n    traces = []\\\\n    for pt_file in sorted(hs_dir.glob(\\\\\\\"*.pt\\\\\\\")):\\\\n        data = torch.load(pt_file, map_location=\\\\\\\"cpu\\\\\\\", weights_only=False)\\\\n        if data.get(\\\\\\\"step_labels\\\\\\\") is None or data.get(\\\\\\\"commitment_point\\\\\\\") is None:\\\\n            continue\\\\n        traces.append(data)\\\\n    return traces\\\\n\\\\n\\\\ndef get_labels(t):\\\\n    sl = t[\\\\\\\"step_labels\\\\\\\"]\\\\n    return sl.tolist() if isinstance(sl, torch.Tensor) else list(sl)\\\\n\\\\n\\\\ndef split_traces(traces, seed=SEED):\\\\n    rng = np.random.default_rng(seed)\\\\n    idx = rng.permutation(len(traces))\\\\n    n_tr = int(len(traces) * 0.6)\\\\n    n_va = int(len(traces) * 0.2)\\\\n    return (\\\\n        [traces[i] for i in idx[:n_tr]],\\\\n        [traces[i] for i in idx[n_tr:n_tr + n_va]],\\\\n        [traces[i] for i in idx[n_tr + n_va:]],\\\\n    )\\\\n\\\\n\\\\ndef apply_window(feats, window):\\\\n    if window == 1:\\\\n        return feats\\\\n    n, dim = feats.shape\\\\n    half_w = window // 2\\\\n    padded = np.zeros((n + window - 1, dim), dtype=np.float32)\\\\n    padded[half_w:half_w + n] = feats\\\\n    return np.array([padded[i:i + window].flatten() for i in range(n)])\\\\n\\\\n\\\\ndef residualize_linear(features):\\\\n    T = len(features)\\\\n    t_norm = np.arange(T, dtype=np.float64) / T\\\\n    X_reg = t_norm.reshape(-1, 1)\\\\n    reg = LinearRegression().fit(X_reg, features)\\\\n    return (features - reg.predict(X_reg)).astype(np.float32)\\\\n\\\\n\\\\ndef residualize_quadratic(features):\\\\n    T = len(features)\\\\n    t_norm = np.arange(T, dtype=np.float64) / T\\\\n    X_reg = np.column_stack([t_norm, t_norm ** 2])\\\\n    reg = LinearRegression().fit(X_reg, features)\\\\n    return (features - reg.predict(X_reg)).astype(np.float32)\\\\n\\\\n\\\\ndef extract_hs(trace, layer_idx):\\\\n    hs = trace[\\\\\\\"hidden_states\\\\\\\"][:, layer_idx, :].float().numpy()\\\\n    labels = np.array(get_labels(trace))\\\\n    n = min(hs.shape[0], len(labels))\\\\n    return hs[:n].astype(np.float32), labels[:n]\\\\n\\\\n\\\\ndef per_trace_ba(preds, labels):\\\\n    preds, labels = np.asarray(preds), np.asarray(labels)\\\\n    tp = ((preds == 1) & (labels == 1)).sum()\\\\n    fp = ((preds == 1) & (labels == 0)).sum()\\\\n    tn = ((preds == 0) & (labels == 0)).sum()\\\\n    fn = ((preds == 0) & (labels == 1)).sum()\\\\n    tpr = tp / (tp + fn) if (tp + fn) > 0 else 0.0\\\\n    tnr = tn / (tn + fp) if (tn + fp) > 0 else 0.0\\\\n    return (tpr + tnr) / 2\\\\n\\\\n\\\\ndef build_hs_features(traces, layer_idx, window, resid_fn):\\\\n    X_list, y_list = [], []\\\\n    for\\\\n\\\\n... [截断: 输出过长，省略 5141 字符] ...\\\\n\\\\n    t_start = time.time()\\\\n\\\\n    all_results = {}\\\\n\\\\n    for model_name, cfg in MODEL_CONFIGS.items():\\\\n        print(f\\\\\\\"\\\\\\\\nLoading text embeddings for {model_name}...\\\\\\\")\\\\n        text_emb_dict = pickle.load(open(cfg[\\\\\\\"text_emb_pkl\\\\\\\"], \\\\\\\"rb\\\\\\\"))\\\\n        print(f\\\\\\\"  {len(text_emb_dict)} text traces loaded\\\\\\\")\\\\n\\\\n        r = run_model(model_name, cfg, text_emb_dict)\\\\n        all_results[model_name] = r\\\\n\\\\n    # Holm-Bonferroni for linear\\\\n    linear_pvals = {m: r[\\\\\\\"linear\\\\\\\"][\\\\\\\"p_value\\\\\\\"] for m, r in all_results.items()}\\\\n    hb_linear = holm_bonferroni(linear_pvals)\\\\n    for m in all_results:\\\\n        all_results[m][\\\\\\\"linear\\\\\\\"][\\\\\\\"hb_reject\\\\\\\"] = hb_linear[m][\\\\\\\"reject\\\\\\\"]\\\\n        all_results[m][\\\\\\\"linear\\\\\\\"][\\\\\\\"hb_adjusted_p\\\\\\\"] = hb_linear[m][\\\\\\\"adjusted_p\\\\\\\"]\\\\n\\\\n    # Holm-Bonferroni for quadratic\\\\n    quad_pvals = {m: r[\\\\\\\"quadratic\\\\\\\"][\\\\\\\"p_value\\\\\\\"] for m, r in all_results.items()}\\\\n    hb_quad = holm_bonferroni(quad_pvals)\\\\n    for m in all_results:\\\\n        all_results[m][\\\\\\\"quadratic\\\\\\\"][\\\\\\\"hb_reject\\\\\\\"] = hb_quad[m][\\\\\\\"reject\\\\\\\"]\\\\n        all_results[m][\\\\\\\"quadratic\\\\\\\"][\\\\\\\"hb_adjusted_p\\\\\\\"] = hb_quad[m][\\\\\\\"adjusted_p\\\\\\\"]\\\\n\\\\n    elapsed = time.time() - t_start\\\\n\\\\n    # Save results.json\\\\n    out = {\\\\n        \\\\\\\"experiment\\\\\\\": \\\\\\\"sf3_quadratic_residual\\\\\\\",\\\\n        \\\\\\\"seed\\\\\\\": SEED,\\\\n        \\\\\\\"n_pca\\\\\\\": N_PCA,\\\\n        \\\\\\\"n_bootstrap\\\\\\\": N_BOOTSTRAP,\\\\n        \\\\\\\"lr_params\\\\\\\": {\\\\\\\"C\\\\\\\": 1.0, \\\\\\\"class_weight\\\\\\\": \\\\\\\"balanced\\\\\\\", \\\\\\\"max_iter\\\\\\\": 2000},\\\\n        \\\\\\\"split\\\\\\\": \\\\\\\"60/20/20 trace-level\\\\\\\",\\\\n        \\\\\\\"models\\\\\\\": all_results,\\\\n        \\\\\\\"holm_bonferroni_linear\\\\\\\": hb_linear,\\\\n        \\\\\\\"holm_bonferroni_quadratic\\\\\\\": hb_quad,\\\\n        \\\\\\\"elapsed_seconds\\\\\\\": round(elapsed, 1),\\\\n    }\\\\n    with open(OUT_DIR / \\\\\\\"results.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(out, f, indent=2)\\\\n\\\\n    # Save comparison_table.csv\\\\n    import csv\\\\n    with open(OUT_DIR / \\\\\\\"comparison_table.csv\\\\\\\", \\\\\\\"w\\\\\\\", newline=\\\\\\\"\\\\\\\") as f:\\\\n        w = csv.writer(f)\\\\n        w.writerow([\\\\\\\"Model\\\\\\\", \\\\\\\"Method\\\\\\\", \\\\\\\"HS_BA_mean\\\\\\\", \\\\\\\"Text_BA_mean\\\\\\\", \\\\\\\"HS_BA_pooled\\\\\\\", \\\\\\\"Text_BA_pooled\\\\\\\",\\\\n                    \\\\\\\"Gap_pp\\\\\\\", \\\\\\\"p_value\\\\\\\", \\\\\\\"HB_adjusted_p\\\\\\\", \\\\\\\"HB_reject\\\\\\\"])\\\\n        for m in MODEL_CONFIGS:\\\\n            for method in [\\\\\\\"linear\\\\\\\", \\\\\\\"quadratic\\\\\\\"]:\\\\n                r = all_results[m][method]\\\\n                w.writerow([\\\\n                    m, method,\\\\n                    r[\\\\\\\"hs_ba_mean_per_trace\\\\\\\"], r[\\\\\\\"text_ba_mean_per_trace\\\\\\\"],\\\\n                    r[\\\\\\\"hs_ba_pooled\\\\\\\"], r[\\\\\\\"text_ba_pooled\\\\\\\"],\\\\n                    r[\\\\\\\"ba_gap_pp\\\\\\\"], r[\\\\\\\"p_value\\\\\\\"],\\\\n                    r[\\\\\\\"hb_adjusted_p\\\\\\\"], r[\\\\\\\"hb_reject\\\\\\\"],\\\\n                ])\\\\n\\\\n    # Save report.txt\\\\n    lines = [\\\\n        \\\\\\\"SF3: Nonlinear (Quadratic) Position Residualization\\\\\\\",\\\\n        \\\\\\\"=\\\\\\\" * 55,\\\\n        f\\\\\\\"Seed: {SEED}, PCA: {N_PCA}, Bootstrap: {N_BOOTSTRAP}\\\\\\\",\\\\n        f\\\\\\\"Probe: LogReg(C=1.0, balanced, max_iter=2000)\\\\\\\",\\\\n        f\\\\\\\"Split: 60/20/20 trace-level, train+val for training\\\\\\\",\\\\n        \\\\\\\"\\\\\\\",\\\\n        \\\\\\\"Per-trace mean balanced accuracy (gap = mean per-trace difference):\\\\\\\",\\\\n        \\\\\\\"\\\\\\\",\\\\n        f\\\\\\\"{'Model':<10} {'Method':<12} {'HS BA':>7} {'Txt BA':>7} {'Gap':>7} {'p':>8} {'HB p':>8} {'Pass':>5}\\\\\\\",\\\\n        \\\\\\\"-\\\\\\\" * 67,\\\\n    ]\\\\n    for m in MODEL_CONFIGS:\\\\n        for method in [\\\\\\\"linear\\\\\\\", \\\\\\\"quadratic\\\\\\\"]:\\\\n            r = all_results[m][method]\\\\n            lines.append(\\\\n                f\\\\\\\"{m:<10} {method:<12} {r['hs_ba_mean_per_trace']:>7.4f} {r['text_ba_mean_per_trace']:>7.4f} \\\\\\\"\\\\n                f\\\\\\\"{r['ba_gap_pp']:>6.1f}pp {r['p_value']:>8.4f} {r['hb_adjusted_p']:>8.4f} \\\\\\\"\\\\n                f\\\\\\\"{'Y' if r['hb_reject'] else 'N':>5}\\\\\\\"\\\\n            )\\\\n        lines.append(\\\\\\\"\\\\\\\")\\\\n\\\\n    lines.append(\\\\\\\"\\\\\\\")\\\\n    lines.append(\\\\\\\"Key: HS/Txt BA = mean of per-trace balanced accuracies\\\\\\\")\\\\n    lines.append(\\\\\\\"     Gap = mean(HS_BA_i - Txt_BA_i), positive = HS advantage\\\\\\\")\\\\n    lines.append(\\\\\\\"     p = paired permutation test (10K, one-sided, H0: HS <= Text)\\\\\\\")\\\\n    lines.append(\\\\\\\"     HB p = Holm-Bonferroni adjusted (across 4 models, alpha=0.05)\\\\\\\")\\\\n    lines.append(f\\\\\\\"\\\\\\\\nElapsed: {elapsed:.0f}s\\\\\\\")\\\\n\\\\n    with open(OUT_DIR / \\\\\\\"report.txt\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n        f.write(\\\\\\\"\\\\\\\\n\\\\\\\".join(lines))\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*65}\\\\\\\")\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\".join(lines))\\\\n    print(f\\\\\\\"\\\\\\\\nSaved to {OUT_DIR}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"SF3: Nonlinear (Quadratic) Position Residualization.\\n\\nCompares linear [t/T] vs quadratic [t/T, (t/T)^2] residualization\\nof HS and Text features across 4 models. For R19 review revision.\\n\\\"\\\"\\\"\\n\\nimport os, sys, json, time, warnings, pickle\\nos.environ[\\\"TOKENIZERS_PARALLELISM\\\"] = \\\"false\\\"\\nwarnings.filterwarnings(\\\"ignore\\\")\\n\\nimport numpy as np\\nimport torch\\nfrom pathlib import Path\\nfrom sklearn.linear_model import LogisticRegression, LinearRegression\\nfrom sklearn.decomposition import PCA\\nfrom sklearn.metrics import balanced_accuracy_score\\n\\nPROJECT = Path(\\\"/root/autodl-tmp/contrastive_trace_safety\\\")\\nARTIFACTS = PROJECT / \\\"artifacts\\\"\\nOUT_DIR = ARTIFACTS / \\\"sf3_quadratic_residual\\\"\\nOUT_DIR.mkdir(parents=True, exist_ok=True)\\n\\nSEED = 42\\nN_PCA = 50\\nN_BOOTSTRAP = 10000\\n\\nMODEL_CONFIGS = {\\n    \\\"R1-8B\\\": {\\n        \\\"hs_dir\\\": ARTIFACTS / \\\"hidden_states\\\",\\n        \\\"layer_idx\\\": 2,\\n        \\\"hidden_dim\\\": 4096,\\n        \\\"window\\\": 3,\\n        \\\"text_emb_pkl\\\": ARTIFACTS / \\\"r12_5seed_hb\\\" / \\\"r1_8b_text_emb.pkl\\\",\\n    },\\n    \\\"OT-7B\\\": {\\n        \\\"hs_dir\\\": ARTIFACTS / \\\"hidden_states_ot7b\\\",\\n        \\\"layer_idx\\\": 16,\\n        \\\"hidden_dim\\\": 3584,\\n        \\\"window\\\": 3,\\n        \\\"text_emb_pkl\\\": ARTIFACTS / \\\"ot7b_text_embeddings.pkl\\\",\\n    },\\n    \\\"R1-32B\\\": {\\n        \\\"hs_dir\\\": ARTIFACTS / \\\"hidden_states_r1_32b\\\",\\n        \\\"layer_idx\\\": 63,\\n        \\\"hidden_dim\\\": 5120,\\n        \\\"window\\\": 1,\\n        \\\"text_emb_pkl\\\": ARTIFACTS / \\\"r12_5seed_hb\\\" / \\\"r1_32b_text_emb.pkl\\\",\\n    },\\n    \\\"QwQ-32B\\\": {\\n        \\\"hs_dir\\\": ARTIFACTS / \\\"hidden_states_qwq_32b\\\",\\n        \\\"layer_idx\\\": 63,\\n        \\\"hidden_dim\\\": 5120,\\n        \\\"window\\\": 5,\\n        \\\"text_emb_pkl\\\": ARTIFACTS / \\\"r12_5seed_hb\\\" / \\\"qwq_text_emb.pkl\\\",\\n    },\\n}\\n\\n\\ndef load_traces(hs_dir):\\n    traces = []\\n    for pt_file in sorted(hs_dir.glob(\\\"*.pt\\\")):\\n        data = torch.load(pt_file, map_location=\\\"cpu\\\", weights_only=False)\\n        if data.get(\\\"step_labels\\\") is None or data.get(\\\"commitment_point\\\") is None:\\n            continue\\n        traces.append(data)\\n    return traces\\n\\n\\ndef get_labels(t):\\n    sl = t[\\\"step_labels\\\"]\\n    return sl.tolist() if isinstance(sl, torch.Tensor) else list(sl)\\n\\n\\ndef split_traces(traces, seed=SEED):\\n    rng = np.random.default_rng(seed)\\n    idx = rng.permutation(len(traces))\\n    n_tr = int(len(traces) * 0.6)\\n    n_va = int(len(traces) * 0.2)\\n    return (\\n        [traces[i] for i in idx[:n_tr]],\\n        [traces[i] for i in idx[n_tr:n_tr + n_va]],\\n        [traces[i] for i in idx[n_tr + n_va:]],\\n    )\\n\\n\\ndef apply_window(feats, window):\\n    if window == 1:\\n        return feats\\n    n, dim = feats.shape\\n    half_w = window // 2\\n    padded = np.zeros((n + window - 1, dim), dtype=np.float32)\\n    padded[half_w:half_w + n] = feats\\n    return np.array([padded[i:i + window].flatten() for i in range(n)])\\n\\n\\ndef residualize_linear(features):\\n    T = len(features)\\n    t_norm = np.arange(T, dtype=np.float64) / T\\n    X_reg = t_norm.reshape(-1, 1)\\n    reg = LinearRegression().fit(X_reg, features)\\n    return (features - reg.predict(X_reg)).astype(np.float32)\\n\\n\\ndef residualize_quadratic(features):\\n    T = len(features)\\n    t_norm = np.arange(T, dtype=np.float64) / T\\n    X_reg = np.column_stack([t_norm, t_norm ** 2])\\n    reg = LinearRegression().fit(X_reg, features)\\n    return (features - reg.predict(X_reg)).astype(np.float32)\\n\\n\\ndef extract_hs(trace, layer_idx):\\n    hs = trace[\\\"hidden_states\\\"][:, layer_idx, :].float().numpy()\\n    labels = np.array(get_labels(trace))\\n    n = min(hs.shape[0], len(labels))\\n    return hs[:n].astype(np.float32), labels[:n]\\n\\n\\ndef per_trace_ba(preds, labels):\\n    preds, labels = np.asarray(preds), np.asarray(labels)\\n    tp = ((preds == 1) & (labels == 1)).sum()\\n    fp = ((preds == 1) & (labels == 0)).sum()\\n    tn = ((preds == 0) & (labels == 0)).sum()\\n    fn = ((preds == 0) & (labels == 1)).sum()\\n    tpr = tp / (tp + fn) if (tp + fn) > 0 else 0.0\\n    tnr = tn / (tn + fp) if (tn + fp) > 0 else 0.0\\n    return (tpr + tnr) / 2\\n\\n\\ndef build_hs_features(traces, layer_idx, window, resid_fn):\\n    X_list, y_list = [], []\\n    for\\n\\n... [截断: 输出过长，省略 5141 字符] ...\\n\\n    t_start = time.time()\\n\\n    all_results = {}\\n\\n    for model_name, cfg in MODEL_CONFIGS.items():\\n        print(f\\\"\\\\nLoading text embeddings for {model_name}...\\\")\\n        text_emb_dict = pickle.load(open(cfg[\\\"text_emb_pkl\\\"], \\\"rb\\\"))\\n        print(f\\\"  {len(text_emb_dict)} text traces loaded\\\")\\n\\n        r = run_model(model_name, cfg, text_emb_dict)\\n        all_results[model_name] = r\\n\\n    # Holm-Bonferroni for linear\\n    linear_pvals = {m: r[\\\"linear\\\"][\\\"p_value\\\"] for m, r in all_results.items()}\\n    hb_linear = holm_bonferroni(linear_pvals)\\n    for m in all_results:\\n        all_results[m][\\\"linear\\\"][\\\"hb_reject\\\"] = hb_linear[m][\\\"reject\\\"]\\n        all_results[m][\\\"linear\\\"][\\\"hb_adjusted_p\\\"] = hb_linear[m][\\\"adjusted_p\\\"]\\n\\n    # Holm-Bonferroni for quadratic\\n    quad_pvals = {m: r[\\\"quadratic\\\"][\\\"p_value\\\"] for m, r in all_results.items()}\\n    hb_quad = holm_bonferroni(quad_pvals)\\n    for m in all_results:\\n        all_results[m][\\\"quadratic\\\"][\\\"hb_reject\\\"] = hb_quad[m][\\\"reject\\\"]\\n        all_results[m][\\\"quadratic\\\"][\\\"hb_adjusted_p\\\"] = hb_quad[m][\\\"adjusted_p\\\"]\\n\\n    elapsed = time.time() - t_start\\n\\n    # Save results.json\\n    out = {\\n        \\\"experiment\\\": \\\"sf3_quadratic_residual\\\",\\n        \\\"seed\\\": SEED,\\n        \\\"n_pca\\\": N_PCA,\\n        \\\"n_bootstrap\\\": N_BOOTSTRAP,\\n        \\\"lr_params\\\": {\\\"C\\\": 1.0, \\\"class_weight\\\": \\\"balanced\\\", \\\"max_iter\\\": 2000},\\n        \\\"split\\\": \\\"60/20/20 trace-level\\\",\\n        \\\"models\\\": all_results,\\n        \\\"holm_bonferroni_linear\\\": hb_linear,\\n        \\\"holm_bonferroni_quadratic\\\": hb_quad,\\n        \\\"elapsed_seconds\\\": round(elapsed, 1),\\n    }\\n    with open(OUT_DIR / \\\"results.json\\\", \\\"w\\\") as f:\\n        json.dump(out, f, indent=2)\\n\\n    # Save comparison_table.csv\\n    import csv\\n    with open(OUT_DIR / \\\"comparison_table.csv\\\", \\\"w\\\", newline=\\\"\\\") as f:\\n        w = csv.writer(f)\\n        w.writerow([\\\"Model\\\", \\\"Method\\\", \\\"HS_BA_mean\\\", \\\"Text_BA_mean\\\", \\\"HS_BA_pooled\\\", \\\"Text_BA_pooled\\\",\\n                    \\\"Gap_pp\\\", \\\"p_value\\\", \\\"HB_adjusted_p\\\", \\\"HB_reject\\\"])\\n        for m in MODEL_CONFIGS:\\n            for method in [\\\"linear\\\", \\\"quadratic\\\"]:\\n                r = all_results[m][method]\\n                w.writerow([\\n                    m, method,\\n                    r[\\\"hs_ba_mean_per_trace\\\"], r[\\\"text_ba_mean_per_trace\\\"],\\n                    r[\\\"hs_ba_pooled\\\"], r[\\\"text_ba_pooled\\\"],\\n                    r[\\\"ba_gap_pp\\\"], r[\\\"p_value\\\"],\\n                    r[\\\"hb_adjusted_p\\\"], r[\\\"hb_reject\\\"],\\n                ])\\n\\n    # Save report.txt\\n    lines = [\\n        \\\"SF3: Nonlinear (Quadratic) Position Residualization\\\",\\n        \\\"=\\\" * 55,\\n        f\\\"Seed: {SEED}, PCA: {N_PCA}, Bootstrap: {N_BOOTSTRAP}\\\",\\n        f\\\"Probe: LogReg(C=1.0, balanced, max_iter=2000)\\\",\\n        f\\\"Split: 60/20/20 trace-level, train+val for training\\\",\\n        \\\"\\\",\\n        \\\"Per-trace mean balanced accuracy (gap = mean per-trace difference):\\\",\\n        \\\"\\\",\\n        f\\\"{'Model':<10} {'Method':<12} {'HS BA':>7} {'Txt BA':>7} {'Gap':>7} {'p':>8} {'HB p':>8} {'Pass':>5}\\\",\\n        \\\"-\\\" * 67,\\n    ]\\n    for m in MODEL_CONFIGS:\\n        for method in [\\\"linear\\\", \\\"quadratic\\\"]:\\n            r = all_results[m][method]\\n            lines.append(\\n                f\\\"{m:<10} {method:<12} {r['hs_ba_mean_per_trace']:>7.4f} {r['text_ba_mean_per_trace']:>7.4f} \\\"\\n                f\\\"{r['ba_gap_pp']:>6.1f}pp {r['p_value']:>8.4f} {r['hb_adjusted_p']:>8.4f} \\\"\\n                f\\\"{'Y' if r['hb_reject'] else 'N':>5}\\\"\\n            )\\n        lines.append(\\\"\\\")\\n\\n    lines.append(\\\"\\\")\\n    lines.append(\\\"Key: HS/Txt BA = mean of per-trace balanced accuracies\\\")\\n    lines.append(\\\"     Gap = mean(HS_BA_i - Txt_BA_i), positive = HS advantage\\\")\\n    lines.append(\\\"     p = paired permutation test (10K, one-sided, H0: HS <= Text)\\\")\\n    lines.append(\\\"     HB p = Holm-Bonferroni adjusted (across 4 models, alpha=0.05)\\\")\\n    lines.append(f\\\"\\\\nElapsed: {elapsed:.0f}s\\\")\\n\\n    with open(OUT_DIR / \\\"report.txt\\\", \\\"w\\\") as f:\\n        f.write(\\\"\\\\n\\\".join(lines))\\n\\n    print(f\\\"\\\\n{'='*65}\\\")\\n    print(\\\"\\\\n\\\".join(lines))\\n    print(f\\\"\\\\nSaved to {OUT_DIR}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HVGcDK2vcwY3U3hjV9C5Wf`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ls -la /root/autodl-tmp/contrastive_trace_safety/artifacts/sf3_quadratic_residual/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e8ae03d2-e8dd-4a3b-b4b9-1d4bab2ce8a0",
+  "uuid": "80c510e6-f645-4002-9695-0800519e2219",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016QGV3i1ARFS9QVVERQN4Fb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4172,
+      "cache_read_input_tokens": 27176,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4172
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-19T14:56:35.649Z_
+
+<details><summary>↩ Tool result · `toolu_01HVGcDK2vcwY3U3hjV9C5Wf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 36\\ndrwxr-xr-x   2 root root    88 May 19 22:45 .\\ndrwxr-xr-x 111 root root  8192 May 19 22:44 ..\\n-rw-r--r--   1 root root   629 May 19 22:50 comparison_table.csv\\n-rw-r--r--   1 root root  1303 May 19 22:50 report.txt\\n-rw-r--r--   1 root root 13719 May 19 22:50 results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e8ae03d2-e8dd-4a3b-b4b9-1d4bab2ce8a0",
+  "uuid": "53a740ae-e4af-428d-b365-2f5abc9a8200",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 36\\\\ndrwxr-xr-x   2 root root    88 May 19 22:45 .\\\\ndrwxr-xr-x 111 root root  8192 May 19 22:44 ..\\\\n-rw-r--r--   1 root root   629 May 19 22:50 comparison_table.csv\\\\n-rw-r--r--   1 root root  1303 May 19 22:50 report.txt\\\\n-rw-r--r--   1 root root 13719 May 19 22:50 results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 36\\ndrwxr-xr-x   2 root root    88 May 19 22:45 .\\ndrwxr-xr-x 111 root root  8192 May 19 22:44 ..\\n-rw-r--r--   1 root root   629 May 19 22:50 comparison_table.csv\\n-rw-r--r--   1 root root  1303 May 19 22:50 report.txt\\n-rw-r--r--   1 root root 13719 May 19 22:50 results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I can see the script. The QwQ-32B config has `"window": 5` but needs to be W=3. Let me read the existing report and results for context, then write a focused script that only runs QwQ-32B with W=3.
+
+Let me also read the truncated part of the script to understand `build_hs_features` and `run_model` functions fully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e8ae03d2-e8dd-4a3b-b4b9-1d4bab2ce8a0",
+  "uuid": "048e44cf-e767-42e6-8dad-d5da948006b7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MxxksvLmw8PyXxtBGZCY6U",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4564,
+      "cache_read_input_tokens": 31348,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4564
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32_
+
+Let me read the truncated middle part of the script and the existing report.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e8ae03d2-e8dd-4a3b-b4b9-1d4bab2ce8a0",
+  "uuid": "3451e019-8c74-4f02-9c1e-5d5646d9ec20",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MxxksvLmw8PyXxtBGZCY6U",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4564,
+      "cache_read_input_tokens": 31348,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4564
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VbB1qYiJvFWE8mPdVgm83R`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "head -200 /root/autodl-tmp/contrastive_trace_safety/scripts/sf3_quadratic_residual.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e8ae03d2-e8dd-4a3b-b4b9-1d4bab2ce8a0",
+  "uuid": "acd62818-1e5b-46f2-a7e9-2bf6ede72349",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MxxksvLmw8PyXxtBGZCY6U",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4564,
+      "cache_read_input_tokens": 31348,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4564
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-19T14:56:45.966Z_
+
+<details><summary>↩ Tool result · `toolu_01VbB1qYiJvFWE8mPdVgm83R`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"SF3: Nonlinear (Quadratic) Position Residualization.\\n\\nCompares linear [t/T] vs quadratic [t/T, (t/T)^2] residualization\\nof HS and Text features across 4 models. For R19 review revision.\\n\\\"\\\"\\\"\\n\\nimport os, sys, json, time, warnings, pickle\\nos.environ[\\\"TOKENIZERS_PARALLELISM\\\"] = \\\"false\\\"\\nwarnings.filterwarnings(\\\"ignore\\\")\\n\\nimport numpy as np\\nimport torch\\nfrom pathlib import Path\\nfrom sklearn.linear_model import LogisticRegression, LinearRegression\\nfrom sklearn.decomposition import PCA\\nfrom sklearn.metrics import balanced_accuracy_score\\n\\nPROJECT = Path(\\\"/root/autodl-tmp/contrastive_trace_safety\\\")\\nARTIFACTS = PROJECT / \\\"artifacts\\\"\\nOUT_DIR = ARTIFACTS / \\\"sf3_quadratic_residual\\\"\\nOUT_DIR.mkdir(parents=True, exist_ok=True)\\n\\nSEED = 42\\nN_PCA = 50\\nN_BOOTSTRAP = 10000\\n\\nMODEL_CONFIGS = {\\n    \\\"R1-8B\\\": {\\n        \\\"hs_dir\\\": ARTIFACTS / \\\"hidden_states\\\",\\n        \\\"layer_idx\\\": 2,\\n        \\\"hidden_dim\\\": 4096,\\n        \\\"window\\\": 3,\\n        \\\"text_emb_pkl\\\": ARTIFACTS / \\\"r12_5seed_hb\\\" / \\\"r1_8b_text_emb.pkl\\\",\\n    },\\n    \\\"OT-7B\\\": {\\n        \\\"hs_dir\\\": ARTIFACTS / \\\"hidden_states_ot7b\\\",\\n        \\\"layer_idx\\\": 16,\\n        \\\"hidden_dim\\\": 3584,\\n        \\\"window\\\": 3,\\n        \\\"text_emb_pkl\\\": ARTIFACTS / \\\"ot7b_text_embeddings.pkl\\\",\\n    },\\n    \\\"R1-32B\\\": {\\n        \\\"hs_dir\\\": ARTIFACTS / \\\"hidden_states_r1_32b\\\",\\n        \\\"layer_idx\\\": 63,\\n        \\\"hidden_dim\\\": 5120,\\n        \\\"window\\\": 1,\\n        \\\"text_emb_pkl\\\": ARTIFACTS / \\\"r12_5seed_hb\\\" / \\\"r1_32b_text_emb.pkl\\\",\\n    },\\n    \\\"QwQ-32B\\\": {\\n        \\\"hs_dir\\\": ARTIFACTS / \\\"hidden_states_qwq_32b\\\",\\n        \\\"layer_idx\\\": 63,\\n        \\\"hidden_dim\\\": 5120,\\n        \\\"window\\\": 5,\\n        \\\"text_emb_pkl\\\": ARTIFACTS / \\\"r12_5seed_hb\\\" / \\\"qwq_text_emb.pkl\\\",\\n    },\\n}\\n\\n\\ndef load_traces(hs_dir):\\n    traces = []\\n    for pt_file in sorted(hs_dir.glob(\\\"*.pt\\\")):\\n        data = torch.load(pt_file, map_location=\\\"cpu\\\", weights_only=False)\\n        if data.get(\\\"step_labels\\\") is None or data.get(\\\"commitment_point\\\") is None:\\n            continue\\n        traces.append(data)\\n    return traces\\n\\n\\ndef get_labels(t):\\n    sl = t[\\\"step_labels\\\"]\\n    return sl.tolist() if isinstance(sl, torch.Tensor) else list(sl)\\n\\n\\ndef split_traces(traces, seed=SEED):\\n    rng = np.random.default_rng(seed)\\n    idx = rng.permutation(len(traces))\\n    n_tr = int(len(traces) * 0.6)\\n    n_va = int(len(traces) * 0.2)\\n    return (\\n        [traces[i] for i in idx[:n_tr]],\\n        [traces[i] for i in idx[n_tr:n_tr + n_va]],\\n        [traces[i] for i in idx[n_tr + n_va:]],\\n    )\\n\\n\\ndef apply_window(feats, window):\\n    if window == 1:\\n        return feats\\n    n, dim = feats.shape\\n    half_w = window // 2\\n    padded = np.zeros((n + window - 1, dim), dtype=np.float32)\\n    padded[half_w:half_w + n] = feats\\n    return np.array([padded[i:i + window].flatten() for i in range(n)])\\n\\n\\ndef residualize_linear(features):\\n    T = len(features)\\n    t_norm = np.arange(T, dtype=np.float64) / T\\n    X_reg = t_norm.reshape(-1, 1)\\n    reg = LinearRegression().fit(X_reg, features)\\n    return (features - reg.predict(X_reg)).astype(np.float32)\\n\\n\\ndef residualize_quadratic(features):\\n    T = len(features)\\n    t_norm = np.arange(T, dtype=np.float64) / T\\n    X_reg = np.column_stack([t_norm, t_norm ** 2])\\n    reg = LinearRegression().fit(X_reg, features)\\n    return (features - reg.predict(X_reg)).astype(np.float32)\\n\\n\\ndef extract_hs(trace, layer_idx):\\n    hs = trace[\\\"hidden_states\\\"][:, layer_idx, :].float().numpy()\\n    labels = np.array(get_labels(trace))\\n    n = min(hs.shape[0], len(labels))\\n    return hs[:n].astype(np.float32), labels[:n]\\n\\n\\ndef per_trace_ba(preds, labels):\\n    preds, labels = np.asarray(preds), np.asarray(labels)\\n    tp = ((preds == 1) & (labels == 1)).sum()\\n    fp = ((preds == 1) & (labels == 0)).sum()\\n    tn = ((preds == 0) & (labels == 0)).sum()\\n    fn = ((preds == 0) & (labels == 1)).sum()\\n    tpr = tp / (tp + fn) if (tp + fn) > 0 else 0.0\\n    tnr = tn / (tn + fp) if (tn + fp) > 0 else 0.0\\n    return (tpr + tnr) / 2\\n\\n\\ndef build_hs_features(traces, layer_idx, window, resid_fn):\\n    X_list, y_list = [], []\\n    for t in traces:\\n        hs, labels = extract_hs(t, layer_idx)\\n        feat = apply_window(resid_fn(hs), window)\\n        X_list.append(feat)\\n        y_list.append(labels)\\n    return X_list, y_list\\n\\n\\ndef build_text_features(traces, text_emb_dict, window, resid_fn):\\n    X_list, y_list = [], []\\n    for t in traces:\\n        tid = t[\\\"trace_id\\\"]\\n        emb = text_emb_dict.get(tid)\\n        if emb is None:\\n            continue\\n        labels = np.array(get_labels(t))\\n        emb = np.array(emb, dtype=np.float32)\\n        n = min(len(emb), len(labels))\\n        emb, labels = emb[:n], labels[:n]\\n        feat = apply_window(resid_fn(emb), window)\\n        X_list.append(feat)\\n        y_list.append(labels)\\n    return X_list, y_list\\n\\n\\ndef train_probe(X_train_list, y_train_list, X_test_list, y_test_list):\\n    X_tr = np.concatenate(X_train_list)\\n    y_tr = np.concatenate(y_train_list)\\n    n_comp = min(N_PCA, X_tr.shape[0], X_tr.shape[1])\\n\\n    if X_tr.shape[1] > 1:\\n        pca = PCA(n_components=n_comp, random_state=SEED)\\n        X_tr_pca = pca.fit_transform(X_tr)\\n    else:\\n        pca = None\\n        X_tr_pca = X_tr\\n\\n    clf = LogisticRegression(\\n        C=1.0, class_weight=\\\"balanced\\\", solver=\\\"lbfgs\\\",\\n        max_iter=2000, random_state=SEED\\n    )\\n    clf.fit(X_tr_pca, y_tr)\\n\\n    per_trace_bas = []\\n    all_preds, all_labels = [], []\\n    for X_te, y_te in zip(X_test_list, y_test_list):\\n        X_te_pca = pca.transform(X_te) if pca is not None else X_te\\n        preds = clf.predict(X_te_pca)\\n        per_trace_bas.append(float(per_trace_ba(preds, y_te)))\\n        all_preds.append(preds)\\n        all_labels.append(y_te)\\n\\n    pooled_ba = float(balanced_accuracy_score(\\n        np.concatenate(all_labels), np.concatenate(all_preds)\\n    ))\\n    return pooled_ba, np.array(per_trace_bas)\\n\\n\\ndef paired_permutation_test(ba_hs, ba_text, n_perm=N_BOOTSTRAP, seed=SEED):\\n    \\\"\\\"\\\"One-sided paired permutation test. H0: mean(HS_BA) <= mean(Text_BA).\\\"\\\"\\\"\\n    gaps = ba_hs - ba_text\\n    observed = float(gaps.mean())\\n    rng = np.random.default_rng(seed + 77)\\n    count = 0\\n    for _ in range(n_perm):\\n        signs = rng.choice([-1, 1], size=len(gaps))\\n        if (signs * gaps).mean() >= observed:\\n            count += 1\\n    p_value = count / n_perm\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e8ae03d2-e8dd-4a3b-b4b9-1d4bab2ce8a0",
+  "uuid": "f5078883-e9fa-4af3-8452-80c20141efb1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"SF3: Nonlinear (Quadratic) Position Residualization.\\\\n\\\\nCompares linear [t/T] vs quadratic [t/T, (t/T)^2] residualization\\\\nof HS and Text features across 4 models. For R19 review revision.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport os, sys, json, time, warnings, pickle\\\\nos.environ[\\\\\\\"TOKENIZERS_PARALLELISM\\\\\\\"] = \\\\\\\"false\\\\\\\"\\\\nwarnings.filterwarnings(\\\\\\\"ignore\\\\\\\")\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom pathlib import Path\\\\nfrom sklearn.linear_model import LogisticRegression, LinearRegression\\\\nfrom sklearn.decomposition import PCA\\\\nfrom sklearn.metrics import balanced_accuracy_score\\\\n\\\\nPROJECT = Path(\\\\\\\"/root/autodl-tmp/contrastive_trace_safety\\\\\\\")\\\\nARTIFACTS = PROJECT / \\\\\\\"artifacts\\\\\\\"\\\\nOUT_DIR = ARTIFACTS / \\\\\\\"sf3_quadratic_residual\\\\\\\"\\\\nOUT_DIR.mkdir(parents=True, exist_ok=True)\\\\n\\\\nSEED = 42\\\\nN_PCA = 50\\\\nN_BOOTSTRAP = 10000\\\\n\\\\nMODEL_CONFIGS = {\\\\n    \\\\\\\"R1-8B\\\\\\\": {\\\\n        \\\\\\\"hs_dir\\\\\\\": ARTIFACTS / \\\\\\\"hidden_states\\\\\\\",\\\\n        \\\\\\\"layer_idx\\\\\\\": 2,\\\\n        \\\\\\\"hidden_dim\\\\\\\": 4096,\\\\n        \\\\\\\"window\\\\\\\": 3,\\\\n        \\\\\\\"text_emb_pkl\\\\\\\": ARTIFACTS / \\\\\\\"r12_5seed_hb\\\\\\\" / \\\\\\\"r1_8b_text_emb.pkl\\\\\\\",\\\\n    },\\\\n    \\\\\\\"OT-7B\\\\\\\": {\\\\n        \\\\\\\"hs_dir\\\\\\\": ARTIFACTS / \\\\\\\"hidden_states_ot7b\\\\\\\",\\\\n        \\\\\\\"layer_idx\\\\\\\": 16,\\\\n        \\\\\\\"hidden_dim\\\\\\\": 3584,\\\\n        \\\\\\\"window\\\\\\\": 3,\\\\n        \\\\\\\"text_emb_pkl\\\\\\\": ARTIFACTS / \\\\\\\"ot7b_text_embeddings.pkl\\\\\\\",\\\\n    },\\\\n    \\\\\\\"R1-32B\\\\\\\": {\\\\n        \\\\\\\"hs_dir\\\\\\\": ARTIFACTS / \\\\\\\"hidden_states_r1_32b\\\\\\\",\\\\n        \\\\\\\"layer_idx\\\\\\\": 63,\\\\n        \\\\\\\"hidden_dim\\\\\\\": 5120,\\\\n        \\\\\\\"window\\\\\\\": 1,\\\\n        \\\\\\\"text_emb_pkl\\\\\\\": ARTIFACTS / \\\\\\\"r12_5seed_hb\\\\\\\" / \\\\\\\"r1_32b_text_emb.pkl\\\\\\\",\\\\n    },\\\\n    \\\\\\\"QwQ-32B\\\\\\\": {\\\\n        \\\\\\\"hs_dir\\\\\\\": ARTIFACTS / \\\\\\\"hidden_states_qwq_32b\\\\\\\",\\\\n        \\\\\\\"layer_idx\\\\\\\": 63,\\\\n        \\\\\\\"hidden_dim\\\\\\\": 5120,\\\\n        \\\\\\\"window\\\\\\\": 5,\\\\n        \\\\\\\"text_emb_pkl\\\\\\\": ARTIFACTS / \\\\\\\"r12_5seed_hb\\\\\\\" / \\\\\\\"qwq_text_emb.pkl\\\\\\\",\\\\n    },\\\\n}\\\\n\\\\n\\\\ndef load_traces(hs_dir):\\\\n    traces = []\\\\n    for pt_file in sorted(hs_dir.glob(\\\\\\\"*.pt\\\\\\\")):\\\\n        data = torch.load(pt_file, map_location=\\\\\\\"cpu\\\\\\\", weights_only=False)\\\\n        if data.get(\\\\\\\"step_labels\\\\\\\") is None or data.get(\\\\\\\"commitment_point\\\\\\\") is None:\\\\n            continue\\\\n        traces.append(data)\\\\n    return traces\\\\n\\\\n\\\\ndef get_labels(t):\\\\n    sl = t[\\\\\\\"step_labels\\\\\\\"]\\\\n    return sl.tolist() if isinstance(sl, torch.Tensor) else list(sl)\\\\n\\\\n\\\\ndef split_traces(traces, seed=SEED):\\\\n    rng = np.random.default_rng(seed)\\\\n    idx = rng.permutation(len(traces))\\\\n    n_tr = int(len(traces) * 0.6)\\\\n    n_va = int(len(traces) * 0.2)\\\\n    return (\\\\n        [traces[i] for i in idx[:n_tr]],\\\\n        [traces[i] for i in idx[n_tr:n_tr + n_va]],\\\\n        [traces[i] for i in idx[n_tr + n_va:]],\\\\n    )\\\\n\\\\n\\\\ndef apply_window(feats, window):\\\\n    if window == 1:\\\\n        return feats\\\\n    n, dim = feats.shape\\\\n    half_w = window // 2\\\\n    padded = np.zeros((n + window - 1, dim), dtype=np.float32)\\\\n    padded[half_w:half_w + n] = feats\\\\n    return np.array([padded[i:i + window].flatten() for i in range(n)])\\\\n\\\\n\\\\ndef residualize_linear(features):\\\\n    T = len(features)\\\\n    t_norm = np.arange(T, dtype=np.float64) / T\\\\n    X_reg = t_norm.reshape(-1, 1)\\\\n    reg = LinearRegression().fit(X_reg, features)\\\\n    return (features - reg.predict(X_reg)).astype(np.float32)\\\\n\\\\n\\\\ndef residualize_quadratic(features):\\\\n    T = len(features)\\\\n    t_norm = np.arange(T, dtype=np.float64) / T\\\\n    X_reg = np.column_stack([t_norm, t_norm ** 2])\\\\n    reg = LinearRegression().fit(X_reg, features)\\\\n    return (features - reg.predict(X_reg)).astype(np.float32)\\\\n\\\\n\\\\ndef extract_hs(trace, layer_idx):\\\\n    hs = trace[\\\\\\\"hidden_states\\\\\\\"][:, layer_idx, :].float().numpy()\\\\n    labels = np.array(get_labels(trace))\\\\n    n = min(hs.shape[0], len(labels))\\\\n    return hs[:n].astype(np.float32), labels[:n]\\\\n\\\\n\\\\ndef per_trace_ba(preds, labels):\\\\n    preds, labels = np.asarray(preds), np.asarray(labels)\\\\n    tp = ((preds == 1) & (labels == 1)).sum()\\\\n    fp = ((preds == 1) & (labels == 0)).sum()\\\\n    tn = ((preds == 0) & (labels == 0)).sum()\\\\n    fn = ((preds == 0) & (labels == 1)).sum()\\\\n    tpr = tp / (tp + fn) if (tp + fn) > 0 else 0.0\\\\n    tnr = tn / (tn + fp) if (tn + fp) > 0 else 0.0\\\\n    return (tpr + tnr) / 2\\\\n\\\\n\\\\ndef build_hs_features(traces, layer_idx, window, resid_fn):\\\\n    X_list, y_list = [], []\\\\n    for t in traces:\\\\n        hs, labels = extract_hs(t, layer_idx)\\\\n        feat = apply_window(resid_fn(hs), window)\\\\n        X_list.append(feat)\\\\n        y_list.append(labels)\\\\n    return X_list, y_list\\\\n\\\\n\\\\ndef build_text_features(traces, text_emb_dict, window, resid_fn):\\\\n    X_list, y_list = [], []\\\\n    for t in traces:\\\\n        tid = t[\\\\\\\"trace_id\\\\\\\"]\\\\n        emb = text_emb_dict.get(tid)\\\\n        if emb is None:\\\\n            continue\\\\n        labels = np.array(get_labels(t))\\\\n        emb = np.array(emb, dtype=np.float32)\\\\n        n = min(len(emb), len(labels))\\\\n        emb, labels = emb[:n], labels[:n]\\\\n        feat = apply_window(resid_fn(emb), window)\\\\n        X_list.append(feat)\\\\n        y_list.append(labels)\\\\n    return X_list, y_list\\\\n\\\\n\\\\ndef train_probe(X_train_list, y_train_list, X_test_list, y_test_list):\\\\n    X_tr = np.concatenate(X_train_list)\\\\n    y_tr = np.concatenate(y_train_list)\\\\n    n_comp = min(N_PCA, X_tr.shape[0], X_tr.shape[1])\\\\n\\\\n    if X_tr.shape[1] > 1:\\\\n        pca = PCA(n_components=n_comp, random_state=SEED)\\\\n        X_tr_pca = pca.fit_transform(X_tr)\\\\n    else:\\\\n        pca = None\\\\n        X_tr_pca = X_tr\\\\n\\\\n    clf = LogisticRegression(\\\\n        C=1.0, class_weight=\\\\\\\"balanced\\\\\\\", solver=\\\\\\\"lbfgs\\\\\\\",\\\\n        max_iter=2000, random_state=SEED\\\\n    )\\\\n    clf.fit(X_tr_pca, y_tr)\\\\n\\\\n    per_trace_bas = []\\\\n    all_preds, all_labels = [], []\\\\n    for X_te, y_te in zip(X_test_list, y_test_list):\\\\n        X_te_pca = pca.transform(X_te) if pca is not None else X_te\\\\n        preds = clf.predict(X_te_pca)\\\\n        per_trace_bas.append(float(per_trace_ba(preds, y_te)))\\\\n        all_preds.append(preds)\\\\n        all_labels.append(y_te)\\\\n\\\\n    pooled_ba = float(balanced_accuracy_score(\\\\n        np.concatenate(all_labels), np.concatenate(all_preds)\\\\n    ))\\\\n    return pooled_ba, np.array(per_trace_bas)\\\\n\\\\n\\\\ndef paired_permutation_test(ba_hs, ba_text, n_perm=N_BOOTSTRAP, seed=SEED):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"One-sided paired permutation test. H0: mean(HS_BA) <= mean(Text_BA).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    gaps = ba_hs - ba_text\\\\n    observed = float(gaps.mean())\\\\n    rng = np.random.default_rng(seed + 77)\\\\n    count = 0\\\\n    for _ in range(n_perm):\\\\n        signs = rng.choice([-1, 1], size=len(gaps))\\\\n        if (signs * gaps).mean() >= observed:\\\\n            count += 1\\\\n    p_value = count / n_perm\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"SF3: Nonlinear (Quadratic) Position Residualization.\\n\\nCompares linear [t/T] vs quadratic [t/T, (t/T)^2] residualization\\nof HS and Text features across 4 models. For R19 review revision.\\n\\\"\\\"\\\"\\n\\nimport os, sys, json, time, warnings, pickle\\nos.environ[\\\"TOKENIZERS_PARALLELISM\\\"] = \\\"false\\\"\\nwarnings.filterwarnings(\\\"ignore\\\")\\n\\nimport numpy as np\\nimport torch\\nfrom pathlib import Path\\nfrom sklearn.linear_model import LogisticRegression, LinearRegression\\nfrom sklearn.decomposition import PCA\\nfrom sklearn.metrics import balanced_accuracy_score\\n\\nPROJECT = Path(\\\"/root/autodl-tmp/contrastive_trace_safety\\\")\\nARTIFACTS = PROJECT / \\\"artifacts\\\"\\nOUT_DIR = ARTIFACTS / \\\"sf3_quadratic_residual\\\"\\nOUT_DIR.mkdir(parents=True, exist_ok=True)\\n\\nSEED = 42\\nN_PCA = 50\\nN_BOOTSTRAP = 10000\\n\\nMODEL_CONFIGS = {\\n    \\\"R1-8B\\\": {\\n        \\\"hs_dir\\\": ARTIFACTS / \\\"hidden_states\\\",\\n        \\\"layer_idx\\\": 2,\\n        \\\"hidden_dim\\\": 4096,\\n        \\\"window\\\": 3,\\n        \\\"text_emb_pkl\\\": ARTIFACTS / \\\"r12_5seed_hb\\\" / \\\"r1_8b_text_emb.pkl\\\",\\n    },\\n    \\\"OT-7B\\\": {\\n        \\\"hs_dir\\\": ARTIFACTS / \\\"hidden_states_ot7b\\\",\\n        \\\"layer_idx\\\": 16,\\n        \\\"hidden_dim\\\": 3584,\\n        \\\"window\\\": 3,\\n        \\\"text_emb_pkl\\\": ARTIFACTS / \\\"ot7b_text_embeddings.pkl\\\",\\n    },\\n    \\\"R1-32B\\\": {\\n        \\\"hs_dir\\\": ARTIFACTS / \\\"hidden_states_r1_32b\\\",\\n        \\\"layer_idx\\\": 63,\\n        \\\"hidden_dim\\\": 5120,\\n        \\\"window\\\": 1,\\n        \\\"text_emb_pkl\\\": ARTIFACTS / \\\"r12_5seed_hb\\\" / \\\"r1_32b_text_emb.pkl\\\",\\n    },\\n    \\\"QwQ-32B\\\": {\\n        \\\"hs_dir\\\": ARTIFACTS / \\\"hidden_states_qwq_32b\\\",\\n        \\\"layer_idx\\\": 63,\\n        \\\"hidden_dim\\\": 5120,\\n        \\\"window\\\": 5,\\n        \\\"text_emb_pkl\\\": ARTIFACTS / \\\"r12_5seed_hb\\\" / \\\"qwq_text_emb.pkl\\\",\\n    },\\n}\\n\\n\\ndef load_traces(hs_dir):\\n    traces = []\\n    for pt_file in sorted(hs_dir.glob(\\\"*.pt\\\")):\\n        data = torch.load(pt_file, map_location=\\\"cpu\\\", weights_only=False)\\n        if data.get(\\\"step_labels\\\") is None or data.get(\\\"commitment_point\\\") is None:\\n            continue\\n        traces.append(data)\\n    return traces\\n\\n\\ndef get_labels(t):\\n    sl = t[\\\"step_labels\\\"]\\n    return sl.tolist() if isinstance(sl, torch.Tensor) else list(sl)\\n\\n\\ndef split_traces(traces, seed=SEED):\\n    rng = np.random.default_rng(seed)\\n    idx = rng.permutation(len(traces))\\n    n_tr = int(len(traces) * 0.6)\\n    n_va = int(len(traces) * 0.2)\\n    return (\\n        [traces[i] for i in idx[:n_tr]],\\n        [traces[i] for i in idx[n_tr:n_tr + n_va]],\\n        [traces[i] for i in idx[n_tr + n_va:]],\\n    )\\n\\n\\ndef apply_window(feats, window):\\n    if window == 1:\\n        return feats\\n    n, dim = feats.shape\\n    half_w = window // 2\\n    padded = np.zeros((n + window - 1, dim), dtype=np.float32)\\n    padded[half_w:half_w + n] = feats\\n    return np.array([padded[i:i + window].flatten() for i in range(n)])\\n\\n\\ndef residualize_linear(features):\\n    T = len(features)\\n    t_norm = np.arange(T, dtype=np.float64) / T\\n    X_reg = t_norm.reshape(-1, 1)\\n    reg = LinearRegression().fit(X_reg, features)\\n    return (features - reg.predict(X_reg)).astype(np.float32)\\n\\n\\ndef residualize_quadratic(features):\\n    T = len(features)\\n    t_norm = np.arange(T, dtype=np.float64) / T\\n    X_reg = np.column_stack([t_norm, t_norm ** 2])\\n    reg = LinearRegression().fit(X_reg, features)\\n    return (features - reg.predict(X_reg)).astype(np.float32)\\n\\n\\ndef extract_hs(trace, layer_idx):\\n    hs = trace[\\\"hidden_states\\\"][:, layer_idx, :].float().numpy()\\n    labels = np.array(get_labels(trace))\\n    n = min(hs.shape[0], len(labels))\\n    return hs[:n].astype(np.float32), labels[:n]\\n\\n\\ndef per_trace_ba(preds, labels):\\n    preds, labels = np.asarray(preds), np.asarray(labels)\\n    tp = ((preds == 1) & (labels == 1)).sum()\\n    fp = ((preds == 1) & (labels == 0)).sum()\\n    tn = ((preds == 0) & (labels == 0)).sum()\\n    fn = ((preds == 0) & (labels == 1)).sum()\\n    tpr = tp / (tp + fn) if (tp + fn) > 0 else 0.0\\n    tnr = tn / (tn + fp) if (tn + fp) > 0 else 0.0\\n    return (tpr + tnr) / 2\\n\\n\\ndef build_hs_features(traces, layer_idx, window, resid_fn):\\n    X_list, y_list = [], []\\n    for t in traces:\\n        hs, labels = extract_hs(t, layer_idx)\\n        feat = apply_window(resid_fn(hs), window)\\n        X_list.append(feat)\\n        y_list.append(labels)\\n    return X_list, y_list\\n\\n\\ndef build_text_features(traces, text_emb_dict, window, resid_fn):\\n    X_list, y_list = [], []\\n    for t in traces:\\n        tid = t[\\\"trace_id\\\"]\\n        emb = text_emb_dict.get(tid)\\n        if emb is None:\\n            continue\\n        labels = np.array(get_labels(t))\\n        emb = np.array(emb, dtype=np.float32)\\n        n = min(len(emb), len(labels))\\n        emb, labels = emb[:n], labels[:n]\\n        feat = apply_window(resid_fn(emb), window)\\n        X_list.append(feat)\\n        y_list.append(labels)\\n    return X_list, y_list\\n\\n\\ndef train_probe(X_train_list, y_train_list, X_test_list, y_test_list):\\n    X_tr = np.concatenate(X_train_list)\\n    y_tr = np.concatenate(y_train_list)\\n    n_comp = min(N_PCA, X_tr.shape[0], X_tr.shape[1])\\n\\n    if X_tr.shape[1] > 1:\\n        pca = PCA(n_components=n_comp, random_state=SEED)\\n        X_tr_pca = pca.fit_transform(X_tr)\\n    else:\\n        pca = None\\n        X_tr_pca = X_tr\\n\\n    clf = LogisticRegression(\\n        C=1.0, class_weight=\\\"balanced\\\", solver=\\\"lbfgs\\\",\\n        max_iter=2000, random_state=SEED\\n    )\\n    clf.fit(X_tr_pca, y_tr)\\n\\n    per_trace_bas = []\\n    all_preds, all_labels = [], []\\n    for X_te, y_te in zip(X_test_list, y_test_list):\\n        X_te_pca = pca.transform(X_te) if pca is not None else X_te\\n        preds = clf.predict(X_te_pca)\\n        per_trace_bas.append(float(per_trace_ba(preds, y_te)))\\n        all_preds.append(preds)\\n        all_labels.append(y_te)\\n\\n    pooled_ba = float(balanced_accuracy_score(\\n        np.concatenate(all_labels), np.concatenate(all_preds)\\n    ))\\n    return pooled_ba, np.array(per_trace_bas)\\n\\n\\ndef paired_permutation_test(ba_hs, ba_text, n_perm=N_BOOTSTRAP, seed=SEED):\\n    \\\"\\\"\\\"One-sided paired permutation test. H0: mean(HS_BA) <= mean(Text_BA).\\\"\\\"\\\"\\n    gaps = ba_hs - ba_text\\n    observed = float(gaps.mean())\\n    rng = np.random.default_rng(seed + 77)\\n    count = 0\\n    for _ in range(n_perm):\\n        signs = rng.choice([-1, 1], size=len(gaps))\\n        if (signs * gaps).mean() >= observed:\\n            count += 1\\n    p_value = count / n_perm\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QKzfea8W1VoFxa8KYkZ3Sp`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/sf3_quadratic_residual/report.txt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e8ae03d2-e8dd-4a3b-b4b9-1d4bab2ce8a0",
+  "uuid": "309ebb52-b7ce-4682-94ac-dcf545c1ed3c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MxxksvLmw8PyXxtBGZCY6U",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4564,
+      "cache_read_input_tokens": 31348,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4564
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-19T14:56:46.833Z_
+
+<details><summary>↩ Tool result · `toolu_01QKzfea8W1VoFxa8KYkZ3Sp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"SF3: Nonlinear (Quadratic) Position Residualization\\n=======================================================\\nSeed: 42, PCA: 50, Bootstrap: 10000\\nProbe: LogReg(C=1.0, balanced, max_iter=2000)\\nSplit: 60/20/20 trace-level, train+val for training\\n\\nPer-trace mean balanced accuracy (gap = mean per-trace difference):\\n\\nModel      Method         HS BA  Txt BA     Gap        p     HB p  Pass\\n-------------------------------------------------------------------\\nR1-8B      linear        0.6578  0.5541   10.4pp   0.0000   0.0000     Y\\nR1-8B      quadratic     0.6520  0.5492   10.3pp   0.0000   0.0000     Y\\n\\nOT-7B      linear        0.6965  0.5821   11.4pp   0.0000   0.0000     Y\\nOT-7B      quadratic     0.6313  0.5338    9.8pp   0.0001   0.0003     Y\\n\\nR1-32B     linear        0.5737  0.5873   -1.4pp   0.5979   0.5979     N\\nR1-32B     quadratic     0.5936  0.5934    0.0pp   0.4989   0.4989     N\\n\\nQwQ-32B    linear        0.6062  0.5975    0.9pp   0.4154   0.8308     N\\nQwQ-32B    quadratic     0.6295  0.5612    6.8pp   0.0456   0.0912     N\\n\\n\\nKey: HS/Txt BA = mean of per-trace balanced accuracies\\n     Gap = mean(HS_BA_i - Txt_BA_i), positive = HS advantage\\n     p = paired permutation test (10K, one-sided, H0: HS <= Text)\\n     HB p = Holm-Bonferroni adjusted (across 4 models, alpha=0.05)\\n\\nElapsed: 47s\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e8ae03d2-e8dd-4a3b-b4b9-1d4bab2ce8a0",
+  "uuid": "f21c6683-fee5-4dfe-a970-865307110678",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"SF3: Nonlinear (Quadratic) Position Residualization\\\\n=======================================================\\\\nSeed: 42, PCA: 50, Bootstrap: 10000\\\\nProbe: LogReg(C=1.0, balanced, max_iter=2000)\\\\nSplit: 60/20/20 trace-level, train+val for training\\\\n\\\\nPer-trace mean balanced accuracy (gap = mean per-trace difference):\\\\n\\\\nModel      Method         HS BA  Txt BA     Gap        p     HB p  Pass\\\\n-------------------------------------------------------------------\\\\nR1-8B      linear        0.6578  0.5541   10.4pp   0.0000   0.0000     Y\\\\nR1-8B      quadratic     0.6520  0.5492   10.3pp   0.0000   0.0000     Y\\\\n\\\\nOT-7B      linear        0.6965  0.5821   11.4pp   0.0000   0.0000     Y\\\\nOT-7B      quadratic     0.6313  0.5338    9.8pp   0.0001   0.0003     Y\\\\n\\\\nR1-32B     linear        0.5737  0.5873   -1.4pp   0.5979   0.5979     N\\\\nR1-32B     quadratic     0.5936  0.5934    0.0pp   0.4989   0.4989     N\\\\n\\\\nQwQ-32B    linear        0.6062  0.5975    0.9pp   0.4154   0.8308     N\\\\nQwQ-32B    quadratic     0.6295  0.5612    6.8pp   0.0456   0.0912     N\\\\n\\\\n\\\\nKey: HS/Txt BA = mean of per-trace balanced accuracies\\\\n     Gap = mean(HS_BA_i - Txt_BA_i), positive = HS advantage\\\\n     p = paired permutation test (10K, one-sided, H0: HS <= Text)\\\\n     HB p = Holm-Bonferroni adjusted (across 4 models, alpha=0.05)\\\\n\\\\nElapsed: 47s\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"SF3: Nonlinear (Quadratic) Position Residualization\\n=======================================================\\nSeed: 42, PCA: 50, Bootstrap: 10000\\nProbe: LogReg(C=1.0, balanced, max_iter=2000)\\nSplit: 60/20/20 trace-level, train+val for training\\n\\nPer-trace mean balanced accuracy (gap = mean per-trace difference):\\n\\nModel      Method         HS BA  Txt BA     Gap        p     HB p  Pass\\n-------------------------------------------------------------------\\nR1-8B      linear        0.6578  0.5541   10.4pp   0.0000   0.0000     Y\\nR1-8B      quadratic     0.6520  0.5492   10.3pp   0.0000   0.0000     Y\\n\\nOT-7B      linear        0.6965  0.5821   11.4pp   0.0000   0.0000     Y\\nOT-7B      quadratic     0.6313  0.5338    9.8pp   0.0001   0.0003     Y\\n\\nR1-32B     linear        0.5737  0.5873   -1.4pp   0.5979   0.5979     N\\nR1-32B     quadratic     0.5936  0.5934    0.0pp   0.4989   0.4989     N\\n\\nQwQ-32B    linear        0.6062  0.5975    0.9pp   0.4154   0.8308     N\\nQwQ-32B    quadratic     0.6295  0.5612    6.8pp   0.0456   0.0912     N\\n\\n\\nKey: HS/Txt BA = mean of per-trace balanced accuracies\\n     Gap = mean(HS_BA_i - Txt_BA_i), positive = HS advantage\\n     p = paired permutation test (10K, one-sided, H0: HS <= Text)\\n     HB p = Holm-Bonferroni adjusted (across 4 models, alpha=0.05)\\n\\nElapsed: 47s\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the full picture. The existing QwQ-32B results used W=5 and got linear gap 0.9pp. The paper's tab:position_residual expects W=3 with linear gap ~3.7pp.
+
+I need to write a focused script that:
+1. Only runs QwQ-32B with W=3 (layer_idx=63, hidden_dim=5120)
+2. Does both linear and quadratic residualization
+3. Saves results to `qwq_w3_results.json`
+
+
+4. Appends findings to `report.txt`
+
+Let me check the `run_model` function to understand how to structure this properly.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e8ae03d2-e8dd-4a3b-b4b9-1d4bab2ce8a0",
+  "uuid": "e2fe168e-e1e5-48d9-973a-626bb81d18b2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011Pv1t22BQqQFMaJjrReYyt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4021,
+      "cache_read_input_tokens": 35912,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4021
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38_
+
+Let me get the `run_model` function that was truncated.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e8ae03d2-e8dd-4a3b-b4b9-1d4bab2ce8a0",
+  "uuid": "c06eabf3-e703-447f-9a0f-3c075af7596f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011Pv1t22BQqQFMaJjrReYyt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4021,
+      "cache_read_input_tokens": 35912,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4021
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JYcxuoZc6HydWpYBXvpCcV`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "tail -n +195 /root/autodl-tmp/contrastive_trace_safety/scripts/sf3_quadratic_residual.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e8ae03d2-e8dd-4a3b-b4b9-1d4bab2ce8a0",
+  "uuid": "7f26c56c-c3d9-4ad1-bb3f-1119f558e8e8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011Pv1t22BQqQFMaJjrReYyt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4021,
+      "cache_read_input_tokens": 35912,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4021
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-19T14:56:58.333Z_
+
+<details><summary>↩ Tool result · `toolu_01JYcxuoZc6HydWpYBXvpCcV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    count = 0\\n    for _ in range(n_perm):\\n        signs = rng.choice([-1, 1], size=len(gaps))\\n        if (signs * gaps).mean() >= observed:\\n            count += 1\\n    p_value = count / n_perm\\n    return observed, p_value\\n\\n\\ndef holm_bonferroni(p_values, alpha=0.05):\\n    \\\"\\\"\\\"Holm-Bonferroni correction. Returns dict of model -> {adjusted_p, reject}.\\\"\\\"\\\"\\n    n = len(p_values)\\n    items = sorted(p_values.items(), key=lambda x: x[1])\\n    results = {}\\n    for rank, (model, p) in enumerate(items):\\n        adjusted_alpha = alpha / (n - rank)\\n        reject = p <= adjusted_alpha\\n        adjusted_p = min(p * (n - rank), 1.0)\\n        results[model] = {\\\"raw_p\\\": p, \\\"adjusted_p\\\": round(adjusted_p, 6), \\\"reject\\\": reject}\\n    return results\\n\\n\\ndef run_model(model_name, cfg, text_emb_dict):\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(f\\\"{model_name} (L{cfg['layer_idx'] if model_name not in ['R1-8B'] else 14}, W={cfg['window']})\\\")\\n    print(f\\\"{'='*60}\\\")\\n\\n    traces = load_traces(cfg[\\\"hs_dir\\\"])\\n    # Filter to traces with text embeddings\\n    traces = [t for t in traces if t[\\\"trace_id\\\"] in text_emb_dict]\\n    print(f\\\"Traces with both HS + text: {len(traces)}\\\")\\n\\n    train, val, test = split_traces(traces)\\n    train_val = train + val\\n    print(f\\\"Split: train+val={len(train_val)}, test={len(test)}\\\")\\n\\n    layer_idx = cfg[\\\"layer_idx\\\"]\\n    window = cfg[\\\"window\\\"]\\n    results = {}\\n\\n    for method_name, resid_fn in [(\\\"linear\\\", residualize_linear), (\\\"quadratic\\\", residualize_quadratic)]:\\n        # HS features\\n        X_tr_hs, y_tr_hs = build_hs_features(train_val, layer_idx, window, resid_fn)\\n        X_te_hs, y_te_hs = build_hs_features(test, layer_idx, window, resid_fn)\\n        hs_pooled, hs_per_trace = train_probe(X_tr_hs, y_tr_hs, X_te_hs, y_te_hs)\\n\\n        # Text features\\n        X_tr_txt, y_tr_txt = build_text_features(train_val, text_emb_dict, window, resid_fn)\\n        X_te_txt, y_te_txt = build_text_features(test, text_emb_dict, window, resid_fn)\\n        txt_pooled, txt_per_trace = train_probe(X_tr_txt, y_tr_txt, X_te_txt, y_te_txt)\\n\\n        # Ensure same number of test traces for paired comparison\\n        n_test = min(len(hs_per_trace), len(txt_per_trace))\\n        hs_ba = hs_per_trace[:n_test]\\n        txt_ba = txt_per_trace[:n_test]\\n\\n        gap, p_value = paired_permutation_test(hs_ba, txt_ba)\\n\\n        hs_mean = float(hs_ba.mean())\\n        txt_mean = float(txt_ba.mean())\\n\\n        results[method_name] = {\\n            \\\"hs_ba_pooled\\\": round(hs_pooled, 4),\\n            \\\"text_ba_pooled\\\": round(txt_pooled, 4),\\n            \\\"hs_ba_mean_per_trace\\\": round(hs_mean, 4),\\n            \\\"text_ba_mean_per_trace\\\": round(txt_mean, 4),\\n            \\\"ba_gap\\\": round(gap, 4),\\n            \\\"ba_gap_pp\\\": round(gap * 100, 1),\\n            \\\"p_value\\\": round(p_value, 6),\\n            \\\"n_test_traces\\\": n_test,\\n            \\\"per_trace_hs_ba\\\": [round(float(b), 4) for b in hs_ba],\\n            \\\"per_trace_text_ba\\\": [round(float(b), 4) for b in txt_ba],\\n        }\\n        print(f\\\"  {method_name}: HS={hs_mean:.4f}, Text={txt_mean:.4f}, \\\"\\n              f\\\"gap={gap*100:.1f}pp, p={p_value:.4f}\\\")\\n\\n    return results\\n\\n\\ndef main():\\n    t_start = time.time()\\n\\n    all_results = {}\\n\\n    for model_name, cfg in MODEL_CONFIGS.items():\\n        print(f\\\"\\\\nLoading text embeddings for {model_name}...\\\")\\n        text_emb_dict = pickle.load(open(cfg[\\\"text_emb_pkl\\\"], \\\"rb\\\"))\\n        print(f\\\"  {len(text_emb_dict)} text traces loaded\\\")\\n\\n        r = run_model(model_name, cfg, text_emb_dict)\\n        all_results[model_name] = r\\n\\n    # Holm-Bonferroni for linear\\n    linear_pvals = {m: r[\\\"linear\\\"][\\\"p_value\\\"] for m, r in all_results.items()}\\n    hb_linear = holm_bonferroni(linear_pvals)\\n    for m in all_results:\\n        all_results[m][\\\"linear\\\"][\\\"hb_reject\\\"] = hb_linear[m][\\\"reject\\\"]\\n        all_results[m][\\\"linear\\\"][\\\"hb_adjusted_p\\\"] = hb_linear[m][\\\"adjusted_p\\\"]\\n\\n    # Holm-Bonferroni for quadratic\\n    quad_pvals = {m: r[\\\"quadratic\\\"][\\\"p_value\\\"] for m, r in all_results.items()}\\n    hb_quad = holm_bonferroni(quad_pvals)\\n    for m in all_results:\\n        all_results[m][\\\"quadratic\\\"][\\\"hb_reject\\\"] = hb_quad[m][\\\"reject\\\"]\\n        all_results[m][\\\"quadratic\\\"][\\\"hb_adjusted_p\\\"] = hb_quad[m][\\\"adjusted_p\\\"]\\n\\n    elapsed = time.time() - t_start\\n\\n    # Save results.json\\n    out = {\\n        \\\"experiment\\\": \\\"sf3_quadratic_residual\\\",\\n        \\\"seed\\\": SEED,\\n        \\\"n_pca\\\": N_PCA,\\n        \\\"n_bootstrap\\\": N_BOOTSTRAP,\\n        \\\"lr_params\\\": {\\\"C\\\": 1.0, \\\"class_weight\\\": \\\"balanced\\\", \\\"max_iter\\\": 2000},\\n        \\\"split\\\": \\\"60/20/20 trace-level\\\",\\n        \\\"models\\\": all_results,\\n        \\\"holm_bonferroni_linear\\\": hb_linear,\\n        \\\"holm_bonferroni_quadratic\\\": hb_quad,\\n        \\\"elapsed_seconds\\\": round(elapsed, 1),\\n    }\\n    with open(OUT_DIR / \\\"results.json\\\", \\\"w\\\") as f:\\n        json.dump(out, f, indent=2)\\n\\n    # Save comparison_table.csv\\n    import csv\\n    with open(OUT_DIR / \\\"comparison_table.csv\\\", \\\"w\\\", newline=\\\"\\\") as f:\\n        w = csv.writer(f)\\n        w.writerow([\\\"Model\\\", \\\"Method\\\", \\\"HS_BA_mean\\\", \\\"Text_BA_mean\\\", \\\"HS_BA_pooled\\\", \\\"Text_BA_pooled\\\",\\n                    \\\"Gap_pp\\\", \\\"p_value\\\", \\\"HB_adjusted_p\\\", \\\"HB_reject\\\"])\\n        for m in MODEL_CONFIGS:\\n            for method in [\\\"linear\\\", \\\"quadratic\\\"]:\\n                r = all_results[m][method]\\n                w.writerow([\\n                    m, method,\\n                    r[\\\"hs_ba_mean_per_trace\\\"], r[\\\"text_ba_mean_per_trace\\\"],\\n                    r[\\\"hs_ba_pooled\\\"], r[\\\"text_ba_pooled\\\"],\\n                    r[\\\"ba_gap_pp\\\"], r[\\\"p_value\\\"],\\n                    r[\\\"hb_adjusted_p\\\"], r[\\\"hb_reject\\\"],\\n                ])\\n\\n    # Save report.txt\\n    lines = [\\n        \\\"SF3: Nonlinear (Quadratic) Position Residualization\\\",\\n        \\\"=\\\" * 55,\\n        f\\\"Seed: {SEED}, PCA: {N_PCA}, Bootstrap: {N_BOOTSTRAP}\\\",\\n        f\\\"Probe: LogReg(C=1.0, balanced, max_iter=2000)\\\",\\n        f\\\"Split: 60/20/20 trace-level, train+val for training\\\",\\n        \\\"\\\",\\n        \\\"Per-trace mean balanced accuracy (gap = mean per-trace difference):\\\",\\n        \\\"\\\",\\n        f\\\"{'Model':<10} {'Method':<12} {'HS BA':>7} {'Txt BA':>7} {'Gap':>7} {'p':>8} {'HB p':>8} {'Pass':>5}\\\",\\n        \\\"-\\\" * 67,\\n    ]\\n    for m in MODEL_CONFIGS:\\n        for method in [\\\"linear\\\", \\\"quadratic\\\"]:\\n            r = all_results[m][method]\\n            lines.append(\\n                f\\\"{m:<10} {method:<12} {r['hs_ba_mean_per_trace']:>7.4f} {r['text_ba_mean_per_trace']:>7.4f} \\\"\\n                f\\\"{r['ba_gap_pp']:>6.1f}pp {r['p_value']:>8.4f} {r['hb_adjusted_p']:>8.4f} \\\"\\n                f\\\"{'Y' if r['hb_reject'] else 'N':>5}\\\"\\n            )\\n        lines.append(\\\"\\\")\\n\\n    lines.append(\\\"\\\")\\n    lines.append(\\\"Key: HS/Txt BA = mean of per-trace balanced accuracies\\\")\\n    lines.append(\\\"     Gap = mean(HS_BA_i - Txt_BA_i), positive = HS advantage\\\")\\n    lines.append(\\\"     p = paired permutation test (10K, one-sided, H0: HS <= Text)\\\")\\n    lines.append(\\\"     HB p = Holm-Bonferroni adjusted (across 4 models, alpha=0.05)\\\")\\n    lines.append(f\\\"\\\\nElapsed: {elapsed:.0f}s\\\")\\n\\n    with open(OUT_DIR / \\\"report.txt\\\", \\\"w\\\") as f:\\n        f.write(\\\"\\\\n\\\".join(lines))\\n\\n    print(f\\\"\\\\n{'='*65}\\\")\\n    print(\\\"\\\\n\\\".join(lines))\\n    print(f\\\"\\\\nSaved to {OUT_DIR}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.63}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e8ae03d2-e8dd-4a3b-b4b9-1d4bab2ce8a0",
+  "uuid": "824b541e-182b-47d0-87d1-7d1e6a81e51f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    count = 0\\\\n    for _ in range(n_perm):\\\\n        signs = rng.choice([-1, 1], size=len(gaps))\\\\n        if (signs * gaps).mean() >= observed:\\\\n            count += 1\\\\n    p_value = count / n_perm\\\\n    return observed, p_value\\\\n\\\\n\\\\ndef holm_bonferroni(p_values, alpha=0.05):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Holm-Bonferroni correction. Returns dict of model -> {adjusted_p, reject}.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    n = len(p_values)\\\\n    items = sorted(p_values.items(), key=lambda x: x[1])\\\\n    results = {}\\\\n    for rank, (model, p) in enumerate(items):\\\\n        adjusted_alpha = alpha / (n - rank)\\\\n        reject = p <= adjusted_alpha\\\\n        adjusted_p = min(p * (n - rank), 1.0)\\\\n        results[model] = {\\\\\\\"raw_p\\\\\\\": p, \\\\\\\"adjusted_p\\\\\\\": round(adjusted_p, 6), \\\\\\\"reject\\\\\\\": reject}\\\\n    return results\\\\n\\\\n\\\\ndef run_model(model_name, cfg, text_emb_dict):\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n    print(f\\\\\\\"{model_name} (L{cfg['layer_idx'] if model_name not in ['R1-8B'] else 14}, W={cfg['window']})\\\\\\\")\\\\n    print(f\\\\\\\"{'='*60}\\\\\\\")\\\\n\\\\n    traces = load_traces(cfg[\\\\\\\"hs_dir\\\\\\\"])\\\\n    # Filter to traces with text embeddings\\\\n    traces = [t for t in traces if t[\\\\\\\"trace_id\\\\\\\"] in text_emb_dict]\\\\n    print(f\\\\\\\"Traces with both HS + text: {len(traces)}\\\\\\\")\\\\n\\\\n    train, val, test = split_traces(traces)\\\\n    train_val = train + val\\\\n    print(f\\\\\\\"Split: train+val={len(train_val)}, test={len(test)}\\\\\\\")\\\\n\\\\n    layer_idx = cfg[\\\\\\\"layer_idx\\\\\\\"]\\\\n    window = cfg[\\\\\\\"window\\\\\\\"]\\\\n    results = {}\\\\n\\\\n    for method_name, resid_fn in [(\\\\\\\"linear\\\\\\\", residualize_linear), (\\\\\\\"quadratic\\\\\\\", residualize_quadratic)]:\\\\n        # HS features\\\\n        X_tr_hs, y_tr_hs = build_hs_features(train_val, layer_idx, window, resid_fn)\\\\n        X_te_hs, y_te_hs = build_hs_features(test, layer_idx, window, resid_fn)\\\\n        hs_pooled, hs_per_trace = train_probe(X_tr_hs, y_tr_hs, X_te_hs, y_te_hs)\\\\n\\\\n        # Text features\\\\n        X_tr_txt, y_tr_txt = build_text_features(train_val, text_emb_dict, window, resid_fn)\\\\n        X_te_txt, y_te_txt = build_text_features(test, text_emb_dict, window, resid_fn)\\\\n        txt_pooled, txt_per_trace = train_probe(X_tr_txt, y_tr_txt, X_te_txt, y_te_txt)\\\\n\\\\n        # Ensure same number of test traces for paired comparison\\\\n        n_test = min(len(hs_per_trace), len(txt_per_trace))\\\\n        hs_ba = hs_per_trace[:n_test]\\\\n        txt_ba = txt_per_trace[:n_test]\\\\n\\\\n        gap, p_value = paired_permutation_test(hs_ba, txt_ba)\\\\n\\\\n        hs_mean = float(hs_ba.mean())\\\\n        txt_mean = float(txt_ba.mean())\\\\n\\\\n        results[method_name] = {\\\\n            \\\\\\\"hs_ba_pooled\\\\\\\": round(hs_pooled, 4),\\\\n            \\\\\\\"text_ba_pooled\\\\\\\": round(txt_pooled, 4),\\\\n            \\\\\\\"hs_ba_mean_per_trace\\\\\\\": round(hs_mean, 4),\\\\n            \\\\\\\"text_ba_mean_per_trace\\\\\\\": round(txt_mean, 4),\\\\n            \\\\\\\"ba_gap\\\\\\\": round(gap, 4),\\\\n            \\\\\\\"ba_gap_pp\\\\\\\": round(gap * 100, 1),\\\\n            \\\\\\\"p_value\\\\\\\": round(p_value, 6),\\\\n            \\\\\\\"n_test_traces\\\\\\\": n_test,\\\\n            \\\\\\\"per_trace_hs_ba\\\\\\\": [round(float(b), 4) for b in hs_ba],\\\\n            \\\\\\\"per_trace_text_ba\\\\\\\": [round(float(b), 4) for b in txt_ba],\\\\n        }\\\\n        print(f\\\\\\\"  {method_name}: HS={hs_mean:.4f}, Text={txt_mean:.4f}, \\\\\\\"\\\\n              f\\\\\\\"gap={gap*100:.1f}pp, p={p_value:.4f}\\\\\\\")\\\\n\\\\n    return results\\\\n\\\\n\\\\ndef main():\\\\n    t_start = time.time()\\\\n\\\\n    all_results = {}\\\\n\\\\n    for model_name, cfg in MODEL_CONFIGS.items():\\\\n        print(f\\\\\\\"\\\\\\\\nLoading text embeddings for {model_name}...\\\\\\\")\\\\n        text_emb_dict = pickle.load(open(cfg[\\\\\\\"text_emb_pkl\\\\\\\"], \\\\\\\"rb\\\\\\\"))\\\\n        print(f\\\\\\\"  {len(text_emb_dict)} text traces loaded\\\\\\\")\\\\n\\\\n        r = run_model(model_name, cfg, text_emb_dict)\\\\n        all_results[model_name] = r\\\\n\\\\n    # Holm-Bonferroni for linear\\\\n    linear_pvals = {m: r[\\\\\\\"linear\\\\\\\"][\\\\\\\"p_value\\\\\\\"] for m, r in all_results.items()}\\\\n    hb_linear = holm_bonferroni(linear_pvals)\\\\n    for m in all_results:\\\\n        all_results[m][\\\\\\\"linear\\\\\\\"][\\\\\\\"hb_reject\\\\\\\"] = hb_linear[m][\\\\\\\"reject\\\\\\\"]\\\\n        all_results[m][\\\\\\\"linear\\\\\\\"][\\\\\\\"hb_adjusted_p\\\\\\\"] = hb_linear[m][\\\\\\\"adjusted_p\\\\\\\"]\\\\n\\\\n    # Holm-Bonferroni for quadratic\\\\n    quad_pvals = {m: r[\\\\\\\"quadratic\\\\\\\"][\\\\\\\"p_value\\\\\\\"] for m, r in all_results.items()}\\\\n    hb_quad = holm_bonferroni(quad_pvals)\\\\n    for m in all_results:\\\\n        all_results[m][\\\\\\\"quadratic\\\\\\\"][\\\\\\\"hb_reject\\\\\\\"] = hb_quad[m][\\\\\\\"reject\\\\\\\"]\\\\n        all_results[m][\\\\\\\"quadratic\\\\\\\"][\\\\\\\"hb_adjusted_p\\\\\\\"] = hb_quad[m][\\\\\\\"adjusted_p\\\\\\\"]\\\\n\\\\n    elapsed = time.time() - t_start\\\\n\\\\n    # Save results.json\\\\n    out = {\\\\n        \\\\\\\"experiment\\\\\\\": \\\\\\\"sf3_quadratic_residual\\\\\\\",\\\\n        \\\\\\\"seed\\\\\\\": SEED,\\\\n        \\\\\\\"n_pca\\\\\\\": N_PCA,\\\\n        \\\\\\\"n_bootstrap\\\\\\\": N_BOOTSTRAP,\\\\n        \\\\\\\"lr_params\\\\\\\": {\\\\\\\"C\\\\\\\": 1.0, \\\\\\\"class_weight\\\\\\\": \\\\\\\"balanced\\\\\\\", \\\\\\\"max_iter\\\\\\\": 2000},\\\\n        \\\\\\\"split\\\\\\\": \\\\\\\"60/20/20 trace-level\\\\\\\",\\\\n        \\\\\\\"models\\\\\\\": all_results,\\\\n        \\\\\\\"holm_bonferroni_linear\\\\\\\": hb_linear,\\\\n        \\\\\\\"holm_bonferroni_quadratic\\\\\\\": hb_quad,\\\\n        \\\\\\\"elapsed_seconds\\\\\\\": round(elapsed, 1),\\\\n    }\\\\n    with open(OUT_DIR / \\\\\\\"results.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(out, f, indent=2)\\\\n\\\\n    # Save comparison_table.csv\\\\n    import csv\\\\n    with open(OUT_DIR / \\\\\\\"comparison_table.csv\\\\\\\", \\\\\\\"w\\\\\\\", newline=\\\\\\\"\\\\\\\") as f:\\\\n        w = csv.writer(f)\\\\n        w.writerow([\\\\\\\"Model\\\\\\\", \\\\\\\"Method\\\\\\\", \\\\\\\"HS_BA_mean\\\\\\\", \\\\\\\"Text_BA_mean\\\\\\\", \\\\\\\"HS_BA_pooled\\\\\\\", \\\\\\\"Text_BA_pooled\\\\\\\",\\\\n                    \\\\\\\"Gap_pp\\\\\\\", \\\\\\\"p_value\\\\\\\", \\\\\\\"HB_adjusted_p\\\\\\\", \\\\\\\"HB_reject\\\\\\\"])\\\\n        for m in MODEL_CONFIGS:\\\\n            for method in [\\\\\\\"linear\\\\\\\", \\\\\\\"quadratic\\\\\\\"]:\\\\n                r = all_results[m][method]\\\\n                w.writerow([\\\\n                    m, method,\\\\n                    r[\\\\\\\"hs_ba_mean_per_trace\\\\\\\"], r[\\\\\\\"text_ba_mean_per_trace\\\\\\\"],\\\\n                    r[\\\\\\\"hs_ba_pooled\\\\\\\"], r[\\\\\\\"text_ba_pooled\\\\\\\"],\\\\n                    r[\\\\\\\"ba_gap_pp\\\\\\\"], r[\\\\\\\"p_value\\\\\\\"],\\\\n                    r[\\\\\\\"hb_adjusted_p\\\\\\\"], r[\\\\\\\"hb_reject\\\\\\\"],\\\\n                ])\\\\n\\\\n    # Save report.txt\\\\n    lines = [\\\\n        \\\\\\\"SF3: Nonlinear (Quadratic) Position Residualization\\\\\\\",\\\\n        \\\\\\\"=\\\\\\\" * 55,\\\\n        f\\\\\\\"Seed: {SEED}, PCA: {N_PCA}, Bootstrap: {N_BOOTSTRAP}\\\\\\\",\\\\n        f\\\\\\\"Probe: LogReg(C=1.0, balanced, max_iter=2000)\\\\\\\",\\\\n        f\\\\\\\"Split: 60/20/20 trace-level, train+val for training\\\\\\\",\\\\n        \\\\\\\"\\\\\\\",\\\\n        \\\\\\\"Per-trace mean balanced accuracy (gap = mean per-trace difference):\\\\\\\",\\\\n        \\\\\\\"\\\\\\\",\\\\n        f\\\\\\\"{'Model':<10} {'Method':<12} {'HS BA':>7} {'Txt BA':>7} {'Gap':>7} {'p':>8} {'HB p':>8} {'Pass':>5}\\\\\\\",\\\\n        \\\\\\\"-\\\\\\\" * 67,\\\\n    ]\\\\n    for m in MODEL_CONFIGS:\\\\n        for method in [\\\\\\\"linear\\\\\\\", \\\\\\\"quadratic\\\\\\\"]:\\\\n            r = all_results[m][method]\\\\n            lines.append(\\\\n                f\\\\\\\"{m:<10} {method:<12} {r['hs_ba_mean_per_trace']:>7.4f} {r['text_ba_mean_per_trace']:>7.4f} \\\\\\\"\\\\n                f\\\\\\\"{r['ba_gap_pp']:>6.1f}pp {r['p_value']:>8.4f} {r['hb_adjusted_p']:>8.4f} \\\\\\\"\\\\n                f\\\\\\\"{'Y' if r['hb_reject'] else 'N':>5}\\\\\\\"\\\\n            )\\\\n        lines.append(\\\\\\\"\\\\\\\")\\\\n\\\\n    lines.append(\\\\\\\"\\\\\\\")\\\\n    lines.append(\\\\\\\"Key: HS/Txt BA = mean of per-trace balanced accuracies\\\\\\\")\\\\n    lines.append(\\\\\\\"     Gap = mean(HS_BA_i - Txt_BA_i), positive = HS advantage\\\\\\\")\\\\n    lines.append(\\\\\\\"     p = paired permutation test (10K, one-sided, H0: HS <= Text)\\\\\\\")\\\\n    lines.append(\\\\\\\"     HB p = Holm-Bonferroni adjusted (across 4 models, alpha=0.05)\\\\\\\")\\\\n    lines.append(f\\\\\\\"\\\\\\\\nElapsed: {elapsed:.0f}s\\\\\\\")\\\\n\\\\n    with open(OUT_DIR / \\\\\\\"report.txt\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n        f.write(\\\\\\\"\\\\\\\\n\\\\\\\".join(lines))\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*65}\\\\\\\")\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\".join(lines))\\\\n    print(f\\\\\\\"\\\\\\\\nSaved to {OUT_DIR}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.63}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"    count = 0\\n    for _ in range(n_perm):\\n        signs = rng.choice([-1, 1], size=len(gaps))\\n        if (signs * gaps).mean() >= observed:\\n            count += 1\\n    p_value = count / n_perm\\n    return observed, p_value\\n\\n\\ndef holm_bonferroni(p_values, alpha=0.05):\\n    \\\"\\\"\\\"Holm-Bonferroni correction. Returns dict of model -> {adjusted_p, reject}.\\\"\\\"\\\"\\n    n = len(p_values)\\n    items = sorted(p_values.items(), key=lambda x: x[1])\\n    results = {}\\n    for rank, (model, p) in enumerate(items):\\n        adjusted_alpha = alpha / (n - rank)\\n        reject = p <= adjusted_alpha\\n        adjusted_p = min(p * (n - rank), 1.0)\\n        results[model] = {\\\"raw_p\\\": p, \\\"adjusted_p\\\": round(adjusted_p, 6), \\\"reject\\\": reject}\\n    return results\\n\\n\\ndef run_model(model_name, cfg, text_emb_dict):\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(f\\\"{model_name} (L{cfg['layer_idx'] if model_name not in ['R1-8B'] else 14}, W={cfg['window']})\\\")\\n    print(f\\\"{'='*60}\\\")\\n\\n    traces = load_traces(cfg[\\\"hs_dir\\\"])\\n    # Filter to traces with text embeddings\\n    traces = [t for t in traces if t[\\\"trace_id\\\"] in text_emb_dict]\\n    print(f\\\"Traces with both HS + text: {len(traces)}\\\")\\n\\n    train, val, test = split_traces(traces)\\n    train_val = train + val\\n    print(f\\\"Split: train+val={len(train_val)}, test={len(test)}\\\")\\n\\n    layer_idx = cfg[\\\"layer_idx\\\"]\\n    window = cfg[\\\"window\\\"]\\n    results = {}\\n\\n    for method_name, resid_fn in [(\\\"linear\\\", residualize_linear), (\\\"quadratic\\\", residualize_quadratic)]:\\n        # HS features\\n        X_tr_hs, y_tr_hs = build_hs_features(train_val, layer_idx, window, resid_fn)\\n        X_te_hs, y_te_hs = build_hs_features(test, layer_idx, window, resid_fn)\\n        hs_pooled, hs_per_trace = train_probe(X_tr_hs, y_tr_hs, X_te_hs, y_te_hs)\\n\\n        # Text features\\n        X_tr_txt, y_tr_txt = build_text_features(train_val, text_emb_dict, window, resid_fn)\\n        X_te_txt, y_te_txt = build_text_features(test, text_emb_dict, window, resid_fn)\\n        txt_pooled, txt_per_trace = train_probe(X_tr_txt, y_tr_txt, X_te_txt, y_te_txt)\\n\\n        # Ensure same number of test traces for paired comparison\\n        n_test = min(len(hs_per_trace), len(txt_per_trace))\\n        hs_ba = hs_per_trace[:n_test]\\n        txt_ba = txt_per_trace[:n_test]\\n\\n        gap, p_value = paired_permutation_test(hs_ba, txt_ba)\\n\\n        hs_mean = float(hs_ba.mean())\\n        txt_mean = float(txt_ba.mean())\\n\\n        results[method_name] = {\\n            \\\"hs_ba_pooled\\\": round(hs_pooled, 4),\\n            \\\"text_ba_pooled\\\": round(txt_pooled, 4),\\n            \\\"hs_ba_mean_per_trace\\\": round(hs_mean, 4),\\n            \\\"text_ba_mean_per_trace\\\": round(txt_mean, 4),\\n            \\\"ba_gap\\\": round(gap, 4),\\n            \\\"ba_gap_pp\\\": round(gap * 100, 1),\\n            \\\"p_value\\\": round(p_value, 6),\\n            \\\"n_test_traces\\\": n_test,\\n            \\\"per_trace_hs_ba\\\": [round(float(b), 4) for b in hs_ba],\\n            \\\"per_trace_text_ba\\\": [round(float(b), 4) for b in txt_ba],\\n        }\\n        print(f\\\"  {method_name}: HS={hs_mean:.4f}, Text={txt_mean:.4f}, \\\"\\n              f\\\"gap={gap*100:.1f}pp, p={p_value:.4f}\\\")\\n\\n    return results\\n\\n\\ndef main():\\n    t_start = time.time()\\n\\n    all_results = {}\\n\\n    for model_name, cfg in MODEL_CONFIGS.items():\\n        print(f\\\"\\\\nLoading text embeddings for {model_name}...\\\")\\n        text_emb_dict = pickle.load(open(cfg[\\\"text_emb_pkl\\\"], \\\"rb\\\"))\\n        print(f\\\"  {len(text_emb_dict)} text traces loaded\\\")\\n\\n        r = run_model(model_name, cfg, text_emb_dict)\\n        all_results[model_name] = r\\n\\n    # Holm-Bonferroni for linear\\n    linear_pvals = {m: r[\\\"linear\\\"][\\\"p_value\\\"] for m, r in all_results.items()}\\n    hb_linear = holm_bonferroni(linear_pvals)\\n    for m in all_results:\\n        all_results[m][\\\"linear\\\"][\\\"hb_reject\\\"] = hb_linear[m][\\\"reject\\\"]\\n        all_results[m][\\\"linear\\\"][\\\"hb_adjusted_p\\\"] = hb_linear[m][\\\"adjusted_p\\\"]\\n\\n    # Holm-Bonferroni for quadratic\\n    quad_pvals = {m: r[\\\"quadratic\\\"][\\\"p_value\\\"] for m, r in all_results.items()}\\n    hb_quad = holm_bonferroni(quad_pvals)\\n    for m in all_results:\\n        all_results[m][\\\"quadratic\\\"][\\\"hb_reject\\\"] = hb_quad[m][\\\"reject\\\"]\\n        all_results[m][\\\"quadratic\\\"][\\\"hb_adjusted_p\\\"] = hb_quad[m][\\\"adjusted_p\\\"]\\n\\n    elapsed = time.time() - t_start\\n\\n    # Save results.json\\n    out = {\\n        \\\"experiment\\\": \\\"sf3_quadratic_residual\\\",\\n        \\\"seed\\\": SEED,\\n        \\\"n_pca\\\": N_PCA,\\n        \\\"n_bootstrap\\\": N_BOOTSTRAP,\\n        \\\"lr_params\\\": {\\\"C\\\": 1.0, \\\"class_weight\\\": \\\"balanced\\\", \\\"max_iter\\\": 2000},\\n        \\\"split\\\": \\\"60/20/20 trace-level\\\",\\n        \\\"models\\\": all_results,\\n        \\\"holm_bonferroni_linear\\\": hb_linear,\\n        \\\"holm_bonferroni_quadratic\\\": hb_quad,\\n        \\\"elapsed_seconds\\\": round(elapsed, 1),\\n    }\\n    with open(OUT_DIR / \\\"results.json\\\", \\\"w\\\") as f:\\n        json.dump(out, f, indent=2)\\n\\n    # Save comparison_table.csv\\n    import csv\\n    with open(OUT_DIR / \\\"comparison_table.csv\\\", \\\"w\\\", newline=\\\"\\\") as f:\\n        w = csv.writer(f)\\n        w.writerow([\\\"Model\\\", \\\"Method\\\", \\\"HS_BA_mean\\\", \\\"Text_BA_mean\\\", \\\"HS_BA_pooled\\\", \\\"Text_BA_pooled\\\",\\n                    \\\"Gap_pp\\\", \\\"p_value\\\", \\\"HB_adjusted_p\\\", \\\"HB_reject\\\"])\\n        for m in MODEL_CONFIGS:\\n            for method in [\\\"linear\\\", \\\"quadratic\\\"]:\\n                r = all_results[m][method]\\n                w.writerow([\\n                    m, method,\\n                    r[\\\"hs_ba_mean_per_trace\\\"], r[\\\"text_ba_mean_per_trace\\\"],\\n                    r[\\\"hs_ba_pooled\\\"], r[\\\"text_ba_pooled\\\"],\\n                    r[\\\"ba_gap_pp\\\"], r[\\\"p_value\\\"],\\n                    r[\\\"hb_adjusted_p\\\"], r[\\\"hb_reject\\\"],\\n                ])\\n\\n    # Save report.txt\\n    lines = [\\n        \\\"SF3: Nonlinear (Quadratic) Position Residualization\\\",\\n        \\\"=\\\" * 55,\\n        f\\\"Seed: {SEED}, PCA: {N_PCA}, Bootstrap: {N_BOOTSTRAP}\\\",\\n        f\\\"Probe: LogReg(C=1.0, balanced, max_iter=2000)\\\",\\n        f\\\"Split: 60/20/20 trace-level, train+val for training\\\",\\n        \\\"\\\",\\n        \\\"Per-trace mean balanced accuracy (gap = mean per-trace difference):\\\",\\n        \\\"\\\",\\n        f\\\"{'Model':<10} {'Method':<12} {'HS BA':>7} {'Txt BA':>7} {'Gap':>7} {'p':>8} {'HB p':>8} {'Pass':>5}\\\",\\n        \\\"-\\\" * 67,\\n    ]\\n    for m in MODEL_CONFIGS:\\n        for method in [\\\"linear\\\", \\\"quadratic\\\"]:\\n            r = all_results[m][method]\\n            lines.append(\\n                f\\\"{m:<10} {method:<12} {r['hs_ba_mean_per_trace']:>7.4f} {r['text_ba_mean_per_trace']:>7.4f} \\\"\\n                f\\\"{r['ba_gap_pp']:>6.1f}pp {r['p_value']:>8.4f} {r['hb_adjusted_p']:>8.4f} \\\"\\n                f\\\"{'Y' if r['hb_reject'] else 'N':>5}\\\"\\n            )\\n        lines.append(\\\"\\\")\\n\\n    lines.append(\\\"\\\")\\n    lines.append(\\\"Key: HS/Txt BA = mean of per-trace balanced accuracies\\\")\\n    lines.append(\\\"     Gap = mean(HS_BA_i - Txt_BA_i), positive = HS advantage\\\")\\n    lines.append(\\\"     p = paired permutation test (10K, one-sided, H0: HS <= Text)\\\")\\n    lines.append(\\\"     HB p = Holm-Bonferroni adjusted (across 4 models, alpha=0.05)\\\")\\n    lines.append(f\\\"\\\\nElapsed: {elapsed:.0f}s\\\")\\n\\n    with open(OUT_DIR / \\\"report.txt\\\", \\\"w\\\") as f:\\n        f.write(\\\"\\\\n\\\".join(lines))\\n\\n    print(f\\\"\\\\n{'='*65}\\\")\\n    print(\\\"\\\\n\\\".join(lines))\\n    print(f\\\"\\\\nSaved to {OUT_DIR}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.63}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the complete script. I'll write a focused script that only runs QwQ-32B with W=3, reusing all the same functions. It will save `qwq_w3_results.json` and append to `report.txt`.
+
+Let me write and execute it.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e8ae03d2-e8dd-4a3b-b4b9-1d4bab2ce8a0",
+  "uuid": "a6ea9a1c-81a9-40e8-977b-4cc43df8c8ca",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017dp1aYGpnH9ufAgQNiKeoR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3727,
+      "cache_read_input_tokens": 39933,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3727
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42_
+
+Got the full picture. The existing QwQ-32B run used W=5 (gap=0.9pp linear). I'll write a focused QwQ-only script with W=3 and run it.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e8ae03d2-e8dd-4a3b-b4b9-1d4bab2ce8a0",
+  "uuid": "bbf59b26-f448-443a-9e31-66bc39d43edb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017dp1aYGpnH9ufAgQNiKeoR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3727,
+      "cache_read_input_tokens": 39933,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3727
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_012x12q5UuS7zHBf9PhWNBsQ`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "account": "root",
+  "command": "cat << 'PYEOF' > /root/autodl-tmp/contrastive_trace_safety/scripts/sf3_qwq_w3_rerun.py\n\"\"\"SF3: QwQ-32B W=3 rerun for tab:position_residual consistency.\"\"\"\n\nimport os, sys, json, time, warnings, pickle\nos.environ[\"TOKENIZERS_PARALLELISM\"] = \"false\"\nwarnings.filterwarnings(\"ignore\")\n\nimport numpy as np\nimport torch\nfrom pathlib import Path\nfrom sklearn.linear_model import LogisticRegression, LinearRegression\nfrom sklearn.decomposition import PCA\nfrom sklearn.metrics import balanced_accuracy_score\n\nPROJECT = Path(\"/root/autodl-tmp/contrastive_trace_safety\")\nARTIFACTS = PROJECT / \"artifacts\"\nOUT_DIR = ARTIFACTS / \"sf3_quadratic_residual\"\n\nSEED = 42\nN_PCA = 50\nN_BOOTSTRAP = 10000\n\nQWQ_CFG = {\n    \"hs_dir\": ARTIFACTS / \"hidden_states_qwq_32b\",\n    \"layer_idx\": 63,\n    \"hidden_dim\": 5120,\n    \"window\": 3,\n    \"text_emb_pkl\": ARTIFACTS / \"r12_5seed_hb\" / \"qwq_text_emb.pkl\",\n}\n\n\ndef load_traces(hs_dir):\n    traces = []\n    for pt_file in sorted(hs_dir.glob(\"*.pt\")):\n        data = torch.load(pt_file, map_location=\"cpu\", weights_only=False)\n        if data.get(\"step_labels\") is None or data.get(\"commitment_point\") is None:\n            continue\n        traces.append(data)\n    return traces\n\n\ndef get_labels(t):\n    sl = t[\"step_labels\"]\n    return sl.tolist() if isinstance(sl, torch.Tensor) else list(sl)\n\n\ndef split_traces(traces, seed=SEED):\n    rng = np.random.default_rng(seed)\n    idx = rng.permutation(len(traces))\n    n_tr = int(len(traces) * 0.6)\n    n_va = int(len(traces) * 0.2)\n    return (\n        [traces[i] for i in idx[:n_tr]],\n        [traces[i] for i in idx[n_tr:n_tr + n_va]],\n        [traces[i] for i in idx[n_tr + n_va:]],\n    )\n\n\ndef apply_window(feats, window):\n    if window == 1:\n        return feats\n    n, dim = feats.shape\n    half_w = window // 2\n    padded = np.zeros((n + window - 1, dim), dtype=np.float32)\n    padded[half_w:half_w + n] = feats\n    return np.array([padded[i:i + window].flatten() for i in range(n)])\n\n\ndef residualize_linear(features):\n    T = len(features)\n    t_norm = np.arange(T, dtype=np.float64) / T\n    X_reg = t_norm.reshape(-1, 1)\n    reg = LinearRegression().fit(X_reg, features)\n    return (features - reg.predict(X_reg)).astype(np.float32)\n\n\ndef residualize_quadratic(features):\n    T = len(features)\n    t_norm = np.arange(T, dtype=np.float64) / T\n    X_reg = np.column_stack([t_norm, t_norm ** 2])\n    reg = LinearRegression().fit(X_reg, features)\n    return (features - reg.predict(X_reg)).astype(np.float32)\n\n\ndef extract_hs(trace, layer_idx):\n    hs = trace[\"hidden_states\"][:, layer_idx, :].float().numpy()\n    labels = np.array(get_labels(trace))\n    n = min(hs.shape[0], len(labels))\n    return hs[:n].astype(np.float32), labels[:n]\n\n\ndef per_trace_ba(preds, labels):\n    preds, labels = np.asarray(preds), np.asarray(labels)\n    tp = ((preds == 1) & (labels == 1)).sum()\n    fp = ((preds == 1) & (labels == 0)).sum()\n    tn = ((preds == 0) & (labels == 0)).sum()\n    fn = ((preds == 0) & (labels == 1)).sum()\n    tpr = tp / (tp + fn) if (tp + fn) > 0 else 0.0\n    tnr = tn / (tn + fp) if (tn + fp) > 0 else 0.0\n    return (tpr + tnr) / 2\n\n\ndef build_hs_features(traces, layer_idx, window, resid_fn):\n    X_list, y_list = [], []\n    for t in traces:\n        hs, labels = extract_hs(t, layer_idx)\n        feat = apply_window(resid_fn(hs), window)\n        X_list.append(feat)\n        y_list.append(labels)\n    return X_list, y_list\n\n\ndef build_text_features(traces, text_emb_dict, window, resid_fn):\n    X_list, y_list = [], []\n    for t in traces:\n        tid = t[\"trace_id\"]\n        emb = text_emb_dict.get(tid)\n        if emb is None:\n            continue\n        labels = np.array(get_labels(t))\n        emb = np.array(emb, dtype=np.float32)\n        n = min(len(emb), len(labels))\n        emb, labels = emb[:n], labels[:n]\n        feat = apply_window(resid_fn(emb), window)\n        X_list.append(feat)\n        y_list.append(labels)\n    return X_list, y_list\n\n\ndef train_probe(X_train_list, y_train_list, X_test_list, y_test_list):\n    X_tr = np.concatenate(X_train_list)\n    y_tr = np.concatenate(y_train_list)\n    n_comp = min(N_PCA, X_tr.shape[0], X_tr.shape[1])\n\n    if X_tr.shape[1] > 1:\n        pca = PCA(n_components=n_comp, random_state=SEED)\n        X_tr_pca = pca.fit_transform(X_tr)\n    else:\n        pca = None\n        X_tr_pca = X_tr\n\n    clf = LogisticRegression(\n        C=1.0, class_weight=\"balanced\", solver=\"lbfgs\",\n        max_iter=2000, random_state=SEED\n    )\n    clf.fit(X_tr_pca, y_tr)\n\n    per_trace_bas = []\n    all_preds, all_labels = [], []\n    for X_te, y_te in zip(X_test_list, y_test_list):\n        X_te_pca = pca.transform(X_te) if pca is not None else X_te\n        preds = clf.predict(X_te_pca)\n        per_trace_bas.append(float(per_trace_ba(preds, y_te)))\n        all_preds.append(preds)\n        all_labels.append(y_te)\n\n    pooled_ba = float(balanced_accuracy_score(\n        np.concatenate(all_labels), np.concatenate(all_preds)\n    ))\n    return pooled_ba, np.array(per_trace_bas)\n\n\ndef paired_permutation_test(ba_hs, ba_text, n_perm=N_BOOTSTRAP, seed=SEED):\n    gaps = ba_hs - ba_text\n    observed = float(gaps.mean())\n    rng = np.random.default_rng(seed + 77)\n    count = 0\n    for _ in range(n_perm):\n        signs = rng.choice([-1, 1], size=len(gaps))\n        if (signs * gaps).mean() >= observed:\n            count += 1\n    p_value = count / n_perm\n    return observed, p_value\n\n\ndef main():\n    t_start = time.time()\n    cfg = QWQ_CFG\n    window = cfg[\"window\"]\n    layer_idx = cfg[\"layer_idx\"]\n\n    print(f\"QwQ-32B W={window} rerun\")\n    print(f\"Loading text embeddings...\")\n    text_emb_dict = pickle.load(open(cfg[\"text_emb_pkl\"], \"rb\"))\n    print(f\"  {len(text_emb_dict)} text traces\")\n\n    traces = load_traces(cfg[\"hs_dir\"])\n    traces = [t for t in traces if t[\"trace_id\"] in text_emb_dict]\n    print(f\"Traces with both HS + text: {len(traces)}\")\n\n    train, val, test = split_traces(traces)\n    train_val = train + val\n    print(f\"Split: train+val={len(train_val)}, test={len(test)}\")\n\n    results = {}\n    for method_name, resid_fn in [(\"linear\", residualize_linear), (\"quadratic\", residualize_quadratic)]:\n        X_tr_hs, y_tr_hs = build_hs_features(train_val, layer_idx, window, resid_fn)\n        X_te_hs, y_te_hs = build_hs_features(test, layer_idx, window, resid_fn)\n        hs_pooled, hs_per_trace = train_probe(X_tr_hs, y_tr_hs, X_te_hs, y_te_hs)\n\n        X_tr_txt, y_tr_txt = build_text_features(train_val, text_emb_dict, window, resid_fn)\n        X_te_txt, y_te_txt = build_text_features(test, text_emb_dict, window, resid_fn)\n        txt_pooled, txt_per_trace = train_probe(X_tr_txt, y_tr_txt, X_te_txt, y_te_txt)\n\n        n_test = min(len(hs_per_trace), len(txt_per_trace))\n        hs_ba = hs_per_trace[:n_test]\n        txt_ba = txt_per_trace[:n_test]\n\n        gap, p_value = paired_permutation_test(hs_ba, txt_ba)\n        hs_mean = float(hs_ba.mean())\n        txt_mean = float(txt_ba.mean())\n\n        results[method_name] = {\n            \"hs_ba_pooled\": round(hs_pooled, 4),\n            \"text_ba_pooled\": round(txt_pooled, 4),\n            \"hs_ba_mean_per_trace\": round(hs_mean, 4),\n            \"text_ba_mean_per_trace\": round(txt_mean, 4),\n            \"ba_gap\": round(gap, 4),\n            \"ba_gap_pp\": round(gap * 100, 1),\n            \"p_value\": round(p_value, 6),\n            \"n_test_traces\": n_test,\n            \"per_trace_hs_ba\": [round(float(b), 4) for b in hs_ba],\n            \"per_trace_text_ba\": [round(float(b), 4) for b in txt_ba],\n        }\n        print(f\"  {method_name}: HS={hs_mean:.4f}, Text={txt_mean:.4f}, \"\n              f\"gap={gap*100:.1f}pp, p={p_value:.4f}\")\n\n    elapsed = time.time() - t_start\n\n    # Save qwq_w3_results.json\n    out = {\n        \"experiment\": \"sf3_quadratic_residual_qwq_w3\",\n        \"model\": \"QwQ-32B\",\n        \"layer_idx\": layer_idx,\n        \"window\": window,\n        \"seed\": SEED,\n        \"n_pca\": N_PCA,\n        \"n_bootstrap\": N_BOOTSTRAP,\n        \"lr_params\": {\"C\": 1.0, \"class_weight\": \"balanced\", \"max_iter\": 2000},\n        \"split\": \"60/20/20 trace-level\",\n        \"results\": results,\n        \"elapsed_seconds\": round(elapsed, 1),\n    }\n    with open(OUT_DIR / \"qwq_w3_results.json\", \"w\") as f:\n        json.dump(out, f, indent=2)\n\n    # Append to report.txt\n    section = [\n        \"\",\n        \"\",\n        \"QwQ-32B W=3 Rerun (corrected from W=5)\",\n        \"=\" * 45,\n        f\"Layer: L63, Window: {window}, Traces: {len(traces)}\",\n        f\"Seed: {SEED}, PCA: {N_PCA}, Bootstrap: {N_BOOTSTRAP}\",\n        f\"Probe: LogReg(C=1.0, balanced, max_iter=2000)\",\n        f\"Split: 60/20/20 trace-level, train+val for training\",\n        \"\",\n        f\"{'Method':<12} {'HS BA':>7} {'Txt BA':>7} {'Gap':>7} {'p':>8}\",\n        \"-\" * 45,\n    ]\n    for method in [\"linear\", \"quadratic\"]:\n        r = results[method]\n        section.append(\n            f\"{method:<12} {r['hs_ba_mean_per_trace']:>7.4f} {r['text_ba_mean_per_trace']:>7.4f} \"\n            f\"{r['ba_gap_pp']:>6.1f}pp {r['p_value']:>8.4f}\"\n        )\n    section.append(\"\")\n    section.append(f\"Elapsed: {elapsed:.0f}s\")\n\n    with open(OUT_DIR / \"report.txt\", \"a\") as f:\n        f.write(\"\\n\".join(section))\n\n    print(\"\\n\" + \"\\n\".join(section))\n    print(f\"\\nSaved to {OUT_DIR}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e8ae03d2-e8dd-4a3b-b4b9-1d4bab2ce8a0",
+  "uuid": "e780ced2-7644-46fd-842e-7e7a406b62d6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017dp1aYGpnH9ufAgQNiKeoR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3727,
+      "cache_read_input_tokens": 39933,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3727
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-19T14:57:44.571Z_
+
+<details><summary>↩ Tool result · `toolu_012x12q5UuS7zHBf9PhWNBsQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e8ae03d2-e8dd-4a3b-b4b9-1d4bab2ce8a0",
+  "uuid": "8bdb8b6a-4c06-4e09-9324-a323d8ef08ee",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Script written\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45_
+
+Script written. Running it now.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e8ae03d2-e8dd-4a3b-b4b9-1d4bab2ce8a0",
+  "uuid": "eab52281-9d6a-4e3c-8bd1-6a9fe132845f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017h8bGbwYmX2M4ghAT2v66X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4051,
+      "cache_read_input_tokens": 43660,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4051
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01F3jpVeWEW6pPfdn3Bj65mr`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "account": "root",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/contrastive_trace_safety && python scripts/sf3_qwq_w3_rerun.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e8ae03d2-e8dd-4a3b-b4b9-1d4bab2ce8a0",
+  "uuid": "07e52bd4-8c35-43ff-8f3a-b99b312e0c48",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017h8bGbwYmX2M4ghAT2v66X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4051,
+      "cache_read_input_tokens": 43660,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4051
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-19T14:58:00.275Z_
+
+<details><summary>↩ Tool result · `toolu_01F3jpVeWEW6pPfdn3Bj65mr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"QwQ-32B W=3 rerun\\nLoading text embeddings...\\n  95 text traces\\nTraces with both HS + text: 95\\nSplit: train+val=76, test=19\\n  linear: HS=0.6148, Text=0.6006, gap=1.4pp, p=0.3107\\n  quadratic: HS=0.6272, Text=0.5901, gap=3.7pp, p=0.0680\\n\\n\\n\\nQwQ-32B W=3 Rerun (corrected from W=5)\\n=============================================\\nLayer: L63, Window: 3, Traces: 95\\nSeed: 42, PCA: 50, Bootstrap: 10000\\nProbe: LogReg(C=1.0, balanced, max_iter=2000)\\nSplit: 60/20/20 trace-level, train+val for training\\n\\nMethod         HS BA  Txt BA     Gap        p\\n---------------------------------------------\\nlinear        0.6148  0.6006    1.4pp   0.3107\\nquadratic     0.6272  0.5901    3.7pp   0.0680\\n\\nElapsed: 9s\\n\\nSaved to /root/autodl-tmp/contrastive_trace_safety/artifacts/sf3_quadratic_residual\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 11.85}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e8ae03d2-e8dd-4a3b-b4b9-1d4bab2ce8a0",
+  "uuid": "cf8fb1ba-f085-4859-a801-297d3d515656",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"QwQ-32B W=3 rerun\\\\nLoading text embeddings...\\\\n  95 text traces\\\\nTraces with both HS + text: 95\\\\nSplit: train+val=76, test=19\\\\n  linear: HS=0.6148, Text=0.6006, gap=1.4pp, p=0.3107\\\\n  quadratic: HS=0.6272, Text=0.5901, gap=3.7pp, p=0.0680\\\\n\\\\n\\\\n\\\\nQwQ-32B W=3 Rerun (corrected from W=5)\\\\n=============================================\\\\nLayer: L63, Window: 3, Traces: 95\\\\nSeed: 42, PCA: 50, Bootstrap: 10000\\\\nProbe: LogReg(C=1.0, balanced, max_iter=2000)\\\\nSplit: 60/20/20 trace-level, train+val for training\\\\n\\\\nMethod         HS BA  Txt BA     Gap        p\\\\n---------------------------------------------\\\\nlinear        0.6148  0.6006    1.4pp   0.3107\\\\nquadratic     0.6272  0.5901    3.7pp   0.0680\\\\n\\\\nElapsed: 9s\\\\n\\\\nSaved to /root/autodl-tmp/contrastive_trace_safety/artifacts/sf3_quadratic_residual\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 11.85}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"QwQ-32B W=3 rerun\\nLoading text embeddings...\\n  95 text traces\\nTraces with both HS + text: 95\\nSplit: train+val=76, test=19\\n  linear: HS=0.6148, Text=0.6006, gap=1.4pp, p=0.3107\\n  quadratic: HS=0.6272, Text=0.5901, gap=3.7pp, p=0.0680\\n\\n\\n\\nQwQ-32B W=3 Rerun (corrected from W=5)\\n=============================================\\nLayer: L63, Window: 3, Traces: 95\\nSeed: 42, PCA: 50, Bootstrap: 10000\\nProbe: LogReg(C=1.0, balanced, max_iter=2000)\\nSplit: 60/20/20 trace-level, train+val for training\\n\\nMethod         HS BA  Txt BA     Gap        p\\n---------------------------------------------\\nlinear        0.6148  0.6006    1.4pp   0.3107\\nquadratic     0.6272  0.5901    3.7pp   0.0680\\n\\nElapsed: 9s\\n\\nSaved to /root/autodl-tmp/contrastive_trace_safety/artifacts/sf3_quadratic_residual\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 11.85}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The results:
+- Linear: HS=0.6148, Text=0.6006, gap=1.4pp, p=0.3107
+- Quadratic: HS=0.6272, Text=0.5901, gap=3.7pp, p=0.0680
+
+Wait, the task says the expected linear gap should be ~3.7pp. But I'm getting linear gap=1.4pp and quadratic gap=3.7pp. Let me re-read the task...
+
+"论文 tab:position_residual 的 QwQ W=3 linear gap ≈ 3.7pp"
+
+
+Hmm, the results show linear gap=1.4pp and quadratic gap=3.7pp, so the 3.7pp appears in the quadratic instead. Let me check if the output files saved correctly. Looking back at the expectation, it seems the paper might have different values, or perhaps the 3.7pp was actually referring to the quadratic result. I'll just report what I got and let the user sort out the interpretation.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e8ae03d2-e8dd-4a3b-b4b9-1d4bab2ce8a0",
+  "uuid": "147be618-4d65-4fd1-ba25-2e628d7ca77d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SY2yQFYZ9HKkozt1dugsBU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 589,
+      "cache_read_input_tokens": 47711,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 589
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49_
+
+Let me verify the output files.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e8ae03d2-e8dd-4a3b-b4b9-1d4bab2ce8a0",
+  "uuid": "fd58ab92-3f49-446b-b497-b80bb6a7b6e7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SY2yQFYZ9HKkozt1dugsBU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 589,
+      "cache_read_input_tokens": 47711,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 589
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01G5rweL9SdDBRcpAGUVntuh`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ls -la /root/autodl-tmp/contrastive_trace_safety/artifacts/sf3_quadratic_residual/qwq_w3_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e8ae03d2-e8dd-4a3b-b4b9-1d4bab2ce8a0",
+  "uuid": "620abf6b-6454-46a3-98fd-0c3823c27382",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SY2yQFYZ9HKkozt1dugsBU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 589,
+      "cache_read_input_tokens": 47711,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 589
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EKDUMSPw9Thvtyz8TTyhGr`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "tail -20 /root/autodl-tmp/contrastive_trace_safety/artifacts/sf3_quadratic_residual/report.txt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e8ae03d2-e8dd-4a3b-b4b9-1d4bab2ce8a0",
+  "uuid": "99904351-58b3-4791-a4d1-19eeba993246",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SY2yQFYZ9HKkozt1dugsBU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 589,
+      "cache_read_input_tokens": 47711,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 589
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-19T14:58:10.910Z_
+
+<details><summary>↩ Tool result · `toolu_01G5rweL9SdDBRcpAGUVntuh`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 2199 May 19 22:57 /root/autodl-tmp/contrastive_trace_safety/artifacts/sf3_quadratic_residual/qwq_w3_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e8ae03d2-e8dd-4a3b-b4b9-1d4bab2ce8a0",
+  "uuid": "1a68dbd3-6825-4464-89c9-f75bd6d68b8b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 2199 May 19 22:57 /root/autodl-tmp/contrastive_trace_safety/artifacts/sf3_quadratic_residual/qwq_w3_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 2199 May 19 22:57 /root/autodl-tmp/contrastive_trace_safety/artifacts/sf3_quadratic_residual/qwq_w3_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-19T14:58:11.344Z_
+
+<details><summary>↩ Tool result · `toolu_01EKDUMSPw9Thvtyz8TTyhGr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Key: HS/Txt BA = mean of per-trace balanced accuracies\\n     Gap = mean(HS_BA_i - Txt_BA_i), positive = HS advantage\\n     p = paired permutation test (10K, one-sided, H0: HS <= Text)\\n     HB p = Holm-Bonferroni adjusted (across 4 models, alpha=0.05)\\n\\nElapsed: 47s\\n\\nQwQ-32B W=3 Rerun (corrected from W=5)\\n=============================================\\nLayer: L63, Window: 3, Traces: 95\\nSeed: 42, PCA: 50, Bootstrap: 10000\\nProbe: LogReg(C=1.0, balanced, max_iter=2000)\\nSplit: 60/20/20 trace-level, train+val for training\\n\\nMethod         HS BA  Txt BA     Gap        p\\n---------------------------------------------\\nlinear        0.6148  0.6006    1.4pp   0.3107\\nquadratic     0.6272  0.5901    3.7pp   0.0680\\n\\nElapsed: 9s\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e8ae03d2-e8dd-4a3b-b4b9-1d4bab2ce8a0",
+  "uuid": "62f5d472-7149-4bcf-9b86-587474c124f0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Key: HS/Txt BA = mean of per-trace balanced accuracies\\\\n     Gap = mean(HS_BA_i - Txt_BA_i), positive = HS advantage\\\\n     p = paired permutation test (10K, one-sided, H0: HS <= Text)\\\\n     HB p = Holm-Bonferroni adjusted (across 4 models, alpha=0.05)\\\\n\\\\nElapsed: 47s\\\\n\\\\nQwQ-32B W=3 Rerun (corrected from W=5)\\\\n=============================================\\\\nLayer: L63, Window: 3, Traces: 95\\\\nSeed: 42, PCA: 50, Bootstrap: 10000\\\\nProbe: LogReg(C=1.0, balanced, max_iter=2000)\\\\nSplit: 60/20/20 trace-level, train+val for training\\\\n\\\\nMethod         HS BA  Txt BA     Gap        p\\\\n---------------------------------------------\\\\nlinear        0.6148  0.6006    1.4pp   0.3107\\\\nquadratic     0.6272  0.5901    3.7pp   0.0680\\\\n\\\\nElapsed: 9s\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Key: HS/Txt BA = mean of per-trace balanced accuracies\\n     Gap = mean(HS_BA_i - Txt_BA_i), positive = HS advantage\\n     p = paired permutation test (10K, one-sided, H0: HS <= Text)\\n     HB p = Holm-Bonferroni adjusted (across 4 models, alpha=0.05)\\n\\nElapsed: 47s\\n\\nQwQ-32B W=3 Rerun (corrected from W=5)\\n=============================================\\nLayer: L63, Window: 3, Traces: 95\\nSeed: 42, PCA: 50, Bootstrap: 10000\\nProbe: LogReg(C=1.0, balanced, max_iter=2000)\\nSplit: 60/20/20 trace-level, train+val for training\\n\\nMethod         HS BA  Txt BA     Gap        p\\n---------------------------------------------\\nlinear        0.6148  0.6006    1.4pp   0.3107\\nquadratic     0.6272  0.5901    3.7pp   0.0680\\n\\nElapsed: 9s\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 54_
+
+QwQ-32B W=3 重跑完成。结果：
+
+| Method | HS BA | Txt BA | Gap | p |
+|---|---|---|---|---|
+| linear | 0.6148 | 0.6006 | **1.4pp** | 0.3107 |
+| quadratic | 0.6272 | 0.5901 | **3.7pp** | 0.0680 |
+
+注意：3.7pp 出现在 **quadratic** 而非 linear。Linear gap 仅 1.4pp（与之前 W=5 的 0.9pp 方向一致但略大）。如果论文 tab:position_residual 预期 linear gap ≈ 3.7pp，可能需要核实表中对应的是哪行/哪种 residualization。
+
+产出文件：
+- `artifacts/sf3_quadratic_residual/qwq_w3_results.json`
+- `artifacts/sf3_quadratic_residual/report.txt`（已追加 W=3 section）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e8ae03d2-e8dd-4a3b-b4b9-1d4bab2ce8a0",
+  "uuid": "63a6f155-448d-434b-bcc9-d4e444560929",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HkPvShQjoexw1jcLRomJ3X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1173,
+      "cache_read_input_tokens": 48300,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1173
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 55_
+
+QwQ-32B W=3 重跑完成。结果：
+
+| Method | HS BA | Txt BA | Gap | p |
+|---|---|---|---|---|
+| linear | 0.6148 | 0.6006 | **1.4pp** | 0.3107 |
+| quadratic | 0.6272 | 0.5901 | **3.7pp** | 0.0680 |
+
+注意：3.7pp 出现在 **quadratic** 而非 linear。Linear gap 仅 1.4pp（与之前 W=5 的 0.9pp 方向一致但略大）。如果论文 tab:position_residual 预期 linear gap ≈ 3.7pp，可能需要核实表中对应的是哪行/哪种 residualization。
+
+产出文件：
+- `artifacts/sf3_quadratic_residual/qwq_w3_results.json`
+- `artifacts/sf3_quadratic_residual/report.txt`（已追加 W=3 section）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 127809,
+  "duration_api_ms": 114903,
+  "num_turns": 19,
+  "stop_reason": "end_turn",
+  "session_id": "e8ae03d2-e8dd-4a3b-b4b9-1d4bab2ce8a0",
+  "total_cost_usd": 0.6769075,
+  "usage": {
+    "input_tokens": 14,
+    "cache_creation_input_tokens": 51594,
+    "cache_read_input_tokens": 349282,
+    "output_tokens": 7128,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 51594,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 279,
+        "cache_read_input_tokens": 48300,
+        "cache_creation_input_tokens": 1173,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1173
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1384,
+      "outputTokens": 30,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001534,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 14,
+      "outputTokens": 7128,
+      "cacheReadInputTokens": 349282,
+      "cacheCreationInputTokens": 51594,
+      "webSearchRequests": 0,
+      "costUSD": 0.6753735,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "ee8f07f7-da27-4eb5-80d9-2a699ff8abab"
+}
+```
+
+</details>
+
+---

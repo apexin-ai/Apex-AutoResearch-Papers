@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5c797e8181ac8be0e105",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "analysis r14 a8 oracle gap",
+  "task_key": "worker_analysis_r14_a8_oracle_gap_20260518T184954",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r14_a8_oracle_gap_20260518T184954_result.json",
+    "occurrence": 1,
+    "bytes": 872,
+    "sha256": "87e7f7eee085d50a93e2e663ac57cc5885af85375534d3d9f2f81055a36d45fa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Oracle Gap (K=5 consecutive trigger, early detection before CP), test set 60/20/20 seed=42:\n\n```\nModel     Oracle Gap   Count    Mean Lead Time\nR1-8B     76.7%        33/43    31.0 steps\nOT-7B     93.6%        44/47    50.0 steps\nR1-32B    50.0%        10/20    32.4 steps\nQwQ-32B   84.2%        16/19    24.4 steps\n```\n\nOT-7B 最高 (93.6%)，因为其 trace 更长、CP 前有更多 non-safety 标注；R1-32B 最低 (50.0%)，test set 只有 20 条且 median CP=15 较早，CP 前 non-safety 窗口不足。\n\n关于 R1-8B 参考值：task 提到 85.5%，实际 test set 为 76.7%。85.5% 对应 val set (85.4%)，可能来自早期分析。4 个模型均使用相同代码路径 (`analyze_oracle` from `oracle_upper_bound.py`)，结果可直接对比。\n\n结果已存入 `artifacts/r14_a8_oracle_gap/oracle_gap_all_models.json` 并注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-r14-a8-oracle-gap.md"
+}

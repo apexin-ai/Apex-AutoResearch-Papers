@@ -1,0 +1,137 @@
+paper_key: "zhou2024alignment"
+title: "How Alignment and Jailbreak Work: Explain LLM Safety through Intermediate Hidden States"
+venue: "ACL 2024"
+full_text_available: true
+
+research:
+  baselines:
+    - "Llama-2-7b-chat"
+    - "Llama-2-13b-chat"
+    - "Llama-2-70b-chat"
+    - "Llama-3-8b-Instruct"
+    - "Llama-3-70b-Instruct"
+    - "Vicuna-7b-v1.5"
+    - "Vicuna-13b-v1.5"
+    - "Mistral-7b-Instruct-v0.1"
+    - "Mistral-7b-Instruct-v0.2"
+    - "Falcon-7b-Instruct"
+  metrics:
+    - {name: "Weak classifier accuracy (SVM/MLP)", direction: "higher_better"}
+    - {name: "Top-K Intermediate Consistency", direction: "higher_better"}
+    - {name: "Attack Success Rate (ASR)", direction: "lower_better"}
+    - {name: "Correlation between consistency and ASR", direction: "N/A"}
+  datasets:
+    - {name: "AdvBench", size: "malicious questions, part of merged set"}
+    - {name: "StrongReject", size: "malicious questions, part of merged set"}
+    - {name: "JailbreakBench", size: "malicious questions, part of merged set"}
+    - {name: "Normal dataset (GPT-4 generated)", size: "250 samples"}
+    - {name: "Normal dataset (Claude3-Opus generated)", size: "250 samples"}
+    - {name: "GCG jailbreak inputs", size: "combined with other jailbreak methods"}
+    - {name: "AutoDAN jailbreak inputs", size: "combined"}
+    - {name: "DeepInception jailbreak inputs", size: "combined"}
+  ablation_dimensions:
+    - "aligned vs base model (same family)"
+    - "with vs without chat format"
+    - "different model families and sizes (7B to 70B)"
+    - "different jailbreak methods (GCG, AutoDAN, DeepInception)"
+    - "random label shuffling to test overfitting"
+    - "Logit Grafting layer selection"
+  training_recipe:
+    optimizer: "default sklearn (SVM with linear kernel, MLP with 100 neurons)"
+    lr: "sklearn defaults"
+    hardware: "not specified; inference on open-source LLMs"
+    classifier_details: "Linear SVM (default settings) and single-layer MLP (100 neurons) from sklearn"
+    test_size: 0.3
+    sample_size: "500 randomly selected from merged datasets"
+  method_family: "mechanistic interpretability via weak probing classifiers + Logit Lens"
+
+positioning:
+  core_claim: "LLMs learn ethical concepts during pre-training (not alignment); alignment bridges early ethical features with emotional guesses in middle layers; jailbreaks disrupt this bridging association rather than the early ethical classification."
+  key_results: "Weak classifiers achieve >95% accuracy distinguishing malicious/normal inputs from early-layer hidden states in both aligned AND base models. Correlation between Top-5 Intermediate Consistency and ASR: -0.516 (malicious), -0.810 (jailbreak). Logit Grafting at layer 23 increases ASR from 0.0 to 0.79 on Vicuna-7b."
+  limitations:
+    - "Only used simplest weak classifiers with default settings; more sophisticated classifiers might reveal finer-grained patterns"
+    - "Only examined safety perspective; the weak-to-strong explanation method might apply to other LLM capabilities but was not tested"
+    - "Emotion token categorization (positive/negative/neutral) was manually curated and limited to English/Chinese"
+    - "Does not address reasoning models or chain-of-thought safety"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "Opens with the tension between LLM safety alignment and jailbreak vulnerability, framing the black-box nature of LLMs as the core obstacle to understanding why alignment works and how jailbreak circumvents it."
+  tension: "Prior work found only minor logit shifts between aligned and base models (stylistic tokens like disclaimers), creating a puzzle: how can such small changes make models harmless? This perplexing gap motivates deeper investigation into hidden states."
+  key_insight: "Revealed in Section 3.1 with Figure 3: the 'aha' moment is that BOTH aligned and base models can classify ethical vs. unethical inputs in early layers with >95% accuracy, meaning ethical understanding comes from pre-training, not alignment. Alignment's role is then reframed as an 'association bridge' between early ethical concepts and middle-layer emotional tokens."
+  argument_chain: "black-box safety problem -> probe early hidden states with weak classifiers -> discover ethical concepts from pre-training (not alignment) -> use Logit Lens to show alignment creates emotion-to-rejection pipeline in middle layers -> show jailbreak disrupts this association (not early classification) -> validate with Logit Grafting approximation"
+  contribution_framing: "Three interleaved contributions presented through progressive discovery narrative: (1) pre-training provides ethical concepts, (2) alignment bridges them to emotions, (3) jailbreak disrupts the bridge. Each builds on the previous. No explicit numbered contribution list in intro."
+  intro_structure: "5 paragraphs: P1 sets up safety/jailbreak tension; P2 frames the puzzle of minor logit shifts; P3 introduces Weak-to-Strong Explanation for early layers; P4 describes Logit Lens findings for middle layers and Top-K Intermediate Consistency; P5 analyzes jailbreak mechanism and proposes Logit Grafting."
+  notable_technique: "The 'progressive revelation' structure where each section builds a complete sub-story (Section 3.1 -> 3.2 -> Section 4) that incrementally reveals the full mechanism. The paper names its methods evocatively (Weak-to-Strong Explanation, Logit Grafting) to create memorable conceptual handles."
+
+figures:
+  figure_count: 30  # 7 in main text + 23 in appendix
+  figure1:
+    type: "method_overview"
+    description: "Three-stage pipeline diagram showing how LLMs process inputs through layers: early layers determine ethical/unethical classification, middle layers form positive/negative emotional guesses via alignment, later layers refine emotions into response/rejection tokens."
+    narrative_role: "Serves as the paper's thesis statement in visual form - the entire argument chain is compressed into one figure, placed right after the hook paragraph. Reader grasps the full story before reading details."
+    design_elements: ["three-stage pipeline layout (early/middle/late layers)", "color-coded emotional tokens (positive=green, negative=red)", "example inputs showing both ethical and unethical paths", "arrows showing flow from ethical classification to emotion to final token"]
+    visual_style: "Horizontal pipeline with layer ranges labeled, dual-path visualization for safe vs unsafe inputs, text examples embedded within the diagram."
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "line_plot"
+      what_compared: "Weak classifier (SVM and MLP) accuracy across layers for 10 models (aligned + base), with and without chat format"
+      how_gain_highlighted: "Shows accuracy jumping from ~0.31 (embedding) to >0.80 after layer 0, reaching >0.95 within a few layers. The dramatic jump is the visual proof of the early ethical classification claim."
+      design_note: "Multi-panel grid layout (one panel per model), consistent y-axis across panels for comparison. Both classifier types shown per panel. Base models shown alongside aligned models to demonstrate pre-training hypothesis."
+    - figure_id: "Figure 4"
+      viz_type: "heatmap"
+      what_compared: "Logit Lens decoded tokens from intermediate hidden states across all 32 layers for 500 normal inputs on Llama-2-7b-chat"
+      how_gain_highlighted: "Color-coded heatmap where middle layers (16-24) show concentrated positive emotional tokens, visually demonstrating the alignment association mechanism."
+      design_note: "Two-part figure: upper shows token labels, lower shows the heatmap. The visual density of consistent colors in middle layers is the proof of the emotion association hypothesis."
+    - figure_id: "Figure 6"
+      viz_type: "heatmap"
+      what_compared: "Middle-layer decoded tokens for jailbreak inputs across different models (Mistral-7b vs Vicuna-7b), showing disrupted vs failed association"
+      how_gain_highlighted: "Color annotations: red = negative emotion, purple = ambiguous, green = positive. Jailbreak inputs show mixed/positive emotions where aligned models should show negative."
+      design_note: "Direct visual comparison of jailbreak disruption patterns across models with different safety levels."
+  ablation_figures:
+    - figure_id: "Figure 5"
+      viz_type: "heatmap"
+      what_compared: "Intermediate hidden state decoded tokens for aligned vs base Llama-2-7b, for both normal and malicious inputs"
+      dimensions_varied: ["aligned vs base model", "normal vs malicious inputs"]
+      design_note: "Side-by-side comparison showing base model lacks the emotion association that aligned model has, directly supporting the alignment-as-bridge claim."
+    - figure_id: "Figure 7"
+      viz_type: "heatmap"
+      what_compared: "Effect of Logit Grafting on middle-layer hidden states, showing how replacing layer-23 states with normal-input states causes malicious inputs to generate affirmative responses"
+      dimensions_varied: ["original malicious forward pass vs grafted forward pass"]
+      design_note: "Before/after visualization demonstrating the causal role of middle-layer association."
+  figure_narrative_role: "Figure 1 (thesis overview) -> Figure 2 (empirical observation of consistent rejection patterns) -> Figure 3 (proof of early ethical classification) -> Figure 4 (proof of middle-layer emotion association) -> Figure 5 (aligned vs base comparison) -> Figure 6 (jailbreak disruption visualization) -> Figure 7 (Logit Grafting causal validation). Progressive zoom from overview to mechanism to verification."
+
+tables:
+  table_count: 10  # 3 in main text + 7 in appendix
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "models (7 aligned models from different families)"
+    col_axis: "ASR (malicious, jailbreak) + Top-5 Intermediate Consistency across 8 middle layers"
+    row_organization: "by_category"  # grouped by model family implicitly (Llama, Vicuna, Mistral)
+    col_organization: "grouped_by_metric"
+    highlight_strategy: "no bold/underline; relies on numerical patterns and correlation coefficient (-0.516, -0.810) stated in text"
+    statistical_reporting: "single run measurements; consistency is averaged across layers"
+    num_baselines: 7
+    design_note: "Dense numerical table correlating two phenomena (consistency vs ASR). The key insight is communicated through the correlation coefficients mentioned in the caption/text rather than visual highlighting in the table itself."
+  ablation_tables:
+    - table_id: "Table 2"
+      what_varied: ["model family", "input format (with/without chat)", "classifier type (SVM/MLP)", "layer (embed through layer 5)"]
+      variation_style: "full_numbers"
+      design_note: "Three-way classification (jailbreak vs malicious vs normal) accuracy table. Shows jailbreak inputs can be classified from early layers, proving jailbreak doesn't fool ethical classification."
+    - table_id: "Table 3"
+      what_varied: ["model", "vanilla vs Logit Grafting", "malicious vs jailbreak inputs"]
+      variation_style: "full_numbers"
+      design_note: "Comparison of ASR before and after Logit Grafting. Red highlighting for columns where LG achieves higher ASR than vanilla jailbreak, proving the causal role of association disruption."
+    - table_id: "Table 5 (Appendix B)"
+      what_varied: ["model", "input format", "classifier type"]
+      variation_style: "full_numbers"
+      design_note: "Random label shuffling ablation showing weak classifiers achieve ~50% accuracy on shuffled data, confirming they are not overfitting."
+    - table_id: "Table 6 (Appendix B)"
+      what_varied: ["model", "input format", "classifier type"]
+      variation_style: "full_numbers"
+      design_note: "Source attribution test (GPT-4 vs Claude3-Opus generated data) showing classifiers CAN distinguish sources, indicating hidden states capture more than just safety."
+  supplementary_tables:
+    in_appendix: true
+    content: "Table 4: GPT-4 evaluation prompt for ASR scoring. Table 5: Random shuffle overfitting test. Table 6: Source attribution test. Table 7: Average token counts by source. Tables 8-10: Positive/negative/neutral emotion token lists."
+    reason: "Main text focuses on the three-stage narrative (ethical classification -> emotion association -> jailbreak disruption). Appendix tables handle methodological validation (overfitting checks) and detailed token categorizations that would break narrative flow."

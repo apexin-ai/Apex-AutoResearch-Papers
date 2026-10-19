@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_r5_auroc_layer_sweep",
+  "project": "contrastive_trace_safety",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T19:24:53.113Z",
+    "updated_at": "2026-05-17T19:25:01.328Z",
+    "hypothesis": "AUROC (threshold-free, orthogonal to precision/FPR) as layer selection metric should converge to deep layers if the paper's multi-metric layer selection is robust. If AUROC selects different layers, it reveals metric-dependent layer preference."
+  },
+  "timestamp": "2026-05-17T19:25:01.434954+00:00",
+  "trigger": "update_registry"
+}

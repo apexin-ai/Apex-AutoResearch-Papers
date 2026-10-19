@@ -1,0 +1,15 @@
+Probe Score Trajectory Figure (CP-aligned)
+
+Server paths:
+- PDF: /root/autodl-tmp/contrastive_trace_safety/docs/paper/figures/fig_trajectory.pdf (24KB)
+- PNG: /root/autodl-tmp/contrastive_trace_safety/docs/paper/figures/fig_trajectory.png (414KB)
+- Data: /root/autodl-tmp/contrastive_trace_safety/artifacts/fig_trajectory_data.json (75KB)
+- Caption: /root/autodl-tmp/contrastive_trace_safety/artifacts/fig_trajectory_caption.txt
+
+Caption: Aggregate probe score trajectories aligned to the commitment point (CP, vertical dashed line at t - t_CP = 0). Each panel shows mean scores across test traces, with shaded bands indicating ±1 standard deviation. The HS probe (blue, solid) exhibits a sharper transition at CP than the text probe (orange, dashed) and crosses the 0.5 threshold at or before CP in three of four models.
+
+Narrative verification:
+- R1-8B: HS crosses 0.5 at step 0, Text at step 1 → HS earlier
+- OT-7B: Both cross at step 0, but HS has lower pre-CP baseline → sharper contrast
+- R1-32B: HS sharper jump (0.41→0.70 vs 0.48→0.54) at CP
+- QwQ-32B: HS crosses at step 0, Text at step 2 → HS earlier

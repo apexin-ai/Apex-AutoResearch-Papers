@@ -1,0 +1,14 @@
+Random-CP Control — QwQ-32B (64 layers, 10 repeats)
+Server: /root/autodl-tmp/contrastive_trace_safety/artifacts/random_cp_control/qwq_32b/
+
+Real-CP baseline:
+  CR-composite → L4 (shallow), Precision → L63 (deep), gap = 59 layers
+
+Random-CP (10 repeats):
+  crossing_rate: always shallow (L0-L7, 100% shallow) — geometric property
+  CR-composite: 80% shallow — partially geometric (driven by crossing_rate)
+  Precision/FPR: scattered (mean L33-36, only 10-20% deep) — LOST deep preference
+  
+Key: threshold-based metrics lose deep-layer preference under random CP (15% deep vs 100% real).
+CR shallow preference partially persists (geometric component exists).
+Full disagreement pattern (shallow CR + deep precision) requires real CP labels.

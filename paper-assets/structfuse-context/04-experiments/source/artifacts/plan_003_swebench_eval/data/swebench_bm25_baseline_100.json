@@ -1,0 +1,14 @@
+retriever_type: bm25
+n_instances: 100
+metrics:
+  R@1: 0.2800
+  R@5: 0.5100
+  R@10: 0.5800
+  R@20: 0.6300
+  MRR: 0.3768
+  gold_coverage: 1.0000
+  errors: 0
+time_s: 83
+log: /root/autodl-tmp/structfuse/logs/swebench_bm25_100.log
+results_dir: /root/autodl-tmp/structfuse/artifacts/swebench_retrieval_eval/bm25_100/
+code_changes: Added --retriever-type CLI param (neural/bm25), BM25Retriever class using rank_bm25.BM25Okapi, tokenization via re.findall, file content truncated at 12000 chars

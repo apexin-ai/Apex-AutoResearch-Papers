@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_r3_selectivity_corrected",
+  "project": "contrastive_trace_safety",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T18:13:59.672Z",
+    "updated_at": "2026-05-17T18:14:03.119Z",
+    "hypothesis": "Selectivity at corrected deep layers (QwQ L60, R1-32B L63) should equal or exceed selectivity at biased shallow layers (QwQ L2, R1-32B L10), because deeper layers encode stronger safety-specific signal beyond positional confounds. Both should pass the 5pp threshold from Hewitt et al. 2019."
+  },
+  "timestamp": "2026-05-17T18:14:03.215526+00:00",
+  "trigger": "update_registry"
+}

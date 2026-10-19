@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "32c64996a606516fb52f",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code ccs unsupervised probe",
+  "task_key": "worker_code_ccs_unsupervised_probe_20260517T141539",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_ccs_unsupervised_probe_20260517T141539_result.json",
+    "occurrence": 1,
+    "bytes": 1311,
+    "sha256": "000d7f8b41350dee674cfe5c7b158a14fa70073aee2ebecbff00201e910c205c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All done. Results:\n\n**R1-8B Comparison (primary model):**\n\n| Method | Type | bal_acc | precision | FPR | lead |\n|--------|------|---------|-----------|-----|------|\n| LR probe | supervised | 0.817 | 0.693 | 0.097 | -2.0 |\n| **CCS** | **unsupervised** | **0.777** | **0.565** | **0.191** | **+0.7** |\n| RepE | unsupervised | 0.749 | 0.516 | 0.226 | +9.7 |\n\n**All models CCS:**\n\n| Model | bal_acc | precision | FPR | coverage | lead |\n|-------|---------|-----------|-----|----------|------|\n| r1-8b | 0.777 | 0.565 | 0.191 | 0.674 | +0.7 |\n| qwq-32b | 0.731 | 0.555 | 0.214 | 0.684 | +2.0 |\n| r1-32b | 0.703 | 0.507 | 0.410 | 0.900 | +5.2 |\n| ot-7b | 0.692 | 0.319 | 0.344 | 0.809 | +20.5 |\n\n**Key findings:**\n- CCS is the best unsupervised method tested, beating RepE on R1-8B (bal_acc 0.777 vs 0.749, FPR 0.191 vs 0.226)\n- Still significantly below supervised LR probe (bal_acc 0.817, FPR 0.097)\n- All models needed polarity flip (probe consistently learned inverse mapping first)\n- FPR remains high across all models (0.19-0.41), confirming the unsupervised gap\n- OT-7B has high coverage/lead but low precision (0.319), indicating indiscriminate triggering\n\nOutputs: script at `src/experiments/exp_r3_ccs_probe.py`, results at `artifacts/exp_r3_ccs_probe/results.json`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-ccs-unsupervised-probe.md"
+}

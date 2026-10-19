@@ -1,0 +1,13 @@
+QwQ-32B Position Residualization (W=3, L60, seed=42, 95 traces)
+
+Position-only BA: 0.7543
+Original HS BA: 0.7102
+Residualized HS BA: 0.6191
+Original Text BA: 0.6112
+Residualized Text BA: 0.5819
+Drop (HS orig - HS resid): 9.1 pp
+Gap (HS resid - Text resid): 3.7 pp
+Bootstrap HB p-value: 0.011 (1000 resamples, null-centered, two-sided)
+HB result: pass (significant)
+
+Full results: /root/autodl-tmp/contrastive_trace_safety/artifacts/r12_qwq_position_residualized/results.json

@@ -1,0 +1,1349 @@
+# analysis r14 a5 residualized control
+
+**Layer Selection Sensitivity in Hidden-State Safety Probes for Reasoning Models** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 45
+- **Recorded user turns:** 0
+- **Tool calls:** 22
+- **Original source:** `logs/chats/worker_analysis_r14_a5_residualized_control_20260518T164827.jsonl`
+- **Structured JSON:** [`2382bde059822b7a801e.json`](../../sessions/23/2382bde059822b7a801e.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+45 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-18T16:56:53.047315+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a5_residualized_control_20260518T164827",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-18T16:56:53.047789+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a5_residualized_control_20260518T164827",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-18T16:56:53.048051+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "find /root/autodl-tmp/contrastive_trace_safety/ -name \"*.py\" -path \"*/src/*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a5_residualized_control_20260518T164827",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "find /root/autodl-tmp/contrastive_trace_safety/ -name \"*.py\" -path \"*/src/*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-18T16:56:53.048242+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a5_residualized_control_20260518T164827",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-18T16:56:53.048534+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/contrastive_trace_safety/src/baselines/__init__.py\\n/root/autodl-tmp/contrastive_trace_safety/src/baselines/linear_probe.py\\n/root/autodl-tmp/contrastive_trace_safety/src/crta/__init__.py\\n/root/autodl-tmp/contrastive_trace_safety/src/crta/temporal_probe.py\\n/root/autodl-tmp/contrastive_trace_safety/src/eval/__init__.py\\n/root/autodl-tmp/contrastive_trace_safety/src/eval/evaluate.py\\n/root/autodl-tmp/contrastive_trace_safety/src/__init__.py\\n/root/autodl-tmp/contrastive_trace_safety/src/config.py\\n/root/autodl-tmp/contrastive_trace_safety/src/data_loader.py\\n/root/autodl-tmp/contrastive_trace_safety/src/extract_hidden_states.py\\n/root/autodl-tmp/contrastive_trace_safety/src/run_pipeline.py\\n/root/autodl-tmp/contrastive_trace_safety/src/diagnostics/__init__.py\\n/root/autodl-tmp/contrastive_trace_safety/src/diagnostics/layer_sweep.py\\n/root/autodl-tmp/contrastive_trace_safety/src/diagnostics/oracle_upper_bound.py\\n/root/autodl-tmp/contrastive_trace_safety/src/diagnostics/regularized_probes.py\\n/root/autodl-tmp/contrastive_trace_safety/src/diagnostics/pca_viz.py\\n/root/autodl-tmp/contrastive_trace_safety/src/diagnostics/gru_probe.py\\n/root/autodl-tmp/contrastive_trace_safety/src/experiments/__init__.py\\n/root/autodl-tmp/contrastive_trace_safety/src/experiments/gru_multilayer_ablation.py\\n/root/autodl-tmp/contrastive_trace_safety/src/experiments/trajguard_mahalanobis.py\\n/root/autodl-tmp/contrastive_trace_safety/src/experiments/bootstrap_ci.py\\n/root/autodl-tmp/contrastive_trace_safety/src/experiments/text_baseline.py\\n/root/autodl-tmp/contrastive_trace_safety/src/experiments/bocpd_poc.py\\n/root/autodl-tmp/contrastive_trace_safety/src/experiments/fpr_analysis.py\\n/root/autodl-tmp/contrastive_trace_safety/src/experiments/exp_001b_extract_qwq.py\\n/root/autodl-tmp/contrastive_trace_safety/src/experiments/exp_001a_extract_r1_32b.py\\n/root/autodl-tmp/contrastive_trace_safety/sr
+…[truncated 3767 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a5_residualized_control_20260518T164827",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-18T16:56:53.048793+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "find /root/autodl-tmp/contrastive_trace_safety/ -name \"*.py\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a5_residualized_control_20260518T164827",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "find /root/autodl-tmp/contrastive_trace_safety/ -name \"*.py\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-18T16:56:53.049139+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"008edcde3b3d48dcaee8313c4779f687.pt\\n018ad1b2027a488aad4ce925258db0c7.pt\\n02361be96b4e4f11af5524a64c34f612.pt\\n023c413259524b2187989e61d96e351c.pt\\n02fad27f069d4009861ea612984ab65c.pt\\n0334a1be1cc84efc853bd93eb5327499.pt\\n03a149305aae4ed58d62489ed1f66329.pt\\n04e287adbc58415cb184c3db0ac3d8c5.pt\\n0516bc55867f4454966f3ecfd6cd85c5.pt\\n051a975475d7420d99f686fe89e83691.pt\\n05e1498f8ff741718f500af3772def28.pt\\n0601b6d225274449bcfcca10af190a9a.pt\\n06470bdf141a4267b541332987c6f695.pt\\n06d85d8b941f4a4e97dc7f33c81c34c4.pt\\n0828a2af61e846f1aea6a834017ec7be.pt\\n0901d657f92b441e8cac21db87d066e5.pt\\n0a31d31d974b410eb923f33cfbf6e6b9.pt\\n0c9c5e6cf60849bb925d007dd2b061fc.pt\\n0d13aa7b2f374a3fa367bdea42493ed5.pt\\n0d19422cc82743568f671961b534c215.pt\\n0d8b146a9bce48f7a8083f6ed962664e.pt\\n0daf036448c04433859bdf6758495bc3.pt\\n0f35040637024040b7944abd48472d22.pt\\n0f6bdcb1133f442ba26e11047e5351c6.pt\\n0f860c71503e43c985eafc0142546731.pt\\n10a2a6c355d4408ab97b759b490a6a8b.pt\\n10a3ace02006485ca641aaa88684b5dd.pt\\n10e4c756140247b4af10559f16d8f876.pt\\n114499174dfa48daa5e053c629c83a10.pt\\n116042e8dc164c17b02d5670b015f807.pt\\n11a094cbf15549bca819c57910c2a2ff.pt\\n11c4c8713262422eb211ec189c3715ab.pt\\n11f61793e9b449e799abe7ce14cbcf6c.pt\\n1249b76a00da42b8be3aa81d823cd820.pt\\n130e2b41b4bf43f883f087b5036afe85.pt\\n13258d4ff6e04f67b9510328b89251ea.pt\\n1362fe58c432487aac432b576babe0c2.pt\\n13b5b2b441534e818b1a2d2f577cb99c.pt\\n153e58ce7b554163a43030ecfa47a304.pt\\n1582380f856b429490eca59328ce551d.pt\\n15e5e40e8ddc475594dce89bc52c9056.pt\\n16015e85a86d4ad6aae05eda39472b0a.pt\\n16d9dd7bb2484ec19ed11d44fb46af7f.pt\\n177c234e76104e7b9f2858bdd71f4963.pt\\n17a5d38bd028469aad6f4cb0304c7e01.pt\\n17d1d68121644dec87c3bb936abfb615.pt\\n181e5d60e4f1457fb60796052713110b.pt\\n18ca23538f9d4c3faa4cb9c4e2ec4c2d.pt\\n196b722aadd6473f9ce6795294f9a88a.pt\\n1a27d43f250e4201bb0099ae23551974.pt\\n1a2bca42efbd45458fe50b6a6b44242f.pt\\n1af63c
+…[truncated 6646 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a5_residualized_control_20260518T164827",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-18T16:56:53.049499+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/contrastive_trace_safety/artifacts/r1_8b_balanced_recompute/recompute_all.py\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/qwq_text_verify/run_bootstrap.py\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/acc_precision_bootstrap/run_bootstrap.py\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/figures/paper/fig2_temporal_improvement.py\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r6_c_sweep/run_c_sweep.py\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r7_k_ablation/run_k_ablation.py\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r7_k_ablation_optimal_w/run_k_ablation_optimal_w.py\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r8_loo_layer_stability/run_loo.py\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a2_per_fold_ba_layer/run_kfold.py\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a2_per_fold_ba_layer/run_kfold_v2.py\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a2_per_fold_ba_layer/run_kfold_v3.py\\n/root/autodl-tmp/contrastive_trace_safety/src/baselines/__init__.py\\n/root/autodl-tmp/contrastive_trace_safety/src/baselines/linear_probe.py\\n/root/autodl-tmp/contrastive_trace_safety/src/crta/__init__.py\\n/root/autodl-tmp/contrastive_trace_safety/src/crta/temporal_probe.py\\n/root/autodl-tmp/contrastive_trace_safety/src/eval/__init__.py\\n/root/autodl-tmp/contrastive_trace_safety/src/eval/evaluate.py\\n/root/autodl-tmp/contrastive_trace_safety/src/__init__.py\\n/root/autodl-tmp/contrastive_trace_safety/src/config.py\\n/root/autodl-tmp/contrastive_trace_safety/src/data_loader.py\\n/root/autodl-tmp/contrastive_trace_safety/src/extract_hidden_states.py\\n/root/autodl-tmp/contrastive_trace_safety/src/run_pipeline.py\\n/root/autodl-tmp/contrastive_trace_safety/src/diagnostics/__init__.py\\n/root/autodl-tmp/contrastive_trace_safety/src/diagnostics/layer_sweep.py\\n/root/autodl-tmp/contrastive_trace_s
+…[truncated 6411 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a5_residualized_control_20260518T164827",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-18T16:56:53.049780+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/src/experiments/exp_c2_control_task.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a5_residualized_control_20260518T164827",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat /root/autodl-tmp/contrastive_trace_safety/src/experiments/exp_c2_control_task.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-18T16:56:53.050189+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"exp_c2_control_task: Hewitt & Liang (2019) control task to exclude position confound.\\n\\nOptimized: process models sequentially, use PCA for high-dim features, unbuffered output.\\n\\\"\\\"\\\"\\n\\nimport sys, json, warnings, gc\\nimport numpy as np\\nfrom pathlib import Path\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.metrics import accuracy_score\\nfrom sklearn.decomposition import PCA\\n\\nsys.path.insert(0, \\\"/root/autodl-tmp/contrastive_trace_safety\\\")\\nwarnings.filterwarnings(\\\"ignore\\\")\\n\\nimport torch\\n\\nOUT_DIR = Path(\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_c2_control\\\")\\nOUT_DIR.mkdir(parents=True, exist_ok=True)\\n\\nMODELS = {\\n    \\\"r1_8b\\\": {\\n        \\\"hs_dir\\\": Path(\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states\\\"),\\n        \\\"best_layer_idx\\\": 2,  # layer 14 in saved tensor (13 layers: 12-24)\\n        \\\"best_layer_absolute\\\": 14,\\n    },\\n    \\\"r1_32b\\\": {\\n        \\\"hs_dir\\\": Path(\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_r1_32b\\\"),\\n        \\\"best_layer_idx\\\": 2,\\n        \\\"best_layer_absolute\\\": 2,\\n    },\\n    \\\"qwq_32b\\\": {\\n        \\\"hs_dir\\\": Path(\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_qwq_32b\\\"),\\n        \\\"best_layer_idx\\\": 1,\\n        \\\"best_layer_absolute\\\": 1,\\n    },\\n}\\n\\nWINDOW = 15\\nSEED = 42\\nN_RANDOM_REPEATS = 10\\nK_CONSECUTIVE = 5\\n\\n\\ndef flush_print(*args, **kwargs):\\n    print(*args, **kwargs, flush=True)\\n\\n\\ndef load_traces_from_pt(hs_dir):\\n    traces = []\\n    for pt_file in sorted(hs_dir.glob(\\\"*.pt\\\")):\\n        data = torch.load(pt_file, map_location=\\\"cpu\\\", weights_only=False)\\n        if data.get(\\\"step_labels\\\") is None or data.get(\\\"commitment_point\\\") is None:\\n            continue\\n        traces.appen
+…[truncated 7182 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a5_residualized_control_20260518T164827",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-18T16:56:53.050438+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/scripts/run_r1_8b_w15_residualization.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a5_residualized_control_20260518T164827",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat /root/autodl-tmp/contrastive_trace_safety/scripts/run_r1_8b_w15_residualization.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-18T16:56:53.050860+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"E-R11-2: Position residualization for R1-8B with W=15.\\\"\\\"\\\"\\n\\nimport sys, json, time, warnings, os\\nos.environ[\\\"TOKENIZERS_PARALLELISM\\\"] = \\\"false\\\"\\nos.environ[\\\"HF_DATASETS_OFFLINE\\\"] = \\\"1\\\"\\nos.environ[\\\"HF_HUB_OFFLINE\\\"] = \\\"1\\\"\\nos.environ[\\\"HF_ENDPOINT\\\"] = \\\"https://hf-mirror.com\\\"\\n\\nimport numpy as np\\nimport torch\\nfrom pathlib import Path\\nfrom sklearn.linear_model import LogisticRegression, LinearRegression\\nfrom sklearn.decomposition import PCA\\nfrom sklearn.metrics import balanced_accuracy_score\\nfrom scipy.stats import binom, wilcoxon\\nfrom sentence_transformers import SentenceTransformer\\n\\nwarnings.filterwarnings(\\\"ignore\\\")\\n\\nPROJECT = Path(\\\"/root/autodl-tmp/contrastive_trace_safety\\\")\\nOUT_DIR = PROJECT / \\\"artifacts\\\" / \\\"exp_r11_r1_8b_w15_residualization\\\"\\nOUT_DIR.mkdir(parents=True, exist_ok=True)\\n\\nSEED = 42\\nWINDOW = 15\\n\\nHS_DIR = PROJECT / \\\"artifacts\\\" / \\\"hidden_states\\\"\\nLAYER_IDX = 2       # L14 = index 2 in stored layers 12-24\\nACTUAL_LAYER = 14\\nHIDDEN_DIM = 4096\\nHF_MODEL_NAME = \\\"r1-8b\\\"\\n\\nST_MODEL_PATH = \\\"/root/autodl-tmp/contrastive_trace_safety/models/bge-large-en-v1.5\\\"\\nTEXT_DIM = 1024\\n\\n\\ndef load_traces(hs_dir):\\n    traces = []\\n    for pt_file in sorted(hs_dir.glob(\\\"*.pt\\\")):\\n        data = torch.load(pt_file, map_location=\\\"cpu\\\", weights_only=False)\\n        if data.get(\\\"step_labels\\\") is None or data.get(\\\"commitment_point\\\") is None:\\n            continue\\n        traces.append(data)\\n    return traces\\n\\n\\ndef get_labels(t):\\n    sl = t[\\\"step_labels\\\"]\\n    return sl.tolist() if isinstance(sl, torch.Tensor) else list(sl)\\n\\n\\ndef split(traces, seed=SEED):\\n    rng = np.random.default_rng(seed)\\n    idx = rng.permutation(len(traces))\\n    n_tr = int(len(traces) * 0.6)\\n    n_va = int(len(traces)
+…[truncated 7128 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a5_residualized_control_20260518T164827",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-18T16:56:53.051114+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/scripts/run_r12_qwq_position_residualized.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a5_residualized_control_20260518T164827",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat /root/autodl-tmp/contrastive_trace_safety/scripts/run_r12_qwq_position_residualized.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-18T16:56:53.051643+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"import sys, json, time, warnings, os\\nos.environ[\\\"TOKENIZERS_PARALLELISM\\\"] = \\\"false\\\"\\nos.environ[\\\"HF_DATASETS_OFFLINE\\\"] = \\\"1\\\"\\nos.environ[\\\"HF_HUB_OFFLINE\\\"] = \\\"1\\\"\\n\\nimport numpy as np\\nimport torch\\nimport pyarrow.parquet as pq\\nfrom pathlib import Path\\nfrom sklearn.linear_model import LogisticRegression, LinearRegression\\nfrom sklearn.decomposition import PCA\\nfrom sklearn.metrics import balanced_accuracy_score\\nfrom sentence_transformers import SentenceTransformer\\nfrom collections import defaultdict\\n\\nwarnings.filterwarnings(\\\"ignore\\\")\\n\\nPROJECT = Path(\\\"/root/autodl-tmp/contrastive_trace_safety\\\")\\nHS_DIR = PROJECT / \\\"artifacts\\\" / \\\"hidden_states_qwq_32b\\\"\\nOUT_DIR = PROJECT / \\\"artifacts\\\" / \\\"r12_qwq_position_residualized\\\"\\nOUT_DIR.mkdir(parents=True, exist_ok=True)\\n\\nPARQUET = \\\"/root/.cache/huggingface/hub/datasets--ishitakakkar-10--HarmThoughts/blobs/4f0e9711c2864a157f45ec4a4273d19fb7dae56024d2f29f50efa00e0450e356\\\"\\nST_PATH = \\\"/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/c9745ed1d9f207416be6d2e6f8de32d1f16199bf\\\"\\n\\nSEED = 42\\nWINDOW = 3\\nLAYER_IDX = 60\\nN_BOOT = 1000\\n\\n\\ndef load_traces():\\n    traces = []\\n    for pt_file in sorted(HS_DIR.glob(\\\"*.pt\\\")):\\n        if pt_file.name == \\\"extraction_summary.json\\\":\\n            continue\\n        data = torch.load(pt_file, map_location=\\\"cpu\\\", weights_only=False)\\n        if data.get(\\\"step_labels\\\") is None or data.get(\\\"commitment_point\\\") is None:\\n            continue\\n        traces.append(data)\\n    return traces\\n\\n\\ndef get_labels(t):\\n    sl = t[\\\"step_labels\\\"]\\n    return sl.tolist() if isinstance(sl, torch.Tensor) else list(sl)\\n\\n\\ndef split(traces, seed=SEED):\\n    rng = np.random.default_rng(seed)\\n    idx = rng.permutation(len(traces))\\n    n_tr 
+…[truncated 7150 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a5_residualized_control_20260518T164827",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-18T16:56:53.051943+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/src/experiments/exp_r14_a1_ba_layer.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a5_residualized_control_20260518T164827",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat /root/autodl-tmp/contrastive_trace_safety/src/experiments/exp_r14_a1_ba_layer.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-18T16:56:53.052393+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"R14-A1: BA-optimal layer + HS vs Text probe, 60/20/20 split, 10k bootstrap.\\n\\nLayer sweep uses W=1 (static) for speed, then full W for final training/eval.\\n\\\"\\\"\\\"\\n\\nimport os, sys, json, time, pickle, traceback\\nimport numpy as np\\nimport torch\\nfrom pathlib import Path\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.model_selection import StratifiedKFold\\nfrom sklearn.metrics import balanced_accuracy_score, precision_score, roc_auc_score\\n\\nos.environ[\\\"TOKENIZERS_PARALLELISM\\\"] = \\\"false\\\"\\nos.environ[\\\"HF_ENDPOINT\\\"] = \\\"https://hf-mirror.com\\\"\\n\\nSEED = 42\\nN_BOOTSTRAP = 10000\\nK_FOLDS = 5\\nBASE = Path(\\\"/root/autodl-tmp/contrastive_trace_safety\\\")\\nOUTPUT_DIR = BASE / \\\"artifacts\\\" / \\\"r14_a1_ba_layer_canonical\\\"\\nOUTPUT_DIR.mkdir(parents=True, exist_ok=True)\\nLOG = OUTPUT_DIR / \\\"run.log\\\"\\n\\nMODEL_CONFIGS = {\\n    \\\"R1-8B\\\":   {\\\"hidden_dim\\\": 4096, \\\"window\\\": 15, \\\"num_layers\\\": 25,\\n                \\\"hs_dir\\\": BASE / \\\"artifacts/hidden_states\\\",\\n                \\\"early_dir\\\": BASE / \\\"artifacts/hidden_states_early_r1_8b\\\",\\n                \\\"text_emb_cache\\\": BASE / \\\"artifacts/r12_5seed_hb/r1_8b_text_emb.pkl\\\"},\\n    \\\"OT-7B\\\":   {\\\"hidden_dim\\\": 3584, \\\"window\\\": 3, \\\"num_layers\\\": 28,\\n                \\\"hs_dir\\\": BASE / \\\"artifacts/hidden_states_ot7b\\\",\\n                \\\"early_dir\\\": None,\\n                \\\"text_emb_cache\\\": BASE / \\\"artifacts/ot7b_text_embeddings.pkl\\\"},\\n    \\\"R1-32B\\\":  {\\\"hidden_dim\\\": 5120, \\\"window\\\": 1, \\\"num_layers\\\": 64,\\n                \\\"hs_dir\\\": BASE / \\\"artifacts/hidden_states_r1_32b\\\",\\n                \\\"early_dir\\\": None,\\n                \\\"text_emb_cache\\\": BASE / \\\"artifacts/r12_5seed_hb/r1_32b_text_emb.pkl\\\"},\\n    \\\"QwQ-32B\\\": {\\\"hidden
+…[truncated 7568 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a5_residualized_control_20260518T164827",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-18T16:56:53.052771+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "head -5 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_ot7b/*.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a5_residualized_control_20260518T164827",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "head -5 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_ot7b/*.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-18T16:56:53.052983+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"head: cannot open '/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_ot7b/*.json' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a5_residualized_control_20260518T164827",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-18T16:56:53.053210+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 -c \"\nimport torch\nfrom pathlib import Path\n\nconfigs = {\n    'R1-8B': ('artifacts/hidden_states', 14, 15),\n    'OT-7B': ('artifacts/hidden_states_ot7b', 16, 3),\n    'R1-32B': ('artifacts/hidden_states_r1_32b', 63, 1),\n    'QwQ-32B': ('artifacts/hidden_states_qwq_32b', 60, 5),\n}\n\nfor name, (hs_dir, target_layer, window) in configs.items():\n    pt_files = sorted(Path(hs_dir).glob('*.pt'))\n    d = torch.load(pt_files[0], map_location='cpu', weights_only=False)\n    hs = d['hidden_states']\n    print(f'{name}: shape={hs.shape}, keys={list(d.keys())}')\n    if 'layers' in d:\n        print(f'  layers={d[\\\"layers\\\"]}')\n    if 'layer_indices' in d:\n        print(f'  layer_indices={d[\\\"layer_indices\\\"]}')\n    sl = d.get('step_labels')\n    if sl is not None:\n        if isinstance(sl, torch.Tensor):\n            print(f'  labels len={len(sl)}, sum={sl.sum().item()}')\n        else:\n            print(f'  labels len={len(sl)}, sum={sum(sl)}')\n    print(f'  cp={d.get(\\\"commitment_point\\\")}')\n    print(f'  n_pt_files={len(pt_files)}')\n    print()\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a5_residualized_control_20260518T164827",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 -c \"\nimport torch\nfrom pathlib import Path\n\nconfigs = {\n    'R1-8B': ('artifacts/hidden_states', 14, 15),\n    'OT-7B': ('artifacts/hidden_states_ot7b', 16, 3),\n    'R1-32B': ('artifacts/hidden_states_r1_32b', 63, 1),\n    'QwQ-32B': ('artifacts/hidden_states_qwq_32b', 60, 5),\n}\n\nfor name, (hs_dir, target_layer, window) in configs.items():\n    pt_files = sorted(Path(hs_dir).glob('*.pt'))\n    d = torch.load(pt_files[0], map_location='cpu', weights_only=False)\n    hs = d['hidden_states']\n    print(f'{name}: shape={hs.shape}, keys={list(d.keys())}')\n    if 'layers' in d:\n        print(f'  layers={d[\\\"layers\\\"]}')\n    if 'layer_indices' in d:\n        print(f'  layer_indices={d[\\\"layer_indices\\\"]}')\n    sl = d.get('step_labels')\n    if sl is not None:\n        if isinstance(sl, torch.Tensor):\n            print(f'  labels len={len(sl)}, sum={sl.sum().item()}')\n        else:\n            print(f'  labels len={len(sl)}, sum={sum(sl)}')\n    print(f'  cp={d.get(\\\"commitment_point\\\")}')\n    print(f'  n_pt_files={len(pt_files)}')\n    print()\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-18T16:56:53.053422+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"R1-8B: shape=torch.Size([46, 13, 4096]), keys=['hidden_states', 'trace_id', 'num_sentences', 'commitment_point', 'step_labels']\\n  cp=None\\n  n_pt_files=268\\n\\nOT-7B: shape=torch.Size([59, 28, 3584]), keys=['hidden_states', 'trace_id', 'num_sentences', 'commitment_point', 'step_labels', 'query']\\n  labels len=59, sum=1\\n  cp=58\\n  n_pt_files=228\\n\\nR1-32B: shape=torch.Size([36, 64, 5120]), keys=['hidden_states', 'trace_id', 'num_sentences', 'commitment_point', 'step_labels', 'query']\\n  labels len=36, sum=4\\n  cp=32\\n  n_pt_files=100\\n\\nQwQ-32B: shape=torch.Size([48, 64, 5120]), keys=['hidden_states', 'trace_id', 'num_sentences', 'commitment_point', 'step_labels', 'query']\\n  labels len=48, sum=40\\n  cp=8\\n  n_pt_files=95\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.65}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a5_residualized_control_20260518T164827",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-18T16:56:53.053980+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat > /root/autodl-tmp/contrastive_trace_safety/scripts/r14_a5_residualized_control.py << 'PYEOF'\n\"\"\"A5: Hewitt & Manning (2019) control task on position-residualized hidden states.\n\nFor each model:\n  1. Build windowed HS features (original + residualized)\n  2. PCA reduce\n  3. Real task: train LR on real labels, eval bal_acc on test\n  4. Control task: shuffle train labels within-trace, eval on real test labels (x10)\n  5. Selectivity = real_BA - mean(random_BA)\n\"\"\"\n\nimport sys, json, time, warnings, gc\nimport numpy as np\nimport torch\nfrom pathlib import Path\nfrom sklearn.linear_model import LogisticRegression, LinearRegression\nfrom sklearn.decomposition import PCA\nfrom sklearn.metrics import balanced_accuracy_score\n\nwarnings.filterwarnings(\"ignore\")\n\nPROJECT = Path(\"/root/autodl-tmp/contrastive_trace_safety\")\nOUT_DIR = PROJECT / \"artifacts\" / \"r14_a5_residualized_control\"\nOUT_DIR.mkdir(parents=True, exist_ok=True)\n\nSEED = 42\nN_RANDOM = 10\nPCA_DIM = 100\n\nMODEL_CONFIGS = {\n    \"R1-8B\": {\n        \"hs_dir\": PROJECT / \"artifacts/hidden_states\",\n        \"layer_idx\": 2,   # L14 in stored layers 12-24\n        \"actual_layer\": 14,\n        \"window\": 15,\n    },\n    \"OT-7B\": {\n        \"hs_dir\": PROJECT / \"artifacts/hidden_states_ot7b\",\n        \"layer_idx\": 16,\n        \"actual_layer\": 16,\n        \"window\": 3,\n    },\n    \"R1-32B\": {\n        \"hs_dir\": PROJECT / \"artifacts/hidden_states_r1_32b\",\n        \"layer_idx\": 63,\n        \"actual_layer\": 63,\n        \"window\": 1,\n    },\n    \"QwQ-32B\": {\n        \"hs_dir\": PROJECT / \"artifacts/hidden_states_qwq_32b\",\n        \"layer_idx\": 60,\n        \"actual_layer\": 60,\n        \"window\": 5,\n    },\n}\n\n\ndef load_traces(hs_dir):\n    traces = []\n    for pt in sorted(Path(hs_dir).glob(\"*.pt\")):\n        d = torch.load(pt, map_location=\"cpu\", weights_only=False)\n        if d.get(\"step_labels\") is None or d.get(\"commitment_point\") is None:\n            continue\n        sl = d[\"step_labels\"]\n        if isinstance(sl, torch.Tensor):\n            sl = sl.tolist()\n        cp = d[\"commitment_point\"]\n        if cp is None:\n            continue\n        cp = int(cp)\n        if cp <= 0 or cp >= len(sl) or sum(sl) == 0:\n            continue\n        traces.append(d)\n    return traces\n\n\ndef split_traces(traces):\n    rng = np.random.default_rng(SEED)\n    idx = rng.permutation(len(traces))\n    nt = int(len(traces) * 0.6)\n    nv = int(len(traces) * 0.2)\n    return (\n        [traces[i] for i in idx[:nt]],\n        [traces[i] for i in idx[nt:nt + nv]],\n        [traces[i] for i in idx[nt + nv:]],\n    )\n\n\ndef get_labels(t):\n    sl = t[\"step_labels\"]\n    return sl.tolist() if isinstance(sl, torch.Tensor) else list(sl)\n\n\ndef extract_hs(trace, layer_idx):\n    hs = trace[\"hidden_states\"][:, layer_idx, :].float().numpy()\n    labels = np.array(get_labels(trace))\n    n = min(hs.shape[0], len(labels))\n    return hs[:n].astype(np.float32), labels[:n]\n\n\ndef residualize_trace(features):\n    T = len(features)\n    if T <= 1:\n        return features\n    norm_pos = np.arange(T, dtype=np.float32).reshape(-1, 1) / T\n    reg = LinearRegression().fit(norm_pos, features)\n    return features - reg.predict(norm_pos)\n\n\ndef apply_window(feats, window):\n    if window <= 1:\n        return feats\n    n, dim = feats.shape\n    half_w = window // 2\n    padded = np.zeros((n + window - 1, dim), dtype=np.float32)\n    padded[half_w:half_w + n] = feats\n    return np.array([padded[i:i + window].flatten() for i in range(n)])\n\n\ndef build_features(traces, layer_idx, window, do_residualize=False):\n    X_list, y_list, lengths = [], [], []\n    for t in traces:\n        hs, labels = extract_hs(t, layer_idx)\n        if do_residualize:\n            hs = residualize_trace(hs)\n        feat = apply_window(hs, window)\n        X_list.append(feat)\n        y_list.append(labels)\n        lengths.append(len(labels))\n    return np.vstack(X_list), np.concatenate(y_list), lengths\n\n\ndef shuffle_within_traces(y, lengths, seed):\n    rng = np.random.default_rng(seed)\n    y_shuf = y.copy()\n    offset = 0\n    for l in lengths:\n        y_shuf[offset:offset + l] = rng.permutation(y_shuf[offset:offset + l])\n        offset += l\n    return y_shuf\n\n\ndef fit_pca(X_train, X_test):\n    n_comp = min(PCA_DIM, X_train.shape[0] - 1, X_train.shape[1])\n    if n_comp >= X_train.shape[1]:\n        return X_train, X_test\n    pca = PCA(n_components=n_comp, random_state=SEED)\n    return pca.fit_transform(X_train), pca.transform(X_test)\n\n\ndef train_eval(X_train, y_train, X_test, y_test):\n    lr = LogisticRegression(\n        solver='lbfgs', C=1.0, class_weight='balanced',\n        max_iter=2000, random_state=SEED\n    )\n    lr.fit(X_train, y_train)\n    return balanced_accuracy_score(y_test, lr.predict(X_test))\n\n\ndef run_model(model_name, cfg):\n    print(f\"\\n{'='*60}\", flush=True)\n    print(f\"{model_name} (L{cfg['actual_layer']}, W={cfg['window']})\", flush=True)\n\n    traces = load_traces(cfg[\"hs_dir\"])\n    print(f\"  {len(traces)} valid traces\", flush=True)\n\n    train, val, test = split_traces(traces)\n    train_val = train + val\n    print(f\"  train_val={len(train_val)}, test={len(test)}\", flush=True)\n\n    li = cfg[\"layer_idx\"]\n    w = cfg[\"window\"]\n\n    results = {}\n\n    for mode, do_resid in [(\"original\", False), (\"residualized\", True)]:\n        print(f\"  --- {mode} ---\", flush=True)\n\n        X_tr, y_tr, len_tr = build_features(train_val, li, w, do_residualize=do_resid)\n        X_te, y_te, _ = build_features(test, li, w, do_residualize=do_resid)\n        print(f\"    X_train={X_tr.shape}, X_test={X_te.shape}\", flush=True)\n\n        X_tr_pca, X_te_pca = fit_pca(X_tr, X_te)\n        print(f\"    After PCA: {X_tr_pca.shape[1]}d\", flush=True)\n\n        real_ba = train_eval(X_tr_pca, y_tr, X_te_pca, y_te)\n        print(f\"    Real BA: {real_ba:.4f}\", flush=True)\n\n        random_bas = []\n        for i in range(N_RANDOM):\n            y_shuf = shuffle_within_traces(y_tr, len_tr, seed=SEED + i + (300 if do_resid else 100))\n            ba_s = train_eval(X_tr_pca, y_shuf, X_te_pca, y_te)\n            random_bas.append(ba_s)\n\n        rand_mean = float(np.mean(random_bas))\n        rand_std = float(np.std(random_bas))\n        selectivity = real_ba - rand_mean\n\n        print(f\"    Random BA: {rand_mean:.4f} +/- {rand_std:.4f}\", flush=True)\n        print(f\"    Selectivity: {selectivity:.4f} ({selectivity*100:.1f}pp)\", flush=True)\n\n        results[mode] = {\n            \"ba\": round(float(real_ba), 4),\n            \"random_ba_mean\": round(rand_mean, 4),\n            \"random_ba_std\": round(rand_std, 4),\n            \"random_bas\": [round(float(b), 4) for b in random_bas],\n            \"selectivity\": round(float(selectivity), 4),\n        }\n\n    pass_5pp = results[\"residualized\"][\"selectivity\"] > 0.05\n    print(f\"  Resid selectivity >5pp? {'Y' if pass_5pp else 'N'}\", flush=True)\n\n    return {\n        \"model\": model_name,\n        \"layer\": cfg[\"actual_layer\"],\n        \"window\": w,\n        \"n_traces\": len(traces),\n        \"n_train_val\": len(train_val),\n        \"n_test\": len(test),\n        \"original\": results[\"original\"],\n        \"residualized\": results[\"residualized\"],\n        \"resid_selectivity_gt_5pp\": pass_5pp,\n    }\n\n\ndef main():\n    t0 = time.time()\n    print(\"A5: Control task on position-residualized HS\", flush=True)\n    print(f\"Seed={SEED}, N_random={N_RANDOM}, PCA_dim={PCA_DIM}\", flush=True)\n\n    all_results = {}\n    for mn, cfg in MODEL_CONFIGS.items():\n        all_results[mn] = run_model(mn, cfg)\n        gc.collect()\n\n    # Summary table\n    print(f\"\\n{'='*130}\", flush=True)\n    print(f\"{'Model':<10} {'Orig BA':>8} {'Orig Rnd':>9} {'Orig Sel':>9} \"\n          f\"{'Resid BA':>9} {'Resid Rnd':>10} {'Resid Sel':>10} {'>5pp':>5}\", flush=True)\n    print(\"-\" * 130, flush=True)\n    for mn, r in all_results.items():\n        o, d = r[\"original\"], r[\"residualized\"]\n        print(f\"{mn:<10} {o['ba']:>8.4f} {o['random_ba_mean']:>5.4f}+/-{o['random_ba_std']:.3f}\"\n              f\" {o['selectivity']:>9.4f} \"\n              f\"{d['ba']:>9.4f} {d['random_ba_mean']:>5.4f}+/-{d['random_ba_std']:.3f}\"\n              f\" {d['selectivity']:>10.4f} \"\n              f\"{'Y' if r['resid_selectivity_gt_5pp'] else 'N':>5}\", flush=True)\n    print(\"=\" * 130, flush=True)\n\n    elapsed = time.time() - t0\n    out = {\n        \"experiment\": \"r14_a5_residualized_control\",\n        \"method\": \"Hewitt & Manning 2019 control task\",\n        \"description\": \"Selectivity = real_BA - mean(shuffled_train_labels_BA). Shuffled within-trace.\",\n        \"seed\": SEED,\n        \"n_random_repeats\": N_RANDOM,\n        \"lr_params\": {\"solver\": \"lbfgs\", \"C\": 1.0, \"class_weight\": \"balanced\", \"max_iter\": 2000},\n        \"pca_dim\": PCA_DIM,\n        \"split\": \"60/20/20\",\n        \"models\": all_results,\n        \"elapsed_seconds\": round(elapsed, 1),\n    }\n    with open(OUT_DIR / \"results.json\", \"w\") as f:\n        json.dump(out, f, indent=2)\n    print(f\"\\nSaved to {OUT_DIR / 'results.json'} ({elapsed:.0f}s)\", flush=True)\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written.\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a5_residualized_control_20260518T164827",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat > /root/autodl-tmp/contrastive_trace_safety/scripts/r14_a5_residualized_control.py << 'PYEOF'\n\"\"\"A5: Hewitt & Manning (2019) control task on position-residualized hidden states.\n\nFor each model:\n  1. Build windowed HS features (original + residualized)\n  2. PCA reduce\n  3. Real task: train LR on real labels, eval bal_acc on test\n  4. Control task: shuffle train labels within-trace, eval on real test labels (x10)\n  5. Selectivity = real_BA - mean(random_BA)\n\"\"\"\n\nimport sys, json, time, warnings, gc\nimport numpy as np\nimport torch\nfrom pathlib import Path\nfrom sklearn.linear_model import LogisticRegression, LinearRegression\nfrom sklearn.decomposition import PCA\nfrom sklearn.metrics import balanced_accuracy_score\n\nwarnings.filterwarnings(\"ignore\")\n\nPROJECT = Path(\"/root/autodl-tmp/contrastive_trace_safety\")\nOUT_DIR = PROJECT / \"artifacts\" / \"r14_a5_residualized_control\"\nOUT_DIR.mkdir(parents=True, exist_ok=True)\n\nSEED = 42\nN_RANDOM = 10\nPCA_DIM = 100\n\nMODEL_CONFIGS = {\n    \"R1-8B\": {\n        \"hs_dir\": PROJECT / \"artifacts/hidden_states\",\n        \"layer_idx\": 2,   # L14 in stored layers 12-24\n        \"actual_layer\": 14,\n        \"window\": 15,\n    },\n    \"OT-7B\": {\n        \"hs_dir\": PROJECT / \"artifacts/hidden_states_ot7b\",\n        \"layer_idx\": 16,\n        \"actual_layer\": 16,\n        \"window\": 3,\n    },\n    \"R1-32B\": {\n        \"hs_dir\": PROJECT / \"artifacts/hidden_states_r1_32b\",\n        \"layer_idx\": 63,\n        \"actual_layer\": 63,\n        \"window\": 1,\n    },\n    \"QwQ-32B\": {\n        \"hs_dir\": PROJECT / \"artifacts/hidden_states_qwq_32b\",\n        \"layer_idx\": 60,\n        \"actual_layer\": 60,\n        \"window\": 5,\n    },\n}\n\n\ndef load_traces(hs_dir):\n    traces = []\n    for pt in sorted(Path(hs_dir).glob(\"*.pt\")):\n        d = torch.load(pt, map_location=\"cpu\", weights_only=False)\n        if d.get(\"step_labels\") is None or d.get(\"commitment_point\") is None:\n            continue\n        sl = d[\"step_labels\"]\n        if isinstance(sl, torch.Tensor):\n            sl = sl.tolist()\n        cp = d[\"commitment_point\"]\n        if cp is None:\n            continue\n        cp = int(cp)\n        if cp <= 0 or cp >= len(sl) or sum(sl) == 0:\n            continue\n        traces.append(d)\n    return traces\n\n\ndef split_traces(traces):\n    rng = np.random.default_rng(SEED)\n    idx = rng.permutation(len(traces))\n    nt = int(len(traces) * 0.6)\n    nv = int(len(traces) * 0.2)\n    return (\n        [traces[i] for i in idx[:nt]],\n        [traces[i] for i in idx[nt:nt + nv]],\n        [traces[i] for i in idx[nt + nv:]],\n    )\n\n\ndef get_labels(t):\n    sl = t[\"step_labels\"]\n    return sl.tolist() if isinstance(sl, torch.Tensor) else list(sl)\n\n\ndef extract_hs(trace, layer_idx):\n    hs = trace[\"hidden_states\"][:, layer_idx, :].float().numpy()\n    labels = np.array(get_labels(trace))\n    n = min(hs.shape[0], len(labels))\n    return hs[:n].astype(np.float32), labels[:n]\n\n\ndef residualize_trace(features):\n    T = len(features)\n    if T <= 1:\n        return features\n    norm_pos = np.arange(T, dtype=np.float32).reshape(-1, 1) / T\n    reg = LinearRegression().fit(norm_pos, features)\n    return features - reg.predict(norm_pos)\n\n\ndef apply_window(feats, window):\n    if window <= 1:\n        return feats\n    n, dim = feats.shape\n    half_w = window // 2\n    padded = np.zeros((n + window - 1, dim), dtype=np.float32)\n    padded[half_w:half_w + n] = feats\n    return np.array([padded[i:i + window].flatten() for i in range(n)])\n\n\ndef build_features(traces, layer_idx, window, do_residualize=False):\n    X_list, y_list, lengths = [], [], []\n    for t in traces:\n        hs, labels = extract_hs(t, layer_idx)\n        if do_residualize:\n            hs = residualize_trace(hs)\n        feat = apply_window(hs, window)\n        X_list.append(feat)\n        y_list.append(labels)\n        lengths.append(len(labels))\n    return np.vstack(X_list), np.concatenate(y_list), lengths\n\n\ndef shuffle_within_traces(y, lengths, seed):\n    rng = np.random.default_rng(seed)\n    y_shuf = y.copy()\n    offset = 0\n    for l in lengths:\n        y_shuf[offset:offset + l] = rng.permutation(y_shuf[offset:offset + l])\n        offset += l\n    return y_shuf\n\n\ndef fit_pca(X_train, X_test):\n    n_comp = min(PCA_DIM, X_train.shape[0] - 1, X_train.shape[1])\n    if n_comp >= X_train.shape[1]:\n        return X_train, X_test\n    pca = PCA(n_components=n_comp, random_state=SEED)\n    return pca.fit_transform(X_train), pca.transform(X_test)\n\n\ndef train_eval(X_train, y_train, X_test, y_test):\n    lr = LogisticRegression(\n        solver='lbfgs', C=1.0, class_weight='balanced',\n        max_iter=2000, random_state=SEED\n    )\n    lr.fit(X_train, y_train)\n    return balanced_accuracy_score(y_test, lr.predict(X_test))\n\n\ndef run_model(model_name, cfg):\n    print(f\"\\n{'='*60}\", flush=True)\n    print(f\"{model_name} (L{cfg['actual_layer']}, W={cfg['window']})\", flush=True)\n\n    traces = load_traces(cfg[\"hs_dir\"])\n    print(f\"  {len(traces)} valid traces\", flush=True)\n\n    train, val, test = split_traces(traces)\n    train_val = train + val\n    print(f\"  train_val={len(train_val)}, test={len(test)}\", flush=True)\n\n    li = cfg[\"layer_idx\"]\n    w = cfg[\"window\"]\n\n    results = {}\n\n    for mode, do_resid in [(\"original\", False), (\"residualized\", True)]:\n        print(f\"  --- {mode} ---\", flush=True)\n\n        X_tr, y_tr, len_tr = build_features(train_val, li, w, do_residualize=do_resid)\n        X_te, y_te, _ = build_features(test, li, w, do_residualize=do_resid)\n        print(f\"    X_train={X_tr.shape}, X_test={X_te.shape}\", flush=True)\n\n        X_tr_pca, X_te_pca = fit_pca(X_tr, X_te)\n        print(f\"    After PCA: {X_tr_pca.shape[1]}d\", flush=True)\n\n        real_ba = train_eval(X_tr_pca, y_tr, X_te_pca, y_te)\n        print(f\"    Real BA: {real_ba:.4f}\", flush=True)\n\n        random_bas = []\n        for i in range(N_RANDOM):\n            y_shuf = shuffle_within_traces(y_tr, len_tr, seed=SEED + i + (300 if do_resid else 100))\n            ba_s = train_eval(X_tr_pca, y_shuf, X_te_pca, y_te)\n            random_bas.append(ba_s)\n\n        rand_mean = float(np.mean(random_bas))\n        rand_std = float(np.std(random_bas))\n        selectivity = real_ba - rand_mean\n\n        print(f\"    Random BA: {rand_mean:.4f} +/- {rand_std:.4f}\", flush=True)\n        print(f\"    Selectivity: {selectivity:.4f} ({selectivity*100:.1f}pp)\", flush=True)\n\n        results[mode] = {\n            \"ba\": round(float(real_ba), 4),\n            \"random_ba_mean\": round(rand_mean, 4),\n            \"random_ba_std\": round(rand_std, 4),\n            \"random_bas\": [round(float(b), 4) for b in random_bas],\n            \"selectivity\": round(float(selectivity), 4),\n        }\n\n    pass_5pp = results[\"residualized\"][\"selectivity\"] > 0.05\n    print(f\"  Resid selectivity >5pp? {'Y' if pass_5pp else 'N'}\", flush=True)\n\n    return {\n        \"model\": model_name,\n        \"layer\": cfg[\"actual_layer\"],\n        \"window\": w,\n        \"n_traces\": len(traces),\n        \"n_train_val\": len(train_val),\n        \"n_test\": len(test),\n        \"original\": results[\"original\"],\n        \"residualized\": results[\"residualized\"],\n        \"resid_selectivity_gt_5pp\": pass_5pp,\n    }\n\n\ndef main():\n    t0 = time.time()\n    print(\"A5: Control task on position-residualized HS\", flush=True)\n    print(f\"Seed={SEED}, N_random={N_RANDOM}, PCA_dim={PCA_DIM}\", flush=True)\n\n    all_results = {}\n    for mn, cfg in MODEL_CONFIGS.items():\n        all_results[mn] = run_model(mn, cfg)\n        gc.collect()\n\n    # Summary table\n    print(f\"\\n{'='*130}\", flush=True)\n    print(f\"{'Model':<10} {'Orig BA':>8} {'Orig Rnd':>9} {'Orig Sel':>9} \"\n          f\"{'Resid BA':>9} {'Resid Rnd':>10} {'Resid Sel':>10} {'>5pp':>5}\", flush=True)\n    print(\"-\" * 130, flush=True)\n    for mn, r in all_results.items():\n        o, d = r[\"original\"], r[\"residualized\"]\n        print(f\"{mn:<10} {o['ba']:>8.4f} {o['random_ba_mean']:>5.4f}+/-{o['random_ba_std']:.3f}\"\n              f\" {o['selectivity']:>9.4f} \"\n              f\"{d['ba']:>9.4f} {d['random_ba_mean']:>5.4f}+/-{d['random_ba_std']:.3f}\"\n              f\" {d['selectivity']:>10.4f} \"\n              f\"{'Y' if r['resid_selectivity_gt_5pp'] else 'N':>5}\", flush=True)\n    print(\"=\" * 130, flush=True)\n\n    elapsed = time.time() - t0\n    out = {\n        \"experiment\": \"r14_a5_residualized_control\",\n        \"method\": \"Hewitt & Manning 2019 control task\",\n        \"description\": \"Selectivity = real_BA - mean(shuffled_train_labels_BA). Shuffled within-trace.\",\n        \"seed\": SEED,\n        \"n_random_repeats\": N_RANDOM,\n        \"lr_params\": {\"solver\": \"lbfgs\", \"C\": 1.0, \"class_weight\": \"balanced\", \"max_iter\": 2000},\n        \"pca_dim\": PCA_DIM,\n        \"split\": \"60/20/20\",\n        \"models\": all_results,\n        \"elapsed_seconds\": round(elapsed, 1),\n    }\n    with open(OUT_DIR / \"results.json\", \"w\") as f:\n        json.dump(out, f, indent=2)\n    print(f\"\\nSaved to {OUT_DIR / 'results.json'} ({elapsed:.0f}s)\", flush=True)\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written.\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-18T16:56:53.054340+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a5_residualized_control_20260518T164827",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-18T16:56:53.054548+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 -u scripts/r14_a5_residualized_control.py",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a5_residualized_control_20260518T164827",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 -u scripts/r14_a5_residualized_control.py",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-18T16:56:53.054825+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 -u scripts/r14_a5_residualized_control.py'\\n\\nStdout:\\n\\n    Random BA: 0.4706 +/- 0.0148\\n    Selectivity: 0.2285 (22.8pp)\\n  Resid selectivity >5pp? Y\\n\\n============================================================\\nOT-7B (L16, W=3)\\n  228 valid traces\\n  train_val=181, test=47\\n  --- original ---\\n    X_train=(14444, 10752), X_test=(3816, 10752)\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.34}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a5_residualized_control_20260518T164827",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-18T16:56:53.055101+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat > /root/autodl-tmp/contrastive_trace_safety/scripts/r14_a5_run_one.py << 'PYEOF'\n\"\"\"A5: Hewitt & Manning control task on position-residualized HS (single model).\"\"\"\n\nimport sys, json, time, warnings, gc\nimport numpy as np\nimport torch\nfrom pathlib import Path\nfrom sklearn.linear_model import LogisticRegression, LinearRegression\nfrom sklearn.decomposition import PCA\nfrom sklearn.metrics import balanced_accuracy_score\n\nwarnings.filterwarnings(\"ignore\")\n\nPROJECT = Path(\"/root/autodl-tmp/contrastive_trace_safety\")\nOUT_DIR = PROJECT / \"artifacts\" / \"r14_a5_residualized_control\"\nOUT_DIR.mkdir(parents=True, exist_ok=True)\n\nSEED = 42\nN_RANDOM = 10\nPCA_DIM = 100\n\nMODEL_CONFIGS = {\n    \"R1-8B\": {\n        \"hs_dir\": PROJECT / \"artifacts/hidden_states\",\n        \"layer_idx\": 2,\n        \"actual_layer\": 14,\n        \"window\": 15,\n    },\n    \"OT-7B\": {\n        \"hs_dir\": PROJECT / \"artifacts/hidden_states_ot7b\",\n        \"layer_idx\": 16,\n        \"actual_layer\": 16,\n        \"window\": 3,\n    },\n    \"R1-32B\": {\n        \"hs_dir\": PROJECT / \"artifacts/hidden_states_r1_32b\",\n        \"layer_idx\": 63,\n        \"actual_layer\": 63,\n        \"window\": 1,\n    },\n    \"QwQ-32B\": {\n        \"hs_dir\": PROJECT / \"artifacts/hidden_states_qwq_32b\",\n        \"layer_idx\": 60,\n        \"actual_layer\": 60,\n        \"window\": 5,\n    },\n}\n\n\ndef load_traces(hs_dir):\n    traces = []\n    for pt in sorted(Path(hs_dir).glob(\"*.pt\")):\n        d = torch.load(pt, map_location=\"cpu\", weights_only=False)\n        if d.get(\"step_labels\") is None or d.get(\"commitment_point\") is None:\n            continue\n        sl = d[\"step_labels\"]\n        if isinstance(sl, torch.Tensor): sl = sl.tolist()\n        cp = d[\"commitment_point\"]\n        if cp is None: continue\n        cp = int(cp)\n        if cp <= 0 or cp >= len(sl) or sum(sl) == 0: continue\n        traces.append(d)\n    return traces\n\n\ndef split_traces(traces):\n    rng = np.random.default_rng(SEED)\n    idx = rng.permutation(len(traces))\n    nt = int(len(traces) * 0.6)\n    nv = int(len(traces) * 0.2)\n    return (\n        [traces[i] for i in idx[:nt]],\n        [traces[i] for i in idx[nt:nt + nv]],\n        [traces[i] for i in idx[nt + nv:]],\n    )\n\n\ndef get_labels(t):\n    sl = t[\"step_labels\"]\n    return sl.tolist() if isinstance(sl, torch.Tensor) else list(sl)\n\n\ndef extract_hs(trace, layer_idx):\n    hs = trace[\"hidden_states\"][:, layer_idx, :].float().numpy()\n    labels = np.array(get_labels(trace))\n    n = min(hs.shape[0], len(labels))\n    return hs[:n].astype(np.float32), labels[:n]\n\n\ndef residualize_trace(features):\n    T = len(features)\n    if T <= 1: return features\n    norm_pos = np.arange(T, dtype=np.float32).reshape(-1, 1) / T\n    reg = LinearRegression().fit(norm_pos, features)\n    return features - reg.predict(norm_pos)\n\n\ndef apply_window(feats, window):\n    if window <= 1: return feats\n    n, dim = feats.shape\n    half_w = window // 2\n    padded = np.zeros((n + window - 1, dim), dtype=np.float32)\n    padded[half_w:half_w + n] = feats\n    return np.array([padded[i:i + window].flatten() for i in range(n)])\n\n\ndef build_features(traces, layer_idx, window, do_residualize=False):\n    X_list, y_list, lengths = [], [], []\n    for t in traces:\n        hs, labels = extract_hs(t, layer_idx)\n        if do_residualize:\n            hs = residualize_trace(hs)\n        feat = apply_window(hs, window)\n        X_list.append(feat)\n        y_list.append(labels)\n        lengths.append(len(labels))\n    return np.vstack(X_list), np.concatenate(y_list), lengths\n\n\ndef shuffle_within_traces(y, lengths, seed):\n    rng = np.random.default_rng(seed)\n    y_shuf = y.copy()\n    offset = 0\n    for l in lengths:\n        y_shuf[offset:offset + l] = rng.permutation(y_shuf[offset:offset + l])\n        offset += l\n    return y_shuf\n\n\ndef fit_pca(X_train, X_test):\n    n_comp = min(PCA_DIM, X_train.shape[0] - 1, X_train.shape[1])\n    if n_comp >= X_train.shape[1]:\n        return X_train, X_test\n    pca = PCA(n_components=n_comp, random_state=SEED)\n    return pca.fit_transform(X_train), pca.transform(X_test)\n\n\ndef train_eval(X_train, y_train, X_test, y_test):\n    lr = LogisticRegression(\n        solver='lbfgs', C=1.0, class_weight='balanced',\n        max_iter=2000, random_state=SEED\n    )\n    lr.fit(X_train, y_train)\n    return balanced_accuracy_score(y_test, lr.predict(X_test))\n\n\ndef run_model(model_name, cfg):\n    t0 = time.time()\n    print(f\"{model_name} (L{cfg['actual_layer']}, W={cfg['window']})\", flush=True)\n\n    traces = load_traces(cfg[\"hs_dir\"])\n    print(f\"  {len(traces)} valid traces\", flush=True)\n\n    train, val, test = split_traces(traces)\n    train_val = train + val\n    print(f\"  train_val={len(train_val)}, test={len(test)}\", flush=True)\n\n    li = cfg[\"layer_idx\"]\n    w = cfg[\"window\"]\n    results = {}\n\n    for mode, do_resid in [(\"original\", False), (\"residualized\", True)]:\n        print(f\"  --- {mode} ---\", flush=True)\n        X_tr, y_tr, len_tr = build_features(train_val, li, w, do_residualize=do_resid)\n        X_te, y_te, _ = build_features(test, li, w, do_residualize=do_resid)\n        print(f\"    X_train={X_tr.shape}, X_test={X_te.shape}\", flush=True)\n\n        X_tr_pca, X_te_pca = fit_pca(X_tr, X_te)\n        print(f\"    PCA -> {X_tr_pca.shape[1]}d\", flush=True)\n\n        real_ba = train_eval(X_tr_pca, y_tr, X_te_pca, y_te)\n        print(f\"    Real BA: {real_ba:.4f}\", flush=True)\n\n        random_bas = []\n        for i in range(N_RANDOM):\n            y_shuf = shuffle_within_traces(y_tr, len_tr, seed=SEED + i + (300 if do_resid else 100))\n            ba_s = train_eval(X_tr_pca, y_shuf, X_te_pca, y_te)\n            random_bas.append(ba_s)\n\n        rand_mean = float(np.mean(random_bas))\n        rand_std = float(np.std(random_bas))\n        selectivity = real_ba - rand_mean\n        print(f\"    Random BA: {rand_mean:.4f} +/- {rand_std:.4f}\", flush=True)\n        print(f\"    Selectivity: {selectivity:.4f} ({selectivity*100:.1f}pp)\", flush=True)\n\n        results[mode] = {\n            \"ba\": round(float(real_ba), 4),\n            \"random_ba_mean\": round(rand_mean, 4),\n            \"random_ba_std\": round(rand_std, 4),\n            \"random_bas\": [round(float(b), 4) for b in random_bas],\n            \"selectivity\": round(float(selectivity), 4),\n        }\n\n    pass_5pp = results[\"residualized\"][\"selectivity\"] > 0.05\n    elapsed = time.time() - t0\n\n    result = {\n        \"model\": model_name,\n        \"layer\": cfg[\"actual_layer\"],\n        \"window\": w,\n        \"n_traces\": len(traces),\n        \"n_train_val\": len(train_val),\n        \"n_test\": len(test),\n        \"original\": results[\"original\"],\n        \"residualized\": results[\"residualized\"],\n        \"resid_selectivity_gt_5pp\": pass_5pp,\n        \"elapsed_s\": round(elapsed, 1),\n    }\n\n    out_path = OUT_DIR / f\"{model_name.replace('-','_').lower()}_result.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(result, f, indent=2)\n    print(f\"  >5pp? {'Y' if pass_5pp else 'N'} | Saved {out_path.name} ({elapsed:.0f}s)\", flush=True)\n    return result\n\n\nif __name__ == \"__main__\":\n    model = sys.argv[1] if len(sys.argv) > 1 else None\n    if model and model in MODEL_CONFIGS:\n        run_model(model, MODEL_CONFIGS[model])\n    else:\n        print(f\"Usage: python {sys.argv[0]} &lt;model_name>\")\n        print(f\"Available: {list(MODEL_CONFIGS.keys())}\")\nPYEOF\necho \"Done\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a5_residualized_control_20260518T164827",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat > /root/autodl-tmp/contrastive_trace_safety/scripts/r14_a5_run_one.py << 'PYEOF'\n\"\"\"A5: Hewitt & Manning control task on position-residualized HS (single model).\"\"\"\n\nimport sys, json, time, warnings, gc\nimport numpy as np\nimport torch\nfrom pathlib import Path\nfrom sklearn.linear_model import LogisticRegression, LinearRegression\nfrom sklearn.decomposition import PCA\nfrom sklearn.metrics import balanced_accuracy_score\n\nwarnings.filterwarnings(\"ignore\")\n\nPROJECT = Path(\"/root/autodl-tmp/contrastive_trace_safety\")\nOUT_DIR = PROJECT / \"artifacts\" / \"r14_a5_residualized_control\"\nOUT_DIR.mkdir(parents=True, exist_ok=True)\n\nSEED = 42\nN_RANDOM = 10\nPCA_DIM = 100\n\nMODEL_CONFIGS = {\n    \"R1-8B\": {\n        \"hs_dir\": PROJECT / \"artifacts/hidden_states\",\n        \"layer_idx\": 2,\n        \"actual_layer\": 14,\n        \"window\": 15,\n    },\n    \"OT-7B\": {\n        \"hs_dir\": PROJECT / \"artifacts/hidden_states_ot7b\",\n        \"layer_idx\": 16,\n        \"actual_layer\": 16,\n        \"window\": 3,\n    },\n    \"R1-32B\": {\n        \"hs_dir\": PROJECT / \"artifacts/hidden_states_r1_32b\",\n        \"layer_idx\": 63,\n        \"actual_layer\": 63,\n        \"window\": 1,\n    },\n    \"QwQ-32B\": {\n        \"hs_dir\": PROJECT / \"artifacts/hidden_states_qwq_32b\",\n        \"layer_idx\": 60,\n        \"actual_layer\": 60,\n        \"window\": 5,\n    },\n}\n\n\ndef load_traces(hs_dir):\n    traces = []\n    for pt in sorted(Path(hs_dir).glob(\"*.pt\")):\n        d = torch.load(pt, map_location=\"cpu\", weights_only=False)\n        if d.get(\"step_labels\") is None or d.get(\"commitment_point\") is None:\n            continue\n        sl = d[\"step_labels\"]\n        if isinstance(sl, torch.Tensor): sl = sl.tolist()\n        cp = d[\"commitment_point\"]\n        if cp is None: continue\n        cp = int(cp)\n        if cp <= 0 or cp >= len(sl) or sum(sl) == 0: continue\n        traces.append(d)\n    return traces\n\n\ndef split_traces(traces):\n    rng = np.random.default_rng(SEED)\n    idx = rng.permutation(len(traces))\n    nt = int(len(traces) * 0.6)\n    nv = int(len(traces) * 0.2)\n    return (\n        [traces[i] for i in idx[:nt]],\n        [traces[i] for i in idx[nt:nt + nv]],\n        [traces[i] for i in idx[nt + nv:]],\n    )\n\n\ndef get_labels(t):\n    sl = t[\"step_labels\"]\n    return sl.tolist() if isinstance(sl, torch.Tensor) else list(sl)\n\n\ndef extract_hs(trace, layer_idx):\n    hs = trace[\"hidden_states\"][:, layer_idx, :].float().numpy()\n    labels = np.array(get_labels(trace))\n    n = min(hs.shape[0], len(labels))\n    return hs[:n].astype(np.float32), labels[:n]\n\n\ndef residualize_trace(features):\n    T = len(features)\n    if T <= 1: return features\n    norm_pos = np.arange(T, dtype=np.float32).reshape(-1, 1) / T\n    reg = LinearRegression().fit(norm_pos, features)\n    return features - reg.predict(norm_pos)\n\n\ndef apply_window(feats, window):\n    if window <= 1: return feats\n    n, dim = feats.shape\n    half_w = window // 2\n    padded = np.zeros((n + window - 1, dim), dtype=np.float32)\n    padded[half_w:half_w + n] = feats\n    return np.array([padded[i:i + window].flatten() for i in range(n)])\n\n\ndef build_features(traces, layer_idx, window, do_residualize=False):\n    X_list, y_list, lengths = [], [], []\n    for t in traces:\n        hs, labels = extract_hs(t, layer_idx)\n        if do_residualize:\n            hs = residualize_trace(hs)\n        feat = apply_window(hs, window)\n        X_list.append(feat)\n        y_list.append(labels)\n        lengths.append(len(labels))\n    return np.vstack(X_list), np.concatenate(y_list), lengths\n\n\ndef shuffle_within_traces(y, lengths, seed):\n    rng = np.random.default_rng(seed)\n    y_shuf = y.copy()\n    offset = 0\n    for l in lengths:\n        y_shuf[offset:offset + l] = rng.permutation(y_shuf[offset:offset + l])\n        offset += l\n    return y_shuf\n\n\ndef fit_pca(X_train, X_test):\n    n_comp = min(PCA_DIM, X_train.shape[0] - 1, X_train.shape[1])\n    if n_comp >= X_train.shape[1]:\n        return X_train, X_test\n    pca = PCA(n_components=n_comp, random_state=SEED)\n    return pca.fit_transform(X_train), pca.transform(X_test)\n\n\ndef train_eval(X_train, y_train, X_test, y_test):\n    lr = LogisticRegression(\n        solver='lbfgs', C=1.0, class_weight='balanced',\n        max_iter=2000, random_state=SEED\n    )\n    lr.fit(X_train, y_train)\n    return balanced_accuracy_score(y_test, lr.predict(X_test))\n\n\ndef run_model(model_name, cfg):\n    t0 = time.time()\n    print(f\"{model_name} (L{cfg['actual_layer']}, W={cfg['window']})\", flush=True)\n\n    traces = load_traces(cfg[\"hs_dir\"])\n    print(f\"  {len(traces)} valid traces\", flush=True)\n\n    train, val, test = split_traces(traces)\n    train_val = train + val\n    print(f\"  train_val={len(train_val)}, test={len(test)}\", flush=True)\n\n    li = cfg[\"layer_idx\"]\n    w = cfg[\"window\"]\n    results = {}\n\n    for mode, do_resid in [(\"original\", False), (\"residualized\", True)]:\n        print(f\"  --- {mode} ---\", flush=True)\n        X_tr, y_tr, len_tr = build_features(train_val, li, w, do_residualize=do_resid)\n        X_te, y_te, _ = build_features(test, li, w, do_residualize=do_resid)\n        print(f\"    X_train={X_tr.shape}, X_test={X_te.shape}\", flush=True)\n\n        X_tr_pca, X_te_pca = fit_pca(X_tr, X_te)\n        print(f\"    PCA -> {X_tr_pca.shape[1]}d\", flush=True)\n\n        real_ba = train_eval(X_tr_pca, y_tr, X_te_pca, y_te)\n        print(f\"    Real BA: {real_ba:.4f}\", flush=True)\n\n        random_bas = []\n        for i in range(N_RANDOM):\n            y_shuf = shuffle_within_traces(y_tr, len_tr, seed=SEED + i + (300 if do_resid else 100))\n            ba_s = train_eval(X_tr_pca, y_shuf, X_te_pca, y_te)\n            random_bas.append(ba_s)\n\n        rand_mean = float(np.mean(random_bas))\n        rand_std = float(np.std(random_bas))\n        selectivity = real_ba - rand_mean\n        print(f\"    Random BA: {rand_mean:.4f} +/- {rand_std:.4f}\", flush=True)\n        print(f\"    Selectivity: {selectivity:.4f} ({selectivity*100:.1f}pp)\", flush=True)\n\n        results[mode] = {\n            \"ba\": round(float(real_ba), 4),\n            \"random_ba_mean\": round(rand_mean, 4),\n            \"random_ba_std\": round(rand_std, 4),\n            \"random_bas\": [round(float(b), 4) for b in random_bas],\n            \"selectivity\": round(float(selectivity), 4),\n        }\n\n    pass_5pp = results[\"residualized\"][\"selectivity\"] > 0.05\n    elapsed = time.time() - t0\n\n    result = {\n        \"model\": model_name,\n        \"layer\": cfg[\"actual_layer\"],\n        \"window\": w,\n        \"n_traces\": len(traces),\n        \"n_train_val\": len(train_val),\n        \"n_test\": len(test),\n        \"original\": results[\"original\"],\n        \"residualized\": results[\"residualized\"],\n        \"resid_selectivity_gt_5pp\": pass_5pp,\n        \"elapsed_s\": round(elapsed, 1),\n    }\n\n    out_path = OUT_DIR / f\"{model_name.replace('-','_').lower()}_result.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(result, f, indent=2)\n    print(f\"  >5pp? {'Y' if pass_5pp else 'N'} | Saved {out_path.name} ({elapsed:.0f}s)\", flush=True)\n    return result\n\n\nif __name__ == \"__main__\":\n    model = sys.argv[1] if len(sys.argv) > 1 else None\n    if model and model in MODEL_CONFIGS:\n        run_model(model, MODEL_CONFIGS[model])\n    else:\n        print(f\"Usage: python {sys.argv[0]} &lt;model_name>\")\n        print(f\"Available: {list(MODEL_CONFIGS.keys())}\")\nPYEOF\necho \"Done\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-18T16:56:53.055400+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Done\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.82}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a5_residualized_control_20260518T164827",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-18T16:56:53.055621+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 -u scripts/r14_a5_run_one.py R1-8B",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a5_residualized_control_20260518T164827",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 -u scripts/r14_a5_run_one.py R1-8B",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-18T16:56:53.055825+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"R1-8B (L14, W=15)\\n  209 valid traces\\n  train_val=166, test=43\\n  --- original ---\\n    X_train=(7706, 61440), X_test=(1961, 61440)\\n    PCA -> 100d\\n    Real BA: 0.8259\\n    Random BA: 0.6848 +/- 0.0085\\n    Selectivity: 0.1411 (14.1pp)\\n  --- residualized ---\\n    X_train=(7706, 61440), X_test=(1961, 61440)\\n    PCA -> 100d\\n    Real BA: 0.6991\\n    Random BA: 0.4706 +/- 0.0148\\n    Selectivity: 0.2285 (22.8pp)\\n  >5pp? Y | Saved r1_8b_result.json (22s)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 25.09}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a5_residualized_control_20260518T164827",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-18T16:56:53.056112+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 -u scripts/r14_a5_run_one.py OT-7B",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a5_residualized_control_20260518T164827",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 -u scripts/r14_a5_run_one.py OT-7B",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-18T16:56:53.056318+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"OT-7B (L16, W=3)\\n  228 valid traces\\n  train_val=181, test=47\\n  --- original ---\\n    X_train=(14444, 10752), X_test=(3816, 10752)\\n    PCA -> 100d\\n    Real BA: 0.7006\\n    Random BA: 0.5900 +/- 0.0104\\n    Selectivity: 0.1106 (11.1pp)\\n  --- residualized ---\\n    X_train=(14444, 10752), X_test=(3816, 10752)\\n    PCA -> 100d\\n    Real BA: 0.6110\\n    Random BA: 0.5070 +/- 0.0143\\n    Selectivity: 0.1040 (10.4pp)\\n  >5pp? Y | Saved ot_7b_result.json (14s)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 16.83}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a5_residualized_control_20260518T164827",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-18T16:56:53.056533+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 -u scripts/r14_a5_run_one.py R1-32B",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a5_residualized_control_20260518T164827",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 -u scripts/r14_a5_run_one.py R1-32B",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-18T16:56:53.056809+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"R1-32B (L63, W=1)\\n  100 valid traces\\n  train_val=80, test=20\\n  --- original ---\\n    X_train=(2962, 5120), X_test=(544, 5120)\\n    PCA -> 100d\\n    Real BA: 0.7265\\n    Random BA: 0.5586 +/- 0.0154\\n    Selectivity: 0.1679 (16.8pp)\\n  --- residualized ---\\n    X_train=(2962, 5120), X_test=(544, 5120)\\n    PCA -> 100d\\n    Real BA: 0.5302\\n    Random BA: 0.5002 +/- 0.0214\\n    Selectivity: 0.0300 (3.0pp)\\n  >5pp? N | Saved r1_32b_result.json (4s)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 7.04}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a5_residualized_control_20260518T164827",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-18T16:56:53.057016+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 -u scripts/r14_a5_run_one.py QwQ-32B",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a5_residualized_control_20260518T164827",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 -u scripts/r14_a5_run_one.py QwQ-32B",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-18T16:56:53.057206+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"QwQ-32B (L60, W=5)\\n  95 valid traces\\n  train_val=76, test=19\\n  --- original ---\\n    X_train=(3823, 25600), X_test=(1029, 25600)\\n    PCA -> 100d\\n    Real BA: 0.7455\\n    Random BA: 0.5828 +/- 0.0118\\n    Selectivity: 0.1627 (16.3pp)\\n  --- residualized ---\\n    X_train=(3823, 25600), X_test=(1029, 25600)\\n    PCA -> 100d\\n    Real BA: 0.6051\\n    Random BA: 0.5050 +/- 0.0253\\n    Selectivity: 0.1001 (10.0pp)\\n  >5pp? Y | Saved qwq_32b_result.json (10s)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 12.81}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a5_residualized_control_20260518T164827",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-18T16:56:53.057490+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 -u -c \"\nimport json\nfrom pathlib import Path\n\nOUT = Path('artifacts/r14_a5_residualized_control')\nmodels = ['r1_8b', 'ot_7b', 'r1_32b', 'qwq_32b']\nall_results = {}\nfor m in models:\n    with open(OUT / f'{m}_result.json') as f:\n        r = json.load(f)\n        all_results[r['model']] = r\n\ncombined = {\n    'experiment': 'r14_a5_residualized_control',\n    'method': 'Hewitt & Manning 2019 control task',\n    'description': 'Selectivity = real_BA - mean(shuffled_train_labels_BA). Shuffled within-trace.',\n    'seed': 42,\n    'n_random_repeats': 10,\n    'lr_params': {'solver': 'lbfgs', 'C': 1.0, 'class_weight': 'balanced', 'max_iter': 2000},\n    'pca_dim': 100,\n    'split': '60/20/20',\n    'models': all_results,\n}\nwith open(OUT / 'results.json', 'w') as f:\n    json.dump(combined, f, indent=2)\nprint('Combined results saved.')\n\n# Print summary table\nprint()\nprint(f\\\"{'Model':<10} {'Orig BA':>8} {'Orig Rnd BA':>12} {'Orig Sel':>9} {'Resid BA':>9} {'Resid Rnd BA':>13} {'Resid Sel':>10} {'>5pp':>5}\\\")\nprint('-' * 80)\nfor mn, r in all_results.items():\n    o, d = r['original'], r['residualized']\n    tag = 'Y' if r['resid_selectivity_gt_5pp'] else 'N'\n    print(f\\\"{mn:<10} {o['ba']:>8.4f} {o['random_ba_mean']:>8.4f}+/-{o['random_ba_std']:.3f} {o['selectivity']:>9.4f} {d['ba']:>9.4f} {d['random_ba_mean']:>8.4f}+/-{d['random_ba_std']:.3f} {d['selectivity']:>10.4f} {tag:>5}\\\")\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a5_residualized_control_20260518T164827",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 -u -c \"\nimport json\nfrom pathlib import Path\n\nOUT = Path('artifacts/r14_a5_residualized_control')\nmodels = ['r1_8b', 'ot_7b', 'r1_32b', 'qwq_32b']\nall_results = {}\nfor m in models:\n    with open(OUT / f'{m}_result.json') as f:\n        r = json.load(f)\n        all_results[r['model']] = r\n\ncombined = {\n    'experiment': 'r14_a5_residualized_control',\n    'method': 'Hewitt & Manning 2019 control task',\n    'description': 'Selectivity = real_BA - mean(shuffled_train_labels_BA). Shuffled within-trace.',\n    'seed': 42,\n    'n_random_repeats': 10,\n    'lr_params': {'solver': 'lbfgs', 'C': 1.0, 'class_weight': 'balanced', 'max_iter': 2000},\n    'pca_dim': 100,\n    'split': '60/20/20',\n    'models': all_results,\n}\nwith open(OUT / 'results.json', 'w') as f:\n    json.dump(combined, f, indent=2)\nprint('Combined results saved.')\n\n# Print summary table\nprint()\nprint(f\\\"{'Model':<10} {'Orig BA':>8} {'Orig Rnd BA':>12} {'Orig Sel':>9} {'Resid BA':>9} {'Resid Rnd BA':>13} {'Resid Sel':>10} {'>5pp':>5}\\\")\nprint('-' * 80)\nfor mn, r in all_results.items():\n    o, d = r['original'], r['residualized']\n    tag = 'Y' if r['resid_selectivity_gt_5pp'] else 'N'\n    print(f\\\"{mn:<10} {o['ba']:>8.4f} {o['random_ba_mean']:>8.4f}+/-{o['random_ba_std']:.3f} {o['selectivity']:>9.4f} {d['ba']:>9.4f} {d['random_ba_mean']:>8.4f}+/-{d['random_ba_std']:.3f} {d['selectivity']:>10.4f} {tag:>5}\\\")\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-18T16:56:53.057749+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Combined results saved.\\n\\nModel       Orig BA  Orig Rnd BA  Orig Sel  Resid BA  Resid Rnd BA  Resid Sel  >5pp\\n--------------------------------------------------------------------------------\\nR1-8B        0.8259   0.6848+/-0.009    0.1411    0.6991   0.4706+/-0.015     0.2285     Y\\nOT-7B        0.7006   0.5900+/-0.010    0.1106    0.6110   0.5070+/-0.014     0.1040     Y\\nR1-32B       0.7265   0.5586+/-0.015    0.1679    0.5302   0.5002+/-0.021     0.0300     N\\nQwQ-32B      0.7455   0.5828+/-0.012    0.1627    0.6051   0.5050+/-0.025     0.1001     Y\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a5_residualized_control_20260518T164827",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-18T16:56:53.057969+00:00_
+
+called mcp__agent-ml-research__save_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__save_project_file</summary>
+
+```json
+{
+  "project": "contrastive_trace_safety",
+  "file": "memory.md",
+  "content": "# Project Memory\n\n## A5: Residualized Control Task Results (2026-05-18)\n\nHewitt & Manning (2019) control task on position-residualized hidden states. Selectivity = real_BA - mean(shuffled_train_labels_BA), 10 repeats, within-trace shuffle. LR(C=1.0, balanced, lbfgs), PCA=100, 60/20/20 split, seed=42.\n\n| Model | Orig BA | Orig Rnd BA | Orig Sel | Resid BA | Resid Rnd BA | Resid Sel | >5pp |\n|-------|---------|-------------|----------|----------|--------------|-----------|------|\n| R1-8B | 0.8259 | 0.6848±0.009 | 0.1411 (14.1pp) | 0.6991 | 0.4706±0.015 | 0.2285 (22.8pp) | Y |\n| OT-7B | 0.7006 | 0.5900±0.010 | 0.1106 (11.1pp) | 0.6110 | 0.5070±0.014 | 0.1040 (10.4pp) | Y |\n| R1-32B | 0.7265 | 0.5586±0.015 | 0.1679 (16.8pp) | 0.5302 | 0.5002±0.021 | 0.0300 (3.0pp) | N |\n| QwQ-32B | 0.7455 | 0.5828±0.012 | 0.1627 (16.3pp) | 0.6051 | 0.5050±0.025 | 0.1001 (10.0pp) | Y |\n\nKey findings:\n- 3/4 models (R1-8B, OT-7B, QwQ-32B) pass the >5pp selectivity threshold after residualization, confirming genuine safety signal beyond position.\n- R1-32B fails (3.0pp): residualized BA drops to near chance (0.53), and selectivity collapses. With W=1 (static, no temporal context), position removal eliminates most signal. This model's probe heavily relied on position information.\n- Residualization increases selectivity for R1-8B (14.1pp -> 22.8pp) because the random baseline drops more than the real BA.\n- Output: `/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a5_residualized_control/`\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a5_residualized_control_20260518T164827",
+  "tool": "mcp__agent-ml-research__save_project_file",
+  "tool_args": {
+    "project": "contrastive_trace_safety",
+    "file": "memory.md",
+    "content": "# Project Memory\n\n## A5: Residualized Control Task Results (2026-05-18)\n\nHewitt & Manning (2019) control task on position-residualized hidden states. Selectivity = real_BA - mean(shuffled_train_labels_BA), 10 repeats, within-trace shuffle. LR(C=1.0, balanced, lbfgs), PCA=100, 60/20/20 split, seed=42.\n\n| Model | Orig BA | Orig Rnd BA | Orig Sel | Resid BA | Resid Rnd BA | Resid Sel | >5pp |\n|-------|---------|-------------|----------|----------|--------------|-----------|------|\n| R1-8B | 0.8259 | 0.6848±0.009 | 0.1411 (14.1pp) | 0.6991 | 0.4706±0.015 | 0.2285 (22.8pp) | Y |\n| OT-7B | 0.7006 | 0.5900±0.010 | 0.1106 (11.1pp) | 0.6110 | 0.5070±0.014 | 0.1040 (10.4pp) | Y |\n| R1-32B | 0.7265 | 0.5586±0.015 | 0.1679 (16.8pp) | 0.5302 | 0.5002±0.021 | 0.0300 (3.0pp) | N |\n| QwQ-32B | 0.7455 | 0.5828±0.012 | 0.1627 (16.3pp) | 0.6051 | 0.5050±0.025 | 0.1001 (10.0pp) | Y |\n\nKey findings:\n- 3/4 models (R1-8B, OT-7B, QwQ-32B) pass the >5pp selectivity threshold after residualization, confirming genuine safety signal beyond position.\n- R1-32B fails (3.0pp): residualized BA drops to near chance (0.53), and selectivity collapses. With W=1 (static, no temporal context), position removal eliminates most signal. This model's probe heavily relied on position information.\n- Residualization increases selectivity for R1-8B (14.1pp -> 22.8pp) because the random baseline drops more than the real BA.\n- Output: `/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a5_residualized_control/`\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-18T16:56:53.058184+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a5_residualized_control_20260518T164827",
+  "tool": "mcp__agent-ml-research__save_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-18T16:56:53.058366+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "r14_a5_residualized_control",
+  "type": "data",
+  "description": "Hewitt & Manning control task on position-residualized HS for 4 models. Selectivity results: R1-8B 22.8pp, OT-7B 10.4pp, QwQ-32B 10.0pp (pass), R1-32B 3.0pp (fail).",
+  "project": "contrastive_trace_safety",
+  "source_path": "/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a5_residualized_control/results.json",
+  "tags": "['control-task', 'residualization', 'selectivity', 'hewitt-manning']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a5_residualized_control_20260518T164827",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "r14_a5_residualized_control",
+    "type": "data",
+    "description": "Hewitt & Manning control task on position-residualized HS for 4 models. Selectivity results: R1-8B 22.8pp, OT-7B 10.4pp, QwQ-32B 10.0pp (pass), R1-32B 3.0pp (fail).",
+    "project": "contrastive_trace_safety",
+    "source_path": "/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a5_residualized_control/results.json",
+    "tags": "['control-task', 'residualization', 'selectivity', 'hewitt-manning']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-18T16:56:53.058551+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a5_residualized_control/results.json\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a5_residualized_control_20260518T164827",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-18T16:56:53.059628+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a5_residualized_control/results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a5_residualized_control_20260518T164827",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a5_residualized_control/results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-18T16:56:53.059981+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"r14_a5_residualized_control\\\",\\n  \\\"method\\\": \\\"Hewitt & Manning 2019 control task\\\",\\n  \\\"description\\\": \\\"Selectivity = real_BA - mean(shuffled_train_labels_BA). Shuffled within-trace.\\\",\\n  \\\"seed\\\": 42,\\n  \\\"n_random_repeats\\\": 10,\\n  \\\"lr_params\\\": {\\n    \\\"solver\\\": \\\"lbfgs\\\",\\n    \\\"C\\\": 1.0,\\n    \\\"class_weight\\\": \\\"balanced\\\",\\n    \\\"max_iter\\\": 2000\\n  },\\n  \\\"pca_dim\\\": 100,\\n  \\\"split\\\": \\\"60/20/20\\\",\\n  \\\"models\\\": {\\n    \\\"R1-8B\\\": {\\n      \\\"model\\\": \\\"R1-8B\\\",\\n      \\\"layer\\\": 14,\\n      \\\"window\\\": 15,\\n      \\\"n_traces\\\": 209,\\n      \\\"n_train_val\\\": 166,\\n      \\\"n_test\\\": 43,\\n      \\\"original\\\": {\\n        \\\"ba\\\": 0.8259,\\n        \\\"random_ba_mean\\\": 0.6848,\\n        \\\"random_ba_std\\\": 0.0085,\\n        \\\"random_bas\\\": [\\n          0.6698,\\n          0.6872,\\n          0.6783,\\n          0.6933,\\n          0.6885,\\n          0.6991,\\n          0.6926,\\n          0.6807,\\n          0.6759,\\n          0.6821\\n        ],\\n        \\\"selectivity\\\": 0.1411\\n      },\\n      \\\"residualized\\\": {\\n        \\\"ba\\\": 0.6991,\\n        \\\"random_ba_mean\\\": 0.4706,\\n        \\\"random_ba_std\\\": 0.0148,\\n        \\\"random_bas\\\": [\\n          0.477,\\n          0.4532,\\n          0.4689,\\n          0.4488,\\n          0.4825,\\n          0.4689,\\n          0.4614,\\n          0.4971,\\n          0.4597,\\n          0.4883\\n        ],\\n        \\\"selectivity\\\": 0.2285\\n      },\\n      \\\"resid_selectivity_gt_5pp\\\": true,\\n      \\\"elapsed_s\\\": 22.3\\n    },\\n    \\\"OT-7B\\\": {\\n      \\\"model\\\": \\\"OT-7B\\\",\\n      \\\"layer\\\": 16,\\n      \\\"window\\\": 3,\\n      \\\"n_traces\\\": 228,\\n      \\\"n_train_val\\\": 181,\\n      \\\"n_test\\\": 47,\\n      \\\"original
+…[truncated 3381 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a5_residualized_control_20260518T164827",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-18T16:56:53.060239+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "r14_a5_residualized_control",
+  "type": "data",
+  "description": "Hewitt & Manning control task on position-residualized HS for 4 models. Residualized selectivity: R1-8B 22.8pp, OT-7B 10.4pp, QwQ-32B 10.0pp (pass >5pp), R1-32B 3.0pp (fail).",
+  "project": "contrastive_trace_safety",
+  "content": "See remote: /root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a5_residualized_control/results.json\n\nSummary Table:\n| Model   | Orig BA | Orig Rnd BA    | Orig Sel  | Resid BA | Resid Rnd BA   | Resid Sel  | >5pp |\n|---------|---------|----------------|-----------|----------|----------------|------------|------|\n| R1-8B   | 0.8259  | 0.6848±0.009   | 14.1pp    | 0.6991   | 0.4706±0.015   | 22.8pp     | Y    |\n| OT-7B   | 0.7006  | 0.5900±0.010   | 11.1pp    | 0.6110   | 0.5070±0.014   | 10.4pp     | Y    |\n| R1-32B  | 0.7265  | 0.5586±0.015   | 16.8pp    | 0.5302   | 0.5002±0.021   | 3.0pp      | N    |\n| QwQ-32B | 0.7455  | 0.5828±0.012   | 16.3pp    | 0.6051   | 0.5050±0.025   | 10.0pp     | Y    |\n",
+  "content_filename": "r14_a5_summary.md",
+  "tags": "['control-task', 'residualization', 'selectivity', 'hewitt-manning']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a5_residualized_control_20260518T164827",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "r14_a5_residualized_control",
+    "type": "data",
+    "description": "Hewitt & Manning control task on position-residualized HS for 4 models. Residualized selectivity: R1-8B 22.8pp, OT-7B 10.4pp, QwQ-32B 10.0pp (pass >5pp), R1-32B 3.0pp (fail).",
+    "project": "contrastive_trace_safety",
+    "content": "See remote: /root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a5_residualized_control/results.json\n\nSummary Table:\n| Model   | Orig BA | Orig Rnd BA    | Orig Sel  | Resid BA | Resid Rnd BA   | Resid Sel  | >5pp |\n|---------|---------|----------------|-----------|----------|----------------|------------|------|\n| R1-8B   | 0.8259  | 0.6848±0.009   | 14.1pp    | 0.6991   | 0.4706±0.015   | 22.8pp     | Y    |\n| OT-7B   | 0.7006  | 0.5900±0.010   | 11.1pp    | 0.6110   | 0.5070±0.014   | 10.4pp     | Y    |\n| R1-32B  | 0.7265  | 0.5586±0.015   | 16.8pp    | 0.5302   | 0.5002±0.021   | 3.0pp      | N    |\n| QwQ-32B | 0.7455  | 0.5828±0.012   | 16.3pp    | 0.6051   | 0.5050±0.025   | 10.0pp     | Y    |\n",
+    "content_filename": "r14_a5_summary.md",
+    "tags": "['control-task', 'residualization', 'selectivity', 'hewitt-manning']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-18T16:56:53.060473+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260518_5145a8\", \"name\": \"r14_a5_residualized_control\", \"type\": \"data\", \"description\": \"Hewitt & Manning control task on position-residualized HS for 4 models. Residualized selectivity: R1-8B 22.8pp, OT-7B 10.4pp, QwQ-32B 10.0pp (pass >5pp), R1-32B 3.0pp (fail).\", \"path\": \"projects/contrastive_trace_safety/artifacts/_project/data/r14_a5_summary.md\", \"url\": null, \"project\": \"contrastive_trace_safety\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-18T16:56:43.060849+00:00\", \"tags\": [\"control-task\", \"residualization\", \"selectivity\", \"hewitt-manning\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a5_residualized_control_20260518T164827",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45 · 2026-05-18T16:56:53.060768+00:00_
+
+A5 完成。结果汇总：
+
+| Model | Orig BA | Orig Rnd BA | Orig Sel | Resid BA | Resid Rnd BA | Resid Sel | >5pp |
+|-------|---------|-------------|----------|----------|--------------|-----------|------|
+| R1-8B | 0.8259 | 0.6848±0.009 | 14.1pp | 0.6991 | 0.4706±0.015 | **22.8pp** | **Y** |
+| OT-7B | 0.7006 | 0.5900±0.010 | 11.1pp | 0.6110 | 0.5070±0.014 | **10.4pp** | **Y** |
+| R1-32B | 0.7265 | 0.5586±0.015 | 16.8pp | 0.5302 | 0.5002±0.021 | **3.0pp** | **N** |
+| QwQ-32B | 0.7455 | 0.5828±0.012 | 16.3pp | 0.6051 | 0.5050±0.025 | **10.0pp** | **Y** |
+
+3/4 模型通过 >5pp 阈值，确认 residualized HS 中存在 genuine safety signal。R1-32B 失败（3.0pp），因为 W=1 时去除位置信息后几乎无剩余信号（BA 降至 0.53，接近随机）。R1-8B 的 residualized selectivity（22.8pp）反而高于 original（14.1pp），因为 random baseline 在去位置后跌到近 0.47。
+
+输出目录：`/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a5_residualized_control/`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_r14_a5_residualized_control_20260518T164827"
+}
+```
+
+</details>
+
+---

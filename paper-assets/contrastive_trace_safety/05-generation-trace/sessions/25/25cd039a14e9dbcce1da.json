@@ -1,0 +1,172 @@
+{
+  "schema_version": "1.0",
+  "id": "25cd039a14e9dbcce1da",
+  "project": "contrastive_trace_safety",
+  "kind": "conversation",
+  "title": "code r6 bootstrap ci extraction",
+  "task_key": "worker_code_r6_bootstrap_ci_extraction_20260518T024936",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_r6_bootstrap_ci_extraction_20260518T024936.jsonl",
+    "occurrence": 1,
+    "bytes": 5450,
+    "sha256": "86fa57a26abd937485a5e06e6c8b7a37fca2d5cb6ac15afd04b8682bde057cf9"
+  },
+  "statistics": {
+    "messages": 7,
+    "user_turns": 0,
+    "tool_calls": 3,
+    "roles": {
+      "tool_call": 3,
+      "tool_result": 3,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-18T02:50:10.682076+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r6_bootstrap_ci_extraction_20260518T024936",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_execute",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-18T02:50:10.682420+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r6_bootstrap_ci_extraction_20260518T024936",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-18T02:50:10.682596+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r6_bootstrap_ci_extraction_20260518T024936",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-rtx6000",
+              "command": "cd /root/autodl-tmp/contrastive_trace_safety && cat artifacts/exp_r3_bootstrap_10k/results.json | python3 -m json.tool | head -200",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-18T02:50:10.682898+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"bash: line 1: python3: command not found\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.87}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r6_bootstrap_ci_extraction_20260518T024936",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-18T02:50:10.683256+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r6_bootstrap_ci_extraction_20260518T024936",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-rtx6000",
+              "command": "cd /root/autodl-tmp/contrastive_trace_safety && source /root/miniconda3/bin/activate && cat artifacts/exp_r3_bootstrap_10k/results.json | python3 -m json.tool | head -200",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-18T02:50:10.683558+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n    \\\\\\\"n_resamples\\\\\\\": 10000,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"elapsed_seconds\\\\\\\": 243.6,\\\\n    \\\\\\\"tests\\\\\\\": [\\\\n        {\\\\n            \\\\\\\"model\\\\\\\": \\\\\\\"r1_8b\\\\\\\",\\\\n            \\\\\\\"metric\\\\\\\": \\\\\\\"bal_acc\\\\\\\",\\\\n            \\\\\\\"delta\\\\\\\": 0.17958910090938204,\\\\n            \\\\\\\"ci_95\\\\\\\": [\\\\n                0.11683529774041068,\\\\n                0.24201725735307214\\\\n            ],\\\\n            \\\\\\\"p_old_1k\\\\\\\": 0.001,\\\\n            \\\\\\\"p_new_10k\\\\\\\": 0.0,\\\\n            \\\\\\\"holm_rank\\\\\\\": 1,\\\\n            \\\\\\\"holm_threshold\\\\\\\": 0.004167,\\\\n            \\\\\\\"pass\\\\\\\": true\\\\n        },\\\\n        {\\\\n            \\\\\\\"model\\\\\\\": \\\\\\\"r1_8b\\\\\\\",\\\\n            \\\\\\\"metric\\\\\\\": \\\\\\\"precision\\\\\\\",\\\\n            \\\\\\\"delta\\\\\\\": 0.27858808251186934,\\\\n            \\\\\\\"ci_95\\\\\\\": [\\\\n                0.18540519846555728,\\\\n                0.37810872241201826\\\\n            ],\\\\n            \\\\\\\"p_old_1k\\\\\\\": 0.001,\\\\n            \\\\\\\"p_new_10k\\\\\\\": 0.0,\\\\n            \\\\\\\"holm_rank\\\\\\\": 2,\\\\n            \\\\\\\"holm_threshold\\\\\\\": 0.004545,\\\\n            \\\\\\\"pass\\\\\\\": true\\\\n        },\\\\n        {\\\\n            \\\\\\\"model\\\\\\\": \\\\\\\"r1_8b\\\\\\\",\\\\n            \\\\\\\"metric\\\\\\\": \\\\\\\"pre_cp_fpr\\\\\\\",\\\\n            \\\\\\\"delta\\\\\\\": -0.12545892180728604,\\\\n            \\\\\\\"ci_95\\\\\\\": [\\\\n                -0.1795174778341794,\\\\n                -0.07410375559111361\\\\n            ],\\\\n            \\\\\\\"p_old_1k\\\\\\\": 0.044,\\\\n            \\\\\\\"p_new_10k\\\\\\\": 0.0,\\\\n            \\\\\\\"holm_rank\\\\\\\": 3,\\\\n            \\\\\\\"holm_threshold\\\\\\\": 0.005,\\\\n            \\\\\\\"pass\\\\\\\": true\\\\n        },\\\\n        {\\\\n            \\\\\\\"model\\\\\\\": \\\\\\\"ot_7b\\\\\\\",\\\\n            \\\\\\\"metric\\\\\\\": \\\\\\\"precision\\\\\\\",\\\\n            \\\\\\\"delta\\\\\\\": 0.21894260796680878,\\\\n            \\\\\\\"ci_95\\\\\\\": [\\\\n                0.14414931578743703,\\\\n                0.29612074801930044\\\\n            ],\\\\n            \\\\\\\"p_old_1k\\\\\\\": 0.001,\\\\n            \\\\\\\"p_new_10k\\\\\\\": 0.0,\\\\n     \n…[truncated 5178 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r6_bootstrap_ci_extraction_20260518T024936",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-18T02:50:10.683889+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "JSON 已有 percentile-based 95% CI。提取 precision metric 结果：\n\n| Model | Precision Δ (HS − Text) | 95% CI lower | 95% CI upper | p-value |\n|---------|------------------------|-------------|-------------|---------|\n| R1-8B | +0.2786 | +0.1854 | +0.3781 | <0.0001 |\n| OT-7B | +0.2189 | +0.1441 | +0.2961 | <0.0001 |\n| QwQ-32B | +0.2349 | +0.1287 | +0.3510 | <0.0001 |\n| R1-32B | +0.1544 | +0.0867 | +0.2262 | <0.0001 |\n\n**R1-32B 分析**: delta 最小 (+0.154)，但 CI 下界 +0.087，远离 0，统计显著性没有问题。CI 宽度 0.140，与其他模型相当。\n\n补充信息：\n- 所有 12 项 Holm-Bonferroni 校正测试通过 (12/12 pass)\n- p 值均为 0.0（10000 次 resampling 中零次出现反向结果）\n- QwQ-32B 的 CI 最宽（0.222），R1-32B 次之（0.140），OT-7B 最窄（0.152）"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r6_bootstrap_ci_extraction_20260518T024936"
+          },
+          "id": "event-000007"
+        }
+      ],
+      "message_count": 7
+    }
+  ],
+  "readable_path": "readable/conversations/code-r6-bootstrap-ci-extraction.md"
+}

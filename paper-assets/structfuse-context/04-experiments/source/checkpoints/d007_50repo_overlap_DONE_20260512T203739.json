@@ -1,0 +1,49 @@
+{
+  "exp_id": "d007_50repo_overlap",
+  "project": "structfuse-context",
+  "state": "DONE",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-12T20:37:24.289Z",
+    "updated_at": "2026-05-12T20:37:39.566Z",
+    "spec": {
+      "command": "CodeQL 2-hop extraction + connected vs gold overlap stats on 50 repos",
+      "server": "cqa1-21977",
+      "data_path": "/root/structfuse",
+      "data_count": 240,
+      "model_name": "N/A (CPU analysis)",
+      "seed": "N/A",
+      "description": "50-repo overlap validation: Z=40.8%, original method viable"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "total_instances": 240,
+      "instances_with_extra_connected": 98,
+      "Z_pct": 40.8,
+      "avg_connected_minus_gold": 6,
+      "codeql_timeout_rate_pct": 4,
+      "by_repo_size": {
+        "small_lt50": {
+          "Z_pct": 38.6,
+          "avg_extra": 2.5
+        },
+        "medium_50_200": {
+          "Z_pct": 55.7,
+          "avg_extra": 11.8
+        },
+        "large_gt200": {
+          "Z_pct": 16.7,
+          "avg_extra": 8.8
+        }
+      },
+      "decision": "Z=40.8% >= 20% -> original method viable, proceed to M1"
+    },
+    "checkpoint_path": "N/A (analysis only)",
+    "log_path": "/root/structfuse/data/50repo_overlap_stats/",
+    "completed_at": "2026-05-12T20:37:39.566Z"
+  },
+  "timestamp": "2026-05-12T20:37:39.596540+00:00",
+  "trigger": "update_registry"
+}

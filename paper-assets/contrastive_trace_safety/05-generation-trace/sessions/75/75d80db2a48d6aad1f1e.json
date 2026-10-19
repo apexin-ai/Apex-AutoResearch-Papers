@@ -1,0 +1,94 @@
+{
+  "schema_version": "1.0",
+  "id": "75d80db2a48d6aad1f1e",
+  "project": "contrastive_trace_safety",
+  "kind": "worker",
+  "title": "code advbench data loader",
+  "task_key": "worker_code_advbench_data_loader_20260519T193651",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_advbench_data_loader_20260519T193651.log",
+    "occurrence": 1,
+    "bytes": 716176,
+    "sha256": "e9d94044946a4d6819082b99f972d014234066c50329ded5e1ce2ebd01bced28"
+  },
+  "statistics": {
+    "messages": 309,
+    "user_turns": 4,
+    "tool_calls": 103,
+    "roles": {
+      "log": 1,
+      "system": 78,
+      "record": 1,
+      "assistant": 18,
+      "tool_call": 103,
+      "user": 4,
+      "tool_result": 103,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "75d80db2a48d6aad1f1e-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 92,
+      "chunks": [
+        {
+          "path": "75d80db2a48d6aad1f1e-part-0001.json",
+          "message_count": 92
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "75d80db2a48d6aad1f1e-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 16,
+      "chunks": [
+        {
+          "path": "75d80db2a48d6aad1f1e-part-0001.json",
+          "message_count": 16
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 189,
+      "chunks": [
+        {
+          "path": "75d80db2a48d6aad1f1e-part-0001.json",
+          "message_count": 60
+        },
+        {
+          "path": "75d80db2a48d6aad1f1e-part-0002.json",
+          "message_count": 129
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-advbench-data-loader.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8bff2744a50565691bc6",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "ops fix cp stats bug",
+  "task_key": "worker_ops_fix_cp_stats_bug_20260520T062012",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix_cp_stats_bug_20260520T062012_result.json",
+    "occurrence": 1,
+    "bytes": 871,
+    "sha256": "8f34a49de1f22639ccfedc202ad0339ff8378d5026f8138d7457b70fdd4ace36"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复验证通过。\n\n**修复结果**：\n\n| | 修复前 (buggy) | 修复后 |\n|---|---|---|\n| 统计基数 | 所有 cp≠null 的 annotations | 仅 is_jailbreak=True |\n| n_jailbreak_with_cp | (未记录) | **52** |\n| mean | 2.37→2.8 (含 non-jb 噪音) | **1.42** |\n| median | 0.0 | 0.0 |\n| mean_relative | 0.1258→0.142 | **0.0452** |\n\n**完成的修改**：\n\n1. **服务器脚本** `annotate_cp_llm_qwen3.py` — 三处修复：\n   - `annotate_one`: non-jailbreak 时 `cp = None`\n   - `save_results`: CP 统计只算 `is_jailbreak=True`，新增 `n_jailbreak_with_cp`\n   - `main()` 末尾摘要：同上过滤\n2. **本地脚本副本** — 同步修复\n3. **Post-hoc 修正** — 已自动执行，输出 JSON 已修正\n4. 修正脚本保留在服务器 `/root/autodl-tmp/contrastive_trace_safety/scripts/fix_cp_stats_posthoc.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-cp-stats-bug.md"
+}

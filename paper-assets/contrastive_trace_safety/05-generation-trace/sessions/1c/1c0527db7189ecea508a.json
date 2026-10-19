@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1c0527db7189ecea508a",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "analysis table3 qwq 60 20 20",
+  "task_key": "worker_analysis_table3_qwq_60_20_20_20260518T172831",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_table3_qwq_60_20_20_20260518T172831_result.json",
+    "occurrence": 1,
+    "bytes": 790,
+    "sha256": "2b034f4b7814ecf0cdaa3e6288e61d441efe7f9da6b3c47012c0648c6cf0d290"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果如下：\n\n```\nQwQ-32B (W=5, L60, 60/20/20, PCA=100d, 10k bootstrap):\n  n_test = 1029\n  HS Prec: 0.566 [0.121, 0.384]\n  Text Prec: 0.330\n  ΔPrec: +0.236pp, p=0.0019\n  \n  HS BA: 0.705 [0.091, 0.218]\n  Text BA: 0.543\n  ΔBA: +0.162pp, p=0.0000\n  \n  HS FPR: 0.178 [-0.243, -0.102]\n  Text FPR: 0.347\n  ΔFPR: -0.169pp, p=0.0000\n  \n  HS AUROC: 0.833 [0.166, 0.391]\n  Text AUROC: 0.554\n  ΔAUROC: +0.279pp, p=0.0000\n  \n  HB (3 tests: Prec, BA, FPR): 3/3 pass\n```\n\n配置验证：95 traces → 57/19/19 split, train+val=76 用于训练, test=19 traces (1029 steps)。PCA explained variance 51.3%。全部在 60/20/20 下完成，所有差异高度显著。\n\n结果已写入服务器 `artifacts/table3_qwq_60_20_20/results.json` 并注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-table3-qwq-60-20-20.md"
+}

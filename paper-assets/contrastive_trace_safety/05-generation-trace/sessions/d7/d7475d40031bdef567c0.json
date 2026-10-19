@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d7475d40031bdef567c0",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "ops s3 backup full",
+  "task_key": "worker_ops_s3-backup-full_20260525T205541",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_s3-backup-full_20260525T205541_result.json",
+    "occurrence": 1,
+    "bytes": 756,
+    "sha256": "4bb4ccb05ecb582131ae7a0b2ed7b3feafc0a478f388fae18a84f7b919917bd1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 备份完成汇报\n\n**(a) Tarball 路径 + 大小**\n- `contrastive_trace_safety-final-20260525T211200Z.tar.gz` — 7.2 GB (7,678,922,446 bytes)\n\n**(b) S3 URI**\n```\ns3://agent-ml-manager-backups-emnlp/manager-backup/backends/contrastive_trace_safety/project-archive/contrastive_trace_safety-final-20260525T211200Z.tar.gz\n```\n\n**(c) 上传速率**\n- 108.6 MB/s，耗时 67.4s\n\n**(d) 备份内容清单**\n\n| 层级 | 内容 |\n|------|------|\n| `server_data/contrastive_trace_safety_archive/` | 服务器归档数据（模型 checkpoints、实验日志、训练产出等，原始 7.5G） |\n| `local_data/project/` | BE 本地项目完整副本（代码 + .git 历史 + 论文 LaTeX/PDF + artifacts + registry 等） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-s3-backup-full.md"
+}

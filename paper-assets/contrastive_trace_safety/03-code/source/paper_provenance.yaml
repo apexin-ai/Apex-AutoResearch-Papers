@@ -1,0 +1,123 @@
+paper:
+  title: ''
+  version: 1
+  generated_at: '2026-05-17T15:41:10.657233+00:00'
+claims:
+- id: C001
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: 4/5 layer selection metrics converge on deep layers; crossing_rate component
+    biases toward shallow layers
+  type: methodological
+  evidence:
+  - exp_ot7b_full_pipeline
+  - exp_001a_r1_32b
+  - exp_001b_qwq_32b
+  decisions:
+  - D028
+  - D032
+  deprecated: false
+- id: C003
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Biased layer selection at 32B entirely masks HS advantage (NS at L2/L10, significant
+    at L60/L63)
+  type: empirical
+  evidence:
+  - exp_001a_r1_32b
+  - exp_001b_qwq_32b
+  decisions:
+  - D029
+  - D032
+  deprecated: false
+- id: C006
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: R1-8B best layer 14 (44%), OT-7B layer 16 (57%), QwQ layer 60 (94%), R1-32B
+    layer 63 (98%)
+  type: empirical
+  evidence:
+  - diag_d1_layer_sweep
+  - exp_ot7b_full_pipeline
+  decisions:
+  - D028
+  deprecated: false
+- id: C010
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: 632 total traces across four models with 60/20/20 split
+  type: descriptive
+  evidence:
+  - exp_ot7b_full_pipeline
+  - exp_001a_r1_32b
+  - exp_001b_qwq_32b
+  decisions: []
+  deprecated: false
+- id: C015
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: All four models show significant HS advantage after correcting for layer selection
+    bias
+  type: empirical
+  evidence:
+  - exp_ot7b_full_pipeline
+  - exp_001a_r1_32b
+  - exp_001b_qwq_32b
+  - exp_007_window_ablation
+  decisions:
+  - D032
+  deprecated: false
+tables:
+- id: tab:models
+  location:
+    section: method
+    table_number: 0
+  caption: ''
+  cells:
+  - row: R1-8B
+    col: Traces
+    value: '209'
+    source:
+      exp_id: diag_d1_layer_sweep
+      metric: num_traces
+  - row: OT-7B
+    col: Traces
+    value: '228'
+    source:
+      exp_id: exp_ot7b_full_pipeline
+      metric: n_traces
+  - row: R1-32B
+    col: Test
+    value: '20'
+    source:
+      exp_id: exp_001a_r1_32b
+      metric: n_test
+  - row: QwQ-32B
+    col: Test
+    value: '19'
+    source:
+      exp_id: exp_001b_qwq_32b
+      metric: n_test
+  deprecated: false
+figures: []
+_completeness:
+  coverage: 5/5
+  claims: 5
+  tables: 1
+  figures: 0
+  tier_counts:
+    tier1: 0
+    tier2: 5
+    tier3: 0
+    tierX: 0
+  last_checked: '2026-05-17T15:41:10.657267+00:00'

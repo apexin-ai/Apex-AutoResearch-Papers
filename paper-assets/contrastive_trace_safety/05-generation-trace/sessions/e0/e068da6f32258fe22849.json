@@ -1,0 +1,102 @@
+{
+  "schema_version": "1.0",
+  "id": "e068da6f32258fe22849",
+  "project": "contrastive_trace_safety",
+  "kind": "worker",
+  "title": "verification bge 1024d ensemble",
+  "task_key": "worker_verification_bge_1024d_ensemble_20260523T112237",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verification_bge_1024d_ensemble_20260523T112237.log",
+    "occurrence": 1,
+    "bytes": 1434722,
+    "sha256": "3b66ddd94dba06867a815755366ac2ae184e2bc0ef1dcf72c2dd0ce0fd7da9e4"
+  },
+  "statistics": {
+    "messages": 662,
+    "user_turns": 4,
+    "tool_calls": 223,
+    "roles": {
+      "log": 1,
+      "system": 132,
+      "record": 1,
+      "assistant": 77,
+      "tool_call": 223,
+      "tool_result": 223,
+      "user": 4,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 46,
+      "chunks": [
+        {
+          "path": "e068da6f32258fe22849-part-0001.json",
+          "message_count": 46
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 162,
+      "chunks": [
+        {
+          "path": "e068da6f32258fe22849-part-0001.json",
+          "message_count": 134
+        },
+        {
+          "path": "e068da6f32258fe22849-part-0002.json",
+          "message_count": 28
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 163,
+      "chunks": [
+        {
+          "path": "e068da6f32258fe22849-part-0002.json",
+          "message_count": 152
+        },
+        {
+          "path": "e068da6f32258fe22849-part-0003.json",
+          "message_count": 11
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 271,
+      "chunks": [
+        {
+          "path": "e068da6f32258fe22849-part-0003.json",
+          "message_count": 169
+        },
+        {
+          "path": "e068da6f32258fe22849-part-0004.json",
+          "message_count": 102
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 20,
+      "chunks": [
+        {
+          "path": "e068da6f32258fe22849-part-0004.json",
+          "message_count": 20
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/verification-bge-1024d-ensemble.md"
+}

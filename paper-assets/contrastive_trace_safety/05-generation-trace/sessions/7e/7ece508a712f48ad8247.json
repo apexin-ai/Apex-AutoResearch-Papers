@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "7ece508a712f48ad8247",
+  "project": "contrastive_trace_safety",
+  "kind": "worker",
+  "title": "analysis gemma2 exit check",
+  "task_key": "worker_analysis_gemma2_exit_check_20260522T172105",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gemma2_exit_check_20260522T172105.log",
+    "occurrence": 1,
+    "bytes": 576326,
+    "sha256": "5f534f733a39b6f3a6a6a1dfbd3e5a9ffba36d173c6abd93b02a2d72e809292a"
+  },
+  "statistics": {
+    "messages": 198,
+    "user_turns": 0,
+    "tool_calls": 76,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 42,
+      "tool_call": 76,
+      "tool_result": 76,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 198,
+      "chunks": [
+        {
+          "path": "7ece508a712f48ad8247-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "7ece508a712f48ad8247-part-0002.json",
+          "message_count": 18
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-gemma2-exit-check.md"
+}

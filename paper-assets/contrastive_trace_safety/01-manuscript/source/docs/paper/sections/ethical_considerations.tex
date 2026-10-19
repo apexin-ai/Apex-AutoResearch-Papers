@@ -1,0 +1,7 @@
+\section*{Ethical Considerations}\label{sec:ethics}
+
+Our experiments use jailbreak prompt datasets (HarmThoughts, AdvBench) that contain harmful instructions. We use these solely to study model-internal safety mechanisms and do not generate, amplify, or redistribute harmful content. All harmful prompts originate from previously published, publicly available datasets.
+
+This work characterizes how hidden-state probes detect safety-critical transitions during reasoning, including failure modes such as layer selection bias. A potential dual-use risk is that adversaries could exploit knowledge of probe weaknesses---particularly the sensitivity to layer selection---to craft inputs that evade probe-based safety monitors. We believe the benefits of transparently documenting these failure modes outweigh this risk: defenders cannot build robust monitoring systems without understanding where current approaches break, and the layer selection bias we identify affects any practitioner deploying linear probes for safety classification.
+
+We emphasize that our findings are diagnostic rather than prescriptive: they reveal limitations of a common evaluation methodology, not a recipe for bypassing safety measures. We encourage the community to develop layer-selection-robust probing methods before deploying hidden-state monitors in production safety systems.

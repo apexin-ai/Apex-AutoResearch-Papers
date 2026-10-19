@@ -1,0 +1,15 @@
+{
+  "exp_id": "n6_multi_metric_ensemble",
+  "project": "contrastive_trace_safety",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T16:37:25.392Z",
+    "updated_at": "2026-05-19T16:57:25.548Z",
+    "hypothesis": "A multi-metric layer ensemble (averaging probe probabilities from precision-best, BA-best, and FPR-best layers) mitigates layer selection sensitivity while preserving the HS advantage over text probes. If ensemble HS significantly outperforms text and never significantly underperforms the best single-layer probe, it provides a practical solution to the metric-dependent layer selection problem."
+  },
+  "timestamp": "2026-05-19T16:57:25.670502+00:00",
+  "trigger": "update_registry"
+}

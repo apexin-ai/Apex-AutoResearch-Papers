@@ -1,0 +1,24 @@
+{
+  "exp_id": "diag_d4_oracle_upper_bound",
+  "project": "contrastive_trace_safety",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T19:29:02.931Z",
+    "updated_at": "2026-05-16T19:29:02.931Z",
+    "spec": {
+      "hypothesis": "Oracle label-based detection gives upper bound for hidden-state methods; if oracle < 90% the task itself is ill-posed",
+      "parent": "mvp_v1",
+      "command": "python -m src.diagnostics.oracle_upper_bound",
+      "server": "autodl-rtx6000",
+      "data_path": "artifacts/hidden_states/",
+      "data_count": 209,
+      "model_name": "N/A (label-only)",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-16T19:29:02.938994+00:00",
+  "trigger": "update_registry"
+}

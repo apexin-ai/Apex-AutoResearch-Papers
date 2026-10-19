@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "90dbb7a1599ba4a709a2",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "paper writing abstract d032",
+  "task_key": "worker_paper_writing_abstract_d032_20260517T172014",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_abstract_d032_20260517T172014_result.json",
+    "occurrence": 1,
+    "bytes": 418,
+    "sha256": "56d2fad73623e4cd40384b3bf8ed449e7dd1492d4b2b500fe2a64b3d9ef9221e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Abstract written. Key changes from previous version:\n\n- Precision range corrected to exact values (+15.4 to +23.6pp)\n- \"natural composite metric\" phrasing (per style rule)\n- Removed all -ing participial phrase endings\n- Named specific failed methods (BOCPD/CUSUM, Mahalanobis, MLP) per task spec\n- All abbreviations defined inline (LLM, CoT, HS, pp)\n- ~190 words, single paragraph, no em-dashes"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-abstract-d032.md"
+}

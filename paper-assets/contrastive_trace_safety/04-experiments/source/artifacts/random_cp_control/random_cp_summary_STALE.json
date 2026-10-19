@@ -1,0 +1,54 @@
+{
+  "cr_composite_selects_shallow_freq": 0.3,
+  "precision_selects_deep_freq": 0.7,
+  "fpr_selects_deep_freq": 0.7,
+  "threshold_based_selects_deep_freq": 0.7,
+  "metric_disagreement_replicates": false,
+  "per_metric_summary": {
+    "bal_acc": {
+      "mean_layer": 13.5,
+      "std_layer": 7.6,
+      "selected_layers": [5, 20, 20, 19, 5, 18, 21, 8, 19, 0],
+      "shallow_freq": 0.3,
+      "deep_freq": 0.6
+    },
+    "precision": {
+      "mean_layer": 14.4,
+      "std_layer": 8.0,
+      "selected_layers": [4, 21, 20, 19, 4, 26, 21, 3, 16, 10],
+      "shallow_freq": 0.3,
+      "deep_freq": 0.7
+    },
+    "pre_cp_fpr": {
+      "mean_layer": 15.3,
+      "std_layer": 8.7,
+      "selected_layers": [5, 27, 20, 21, 4, 26, 21, 3, 16, 10],
+      "shallow_freq": 0.3,
+      "deep_freq": 0.7
+    },
+    "crossing_rate": {
+      "mean_layer": 13.3,
+      "std_layer": 9.3,
+      "selected_layers": [18, 1, 1, 27, 24, 4, 8, 24, 10, 16],
+      "shallow_freq": 0.3,
+      "deep_freq": 0.6
+    },
+    "cr_composite": {
+      "mean_layer": 14.2,
+      "std_layer": 9.2,
+      "selected_layers": [18, 1, 1, 27, 24, 4, 15, 24, 10, 18],
+      "shallow_freq": 0.3,
+      "deep_freq": 0.7
+    }
+  },
+  "real_cp_metric_ablation": {
+    "bal_acc": {"best_layer": 9, "depth_pct": 33.3},
+    "bal_acc_x_crossing": {"best_layer": 0, "depth_pct": 0.0},
+    "precision": {"best_layer": 19, "depth_pct": 70.4},
+    "pre_cp_fpr": {"best_layer": 18, "depth_pct": 66.7},
+    "composite": {"best_layer": 9, "depth_pct": 33.3}
+  },
+  "real_cp_ba_optimal_layer": 2,
+  "pca_dim": 100,
+  "elapsed_s": 131.9
+}

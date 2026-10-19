@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4e872c4682a89343a5db",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code r1 32b selectivity l10",
+  "task_key": "worker_code_r1_32b_selectivity_l10_20260517T001541",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r1_32b_selectivity_l10_20260517T001541_result.json",
+    "occurrence": 1,
+    "bytes": 604,
+    "sha256": "5a00f558d59b35ba4b0c77e5704a4d5dd6c7502e4a2c524cf8e27011cf370227"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果：\n\n**R1-32B Layer 10 Selectivity = 7.5pp**（低于旧 layer 2 的 16.8pp）\n\n| Metric | Layer 10 | Layer 2 (旧) |\n|--------|----------|-------------|\n| Real probe bal_acc | 58.3% | — |\n| Random mean | 50.8% ± 5.1% | — |\n| Selectivity | 7.5pp | 16.8pp |\n\nLayer 10 信号反而更弱。Random baseline 方差大（有单次 rep 达 61.3% 超过 real probe），说明 layer 10 对 C2 任务的 step-level 区分力不强。Layer 2 的 16.8pp 仍是 R1-32B 更可靠的 selectivity 结果。\n\n报告已写入 `artifacts/report_r1_32b_selectivity_l10.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r1-32b-selectivity-l10.md"
+}

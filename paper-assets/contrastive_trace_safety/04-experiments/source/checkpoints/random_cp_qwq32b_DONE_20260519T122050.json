@@ -1,0 +1,35 @@
+{
+  "exp_id": "random_cp_qwq32b",
+  "project": "contrastive_trace_safety",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T12:17:29.534Z",
+    "updated_at": "2026-05-19T12:20:50.294Z",
+    "hypothesis": "The metric disagreement pattern (CR-composite selecting shallow L2 vs threshold-based metrics selecting deep L63) in QwQ-32B is not a geometric artifact: replacing real CP labels with random CPs should eliminate or substantially reduce the disagreement gap, proving it depends on genuine CP structure.",
+    "spec": {
+      "command": "random_cp_control.py (QwQ-32B, 10 repeats)",
+      "server": "autodl-rtx6000",
+      "data_path": "/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_qwq_32b/",
+      "data_count": "95 traces, 64 layers, 10 random repeats",
+      "model_name": "QwQ-32B",
+      "seed": 42
+    },
+    "conclusion": "success",
+    "metrics": {
+      "real_cp_cr_composite_layer": 4,
+      "real_cp_precision_layer": 63,
+      "real_cp_gap": 59,
+      "random_cp_cr_shallow_freq": 0.8,
+      "random_cp_precision_deep_freq": 0.2,
+      "metric_disagreement_replicates": false
+    },
+    "checkpoint_path": "/root/autodl-tmp/contrastive_trace_safety/artifacts/random_cp_control/qwq_32b/",
+    "log_path": "/root/autodl-tmp/contrastive_trace_safety/artifacts/random_cp_control/qwq_32b/report.txt",
+    "completed_at": "2026-05-19T12:20:50.294Z"
+  },
+  "timestamp": "2026-05-19T12:20:50.470493+00:00",
+  "trigger": "update_registry"
+}

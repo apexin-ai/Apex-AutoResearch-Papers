@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a9d5cb6af81832c6c6f5",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "analysis nested cv fix",
+  "task_key": "worker_analysis_nested_cv_fix_20260519T115440",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_nested_cv_fix_20260519T115440_result.json",
+    "occurrence": 1,
+    "bytes": 1019,
+    "sha256": "067aff4f1b1872bf4a2bac1f753ca8757cbc7bfd8d49ce9dae05e99e7e7c25e5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All tasks complete. Here's the summary:\n\n**R1-8B** (209 traces, 9667 steps):\n- HS precision: 0.563 +/- 0.066, Text: 0.389 +/- 0.051\n- **ΔPrec = +0.174 +/- 0.026** (HS > Text in 5/5 folds)\n- Selected layers: L12 (3/5 folds), L13, L14 (early-mid layers)\n- W_hs mixed: [3,3,5,5,3]\n\n**OT-7B** (228 traces, 18260 steps):\n- HS precision: 0.421 +/- 0.062, Text: 0.257 +/- 0.034\n- **ΔPrec = +0.164 +/- 0.033** (HS > Text in 5/5 folds)\n- Selected layers: L21-L27 (all late layers), L26 (2/5 folds)\n- W_hs unanimous: W=5 in all 5 folds\n\n**Cross-model**: HS beats text in all 10/10 folds across both models. R1-8B has higher absolute precision but similar delta. Layer selection patterns differ (R1-8B early, OT-7B late) but both consistently select late-ish layers relative to their architectures.\n\nFiles saved:\n- Local: `artifacts/nested_cv/{r1_8b_results.json, ot_7b_results.json, report.txt}`\n- Remote: `artifacts/nested_cv/{r1_8b_results.json, ot_7b_results.json, results.json, report.txt}`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-nested-cv-fix.md"
+}

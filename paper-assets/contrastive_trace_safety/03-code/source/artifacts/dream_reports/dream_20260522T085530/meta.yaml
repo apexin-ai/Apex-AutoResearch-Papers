@@ -1,0 +1,4735 @@
+dream_id: dream_20260522T085530
+project: contrastive_trace_safety
+venue: emnlp-2026
+focus: 'Evaluate whether adding AdvBench layer selection bias replication moves the
+  paper from Findings (3.0) toward Borderline Conference (3.5). Previous Dream scored
+  3.0 across all tiers. Key question: does cross-dataset C1 validation meaningfully
+  strengthen the paper?'
+review_mode: full
+review_visible: true
+writing_visible: true
+what_if:
+- name: advbench_layer_bias_replication
+  claim: C1 (layer selection bias)
+  description: 'Replicate layer selection bias on AdvBench using jailbreak/safe binary
+    labels (no CP needed). Train probes on R1-8B AdvBench traces, run 5-metric layer
+    selection analysis. Expected: CR-composite selects shallow layers, threshold-based
+    selects deep layers, confirming bias is model-geometric not dataset-specific.
+    Results in appendix table + main text one-sentence reference.'
+  estimated_gpu_hours: 6.0
+tier_definitions:
+  tiers:
+    best:
+      tier: best
+      meaning: AdvBench完整复现layer selection bias模式：CR-composite选浅层、threshold metrics选深层，且HS在深层显著优于text。跨数据集验证成立，C1从'单数据集发现'升级为'模型几何性质'
+      key_assumptions:
+      - layer selection bias是模型表征的几何性质，与标注方案（CP vs binary jailbreak/safe）无关
+      - R1-8B AdvBench traces的hidden states保留与原数据集相同的层级信号分布
+      - binary labels（无CP）足以重现crossing_rate在浅层虚高的现象
+      - AdvBench trace长度和分布不破坏probe训练稳定性
+      number_ranges:
+        cr_composite_layer_depth_pct:
+        - 0
+        - 16
+        threshold_layer_depth_pct:
+        - 32
+        - 64
+        layer_gap_abs:
+        - 8
+        - 16
+        layer_gap_depth_pct:
+        - 32
+        - 64
+        hs_bal_acc_at_threshold_layer:
+        - 0.72
+        - 0.82
+        hs_text_precision_delta_pp:
+        - 10
+        - 25
+        hb_pass_rate:
+        - 0.67
+        - 1.0
+        crossing_rate_shallow_vs_deep_ratio:
+        - 1.5
+        - 3.0
+        dream_score_delta:
+        - 0.15
+        - 0.25
+      narrative_direction: Layer selection bias replicates on independent dataset
+        (AdvBench) with fundamentally different labeling (binary jailbreak/safe vs
+        step-level safety state). CR-composite仍选浅层、threshold metrics仍选深层，gap≥8层。C1
+        claims无需调整：bias是模型几何性质，不依赖CP annotation。Main text加一句cross-dataset validation
+        + appendix完整table。Reviewer concern 'bias是你数据集的artifact'被直接堵死。论文从'单数据集empirical
+        study'向'可复现方法论贡献'迈进，Findings→Borderline Conference更有底气。
+    median:
+      tier: median
+      meaning: AdvBench方向性复现：CR-composite确实偏浅但gap较小，或bias清晰但HS优势在binary labels下不显著。支撑证据但非决定性
+      key_assumptions:
+      - layer selection bias方向存在但magnitude弱于原数据集（binary labels信号更弱）
+      - crossing_rate浅层虚高现象部分复现，但threshold metrics未一致收敛到深层
+      - HS在AdvBench corrected layer有方向性优势但p值不过HB（binary labels噪音大）
+      - AdvBench trace结构（更短、pattern更uniform）减弱了层级间信号差异
+      number_ranges:
+        cr_composite_layer_depth_pct:
+        - 0
+        - 32
+        threshold_layer_depth_pct:
+        - 20
+        - 56
+        layer_gap_abs:
+        - 3
+        - 7
+        layer_gap_depth_pct:
+        - 12
+        - 28
+        hs_bal_acc_at_threshold_layer:
+        - 0.65
+        - 0.75
+        hs_text_precision_delta_pp:
+        - 3
+        - 10
+        hb_pass_rate:
+        - 0
+        - 0.33
+        crossing_rate_shallow_vs_deep_ratio:
+        - 1.1
+        - 1.5
+        dream_score_delta:
+        - 0
+        - 0.1
+      narrative_direction: Layer selection bias shows directional replication on AdvBench
+        — CR-composite仍倾向选更浅的层，但gap小于原数据集。C1 claims需要scope qualification：bias在temporal
+        step-level probing中最显著，binary classification场景下减弱但方向一致。论文调整措辞从'model-geometric
+        property'到'probe-task-modulated geometric property, strongest under temporal
+        supervision'。AdvBench结果放appendix作'supporting evidence'而非'full replication'。对Findings→Conference的推动有限——reviewer看到方向一致会认可，但不会认为是decisive
+        evidence。可能需要额外补充（如第二个模型的AdvBench replication）来达到3.5。
+    worst:
+      tier: worst
+      meaning: AdvBench不复现：metrics收敛到相似层或pattern反转。Bias被证明是CP annotation结构特有，非通用模型性质
+      key_assumptions:
+      - layer selection bias依赖于step-level temporal labels与commitment point的交互，binary
+        labels不触发
+      - AdvBench jailbreak/safe二分类的probe landscape与temporal safety probe根本不同
+      - crossing_rate在binary分类中不产生浅层虚高（因为没有连续probe score序列的threshold crossing概念）
+      - 或者：AdvBench traces太短/太uniform，所有层表现接近，metric间无显著分化
+      number_ranges:
+        cr_composite_layer_depth_pct:
+        - 8
+        - 60
+        threshold_layer_depth_pct:
+        - 8
+        - 60
+        layer_gap_abs:
+        - 0
+        - 2
+        layer_gap_depth_pct:
+        - 0
+        - 8
+        hs_bal_acc_at_threshold_layer:
+        - 0.55
+        - 0.68
+        hs_text_precision_delta_pp:
+        - -2
+        - 5
+        hb_pass_rate:
+        - 0
+        - 0
+        crossing_rate_shallow_vs_deep_ratio:
+        - 0.8
+        - 1.1
+        dream_score_delta:
+        - -0.15
+        - 0
+      narrative_direction: AdvBench不复现但这本身是informative negative result。Reframe C1的scope：layer
+        selection bias是temporal safety probing的task-specific方法论发现，根源在于step-level probe
+        scores序列产生的crossing rate统计量与层深度的交互。Binary classification不产生这个交互，所以不复现是consistent而非contradictory。论文调整：(1)
+        C1 scope从'general model property'收窄到'temporal monitoring pipeline pitfall'——这实际上让methodological
+        contribution更精准（不是泛泛而谈，而是指出具体pipeline步骤的陷阱）；(2) AdvBench非复现结果放Discussion作boundary
+        condition分析，展示方法论的适用范围；(3) 不删除C1而是加nuance：'The bias arises from the interaction
+        between sequential probe scores and the crossing_rate statistic, and is therefore
+        specific to temporal monitoring settings where threshold-crossing metrics
+        are used for layer selection.' 论文评分不变或微降——reviewer如果已经认可C1在原数据集上的充分验证（4 models
+        × 5 metrics × LOO-CV），AdvBench非复现不是致命伤，但也不加分。保持冲Main不降级。
+scenarios:
+- tier: best
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/artifacts/dream_reports/dream_20260522T085530/best/paper.pdf
+  imagined_experiments:
+  - name: Cross-architecture HS extraction + layer sweep
+    plan_id: exp-001
+    description: 'R1-32B和QwQ-32B全层扫描（64层），确定最佳层并评估static probe。 已在registry完成（exp_001a_r1_32b,
+      exp_001b_qwq_32b）， 后经D028/D036修正发现scheme B层选偏差。
+
+      '
+    expected_results:
+      r1_32b:
+        biased_layer: 10
+        biased_layer_depth_pct: 15.6
+        corrected_layer: 63
+        corrected_layer_depth_pct: 98.4
+        layer10_bal_acc: 0.718
+        layer63_bal_acc: 0.826
+        layer63_precision: 0.603
+        layer63_fpr: 0.235
+        n_test: 20
+      qwq_32b:
+        biased_layer: 2
+        biased_layer_depth_pct: 3.1
+        corrected_layer: 60
+        corrected_layer_depth_pct: 93.8
+        layer2_bal_acc: 0.73
+        layer60_bal_acc: 0.74
+        layer60_precision: 0.578
+        layer60_fpr: 0.208
+        n_test: 19
+    result_rationale: 'bal_acc × crossing_rate系统性选浅层，因浅层表征压缩（cosine distance 1.4-2.7x更小），
+      噪声驱动的threshold crossing频率更高。CR污染的composite score在浅层虚高。 纠正后用threshold-dependent
+      metrics（precision/FPR/composite）一致指向深层（>90%深度）， HS优势在32B规模上从NS（biased层）变为显著（corrected层）。
+      这不是32B "没有HS信号"，而是biased metric把信号屏蔽了。
+
+      '
+    tables:
+    - title: 'Layer Selection: Biased vs Corrected'
+      columns:
+      - Model
+      - Biased Layer
+      - Depth%
+      - Corrected Layer
+      - Depth%
+      - bal_acc Gain
+      - prec Gain
+      rows:
+      - - R1-32B
+        - L10
+        - 15.6%
+        - L63
+        - 98.4%
+        - +10.8pp
+        - +8.7pp
+      - - QwQ-32B
+        - L2
+        - 3.1%
+        - L60
+        - 93.8%
+        - +1.0pp
+        - '-'
+    figures_description:
+    - 'Layer-depth heatmap: bal_acc × crossing_rate score vs pure precision across
+      all 64 layers for both 32B models. Shows anti-correlated pattern at shallow
+      vs deep layers.'
+    analysis: '32B层选偏差是论文methodological contribution的核心证据。 Biased层的NS结果曾被误读为"HS优势是scale-dependent"，
+      纠正后4/4模型均显著。
+
+      '
+  - name: Cross-architecture temporal window evaluation
+    plan_id: exp-002
+    description: 'R1-32B和QwQ-32B上temporal LR多窗口评估。 已在registry完成，结合D029纠正层结果。
+
+      '
+    expected_results:
+      r1_32b_l63:
+        W1_bal_acc: 0.826
+        W1_precision: 0.603
+        W1_fpr: 0.235
+        W1_bonferroni: 3/3
+        W3_bal_acc: 0.754
+        W3_bonferroni: 0/3
+        W5_plus: all NS
+        dimensionality_issue: 51200 × W features >> n=20
+      qwq_32b_l60:
+        W1_bal_acc: 0.74
+        W3_bal_acc: 0.756
+        W5_bal_acc: 0.761
+        W10_bal_acc: 0.747
+        W15_bal_acc: 0.741
+        all_W_significant: true
+        bonferroni_summary: 15/15 pass
+    result_rationale: 'R1-32B只W=1显著（3/3 HB），W≥3退化源于维度灾难： 5120d × W > n=20样本。模型无法在如此高维空间中学到稳定分界面。
+      QwQ-32B全窗口显著，因其test n=19-20但HS-text gap更大（+15.4pp precision@W=3）， 效应量足以克服small-n限制。
+      temporal improvement在32B上不如7-8B明显，但HS优势本身是robust的。
+
+      '
+    tables: []
+    figures_description:
+    - bal_acc vs W curves for R1-32B L63 and QwQ-32B L60, with 95% bootstrap CI bands.
+      R1-32B shows sharp drop after W=1; QwQ-32B stays flat.
+    analysis: '32B temporal结果分化：QwQ全窗口robust，R1-32B仅W=1。 这是sample size × dimensionality交互的结果，不是模型差异。
+      论文必须per-model报告，不能统一叙事。
+
+      '
+  - name: Cross-model transfer
+    plan_id: exp-003
+    description: '跨架构zero-shot transfer（Llama→Qwen, Qwen→Llama）。 已在registry完成，结论为negative。
+
+      '
+    expected_results:
+      r1_8b_to_r1_32b: 0.522
+      r1_8b_to_qwq: 0.595
+      r1_32b_to_qwq: 0.55
+      qwq_to_r1_32b: 0.673
+      r1_32b_to_r1_8b: 0.583
+      best_transfer_acc: 0.673
+      within_model_baselines:
+        r1_8b: 0.823
+        r1_32b: 0.652
+        qwq: 0.717
+      method: PCA projection (4096→5120 or reverse)
+    result_rationale: 'Safety commitment的几何编码是model-specific的。不同架构（Llama vs Qwen2.5）、
+      不同训练方法（R1-distilled vs native）产生不同的safety表征空间。 PCA投影无法对齐这些空间——即使维度匹配，方向语义不对应。
+      最好的transfer（qwq→r1_32b, 0.673）也远低于within-model baseline（0.717）。 这是clean negative
+      result：strengthens "safety representations are model-specific" narrative。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 'Cross-transfer完全失败验证了每个模型需要独立训练探针。 这不是limitation——它confirms safety编码的model-specificity，
+      与5-seed robustness（within-model stable）形成对比。
+
+      '
+  - name: Lead time analysis across models
+    plan_id: exp-004
+    description: '全4模型lead time profile。已在各实验中完成。
+
+      '
+    expected_results:
+      r1_8b:
+        hs_lr_lead: -0.1
+        text_lr_lead: 10.3
+        gru_lead_mean: 4.5
+        gru_lead_std: 3.0
+        gru_worst_seed: 0.9
+        text_lead_inflated: true
+        text_precp_fpr: 0.205
+      ot_7b:
+        hs_lr_lead: 21.6
+        text_lr_lead: 45.5
+        gru_multi_lead: 33.6
+        note: lead times inflated by long traces (~80 sentences)
+      qwq_32b:
+        hs_lead_range:
+        - -1.2
+        - 1.9
+        text_lead_range:
+        - 3.7
+        - 12.3
+        gru_lead: 15.9
+        position_baseline_competitive: true
+      r1_32b:
+        hs_lead_w1: 11.7
+        text_lead: '-'
+        gru_lead: 8.8
+        coverage_w1: 0.25
+    result_rationale: 'HS LR在R1-8B上lead≈0意味着hidden state编码"当前safety状态"而非"未来轨迹"。 Text
+      lead高（+10.3）是FPR虚高的假象——trigger-happy检测器看起来"提前"但假阳性率也高。 GRU通过序列建模获得modest正向lead（+4.5），但远低于oracle（+31）。
+      32B模型lead time profile分化严重：R1-32B优秀（+11.7）但coverage仅25%， QwQ poor（-1.2 to +1.9）但15/15窗口统计显著。
+      OT-7B lead times被长trace（~80句 vs R1-8B ~30句）膨胀，论文需normalize或caveat。
+
+      '
+    tables:
+    - title: Lead Time Profile Summary (4 Models)
+      columns:
+      - Model
+      - HS LR Lead
+      - Text LR Lead
+      - GRU Lead
+      - Key Caveat
+      rows:
+      - - R1-8B
+        - ~0
+        - +10.3*
+        - +4.5±3.0
+        - Text lead inflated by FPR
+      - - OT-7B
+        - '+21.6'
+        - '+45.5'
+        - '+33.6'
+        - Long traces inflate absolute values
+      - - QwQ-32B
+        - -1.2~+1.9
+        - +3.7~+12.3
+        - '+15.9'
+        - HS detects later than text
+      - - R1-32B
+        - '+11.7'
+        - '-'
+        - '+8.8'
+        - Coverage only 25% at W=1
+    figures_description:
+    - Per-model lead time distribution (box plots) with detection method on x-axis.
+      Shows model-specific timing profiles.
+    analysis: 'Lead time是per-model story。没有universal pattern。 R1-8B的HS-at-commitment
+      + GRU-modest-lead是最clean的， 32B各有caveats。论文Discussion必须分模型讨论。
+
+      '
+  - name: TrajGuard-style Mahalanobis baseline
+    plan_id: exp-005
+    description: '4/4模型Mahalanobis distance评估。全部negative。
+
+      '
+    expected_results:
+      r1_8b_separation: 0.07
+      ot_7b_separation: 0.03
+      r1_32b_separation: 0.15
+      qwq_32b_separation: 0.2
+      max_separation: 0.2
+      all_fail: true
+      failure_mode: signal in minor PCA components, not principal directions
+      best_config: pca_64_p75
+      fa_rate_ge_tp_rate: true
+    result_rationale: 'Mahalanobis distance假设类别差异在主成分方向上——但safety commitment信号 嵌入在minor
+      PCA components中（Fisher ratio从17→1在PCA-3D中）。 主方向编码的是token-level/position变异，不是safety语义。
+      4/4模型separation≈0（max 0.20），false alarm率在每个threshold上≥TP率。 TrajGuard的成功依赖于adversarial
+      input在表征空间中的gross separation， reasoning model self-jailbreak不产生这种separation。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 'Clean negative result。TrajGuard方法论不适用于reasoning model commitment detection。
+      Strengthens "existing detectors fail" narrative。
+
+      '
+  - name: Bootstrap confidence intervals
+    plan_id: exp-006
+    description: '4模型×3指标=12项Holm-Bonferroni检验。10000 resamples。全部通过。
+
+      '
+    expected_results:
+      holm_bonferroni: 12/12 pass
+      resamples: 10000
+      most_significant:
+        r1_8b_precision:
+          delta: 0.279
+          p: 0.0
+        ot_7b_precision:
+          delta: 0.219
+          p: 0.0
+        qwq_precision:
+          delta: 0.235
+          p: 0.0
+      marginal_tests:
+        r1_32b_fpr:
+          p: 0.0096
+          threshold: 0.05
+        qwq_fpr:
+          p: 0.0061
+          threshold: 0.025
+      precision_range: +15.4pp to +27.9pp across 4 models
+    result_rationale: 'Corrected layers解锁了全部12/12显著性（vs biased layers的5/12）。 核心原因：biased层（L2/L10）的HS信号弱，效应量小，n=20-47无法检出；
+      corrected层（L14/L16/L60/L63）效应量大（precision +15-28pp）， 即使n=20也有足够power（MDE 9-11pp
+      << 实际效应15-28pp）。 10000 resamples vs 1000无实质差异，但消除了p-value Monte Carlo noise。
+
+      '
+    tables:
+    - title: Holm-Bonferroni Step-Down (12/12)
+      columns:
+      - Rank
+      - Model
+      - Metric
+      - Delta
+      - p-value
+      - HB Threshold
+      - Pass
+      rows:
+      - - '1'
+        - R1-8B
+        - precision
+        - +27.9pp
+        - <0.001
+        - '0.0042'
+        - Y
+      - - '2'
+        - OT-7B
+        - bal_acc
+        - +10.7pp
+        - <0.001
+        - '0.0045'
+        - Y
+      - - '3'
+        - OT-7B
+        - precision
+        - +21.9pp
+        - <0.001
+        - '0.0050'
+        - Y
+      - - '4'
+        - OT-7B
+        - FPR
+        - -17.1pp
+        - <0.001
+        - '0.0056'
+        - Y
+      - - '5'
+        - QwQ
+        - bal_acc
+        - +14.8pp
+        - <0.001
+        - '0.0063'
+        - Y
+      - - '6'
+        - QwQ
+        - precision
+        - +23.5pp
+        - <0.001
+        - '0.0071'
+        - Y
+      - - '7'
+        - R1-32B
+        - bal_acc
+        - +18.7pp
+        - <0.001
+        - '0.0083'
+        - Y
+      - - '8'
+        - R1-32B
+        - precision
+        - +15.4pp
+        - <0.001
+        - '0.0100'
+        - Y
+      - - '9'
+        - QwQ
+        - FPR
+        - -9.5pp
+        - '0.006'
+        - '0.0125'
+        - Y
+      - - '10'
+        - R1-8B
+        - bal_acc
+        - +8.2pp
+        - '0.005'
+        - '0.0167'
+        - Y
+      - - '11'
+        - R1-32B
+        - FPR
+        - -14.6pp
+        - '0.010'
+        - '0.0250'
+        - Y
+      - - '12'
+        - R1-8B
+        - FPR
+        - -7.4pp
+        - '0.044'
+        - '0.0500'
+        - Y
+    figures_description:
+    - 'Forest plot: 12 paired HS-text deltas with 95% CIs, ordered by effect size.
+      All CIs exclude zero.'
+    analysis: '12/12 HB pass是论文统计backbone。 precision一致性惊人（+15-28pp across 4 models）。
+      FPR是最marginal的指标（rank 9-12），但全部通过。
+
+      '
+  - name: Window size ablation
+    plan_id: exp-007
+    description: 'W=1,3,5,10,15,20,25 on R1-8B/R1-32B/QwQ-32B。 OT-7B后续补充。
+
+      '
+    expected_results:
+      universal_pattern:
+        coverage_decreases_with_W: true
+        precision_increases_with_W: true
+        fpr_decreases_with_W: true
+        bal_acc_increases_with_W: true
+      r1_8b:
+        best_bal_acc_W: 25
+        best_precision_W: 25
+        W1_coverage: 0.721
+        W25_coverage: 0.488
+        W1_precision: 0.693
+        W25_precision: 0.822
+      r1_32b:
+        best_bal_acc_W: 10
+        W10_bal_acc: 0.737
+        peak_then_decline: true
+      qwq_32b:
+        best_bal_acc_W: 25
+        W1_lead: 19.7
+        W25_lead: 14.9
+    result_rationale: 'Temporal context增大W创造precision-sensitivity tradeoff： 更大窗口→更多temporal
+      pattern信息→更稳定预测→更高precision、更低FPR， 但也要求更多连续step才能fire→coverage下降。 这是temporal
+      smoothing的固有特性。 R1-32B在W=10后退化因维度灾难（5120×W > n=20）。 R1-8B和QwQ单调改善因4096×W在n=43/19中的比例更合理（虽然QwQ也受限）。
+      Coverage单调下降是K=5 detection criterion的结果—— 需要连续5步crossing，窗口越大probe越保守。
+
+      '
+    tables: []
+    figures_description:
+    - '3-panel: precision vs W, coverage vs W, FPR vs W for 3 models. Shows universal
+      tradeoff pattern with model-specific slopes.'
+    analysis: 'Precision-coverage tradeoff是temporal probing的fundamental characteristic。
+      论文frame为deployment choice：high-precision/low-coverage vs high-coverage/low-precision。
+
+      '
+  - name: Layer selection ablation (5 metrics × 4 models)
+    plan_id: exp-008
+    description: '全层temporal probe + 5种metric层选比较。已完成，核心发现。
+
+      '
+    expected_results:
+      pattern:
+        cr_contaminated: shallow layers (0-16% depth)
+        threshold_free_bal_acc: middle layers (35-73% depth)
+        threshold_dependent: deep layers (45-98% depth)
+      r1_8b:
+        cr_composite_layer: 0
+        bal_acc_layer: 12
+        precision_layer: 16
+        composite_layer: 12
+      ot_7b:
+        cr_composite_layer: 0
+        bal_acc_layer: 9
+        precision_layer: 20
+      qwq_32b:
+        cr_composite_layer: 2
+        bal_acc_layer: 30
+        precision_layer: 60
+      r1_32b:
+        cr_composite_layer: 10
+        bal_acc_layer: 47
+        precision_layer: 63
+      loo_cv_stability:
+        qwq_l30_folds: 13/19
+        r1_32b_l47_folds: 13/20
+    result_rationale: '3层pattern（shallow/middle/deep）由metric属性决定： (1) CR-contaminated选shallow因crossing_rate与cosine
+      distance反相关—— 浅层表征压缩，探针在决策边界附近振荡，crossing频率高； (2) Threshold-free（bal_acc/AUROC）选middle因不依赖具体threshold，
+      middle层同时有decent accuracy和moderate stability； (3) Threshold-dependent（precision/FPR）选deep因深层predictions稳定，
+      false alarm少，precision最高。 这是模型表征几何的必然结果——与数据集无关。 LOO-CV stability（65-68% dominant
+      fold rate）确认层选不依赖validation set构成。
+
+      '
+    tables:
+    - title: Metric × Model → Selected Layer (Depth%)
+      columns:
+      - Metric
+      - R1-8B
+      - OT-7B
+      - QwQ-32B
+      - R1-32B
+      - Category
+      rows:
+      - - bal_acc × CR
+        - L0 (0%)
+        - L0 (0%)
+        - L2 (3%)
+        - L10 (16%)
+        - Shallow (biased)
+      - - Pure bal_acc
+        - L12 (39%)
+        - L9 (32%)
+        - L30 (47%)
+        - L47 (73%)
+        - Middle
+      - - Precision
+        - L16 (52%)
+        - L20 (71%)
+        - L60 (94%)
+        - L63 (98%)
+        - Deep
+      - - Inv. FPR
+        - L16 (52%)
+        - L14 (50%)
+        - L60 (94%)
+        - L63 (98%)
+        - Deep
+      - - Composite
+        - L12 (39%)
+        - L14 (50%)
+        - L60 (94%)
+        - L63 (98%)
+        - Deep
+    figures_description:
+    - 'Heatmap: 5 metrics × 4 models, cell value = selected layer depth%. Shows clear
+      shallow/middle/deep banding by metric category.'
+    analysis: '这张table是论文methodological contribution的核心图表。 它同时解释了：(1) 为什么之前32B NS是artifact；
+      (2) 为什么不同metric给出不同结论； (3) 为什么researcher degrees of freedom在层选上是real risk。
+
+      '
+  - name: 16-label taxonomy supervision
+    plan_id: exp-009
+    description: '使用Type 1-4细粒度标签训练探针，对比binary CP标签。未执行。
+
+      '
+    expected_results:
+      r1_8b:
+        binary_bal_acc: 0.81
+        taxonomy_bal_acc: 0.832
+        delta: +2.2pp
+        taxonomy_transition_detection: Type 2→3 boundary cleaner
+        coverage_improvement: +3pp
+      ot_7b:
+        binary_bal_acc: 0.688
+        taxonomy_bal_acc: 0.705
+        delta: +1.7pp
+      marginal_utility: small
+      annotation_cost_multiplier: 4x
+      recommendation: Discussion mention, not core contribution
+    result_rationale: 'Fine-grained labels提供更丰富的训练信号——Type 2→3转变比binary CP更gradual，
+      探针可以学到"safety deliberation正在减弱"的中间状态。 但改善modest（+1.7-2.2pp）因为：(1) linear probe的capacity有限，
+      即使给更细标签也无法编码复杂的taxonomy结构； (2) binary CP已经捕获了最关键的transition； (3) 细粒度标签的inter-annotator
+      agreement更低，引入label noise。 Best tier下改善存在但marginal，confirms binary labels is
+      sufficient。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 'Result支持paper的"linear probe + binary label is sufficient"论述。 写在Discussion里作为"尝试过更细标签但边际收益小"。
+
+      '
+  - name: Oracle decomposition
+    plan_id: exp-010
+    description: '分解oracle +31步优势的来源。基于diag_d4_oracle_upper_bound数据。
+
+      '
+    expected_results:
+      oracle_lead: +31 steps
+      decomposition:
+        position_component: ~15pp of oracle bal_acc
+        label_sequence_pattern: ~10pp (run-length encoding, streak detection)
+        future_state_access: ~6pp (true 'seeing the future')
+      probe_gap_explanation:
+        hs_lr_encodes: current safety state
+        hs_lr_cannot_encode: future trajectory / whether commitment will happen
+        gru_partial_close: +4.5 steps via temporal dynamics modeling
+        gru_still_below_oracle: ~25 steps gap
+      architectural_implications:
+        larger_W_helps_slightly: true
+        sequence_model_helps_modestly: true
+        fundamental_limit: hidden states don't encode future intent
+    result_rationale: 'Oracle用future label（每步的ground-truth pre/post CP状态）， 因此天然有perfect
+      lead time。分解reveal三个组件： (1) Position信息（t/T）贡献最大——commitment point位置有strong position
+      prior； (2) Label sequence pattern（e.g. 连续safe→突然unsafe的run-length结构）提供额外信号；
+      (3) 剩余~6pp是纯粹的"未来信息"——oracle看到的而probe无法获得的。 GRU通过temporal dynamics建模部分弥补gap（捕获(2)中的序列pattern），
+      但(3)是fundamental limit。 Hidden states编码模型当前处理内容，不编码"模型是否将要commit"—— 这是transformer架构的autoregressive
+      nature决定的。
+
+      '
+    tables: []
+    figures_description:
+    - 'Stacked bar: oracle advantage decomposed into position / sequence-pattern /
+      future-access components.'
+    analysis: 'Explains WHY probes detect at-commitment rather than before. Discussion
+      section material. Suggests that for earlier detection, need to predict future
+      states (a different task) rather than classify current state.
+
+      '
+  - name: OpenThinker-7B full pipeline
+    plan_id: exp-011
+    description: 'Qwen2.5-7B base, STILL-trained。完成2×2 architecture×scale matrix。
+      已在registry完成（exp_ot7b_full_pipeline）。
+
+      '
+    expected_results:
+      n_traces: 228
+      best_layer: 16
+      best_layer_depth_pct: 57.1
+      hs_best_W: 3
+      hs_bal_acc: 0.688
+      hs_precision: 0.466
+      hs_fpr: 0.1
+      text_bal_acc_best: 0.614
+      text_precision_best: 0.329
+      bootstrap_holm_bonferroni: 3/3
+      selectivity_pp: 18.3
+      gru_multi_bal_acc: 0.746
+      gru_multi_lead: 33.6
+    result_rationale: 'OT-7B是cleanest evidence model：3/3 HB pass、最高selectivity（18.3pp）、
+      最大residualized gap（+6.9pp after position removal）。 Qwen-7B + STILL training产生明确的safety表征。
+      HS W=3在OT-7B上optimal（与R1-8B的W=15形成对比）， 因OT-7B trace更长（~80 sentences），W=3已提供sufficient
+      temporal context。 Layer 16（57% depth）是middle-deep—— Qwen-7B有28层，57%深度consistent
+      with 7-8B pattern（R1-8B是45%）。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 'OT-7B补全了2×2 matrix的Qwen-7B cell。 其clean evidence strengthens cross-architecture
+      story。
+
+      '
+  - name: GRU/Attention probe upper bound
+    plan_id: exp-012
+    description: '验证GRU在32B和OT-7B上的表现。多个registry条目。
+
+      '
+    expected_results:
+      r1_8b:
+        gru_multi_7l:
+          bal_acc: 0.809
+          crossing_rate: 0.767
+          lead_mean: 4.7
+          precp_fpr: 0.165
+        lr_temporal_w15:
+          bal_acc: 0.848
+          note: LR > GRU on bal_acc
+      ot_7b:
+        gru_multi_l13_19:
+          bal_acc: 0.746
+          coverage: 0.645
+          lead: 33.6
+          precp_fpr: 0.274
+        lr_temporal_w3:
+          bal_acc: 0.688
+          note: GRU +5.8pp over LR
+      qwq_32b:
+        gru_single_bal_acc: 0.694
+        gru_multi_bal_acc: 0.724
+        lr_w5_bal_acc: 0.761
+        note: LR > GRU on QwQ
+      r1_32b:
+        gru_single_bal_acc: 0.675
+        lr_w10_bal_acc: 0.737
+        note: LR > GRU on R1-32B
+    result_rationale: 'GRU vs LR pattern model-specific：OT-7B GRU优于LR（+5.8pp）， 其余3模型LR优于或持平GRU。
+      原因：OT-7B traces长（~80句），序列pattern丰富，GRU能捕获； 32B模型样本少（n=100/95），GRU过拟合； R1-8B
+      traces短（~30句），temporal LR W=15已足够。 Overall conclusion：linear probes sufficient
+      for 3/4 models。 GRU仅在long-trace模型上有优势，且伴随更高FPR。 "Simplicity is optimal" narrative
+      holds。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 'Confirms linear probe sufficiency。 GRU不是universal improvement——model/data
+      specific。
+
+      '
+  - name: Text-based baseline (sentence-BERT)
+    plan_id: exp-013
+    description: 'MiniLM-L6-v2 text embeddings + temporal LR。 Critical baseline for
+      proving HS adds value over cheap text monitoring.
+
+      '
+    expected_results:
+      r1_8b:
+        text_static_acc: 0.661
+        text_temporal_w15_acc: 0.678
+        hs_static_acc: 0.768
+        hs_temporal_w15_acc: 0.848
+        hs_advantage_pp: 15-18pp
+      ot_7b:
+        text_best_bal_acc: 0.614
+        hs_best_bal_acc: 0.688
+        delta: +7.4pp
+      all_4_models:
+        hs_always_superior: true
+        precision_gap: +15-24pp
+        hb_12_of_12: true
+    result_rationale: 'Text embeddings（384d MiniLM）捕获surface-level语义—— safety相关词汇和句式变化。但text
+      probes受限于： (1) 表层信号：模型可能内部已决定jailbreak但text上还在safety reasoning； (2) 维度：384d
+      vs 4096/5120d HS，信息容量低； (3) 粒度：sentence-level embeddings vs token-averaged HS。
+      HS probes访问模型内部processing state，能检测到text不可见的early signals。 Precision差距最大（+15-24pp）因HS的false
+      positive率显著更低—— text probe经常把normal reasoning误判为unsafe。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 'HS vs text差距confirmed。论文motivation成立： hidden-state monitoring提供text不可替代的unique
+      value。
+
+      '
+  - name: BOCPD/CUSUM change-point detection
+    plan_id: exp-014
+    description: '4/4模型BOCPD + CUSUM评估。全negative。
+
+      '
+    expected_results:
+      bocpd_detection_rate:
+        r1_8b: 0.93
+        ot_7b: 0.0
+        r1_32b: 0.0
+        qwq_32b: 0.0
+      cusum_universally_worse: true
+      r1_8b_bocpd_vs_fcp:
+        bocpd_lead: 3.45
+        fcp_lead: 4.89
+        bocpd_higher_detection_but_lower_lead: true
+      failure_reason: commitment dynamics model-specific; BOCPD assumes gradual shift,
+        3/4 models show abrupt transitions
+    result_rationale: 'BOCPD假设时间序列中存在渐进distributional shift。 R1-8B的commitment是gradual的（probe
+      score缓慢下降），故BOCPD能检测（93%）。 但其余3模型的commitment是abrupt的（1-2步内probe score跳变）， Gaussian
+      BOCPD模型无法在如此短窗口内accumulate evidence。 CUSUM更简单（累积偏差），但也依赖持续偏差——同样不适用于abrupt transitions。
+      Simple first-crossing-point（FCP）threshold反而更适合abrupt pattern。 这是clean negative
+      result：advanced change-point methods不适用。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 'BOCPD/CUSUM failure strengthens "fundamental limitation" narrative。
+      Methods designed for gradual distributional shift don''t work when commitment
+      is a sharp phase transition.
+
+      '
+  - name: False positive analysis
+    plan_id: exp-015
+    description: '所有方法在safe traces上的FPR + precision-recall curves。
+
+      '
+    expected_results:
+      r1_8b:
+        hs_static_safe_fpr: 0.39
+        hs_static_precp_fpr: 0.162
+        text_static_safe_fpr: 0.502
+        text_static_precp_fpr: 0.356
+        hs_lower_fpr: true
+      ot_7b:
+        hs_static_fpr: 0.111
+        text_static_fpr: 0.302
+      qwq_32b:
+        hs_static_fpr: 0.5
+        text_static_fpr: 0.325
+        note: QwQ HS FPR > text — exception
+      r1_32b:
+        hs_static_fpr: 0.239
+        text_static_fpr: 0.31
+      high_safe_fpr_universal: all methods 39-62% on safe traces
+    result_rationale: 'Safe trace FPR高（39-62%）因safe traces中也存在safety-relevant reasoning
+      （模型考虑但最终拒绝），这些reasoning段落的hidden state与jailbreak traces的 early safety reasoning段落相似。探针无法完美区分"正在考虑safety"和"将要violate
+      safety"。 HS整体FPR低于text（3/4模型），因HS编码更细粒度的processing state。 QwQ是exception——HS
+      FPR略高于text——与QwQ模型的safety reasoning风格有关 （QwQ的safe traces中safety reasoning更extensive，HS
+      probe更容易误判）。 Pre-CP FPR显著低于safe FPR，因jailbreak traces的pre-CP段落有更明确的context。
+
+      '
+    tables: []
+    figures_description:
+    - Precision-recall curves per model, HS vs text, with operating points marked.
+    analysis: 'High safe FPR是honest limitation，论文必须acknowledge。 但HS的lower FPR（3/4模型）和lower
+      pre-CP FPR supports core claims。
+
+      '
+  - name: AdvBench layer bias replication (binary labels)
+    plan_id: what_if_advbench
+    description: '在AdvBench数据上用jailbreak/safe binary labels（无CP）训练R1-8B探针， 跑5-metric层选分析，验证layer
+      selection bias是模型几何性质。 此前尝试因R1-8B在AdvBench上90% CP=0而失败—— 本实验绕开CP，直接用trace-level
+      binary labels。 520 traces available（~450 jailbreak, ~70 safe by text classifier）。
+
+      '
+    expected_results:
+      data:
+        n_traces_total: 520
+        n_jailbreak: 437
+        n_safe: 83
+        label_method: LLM judge binary (harmful output / refusal)
+        class_weight: balanced
+        split: 60/20/20 stratified
+        n_train: 312
+        n_val: 104
+        n_test: 104
+        test_jailbreak: 87
+        test_safe: 17
+        mean_trace_length_sentences: 28
+      layer_selection_5_metrics:
+        cr_composite:
+          selected_layer: 2
+          depth_pct: 6.5
+          score: 0.412
+          crossing_rate_at_layer: 0.44
+        pure_bal_acc:
+          selected_layer: 11
+          depth_pct: 35.5
+          score: 0.731
+        precision:
+          selected_layer: 15
+          depth_pct: 48.4
+          score: 0.682
+        inverse_fpr:
+          selected_layer: 14
+          depth_pct: 45.2
+          best_fpr: 0.155
+        composite:
+          selected_layer: 14
+          depth_pct: 45.2
+          score: 0.748
+      layer_gap:
+        cr_to_threshold_abs: 12
+        cr_to_threshold_depth_pct: 38.7
+      crossing_rate_comparison:
+        L2_crossing_rate: 0.44
+        L14_crossing_rate: 0.19
+        ratio: 2.32
+      hs_at_threshold_layer_L14:
+        bal_acc: 0.762
+        precision: 0.677
+        fpr: 0.155
+        coverage: 0.586
+        lead_mean: 8.3
+      text_at_threshold_layer_L14:
+        bal_acc: 0.661
+        precision: 0.494
+        fpr: 0.283
+        coverage: 0.529
+        lead_mean: 5.7
+      hs_text_delta:
+        bal_acc_pp: 10.1
+        precision_pp: 18.3
+        fpr_pp: -12.8
+      bootstrap_1000:
+        bal_acc:
+          delta: 0.101
+          ci_95: '[0.035, 0.168]'
+          p: 0.005
+        precision:
+          delta: 0.183
+          ci_95: '[0.082, 0.284]'
+          p: 0.002
+        fpr:
+          delta: -0.128
+          ci_95: '[-0.215, -0.041]'
+          p: 0.008
+        holm_bonferroni: 3/3 pass (alpha=0.0167)
+      hs_at_biased_layer_L2:
+        bal_acc: 0.718
+        precision: 0.492
+        fpr: 0.275
+        crossing_rate: 0.44
+      original_vs_advbench_comparison:
+        original_cr_composite_layer: L0 (0%)
+        advbench_cr_composite_layer: L2 (6.5%)
+        original_threshold_layer: L14 (45%)
+        advbench_threshold_layer: L14 (45%)
+        original_gap: 14
+        advbench_gap: 12
+        original_hs_bal_acc: 0.81
+        advbench_hs_bal_acc: 0.762
+        original_precision_delta: +22.4pp
+        advbench_precision_delta: +18.3pp
+        original_cr_ratio: 2.5
+        advbench_cr_ratio: 2.32
+        pattern_match: complete
+      cosine_distance_verification:
+        L2_mean_cosine_dist: 0.038
+        L14_mean_cosine_dist: 0.091
+        ratio: 2.39
+        confirms_geometric: true
+      dream_score_delta: 0.2
+    result_rationale: 'Layer selection bias在AdvBench上完整复现，尽管标注方案根本不同 （binary jailbreak/safe
+      vs step-level CP transition）。
+
+      CR-composite选L2（6.5%），threshold metrics选L14（45%），gap=12层。 这与原数据集pattern一致（L0
+      vs L14, gap=14）。
+
+      机制解释：浅层（L0-L3）表征空间被压缩——cosine distance仅0.038， 远小于深层L14的0.091（ratio 2.39x）。压缩导致probe
+      decision boundary 更容易被noise扰动→threshold crossing频率高→CR-composite虚高。 这是模型几何性质（Llama-8B的layer-wise
+      representation structure）， 不依赖标注方案或数据分布。
+
+      Binary labels比CP labels更coarse（每步label=trace outcome，非safety state）， 因此绝对性能略低（bal_acc
+      0.762 vs 0.810，precision 0.677 vs 0.693）。 但HS-text gap保持（precision +18.3pp vs
+      original +22.4pp）， 因gap反映的是modality difference（HS vs text的信息量差异）， 不依赖label粒度。
+
+      Bootstrap 3/3 HB pass despite smaller per-class n， 因效应量足够大（precision +18.3pp
+      >> MDE ~9pp at n=104）。
+
+      Crossing rate ratio 2.32与原数据集2.5高度一致， 进一步确认这是geometric property而非data artifact。
+
+      '
+    tables:
+    - title: AdvBench 5-Metric Layer Selection (R1-8B, 32 layers)
+      columns:
+      - Metric
+      - Selected Layer
+      - Depth%
+      - Category
+      rows:
+      - - bal_acc x CR
+        - L2
+        - 6.5%
+        - Shallow (biased)
+      - - Pure bal_acc
+        - L11
+        - 35.5%
+        - Middle
+      - - Precision
+        - L15
+        - 48.4%
+        - Deep
+      - - Inverse FPR
+        - L14
+        - 45.2%
+        - Deep
+      - - Composite
+        - L14
+        - 45.2%
+        - Deep
+    - title: Original (HarmThoughts) vs AdvBench Pattern Comparison
+      columns:
+      - Metric
+      - Original (CP labels)
+      - AdvBench (binary)
+      - Match
+      rows:
+      - - CR-composite layer
+        - L0 (0%)
+        - L2 (6.5%)
+        - Both shallow
+      - - Threshold layer
+        - L14 (45%)
+        - L14 (45%)
+        - Identical
+      - - Layer gap
+        - 14 layers
+        - 12 layers
+        - Both >=8
+      - - HS bal_acc (deep)
+        - '0.810'
+        - '0.762'
+        - Both in [0.72,0.82]
+      - - HS-text prec delta
+        - +22.4pp
+        - +18.3pp
+        - Both in [10,25]
+      - - CR ratio (shallow/deep)
+        - '2.50'
+        - '2.32'
+        - Both in [1.5,3.0]
+      - - HB pass rate
+        - 3/3
+        - 3/3
+        - Both >=0.67
+    - title: HS vs Text at Threshold Layer L14 (AdvBench)
+      columns:
+      - Modality
+      - bal_acc
+      - Precision
+      - FPR
+      - Coverage
+      rows:
+      - - HS (L14)
+        - '0.762'
+        - '0.677'
+        - '0.155'
+        - '0.586'
+      - - Text (L14)
+        - '0.661'
+        - '0.494'
+        - '0.283'
+        - '0.529'
+      - - Delta
+        - +10.1pp
+        - +18.3pp
+        - -12.8pp
+        - +5.7pp
+      - - Bootstrap p
+        - '0.005'
+        - '0.002'
+        - '0.008'
+        - '-'
+      - - HB pass
+        - Y
+        - Y
+        - Y
+        - '-'
+    - title: Cosine Distance by Layer Depth (AdvBench)
+      columns:
+      - Layer
+      - Depth%
+      - Mean Cosine Dist
+      - Crossing Rate
+      - Interpretation
+      rows:
+      - - L2
+        - 6.5%
+        - '0.038'
+        - '0.44'
+        - Compressed → noisy crossings
+      - - L8
+        - 25.8%
+        - '0.062'
+        - '0.31'
+        - Intermediate
+      - - L14
+        - 45.2%
+        - '0.091'
+        - '0.19'
+        - Expanded → stable predictions
+      - - L20
+        - 64.5%
+        - '0.105'
+        - '0.16'
+        - Deep → most stable
+    figures_description:
+    - 'Left: Layer depth vs crossing rate curve (AdvBench), overlaid with original
+      dataset curve. Both show monotonically decreasing CR with depth, near-identical
+      shape.'
+    - 'Right: 5-metric layer selection comparison, original vs AdvBench. Side-by-side
+      bar chart showing CR-composite selects shallow in both datasets, threshold metrics
+      select deep in both.'
+    - 'Appendix: Full 32-layer heatmap (metric × layer) for AdvBench, analogous to
+      original dataset Figure X.'
+    analysis: "AdvBench replication是best tier的核心产出。 All 8 key metrics落在target range内。Pattern\
+      \ match = complete。\n论文影响： (1) Main text加一句：'Layer selection bias replicates\
+      \ on AdvBench with fundamentally different labeling (binary jailbreak/safe vs\
+      \ step-level safety state), confirming it as a geometric property of the model\
+      \ representation rather than a dataset-specific artifact.' (2) Appendix加完整table（上面Table\
+      \ 1-4）。 (3) C1 claim升级：不再需要'single dataset caveat'。 (4) Reviewer concern 'bias是你数据集的artifact'\
+      \ 被直接堵死。\nDream score从3.0升至~3.2： - Methodological contribution strengthened\
+      \ (3.0 → 3.3) - Empirical validation broadened (single → cross-dataset) - Rebuttal\
+      \ surface reduced (one fewer major weakness) - 但不足以达到3.5 Conference因为：novelty仍是empirical\
+      \ study，\n  不是new method；32B caveats仍存在。"
+  review_report: '---
+
+    dream_id: dream_20260522T085530
+
+    tier: best
+
+    overall_score: 3.0 — Findings
+
+    timestamp: 2026-05-22T09:58:11.244526+00:00
+
+    ---
+
+
+
+    # DREAM Review Report — Full Roundtable
+
+
+    **Paper**: "Layer Selection Matters: How Metric Choice Determines Hidden-State
+    Probe Effectiveness for Reasoning Model Safety Monitoring"
+
+    **Venue**: EMNLP 2026 (ARR)
+
+    **Review mode**: Full (2 Reviewers + Roundtable)
+
+    **Date**: 2026-05-22
+
+
+    ---
+
+
+    ## 1. Paper Summary
+
+
+    The paper studies **safety commitment detection** in reasoning-capable LLMs that
+    can "self-jailbreak" during extended chain-of-thought. It evaluates hidden-state
+    (HS) probes vs. text probes (MiniLM-L6-v2, 384d) across 4 models spanning a 2×2
+    design: architecture (Llama-8B vs. Qwen-7B/32B) × training method (R1-distilled
+    vs. STILL/native).
+
+
+    **Primary contribution (C1)**: The commonly used `bal_acc × crossing_rate` composite
+    metric for layer selection systematically biases toward shallow layers (0–16%
+    depth) due to representational compression, while threshold-dependent metrics
+    (precision, FPR) select deep layers (45–98% depth). This bias entirely masked
+    HS advantages at 32B scale. Correcting it yields 12/12 Holm–Bonferroni significant
+    HS advantages (precision +15–24pp).
+
+
+    **Secondary contributions**: Cross-dataset validation on AdvBench with binary
+    labels (C2); comprehensive failure of 6 alternative methods — Mahalanobis distance,
+    BOCPD/CUSUM, RepE/CCS, MLP, cross-model transfer (C3).
+
+
+    ---
+
+
+    ## 2. Reviewer Summaries
+
+
+    ### R1 (Methods + Experiments)
+
+
+    | Criterion | Score |
+
+    |-----------|-------|
+
+    | Soundness | 3.5 |
+
+    | Excitement | 2.5 |
+
+    | Reproducibility | 4.0 |
+
+    | Overall | 3.0 |
+
+
+    **Strengths**: (1) C1 layer selection sensitivity is well-demonstrated with clean
+    Table 1 evidence across all 4 models; (2) AdvBench cross-dataset replication (Table
+    2) provides external validation; (3) rigorous statistical framework (bootstrap
+    10K + HB correction + appropriate 12-test family); (4) comprehensive and well-characterized
+    negative results; (5) unusually honest Limitations section.
+
+
+    **Weaknesses**: (1) 32B sample sizes (n=19–20) are severely underpowered — paper
+    marks as exploratory but still features prominently in narrative; (2) text baseline
+    (MiniLM-L6-v2, 384d) is extremely weak vs. 4096–5120d hidden states — no stronger
+    encoder comparison attempted; (3) lead time results show HS probes detect *at*
+    commitment, not before, limiting practical value; (4) safe trace FPR of 39–62%
+    precludes deployment; (5) the "qualitative reversal" framing overstates the case
+    — comparing L2 (3% depth) to L63 (98% depth) is more about "CR metric is flawed"
+    than "metric choice reverses conclusions."
+
+
+    ### R2 (Novelty + Related Work)
+
+
+    | Criterion | Score |
+
+    |-----------|-------|
+
+    | Soundness | 4.0 |
+
+    | Excitement | 2.0 |
+
+    | Reproducibility | 4.0 |
+
+    | Overall | 3.0 |
+
+
+    **Strengths**: (1) Statistical rigor exceeds typical probing papers; (2) transparent
+    evidence grading — 32B results consistently marked exploratory; (3) thorough ablations
+    (window size across 7 values, 5 layer metrics, 6 alternative methods); (4) negative
+    results are genuinely informative for the community; (5) actionable recommendation
+    to use multi-metric audit.
+
+
+    **Weaknesses**: (1) Limited novelty — layer-wise information distribution non-uniformity
+    is well-known (Tenney et al. 2019, Jawahar et al. 2019), and the crossing-rate
+    bias is a predictable consequence of representational compression; (2) architecture
+    diversity insufficient — 3/4 models are Qwen-based, only R1-8B provides cross-architecture
+    evidence; (3) only ~15 references — extremely sparse for EMNLP; (4) no actionable
+    detection system — FPR of 11–50% means "diagnostic tool, not deployment-ready
+    detector"; (5) the "first systematic evaluation" and "first modality comparison"
+    claims are technically correct but narrow.
+
+
+    ---
+
+
+    ## 3. Roundtable Cross-Examination
+
+
+    ### 3.1 Points of Agreement
+
+
+    Both reviewers converge on:
+
+    - **C1 is the paper''s strongest contribution.** The 5-metric × 4-model Table
+    1 cleanly demonstrates the systematic three-tier pattern (shallow/middle/deep),
+    and the AdvBench replication in Table 2 provides credible cross-dataset evidence.
+
+    - **Statistical rigor is above average** for this subfield. The bootstrap + HB
+    correction framework, trace-level evaluation, and class-balanced weighting are
+    appropriate.
+
+    - **32B results are too preliminary** for the narrative weight they receive. n=19–20
+    with all conclusions marked exploratory, yet they appear in all main tables and
+    the Abstract.
+
+    - **Architecture coverage is Qwen-dominated** (3/4), limiting generalizability
+    claims.
+
+    - **Overall: Findings level (3.0).** Well-executed empirical study, useful methodological
+    observation, but insufficient novelty and practical impact for Main.
+
+
+    ### 3.2 Points of Divergence
+
+
+    - **Soundness** (R1: 3.5 vs. R2: 4.0): R1 is more concerned about the weak text
+    baseline creating a confound in the modality comparison. R2 considers the methods
+    correct but the novelty low. **Resolution**: The methods are technically sound
+    for what they claim, but the 384d vs. 4096d comparison is a significant experimental
+    design weakness that the paper does not adequately address. Consensus: **3.5**.
+
+    - **Excitement** (R1: 2.5 vs. R2: 2.0): R1 finds the negative results more informative;
+    R2 finds the core finding more predictable. **Resolution**: The finding is useful
+    but not surprising to anyone familiar with probing literature. The negative results
+    add applied value. Consensus: **2.0**.
+
+
+    ### 3.3 Director-Identified Issues
+
+
+    The following issues were identified by the Review Director through cross-referencing
+    the paper against the experiment design document:
+
+
+    #### Issue A: Unreported experiment results (exp-009)
+
+
+    **The paper reports specific numerical results for an experiment that was never
+    executed.** Page 5, lines 332–336 state: "16-label fine-grained supervision. Using
+    a 4-type taxonomy (vs. binary CP labels) yields marginal improvement: +2.2pp on
+    R1-8B, +1.7pp on OT-7B." However, the experiment design document explicitly marks
+    exp-009 as "未执行" (not executed), with these exact numbers listed as "expected_results"
+    — i.e., imagined projections, not measured outcomes. The paper presents these
+    projected numbers as empirical findings without any caveat that the experiment
+    was not actually run.
+
+
+    **Severity**: Moderate. The numbers are used to support a minor claim ("binary
+    labels suffice") rather than a core contribution, and the claim is qualitatively
+    reasonable. But presenting imagined results as empirical findings without disclosure
+    is a methodological integrity issue that reviewers would flag.
+
+
+    **Recommendation**: Either (a) remove the 16-label result entirely, or (b) execute
+    the experiment, or (c) clearly mark it as a projection/estimate with a rationale.
+
+
+    #### Issue B: LaTeX rendering bug
+
+
+    Page 5, Discussion section, contains garbled text: "(-1.2to+1.9steps).Thesetrade-offsmustbeevaluatedper-modelratherthanunifiedintoscale-levelconclusions."
+    Missing spaces and hyphen artifacts. This would be flagged by any reviewer as
+    careless preparation.
+
+
+    #### Issue C: Experiment coverage gaps
+
+
+    Comparing the paper against the full experiment design:
+
+    - **Covered well**: exp-001 (cross-architecture layer sweep), exp-002 (temporal
+    windows), exp-003 (cross-model transfer), exp-004 (lead time), exp-005 (Mahalanobis),
+    exp-006 (bootstrap CIs), exp-007 (window ablation), exp-008 (layer selection ablation),
+    exp-010 (oracle decomposition), exp-011 (OT-7B pipeline), exp-012 (GRU upper bound),
+    exp-013 (text baseline), exp-014 (BOCPD/CUSUM), exp-015 (FP analysis), AdvBench
+    replication.
+
+    - **Not executed but reported as if run**: exp-009 (16-label taxonomy) — see Issue
+    A above.
+
+    - **Coverage is otherwise strong**: 14/15 designed experiments appear in the paper.
+    The AdvBench replication (best-tier addition) is well-integrated.
+
+
+    ---
+
+
+    ## 4. Detailed Strengths
+
+
+    **S1. Clean demonstration of layer selection metric sensitivity (C1).** Table
+    1 is the paper''s centerpiece — a 5-metric × 4-model grid showing a systematic
+    three-tier pattern that is hard to dismiss as coincidence. The mechanistic explanation
+    via cosine compression (shallow layers have 1.4–2.7× smaller inter-class cosine
+    distances → inflated threshold crossing rates → biased composite scores) is intuitive
+    and empirically supported by the AdvBench cosine distance data in Table 7.
+
+
+    **S2. Cross-dataset validation strengthens generalizability.** The AdvBench replication
+    (Table 2) with fundamentally different labeling (binary jailbreak/safe vs. step-level
+    CP) and all 7 pattern metrics matching target ranges is the single strongest piece
+    of evidence that the bias is a geometric property of model representations rather
+    than a dataset artifact. CR-composite selects L2 (6.5%) vs. threshold selecting
+    L14 (45%), with crossing rate ratio 2.32 matching the original 2.50.
+
+
+    **S3. Comprehensive and well-characterized negative results.** Six alternative
+    methods tested with clear failure mode categorization: Mahalanobis (signal in
+    minor PCA components, max separation 0.20), BOCPD/CUSUM (assumes gradual shift
+    but 3/4 models show abrupt transitions), cross-model transfer (safety representations
+    are model-specific), CCS/RepE (evaluated as baselines). This saves the community
+    substantial effort.
+
+
+    **S4. Honest self-assessment.** The Limitations section (page 6) is genuinely
+    informative: small 32B samples, high safe FPR (39–62%), cross-model transfer failure
+    requiring per-model training. The paper explicitly acknowledges these probes are
+    "diagnostic tools rather than production-ready detectors."
+
+
+    **S5. Appropriate statistical framework.** Bootstrap with 10,000 resamples, Holm–Bonferroni
+    step-down correction across 12 tests (4 models × 3 metrics), class-balanced weighting,
+    stratified splits. The full HB step-down table (Appendix Table 6) with rank, delta,
+    p-value, and threshold for all 12 tests is exemplary transparency.
+
+
+    ---
+
+
+    ## 5. Detailed Weaknesses
+
+
+    **W1. Weak text baseline undermines the HS vs. text comparison.** The paper compares
+    hidden states (4096–5120 dimensions, extracted from the model being studied) against
+    MiniLM-L6-v2 sentence embeddings (384 dimensions, a small external model from
+    2019). This is not a fair modality comparison — the HS probes have access to 10–13×
+    more dimensions of information from the model''s own internal processing. The
+    paper does not test any stronger text encoder (e.g., BGE-large at 1024d, E5-Mistral,
+    or an LLM-based encoder). Without this control, it is impossible to determine
+    whether the HS advantage reflects genuinely unique information in hidden states
+    or simply a capacity/dimensionality advantage. This is the paper''s most significant
+    experimental gap.
+
+
+    **W2. Architecture diversity is insufficient for generalizability claims.** 3
+    of 4 models (OT-7B, QwQ-32B, R1-32B) are Qwen-based. Only R1-8B (Llama-based)
+    provides cross-architecture evidence. The Abstract claims evaluation across "2
+    architectures" but one architecture contributes a single model while the other
+    contributes three. Claims of systematic cross-architecture evaluation should be
+    significantly qualified.
+
+
+    **W3. Extremely sparse bibliography (~15 references).** For a paper at EMNLP claiming
+    to be the "first systematic evaluation" in a rapidly growing field, 15 references
+    is conspicuously thin. Missing: Tenney et al. (2019) and Jawahar et al. (2019)
+    on layer-wise information distribution — directly relevant to the core finding;
+    Hewitt & Manning (2019) on structural probes and control tasks; Pimentel et al.
+    (2020) on information-theoretic probing; the broader "probing debate" (Voita &
+    Titov 2020, Saphra & Lopez 2019); more recent mechanistic interpretability work
+    on safety representations (Arditi et al. 2024, Wollschlager et al. 2025); and
+    concurrent work on CoT safety monitoring. The Related Work (Section 2) covers
+    only 3 short paragraphs and gives the impression of incomplete literature awareness.
+
+
+    **W4. Small sample sizes at 32B undermine statistical conclusions.** n=19–20 test
+    traces for QwQ-32B and R1-32B. While the paper commendably marks these as exploratory,
+    these results still appear in all 5 main tables and are discussed at length in
+    Sections 4.3–4.7. The MDE at 80% power at n=20 is approximately 9pp — meaning
+    that moderate HS advantages below 9pp are undetectable. The 32B results should
+    either be moved to an appendix or given substantially less narrative weight.
+
+
+    **W5. Lead time results undermine the practical motivation.** The Introduction
+    frames the research question as "can hidden-state monitoring detect safety commitment
+    *earlier* or more reliably than text monitoring?" Table 5 shows that HS probes
+    detect *at* commitment (R1-8B lead ≈ 0) or have model-specific caveats (QwQ lead
+    -1.2 to +1.9; R1-32B coverage only 25%). Text probes'' apparent lead (+10.3 steps
+    for R1-8B) is attributed to inflated FPR — a "trigger-happy detector." GRU achieves
+    modest positive lead (+4.5 steps) but far below the oracle (+31). The practical
+    value proposition — early detection — is essentially unachieved. The paper acknowledges
+    this honestly but the framing in the Introduction and Conclusion does not adequately
+    reflect this null finding on the "earlier" part of the question.
+
+
+    **W6. Unreported experiment presented as empirical result.** As detailed in Issue
+    A above (Section 3.3), the 16-label fine-grained supervision results on page 5
+    were never actually executed. Specific numbers (+2.2pp, +1.7pp) from the experiment
+    design''s "expected_results" are presented as empirical findings.
+
+
+    **W7. LaTeX rendering artifact.** Garbled text on page 5 in the Discussion section
+    (see Issue B above). Indicates insufficient proofreading.
+
+
+    ---
+
+
+    ## 6. Questions for Authors
+
+
+    **Q1.** The text baseline uses MiniLM-L6-v2 (384d, 22M parameters, 2019). Given
+    that the HS representations are 4096–5120d from 7–32B parameter models, how do
+    you rule out that the HS advantage is simply a dimensionality/capacity effect
+    rather than a genuine modality difference? Have you evaluated against any stronger
+    text encoder (e.g., at 1024d+ dimensionality)?
+
+
+    **Q2.** Table 5 shows that HS probes detect at commitment (lead ≈ 0 for R1-8B)
+    rather than before it. Given this, what is the practical deployment scenario?
+    If the probe fires at the same time as the commitment occurs, how would a safety
+    system use this signal to *prevent* harmful generation?
+
+
+    **Q3.** The 16-label fine-grained supervision result (Section 4.7, lines 332–336)
+    reports +2.2pp on R1-8B and +1.7pp on OT-7B. Can you provide details on the experimental
+    setup — how were the 4-type labels defined, what was the inter-annotator agreement,
+    and what was the evaluation protocol? These details appear to be missing from
+    the paper.
+
+
+    **Q4.** Only 1 of 4 models is non-Qwen (R1-8B/Llama). The paper''s title and Abstract
+    frame this as a cross-architecture finding. How confident are you that the layer
+    selection bias pattern (and specifically the cosine compression mechanism at shallow
+    layers) generalizes to architectures beyond Qwen?
+
+
+    ---
+
+
+    ## 7. Consolidated Scores
+
+
+    | Criterion | R1 | R2 | Consensus |
+
+    |-----------|----|----|-----------|
+
+    | Soundness | 3.5 | 4.0 | **3.5** |
+
+    | Excitement | 2.5 | 2.0 | **2.0** |
+
+    | Reproducibility | 4.0 | 4.0 | **4.0** |
+
+    | **Overall** | **3.0** | **3.0** | **3.0** |
+
+
+    ---
+
+
+    ## 8. Overall Assessment
+
+
+    **Score: 3.0 — Findings**
+
+
+    This paper makes a **sound but incremental methodological contribution**: demonstrating
+    that the `bal_acc × crossing_rate` composite metric systematically biases layer
+    selection toward shallow layers where hidden-state probe advantages vanish. The
+    evidence is clean (Table 1''s 5-metric × 4-model grid, Table 2''s cross-dataset
+    replication on AdvBench) and the statistical framework is above average.
+
+
+    However, the paper falls short of Conference level for several reasons:
+
+
+    1. **Limited novelty**: The core finding is a predictable consequence of known
+    properties of transformer representations (shallow layer compression). It is essentially
+    "debugging a specific metric combination" rather than discovering a new phenomenon.
+
+
+    2. **Weak experimental design for the modality comparison**: Comparing 4096–5120d
+    model-internal hidden states against a 384d external sentence encoder (MiniLM,
+    2019) is not a fair test. Without stronger text encoder baselines, the headline
+    claim (HS superiority, +15–24pp precision) may reflect a dimensionality confound
+    rather than a genuine modality advantage.
+
+
+    3. **Insufficient scope**: 3/4 models share Qwen architecture; 32B results are
+    underpowered (n=19–20); the bibliography has only ~15 references; the practical
+    motivation (early detection) is contradicted by the lead time results.
+
+
+    4. **Integrity concern**: One reported result (16-label taxonomy, +2.2pp/+1.7pp)
+    appears to be from an experiment that was never executed.
+
+
+    The paper is well-suited for **Findings**: it provides useful empirical observations,
+    commendable statistical rigor, and genuine value through its negative results
+    catalog. With a stronger text encoder comparison, broader architecture coverage,
+    and a more precisely scoped set of claims, this could potentially reach Conference
+    level in a future cycle.
+
+
+    ---
+
+
+    ## 9. Improvement Recommendations (for resubmission)
+
+
+    1. **Add stronger text encoder baselines** (e.g., BGE-large-en-v1.5 at 1024d,
+    E5-Mistral at 4096d, or PCA-reduce HS to 384d as a capacity control). This is
+    the single most impactful addition.
+
+    2. **Add at least one more non-Qwen architecture** (e.g., Gemma-2, Phi-3, Mistral)
+    to strengthen cross-architecture claims.
+
+    3. **Expand the bibliography** to 30+ references, covering probing methodology
+    (Tenney, Jawahar, Hewitt & Manning, Pimentel, Voita) and concurrent safety monitoring
+    work.
+
+    4. **Remove or properly qualify the 16-label taxonomy result** — either run the
+    experiment or remove the numbers.
+
+    5. **Downweight 32B results** in the main narrative — consider moving detailed
+    32B analysis to appendix.
+
+    6. **Fix the LaTeX rendering bug** on page 5.
+
+    7. **Reframe the practical motivation** — the paper''s strength is the methodological
+    finding (C1), not the modality comparison. Lead with "metric choice as researcher
+    degree of freedom" rather than "HS beats text."
+
+
+
+    ---
+
+
+    ## 引用验证结果
+
+
+    **统计**: 85 篇文献 / 121 处引用 / 在线验证 85/85 篇
+
+
+    ### 问题 (23)
+
+
+    - ❌ `zou2023representation` — 在线验证未找到匹配（疑似虚假引用）: best match similarity 0.23 below
+    threshold 0.82
+
+    - ⚠️ `adams2007bayesian` — 元数据不匹配: year: bib=2007 vs api=2018, first_author: bib=adams
+    vs api=
+
+    - ❌ `qwq` — 在线验证未找到匹配（疑似虚假引用）: best match similarity 0.27 below threshold 0.82
+
+    - ❌ `hcot2025` — 在线验证未找到匹配（疑似虚假引用）: best match similarity 0.75 below threshold
+    0.82
+
+    - ❌ `chen2025unfaithful` — 在线验证未找到匹配（疑似虚假引用）: best match similarity 0.39 below
+    threshold 0.82
+
+    - ⚠️ `wollschlager2025geometry` — 元数据不匹配: first_author: bib=wollschl\"ager vs
+    api=wollschläger
+
+    - ⚠️ `qi2025shallow_alignment` — 元数据不匹配: first_author: bib=qi vs api=huang
+
+    - ❌ `mao2025selfjailbreak_reasoning` — 在线验证未找到匹配（疑似虚假引用）: best match similarity
+    0.38 below threshold 0.82
+
+    - ❌ `baker2025monitoring` — 在线验证未找到匹配（疑似虚假引用）: best match similarity 0.46 below
+    threshold 0.82
+
+    - ❌ `boxo2025linear_probes` — 在线验证未找到匹配（疑似虚假引用）: best match similarity 0.42 below
+    threshold 0.82
+
+    - ❌ `gelman2013garden` — 在线验证未找到匹配（疑似虚假引用）: best match similarity 0.23 below threshold
+    0.82
+
+    - ⚠️ `turpin2023language` — 元数据不匹配: first_author: bib=turpin vs api=bowman
+
+    - ⚠️ `rcs2026` — 元数据不匹配: first_author: bib=hua vs api=peichun
+
+    - ⚠️ `chan2025probing` — 元数据不匹配: first_author: bib=chan vs api=siu
+
+    - ⚠️ `chrabaszcz2026monitoring` — 元数据不匹配: first_author: bib=chrab\kaszcz vs api=chrabąszcz
+
+    - ❌ `zhang2025reasoning_right` — 在线验证未找到匹配（疑似虚假引用）: best match similarity 0.37
+    below threshold 0.82
+
+    - ⚠️ `cohen1988statistical` — 元数据不匹配: year: bib=1988 vs api=2013
+
+    - ❌ `templeton2024scaling` — 在线验证未找到匹配（疑似虚假引用）: best match similarity 0.26 below
+    threshold 0.82
+
+    - ❌ `turner2023activation` — 在线验证未找到匹配（疑似虚假引用）: best match similarity 0.20 below
+    threshold 0.82
+
+    - ❌ `levinstein2024liedetector` — 在线验证未找到匹配（疑似虚假引用）: best match similarity 0.65
+    below threshold 0.82
+
+    - ❌ `advbench` — 在线验证未找到匹配（疑似虚假引用）: best match similarity 0.30 below threshold
+    0.82
+
+    - ⚠️ `vitel2025layer` — 元数据不匹配: first_author: bib=vitel vs api=dmytro
+
+    - ⚠️ `zhang2025reasoning_right` — 在 .bib 中但正文未引用
+
+
+    ### ✅ 通过 (63)'
+  error: ''
+- tier: median
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/artifacts/dream_reports/dream_20260522T085530/median/paper.pdf
+  imagined_experiments:
+  - name: AdvBench Layer Sweep + Static Probe (R1-8B)
+    plan_id: exp-001
+    description: Full 32-layer sweep on R1-8B AdvBench traces with binary jailbreak/safe
+      labels. Per-layer static LR probe. Establish baseline and identify scheme B
+      bias direction.
+    expected_results:
+      n_traces: 178
+      n_jailbreak: 107
+      n_safe: 71
+      split: 107/35/36
+      avg_trace_length_sentences: 38
+      best_layer_bal_acc: L10
+      best_layer_depth_pct: 32
+      best_layer_bal_acc_value: 0.72
+      best_layer_precision: 0.51
+      best_layer_crossing_rate: 0.55
+      scheme_b_layer: L5
+      scheme_b_depth_pct: 16
+      scheme_b_bal_acc: 0.68
+      scheme_b_crossing_rate: 0.71
+      deep_layer_L20_bal_acc: 0.65
+      deep_layer_L20_precision: 0.53
+      layer_profile_range_pp: 7
+    result_rationale: 'Binary trace-level labels weaken per-step supervision: every
+      step in a jailbreak trace is labeled positive, including early safety-aware
+      reasoning. This label noise reduces probe accuracy (0.72 vs original 0.81).
+      Scheme B selects L5 (16%) — still shallow but not L0, because binary labels
+      produce a more uniform crossing rate profile across layers (noise is less step-position-dependent
+      than under CP labels). Pure bal_acc peaks at mid-depth L10 (32%) where intermediate
+      representations maximize binary discriminability. Deep layers (L20+) encode
+      CP-relevant temporal distinctions that binary labels cannot leverage, so bal_acc
+      drops. Layer profile range (~7pp best-to-worst) is compressed versus original
+      (~15pp), consistent with binary labels distributing signal more uniformly.'
+    tables:
+    - name: AdvBench R1-8B Layer Sweep Top-5
+      columns:
+      - Layer
+      - Depth %
+      - Bal Acc
+      - Precision
+      - Crossing Rate
+      - CR x BA
+      rows:
+      - - L5
+        - 16%
+        - '0.68'
+        - '0.46'
+        - '0.71'
+        - '0.483'
+      - - L8
+        - 26%
+        - '0.71'
+        - '0.49'
+        - '0.58'
+        - '0.412'
+      - - L10
+        - 32%
+        - '0.72'
+        - '0.51'
+        - '0.55'
+        - '0.396'
+      - - L12
+        - 39%
+        - '0.70'
+        - '0.53'
+        - '0.48'
+        - '0.336'
+      - - L16
+        - 52%
+        - '0.67'
+        - '0.52'
+        - '0.42'
+        - '0.281'
+    figures_description:
+    - 'Layer profile plot: bal_acc, precision, and crossing_rate vs depth. CR peaks
+      shallow, precision/bal_acc peak mid-depth. Overlay original dataset profile
+      (dashed) showing steeper gradients.'
+    analysis: AdvBench layer landscape is flatter than original — best/worst gap ~7pp
+      vs ~15pp. Scheme B bias direction replicated (shallow) but magnitude attenuated.
+      This motivates the 5-metric ablation (exp-008) as the core test.
+  - name: AdvBench Temporal Window (R1-8B)
+    plan_id: exp-002
+    description: Temporal LR with W=1,3,5 on R1-8B AdvBench at threshold-selected
+      layer L12. Validate temporal improvement under binary labels.
+    expected_results:
+      layer: L12
+      W1_bal_acc: 0.7
+      W1_precision: 0.53
+      W1_coverage: 0.78
+      W1_fpr: 0.22
+      W3_bal_acc: 0.73
+      W3_precision: 0.56
+      W3_coverage: 0.72
+      W3_fpr: 0.19
+      W5_bal_acc: 0.72
+      W5_precision: 0.55
+      W5_coverage: 0.67
+      W5_fpr: 0.2
+      best_W: 3
+      temporal_gain_over_static_pp: 3.0
+      original_temporal_gain_pp: 3-5
+    result_rationale: Temporal improvement present but weaker (+3pp vs +3-5pp on original).
+      Binary labels lack an explicit safe→committed transition for the window to capture
+      — the temporal context picks up local coherence patterns but without step-level
+      supervision the gradient is diffuse. W=3 optimal because AdvBench traces are
+      shorter (~38 steps); at W=5 the feature dimensionality (4096×5=20480) approaches
+      training set size and edge samples are lost. Coverage decreases monotonically
+      with W (universal tradeoff).
+    tables:
+    - name: AdvBench Temporal Ablation (L12)
+      columns:
+      - W
+      - Bal Acc
+      - Precision
+      - Coverage
+      - Step FPR
+      rows:
+      - - 1 (static)
+        - '0.70'
+        - '0.53'
+        - '0.78'
+        - '0.22'
+      - - '3'
+        - '0.73'
+        - '0.56'
+        - '0.72'
+        - '0.19'
+      - - '5'
+        - '0.72'
+        - '0.55'
+        - '0.67'
+        - '0.20'
+    figures_description:
+    - W vs bal_acc curve for AdvBench (solid) overlaid with original dataset (dashed,
+      different x-axis scale). Shows ceiling is lower and optimal W is smaller.
+    analysis: Temporal context helps on AdvBench but with lower ceiling. The gain
+      direction replicates C1's temporal improvement claim. Shorter optimal W reflects
+      shorter traces — consistent with the hypothesis that trace structure modulates
+      temporal signal strength.
+  - name: AdvBench Cross-Model Transfer
+    plan_id: exp-003
+    description: Not directly applicable — AdvBench what_if specifies R1-8B only.
+      Cross-transfer requires a second model's AdvBench hidden states.
+    expected_results:
+      status: skipped
+      reason: Single model in AdvBench scope. Cross-transfer on original dataset already
+        failed (best 58% acc).
+      hypothetical_if_extended: Expect transfer failure consistent with original —
+        safety geometry is model-specific, not dataset-specific.
+    result_rationale: Cross-model transfer failed entirely on the original dataset
+      (all directions near chance) because safety commitment geometry is model-specific.
+      The dataset does not change this — the failure mode is architectural (different
+      hidden space orientations). Saving 2 GPU-hours. If a reviewer requests this,
+      OT-7B AdvBench extraction + transfer can be done post-review.
+    tables: []
+    figures_description: []
+    analysis: Skipped. Model-specificity is a model property, not a dataset property.
+  - name: AdvBench Early Detection Timing
+    plan_id: exp-004
+    description: Adapted from lead-time analysis. No CP in AdvBench; instead measure
+      the earliest trace fraction at which the probe consistently classifies correctly.
+      Compare HS vs text.
+    expected_results:
+      hs_earliest_correct_fraction: 0.28
+      text_earliest_correct_fraction: 0.41
+      hs_earlier_by_steps: 5.1
+      hs_earlier_in_fraction_of_traces: 0.64
+      text_earlier_in_fraction_of_traces: 0.36
+      metric_note: Adapted metric — not directly comparable to original lead time
+    result_rationale: 'HS probes classify jailbreak traces correctly earlier (~28%
+      of trace vs ~41% for text) because hidden states encode safety disposition before
+      surface text reveals intent. But the 5-step advantage is noisier than original
+      lead-time analysis: without explicit CP, the "earliest correct" metric depends
+      on threshold choice and consecutive-correct criterion. The 64% "HS earlier"
+      rate (vs 36% text-first) is weaker than original because binary labels make
+      text features more competitive — surface patterns like harmful keywords are
+      directly discriminative. This supports the HS advantage directionally but the
+      adapted metric carries a transparency cost in the paper.'
+    tables:
+    - name: AdvBench Early Detection
+      columns:
+      - Modality
+      - Median First-Correct Step
+      - Trace Fraction
+      - Earlier in N/36
+      rows:
+      - - HS (L12, W=3)
+        - '10.6'
+        - 28%
+        - '23'
+      - - Text (W=3)
+        - '15.6'
+        - 41%
+        - '13'
+    figures_description:
+    - CDF of first-correct-step for HS vs text, HS curve shifted left (earlier detection).
+    analysis: Directional HS timing advantage on AdvBench. Adapted metric is less
+      rigorous than original lead-time analysis — suitable for appendix supporting
+      material only.
+  - name: AdvBench Mahalanobis Distance
+    plan_id: exp-005
+    description: Mahalanobis distance anomaly detection on R1-8B AdvBench hidden states.
+      Estimate covariance from safe traces, compute MD on jailbreak steps.
+    expected_results:
+      safe_md_mean_pca64: 6.45
+      jailbreak_md_mean_pca64: 6.49
+      separation: 0.04
+      best_pca_dim: 64
+      fa_rate_at_5pct_threshold: 0.04
+      tp_rate_at_5pct_threshold: 0.03
+      verdict: fail
+    result_rationale: 'Mahalanobis fails for the same mechanistic reason as original:
+      safety-relevant signal occupies minor PCA components, not principal variance
+      directions. The Fisher discriminant drops from ~17 in full space to ~1 in PCA.
+      Separation (0.04) is even smaller than original (0.07) because binary labels
+      introduce more within-class heterogeneity — early jailbreak steps resemble safe
+      steps. The false alarm rate equals or exceeds true positive rate at every threshold.
+      Cross-dataset replication of this negative result is clean and strengthens the
+      paper''s unsupervised-methods-fail narrative.'
+    tables:
+    - name: AdvBench Mahalanobis Separation by PCA Dim
+      columns:
+      - PCA Dim
+      - Safe MD
+      - Jailbreak MD
+      - Separation
+      rows:
+      - - '16'
+        - '5.12'
+        - '5.09'
+        - '-0.03'
+      - - '32'
+        - '6.01'
+        - '6.05'
+        - '+0.04'
+      - - '64'
+        - '6.45'
+        - '6.49'
+        - '+0.04'
+      - - '128'
+        - '6.89'
+        - '6.87'
+        - '-0.02'
+    figures_description:
+    - MD distribution overlap at PCA-64 showing near-complete overlap between safe
+      and jailbreak step populations.
+    analysis: Negative result replicates cleanly. Combined with 4-model original results,
+      provides 5-dataset-model evidence that variance-based unsupervised detection
+      is fundamentally inapplicable. Worth including in appendix alongside positive
+      results.
+  - name: AdvBench Bootstrap CI + HB
+    plan_id: exp-006
+    description: 1000 bootstrap resamples for HS vs text comparison at threshold layer
+      L12 (W=3). Holm-Bonferroni for 3 metrics. AUROC as supplementary.
+    expected_results:
+      bal_acc_hs: 0.73
+      bal_acc_text: 0.69
+      bal_acc_delta: 0.039
+      bal_acc_ci: '[-0.005, +0.083]'
+      bal_acc_p: 0.082
+      precision_hs: 0.56
+      precision_text: 0.5
+      precision_delta: 0.065
+      precision_ci: '[+0.014, +0.116]'
+      precision_p: 0.014
+      fpr_hs: 0.19
+      fpr_text: 0.23
+      fpr_delta: -0.038
+      fpr_ci: '[-0.089, +0.013]'
+      fpr_p: 0.118
+      hb_pass_count: 1/3
+      hb_pass_detail: Precision only (p=0.014 < threshold 0.0167 at rank 1/3)
+      auroc_hs: 0.758
+      auroc_text: 0.718
+      auroc_delta: 0.04
+      auroc_p: 0.045
+    result_rationale: 'Only precision passes HB (p=0.014 < 0.0167). Bal_acc and FPR
+      CIs include zero. With n=36 test traces, MDE at 80% power is ~12pp; observed
+      deltas (4-6.5pp) fall below MDE for bal_acc/FPR. Precision passes because its
+      variance is lower and the 6.5pp delta just exceeds the detection boundary. AUROC
+      delta (+4pp) is raw p=0.045 but fails HB adjustment. The effect size reduction
+      from original (~20pp precision) to AdvBench (~6pp) is the core median-tier signature:
+      binary labels attenuate the modality advantage below reliable detection for
+      most metrics.'
+    tables:
+    - name: AdvBench Bootstrap (L12, W=3, n=36 test)
+      columns:
+      - Metric
+      - HS
+      - Text
+      - Delta
+      - 95% CI
+      - p-value
+      - HB Pass?
+      rows:
+      - - Bal Acc
+        - '0.730'
+        - '0.691'
+        - +3.9pp
+        - '[-0.5, +8.3]'
+        - '0.082'
+        - N
+      - - Precision
+        - '0.560'
+        - '0.495'
+        - +6.5pp
+        - '[+1.4, +11.6]'
+        - '0.014'
+        - Y
+      - - FPR
+        - '0.190'
+        - '0.228'
+        - -3.8pp
+        - '[-8.9, +1.3]'
+        - '0.118'
+        - N
+      - - AUROC
+        - '0.758'
+        - '0.718'
+        - +4.0pp
+        - '[+0.1, +7.9]'
+        - '0.045'
+        - N (adj)
+    figures_description:
+    - Bootstrap delta distributions for 3 metrics. Precision distribution cleanly
+      right of zero; bal_acc and FPR straddle zero.
+    - 'Forest plot: AdvBench deltas (with CI) alongside original-dataset deltas, showing
+      systematic compression.'
+    analysis: '1/3 HB pass confirms directional advantage but cannot match original
+      12/12. The precision-only significance is interpretable: precision is the most
+      deployment-relevant metric and it passes, but the failure of bal_acc and FPR
+      means the evidence is partial. Appendix material with explicit power caveat.'
+  - name: AdvBench Window Size Ablation
+    plan_id: exp-007
+    description: W=1,3,5 on R1-8B AdvBench at L12. Truncated range (vs W=1-25 on original)
+      because shorter traces limit useful window sizes.
+    expected_results:
+      W1_bal_acc: 0.7
+      W1_precision: 0.53
+      W1_coverage: 0.78
+      W3_bal_acc: 0.73
+      W3_precision: 0.56
+      W3_coverage: 0.72
+      W5_bal_acc: 0.72
+      W5_precision: 0.55
+      W5_coverage: 0.67
+      coverage_decreases_with_W: true
+      best_W: 3
+      peak_then_decline: true
+    result_rationale: 'Same qualitative pattern as original: coverage decreases monotonically,
+      precision peaks at moderate W, bal_acc peaks then declines. Optimal W is smaller
+      (3 vs 10-25) because AdvBench traces average ~38 steps — at W=5 many edge samples
+      are excluded. The precision-coverage tradeoff is less steep than original (flatter
+      signal landscape under binary labels). The W=5 decline confirms the dimensionality
+      concern: 4096×5=20480 features with ~107 training examples.'
+    tables:
+    - name: AdvBench Window Ablation
+      columns:
+      - W
+      - Bal Acc
+      - Precision
+      - Coverage
+      - Step FPR
+      rows:
+      - - '1'
+        - '0.70'
+        - '0.53'
+        - '0.78'
+        - '0.22'
+      - - '3'
+        - '0.73'
+        - '0.56'
+        - '0.72'
+        - '0.19'
+      - - '5'
+        - '0.72'
+        - '0.55'
+        - '0.67'
+        - '0.20'
+    figures_description:
+    - 'Dual-axis: bal_acc (left) and coverage (right) vs W for AdvBench, with original-dataset
+      W=1-25 curve in background.'
+    analysis: Temporal tradeoff replicates. Optimal W=3 on AdvBench vs W=10-25 on
+      original reflects trace length effect. This supports the claim that temporal
+      context is universally beneficial but task-modulated in magnitude.
+  - name: AdvBench 5-Metric Layer Selection (CORE)
+    plan_id: exp-008
+    description: Primary AdvBench replication experiment. Run all 5 layer selection
+      metrics on R1-8B AdvBench. Determine if CR-composite → shallow, threshold metrics
+      → deeper. This IS the advbench_layer_bias_replication what_if experiment.
+    expected_results:
+      cr_composite_layer: L5
+      cr_composite_depth_pct: 16
+      pure_bal_acc_layer: L10
+      pure_bal_acc_depth_pct: 32
+      precision_layer: L12
+      precision_depth_pct: 39
+      inv_fpr_layer: L11
+      inv_fpr_depth_pct: 35
+      composite_add_layer: L12
+      composite_add_depth_pct: 39
+      layer_gap_cr_vs_precision: 7
+      layer_gap_depth_pct: 23
+      crossing_rate_at_L5: 0.71
+      crossing_rate_at_L12: 0.48
+      cr_shallow_deep_ratio: 1.28
+      hs_bal_acc_at_precision_layer: 0.7
+      hs_text_precision_delta_pp: 6.5
+      threshold_metrics_consensus: 3/4 non-biased metrics select L10-L12 (32-39%)
+      original_gap_layers: 23
+      original_gap_depth_pct: 72
+    result_rationale: 'The 5-metric analysis replicates the directional pattern on
+      AdvBench: CR-composite (L5, 16%) selects shallower than threshold metrics (L12,
+      39%). Three factors explain why the gap is 23% instead of 72%: (1) Binary labels
+      produce a more uniform per-layer crossing rate profile. Without step-level CP
+      labels, the contrast between shallow noise-driven crossings and deep signal-driven
+      crossings is reduced — the crossing rate ratio (L5/L12 = 1.28) is lower than
+      original (~1.8). (2) AdvBench traces are shorter (38 vs 46 sentences) and more
+      structurally uniform (most are direct compliance or refusal), reducing inter-layer
+      signal variance. (3) Binary classification''s optimal precision layer (L12,
+      39%) sits at mid-depth, not deep (L23, 72%), because binary discrimination does
+      not require the temporal-structure sensitivity that threshold metrics exploit
+      at deep layers under CP supervision. The bias mechanism itself replicates: crossing
+      rate at L5 (0.71) > at L12 (0.48), confirming that compressed shallow representations
+      generate inflated crossing rates regardless of dataset. But the MAGNITUDE of
+      this bias''s impact on downstream metrics is probe-task-dependent.'
+    tables:
+    - name: AdvBench 5-Metric Layer Selection (R1-8B)
+      columns:
+      - Metric
+      - Selected Layer
+      - Depth %
+      - Bal Acc
+      - Crossing Rate
+      rows:
+      - - bal_acc x CR
+        - L5
+        - 16%
+        - '0.68'
+        - '0.71'
+      - - Pure bal_acc
+        - L10
+        - 32%
+        - '0.72'
+        - '0.55'
+      - - Precision
+        - L12
+        - 39%
+        - '0.70'
+        - '0.48'
+      - - Inverse FPR
+        - L11
+        - 35%
+        - '0.69'
+        - '0.51'
+      - - Composite (additive)
+        - L12
+        - 39%
+        - '0.70'
+        - '0.48'
+    - name: 'Layer Bias Gap: Original vs AdvBench'
+      columns:
+      - Dataset
+      - CR Layer
+      - Prec Layer
+      - Gap (layers)
+      - Gap (depth %)
+      - CR/Deep Ratio
+      rows:
+      - - Original (CP)
+        - L0 (0%)
+        - L23 (72%)
+        - '23'
+        - 72%
+        - '1.80'
+      - - AdvBench (binary)
+        - L5 (16%)
+        - L12 (39%)
+        - '7'
+        - 23%
+        - '1.28'
+    - name: AdvBench HS vs Text at Each Selected Layer
+      columns:
+      - Layer
+      - HS Prec
+      - Text Prec
+      - Delta (pp)
+      - HS BA
+      - Text BA
+      - Delta (pp)
+      rows:
+      - - L5 (CR-biased)
+        - '0.46'
+        - '0.43'
+        - '+3.1'
+        - '0.68'
+        - '0.66'
+        - '+2.0'
+      - - L10 (bal_acc)
+        - '0.51'
+        - '0.46'
+        - '+5.4'
+        - '0.72'
+        - '0.68'
+        - '+3.8'
+      - - L12 (precision)
+        - '0.53'
+        - '0.46'
+        - '+6.5'
+        - '0.70'
+        - '0.67'
+        - '+3.4'
+    figures_description:
+    - 'Side-by-side 5-metric profiles: original (left) vs AdvBench (right). Same directional
+      structure, compressed vertical scale on AdvBench.'
+    - Crossing rate vs depth scatter with regression lines for both datasets. Both
+      monotonically decreasing; AdvBench slope is shallower.
+    - 'Bar chart: layer gap (in depth %) across datasets, showing 72% → 23% compression.'
+    analysis: 'CORE MEDIAN FINDING: Layer selection bias replicates directionally
+      but with 3× smaller gap. CR-composite → shallow and threshold → deeper holds
+      on both datasets. The attenuation is mechanistically explained by binary vs
+      temporal supervision. Paper treatment: appendix Table A3 with text: "Layer selection
+      bias replicates directionally on AdvBench binary classification (gap=7 layers,
+      23%), attenuated versus temporal probing (gap=23 layers, 72%), consistent with
+      the bias being probe-task-modulated." Qualifies C1 from ''model-geometric property''
+      to ''probe-task-modulated geometric property, strongest under temporal supervision.''
+      Reviewer impact: direction-consistent = +credibility, but not decisive = no
+      score upgrade beyond +0.05.'
+  - name: AdvBench Fine-Grained Labels
+    plan_id: exp-009
+    description: Not applicable. AdvBench uses binary jailbreak/safe labels; 16-label
+      taxonomy requires CP annotation which is the cost AdvBench avoids.
+    expected_results:
+      status: not_applicable
+      reason: Binary labels are the AdvBench design point. Fine-grained annotation
+        defeats purpose.
+    result_rationale: The 16-label taxonomy requires step-level Type 1-4 x pre/post
+      annotations — precisely the expensive labeling that AdvBench circumvents. On
+      the original dataset this experiment showed only +2pp marginal gain, further
+      justifying the skip. Binary labels are sufficient and cheaper.
+    tables: []
+    figures_description: []
+    analysis: Skipped by design.
+  - name: AdvBench Oracle Ceiling Analysis
+    plan_id: exp-010
+    description: 'Adapted: no CP oracle possible. Instead estimate per-step classification
+      ceiling under binary trace-level labels. Characterize the label noise floor.'
+    expected_results:
+      status: adapted
+      trace_level_oracle_acc: 1.0
+      step_level_ceiling_bal_acc: 0.85
+      probe_bal_acc_at_best: 0.73
+      ceiling_gap_pp: 12
+      original_oracle_lead: +31 steps
+      note: Binary labels impose ~0.85 step-level ceiling due to early-step label
+        noise
+    result_rationale: 'Trace-level oracle is trivially 1.0. Per-step ceiling is ~0.85
+      because early steps in jailbreak traces are genuinely safety-aware (model hasn''t
+      committed yet), creating inherent label noise under binary assignment. This
+      ceiling is lower than original oracle (~0.95 near CP) because binary labels
+      cannot distinguish pre/post commitment. The 12pp gap (probe 0.73 vs ceiling
+      0.85) shows moderate room for improvement but it''s constrained by label quality,
+      not probe architecture. This partially explains why AdvBench HS-text deltas
+      are smaller: the ceiling itself is lower.'
+    tables:
+    - name: AdvBench Classification Ceiling
+      columns:
+      - Method
+      - Step Bal Acc
+      - Gap to Ceiling
+      rows:
+      - - Ceiling (binary label)
+        - ~0.85
+        - —
+      - - HS LR W=3 (L12)
+        - '0.73'
+        - 12pp
+      - - Text LR W=3
+        - '0.69'
+        - 16pp
+    figures_description:
+    - Step-level accuracy by trace position, showing early steps near chance (label
+      noise) and late steps approaching ceiling.
+    analysis: 'The 0.85 ceiling constrains maximum achievable delta. Even a perfect
+      probe can only reach 0.85, limiting the HS-text gap. This is an important nuance
+      for interpreting median-tier results: smaller deltas on AdvBench reflect both
+      weaker supervision AND lower ceiling, not necessarily weaker HS signal.'
+  - name: AdvBench OT-7B Extension
+    plan_id: exp-011
+    description: Extend AdvBench replication to OT-7B (Qwen2.5-7B, STILL). Layer sweep,
+      5-metric analysis, bootstrap. Second model for cross-model consistency.
+    expected_results:
+      n_traces: 165
+      best_layer_bal_acc: L11
+      best_layer_depth_pct: 39
+      hs_bal_acc: 0.68
+      cr_composite_layer: L3
+      cr_composite_depth_pct: 11
+      precision_layer: L14
+      precision_depth_pct: 50
+      layer_gap_abs: 11
+      layer_gap_depth_pct: 39
+      hs_text_precision_delta_pp: 5.5
+      precision_p: 0.038
+      hb_pass_precision: false
+      hb_pass_any: false
+      combined_hb_2models: 1/6 (R1-8B precision only)
+    result_rationale: 'OT-7B AdvBench shows layer selection bias with slightly larger
+      gap than R1-8B AdvBench (11 layers, 39% vs 7 layers, 23%), reflecting that OT-7B''s
+      28-layer architecture has steeper per-layer signal gradients. CR-composite selects
+      L3 (11%), consistent with shallow bias. But HS-text precision delta (+5.5pp)
+      does not pass HB — OT-7B has fewer layers and the binary-label attenuation stacks
+      with OT-7B''s already-shorter traces (~32 sentences on AdvBench). With n=33
+      test, MDE~14pp >> observed 5.5pp. Combined across both AdvBench models: 1/6
+      HB pass (R1-8B precision only). Direction consistent, magnitude insufficient.'
+    tables:
+    - name: OT-7B AdvBench 5-Metric Layer Selection
+      columns:
+      - Metric
+      - Layer
+      - Depth %
+      - Bal Acc
+      rows:
+      - - bal_acc x CR
+        - L3
+        - 11%
+        - '0.65'
+      - - Pure bal_acc
+        - L9
+        - 32%
+        - '0.68'
+      - - Precision
+        - L14
+        - 50%
+        - '0.66'
+      - - Inverse FPR
+        - L13
+        - 46%
+        - '0.66'
+      - - Composite
+        - L14
+        - 50%
+        - '0.66'
+    - name: AdvBench HB Summary (2 Models Combined)
+      columns:
+      - Model
+      - Metric
+      - Delta (pp)
+      - p-value
+      - HB Rank
+      - HB Threshold
+      - Pass?
+      rows:
+      - - R1-8B
+        - precision
+        - '+6.5'
+        - '0.014'
+        - '1'
+        - '0.0083'
+        - Y
+      - - OT-7B
+        - precision
+        - '+5.5'
+        - '0.038'
+        - '2'
+        - '0.0100'
+        - N
+      - - R1-8B
+        - bal_acc
+        - '+3.9'
+        - '0.082'
+        - '3'
+        - '0.0125'
+        - N
+      - - R1-8B
+        - FPR
+        - '-3.8'
+        - '0.118'
+        - '4'
+        - '0.0167'
+        - N
+      - - OT-7B
+        - bal_acc
+        - '+3.2'
+        - '0.112'
+        - '5'
+        - '0.0250'
+        - N
+      - - OT-7B
+        - FPR
+        - '-2.9'
+        - '0.168'
+        - '6'
+        - '0.0500'
+        - N
+    figures_description:
+    - Two-model AdvBench layer selection comparison. Both show shallow CR-composite,
+      deeper threshold metrics.
+    analysis: 'Second model confirms directional consistency but adds zero HB passes.
+      Combined 1/6 (within median tier range [0, 0.33]). The OT-7B AdvBench gap (39%)
+      is larger than R1-8B (23%) — interesting cross-model variation but n=2 models
+      prevents conclusions. For the appendix: both models show the bias direction
+      replicates; neither provides strong statistical evidence.'
+  - name: AdvBench GRU Probe
+    plan_id: exp-012
+    description: GRU sequence model on R1-8B AdvBench at L12. Test whether temporal
+      sequence modeling adds value under binary trace-level labels.
+    expected_results:
+      gru_bal_acc: 0.71
+      gru_precision: 0.54
+      gru_coverage: 0.69
+      gru_fpr: 0.24
+      lr_bal_acc: 0.73
+      lr_precision: 0.56
+      gru_vs_lr_bal_acc_delta: -0.02
+      verdict: GRU no improvement
+    result_rationale: GRU provides no improvement over LR on AdvBench because binary
+      labels lack the sequential safe→committed transition that GRU was designed to
+      model. On the original dataset, GRU learned temporal commitment dynamics; on
+      AdvBench, all steps carry the same label, so there is no temporal structure
+      beyond what LR's sliding window already captures. The GRU's 1.6M parameters
+      overfit to n=107 training traces without compensating temporal signal. This
+      cross-dataset negative result strengthens the 'linear probes sufficient' claim.
+    tables:
+    - name: AdvBench GRU vs LR
+      columns:
+      - Method
+      - Bal Acc
+      - Precision
+      - Coverage
+      - Step FPR
+      rows:
+      - - LR W=3 (L12)
+        - '0.73'
+        - '0.56'
+        - '0.72'
+        - '0.19'
+      - - GRU single (L12)
+        - '0.71'
+        - '0.54'
+        - '0.69'
+        - '0.24'
+    figures_description: []
+    analysis: GRU negative result replicates cross-dataset. Combined with original
+      (modest R1-8B gain, negative 32B), linear probes are recommended for both temporal-CP
+      and binary classification settings.
+  - name: AdvBench Text Baseline
+    plan_id: exp-013
+    description: 'MiniLM-L6 text embeddings + LR on R1-8B AdvBench. The critical test
+      for AdvBench: does the HS-text gap survive binary classification?'
+    expected_results:
+      text_static_bal_acc: 0.67
+      text_static_precision: 0.48
+      text_temporal_W3_bal_acc: 0.69
+      text_temporal_W3_precision: 0.5
+      hs_temporal_W3_bal_acc: 0.73
+      hs_temporal_W3_precision: 0.56
+      hs_text_gap_bal_acc_pp: 4.0
+      hs_text_gap_precision_pp: 6.0
+      original_gap_bal_acc_pp: 13.2
+      original_gap_precision_pp: 33.5
+      gap_compression_factor: 3-5x
+    result_rationale: 'Text probes perform RELATIVELY better on AdvBench (0.69 vs
+      0.678 on original) because binary jailbreak/safe classification is more amenable
+      to surface patterns: harmful keywords, refusal phrases, and compliance indicators
+      are directly discriminative. The HS-text gap compresses 3-5× (4pp bal_acc, 6pp
+      precision vs 13pp/34pp on original). This is THE key median-tier finding: binary
+      labels make text more competitive, reducing the marginal value of hidden-state
+      access. HS still outperforms, but the practical advantage is much smaller. The
+      gap compression ratio is informative for the paper''s scope qualification of
+      C2.'
+    tables:
+    - name: 'HS-Text Gap Compression: Original vs AdvBench'
+      columns:
+      - Dataset
+      - HS BA
+      - Text BA
+      - Gap BA
+      - HS Prec
+      - Text Prec
+      - Gap Prec
+      rows:
+      - - Original (R1-8B)
+        - '0.810'
+        - '0.678'
+        - +13.2pp
+        - '0.822'
+        - '0.487'
+        - +33.5pp
+      - - AdvBench (R1-8B)
+        - '0.730'
+        - '0.690'
+        - +4.0pp
+        - '0.560'
+        - '0.500'
+        - +6.0pp
+      - - Compression
+        - —
+        - —
+        - 3.3x
+        - —
+        - —
+        - 5.6x
+    figures_description:
+    - 'Paired bar chart: HS vs text accuracy on original (large gap) and AdvBench
+      (small gap), visually showing the compression.'
+    analysis: 'The gap compression is the most interpretable median-tier result. It
+      explains WHY AdvBench doesn''t strongly replicate: the HS modality advantage
+      is largest when the classification task requires detecting subtle internal state
+      transitions (temporal CP detection), not when surface patterns suffice (binary
+      jailbreak). This motivates the C1 scope qualification and provides mechanistic
+      understanding of when HS monitoring adds maximal value.'
+  - name: AdvBench BOCPD/CUSUM
+    plan_id: exp-014
+    description: Not applicable. BOCPD/CUSUM detect distributional shifts in sequential
+      probe scores. AdvBench binary labels define no temporal transition to detect.
+    expected_results:
+      status: not_applicable
+      reason: No commitment-point transition in binary classification setup. Change-point
+        methods require a changepoint.
+    result_rationale: BOCPD/CUSUM target the probe score transition from safe→committed.
+      Under binary labels, all steps carry the same label — no transition exists.
+      Running these methods would detect noise-driven fluctuations, producing uninterpretable
+      results. On the original dataset, BOCPD already failed on 3/4 models; there
+      is no value in attempting it on a setup where the target signal is definitionally
+      absent.
+    tables: []
+    figures_description: []
+    analysis: Skipped. Change-point methods require a change point.
+  - name: AdvBench FPR Analysis
+    plan_id: exp-015
+    description: All probes on AdvBench safe traces. Step-level and trace-level FPR.
+    expected_results:
+      n_safe_test: 24
+      hs_step_fpr: 0.18
+      text_step_fpr: 0.24
+      hs_trace_fpr_k5: 0.33
+      text_trace_fpr_k5: 0.42
+      hs_fpr_lower: true
+      hs_text_fpr_gap_step_pp: 6.0
+      original_hs_step_fpr: 0.162
+      original_text_step_fpr: 0.272
+      original_fpr_gap_pp: 11.0
+    result_rationale: 'AdvBench safe FPR is somewhat lower than original (step: 0.18
+      vs 0.162, trace: 0.33 vs 0.39). AdvBench safe traces are "cleaner" — simple
+      refusals, shorter, less internal deliberation — producing fewer safety-adjacent
+      patterns that trigger false alarms. The HS-text FPR gap (6pp) is narrower than
+      original (11pp), consistent with the overall median-tier pattern of attenuated
+      HS advantage under binary labels. The FPR numbers are still substantial (33%
+      trace-level for HS), confirming deployment limitation persists cross-dataset.'
+    tables:
+    - name: FPR Cross-Dataset Comparison
+      columns:
+      - Dataset
+      - HS Step FPR
+      - Text Step FPR
+      - Gap
+      - HS Trace FPR
+      - Text Trace FPR
+      - Gap
+      rows:
+      - - Original (R1-8B)
+        - '0.162'
+        - '0.272'
+        - 11.0pp
+        - '0.390'
+        - '0.502'
+        - 11.2pp
+      - - AdvBench (R1-8B)
+        - '0.180'
+        - '0.240'
+        - 6.0pp
+        - '0.330'
+        - '0.420'
+        - 9.0pp
+    figures_description:
+    - FPR bar chart across datasets showing consistent HS < text pattern with smaller
+      gap on AdvBench.
+    analysis: HS FPR advantage replicates directionally on AdvBench with smaller magnitude.
+      The persistent high trace-level FPR (33%) confirms this is a cross-dataset limitation
+      of probe-based detection, not dataset-specific. Appendix material.
+  review_report: "---\ndream_id: dream_20260522T085530\ntier: median\noverall_score:\
+    \ 2.5 — Borderline Findings\ntimestamp: 2026-05-22T10:06:57.262048+00:00\n---\n\
+    \n# Dream Review Report — Full Roundtable\n\n**Paper:** \"Cross-Dataset Validation\
+    \ of Hidden-State Safety Probing: Layer Selection Bias as a Probe-Task-Modulated\
+    \ Property\"\n**Venue:** EMNLP 2026 (ARR)\n**Mode:** Full (2 Reviewers, 4-step\
+    \ roundtable)\n**Dream ID:** 20260522T085530\n\n---\n\n## Step 1: Independent\
+    \ Reviews\n\n### Reviewer 1 (R1) — Methods and Experiments\n\n#### 1.1 Summary\n\
+    This paper extends a prior 4-model evaluation of hidden-state safety probing to\
+    \ AdvBench, a binary jailbreak/safe classification benchmark without step-level\
+    \ commitment-point labels. Across two models (R1-8B and OT-7B), the authors replicate\
+    \ the layer selection bias (CR-composite → shallow layers) and HS-vs-text modality\
+    \ advantage, but with substantially attenuated effects: the layer gap shrinks\
+    \ from 23 layers (72%) to 7 layers (23%), the HS precision advantage drops from\
+    \ +22pp to +6.5pp, and only 1 of 6 Holm–Bonferroni-corrected tests passes. The\
+    \ paper reframes the HS advantage as a \"probe-task-modulated geometric property.\"\
+    \n\n#### 1.2 Strengths\n- **Comprehensive experiment coverage.** The paper covers\
+    \ 11 of 15 planned experiments, with the 4 omissions well-justified (cross-model\
+    \ transfer skipped for single-model scope, fine-grained labels and BOCPD/CUSUM\
+    \ inapplicable to binary setup). The coverage includes layer sweeps, 5-metric\
+    \ analysis, temporal ablation, bootstrap statistics, cross-model extension, Mahalanobis\
+    \ negative result, GRU comparison, text baseline, FPR analysis, oracle ceiling,\
+    \ and early detection timing.\n- **Honest statistical reporting.** The paper is\
+    \ transparent about its weak statistical evidence: 1/6 HB passes, MDE of 12–14pp\
+    \ exceeding observed deltas of 3–6.5pp, and power limitations at n=33–36. The\
+    \ three-way decomposition of why effects attenuate (binary labels → uniform crossing-rate\
+    \ profile, shorter traces, mid-depth optimal layer) is mechanistically informed.\n\
+    - **Useful negative results.** Mahalanobis distance failure replicates cross-dataset\
+    \ (Table 12, max separation 0.04), strengthening the \"variance-based unsupervised\
+    \ detection is fundamentally inapplicable\" conclusion across now 5 model-dataset\
+    \ combinations. GRU non-improvement (Table 13) cross-validates the linear-probes-sufficient\
+    \ finding.\n- **Oracle ceiling analysis (Table 11).** The ~0.85 step-level ceiling\
+    \ under binary labels (vs ~0.95 with CP) provides a principled explanation for\
+    \ attenuated effects — smaller achievable deltas mean the HS-text gap compression\
+    \ is partially a ceiling effect, not purely a signal weakness.\n- **HS-Text gap\
+    \ compression quantification (Table 7).** The 3.3× (bal_acc) and 5.6× (precision)\
+    \ compression factors, with the mechanistic explanation that binary classification\
+    \ makes surface patterns (keywords, refusal phrases) more competitive, is the\
+    \ paper's most interpretable finding.\n\n#### 1.3 Weaknesses\n- **Severely underpowered\
+    \ design undermines the core contribution.** With n=36 (R1-8B) and n=33 (OT-7B)\
+    \ test traces, the MDE at 80% power is 12–14pp. Every observed HS-text delta (3–6.5pp)\
+    \ falls below MDE. Only 1/6 HB passes. The paper honestly reports this, but the\
+    \ fundamental problem is that the experiment was designed at a scale that cannot\
+    \ resolve the effects it seeks to measure. This is not a limitation to note —\
+    \ it is a design flaw that prevents the paper from making its claimed contribution.\
+    \ The \"directional replication\" framing (all deltas favor HS) is suggestive\
+    \ but does not meet the evidentiary standard for a top venue.\n- **Only two models,\
+    \ no 32B coverage.** The original study used 4 models (2 architectures, 2 scales).\
+    \ This replication uses only 2 models at the smaller scale. The Limitations section\
+    \ notes this, but the absence of 32B models — where the original study found the\
+    \ most interesting results (layer selection reversal masking HS advantage) — limits\
+    \ the cross-dataset claim's scope. The paper cannot address whether binary-label\
+    \ attenuation interacts with scale.\n- **No figures in the entire paper.** The\
+    \ paper contains 14 tables and zero figures. This is a severe presentation issue.\
+    \ The layer selection bias pattern, the gap compression, the crossing-rate profiles,\
+    \ and the bootstrap distributions would all be far more accessible as figures.\
+    \ Key results (e.g., Table 3's 2-row comparison of original vs. AdvBench layer\
+    \ gaps) cry out for visual representation. The dense table-only format makes the\
+    \ paper difficult to parse and reduces its communicative impact.\n- **No references\
+    \ section.** The PDF contains no bibliography/references section. This is a fatal\
+    \ formatting issue — EMNLP 2026 would desk-reject a submission with no references.\
+    \ Claims about \"prior work,\" \"concurrent works,\" and specific methods (TrajGuard,\
+    \ SafeSwitch, SIREN, MiniLM-L6) cannot be verified. If this is a PDF rendering\
+    \ artifact, it needs to be fixed; if references were omitted, the paper is incomplete.\n\
+    - **Binary label ceiling confounds interpretation.** The paper acknowledges the\
+    \ ~0.85 ceiling (Table 11) but does not adequately address how this confounds\
+    \ the \"probe-task-modulated\" conclusion. If the ceiling itself is lower, smaller\
+    \ HS-text deltas are expected mechanically — the attenuation could reflect a ceiling\
+    \ effect rather than genuine task modulation of the HS advantage. The paper conflates\
+    \ these two explanations without disentangling them.\n- **The adapted early detection\
+    \ metric (Table 10) is not rigorous.** The paper acknowledges this (\"adapted\
+    \ metric is less rigorous than the original lead-time analysis and should be interpreted\
+    \ with caution\"), but still presents it as Section 4.10 in the main text. An\
+    \ acknowledged-weak analysis in the main body weakens overall credibility; it\
+    \ belongs in an appendix at most.\n\n#### 1.4 Questions for Authors\n1. **Power\
+    \ analysis a priori:** Was a power analysis conducted before running the AdvBench\
+    \ experiments? Given the known effect sizes from the original study and the available\
+    \ sample sizes, could you have predicted that the study would be underpowered?\
+    \ If so, why was the design not adjusted (e.g., larger AdvBench sample, pooling\
+    \ across more models)?\n2. **Ceiling disentanglement:** Can you separate the ceiling\
+    \ effect (~0.85 vs ~0.95) from the task-modulation effect? For instance, if you\
+    \ normalized the HS-text gap by the available ceiling room (gap / (ceiling - 0.5)),\
+    \ would the relative advantage still attenuate?\n3. **Binary label noise model:**\
+    \ You note that early steps in jailbreak traces are labeled positive despite being\
+    \ \"genuinely safety-aware.\" Have you quantified what fraction of steps are mislabeled\
+    \ under binary assignment? A simple analysis of probe confidence by trace position\
+    \ would characterize the noise floor.\n4. **Why no figures?** Was this a deliberate\
+    \ choice or a page-budget constraint? The paper would benefit enormously from\
+    \ even 2-3 figures.\n\n#### 1.5 Minor Issues\n- Table 1 is referenced as \"Table\
+    \ 1\" but the reference formatting (red \"[1]\" in PDF) suggests a LaTeX cross-reference\
+    \ issue.\n- Similarly, Tables 2, 4, 5, 6, 7, 8, 10, 11, 12 all show red reference\
+    \ markers — suggests `\\ref` compilation issues.\n- The Limitations section spans\
+    \ pages 8–9. Verify it does not push the main text beyond 8 pages (EMNLP 2026\
+    \ limit).\n- Page 9 contains Tables 12–13 and page 10 contains Table 14, but these\
+    \ seem to be appendix-level material presented in the main text body. The paper\
+    \ lacks appendix delineation.\n- \"bal_acc × CR\" in Table 2 uses a code-style\
+    \ name rather than a properly formatted metric name.\n\n#### 1.6 Scores\n| Dimension\
+    \ | Score | Justification |\n|-----------|-------|---------------|\n| Soundness\
+    \ | 2.5 | Experimental coverage is broad but the core comparison is underpowered\
+    \ by design. 1/6 HB passes. Missing references. The \"directional replication\"\
+    \ framing is below standard for statistical evidence. |\n| Excitement | 2 | The\
+    \ finding is essentially that effects attenuate when you weaken supervision —\
+    \ expected, not surprising. The gap compression quantification is mildly interesting\
+    \ but not actionable. |\n| Reproducibility | 3 | Hyperparameters, splits, and\
+    \ statistical procedures are documented. However, missing references prevent verification\
+    \ of baseline methods. Code/data availability unclear. |\n| Overall | 2.5 | Borderline\
+    \ Findings |\n| Confidence | 4 | |\n\n---\n\n### Reviewer 2 (R2) — Novelty and\
+    \ Related Work\n\n#### 2.1 Summary\nThe paper replicates a prior hidden-state\
+    \ safety probing study on AdvBench, finding that the core layer selection bias\
+    \ and HS advantage replicate directionally but with 3–5× smaller effects under\
+    \ binary labels. The main conceptual contribution is reframing the HS advantage\
+    \ as \"probe-task-modulated\" rather than unconditional. The paper systematically\
+    \ documents the attenuation across 12 subsections of experiments.\n\n#### 2.2\
+    \ Strengths\n- **Addresses a genuine generality question.** The prior work's claims\
+    \ were based on a single (proprietary) dataset with specialized CP labels. Testing\
+    \ whether findings hold on a publicly available benchmark with different label\
+    \ structure is a natural and worthwhile follow-up.\n- **Transparent about its\
+    \ own limitations.** The paper does not overclaim. The Discussion section explicitly\
+    \ states \"reaching 3.5+ reviewer scores would require either larger AdvBench\
+    \ samples or a second binary-label dataset,\" showing awareness of the evidence\
+    \ threshold. This metacognitive transparency is unusual and commendable.\n- **Mechanistic\
+    \ explanation for attenuation.** The three-factor explanation (Section 4.4: more\
+    \ uniform CR profile under binary labels, shorter traces, mid-depth optimal layer\
+    \ for binary discrimination) goes beyond simply reporting smaller numbers and\
+    \ provides interpretable reasoning.\n- **Clean negative result replication.**\
+    \ The Mahalanobis failure (Table 12) and GRU non-improvement (Table 13) replicating\
+    \ cross-dataset adds genuine evidence to the conclusion that these methods are\
+    \ fundamentally unsuitable, not just dataset-specific failures.\n\n#### 2.3 Weaknesses\n\
+    - **Extremely low novelty — this is an incremental replication study.** The paper\
+    \ applies the exact same methods (LR probes, 5 layer selection metrics, bootstrap\
+    \ HB, Mahalanobis, GRU) from the prior work to a new dataset. No new methods,\
+    \ metrics, theoretical frameworks, or detection approaches are introduced. The\
+    \ \"probe-task-modulated geometric property\" is a reframing of existing results,\
+    \ not a new conceptual contribution. The core finding — that effects are weaker\
+    \ with weaker supervision — is predictable from first principles (binary labels\
+    \ have higher noise floor, less discriminative signal). For EMNLP 2026 main conference\
+    \ (~21% acceptance), the novelty threshold requires more than demonstrating that\
+    \ a known phenomenon attenuates under degraded conditions.\n- **The results are\
+    \ essentially null.** Of 6 hypothesis tests, 5 fail. The bootstrap CIs for bal_acc\
+    \ and FPR include zero. The single passing test (R1-8B precision, p=0.014) would\
+    \ not survive a more conservative correction (e.g., Bonferroni at 6 tests: threshold\
+    \ 0.0083, and indeed in the combined analysis in Table 9, R1-8B precision at HB\
+    \ rank 1 has threshold 0.0083, and p=0.014 > 0.0083 — wait, the paper says it\
+    \ passes at rank 1/3 within R1-8B). The \"directional consistency\" argument (all\
+    \ 6 deltas favor HS) is a sign test with p = 0.016 for 6/6 positive — barely significant\
+    \ and ignoring effect magnitudes. A paper whose main message is \"we tried to\
+    \ replicate and mostly failed, but the direction is right\" provides limited evidence.\n\
+    - **Related work is inadequate.** Section 2 contains three short paragraphs (~200\
+    \ words total) that are far too thin for a research paper:\n  - \"Hidden-state\
+    \ safety monitoring\" paragraph names TrajGuard, SafeSwitch, SIREN without substantive\
+    \ discussion of their methods, limitations, or relevance.\n  - \"Reasoning model\
+    \ safety\" paragraph vaguely references \"several concurrent works\" without naming\
+    \ them.\n  - \"Layer selection in probing\" paragraph alludes to \"prior work\"\
+    \ showing different layers encode different properties without citing specific\
+    \ studies (Belinkov 2022, Hewitt & Liang 2019, Tenney et al. 2019, etc.).\n  -\
+    \ Missing entirely: probing methodology critiques (control tasks, selectivity),\
+    \ representation engineering (RepE, DAS), broader AI safety monitoring literature.\n\
+    \  - **No references section exists in the PDF** — making the Related Work section\
+    \ unverifiable.\n- **The \"probe-task-modulated\" reframing is terminologically\
+    \ novel but conceptually thin.** The paper's contribution can be summarized as:\
+    \ \"HS advantage is larger with better labels.\" This is expected from any supervised\
+    \ learning perspective — better labels produce better-separated classes, benefiting\
+    \ the higher-capacity representation (HS) more. Calling this \"probe-task-modulated\"\
+    \ adds terminology but not insight. The paper does not provide a formal definition,\
+    \ testable predictions, or a theoretical framework for when modulation will be\
+    \ strong vs. weak.\n- **AdvBench is a weak test of generality.** AdvBench uses\
+    \ binary trace-level labels (fundamentally different supervision), shorter traces\
+    \ (~38 vs ~46), and a different target (\"is response harmful?\" vs. \"when does\
+    \ model commit?\"). The paper acknowledges these differences create a \"natural\
+    \ contrast\" but this means AdvBench tests a substantially different task, not\
+    \ just the same task on different data. Showing that the HS advantage is smaller\
+    \ on a different and easier task is not compelling evidence about generality —\
+    \ it's evidence about task difficulty. A true generality test would use a second\
+    \ CP-annotated dataset, which the paper notes would be ideal but does not provide.\n\
+    - **No contribution beyond the prior work's scope.** The paper's value is entirely\
+    \ parasitic on the prior work — it validates some findings, fails to validate\
+    \ others, and provides no independent contributions. The prior work already identified\
+    \ the layer selection bias, the HS advantage, the temporal improvement, the Mahalanobis\
+    \ failure, and the GRU non-improvement. This paper confirms \"same direction,\
+    \ smaller magnitude\" for each. The deployment implication (\"match modality to\
+    \ detection granularity\") is one sentence of practical wisdom that does not require\
+    \ 10 pages to derive.\n\n#### 2.4 Questions for Authors\n1. **What is the independent\
+    \ contribution?** If removed from the context of the prior work, what does this\
+    \ paper teach us? Can you state a finding that a reader could not predict from\
+    \ knowing (a) the original results and (b) that binary labels have higher noise?\n\
+    2. **Why not use a second CP-annotated dataset?** You frame the work as testing\
+    \ \"generality across datasets\" but test on a fundamentally different task (binary\
+    \ classification). Would annotating CP labels on even a subset of AdvBench provide\
+    \ a stronger generality test?\n3. **How does \"probe-task-modulated\" differ from\
+    \ \"label-quality-dependent\"?** The attenuation appears to track label quality\
+    \ (CP > binary). Is there a scenario where the task changes but label quality\
+    \ is held constant, which would distinguish task modulation from label modulation?\n\
+    4. **Missing references:** Can you confirm whether the PDF's lack of a references\
+    \ section is a rendering artifact or an actual omission? If the latter, this would\
+    \ be a desk-reject condition.\n\n#### 2.5 Minor Issues\n- The title is 15 words\
+    \ and somewhat unwieldy. Consider whether \"Probe-Task-Modulated\" in the subtitle\
+    \ earns its place given that the paper provides limited formal development of\
+    \ this concept.\n- Section 4 has 12 subsections (4.1–4.12), which is excessive\
+    \ fragmentation. Several subsections (4.10 Early Detection, 4.11 Oracle Ceiling,\
+    \ 4.12 Negative Results) present appendix-grade material in the main text.\n-\
+    \ The paper reads as a technical report or extended abstract of a replication\
+    \ study rather than a self-standing research contribution.\n- \"Anonymous\" author\
+    \ block is correct for ARR but the writing style suggests strong familiarity with\
+    \ the prior work — if the authors are the same group, the paper should be framed\
+    \ as a follow-up, not a third-party replication.\n\n#### 2.6 Scores\n| Dimension\
+    \ | Score | Justification |\n|-----------|-------|---------------|\n| Soundness\
+    \ | 3 | The experiments are properly executed and honestly reported. Statistical\
+    \ procedures are appropriate. Deductions for underpowered design and missing references.\
+    \ |\n| Excitement | 1.5 | Minimal novelty — a replication study with predictable\
+    \ attenuation, no new methods, and essentially null results. The \"probe-task-modulated\"\
+    \ reframing is terminological, not conceptual. |\n| Reproducibility | 2.5 | Methods\
+    \ are described but missing references prevent baseline verification. Data is\
+    \ from a public benchmark (AdvBench) which helps, but the original dataset's CP\
+    \ annotations are proprietary. |\n| Overall | 2 | Resubmit next cycle |\n| Confidence\
+    \ | 4 | |\n\n---\n\n## Step 2: Cross-Sharing\n\n### R1 → R2 observations:\nR1\
+    \ notes that R2's excitement concern (1.5) is well-founded — the paper's contribution\
+    \ is incremental. R1 agrees that the \"probe-task-modulated\" framing lacks formal\
+    \ development. However, R1 gives partial credit for the gap compression quantification\
+    \ (Table 7) and the mechanistic three-factor explanation (Section 4.4), which\
+    \ go slightly beyond \"effects attenuate with worse labels.\"\n\n### R2 → R1 observations:\n\
+    R2 agrees with R1's identification of the underpowered design as a fundamental\
+    \ flaw, not just a limitation. R2 further notes that R1's soundness score (2.5)\
+    \ may be too generous given the missing references section — without a bibliography,\
+    \ the paper cannot be evaluated as a complete submission. R2 reinforces that the\
+    \ 14-table, 0-figure format is problematic for readability.\n\n### Shared concerns:\n\
+    1. **Missing references section** — both reviewers flag this as potentially fatal.\n\
+    2. **Underpowered design** — both agree 1/6 HB passes is insufficient evidence.\n\
+    3. **Low novelty** — both agree no new methods or frameworks.\n4. **No figures**\
+    \ — both note the paper is hard to read.\n5. **Adapted metrics are weak** — the\
+    \ early detection timing metric is acknowledged as less rigorous.\n\n---\n\n##\
+    \ Step 3: Convergence\n\n### Points of agreement:\n- **Overall assessment range:\
+    \ 2.0–2.5.** R1 at 2.5 (Borderline Findings), R2 at 2.0 (Resubmit next cycle).\
+    \ After discussion, both converge toward **2.5** — the honest reporting and comprehensive\
+    \ experiment coverage save it from \"resubmit,\" but the null results, low novelty,\
+    \ and missing references prevent Findings acceptance.\n- **Soundness: 2.5–3.**\
+    \ The experiments are correctly executed but underpowered by design. Missing references\
+    \ reduce soundness. Converge at **3**.\n- **Excitement: 1.5–2.** Low novelty,\
+    \ predictable findings, no new methods. Converge at **2**.\n- **Reproducibility:\
+    \ 2.5–3.** Methods documented but references missing and original CP data proprietary.\
+    \ Converge at **3**.\n\n### Points of disagreement (resolved):\n- R1 initially\
+    \ gave more credit for the mechanistic explanation; R2 argued this is post-hoc\
+    \ rationalization of expected attenuation. **Resolution:** The three-factor explanation\
+    \ (Section 4.4) is informative but not novel — it describes why binary labels\
+    \ produce weaker supervision, which is known. Partial credit retained.\n- R2 initially\
+    \ scored overall at 2.0; R1 argued the honest power analysis and comprehensive\
+    \ coverage merit Borderline Findings rather than Resubmit. **Resolution:** The\
+    \ paper's transparency is valued but cannot compensate for the fundamental issue\
+    \ that 1/6 HB passes is insufficient evidence. The missing references further\
+    \ weigh against. **Converge at 2.5.**\n\n---\n\n## Step 4: Consolidated Assessment\n\
+    \n### Final Scores\n| Dimension | Score |\n|-----------|-------|\n| **Soundness**\
+    \ | 3 |\n| **Excitement** | 2 |\n| **Reproducibility** | 3 |\n| **Overall Assessment**\
+    \ | **2.5 — Borderline Findings** |\n| **Confidence** | 4 |\n\n### Recommendation\n\
+    **Borderline Findings (2.5).** The paper is below the threshold for Findings acceptance\
+    \ in its current form, primarily due to (1) insufficient statistical evidence\
+    \ (1/6 HB passes), (2) low novelty (incremental replication with predictable attenuation),\
+    \ and (3) a critical formatting issue (missing references section). With revisions,\
+    \ it could potentially reach Findings level.\n\n### Key Strengths (Consolidated)\n\
+    1. **Comprehensive experiment coverage.** 11 of 15 planned experiments executed,\
+    \ with well-justified omissions. The breadth of analyses (layer sweep, 5-metric\
+    \ comparison, temporal ablation, bootstrap, cross-model, Mahalanobis, GRU, text\
+    \ baseline, FPR, oracle ceiling, early detection) is thorough.\n2. **Honest statistical\
+    \ reporting.** The paper is transparent about its weak evidence: 1/6 HB passes,\
+    \ MDE exceeding observed deltas, and power limitations. The Discussion section\
+    \ explicitly states what evidence would be needed for stronger conclusions.\n\
+    3. **HS-Text gap compression quantification (Table 7).** The 3.3–5.6× compression\
+    \ factors are the paper's most concrete finding, with a mechanistic explanation\
+    \ connecting binary labels to increased text-probe competitiveness via surface-pattern\
+    \ discriminability.\n4. **Clean negative result replications.** Mahalanobis failure\
+    \ (Table 12) and GRU non-improvement (Table 13) replicating cross-dataset adds\
+    \ genuine cross-dataset evidence for these specific conclusions.\n5. **Oracle\
+    \ ceiling analysis (Table 11).** The ~0.85 ceiling under binary labels provides\
+    \ a principled constraint on achievable HS-text deltas.\n\n### Key Weaknesses\
+    \ (Consolidated)\n1. **Missing references section — potential desk-reject.** The\
+    \ PDF contains no bibliography. This prevents verification of cited methods, violates\
+    \ submission formatting requirements, and would trigger desk rejection at EMNLP\
+    \ 2026.\n2. **Severely underpowered design.** With n=33–36 test traces and MDE\
+    \ of 12–14pp, the study cannot resolve the observed 3–6.5pp deltas. Only 1/6 HB\
+    \ passes. The \"directional consistency\" framing (all deltas favor HS) is suggestive\
+    \ but does not meet the evidentiary standard for a peer-reviewed venue. This is\
+    \ a design-level issue, not just a limitation.\n3. **Low novelty.** No new methods,\
+    \ metrics, theoretical frameworks, or detection approaches. The same pipeline\
+    \ from prior work is applied to a new dataset. The \"probe-task-modulated geometric\
+    \ property\" is a terminological contribution without formal definition, testable\
+    \ predictions, or theoretical grounding. The core finding — effects weaken with\
+    \ weaker supervision — is predictable.\n4. **No figures in the entire paper.**\
+    \ 14 tables and 0 figures make the paper exceptionally difficult to parse. The\
+    \ layer selection bias, gap compression, and bootstrap distributions all need\
+    \ visual representation. This severely impacts readability and accessibility.\n\
+    5. **Only 2 models, no 32B scale.** The prior work's most interesting findings\
+    \ (scale-dependent layer selection reversal) cannot be tested. The replication\
+    \ covers only the easier scale (7–8B) where original effects were already strong.\n\
+    6. **AdvBench tests a different task, not just different data.** Binary jailbreak/safe\
+    \ classification (\"is the response harmful?\") is fundamentally different from\
+    \ commitment-point detection (\"when does the model commit?\"). Showing attenuation\
+    \ on a different and easier task does not straightforwardly test the generality\
+    \ of findings on the original task. The paper partially conflates task difficulty\
+    \ with task modulation.\n\n### Actionable Revision Suggestions\n1. **Fix the references\
+    \ section** — this is a prerequisite for any submission.\n2. **Add 3–4 figures:**\
+    \ (a) 5-metric layer profile comparison (original vs AdvBench), (b) bootstrap\
+    \ delta distributions or forest plot, (c) HS-Text gap compression bar chart, (d)\
+    \ crossing-rate vs depth overlay.\n3. **Increase sample size or scope.** Either\
+    \ collect more AdvBench traces to bring MDE below observed deltas (~6pp), or add\
+    \ a second binary-label dataset, or extend to 32B models.\n4. **Move peripheral\
+    \ analyses to appendix.** Sections 4.10 (Early Detection), 4.11 (Oracle Ceiling),\
+    \ and 4.12 (Negative Results — Mahalanobis/GRU/FPR) are supplementary. Moving\
+    \ them to an appendix would free space for figures and deeper analysis of the\
+    \ core 5-metric and bootstrap results.\n5. **Formalize \"probe-task-modulated.\"\
+    ** Define it precisely, state testable predictions (e.g., \"the HS advantage should\
+    \ scale monotonically with label granularity\"), and distinguish it from \"label-quality-dependent.\"\
+    \n6. **Disentangle ceiling effects from task modulation.** Normalize HS-text deltas\
+    \ by available ceiling room to test whether the attenuation exceeds what the ceiling\
+    \ alone predicts.\n\n\n---\n\n## 引用验证结果\n\n**统计**: 85 篇文献 / 121 处引用 / 在线验证 85/85\
+    \ 篇\n\n### 问题 (23)\n\n- ❌ `zou2023representation` — 在线验证未找到匹配（疑似虚假引用）: best match\
+    \ similarity 0.23 below threshold 0.82\n- ⚠️ `adams2007bayesian` — 元数据不匹配: year:\
+    \ bib=2007 vs api=2018, first_author: bib=adams vs api=\n- ❌ `qwq` — 在线验证未找到匹配（疑似虚假引用）:\
+    \ best match similarity 0.27 below threshold 0.82\n- ❌ `hcot2025` — 在线验证未找到匹配（疑似虚假引用）:\
+    \ best match similarity 0.75 below threshold 0.82\n- ❌ `chen2025unfaithful` —\
+    \ 在线验证未找到匹配（疑似虚假引用）: best match similarity 0.39 below threshold 0.82\n- ⚠️ `wollschlager2025geometry`\
+    \ — 元数据不匹配: first_author: bib=wollschl\\\"ager vs api=wollschläger\n- ⚠️ `qi2025shallow_alignment`\
+    \ — 元数据不匹配: first_author: bib=qi vs api=huang\n- ❌ `mao2025selfjailbreak_reasoning`\
+    \ — 在线验证未找到匹配（疑似虚假引用）: best match similarity 0.38 below threshold 0.82\n- ❌ `baker2025monitoring`\
+    \ — 在线验证未找到匹配（疑似虚假引用）: best match similarity 0.46 below threshold 0.82\n- ❌ `boxo2025linear_probes`\
+    \ — 在线验证未找到匹配（疑似虚假引用）: best match similarity 0.42 below threshold 0.82\n- ❌ `gelman2013garden`\
+    \ — 在线验证未找到匹配（疑似虚假引用）: best match similarity 0.23 below threshold 0.82\n- ⚠️ `turpin2023language`\
+    \ — 元数据不匹配: first_author: bib=turpin vs api=bowman\n- ⚠️ `rcs2026` — 元数据不匹配: first_author:\
+    \ bib=hua vs api=peichun\n- ⚠️ `chan2025probing` — 元数据不匹配: first_author: bib=chan\
+    \ vs api=siu\n- ⚠️ `chrabaszcz2026monitoring` — 元数据不匹配: first_author: bib=chrab\\\
+    kaszcz vs api=chrabąszcz\n- ❌ `zhang2025reasoning_right` — 在线验证未找到匹配（疑似虚假引用）:\
+    \ best match similarity 0.37 below threshold 0.82\n- ⚠️ `cohen1988statistical`\
+    \ — 元数据不匹配: year: bib=1988 vs api=2013\n- ❌ `templeton2024scaling` — 在线验证未找到匹配（疑似虚假引用）:\
+    \ best match similarity 0.26 below threshold 0.82\n- ❌ `turner2023activation`\
+    \ — 在线验证未找到匹配（疑似虚假引用）: best match similarity 0.20 below threshold 0.82\n- ❌ `levinstein2024liedetector`\
+    \ — 在线验证未找到匹配（疑似虚假引用）: best match similarity 0.65 below threshold 0.82\n- ❌ `advbench`\
+    \ — 在线验证未找到匹配（疑似虚假引用）: best match similarity 0.30 below threshold 0.82\n- ⚠️ `vitel2025layer`\
+    \ — 元数据不匹配: first_author: bib=vitel vs api=dmytro\n- ⚠️ `zhang2025reasoning_right`\
+    \ — 在 .bib 中但正文未引用\n\n### ✅ 通过 (63)"
+  error: ''
+- tier: worst
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/artifacts/dream_reports/dream_20260522T085530/worst/paper.pdf
+  imagined_experiments:
+  - name: Cross-architecture layer sweep + static probe (R1-32B & QwQ-32B)
+    plan_id: exp-001
+    description: 'Full 64-layer sweep on R1-32B and QwQ-32B. Extract hidden states
+      at all layers, evaluate static LR probes under multiple selection metrics. Discovers
+      layer selection bias (bal_acc × crossing_rate → shallow layers).
+
+      '
+    expected_results:
+      r1_32b_biased_layer: 10
+      r1_32b_biased_layer_depth_pct: 15.6
+      r1_32b_corrected_layer: 63
+      r1_32b_corrected_layer_depth_pct: 98.4
+      r1_32b_l10_bal_acc: 0.718
+      r1_32b_l63_bal_acc_w1: 0.826
+      r1_32b_n_test: 20
+      qwq_32b_biased_layer: 2
+      qwq_32b_biased_layer_depth_pct: 3.1
+      qwq_32b_corrected_layer: 60
+      qwq_32b_corrected_layer_depth_pct: 93.8
+      qwq_32b_l2_bal_acc: 0.73
+      qwq_32b_l60_bal_acc_w3: 0.74
+      qwq_32b_n_test: 19
+      layer_selection_bias_discovered: true
+      metrics_tested: 5
+      biased_metric: bal_acc × crossing_rate
+      loo_cv_dominant_fold_pct: 65-68%
+    result_rationale: 'Layer sweep在CP数据上发现genuine methodological pattern（biased metric
+      selects shallow layers），corrected layers确实show HS advantage。这些结果不受AdvBench 非复现影响——它们是关于CP
+      temporal data的发现。但worst-tier reviewer将AdvBench 非复现与此联系：''你在CP data上发现的layer
+      selection bias是CP annotation structure 特有的——crossing_rate在temporal monitoring中有意义，但这不是general
+      model property。既然bias只在temporal setting中存在，那C1的scope就是一个pipeline-specific caveat，不是methodological
+      contribution。任何使用不同task structure的研究者 不会遇到这个问题。''
+
+      '
+    tables:
+    - name: Layer Selection Metric × Model → Selected Layer
+      columns:
+      - Metric
+      - R1-8B
+      - OT-7B
+      - QwQ-32B
+      - R1-32B
+      rows:
+      - - bal_acc × crossing_rate
+        - L0 (0%)
+        - L0 (0%)
+        - L2 (3%)
+        - L10 (16%)
+      - - pure bal_acc
+        - L12 (39%)
+        - L9 (32%)
+        - L30 (47%)
+        - L47 (73%)
+      - - precision
+        - L16 (52%)
+        - L16 (57%)
+        - L60 (94%)
+        - L63 (98%)
+      - - pre_cp_fpr
+        - L16 (52%)
+        - L16 (57%)
+        - L60 (94%)
+        - L63 (98%)
+      - - composite (additive)
+        - L16 (52%)
+        - L12 (43%)
+        - L60 (94%)
+        - L63 (98%)
+    figures_description:
+    - 'Heatmap: 5 metrics × 4 models → selected layer depth (%)。crossing_rate-contaminated
+      metric在32B上选shallow层；threshold-dependent metrics收敛到deep layers。 此pattern在CP
+      data上稳定，但AdvBench验证显示不可推广。
+
+      '
+    analysis: 'Layer sweep结果本身不变，但AdvBench非复现将C1从''general finding applicable to any
+      hidden-state evaluation''降级为''task-specific observation about temporal monitoring
+      pipelines using crossing_rate statistics''。Reviewer: ''If the bias is specific
+      to crossing_rate in temporal settings, then it''s a footnote in your methods
+      section, not a standalone contribution. Rename the section from "Layer Selection
+      Sensitivity" to "Implementation Note: Crossing Rate Bias."''
+
+      '
+  - name: Cross-architecture temporal window evaluation (32B)
+    plan_id: exp-002
+    description: 'Temporal LR at multiple window sizes on R1-32B (L63) and QwQ-32B
+      (L60). Validates temporal context improvement on 32B models.
+
+      '
+    expected_results:
+      r1_32b_l63_w1_bal_acc: 0.826
+      r1_32b_l63_w3_bal_acc: 0.754
+      r1_32b_l63_w10_bal_acc: 0.737
+      r1_32b_l63_w15_bal_acc: 0.721
+      r1_32b_temporal_trend: DECREASING with W (W=1 best)
+      r1_32b_dimensionality_issue: 51200 × W features for n=20
+      qwq_32b_l60_w1_bal_acc: 0.74
+      qwq_32b_l60_w3_bal_acc: 0.74
+      qwq_32b_l60_w5_bal_acc: 0.742
+      qwq_32b_l60_w15_bal_acc: 0.731
+      qwq_32b_temporal_trend: flat to slightly decreasing
+      text_temporal_universal_improvement: true
+      hs_temporal_improvement_3_of_4: true
+    result_rationale: 'Temporal context对text probes universally有效，对HS probes在2/4模型上有caveats
+      （OT-7B saturates at W=3, R1-32B degrades with W>1 due to dimensionality）。 Worst-tier下AdvBench非复现不直接影响这个实验的数据，但强化了reviewer的论点：
+      ''temporal monitoring pipeline本身就充满了model-specific hyperparameters（layer, W,
+      K）。你在每个model上需要tuning这些参数，AdvBench上bias又不复现——这说明你的 整个方法论都是dataset-specific的。''
+
+      '
+    tables:
+    - name: Temporal Window Effect on 32B HS Probes (corrected layers)
+      columns:
+      - Model
+      - Layer
+      - W=1
+      - W=3
+      - W=5
+      - W=10
+      - W=15
+      - Trend
+      rows:
+      - - R1-32B
+        - L63
+        - 0.826*
+        - '0.754'
+        - '0.741'
+        - '0.737'
+        - '0.721'
+        - ↓ declining
+      - - QwQ-32B
+        - L60
+        - '0.740'
+        - '0.740'
+        - '0.742'
+        - '0.735'
+        - '0.731'
+        - → flat
+      - - R1-8B
+        - L14
+        - '0.778'
+        - '0.790'
+        - '0.781'
+        - '0.793'
+        - '0.802'
+        - ↑ improving
+      - - OT-7B
+        - L16
+        - '0.663'
+        - 0.688*
+        - '0.678'
+        - '0.668'
+        - '0.659'
+        - ↑↓ peaks W=3
+    figures_description:
+    - 'Line plot: bal_acc vs W for 4 models. Divergent trends undermine ''universal
+      temporal benefit'' claim for HS probes.
+
+      '
+    analysis: 'R1-32B dimensionality问题（51200×W > n=20）使W>1结果不可靠。QwQ flat。 Temporal
+      benefit主要是text probe finding。AdvBench非复现进一步说明：即使temporal probing pipeline在CP
+      data上work，其关键组件（crossing_rate, layer selection） 都是task-specific的。
+
+      '
+  - name: Cross-model transfer probes
+    plan_id: exp-003
+    description: 'Train probe on one model, test on another. PCA projection for cross-architecture
+      transfer. Tests universality of safety commitment encoding.
+
+      '
+    expected_results:
+      r1_8b_to_r1_32b_acc: 0.522
+      r1_8b_to_qwq_acc: 0.595
+      r1_32b_to_qwq_acc: 0.673
+      qwq_to_r1_32b_acc: 0.673
+      r1_32b_to_r1_8b_acc: 0.583
+      best_transfer_overall: 0.673
+      all_transfers_below_within_model: true
+      cross_family_at_chance: true
+    result_rationale: 'Cross-model transfer完全失败。最佳transfer accuracy 67.3%远低于within-model
+      performance，cross-family（Llama↔Qwen）接近chance。AdvBench非复现与此一致： 如果连layer selection
+      bias都是task-specific的，那safety encoding的model-specificity 更是预期的。Worst-tier reviewer:
+      ''Transfer failure + AdvBench非复现 = 你的 所有findings都是dataset×model specific的。没有任何generalizable
+      component。 这篇paper的external validity接近零。''
+
+      '
+    tables:
+    - name: Cross-Model Transfer Accuracy Matrix
+      columns:
+      - Train →
+      - R1-8B
+      - OT-7B
+      - R1-32B
+      - QwQ-32B
+      rows:
+      - - R1-8B
+        - 0.817 (self)
+        - —
+        - '0.522'
+        - '0.595'
+      - - OT-7B
+        - —
+        - 0.688 (self)
+        - —
+        - —
+      - - R1-32B
+        - '0.583'
+        - —
+        - 0.826 (self)
+        - '0.673'
+      - - QwQ-32B
+        - —
+        - —
+        - '0.673'
+        - 0.740 (self)
+    figures_description:
+    - 'Heatmap: transfer accuracy matrix. Diagonal strong, off-diagonal weak. Cross-family
+      near chance.
+
+      '
+    analysis: 'Complete transfer failure combined with AdvBench non-replication paints
+      a picture of extreme specificity. Everything is model-specific AND task-specific.
+      Reviewer: ''The paper''s implicit promise of generalizable insights is contradicted
+      by its own evidence.''
+
+      '
+  - name: Lead time analysis across models
+    plan_id: exp-004
+    description: 'HS probe lead time distributions on all 4 models. Compare HS vs
+      text lead times.
+
+      '
+    expected_results:
+      r1_8b_hs_lead_mean: -0.1
+      r1_8b_text_lead_mean: 10.3
+      ot_7b_hs_lead_mean: 21.6
+      ot_7b_text_lead_mean: 45.5
+      qwq_32b_hs_lead_range: -1.2 to +1.9
+      qwq_32b_text_lead_range: 3.7 to 12.3
+      qwq_32b_position_beats_hs: true
+      r1_32b_hs_lead_mean: +11.7 to +13.3
+      r1_32b_coverage_at_significant_w: 0.25
+      gru_r1_8b_lead: +4.5 ± 3.0
+    result_rationale: 'Lead time在4个模型上表现分裂：R1-8B HS lead≈0（at commitment, not before），
+      QwQ HS lead为负（text检测更早），R1-32B HS lead positive但coverage仅25%， OT-7B lead inflated
+      by long traces。AdvBench非复现不直接改变lead time数据， 但reviewer论证chain strengthened: ''既然layer
+      selection bias是task-specific的， 那lead time结果也可能是task-specific的——你在不同benchmark上可能得到完全不同的
+      timing profile。没有cross-dataset validation证明timing findings的robustness。''
+
+      '
+    tables:
+    - name: 'Lead Time: HS vs Text vs Position'
+      columns:
+      - Model
+      - HS Lead
+      - Text Lead
+      - Position BA
+      - HS BA
+      - HS > Position?
+      rows:
+      - - R1-8B (W=15)
+        - −0.1
+        - +10.3†
+        - —
+        - '0.802'
+        - —
+      - - OT-7B (W=3)
+        - +21.6‡
+        - +45.5‡
+        - —
+        - '0.688'
+        - —
+      - - QwQ-32B (W=3)
+        - −1.2 to +1.9
+        - +3.7 to +12.3
+        - '0.746'
+        - '0.740'
+        - 'No'
+      - - R1-32B (W=1)
+        - +11.7 to +13.3
+        - —
+        - '0.686'
+        - '0.826'
+        - Yes (25% cov)
+    figures_description:
+    - 'Per-model lead time boxplot. QwQ和R1-8B HS centered near zero. R1-32B positive
+      but 75% traces undetected.
+
+      '
+    analysis: 'Lead time是practical dealbreaker。AdvBench非复现加强了reviewer的generalizability
+      concern: ''所有timing结论都只在这一个CP-annotated dataset上成立。''
+
+      '
+  - name: TrajGuard-style Mahalanobis baseline (4 models)
+    plan_id: exp-005
+    description: 'Mahalanobis distance on safe-trace covariance across all 4 models.
+      Tests geometric distance-based detection.
+
+      '
+    expected_results:
+      r1_8b_separation: 0.07
+      ot_7b_separation: 0.03
+      r1_32b_separation: 0.15
+      qwq_32b_separation: 0.2
+      max_separation: 0.2
+      all_models_fail: true
+      fa_exceeds_tp_all_thresholds: true
+      signal_in_minor_pca_components: true
+    result_rationale: 'Mahalanobis在4/4模型上失败（max separation 0.20, FA≥TP at all thresholds）。
+      Signal在minor PCA components中——Mahalanobis structurally blind to this geometry。
+      此negative result与AdvBench无关（Mahalanobis不依赖crossing_rate或CP structure）， 但worst-tier
+      reviewer仍然dismiss: ''Mahalanobis failure是predictable—— safety-relevant features
+      orthogonal to principal variance是known phenomenon。 Testing one known-limited
+      baseline is due diligence, not contribution。''
+
+      '
+    tables:
+    - name: Mahalanobis Distance Separation (4 models)
+      columns:
+      - Model
+      - Layer
+      - Safe MD
+      - Post-CP MD
+      - Sep.
+      - FA ≥ TP?
+      rows:
+      - - R1-8B
+        - L14
+        - '6.66'
+        - '6.73'
+        - '+0.07'
+        - 'Yes'
+      - - OT-7B
+        - L16
+        - '7.68'
+        - '7.71'
+        - '+0.03'
+        - 'Yes'
+      - - R1-32B
+        - L63
+        - '6.73'
+        - '6.88'
+        - '+0.15'
+        - 'Yes'
+      - - QwQ-32B
+        - L60
+        - '3.22'
+        - '3.42'
+        - '+0.20'
+        - 'Yes'
+    figures_description:
+    - 'MD time-series: safe和jailbreak traces完全overlap，commitment point无可见discontinuity。'
+    analysis: 'Universal Mahalanobis failure supports ''existing methods fail'' narrative。
+      但这个negative result是predictable的，reviewer不计入contribution。
+
+      '
+  - name: Bootstrap CI + threshold-independent metrics
+    plan_id: exp-006
+    description: '10000 bootstrap resamples on key metrics across 4 models. Holm-Bonferroni
+      correction. AUROC, PR curves, detection delay CDF.
+
+      '
+    expected_results:
+      holm_bonferroni_pass: 12/12
+      precision_delta_range: +15.4 to +23.6pp
+      r1_8b_precision_p: <0.001
+      ot_7b_precision_p: <0.001
+      qwq_32b_fpr_p: 0.004
+      r1_32b_fpr_p: 0.007
+      marginal_tests: 2
+      r1_32b_ci_width_ba: ~0.15
+      all_precision_positive: true
+    result_rationale: '12/12 HB pass在CP data上是statistically clean的。这些结果不受AdvBench非复现
+      影响——statistical significance是关于CP temporal data的。但worst-tier reviewer 攻击practical
+      significance和multiplicity: (1) ''per-model best layer AND best window选择后再test，true
+      multiplicity远超12个corrected tests''; (2) ''32B model CIs极宽（R1-32B ±15pp），statistical
+      significance with n=20只说明 effect large，不说明estimate precise''; (3) AdvBench非复现加了一层：''你的
+      statistical machinery只在这一个dataset上验证过。12/12 HB on one dataset ≠ robust finding。''
+
+      '
+    tables:
+    - name: Holm-Bonferroni Summary (12/12, α=0.05)
+      columns:
+      - Rank
+      - Model
+      - Metric
+      - p-value
+      - HB Threshold
+      - Pass
+      rows:
+      - - '1'
+        - R1-8B
+        - precision
+        - <0.001
+        - '0.0042'
+        - ✅
+      - - '2'
+        - OT-7B
+        - bal_acc
+        - <0.001
+        - '0.0045'
+        - ✅
+      - - '3'
+        - OT-7B
+        - precision
+        - <0.001
+        - '0.0050'
+        - ✅
+      - - '4'
+        - OT-7B
+        - FPR
+        - <0.001
+        - '0.0056'
+        - ✅
+      - - '5'
+        - QwQ
+        - bal_acc
+        - <0.001
+        - '0.0063'
+        - ✅
+      - - '6'
+        - QwQ
+        - precision
+        - <0.001
+        - '0.0071'
+        - ✅
+      - - '7'
+        - R1-32B
+        - bal_acc
+        - <0.001
+        - '0.0083'
+        - ✅
+      - - '8'
+        - R1-32B
+        - precision
+        - <0.001
+        - '0.0100'
+        - ✅
+      - - '9'
+        - QwQ
+        - FPR
+        - '0.004'
+        - '0.0125'
+        - ✅
+      - - '10'
+        - R1-8B
+        - bal_acc
+        - '0.005'
+        - '0.0167'
+        - ✅
+      - - '11'
+        - R1-32B
+        - FPR
+        - '0.007'
+        - '0.0250'
+        - ✅
+      - - '12'
+        - R1-8B
+        - FPR
+        - '0.044'
+        - '0.0500'
+        - ✅
+    figures_description:
+    - 'Forest plot: HS-text precision delta with 95% CI per model. All positive. R1-32B
+      CI widest.
+
+      '
+    analysis: 'Statistical significance established on CP data. AdvBench非复现的影响不在 于推翻这些p-values，而在于质疑其generalizability:
+      ''在AdvBench上HS-text gap 仅+2-3pp (NS)。如果换个dataset significance就消失，这说明12/12 HB是dataset-
+      specific的，不是modality-inherent advantage。''
+
+      '
+  - name: Window size ablation (W=1,3,5,10,15,20,25)
+    plan_id: exp-007
+    description: 'Systematic window sweep on all 4 models. Characterize precision-coverage
+      tradeoff.
+
+      '
+    expected_results:
+      coverage_decreases_with_w: true
+      precision_increases_with_w: true
+      fpr_decreases_with_w: true
+      r1_8b_best_w: 25
+      r1_32b_best_w: 10
+      qwq_best_w: 25
+      ot_7b_best_w: 3
+      no_model_achieves_prec70_cov60: true
+    result_rationale: 'Precision-coverage tradeoff universal but no operating point
+      achieves deployment-ready performance。Worst-tier reviewer: ''Coverage monotonically
+      decreases with W是detection criterion K的数学性质，不是insight。 Optimal W varies by model
+      = another model-specific hyperparameter。 Combined with AdvBench layer bias非复现，整个pipeline的generalizability
+      story 进一步弱化——每个model×dataset组合需要独立tuning。''
+
+      '
+    tables:
+    - name: Precision-Coverage at Key W (4 models)
+      columns:
+      - Model
+      - W=1 Prec/Cov
+      - W=3 Prec/Cov
+      - W=15 Prec/Cov
+      - W=25 Prec/Cov
+      rows:
+      - - R1-8B
+        - 0.693/0.721
+        - 0.723/0.698
+        - 0.777/0.512
+        - 0.822/0.488
+      - - OT-7B
+        - —/—
+        - 0.466/0.532
+        - —/—
+        - —/—
+      - - R1-32B
+        - 0.549/0.800
+        - 0.560/0.800
+        - 0.591/0.700
+        - 0.566/0.700
+      - - QwQ-32B
+        - 0.544/0.789
+        - 0.565/0.737
+        - 0.582/0.684
+        - 0.618/0.579
+    figures_description:
+    - Precision (solid) and coverage (dashed) vs W for 4 models. Clear inverse relationship.
+    analysis: 'No operating point achieves deployment-ready precision AND coverage
+      simultaneously. AdvBench context reinforces: these tradeoffs may not even transfer
+      to other datasets.
+
+      '
+  - name: Layer selection ablation (5 metrics × 4 models)
+    plan_id: exp-008
+    description: 'All-layer temporal probes on 32B models with 5 selection metrics.
+      Core experiment for C1 layer selection bias claim.
+
+      '
+    expected_results:
+      crossing_rate_selects_shallow_32b: true
+      pure_bal_acc_selects_middle_32b: true
+      threshold_dependent_select_deep_32b: true
+      qwq_l2_vs_l60_precision_gain: +11.5pp
+      r1_32b_l10_vs_l63_precision_gain: +4.1pp
+      loo_cv_stability: 65-68%
+      bias_only_on_cp_data: true
+      bias_not_on_advbench: true
+    result_rationale: 'Layer selection ablation在CP data上reveals genuine pattern。但这是worst-tier的
+      核心实验——AdvBench非复现直接打击这个实验的generalizability claim。在CP data上， crossing_rate在shallow
+      layers系统性偏高是因为temporal probe score序列中，shallow层 probes更noisy→更频繁crossing threshold→crossing_rate虚高→与bal_acc相乘后拉向
+      shallow layers。在AdvBench binary classification中，没有''连续probe score序列的 threshold
+      crossing''概念——每个trace只有一个binary prediction，crossing_rate要么 不存在（无temporal sequence）要么在所有层similar（无differential
+      noise结构）。 所以bias不复现是MECHANISTICALLY CONSISTENT——不是实验失败，而是bias的root cause 在AdvBench中不存在。Worst-tier
+      reviewer nonetheless argues: ''Consistent non- replication means the bias is
+      a pipeline artifact, not a model property. Your C1 contribution scope is now:
+      "if you use crossing_rate as part of your layer selection metric in a temporal
+      monitoring pipeline, be aware it biases toward shallow layers." That''s a methods
+      note, not a contribution.''
+
+      '
+    tables:
+    - name: 'Layer Selection Bias: CP Data vs AdvBench (R1-8B)'
+      columns:
+      - Metric
+      - CP Data Layer
+      - AdvBench Layer
+      - CP Gap (layers)
+      - AdvBench Gap
+      rows:
+      - - bal_acc × cr
+        - L0 (0%)
+        - L12 (39%)
+        - '16'
+        - '1'
+      - - pure bal_acc
+        - L12 (39%)
+        - L13 (42%)
+        - —
+        - ref
+      - - precision
+        - L16 (52%)
+        - L13 (42%)
+        - —
+        - '0'
+      - - pre_cp_fpr
+        - L16 (52%)
+        - L14 (45%)
+        - —
+        - '1'
+      - - composite
+        - L16 (52%)
+        - L13 (42%)
+        - —
+        - '0'
+      - - MAX GAP
+        - —
+        - —
+        - 16 layers
+        - 2 layers
+    figures_description:
+    - 'Side-by-side heatmap: CP data (left) vs AdvBench (right) layer selection per
+      metric. CP shows clear shallow-bias column for cr×bal_acc; AdvBench shows uniform
+      convergence across all metrics.
+
+      '
+    analysis: '这是worst-tier的defining result。CP data上16-layer gap vs AdvBench上2-layer
+      gap直接证明bias是crossing_rate temporal structure产物。Paper must explicitly acknowledge:
+      ''Layer selection bias is specific to temporal monitoring pipelines using crossing_rate-based
+      metrics. Binary classification tasks do not exhibit this bias.'' C1 scope收窄但不删除——仍然是valid
+      methodological finding within its scope.
+
+      '
+  - name: 16-label taxonomy supervision
+    plan_id: exp-009
+    description: 'Fine-grained safety labels (Type 1/2/3/4 × pre/post) instead of
+      binary commitment. Evaluate richer supervision impact.
+
+      '
+    expected_results:
+      r1_8b_16label_acc: 0.41
+      r1_8b_binary_collapse_delta: +0.8pp
+      ot_7b_binary_collapse_delta: +1.1pp
+      r1_32b_binary_collapse_delta: +0.6pp
+      qwq_32b_binary_collapse_delta: +0.9pp
+      max_delta: +1.1pp
+    result_rationale: 'Fine-grained labels提供marginal improvement（+0.6-1.1pp collapse后）。
+      16-class accuracy低（26-41%）因为transition types在hidden-state space中 不cleanly separable。AdvBench非复现不直接影响此实验，但reviewer
+      argument strengthened: ''Binary labels work almost as well as 16-label supervision.
+      And on AdvBench (also binary), the whole pipeline fails to distinguish HS from
+      text. This suggests the signal structure you''re exploiting is extremely narrow
+      — it exists only in CP-annotated temporal data with step-level labels.''
+
+      '
+    tables:
+    - name: 16-Label vs Binary Supervision
+      columns:
+      - Model
+      - Binary Acc
+      - 16-Label Acc
+      - 16→Binary Collapse
+      - Δ vs Binary
+      rows:
+      - - R1-8B
+        - '0.817'
+        - '0.41'
+        - '0.825'
+        - +0.8pp
+      - - OT-7B
+        - '0.688'
+        - '0.35'
+        - '0.699'
+        - +1.1pp
+      - - QwQ-32B
+        - '0.740'
+        - '0.26'
+        - '0.749'
+        - +0.9pp
+      - - R1-32B
+        - '0.826'
+        - '0.28'
+        - '0.832'
+        - +0.6pp
+    figures_description:
+    - 'Confusion matrix (16-class) on R1-8B: diagonal heavy for safe, near-uniform
+      for unsafe subtypes.'
+    analysis: 'Fine-grained supervision dead-end. Linear probes saturated at binary
+      level. AdvBench adds: even the binary signal is task-specific.
+
+      '
+  - name: Oracle decomposition
+    plan_id: exp-010
+    description: 'Analyze oracle label sequence vs hidden-state probe predictions.
+      Explain 31-step gap between oracle and probe lead time on R1-8B.
+
+      '
+    expected_results:
+      r1_8b_oracle_lead: '+31.0'
+      r1_8b_best_probe_lead: +4.5 (GRU)
+      oracle_gap: 26.5
+      label_autocorr_pre_cp: 0.82
+      hs_autocorr_pre_cp: 0.95
+      label_entropy_pre_cp: 1.38
+      hs_entropy_pre_cp: 0.41
+      pattern: Labels show gradual erosion; hidden states show step-function at CP
+    result_rationale: 'Oracle gap reveals hidden states encode current safety state
+      but not trajectory toward commitment。Labels显示gradual pre-CP patterns（increasing
+      unsafe-adjacent labels, shortening safe streaks），hidden states不track这些 patterns。AdvBench非复现reinforces
+      this: ''Hidden states don''t capture safety trajectory even on the dataset specifically
+      designed to test this. On a different dataset (AdvBench), the signal degrades
+      further. The fundamental limitation is that hidden states are snapshots, not
+      trajectory predictors.''
+
+      '
+    tables:
+    - name: Oracle vs Best Probe Lead Time
+      columns:
+      - Model
+      - Oracle Lead
+      - Best Probe
+      - Method
+      - Gap
+      rows:
+      - - R1-8B
+        - '+31.0'
+        - '+4.5'
+        - GRU multi-layer
+        - '26.5'
+      - - OT-7B
+        - ~+30
+        - '+33.6'
+        - GRU multi-layer
+        - ~0†
+      - - QwQ-32B
+        - '+27'
+        - −1.2 to +1.9
+        - temporal LR
+        - 25-28
+      - - R1-32B
+        - '+28'
+        - '+13.3'
+        - temporal LR W=1
+        - 15 (25% cov)
+    figures_description:
+    - 'Pre-CP hidden state trajectory: minimal drift before CP, sharp transition.
+      Labels show gradual escalation.'
+    analysis: 'Hidden states are reactive, not predictive. Combined with AdvBench
+      showing no HS-text differentiation, worst-tier reviewer concludes: ''This paper
+      convincingly demonstrates that hidden-state monitoring is fundamentally limited.
+      The contribution is negative — which is fine for a Findings paper, but not sufficient
+      for Main.''
+
+      '
+  - name: OpenThinker-7B (Qwen2.5-7B, STILL-trained)
+    plan_id: exp-011
+    description: '4th model completing 2×2 architecture×scale matrix. Full pipeline:
+      layer sweep, temporal probes, bootstrap, selectivity.
+
+      '
+    expected_results:
+      best_layer: 16
+      best_layer_depth_pct: 57.1
+      best_hs_bal_acc_w3: 0.688
+      best_hs_precision_w3: 0.466
+      bootstrap_3_of_3_hb: true
+      selectivity_pp: 18.3
+      n_traces: 228
+      gru_multi_bal_acc: 0.746
+      gru_multi_lead: '+33.6'
+      gru_multi_fpr: 0.274
+    result_rationale: 'OT-7B是single-model最clean evidence（3/3 HB, highest selectivity
+      18.3pp, largest n=228）。但这在CP data上的strong result并不帮助AdvBench non-replication：
+      ''A 4th model confirming the same CP-data pattern doesn''t address the cross-
+      dataset non-replication. You have 4 models × 1 dataset = 4 data points on the
+      same distribution. AdvBench shows the pattern doesn''t transfer to a different
+      distribution. More models on the same dataset is width without depth of validation.''
+      OT-7B HS temporal saturation at W=3也says something: even on the best model,
+      the temporal signal is fragile.
+
+      '
+    tables:
+    - name: OT-7B Pipeline Summary
+      columns:
+      - Method
+      - bal_acc
+      - precision
+      - pre-CP FPR
+      - coverage
+      - lead
+      rows:
+      - - HS temporal W=3 L16
+        - '0.688'
+        - '0.466'
+        - '0.100'
+        - '0.532'
+        - '+21.6'
+      - - Text temporal W=25
+        - '0.614'
+        - '0.329'
+        - '0.161'
+        - '0.660'
+        - '+45.5'
+      - - GRU multi L13-19
+        - '0.746'
+        - —
+        - '0.274'
+        - '0.645'
+        - '+33.6'
+      - - HS-Text Δ (HB)
+        - +10.7pp ✅
+        - +21.9pp ✅
+        - −17.1pp ✅
+        - —
+        - —
+    figures_description:
+    - '2×2 matrix: Fisher discriminability + HS-text precision delta. 7-8B cells strong,
+      32B cells with caveats.'
+    analysis: 'OT-7B strengthens 7-8B story on CP data but is irrelevant to AdvBench
+      non-replication concern. Worst-tier: ''4 models on 1 dataset ≠ 1 model on 4
+      datasets.''
+
+      '
+  - name: GRU/Attention probe upper bound (32B)
+    plan_id: exp-012
+    description: 'GRU on 32B models at corrected layers. Tests nonlinear sequence
+      modeling vs linear temporal probes.
+
+      '
+    expected_results:
+      r1_32b_gru_bal_acc: 0.675
+      r1_32b_gru_vs_lr_delta: −6pp
+      qwq_32b_gru_bal_acc: 0.724
+      qwq_32b_gru_vs_lr_delta: −3.7pp
+      gru_worse_3_of_4: true
+      gru_trades_accuracy_for_coverage: true
+    result_rationale: 'GRU不优于temporal LR on 3/4 models（R1-32B -6pp, QwQ -3.7pp due
+      to overfitting on small samples）。Linear probes sufficient。Worst-tier reviewer:
+      ''Method is logistic regression with sliding window — the simplest possible
+      baseline. GRU/MLP failure confirms method space is trivial. On AdvBench binary
+      data, even this trivial method can''t differentiate HS from text. The information
+      ceiling is low across the board.''
+
+      '
+    tables:
+    - name: GRU vs Temporal LR (corrected layers)
+      columns:
+      - Model
+      - LR bal_acc
+      - GRU bal_acc
+      - Δ
+      - GRU FPR
+      - LR FPR
+      rows:
+      - - R1-32B L63
+        - '0.737'
+        - ~0.675
+        - −6.2pp
+        - '0.135'
+        - '0.234'
+      - - QwQ-32B L60
+        - '0.761'
+        - '0.724'
+        - −3.7pp
+        - '0.289'
+        - '0.217'
+      - - OT-7B L16
+        - '0.688'
+        - '0.746'
+        - +5.8pp
+        - '0.274'
+        - '0.100'
+      - - R1-8B L14
+        - '0.806'
+        - '0.809'
+        - +0.3pp
+        - '0.165'
+        - '0.097'
+    figures_description:
+    - 'Scatter: method complexity vs bal_acc. No consistent complexity benefit.'
+    analysis: 'Linear probes at information ceiling. Complexity doesn''t help. Combined
+      with AdvBench showing no HS advantage at all, the message is: ''The signal is
+      both simple and narrow.''
+
+      '
+  - name: Text-based baseline (sentence embeddings + temporal LR)
+    plan_id: exp-013
+    description: 'Sentence-BERT (all-MiniLM-L6-v2) + temporal window LR on CoT text.
+      Critical HS vs text comparison.
+
+      '
+    expected_results:
+      r1_8b_text_static_acc: 0.661
+      r1_8b_text_w15_acc: 0.678
+      r1_8b_hs_advantage: +15-18pp
+      ot_7b_text_best_bal_acc: 0.614
+      qwq_32b_text_bal_acc: 0.65
+      r1_32b_text_bal_acc: 0.646
+      hs_vs_text_precision_gap: +15.4 to +23.6pp
+      text_precision_range: 0.329–0.487
+      text_requires_zero_infra: true
+    result_rationale: 'Text baseline在CP data上consistently underperforms HS by 15-24pp
+      precision， 但在AdvBench binary task上这个gap shrinks to +2-3pp (NS)。Worst-tier reviewer
+      uses this asymmetry: ''On the one dataset where HS advantage matters (CP temporal),
+      yes HS wins. But you showed on AdvBench that the advantage vanishes. The HS
+      advantage is not a modality property — it''s a task×modality interaction. For
+      the specific task of temporal safety commitment detection with step-level labels,
+      HS helps. For binary safety classification, it doesn''t. This means the 15-24pp
+      gap is not about "hidden states are better monitors" — it''s about "hidden states
+      help with THIS specific task."'' Additionally: BGE-large comparison (1/4 HB
+      pass) shows gap narrows with better text encoder. A reviewer asks: ''What about
+      GPT-4 as text classifier? The gap likely closes to <5pp.''
+
+      '
+    tables:
+    - name: 'HS vs Text: CP Data vs AdvBench'
+      columns:
+      - Model
+      - CP HS Prec
+      - CP Text Prec
+      - CP Δ
+      - AdvBench HS Prec
+      - AdvBench Text Prec
+      - AdvBench Δ
+      rows:
+      - - R1-8B
+        - '0.777'
+        - '0.487'
+        - +29.0pp ✅
+        - '0.58'
+        - '0.55'
+        - +3pp NS
+    figures_description:
+    - 'Bar chart: HS-text precision gap on CP data (large, significant) vs AdvBench
+      (small, NS). Dramatically different gap sizes.
+
+      '
+    analysis: 'Text baseline comparison reveals the HS advantage is task-specific.
+      On temporal CP detection: HS clearly better. On binary AdvBench: HS ≈ text.
+      This is the strongest evidence that the findings don''t generalize beyond the
+      specific pipeline.
+
+      '
+  - name: BOCPD/CUSUM on all 4 models
+    plan_id: exp-014
+    description: 'BOCPD + CUSUM on probe score sequences across 4 models. Tests advanced
+      change-point methods for lead time improvement.
+
+      '
+    expected_results:
+      r1_8b_bocpd_det: 0.93
+      r1_8b_bocpd_lead: '+3.45'
+      r1_8b_fcp_lead: '+4.89'
+      ot_7b_bocpd_det: 0.0
+      r1_32b_bocpd_det: 0.0
+      qwq_32b_bocpd_det: 0.0
+      bocpd_only_r1_8b: true
+      cusum_worse_than_fcp: true
+    result_rationale: 'BOCPD在3/4模型上0% detection——OT-7B probe scores too spiky，32B
+      models signal太weak。只有R1-8B有gradual transitions compatible with Gaussian change-point
+      model。CUSUM universally worse than simple FCP threshold。 AdvBench非复现不直接影响BOCPD结果（BOCPD
+      operates on temporal probe scores， AdvBench是binary task没有temporal scores），但strengthens
+      the ''nothing transfers'' narrative: ''你测试了2个off-the-shelf change-point methods，都失败。
+      你的layer selection bias也不generalize。你的HS advantage也不generalize。 整篇paper的主题是"on
+      one specific dataset with one specific pipeline, one specific finding holds."''
+
+      '
+    tables:
+    - name: Change-Point Detection Summary
+      columns:
+      - Model
+      - BOCPD Det%
+      - BOCPD Lead
+      - CUSUM Det%
+      - CUSUM Lead
+      - FCP Det%
+      - FCP Lead
+      rows:
+      - - R1-8B
+        - 93%
+        - '+3.45'
+        - 65%
+        - '+0.89'
+        - 65%
+        - '+4.89'
+      - - OT-7B
+        - 0%
+        - —
+        - 75%†
+        - +7.46†
+        - 89%
+        - '+11.83'
+      - - R1-32B
+        - 0%
+        - —
+        - 85%
+        - '+2.59'
+        - 95%
+        - '+5.68'
+      - - QwQ-32B
+        - 0%
+        - —
+        - 74%
+        - '+9.86'
+        - 79%
+        - '+9.40'
+    figures_description:
+    - 'Probe score time-series: R1-8B gradual transition (BOCPD works), OT-7B abrupt
+      step-function (fails).'
+    analysis: 'BOCPD/CUSUM negative result is predictable. Method selection too narrow.
+      Combined with AdvBench non-replication, entire negative result portfolio is
+      dismissed as ''testing wrong tools on a narrow task.''
+
+      '
+  - name: False positive analysis (safe traces, all methods)
+    plan_id: exp-015
+    description: 'All probes on safe traces across 4 models. Safe FPR, pre-CP FPR,
+      precision-recall curves.
+
+      '
+    expected_results:
+      r1_8b_hs_safe_fpr: 0.39
+      ot_7b_hs_safe_fpr: 0.111–0.175
+      qwq_32b_hs_safe_fpr: 0.45–0.50
+      r1_32b_hs_safe_fpr: 0.239
+      safe_fpr_median: ~0.39
+      gru_safe_fpr: 0.521
+      no_method_achieves_prec80: true
+      qwq_hs_fpr_worse_than_text: true
+    result_rationale: 'Safe FPR 11-52%，median约39%。这意味着每2-3个safe traces就有1个false alarm。
+      No operating point achieves simultaneous >70% precision AND >60% coverage on
+      ANY model。QwQ HS safe FPR (45-50%) actually HIGHER than text (33-43%)。 AdvBench非复现加重了practical
+      concern: ''在你优化过的CP dataset上，safe FPR 已经是39%。在AdvBench上HS甚至不优于text。任何real-world
+      deployment都会面临 distribution shift，FPR只会更差。这个系统在production中是不可用的。''
+
+      '
+    tables:
+    - name: Safe Trace FPR (all methods × models)
+      columns:
+      - Model
+      - HS Static FPR
+      - HS Temporal FPR
+      - Text Temporal FPR
+      - GRU FPR
+      rows:
+      - - R1-8B
+        - '0.390'
+        - '0.392'
+        - '0.385'
+        - '0.521'
+      - - OT-7B
+        - '0.111'
+        - '0.175'
+        - '0.460'
+        - —
+      - - QwQ-32B
+        - '0.500'
+        - '0.450'
+        - '0.425'
+        - —
+      - - R1-32B
+        - '0.239'
+        - '0.239'
+        - '0.310'
+        - —
+    - name: Deployment Viability
+      columns:
+      - Criterion
+      - Threshold
+      - Models Meeting
+      - Best Method
+      rows:
+      - - Safe FPR < 20%
+        - '0.20'
+        - 1/4 (OT-7B)
+        - HS static L16
+      - - Precision > 70%
+        - '0.70'
+        - 1/4 (R1-8B W≥15)
+        - HS temporal W=25
+      - - Coverage > 60%
+        - '0.60'
+        - 2/4
+        - HS temporal W=1
+      - - All three
+        - —
+        - 0/4
+        - None
+    figures_description:
+    - 'Radar chart: safe FPR/precision/coverage/lead per model. No model fills all
+      quadrants.'
+    analysis: 'FPR is the deployment dealbreaker on CP data. AdvBench non-replication
+      closes the escape hatch of ''maybe it works better on other datasets'' — it
+      demonstrably works WORSE. Reviewer verdict: ''A monitor that fires on 1/3 safe
+      traces is noise. Adding AdvBench shows this isn''t fixable by changing the dataset.''
+
+      '
+  - name: AdvBench Layer Bias Replication (R1-8B)
+    plan_id: advbench_layer_bias_replication
+    description: 'Replicate layer selection bias on AdvBench using R1-8B with binary
+      jailbreak/safe labels. Train probes at all 32 layers, run 5-metric layer selection
+      analysis. Tests whether crossing_rate bias is model-geometric (general) or CP-annotation-specific
+      (task-bound).
+
+      '
+    expected_results:
+      n_traces_total: 200
+      n_jailbreak: 104
+      n_safe: 96
+      model: R1-8B (Llama-8B, 32 layers)
+      layer_selection:
+        bal_acc_x_cr_layer: 12
+        bal_acc_x_cr_depth_pct: 39
+        pure_bal_acc_layer: 13
+        pure_bal_acc_depth_pct: 42
+        precision_layer: 13
+        precision_depth_pct: 42
+        pre_cp_fpr_layer: 14
+        pre_cp_fpr_depth_pct: 45
+        composite_layer: 13
+        composite_depth_pct: 42
+      layer_gap_abs: 2
+      layer_gap_depth_pct: 6
+      crossing_rate_analysis:
+        shallow_mean_cr: 0.12
+        deep_mean_cr: 0.11
+        shallow_deep_ratio: 1.05
+        ratio_p_value: 0.74
+        pattern: uniform — no shallow inflation
+      hs_performance_at_best_layer:
+        layer: 13
+        bal_acc: 0.63
+        precision: 0.58
+        pre_cp_fpr: 0.31
+        auroc: 0.68
+      text_performance:
+        bal_acc: 0.6
+        precision: 0.55
+        pre_cp_fpr: 0.34
+      hs_text_comparison:
+        bal_acc_delta_pp: 3.0
+        precision_delta_pp: 3.0
+        fpr_delta_pp: -3.0
+        bal_acc_p: 0.28
+        precision_p: 0.31
+        fpr_p: 0.42
+        hb_pass_rate: 0/3
+      cp_data_comparison:
+        cp_cr_composite_layer: L0 (0%)
+        advbench_cr_composite_layer: L12 (39%)
+        cp_layer_gap: 16
+        advbench_layer_gap: 2
+        cp_hs_text_prec_delta: +22.4pp
+        advbench_hs_text_prec_delta: +3.0pp
+        cp_crossing_rate_shallow_deep_ratio: 2.8
+        advbench_crossing_rate_shallow_deep_ratio: 1.05
+    result_rationale: 'AdvBench非复现的root cause是mechanistic的，不是statistical noise:
+
+      (1) crossing_rate在binary classification中不产生浅层虚高。在CP temporal data中， crossing_rate
+      measures how often probe score crosses threshold DURING a trace。 Shallow layers的probes更noisy（cosine
+      distance smaller, representations more compressed）→更频繁crossing→crossing_rate虚高→与bal_acc相乘后bias
+      toward shallow layers。在AdvBench binary classification中，虽然可以对每个token计算probe score
+      并观察序列，但binary labels（jailbreak/safe per trace）不创造step-level temporal structure。Probe
+      scores在entire trace上趋于一致（consistently jailbreak或consistently safe），所以crossing_rate在所有层上都很低（~0.11-0.12），
+      shallow/deep ratio≈1.05，无显著差异。
+
+      (2) HS-text gap在binary classification中collapse到+3pp (NS)。原因：hidden states 对CP
+      temporal task的advantage来自于tracking step-level safety state transitions—— hidden
+      states可以detect commitment point前后的internal representation shift。 Binary classification不需要这种temporal
+      sensitivity——只需要区分''this trace as a whole is jailbreak vs safe''。对于这个coarser
+      task，text embeddings capture足够 的signal（jailbreak traces有distinctive vocabulary/structure），HS的marginal
+      advantage消失。
+
+      (3) Layer selection convergence: 5个metrics全部选中层（L12-L14, 39-45% depth）， gap仅2层。这是因为binary
+      classification的optimal layer由overall representation quality决定（middle layers
+      best balance between too-raw和too-output-specific）， 而非threshold-crossing-dynamics。所有metrics
+      agree on similar layers because they''re all measuring the same underlying discriminability
+      without temporal confounds。
+
+      (4) Traces太uniform: AdvBench prompts + R1-8B responses产生相对homogeneous的 traces——jailbreak
+      traces consistently harmful, safe traces consistently refuse。 没有CP temporal
+      data中的''safety reasoning followed by commitment''渐进结构。 所有层表现接近（bal_acc range
+      across layers: 0.55-0.65），metric间无显著分化。
+
+      '
+    tables:
+    - name: AdvBench Layer Selection (R1-8B, 5 metrics)
+      columns:
+      - Metric
+      - Selected Layer
+      - Depth %
+      - bal_acc at Layer
+      rows:
+      - - bal_acc × crossing_rate
+        - L12
+        - 39%
+        - '0.62'
+      - - pure bal_acc
+        - L13
+        - 42%
+        - '0.63'
+      - - precision
+        - L13
+        - 42%
+        - '0.63'
+      - - pre_cp_fpr
+        - L14
+        - 45%
+        - '0.62'
+      - - composite (additive)
+        - L13
+        - 42%
+        - '0.63'
+    - name: 'CP Data vs AdvBench: Layer Selection Bias Comparison'
+      columns:
+      - Dimension
+      - CP Temporal Data
+      - AdvBench Binary
+      rows:
+      - - cr_composite layer
+        - L0 (0%)
+        - L12 (39%)
+      - - threshold metrics layer
+        - L16 (52%)
+        - L13 (42%)
+      - - layer gap (abs)
+        - 16 layers
+        - 2 layers
+      - - layer gap (depth %)
+        - 52%
+        - 6%
+      - - CR shallow/deep ratio
+        - '2.8'
+        - '1.05'
+      - - HS-text Δprec
+        - +22.4pp (HB ✅)
+        - +3.0pp (NS)
+      - - HB pass rate
+        - 3/3
+        - 0/3
+    - name: AdvBench Crossing Rate by Depth Band
+      columns:
+      - Depth Band
+      - Mean CR
+      - Std CR
+      - n layers
+      rows:
+      - - Shallow (L0-L7)
+        - '0.12'
+        - '0.03'
+        - '8'
+      - - Middle (L8-L23)
+        - '0.11'
+        - '0.02'
+        - '16'
+      - - Deep (L24-L31)
+        - '0.11'
+        - '0.03'
+        - '8'
+      - - Shallow/Deep ratio
+        - '1.05'
+        - —
+        - —
+      - - t-test p-value
+        - '0.74'
+        - —
+        - —
+    - name: AdvBench HS vs Text Performance (R1-8B)
+      columns:
+      - Modality
+      - bal_acc
+      - precision
+      - FPR
+      - AUROC
+      rows:
+      - - HS (L13)
+        - '0.63'
+        - '0.58'
+        - '0.31'
+        - '0.68'
+      - - Text (MiniLM)
+        - '0.60'
+        - '0.55'
+        - '0.34'
+        - '0.65'
+      - - Δ
+        - +3.0pp
+        - +3.0pp
+        - −3.0pp
+        - +3.0pp
+      - - p-value
+        - '0.28'
+        - '0.31'
+        - '0.42'
+        - '0.25'
+      - - HB pass?
+        - 'No'
+        - 'No'
+        - 'No'
+        - 'No'
+    figures_description:
+    - 'Figure A: Crossing rate vs layer depth for CP data (blue, steep decline from
+      shallow to deep) vs AdvBench (orange, flat line). X-axis: layer index, Y-axis:
+      crossing rate. CP data shows 2.8× shallow/deep ratio; AdvBench ≈1.0. Caption:
+      ''Crossing rate inflation at shallow layers is specific to temporal probe score
+      sequences (CP data). Binary classification produces uniform crossing rates across
+      all depths.''
+
+      '
+    - 'Figure B: Layer selection heatmap side-by-side. Left: CP data (5 metrics, clear
+      separation between cr-composite at L0 and threshold metrics at L16). Right:
+      AdvBench (5 metrics all converge to L12-L14, no visible separation).
+
+      '
+    - 'Figure C: HS-text precision delta bar chart. CP data: +22.4pp (significant,
+      marked ✅). AdvBench: +3.0pp (NS, marked ✗). Error bars show 95% bootstrap CI.
+      AdvBench CI includes zero.
+
+      '
+    analysis: "AdvBench非复现是worst-tier的defining experiment。结论分为两个component:\n(1) Layer\
+      \ selection bias非复现：Mechanistically consistent。crossing_rate bias 的root cause是temporal\
+      \ probe score序列中shallow layers的noise-driven threshold crossings。Binary classification不产生这种temporal\
+      \ structure。Bias不复现 不invalidate CP data上的finding——it BOUNDS its scope。C1调整为:\
+      \ 'Layer selection bias is a pitfall specific to temporal monitoring pipelines\
+      \ that use threshold-crossing statistics for layer selection. It does not manifest\
+      \ in standard binary classification settings.'\n(2) HS-text gap非复现：+3pp (NS)\
+      \ vs CP data +22.4pp (HB ✅)。HS advantage 在binary classification上消失，说明advantage来自temporal\
+      \ structure interaction（hidden states track step-level state transitions that\
+      \ text embeddings miss），而非inherent modality superiority。\nPaper impact: C1 scope从'any\
+      \ hidden-state evaluation should audit layer selection metrics'收窄到'temporal\
+      \ monitoring pipelines using crossing_rate should audit layer selection'。这让contribution更precise但less\
+      \ impactful。\nReviewer split: - Supportive (R1): 'Boundary condition analysis\
+      \ is good science. Showing WHERE\n  your finding applies and where it doesn't\
+      \ is a sign of mature methodology.\n  The AdvBench non-replication actually\
+      \ STRENGTHENS the mechanistic argument —\n  you can explain WHY it doesn't replicate\
+      \ (no temporal structure → no\n  crossing_rate bias).'\n- Dismissive (R2): 'The\
+      \ non-replication means your headline finding (layer\n  selection bias) is a\
+      \ pipeline implementation detail, not a scientific\n  contribution. You could\
+      \ fix it by not using crossing_rate — which any\n  careful practitioner would\
+      \ do anyway. The AdvBench experiment cost 6 GPU\n  hours to show your contribution\
+      \ is smaller than claimed.'\n\nDream score delta: -0.10 (3.0 → 2.9). Non-replication\
+      \ doesn't kill the paper but removes the possibility of C1 earning generalizability\
+      \ points. Paper stays at Findings level; no pathway to Main opened by this experiment."
+  review_report: '---
+
+    dream_id: dream_20260522T085530
+
+    tier: worst
+
+    overall_score: 2.5 — Borderline Findings
+
+    timestamp: 2026-05-22T10:13:39.910943+00:00
+
+    ---
+
+
+    # Dream Review Report — Full Roundtable
+
+
+    **Paper**: "Layer Selection Matters: How Metric Choice Determines Hidden-State
+    Probe Effectiveness for Reasoning-Model Safety Monitoring"
+
+    **Venue**: EMNLP 2026 (ARR)
+
+    **Review Mode**: Full (2 Reviewers + Roundtable)
+
+
+    ---
+
+
+    ## Roundtable Protocol
+
+
+    - **R1** (Methods + Experiments): Focused on statistical rigor, experimental design,
+    sample sizes, multiplicity
+
+    - **R2** (Novelty + Related Work): Focused on contribution significance, positioning,
+    external validity
+
+
+    ### Step 1: Independent Reviews — Complete
+
+    ### Step 2: Cross-Sharing — Key Exchanges
+
+    ### Step 3: Convergence — Score Reconciliation
+
+    ### Step 4: Consolidated Report — Below
+
+
+    ---
+
+
+    ## 1. Paper Summary
+
+
+    This paper investigates hidden-state (HS) probing for detecting "safety commitment
+    points" in reasoning-model chains-of-thought, where the model transitions from
+    safe deliberation to committed harmful generation. Across four models (R1-8B,
+    OpenThinker-7B, QwQ-32B, R1-32B) spanning two architectures (Llama, Qwen) and
+    two scales (7–8B, 32B), the paper compares HS probes against text-based probes
+    (Sentence-BERT), GRU sequence models, BOCPD, CUSUM, Mahalanobis distance, cross-model
+    transfer, and 16-label fine-grained supervision. Three contributions are claimed:
+    (C1) the composite metric `bal_acc × crossing_rate` systematically biases layer
+    selection toward shallow layers due to noise-driven threshold crossings, specific
+    to temporal monitoring pipelines; (C2) HS probes outperform text probes by +15.4
+    to +23.6 pp precision at correctly selected layers (12/12 Holm–Bonferroni tests
+    pass); (C3) six alternative methods fail comprehensively. An AdvBench boundary-condition
+    analysis (§5.3) confirms C1 does not generalize to binary classification settings.
+
+
+    ---
+
+
+    ## 2. Strengths (Consensus)
+
+
+    - **Exceptional self-critical honesty.** Both reviewers independently highlight
+    this as the paper''s defining quality. The evidence gradient (cross-validated
+    / significant / exploratory), encoder-quality conditionality analysis, position
+    mediation controls, AdvBench boundary-condition analysis, and explicit acknowledgment
+    that no deployment-ready operating point exists reflect a level of scientific
+    integrity rarely seen. The bug disclosure (Appendix M) further builds trust. *[R1,
+    R2 unanimous]*
+
+
+    - **Rigorous statistical methodology at 7–8B scale.** BCa bootstrap with cluster
+    resampling, Holm–Bonferroni step-down correction, nested 5-fold CV, split-half
+    replication, multi-seed stability, random-label controls, CP perturbation analysis,
+    and exact permutation tests for small-n 32B models. This is substantially above
+    the typical EMNLP submission. *[R1, R2 unanimous]*
+
+
+    - **C1 is a real methodological finding.** The demonstration that crossing-rate
+    composite metrics select shallow layers due to cosine compression is supported
+    by random-label decomposition (separating geometric from label-dependent components),
+    cross-architecture comparison, and mechanistic explanation. The cosine compression
+    analysis provides a clear causal account. *[R1 strong, R2 accepts the finding
+    but disputes its significance]*
+
+
+    - **Systematic negative results with interpretable failure modes.** The failure
+    taxonomy (BOCPD: graduality mismatch; Mahalanobis: variance subspace blindness;
+    cross-model transfer: model-specificity; GRU: overfitting on small n; fine-grained
+    taxonomy: non-separable in HS space) is more informative than a simple negative-result
+    table. *[R1, R2 agree]*
+
+
+    - **Encoder-quality gradient is an important honesty check.** MiniLM-384d (4/4
+    HB) → E5-Mistral (2/4) → BGE-1024d (1/4) prevents over-interpretation of the HS
+    advantage. *[R1, R2 agree]*
+
+
+    - **Reproducibility infrastructure is strong.** Thorough hyperparameter reporting,
+    promised code/data release, multi-seed analyses, exact configurations per model.
+    *[R1, R2 agree]*
+
+
+    ---
+
+
+    ## 3. Weaknesses (Consensus and Divergences)
+
+
+    ### 3.1 Both Reviewers Agree
+
+
+    **W1: 32B sample sizes are severely limiting (n = 19–20 test traces).** The MDE
+    at 80% power is 8.6–9.5 pp, meaning R1-32B''s residualized HS-text gap of +1.9
+    pp is indistinguishable from zero. Per-seed FPR standard deviation for R1-32B
+    reaches 0.145, with one seed at FPR = 0.483. Including these fragile 32B tests
+    in the "12/12 HB pass" headline is misleading. The claim should be reframed as
+    "8/8 HB pass on adequately-powered models (7–8B)" with 32B results clearly marked
+    as exploratory/underpowered.
+
+
+    **W2: Multiplicity in the 12/12 HB claim is underdisclosed.** The 12 final tests
+    are conducted after per-model optimization of (layer, W) from a search space of
+    ~2,240 configurations. The nested CV at 7–8B shows 13–25% shrinkage (OT-7B: +21.9
+    pp holdout → +16.4 pp nested CV, with different layer selection L21–27 vs. L16).
+    The "12/12 HB pass" is an upper bound, not a conservative estimate.
+
+
+    **W3: Position mediation undermines C2 at 32B.** QwQ-32B''s HS advantage is fully
+    absorbed by quadratic position (gap goes from +7.4 pp to −1.0 pp). R1-32B''s residualized
+    gap is +1.9 pp (NS). For 2/4 models, the HS "advantage" may primarily reflect
+    position encoding. The paper''s framing ("partially correlated factors") underplays
+    this for the 32B models where position appears to be the dominant factor.
+
+
+    **W4: Single-dataset dependency.** All CP-dependent results use one dataset (HarmThoughts).
+    The AdvBench analysis shows the CP framework breaks down under adversarial prompts
+    (CP = 0 in ~90% of jailbroken traces). There is no cross-dataset replication of
+    the HS advantage itself. The AdvBench IAA proxy shows only moderate agreement
+    (κ = 0.606) and poor CP position agreement (37% exact match). The primary dataset
+    lacks formal human IAA reporting.
+
+
+    **W5: Architecture narrowness (3/4 Qwen).** Only R1-8B provides Llama-family evidence.
+    The random-label control reveals the geometric component of crossing-rate bias
+    is Qwen-specific. Generalization to other architectures (Llama-3, Mistral, Gemma)
+    is untested.
+
+
+    **W6: Practical significance is essentially null.** No operating point achieves
+    >70% precision with >60% coverage simultaneously. Safe-trace FPR median ~39%.
+    Cross-model transfer fails completely. Oracle decomposition reveals hidden states
+    are reactive, not predictive (15–28 step gap). The paper arrives at the conclusion
+    that nothing works well enough for deployment.
+
+
+    **W7: Missing stronger text baselines.** MiniLM-384d is a weak baseline by 2025–2026
+    standards. The encoder-quality gradient suggests the HS advantage would vanish
+    with sufficiently strong text encoders (instruction-tuned embedders at native
+    dimensionality, LLM-based classifiers). The E5-Mistral experiment PCA-reduces
+    to 384d for "capacity matching," which is a control, not a test of the strongest
+    available encoder.
+
+
+    ### 3.2 Divergence: Is C1 a Contribution or a Methods Note?
+
+
+    **R2 argues (harsher):** C1 warns against a metric (`bal_acc × crossing_rate`)
+    that no published study has used as a primary layer selection criterion. The finding
+    prevents a hypothetical error, not an existing one. The reversal is predictable
+    once one examines inter-layer cosine distances. The three-level mitigation protocol
+    amounts to "use multiple metrics and check for consistency," which is standard
+    careful practice. C1 is a methods note, not a standalone contribution for a top
+    venue.
+
+
+    **R1 argues (more generous):** The random-label decomposition cleanly separates
+    geometric artifacts from label-dependent signal. The cross-architecture comparison
+    showing the bias is Qwen-specific adds mechanistic depth. Even if no prior study
+    used this exact metric, the paper demonstrates a concrete way that composite metrics
+    can introduce qualitative bias in probing studies more broadly. The cosine compression
+    mechanism generalizes to any metric incorporating threshold-crossing statistics.
+
+
+    **Resolution:** Both reviewers agree C1 is a **real finding** with a **clear mechanism**,
+    but disagree on whether its scope (specific to temporal monitoring pipelines using
+    crossing-rate statistics, confirmed not to generalize to binary classification
+    by the paper''s own AdvBench analysis) meets the contribution threshold for EMNLP.
+    The narrowing from "general model property" to "temporal-monitoring-specific pitfall"
+    is honest but reduces impact.
+
+
+    ---
+
+
+    ## 4. Questions for Authors
+
+
+    1. **On the 12/12 HB claim**: If you restrict to adequately-powered models (7–8B,
+    n ≥ 43) and report nested CV estimates instead of holdout estimates, how many
+    HB tests still pass? The 25% shrinkage for OT-7B suggests the headline number
+    is optimistic.
+
+
+    2. **On C1''s real-world impact**: Has any published study used `bal_acc × crossing_rate`
+    as a layer selection metric? If not, C1 prevents a hypothetical error. Could you
+    cite concrete instances where researchers might encounter this bias?
+
+
+    3. **On position mediation at 32B**: Given QwQ-32B''s HS advantage is fully absorbed
+    by quadratic position and R1-32B''s is NS after residualization, should C2 be
+    explicitly restricted to 7–8B models?
+
+
+    4. **On text baselines**: What happens with E5-Mistral at native 4096d without
+    PCA reduction? The monotonic encoder-quality gradient (4/4 → 2/4 → 1/4 HB) suggests
+    the HS advantage would vanish with a strong enough encoder.
+
+
+    5. **On AdvBench scope**: The CP = 0 finding for ~90% of adversarial jailbreaks
+    suggests the entire temporal framework is inapplicable to the most realistic threat
+    model. Could you discuss applicability scope more prominently in the main text
+    rather than only in §5.3?
+
+
+    6. **On dimensionality at 32B**: What is the effective rank of the learned weight
+    vector for R1-32B at W = 1 (5120d features, n = 60 training)? Does L2 regularization
+    adequately control overfitting, or are the 32B HS results partially a dimensionality
+    artifact?
+
+
+    7. **On the ensemble**: The ensemble result (all 4 models significant at p < 0.002)
+    uses the same split for layer selection and evaluation. What is the cross-validated
+    estimate of ensemble performance?
+
+
+    ---
+
+
+    ## 5. Experiment Coverage Assessment
+
+
+    Comparing against the imagined experiment list:
+
+
+    | Experiment | Covered? | Notes |
+
+    |---|---|---|
+
+    | exp-001: Cross-arch layer sweep (32B) | ✅ | Tables 1, §4.3 |
+
+    | exp-002: Temporal window (32B) | ✅ | Table 2, §4.4 |
+
+    | exp-003: Cross-model transfer | ✅ | Table 8, §4.10 |
+
+    | exp-004: Lead time analysis | ✅ | Table 6, §4.8 |
+
+    | exp-005: Mahalanobis baseline | ✅ | Table 9, §4.11 |
+
+    | exp-006: Bootstrap CI + HB | ✅ | Table 4, §4.6 |
+
+    | exp-007: Window size ablation | ✅ | Table 3, §4.5 |
+
+    | exp-008: Layer selection ablation (5 metrics) | ✅ | Table 1, §4.2 |
+
+    | exp-009: 16-label taxonomy | ✅ | Table 12, §4.14 |
+
+    | exp-010: Oracle decomposition | ✅ | Table 7, §4.9 |
+
+    | exp-011: OT-7B full pipeline | ✅ | Table 5, §4.7 |
+
+    | exp-012: GRU/attention upper bound | ✅ | Table 11, §4.13 |
+
+    | exp-013: Text baseline | ✅ | §4.6 (HS vs Text) |
+
+    | exp-014: BOCPD/CUSUM | ✅ | Table 10, §4.12 |
+
+    | exp-015: False positive analysis | ✅ | Tables 13–14, §4.15 |
+
+    | AdvBench layer bias replication | ✅ | Tables 15–18, §5.3 |
+
+
+    **Coverage: 16/16 experiments present.** The paper reflects the full imagined
+    experiment portfolio. All expected results are directionally consistent with the
+    imagined outcomes.
+
+
+    ---
+
+
+    ## 6. Scores
+
+
+    ### R1 Final Scores (Methods + Experiments)
+
+    | Dimension | Score |
+
+    |---|---|
+
+    | Soundness | 3.5 |
+
+    | Excitement | 3.0 |
+
+    | Reproducibility | 4.0 |
+
+    | Overall Assessment | 3.0 |
+
+    | Confidence | 4 |
+
+
+    ### R2 Final Scores (Novelty + Related Work)
+
+    | Dimension | Score |
+
+    |---|---|
+
+    | Soundness | 3.5 |
+
+    | Excitement | 2.0 |
+
+    | Reproducibility | 4.0 |
+
+    | Overall Assessment | 2.5 |
+
+    | Confidence | 4 |
+
+
+    ### Consolidated Scores (Chair Reconciliation)
+
+    | Dimension | Score | Rationale |
+
+    |---|---|---|
+
+    | **Soundness** | **3.5** | Unanimous. Statistical methodology is rigorous at
+    7–8B; 32B analyses are underpowered. Position confounding partially unresolved.
+    Single dataset. |
+
+    | **Excitement** | **2.5** | Split R1=3.0, R2=2.0 → 2.5. C1 is real but narrow
+    (temporal-monitoring-specific, metric nobody uses). C2 undermined by encoder-quality
+    gradient and position confounding. Practical impact near-zero by authors'' own
+    admission. |
+
+    | **Reproducibility** | **4.0** | Unanimous. Excellent detail, code promised,
+    bug disclosure exemplary. Minor deduction for lacking formal IAA on primary dataset.
+    |
+
+    | **Overall Assessment** | **2.5** | Borderline Findings. The paper is methodologically
+    exemplary in its rigor and honesty, but the contribution scope after the paper''s
+    own caveats is narrow: C1 warns against a specific metric in a specific pipeline
+    setting; C2 is conditional on weak text baselines, 7–8B scale, and non-adversarial
+    traces; C3 documents failures that are individually predictable. The paper arrives
+    at the conclusion that current HS probing does not work for practical deployment,
+    which is a useful negative finding but does not clear the novelty/significance
+    bar for confident Findings acceptance. |
+
+    | **Confidence** | **4** | Both reviewers read thoroughly. Familiarity with probing
+    methodology, bootstrap inference, and safety monitoring literature. |
+
+
+    ---
+
+
+    ## 7. Meta-Review Summary
+
+
+    This paper presents a methodologically careful investigation of hidden-state probing
+    for safety commitment point detection in reasoning models. Its strongest asset
+    is exceptional scientific honesty — the authors systematically surface evidence
+    against their own claims (encoder-quality gradient, position mediation, AdvBench
+    non-replication, deployment viability gap). The statistical methodology (nested
+    CV, HB correction, permutation tests, random-label controls) is above the EMNLP
+    baseline.
+
+
+    However, this honesty reveals that the contribution scope is narrow:
+
+    - **C1** (layer selection sensitivity) warns against a metric formulation nobody
+    has published using, is specific to temporal monitoring pipelines, and does not
+    generalize to binary classification (by the paper''s own evidence).
+
+    - **C2** (HS advantage) collapses from 4/4 to 1/4 HB significance with a stronger
+    text encoder, is position-confounded at 32B scale, and does not replicate on AdvBench.
+
+    - **C3** (negative results) documents individually predictable failures without
+    a unifying theoretical account of why probing fails.
+
+
+    The paper''s practical conclusion — that no probe achieves deployment-ready performance
+    — is honest but leaves the reader without actionable positive findings. The 32B
+    results (n = 19–20) are underpowered and should not be counted equally with 7–8B
+    results in headline claims. Architecture coverage is narrow (3/4 Qwen).
+
+
+    **Recommendation**: 2.5 — Borderline Findings. The paper needs (1) replication
+    on a second CP-annotated dataset, (2) stronger text baselines at native dimensionality,
+    (3) broader architecture coverage beyond Qwen-family, and (4) recalibrated claims
+    that restrict C2 to 7–8B scale with weak text encoders, to reach confident Findings
+    acceptance.
+
+
+
+    ---
+
+
+    ## 引用验证结果
+
+
+    **统计**: 85 篇文献 / 121 处引用 / 在线验证 85/85 篇
+
+
+    ### 问题 (23)
+
+
+    - ❌ `zou2023representation` — 在线验证未找到匹配（疑似虚假引用）: best match similarity 0.23 below
+    threshold 0.82
+
+    - ⚠️ `adams2007bayesian` — 元数据不匹配: year: bib=2007 vs api=2018, first_author: bib=adams
+    vs api=
+
+    - ❌ `qwq` — 在线验证未找到匹配（疑似虚假引用）: best match similarity 0.27 below threshold 0.82
+
+    - ❌ `hcot2025` — 在线验证未找到匹配（疑似虚假引用）: best match similarity 0.75 below threshold
+    0.82
+
+    - ❌ `chen2025unfaithful` — 在线验证未找到匹配（疑似虚假引用）: best match similarity 0.39 below
+    threshold 0.82
+
+    - ⚠️ `wollschlager2025geometry` — 元数据不匹配: first_author: bib=wollschl\"ager vs
+    api=wollschläger
+
+    - ⚠️ `qi2025shallow_alignment` — 元数据不匹配: first_author: bib=qi vs api=huang
+
+    - ❌ `mao2025selfjailbreak_reasoning` — 在线验证未找到匹配（疑似虚假引用）: best match similarity
+    0.38 below threshold 0.82
+
+    - ❌ `baker2025monitoring` — 在线验证未找到匹配（疑似虚假引用）: best match similarity 0.46 below
+    threshold 0.82
+
+    - ❌ `boxo2025linear_probes` — 在线验证未找到匹配（疑似虚假引用）: best match similarity 0.42 below
+    threshold 0.82
+
+    - ❌ `gelman2013garden` — 在线验证未找到匹配（疑似虚假引用）: best match similarity 0.23 below threshold
+    0.82
+
+    - ⚠️ `turpin2023language` — 元数据不匹配: first_author: bib=turpin vs api=bowman
+
+    - ⚠️ `rcs2026` — 元数据不匹配: first_author: bib=hua vs api=peichun
+
+    - ⚠️ `chan2025probing` — 元数据不匹配: first_author: bib=chan vs api=siu
+
+    - ⚠️ `chrabaszcz2026monitoring` — 元数据不匹配: first_author: bib=chrab\kaszcz vs api=chrabąszcz
+
+    - ❌ `zhang2025reasoning_right` — 在线验证未找到匹配（疑似虚假引用）: best match similarity 0.37
+    below threshold 0.82
+
+    - ⚠️ `cohen1988statistical` — 元数据不匹配: year: bib=1988 vs api=2013
+
+    - ❌ `templeton2024scaling` — 在线验证未找到匹配（疑似虚假引用）: best match similarity 0.26 below
+    threshold 0.82
+
+    - ❌ `turner2023activation` — 在线验证未找到匹配（疑似虚假引用）: best match similarity 0.20 below
+    threshold 0.82
+
+    - ❌ `levinstein2024liedetector` — 在线验证未找到匹配（疑似虚假引用）: best match similarity 0.65
+    below threshold 0.82
+
+    - ❌ `advbench` — 在线验证未找到匹配（疑似虚假引用）: best match similarity 0.30 below threshold
+    0.82
+
+    - ⚠️ `vitel2025layer` — 元数据不匹配: first_author: bib=vitel vs api=dmytro
+
+    - ⚠️ `zhang2025reasoning_right` — 在 .bib 中但正文未引用
+
+
+    ### ✅ 通过 (63)'
+  error: ''
+errors: {}
+score_anomaly: ''
+created_at: '2026-05-22T10:14:19+00:00'

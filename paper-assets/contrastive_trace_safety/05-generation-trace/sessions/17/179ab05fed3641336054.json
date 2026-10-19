@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "179ab05fed3641336054",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code gemma4 v2 reclassify",
+  "task_key": "worker_code_gemma4_v2_reclassify_20260522T160732",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gemma4_v2_reclassify_20260522T160732_result.json",
+    "occurrence": 1,
+    "bytes": 376,
+    "sha256": "570f2ede5a3a2624a71094ef51630be2c30afa8e14d0edda313062b4e0e70984"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: {\"type\":\"error\",\"error\":{\"details\":null,\"type\":\"overloaded_error\",\"message\":\"Overloaded\"},\"request_id\":\"req_011CbHudpFj1sUUcA4CKfP1L\"}"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "type": "error",
+              "error": {
+                "details": null,
+                "type": "overloaded_error",
+                "message": "Overloaded"
+              },
+              "request_id": "req_011CbHudpFj1sUUcA4CKfP1L"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-gemma4-v2-reclassify.md"
+}

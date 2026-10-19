@@ -1,0 +1,27 @@
+{
+  "exp_id": "exp_014_bocpd_poc",
+  "project": "contrastive_trace_safety",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T21:02:47.275Z",
+    "updated_at": "2026-05-16T21:14:03.765Z",
+    "hypothesis": "BOCPD/CUSUM on probe score sequences may detect commitment earlier than raw threshold crossing by identifying distributional shift points. Potential breakthrough for Claim 3 (pre-textual detection).",
+    "spec": {
+      "command": "python src/experiments/bocpd_cusum.py",
+      "server": "autodl-rtx6000",
+      "data_path": "/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/",
+      "data_count": 43,
+      "model_name": "BOCPD+CUSUM on temporal LR probe scores",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_014_bocpd/bocpd_results.json",
+      "log_path": "/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_014_bocpd/"
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-16T21:14:03.765Z"
+  },
+  "timestamp": "2026-05-16T21:14:03.785651+00:00",
+  "trigger": "update_registry"
+}

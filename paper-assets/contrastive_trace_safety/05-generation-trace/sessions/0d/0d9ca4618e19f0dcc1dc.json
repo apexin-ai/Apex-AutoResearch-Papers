@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0d9ca4618e19f0dcc1dc",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code safe trace fpr multimodel",
+  "task_key": "worker_code_safe_trace_fpr_multimodel_20260517T201744",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_safe_trace_fpr_multimodel_20260517T201744_result.json",
+    "occurrence": 1,
+    "bytes": 1769,
+    "sha256": "2182ed92e1c26310bddebab4f8b6ded18c0c1a9a5298d692a6e6ed6b865d6b54"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results saved. Here's the final summary:\n\n```\n=== Safe-trace FPR Results ===\nModel      | Method             | Safe Traces | Triggered | FPR\n---------------------------------------------------------------\not-7b      | HS static          | 63          | 7         | 11.1%\not-7b      | HS temporal W=3    | 63          | 11        | 17.5%\not-7b      | Text static        | 63          | 19        | 30.2%\not-7b      | Text temp W=3      | 63          | 29        | 46.0%\nqwq-32b    | HS static          | 40          | 20        | 50.0%\nqwq-32b    | HS temporal W=3    | 40          | 18        | 45.0%\nqwq-32b    | Text static        | 40          | 13        | 32.5%\nqwq-32b    | Text temp W=3      | 40          | 17        | 42.5%\nr1-32b     | HS static          | 71          | 17        | 23.9%\nr1-32b     | HS temporal W=1    | 71          | 17        | 23.9%\nr1-32b     | Text static        | 71          | 22        | 31.0%\nr1-32b     | Text temp W=1      | 71          | 22        | 31.0%\n```\n\nKey observations:\n- **OT-7B** has the lowest HS FPR (11.1% static), but text probes are much worse (30-46%)\n- **QwQ-32B** has alarming FPR (50% static HS) — the L60 probe fires on half the safe traces\n- **R1-32B** is moderate (~24% HS, ~31% text)\n- For R1-32B with W=1, temporal = static (as expected)\n- Across all models, the K=5 consecutive-steps-above-0.5 trigger criterion is not selective enough for safe traces\n\nNotes on methodology:\n- Used SGDClassifier (log_loss) instead of LogisticRegression/SAGA for speed\n- OT-7B had a convergence warning (may inflate FPR slightly)\n- Safe trace hidden states extracted and saved to `artifacts/hidden_states_{model}_safe/`\n- Results JSON at `artifacts/safe_fpr_results.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-safe-trace-fpr-multimodel.md"
+}

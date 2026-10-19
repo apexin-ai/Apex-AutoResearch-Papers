@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_006_bootstrap_ci",
+  "project": "contrastive_trace_safety",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T20:34:57.453Z",
+    "updated_at": "2026-05-16T21:04:06.304Z",
+    "hypothesis": "Bootstrap CIs will confirm temporal methods significantly outperform static methods in crossing rate and lead time, providing statistical rigor for paper claims"
+  },
+  "timestamp": "2026-05-16T21:04:06.392195+00:00",
+  "trigger": "update_registry"
+}

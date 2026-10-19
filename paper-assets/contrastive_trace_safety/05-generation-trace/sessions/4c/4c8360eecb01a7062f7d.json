@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "id": "4c8360eecb01a7062f7d",
+  "project": "contrastive_trace_safety",
+  "kind": "worker",
+  "title": "analysis nested cv",
+  "task_key": "worker_analysis_nested_cv_20260519T112959",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_nested_cv_20260519T112959.log",
+    "occurrence": 1,
+    "bytes": 1452307,
+    "sha256": "0db418e092ad2f33d7c77a07a66db37b913f93dddc54bb1277eb3b40d322612d"
+  },
+  "statistics": {
+    "messages": 986,
+    "user_turns": 1,
+    "tool_calls": 409,
+    "roles": {
+      "log": 1,
+      "system": 20,
+      "record": 1,
+      "assistant": 144,
+      "tool_call": 409,
+      "tool_result": 409,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 511,
+      "chunks": [
+        {
+          "path": "4c8360eecb01a7062f7d-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "4c8360eecb01a7062f7d-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "4c8360eecb01a7062f7d-part-0003.json",
+          "message_count": 151
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 475,
+      "chunks": [
+        {
+          "path": "4c8360eecb01a7062f7d-part-0003.json",
+          "message_count": 29
+        },
+        {
+          "path": "4c8360eecb01a7062f7d-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "4c8360eecb01a7062f7d-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "4c8360eecb01a7062f7d-part-0006.json",
+          "message_count": 86
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-nested-cv.md"
+}

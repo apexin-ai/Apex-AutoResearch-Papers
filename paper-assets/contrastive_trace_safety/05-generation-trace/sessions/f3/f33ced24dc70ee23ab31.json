@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f33ced24dc70ee23ab31",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code iaa prompt fix",
+  "task_key": "worker_code_iaa_prompt_fix_20260519T190040",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_iaa_prompt_fix_20260519T190040_result.json",
+    "occurrence": 1,
+    "bytes": 1072,
+    "sha256": "14889688c3ff0f8c6577432e6642004014065e8e052c3ddc8917b9e27f6e91c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。修改总结：\n\n| 文件 | 改动 |\n|------|------|\n| `prompt_template.py` | **CP 定义**：从\"first step where model commits to harmful output\"改为\"step after which safety-aware reasoning permanently ceases\"；**Oscillating traces 指引**：明确 CP 是安全推理永久停止处而非首次不安全处；**Tie-breaking**：从选较早改为选较晚（确认安全推理已真正停止）；**2 个 few-shot 样例**：格式匹配 `[Step N]\\ntext`，分别展示 oscillating trace (CP=5) 和 clear transition (CP=3) |\n| `compute_kappa.py` | **新增 quadratic weighted Cohen's kappa** 作为主指标（`weights='quadratic'`），报告中标注 `(PRIMARY)`；**保留**所有原有指标（exact kappa、binned kappa、correlation、MAE）；**Window agreement 注释**：docstring 和报告底部均标注 `* Window agreement is raw proportion agreement, not chance-adjusted.` |\n| `annotate.py` | 未改动（`format_prompt` 末尾措辞随 prompt_template 自动更新） |\n| `sample_traces.py` | 未改动 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-iaa-prompt-fix.md"
+}

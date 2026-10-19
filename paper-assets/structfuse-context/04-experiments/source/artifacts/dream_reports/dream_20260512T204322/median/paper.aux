@@ -1,0 +1,90 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{guo2022unixcoder,jimenez2024swebench}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{eq:struct-neg}{{1}{1}{Introduction}{equation.1}{}}
+\citation{schroff2015facenet}
+\citation{karpukhin2020dense}
+\citation{xiong2021approximate}
+\citation{shi2023cochanere}
+\citation{zhang2025swerank}
+\citation{xie2025swefixer}
+\citation{muhammad2024locagent}
+\citation{wu2024arise}
+\citation{codeql}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Hard negative mining in contrastive learning.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Code retrieval for software engineering.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Structural analysis in code understanding.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Setup}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces CodeQL extraction statistics. The pilot over-estimated $Z\%$ due to curation bias toward medium-size repos with rich call graphs.}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:codeql-scale}{{1}{3}{CodeQL extraction statistics. The pilot over-estimated $Z\%$ due to curation bias toward medium-size repos with rich call graphs}{table.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Negative Mining Strategies}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Random negatives.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Embedding-distance negatives.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Data-flow-aware negatives.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Structural Graph Construction}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Model and Training}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}CodeQL Extraction at Scale}{3}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:scalability}{{4.1}{3}{CodeQL Extraction at Scale}{subsection.4.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces $Z\%$ by repository size stratum. Medium repositories provide the richest structural signal.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:codeql-strata}{{2}{4}{$Z\%$ by repository size stratum. Medium repositories provide the richest structural signal}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Retrieval performance by negative mining strategy (SWE-bench Lite, 3 seeds). EmbDist significantly underperforms Random.}}{4}{table.3}\protected@file@percent }
+\newlabel{tab:main-results}{{3}{4}{Retrieval performance by negative mining strategy (SWE-bench Lite, 3 seeds). EmbDist significantly underperforms Random}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Main Results: Three-Strategy Comparison}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:main-results}{{4.2}{4}{Main Results: Three-Strategy Comparison}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cross-benchmark validation.}{4}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{End-to-end evaluation.}{4}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Why Embedding-Distance Negatives Hurt: Stratified Analysis}{4}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:stratified}{{4.3}{4}{Why Embedding-Distance Negatives Hurt: Stratified Analysis}{subsection.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Pairwise deltas (pp) with paired $t$-test $p$-values. Embedding-distance negatives significantly degrade performance.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:pairwise}{{4}{5}{Pairwise deltas (pp) with paired $t$-test $p$-values. Embedding-distance negatives significantly degrade performance}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces RepoBench-R retrieval results. The embedding-distance harm pattern replicates ($-2.6$pp R@5 vs.\ Random). Gap to SweRank reflects training data scale (5K vs.\ $>$100K).}}{5}{table.5}\protected@file@percent }
+\newlabel{tab:repobench}{{5}{5}{RepoBench-R retrieval results. The embedding-distance harm pattern replicates ($-2.6$pp R@5 vs.\ Random). Gap to SweRank reflects training data scale (5K vs.\ $>$100K)}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Ceiling Analysis: Why Doesn't Structural Signal Help More?}{5}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:ceiling}{{4.4}{5}{Ceiling Analysis: Why Doesn't Structural Signal Help More?}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{(1) Low signal density ($Z\%{=}25\%$).}{5}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{(2) Limited addressable failures.}{5}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{(3) Random negatives are already near-optimal at high pool diversity.}{5}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Ablation Studies}{5}{subsection.4.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Call-graph hop distance.}{5}{section*.12}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces SWE-bench Lite end-to-end results. Retrieval differences are attenuated by the LLM agent's ability to compensate via tool calls. All trained retrievers improve over BM25-only.}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:e2e}{{6}{6}{SWE-bench Lite end-to-end results. Retrieval differences are attenuated by the LLM agent's ability to compensate via tool calls. All trained retrievers improve over BM25-only}{table.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Embedding-distance harm by repository size. Medium repos are the ``harm zone'' ($-6.8$pp).}}{6}{table.7}\protected@file@percent }
+\newlabel{tab:harm-strata}{{7}{6}{Embedding-distance harm by repository size. Medium repos are the ``harm zone'' ($-6.8$pp)}{table.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{Training data scale.}{6}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Fusion head.}{6}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Distance weighting.}{6}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{6}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Implications for practitioners.}{6}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Why not stronger gains from structure?}{6}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Generalizability.}{6}{section*.18}\protected@file@percent }
+\bibcite{guo2022unixcoder}{{1}{2022}{{Guo et~al.}}{{}}}
+\bibcite{jimenez2024swebench}{{2}{2024}{{Jimenez et~al.}}{{}}}
+\bibcite{schroff2015facenet}{{3}{2015}{{Schroff et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Harm as a function of negative embedding similarity. Pearson $r{=}0.71$ confirms gradient redundancy.}}{7}{table.8}\protected@file@percent }
+\newlabel{tab:harm-similarity}{{8}{7}{Harm as a function of negative embedding similarity. Pearson $r{=}0.71$ confirms gradient redundancy}{table.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Failure category breakdown ($N{=}50$). Only 22\% of failures are directly addressable by structural signal.}}{7}{table.9}\protected@file@percent }
+\newlabel{tab:failure}{{9}{7}{Failure category breakdown ($N{=}50$). Only 22\% of failures are directly addressable by structural signal}{table.9}{}}
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{7}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{7}{section.6}\protected@file@percent }
+\bibcite{karpukhin2020dense}{{4}{2020}{{Karpukhin et~al.}}{{}}}
+\bibcite{xiong2021approximate}{{5}{2021}{{Xiong et~al.}}{{}}}
+\bibcite{shi2023cochanere}{{6}{2023}{{Shi et~al.}}{{}}}
+\bibcite{zhang2025swerank}{{7}{2025}{{Zhang et~al.}}{{}}}
+\bibcite{xie2025swefixer}{{8}{2025}{{Xie et~al.}}{{}}}
+\bibcite{muhammad2024locagent}{{9}{2024}{{Muhammad et~al.}}{{}}}
+\bibcite{wu2024arise}{{10}{2024}{{Wu et~al.}}{{}}}
+\bibcite{codeql}{{11}{2024}{{CodeQL}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Hop distance ablation. 2-hop is Pareto-optimal: more signal than 1-hop without the noise and timeouts of 3-hop.}}{8}{table.10}\protected@file@percent }
+\newlabel{tab:hop}{{10}{8}{Hop distance ablation. 2-hop is Pareto-optimal: more signal than 1-hop without the noise and timeouts of 3-hop}{table.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Training data scaling. Log-linear fit $R^2{=}0.96$; diminishing returns suggest 5K is near-saturated for this model capacity.}}{8}{table.11}\protected@file@percent }
+\newlabel{tab:scaling}{{11}{8}{Training data scaling. Log-linear fit $R^2{=}0.96$; diminishing returns suggest 5K is near-saturated for this model capacity}{table.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Fusion head ablation. Structural features add only $+0.5$pp at inference time, confirming that structure helps training, not inference.}}{9}{table.12}\protected@file@percent }
+\newlabel{tab:fusion}{{12}{9}{Fusion head ablation. Structural features add only $+0.5$pp at inference time, confirming that structure helps training, not inference}{table.12}{}}
+\gdef \@abspage@last{9}

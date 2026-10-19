@@ -1,0 +1,28 @@
+{
+  "exp_id": "diag_d1_layer_sweep",
+  "project": "contrastive_trace_safety",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T19:29:00.134Z",
+    "updated_at": "2026-05-16T19:31:45.742Z",
+    "spec": {
+      "hypothesis": "Signal may exist in layers other than 20; layer sweep finds best layer for commitment detection",
+      "parent": "mvp_v1",
+      "command": "python -m src.diagnostics.layer_sweep",
+      "server": "autodl-rtx6000",
+      "data_path": "artifacts/hidden_states/",
+      "data_count": 209,
+      "model_name": "sklearn_LogisticRegression",
+      "seed": 42
+    },
+    "log_path": "/tmp/d1_layer_sweep.log",
+    "conclusion": "negative",
+    "checkpoint_path": "n/a",
+    "completed_at": "2026-05-16T19:31:45.742Z"
+  },
+  "timestamp": "2026-05-16T19:31:45.750347+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,50 @@
+# code r6 pooled vs pertrace comparison
+
+**Layer Selection Sensitivity in Hidden-State Safety Probes for Reasoning Models** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_code_r6_pooled_vs_pertrace_comparison_20260518T034837_result.json`
+- **Structured JSON:** [`ebff376e12a45008709a.json`](../../sessions/eb/ebff376e12a45008709a.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+Now I have all the data. Here's the summary:
+
+## Pooled vs Per-trace Precision Δ Comparison
+
+**Key finding: Table 2 for OT-7B/QwQ/R1-32B already uses per-trace values from `exp_r3_bootstrap_10k`.** Only R1-8B uses the old pooled value. The dagger (†) on R1-8B's CI in Table 2 marks it as "under reconciliation."
+
+I extracted pooled precision from the raw probe metrics (step-level) and compared with per-trace means from bootstrap:
+
+| Model | Pooled Δprec | Per-trace Δprec | Per-trace 95% CI | Diff | Source |
+|-------|-------------|-----------------|------------------|------|--------|
+| R1-8B | +22.4pp | +32.5pp | [+20.2, +45.2] | **10.1pp** | fig3 vs exp_r6_fix |
+| OT-7B | +21.3pp | +21.9pp | [+14.4, +29.6] | **0.6pp** | ot7b_layer16_verification |
+| QwQ-32B | +19.2pp | +23.5pp | [+12.9, +35.1] | **4.3pp** | qwq_layer60_bootstrap vs exp_r3 |
+| R1-32B | — | +15.4pp | [+8.7, +22.6] | **N/A** | no pooled data at L63 W1 |
+
+**Detail:**
+
+- **OT-7B (L16, W3)**: HS pooled prec 46.6% vs per-trace 56.5%; Text pooled 25.4% vs per-trace 34.6%. Δ diff = 0.6pp. Negligible.
+
+- **QwQ-32B (L60, W3)**: HS pooled prec 63.1% vs per-trace 70.5%; Text pooled 43.9% vs per-trace 47.0%. Δ diff = 4.3pp. **Not negligible** — per-trace inflates HS precision more than text, widening the gap by ~4pp.
+
+- **R1-32B (L63, W1)**: Only per-trace data exists at corrected layer. Step-level pooled precision was not recorded. As a reference point, the step vs trace gap for bal_acc is 7.5pp (step 75.1% vs trace 82.6%), suggesting pooled precision could also be lower, but I can't confirm the exact magnitude.
+
+- **R1-8B (L14, W15)**: 10.1pp difference as expected.
+
+**Bottom line**: The "< 1pp" threshold holds only for OT-7B. QwQ-32B shows a 4.3pp pooled-vs-per-trace gap. R1-32B is unknown but likely non-trivial given the bal_acc pattern. Using per-trace consistently for Table 2 is correct (it's already the case for 3/4 models), but the switch is not purely cosmetic — it does change the QwQ number by ~4pp.
+
+---

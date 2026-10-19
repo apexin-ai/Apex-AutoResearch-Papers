@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "9d8a685e0b36b12ff514",
+  "project": "contrastive_trace_safety",
+  "kind": "worker",
+  "title": "analysis r14 a2 per fold ba layer",
+  "task_key": "worker_analysis_r14_a2_per_fold_ba_layer_20260518T162914",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r14_a2_per_fold_ba_layer_20260518T162914.log",
+    "occurrence": 1,
+    "bytes": 816821,
+    "sha256": "23d2999afa505eb4cb92d9b95ad5a5368ba6f19b88dc02062f7eb9b8d8bb3445"
+  },
+  "statistics": {
+    "messages": 443,
+    "user_turns": 0,
+    "tool_calls": 187,
+    "roles": {
+      "log": 1,
+      "system": 7,
+      "record": 1,
+      "assistant": 59,
+      "tool_call": 187,
+      "tool_result": 187,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 443,
+      "chunks": [
+        {
+          "path": "9d8a685e0b36b12ff514-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "9d8a685e0b36b12ff514-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "9d8a685e0b36b12ff514-part-0003.json",
+          "message_count": 83
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-r14-a2-per-fold-ba-layer.md"
+}

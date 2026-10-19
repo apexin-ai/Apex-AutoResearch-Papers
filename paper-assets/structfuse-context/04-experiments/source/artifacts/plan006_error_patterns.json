@@ -1,0 +1,67 @@
+{
+  "total_instances": 44173,
+  "total_errors": 28276,
+  "total_success": 15897,
+  "error_rate_pct": 64.0,
+  "single_error_type": "buggy_file_not_found",
+  "root_cause": "SWE-smith buggy file path does not exist in the repository at the specified commit. The extraction pipeline resolve_file_in_repo() fuzzy matching also failed to find a match.",
+  "sub_classification": {
+    "by_repo_error_rate": {
+      "all_fail_100pct": {"repo_count": 0, "instance_count": 0},
+      "high_fail_gt90pct": {"repo_count": 36, "instance_count": 20810},
+      "moderate_fail_50_90pct": {"repo_count": 35, "instance_count": 6724},
+      "low_fail_lt50pct": {"repo_count": 11, "instance_count": 742}
+    },
+    "by_mutation_type": {
+      "func_basic": {"count": 9960, "pct": 35.2},
+      "lm_rewrite": {"count": 2847, "pct": 10.1},
+      "combine_module": {"count": 2349, "pct": 8.3},
+      "pr": {"count": 2225, "pct": 7.9},
+      "func_pm_ctrl_shuffle": {"count": 2224, "pct": 7.9},
+      "func_pm_remove_assign": {"count": 1629, "pct": 5.8},
+      "combine_file": {"count": 1500, "pct": 5.3},
+      "func_pm_remove_cond": {"count": 1424, "pct": 5.0},
+      "func_pm_ctrl_invert_if": {"count": 1189, "pct": 4.2},
+      "func_pm_class_rm_funcs": {"count": 675, "pct": 2.4},
+      "func_pm_remove_loop": {"count": 591, "pct": 2.1},
+      "func_pm_op_swap": {"count": 404, "pct": 1.4},
+      "func_pm_op_change": {"count": 373, "pct": 1.3},
+      "func_pm_remove_wrapper": {"count": 268, "pct": 0.9},
+      "func_pm_class_rm_base": {"count": 265, "pct": 0.9},
+      "func_pm_op_change_const": {"count": 185, "pct": 0.7},
+      "func_pm_op_break_chains": {"count": 127, "pct": 0.4},
+      "func_pm_class_shuffle_funcs": {"count": 37, "pct": 0.1},
+      "lm_modify": {"count": 4, "pct": 0.0}
+    },
+    "affected_repos": 82,
+    "unaffected_repos": 41
+  },
+  "patterns": [
+    {
+      "name": "buggy_file_not_found",
+      "count": 28276,
+      "pct": 64.0,
+      "description": "Buggy file path from SWE-smith instance metadata does not exist in the repository at the specified base_commit. Affects 82/123 repos (67%).",
+      "examples": [
+        "gruns__furl.da386f68.func_basic__bc6ncpqe: furl/furl.py",
+        "gruns__furl.da386f68.func_basic__c2puuoeb: furl/furl.py",
+        "gruns__furl.da386f68.func_basic__ca5c0l1w: furl/furl.py",
+        "gruns__furl.da386f68.func_basic__cynmawkj: furl/furl.py",
+        "gruns__furl.da386f68.func_basic__d8jvbpx9: furl/omdict1D.py"
+      ]
+    }
+  ],
+  "top_affected_repos": [
+    {"repo": "pylint-dev/astroid", "total": 1770, "errors": 1749, "error_rate_pct": 98.8},
+    {"repo": "pydicom/pydicom", "total": 1328, "errors": 1315, "error_rate_pct": 99.0},
+    {"repo": "sqlfluff/sqlfluff", "total": 1292, "errors": 1272, "error_rate_pct": 98.5},
+    {"repo": "conan-io/conan", "total": 978, "errors": 972, "error_rate_pct": 99.4},
+    {"repo": "pallets/jinja", "total": 957, "errors": 927, "error_rate_pct": 96.9},
+    {"repo": "pydata/patsy", "total": 814, "errors": 787, "error_rate_pct": 96.7},
+    {"repo": "python-trio/trio", "total": 778, "errors": 753, "error_rate_pct": 96.8},
+    {"repo": "sunpy/sunpy", "total": 743, "errors": 722, "error_rate_pct": 97.2},
+    {"repo": "kayak/pypika", "total": 745, "errors": 716, "error_rate_pct": 96.1},
+    {"repo": "encode/starlette", "total": 721, "errors": 689, "error_rate_pct": 95.6}
+  ],
+  "limitation_summary": "All 28,276 extraction errors (64.0% of 44,173 instances) share a single root cause: the buggy file path recorded in SWE-smith instance metadata does not match any file in the repository checkout at the specified commit hash. This is an upstream data issue in SWE-smith mutation generation pipeline, not a CodeQL extraction failure. The affected instances span 82 of 123 repositories, with 36 repos having >90% error rates, suggesting systematic file path mismatches at the repository level rather than random per-file issues."
+}

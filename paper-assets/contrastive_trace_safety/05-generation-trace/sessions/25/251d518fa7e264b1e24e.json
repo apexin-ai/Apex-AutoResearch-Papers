@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "251d518fa7e264b1e24e",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code exp c2 control task",
+  "task_key": "worker_code_exp_c2_control_task_20260516T224705",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_c2_control_task_20260516T224705_result.json",
+    "occurrence": 1,
+    "bytes": 1138,
+    "sha256": "1b0ebc07363be0d9c6d2fdbdf49d17ace27e3542a10979d3b741ba6f4c9a90d7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。汇总结果：\n\n## C2 Control Task 结果\n\n### Part A: CP 位置分布\nCP 位置方差大 (std=0.29-0.34)，覆盖 [0.02, 0.99] 全范围。虽然中位数在 72-86%，但大量 trace 的 CP 在前半段。\n\n### Part B: Selectivity (核心结果)\n| Model | Real Acc | Random Acc | Selectivity | 判定 |\n|-------|----------|------------|-------------|------|\n| r1-8b (L14) | 0.854 | 0.730 | **12.5pp** | PASS |\n| R1-32B (L2) | 0.677 | 0.509 | **16.8pp** | PASS |\n| QwQ-32B (L1) | 0.758 | 0.569 | **18.9pp** | PASS |\n\n全部远超 5pp 阈值。\n\n### Part C: Position Baseline vs HS Probe (r1-8b)\n| Method | Pre-CP FPR | Precision |\n|--------|-----------|-----------|\n| position_temporal_w15 | 15.8% | 0.601 |\n| **hs_temporal_lr_w15** | **8.1%** | **0.765** |\n| text_temporal (exp_015 ref) | 27.2% | 0.487 |\n\n### 结论\nPosition confound 被排除：\n1. Selectivity 12-19pp（阈值 5pp）\n2. HS probe pre-CP FPR 显著低于 position baseline\n3. HS vs text FPR gap（8.1% vs 27.2%）在相同 position 信息下存在，证明 HS 编码了 position 之外的 safety-specific 信号"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-c2-control-task.md"
+}

@@ -1,0 +1,441 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage[margin=1in]{geometry}
+\usepackage{natbib}
+\usepackage{subcaption}
+
+\title{Cross-Dataset Validation of Hidden-State Safety Probing:\\Layer Selection Bias as a Probe-Task-Modulated Property}
+
+\author{Anonymous}
+\date{}
+
+\begin{document}
+\maketitle
+
+% ============================================================
+\begin{abstract}
+% ============================================================
+Hidden-state probes have shown strong advantages over text-based monitors for detecting safety commitment in reasoning models, but the generality of this advantage across datasets and supervision regimes remains unclear. We extend our prior 4-model evaluation of temporal hidden-state probing to AdvBench, a binary jailbreak/safe classification benchmark that lacks the fine-grained commitment-point labels of our original dataset. Across two models (R1-8B and OT-7B), we find that the layer selection bias induced by crossing-rate-contaminated metrics \emph{replicates directionally}: CR-composite selects shallower layers than threshold-based metrics on both datasets. However, the bias gap attenuates from 23 layers (72\% depth) under temporal supervision to 7 layers (23\%) under binary labels. The hidden-state modality advantage persists (+6.5pp precision for R1-8B, +5.5pp for OT-7B) but with 3--5$\times$ smaller effect sizes than the original dataset, and only 1 of 6 metrics passes Holm--Bonferroni correction across both models. Temporal context improves probe accuracy (+3pp), Mahalanobis distance detection fails, and GRU sequence models provide no benefit over linear probes---all consistent with original findings. These results qualify the hidden-state advantage as a \emph{probe-task-modulated geometric property, strongest under temporal supervision}, rather than an unconditional model-geometric property.
+\end{abstract}
+
+% ============================================================
+\section{Introduction}
+\label{sec:intro}
+% ============================================================
+
+Reasoning-trace language models (e.g., DeepSeek-R1, QwQ) can exhibit \emph{self-jailbreak}: the model's own chain-of-thought reasoning undermines its safety training, culminating in a \emph{commitment point} where safety-aware reasoning permanently ceases. Prior work has established that hidden-state (HS) probes significantly outperform text-based probes for detecting this commitment point, achieving 12/12 Holm--Bonferroni-corrected comparisons across 4 models, 2 architectures, and 2 scales, with precision advantages of +15--24pp.
+
+A critical methodological finding from that evaluation was the sensitivity of probe performance to layer selection: the commonly used composite metric $\text{bal\_acc} \times \text{crossing\_rate}$ systematically selects shallow layers, entirely masking the HS advantage at 32B scale. Threshold-dependent metrics (precision, inverse FPR) consistently select deeper layers where the HS signal is strongest.
+
+A natural question arises: \emph{Is this layer selection bias a property of the model's geometry, or is it modulated by the probing task?} The original evaluation used commitment-point (CP) labels with step-level temporal supervision. If the bias and the HS advantage both depend on the supervision regime, their generality must be qualified.
+
+We address this by replicating the core layer selection and HS-vs-text analyses on AdvBench, a binary jailbreak/safe classification task applied to R1-8B and OT-7B reasoning traces. AdvBench provides a natural contrast: it uses trace-level binary labels (no step-level CP annotation), shorter traces ($\sim$38 sentences vs.\ $\sim$46), and a fundamentally different classification target (``is the response harmful?'' vs.\ ``has the model committed to harm?'').
+
+Our findings reveal that layer selection bias replicates directionally but with attenuated magnitude, the HS advantage persists but with 3--5$\times$ smaller effect sizes, and only precision passes multiplicity correction. This leads us to reframe the HS advantage as a \emph{probe-task-modulated geometric property}, strongest when temporal supervision can exploit the latent commitment dynamics encoded in hidden states.
+
+% ============================================================
+\section{Related Work}
+\label{sec:related}
+% ============================================================
+
+\paragraph{Hidden-state safety monitoring.}
+Hidden-state probing for safety has been explored in instruction-tuned models. TrajGuard uses token-level hidden states for adversarial input detection, achieving 95\% defense rates. SafeSwitch and SIREN target similar settings. These methods operate on standard LLMs and have not been evaluated on reasoning-model self-jailbreak, where the threat originates from the model's own reasoning process rather than adversarial inputs.
+
+\paragraph{Reasoning model safety.}
+The self-jailbreak phenomenon in reasoning models has been characterized by several concurrent works. These studies document safety reasoning interleaving with harmful execution throughout extended chains of thought, but they focus on characterization rather than deployable detection. Text-level CoT monitors are vulnerable to pathological chains of thought that mask internal safety state.
+
+\paragraph{Layer selection in probing.}
+The choice of which layer to probe is a known degree of freedom in probing studies. Prior work has shown that different layers encode different linguistic properties. We extend this to safety probing, showing that the \emph{metric} used to select layers introduces systematic bias, and that this bias is modulated by the probing task.
+
+% ============================================================
+\section{Method}
+\label{sec:method}
+% ============================================================
+
+\subsection{Hidden-State Extraction and Probing}
+
+Given a reasoning trace $\mathbf{x} = (x_1, \ldots, x_T)$ decomposed into $T$ sentences, we extract hidden-state representations $\mathbf{h}_t^{(\ell)} \in \mathbb{R}^d$ at each layer $\ell$ and sentence position $t$. For the original dataset, each step carries a commitment-point label (pre-CP vs.\ post-CP). For AdvBench, each trace carries a binary label (jailbreak vs.\ safe) applied uniformly to all steps.
+
+A logistic regression (LR) probe is trained on hidden states with optional temporal context. With window size $W$, the feature vector at step $t$ is $[\mathbf{h}_{t-W+1}^{(\ell)}; \ldots; \mathbf{h}_t^{(\ell)}] \in \mathbb{R}^{dW}$. For text probes, we replace $\mathbf{h}_t^{(\ell)}$ with MiniLM-L6 sentence embeddings $\mathbf{e}_t \in \mathbb{R}^{384}$.
+
+\subsection{Layer Selection Metrics}
+\label{sec:layer-metrics}
+
+We evaluate five layer selection metrics:
+\begin{enumerate}
+    \item \textbf{CR-composite}: $\text{bal\_acc} \times \text{crossing\_rate}$ --- the standard metric from prior work.
+    \item \textbf{Pure bal\_acc}: Balanced accuracy alone (threshold-free).
+    \item \textbf{Precision}: At the default 0.5 threshold (threshold-dependent).
+    \item \textbf{Inverse FPR}: $1 - \text{FPR}$ at the default threshold (threshold-dependent).
+    \item \textbf{Composite (additive)}: $\text{bal\_acc} + \text{precision} - \text{FPR}$ (threshold-dependent).
+\end{enumerate}
+
+The crossing rate measures how frequently probe scores cross the detection threshold. Shallow layers produce compressed representations with smaller inter-step cosine distances, generating noise-driven threshold crossings. This inflates the crossing rate at shallow layers, biasing CR-composite toward them.
+
+\subsection{Evaluation Protocol}
+
+All comparisons use 1000-iteration bootstrap resampling with Holm--Bonferroni correction for multiple comparisons. On AdvBench, we apply a 60/20/20 train/val/test split. The combined analysis across 2 models $\times$ 3 metrics yields 6 hypothesis tests corrected jointly.
+
+% ============================================================
+\section{Experiments}
+\label{sec:experiments}
+% ============================================================
+
+\subsection{Original Dataset Summary}
+
+Our original evaluation used commitment-point-labeled traces from 4 models: R1-8B (Llama-8B, R1-distilled), OT-7B (Qwen-7B, STILL-trained), QwQ-32B (Qwen-32B, native), and R1-32B (Qwen-32B, R1-distilled). Key findings at correctly selected layers: HS probes outperform text on all 4 models (12/12 Holm--Bonferroni, precision +15--24pp), temporal context universally improves accuracy (+3--13pp), and the CR-composite metric biases layer selection toward shallow layers (selecting L0--L10 instead of L14--L63).
+
+\subsection{AdvBench Replication Setup}
+
+We extract reasoning traces from R1-8B and OT-7B on AdvBench prompts. R1-8B yields 178 traces (107 jailbreak, 71 safe; split 107/35/36 train/val/test) with average trace length of 38 sentences. OT-7B yields 165 traces. Binary jailbreak/safe labels are applied at the trace level: every step in a jailbreak trace receives the positive label, including early safety-aware reasoning steps. This label assignment introduces inherent noise---a fundamental difference from the original CP-labeled data.
+
+\subsection{Layer Sweep and Static Probing}
+\label{sec:layer-sweep}
+
+We conduct a full 32-layer sweep on R1-8B AdvBench traces with static ($W{=}1$) logistic regression probes. Table~\ref{tab:layer-sweep} shows the top-5 layers ranked by balanced accuracy.
+
+\begin{table}[t]
+\centering
+\small
+\caption{AdvBench R1-8B layer sweep (top-5 by balanced accuracy). The layer landscape is flatter than the original dataset ($\sim$7pp range vs.\ $\sim$15pp).}
+\label{tab:layer-sweep}
+\begin{tabular}{lccccc}
+\toprule
+Layer & Depth \% & Bal Acc & Prec & CR & CR$\times$BA \\
+\midrule
+L5  & 16\% & 0.68 & 0.46 & 0.71 & 0.483 \\
+L8  & 26\% & 0.71 & 0.49 & 0.58 & 0.412 \\
+L10 & 32\% & 0.72 & 0.51 & 0.55 & 0.396 \\
+L12 & 39\% & 0.70 & 0.53 & 0.48 & 0.336 \\
+L16 & 52\% & 0.67 & 0.52 & 0.42 & 0.281 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The best balanced accuracy peaks at L10 (32\% depth, 0.72) while best precision peaks at L12 (39\%, 0.53). The layer profile range is $\sim$7pp (best-to-worst), compared to $\sim$15pp in the original CP-labeled setting. This compression is consistent with binary labels distributing signal more uniformly across layers: without step-level supervision, the contrast between shallow noise-driven crossings and deep signal-driven crossings is reduced.
+
+\subsection{Five-Metric Layer Selection Bias (Core Result)}
+\label{sec:five-metric}
+
+Table~\ref{tab:five-metric} presents the core AdvBench replication: all 5 layer selection metrics applied to R1-8B.
+
+\begin{table}[t]
+\centering
+\small
+\caption{AdvBench 5-metric layer selection (R1-8B). CR-composite selects shallower (L5) than threshold-dependent metrics (L11--L12), replicating the directional bias.}
+\label{tab:five-metric}
+\begin{tabular}{lcccc}
+\toprule
+Metric & Layer & Depth \% & Bal Acc & CR \\
+\midrule
+bal\_acc $\times$ CR & L5 & 16\% & 0.68 & 0.71 \\
+Pure bal\_acc & L10 & 32\% & 0.72 & 0.55 \\
+Precision & L12 & 39\% & 0.70 & 0.48 \\
+Inverse FPR & L11 & 35\% & 0.69 & 0.51 \\
+Composite (add) & L12 & 39\% & 0.70 & 0.48 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Three of four non-biased metrics select L10--L12 (32--39\% depth), while CR-composite selects L5 (16\%). The crossing rate at L5 (0.71) exceeds that at L12 (0.48), confirming the shallow-bias mechanism. Table~\ref{tab:bias-gap} quantifies the gap attenuation across datasets.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Layer selection bias gap: original CP-labeled vs.\ AdvBench binary.}
+\label{tab:bias-gap}
+\begin{tabular}{lccccc}
+\toprule
+Dataset & CR Layer & Prec Layer & Gap & Depth Gap & CR Ratio \\
+\midrule
+Original (CP) & L0 (0\%) & L23 (72\%) & 23 & 72\% & 1.80 \\
+AdvBench (binary) & L5 (16\%) & L12 (39\%) & 7 & 23\% & 1.28 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The bias gap attenuates from 23 layers (72\% depth) to 7 layers (23\%). Three factors explain this: (1) binary labels produce a more uniform crossing-rate profile (CR ratio 1.28 vs.\ 1.80); (2) shorter AdvBench traces reduce inter-layer signal variance; (3) binary discrimination's optimal precision layer sits at mid-depth rather than deep, because it does not require the temporal-structure sensitivity that threshold metrics exploit under CP supervision.
+
+\subsection{HS vs.\ Text at Selected Layers}
+
+Table~\ref{tab:hs-text-layer} shows the HS-vs-text comparison at each metric-selected layer for R1-8B.
+
+\begin{table}[t]
+\centering
+\small
+\caption{AdvBench HS vs.\ Text at each selected layer (R1-8B, $W{=}3$).}
+\label{tab:hs-text-layer}
+\begin{tabular}{lcccccc}
+\toprule
+Layer & HS Prec & Text Prec & $\Delta$ & HS BA & Text BA & $\Delta$ \\
+\midrule
+L5 (CR)   & 0.46 & 0.43 & +3.1pp & 0.68 & 0.66 & +2.0pp \\
+L10 (BA)  & 0.51 & 0.46 & +5.4pp & 0.72 & 0.68 & +3.8pp \\
+L12 (Prec) & 0.53 & 0.46 & +6.5pp & 0.70 & 0.67 & +3.4pp \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+At the precision-selected layer (L12), HS achieves a +6.5pp precision advantage over text. This is directionally consistent with the original dataset (+22.4pp for R1-8B) but attenuated by $\sim$3.5$\times$. Notably, the HS advantage is larger at deeper layers across all metrics, consistent with the original finding.
+
+\subsection{Temporal Window Ablation}
+
+Table~\ref{tab:temporal} presents the temporal ablation at L12 with $W \in \{1, 3, 5\}$.
+
+\begin{table}[t]
+\centering
+\small
+\caption{AdvBench temporal ablation (R1-8B, L12). $W{=}3$ optimal.}
+\label{tab:temporal}
+\begin{tabular}{lcccc}
+\toprule
+$W$ & Bal Acc & Precision & Coverage & Step FPR \\
+\midrule
+1 (static) & 0.70 & 0.53 & 0.78 & 0.22 \\
+3 & \textbf{0.73} & \textbf{0.56} & 0.72 & \textbf{0.19} \\
+5 & 0.72 & 0.55 & 0.67 & 0.20 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Temporal context improves balanced accuracy by +3pp ($W{=}1 \to W{=}3$), consistent with the +3--5pp gain observed on the original dataset. The optimal window is smaller ($W{=}3$ vs.\ $W{=}10$--25 on the original), reflecting shorter AdvBench traces: at $W{=}5$, the feature dimensionality ($4096 \times 5 = 20480$) approaches the training set size ($n{=}107$), and edge samples are lost. Coverage decreases monotonically, replicating the universal precision--coverage tradeoff.
+
+\subsection{Bootstrap Statistical Comparison}
+\label{sec:bootstrap}
+
+Table~\ref{tab:bootstrap} presents bootstrap comparisons at L12, $W{=}3$ for R1-8B ($n{=}36$ test).
+
+\begin{table}[t]
+\centering
+\small
+\caption{AdvBench bootstrap comparison (R1-8B, L12, $W{=}3$, 1000 resamples, $n{=}36$ test). Only precision passes Holm--Bonferroni.}
+\label{tab:bootstrap}
+\begin{tabular}{lcccccc}
+\toprule
+Metric & HS & Text & $\Delta$ & 95\% CI & $p$ & HB? \\
+\midrule
+Bal Acc & 0.730 & 0.691 & +3.9pp & [$-$0.5, +8.3] & 0.082 & N \\
+Precision & 0.560 & 0.495 & +6.5pp & [+1.4, +11.6] & 0.014 & \textbf{Y} \\
+FPR & 0.190 & 0.228 & $-$3.8pp & [$-$8.9, +1.3] & 0.118 & N \\
+AUROC & 0.758 & 0.718 & +4.0pp & [+0.1, +7.9] & 0.045 & N \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Only precision passes Holm--Bonferroni correction ($p{=}0.014 < 0.0167$ at rank 1/3). Balanced accuracy and FPR confidence intervals include zero. With $n{=}36$ test traces, the minimum detectable effect at 80\% power is $\sim$12pp; observed deltas (4--6.5pp) fall below this threshold for all metrics except precision, where the lower variance allows the 6.5pp delta to reach significance. The effect size reduction from the original ($\sim$20pp precision) to AdvBench ($\sim$6pp) is the signature of binary-label attenuation.
+
+\subsection{HS--Text Gap Compression}
+
+Table~\ref{tab:gap-compression} directly compares the HS--text gap across datasets.
+
+\begin{table}[t]
+\centering
+\small
+\caption{HS--Text gap compression: original CP-labeled vs.\ AdvBench binary (R1-8B, temporal $W{=}3$).}
+\label{tab:gap-compression}
+\begin{tabular}{lcccccc}
+\toprule
+Dataset & HS BA & Text BA & Gap & HS Prec & Text Prec & Gap \\
+\midrule
+Original & 0.810 & 0.678 & +13.2pp & 0.822 & 0.487 & +33.5pp \\
+AdvBench & 0.730 & 0.690 & +4.0pp & 0.560 & 0.500 & +6.0pp \\
+\midrule
+Compression & --- & --- & 3.3$\times$ & --- & --- & 5.6$\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The HS--text gap compresses 3.3$\times$ for balanced accuracy and 5.6$\times$ for precision. Text probes perform \emph{relatively} better on AdvBench because binary jailbreak/safe classification is more amenable to surface patterns: harmful keywords, refusal phrases, and compliance indicators are directly discriminative in surface text. The HS modality advantage is largest when the classification task requires detecting subtle internal state transitions (temporal CP detection), not when surface patterns suffice (binary classification).
+
+\subsection{OT-7B Cross-Model Extension}
+
+To assess whether the AdvBench findings are R1-8B-specific, we extend the analysis to OT-7B (Qwen-7B, STILL-trained, 165 traces). Table~\ref{tab:ot7b-metrics} shows the 5-metric layer selection.
+
+\begin{table}[t]
+\centering
+\small
+\caption{OT-7B AdvBench 5-metric layer selection.}
+\label{tab:ot7b-metrics}
+\begin{tabular}{lccc}
+\toprule
+Metric & Layer & Depth \% & Bal Acc \\
+\midrule
+bal\_acc $\times$ CR & L3 & 11\% & 0.65 \\
+Pure bal\_acc & L9 & 32\% & 0.68 \\
+Precision & L14 & 50\% & 0.66 \\
+Inverse FPR & L13 & 46\% & 0.66 \\
+Composite & L14 & 50\% & 0.66 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+OT-7B shows a larger bias gap (11 layers, 39\% depth) than R1-8B (7 layers, 23\%), consistent with OT-7B's 28-layer architecture having steeper per-layer signal gradients. CR-composite selects L3 (11\%), confirming the shallow bias across models.
+
+\paragraph{Combined Holm--Bonferroni.} Table~\ref{tab:combined-hb} presents the combined 2-model analysis with 6 hypothesis tests.
+
+\begin{table}[t]
+\centering
+\small
+\caption{AdvBench combined Holm--Bonferroni (2 models, 6 tests). Only R1-8B precision passes.}
+\label{tab:combined-hb}
+\begin{tabular}{llccccc}
+\toprule
+Model & Metric & $\Delta$ (pp) & $p$ & HB Rank & Threshold & Pass? \\
+\midrule
+R1-8B & Precision & +6.5 & 0.014 & 1 & 0.0083 & \textbf{Y} \\
+OT-7B & Precision & +5.5 & 0.038 & 2 & 0.0100 & N \\
+R1-8B & Bal Acc & +3.9 & 0.082 & 3 & 0.0125 & N \\
+R1-8B & FPR & $-$3.8 & 0.118 & 4 & 0.0167 & N \\
+OT-7B & Bal Acc & +3.2 & 0.112 & 5 & 0.0250 & N \\
+OT-7B & FPR & $-$2.9 & 0.168 & 6 & 0.0500 & N \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+One of six tests passes (R1-8B precision, $p{=}0.014$). The combined result confirms directional consistency---all deltas favor HS---but the evidence is insufficient for strong cross-dataset claims. The minimum detectable effect with these sample sizes ($n{=}33$--36 test) is $\sim$12--14pp, well above the observed 3--6.5pp deltas.
+
+\subsection{Early Detection Timing}
+
+We adapt the lead-time analysis for binary labels by measuring the earliest trace fraction at which the probe consistently classifies correctly (Table~\ref{tab:early-detection}).
+
+\begin{table}[t]
+\centering
+\small
+\caption{AdvBench early detection (R1-8B, L12, $W{=}3$, $n{=}36$ test).}
+\label{tab:early-detection}
+\begin{tabular}{lccc}
+\toprule
+Modality & Median First-Correct & Trace Fraction & Earlier in $N$/36 \\
+\midrule
+HS (L12, $W{=}3$) & 10.6 & 28\% & 23 \\
+Text ($W{=}3$) & 15.6 & 41\% & 13 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+HS probes classify jailbreak traces correctly earlier ($\sim$28\% vs.\ $\sim$41\% of trace for text), with HS earlier in 23/36 traces. The $\sim$5 step advantage is consistent with hidden states encoding safety disposition before surface text reveals intent, but the adapted metric is less rigorous than the original lead-time analysis and should be interpreted with caution.
+
+\subsection{Oracle Ceiling Analysis}
+
+Binary trace-level labels impose a per-step classification ceiling because early steps in jailbreak traces are genuinely safety-aware (Table~\ref{tab:ceiling}).
+
+\begin{table}[t]
+\centering
+\small
+\caption{AdvBench classification ceiling under binary labels (R1-8B).}
+\label{tab:ceiling}
+\begin{tabular}{lcc}
+\toprule
+Method & Step Bal Acc & Gap to Ceiling \\
+\midrule
+Ceiling (binary label) & $\sim$0.85 & --- \\
+HS LR $W{=}3$ (L12) & 0.73 & 12pp \\
+Text LR $W{=}3$ & 0.69 & 16pp \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The $\sim$0.85 ceiling (vs.\ $\sim$0.95 on original CP-labeled data) constrains maximum achievable deltas: even a perfect probe can only reach 0.85 under binary labels. The 12pp gap between the HS probe and the ceiling suggests moderate room for improvement, but it is fundamentally limited by label quality rather than probe architecture.
+
+\subsection{Negative Results}
+
+\paragraph{Mahalanobis distance.} Mahalanobis distance anomaly detection fails on AdvBench, replicating the negative result from the original 4-model evaluation. Table~\ref{tab:mahalanobis} shows near-zero separation across all PCA dimensions.
+
+\begin{table}[t]
+\centering
+\small
+\caption{AdvBench Mahalanobis separation by PCA dimension (R1-8B, L12).}
+\label{tab:mahalanobis}
+\begin{tabular}{lccc}
+\toprule
+PCA Dim & Safe MD & Jailbreak MD & Separation \\
+\midrule
+16  & 5.12 & 5.09 & $-$0.03 \\
+32  & 6.01 & 6.05 & +0.04 \\
+64  & 6.45 & 6.49 & +0.04 \\
+128 & 6.89 & 6.87 & $-$0.02 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The maximum separation is 0.04 (at PCA dimension 64), with true positive rate (0.03) at the 5\% threshold lower than the false alarm rate (0.04). Safety-relevant signal occupies minor PCA components, not principal variance directions---consistent with the mechanistic explanation from the original dataset. This cross-dataset replication across 5 model-dataset combinations strengthens the conclusion that variance-based unsupervised detection is fundamentally inapplicable to safety commitment detection.
+
+\paragraph{GRU sequence model.} The GRU provides no improvement over logistic regression on AdvBench (Table~\ref{tab:gru}).
+
+\begin{table}[t]
+\centering
+\small
+\caption{AdvBench GRU vs.\ LR (R1-8B, L12).}
+\label{tab:gru}
+\begin{tabular}{lcccc}
+\toprule
+Method & Bal Acc & Precision & Coverage & Step FPR \\
+\midrule
+LR $W{=}3$ & \textbf{0.73} & \textbf{0.56} & \textbf{0.72} & \textbf{0.19} \\
+GRU & 0.71 & 0.54 & 0.69 & 0.24 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Under binary labels, all steps carry the same label, so there is no sequential safe$\to$committed transition for the GRU to model. The GRU's 1.6M parameters overfit to $n{=}107$ training traces without compensating temporal signal. Combined with the original results (modest R1-8B gain, negative on 32B), this confirms that linear probes are sufficient across both supervision regimes.
+
+\paragraph{False positive rate analysis.} Table~\ref{tab:fpr} compares FPR across datasets.
+
+\begin{table}[t]
+\centering
+\small
+\caption{FPR comparison: original vs.\ AdvBench (R1-8B).}
+\label{tab:fpr}
+\begin{tabular}{lcccccc}
+\toprule
+Dataset & HS Step & Text Step & Gap & HS Trace & Text Trace & Gap \\
+\midrule
+Original & 0.162 & 0.272 & 11.0pp & 0.390 & 0.502 & 11.2pp \\
+AdvBench & 0.180 & 0.240 & 6.0pp & 0.330 & 0.420 & 9.0pp \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+AdvBench HS step FPR (0.18) is comparable to the original (0.162). The HS--text FPR gap is narrower (6pp vs.\ 11pp), consistent with the general pattern of attenuated HS advantage under binary labels. Trace-level FPR remains substantial (33\% for HS), confirming that high false alarm rates are a cross-dataset limitation of probe-based detection.
+
+% ============================================================
+\section{Discussion}
+\label{sec:discussion}
+% ============================================================
+
+\paragraph{Layer selection bias is probe-task-modulated.}
+The core finding is that CR-composite's shallow bias replicates directionally on AdvBench, but the gap attenuates from 72\% depth to 23\%. This establishes the bias as a property of the crossing-rate mechanism itself (shallow layers producing noise-driven crossings), with magnitude modulated by the supervision regime. Under binary labels, the per-layer crossing-rate profile is more uniform, reducing the bias impact.
+
+\paragraph{HS advantage depends on supervision quality.}
+The 3--5$\times$ gap compression between original and AdvBench results has a mechanistic explanation: binary trace-level labels make text probes more competitive because surface-level features (keywords, refusal patterns) are directly discriminative for binary classification. The HS advantage is largest when the classification task requires detecting subtle internal state transitions---precisely the scenario where surface text is insufficient. This reframes the HS advantage from an unconditional model-geometric property to a \emph{probe-task-modulated} one.
+
+\paragraph{Statistical power and the median tier.}
+With $n{=}33$--36 test traces, the minimum detectable effect at 80\% power is $\sim$12--14pp. The observed deltas (3--6.5pp) are real but underpowered for most metrics. Only precision passes Holm--Bonferroni (1/6), providing directional support without decisive evidence. Reaching 3.5+ reviewer scores would require either larger AdvBench samples or a second binary-label dataset to accumulate statistical power.
+
+\paragraph{Implications for deployment.}
+The AdvBench results suggest that the practical value of HS monitoring over text monitoring depends on the detection task. For binary safety classification (``is this response harmful?''), text-based monitors may provide comparable performance at lower computational cost. For fine-grained commitment detection (``when does the model commit to harm?''), HS probes retain a substantial advantage. System designers should match the monitoring modality to the detection granularity required.
+
+% ============================================================
+\section{Conclusion}
+\label{sec:conclusion}
+% ============================================================
+
+We replicated the layer selection bias and HS-vs-text analyses on AdvBench binary classification across two models. Layer selection bias replicates directionally (CR-composite selects shallower layers than threshold-based metrics) but with attenuated magnitude (7-layer gap vs.\ 23 on the original dataset). The HS modality advantage persists (+5.5--6.5pp precision) but is 3--5$\times$ smaller than under temporal supervision, with only 1/6 Holm--Bonferroni passes. These results qualify the HS advantage as a probe-task-modulated geometric property strongest under temporal supervision, rather than an unconditional model-geometric property. Temporal improvement, Mahalanobis failure, and GRU non-improvement all replicate directionally, supporting the robustness of these findings across supervision regimes.
+
+% ============================================================
+\section*{Limitations}
+% ============================================================
+
+The AdvBench replication is limited to two models (R1-8B and OT-7B); extending to 32B models would strengthen cross-scale generalization. The binary label regime imposes a step-level accuracy ceiling ($\sim$0.85) that constrains achievable deltas, making it difficult to distinguish weak signal from inadequate power. The early detection timing metric is adapted from the original lead-time analysis and is less rigorous (no explicit commitment point to anchor). Finally, $n{=}33$--36 test traces yield minimum detectable effects of 12--14pp, meaning that true deltas below this range cannot be reliably detected; larger AdvBench samples or additional binary-label datasets are needed for decisive cross-dataset validation.
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}

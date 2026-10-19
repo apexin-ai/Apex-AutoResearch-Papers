@@ -1,0 +1,64 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Hidden-state safety detection.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Reasoning model safety.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Representation geometry of safety.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Change-point detection.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Formulation}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Dataset}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Static Probes}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Temporal Probes}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Sequential Models}{3}{subsection.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Unsupervised Baselines}{3}{subsection.3.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.7}Change-Point Detection}{3}{subsection.3.7}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Static probe results across architectures. Best layer identified via full layer sweep. Asterisk (*) marks R1-family models.}}{4}{table.caption.5}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:static}{{1}{4}{Static probe results across architectures. Best layer identified via full layer sweep. Asterisk (*) marks R1-family models}{table.caption.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Pre-commitment FPR and precision by architecture family and scale. R1-distilled models consistently outperform Qwen-native models regardless of scale.}}{4}{table.caption.6}\protected@file@percent }
+\newlabel{tab:arch_matrix}{{2}{4}{Pre-commitment FPR and precision by architecture family and scale. R1-distilled models consistently outperform Qwen-native models regardless of scale}{table.caption.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{4}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Cross-Architecture Static Probes}{4}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Hidden-State vs Text Comparison}{4}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Temporal Window Effect}{4}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Lead Time and Early Detection}{4}{subsection.4.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Hidden-state vs text temporal probes (W=15) on 32B models. FPR$_\text  {pre}$: pre-commitment false positive rate.}}{5}{table.caption.7}\protected@file@percent }
+\newlabel{tab:hs_vs_text}{{3}{5}{Hidden-state vs text temporal probes (W=15) on 32B models. FPR$_\text {pre}$: pre-commitment false positive rate}{table.caption.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Coverage gain from temporal windowing (static to W=15). All combinations show positive coverage delta, confirming temporal context is method-agnostic.}}{5}{table.caption.8}\protected@file@percent }
+\newlabel{tab:temporal}{{4}{5}{Coverage gain from temporal windowing (static to W=15). All combinations show positive coverage delta, confirming temporal context is method-agnostic}{table.caption.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Change-Point Detection}{5}{subsection.4.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Unsupervised Geometric Methods}{5}{subsection.4.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Cross-Model Transfer}{5}{subsection.4.7}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Window size ablation showing coverage at various window sizes. All models show diminishing returns after W=15.}}{6}{table.caption.9}\protected@file@percent }
+\newlabel{tab:window_ablation}{{5}{6}{Window size ablation showing coverage at various window sizes. All models show diminishing returns after W=15}{table.caption.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Lead time distribution. No model-method combination achieves reliable positive median lead time. \% Pos: fraction of traces with positive lead.}}{6}{table.caption.10}\protected@file@percent }
+\newlabel{tab:lead}{{6}{6}{Lead time distribution. No model-method combination achieves reliable positive median lead time. \% Pos: fraction of traces with positive lead}{table.caption.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}Safe Trace False Positive Rates}{6}{subsection.4.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.9}Statistical Robustness}{6}{subsection.4.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.10}Ablation: Fine-Grained Supervision}{6}{subsection.4.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.11}GRU vs Linear Temporal Probes}{6}{subsection.4.11}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Change-point detection results. BOCPD achieves high detection rate but not earlier detection than simple thresholding. CUSUM fails universally.}}{7}{table.caption.11}\protected@file@percent }
+\newlabel{tab:cpd}{{7}{7}{Change-point detection results. BOCPD achieves high detection rate but not earlier detection than simple thresholding. CUSUM fails universally}{table.caption.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Mahalanobis distance baseline. Low crossing rates and negligible safe/unsafe distance separation indicate failure across all architectures.}}{7}{table.caption.12}\protected@file@percent }
+\newlabel{tab:mahal}{{8}{7}{Mahalanobis distance baseline. Low crossing rates and negligible safe/unsafe distance separation indicate failure across all architectures}{table.caption.12}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{7}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Architecture-specific signal geometry.}{7}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The oracle gap.}{7}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Practical implications.}{7}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{7}{section.6}\protected@file@percent }
+\bibstyle{plainnat}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Cross-model probe transfer accuracy. Diagonal entries (marked *) are within-model performance. Off-diagonal entries show transfer with learned linear projection. All transfers are near chance (0.50--0.58).}}{8}{table.caption.13}\protected@file@percent }
+\newlabel{tab:transfer}{{9}{8}{Cross-model probe transfer accuracy. Diagonal entries (marked *) are within-model performance. Off-diagonal entries show transfer with learned linear projection. All transfers are near chance (0.50--0.58)}{table.caption.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces False positive rate on safe traces. All methods produce high FPR ($>$39\%), limiting deployment utility. HS temporal achieves the lowest FPR on R1-family models.}}{8}{table.caption.14}\protected@file@percent }
+\newlabel{tab:safe_fpr}{{10}{8}{False positive rate on safe traces. All methods produce high FPR ($>$39\%), limiting deployment utility. HS temporal achieves the lowest FPR on R1-family models}{table.caption.14}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Bootstrap 95\% CIs for pre-commitment FPR. The HS vs text comparison reaches significance on r1-32b ($p=0.034$) but not on QwQ-32B ($p=0.218$).}}{9}{table.caption.15}\protected@file@percent }
+\newlabel{tab:bootstrap}{{11}{9}{Bootstrap 95\% CIs for pre-commitment FPR. The HS vs text comparison reaches significance on r1-32b ($p=0.034$) but not on QwQ-32B ($p=0.218$)}{table.caption.15}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Fine-grained (16-label) vs binary supervision. Marginal coverage gains (+2.3pp) are not significant, confirming binary supervision is near-optimal for linear probes.}}{9}{table.caption.16}\protected@file@percent }
+\newlabel{tab:finegrain}{{12}{9}{Fine-grained (16-label) vs binary supervision. Marginal coverage gains (+2.3pp) are not significant, confirming binary supervision is near-optimal for linear probes}{table.caption.16}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces GRU vs LR temporal on 32B models. GRU achieves higher coverage but worse precision, higher FPR, and high seed variance (coverage range shown in parentheses).}}{9}{table.caption.17}\protected@file@percent }
+\newlabel{tab:gru}{{13}{9}{GRU vs LR temporal on 32B models. GRU achieves higher coverage but worse precision, higher FPR, and high seed variance (coverage range shown in parentheses)}{table.caption.17}{}}
+\gdef \@abspage@last{9}

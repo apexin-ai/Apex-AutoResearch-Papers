@@ -1,0 +1,43 @@
+{
+  "exp_id": "exp_013_text_baseline",
+  "project": "contrastive_trace_safety",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T20:40:49.092Z",
+    "updated_at": "2026-05-16T21:05:44.636Z",
+    "hypothesis": "Text-based sentence embeddings (all-MiniLM-L6-v2) should underperform hidden-state probes on commitment detection because surface text may not reveal internal model state shifts. If text matches hidden-state performance, paper motivation needs restructuring.",
+    "spec": {
+      "command": "python src/experiments/text_baseline.py",
+      "server": "autodl-rtx6000",
+      "data_path": "HarmThoughts r1-8b sentences",
+      "data_count": 209,
+      "model_name": "all-MiniLM-L6-v2",
+      "seed": 42,
+      "checkpoint_path": "N/A",
+      "log_path": "/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_013_text_baseline/"
+    },
+    "conclusion": "success",
+    "checkpoint_path": "N/A",
+    "log_path": "/tmp/exp013.log",
+    "completed_at": "2026-05-16T20:48:51.703Z",
+    "metrics": {
+      "text_static": {
+        "coverage": 60.5,
+        "mean_lead_time": 4.3,
+        "step_accuracy": 66.1,
+        "auroc": 0.7384
+      },
+      "text_temporal_w15": {
+        "coverage": 65.1,
+        "mean_lead_time": 11.5,
+        "step_accuracy": 67.8,
+        "auroc": 0.759
+      }
+    }
+  },
+  "timestamp": "2026-05-16T21:05:44.659200+00:00",
+  "trigger": "update_registry"
+}

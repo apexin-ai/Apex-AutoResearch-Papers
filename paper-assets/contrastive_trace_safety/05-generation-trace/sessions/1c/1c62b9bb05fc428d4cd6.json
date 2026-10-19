@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1c62b9bb05fc428d4cd6",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code r1 8b hs text bootstrap",
+  "task_key": "worker_code_r1_8b_hs_text_bootstrap_20260516T230705",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r1_8b_hs_text_bootstrap_20260516T230705_result.json",
+    "occurrence": 1,
+    "bytes": 615,
+    "sha256": "c69580293f20d6747f7beaf62a4f25519f42c248e54e10671c57c1632e9e2e7b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Results:\n\n| Metric | Value |\n|--------|-------|\n| **HS pre-CP FPR** | 14.8% |\n| **Text pre-CP FPR** | 22.2% |\n| **Difference (HS - Text)** | -7.4pp |\n| **95% CI** | [-15.6%, -0.4%] |\n| **p-value** | 0.044 |\n| **N test traces** | 43 |\n\nThe HS probe has significantly lower pre-CP FPR than the text probe (p=0.044). The CI excludes zero, confirming the effect. This is consistent with QwQ-32B (p=0.001), though the effect size is smaller (7.4pp vs 14.8pp).\n\nOutput saved to `artifacts/r1_8b_bootstrap_hs_text/results.json` and report at `artifacts/r1_8b_bootstrap_hs_text/report.md`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r1-8b-hs-text-bootstrap.md"
+}

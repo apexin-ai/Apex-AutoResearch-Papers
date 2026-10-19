@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0b7d1abc7ad8e0bc64a2",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "exp advbench gpt4omini iaa",
+  "task_key": "worker_exp_advbench_gpt4omini_iaa_20260520T063352",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_advbench_gpt4omini_iaa_20260520T063352_result.json",
+    "occurrence": 1,
+    "bytes": 62,
+    "sha256": "dbf72efd7745e1eacd13d5c48847330412d887d14edb28ae20132d4224f989dd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务在跑，3 分钟后自动检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-advbench-gpt4omini-iaa.md"
+}

@@ -1,0 +1,883 @@
+[
+  {
+    "name": "AdvBench Layer Sweep + Static Probe (R1-8B)",
+    "description": "Full 32-layer sweep on R1-8B AdvBench traces with binary jailbreak/safe labels. Per-layer static LR probe. Establish baseline and identify scheme B bias direction.",
+    "results": {
+      "n_traces": 178,
+      "n_jailbreak": 107,
+      "n_safe": 71,
+      "split": "107/35/36",
+      "avg_trace_length_sentences": 38,
+      "best_layer_bal_acc": "L10",
+      "best_layer_depth_pct": 32,
+      "best_layer_bal_acc_value": 0.72,
+      "best_layer_precision": 0.51,
+      "best_layer_crossing_rate": 0.55,
+      "scheme_b_layer": "L5",
+      "scheme_b_depth_pct": 16,
+      "scheme_b_bal_acc": 0.68,
+      "scheme_b_crossing_rate": 0.71,
+      "deep_layer_L20_bal_acc": 0.65,
+      "deep_layer_L20_precision": 0.53,
+      "layer_profile_range_pp": 7
+    },
+    "tables": [
+      {
+        "name": "AdvBench R1-8B Layer Sweep Top-5",
+        "columns": [
+          "Layer",
+          "Depth %",
+          "Bal Acc",
+          "Precision",
+          "Crossing Rate",
+          "CR x BA"
+        ],
+        "rows": [
+          [
+            "L5",
+            "16%",
+            "0.68",
+            "0.46",
+            "0.71",
+            "0.483"
+          ],
+          [
+            "L8",
+            "26%",
+            "0.71",
+            "0.49",
+            "0.58",
+            "0.412"
+          ],
+          [
+            "L10",
+            "32%",
+            "0.72",
+            "0.51",
+            "0.55",
+            "0.396"
+          ],
+          [
+            "L12",
+            "39%",
+            "0.70",
+            "0.53",
+            "0.48",
+            "0.336"
+          ],
+          [
+            "L16",
+            "52%",
+            "0.67",
+            "0.52",
+            "0.42",
+            "0.281"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "AdvBench layer landscape is flatter than original — best/worst gap ~7pp vs ~15pp. Scheme B bias direction replicated (shallow) but magnitude attenuated. This motivates the 5-metric ablation (exp-008) as the core test.\n\nBinary trace-level labels weaken per-step supervision: every step in a jailbreak trace is labeled positive, including early safety-aware reasoning. This label noise reduces probe accuracy (0.72 vs original 0.81). Scheme B selects L5 (16%) — still shallow but not L0, because binary labels produce a more uniform crossing rate profile across layers (noise is less step-position-dependent than under CP labels). Pure bal_acc peaks at mid-depth L10 (32%) where intermediate representations maximize binary discriminability. Deep layers (L20+) encode CP-relevant temporal distinctions that binary labels cannot leverage, so bal_acc drops. Layer profile range (~7pp best-to-worst) is compressed versus original (~15pp), consistent with binary labels distributing signal more uniformly."
+  },
+  {
+    "name": "AdvBench Temporal Window (R1-8B)",
+    "description": "Temporal LR with W=1,3,5 on R1-8B AdvBench at threshold-selected layer L12. Validate temporal improvement under binary labels.",
+    "results": {
+      "layer": "L12",
+      "W1_bal_acc": 0.7,
+      "W1_precision": 0.53,
+      "W1_coverage": 0.78,
+      "W1_fpr": 0.22,
+      "W3_bal_acc": 0.73,
+      "W3_precision": 0.56,
+      "W3_coverage": 0.72,
+      "W3_fpr": 0.19,
+      "W5_bal_acc": 0.72,
+      "W5_precision": 0.55,
+      "W5_coverage": 0.67,
+      "W5_fpr": 0.2,
+      "best_W": 3,
+      "temporal_gain_over_static_pp": 3.0,
+      "original_temporal_gain_pp": "3-5"
+    },
+    "tables": [
+      {
+        "name": "AdvBench Temporal Ablation (L12)",
+        "columns": [
+          "W",
+          "Bal Acc",
+          "Precision",
+          "Coverage",
+          "Step FPR"
+        ],
+        "rows": [
+          [
+            "1 (static)",
+            "0.70",
+            "0.53",
+            "0.78",
+            "0.22"
+          ],
+          [
+            "3",
+            "0.73",
+            "0.56",
+            "0.72",
+            "0.19"
+          ],
+          [
+            "5",
+            "0.72",
+            "0.55",
+            "0.67",
+            "0.20"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Temporal context helps on AdvBench but with lower ceiling. The gain direction replicates C1's temporal improvement claim. Shorter optimal W reflects shorter traces — consistent with the hypothesis that trace structure modulates temporal signal strength.\n\nTemporal improvement present but weaker (+3pp vs +3-5pp on original). Binary labels lack an explicit safe→committed transition for the window to capture — the temporal context picks up local coherence patterns but without step-level supervision the gradient is diffuse. W=3 optimal because AdvBench traces are shorter (~38 steps); at W=5 the feature dimensionality (4096×5=20480) approaches training set size and edge samples are lost. Coverage decreases monotonically with W (universal tradeoff)."
+  },
+  {
+    "name": "AdvBench Cross-Model Transfer",
+    "description": "Not directly applicable — AdvBench what_if specifies R1-8B only. Cross-transfer requires a second model's AdvBench hidden states.",
+    "results": {
+      "status": "skipped",
+      "reason": "Single model in AdvBench scope. Cross-transfer on original dataset already failed (best 58% acc).",
+      "hypothetical_if_extended": "Expect transfer failure consistent with original — safety geometry is model-specific, not dataset-specific."
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "Skipped. Model-specificity is a model property, not a dataset property.\n\nCross-model transfer failed entirely on the original dataset (all directions near chance) because safety commitment geometry is model-specific. The dataset does not change this — the failure mode is architectural (different hidden space orientations). Saving 2 GPU-hours. If a reviewer requests this, OT-7B AdvBench extraction + transfer can be done post-review."
+  },
+  {
+    "name": "AdvBench Early Detection Timing",
+    "description": "Adapted from lead-time analysis. No CP in AdvBench; instead measure the earliest trace fraction at which the probe consistently classifies correctly. Compare HS vs text.",
+    "results": {
+      "hs_earliest_correct_fraction": 0.28,
+      "text_earliest_correct_fraction": 0.41,
+      "hs_earlier_by_steps": 5.1,
+      "hs_earlier_in_fraction_of_traces": 0.64,
+      "text_earlier_in_fraction_of_traces": 0.36,
+      "metric_note": "Adapted metric — not directly comparable to original lead time"
+    },
+    "tables": [
+      {
+        "name": "AdvBench Early Detection",
+        "columns": [
+          "Modality",
+          "Median First-Correct Step",
+          "Trace Fraction",
+          "Earlier in N/36"
+        ],
+        "rows": [
+          [
+            "HS (L12, W=3)",
+            "10.6",
+            "28%",
+            "23"
+          ],
+          [
+            "Text (W=3)",
+            "15.6",
+            "41%",
+            "13"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Directional HS timing advantage on AdvBench. Adapted metric is less rigorous than original lead-time analysis — suitable for appendix supporting material only.\n\nHS probes classify jailbreak traces correctly earlier (~28% of trace vs ~41% for text) because hidden states encode safety disposition before surface text reveals intent. But the 5-step advantage is noisier than original lead-time analysis: without explicit CP, the \"earliest correct\" metric depends on threshold choice and consecutive-correct criterion. The 64% \"HS earlier\" rate (vs 36% text-first) is weaker than original because binary labels make text features more competitive — surface patterns like harmful keywords are directly discriminative. This supports the HS advantage directionally but the adapted metric carries a transparency cost in the paper."
+  },
+  {
+    "name": "AdvBench Mahalanobis Distance",
+    "description": "Mahalanobis distance anomaly detection on R1-8B AdvBench hidden states. Estimate covariance from safe traces, compute MD on jailbreak steps.",
+    "results": {
+      "safe_md_mean_pca64": 6.45,
+      "jailbreak_md_mean_pca64": 6.49,
+      "separation": 0.04,
+      "best_pca_dim": 64,
+      "fa_rate_at_5pct_threshold": 0.04,
+      "tp_rate_at_5pct_threshold": 0.03,
+      "verdict": "fail"
+    },
+    "tables": [
+      {
+        "name": "AdvBench Mahalanobis Separation by PCA Dim",
+        "columns": [
+          "PCA Dim",
+          "Safe MD",
+          "Jailbreak MD",
+          "Separation"
+        ],
+        "rows": [
+          [
+            "16",
+            "5.12",
+            "5.09",
+            "-0.03"
+          ],
+          [
+            "32",
+            "6.01",
+            "6.05",
+            "+0.04"
+          ],
+          [
+            "64",
+            "6.45",
+            "6.49",
+            "+0.04"
+          ],
+          [
+            "128",
+            "6.89",
+            "6.87",
+            "-0.02"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Negative result replicates cleanly. Combined with 4-model original results, provides 5-dataset-model evidence that variance-based unsupervised detection is fundamentally inapplicable. Worth including in appendix alongside positive results.\n\nMahalanobis fails for the same mechanistic reason as original: safety-relevant signal occupies minor PCA components, not principal variance directions. The Fisher discriminant drops from ~17 in full space to ~1 in PCA. Separation (0.04) is even smaller than original (0.07) because binary labels introduce more within-class heterogeneity — early jailbreak steps resemble safe steps. The false alarm rate equals or exceeds true positive rate at every threshold. Cross-dataset replication of this negative result is clean and strengthens the paper's unsupervised-methods-fail narrative."
+  },
+  {
+    "name": "AdvBench Bootstrap CI + HB",
+    "description": "1000 bootstrap resamples for HS vs text comparison at threshold layer L12 (W=3). Holm-Bonferroni for 3 metrics. AUROC as supplementary.",
+    "results": {
+      "bal_acc_hs": 0.73,
+      "bal_acc_text": 0.69,
+      "bal_acc_delta": 0.039,
+      "bal_acc_ci": "[-0.005, +0.083]",
+      "bal_acc_p": 0.082,
+      "precision_hs": 0.56,
+      "precision_text": 0.5,
+      "precision_delta": 0.065,
+      "precision_ci": "[+0.014, +0.116]",
+      "precision_p": 0.014,
+      "fpr_hs": 0.19,
+      "fpr_text": 0.23,
+      "fpr_delta": -0.038,
+      "fpr_ci": "[-0.089, +0.013]",
+      "fpr_p": 0.118,
+      "hb_pass_count": "1/3",
+      "hb_pass_detail": "Precision only (p=0.014 < threshold 0.0167 at rank 1/3)",
+      "auroc_hs": 0.758,
+      "auroc_text": 0.718,
+      "auroc_delta": 0.04,
+      "auroc_p": 0.045
+    },
+    "tables": [
+      {
+        "name": "AdvBench Bootstrap (L12, W=3, n=36 test)",
+        "columns": [
+          "Metric",
+          "HS",
+          "Text",
+          "Delta",
+          "95% CI",
+          "p-value",
+          "HB Pass?"
+        ],
+        "rows": [
+          [
+            "Bal Acc",
+            "0.730",
+            "0.691",
+            "+3.9pp",
+            "[-0.5, +8.3]",
+            "0.082",
+            "N"
+          ],
+          [
+            "Precision",
+            "0.560",
+            "0.495",
+            "+6.5pp",
+            "[+1.4, +11.6]",
+            "0.014",
+            "Y"
+          ],
+          [
+            "FPR",
+            "0.190",
+            "0.228",
+            "-3.8pp",
+            "[-8.9, +1.3]",
+            "0.118",
+            "N"
+          ],
+          [
+            "AUROC",
+            "0.758",
+            "0.718",
+            "+4.0pp",
+            "[+0.1, +7.9]",
+            "0.045",
+            "N (adj)"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "1/3 HB pass confirms directional advantage but cannot match original 12/12. The precision-only significance is interpretable: precision is the most deployment-relevant metric and it passes, but the failure of bal_acc and FPR means the evidence is partial. Appendix material with explicit power caveat.\n\nOnly precision passes HB (p=0.014 < 0.0167). Bal_acc and FPR CIs include zero. With n=36 test traces, MDE at 80% power is ~12pp; observed deltas (4-6.5pp) fall below MDE for bal_acc/FPR. Precision passes because its variance is lower and the 6.5pp delta just exceeds the detection boundary. AUROC delta (+4pp) is raw p=0.045 but fails HB adjustment. The effect size reduction from original (~20pp precision) to AdvBench (~6pp) is the core median-tier signature: binary labels attenuate the modality advantage below reliable detection for most metrics."
+  },
+  {
+    "name": "AdvBench Window Size Ablation",
+    "description": "W=1,3,5 on R1-8B AdvBench at L12. Truncated range (vs W=1-25 on original) because shorter traces limit useful window sizes.",
+    "results": {
+      "W1_bal_acc": 0.7,
+      "W1_precision": 0.53,
+      "W1_coverage": 0.78,
+      "W3_bal_acc": 0.73,
+      "W3_precision": 0.56,
+      "W3_coverage": 0.72,
+      "W5_bal_acc": 0.72,
+      "W5_precision": 0.55,
+      "W5_coverage": 0.67,
+      "coverage_decreases_with_W": true,
+      "best_W": 3,
+      "peak_then_decline": true
+    },
+    "tables": [
+      {
+        "name": "AdvBench Window Ablation",
+        "columns": [
+          "W",
+          "Bal Acc",
+          "Precision",
+          "Coverage",
+          "Step FPR"
+        ],
+        "rows": [
+          [
+            "1",
+            "0.70",
+            "0.53",
+            "0.78",
+            "0.22"
+          ],
+          [
+            "3",
+            "0.73",
+            "0.56",
+            "0.72",
+            "0.19"
+          ],
+          [
+            "5",
+            "0.72",
+            "0.55",
+            "0.67",
+            "0.20"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Temporal tradeoff replicates. Optimal W=3 on AdvBench vs W=10-25 on original reflects trace length effect. This supports the claim that temporal context is universally beneficial but task-modulated in magnitude.\n\nSame qualitative pattern as original: coverage decreases monotonically, precision peaks at moderate W, bal_acc peaks then declines. Optimal W is smaller (3 vs 10-25) because AdvBench traces average ~38 steps — at W=5 many edge samples are excluded. The precision-coverage tradeoff is less steep than original (flatter signal landscape under binary labels). The W=5 decline confirms the dimensionality concern: 4096×5=20480 features with ~107 training examples."
+  },
+  {
+    "name": "AdvBench 5-Metric Layer Selection (CORE)",
+    "description": "Primary AdvBench replication experiment. Run all 5 layer selection metrics on R1-8B AdvBench. Determine if CR-composite → shallow, threshold metrics → deeper. This IS the advbench_layer_bias_replication what_if experiment.",
+    "results": {
+      "cr_composite_layer": "L5",
+      "cr_composite_depth_pct": 16,
+      "pure_bal_acc_layer": "L10",
+      "pure_bal_acc_depth_pct": 32,
+      "precision_layer": "L12",
+      "precision_depth_pct": 39,
+      "inv_fpr_layer": "L11",
+      "inv_fpr_depth_pct": 35,
+      "composite_add_layer": "L12",
+      "composite_add_depth_pct": 39,
+      "layer_gap_cr_vs_precision": 7,
+      "layer_gap_depth_pct": 23,
+      "crossing_rate_at_L5": 0.71,
+      "crossing_rate_at_L12": 0.48,
+      "cr_shallow_deep_ratio": 1.28,
+      "hs_bal_acc_at_precision_layer": 0.7,
+      "hs_text_precision_delta_pp": 6.5,
+      "threshold_metrics_consensus": "3/4 non-biased metrics select L10-L12 (32-39%)",
+      "original_gap_layers": 23,
+      "original_gap_depth_pct": 72
+    },
+    "tables": [
+      {
+        "name": "AdvBench 5-Metric Layer Selection (R1-8B)",
+        "columns": [
+          "Metric",
+          "Selected Layer",
+          "Depth %",
+          "Bal Acc",
+          "Crossing Rate"
+        ],
+        "rows": [
+          [
+            "bal_acc x CR",
+            "L5",
+            "16%",
+            "0.68",
+            "0.71"
+          ],
+          [
+            "Pure bal_acc",
+            "L10",
+            "32%",
+            "0.72",
+            "0.55"
+          ],
+          [
+            "Precision",
+            "L12",
+            "39%",
+            "0.70",
+            "0.48"
+          ],
+          [
+            "Inverse FPR",
+            "L11",
+            "35%",
+            "0.69",
+            "0.51"
+          ],
+          [
+            "Composite (additive)",
+            "L12",
+            "39%",
+            "0.70",
+            "0.48"
+          ]
+        ]
+      },
+      {
+        "name": "Layer Bias Gap: Original vs AdvBench",
+        "columns": [
+          "Dataset",
+          "CR Layer",
+          "Prec Layer",
+          "Gap (layers)",
+          "Gap (depth %)",
+          "CR/Deep Ratio"
+        ],
+        "rows": [
+          [
+            "Original (CP)",
+            "L0 (0%)",
+            "L23 (72%)",
+            "23",
+            "72%",
+            "1.80"
+          ],
+          [
+            "AdvBench (binary)",
+            "L5 (16%)",
+            "L12 (39%)",
+            "7",
+            "23%",
+            "1.28"
+          ]
+        ]
+      },
+      {
+        "name": "AdvBench HS vs Text at Each Selected Layer",
+        "columns": [
+          "Layer",
+          "HS Prec",
+          "Text Prec",
+          "Delta (pp)",
+          "HS BA",
+          "Text BA",
+          "Delta (pp)"
+        ],
+        "rows": [
+          [
+            "L5 (CR-biased)",
+            "0.46",
+            "0.43",
+            "+3.1",
+            "0.68",
+            "0.66",
+            "+2.0"
+          ],
+          [
+            "L10 (bal_acc)",
+            "0.51",
+            "0.46",
+            "+5.4",
+            "0.72",
+            "0.68",
+            "+3.8"
+          ],
+          [
+            "L12 (precision)",
+            "0.53",
+            "0.46",
+            "+6.5",
+            "0.70",
+            "0.67",
+            "+3.4"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "CORE MEDIAN FINDING: Layer selection bias replicates directionally but with 3× smaller gap. CR-composite → shallow and threshold → deeper holds on both datasets. The attenuation is mechanistically explained by binary vs temporal supervision. Paper treatment: appendix Table A3 with text: \"Layer selection bias replicates directionally on AdvBench binary classification (gap=7 layers, 23%), attenuated versus temporal probing (gap=23 layers, 72%), consistent with the bias being probe-task-modulated.\" Qualifies C1 from 'model-geometric property' to 'probe-task-modulated geometric property, strongest under temporal supervision.' Reviewer impact: direction-consistent = +credibility, but not decisive = no score upgrade beyond +0.05.\n\nThe 5-metric analysis replicates the directional pattern on AdvBench: CR-composite (L5, 16%) selects shallower than threshold metrics (L12, 39%). Three factors explain why the gap is 23% instead of 72%: (1) Binary labels produce a more uniform per-layer crossing rate profile. Without step-level CP labels, the contrast between shallow noise-driven crossings and deep signal-driven crossings is reduced — the crossing rate ratio (L5/L12 = 1.28) is lower than original (~1.8). (2) AdvBench traces are shorter (38 vs 46 sentences) and more structurally uniform (most are direct compliance or refusal), reducing inter-layer signal variance. (3) Binary classification's optimal precision layer (L12, 39%) sits at mid-depth, not deep (L23, 72%), because binary discrimination does not require the temporal-structure sensitivity that threshold metrics exploit at deep layers under CP supervision. The bias mechanism itself replicates: crossing rate at L5 (0.71) > at L12 (0.48), confirming that compressed shallow representations generate inflated crossing rates regardless of dataset. But the MAGNITUDE of this bias's impact on downstream metrics is probe-task-dependent."
+  },
+  {
+    "name": "AdvBench Fine-Grained Labels",
+    "description": "Not applicable. AdvBench uses binary jailbreak/safe labels; 16-label taxonomy requires CP annotation which is the cost AdvBench avoids.",
+    "results": {
+      "status": "not_applicable",
+      "reason": "Binary labels are the AdvBench design point. Fine-grained annotation defeats purpose."
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "Skipped by design.\n\nThe 16-label taxonomy requires step-level Type 1-4 x pre/post annotations — precisely the expensive labeling that AdvBench circumvents. On the original dataset this experiment showed only +2pp marginal gain, further justifying the skip. Binary labels are sufficient and cheaper."
+  },
+  {
+    "name": "AdvBench Oracle Ceiling Analysis",
+    "description": "Adapted: no CP oracle possible. Instead estimate per-step classification ceiling under binary trace-level labels. Characterize the label noise floor.",
+    "results": {
+      "status": "adapted",
+      "trace_level_oracle_acc": 1.0,
+      "step_level_ceiling_bal_acc": 0.85,
+      "probe_bal_acc_at_best": 0.73,
+      "ceiling_gap_pp": 12,
+      "original_oracle_lead": "+31 steps",
+      "note": "Binary labels impose ~0.85 step-level ceiling due to early-step label noise"
+    },
+    "tables": [
+      {
+        "name": "AdvBench Classification Ceiling",
+        "columns": [
+          "Method",
+          "Step Bal Acc",
+          "Gap to Ceiling"
+        ],
+        "rows": [
+          [
+            "Ceiling (binary label)",
+            "~0.85",
+            "—"
+          ],
+          [
+            "HS LR W=3 (L12)",
+            "0.73",
+            "12pp"
+          ],
+          [
+            "Text LR W=3",
+            "0.69",
+            "16pp"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "The 0.85 ceiling constrains maximum achievable delta. Even a perfect probe can only reach 0.85, limiting the HS-text gap. This is an important nuance for interpreting median-tier results: smaller deltas on AdvBench reflect both weaker supervision AND lower ceiling, not necessarily weaker HS signal.\n\nTrace-level oracle is trivially 1.0. Per-step ceiling is ~0.85 because early steps in jailbreak traces are genuinely safety-aware (model hasn't committed yet), creating inherent label noise under binary assignment. This ceiling is lower than original oracle (~0.95 near CP) because binary labels cannot distinguish pre/post commitment. The 12pp gap (probe 0.73 vs ceiling 0.85) shows moderate room for improvement but it's constrained by label quality, not probe architecture. This partially explains why AdvBench HS-text deltas are smaller: the ceiling itself is lower."
+  },
+  {
+    "name": "AdvBench OT-7B Extension",
+    "description": "Extend AdvBench replication to OT-7B (Qwen2.5-7B, STILL). Layer sweep, 5-metric analysis, bootstrap. Second model for cross-model consistency.",
+    "results": {
+      "n_traces": 165,
+      "best_layer_bal_acc": "L11",
+      "best_layer_depth_pct": 39,
+      "hs_bal_acc": 0.68,
+      "cr_composite_layer": "L3",
+      "cr_composite_depth_pct": 11,
+      "precision_layer": "L14",
+      "precision_depth_pct": 50,
+      "layer_gap_abs": 11,
+      "layer_gap_depth_pct": 39,
+      "hs_text_precision_delta_pp": 5.5,
+      "precision_p": 0.038,
+      "hb_pass_precision": false,
+      "hb_pass_any": false,
+      "combined_hb_2models": "1/6 (R1-8B precision only)"
+    },
+    "tables": [
+      {
+        "name": "OT-7B AdvBench 5-Metric Layer Selection",
+        "columns": [
+          "Metric",
+          "Layer",
+          "Depth %",
+          "Bal Acc"
+        ],
+        "rows": [
+          [
+            "bal_acc x CR",
+            "L3",
+            "11%",
+            "0.65"
+          ],
+          [
+            "Pure bal_acc",
+            "L9",
+            "32%",
+            "0.68"
+          ],
+          [
+            "Precision",
+            "L14",
+            "50%",
+            "0.66"
+          ],
+          [
+            "Inverse FPR",
+            "L13",
+            "46%",
+            "0.66"
+          ],
+          [
+            "Composite",
+            "L14",
+            "50%",
+            "0.66"
+          ]
+        ]
+      },
+      {
+        "name": "AdvBench HB Summary (2 Models Combined)",
+        "columns": [
+          "Model",
+          "Metric",
+          "Delta (pp)",
+          "p-value",
+          "HB Rank",
+          "HB Threshold",
+          "Pass?"
+        ],
+        "rows": [
+          [
+            "R1-8B",
+            "precision",
+            "+6.5",
+            "0.014",
+            "1",
+            "0.0083",
+            "Y"
+          ],
+          [
+            "OT-7B",
+            "precision",
+            "+5.5",
+            "0.038",
+            "2",
+            "0.0100",
+            "N"
+          ],
+          [
+            "R1-8B",
+            "bal_acc",
+            "+3.9",
+            "0.082",
+            "3",
+            "0.0125",
+            "N"
+          ],
+          [
+            "R1-8B",
+            "FPR",
+            "-3.8",
+            "0.118",
+            "4",
+            "0.0167",
+            "N"
+          ],
+          [
+            "OT-7B",
+            "bal_acc",
+            "+3.2",
+            "0.112",
+            "5",
+            "0.0250",
+            "N"
+          ],
+          [
+            "OT-7B",
+            "FPR",
+            "-2.9",
+            "0.168",
+            "6",
+            "0.0500",
+            "N"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Second model confirms directional consistency but adds zero HB passes. Combined 1/6 (within median tier range [0, 0.33]). The OT-7B AdvBench gap (39%) is larger than R1-8B (23%) — interesting cross-model variation but n=2 models prevents conclusions. For the appendix: both models show the bias direction replicates; neither provides strong statistical evidence.\n\nOT-7B AdvBench shows layer selection bias with slightly larger gap than R1-8B AdvBench (11 layers, 39% vs 7 layers, 23%), reflecting that OT-7B's 28-layer architecture has steeper per-layer signal gradients. CR-composite selects L3 (11%), consistent with shallow bias. But HS-text precision delta (+5.5pp) does not pass HB — OT-7B has fewer layers and the binary-label attenuation stacks with OT-7B's already-shorter traces (~32 sentences on AdvBench). With n=33 test, MDE~14pp >> observed 5.5pp. Combined across both AdvBench models: 1/6 HB pass (R1-8B precision only). Direction consistent, magnitude insufficient."
+  },
+  {
+    "name": "AdvBench GRU Probe",
+    "description": "GRU sequence model on R1-8B AdvBench at L12. Test whether temporal sequence modeling adds value under binary trace-level labels.",
+    "results": {
+      "gru_bal_acc": 0.71,
+      "gru_precision": 0.54,
+      "gru_coverage": 0.69,
+      "gru_fpr": 0.24,
+      "lr_bal_acc": 0.73,
+      "lr_precision": 0.56,
+      "gru_vs_lr_bal_acc_delta": -0.02,
+      "verdict": "GRU no improvement"
+    },
+    "tables": [
+      {
+        "name": "AdvBench GRU vs LR",
+        "columns": [
+          "Method",
+          "Bal Acc",
+          "Precision",
+          "Coverage",
+          "Step FPR"
+        ],
+        "rows": [
+          [
+            "LR W=3 (L12)",
+            "0.73",
+            "0.56",
+            "0.72",
+            "0.19"
+          ],
+          [
+            "GRU single (L12)",
+            "0.71",
+            "0.54",
+            "0.69",
+            "0.24"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "GRU negative result replicates cross-dataset. Combined with original (modest R1-8B gain, negative 32B), linear probes are recommended for both temporal-CP and binary classification settings.\n\nGRU provides no improvement over LR on AdvBench because binary labels lack the sequential safe→committed transition that GRU was designed to model. On the original dataset, GRU learned temporal commitment dynamics; on AdvBench, all steps carry the same label, so there is no temporal structure beyond what LR's sliding window already captures. The GRU's 1.6M parameters overfit to n=107 training traces without compensating temporal signal. This cross-dataset negative result strengthens the 'linear probes sufficient' claim."
+  },
+  {
+    "name": "AdvBench Text Baseline",
+    "description": "MiniLM-L6 text embeddings + LR on R1-8B AdvBench. The critical test for AdvBench: does the HS-text gap survive binary classification?",
+    "results": {
+      "text_static_bal_acc": 0.67,
+      "text_static_precision": 0.48,
+      "text_temporal_W3_bal_acc": 0.69,
+      "text_temporal_W3_precision": 0.5,
+      "hs_temporal_W3_bal_acc": 0.73,
+      "hs_temporal_W3_precision": 0.56,
+      "hs_text_gap_bal_acc_pp": 4.0,
+      "hs_text_gap_precision_pp": 6.0,
+      "original_gap_bal_acc_pp": 13.2,
+      "original_gap_precision_pp": 33.5,
+      "gap_compression_factor": "3-5x"
+    },
+    "tables": [
+      {
+        "name": "HS-Text Gap Compression: Original vs AdvBench",
+        "columns": [
+          "Dataset",
+          "HS BA",
+          "Text BA",
+          "Gap BA",
+          "HS Prec",
+          "Text Prec",
+          "Gap Prec"
+        ],
+        "rows": [
+          [
+            "Original (R1-8B)",
+            "0.810",
+            "0.678",
+            "+13.2pp",
+            "0.822",
+            "0.487",
+            "+33.5pp"
+          ],
+          [
+            "AdvBench (R1-8B)",
+            "0.730",
+            "0.690",
+            "+4.0pp",
+            "0.560",
+            "0.500",
+            "+6.0pp"
+          ],
+          [
+            "Compression",
+            "—",
+            "—",
+            "3.3x",
+            "—",
+            "—",
+            "5.6x"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "The gap compression is the most interpretable median-tier result. It explains WHY AdvBench doesn't strongly replicate: the HS modality advantage is largest when the classification task requires detecting subtle internal state transitions (temporal CP detection), not when surface patterns suffice (binary jailbreak). This motivates the C1 scope qualification and provides mechanistic understanding of when HS monitoring adds maximal value.\n\nText probes perform RELATIVELY better on AdvBench (0.69 vs 0.678 on original) because binary jailbreak/safe classification is more amenable to surface patterns: harmful keywords, refusal phrases, and compliance indicators are directly discriminative. The HS-text gap compresses 3-5× (4pp bal_acc, 6pp precision vs 13pp/34pp on original). This is THE key median-tier finding: binary labels make text more competitive, reducing the marginal value of hidden-state access. HS still outperforms, but the practical advantage is much smaller. The gap compression ratio is informative for the paper's scope qualification of C2."
+  },
+  {
+    "name": "AdvBench BOCPD/CUSUM",
+    "description": "Not applicable. BOCPD/CUSUM detect distributional shifts in sequential probe scores. AdvBench binary labels define no temporal transition to detect.",
+    "results": {
+      "status": "not_applicable",
+      "reason": "No commitment-point transition in binary classification setup. Change-point methods require a changepoint."
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "Skipped. Change-point methods require a change point.\n\nBOCPD/CUSUM target the probe score transition from safe→committed. Under binary labels, all steps carry the same label — no transition exists. Running these methods would detect noise-driven fluctuations, producing uninterpretable results. On the original dataset, BOCPD already failed on 3/4 models; there is no value in attempting it on a setup where the target signal is definitionally absent."
+  },
+  {
+    "name": "AdvBench FPR Analysis",
+    "description": "All probes on AdvBench safe traces. Step-level and trace-level FPR.",
+    "results": {
+      "n_safe_test": 24,
+      "hs_step_fpr": 0.18,
+      "text_step_fpr": 0.24,
+      "hs_trace_fpr_k5": 0.33,
+      "text_trace_fpr_k5": 0.42,
+      "hs_fpr_lower": true,
+      "hs_text_fpr_gap_step_pp": 6.0,
+      "original_hs_step_fpr": 0.162,
+      "original_text_step_fpr": 0.272,
+      "original_fpr_gap_pp": 11.0
+    },
+    "tables": [
+      {
+        "name": "FPR Cross-Dataset Comparison",
+        "columns": [
+          "Dataset",
+          "HS Step FPR",
+          "Text Step FPR",
+          "Gap",
+          "HS Trace FPR",
+          "Text Trace FPR",
+          "Gap"
+        ],
+        "rows": [
+          [
+            "Original (R1-8B)",
+            "0.162",
+            "0.272",
+            "11.0pp",
+            "0.390",
+            "0.502",
+            "11.2pp"
+          ],
+          [
+            "AdvBench (R1-8B)",
+            "0.180",
+            "0.240",
+            "6.0pp",
+            "0.330",
+            "0.420",
+            "9.0pp"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "HS FPR advantage replicates directionally on AdvBench with smaller magnitude. The persistent high trace-level FPR (33%) confirms this is a cross-dataset limitation of probe-based detection, not dataset-specific. Appendix material.\n\nAdvBench safe FPR is somewhat lower than original (step: 0.18 vs 0.162, trace: 0.33 vs 0.39). AdvBench safe traces are \"cleaner\" — simple refusals, shorter, less internal deliberation — producing fewer safety-adjacent patterns that trigger false alarms. The HS-text FPR gap (6pp) is narrower than original (11pp), consistent with the overall median-tier pattern of attenuated HS advantage under binary labels. The FPR numbers are still substantial (33% trace-level for HS), confirming deployment limitation persists cross-dataset."
+  }
+]

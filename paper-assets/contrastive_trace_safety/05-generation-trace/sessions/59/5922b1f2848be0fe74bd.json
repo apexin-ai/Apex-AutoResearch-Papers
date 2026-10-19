@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5922b1f2848be0fe74bd",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code r6 auroc best layer comparison",
+  "task_key": "worker_code_r6_auroc_best_layer_comparison_20260518T024925",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r6_auroc_best_layer_comparison_20260518T024925_result.json",
+    "occurrence": 1,
+    "bytes": 1288,
+    "sha256": "f552a90e869b525c5b79b668540f76515dd967c67b7432e2a13a94b671d24476"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here are the results:\n\n| Model   | AUROC-best Layer | HS precision | HS bal_acc | Text precision | Text bal_acc |\n|---------|-----------------|-------------|-----------|---------------|-------------|\n| R1-8B   | L13             | 0.6781      | 0.7715    | 0.4481        | 0.6790      |\n| OT-7B   | L1              | 0.3689      | 0.6773    | 0.2387        | 0.5991      |\n| QwQ-32B | L32             | 0.5606      | 0.6923    | 0.3853        | 0.5379      |\n| R1-32B  | L31             | 0.5466      | 0.6996    | 0.4843        | 0.6051      |\n\n**HS advantage over text:**\n\n| Model   | precision gap | bal_acc gap |\n|---------|-------------|-----------|\n| R1-8B   | +0.230      | +0.093    |\n| OT-7B   | +0.130      | +0.078    |\n| QwQ-32B | +0.175      | +0.154    |\n| R1-32B  | +0.062      | +0.095    |\n\n**Method notes:**\n- HS: from `layer_metric_ablation.json`, static LogisticRegression per step\n- Text: static LogisticRegression on all-MiniLM-L6-v2 sentence embeddings, same train/test split (60/20/20, seed=42), same LR config (C=1.0, class_weight=balanced, lbfgs, max_iter=2000)\n\nHS probe consistently outperforms text on both metrics across all 4 models, with precision gap ranging from +6.2pp (R1-32B) to +23.0pp (R1-8B)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r6-auroc-best-layer-comparison.md"
+}

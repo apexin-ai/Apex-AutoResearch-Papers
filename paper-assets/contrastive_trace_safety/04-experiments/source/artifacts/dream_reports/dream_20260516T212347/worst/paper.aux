@@ -1,0 +1,74 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Hidden-state safety detection.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Reasoning model safety.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Representation probing and scale.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Change-point detection.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Experimental Setup}{3}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Models}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Data}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Detection Methods}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Hidden-state probes.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Text-based probes.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Geometric methods.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Change-point methods.}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Metrics}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Results}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Scale Reduces Fisher Discriminability by 6$\times $}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Layer sweep summary (top-5 by Fisher discriminability). r1-8b reference: L14, Fisher=17.9.}}{4}{table.caption.9}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:layer_sweep}{{1}{4}{Layer sweep summary (top-5 by Fisher discriminability). r1-8b reference: L14, Fisher=17.9}{table.caption.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Temporal Aggregation Fails to Rescue 32B Performance}{4}{subsection.4.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Temporal vs static coverage comparison. $\Delta $ indicates coverage gain from temporal windowing ($W{=}15$).}}{4}{table.caption.10}\protected@file@percent }
+\newlabel{tab:temporal}{{2}{4}{Temporal vs static coverage comparison. $\Delta $ indicates coverage gain from temporal windowing ($W{=}15$)}{table.caption.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Window Size Ablation Reveals Scale-Dependent Saturation}{4}{subsection.4.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Coverage by temporal window size $W$. Bold indicates optimal $W$ per model.}}{5}{table.caption.11}\protected@file@percent }
+\newlabel{tab:window}{{3}{5}{Coverage by temporal window size $W$. Bold indicates optimal $W$ per model}{table.caption.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Temporal probe accuracy by depth band (r1-32b, $W{=}15$). r1-8b best temporal accuracy: 0.848.}}{5}{table.caption.12}\protected@file@percent }
+\newlabel{tab:layer_depth}{{4}{5}{Temporal probe accuracy by depth band (r1-32b, $W{=}15$). r1-8b best temporal accuracy: 0.848}{table.caption.12}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Layer Selection Ablation: No Layer Matches 8B Discriminability}{5}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}The 2$\times $2 Architecture-Scale Matrix}{5}{subsection.4.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Architecture $\times $ scale matrix. Fisher discriminability and HS vs text significance test.}}{5}{table.caption.13}\protected@file@percent }
+\newlabel{tab:matrix}{{5}{5}{Architecture $\times $ scale matrix. Fisher discriminability and HS vs text significance test}{table.caption.13}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Cross-Model Transfer Collapses Across Scales}{5}{subsection.4.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Cross-model transfer accuracy (with learned 4096$\to $5120 projection for cross-scale pairs).}}{6}{table.caption.14}\protected@file@percent }
+\newlabel{tab:transfer}{{6}{6}{Cross-model transfer accuracy (with learned 4096$\to $5120 projection for cross-scale pairs)}{table.caption.14}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Lead Time Is Uniformly Negative at 32B}{6}{subsection.4.7}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Lead time distribution by model (temporal $W{=}15$ probe).}}{6}{table.caption.15}\protected@file@percent }
+\newlabel{tab:lead}{{7}{6}{Lead time distribution by model (temporal $W{=}15$ probe)}{table.caption.15}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}Hidden-State Advantage Vanishes at 32B (AUROC Analysis)}{6}{subsection.4.8}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces AUROC comparison with bootstrap 95\% CIs (1000 resamples). $p$-values for HS vs Text difference.}}{6}{table.caption.16}\protected@file@percent }
+\newlabel{tab:auroc}{{8}{6}{AUROC comparison with bootstrap 95\% CIs (1000 resamples). $p$-values for HS vs Text difference}{table.caption.16}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.9}Pre-CP False Positive Rate: The Deployment Metric}{6}{subsection.4.9}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Pre-CP FPR and precision: HS vs text by model. The HS precision advantage collapses at 32B.}}{7}{table.caption.17}\protected@file@percent }
+\newlabel{tab:fpr}{{9}{7}{Pre-CP FPR and precision: HS vs text by model. The HS precision advantage collapses at 32B}{table.caption.17}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.10}Text-Based Baseline Achieves Comparable or Better Lead Time}{7}{subsection.4.10}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Full HS vs text comparison on 32B models.}}{7}{table.caption.18}\protected@file@percent }
+\newlabel{tab:text_full}{{10}{7}{Full HS vs text comparison on 32B models}{table.caption.18}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.11}GRU Probes Cannot Recover the Signal}{7}{subsection.4.11}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces GRU vs LR on 32B. More expressive probes provide negligible improvement.}}{7}{table.caption.19}\protected@file@percent }
+\newlabel{tab:gru}{{11}{7}{GRU vs LR on 32B. More expressive probes provide negligible improvement}{table.caption.19}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.12}Fine-Grained Supervision Does Not Help}{7}{subsection.4.12}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Fine-grained (16-label) vs binary supervision.}}{8}{table.caption.20}\protected@file@percent }
+\newlabel{tab:taxonomy}{{12}{8}{Fine-grained (16-label) vs binary supervision}{table.caption.20}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Mahalanobis distance separation (TrajGuard-style). MD values for safe, pre-CP, and post-CP regions.}}{8}{table.caption.21}\protected@file@percent }
+\newlabel{tab:mahal}{{13}{8}{Mahalanobis distance separation (TrajGuard-style). MD values for safe, pre-CP, and post-CP regions}{table.caption.21}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.13}Geometric Detection Fails More Severely at Scale}{8}{subsection.4.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.14}Change-Point Detection Degrades Severely}{8}{subsection.4.14}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces BOCPD and CUSUM on probe score sequences.}}{8}{table.caption.22}\protected@file@percent }
+\newlabel{tab:cpd}{{14}{8}{BOCPD and CUSUM on probe score sequences}{table.caption.22}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.15}Oracle Decomposition: The Information Exists But Is Inaccessible}{8}{subsection.4.15}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces Oracle vs best probe lead time, and hidden-state pre-CP entropy.}}{9}{table.caption.23}\protected@file@percent }
+\newlabel{tab:oracle}{{15}{9}{Oracle vs best probe lead time, and hidden-state pre-CP entropy}{table.caption.23}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{9}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Why Does Scale Erase the Signal?}{9}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Implications for Monitoring Architecture}{9}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Limitations}{9}{subsection.5.3}\protected@file@percent }
+\bibstyle{plainnat}
+\bibdata{refs}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{10}{section.6}\protected@file@percent }
+\gdef \@abspage@last{10}

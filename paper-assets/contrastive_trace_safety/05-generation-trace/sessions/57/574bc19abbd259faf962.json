@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "574bc19abbd259faf962",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "research arxiv id verification",
+  "task_key": "worker_research_arxiv_id_verification_20260517T201800",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_arxiv_id_verification_20260517T201800_result.json",
+    "occurrence": 1,
+    "bytes": 1429,
+    "sha256": "c11b566cb02461a5f6432291ae4c5db08b870ca5416cb008e95933a764264651"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 5 papers verified. Here are the results:\n\n## Verification Results\n\n| # | Key | Status | Notes |\n|---|-----|--------|-------|\n| 1 | `hagendorff2026lrm_jailbreak` | **VERIFIED** | arXiv:2508.04039 exists. Published in Nature Communications 2026. Authors correct. |\n| 2 | `joad2026refusal_multi` | **VERIFIED** | arXiv:2602.02132 exists. Feb 2026. Authors (Joad, Hawasly, Boughorbel, Durrani, Sencar) correct. |\n| 3 | `korbak2025cot_monitorability` | **VERIFIED** | arXiv:2507.11473 exists. July 2025. Korbak et al. correct. |\n| 4 | `safedream2026` | **VERIFIED** | arXiv:2604.16824 exists. April 2026. Authors (Yan, Lin, Zhu, Wang) correct. |\n| 5 | `hu2026refusal_dynamics` | **VERIFIED** | arXiv:2605.02958 exists. May 2026. Authors (Hu, Wang, Lim, Gao, Chen) correct. |\n\nAll 5 papers exist with correct metadata. No edits needed to `references.bib`.\n\nSources:\n- [2508.04039 - Large Reasoning Models Are Autonomous Jailbreak Agents](https://arxiv.org/abs/2508.04039)\n- [Nature Communications publication](https://www.nature.com/articles/s41467-026-69010-1)\n- [2602.02132 - There Is More to Refusal in LLMs than a Single Direction](https://arxiv.org/abs/2602.02132)\n- [2507.11473 - Chain of Thought Monitorability](https://arxiv.org/abs/2507.11473)\n- [2604.16824 - SafeDream](https://arxiv.org/abs/2604.16824)\n- [2605.02958 - Tracing the Dynamics of Refusal](https://arxiv.org/abs/2605.02958)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-arxiv-id-verification.md"
+}

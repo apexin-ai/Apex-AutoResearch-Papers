@@ -1,0 +1,5 @@
+Directory: /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_advbench/
+Files: 520 .pt files
+Tensor shape: [T, 25, 4096] fp16
+Steps per trace: min=2, mean=19.3, max=61
+Total size: 1957 MB

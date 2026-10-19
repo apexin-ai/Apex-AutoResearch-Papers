@@ -1,0 +1,24 @@
+{
+  "title": "Layer Selection Sensitivity in Hidden-State Safety Probes for Reasoning Models",
+  "abstract": "Reasoning models with chain-of-thought (CoT) can self-jailbreak: their reasoning traces transition from safe deliberation to committed harmful generation without adversarial input. We define the commitment point (CP) as the first reasoning step after which safety deliberation permanently ceases, and provide initial characterization of hidden-state (HS) vs. text probes for CP detection across four reasoning LLMs on HarmThoughts. The comparison depends critically on which transformer layer is monitored: a crossing-rate composite metric masks the HS advantage at 32B scale by selecting shallow layers where representation compression inflates threshold crossings. Threshold-based layer selection recovers HS precision gains of +15.4 to +21.9pp against a 384d distilled sentence encoder (Holm-Bonferroni corrected; upper bound), but this advantage is doubly conditional: it diminishes with stronger text encoders (4/4 HB at 384d to 1/4 at 1024d) and partially overlaps with temporal position. The 7-8B results are validated via nested 5-fold CV; the 32B results (n <= 20) are exploratory. Seven alternative methods (change-point detection, geometric distance, representation engineering, cross-model transfer) all fail to match supervised probing. Metric-induced layer selection bias is the robust methodological finding; the empirical HS advantage is conditional on encoder quality, model scale, and position control.",
+  "keywords": [
+    "safety probes",
+    "reasoning models",
+    "hidden states",
+    "layer selection sensitivity",
+    "commitment point detection",
+    "chain-of-thought safety",
+    "probing methodology",
+    "self-jailbreak detection"
+  ],
+  "ethical_considerations": "This research uses publicly available models (DeepSeek-R1, QwQ-32B, OpenThinker-7B) and datasets (HarmThoughts, AdvBench) to study safety monitoring of reasoning models. The goal is to improve detection of harmful content generation in chain-of-thought reasoning, not to generate or amplify harmful content. No new harmful data was created. All models are used under their respective open-source licenses.",
+  "formatting": {
+    "style": "ACL 2023",
+    "mode": "review (anonymous)",
+    "main_text_pages": 8,
+    "references": "unlimited",
+    "limitations": "mandatory, does not count toward page limit"
+  },
+  "submission_venue": "ARR May 2026",
+  "paper_type": "long"
+}

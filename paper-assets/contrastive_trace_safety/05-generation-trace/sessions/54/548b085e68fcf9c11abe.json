@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "548b085e68fcf9c11abe",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code m001 layer selection fix",
+  "task_key": "worker_code_m001_layer_selection_fix_20260516T222709",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_m001_layer_selection_fix_20260516T222709_result.json",
+    "occurrence": 1,
+    "bytes": 1134,
+    "sha256": "4c1b2ab6ede075b9251265a0198a616e6230195698f8a88e91e4d9e2dd6b77cd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "M001 全部完成。\n\n## 结果摘要\n\n### Layer 修正\n\n| Model | 旧 Layer | 修正 Layer | bal_acc |\n|-------|---------|-----------|---------|\n| R1-32B | 2 | **10** | 0.718 |\n| QwQ-32B | 1 | **2** | 0.730 |\n\n### 关键发现\n\n**R1-32B (layer 10)**:\n- Temporal LR 最佳 window=10: bal_acc=0.737, crossing=0.50, lead=9.0, FPR=0.189\n- GRU single-layer: bal_acc=0.675, crossing=0.30, lead=9.1\n- **Bootstrap HS vs Text: p=0.999, 无显著差异** (HS FPR=0.260 vs Text FPR=0.246)\n\n**QwQ-32B (layer 2)**:\n- Temporal LR 最佳 window=5: bal_acc=0.761, crossing=0.42, lead=23.5, FPR=0.180\n- GRU multi-layer: bal_acc=0.724, crossing=0.84, lead=15.9\n\n### 关键影响\n\nR1-32B 上 HS 探针相对 Text baseline 的优势在修正 layer 后消失 (p=0.999)。此前报告的 HS 优越性很可能是 flawed layer selection 的 artifact。QwQ-32B 结果仍然稳健。论文 framing 中 \"hidden state 提供 unique value over text\" 的 claim 需要重新评估。\n\n已完成：\n- Registry 已更新 (exp_001a_r1_32b, exp_001b_qwq_32b)\n- Report 已注册 (art_20260516_5aa87b)\n- memory.md 已更新"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-m001-layer-selection-fix.md"
+}

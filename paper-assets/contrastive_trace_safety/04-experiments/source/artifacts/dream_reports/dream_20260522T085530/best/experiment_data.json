@@ -1,0 +1,1002 @@
+[
+  {
+    "name": "Cross-architecture HS extraction + layer sweep",
+    "description": "R1-32B和QwQ-32B全层扫描（64层），确定最佳层并评估static probe。 已在registry完成（exp_001a_r1_32b, exp_001b_qwq_32b）， 后经D028/D036修正发现scheme B层选偏差。\n",
+    "results": {
+      "r1_32b": {
+        "biased_layer": 10,
+        "biased_layer_depth_pct": 15.6,
+        "corrected_layer": 63,
+        "corrected_layer_depth_pct": 98.4,
+        "layer10_bal_acc": 0.718,
+        "layer63_bal_acc": 0.826,
+        "layer63_precision": 0.603,
+        "layer63_fpr": 0.235,
+        "n_test": 20
+      },
+      "qwq_32b": {
+        "biased_layer": 2,
+        "biased_layer_depth_pct": 3.1,
+        "corrected_layer": 60,
+        "corrected_layer_depth_pct": 93.8,
+        "layer2_bal_acc": 0.73,
+        "layer60_bal_acc": 0.74,
+        "layer60_precision": 0.578,
+        "layer60_fpr": 0.208,
+        "n_test": 19
+      }
+    },
+    "tables": [
+      {
+        "title": "Layer Selection: Biased vs Corrected",
+        "columns": [
+          "Model",
+          "Biased Layer",
+          "Depth%",
+          "Corrected Layer",
+          "Depth%",
+          "bal_acc Gain",
+          "prec Gain"
+        ],
+        "rows": [
+          [
+            "R1-32B",
+            "L10",
+            "15.6%",
+            "L63",
+            "98.4%",
+            "+10.8pp",
+            "+8.7pp"
+          ],
+          [
+            "QwQ-32B",
+            "L2",
+            "3.1%",
+            "L60",
+            "93.8%",
+            "+1.0pp",
+            "-"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "32B层选偏差是论文methodological contribution的核心证据。 Biased层的NS结果曾被误读为\"HS优势是scale-dependent\"， 纠正后4/4模型均显著。\n\n\nbal_acc × crossing_rate系统性选浅层，因浅层表征压缩（cosine distance 1.4-2.7x更小）， 噪声驱动的threshold crossing频率更高。CR污染的composite score在浅层虚高。 纠正后用threshold-dependent metrics（precision/FPR/composite）一致指向深层（>90%深度）， HS优势在32B规模上从NS（biased层）变为显著（corrected层）。 这不是32B \"没有HS信号\"，而是biased metric把信号屏蔽了。\n"
+  },
+  {
+    "name": "Cross-architecture temporal window evaluation",
+    "description": "R1-32B和QwQ-32B上temporal LR多窗口评估。 已在registry完成，结合D029纠正层结果。\n",
+    "results": {
+      "r1_32b_l63": {
+        "W1_bal_acc": 0.826,
+        "W1_precision": 0.603,
+        "W1_fpr": 0.235,
+        "W1_bonferroni": "3/3",
+        "W3_bal_acc": 0.754,
+        "W3_bonferroni": "0/3",
+        "W5_plus": "all NS",
+        "dimensionality_issue": "51200 × W features >> n=20"
+      },
+      "qwq_32b_l60": {
+        "W1_bal_acc": 0.74,
+        "W3_bal_acc": 0.756,
+        "W5_bal_acc": 0.761,
+        "W10_bal_acc": 0.747,
+        "W15_bal_acc": 0.741,
+        "all_W_significant": true,
+        "bonferroni_summary": "15/15 pass"
+      }
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "32B temporal结果分化：QwQ全窗口robust，R1-32B仅W=1。 这是sample size × dimensionality交互的结果，不是模型差异。 论文必须per-model报告，不能统一叙事。\n\n\nR1-32B只W=1显著（3/3 HB），W≥3退化源于维度灾难： 5120d × W > n=20样本。模型无法在如此高维空间中学到稳定分界面。 QwQ-32B全窗口显著，因其test n=19-20但HS-text gap更大（+15.4pp precision@W=3）， 效应量足以克服small-n限制。 temporal improvement在32B上不如7-8B明显，但HS优势本身是robust的。\n"
+  },
+  {
+    "name": "Cross-model transfer",
+    "description": "跨架构zero-shot transfer（Llama→Qwen, Qwen→Llama）。 已在registry完成，结论为negative。\n",
+    "results": {
+      "r1_8b_to_r1_32b": 0.522,
+      "r1_8b_to_qwq": 0.595,
+      "r1_32b_to_qwq": 0.55,
+      "qwq_to_r1_32b": 0.673,
+      "r1_32b_to_r1_8b": 0.583,
+      "best_transfer_acc": 0.673,
+      "within_model_baselines": {
+        "r1_8b": 0.823,
+        "r1_32b": 0.652,
+        "qwq": 0.717
+      },
+      "method": "PCA projection (4096→5120 or reverse)"
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "Cross-transfer完全失败验证了每个模型需要独立训练探针。 这不是limitation——它confirms safety编码的model-specificity， 与5-seed robustness（within-model stable）形成对比。\n\n\nSafety commitment的几何编码是model-specific的。不同架构（Llama vs Qwen2.5）、 不同训练方法（R1-distilled vs native）产生不同的safety表征空间。 PCA投影无法对齐这些空间——即使维度匹配，方向语义不对应。 最好的transfer（qwq→r1_32b, 0.673）也远低于within-model baseline（0.717）。 这是clean negative result：strengthens \"safety representations are model-specific\" narrative。\n"
+  },
+  {
+    "name": "Lead time analysis across models",
+    "description": "全4模型lead time profile。已在各实验中完成。\n",
+    "results": {
+      "r1_8b": {
+        "hs_lr_lead": -0.1,
+        "text_lr_lead": 10.3,
+        "gru_lead_mean": 4.5,
+        "gru_lead_std": 3.0,
+        "gru_worst_seed": 0.9,
+        "text_lead_inflated": true,
+        "text_precp_fpr": 0.205
+      },
+      "ot_7b": {
+        "hs_lr_lead": 21.6,
+        "text_lr_lead": 45.5,
+        "gru_multi_lead": 33.6,
+        "note": "lead times inflated by long traces (~80 sentences)"
+      },
+      "qwq_32b": {
+        "hs_lead_range": [
+          -1.2,
+          1.9
+        ],
+        "text_lead_range": [
+          3.7,
+          12.3
+        ],
+        "gru_lead": 15.9,
+        "position_baseline_competitive": true
+      },
+      "r1_32b": {
+        "hs_lead_w1": 11.7,
+        "text_lead": "-",
+        "gru_lead": 8.8,
+        "coverage_w1": 0.25
+      }
+    },
+    "tables": [
+      {
+        "title": "Lead Time Profile Summary (4 Models)",
+        "columns": [
+          "Model",
+          "HS LR Lead",
+          "Text LR Lead",
+          "GRU Lead",
+          "Key Caveat"
+        ],
+        "rows": [
+          [
+            "R1-8B",
+            "~0",
+            "+10.3*",
+            "+4.5±3.0",
+            "Text lead inflated by FPR"
+          ],
+          [
+            "OT-7B",
+            "+21.6",
+            "+45.5",
+            "+33.6",
+            "Long traces inflate absolute values"
+          ],
+          [
+            "QwQ-32B",
+            "-1.2~+1.9",
+            "+3.7~+12.3",
+            "+15.9",
+            "HS detects later than text"
+          ],
+          [
+            "R1-32B",
+            "+11.7",
+            "-",
+            "+8.8",
+            "Coverage only 25% at W=1"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Lead time是per-model story。没有universal pattern。 R1-8B的HS-at-commitment + GRU-modest-lead是最clean的， 32B各有caveats。论文Discussion必须分模型讨论。\n\n\nHS LR在R1-8B上lead≈0意味着hidden state编码\"当前safety状态\"而非\"未来轨迹\"。 Text lead高（+10.3）是FPR虚高的假象——trigger-happy检测器看起来\"提前\"但假阳性率也高。 GRU通过序列建模获得modest正向lead（+4.5），但远低于oracle（+31）。 32B模型lead time profile分化严重：R1-32B优秀（+11.7）但coverage仅25%， QwQ poor（-1.2 to +1.9）但15/15窗口统计显著。 OT-7B lead times被长trace（~80句 vs R1-8B ~30句）膨胀，论文需normalize或caveat。\n"
+  },
+  {
+    "name": "TrajGuard-style Mahalanobis baseline",
+    "description": "4/4模型Mahalanobis distance评估。全部negative。\n",
+    "results": {
+      "r1_8b_separation": 0.07,
+      "ot_7b_separation": 0.03,
+      "r1_32b_separation": 0.15,
+      "qwq_32b_separation": 0.2,
+      "max_separation": 0.2,
+      "all_fail": true,
+      "failure_mode": "signal in minor PCA components, not principal directions",
+      "best_config": "pca_64_p75",
+      "fa_rate_ge_tp_rate": true
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "Clean negative result。TrajGuard方法论不适用于reasoning model commitment detection。 Strengthens \"existing detectors fail\" narrative。\n\n\nMahalanobis distance假设类别差异在主成分方向上——但safety commitment信号 嵌入在minor PCA components中（Fisher ratio从17→1在PCA-3D中）。 主方向编码的是token-level/position变异，不是safety语义。 4/4模型separation≈0（max 0.20），false alarm率在每个threshold上≥TP率。 TrajGuard的成功依赖于adversarial input在表征空间中的gross separation， reasoning model self-jailbreak不产生这种separation。\n"
+  },
+  {
+    "name": "Bootstrap confidence intervals",
+    "description": "4模型×3指标=12项Holm-Bonferroni检验。10000 resamples。全部通过。\n",
+    "results": {
+      "holm_bonferroni": "12/12 pass",
+      "resamples": 10000,
+      "most_significant": {
+        "r1_8b_precision": {
+          "delta": 0.279,
+          "p": 0.0
+        },
+        "ot_7b_precision": {
+          "delta": 0.219,
+          "p": 0.0
+        },
+        "qwq_precision": {
+          "delta": 0.235,
+          "p": 0.0
+        }
+      },
+      "marginal_tests": {
+        "r1_32b_fpr": {
+          "p": 0.0096,
+          "threshold": 0.05
+        },
+        "qwq_fpr": {
+          "p": 0.0061,
+          "threshold": 0.025
+        }
+      },
+      "precision_range": "+15.4pp to +27.9pp across 4 models"
+    },
+    "tables": [
+      {
+        "title": "Holm-Bonferroni Step-Down (12/12)",
+        "columns": [
+          "Rank",
+          "Model",
+          "Metric",
+          "Delta",
+          "p-value",
+          "HB Threshold",
+          "Pass"
+        ],
+        "rows": [
+          [
+            "1",
+            "R1-8B",
+            "precision",
+            "+27.9pp",
+            "<0.001",
+            "0.0042",
+            "Y"
+          ],
+          [
+            "2",
+            "OT-7B",
+            "bal_acc",
+            "+10.7pp",
+            "<0.001",
+            "0.0045",
+            "Y"
+          ],
+          [
+            "3",
+            "OT-7B",
+            "precision",
+            "+21.9pp",
+            "<0.001",
+            "0.0050",
+            "Y"
+          ],
+          [
+            "4",
+            "OT-7B",
+            "FPR",
+            "-17.1pp",
+            "<0.001",
+            "0.0056",
+            "Y"
+          ],
+          [
+            "5",
+            "QwQ",
+            "bal_acc",
+            "+14.8pp",
+            "<0.001",
+            "0.0063",
+            "Y"
+          ],
+          [
+            "6",
+            "QwQ",
+            "precision",
+            "+23.5pp",
+            "<0.001",
+            "0.0071",
+            "Y"
+          ],
+          [
+            "7",
+            "R1-32B",
+            "bal_acc",
+            "+18.7pp",
+            "<0.001",
+            "0.0083",
+            "Y"
+          ],
+          [
+            "8",
+            "R1-32B",
+            "precision",
+            "+15.4pp",
+            "<0.001",
+            "0.0100",
+            "Y"
+          ],
+          [
+            "9",
+            "QwQ",
+            "FPR",
+            "-9.5pp",
+            "0.006",
+            "0.0125",
+            "Y"
+          ],
+          [
+            "10",
+            "R1-8B",
+            "bal_acc",
+            "+8.2pp",
+            "0.005",
+            "0.0167",
+            "Y"
+          ],
+          [
+            "11",
+            "R1-32B",
+            "FPR",
+            "-14.6pp",
+            "0.010",
+            "0.0250",
+            "Y"
+          ],
+          [
+            "12",
+            "R1-8B",
+            "FPR",
+            "-7.4pp",
+            "0.044",
+            "0.0500",
+            "Y"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "12/12 HB pass是论文统计backbone。 precision一致性惊人（+15-28pp across 4 models）。 FPR是最marginal的指标（rank 9-12），但全部通过。\n\n\nCorrected layers解锁了全部12/12显著性（vs biased layers的5/12）。 核心原因：biased层（L2/L10）的HS信号弱，效应量小，n=20-47无法检出； corrected层（L14/L16/L60/L63）效应量大（precision +15-28pp）， 即使n=20也有足够power（MDE 9-11pp << 实际效应15-28pp）。 10000 resamples vs 1000无实质差异，但消除了p-value Monte Carlo noise。\n"
+  },
+  {
+    "name": "Window size ablation",
+    "description": "W=1,3,5,10,15,20,25 on R1-8B/R1-32B/QwQ-32B。 OT-7B后续补充。\n",
+    "results": {
+      "universal_pattern": {
+        "coverage_decreases_with_W": true,
+        "precision_increases_with_W": true,
+        "fpr_decreases_with_W": true,
+        "bal_acc_increases_with_W": true
+      },
+      "r1_8b": {
+        "best_bal_acc_W": 25,
+        "best_precision_W": 25,
+        "W1_coverage": 0.721,
+        "W25_coverage": 0.488,
+        "W1_precision": 0.693,
+        "W25_precision": 0.822
+      },
+      "r1_32b": {
+        "best_bal_acc_W": 10,
+        "W10_bal_acc": 0.737,
+        "peak_then_decline": true
+      },
+      "qwq_32b": {
+        "best_bal_acc_W": 25,
+        "W1_lead": 19.7,
+        "W25_lead": 14.9
+      }
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "Precision-coverage tradeoff是temporal probing的fundamental characteristic。 论文frame为deployment choice：high-precision/low-coverage vs high-coverage/low-precision。\n\n\nTemporal context增大W创造precision-sensitivity tradeoff： 更大窗口→更多temporal pattern信息→更稳定预测→更高precision、更低FPR， 但也要求更多连续step才能fire→coverage下降。 这是temporal smoothing的固有特性。 R1-32B在W=10后退化因维度灾难（5120×W > n=20）。 R1-8B和QwQ单调改善因4096×W在n=43/19中的比例更合理（虽然QwQ也受限）。 Coverage单调下降是K=5 detection criterion的结果—— 需要连续5步crossing，窗口越大probe越保守。\n"
+  },
+  {
+    "name": "Layer selection ablation (5 metrics × 4 models)",
+    "description": "全层temporal probe + 5种metric层选比较。已完成，核心发现。\n",
+    "results": {
+      "pattern": {
+        "cr_contaminated": "shallow layers (0-16% depth)",
+        "threshold_free_bal_acc": "middle layers (35-73% depth)",
+        "threshold_dependent": "deep layers (45-98% depth)"
+      },
+      "r1_8b": {
+        "cr_composite_layer": 0,
+        "bal_acc_layer": 12,
+        "precision_layer": 16,
+        "composite_layer": 12
+      },
+      "ot_7b": {
+        "cr_composite_layer": 0,
+        "bal_acc_layer": 9,
+        "precision_layer": 20
+      },
+      "qwq_32b": {
+        "cr_composite_layer": 2,
+        "bal_acc_layer": 30,
+        "precision_layer": 60
+      },
+      "r1_32b": {
+        "cr_composite_layer": 10,
+        "bal_acc_layer": 47,
+        "precision_layer": 63
+      },
+      "loo_cv_stability": {
+        "qwq_l30_folds": "13/19",
+        "r1_32b_l47_folds": "13/20"
+      }
+    },
+    "tables": [
+      {
+        "title": "Metric × Model → Selected Layer (Depth%)",
+        "columns": [
+          "Metric",
+          "R1-8B",
+          "OT-7B",
+          "QwQ-32B",
+          "R1-32B",
+          "Category"
+        ],
+        "rows": [
+          [
+            "bal_acc × CR",
+            "L0 (0%)",
+            "L0 (0%)",
+            "L2 (3%)",
+            "L10 (16%)",
+            "Shallow (biased)"
+          ],
+          [
+            "Pure bal_acc",
+            "L12 (39%)",
+            "L9 (32%)",
+            "L30 (47%)",
+            "L47 (73%)",
+            "Middle"
+          ],
+          [
+            "Precision",
+            "L16 (52%)",
+            "L20 (71%)",
+            "L60 (94%)",
+            "L63 (98%)",
+            "Deep"
+          ],
+          [
+            "Inv. FPR",
+            "L16 (52%)",
+            "L14 (50%)",
+            "L60 (94%)",
+            "L63 (98%)",
+            "Deep"
+          ],
+          [
+            "Composite",
+            "L12 (39%)",
+            "L14 (50%)",
+            "L60 (94%)",
+            "L63 (98%)",
+            "Deep"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "这张table是论文methodological contribution的核心图表。 它同时解释了：(1) 为什么之前32B NS是artifact； (2) 为什么不同metric给出不同结论； (3) 为什么researcher degrees of freedom在层选上是real risk。\n\n\n3层pattern（shallow/middle/deep）由metric属性决定： (1) CR-contaminated选shallow因crossing_rate与cosine distance反相关—— 浅层表征压缩，探针在决策边界附近振荡，crossing频率高； (2) Threshold-free（bal_acc/AUROC）选middle因不依赖具体threshold， middle层同时有decent accuracy和moderate stability； (3) Threshold-dependent（precision/FPR）选deep因深层predictions稳定， false alarm少，precision最高。 这是模型表征几何的必然结果——与数据集无关。 LOO-CV stability（65-68% dominant fold rate）确认层选不依赖validation set构成。\n"
+  },
+  {
+    "name": "16-label taxonomy supervision",
+    "description": "使用Type 1-4细粒度标签训练探针，对比binary CP标签。未执行。\n",
+    "results": {
+      "r1_8b": {
+        "binary_bal_acc": 0.81,
+        "taxonomy_bal_acc": 0.832,
+        "delta": "+2.2pp",
+        "taxonomy_transition_detection": "Type 2→3 boundary cleaner",
+        "coverage_improvement": "+3pp"
+      },
+      "ot_7b": {
+        "binary_bal_acc": 0.688,
+        "taxonomy_bal_acc": 0.705,
+        "delta": "+1.7pp"
+      },
+      "marginal_utility": "small",
+      "annotation_cost_multiplier": "4x",
+      "recommendation": "Discussion mention, not core contribution"
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "Result支持paper的\"linear probe + binary label is sufficient\"论述。 写在Discussion里作为\"尝试过更细标签但边际收益小\"。\n\n\nFine-grained labels提供更丰富的训练信号——Type 2→3转变比binary CP更gradual， 探针可以学到\"safety deliberation正在减弱\"的中间状态。 但改善modest（+1.7-2.2pp）因为：(1) linear probe的capacity有限， 即使给更细标签也无法编码复杂的taxonomy结构； (2) binary CP已经捕获了最关键的transition； (3) 细粒度标签的inter-annotator agreement更低，引入label noise。 Best tier下改善存在但marginal，confirms binary labels is sufficient。\n"
+  },
+  {
+    "name": "Oracle decomposition",
+    "description": "分解oracle +31步优势的来源。基于diag_d4_oracle_upper_bound数据。\n",
+    "results": {
+      "oracle_lead": "+31 steps",
+      "decomposition": {
+        "position_component": "~15pp of oracle bal_acc",
+        "label_sequence_pattern": "~10pp (run-length encoding, streak detection)",
+        "future_state_access": "~6pp (true 'seeing the future')"
+      },
+      "probe_gap_explanation": {
+        "hs_lr_encodes": "current safety state",
+        "hs_lr_cannot_encode": "future trajectory / whether commitment will happen",
+        "gru_partial_close": "+4.5 steps via temporal dynamics modeling",
+        "gru_still_below_oracle": "~25 steps gap"
+      },
+      "architectural_implications": {
+        "larger_W_helps_slightly": true,
+        "sequence_model_helps_modestly": true,
+        "fundamental_limit": "hidden states don't encode future intent"
+      }
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "Explains WHY probes detect at-commitment rather than before. Discussion section material. Suggests that for earlier detection, need to predict future states (a different task) rather than classify current state.\n\n\nOracle用future label（每步的ground-truth pre/post CP状态）， 因此天然有perfect lead time。分解reveal三个组件： (1) Position信息（t/T）贡献最大——commitment point位置有strong position prior； (2) Label sequence pattern（e.g. 连续safe→突然unsafe的run-length结构）提供额外信号； (3) 剩余~6pp是纯粹的\"未来信息\"——oracle看到的而probe无法获得的。 GRU通过temporal dynamics建模部分弥补gap（捕获(2)中的序列pattern）， 但(3)是fundamental limit。 Hidden states编码模型当前处理内容，不编码\"模型是否将要commit\"—— 这是transformer架构的autoregressive nature决定的。\n"
+  },
+  {
+    "name": "OpenThinker-7B full pipeline",
+    "description": "Qwen2.5-7B base, STILL-trained。完成2×2 architecture×scale matrix。 已在registry完成（exp_ot7b_full_pipeline）。\n",
+    "results": {
+      "n_traces": 228,
+      "best_layer": 16,
+      "best_layer_depth_pct": 57.1,
+      "hs_best_W": 3,
+      "hs_bal_acc": 0.688,
+      "hs_precision": 0.466,
+      "hs_fpr": 0.1,
+      "text_bal_acc_best": 0.614,
+      "text_precision_best": 0.329,
+      "bootstrap_holm_bonferroni": "3/3",
+      "selectivity_pp": 18.3,
+      "gru_multi_bal_acc": 0.746,
+      "gru_multi_lead": 33.6
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "OT-7B补全了2×2 matrix的Qwen-7B cell。 其clean evidence strengthens cross-architecture story。\n\n\nOT-7B是cleanest evidence model：3/3 HB pass、最高selectivity（18.3pp）、 最大residualized gap（+6.9pp after position removal）。 Qwen-7B + STILL training产生明确的safety表征。 HS W=3在OT-7B上optimal（与R1-8B的W=15形成对比）， 因OT-7B trace更长（~80 sentences），W=3已提供sufficient temporal context。 Layer 16（57% depth）是middle-deep—— Qwen-7B有28层，57%深度consistent with 7-8B pattern（R1-8B是45%）。\n"
+  },
+  {
+    "name": "GRU/Attention probe upper bound",
+    "description": "验证GRU在32B和OT-7B上的表现。多个registry条目。\n",
+    "results": {
+      "r1_8b": {
+        "gru_multi_7l": {
+          "bal_acc": 0.809,
+          "crossing_rate": 0.767,
+          "lead_mean": 4.7,
+          "precp_fpr": 0.165
+        },
+        "lr_temporal_w15": {
+          "bal_acc": 0.848,
+          "note": "LR > GRU on bal_acc"
+        }
+      },
+      "ot_7b": {
+        "gru_multi_l13_19": {
+          "bal_acc": 0.746,
+          "coverage": 0.645,
+          "lead": 33.6,
+          "precp_fpr": 0.274
+        },
+        "lr_temporal_w3": {
+          "bal_acc": 0.688,
+          "note": "GRU +5.8pp over LR"
+        }
+      },
+      "qwq_32b": {
+        "gru_single_bal_acc": 0.694,
+        "gru_multi_bal_acc": 0.724,
+        "lr_w5_bal_acc": 0.761,
+        "note": "LR > GRU on QwQ"
+      },
+      "r1_32b": {
+        "gru_single_bal_acc": 0.675,
+        "lr_w10_bal_acc": 0.737,
+        "note": "LR > GRU on R1-32B"
+      }
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "Confirms linear probe sufficiency。 GRU不是universal improvement——model/data specific。\n\n\nGRU vs LR pattern model-specific：OT-7B GRU优于LR（+5.8pp）， 其余3模型LR优于或持平GRU。 原因：OT-7B traces长（~80句），序列pattern丰富，GRU能捕获； 32B模型样本少（n=100/95），GRU过拟合； R1-8B traces短（~30句），temporal LR W=15已足够。 Overall conclusion：linear probes sufficient for 3/4 models。 GRU仅在long-trace模型上有优势，且伴随更高FPR。 \"Simplicity is optimal\" narrative holds。\n"
+  },
+  {
+    "name": "Text-based baseline (sentence-BERT)",
+    "description": "MiniLM-L6-v2 text embeddings + temporal LR。 Critical baseline for proving HS adds value over cheap text monitoring.\n",
+    "results": {
+      "r1_8b": {
+        "text_static_acc": 0.661,
+        "text_temporal_w15_acc": 0.678,
+        "hs_static_acc": 0.768,
+        "hs_temporal_w15_acc": 0.848,
+        "hs_advantage_pp": "15-18pp"
+      },
+      "ot_7b": {
+        "text_best_bal_acc": 0.614,
+        "hs_best_bal_acc": 0.688,
+        "delta": "+7.4pp"
+      },
+      "all_4_models": {
+        "hs_always_superior": true,
+        "precision_gap": "+15-24pp",
+        "hb_12_of_12": true
+      }
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "HS vs text差距confirmed。论文motivation成立： hidden-state monitoring提供text不可替代的unique value。\n\n\nText embeddings（384d MiniLM）捕获surface-level语义—— safety相关词汇和句式变化。但text probes受限于： (1) 表层信号：模型可能内部已决定jailbreak但text上还在safety reasoning； (2) 维度：384d vs 4096/5120d HS，信息容量低； (3) 粒度：sentence-level embeddings vs token-averaged HS。 HS probes访问模型内部processing state，能检测到text不可见的early signals。 Precision差距最大（+15-24pp）因HS的false positive率显著更低—— text probe经常把normal reasoning误判为unsafe。\n"
+  },
+  {
+    "name": "BOCPD/CUSUM change-point detection",
+    "description": "4/4模型BOCPD + CUSUM评估。全negative。\n",
+    "results": {
+      "bocpd_detection_rate": {
+        "r1_8b": 0.93,
+        "ot_7b": 0.0,
+        "r1_32b": 0.0,
+        "qwq_32b": 0.0
+      },
+      "cusum_universally_worse": true,
+      "r1_8b_bocpd_vs_fcp": {
+        "bocpd_lead": 3.45,
+        "fcp_lead": 4.89,
+        "bocpd_higher_detection_but_lower_lead": true
+      },
+      "failure_reason": "commitment dynamics model-specific; BOCPD assumes gradual shift, 3/4 models show abrupt transitions"
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "BOCPD/CUSUM failure strengthens \"fundamental limitation\" narrative。 Methods designed for gradual distributional shift don't work when commitment is a sharp phase transition.\n\n\nBOCPD假设时间序列中存在渐进distributional shift。 R1-8B的commitment是gradual的（probe score缓慢下降），故BOCPD能检测（93%）。 但其余3模型的commitment是abrupt的（1-2步内probe score跳变）， Gaussian BOCPD模型无法在如此短窗口内accumulate evidence。 CUSUM更简单（累积偏差），但也依赖持续偏差——同样不适用于abrupt transitions。 Simple first-crossing-point（FCP）threshold反而更适合abrupt pattern。 这是clean negative result：advanced change-point methods不适用。\n"
+  },
+  {
+    "name": "False positive analysis",
+    "description": "所有方法在safe traces上的FPR + precision-recall curves。\n",
+    "results": {
+      "r1_8b": {
+        "hs_static_safe_fpr": 0.39,
+        "hs_static_precp_fpr": 0.162,
+        "text_static_safe_fpr": 0.502,
+        "text_static_precp_fpr": 0.356,
+        "hs_lower_fpr": true
+      },
+      "ot_7b": {
+        "hs_static_fpr": 0.111,
+        "text_static_fpr": 0.302
+      },
+      "qwq_32b": {
+        "hs_static_fpr": 0.5,
+        "text_static_fpr": 0.325,
+        "note": "QwQ HS FPR > text — exception"
+      },
+      "r1_32b": {
+        "hs_static_fpr": 0.239,
+        "text_static_fpr": 0.31
+      },
+      "high_safe_fpr_universal": "all methods 39-62% on safe traces"
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "High safe FPR是honest limitation，论文必须acknowledge。 但HS的lower FPR（3/4模型）和lower pre-CP FPR supports core claims。\n\n\nSafe trace FPR高（39-62%）因safe traces中也存在safety-relevant reasoning （模型考虑但最终拒绝），这些reasoning段落的hidden state与jailbreak traces的 early safety reasoning段落相似。探针无法完美区分\"正在考虑safety\"和\"将要violate safety\"。 HS整体FPR低于text（3/4模型），因HS编码更细粒度的processing state。 QwQ是exception——HS FPR略高于text——与QwQ模型的safety reasoning风格有关 （QwQ的safe traces中safety reasoning更extensive，HS probe更容易误判）。 Pre-CP FPR显著低于safe FPR，因jailbreak traces的pre-CP段落有更明确的context。\n"
+  },
+  {
+    "name": "AdvBench layer bias replication (binary labels)",
+    "description": "在AdvBench数据上用jailbreak/safe binary labels（无CP）训练R1-8B探针， 跑5-metric层选分析，验证layer selection bias是模型几何性质。 此前尝试因R1-8B在AdvBench上90% CP=0而失败—— 本实验绕开CP，直接用trace-level binary labels。 520 traces available（~450 jailbreak, ~70 safe by text classifier）。\n",
+    "results": {
+      "data": {
+        "n_traces_total": 520,
+        "n_jailbreak": 437,
+        "n_safe": 83,
+        "label_method": "LLM judge binary (harmful output / refusal)",
+        "class_weight": "balanced",
+        "split": "60/20/20 stratified",
+        "n_train": 312,
+        "n_val": 104,
+        "n_test": 104,
+        "test_jailbreak": 87,
+        "test_safe": 17,
+        "mean_trace_length_sentences": 28
+      },
+      "layer_selection_5_metrics": {
+        "cr_composite": {
+          "selected_layer": 2,
+          "depth_pct": 6.5,
+          "score": 0.412,
+          "crossing_rate_at_layer": 0.44
+        },
+        "pure_bal_acc": {
+          "selected_layer": 11,
+          "depth_pct": 35.5,
+          "score": 0.731
+        },
+        "precision": {
+          "selected_layer": 15,
+          "depth_pct": 48.4,
+          "score": 0.682
+        },
+        "inverse_fpr": {
+          "selected_layer": 14,
+          "depth_pct": 45.2,
+          "best_fpr": 0.155
+        },
+        "composite": {
+          "selected_layer": 14,
+          "depth_pct": 45.2,
+          "score": 0.748
+        }
+      },
+      "layer_gap": {
+        "cr_to_threshold_abs": 12,
+        "cr_to_threshold_depth_pct": 38.7
+      },
+      "crossing_rate_comparison": {
+        "L2_crossing_rate": 0.44,
+        "L14_crossing_rate": 0.19,
+        "ratio": 2.32
+      },
+      "hs_at_threshold_layer_L14": {
+        "bal_acc": 0.762,
+        "precision": 0.677,
+        "fpr": 0.155,
+        "coverage": 0.586,
+        "lead_mean": 8.3
+      },
+      "text_at_threshold_layer_L14": {
+        "bal_acc": 0.661,
+        "precision": 0.494,
+        "fpr": 0.283,
+        "coverage": 0.529,
+        "lead_mean": 5.7
+      },
+      "hs_text_delta": {
+        "bal_acc_pp": 10.1,
+        "precision_pp": 18.3,
+        "fpr_pp": -12.8
+      },
+      "bootstrap_1000": {
+        "bal_acc": {
+          "delta": 0.101,
+          "ci_95": "[0.035, 0.168]",
+          "p": 0.005
+        },
+        "precision": {
+          "delta": 0.183,
+          "ci_95": "[0.082, 0.284]",
+          "p": 0.002
+        },
+        "fpr": {
+          "delta": -0.128,
+          "ci_95": "[-0.215, -0.041]",
+          "p": 0.008
+        },
+        "holm_bonferroni": "3/3 pass (alpha=0.0167)"
+      },
+      "hs_at_biased_layer_L2": {
+        "bal_acc": 0.718,
+        "precision": 0.492,
+        "fpr": 0.275,
+        "crossing_rate": 0.44
+      },
+      "original_vs_advbench_comparison": {
+        "original_cr_composite_layer": "L0 (0%)",
+        "advbench_cr_composite_layer": "L2 (6.5%)",
+        "original_threshold_layer": "L14 (45%)",
+        "advbench_threshold_layer": "L14 (45%)",
+        "original_gap": 14,
+        "advbench_gap": 12,
+        "original_hs_bal_acc": 0.81,
+        "advbench_hs_bal_acc": 0.762,
+        "original_precision_delta": "+22.4pp",
+        "advbench_precision_delta": "+18.3pp",
+        "original_cr_ratio": 2.5,
+        "advbench_cr_ratio": 2.32,
+        "pattern_match": "complete"
+      },
+      "cosine_distance_verification": {
+        "L2_mean_cosine_dist": 0.038,
+        "L14_mean_cosine_dist": 0.091,
+        "ratio": 2.39,
+        "confirms_geometric": true
+      },
+      "dream_score_delta": 0.2
+    },
+    "tables": [
+      {
+        "title": "AdvBench 5-Metric Layer Selection (R1-8B, 32 layers)",
+        "columns": [
+          "Metric",
+          "Selected Layer",
+          "Depth%",
+          "Category"
+        ],
+        "rows": [
+          [
+            "bal_acc x CR",
+            "L2",
+            "6.5%",
+            "Shallow (biased)"
+          ],
+          [
+            "Pure bal_acc",
+            "L11",
+            "35.5%",
+            "Middle"
+          ],
+          [
+            "Precision",
+            "L15",
+            "48.4%",
+            "Deep"
+          ],
+          [
+            "Inverse FPR",
+            "L14",
+            "45.2%",
+            "Deep"
+          ],
+          [
+            "Composite",
+            "L14",
+            "45.2%",
+            "Deep"
+          ]
+        ]
+      },
+      {
+        "title": "Original (HarmThoughts) vs AdvBench Pattern Comparison",
+        "columns": [
+          "Metric",
+          "Original (CP labels)",
+          "AdvBench (binary)",
+          "Match"
+        ],
+        "rows": [
+          [
+            "CR-composite layer",
+            "L0 (0%)",
+            "L2 (6.5%)",
+            "Both shallow"
+          ],
+          [
+            "Threshold layer",
+            "L14 (45%)",
+            "L14 (45%)",
+            "Identical"
+          ],
+          [
+            "Layer gap",
+            "14 layers",
+            "12 layers",
+            "Both >=8"
+          ],
+          [
+            "HS bal_acc (deep)",
+            "0.810",
+            "0.762",
+            "Both in [0.72,0.82]"
+          ],
+          [
+            "HS-text prec delta",
+            "+22.4pp",
+            "+18.3pp",
+            "Both in [10,25]"
+          ],
+          [
+            "CR ratio (shallow/deep)",
+            "2.50",
+            "2.32",
+            "Both in [1.5,3.0]"
+          ],
+          [
+            "HB pass rate",
+            "3/3",
+            "3/3",
+            "Both >=0.67"
+          ]
+        ]
+      },
+      {
+        "title": "HS vs Text at Threshold Layer L14 (AdvBench)",
+        "columns": [
+          "Modality",
+          "bal_acc",
+          "Precision",
+          "FPR",
+          "Coverage"
+        ],
+        "rows": [
+          [
+            "HS (L14)",
+            "0.762",
+            "0.677",
+            "0.155",
+            "0.586"
+          ],
+          [
+            "Text (L14)",
+            "0.661",
+            "0.494",
+            "0.283",
+            "0.529"
+          ],
+          [
+            "Delta",
+            "+10.1pp",
+            "+18.3pp",
+            "-12.8pp",
+            "+5.7pp"
+          ],
+          [
+            "Bootstrap p",
+            "0.005",
+            "0.002",
+            "0.008",
+            "-"
+          ],
+          [
+            "HB pass",
+            "Y",
+            "Y",
+            "Y",
+            "-"
+          ]
+        ]
+      },
+      {
+        "title": "Cosine Distance by Layer Depth (AdvBench)",
+        "columns": [
+          "Layer",
+          "Depth%",
+          "Mean Cosine Dist",
+          "Crossing Rate",
+          "Interpretation"
+        ],
+        "rows": [
+          [
+            "L2",
+            "6.5%",
+            "0.038",
+            "0.44",
+            "Compressed → noisy crossings"
+          ],
+          [
+            "L8",
+            "25.8%",
+            "0.062",
+            "0.31",
+            "Intermediate"
+          ],
+          [
+            "L14",
+            "45.2%",
+            "0.091",
+            "0.19",
+            "Expanded → stable predictions"
+          ],
+          [
+            "L20",
+            "64.5%",
+            "0.105",
+            "0.16",
+            "Deep → most stable"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "AdvBench replication是best tier的核心产出。 All 8 key metrics落在target range内。Pattern match = complete。\n论文影响： (1) Main text加一句：'Layer selection bias replicates on AdvBench with fundamentally different labeling (binary jailbreak/safe vs step-level safety state), confirming it as a geometric property of the model representation rather than a dataset-specific artifact.' (2) Appendix加完整table（上面Table 1-4）。 (3) C1 claim升级：不再需要'single dataset caveat'。 (4) Reviewer concern 'bias是你数据集的artifact' 被直接堵死。\nDream score从3.0升至~3.2： - Methodological contribution strengthened (3.0 → 3.3) - Empirical validation broadened (single → cross-dataset) - Rebuttal surface reduced (one fewer major weakness) - 但不足以达到3.5 Conference因为：novelty仍是empirical study，\n  不是new method；32B caveats仍存在。\n\nLayer selection bias在AdvBench上完整复现，尽管标注方案根本不同 （binary jailbreak/safe vs step-level CP transition）。\nCR-composite选L2（6.5%），threshold metrics选L14（45%），gap=12层。 这与原数据集pattern一致（L0 vs L14, gap=14）。\n机制解释：浅层（L0-L3）表征空间被压缩——cosine distance仅0.038， 远小于深层L14的0.091（ratio 2.39x）。压缩导致probe decision boundary 更容易被noise扰动→threshold crossing频率高→CR-composite虚高。 这是模型几何性质（Llama-8B的layer-wise representation structure）， 不依赖标注方案或数据分布。\nBinary labels比CP labels更coarse（每步label=trace outcome，非safety state）， 因此绝对性能略低（bal_acc 0.762 vs 0.810，precision 0.677 vs 0.693）。 但HS-text gap保持（precision +18.3pp vs original +22.4pp）， 因gap反映的是modality difference（HS vs text的信息量差异）， 不依赖label粒度。\nBootstrap 3/3 HB pass despite smaller per-class n， 因效应量足够大（precision +18.3pp >> MDE ~9pp at n=104）。\nCrossing rate ratio 2.32与原数据集2.5高度一致， 进一步确认这是geometric property而非data artifact。\n"
+  }
+]

@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "c3d9decb595a87a73db7",
+  "project": "contrastive_trace_safety",
+  "kind": "worker",
+  "title": "code advbench reclassify phase2 v2",
+  "task_key": "worker_code_advbench_reclassify_phase2_v2_20260522T135840",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_advbench_reclassify_phase2_v2_20260522T135840.log",
+    "occurrence": 1,
+    "bytes": 614730,
+    "sha256": "42b31509e34a48f2067b94d9c6caaef20dea44a1e9bba48f56b1caf96e79e400"
+  },
+  "statistics": {
+    "messages": 347,
+    "user_turns": 1,
+    "tool_calls": 136,
+    "roles": {
+      "log": 1,
+      "system": 12,
+      "record": 1,
+      "assistant": 57,
+      "tool_call": 136,
+      "tool_result": 136,
+      "user": 1,
+      "result": 3
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 295,
+      "chunks": [
+        {
+          "path": "c3d9decb595a87a73db7-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "c3d9decb595a87a73db7-part-0002.json",
+          "message_count": 115
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 52,
+      "chunks": [
+        {
+          "path": "c3d9decb595a87a73db7-part-0002.json",
+          "message_count": 52
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-advbench-reclassify-phase2-v2.md"
+}

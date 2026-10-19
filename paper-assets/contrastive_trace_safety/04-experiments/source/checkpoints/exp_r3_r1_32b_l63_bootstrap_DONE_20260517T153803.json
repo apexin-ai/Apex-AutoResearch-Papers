@@ -1,0 +1,62 @@
+{
+  "exp_id": "exp_r3_r1_32b_l63_bootstrap",
+  "project": "contrastive_trace_safety",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T15:35:54.733Z",
+    "updated_at": "2026-05-17T15:38:03.845Z",
+    "hypothesis": "R1-32B at corrected Layer 63 (95% depth) should show significant HS vs text advantage after null-centered two-sided bootstrap, confirming that the non-significance at biased Layer 10 was a layer-selection artifact rather than a true scale-dependent limitation.",
+    "spec": {
+      "command": "python exp_r3_r1_32b_l63_bootstrap_v2.py + pvalue_unified.py",
+      "server": "autodl-rtx6000",
+      "data_path": "/root/autodl-tmp/contrastive_trace_safety/data/r1_32b/",
+      "data_count": 100,
+      "model_name": "R1-Distill-Qwen-32B Layer 63",
+      "seed": 42,
+      "checkpoint_path": "N/A (CPU bootstrap)",
+      "log_path": "/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_l63_bootstrap_v2/results.json"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "method": "null-centered two-sided bootstrap",
+      "W1": {
+        "bal_acc_delta": 0.187,
+        "bal_acc_p": 0,
+        "precision_delta": 0.154,
+        "precision_p": 0,
+        "fpr_delta": -0.146,
+        "fpr_p": 0.007,
+        "bonferroni_pass": "3/3"
+      },
+      "W3": {
+        "bal_acc_delta": 0.112,
+        "bal_acc_p": 0.02,
+        "precision_delta": 0.13,
+        "precision_p": 0.032,
+        "fpr_delta": -0.114,
+        "fpr_p": 0.077,
+        "bonferroni_pass": "0/3"
+      },
+      "W5": {
+        "bal_acc_delta": 0.097,
+        "bal_acc_p": 0.046,
+        "bonferroni_pass": "0/3"
+      },
+      "W10": {
+        "bal_acc_p": 0.384,
+        "bonferroni_pass": "0/3"
+      },
+      "W15": {
+        "bal_acc_p": 0.075,
+        "bonferroni_pass": "0/3"
+      },
+      "finding": "W=1 significant 3/3 Bonferroni (alpha=0.0167). W3+ all fail after Bonferroni. Confirms HS advantage exists at L63 but only robust at minimal temporal context."
+    },
+    "completed_at": "2026-05-17T15:38:03.845Z"
+  },
+  "timestamp": "2026-05-17T15:38:03.924355+00:00",
+  "trigger": "update_registry"
+}

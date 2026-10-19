@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "387ba230a45a2d2d8aa4",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "research r12 bib fixes",
+  "task_key": "worker_research_r12_bib_fixes_20260518T134721",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_r12_bib_fixes_20260518T134721_result.json",
+    "occurrence": 1,
+    "bytes": 1367,
+    "sha256": "1598045c0c9533269f3a51d54c9857b55f009a804f6a574b698f12dbfd7c4f90"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### 子任务 D: 修复 3 条 \"and others\"\n\n| 条目 | 修改内容 |\n|---|---|\n| `li2024inference` (L61-65) | `Li, Kenneth and others` → `Li, Kenneth and Patel, Oam and Vi\\'{e}gas, Fernanda and Pfister, Hanspeter and Wattenberg, Martin`；年份 2024→2023（实际发表于 NeurIPS 2023） |\n| `tigges2023linear` (L67-71) | `Tigges, Curt and others` → `Tigges, Curt and Hollinsworth, Oskar John and Geiger, Atticus and Nanda, Neel` |\n| `meng2022locating` (L73-77) | `Meng, Kevin and Bau, David and others` → `Meng, Kevin and Bau, David and Andonian, Alex and Belinkov, Yonatan` |\n\n### 子任务 E: Geiger et al. causal abstraction\n\n添加了 `geiger2025causal` (L79-86):\n- **Title**: Causal Abstraction: A Theoretical Foundation for Mechanistic Interpretability\n- **Authors**: Atticus Geiger, Duligur Ibeling, Amir Zur, Maheep Chaudhary, Sonakshi Chauhan, Jing Huang, Aryaman Arora, Zhengxuan Wu, Noah Goodman, Christopher Potts, Thomas Icard\n- **Venue**: JMLR vol 26, pages 1-63, 2025 (arXiv: 2301.04709, 最初 2023 上传，2024 修订)\n\n**注意**: 文件中仍有 7 条其他 \"and others\" 条目（harmthoughts, selfjailbreaking, trajguard, safeswitch, siren, saferemind, safethink），这些论文标题在公开数据库中未找到匹配，可能是 AI 生成的虚构引用，需要进一步核实。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-r12-bib-fixes.md"
+}

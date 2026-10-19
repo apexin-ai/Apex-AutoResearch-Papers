@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1f178abcc0e0cff59487",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code ensemble cv status check",
+  "task_key": "worker_code_ensemble_cv_status_check_20260522T044635",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_ensemble_cv_status_check_20260522T044635_result.json",
+    "occurrence": 1,
+    "bytes": 437,
+    "sha256": "f1471ae33b93d04b42ed6422af98972639916e2e1a944307f14b2d34f75ca88f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**实验状态：仍在运行**\n\n- PID 4049，状态 `R (running)`，启动于 11:48（已运行约 60 分钟）\n- 231 线程，RSS ~3GB，CPU 时间 1220 分钟（多核并行）\n- 日志 0 字节（Python stdout 缓冲，进程结束后才会 flush）\n- 结果文件 `ensemble_cv_results.json` 尚未生成\n\n已接近预估完成时间（60 分钟），进程正常运行中。建议 5-10 分钟后再次检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-ensemble-cv-status-check.md"
+}

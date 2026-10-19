@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ef4d6ec755e8490133bc",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code r7 cosine distance volatility",
+  "task_key": "worker_code_r7_cosine_distance_volatility_20260518T053426",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r7_cosine_distance_volatility_20260518T053426_result.json",
+    "occurrence": 1,
+    "bytes": 1957,
+    "sha256": "11f4d7768b7752968d5aa53eab4d938aac4adbbf38197e97e19ca0dafceebaec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results saved. Here's the summary:\n\n## Cosine Distance Volatility: Shallow vs Deep Layers\n\n| Model   | Layer (type)    | Mean cos_dist | Std cos_dist | Median   | N pairs |\n|---------|----------------|---------------|-------------|----------|---------|\n| R1-8B   | L2 (biased)    | 0.1855        | 0.0974      | 0.1569   | 11,640  |\n| R1-8B   | L14 (corrected)| 0.4112        | 0.1434      | 0.4003   | 11,640  |\n| OT-7B   | L2 (biased)    | 0.0771        | 0.0800      | 0.0408   | 18,032  |\n| OT-7B   | L16 (corrected)| 0.2064        | 0.0911      | 0.1938   | 18,032  |\n| QwQ-32B | L2 (biased)    | 0.0374        | 0.0639      | 0.0150   | 4,757   |\n| QwQ-32B | L60 (corrected)| 0.1019        | 0.0754      | 0.0851   | 4,757   |\n| R1-32B  | L10 (biased)   | 0.0669        | 0.0497      | 0.0524   | 3,406   |\n| R1-32B  | L63 (corrected)| 0.0916        | 0.0759      | 0.0739   | 3,406   |\n\n### Volatility Ratio (shallow / deep)\n| Model   | Ratio |\n|---------|-------|\n| R1-8B   | 0.45x |\n| OT-7B   | 0.37x |\n| QwQ-32B | 0.37x |\n| R1-32B  | 0.73x |\n\n**Counter to the initial hypothesis**: shallow layers are consistently **less** volatile (lower cosine distance) than deep layers across all 4 models. Shallow representations change less between adjacent steps, while deep layers show 1.4x-2.7x higher step-to-step variation.\n\nThis reframes the crossing rate bias mechanism: the issue with shallow layers is not that they're too volatile, but rather that their representations are **too stable/compressed**, with neighboring steps tightly clustered. This means a linear decision boundary in shallow layers operates on smaller margins, making threshold crossings more noise-driven (spurious) rather than reflecting genuine semantic transitions. Deep layers spread representations apart, producing more reliable (and less noisy) crossing signals.\n\nResults saved to `artifacts/exp_r7_cosine_volatility/results.json`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r7-cosine-distance-volatility.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "512801a597e983a04e19",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "analysis random cp control",
+  "task_key": "worker_analysis_random_cp_control_20260519T113501",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_random_cp_control_20260519T113501_result.json",
+    "occurrence": 1,
+    "bytes": 1247,
+    "sha256": "b1760c8dd7f8a1617d64c1ff095bda90bae184c89701b552b7ba3ad948f5a543"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结果总结：\n\n**Real-CP vs Random-CP 层选择对比 (OT-7B, 28 layers)**\n\n| Metric | Real-CP 选择的层 | Random-CP 平均层 (±std) |\n|--------|-----------------|----------------------|\n| BA×crossing (CR-composite) | **L0** (0% depth) | 14.2 ± 9.2 (散布) |\n| Precision | **L19** (70% depth) | 14.4 ± 8.0 (散布) |\n| FPR | **L18** (67% depth) | 15.3 ± 8.7 (散布) |\n| BA | L9 (33% depth) | 13.5 ± 7.6 (散布) |\n\n**核心发现：**\n- Real-CP 下 metric disagreement 模式清晰：CR-composite → 极浅层 (L0)，threshold-based → 深层 (L18-19)\n- Random-CP 下所有 metric 层选择散布在全层范围（mean 13-15，std 8-9），**无系统性浅/深分裂**\n- CR-composite 选浅层频率仅 30%（vs real-CP 100%）\n- 所有 metric 表现趋同，**metric disagreement 不可复现**\n\n这直接反驳 W4 的质疑：层选择 metric disagreement pattern 需要真实 CP 标注才出现，不是模型几何的 artifact。\n\n输出文件：\n- 服务器：`/root/autodl-tmp/contrastive_trace_safety/artifacts/random_cp_control/`\n- 本地：`artifacts/random_cp_control/` (report.txt, random_cp_summary.json)\n- 详细 per-repeat 数据：`random_cp_layer_selection.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-random-cp-control.md"
+}

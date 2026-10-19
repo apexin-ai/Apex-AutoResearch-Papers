@@ -1,0 +1,28 @@
+{
+  "exp_id": "gpt4omini-cp-annotation",
+  "project": "contrastive_trace_safety",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T06:36:34.411Z",
+    "updated_at": "2026-05-21T09:11:43.747Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/contrastive_trace_safety && python scripts/annotate_cp_llm_gpt4omini.py\"",
+      "server": "autodl-rtx6000",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "485758",
+      "log_path": "~/runs/contrastive_trace_safety/gpt4omini-cp-annotation.log",
+      "submitted_at": "2026-05-20T06:36:34.258Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-21T09:11:43.857361+00:00",
+  "trigger": "update_registry"
+}

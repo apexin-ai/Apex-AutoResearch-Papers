@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0cd1f6357bd48e4a0eda",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "infra kill orphan",
+  "task_key": "worker_infra_kill_orphan_20260516T192202",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_kill_orphan_20260516T192202_result.json",
+    "occurrence": 1,
+    "bytes": 274,
+    "sha256": "f0f64e2f78781731e279f8f5f066b3d9011e0a242d627da8d594653b46cf1ab3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个 structfuse 孤儿进程已全部 kill，显存完全释放：\n\n| GPU | 释放前 | 释放后 |\n|-----|--------|--------|\n| GPU 0 | 50,801 MiB | 3 MiB |\n| GPU 1 | 69,856 MiB | 3 MiB |\n\n两张 RTX PRO 6000（各 ~96GB）现在完全空闲可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-kill-orphan.md"
+}

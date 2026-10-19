@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e67046b316a768a903a0",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "analysis code reusability assessment",
+  "task_key": "worker_analysis_code_reusability_assessment_20260519T183417",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_code_reusability_assessment_20260519T183417_result.json",
+    "occurrence": 1,
+    "bytes": 932,
+    "sha256": "94faa13e6ce61c02b1107a6d83a75558353a86f39672c7cfd8abe9a9732b6c1c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "评估完成，产出文件：`artifacts/code_reusability_assessment.md`\n\n核心结论：\n\n**~80% 代码可直接复用。** 唯一需要重写的是 `data_loader.py`（HarmThoughts 字段名、trace_id 解析、安全标签全部硬编码）。统计核心（bootstrap、Holm-Bonferroni、window features、probe training）零修改可用。\n\n关键数据：\n- Hidden states 格式：`.pt` dict，`hidden_states` tensor `[T, L, D]` + metadata\n- Text embeddings：`.pkl` dict，trace_id → ndarray `(T, 384)`\n- 现有 traces：R1-8B=268, OT-7B=228, R1-32B=100, QwQ-32B=95\n\n执行计划（并行冲刺）：\n- **Critical path: 8–14h**（2h prep → 4–8h GPU 推理+HS提取 → 2–4h 分析）\n- 如果新数据集已有推理 traces（不需要从头生成），GPU 时间可降到 2–4h\n- 最大风险：新数据集是否有现成 traces；CP 定义能否迁移；pattern 本身是否可复现"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-code-reusability-assessment.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1245f4829bc23e537e2a",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "research arxiv verification bib 2026",
+  "task_key": "worker_research_arxiv_verification_bib_2026_20260518T024640",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_arxiv_verification_bib_2026_20260518T024640_result.json",
+    "occurrence": 1,
+    "bytes": 2537,
+    "sha256": "8453a33c279d0f6be89c932f44aad1ec68c6b8dd5657192e29fe7a5ed70770f1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 10 篇论文的 arXiv 页面已获取完毕，逐一比对结果如下：\n\n## 验证结果汇总\n\n| # | bib key | arXiv ID | 存在 | 标题匹配 | 作者匹配 | 结论 | 问题描述 |\n|---|---------|----------|------|----------|----------|------|----------|\n| 1 | trajguard | 2604.07727 | ✓ | ✓ | ✓ | **VERIFIED** | — |\n| 2 | (jiao) | 2604.18519 | ✓ | ✓ | ✓ | **VERIFIED** | — |\n| 3 | saferemind | 2601.03662 | ✓ | ✓ | ✓ | **VERIFIED** | — |\n| 4 | (ghosal) | 2602.11096 | ✓ | ✓ | ✓ | **VERIFIED** | — |\n| 5 | (kakkar) | 2604.19001 | ✓ | ✓ | ✓ | **VERIFIED** | — |\n| 6 | safedream2026 | 2604.16824 | ✓ | ✓ | ✓ | **VERIFIED** | — |\n| 7 | hu2026refusal_dynamics | 2605.02958 | ✓ | ✓ | ✓ | **VERIFIED** | — |\n| 8 | ahrend2026safer_traces | 2603.05618 | ✓ | ✓ | ✓ | **VERIFIED** | — |\n| 9 | joad2026refusal_multi | 2602.02132 | ✓ | ✓ | ✓ | **VERIFIED** | — |\n| 10 | hagendorff2026lrm_jailbreak | 2508.04039 | ✓ | ✓ | ✓ | **VERIFIED** | — |\n\n## 详细比对\n\n所有 10 篇论文的 arXiv ID 均存在，标题与声称完全一致，第一作者均匹配。具体作者列表：\n\n| # | 声称第一作者 | arXiv 实际作者全列表 |\n|---|-------------|---------------------|\n| 1 | Liu, Cheng | Cheng Liu, Xiaolei Liu, Xingyu Li, Bangzhou Xin, Kangyi Ding |\n| 2 | Jiao, Difan | Difan Jiao, Yilun Liu, Ye Yuan, Zhenwei Tang, Linfeng Du, Haolun Wu, Ashton Anderson |\n| 3 | Kim, Su-Hyeon | Su-Hyeon Kim, Hyundong Jin, Yejin Lee, Yo-Sub Han |\n| 4 | Ghosal, Soumya Suvra | Soumya Suvra Ghosal, Souradip Chakraborty, Vaibhav Singh, Furong Huang, Dinesh Manocha, Amrit Singh Bedi |\n| 5 | Kakkar, Ishita | Ishita Kakkar, Enze Zhang, Rheeya Uppaal, Junjie Hu |\n| 6 | Yan, Bo | Bo Yan, Weikai Lin, Yada Zhu, Song Wang |\n| 7 | Hu, Xulin | Xulin Hu, Che Wang, Wei Yang Bryan Lim, Jianbo Gao, Zhong Chen |\n| 8 | Ahrend, Patrick | Patrick Ahrend, Tobias Eder, Xiyang Yang, Zhiyi Pan, Georg Groh |\n| 9 | Joad, Faaiz | Faaiz Joad, Majd Hawasly, Sabri Boughorbel, Nadir Durrani, Husrev Taha Sencar |\n| 10 | Hagendorff, Thilo | Thilo Hagendorff, Erik Derner, Nuria Oliver |\n\n## 关于 #10 (hagendorff2026) 的 journal 信息\n\narXiv 页面确认该论文已发表于 **Nature Communications**，DOI: `10.1038/s41467-026-69010-1`。arXiv 提交时间为 2025 年 8 月（2508.xxxxx），bib 中标注 2026 年发表于 Nature Communications 是准确的。\n\n**结论：10 篇论文全部 VERIFIED，无需修正。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-arxiv-verification-bib-2026.md"
+}

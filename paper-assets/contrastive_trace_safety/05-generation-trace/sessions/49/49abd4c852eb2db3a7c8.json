@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "49abd4c852eb2db3a7c8",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "analysis split half replication",
+  "task_key": "worker_analysis_split_half_replication_20260519T113523",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_split_half_replication_20260519T113523_result.json",
+    "occurrence": 1,
+    "bytes": 2094,
+    "sha256": "c6b568f1350d57e59a06c25fea27ecc79889edb220650921dd2b9c2037bfe1c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Experiment complete. Here are the results against the 4 key checkpoints:\n\n---\n\n## Split-Half Layer Selection Replication (OT-7B) — Results\n\n**Setup**: 228 traces → 114 + 114, seed=42, W=1 sweep, W=3 final probes, liblinear\n\n### Checkpoint 1: Shallow vs Deep Metric Disagreement\n**Both halves replicate the disagreement pattern.**\n\n| Metric | Half 1 | Half 2 | Zone |\n|--------|--------|--------|------|\n| ba | L22 | L24 | both deep |\n| precision | L22 | L24 | both deep |\n| fpr | L11 | L22 | both deep |\n| crossing_rate | L0 | L0 | both shallow |\n| composite | L0 | L0 | both shallow |\n\n### Checkpoint 2: crossing_rate/composite select shallow?\n**Yes.** Both halves select L0 for both crossing_rate and composite. Perfect agreement (|diff|=0).\n\n### Checkpoint 3: precision/FPR select deep?\n**Yes.** Precision selects L22/L24 (both deep, |diff|=2). FPR selects L11/L22 (both deep, |diff|=11 — wider spread but still both >= L8).\n\n### Checkpoint 4: HS vs Text ΔPrecision same direction?\n**Yes.** Both halves show HS > Text:\n\n| | L_prec | HS_prec | Text_prec | ΔPrec | ΔBA | ΔFPR |\n|---|---|---|---|---|---|---|\n| Half 1 | L22 | 0.4159 | 0.2350 | **+0.181** | +0.069 | -0.198 |\n| Half 2 | L24 | 0.5726 | 0.2234 | **+0.349** | +0.185 | -0.214 |\n\n### Agreement Summary (all True)\n- `cr_composite_both_shallow`: **True**\n- `threshold_both_deep`: **True**\n- `delta_precision_same_direction`: **True**\n- `delta_ba_same_direction`: **True**\n\n### Key Observations\n1. The metric disagreement pattern is **fully replicable** across independent halves\n2. Half 2 shows stronger HS advantage (ΔPrec=+0.35 vs +0.18), suggesting the effect is robust and possibly conservative in the full dataset\n3. The shallow/deep split is clean: crossing_rate and composite always prefer L0 (early detection), while precision-based metrics prefer L22-L24 (accuracy-focused)\n4. Elapsed: 1455s (~24 min), CPU-only\n\nOutput files on server:\n- `artifacts/split_half_replication/split_half_results.json` (16KB)\n- `artifacts/split_half_replication/report.txt`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-split-half-replication.md"
+}

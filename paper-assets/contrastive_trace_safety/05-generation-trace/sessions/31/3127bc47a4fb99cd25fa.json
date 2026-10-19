@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3127bc47a4fb99cd25fa",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "research second dataset candidates",
+  "task_key": "worker_research_second_dataset_candidates_20260519T183401",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_second_dataset_candidates_20260519T183401_result.json",
+    "occurrence": 1,
+    "bytes": 2054,
+    "sha256": "4a2b6165a1b9ba1c9d57d74fbc0b18e341a277e82ad189dd497fca1e09ee3c66"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/second_dataset_candidates.md`。\n\n核心结论：\n\n**Top-1: ReasoningShield Dataset** — 9.2K 条来自 8 个 LRM 的推理 trace，带句子级安全标注（3 级，κ=0.75），HuggingFace 开源。无需生成 trace，safe→borderline/unsafe 转换可映射为 CP proxy。预计 ~2 小时即可完成数据处理。\n\n**Top-2: AdvBench** — 520 条 harmful prompts，需用 R1-8B 生成 trace + LLM 标注 CP，预计 ~8 小时。规模 10× HarmThoughts，领域差异最大。\n\n**Honorable mention: SORRY-Bench** — 45 个平衡细粒度类别，可做 per-category 层选择分析。\n\nSources:\n- [ReasoningShield Dataset](https://huggingface.co/datasets/ReasoningShield/ReasoningShield-Dataset)\n- [ReasoningShield GitHub](https://github.com/CosmosYi/ReasoningShield)\n- [XSTest GitHub](https://github.com/paul-rottger/xstest)\n- [XSTest Paper (NAACL 2024)](https://aclanthology.org/2024.naacl-long.301/)\n- [AdvBench on HuggingFace](https://huggingface.co/datasets/walledai/AdvBench)\n- [AdvBench Paper (Zou et al. 2023)](https://arxiv.org/abs/2307.15043)\n- [WildGuardMix (NeurIPS 2024)](https://arxiv.org/abs/2406.18495v3)\n- [WildJailbreak on HuggingFace](https://huggingface.co/datasets/allenai/wildjailbreak)\n- [SORRY-Bench (ICLR 2025)](https://sorry-bench.github.io/)\n- [SafeDecoding (ACL 2024)](https://aclanthology.org/2024.acl-long.303/)\n- [StrongREJECT](https://huggingface.co/datasets/walledai/StrongREJECT)\n- [HEx-PHI](https://huggingface.co/datasets/LLM-Tuning-Safety/HEx-PHI)\n- [Annotating the Chain-of-Thought](https://arxiv.org/abs/2510.18154)\n- [AISafety-Student Dataset](https://huggingface.co/datasets/AISafety-Student/reasoning-safety-behaviours)\n- [SafeRBench](https://arxiv.org/abs/2511.15169)\n- [Nvidia Nemotron Safety Dataset](https://huggingface.co/datasets/nvidia/Nemotron-Content-Safety-Reasoning-Dataset)\n- [SafeChain (ACL Findings 2025)](https://aclanthology.org/2025.findings-acl.1197/)\n- [Refusal Falls off a Cliff](https://arxiv.org/abs/2510.06036)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-second-dataset-candidates.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0e4c333f0831da9249a5",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code e5 v2 fetch report",
+  "task_key": "worker_code_e5_v2_fetch_report_20260518T213706",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_e5_v2_fetch_report_20260518T213706_result.json",
+    "occurrence": 1,
+    "bytes": 84,
+    "sha256": "55a0c877f0588c9aaf48d504de5f5677b26730361854af34b14f1b7d2681ecbf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已保存到本地 `artifacts/e5_mistral_comparison_v2_report.txt`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-e5-v2-fetch-report.md"
+}

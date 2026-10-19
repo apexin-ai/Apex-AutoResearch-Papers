@@ -1,0 +1,66 @@
+{
+  "exp_id": "neg_difficulty_analysis",
+  "project": "structfuse-context",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T19:39:20.016Z",
+    "updated_at": "2026-05-13T21:54:09.235Z",
+    "hypothesis": "Negative difficulty distribution analysis: 用预训练 Qwen2.5-Coder-3B 和 StarCoder2-3B 计算 3 策略 (random/embedding/dataflow) 的 query-negative/positive cosine similarity，分析 pretrained representation separability 跨编码器差异。MAX_LENGTH=2048 匹配训练设置。",
+    "notes": "v1 (MAX_LENGTH=128) 结果存在 ceiling effect（Qwen pos_sim=0.98），Reviewer 要求用 MAX_LENGTH=2048 重跑。v2 完成：Qwen ceiling 仍存在（pos_sim=0.98，结构性非 artifact）。StarCoder margin 从 v1 的 5-5.6x 降至 v2 的 2.5-3.3x（因 SC neg_sim 在 2048 tokens 下大幅上升），但 SC 可分性仍显著优于 Qwen。核心结论 \"pretrained representation separability varies across encoders\" 在 2048 tokens 下成立。措辞修正：不使用 \"already knows\" 因果性表述。",
+    "metrics": {
+      "v2_max_length": 2048,
+      "qwen_2048": {
+        "random": {
+          "pos_sim": 0.98,
+          "neg_sim": 0.899,
+          "margin": 0.082,
+          "pct_positive_margin": 77.8
+        },
+        "embedding_distance": {
+          "pos_sim": 0.98,
+          "neg_sim": 0.959,
+          "margin": 0.021,
+          "pct_positive_margin": 60.7
+        },
+        "dataflow_aware": {
+          "pos_sim": 0.981,
+          "neg_sim": 0.95,
+          "margin": 0.031,
+          "pct_positive_margin": 67.4
+        }
+      },
+      "starcoder_2048": {
+        "random": {
+          "pos_sim": 0.757,
+          "neg_sim": 0.553,
+          "margin": 0.204,
+          "pct_positive_margin": 72.8
+        },
+        "embedding_distance": {
+          "pos_sim": 0.784,
+          "neg_sim": 0.668,
+          "margin": 0.116,
+          "pct_positive_margin": 59.2
+        },
+        "dataflow_aware": {
+          "pos_sim": 0.761,
+          "neg_sim": 0.659,
+          "margin": 0.102,
+          "pct_positive_margin": 62.8
+        }
+      },
+      "sc_qwen_margin_ratio": {
+        "random": 2.5,
+        "dataflow": 3.3
+      },
+      "ceiling_effect": "Qwen pos_sim=0.98 at 2048 tokens, structural not artifact",
+      "core_finding": "pretrained representation separability varies across encoders, StarCoder 2.5-3.3x better margin"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-13T21:54:09.290062+00:00",
+  "trigger": "update_registry"
+}

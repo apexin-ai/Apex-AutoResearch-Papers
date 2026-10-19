@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5e6e8e2b6a0cc430e589",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code r8 bge bootstrap ci",
+  "task_key": "worker_code_r8_bge_bootstrap_ci_20260518T070927",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r8_bge_bootstrap_ci_20260518T070927_result.json",
+    "occurrence": 1,
+    "bytes": 115,
+    "sha256": "0f8e99f4ae8d9d34dba328734ca72dbbfe56d6b0f3e8cb4a2de309c393385053"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成，结果已在上方报告并保存到 `artifacts/exp_r8_bge_bootstrap_ci/results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r8-bge-bootstrap-ci.md"
+}

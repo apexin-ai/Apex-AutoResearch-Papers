@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "695932d58ef37e24434e",
+  "project": "contrastive_trace_safety",
+  "kind": "worker",
+  "title": "code r1 8b layer supplement",
+  "task_key": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r1_8b_layer_supplement_20260517T084838.log",
+    "occurrence": 1,
+    "bytes": 629357,
+    "sha256": "0b8f4c562b10ec157251fffec565e852cf6d065ef79b72066722ca267618f38a"
+  },
+  "statistics": {
+    "messages": 233,
+    "user_turns": 0,
+    "tool_calls": 89,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 51,
+      "tool_call": 89,
+      "tool_result": 89,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 233,
+      "chunks": [
+        {
+          "path": "695932d58ef37e24434e-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "695932d58ef37e24434e-part-0002.json",
+          "message_count": 53
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-r1-8b-layer-supplement.md"
+}

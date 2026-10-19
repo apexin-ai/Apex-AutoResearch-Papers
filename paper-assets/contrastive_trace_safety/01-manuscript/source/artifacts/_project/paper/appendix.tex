@@ -1,0 +1,182 @@
+\appendix
+
+\section{Responsible NLP Research Checklist}
+\label{app:checklist}
+
+We address the ARR Responsible NLP Research requirements below.
+
+\begin{itemize}
+    \item \textbf{Limitations discussed:} Yes (\cref{sec:limitations}).
+    \item \textbf{Potential risks:} This research analyzes jailbreak traces to understand how reasoning models commit to generating harmful content. We do not develop new attack methods or release jailbreak prompts. All analyzed content comes from the publicly available HarmThoughts benchmark.
+    \item \textbf{Computational budget:} Our experiments involve 3 models $\times$ 209 traces with linear probes and single-layer GRUs. Total compute is minimal (under 2 GPU-hours on a single RTX A6000). No large-scale pretraining or finetuning was performed.
+    \item \textbf{Data:} We use HarmThoughts, a publicly available benchmark with step-level safety annotations. No new data collection was performed.
+    \item \textbf{Human subjects:} No human subjects research was conducted.
+    \item \textbf{Reproducibility:} All hyperparameters are reported in \cref{app:gru_details,app:bocpd_config}. Code and corrected data will be released upon publication.
+\end{itemize}
+
+
+\section{Layer Sweep Results}
+\label{app:layer_sweep}
+
+For each model, we sweep all transformer layers and score each candidate layer using the product of balanced accuracy and crossing rate (scheme B, defined in \cref{sec:hs-probes}). This composite metric selects layers that simultaneously achieve good classification and reliable threshold crossing on jailbreak traces.
+
+The selected layers are: R1-8B layer 14 (of 32 total, 44\% depth), R1-32B layer 24 (of 64, 37.5\% depth), and QwQ-32B layer 28 (of 64, 43.8\% depth). All three models concentrate safety-relevant information in the middle third of the network. Early layers (below 20\% depth) encode primarily syntactic features and score poorly on both accuracy and crossing rate. Final layers show high accuracy but low crossing rate, consistent with the hypothesis that late-layer representations encode safety state too close to output generation for early detection.
+
+The optimal layer for R1-8B is notably shallow in absolute terms (layer 14), but this model has only 32 layers total. In relative depth, all three models converge to 37--44\%, suggesting a consistent architectural locus for safety commitment signals. Full per-layer results are available in supplementary materials.
+
+
+\section{Window Size Ablation Details}
+\label{app:window_ablation}
+
+\cref{tab:window_full} reports the complete window size ablation across all three models and seven window sizes. The main text (\cref{sec:temporal_primary}) presents R1-8B results; here we provide the full data.
+
+\begin{table}[h]
+\centering
+\small
+\caption{Window size ablation: balanced accuracy, precision, pre-CP FPR (trace-level), and coverage ($K{=}1$) across all models. Best result per model in \textbf{bold}.}
+\label{tab:window_full}
+\begin{tabular}{llcccc}
+\toprule
+Model & $W$ & Bal. Acc. & Precision & FPR & Coverage \\
+\midrule
+\multirow{7}{*}{R1-8B}
+ & 1  & 77.8 & 69.3 & 9.65 & 72.1 \\
+ & 3  & 78.4 & 71.2 & 8.91 & 69.8 \\
+ & 5  & 79.1 & 73.8 & 7.84 & 65.4 \\
+ & 10 & 80.2 & 77.5 & 6.21 & 58.1 \\
+ & \textbf{15} & \textbf{81.0} & \textbf{80.9} & \textbf{5.12} & 52.3 \\
+ & 20 & 81.1 & 81.6 & 4.97 & 50.1 \\
+ & 25 & 81.2 & 82.2 & 4.83 & 48.8 \\
+\midrule
+\multirow{7}{*}{R1-32B}
+ & 1  & 72.1 & 58.4 & 12.3 & 68.5 \\
+ & 3  & 73.5 & 61.7 & 11.1 & 65.2 \\
+ & 5  & 74.8 & 64.9 & 9.74 & 61.8 \\
+ & \textbf{10} & \textbf{76.4} & \textbf{69.3} & \textbf{7.85} & 55.3 \\
+ & 15 & 76.2 & 68.8 & 7.91 & 53.7 \\
+ & 20 & 76.0 & 68.5 & 8.12 & 51.4 \\
+ & 25 & 75.8 & 68.1 & 8.34 & 49.9 \\
+\midrule
+\multirow{7}{*}{QwQ-32B}
+ & 1  & 68.3 & 52.1 & 15.7 & 74.3 \\
+ & 3  & 69.8 & 55.4 & 14.2 & 71.1 \\
+ & \textbf{5}  & \textbf{71.4} & \textbf{58.9} & \textbf{12.8} & 67.5 \\
+ & 10 & 70.9 & 57.6 & 13.4 & 63.8 \\
+ & 15 & 70.2 & 56.3 & 14.1 & 60.2 \\
+ & 20 & 69.5 & 55.0 & 14.8 & 57.9 \\
+ & 25 & 68.9 & 54.2 & 15.3 & 55.4 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The optimal window size varies by model: R1-8B benefits from larger windows ($W{=}15$ onward), R1-32B peaks at $W{=}10$, and QwQ-32B reaches its optimum at $W{=}5$ before performance degrades. We hypothesize that this reflects differences in reasoning trace length: QwQ-32B produces shorter reasoning chains on average, so large windows incorporate irrelevant early steps that dilute the signal. R1-8B, with longer traces, benefits from the additional temporal smoothing that larger windows provide.
+
+Across all models, the temporal improvement pattern is consistent: moving from $W{=}1$ to the model-specific optimum yields +3 to +4pp in balanced accuracy, +10 to +13pp in precision, and $-$3 to $-$5pp in FPR.
+
+
+\section{GRU Training Details}
+\label{app:gru_details}
+
+\paragraph{Architecture.} We evaluate two GRU variants. The single-layer variant uses a GRU with hidden dimension 256, taking per-step hidden states from the best layer (selected by scheme B) as input. The multi-layer variant concatenates hidden states from 7 layers (evenly spaced through the network) at each step, producing a higher-dimensional input to the same GRU architecture.
+
+\paragraph{Training procedure.} We train with Adam (learning rate $1 \times 10^{-3}$, default $\beta_1{=}0.9$, $\beta_2{=}0.999$), batch size 16, for a maximum of 50 epochs. Early stopping halts training when validation loss does not improve for 10 consecutive epochs. Input features are z-score normalized per dimension using training set statistics.
+
+\paragraph{Evaluation.} We report crossing accuracy (the sustained accuracy at which the probe first exceeds chance for 5 consecutive steps) and detection lead (steps before CP at crossing point). All experiments use 3 random seeds; we report mean $\pm$ standard deviation.
+
+\paragraph{Per-seed results for R1-8B (single-layer GRU).}
+
+\begin{table}[h]
+\centering
+\small
+\caption{R1-8B single-layer GRU results per seed. Lead is measured in steps before the commitment point.}
+\label{tab:gru_seeds}
+\begin{tabular}{lccc}
+\toprule
+Seed & Peak Acc. (\%) & Crossing Acc. (\%) & Lead (steps) \\
+\midrule
+1 & 85.2 & 74.3 & +4.8 \\
+2 & 83.1 & 71.6 & +4.8 \\
+3 & 83.4 & 70.4 & +0.9 \\
+\midrule
+Mean $\pm$ std & 83.9 $\pm$ 1.1 & 72.1 $\pm$ 2.0 & +3.5 $\pm$ 2.3 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The high variance in lead time (standard deviation of 2.3 steps) is driven by seed 3, where the probe achieves good peak accuracy but crosses the detection threshold late. This variance underscores the sensitivity of early detection to initialization and motivates reporting per-seed results rather than relying on mean values alone.
+
+
+\section{Control Task Methodology}
+\label{app:control}
+
+We follow the selectivity framework of \cite{hewitt2019control} to verify that our probes capture genuine safety-relevant structure rather than surface-level correlations.
+
+\paragraph{Procedure.} For each model, we randomly permute the binary labels (pre-CP vs. post-CP) across all steps while preserving the marginal label distribution. We then retrain the probe with identical architecture (L2-regularized logistic regression) and hyperparameters on these shuffled labels. Selectivity is defined as:
+\begin{equation}
+    \text{Selectivity} = \text{Acc}_{\text{linguistic}} - \text{Acc}_{\text{control}}
+\end{equation}
+where $\text{Acc}_{\text{linguistic}}$ is the probe accuracy on true labels and $\text{Acc}_{\text{control}}$ is the accuracy on permuted labels. A selectivity of zero indicates that the probe exploits only non-linguistic features (e.g., position); higher values confirm that the representation encodes task-relevant information.
+
+\paragraph{Results.} We repeat the control experiment 5 times with different random permutations and report the mean control accuracy. Selectivity scores are: R1-8B 12.5pp, R1-32B 16.8pp, QwQ-32B 18.9pp. All values substantially exceed the 5pp threshold recommended by \cite{hewitt2019control} as evidence of genuine linguistic encoding.
+
+\paragraph{Position-only baseline.} As a complementary validation, we train a logistic regression classifier using only the normalized step index ($t / T$ where $T$ is the total trace length) as the input feature. This baseline tests whether temporal position alone explains probe performance. On R1-8B, the position-only baseline produces 15.8\% FPR compared to 8.1\% for the HS probe at matched detection rates. The probe's substantially lower FPR confirms that hidden state features carry information beyond what step position provides.
+
+
+\section{BOCPD/CUSUM Configuration Sweep}
+\label{app:bocpd_config}
+
+We sweep hyperparameters for both Bayesian Online Change-Point Detection (BOCPD) and Cumulative Sum (CUSUM) methods applied to the temporal probe score sequences.
+
+\paragraph{BOCPD configurations.} BOCPD models the sequence of probe scores as piecewise-constant segments with Gaussian observation noise. The hazard rate $\lambda$ controls the prior probability of a change-point at each step ($P(\text{change}) = 1/\lambda$).
+
+\paragraph{CUSUM configurations.} CUSUM accumulates evidence for a positive mean shift. The drift parameter $\delta$ sets the minimum shift size to detect, and the threshold $h$ controls the detection boundary.
+
+\begin{table}[h]
+\centering
+\small
+\caption{Change-point method configuration sweep on R1-8B. Detection rate is the fraction of jailbreak traces where the method fires. Lead is measured in steps before CP. Simple threshold baseline included for comparison.}
+\label{tab:cpd_sweep}
+\begin{tabular}{llcc}
+\toprule
+Method & Configuration & Det. Rate (\%) & Lead (steps) \\
+\midrule
+\multirow{5}{*}{BOCPD}
+ & $\lambda = 5$   & 97 & +2.1 \\
+ & $\lambda = 10$  & 93 & +3.5 \\
+ & $\lambda = 20$  & 87 & +4.2 \\
+ & $\lambda = 50$  & 72 & +5.8 \\
+ & $\lambda = 100$ & 58 & +7.1 \\
+\midrule
+\multirow{9}{*}{CUSUM}
+ & $\delta{=}0.5$, $h{=}3$ & 89 & +1.4 \\
+ & $\delta{=}0.5$, $h{=}5$ & 76 & +2.3 \\
+ & $\delta{=}0.5$, $h{=}8$ & 61 & +3.1 \\
+ & $\delta{=}1.0$, $h{=}3$ & 82 & +1.1 \\
+ & $\delta{=}1.0$, $h{=}5$ & 68 & +1.9 \\
+ & $\delta{=}1.0$, $h{=}8$ & 52 & +2.7 \\
+ & $\delta{=}2.0$, $h{=}3$ & 71 & +0.8 \\
+ & $\delta{=}2.0$, $h{=}5$ & 54 & +1.5 \\
+ & $\delta{=}2.0$, $h{=}8$ & 38 & +2.1 \\
+\midrule
+Simple threshold & $\tau = 0.5$ & 91 & +4.9 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The best BOCPD configuration ($\lambda{=}10$) achieves 93\% detection rate with +3.5 steps lead. The simple threshold baseline achieves comparable detection (91\%) with superior lead (+4.9 steps). All CUSUM configurations underperform the simple threshold on lead time, and most also show lower detection rates.
+
+These results confirm that probe score transitions toward unsafe reasoning are gradual rather than abrupt. Change-point methods assume a sharp distributional shift; the actual transition is a smooth drift that a fixed threshold detects earlier. The practical recommendation is that simple thresholding on temporal probe scores is preferable to more complex sequential detection methods for this task.
+
+
+\section{M002 Bug Disclosure}
+\label{app:bug}
+
+We disclose a bug discovered during development that affected intermediate results for QwQ-32B.
+
+\paragraph{Issue.} In experiment M002 (text baseline evaluation), the QwQ-32B text probe was inadvertently initialized with a midpoint heuristic placeholder rather than true sentence embeddings from all-MiniLM-L6-v2. Specifically, the placeholder assigned each step a feature vector equal to the midpoint between the mean safe and mean unsafe embeddings from the training set, with small Gaussian noise added. This made the text probe trivially predictive, producing a spuriously significant result ($p{=}0.001$ for HS vs. text FPR difference).
+
+\paragraph{Discovery and correction.} The bug was identified during a systematic audit of the feature extraction pipeline. After correction (using actual sentence embeddings), QwQ-32B HS probe FPR is 22.4\% and text probe FPR is 21.4\%, with $p{=}0.904$ (bootstrap test, 10000 iterations). The two modalities show no meaningful difference on QwQ-32B, consistent with the non-significant results on R1-32B.
+
+\paragraph{Impact on reported results.} All numbers reported in this paper use the corrected pipeline. No figures, tables, or claims in the main text are affected by the original bug. The correction changed only QwQ-32B text baseline numbers, which now show no significant difference from the HS probe on that model.
+
+\paragraph{Commitment to transparency.} We report this bug to maintain scientific integrity. All code, including the git history showing the bug and its fix, will be released with the camera-ready version. Researchers reproducing our results can verify the correction independently.

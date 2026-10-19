@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ee814ead8087a837016c",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "infra download 32b v3",
+  "task_key": "worker_infra_download_32b_v3_20260516T195512",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_download_32b_v3_20260516T195512_result.json",
+    "occurrence": 1,
+    "bytes": 362,
+    "sha256": "561a55de443754694e1c0be409ace1ef335e62c503f2fabff3fe6bd16b64d6e7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载进程活跃中，两个 32B 模型并行通过 ModelScope 下载：\n\n- **R1-32B** (8 shards × ~8GB): 各 shard 8-24% 完成，速度 2-7 MB/s\n- **QwQ-32B** (14 shards × ~4.5GB): 各 shard 12-38% 完成，速度 2.5-9 MB/s\n\n当前缓存 36GB，磁盘剩余 212GB。预计还需 1-2 小时完成。已设置 ~5 分钟后自动轮询。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-download-32b-v3.md"
+}

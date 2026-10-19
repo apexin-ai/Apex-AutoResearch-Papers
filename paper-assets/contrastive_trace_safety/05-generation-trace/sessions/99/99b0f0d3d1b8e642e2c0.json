@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "99b0f0d3d1b8e642e2c0",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code r9 qwq residualized binomial",
+  "task_key": "worker_code_r9_qwq_residualized_binomial_20260518T081600",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r9_qwq_residualized_binomial_20260518T081600_result.json",
+    "occurrence": 1,
+    "bytes": 989,
+    "sha256": "c4f4e9183b24c9f39d7b8794707351f3eec8c66d0446c044c48395956ca6e469"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n```\nQwQ-32B Residualized HS vs Chance:\n  Observed BA: 0.619 (pooled) / 0.667 (macro-avg per trace)\n  H0: BA = 0.5\n  \n  Wilcoxon signed-rank: p = 0.0024 *\n  One-sample t-test:    p = 0.0008 *\n  Permutation test:     p < 0.0005 * (0/2000 exceeded observed)\n  95% Bootstrap CI:     [0.575, 0.744]\n  \n  Conclusion: SIGNIFICANT at α = 0.05 (all three tests)\n```\n\n**BA 差异说明**: exp_r8 报告的 BA=0.612 是其代码路径的聚合值，与本次 pooled BA=0.619 基本一致（微小差异来自 `per_trace_metrics` 的聚合方式）。Macro-average per-trace BA=0.667 更高，因为各 trace 长度不等，短 trace 在 pooled 中权重低但在 macro 中权重相同。\n\n**关键发现**: 16/19 traces BA > 0.5，仅 2 traces < 0.5（BA=0.217 和 0.183，可能是异常 trace）。即使 residualized 后去除了位置信息，HS probe 仍显著高于 chance，说明 hidden states 中确实编码了超越位置的安全相关信号。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r9-qwq-residualized-binomial.md"
+}

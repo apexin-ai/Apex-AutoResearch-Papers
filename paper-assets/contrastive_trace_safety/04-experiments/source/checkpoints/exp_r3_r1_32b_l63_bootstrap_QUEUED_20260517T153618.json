@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_r3_r1_32b_l63_bootstrap",
+  "project": "contrastive_trace_safety",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T15:35:54.733Z",
+    "updated_at": "2026-05-17T15:36:18.599Z",
+    "hypothesis": "R1-32B at corrected Layer 63 (95% depth) should show significant HS vs text advantage after null-centered two-sided bootstrap, confirming that the non-significance at biased Layer 10 was a layer-selection artifact rather than a true scale-dependent limitation."
+  },
+  "timestamp": "2026-05-17T15:36:18.659323+00:00",
+  "trigger": "update_registry"
+}

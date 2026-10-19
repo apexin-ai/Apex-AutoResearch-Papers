@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a26bd29d50f95af84a8d",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code r9 threshold sensitivity",
+  "task_key": "worker_code_r9_threshold_sensitivity_20260518T091607",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r9_threshold_sensitivity_20260518T091607_result.json",
+    "occurrence": 1,
+    "bytes": 2140,
+    "sha256": "77513342f221659d61c688fe8b1bb61ba1fcf01948f5ff91ebd5f58c5763b77e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**结论：HS probe 的 step-level 性能对 threshold 选择非常不敏感，结果稳健。**\n\n### QwQ-32B (n_test=19, L60, W=3)\n\n| Threshold | HS bal_acc | Text bal_acc | Δ(HS-Text) | HS FPR | HS det_K5 | Text det_K5 |\n|-----------|-----------|-------------|------------|--------|-----------|-------------|\n| 0.3 | 0.7382 | 0.6454 | +0.0928 | 0.252 | 94.7% | 78.9% |\n| 0.4 | 0.7351 | 0.6443 | +0.0908 | 0.241 | 94.7% | 57.9% |\n| 0.5 | 0.7353 | 0.6428 | +0.0925 | 0.230 | 89.5% | 57.9% |\n| 0.6 | 0.7329 | 0.6478 | +0.0851 | 0.225 | 84.2% | 47.4% |\n| 0.7 | 0.7332 | 0.6418 | +0.0914 | 0.214 | 84.2% | 36.8% |\n\n- **HS bal_acc 全范围仅波动 0.53pp** (0.7329-0.7382)\n- Δ(HS-Text) 在所有 threshold 下稳定在 +8.5~9.3pp\n- HS trace detection (K=5) 从 94.7% 缓降到 84.2%，Text 从 78.9% 降到 36.8%\n\n### R1-32B (n_test=20, L63, W=10)\n\n| Threshold | HS bal_acc | Text bal_acc | Δ(HS-Text) | HS FPR | HS det_K5 | Text det_K5 |\n|-----------|-----------|-------------|------------|--------|-----------|-------------|\n| 0.3 | 0.7185 | 0.6624 | +0.0561 | 0.390 | 85.0% | 80.0% |\n| 0.4 | 0.7200 | 0.6448 | +0.0752 | 0.382 | 85.0% | 80.0% |\n| 0.5 | 0.7243 | 0.6451 | +0.0792 | 0.362 | 80.0% | 80.0% |\n| 0.6 | 0.7300 | 0.6465 | +0.0835 | 0.345 | 80.0% | 80.0% |\n| 0.7 | 0.7316 | 0.6522 | +0.0794 | 0.332 | 70.0% | 80.0% |\n\n- **HS bal_acc 全范围仅波动 1.31pp** (0.7185-0.7316)\n- Δ(HS-Text) 稳定在 +5.6~8.4pp\n- Text probe detection rate 完全不随 threshold 变化（始终 80%），HS 从 85% 缓降到 70%\n\n### K sweep (threshold=0.5)\n\n| K | QwQ HS det | QwQ Text det | R1-32B HS det | R1-32B Text det |\n|---|-----------|-------------|--------------|----------------|\n| 3 | 100% | 94.7% | 95.0% | 80.0% |\n| 5 | 89.5% | 57.9% | 80.0% | 80.0% |\n| 7 | 68.4% | 47.4% | 75.0% | 70.0% |\n| 10 | 57.9% | 21.1% | 50.0% | 45.0% |\n\nHS probe 在 K≤5 时维持高检测率，且 HS-Text 差距随 K 增大而扩大（QwQ 尤其明显）。\n\n结果保存于 `artifacts/exp_r9_threshold_sensitivity/results.json`，脚本为 `scripts/run_threshold_sensitivity.py`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r9-threshold-sensitivity.md"
+}

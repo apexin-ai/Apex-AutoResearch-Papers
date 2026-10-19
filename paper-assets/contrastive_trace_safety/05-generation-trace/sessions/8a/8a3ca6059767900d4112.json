@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8a3ca6059767900d4112",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code bocpd ot7b w3",
+  "task_key": "worker_code_bocpd_ot7b_w3_20260517T131605",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_bocpd_ot7b_w3_20260517T131605_result.json",
+    "occurrence": 1,
+    "bytes": 1369,
+    "sha256": "0d1d65ca0f27da4aae19634eda66eb9656727a3901ab1a3dd4f55b00d9728ebe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结果：\n\n## OT-7B BOCPD/CUSUM (W=3, Layer 16, n_test=47)\n\n| Method | Det Rate | Mean Lead | Med Lead |\n|--------|----------|-----------|----------|\n| **FCP t=0.5 k=2** | **89.4%** | **11.83** | **10.5** |\n| FCP t=0.5 k=3 | 74.5% | 8.71 | 7.0 |\n| FCP t=0.3 k=3 | 78.7% | 11.92 | 10.0 |\n| CUSUM t=0.2 h=2 | 74.5% | 7.46 | 6.0 |\n| CUSUM t=0.3 h=2 | 70.2% | 6.03 | 5.0 |\n| FCP t=0.5 k=5 | 46.8% | 5.09 | 4.5 |\n| **BOCPD (all λ)** | **0.0%** | — | — |\n\n## 关键发现\n\n**BOCPD 在 OT-7B 上完全失败**（所有 lambda 值检测率 0%），原因：\n- W=3 的 probe scores 极度 spiky（在 1-2 步内从 0 跳到 1）\n- BOCPD 的 Gaussian 模型假设均值渐变，run-length posterior R[0] 永远不超过 hazard rate (1/λ)\n\n## 与 R1-8B 对比\n\n| | R1-8B | OT-7B |\n|--|-------|-------|\n| BOCPD λ=10 det | 93.0% | **0%** |\n| FCP det (t=0.5 k=5) | 65.1% | 46.8% |\n| FCP det (t=0.5 k=2) | — | 89.4% |\n| FCP mean lead | 4.89 | 11.83 |\n\n**结论：commitment dynamics 是 model-specific 的** — R1-8B 渐进式（BOCPD 有效），OT-7B 突变式（简单阈值最优）。这强化了论文叙事：不同模型的 commitment pattern 不同，需要自适应检测策略。\n\n结果 JSON 保存在服务器 `/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_bocpd_ot7b_w3/results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-bocpd-ot7b-w3.md"
+}

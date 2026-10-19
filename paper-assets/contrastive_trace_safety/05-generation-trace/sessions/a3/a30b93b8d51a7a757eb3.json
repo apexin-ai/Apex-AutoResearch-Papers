@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a30b93b8d51a7a757eb3",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "analysis advbench hs exploratory",
+  "task_key": "worker_analysis_advbench_hs_exploratory_20260520T013808",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_advbench_hs_exploratory_20260520T013808_result.json",
+    "occurrence": 1,
+    "bytes": 1340,
+    "sha256": "88150736198921e0ad110b579406d8805c5150e8d4174fab0aa7be5c559c5f12"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。关键发现：\n\n### 结果摘要\n\n**Volatility 分布（核心发现）**：\n- AdvBench 和 HarmThoughts 的 volatility 曲线形状高度一致：**浅层 < 深层**\n- AdvBench shallow (L0-4): **0.265**, deep (L12-24): **0.442**, ratio = **0.60**\n- HarmThoughts shallow (L0-4): **0.226**, deep (L12-24): **0.386**, ratio = **0.59**\n- 两者 shallow/deep ratio 几乎相同（0.60 vs 0.59）\n\n**Volatility 曲线特征**（Fig 1）：\n- 峰值在 L8-L10 附近（AdvBench ~0.54, HarmThoughts ~0.48）\n- L12 之后逐渐下降并稳定在 ~0.42 (AdvBench) / ~0.37 (HarmThoughts)\n- AdvBench 整体 volatility 略高于 HarmThoughts（+0.04~0.06），说明 AdvBench traces 的 hidden states 在 step 间变化更大\n\n**Norm 趋势**（Fig 2）：\n- 两个数据集 norm 分布相似：深层 norm 远大于浅层（L24 ~28 vs L0 ~0.4）\n- Norm 在 step 位置上相对平稳，无明显趋势\n\n**预测：deep_CR_likely**\n\n浅层 volatility 低意味着 consecutive steps 间的 cosine similarity 高（变化小）→ crossing rate 方法在浅层检测到的\"变化\"更少。这预测 AdvBench 上 CR 方法会倾向于选择 **中深层**（L8-L12 附近 volatility 峰值区域），而非浅层。\n\n所有输出已保存到 `artifacts/advbench_preliminary/`（3 张图 + JSON）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-advbench-hs-exploratory.md"
+}

@@ -1,0 +1,23 @@
+{
+  "exp_id": "n6_multi_metric_ensemble",
+  "project": "contrastive_trace_safety",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T16:37:25.392Z",
+    "updated_at": "2026-05-19T16:57:32.791Z",
+    "hypothesis": "A multi-metric layer ensemble (averaging probe probabilities from precision-best, BA-best, and FPR-best layers) mitigates layer selection sensitivity while preserving the HS advantage over text probes. If ensemble HS significantly outperforms text and never significantly underperforms the best single-layer probe, it provides a practical solution to the metric-dependent layer selection problem.",
+    "spec": {
+      "command": "n6_multi_metric_ensemble.py (4 models, 3-layer ensemble)",
+      "server": "autodl-rtx6000",
+      "data_path": "/root/autodl-tmp/contrastive_trace_safety/artifacts/",
+      "data_count": "209 (R1-8B) + 228 (OT-7B) + 100 (R1-32B) + 95 (QwQ-32B) traces",
+      "model_name": "R1-8B, OT-7B, R1-32B, QwQ-32B",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-19T16:57:32.892780+00:00",
+  "trigger": "update_registry"
+}

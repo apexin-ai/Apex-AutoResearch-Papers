@@ -1,0 +1,12 @@
+Random-CP Control (OT-7B, 28 layers, 10 repeats)
+
+Server: /root/autodl-tmp/contrastive_trace_safety/artifacts/random_cp_control/
+
+Real-CP vs Random-CP layer selection:
+  CR-composite: Real→L0 (shallow), Random→14.2±9.2 (scattered)
+  Precision:    Real→L19 (deep),   Random→14.4±8.0 (scattered)
+  FPR:          Real→L18 (deep),   Random→15.3±8.7 (scattered)
+  BA:           Real→L9,           Random→13.5±7.6 (scattered)
+
+Key: CR-composite selects shallow in only 30% of random repeats (vs 100% real-CP).
+Metric disagreement does NOT replicate under random CP → not geometric artifact.

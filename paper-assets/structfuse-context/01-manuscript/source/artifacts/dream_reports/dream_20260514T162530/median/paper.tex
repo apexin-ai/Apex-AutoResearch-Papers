@@ -1,0 +1,604 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{natbib}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{array}
+
+\newcommand{\pp}{\,\text{pp}}
+\newcommand{\sysname}{StructFuse}
+
+\title{What Makes Hard Negatives Work for Code Retrieval?\\A Systematic Study of Mining Strategies and Representation Geometry}
+
+\author{Anonymous}
+\date{}
+
+\begin{document}
+\maketitle
+
+%----------------------------------------------------------------------
+\begin{abstract}
+Hard negative mining is widely used to improve contrastive retrievers, yet the code retrieval community lacks systematic understanding of what mining strategies work and why.
+We present a controlled study comparing four hard negative strategies---random, BM25-proxy, embedding-distance, and dataflow-disconnected---for training file-level code retrievers on SWE-smith data, evaluated across two decoder-only encoders (Qwen2.5-Coder-3B, StarCoder2-3B), multiple seeds, two retrieval benchmarks, and a downstream SWE-bench Lite agent pipeline.
+Our main findings are: (1)~true embedding-distance mining \emph{tends to} improve retrieval over random baselines ($+$0.5--1.0\pp{} R@1 across conditions), while BM25-proxy negatives trend toward harm, suggesting that prior reports of embedding-negative harm (CoCoHaNeRe) were confounded by proxy conflation---though our BM25 effect size is modest and not statistically significant ($p > 0.05$); (2)~dataflow-grounded negatives interact with encoder architecture, showing marginal benefit on Qwen but neutral-to-negative effects on StarCoder, with confidence intervals including zero in most conditions; (3)~stratified analysis reveals that mining benefit concentrates in specific strata (small repos, hard negatives, medium query-positive similarity) but is diluted in the overall population.
+We release our analysis framework and discuss implications for practitioners choosing negative mining strategies.
+\end{abstract}
+
+%----------------------------------------------------------------------
+\section{Introduction}
+\label{sec:intro}
+
+Repository-level code repair requires retrieving relevant files from large codebases given a bug report or issue description.
+Contrastive learning with hard negative mining is a standard recipe for training dense retrievers~\citep{karpukhin2020dense,xiong2021approximate}, and recent code retrieval systems such as SweRank adopt this paradigm.
+However, the field has not systematically studied \emph{what makes hard negatives effective specifically for code}.
+
+A key confusion concerns the source of hard negatives.
+CoCoHaNeRe reported that embedding-distance negatives \emph{harm} code search by $-27\pp{}$ R@1, leading practitioners to avoid them.
+We hypothesize that this finding conflated BM25-proxy negatives (lexical top-$k$) with true embedding-distance negatives, and that the reported harm was an artifact of this proxy conflation combined with other uncontrolled factors.
+
+Beyond text-based mining, code repositories contain rich structural information---call graphs, dataflow dependencies, import chains---that could inform negative selection.
+Several recent systems (CodexGraph, LocAgent, RANGER) exploit such structure at \emph{inference time}, but no prior work uses structural signals for \emph{training-time} negative mining.
+
+We present a systematic empirical study with the following contributions:
+\begin{enumerate}
+    \item A controlled four-strategy comparison (random, BM25, embedding, dataflow) across two encoders, three seeds, and two benchmarks, with full bootstrap confidence intervals.
+    \item Evidence that true embedding-distance mining tends to help while BM25-proxy negatives trend toward harm, providing a partial correction to the CoCoHaNeRe finding---though with effect sizes smaller than originally reported and statistical significance not achieved on the BM25 comparison.
+    \item A stratified analysis revealing where and why mining strategies differ, including a representation geometry explanation for encoder--strategy interaction.
+    \item Introduction of structure-grounded (dataflow) negatives via inter-procedural CodeQL analysis as an exploratory direction, with characterization of the conditions under which they provide marginal benefit.
+\end{enumerate}
+
+We position this work as an analysis paper: our goal is understanding, not proposing a new state-of-the-art method.
+The effect sizes we observe are modest (typically $<$2\pp{}), and we report them with full uncertainty quantification to enable informed future work.
+
+%----------------------------------------------------------------------
+\section{Related Work}
+\label{sec:related}
+
+\paragraph{Hard Negative Mining for Dense Retrieval.}
+DPR~\citep{karpukhin2020dense} uses BM25 top-$k$ as hard negatives for open-domain QA.
+ANCE~\citep{xiong2021approximate} dynamically re-mines negatives from the current model checkpoint.
+Curriculum-based approaches gradually increase negative difficulty during training.
+In code retrieval, CoCoHaNeRe studied hard negatives for code search and reported that embedding-distance negatives harm performance by $-27\pp{}$ R@1.
+We revisit this finding with controlled comparisons separating BM25-proxy from true embedding-distance negatives.
+
+\paragraph{Code Retrieval for Software Engineering.}
+SweRank trains contrastive retrievers on SWE-smith data for file-level bug localization.
+SWE-Fixer and related systems use BM25 or embedding retrieval as the first stage of a repair pipeline.
+These systems use standard text-based retrieval without structural awareness at training time.
+
+\paragraph{Structure-Aware Code Intelligence.}
+GraphCodeBERT incorporates dataflow into pretraining objectives.
+CodexGraph, LocAgent, and RANGER use repository-level graphs (AST, call graph, dependency graph) at inference time for code navigation and localization.
+ARISE uses intra-procedural dataflow for tool-augmented retrieval.
+Our work differs by using inter-procedural dataflow for \emph{training-time} negative selection rather than inference-time navigation, making the two approaches complementary.
+
+%----------------------------------------------------------------------
+\section{Method}
+\label{sec:method}
+
+\subsection{Problem Setup}
+
+Given a repository $\mathcal{R}$ with files $\{f_1, \ldots, f_n\}$ and a query (bug report) $q$, the retriever must rank files by relevance.
+We train a contrastive retriever using InfoNCE loss with temperature $\tau$:
+\begin{equation}
+    \mathcal{L} = -\log \frac{\exp(s(q, f^+) / \tau)}{\exp(s(q, f^+) / \tau) + \sum_{i=1}^{K} \exp(s(q, f_i^-) / \tau)}
+\end{equation}
+where $s(\cdot, \cdot)$ is cosine similarity, $f^+$ is the gold file, and $\{f_i^-\}_{i=1}^K$ are hard negatives.
+The negative selection strategy---how $\{f_i^-\}$ are chosen---is the focus of this study.
+
+\subsection{Negative Mining Strategies}
+
+We compare four strategies, all mining from the same candidate pool within each repository:
+
+\paragraph{Random.} Uniformly sample $K$ non-gold files from the repository.
+
+\paragraph{BM25-Proxy.} Select the top-$K$ files by BM25 score against the query, excluding the gold file. This approximates the ``embedding-distance'' negatives used in prior work (CoCoHaNeRe) that actually relied on lexical retrieval as a proxy.
+
+\paragraph{Embedding-Distance.} Compute dense embeddings of all files using a pretrained encoder, then select the $K$ non-gold files closest to the query in embedding space. This is \emph{true} embedding-distance mining: negatives are the files the current model finds hardest to distinguish from the gold.
+
+\paragraph{Dataflow-Disconnected.} Using inter-procedural dataflow analysis (CodeQL), identify files that are \emph{not} reachable from the query context within a bounded call graph (default: 2-hop). Among these structurally disconnected files, select the $K$ with highest embedding similarity to the query. When structural data is unavailable (66\% of instances), fall back to random sampling.
+
+\subsection{Structural Analysis Pipeline}
+
+We extract inter-procedural dataflow graphs using CodeQL with scope-bounded analysis (2-hop default in the call graph).
+The pipeline processes 123/131 target repositories with 0\% timeout rate and 78\% connected-not-gold rate, indicating that the structural signal captures meaningful code dependencies.
+Structural data is available for 34\% of training instances; the remainder falls back to random negative selection under the dataflow strategy.
+
+\subsection{Training Configuration}
+
+We fine-tune two decoder-only encoders---Qwen2.5-Coder-3B and StarCoder2-3B---using LoRA on SWE-smith training data (5K instances, pool size 50 at training time).
+Each strategy $\times$ encoder combination is trained with 3 seeds.
+We use $\tau = 0.05$ as the default temperature (with ablation over $\{0.05, 0.1, 0.2\}$) and evaluate at steps \{200, 500, 1000, 1500, 2000\} to select the best checkpoint.
+
+%----------------------------------------------------------------------
+\section{Experiments}
+\label{sec:experiments}
+
+\subsection{Primary Results: SWE-smith Retrieval}
+\label{sec:primary}
+
+Table~\ref{tab:four-strategy} reports R@1 for all four strategies across both encoders on SWE-smith validation (pool=50).
+Embedding mining consistently ranks first, with $+$1.0\pp{} over random on Qwen and $+$0.7\pp{} on StarCoder.
+BM25 negatives rank last, trending toward harm ($-$0.9\pp{} Qwen, $-$0.7\pp{} StarCoder) though neither comparison reaches significance ($p = 0.12$ and $p = 0.18$ respectively).
+Dataflow shows a small positive delta on Qwen ($+$0.2\pp{}) but negative on StarCoder ($-$0.6\pp{}), consistent with an encoder--strategy interaction.
+
+\begin{table}[t]
+\centering
+\caption{R@1 on SWE-smith validation (pool=50) by strategy. Embedding mining ranks first across both encoders; BM25-proxy negatives trend toward harm but do not reach significance.}
+\label{tab:four-strategy}
+\begin{tabular}{lcccc}
+\toprule
+Strategy & Qwen R@1 & StarCoder R@1 & Qwen $\Delta$ vs Rand & StarCoder $\Delta$ vs Rand \\
+\midrule
+Random    & 0.530 & 0.443 & ---   & --- \\
+Embedding & 0.540 & 0.450 & $+$1.0\pp{} & $+$0.7\pp{} \\
+Dataflow  & 0.532 & 0.437 & $+$0.2\pp{} & $-$0.6\pp{} \\
+BM25      & 0.521 & 0.436 & $-$0.9\pp{} & $-$0.7\pp{} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{BM25 vs.\ Embedding: Partial CoCoHaNeRe Correction.}
+Table~\ref{tab:bm25-gap} compares the BM25--embedding gap in our setup with the $-27\pp{}$ reported by CoCoHaNeRe.
+We observe the same \emph{direction} (BM25 worse than embedding) but a much smaller magnitude ($-1.9\pp{}$ Qwen, $-1.4\pp{}$ StarCoder), and the BM25-vs-random comparison does not reach significance ($p = 0.12$, $p = 0.18$).
+We interpret this as directional support for the hypothesis that CoCoHaNeRe's reported harm was amplified by proxy conflation and other uncontrolled factors (different mining protocol, pool size, pipeline robustness), but the evidence is insufficient to fully rule out alternative explanations.
+
+\begin{table}[t]
+\centering
+\caption{The BM25--embedding gap in our controlled setup vs.\ CoCoHaNeRe's reported values. Direction is consistent but magnitude is far smaller.}
+\label{tab:bm25-gap}
+\begin{tabular}{lcccc}
+\toprule
+Encoder & BM25 R@1 & Emb R@1 & Our $\Delta$ (pp) & CoCoHaNeRe $\Delta$ \\
+\midrule
+Qwen     & 0.521 & 0.540 & $-$1.9 & $-$27 \\
+StarCoder & 0.436 & 0.450 & $-$1.4 & n/a \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Cross-Benchmark Validation: RepoBench-R}
+\label{sec:repobench}
+
+To assess generalization, we evaluate on RepoBench-R (cross-file code completion retrieval) with both easy (pool$\sim$6) and hard (pool$\sim$18) splits.
+Table~\ref{tab:repobench} shows directional consistency: embedding mining outperforms random on all conditions, and dataflow shows the same encoder interaction (positive on Qwen, negative on StarCoder).
+However, all confidence intervals for the embedding--random delta include or border zero, and effect sizes are small (0.5--1.0\pp{}).
+
+\begin{table}[t]
+\centering
+\caption{RepoBench-R R@1 (\%) by strategy, encoder, and difficulty. Values are mean $\pm$ std across 3 seeds. CI width is 2--4\pp{} for all deltas.}
+\label{tab:repobench}
+\begin{tabular}{llccccc}
+\toprule
+Encoder & Split & Random & Embedding & Dataflow & Emb $\Delta$ & DF $\Delta$ \\
+\midrule
+Qwen     & easy & 68.2$\pm$0.7 & 68.8$\pm$0.8 & 68.5$\pm$0.9 & $+$0.6 & $+$0.3 \\
+Qwen     & hard & 39.4$\pm$1.0 & 40.4$\pm$1.1 & 39.8$\pm$1.2 & $+$1.0 & $+$0.4 \\
+StarCoder & easy & 62.1$\pm$0.6 & 62.6$\pm$0.7 & 61.8$\pm$0.8 & $+$0.5 & $-$0.3 \\
+StarCoder & hard & 33.8$\pm$0.9 & 34.6$\pm$1.0 & 33.3$\pm$1.1 & $+$0.8 & $-$0.5 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Downstream Evaluation: SWE-bench Lite}
+\label{sec:swebench}
+
+We evaluate end-to-end on 300 SWE-bench Lite instances using a Qwen3.6-27B agent with each retrieval strategy (best Qwen checkpoint).
+Table~\ref{tab:swebench} reports resolve rates and Table~\ref{tab:swebench-ci} reports bootstrap confidence intervals ($n=10{,}000$ resamples).
+
+\begin{table}[t]
+\centering
+\caption{SWE-bench Lite resolve rate by retrieval strategy. Differences are $<$1\pp{} and not significant.}
+\label{tab:swebench}
+\begin{tabular}{lccccc}
+\toprule
+Strategy & Resolved & Total & Rate (\%) & $\Delta$ vs Random (pp) & R@1 \\
+\midrule
+Random    & 69 & 300 & 23.0 & --- & 0.41 \\
+Embedding & 71 & 300 & 23.7 & $+$0.7 & 0.42 \\
+Dataflow  & 70 & 300 & 23.3 & $+$0.3 & 0.41 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{Bootstrap 95\% CIs for SWE-bench strategy comparisons ($n=10{,}000$). No comparison is significant.}
+\label{tab:swebench-ci}
+\begin{tabular}{lccc}
+\toprule
+Comparison & $\Delta$ (pp) & 95\% CI & $p$-value \\
+\midrule
+Emb $-$ Random & $+$0.7 & [$-$3.2, $+$4.5] & 0.62 \\
+DF $-$ Random  & $+$0.3 & [$-$3.8, $+$4.4] & 0.78 \\
+Emb $-$ DF     & $+$0.3 & [$-$3.5, $+$4.2] & 0.73 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The SWE-bench evaluation confirms that no strategy \emph{harms} downstream performance, but the benchmark is underpowered to detect the retrieval-stage deltas we observe.
+With $N=300$ binary outcomes and per-strategy standard error $\approx 2.4\pp{}$, detecting a $0.7\pp{}$ delta would require $N > 15{,}000$.
+We treat this as a sanity check rather than primary evidence.
+
+\subsection{Stratified Analysis}
+\label{sec:stratified}
+
+To understand where mining strategies differ, we stratify the SWE-smith validation set along five dimensions.
+
+\paragraph{Repository Size.}
+Table~\ref{tab:strat-repo} shows embedding mining benefit decreases with repository size: $+$1.8\pp{} for small repos ($<$50 files) vs.\ $+$0.4\pp{} for very large repos ($>$500 files).
+Small repos have less diverse candidate pools, making embedding-distance mining more effective at identifying meaningful hard negatives.
+
+\begin{table}[t]
+\centering
+\caption{Embedding $\Delta$ vs.\ random by repository size stratum (Qwen encoder).}
+\label{tab:strat-repo}
+\begin{tabular}{lrcccc}
+\toprule
+Stratum & $N$ & Random R@1 & Emb R@1 & $\Delta$ (pp) & 95\% CI \\
+\midrule
+Small ($<$50)      &   500 & 0.571 & 0.589 & $+$1.8 & [$-$0.5, 4.1] \\
+Medium (50--200)   & 4{,}096 & 0.542 & 0.554 & $+$1.2 & [0.0, 2.4] \\
+Large (200--500)   & 13{,}628 & 0.531 & 0.537 & $+$0.6 & [$-$0.3, 1.5] \\
+XLarge (500$+$)    & 25{,}949 & 0.524 & 0.528 & $+$0.4 & [$-$0.5, 1.3] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Structural Data Availability.}
+Table~\ref{tab:strat-structural} separates instances with dataflow data (34\%) from those without (66\%, where dataflow falls back to random).
+The dataflow advantage ($+$0.6\pp{}) is entirely concentrated in the 34\% with structural coverage; on fallback instances, dataflow $\approx$ random ($+$0.1\pp{}).
+This confirms that the dataflow strategy's overall diluted effect is due to limited structural coverage.
+
+\begin{table}[t]
+\centering
+\caption{Strategy deltas by structural data availability (Qwen encoder).}
+\label{tab:strat-structural}
+\begin{tabular}{lccccc}
+\toprule
+Stratum & $N$ & Random R@1 & Emb R@1 & DF R@1 & Emb $\Delta$ / DF $\Delta$ \\
+\midrule
+With dataflow (34\%) & $\sim$15K & 0.538 & 0.548 & 0.544 & $+$1.0 / $+$0.6 \\
+Fallback (66\%)      & $\sim$29K & 0.526 & 0.536 & 0.527 & $+$1.0 / $+$0.1 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Negative Difficulty Quartile.}
+Table~\ref{tab:strat-negdiff} stratifies by the difficulty of mined negatives (margin between positive and hardest negative).
+Both strategies benefit most from hard negatives (Q4: emb $+$1.6\pp{}, df $+$1.2\pp{}) and least from easy ones (Q1: emb $+$0.3\pp{}, df $-$0.2\pp{}).
+This supports a representation geometry explanation: when negatives are sufficiently hard, mining provides gradient signal that random sampling misses.
+
+\begin{table}[t]
+\centering
+\caption{Strategy delta by negative difficulty quartile (Qwen). Q4 = hardest negatives (margin $<$ 0.02).}
+\label{tab:strat-negdiff}
+\begin{tabular}{lccc}
+\toprule
+Quartile & Margin range & Emb $\Delta$ (pp) & DF $\Delta$ (pp) \\
+\midrule
+Q1 (easiest) & $> 0.15$      & $+$0.3 & $-$0.2 \\
+Q2           & 0.08--0.15    & $+$0.8 & $+$0.1 \\
+Q3           & 0.02--0.08    & $+$1.4 & $+$0.5 \\
+Q4 (hardest) & $< 0.02$      & $+$1.6 & $+$1.2 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Pool Size Sensitivity}
+\label{sec:poolsize}
+
+Real-world repositories have pool sizes ranging from tens to thousands of files.
+Table~\ref{tab:pool-qwen} and Table~\ref{tab:pool-starcoder} evaluate strategy rankings at pool $\in \{50, 100, 200, 500\}$ on SWE-smith validation.
+
+\begin{table}[t]
+\centering
+\caption{R@1 by pool size (Qwen). Embedding advantage is consistent but diminishes at larger pools.}
+\label{tab:pool-qwen}
+\begin{tabular}{rccccc}
+\toprule
+Pool & Random & Embedding & Dataflow & Emb $\Delta$ (pp) & Ranking stable? \\
+\midrule
+50  & 0.530 & 0.540 & 0.532 & $+$1.0 & \checkmark \\
+100 & 0.412 & 0.421 & 0.413 & $+$0.9 & \checkmark \\
+200 & 0.328 & 0.335 & 0.330 & $+$0.7 & \checkmark \\
+500 & 0.241 & 0.246 & 0.244 & $+$0.5 & \checkmark \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{R@1 by pool size (StarCoder). At pool $\geq 200$, strategy differences converge.}
+\label{tab:pool-starcoder}
+\begin{tabular}{rccccc}
+\toprule
+Pool & Random & Embedding & Dataflow & Emb $\Delta$ (pp) & Stable? \\
+\midrule
+50  & 0.443 & 0.450 & 0.437 & $+$0.7 & \checkmark \\
+100 & 0.339 & 0.345 & 0.334 & $+$0.6 & \checkmark \\
+200 & 0.268 & 0.272 & 0.271 & $+$0.4 & $\sim$ \\
+500 & 0.194 & 0.196 & 0.197 & $+$0.2 & $\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Embedding mining maintains its advantage across all pool sizes for Qwen, but the delta shrinks from $+$1.0\pp{} (pool=50) to $+$0.5\pp{} (pool=500).
+On StarCoder, rankings become unstable at pool $\geq 200$.
+This suggests that at realistic pool sizes (200--1000+), the practical benefit of mining strategy choice is further reduced.
+
+\subsection{Ablation Studies}
+\label{sec:ablations}
+
+\paragraph{Temperature.}
+Table~\ref{tab:temp-qwen} shows R@1 across $\tau \in \{0.05, 0.1, 0.2\}$.
+Strategy ranking (embedding $>$ random $\geq$ dataflow) is preserved across all temperatures, confirming robustness.
+However, at the optimal $\tau = 0.1$, the embedding delta is smaller ($+$0.8\pp{}) than at $\tau = 0.05$ ($+$1.0\pp{}), because smoother gradients also smooth the hard-negative advantage.
+
+\begin{table}[t]
+\centering
+\caption{R@1 by temperature (Qwen). Strategy ranking is preserved; delta shrinks at higher $\tau$.}
+\label{tab:temp-qwen}
+\begin{tabular}{ccccc}
+\toprule
+$\tau$ & Random & Embedding & Dataflow & Emb $\Delta$ (pp) \\
+\midrule
+0.05 & 0.530 & 0.540 & 0.532 & $+$1.0 \\
+0.10 & 0.537 & 0.545 & 0.537 & $+$0.8 \\
+0.20 & 0.521 & 0.526 & 0.520 & $+$0.5 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{R@1 by temperature (StarCoder). Same pattern: ranking preserved, delta shrinks.}
+\label{tab:temp-starcoder}
+\begin{tabular}{ccccc}
+\toprule
+$\tau$ & Random & Embedding & Dataflow & Emb $\Delta$ (pp) \\
+\midrule
+0.05 & 0.443 & 0.450 & 0.437 & $+$0.7 \\
+0.10 & 0.451 & 0.457 & 0.446 & $+$0.6 \\
+0.20 & 0.435 & 0.438 & 0.430 & $+$0.3 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Training Data Size.}
+Table~\ref{tab:datasize} shows R@1 at 1K, 3K, and 5K training instances (Qwen).
+Embedding mining benefit scales with data size ($+$0.3\pp{} at 1K, $+$1.0\pp{} at 5K), indicating the advantage is not an overfitting artifact.
+However, scaling is sub-linear, suggesting that pretrained representation quality is the bottleneck.
+
+\begin{table}[t]
+\centering
+\caption{R@1 by training data size (Qwen). Embedding advantage grows with data, sub-linearly.}
+\label{tab:datasize}
+\begin{tabular}{lcccc}
+\toprule
+Size & Random & Embedding & Dataflow & Emb $\Delta$ (pp) \\
+\midrule
+1K       & 0.498 & 0.501 & 0.495 & $+$0.3 \\
+3K       & 0.519 & 0.528 & 0.521 & $+$0.9 \\
+5K (full)& 0.530 & 0.540 & 0.532 & $+$1.0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Fusion Head.}
+Table~\ref{tab:fusion} ablates inference-time scoring: embedding-only vs.\ structural-features-only vs.\ combined.
+The combined head adds only $+$0.2\pp{} over embedding-only, confirming that the value of structural information lies in \emph{training-time negative selection}, not inference-time feature fusion.
+
+\begin{table}[t]
+\centering
+\caption{Fusion head ablation. Structural features alone are weak; combining with embeddings adds marginal value.}
+\label{tab:fusion}
+\begin{tabular}{lcccc}
+\toprule
+Encoder & Emb-only & Struct-only & Combined & Combined$-$Emb (pp) \\
+\midrule
+Qwen     & 0.539 & 0.412 & 0.541 & $+$0.2 \\
+StarCoder & 0.449 & 0.378 & 0.451 & $+$0.2 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Call-Graph Hop Count.}
+Table~\ref{tab:hopcnt} ablates the dataflow bounding at 1, 2, and 3 hops.
+Differences are $<$0.5\pp{}, with 2-hop slightly optimal.
+The more informative finding is the high fallback rate at 1-hop (42\%), confirming limited structural coverage.
+
+\begin{table}[t]
+\centering
+\caption{Dataflow R@1 by hop count and negative pool statistics.}
+\label{tab:hopcnt}
+\begin{tabular}{lcccccc}
+\toprule
+ & \multicolumn{2}{c}{R@1} & & \multicolumn{2}{c}{Pool statistics} \\
+\cmidrule{2-3} \cmidrule{5-6}
+Hops & Qwen & StarCoder & & Mean neg/query & Fallback \% \\
+\midrule
+1 & 0.530 & 0.434 & & 3.2 & 42\% \\
+2 & 0.532 & 0.437 & & 8.7 & 28\% \\
+3 & 0.529 & 0.436 & & 14.1 & 18\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Dynamic vs.\ Static Mining.}
+We tested dynamic re-mining (per-epoch) and found no significant improvement over static mining ($\Delta = +0.4\pp{}$, CI: [$-$0.8, 1.6], $p = 0.38$) despite 2.3$\times$ training time.
+This is expected: over 2--3 epochs the encoder changes minimally, so re-mined negatives overlap $>$80\% with static ones.
+
+\begin{table}[t]
+\centering
+\caption{Static vs.\ dynamic embedding mining (Qwen). Dynamic adds negligible benefit at 2.3$\times$ cost.}
+\label{tab:dynamic}
+\begin{tabular}{lcccc}
+\toprule
+Mining & R@1 & $\Delta$ vs static (pp) & Train time (h) & 95\% CI \\
+\midrule
+Static  & 0.540 & --- & 7.5 & --- \\
+Dynamic & 0.544 & $+$0.4 & 17.3 & [$-$0.8, 1.6] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Weighted vs.\ Binary Dataflow Negatives.}
+Distance-weighted sampling by dataflow distance provides no significant improvement over binary connected/disconnected selection ($+$0.3\pp{}, CI: [$-$0.8, 1.4]).
+Binary selection is simpler and preferred.
+
+\begin{table}[t]
+\centering
+\caption{Binary vs.\ weighted dataflow negatives. No significant difference.}
+\label{tab:weighted}
+\begin{tabular}{lccc}
+\toprule
+Encoder & Binary DF R@1 & Weighted DF R@1 & $\Delta$ (pp) \\
+\midrule
+Qwen     & 0.532 & 0.535 & $+$0.3 \\
+StarCoder & 0.437 & 0.439 & $+$0.2 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Failure Analysis and Case Studies}
+\label{sec:failure}
+
+\paragraph{Failure Categorization.}
+We manually analyzed 50 retrieval failures from SWE-bench (Table~\ref{tab:failure}).
+The largest category is lexical gap (36\%), where query wording differs entirely from target file content---neither mining strategy addresses this.
+Structural gap cases (28\%) are where dataflow helps most (57\% of such cases), but this ceiling limits overall impact.
+
+\begin{table}[t]
+\centering
+\caption{Failure categories from 50 SWE-bench retrieval failures, with per-strategy help rates.}
+\label{tab:failure}
+\begin{tabular}{lcccc}
+\toprule
+Category & Count (\%) & DF helps & Emb helps \\
+\midrule
+Structural gap      & 14 (28\%) & 8 (57\%) & 5 (36\%) \\
+Lexical gap         & 18 (36\%) & 3 (17\%) & 6 (33\%) \\
+Multi-file dep.     &  8 (16\%) & 4 (50\%) & 5 (63\%) \\
+Other               & 10 (20\%) & 1 (10\%) & 2 (20\%) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Illustrative Case Studies.}
+Table~\ref{tab:cases} presents 7 selected cases where strategies changed retrieval outcome.
+These are chosen to illustrate the mechanism, not as representative evidence---overall effect sizes are modest (Tables~\ref{tab:four-strategy}--\ref{tab:repobench}).
+Dataflow uniquely helps in cases involving cross-module callees, config propagation, and dependency cycles, where structural connectivity provides signal orthogonal to text similarity.
+
+\begin{table}[t]
+\centering
+\caption{Selected qualitative cases. Ranks are within the candidate pool. Cases are illustrative, not representative.}
+\label{tab:cases}
+\begin{tabular}{clcccl}
+\toprule
+\# & Issue type & Rand & Emb & DF & Key observation \\
+\midrule
+1 & Missing import     & 12 & 8 & 2 & DF finds cross-module callee \\
+2 & API mismatch       &  9 & 3 & 4 & Emb finds similar naming \\
+3 & Config propagation & 15 & 11 & 1 & DF traces config flow \\
+4 & Type error         &  6 & 2 & 3 & Both find related types \\
+5 & Null pointer       & 11 & 7 & 3 & DF finds data source \\
+6 & Method override    &  4 & 1 & 5 & Emb captures signature sim \\
+7 & Circular dep       & 14 & 10 & 2 & DF traces dependency cycle \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Comparison with Inference-Time Graph Methods}
+\label{sec:inference-comparison}
+
+Table~\ref{tab:inference-methods} positions our approach relative to inference-time graph methods.
+The key distinction is that these methods navigate structure at inference time, while we use structure for training-time data curation.
+The two approaches are in principle complementary---a retriever trained with structure-grounded negatives could serve as the backbone for an inference-time graph navigator---but we have not experimentally verified this complementarity.
+
+\begin{table}[t]
+\centering
+\caption{Comparison with inference-time graph methods. StructFuse operates at training time, making it complementary.}
+\label{tab:inference-methods}
+\begin{tabular}{llll}
+\toprule
+Method & Graph type & When used & Complementary? \\
+\midrule
+CodexGraph & Repository graph & Inference & Yes \\
+LocAgent   & Code structure   & Inference & Yes \\
+RANGER     & AST + deps       & Inference & Yes \\
+\sysname{} (ours) & Dataflow  & Training  & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%----------------------------------------------------------------------
+\section{Discussion}
+\label{sec:discussion}
+
+\paragraph{Summary of Findings.}
+True embedding-distance mining tends to improve contrastive code retrieval over random baselines, with consistent direction across two encoders, two benchmarks, multiple seeds, and a range of hyperparameters.
+However, effect sizes are modest (0.5--1.0\pp{} R@1 in most conditions, up to 1.8\pp{} in favorable strata), and multi-seed confidence intervals are wide (2--4\pp{}), with some seed-level deltas $< 0.5\pp$.
+BM25-proxy negatives trend toward harm, consistent with the hypothesis that CoCoHaNeRe's reported $-27\pp{}$ was amplified by proxy conflation, but our BM25 effect is not statistically significant ($p > 0.05$).
+
+\paragraph{Dataflow as Exploratory Observation.}
+Dataflow-grounded negatives show an encoder--strategy interaction: marginal positive effect on Qwen (CI includes 0) and negative effect on StarCoder.
+This is consistent with a representation saturation hypothesis---when the encoder's pretrained space has high positive similarity (Qwen: $\text{pos\_sim} = 0.99$), structural negatives may provide an orthogonal signal dimension.
+However, the evidence is insufficient for an independent claim, and we present this as an exploratory observation that merits further investigation with more encoders.
+
+\paragraph{Where Mining Matters.}
+Stratified analysis reveals that mining benefit concentrates in specific conditions: small repositories, hard negative difficulty quartiles, and medium query-positive similarity ranges.
+These are precisely the conditions where the encoder's ability to discriminate is most challenged.
+However, these favorable conditions represent a minority of real-world instances, diluting the overall effect.
+
+\paragraph{Practical Implications.}
+For practitioners choosing a negative mining strategy for code retrieval:
+(1)~embedding-distance mining is a reasonable default that tends to help and is unlikely to harm;
+(2)~avoid using BM25 top-$k$ as a proxy for embedding-distance negatives;
+(3)~structural negatives via dataflow are not recommended as a general-purpose strategy given limited coverage (34\%), encoder-dependent effects, and modest overall benefit.
+
+\paragraph{Limitations.}
+\begin{itemize}
+    \item \textbf{Two encoders}: Our interaction finding rests on $n=2$ encoders. Generalization requires broader evaluation.
+    \item \textbf{Pool size}: Training uses pool=50; at realistic pool sizes (200--1000+), strategy advantages shrink further (Table~\ref{tab:pool-qwen}).
+    \item \textbf{Structural coverage}: Dataflow data is available for only 34\% of instances, diluting any structural benefit.
+    \item \textbf{SWE-bench power}: With $N=300$ binary outcomes, SWE-bench is underpowered to detect retrieval-stage deltas $< 2\pp{}$.
+    \item \textbf{Single training domain}: All training uses SWE-smith; domain shift to other retrieval tasks may alter findings.
+    \item \textbf{Effect magnitude}: All observed deltas are $\leq 2\pp{}$, which may be within the noise floor for practical deployment decisions.
+\end{itemize}
+
+%----------------------------------------------------------------------
+\section{Conclusion}
+\label{sec:conclusion}
+
+We presented a systematic study of hard negative mining strategies for contrastive code retrieval, comparing random, BM25-proxy, embedding-distance, and dataflow-disconnected negatives across two encoders, two benchmarks, and extensive ablations.
+Our results suggest that true embedding-distance mining tends to help and that prior reports of harm were likely confounded by BM25-proxy conflation, though the evidence for the latter is directional rather than conclusive.
+Structure-grounded negatives show an intriguing encoder-dependent interaction but do not provide consistent benefit and remain an exploratory observation.
+Stratified analysis reveals that mining benefit concentrates in specific conditions, providing a representation geometry explanation for the heterogeneous findings in the literature.
+We hope this systematic analysis helps the community make more informed choices about negative mining strategies and motivates further investigation into the interaction between encoder properties and training data curation.
+
+%----------------------------------------------------------------------
+\bibliographystyle{plainnat}
+\begin{thebibliography}{10}
+
+\bibitem[Karpukhin et~al.(2020)]{karpukhin2020dense}
+V.~Karpukhin, B.~Oguz, S.~Min, P.~Lewis, L.~Wu, S.~Edunov, D.~Chen, and W.~Yih.
+\newblock Dense passage retrieval for open-domain question answering.
+\newblock In \emph{EMNLP}, 2020.
+
+\bibitem[Xiong et~al.(2021)]{xiong2021approximate}
+L.~Xiong, C.~Xiong, Y.~Li, K.-F.~Tang, J.~Liu, P.~Bennett, J.~Ahmed, and A.~Overwijk.
+\newblock Approximate nearest neighbor negative contrastive learning for dense text retrieval.
+\newblock In \emph{ICLR}, 2021.
+
+\end{thebibliography}
+
+\end{document}

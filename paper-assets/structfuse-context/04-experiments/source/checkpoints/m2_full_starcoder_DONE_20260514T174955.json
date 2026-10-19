@@ -1,0 +1,89 @@
+{
+  "exp_id": "m2_full_starcoder",
+  "project": "structfuse-context",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-13T16:18:15.415Z",
+    "updated_at": "2026-05-14T17:49:55.304Z",
+    "hypothesis": "Full M2 StarCoder: 3 strategies × 3 seeds on full M1 data. Cross-encoder validation — if embedding > random holds for both Qwen and StarCoder, method is encoder-agnostic. Resolves plan_013 pilot negative (dataflow encoder-dependent).",
+    "parent": "plan_013_starcoder",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/structfuse && bash run_m2_full_starcoder.sh 2>&1 | tee /root/runs/structfuse-context/m2_full_starcoder.log\"",
+      "server": "bjb1-42106",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "74122",
+      "log_path": "~/runs/structfuse-context/m2_full_starcoder.log",
+      "submitted_at": "2026-05-13T17:40:24.177Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/structfuse/full_m2_starcoder_data/",
+      "data_count": 11000,
+      "model_name": "bigcode/starcoder2-3b",
+      "seed": "42,43,44",
+      "checkpoint_source": "training from scratch (contrastive learning, not eval)",
+      "eval_data": "N/A (training, not eval)",
+      "wall_clock_seconds": 86971.1,
+      "gpu_hours": 24.16
+    },
+    "notes": "Phase 1: 构建 StarCoder embedding negatives 完成。Phase 2: 9 runs 训练中。batch_size=8, num_negatives=7, epochs=3(s42)/2(s43+), lr=2e-5, eval_steps=500, no early_stopping。双 checkpoint: best + best_by_recall_at_1。Seeds: 42,43,44。[D026] s42 保持 3 epochs; s43/s44 及后续 runs 改为 2 epochs（Qwen eval@2000 确认过拟合）。修改 run_m2_full_starcoder.sh:174 --num-epochs 3→2。",
+    "metrics": {
+      "random_s42": {
+        "epoch": "3/3",
+        "current_step": 4000,
+        "total_steps": 4242,
+        "total_steps_per_epoch": 1414,
+        "eval_500": {
+          "val_loss": 0.6194,
+          "recall_at_1": 0.435,
+          "recall_at_5": 0.905,
+          "recall_at_10": 1
+        },
+        "eval_1000": {
+          "val_loss": 0.6134,
+          "recall_at_1": 0.454,
+          "recall_at_5": 0.92,
+          "recall_at_10": 1
+        },
+        "eval_1500": {
+          "val_loss": 0.6528,
+          "recall_at_1": 0.449,
+          "recall_at_5": 0.906,
+          "recall_at_10": 1
+        },
+        "eval_2000": {
+          "val_loss": 0.6698,
+          "recall_at_1": 0.4456,
+          "recall_at_5": 0.906,
+          "recall_at_10": 1
+        },
+        "eval_2500": {
+          "recall_at_1": 0.4604,
+          "note": "best R@1 at step 2500"
+        },
+        "eval_3500": {
+          "val_loss": 0.6588,
+          "recall_at_1": 0.4534,
+          "recall_at_5": 0.9057,
+          "recall_at_10": 1
+        },
+        "best_checkpoint": "step_1000 (val_loss=0.6134) / step_2500 (R@1=0.4604)",
+        "note": "Step 4000/4242 (94.3%), lr=2.07e-07, ~1-2h to complete. Watcher ready for s43 auto-start."
+      },
+      "progress_snapshot": "2026-05-15T00:28 CST"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-14T17:49:54.474Z"
+    },
+    "failure_reason": "EXIT_CODE=124 (timeout — exceeded timeout_hours)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-14T17:49:55.304Z"
+  },
+  "timestamp": "2026-05-14T17:49:55.369911+00:00",
+  "trigger": "update_registry"
+}

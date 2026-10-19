@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "baa42360a9c2815a2f6b",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "experiment r1 32b hs vs text bootstrap",
+  "task_key": "worker_experiment_r1_32b_hs_vs_text_bootstrap_20260517T030501",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_r1_32b_hs_vs_text_bootstrap_20260517T030501_result.json",
+    "occurrence": 1,
+    "bytes": 840,
+    "sha256": "bd5ed59426857f910da47bbc09bd3a2b5d3054b23223418383ae0da7bff767e0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果完整。汇总如下：\n\n---\n\n**R1-32B HS vs Text Paired Bootstrap (n=1000, layer=10, W=10):**\n\n| Metric | HS | Text | Δ | p-value | Bonferroni α=0.017 |\n|--------|-----|------|---|---------|-------------------|\n| Balanced Accuracy | 79.4% | 71.1% | +8.4pp | 0.040 | FAIL |\n| Precision | 61.0% | 51.6% | +9.4pp | 0.025 | FAIL |\n| Pre-CP FPR | 24.2% | 32.6% | -8.4pp | 0.057 | FAIL |\n\n所有三个指标在 Bonferroni 校正后均未达到显著性（α=0.017）。但在未校正 α=0.05 下，balanced accuracy (p=0.040) 和 precision (p=0.025) 显著。\n\n主要限制：test split 仅 20 条 traces，统计功效不足。效应量方向一致且幅度较大（8-9pp），样本量不够检测到 Bonferroni 级别显著性。\n\n结果已保存至 `artifacts/r1_32b_paired_bootstrap/results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-r1-32b-hs-vs-text-bootstrap.md"
+}

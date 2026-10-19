@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_013_text_baseline",
+  "project": "contrastive_trace_safety",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T20:40:49.092Z",
+    "updated_at": "2026-05-16T20:48:23.618Z",
+    "hypothesis": "Text-based sentence embeddings (all-MiniLM-L6-v2) should underperform hidden-state probes on commitment detection because surface text may not reveal internal model state shifts. If text matches hidden-state performance, paper motivation needs restructuring."
+  },
+  "timestamp": "2026-05-16T20:48:23.659558+00:00",
+  "trigger": "update_registry"
+}

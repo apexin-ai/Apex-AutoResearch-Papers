@@ -1,0 +1,8 @@
+Remote path: /root/autodl-tmp/structfuse/artifacts/bm25_overlap_stratified.json
+Server: bjb1-42106
+Script: /root/structfuse/scripts/analyze_bm25_overlap_stratified.py
+
+Stratified top-7 Jaccard overlap (seed 42, 2920 matched queries):
+Small (<50 files, 39 repos): BM25 vs embedding 0.668, vs random 0.411, vs dataflow 0.667
+Medium (50-200 files, 29 repos): BM25 vs embedding 0.380, vs random 0.067, vs dataflow 0.363
+Large (200+ files, 15 repos): BM25 vs embedding 0.297, vs random 0.007, vs dataflow 0.405

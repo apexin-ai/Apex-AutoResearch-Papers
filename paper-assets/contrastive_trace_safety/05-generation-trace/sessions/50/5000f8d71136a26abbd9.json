@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5000f8d71136a26abbd9",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code r9 loo cv block wait",
+  "task_key": "worker_code_r9_loo_cv_block_wait_20260518T105625",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r9_loo_cv_block_wait_20260518T105625_result.json",
+    "occurrence": 1,
+    "bytes": 109,
+    "sha256": "48720fc47aa6739c541cd9bdd7f2dc384e3cb6605d199dcb0eb8f87d0379c9f2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "LOO-CV 进度 320/448，预计 10-20 分钟内完成。已设置 ~4.5 分钟后轮询检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r9-loo-cv-block-wait.md"
+}

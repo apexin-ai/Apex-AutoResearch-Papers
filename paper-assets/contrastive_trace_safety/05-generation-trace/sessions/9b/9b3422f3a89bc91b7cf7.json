@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9b3422f3a89bc91b7cf7",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code exp ot7b execute",
+  "task_key": "worker_code_exp_ot7b_execute_20260517T065302",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_ot7b_execute_20260517T065302_result.json",
+    "occurrence": 1,
+    "bytes": 1219,
+    "sha256": "52944a22e38cc5345d39aa1bc004ee19822389407e984b56d28fb77f73009bdb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Pipeline 完成。** 全部 6 个阶段执行成功，结果已录入 registry 和 artifacts。\n\n## 关键结果\n\n| 指标 | HS Probe (W=3, L=0) | Text Probe (W=25) | Delta | p-value | Bonferroni |\n|------|---------------------|-------------------|-------|---------|------------|\n| bal_acc | 0.6721 → 0.7373* | 0.6141 → 0.6558* | +8.15pp | 0.001 | **Yes** |\n| precision | 0.3571 → 0.4249* | 0.3291 → 0.3459* | +7.9pp | 0.056 | No |\n| pre_cp_fpr | 0.1877 | 0.2709 | -8.3pp | 0.007 | **Yes** |\n\n*bootstrap 重训估计\n\n- **Best layer = 0**（embedding 层，depth=0%），crossing_rate=53.2%，所有层 bal_acc 在 0.63-0.68 范围内相对平坦\n- **Selectivity = 18.5 pp**（real=0.672 vs random=0.487），远超随机水平\n- **结论**: HS > Text 在 bal_acc 和 FPR 上通过 Bonferroni 显著性检验。OpenThinker-7B（非 R1 蒸馏、STILL 训练）确认 HS 优势泛化到非 R1 模型家族。\n\n### 修复记录\n- Phase 4 首次运行因 `KeyError: 'sentences'` 崩溃——.pt 文件未保存 sentences 字段。已修复：在 `main()` 中合并原始 traces 的 sentences。用 continuation script 跳过已完成的 Phase 2-3，节省 50+ 分钟重跑时间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-ot7b-execute.md"
+}

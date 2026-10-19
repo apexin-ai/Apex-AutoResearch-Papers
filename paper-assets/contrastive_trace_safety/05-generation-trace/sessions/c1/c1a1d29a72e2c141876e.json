@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c1a1d29a72e2c141876e",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "research advbench data check",
+  "task_key": "worker_research_advbench_data_check_20260522T092720",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_advbench_data_check_20260522T092720_result.json",
+    "occurrence": 1,
+    "bytes": 2295,
+    "sha256": "0ede4bb3fa8a8181b822849d82fa921b86e79027519aa87be2758578d09ece88"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here's the full status report:\n\n## 1. AdvBench prompts\n**Not present.** `/root/autodl-tmp/contrastive_trace_safety/data/` directory does not exist. No `advbench/` directory or prompt files anywhere.\n\n## 2. R1-8B AdvBench reasoning traces\n**No AdvBench-specific traces found.** `find` for `*advbench*` returned empty across both `data/` and `artifacts/`.\n\n## 3. Existing hidden states (HarmThoughts, not AdvBench)\n- `artifacts/hidden_states_r1_8b_full/` — **209 .pt files, 1.9 GB total**\n- These are from the **HarmThoughts** dataset (`ishitakakkar-10/HarmThoughts`), not AdvBench\n- Each .pt file is a per-trace hidden state extraction (all 25 layers, L0–L24, dim=4096)\n- Also present: `artifacts/ensemble_cv_results.json` (5-fold CV results), `artifacts/random_cp_control/`\n\n## 4. Disk space\n| Filesystem | Size | Used | Avail | Use% |\n|---|---|---|---|---|\n| `/dev/md0` | 250G | 18G | **233G free** | 7% |\n\nPlenty of space for AdvBench experiments.\n\n## 5. Model availability\n**R1-8B is cached in two locations:**\n- `/root/autodl-tmp/models/r1_8b/deepseek-ai/DeepSeek-R1-Distill-Llama-8B/` (15 GB)\n- `/root/autodl-tmp/.hf_cache/hub/models--deepseek-ai--DeepSeek-R1-Distill-Llama-8B/` (HF cache)\n\nNo need to re-download.\n\n## 6. Existing scripts\nServer-side scripts in `/root/autodl-tmp/contrastive_trace_safety/scripts/`:\n- `extract_hs_r1_8b.py` — HarmThoughts hidden state extraction (reference for AdvBench script)\n- `n7_ensemble_loocv.py` — ensemble CV validation\n- `random_cp_control_r1_8b.py` — random changepoint control\n- `run_r1_8b_pipeline.sh` — pipeline runner\n\n**No AdvBench-specific scripts** exist yet. No `src/` directory.\n\n## 7. GPU\n| GPU | VRAM | Used |\n|---|---|---|\n| **NVIDIA RTX PRO 6000 Blackwell Server Edition** | **97,887 MiB (~96 GB)** | 0 MiB |\n\nGPU is idle and has massive VRAM — can easily hold the 8B model (~16GB in fp16) with room for long-context inference.\n\n## Summary\n**What's available:** R1-8B model weights (cached), 96GB GPU (idle), 233GB free disk, existing HarmThoughts extraction script as template.\n\n**What's missing:** AdvBench prompts, AdvBench reasoning traces, AdvBench hidden states, AdvBench extraction script. Everything AdvBench-related needs to be created from scratch."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-advbench-data-check.md"
+}

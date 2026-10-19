@@ -1,0 +1,33 @@
+paper_key: "zou2023representation"
+title: "Representation Engineering: A Top-Down Approach to AI Transparency"
+venue: "arXiv 2023"
+full_text_available: false
+
+research:
+  baselines:
+    - "probing classifiers"
+    - "circuit-level interpretability (mechanistic interpretability)"
+    - "neuron-level analysis"
+  metrics:
+    - {name: "control effectiveness (safety-relevant behavior modification)", direction: "higher_better"}
+    - {name: "representation reading accuracy", direction: "higher_better"}
+  datasets:
+    - {name: "honesty evaluation scenarios", size: "unknown_from_abstract"}
+    - {name: "harmlessness evaluation scenarios", size: "unknown_from_abstract"}
+    - {name: "power-seeking evaluation scenarios", size: "unknown_from_abstract"}
+  ablation_dimensions:
+    - "safety-relevant phenomena (honesty, harmlessness, power-seeking)"
+    - "monitoring vs manipulation (reading vs control)"
+    - "representation level (population-level vs neuron-level)"
+  training_recipe: "unknown_from_abstract"
+  method_family: "representation engineering / top-down transparency"
+
+positioning:
+  core_claim: "Population-level representation analysis (RepE) provides simple yet effective methods for monitoring and controlling high-level cognitive phenomena in LLMs, outperforming bottom-up neuron/circuit approaches for safety-relevant problems."
+  key_results: "N/A - abstract only"
+  limitations: ["N/A"]
+  relation_to_us: "foundation"
+
+narrative: "N/A - abstract only"
+figures: "N/A - abstract only"
+tables: "N/A - abstract only"

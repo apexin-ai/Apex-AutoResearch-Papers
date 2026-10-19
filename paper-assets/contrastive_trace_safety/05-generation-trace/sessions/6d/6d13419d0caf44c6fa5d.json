@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6d13419d0caf44c6fa5d",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "analysis excluded traces",
+  "task_key": "worker_analysis_excluded_traces_20260517T044124",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_excluded_traces_20260517T044124_result.json",
+    "occurrence": 1,
+    "bytes": 1522,
+    "sha256": "ac959c8fcf61271934ecaedfeb6a4b6070535f43453bf4101538307a35dcc97f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果：\n\n---\n\n## Excluded Traces Analysis (r1_8b, W=15, layer=2)\n**10 excluded / 33 included from 43 test traces**\n\n### 排除原因\n\n| 原因 | 数量 |\n|------|------|\n| 仅 Text probe 无正预测 | 7 |\n| 仅 HS probe 无正预测 | 2 |\n| 两者均无正预测 | 1 |\n\n主要由 Text probe 的 recall 不足导致（7/10），而非 HS probe 问题。\n\n### 统计比较\n\n| 特征 | Excluded (n=10) | Included (n=33) | Mann-Whitney p |\n|------|----------------|-----------------|----------------|\n| Trace 长度 (steps) | mean=51.2, median=46.5 | mean=43.9, median=44.0 | p=0.274 |\n| CP 绝对位置 | mean=39.8, median=42.0 | mean=32.5, median=33.0 | p=0.262 |\n| CP 相对位置 (0-1) | mean=0.729, median=0.853 | mean=0.688, median=0.829 | p=0.350 |\n| 正标签比例 | mean=0.271, median=0.147 | mean=0.312, median=0.171 | p=0.350 |\n\n所有标签分布：excluded 和 included 中均无 all-zero 标签的 trace（Fisher p=1.0）。\n\n### 结论\n\n**未检测到系统性偏差。** 所有统计检验均不显著（最低 p=0.262）。排除是纯机制性的（probe 未产生正预测），不与 trace 长度、CP 位置或正标签比例系统性关联。\n\n值得注意的是，excluded traces 的正标签比例 *偏低*（mean 0.271 vs 0.312），但差异不显著。这可以解释为：正标签少 → 正类信号弱 → probe 更倾向全预测为负。\n\n输出已保存至 `artifacts/acc_precision_bootstrap/excluded_traces_analysis.txt`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-excluded-traces.md"
+}

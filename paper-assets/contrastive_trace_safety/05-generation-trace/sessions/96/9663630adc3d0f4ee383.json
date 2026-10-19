@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9663630adc3d0f4ee383",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "research data explore",
+  "task_key": "worker_research_data-explore_20260516T175306",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_data-explore_20260516T175306_result.json",
+    "occurrence": 1,
+    "bytes": 764,
+    "sha256": "1605389b72639f083802021ea5429765cca024bb8966bd29bda4bffd4bdc58d3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/data_exploration_report.md`。核心发现：\n\n- **56,931 句子 / 1,018 条 traces / 4 个模型**，仅 train split\n- **纯文本数据集**，不含 hidden states，需自行提取\n- **r1-8b (DeepSeek-R1-Distill-Llama-8B)**：324 traces，81.8% jailbreak rate，平均 45.5 句/trace\n- **16 类 sentence-level 标签**：DKE (39%) 和 TD (14%) 占主导，标签区分了 harmful execution / safety override / intent manipulation / evasion / harmless / neutral\n- **无显式 transition step 标注**，但 CC (Compliance Conflict) 平均出现在 trace 60% 位置处，可作为 compliance transition 的 proxy\n- `final_judgment`: 1.0=unsafe (jailbroken), 0.5=partially unsafe (harmful reasoning but safe output)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-data-explore.md"
+}

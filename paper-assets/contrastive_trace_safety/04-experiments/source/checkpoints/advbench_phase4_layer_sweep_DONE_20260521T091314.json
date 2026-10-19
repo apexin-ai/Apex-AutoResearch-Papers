@@ -1,0 +1,35 @@
+{
+  "exp_id": "advbench_phase4_layer_sweep",
+  "project": "contrastive_trace_safety",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T06:37:32.309Z",
+    "updated_at": "2026-05-21T09:13:14.494Z",
+    "spec": {
+      "command": "killed before run",
+      "server": "autodl-rtx6000",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "486086",
+      "log_path": "~/runs/contrastive_trace_safety/advbench_phase4_layer_sweep.log",
+      "submitted_at": "2026-05-20T06:37:32.143Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "N/A",
+      "data_count": 0,
+      "model_name": "N/A",
+      "seed": 0,
+      "wall_clock_seconds": 95742.4,
+      "gpu_hours": 26.6
+    },
+    "conclusion": "killed",
+    "completed_at": "2026-05-21T09:13:14.494Z"
+  },
+  "timestamp": "2026-05-21T09:13:14.600755+00:00",
+  "trigger": "update_registry"
+}

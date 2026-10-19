@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d000c0c1653592dde45a",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code r6 r1 8b bootstrap fix",
+  "task_key": "worker_code_r6_r1_8b_bootstrap_fix_20260518T033527",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r6_r1_8b_bootstrap_fix_20260518T033527_result.json",
+    "occurrence": 1,
+    "bytes": 1237,
+    "sha256": "7dfdc695d8e72f75bc9582c376c1fa813ad4c3ef075eb788ba61415f7737249f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n### 修复内容\n`run_bootstrap_10k.py` 第 28 行 R1-8B `\"window\": 3` → `\"window\": 15`\n\n### R1-8B (L14, W=15, 10k resamples) 结果\n\n```\nR1-8B (L14, W=15, 10000 resamples):\n  HS precision:   0.7527\n  Text precision: 0.4279\n  Δ precision:    +32.5pp\n  95% CI:         [+20.2, +45.2]pp\n  p-value:        0.0000\n\n  HS bal_acc:      0.8045\n  Text bal_acc:    0.6946\n  Δ bal_acc:       +11.0pp\n  95% CI:          [+4.8, +17.2]pp\n  p-value:         0.0011\n\n  HS pre-cp FPR:   0.0898\n  Text pre-cp FPR: 0.1815\n  Δ FPR:           -9.2pp\n  95% CI:          [-15.6, -2.6]pp\n  p-value:         0.0049\n```\n\n### 关于 Δ 与 Table 2 不一致的说明\n\nΔ precision = +32.5pp（非预期的 +22.4pp），原因是聚合方式不同：\n- **Table 2 (+22.5pp)**：pooled precision（所有 test step 汇总计算）\n- **Bootstrap (+32.5pp)**：per-trace precision（每条 trace 独立计算 precision 后取平均）\n\nPer-trace 聚合是 bootstrap 统计检验的正确做法（trace 是独立采样单元）。修复前 W=3 的 bootstrap Δ 是 +27.9pp，修复后 W=15 变为 +32.5pp（HS probe 从更长窗口获益更多）。所有 p-value 仍然显著 (p < 0.005)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r6-r1-8b-bootstrap-fix.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "192ba4f05da01ae78749",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "research arxiv verification r6",
+  "task_key": "worker_research_arxiv_verification_r6_20260518T015913",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_arxiv_verification_r6_20260518T015913_result.json",
+    "occurrence": 1,
+    "bytes": 2831,
+    "sha256": "8f81ca3976f69bdc30813cde65e3f0dbfdf3a070703c69b990a8be3192246a08"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 验证结果\n\n---\n\n### 论文 1: `2504.05419`\n\n| 项目 | 结果 |\n|------|------|\n| **存在性** | 存在 |\n| **真实标题** | \"Reasoning Models Know When They're Right: Probing Hidden States for Self-Verification\" |\n| **标题匹配** | 部分匹配 — 声称标题是完整标题的前半部分，省略了副标题 |\n| **真实作者** | Anqi Zhang, Yulin Chen, Jane Pan, Chen Zhao, Aurojit Panda, Jinyang Li, He He |\n| **作者匹配** | **不匹配** — 声称 \"Stechly et al.\"，实际第一作者为 Anqi Zhang，作者列表中无 Stechly |\n| **相关性** | **高度相关** — 直接研究 reasoning model hidden states 中的 correctness probing，用于 self-verification |\n| **结论** | **MISMATCH** — ID 和标题真实，但作者归属错误 |\n\n---\n\n### 论文 2: `2510.21285`\n\n| 项目 | 结果 |\n|------|------|\n| **存在性** | 存在 |\n| **真实标题** | \"When Models Outthink Their Safety: Unveiling and Mitigating Self-Jailbreak in Large Reasoning Models\" |\n| **标题匹配** | 匹配 — 声称标题是完整标题的主标题部分 |\n| **真实作者** | Yingzhi Mao, Chunkang Zhang, Junxiang Wang, Xinyan Guan, Boxi Cao, Yaojie Lu, Hongyu Lin, Xianpei Han, Le Sun |\n| **作者匹配** | **匹配** — 第一作者确为 Mao，提交于 2025 年 10 月 |\n| **相关性** | **相关** — 研究 reasoning model 的安全失败模式（Self-Jailbreak），提出 Chain-of-Guardrail 框架 |\n| **结论** | **VERIFIED** |\n\n---\n\n### 论文 3: `2605.13772`（2026 年 5 月）\n\n| 项目 | 结果 |\n|------|------|\n| **存在性** | 存在 — 提交于 2026-05-13（5 天前） |\n| **真实标题** | \"Where Does Reasoning Break? Step-Level Hallucination Detection via Hidden-State Transport Geometry\" |\n| **标题匹配** | 匹配 — 声称标题是完整标题的主标题部分 |\n| **真实作者** | Tyler Alvarez, Ali Baheri |\n| **作者匹配** | 声称中未提供具体作者，无法判断匹配性 |\n| **相关性** | **极高相关** — 用 hidden-state transport geometry 做 step-level hallucination detection，与 contrastive trace safety 直接相关（contrastive PCA lens + geometric transition features） |\n| **结论** | **VERIFIED** |\n\n---\n\n### 汇总\n\n| 论文 | ID | 结论 | 问题 |\n|------|-----|------|------|\n| 1 | 2504.05419 | **MISMATCH** | 作者错误：实际为 Zhang et al.，非 Stechly et al. |\n| 2 | 2510.21285 | **VERIFIED** | — |\n| 3 | 2605.13772 | **VERIFIED** | 2026 年本月论文，确实存在 |\n\nSources:\n- [2504.05419 - Reasoning Models Know When They're Right](https://arxiv.org/abs/2504.05419)\n- [2510.21285 - When Models Outthink Their Safety](https://arxiv.org/abs/2510.21285)\n- [2605.13772 - Where Does Reasoning Break?](https://arxiv.org/abs/2605.13772)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-arxiv-verification-r6.md"
+}

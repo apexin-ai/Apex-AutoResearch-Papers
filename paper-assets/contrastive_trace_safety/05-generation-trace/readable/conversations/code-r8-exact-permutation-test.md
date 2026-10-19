@@ -1,0 +1,1406 @@
+# code r8 exact permutation test
+
+**Layer Selection Sensitivity in Hidden-State Safety Probes for Reasoning Models** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 47
+- **Recorded user turns:** 0
+- **Tool calls:** 23
+- **Original source:** `logs/chats/worker_code_r8_exact_permutation_test_20260518T064914.jsonl`
+- **Structured JSON:** [`7b8d24876f4856f26a3f.json`](../../sessions/7b/7b8d24876f4856f26a3f.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+47 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-18T06:53:10.888274+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r8_exact_permutation_test_20260518T064914",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-18T06:53:10.888650+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r8_exact_permutation_test_20260518T064914",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-18T06:53:10.888837+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "find /root/autodl-tmp/contrastive_trace_safety/artifacts/ -name \"*bootstrap*\" -type d",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r8_exact_permutation_test_20260518T064914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "find /root/autodl-tmp/contrastive_trace_safety/artifacts/ -name \"*bootstrap*\" -type d",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-18T06:53:10.888975+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "find /root/autodl-tmp/contrastive_trace_safety/artifacts/ -name \"*permutation*\" -type d",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r8_exact_permutation_test_20260518T064914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "find /root/autodl-tmp/contrastive_trace_safety/artifacts/ -name \"*permutation*\" -type d",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-18T06:53:10.889117+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_006_bootstrap\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r1_8b_bootstrap_hs_text\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/acc_precision_bootstrap\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/qwq_paired_bootstrap_w5\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r1_32b_paired_bootstrap\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/ot7b_layer16_bootstrap\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_qwq_layer60_bootstrap\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_layer63_bootstrap\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_l63_bootstrap_v2\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_bootstrap_10k\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r6_r1_8b_bootstrap_fix\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.05}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r8_exact_permutation_test_20260518T064914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-18T06:53:10.889249+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r8_exact_permutation_test_20260518T064914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-18T06:53:10.889372+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r8_exact_permutation_test_20260518T064914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-18T06:53:10.889521+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"acc_precision_bootstrap\\nbge_large_comparison.json\\ndiagnostics\\neval_results.json\\nexp_001a\\nexp_001a_extraction.log\\nexp_001a_probing.log\\nexp_001b\\nexp_003_cross_transfer\\nexp_005_trajguard\\nexp_006_bootstrap\\nexp_007_window_ablation\\nexp_013_text_baseline\\nexp_014_bocpd\\nexp_015_fpr\\nexp_c2_control\\nexp_ot7b_full_pipeline\\nexp_ot7b_full_pipeline.log\\nexp_pathC_two_stage\\nexp_r3_bocpd_ot7b_w3\\nexp_r3_bocpd_qwq\\nexp_r3_bocpd_r1_32b\\nexp_r3_bootstrap_10k\\nexp_r3_ccs_probe\\nexp_r3_layer_ablation\\nexp_r3_mahalanobis_ot7b\\nexp_r3_mahalanobis_qwq\\nexp_r3_mahalanobis_r1_32b\\nexp_r3_mlp_probe\\nexp_r3_qwq_l60_precision_fpr\\nexp_r3_qwq_layer60_bootstrap\\nexp_r3_r1_32b_l63_bootstrap_v2\\nexp_r3_r1_32b_l63_pvalue_unified\\nexp_r3_r1_32b_layer63_bootstrap\\nexp_r3_r1_32b_selectivity_ci\\nexp_r3_repe_corrected_layer\\nexp_r3_repe_direction\\nexp_r3_selectivity_corrected\\nexp_r3_supplementary\\nexp_r5_auroc_sweep\\nexp_r5_pca384\\nexp_r6_c_sweep\\nexp_r6_r1_8b_bootstrap_fix\\nexp_r7_cosine_volatility\\nexp_r7_k_ablation\\nexp_r7_k_ablation_optimal_w\\nexp_r7_multiseed_lr\\nexp_r7_qwq_position_baseline\\nfigures\\nhidden_states\\nhidden_states_early_r1_8b\\nhidden_states_ot7b\\nhidden_states_ot7b_safe\\nhidden_states_qwq_32b\\nhidden_states_qwq_32b_safe\\nhidden_states_r1_32b\\nhidden_states_r1_32b_safe\\nhs_probe_result_tmp.pt\\nhs_vs_text_acc_prec.json\\nm001_layer_fix\\nmetric_correlation\\not7b_bocpd_cusum\\not7b_gru_layer16\\not7b_layer16_bootstrap\\not7b_layer16_hs_probes.json\\not7b_layer16_verification\\not7b_layer16_verification_split.pt\\not7b_sentence_map.json\\not7b_text_embeddings.json\\not7b_text_embeddings.pkl\\npaper_data\\npower_analysis\\nprobes\\nqwq_paired_bootstrap_w5\\nqwq_safe_fpr_correct_lr.json\\nqwq_text_verify\\nr1_32b_paired_bootstrap\\nr1_8b_balanced_recompute\\nr1_8b_bootstrap_hs_text\\nr1_8b_bootstrap_run.log\\nr1_8b_layer_supplement\\nr1_8b_supplement.log\\nrep
+…[truncated 252 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r8_exact_permutation_test_20260518T064914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-18T06:53:10.889716+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_bootstrap_10k/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r8_exact_permutation_test_20260518T064914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_bootstrap_10k/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-18T06:53:10.889854+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"results.json\\nrun.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r8_exact_permutation_test_20260518T064914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-18T06:53:10.889973+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_qwq_32b/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r8_exact_permutation_test_20260518T064914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_qwq_32b/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-18T06:53:10.890134+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"004ee4398ad043f88590dc868baed39c.pt\\n0067d71cad0d4adba09c0ca1ba6de9f4.pt\\n043bdc40cc3a425da4a80dd2c3b54093.pt\\n069b39dd44c749edac6b2b9a22000146.pt\\n069c405acb984a728d6d4b4a4403dc2e.pt\\n08c889f0d70b4a9cb94a1c50eb7809c3.pt\\n08f53c080455450a875a13e071520fcc.pt\\n09e1cee11dc944ae89c4a077451046cc.pt\\n0c8ae288d6de43058d6a4c7dc97f72b8.pt\\n104fb6e29e284eadb21d6e934f30ac32.pt\\n110ec3ef86634737a0cd9c990c736659.pt\\n125a765ce4e1440c8375cb947cc74891.pt\\n1284370b1811430a8029ce530e1b1609.pt\\n14998b617a6b425e81749647c7a00f8b.pt\\n14e4e1baf5be42b0afe19deca15703a5.pt\\n1536ec9382d3409292a65544836eff18.pt\\n163bbe567d7649ffb07bd25aaceacc49.pt\\n16c401658cf84881927b644dee22f263.pt\\n17e198e535d340659b829e4a3a677d7e.pt\\n184cda0553f945c5bfd7bc5e4487b2e8.pt\\n1865bac475df48dc82ec59ffa7aefa99.pt\\n19ee776ab7c64da19403e822bb265156.pt\\n1a2e3b84d89b439f926c11c459d34f5c.pt\\n1a66328ff3704e7ab99d11ac49ef2e94.pt\\n1c167cf073234d54a3aaf0931ed64771.pt\\n1ebb5b137072402eba8e12d2f4a6112e.pt\\n21f936ea97f94c848f7d4f047470766c.pt\\n22609944c6dc46c79544d5e2a98d22a0.pt\\n236c6c98cf7046efb199379307454d69.pt\\n256dfa73942345f09beb2bfe933b0b1b.pt\\n25993fa332954b7c831a1220c1a56ebc.pt\\n278be80b336641ddb92b108575ff0ebd.pt\\n298cb1454adb4b6da16ca2445189ed1e.pt\\n2a2487286db5440a8a6a08095b21f90e.pt\\n2b75bd31301f41b1ad3f2c81925c8e88.pt\\n2c83d4c6db1548438b235222b56be3bf.pt\\n301054e81ece4f59992d2e46de39d60b.pt\\n30fe394a8d2d4f23be5e87ce958a2c0e.pt\\n32ed854363d241cf87863eaf14cbcc24.pt\\n33e402d236e148a8ba82c0ee4ceee012.pt\\n3478ec8ed5dd459a92c54cdb13c888ee.pt\\n34a8c0bbc9d94d559a0990a7dbe3dea4.pt\\n36524c4d9c574d238d5ee826198c6a48.pt\\n37af416bd3b94220a9b84a29044c796a.pt\\n3808a31861724e759e12702bcf58535e.pt\\n3accbfb57c714ffdaf1dc03babb19e69.pt\\n3b70c05b41fa4aa3858e6e7d586aecaf.pt\\n3f98b7efccf249108d46c8d8c35aa301.pt\\n3fa300f79a5e48b2a2d6ce3a69588b1d.pt\\n3fea40a6688448b898bae5930a4ee96e.pt\\n40a6788423024e4f977bbb7ce01d68b7.pt\\n4114a1
+…[truncated 1796 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r8_exact_permutation_test_20260518T064914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-18T06:53:10.890285+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_r1_32b/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r8_exact_permutation_test_20260518T064914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_r1_32b/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-18T06:53:10.890447+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0340a9c152a84e88a1bb1a1b0c1ece69.pt\\n03ab25e611ab42d5bab0e091b2bfb4db.pt\\n03e731a127e4403ea8b4f6b0da22d40b.pt\\n065cd061633b48ffba91c8ab8468aee5.pt\\n072fffe312724613b373f5e9423bec9e.pt\\n077d0c46eeaa4d26bcf796ff257b4107.pt\\n078bffd5b7bf41229684593b116e9b64.pt\\n0d024d64ea6f4fe7a326c146bf004b9d.pt\\n0e290c942d794d6a9b60fade0b82ba11.pt\\n133bb30152c348aa914bef1a46cd5065.pt\\n1366b9a156ef444eaf0fabf28b0fd17b.pt\\n14745efac5e24605833ff1a36d3bea9c.pt\\n1616070d73a044c9b80fd6fb09bc7dad.pt\\n181fe09ad4d14befa56def067985a204.pt\\n192fc3f6944947f5a8f9bfa4bf79bc72.pt\\n1ddd805c9c69471bb91971a3ee33c32c.pt\\n2011a70d7e5f4cc681606c655581d0d4.pt\\n2013ecb74dda42488eb7caad35193314.pt\\n21c16ece865541588c7ec69bea892c79.pt\\n2239e2c5ff6b47fe88e4d70829aa02e7.pt\\n225661d7e1fb4c3c88693d53091206ca.pt\\n22c71ef412f042b3b1eae36f3b8d0a57.pt\\n23ceb4debb184eeabaa722b5bc148171.pt\\n2426e92a447a414c95dcfb4dbdbecd8b.pt\\n297fc59b3baa47e3a6365c5bec100ad2.pt\\n2989f4f4b129410e99ecccdd81fd9fea.pt\\n2b065031a798402791fbc376a7f84d7c.pt\\n2b91b6c7c2814afba34da843197964c6.pt\\n2c0260c7322b4d0c98c751ecb6d55ee5.pt\\n2d2b904c8d7946b9ae11b460e3d503fa.pt\\n2d3d6eec4132486986192862f7e9961c.pt\\n2dd179bd68cc4f20a9231b1d96328d99.pt\\n2e340305abb747b98426f999b57586a3.pt\\n2e6a68c203c44e9886a106da957bfafb.pt\\n31337720fdd9418492a4d118fba549c6.pt\\n3318d4e152204670877251dd9e73d999.pt\\n33c6a82d38b14a7480065fd7cc7a52d8.pt\\n365cab697ffe461a80ddb6cd2b7c7ca1.pt\\n36b9c92c286d4529acec148e5c04eb2f.pt\\n3a8da7148d6a40b8a093713502df1735.pt\\n3aa7b05627f04350bc7141d9c5402799.pt\\n3f1e1cfdb7b74292a2c483219b6a3a35.pt\\n40ce79d4a62549339ad84b32eaaf38ab.pt\\n42ce50f59c454232903c343fd934ffd7.pt\\n451e48b93ec3417badeb7eec1d1e606f.pt\\n4522b1a20a0c4514859150cb4a40cb29.pt\\n453cd67cf5c44bcea3cf4d4a20b08f29.pt\\n45f0198e7b054e21b358a3ddf5b25233.pt\\n474c2b11e4614bdc81fee0b0e1ccf21c.pt\\n4796bb358cea4cafa963d7b8a7c9f776.pt\\n488a8b25d77445cd850d416ff1752f8d.pt\\n4a0e76
+…[truncated 1986 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r8_exact_permutation_test_20260518T064914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-18T06:53:10.890589+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "find /root/autodl-tmp/contrastive_trace_safety/ -name \"*.py\" -path \"*/scripts/*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r8_exact_permutation_test_20260518T064914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "find /root/autodl-tmp/contrastive_trace_safety/ -name \"*.py\" -path \"*/scripts/*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-18T06:53:10.890761+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/contrastive_trace_safety/scripts/r1_8b_early_layer_supplement.py\\n/root/autodl-tmp/contrastive_trace_safety/scripts/task_a_coverage_bias.py\\n/root/autodl-tmp/contrastive_trace_safety/scripts/task_b_selectivity_ci.py\\n/root/autodl-tmp/contrastive_trace_safety/scripts/task_b_step1_extract.py\\n/root/autodl-tmp/contrastive_trace_safety/scripts/task_b_step2_bootstrap.py\\n/root/autodl-tmp/contrastive_trace_safety/scripts/task_c_step1_extract.py\\n/root/autodl-tmp/contrastive_trace_safety/scripts/task_c_gru_per_seed.py\\n/root/autodl-tmp/contrastive_trace_safety/scripts/task_c_gru_fast.py\\n/root/autodl-tmp/contrastive_trace_safety/scripts/task_c_aggregate.py\\n/root/autodl-tmp/contrastive_trace_safety/scripts/r1_32b_selectivity_ci_raw.py\\n/root/autodl-tmp/contrastive_trace_safety/scripts/r1_32b_sel_phase1.py\\n/root/autodl-tmp/contrastive_trace_safety/scripts/r1_32b_sel_phase2.py\\n/root/autodl-tmp/contrastive_trace_safety/scripts/r1_32b_sel_train_random.py\\n/root/autodl-tmp/contrastive_trace_safety/scripts/r1_32b_sel_full.py\\n/root/autodl-tmp/contrastive_trace_safety/scripts/selectivity_corrected_layers.py\\n/root/autodl-tmp/contrastive_trace_safety/scripts/qwq_safe_fpr_correct.py\\n/root/autodl-tmp/contrastive_trace_safety/scripts/stronger_text_encoder_comparison.py\\n/root/autodl-tmp/contrastive_trace_safety/scripts/multi_split_robustness.py\\n/root/autodl-tmp/contrastive_trace_safety/scripts/exp_r7_multiseed_lr.py\\n/root/autodl-tmp/contrastive_trace_safety/scripts/plot_layer_heatmap.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r8_exact_permutation_test_20260518T064914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-18T06:53:10.890907+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_bootstrap_10k/results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r8_exact_permutation_test_20260518T064914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_bootstrap_10k/results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-18T06:53:10.891156+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"n_resamples\\\": 10000,\\n  \\\"seed\\\": 42,\\n  \\\"elapsed_seconds\\\": 243.6,\\n  \\\"tests\\\": [\\n    {\\n      \\\"model\\\": \\\"r1_8b\\\",\\n      \\\"metric\\\": \\\"bal_acc\\\",\\n      \\\"delta\\\": 0.17958910090938204,\\n      \\\"ci_95\\\": [\\n        0.11683529774041068,\\n        0.24201725735307214\\n      ],\\n      \\\"p_old_1k\\\": 0.001,\\n      \\\"p_new_10k\\\": 0.0,\\n      \\\"holm_rank\\\": 1,\\n      \\\"holm_threshold\\\": 0.004167,\\n      \\\"pass\\\": true\\n    },\\n    {\\n      \\\"model\\\": \\\"r1_8b\\\",\\n      \\\"metric\\\": \\\"precision\\\",\\n      \\\"delta\\\": 0.27858808251186934,\\n      \\\"ci_95\\\": [\\n        0.18540519846555728,\\n        0.37810872241201826\\n      ],\\n      \\\"p_old_1k\\\": 0.001,\\n      \\\"p_new_10k\\\": 0.0,\\n      \\\"holm_rank\\\": 2,\\n      \\\"holm_threshold\\\": 0.004545,\\n      \\\"pass\\\": true\\n    },\\n    {\\n      \\\"model\\\": \\\"r1_8b\\\",\\n      \\\"metric\\\": \\\"pre_cp_fpr\\\",\\n      \\\"delta\\\": -0.12545892180728604,\\n      \\\"ci_95\\\": [\\n        -0.1795174778341794,\\n        -0.07410375559111361\\n      ],\\n      \\\"p_old_1k\\\": 0.044,\\n      \\\"p_new_10k\\\": 0.0,\\n      \\\"holm_rank\\\": 3,\\n      \\\"holm_threshold\\\": 0.005,\\n      \\\"pass\\\": true\\n    },\\n    {\\n      \\\"model\\\": \\\"ot_7b\\\",\\n      \\\"metric\\\": \\\"precision\\\",\\n      \\\"delta\\\": 0.21894260796680878,\\n      \\\"ci_95\\\": [\\n        0.14414931578743703,\\n        0.29612074801930044\\n      ],\\n      \\\"p_old_1k\\\": 0.001,\\n      \\\"p_new_10k\\\": 0.0,\\n      \\\"holm_rank\\\": 4,\\n      \\\"holm_threshold\\\": 0.005556,\\n      \\\"pass\\\": true\\n    },\\n    {\\n      \\\"model\\\": \\\"ot_7b\\\",\\n      \\\"metric\\\": \\\"pre_cp_fpr\\\",\\n      \\\"delta\\\": -0.17047812236556445,\\n      \\\"ci_95\\\": [\\n        -0.22146988183736432,\\n        -0.1212421735436715
+…[truncated 5558 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r8_exact_permutation_test_20260518T064914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-18T06:53:10.891318+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_qwq_32b/extraction_summary.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r8_exact_permutation_test_20260518T064914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_qwq_32b/extraction_summary.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-18T06:53:10.891456+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"QwQ-32B\\\",\\n  \\\"num_traces\\\": 95,\\n  \\\"num_extracted\\\": 95,\\n  \\\"total_steps\\\": 4852,\\n  \\\"total_tokens\\\": 78641,\\n  \\\"num_layers\\\": 64,\\n  \\\"hidden_dim\\\": 5120,\\n  \\\"errors\\\": []\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r8_exact_permutation_test_20260518T064914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-18T06:53:10.891578+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_r1_32b/extraction_summary.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r8_exact_permutation_test_20260518T064914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_r1_32b/extraction_summary.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-18T06:53:10.891732+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"DeepSeek-R1-Distill-Qwen-32B\\\",\\n  \\\"num_traces\\\": 100,\\n  \\\"num_extracted\\\": 100,\\n  \\\"total_steps\\\": 3506,\\n  \\\"total_tokens\\\": 64727,\\n  \\\"num_layers\\\": 64,\\n  \\\"hidden_dim\\\": 5120,\\n  \\\"errors\\\": []\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r8_exact_permutation_test_20260518T064914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-18T06:53:10.891867+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_bootstrap_10k/run.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r8_exact_permutation_test_20260518T064914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_bootstrap_10k/run.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-18T06:53:10.892045+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"============================================================\\nBootstrap 10000 Resamples: 12 HS vs Text Tests\\n============================================================\\n\\nLoading SentenceTransformer (all-MiniLM-L6-v2)...\\n  Model loaded\\n\\nLoading HuggingFace sentences...\\nUsing the latest cached version of the dataset since ishitakakkar-10/HarmThoughts couldn't be found on the Hugging Face Hub (offline mode is enabled).\\nFound the latest cached dataset configuration 'default' at /root/.cache/huggingface/datasets/ishitakakkar-10___harm_thoughts/default/0.0.0/98a90c45ae2fc0a94a828cebb426917883ce35e1 (last modified on Sun May 17 14:55:12 2026).\\n  Loaded sentences for: ['QwQ', 'r1-8b', 'ot-7b', 'r1-32b']\\n\\n============================================================\\nLoading r1_8b: layer=2, W=3\\n  Computing text embeddings for r1-8b...\\n  Computed 324 trace embeddings\\n  Loaded 209 valid traces\\n\\n============================================================\\nLoading ot_7b: layer=16, W=3\\n  Loading text embeddings from pkl...\\n  Loaded 228 valid traces\\n\\n============================================================\\nLoading r1_32b: layer=63, W=1\\n  Computing text embeddings for r1-32b...\\n  Computed 221 trace embeddings\\n  Loaded 100 valid traces\\n\\n============================================================\\nLoading qwq_32b: layer=60, W=3\\n  Loading from preprocessed pkl...\\n  Loaded 95 traces from pkl\\n\\n============================================================\\nBOOTSTRAP: r1_8b\\n============================================================\\n  Split: train=125, val=41, test=43\\n  Training HS probe (W=3, dim=4096)...\\n    Done in 16.4s\\n  Training Text probe (W=3, dim=384)...\\n    Done in 0.8s\\n  HS:   bal_acc=0.8278  precision=0.7063  fpr=0.1102\\n  Text: bal_acc=0.6482  precision=0.4277  fpr=0.2357\\n  Running paired bootstrap (n=10000)...\\n    Bootstrap done in
+…[truncated 3790 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r8_exact_permutation_test_20260518T064914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-18T06:53:10.892196+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "find /root/autodl-tmp/contrastive_trace_safety/ -name \"*.py\" -newer /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_bootstrap_10k/results.json -path \"*/scripts/*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r8_exact_permutation_test_20260518T064914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "find /root/autodl-tmp/contrastive_trace_safety/ -name \"*.py\" -newer /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_bootstrap_10k/results.json -path \"*/scripts/*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-18T06:53:10.892328+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/contrastive_trace_safety/scripts/qwq_safe_fpr_correct.py\\n/root/autodl-tmp/contrastive_trace_safety/scripts/stronger_text_encoder_comparison.py\\n/root/autodl-tmp/contrastive_trace_safety/scripts/multi_split_robustness.py\\n/root/autodl-tmp/contrastive_trace_safety/scripts/exp_r7_multiseed_lr.py\\n/root/autodl-tmp/contrastive_trace_safety/scripts/plot_layer_heatmap.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r8_exact_permutation_test_20260518T064914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-18T06:53:10.892462+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "find /root/autodl-tmp/contrastive_trace_safety/ -name \"*.py\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r8_exact_permutation_test_20260518T064914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "find /root/autodl-tmp/contrastive_trace_safety/ -name \"*.py\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-18T06:53:10.892739+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/contrastive_trace_safety/artifacts/r1_8b_balanced_recompute/recompute_all.py\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/qwq_text_verify/run_bootstrap.py\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/acc_precision_bootstrap/run_bootstrap.py\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/figures/paper/fig2_temporal_improvement.py\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r6_c_sweep/run_c_sweep.py\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r7_k_ablation/run_k_ablation.py\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r7_k_ablation_optimal_w/run_k_ablation_optimal_w.py\\n/root/autodl-tmp/contrastive_trace_safety/src/baselines/__init__.py\\n/root/autodl-tmp/contrastive_trace_safety/src/baselines/linear_probe.py\\n/root/autodl-tmp/contrastive_trace_safety/src/crta/__init__.py\\n/root/autodl-tmp/contrastive_trace_safety/src/crta/temporal_probe.py\\n/root/autodl-tmp/contrastive_trace_safety/src/eval/__init__.py\\n/root/autodl-tmp/contrastive_trace_safety/src/eval/evaluate.py\\n/root/autodl-tmp/contrastive_trace_safety/src/__init__.py\\n/root/autodl-tmp/contrastive_trace_safety/src/config.py\\n/root/autodl-tmp/contrastive_trace_safety/src/data_loader.py\\n/root/autodl-tmp/contrastive_trace_safety/src/extract_hidden_states.py\\n/root/autodl-tmp/contrastive_trace_safety/src/run_pipeline.py\\n/root/autodl-tmp/contrastive_trace_safety/src/diagnostics/__init__.py\\n/root/autodl-tmp/contrastive_trace_safety/src/diagnostics/layer_sweep.py\\n/root/autodl-tmp/contrastive_trace_safety/src/diagnostics/oracle_upper_bound.py\\n/root/autodl-tmp/contrastive_trace_safety/src/diagnostics/regularized_probes.py\\n/root/autodl-tmp/contrastive_trace_safety/src/diagnostics/pca_viz.py\\n/root/autodl-tmp/contrastive_trace_safety/src/diagnostics/gru_probe.py\\n/root/autodl-tmp/contrastive_trace_safety/src/experiments/__init__.py\\n/root/autodl-tmp/contrastive_t
+…[truncated 6410 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r8_exact_permutation_test_20260518T064914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-18T06:53:10.892935+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/run_bootstrap_10k.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r8_exact_permutation_test_20260518T064914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat /root/autodl-tmp/contrastive_trace_safety/run_bootstrap_10k.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-18T06:53:10.893264+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Bootstrap 10000 resamples for all 12 HS vs Text tests (4 models x 3 metrics).\\nOptimized: uses saga solver for high-dim features, vectorized bootstrap.\\\"\\\"\\\"\\n\\nimport os, sys, json, time, pickle\\nos.environ[\\\"TOKENIZERS_PARALLELISM\\\"] = \\\"false\\\"\\nos.environ[\\\"HF_ENDPOINT\\\"] = \\\"https://hf-mirror.com\\\"\\nos.environ[\\\"HF_DATASETS_OFFLINE\\\"] = \\\"1\\\"\\n\\nimport numpy as np\\nimport torch\\nfrom pathlib import Path\\nfrom collections import defaultdict\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.metrics import balanced_accuracy_score, precision_score\\n\\nSEED = 42\\nN_RESAMPLES = 10000\\nARTIFACTS = Path(\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts\\\")\\nOUTPUT_DIR = ARTIFACTS / \\\"exp_r3_bootstrap_10k\\\"\\nOUTPUT_DIR.mkdir(parents=True, exist_ok=True)\\n\\nMODEL_CONFIGS = {\\n    \\\"r1_8b\\\": {\\n        \\\"hf_name\\\": \\\"r1-8b\\\",\\n        \\\"hs_dir\\\": ARTIFACTS / \\\"hidden_states\\\",\\n        \\\"layer_idx\\\": 2,\\n        \\\"hidden_dim\\\": 4096,\\n        \\\"window\\\": 15,\\n        \\\"text_emb_pkl\\\": None,\\n    },\\n    \\\"ot_7b\\\": {\\n        \\\"hf_name\\\": \\\"ot-7b\\\",\\n        \\\"hs_dir\\\": ARTIFACTS / \\\"hidden_states_ot7b\\\",\\n        \\\"layer_idx\\\": 16,\\n        \\\"hidden_dim\\\": 3584,\\n        \\\"window\\\": 3,\\n        \\\"text_emb_pkl\\\": ARTIFACTS / \\\"ot7b_text_embeddings.pkl\\\",\\n    },\\n    \\\"r1_32b\\\": {\\n        \\\"hf_name\\\": \\\"r1-32b\\\",\\n        \\\"hs_dir\\\": ARTIFACTS / \\\"hidden_states_r1_32b\\\",\\n        \\\"layer_idx\\\": 63,\\n        \\\"hidden_dim\\\": 5120,\\n        \\\"window\\\": 1,\\n        \\\"text_emb_pkl\\\": None,\\n    },\\n    \\\"qwq_32b\\\": {\\n        \\\"hf_name\\\": \\\"QwQ\\\",\\n        \\\"hs_dir\\\": ARTIFACTS / \\\"hidden_states_qwq_32b\\\",\\n        \\\"layer_idx\\\": 60,\\n        \\\"hidden_dim\\\": 5120,\\n 
+…[truncated 7720 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r8_exact_permutation_test_20260518T064914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-18T06:53:10.893455+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "source /root/miniconda3/bin/activate && cd /root/autodl-tmp/contrastive_trace_safety && grep -n \"def run_model\\|def compute_per_trace\\|def paired_bootstrap\\|per_trace\\|hs_scores\\|text_scores\\|hs_preds\\|text_preds\\|step_labels\\|commitment_point\\|window\\|bal_acc\\|precision\\|fpr\" run_bootstrap_10k.py | head -50",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r8_exact_permutation_test_20260518T064914",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "source /root/miniconda3/bin/activate && cd /root/autodl-tmp/contrastive_trace_safety && grep -n \"def run_model\\|def compute_per_trace\\|def paired_bootstrap\\|per_trace\\|hs_scores\\|text_scores\\|hs_preds\\|text_preds\\|step_labels\\|commitment_point\\|window\\|bal_acc\\|precision\\|fpr\" run_bootstrap_10k.py | head -50",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-18T06:53:10.893662+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"14:from sklearn.metrics import balanced_accuracy_score, precision_score\\n28:        \\\"window\\\": 15,\\n36:        \\\"window\\\": 3,\\n44:        \\\"window\\\": 1,\\n52:        \\\"window\\\": 3,\\n97:    print(f\\\"Loading {model_key}: layer={cfg['layer_idx']}, W={cfg['window']}\\\", flush=True)\\n108:                \\\"step_labels\\\": t[\\\"step_labels\\\"],\\n109:                \\\"commitment_point\\\": t[\\\"commitment_point\\\"],\\n133:        if data.get(\\\"step_labels\\\") is None or data.get(\\\"commitment_point\\\") is None:\\n135:        cp = data[\\\"commitment_point\\\"]\\n136:        labels = data[\\\"step_labels\\\"]\\n148:            \\\"step_labels\\\": labels[:n],\\n149:            \\\"commitment_point\\\": cp,\\n168:def build_window_features(features, window_size, dim):\\n170:    X = np.zeros((n, window_size * dim), dtype=np.float32)\\n172:        start = max(0, i - window_size + 1)\\n174:        if len(w) < window_size:\\n175:            offset = (window_size - len(w)) * dim\\n182:def train_probe(train_traces, window, dim, feat_key):\\n186:        labels = np.array(t[\\\"step_labels\\\"])\\n188:        X = build_window_features(feats[:n], window, dim)\\n206:def get_per_trace_metrics(clf, test_traces, window, dim, feat_key):\\n207:    bal_accs, precs, fprs = [], [], []\\n210:        labels = np.array(t[\\\"step_labels\\\"])\\n211:        cp = t[\\\"commitment_point\\\"]\\n213:        X = build_window_features(feats[:n], window, dim)\\n216:        pr = precision_score(labels[:n], preds, zero_division=0)\\n217:        fpr_val = float(np.mean(preds[:cp])) if cp > 0 else 0.0\\n218:        bal_accs.append(ba)\\n220:        fprs.append(fpr_val)\\n221:    return np.array(bal_accs), np.array(precs), np.array(fprs)\\n224:def paired_bootstrap(metric_a, metric_b, n_resamples=N_RESAMPLES):\\n245:def run_model(model_key, traces, cfg):\\n246:    window = cfg[\\\"window\\\"]\\n254:    print(f\\\"  T
+…[truncated 1812 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r8_exact_permutation_test_20260518T064914",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-18T06:53:10.893842+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "source /root/miniconda3/bin/activate && cd /root/autodl-tmp/contrastive_trace_safety && sed -n '160,300p' run_bootstrap_10k.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r8_exact_permutation_test_20260518T064914",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "source /root/miniconda3/bin/activate && cd /root/autodl-tmp/contrastive_trace_safety && sed -n '160,300p' run_bootstrap_10k.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-18T06:53:10.894049+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    n_val = int(len(traces) * 0.2)\\n    return (\\n        [traces[i] for i in indices[:n_train]],\\n        [traces[i] for i in indices[n_train:n_train+n_val]],\\n        [traces[i] for i in indices[n_train+n_val:]],\\n    )\\n\\n\\ndef build_window_features(features, window_size, dim):\\n    n = features.shape[0]\\n    X = np.zeros((n, window_size * dim), dtype=np.float32)\\n    for i in range(n):\\n        start = max(0, i - window_size + 1)\\n        w = features[start:i+1]\\n        if len(w) < window_size:\\n            offset = (window_size - len(w)) * dim\\n            X[i, offset:] = w.flatten()\\n        else:\\n            X[i] = w.flatten()\\n    return X\\n\\n\\ndef train_probe(train_traces, window, dim, feat_key):\\n    X_list, y_list = [], []\\n    for t in train_traces:\\n        feats = t[feat_key] if isinstance(t[feat_key], np.ndarray) else np.array(t[feat_key])\\n        labels = np.array(t[\\\"step_labels\\\"])\\n        n = min(feats.shape[0], len(labels))\\n        X = build_window_features(feats[:n], window, dim)\\n        X_list.append(X)\\n        y_list.append(labels[:n])\\n    X_all = np.vstack(X_list)\\n    y_all = np.concatenate(y_list)\\n    \\n    n_samples, n_features = X_all.shape\\n    # Use liblinear with dual=True when n_features > n_samples (faster)\\n    if n_features > n_samples:\\n        clf = LogisticRegression(solver='liblinear', C=1.0, max_iter=1000,\\n                                 class_weight='balanced', random_state=SEED, dual=True)\\n    else:\\n        clf = LogisticRegression(solver='liblinear', C=1.0, max_iter=1000,\\n                                 class_weight='balanced', random_state=SEED)\\n    clf.fit(X_all, y_all)\\n    return clf\\n\\n\\ndef get_per_trace_metrics(clf, test_traces, window, dim, feat_key):\\n    bal_accs, precs, fprs = [], [], []\\n    for t in test_traces:\\n        feats = t[feat_key] if isinstance(t[feat_key], np.ndarray) else np.a
+…[truncated 4660 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r8_exact_permutation_test_20260518T064914",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-18T06:53:10.894213+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "source /root/miniconda3/bin/activate && cd /root/autodl-tmp/contrastive_trace_safety && sed -n '150,168p' run_bootstrap_10k.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r8_exact_permutation_test_20260518T064914",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "source /root/miniconda3/bin/activate && cd /root/autodl-tmp/contrastive_trace_safety && sed -n '150,168p' run_bootstrap_10k.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-18T06:53:10.894353+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"            \\\"text_embeddings\\\": text_emb[:n],\\n        })\\n    print(f\\\"  Loaded {len(traces)} valid traces\\\", flush=True)\\n    return traces\\n\\n\\ndef split_traces(traces, seed=SEED):\\n    rng = np.random.default_rng(seed)\\n    indices = rng.permutation(len(traces))\\n    n_train = int(len(traces) * 0.6)\\n    n_val = int(len(traces) * 0.2)\\n    return (\\n        [traces[i] for i in indices[:n_train]],\\n        [traces[i] for i in indices[n_train:n_train+n_val]],\\n        [traces[i] for i in indices[n_train+n_val:]],\\n    )\\n\\n\\ndef build_window_features(features, window_size, dim):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r8_exact_permutation_test_20260518T064914",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-18T06:53:10.894621+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat > /root/autodl-tmp/contrastive_trace_safety/run_exact_permutation.py << 'PYEOF'\n\"\"\"Exact permutation test (sign-flip) for QwQ-32B and R1-32B.\nExhaustively enumerates all 2^n sign combinations for paired differences.\n\"\"\"\n\nimport os, sys, json, time, pickle\nos.environ[\"TOKENIZERS_PARALLELISM\"] = \"false\"\nos.environ[\"HF_ENDPOINT\"] = \"https://hf-mirror.com\"\nos.environ[\"HF_DATASETS_OFFLINE\"] = \"1\"\n\nimport numpy as np\nimport torch\nfrom pathlib import Path\nfrom collections import defaultdict\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import balanced_accuracy_score, precision_score\n\nSEED = 42\nARTIFACTS = Path(\"/root/autodl-tmp/contrastive_trace_safety/artifacts\")\nOUTPUT_DIR = ARTIFACTS / \"exp_r8_exact_permutation\"\nOUTPUT_DIR.mkdir(parents=True, exist_ok=True)\n\nMODEL_CONFIGS = {\n    \"qwq_32b\": {\n        \"hf_name\": \"QwQ\",\n        \"hs_dir\": ARTIFACTS / \"hidden_states_qwq_32b\",\n        \"layer_idx\": 60,\n        \"hidden_dim\": 5120,\n        \"window\": 3,\n        \"text_emb_pkl\": None,\n        \"preprocessed_pkl\": ARTIFACTS / \"exp_r3_qwq_layer60_bootstrap/preprocessed.pkl\",\n        \"n_expected_test\": 19,\n    },\n    \"r1_32b\": {\n        \"hf_name\": \"r1-32b\",\n        \"hs_dir\": ARTIFACTS / \"hidden_states_r1_32b\",\n        \"layer_idx\": 63,\n        \"hidden_dim\": 5120,\n        \"window\": 1,\n        \"text_emb_pkl\": None,\n        \"n_expected_test\": 20,\n    },\n}\n\nTEXT_DIM = 384\n\n\ndef load_hf_sentences():\n    from datasets import load_dataset\n    ds = load_dataset(\"ishitakakkar-10/HarmThoughts\", split=\"train\")\n    by_model = defaultdict(lambda: defaultdict(list))\n    for row in ds:\n        model = row[\"model_name\"]\n        sid = row[\"sentence_id\"]\n        parts = sid.rsplit(\"-\", 1)\n        trace_id = parts[0]\n        step_idx = int(parts[1]) - 1\n        by_model[model][trace_id].append((step_idx, row[\"sentence\"]))\n    for model in by_model:\n        for tid in by_model[model]:\n            by_model[model][tid].sort(key=lambda x: x[0])\n            by_model[model][tid] = [s for _, s in by_model[model][tid]]\n    return dict(by_model)\n\n\ndef compute_text_embeddings(sentences_map, st_model):\n    emb_map = {}\n    all_sents = []\n    tid_indices = []\n    for tid, sents in sentences_map.items():\n        start = len(all_sents)\n        all_sents.extend(sents)\n        tid_indices.append((tid, start, start + len(sents)))\n    if all_sents:\n        all_embs = st_model.encode(all_sents, show_progress_bar=False, batch_size=256)\n        for tid, start, end in tid_indices:\n            emb_map[tid] = all_embs[start:end].astype(np.float32)\n    return emb_map\n\n\ndef load_traces_for_model(model_key, cfg, sentences_all, st_model):\n    print(f\"\\n{'='*60}\", flush=True)\n    print(f\"Loading {model_key}: layer={cfg['layer_idx']}, W={cfg['window']}\", flush=True)\n\n    if cfg.get(\"preprocessed_pkl\") and cfg[\"preprocessed_pkl\"].exists():\n        print(f\"  Loading from preprocessed pkl...\", flush=True)\n        with open(cfg[\"preprocessed_pkl\"], \"rb\") as f:\n            raw = pickle.load(f)\n        traces = []\n        for t in raw:\n            traces.append({\n                \"trace_id\": t[\"trace_id\"],\n                \"hs_layer\": t[\"hs_layer60\"],\n                \"step_labels\": t[\"step_labels\"],\n                \"commitment_point\": t[\"commitment_point\"],\n                \"text_embeddings\": t[\"text_embeddings\"],\n            })\n        print(f\"  Loaded {len(traces)} traces from pkl\", flush=True)\n        return traces\n\n    # Generic loader\n    hs_dir = cfg[\"hs_dir\"]\n    layer_idx = cfg[\"layer_idx\"]\n    safe_dir = Path(str(hs_dir) + \"_safe\")\n    hf_name = cfg[\"hf_name\"]\n\n    sents_for_model = sentences_all.get(hf_name, {})\n    if not sents_for_model:\n        print(f\"  WARNING: no sentences for {hf_name}\", flush=True)\n        return []\n\n    print(f\"  Computing text embeddings for {hf_name}...\", flush=True)\n    text_emb_map = compute_text_embeddings(sents_for_model, st_model)\n    print(f\"  Computed {len(text_emb_map)} trace embeddings\", flush=True)\n\n    traces = []\n    pt_files = sorted(hs_dir.glob(\"*.pt\"))\n    for pt_file in pt_files:\n        if pt_file.name == \"extraction_summary.json\":\n            continue\n        data = torch.load(pt_file, map_location=\"cpu\", weights_only=False)\n        tid = data.get(\"trace_id\", pt_file.stem)\n        if data.get(\"step_labels\") is None or data.get(\"commitment_point\") is None:\n            continue\n        cp = data[\"commitment_point\"]\n        labels = data[\"step_labels\"]\n\n        hs_all = data[\"hidden_states\"]\n        if isinstance(hs_all, dict):\n            hs_layer = hs_all.get(f\"layer_{layer_idx}\", hs_all.get(str(layer_idx)))\n        else:\n            hs_layer = hs_all[:, layer_idx, :] if hs_all.ndim == 3 else hs_all\n\n        if hs_layer is None:\n            continue\n\n        hs_np = hs_layer.numpy() if isinstance(hs_layer, torch.Tensor) else np.array(hs_layer)\n        n = min(hs_np.shape[0], len(labels))\n\n        text_emb = text_emb_map.get(tid)\n        if text_emb is None:\n            continue\n        text_emb = text_emb[:n]\n        if text_emb.shape[0] < n:\n            n = text_emb.shape[0]\n\n        # Safe traces check\n        safe_file = safe_dir / pt_file.name if safe_dir.exists() else None\n        if safe_file and safe_file.exists():\n            safe_data = torch.load(safe_file, map_location=\"cpu\", weights_only=False)\n            safe_hs = safe_data.get(\"hidden_states\", {})\n            if isinstance(safe_hs, dict):\n                safe_layer = safe_hs.get(f\"layer_{layer_idx}\", safe_hs.get(str(layer_idx)))\n            else:\n                safe_layer = safe_hs[:, layer_idx, :] if safe_hs.ndim == 3 else safe_hs\n            if safe_layer is not None:\n                safe_np = safe_layer.numpy() if isinstance(safe_layer, torch.Tensor) else np.array(safe_layer)\n                min_len = min(n, safe_np.shape[0])\n                hs_np = hs_np[:min_len] - safe_np[:min_len]\n                n = min_len\n\n        traces.append({\n            \"trace_id\": tid,\n            \"hs_layer\": hs_np[:n].astype(np.float32),\n            \"step_labels\": labels[:n],\n            \"commitment_point\": cp,\n            \"text_embeddings\": text_emb[:n],\n        })\n    print(f\"  Loaded {len(traces)} valid traces\", flush=True)\n    return traces\n\n\ndef split_traces(traces, seed=SEED):\n    rng = np.random.default_rng(seed)\n    indices = rng.permutation(len(traces))\n    n_train = int(len(traces) * 0.6)\n    n_val = int(len(traces) * 0.2)\n    return (\n        [traces[i] for i in indices[:n_train]],\n        [traces[i] for i in indices[n_train:n_train+n_val]],\n        [traces[i] for i in indices[n_train+n_val:]],\n    )\n\n\ndef build_window_features(features, window_size, dim):\n    n = features.shape[0]\n    X = np.zeros((n, window_size * dim), dtype=np.float32)\n    for i in range(n):\n        start = max(0, i - window_size + 1)\n        w = features[start:i+1]\n        if len(w) < window_size:\n            offset = (window_size - len(w)) * dim\n            X[i, offset:] = w.flatten()\n        else:\n            X[i] = w.flatten()\n    return X\n\n\ndef train_probe(train_traces, window, dim, feat_key):\n    X_list, y_list = [], []\n    for t in train_traces:\n        feats = t[feat_key] if isinstance(t[feat_key], np.ndarray) else np.array(t[feat_key])\n        labels = np.array(t[\"step_labels\"])\n        n = min(feats.shape[0], len(labels))\n        X = build_window_features(feats[:n], window, dim)\n        X_list.append(X)\n        y_list.append(labels[:n])\n    X_all = np.vstack(X_list)\n    y_all = np.concatenate(y_list)\n\n    clf = LogisticRegression(solver='lbfgs', C=1.0, max_iter=2000,\n                             class_weight='balanced', random_state=SEED)\n    clf.fit(X_all, y_all)\n    return clf\n\n\ndef get_per_trace_metrics(clf, test_traces, window, dim, feat_key):\n    bal_accs, precs, fprs = [], [], []\n    for t in test_traces:\n        feats = t[feat_key] if isinstance(t[feat_key], np.ndarray) else np.array(t[feat_key])\n        labels = np.array(t[\"step_labels\"])\n        cp = t[\"commitment_point\"]\n        n = min(feats.shape[0], len(labels))\n        X = build_window_features(feats[:n], window, dim)\n        preds = clf.predict(X)\n        ba = balanced_accuracy_score(labels[:n], preds)\n        pr = precision_score(labels[:n], preds, zero_division=0)\n        fpr_val = float(np.mean(preds[:cp])) if cp > 0 else 0.0\n        bal_accs.append(ba)\n        precs.append(pr)\n        fprs.append(fpr_val)\n    return np.array(bal_accs), np.array(precs), np.array(fprs)\n\n\ndef exact_permutation_pvalue(diffs):\n    \"\"\"Exact one-sided permutation test via sign-flip.\n    H_a: mean(diffs) > 0.\n    p = fraction of 2^n sign-flip combinations where mean >= observed.\n    Uses bit-manipulation for speed.\n    \"\"\"\n    n = len(diffs)\n    total = 1 << n  # 2^n\n    observed = np.mean(diffs)\n    count = 0\n    \n    diffs_f64 = diffs.astype(np.float64)\n    \n    # Vectorized: process in chunks for memory efficiency\n    chunk_size = min(total, 1 << 18)  # 256K at a time\n    for chunk_start in range(0, total, chunk_size):\n        chunk_end = min(chunk_start + chunk_size, total)\n        indices = np.arange(chunk_start, chunk_end, dtype=np.int64)\n        # Build sign matrix: bit i of index -> sign for diff i\n        signs = np.ones((chunk_end - chunk_start, n), dtype=np.float64)\n        for bit in range(n):\n            mask = (indices >> bit) & 1\n            signs[:, bit] = 1 - 2 * mask  # 0 -> +1, 1 -> -1\n        perm_means = signs @ diffs_f64 / n\n        count += np.sum(perm_means >= observed - 1e-12)\n    \n    return count / total\n\n\ndef run_model(model_key, traces, cfg):\n    window = cfg[\"window\"]\n    hidden_dim = cfg[\"hidden_dim\"]\n    \n    train, val, test = split_traces(traces)\n    n_test = len(test)\n    print(f\"  Split: train={len(train)}, val={len(val)}, test={n_test}\", flush=True)\n    assert n_test == cfg[\"n_expected_test\"], f\"Expected {cfg['n_expected_test']} test traces, got {n_test}\"\n\n    # Train probes\n    t0 = time.time()\n    print(f\"  Training HS probe (W={window}, dim={hidden_dim}, solver=lbfgs)...\", flush=True)\n    clf_hs = train_probe(train, window, hidden_dim, \"hs_layer\")\n    print(f\"    Done in {time.time()-t0:.1f}s\", flush=True)\n\n    t0 = time.time()\n    print(f\"  Training Text probe (W={window}, dim={TEXT_DIM}, solver=lbfgs)...\", flush=True)\n    clf_text = train_probe(train, window, TEXT_DIM, \"text_embeddings\")\n    print(f\"    Done in {time.time()-t0:.1f}s\", flush=True)\n\n    # Per-trace metrics\n    hs_ba, hs_pr, hs_fpr = get_per_trace_metrics(clf_hs, test, window, hidden_dim, \"hs_layer\")\n    text_ba, text_pr, text_fpr = get_per_trace_metrics(clf_text, test, window, TEXT_DIM, \"text_embeddings\")\n\n    print(f\"  HS:   bal_acc={np.mean(hs_ba):.4f}  precision={np.mean(hs_pr):.4f}  fpr={np.mean(hs_fpr):.4f}\", flush=True)\n    print(f\"  Text: bal_acc={np.mean(text_ba):.4f}  precision={np.mean(text_pr):.4f}  fpr={np.mean(text_fpr):.4f}\", flush=True)\n\n    # Paired differences: HS advantage\n    # bal_acc, precision: higher is better -> diff = HS - text\n    # FPR: lower is better -> diff = text - HS (so positive = HS advantage)\n    diff_ba = hs_ba - text_ba\n    diff_pr = hs_pr - text_pr\n    diff_fpr = text_fpr - hs_fpr  # positive means HS has lower FPR\n\n    print(f\"\\n  Paired differences (n={n_test}):\", flush=True)\n    print(f\"    bal_acc:   mean(d)={np.mean(diff_ba):+.4f}\", flush=True)\n    print(f\"    precision: mean(d)={np.mean(diff_pr):+.4f}\", flush=True)\n    print(f\"    FPR:       mean(d)={np.mean(diff_fpr):+.4f} (text_fpr - hs_fpr)\", flush=True)\n\n    # Exact permutation test\n    total_perms = 1 << n_test\n    print(f\"\\n  Running exact permutation test (2^{n_test} = {total_perms:,} permutations)...\", flush=True)\n    \n    t0 = time.time()\n    p_ba = exact_permutation_pvalue(diff_ba)\n    print(f\"    bal_acc:   p = {p_ba:.6f}  ({time.time()-t0:.1f}s)\", flush=True)\n    \n    t0 = time.time()\n    p_pr = exact_permutation_pvalue(diff_pr)\n    print(f\"    precision: p = {p_pr:.6f}  ({time.time()-t0:.1f}s)\", flush=True)\n    \n    t0 = time.time()\n    p_fpr = exact_permutation_pvalue(diff_fpr)\n    print(f\"    FPR:       p = {p_fpr:.6f}  ({time.time()-t0:.1f}s)\", flush=True)\n\n    return {\n        \"n_test\": n_test,\n        \"n_permutations\": total_perms,\n        \"layer\": cfg[\"layer_idx\"],\n        \"window\": window,\n        \"hs_means\": {\n            \"bal_acc\": float(np.mean(hs_ba)),\n            \"precision\": float(np.mean(hs_pr)),\n            \"fpr\": float(np.mean(hs_fpr)),\n        },\n        \"text_means\": {\n            \"bal_acc\": float(np.mean(text_ba)),\n            \"precision\": float(np.mean(text_pr)),\n            \"fpr\": float(np.mean(text_fpr)),\n        },\n        \"per_trace_hs\": {\n            \"bal_acc\": hs_ba.tolist(),\n            \"precision\": hs_pr.tolist(),\n            \"fpr\": hs_fpr.tolist(),\n        },\n        \"per_trace_text\": {\n            \"bal_acc\": text_ba.tolist(),\n            \"precision\": text_pr.tolist(),\n            \"fpr\": text_fpr.tolist(),\n        },\n        \"metrics\": {\n            \"bal_acc\": {\n                \"hs_mean\": float(np.mean(hs_ba)),\n                \"text_mean\": float(np.mean(text_ba)),\n                \"delta\": float(np.mean(diff_ba)),\n                \"exact_p_value\": p_ba,\n                \"significant_005\": p_ba < 0.05,\n            },\n            \"precision\": {\n                \"hs_mean\": float(np.mean(hs_pr)),\n                \"text_mean\": float(np.mean(text_pr)),\n                \"delta\": float(np.mean(diff_pr)),\n                \"exact_p_value\": p_pr,\n                \"significant_005\": p_pr < 0.05,\n            },\n            \"fpr\": {\n                \"hs_mean\": float(np.mean(hs_fpr)),\n                \"text_mean\": float(np.mean(text_fpr)),\n                \"delta\": float(np.mean(diff_fpr)),\n                \"exact_p_value\": p_fpr,\n                \"significant_005\": p_fpr < 0.05,\n            },\n        },\n    }\n\n\ndef main():\n    t_start = time.time()\n    print(\"=\" * 60, flush=True)\n    print(\"Exact Permutation Test: QwQ-32B & R1-32B\", flush=True)\n    print(\"=\" * 60, flush=True)\n\n    # Load sentence transformer\n    from sentence_transformers import SentenceTransformer\n    print(\"\\nLoading SentenceTransformer (all-MiniLM-L6-v2)...\", flush=True)\n    st_model = SentenceTransformer(\"all-MiniLM-L6-v2\")\n    print(\"  Model loaded\", flush=True)\n\n    # Load HF sentences\n    print(\"\\nLoading HuggingFace sentences...\", flush=True)\n    sentences_all = load_hf_sentences()\n    print(f\"  Loaded sentences for: {list(sentences_all.keys())}\", flush=True)\n\n    # Load traces\n    all_traces = {}\n    for model_key, cfg in MODEL_CONFIGS.items():\n        all_traces[model_key] = load_traces_for_model(model_key, cfg, sentences_all, st_model)\n\n    # Run exact permutation for each model\n    results = {}\n    for model_key, cfg in MODEL_CONFIGS.items():\n        print(f\"\\n{'='*60}\", flush=True)\n        print(f\"EXACT PERMUTATION: {model_key}\", flush=True)\n        print(f\"{'='*60}\", flush=True)\n        results[model_key] = run_model(model_key, all_traces[model_key], cfg)\n\n    elapsed = time.time() - t_start\n\n    # Print summary tables\n    print(f\"\\n{'='*80}\", flush=True)\n    print(\"EXACT PERMUTATION TEST RESULTS\", flush=True)\n    print(f\"{'='*80}\", flush=True)\n\n    for model_key in MODEL_CONFIGS:\n        r = results[model_key]\n        cfg = MODEL_CONFIGS[model_key]\n        n = r[\"n_test\"]\n        print(f\"\\n{model_key} (n={n}, L{cfg['layer_idx']}, W={cfg['window']}, 2^{n}={r['n_permutations']:,} perms):\", flush=True)\n        print(f\"{'Metric':<12} {'HS mean':>10} {'Text mean':>10} {'Δ':>10} {'Exact p':>12} {'Sig(α=.05)':>12}\", flush=True)\n        print(\"-\" * 68, flush=True)\n        for metric in [\"bal_acc\", \"precision\", \"fpr\"]:\n            m = r[\"metrics\"][metric]\n            sig = \"YES\" if m[\"significant_005\"] else \"NO\"\n            print(f\"{metric:<12} {m['hs_mean']:>10.4f} {m['text_mean']:>10.4f} {m['delta']:>+10.4f} {m['exact_p_value']:>12.6f} {sig:>12}\", flush=True)\n\n    print(f\"\\nTotal elapsed: {elapsed:.1f}s\", flush=True)\n\n    # Save\n    output = {\n        \"method\": \"exact_sign_flip_permutation_test\",\n        \"description\": \"One-sided test: H_a = HS advantage > 0. For bal_acc/precision: diff = HS - text. For FPR: diff = text_fpr - hs_fpr.\",\n        \"probe\": \"LogisticRegression(solver='lbfgs', C=1.0, class_weight='balanced', max_iter=2000)\",\n        \"seed\": SEED,\n        \"elapsed_seconds\": round(elapsed, 1),\n        \"models\": results,\n    }\n    out_path = OUTPUT_DIR / \"results.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\nSaved to {out_path}\", flush=True)\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written OK\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r8_exact_permutation_test_20260518T064914",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat > /root/autodl-tmp/contrastive_trace_safety/run_exact_permutation.py << 'PYEOF'\n\"\"\"Exact permutation test (sign-flip) for QwQ-32B and R1-32B.\nExhaustively enumerates all 2^n sign combinations for paired differences.\n\"\"\"\n\nimport os, sys, json, time, pickle\nos.environ[\"TOKENIZERS_PARALLELISM\"] = \"false\"\nos.environ[\"HF_ENDPOINT\"] = \"https://hf-mirror.com\"\nos.environ[\"HF_DATASETS_OFFLINE\"] = \"1\"\n\nimport numpy as np\nimport torch\nfrom pathlib import Path\nfrom collections import defaultdict\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import balanced_accuracy_score, precision_score\n\nSEED = 42\nARTIFACTS = Path(\"/root/autodl-tmp/contrastive_trace_safety/artifacts\")\nOUTPUT_DIR = ARTIFACTS / \"exp_r8_exact_permutation\"\nOUTPUT_DIR.mkdir(parents=True, exist_ok=True)\n\nMODEL_CONFIGS = {\n    \"qwq_32b\": {\n        \"hf_name\": \"QwQ\",\n        \"hs_dir\": ARTIFACTS / \"hidden_states_qwq_32b\",\n        \"layer_idx\": 60,\n        \"hidden_dim\": 5120,\n        \"window\": 3,\n        \"text_emb_pkl\": None,\n        \"preprocessed_pkl\": ARTIFACTS / \"exp_r3_qwq_layer60_bootstrap/preprocessed.pkl\",\n        \"n_expected_test\": 19,\n    },\n    \"r1_32b\": {\n        \"hf_name\": \"r1-32b\",\n        \"hs_dir\": ARTIFACTS / \"hidden_states_r1_32b\",\n        \"layer_idx\": 63,\n        \"hidden_dim\": 5120,\n        \"window\": 1,\n        \"text_emb_pkl\": None,\n        \"n_expected_test\": 20,\n    },\n}\n\nTEXT_DIM = 384\n\n\ndef load_hf_sentences():\n    from datasets import load_dataset\n    ds = load_dataset(\"ishitakakkar-10/HarmThoughts\", split=\"train\")\n    by_model = defaultdict(lambda: defaultdict(list))\n    for row in ds:\n        model = row[\"model_name\"]\n        sid = row[\"sentence_id\"]\n        parts = sid.rsplit(\"-\", 1)\n        trace_id = parts[0]\n        step_idx = int(parts[1]) - 1\n        by_model[model][trace_id].append((step_idx, row[\"sentence\"]))\n    for model in by_model:\n        for tid in by_model[model]:\n            by_model[model][tid].sort(key=lambda x: x[0])\n            by_model[model][tid] = [s for _, s in by_model[model][tid]]\n    return dict(by_model)\n\n\ndef compute_text_embeddings(sentences_map, st_model):\n    emb_map = {}\n    all_sents = []\n    tid_indices = []\n    for tid, sents in sentences_map.items():\n        start = len(all_sents)\n        all_sents.extend(sents)\n        tid_indices.append((tid, start, start + len(sents)))\n    if all_sents:\n        all_embs = st_model.encode(all_sents, show_progress_bar=False, batch_size=256)\n        for tid, start, end in tid_indices:\n            emb_map[tid] = all_embs[start:end].astype(np.float32)\n    return emb_map\n\n\ndef load_traces_for_model(model_key, cfg, sentences_all, st_model):\n    print(f\"\\n{'='*60}\", flush=True)\n    print(f\"Loading {model_key}: layer={cfg['layer_idx']}, W={cfg['window']}\", flush=True)\n\n    if cfg.get(\"preprocessed_pkl\") and cfg[\"preprocessed_pkl\"].exists():\n        print(f\"  Loading from preprocessed pkl...\", flush=True)\n        with open(cfg[\"preprocessed_pkl\"], \"rb\") as f:\n            raw = pickle.load(f)\n        traces = []\n        for t in raw:\n            traces.append({\n                \"trace_id\": t[\"trace_id\"],\n                \"hs_layer\": t[\"hs_layer60\"],\n                \"step_labels\": t[\"step_labels\"],\n                \"commitment_point\": t[\"commitment_point\"],\n                \"text_embeddings\": t[\"text_embeddings\"],\n            })\n        print(f\"  Loaded {len(traces)} traces from pkl\", flush=True)\n        return traces\n\n    # Generic loader\n    hs_dir = cfg[\"hs_dir\"]\n    layer_idx = cfg[\"layer_idx\"]\n    safe_dir = Path(str(hs_dir) + \"_safe\")\n    hf_name = cfg[\"hf_name\"]\n\n    sents_for_model = sentences_all.get(hf_name, {})\n    if not sents_for_model:\n        print(f\"  WARNING: no sentences for {hf_name}\", flush=True)\n        return []\n\n    print(f\"  Computing text embeddings for {hf_name}...\", flush=True)\n    text_emb_map = compute_text_embeddings(sents_for_model, st_model)\n    print(f\"  Computed {len(text_emb_map)} trace embeddings\", flush=True)\n\n    traces = []\n    pt_files = sorted(hs_dir.glob(\"*.pt\"))\n    for pt_file in pt_files:\n        if pt_file.name == \"extraction_summary.json\":\n            continue\n        data = torch.load(pt_file, map_location=\"cpu\", weights_only=False)\n        tid = data.get(\"trace_id\", pt_file.stem)\n        if data.get(\"step_labels\") is None or data.get(\"commitment_point\") is None:\n            continue\n        cp = data[\"commitment_point\"]\n        labels = data[\"step_labels\"]\n\n        hs_all = data[\"hidden_states\"]\n        if isinstance(hs_all, dict):\n            hs_layer = hs_all.get(f\"layer_{layer_idx}\", hs_all.get(str(layer_idx)))\n        else:\n            hs_layer = hs_all[:, layer_idx, :] if hs_all.ndim == 3 else hs_all\n\n        if hs_layer is None:\n            continue\n\n        hs_np = hs_layer.numpy() if isinstance(hs_layer, torch.Tensor) else np.array(hs_layer)\n        n = min(hs_np.shape[0], len(labels))\n\n        text_emb = text_emb_map.get(tid)\n        if text_emb is None:\n            continue\n        text_emb = text_emb[:n]\n        if text_emb.shape[0] < n:\n            n = text_emb.shape[0]\n\n        # Safe traces check\n        safe_file = safe_dir / pt_file.name if safe_dir.exists() else None\n        if safe_file and safe_file.exists():\n            safe_data = torch.load(safe_file, map_location=\"cpu\", weights_only=False)\n            safe_hs = safe_data.get(\"hidden_states\", {})\n            if isinstance(safe_hs, dict):\n                safe_layer = safe_hs.get(f\"layer_{layer_idx}\", safe_hs.get(str(layer_idx)))\n            else:\n                safe_layer = safe_hs[:, layer_idx, :] if safe_hs.ndim == 3 else safe_hs\n            if safe_layer is not None:\n                safe_np = safe_layer.numpy() if isinstance(safe_layer, torch.Tensor) else np.array(safe_layer)\n                min_len = min(n, safe_np.shape[0])\n                hs_np = hs_np[:min_len] - safe_np[:min_len]\n                n = min_len\n\n        traces.append({\n            \"trace_id\": tid,\n            \"hs_layer\": hs_np[:n].astype(np.float32),\n            \"step_labels\": labels[:n],\n            \"commitment_point\": cp,\n            \"text_embeddings\": text_emb[:n],\n        })\n    print(f\"  Loaded {len(traces)} valid traces\", flush=True)\n    return traces\n\n\ndef split_traces(traces, seed=SEED):\n    rng = np.random.default_rng(seed)\n    indices = rng.permutation(len(traces))\n    n_train = int(len(traces) * 0.6)\n    n_val = int(len(traces) * 0.2)\n    return (\n        [traces[i] for i in indices[:n_train]],\n        [traces[i] for i in indices[n_train:n_train+n_val]],\n        [traces[i] for i in indices[n_train+n_val:]],\n    )\n\n\ndef build_window_features(features, window_size, dim):\n    n = features.shape[0]\n    X = np.zeros((n, window_size * dim), dtype=np.float32)\n    for i in range(n):\n        start = max(0, i - window_size + 1)\n        w = features[start:i+1]\n        if len(w) < window_size:\n            offset = (window_size - len(w)) * dim\n            X[i, offset:] = w.flatten()\n        else:\n            X[i] = w.flatten()\n    return X\n\n\ndef train_probe(train_traces, window, dim, feat_key):\n    X_list, y_list = [], []\n    for t in train_traces:\n        feats = t[feat_key] if isinstance(t[feat_key], np.ndarray) else np.array(t[feat_key])\n        labels = np.array(t[\"step_labels\"])\n        n = min(feats.shape[0], len(labels))\n        X = build_window_features(feats[:n], window, dim)\n        X_list.append(X)\n        y_list.append(labels[:n])\n    X_all = np.vstack(X_list)\n    y_all = np.concatenate(y_list)\n\n    clf = LogisticRegression(solver='lbfgs', C=1.0, max_iter=2000,\n                             class_weight='balanced', random_state=SEED)\n    clf.fit(X_all, y_all)\n    return clf\n\n\ndef get_per_trace_metrics(clf, test_traces, window, dim, feat_key):\n    bal_accs, precs, fprs = [], [], []\n    for t in test_traces:\n        feats = t[feat_key] if isinstance(t[feat_key], np.ndarray) else np.array(t[feat_key])\n        labels = np.array(t[\"step_labels\"])\n        cp = t[\"commitment_point\"]\n        n = min(feats.shape[0], len(labels))\n        X = build_window_features(feats[:n], window, dim)\n        preds = clf.predict(X)\n        ba = balanced_accuracy_score(labels[:n], preds)\n        pr = precision_score(labels[:n], preds, zero_division=0)\n        fpr_val = float(np.mean(preds[:cp])) if cp > 0 else 0.0\n        bal_accs.append(ba)\n        precs.append(pr)\n        fprs.append(fpr_val)\n    return np.array(bal_accs), np.array(precs), np.array(fprs)\n\n\ndef exact_permutation_pvalue(diffs):\n    \"\"\"Exact one-sided permutation test via sign-flip.\n    H_a: mean(diffs) > 0.\n    p = fraction of 2^n sign-flip combinations where mean >= observed.\n    Uses bit-manipulation for speed.\n    \"\"\"\n    n = len(diffs)\n    total = 1 << n  # 2^n\n    observed = np.mean(diffs)\n    count = 0\n    \n    diffs_f64 = diffs.astype(np.float64)\n    \n    # Vectorized: process in chunks for memory efficiency\n    chunk_size = min(total, 1 << 18)  # 256K at a time\n    for chunk_start in range(0, total, chunk_size):\n        chunk_end = min(chunk_start + chunk_size, total)\n        indices = np.arange(chunk_start, chunk_end, dtype=np.int64)\n        # Build sign matrix: bit i of index -> sign for diff i\n        signs = np.ones((chunk_end - chunk_start, n), dtype=np.float64)\n        for bit in range(n):\n            mask = (indices >> bit) & 1\n            signs[:, bit] = 1 - 2 * mask  # 0 -> +1, 1 -> -1\n        perm_means = signs @ diffs_f64 / n\n        count += np.sum(perm_means >= observed - 1e-12)\n    \n    return count / total\n\n\ndef run_model(model_key, traces, cfg):\n    window = cfg[\"window\"]\n    hidden_dim = cfg[\"hidden_dim\"]\n    \n    train, val, test = split_traces(traces)\n    n_test = len(test)\n    print(f\"  Split: train={len(train)}, val={len(val)}, test={n_test}\", flush=True)\n    assert n_test == cfg[\"n_expected_test\"], f\"Expected {cfg['n_expected_test']} test traces, got {n_test}\"\n\n    # Train probes\n    t0 = time.time()\n    print(f\"  Training HS probe (W={window}, dim={hidden_dim}, solver=lbfgs)...\", flush=True)\n    clf_hs = train_probe(train, window, hidden_dim, \"hs_layer\")\n    print(f\"    Done in {time.time()-t0:.1f}s\", flush=True)\n\n    t0 = time.time()\n    print(f\"  Training Text probe (W={window}, dim={TEXT_DIM}, solver=lbfgs)...\", flush=True)\n    clf_text = train_probe(train, window, TEXT_DIM, \"text_embeddings\")\n    print(f\"    Done in {time.time()-t0:.1f}s\", flush=True)\n\n    # Per-trace metrics\n    hs_ba, hs_pr, hs_fpr = get_per_trace_metrics(clf_hs, test, window, hidden_dim, \"hs_layer\")\n    text_ba, text_pr, text_fpr = get_per_trace_metrics(clf_text, test, window, TEXT_DIM, \"text_embeddings\")\n\n    print(f\"  HS:   bal_acc={np.mean(hs_ba):.4f}  precision={np.mean(hs_pr):.4f}  fpr={np.mean(hs_fpr):.4f}\", flush=True)\n    print(f\"  Text: bal_acc={np.mean(text_ba):.4f}  precision={np.mean(text_pr):.4f}  fpr={np.mean(text_fpr):.4f}\", flush=True)\n\n    # Paired differences: HS advantage\n    # bal_acc, precision: higher is better -> diff = HS - text\n    # FPR: lower is better -> diff = text - HS (so positive = HS advantage)\n    diff_ba = hs_ba - text_ba\n    diff_pr = hs_pr - text_pr\n    diff_fpr = text_fpr - hs_fpr  # positive means HS has lower FPR\n\n    print(f\"\\n  Paired differences (n={n_test}):\", flush=True)\n    print(f\"    bal_acc:   mean(d)={np.mean(diff_ba):+.4f}\", flush=True)\n    print(f\"    precision: mean(d)={np.mean(diff_pr):+.4f}\", flush=True)\n    print(f\"    FPR:       mean(d)={np.mean(diff_fpr):+.4f} (text_fpr - hs_fpr)\", flush=True)\n\n    # Exact permutation test\n    total_perms = 1 << n_test\n    print(f\"\\n  Running exact permutation test (2^{n_test} = {total_perms:,} permutations)...\", flush=True)\n    \n    t0 = time.time()\n    p_ba = exact_permutation_pvalue(diff_ba)\n    print(f\"    bal_acc:   p = {p_ba:.6f}  ({time.time()-t0:.1f}s)\", flush=True)\n    \n    t0 = time.time()\n    p_pr = exact_permutation_pvalue(diff_pr)\n    print(f\"    precision: p = {p_pr:.6f}  ({time.time()-t0:.1f}s)\", flush=True)\n    \n    t0 = time.time()\n    p_fpr = exact_permutation_pvalue(diff_fpr)\n    print(f\"    FPR:       p = {p_fpr:.6f}  ({time.time()-t0:.1f}s)\", flush=True)\n\n    return {\n        \"n_test\": n_test,\n        \"n_permutations\": total_perms,\n        \"layer\": cfg[\"layer_idx\"],\n        \"window\": window,\n        \"hs_means\": {\n            \"bal_acc\": float(np.mean(hs_ba)),\n            \"precision\": float(np.mean(hs_pr)),\n            \"fpr\": float(np.mean(hs_fpr)),\n        },\n        \"text_means\": {\n            \"bal_acc\": float(np.mean(text_ba)),\n            \"precision\": float(np.mean(text_pr)),\n            \"fpr\": float(np.mean(text_fpr)),\n        },\n        \"per_trace_hs\": {\n            \"bal_acc\": hs_ba.tolist(),\n            \"precision\": hs_pr.tolist(),\n            \"fpr\": hs_fpr.tolist(),\n        },\n        \"per_trace_text\": {\n            \"bal_acc\": text_ba.tolist(),\n            \"precision\": text_pr.tolist(),\n            \"fpr\": text_fpr.tolist(),\n        },\n        \"metrics\": {\n            \"bal_acc\": {\n                \"hs_mean\": float(np.mean(hs_ba)),\n                \"text_mean\": float(np.mean(text_ba)),\n                \"delta\": float(np.mean(diff_ba)),\n                \"exact_p_value\": p_ba,\n                \"significant_005\": p_ba < 0.05,\n            },\n            \"precision\": {\n                \"hs_mean\": float(np.mean(hs_pr)),\n                \"text_mean\": float(np.mean(text_pr)),\n                \"delta\": float(np.mean(diff_pr)),\n                \"exact_p_value\": p_pr,\n                \"significant_005\": p_pr < 0.05,\n            },\n            \"fpr\": {\n                \"hs_mean\": float(np.mean(hs_fpr)),\n                \"text_mean\": float(np.mean(text_fpr)),\n                \"delta\": float(np.mean(diff_fpr)),\n                \"exact_p_value\": p_fpr,\n                \"significant_005\": p_fpr < 0.05,\n            },\n        },\n    }\n\n\ndef main():\n    t_start = time.time()\n    print(\"=\" * 60, flush=True)\n    print(\"Exact Permutation Test: QwQ-32B & R1-32B\", flush=True)\n    print(\"=\" * 60, flush=True)\n\n    # Load sentence transformer\n    from sentence_transformers import SentenceTransformer\n    print(\"\\nLoading SentenceTransformer (all-MiniLM-L6-v2)...\", flush=True)\n    st_model = SentenceTransformer(\"all-MiniLM-L6-v2\")\n    print(\"  Model loaded\", flush=True)\n\n    # Load HF sentences\n    print(\"\\nLoading HuggingFace sentences...\", flush=True)\n    sentences_all = load_hf_sentences()\n    print(f\"  Loaded sentences for: {list(sentences_all.keys())}\", flush=True)\n\n    # Load traces\n    all_traces = {}\n    for model_key, cfg in MODEL_CONFIGS.items():\n        all_traces[model_key] = load_traces_for_model(model_key, cfg, sentences_all, st_model)\n\n    # Run exact permutation for each model\n    results = {}\n    for model_key, cfg in MODEL_CONFIGS.items():\n        print(f\"\\n{'='*60}\", flush=True)\n        print(f\"EXACT PERMUTATION: {model_key}\", flush=True)\n        print(f\"{'='*60}\", flush=True)\n        results[model_key] = run_model(model_key, all_traces[model_key], cfg)\n\n    elapsed = time.time() - t_start\n\n    # Print summary tables\n    print(f\"\\n{'='*80}\", flush=True)\n    print(\"EXACT PERMUTATION TEST RESULTS\", flush=True)\n    print(f\"{'='*80}\", flush=True)\n\n    for model_key in MODEL_CONFIGS:\n        r = results[model_key]\n        cfg = MODEL_CONFIGS[model_key]\n        n = r[\"n_test\"]\n        print(f\"\\n{model_key} (n={n}, L{cfg['layer_idx']}, W={cfg['window']}, 2^{n}={r['n_permutations']:,} perms):\", flush=True)\n        print(f\"{'Metric':<12} {'HS mean':>10} {'Text mean':>10} {'Δ':>10} {'Exact p':>12} {'Sig(α=.05)':>12}\", flush=True)\n        print(\"-\" * 68, flush=True)\n        for metric in [\"bal_acc\", \"precision\", \"fpr\"]:\n            m = r[\"metrics\"][metric]\n            sig = \"YES\" if m[\"significant_005\"] else \"NO\"\n            print(f\"{metric:<12} {m['hs_mean']:>10.4f} {m['text_mean']:>10.4f} {m['delta']:>+10.4f} {m['exact_p_value']:>12.6f} {sig:>12}\", flush=True)\n\n    print(f\"\\nTotal elapsed: {elapsed:.1f}s\", flush=True)\n\n    # Save\n    output = {\n        \"method\": \"exact_sign_flip_permutation_test\",\n        \"description\": \"One-sided test: H_a = HS advantage > 0. For bal_acc/precision: diff = HS - text. For FPR: diff = text_fpr - hs_fpr.\",\n        \"probe\": \"LogisticRegression(solver='lbfgs', C=1.0, class_weight='balanced', max_iter=2000)\",\n        \"seed\": SEED,\n        \"elapsed_seconds\": round(elapsed, 1),\n        \"models\": results,\n    }\n    out_path = OUTPUT_DIR / \"results.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\nSaved to {out_path}\", flush=True)\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written OK\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-18T06:53:10.894953+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r8_exact_permutation_test_20260518T064914",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-18T06:53:10.895103+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "source /root/miniconda3/bin/activate && cd /root/autodl-tmp/contrastive_trace_safety && python run_exact_permutation.py 2>&1",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r8_exact_permutation_test_20260518T064914",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "source /root/miniconda3/bin/activate && cd /root/autodl-tmp/contrastive_trace_safety && python run_exact_permutation.py 2>&1",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-18T06:53:10.895309+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"============================================================\\nExact Permutation Test: QwQ-32B & R1-32B\\n============================================================\\n\\nLoading SentenceTransformer (all-MiniLM-L6-v2)...\\n  Model loaded\\n\\nLoading HuggingFace sentences...\\nUsing the latest cached version of the dataset since ishitakakkar-10/HarmThoughts couldn't be found on the Hugging Face Hub (offline mode is enabled).\\nFound the latest cached dataset configuration 'default' at /root/.cache/huggingface/datasets/ishitakakkar-10___harm_thoughts/default/0.0.0/98a90c45ae2fc0a94a828cebb426917883ce35e1 (last modified on Sun May 17 14:55:12 2026).\\n  Loaded sentences for: ['QwQ', 'r1-8b', 'ot-7b', 'r1-32b']\\n\\n============================================================\\nLoading qwq_32b: layer=60, W=3\\n  Loading from preprocessed pkl...\\n  Loaded 95 traces from pkl\\n\\n============================================================\\nLoading r1_32b: layer=63, W=1\\n  Computing text embeddings for r1-32b...\\n  Computed 221 trace embeddings\\n  Loaded 100 valid traces\\n\\n============================================================\\nEXACT PERMUTATION: qwq_32b\\n============================================================\\n  Split: train=57, val=19, test=19\\n  Training HS probe (W=3, dim=5120, solver=lbfgs)...\\n    Done in 1.7s\\n  Training Text probe (W=3, dim=384, solver=lbfgs)...\\n    Done in 0.1s\\n  HS:   bal_acc=0.8069  precision=0.7255  fpr=0.1029\\n  Text: bal_acc=0.6612  precision=0.4704  fpr=0.2109\\n\\n  Paired differences (n=19):\\n    bal_acc:   mean(d)=+0.1458\\n    precision: mean(d)=+0.2552\\n    FPR:       mean(d)=+0.1079 (text_fpr - hs_fpr)\\n\\n  Running exact permutation test (2^19 = 524,288 permutations)...\\n    bal_acc:   p = 0.000008  (0.1s)\\n    precision: p = 0.000023  (0.1s)\\n    FPR:       p = 0.002335  (0.2s)\\n\\n=========================================================
+…[truncated 3222 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r8_exact_permutation_test_20260518T064914",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-18T06:53:10.895489+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "source /root/miniconda3/bin/activate && cd /root/autodl-tmp/contrastive_trace_safety && python -c \"\nimport json, numpy as np\nclass NpEncoder(json.JSONEncoder):\n    def default(self, obj):\n        if isinstance(obj, (np.integer,)):\n            return int(obj)\n        if isinstance(obj, (np.floating,)):\n            return float(obj)\n        if isinstance(obj, (np.bool_,)):\n            return bool(obj)\n        if isinstance(obj, np.ndarray):\n            return obj.tolist()\n        return super().default(obj)\n\n# Re-run just the save part with the data from the run\nresults = {\n    'qwq_32b': {\n        'n_test': 19, 'n_permutations': 524288, 'layer': 60, 'window': 3,\n        'hs_means': {'bal_acc': 0.8069, 'precision': 0.7255, 'fpr': 0.1029},\n        'text_means': {'bal_acc': 0.6612, 'precision': 0.4704, 'fpr': 0.2109},\n        'metrics': {\n            'bal_acc': {'hs_mean': 0.8069, 'text_mean': 0.6612, 'delta': 0.1458, 'exact_p_value': 0.000008, 'significant_005': True},\n            'precision': {'hs_mean': 0.7255, 'text_mean': 0.4704, 'delta': 0.2552, 'exact_p_value': 0.000023, 'significant_005': True},\n            'fpr': {'hs_mean': 0.1029, 'text_mean': 0.2109, 'delta': 0.1079, 'exact_p_value': 0.002335, 'significant_005': True},\n        },\n    },\n    'r1_32b': {\n        'n_test': 20, 'n_permutations': 1048576, 'layer': 63, 'window': 1,\n        'hs_means': {'bal_acc': 0.8286, 'precision': 0.6028, 'fpr': 0.2335},\n        'text_means': {'bal_acc': 0.6388, 'precision': 0.4483, 'fpr': 0.3804},\n        'metrics': {\n            'bal_acc': {'hs_mean': 0.8286, 'text_mean': 0.6388, 'delta': 0.1898, 'exact_p_value': 0.000147, 'significant_005': True},\n            'precision': {'hs_mean': 0.6028, 'text_mean': 0.4483, 'delta': 0.1545, 'exact_p_value': 0.000122, 'significant_005': True},\n            'fpr': {'hs_mean': 0.2335, 'text_mean': 0.3804, 'delta': 0.1468, 'exact_p_value': 0.007950, 'significant_005': True},\n        },\n    },\n}\n\noutput = {\n    'method': 'exact_sign_flip_permutation_test',\n    'description': 'One-sided test: H_a = HS advantage > 0. For bal_acc/precision: diff = HS - text. For FPR: diff = text_fpr - hs_fpr.',\n    'probe': \\\"LogisticRegression(solver='lbfgs', C=1.0, class_weight='balanced', max_iter=2000)\\\",\n    'seed': 42,\n    'elapsed_seconds': 21.7,\n    'models': results,\n}\n\nfrom pathlib import Path\nout_path = Path('/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r8_exact_permutation/results.json')\nout_path.parent.mkdir(parents=True, exist_ok=True)\nwith open(out_path, 'w') as f:\n    json.dump(output, f, indent=2, cls=NpEncoder)\nprint(f'Saved to {out_path}')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r8_exact_permutation_test_20260518T064914",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "source /root/miniconda3/bin/activate && cd /root/autodl-tmp/contrastive_trace_safety && python -c \"\nimport json, numpy as np\nclass NpEncoder(json.JSONEncoder):\n    def default(self, obj):\n        if isinstance(obj, (np.integer,)):\n            return int(obj)\n        if isinstance(obj, (np.floating,)):\n            return float(obj)\n        if isinstance(obj, (np.bool_,)):\n            return bool(obj)\n        if isinstance(obj, np.ndarray):\n            return obj.tolist()\n        return super().default(obj)\n\n# Re-run just the save part with the data from the run\nresults = {\n    'qwq_32b': {\n        'n_test': 19, 'n_permutations': 524288, 'layer': 60, 'window': 3,\n        'hs_means': {'bal_acc': 0.8069, 'precision': 0.7255, 'fpr': 0.1029},\n        'text_means': {'bal_acc': 0.6612, 'precision': 0.4704, 'fpr': 0.2109},\n        'metrics': {\n            'bal_acc': {'hs_mean': 0.8069, 'text_mean': 0.6612, 'delta': 0.1458, 'exact_p_value': 0.000008, 'significant_005': True},\n            'precision': {'hs_mean': 0.7255, 'text_mean': 0.4704, 'delta': 0.2552, 'exact_p_value': 0.000023, 'significant_005': True},\n            'fpr': {'hs_mean': 0.1029, 'text_mean': 0.2109, 'delta': 0.1079, 'exact_p_value': 0.002335, 'significant_005': True},\n        },\n    },\n    'r1_32b': {\n        'n_test': 20, 'n_permutations': 1048576, 'layer': 63, 'window': 1,\n        'hs_means': {'bal_acc': 0.8286, 'precision': 0.6028, 'fpr': 0.2335},\n        'text_means': {'bal_acc': 0.6388, 'precision': 0.4483, 'fpr': 0.3804},\n        'metrics': {\n            'bal_acc': {'hs_mean': 0.8286, 'text_mean': 0.6388, 'delta': 0.1898, 'exact_p_value': 0.000147, 'significant_005': True},\n            'precision': {'hs_mean': 0.6028, 'text_mean': 0.4483, 'delta': 0.1545, 'exact_p_value': 0.000122, 'significant_005': True},\n            'fpr': {'hs_mean': 0.2335, 'text_mean': 0.3804, 'delta': 0.1468, 'exact_p_value': 0.007950, 'significant_005': True},\n        },\n    },\n}\n\noutput = {\n    'method': 'exact_sign_flip_permutation_test',\n    'description': 'One-sided test: H_a = HS advantage > 0. For bal_acc/precision: diff = HS - text. For FPR: diff = text_fpr - hs_fpr.',\n    'probe': \\\"LogisticRegression(solver='lbfgs', C=1.0, class_weight='balanced', max_iter=2000)\\\",\n    'seed': 42,\n    'elapsed_seconds': 21.7,\n    'models': results,\n}\n\nfrom pathlib import Path\nout_path = Path('/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r8_exact_permutation/results.json')\nout_path.parent.mkdir(parents=True, exist_ok=True)\nwith open(out_path, 'w') as f:\n    json.dump(output, f, indent=2, cls=NpEncoder)\nprint(f'Saved to {out_path}')\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-18T06:53:10.895772+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Saved to /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r8_exact_permutation/results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.09}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r8_exact_permutation_test_20260518T064914",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-18T06:53:10.896110+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "source /root/miniconda3/bin/activate && cd /root/autodl-tmp/contrastive_trace_safety && sed -i 's/\"significant_005\": p_ba < 0.05/\"significant_005\": bool(p_ba < 0.05)/g; s/\"significant_005\": p_pr < 0.05/\"significant_005\": bool(p_pr < 0.05)/g; s/\"significant_005\": p_fpr < 0.05/\"significant_005\": bool(p_fpr < 0.05)/g' run_exact_permutation.py && python run_exact_permutation.py 2>&1",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r8_exact_permutation_test_20260518T064914",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "source /root/miniconda3/bin/activate && cd /root/autodl-tmp/contrastive_trace_safety && sed -i 's/\"significant_005\": p_ba < 0.05/\"significant_005\": bool(p_ba < 0.05)/g; s/\"significant_005\": p_pr < 0.05/\"significant_005\": bool(p_pr < 0.05)/g; s/\"significant_005\": p_fpr < 0.05/\"significant_005\": bool(p_fpr < 0.05)/g' run_exact_permutation.py && python run_exact_permutation.py 2>&1",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-18T06:53:10.896349+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"============================================================\\nExact Permutation Test: QwQ-32B & R1-32B\\n============================================================\\n\\nLoading SentenceTransformer (all-MiniLM-L6-v2)...\\n  Model loaded\\n\\nLoading HuggingFace sentences...\\nUsing the latest cached version of the dataset since ishitakakkar-10/HarmThoughts couldn't be found on the Hugging Face Hub (offline mode is enabled).\\nFound the latest cached dataset configuration 'default' at /root/.cache/huggingface/datasets/ishitakakkar-10___harm_thoughts/default/0.0.0/98a90c45ae2fc0a94a828cebb426917883ce35e1 (last modified on Sun May 17 14:55:12 2026).\\n  Loaded sentences for: ['QwQ', 'r1-8b', 'ot-7b', 'r1-32b']\\n\\n============================================================\\nLoading qwq_32b: layer=60, W=3\\n  Loading from preprocessed pkl...\\n  Loaded 95 traces from pkl\\n\\n============================================================\\nLoading r1_32b: layer=63, W=1\\n  Computing text embeddings for r1-32b...\\n  Computed 221 trace embeddings\\n  Loaded 100 valid traces\\n\\n============================================================\\nEXACT PERMUTATION: qwq_32b\\n============================================================\\n  Split: train=57, val=19, test=19\\n  Training HS probe (W=3, dim=5120, solver=lbfgs)...\\n    Done in 7.0s\\n  Training Text probe (W=3, dim=384, solver=lbfgs)...\\n    Done in 0.0s\\n  HS:   bal_acc=0.8069  precision=0.7255  fpr=0.1029\\n  Text: bal_acc=0.6612  precision=0.4704  fpr=0.2109\\n\\n  Paired differences (n=19):\\n    bal_acc:   mean(d)=+0.1458\\n    precision: mean(d)=+0.2552\\n    FPR:       mean(d)=+0.1079 (text_fpr - hs_fpr)\\n\\n  Running exact permutation test (2^19 = 524,288 permutations)...\\n    bal_acc:   p = 0.000008  (0.2s)\\n    precision: p = 0.000023  (0.1s)\\n    FPR:       p = 0.002335  (0.2s)\\n\\n==========================================================
+…[truncated 2006 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r8_exact_permutation_test_20260518T064914",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-18T06:53:10.896519+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r8_exact_permutation/results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r8_exact_permutation_test_20260518T064914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r8_exact_permutation/results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-18T06:53:10.896874+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"method\\\": \\\"exact_sign_flip_permutation_test\\\",\\n  \\\"description\\\": \\\"One-sided test: H_a = HS advantage > 0. For bal_acc/precision: diff = HS - text. For FPR: diff = text_fpr - hs_fpr.\\\",\\n  \\\"probe\\\": \\\"LogisticRegression(solver='lbfgs', C=1.0, class_weight='balanced', max_iter=2000)\\\",\\n  \\\"seed\\\": 42,\\n  \\\"elapsed_seconds\\\": 26.4,\\n  \\\"models\\\": {\\n    \\\"qwq_32b\\\": {\\n      \\\"n_test\\\": 19,\\n      \\\"n_permutations\\\": 524288,\\n      \\\"layer\\\": 60,\\n      \\\"window\\\": 3,\\n      \\\"hs_means\\\": {\\n        \\\"bal_acc\\\": 0.8069400591924272,\\n        \\\"precision\\\": 0.7255383405118441,\\n        \\\"fpr\\\": 0.10293672863794219\\n      },\\n      \\\"text_means\\\": {\\n        \\\"bal_acc\\\": 0.6611525704669665,\\n        \\\"precision\\\": 0.47037290234255996,\\n        \\\"fpr\\\": 0.21086508954751026\\n      },\\n      \\\"per_trace_hs\\\": {\\n        \\\"bal_acc\\\": [\\n          0.9444444444444444,\\n          0.956140350877193,\\n          0.6923076923076923,\\n          0.9375,\\n          0.6388888888888888,\\n          0.8513513513513513,\\n          0.9787234042553192,\\n          0.9767441860465116,\\n          0.717391304347826,\\n          0.75,\\n          0.8333333333333333,\\n          0.849002849002849,\\n          0.7075471698113207,\\n          0.821969696969697,\\n          0.7659574468085106,\\n          0.8095238095238095,\\n          0.9,\\n          0.6677018633540373,\\n          0.5333333333333333\\n        ],\\n        \\\"precision\\\": [\\n          0.375,\\n          0.4444444444444444,\\n          1.0,\\n          0.6666666666666666,\\n          1.0,\\n          0.26666666666666666,\\n          0.7142857142857143,\\n          0.6666666666666666,\\n          1.0,\\n          1.0,\\n          1.0,\\n          0.7333333333333333,\\n          0.18421052631578946,\\n          0.8571428571428571,\\n    
+…[truncated 7173 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r8_exact_permutation_test_20260518T064914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47 · 2026-05-18T06:53:10.897097+00:00_
+
+Results saved with full precision. Here are the results:
+
+**QwQ-32B** (n=19, L60, W=3, 524,288 permutations):
+
+| Metric    | HS mean | Text mean | Δ       | Exact p-value | Significant (α=0.05) |
+|-----------|---------|-----------|---------|---------------|----------------------|
+| bal_acc   | 0.8069  | 0.6612    | +0.1458 | 0.000008      | YES                  |
+| precision | 0.7255  | 0.4704    | +0.2552 | 0.000023      | YES                  |
+| FPR       | 0.1029  | 0.2109    | +0.1079 | 0.002335      | YES                  |
+
+**R1-32B** (n=20, L63, W=1, 1,048,576 permutations):
+
+| Metric    | HS mean | Text mean | Δ       | Exact p-value | Significant (α=0.05) |
+|-----------|---------|-----------|---------|---------------|----------------------|
+| bal_acc   | 0.8286  | 0.6388    | +0.1898 | 0.000147      | YES                  |
+| precision | 0.6028  | 0.4483    | +0.1545 | 0.000122      | YES                  |
+| FPR       | 0.2335  | 0.3804    | +0.1468 | 0.007950      | YES                  |
+
+All 6 tests significant at α=0.05. Exact p-values are consistent with the bootstrap p-values from the earlier 10k-resample run. Results saved to `artifacts/exp_r8_exact_permutation/results.json`.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_code_r8_exact_permutation_test_20260518T064914"
+}
+```
+
+</details>
+
+---

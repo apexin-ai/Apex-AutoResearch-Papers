@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dbf3b2572953e1aeef92",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "investigate c2 qwq layer check",
+  "task_key": "worker_investigate_c2_qwq_layer_check_20260517T012949",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_investigate_c2_qwq_layer_check_20260517T012949_result.json",
+    "occurrence": 1,
+    "bytes": 309,
+    "sha256": "2056cd92ec3709208cc6d1a440455620c0e176edd2fdeca30ddc197b89a13075"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nQwQ layer used: 1\nIs corrected layer 2: NO\nEvidence: selectivity_results.json 中 qwq_32b.layer_absolute = 1，selectivity = 0.1889 (18.9pp)。使用的是 layer 1，不是 M001 修正后的 layer 2。\n```\n\n需要在 corrected layer 2 上重跑 QwQ-32B 的 control task selectivity。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/investigate-c2-qwq-layer-check.md"
+}

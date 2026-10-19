@@ -1,0 +1,17 @@
+R13: BA-Selected Layers HS vs Text Modality Comparison (2026-05-18)
+
+Method: LogisticRegression(lbfgs, C=1.0, balanced, max_iter=2000), 70/30 split, seed=42
+Bootstrap: 1000 resamples, null-centered, two-sided, Holm-Bonferroni correction
+
+BA-optimal layers: R1-8B=L12, OT-7B=L9, R1-32B=L47 (LOO), QwQ-32B=L30 (LOO)
+
+| Model   | BA-L | HS_Pr | Tx_Pr | dPr    | p_adj | HS_FPR | Tx_FPR | dFPR   | p_adj | HS_BA | Tx_BA | dBA    | p_adj | HS_AUC | Tx_AUC | dAUC   | p_adj | HB  |
+|---------|------|-------|-------|--------|-------|--------|--------|--------|-------|-------|-------|--------|-------|--------|--------|--------|-------|-----|
+| R1-8B   | L12  | .767  | .589  | +.178  | .004  | .121   | .250   | -.129  | .004  | .777  | .699  | +.078  | .004  | .945   | .852   | +.093  | .004  | Y   |
+| OT-7B   | L9   | .532  | .277  | +.254  | .004  | .125   | .318   | -.193  | .004  | .756  | .639  | +.117  | .004  | .881   | .733   | +.148  | .004  | Y   |
+| R1-32B  | L47  | .628  | .491  | +.137  | .004  | .249   | .480   | -.231  | .004  | .758  | .609  | +.149  | .004  | .932   | .722   | +.211  | .004  | Y   |
+| QwQ-32B | L30  | .668  | .489  | +.180  | .006  | .196   | .276   | -.080  | .041  | .796  | .648  | +.148  | .004  | .896   | .722   | +.173  | .004  | Y   |
+
+16/16 HB-corrected tests significant (p<0.05). HS advantage robust across layers and metrics.
+Weakest: QwQ FPR (adj_p=0.041), all others p<=0.006.
+Full results: artifacts/r13_ba_layer_modality/results.json

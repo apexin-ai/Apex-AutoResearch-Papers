@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a8a07bb570b5553755aa",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "analysis r14 a1 qwq rerun",
+  "task_key": "worker_analysis_r14_a1_qwq_rerun_20260518T180759",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r14_a1_qwq_rerun_20260518T180759_result.json",
+    "occurrence": 1,
+    "bytes": 1384,
+    "sha256": "2c60adf1b4d7438b762f6ef4be3b260082265f8a465456c05c07d7f062544be5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Results:\n\n```\nQwQ-32B BA Layer Sweep (max_iter=2000, 60/20/20):\nLayer BA curve:\n  L0=0.790, L1=0.794, L2=0.780, L3=0.760, L4=0.767, L5=0.769, L6=0.790, L7=0.799,\n  L8=0.803, L9=0.806, L10=0.795, L11=0.773, L12=0.773, L13=0.772, L14=0.776, L15=0.786,\n  L16=0.787, L17=0.806, L18=0.820, L19=0.817, L20=0.801, L21=0.789, L22=0.806, L23=0.826,\n  L24=0.822, L25=0.826, L26=0.827, L27=0.819, L28=0.820, L29=0.820, L30=0.828, L31=0.829,\n  L32=0.833, L33=0.838, L34=0.832, L35=0.831, L36=0.815, L37=0.813, L38=0.832, L39=0.834,\n  L40=0.832, L41=0.844, L42=0.838, L43=0.838, L44=0.835, L45=0.840, L46=0.853, L47=0.871,\n  L48=0.864, L49=0.865, L50=0.870, L51=0.870, L52=0.871, L53=0.867, L54=0.867, L55=0.868,\n  L56=0.877, L57=0.877, L58=0.878, L59=0.875, L60=0.886, L61=0.881, L62=0.883, L63=0.893\nBA-optimal: L63 (ba=0.893)\n\nHS vs Text on BA-optimal layer (L63):\n| Metric | HS    | Text  | Delta  | p      | HB? |\n|--------|-------|-------|--------|--------|-----|\n| Prec   | 0.522 | 0.330 | +0.192 | 0.0057 | Y   |\n| BA     | 0.673 | 0.543 | +0.130 | <0.001 | Y   |\n| FPR    | 0.197 | 0.347 | -0.150 | 0.0003 | Y   |\n| AUROC  | 0.812 | 0.554 | +0.258 | <0.001 | -   |\nHB pass: 3/3\n```\n\nRuntime 280s. Script and full results at `/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a1_qwq_rerun/`. Artifact registered as `art_20260518_20f6d4`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-r14-a1-qwq-rerun-copy-2.md"
+}

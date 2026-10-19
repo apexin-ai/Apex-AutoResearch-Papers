@@ -1,0 +1,23 @@
+# StructFuse project dependencies
+# Note: PyTorch CUDA version depends on server — install with appropriate --index-url:
+#   pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
+# Note: CodeQL is a standalone CLI tool, not a pip package.
+#   Download from https://github.com/github/codeql-cli-binaries
+
+torch>=2.2.0
+transformers>=4.40.0
+accelerate>=0.28.0
+peft>=0.10.0
+datasets>=2.18.0
+einops>=0.7.0
+beniget>=0.4.0
+tree-sitter>=0.21.0
+rank-bm25>=0.2.2
+faiss-cpu>=1.7.4
+wandb>=0.16.0
+numpy>=1.24.0
+scipy>=1.11.0
+tqdm>=4.66.0
+jsonlines>=4.0.0
+requests>=2.31.0
+vllm>=0.4.0

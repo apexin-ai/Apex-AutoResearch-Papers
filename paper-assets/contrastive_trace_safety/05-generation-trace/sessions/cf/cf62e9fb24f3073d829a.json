@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cf62e9fb24f3073d829a",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code ensemble cv 7 8b",
+  "task_key": "worker_code_ensemble_cv_7_8b_20260521T231310",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_ensemble_cv_7_8b_20260521T231310_result.json",
+    "occurrence": 1,
+    "bytes": 701,
+    "sha256": "6ed2d9f48f993de3db9dc4571e133730ffc2cd7535360ac9eaf68e8d2e6bcc1e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已在运行（PID 17070, CPU 1912%），日志因 Python stdout 缓冲暂时为空，待脚本 flush 后会显示进度。\n\n完成摘要：\n- **脚本同步** ✓ — 修正 R1-8B 路径 `hidden_states` → `hidden_states_r1_8b_full`\n- **Dry-run** ✓ — 成功加载 209 traces\n- **任务提交** ✓ — tmux session `ensemble_cv_7_8b`，PID 17070\n- **Registry** ✓ — 状态 RUNNING\n- **OT-7B** — hidden states 不存在于服务器，该模型会在脚本中 catch exception 并记录 error\n- **产出** — `artifacts/ensemble_cv_results.json`（实际只含 R1-8B 结果 + OT-7B error）\n- **日志** — `~/runs/contrastive_trace_safety/ensemble_cv_7_8b.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-ensemble-cv-7-8b.md"
+}

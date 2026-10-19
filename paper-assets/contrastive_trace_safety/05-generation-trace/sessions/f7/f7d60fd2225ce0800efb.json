@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f7d60fd2225ce0800efb",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "analysis qwq l63 appendix data",
+  "task_key": "worker_analysis_qwq_l63_appendix_data_20260518T184808",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_qwq_l63_appendix_data_20260518T184808_result.json",
+    "occurrence": 1,
+    "bytes": 799,
+    "sha256": "b30ede5a17b534b4977d99b09f0a0ef561ae0aa31650f9c53b0368709354a94c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n### QwQ-32B L63 Cosine Distance\n| Metric | Value |\n|--------|-------|\n| Global (all traces) | 0.0089 |\n| Per-trace mean ± std | 0.0839 ± 0.0560 |\n| Within-class (safe-safe) | 0.2432 |\n| Within-class (unsafe-unsafe) | 0.2630 |\n\n### QwQ-32B L63 Control Task Selectivity (W=5, 60/20/20)\n| Mode | Real BA | Random BA | Selectivity | >5pp |\n|------|---------|-----------|-------------|------|\n| Original | 0.7313 | 0.5707 ± 0.0166 | **0.1606** | Y |\n| Residualized | 0.6188 | 0.5060 ± 0.0239 | **0.1127** | Y |\n\n与 L60 对比：original selectivity 0.1606 vs 0.1627，residualized 0.1127 vs 0.1001，L63 表现一致。两项 selectivity 均通过 >5pp 阈值。\n\n结果已写入远程 `artifacts/qwq_l63_appendix/results.json` 并注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-qwq-l63-appendix-data.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aec04d9bd2ab1927b7bf",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "analysis harvest sensitivity v3",
+  "task_key": "worker_analysis_harvest_sensitivity_v3_20260522T201414",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_harvest_sensitivity_v3_20260522T201414_result.json",
+    "occurrence": 1,
+    "bytes": 414,
+    "sha256": "a9c7e75287c0bcbc7bdac4da3f3b480cb891982f7f7d4caf9ad7f5e6e8cef55c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验仍在运行，尚未完成。\n\n**状态**：\n- PID 100754 (bash) → 100759 (python)，已运行 ~42 分钟\n- 当前进度：threshold ≥1 的 96/128 batches，ETA ~12 分钟\n- threshold ≥2 和 ≥3 尚未开始\n- 输出 JSON 文件尚未生成\n\n按每个 threshold 128 batches × ~22s/batch 估算，剩余约 1-1.5 小时完成全部三个 threshold。需要稍后再来收割。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-harvest-sensitivity-v3.md"
+}

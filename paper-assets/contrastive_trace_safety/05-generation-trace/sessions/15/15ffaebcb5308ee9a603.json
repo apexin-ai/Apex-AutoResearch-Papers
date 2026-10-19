@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "15ffaebcb5308ee9a603",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code diag gru probe",
+  "task_key": "worker_code_diag_gru_probe_20260516T193950",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_diag_gru_probe_20260516T193950_result.json",
+    "occurrence": 1,
+    "bytes": 1006,
+    "sha256": "6d02ade861bd2a0f2b59bcdf3689c3bd2ec51e9c2b3e44478efbad4f9655bfdf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GRU Probe 结果 — conclusion: **negative**\n\n### Test 指标\n\n| 指标 | GRU | Temporal LR (w=15) | Static LR |\n|------|-----|---------------------|-----------|\n| Step Acc | **0.8305** ± 0.186 | 0.8478 | 0.8172 |\n| Crossing Rate | 67.4% | **76.7%** | 46.5% |\n| Lead Mean | **-0.2** | -1.1 | -2.0 |\n| Lead Median | **-1.0** | -2.0 | -2.0 |\n| Positive Lead | 10/29 (34.5%) | — | — |\n\n### 关键判据\n\n**Lead time 仍为负值。** GRU 将 mean lead 从 -1.1 提升到 -0.2，方向正确但未突破零点。34.5% 的 trace 有正 lead，但 std=13.0 方差极大，不可靠。\n\n### 训练行为\n- Early stopping at epoch 14（patience=10），验证集 lead 一度达到 +5.2 但测试集未复现\n- 1.6M 参数的 GRU 在 125 条训练 trace 上快速过拟合（train acc 98.9% vs test 83.1%）\n\n### 含义\n单层表示 + 序列建模不足以实现可靠的提前预警。下一步可能需要：多层融合、对比学习特征、或更大的训练集。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-diag-gru-probe.md"
+}

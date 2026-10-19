@@ -1,0 +1,9 @@
+Full results at server: /root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a4_bca_fpr/bca_results.json
+
+BCa 95% CI for delta_FPR (text - HS): [0.005817, 0.158995]
+Contains 0: No
+BCa p-value: 0.0331
+z0=0.0374, acceleration=0.0209
+
+Leave-one-out: 5/43 traces removal causes p > 0.05
+Leave-two-out: 193/903 pairs (21.4%) removal causes p > 0.05

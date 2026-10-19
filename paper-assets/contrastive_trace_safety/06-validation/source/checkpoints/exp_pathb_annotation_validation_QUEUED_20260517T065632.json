@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_pathb_annotation_validation",
+  "project": "contrastive_trace_safety",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T06:13:13.591Z",
+    "updated_at": "2026-05-17T06:56:32.568Z",
+    "hypothesis": "A local classifier trained on existing HarmThoughts annotations (56K sentences, 16 classes) can reproduce safety/non-safety binary labels with F1 >= 0.90 and CP position agreement within ±1 step, validating automated annotation for new trace generation."
+  },
+  "timestamp": "2026-05-17T06:56:32.655622+00:00",
+  "trigger": "update_registry"
+}

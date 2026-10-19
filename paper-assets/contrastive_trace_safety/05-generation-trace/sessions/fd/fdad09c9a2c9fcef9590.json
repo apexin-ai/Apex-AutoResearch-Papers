@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "fdad09c9a2c9fcef9590",
+  "project": "contrastive_trace_safety",
+  "kind": "worker",
+  "title": "code exp 003 cross transfer",
+  "task_key": "worker_code_exp_003_cross_transfer_20260516T222021",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_003_cross_transfer_20260516T222021.log",
+    "occurrence": 1,
+    "bytes": 624253,
+    "sha256": "aa09eaebc464c63ebccf2aba5672985246f56d6d01e8d898a56d28a6a7d3123a"
+  },
+  "statistics": {
+    "messages": 311,
+    "user_turns": 1,
+    "tool_calls": 107,
+    "roles": {
+      "log": 1,
+      "system": 36,
+      "record": 1,
+      "assistant": 57,
+      "tool_call": 107,
+      "user": 1,
+      "tool_result": 107,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "fdad09c9a2c9fcef9590-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 304,
+      "chunks": [
+        {
+          "path": "fdad09c9a2c9fcef9590-part-0001.json",
+          "message_count": 173
+        },
+        {
+          "path": "fdad09c9a2c9fcef9590-part-0002.json",
+          "message_count": 131
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp-003-cross-transfer.md"
+}

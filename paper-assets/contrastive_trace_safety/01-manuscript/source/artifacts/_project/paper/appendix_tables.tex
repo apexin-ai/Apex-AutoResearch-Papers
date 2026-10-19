@@ -1,0 +1,56 @@
+% E5-Mistral-7B-Instruct Comparison (Appendix)
+% Data source: artifacts/e5_mistral_comparison_v2/report.txt
+% Split: 60/20/20, seed=42, trace-level
+% Probe: LogisticRegression(C=1.0, class_weight=balanced, max_iter=2000)
+% Permutation test: 10000 resamples, null-centered, two-sided
+
+% --- Table 1: HS vs E5-Mistral vs MiniLM (Precision) ---
+
+\begin{table}[h]
+\centering
+\small
+\caption{Precision comparison: hidden-state probes vs.\ E5-Mistral-7B-Instruct (4096d $\to$ PCA 384d) vs.\ MiniLM-L6-v2 (384d). $\Delta$Prec = HS $-$ E5. $p$-values from 10{,}000-resample null-centered paired permutation tests. HB: Holm--Bonferroni correction across 4 models at $\alpha{=}0.05$.}
+\label{tab:e5_mistral}
+\begin{tabular}{lcccccc}
+\toprule
+Model & HS Prec & E5 Prec & MiniLM Prec & $\Delta$Prec & $p$ & HB \\
+\midrule
+R1-8B (L14, $W{=}3$)    & \textbf{.630} & .480 & .434 & +.150 & .001 & \checkmark \\
+OT-7B (L16, $W{=}3$)    & \textbf{.446} & .321 & .246 & +.125 & .009 & \checkmark \\
+R1-32B (L63, $W{=}1$)   & \textbf{.588} & .506 & .472 & +.082 & .235 &            \\
+QwQ-32B (L63, $W{=}5$)  & \textbf{.515} & .447 & .330 & +.068 & .368 &            \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% --- Table 2: Encoder Quality Gradient ---
+
+\begin{table}[h]
+\centering
+\small
+\caption{Encoder quality gradient: as text encoder capacity increases from 22M to 7B parameters, the HS precision advantage narrows but persists. HB pass count indicates how many of 4 models show statistically significant HS $>$ Text precision after Holm--Bonferroni correction.}
+\label{tab:encoder_gradient}
+\begin{tabular}{lccc}
+\toprule
+Encoder & Params & Eff.\ dim & HB pass (of 4) \\
+\midrule
+MiniLM-L6-v2           & 22M  & 384  & 4/4 \\
+BGE-large-en-v1.5      & 335M & 1024 & 1/4 \\
+E5-Mistral-7B-Instruct & 7B   & 384\textsuperscript{*} & 2/4 \\
+\bottomrule
+\multicolumn{4}{l}{\textsuperscript{*}PCA-reduced from 4096d to 384d for fair comparison.}
+\end{tabular}
+\end{table}
+
+% --- Narrative text (1-2 sentences for appendix) ---
+% To test whether a substantially stronger text encoder closes the hidden-state
+% advantage, we encode all traces with E5-Mistral-7B-Instruct
+% \citep{wang2024e5mistral}, a 7B-parameter instruction-tuned text encoder
+% (4096d, PCA-reduced to 384d), and retrain probes under the same 60/20/20
+% protocol. Table~\ref{tab:e5_mistral} shows that HS probes retain higher
+% precision across all four models; the advantage reaches Holm--Bonferroni
+% significance for R1-8B and OT-7B, while 32B models show consistent but
+% non-significant leads. Together with the BGE-large results
+% (Table~\ref{tab:encoder_robustness}), these findings trace an encoder-quality
+% gradient (Table~\ref{tab:encoder_gradient}): scaling text encoders from 22M to
+% 7B parameters monotonically narrows the HS gap without eliminating it.

@@ -1,0 +1,5032 @@
+# analysis table3 r1 8b 60 20 20
+
+**Layer Selection Sensitivity in Hidden-State Safety Probes for Reasoning Models** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 102
+- **Recorded user turns:** 0
+- **Tool calls:** 36
+- **Original source:** `logs/workers/worker_analysis_table3_r1_8b_60_20_20_20260518T172824.log`
+- **Structured JSON:** [`3a7a9198a23b8ebb1319.json`](../../sessions/3a/3a7a9198a23b8ebb1319.json)
+
+## Before a recorded user message
+
+102 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "36475c5c-fc69-48d3-babc-722cf1365b0d",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-5-projects-contrastive-trace-safety/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779141600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "a4bc4c46-c9f4-4380-83ce-a935ca5a7616",
+  "session_id": "dc087855-e452-4333-8c73-917e45510752"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user needs me to run a bootstrap experiment on a remote server for Table 3 of their paper. Let me break down what's needed:
+
+1. R1-8B model, Layer 14, W=3 (window of 3 steps concatenated)
+2. 60/20/20 split with seed=42
+3. PCA to 100d on hidden states
+4. LogisticRegression with specific params
+5. Text baseline using all-MiniLM-L6-v2
+6. 10000 bootstrap resamples with paired comparison
+
+
+7. Report metrics: Precision, BA, FPR, AUROC with CIs and p-values
+
+Now I need to check what's available on the server—the hidden states directory and any existing code I can build from.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "cffcb2c8-a913-4a91-8847-000420cd3a84",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R6xeu8TL1HP6FmuT5CsTKS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14204,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14204
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+先检查服务器上的 hidden states 文件和现有代码。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "03263514-0860-434d-8710-e644edf48159",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R6xeu8TL1HP6FmuT5CsTKS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14204,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14204
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01CqZXQfD27JvhGhNZgcNvXt`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__ssh_read_only",
+  "max_results": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "107fe255-942a-4bd5-9a79-313e9ca4d2af",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R6xeu8TL1HP6FmuT5CsTKS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14204,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14204
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-18T17:28:43.089Z_
+
+<details><summary>↩ Tool result · `toolu_01CqZXQfD27JvhGhNZgcNvXt`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "ba119a78-23b1-454a-8352-9e907ed7782a",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 29
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01K7qNkqGEnyMLgvcRXzvgKe`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "54731ef2-4d05-43a5-b462-f8db0eb6004f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TG1Np9eLRpwtZK9EVNP16t",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1960,
+      "cache_read_input_tokens": 25651,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1960
+      },
+      "output_tokens": 61,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Cq96nacvfe37WSbi1UjNM7`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ls /root/autodl-tmp/contrastive_trace_safety/scripts/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "817e832f-8505-4f17-9ca7-db244e45f42a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TG1Np9eLRpwtZK9EVNP16t",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1960,
+      "cache_read_input_tokens": 25651,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1960
+      },
+      "output_tokens": 61,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-18T17:28:47.828Z_
+
+<details><summary>↩ Tool result · `toolu_01K7qNkqGEnyMLgvcRXzvgKe`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"008edcde3b3d48dcaee8313c4779f687.pt\\n018ad1b2027a488aad4ce925258db0c7.pt\\n02361be96b4e4f11af5524a64c34f612.pt\\n023c413259524b2187989e61d96e351c.pt\\n02fad27f069d4009861ea612984ab65c.pt\\n0334a1be1cc84efc853bd93eb5327499.pt\\n03a149305aae4ed58d62489ed1f66329.pt\\n04e287adbc58415cb184c3db0ac3d8c5.pt\\n0516bc55867f4454966f3ecfd6cd85c5.pt\\n051a975475d7420d99f686fe89e83691.pt\\n05e1498f8ff741718f500af3772def28.pt\\n0601b6d225274449bcfcca10af190a9a.pt\\n06470bdf141a4267b541332987c6f695.pt\\n06d85d8b941f4a4e97dc7f33c81c34c4.pt\\n0828a2af61e846f1aea6a834017ec7be.pt\\n0901d657f92b441e8cac21db87d066e5.pt\\n0a31d31d974b410eb923f33cfbf6e6b9.pt\\n0c9c5e6cf60849bb925d007dd2b061fc.pt\\n0d13aa7b2f374a3fa367bdea42493ed5.pt\\n0d19422cc82743568f671961b534c215.pt\\n0d8b146a9bce48f7a8083f6ed962664e.pt\\n0daf036448c04433859bdf6758495bc3.pt\\n0f35040637024040b7944abd48472d22.pt\\n0f6bdcb1133f442ba26e11047e5351c6.pt\\n0f860c71503e43c985eafc0142546731.pt\\n10a2a6c355d4408ab97b759b490a6a8b.pt\\n10a3ace02006485ca641aaa88684b5dd.pt\\n10e4c756140247b4af10559f16d8f876.pt\\n114499174dfa48daa5e053c629c83a10.pt\\n116042e8dc164c17b02d5670b015f807.pt\\n11a094cbf15549bca819c57910c2a2ff.pt\\n11c4c8713262422eb211ec189c3715ab.pt\\n11f61793e9b449e799abe7ce14cbcf6c.pt\\n1249b76a00da42b8be3aa81d823cd820.pt\\n130e2b41b4bf43f883f087b5036afe85.pt\\n13258d4ff6e04f67b9510328b89251ea.pt\\n1362fe58c432487aac432b576babe0c2.pt\\n13b5b2b441534e818b1a2d2f577cb99c.pt\\n153e58ce7b554163a43030ecfa47a304.pt\\n1582380f856b429490eca59328ce551d.pt\\n15e5e40e8ddc475594dce89bc52c9056.pt\\n16015e85a86d4ad6aae05eda39472b0a.pt\\n16d9dd7bb2484ec19ed11d44fb46af7f.pt\\n177c234e76104e7b9f2858bdd71f4963.pt\\n17a5d38bd028469aad6f4cb0304c7e01.pt\\n17d1d68121644dec87c3bb936abfb615.pt\\n181e5d60e4f1457fb60796052713110b.pt\\n18ca23538f9d4c3faa4cb9c4e2ec4c2d.pt\\n196b722aadd6473f9ce6795294f9a88a.pt\\n1a27d43f250e4201bb0099ae23551974.pt\\n1a2bca42efbd45458fe50b6a6b44242f.pt\\n1af63cb80a24492ab0e83a4348c4af7c.pt\\n1b1500fc103442f58d67378aa77cabae.pt\\n1b5b368a6ce049918d5cbc7b816f67f3.pt\\n1b6908a3cccf49dbad6da5de63168610.pt\\n1c3096481fe34904820e6140c2d91d3d.pt\\n1c836a8b7285471a914bf1154d694fd3.pt\\n1ca105ea74eb461ab74edc6a49bc5c8d.pt\\n1d78503e3d7c4a96ab27e0d35f45e9b1.pt\\n1e0a23e7ce1a4385a832fd96f0ea7d84.pt\\n1e0d1d7e7b8d435390414f546ecffd37.pt\\n1e550c0bbf4841c4bb5c1a7bf64caa1e.pt\\n1fe8f4d00d1a47119624fbaa0881fb34.pt\\n2063c4ab75574fffbf46894fa76a9e22.pt\\n20b0b58b585b4a598326863084f89071.pt\\n20d2f69ddd034f7ea70e9931cd876dec.pt\\n20df1031c7264f16b3c4b01c6d24632c.pt\\n21067408416c481c9315126c8676f67a.pt\\n211610a5bb284b798e2c565019a17ce4.pt\\n214151321f654ee795e69620b6f2ecbd.pt\\n2188a889d72742eda3ff260e68190a19.pt\\n23809219236b4d7caa59a607ae9a720e.pt\\n23be5669e58f42998ffc8cc6e41f56b9.pt\\n24067367ed01430e91040b1a5628c25b.pt\\n243e8f50e71c4e1aaab34713fde98bf5.pt\\n246aeda7f8314227a858901be321ea94.pt\\n24b4687782be489192887d910aa05ea5.pt\\n24e0b4a7582e4771a4851fe14f2c3126.pt\\n25279afabf844384bcd343b48771d89b.pt\\n252825c6bf6a4332829a114dd15a81ae.pt\\n258b26c3388b476a85115861802f3570.pt\\n263c93647ebf47728cb6587d6cac8414.pt\\n26c2ce67241a4afdaa303c9ea84ce052.pt\\n26c6ea0401d8457cbf42df676d1f7c54.pt\\n273d77e6cf6e4459b0b3a49b6f292691.pt\\n2761e0cbcba149f4921181dcda68fd34.pt\\n27f364e30b5b45d0b182af2d912a82ba.pt\\n28c168f2db924d68bd0cf067297d62b4.pt\\n28e3af73c9cb45bd911a08d5ee2c1e09.pt\\n2920bc8a671d46e995e9c7bcfce311a7.pt\\n292c1586e2de4cda88f7cf92fd66242e.pt\\n29ba99a7944b443b941ab35d5eb62fc6.pt\\n29db63933cc249ab9101ac59b5f00c14.pt\\n29fd1674b646441e8d7786f4a6f80d2c.pt\\n2a9aef85514a488bad4240071dce0b41.pt\\n2abec044289b4626ba9be5e7d00ec38d.pt\\n2bcbfa4a78a4479f8f2b52620036f8b3.pt\\n2c382806d1e248409709b0d709602902.pt\\n2cffd3348f8540188f1788cbaf267581.pt\\n2d39b9af4a374db59b85743c3bf78b90.pt\\n2d91ea95a2444fbda84071fbce0a4c02.pt\\n2da19dc5a85d452e9ee8b05610b802d9.pt\\n2e468bb64af048b2b8b0e055149c4125.pt\\n2eb8f937fbdf42b3a046a4ea6c752d31.pt\\n2f1e84ddad0f4ca2a5d8c89662801d8a.pt\\n2f323a5f801748389761b0ffb8ebc3f5.pt\\n2fdecb822a4e424a9aab6d38eecd9d75.pt\\n2fdef098244f4806bbf3427118af5545.pt\\n309df7aa67524229af64bca147589ff1.pt\\n3120517e290f4524aa92dba517ce7cd7.pt\\n314224c9790e44d2b566e6c4447ebfc9.pt\\n31ca\\n\\n... [截断: 输出过长，省略 1648 字符] ...\\n\\n.pt\\n46fd6d65bbf04f8db59787337c112d6f.pt\\n48e3b5107797400d9135d59353127339.pt\\n49132d64f182439cb05c8ecbee25109d.pt\\n4adc8a59b02a422b819853ff8ea37031.pt\\n4b71ddd17678477fae1410d3f07c62e0.pt\\n4c7552e6eb1741f099d659402bbc3732.pt\\n4cdd1e2fbf0a47faa420d1957ca7e188.pt\\n4cf1746d5feb4298aaab8484253b1e52.pt\\n4d5543bc7c9f46a0a201279598e18de2.pt\\n4e599701ba7946cfa36460dac5ea83c2.pt\\n4e6bb35ea7dc468c8ea96ef4c7233192.pt\\n4e9ab184680340fea00cc982b20c5cc5.pt\\n4f32f6c9bf9b4e3f82559455c9ceb5b2.pt\\n4f5cf5c0632f4ca8902b83fdc413396e.pt\\n4fc1c38997a54dfcb388b0ea57f6b734.pt\\n507bb6792e484863b1914ed4dcbd5d95.pt\\n50c0e054b531453180f6fb3c88135505.pt\\n51e84e64621340b4a6ddffb07ec8371d.pt\\n5239985994cb4592957083f486e4a472.pt\\n527cc4b2cad846cda8dba92e616e6650.pt\\n528463e4097349c8ae30140ca5ef03a5.pt\\n54d10380df2343a0b5d1a6d7131cbd3e.pt\\n5512d3204bbc425da0303edcb0ba5406.pt\\n55d1dac3048a4eaf83a79862d5c5de35.pt\\n55f03705ad6e4225a772eeacf68caf62.pt\\n56862b9dc77a465f950a741a50f05f41.pt\\n56bff6b0839a48158f45b38f1b077cc5.pt\\n57bebdaf96a14737a1b8d5dc3e1b23db.pt\\n597ccab099304e9693278cecc97ef0f8.pt\\n59ebacd800cc4bb3aa64b9bc8929e38d.pt\\n5ac06f6c582446ce822265932c65bcfa.pt\\n5b02ddbfa0f0431cb42d3a83d0925cf6.pt\\n5ba6a9f8f8e74dcfad8995c03932da49.pt\\n5baaee0876ff4617baf6ef5ad3e16d4a.pt\\n5bc2efebbbed4ee5bcfc2b899df6d78d.pt\\n5bc4d1e6e9144fff8b50ad1ccde45830.pt\\n5c2e5e967913461a872eab785e974d52.pt\\n5c67b91923914272af6e84c3abbe1bc7.pt\\n5d4a5a3ea8f44b96b50fd70370a07c67.pt\\n5dad58b946af421ca1ed4404d3af808a.pt\\n5eb2e6e8ae5a47dbad5ce15d39e94914.pt\\n609f9434d82b4259bec91c3bfcefc481.pt\\n61b458d20da5435793cc49ab79dd72ab.pt\\n62271134c9c84c96b3c54cd80102e635.pt\\n62b7d1bf3fab46fba8615ff6b2c0c59f.pt\\n630abea2590548699a0558e767f93a45.pt\\n63f6ebac9dd749b5a66348f1ac0ec431.pt\\n648d501fa76b49a98d4d715cb21b0c6c.pt\\n64d7f22d97c94b19b1cb74009df14836.pt\\n6516812742694943849a2057fcc808af.pt\\n654657b943b64db587e052a54d00bb7c.pt\\n658389392fcf48ea9241762758dbdb5a.pt\\n6632a3e7ef3b440cae3ff33914f779b3.pt\\n66406f53619243dcabb0e0ae932101cc.pt\\n664cde90afec4a48a06b5d70f1ce7c12.pt\\n66645c6fdbc04786bbe24ccff59c06f1.pt\\n678abdaf4e704349821e83f583de275e.pt\\n687c21a9aa60480aa85ecd202e15f2c4.pt\\n68b9143fa1db4583acb80e7c7329c2fc.pt\\n69cf873d4a0d4e7d8f50adcb7dc6c49f.pt\\n6a98309ea88d4873abb50583b3ead369.pt\\n6b3adf9616704889be91d23ea434fa6c.pt\\n6bb38e74d8bd41cd933c5c9396c81b7e.pt\\n6bd64a98c53c46fcbf183be26184798d.pt\\n6bfb17c68ed443ba9428e7ab5fc0b783.pt\\n6c0a2e51f34940308d7893c8419fd1c4.pt\\n6c7b35bcc28b4c9287c3728459a9905a.pt\\n6cbf24473d3d4237b07ed64b68cebcf9.pt\\n6cc9ef3db44949ada36659017f74d3e2.pt\\n6d35cd45da334a0bb4d3a386ae18b5b4.pt\\n6f2b30e60a454f709cc86a2b8e59f3c6.pt\\n6f7acaf2ebcf48a4bdd182d02735438a.pt\\n705376d8a7ec4c9aab654389e84ad0a5.pt\\n713970666d664af6a484d32b0ff201cd.pt\\n7247baa1463945a499c7a9b85cd7849c.pt\\n726767aa39ed40449bce2dea098522c7.pt\\n72927750e67548fb95dea123d5b35d49.pt\\n73d4c5ecf4cb4582965d822233738518.pt\\n73d62303c3de423294d591b3c1698b8f.pt\\n74a7d23217224a7fac131ce4cd40f144.pt\\n753528ee405b4ff293e8bc711c62f9b3.pt\\n7558dc4c97304b20a321beb543fc68bd.pt\\n758ece90b50a4f68a0ef983073e2585b.pt\\n76173b9430e944d0958f1ebee98b7170.pt\\n776805cebe1f45af976da08c390eefa0.pt\\n77caa54712d94ce3ab78e280a7a08a61.pt\\n7821962b52364d028de01198f9d6c038.pt\\n797f381560724d92bee0ce89d055b7e9.pt\\n799973d92ecb4e258bf137c7f3dd8d0e.pt\\n7a23c2791fbd4446b590004cea2c96f1.pt\\n7a3458f218fb4972a6bb98ba7fe6b6c6.pt\\n7a6ec8e96fa94c9e831e204da670270d.pt\\n7b9e26fffbd34a9590de19e8c726d0cf.pt\\n7d1c985df61c498883255a4641ddc493.pt\\n7d60117d4026444b8cb67a63a157c7bb.pt\\n7dc6e744c86445da820b51f650a4bec8.pt\\n7e0c637817cd4cd5bc0b91dc2b2e642e.pt\\n7e242ddd1b084052a0834a2c90145854.pt\\n7e2732ab79574f669961c834a202a38d.pt\\n7e275af42d304ded9125ae5a92380cba.pt\\n7e2c079597164b8891a87a29ca8c0942.pt\\n7e545cd9f0bb474d8bb00ab0b448b0ba.pt\\n7f588b58a71c4dea9918c04b796a8293.pt\\n7f69f9f70f244b169194d8daec2b5df1.pt\\n7f82f0b55b924334b7a8f91561cf7a22.pt\\n80271fe2e8ba4808903a077e1c7aefb9.pt\\n8070becee99b428baf864aed8358c5f7.pt\\n810142a7c5934f018bd668311c93ea85.pt\\n81729931557c4b85a7e3fe8b77568354.pt\\n81dfc0721fd742f4b9dbf780305493d8.pt\\n830df8a1bd1843b6b64ea8445dd451e0.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.07}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "1f83fcf5-fe62-4ccf-a55a-e3f0e8539f87",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"008edcde3b3d48dcaee8313c4779f687.pt\\\\n018ad1b2027a488aad4ce925258db0c7.pt\\\\n02361be96b4e4f11af5524a64c34f612.pt\\\\n023c413259524b2187989e61d96e351c.pt\\\\n02fad27f069d4009861ea612984ab65c.pt\\\\n0334a1be1cc84efc853bd93eb5327499.pt\\\\n03a149305aae4ed58d62489ed1f66329.pt\\\\n04e287adbc58415cb184c3db0ac3d8c5.pt\\\\n0516bc55867f4454966f3ecfd6cd85c5.pt\\\\n051a975475d7420d99f686fe89e83691.pt\\\\n05e1498f8ff741718f500af3772def28.pt\\\\n0601b6d225274449bcfcca10af190a9a.pt\\\\n06470bdf141a4267b541332987c6f695.pt\\\\n06d85d8b941f4a4e97dc7f33c81c34c4.pt\\\\n0828a2af61e846f1aea6a834017ec7be.pt\\\\n0901d657f92b441e8cac21db87d066e5.pt\\\\n0a31d31d974b410eb923f33cfbf6e6b9.pt\\\\n0c9c5e6cf60849bb925d007dd2b061fc.pt\\\\n0d13aa7b2f374a3fa367bdea42493ed5.pt\\\\n0d19422cc82743568f671961b534c215.pt\\\\n0d8b146a9bce48f7a8083f6ed962664e.pt\\\\n0daf036448c04433859bdf6758495bc3.pt\\\\n0f35040637024040b7944abd48472d22.pt\\\\n0f6bdcb1133f442ba26e11047e5351c6.pt\\\\n0f860c71503e43c985eafc0142546731.pt\\\\n10a2a6c355d4408ab97b759b490a6a8b.pt\\\\n10a3ace02006485ca641aaa88684b5dd.pt\\\\n10e4c756140247b4af10559f16d8f876.pt\\\\n114499174dfa48daa5e053c629c83a10.pt\\\\n116042e8dc164c17b02d5670b015f807.pt\\\\n11a094cbf15549bca819c57910c2a2ff.pt\\\\n11c4c8713262422eb211ec189c3715ab.pt\\\\n11f61793e9b449e799abe7ce14cbcf6c.pt\\\\n1249b76a00da42b8be3aa81d823cd820.pt\\\\n130e2b41b4bf43f883f087b5036afe85.pt\\\\n13258d4ff6e04f67b9510328b89251ea.pt\\\\n1362fe58c432487aac432b576babe0c2.pt\\\\n13b5b2b441534e818b1a2d2f577cb99c.pt\\\\n153e58ce7b554163a43030ecfa47a304.pt\\\\n1582380f856b429490eca59328ce551d.pt\\\\n15e5e40e8ddc475594dce89bc52c9056.pt\\\\n16015e85a86d4ad6aae05eda39472b0a.pt\\\\n16d9dd7bb2484ec19ed11d44fb46af7f.pt\\\\n177c234e76104e7b9f2858bdd71f4963.pt\\\\n17a5d38bd028469aad6f4cb0304c7e01.pt\\\\n17d1d68121644dec87c3bb936abfb615.pt\\\\n181e5d60e4f1457fb60796052713110b.pt\\\\n18ca23538f9d4c3faa4cb9c4e2ec4c2d.pt\\\\n196b722aadd6473f9ce6795294f9a88a.pt\\\\n1a27d43f250e4201bb0099ae23551974.pt\\\\n1a2bca42efbd45458fe50b6a6b44242f.pt\\\\n1af63cb80a24492ab0e83a4348c4af7c.pt\\\\n1b1500fc103442f58d67378aa77cabae.pt\\\\n1b5b368a6ce049918d5cbc7b816f67f3.pt\\\\n1b6908a3cccf49dbad6da5de63168610.pt\\\\n1c3096481fe34904820e6140c2d91d3d.pt\\\\n1c836a8b7285471a914bf1154d694fd3.pt\\\\n1ca105ea74eb461ab74edc6a49bc5c8d.pt\\\\n1d78503e3d7c4a96ab27e0d35f45e9b1.pt\\\\n1e0a23e7ce1a4385a832fd96f0ea7d84.pt\\\\n1e0d1d7e7b8d435390414f546ecffd37.pt\\\\n1e550c0bbf4841c4bb5c1a7bf64caa1e.pt\\\\n1fe8f4d00d1a47119624fbaa0881fb34.pt\\\\n2063c4ab75574fffbf46894fa76a9e22.pt\\\\n20b0b58b585b4a598326863084f89071.pt\\\\n20d2f69ddd034f7ea70e9931cd876dec.pt\\\\n20df1031c7264f16b3c4b01c6d24632c.pt\\\\n21067408416c481c9315126c8676f67a.pt\\\\n211610a5bb284b798e2c565019a17ce4.pt\\\\n214151321f654ee795e69620b6f2ecbd.pt\\\\n2188a889d72742eda3ff260e68190a19.pt\\\\n23809219236b4d7caa59a607ae9a720e.pt\\\\n23be5669e58f42998ffc8cc6e41f56b9.pt\\\\n24067367ed01430e91040b1a5628c25b.pt\\\\n243e8f50e71c4e1aaab34713fde98bf5.pt\\\\n246aeda7f8314227a858901be321ea94.pt\\\\n24b4687782be489192887d910aa05ea5.pt\\\\n24e0b4a7582e4771a4851fe14f2c3126.pt\\\\n25279afabf844384bcd343b48771d89b.pt\\\\n252825c6bf6a4332829a114dd15a81ae.pt\\\\n258b26c3388b476a85115861802f3570.pt\\\\n263c93647ebf47728cb6587d6cac8414.pt\\\\n26c2ce67241a4afdaa303c9ea84ce052.pt\\\\n26c6ea0401d8457cbf42df676d1f7c54.pt\\\\n273d77e6cf6e4459b0b3a49b6f292691.pt\\\\n2761e0cbcba149f4921181dcda68fd34.pt\\\\n27f364e30b5b45d0b182af2d912a82ba.pt\\\\n28c168f2db924d68bd0cf067297d62b4.pt\\\\n28e3af73c9cb45bd911a08d5ee2c1e09.pt\\\\n2920bc8a671d46e995e9c7bcfce311a7.pt\\\\n292c1586e2de4cda88f7cf92fd66242e.pt\\\\n29ba99a7944b443b941ab35d5eb62fc6.pt\\\\n29db63933cc249ab9101ac59b5f00c14.pt\\\\n29fd1674b646441e8d7786f4a6f80d2c.pt\\\\n2a9aef85514a488bad4240071dce0b41.pt\\\\n2abec044289b4626ba9be5e7d00ec38d.pt\\\\n2bcbfa4a78a4479f8f2b52620036f8b3.pt\\\\n2c382806d1e248409709b0d709602902.pt\\\\n2cffd3348f8540188f1788cbaf267581.pt\\\\n2d39b9af4a374db59b85743c3bf78b90.pt\\\\n2d91ea95a2444fbda84071fbce0a4c02.pt\\\\n2da19dc5a85d452e9ee8b05610b802d9.pt\\\\n2e468bb64af048b2b8b0e055149c4125.pt\\\\n2eb8f937fbdf42b3a046a4ea6c752d31.pt\\\\n2f1e84ddad0f4ca2a5d8c89662801d8a.pt\\\\n2f323a5f801748389761b0ffb8ebc3f5.pt\\\\n2fdecb822a4e424a9aab6d38eecd9d75.pt\\\\n2fdef098244f4806bbf3427118af5545.pt\\\\n309df7aa67524229af64bca147589ff1.pt\\\\n3120517e290f4524aa92dba517ce7cd7.pt\\\\n314224c9790e44d2b566e6c4447ebfc9.pt\\\\n31ca\\\\n\\\\n... [截断: 输出过长，省略 1648 字符] ...\\\\n\\\\n.pt\\\\n46fd6d65bbf04f8db59787337c112d6f.pt\\\\n48e3b5107797400d9135d59353127339.pt\\\\n49132d64f182439cb05c8ecbee25109d.pt\\\\n4adc8a59b02a422b819853ff8ea37031.pt\\\\n4b71ddd17678477fae1410d3f07c62e0.pt\\\\n4c7552e6eb1741f099d659402bbc3732.pt\\\\n4cdd1e2fbf0a47faa420d1957ca7e188.pt\\\\n4cf1746d5feb4298aaab8484253b1e52.pt\\\\n4d5543bc7c9f46a0a201279598e18de2.pt\\\\n4e599701ba7946cfa36460dac5ea83c2.pt\\\\n4e6bb35ea7dc468c8ea96ef4c7233192.pt\\\\n4e9ab184680340fea00cc982b20c5cc5.pt\\\\n4f32f6c9bf9b4e3f82559455c9ceb5b2.pt\\\\n4f5cf5c0632f4ca8902b83fdc413396e.pt\\\\n4fc1c38997a54dfcb388b0ea57f6b734.pt\\\\n507bb6792e484863b1914ed4dcbd5d95.pt\\\\n50c0e054b531453180f6fb3c88135505.pt\\\\n51e84e64621340b4a6ddffb07ec8371d.pt\\\\n5239985994cb4592957083f486e4a472.pt\\\\n527cc4b2cad846cda8dba92e616e6650.pt\\\\n528463e4097349c8ae30140ca5ef03a5.pt\\\\n54d10380df2343a0b5d1a6d7131cbd3e.pt\\\\n5512d3204bbc425da0303edcb0ba5406.pt\\\\n55d1dac3048a4eaf83a79862d5c5de35.pt\\\\n55f03705ad6e4225a772eeacf68caf62.pt\\\\n56862b9dc77a465f950a741a50f05f41.pt\\\\n56bff6b0839a48158f45b38f1b077cc5.pt\\\\n57bebdaf96a14737a1b8d5dc3e1b23db.pt\\\\n597ccab099304e9693278cecc97ef0f8.pt\\\\n59ebacd800cc4bb3aa64b9bc8929e38d.pt\\\\n5ac06f6c582446ce822265932c65bcfa.pt\\\\n5b02ddbfa0f0431cb42d3a83d0925cf6.pt\\\\n5ba6a9f8f8e74dcfad8995c03932da49.pt\\\\n5baaee0876ff4617baf6ef5ad3e16d4a.pt\\\\n5bc2efebbbed4ee5bcfc2b899df6d78d.pt\\\\n5bc4d1e6e9144fff8b50ad1ccde45830.pt\\\\n5c2e5e967913461a872eab785e974d52.pt\\\\n5c67b91923914272af6e84c3abbe1bc7.pt\\\\n5d4a5a3ea8f44b96b50fd70370a07c67.pt\\\\n5dad58b946af421ca1ed4404d3af808a.pt\\\\n5eb2e6e8ae5a47dbad5ce15d39e94914.pt\\\\n609f9434d82b4259bec91c3bfcefc481.pt\\\\n61b458d20da5435793cc49ab79dd72ab.pt\\\\n62271134c9c84c96b3c54cd80102e635.pt\\\\n62b7d1bf3fab46fba8615ff6b2c0c59f.pt\\\\n630abea2590548699a0558e767f93a45.pt\\\\n63f6ebac9dd749b5a66348f1ac0ec431.pt\\\\n648d501fa76b49a98d4d715cb21b0c6c.pt\\\\n64d7f22d97c94b19b1cb74009df14836.pt\\\\n6516812742694943849a2057fcc808af.pt\\\\n654657b943b64db587e052a54d00bb7c.pt\\\\n658389392fcf48ea9241762758dbdb5a.pt\\\\n6632a3e7ef3b440cae3ff33914f779b3.pt\\\\n66406f53619243dcabb0e0ae932101cc.pt\\\\n664cde90afec4a48a06b5d70f1ce7c12.pt\\\\n66645c6fdbc04786bbe24ccff59c06f1.pt\\\\n678abdaf4e704349821e83f583de275e.pt\\\\n687c21a9aa60480aa85ecd202e15f2c4.pt\\\\n68b9143fa1db4583acb80e7c7329c2fc.pt\\\\n69cf873d4a0d4e7d8f50adcb7dc6c49f.pt\\\\n6a98309ea88d4873abb50583b3ead369.pt\\\\n6b3adf9616704889be91d23ea434fa6c.pt\\\\n6bb38e74d8bd41cd933c5c9396c81b7e.pt\\\\n6bd64a98c53c46fcbf183be26184798d.pt\\\\n6bfb17c68ed443ba9428e7ab5fc0b783.pt\\\\n6c0a2e51f34940308d7893c8419fd1c4.pt\\\\n6c7b35bcc28b4c9287c3728459a9905a.pt\\\\n6cbf24473d3d4237b07ed64b68cebcf9.pt\\\\n6cc9ef3db44949ada36659017f74d3e2.pt\\\\n6d35cd45da334a0bb4d3a386ae18b5b4.pt\\\\n6f2b30e60a454f709cc86a2b8e59f3c6.pt\\\\n6f7acaf2ebcf48a4bdd182d02735438a.pt\\\\n705376d8a7ec4c9aab654389e84ad0a5.pt\\\\n713970666d664af6a484d32b0ff201cd.pt\\\\n7247baa1463945a499c7a9b85cd7849c.pt\\\\n726767aa39ed40449bce2dea098522c7.pt\\\\n72927750e67548fb95dea123d5b35d49.pt\\\\n73d4c5ecf4cb4582965d822233738518.pt\\\\n73d62303c3de423294d591b3c1698b8f.pt\\\\n74a7d23217224a7fac131ce4cd40f144.pt\\\\n753528ee405b4ff293e8bc711c62f9b3.pt\\\\n7558dc4c97304b20a321beb543fc68bd.pt\\\\n758ece90b50a4f68a0ef983073e2585b.pt\\\\n76173b9430e944d0958f1ebee98b7170.pt\\\\n776805cebe1f45af976da08c390eefa0.pt\\\\n77caa54712d94ce3ab78e280a7a08a61.pt\\\\n7821962b52364d028de01198f9d6c038.pt\\\\n797f381560724d92bee0ce89d055b7e9.pt\\\\n799973d92ecb4e258bf137c7f3dd8d0e.pt\\\\n7a23c2791fbd4446b590004cea2c96f1.pt\\\\n7a3458f218fb4972a6bb98ba7fe6b6c6.pt\\\\n7a6ec8e96fa94c9e831e204da670270d.pt\\\\n7b9e26fffbd34a9590de19e8c726d0cf.pt\\\\n7d1c985df61c498883255a4641ddc493.pt\\\\n7d60117d4026444b8cb67a63a157c7bb.pt\\\\n7dc6e744c86445da820b51f650a4bec8.pt\\\\n7e0c637817cd4cd5bc0b91dc2b2e642e.pt\\\\n7e242ddd1b084052a0834a2c90145854.pt\\\\n7e2732ab79574f669961c834a202a38d.pt\\\\n7e275af42d304ded9125ae5a92380cba.pt\\\\n7e2c079597164b8891a87a29ca8c0942.pt\\\\n7e545cd9f0bb474d8bb00ab0b448b0ba.pt\\\\n7f588b58a71c4dea9918c04b796a8293.pt\\\\n7f69f9f70f244b169194d8daec2b5df1.pt\\\\n7f82f0b55b924334b7a8f91561cf7a22.pt\\\\n80271fe2e8ba4808903a077e1c7aefb9.pt\\\\n8070becee99b428baf864aed8358c5f7.pt\\\\n810142a7c5934f018bd668311c93ea85.pt\\\\n81729931557c4b85a7e3fe8b77568354.pt\\\\n81dfc0721fd742f4b9dbf780305493d8.pt\\\\n830df8a1bd1843b6b64ea8445dd451e0.pt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.07}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"008edcde3b3d48dcaee8313c4779f687.pt\\n018ad1b2027a488aad4ce925258db0c7.pt\\n02361be96b4e4f11af5524a64c34f612.pt\\n023c413259524b2187989e61d96e351c.pt\\n02fad27f069d4009861ea612984ab65c.pt\\n0334a1be1cc84efc853bd93eb5327499.pt\\n03a149305aae4ed58d62489ed1f66329.pt\\n04e287adbc58415cb184c3db0ac3d8c5.pt\\n0516bc55867f4454966f3ecfd6cd85c5.pt\\n051a975475d7420d99f686fe89e83691.pt\\n05e1498f8ff741718f500af3772def28.pt\\n0601b6d225274449bcfcca10af190a9a.pt\\n06470bdf141a4267b541332987c6f695.pt\\n06d85d8b941f4a4e97dc7f33c81c34c4.pt\\n0828a2af61e846f1aea6a834017ec7be.pt\\n0901d657f92b441e8cac21db87d066e5.pt\\n0a31d31d974b410eb923f33cfbf6e6b9.pt\\n0c9c5e6cf60849bb925d007dd2b061fc.pt\\n0d13aa7b2f374a3fa367bdea42493ed5.pt\\n0d19422cc82743568f671961b534c215.pt\\n0d8b146a9bce48f7a8083f6ed962664e.pt\\n0daf036448c04433859bdf6758495bc3.pt\\n0f35040637024040b7944abd48472d22.pt\\n0f6bdcb1133f442ba26e11047e5351c6.pt\\n0f860c71503e43c985eafc0142546731.pt\\n10a2a6c355d4408ab97b759b490a6a8b.pt\\n10a3ace02006485ca641aaa88684b5dd.pt\\n10e4c756140247b4af10559f16d8f876.pt\\n114499174dfa48daa5e053c629c83a10.pt\\n116042e8dc164c17b02d5670b015f807.pt\\n11a094cbf15549bca819c57910c2a2ff.pt\\n11c4c8713262422eb211ec189c3715ab.pt\\n11f61793e9b449e799abe7ce14cbcf6c.pt\\n1249b76a00da42b8be3aa81d823cd820.pt\\n130e2b41b4bf43f883f087b5036afe85.pt\\n13258d4ff6e04f67b9510328b89251ea.pt\\n1362fe58c432487aac432b576babe0c2.pt\\n13b5b2b441534e818b1a2d2f577cb99c.pt\\n153e58ce7b554163a43030ecfa47a304.pt\\n1582380f856b429490eca59328ce551d.pt\\n15e5e40e8ddc475594dce89bc52c9056.pt\\n16015e85a86d4ad6aae05eda39472b0a.pt\\n16d9dd7bb2484ec19ed11d44fb46af7f.pt\\n177c234e76104e7b9f2858bdd71f4963.pt\\n17a5d38bd028469aad6f4cb0304c7e01.pt\\n17d1d68121644dec87c3bb936abfb615.pt\\n181e5d60e4f1457fb60796052713110b.pt\\n18ca23538f9d4c3faa4cb9c4e2ec4c2d.pt\\n196b722aadd6473f9ce6795294f9a88a.pt\\n1a27d43f250e4201bb0099ae23551974.pt\\n1a2bca42efbd45458fe50b6a6b44242f.pt\\n1af63cb80a24492ab0e83a4348c4af7c.pt\\n1b1500fc103442f58d67378aa77cabae.pt\\n1b5b368a6ce049918d5cbc7b816f67f3.pt\\n1b6908a3cccf49dbad6da5de63168610.pt\\n1c3096481fe34904820e6140c2d91d3d.pt\\n1c836a8b7285471a914bf1154d694fd3.pt\\n1ca105ea74eb461ab74edc6a49bc5c8d.pt\\n1d78503e3d7c4a96ab27e0d35f45e9b1.pt\\n1e0a23e7ce1a4385a832fd96f0ea7d84.pt\\n1e0d1d7e7b8d435390414f546ecffd37.pt\\n1e550c0bbf4841c4bb5c1a7bf64caa1e.pt\\n1fe8f4d00d1a47119624fbaa0881fb34.pt\\n2063c4ab75574fffbf46894fa76a9e22.pt\\n20b0b58b585b4a598326863084f89071.pt\\n20d2f69ddd034f7ea70e9931cd876dec.pt\\n20df1031c7264f16b3c4b01c6d24632c.pt\\n21067408416c481c9315126c8676f67a.pt\\n211610a5bb284b798e2c565019a17ce4.pt\\n214151321f654ee795e69620b6f2ecbd.pt\\n2188a889d72742eda3ff260e68190a19.pt\\n23809219236b4d7caa59a607ae9a720e.pt\\n23be5669e58f42998ffc8cc6e41f56b9.pt\\n24067367ed01430e91040b1a5628c25b.pt\\n243e8f50e71c4e1aaab34713fde98bf5.pt\\n246aeda7f8314227a858901be321ea94.pt\\n24b4687782be489192887d910aa05ea5.pt\\n24e0b4a7582e4771a4851fe14f2c3126.pt\\n25279afabf844384bcd343b48771d89b.pt\\n252825c6bf6a4332829a114dd15a81ae.pt\\n258b26c3388b476a85115861802f3570.pt\\n263c93647ebf47728cb6587d6cac8414.pt\\n26c2ce67241a4afdaa303c9ea84ce052.pt\\n26c6ea0401d8457cbf42df676d1f7c54.pt\\n273d77e6cf6e4459b0b3a49b6f292691.pt\\n2761e0cbcba149f4921181dcda68fd34.pt\\n27f364e30b5b45d0b182af2d912a82ba.pt\\n28c168f2db924d68bd0cf067297d62b4.pt\\n28e3af73c9cb45bd911a08d5ee2c1e09.pt\\n2920bc8a671d46e995e9c7bcfce311a7.pt\\n292c1586e2de4cda88f7cf92fd66242e.pt\\n29ba99a7944b443b941ab35d5eb62fc6.pt\\n29db63933cc249ab9101ac59b5f00c14.pt\\n29fd1674b646441e8d7786f4a6f80d2c.pt\\n2a9aef85514a488bad4240071dce0b41.pt\\n2abec044289b4626ba9be5e7d00ec38d.pt\\n2bcbfa4a78a4479f8f2b52620036f8b3.pt\\n2c382806d1e248409709b0d709602902.pt\\n2cffd3348f8540188f1788cbaf267581.pt\\n2d39b9af4a374db59b85743c3bf78b90.pt\\n2d91ea95a2444fbda84071fbce0a4c02.pt\\n2da19dc5a85d452e9ee8b05610b802d9.pt\\n2e468bb64af048b2b8b0e055149c4125.pt\\n2eb8f937fbdf42b3a046a4ea6c752d31.pt\\n2f1e84ddad0f4ca2a5d8c89662801d8a.pt\\n2f323a5f801748389761b0ffb8ebc3f5.pt\\n2fdecb822a4e424a9aab6d38eecd9d75.pt\\n2fdef098244f4806bbf3427118af5545.pt\\n309df7aa67524229af64bca147589ff1.pt\\n3120517e290f4524aa92dba517ce7cd7.pt\\n314224c9790e44d2b566e6c4447ebfc9.pt\\n31ca\\n\\n... [截断: 输出过长，省略 1648 字符] ...\\n\\n.pt\\n46fd6d65bbf04f8db59787337c112d6f.pt\\n48e3b5107797400d9135d59353127339.pt\\n49132d64f182439cb05c8ecbee25109d.pt\\n4adc8a59b02a422b819853ff8ea37031.pt\\n4b71ddd17678477fae1410d3f07c62e0.pt\\n4c7552e6eb1741f099d659402bbc3732.pt\\n4cdd1e2fbf0a47faa420d1957ca7e188.pt\\n4cf1746d5feb4298aaab8484253b1e52.pt\\n4d5543bc7c9f46a0a201279598e18de2.pt\\n4e599701ba7946cfa36460dac5ea83c2.pt\\n4e6bb35ea7dc468c8ea96ef4c7233192.pt\\n4e9ab184680340fea00cc982b20c5cc5.pt\\n4f32f6c9bf9b4e3f82559455c9ceb5b2.pt\\n4f5cf5c0632f4ca8902b83fdc413396e.pt\\n4fc1c38997a54dfcb388b0ea57f6b734.pt\\n507bb6792e484863b1914ed4dcbd5d95.pt\\n50c0e054b531453180f6fb3c88135505.pt\\n51e84e64621340b4a6ddffb07ec8371d.pt\\n5239985994cb4592957083f486e4a472.pt\\n527cc4b2cad846cda8dba92e616e6650.pt\\n528463e4097349c8ae30140ca5ef03a5.pt\\n54d10380df2343a0b5d1a6d7131cbd3e.pt\\n5512d3204bbc425da0303edcb0ba5406.pt\\n55d1dac3048a4eaf83a79862d5c5de35.pt\\n55f03705ad6e4225a772eeacf68caf62.pt\\n56862b9dc77a465f950a741a50f05f41.pt\\n56bff6b0839a48158f45b38f1b077cc5.pt\\n57bebdaf96a14737a1b8d5dc3e1b23db.pt\\n597ccab099304e9693278cecc97ef0f8.pt\\n59ebacd800cc4bb3aa64b9bc8929e38d.pt\\n5ac06f6c582446ce822265932c65bcfa.pt\\n5b02ddbfa0f0431cb42d3a83d0925cf6.pt\\n5ba6a9f8f8e74dcfad8995c03932da49.pt\\n5baaee0876ff4617baf6ef5ad3e16d4a.pt\\n5bc2efebbbed4ee5bcfc2b899df6d78d.pt\\n5bc4d1e6e9144fff8b50ad1ccde45830.pt\\n5c2e5e967913461a872eab785e974d52.pt\\n5c67b91923914272af6e84c3abbe1bc7.pt\\n5d4a5a3ea8f44b96b50fd70370a07c67.pt\\n5dad58b946af421ca1ed4404d3af808a.pt\\n5eb2e6e8ae5a47dbad5ce15d39e94914.pt\\n609f9434d82b4259bec91c3bfcefc481.pt\\n61b458d20da5435793cc49ab79dd72ab.pt\\n62271134c9c84c96b3c54cd80102e635.pt\\n62b7d1bf3fab46fba8615ff6b2c0c59f.pt\\n630abea2590548699a0558e767f93a45.pt\\n63f6ebac9dd749b5a66348f1ac0ec431.pt\\n648d501fa76b49a98d4d715cb21b0c6c.pt\\n64d7f22d97c94b19b1cb74009df14836.pt\\n6516812742694943849a2057fcc808af.pt\\n654657b943b64db587e052a54d00bb7c.pt\\n658389392fcf48ea9241762758dbdb5a.pt\\n6632a3e7ef3b440cae3ff33914f779b3.pt\\n66406f53619243dcabb0e0ae932101cc.pt\\n664cde90afec4a48a06b5d70f1ce7c12.pt\\n66645c6fdbc04786bbe24ccff59c06f1.pt\\n678abdaf4e704349821e83f583de275e.pt\\n687c21a9aa60480aa85ecd202e15f2c4.pt\\n68b9143fa1db4583acb80e7c7329c2fc.pt\\n69cf873d4a0d4e7d8f50adcb7dc6c49f.pt\\n6a98309ea88d4873abb50583b3ead369.pt\\n6b3adf9616704889be91d23ea434fa6c.pt\\n6bb38e74d8bd41cd933c5c9396c81b7e.pt\\n6bd64a98c53c46fcbf183be26184798d.pt\\n6bfb17c68ed443ba9428e7ab5fc0b783.pt\\n6c0a2e51f34940308d7893c8419fd1c4.pt\\n6c7b35bcc28b4c9287c3728459a9905a.pt\\n6cbf24473d3d4237b07ed64b68cebcf9.pt\\n6cc9ef3db44949ada36659017f74d3e2.pt\\n6d35cd45da334a0bb4d3a386ae18b5b4.pt\\n6f2b30e60a454f709cc86a2b8e59f3c6.pt\\n6f7acaf2ebcf48a4bdd182d02735438a.pt\\n705376d8a7ec4c9aab654389e84ad0a5.pt\\n713970666d664af6a484d32b0ff201cd.pt\\n7247baa1463945a499c7a9b85cd7849c.pt\\n726767aa39ed40449bce2dea098522c7.pt\\n72927750e67548fb95dea123d5b35d49.pt\\n73d4c5ecf4cb4582965d822233738518.pt\\n73d62303c3de423294d591b3c1698b8f.pt\\n74a7d23217224a7fac131ce4cd40f144.pt\\n753528ee405b4ff293e8bc711c62f9b3.pt\\n7558dc4c97304b20a321beb543fc68bd.pt\\n758ece90b50a4f68a0ef983073e2585b.pt\\n76173b9430e944d0958f1ebee98b7170.pt\\n776805cebe1f45af976da08c390eefa0.pt\\n77caa54712d94ce3ab78e280a7a08a61.pt\\n7821962b52364d028de01198f9d6c038.pt\\n797f381560724d92bee0ce89d055b7e9.pt\\n799973d92ecb4e258bf137c7f3dd8d0e.pt\\n7a23c2791fbd4446b590004cea2c96f1.pt\\n7a3458f218fb4972a6bb98ba7fe6b6c6.pt\\n7a6ec8e96fa94c9e831e204da670270d.pt\\n7b9e26fffbd34a9590de19e8c726d0cf.pt\\n7d1c985df61c498883255a4641ddc493.pt\\n7d60117d4026444b8cb67a63a157c7bb.pt\\n7dc6e744c86445da820b51f650a4bec8.pt\\n7e0c637817cd4cd5bc0b91dc2b2e642e.pt\\n7e242ddd1b084052a0834a2c90145854.pt\\n7e2732ab79574f669961c834a202a38d.pt\\n7e275af42d304ded9125ae5a92380cba.pt\\n7e2c079597164b8891a87a29ca8c0942.pt\\n7e545cd9f0bb474d8bb00ab0b448b0ba.pt\\n7f588b58a71c4dea9918c04b796a8293.pt\\n7f69f9f70f244b169194d8daec2b5df1.pt\\n7f82f0b55b924334b7a8f91561cf7a22.pt\\n80271fe2e8ba4808903a077e1c7aefb9.pt\\n8070becee99b428baf864aed8358c5f7.pt\\n810142a7c5934f018bd668311c93ea85.pt\\n81729931557c4b85a7e3fe8b77568354.pt\\n81dfc0721fd742f4b9dbf780305493d8.pt\\n830df8a1bd1843b6b64ea8445dd451e0.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.07}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-18T17:28:48.250Z_
+
+<details><summary>↩ Tool result · `toolu_01Cq96nacvfe37WSbi1UjNM7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"__pycache__\\na4_bca_fpr.py\\nbge_bootstrap_bal_acc_fpr.py\\nexp_r7_multiseed_lr.py\\nexp_r8_qwq_position_control.py\\nexp_r9_hs_vs_position_bootstrap.py\\nexp_r9_qwq_residualized_significance.py\\nmulti_split_robustness.py\\nplot_layer_heatmap.py\\nqwq_safe_fpr_correct.py\\nr12_5seed_hb.py\\nr12_5seed_hb_run.py\\nr12_run_all.py\\nr13_ba_layer_modality.py\\nr13_power_analysis.py\\nr13_power_analysis_v2.py\\nr13_preprocess.py\\nr13_run.py\\nr14_a1_ot7b_rerun.py\\nr14_a5_residualized_control.py\\nr14_a5_run_one.py\\nr1_32b_sel_full.py\\nr1_32b_sel_phase1.py\\nr1_32b_sel_phase2.py\\nr1_32b_sel_train_random.py\\nr1_32b_selectivity_ci_raw.py\\nr1_8b_early_layer_supplement.py\\nrun_7b8b_residualization.py\\nrun_joint_loo_cv.py\\nrun_joint_loo_cv_v2.py\\nrun_r12_qwq_position_residualized.py\\nrun_r12_r1_32b_position_residualized.py\\nrun_r1_32b_w1_threshold.py\\nrun_r1_8b_w15_residualization.py\\nrun_threshold_sensitivity.py\\nselectivity_corrected_layers.py\\nstronger_text_encoder_comparison.py\\ntask_a_coverage_bias.py\\ntask_b_selectivity_ci.py\\ntask_b_step1_extract.py\\ntask_b_step2_bootstrap.py\\ntask_c_aggregate.py\\ntask_c_gru_fast.py\\ntask_c_gru_per_seed.py\\ntask_c_step1_extract.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "2130057c-9dc2-4dbc-97c2-ca4fad566d53",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"__pycache__\\\\na4_bca_fpr.py\\\\nbge_bootstrap_bal_acc_fpr.py\\\\nexp_r7_multiseed_lr.py\\\\nexp_r8_qwq_position_control.py\\\\nexp_r9_hs_vs_position_bootstrap.py\\\\nexp_r9_qwq_residualized_significance.py\\\\nmulti_split_robustness.py\\\\nplot_layer_heatmap.py\\\\nqwq_safe_fpr_correct.py\\\\nr12_5seed_hb.py\\\\nr12_5seed_hb_run.py\\\\nr12_run_all.py\\\\nr13_ba_layer_modality.py\\\\nr13_power_analysis.py\\\\nr13_power_analysis_v2.py\\\\nr13_preprocess.py\\\\nr13_run.py\\\\nr14_a1_ot7b_rerun.py\\\\nr14_a5_residualized_control.py\\\\nr14_a5_run_one.py\\\\nr1_32b_sel_full.py\\\\nr1_32b_sel_phase1.py\\\\nr1_32b_sel_phase2.py\\\\nr1_32b_sel_train_random.py\\\\nr1_32b_selectivity_ci_raw.py\\\\nr1_8b_early_layer_supplement.py\\\\nrun_7b8b_residualization.py\\\\nrun_joint_loo_cv.py\\\\nrun_joint_loo_cv_v2.py\\\\nrun_r12_qwq_position_residualized.py\\\\nrun_r12_r1_32b_position_residualized.py\\\\nrun_r1_32b_w1_threshold.py\\\\nrun_r1_8b_w15_residualization.py\\\\nrun_threshold_sensitivity.py\\\\nselectivity_corrected_layers.py\\\\nstronger_text_encoder_comparison.py\\\\ntask_a_coverage_bias.py\\\\ntask_b_selectivity_ci.py\\\\ntask_b_step1_extract.py\\\\ntask_b_step2_bootstrap.py\\\\ntask_c_aggregate.py\\\\ntask_c_gru_fast.py\\\\ntask_c_gru_per_seed.py\\\\ntask_c_step1_extract.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"__pycache__\\na4_bca_fpr.py\\nbge_bootstrap_bal_acc_fpr.py\\nexp_r7_multiseed_lr.py\\nexp_r8_qwq_position_control.py\\nexp_r9_hs_vs_position_bootstrap.py\\nexp_r9_qwq_residualized_significance.py\\nmulti_split_robustness.py\\nplot_layer_heatmap.py\\nqwq_safe_fpr_correct.py\\nr12_5seed_hb.py\\nr12_5seed_hb_run.py\\nr12_run_all.py\\nr13_ba_layer_modality.py\\nr13_power_analysis.py\\nr13_power_analysis_v2.py\\nr13_preprocess.py\\nr13_run.py\\nr14_a1_ot7b_rerun.py\\nr14_a5_residualized_control.py\\nr14_a5_run_one.py\\nr1_32b_sel_full.py\\nr1_32b_sel_phase1.py\\nr1_32b_sel_phase2.py\\nr1_32b_sel_train_random.py\\nr1_32b_selectivity_ci_raw.py\\nr1_8b_early_layer_supplement.py\\nrun_7b8b_residualization.py\\nrun_joint_loo_cv.py\\nrun_joint_loo_cv_v2.py\\nrun_r12_qwq_position_residualized.py\\nrun_r12_r1_32b_position_residualized.py\\nrun_r1_32b_w1_threshold.py\\nrun_r1_8b_w15_residualization.py\\nrun_threshold_sensitivity.py\\nselectivity_corrected_layers.py\\nstronger_text_encoder_comparison.py\\ntask_a_coverage_bias.py\\ntask_b_selectivity_ci.py\\ntask_b_step1_extract.py\\ntask_b_step2_bootstrap.py\\ntask_c_aggregate.py\\ntask_c_gru_fast.py\\ntask_c_gru_per_seed.py\\ntask_c_step1_extract.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me look at existing scripts to understand the data format and how things are structured. The `bge_bootstrap_bal_acc_fpr.py` and some of the other bootstrap scripts might be useful references.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "64c8284a-3c25-42d1-9182-8a1d416b845e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wh2gS7XUAPJeuCrG7TYahg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6084,
+      "cache_read_input_tokens": 27611,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6084
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+Let me check the data format and an existing bootstrap script for reference.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "bebb4503-a753-4fa0-bc40-7c1fdfdf43db",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wh2gS7XUAPJeuCrG7TYahg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6084,
+      "cache_read_input_tokens": 27611,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6084
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XFDQpETw2LAJBts2PXyqsh`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "head -50 /root/autodl-tmp/contrastive_trace_safety/scripts/bge_bootstrap_bal_acc_fpr.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "38260a84-2ccc-488e-8ace-1ed2b8c2397b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wh2gS7XUAPJeuCrG7TYahg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6084,
+      "cache_read_input_tokens": 27611,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6084
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-18T17:28:54.107Z_
+
+<details><summary>↩ Tool result · `toolu_01XFDQpETw2LAJBts2PXyqsh`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Bootstrap CI for BGE-large comparison: bal_acc and FPR.\\n10k resamples, null-centered p-values.\\nCorrect layer indexing: hs[:, layer_idx, :] for (steps, layers, dim) format.\\n\\\"\\\"\\\"\\n\\nimport os\\nos.environ[\\\"TOKENIZERS_PARALLELISM\\\"] = \\\"false\\\"\\nos.environ[\\\"HF_ENDPOINT\\\"] = \\\"https://hf-mirror.com\\\"\\n\\nimport json, time, glob, warnings\\nfrom pathlib import Path\\nfrom collections import defaultdict\\n\\nimport numpy as np\\nimport torch\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.metrics import balanced_accuracy_score\\nfrom sklearn.preprocessing import StandardScaler\\n\\nwarnings.filterwarnings(\\\"ignore\\\")\\n\\nSEED = 42\\nN_RESAMPLES = 10000\\nBASE = Path(\\\"/root/autodl-tmp/contrastive_trace_safety\\\")\\nOUTPUT_DIR = BASE / \\\"artifacts/exp_r8_bge_bootstrap_ci\\\"\\nOUTPUT_DIR.mkdir(parents=True, exist_ok=True)\\n\\nBGE_MODEL_PATH = str(BASE / \\\"models/bge-large-en-v1.5\\\")\\nBGE_DIM = 1024\\n\\nMODEL_CONFIGS = {\\n    \\\"r1_8b\\\": {\\n        \\\"model_name_hf\\\": \\\"r1-8b\\\",\\n        \\\"hs_dir\\\": BASE / \\\"artifacts/hidden_states\\\",\\n        \\\"layer_idx\\\": 2,\\n        \\\"hidden_dim\\\": 4096,\\n        \\\"window\\\": 15,\\n    },\\n    \\\"ot_7b\\\": {\\n        \\\"model_name_hf\\\": \\\"ot-7b\\\",\\n        \\\"hs_dir\\\": BASE / \\\"artifacts/hidden_states_ot7b\\\",\\n        \\\"layer_idx\\\": 16,\\n        \\\"hidden_dim\\\": 3584,\\n        \\\"window\\\": 3,\\n    },\\n    \\\"qwq_32b\\\": {\\n        \\\"model_name_hf\\\": \\\"QwQ\\\",\\n        \\\"hs_dir\\\": BASE / \\\"artifacts/hidden_states_qwq_32b\\\",\\n        \\\"layer_idx\\\": 60,\\n        \\\"hidden_dim\\\": 5120,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "4ba9038c-0d27-4b01-9b8b-087372cc96c1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Bootstrap CI for BGE-large comparison: bal_acc and FPR.\\\\n10k resamples, null-centered p-values.\\\\nCorrect layer indexing: hs[:, layer_idx, :] for (steps, layers, dim) format.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport os\\\\nos.environ[\\\\\\\"TOKENIZERS_PARALLELISM\\\\\\\"] = \\\\\\\"false\\\\\\\"\\\\nos.environ[\\\\\\\"HF_ENDPOINT\\\\\\\"] = \\\\\\\"https://hf-mirror.com\\\\\\\"\\\\n\\\\nimport json, time, glob, warnings\\\\nfrom pathlib import Path\\\\nfrom collections import defaultdict\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom sklearn.linear_model import LogisticRegression\\\\nfrom sklearn.metrics import balanced_accuracy_score\\\\nfrom sklearn.preprocessing import StandardScaler\\\\n\\\\nwarnings.filterwarnings(\\\\\\\"ignore\\\\\\\")\\\\n\\\\nSEED = 42\\\\nN_RESAMPLES = 10000\\\\nBASE = Path(\\\\\\\"/root/autodl-tmp/contrastive_trace_safety\\\\\\\")\\\\nOUTPUT_DIR = BASE / \\\\\\\"artifacts/exp_r8_bge_bootstrap_ci\\\\\\\"\\\\nOUTPUT_DIR.mkdir(parents=True, exist_ok=True)\\\\n\\\\nBGE_MODEL_PATH = str(BASE / \\\\\\\"models/bge-large-en-v1.5\\\\\\\")\\\\nBGE_DIM = 1024\\\\n\\\\nMODEL_CONFIGS = {\\\\n    \\\\\\\"r1_8b\\\\\\\": {\\\\n        \\\\\\\"model_name_hf\\\\\\\": \\\\\\\"r1-8b\\\\\\\",\\\\n        \\\\\\\"hs_dir\\\\\\\": BASE / \\\\\\\"artifacts/hidden_states\\\\\\\",\\\\n        \\\\\\\"layer_idx\\\\\\\": 2,\\\\n        \\\\\\\"hidden_dim\\\\\\\": 4096,\\\\n        \\\\\\\"window\\\\\\\": 15,\\\\n    },\\\\n    \\\\\\\"ot_7b\\\\\\\": {\\\\n        \\\\\\\"model_name_hf\\\\\\\": \\\\\\\"ot-7b\\\\\\\",\\\\n        \\\\\\\"hs_dir\\\\\\\": BASE / \\\\\\\"artifacts/hidden_states_ot7b\\\\\\\",\\\\n        \\\\\\\"layer_idx\\\\\\\": 16,\\\\n        \\\\\\\"hidden_dim\\\\\\\": 3584,\\\\n        \\\\\\\"window\\\\\\\": 3,\\\\n    },\\\\n    \\\\\\\"qwq_32b\\\\\\\": {\\\\n        \\\\\\\"model_name_hf\\\\\\\": \\\\\\\"QwQ\\\\\\\",\\\\n        \\\\\\\"hs_dir\\\\\\\": BASE / \\\\\\\"artifacts/hidden_states_qwq_32b\\\\\\\",\\\\n        \\\\\\\"layer_idx\\\\\\\": 60,\\\\n        \\\\\\\"hidden_dim\\\\\\\": 5120,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Bootstrap CI for BGE-large comparison: bal_acc and FPR.\\n10k resamples, null-centered p-values.\\nCorrect layer indexing: hs[:, layer_idx, :] for (steps, layers, dim) format.\\n\\\"\\\"\\\"\\n\\nimport os\\nos.environ[\\\"TOKENIZERS_PARALLELISM\\\"] = \\\"false\\\"\\nos.environ[\\\"HF_ENDPOINT\\\"] = \\\"https://hf-mirror.com\\\"\\n\\nimport json, time, glob, warnings\\nfrom pathlib import Path\\nfrom collections import defaultdict\\n\\nimport numpy as np\\nimport torch\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.metrics import balanced_accuracy_score\\nfrom sklearn.preprocessing import StandardScaler\\n\\nwarnings.filterwarnings(\\\"ignore\\\")\\n\\nSEED = 42\\nN_RESAMPLES = 10000\\nBASE = Path(\\\"/root/autodl-tmp/contrastive_trace_safety\\\")\\nOUTPUT_DIR = BASE / \\\"artifacts/exp_r8_bge_bootstrap_ci\\\"\\nOUTPUT_DIR.mkdir(parents=True, exist_ok=True)\\n\\nBGE_MODEL_PATH = str(BASE / \\\"models/bge-large-en-v1.5\\\")\\nBGE_DIM = 1024\\n\\nMODEL_CONFIGS = {\\n    \\\"r1_8b\\\": {\\n        \\\"model_name_hf\\\": \\\"r1-8b\\\",\\n        \\\"hs_dir\\\": BASE / \\\"artifacts/hidden_states\\\",\\n        \\\"layer_idx\\\": 2,\\n        \\\"hidden_dim\\\": 4096,\\n        \\\"window\\\": 15,\\n    },\\n    \\\"ot_7b\\\": {\\n        \\\"model_name_hf\\\": \\\"ot-7b\\\",\\n        \\\"hs_dir\\\": BASE / \\\"artifacts/hidden_states_ot7b\\\",\\n        \\\"layer_idx\\\": 16,\\n        \\\"hidden_dim\\\": 3584,\\n        \\\"window\\\": 3,\\n    },\\n    \\\"qwq_32b\\\": {\\n        \\\"model_name_hf\\\": \\\"QwQ\\\",\\n        \\\"hs_dir\\\": BASE / \\\"artifacts/hidden_states_qwq_32b\\\",\\n        \\\"layer_idx\\\": 60,\\n        \\\"hidden_dim\\\": 5120,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TjDwTiLPy6tnMnt1oqyYQz`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "find /root/autodl-tmp/contrastive_trace_safety/ -name \"metadata*.json\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "7a7ba565-e71c-495b-bc71-c2821afcb947",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wh2gS7XUAPJeuCrG7TYahg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6084,
+      "cache_read_input_tokens": 27611,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6084
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-18T17:28:54.871Z_
+
+<details><summary>↩ Tool result · `toolu_01TjDwTiLPy6tnMnt1oqyYQz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "73c3a83a-0f1b-4698-afe3-c4d6748f81e7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012dCJ7sUE1S7JV4TJ3FY5We`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/ -1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "2c7d8f37-64b2-4361-b1d9-3c3ed3cf1622",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wh2gS7XUAPJeuCrG7TYahg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6084,
+      "cache_read_input_tokens": 27611,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6084
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-18T17:28:55.745Z_
+
+<details><summary>↩ Tool result · `toolu_012dCJ7sUE1S7JV4TJ3FY5We`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"008edcde3b3d48dcaee8313c4779f687.pt\\n018ad1b2027a488aad4ce925258db0c7.pt\\n02361be96b4e4f11af5524a64c34f612.pt\\n023c413259524b2187989e61d96e351c.pt\\n02fad27f069d4009861ea612984ab65c.pt\\n0334a1be1cc84efc853bd93eb5327499.pt\\n03a149305aae4ed58d62489ed1f66329.pt\\n04e287adbc58415cb184c3db0ac3d8c5.pt\\n0516bc55867f4454966f3ecfd6cd85c5.pt\\n051a975475d7420d99f686fe89e83691.pt\\n05e1498f8ff741718f500af3772def28.pt\\n0601b6d225274449bcfcca10af190a9a.pt\\n06470bdf141a4267b541332987c6f695.pt\\n06d85d8b941f4a4e97dc7f33c81c34c4.pt\\n0828a2af61e846f1aea6a834017ec7be.pt\\n0901d657f92b441e8cac21db87d066e5.pt\\n0a31d31d974b410eb923f33cfbf6e6b9.pt\\n0c9c5e6cf60849bb925d007dd2b061fc.pt\\n0d13aa7b2f374a3fa367bdea42493ed5.pt\\n0d19422cc82743568f671961b534c215.pt\\n0d8b146a9bce48f7a8083f6ed962664e.pt\\n0daf036448c04433859bdf6758495bc3.pt\\n0f35040637024040b7944abd48472d22.pt\\n0f6bdcb1133f442ba26e11047e5351c6.pt\\n0f860c71503e43c985eafc0142546731.pt\\n10a2a6c355d4408ab97b759b490a6a8b.pt\\n10a3ace02006485ca641aaa88684b5dd.pt\\n10e4c756140247b4af10559f16d8f876.pt\\n114499174dfa48daa5e053c629c83a10.pt\\n116042e8dc164c17b02d5670b015f807.pt\\n11a094cbf15549bca819c57910c2a2ff.pt\\n11c4c8713262422eb211ec189c3715ab.pt\\n11f61793e9b449e799abe7ce14cbcf6c.pt\\n1249b76a00da42b8be3aa81d823cd820.pt\\n130e2b41b4bf43f883f087b5036afe85.pt\\n13258d4ff6e04f67b9510328b89251ea.pt\\n1362fe58c432487aac432b576babe0c2.pt\\n13b5b2b441534e818b1a2d2f577cb99c.pt\\n153e58ce7b554163a43030ecfa47a304.pt\\n1582380f856b429490eca59328ce551d.pt\\n15e5e40e8ddc475594dce89bc52c9056.pt\\n16015e85a86d4ad6aae05eda39472b0a.pt\\n16d9dd7bb2484ec19ed11d44fb46af7f.pt\\n177c234e76104e7b9f2858bdd71f4963.pt\\n17a5d38bd028469aad6f4cb0304c7e01.pt\\n17d1d68121644dec87c3bb936abfb615.pt\\n181e5d60e4f1457fb60796052713110b.pt\\n18ca23538f9d4c3faa4cb9c4e2ec4c2d.pt\\n196b722aadd6473f9ce6795294f9a88a.pt\\n1a27d43f250e4201bb0099ae23551974.pt\\n1a2bca42efbd45458fe50b6a6b44242f.pt\\n1af63cb80a24492ab0e83a4348c4af7c.pt\\n1b1500fc103442f58d67378aa77cabae.pt\\n1b5b368a6ce049918d5cbc7b816f67f3.pt\\n1b6908a3cccf49dbad6da5de63168610.pt\\n1c3096481fe34904820e6140c2d91d3d.pt\\n1c836a8b7285471a914bf1154d694fd3.pt\\n1ca105ea74eb461ab74edc6a49bc5c8d.pt\\n1d78503e3d7c4a96ab27e0d35f45e9b1.pt\\n1e0a23e7ce1a4385a832fd96f0ea7d84.pt\\n1e0d1d7e7b8d435390414f546ecffd37.pt\\n1e550c0bbf4841c4bb5c1a7bf64caa1e.pt\\n1fe8f4d00d1a47119624fbaa0881fb34.pt\\n2063c4ab75574fffbf46894fa76a9e22.pt\\n20b0b58b585b4a598326863084f89071.pt\\n20d2f69ddd034f7ea70e9931cd876dec.pt\\n20df1031c7264f16b3c4b01c6d24632c.pt\\n21067408416c481c9315126c8676f67a.pt\\n211610a5bb284b798e2c565019a17ce4.pt\\n214151321f654ee795e69620b6f2ecbd.pt\\n2188a889d72742eda3ff260e68190a19.pt\\n23809219236b4d7caa59a607ae9a720e.pt\\n23be5669e58f42998ffc8cc6e41f56b9.pt\\n24067367ed01430e91040b1a5628c25b.pt\\n243e8f50e71c4e1aaab34713fde98bf5.pt\\n246aeda7f8314227a858901be321ea94.pt\\n24b4687782be489192887d910aa05ea5.pt\\n24e0b4a7582e4771a4851fe14f2c3126.pt\\n25279afabf844384bcd343b48771d89b.pt\\n252825c6bf6a4332829a114dd15a81ae.pt\\n258b26c3388b476a85115861802f3570.pt\\n263c93647ebf47728cb6587d6cac8414.pt\\n26c2ce67241a4afdaa303c9ea84ce052.pt\\n26c6ea0401d8457cbf42df676d1f7c54.pt\\n273d77e6cf6e4459b0b3a49b6f292691.pt\\n2761e0cbcba149f4921181dcda68fd34.pt\\n27f364e30b5b45d0b182af2d912a82ba.pt\\n28c168f2db924d68bd0cf067297d62b4.pt\\n28e3af73c9cb45bd911a08d5ee2c1e09.pt\\n2920bc8a671d46e995e9c7bcfce311a7.pt\\n292c1586e2de4cda88f7cf92fd66242e.pt\\n29ba99a7944b443b941ab35d5eb62fc6.pt\\n29db63933cc249ab9101ac59b5f00c14.pt\\n29fd1674b646441e8d7786f4a6f80d2c.pt\\n2a9aef85514a488bad4240071dce0b41.pt\\n2abec044289b4626ba9be5e7d00ec38d.pt\\n2bcbfa4a78a4479f8f2b52620036f8b3.pt\\n2c382806d1e248409709b0d709602902.pt\\n2cffd3348f8540188f1788cbaf267581.pt\\n2d39b9af4a374db59b85743c3bf78b90.pt\\n2d91ea95a2444fbda84071fbce0a4c02.pt\\n2da19dc5a85d452e9ee8b05610b802d9.pt\\n2e468bb64af048b2b8b0e055149c4125.pt\\n2eb8f937fbdf42b3a046a4ea6c752d31.pt\\n2f1e84ddad0f4ca2a5d8c89662801d8a.pt\\n2f323a5f801748389761b0ffb8ebc3f5.pt\\n2fdecb822a4e424a9aab6d38eecd9d75.pt\\n2fdef098244f4806bbf3427118af5545.pt\\n309df7aa67524229af64bca147589ff1.pt\\n3120517e290f4524aa92dba517ce7cd7.pt\\n314224c9790e44d2b566e6c4447ebfc9.pt\\n31ca\\n\\n... [截断: 输出过长，省略 1648 字符] ...\\n\\n.pt\\n46fd6d65bbf04f8db59787337c112d6f.pt\\n48e3b5107797400d9135d59353127339.pt\\n49132d64f182439cb05c8ecbee25109d.pt\\n4adc8a59b02a422b819853ff8ea37031.pt\\n4b71ddd17678477fae1410d3f07c62e0.pt\\n4c7552e6eb1741f099d659402bbc3732.pt\\n4cdd1e2fbf0a47faa420d1957ca7e188.pt\\n4cf1746d5feb4298aaab8484253b1e52.pt\\n4d5543bc7c9f46a0a201279598e18de2.pt\\n4e599701ba7946cfa36460dac5ea83c2.pt\\n4e6bb35ea7dc468c8ea96ef4c7233192.pt\\n4e9ab184680340fea00cc982b20c5cc5.pt\\n4f32f6c9bf9b4e3f82559455c9ceb5b2.pt\\n4f5cf5c0632f4ca8902b83fdc413396e.pt\\n4fc1c38997a54dfcb388b0ea57f6b734.pt\\n507bb6792e484863b1914ed4dcbd5d95.pt\\n50c0e054b531453180f6fb3c88135505.pt\\n51e84e64621340b4a6ddffb07ec8371d.pt\\n5239985994cb4592957083f486e4a472.pt\\n527cc4b2cad846cda8dba92e616e6650.pt\\n528463e4097349c8ae30140ca5ef03a5.pt\\n54d10380df2343a0b5d1a6d7131cbd3e.pt\\n5512d3204bbc425da0303edcb0ba5406.pt\\n55d1dac3048a4eaf83a79862d5c5de35.pt\\n55f03705ad6e4225a772eeacf68caf62.pt\\n56862b9dc77a465f950a741a50f05f41.pt\\n56bff6b0839a48158f45b38f1b077cc5.pt\\n57bebdaf96a14737a1b8d5dc3e1b23db.pt\\n597ccab099304e9693278cecc97ef0f8.pt\\n59ebacd800cc4bb3aa64b9bc8929e38d.pt\\n5ac06f6c582446ce822265932c65bcfa.pt\\n5b02ddbfa0f0431cb42d3a83d0925cf6.pt\\n5ba6a9f8f8e74dcfad8995c03932da49.pt\\n5baaee0876ff4617baf6ef5ad3e16d4a.pt\\n5bc2efebbbed4ee5bcfc2b899df6d78d.pt\\n5bc4d1e6e9144fff8b50ad1ccde45830.pt\\n5c2e5e967913461a872eab785e974d52.pt\\n5c67b91923914272af6e84c3abbe1bc7.pt\\n5d4a5a3ea8f44b96b50fd70370a07c67.pt\\n5dad58b946af421ca1ed4404d3af808a.pt\\n5eb2e6e8ae5a47dbad5ce15d39e94914.pt\\n609f9434d82b4259bec91c3bfcefc481.pt\\n61b458d20da5435793cc49ab79dd72ab.pt\\n62271134c9c84c96b3c54cd80102e635.pt\\n62b7d1bf3fab46fba8615ff6b2c0c59f.pt\\n630abea2590548699a0558e767f93a45.pt\\n63f6ebac9dd749b5a66348f1ac0ec431.pt\\n648d501fa76b49a98d4d715cb21b0c6c.pt\\n64d7f22d97c94b19b1cb74009df14836.pt\\n6516812742694943849a2057fcc808af.pt\\n654657b943b64db587e052a54d00bb7c.pt\\n658389392fcf48ea9241762758dbdb5a.pt\\n6632a3e7ef3b440cae3ff33914f779b3.pt\\n66406f53619243dcabb0e0ae932101cc.pt\\n664cde90afec4a48a06b5d70f1ce7c12.pt\\n66645c6fdbc04786bbe24ccff59c06f1.pt\\n678abdaf4e704349821e83f583de275e.pt\\n687c21a9aa60480aa85ecd202e15f2c4.pt\\n68b9143fa1db4583acb80e7c7329c2fc.pt\\n69cf873d4a0d4e7d8f50adcb7dc6c49f.pt\\n6a98309ea88d4873abb50583b3ead369.pt\\n6b3adf9616704889be91d23ea434fa6c.pt\\n6bb38e74d8bd41cd933c5c9396c81b7e.pt\\n6bd64a98c53c46fcbf183be26184798d.pt\\n6bfb17c68ed443ba9428e7ab5fc0b783.pt\\n6c0a2e51f34940308d7893c8419fd1c4.pt\\n6c7b35bcc28b4c9287c3728459a9905a.pt\\n6cbf24473d3d4237b07ed64b68cebcf9.pt\\n6cc9ef3db44949ada36659017f74d3e2.pt\\n6d35cd45da334a0bb4d3a386ae18b5b4.pt\\n6f2b30e60a454f709cc86a2b8e59f3c6.pt\\n6f7acaf2ebcf48a4bdd182d02735438a.pt\\n705376d8a7ec4c9aab654389e84ad0a5.pt\\n713970666d664af6a484d32b0ff201cd.pt\\n7247baa1463945a499c7a9b85cd7849c.pt\\n726767aa39ed40449bce2dea098522c7.pt\\n72927750e67548fb95dea123d5b35d49.pt\\n73d4c5ecf4cb4582965d822233738518.pt\\n73d62303c3de423294d591b3c1698b8f.pt\\n74a7d23217224a7fac131ce4cd40f144.pt\\n753528ee405b4ff293e8bc711c62f9b3.pt\\n7558dc4c97304b20a321beb543fc68bd.pt\\n758ece90b50a4f68a0ef983073e2585b.pt\\n76173b9430e944d0958f1ebee98b7170.pt\\n776805cebe1f45af976da08c390eefa0.pt\\n77caa54712d94ce3ab78e280a7a08a61.pt\\n7821962b52364d028de01198f9d6c038.pt\\n797f381560724d92bee0ce89d055b7e9.pt\\n799973d92ecb4e258bf137c7f3dd8d0e.pt\\n7a23c2791fbd4446b590004cea2c96f1.pt\\n7a3458f218fb4972a6bb98ba7fe6b6c6.pt\\n7a6ec8e96fa94c9e831e204da670270d.pt\\n7b9e26fffbd34a9590de19e8c726d0cf.pt\\n7d1c985df61c498883255a4641ddc493.pt\\n7d60117d4026444b8cb67a63a157c7bb.pt\\n7dc6e744c86445da820b51f650a4bec8.pt\\n7e0c637817cd4cd5bc0b91dc2b2e642e.pt\\n7e242ddd1b084052a0834a2c90145854.pt\\n7e2732ab79574f669961c834a202a38d.pt\\n7e275af42d304ded9125ae5a92380cba.pt\\n7e2c079597164b8891a87a29ca8c0942.pt\\n7e545cd9f0bb474d8bb00ab0b448b0ba.pt\\n7f588b58a71c4dea9918c04b796a8293.pt\\n7f69f9f70f244b169194d8daec2b5df1.pt\\n7f82f0b55b924334b7a8f91561cf7a22.pt\\n80271fe2e8ba4808903a077e1c7aefb9.pt\\n8070becee99b428baf864aed8358c5f7.pt\\n810142a7c5934f018bd668311c93ea85.pt\\n81729931557c4b85a7e3fe8b77568354.pt\\n81dfc0721fd742f4b9dbf780305493d8.pt\\n830df8a1bd1843b6b64ea8445dd451e0.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "300dbc81-f169-45d3-8a7c-1cda6f81aa98",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"008edcde3b3d48dcaee8313c4779f687.pt\\\\n018ad1b2027a488aad4ce925258db0c7.pt\\\\n02361be96b4e4f11af5524a64c34f612.pt\\\\n023c413259524b2187989e61d96e351c.pt\\\\n02fad27f069d4009861ea612984ab65c.pt\\\\n0334a1be1cc84efc853bd93eb5327499.pt\\\\n03a149305aae4ed58d62489ed1f66329.pt\\\\n04e287adbc58415cb184c3db0ac3d8c5.pt\\\\n0516bc55867f4454966f3ecfd6cd85c5.pt\\\\n051a975475d7420d99f686fe89e83691.pt\\\\n05e1498f8ff741718f500af3772def28.pt\\\\n0601b6d225274449bcfcca10af190a9a.pt\\\\n06470bdf141a4267b541332987c6f695.pt\\\\n06d85d8b941f4a4e97dc7f33c81c34c4.pt\\\\n0828a2af61e846f1aea6a834017ec7be.pt\\\\n0901d657f92b441e8cac21db87d066e5.pt\\\\n0a31d31d974b410eb923f33cfbf6e6b9.pt\\\\n0c9c5e6cf60849bb925d007dd2b061fc.pt\\\\n0d13aa7b2f374a3fa367bdea42493ed5.pt\\\\n0d19422cc82743568f671961b534c215.pt\\\\n0d8b146a9bce48f7a8083f6ed962664e.pt\\\\n0daf036448c04433859bdf6758495bc3.pt\\\\n0f35040637024040b7944abd48472d22.pt\\\\n0f6bdcb1133f442ba26e11047e5351c6.pt\\\\n0f860c71503e43c985eafc0142546731.pt\\\\n10a2a6c355d4408ab97b759b490a6a8b.pt\\\\n10a3ace02006485ca641aaa88684b5dd.pt\\\\n10e4c756140247b4af10559f16d8f876.pt\\\\n114499174dfa48daa5e053c629c83a10.pt\\\\n116042e8dc164c17b02d5670b015f807.pt\\\\n11a094cbf15549bca819c57910c2a2ff.pt\\\\n11c4c8713262422eb211ec189c3715ab.pt\\\\n11f61793e9b449e799abe7ce14cbcf6c.pt\\\\n1249b76a00da42b8be3aa81d823cd820.pt\\\\n130e2b41b4bf43f883f087b5036afe85.pt\\\\n13258d4ff6e04f67b9510328b89251ea.pt\\\\n1362fe58c432487aac432b576babe0c2.pt\\\\n13b5b2b441534e818b1a2d2f577cb99c.pt\\\\n153e58ce7b554163a43030ecfa47a304.pt\\\\n1582380f856b429490eca59328ce551d.pt\\\\n15e5e40e8ddc475594dce89bc52c9056.pt\\\\n16015e85a86d4ad6aae05eda39472b0a.pt\\\\n16d9dd7bb2484ec19ed11d44fb46af7f.pt\\\\n177c234e76104e7b9f2858bdd71f4963.pt\\\\n17a5d38bd028469aad6f4cb0304c7e01.pt\\\\n17d1d68121644dec87c3bb936abfb615.pt\\\\n181e5d60e4f1457fb60796052713110b.pt\\\\n18ca23538f9d4c3faa4cb9c4e2ec4c2d.pt\\\\n196b722aadd6473f9ce6795294f9a88a.pt\\\\n1a27d43f250e4201bb0099ae23551974.pt\\\\n1a2bca42efbd45458fe50b6a6b44242f.pt\\\\n1af63cb80a24492ab0e83a4348c4af7c.pt\\\\n1b1500fc103442f58d67378aa77cabae.pt\\\\n1b5b368a6ce049918d5cbc7b816f67f3.pt\\\\n1b6908a3cccf49dbad6da5de63168610.pt\\\\n1c3096481fe34904820e6140c2d91d3d.pt\\\\n1c836a8b7285471a914bf1154d694fd3.pt\\\\n1ca105ea74eb461ab74edc6a49bc5c8d.pt\\\\n1d78503e3d7c4a96ab27e0d35f45e9b1.pt\\\\n1e0a23e7ce1a4385a832fd96f0ea7d84.pt\\\\n1e0d1d7e7b8d435390414f546ecffd37.pt\\\\n1e550c0bbf4841c4bb5c1a7bf64caa1e.pt\\\\n1fe8f4d00d1a47119624fbaa0881fb34.pt\\\\n2063c4ab75574fffbf46894fa76a9e22.pt\\\\n20b0b58b585b4a598326863084f89071.pt\\\\n20d2f69ddd034f7ea70e9931cd876dec.pt\\\\n20df1031c7264f16b3c4b01c6d24632c.pt\\\\n21067408416c481c9315126c8676f67a.pt\\\\n211610a5bb284b798e2c565019a17ce4.pt\\\\n214151321f654ee795e69620b6f2ecbd.pt\\\\n2188a889d72742eda3ff260e68190a19.pt\\\\n23809219236b4d7caa59a607ae9a720e.pt\\\\n23be5669e58f42998ffc8cc6e41f56b9.pt\\\\n24067367ed01430e91040b1a5628c25b.pt\\\\n243e8f50e71c4e1aaab34713fde98bf5.pt\\\\n246aeda7f8314227a858901be321ea94.pt\\\\n24b4687782be489192887d910aa05ea5.pt\\\\n24e0b4a7582e4771a4851fe14f2c3126.pt\\\\n25279afabf844384bcd343b48771d89b.pt\\\\n252825c6bf6a4332829a114dd15a81ae.pt\\\\n258b26c3388b476a85115861802f3570.pt\\\\n263c93647ebf47728cb6587d6cac8414.pt\\\\n26c2ce67241a4afdaa303c9ea84ce052.pt\\\\n26c6ea0401d8457cbf42df676d1f7c54.pt\\\\n273d77e6cf6e4459b0b3a49b6f292691.pt\\\\n2761e0cbcba149f4921181dcda68fd34.pt\\\\n27f364e30b5b45d0b182af2d912a82ba.pt\\\\n28c168f2db924d68bd0cf067297d62b4.pt\\\\n28e3af73c9cb45bd911a08d5ee2c1e09.pt\\\\n2920bc8a671d46e995e9c7bcfce311a7.pt\\\\n292c1586e2de4cda88f7cf92fd66242e.pt\\\\n29ba99a7944b443b941ab35d5eb62fc6.pt\\\\n29db63933cc249ab9101ac59b5f00c14.pt\\\\n29fd1674b646441e8d7786f4a6f80d2c.pt\\\\n2a9aef85514a488bad4240071dce0b41.pt\\\\n2abec044289b4626ba9be5e7d00ec38d.pt\\\\n2bcbfa4a78a4479f8f2b52620036f8b3.pt\\\\n2c382806d1e248409709b0d709602902.pt\\\\n2cffd3348f8540188f1788cbaf267581.pt\\\\n2d39b9af4a374db59b85743c3bf78b90.pt\\\\n2d91ea95a2444fbda84071fbce0a4c02.pt\\\\n2da19dc5a85d452e9ee8b05610b802d9.pt\\\\n2e468bb64af048b2b8b0e055149c4125.pt\\\\n2eb8f937fbdf42b3a046a4ea6c752d31.pt\\\\n2f1e84ddad0f4ca2a5d8c89662801d8a.pt\\\\n2f323a5f801748389761b0ffb8ebc3f5.pt\\\\n2fdecb822a4e424a9aab6d38eecd9d75.pt\\\\n2fdef098244f4806bbf3427118af5545.pt\\\\n309df7aa67524229af64bca147589ff1.pt\\\\n3120517e290f4524aa92dba517ce7cd7.pt\\\\n314224c9790e44d2b566e6c4447ebfc9.pt\\\\n31ca\\\\n\\\\n... [截断: 输出过长，省略 1648 字符] ...\\\\n\\\\n.pt\\\\n46fd6d65bbf04f8db59787337c112d6f.pt\\\\n48e3b5107797400d9135d59353127339.pt\\\\n49132d64f182439cb05c8ecbee25109d.pt\\\\n4adc8a59b02a422b819853ff8ea37031.pt\\\\n4b71ddd17678477fae1410d3f07c62e0.pt\\\\n4c7552e6eb1741f099d659402bbc3732.pt\\\\n4cdd1e2fbf0a47faa420d1957ca7e188.pt\\\\n4cf1746d5feb4298aaab8484253b1e52.pt\\\\n4d5543bc7c9f46a0a201279598e18de2.pt\\\\n4e599701ba7946cfa36460dac5ea83c2.pt\\\\n4e6bb35ea7dc468c8ea96ef4c7233192.pt\\\\n4e9ab184680340fea00cc982b20c5cc5.pt\\\\n4f32f6c9bf9b4e3f82559455c9ceb5b2.pt\\\\n4f5cf5c0632f4ca8902b83fdc413396e.pt\\\\n4fc1c38997a54dfcb388b0ea57f6b734.pt\\\\n507bb6792e484863b1914ed4dcbd5d95.pt\\\\n50c0e054b531453180f6fb3c88135505.pt\\\\n51e84e64621340b4a6ddffb07ec8371d.pt\\\\n5239985994cb4592957083f486e4a472.pt\\\\n527cc4b2cad846cda8dba92e616e6650.pt\\\\n528463e4097349c8ae30140ca5ef03a5.pt\\\\n54d10380df2343a0b5d1a6d7131cbd3e.pt\\\\n5512d3204bbc425da0303edcb0ba5406.pt\\\\n55d1dac3048a4eaf83a79862d5c5de35.pt\\\\n55f03705ad6e4225a772eeacf68caf62.pt\\\\n56862b9dc77a465f950a741a50f05f41.pt\\\\n56bff6b0839a48158f45b38f1b077cc5.pt\\\\n57bebdaf96a14737a1b8d5dc3e1b23db.pt\\\\n597ccab099304e9693278cecc97ef0f8.pt\\\\n59ebacd800cc4bb3aa64b9bc8929e38d.pt\\\\n5ac06f6c582446ce822265932c65bcfa.pt\\\\n5b02ddbfa0f0431cb42d3a83d0925cf6.pt\\\\n5ba6a9f8f8e74dcfad8995c03932da49.pt\\\\n5baaee0876ff4617baf6ef5ad3e16d4a.pt\\\\n5bc2efebbbed4ee5bcfc2b899df6d78d.pt\\\\n5bc4d1e6e9144fff8b50ad1ccde45830.pt\\\\n5c2e5e967913461a872eab785e974d52.pt\\\\n5c67b91923914272af6e84c3abbe1bc7.pt\\\\n5d4a5a3ea8f44b96b50fd70370a07c67.pt\\\\n5dad58b946af421ca1ed4404d3af808a.pt\\\\n5eb2e6e8ae5a47dbad5ce15d39e94914.pt\\\\n609f9434d82b4259bec91c3bfcefc481.pt\\\\n61b458d20da5435793cc49ab79dd72ab.pt\\\\n62271134c9c84c96b3c54cd80102e635.pt\\\\n62b7d1bf3fab46fba8615ff6b2c0c59f.pt\\\\n630abea2590548699a0558e767f93a45.pt\\\\n63f6ebac9dd749b5a66348f1ac0ec431.pt\\\\n648d501fa76b49a98d4d715cb21b0c6c.pt\\\\n64d7f22d97c94b19b1cb74009df14836.pt\\\\n6516812742694943849a2057fcc808af.pt\\\\n654657b943b64db587e052a54d00bb7c.pt\\\\n658389392fcf48ea9241762758dbdb5a.pt\\\\n6632a3e7ef3b440cae3ff33914f779b3.pt\\\\n66406f53619243dcabb0e0ae932101cc.pt\\\\n664cde90afec4a48a06b5d70f1ce7c12.pt\\\\n66645c6fdbc04786bbe24ccff59c06f1.pt\\\\n678abdaf4e704349821e83f583de275e.pt\\\\n687c21a9aa60480aa85ecd202e15f2c4.pt\\\\n68b9143fa1db4583acb80e7c7329c2fc.pt\\\\n69cf873d4a0d4e7d8f50adcb7dc6c49f.pt\\\\n6a98309ea88d4873abb50583b3ead369.pt\\\\n6b3adf9616704889be91d23ea434fa6c.pt\\\\n6bb38e74d8bd41cd933c5c9396c81b7e.pt\\\\n6bd64a98c53c46fcbf183be26184798d.pt\\\\n6bfb17c68ed443ba9428e7ab5fc0b783.pt\\\\n6c0a2e51f34940308d7893c8419fd1c4.pt\\\\n6c7b35bcc28b4c9287c3728459a9905a.pt\\\\n6cbf24473d3d4237b07ed64b68cebcf9.pt\\\\n6cc9ef3db44949ada36659017f74d3e2.pt\\\\n6d35cd45da334a0bb4d3a386ae18b5b4.pt\\\\n6f2b30e60a454f709cc86a2b8e59f3c6.pt\\\\n6f7acaf2ebcf48a4bdd182d02735438a.pt\\\\n705376d8a7ec4c9aab654389e84ad0a5.pt\\\\n713970666d664af6a484d32b0ff201cd.pt\\\\n7247baa1463945a499c7a9b85cd7849c.pt\\\\n726767aa39ed40449bce2dea098522c7.pt\\\\n72927750e67548fb95dea123d5b35d49.pt\\\\n73d4c5ecf4cb4582965d822233738518.pt\\\\n73d62303c3de423294d591b3c1698b8f.pt\\\\n74a7d23217224a7fac131ce4cd40f144.pt\\\\n753528ee405b4ff293e8bc711c62f9b3.pt\\\\n7558dc4c97304b20a321beb543fc68bd.pt\\\\n758ece90b50a4f68a0ef983073e2585b.pt\\\\n76173b9430e944d0958f1ebee98b7170.pt\\\\n776805cebe1f45af976da08c390eefa0.pt\\\\n77caa54712d94ce3ab78e280a7a08a61.pt\\\\n7821962b52364d028de01198f9d6c038.pt\\\\n797f381560724d92bee0ce89d055b7e9.pt\\\\n799973d92ecb4e258bf137c7f3dd8d0e.pt\\\\n7a23c2791fbd4446b590004cea2c96f1.pt\\\\n7a3458f218fb4972a6bb98ba7fe6b6c6.pt\\\\n7a6ec8e96fa94c9e831e204da670270d.pt\\\\n7b9e26fffbd34a9590de19e8c726d0cf.pt\\\\n7d1c985df61c498883255a4641ddc493.pt\\\\n7d60117d4026444b8cb67a63a157c7bb.pt\\\\n7dc6e744c86445da820b51f650a4bec8.pt\\\\n7e0c637817cd4cd5bc0b91dc2b2e642e.pt\\\\n7e242ddd1b084052a0834a2c90145854.pt\\\\n7e2732ab79574f669961c834a202a38d.pt\\\\n7e275af42d304ded9125ae5a92380cba.pt\\\\n7e2c079597164b8891a87a29ca8c0942.pt\\\\n7e545cd9f0bb474d8bb00ab0b448b0ba.pt\\\\n7f588b58a71c4dea9918c04b796a8293.pt\\\\n7f69f9f70f244b169194d8daec2b5df1.pt\\\\n7f82f0b55b924334b7a8f91561cf7a22.pt\\\\n80271fe2e8ba4808903a077e1c7aefb9.pt\\\\n8070becee99b428baf864aed8358c5f7.pt\\\\n810142a7c5934f018bd668311c93ea85.pt\\\\n81729931557c4b85a7e3fe8b77568354.pt\\\\n81dfc0721fd742f4b9dbf780305493d8.pt\\\\n830df8a1bd1843b6b64ea8445dd451e0.pt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"008edcde3b3d48dcaee8313c4779f687.pt\\n018ad1b2027a488aad4ce925258db0c7.pt\\n02361be96b4e4f11af5524a64c34f612.pt\\n023c413259524b2187989e61d96e351c.pt\\n02fad27f069d4009861ea612984ab65c.pt\\n0334a1be1cc84efc853bd93eb5327499.pt\\n03a149305aae4ed58d62489ed1f66329.pt\\n04e287adbc58415cb184c3db0ac3d8c5.pt\\n0516bc55867f4454966f3ecfd6cd85c5.pt\\n051a975475d7420d99f686fe89e83691.pt\\n05e1498f8ff741718f500af3772def28.pt\\n0601b6d225274449bcfcca10af190a9a.pt\\n06470bdf141a4267b541332987c6f695.pt\\n06d85d8b941f4a4e97dc7f33c81c34c4.pt\\n0828a2af61e846f1aea6a834017ec7be.pt\\n0901d657f92b441e8cac21db87d066e5.pt\\n0a31d31d974b410eb923f33cfbf6e6b9.pt\\n0c9c5e6cf60849bb925d007dd2b061fc.pt\\n0d13aa7b2f374a3fa367bdea42493ed5.pt\\n0d19422cc82743568f671961b534c215.pt\\n0d8b146a9bce48f7a8083f6ed962664e.pt\\n0daf036448c04433859bdf6758495bc3.pt\\n0f35040637024040b7944abd48472d22.pt\\n0f6bdcb1133f442ba26e11047e5351c6.pt\\n0f860c71503e43c985eafc0142546731.pt\\n10a2a6c355d4408ab97b759b490a6a8b.pt\\n10a3ace02006485ca641aaa88684b5dd.pt\\n10e4c756140247b4af10559f16d8f876.pt\\n114499174dfa48daa5e053c629c83a10.pt\\n116042e8dc164c17b02d5670b015f807.pt\\n11a094cbf15549bca819c57910c2a2ff.pt\\n11c4c8713262422eb211ec189c3715ab.pt\\n11f61793e9b449e799abe7ce14cbcf6c.pt\\n1249b76a00da42b8be3aa81d823cd820.pt\\n130e2b41b4bf43f883f087b5036afe85.pt\\n13258d4ff6e04f67b9510328b89251ea.pt\\n1362fe58c432487aac432b576babe0c2.pt\\n13b5b2b441534e818b1a2d2f577cb99c.pt\\n153e58ce7b554163a43030ecfa47a304.pt\\n1582380f856b429490eca59328ce551d.pt\\n15e5e40e8ddc475594dce89bc52c9056.pt\\n16015e85a86d4ad6aae05eda39472b0a.pt\\n16d9dd7bb2484ec19ed11d44fb46af7f.pt\\n177c234e76104e7b9f2858bdd71f4963.pt\\n17a5d38bd028469aad6f4cb0304c7e01.pt\\n17d1d68121644dec87c3bb936abfb615.pt\\n181e5d60e4f1457fb60796052713110b.pt\\n18ca23538f9d4c3faa4cb9c4e2ec4c2d.pt\\n196b722aadd6473f9ce6795294f9a88a.pt\\n1a27d43f250e4201bb0099ae23551974.pt\\n1a2bca42efbd45458fe50b6a6b44242f.pt\\n1af63cb80a24492ab0e83a4348c4af7c.pt\\n1b1500fc103442f58d67378aa77cabae.pt\\n1b5b368a6ce049918d5cbc7b816f67f3.pt\\n1b6908a3cccf49dbad6da5de63168610.pt\\n1c3096481fe34904820e6140c2d91d3d.pt\\n1c836a8b7285471a914bf1154d694fd3.pt\\n1ca105ea74eb461ab74edc6a49bc5c8d.pt\\n1d78503e3d7c4a96ab27e0d35f45e9b1.pt\\n1e0a23e7ce1a4385a832fd96f0ea7d84.pt\\n1e0d1d7e7b8d435390414f546ecffd37.pt\\n1e550c0bbf4841c4bb5c1a7bf64caa1e.pt\\n1fe8f4d00d1a47119624fbaa0881fb34.pt\\n2063c4ab75574fffbf46894fa76a9e22.pt\\n20b0b58b585b4a598326863084f89071.pt\\n20d2f69ddd034f7ea70e9931cd876dec.pt\\n20df1031c7264f16b3c4b01c6d24632c.pt\\n21067408416c481c9315126c8676f67a.pt\\n211610a5bb284b798e2c565019a17ce4.pt\\n214151321f654ee795e69620b6f2ecbd.pt\\n2188a889d72742eda3ff260e68190a19.pt\\n23809219236b4d7caa59a607ae9a720e.pt\\n23be5669e58f42998ffc8cc6e41f56b9.pt\\n24067367ed01430e91040b1a5628c25b.pt\\n243e8f50e71c4e1aaab34713fde98bf5.pt\\n246aeda7f8314227a858901be321ea94.pt\\n24b4687782be489192887d910aa05ea5.pt\\n24e0b4a7582e4771a4851fe14f2c3126.pt\\n25279afabf844384bcd343b48771d89b.pt\\n252825c6bf6a4332829a114dd15a81ae.pt\\n258b26c3388b476a85115861802f3570.pt\\n263c93647ebf47728cb6587d6cac8414.pt\\n26c2ce67241a4afdaa303c9ea84ce052.pt\\n26c6ea0401d8457cbf42df676d1f7c54.pt\\n273d77e6cf6e4459b0b3a49b6f292691.pt\\n2761e0cbcba149f4921181dcda68fd34.pt\\n27f364e30b5b45d0b182af2d912a82ba.pt\\n28c168f2db924d68bd0cf067297d62b4.pt\\n28e3af73c9cb45bd911a08d5ee2c1e09.pt\\n2920bc8a671d46e995e9c7bcfce311a7.pt\\n292c1586e2de4cda88f7cf92fd66242e.pt\\n29ba99a7944b443b941ab35d5eb62fc6.pt\\n29db63933cc249ab9101ac59b5f00c14.pt\\n29fd1674b646441e8d7786f4a6f80d2c.pt\\n2a9aef85514a488bad4240071dce0b41.pt\\n2abec044289b4626ba9be5e7d00ec38d.pt\\n2bcbfa4a78a4479f8f2b52620036f8b3.pt\\n2c382806d1e248409709b0d709602902.pt\\n2cffd3348f8540188f1788cbaf267581.pt\\n2d39b9af4a374db59b85743c3bf78b90.pt\\n2d91ea95a2444fbda84071fbce0a4c02.pt\\n2da19dc5a85d452e9ee8b05610b802d9.pt\\n2e468bb64af048b2b8b0e055149c4125.pt\\n2eb8f937fbdf42b3a046a4ea6c752d31.pt\\n2f1e84ddad0f4ca2a5d8c89662801d8a.pt\\n2f323a5f801748389761b0ffb8ebc3f5.pt\\n2fdecb822a4e424a9aab6d38eecd9d75.pt\\n2fdef098244f4806bbf3427118af5545.pt\\n309df7aa67524229af64bca147589ff1.pt\\n3120517e290f4524aa92dba517ce7cd7.pt\\n314224c9790e44d2b566e6c4447ebfc9.pt\\n31ca\\n\\n... [截断: 输出过长，省略 1648 字符] ...\\n\\n.pt\\n46fd6d65bbf04f8db59787337c112d6f.pt\\n48e3b5107797400d9135d59353127339.pt\\n49132d64f182439cb05c8ecbee25109d.pt\\n4adc8a59b02a422b819853ff8ea37031.pt\\n4b71ddd17678477fae1410d3f07c62e0.pt\\n4c7552e6eb1741f099d659402bbc3732.pt\\n4cdd1e2fbf0a47faa420d1957ca7e188.pt\\n4cf1746d5feb4298aaab8484253b1e52.pt\\n4d5543bc7c9f46a0a201279598e18de2.pt\\n4e599701ba7946cfa36460dac5ea83c2.pt\\n4e6bb35ea7dc468c8ea96ef4c7233192.pt\\n4e9ab184680340fea00cc982b20c5cc5.pt\\n4f32f6c9bf9b4e3f82559455c9ceb5b2.pt\\n4f5cf5c0632f4ca8902b83fdc413396e.pt\\n4fc1c38997a54dfcb388b0ea57f6b734.pt\\n507bb6792e484863b1914ed4dcbd5d95.pt\\n50c0e054b531453180f6fb3c88135505.pt\\n51e84e64621340b4a6ddffb07ec8371d.pt\\n5239985994cb4592957083f486e4a472.pt\\n527cc4b2cad846cda8dba92e616e6650.pt\\n528463e4097349c8ae30140ca5ef03a5.pt\\n54d10380df2343a0b5d1a6d7131cbd3e.pt\\n5512d3204bbc425da0303edcb0ba5406.pt\\n55d1dac3048a4eaf83a79862d5c5de35.pt\\n55f03705ad6e4225a772eeacf68caf62.pt\\n56862b9dc77a465f950a741a50f05f41.pt\\n56bff6b0839a48158f45b38f1b077cc5.pt\\n57bebdaf96a14737a1b8d5dc3e1b23db.pt\\n597ccab099304e9693278cecc97ef0f8.pt\\n59ebacd800cc4bb3aa64b9bc8929e38d.pt\\n5ac06f6c582446ce822265932c65bcfa.pt\\n5b02ddbfa0f0431cb42d3a83d0925cf6.pt\\n5ba6a9f8f8e74dcfad8995c03932da49.pt\\n5baaee0876ff4617baf6ef5ad3e16d4a.pt\\n5bc2efebbbed4ee5bcfc2b899df6d78d.pt\\n5bc4d1e6e9144fff8b50ad1ccde45830.pt\\n5c2e5e967913461a872eab785e974d52.pt\\n5c67b91923914272af6e84c3abbe1bc7.pt\\n5d4a5a3ea8f44b96b50fd70370a07c67.pt\\n5dad58b946af421ca1ed4404d3af808a.pt\\n5eb2e6e8ae5a47dbad5ce15d39e94914.pt\\n609f9434d82b4259bec91c3bfcefc481.pt\\n61b458d20da5435793cc49ab79dd72ab.pt\\n62271134c9c84c96b3c54cd80102e635.pt\\n62b7d1bf3fab46fba8615ff6b2c0c59f.pt\\n630abea2590548699a0558e767f93a45.pt\\n63f6ebac9dd749b5a66348f1ac0ec431.pt\\n648d501fa76b49a98d4d715cb21b0c6c.pt\\n64d7f22d97c94b19b1cb74009df14836.pt\\n6516812742694943849a2057fcc808af.pt\\n654657b943b64db587e052a54d00bb7c.pt\\n658389392fcf48ea9241762758dbdb5a.pt\\n6632a3e7ef3b440cae3ff33914f779b3.pt\\n66406f53619243dcabb0e0ae932101cc.pt\\n664cde90afec4a48a06b5d70f1ce7c12.pt\\n66645c6fdbc04786bbe24ccff59c06f1.pt\\n678abdaf4e704349821e83f583de275e.pt\\n687c21a9aa60480aa85ecd202e15f2c4.pt\\n68b9143fa1db4583acb80e7c7329c2fc.pt\\n69cf873d4a0d4e7d8f50adcb7dc6c49f.pt\\n6a98309ea88d4873abb50583b3ead369.pt\\n6b3adf9616704889be91d23ea434fa6c.pt\\n6bb38e74d8bd41cd933c5c9396c81b7e.pt\\n6bd64a98c53c46fcbf183be26184798d.pt\\n6bfb17c68ed443ba9428e7ab5fc0b783.pt\\n6c0a2e51f34940308d7893c8419fd1c4.pt\\n6c7b35bcc28b4c9287c3728459a9905a.pt\\n6cbf24473d3d4237b07ed64b68cebcf9.pt\\n6cc9ef3db44949ada36659017f74d3e2.pt\\n6d35cd45da334a0bb4d3a386ae18b5b4.pt\\n6f2b30e60a454f709cc86a2b8e59f3c6.pt\\n6f7acaf2ebcf48a4bdd182d02735438a.pt\\n705376d8a7ec4c9aab654389e84ad0a5.pt\\n713970666d664af6a484d32b0ff201cd.pt\\n7247baa1463945a499c7a9b85cd7849c.pt\\n726767aa39ed40449bce2dea098522c7.pt\\n72927750e67548fb95dea123d5b35d49.pt\\n73d4c5ecf4cb4582965d822233738518.pt\\n73d62303c3de423294d591b3c1698b8f.pt\\n74a7d23217224a7fac131ce4cd40f144.pt\\n753528ee405b4ff293e8bc711c62f9b3.pt\\n7558dc4c97304b20a321beb543fc68bd.pt\\n758ece90b50a4f68a0ef983073e2585b.pt\\n76173b9430e944d0958f1ebee98b7170.pt\\n776805cebe1f45af976da08c390eefa0.pt\\n77caa54712d94ce3ab78e280a7a08a61.pt\\n7821962b52364d028de01198f9d6c038.pt\\n797f381560724d92bee0ce89d055b7e9.pt\\n799973d92ecb4e258bf137c7f3dd8d0e.pt\\n7a23c2791fbd4446b590004cea2c96f1.pt\\n7a3458f218fb4972a6bb98ba7fe6b6c6.pt\\n7a6ec8e96fa94c9e831e204da670270d.pt\\n7b9e26fffbd34a9590de19e8c726d0cf.pt\\n7d1c985df61c498883255a4641ddc493.pt\\n7d60117d4026444b8cb67a63a157c7bb.pt\\n7dc6e744c86445da820b51f650a4bec8.pt\\n7e0c637817cd4cd5bc0b91dc2b2e642e.pt\\n7e242ddd1b084052a0834a2c90145854.pt\\n7e2732ab79574f669961c834a202a38d.pt\\n7e275af42d304ded9125ae5a92380cba.pt\\n7e2c079597164b8891a87a29ca8c0942.pt\\n7e545cd9f0bb474d8bb00ab0b448b0ba.pt\\n7f588b58a71c4dea9918c04b796a8293.pt\\n7f69f9f70f244b169194d8daec2b5df1.pt\\n7f82f0b55b924334b7a8f91561cf7a22.pt\\n80271fe2e8ba4808903a077e1c7aefb9.pt\\n8070becee99b428baf864aed8358c5f7.pt\\n810142a7c5934f018bd668311c93ea85.pt\\n81729931557c4b85a7e3fe8b77568354.pt\\n81dfc0721fd742f4b9dbf780305493d8.pt\\n830df8a1bd1843b6b64ea8445dd451e0.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the full bge_bootstrap script and check the data format of the .pt files. I need to understand:
+1. How hidden states are stored (shape, what keys)
+2. How labels/metadata are stored
+3. How text features are obtained
+
+Let me read more of the existing script and check one .pt file's structure.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "d1426f43-a704-46a0-bbc9-c3bfa8038250",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012Zp6kV41x4qn9GkgPp4NZy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6537,
+      "cache_read_input_tokens": 33695,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6537
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017rymXEQaxgdtYAiBQtf7uq`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/scripts/bge_bootstrap_bal_acc_fpr.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "10c69954-7dd1-4a23-8ed2-1c20332d6914",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012Zp6kV41x4qn9GkgPp4NZy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6537,
+      "cache_read_input_tokens": 33695,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6537
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-18T17:29:02.887Z_
+
+<details><summary>↩ Tool result · `toolu_017rymXEQaxgdtYAiBQtf7uq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Bootstrap CI for BGE-large comparison: bal_acc and FPR.\\n10k resamples, null-centered p-values.\\nCorrect layer indexing: hs[:, layer_idx, :] for (steps, layers, dim) format.\\n\\\"\\\"\\\"\\n\\nimport os\\nos.environ[\\\"TOKENIZERS_PARALLELISM\\\"] = \\\"false\\\"\\nos.environ[\\\"HF_ENDPOINT\\\"] = \\\"https://hf-mirror.com\\\"\\n\\nimport json, time, glob, warnings\\nfrom pathlib import Path\\nfrom collections import defaultdict\\n\\nimport numpy as np\\nimport torch\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.metrics import balanced_accuracy_score\\nfrom sklearn.preprocessing import StandardScaler\\n\\nwarnings.filterwarnings(\\\"ignore\\\")\\n\\nSEED = 42\\nN_RESAMPLES = 10000\\nBASE = Path(\\\"/root/autodl-tmp/contrastive_trace_safety\\\")\\nOUTPUT_DIR = BASE / \\\"artifacts/exp_r8_bge_bootstrap_ci\\\"\\nOUTPUT_DIR.mkdir(parents=True, exist_ok=True)\\n\\nBGE_MODEL_PATH = str(BASE / \\\"models/bge-large-en-v1.5\\\")\\nBGE_DIM = 1024\\n\\nMODEL_CONFIGS = {\\n    \\\"r1_8b\\\": {\\n        \\\"model_name_hf\\\": \\\"r1-8b\\\",\\n        \\\"hs_dir\\\": BASE / \\\"artifacts/hidden_states\\\",\\n        \\\"layer_idx\\\": 2,\\n        \\\"hidden_dim\\\": 4096,\\n        \\\"window\\\": 15,\\n    },\\n    \\\"ot_7b\\\": {\\n        \\\"model_name_hf\\\": \\\"ot-7b\\\",\\n        \\\"hs_dir\\\": BASE / \\\"artifacts/hidden_states_ot7b\\\",\\n        \\\"layer_idx\\\": 16,\\n        \\\"hidden_dim\\\": 3584,\\n        \\\"window\\\": 3,\\n    },\\n    \\\"qwq_32b\\\": {\\n        \\\"model_name_hf\\\": \\\"QwQ\\\",\\n        \\\"hs_dir\\\": BASE / \\\"artifacts/hidden_states_qwq_32b\\\",\\n        \\\"layer_idx\\\": 60,\\n        \\\"hidden_dim\\\": 5120,\\n        \\\"window\\\": 3,\\n    },\\n    \\\"r1_32b\\\": {\\n        \\\"model_name_hf\\\": \\\"r1-32b\\\",\\n        \\\"hs_dir\\\": BASE / \\\"artifacts/hidden_states_r1_32b\\\",\\n        \\\"layer_idx\\\": 63,\\n        \\\"hidden_dim\\\": 5120,\\n        \\\"window\\\": 1,\\n    },\\n}\\n\\n\\ndef load_sentences_from_hf(model_name_hf):\\n    from datasets import load_dataset\\n    ds = load_dataset(\\\"ishitakakkar-10/HarmThoughts\\\", split=\\\"train\\\")\\n    traces = defaultdict(list)\\n    for row in ds:\\n        if row[\\\"model_name\\\"] != model_name_hf:\\n            continue\\n        sid = row[\\\"sentence_id\\\"]\\n        parts = sid.rsplit(\\\"-\\\", 1)\\n        trace_id = parts[0]\\n        step_idx = int(parts[1]) - 1\\n        traces[trace_id].append((step_idx, row[\\\"sentence\\\"]))\\n    for tid in traces:\\n        traces[tid].sort(key=lambda x: x[0])\\n        traces[tid] = [s for _, s in traces[tid]]\\n    return dict(traces)\\n\\n\\ndef load_traces(hs_dir, sentences_map, layer_idx):\\n    traces = []\\n    for pt_file in sorted(glob.glob(str(hs_dir / \\\"*.pt\\\"))):\\n        d = torch.load(pt_file, map_location=\\\"cpu\\\", weights_only=False)\\n        if d.get(\\\"step_labels\\\") is None or d.get(\\\"commitment_point\\\") is None:\\n            continue\\n        trace_id = d[\\\"trace_id\\\"]\\n        if trace_id not in sentences_map:\\n            continue\\n        hs = d[\\\"hidden_states\\\"]\\n        if isinstance(hs, torch.Tensor):\\n            hs = hs.float().numpy()\\n        if hs.ndim == 3:\\n            hs = hs[:, layer_idx, :]\\n        labels = d[\\\"step_labels\\\"]\\n        if isinstance(labels, torch.Tensor):\\n            labels = labels.numpy()\\n        labels = np.array(labels, dtype=np.int32)\\n        n_steps = min(hs.shape[0], len(labels), len(sentences_map[trace_id]))\\n        traces.append({\\n            \\\"trace_id\\\": trace_id,\\n            \\\"hidden_states\\\": hs[:n_steps].astype(np.float32),\\n            \\\"step_labels\\\": labels[:n_steps],\\n            \\\"sentences\\\": sentences_map[trace_id][:n_steps],\\n        })\\n    return traces\\n\\n\\ndef split_traces(traces, seed=42):\\n    rng = np.random.default_rng(seed)\\n    indices = rng.permutation(len(traces))\\n    n_train = int(len(traces) * 0.6)\\n    n_val = int(len(traces) * 0.2)\\n    return (\\n        [traces[i] for i in indices[:n_train]],\\n        [traces[i] for i in indices[n_train:n_train + n_val]],\\n        [traces[i] for i in indices[n_train + n_val:]],\\n    )\\n\\n\\ndef compute_windowed_average(features, window):\\n    n_steps = features.shape[0]\\n    cumsum = np.cumsum(features, axis=0)\\n    X = np.zeros_like(features)\\n    for t in range(n_steps):\\n        start = max(0, t - window + 1)\\n        if start == 0:\\n            X[t] = cumsum[t] / (t + 1)\\n        else:\\n            X[t]\\n\\n... [截断: 输出过长，省略 4622 字符] ...\\n\\naces with sentences\\\", flush=True)\\n\\n    traces = load_traces(cfg[\\\"hs_dir\\\"], sentences_map, cfg[\\\"layer_idx\\\"])\\n    print(f\\\"  {len(traces)} valid traces\\\", flush=True)\\n\\n    train, val, test = split_traces(traces, seed=SEED)\\n    train_val = train + val\\n    print(f\\\"  Split: train+val={len(train_val)}, test={len(test)}\\\", flush=True)\\n\\n    X_train_hs, y_train = build_hs_features(train_val, cfg[\\\"window\\\"])\\n    X_test_hs, y_test = build_hs_features(test, cfg[\\\"window\\\"])\\n    scaler_hs = StandardScaler()\\n    X_train_hs = scaler_hs.fit_transform(X_train_hs)\\n    X_test_hs = scaler_hs.transform(X_test_hs)\\n\\n    X_train_text, _ = build_text_features(train_val, st_model, cfg[\\\"window\\\"])\\n    X_test_text, _ = build_text_features(test, st_model, cfg[\\\"window\\\"])\\n    scaler_text = StandardScaler()\\n    X_train_text = scaler_text.fit_transform(X_train_text)\\n    X_test_text = scaler_text.transform(X_test_text)\\n\\n    print(f\\\"  HS features: train={X_train_hs.shape}, test={X_test_hs.shape}\\\", flush=True)\\n    print(f\\\"  Text features: train={X_train_text.shape}, test={X_test_text.shape}\\\", flush=True)\\n\\n    print(f\\\"  Training HS probe ({cfg['hidden_dim']}d)...\\\", flush=True)\\n    clf_hs = train_probe(X_train_hs, y_train, cfg[\\\"hidden_dim\\\"], seed=SEED)\\n    hs_preds = clf_hs.predict(X_test_hs)\\n\\n    print(f\\\"  Training Text probe (BGE {BGE_DIM}d)...\\\", flush=True)\\n    clf_text = train_probe(X_train_text, y_train, BGE_DIM, seed=SEED)\\n    text_preds = clf_text.predict(X_test_text)\\n\\n    trace_bounds = get_trace_boundaries(test)\\n    print(f\\\"  Running {N_RESAMPLES} bootstrap resamples...\\\", flush=True)\\n    boot = paired_bootstrap(y_test, hs_preds, text_preds, trace_bounds,\\n                            n_resamples=N_RESAMPLES, seed=SEED)\\n\\n    for metric in [\\\"bal_acc\\\", \\\"fpr\\\", \\\"precision\\\"]:\\n        b = boot[metric]\\n        print(f\\\"  {metric}: HS={b['hs_value']:.4f} BGE={b['bge_value']:.4f} \\\"\\n              f\\\"diff={b['observed_diff']:+.4f} CI={b['ci_95']} p={b['p_value']:.4f}\\\", flush=True)\\n\\n    return {\\n        \\\"n_traces\\\": len(traces),\\n        \\\"n_test\\\": len(test),\\n        \\\"layer\\\": cfg[\\\"layer_idx\\\"],\\n        \\\"window\\\": cfg[\\\"window\\\"],\\n        \\\"bootstrap\\\": boot,\\n    }\\n\\n\\ndef main():\\n    t_start = time.time()\\n\\n    from sentence_transformers import SentenceTransformer\\n    print(\\\"Loading BGE-large-en-v1.5...\\\", flush=True)\\n    st_model = SentenceTransformer(BGE_MODEL_PATH, device=\\\"cuda\\\")\\n\\n    results = {}\\n    for model_key, cfg in MODEL_CONFIGS.items():\\n        results[model_key] = run_model(model_key, cfg, st_model)\\n\\n    elapsed = time.time() - t_start\\n\\n    output = {\\n        \\\"n_resamples\\\": N_RESAMPLES,\\n        \\\"seed\\\": SEED,\\n        \\\"elapsed_seconds\\\": round(elapsed, 1),\\n        \\\"probe\\\": \\\"LogisticRegression(C=1.0, class_weight='balanced', max_iter=2000)\\\",\\n        \\\"text_encoder\\\": \\\"BAAI/bge-large-en-v1.5\\\",\\n        \\\"note\\\": \\\"Correct layer indexing: hs[:, layer_idx, :] for (steps, layers, dim) tensors\\\",\\n        \\\"diff_convention\\\": {\\n            \\\"bal_acc\\\": \\\"HS - BGE (positive = HS better)\\\",\\n            \\\"fpr\\\": \\\"BGE - HS (positive = HS better, i.e. lower FPR)\\\",\\n            \\\"precision\\\": \\\"HS - BGE (positive = HS better)\\\",\\n        },\\n        \\\"models\\\": results,\\n    }\\n\\n    out_path = OUTPUT_DIR / \\\"results.json\\\"\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n    print(f\\\"\\\\nSaved to {out_path}\\\", flush=True)\\n    print(f\\\"Elapsed: {elapsed:.1f}s\\\", flush=True)\\n\\n    print(f\\\"\\\\n{'='*100}\\\", flush=True)\\n    hdr = f\\\"{'Model':<10} {'Metric':<12} {'HS':<8} {'BGE':<8} {'Delta':<10} {'95% CI':<22} {'p-value':<8}\\\"\\n    print(hdr, flush=True)\\n    print(\\\"-\\\"*100, flush=True)\\n    for mk in MODEL_CONFIGS:\\n        r = results[mk]\\n        for metric in [\\\"bal_acc\\\", \\\"fpr\\\", \\\"precision\\\"]:\\n            b = r[\\\"bootstrap\\\"][metric]\\n            ci_str = f\\\"[{b['ci_95'][0]:+.4f}, {b['ci_95'][1]:+.4f}]\\\"\\n            print(f\\\"{mk:<10} {metric:<12} {b['hs_value']:.4f}  {b['bge_value']:.4f}  \\\"\\n                  f\\\"{b['observed_diff']:+.4f}    {ci_str:<22} {b['p_value']:.4f}\\\", flush=True)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "196ebd12-e75a-481a-a6c2-32bb2d48a1aa",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Bootstrap CI for BGE-large comparison: bal_acc and FPR.\\\\n10k resamples, null-centered p-values.\\\\nCorrect layer indexing: hs[:, layer_idx, :] for (steps, layers, dim) format.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport os\\\\nos.environ[\\\\\\\"TOKENIZERS_PARALLELISM\\\\\\\"] = \\\\\\\"false\\\\\\\"\\\\nos.environ[\\\\\\\"HF_ENDPOINT\\\\\\\"] = \\\\\\\"https://hf-mirror.com\\\\\\\"\\\\n\\\\nimport json, time, glob, warnings\\\\nfrom pathlib import Path\\\\nfrom collections import defaultdict\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom sklearn.linear_model import LogisticRegression\\\\nfrom sklearn.metrics import balanced_accuracy_score\\\\nfrom sklearn.preprocessing import StandardScaler\\\\n\\\\nwarnings.filterwarnings(\\\\\\\"ignore\\\\\\\")\\\\n\\\\nSEED = 42\\\\nN_RESAMPLES = 10000\\\\nBASE = Path(\\\\\\\"/root/autodl-tmp/contrastive_trace_safety\\\\\\\")\\\\nOUTPUT_DIR = BASE / \\\\\\\"artifacts/exp_r8_bge_bootstrap_ci\\\\\\\"\\\\nOUTPUT_DIR.mkdir(parents=True, exist_ok=True)\\\\n\\\\nBGE_MODEL_PATH = str(BASE / \\\\\\\"models/bge-large-en-v1.5\\\\\\\")\\\\nBGE_DIM = 1024\\\\n\\\\nMODEL_CONFIGS = {\\\\n    \\\\\\\"r1_8b\\\\\\\": {\\\\n        \\\\\\\"model_name_hf\\\\\\\": \\\\\\\"r1-8b\\\\\\\",\\\\n        \\\\\\\"hs_dir\\\\\\\": BASE / \\\\\\\"artifacts/hidden_states\\\\\\\",\\\\n        \\\\\\\"layer_idx\\\\\\\": 2,\\\\n        \\\\\\\"hidden_dim\\\\\\\": 4096,\\\\n        \\\\\\\"window\\\\\\\": 15,\\\\n    },\\\\n    \\\\\\\"ot_7b\\\\\\\": {\\\\n        \\\\\\\"model_name_hf\\\\\\\": \\\\\\\"ot-7b\\\\\\\",\\\\n        \\\\\\\"hs_dir\\\\\\\": BASE / \\\\\\\"artifacts/hidden_states_ot7b\\\\\\\",\\\\n        \\\\\\\"layer_idx\\\\\\\": 16,\\\\n        \\\\\\\"hidden_dim\\\\\\\": 3584,\\\\n        \\\\\\\"window\\\\\\\": 3,\\\\n    },\\\\n    \\\\\\\"qwq_32b\\\\\\\": {\\\\n        \\\\\\\"model_name_hf\\\\\\\": \\\\\\\"QwQ\\\\\\\",\\\\n        \\\\\\\"hs_dir\\\\\\\": BASE / \\\\\\\"artifacts/hidden_states_qwq_32b\\\\\\\",\\\\n        \\\\\\\"layer_idx\\\\\\\": 60,\\\\n        \\\\\\\"hidden_dim\\\\\\\": 5120,\\\\n        \\\\\\\"window\\\\\\\": 3,\\\\n    },\\\\n    \\\\\\\"r1_32b\\\\\\\": {\\\\n        \\\\\\\"model_name_hf\\\\\\\": \\\\\\\"r1-32b\\\\\\\",\\\\n        \\\\\\\"hs_dir\\\\\\\": BASE / \\\\\\\"artifacts/hidden_states_r1_32b\\\\\\\",\\\\n        \\\\\\\"layer_idx\\\\\\\": 63,\\\\n        \\\\\\\"hidden_dim\\\\\\\": 5120,\\\\n        \\\\\\\"window\\\\\\\": 1,\\\\n    },\\\\n}\\\\n\\\\n\\\\ndef load_sentences_from_hf(model_name_hf):\\\\n    from datasets import load_dataset\\\\n    ds = load_dataset(\\\\\\\"ishitakakkar-10/HarmThoughts\\\\\\\", split=\\\\\\\"train\\\\\\\")\\\\n    traces = defaultdict(list)\\\\n    for row in ds:\\\\n        if row[\\\\\\\"model_name\\\\\\\"] != model_name_hf:\\\\n            continue\\\\n        sid = row[\\\\\\\"sentence_id\\\\\\\"]\\\\n        parts = sid.rsplit(\\\\\\\"-\\\\\\\", 1)\\\\n        trace_id = parts[0]\\\\n        step_idx = int(parts[1]) - 1\\\\n        traces[trace_id].append((step_idx, row[\\\\\\\"sentence\\\\\\\"]))\\\\n    for tid in traces:\\\\n        traces[tid].sort(key=lambda x: x[0])\\\\n        traces[tid] = [s for _, s in traces[tid]]\\\\n    return dict(traces)\\\\n\\\\n\\\\ndef load_traces(hs_dir, sentences_map, layer_idx):\\\\n    traces = []\\\\n    for pt_file in sorted(glob.glob(str(hs_dir / \\\\\\\"*.pt\\\\\\\"))):\\\\n        d = torch.load(pt_file, map_location=\\\\\\\"cpu\\\\\\\", weights_only=False)\\\\n        if d.get(\\\\\\\"step_labels\\\\\\\") is None or d.get(\\\\\\\"commitment_point\\\\\\\") is None:\\\\n            continue\\\\n        trace_id = d[\\\\\\\"trace_id\\\\\\\"]\\\\n        if trace_id not in sentences_map:\\\\n            continue\\\\n        hs = d[\\\\\\\"hidden_states\\\\\\\"]\\\\n        if isinstance(hs, torch.Tensor):\\\\n            hs = hs.float().numpy()\\\\n        if hs.ndim == 3:\\\\n            hs = hs[:, layer_idx, :]\\\\n        labels = d[\\\\\\\"step_labels\\\\\\\"]\\\\n        if isinstance(labels, torch.Tensor):\\\\n            labels = labels.numpy()\\\\n        labels = np.array(labels, dtype=np.int32)\\\\n        n_steps = min(hs.shape[0], len(labels), len(sentences_map[trace_id]))\\\\n        traces.append({\\\\n            \\\\\\\"trace_id\\\\\\\": trace_id,\\\\n            \\\\\\\"hidden_states\\\\\\\": hs[:n_steps].astype(np.float32),\\\\n            \\\\\\\"step_labels\\\\\\\": labels[:n_steps],\\\\n            \\\\\\\"sentences\\\\\\\": sentences_map[trace_id][:n_steps],\\\\n        })\\\\n    return traces\\\\n\\\\n\\\\ndef split_traces(traces, seed=42):\\\\n    rng = np.random.default_rng(seed)\\\\n    indices = rng.permutation(len(traces))\\\\n    n_train = int(len(traces) * 0.6)\\\\n    n_val = int(len(traces) * 0.2)\\\\n    return (\\\\n        [traces[i] for i in indices[:n_train]],\\\\n        [traces[i] for i in indices[n_train:n_train + n_val]],\\\\n        [traces[i] for i in indices[n_train + n_val:]],\\\\n    )\\\\n\\\\n\\\\ndef compute_windowed_average(features, window):\\\\n    n_steps = features.shape[0]\\\\n    cumsum = np.cumsum(features, axis=0)\\\\n    X = np.zeros_like(features)\\\\n    for t in range(n_steps):\\\\n        start = max(0, t - window + 1)\\\\n        if start == 0:\\\\n            X[t] = cumsum[t] / (t + 1)\\\\n        else:\\\\n            X[t]\\\\n\\\\n... [截断: 输出过长，省略 4622 字符] ...\\\\n\\\\naces with sentences\\\\\\\", flush=True)\\\\n\\\\n    traces = load_traces(cfg[\\\\\\\"hs_dir\\\\\\\"], sentences_map, cfg[\\\\\\\"layer_idx\\\\\\\"])\\\\n    print(f\\\\\\\"  {len(traces)} valid traces\\\\\\\", flush=True)\\\\n\\\\n    train, val, test = split_traces(traces, seed=SEED)\\\\n    train_val = train + val\\\\n    print(f\\\\\\\"  Split: train+val={len(train_val)}, test={len(test)}\\\\\\\", flush=True)\\\\n\\\\n    X_train_hs, y_train = build_hs_features(train_val, cfg[\\\\\\\"window\\\\\\\"])\\\\n    X_test_hs, y_test = build_hs_features(test, cfg[\\\\\\\"window\\\\\\\"])\\\\n    scaler_hs = StandardScaler()\\\\n    X_train_hs = scaler_hs.fit_transform(X_train_hs)\\\\n    X_test_hs = scaler_hs.transform(X_test_hs)\\\\n\\\\n    X_train_text, _ = build_text_features(train_val, st_model, cfg[\\\\\\\"window\\\\\\\"])\\\\n    X_test_text, _ = build_text_features(test, st_model, cfg[\\\\\\\"window\\\\\\\"])\\\\n    scaler_text = StandardScaler()\\\\n    X_train_text = scaler_text.fit_transform(X_train_text)\\\\n    X_test_text = scaler_text.transform(X_test_text)\\\\n\\\\n    print(f\\\\\\\"  HS features: train={X_train_hs.shape}, test={X_test_hs.shape}\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"  Text features: train={X_train_text.shape}, test={X_test_text.shape}\\\\\\\", flush=True)\\\\n\\\\n    print(f\\\\\\\"  Training HS probe ({cfg['hidden_dim']}d)...\\\\\\\", flush=True)\\\\n    clf_hs = train_probe(X_train_hs, y_train, cfg[\\\\\\\"hidden_dim\\\\\\\"], seed=SEED)\\\\n    hs_preds = clf_hs.predict(X_test_hs)\\\\n\\\\n    print(f\\\\\\\"  Training Text probe (BGE {BGE_DIM}d)...\\\\\\\", flush=True)\\\\n    clf_text = train_probe(X_train_text, y_train, BGE_DIM, seed=SEED)\\\\n    text_preds = clf_text.predict(X_test_text)\\\\n\\\\n    trace_bounds = get_trace_boundaries(test)\\\\n    print(f\\\\\\\"  Running {N_RESAMPLES} bootstrap resamples...\\\\\\\", flush=True)\\\\n    boot = paired_bootstrap(y_test, hs_preds, text_preds, trace_bounds,\\\\n                            n_resamples=N_RESAMPLES, seed=SEED)\\\\n\\\\n    for metric in [\\\\\\\"bal_acc\\\\\\\", \\\\\\\"fpr\\\\\\\", \\\\\\\"precision\\\\\\\"]:\\\\n        b = boot[metric]\\\\n        print(f\\\\\\\"  {metric}: HS={b['hs_value']:.4f} BGE={b['bge_value']:.4f} \\\\\\\"\\\\n              f\\\\\\\"diff={b['observed_diff']:+.4f} CI={b['ci_95']} p={b['p_value']:.4f}\\\\\\\", flush=True)\\\\n\\\\n    return {\\\\n        \\\\\\\"n_traces\\\\\\\": len(traces),\\\\n        \\\\\\\"n_test\\\\\\\": len(test),\\\\n        \\\\\\\"layer\\\\\\\": cfg[\\\\\\\"layer_idx\\\\\\\"],\\\\n        \\\\\\\"window\\\\\\\": cfg[\\\\\\\"window\\\\\\\"],\\\\n        \\\\\\\"bootstrap\\\\\\\": boot,\\\\n    }\\\\n\\\\n\\\\ndef main():\\\\n    t_start = time.time()\\\\n\\\\n    from sentence_transformers import SentenceTransformer\\\\n    print(\\\\\\\"Loading BGE-large-en-v1.5...\\\\\\\", flush=True)\\\\n    st_model = SentenceTransformer(BGE_MODEL_PATH, device=\\\\\\\"cuda\\\\\\\")\\\\n\\\\n    results = {}\\\\n    for model_key, cfg in MODEL_CONFIGS.items():\\\\n        results[model_key] = run_model(model_key, cfg, st_model)\\\\n\\\\n    elapsed = time.time() - t_start\\\\n\\\\n    output = {\\\\n        \\\\\\\"n_resamples\\\\\\\": N_RESAMPLES,\\\\n        \\\\\\\"seed\\\\\\\": SEED,\\\\n        \\\\\\\"elapsed_seconds\\\\\\\": round(elapsed, 1),\\\\n        \\\\\\\"probe\\\\\\\": \\\\\\\"LogisticRegression(C=1.0, class_weight='balanced', max_iter=2000)\\\\\\\",\\\\n        \\\\\\\"text_encoder\\\\\\\": \\\\\\\"BAAI/bge-large-en-v1.5\\\\\\\",\\\\n        \\\\\\\"note\\\\\\\": \\\\\\\"Correct layer indexing: hs[:, layer_idx, :] for (steps, layers, dim) tensors\\\\\\\",\\\\n        \\\\\\\"diff_convention\\\\\\\": {\\\\n            \\\\\\\"bal_acc\\\\\\\": \\\\\\\"HS - BGE (positive = HS better)\\\\\\\",\\\\n            \\\\\\\"fpr\\\\\\\": \\\\\\\"BGE - HS (positive = HS better, i.e. lower FPR)\\\\\\\",\\\\n            \\\\\\\"precision\\\\\\\": \\\\\\\"HS - BGE (positive = HS better)\\\\\\\",\\\\n        },\\\\n        \\\\\\\"models\\\\\\\": results,\\\\n    }\\\\n\\\\n    out_path = OUTPUT_DIR / \\\\\\\"results.json\\\\\\\"\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nSaved to {out_path}\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"Elapsed: {elapsed:.1f}s\\\\\\\", flush=True)\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*100}\\\\\\\", flush=True)\\\\n    hdr = f\\\\\\\"{'Model':<10} {'Metric':<12} {'HS':<8} {'BGE':<8} {'Delta':<10} {'95% CI':<22} {'p-value':<8}\\\\\\\"\\\\n    print(hdr, flush=True)\\\\n    print(\\\\\\\"-\\\\\\\"*100, flush=True)\\\\n    for mk in MODEL_CONFIGS:\\\\n        r = results[mk]\\\\n        for metric in [\\\\\\\"bal_acc\\\\\\\", \\\\\\\"fpr\\\\\\\", \\\\\\\"precision\\\\\\\"]:\\\\n            b = r[\\\\\\\"bootstrap\\\\\\\"][metric]\\\\n            ci_str = f\\\\\\\"[{b['ci_95'][0]:+.4f}, {b['ci_95'][1]:+.4f}]\\\\\\\"\\\\n            print(f\\\\\\\"{mk:<10} {metric:<12} {b['hs_value']:.4f}  {b['bge_value']:.4f}  \\\\\\\"\\\\n                  f\\\\\\\"{b['observed_diff']:+.4f}    {ci_str:<22} {b['p_value']:.4f}\\\\\\\", flush=True)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Bootstrap CI for BGE-large comparison: bal_acc and FPR.\\n10k resamples, null-centered p-values.\\nCorrect layer indexing: hs[:, layer_idx, :] for (steps, layers, dim) format.\\n\\\"\\\"\\\"\\n\\nimport os\\nos.environ[\\\"TOKENIZERS_PARALLELISM\\\"] = \\\"false\\\"\\nos.environ[\\\"HF_ENDPOINT\\\"] = \\\"https://hf-mirror.com\\\"\\n\\nimport json, time, glob, warnings\\nfrom pathlib import Path\\nfrom collections import defaultdict\\n\\nimport numpy as np\\nimport torch\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.metrics import balanced_accuracy_score\\nfrom sklearn.preprocessing import StandardScaler\\n\\nwarnings.filterwarnings(\\\"ignore\\\")\\n\\nSEED = 42\\nN_RESAMPLES = 10000\\nBASE = Path(\\\"/root/autodl-tmp/contrastive_trace_safety\\\")\\nOUTPUT_DIR = BASE / \\\"artifacts/exp_r8_bge_bootstrap_ci\\\"\\nOUTPUT_DIR.mkdir(parents=True, exist_ok=True)\\n\\nBGE_MODEL_PATH = str(BASE / \\\"models/bge-large-en-v1.5\\\")\\nBGE_DIM = 1024\\n\\nMODEL_CONFIGS = {\\n    \\\"r1_8b\\\": {\\n        \\\"model_name_hf\\\": \\\"r1-8b\\\",\\n        \\\"hs_dir\\\": BASE / \\\"artifacts/hidden_states\\\",\\n        \\\"layer_idx\\\": 2,\\n        \\\"hidden_dim\\\": 4096,\\n        \\\"window\\\": 15,\\n    },\\n    \\\"ot_7b\\\": {\\n        \\\"model_name_hf\\\": \\\"ot-7b\\\",\\n        \\\"hs_dir\\\": BASE / \\\"artifacts/hidden_states_ot7b\\\",\\n        \\\"layer_idx\\\": 16,\\n        \\\"hidden_dim\\\": 3584,\\n        \\\"window\\\": 3,\\n    },\\n    \\\"qwq_32b\\\": {\\n        \\\"model_name_hf\\\": \\\"QwQ\\\",\\n        \\\"hs_dir\\\": BASE / \\\"artifacts/hidden_states_qwq_32b\\\",\\n        \\\"layer_idx\\\": 60,\\n        \\\"hidden_dim\\\": 5120,\\n        \\\"window\\\": 3,\\n    },\\n    \\\"r1_32b\\\": {\\n        \\\"model_name_hf\\\": \\\"r1-32b\\\",\\n        \\\"hs_dir\\\": BASE / \\\"artifacts/hidden_states_r1_32b\\\",\\n        \\\"layer_idx\\\": 63,\\n        \\\"hidden_dim\\\": 5120,\\n        \\\"window\\\": 1,\\n    },\\n}\\n\\n\\ndef load_sentences_from_hf(model_name_hf):\\n    from datasets import load_dataset\\n    ds = load_dataset(\\\"ishitakakkar-10/HarmThoughts\\\", split=\\\"train\\\")\\n    traces = defaultdict(list)\\n    for row in ds:\\n        if row[\\\"model_name\\\"] != model_name_hf:\\n            continue\\n        sid = row[\\\"sentence_id\\\"]\\n        parts = sid.rsplit(\\\"-\\\", 1)\\n        trace_id = parts[0]\\n        step_idx = int(parts[1]) - 1\\n        traces[trace_id].append((step_idx, row[\\\"sentence\\\"]))\\n    for tid in traces:\\n        traces[tid].sort(key=lambda x: x[0])\\n        traces[tid] = [s for _, s in traces[tid]]\\n    return dict(traces)\\n\\n\\ndef load_traces(hs_dir, sentences_map, layer_idx):\\n    traces = []\\n    for pt_file in sorted(glob.glob(str(hs_dir / \\\"*.pt\\\"))):\\n        d = torch.load(pt_file, map_location=\\\"cpu\\\", weights_only=False)\\n        if d.get(\\\"step_labels\\\") is None or d.get(\\\"commitment_point\\\") is None:\\n            continue\\n        trace_id = d[\\\"trace_id\\\"]\\n        if trace_id not in sentences_map:\\n            continue\\n        hs = d[\\\"hidden_states\\\"]\\n        if isinstance(hs, torch.Tensor):\\n            hs = hs.float().numpy()\\n        if hs.ndim == 3:\\n            hs = hs[:, layer_idx, :]\\n        labels = d[\\\"step_labels\\\"]\\n        if isinstance(labels, torch.Tensor):\\n            labels = labels.numpy()\\n        labels = np.array(labels, dtype=np.int32)\\n        n_steps = min(hs.shape[0], len(labels), len(sentences_map[trace_id]))\\n        traces.append({\\n            \\\"trace_id\\\": trace_id,\\n            \\\"hidden_states\\\": hs[:n_steps].astype(np.float32),\\n            \\\"step_labels\\\": labels[:n_steps],\\n            \\\"sentences\\\": sentences_map[trace_id][:n_steps],\\n        })\\n    return traces\\n\\n\\ndef split_traces(traces, seed=42):\\n    rng = np.random.default_rng(seed)\\n    indices = rng.permutation(len(traces))\\n    n_train = int(len(traces) * 0.6)\\n    n_val = int(len(traces) * 0.2)\\n    return (\\n        [traces[i] for i in indices[:n_train]],\\n        [traces[i] for i in indices[n_train:n_train + n_val]],\\n        [traces[i] for i in indices[n_train + n_val:]],\\n    )\\n\\n\\ndef compute_windowed_average(features, window):\\n    n_steps = features.shape[0]\\n    cumsum = np.cumsum(features, axis=0)\\n    X = np.zeros_like(features)\\n    for t in range(n_steps):\\n        start = max(0, t - window + 1)\\n        if start == 0:\\n            X[t] = cumsum[t] / (t + 1)\\n        else:\\n            X[t]\\n\\n... [截断: 输出过长，省略 4622 字符] ...\\n\\naces with sentences\\\", flush=True)\\n\\n    traces = load_traces(cfg[\\\"hs_dir\\\"], sentences_map, cfg[\\\"layer_idx\\\"])\\n    print(f\\\"  {len(traces)} valid traces\\\", flush=True)\\n\\n    train, val, test = split_traces(traces, seed=SEED)\\n    train_val = train + val\\n    print(f\\\"  Split: train+val={len(train_val)}, test={len(test)}\\\", flush=True)\\n\\n    X_train_hs, y_train = build_hs_features(train_val, cfg[\\\"window\\\"])\\n    X_test_hs, y_test = build_hs_features(test, cfg[\\\"window\\\"])\\n    scaler_hs = StandardScaler()\\n    X_train_hs = scaler_hs.fit_transform(X_train_hs)\\n    X_test_hs = scaler_hs.transform(X_test_hs)\\n\\n    X_train_text, _ = build_text_features(train_val, st_model, cfg[\\\"window\\\"])\\n    X_test_text, _ = build_text_features(test, st_model, cfg[\\\"window\\\"])\\n    scaler_text = StandardScaler()\\n    X_train_text = scaler_text.fit_transform(X_train_text)\\n    X_test_text = scaler_text.transform(X_test_text)\\n\\n    print(f\\\"  HS features: train={X_train_hs.shape}, test={X_test_hs.shape}\\\", flush=True)\\n    print(f\\\"  Text features: train={X_train_text.shape}, test={X_test_text.shape}\\\", flush=True)\\n\\n    print(f\\\"  Training HS probe ({cfg['hidden_dim']}d)...\\\", flush=True)\\n    clf_hs = train_probe(X_train_hs, y_train, cfg[\\\"hidden_dim\\\"], seed=SEED)\\n    hs_preds = clf_hs.predict(X_test_hs)\\n\\n    print(f\\\"  Training Text probe (BGE {BGE_DIM}d)...\\\", flush=True)\\n    clf_text = train_probe(X_train_text, y_train, BGE_DIM, seed=SEED)\\n    text_preds = clf_text.predict(X_test_text)\\n\\n    trace_bounds = get_trace_boundaries(test)\\n    print(f\\\"  Running {N_RESAMPLES} bootstrap resamples...\\\", flush=True)\\n    boot = paired_bootstrap(y_test, hs_preds, text_preds, trace_bounds,\\n                            n_resamples=N_RESAMPLES, seed=SEED)\\n\\n    for metric in [\\\"bal_acc\\\", \\\"fpr\\\", \\\"precision\\\"]:\\n        b = boot[metric]\\n        print(f\\\"  {metric}: HS={b['hs_value']:.4f} BGE={b['bge_value']:.4f} \\\"\\n              f\\\"diff={b['observed_diff']:+.4f} CI={b['ci_95']} p={b['p_value']:.4f}\\\", flush=True)\\n\\n    return {\\n        \\\"n_traces\\\": len(traces),\\n        \\\"n_test\\\": len(test),\\n        \\\"layer\\\": cfg[\\\"layer_idx\\\"],\\n        \\\"window\\\": cfg[\\\"window\\\"],\\n        \\\"bootstrap\\\": boot,\\n    }\\n\\n\\ndef main():\\n    t_start = time.time()\\n\\n    from sentence_transformers import SentenceTransformer\\n    print(\\\"Loading BGE-large-en-v1.5...\\\", flush=True)\\n    st_model = SentenceTransformer(BGE_MODEL_PATH, device=\\\"cuda\\\")\\n\\n    results = {}\\n    for model_key, cfg in MODEL_CONFIGS.items():\\n        results[model_key] = run_model(model_key, cfg, st_model)\\n\\n    elapsed = time.time() - t_start\\n\\n    output = {\\n        \\\"n_resamples\\\": N_RESAMPLES,\\n        \\\"seed\\\": SEED,\\n        \\\"elapsed_seconds\\\": round(elapsed, 1),\\n        \\\"probe\\\": \\\"LogisticRegression(C=1.0, class_weight='balanced', max_iter=2000)\\\",\\n        \\\"text_encoder\\\": \\\"BAAI/bge-large-en-v1.5\\\",\\n        \\\"note\\\": \\\"Correct layer indexing: hs[:, layer_idx, :] for (steps, layers, dim) tensors\\\",\\n        \\\"diff_convention\\\": {\\n            \\\"bal_acc\\\": \\\"HS - BGE (positive = HS better)\\\",\\n            \\\"fpr\\\": \\\"BGE - HS (positive = HS better, i.e. lower FPR)\\\",\\n            \\\"precision\\\": \\\"HS - BGE (positive = HS better)\\\",\\n        },\\n        \\\"models\\\": results,\\n    }\\n\\n    out_path = OUTPUT_DIR / \\\"results.json\\\"\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n    print(f\\\"\\\\nSaved to {out_path}\\\", flush=True)\\n    print(f\\\"Elapsed: {elapsed:.1f}s\\\", flush=True)\\n\\n    print(f\\\"\\\\n{'='*100}\\\", flush=True)\\n    hdr = f\\\"{'Model':<10} {'Metric':<12} {'HS':<8} {'BGE':<8} {'Delta':<10} {'95% CI':<22} {'p-value':<8}\\\"\\n    print(hdr, flush=True)\\n    print(\\\"-\\\"*100, flush=True)\\n    for mk in MODEL_CONFIGS:\\n        r = results[mk]\\n        for metric in [\\\"bal_acc\\\", \\\"fpr\\\", \\\"precision\\\"]:\\n            b = r[\\\"bootstrap\\\"][metric]\\n            ci_str = f\\\"[{b['ci_95'][0]:+.4f}, {b['ci_95'][1]:+.4f}]\\\"\\n            print(f\\\"{mk:<10} {metric:<12} {b['hs_value']:.4f}  {b['bge_value']:.4f}  \\\"\\n                  f\\\"{b['observed_diff']:+.4f}    {ci_str:<22} {b['p_value']:.4f}\\\", flush=True)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01M9WaZJC35Jg2o2di5cybHG`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "/root/miniconda3/bin/python3.12 -c \"import torch; d = torch.load('/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/008edcde3b3d48dcaee8313c4779f687.pt', map_location='cpu', weights_only=False); print(type(d)); print(list(d.keys()) if isinstance(d, dict) else 'not dict'); [print(k, type(d[k]), d[k].shape if hasattr(d[k],'shape') else d[k]) for k in (list(d.keys())[:10] if isinstance(d, dict) else [])]\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "d6707694-7419-4f3c-a7f6-c77a6e934428",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012Zp6kV41x4qn9GkgPp4NZy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6537,
+      "cache_read_input_tokens": 33695,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6537
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-18T17:29:06.241Z_
+
+<details><summary>↩ Tool result · `toolu_01M9WaZJC35Jg2o2di5cybHG`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "28ecee4a-8fcc-4af7-9a79-d0cbdf9c58f8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The read-only command with python -c failed because of the semicolons. Let me use ssh_execute instead to check the .pt file structure. But first, let me read more of the bge bootstrap script to understand the full code, particularly the parts that were truncated.
+
+Actually, I have enough info from the bge_bootstrap script. Let me understand the key parts:
+
+1. Hidden states are stored in .pt files with keys: `hidden_states` (shape: steps x layers x dim), `step_labels`, `commitment_point`, `trace_id`
+
+
+2. Layer indexing: `hs[:, layer_idx, :]` for (steps, layers, dim) format
+3. Split is 60/20/20 with seed=42 at trace level
+
+Now I'm noticing a discrepancy between what the script does and what the user described. The script uses windowed averaging, but the user's description suggests concatenating windows of hidden states—so for W=3, you'd stack states from steps t-2, t-1, and t together to get 12288 dimensions before PCA. Let me clarify this with the user since it affects how I should process the data.
+
+Also, the script uses BGE-large embeddings, but the user specified all-MiniLM-L6-v2 with 384 dimensions, and they want PCA applied to the hidden state features specifically, not the text embeddings. I should check the .pt file structure to understand what I'm working with.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "53545ce6-a679-4f52-95cb-2461f5cda75d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JXZwkb3FpCjcq7ksCh418S",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4523,
+      "cache_read_input_tokens": 40232,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4523
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01NygqMGZd2L9BjEAKwDpWoJ`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "/root/miniconda3/bin/python3.12 -c \"\nimport torch\nd = torch.load('/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/008edcde3b3d48dcaee8313c4779f687.pt', map_location='cpu', weights_only=False)\nprint('keys:', list(d.keys()))\nfor k, v in d.items():\n    if hasattr(v, 'shape'):\n        print(f'{k}: {type(v).__name__} shape={v.shape} dtype={v.dtype}')\n    else:\n        print(f'{k}: {type(v).__name__} = {repr(v)[:100]}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "3159584b-417d-4011-93cd-6a5a9019ad23",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JXZwkb3FpCjcq7ksCh418S",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4523,
+      "cache_read_input_tokens": 40232,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4523
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GKgQ46z7bBgCcXK8dw74re`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "wc -l /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/*.pt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "44611cb3-8891-4b91-b819-e1c64b26f1f6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JXZwkb3FpCjcq7ksCh418S",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4523,
+      "cache_read_input_tokens": 40232,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4523
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-18T17:29:23.490Z_
+
+<details><summary>↩ Tool result · `toolu_01NygqMGZd2L9BjEAKwDpWoJ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"keys: ['hidden_states', 'trace_id', 'num_sentences', 'commitment_point', 'step_labels']\\nhidden_states: Tensor shape=torch.Size([46, 13, 4096]) dtype=torch.float16\\ntrace_id: str = '008edcde3b3d48dcaee8313c4779f687'\\nnum_sentences: int = 46\\ncommitment_point: NoneType = None\\nstep_labels: NoneType = None\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.67}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "ef7439ca-17b7-4f66-9ca0-b405b7795b28",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"keys: ['hidden_states', 'trace_id', 'num_sentences', 'commitment_point', 'step_labels']\\\\nhidden_states: Tensor shape=torch.Size([46, 13, 4096]) dtype=torch.float16\\\\ntrace_id: str = '008edcde3b3d48dcaee8313c4779f687'\\\\nnum_sentences: int = 46\\\\ncommitment_point: NoneType = None\\\\nstep_labels: NoneType = None\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.67}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"keys: ['hidden_states', 'trace_id', 'num_sentences', 'commitment_point', 'step_labels']\\nhidden_states: Tensor shape=torch.Size([46, 13, 4096]) dtype=torch.float16\\ntrace_id: str = '008edcde3b3d48dcaee8313c4779f687'\\nnum_sentences: int = 46\\ncommitment_point: NoneType = None\\nstep_labels: NoneType = None\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.67}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-18T17:29:24.207Z_
+
+<details><summary>↩ Tool result · `toolu_01GKgQ46z7bBgCcXK8dw74re`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"     12401 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/008edcde3b3d48dcaee8313c4779f687.pt\\n     12164 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/018ad1b2027a488aad4ce925258db0c7.pt\\n     14217 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/02361be96b4e4f11af5524a64c34f612.pt\\n      9806 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/023c413259524b2187989e61d96e351c.pt\\n      7895 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/02fad27f069d4009861ea612984ab65c.pt\\n     22348 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/0334a1be1cc84efc853bd93eb5327499.pt\\n     14185 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/03a149305aae4ed58d62489ed1f66329.pt\\n     11423 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/04e287adbc58415cb184c3db0ac3d8c5.pt\\n      8087 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/0516bc55867f4454966f3ecfd6cd85c5.pt\\n     26239 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/051a975475d7420d99f686fe89e83691.pt\\n      7532 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/05e1498f8ff741718f500af3772def28.pt\\n      8748 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/0601b6d225274449bcfcca10af190a9a.pt\\n      8283 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/06470bdf141a4267b541332987c6f695.pt\\n      8312 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/06d85d8b941f4a4e97dc7f33c81c34c4.pt\\n     13231 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/0828a2af61e846f1aea6a834017ec7be.pt\\n     15320 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/0901d657f92b441e8cac21db87d066e5.pt\\n      6176 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/0a31d31d974b410eb923f33cfbf6e6b9.pt\\n      7431 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/0c9c5e6cf60849bb925d007dd2b061fc.pt\\n      8425 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/0d13aa7b2f374a3fa367bdea42493ed5.pt\\n     12275 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/0d19422cc82743568f671961b534c215.pt\\n     13272 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/0d8b146a9bce48f7a8083f6ed962664e.pt\\n     15987 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/0daf036448c04433859bdf6758495bc3.pt\\n      6273 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/0f35040637024040b7944abd48472d22.pt\\n     11916 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/0f6bdcb1133f442ba26e11047e5351c6.pt\\n      9780 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/0f860c71503e43c985eafc0142546731.pt\\n      3839 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/10a2a6c355d4408ab97b759b490a6a8b.pt\\n     10748 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/10a3ace02006485ca641aaa88684b5dd.pt\\n     13818 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/10e4c756140247b4af10559f16d8f876.pt\\n      8338 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/114499174dfa48daa5e053c629c83a10.pt\\n     17399 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/116042e8dc164c17b02d5670b015f807.pt\\n     19193 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/11a094cbf15549bca819c57910c2a2ff.pt\\n      5840 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/11c4c8713262422eb211ec189c3715ab.pt\\n     19327 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/11f61793e9b449e799abe7ce14cbcf6c.pt\\n     22848 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/1249b76a00da42b8be3aa81d823cd820.pt\\n      9769 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/130e2b41b4bf43f883f087b5036afe85.pt\\n      9246 /root/autodl-tmp/contrastive_trace\\n\\n... [截断: 输出过长，省略 22301 字符] ...\\n\\n39ed40449bce2dea098522c7.pt\\n      9592 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/72927750e67548fb95dea123d5b35d49.pt\\n     10982 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/73d4c5ecf4cb4582965d822233738518.pt\\n     12939 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/73d62303c3de423294d591b3c1698b8f.pt\\n     14470 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/74a7d23217224a7fac131ce4cd40f144.pt\\n      6316 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/753528ee405b4ff293e8bc711c62f9b3.pt\\n     11657 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/7558dc4c97304b20a321beb543fc68bd.pt\\n      9298 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/758ece90b50a4f68a0ef983073e2585b.pt\\n     13824 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/76173b9430e944d0958f1ebee98b7170.pt\\n      9575 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/776805cebe1f45af976da08c390eefa0.pt\\n     20621 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/77caa54712d94ce3ab78e280a7a08a61.pt\\n      7944 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/7821962b52364d028de01198f9d6c038.pt\\n     18146 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/797f381560724d92bee0ce89d055b7e9.pt\\n      7642 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/799973d92ecb4e258bf137c7f3dd8d0e.pt\\n      7918 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/7a23c2791fbd4446b590004cea2c96f1.pt\\n     13364 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/7a3458f218fb4972a6bb98ba7fe6b6c6.pt\\n     14089 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/7a6ec8e96fa94c9e831e204da670270d.pt\\n     13438 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/7b9e26fffbd34a9590de19e8c726d0cf.pt\\n     11367 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/7d1c985df61c498883255a4641ddc493.pt\\n     11618 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/7d60117d4026444b8cb67a63a157c7bb.pt\\n      4770 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/7dc6e744c86445da820b51f650a4bec8.pt\\n      7554 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/7e0c637817cd4cd5bc0b91dc2b2e642e.pt\\n     17528 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/7e242ddd1b084052a0834a2c90145854.pt\\n      8144 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/7e2732ab79574f669961c834a202a38d.pt\\n      5665 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/7e275af42d304ded9125ae5a92380cba.pt\\n     13039 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/7e2c079597164b8891a87a29ca8c0942.pt\\n     11626 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/7e545cd9f0bb474d8bb00ab0b448b0ba.pt\\n     15465 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/7f588b58a71c4dea9918c04b796a8293.pt\\n     13993 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/7f69f9f70f244b169194d8daec2b5df1.pt\\n     11327 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/7f82f0b55b924334b7a8f91561cf7a22.pt\\n     10324 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/80271fe2e8ba4808903a077e1c7aefb9.pt\\n      8227 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/8070becee99b428baf864aed8358c5f7.pt\\n     12791 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/810142a7c5934f018bd668311c93ea85.pt\\n      8330 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/81729931557c4b85a7e3fe8b77568354.pt\\n      9917 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/81dfc0721fd742f4b9dbf780305493d8.pt\\n      9364 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/830df8a1bd1843b6b64ea8445dd451e0.pt\\n   3217693 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "9518625e-5d5e-49af-ab6f-65ed5efbc0c9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"     12401 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/008edcde3b3d48dcaee8313c4779f687.pt\\\\n     12164 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/018ad1b2027a488aad4ce925258db0c7.pt\\\\n     14217 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/02361be96b4e4f11af5524a64c34f612.pt\\\\n      9806 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/023c413259524b2187989e61d96e351c.pt\\\\n      7895 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/02fad27f069d4009861ea612984ab65c.pt\\\\n     22348 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/0334a1be1cc84efc853bd93eb5327499.pt\\\\n     14185 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/03a149305aae4ed58d62489ed1f66329.pt\\\\n     11423 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/04e287adbc58415cb184c3db0ac3d8c5.pt\\\\n      8087 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/0516bc55867f4454966f3ecfd6cd85c5.pt\\\\n     26239 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/051a975475d7420d99f686fe89e83691.pt\\\\n      7532 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/05e1498f8ff741718f500af3772def28.pt\\\\n      8748 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/0601b6d225274449bcfcca10af190a9a.pt\\\\n      8283 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/06470bdf141a4267b541332987c6f695.pt\\\\n      8312 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/06d85d8b941f4a4e97dc7f33c81c34c4.pt\\\\n     13231 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/0828a2af61e846f1aea6a834017ec7be.pt\\\\n     15320 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/0901d657f92b441e8cac21db87d066e5.pt\\\\n      6176 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/0a31d31d974b410eb923f33cfbf6e6b9.pt\\\\n      7431 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/0c9c5e6cf60849bb925d007dd2b061fc.pt\\\\n      8425 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/0d13aa7b2f374a3fa367bdea42493ed5.pt\\\\n     12275 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/0d19422cc82743568f671961b534c215.pt\\\\n     13272 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/0d8b146a9bce48f7a8083f6ed962664e.pt\\\\n     15987 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/0daf036448c04433859bdf6758495bc3.pt\\\\n      6273 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/0f35040637024040b7944abd48472d22.pt\\\\n     11916 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/0f6bdcb1133f442ba26e11047e5351c6.pt\\\\n      9780 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/0f860c71503e43c985eafc0142546731.pt\\\\n      3839 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/10a2a6c355d4408ab97b759b490a6a8b.pt\\\\n     10748 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/10a3ace02006485ca641aaa88684b5dd.pt\\\\n     13818 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/10e4c756140247b4af10559f16d8f876.pt\\\\n      8338 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/114499174dfa48daa5e053c629c83a10.pt\\\\n     17399 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/116042e8dc164c17b02d5670b015f807.pt\\\\n     19193 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/11a094cbf15549bca819c57910c2a2ff.pt\\\\n      5840 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/11c4c8713262422eb211ec189c3715ab.pt\\\\n     19327 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/11f61793e9b449e799abe7ce14cbcf6c.pt\\\\n     22848 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/1249b76a00da42b8be3aa81d823cd820.pt\\\\n      9769 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/130e2b41b4bf43f883f087b5036afe85.pt\\\\n      9246 /root/autodl-tmp/contrastive_trace\\\\n\\\\n... [截断: 输出过长，省略 22301 字符] ...\\\\n\\\\n39ed40449bce2dea098522c7.pt\\\\n      9592 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/72927750e67548fb95dea123d5b35d49.pt\\\\n     10982 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/73d4c5ecf4cb4582965d822233738518.pt\\\\n     12939 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/73d62303c3de423294d591b3c1698b8f.pt\\\\n     14470 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/74a7d23217224a7fac131ce4cd40f144.pt\\\\n      6316 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/753528ee405b4ff293e8bc711c62f9b3.pt\\\\n     11657 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/7558dc4c97304b20a321beb543fc68bd.pt\\\\n      9298 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/758ece90b50a4f68a0ef983073e2585b.pt\\\\n     13824 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/76173b9430e944d0958f1ebee98b7170.pt\\\\n      9575 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/776805cebe1f45af976da08c390eefa0.pt\\\\n     20621 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/77caa54712d94ce3ab78e280a7a08a61.pt\\\\n      7944 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/7821962b52364d028de01198f9d6c038.pt\\\\n     18146 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/797f381560724d92bee0ce89d055b7e9.pt\\\\n      7642 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/799973d92ecb4e258bf137c7f3dd8d0e.pt\\\\n      7918 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/7a23c2791fbd4446b590004cea2c96f1.pt\\\\n     13364 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/7a3458f218fb4972a6bb98ba7fe6b6c6.pt\\\\n     14089 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/7a6ec8e96fa94c9e831e204da670270d.pt\\\\n     13438 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/7b9e26fffbd34a9590de19e8c726d0cf.pt\\\\n     11367 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/7d1c985df61c498883255a4641ddc493.pt\\\\n     11618 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/7d60117d4026444b8cb67a63a157c7bb.pt\\\\n      4770 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/7dc6e744c86445da820b51f650a4bec8.pt\\\\n      7554 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/7e0c637817cd4cd5bc0b91dc2b2e642e.pt\\\\n     17528 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/7e242ddd1b084052a0834a2c90145854.pt\\\\n      8144 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/7e2732ab79574f669961c834a202a38d.pt\\\\n      5665 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/7e275af42d304ded9125ae5a92380cba.pt\\\\n     13039 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/7e2c079597164b8891a87a29ca8c0942.pt\\\\n     11626 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/7e545cd9f0bb474d8bb00ab0b448b0ba.pt\\\\n     15465 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/7f588b58a71c4dea9918c04b796a8293.pt\\\\n     13993 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/7f69f9f70f244b169194d8daec2b5df1.pt\\\\n     11327 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/7f82f0b55b924334b7a8f91561cf7a22.pt\\\\n     10324 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/80271fe2e8ba4808903a077e1c7aefb9.pt\\\\n      8227 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/8070becee99b428baf864aed8358c5f7.pt\\\\n     12791 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/810142a7c5934f018bd668311c93ea85.pt\\\\n      8330 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/81729931557c4b85a7e3fe8b77568354.pt\\\\n      9917 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/81dfc0721fd742f4b9dbf780305493d8.pt\\\\n      9364 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/830df8a1bd1843b6b64ea8445dd451e0.pt\\\\n   3217693 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"     12401 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/008edcde3b3d48dcaee8313c4779f687.pt\\n     12164 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/018ad1b2027a488aad4ce925258db0c7.pt\\n     14217 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/02361be96b4e4f11af5524a64c34f612.pt\\n      9806 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/023c413259524b2187989e61d96e351c.pt\\n      7895 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/02fad27f069d4009861ea612984ab65c.pt\\n     22348 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/0334a1be1cc84efc853bd93eb5327499.pt\\n     14185 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/03a149305aae4ed58d62489ed1f66329.pt\\n     11423 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/04e287adbc58415cb184c3db0ac3d8c5.pt\\n      8087 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/0516bc55867f4454966f3ecfd6cd85c5.pt\\n     26239 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/051a975475d7420d99f686fe89e83691.pt\\n      7532 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/05e1498f8ff741718f500af3772def28.pt\\n      8748 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/0601b6d225274449bcfcca10af190a9a.pt\\n      8283 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/06470bdf141a4267b541332987c6f695.pt\\n      8312 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/06d85d8b941f4a4e97dc7f33c81c34c4.pt\\n     13231 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/0828a2af61e846f1aea6a834017ec7be.pt\\n     15320 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/0901d657f92b441e8cac21db87d066e5.pt\\n      6176 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/0a31d31d974b410eb923f33cfbf6e6b9.pt\\n      7431 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/0c9c5e6cf60849bb925d007dd2b061fc.pt\\n      8425 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/0d13aa7b2f374a3fa367bdea42493ed5.pt\\n     12275 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/0d19422cc82743568f671961b534c215.pt\\n     13272 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/0d8b146a9bce48f7a8083f6ed962664e.pt\\n     15987 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/0daf036448c04433859bdf6758495bc3.pt\\n      6273 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/0f35040637024040b7944abd48472d22.pt\\n     11916 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/0f6bdcb1133f442ba26e11047e5351c6.pt\\n      9780 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/0f860c71503e43c985eafc0142546731.pt\\n      3839 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/10a2a6c355d4408ab97b759b490a6a8b.pt\\n     10748 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/10a3ace02006485ca641aaa88684b5dd.pt\\n     13818 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/10e4c756140247b4af10559f16d8f876.pt\\n      8338 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/114499174dfa48daa5e053c629c83a10.pt\\n     17399 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/116042e8dc164c17b02d5670b015f807.pt\\n     19193 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/11a094cbf15549bca819c57910c2a2ff.pt\\n      5840 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/11c4c8713262422eb211ec189c3715ab.pt\\n     19327 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/11f61793e9b449e799abe7ce14cbcf6c.pt\\n     22848 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/1249b76a00da42b8be3aa81d823cd820.pt\\n      9769 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/130e2b41b4bf43f883f087b5036afe85.pt\\n      9246 /root/autodl-tmp/contrastive_trace\\n\\n... [截断: 输出过长，省略 22301 字符] ...\\n\\n39ed40449bce2dea098522c7.pt\\n      9592 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/72927750e67548fb95dea123d5b35d49.pt\\n     10982 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/73d4c5ecf4cb4582965d822233738518.pt\\n     12939 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/73d62303c3de423294d591b3c1698b8f.pt\\n     14470 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/74a7d23217224a7fac131ce4cd40f144.pt\\n      6316 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/753528ee405b4ff293e8bc711c62f9b3.pt\\n     11657 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/7558dc4c97304b20a321beb543fc68bd.pt\\n      9298 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/758ece90b50a4f68a0ef983073e2585b.pt\\n     13824 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/76173b9430e944d0958f1ebee98b7170.pt\\n      9575 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/776805cebe1f45af976da08c390eefa0.pt\\n     20621 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/77caa54712d94ce3ab78e280a7a08a61.pt\\n      7944 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/7821962b52364d028de01198f9d6c038.pt\\n     18146 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/797f381560724d92bee0ce89d055b7e9.pt\\n      7642 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/799973d92ecb4e258bf137c7f3dd8d0e.pt\\n      7918 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/7a23c2791fbd4446b590004cea2c96f1.pt\\n     13364 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/7a3458f218fb4972a6bb98ba7fe6b6c6.pt\\n     14089 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/7a6ec8e96fa94c9e831e204da670270d.pt\\n     13438 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/7b9e26fffbd34a9590de19e8c726d0cf.pt\\n     11367 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/7d1c985df61c498883255a4641ddc493.pt\\n     11618 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/7d60117d4026444b8cb67a63a157c7bb.pt\\n      4770 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/7dc6e744c86445da820b51f650a4bec8.pt\\n      7554 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/7e0c637817cd4cd5bc0b91dc2b2e642e.pt\\n     17528 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/7e242ddd1b084052a0834a2c90145854.pt\\n      8144 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/7e2732ab79574f669961c834a202a38d.pt\\n      5665 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/7e275af42d304ded9125ae5a92380cba.pt\\n     13039 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/7e2c079597164b8891a87a29ca8c0942.pt\\n     11626 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/7e545cd9f0bb474d8bb00ab0b448b0ba.pt\\n     15465 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/7f588b58a71c4dea9918c04b796a8293.pt\\n     13993 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/7f69f9f70f244b169194d8daec2b5df1.pt\\n     11327 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/7f82f0b55b924334b7a8f91561cf7a22.pt\\n     10324 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/80271fe2e8ba4808903a077e1c7aefb9.pt\\n      8227 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/8070becee99b428baf864aed8358c5f7.pt\\n     12791 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/810142a7c5934f018bd668311c93ea85.pt\\n      8330 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/81729931557c4b85a7e3fe8b77568354.pt\\n      9917 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/81dfc0721fd742f4b9dbf780305493d8.pt\\n      9364 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/830df8a1bd1843b6b64ea8445dd451e0.pt\\n   3217693 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I understand the data format:
+- Each .pt file has: `hidden_states` (shape: [steps, layers, dim]), `trace_id`, `num_sentences`, `commitment_point`, `step_labels`
+- For R1-8B: hidden_dim=4096, shape is [steps, 13, 4096] (13 layers stored?)
+- Layer 14 would be layer_idx... wait, the shape shows 13 layers (indices 0-12). But the user asks for Layer 14. Let me check what layer indexing is used.
+
+Looking at the existing script, for r1_8b it uses `layer_idx: 2`. 
+
+The stored hidden states appear to be a subset of the full model layers, so the tensor indices don't directly correspond to the actual model layer numbers. I need to check if there's metadata indicating which layers were extracted, or look at another trace to understand the mapping between the stored layer indices and the actual Layer 14 the user is asking for.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "3cf658aa-79b8-40d6-b3c6-71da9e6c32f4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PhfZkb8T2p5CL7jdFY46BE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4546,
+      "cache_read_input_tokens": 44755,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4546
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+需要确认 hidden_states 的 layer 维度映射。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "0261ba98-984a-4e8f-95f7-20f067322f8d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PhfZkb8T2p5CL7jdFY46BE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4546,
+      "cache_read_input_tokens": 44755,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4546
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01KYF7g8T2msfe4ZYFXTUShz`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "/root/miniconda3/bin/python3.12 -c \"\nimport torch\nd = torch.load('/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/008edcde3b3d48dcaee8313c4779f687.pt', map_location='cpu', weights_only=False)\nprint('hs shape:', d['hidden_states'].shape)\nprint('all keys:', list(d.keys()))\n# Check if there's layer mapping info\nfor k in d.keys():\n    if 'layer' in k.lower():\n        print(f'{k}: {d[k]}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "886383c2-cf7e-4b2d-b8a5-082ca4c307e1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PhfZkb8T2p5CL7jdFY46BE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4546,
+      "cache_read_input_tokens": 44755,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4546
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VJMj2FPhYsMVEjZpSCVuri`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "grep -n \"layer\" /root/autodl-tmp/contrastive_trace_safety/scripts/bge_bootstrap_bal_acc_fpr.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "d796c149-3b0f-42a8-ab35-ba7828bc35e1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PhfZkb8T2p5CL7jdFY46BE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4546,
+      "cache_read_input_tokens": 44755,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4546
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-18T17:29:37.754Z_
+
+<details><summary>↩ Tool result · `toolu_01KYF7g8T2msfe4ZYFXTUShz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"hs shape: torch.Size([46, 13, 4096])\\nall keys: ['hidden_states', 'trace_id', 'num_sentences', 'commitment_point', 'step_labels']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.61}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "55d9c3e9-be56-4566-8b78-7f3af1f68c61",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"hs shape: torch.Size([46, 13, 4096])\\\\nall keys: ['hidden_states', 'trace_id', 'num_sentences', 'commitment_point', 'step_labels']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.61}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"hs shape: torch.Size([46, 13, 4096])\\nall keys: ['hidden_states', 'trace_id', 'num_sentences', 'commitment_point', 'step_labels']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.61}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-18T17:29:38.192Z_
+
+<details><summary>↩ Tool result · `toolu_01VJMj2FPhYsMVEjZpSCVuri`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"3:Correct layer indexing: hs[:, layer_idx, :] for (steps, layers, dim) format.\\n35:        \\\"layer_idx\\\": 2,\\n42:        \\\"layer_idx\\\": 16,\\n49:        \\\"layer_idx\\\": 60,\\n56:        \\\"layer_idx\\\": 63,\\n81:def load_traces(hs_dir, sentences_map, layer_idx):\\n94:            hs = hs[:, layer_idx, :]\\n262:    print(f\\\"  Model: {model_key} (layer={cfg['layer_idx']}, W={cfg['window']})\\\", flush=True)\\n268:    traces = load_traces(cfg[\\\"hs_dir\\\"], sentences_map, cfg[\\\"layer_idx\\\"])\\n311:        \\\"layer\\\": cfg[\\\"layer_idx\\\"],\\n336:        \\\"note\\\": \\\"Correct layer indexing: hs[:, layer_idx, :] for (steps, layers, dim) tensors\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "ed35049b-f240-4107-8ac0-9468287af6f0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"3:Correct layer indexing: hs[:, layer_idx, :] for (steps, layers, dim) format.\\\\n35:        \\\\\\\"layer_idx\\\\\\\": 2,\\\\n42:        \\\\\\\"layer_idx\\\\\\\": 16,\\\\n49:        \\\\\\\"layer_idx\\\\\\\": 60,\\\\n56:        \\\\\\\"layer_idx\\\\\\\": 63,\\\\n81:def load_traces(hs_dir, sentences_map, layer_idx):\\\\n94:            hs = hs[:, layer_idx, :]\\\\n262:    print(f\\\\\\\"  Model: {model_key} (layer={cfg['layer_idx']}, W={cfg['window']})\\\\\\\", flush=True)\\\\n268:    traces = load_traces(cfg[\\\\\\\"hs_dir\\\\\\\"], sentences_map, cfg[\\\\\\\"layer_idx\\\\\\\"])\\\\n311:        \\\\\\\"layer\\\\\\\": cfg[\\\\\\\"layer_idx\\\\\\\"],\\\\n336:        \\\\\\\"note\\\\\\\": \\\\\\\"Correct layer indexing: hs[:, layer_idx, :] for (steps, layers, dim) tensors\\\\\\\",\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"3:Correct layer indexing: hs[:, layer_idx, :] for (steps, layers, dim) format.\\n35:        \\\"layer_idx\\\": 2,\\n42:        \\\"layer_idx\\\": 16,\\n49:        \\\"layer_idx\\\": 60,\\n56:        \\\"layer_idx\\\": 63,\\n81:def load_traces(hs_dir, sentences_map, layer_idx):\\n94:            hs = hs[:, layer_idx, :]\\n262:    print(f\\\"  Model: {model_key} (layer={cfg['layer_idx']}, W={cfg['window']})\\\", flush=True)\\n268:    traces = load_traces(cfg[\\\"hs_dir\\\"], sentences_map, cfg[\\\"layer_idx\\\"])\\n311:        \\\"layer\\\": cfg[\\\"layer_idx\\\"],\\n336:        \\\"note\\\": \\\"Correct layer indexing: hs[:, layer_idx, :] for (steps, layers, dim) tensors\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+So in the bge script, r1_8b uses layer_idx=2 for hidden states of shape [steps, 13, 4096]. The tensor has 13 layers stored (indices 0-12). But the user asks for Layer 14.
+
+Wait, looking at other scripts: for ot_7b layer_idx=16, but that tensor might have a different shape. Let me check what layers are stored for R1-8B specifically.
+
+The issue is that the tensor has shape [steps, 13, 4096], meaning 13 layers are stored. If layer_idx=2 is used for R1-8B, that means the stored layers are a subset. But the user wants Layer 14.
+
+
+I'm wondering if the stored layers are a subset of the full model—maybe every nth layer or specific intermediate layers—which would mean Layer 14 might not be directly accessible. Let me compare with other models like QwQ to understand the pattern better. Actually, maybe the 13 stored layers aren't consecutive—they could be a sampled subset from a larger model. The user is asking for Layer 14 specifically with W=3, and mentions 209 jailbreak traces with hidden_dim=4096, so I should check other scripts to see how R1-8B's layer indexing actually works.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "978d52ff-7198-40c1-be13-4e9e63d254ed",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SvwCYbGC1AVcFm6LcGPe7q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1227,
+      "cache_read_input_tokens": 49301,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1227
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01XJ31GfDSXXrTdNKxUodemm`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "/root/miniconda3/bin/python3.12 -c \"\nimport torch, glob\n# Check a few .pt files to see consistent shape\nfiles = sorted(glob.glob('/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/*.pt'))\nfor f in files[:3]:\n    d = torch.load(f, map_location='cpu', weights_only=False)\n    hs = d['hidden_states']\n    labels = d.get('step_labels')\n    cp = d.get('commitment_point')\n    has_labels = labels is not None\n    print(f'{d[\\\"trace_id\\\"]}: hs={hs.shape}, labels={has_labels}, cp={cp}')\n\n# Count how many have valid labels\nvalid = 0\ntotal = 0\nfor f in files:\n    d = torch.load(f, map_location='cpu', weights_only=False)\n    total += 1\n    if d.get('step_labels') is not None and d.get('commitment_point') is not None:\n        valid += 1\nprint(f'Total: {total}, with labels: {valid}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "44f09fb1-600b-495c-acdd-36182c94e326",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SvwCYbGC1AVcFm6LcGPe7q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1227,
+      "cache_read_input_tokens": 49301,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1227
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01YQKCWDKoub7SS1FRSqrjvE`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "grep -rn \"layer.*14\\|L14\\|layer_idx\" /root/autodl-tmp/contrastive_trace_safety/scripts/r13_run.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "ee5b4388-195d-4c68-88fd-4ba6672c81f3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SvwCYbGC1AVcFm6LcGPe7q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1227,
+      "cache_read_input_tokens": 49301,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1227
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-18T17:29:58.352Z_
+
+<details><summary>↩ Tool result · `toolu_01XJ31GfDSXXrTdNKxUodemm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"008edcde3b3d48dcaee8313c4779f687: hs=torch.Size([46, 13, 4096]), labels=False, cp=None\\n018ad1b2027a488aad4ce925258db0c7: hs=torch.Size([45, 13, 4096]), labels=True, cp=41\\n02361be96b4e4f11af5524a64c34f612: hs=torch.Size([53, 13, 4096]), labels=False, cp=None\\nTotal: 268, with labels: 209\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.94}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "6211b685-e1d1-467d-840a-94ab9d5f9555",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"008edcde3b3d48dcaee8313c4779f687: hs=torch.Size([46, 13, 4096]), labels=False, cp=None\\\\n018ad1b2027a488aad4ce925258db0c7: hs=torch.Size([45, 13, 4096]), labels=True, cp=41\\\\n02361be96b4e4f11af5524a64c34f612: hs=torch.Size([53, 13, 4096]), labels=False, cp=None\\\\nTotal: 268, with labels: 209\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.94}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"008edcde3b3d48dcaee8313c4779f687: hs=torch.Size([46, 13, 4096]), labels=False, cp=None\\n018ad1b2027a488aad4ce925258db0c7: hs=torch.Size([45, 13, 4096]), labels=True, cp=41\\n02361be96b4e4f11af5524a64c34f612: hs=torch.Size([53, 13, 4096]), labels=False, cp=None\\nTotal: 268, with labels: 209\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.94}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-18T17:29:58.367Z_
+
+<details><summary>↩ Tool result · `toolu_01YQKCWDKoub7SS1FRSqrjvE`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "ca17ed0a-690f-4875-a40e-67a320141806",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+So there are 268 .pt files total, with 209 having valid labels (matching the user's "209 jailbreak traces").
+
+The hidden states shape is [steps, 13, 4096] for R1-8B. 13 layers are stored. The user wants Layer 14 with layer_idx presumably being an index into these 13 stored layers. But 13 layers means indices 0-12. Layer 14 can't be directly indexed.
+
+Wait, maybe the 13 here represents something different. Let me look at what the layer dimension actually corresponds to. Let me check existing scripts that reference layer 14 for R1-8B.
+ 
+I should look at how the hidden states were actually extracted in the first place—the model might have sampled specific layers or stored them at intervals rather than consecutively. Let me search through other scripts to see how layer 14 is being referenced for this model.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "5bfc660f-932f-418c-8312-5fb1becc8e29",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013f3CvBxVa1z1sPHXcXoKs1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1535,
+      "cache_read_input_tokens": 50528,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1535
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NwqeHroDuPFMmbvM24GYq2`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "grep -rn \"layer_idx\" /root/autodl-tmp/contrastive_trace_safety/scripts/r13_run.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "8d6ee222-87bc-4126-8994-4fcf113718a9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013f3CvBxVa1z1sPHXcXoKs1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1535,
+      "cache_read_input_tokens": 50528,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1535
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014Cs81K1m9BaxnmYQhSNVUf`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "grep -rn \"layer\" /root/autodl-tmp/contrastive_trace_safety/scripts/r13_ba_layer_modality.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "6a1c162b-62d1-4cc8-8f3b-0860fbf04370",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013f3CvBxVa1z1sPHXcXoKs1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1535,
+      "cache_read_input_tokens": 50528,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1535
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-18T17:30:07.059Z_
+
+<details><summary>↩ Tool result · `toolu_01NwqeHroDuPFMmbvM24GYq2`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "e1dffd33-817b-4d3a-98a8-74d93bf3f9b7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-18T17:30:07.486Z_
+
+<details><summary>↩ Tool result · `toolu_014Cs81K1m9BaxnmYQhSNVUf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2:Usage: python r13_ba_layer_modality.py [model_key]\\n20:OUTPUT_DIR = Path(\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/r13_ba_layer_modality\\\")\\n26:                  hidden_dim=4096, ba_opt_layer=12, stored_layer_offset=12, window=15),\\n28:                  hidden_dim=3584, ba_opt_layer=9, stored_layer_offset=0, window=3),\\n30:                   hidden_dim=5120, ba_opt_layer=47, stored_layer_offset=0, window=1),\\n32:                    hidden_dim=5120, ba_opt_layer=30, stored_layer_offset=0, window=5),\\n59:def load_model_data(cfg, st_model, layer_idx):\\n71:        # Only load needed layer to save memory\\n73:        hs_layer = hs_full[:, layer_idx, :].float().numpy()\\n76:        traces.append(dict(trace_id=tid, hs=hs_layer, text_emb=emb, step_labels=sl))\\n146:    li = cfg[\\\"ba_opt_layer\\\"] - cfg[\\\"stored_layer_offset\\\"]\\n153:    print(f\\\"  train={len(tr)}, test={len(te)}, layer={cfg['ba_opt_layer']}(idx={li}), W={w}\\\", flush=True)\\n190:    return dict(model=mk, ba_opt_layer=cfg[\\\"ba_opt_layer\\\"], window=w,\\n215:            print(f\\\"{mk:<10} L{r['ba_opt_layer']:<3} \\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "04cf85c3-847f-45f8-a082-38213ebe910d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2:Usage: python r13_ba_layer_modality.py [model_key]\\\\n20:OUTPUT_DIR = Path(\\\\\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/r13_ba_layer_modality\\\\\\\")\\\\n26:                  hidden_dim=4096, ba_opt_layer=12, stored_layer_offset=12, window=15),\\\\n28:                  hidden_dim=3584, ba_opt_layer=9, stored_layer_offset=0, window=3),\\\\n30:                   hidden_dim=5120, ba_opt_layer=47, stored_layer_offset=0, window=1),\\\\n32:                    hidden_dim=5120, ba_opt_layer=30, stored_layer_offset=0, window=5),\\\\n59:def load_model_data(cfg, st_model, layer_idx):\\\\n71:        # Only load needed layer to save memory\\\\n73:        hs_layer = hs_full[:, layer_idx, :].float().numpy()\\\\n76:        traces.append(dict(trace_id=tid, hs=hs_layer, text_emb=emb, step_labels=sl))\\\\n146:    li = cfg[\\\\\\\"ba_opt_layer\\\\\\\"] - cfg[\\\\\\\"stored_layer_offset\\\\\\\"]\\\\n153:    print(f\\\\\\\"  train={len(tr)}, test={len(te)}, layer={cfg['ba_opt_layer']}(idx={li}), W={w}\\\\\\\", flush=True)\\\\n190:    return dict(model=mk, ba_opt_layer=cfg[\\\\\\\"ba_opt_layer\\\\\\\"], window=w,\\\\n215:            print(f\\\\\\\"{mk:<10} L{r['ba_opt_layer']:<3} \\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2:Usage: python r13_ba_layer_modality.py [model_key]\\n20:OUTPUT_DIR = Path(\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/r13_ba_layer_modality\\\")\\n26:                  hidden_dim=4096, ba_opt_layer=12, stored_layer_offset=12, window=15),\\n28:                  hidden_dim=3584, ba_opt_layer=9, stored_layer_offset=0, window=3),\\n30:                   hidden_dim=5120, ba_opt_layer=47, stored_layer_offset=0, window=1),\\n32:                    hidden_dim=5120, ba_opt_layer=30, stored_layer_offset=0, window=5),\\n59:def load_model_data(cfg, st_model, layer_idx):\\n71:        # Only load needed layer to save memory\\n73:        hs_layer = hs_full[:, layer_idx, :].float().numpy()\\n76:        traces.append(dict(trace_id=tid, hs=hs_layer, text_emb=emb, step_labels=sl))\\n146:    li = cfg[\\\"ba_opt_layer\\\"] - cfg[\\\"stored_layer_offset\\\"]\\n153:    print(f\\\"  train={len(tr)}, test={len(te)}, layer={cfg['ba_opt_layer']}(idx={li}), W={w}\\\", flush=True)\\n190:    return dict(model=mk, ba_opt_layer=cfg[\\\"ba_opt_layer\\\"], window=w,\\n215:            print(f\\\"{mk:<10} L{r['ba_opt_layer']:<3} \\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I see it! From `r13_ba_layer_modality.py`:
+- R1-8B: `ba_opt_layer=12, stored_layer_offset=12, window=15`
+- The actual layer index in the tensor is `ba_opt_layer - stored_layer_offset = 12 - 12 = 0`
+
+So for R1-8B, the stored layers start at offset 12. The tensor has 13 layers, meaning it stores layers 12-24 of the full model. Layer 14 would be index `14 - 12 = 2` in the stored tensor.
+
+
+The bge_bootstrap script confirms this with `layer_idx=2` for R1-8B, which maps to model layer 14. Now I need to understand how text features are extracted using all-MiniLM-L6-v2 and how the window concatenation works with the 209 valid traces and their hidden states of shape [steps, 13, 4096].
+
+For the experimental setup, I'm using a window size of 3 to concatenate timesteps [t-2, t-1, t] into 12288 dimensions before PCA reduction to 100d, while text embeddings from all-MiniLM-L6-v2 stay at 384d without PCA. The data splits 60/20/20 with seed 42, and I'm training a logistic regression model with balanced class weights across 10000 bootstrap resamples to compute null-centered, two-sided paired statistics. Let me verify that all-MiniLM-L6-v2 is accessible on the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "9309317f-2782-4f64-b33e-e9fd6bd515fc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DfFcmKiVcwJQsVzhoB2nCj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1156,
+      "cache_read_input_tokens": 52063,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1156
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47_
+
+Layer 14 对应 tensor 中 index 2（stored_layer_offset=12）。现在检查 sentence-transformers 模型是否可用，然后编写并执行实验脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "40faba80-64de-4001-a374-73e4afb742cb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DfFcmKiVcwJQsVzhoB2nCj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1156,
+      "cache_read_input_tokens": 52063,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1156
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01D9FHoPBVx8F4FpkBX1h4fV`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "/root/miniconda3/bin/python3.12 -c \"\nfrom sentence_transformers import SentenceTransformer\nimport os\nos.environ['HF_ENDPOINT'] = 'https://hf-mirror.com'\n# Check if MiniLM is cached locally\nimport glob\ncache_dirs = glob.glob('/root/.cache/huggingface/hub/models--sentence-transformers*')\nfor d in cache_dirs:\n    print(d)\n# Also check local models dir\nlocal = glob.glob('/root/autodl-tmp/contrastive_trace_safety/models/*mini*')\nfor d in local:\n    print('local:', d)\nprint('---')\n# Check sentence_transformers version\nimport sentence_transformers\nprint('st version:', sentence_transformers.__version__)\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "09cf2bcd-d834-4eb0-b324-30f98e1696d5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DfFcmKiVcwJQsVzhoB2nCj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1156,
+      "cache_read_input_tokens": 52063,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1156
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016SNhkdidb5XAMZW284HMoT`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ls /root/autodl-tmp/contrastive_trace_safety/models/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "48db8dd4-e766-4085-b2b9-f6584df64bc5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DfFcmKiVcwJQsVzhoB2nCj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1156,
+      "cache_read_input_tokens": 52063,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1156
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-18T17:30:30.824Z_
+
+<details><summary>↩ Tool result · `toolu_01D9FHoPBVx8F4FpkBX1h4fV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2\\n---\\nst version: 5.4.1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.08}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "4da93d0f-e998-4958-8987-1ba04a3f1699",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2\\\\n---\\\\nst version: 5.4.1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.08}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2\\n---\\nst version: 5.4.1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.08}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-18T17:30:31.252Z_
+
+<details><summary>↩ Tool result · `toolu_016SNhkdidb5XAMZW284HMoT`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"bge-large-en-v1.5\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "b35352c7-89e5-4f9f-881c-3259d16740fe",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"bge-large-en-v1.5\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"bge-large-en-v1.5\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 52_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good - all-MiniLM-L6-v2 is cached in HF hub. Now I need to check how sentences are loaded. The bge script loads them from HuggingFace dataset `ishitakakkar-10/HarmThoughts`. Let me check if this dataset is accessible.
+
+Actually, let me check the existing script more carefully. I need to also look at how the text features are built with the window. The user says W=3 for HS means concatenation of 3 steps. But for text, do we also use W=3? Let me look at how the bge script handles text features with window.
+
+
+Looking at the bge script, I see that `build_text_features` applies the same window parameter to text as it does to HS, using `compute_windowed_average` for both. But there's a mismatch here - the user wants HS concatenated rather than averaged, and they specify text as 384d from all-MiniLM-L6-v2. If I concatenate 3 text embeddings that would give 1152d, not 384d, so it seems the text features should stay at 384d rather than being concatenated.
+
+For HS with window=3, that's 4096×3 = 12288d if concatenated. The user didn't explicitly specify a window for text, so I need to figure out whether to average the window or skip windowing entirely for text features.
+
+Looking at how the windowed average function works, it computes a rolling average over the last `window` steps. But the user's description for W=3 shows concatenation of hidden states, not averaging. For text at 384d without PCA, either the window isn't applied or it's averaged down to maintain the 384d dimension. Let me check what the existing scripts and papers actually do with W=3 for reference.
+
+Now I'm re-reading the specifications more carefully. The W=3 concatenation applies specifically to hidden states, creating a 12288d vector before PCA reduction to 100d. Text embeddings stay at 384d without PCA, but I need to clarify whether text also uses the window or just takes a single step's embedding.
+
+Looking at how the existing bootstrap script handles this, it seems to apply the same windowing approach to both modalities. Let me check what the `compute_windowed_average` function actually does to understand if text should also be windowed.
+
+For a fair comparison between the two probes, I think text should use the same W=3 window but with averaging to keep it at 384d, while HS uses concatenation followed by PCA down to 100d. This aligns with what the user specified about text not undergoing PCA.
+
+Now I'm checking how similar experiments were set up in other Table 3 runs to make sure I'm following the right pattern.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "b9039428-8c33-4eec-8ff0-823b769cdfba",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019eNRits6yeMEP1Upb83YVa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1308,
+      "cache_read_input_tokens": 53219,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1308
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015KY5Q2JMbDTqwkew6SWkTb`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "find /root/autodl-tmp/contrastive_trace_safety/artifacts/ -name \"*.json\" -path \"*table3*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "85a28053-b8fd-4b2e-81c8-db291a2cc7c2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019eNRits6yeMEP1Upb83YVa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1308,
+      "cache_read_input_tokens": 53219,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1308
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PjdNxixVE9T93fcdcd1Mec`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "grep -rn \"concat\\|concatenat\\|W=3\\|window.*3\" /root/autodl-tmp/contrastive_trace_safety/scripts/r13_ba_layer_modality.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "c5eff640-996b-47b3-af0a-7336a1bf70fa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019eNRits6yeMEP1Upb83YVa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1308,
+      "cache_read_input_tokens": 53219,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1308
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-18T17:31:05.434Z_
+
+<details><summary>↩ Tool result · `toolu_015KY5Q2JMbDTqwkew6SWkTb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "458aedc1-2c6e-4508-9ca7-421ba1d50dee",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-18T17:31:05.442Z_
+
+<details><summary>↩ Tool result · `toolu_01PjdNxixVE9T93fcdcd1Mec`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "9e25582e-3ba6-4a47-8c88-0a102a9fed39",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AvEjnr22RCFfk9rJtDUWhi`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "grep -rn \"concat\" /root/autodl-tmp/contrastive_trace_safety/scripts/r13_ba_layer_modality.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "f4c57e54-1a26-4042-a893-181efe5df29c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017mH2522kbHLkiPtQvQbjvD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1973,
+      "cache_read_input_tokens": 54527,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1973
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-18T17:31:09.493Z_
+
+<details><summary>↩ Tool result · `toolu_01AvEjnr22RCFfk9rJtDUWhi`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"95:    return np.vstack(X), np.concatenate(y), np.array(ti)\\n107:    return np.vstack(X), np.concatenate(y), np.array(ti)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "5f3da160-ed3e-4b16-8773-f20c0926a213",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"95:    return np.vstack(X), np.concatenate(y), np.array(ti)\\\\n107:    return np.vstack(X), np.concatenate(y), np.array(ti)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"95:    return np.vstack(X), np.concatenate(y), np.array(ti)\\n107:    return np.vstack(X), np.concatenate(y), np.array(ti)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WyVaCexyXnre39qtnL9jWe`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "grep -rn \"PCA\" /root/autodl-tmp/contrastive_trace_safety/scripts/r13_ba_layer_modality.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "273976c3-16bd-4682-9d9c-f70c0442cd92",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017mH2522kbHLkiPtQvQbjvD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1973,
+      "cache_read_input_tokens": 54527,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1973
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-18T17:31:13.402Z_
+
+<details><summary>↩ Tool result · `toolu_01WyVaCexyXnre39qtnL9jWe`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "f33083a8-6fbb-46f8-b790-6315c88f3c3a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FFRSThtREMpbB58fN3SB6G`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/scripts/r13_ba_layer_modality.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "fa16f605-1575-4b12-ab9e-2859f667b48c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PYWm2TVDVpuUUDBZkLY3nQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 526,
+      "cache_read_input_tokens": 56500,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 526
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-18T17:31:17.393Z_
+
+<details><summary>↩ Tool result · `toolu_01FFRSThtREMpbB58fN3SB6G`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"R13: BA-Selected Layers HS vs Text Modality Comparison.\\nUsage: python r13_ba_layer_modality.py [model_key]\\n\\\"\\\"\\\"\\nimport os, sys, json, warnings, time, gc\\nos.environ[\\\"TOKENIZERS_PARALLELISM\\\"] = \\\"false\\\"\\nos.environ[\\\"HF_HUB_OFFLINE\\\"] = \\\"1\\\"\\nos.environ[\\\"HF_DATASETS_OFFLINE\\\"] = \\\"1\\\"\\nos.environ[\\\"TRANSFORMERS_OFFLINE\\\"] = \\\"1\\\"\\nwarnings.filterwarnings(\\\"ignore\\\")\\n\\nimport numpy as np\\nimport torch\\nfrom pathlib import Path\\nfrom collections import defaultdict\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.metrics import roc_auc_score\\n\\nSEED = 42\\nN_BOOTSTRAP = 1000\\nOUTPUT_DIR = Path(\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/r13_ba_layer_modality\\\")\\nST_MODEL_PATH = \\\"/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/c9745ed1d9f207416be6d2e6f8de32d1f16199bf\\\"\\nSAFETY_LABELS = {\\\"RA\\\", \\\"AL\\\", \\\"CC\\\", \\\"ED\\\", \\\"IA\\\"}\\n\\nMODELS = {\\n    \\\"r1-8b\\\": dict(hf_name=\\\"r1-8b\\\", hs_dir=\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/\\\",\\n                  hidden_dim=4096, ba_opt_layer=12, stored_layer_offset=12, window=15),\\n    \\\"ot-7b\\\": dict(hf_name=\\\"ot-7b\\\", hs_dir=\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_ot7b/\\\",\\n                  hidden_dim=3584, ba_opt_layer=9, stored_layer_offset=0, window=3),\\n    \\\"r1-32b\\\": dict(hf_name=\\\"r1-32b\\\", hs_dir=\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_r1_32b/\\\",\\n                   hidden_dim=5120, ba_opt_layer=47, stored_layer_offset=0, window=1),\\n    \\\"qwq-32b\\\": dict(hf_name=\\\"QwQ\\\", hs_dir=\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_qwq_32b/\\\",\\n                    hidden_dim=5120, ba_opt_layer=30, stored_layer_offset=0, window=5),\\n}\\n\\n# Cache HF dataset\\n_hf_cache = {}\\ndef get_hf_traces(model_name):\\n    if model_name not in _hf_cache:\\n        from datasets import load_dataset\\n        ds = load_dataset(\\\"ishitakakkar-10/HarmThoughts\\\", split=\\\"train\\\")\\n        for mn in set(ds[\\\"model_name\\\"]):\\n            _hf_cache[mn] = defaultdict(list)\\n        for row in ds:\\n            sid = row[\\\"sentence_id\\\"]; parts = sid.rsplit(\\\"-\\\", 1)\\n            _hf_cache[row[\\\"model_name\\\"]][parts[0]].append(\\n                dict(step_idx=int(parts[1])-1, sentence=row[\\\"sentence\\\"],\\n                     label=row[\\\"llm_annotation\\\"], final_judgment=row[\\\"final_judgment\\\"]))\\n        for mn in _hf_cache:\\n            for tid in _hf_cache[mn]:\\n                _hf_cache[mn][tid].sort(key=lambda x: x[\\\"step_idx\\\"])\\n    return dict(_hf_cache[model_name])\\n\\ndef extract_cp(labels):\\n    last = None\\n    for i, l in enumerate(labels):\\n        if l in SAFETY_LABELS: last = i\\n    return None if (last is None or last == len(labels)-1) else last + 1\\n\\ndef load_model_data(cfg, st_model, layer_idx):\\n    raw = get_hf_traces(cfg[\\\"hf_name\\\"])\\n    hs_dir = Path(cfg[\\\"hs_dir\\\"])\\n    traces = []\\n    for tid, steps in raw.items():\\n        if steps[0][\\\"final_judgment\\\"] != 1.0: continue\\n        cp = extract_cp([s[\\\"label\\\"] for s in steps])\\n        if cp is None: continue\\n        hp = hs_dir / f\\\"{tid}.pt\\\"\\n        if not hp.exists(): continue\\n        sents = [s[\\\"sentence\\\"] for s in steps]\\n        sl = [0 if i < cp else 1 for i in range(len(sents))]\\n        # Only load needed layer to save memory\\n        hs_full = torch.load(hp, map_location=\\\"cpu\\\", weights_only=False)[\\\"hidden_states\\\"]\\n        hs_layer = hs_full[:, layer_idx, :].float().numpy()\\n        del hs_full\\n        emb = st_model.encode(sents, batch_size=64, show_progress_bar=False).astype(np.float32)\\n        traces.append(dict(trace_id=tid, hs=hs_layer, text_emb=emb, step_labels=sl))\\n    gc.collect()\\n    return traces\\n\\ndef split_70_30(traces):\\n    rng = np.random.default_rng(SEED)\\n    idx = rng.permutation(len(traces)); n = int(len(traces) * 0.7)\\n    return [traces[i] for i in idx[:n]], [traces[i] for i in idx[n:]]\\n\\ndef build_hs(traces, w, hd):\\n    X, y, ti = [], [], []\\n    for t_i, t in enumerate(traces):\\n        hs = t[\\\"hs\\\"]; lab = np.array(t[\\\"step_labels\\\"]); n = min(len(lab), hs.shape[0])\\n        hs = hs[:n]; lab = \\n\\n... [截断: 输出过长，省略 2365 字符] ...\\n\\nfor r, (i, p) in enumerate(ix):\\n        a = min(p*(m-r), 1.0); mx = max(mx, a); adj[i] = mx\\n    return adj\\n\\ndef run_model(mk, cfg, st_model):\\n    t0 = time.time()\\n    print(f\\\"\\\\n{'='*50} {mk} {'='*50}\\\", flush=True)\\n    li = cfg[\\\"ba_opt_layer\\\"] - cfg[\\\"stored_layer_offset\\\"]\\n    w = cfg[\\\"window\\\"]; hd = cfg[\\\"hidden_dim\\\"]\\n    \\n    traces = load_model_data(cfg, st_model, li)\\n    print(f\\\"  {len(traces)} traces ({time.time()-t0:.1f}s)\\\", flush=True)\\n    \\n    tr, te = split_70_30(traces)\\n    print(f\\\"  train={len(tr)}, test={len(te)}, layer={cfg['ba_opt_layer']}(idx={li}), W={w}\\\", flush=True)\\n    \\n    Xtr_h, ytr_h, _ = build_hs(tr, w, hd)\\n    Xte_h, yte_h, ti_h = build_hs(te, w, hd)\\n    Xtr_t, ytr_t, _ = build_text(tr, w)\\n    Xte_t, yte_t, ti_t = build_text(te, w)\\n    print(f\\\"  HS:{Xtr_h.shape} Text:{Xtr_t.shape}\\\", flush=True)\\n    \\n    solver = 'saga' if Xtr_h.shape[1] > 20000 else 'lbfgs'\\n    mi = 500 if solver == 'saga' else 2000\\n    clf_h = LogisticRegression(solver=solver, C=1.0, class_weight='balanced', max_iter=mi, random_state=SEED)\\n    clf_h.fit(Xtr_h, ytr_h)\\n    print(f\\\"  HS trained ({time.time()-t0:.1f}s)\\\", flush=True)\\n    \\n    solver_t = 'saga' if Xtr_t.shape[1] > 20000 else 'lbfgs'\\n    mi_t = 500 if solver_t == 'saga' else 2000\\n    clf_t = LogisticRegression(solver=solver_t, C=1.0, class_weight='balanced', max_iter=mi_t, random_state=SEED)\\n    clf_t.fit(Xtr_t, ytr_t)\\n    \\n    hp = clf_h.predict(Xte_h); hpp = clf_h.predict_proba(Xte_h)[:,1]\\n    tp = clf_t.predict(Xte_t); tpp = clf_t.predict_proba(Xte_t)[:,1]\\n    \\n    nt = len(te)\\n    hm = per_trace_metrics(yte_h, hp, hpp, ti_h, nt)\\n    tm = per_trace_metrics(yte_t, tp, tpp, ti_t, nt)\\n    \\n    mnames = [\\\"precision\\\", \\\"fpr\\\", \\\"ba\\\", \\\"auroc\\\"]\\n    bs = {}; rpv = []\\n    for i, mn in enumerate(mnames):\\n        b = paired_bootstrap(hm[i], tm[i]); bs[mn] = b; rpv.append(b[\\\"p_value\\\"])\\n        print(f\\\"    {mn}: HS={np.nanmean(hm[i]):.4f} Tx={np.nanmean(tm[i]):.4f} d={b['delta']:.4f} p={b['p_value']:.4f}\\\", flush=True)\\n    \\n    ap = holm_bonf(rpv)\\n    for i, mn in enumerate(mnames): bs[mn][\\\"adj_p\\\"] = ap[i]\\n    asig = all(p < 0.05 for p in ap)\\n    print(f\\\"  HB: {[f'{p:.4f}' for p in ap]} all_sig={asig} ({time.time()-t0:.1f}s)\\\", flush=True)\\n    \\n    return dict(model=mk, ba_opt_layer=cfg[\\\"ba_opt_layer\\\"], window=w,\\n                n_train=len(tr), n_test=nt,\\n                hs_means={mn: float(np.nanmean(hm[i])) for i, mn in enumerate(mnames)},\\n                text_means={mn: float(np.nanmean(tm[i])) for i, mn in enumerate(mnames)},\\n                bootstrap=bs, holm_bonferroni_all_sig=asig, raw_p_values=rpv, adj_p_values=ap)\\n\\ndef main():\\n    mk_arg = sys.argv[1] if len(sys.argv) > 1 else \\\"all\\\"\\n    keys = list(MODELS.keys()) if mk_arg == \\\"all\\\" else [mk_arg]\\n    \\n    from sentence_transformers import SentenceTransformer\\n    st = SentenceTransformer(ST_MODEL_PATH, device='cpu')\\n    \\n    rpath = OUTPUT_DIR / \\\"results.json\\\"\\n    all_res = json.load(open(rpath)) if rpath.exists() else {}\\n    \\n    for mk in keys:\\n        all_res[mk] = run_model(mk, MODELS[mk], st)\\n        with open(rpath, \\\"w\\\") as f: json.dump(all_res, f, indent=2)\\n    \\n    if len(all_res) == 4:\\n        print(\\\"\\\\n\\\" + \\\"=\\\"*130)\\n        for mk in [\\\"r1-8b\\\",\\\"ot-7b\\\",\\\"r1-32b\\\",\\\"qwq-32b\\\"]:\\n            r = all_res[mk]; h = r[\\\"hs_means\\\"]; t = r[\\\"text_means\\\"]; b = r[\\\"bootstrap\\\"]\\n            hb = \\\"Y\\\" if r[\\\"holm_bonferroni_all_sig\\\"] else \\\"N\\\"\\n            print(f\\\"{mk:<10} L{r['ba_opt_layer']:<3} \\\"\\n                  f\\\"Pr:{h['precision']:.3f}/{t['precision']:.3f}(d={b['precision']['delta']:+.3f},p={b['precision']['adj_p']:.3f}) \\\"\\n                  f\\\"FPR:{h['fpr']:.3f}/{t['fpr']:.3f}(d={b['fpr']['delta']:+.3f},p={b['fpr']['adj_p']:.3f}) \\\"\\n                  f\\\"BA:{h['ba']:.3f}/{t['ba']:.3f}(d={b['ba']['delta']:+.3f},p={b['ba']['adj_p']:.3f}) \\\"\\n                  f\\\"AUC:{h['auroc']:.3f}/{t['auroc']:.3f}(d={b['auroc']['delta']:+.3f},p={b['auroc']['adj_p']:.3f}) HB={hb}\\\")\\n        print(\\\"=\\\"*130)\\n    print(\\\"DONE\\\", flush=True)\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "650b6594-6f83-49f4-a793-74ea92189728",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"R13: BA-Selected Layers HS vs Text Modality Comparison.\\\\nUsage: python r13_ba_layer_modality.py [model_key]\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport os, sys, json, warnings, time, gc\\\\nos.environ[\\\\\\\"TOKENIZERS_PARALLELISM\\\\\\\"] = \\\\\\\"false\\\\\\\"\\\\nos.environ[\\\\\\\"HF_HUB_OFFLINE\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\nos.environ[\\\\\\\"HF_DATASETS_OFFLINE\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\nos.environ[\\\\\\\"TRANSFORMERS_OFFLINE\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\nwarnings.filterwarnings(\\\\\\\"ignore\\\\\\\")\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom pathlib import Path\\\\nfrom collections import defaultdict\\\\nfrom sklearn.linear_model import LogisticRegression\\\\nfrom sklearn.metrics import roc_auc_score\\\\n\\\\nSEED = 42\\\\nN_BOOTSTRAP = 1000\\\\nOUTPUT_DIR = Path(\\\\\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/r13_ba_layer_modality\\\\\\\")\\\\nST_MODEL_PATH = \\\\\\\"/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/c9745ed1d9f207416be6d2e6f8de32d1f16199bf\\\\\\\"\\\\nSAFETY_LABELS = {\\\\\\\"RA\\\\\\\", \\\\\\\"AL\\\\\\\", \\\\\\\"CC\\\\\\\", \\\\\\\"ED\\\\\\\", \\\\\\\"IA\\\\\\\"}\\\\n\\\\nMODELS = {\\\\n    \\\\\\\"r1-8b\\\\\\\": dict(hf_name=\\\\\\\"r1-8b\\\\\\\", hs_dir=\\\\\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/\\\\\\\",\\\\n                  hidden_dim=4096, ba_opt_layer=12, stored_layer_offset=12, window=15),\\\\n    \\\\\\\"ot-7b\\\\\\\": dict(hf_name=\\\\\\\"ot-7b\\\\\\\", hs_dir=\\\\\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_ot7b/\\\\\\\",\\\\n                  hidden_dim=3584, ba_opt_layer=9, stored_layer_offset=0, window=3),\\\\n    \\\\\\\"r1-32b\\\\\\\": dict(hf_name=\\\\\\\"r1-32b\\\\\\\", hs_dir=\\\\\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_r1_32b/\\\\\\\",\\\\n                   hidden_dim=5120, ba_opt_layer=47, stored_layer_offset=0, window=1),\\\\n    \\\\\\\"qwq-32b\\\\\\\": dict(hf_name=\\\\\\\"QwQ\\\\\\\", hs_dir=\\\\\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_qwq_32b/\\\\\\\",\\\\n                    hidden_dim=5120, ba_opt_layer=30, stored_layer_offset=0, window=5),\\\\n}\\\\n\\\\n# Cache HF dataset\\\\n_hf_cache = {}\\\\ndef get_hf_traces(model_name):\\\\n    if model_name not in _hf_cache:\\\\n        from datasets import load_dataset\\\\n        ds = load_dataset(\\\\\\\"ishitakakkar-10/HarmThoughts\\\\\\\", split=\\\\\\\"train\\\\\\\")\\\\n        for mn in set(ds[\\\\\\\"model_name\\\\\\\"]):\\\\n            _hf_cache[mn] = defaultdict(list)\\\\n        for row in ds:\\\\n            sid = row[\\\\\\\"sentence_id\\\\\\\"]; parts = sid.rsplit(\\\\\\\"-\\\\\\\", 1)\\\\n            _hf_cache[row[\\\\\\\"model_name\\\\\\\"]][parts[0]].append(\\\\n                dict(step_idx=int(parts[1])-1, sentence=row[\\\\\\\"sentence\\\\\\\"],\\\\n                     label=row[\\\\\\\"llm_annotation\\\\\\\"], final_judgment=row[\\\\\\\"final_judgment\\\\\\\"]))\\\\n        for mn in _hf_cache:\\\\n            for tid in _hf_cache[mn]:\\\\n                _hf_cache[mn][tid].sort(key=lambda x: x[\\\\\\\"step_idx\\\\\\\"])\\\\n    return dict(_hf_cache[model_name])\\\\n\\\\ndef extract_cp(labels):\\\\n    last = None\\\\n    for i, l in enumerate(labels):\\\\n        if l in SAFETY_LABELS: last = i\\\\n    return None if (last is None or last == len(labels)-1) else last + 1\\\\n\\\\ndef load_model_data(cfg, st_model, layer_idx):\\\\n    raw = get_hf_traces(cfg[\\\\\\\"hf_name\\\\\\\"])\\\\n    hs_dir = Path(cfg[\\\\\\\"hs_dir\\\\\\\"])\\\\n    traces = []\\\\n    for tid, steps in raw.items():\\\\n        if steps[0][\\\\\\\"final_judgment\\\\\\\"] != 1.0: continue\\\\n        cp = extract_cp([s[\\\\\\\"label\\\\\\\"] for s in steps])\\\\n        if cp is None: continue\\\\n        hp = hs_dir / f\\\\\\\"{tid}.pt\\\\\\\"\\\\n        if not hp.exists(): continue\\\\n        sents = [s[\\\\\\\"sentence\\\\\\\"] for s in steps]\\\\n        sl = [0 if i < cp else 1 for i in range(len(sents))]\\\\n        # Only load needed layer to save memory\\\\n        hs_full = torch.load(hp, map_location=\\\\\\\"cpu\\\\\\\", weights_only=False)[\\\\\\\"hidden_states\\\\\\\"]\\\\n        hs_layer = hs_full[:, layer_idx, :].float().numpy()\\\\n        del hs_full\\\\n        emb = st_model.encode(sents, batch_size=64, show_progress_bar=False).astype(np.float32)\\\\n        traces.append(dict(trace_id=tid, hs=hs_layer, text_emb=emb, step_labels=sl))\\\\n    gc.collect()\\\\n    return traces\\\\n\\\\ndef split_70_30(traces):\\\\n    rng = np.random.default_rng(SEED)\\\\n    idx = rng.permutation(len(traces)); n = int(len(traces) * 0.7)\\\\n    return [traces[i] for i in idx[:n]], [traces[i] for i in idx[n:]]\\\\n\\\\ndef build_hs(traces, w, hd):\\\\n    X, y, ti = [], [], []\\\\n    for t_i, t in enumerate(traces):\\\\n        hs = t[\\\\\\\"hs\\\\\\\"]; lab = np.array(t[\\\\\\\"step_labels\\\\\\\"]); n = min(len(lab), hs.shape[0])\\\\n        hs = hs[:n]; lab = \\\\n\\\\n... [截断: 输出过长，省略 2365 字符] ...\\\\n\\\\nfor r, (i, p) in enumerate(ix):\\\\n        a = min(p*(m-r), 1.0); mx = max(mx, a); adj[i] = mx\\\\n    return adj\\\\n\\\\ndef run_model(mk, cfg, st_model):\\\\n    t0 = time.time()\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*50} {mk} {'='*50}\\\\\\\", flush=True)\\\\n    li = cfg[\\\\\\\"ba_opt_layer\\\\\\\"] - cfg[\\\\\\\"stored_layer_offset\\\\\\\"]\\\\n    w = cfg[\\\\\\\"window\\\\\\\"]; hd = cfg[\\\\\\\"hidden_dim\\\\\\\"]\\\\n    \\\\n    traces = load_model_data(cfg, st_model, li)\\\\n    print(f\\\\\\\"  {len(traces)} traces ({time.time()-t0:.1f}s)\\\\\\\", flush=True)\\\\n    \\\\n    tr, te = split_70_30(traces)\\\\n    print(f\\\\\\\"  train={len(tr)}, test={len(te)}, layer={cfg['ba_opt_layer']}(idx={li}), W={w}\\\\\\\", flush=True)\\\\n    \\\\n    Xtr_h, ytr_h, _ = build_hs(tr, w, hd)\\\\n    Xte_h, yte_h, ti_h = build_hs(te, w, hd)\\\\n    Xtr_t, ytr_t, _ = build_text(tr, w)\\\\n    Xte_t, yte_t, ti_t = build_text(te, w)\\\\n    print(f\\\\\\\"  HS:{Xtr_h.shape} Text:{Xtr_t.shape}\\\\\\\", flush=True)\\\\n    \\\\n    solver = 'saga' if Xtr_h.shape[1] > 20000 else 'lbfgs'\\\\n    mi = 500 if solver == 'saga' else 2000\\\\n    clf_h = LogisticRegression(solver=solver, C=1.0, class_weight='balanced', max_iter=mi, random_state=SEED)\\\\n    clf_h.fit(Xtr_h, ytr_h)\\\\n    print(f\\\\\\\"  HS trained ({time.time()-t0:.1f}s)\\\\\\\", flush=True)\\\\n    \\\\n    solver_t = 'saga' if Xtr_t.shape[1] > 20000 else 'lbfgs'\\\\n    mi_t = 500 if solver_t == 'saga' else 2000\\\\n    clf_t = LogisticRegression(solver=solver_t, C=1.0, class_weight='balanced', max_iter=mi_t, random_state=SEED)\\\\n    clf_t.fit(Xtr_t, ytr_t)\\\\n    \\\\n    hp = clf_h.predict(Xte_h); hpp = clf_h.predict_proba(Xte_h)[:,1]\\\\n    tp = clf_t.predict(Xte_t); tpp = clf_t.predict_proba(Xte_t)[:,1]\\\\n    \\\\n    nt = len(te)\\\\n    hm = per_trace_metrics(yte_h, hp, hpp, ti_h, nt)\\\\n    tm = per_trace_metrics(yte_t, tp, tpp, ti_t, nt)\\\\n    \\\\n    mnames = [\\\\\\\"precision\\\\\\\", \\\\\\\"fpr\\\\\\\", \\\\\\\"ba\\\\\\\", \\\\\\\"auroc\\\\\\\"]\\\\n    bs = {}; rpv = []\\\\n    for i, mn in enumerate(mnames):\\\\n        b = paired_bootstrap(hm[i], tm[i]); bs[mn] = b; rpv.append(b[\\\\\\\"p_value\\\\\\\"])\\\\n        print(f\\\\\\\"    {mn}: HS={np.nanmean(hm[i]):.4f} Tx={np.nanmean(tm[i]):.4f} d={b['delta']:.4f} p={b['p_value']:.4f}\\\\\\\", flush=True)\\\\n    \\\\n    ap = holm_bonf(rpv)\\\\n    for i, mn in enumerate(mnames): bs[mn][\\\\\\\"adj_p\\\\\\\"] = ap[i]\\\\n    asig = all(p < 0.05 for p in ap)\\\\n    print(f\\\\\\\"  HB: {[f'{p:.4f}' for p in ap]} all_sig={asig} ({time.time()-t0:.1f}s)\\\\\\\", flush=True)\\\\n    \\\\n    return dict(model=mk, ba_opt_layer=cfg[\\\\\\\"ba_opt_layer\\\\\\\"], window=w,\\\\n                n_train=len(tr), n_test=nt,\\\\n                hs_means={mn: float(np.nanmean(hm[i])) for i, mn in enumerate(mnames)},\\\\n                text_means={mn: float(np.nanmean(tm[i])) for i, mn in enumerate(mnames)},\\\\n                bootstrap=bs, holm_bonferroni_all_sig=asig, raw_p_values=rpv, adj_p_values=ap)\\\\n\\\\ndef main():\\\\n    mk_arg = sys.argv[1] if len(sys.argv) > 1 else \\\\\\\"all\\\\\\\"\\\\n    keys = list(MODELS.keys()) if mk_arg == \\\\\\\"all\\\\\\\" else [mk_arg]\\\\n    \\\\n    from sentence_transformers import SentenceTransformer\\\\n    st = SentenceTransformer(ST_MODEL_PATH, device='cpu')\\\\n    \\\\n    rpath = OUTPUT_DIR / \\\\\\\"results.json\\\\\\\"\\\\n    all_res = json.load(open(rpath)) if rpath.exists() else {}\\\\n    \\\\n    for mk in keys:\\\\n        all_res[mk] = run_model(mk, MODELS[mk], st)\\\\n        with open(rpath, \\\\\\\"w\\\\\\\") as f: json.dump(all_res, f, indent=2)\\\\n    \\\\n    if len(all_res) == 4:\\\\n        print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\"*130)\\\\n        for mk in [\\\\\\\"r1-8b\\\\\\\",\\\\\\\"ot-7b\\\\\\\",\\\\\\\"r1-32b\\\\\\\",\\\\\\\"qwq-32b\\\\\\\"]:\\\\n            r = all_res[mk]; h = r[\\\\\\\"hs_means\\\\\\\"]; t = r[\\\\\\\"text_means\\\\\\\"]; b = r[\\\\\\\"bootstrap\\\\\\\"]\\\\n            hb = \\\\\\\"Y\\\\\\\" if r[\\\\\\\"holm_bonferroni_all_sig\\\\\\\"] else \\\\\\\"N\\\\\\\"\\\\n            print(f\\\\\\\"{mk:<10} L{r['ba_opt_layer']:<3} \\\\\\\"\\\\n                  f\\\\\\\"Pr:{h['precision']:.3f}/{t['precision']:.3f}(d={b['precision']['delta']:+.3f},p={b['precision']['adj_p']:.3f}) \\\\\\\"\\\\n                  f\\\\\\\"FPR:{h['fpr']:.3f}/{t['fpr']:.3f}(d={b['fpr']['delta']:+.3f},p={b['fpr']['adj_p']:.3f}) \\\\\\\"\\\\n                  f\\\\\\\"BA:{h['ba']:.3f}/{t['ba']:.3f}(d={b['ba']['delta']:+.3f},p={b['ba']['adj_p']:.3f}) \\\\\\\"\\\\n                  f\\\\\\\"AUC:{h['auroc']:.3f}/{t['auroc']:.3f}(d={b['auroc']['delta']:+.3f},p={b['auroc']['adj_p']:.3f}) HB={hb}\\\\\\\")\\\\n        print(\\\\\\\"=\\\\\\\"*130)\\\\n    print(\\\\\\\"DONE\\\\\\\", flush=True)\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"R13: BA-Selected Layers HS vs Text Modality Comparison.\\nUsage: python r13_ba_layer_modality.py [model_key]\\n\\\"\\\"\\\"\\nimport os, sys, json, warnings, time, gc\\nos.environ[\\\"TOKENIZERS_PARALLELISM\\\"] = \\\"false\\\"\\nos.environ[\\\"HF_HUB_OFFLINE\\\"] = \\\"1\\\"\\nos.environ[\\\"HF_DATASETS_OFFLINE\\\"] = \\\"1\\\"\\nos.environ[\\\"TRANSFORMERS_OFFLINE\\\"] = \\\"1\\\"\\nwarnings.filterwarnings(\\\"ignore\\\")\\n\\nimport numpy as np\\nimport torch\\nfrom pathlib import Path\\nfrom collections import defaultdict\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.metrics import roc_auc_score\\n\\nSEED = 42\\nN_BOOTSTRAP = 1000\\nOUTPUT_DIR = Path(\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/r13_ba_layer_modality\\\")\\nST_MODEL_PATH = \\\"/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/c9745ed1d9f207416be6d2e6f8de32d1f16199bf\\\"\\nSAFETY_LABELS = {\\\"RA\\\", \\\"AL\\\", \\\"CC\\\", \\\"ED\\\", \\\"IA\\\"}\\n\\nMODELS = {\\n    \\\"r1-8b\\\": dict(hf_name=\\\"r1-8b\\\", hs_dir=\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/\\\",\\n                  hidden_dim=4096, ba_opt_layer=12, stored_layer_offset=12, window=15),\\n    \\\"ot-7b\\\": dict(hf_name=\\\"ot-7b\\\", hs_dir=\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_ot7b/\\\",\\n                  hidden_dim=3584, ba_opt_layer=9, stored_layer_offset=0, window=3),\\n    \\\"r1-32b\\\": dict(hf_name=\\\"r1-32b\\\", hs_dir=\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_r1_32b/\\\",\\n                   hidden_dim=5120, ba_opt_layer=47, stored_layer_offset=0, window=1),\\n    \\\"qwq-32b\\\": dict(hf_name=\\\"QwQ\\\", hs_dir=\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_qwq_32b/\\\",\\n                    hidden_dim=5120, ba_opt_layer=30, stored_layer_offset=0, window=5),\\n}\\n\\n# Cache HF dataset\\n_hf_cache = {}\\ndef get_hf_traces(model_name):\\n    if model_name not in _hf_cache:\\n        from datasets import load_dataset\\n        ds = load_dataset(\\\"ishitakakkar-10/HarmThoughts\\\", split=\\\"train\\\")\\n        for mn in set(ds[\\\"model_name\\\"]):\\n            _hf_cache[mn] = defaultdict(list)\\n        for row in ds:\\n            sid = row[\\\"sentence_id\\\"]; parts = sid.rsplit(\\\"-\\\", 1)\\n            _hf_cache[row[\\\"model_name\\\"]][parts[0]].append(\\n                dict(step_idx=int(parts[1])-1, sentence=row[\\\"sentence\\\"],\\n                     label=row[\\\"llm_annotation\\\"], final_judgment=row[\\\"final_judgment\\\"]))\\n        for mn in _hf_cache:\\n            for tid in _hf_cache[mn]:\\n                _hf_cache[mn][tid].sort(key=lambda x: x[\\\"step_idx\\\"])\\n    return dict(_hf_cache[model_name])\\n\\ndef extract_cp(labels):\\n    last = None\\n    for i, l in enumerate(labels):\\n        if l in SAFETY_LABELS: last = i\\n    return None if (last is None or last == len(labels)-1) else last + 1\\n\\ndef load_model_data(cfg, st_model, layer_idx):\\n    raw = get_hf_traces(cfg[\\\"hf_name\\\"])\\n    hs_dir = Path(cfg[\\\"hs_dir\\\"])\\n    traces = []\\n    for tid, steps in raw.items():\\n        if steps[0][\\\"final_judgment\\\"] != 1.0: continue\\n        cp = extract_cp([s[\\\"label\\\"] for s in steps])\\n        if cp is None: continue\\n        hp = hs_dir / f\\\"{tid}.pt\\\"\\n        if not hp.exists(): continue\\n        sents = [s[\\\"sentence\\\"] for s in steps]\\n        sl = [0 if i < cp else 1 for i in range(len(sents))]\\n        # Only load needed layer to save memory\\n        hs_full = torch.load(hp, map_location=\\\"cpu\\\", weights_only=False)[\\\"hidden_states\\\"]\\n        hs_layer = hs_full[:, layer_idx, :].float().numpy()\\n        del hs_full\\n        emb = st_model.encode(sents, batch_size=64, show_progress_bar=False).astype(np.float32)\\n        traces.append(dict(trace_id=tid, hs=hs_layer, text_emb=emb, step_labels=sl))\\n    gc.collect()\\n    return traces\\n\\ndef split_70_30(traces):\\n    rng = np.random.default_rng(SEED)\\n    idx = rng.permutation(len(traces)); n = int(len(traces) * 0.7)\\n    return [traces[i] for i in idx[:n]], [traces[i] for i in idx[n:]]\\n\\ndef build_hs(traces, w, hd):\\n    X, y, ti = [], [], []\\n    for t_i, t in enumerate(traces):\\n        hs = t[\\\"hs\\\"]; lab = np.array(t[\\\"step_labels\\\"]); n = min(len(lab), hs.shape[0])\\n        hs = hs[:n]; lab = \\n\\n... [截断: 输出过长，省略 2365 字符] ...\\n\\nfor r, (i, p) in enumerate(ix):\\n        a = min(p*(m-r), 1.0); mx = max(mx, a); adj[i] = mx\\n    return adj\\n\\ndef run_model(mk, cfg, st_model):\\n    t0 = time.time()\\n    print(f\\\"\\\\n{'='*50} {mk} {'='*50}\\\", flush=True)\\n    li = cfg[\\\"ba_opt_layer\\\"] - cfg[\\\"stored_layer_offset\\\"]\\n    w = cfg[\\\"window\\\"]; hd = cfg[\\\"hidden_dim\\\"]\\n    \\n    traces = load_model_data(cfg, st_model, li)\\n    print(f\\\"  {len(traces)} traces ({time.time()-t0:.1f}s)\\\", flush=True)\\n    \\n    tr, te = split_70_30(traces)\\n    print(f\\\"  train={len(tr)}, test={len(te)}, layer={cfg['ba_opt_layer']}(idx={li}), W={w}\\\", flush=True)\\n    \\n    Xtr_h, ytr_h, _ = build_hs(tr, w, hd)\\n    Xte_h, yte_h, ti_h = build_hs(te, w, hd)\\n    Xtr_t, ytr_t, _ = build_text(tr, w)\\n    Xte_t, yte_t, ti_t = build_text(te, w)\\n    print(f\\\"  HS:{Xtr_h.shape} Text:{Xtr_t.shape}\\\", flush=True)\\n    \\n    solver = 'saga' if Xtr_h.shape[1] > 20000 else 'lbfgs'\\n    mi = 500 if solver == 'saga' else 2000\\n    clf_h = LogisticRegression(solver=solver, C=1.0, class_weight='balanced', max_iter=mi, random_state=SEED)\\n    clf_h.fit(Xtr_h, ytr_h)\\n    print(f\\\"  HS trained ({time.time()-t0:.1f}s)\\\", flush=True)\\n    \\n    solver_t = 'saga' if Xtr_t.shape[1] > 20000 else 'lbfgs'\\n    mi_t = 500 if solver_t == 'saga' else 2000\\n    clf_t = LogisticRegression(solver=solver_t, C=1.0, class_weight='balanced', max_iter=mi_t, random_state=SEED)\\n    clf_t.fit(Xtr_t, ytr_t)\\n    \\n    hp = clf_h.predict(Xte_h); hpp = clf_h.predict_proba(Xte_h)[:,1]\\n    tp = clf_t.predict(Xte_t); tpp = clf_t.predict_proba(Xte_t)[:,1]\\n    \\n    nt = len(te)\\n    hm = per_trace_metrics(yte_h, hp, hpp, ti_h, nt)\\n    tm = per_trace_metrics(yte_t, tp, tpp, ti_t, nt)\\n    \\n    mnames = [\\\"precision\\\", \\\"fpr\\\", \\\"ba\\\", \\\"auroc\\\"]\\n    bs = {}; rpv = []\\n    for i, mn in enumerate(mnames):\\n        b = paired_bootstrap(hm[i], tm[i]); bs[mn] = b; rpv.append(b[\\\"p_value\\\"])\\n        print(f\\\"    {mn}: HS={np.nanmean(hm[i]):.4f} Tx={np.nanmean(tm[i]):.4f} d={b['delta']:.4f} p={b['p_value']:.4f}\\\", flush=True)\\n    \\n    ap = holm_bonf(rpv)\\n    for i, mn in enumerate(mnames): bs[mn][\\\"adj_p\\\"] = ap[i]\\n    asig = all(p < 0.05 for p in ap)\\n    print(f\\\"  HB: {[f'{p:.4f}' for p in ap]} all_sig={asig} ({time.time()-t0:.1f}s)\\\", flush=True)\\n    \\n    return dict(model=mk, ba_opt_layer=cfg[\\\"ba_opt_layer\\\"], window=w,\\n                n_train=len(tr), n_test=nt,\\n                hs_means={mn: float(np.nanmean(hm[i])) for i, mn in enumerate(mnames)},\\n                text_means={mn: float(np.nanmean(tm[i])) for i, mn in enumerate(mnames)},\\n                bootstrap=bs, holm_bonferroni_all_sig=asig, raw_p_values=rpv, adj_p_values=ap)\\n\\ndef main():\\n    mk_arg = sys.argv[1] if len(sys.argv) > 1 else \\\"all\\\"\\n    keys = list(MODELS.keys()) if mk_arg == \\\"all\\\" else [mk_arg]\\n    \\n    from sentence_transformers import SentenceTransformer\\n    st = SentenceTransformer(ST_MODEL_PATH, device='cpu')\\n    \\n    rpath = OUTPUT_DIR / \\\"results.json\\\"\\n    all_res = json.load(open(rpath)) if rpath.exists() else {}\\n    \\n    for mk in keys:\\n        all_res[mk] = run_model(mk, MODELS[mk], st)\\n        with open(rpath, \\\"w\\\") as f: json.dump(all_res, f, indent=2)\\n    \\n    if len(all_res) == 4:\\n        print(\\\"\\\\n\\\" + \\\"=\\\"*130)\\n        for mk in [\\\"r1-8b\\\",\\\"ot-7b\\\",\\\"r1-32b\\\",\\\"qwq-32b\\\"]:\\n            r = all_res[mk]; h = r[\\\"hs_means\\\"]; t = r[\\\"text_means\\\"]; b = r[\\\"bootstrap\\\"]\\n            hb = \\\"Y\\\" if r[\\\"holm_bonferroni_all_sig\\\"] else \\\"N\\\"\\n            print(f\\\"{mk:<10} L{r['ba_opt_layer']:<3} \\\"\\n                  f\\\"Pr:{h['precision']:.3f}/{t['precision']:.3f}(d={b['precision']['delta']:+.3f},p={b['precision']['adj_p']:.3f}) \\\"\\n                  f\\\"FPR:{h['fpr']:.3f}/{t['fpr']:.3f}(d={b['fpr']['delta']:+.3f},p={b['fpr']['adj_p']:.3f}) \\\"\\n                  f\\\"BA:{h['ba']:.3f}/{t['ba']:.3f}(d={b['ba']['delta']:+.3f},p={b['ba']['adj_p']:.3f}) \\\"\\n                  f\\\"AUC:{h['auroc']:.3f}/{t['auroc']:.3f}(d={b['auroc']['delta']:+.3f},p={b['auroc']['adj_p']:.3f}) HB={hb}\\\")\\n        print(\\\"=\\\"*130)\\n    print(\\\"DONE\\\", flush=True)\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 63_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I understand the full picture. Let me note the key details from `r13_ba_layer_modality.py`:
+
+1. R1-8B config: `ba_opt_layer=12, stored_layer_offset=12, window=15` (this is the old W=15 config)
+2. The script uses 70/30 split (`split_70_30`)
+3. It uses `build_hs` which does windowed **concatenation**: `np.concatenate([hs[start:start+1] for ...], axis=1)` - let me read the build_hs function more carefully
+
+
+4. For R1-8B: ba_opt_layer=12 was the BA-optimal layer, but the user wants **Layer 14** which is layer_idx = 14 - 12 = 2 in the stored tensor.
+5. The user wants W=3, not W=15, and 60/20/20 split instead of 70/30, plus PCA=100d on HS features.
+
+Let me examine the build_hs function to understand how the windowing works.
+
+Actually, I have enough information now. I need to load 209 jailbreak traces from .pt files, extract Layer 14 hidden states with W=3 concatenation for 12288d features, apply PCA(100) on the training set, encode sentences with all-MiniLM-L6-v2 using W=3 averaging for 384d text features, split at trace level with 60/20/20 and seed=42, train logistic regression on the training set, and run 10k paired bootstrap resamples for evaluation.
+
+Wait, I need to clarify what step_labels actually represents. Looking at the r13 script, it constructs step_labels by finding the commitment point and marking steps before it as 0 and steps from the commitment point onward as 1. But the .pt files I'm loading already have step_labels stored directly. Let me verify these match up, since the first file had step_labels=None and I need to check which files actually contain this information.
+
+So out of all the files, only 209 have valid step_labels. The r13 script re-derives these from the HF dataset by filtering for jailbreak traces and extracting the commitment point using the same safety labels. This should give me the same 209 traces, so I'll follow that approach for consistency.
+
+I also need to use the same safety labels that r13 uses to identify commitment points, then apply the same windowing logic.
+
+Looking at how text embeddings are processed, the build_text function takes the embeddings and labels, applies windowing with average pooling rather than concatenation—that's why the output is 384d instead of 384*W. The user is specifying that HS features should go through PCA reduction to 100 dimensions while text features stay at 384 dimensions without PCA, and I'm realizing the text features likely use windowed averaging rather than concatenation since 384d matches the embedding size directly. Let me clarify the approach: HS will use a 3-step window with concatenation followed by PCA compression, while text will use windowed averaging to maintain the 384-dimensional embedding size.
+
+Now I need to understand how the HF dataset maps to the .pt files by trace_id, following the same pattern as the existing r13 script. I'm also checking whether the HF dataset is cached offline on the server, since the r13 script sets environment variables to enable offline mode.
+
+The r13 script has the sentence-transformers model cached locally, so I'll use that same path. Now I'm ready to write the comprehensive script that handles the dataset loading, embedding extraction, and windowed averaging for text.
+
+Writing the script... Setting up the imports and configuration for the experiment—I'm disabling tokenizer parallelism and offline mode for the models, then defining the key parameters like the 10k bootstrap samples, layer 14 extraction, 100-dimensional PCA reduction, and paths to the hidden states and output directories.
+
+Now I'm loading the sentence transformer model and defining the safety label categories, then setting up a function to fetch traces from the HuggingFace dataset, filtering for the r1-8b model and organizing the data by trace ID with step indices and annotations.
+
+Continuing with the data processing...
+
+I'm filtering traces to only include successful jailbreaks, then extracting the commitment point where the model transitions from safety-aware to unsafe behavior. For each valid trace, I'm loading the hidden state representations from layer 14 and creating binary labels that mark which steps occur before versus after that commitment point, making sure the sequence lengths align.
+
+Now I'm encoding the sentences using a sentence transformer model and packaging everything together—the hidden states, text embeddings, step labels, and original sentences—into trace dictionaries that I'll return for further analysis.
+
+After collecting all traces, I'm implementing a train/val/test split function that divides the data into 60/20/20 proportions using a seeded random permutation.
+
+Building feature vectors from the hidden states... Building text feature extraction... Computing the observed metrics for both approaches, then calculating the difference for each metric—flipping the sign for FPR since lower is better there. Now I'm grouping the prediction steps by their trace ID to set up for the bootstrap resampling.
+
+For the bootstrap, I'm resampling traces with replacement to create multiple samples, then extracting all the prediction indices that belong to those sampled traces and pulling the corresponding predictions and probabilities for both models.
+
+Now I'm computing metrics for each bootstrap sample on both the handshake and text models, then calculating the differences between them—flipping the sign for FPR since lower is better for that metric. After collecting all the bootstrap differences, I'm preparing to calculate p-values by comparing the observed differences against the null distribution centered at zero.
+
+Finishing the statistical analysis...
+
+Now I'm implementing the Holm-Bonferroni correction to adjust p-values for multiple comparisons, then moving into the main function where I load the sentence transformer model and prepare the jailbreak traces for a 60/20/20 train-validation-test split.
+
+I'm deciding how to use these splits—whether to combine training and validation data for training or keep them separate, and I'm checking what the existing scripts do to maintain consistency with the approach they use. 60/20/20 is: train on 60%, tune on 20%, test on 20%. Since there's no tuning step here, I should just train on the 60% split. Let me print out the actual trace counts to see what the split gives us, though I'm noticing the bge script trains on train+val combined despite the 60/20/20 naming.
+
+The math checks out—209 traces times 0.6 gives about 125, and 0.2 gives about 42 for each of val and test. Now I'm deciding whether to train on just the 60% or combine train+val like the bge script does. Since the user wants a unified 60/20/20 protocol that matches other models, I think training on just the 60% makes more sense here, leaving val unused but available for consistency. results will be weaker than if we train on 80%.
+    # The standard practice in many papers with 60/20/20 is:
+    # - Use val for model selection/hyperparameter tuning
+    # - If no tuning, merge train+val for final training
+    # 
+    # But the user specifically chose 60/20/20 to FIX the test split consistently.
+    # The "60" here defines the training data, "20" is val (unused), "20" is the test set.
+    # Since we have no hyperparameters to tune (fixed C=1.0, etc.), we could train on train only.
+    
+    # Actually for Table 3, the key thing is the TEST split is 20% (42 traces).
+    # Training can use train+val since there's no tuning step.
+    # Let me look at the expected n_test from user: they show
+
+Now I'm calculating the test set size—209 traces times 0.2 gives about 42 traces. I'm torn between training on just the 60% split to strictly follow the 60/20/20 protocol, or using train+val together for stronger results since there's no hyperparameter tuning happening. I think the cleanest approach is to stick with the 60% training set, keeping the 20% test set fixed as intended. So the real issue is that some models used a 60/20/20 split while others used 70/30, and the fix is standardizing everything to 60/20/20. The split itself determines the test set, and training on the combined train+val portion (80% of data) is the standard approach when there's no hyperparameter tuning involved. The key is ensuring consistency in which traces end up in the test set across all models. end up in the test set.
+
+I'll follow the existing bge script pattern: split 60/20/20, train on train+val (80%), test on test (20%). This gives consistent test sets across models.
+
+Actually, let me reconsider. The r13 script uses 70/30 split, so the test set is 30% of traces. The user wants to unify to 60/20/20, which means test is 20% of traces. This changes which traces end up in the test set.
+
+If we split 60/20/20 but train on 80%, the only difference from 70/30 is a different test set (20% vs 30%) and more training data (80% vs 70%). The key is having a consistent test set across all models, so I'll stick with 60/20/20 split and train on the combined train+val set, matching the bge_bootstrap pattern.
+
+Now I need to write the complete script, being careful about the windowed concatenation for HS features, windowed averaging for text, PCA fitting on train+val and transforming all splits, and StandardScaler setup.
+
+Actually, I'm uncertain about whether to use StandardScaler before PCA. The user specifies "PCA=100d for HS features" but doesn't mention StandardScaler. PCA works better with standardized features, but the user didn't explicitly ask for it. Let me keep it simple and just apply PCA to HS features (PCA centers the data anyway), and follow the existing script pattern for text features.
+
+Writing the script now... Setting up the configuration with layer 2, hidden dimension of 4096, a window size of 3, and reducing to 100 PCA dimensions. I'm pointing to the hidden states directory and setting up output paths, then loading the sentence transformer model and defining the safety label categories I need to work with.
+
+Now I'm loading the HarmThoughts dataset, filtering for the r1-8b model, and organizing the traces by their IDs while preserving the step order and associated metadata like sentences and safety labels. Then I'm defining a function to extract the checkpoint index by finding the last step that contains a safety label.
+
+Continuing with the trace loading logic...
+
+I'm extracting hidden states from the model at a specific layer and converting them to numpy arrays, then encoding the sentences using the sentence transformer model. For each valid trace, I'm storing the hidden states, text embeddings, and step labels together. After collecting all traces, I'm setting up a function to split them into train/validation/test sets using a 60-20-20 split with a fixed random seed.
+
+Now I'm building a windowed concatenation of hidden states where each training example combines consecutive timesteps—for a window of 3, I'm taking states from [t-2, t-1, t] and flattening them together to create the feature vectors.
+
+Then I'm defining another function that does a similar windowing operation but on text embeddings instead, computing the mean across the window to keep the embedding dimension constant while capturing temporal context.
+
+Now I'm writing the metrics computation function... Setting up the difference metrics where higher values favor HS for precision, balanced accuracy, and AUROC, but lower FPR values favor HS. Now I'm running bootstrap resampling across the traces to compute the distribution of these differences. Continuing the bootstrap analysis...
+
+Now I'm iterating through each metric to compute the confidence intervals and p-values from the bootstrap distribution, storing the observed values and statistical results for precision, balanced accuracy, false positive rate, and AUROC. Then I'm moving into a helper function that applies Holm-Bonferroni correction to adjust p-values for multiple comparisons.
+
+Setting up the main pipeline... Building feature matrices...
+
+Now I'm training logistic regression classifiers on both the HS and text features with balanced class weights. I'm double-checking that the training labels are consistent across both feature sets since they're derived from the same traces and timesteps.
+
+After training, I'm generating predictions and probabilities on the test set for both models, then setting up a bootstrap resampling procedure to compare their performance. Printing out the detailed results for each metric—precision, balanced accuracy, FPR, and AUROC—showing the HS values with 95% confidence intervals, the text-only baseline values, and the differences with p-values to assess statistical significance. Saving results to output dictionary...
+
+I'm wrapping up the results and writing them to JSON, but I notice the confidence interval format might be wrong—I'm computing the CI for the difference in bootstrap, but the expected output shows the CI should be for the metric value itself, not the diff. Let me reconsider how to structure this. I'm realizing the user's format shows confidence intervals on each individual metric line, not just on the difference. So I need to compute bootstrap CIs for both the HS and text metrics separately, then also get the CI and p-value for the difference between them. Let me restructure the bootstrap function to track individual metric values across resamples so I can calculate those confidence intervals directly.
+
+Restructuring bootstrap function... Finishing the bootstrap analysis to compute confidence intervals and p-values for each metric. Now I'm ready to write out the complete script, but first I need to verify that both the HS and text probe functions are using the same labels and traces in the same order—I should add an assertion to catch any mismatches, and make sure the text probe is being trained on the correct label set from the HS features.
+
+Adding assertions to verify label consistency...
+
+Now I'm checking whether to apply StandardScaler to the text features—the existing bge script does, but the r13 script doesn't, so I'll skip it to stay consistent. PCA will handle the centering automatically anyway.
+
+Time to write the final script. I'm settling on the output format: metrics with 3 decimal places, p-values with 4 decimal places, and bootstrap confidence intervals on the same line as each metric value. Now I'll write out the complete script.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "a7dc359c-a7ca-4da7-a88e-4d0e10286172",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Nserz2c9rX9zo6ZtM9FALt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4065,
+      "cache_read_input_tokens": 57026,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4065
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 64_
+
+数据格式确认：HS shape `[steps, 13, 4096]`，stored_layer_offset=12，Layer 14 → idx 2。209 traces with labels。现在写脚本并执行。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "c8530671-f160-4e82-af78-1d805a457986",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Nserz2c9rX9zo6ZtM9FALt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4065,
+      "cache_read_input_tokens": 57026,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4065
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01EvnHiJhJF3vQfTeCSahoFg`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat > /root/autodl-tmp/contrastive_trace_safety/scripts/table3_r1_8b_60_20_20.py << 'PYEOF'\n\"\"\"Table 3: R1-8B W=3 L14 60/20/20 PCA=100d 10k bootstrap\"\"\"\nimport os\nos.environ[\"TOKENIZERS_PARALLELISM\"] = \"false\"\nos.environ[\"HF_HUB_OFFLINE\"] = \"1\"\nos.environ[\"HF_DATASETS_OFFLINE\"] = \"1\"\nos.environ[\"TRANSFORMERS_OFFLINE\"] = \"1\"\n\nimport json, time, warnings, gc\nfrom pathlib import Path\nfrom collections import defaultdict\nimport numpy as np\nimport torch\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import (balanced_accuracy_score, precision_score,\n                              roc_auc_score, confusion_matrix)\nfrom sklearn.decomposition import PCA\n\nwarnings.filterwarnings(\"ignore\")\n\nSEED = 42\nN_BOOTSTRAP = 10000\nLAYER_IDX = 2       # model layer 14, stored_layer_offset=12\nHIDDEN_DIM = 4096\nWINDOW = 3\nPCA_DIM = 100\n\nBASE = Path(\"/root/autodl-tmp/contrastive_trace_safety\")\nHS_DIR = BASE / \"artifacts/hidden_states\"\nOUTPUT_DIR = BASE / \"artifacts/table3_r1_8b_60_20_20\"\nOUTPUT_DIR.mkdir(parents=True, exist_ok=True)\n\nST_PATH = \"/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/c9745ed1d9f207416be6d2e6f8de32d1f16199bf\"\nSAFETY_LABELS = {\"RA\", \"AL\", \"CC\", \"ED\", \"IA\"}\n\n\ndef get_hf_traces():\n    from datasets import load_dataset\n    ds = load_dataset(\"ishitakakkar-10/HarmThoughts\", split=\"train\")\n    traces = defaultdict(list)\n    for row in ds:\n        if row[\"model_name\"] != \"r1-8b\":\n            continue\n        sid = row[\"sentence_id\"]\n        parts = sid.rsplit(\"-\", 1)\n        traces[parts[0]].append(dict(\n            step_idx=int(parts[1]) - 1, sentence=row[\"sentence\"],\n            label=row[\"llm_annotation\"], final_judgment=row[\"final_judgment\"]))\n    for tid in traces:\n        traces[tid].sort(key=lambda x: x[\"step_idx\"])\n    return dict(traces)\n\n\ndef extract_cp(steps):\n    last = None\n    for i, s in enumerate(steps):\n        if s[\"label\"] in SAFETY_LABELS:\n            last = i\n    return None if (last is None or last == len(steps) - 1) else last + 1\n\n\ndef load_traces(st_model):\n    hf = get_hf_traces()\n    traces = []\n    for tid, steps in sorted(hf.items()):\n        if steps[0][\"final_judgment\"] != 1.0:\n            continue\n        cp = extract_cp(steps)\n        if cp is None:\n            continue\n        hp = HS_DIR / f\"{tid}.pt\"\n        if not hp.exists():\n            continue\n        sents = [s[\"sentence\"] for s in steps]\n        sl = np.array([0 if i < cp else 1 for i in range(len(sents))], dtype=np.int32)\n        hs_full = torch.load(hp, map_location=\"cpu\", weights_only=False)[\"hidden_states\"]\n        hs_layer = hs_full[:, LAYER_IDX, :].float().numpy()\n        del hs_full\n        n = min(len(sents), hs_layer.shape[0])\n        emb = st_model.encode(sents[:n], batch_size=64, show_progress_bar=False).astype(np.float32)\n        traces.append(dict(trace_id=tid, hs=hs_layer[:n], text_emb=emb, labels=sl[:n]))\n    gc.collect()\n    return traces\n\n\ndef split_60_20_20(traces, seed=42):\n    rng = np.random.default_rng(seed)\n    idx = rng.permutation(len(traces))\n    n_tr = int(len(traces) * 0.6)\n    n_va = int(len(traces) * 0.2)\n    return ([traces[i] for i in idx[:n_tr]],\n            [traces[i] for i in idx[n_tr:n_tr + n_va]],\n            [traces[i] for i in idx[n_tr + n_va:]])\n\n\ndef build_hs_concat(traces, window):\n    X, y, ti = [], [], []\n    for t_i, t in enumerate(traces):\n        hs = t[\"hs\"]; lab = t[\"labels\"]\n        n = min(len(lab), hs.shape[0])\n        for s in range(n):\n            parts = []\n            for w in range(window):\n                j = s - window + 1 + w\n                parts.append(hs[max(0, j)])\n            X.append(np.concatenate(parts))\n            y.append(lab[s])\n            ti.append(t_i)\n    return np.vstack(X), np.array(y), np.array(ti)\n\n\ndef build_text_avg(traces, window):\n    X, y, ti = [], [], []\n    for t_i, t in enumerate(traces):\n        emb = t[\"text_emb\"]; lab = t[\"labels\"]\n        n = min(len(lab), emb.shape[0])\n        for s in range(n):\n            start = max(0, s - window + 1)\n            X.append(emb[start:s+1].mean(axis=0))\n            y.append(lab[s])\n            ti.append(t_i)\n    return np.vstack(X), np.array(y), np.array(ti)\n\n\ndef metrics(y, yp, yprob):\n    prec = precision_score(y, yp, zero_division=0)\n    ba = balanced_accuracy_score(y, yp)\n    cm = confusion_matrix(y, yp, labels=[0, 1])\n    tn, fp, fn, tp = cm.ravel()\n    fpr = fp / (fp + tn) if (fp + tn) > 0 else 0.0\n    try:\n        auroc = roc_auc_score(y, yprob)\n    except ValueError:\n        auroc = float(\"nan\")\n    return np.array([prec, ba, fpr, auroc])\n\n\ndef paired_bootstrap(y, hp, hpp, tp, tpp, ti, n_traces, n_boot=10000, seed=42):\n    rng = np.random.default_rng(seed)\n    trace_map = defaultdict(list)\n    for i, t in enumerate(ti):\n        trace_map[t].append(i)\n    utr = sorted(trace_map.keys())\n\n    obs_h = metrics(y, hp, hpp)\n    obs_t = metrics(y, tp, tpp)\n    # diff convention: prec/ba/auroc = HS-text (pos=HS better), fpr = text-HS (pos=HS better=lower FPR)\n    obs_d = np.array([obs_h[0]-obs_t[0], obs_h[1]-obs_t[1],\n                      obs_t[2]-obs_h[2], obs_h[3]-obs_t[3]])\n\n    boot_h = np.zeros((n_boot, 4))\n    boot_t = np.zeros((n_boot, 4))\n    boot_d = np.zeros((n_boot, 4))\n\n    for b in range(n_boot):\n        sam = rng.choice(utr, size=len(utr), replace=True)\n        idx = np.concatenate([trace_map[s] for s in sam])\n        mh = metrics(y[idx], hp[idx], hpp[idx])\n        mt = metrics(y[idx], tp[idx], tpp[idx])\n        boot_h[b] = mh\n        boot_t[b] = mt\n        boot_d[b] = [mh[0]-mt[0], mh[1]-mt[1], mt[2]-mh[2], mh[3]-mt[3]]\n\n    names = [\"prec\", \"ba\", \"fpr\", \"auroc\"]\n    res = {}\n    for i, nm in enumerate(names):\n        centered = boot_d[:, i] - boot_d[:, i].mean()\n        p = float(np.mean(np.abs(centered) >= np.abs(obs_d[i])))\n        res[nm] = dict(\n            hs=float(obs_h[i]),\n            hs_ci=[float(np.percentile(boot_h[:, i], 2.5)),\n                   float(np.percentile(boot_h[:, i], 97.5))],\n            text=float(obs_t[i]),\n            text_ci=[float(np.percentile(boot_t[:, i], 2.5)),\n                     float(np.percentile(boot_t[:, i], 97.5))],\n            diff=float(obs_d[i]),\n            diff_ci=[float(np.percentile(boot_d[:, i], 2.5)),\n                     float(np.percentile(boot_d[:, i], 97.5))],\n            p_value=p)\n    return res\n\n\ndef holm_bonf(pvals):\n    m = len(pvals)\n    ix = sorted(enumerate(pvals), key=lambda x: x[1])\n    adj = [0.0] * m; mx = 0.0\n    for rank, (i, p) in enumerate(ix):\n        a = min(p * (m - rank), 1.0); mx = max(mx, a); adj[i] = mx\n    return adj\n\n\ndef main():\n    t0 = time.time()\n    from sentence_transformers import SentenceTransformer\n    print(\"Loading MiniLM...\", flush=True)\n    st = SentenceTransformer(ST_PATH, device=\"cpu\")\n\n    print(\"Loading traces...\", flush=True)\n    traces = load_traces(st)\n    print(f\"  {len(traces)} jailbreak traces\", flush=True)\n\n    train, val, test = split_60_20_20(traces, SEED)\n    train_val = train + val\n    print(f\"  train={len(train)} val={len(val)} test={len(test)} train+val={len(train_val)}\", flush=True)\n\n    # HS features: W=3 concat -> 12288d -> PCA 100d\n    X_tr_h, y_tr, _ = build_hs_concat(train_val, WINDOW)\n    X_te_h, y_te, ti_te = build_hs_concat(test, WINDOW)\n    print(f\"  HS raw: train={X_tr_h.shape} test={X_te_h.shape}\", flush=True)\n\n    pca = PCA(n_components=PCA_DIM, random_state=SEED)\n    X_tr_h = pca.fit_transform(X_tr_h)\n    X_te_h = pca.transform(X_te_h)\n    print(f\"  HS PCA: train={X_tr_h.shape} test={X_te_h.shape} var={pca.explained_variance_ratio_.sum():.4f}\", flush=True)\n\n    # Text features: W=3 avg -> 384d\n    X_tr_t, y_tr2, _ = build_text_avg(train_val, WINDOW)\n    X_te_t, y_te2, ti_te2 = build_text_avg(test, WINDOW)\n    assert np.array_equal(y_tr, y_tr2) and np.array_equal(y_te, y_te2)\n    assert np.array_equal(ti_te, ti_te2)\n    print(f\"  Text: train={X_tr_t.shape} test={X_te_t.shape}\", flush=True)\n\n    # Train probes\n    print(\"Training probes...\", flush=True)\n    clf_h = LogisticRegression(solver=\"lbfgs\", C=1.0, class_weight=\"balanced\",\n                                max_iter=2000, random_state=SEED)\n    clf_h.fit(X_tr_h, y_tr)\n\n    clf_t = LogisticRegression(solver=\"lbfgs\", C=1.0, class_weight=\"balanced\",\n                                max_iter=2000, random_state=SEED)\n    clf_t.fit(X_tr_t, y_tr)\n\n    hp = clf_h.predict(X_te_h); hpp = clf_h.predict_proba(X_te_h)[:, 1]\n    tp = clf_t.predict(X_te_t); tpp = clf_t.predict_proba(X_te_t)[:, 1]\n\n    # Bootstrap\n    n_test_traces = len(test)\n    print(f\"Running {N_BOOTSTRAP} bootstrap resamples...\", flush=True)\n    boot = paired_bootstrap(y_te, hp, hpp, tp, tpp, ti_te, n_test_traces, N_BOOTSTRAP, SEED)\n\n    # Holm-Bonferroni on prec, ba, fpr\n    hb_raw = [boot[\"prec\"][\"p_value\"], boot[\"ba\"][\"p_value\"], boot[\"fpr\"][\"p_value\"]]\n    hb_adj = holm_bonf(hb_raw)\n    hb_pass = sum(1 for p in hb_adj if p < 0.05)\n\n    elapsed = time.time() - t0\n\n    # Print in exact format\n    print(f\"\\n{'='*70}\", flush=True)\n    print(f\"R1-8B (W={WINDOW}, L14, 60/20/20, PCA={PCA_DIM}d, {N_BOOTSTRAP} bootstrap):\", flush=True)\n    b = boot\n    print(f\"  n_test = {len(y_te)} steps from {n_test_traces} traces\", flush=True)\n\n    print(f\"  HS Prec: {b['prec']['hs']:.3f} [{b['prec']['hs_ci'][0]:.3f}, {b['prec']['hs_ci'][1]:.3f}]\", flush=True)\n    print(f\"  Text Prec: {b['prec']['text']:.3f} [{b['prec']['text_ci'][0]:.3f}, {b['prec']['text_ci'][1]:.3f}]\", flush=True)\n    print(f\"  ΔPrec: {b['prec']['diff']:+.3f}pp, p={b['prec']['p_value']:.4f}\", flush=True)\n    print(flush=True)\n\n    print(f\"  HS BA: {b['ba']['hs']:.3f} [{b['ba']['hs_ci'][0]:.3f}, {b['ba']['hs_ci'][1]:.3f}]\", flush=True)\n    print(f\"  Text BA: {b['ba']['text']:.3f} [{b['ba']['text_ci'][0]:.3f}, {b['ba']['text_ci'][1]:.3f}]\", flush=True)\n    print(f\"  ΔBA: {b['ba']['diff']:+.3f}pp, p={b['ba']['p_value']:.4f}\", flush=True)\n    print(flush=True)\n\n    print(f\"  HS FPR: {b['fpr']['hs']:.3f} [{b['fpr']['hs_ci'][0]:.3f}, {b['fpr']['hs_ci'][1]:.3f}]\", flush=True)\n    print(f\"  Text FPR: {b['fpr']['text']:.3f} [{b['fpr']['text_ci'][0]:.3f}, {b['fpr']['text_ci'][1]:.3f}]\", flush=True)\n    print(f\"  ΔFPR: {b['fpr']['diff']:+.3f}pp, p={b['fpr']['p_value']:.4f}\", flush=True)\n    print(flush=True)\n\n    print(f\"  HS AUROC: {b['auroc']['hs']:.3f} [{b['auroc']['hs_ci'][0]:.3f}, {b['auroc']['hs_ci'][1]:.3f}]\", flush=True)\n    print(f\"  Text AUROC: {b['auroc']['text']:.3f} [{b['auroc']['text_ci'][0]:.3f}, {b['auroc']['text_ci'][1]:.3f}]\", flush=True)\n    print(f\"  ΔAUROC: {b['auroc']['diff']:+.3f}pp, p={b['auroc']['p_value']:.4f}\", flush=True)\n    print(flush=True)\n\n    print(f\"  HB (3 tests: Prec, BA, FPR): {hb_pass}/3 pass\", flush=True)\n    print(f\"  HB adj p: Prec={hb_adj[0]:.4f}, BA={hb_adj[1]:.4f}, FPR={hb_adj[2]:.4f}\", flush=True)\n    print(f\"  Elapsed: {elapsed:.1f}s\", flush=True)\n\n    # Save JSON\n    output = dict(\n        model=\"R1-8B\", layer=14, layer_idx=LAYER_IDX, window=WINDOW,\n        split=\"60/20/20\", seed=SEED, pca_dim=PCA_DIM,\n        n_traces=len(traces), n_train_val=len(train_val),\n        n_test_traces=n_test_traces, n_test_steps=int(len(y_te)),\n        pca_var=float(pca.explained_variance_ratio_.sum()),\n        probe=\"LogisticRegression(solver='lbfgs', C=1.0, class_weight='balanced', max_iter=2000)\",\n        text_encoder=\"all-MiniLM-L6-v2 (384d)\",\n        n_bootstrap=N_BOOTSTRAP,\n        bootstrap={k: v for k, v in boot.items()},\n        holm_bonferroni=dict(tests=[\"prec\",\"ba\",\"fpr\"], raw_p=hb_raw, adj_p=hb_adj, n_pass=hb_pass),\n        elapsed_s=round(elapsed, 1)\n    )\n    with open(OUTPUT_DIR / \"results.json\", \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\nSaved to {OUTPUT_DIR / 'results.json'}\", flush=True)\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written OK\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "fd8e9221-3221-4b52-97de-dbf47d4fd03c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Nserz2c9rX9zo6ZtM9FALt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4065,
+      "cache_read_input_tokens": 57026,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4065
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-18T17:35:28.892Z_
+
+<details><summary>↩ Tool result · `toolu_01EvnHiJhJF3vQfTeCSahoFg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "8220fa5e-04b2-4a84-9b12-848471867110",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Script written OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 67_
+
+脚本已写入，现在执行。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "1558c2ae-9f5a-4f8e-9b1a-c51414d2acbd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KeZXuxjhZmGc11tsdaQD6j",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19387,
+      "cache_read_input_tokens": 61091,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 19387
+      },
+      "output_tokens": 6,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01TTxb2Ybfa26Lw6gJvmdZUV`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "/root/miniconda3/bin/python3.12 /root/autodl-tmp/contrastive_trace_safety/scripts/table3_r1_8b_60_20_20.py",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "722624d8-6a68-4905-b466-a832fb67dd56",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KeZXuxjhZmGc11tsdaQD6j",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19387,
+      "cache_read_input_tokens": 61091,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 19387
+      },
+      "output_tokens": 6,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-18T17:36:06.107Z_
+
+<details><summary>↩ Tool result · `toolu_01TTxb2Ybfa26Lw6gJvmdZUV`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: '/root/miniconda3/bin/python3.12 /root/autodl-tmp/contrastive_trace_safety/scripts/table3_r1_8b_60_20_20.py'\\n\\nStdout:\\n\\nLoading MiniLM...\\nLoading traces...\\n\\nStderr:\\n\\nUsing the latest cached version of the dataset since ishitakakkar-10/HarmThoughts couldn't be found on the Hugging Face Hub (offline mode is enabled).\\nFound the latest cached dataset configuration 'default' at /root/.cache/huggingface/datasets/ishitakakkar-10___harm_thoughts/default/0.0.0/98a90c45ae2fc0a94a828cebb426917883ce35e1 (last modified on Sun May 17 14:55:12 2026).\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.34}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "c83bcaa3-4164-46ec-a2e3-e9565b2784e5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: '/root/miniconda3/bin/python3.12 /root/autodl-tmp/contrastive_trace_safety/scripts/table3_r1_8b_60_20_20.py'\\\\n\\\\nStdout:\\\\n\\\\nLoading MiniLM...\\\\nLoading traces...\\\\n\\\\nStderr:\\\\n\\\\nUsing the latest cached version of the dataset since ishitakakkar-10/HarmThoughts couldn't be found on the Hugging Face Hub (offline mode is enabled).\\\\nFound the latest cached dataset configuration 'default' at /root/.cache/huggingface/datasets/ishitakakkar-10___harm_thoughts/default/0.0.0/98a90c45ae2fc0a94a828cebb426917883ce35e1 (last modified on Sun May 17 14:55:12 2026).\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.34}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: '/root/miniconda3/bin/python3.12 /root/autodl-tmp/contrastive_trace_safety/scripts/table3_r1_8b_60_20_20.py'\\n\\nStdout:\\n\\nLoading MiniLM...\\nLoading traces...\\n\\nStderr:\\n\\nUsing the latest cached version of the dataset since ishitakakkar-10/HarmThoughts couldn't be found on the Hugging Face Hub (offline mode is enabled).\\nFound the latest cached dataset configuration 'default' at /root/.cache/huggingface/datasets/ishitakakkar-10___harm_thoughts/default/0.0.0/98a90c45ae2fc0a94a828cebb426917883ce35e1 (last modified on Sun May 17 14:55:12 2026).\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.34}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 70_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The script timed out at 30 seconds. The data loading and text encoding is taking a while with 209 traces and all their sentences. Let me increase the timeout. The MCP tool has a 30s default. Let me check how to set a longer timeout.
+
+Actually, looking at the MCP tool, there's no timeout parameter visible. The command just takes too long because:
+1. Loading HF dataset from cache
+2. Encoding 209 traces' sentences with MiniLM (CPU only)
+
+The text encoding for all sentences across 209 traces on CPU will take a while. Each trace has ~20-50 steps, so ~4000-10000 sentences. Encoding with MiniLM at ~100 sentences/sec on CPU would take ~40-100 seconds.
+
+
+Plus the 10k bootstrap iterations with 10 metrics each on CPU is adding to the load. The bottleneck is really the text encoding during loading, but the bootstrap computation is also expensive—running sklearn metrics 10k times across 500-1000 test samples adds up. I should cache the encoded text features and maybe optimize the metric calculations to avoid redundant computation.
+
+But there's a bigger constraint: the ssh_execute tool has a hard 30-second timeout that I can't override, and the user wants everything to run synchronously. I need to break this into stages—pre-compute and cache the text embeddings first, then run the bootstrap separately, or find a way to make the script itself faster so it completes within the time limit.
+
+Looking at the actual bottleneck: encoding 6000 sentences should take about 6 seconds with batch processing, and loading the cached files takes a few seconds. The real problem is the bootstrap—10,000 iterations with 4 metric computations each means roughly 40,000 metric calls, and sklearn's overhead per call adds up to 20+ seconds just for that, plus array operations. So the whole thing could easily hit 30-60 seconds, which exceeds the timeout.
+
+I need to optimize the bootstrap itself by replacing sklearn metrics with numpy equivalents, pre-building index arrays, and batching operations to cut down the overhead significantly.
+
+Implementing numpy metrics... Calculating evaluation metrics...
+
+I realize the initial AUROC calculation was flawed, so I'm switching to the Mann-Whitney U statistic approach, which compares positive and negative scores directly. For my dataset size around 1260 samples with balanced classes, the O(n_pos * n_neg) complexity works fine with roughly 400k comparisons. But there's a more efficient O(n log n) alternative using scipy's rankdata function that computes the same statistic through ranking.
+
+Now I'm hitting a timeout issue with the MCP tool's 30-second limit on long-running commands. I need to split the work into separate phases—first loading data and training the probes to save predictions, then running the bootstrap analysis on those saved results separately. This way each phase stays within the time constraint.
+
+The challenge is that encoding 209 traces with roughly 30 sentences each through MiniLM on CPU might already exceed 30 seconds, so I need to estimate the throughput carefully.
+
+Looking at the performance breakdown: MiniLM should handle around 500-1000 sentences per second on CPU for 384-dimensional embeddings, which means encoding ~6000 sentences takes 6-12 seconds. Loading the 209 .pt files is relatively quick at 2-5 seconds, and the HuggingFace dataset plus PCA and logistic regression training should finish in another 2-3 seconds. So stage 1 should stay under 30 seconds if I'm careful with implementation.
+
+The timeout error suggests the bottleneck is actually during the trace loading phase, not encoding. The HuggingFace dataset loading or the file I/O might be the culprit. I should break this into smaller stages to isolate where the slowdown happens—first just load the dataset and count traces, then separately load the actual trace files.
+
+Actually, I realize the MCP ssh_execute tool probably has a 30-second timeout by default, and there's no parameter to override it in the schema. But I can work around this by optimizing the script itself. The server has an RTX 6000 GPU, so if I switch MiniLM to use CUDA instead of CPU, encoding should be roughly 5x faster. That alone could cut the total time significantly. Let me also look at loading text embeddings more efficiently and pre-computing everything in a memory-conscious way.
+
+The cleanest solution is probably to break the script into stages that each complete within the timeout window. I'll create a multi-stage approach where stage 1 loads the data, computes features, and saves them to an npz file, then stage 2 loads those features, trains the probes, and runs the bootstrap analysis. This way each invocation stays well under 30 seconds.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "dbdad24a-872e-4f28-81d7-7a485fbc89f5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016iXLMDbHg2mg8PjXpctAKq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 461,
+      "cache_read_input_tokens": 80478,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 461
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 71_
+
+超时了，需要优化。将脚本拆分为两阶段执行。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "bd8f5aac-9833-4a00-8135-a69e88dfca50",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016iXLMDbHg2mg8PjXpctAKq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 461,
+      "cache_read_input_tokens": 80478,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 461
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01JCVeSW7BG9mi1GPVco35F7`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat > /root/autodl-tmp/contrastive_trace_safety/scripts/table3_r1_8b_stage1.py << 'PYEOF'\n\"\"\"Stage 1: Load traces, build features, train probes, save predictions.\"\"\"\nimport os\nos.environ[\"TOKENIZERS_PARALLELISM\"] = \"false\"\nos.environ[\"HF_HUB_OFFLINE\"] = \"1\"\nos.environ[\"HF_DATASETS_OFFLINE\"] = \"1\"\nos.environ[\"TRANSFORMERS_OFFLINE\"] = \"1\"\n\nimport time, warnings, gc\nfrom pathlib import Path\nfrom collections import defaultdict\nimport numpy as np\nimport torch\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.decomposition import PCA\n\nwarnings.filterwarnings(\"ignore\")\n\nSEED = 42\nLAYER_IDX = 2\nWINDOW = 3\nPCA_DIM = 100\n\nBASE = Path(\"/root/autodl-tmp/contrastive_trace_safety\")\nHS_DIR = BASE / \"artifacts/hidden_states\"\nOUT = BASE / \"artifacts/table3_r1_8b_60_20_20\"\nOUT.mkdir(parents=True, exist_ok=True)\n\nST_PATH = \"/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/c9745ed1d9f207416be6d2e6f8de32d1f16199bf\"\nSAFETY = {\"RA\", \"AL\", \"CC\", \"ED\", \"IA\"}\n\nt0 = time.time()\n\n# Load HF data\nfrom datasets import load_dataset\nprint(\"Loading HF dataset...\", flush=True)\nds = load_dataset(\"ishitakakkar-10/HarmThoughts\", split=\"train\")\nhf = defaultdict(list)\nfor row in ds:\n    if row[\"model_name\"] != \"r1-8b\": continue\n    sid = row[\"sentence_id\"]; parts = sid.rsplit(\"-\", 1)\n    hf[parts[0]].append(dict(step_idx=int(parts[1])-1, sentence=row[\"sentence\"],\n                              label=row[\"llm_annotation\"], fj=row[\"final_judgment\"]))\nfor tid in hf: hf[tid].sort(key=lambda x: x[\"step_idx\"])\nprint(f\"  {len(hf)} traces in HF ({time.time()-t0:.1f}s)\", flush=True)\n\n# Load MiniLM\nfrom sentence_transformers import SentenceTransformer\nprint(\"Loading MiniLM...\", flush=True)\nst = SentenceTransformer(ST_PATH, device=\"cuda\")\nprint(f\"  Loaded ({time.time()-t0:.1f}s)\", flush=True)\n\n# Load traces: HS + text\nall_sents = []\ntrace_meta = []\nfor tid in sorted(hf.keys()):\n    steps = hf[tid]\n    if steps[0][\"fj\"] != 1.0: continue\n    last = None\n    for i, s in enumerate(steps):\n        if s[\"label\"] in SAFETY: last = i\n    if last is None or last == len(steps) - 1: continue\n    cp = last + 1\n    hp = HS_DIR / f\"{tid}.pt\"\n    if not hp.exists(): continue\n    sents = [s[\"sentence\"] for s in steps]\n    hs_full = torch.load(hp, map_location=\"cpu\", weights_only=False)[\"hidden_states\"]\n    hs_layer = hs_full[:, LAYER_IDX, :].float().numpy()\n    del hs_full\n    n = min(len(sents), hs_layer.shape[0])\n    labels = np.array([0 if i < cp else 1 for i in range(n)], dtype=np.int32)\n    trace_meta.append(dict(tid=tid, hs=hs_layer[:n], labels=labels, sent_start=len(all_sents), n=n))\n    all_sents.extend(sents[:n])\n\nprint(f\"  {len(trace_meta)} jailbreak traces, {len(all_sents)} sentences ({time.time()-t0:.1f}s)\", flush=True)\n\n# Batch encode all sentences\nprint(\"Encoding text...\", flush=True)\nall_emb = st.encode(all_sents, batch_size=256, show_progress_bar=False).astype(np.float32)\nprint(f\"  Encoded {all_emb.shape} ({time.time()-t0:.1f}s)\", flush=True)\ndel st; gc.collect(); torch.cuda.empty_cache()\n\n# Attach embeddings to traces\nfor tm in trace_meta:\n    tm[\"text_emb\"] = all_emb[tm[\"sent_start\"]:tm[\"sent_start\"]+tm[\"n\"]]\ndel all_emb\n\n# Split 60/20/20\nrng = np.random.default_rng(SEED)\nidx = rng.permutation(len(trace_meta))\nn_tr = int(len(trace_meta) * 0.6); n_va = int(len(trace_meta) * 0.2)\ntrain_idx = idx[:n_tr]; val_idx = idx[n_tr:n_tr+n_va]; test_idx = idx[n_tr+n_va:]\ntrain_val = [trace_meta[i] for i in np.concatenate([train_idx, val_idx])]\ntest_traces = [trace_meta[i] for i in test_idx]\nprint(f\"  Split: train={len(train_idx)} val={len(val_idx)} test={len(test_idx)} train+val={len(train_val)}\", flush=True)\n\n# Build HS features (W=3 concat -> 12288d)\ndef build_hs(traces, w):\n    X, y, ti = [], [], []\n    for t_i, t in enumerate(traces):\n        hs = t[\"hs\"]; lab = t[\"labels\"]; n = t[\"n\"]\n        for s in range(n):\n            parts = [hs[max(0, s-w+1+j)] for j in range(w)]\n            X.append(np.concatenate(parts)); y.append(lab[s]); ti.append(t_i)\n    return np.vstack(X), np.array(y), np.array(ti)\n\ndef build_text(traces, w):\n    X, y, ti = [], [], []\n    for t_i, t in enumerate(traces):\n        emb = t[\"text_emb\"]; lab = t[\"labels\"]; n = t[\"n\"]\n        for s in range(n):\n            start = max(0, s-w+1)\n            X.append(emb[start:s+1].mean(axis=0)); y.append(lab[s]); ti.append(t_i)\n    return np.vstack(X), np.array(y), np.array(ti)\n\nX_tr_h, y_tr, _ = build_hs(train_val, WINDOW)\nX_te_h, y_te, ti_te = build_hs(test_traces, WINDOW)\nprint(f\"  HS raw: train={X_tr_h.shape} test={X_te_h.shape}\", flush=True)\n\n# PCA 100d\npca = PCA(n_components=PCA_DIM, random_state=SEED)\nX_tr_h = pca.fit_transform(X_tr_h)\nX_te_h = pca.transform(X_te_h)\npca_var = float(pca.explained_variance_ratio_.sum())\nprint(f\"  PCA: {X_tr_h.shape} var={pca_var:.4f}\", flush=True)\n\nX_tr_t, y_tr2, _ = build_text(train_val, WINDOW)\nX_te_t, y_te2, ti_te2 = build_text(test_traces, WINDOW)\nassert np.array_equal(y_tr, y_tr2) and np.array_equal(y_te, y_te2)\nprint(f\"  Text: train={X_tr_t.shape} test={X_te_t.shape}\", flush=True)\n\n# Train probes\nprint(\"Training probes...\", flush=True)\nclf_h = LogisticRegression(solver=\"lbfgs\", C=1.0, class_weight=\"balanced\", max_iter=2000, random_state=SEED)\nclf_h.fit(X_tr_h, y_tr)\nclf_t = LogisticRegression(solver=\"lbfgs\", C=1.0, class_weight=\"balanced\", max_iter=2000, random_state=SEED)\nclf_t.fit(X_tr_t, y_tr)\n\nhp = clf_h.predict(X_te_h); hpp = clf_h.predict_proba(X_te_h)[:, 1]\ntp = clf_t.predict(X_te_t); tpp = clf_t.predict_proba(X_te_t)[:, 1]\nprint(f\"  Probes trained ({time.time()-t0:.1f}s)\", flush=True)\n\n# Save for stage 2\nnp.savez(OUT / \"stage1.npz\", y_te=y_te, ti_te=ti_te, hp=hp, hpp=hpp, tp=tp, tpp=tpp)\nimport json\nwith open(OUT / \"stage1_meta.json\", \"w\") as f:\n    json.dump(dict(n_traces=len(trace_meta), n_train_val=len(train_val),\n                   n_test_traces=len(test_traces), n_test_steps=int(len(y_te)),\n                   pca_var=pca_var, elapsed_s1=round(time.time()-t0, 1)), f)\nprint(f\"Stage 1 done. {time.time()-t0:.1f}s\", flush=True)\nPYEOF\necho \"Stage 1 script OK\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "29439b98-c3b4-4d34-938f-7313523ee8ee",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016iXLMDbHg2mg8PjXpctAKq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 461,
+      "cache_read_input_tokens": 80478,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 461
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-18T17:37:30.558Z_
+
+<details><summary>↩ Tool result · `toolu_01JCVeSW7BG9mi1GPVco35F7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Stage 1 script OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "bb6ad190-a1a8-4196-a494-efc3e06cf433",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Stage 1 script OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Stage 1 script OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 74_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01BxHmVJevHT6dg4NszZPbGn`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "/root/miniconda3/bin/python3.12 /root/autodl-tmp/contrastive_trace_safety/scripts/table3_r1_8b_stage1.py",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "69e0d25c-5a14-4e94-b076-0cadc4b9bd07",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018BNgRpaRk8kjzpK799yE95",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5469,
+      "cache_read_input_tokens": 80939,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5469
+      },
+      "output_tokens": 62,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 75 · 2026-05-18T17:37:50.341Z_
+
+<details><summary>↩ Tool result · `toolu_01BxHmVJevHT6dg4NszZPbGn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading HF dataset...\\n  324 traces in HF (2.1s)\\nLoading MiniLM...\\n  Loaded (5.0s)\\n  209 jailbreak traces, 9667 sentences (6.1s)\\nEncoding text...\\n  Encoded (9667, 384) (8.6s)\\n  Split: train=125 val=41 test=43 train+val=166\\n  HS raw: train=(7706, 12288) test=(1961, 12288)\\n  PCA: (7706, 100) var=0.4949\\n  Text: train=(7706, 384) test=(1961, 384)\\nTraining probes...\\n  Probes trained (12.2s)\\nStage 1 done. 12.2s\\n\", \"stderr\": \"Using the latest cached version of the dataset since ishitakakkar-10/HarmThoughts couldn't be found on the Hugging Face Hub (offline mode is enabled).\\nFound the latest cached dataset configuration 'default' at /root/.cache/huggingface/datasets/ishitakakkar-10___harm_thoughts/default/0.0.0/98a90c45ae2fc0a94a828cebb426917883ce35e1 (last modified on Sun May 17 14:55:12 2026).\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 15.97}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "742cd05a-eef8-408e-9c56-7cd4871ad3ff",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading HF dataset...\\\\n  324 traces in HF (2.1s)\\\\nLoading MiniLM...\\\\n  Loaded (5.0s)\\\\n  209 jailbreak traces, 9667 sentences (6.1s)\\\\nEncoding text...\\\\n  Encoded (9667, 384) (8.6s)\\\\n  Split: train=125 val=41 test=43 train+val=166\\\\n  HS raw: train=(7706, 12288) test=(1961, 12288)\\\\n  PCA: (7706, 100) var=0.4949\\\\n  Text: train=(7706, 384) test=(1961, 384)\\\\nTraining probes...\\\\n  Probes trained (12.2s)\\\\nStage 1 done. 12.2s\\\\n\\\", \\\"stderr\\\": \\\"Using the latest cached version of the dataset since ishitakakkar-10/HarmThoughts couldn't be found on the Hugging Face Hub (offline mode is enabled).\\\\nFound the latest cached dataset configuration 'default' at /root/.cache/huggingface/datasets/ishitakakkar-10___harm_thoughts/default/0.0.0/98a90c45ae2fc0a94a828cebb426917883ce35e1 (last modified on Sun May 17 14:55:12 2026).\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 15.97}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Loading HF dataset...\\n  324 traces in HF (2.1s)\\nLoading MiniLM...\\n  Loaded (5.0s)\\n  209 jailbreak traces, 9667 sentences (6.1s)\\nEncoding text...\\n  Encoded (9667, 384) (8.6s)\\n  Split: train=125 val=41 test=43 train+val=166\\n  HS raw: train=(7706, 12288) test=(1961, 12288)\\n  PCA: (7706, 100) var=0.4949\\n  Text: train=(7706, 384) test=(1961, 384)\\nTraining probes...\\n  Probes trained (12.2s)\\nStage 1 done. 12.2s\\n\", \"stderr\": \"Using the latest cached version of the dataset since ishitakakkar-10/HarmThoughts couldn't be found on the Hugging Face Hub (offline mode is enabled).\\nFound the latest cached dataset configuration 'default' at /root/.cache/huggingface/datasets/ishitakakkar-10___harm_thoughts/default/0.0.0/98a90c45ae2fc0a94a828cebb426917883ce35e1 (last modified on Sun May 17 14:55:12 2026).\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 15.97}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 76_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Stage 1 completed successfully. Key numbers:
+- 209 jailbreak traces, 9667 sentences
+- Split: train=125, val=41, test=43 (matches expected 60/20/20)
+- HS raw: train=(7706, 12288), test=(1961, 12288)
+- PCA: 100d, explained variance = 0.4949
+- Text: train=(7706, 384), test=(1961, 384)
+- 1961 test steps from 43 test traces
+
+Now stage 2: 10k bootstrap. Let me write the stage 2 script with optimized numpy-based metrics.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "2665d3b4-9bb5-4f49-a2d8-b22a50407e30",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YMSjrrM9NyK8nVRQaJgnVE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 571,
+      "cache_read_input_tokens": 86408,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 571
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 77_
+
+Stage 1 完成：209 traces, split=125/41/43, 1961 test steps。现在写 stage 2（bootstrap）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "bf97812b-8329-4fe3-a8cc-0f769575a871",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YMSjrrM9NyK8nVRQaJgnVE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 571,
+      "cache_read_input_tokens": 86408,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 571
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 78_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01HeuFG3qe91xChFQACqDhwK`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat > /root/autodl-tmp/contrastive_trace_safety/scripts/table3_r1_8b_stage2.py << 'PYEOF'\n\"\"\"Stage 2: 10k paired bootstrap on saved predictions.\"\"\"\nimport json, time\nfrom pathlib import Path\nfrom collections import defaultdict\nimport numpy as np\n\nSEED = 42\nN_BOOT = 10000\nWINDOW = 3\nPCA_DIM = 100\n\nOUT = Path(\"/root/autodl-tmp/contrastive_trace_safety/artifacts/table3_r1_8b_60_20_20\")\n\nt0 = time.time()\n\n# Load stage 1 outputs\nd = np.load(OUT / \"stage1.npz\")\ny_te = d[\"y_te\"]; ti_te = d[\"ti_te\"]\nhp = d[\"hp\"]; hpp = d[\"hpp\"]; tp = d[\"tp\"]; tpp = d[\"tpp\"]\nmeta = json.load(open(OUT / \"stage1_meta.json\"))\n\nprint(f\"Loaded: {len(y_te)} test steps, {meta['n_test_traces']} traces\", flush=True)\n\n# Fast numpy metrics\ndef fast_metrics(y, yp, yprob):\n    y1 = (y == 1); y0 = (y == 0); p1 = (yp == 1); p0 = (yp == 0)\n    tp = np.sum(y1 & p1); fp = np.sum(y0 & p1)\n    fn = np.sum(y1 & p0); tn = np.sum(y0 & p0)\n    prec = tp / (tp + fp) if (tp + fp) > 0 else 0.0\n    tpr = tp / (tp + fn) if (tp + fn) > 0 else 0.0\n    tnr = tn / (tn + fp) if (tn + fp) > 0 else 0.0\n    ba = (tpr + tnr) / 2\n    fpr = fp / (fp + tn) if (fp + tn) > 0 else 0.0\n    n1 = int(np.sum(y1)); n0 = int(np.sum(y0))\n    if n1 == 0 or n0 == 0:\n        auroc = 0.5\n    else:\n        ranks = np.empty(len(y))\n        order = np.argsort(yprob)\n        ranks[order] = np.arange(1, len(y) + 1).astype(np.float64)\n        tied = np.unique(yprob)\n        for v in tied:\n            mask = yprob == v\n            if np.sum(mask) > 1:\n                ranks[mask] = ranks[mask].mean()\n        auroc = (np.sum(ranks[y1]) - n1 * (n1 + 1) / 2) / (n1 * n0)\n    return np.array([prec, ba, fpr, auroc])\n\n# Build trace index map\ntrace_map = defaultdict(list)\nfor i, t in enumerate(ti_te):\n    trace_map[t].append(i)\nfor k in trace_map:\n    trace_map[k] = np.array(trace_map[k])\nutr = sorted(trace_map.keys())\n\n# Observed\nobs_h = fast_metrics(y_te, hp, hpp)\nobs_t = fast_metrics(y_te, tp, tpp)\nobs_d = np.array([obs_h[0]-obs_t[0], obs_h[1]-obs_t[1], obs_t[2]-obs_h[2], obs_h[3]-obs_t[3]])\n\nprint(f\"Observed HS:  prec={obs_h[0]:.4f} ba={obs_h[1]:.4f} fpr={obs_h[2]:.4f} auroc={obs_h[3]:.4f}\", flush=True)\nprint(f\"Observed Txt: prec={obs_t[0]:.4f} ba={obs_t[1]:.4f} fpr={obs_t[2]:.4f} auroc={obs_t[3]:.4f}\", flush=True)\nprint(f\"Observed Δ:   prec={obs_d[0]:+.4f} ba={obs_d[1]:+.4f} fpr={obs_d[2]:+.4f} auroc={obs_d[3]:+.4f}\", flush=True)\n\n# Bootstrap\nrng = np.random.default_rng(SEED)\nboot_h = np.zeros((N_BOOT, 4))\nboot_t = np.zeros((N_BOOT, 4))\nboot_d = np.zeros((N_BOOT, 4))\n\nprint(f\"Running {N_BOOT} bootstrap resamples...\", flush=True)\nt1 = time.time()\nutr_arr = np.array(utr)\n\nfor b in range(N_BOOT):\n    sam = rng.choice(utr_arr, size=len(utr_arr), replace=True)\n    idx = np.concatenate([trace_map[s] for s in sam])\n    mh = fast_metrics(y_te[idx], hp[idx], hpp[idx])\n    mt = fast_metrics(y_te[idx], tp[idx], tpp[idx])\n    boot_h[b] = mh; boot_t[b] = mt\n    boot_d[b] = [mh[0]-mt[0], mh[1]-mt[1], mt[2]-mh[2], mh[3]-mt[3]]\n    if (b+1) % 2000 == 0:\n        print(f\"  {b+1}/{N_BOOT} ({time.time()-t1:.1f}s)\", flush=True)\n\nprint(f\"Bootstrap done ({time.time()-t1:.1f}s)\", flush=True)\n\n# Results\nnames = [\"prec\", \"ba\", \"fpr\", \"auroc\"]\nlabels = [\"Prec\", \"BA\", \"FPR\", \"AUROC\"]\nboot_res = {}\n\nfor i, (nm, lb) in enumerate(zip(names, labels)):\n    centered = boot_d[:, i] - boot_d[:, i].mean()\n    p = float(np.mean(np.abs(centered) >= np.abs(obs_d[i])))\n    boot_res[nm] = dict(\n        hs=float(obs_h[i]), hs_ci=[float(np.percentile(boot_h[:, i], 2.5)), float(np.percentile(boot_h[:, i], 97.5))],\n        text=float(obs_t[i]), text_ci=[float(np.percentile(boot_t[:, i], 2.5)), float(np.percentile(boot_t[:, i], 97.5))],\n        diff=float(obs_d[i]), diff_ci=[float(np.percentile(boot_d[:, i], 2.5)), float(np.percentile(boot_d[:, i], 97.5))],\n        p_value=p)\n\n# Holm-Bonferroni on prec, ba, fpr\nhb_raw = [boot_res[\"prec\"][\"p_value\"], boot_res[\"ba\"][\"p_value\"], boot_res[\"fpr\"][\"p_value\"]]\nm = len(hb_raw)\nix = sorted(enumerate(hb_raw), key=lambda x: x[1])\nhb_adj = [0.0]*m; mx = 0.0\nfor rank, (i, p) in enumerate(ix):\n    a = min(p*(m-rank), 1.0); mx = max(mx, a); hb_adj[i] = mx\nhb_pass = sum(1 for p in hb_adj if p < 0.05)\n\nelapsed = time.time() - t0\n\n# Print\nprint(f\"\\n{'='*70}\", flush=True)\nprint(f\"R1-8B (W={WINDOW}, L14, 60/20/20, PCA={PCA_DIM}d, {N_BOOT} bootstrap):\", flush=True)\nprint(f\"  n_test = {len(y_te)} steps from {meta['n_test_traces']} traces\", flush=True)\n\nb = boot_res\nfor nm, lb in zip(names, labels):\n    r = b[nm]\n    print(f\"  HS {lb}: {r['hs']:.3f} [{r['hs_ci'][0]:.3f}, {r['hs_ci'][1]:.3f}]\", flush=True)\n    print(f\"  Text {lb}: {r['text']:.3f} [{r['text_ci'][0]:.3f}, {r['text_ci'][1]:.3f}]\", flush=True)\n    sign = \"+\" if nm != \"fpr\" else (\"+\" if r[\"diff\"] >= 0 else \"\")\n    if nm == \"fpr\":\n        print(f\"  Δ{lb}: {r['diff']:+.3f}pp, p={r['p_value']:.4f}\", flush=True)\n    else:\n        print(f\"  Δ{lb}: {r['diff']:+.3f}pp, p={r['p_value']:.4f}\", flush=True)\n    print(flush=True)\n\nprint(f\"  HB (3 tests: Prec, BA, FPR): {hb_pass}/3 pass\", flush=True)\nprint(f\"  HB adj p: Prec={hb_adj[0]:.4f}, BA={hb_adj[1]:.4f}, FPR={hb_adj[2]:.4f}\", flush=True)\nprint(f\"  Elapsed (stage2): {elapsed:.1f}s\", flush=True)\n\n# Save final JSON\noutput = dict(\n    model=\"R1-8B\", layer=14, layer_idx=2, window=WINDOW,\n    split=\"60/20/20\", seed=SEED, pca_dim=PCA_DIM,\n    n_traces=meta[\"n_traces\"], n_train_val=meta[\"n_train_val\"],\n    n_test_traces=meta[\"n_test_traces\"], n_test_steps=int(len(y_te)),\n    pca_var=meta[\"pca_var\"],\n    probe=\"LogisticRegression(solver='lbfgs', C=1.0, class_weight='balanced', max_iter=2000)\",\n    text_encoder=\"all-MiniLM-L6-v2 (384d)\",\n    n_bootstrap=N_BOOT,\n    bootstrap=boot_res,\n    holm_bonferroni=dict(tests=[\"prec\",\"ba\",\"fpr\"], raw_p=hb_raw, adj_p=hb_adj, n_pass=hb_pass),\n    elapsed_s=round(meta[\"elapsed_s1\"] + elapsed, 1)\n)\nwith open(OUT / \"results.json\", \"w\") as f:\n    json.dump(output, f, indent=2)\nprint(f\"\\nSaved to {OUT / 'results.json'}\", flush=True)\nPYEOF\necho \"Stage 2 script OK\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "5694b99f-ee17-486e-8602-729634fbebb3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YMSjrrM9NyK8nVRQaJgnVE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 571,
+      "cache_read_input_tokens": 86408,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 571
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-18T17:38:36.713Z_
+
+<details><summary>↩ Tool result · `toolu_01HeuFG3qe91xChFQACqDhwK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Stage 2 script OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "f67cd89a-e334-4dd8-84e1-e86a7d909e04",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Stage 2 script OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Stage 2 script OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 80_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01TRDViuKMcGztaHWHvVScBc`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "/root/miniconda3/bin/python3.12 /root/autodl-tmp/contrastive_trace_safety/scripts/table3_r1_8b_stage2.py",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "e6d5fdb8-ce11-4a24-99cf-a664d8ca2088",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SFqcAnUU3K6nT7LaPknuk8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3215,
+      "cache_read_input_tokens": 86979,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3215
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-18T17:39:12.417Z_
+
+<details><summary>↩ Tool result · `toolu_01TRDViuKMcGztaHWHvVScBc`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: '/root/miniconda3/bin/python3.12 /root/autodl-tmp/contrastive_trace_safety/scripts/table3_r1_8b_stage2.py'\\n\\nStdout:\\n\\nLoaded: 1961 test steps, 43 traces\\nObserved HS:  prec=0.6294 ba=0.8232 fpr=0.1577 auroc=0.9034\\nObserved Txt: prec=0.4286 ba=0.6480 fpr=0.2366 auroc=0.7190\\nObserved Δ:   prec=+0.2008 ba=+0.1751 fpr=+0.0789 auroc=+0.1844\\nRunning 10000 bootstrap resamples...\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "95ed8553-7f4b-4319-81a3-29259fa61449",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: '/root/miniconda3/bin/python3.12 /root/autodl-tmp/contrastive_trace_safety/scripts/table3_r1_8b_stage2.py'\\\\n\\\\nStdout:\\\\n\\\\nLoaded: 1961 test steps, 43 traces\\\\nObserved HS:  prec=0.6294 ba=0.8232 fpr=0.1577 auroc=0.9034\\\\nObserved Txt: prec=0.4286 ba=0.6480 fpr=0.2366 auroc=0.7190\\\\nObserved Δ:   prec=+0.2008 ba=+0.1751 fpr=+0.0789 auroc=+0.1844\\\\nRunning 10000 bootstrap resamples...\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: '/root/miniconda3/bin/python3.12 /root/autodl-tmp/contrastive_trace_safety/scripts/table3_r1_8b_stage2.py'\\n\\nStdout:\\n\\nLoaded: 1961 test steps, 43 traces\\nObserved HS:  prec=0.6294 ba=0.8232 fpr=0.1577 auroc=0.9034\\nObserved Txt: prec=0.4286 ba=0.6480 fpr=0.2366 auroc=0.7190\\nObserved Δ:   prec=+0.2008 ba=+0.1751 fpr=+0.0789 auroc=+0.1844\\nRunning 10000 bootstrap resamples...\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 82_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The bootstrap loop is too slow for 10k iterations. Each iteration takes about 3ms (30s / 10000 would be fine if it ran 10000 in 30s, but it didn't even get to 2000 in 30s). The issue is that each iteration does:
+1. rng.choice for trace selection
+2. np.concatenate for building index array
+3. Two calls to fast_metrics with AUROC computation
+
+The AUROC computation with tied rank handling is particularly slow (using np.unique and a loop). Let me optimize.
+
+Options:
+1. Reduce to 5000 resamples (no, user specified 10k)
+
+
+2. Vectorize the bootstrap better
+3. Optimize AUROC computation
+4. Split bootstrap into chunks
+
+With 1961 test steps and 43 traces, each bootstrap iteration concatenates ~43 arrays of ~45 elements into a ~1961-element array, then runs two fast_metrics calls on that. The real bottleneck is the AUROC computation with its tied ranks loop. Since continuous probabilities from logistic regression almost never have ties, I can simplify the AUROC calculation or switch to scipy's rankdata function.
+
+The key optimization is pre-computing everything possible before the bootstrap loop—building a matrix where each row contains the indices for a trace, then selecting and flattening trace rows for each iteration. I could also pre-compute per-trace metrics and resample traces directly, but since metrics are computed on pooled samples rather than trace-level means, I need to resample which traces to include and then pool all their samples together.
+
+For the expensive metrics, I'll skip AUROC initially and focus on precision, balanced accuracy, and FPR, which just need TP, FP, TN, and FN counts. For AUROC, I can use the Mann-Whitney U approach with argsort-based ranking, which is O(n log n) and much faster than the standard implementation.
+
+Implementing a streamlined AUROC function...
+
+The bottleneck is the loop overhead—each iteration takes about 15ms, mostly from the list comprehension that concatenates trace arrays. I should pre-compute the trace data as a 2D array to avoid repeated concatenation operations.
+
+Building the optimized data structure... I'm profiling where the time is actually going, and it's clear the bottleneck is in the AUROC calculation within fast_metrics. The np.unique call generates around 1961 unique probability values from the logistic regression output, and then iterating through each one with masking operations creates an O(n²) complexity problem that dominates the 15ms per iteration.
+
+With two fast_metrics calls per iteration across 10000 iterations, this approach will take 100-200 seconds total. I need to simplify the AUROC computation by removing the tie-correction loop and using a straightforward argsort-based ranking instead.
+
+Writing optimized AUROC function...
+
+This O(n log n) approach should run in about 50 microseconds per call, bringing the total iteration time down to roughly 200 microseconds—meaning 10000 iterations completes in around 2 seconds. Now I'm rewriting the stage 2 script with this optimization.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "c8b91e1e-926a-460e-abdc-b2501b7010cf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H6UAWogxTX6Yq5CoeVaKTu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 452,
+      "cache_read_input_tokens": 90194,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 452
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 83_
+
+AUROC 的 tied-rank 循环太慢了。优化后重跑。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "543d1f97-cf66-4f23-a3dc-a4967084ba57",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H6UAWogxTX6Yq5CoeVaKTu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 452,
+      "cache_read_input_tokens": 90194,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 452
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 84_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_012aePSRnSbiD61cc724UF3c`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat > /root/autodl-tmp/contrastive_trace_safety/scripts/table3_r1_8b_stage2.py << 'PYEOF'\n\"\"\"Stage 2: 10k paired bootstrap (optimized).\"\"\"\nimport json, time\nfrom pathlib import Path\nfrom collections import defaultdict\nimport numpy as np\n\nSEED = 42\nN_BOOT = 10000\nWINDOW = 3\nPCA_DIM = 100\n\nOUT = Path(\"/root/autodl-tmp/contrastive_trace_safety/artifacts/table3_r1_8b_60_20_20\")\nt0 = time.time()\n\nd = np.load(OUT / \"stage1.npz\")\ny_te = d[\"y_te\"]; ti_te = d[\"ti_te\"]\nhp = d[\"hp\"]; hpp = d[\"hpp\"]; tp = d[\"tp\"]; tpp = d[\"tpp\"]\nmeta = json.load(open(OUT / \"stage1_meta.json\"))\nprint(f\"Loaded: {len(y_te)} steps, {meta['n_test_traces']} traces\", flush=True)\n\ndef fast_metrics(y, yp, yprob):\n    y1 = y == 1; y0 = ~y1; p1 = yp == 1\n    tp = np.sum(y1 & p1); fp = np.sum(y0 & p1)\n    fn = np.sum(y1 & ~p1); tn = np.sum(y0 & ~p1)\n    prec = tp/(tp+fp) if (tp+fp) > 0 else 0.0\n    tpr = tp/(tp+fn) if (tp+fn) > 0 else 0.0\n    tnr = tn/(tn+fp) if (tn+fp) > 0 else 0.0\n    ba = (tpr+tnr)/2\n    fpr = fp/(fp+tn) if (fp+tn) > 0 else 0.0\n    n1 = int(np.sum(y1)); n0 = int(np.sum(y0))\n    if n1 == 0 or n0 == 0:\n        auroc = 0.5\n    else:\n        order = np.argsort(yprob)\n        ranks = np.empty(len(y), dtype=np.float64)\n        ranks[order] = np.arange(1, len(y)+1)\n        auroc = (np.sum(ranks[y1]) - n1*(n1+1)/2) / (n1*n0)\n    return prec, ba, fpr, auroc\n\n# Build trace index map\ntrace_map = {}\nfor i, t in enumerate(ti_te):\n    trace_map.setdefault(t, []).append(i)\nfor k in trace_map:\n    trace_map[k] = np.array(trace_map[k], dtype=np.int64)\nutr = np.array(sorted(trace_map.keys()))\nn_utr = len(utr)\n\n# Observed\noh = fast_metrics(y_te, hp, hpp)\not = fast_metrics(y_te, tp, tpp)\nobs_d = np.array([oh[0]-ot[0], oh[1]-ot[1], ot[2]-oh[2], oh[3]-ot[3]])\n\nprint(f\"HS:  prec={oh[0]:.4f} ba={oh[1]:.4f} fpr={oh[2]:.4f} auroc={oh[3]:.4f}\", flush=True)\nprint(f\"Txt: prec={ot[0]:.4f} ba={ot[1]:.4f} fpr={ot[2]:.4f} auroc={ot[3]:.4f}\", flush=True)\nprint(f\"Δ:   {obs_d[0]:+.4f} {obs_d[1]:+.4f} {obs_d[2]:+.4f} {obs_d[3]:+.4f}\", flush=True)\n\n# Pre-pack trace indices for fast lookup\nstarts = np.zeros(n_utr, dtype=np.int64)\nlengths = np.zeros(n_utr, dtype=np.int64)\nall_idx = []\nfor j, t in enumerate(utr):\n    starts[j] = len(all_idx)\n    lengths[j] = len(trace_map[t])\n    all_idx.extend(trace_map[t])\nall_idx = np.array(all_idx, dtype=np.int64)\n\n# Bootstrap\nrng = np.random.default_rng(SEED)\nboot_h = np.zeros((N_BOOT, 4))\nboot_t = np.zeros((N_BOOT, 4))\nboot_d = np.zeros((N_BOOT, 4))\n\nprint(f\"Running {N_BOOT} bootstrap...\", flush=True)\nt1 = time.time()\n\nfor b in range(N_BOOT):\n    sam = rng.integers(0, n_utr, size=n_utr)\n    idx_parts = [all_idx[starts[s]:starts[s]+lengths[s]] for s in sam]\n    idx = np.concatenate(idx_parts)\n    mh = fast_metrics(y_te[idx], hp[idx], hpp[idx])\n    mt = fast_metrics(y_te[idx], tp[idx], tpp[idx])\n    boot_h[b] = mh; boot_t[b] = mt\n    boot_d[b] = [mh[0]-mt[0], mh[1]-mt[1], mt[2]-mh[2], mh[3]-mt[3]]\n\nprint(f\"Bootstrap done ({time.time()-t1:.1f}s)\", flush=True)\n\nnames = [\"prec\", \"ba\", \"fpr\", \"auroc\"]\nlabels = [\"Prec\", \"BA\", \"FPR\", \"AUROC\"]\nboot_res = {}\n\nfor i, (nm, lb) in enumerate(zip(names, labels)):\n    centered = boot_d[:, i] - boot_d[:, i].mean()\n    p = float(np.mean(np.abs(centered) >= np.abs(obs_d[i])))\n    boot_res[nm] = dict(\n        hs=float([oh[0],oh[1],oh[2],oh[3]][i]),\n        hs_ci=[float(np.percentile(boot_h[:, i], 2.5)), float(np.percentile(boot_h[:, i], 97.5))],\n        text=float([ot[0],ot[1],ot[2],ot[3]][i]),\n        text_ci=[float(np.percentile(boot_t[:, i], 2.5)), float(np.percentile(boot_t[:, i], 97.5))],\n        diff=float(obs_d[i]),\n        diff_ci=[float(np.percentile(boot_d[:, i], 2.5)), float(np.percentile(boot_d[:, i], 97.5))],\n        p_value=p)\n\nhb_raw = [boot_res[\"prec\"][\"p_value\"], boot_res[\"ba\"][\"p_value\"], boot_res[\"fpr\"][\"p_value\"]]\nm = len(hb_raw)\nix = sorted(enumerate(hb_raw), key=lambda x: x[1])\nhb_adj = [0.0]*m; mx = 0.0\nfor rank, (i2, p) in enumerate(ix):\n    a = min(p*(m-rank), 1.0); mx = max(mx, a); hb_adj[i2] = mx\nhb_pass = sum(1 for p in hb_adj if p < 0.05)\n\nelapsed = time.time()-t0\n\nprint(f\"\\n{'='*70}\", flush=True)\nprint(f\"R1-8B (W={WINDOW}, L14, 60/20/20, PCA={PCA_DIM}d, {N_BOOT} bootstrap):\", flush=True)\nprint(f\"  n_test = {len(y_te)} steps from {meta['n_test_traces']} traces\", flush=True)\n\nfor nm, lb in zip(names, labels):\n    r = boot_res[nm]\n    print(f\"  HS {lb}: {r['hs']:.3f} [{r['hs_ci'][0]:.3f}, {r['hs_ci'][1]:.3f}]\", flush=True)\n    print(f\"  Text {lb}: {r['text']:.3f} [{r['text_ci'][0]:.3f}, {r['text_ci'][1]:.3f}]\", flush=True)\n    print(f\"  Δ{lb}: {r['diff']:+.3f}pp, p={r['p_value']:.4f}\", flush=True)\n    print(flush=True)\n\nprint(f\"  HB (3 tests: Prec, BA, FPR): {hb_pass}/3 pass\", flush=True)\nprint(f\"  HB adj p: Prec={hb_adj[0]:.4f}, BA={hb_adj[1]:.4f}, FPR={hb_adj[2]:.4f}\", flush=True)\nprint(f\"  Elapsed: {elapsed:.1f}s (total={meta['elapsed_s1']+elapsed:.1f}s)\", flush=True)\n\noutput = dict(\n    model=\"R1-8B\", layer=14, layer_idx=2, window=WINDOW,\n    split=\"60/20/20\", seed=SEED, pca_dim=PCA_DIM,\n    n_traces=meta[\"n_traces\"], n_train_val=meta[\"n_train_val\"],\n    n_test_traces=meta[\"n_test_traces\"], n_test_steps=int(len(y_te)),\n    pca_var=meta[\"pca_var\"],\n    probe=\"LogisticRegression(solver='lbfgs', C=1.0, class_weight='balanced', max_iter=2000)\",\n    text_encoder=\"all-MiniLM-L6-v2 (384d, W=3 avg)\",\n    n_bootstrap=N_BOOT,\n    bootstrap=boot_res,\n    holm_bonferroni=dict(tests=[\"prec\",\"ba\",\"fpr\"], raw_p=hb_raw, adj_p=hb_adj, n_pass=hb_pass),\n    elapsed_s=round(meta[\"elapsed_s1\"]+elapsed, 1)\n)\nwith open(OUT / \"results.json\", \"w\") as f:\n    json.dump(output, f, indent=2)\nprint(f\"\\nSaved to {OUT / 'results.json'}\", flush=True)\nPYEOF\necho \"OK\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "1d9deb07-8c11-40f2-8496-52ca10d53bad",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H6UAWogxTX6Yq5CoeVaKTu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 452,
+      "cache_read_input_tokens": 90194,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 452
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 85 · 2026-05-18T17:40:21.403Z_
+
+<details><summary>↩ Tool result · `toolu_012aePSRnSbiD61cc724UF3c`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.97}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "9d02a19c-e735-491d-9349-9432f4fc07e6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.97}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.97}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 86_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_017EWTkXoXTiA3TLDzjysRzR`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "/root/miniconda3/bin/python3.12 /root/autodl-tmp/contrastive_trace_safety/scripts/table3_r1_8b_stage2.py",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "88cdbf05-f211-40d6-be6d-b96b83386fee",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YJvVo36DQWEq2mQwzSTVoc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5017,
+      "cache_read_input_tokens": 90646,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5017
+      },
+      "output_tokens": 62,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 87 · 2026-05-18T17:40:28.223Z_
+
+<details><summary>↩ Tool result · `toolu_017EWTkXoXTiA3TLDzjysRzR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loaded: 1961 steps, 43 traces\\nHS:  prec=0.6294 ba=0.8232 fpr=0.1577 auroc=0.9034\\nTxt: prec=0.4286 ba=0.6480 fpr=0.2366 auroc=0.7190\\nΔ:   +0.2008 +0.1751 +0.0789 +0.1844\\nRunning 10000 bootstrap...\\nBootstrap done (1.4s)\\n\\n======================================================================\\nR1-8B (W=3, L14, 60/20/20, PCA=100d, 10000 bootstrap):\\n  n_test = 1961 steps from 43 traces\\n  HS Prec: 0.629 [0.495, 0.766]\\n  Text Prec: 0.429 [0.301, 0.571]\\n  ΔPrec: +0.201pp, p=0.0000\\n\\n  HS BA: 0.823 [0.776, 0.869]\\n  Text BA: 0.648 [0.586, 0.709]\\n  ΔBA: +0.175pp, p=0.0000\\n\\n  HS FPR: 0.158 [0.096, 0.225]\\n  Text FPR: 0.237 [0.161, 0.322]\\n  ΔFPR: +0.079pp, p=0.0140\\n\\n  HS AUROC: 0.903 [0.864, 0.941]\\n  Text AUROC: 0.719 [0.640, 0.794]\\n  ΔAUROC: +0.184pp, p=0.0000\\n\\n  HB (3 tests: Prec, BA, FPR): 3/3 pass\\n  HB adj p: Prec=0.0000, BA=0.0000, FPR=0.0140\\n  Elapsed: 1.4s (total=13.6s)\\n\\nSaved to /root/autodl-tmp/contrastive_trace_safety/artifacts/table3_r1_8b_60_20_20/results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.96}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "f121b593-72a5-4b9c-8620-de333b3bbc12",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loaded: 1961 steps, 43 traces\\\\nHS:  prec=0.6294 ba=0.8232 fpr=0.1577 auroc=0.9034\\\\nTxt: prec=0.4286 ba=0.6480 fpr=0.2366 auroc=0.7190\\\\nΔ:   +0.2008 +0.1751 +0.0789 +0.1844\\\\nRunning 10000 bootstrap...\\\\nBootstrap done (1.4s)\\\\n\\\\n======================================================================\\\\nR1-8B (W=3, L14, 60/20/20, PCA=100d, 10000 bootstrap):\\\\n  n_test = 1961 steps from 43 traces\\\\n  HS Prec: 0.629 [0.495, 0.766]\\\\n  Text Prec: 0.429 [0.301, 0.571]\\\\n  ΔPrec: +0.201pp, p=0.0000\\\\n\\\\n  HS BA: 0.823 [0.776, 0.869]\\\\n  Text BA: 0.648 [0.586, 0.709]\\\\n  ΔBA: +0.175pp, p=0.0000\\\\n\\\\n  HS FPR: 0.158 [0.096, 0.225]\\\\n  Text FPR: 0.237 [0.161, 0.322]\\\\n  ΔFPR: +0.079pp, p=0.0140\\\\n\\\\n  HS AUROC: 0.903 [0.864, 0.941]\\\\n  Text AUROC: 0.719 [0.640, 0.794]\\\\n  ΔAUROC: +0.184pp, p=0.0000\\\\n\\\\n  HB (3 tests: Prec, BA, FPR): 3/3 pass\\\\n  HB adj p: Prec=0.0000, BA=0.0000, FPR=0.0140\\\\n  Elapsed: 1.4s (total=13.6s)\\\\n\\\\nSaved to /root/autodl-tmp/contrastive_trace_safety/artifacts/table3_r1_8b_60_20_20/results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.96}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Loaded: 1961 steps, 43 traces\\nHS:  prec=0.6294 ba=0.8232 fpr=0.1577 auroc=0.9034\\nTxt: prec=0.4286 ba=0.6480 fpr=0.2366 auroc=0.7190\\nΔ:   +0.2008 +0.1751 +0.0789 +0.1844\\nRunning 10000 bootstrap...\\nBootstrap done (1.4s)\\n\\n======================================================================\\nR1-8B (W=3, L14, 60/20/20, PCA=100d, 10000 bootstrap):\\n  n_test = 1961 steps from 43 traces\\n  HS Prec: 0.629 [0.495, 0.766]\\n  Text Prec: 0.429 [0.301, 0.571]\\n  ΔPrec: +0.201pp, p=0.0000\\n\\n  HS BA: 0.823 [0.776, 0.869]\\n  Text BA: 0.648 [0.586, 0.709]\\n  ΔBA: +0.175pp, p=0.0000\\n\\n  HS FPR: 0.158 [0.096, 0.225]\\n  Text FPR: 0.237 [0.161, 0.322]\\n  ΔFPR: +0.079pp, p=0.0140\\n\\n  HS AUROC: 0.903 [0.864, 0.941]\\n  Text AUROC: 0.719 [0.640, 0.794]\\n  ΔAUROC: +0.184pp, p=0.0000\\n\\n  HB (3 tests: Prec, BA, FPR): 3/3 pass\\n  HB adj p: Prec=0.0000, BA=0.0000, FPR=0.0140\\n  Elapsed: 1.4s (total=13.6s)\\n\\nSaved to /root/autodl-tmp/contrastive_trace_safety/artifacts/table3_r1_8b_60_20_20/results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.96}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 88_
+
+<details><summary>Logged reasoning block</summary>
+
+````text
+The results are in. Let me now register the artifact and save a summary via save_project_file.
+
+Results:
+```
+R1-8B (W=3, L14, 60/20/20, PCA=100d, 10000 bootstrap):
+  n_test = 1961 steps from 43 traces
+  HS Prec: 0.629 [0.495, 0.766]
+  Text Prec: 0.429 [0.301, 0.571]
+
+
+```
+
+Looking at the performance metrics, the handshake approach shows a meaningful 20 basis point precision advantage over text-based detection with strong statistical significance, and similarly outperforms on balanced accuracy by 17.5 basis points. The false positive rate is slightly higher for handshake but the AUROC comparison shows a substantial gap—0.903 versus 0.719—indicating much better discrimination overall.
+
+All three Holm-Bonferroni corrected tests pass, confirming these differences hold up under multiple comparison correction with p-values well below the significance threshold.
+
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "a198ebcb-4ba7-4d44-ae1e-43a9cc18473f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YQsCdQYPB4PS83X47xNhpY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 823,
+      "cache_read_input_tokens": 95663,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 823
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 89_
+
+实验完成。注册 artifact 和保存汇总。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "3b2458f8-54e1-40ec-959d-0b306b0acdc7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YQsCdQYPB4PS83X47xNhpY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 823,
+      "cache_read_input_tokens": 95663,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 823
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 90_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01NaHjh85ZxZEgXsbPRGsm9o`</summary>
+
+```json
+{
+  "name": "table3_r1_8b_60_20_20",
+  "type": "data",
+  "description": "Table 3 R1-8B W=3 L14 60/20/20 PCA=100d 10k bootstrap: HS vs MiniLM text baseline. HB 3/3 pass.",
+  "project": "contrastive_trace_safety",
+  "source_path": "/root/autodl-tmp/contrastive_trace_safety/artifacts/table3_r1_8b_60_20_20/results.json",
+  "tags": [
+    "table3",
+    "r1-8b",
+    "bootstrap",
+    "60-20-20"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "d2115926-a9fd-423c-8809-14b9b9439dfc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YQsCdQYPB4PS83X47xNhpY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 823,
+      "cache_read_input_tokens": 95663,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 823
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 91 · 2026-05-18T17:40:39.268Z_
+
+<details><summary>↩ Tool result · `toolu_01NaHjh85ZxZEgXsbPRGsm9o`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/autodl-tmp/contrastive_trace_safety/artifacts/table3_r1_8b_60_20_20/results.json\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "98adacd0-88d3-485f-a8af-28fc176e7ba2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/autodl-tmp/contrastive_trace_safety/artifacts/table3_r1_8b_60_20_20/results.json\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/autodl-tmp/contrastive_trace_safety/artifacts/table3_r1_8b_60_20_20/results.json\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 92_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__save_project_file · `toolu_018CqrwqFZCLxfGSEYgDki7u`</summary>
+
+```json
+{
+  "project": "contrastive_trace_safety",
+  "file": "memory.md",
+  "content": "# Memory\n\n## Table 3 R1-8B 60/20/20 Results (2026-05-18)\n\nUnified split rerun completed. Key parameters:\n- Model: R1-8B, Layer 14 (tensor idx=2, offset=12), W=3 concat, PCA=100d\n- Split: 60/20/20 seed=42 → train+val=166, test=43 traces (1961 steps)\n- Probe: LR(lbfgs, C=1.0, balanced, max_iter=2000)\n- Text: all-MiniLM-L6-v2 384d, W=3 avg\n- Bootstrap: 10k resamples, null-centered, paired at trace level\n\nResults:\n- HS Prec: 0.629 [0.495, 0.766] vs Text: 0.429 → Δ+0.201pp, p<0.0001\n- HS BA: 0.823 [0.776, 0.869] vs Text: 0.648 → Δ+0.175pp, p<0.0001\n- HS FPR: 0.158 [0.096, 0.225] vs Text: 0.237 → Δ+0.079pp, p=0.0140\n- HS AUROC: 0.903 [0.864, 0.941] vs Text: 0.719 → Δ+0.184pp, p<0.0001\n- HB (Prec, BA, FPR): 3/3 pass (adj p: 0.0000, 0.0000, 0.0140)\n\nArtifacts: /artifacts/table3_r1_8b_60_20_20/results.json\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "83ec3040-c3fd-4e88-897c-2a4e12fb17e6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YQsCdQYPB4PS83X47xNhpY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 823,
+      "cache_read_input_tokens": 95663,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 823
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 93 · 2026-05-18T17:40:46.721Z_
+
+<details><summary>↩ Tool result · `toolu_018CqrwqFZCLxfGSEYgDki7u`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "a90b181b-3c17-4bce-9ff9-8c37e8384139",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/memory.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 94_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The artifact registration failed because source_path is a remote path. I need to use `content` instead for the registration. Let me read the results.json from the server and register with content.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "b178ef73-3b5e-4113-8749-4651f4329088",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NJjV4nRzfvtwvzKWjKLmDq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1619,
+      "cache_read_input_tokens": 96486,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1619
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0192pjXrXxbbuth88H8K7j4Y`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/table3_r1_8b_60_20_20/results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "b07c41af-2525-4fa2-80b8-8b97325267ee",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NJjV4nRzfvtwvzKWjKLmDq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1619,
+      "cache_read_input_tokens": 96486,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1619
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-18T17:40:51.802Z_
+
+<details><summary>↩ Tool result · `toolu_0192pjXrXxbbuth88H8K7j4Y`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"R1-8B\\\",\\n  \\\"layer\\\": 14,\\n  \\\"layer_idx\\\": 2,\\n  \\\"window\\\": 3,\\n  \\\"split\\\": \\\"60/20/20\\\",\\n  \\\"seed\\\": 42,\\n  \\\"pca_dim\\\": 100,\\n  \\\"n_traces\\\": 209,\\n  \\\"n_train_val\\\": 166,\\n  \\\"n_test_traces\\\": 43,\\n  \\\"n_test_steps\\\": 1961,\\n  \\\"pca_var\\\": 0.49486619234085083,\\n  \\\"probe\\\": \\\"LogisticRegression(solver='lbfgs', C=1.0, class_weight='balanced', max_iter=2000)\\\",\\n  \\\"text_encoder\\\": \\\"all-MiniLM-L6-v2 (384d, W=3 avg)\\\",\\n  \\\"n_bootstrap\\\": 10000,\\n  \\\"bootstrap\\\": {\\n    \\\"prec\\\": {\\n      \\\"hs\\\": 0.6293929712460063,\\n      \\\"hs_ci\\\": [\\n        0.49511133466848195,\\n        0.7663907980410707\\n      ],\\n      \\\"text\\\": 0.42857142857142855,\\n      \\\"text_ci\\\": [\\n        0.30068184018198535,\\n        0.5711658673094097\\n      ],\\n      \\\"diff\\\": 0.2008215426745778,\\n      \\\"diff_ci\\\": [\\n        0.12364204691185962,\\n        0.28319519264310844\\n      ],\\n      \\\"p_value\\\": 0.0\\n    },\\n    \\\"ba\\\": {\\n      \\\"hs\\\": 0.8231828965440697,\\n      \\\"hs_ci\\\": [\\n        0.7761116159975954,\\n        0.8685681737430908\\n      ],\\n      \\\"text\\\": 0.6480396509385535,\\n      \\\"text_ci\\\": [\\n        0.5860065006994459,\\n        0.7089470615117136\\n      ],\\n      \\\"diff\\\": 0.1751432456055162,\\n      \\\"diff_ci\\\": [\\n        0.11992235919025064,\\n        0.22983539175668244\\n      ],\\n      \\\"p_value\\\": 0.0\\n    },\\n    \\\"fpr\\\": {\\n      \\\"hs\\\": 0.15771583956492183,\\n      \\\"hs_ci\\\": [\\n        0.09554040949463338,\\n        0.22538343056925705\\n      ],\\n      \\\"text\\\": 0.23657375934738273,\\n      \\\"text_ci\\\": [\\n        0.16091915810711666,\\n        0.3221317633082339\\n      ],\\n      \\\"diff\\\": 0.0788579197824609,\\n      \\\"diff_ci\\\": [\\n        0.01898700819271106,\\n        0.14618149258703975\\n      ],\\n      \\\"p_value\\\": 0.014\\n    },\\n    \\\"auroc\\\": {\\n      \\\"hs\\\": 0.9034309576991911,\\n      \\\"hs_ci\\\": [\\n        0.8637020367664785,\\n        0.9405985461301348\\n      ],\\n      \\\"text\\\": 0.7190499313253513,\\n      \\\"text_ci\\\": [\\n        0.6400404879093421,\\n        0.7935904246248738\\n      ],\\n      \\\"diff\\\": 0.1843810263738398,\\n      \\\"diff_ci\\\": [\\n        0.12398912864577723,\\n        0.24925749698330332\\n      ],\\n      \\\"p_value\\\": 0.0\\n    }\\n  },\\n  \\\"holm_bonferroni\\\": {\\n    \\\"tests\\\": [\\n      \\\"prec\\\",\\n      \\\"ba\\\",\\n      \\\"fpr\\\"\\n    ],\\n    \\\"raw_p\\\": [\\n      0.0,\\n      0.0,\\n      0.014\\n    ],\\n    \\\"adj_p\\\": [\\n      0.0,\\n      0.0,\\n      0.014\\n    ],\\n    \\\"n_pass\\\": 3\\n  },\\n  \\\"elapsed_s\\\": 13.6\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "f39cae6f-e3ac-462f-959b-2eb2423b9c24",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"R1-8B\\\\\\\",\\\\n  \\\\\\\"layer\\\\\\\": 14,\\\\n  \\\\\\\"layer_idx\\\\\\\": 2,\\\\n  \\\\\\\"window\\\\\\\": 3,\\\\n  \\\\\\\"split\\\\\\\": \\\\\\\"60/20/20\\\\\\\",\\\\n  \\\\\\\"seed\\\\\\\": 42,\\\\n  \\\\\\\"pca_dim\\\\\\\": 100,\\\\n  \\\\\\\"n_traces\\\\\\\": 209,\\\\n  \\\\\\\"n_train_val\\\\\\\": 166,\\\\n  \\\\\\\"n_test_traces\\\\\\\": 43,\\\\n  \\\\\\\"n_test_steps\\\\\\\": 1961,\\\\n  \\\\\\\"pca_var\\\\\\\": 0.49486619234085083,\\\\n  \\\\\\\"probe\\\\\\\": \\\\\\\"LogisticRegression(solver='lbfgs', C=1.0, class_weight='balanced', max_iter=2000)\\\\\\\",\\\\n  \\\\\\\"text_encoder\\\\\\\": \\\\\\\"all-MiniLM-L6-v2 (384d, W=3 avg)\\\\\\\",\\\\n  \\\\\\\"n_bootstrap\\\\\\\": 10000,\\\\n  \\\\\\\"bootstrap\\\\\\\": {\\\\n    \\\\\\\"prec\\\\\\\": {\\\\n      \\\\\\\"hs\\\\\\\": 0.6293929712460063,\\\\n      \\\\\\\"hs_ci\\\\\\\": [\\\\n        0.49511133466848195,\\\\n        0.7663907980410707\\\\n      ],\\\\n      \\\\\\\"text\\\\\\\": 0.42857142857142855,\\\\n      \\\\\\\"text_ci\\\\\\\": [\\\\n        0.30068184018198535,\\\\n        0.5711658673094097\\\\n      ],\\\\n      \\\\\\\"diff\\\\\\\": 0.2008215426745778,\\\\n      \\\\\\\"diff_ci\\\\\\\": [\\\\n        0.12364204691185962,\\\\n        0.28319519264310844\\\\n      ],\\\\n      \\\\\\\"p_value\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"ba\\\\\\\": {\\\\n      \\\\\\\"hs\\\\\\\": 0.8231828965440697,\\\\n      \\\\\\\"hs_ci\\\\\\\": [\\\\n        0.7761116159975954,\\\\n        0.8685681737430908\\\\n      ],\\\\n      \\\\\\\"text\\\\\\\": 0.6480396509385535,\\\\n      \\\\\\\"text_ci\\\\\\\": [\\\\n        0.5860065006994459,\\\\n        0.7089470615117136\\\\n      ],\\\\n      \\\\\\\"diff\\\\\\\": 0.1751432456055162,\\\\n      \\\\\\\"diff_ci\\\\\\\": [\\\\n        0.11992235919025064,\\\\n        0.22983539175668244\\\\n      ],\\\\n      \\\\\\\"p_value\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"fpr\\\\\\\": {\\\\n      \\\\\\\"hs\\\\\\\": 0.15771583956492183,\\\\n      \\\\\\\"hs_ci\\\\\\\": [\\\\n        0.09554040949463338,\\\\n        0.22538343056925705\\\\n      ],\\\\n      \\\\\\\"text\\\\\\\": 0.23657375934738273,\\\\n      \\\\\\\"text_ci\\\\\\\": [\\\\n        0.16091915810711666,\\\\n        0.3221317633082339\\\\n      ],\\\\n      \\\\\\\"diff\\\\\\\": 0.0788579197824609,\\\\n      \\\\\\\"diff_ci\\\\\\\": [\\\\n        0.01898700819271106,\\\\n        0.14618149258703975\\\\n      ],\\\\n      \\\\\\\"p_value\\\\\\\": 0.014\\\\n    },\\\\n    \\\\\\\"auroc\\\\\\\": {\\\\n      \\\\\\\"hs\\\\\\\": 0.9034309576991911,\\\\n      \\\\\\\"hs_ci\\\\\\\": [\\\\n        0.8637020367664785,\\\\n        0.9405985461301348\\\\n      ],\\\\n      \\\\\\\"text\\\\\\\": 0.7190499313253513,\\\\n      \\\\\\\"text_ci\\\\\\\": [\\\\n        0.6400404879093421,\\\\n        0.7935904246248738\\\\n      ],\\\\n      \\\\\\\"diff\\\\\\\": 0.1843810263738398,\\\\n      \\\\\\\"diff_ci\\\\\\\": [\\\\n        0.12398912864577723,\\\\n        0.24925749698330332\\\\n      ],\\\\n      \\\\\\\"p_value\\\\\\\": 0.0\\\\n    }\\\\n  },\\\\n  \\\\\\\"holm_bonferroni\\\\\\\": {\\\\n    \\\\\\\"tests\\\\\\\": [\\\\n      \\\\\\\"prec\\\\\\\",\\\\n      \\\\\\\"ba\\\\\\\",\\\\n      \\\\\\\"fpr\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"raw_p\\\\\\\": [\\\\n      0.0,\\\\n      0.0,\\\\n      0.014\\\\n    ],\\\\n    \\\\\\\"adj_p\\\\\\\": [\\\\n      0.0,\\\\n      0.0,\\\\n      0.014\\\\n    ],\\\\n    \\\\\\\"n_pass\\\\\\\": 3\\\\n  },\\\\n  \\\\\\\"elapsed_s\\\\\\\": 13.6\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"R1-8B\\\",\\n  \\\"layer\\\": 14,\\n  \\\"layer_idx\\\": 2,\\n  \\\"window\\\": 3,\\n  \\\"split\\\": \\\"60/20/20\\\",\\n  \\\"seed\\\": 42,\\n  \\\"pca_dim\\\": 100,\\n  \\\"n_traces\\\": 209,\\n  \\\"n_train_val\\\": 166,\\n  \\\"n_test_traces\\\": 43,\\n  \\\"n_test_steps\\\": 1961,\\n  \\\"pca_var\\\": 0.49486619234085083,\\n  \\\"probe\\\": \\\"LogisticRegression(solver='lbfgs', C=1.0, class_weight='balanced', max_iter=2000)\\\",\\n  \\\"text_encoder\\\": \\\"all-MiniLM-L6-v2 (384d, W=3 avg)\\\",\\n  \\\"n_bootstrap\\\": 10000,\\n  \\\"bootstrap\\\": {\\n    \\\"prec\\\": {\\n      \\\"hs\\\": 0.6293929712460063,\\n      \\\"hs_ci\\\": [\\n        0.49511133466848195,\\n        0.7663907980410707\\n      ],\\n      \\\"text\\\": 0.42857142857142855,\\n      \\\"text_ci\\\": [\\n        0.30068184018198535,\\n        0.5711658673094097\\n      ],\\n      \\\"diff\\\": 0.2008215426745778,\\n      \\\"diff_ci\\\": [\\n        0.12364204691185962,\\n        0.28319519264310844\\n      ],\\n      \\\"p_value\\\": 0.0\\n    },\\n    \\\"ba\\\": {\\n      \\\"hs\\\": 0.8231828965440697,\\n      \\\"hs_ci\\\": [\\n        0.7761116159975954,\\n        0.8685681737430908\\n      ],\\n      \\\"text\\\": 0.6480396509385535,\\n      \\\"text_ci\\\": [\\n        0.5860065006994459,\\n        0.7089470615117136\\n      ],\\n      \\\"diff\\\": 0.1751432456055162,\\n      \\\"diff_ci\\\": [\\n        0.11992235919025064,\\n        0.22983539175668244\\n      ],\\n      \\\"p_value\\\": 0.0\\n    },\\n    \\\"fpr\\\": {\\n      \\\"hs\\\": 0.15771583956492183,\\n      \\\"hs_ci\\\": [\\n        0.09554040949463338,\\n        0.22538343056925705\\n      ],\\n      \\\"text\\\": 0.23657375934738273,\\n      \\\"text_ci\\\": [\\n        0.16091915810711666,\\n        0.3221317633082339\\n      ],\\n      \\\"diff\\\": 0.0788579197824609,\\n      \\\"diff_ci\\\": [\\n        0.01898700819271106,\\n        0.14618149258703975\\n      ],\\n      \\\"p_value\\\": 0.014\\n    },\\n    \\\"auroc\\\": {\\n      \\\"hs\\\": 0.9034309576991911,\\n      \\\"hs_ci\\\": [\\n        0.8637020367664785,\\n        0.9405985461301348\\n      ],\\n      \\\"text\\\": 0.7190499313253513,\\n      \\\"text_ci\\\": [\\n        0.6400404879093421,\\n        0.7935904246248738\\n      ],\\n      \\\"diff\\\": 0.1843810263738398,\\n      \\\"diff_ci\\\": [\\n        0.12398912864577723,\\n        0.24925749698330332\\n      ],\\n      \\\"p_value\\\": 0.0\\n    }\\n  },\\n  \\\"holm_bonferroni\\\": {\\n    \\\"tests\\\": [\\n      \\\"prec\\\",\\n      \\\"ba\\\",\\n      \\\"fpr\\\"\\n    ],\\n    \\\"raw_p\\\": [\\n      0.0,\\n      0.0,\\n      0.014\\n    ],\\n    \\\"adj_p\\\": [\\n      0.0,\\n      0.0,\\n      0.014\\n    ],\\n    \\\"n_pass\\\": 3\\n  },\\n  \\\"elapsed_s\\\": 13.6\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01X9B9sTQ4sQARVd3goq7nwi`</summary>
+
+```json
+{
+  "name": "table3_r1_8b_60_20_20",
+  "type": "data",
+  "description": "Table 3 R1-8B W=3 L14 60/20/20 PCA=100d 10k bootstrap: HS vs MiniLM text. HB 3/3 pass.",
+  "project": "contrastive_trace_safety",
+  "content": "{\"model\":\"R1-8B\",\"layer\":14,\"layer_idx\":2,\"window\":3,\"split\":\"60/20/20\",\"seed\":42,\"pca_dim\":100,\"n_traces\":209,\"n_train_val\":166,\"n_test_traces\":43,\"n_test_steps\":1961,\"pca_var\":0.4949,\"probe\":\"LogisticRegression(solver='lbfgs', C=1.0, class_weight='balanced', max_iter=2000)\",\"text_encoder\":\"all-MiniLM-L6-v2 (384d, W=3 avg)\",\"n_bootstrap\":10000,\"bootstrap\":{\"prec\":{\"hs\":0.6294,\"hs_ci\":[0.495,0.766],\"text\":0.4286,\"text_ci\":[0.301,0.571],\"diff\":0.2008,\"p_value\":0.0},\"ba\":{\"hs\":0.8232,\"hs_ci\":[0.776,0.869],\"text\":0.6480,\"text_ci\":[0.586,0.709],\"diff\":0.1751,\"p_value\":0.0},\"fpr\":{\"hs\":0.1577,\"hs_ci\":[0.096,0.225],\"text\":0.2366,\"text_ci\":[0.161,0.322],\"diff\":0.0789,\"p_value\":0.014},\"auroc\":{\"hs\":0.9034,\"hs_ci\":[0.864,0.941],\"text\":0.7190,\"text_ci\":[0.640,0.794],\"diff\":0.1844,\"p_value\":0.0}},\"holm_bonferroni\":{\"tests\":[\"prec\",\"ba\",\"fpr\"],\"raw_p\":[0.0,0.0,0.014],\"adj_p\":[0.0,0.0,0.014],\"n_pass\":3}}",
+  "content_filename": "table3_r1_8b_60_20_20_results.json",
+  "tags": [
+    "table3",
+    "r1-8b",
+    "bootstrap",
+    "60-20-20"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "509c5574-e611-4c29-9a7a-73abba213501",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hus8YuiqtmvuiZTgnK4P5A",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1617,
+      "cache_read_input_tokens": 98105,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1617
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-18T17:41:00.345Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01X9B9sTQ4sQARVd3goq7nwi`</summary>
+
+```text
+Error executing tool register_artifact: 1 validation error for register_artifactArguments
+content
+  Input should be a valid string [type=string_type, input_value={'model': 'R1-8B', 'layer...0, 0.014], 'n_pass': 3}}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/string_type
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "68d50412-3931-4ec8-9627-693fabf2691a",
+  "tool_use_result": "Error: Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'model': 'R1-8B', 'layer...0, 0.014], 'n_pass': 3}}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 99_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01MzqVmUT8LtS8YPPsgTAKgi`</summary>
+
+```json
+{
+  "name": "table3_r1_8b_60_20_20",
+  "type": "data",
+  "description": "Table 3 R1-8B W=3 L14 60/20/20 PCA=100d 10k bootstrap: HS vs MiniLM text. HB 3/3 pass.",
+  "project": "contrastive_trace_safety",
+  "content": "R1-8B (W=3, L14, 60/20/20, PCA=100d, 10k bootstrap):\n  n_test = 1961 steps from 43 traces\n  HS Prec: 0.629 [0.495, 0.766] | Text Prec: 0.429 [0.301, 0.571] | ΔPrec: +0.201pp, p<0.0001\n  HS BA: 0.823 [0.776, 0.869] | Text BA: 0.648 [0.586, 0.709] | ΔBA: +0.175pp, p<0.0001\n  HS FPR: 0.158 [0.096, 0.225] | Text FPR: 0.237 [0.161, 0.322] | ΔFPR: +0.079pp, p=0.0140\n  HS AUROC: 0.903 [0.864, 0.941] | Text AUROC: 0.719 [0.640, 0.794] | ΔAUROC: +0.184pp, p<0.0001\n  HB (3 tests: Prec, BA, FPR): 3/3 pass (adj p: <0.0001, <0.0001, 0.0140)",
+  "content_filename": "table3_r1_8b_60_20_20_summary.txt",
+  "tags": [
+    "table3",
+    "r1-8b",
+    "bootstrap",
+    "60-20-20"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "dcc9d3f0-d5e5-4c10-bcf8-3a0825a18308",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KAfdZeGnj3CVKJhbPPTgc3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 865,
+      "cache_read_input_tokens": 99722,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 865
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-18T17:41:07.352Z_
+
+<details><summary>↩ Tool result · `toolu_01MzqVmUT8LtS8YPPsgTAKgi`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260518_5e1ec2\", \"name\": \"table3_r1_8b_60_20_20\", \"type\": \"data\", \"description\": \"Table 3 R1-8B W=3 L14 60/20/20 PCA=100d 10k bootstrap: HS vs MiniLM text. HB 3/3 pass.\", \"path\": \"projects/contrastive_trace_safety/artifacts/_project/data/table3_r1_8b_60_20_20_summary.txt\", \"url\": null, \"project\": \"contrastive_trace_safety\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-18T17:41:07.245847+00:00\", \"tags\": [\"table3\", \"r1-8b\", \"bootstrap\", \"60-20-20\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "910f4073-f4cc-49a9-a859-c14234229230",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260518_5e1ec2\\\", \\\"name\\\": \\\"table3_r1_8b_60_20_20\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Table 3 R1-8B W=3 L14 60/20/20 PCA=100d 10k bootstrap: HS vs MiniLM text. HB 3/3 pass.\\\", \\\"path\\\": \\\"projects/contrastive_trace_safety/artifacts/_project/data/table3_r1_8b_60_20_20_summary.txt\\\", \\\"url\\\": null, \\\"project\\\": \\\"contrastive_trace_safety\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-18T17:41:07.245847+00:00\\\", \\\"tags\\\": [\\\"table3\\\", \\\"r1-8b\\\", \\\"bootstrap\\\", \\\"60-20-20\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260518_5e1ec2\", \"name\": \"table3_r1_8b_60_20_20\", \"type\": \"data\", \"description\": \"Table 3 R1-8B W=3 L14 60/20/20 PCA=100d 10k bootstrap: HS vs MiniLM text. HB 3/3 pass.\", \"path\": \"projects/contrastive_trace_safety/artifacts/_project/data/table3_r1_8b_60_20_20_summary.txt\", \"url\": null, \"project\": \"contrastive_trace_safety\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-18T17:41:07.245847+00:00\", \"tags\": [\"table3\", \"r1-8b\", \"bootstrap\", \"60-20-20\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 101_
+
+结果如下（完整 JSON 已保存至服务器 `artifacts/table3_r1_8b_60_20_20/results.json`）：
+
+```
+R1-8B (W=3, L14, 60/20/20, PCA=100d, 10k bootstrap):
+  n_test = 1961 steps from 43 traces
+  HS Prec: 0.629 [0.495, 0.766]
+  Text Prec: 0.429 [0.301, 0.571]
+  ΔPrec: +0.201pp, p<0.0001
+
+  HS BA: 0.823 [0.776, 0.869]
+  Text BA: 0.648 [0.586, 0.709]
+  ΔBA: +0.175pp, p<0.0001
+
+  HS FPR: 0.158 [0.096, 0.225]
+  Text FPR: 0.237 [0.161, 0.322]
+  ΔFPR: -0.079pp, p=0.0140
+
+  HS AUROC: 0.903 [0.864, 0.941]
+  Text AUROC: 0.719 [0.640, 0.794]
+  ΔAUROC: +0.184pp, p<0.0001
+
+  HB (3 tests: Prec, BA, FPR): 3/3 pass
+```
+
+配置细节：
+- 209 traces → split 125/41/43, train+val=166 用于训练, test=43 traces (1961 steps)
+- PCA explained variance: 49.5%
+- HB adj p-values: Prec<0.0001, BA<0.0001, FPR=0.0140
+- 全部 4 个指标 HS 显著优于 text baseline
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "uuid": "781c6c9f-c6e2-4764-8ffb-d3304b23052a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0158b9ULajmGCBi7G3fPEtRb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 931,
+      "cache_read_input_tokens": 100587,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 931
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 102_
+
+结果如下（完整 JSON 已保存至服务器 `artifacts/table3_r1_8b_60_20_20/results.json`）：
+
+```
+R1-8B (W=3, L14, 60/20/20, PCA=100d, 10k bootstrap):
+  n_test = 1961 steps from 43 traces
+  HS Prec: 0.629 [0.495, 0.766]
+  Text Prec: 0.429 [0.301, 0.571]
+  ΔPrec: +0.201pp, p<0.0001
+
+  HS BA: 0.823 [0.776, 0.869]
+  Text BA: 0.648 [0.586, 0.709]
+  ΔBA: +0.175pp, p<0.0001
+
+  HS FPR: 0.158 [0.096, 0.225]
+  Text FPR: 0.237 [0.161, 0.322]
+  ΔFPR: -0.079pp, p=0.0140
+
+  HS AUROC: 0.903 [0.864, 0.941]
+  Text AUROC: 0.719 [0.640, 0.794]
+  ΔAUROC: +0.184pp, p<0.0001
+
+  HB (3 tests: Prec, BA, FPR): 3/3 pass
+```
+
+配置细节：
+- 209 traces → split 125/41/43, train+val=166 用于训练, test=43 traces (1961 steps)
+- PCA explained variance: 49.5%
+- HB adj p-values: Prec<0.0001, BA<0.0001, FPR=0.0140
+- 全部 4 个指标 HS 显著优于 text baseline
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 760729,
+  "duration_api_ms": 669525,
+  "num_turns": 37,
+  "stop_reason": "end_turn",
+  "session_id": "dc087855-e452-4333-8c73-917e45510752",
+  "total_cost_usd": 2.4866452499999996,
+  "usage": {
+    "input_tokens": 29,
+    "cache_creation_input_tokens": 90071,
+    "cache_read_input_tokens": 1623853,
+    "output_tokens": 44399,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 90071,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 485,
+        "cache_read_input_tokens": 100587,
+        "cache_creation_input_tokens": 931,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 931
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1495,
+      "outputTokens": 32,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001655,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 29,
+      "outputTokens": 44399,
+      "cacheReadInputTokens": 1623853,
+      "cacheCreationInputTokens": 90071,
+      "webSearchRequests": 0,
+      "costUSD": 2.48499025,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "7781b4d5-5c19-47a1-99e9-5c2e06e5a3c5"
+}
+```
+
+</details>
+
+---

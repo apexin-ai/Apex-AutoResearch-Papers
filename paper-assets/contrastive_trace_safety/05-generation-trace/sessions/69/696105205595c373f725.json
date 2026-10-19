@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "696105205595c373f725",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "analysis gemma4 exit check",
+  "task_key": "worker_analysis_gemma4_exit_check_20260522T154445",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gemma4_exit_check_20260522T154445_result.json",
+    "occurrence": 1,
+    "bytes": 1023,
+    "sha256": "3fc1dacccea603fe873de3d6b86084dcac838411e9a541529d251a92c229023b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态：**成功 (SUCCESS)**\n\n### 结果摘要\n\n| 项目 | 状态 |\n|------|------|\n| **Phase 1** (trace 生成) | 完成，520/520 prompts 全部处理 |\n| **Phase 2** (layer selection bias) | 完成，168/168 layer×window 组合扫完 |\n| **结果文件** | `/root/autodl-tmp/contrastive_trace_safety/artifacts/advbench_layer_bias_gemma4_results.json` (35KB, 23:42 写入) |\n| **错误** | 0 Traceback, 0 OOM |\n\n### Phase 2 关键 Metrics\n\n```\nCR-composite 最优层:  L0  (0.0%)\nPrecision 最优层:     L14 (34.1%)\nBal. accuracy 最优层: L7  (17.1%)\nInv. FPR 最优层:      L3  (7.3%)\nDivergence:           34.1pp — REPLICATED\n```\n\nLayer selection bias 在 Gemma-4 上复现成功，不同指标选出的最优层高度分散（L0/L3/L7/L14），最大分歧 34.1 个百分点。\n\n### 注意\n\nTrace 文件没有保留在独立目录 `advbench_gemma4_traces/` 中（该目录不存在），可能是脚本直接在内存中处理后只输出了聚合结果 JSON。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-gemma4-exit-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fe22a5a4096220fde0ba",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "analysis harvest bootstrap ci",
+  "task_key": "worker_analysis_harvest_bootstrap_ci_20260522T193052",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_harvest_bootstrap_ci_20260522T193052_result.json",
+    "occurrence": 1,
+    "bytes": 542,
+    "sha256": "37dc80a3357fe667de1b30523b42bfb5881b25d3706c9f2480afdff29665ba14"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "本地文件已存在且内容一致，无需更新。\n\n## Bootstrap CI 结果（已完成）\n\n| 指标 | 值 |\n|------|-----|\n| **mean_divergence_pp** | **31.7pp** |\n| **ci_95_lower** | **3.2pp** |\n| **ci_95_upper** | **48.4pp** |\n| **p_value** | **0.015** |\n| cr_layer_median | L2 |\n| pr_layer_median | L14 |\n| valid_iterations | 1000/1000 |\n| reference divergence | 38.7pp |\n| runtime | 2205s (~37min) |\n\n所有指标与预期完全吻合。CI 下界 3.2pp > 0 且 p=0.015 < 0.05，divergence 统计显著。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-harvest-bootstrap-ci.md"
+}

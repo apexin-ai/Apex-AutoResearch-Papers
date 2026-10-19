@@ -1,0 +1,2 @@
+2026-05-16 20:09:42,768 INFO    core.tools.feishu  create_chat: name='审稿-contrastive_trace_safety' → chat_id=oc_4a087be8d8cfffc128323993d357d229
+2026-05-16 20:09:42,771 INFO    core.tools.dream  [dream] auto-created Group C for project=contrastive_trace_safety: oc_4a087be8d8cfffc128323993d357d229

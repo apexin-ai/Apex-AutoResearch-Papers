@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1da84f24f8b2f8b9f4b4",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code repe corrected layers",
+  "task_key": "worker_code_repe_corrected_layers_20260517T151647",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_repe_corrected_layers_20260517T151647_result.json",
+    "occurrence": 1,
+    "bytes": 1307,
+    "sha256": "b6ae746ec155b2c387028d450e7039fe90e818be4d1b42ddc43eb3aad7935667"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结果已保存到 `artifacts/exp_r3_repe_corrected_layer/results.json`。\n\n## 新旧对比\n\n### R1-32B (L10 → L63)\n| Metric | Old (L10) | New (L63) | Delta |\n|---|---|---|---|\n| bal_acc | 0.6707 | 0.5588 | **-0.1119** |\n| precision | 0.5538 | 0.3891 | -0.1647 |\n| pre_cp_fpr | 0.2423 | 0.4986 | +0.2563 |\n| coverage | 0.4500 | 0.6000 | +0.1500 |\n| lead_mean | 6.3 | 12.0 | +5.7 |\n\n### QwQ-32B (L2 → L60)\n| Metric | Old (L2) | New (L60) | Delta |\n|---|---|---|---|\n| bal_acc | 0.6661 | 0.7562 | **+0.0901** |\n| precision | 0.4193 | 0.5118 | +0.0925 |\n| pre_cp_fpr | 0.3997 | 0.3089 | -0.0908 |\n| coverage | 0.7368 | 0.7368 | 0.0000 |\n| lead_mean | 13.4 | 11.9 | -1.5 |\n\n**总结**：\n- **R1-32B 在 corrected layer (L63) 上 RepE 性能明显下降**：bal_acc 从 0.67 降到 0.56，pre_cp_fpr 几乎翻倍（0.24→0.50），说明最后一层的 mean-difference direction 对 safety commitment 区分力很弱。\n- **QwQ-32B 在 corrected layer (L60) 上 RepE 性能反而提升**：bal_acc 从 0.67 升到 0.76，precision 从 0.42 升到 0.51，pre_cp_fpr 从 0.40 降到 0.31。\n\n这进一步支持了论文的论点：简单的 unsupervised direction (RepE) 在同等层上仍然不如 supervised probe，尤其是 R1-32B 上差距更大。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-repe-corrected-layers.md"
+}

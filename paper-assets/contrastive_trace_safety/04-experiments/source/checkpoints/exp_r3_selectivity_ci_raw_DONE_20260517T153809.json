@@ -1,0 +1,44 @@
+{
+  "exp_id": "exp_r3_selectivity_ci_raw",
+  "project": "contrastive_trace_safety",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T15:36:11.178Z",
+    "updated_at": "2026-05-17T15:38:09.071Z",
+    "hypothesis": "R1-32B Layer 10 selectivity (real_acc - random_acc) on raw 5120-d features should be statistically significant (p less than 0.05), confirming the probe learns safety-specific signal beyond positional confounds even without PCA dimensionality reduction.",
+    "spec": {
+      "command": "python exp_r3_selectivity_raw.py",
+      "server": "autodl-rtx6000",
+      "data_path": "/root/autodl-tmp/contrastive_trace_safety/data/r1_32b/",
+      "data_count": 100,
+      "model_name": "R1-32B L10 raw selectivity",
+      "seed": 42,
+      "checkpoint_path": "N/A (CPU analysis)",
+      "log_path": "/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_selectivity_ci_raw/results.json"
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "feature_type": "raw 5120-d (no PCA)",
+      "real_acc": 0.584,
+      "random_mean": 0.508,
+      "selectivity_pp": 7.6,
+      "bootstrap_mean_pp": 8.4,
+      "bootstrap_std_pp": 6.7,
+      "ci_95": "[-3.9, 22.7]pp",
+      "p_value": 0.107,
+      "significant": false,
+      "vs_pca128": {
+        "pca128_selectivity": 15.9,
+        "pca128_p": 0,
+        "pca128_ci": "[9.7, 21.9]pp"
+      },
+      "finding": "Raw 5120-d selectivity 7.6pp not significant (p=0.107, CI includes 0). Under-determined n<p without PCA. PCA-128 gives 15.9pp (p<0.001) — dimensionality reduction needed for reliable selectivity."
+    },
+    "completed_at": "2026-05-17T15:38:09.071Z"
+  },
+  "timestamp": "2026-05-17T15:38:09.151223+00:00",
+  "trigger": "update_registry"
+}

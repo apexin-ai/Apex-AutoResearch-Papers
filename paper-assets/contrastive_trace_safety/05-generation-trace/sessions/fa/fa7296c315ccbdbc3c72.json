@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fa7296c315ccbdbc3c72",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code r1 8b layer supplement",
+  "task_key": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r1_8b_layer_supplement_20260517T084838_result.json",
+    "occurrence": 1,
+    "bytes": 780,
+    "sha256": "d4c83b16a584704624e306961bf03ba73c39e898f671f1e856c885c03a33e75d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Complete. Summary:\n\n**R1-8B Full Layer Sweep (layers 0-24)**:\n- Extracted early layers 0-11 for all 268 traces (249 new + 19 already cached)\n- Best layer: **Layer 12** (38.7% depth), bal_acc = 0.7871\n- Layer 14 (old best): bal_acc = 0.7830 (difference: +0.004, negligible)\n- Best early layer: **Layer 3** (9.7% depth), bal_acc = 0.7841 (#2 overall, but no clear advantage)\n- **No early layer beats the middle-layer range** for R1-8B\n- R1-8B differs qualitatively from the 32B models (R1-32B, QwQ, OT-7B), which all peak at layers 0-2. The 8B model peaks at ~39-45% depth instead.\n- Existing layer 14 selection remains valid. No registry update needed.\n\nReport saved to `artifacts/r1_8b_layer_supplement/report.md` and registered as `art_20260517_eabada`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r1-8b-layer-supplement.md"
+}

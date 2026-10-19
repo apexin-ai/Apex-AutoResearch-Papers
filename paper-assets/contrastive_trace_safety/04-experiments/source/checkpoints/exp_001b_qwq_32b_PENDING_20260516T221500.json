@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_001b_qwq_32b",
+  "project": "contrastive_trace_safety",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T21:21:46.602Z",
+    "updated_at": "2026-05-16T22:15:00.001Z",
+    "hypothesis": "Temporal probes on QwQ-32B hidden states will show same pattern as r1-8b: temporal coverage significantly exceeds static, best layer near 44% depth (~layer 28), confirming cross-architecture generalization even across model families (Llama vs Qwen)."
+  },
+  "timestamp": "2026-05-16T22:15:00.039250+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,62 @@
+{
+  "model": "R1-8B",
+  "n_layers": 25,
+  "n_traces": 209,
+  "n_repeats": 10,
+  "per_metric_summary": {
+    "bal_acc": {
+      "mean_layer": 14.0,
+      "std_layer": 4.0,
+      "selected_layers": [14, 15, 8, 21, 15, 7, 15, 12, 18, 15],
+      "shallow_freq": 0.0,
+      "deep_freq": 0.2
+    },
+    "precision": {
+      "mean_layer": 0.0,
+      "std_layer": 0.0,
+      "selected_layers": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      "shallow_freq": 1.0,
+      "deep_freq": 0.0
+    },
+    "pre_cp_fpr": {
+      "mean_layer": 0.0,
+      "std_layer": 0.0,
+      "selected_layers": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      "shallow_freq": 1.0,
+      "deep_freq": 0.0
+    },
+    "crossing_rate": {
+      "mean_layer": 10.7,
+      "std_layer": 4.8,
+      "selected_layers": [8, 12, 8, 8, 9, 24, 9, 10, 13, 6],
+      "shallow_freq": 0.0,
+      "deep_freq": 0.1
+    },
+    "cr_composite": {
+      "mean_layer": 13.7,
+      "std_layer": 6.7,
+      "selected_layers": [23, 13, 8, 8, 9, 24, 9, 23, 14, 6],
+      "shallow_freq": 0.0,
+      "deep_freq": 0.3
+    }
+  },
+  "real_cp_disagreement": {
+    "cr_composite_layer": 0,
+    "precision_layer": 23,
+    "fpr_layer": 13,
+    "gap": 23
+  },
+  "random_cp_cr_composite_mean_layer": 13.7,
+  "random_cp_cr_composite_std_layer": 6.7,
+  "random_cp_precision_mean_layer": 0.0,
+  "random_cp_precision_std_layer": 0.0,
+  "cr_composite_selects_shallow_freq": 0.0,
+  "precision_selects_deep_freq": 0.0,
+  "fpr_selects_deep_freq": 0.0,
+  "threshold_based_selects_deep_freq": 0.0,
+  "metric_disagreement_replicates": false,
+  "shallow_threshold": 5,
+  "deep_threshold": 16,
+  "pca_dim": 100,
+  "elapsed_s": 105.4
+}

@@ -1,0 +1,123 @@
+%==============================================================================
+\section{Methodology}
+\label{sec:method}
+%==============================================================================
+
+\subsection{Problem Formulation}
+\label{sec:formulation}
+
+We formulate file-level code retrieval as a contrastive learning problem.
+Given a repository $\mathcal{R}$ containing source files, a query $q$ consists of a buggy function or file paired with its issue description.
+A positive file $p \in \mathcal{R}$ is the gold patch target---a file modified to resolve the issue.
+All remaining non-query, non-gold files constitute the negative candidate pool.
+
+We train an encoder $E: \mathcal{F} \to \mathbb{R}^d$ such that $\text{sim}(E(q), E(p)) \gg \text{sim}(E(q), E(n))$ for any negative $n$.
+Training minimizes the InfoNCE loss~\cite{oord2018representation}:
+\begin{equation}
+\mathcal{L} = -\log \frac{\exp(\text{sim}(E(q), E(p)) / \tau)}{\exp(\text{sim}(E(q), E(p)) / \tau) + \sum_{i=1}^{K} \exp(\text{sim}(E(q), E(n_i)) / \tau)}
+\label{eq:infonce}
+\end{equation}
+where $\tau$ is a learnable temperature parameter and $\{n_1, \ldots, n_K\}$ are $K$ negatives selected by a mining strategy.
+The central questions are: (1) how does the choice of mining strategy affect retrieval quality, and (2) how does evaluation methodology---checkpoint selection criterion and pool size---interact with observed strategy effects?
+
+\subsection{Negative Mining Strategies}
+\label{sec:mining}
+
+We compare four strategies spanning different dimensions of negative difficulty.
+All strategies share a common two-stage protocol: first, a pool of up to 50 candidate negatives is constructed according to the strategy; then $K{=}7$ negatives are randomly sampled from this pool per training instance.
+This decouples strategy-specific selection from stochastic sampling effects.
+
+\paragraph{Random.}
+Negatives are drawn uniformly at random from all non-positive files within the same repository.
+This serves as the no-signal baseline, reflecting the standard approach in dense retrieval~\cite{karpukhin2020dpr}.
+
+\paragraph{Embedding-distance.}
+For each encoder, we use its own pretrained weights (frozen; not updated during training) to compute cosine similarity between the query and all non-positive repository files.
+The 50 most similar non-positive files form the candidate pool.
+These are semantic near-misses: files that \emph{appear} relevant to the pretrained encoder but are not gold targets.
+This strategy incurs zero additional cost beyond the one-time offline embedding computation, as the pretrained encoder is already available.
+
+\paragraph{BM25.}
+The top-50 BM25-scoring non-positive files ($k_1{=}1.2$, $b{=}0.75$) form the candidate pool.
+This strategy provides lexically hard negatives---files sharing substantial token overlap with the query but not gold targets---and serves as a direct comparison to the embedding-distance strategy.
+Prior work~\cite{fan2025cocohanere} conflated BM25-based selection with embedding-distance mining; we evaluate both independently to disentangle their effects.
+
+\paragraph{Dataflow-aware.}
+This strategy combines structural filtering with lexical ranking.
+First, all structurally connected files are excluded from the candidate pool---specifically, all files in $R_G(q)$ (reachable via inter-procedural data-flow paths and call-graph edges in the structural graph $G$; \S\ref{sec:extraction}).
+Second, the remaining disconnected files are ranked by BM25 in descending order, and the top-50 form the candidate pool:
+\begin{equation}
+\text{pool}_{\text{df}}(q) = \underset{x \in \mathcal{D} :\ x \notin R_G(q) \,\wedge\, x \notin \text{gold}(q)}{\text{top-}50}\ \text{BM25}(q, x)
+\label{eq:dataflow-pool}
+\end{equation}
+Structural information serves exclusively as a \emph{filter} (determining which files to exclude), while BM25 provides the ranking signal among remaining candidates.
+The rationale is that high-BM25, structurally-disconnected files are lexically similar but functionally unrelated---a hypothesized difficulty dimension distinct from embedding distance.
+
+\subsection{Structural Extraction Pipeline}
+\label{sec:extraction}
+
+To enable structure-aware negative mining, we extract inter-procedural data-flow graphs from repository snapshots using CodeQL~\cite{avgustinov2016ql}.
+For each query function $q$, we construct a CodeQL database from the repository at the relevant commit, then perform 2-hop bounded taint-tracking analysis to identify all files reachable from $q$ through inter-procedural data-flow paths.
+This captures cross-function semantic relationships---for instance, a utility function that transforms data passed from a source through multiple call boundaries.
+
+A file $f$ is \emph{connected} to query $q$ if $f$ is reachable from $q$ via inter-procedural data-flow paths in the structural graph $G$; otherwise $f$ is \emph{disconnected}.
+Connected files include both gold targets and non-gold files that participate in the query's data-flow neighborhood.
+
+When CodeQL analysis fails due to missing build configurations, we fall back to beniget, a Python AST-based def-use analyzer providing intra-module data-flow coverage.
+At full scale, the pipeline successfully extracts structural data for \placeholder{39,750} out of 44,173 instances across 123 repositories, achieving a \placeholder{90\%} structural data rate with 0\% CodeQL analysis timeout.
+CodeQL accounts for \placeholder{39,730} instances; beniget fallback covers \placeholder{4,202} instances.
+Mean extraction time is 8.9 seconds per instance ($\sim$110 CPU-hours total).
+Among instances with structural connectivity, \placeholder{78\%} contain connected files beyond the gold target, confirming that connectivity captures functional relevance beyond gold-file identity.
+We frame this pipeline as a practical enabling tool, not a standalone contribution.
+
+\subsection{Training Setup}
+\label{sec:training}
+
+\paragraph{Encoders.}
+We use three code language models spanning distinct architectures and scales:
+\begin{itemize}
+\item \textbf{Qwen2.5-Coder-3B}~\cite{hui2024qwen25coder}: 3B-parameter decoder-only, Fill-in-the-Middle pretraining on curated multilingual code. Exhibits near-saturated representation geometry (mean positive-pair cosine similarity 0.986).
+\item \textbf{StarCoder2-3B}~\cite{lozhkov2024starcoder2}: 3B-parameter decoder-only, multi-task FIM on The Stack v2. Maintains healthy embedding separation (positive-pair cosine similarity 0.798).
+\item \textbf{UniXcoder-base}~\cite{guo2022unixcoder}: 125M-parameter encoder-only (RoBERTa architecture), trained with cross-modal generation on code and comments. Serves as an architecture-scale boundary condition.
+\end{itemize}
+These encoders differ in architecture (encoder-only vs.\ decoder-only), scale (125M vs.\ 3B), and representation geometry, enabling examination of whether mining strategy effectiveness interacts with encoder properties.
+
+\paragraph{Fine-tuning.}
+We apply LoRA~\cite{hu2022lora} adaptation with rank $r{=}16$, scaling factor $\alpha{=}32$, and dropout 0.05, targeting query and value projection matrices ($W_q$, $W_v$) in every attention layer.
+Input sequences are truncated to 2,048 tokens (Qwen, StarCoder) or 1,024 tokens (UniXcoder).
+Following prior work~\cite{reimers2019sentencebert,zhang2024codesage}, we apply mean pooling over non-padding positions followed by L2 normalization, then project through a two-layer MLP to a 256-dimensional embedding space ($h \to \text{GELU} \to 256$, where $h$ is the backbone hidden dimension: 2048 for Qwen/StarCoder, 768 for UniXcoder).
+
+\paragraph{Optimization.}
+We use AdamW (lr=$2 \times 10^{-5}$, cosine annealing, warmup ratio 0.1, weight decay 0.01) with gradient checkpointing and gradient clipping (max norm 1.0).
+The InfoNCE temperature is initialized to $\tau{=}0.07$ and learned during training.
+Each training instance consists of 1 positive and $K{=}7$ negatives sampled from the candidate pool, with a per-device batch size of 8.
+One seed per configuration (seed 42) trains for 3 epochs without early stopping to provide overfitting diagnostics; the remaining seeds (43, 44) train for 2 epochs with early stopping (patience 2, evaluated every 500 steps).
+We maintain dual checkpoints per run: best by validation loss ($\theta^*_{\text{loss}}$) and best by validation R@1 ($\theta^*_{\text{R@1}}$).
+
+\subsection{Query-Split Evaluation Protocol}
+\label{sec:query-split}
+
+Standard pool-based evaluation constructs candidate pools by sampling negatives around each training query, evaluating at a fixed pool size (typically 50).
+This protocol inflates absolute R@1 and compresses inter-strategy differences: when all strategies are evaluated on the same easy pool, small improvements are masked by ceiling effects.
+
+We introduce a \emph{query-split} evaluation protocol that addresses these limitations.
+The key design choice is to hold out a separate set of queries---never seen during training---and evaluate at realistic pool sizes.
+Formally, let $\mathcal{Q}_{\text{train}}$ and $\mathcal{Q}_{\text{eval}}$ denote disjoint query sets obtained by stratified splitting at the repository level.
+For each $q \in \mathcal{Q}_{\text{eval}}$, we construct evaluation pools at sizes $\{50, 200, 500\}$ by sampling from all non-gold files in the query's repository, then rank by encoder cosine similarity.
+
+This protocol reveals two effects that standard evaluation obscures:
+
+\paragraph{Checkpoint selection criterion effect.}
+For each trained model, we evaluate both $\theta^*_{\text{loss}}$ (best by validation loss) and $\theta^*_{\text{R@1}}$ (best by validation R@1) on the held-out query set.
+In preliminary results (\placeholder{6/14} evaluations complete), the criterion effect---the R@1 difference between $\theta^*_{\text{R@1}}$ and $\theta^*_{\text{loss}}$ for the same strategy---averages \placeholder{+16.3pp}, substantially exceeding the strategy effect (R@1 difference between strategies under the same criterion).
+This finding motivates explicit reporting of checkpoint selection criteria in contrastive retrieval evaluation.
+
+\paragraph{Pool size interaction.}
+At pool size 50, strategy differences are compressed because most negatives are trivially distinguishable.
+At pool sizes 200--500, the proportion of challenging negatives increases, potentially amplifying strategy effects.
+We evaluate at multiple pool sizes to characterize this interaction.
+
+The query-split evaluation set consists of \placeholder{504} held-out queries across \placeholder{N} repositories.
+We report bootstrap 95\% confidence intervals computed over query-level binary outcomes (hit/miss at rank 1).
+
+%==============================================================================

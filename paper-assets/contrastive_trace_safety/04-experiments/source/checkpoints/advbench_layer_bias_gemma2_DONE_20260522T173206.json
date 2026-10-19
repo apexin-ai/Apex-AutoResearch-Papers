@@ -1,0 +1,68 @@
+{
+  "exp_id": "advbench_layer_bias_gemma2",
+  "project": "contrastive_trace_safety",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T16:31:52.199Z",
+    "updated_at": "2026-05-22T17:32:06.007Z",
+    "hypothesis": "CR-composite layer selection bias replicates on Gemma-2-9B-it (non-reasoning model, Google architecture) using AdvBench binary labels, confirming the phenomenon is not specific to reasoning models with thinking blocks.",
+    "spec": {
+      "command": "python -u scripts/advbench_layer_bias_gemma2.py --phase both",
+      "server": "westd-15904",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "gemma2_full",
+      "log_path": "/tmp/gemma2_full.log",
+      "data_path": "AdvBench harmful_behaviors.csv (auto-downloaded)",
+      "data_count": 520,
+      "model_name": "google/gemma-2-9b-it",
+      "seed": 42
+    },
+    "reproduce": {
+      "finished_at": "2026-05-22T17:28:46.851Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "success",
+    "completed_at": "2026-05-22T17:28:47.715Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-22T17:28:49.892628+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "jb": 6,
+      "safe": 514,
+      "jb_rate_pct": 1.15,
+      "phase2": {
+        "cr_composite_best_layer": "L0",
+        "cr_composite_depth_pct": 0,
+        "precision_best_layer": "L9",
+        "precision_depth_pct": 22,
+        "bal_acc_best_layer": "L9",
+        "auroc_best_layer": "L3",
+        "auroc_value": 1,
+        "divergence_pp": 22,
+        "replicated": true,
+        "note": "Test set has only 1 JB trace — metrics ceiling at perfect values, statistically unreliable"
+      },
+      "cosine_compression": {
+        "shallow_mean": 0.2373,
+        "deep_mean": 0.3055,
+        "ratio": 0.7766,
+        "compression_confirmed": true,
+        "compression_magnitude_pct": 22.3,
+        "note": "Shallow compression confirmed — shallow layers 22.3% less step-to-step variation than deep layers"
+      }
+    }
+  },
+  "timestamp": "2026-05-22T17:32:06.125700+00:00",
+  "trigger": "update_registry"
+}

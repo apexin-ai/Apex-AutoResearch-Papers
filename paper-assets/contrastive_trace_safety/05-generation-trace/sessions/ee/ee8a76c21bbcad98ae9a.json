@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ee8a76c21bbcad98ae9a",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code retrieve heatmap data",
+  "task_key": "worker_code_retrieve_heatmap_data_20260520T165655",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_retrieve_heatmap_data_20260520T165655_result.json",
+    "occurrence": 1,
+    "bytes": 1823,
+    "sha256": "d32eaa69f65e25397ae732e4a7799b5fe0585b58e01531e50094f27ed02eb0ad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here's what I found:\n\n**`layer_metric_ablation.json` does not exist** — not on the server (`cqa1-21977`, the only available server), nor locally. The directory `exp_r3_layer_ablation/` doesn't exist anywhere.\n\n**`qwq_alt_layers.json`** — also does not exist.\n\n**`plot_layer_heatmap.py`** — does not exist.\n\n**What does exist:**\n\n**Server (`cqa1-21977`):**\n- `/root/autodl-tmp/artifacts/` only contains: `fig_calibration.pdf`, `fig_calibration.png`\n- No `contrastive_trace_safety` project directory on this server at all\n\n**Local (`artifacts/`):**\n- Closest match: `artifacts/diag_d1_layer_sweep/report/d1_layer_sweep_results.md` and `artifacts/exp_gru256_multilayer/data/gru256_ablation.log`\n- No `exp_r3_layer_ablation` directory\n\n**Forest plot script (local):**\n- `scripts/plot_forest_precision.py` exists\n- `docs/paper/figures/fig_forest_precision.pdf` and `.png` exist\n\n**All local scripts:**\n```\nscripts/run_threshold_sensitivity.py\nscripts/run_7b8b_residualization.py\nscripts/run_a7_random_projection.py\nscripts/random_cp_control_qwq32b.py\nscripts/sf3_quadratic_residual.py\nscripts/n6_multi_metric_ensemble.py\nscripts/advbench_hs_exploratory.py\nscripts/heuristic_cp.py\nscripts/advbench_preliminary_sweep.py\nscripts/advbench_preliminary_sweep_no_pca.py\nscripts/advbench_phase4_layer_sweep.py\nscripts/annotate_cp_llm.py\nscripts/annotate_cp_llm_qwen3.py\nscripts/annotate_cp_llm_gpt4omini.py\nscripts/plot_forest_precision.py\n```\n\nThe `contrastive_trace_safety` project was never deployed to this server instance. The data files you're looking for either haven't been generated yet, or were on a previous server instance that's no longer available. Want me to read the layer sweep results from `diag_d1_layer_sweep` or `advbench_phase4_layer_sweep.py` instead?"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-retrieve-heatmap-data.md"
+}

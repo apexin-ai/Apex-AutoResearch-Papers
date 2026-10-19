@@ -1,0 +1,1334 @@
+tier: worst
+narrative_guidance: 'AdvBench非复现定义了worst档。AdvBench binary（jailbreak/safe）上5个layer
+  selection metrics全部收敛到相似深度（中层，gap≤2层），crossing_rate在shallow与deep层之间无显著 差异（ratio≈0.95），HS-text
+  precision delta仅+2-3pp且HB全部不通过。这证明layer selection bias是CP annotation temporal structure的产物——step-level
+  probe score序列 中crossing_rate统计量与层深度的交互——而非模型几何的通用性质。
+
+  Paper策略调整：(1) C1 scope从''general model property''收窄到''temporal monitoring pipeline
+  pitfall''——这让methodological contribution更精准（指出具体pipeline步骤的 陷阱，而非泛泛的''metrics matter''）；(2)
+  AdvBench非复现结果放Discussion §5.3作为 boundary condition analysis，展示方法论适用范围；(3) C1措辞调整为''The
+  bias arises from the interaction between sequential probe scores and the crossing_rate
+  statistic, and is therefore specific to temporal monitoring settings where threshold-crossing
+  metrics are used for layer selection.''
+
+  Worst-tier reviewers对此调整的反应分裂：(A) 支持方认为scope收窄是学术诚实的体现， boundary condition analysis属于mature
+  methodological work；(B) 反对方认为scope收窄 后C1变成了一个non-generalizable的observational finding——''你发现了一个特定pipeline中
+  特定metric的特定问题，这是一段methods section的注脚，不是一个contribution。''
+
+  论文评分impact：dream_score_delta在[-0.15, 0]。Previous dream scored 3.0 (Findings)。 Worst
+  case降至2.85——仍在Findings range但reviewer confidence下降。Non-replication 不是致命伤（reviewer如果已认可C1在原数据集4
+  models × 5 metrics × LOO-CV上的充分验证）， 但AdvBench也不加分。保持冲Main不降级，但acceptance probability微降（-2%到-5%）。
+
+  '
+imagined_experiments:
+- name: Cross-architecture layer sweep + static probe (R1-32B & QwQ-32B)
+  plan_id: exp-001
+  description: 'Full 64-layer sweep on R1-32B and QwQ-32B. Extract hidden states at
+    all layers, evaluate static LR probes under multiple selection metrics. Discovers
+    layer selection bias (bal_acc × crossing_rate → shallow layers).
+
+    '
+  expected_results:
+    r1_32b_biased_layer: 10
+    r1_32b_biased_layer_depth_pct: 15.6
+    r1_32b_corrected_layer: 63
+    r1_32b_corrected_layer_depth_pct: 98.4
+    r1_32b_l10_bal_acc: 0.718
+    r1_32b_l63_bal_acc_w1: 0.826
+    r1_32b_n_test: 20
+    qwq_32b_biased_layer: 2
+    qwq_32b_biased_layer_depth_pct: 3.1
+    qwq_32b_corrected_layer: 60
+    qwq_32b_corrected_layer_depth_pct: 93.8
+    qwq_32b_l2_bal_acc: 0.73
+    qwq_32b_l60_bal_acc_w3: 0.74
+    qwq_32b_n_test: 19
+    layer_selection_bias_discovered: true
+    metrics_tested: 5
+    biased_metric: bal_acc × crossing_rate
+    loo_cv_dominant_fold_pct: 65-68%
+  result_rationale: 'Layer sweep在CP数据上发现genuine methodological pattern（biased metric
+    selects shallow layers），corrected layers确实show HS advantage。这些结果不受AdvBench 非复现影响——它们是关于CP
+    temporal data的发现。但worst-tier reviewer将AdvBench 非复现与此联系：''你在CP data上发现的layer selection
+    bias是CP annotation structure 特有的——crossing_rate在temporal monitoring中有意义，但这不是general
+    model property。既然bias只在temporal setting中存在，那C1的scope就是一个pipeline-specific caveat，不是methodological
+    contribution。任何使用不同task structure的研究者 不会遇到这个问题。''
+
+    '
+  tables:
+  - name: Layer Selection Metric × Model → Selected Layer
+    columns:
+    - Metric
+    - R1-8B
+    - OT-7B
+    - QwQ-32B
+    - R1-32B
+    rows:
+    - - bal_acc × crossing_rate
+      - L0 (0%)
+      - L0 (0%)
+      - L2 (3%)
+      - L10 (16%)
+    - - pure bal_acc
+      - L12 (39%)
+      - L9 (32%)
+      - L30 (47%)
+      - L47 (73%)
+    - - precision
+      - L16 (52%)
+      - L16 (57%)
+      - L60 (94%)
+      - L63 (98%)
+    - - pre_cp_fpr
+      - L16 (52%)
+      - L16 (57%)
+      - L60 (94%)
+      - L63 (98%)
+    - - composite (additive)
+      - L16 (52%)
+      - L12 (43%)
+      - L60 (94%)
+      - L63 (98%)
+  figures_description:
+  - 'Heatmap: 5 metrics × 4 models → selected layer depth (%)。crossing_rate-contaminated
+    metric在32B上选shallow层；threshold-dependent metrics收敛到deep layers。 此pattern在CP data上稳定，但AdvBench验证显示不可推广。
+
+    '
+  analysis: 'Layer sweep结果本身不变，但AdvBench非复现将C1从''general finding applicable to any
+    hidden-state evaluation''降级为''task-specific observation about temporal monitoring
+    pipelines using crossing_rate statistics''。Reviewer: ''If the bias is specific
+    to crossing_rate in temporal settings, then it''s a footnote in your methods section,
+    not a standalone contribution. Rename the section from "Layer Selection Sensitivity"
+    to "Implementation Note: Crossing Rate Bias."''
+
+    '
+- name: Cross-architecture temporal window evaluation (32B)
+  plan_id: exp-002
+  description: 'Temporal LR at multiple window sizes on R1-32B (L63) and QwQ-32B (L60).
+    Validates temporal context improvement on 32B models.
+
+    '
+  expected_results:
+    r1_32b_l63_w1_bal_acc: 0.826
+    r1_32b_l63_w3_bal_acc: 0.754
+    r1_32b_l63_w10_bal_acc: 0.737
+    r1_32b_l63_w15_bal_acc: 0.721
+    r1_32b_temporal_trend: DECREASING with W (W=1 best)
+    r1_32b_dimensionality_issue: 51200 × W features for n=20
+    qwq_32b_l60_w1_bal_acc: 0.74
+    qwq_32b_l60_w3_bal_acc: 0.74
+    qwq_32b_l60_w5_bal_acc: 0.742
+    qwq_32b_l60_w15_bal_acc: 0.731
+    qwq_32b_temporal_trend: flat to slightly decreasing
+    text_temporal_universal_improvement: true
+    hs_temporal_improvement_3_of_4: true
+  result_rationale: 'Temporal context对text probes universally有效，对HS probes在2/4模型上有caveats
+    （OT-7B saturates at W=3, R1-32B degrades with W>1 due to dimensionality）。 Worst-tier下AdvBench非复现不直接影响这个实验的数据，但强化了reviewer的论点：
+    ''temporal monitoring pipeline本身就充满了model-specific hyperparameters（layer, W, K）。你在每个model上需要tuning这些参数，AdvBench上bias又不复现——这说明你的
+    整个方法论都是dataset-specific的。''
+
+    '
+  tables:
+  - name: Temporal Window Effect on 32B HS Probes (corrected layers)
+    columns:
+    - Model
+    - Layer
+    - W=1
+    - W=3
+    - W=5
+    - W=10
+    - W=15
+    - Trend
+    rows:
+    - - R1-32B
+      - L63
+      - 0.826*
+      - '0.754'
+      - '0.741'
+      - '0.737'
+      - '0.721'
+      - ↓ declining
+    - - QwQ-32B
+      - L60
+      - '0.740'
+      - '0.740'
+      - '0.742'
+      - '0.735'
+      - '0.731'
+      - → flat
+    - - R1-8B
+      - L14
+      - '0.778'
+      - '0.790'
+      - '0.781'
+      - '0.793'
+      - '0.802'
+      - ↑ improving
+    - - OT-7B
+      - L16
+      - '0.663'
+      - 0.688*
+      - '0.678'
+      - '0.668'
+      - '0.659'
+      - ↑↓ peaks W=3
+  figures_description:
+  - 'Line plot: bal_acc vs W for 4 models. Divergent trends undermine ''universal
+    temporal benefit'' claim for HS probes.
+
+    '
+  analysis: 'R1-32B dimensionality问题（51200×W > n=20）使W>1结果不可靠。QwQ flat。 Temporal benefit主要是text
+    probe finding。AdvBench非复现进一步说明：即使temporal probing pipeline在CP data上work，其关键组件（crossing_rate,
+    layer selection） 都是task-specific的。
+
+    '
+- name: Cross-model transfer probes
+  plan_id: exp-003
+  description: 'Train probe on one model, test on another. PCA projection for cross-architecture
+    transfer. Tests universality of safety commitment encoding.
+
+    '
+  expected_results:
+    r1_8b_to_r1_32b_acc: 0.522
+    r1_8b_to_qwq_acc: 0.595
+    r1_32b_to_qwq_acc: 0.673
+    qwq_to_r1_32b_acc: 0.673
+    r1_32b_to_r1_8b_acc: 0.583
+    best_transfer_overall: 0.673
+    all_transfers_below_within_model: true
+    cross_family_at_chance: true
+  result_rationale: 'Cross-model transfer完全失败。最佳transfer accuracy 67.3%远低于within-model
+    performance，cross-family（Llama↔Qwen）接近chance。AdvBench非复现与此一致： 如果连layer selection
+    bias都是task-specific的，那safety encoding的model-specificity 更是预期的。Worst-tier reviewer:
+    ''Transfer failure + AdvBench非复现 = 你的 所有findings都是dataset×model specific的。没有任何generalizable
+    component。 这篇paper的external validity接近零。''
+
+    '
+  tables:
+  - name: Cross-Model Transfer Accuracy Matrix
+    columns:
+    - Train →
+    - R1-8B
+    - OT-7B
+    - R1-32B
+    - QwQ-32B
+    rows:
+    - - R1-8B
+      - 0.817 (self)
+      - —
+      - '0.522'
+      - '0.595'
+    - - OT-7B
+      - —
+      - 0.688 (self)
+      - —
+      - —
+    - - R1-32B
+      - '0.583'
+      - —
+      - 0.826 (self)
+      - '0.673'
+    - - QwQ-32B
+      - —
+      - —
+      - '0.673'
+      - 0.740 (self)
+  figures_description:
+  - 'Heatmap: transfer accuracy matrix. Diagonal strong, off-diagonal weak. Cross-family
+    near chance.
+
+    '
+  analysis: 'Complete transfer failure combined with AdvBench non-replication paints
+    a picture of extreme specificity. Everything is model-specific AND task-specific.
+    Reviewer: ''The paper''s implicit promise of generalizable insights is contradicted
+    by its own evidence.''
+
+    '
+- name: Lead time analysis across models
+  plan_id: exp-004
+  description: 'HS probe lead time distributions on all 4 models. Compare HS vs text
+    lead times.
+
+    '
+  expected_results:
+    r1_8b_hs_lead_mean: -0.1
+    r1_8b_text_lead_mean: 10.3
+    ot_7b_hs_lead_mean: 21.6
+    ot_7b_text_lead_mean: 45.5
+    qwq_32b_hs_lead_range: -1.2 to +1.9
+    qwq_32b_text_lead_range: 3.7 to 12.3
+    qwq_32b_position_beats_hs: true
+    r1_32b_hs_lead_mean: +11.7 to +13.3
+    r1_32b_coverage_at_significant_w: 0.25
+    gru_r1_8b_lead: +4.5 ± 3.0
+  result_rationale: 'Lead time在4个模型上表现分裂：R1-8B HS lead≈0（at commitment, not before），
+    QwQ HS lead为负（text检测更早），R1-32B HS lead positive但coverage仅25%， OT-7B lead inflated
+    by long traces。AdvBench非复现不直接改变lead time数据， 但reviewer论证chain strengthened: ''既然layer
+    selection bias是task-specific的， 那lead time结果也可能是task-specific的——你在不同benchmark上可能得到完全不同的
+    timing profile。没有cross-dataset validation证明timing findings的robustness。''
+
+    '
+  tables:
+  - name: 'Lead Time: HS vs Text vs Position'
+    columns:
+    - Model
+    - HS Lead
+    - Text Lead
+    - Position BA
+    - HS BA
+    - HS > Position?
+    rows:
+    - - R1-8B (W=15)
+      - −0.1
+      - +10.3†
+      - —
+      - '0.802'
+      - —
+    - - OT-7B (W=3)
+      - +21.6‡
+      - +45.5‡
+      - —
+      - '0.688'
+      - —
+    - - QwQ-32B (W=3)
+      - −1.2 to +1.9
+      - +3.7 to +12.3
+      - '0.746'
+      - '0.740'
+      - 'No'
+    - - R1-32B (W=1)
+      - +11.7 to +13.3
+      - —
+      - '0.686'
+      - '0.826'
+      - Yes (25% cov)
+  figures_description:
+  - 'Per-model lead time boxplot. QwQ和R1-8B HS centered near zero. R1-32B positive
+    but 75% traces undetected.
+
+    '
+  analysis: 'Lead time是practical dealbreaker。AdvBench非复现加强了reviewer的generalizability
+    concern: ''所有timing结论都只在这一个CP-annotated dataset上成立。''
+
+    '
+- name: TrajGuard-style Mahalanobis baseline (4 models)
+  plan_id: exp-005
+  description: 'Mahalanobis distance on safe-trace covariance across all 4 models.
+    Tests geometric distance-based detection.
+
+    '
+  expected_results:
+    r1_8b_separation: 0.07
+    ot_7b_separation: 0.03
+    r1_32b_separation: 0.15
+    qwq_32b_separation: 0.2
+    max_separation: 0.2
+    all_models_fail: true
+    fa_exceeds_tp_all_thresholds: true
+    signal_in_minor_pca_components: true
+  result_rationale: 'Mahalanobis在4/4模型上失败（max separation 0.20, FA≥TP at all thresholds）。
+    Signal在minor PCA components中——Mahalanobis structurally blind to this geometry。
+    此negative result与AdvBench无关（Mahalanobis不依赖crossing_rate或CP structure）， 但worst-tier
+    reviewer仍然dismiss: ''Mahalanobis failure是predictable—— safety-relevant features
+    orthogonal to principal variance是known phenomenon。 Testing one known-limited baseline
+    is due diligence, not contribution。''
+
+    '
+  tables:
+  - name: Mahalanobis Distance Separation (4 models)
+    columns:
+    - Model
+    - Layer
+    - Safe MD
+    - Post-CP MD
+    - Sep.
+    - FA ≥ TP?
+    rows:
+    - - R1-8B
+      - L14
+      - '6.66'
+      - '6.73'
+      - '+0.07'
+      - 'Yes'
+    - - OT-7B
+      - L16
+      - '7.68'
+      - '7.71'
+      - '+0.03'
+      - 'Yes'
+    - - R1-32B
+      - L63
+      - '6.73'
+      - '6.88'
+      - '+0.15'
+      - 'Yes'
+    - - QwQ-32B
+      - L60
+      - '3.22'
+      - '3.42'
+      - '+0.20'
+      - 'Yes'
+  figures_description:
+  - 'MD time-series: safe和jailbreak traces完全overlap，commitment point无可见discontinuity。'
+  analysis: 'Universal Mahalanobis failure supports ''existing methods fail'' narrative。
+    但这个negative result是predictable的，reviewer不计入contribution。
+
+    '
+- name: Bootstrap CI + threshold-independent metrics
+  plan_id: exp-006
+  description: '10000 bootstrap resamples on key metrics across 4 models. Holm-Bonferroni
+    correction. AUROC, PR curves, detection delay CDF.
+
+    '
+  expected_results:
+    holm_bonferroni_pass: 12/12
+    precision_delta_range: +15.4 to +23.6pp
+    r1_8b_precision_p: <0.001
+    ot_7b_precision_p: <0.001
+    qwq_32b_fpr_p: 0.004
+    r1_32b_fpr_p: 0.007
+    marginal_tests: 2
+    r1_32b_ci_width_ba: ~0.15
+    all_precision_positive: true
+  result_rationale: '12/12 HB pass在CP data上是statistically clean的。这些结果不受AdvBench非复现
+    影响——statistical significance是关于CP temporal data的。但worst-tier reviewer 攻击practical
+    significance和multiplicity: (1) ''per-model best layer AND best window选择后再test，true
+    multiplicity远超12个corrected tests''; (2) ''32B model CIs极宽（R1-32B ±15pp），statistical
+    significance with n=20只说明 effect large，不说明estimate precise''; (3) AdvBench非复现加了一层：''你的
+    statistical machinery只在这一个dataset上验证过。12/12 HB on one dataset ≠ robust finding。''
+
+    '
+  tables:
+  - name: Holm-Bonferroni Summary (12/12, α=0.05)
+    columns:
+    - Rank
+    - Model
+    - Metric
+    - p-value
+    - HB Threshold
+    - Pass
+    rows:
+    - - '1'
+      - R1-8B
+      - precision
+      - <0.001
+      - '0.0042'
+      - ✅
+    - - '2'
+      - OT-7B
+      - bal_acc
+      - <0.001
+      - '0.0045'
+      - ✅
+    - - '3'
+      - OT-7B
+      - precision
+      - <0.001
+      - '0.0050'
+      - ✅
+    - - '4'
+      - OT-7B
+      - FPR
+      - <0.001
+      - '0.0056'
+      - ✅
+    - - '5'
+      - QwQ
+      - bal_acc
+      - <0.001
+      - '0.0063'
+      - ✅
+    - - '6'
+      - QwQ
+      - precision
+      - <0.001
+      - '0.0071'
+      - ✅
+    - - '7'
+      - R1-32B
+      - bal_acc
+      - <0.001
+      - '0.0083'
+      - ✅
+    - - '8'
+      - R1-32B
+      - precision
+      - <0.001
+      - '0.0100'
+      - ✅
+    - - '9'
+      - QwQ
+      - FPR
+      - '0.004'
+      - '0.0125'
+      - ✅
+    - - '10'
+      - R1-8B
+      - bal_acc
+      - '0.005'
+      - '0.0167'
+      - ✅
+    - - '11'
+      - R1-32B
+      - FPR
+      - '0.007'
+      - '0.0250'
+      - ✅
+    - - '12'
+      - R1-8B
+      - FPR
+      - '0.044'
+      - '0.0500'
+      - ✅
+  figures_description:
+  - 'Forest plot: HS-text precision delta with 95% CI per model. All positive. R1-32B
+    CI widest.
+
+    '
+  analysis: 'Statistical significance established on CP data. AdvBench非复现的影响不在 于推翻这些p-values，而在于质疑其generalizability:
+    ''在AdvBench上HS-text gap 仅+2-3pp (NS)。如果换个dataset significance就消失，这说明12/12 HB是dataset-
+    specific的，不是modality-inherent advantage。''
+
+    '
+- name: Window size ablation (W=1,3,5,10,15,20,25)
+  plan_id: exp-007
+  description: 'Systematic window sweep on all 4 models. Characterize precision-coverage
+    tradeoff.
+
+    '
+  expected_results:
+    coverage_decreases_with_w: true
+    precision_increases_with_w: true
+    fpr_decreases_with_w: true
+    r1_8b_best_w: 25
+    r1_32b_best_w: 10
+    qwq_best_w: 25
+    ot_7b_best_w: 3
+    no_model_achieves_prec70_cov60: true
+  result_rationale: 'Precision-coverage tradeoff universal but no operating point
+    achieves deployment-ready performance。Worst-tier reviewer: ''Coverage monotonically
+    decreases with W是detection criterion K的数学性质，不是insight。 Optimal W varies by model
+    = another model-specific hyperparameter。 Combined with AdvBench layer bias非复现，整个pipeline的generalizability
+    story 进一步弱化——每个model×dataset组合需要独立tuning。''
+
+    '
+  tables:
+  - name: Precision-Coverage at Key W (4 models)
+    columns:
+    - Model
+    - W=1 Prec/Cov
+    - W=3 Prec/Cov
+    - W=15 Prec/Cov
+    - W=25 Prec/Cov
+    rows:
+    - - R1-8B
+      - 0.693/0.721
+      - 0.723/0.698
+      - 0.777/0.512
+      - 0.822/0.488
+    - - OT-7B
+      - —/—
+      - 0.466/0.532
+      - —/—
+      - —/—
+    - - R1-32B
+      - 0.549/0.800
+      - 0.560/0.800
+      - 0.591/0.700
+      - 0.566/0.700
+    - - QwQ-32B
+      - 0.544/0.789
+      - 0.565/0.737
+      - 0.582/0.684
+      - 0.618/0.579
+  figures_description:
+  - Precision (solid) and coverage (dashed) vs W for 4 models. Clear inverse relationship.
+  analysis: 'No operating point achieves deployment-ready precision AND coverage simultaneously.
+    AdvBench context reinforces: these tradeoffs may not even transfer to other datasets.
+
+    '
+- name: Layer selection ablation (5 metrics × 4 models)
+  plan_id: exp-008
+  description: 'All-layer temporal probes on 32B models with 5 selection metrics.
+    Core experiment for C1 layer selection bias claim.
+
+    '
+  expected_results:
+    crossing_rate_selects_shallow_32b: true
+    pure_bal_acc_selects_middle_32b: true
+    threshold_dependent_select_deep_32b: true
+    qwq_l2_vs_l60_precision_gain: +11.5pp
+    r1_32b_l10_vs_l63_precision_gain: +4.1pp
+    loo_cv_stability: 65-68%
+    bias_only_on_cp_data: true
+    bias_not_on_advbench: true
+  result_rationale: 'Layer selection ablation在CP data上reveals genuine pattern。但这是worst-tier的
+    核心实验——AdvBench非复现直接打击这个实验的generalizability claim。在CP data上， crossing_rate在shallow
+    layers系统性偏高是因为temporal probe score序列中，shallow层 probes更noisy→更频繁crossing threshold→crossing_rate虚高→与bal_acc相乘后拉向
+    shallow layers。在AdvBench binary classification中，没有''连续probe score序列的 threshold
+    crossing''概念——每个trace只有一个binary prediction，crossing_rate要么 不存在（无temporal sequence）要么在所有层similar（无differential
+    noise结构）。 所以bias不复现是MECHANISTICALLY CONSISTENT——不是实验失败，而是bias的root cause 在AdvBench中不存在。Worst-tier
+    reviewer nonetheless argues: ''Consistent non- replication means the bias is a
+    pipeline artifact, not a model property. Your C1 contribution scope is now: "if
+    you use crossing_rate as part of your layer selection metric in a temporal monitoring
+    pipeline, be aware it biases toward shallow layers." That''s a methods note, not
+    a contribution.''
+
+    '
+  tables:
+  - name: 'Layer Selection Bias: CP Data vs AdvBench (R1-8B)'
+    columns:
+    - Metric
+    - CP Data Layer
+    - AdvBench Layer
+    - CP Gap (layers)
+    - AdvBench Gap
+    rows:
+    - - bal_acc × cr
+      - L0 (0%)
+      - L12 (39%)
+      - '16'
+      - '1'
+    - - pure bal_acc
+      - L12 (39%)
+      - L13 (42%)
+      - —
+      - ref
+    - - precision
+      - L16 (52%)
+      - L13 (42%)
+      - —
+      - '0'
+    - - pre_cp_fpr
+      - L16 (52%)
+      - L14 (45%)
+      - —
+      - '1'
+    - - composite
+      - L16 (52%)
+      - L13 (42%)
+      - —
+      - '0'
+    - - MAX GAP
+      - —
+      - —
+      - 16 layers
+      - 2 layers
+  figures_description:
+  - 'Side-by-side heatmap: CP data (left) vs AdvBench (right) layer selection per
+    metric. CP shows clear shallow-bias column for cr×bal_acc; AdvBench shows uniform
+    convergence across all metrics.
+
+    '
+  analysis: '这是worst-tier的defining result。CP data上16-layer gap vs AdvBench上2-layer
+    gap直接证明bias是crossing_rate temporal structure产物。Paper must explicitly acknowledge:
+    ''Layer selection bias is specific to temporal monitoring pipelines using crossing_rate-based
+    metrics. Binary classification tasks do not exhibit this bias.'' C1 scope收窄但不删除——仍然是valid
+    methodological finding within its scope.
+
+    '
+- name: 16-label taxonomy supervision
+  plan_id: exp-009
+  description: 'Fine-grained safety labels (Type 1/2/3/4 × pre/post) instead of binary
+    commitment. Evaluate richer supervision impact.
+
+    '
+  expected_results:
+    r1_8b_16label_acc: 0.41
+    r1_8b_binary_collapse_delta: +0.8pp
+    ot_7b_binary_collapse_delta: +1.1pp
+    r1_32b_binary_collapse_delta: +0.6pp
+    qwq_32b_binary_collapse_delta: +0.9pp
+    max_delta: +1.1pp
+  result_rationale: 'Fine-grained labels提供marginal improvement（+0.6-1.1pp collapse后）。
+    16-class accuracy低（26-41%）因为transition types在hidden-state space中 不cleanly separable。AdvBench非复现不直接影响此实验，但reviewer
+    argument strengthened: ''Binary labels work almost as well as 16-label supervision.
+    And on AdvBench (also binary), the whole pipeline fails to distinguish HS from
+    text. This suggests the signal structure you''re exploiting is extremely narrow
+    — it exists only in CP-annotated temporal data with step-level labels.''
+
+    '
+  tables:
+  - name: 16-Label vs Binary Supervision
+    columns:
+    - Model
+    - Binary Acc
+    - 16-Label Acc
+    - 16→Binary Collapse
+    - Δ vs Binary
+    rows:
+    - - R1-8B
+      - '0.817'
+      - '0.41'
+      - '0.825'
+      - +0.8pp
+    - - OT-7B
+      - '0.688'
+      - '0.35'
+      - '0.699'
+      - +1.1pp
+    - - QwQ-32B
+      - '0.740'
+      - '0.26'
+      - '0.749'
+      - +0.9pp
+    - - R1-32B
+      - '0.826'
+      - '0.28'
+      - '0.832'
+      - +0.6pp
+  figures_description:
+  - 'Confusion matrix (16-class) on R1-8B: diagonal heavy for safe, near-uniform for
+    unsafe subtypes.'
+  analysis: 'Fine-grained supervision dead-end. Linear probes saturated at binary
+    level. AdvBench adds: even the binary signal is task-specific.
+
+    '
+- name: Oracle decomposition
+  plan_id: exp-010
+  description: 'Analyze oracle label sequence vs hidden-state probe predictions. Explain
+    31-step gap between oracle and probe lead time on R1-8B.
+
+    '
+  expected_results:
+    r1_8b_oracle_lead: '+31.0'
+    r1_8b_best_probe_lead: +4.5 (GRU)
+    oracle_gap: 26.5
+    label_autocorr_pre_cp: 0.82
+    hs_autocorr_pre_cp: 0.95
+    label_entropy_pre_cp: 1.38
+    hs_entropy_pre_cp: 0.41
+    pattern: Labels show gradual erosion; hidden states show step-function at CP
+  result_rationale: 'Oracle gap reveals hidden states encode current safety state
+    but not trajectory toward commitment。Labels显示gradual pre-CP patterns（increasing
+    unsafe-adjacent labels, shortening safe streaks），hidden states不track这些 patterns。AdvBench非复现reinforces
+    this: ''Hidden states don''t capture safety trajectory even on the dataset specifically
+    designed to test this. On a different dataset (AdvBench), the signal degrades
+    further. The fundamental limitation is that hidden states are snapshots, not trajectory
+    predictors.''
+
+    '
+  tables:
+  - name: Oracle vs Best Probe Lead Time
+    columns:
+    - Model
+    - Oracle Lead
+    - Best Probe
+    - Method
+    - Gap
+    rows:
+    - - R1-8B
+      - '+31.0'
+      - '+4.5'
+      - GRU multi-layer
+      - '26.5'
+    - - OT-7B
+      - ~+30
+      - '+33.6'
+      - GRU multi-layer
+      - ~0†
+    - - QwQ-32B
+      - '+27'
+      - −1.2 to +1.9
+      - temporal LR
+      - 25-28
+    - - R1-32B
+      - '+28'
+      - '+13.3'
+      - temporal LR W=1
+      - 15 (25% cov)
+  figures_description:
+  - 'Pre-CP hidden state trajectory: minimal drift before CP, sharp transition. Labels
+    show gradual escalation.'
+  analysis: 'Hidden states are reactive, not predictive. Combined with AdvBench showing
+    no HS-text differentiation, worst-tier reviewer concludes: ''This paper convincingly
+    demonstrates that hidden-state monitoring is fundamentally limited. The contribution
+    is negative — which is fine for a Findings paper, but not sufficient for Main.''
+
+    '
+- name: OpenThinker-7B (Qwen2.5-7B, STILL-trained)
+  plan_id: exp-011
+  description: '4th model completing 2×2 architecture×scale matrix. Full pipeline:
+    layer sweep, temporal probes, bootstrap, selectivity.
+
+    '
+  expected_results:
+    best_layer: 16
+    best_layer_depth_pct: 57.1
+    best_hs_bal_acc_w3: 0.688
+    best_hs_precision_w3: 0.466
+    bootstrap_3_of_3_hb: true
+    selectivity_pp: 18.3
+    n_traces: 228
+    gru_multi_bal_acc: 0.746
+    gru_multi_lead: '+33.6'
+    gru_multi_fpr: 0.274
+  result_rationale: 'OT-7B是single-model最clean evidence（3/3 HB, highest selectivity
+    18.3pp, largest n=228）。但这在CP data上的strong result并不帮助AdvBench non-replication：
+    ''A 4th model confirming the same CP-data pattern doesn''t address the cross-
+    dataset non-replication. You have 4 models × 1 dataset = 4 data points on the
+    same distribution. AdvBench shows the pattern doesn''t transfer to a different
+    distribution. More models on the same dataset is width without depth of validation.''
+    OT-7B HS temporal saturation at W=3也says something: even on the best model, the
+    temporal signal is fragile.
+
+    '
+  tables:
+  - name: OT-7B Pipeline Summary
+    columns:
+    - Method
+    - bal_acc
+    - precision
+    - pre-CP FPR
+    - coverage
+    - lead
+    rows:
+    - - HS temporal W=3 L16
+      - '0.688'
+      - '0.466'
+      - '0.100'
+      - '0.532'
+      - '+21.6'
+    - - Text temporal W=25
+      - '0.614'
+      - '0.329'
+      - '0.161'
+      - '0.660'
+      - '+45.5'
+    - - GRU multi L13-19
+      - '0.746'
+      - —
+      - '0.274'
+      - '0.645'
+      - '+33.6'
+    - - HS-Text Δ (HB)
+      - +10.7pp ✅
+      - +21.9pp ✅
+      - −17.1pp ✅
+      - —
+      - —
+  figures_description:
+  - '2×2 matrix: Fisher discriminability + HS-text precision delta. 7-8B cells strong,
+    32B cells with caveats.'
+  analysis: 'OT-7B strengthens 7-8B story on CP data but is irrelevant to AdvBench
+    non-replication concern. Worst-tier: ''4 models on 1 dataset ≠ 1 model on 4 datasets.''
+
+    '
+- name: GRU/Attention probe upper bound (32B)
+  plan_id: exp-012
+  description: 'GRU on 32B models at corrected layers. Tests nonlinear sequence modeling
+    vs linear temporal probes.
+
+    '
+  expected_results:
+    r1_32b_gru_bal_acc: 0.675
+    r1_32b_gru_vs_lr_delta: −6pp
+    qwq_32b_gru_bal_acc: 0.724
+    qwq_32b_gru_vs_lr_delta: −3.7pp
+    gru_worse_3_of_4: true
+    gru_trades_accuracy_for_coverage: true
+  result_rationale: 'GRU不优于temporal LR on 3/4 models（R1-32B -6pp, QwQ -3.7pp due to
+    overfitting on small samples）。Linear probes sufficient。Worst-tier reviewer: ''Method
+    is logistic regression with sliding window — the simplest possible baseline. GRU/MLP
+    failure confirms method space is trivial. On AdvBench binary data, even this trivial
+    method can''t differentiate HS from text. The information ceiling is low across
+    the board.''
+
+    '
+  tables:
+  - name: GRU vs Temporal LR (corrected layers)
+    columns:
+    - Model
+    - LR bal_acc
+    - GRU bal_acc
+    - Δ
+    - GRU FPR
+    - LR FPR
+    rows:
+    - - R1-32B L63
+      - '0.737'
+      - ~0.675
+      - −6.2pp
+      - '0.135'
+      - '0.234'
+    - - QwQ-32B L60
+      - '0.761'
+      - '0.724'
+      - −3.7pp
+      - '0.289'
+      - '0.217'
+    - - OT-7B L16
+      - '0.688'
+      - '0.746'
+      - +5.8pp
+      - '0.274'
+      - '0.100'
+    - - R1-8B L14
+      - '0.806'
+      - '0.809'
+      - +0.3pp
+      - '0.165'
+      - '0.097'
+  figures_description:
+  - 'Scatter: method complexity vs bal_acc. No consistent complexity benefit.'
+  analysis: 'Linear probes at information ceiling. Complexity doesn''t help. Combined
+    with AdvBench showing no HS advantage at all, the message is: ''The signal is
+    both simple and narrow.''
+
+    '
+- name: Text-based baseline (sentence embeddings + temporal LR)
+  plan_id: exp-013
+  description: 'Sentence-BERT (all-MiniLM-L6-v2) + temporal window LR on CoT text.
+    Critical HS vs text comparison.
+
+    '
+  expected_results:
+    r1_8b_text_static_acc: 0.661
+    r1_8b_text_w15_acc: 0.678
+    r1_8b_hs_advantage: +15-18pp
+    ot_7b_text_best_bal_acc: 0.614
+    qwq_32b_text_bal_acc: 0.65
+    r1_32b_text_bal_acc: 0.646
+    hs_vs_text_precision_gap: +15.4 to +23.6pp
+    text_precision_range: 0.329–0.487
+    text_requires_zero_infra: true
+  result_rationale: 'Text baseline在CP data上consistently underperforms HS by 15-24pp
+    precision， 但在AdvBench binary task上这个gap shrinks to +2-3pp (NS)。Worst-tier reviewer
+    uses this asymmetry: ''On the one dataset where HS advantage matters (CP temporal),
+    yes HS wins. But you showed on AdvBench that the advantage vanishes. The HS advantage
+    is not a modality property — it''s a task×modality interaction. For the specific
+    task of temporal safety commitment detection with step-level labels, HS helps.
+    For binary safety classification, it doesn''t. This means the 15-24pp gap is not
+    about "hidden states are better monitors" — it''s about "hidden states help with
+    THIS specific task."'' Additionally: BGE-large comparison (1/4 HB pass) shows
+    gap narrows with better text encoder. A reviewer asks: ''What about GPT-4 as text
+    classifier? The gap likely closes to <5pp.''
+
+    '
+  tables:
+  - name: 'HS vs Text: CP Data vs AdvBench'
+    columns:
+    - Model
+    - CP HS Prec
+    - CP Text Prec
+    - CP Δ
+    - AdvBench HS Prec
+    - AdvBench Text Prec
+    - AdvBench Δ
+    rows:
+    - - R1-8B
+      - '0.777'
+      - '0.487'
+      - +29.0pp ✅
+      - '0.58'
+      - '0.55'
+      - +3pp NS
+  figures_description:
+  - 'Bar chart: HS-text precision gap on CP data (large, significant) vs AdvBench
+    (small, NS). Dramatically different gap sizes.
+
+    '
+  analysis: 'Text baseline comparison reveals the HS advantage is task-specific. On
+    temporal CP detection: HS clearly better. On binary AdvBench: HS ≈ text. This
+    is the strongest evidence that the findings don''t generalize beyond the specific
+    pipeline.
+
+    '
+- name: BOCPD/CUSUM on all 4 models
+  plan_id: exp-014
+  description: 'BOCPD + CUSUM on probe score sequences across 4 models. Tests advanced
+    change-point methods for lead time improvement.
+
+    '
+  expected_results:
+    r1_8b_bocpd_det: 0.93
+    r1_8b_bocpd_lead: '+3.45'
+    r1_8b_fcp_lead: '+4.89'
+    ot_7b_bocpd_det: 0.0
+    r1_32b_bocpd_det: 0.0
+    qwq_32b_bocpd_det: 0.0
+    bocpd_only_r1_8b: true
+    cusum_worse_than_fcp: true
+  result_rationale: 'BOCPD在3/4模型上0% detection——OT-7B probe scores too spiky，32B models
+    signal太weak。只有R1-8B有gradual transitions compatible with Gaussian change-point
+    model。CUSUM universally worse than simple FCP threshold。 AdvBench非复现不直接影响BOCPD结果（BOCPD
+    operates on temporal probe scores， AdvBench是binary task没有temporal scores），但strengthens
+    the ''nothing transfers'' narrative: ''你测试了2个off-the-shelf change-point methods，都失败。
+    你的layer selection bias也不generalize。你的HS advantage也不generalize。 整篇paper的主题是"on
+    one specific dataset with one specific pipeline, one specific finding holds."''
+
+    '
+  tables:
+  - name: Change-Point Detection Summary
+    columns:
+    - Model
+    - BOCPD Det%
+    - BOCPD Lead
+    - CUSUM Det%
+    - CUSUM Lead
+    - FCP Det%
+    - FCP Lead
+    rows:
+    - - R1-8B
+      - 93%
+      - '+3.45'
+      - 65%
+      - '+0.89'
+      - 65%
+      - '+4.89'
+    - - OT-7B
+      - 0%
+      - —
+      - 75%†
+      - +7.46†
+      - 89%
+      - '+11.83'
+    - - R1-32B
+      - 0%
+      - —
+      - 85%
+      - '+2.59'
+      - 95%
+      - '+5.68'
+    - - QwQ-32B
+      - 0%
+      - —
+      - 74%
+      - '+9.86'
+      - 79%
+      - '+9.40'
+  figures_description:
+  - 'Probe score time-series: R1-8B gradual transition (BOCPD works), OT-7B abrupt
+    step-function (fails).'
+  analysis: 'BOCPD/CUSUM negative result is predictable. Method selection too narrow.
+    Combined with AdvBench non-replication, entire negative result portfolio is dismissed
+    as ''testing wrong tools on a narrow task.''
+
+    '
+- name: False positive analysis (safe traces, all methods)
+  plan_id: exp-015
+  description: 'All probes on safe traces across 4 models. Safe FPR, pre-CP FPR, precision-recall
+    curves.
+
+    '
+  expected_results:
+    r1_8b_hs_safe_fpr: 0.39
+    ot_7b_hs_safe_fpr: 0.111–0.175
+    qwq_32b_hs_safe_fpr: 0.45–0.50
+    r1_32b_hs_safe_fpr: 0.239
+    safe_fpr_median: ~0.39
+    gru_safe_fpr: 0.521
+    no_method_achieves_prec80: true
+    qwq_hs_fpr_worse_than_text: true
+  result_rationale: 'Safe FPR 11-52%，median约39%。这意味着每2-3个safe traces就有1个false alarm。
+    No operating point achieves simultaneous >70% precision AND >60% coverage on ANY
+    model。QwQ HS safe FPR (45-50%) actually HIGHER than text (33-43%)。 AdvBench非复现加重了practical
+    concern: ''在你优化过的CP dataset上，safe FPR 已经是39%。在AdvBench上HS甚至不优于text。任何real-world
+    deployment都会面临 distribution shift，FPR只会更差。这个系统在production中是不可用的。''
+
+    '
+  tables:
+  - name: Safe Trace FPR (all methods × models)
+    columns:
+    - Model
+    - HS Static FPR
+    - HS Temporal FPR
+    - Text Temporal FPR
+    - GRU FPR
+    rows:
+    - - R1-8B
+      - '0.390'
+      - '0.392'
+      - '0.385'
+      - '0.521'
+    - - OT-7B
+      - '0.111'
+      - '0.175'
+      - '0.460'
+      - —
+    - - QwQ-32B
+      - '0.500'
+      - '0.450'
+      - '0.425'
+      - —
+    - - R1-32B
+      - '0.239'
+      - '0.239'
+      - '0.310'
+      - —
+  - name: Deployment Viability
+    columns:
+    - Criterion
+    - Threshold
+    - Models Meeting
+    - Best Method
+    rows:
+    - - Safe FPR < 20%
+      - '0.20'
+      - 1/4 (OT-7B)
+      - HS static L16
+    - - Precision > 70%
+      - '0.70'
+      - 1/4 (R1-8B W≥15)
+      - HS temporal W=25
+    - - Coverage > 60%
+      - '0.60'
+      - 2/4
+      - HS temporal W=1
+    - - All three
+      - —
+      - 0/4
+      - None
+  figures_description:
+  - 'Radar chart: safe FPR/precision/coverage/lead per model. No model fills all quadrants.'
+  analysis: 'FPR is the deployment dealbreaker on CP data. AdvBench non-replication
+    closes the escape hatch of ''maybe it works better on other datasets'' — it demonstrably
+    works WORSE. Reviewer verdict: ''A monitor that fires on 1/3 safe traces is noise.
+    Adding AdvBench shows this isn''t fixable by changing the dataset.''
+
+    '
+- name: AdvBench Layer Bias Replication (R1-8B)
+  plan_id: advbench_layer_bias_replication
+  description: 'Replicate layer selection bias on AdvBench using R1-8B with binary
+    jailbreak/safe labels. Train probes at all 32 layers, run 5-metric layer selection
+    analysis. Tests whether crossing_rate bias is model-geometric (general) or CP-annotation-specific
+    (task-bound).
+
+    '
+  expected_results:
+    n_traces_total: 200
+    n_jailbreak: 104
+    n_safe: 96
+    model: R1-8B (Llama-8B, 32 layers)
+    layer_selection:
+      bal_acc_x_cr_layer: 12
+      bal_acc_x_cr_depth_pct: 39
+      pure_bal_acc_layer: 13
+      pure_bal_acc_depth_pct: 42
+      precision_layer: 13
+      precision_depth_pct: 42
+      pre_cp_fpr_layer: 14
+      pre_cp_fpr_depth_pct: 45
+      composite_layer: 13
+      composite_depth_pct: 42
+    layer_gap_abs: 2
+    layer_gap_depth_pct: 6
+    crossing_rate_analysis:
+      shallow_mean_cr: 0.12
+      deep_mean_cr: 0.11
+      shallow_deep_ratio: 1.05
+      ratio_p_value: 0.74
+      pattern: uniform — no shallow inflation
+    hs_performance_at_best_layer:
+      layer: 13
+      bal_acc: 0.63
+      precision: 0.58
+      pre_cp_fpr: 0.31
+      auroc: 0.68
+    text_performance:
+      bal_acc: 0.6
+      precision: 0.55
+      pre_cp_fpr: 0.34
+    hs_text_comparison:
+      bal_acc_delta_pp: 3.0
+      precision_delta_pp: 3.0
+      fpr_delta_pp: -3.0
+      bal_acc_p: 0.28
+      precision_p: 0.31
+      fpr_p: 0.42
+      hb_pass_rate: 0/3
+    cp_data_comparison:
+      cp_cr_composite_layer: L0 (0%)
+      advbench_cr_composite_layer: L12 (39%)
+      cp_layer_gap: 16
+      advbench_layer_gap: 2
+      cp_hs_text_prec_delta: +22.4pp
+      advbench_hs_text_prec_delta: +3.0pp
+      cp_crossing_rate_shallow_deep_ratio: 2.8
+      advbench_crossing_rate_shallow_deep_ratio: 1.05
+  result_rationale: 'AdvBench非复现的root cause是mechanistic的，不是statistical noise:
+
+    (1) crossing_rate在binary classification中不产生浅层虚高。在CP temporal data中， crossing_rate
+    measures how often probe score crosses threshold DURING a trace。 Shallow layers的probes更noisy（cosine
+    distance smaller, representations more compressed）→更频繁crossing→crossing_rate虚高→与bal_acc相乘后bias
+    toward shallow layers。在AdvBench binary classification中，虽然可以对每个token计算probe score
+    并观察序列，但binary labels（jailbreak/safe per trace）不创造step-level temporal structure。Probe
+    scores在entire trace上趋于一致（consistently jailbreak或consistently safe），所以crossing_rate在所有层上都很低（~0.11-0.12），
+    shallow/deep ratio≈1.05，无显著差异。
+
+    (2) HS-text gap在binary classification中collapse到+3pp (NS)。原因：hidden states 对CP
+    temporal task的advantage来自于tracking step-level safety state transitions—— hidden
+    states可以detect commitment point前后的internal representation shift。 Binary classification不需要这种temporal
+    sensitivity——只需要区分''this trace as a whole is jailbreak vs safe''。对于这个coarser task，text
+    embeddings capture足够 的signal（jailbreak traces有distinctive vocabulary/structure），HS的marginal
+    advantage消失。
+
+    (3) Layer selection convergence: 5个metrics全部选中层（L12-L14, 39-45% depth）， gap仅2层。这是因为binary
+    classification的optimal layer由overall representation quality决定（middle layers best
+    balance between too-raw和too-output-specific）， 而非threshold-crossing-dynamics。所有metrics
+    agree on similar layers because they''re all measuring the same underlying discriminability
+    without temporal confounds。
+
+    (4) Traces太uniform: AdvBench prompts + R1-8B responses产生相对homogeneous的 traces——jailbreak
+    traces consistently harmful, safe traces consistently refuse。 没有CP temporal data中的''safety
+    reasoning followed by commitment''渐进结构。 所有层表现接近（bal_acc range across layers: 0.55-0.65），metric间无显著分化。
+
+    '
+  tables:
+  - name: AdvBench Layer Selection (R1-8B, 5 metrics)
+    columns:
+    - Metric
+    - Selected Layer
+    - Depth %
+    - bal_acc at Layer
+    rows:
+    - - bal_acc × crossing_rate
+      - L12
+      - 39%
+      - '0.62'
+    - - pure bal_acc
+      - L13
+      - 42%
+      - '0.63'
+    - - precision
+      - L13
+      - 42%
+      - '0.63'
+    - - pre_cp_fpr
+      - L14
+      - 45%
+      - '0.62'
+    - - composite (additive)
+      - L13
+      - 42%
+      - '0.63'
+  - name: 'CP Data vs AdvBench: Layer Selection Bias Comparison'
+    columns:
+    - Dimension
+    - CP Temporal Data
+    - AdvBench Binary
+    rows:
+    - - cr_composite layer
+      - L0 (0%)
+      - L12 (39%)
+    - - threshold metrics layer
+      - L16 (52%)
+      - L13 (42%)
+    - - layer gap (abs)
+      - 16 layers
+      - 2 layers
+    - - layer gap (depth %)
+      - 52%
+      - 6%
+    - - CR shallow/deep ratio
+      - '2.8'
+      - '1.05'
+    - - HS-text Δprec
+      - +22.4pp (HB ✅)
+      - +3.0pp (NS)
+    - - HB pass rate
+      - 3/3
+      - 0/3
+  - name: AdvBench Crossing Rate by Depth Band
+    columns:
+    - Depth Band
+    - Mean CR
+    - Std CR
+    - n layers
+    rows:
+    - - Shallow (L0-L7)
+      - '0.12'
+      - '0.03'
+      - '8'
+    - - Middle (L8-L23)
+      - '0.11'
+      - '0.02'
+      - '16'
+    - - Deep (L24-L31)
+      - '0.11'
+      - '0.03'
+      - '8'
+    - - Shallow/Deep ratio
+      - '1.05'
+      - —
+      - —
+    - - t-test p-value
+      - '0.74'
+      - —
+      - —
+  - name: AdvBench HS vs Text Performance (R1-8B)
+    columns:
+    - Modality
+    - bal_acc
+    - precision
+    - FPR
+    - AUROC
+    rows:
+    - - HS (L13)
+      - '0.63'
+      - '0.58'
+      - '0.31'
+      - '0.68'
+    - - Text (MiniLM)
+      - '0.60'
+      - '0.55'
+      - '0.34'
+      - '0.65'
+    - - Δ
+      - +3.0pp
+      - +3.0pp
+      - −3.0pp
+      - +3.0pp
+    - - p-value
+      - '0.28'
+      - '0.31'
+      - '0.42'
+      - '0.25'
+    - - HB pass?
+      - 'No'
+      - 'No'
+      - 'No'
+      - 'No'
+  figures_description:
+  - 'Figure A: Crossing rate vs layer depth for CP data (blue, steep decline from
+    shallow to deep) vs AdvBench (orange, flat line). X-axis: layer index, Y-axis:
+    crossing rate. CP data shows 2.8× shallow/deep ratio; AdvBench ≈1.0. Caption:
+    ''Crossing rate inflation at shallow layers is specific to temporal probe score
+    sequences (CP data). Binary classification produces uniform crossing rates across
+    all depths.''
+
+    '
+  - 'Figure B: Layer selection heatmap side-by-side. Left: CP data (5 metrics, clear
+    separation between cr-composite at L0 and threshold metrics at L16). Right: AdvBench
+    (5 metrics all converge to L12-L14, no visible separation).
+
+    '
+  - 'Figure C: HS-text precision delta bar chart. CP data: +22.4pp (significant, marked
+    ✅). AdvBench: +3.0pp (NS, marked ✗). Error bars show 95% bootstrap CI. AdvBench
+    CI includes zero.
+
+    '
+  analysis: "AdvBench非复现是worst-tier的defining experiment。结论分为两个component:\n(1) Layer\
+    \ selection bias非复现：Mechanistically consistent。crossing_rate bias 的root cause是temporal\
+    \ probe score序列中shallow layers的noise-driven threshold crossings。Binary classification不产生这种temporal\
+    \ structure。Bias不复现 不invalidate CP data上的finding——it BOUNDS its scope。C1调整为: 'Layer\
+    \ selection bias is a pitfall specific to temporal monitoring pipelines that use\
+    \ threshold-crossing statistics for layer selection. It does not manifest in standard\
+    \ binary classification settings.'\n(2) HS-text gap非复现：+3pp (NS) vs CP data +22.4pp\
+    \ (HB ✅)。HS advantage 在binary classification上消失，说明advantage来自temporal structure\
+    \ interaction（hidden states track step-level state transitions that text embeddings\
+    \ miss），而非inherent modality superiority。\nPaper impact: C1 scope从'any hidden-state\
+    \ evaluation should audit layer selection metrics'收窄到'temporal monitoring pipelines\
+    \ using crossing_rate should audit layer selection'。这让contribution更precise但less\
+    \ impactful。\nReviewer split: - Supportive (R1): 'Boundary condition analysis\
+    \ is good science. Showing WHERE\n  your finding applies and where it doesn't\
+    \ is a sign of mature methodology.\n  The AdvBench non-replication actually STRENGTHENS\
+    \ the mechanistic argument —\n  you can explain WHY it doesn't replicate (no temporal\
+    \ structure → no\n  crossing_rate bias).'\n- Dismissive (R2): 'The non-replication\
+    \ means your headline finding (layer\n  selection bias) is a pipeline implementation\
+    \ detail, not a scientific\n  contribution. You could fix it by not using crossing_rate\
+    \ — which any\n  careful practitioner would do anyway. The AdvBench experiment\
+    \ cost 6 GPU\n  hours to show your contribution is smaller than claimed.'\n\n\
+    Dream score delta: -0.10 (3.0 → 2.9). Non-replication doesn't kill the paper but\
+    \ removes the possibility of C1 earning generalizability points. Paper stays at\
+    \ Findings level; no pathway to Main opened by this experiment."

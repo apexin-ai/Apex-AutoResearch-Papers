@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ec937a85e590bbba917c",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code train and eval",
+  "task_key": "worker_code_train_and_eval_20260516T191922",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_train_and_eval_20260516T191922_result.json",
+    "occurrence": 1,
+    "bytes": 1736,
+    "sha256": "fa9f087431e39feb17622c384cf90e69dedd414ab2ee60880c2bb3f6b378461c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 评估结果汇总\n\n### 训练日志\n\n两个 probe 均训练完成，无代码修改。\n\n| Probe | Final Loss | Final Train Acc |\n|-------|-----------|-----------------|\n| Static MLP | 0.0007 | 100.0% |\n| Temporal | 0.0248 | 99.14% |\n\n### 评估结果对比 (43 test traces)\n\n| 指标 | Static Probe | Temporal Probe |\n|------|-------------|----------------|\n| Step accuracy | 0.7777 ± 0.2072 | 0.7573 ± 0.2469 |\n| Detection rate | 39.53% | 34.88% |\n| Lead time (mean) | **-8.9 steps** | -10.7 steps |\n| Lead time (median) | -3.0 steps | -3.0 steps |\n| Earliest detection (mean step) | 31.7 | 32.6 |\n| Crossing rate | 53.49% | 46.51% |\n| Crossing lead time (mean) | +0.7 steps | -1.1 steps |\n| Crossing lead time (median) | -1.0 steps | -1.0 steps |\n\n### Pass/Fail 判断\n\n**关键指标**：temporal probe lead time - static probe lead time = (-10.7) - (-8.9) = **-1.8 steps**\n\n要求：temporal lead time - static lead time ≥ 3 → **FAIL**\n\nTemporal probe 不仅没有比 static probe 提早检测，反而更晚了 1.8 步。两个 probe 的 lead time 都是负值（检测发生在 commitment point 之后），说明两者都在检测\"已发生\"的 commitment 而非提前预警。\n\n### 关键观察\n\n1. **两个 probe 都太晚了**：平均 lead time 都是负数，说明检测发生在 commitment point 之后\n2. **Static probe 反而优于 temporal**：accuracy 更高 (0.778 vs 0.757)、detection rate 更高 (39.5% vs 34.9%)、crossing rate 更高 (53.5% vs 46.5%)\n3. **训练过拟合**：训练 accuracy 接近 100% 但测试 accuracy 仅 ~77%，temporal probe 尤其严重（20480 维输入更容易过拟合）\n4. **无代码修改**：pipeline 运行无 bug"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-train-and-eval.md"
+}

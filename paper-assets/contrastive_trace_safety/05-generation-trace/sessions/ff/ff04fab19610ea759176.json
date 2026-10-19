@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ff04fab19610ea759176",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code ot7b layer16 bootstrap ci",
+  "task_key": "worker_code_ot7b_layer16_bootstrap_ci_20260517T093734",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_ot7b_layer16_bootstrap_ci_20260517T093734_result.json",
+    "occurrence": 1,
+    "bytes": 1131,
+    "sha256": "f38d901f44d7e0b6bdbe66f641ef7eb1c264e15d7efd174a29f419982795aace"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结果汇总：\n\n## Layer 16 vs Layer 0 对比\n\n### Probe 性能（Layer 16 全面优于 Layer 0）\n| 指标 | Layer 0 | Layer 16 | 变化 |\n|------|---------|----------|------|\n| bal_acc | 0.672 | **0.762** | +9.0pp |\n| precision | 0.357 | **0.565** | +20.8pp |\n| pre_cp_fpr | 0.188 | **0.100** | -8.7pp |\n\n### Bootstrap（1000 resamples, Bonferroni α=0.017）\n| 指标 | L16 delta | 95% CI | p-value | 显著 |\n|------|-----------|--------|---------|------|\n| bal_acc | +0.1067 | [0.049, 0.163] | **0.000** | YES |\n| precision | +0.2189 | [0.140, 0.296] | **0.000** | YES |\n| pre_cp_fpr | -0.1705 | [-0.222, -0.122] | **0.000** | YES |\n\n关键改进：precision 在 Layer 0 时 p=0.056（未过 Bonferroni），Layer 16 上 p=0.000，**三个指标全部通过 Bonferroni 校正**。\n\n### Selectivity\n- Layer 16: 18.3pp (real=0.688, random=0.505) — PASS\n- Layer 0: 18.5pp — 基本持平\n\n产出：\n1. 脚本: `src/experiments/exp_ot7b_layer16_bootstrap_full.py`\n2. 结果 JSON: `artifacts/ot7b_layer16_bootstrap/results.json`\n3. 报告已注册: `art_20260517_04c053`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-ot7b-layer16-bootstrap-ci.md"
+}

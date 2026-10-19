@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cb5a39161330eab141a3",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "analysis r12 r1 32b position residualization",
+  "task_key": "worker_analysis_r12_r1_32b_position_residualization_20260518T134711",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r12_r1_32b_position_residualization_20260518T134711_result.json",
+    "occurrence": 1,
+    "bytes": 729,
+    "sha256": "b0070038f28500407c7f881407678c1a433abd56111a127b1985661bb70b6a12"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。D039 表格 R1-32B 行数据：\n\n```\nR1-32B Position Residualization (W=1, L63, seed=42):\n- Position-only BA: 0.6856\n- Original HS BA: 0.7552\n- Original Text BA: 0.6011\n- Residualized HS BA: 0.5516 (drop: 20.4 pp)\n- Residualized Text BA: 0.5324 (drop: 6.9 pp)\n- Residualized Gap (HS - Text): 1.9 pp\n- Bootstrap p-value: 0.9140\n- HB result: fail\n```\n\n与 QwQ 的对比：R1-32B 的 HS probe 受 position 影响远大于 QwQ（drop 20.4 pp vs 9.1 pp）。残差化后 HS 与 text 的 gap 仅 1.9 pp（p=0.914），HB 检验 fail，说明 R1-32B 的 HS 优势在去除位置信息后基本消失。\n\n结果已写入远程 `artifacts/r12_r1_32b_position_residualized/results.json` 并注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-r12-r1-32b-position-residualization.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4221d86dc55758dfb905",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code relaunch sensitivity v2",
+  "task_key": "worker_code_relaunch_sensitivity_v2_20260522T185531",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_relaunch_sensitivity_v2_20260522T185531_result.json",
+    "occurrence": 1,
+    "bytes": 605,
+    "sha256": "110d8692c0a291cd70c69158e0466589b33468660d15215b598eab19fbb309be"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成，汇报如下：\n\n**1. 旧进程 kill** — PID 93351 (`advbench_classifier_sensitivity.py` v1) 已成功终止（SIGTERM，非 force kill）\n\n**2. v2 脚本启动** — PID 98451 运行中，已加载 520 traces，正在处理 threshold=1（159 JB / 361 safe，30.6%）。输出文件：`/tmp/classifier_sensitivity_v2.log`\n\n**3. Bootstrap CI 进度** — PID 97210 仍在运行，日志显示：\n- 520 traces (159 JB, 361 safe)，split 312 train / 208 test\n- 当前处于 Phase 1（Train probes + pre-compute test predictions），尚未进入 bootstrap 采样阶段"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-relaunch-sensitivity-v2.md"
+}

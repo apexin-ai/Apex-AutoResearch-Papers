@@ -1,0 +1,366 @@
+% =============================================================================
+% Section 1: Introduction
+% =============================================================================
+
+@inproceedings{jimenez2024swebench,
+  title={{SWE-bench}: Can Language Models Resolve Real-World {GitHub} Issues?},
+  author={Jimenez, Carlos E. and Yang, John and Wettig, Alexander and Yao, Shunyu and Pei, Kexin and Press, Ofir and Narasimhan, Karthik},
+  booktitle={Proceedings of the Twelfth International Conference on Learning Representations (ICLR)},
+  year={2024}
+}
+
+% =============================================================================
+% Section 2.1: Code Retrieval Methods
+% =============================================================================
+
+@article{robertson2009bm25,
+  title={The Probabilistic Relevance Framework: {BM25} and Beyond},
+  author={Robertson, Stephen and Zaragoza, Hugo},
+  journal={Foundations and Trends in Information Retrieval},
+  volume={3},
+  number={4},
+  pages={333--389},
+  year={2009},
+  publisher={Now Publishers}
+}
+
+@inproceedings{karpukhin2020dpr,
+  title={Dense Passage Retrieval for Open-Domain Question Answering},
+  author={Karpukhin, Vladimir and O{\u{g}}uz, Barlas and Min, Sewon and Lewis, Patrick and Wu, Ledell and Edunov, Sergey and Chen, Danqi and Yih, Wen-tau},
+  booktitle={Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
+  pages={6769--6781},
+  year={2020}
+}
+
+@article{reddy2025swerank,
+  title={{SweRank}: Software Issue Localization with Code Ranking},
+  author={Gangi Reddy, Revanth and Suresh, Tarun and Doo, JaeHyeok and Liu, Ye and Nguyen, Xuan Phi and Zhou, Yingbo and Yavuz, Semih and Xiong, Caiming and Ji, Heng and Joty, Shafiq},
+  journal={arXiv preprint arXiv:2505.07849},
+  year={2025}
+}
+
+@inproceedings{xie2025swefixer,
+  title={{SWE-Fixer}: Training Open-Source {LLM}s for Effective and Efficient {GitHub} Issue Resolution},
+  author={Xie, Chengxing and Li, Bowen and Gao, Chang and Du, He and Lam, Wai and Zou, Difan and Chen, Kai},
+  booktitle={Findings of the Association for Computational Linguistics: ACL 2025},
+  pages={1123--1139},
+  year={2025}
+}
+
+@inproceedings{chen2025locagent,
+  title={{LocAgent}: Graph-Guided {LLM} Agents for Code Localization},
+  author={Chen, Zhaoling and Tang, Robert and Deng, Gangda and Wu, Fang and Wu, Jialong and Jiang, Zhiwei and Prasanna, Viktor and Cohan, Arman and Wang, Xingyao},
+  booktitle={Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (ACL)},
+  pages={8697--8727},
+  year={2025}
+}
+
+@article{shah2025ranger,
+  title={{RANGER}: Repository-Level Agent for Graph-Enhanced Retrieval},
+  author={Shah, Pratik and Ghosh, Rajat and Singhal, Aryan and Dutta, Debojyoti},
+  journal={arXiv preprint arXiv:2509.25257},
+  year={2025}
+}
+
+@inproceedings{liu2025codexgraph,
+  title={{CodexGraph}: Bridging Large Language Models and Code Repositories via Code Graph Databases},
+  author={Liu, Xiangyan and Lan, Bo and Hu, Zhiyuan and Liu, Yang and Zhang, Zhicheng and Wang, Fei and Shieh, Michael Qizhe and Zhou, Wenmeng},
+  booktitle={Proceedings of the 2025 Conference of the North American Chapter of the Association for Computational Linguistics (NAACL)},
+  pages={142--160},
+  year={2025}
+}
+
+@inproceedings{ouyang2025repograph,
+  title={{RepoGraph}: Enhancing {AI} Software Engineering with Repository-level Code Graph},
+  author={Ouyang, Siru and Yu, Wenhao and Ma, Kaixin and Xiao, Zilin and Zhang, Zhihan and Jia, Mengzhao and Han, Jiawei and Zhang, Hongming and Yu, Dong},
+  booktitle={Proceedings of the Thirteenth International Conference on Learning Representations (ICLR)},
+  year={2025}
+}
+
+@inproceedings{liu2024graphcoder,
+  title={{GraphCoder}: Enhancing Repository-Level Code Completion via Code Context Graph-based Retrieval and Language Model},
+  author={Liu, Wei and Hu, Ailun and Li, Yixuan and Li, Yichen and Liu, Haoyu and Yang, Leyi},
+  booktitle={Proceedings of the 39th IEEE/ACM International Conference on Automated Software Engineering (ASE)},
+  year={2024}
+}
+
+@article{seddik2026arise,
+  title={{ARISE}: A Repository-level Graph Representation and Toolset for Agentic Fault Localization and Program Repair},
+  author={Seddik, Shahd and Fard, Fatemeh},
+  journal={arXiv preprint arXiv:2605.03117},
+  year={2026}
+}
+
+% =============================================================================
+% Section 2.2: Pre-trained Code Representations and Contrastive Learning
+% =============================================================================
+
+@inproceedings{feng2020codebert,
+  title={{CodeBERT}: A Pre-Trained Model for Programming and Natural Languages},
+  author={Feng, Zhangyin and Guo, Daya and Tang, Duyu and Duan, Nan and Feng, Xiaocheng and Gong, Ming and Shou, Linjun and Qin, Bing and Liu, Ting and Jiang, Daxin and Zhou, Ming},
+  booktitle={Findings of the Association for Computational Linguistics: EMNLP 2020},
+  pages={1536--1547},
+  year={2020}
+}
+
+@inproceedings{guo2021graphcodebert,
+  title={{GraphCodeBERT}: Pre-training Code Representations with Data Flow},
+  author={Guo, Daya and Ren, Shuo and Lu, Shuai and Feng, Zhangyin and Tang, Duyu and Liu, Shujie and Zhou, Long and Duan, Nan and Svyatkovskiy, Alexey and Fu, Shengyu and Tufano, Michele and Deng, Shuai Kim and Clement, Colin and Drain, Dawn and Sundaresan, Neel and Yin, Jian and Jiang, Daxin and Zhou, Ming},
+  booktitle={Proceedings of the Ninth International Conference on Learning Representations (ICLR)},
+  year={2021}
+}
+
+@inproceedings{guo2022unixcoder,
+  title={{UniXcoder}: Unified Cross-Modal Pre-training for Code Representation},
+  author={Guo, Daya and Lu, Shuai and Duan, Nan and Wang, Yanlin and Zhou, Ming and Yin, Jian},
+  booktitle={Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (ACL)},
+  pages={7212--7225},
+  year={2022}
+}
+
+@inproceedings{alon2019code2vec,
+  title={code2vec: Learning Distributed Representations of Code},
+  author={Alon, Uri and Zilberstein, Meital and Levy, Omer and Yahav, Eran},
+  booktitle={Proceedings of the ACM on Programming Languages (POPL)},
+  volume={3},
+  pages={1--29},
+  year={2019}
+}
+
+@inproceedings{zhang2024codesage,
+  title={Code Representation Learning At Scale},
+  author={Zhang, Dejiao and Ahmad, Wasi Uddin and Tan, Ming and Ding, Hantian and Nallapati, Ramesh and Roth, Dan and Ma, Xiaofei and Xiang, Bing},
+  booktitle={Proceedings of the Twelfth International Conference on Learning Representations (ICLR)},
+  year={2024}
+}
+
+@inproceedings{reimers2019sentencebert,
+  title={Sentence-{BERT}: Sentence Embeddings using Siamese {BERT}-Networks},
+  author={Reimers, Nils and Gurevych, Iryna},
+  booktitle={Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
+  pages={3982--3992},
+  year={2019}
+}
+
+@inproceedings{jain2021contracode,
+  title={Contrastive Code Representation Learning},
+  author={Jain, Paras and Jain, Ajil and Zhang, Tianjun and Abbeel, Pieter and Gonzalez, Joseph and Stoica, Ion},
+  booktitle={Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
+  pages={5954--5971},
+  year={2021}
+}
+
+@inproceedings{li2022coderetriever,
+  title={{CodeRetriever}: A Large Scale Contrastive Pre-Training Method for Code Search},
+  author={Li, Xiaonan and Gong, Yeyun and Shen, Yelong and Qiu, Xipeng and Zhang, Hang and Yao, Bolun and Qi, Weizhen and Jiang, Daxin and Chen, Weizhu and Duan, Nan},
+  booktitle={Proceedings of the 2022 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
+  pages={2898--2910},
+  year={2022}
+}
+
+@inproceedings{li2022scoder,
+  title={Soft-Labeled Contrastive Pre-training for Function-level Code Representation},
+  author={Li, Xiaonan and Guo, Daya and Gong, Yeyun and Lin, Yun and Shen, Yelong and Qiu, Xipeng and Jiang, Daxin and Chen, Weizhu and Duan, Nan},
+  booktitle={Findings of the Association for Computational Linguistics: EMNLP 2022},
+  year={2022}
+}
+
+@inproceedings{ding2022programcontrasts,
+  title={Towards Learning (Dis)-Similarity of Source Code from Program Contrasts},
+  author={Ding, Yangruibo and Buratti, Luca and Pujar, Saurabh and Morari, Alessandro and Ray, Baishakhi and Parthasarathy, Saikat},
+  booktitle={Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (ACL)},
+  pages={6300--6312},
+  year={2022}
+}
+
+@inproceedings{bui2021infercode,
+  title={{InferCode}: Self-Supervised Learning of Code Representations by Predicting Subtrees},
+  author={Bui, Nghi D. Q. and Yu, Yijun and Jiang, Lingxiao},
+  booktitle={Proceedings of the 43rd IEEE/ACM International Conference on Software Engineering (ICSE)},
+  pages={1186--1197},
+  year={2021}
+}
+
+@article{lozhkov2024starcoder2,
+  title={{StarCoder} 2 and {The Stack} v2: The Next Generation},
+  author={Lozhkov, Anton and Li, Raymond and Ben Allal, Loubna and Cassano, Federico and Lamy-Poirier, Joel and Tazi, Nouamane and Tang, Ao and Pykhtar, Dmytro and Liu, Jiawei and Wei, Yuxiang and others},
+  journal={arXiv preprint arXiv:2402.19173},
+  year={2024}
+}
+
+@article{hui2024qwen25coder,
+  title={{Qwen2.5-Coder} Technical Report},
+  author={Hui, Binyuan and Yang, Jian and Cui, Zeyu and Yang, Jiaxi and Liu, Dayiheng and Zhang, Lei and Liu, Tianyu and Zhang, Jiajun and Yu, Bowen and Lu, Keming and Dang, Kai and Fan, Yang and Zhang, Yichang and Yang, An and Men, Rui and Huang, Fei and Zheng, Bo and others},
+  journal={arXiv preprint arXiv:2409.12186},
+  year={2024}
+}
+
+% =============================================================================
+% Section 2.3: Hard Negative Mining
+% =============================================================================
+
+@inproceedings{chen2020simclr,
+  title={A Simple Framework for Contrastive Learning of Visual Representations},
+  author={Chen, Ting and Kornblith, Simon and Norouzi, Mohammad and Hinton, Geoffrey},
+  booktitle={Proceedings of the 37th International Conference on Machine Learning (ICML)},
+  pages={1597--1607},
+  year={2020}
+}
+
+@inproceedings{xiong2021ance,
+  title={Approximate Nearest Neighbor Negative Contrastive Learning for Dense Text Retrieval},
+  author={Xiong, Lee and Xiong, Chenyan and Li, Ye and Tang, Kwok-Fung and Liu, Jialin and Bennett, Paul and Ahmed, Junaid and Overwijk, Arnold},
+  booktitle={Proceedings of the Ninth International Conference on Learning Representations (ICLR)},
+  year={2021}
+}
+
+@inproceedings{zhan2021star,
+  title={Optimizing Dense Retrieval Model Training with Hard Negatives},
+  author={Zhan, Jingtao and Mao, Jiaxin and Liu, Yiqun and Guo, Jiafeng and Zhang, Min and Ma, Shaoping},
+  booktitle={Proceedings of the 44th International ACM SIGIR Conference on Research and Development in Information Retrieval},
+  pages={1503--1512},
+  year={2021}
+}
+
+@inproceedings{qu2021rocketqa,
+  title={{RocketQA}: An Optimized Training Approach to Dense Passage Retrieval for Open-Domain Question Answering},
+  author={Qu, Yingqi and Ding, Yuchen and Liu, Jing and Liu, Kai and Ren, Ruiyang and Zhao, Wayne Xin and Dong, Daxiang and Wu, Hua and Wang, Haifeng},
+  booktitle={Proceedings of the 2021 Conference of the North American Chapter of the Association for Computational Linguistics (NAACL-HLT)},
+  pages={5835--5847},
+  year={2021}
+}
+
+@inproceedings{zeng2022cldrd,
+  title={Curriculum Learning for Dense Retrieval Distillation},
+  author={Zeng, Hansi and Zamani, Hamed and Vinay, Vishwa},
+  booktitle={Proceedings of the 45th International ACM SIGIR Conference on Research and Development in Information Retrieval},
+  pages={1979--1983},
+  year={2022}
+}
+
+@article{fan2025cocohanere,
+  title={Effective Hard Negative Mining for Contrastive Learning-Based Code Search},
+  author={Fan, Ye and Li, Chuanyi and Ge, Jidong and Huang, LiGuo and Luo, Bin},
+  journal={ACM Transactions on Software Engineering and Methodology},
+  volume={34},
+  number={3},
+  year={2025},
+  publisher={ACM}
+}
+
+@article{shrivastava2023repofusion,
+  title={{RepoFusion}: Training Code Models to Understand Your Repository},
+  author={Shrivastava, Disha and Kocetkov, Denis and de Vries, Harm and Bahdanau, Dzmitry and Scholak, Torsten},
+  journal={arXiv preprint arXiv:2306.10998},
+  year={2023}
+}
+
+@article{wang2025grace,
+  title={{GRACE}: Graph-Guided Repository-Aware Code Completion through Hierarchical Code Fusion},
+  author={Wang, Xingliang and Wang, Baoyi and Zhi, Chen and Han, Junxiao and Zhao, Xinkui and Yin, Jianwei and Deng, Shuiguang},
+  journal={arXiv preprint arXiv:2509.05980},
+  year={2025}
+}
+
+% =============================================================================
+% Section 2.4: Code Structure Analysis
+% =============================================================================
+
+@article{ferrante1987pdg,
+  title={The Program Dependence Graph and Its Use in Optimization},
+  author={Ferrante, Jeanne and Ottenstein, Karl J. and Warren, Joe D.},
+  journal={ACM Transactions on Programming Languages and Systems},
+  volume={9},
+  number={3},
+  pages={319--349},
+  year={1987},
+  publisher={ACM}
+}
+
+@inproceedings{yamaguchi2014cpg,
+  title={Modeling and Discovering Vulnerabilities with Code Property Graphs},
+  author={Yamaguchi, Fabian and Golde, Nico and Arp, Daniel and Rieck, Konrad},
+  booktitle={Proceedings of the 2014 IEEE Symposium on Security and Privacy (S\&P)},
+  pages={590--604},
+  year={2014},
+  publisher={IEEE}
+}
+
+@inproceedings{avgustinov2016ql,
+  title={{QL}: Object-oriented Queries on Relational Data},
+  author={Avgustinov, Pavel and de Moor, Oege and Jones, Michael Peyton and Sch{\"a}fer, Max},
+  booktitle={30th European Conference on Object-Oriented Programming (ECOOP)},
+  series={LIPIcs},
+  volume={56},
+  pages={2:1--2:25},
+  year={2016}
+}
+
+% =============================================================================
+% Section 3: Method
+% =============================================================================
+
+@misc{guelton2019beniget,
+  title={beniget: Extract Use-Def Chains from Python ASTs},
+  author={Guelton, Serge},
+  year={2019},
+  howpublished={\url{https://github.com/serge-sans-paille/beniget}},
+  note={Python package}
+}
+
+@inproceedings{hu2022lora,
+  title={{LoRA}: Low-Rank Adaptation of Large Language Models},
+  author={Hu, Edward J. and Shen, Yelong and Wallis, Phillip and Allen-Zhu, Zeyuan and Li, Yuanzhi and Wang, Shean and Wang, Lu and Chen, Weizhu},
+  booktitle={Proceedings of the Tenth International Conference on Learning Representations (ICLR)},
+  year={2022}
+}
+
+@article{oord2018representation,
+  title={Representation Learning with Contrastive Predictive Coding},
+  author={van den Oord, A{\"a}ron and Li, Yazhe and Vinyals, Oriol},
+  journal={arXiv preprint arXiv:1807.03748},
+  year={2018}
+}
+
+% =============================================================================
+% Supplement: New citations added 2026-05-15
+% =============================================================================
+
+@article{wang2021syncobert,
+  title={{SynCoBERT}: Syntax-Guided Multi-Modal Contrastive Pre-Training for Code Representation},
+  author={Wang, Xin and Wang, Yasheng and Mi, Fei and Zhou, Pingyi and Wan, Yao and Liu, Xiao and Li, Li and Wu, Hao and Liu, Jin and Jiang, Xin},
+  journal={arXiv preprint arXiv:2108.04556},
+  year={2021}
+}
+
+@inproceedings{liu2023contrabert,
+  title={{ContraBERT}: Enhancing Code Pre-trained Models via Contrastive Learning},
+  author={Liu, Shangqing and Wu, Bozhi and Xie, Xiaofei and Meng, Guozhu and Liu, Yang},
+  booktitle={Proceedings of the 45th IEEE/ACM International Conference on Software Engineering (ICSE)},
+  pages={2476--2487},
+  year={2023}
+}
+
+@inproceedings{he2023capstone,
+  title={{CAPSTONE}: Curriculum Sampling for Dense Retrieval with Document Expansion},
+  author={He, Xingwei and Gong, Yeyun and Jin, A-Long and Zhang, Hang and Dong, Anlei and Jiao, Jian and Yiu, Siu Ming and Duan, Nan},
+  booktitle={Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
+  pages={10531--10541},
+  year={2023}
+}
+
+@inproceedings{ding2023crosscodeeval,
+  title={{CrossCodeEval}: A Diverse and Multilingual Benchmark for Cross-File Code Completion},
+  author={Ding, Yangruibo and Wang, Zijian and Ahmad, Wasi Uddin and Ding, Hantian and Tan, Ming and Jain, Nihal and Ramanathan, Murali Krishna and Nallapati, Ramesh and Bhatia, Parminder and Roth, Dan and Xiang, Bing},
+  booktitle={Advances in Neural Information Processing Systems 36 (NeurIPS)},
+  year={2023}
+}
+
+@inproceedings{cummins2021programl,
+  title={{ProGraML}: A Graph-based Program Representation for Data Flow Analysis and Compiler Optimizations},
+  author={Cummins, Chris and Fisches, Zacharias V. and Ben-Nun, Tal and Hoefler, Torsten and O'Boyle, Michael F. P. and Leather, Hugh},
+  booktitle={Proceedings of the 38th International Conference on Machine Learning (ICML)},
+  pages={2244--2253},
+  year={2021},
+  publisher={PMLR}
+}

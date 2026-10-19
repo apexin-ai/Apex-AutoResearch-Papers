@@ -1,0 +1,55 @@
+Loaded 209 traces
+Split: train=125, val=41, test=43
+
+============================================================
+CONFIG 1: Single-layer GRU (layer 14, h=256)
+============================================================
+
+[GRU-single-L14] Params: 3,344,129
+  Epoch   1 | train_loss=0.8675 | val_loss=0.7519 | val_acc=0.7888 | val_cross=78.05% | val_lead=5.25
+  Epoch   5 | train_loss=0.2449 | val_loss=1.3631 | val_acc=0.7902 | val_cross=58.54% | val_lead=3.33
+  Epoch  10 | train_loss=0.0279 | val_loss=2.5481 | val_acc=0.7896 | val_cross=63.41% | val_lead=2.54
+  Early stopping at epoch 11
+
+============================================================
+CONFIG 2: Multi-layer GRU (7-layer mean, h=256)
+============================================================
+
+[GRU-multi-7L] Params: 3,344,129
+  Epoch   1 | train_loss=0.8277 | val_loss=0.7702 | val_acc=0.7534 | val_cross=70.73% | val_lead=8.28
+  Epoch   5 | train_loss=0.2616 | val_loss=1.2877 | val_acc=0.7736 | val_cross=65.85% | val_lead=2.81
+  Epoch  10 | train_loss=0.0454 | val_loss=2.3693 | val_acc=0.7544 | val_cross=65.85% | val_lead=4.44
+  Early stopping at epoch 11
+
+============================================================
+CONFIG 3: Static LR (layer 14)
+============================================================
+
+[LR-single-L14] Training LR on 5774 steps, dim=4096
+
+============================================================
+CONFIG 4: Static LR (7-layer mean)
+============================================================
+
+[LR-multi-7L] Training LR on 5774 steps, dim=4096
+
+============================================================
+FINAL COMPARISON
+============================================================
+Method                 |      Acc |   Cross% |  Lead Mean |   Lead Med |   Pos Lead
+--------------------------------------------------------------------------------
+GRU single L14         |   0.8386 |   72.1% |        3.5 |        0.0 |      13/31
+GRU multi 7L           |   0.8094 |   76.7% |        4.7 |        0.0 |      13/33
+LR single L14          |   0.8172 |   46.5% |       -2.0 |       -2.0 |       6/20
+LR multi 7L            |   0.8060 |   39.5% |        1.1 |        0.0 |       6/17
+
+============================================================
+PASS/FAIL ASSESSMENT
+============================================================
+Best GRU: GRU multi 7L (lead=4.7)
+Best LR:  LR multi 7L (lead=1.1)
+Delta: 3.7 steps
+GRU lead > 0? YES
+Delta > 3? YES → STRONG SIGNAL
+
+=== DONE ===

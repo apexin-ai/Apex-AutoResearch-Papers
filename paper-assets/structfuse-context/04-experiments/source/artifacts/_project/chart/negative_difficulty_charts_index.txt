@@ -1,0 +1,11 @@
+Charts generated on server bjb1-42106.
+
+Files:
+- /root/autodl-tmp/structfuse/artifacts/negative_difficulty_qwen.pdf (20KB)
+- /root/autodl-tmp/structfuse/artifacts/negative_difficulty_starcoder.pdf (20KB)
+- /root/autodl-tmp/structfuse/artifacts/negative_difficulty_comparison.pdf (23KB)
+- PNG versions also available
+
+Figure A (qwen): 3-strategy cosine similarity histogram using Qwen2.5-Coder-3B pretrained encoder
+Figure B (starcoder): Same using StarCoder2-3B pretrained encoder
+Figure C (comparison): Per-strategy cross-encoder overlay (Qwen vs StarCoder distributions)

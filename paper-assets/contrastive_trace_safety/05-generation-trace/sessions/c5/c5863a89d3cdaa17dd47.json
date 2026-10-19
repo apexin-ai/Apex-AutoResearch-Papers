@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "c5863a89d3cdaa17dd47",
+  "project": "contrastive_trace_safety",
+  "kind": "worker",
+  "title": "code fix appendix table overlap",
+  "task_key": "worker_code_fix_appendix_table_overlap_20260520T161525",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_appendix_table_overlap_20260520T161525.log",
+    "occurrence": 1,
+    "bytes": 1796915,
+    "sha256": "79f48e5bcc92eddc80e60e09cb1c6469a1749d67de9bcf61bfea8ff4a727dbb9"
+  },
+  "statistics": {
+    "messages": 213,
+    "user_turns": 0,
+    "tool_calls": 80,
+    "roles": {
+      "log": 1,
+      "system": 11,
+      "record": 1,
+      "assistant": 39,
+      "tool_call": 80,
+      "tool_result": 80,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 213,
+      "chunks": [
+        {
+          "path": "c5863a89d3cdaa17dd47-part-0001.json",
+          "message_count": 117
+        },
+        {
+          "path": "c5863a89d3cdaa17dd47-part-0002.json",
+          "message_count": 31
+        },
+        {
+          "path": "c5863a89d3cdaa17dd47-part-0003.json",
+          "message_count": 53
+        },
+        {
+          "path": "c5863a89d3cdaa17dd47-part-0004.json",
+          "message_count": 12
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-fix-appendix-table-overlap.md"
+}

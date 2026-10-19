@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7d917ce5bf027766db46",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code r7 qwq position baseline",
+  "task_key": "worker_code_r7_qwq_position_baseline_20260518T053447",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r7_qwq_position_baseline_20260518T053447_result.json",
+    "occurrence": 1,
+    "bytes": 1197,
+    "sha256": "132a194a39a3c57918d49f7481e5f1068b3046b55d281d7002f1c4d11d7b3312"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已保存。汇总如下：\n\n```\nQwQ-32B Position-only Baseline (Layer L60 corrected):\n\nMethod                   Bal_Acc   Precision    FPR\n─────────────────────────────────────────────────────\nPosition 2D              0.817     0.519       0.247\nPosition temporal W3     0.832     0.519       0.241\nHS probe L60 W3          0.796     0.564       0.217\n\nHS probe vs Position 2D gaps:\n  Precision: +4.5pp (0.564 vs 0.519)\n  FPR:       -3.0pp (0.217 vs 0.247)\n\nHS probe vs Position temporal W3 gaps:\n  Precision: +4.5pp (0.564 vs 0.519)\n  FPR:       -2.5pp (0.217 vs 0.241)\n```\n\n关键发现：\n- Position baseline 的 bal_acc 反而略高于 HS probe (0.832 vs 0.796)，因为位置信息本身就有一定预测力（harmful steps 偏向 trace 后段）\n- 但 HS probe 在 precision 和 FPR 上均优于 position baseline，说明 hidden state 提供了超越位置信息的区分能力\n- Position baseline 100% crossing rate 但 precision 仅~0.52（接近随机），大量 false positive；HS probe precision 更高 (0.564)、FPR 更低 (0.217)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r7-qwq-position-baseline.md"
+}

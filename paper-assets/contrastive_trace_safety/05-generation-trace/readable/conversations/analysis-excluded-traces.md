@@ -1,0 +1,1018 @@
+# analysis excluded traces
+
+**Layer Selection Sensitivity in Hidden-State Safety Probes for Reasoning Models** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 33
+- **Recorded user turns:** 0
+- **Tool calls:** 16
+- **Original source:** `logs/chats/worker_analysis_excluded_traces_20260517T044124.jsonl`
+- **Structured JSON:** [`4f91818b2d863a3d6fd7.json`](../../sessions/4f/4f91818b2d863a3d6fd7.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+33 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-17T04:46:35.509216+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_excluded_traces_20260517T044124",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_execute",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-17T04:46:35.509549+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_excluded_traces_20260517T044124",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-17T04:46:35.509767+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && grep -rn \"exclud\\|no_positive\\|zero.*pred\\|both.*zero\\|neither\" run_bootstrap*.py 2>/dev/null; echo \"---\"; find . -path \"*/bootstrap*\" -name \"*.py\" | head -10; echo \"---\"; find . -name \"run_bootstrap*\" | head -10",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_excluded_traces_20260517T044124",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cd /root/autodl-tmp/contrastive_trace_safety && grep -rn \"exclud\\|no_positive\\|zero.*pred\\|both.*zero\\|neither\" run_bootstrap*.py 2>/dev/null; echo \"---\"; find . -path \"*/bootstrap*\" -name \"*.py\" | head -10; echo \"---\"; find . -name \"run_bootstrap*\" | head -10",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-17T04:46:35.509918+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"---\\n./src/experiments/bootstrap_ci.py\\n---\\n./artifacts/qwq_text_verify/run_bootstrap.py\\n./artifacts/acc_precision_bootstrap/run_bootstrap.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_excluded_traces_20260517T044124",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-17T04:46:35.510048+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && cat artifacts/acc_precision_bootstrap/run_bootstrap.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_excluded_traces_20260517T044124",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cd /root/autodl-tmp/contrastive_trace_safety && cat artifacts/acc_precision_bootstrap/run_bootstrap.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-17T04:46:35.510335+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Paired bootstrap test: HS vs Text probe accuracy & precision across 3 models.\\\"\\\"\\\"\\n\\nimport os, sys, json, glob\\nos.environ[\\\"TOKENIZERS_PARALLELISM\\\"] = \\\"false\\\"\\nos.environ[\\\"HF_ENDPOINT\\\"] = \\\"https://hf-mirror.com\\\"\\n\\nimport numpy as np\\nimport torch\\nfrom pathlib import Path\\nfrom collections import defaultdict\\nfrom sklearn.linear_model import LogisticRegression\\n\\nsys.path.insert(0, \\\"/root/autodl-tmp/contrastive_trace_safety\\\")\\n\\nSEED = 42\\nN_BOOTSTRAP = 1000\\n\\nMODEL_CONFIGS = {\\n    \\\"r1_8b\\\": {\\n        \\\"model_name_hf\\\": \\\"r1-8b\\\",\\n        \\\"hs_dir\\\": Path(\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states\\\"),\\n        \\\"layer_idx\\\": 2,\\n        \\\"hidden_dim\\\": 4096,\\n        \\\"window\\\": 15,\\n    },\\n    \\\"r1_32b\\\": {\\n        \\\"model_name_hf\\\": \\\"r1-32b\\\",\\n        \\\"hs_dir\\\": Path(\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_r1_32b\\\"),\\n        \\\"layer_idx\\\": 10,\\n        \\\"hidden_dim\\\": 5120,\\n        \\\"window\\\": 10,\\n    },\\n    \\\"qwq_32b\\\": {\\n        \\\"model_name_hf\\\": \\\"QwQ\\\",\\n        \\\"hs_dir\\\": Path(\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_qwq_32b\\\"),\\n        \\\"layer_idx\\\": 2,\\n        \\\"hidden_dim\\\": 5120,\\n        \\\"window\\\": 5,\\n    },\\n}\\n\\nOUTPUT_DIR = Path(\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/acc_precision_bootstrap\\\")\\nOUTPUT_DIR.mkdir(parents=True, exist_ok=True)\\n\\n\\ndef load_sentences_from_hf(model_name_hf):\\n    from datasets import load_dataset\\n    ds = load_dataset(\\\"ishitakakkar-10/HarmThoughts\\\", split=\\\"train\\\")\\n    traces = defaultdict(list)\\n    for row in ds:\\n        if row[\\\"model_name\\\"] != model_name_hf:\\n            continue\\n        sid = row[\\\"sentence_id\\\"]\\n        pa
+…[truncated 7330 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_excluded_traces_20260517T044124",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-17T04:46:35.510533+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && sed -n '100,160p' artifacts/acc_precision_bootstrap/run_bootstrap.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_excluded_traces_20260517T044124",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cd /root/autodl-tmp/contrastive_trace_safety && sed -n '100,160p' artifacts/acc_precision_bootstrap/run_bootstrap.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-17T04:46:35.510727+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n\\ndef build_temporal_features(traces, feat_fn, window, feat_dim):\\n    X, y = [], []\\n    for t in traces:\\n        feats = feat_fn(t)\\n        labels = np.array(t[\\\"step_labels\\\"])\\n        n = min(len(labels), feats.shape[0])\\n        feats = feats[:n]\\n        labels = labels[:n]\\n        for i in range(n):\\n            start = max(0, i - window + 1)\\n            w = feats[start:i+1]\\n            if len(w) < window:\\n                pad = np.zeros((window - len(w), feat_dim), dtype=np.float32)\\n                w = np.concatenate([pad, w], axis=0)\\n            X.append(w.flatten())\\n            y.append(labels[i])\\n    return np.array(X, dtype=np.float32), np.array(y)\\n\\n\\ndef predict_per_trace(clf, traces, feat_fn, window, feat_dim):\\n    all_preds = []\\n    all_labels = []\\n    for t in traces:\\n        feats = feat_fn(t)\\n        labels = np.array(t[\\\"step_labels\\\"])\\n        n = min(len(labels), feats.shape[0])\\n        feats = feats[:n]\\n        labels = labels[:n]\\n        X_trace = []\\n        for i in range(n):\\n            start = max(0, i - window + 1)\\n            w = feats[start:i+1]\\n            if len(w) < window:\\n                pad = np.zeros((window - len(w), feat_dim), dtype=np.float32)\\n                w = np.concatenate([pad, w], axis=0)\\n            X_trace.append(w.flatten())\\n        X_trace = np.array(X_trace, dtype=np.float32)\\n        preds = clf.predict(X_trace)\\n        all_preds.append(preds)\\n        all_labels.append(labels)\\n    return all_preds, all_labels\\n\\n\\ndef compute_per_trace_acc(preds_list, labels_list):\\n    accs = []\\n    for preds, labels in zip(preds_list, labels_list):\\n        accs.append(np.mean(preds == labels))\\n    return np.array(accs)\\n\\n\\ndef compute_per_trace_precision(preds_list, labels_list):\\n    precs = []\\n    for preds, labels in zip(preds_list, labels_list):\\n        tp = np.sum((pre
+…[truncated 305 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_excluded_traces_20260517T044124",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-17T04:46:35.510878+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && cat artifacts/acc_precision_bootstrap/results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_excluded_traces_20260517T044124",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cd /root/autodl-tmp/contrastive_trace_safety && cat artifacts/acc_precision_bootstrap/results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-17T04:46:35.511048+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"r1_8b\\\": {\\n    \\\"n_test_traces\\\": 43,\\n    \\\"n_prec_valid_traces\\\": 33,\\n    \\\"n_prec_excluded\\\": 10,\\n    \\\"hs_acc_mean\\\": 0.8125516424642037,\\n    \\\"text_acc_mean\\\": 0.7307081928314669,\\n    \\\"acc_diff_mean\\\": 0.08184344963273703,\\n    \\\"acc_diff_ci95\\\": [\\n      0.02632531340338604,\\n      0.13837524447558702\\n    ],\\n    \\\"acc_p_value\\\": 0.005,\\n    \\\"hs_prec_mean\\\": 0.7677909809488757,\\n    \\\"text_prec_mean\\\": 0.5442063152123122,\\n    \\\"prec_diff_mean\\\": 0.2235846657365634,\\n    \\\"prec_diff_ci95\\\": [\\n      0.12454858435000564,\\n      0.3341096182721348\\n    ],\\n    \\\"prec_p_value\\\": 0.0\\n  },\\n  \\\"r1_32b\\\": {\\n    \\\"n_test_traces\\\": 20,\\n    \\\"n_prec_valid_traces\\\": 20,\\n    \\\"n_prec_excluded\\\": 0,\\n    \\\"hs_acc_mean\\\": 0.70354812452159,\\n    \\\"text_acc_mean\\\": 0.6412063820072131,\\n    \\\"acc_diff_mean\\\": 0.0623417425143768,\\n    \\\"acc_diff_ci95\\\": [\\n      -0.01705401275573909,\\n      0.14586188358742705\\n    ],\\n    \\\"acc_p_value\\\": 0.13,\\n    \\\"hs_prec_mean\\\": 0.6099723631631526,\\n    \\\"text_prec_mean\\\": 0.5160197368421053,\\n    \\\"prec_diff_mean\\\": 0.09395262632104737,\\n    \\\"prec_diff_ci95\\\": [\\n      0.00028475517538017916,\\n      0.2046046650717703\\n    ],\\n    \\\"prec_p_value\\\": 0.064\\n  },\\n  \\\"qwq_32b\\\": {\\n    \\\"n_test_traces\\\": 19,\\n    \\\"n_prec_valid_traces\\\": 18,\\n    \\\"n_prec_excluded\\\": 1,\\n    \\\"hs_acc_mean\\\": 0.6794778205841906,\\n    \\\"text_acc_mean\\\": 0.6708109256303593,\\n    \\\"acc_diff_mean\\\": 0.008666894953831205,\\n    \\\"acc_diff_ci95\\\": [\\n      -0.06183913243706158,\\n      0.07344865829081285\\n    ],\\n    \\\"acc_p_value\\\": 0.828,\\n    \\\"hs_prec_mean\\\": 0.5826768733759271,\\n    \\\"text_prec_mean\\\": 0.5251866615592106,\\n    \\\"prec_diff_mean\\\": 0.05749021181671662,\\n  
+…[truncated 529 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_excluded_traces_20260517T044124",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-17T04:46:35.511274+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat << 'EOF' > /root/autodl-tmp/contrastive_trace_safety/analyze_excluded_traces.py\n\"\"\"Analyze excluded traces: characteristics of 10 excluded vs 33 included in r1_8b bootstrap.\"\"\"\n\nimport os, sys, json, glob\nos.environ[\"TOKENIZERS_PARALLELISM\"] = \"false\"\nos.environ[\"HF_ENDPOINT\"] = \"https://hf-mirror.com\"\n\nimport numpy as np\nimport torch\nfrom pathlib import Path\nfrom collections import defaultdict\nfrom sklearn.linear_model import LogisticRegression\nfrom scipy.stats import mannwhitneyu, fisher_exact\n\nsys.path.insert(0, \"/root/autodl-tmp/contrastive_trace_safety\")\n\nSEED = 42\nHS_DIR = Path(\"/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states\")\nWINDOW = 15\nHIDDEN_DIM = 4096\n\ndef load_sentences_from_hf(model_name_hf):\n    from datasets import load_dataset\n    ds = load_dataset(\"ishitakakkar-10/HarmThoughts\", split=\"train\")\n    traces = defaultdict(list)\n    for row in ds:\n        if row[\"model_name\"] != model_name_hf:\n            continue\n        sid = row[\"sentence_id\"]\n        parts = sid.rsplit(\"-\", 1)\n        trace_id = parts[0]\n        step_idx = int(parts[1]) - 1\n        traces[trace_id].append((step_idx, row[\"sentence\"]))\n    for tid in traces:\n        traces[tid].sort(key=lambda x: x[0])\n        traces[tid] = [s for _, s in traces[tid]]\n    return dict(traces)\n\ndef load_traces(hs_dir, sentences_map):\n    traces = []\n    for pt_file in sorted(glob.glob(str(hs_dir / \"*.pt\"))):\n        d = torch.load(pt_file, map_location=\"cpu\", weights_only=False)\n        if d.get(\"step_labels\") is None:\n            continue\n        cp = d.get(\"commitment_point\")\n        if cp is None:\n            continue\n        trace_id = d[\"trace_id\"]\n        if trace_id not in sentences_map:\n            continue\n        sentences = sentences_map[trace_id]\n        n_steps = len(d[\"step_labels\"])\n        if len(sentences) < n_steps:\n            continue\n        traces.append({\n            \"trace_id\": trace_id,\n            \"hidden_states\": d[\"hidden_states\"],\n            \"step_labels\": d[\"step_labels\"][:n_steps],\n            \"commitment_point\": cp,\n            \"sentences\": sentences[:n_steps],\n        })\n    return traces\n\ndef split_traces(traces, seed=SEED):\n    rng = np.random.default_rng(seed)\n    indices = rng.permutation(len(traces))\n    n_train = int(len(traces) * 0.6)\n    n_val = int(len(traces) * 0.2)\n    return (\n        [traces[i] for i in indices[:n_train]],\n        [traces[i] for i in indices[n_train:n_train+n_val]],\n        [traces[i] for i in indices[n_train+n_val:]],\n    )\n\ndef build_temporal_features(traces, feat_fn, window, feat_dim):\n    X, y = [], []\n    for t in traces:\n        feats = feat_fn(t)\n        labels = np.array(t[\"step_labels\"])\n        n = min(len(labels), feats.shape[0])\n        feats = feats[:n]\n        labels = labels[:n]\n        for i in range(n):\n            start = max(0, i - window + 1)\n            w = feats[start:i+1]\n            if len(w) < window:\n                pad = np.zeros((window - len(w), feat_dim), dtype=np.float32)\n                w = np.concatenate([pad, w], axis=0)\n            X.append(w.flatten())\n            y.append(labels[i])\n    return np.array(X, dtype=np.float32), np.array(y)\n\ndef predict_per_trace(clf, traces, feat_fn, window, feat_dim):\n    all_preds = []\n    all_labels = []\n    for t in traces:\n        feats = feat_fn(t)\n        labels = np.array(t[\"step_labels\"])\n        n = min(len(labels), feats.shape[0])\n        feats = feats[:n]\n        labels = labels[:n]\n        X_trace = []\n        for i in range(n):\n            start = max(0, i - window + 1)\n            w = feats[start:i+1]\n            if len(w) < window:\n                pad = np.zeros((window - len(w), feat_dim), dtype=np.float32)\n                w = np.concatenate([pad, w], axis=0)\n            X_trace.append(w.flatten())\n        X_trace = np.array(X_trace, dtype=np.float32)\n        preds = clf.predict(X_trace)\n        all_preds.append(preds)\n        all_labels.append(labels)\n    return all_preds, all_labels\n\ndef main():\n    from sentence_transformers import SentenceTransformer\n    print(\"Loading sentence transformer...\", flush=True)\n    st_model = SentenceTransformer(\"all-MiniLM-L6-v2\", device=\"cpu\")\n    \n    print(\"Loading HF sentences for r1-8b...\", flush=True)\n    sentences_map = load_sentences_from_hf(\"r1-8b\")\n    \n    print(\"Loading traces...\", flush=True)\n    all_traces = load_traces(HS_DIR, sentences_map)\n    print(f\"  Total traces: {len(all_traces)}\", flush=True)\n    \n    train, val, test = split_traces(all_traces)\n    print(f\"  Train: {len(train)}, Val: {len(val)}, Test: {len(test)}\", flush=True)\n    \n    # Feature extractors\n    layer_idx = 2\n    hidden_dim = HIDDEN_DIM\n    window = WINDOW\n    text_dim = 384\n    \n    def hs_feat(t):\n        hs = t[\"hidden_states\"]\n        if isinstance(hs, torch.Tensor):\n            hs = hs.numpy()\n        if hs.ndim == 3:\n            return hs[:, layer_idx, :].astype(np.float32)\n        return hs.astype(np.float32)\n    \n    def text_feat(t):\n        embs = st_model.encode(t[\"sentences\"], show_progress_bar=False)\n        return embs.astype(np.float32)\n    \n    # Train probes\n    print(\"Training HS probe...\", flush=True)\n    X_train_hs, y_train_hs = build_temporal_features(train, hs_feat, window, hidden_dim)\n    clf_hs = LogisticRegression(C=1.0, class_weight=\"balanced\", max_iter=1000,\n                                 random_state=SEED, solver=\"liblinear\", dual=True)\n    clf_hs.fit(X_train_hs, y_train_hs)\n    \n    print(\"Training Text probe...\", flush=True)\n    X_train_text, y_train_text = build_temporal_features(train, text_feat, window, text_dim)\n    clf_text = LogisticRegression(C=1.0, class_weight=\"balanced\", max_iter=1000,\n                                   random_state=SEED, solver=\"liblinear\", dual=True)\n    clf_text.fit(X_train_text, y_train_text)\n    \n    # Predict on test\n    print(\"Predicting on test...\", flush=True)\n    hs_preds, hs_labels = predict_per_trace(clf_hs, test, hs_feat, window, hidden_dim)\n    text_preds, text_labels = predict_per_trace(clf_text, test, text_feat, window, text_dim)\n    \n    # Identify excluded traces\n    excluded_indices = []\n    included_indices = []\n    for i in range(len(test)):\n        hs_tp = np.sum((hs_preds[i] == 1) & (hs_labels[i] == 1))\n        hs_fp = np.sum((hs_preds[i] == 1) & (hs_labels[i] == 0))\n        text_tp = np.sum((text_preds[i] == 1) & (text_labels[i] == 1))\n        text_fp = np.sum((text_preds[i] == 1) & (text_labels[i] == 0))\n        \n        hs_has_pos = (hs_tp + hs_fp) > 0\n        text_has_pos = (text_tp + text_fp) > 0\n        \n        if hs_has_pos and text_has_pos:\n            included_indices.append(i)\n        else:\n            excluded_indices.append(i)\n    \n    print(f\"\\nExcluded: {len(excluded_indices)}, Included: {len(included_indices)}\")\n    \n    # Extract trace characteristics\n    def get_trace_stats(indices):\n        lengths = []\n        cp_positions = []\n        cp_relative = []\n        pos_rates = []\n        for i in indices:\n            t = test[i]\n            n_steps = len(t[\"step_labels\"])\n            cp = t[\"commitment_point\"]\n            labels = np.array(t[\"step_labels\"])\n            lengths.append(n_steps)\n            cp_positions.append(cp)\n            cp_relative.append(cp / n_steps if n_steps > 0 else 0)\n            pos_rates.append(labels.mean())\n        return {\n            \"lengths\": np.array(lengths),\n            \"cp_positions\": np.array(cp_positions),\n            \"cp_relative\": np.array(cp_relative),\n            \"pos_rates\": np.array(pos_rates),\n        }\n    \n    excl_stats = get_trace_stats(excluded_indices)\n    incl_stats = get_trace_stats(included_indices)\n    \n    # Print detailed analysis\n    print(\"\\n\" + \"=\"*70)\n    print(\"EXCLUDED TRACES ANALYSIS (r1_8b, W=15, layer=2)\")\n    print(f\"  10 excluded / 33 included from 43 test traces\")\n    print(\"=\"*70)\n    \n    # Why excluded: check HS-only, text-only, or both have no positive preds\n    print(\"\\nExclusion Reason Breakdown:\")\n    for i in excluded_indices:\n        t = test[i]\n        hs_pos_count = np.sum(hs_preds[i] == 1)\n        text_pos_count = np.sum(text_preds[i] == 1)\n        reason = []\n        if hs_pos_count == 0:\n            reason.append(\"HS=0_pos\")\n        if text_pos_count == 0:\n            reason.append(\"Text=0_pos\")\n        n_steps = len(t[\"step_labels\"])\n        cp = t[\"commitment_point\"]\n        pos_rate = np.mean(t[\"step_labels\"])\n        print(f\"  trace_id={t['trace_id'][:40]:40s} steps={n_steps:3d} CP={cp:3d} \"\n              f\"pos_rate={pos_rate:.3f} reason={'+'.join(reason)}\")\n    \n    print(\"\\n\" + \"-\"*70)\n    print(\"STATISTICAL COMPARISONS\")\n    print(\"-\"*70)\n    \n    # 1. Trace Length\n    print(\"\\n1. Trace Length (number of steps):\")\n    print(f\"   Excluded: mean={excl_stats['lengths'].mean():.1f}, median={np.median(excl_stats['lengths']):.1f}, \"\n          f\"std={excl_stats['lengths'].std():.1f}, range=[{excl_stats['lengths'].min()}, {excl_stats['lengths'].max()}]\")\n    print(f\"   Included: mean={incl_stats['lengths'].mean():.1f}, median={np.median(incl_stats['lengths']):.1f}, \"\n          f\"std={incl_stats['lengths'].std():.1f}, range=[{incl_stats['lengths'].min()}, {incl_stats['lengths'].max()}]\")\n    U, p = mannwhitneyu(excl_stats['lengths'], incl_stats['lengths'], alternative='two-sided')\n    print(f\"   Mann-Whitney U: U={U:.1f}, p={p:.4f}\")\n    direction = \"shorter\" if excl_stats['lengths'].mean() < incl_stats['lengths'].mean() else \"longer\"\n    sig = \"SIGNIFICANT\" if p < 0.05 else \"not significant\"\n    print(f\"   Conclusion: Excluded traces are {direction} ({sig})\")\n    \n    # 2. CP Position (absolute)\n    print(\"\\n2. Commitment Point (absolute step index):\")\n    print(f\"   Excluded: mean={excl_stats['cp_positions'].mean():.1f}, median={np.median(excl_stats['cp_positions']):.1f}\")\n    print(f\"   Included: mean={incl_stats['cp_positions'].mean():.1f}, median={np.median(incl_stats['cp_positions']):.1f}\")\n    U_cp, p_cp = mannwhitneyu(excl_stats['cp_positions'], incl_stats['cp_positions'], alternative='two-sided')\n    print(f\"   Mann-Whitney U: U={U_cp:.1f}, p={p_cp:.4f}\")\n    \n    # 3. CP Position (relative)\n    print(\"\\n3. Commitment Point (relative, 0-1):\")\n    print(f\"   Excluded: mean={excl_stats['cp_relative'].mean():.3f}, median={np.median(excl_stats['cp_relative']):.3f}\")\n    print(f\"   Included: mean={incl_stats['cp_relative'].mean():.3f}, median={np.median(incl_stats['cp_relative']):.3f}\")\n    U_cpr, p_cpr = mannwhitneyu(excl_stats['cp_relative'], incl_stats['cp_relative'], alternative='two-sided')\n    print(f\"   Mann-Whitney U: U={U_cpr:.1f}, p={p_cpr:.4f}\")\n    direction_cp = \"earlier\" if excl_stats['cp_relative'].mean() < incl_stats['cp_relative'].mean() else \"later\"\n    sig_cp = \"SIGNIFICANT\" if p_cpr < 0.05 else \"not significant\"\n    print(f\"   Conclusion: Excluded traces have {direction_cp} CP ({sig_cp})\")\n    \n    # 4. Positive label rate (ground truth)\n    print(\"\\n4. Ground Truth Positive Rate (fraction of steps labeled 1):\")\n    print(f\"   Excluded: mean={excl_stats['pos_rates'].mean():.3f}, median={np.median(excl_stats['pos_rates']):.3f}\")\n    print(f\"   Included: mean={incl_stats['pos_rates'].mean():.3f}, median={np.median(incl_stats['pos_rates']):.3f}\")\n    U_pr, p_pr = mannwhitneyu(excl_stats['pos_rates'], incl_stats['pos_rates'], alternative='two-sided')\n    print(f\"   Mann-Whitney U: U={U_pr:.1f}, p={p_pr:.4f}\")\n    sig_pr = \"SIGNIFICANT\" if p_pr < 0.05 else \"not significant\"\n    print(f\"   Conclusion: Excluded traces have {'lower' if excl_stats['pos_rates'].mean() < incl_stats['pos_rates'].mean() else 'higher'} positive rate ({sig_pr})\")\n    \n    # 5. Check if excluded traces have all-zero labels (no harmful steps at all)\n    print(\"\\n5. Label Distribution:\")\n    excl_all_zero = sum(1 for i in excluded_indices if np.sum(test[i][\"step_labels\"]) == 0)\n    incl_all_zero = sum(1 for i in included_indices if np.sum(test[i][\"step_labels\"]) == 0)\n    print(f\"   Excluded with ALL labels=0 (no harmful steps): {excl_all_zero}/{len(excluded_indices)}\")\n    print(f\"   Included with ALL labels=0 (no harmful steps): {incl_all_zero}/{len(included_indices)}\")\n    # Fisher's exact test\n    table = [[excl_all_zero, len(excluded_indices) - excl_all_zero],\n             [incl_all_zero, len(included_indices) - incl_all_zero]]\n    odds, p_fisher = fisher_exact(table)\n    print(f\"   Fisher's exact: odds_ratio={odds:.2f}, p={p_fisher:.4f}\")\n    \n    # 6. Trace IDs for reference\n    print(\"\\n6. Excluded Trace IDs:\")\n    for i in excluded_indices:\n        print(f\"   - {test[i]['trace_id']}\")\n    \n    # Overall conclusion\n    print(\"\\n\" + \"=\"*70)\n    print(\"OVERALL CONCLUSION:\")\n    any_sig = p < 0.05 or p_cpr < 0.05 or p_pr < 0.05\n    if any_sig:\n        print(\"  SYSTEMATIC BIAS DETECTED in exclusion:\")\n        if p < 0.05:\n            print(f\"    - Length: excluded are {direction} (p={p:.4f})\")\n        if p_cpr < 0.05:\n            print(f\"    - CP position: excluded are {direction_cp} (p={p_cpr:.4f})\")\n        if p_pr < 0.05:\n            print(f\"    - Positive rate differs (p={p_pr:.4f})\")\n    else:\n        print(\"  NO significant systematic bias detected.\")\n        print(\"  Exclusion appears mechanistic (both probes predict all-negative)\")\n        print(\"  and does not systematically select traces with distinct properties.\")\n    print(\"=\"*70)\n\nif __name__ == \"__main__\":\n    main()\nEOF\necho \"Script written.\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_excluded_traces_20260517T044124",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat << 'EOF' > /root/autodl-tmp/contrastive_trace_safety/analyze_excluded_traces.py\n\"\"\"Analyze excluded traces: characteristics of 10 excluded vs 33 included in r1_8b bootstrap.\"\"\"\n\nimport os, sys, json, glob\nos.environ[\"TOKENIZERS_PARALLELISM\"] = \"false\"\nos.environ[\"HF_ENDPOINT\"] = \"https://hf-mirror.com\"\n\nimport numpy as np\nimport torch\nfrom pathlib import Path\nfrom collections import defaultdict\nfrom sklearn.linear_model import LogisticRegression\nfrom scipy.stats import mannwhitneyu, fisher_exact\n\nsys.path.insert(0, \"/root/autodl-tmp/contrastive_trace_safety\")\n\nSEED = 42\nHS_DIR = Path(\"/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states\")\nWINDOW = 15\nHIDDEN_DIM = 4096\n\ndef load_sentences_from_hf(model_name_hf):\n    from datasets import load_dataset\n    ds = load_dataset(\"ishitakakkar-10/HarmThoughts\", split=\"train\")\n    traces = defaultdict(list)\n    for row in ds:\n        if row[\"model_name\"] != model_name_hf:\n            continue\n        sid = row[\"sentence_id\"]\n        parts = sid.rsplit(\"-\", 1)\n        trace_id = parts[0]\n        step_idx = int(parts[1]) - 1\n        traces[trace_id].append((step_idx, row[\"sentence\"]))\n    for tid in traces:\n        traces[tid].sort(key=lambda x: x[0])\n        traces[tid] = [s for _, s in traces[tid]]\n    return dict(traces)\n\ndef load_traces(hs_dir, sentences_map):\n    traces = []\n    for pt_file in sorted(glob.glob(str(hs_dir / \"*.pt\"))):\n        d = torch.load(pt_file, map_location=\"cpu\", weights_only=False)\n        if d.get(\"step_labels\") is None:\n            continue\n        cp = d.get(\"commitment_point\")\n        if cp is None:\n            continue\n        trace_id = d[\"trace_id\"]\n        if trace_id not in sentences_map:\n            continue\n        sentences = sentences_map[trace_id]\n        n_steps = len(d[\"step_labels\"])\n        if len(sentences) < n_steps:\n            continue\n        traces.append({\n            \"trace_id\": trace_id,\n            \"hidden_states\": d[\"hidden_states\"],\n            \"step_labels\": d[\"step_labels\"][:n_steps],\n            \"commitment_point\": cp,\n            \"sentences\": sentences[:n_steps],\n        })\n    return traces\n\ndef split_traces(traces, seed=SEED):\n    rng = np.random.default_rng(seed)\n    indices = rng.permutation(len(traces))\n    n_train = int(len(traces) * 0.6)\n    n_val = int(len(traces) * 0.2)\n    return (\n        [traces[i] for i in indices[:n_train]],\n        [traces[i] for i in indices[n_train:n_train+n_val]],\n        [traces[i] for i in indices[n_train+n_val:]],\n    )\n\ndef build_temporal_features(traces, feat_fn, window, feat_dim):\n    X, y = [], []\n    for t in traces:\n        feats = feat_fn(t)\n        labels = np.array(t[\"step_labels\"])\n        n = min(len(labels), feats.shape[0])\n        feats = feats[:n]\n        labels = labels[:n]\n        for i in range(n):\n            start = max(0, i - window + 1)\n            w = feats[start:i+1]\n            if len(w) < window:\n                pad = np.zeros((window - len(w), feat_dim), dtype=np.float32)\n                w = np.concatenate([pad, w], axis=0)\n            X.append(w.flatten())\n            y.append(labels[i])\n    return np.array(X, dtype=np.float32), np.array(y)\n\ndef predict_per_trace(clf, traces, feat_fn, window, feat_dim):\n    all_preds = []\n    all_labels = []\n    for t in traces:\n        feats = feat_fn(t)\n        labels = np.array(t[\"step_labels\"])\n        n = min(len(labels), feats.shape[0])\n        feats = feats[:n]\n        labels = labels[:n]\n        X_trace = []\n        for i in range(n):\n            start = max(0, i - window + 1)\n            w = feats[start:i+1]\n            if len(w) < window:\n                pad = np.zeros((window - len(w), feat_dim), dtype=np.float32)\n                w = np.concatenate([pad, w], axis=0)\n            X_trace.append(w.flatten())\n        X_trace = np.array(X_trace, dtype=np.float32)\n        preds = clf.predict(X_trace)\n        all_preds.append(preds)\n        all_labels.append(labels)\n    return all_preds, all_labels\n\ndef main():\n    from sentence_transformers import SentenceTransformer\n    print(\"Loading sentence transformer...\", flush=True)\n    st_model = SentenceTransformer(\"all-MiniLM-L6-v2\", device=\"cpu\")\n    \n    print(\"Loading HF sentences for r1-8b...\", flush=True)\n    sentences_map = load_sentences_from_hf(\"r1-8b\")\n    \n    print(\"Loading traces...\", flush=True)\n    all_traces = load_traces(HS_DIR, sentences_map)\n    print(f\"  Total traces: {len(all_traces)}\", flush=True)\n    \n    train, val, test = split_traces(all_traces)\n    print(f\"  Train: {len(train)}, Val: {len(val)}, Test: {len(test)}\", flush=True)\n    \n    # Feature extractors\n    layer_idx = 2\n    hidden_dim = HIDDEN_DIM\n    window = WINDOW\n    text_dim = 384\n    \n    def hs_feat(t):\n        hs = t[\"hidden_states\"]\n        if isinstance(hs, torch.Tensor):\n            hs = hs.numpy()\n        if hs.ndim == 3:\n            return hs[:, layer_idx, :].astype(np.float32)\n        return hs.astype(np.float32)\n    \n    def text_feat(t):\n        embs = st_model.encode(t[\"sentences\"], show_progress_bar=False)\n        return embs.astype(np.float32)\n    \n    # Train probes\n    print(\"Training HS probe...\", flush=True)\n    X_train_hs, y_train_hs = build_temporal_features(train, hs_feat, window, hidden_dim)\n    clf_hs = LogisticRegression(C=1.0, class_weight=\"balanced\", max_iter=1000,\n                                 random_state=SEED, solver=\"liblinear\", dual=True)\n    clf_hs.fit(X_train_hs, y_train_hs)\n    \n    print(\"Training Text probe...\", flush=True)\n    X_train_text, y_train_text = build_temporal_features(train, text_feat, window, text_dim)\n    clf_text = LogisticRegression(C=1.0, class_weight=\"balanced\", max_iter=1000,\n                                   random_state=SEED, solver=\"liblinear\", dual=True)\n    clf_text.fit(X_train_text, y_train_text)\n    \n    # Predict on test\n    print(\"Predicting on test...\", flush=True)\n    hs_preds, hs_labels = predict_per_trace(clf_hs, test, hs_feat, window, hidden_dim)\n    text_preds, text_labels = predict_per_trace(clf_text, test, text_feat, window, text_dim)\n    \n    # Identify excluded traces\n    excluded_indices = []\n    included_indices = []\n    for i in range(len(test)):\n        hs_tp = np.sum((hs_preds[i] == 1) & (hs_labels[i] == 1))\n        hs_fp = np.sum((hs_preds[i] == 1) & (hs_labels[i] == 0))\n        text_tp = np.sum((text_preds[i] == 1) & (text_labels[i] == 1))\n        text_fp = np.sum((text_preds[i] == 1) & (text_labels[i] == 0))\n        \n        hs_has_pos = (hs_tp + hs_fp) > 0\n        text_has_pos = (text_tp + text_fp) > 0\n        \n        if hs_has_pos and text_has_pos:\n            included_indices.append(i)\n        else:\n            excluded_indices.append(i)\n    \n    print(f\"\\nExcluded: {len(excluded_indices)}, Included: {len(included_indices)}\")\n    \n    # Extract trace characteristics\n    def get_trace_stats(indices):\n        lengths = []\n        cp_positions = []\n        cp_relative = []\n        pos_rates = []\n        for i in indices:\n            t = test[i]\n            n_steps = len(t[\"step_labels\"])\n            cp = t[\"commitment_point\"]\n            labels = np.array(t[\"step_labels\"])\n            lengths.append(n_steps)\n            cp_positions.append(cp)\n            cp_relative.append(cp / n_steps if n_steps > 0 else 0)\n            pos_rates.append(labels.mean())\n        return {\n            \"lengths\": np.array(lengths),\n            \"cp_positions\": np.array(cp_positions),\n            \"cp_relative\": np.array(cp_relative),\n            \"pos_rates\": np.array(pos_rates),\n        }\n    \n    excl_stats = get_trace_stats(excluded_indices)\n    incl_stats = get_trace_stats(included_indices)\n    \n    # Print detailed analysis\n    print(\"\\n\" + \"=\"*70)\n    print(\"EXCLUDED TRACES ANALYSIS (r1_8b, W=15, layer=2)\")\n    print(f\"  10 excluded / 33 included from 43 test traces\")\n    print(\"=\"*70)\n    \n    # Why excluded: check HS-only, text-only, or both have no positive preds\n    print(\"\\nExclusion Reason Breakdown:\")\n    for i in excluded_indices:\n        t = test[i]\n        hs_pos_count = np.sum(hs_preds[i] == 1)\n        text_pos_count = np.sum(text_preds[i] == 1)\n        reason = []\n        if hs_pos_count == 0:\n            reason.append(\"HS=0_pos\")\n        if text_pos_count == 0:\n            reason.append(\"Text=0_pos\")\n        n_steps = len(t[\"step_labels\"])\n        cp = t[\"commitment_point\"]\n        pos_rate = np.mean(t[\"step_labels\"])\n        print(f\"  trace_id={t['trace_id'][:40]:40s} steps={n_steps:3d} CP={cp:3d} \"\n              f\"pos_rate={pos_rate:.3f} reason={'+'.join(reason)}\")\n    \n    print(\"\\n\" + \"-\"*70)\n    print(\"STATISTICAL COMPARISONS\")\n    print(\"-\"*70)\n    \n    # 1. Trace Length\n    print(\"\\n1. Trace Length (number of steps):\")\n    print(f\"   Excluded: mean={excl_stats['lengths'].mean():.1f}, median={np.median(excl_stats['lengths']):.1f}, \"\n          f\"std={excl_stats['lengths'].std():.1f}, range=[{excl_stats['lengths'].min()}, {excl_stats['lengths'].max()}]\")\n    print(f\"   Included: mean={incl_stats['lengths'].mean():.1f}, median={np.median(incl_stats['lengths']):.1f}, \"\n          f\"std={incl_stats['lengths'].std():.1f}, range=[{incl_stats['lengths'].min()}, {incl_stats['lengths'].max()}]\")\n    U, p = mannwhitneyu(excl_stats['lengths'], incl_stats['lengths'], alternative='two-sided')\n    print(f\"   Mann-Whitney U: U={U:.1f}, p={p:.4f}\")\n    direction = \"shorter\" if excl_stats['lengths'].mean() < incl_stats['lengths'].mean() else \"longer\"\n    sig = \"SIGNIFICANT\" if p < 0.05 else \"not significant\"\n    print(f\"   Conclusion: Excluded traces are {direction} ({sig})\")\n    \n    # 2. CP Position (absolute)\n    print(\"\\n2. Commitment Point (absolute step index):\")\n    print(f\"   Excluded: mean={excl_stats['cp_positions'].mean():.1f}, median={np.median(excl_stats['cp_positions']):.1f}\")\n    print(f\"   Included: mean={incl_stats['cp_positions'].mean():.1f}, median={np.median(incl_stats['cp_positions']):.1f}\")\n    U_cp, p_cp = mannwhitneyu(excl_stats['cp_positions'], incl_stats['cp_positions'], alternative='two-sided')\n    print(f\"   Mann-Whitney U: U={U_cp:.1f}, p={p_cp:.4f}\")\n    \n    # 3. CP Position (relative)\n    print(\"\\n3. Commitment Point (relative, 0-1):\")\n    print(f\"   Excluded: mean={excl_stats['cp_relative'].mean():.3f}, median={np.median(excl_stats['cp_relative']):.3f}\")\n    print(f\"   Included: mean={incl_stats['cp_relative'].mean():.3f}, median={np.median(incl_stats['cp_relative']):.3f}\")\n    U_cpr, p_cpr = mannwhitneyu(excl_stats['cp_relative'], incl_stats['cp_relative'], alternative='two-sided')\n    print(f\"   Mann-Whitney U: U={U_cpr:.1f}, p={p_cpr:.4f}\")\n    direction_cp = \"earlier\" if excl_stats['cp_relative'].mean() < incl_stats['cp_relative'].mean() else \"later\"\n    sig_cp = \"SIGNIFICANT\" if p_cpr < 0.05 else \"not significant\"\n    print(f\"   Conclusion: Excluded traces have {direction_cp} CP ({sig_cp})\")\n    \n    # 4. Positive label rate (ground truth)\n    print(\"\\n4. Ground Truth Positive Rate (fraction of steps labeled 1):\")\n    print(f\"   Excluded: mean={excl_stats['pos_rates'].mean():.3f}, median={np.median(excl_stats['pos_rates']):.3f}\")\n    print(f\"   Included: mean={incl_stats['pos_rates'].mean():.3f}, median={np.median(incl_stats['pos_rates']):.3f}\")\n    U_pr, p_pr = mannwhitneyu(excl_stats['pos_rates'], incl_stats['pos_rates'], alternative='two-sided')\n    print(f\"   Mann-Whitney U: U={U_pr:.1f}, p={p_pr:.4f}\")\n    sig_pr = \"SIGNIFICANT\" if p_pr < 0.05 else \"not significant\"\n    print(f\"   Conclusion: Excluded traces have {'lower' if excl_stats['pos_rates'].mean() < incl_stats['pos_rates'].mean() else 'higher'} positive rate ({sig_pr})\")\n    \n    # 5. Check if excluded traces have all-zero labels (no harmful steps at all)\n    print(\"\\n5. Label Distribution:\")\n    excl_all_zero = sum(1 for i in excluded_indices if np.sum(test[i][\"step_labels\"]) == 0)\n    incl_all_zero = sum(1 for i in included_indices if np.sum(test[i][\"step_labels\"]) == 0)\n    print(f\"   Excluded with ALL labels=0 (no harmful steps): {excl_all_zero}/{len(excluded_indices)}\")\n    print(f\"   Included with ALL labels=0 (no harmful steps): {incl_all_zero}/{len(included_indices)}\")\n    # Fisher's exact test\n    table = [[excl_all_zero, len(excluded_indices) - excl_all_zero],\n             [incl_all_zero, len(included_indices) - incl_all_zero]]\n    odds, p_fisher = fisher_exact(table)\n    print(f\"   Fisher's exact: odds_ratio={odds:.2f}, p={p_fisher:.4f}\")\n    \n    # 6. Trace IDs for reference\n    print(\"\\n6. Excluded Trace IDs:\")\n    for i in excluded_indices:\n        print(f\"   - {test[i]['trace_id']}\")\n    \n    # Overall conclusion\n    print(\"\\n\" + \"=\"*70)\n    print(\"OVERALL CONCLUSION:\")\n    any_sig = p < 0.05 or p_cpr < 0.05 or p_pr < 0.05\n    if any_sig:\n        print(\"  SYSTEMATIC BIAS DETECTED in exclusion:\")\n        if p < 0.05:\n            print(f\"    - Length: excluded are {direction} (p={p:.4f})\")\n        if p_cpr < 0.05:\n            print(f\"    - CP position: excluded are {direction_cp} (p={p_cpr:.4f})\")\n        if p_pr < 0.05:\n            print(f\"    - Positive rate differs (p={p_pr:.4f})\")\n    else:\n        print(\"  NO significant systematic bias detected.\")\n        print(\"  Exclusion appears mechanistic (both probes predict all-negative)\")\n        print(\"  and does not systematically select traces with distinct properties.\")\n    print(\"=\"*70)\n\nif __name__ == \"__main__\":\n    main()\nEOF\necho \"Script written.\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-17T04:46:35.511541+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_excluded_traces_20260517T044124",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-17T04:46:35.511699+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && python analyze_excluded_traces.py 2>&1",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_excluded_traces_20260517T044124",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cd /root/autodl-tmp/contrastive_trace_safety && python analyze_excluded_traces.py 2>&1",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-17T04:46:35.511832+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"bash: line 1: python: command not found\\n\", \"stderr\": \"\", \"return_code\": 127}, \"error\": \"exit code 127\", \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_excluded_traces_20260517T044124",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-17T04:46:35.511952+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && python3 analyze_excluded_traces.py 2>&1",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_excluded_traces_20260517T044124",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cd /root/autodl-tmp/contrastive_trace_safety && python3 analyze_excluded_traces.py 2>&1",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-17T04:46:35.512076+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"bash: line 1: python3: command not found\\n\", \"stderr\": \"\", \"return_code\": 127}, \"error\": \"exit code 127\", \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_excluded_traces_20260517T044124",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-17T04:46:35.512192+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "which python3 || which python || ls /usr/bin/python* /usr/local/bin/python* /root/miniconda3/bin/python* 2>/dev/null",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_excluded_traces_20260517T044124",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "which python3 || which python || ls /usr/bin/python* /usr/local/bin/python* /root/miniconda3/bin/python* 2>/dev/null",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-17T04:46:35.512315+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"/root/miniconda3/bin/python\\n/root/miniconda3/bin/python3\\n/root/miniconda3/bin/python3-config\\n/root/miniconda3/bin/python3.1\\n/root/miniconda3/bin/python3.12\\n/root/miniconda3/bin/python3.12-config\\n\", \"stderr\": \"\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_excluded_traces_20260517T044124",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-17T04:46:35.512432+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python analyze_excluded_traces.py 2>&1",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_excluded_traces_20260517T044124",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python analyze_excluded_traces.py 2>&1",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-17T04:46:35.512573+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python analyze_excluded_traces.py 2>&1'\\n\\nStdout:\\n\\nLoading sentence transformer...\\nLoading HF sentences for r1-8b...\\nLoading traces...\\n  Total traces: 209\\n  Train: 125, Val: 41, Test: 43\\nTraining HS probe...\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_excluded_traces_20260517T044124",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-17T04:46:35.512799+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && timeout 300 /root/miniconda3/bin/python analyze_excluded_traces.py 2>&1 | tail -80",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_excluded_traces_20260517T044124",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cd /root/autodl-tmp/contrastive_trace_safety && timeout 300 /root/miniconda3/bin/python analyze_excluded_traces.py 2>&1 | tail -80",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-17T04:46:35.512939+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/autodl-tmp/contrastive_trace_safety && timeout 300 /root/miniconda3/bin/python analyze_excluded_traces.py 2>&1 | tail -80'\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.83}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_excluded_traces_20260517T044124",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-17T04:46:35.513082+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && nohup /root/miniconda3/bin/python analyze_excluded_traces.py > /tmp/excluded_analysis.log 2>&1 & echo \"PID: $!\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_excluded_traces_20260517T044124",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cd /root/autodl-tmp/contrastive_trace_safety && nohup /root/miniconda3/bin/python analyze_excluded_traces.py > /tmp/excluded_analysis.log 2>&1 & echo \"PID: $!\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-17T04:46:35.513206+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/autodl-tmp/contrastive_trace_safety && nohup /root/miniconda3/bin/python analyze_excluded_traces.py > /tmp/excluded_analysis.log 2>&1 & echo \\\"PID: $!\\\"'\\n\\nStdout:\\n\\nPID: 44306\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.7}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_excluded_traces_20260517T044124",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-17T04:46:35.513343+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "sleep 25 && cat /tmp/excluded_analysis.log 2>&1 | head -60",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_excluded_traces_20260517T044124",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "sleep 25 && cat /tmp/excluded_analysis.log 2>&1 | head -60",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-17T04:46:35.513465+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading sentence transformer...\\nLoading HF sentences for r1-8b...\\nLoading traces...\\n  Total traces: 209\\n  Train: 125, Val: 41, Test: 43\\nTraining HS probe...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 25.8}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_excluded_traces_20260517T044124",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-17T04:46:35.513619+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "sleep 25 && wc -l /tmp/excluded_analysis.log && tail -5 /tmp/excluded_analysis.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_excluded_traces_20260517T044124",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "sleep 25 && wc -l /tmp/excluded_analysis.log && tail -5 /tmp/excluded_analysis.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-17T04:46:35.513752+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"78 /tmp/excluded_analysis.log\\nOVERALL CONCLUSION:\\n  NO significant systematic bias detected.\\n  Exclusion appears mechanistic (both probes predict all-negative)\\n  and does not systematically select traces with distinct properties.\\n======================================================================\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 25.34}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_excluded_traces_20260517T044124",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-17T04:46:35.513896+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /tmp/excluded_analysis.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_excluded_traces_20260517T044124",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat /tmp/excluded_analysis.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-17T04:46:35.514109+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading sentence transformer...\\nLoading HF sentences for r1-8b...\\nLoading traces...\\n  Total traces: 209\\n  Train: 125, Val: 41, Test: 43\\nTraining HS probe...\\nTraining Text probe...\\nPredicting on test...\\n\\nExcluded: 10, Included: 33\\n\\n======================================================================\\nEXCLUDED TRACES ANALYSIS (r1_8b, W=15, layer=2)\\n  10 excluded / 33 included from 43 test traces\\n======================================================================\\n\\nExclusion Reason Breakdown:\\n  trace_id=6c0a2e51f34940308d7893c8419fd1c4         steps= 27 CP=  3 pos_rate=0.889 reason=Text=0_pos\\n  trace_id=1b6908a3cccf49dbad6da5de63168610         steps= 44 CP= 43 pos_rate=0.023 reason=Text=0_pos\\n  trace_id=177c234e76104e7b9f2858bdd71f4963         steps= 51 CP= 50 pos_rate=0.020 reason=HS=0_pos+Text=0_pos\\n  trace_id=23809219236b4d7caa59a607ae9a720e         steps= 86 CP= 78 pos_rate=0.093 reason=HS=0_pos\\n  trace_id=6f7acaf2ebcf48a4bdd182d02735438a         steps= 66 CP= 64 pos_rate=0.030 reason=HS=0_pos\\n  trace_id=6bb38e74d8bd41cd933c5c9396c81b7e         steps= 32 CP= 17 pos_rate=0.469 reason=Text=0_pos\\n  trace_id=11a094cbf15549bca819c57910c2a2ff         steps= 71 CP= 50 pos_rate=0.296 reason=Text=0_pos\\n  trace_id=64d7f22d97c94b19b1cb74009df14836         steps= 42 CP= 41 pos_rate=0.024 reason=Text=0_pos\\n  trace_id=6f2b30e60a454f709cc86a2b8e59f3c6         steps= 48 CP= 16 pos_rate=0.667 reason=Text=0_pos\\n  trace_id=37a0b03c1d0249b4b5e086cc23bcdf3d         steps= 45 CP= 36 pos_rate=0.200 reason=Text=0_pos\\n\\n----------------------------------------------------------------------\\nSTATISTICAL COMPARISONS\\n----------------------------------------------------------------------\\n\\n1. Trace Length (number of steps):\\n   Excluded: mean=51.2, median=46.5, std=17.2, range=[27, 86]\\n   Included: mean=43.9, median=44.0, std=15.1, range=[22, 97]\\n   Mann-Whitney U: U=203
+…[truncated 1804 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_excluded_traces_20260517T044124",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-17T04:46:35.514289+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cp /tmp/excluded_analysis.log /root/autodl-tmp/contrastive_trace_safety/artifacts/acc_precision_bootstrap/excluded_traces_analysis.txt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_excluded_traces_20260517T044124",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cp /tmp/excluded_analysis.log /root/autodl-tmp/contrastive_trace_safety/artifacts/acc_precision_bootstrap/excluded_traces_analysis.txt",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-17T04:46:35.514416+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_excluded_traces_20260517T044124",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33 · 2026-05-17T04:46:35.514588+00:00_
+
+分析完成。结果：
+
+---
+
+## Excluded Traces Analysis (r1_8b, W=15, layer=2)
+**10 excluded / 33 included from 43 test traces**
+
+### 排除原因
+
+| 原因 | 数量 |
+|------|------|
+| 仅 Text probe 无正预测 | 7 |
+| 仅 HS probe 无正预测 | 2 |
+| 两者均无正预测 | 1 |
+
+主要由 Text probe 的 recall 不足导致（7/10），而非 HS probe 问题。
+
+### 统计比较
+
+| 特征 | Excluded (n=10) | Included (n=33) | Mann-Whitney p |
+|------|----------------|-----------------|----------------|
+| Trace 长度 (steps) | mean=51.2, median=46.5 | mean=43.9, median=44.0 | p=0.274 |
+| CP 绝对位置 | mean=39.8, median=42.0 | mean=32.5, median=33.0 | p=0.262 |
+| CP 相对位置 (0-1) | mean=0.729, median=0.853 | mean=0.688, median=0.829 | p=0.350 |
+| 正标签比例 | mean=0.271, median=0.147 | mean=0.312, median=0.171 | p=0.350 |
+
+所有标签分布：excluded 和 included 中均无 all-zero 标签的 trace（Fisher p=1.0）。
+
+### 结论
+
+**未检测到系统性偏差。** 所有统计检验均不显著（最低 p=0.262）。排除是纯机制性的（probe 未产生正预测），不与 trace 长度、CP 位置或正标签比例系统性关联。
+
+值得注意的是，excluded traces 的正标签比例 *偏低*（mean 0.271 vs 0.312），但差异不显著。这可以解释为：正标签少 → 正类信号弱 → probe 更倾向全预测为负。
+
+输出已保存至 `artifacts/acc_precision_bootstrap/excluded_traces_analysis.txt`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_excluded_traces_20260517T044124"
+}
+```
+
+</details>
+
+---

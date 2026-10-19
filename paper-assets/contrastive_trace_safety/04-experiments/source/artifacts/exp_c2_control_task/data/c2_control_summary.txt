@@ -1,0 +1,11 @@
+Selectivity (real_acc - random_label_acc):
+- r1_8b: 12.5pp (real=0.854, random=0.730) PASS
+- r1_32b: 16.8pp (real=0.677, random=0.509) PASS  
+- qwq_32b: 18.9pp (real=0.758, random=0.569) PASS
+
+Position Baseline pre-CP FPR:
+- r1_8b: position_2d=23.3%, position_temporal=15.8%, HS_temporal=8.1%, text_ref=27.2%
+- r1_32b: position_2d=31.3%, position_temporal=37.0%, HS_temporal=31.8%
+- qwq_32b: position_2d=24.6%, position_temporal=21.8%, HS_temporal=17.2%
+
+Files on server: artifacts/exp_c2_control/{cp_distribution,selectivity_results,position_baseline}.json + cp_histogram.png

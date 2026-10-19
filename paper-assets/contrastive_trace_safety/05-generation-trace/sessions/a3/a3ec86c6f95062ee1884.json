@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "a3ec86c6f95062ee1884",
+  "project": "contrastive_trace_safety",
+  "kind": "worker",
+  "title": "setup download gemma2 9b",
+  "task_key": "worker_setup_download_gemma2_9b_20260522T120035",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_setup_download_gemma2_9b_20260522T120035.log",
+    "occurrence": 1,
+    "bytes": 635049,
+    "sha256": "d6e4dc43626da52fd29d93f3795322e19a5784f5106a9bd65164e6d2a5cdf5c1"
+  },
+  "statistics": {
+    "messages": 498,
+    "user_turns": 0,
+    "tool_calls": 208,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 78,
+      "tool_call": 208,
+      "tool_result": 208,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 498,
+      "chunks": [
+        {
+          "path": "a3ec86c6f95062ee1884-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "a3ec86c6f95062ee1884-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "a3ec86c6f95062ee1884-part-0003.json",
+          "message_count": 138
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/setup-download-gemma2-9b.md"
+}

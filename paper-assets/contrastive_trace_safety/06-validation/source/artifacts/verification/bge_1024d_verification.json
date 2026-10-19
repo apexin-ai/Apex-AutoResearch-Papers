@@ -1,0 +1,58 @@
+{
+  "task": "bge_1024d_verification",
+  "models": {
+    "r1_8b": {
+      "layer": 14,
+      "hs_prec": 0.5385,
+      "text_1024d_prec": 0.514,
+      "delta_prec": 2.4,
+      "paper_value": 5.8,
+      "hs_ba": 0.745,
+      "txt_ba": 0.7048,
+      "n_test_steps": 1961,
+      "n_test_traces": 43,
+      "bootstrap_gap": 0.0928,
+      "bootstrap_p": 0.0439,
+      "window": 3,
+      "pca_dim": 100
+    }
+  },
+  "missing_models": [
+    "ot_7b",
+    "qwq_32b",
+    "r1_32b"
+  ],
+  "missing_reason": "Hidden states for OT-7B, QwQ-32B, R1-32B not available on this server",
+  "text_encoder": "BAAI/bge-large-en-v1.5",
+  "text_dim": 1024,
+  "timestamp": "2026-05-23T19:53:22",
+  "elapsed_seconds": 184.4,
+  "data_note": "Used hidden_states_r1_8b_full (25 stored layers L0-L24, 209 traces). Original hidden_states dir (13 layers L12-L24) used for paper is no longer on server. Layer sweep shows no index matches paper HS prec 0.629 (max=0.585 at idx=19). Data was likely re-extracted with different setup.",
+  "layer_sweep_prec": {
+    "0": 0.488,
+    "1": 0.4608,
+    "2": 0.4318,
+    "3": 0.442,
+    "4": 0.5185,
+    "5": 0.5479,
+    "6": 0.5637,
+    "7": 0.523,
+    "8": 0.5149,
+    "9": 0.4979,
+    "10": 0.5282,
+    "11": 0.5318,
+    "12": 0.5443,
+    "13": 0.5598,
+    "14": 0.5385,
+    "15": 0.5624,
+    "16": 0.5556,
+    "17": 0.5286,
+    "18": 0.5485,
+    "19": 0.585,
+    "20": 0.5642,
+    "21": 0.5373,
+    "22": 0.5391,
+    "23": 0.5375,
+    "24": 0.5585
+  }
+}

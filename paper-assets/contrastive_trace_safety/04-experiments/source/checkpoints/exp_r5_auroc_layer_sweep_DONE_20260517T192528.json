@@ -1,0 +1,61 @@
+{
+  "exp_id": "exp_r5_auroc_layer_sweep",
+  "project": "contrastive_trace_safety",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T19:24:53.113Z",
+    "updated_at": "2026-05-17T19:25:28.535Z",
+    "hypothesis": "AUROC (threshold-free, orthogonal to precision/FPR) as layer selection metric should converge to deep layers if the paper's multi-metric layer selection is robust. If AUROC selects different layers, it reveals metric-dependent layer preference.",
+    "parent": "exp_007_window_ablation",
+    "spec": {
+      "command": "python src/experiments/exp_r5_auroc_layer_sweep.py",
+      "server": "autodl-rtx6000",
+      "data_path": "/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states*/",
+      "data_count": 632,
+      "model_name": "r1-8b,ot-7b,qwq-32b,r1-32b",
+      "seed": 42,
+      "checkpoint_source": "N/A (trains from scratch per layer)",
+      "eval_data": "HarmThoughts validation split (20%)",
+      "checkpoint_path": "/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r5_auroc_sweep/results.json",
+      "log_path": "/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r5_auroc_sweep/"
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "r1_8b": {
+        "auroc_best_layer": 13,
+        "auroc_best": 0.806,
+        "paper_layer": 14,
+        "auroc_at_paper": 0.803,
+        "match": "near-match (adjacent, delta=0.003)"
+      },
+      "ot_7b": {
+        "auroc_best_layer": 1,
+        "auroc_best": 0.777,
+        "paper_layer": 16,
+        "auroc_at_paper": 0.746,
+        "match": "no (flat landscape 0.70-0.78)"
+      },
+      "qwq_32b": {
+        "auroc_best_layer": 32,
+        "auroc_best": 0.839,
+        "paper_layer": 60,
+        "auroc_at_paper": 0.756,
+        "match": "no (AUROC prefers mid-depth ~50%)"
+      },
+      "r1_32b": {
+        "auroc_best_layer": 31,
+        "auroc_best": 0.897,
+        "paper_layer": 63,
+        "auroc_at_paper": 0.767,
+        "match": "no (AUROC prefers mid-depth ~50%)"
+      },
+      "finding": "AUROC does NOT converge to the same deep layers. For 32B models, AUROC selects mid-depth layers (~50%) vs paper's very deep layers (>90%). R1-8B near-match only. Note: worker applied PCA-256 on 32B models to handle dimensionality, which may affect results."
+    },
+    "completed_at": "2026-05-17T19:25:28.535Z"
+  },
+  "timestamp": "2026-05-17T19:25:28.620775+00:00",
+  "trigger": "update_registry"
+}

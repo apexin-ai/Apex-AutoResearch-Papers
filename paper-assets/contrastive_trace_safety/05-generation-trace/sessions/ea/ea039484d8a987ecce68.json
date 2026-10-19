@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ea039484d8a987ecce68",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code ensemble cv diag",
+  "task_key": "worker_code_ensemble_cv_diag_20260522T054323",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_ensemble_cv_diag_20260522T054323_result.json",
+    "occurrence": 1,
+    "bytes": 1460,
+    "sha256": "665521c4b7a66b3f00b178ab0af532393a30ff2fe0c74733b4dfdb70042386e8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告\n\n### 进程状态\n- **PID 4049 正常运行中** — `State: R (running)`\n- 命令: `python scripts/n7_ensemble_loocv.py`\n- 231 线程, VmRSS ~3.4 GB, 大量 CPU 使用（多核并行 lbfgs）\n- 未被 OOM kill, 无异常\n\n### 结果文件\n- `artifacts/ensemble_cv_results.json` **不存在** — 脚本在两个模型全部跑完后才写入\n- `/tmp` 下也无 ensemble 相关临时文件\n\n### 日志文件\n- `/root/runs/contrastive_trace_safety/ensemble_cv_7_8b.log` 存在但 **0 bytes**\n- **原因**: stdout/stderr 都重定向到了该文件（已通过 `/proc/4049/fd/1` 和 `/fd/2` 确认），但 Python 在非 tty 模式下使用 block buffering，print 输出尚未 flush\n- 这不是异常 — 输出会在缓冲区满或进程结束时一次性写入\n\n### 磁盘\n- `/root/autodl-tmp/`: 18G/250G used (7%) — 无磁盘压力\n\n### 超时原因分析\n脚本做 LOO-CV，计算量远超预估：\n- **R1-8B**: 209 folds × 13 layers × (inner split + outer eval) ≈ 5,434 次 LogisticRegression fit（4096 维）\n- **OT-7B**: 228 folds × 28 layers × (inner split + outer eval) ≈ 12,768 次 LogisticRegression fit（3584 维）\n- 总计 ~18,000 次高维 LR 训练，60 分钟估计偏乐观\n\n### 结论\n**进程健康，仍在正常计算中，只是 LOO-CV 计算量大导致耗时超预期。** 无需干预，等待完成即可。结果 JSON 和日志内容会在进程结束后出现。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-ensemble-cv-diag.md"
+}

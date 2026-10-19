@@ -1,0 +1,1050 @@
+{
+  "schema_version": "1.0",
+  "session_id": "c17ab75e2f8803bb5bcb",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 361,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PqYjmYw9RnZVYvpfbPRnNo",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-rtx6000",
+                "command": "wc -l /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_layer63_bootstrap/run.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7388a469-cd8a-4ff6-8521-67c2345d6d76",
+            "uuid": "31e2edf1-9a7e-4f1d-9a54-a1589c716193",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AkPf8hGVoZuf77iDXzdVM6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 258,
+                "cache_read_input_tokens": 138964,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 258
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000361"
+        },
+        {
+          "source_line": 362,
+          "timestamp": "2026-05-17T14:09:02.657Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PqYjmYw9RnZVYvpfbPRnNo",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"64 /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_layer63_bootstrap/run.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7388a469-cd8a-4ff6-8521-67c2345d6d76",
+            "uuid": "375a5029-ad7d-42ea-a3dd-5921ac7dd44d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"64 /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_layer63_bootstrap/run.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"64 /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_layer63_bootstrap/run.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+              }
+            }
+          },
+          "id": "event-000362"
+        },
+        {
+          "source_line": 363,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019vCrdVAv94oxu4jKR5xheW",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-rtx6000",
+                "command": "wc -l /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_layer63_bootstrap/run.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7388a469-cd8a-4ff6-8521-67c2345d6d76",
+            "uuid": "bb5b2ead-4e89-4fc0-aaa2-c5fbeff3422f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CVJ5j7KEhDp7jcqbd1sGJW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 258,
+                "cache_read_input_tokens": 139222,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 258
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000363"
+        },
+        {
+          "source_line": 364,
+          "timestamp": "2026-05-17T14:09:06.973Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019vCrdVAv94oxu4jKR5xheW",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"64 /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_layer63_bootstrap/run.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7388a469-cd8a-4ff6-8521-67c2345d6d76",
+            "uuid": "cee66472-12d1-48dd-adb0-faed11ae0ae8",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"64 /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_layer63_bootstrap/run.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"64 /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_layer63_bootstrap/run.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000364"
+        },
+        {
+          "source_line": 365,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017ZRKyPh593M2NzuUpLyNN8",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-rtx6000",
+                "command": "wc -l /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_layer63_bootstrap/run.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7388a469-cd8a-4ff6-8521-67c2345d6d76",
+            "uuid": "dde86926-728b-4bab-8abe-cee59cd91d90",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Tt438RshqQj3xYu522acYo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 361,
+                "cache_read_input_tokens": 139480,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 361
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000365"
+        },
+        {
+          "source_line": 366,
+          "timestamp": "2026-05-17T14:09:10.177Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017ZRKyPh593M2NzuUpLyNN8",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"64 /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_layer63_bootstrap/run.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7388a469-cd8a-4ff6-8521-67c2345d6d76",
+            "uuid": "f7c8e32a-e589-4b38-8b2d-0705e0e83303",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"64 /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_layer63_bootstrap/run.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"64 /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_layer63_bootstrap/run.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000366"
+        },
+        {
+          "source_line": 367,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016xqCABeZjLMrQUNyH6rCoJ",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-rtx6000",
+                "command": "tail -20 /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_layer63_bootstrap/run.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7388a469-cd8a-4ff6-8521-67c2345d6d76",
+            "uuid": "e333530b-ce9b-4c95-a280-67aa66e2bdc1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WvxrKD5jU5YVLKpfiQQ1Lt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 258,
+                "cache_read_input_tokens": 139841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 258
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000367"
+        },
+        {
+          "source_line": 368,
+          "timestamp": "2026-05-17T14:09:13.631Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016xqCABeZjLMrQUNyH6rCoJ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[22:04:27]   HS probe: shape=(2197, 51200), pos_rate=0.345, time=120.3s\\\\n[22:04:27]   Text probe: shape=(2197, 3840), time=0.5s\\\\n[22:04:28]   BalAcc: HS=0.7538, Text=0.7105, D=+0.0433, p=0.1880, CI=[-0.052553053480426666, 0.14975860985125106], FAIL\\\\n[22:04:28]   Prec:   HS=0.6098, Text=0.5160, D=+0.0938, p=0.1060, CI=[-0.04928248478495189, 0.26980651913875603], FAIL\\\\n[22:04:28]   FPR:    HS=0.2719, Text=0.3259, D=-0.0540, p=0.2320, CI=[-0.20311975046099326, 0.08716629166887913], FAIL\\\\n[22:04:28]   Step-level BalAcc: HS=0.7003, Text=0.6702\\\\n[22:04:28]   Coverage=0.500, LeadMean=13.0\\\\n[22:04:28]   --- W=15, Layer=63 ---\\\\n[22:07:21]   HS probe: shape=(2197, 76800), pos_rate=0.345, time=173.0s\\\\n[22:07:21]   Text probe: shape=(2197, 5760), time=0.7s\\\\n[22:07:21]   BalAcc: HS=0.7568, Text=0.6793, D=+0.0775, p=0.0270, CI=[-0.0006168443635936624, 0.17402397780711637], FAIL\\\\n[22:07:21]   Prec:   HS=0.6336, Text=0.5221, D=+0.1115, p=0.0580, CI=[-0.02610339169117168, 0.27478390986176443], FAIL\\\\n[22:07:21]   FPR:    HS=0.2619, Text=0.3396, D=-0.0777, p=0.1660, CI=[-0.22864648636610296, 0.0748623173403394], FAIL\\\\n[22:07:21]   Step-level BalAcc: HS=0.7086, Text=0.6483\\\\n[22:07:21]   Coverage=0.450, LeadMean=12.0\\\\n[22:07:22] === Position Baseline ===\\\\n[22:07:22]   Position baseline bal_acc: 0.6842\\\\n[22:07:22] \\\\n=== E: Layer 10 Re-run (same split) ===\\\\n[22:07:22]   --- W=10, Layer=10 ---\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7388a469-cd8a-4ff6-8521-67c2345d6d76",
+            "uuid": "6ffe7d86-53b6-469f-9433-46b00c2f609a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[22:04:27]   HS probe: shape=(2197, 51200), pos_rate=0.345, time=120.3s\\\\n[22:04:27]   Text probe: shape=(2197, 3840), time=0.5s\\\\n[22:04:28]   BalAcc: HS=0.7538, Text=0.7105, D=+0.0433, p=0.1880, CI=[-0.052553053480426666, 0.14975860985125106], FAIL\\\\n[22:04:28]   Prec:   HS=0.6098, Text=0.5160, D=+0.0938, p=0.1060, CI=[-0.04928248478495189, 0.26980651913875603], FAIL\\\\n[22:04:28]   FPR:    HS=0.2719, Text=0.3259, D=-0.0540, p=0.2320, CI=[-0.20311975046099326, 0.08716629166887913], FAIL\\\\n[22:04:28]   Step-level BalAcc: HS=0.7003, Text=0.6702\\\\n[22:04:28]   Coverage=0.500, LeadMean=13.0\\\\n[22:04:28]   --- W=15, Layer=63 ---\\\\n[22:07:21]   HS probe: shape=(2197, 76800), pos_rate=0.345, time=173.0s\\\\n[22:07:21]   Text probe: shape=(2197, 5760), time=0.7s\\\\n[22:07:21]   BalAcc: HS=0.7568, Text=0.6793, D=+0.0775, p=0.0270, CI=[-0.0006168443635936624, 0.17402397780711637], FAIL\\\\n[22:07:21]   Prec:   HS=0.6336, Text=0.5221, D=+0.1115, p=0.0580, CI=[-0.02610339169117168, 0.27478390986176443], FAIL\\\\n[22:07:21]   FPR:    HS=0.2619, Text=0.3396, D=-0.0777, p=0.1660, CI=[-0.22864648636610296, 0.0748623173403394], FAIL\\\\n[22:07:21]   Step-level BalAcc: HS=0.7086, Text=0.6483\\\\n[22:07:21]   Coverage=0.450, LeadMean=12.0\\\\n[22:07:22] === Position Baseline ===\\\\n[22:07:22]   Position baseline bal_acc: 0.6842\\\\n[22:07:22] \\\\n=== E: Layer 10 Re-run (same split) ===\\\\n[22:07:22]   --- W=10, Layer=10 ---\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"[22:04:27]   HS probe: shape=(2197, 51200), pos_rate=0.345, time=120.3s\\n[22:04:27]   Text probe: shape=(2197, 3840), time=0.5s\\n[22:04:28]   BalAcc: HS=0.7538, Text=0.7105, D=+0.0433, p=0.1880, CI=[-0.052553053480426666, 0.14975860985125106], FAIL\\n[22:04:28]   Prec:   HS=0.6098, Text=0.5160, D=+0.0938, p=0.1060, CI=[-0.04928248478495189, 0.26980651913875603], FAIL\\n[22:04:28]   FPR:    HS=0.2719, Text=0.3259, D=-0.0540, p=0.2320, CI=[-0.20311975046099326, 0.08716629166887913], FAIL\\n[22:04:28]   Step-level BalAcc: HS=0.7003, Text=0.6702\\n[22:04:28]   Coverage=0.500, LeadMean=13.0\\n[22:04:28]   --- W=15, Layer=63 ---\\n[22:07:21]   HS probe: shape=(2197, 76800), pos_rate=0.345, time=173.0s\\n[22:07:21]   Text probe: shape=(2197, 5760), time=0.7s\\n[22:07:21]   BalAcc: HS=0.7568, Text=0.6793, D=+0.0775, p=0.0270, CI=[-0.0006168443635936624, 0.17402397780711637], FAIL\\n[22:07:21]   Prec:   HS=0.6336, Text=0.5221, D=+0.1115, p=0.0580, CI=[-0.02610339169117168, 0.27478390986176443], FAIL\\n[22:07:21]   FPR:    HS=0.2619, Text=0.3396, D=-0.0777, p=0.1660, CI=[-0.22864648636610296, 0.0748623173403394], FAIL\\n[22:07:21]   Step-level BalAcc: HS=0.7086, Text=0.6483\\n[22:07:21]   Coverage=0.450, LeadMean=12.0\\n[22:07:22] === Position Baseline ===\\n[22:07:22]   Position baseline bal_acc: 0.6842\\n[22:07:22] \\n=== E: Layer 10 Re-run (same split) ===\\n[22:07:22]   --- W=10, Layer=10 ---\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+              }
+            }
+          },
+          "id": "event-000368"
+        },
+        {
+          "source_line": 369,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016fDPqZTtVLyHoesx48XTDe",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-rtx6000",
+                "command": "wc -l /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_layer63_bootstrap/run.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7388a469-cd8a-4ff6-8521-67c2345d6d76",
+            "uuid": "6d74829f-a483-47a0-ad72-e113984c947e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WeKwwtkecM7GFk3d8RsNBd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 977,
+                "cache_read_input_tokens": 140099,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 977
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000369"
+        },
+        {
+          "source_line": 370,
+          "timestamp": "2026-05-17T14:09:17.755Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016fDPqZTtVLyHoesx48XTDe",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"64 /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_layer63_bootstrap/run.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7388a469-cd8a-4ff6-8521-67c2345d6d76",
+            "uuid": "aa62a76a-98e7-4e0d-9855-87f5ee756493",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"64 /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_layer63_bootstrap/run.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"64 /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_layer63_bootstrap/run.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000370"
+        },
+        {
+          "source_line": 371,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Bq4hzgNmpVAg7XAALfTse2",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-rtx6000",
+                "command": "wc -l /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_layer63_bootstrap/run.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7388a469-cd8a-4ff6-8521-67c2345d6d76",
+            "uuid": "33a8e319-a486-4115-b30c-1ccde7b6ea53",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DeRjtGuT2YMsqRP3tjPxjV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 258,
+                "cache_read_input_tokens": 141076,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 258
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000371"
+        },
+        {
+          "source_line": 372,
+          "timestamp": "2026-05-17T14:09:23.011Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Bq4hzgNmpVAg7XAALfTse2",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"64 /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_layer63_bootstrap/run.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7388a469-cd8a-4ff6-8521-67c2345d6d76",
+            "uuid": "0de8d1ce-d785-4b7a-b26e-891d051e50c2",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"64 /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_layer63_bootstrap/run.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"64 /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_layer63_bootstrap/run.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000372"
+        },
+        {
+          "source_line": 373,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SN92UH4oiAggz9cpuht1XT",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-rtx6000",
+                "command": "wc -l /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_layer63_bootstrap/run.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7388a469-cd8a-4ff6-8521-67c2345d6d76",
+            "uuid": "b08b8dec-2201-4863-a4e7-28724c461ac8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WW2pctq1BSCifxDfHoe3Qx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 258,
+                "cache_read_input_tokens": 141334,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 258
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000373"
+        },
+        {
+          "source_line": 374,
+          "timestamp": "2026-05-17T14:09:27.298Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SN92UH4oiAggz9cpuht1XT",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"64 /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_layer63_bootstrap/run.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7388a469-cd8a-4ff6-8521-67c2345d6d76",
+            "uuid": "7808c635-fc67-43af-a1c2-6bd64953d704",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"64 /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_layer63_bootstrap/run.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"64 /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_layer63_bootstrap/run.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000374"
+        },
+        {
+          "source_line": 375,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BY9wnxRWwGSgP96W16s8UE",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-rtx6000",
+                "command": "wc -l /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_layer63_bootstrap/run.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7388a469-cd8a-4ff6-8521-67c2345d6d76",
+            "uuid": "d7e5355a-faad-4597-a3f1-aa48f4b21fdf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GzoACJngHPgdcixhakd3Aq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 258,
+                "cache_read_input_tokens": 141592,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 258
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000375"
+        },
+        {
+          "source_line": 376,
+          "timestamp": "2026-05-17T14:09:30.845Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BY9wnxRWwGSgP96W16s8UE",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"64 /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_layer63_bootstrap/run.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7388a469-cd8a-4ff6-8521-67c2345d6d76",
+            "uuid": "3e843131-bcdf-42f5-b57e-d11a1b4dafd8",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"64 /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_layer63_bootstrap/run.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"64 /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_layer63_bootstrap/run.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000376"
+        },
+        {
+          "source_line": 377,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017a6yfEtaq1He3x9oHcxBoJ",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-rtx6000",
+                "command": "wc -l /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_layer63_bootstrap/run.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7388a469-cd8a-4ff6-8521-67c2345d6d76",
+            "uuid": "b5262fe6-de74-4934-b0a8-69e1e81b037c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019RxDUnMGvsjACaNLotNuG4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 258,
+                "cache_read_input_tokens": 141850,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 258
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000377"
+        },
+        {
+          "source_line": 378,
+          "timestamp": "2026-05-17T14:09:34.396Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017a6yfEtaq1He3x9oHcxBoJ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"92 /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_layer63_bootstrap/run.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7388a469-cd8a-4ff6-8521-67c2345d6d76",
+            "uuid": "c5d4a2b5-78fb-4cd0-8e73-61eb192e140c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"92 /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_layer63_bootstrap/run.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"92 /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_layer63_bootstrap/run.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000378"
+        },
+        {
+          "source_line": 379,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成了！92行。让我读取完整的最终输出。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7388a469-cd8a-4ff6-8521-67c2345d6d76",
+            "uuid": "9730235f-465d-4514-8b2d-a2cb5710e3d6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01E7Fo7axJx1YkQwhgQPAK2W",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 258,
+                "cache_read_input_tokens": 142108,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 258
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000379"
+        },
+        {
+          "source_line": 380,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ETyuQkWMGWGo4CQC1zbcy4",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-rtx6000",
+                "command": "tail -40 /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_layer63_bootstrap/run.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7388a469-cd8a-4ff6-8521-67c2345d6d76",
+            "uuid": "fae93c6d-0f97-40db-addb-675be49a4c03",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01E7Fo7axJx1YkQwhgQPAK2W",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 258,
+                "cache_read_input_tokens": 142108,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 258
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000380"
+        },
+        {
+          "source_line": 381,
+          "timestamp": "2026-05-17T14:09:38.329Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01ETyuQkWMGWGo4CQC1zbcy4",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[22:07:21]   HS probe: shape=(2197, 76800), pos_rate=0.345, time=173.0s\\\\n[22:07:21]   Text probe: shape=(2197, 5760), time=0.7s\\\\n[22:07:21]   BalAcc: HS=0.7568, Text=0.6793, D=+0.0775, p=0.0270, CI=[-0.0006168443635936624, 0.17402397780711637], FAIL\\\\n[22:07:21]   Prec:   HS=0.6336, Text=0.5221, D=+0.1115, p=0.0580, CI=[-0.02610339169117168, 0.27478390986176443], FAIL\\\\n[22:07:21]   FPR:    HS=0.2619, Text=0.3396, D=-0.0777, p=0.1660, CI=[-0.22864648636610296, 0.0748623173403394], FAIL\\\\n[22:07:21]   Step-level BalAcc: HS=0.7086, Text=0.6483\\\\n[22:07:21]   Coverage=0.450, LeadMean=12.0\\\\n[22:07:22] === Position Baseline ===\\\\n[22:07:22]   Position baseline bal_acc: 0.6842\\\\n[22:07:22] \\\\n=== E: Layer 10 Re-run (same split) ===\\\\n[22:07:22]   --- W=10, Layer=10 ---\\\\n[22:09:33]   HS probe: shape=(2197, 51200), pos_rate=0.345, time=131.1s\\\\n[22:09:33]   Text probe: shape=(2197, 3840), time=0.4s\\\\n[22:09:33]   BalAcc: HS=0.7945, Text=0.7105, D=+0.0839, p=0.0400, CI=[-0.00739012028719695, 0.1869552919395588], FAIL\\\\n[22:09:33]   Prec:   HS=0.6100, Text=0.5160, D=+0.0940, p=0.0250, CI=[0.00028475517538017916, 0.2046046650717703], FAIL\\\\n[22:09:33]   FPR:    HS=0.2415, Text=0.3259, D=-0.0844, p=0.0570, CI=[-0.1785502486902183, 0.015354214559140633], FAIL\\\\n[22:09:33]   Step-level BalAcc: HS=0.7092, Text=0.6702\\\\n[22:09:33]   Coverage=0.450, LeadMean=13.3\\\\n[22:09:33] \\\\nSaved to /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_layer63_bootstrap/results.json\\\\n[22:09:33] \\\\n================================================================================\\\\n[22:09:33] SUMMARY: R1-32B Layer 63 HS vs Text\\\\n[22:09:33] ================================================================================\\\\n[22:09:33] W= 1: BalAcc D=+18.7pp p=0.000 | Prec D=+15.4pp p=0.000 | FPR D=-14.6pp p=0.004 | Bonf: 3/3\\\\n[22:09:33] W= 3: BalAcc D=+11.2pp p=0.009 | Prec D=+13.0pp p=0.004 | FPR D=-11.4pp p=0.037 | Bonf: 2/3\\\\n[22:09:33] W= 5: BalAcc D=+9.7pp p=0.018 | Prec D=+13.1pp p=0.022 | FPR D=-7.7pp p=0.120 | Bonf: 0/3\\\\n[22:09:33] W=10: BalAcc D=+4.3pp p=0.188 | Prec D=+9.4pp p=0.106 | FPR D=-5.4pp p=0.232 | Bonf: 0/3\\\\n[22:09:33] W=15: BalAcc D=+7.8pp p=0.027 | Prec D=+11.2pp p=0.058 | FPR D=-7.8pp p=0.166 | Bonf: 0/3\\\\n[22:09:33] \\\\nPosition baseline: 0.6842\\\\n[22:09:33] \\\\n--- Layer 63 vs Layer 10 Comparison (W=10) ---\\\\n[22:09:33]   L63 HS bal_acc=0.7003, L10 HS bal_acc=0.7092, diff=-0.0089\\\\n[22:09:33]   L63 bootstrap p=0.1880, L10 bootstrap p=0.0400\\\\n[22:09:33]   L63 Bonf pass: 0/3\\\\n[22:09:33]   L10 Bonf pass: 0/3\\\\n[22:09:33] \\\\nDONE\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7388a469-cd8a-4ff6-8521-67c2345d6d76",
+            "uuid": "ea0d99b9-d3da-4dc4-9adf-c759a8474992",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[22:07:21]   HS probe: shape=(2197, 76800), pos_rate=0.345, time=173.0s\\\\n[22:07:21]   Text probe: shape=(2197, 5760), time=0.7s\\\\n[22:07:21]   BalAcc: HS=0.7568, Text=0.6793, D=+0.0775, p=0.0270, CI=[-0.0006168443635936624, 0.17402397780711637], FAIL\\\\n[22:07:21]   Prec:   HS=0.6336, Text=0.5221, D=+0.1115, p=0.0580, CI=[-0.02610339169117168, 0.27478390986176443], FAIL\\\\n[22:07:21]   FPR:    HS=0.2619, Text=0.3396, D=-0.0777, p=0.1660, CI=[-0.22864648636610296, 0.0748623173403394], FAIL\\\\n[22:07:21]   Step-level BalAcc: HS=0.7086, Text=0.6483\\\\n[22:07:21]   Coverage=0.450, LeadMean=12.0\\\\n[22:07:22] === Position Baseline ===\\\\n[22:07:22]   Position baseline bal_acc: 0.6842\\\\n[22:07:22] \\\\n=== E: Layer 10 Re-run (same split) ===\\\\n[22:07:22]   --- W=10, Layer=10 ---\\\\n[22:09:33]   HS probe: shape=(2197, 51200), pos_rate=0.345, time=131.1s\\\\n[22:09:33]   Text probe: shape=(2197, 3840), time=0.4s\\\\n[22:09:33]   BalAcc: HS=0.7945, Text=0.7105, D=+0.0839, p=0.0400, CI=[-0.00739012028719695, 0.1869552919395588], FAIL\\\\n[22:09:33]   Prec:   HS=0.6100, Text=0.5160, D=+0.0940, p=0.0250, CI=[0.00028475517538017916, 0.2046046650717703], FAIL\\\\n[22:09:33]   FPR:    HS=0.2415, Text=0.3259, D=-0.0844, p=0.0570, CI=[-0.1785502486902183, 0.015354214559140633], FAIL\\\\n[22:09:33]   Step-level BalAcc: HS=0.7092, Text=0.6702\\\\n[22:09:33]   Coverage=0.450, LeadMean=13.3\\\\n[22:09:33] \\\\nSaved to /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_layer63_bootstrap/results.json\\\\n[22:09:33] \\\\n================================================================================\\\\n[22:09:33] SUMMARY: R1-32B Layer 63 HS vs Text\\\\n[22:09:33] ================================================================================\\\\n[22:09:33] W= 1: BalAcc D=+18.7pp p=0.000 | Prec D=+15.4pp p=0.000 | FPR D=-14.6pp p=0.004 | Bonf: 3/3\\\\n[22:09:33] W= 3: BalAcc D=+11.2pp p=0.009 | Prec D=+13.0pp p=0.004 | FPR D=-11.4pp p=0.037 | Bonf: 2/3\\\\n[22:09:33] W= 5: BalAcc D=+9.7pp p=0.018 | Prec D=+13.1pp p=0.022 | FPR D=-7.7pp p=0.120 | Bonf: 0/3\\\\n[22:09:33] W=10: BalAcc D=+4.3pp p=0.188 | Prec D=+9.4pp p=0.106 | FPR D=-5.4pp p=0.232 | Bonf: 0/3\\\\n[22:09:33] W=15: BalAcc D=+7.8pp p=0.027 | Prec D=+11.2pp p=0.058 | FPR D=-7.8pp p=0.166 | Bonf: 0/3\\\\n[22:09:33] \\\\nPosition baseline: 0.6842\\\\n[22:09:33] \\\\n--- Layer 63 vs Layer 10 Comparison (W=10) ---\\\\n[22:09:33]   L63 HS bal_acc=0.7003, L10 HS bal_acc=0.7092, diff=-0.0089\\\\n[22:09:33]   L63 bootstrap p=0.1880, L10 bootstrap p=0.0400\\\\n[22:09:33]   L63 Bonf pass: 0/3\\\\n[22:09:33]   L10 Bonf pass: 0/3\\\\n[22:09:33] \\\\nDONE\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"[22:07:21]   HS probe: shape=(2197, 76800), pos_rate=0.345, time=173.0s\\n[22:07:21]   Text probe: shape=(2197, 5760), time=0.7s\\n[22:07:21]   BalAcc: HS=0.7568, Text=0.6793, D=+0.0775, p=0.0270, CI=[-0.0006168443635936624, 0.17402397780711637], FAIL\\n[22:07:21]   Prec:   HS=0.6336, Text=0.5221, D=+0.1115, p=0.0580, CI=[-0.02610339169117168, 0.27478390986176443], FAIL\\n[22:07:21]   FPR:    HS=0.2619, Text=0.3396, D=-0.0777, p=0.1660, CI=[-0.22864648636610296, 0.0748623173403394], FAIL\\n[22:07:21]   Step-level BalAcc: HS=0.7086, Text=0.6483\\n[22:07:21]   Coverage=0.450, LeadMean=12.0\\n[22:07:22] === Position Baseline ===\\n[22:07:22]   Position baseline bal_acc: 0.6842\\n[22:07:22] \\n=== E: Layer 10 Re-run (same split) ===\\n[22:07:22]   --- W=10, Layer=10 ---\\n[22:09:33]   HS probe: shape=(2197, 51200), pos_rate=0.345, time=131.1s\\n[22:09:33]   Text probe: shape=(2197, 3840), time=0.4s\\n[22:09:33]   BalAcc: HS=0.7945, Text=0.7105, D=+0.0839, p=0.0400, CI=[-0.00739012028719695, 0.1869552919395588], FAIL\\n[22:09:33]   Prec:   HS=0.6100, Text=0.5160, D=+0.0940, p=0.0250, CI=[0.00028475517538017916, 0.2046046650717703], FAIL\\n[22:09:33]   FPR:    HS=0.2415, Text=0.3259, D=-0.0844, p=0.0570, CI=[-0.1785502486902183, 0.015354214559140633], FAIL\\n[22:09:33]   Step-level BalAcc: HS=0.7092, Text=0.6702\\n[22:09:33]   Coverage=0.450, LeadMean=13.3\\n[22:09:33] \\nSaved to /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_layer63_bootstrap/results.json\\n[22:09:33] \\n================================================================================\\n[22:09:33] SUMMARY: R1-32B Layer 63 HS vs Text\\n[22:09:33] ================================================================================\\n[22:09:33] W= 1: BalAcc D=+18.7pp p=0.000 | Prec D=+15.4pp p=0.000 | FPR D=-14.6pp p=0.004 | Bonf: 3/3\\n[22:09:33] W= 3: BalAcc D=+11.2pp p=0.009 | Prec D=+13.0pp p=0.004 | FPR D=-11.4pp p=0.037 | Bonf: 2/3\\n[22:09:33] W= 5: BalAcc D=+9.7pp p=0.018 | Prec D=+13.1pp p=0.022 | FPR D=-7.7pp p=0.120 | Bonf: 0/3\\n[22:09:33] W=10: BalAcc D=+4.3pp p=0.188 | Prec D=+9.4pp p=0.106 | FPR D=-5.4pp p=0.232 | Bonf: 0/3\\n[22:09:33] W=15: BalAcc D=+7.8pp p=0.027 | Prec D=+11.2pp p=0.058 | FPR D=-7.8pp p=0.166 | Bonf: 0/3\\n[22:09:33] \\nPosition baseline: 0.6842\\n[22:09:33] \\n--- Layer 63 vs Layer 10 Comparison (W=10) ---\\n[22:09:33]   L63 HS bal_acc=0.7003, L10 HS bal_acc=0.7092, diff=-0.0089\\n[22:09:33]   L63 bootstrap p=0.1880, L10 bootstrap p=0.0400\\n[22:09:33]   L63 Bonf pass: 0/3\\n[22:09:33]   L10 Bonf pass: 0/3\\n[22:09:33] \\nDONE\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+              }
+            }
+          },
+          "id": "event-000381"
+        },
+        {
+          "source_line": 382,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。让我读取完整的 results.json。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7388a469-cd8a-4ff6-8521-67c2345d6d76",
+            "uuid": "3aabb6f0-cb26-4782-a17c-4a23f5e93259",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01URDWt3DaKE94ng7whouKkd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1628,
+                "cache_read_input_tokens": 142366,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1628
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000382"
+        },
+        {
+          "source_line": 383,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017N9kbRqu6UfkzxGRuwvW28",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-rtx6000",
+                "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_layer63_bootstrap/results.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7388a469-cd8a-4ff6-8521-67c2345d6d76",
+            "uuid": "c36d4fc4-3995-49fc-8eb4-9071682edd4e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01URDWt3DaKE94ng7whouKkd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1628,
+                "cache_read_input_tokens": 142366,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1628
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000383"
+        },
+        {
+          "source_line": 384,
+          "timestamp": "2026-05-17T14:09:42.279Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017N9kbRqu6UfkzxGRuwvW28",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"R1-32B Layer 63 HS vs Text Paired Bootstrap\\\\\\\",\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"DeepSeek-R1-Distill-Qwen-32B\\\\\\\",\\\\n  \\\\\\\"layer\\\\\\\": 63,\\\\n  \\\\\\\"n_traces_total\\\\\\\": 100,\\\\n  \\\\\\\"n_test_traces\\\\\\\": 20,\\\\n  \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n  \\\\\\\"text_encoder\\\\\\\": \\\\\\\"all-MiniLM-L6-v2\\\\\\\",\\\\n  \\\\\\\"lr_config\\\\\\\": \\\\\\\"LogisticRegression(C=1.0, class_weight='balanced', solver='liblinear')\\\\\\\",\\\\n  \\\\\\\"layer63_results\\\\\\\": {\\\\n    \\\\\\\"W1\\\\\\\": {\\\\n      \\\\\\\"window\\\\\\\": 1,\\\\n      \\\\\\\"layer\\\\\\\": 63,\\\\n      \\\\\\\"n_test_traces\\\\\\\": 20,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n      \\\\\\\"hs_probe\\\\\\\": {\\\\n        \\\\\\\"step_bal_acc\\\\\\\": 0.7511,\\\\n        \\\\\\\"trace_bal_acc\\\\\\\": 0.8259,\\\\n        \\\\\\\"trace_precision\\\\\\\": 0.6027,\\\\n        \\\\\\\"precp_fpr\\\\\\\": 0.2347,\\\\n        \\\\\\\"coverage\\\\\\\": 0.25,\\\\n        \\\\\\\"lead_mean\\\\\\\": 13.0\\\\n      },\\\\n      \\\\\\\"text_probe\\\\\\\": {\\\\n        \\\\\\\"step_bal_acc\\\\\\\": 0.6011,\\\\n        \\\\\\\"trace_bal_acc\\\\\\\": 0.6388,\\\\n        \\\\\\\"trace_precision\\\\\\\": 0.4483,\\\\n        \\\\\\\"precp_fpr\\\\\\\": 0.3804\\\\n      },\\\\n      \\\\\\\"bootstrap\\\\\\\": {\\\\n        \\\\\\\"balanced_accuracy\\\\\\\": {\\\\n          \\\\\\\"hs_mean\\\\\\\": 0.8259,\\\\n          \\\\\\\"text_mean\\\\\\\": 0.6388,\\\\n          \\\\\\\"diff_mean\\\\\\\": 0.1871,\\\\n          \\\\\\\"diff_ci95\\\\\\\": [\\\\n            0.1022,\\\\n            0.2734\\\\n          ],\\\\n          \\\\\\\"p_value\\\\\\\": 0.0,\\\\n          \\\\\\\"n_valid\\\\\\\": 20,\\\\n          \\\\\\\"significant_bonferroni\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"precision\\\\\\\": {\\\\n          \\\\\\\"hs_mean\\\\\\\": 0.6027,\\\\n          \\\\\\\"text_mean\\\\\\\": 0.4483,\\\\n          \\\\\\\"diff_mean\\\\\\\": 0.1544,\\\\n          \\\\\\\"diff_ci95\\\\\\\": [\\\\n            0.0834,\\\\n            0.2289\\\\n          ],\\\\n          \\\\\\\"p_value\\\\\\\": 0.0,\\\\n          \\\\\\\"n_valid\\\\\\\": 20,\\\\n          \\\\\\\"significant_bonferroni\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"precp_fpr\\\\\\\": {\\\\n          \\\\\\\"hs_mean\\\\\\\": 0.2347,\\\\n          \\\\\\\"text_mean\\\\\\\": 0.3804,\\\\n          \\\\\\\"diff_mean\\\\\\\": -0.1457,\\\\n          \\\\\\\"diff_ci95\\\\\\\": [\\\\n            -0.2572,\\\\n            -0.0334\\\\n          ],\\\\n          \\\\\\\"p_value\\\\\\\": 0.004,\\\\n          \\\\\\\"n_valid\\\\\\\": 20,\\\\n          \\\\\\\"significant_bonferroni\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"bonferroni_alpha\\\\\\\": 0.0167\\\\n      }\\\\n    },\\\\n    \\\\\\\"W3\\\\\\\": {\\\\n      \\\\\\\"window\\\\\\\": 3,\\\\n      \\\\\\\"layer\\\\\\\": 63,\\\\n      \\\\\\\"n_test_traces\\\\\\\": 20,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n      \\\\\\\"hs_probe\\\\\\\": {\\\\n        \\\\\\\"step_bal_acc\\\\\\\": 0.7309,\\\\n        \\\\\\\"trace_bal_acc\\\\\\\": 0.8064,\\\\n        \\\\\\\"trace_precision\\\\\\\": 0.6342,\\\\n        \\\\\\\"precp_fpr\\\\\\\": 0.2298,\\\\n        \\\\\\\"coverage\\\\\\\": 0.35,\\\\n        \\\\\\\"lead_mean\\\\\\\": 11.7\\\\n      },\\\\n      \\\\\\\"text_probe\\\\\\\": {\\\\n        \\\\\\\"step_bal_acc\\\\\\\": 0.6295,\\\\n        \\\\\\\"trace_bal_acc\\\\\\\": 0.6945,\\\\n        \\\\\\\"trace_precision\\\\\\\": 0.5041,\\\\n        \\\\\\\"precp_fpr\\\\\\\": 0.344\\\\n      },\\\\n      \\\\\\\"bootstrap\\\\\\\": {\\\\n        \\\\\\\"balanced_accuracy\\\\\\\": {\\\\n          \\\\\\\"hs_mean\\\\\\\": 0.8064,\\\\n          \\\\\\\"text_mean\\\\\\\": 0.6945,\\\\n          \\\\\\\"diff_mean\\\\\\\": 0.1119,\\\\n          \\\\\\\"diff_ci95\\\\\\\": [\\\\n            0.0202,\\\\n            0.2008\\\\n          ],\\\\n          \\\\\\\"p_value\\\\\\\": 0.009,\\\\n          \\\\\\\"n_valid\\\\\\\": 20,\\\\n          \\\\\\\"significant_bonferroni\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"precision\\\\\\\": {\\\\n          \\\\\\\"hs_mean\\\\\\\": 0.6342,\\\\n          \\\\\\\"text_mean\\\\\\\": 0.5041,\\\\n          \\\\\\\"diff_mean\\\\\\\": 0.1301,\\\\n          \\\\\\\"diff_ci95\\\\\\\": [\\\\n            0.0276,\\\\n            0.2658\\\\n          ],\\\\n          \\\\\\\"p_value\\\\\\\": 0.004,\\\\n          \\\\\\\"n_valid\\\\\\\": 20,\\\\n          \\\\\\\"significant_bonferroni\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"precp_fpr\\\\\\\": {\\\\n          \\\\\\\"hs_mean\\\\\\\": 0.2298,\\\\n          \\\\\\\"text_mean\\\\\\\": 0.344,\\\\n          \\\\\\\"diff_mean\\\\\\\": -0.1142,\\\\n          \\\\\\\"diff_ci95\\\\\\\": [\\\\n            -0.2376,\\\\n            0.0096\\\\n          ],\\\\n          \\\\\\\"p_value\\\\\\\": 0.037,\\\\n          \\\\\\\"n_valid\\\\\\\": 20,\\\\n          \\\\\\\"significant_bonferroni\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"bonferroni_alpha\\\\\\\": 0.0167\\\\n      }\\\\n    },\\\\n    \\\\\\\"W5\\\\\\\": {\\\\n      \\\\\\\"window\\\\\\\": 5,\\\\n      \\\\\\\"layer\\\\\\\": 63,\\\\n      \\\\\\\"n_test_traces\\\\\\\": 20,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n      \\\\\\\"hs_probe\\\\\\\": {\\\\n        \\\\\\\"step_bal_acc\\\\\\\": 0.721,\\\\n        \\\\\\\"trace_bal_acc\\\\\\\": 0.8,\\\\n        \\\\\\\"trace_precision\\\\\\\": 0.6213,\\\\n        \\\\\\\"precp_fpr\\\\\\\": 0.2438,\\\\n        \\\\\\\"coverage\\\\\\\": 0.45,\\\\n        \\\\\\\"lead_mean\\\\\\\": 12.0\\\\n      },\\\\n      \\\\\\\"text_probe\\\\\\\": {\\\\n        \\\\\\\"step_bal_acc\\\\\\\": 0.6515,\\\\n        \\\\\\\"trace_bal_acc\\\\\\\": 0.7026,\\\\n        \\\\\\\"trace_precision\\\\\\\": 0.4901,\\\\n        \\\\\\\"precp_fpr\\\\\\\": 0.3208\\\\n      },\\\\n      \\\\\\\"bootstrap\\\\\\\": {\\\\n        \\\\\\\"balanced_accuracy\\\\\\\": {\\\\n          \\\\\\\"hs_mean\\\\\\\": 0.8,\\\\n          \\\\\\\"text_mean\\\\\\\": 0.7026,\\\\n          \\\\\\\"diff_mean\\\\\\\": 0.0973,\\\\n          \\\\\\\"diff_ci95\\\\\\\": [\\\\n            0.0035,\\\\n            0.1933\\\\n          ],\\\\n          \\\\\\\"p_value\\\\\\\": 0.018,\\\\n          \\\\\\\"n_valid\\\\\\\": 20,\\\\n          \\\\\\\"significant_bonferroni\\\\\\\": f\\\\n\\\\n... [截断: 输出过长，省略 1087 字符] ...\\\\n\\\\n: 0.516,\\\\n        \\\\\\\"precp_fpr\\\\\\\": 0.3259\\\\n      },\\\\n      \\\\\\\"bootstrap\\\\\\\": {\\\\n        \\\\\\\"balanced_accuracy\\\\\\\": {\\\\n          \\\\\\\"hs_mean\\\\\\\": 0.7538,\\\\n          \\\\\\\"text_mean\\\\\\\": 0.7105,\\\\n          \\\\\\\"diff_mean\\\\\\\": 0.0433,\\\\n          \\\\\\\"diff_ci95\\\\\\\": [\\\\n            -0.0526,\\\\n            0.1498\\\\n          ],\\\\n          \\\\\\\"p_value\\\\\\\": 0.188,\\\\n          \\\\\\\"n_valid\\\\\\\": 20,\\\\n          \\\\\\\"significant_bonferroni\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"precision\\\\\\\": {\\\\n          \\\\\\\"hs_mean\\\\\\\": 0.6098,\\\\n          \\\\\\\"text_mean\\\\\\\": 0.516,\\\\n          \\\\\\\"diff_mean\\\\\\\": 0.0938,\\\\n          \\\\\\\"diff_ci95\\\\\\\": [\\\\n            -0.0493,\\\\n            0.2698\\\\n          ],\\\\n          \\\\\\\"p_value\\\\\\\": 0.106,\\\\n          \\\\\\\"n_valid\\\\\\\": 20,\\\\n          \\\\\\\"significant_bonferroni\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"precp_fpr\\\\\\\": {\\\\n          \\\\\\\"hs_mean\\\\\\\": 0.2719,\\\\n          \\\\\\\"text_mean\\\\\\\": 0.3259,\\\\n          \\\\\\\"diff_mean\\\\\\\": -0.054,\\\\n          \\\\\\\"diff_ci95\\\\\\\": [\\\\n            -0.2031,\\\\n            0.0872\\\\n          ],\\\\n          \\\\\\\"p_value\\\\\\\": 0.232,\\\\n          \\\\\\\"n_valid\\\\\\\": 20,\\\\n          \\\\\\\"significant_bonferroni\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"bonferroni_alpha\\\\\\\": 0.0167\\\\n      }\\\\n    },\\\\n    \\\\\\\"W15\\\\\\\": {\\\\n      \\\\\\\"window\\\\\\\": 15,\\\\n      \\\\\\\"layer\\\\\\\": 63,\\\\n      \\\\\\\"n_test_traces\\\\\\\": 20,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n      \\\\\\\"hs_probe\\\\\\\": {\\\\n        \\\\\\\"step_bal_acc\\\\\\\": 0.7086,\\\\n        \\\\\\\"trace_bal_acc\\\\\\\": 0.7568,\\\\n        \\\\\\\"trace_precision\\\\\\\": 0.6336,\\\\n        \\\\\\\"precp_fpr\\\\\\\": 0.2619,\\\\n        \\\\\\\"coverage\\\\\\\": 0.45,\\\\n        \\\\\\\"lead_mean\\\\\\\": 12.0\\\\n      },\\\\n      \\\\\\\"text_probe\\\\\\\": {\\\\n        \\\\\\\"step_bal_acc\\\\\\\": 0.6483,\\\\n        \\\\\\\"trace_bal_acc\\\\\\\": 0.6793,\\\\n        \\\\\\\"trace_precision\\\\\\\": 0.5221,\\\\n        \\\\\\\"precp_fpr\\\\\\\": 0.3396\\\\n      },\\\\n      \\\\\\\"bootstrap\\\\\\\": {\\\\n        \\\\\\\"balanced_accuracy\\\\\\\": {\\\\n          \\\\\\\"hs_mean\\\\\\\": 0.7568,\\\\n          \\\\\\\"text_mean\\\\\\\": 0.6793,\\\\n          \\\\\\\"diff_mean\\\\\\\": 0.0775,\\\\n          \\\\\\\"diff_ci95\\\\\\\": [\\\\n            -0.0006,\\\\n            0.174\\\\n          ],\\\\n          \\\\\\\"p_value\\\\\\\": 0.027,\\\\n          \\\\\\\"n_valid\\\\\\\": 20,\\\\n          \\\\\\\"significant_bonferroni\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"precision\\\\\\\": {\\\\n          \\\\\\\"hs_mean\\\\\\\": 0.6336,\\\\n          \\\\\\\"text_mean\\\\\\\": 0.5221,\\\\n          \\\\\\\"diff_mean\\\\\\\": 0.1115,\\\\n          \\\\\\\"diff_ci95\\\\\\\": [\\\\n            -0.0261,\\\\n            0.2748\\\\n          ],\\\\n          \\\\\\\"p_value\\\\\\\": 0.058,\\\\n          \\\\\\\"n_valid\\\\\\\": 17,\\\\n          \\\\\\\"significant_bonferroni\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"precp_fpr\\\\\\\": {\\\\n          \\\\\\\"hs_mean\\\\\\\": 0.2619,\\\\n          \\\\\\\"text_mean\\\\\\\": 0.3396,\\\\n          \\\\\\\"diff_mean\\\\\\\": -0.0777,\\\\n          \\\\\\\"diff_ci95\\\\\\\": [\\\\n            -0.2286,\\\\n            0.0749\\\\n          ],\\\\n          \\\\\\\"p_value\\\\\\\": 0.166,\\\\n          \\\\\\\"n_valid\\\\\\\": 20,\\\\n          \\\\\\\"significant_bonferroni\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"bonferroni_alpha\\\\\\\": 0.0167\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"position_baseline\\\\\\\": {\\\\n    \\\\\\\"position_bal_acc\\\\\\\": 0.6842\\\\n  },\\\\n  \\\\\\\"layer10_comparison\\\\\\\": {\\\\n    \\\\\\\"W10\\\\\\\": {\\\\n      \\\\\\\"window\\\\\\\": 10,\\\\n      \\\\\\\"layer\\\\\\\": 10,\\\\n      \\\\\\\"n_test_traces\\\\\\\": 20,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n      \\\\\\\"hs_probe\\\\\\\": {\\\\n        \\\\\\\"step_bal_acc\\\\\\\": 0.7092,\\\\n        \\\\\\\"trace_bal_acc\\\\\\\": 0.7945,\\\\n        \\\\\\\"trace_precision\\\\\\\": 0.61,\\\\n        \\\\\\\"precp_fpr\\\\\\\": 0.2415,\\\\n        \\\\\\\"coverage\\\\\\\": 0.45,\\\\n        \\\\\\\"lead_mean\\\\\\\": 13.3\\\\n      },\\\\n      \\\\\\\"text_probe\\\\\\\": {\\\\n        \\\\\\\"step_bal_acc\\\\\\\": 0.6702,\\\\n        \\\\\\\"trace_bal_acc\\\\\\\": 0.7105,\\\\n        \\\\\\\"trace_precision\\\\\\\": 0.516,\\\\n        \\\\\\\"precp_fpr\\\\\\\": 0.3259\\\\n      },\\\\n      \\\\\\\"bootstrap\\\\\\\": {\\\\n        \\\\\\\"balanced_accuracy\\\\\\\": {\\\\n          \\\\\\\"hs_mean\\\\\\\": 0.7945,\\\\n          \\\\\\\"text_mean\\\\\\\": 0.7105,\\\\n          \\\\\\\"diff_mean\\\\\\\": 0.0839,\\\\n          \\\\\\\"diff_ci95\\\\\\\": [\\\\n            -0.0074,\\\\n            0.187\\\\n          ],\\\\n          \\\\\\\"p_value\\\\\\\": 0.04,\\\\n          \\\\\\\"n_valid\\\\\\\": 20,\\\\n          \\\\\\\"significant_bonferroni\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"precision\\\\\\\": {\\\\n          \\\\\\\"hs_mean\\\\\\\": 0.61,\\\\n          \\\\\\\"text_mean\\\\\\\": 0.516,\\\\n          \\\\\\\"diff_mean\\\\\\\": 0.094,\\\\n          \\\\\\\"diff_ci95\\\\\\\": [\\\\n            0.0003,\\\\n            0.2046\\\\n          ],\\\\n          \\\\\\\"p_value\\\\\\\": 0.025,\\\\n          \\\\\\\"n_valid\\\\\\\": 20,\\\\n          \\\\\\\"significant_bonferroni\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"precp_fpr\\\\\\\": {\\\\n          \\\\\\\"hs_mean\\\\\\\": 0.2415,\\\\n          \\\\\\\"text_mean\\\\\\\": 0.3259,\\\\n          \\\\\\\"diff_mean\\\\\\\": -0.0844,\\\\n          \\\\\\\"diff_ci95\\\\\\\": [\\\\n            -0.1786,\\\\n            0.0154\\\\n          ],\\\\n          \\\\\\\"p_value\\\\\\\": 0.057,\\\\n          \\\\\\\"n_valid\\\\\\\": 20,\\\\n          \\\\\\\"significant_bonferroni\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"bonferroni_alpha\\\\\\\": 0.0167\\\\n      }\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7388a469-cd8a-4ff6-8521-67c2345d6d76",
+            "uuid": "253a1102-b338-4ea4-bedf-58f43cc3502a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"R1-32B Layer 63 HS vs Text Paired Bootstrap\\\\\\\",\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"DeepSeek-R1-Distill-Qwen-32B\\\\\\\",\\\\n  \\\\\\\"layer\\\\\\\": 63,\\\\n  \\\\\\\"n_traces_total\\\\\\\": 100,\\\\n  \\\\\\\"n_test_traces\\\\\\\": 20,\\\\n  \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n  \\\\\\\"text_encoder\\\\\\\": \\\\\\\"all-MiniLM-L6-v2\\\\\\\",\\\\n  \\\\\\\"lr_config\\\\\\\": \\\\\\\"LogisticRegression(C=1.0, class_weight='balanced', solver='liblinear')\\\\\\\",\\\\n  \\\\\\\"layer63_results\\\\\\\": {\\\\n    \\\\\\\"W1\\\\\\\": {\\\\n      \\\\\\\"window\\\\\\\": 1,\\\\n      \\\\\\\"layer\\\\\\\": 63,\\\\n      \\\\\\\"n_test_traces\\\\\\\": 20,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n      \\\\\\\"hs_probe\\\\\\\": {\\\\n        \\\\\\\"step_bal_acc\\\\\\\": 0.7511,\\\\n        \\\\\\\"trace_bal_acc\\\\\\\": 0.8259,\\\\n        \\\\\\\"trace_precision\\\\\\\": 0.6027,\\\\n        \\\\\\\"precp_fpr\\\\\\\": 0.2347,\\\\n        \\\\\\\"coverage\\\\\\\": 0.25,\\\\n        \\\\\\\"lead_mean\\\\\\\": 13.0\\\\n      },\\\\n      \\\\\\\"text_probe\\\\\\\": {\\\\n        \\\\\\\"step_bal_acc\\\\\\\": 0.6011,\\\\n        \\\\\\\"trace_bal_acc\\\\\\\": 0.6388,\\\\n        \\\\\\\"trace_precision\\\\\\\": 0.4483,\\\\n        \\\\\\\"precp_fpr\\\\\\\": 0.3804\\\\n      },\\\\n      \\\\\\\"bootstrap\\\\\\\": {\\\\n        \\\\\\\"balanced_accuracy\\\\\\\": {\\\\n          \\\\\\\"hs_mean\\\\\\\": 0.8259,\\\\n          \\\\\\\"text_mean\\\\\\\": 0.6388,\\\\n          \\\\\\\"diff_mean\\\\\\\": 0.1871,\\\\n          \\\\\\\"diff_ci95\\\\\\\": [\\\\n            0.1022,\\\\n            0.2734\\\\n          ],\\\\n          \\\\\\\"p_value\\\\\\\": 0.0,\\\\n          \\\\\\\"n_valid\\\\\\\": 20,\\\\n          \\\\\\\"significant_bonferroni\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"precision\\\\\\\": {\\\\n          \\\\\\\"hs_mean\\\\\\\": 0.6027,\\\\n          \\\\\\\"text_mean\\\\\\\": 0.4483,\\\\n          \\\\\\\"diff_mean\\\\\\\": 0.1544,\\\\n          \\\\\\\"diff_ci95\\\\\\\": [\\\\n            0.0834,\\\\n            0.2289\\\\n          ],\\\\n          \\\\\\\"p_value\\\\\\\": 0.0,\\\\n          \\\\\\\"n_valid\\\\\\\": 20,\\\\n          \\\\\\\"significant_bonferroni\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"precp_fpr\\\\\\\": {\\\\n          \\\\\\\"hs_mean\\\\\\\": 0.2347,\\\\n          \\\\\\\"text_mean\\\\\\\": 0.3804,\\\\n          \\\\\\\"diff_mean\\\\\\\": -0.1457,\\\\n          \\\\\\\"diff_ci95\\\\\\\": [\\\\n            -0.2572,\\\\n            -0.0334\\\\n          ],\\\\n          \\\\\\\"p_value\\\\\\\": 0.004,\\\\n          \\\\\\\"n_valid\\\\\\\": 20,\\\\n          \\\\\\\"significant_bonferroni\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"bonferroni_alpha\\\\\\\": 0.0167\\\\n      }\\\\n    },\\\\n    \\\\\\\"W3\\\\\\\": {\\\\n      \\\\\\\"window\\\\\\\": 3,\\\\n      \\\\\\\"layer\\\\\\\": 63,\\\\n      \\\\\\\"n_test_traces\\\\\\\": 20,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n      \\\\\\\"hs_probe\\\\\\\": {\\\\n        \\\\\\\"step_bal_acc\\\\\\\": 0.7309,\\\\n        \\\\\\\"trace_bal_acc\\\\\\\": 0.8064,\\\\n        \\\\\\\"trace_precision\\\\\\\": 0.6342,\\\\n        \\\\\\\"precp_fpr\\\\\\\": 0.2298,\\\\n        \\\\\\\"coverage\\\\\\\": 0.35,\\\\n        \\\\\\\"lead_mean\\\\\\\": 11.7\\\\n      },\\\\n      \\\\\\\"text_probe\\\\\\\": {\\\\n        \\\\\\\"step_bal_acc\\\\\\\": 0.6295,\\\\n        \\\\\\\"trace_bal_acc\\\\\\\": 0.6945,\\\\n        \\\\\\\"trace_precision\\\\\\\": 0.5041,\\\\n        \\\\\\\"precp_fpr\\\\\\\": 0.344\\\\n      },\\\\n      \\\\\\\"bootstrap\\\\\\\": {\\\\n        \\\\\\\"balanced_accuracy\\\\\\\": {\\\\n          \\\\\\\"hs_mean\\\\\\\": 0.8064,\\\\n          \\\\\\\"text_mean\\\\\\\": 0.6945,\\\\n          \\\\\\\"diff_mean\\\\\\\": 0.1119,\\\\n          \\\\\\\"diff_ci95\\\\\\\": [\\\\n            0.0202,\\\\n            0.2008\\\\n          ],\\\\n          \\\\\\\"p_value\\\\\\\": 0.009,\\\\n          \\\\\\\"n_valid\\\\\\\": 20,\\\\n          \\\\\\\"significant_bonferroni\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"precision\\\\\\\": {\\\\n          \\\\\\\"hs_mean\\\\\\\": 0.6342,\\\\n          \\\\\\\"text_mean\\\\\\\": 0.5041,\\\\n          \\\\\\\"diff_mean\\\\\\\": 0.1301,\\\\n          \\\\\\\"diff_ci95\\\\\\\": [\\\\n            0.0276,\\\\n            0.2658\\\\n          ],\\\\n          \\\\\\\"p_value\\\\\\\": 0.004,\\\\n          \\\\\\\"n_valid\\\\\\\": 20,\\\\n          \\\\\\\"significant_bonferroni\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"precp_fpr\\\\\\\": {\\\\n          \\\\\\\"hs_mean\\\\\\\": 0.2298,\\\\n          \\\\\\\"text_mean\\\\\\\": 0.344,\\\\n          \\\\\\\"diff_mean\\\\\\\": -0.1142,\\\\n          \\\\\\\"diff_ci95\\\\\\\": [\\\\n            -0.2376,\\\\n            0.0096\\\\n          ],\\\\n          \\\\\\\"p_value\\\\\\\": 0.037,\\\\n          \\\\\\\"n_valid\\\\\\\": 20,\\\\n          \\\\\\\"significant_bonferroni\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"bonferroni_alpha\\\\\\\": 0.0167\\\\n      }\\\\n    },\\\\n    \\\\\\\"W5\\\\\\\": {\\\\n      \\\\\\\"window\\\\\\\": 5,\\\\n      \\\\\\\"layer\\\\\\\": 63,\\\\n      \\\\\\\"n_test_traces\\\\\\\": 20,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n      \\\\\\\"hs_probe\\\\\\\": {\\\\n        \\\\\\\"step_bal_acc\\\\\\\": 0.721,\\\\n        \\\\\\\"trace_bal_acc\\\\\\\": 0.8,\\\\n        \\\\\\\"trace_precision\\\\\\\": 0.6213,\\\\n        \\\\\\\"precp_fpr\\\\\\\": 0.2438,\\\\n        \\\\\\\"coverage\\\\\\\": 0.45,\\\\n        \\\\\\\"lead_mean\\\\\\\": 12.0\\\\n      },\\\\n      \\\\\\\"text_probe\\\\\\\": {\\\\n        \\\\\\\"step_bal_acc\\\\\\\": 0.6515,\\\\n        \\\\\\\"trace_bal_acc\\\\\\\": 0.7026,\\\\n        \\\\\\\"trace_precision\\\\\\\": 0.4901,\\\\n        \\\\\\\"precp_fpr\\\\\\\": 0.3208\\\\n      },\\\\n      \\\\\\\"bootstrap\\\\\\\": {\\\\n        \\\\\\\"balanced_accuracy\\\\\\\": {\\\\n          \\\\\\\"hs_mean\\\\\\\": 0.8,\\\\n          \\\\\\\"text_mean\\\\\\\": 0.7026,\\\\n          \\\\\\\"diff_mean\\\\\\\": 0.0973,\\\\n          \\\\\\\"diff_ci95\\\\\\\": [\\\\n            0.0035,\\\\n            0.1933\\\\n          ],\\\\n          \\\\\\\"p_value\\\\\\\": 0.018,\\\\n          \\\\\\\"n_valid\\\\\\\": 20,\\\\n          \\\\\\\"significant_bonferroni\\\\\\\": f\\\\n\\\\n... [截断: 输出过长，省略 1087 字符] ...\\\\n\\\\n: 0.516,\\\\n        \\\\\\\"precp_fpr\\\\\\\": 0.3259\\\\n      },\\\\n      \\\\\\\"bootstrap\\\\\\\": {\\\\n        \\\\\\\"balanced_accuracy\\\\\\\": {\\\\n          \\\\\\\"hs_mean\\\\\\\": 0.7538,\\\\n          \\\\\\\"text_mean\\\\\\\": 0.7105,\\\\n          \\\\\\\"diff_mean\\\\\\\": 0.0433,\\\\n          \\\\\\\"diff_ci95\\\\\\\": [\\\\n            -0.0526,\\\\n            0.1498\\\\n          ],\\\\n          \\\\\\\"p_value\\\\\\\": 0.188,\\\\n          \\\\\\\"n_valid\\\\\\\": 20,\\\\n          \\\\\\\"significant_bonferroni\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"precision\\\\\\\": {\\\\n          \\\\\\\"hs_mean\\\\\\\": 0.6098,\\\\n          \\\\\\\"text_mean\\\\\\\": 0.516,\\\\n          \\\\\\\"diff_mean\\\\\\\": 0.0938,\\\\n          \\\\\\\"diff_ci95\\\\\\\": [\\\\n            -0.0493,\\\\n            0.2698\\\\n          ],\\\\n          \\\\\\\"p_value\\\\\\\": 0.106,\\\\n          \\\\\\\"n_valid\\\\\\\": 20,\\\\n          \\\\\\\"significant_bonferroni\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"precp_fpr\\\\\\\": {\\\\n          \\\\\\\"hs_mean\\\\\\\": 0.2719,\\\\n          \\\\\\\"text_mean\\\\\\\": 0.3259,\\\\n          \\\\\\\"diff_mean\\\\\\\": -0.054,\\\\n          \\\\\\\"diff_ci95\\\\\\\": [\\\\n            -0.2031,\\\\n            0.0872\\\\n          ],\\\\n          \\\\\\\"p_value\\\\\\\": 0.232,\\\\n          \\\\\\\"n_valid\\\\\\\": 20,\\\\n          \\\\\\\"significant_bonferroni\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"bonferroni_alpha\\\\\\\": 0.0167\\\\n      }\\\\n    },\\\\n    \\\\\\\"W15\\\\\\\": {\\\\n      \\\\\\\"window\\\\\\\": 15,\\\\n      \\\\\\\"layer\\\\\\\": 63,\\\\n      \\\\\\\"n_test_traces\\\\\\\": 20,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n      \\\\\\\"hs_probe\\\\\\\": {\\\\n        \\\\\\\"step_bal_acc\\\\\\\": 0.7086,\\\\n        \\\\\\\"trace_bal_acc\\\\\\\": 0.7568,\\\\n        \\\\\\\"trace_precision\\\\\\\": 0.6336,\\\\n        \\\\\\\"precp_fpr\\\\\\\": 0.2619,\\\\n        \\\\\\\"coverage\\\\\\\": 0.45,\\\\n        \\\\\\\"lead_mean\\\\\\\": 12.0\\\\n      },\\\\n      \\\\\\\"text_probe\\\\\\\": {\\\\n        \\\\\\\"step_bal_acc\\\\\\\": 0.6483,\\\\n        \\\\\\\"trace_bal_acc\\\\\\\": 0.6793,\\\\n        \\\\\\\"trace_precision\\\\\\\": 0.5221,\\\\n        \\\\\\\"precp_fpr\\\\\\\": 0.3396\\\\n      },\\\\n      \\\\\\\"bootstrap\\\\\\\": {\\\\n        \\\\\\\"balanced_accuracy\\\\\\\": {\\\\n          \\\\\\\"hs_mean\\\\\\\": 0.7568,\\\\n          \\\\\\\"text_mean\\\\\\\": 0.6793,\\\\n          \\\\\\\"diff_mean\\\\\\\": 0.0775,\\\\n          \\\\\\\"diff_ci95\\\\\\\": [\\\\n            -0.0006,\\\\n            0.174\\\\n          ],\\\\n          \\\\\\\"p_value\\\\\\\": 0.027,\\\\n          \\\\\\\"n_valid\\\\\\\": 20,\\\\n          \\\\\\\"significant_bonferroni\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"precision\\\\\\\": {\\\\n          \\\\\\\"hs_mean\\\\\\\": 0.6336,\\\\n          \\\\\\\"text_mean\\\\\\\": 0.5221,\\\\n          \\\\\\\"diff_mean\\\\\\\": 0.1115,\\\\n          \\\\\\\"diff_ci95\\\\\\\": [\\\\n            -0.0261,\\\\n            0.2748\\\\n          ],\\\\n          \\\\\\\"p_value\\\\\\\": 0.058,\\\\n          \\\\\\\"n_valid\\\\\\\": 17,\\\\n          \\\\\\\"significant_bonferroni\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"precp_fpr\\\\\\\": {\\\\n          \\\\\\\"hs_mean\\\\\\\": 0.2619,\\\\n          \\\\\\\"text_mean\\\\\\\": 0.3396,\\\\n          \\\\\\\"diff_mean\\\\\\\": -0.0777,\\\\n          \\\\\\\"diff_ci95\\\\\\\": [\\\\n            -0.2286,\\\\n            0.0749\\\\n          ],\\\\n          \\\\\\\"p_value\\\\\\\": 0.166,\\\\n          \\\\\\\"n_valid\\\\\\\": 20,\\\\n          \\\\\\\"significant_bonferroni\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"bonferroni_alpha\\\\\\\": 0.0167\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"position_baseline\\\\\\\": {\\\\n    \\\\\\\"position_bal_acc\\\\\\\": 0.6842\\\\n  },\\\\n  \\\\\\\"layer10_comparison\\\\\\\": {\\\\n    \\\\\\\"W10\\\\\\\": {\\\\n      \\\\\\\"window\\\\\\\": 10,\\\\n      \\\\\\\"layer\\\\\\\": 10,\\\\n      \\\\\\\"n_test_traces\\\\\\\": 20,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n      \\\\\\\"hs_probe\\\\\\\": {\\\\n        \\\\\\\"step_bal_acc\\\\\\\": 0.7092,\\\\n        \\\\\\\"trace_bal_acc\\\\\\\": 0.7945,\\\\n        \\\\\\\"trace_precision\\\\\\\": 0.61,\\\\n        \\\\\\\"precp_fpr\\\\\\\": 0.2415,\\\\n        \\\\\\\"coverage\\\\\\\": 0.45,\\\\n        \\\\\\\"lead_mean\\\\\\\": 13.3\\\\n      },\\\\n      \\\\\\\"text_probe\\\\\\\": {\\\\n        \\\\\\\"step_bal_acc\\\\\\\": 0.6702,\\\\n        \\\\\\\"trace_bal_acc\\\\\\\": 0.7105,\\\\n        \\\\\\\"trace_precision\\\\\\\": 0.516,\\\\n        \\\\\\\"precp_fpr\\\\\\\": 0.3259\\\\n      },\\\\n      \\\\\\\"bootstrap\\\\\\\": {\\\\n        \\\\\\\"balanced_accuracy\\\\\\\": {\\\\n          \\\\\\\"hs_mean\\\\\\\": 0.7945,\\\\n          \\\\\\\"text_mean\\\\\\\": 0.7105,\\\\n          \\\\\\\"diff_mean\\\\\\\": 0.0839,\\\\n          \\\\\\\"diff_ci95\\\\\\\": [\\\\n            -0.0074,\\\\n            0.187\\\\n          ],\\\\n          \\\\\\\"p_value\\\\\\\": 0.04,\\\\n          \\\\\\\"n_valid\\\\\\\": 20,\\\\n          \\\\\\\"significant_bonferroni\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"precision\\\\\\\": {\\\\n          \\\\\\\"hs_mean\\\\\\\": 0.61,\\\\n          \\\\\\\"text_mean\\\\\\\": 0.516,\\\\n          \\\\\\\"diff_mean\\\\\\\": 0.094,\\\\n          \\\\\\\"diff_ci95\\\\\\\": [\\\\n            0.0003,\\\\n            0.2046\\\\n          ],\\\\n          \\\\\\\"p_value\\\\\\\": 0.025,\\\\n          \\\\\\\"n_valid\\\\\\\": 20,\\\\n          \\\\\\\"significant_bonferroni\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"precp_fpr\\\\\\\": {\\\\n          \\\\\\\"hs_mean\\\\\\\": 0.2415,\\\\n          \\\\\\\"text_mean\\\\\\\": 0.3259,\\\\n          \\\\\\\"diff_mean\\\\\\\": -0.0844,\\\\n          \\\\\\\"diff_ci95\\\\\\\": [\\\\n            -0.1786,\\\\n            0.0154\\\\n          ],\\\\n          \\\\\\\"p_value\\\\\\\": 0.057,\\\\n          \\\\\\\"n_valid\\\\\\\": 20,\\\\n          \\\\\\\"significant_bonferroni\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"bonferroni_alpha\\\\\\\": 0.0167\\\\n      }\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"R1-32B Layer 63 HS vs Text Paired Bootstrap\\\",\\n  \\\"model\\\": \\\"DeepSeek-R1-Distill-Qwen-32B\\\",\\n  \\\"layer\\\": 63,\\n  \\\"n_traces_total\\\": 100,\\n  \\\"n_test_traces\\\": 20,\\n  \\\"n_bootstrap\\\": 1000,\\n  \\\"text_encoder\\\": \\\"all-MiniLM-L6-v2\\\",\\n  \\\"lr_config\\\": \\\"LogisticRegression(C=1.0, class_weight='balanced', solver='liblinear')\\\",\\n  \\\"layer63_results\\\": {\\n    \\\"W1\\\": {\\n      \\\"window\\\": 1,\\n      \\\"layer\\\": 63,\\n      \\\"n_test_traces\\\": 20,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"hs_probe\\\": {\\n        \\\"step_bal_acc\\\": 0.7511,\\n        \\\"trace_bal_acc\\\": 0.8259,\\n        \\\"trace_precision\\\": 0.6027,\\n        \\\"precp_fpr\\\": 0.2347,\\n        \\\"coverage\\\": 0.25,\\n        \\\"lead_mean\\\": 13.0\\n      },\\n      \\\"text_probe\\\": {\\n        \\\"step_bal_acc\\\": 0.6011,\\n        \\\"trace_bal_acc\\\": 0.6388,\\n        \\\"trace_precision\\\": 0.4483,\\n        \\\"precp_fpr\\\": 0.3804\\n      },\\n      \\\"bootstrap\\\": {\\n        \\\"balanced_accuracy\\\": {\\n          \\\"hs_mean\\\": 0.8259,\\n          \\\"text_mean\\\": 0.6388,\\n          \\\"diff_mean\\\": 0.1871,\\n          \\\"diff_ci95\\\": [\\n            0.1022,\\n            0.2734\\n          ],\\n          \\\"p_value\\\": 0.0,\\n          \\\"n_valid\\\": 20,\\n          \\\"significant_bonferroni\\\": true\\n        },\\n        \\\"precision\\\": {\\n          \\\"hs_mean\\\": 0.6027,\\n          \\\"text_mean\\\": 0.4483,\\n          \\\"diff_mean\\\": 0.1544,\\n          \\\"diff_ci95\\\": [\\n            0.0834,\\n            0.2289\\n          ],\\n          \\\"p_value\\\": 0.0,\\n          \\\"n_valid\\\": 20,\\n          \\\"significant_bonferroni\\\": true\\n        },\\n        \\\"precp_fpr\\\": {\\n          \\\"hs_mean\\\": 0.2347,\\n          \\\"text_mean\\\": 0.3804,\\n          \\\"diff_mean\\\": -0.1457,\\n          \\\"diff_ci95\\\": [\\n            -0.2572,\\n            -0.0334\\n          ],\\n          \\\"p_value\\\": 0.004,\\n          \\\"n_valid\\\": 20,\\n          \\\"significant_bonferroni\\\": true\\n        },\\n        \\\"bonferroni_alpha\\\": 0.0167\\n      }\\n    },\\n    \\\"W3\\\": {\\n      \\\"window\\\": 3,\\n      \\\"layer\\\": 63,\\n      \\\"n_test_traces\\\": 20,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"hs_probe\\\": {\\n        \\\"step_bal_acc\\\": 0.7309,\\n        \\\"trace_bal_acc\\\": 0.8064,\\n        \\\"trace_precision\\\": 0.6342,\\n        \\\"precp_fpr\\\": 0.2298,\\n        \\\"coverage\\\": 0.35,\\n        \\\"lead_mean\\\": 11.7\\n      },\\n      \\\"text_probe\\\": {\\n        \\\"step_bal_acc\\\": 0.6295,\\n        \\\"trace_bal_acc\\\": 0.6945,\\n        \\\"trace_precision\\\": 0.5041,\\n        \\\"precp_fpr\\\": 0.344\\n      },\\n      \\\"bootstrap\\\": {\\n        \\\"balanced_accuracy\\\": {\\n          \\\"hs_mean\\\": 0.8064,\\n          \\\"text_mean\\\": 0.6945,\\n          \\\"diff_mean\\\": 0.1119,\\n          \\\"diff_ci95\\\": [\\n            0.0202,\\n            0.2008\\n          ],\\n          \\\"p_value\\\": 0.009,\\n          \\\"n_valid\\\": 20,\\n          \\\"significant_bonferroni\\\": true\\n        },\\n        \\\"precision\\\": {\\n          \\\"hs_mean\\\": 0.6342,\\n          \\\"text_mean\\\": 0.5041,\\n          \\\"diff_mean\\\": 0.1301,\\n          \\\"diff_ci95\\\": [\\n            0.0276,\\n            0.2658\\n          ],\\n          \\\"p_value\\\": 0.004,\\n          \\\"n_valid\\\": 20,\\n          \\\"significant_bonferroni\\\": true\\n        },\\n        \\\"precp_fpr\\\": {\\n          \\\"hs_mean\\\": 0.2298,\\n          \\\"text_mean\\\": 0.344,\\n          \\\"diff_mean\\\": -0.1142,\\n          \\\"diff_ci95\\\": [\\n            -0.2376,\\n            0.0096\\n          ],\\n          \\\"p_value\\\": 0.037,\\n          \\\"n_valid\\\": 20,\\n          \\\"significant_bonferroni\\\": false\\n        },\\n        \\\"bonferroni_alpha\\\": 0.0167\\n      }\\n    },\\n    \\\"W5\\\": {\\n      \\\"window\\\": 5,\\n      \\\"layer\\\": 63,\\n      \\\"n_test_traces\\\": 20,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"hs_probe\\\": {\\n        \\\"step_bal_acc\\\": 0.721,\\n        \\\"trace_bal_acc\\\": 0.8,\\n        \\\"trace_precision\\\": 0.6213,\\n        \\\"precp_fpr\\\": 0.2438,\\n        \\\"coverage\\\": 0.45,\\n        \\\"lead_mean\\\": 12.0\\n      },\\n      \\\"text_probe\\\": {\\n        \\\"step_bal_acc\\\": 0.6515,\\n        \\\"trace_bal_acc\\\": 0.7026,\\n        \\\"trace_precision\\\": 0.4901,\\n        \\\"precp_fpr\\\": 0.3208\\n      },\\n      \\\"bootstrap\\\": {\\n        \\\"balanced_accuracy\\\": {\\n          \\\"hs_mean\\\": 0.8,\\n          \\\"text_mean\\\": 0.7026,\\n          \\\"diff_mean\\\": 0.0973,\\n          \\\"diff_ci95\\\": [\\n            0.0035,\\n            0.1933\\n          ],\\n          \\\"p_value\\\": 0.018,\\n          \\\"n_valid\\\": 20,\\n          \\\"significant_bonferroni\\\": f\\n\\n... [截断: 输出过长，省略 1087 字符] ...\\n\\n: 0.516,\\n        \\\"precp_fpr\\\": 0.3259\\n      },\\n      \\\"bootstrap\\\": {\\n        \\\"balanced_accuracy\\\": {\\n          \\\"hs_mean\\\": 0.7538,\\n          \\\"text_mean\\\": 0.7105,\\n          \\\"diff_mean\\\": 0.0433,\\n          \\\"diff_ci95\\\": [\\n            -0.0526,\\n            0.1498\\n          ],\\n          \\\"p_value\\\": 0.188,\\n          \\\"n_valid\\\": 20,\\n          \\\"significant_bonferroni\\\": false\\n        },\\n        \\\"precision\\\": {\\n          \\\"hs_mean\\\": 0.6098,\\n          \\\"text_mean\\\": 0.516,\\n          \\\"diff_mean\\\": 0.0938,\\n          \\\"diff_ci95\\\": [\\n            -0.0493,\\n            0.2698\\n          ],\\n          \\\"p_value\\\": 0.106,\\n          \\\"n_valid\\\": 20,\\n          \\\"significant_bonferroni\\\": false\\n        },\\n        \\\"precp_fpr\\\": {\\n          \\\"hs_mean\\\": 0.2719,\\n          \\\"text_mean\\\": 0.3259,\\n          \\\"diff_mean\\\": -0.054,\\n          \\\"diff_ci95\\\": [\\n            -0.2031,\\n            0.0872\\n          ],\\n          \\\"p_value\\\": 0.232,\\n          \\\"n_valid\\\": 20,\\n          \\\"significant_bonferroni\\\": false\\n        },\\n        \\\"bonferroni_alpha\\\": 0.0167\\n      }\\n    },\\n    \\\"W15\\\": {\\n      \\\"window\\\": 15,\\n      \\\"layer\\\": 63,\\n      \\\"n_test_traces\\\": 20,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"hs_probe\\\": {\\n        \\\"step_bal_acc\\\": 0.7086,\\n        \\\"trace_bal_acc\\\": 0.7568,\\n        \\\"trace_precision\\\": 0.6336,\\n        \\\"precp_fpr\\\": 0.2619,\\n        \\\"coverage\\\": 0.45,\\n        \\\"lead_mean\\\": 12.0\\n      },\\n      \\\"text_probe\\\": {\\n        \\\"step_bal_acc\\\": 0.6483,\\n        \\\"trace_bal_acc\\\": 0.6793,\\n        \\\"trace_precision\\\": 0.5221,\\n        \\\"precp_fpr\\\": 0.3396\\n      },\\n      \\\"bootstrap\\\": {\\n        \\\"balanced_accuracy\\\": {\\n          \\\"hs_mean\\\": 0.7568,\\n          \\\"text_mean\\\": 0.6793,\\n          \\\"diff_mean\\\": 0.0775,\\n          \\\"diff_ci95\\\": [\\n            -0.0006,\\n            0.174\\n          ],\\n          \\\"p_value\\\": 0.027,\\n          \\\"n_valid\\\": 20,\\n          \\\"significant_bonferroni\\\": false\\n        },\\n        \\\"precision\\\": {\\n          \\\"hs_mean\\\": 0.6336,\\n          \\\"text_mean\\\": 0.5221,\\n          \\\"diff_mean\\\": 0.1115,\\n          \\\"diff_ci95\\\": [\\n            -0.0261,\\n            0.2748\\n          ],\\n          \\\"p_value\\\": 0.058,\\n          \\\"n_valid\\\": 17,\\n          \\\"significant_bonferroni\\\": false\\n        },\\n        \\\"precp_fpr\\\": {\\n          \\\"hs_mean\\\": 0.2619,\\n          \\\"text_mean\\\": 0.3396,\\n          \\\"diff_mean\\\": -0.0777,\\n          \\\"diff_ci95\\\": [\\n            -0.2286,\\n            0.0749\\n          ],\\n          \\\"p_value\\\": 0.166,\\n          \\\"n_valid\\\": 20,\\n          \\\"significant_bonferroni\\\": false\\n        },\\n        \\\"bonferroni_alpha\\\": 0.0167\\n      }\\n    }\\n  },\\n  \\\"position_baseline\\\": {\\n    \\\"position_bal_acc\\\": 0.6842\\n  },\\n  \\\"layer10_comparison\\\": {\\n    \\\"W10\\\": {\\n      \\\"window\\\": 10,\\n      \\\"layer\\\": 10,\\n      \\\"n_test_traces\\\": 20,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"hs_probe\\\": {\\n        \\\"step_bal_acc\\\": 0.7092,\\n        \\\"trace_bal_acc\\\": 0.7945,\\n        \\\"trace_precision\\\": 0.61,\\n        \\\"precp_fpr\\\": 0.2415,\\n        \\\"coverage\\\": 0.45,\\n        \\\"lead_mean\\\": 13.3\\n      },\\n      \\\"text_probe\\\": {\\n        \\\"step_bal_acc\\\": 0.6702,\\n        \\\"trace_bal_acc\\\": 0.7105,\\n        \\\"trace_precision\\\": 0.516,\\n        \\\"precp_fpr\\\": 0.3259\\n      },\\n      \\\"bootstrap\\\": {\\n        \\\"balanced_accuracy\\\": {\\n          \\\"hs_mean\\\": 0.7945,\\n          \\\"text_mean\\\": 0.7105,\\n          \\\"diff_mean\\\": 0.0839,\\n          \\\"diff_ci95\\\": [\\n            -0.0074,\\n            0.187\\n          ],\\n          \\\"p_value\\\": 0.04,\\n          \\\"n_valid\\\": 20,\\n          \\\"significant_bonferroni\\\": false\\n        },\\n        \\\"precision\\\": {\\n          \\\"hs_mean\\\": 0.61,\\n          \\\"text_mean\\\": 0.516,\\n          \\\"diff_mean\\\": 0.094,\\n          \\\"diff_ci95\\\": [\\n            0.0003,\\n            0.2046\\n          ],\\n          \\\"p_value\\\": 0.025,\\n          \\\"n_valid\\\": 20,\\n          \\\"significant_bonferroni\\\": false\\n        },\\n        \\\"precp_fpr\\\": {\\n          \\\"hs_mean\\\": 0.2415,\\n          \\\"text_mean\\\": 0.3259,\\n          \\\"diff_mean\\\": -0.0844,\\n          \\\"diff_ci95\\\": [\\n            -0.1786,\\n            0.0154\\n          ],\\n          \\\"p_value\\\": 0.057,\\n          \\\"n_valid\\\": 20,\\n          \\\"significant_bonferroni\\\": false\\n        },\\n        \\\"bonferroni_alpha\\\": 0.0167\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+              }
+            }
+          },
+          "id": "event-000384"
+        },
+        {
+          "source_line": 385,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验全部完成。结果 JSON 已保存。以下是完整汇总：\n\n---\n\n## R1-32B Layer 63 HS vs Text Paired Bootstrap 结果\n\n### A. Layer 63 HS Probe 各 Window 结果\n\n| W | HS step_bal_acc | HS trace_bal_acc | HS prec | HS FPR | Coverage | Lead |\n|---|---|---|---|---|---|---|\n| 1 | 0.7511 | 0.8259 | 0.6027 | 0.2347 | 25% | 13.0 |\n| 3 | 0.7309 | 0.8064 | 0.6342 | 0.2298 | 35% | 11.7 |\n| 5 | 0.7210 | 0.8000 | 0.6213 | 0.2438 | 45% | 12.0 |\n| 10 | 0.7003 | 0.7538 | 0.6098 | 0.2719 | 50% | 13.0 |\n| 15 | 0.7086 | 0.7568 | 0.6336 | 0.2619 | 45% | 12.0 |\n\n### B+C. Paired Bootstrap (1000 resamples, one-sided p, Bonferroni=0.0167)\n\n| W | BalAcc D | p | Prec D | p | FPR D | p | Bonf |\n|---|---|---|---|---|---|---|---|\n| **1** | **+18.7pp** | **0.000** | **+15.4pp** | **0.000** | **-14.6pp** | **0.004** | **3/3** |\n| **3** | **+11.2pp** | **0.009** | **+13.0pp** | **0.004** | -11.4pp | 0.037 | **2/3** |\n| 5 | +9.7pp | 0.018 | +13.1pp | 0.022 | -7.7pp | 0.120 | 0/3 |\n| 10 | +4.3pp | 0.188 | +9.4pp | 0.106 | -5.4pp | 0.232 | 0/3 |\n| 15 | +7.8pp | 0.027 | +11.2pp | 0.058 | -7.8pp | 0.166 | 0/3 |\n\n### D. Position Baseline\n- Position baseline bal_acc = **0.6842**\n- L63 W=1 HS probe (0.7511) > position baseline (+6.7pp)\n\n### E. Layer 63 vs Layer 10 对比 (W=10)\n\n| | L63 W=10 | L10 W=10 | Diff |\n|---|---|---|---|\n| step_bal_acc | 0.7003 | 0.7092 | -0.9pp |\n| BalAcc p | 0.188 | 0.040 | L10 更好 |\n| Bonf pass | 0/3 | 0/3 | 均未通过 |\n\n**但** L63 W=1 (3/3 Bonf pass) 远超 L10 W=10 (0/3)。\n\n---\n\n### 关键判断\n\n1. **Layer 63 W=1 将 R1-32B 从 \"inconclusive\" 变为 \"significant\"**: 3/3 Bonferroni pass，所有 CI 排除 0，p-value 一致。这是整个 R1-32B 上首次达到 Bonferroni 显著性。\n\n2. **Temporal window 稀释 L63 信号**: W 增大后效果单调下降。L63 是最后一层（100% depth），其 per-step representation 已包含完整信息，temporal concatenation 引入噪声维度，增加 overfitting。\n\n3. **\"scale-dependent\" claim 需要修正**: Layer 63 W=1 > Layer 10 W=10，说明 L10 的弱结果不是因为模型规模，而是因为 layer+window 选择不佳。正确的 framing 是 \"layer selection matters, and optimal layer shifts with model depth\"。\n\n4. **L10 vs L63 在 W=10 下 L10 反而略优**（step bal_acc 0.709 vs 0.700），但这是因为 W=10 对 L63 不利。核心 insight 是 layer-window interaction effect。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7388a469-cd8a-4ff6-8521-67c2345d6d76",
+            "uuid": "6263e8ff-9d57-43f3-a7c2-862bb7c95e47",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ViANyVWErBkve4ZA9DXveS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4776,
+                "cache_read_input_tokens": 143994,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4776
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000385"
+        },
+        {
+          "source_line": 386,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验全部完成。结果 JSON 已保存。以下是完整汇总：\n\n---\n\n## R1-32B Layer 63 HS vs Text Paired Bootstrap 结果\n\n### A. Layer 63 HS Probe 各 Window 结果\n\n| W | HS step_bal_acc | HS trace_bal_acc | HS prec | HS FPR | Coverage | Lead |\n|---|---|---|---|---|---|---|\n| 1 | 0.7511 | 0.8259 | 0.6027 | 0.2347 | 25% | 13.0 |\n| 3 | 0.7309 | 0.8064 | 0.6342 | 0.2298 | 35% | 11.7 |\n| 5 | 0.7210 | 0.8000 | 0.6213 | 0.2438 | 45% | 12.0 |\n| 10 | 0.7003 | 0.7538 | 0.6098 | 0.2719 | 50% | 13.0 |\n| 15 | 0.7086 | 0.7568 | 0.6336 | 0.2619 | 45% | 12.0 |\n\n### B+C. Paired Bootstrap (1000 resamples, one-sided p, Bonferroni=0.0167)\n\n| W | BalAcc D | p | Prec D | p | FPR D | p | Bonf |\n|---|---|---|---|---|---|---|---|\n| **1** | **+18.7pp** | **0.000** | **+15.4pp** | **0.000** | **-14.6pp** | **0.004** | **3/3** |\n| **3** | **+11.2pp** | **0.009** | **+13.0pp** | **0.004** | -11.4pp | 0.037 | **2/3** |\n| 5 | +9.7pp | 0.018 | +13.1pp | 0.022 | -7.7pp | 0.120 | 0/3 |\n| 10 | +4.3pp | 0.188 | +9.4pp | 0.106 | -5.4pp | 0.232 | 0/3 |\n| 15 | +7.8pp | 0.027 | +11.2pp | 0.058 | -7.8pp | 0.166 | 0/3 |\n\n### D. Position Baseline\n- Position baseline bal_acc = **0.6842**\n- L63 W=1 HS probe (0.7511) > position baseline (+6.7pp)\n\n### E. Layer 63 vs Layer 10 对比 (W=10)\n\n| | L63 W=10 | L10 W=10 | Diff |\n|---|---|---|---|\n| step_bal_acc | 0.7003 | 0.7092 | -0.9pp |\n| BalAcc p | 0.188 | 0.040 | L10 更好 |\n| Bonf pass | 0/3 | 0/3 | 均未通过 |\n\n**但** L63 W=1 (3/3 Bonf pass) 远超 L10 W=10 (0/3)。\n\n---\n\n### 关键判断\n\n1. **Layer 63 W=1 将 R1-32B 从 \"inconclusive\" 变为 \"significant\"**: 3/3 Bonferroni pass，所有 CI 排除 0，p-value 一致。这是整个 R1-32B 上首次达到 Bonferroni 显著性。\n\n2. **Temporal window 稀释 L63 信号**: W 增大后效果单调下降。L63 是最后一层（100% depth），其 per-step representation 已包含完整信息，temporal concatenation 引入噪声维度，增加 overfitting。\n\n3. **\"scale-dependent\" claim 需要修正**: Layer 63 W=1 > Layer 10 W=10，说明 L10 的弱结果不是因为模型规模，而是因为 layer+window 选择不佳。正确的 framing 是 \"layer selection matters, and optimal layer shifts with model depth\"。\n\n4. **L10 vs L63 在 W=10 下 L10 反而略优**（step bal_acc 0.709 vs 0.700），但这是因为 W=10 对 L63 不利。核心 insight 是 layer-window interaction effect。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 923729,
+            "duration_api_ms": 817833,
+            "num_turns": 164,
+            "stop_reason": "end_turn",
+            "session_id": "7388a469-cd8a-4ff6-8521-67c2345d6d76",
+            "total_cost_usd": 9.663602750000004,
+            "usage": {
+              "input_tokens": 158,
+              "cache_creation_input_tokens": 136929,
+              "cache_read_input_tokens": 15669387,
+              "output_tokens": 38800,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 136929,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 1215,
+                  "cache_read_input_tokens": 143994,
+                  "cache_creation_input_tokens": 4776,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 4776
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2198,
+                "outputTokens": 23,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002313,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 158,
+                "outputTokens": 38800,
+                "cacheReadInputTokens": 15669387,
+                "cacheCreationInputTokens": 136929,
+                "webSearchRequests": 0,
+                "costUSD": 9.661289750000005,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "3f7cb18a-e6b6-4ad2-8092-342d33e026ec"
+          },
+          "id": "event-000386"
+        }
+      ]
+    }
+  ]
+}

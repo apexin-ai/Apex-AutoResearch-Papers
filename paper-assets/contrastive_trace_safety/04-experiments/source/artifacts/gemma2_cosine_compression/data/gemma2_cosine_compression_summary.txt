@@ -1,0 +1,12 @@
+Server path: /root/autodl-tmp/contrastive_trace_safety/artifacts/gemma2_cosine_compression_results.json
+
+Key results:
+- Model: gemma-2-9b-it, 42 layers
+- 520 traces, 209790 step-pairs
+- Shallow (L0-L5) mean cosine dist: 0.237260
+- Deep (L30-L41) mean cosine dist: 0.305495
+- Ratio (shallow/deep): 0.7766
+- SHALLOW COMPRESSION CONFIRMED
+- Shallow layers show 22.3% less step-to-step variation than deep layers
+- Profile: peaks at L8-L11 (~0.39), dips at L21-L23 (~0.21), rises for deep
+- L40 outlier in deep (0.182), L41 highest overall (0.408)

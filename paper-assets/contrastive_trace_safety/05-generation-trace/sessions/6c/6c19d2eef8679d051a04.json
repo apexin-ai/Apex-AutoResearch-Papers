@@ -1,0 +1,83 @@
+{
+  "schema_version": "1.0",
+  "id": "6c19d2eef8679d051a04",
+  "project": "contrastive_trace_safety",
+  "kind": "worker",
+  "title": "ops arr submission package",
+  "task_key": "worker_ops_arr_submission_package_20260520T043855",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_arr_submission_package_20260520T043855.log",
+    "occurrence": 1,
+    "bytes": 729870,
+    "sha256": "bc45de5f4fa8935db383cd562a4e79847da27fd7705a6c5d91c5618370a9a738"
+  },
+  "statistics": {
+    "messages": 286,
+    "user_turns": 3,
+    "tool_calls": 95,
+    "roles": {
+      "log": 1,
+      "system": 71,
+      "record": 1,
+      "assistant": 19,
+      "tool_call": 95,
+      "user": 3,
+      "tool_result": 95,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "6c19d2eef8679d051a04-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 123,
+      "chunks": [
+        {
+          "path": "6c19d2eef8679d051a04-part-0001.json",
+          "message_count": 123
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 8,
+      "chunks": [
+        {
+          "path": "6c19d2eef8679d051a04-part-0001.json",
+          "message_count": 8
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 149,
+      "chunks": [
+        {
+          "path": "6c19d2eef8679d051a04-part-0001.json",
+          "message_count": 43
+        },
+        {
+          "path": "6c19d2eef8679d051a04-part-0002.json",
+          "message_count": 106
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-arr-submission-package.md"
+}

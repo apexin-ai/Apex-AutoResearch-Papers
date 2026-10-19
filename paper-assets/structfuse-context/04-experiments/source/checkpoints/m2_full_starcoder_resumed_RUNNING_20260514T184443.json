@@ -1,0 +1,28 @@
+{
+  "exp_id": "m2_full_starcoder_resumed",
+  "project": "structfuse-context",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T18:44:19.253Z",
+    "updated_at": "2026-05-14T18:44:43.346Z",
+    "hypothesis": "M2 StarCoder resumed: 继续 m2_full_starcoder 的 8 sequential runs (random×2 + embedding×3 + dataflow×3)。原实验因 cron timeout 标记为 failed，实际 PID 519791 正常运行。",
+    "spec": {
+      "command": "bash run_m2_full_starcoder_resume.sh (8 runs: random_s43→s44→embedding×3→dataflow×3)",
+      "server": "bjb1-42106",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "519791",
+      "log_path": "/root/runs/structfuse-context/m2_full_starcoder.log",
+      "data_path": "/root/autodl-tmp/structfuse/full_m2_training_data/",
+      "data_count": 11308,
+      "model_name": "StarCoder2-3B",
+      "seed": "42,43,44"
+    }
+  },
+  "timestamp": "2026-05-14T18:44:43.409342+00:00",
+  "trigger": "update_registry"
+}

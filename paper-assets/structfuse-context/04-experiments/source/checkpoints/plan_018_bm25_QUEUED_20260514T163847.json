@@ -1,0 +1,16 @@
+{
+  "exp_id": "plan_018_bm25",
+  "project": "structfuse-context",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T16:38:40.603Z",
+    "updated_at": "2026-05-14T16:38:47.502Z",
+    "hypothesis": "BM25 negative baseline: Dream 审稿三档一致认定缺 BM25 baseline 是论文最大结构性缺陷。Phase 1 (CPU): 对 M2 训练语料建 BM25 索引，挖掘 BM25 hard negatives，生成训练数据。Phase 2 (GPU): 用 BM25 negatives 训练 Qwen + StarCoder 各 1 seed，对比 R@1。",
+    "parent": "m2_full_qwen"
+  },
+  "timestamp": "2026-05-14T16:38:47.582247+00:00",
+  "trigger": "update_registry"
+}

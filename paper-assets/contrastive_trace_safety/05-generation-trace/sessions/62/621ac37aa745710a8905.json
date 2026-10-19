@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "621ac37aa745710a8905",
+  "project": "contrastive_trace_safety",
+  "kind": "history",
+  "title": "reviewer / loop_2.md",
+  "task_key": "loop_2",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_2.md",
+    "occurrence": 1,
+    "bytes": 4150,
+    "sha256": "bb6269ad021210d0f8795ca74dea28d66d035153e34626f259715358bb026ab1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: max_wall_time\nupdated: '2026-05-17T17:07:18+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0, cuda:1（autodl-rtx6000，2× RTX 6000）。当前无活跃训练进程，但 Paper Agent 可能触发图表渲染。\n- 论文 framing 已锁定 D032：12/12 Holm-Bonferroni at corrected deep layers。任何章节如果出现 \"5/12 HB\"、\"scale as primary moderator\"、\"absent at 32B\" 都是过时的 Story B，必须 CRITICAL 打回。\n- RepE \"cannot decode\" claim 过强：QwQ L60 RepE bal_acc=0.756，不能说 \"cannot decode\"。需改为 \"inconsistent\" 或 \"model-dependent\"。\n\n### 2. 🖥️ 基础设施快照\n- 服务器：autodl-rtx6000(root)，代码根目录 /root/autodl-tmp/contrastive_trace_safety\n- 本地 workspace：/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety\n- 论文目录：{workspace}/docs/paper/（main.tex + sections/*.tex + references.bib）\n- Registry：32 experiments, 15 success, 17 negative, 0 failed, 全部 DONE\n- 无活跃训练进程，GPU 空闲\n\n### 3. 📊 当前状态\n**已审查完成的章节**（全部已 post to Director）：\n- Method: 5 warnings（permutation→bootstrap、K=1→K=5、RepE label）\n- Experiments: 5 warnings（RepE \"pending\"、OT-7B 数字、cross-transfer 数字）\n- Introduction: 2 warnings（\"commonly used\" 无出处、RepE claim 过强）\n- Related Work: 2 warnings（3 missing bib entries、RepE claim 过强）\n- Discussion: PASS with structural warning（main.tex 未包含 discussion.tex）\n- Limitations: PASS with 2 warnings（missing \"correlation not causation\"、oracle gap 无出处）\n- Conclusion: PASS（D032 对齐 ✓）\n\n**未审查**：Abstract（旧版仍用 Story B：\"5/12 HB, at 32B no significant difference\"，已在综合审查中标 CRITICAL 但未收到更新通知）\n\n**关键待处理**：\n- main.tex 结构未更新：需加入 `\\input{sections/discussion}`\n- Abstract 仍为旧版（11:25 未动），与 Introduction/Experiments/Conclusion 矛盾\n- 3 个 missing bib entries: tenney2019bert, belinkov2022probing, burns2023discovering\n- Appendix 多处使用 biased-layer 数据（control task at L2/L10、layer sweep、cross-transfer \"best 58.3%\" vs appendix 自己说的 67.3%）\n- sec:oracle 在 experiments.tex 中不存在但被 discussion.tex 和 limitations.tex 引用\n- RepE \"pending\" 仍未修复（实验早已完成）\n\n### 4. 📋 待办\n- Abstract 更新通知 → 立即审查，核对是否改为 12/12 HB + corrected-layer 数据\n- main.tex 结构更新通知 → 确认 discussion.tex 被包含\n- Appendix 更新通知 → 核对 control task 是否使用 corrected layers（L60/L63）、cross-transfer best 是否改为 67.3%\n- Experiments patch 通知 → 核对 RepE \"pending\" 是否移除、OT-7B 数字是否统一（+10.7/+21.9 vs +10.9/+21.2）\n- 全文编译完成 → 触发 paper-visual-review skill 检查 PDF\n- 全部章节更新完毕 → 进入 Reviewer 对抗循环（审查模式 B 迭代评分）\n- 引用审计：提交前用 reference-audit skill 验证所有 bib entry 真实性（arXiv ID 核实）\n\n### 5. 🎯 战略上下文\n- **项目核心结论**：Layer selection metric bias (crossing rate) 是 HS probe 研究中的隐性 researcher degree of freedom，可以 reverse conclusions。Corrected deep layers → 12/12 HB, HS precision +15.4 to +23.6pp。\n- **决策链**：D028（layer bias 发现）→ D031（initial framing）→ D032（12/12 HB reframe，primary=layer selection sensitivity）\n- **最容易判断错的事**：\n  1. discussion.tex vs conclusion.tex 混淆——main.tex 包含的是 conclusion.tex，discussion.tex 是 Paper Agent 新写的但需要手动加入 main.tex\n  2. 论文里有两套数字体系（biased-layer Story B vs corrected-layer Story A），Abstract + Appendix 部分内容仍是 Story B\n  3. OT-7B 有 point estimate (+21.2pp) vs bootstrap mean (+21.9pp) 差异，Table 2 用前者、Appendix 用后者，两者都\"正确\"但口径不一致\n  4. Cross-transfer best: Experiments Table 说 58.3%，Appendix 正文说 67.3%（qwq→r1_32b direct），registry 也有 67.3%——58.3% 是旧数据\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-copy-3.md"
+}

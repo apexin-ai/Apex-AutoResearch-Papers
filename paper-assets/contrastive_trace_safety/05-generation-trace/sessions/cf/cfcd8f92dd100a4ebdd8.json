@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cfcd8f92dd100a4ebdd8",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code gemma2 launch full",
+  "task_key": "worker_code_gemma2_launch_full_20260522T162621",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gemma2_launch_full_20260522T162621_result.json",
+    "occurrence": 1,
+    "bytes": 74,
+    "sha256": "8157cd910a9c104ddd91ef946539617cd9bf22883ebe5985128ed870e0aa7209"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 在后台运行中，90 秒后回来检查结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-gemma2-launch-full.md"
+}

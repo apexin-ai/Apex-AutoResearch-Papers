@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4f298390b252d54c6976",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "analysis r12 qwq position residualized",
+  "task_key": "worker_analysis_r12_qwq_position_residualized_20260518T132734",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r12_qwq_position_residualized_20260518T132734_result.json",
+    "occurrence": 1,
+    "bytes": 698,
+    "sha256": "3e3566426626e02407df5121e43e4f17c86694f0bd327f9fccf1d05b8952f12c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nQwQ-32B Position Residualization (W=3):\n- Position-only BA: 0.754 (expected ~0.706)\n- Original HS BA: 0.710\n- Residualized HS BA: 0.619\n- Original Text BA: 0.611\n- Residualized Text BA: 0.582\n- Drop (HS orig - HS resid): 9.1 pp\n- Gap (HS resid - Text resid): 3.7 pp\n- Bootstrap p-value: 0.011\n- HB result: pass (significant)\n```\n\nPosition-only BA slightly higher than expected (0.754 vs 0.706) likely due to different pooled vs per-trace aggregation. After residualizing out position, HS retains 0.619 BA while text drops to 0.582, with a 3.7pp gap that is statistically significant (p=0.011). Results saved to `artifacts/r12_qwq_position_residualized/results.json`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-r12-qwq-position-residualized.md"
+}

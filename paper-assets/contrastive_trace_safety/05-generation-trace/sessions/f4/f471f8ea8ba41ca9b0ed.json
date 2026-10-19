@@ -1,0 +1,1189 @@
+{
+  "schema_version": "1.0",
+  "id": "f471f8ea8ba41ca9b0ed",
+  "project": "contrastive_trace_safety",
+  "kind": "conversation",
+  "title": "analysis r14 a8 oracle gap",
+  "task_key": "worker_analysis_r14_a8_oracle_gap_20260518T184954",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_r14_a8_oracle_gap_20260518T184954.jsonl",
+    "occurrence": 1,
+    "bytes": 68618,
+    "sha256": "149caa90162d4fedb5a9d3b48b2dc27deb0dab84fa67967c7b4b3feca275e3fc"
+  },
+  "statistics": {
+    "messages": 57,
+    "user_turns": 0,
+    "tool_calls": 28,
+    "roles": {
+      "tool_call": 28,
+      "tool_result": 28,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-18T18:55:36.559492+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r14_a8_oracle_gap_20260518T184954",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__ssh_read_only",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-18T18:55:36.559892+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r14_a8_oracle_gap_20260518T184954",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-18T18:55:36.560080+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r14_a8_oracle_gap_20260518T184954",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-rtx6000",
+              "command": "cat /root/autodl-tmp/contrastive_trace_safety/src/diagnostics/oracle_upper_bound.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-18T18:55:36.560220+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r14_a8_oracle_gap_20260518T184954",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-rtx6000",
+              "command": "find /root/autodl-tmp/contrastive_trace_safety/ -name \"*.py\" -path \"*oracle*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-18T18:55:36.560503+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Oracle upper bound: use ground-truth labels to compute best-case detection.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport os, sys\\\\nimport numpy as np\\\\n\\\\nsys.path.insert(0, '/root/autodl-tmp/contrastive_trace_safety')\\\\nos.environ['HF_HOME'] = '/root/autodl-tmp/.hf_cache'\\\\nos.environ['HF_HUB_DISABLE_XET'] = '1'\\\\n\\\\nfrom src.data_loader import prepare_dataset, split_data\\\\nfrom src.config import SAFETY_LABELS, SEED\\\\n\\\\n\\\\ndef find_first_absence_window(labels, k):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Find the first position where K consecutive steps have no safety label.\\\\n    Returns the start index of that window, or None if no such window exists.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    consecutive = 0\\\\n    for i, label in enumerate(labels):\\\\n        if label not in SAFETY_LABELS:\\\\n            consecutive += 1\\\\n            if consecutive >= k:\\\\n                return i - k + 1\\\\n        else:\\\\n            consecutive = 0\\\\n    return None\\\\n\\\\n\\\\ndef longest_non_safety_streak(labels):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Find the longest consecutive run of non-safety labels and its start position.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    max_len = 0\\\\n    max_start = 0\\\\n    current_len = 0\\\\n    current_start = 0\\\\n    for i, label in enumerate(labels):\\\\n        if label not in SAFETY_LABELS:\\\\n            if current_len == 0:\\\\n                current_start = i\\\\n            current_len += 1\\\\n            if current_len > max_len:\\\\n                max_len = current_len\\\\n                max_start = current_start\\\\n        else:\\\\n            current_len = 0\\\\n    return max_len, max_start\\\\n\\\\n\\\\ndef analyze_oracle(test_traces, k_values=[1, 2, 3, 5, 8]):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Run oracle analysis for multiple K values.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    results = {}\\\\n    \\\\n    for k in k_values:\\\\n        detections = []\\\\n        lead_times = []\\\\n        early_detections = 0\\\\n        \\\\n        for trace in test_traces:\\\\n            cp = trace['commitment_point']\\\\n            labels = trace['labels']\\\\\n…[truncated 6016 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r14_a8_oracle_gap_20260518T184954",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-18T18:55:36.560734+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/contrastive_trace_safety/src/diagnostics/oracle_upper_bound.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r14_a8_oracle_gap_20260518T184954",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-18T18:55:36.560910+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r14_a8_oracle_gap_20260518T184954",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-rtx6000",
+              "command": "cat /root/autodl-tmp/contrastive_trace_safety/src/data_loader.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-18T18:55:36.561132+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Load HarmThoughts dataset and extract commitment points.\\\\n\\\\nInput: HuggingFace dataset \\\\\\\"ishitakakkar-10/HarmThoughts\\\\\\\"\\\\nOutput: List of trace dicts with sentences, labels, commitment_point, split assignments\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nfrom collections import defaultdict\\\\nfrom typing import List, Optional, Dict, Any\\\\nimport numpy as np\\\\nfrom datasets import load_dataset\\\\n\\\\nfrom .config import (\\\\n    HF_DATASET, TARGET_MODEL, SAFETY_LABELS,\\\\n    TRAIN_RATIO, VAL_RATIO, SEED\\\\n)\\\\n\\\\n\\\\ndef load_harmthoughts(model_name: str = TARGET_MODEL) -> Dict[str, List[Dict]]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load HarmThoughts from HF and group by trace_id.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    ds = load_dataset(HF_DATASET, split=\\\\\\\"train\\\\\\\")\\\\n\\\\n    traces = defaultdict(list)\\\\n    for row in ds:\\\\n        if row[\\\\\\\"model_name\\\\\\\"] != model_name:\\\\n            continue\\\\n        # trace_id is the part before the last dash in sentence_id\\\\n        sid = row[\\\\\\\"sentence_id\\\\\\\"]\\\\n        parts = sid.rsplit(\\\\\\\"-\\\\\\\", 1)\\\\n        trace_id = parts[0]\\\\n        step_idx = int(parts[1]) - 1  # convert to 0-indexed\\\\n\\\\n        traces[trace_id].append({\\\\n            \\\\\\\"sentence_id\\\\\\\": sid,\\\\n            \\\\\\\"step_idx\\\\\\\": step_idx,\\\\n            \\\\\\\"sentence\\\\\\\": row[\\\\\\\"sentence\\\\\\\"],\\\\n            \\\\\\\"label\\\\\\\": row[\\\\\\\"llm_annotation\\\\\\\"],\\\\n            \\\\\\\"query\\\\\\\": row[\\\\\\\"query\\\\\\\"],\\\\n            \\\\\\\"final_judgment\\\\\\\": row[\\\\\\\"final_judgment\\\\\\\"],\\\\n        })\\\\n\\\\n    # Sort each trace by step_idx\\\\n    for tid in traces:\\\\n        traces[tid].sort(key=lambda x: x[\\\\\\\"step_idx\\\\\\\"])\\\\n\\\\n    return dict(traces)\\\\n\\\\n\\\\ndef extract_commitment_point(labels: List[str]) -> Optional[int]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Find the commitment point in a sequence of labels.\\\\n\\\\n    Returns the index after the last safety label, or None if:\\\\n    - No safety labels exist in the trace\\\\n    - The last safety label is at the final position (no post-comm\n…[truncated 4406 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r14_a8_oracle_gap_20260518T184954",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-18T18:55:36.561287+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r14_a8_oracle_gap_20260518T184954",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-rtx6000",
+              "command": "cat /root/autodl-tmp/contrastive_trace_safety/src/config.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-18T18:55:36.561435+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Central configuration for contrastive_trace_safety project.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport os\\\\nfrom pathlib import Path\\\\n\\\\n# Paths\\\\nPROJECT_ROOT = Path(\\\\\\\"/root/autodl-tmp/contrastive_trace_safety\\\\\\\")\\\\nARTIFACTS_DIR = PROJECT_ROOT / \\\\\\\"artifacts\\\\\\\"\\\\nHIDDEN_STATES_DIR = ARTIFACTS_DIR / \\\\\\\"hidden_states\\\\\\\"\\\\nPROBES_DIR = ARTIFACTS_DIR / \\\\\\\"probes\\\\\\\"\\\\n\\\\n# Model\\\\nMODEL_NAME = \\\\\\\"deepseek-ai/DeepSeek-R1-Distill-Llama-8B\\\\\\\"\\\\nMODEL_PATH = \\\\\\\"/root/autodl-tmp/.hf_cache/deepseek-ai/DeepSeek-R1-Distill-Llama-8B\\\\\\\"\\\\n\\\\n# Dataset\\\\nHF_DATASET = \\\\\\\"ishitakakkar-10/HarmThoughts\\\\\\\"\\\\nTARGET_MODEL = \\\\\\\"r1-8b\\\\\\\"\\\\n\\\\n# Hidden state extraction\\\\nLAYERS = list(range(12, 25))  # layers 12-24, 13 layers total\\\\nNUM_LAYERS = len(LAYERS)\\\\nHIDDEN_DIM = 4096\\\\nEXTRACT_BATCH_SIZE = 4\\\\nDEVICE = \\\\\\\"cuda:0\\\\\\\"\\\\n\\\\n# Probes\\\\nWINDOW_SIZE = 5\\\\nTEMPORAL_HIDDEN_DIM = 512\\\\nLEARNING_RATE = 1e-3\\\\nTRAIN_EPOCHS = 20\\\\nPROBE_BATCH_SIZE = 64\\\\nDEFAULT_LAYER = 20  # for static probe\\\\n\\\\n# Data split\\\\nTRAIN_RATIO = 0.6\\\\nVAL_RATIO = 0.2\\\\nSEED = 42\\\\n\\\\n# Evaluation\\\\nDETECTION_THRESHOLD = 0.9\\\\nDETECTION_WINDOW = 5\\\\n\\\\n# Safety labels that define commitment point\\\\nSAFETY_LABELS = {\\\\\\\"RA\\\\\\\", \\\\\\\"AL\\\\\\\", \\\\\\\"CC\\\\\\\", \\\\\\\"ED\\\\\\\", \\\\\\\"IA\\\\\\\"}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r14_a8_oracle_gap_20260518T184954",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-18T18:55:36.561619+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r14_a8_oracle_gap_20260518T184954",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-rtx6000",
+              "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_ot7b/ -la",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-18T18:55:36.561847+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 3580168\\\\ndrwxr-xr-x   2 root root    12288 May 17 14:58 .\\\\ndrwxr-xr-x 102 root root     8192 May 19 02:49 ..\\\\n-rw-r--r--   1 root root 11844504 May 17 14:57 00071414b7d44aa4b0c5c2a274306519.pt\\\\n-rw-r--r--   1 root root 11443032 May 17 14:57 016e64f7afdb457686c6ccdd45db5963.pt\\\\n-rw-r--r--   1 root root 20674776 May 17 14:58 0174b202067f41ea8e40869a567520ee.pt\\\\n-rw-r--r--   1 root root 17463512 May 17 14:56 030917f2f64246aa9e692065e3a89760.pt\\\\n-rw-r--r--   1 root root 11242328 May 17 14:56 04e869e807a446cba9448fbbffc7ffd6.pt\\\\n-rw-r--r--   1 root root 14051864 May 17 14:56 0575dd57cb784756b58c03ad33708f06.pt\\\\n-rw-r--r--   1 root root 26897048 May 17 14:58 05e0352624014451af323d591dc424a8.pt\\\\n-rw-r--r--   1 root root 10841688 May 17 14:56 06124289004b45f1a9f705534a80966e.pt\\\\n-rw-r--r--   1 root root 23485400 May 17 14:56 08314400b7b14437a5ea3ac88a25801d.pt\\\\n-rw-r--r--   1 root root 11241624 May 17 14:55 08f415d9ade84adfa774ff9514223374.pt\\\\n-rw-r--r--   1 root root 23685528 May 17 14:56 0994e7d339df46379cc21409208f7bf8.pt\\\\n-rw-r--r--   1 root root  6224792 May 17 14:58 0a9be35e4af4431db99397f47fe991b9.pt\\\\n-rw-r--r--   1 root root 10639512 May 17 14:56 0aeafc593eae4d268fc308f6ee1d5269.pt\\\\n-rw-r--r--   1 root root 25090392 May 17 14:57 0c01b8920cb7440a8f4d70602d8b75fa.pt\\\\n-rw-r--r--   1 root root 19069144 May 17 14:57 0c1b6f65dbfb41758a28cfdbe4ec3adc.pt\\\\n-rw-r--r--   1 root root  6226072 May 17 14:56 0c9031a73a4745f588e8376e04c98102.pt\\\\n-rw-r--r--   1 root root 17263832 May 17 14:57 0cdcb2667f6e4a34946920127a6960ba.pt\\\\n-rw-r--r--   1 root root 17062168 May 17 14:57 0d35bf0342454cf7801d27f4404ccbeb.pt\\\\n-rw-r--r--   1 root root 14051608 May 17 14:56 0eca208ee2e24742b6b65fa2053ec7af.pt\\\\n-rw-r--r--   1 root root 11045080 May 17 14:57 0f45ef9d55064647b52112d66b77252b.pt\\\\n-rw-r--r--   1 root root 25493784 May 17 14:58 0f7199c668274eb2b9fe07b1629d0537.pt\\\\n-rw-r--r--   1 root root 18467032 May 17\n…[truncated 6398 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r14_a8_oracle_gap_20260518T184954",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-18T18:55:36.562003+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r14_a8_oracle_gap_20260518T184954",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-rtx6000",
+              "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_r1_32b/ -la",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-18T18:55:36.562220+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 2244472\\\\ndrwxr-xr-x   2 root root      8192 May 17 06:03 .\\\\ndrwxr-xr-x 102 root root      8192 May 19 02:49 ..\\\\n-rw-r--r--   1 root root  23595864 May 17 06:03 0340a9c152a84e88a1bb1a1b0c1ece69.pt\\\\n-rw-r--r--   1 root root  24253208 May 17 06:03 03ab25e611ab42d5bab0e091b2bfb4db.pt\\\\n-rw-r--r--   1 root root  16386328 May 17 06:03 03e731a127e4403ea8b4f6b0da22d40b.pt\\\\n-rw-r--r--   1 root root  14424280 May 17 06:03 065cd061633b48ffba91c8ab8468aee5.pt\\\\n-rw-r--r--   1 root root  58330200 May 17 06:03 072fffe312724613b373f5e9423bec9e.pt\\\\n-rw-r--r--   1 root root  20973912 May 17 06:03 077d0c46eeaa4d26bcf796ff257b4107.pt\\\\n-rw-r--r--   1 root root  31459608 May 17 06:03 078bffd5b7bf41229684593b116e9b64.pt\\\\n-rw-r--r--   1 root root  47843672 May 17 06:03 0d024d64ea6f4fe7a326c146bf004b9d.pt\\\\n-rw-r--r--   1 root root  18358744 May 17 06:03 0e290c942d794d6a9b60fade0b82ba11.pt\\\\n-rw-r--r--   1 root root  33425816 May 17 06:03 133bb30152c348aa914bef1a46cd5065.pt\\\\n-rw-r--r--   1 root root  10488600 May 17 06:03 1366b9a156ef444eaf0fabf28b0fd17b.pt\\\\n-rw-r--r--   1 root root  20977368 May 17 06:03 14745efac5e24605833ff1a36d3bea9c.pt\\\\n-rw-r--r--   1 root root  27527448 May 17 06:03 1616070d73a044c9b80fd6fb09bc7dad.pt\\\\n-rw-r--r--   1 root root  17045592 May 17 06:03 181fe09ad4d14befa56def067985a204.pt\\\\n-rw-r--r--   1 root root   7870936 May 17 06:03 192fc3f6944947f5a8f9bfa4bf79bc72.pt\\\\n-rw-r--r--   1 root root  39979288 May 17 06:03 1ddd805c9c69471bb91971a3ee33c32c.pt\\\\n-rw-r--r--   1 root root  31459480 May 17 06:03 2011a70d7e5f4cc681606c655581d0d4.pt\\\\n-rw-r--r--   1 root root  10492056 May 17 06:03 2013ecb74dda42488eb7caad35193314.pt\\\\n-rw-r--r--   1 root root  24906584 May 17 06:03 21c16ece865541588c7ec69bea892c79.pt\\\\n-rw-r--r--   1 root root  17700504 May 17 06:03 2239e2c5ff6b47fe88e4d70829aa02e7.pt\\\\n-rw-r--r--   1 root root  18354328 May 17 06:03 225661d7e1fb4c3c88693d53091206ca.pt\\\\n-rw-r--r--   1 ro\n…[truncated 6394 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r14_a8_oracle_gap_20260518T184954",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-18T18:55:36.562374+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r14_a8_oracle_gap_20260518T184954",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-rtx6000",
+              "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_qwq_32b/ -la",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-18T18:55:36.562584+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 3105692\\\\ndrwxr-xr-x   2 root root     8192 May 17 06:02 .\\\\ndrwxr-xr-x 102 root root     8192 May 19 02:49 ..\\\\n-rw-r--r--   1 root root 31459800 May 17 06:01 004ee4398ad043f88590dc868baed39c.pt\\\\n-rw-r--r--   1 root root 30804376 May 17 06:01 0067d71cad0d4adba09c0ca1ba6de9f4.pt\\\\n-rw-r--r--   1 root root 45222296 May 17 06:01 043bdc40cc3a425da4a80dd2c3b54093.pt\\\\n-rw-r--r--   1 root root 41290712 May 17 06:01 069b39dd44c749edac6b2b9a22000146.pt\\\\n-rw-r--r--   1 root root 27527512 May 17 06:01 069c405acb984a728d6d4b4a4403dc2e.pt\\\\n-rw-r--r--   1 root root 30804248 May 17 06:01 08c889f0d70b4a9cb94a1c50eb7809c3.pt\\\\n-rw-r--r--   1 root root 31459672 May 17 06:01 08f53c080455450a875a13e071520fcc.pt\\\\n-rw-r--r--   1 root root 58984792 May 17 06:02 09e1cee11dc944ae89c4a077451046cc.pt\\\\n-rw-r--r--   1 root root 39324056 May 17 06:01 0c8ae288d6de43058d6a4c7dc97f72b8.pt\\\\n-rw-r--r--   1 root root 26872088 May 17 06:01 104fb6e29e284eadb21d6e934f30ac32.pt\\\\n-rw-r--r--   1 root root 34081048 May 17 06:01 110ec3ef86634737a0cd9c990c736659.pt\\\\n-rw-r--r--   1 root root 36047704 May 17 06:01 125a765ce4e1440c8375cb947cc74891.pt\\\\n-rw-r--r--   1 root root 36047448 May 17 06:01 1284370b1811430a8029ce530e1b1609.pt\\\\n-rw-r--r--   1 root root 34736408 May 17 06:01 14998b617a6b425e81749647c7a00f8b.pt\\\\n-rw-r--r--   1 root root 39323928 May 17 06:01 14e4e1baf5be42b0afe19deca15703a5.pt\\\\n-rw-r--r--   1 root root 25561624 May 17 06:01 1536ec9382d3409292a65544836eff18.pt\\\\n-rw-r--r--   1 root root 45222808 May 17 06:01 163bbe567d7649ffb07bd25aaceacc49.pt\\\\n-rw-r--r--   1 root root 16386264 May 17 06:01 16c401658cf84881927b644dee22f263.pt\\\\n-rw-r--r--   1 root root 37357848 May 17 06:02 17e198e535d340659b829e4a3a677d7e.pt\\\\n-rw-r--r--   1 root root 34081560 May 17 06:01 184cda0553f945c5bfd7bc5e4487b2e8.pt\\\\n-rw-r--r--   1 root root  9177304 May 17 06:02 1865bac475df48dc82ec59ffa7aefa99.pt\\\\n-rw-r--r--   1 root root 27527384 May 17\n…[truncated 6395 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r14_a8_oracle_gap_20260518T184954",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-18T18:55:36.562794+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r14_a8_oracle_gap_20260518T184954",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-rtx6000",
+              "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 -c \"\nimport os\nos.environ['HF_HOME'] = '/root/autodl-tmp/.hf_cache'\nos.environ['HF_HUB_DISABLE_XET'] = '1'\nfrom datasets import load_dataset\nds = load_dataset('ishitakakkar-10/HarmThoughts', split='train')\nfrom collections import Counter\nmodels = Counter(ds['model_name'])\nfor m, c in models.most_common():\n    print(f'{m}: {c} rows')\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-18T18:55:36.562949+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 -c \\\\\\\"\\\\\\\\nimport os\\\\\\\\nos.environ[\\\\\\\\'HF_HOME\\\\\\\\'] = \\\\\\\\'/root/autodl-tmp/.hf_cache\\\\\\\\'\\\\\\\\nos.environ[\\\\\\\\'HF_HUB_DISABLE_XET\\\\\\\\'] = \\\\\\\\'1\\\\\\\\'\\\\\\\\nfrom datasets import load_dataset\\\\\\\\nds = load_dataset(\\\\\\\\'ishitakakkar-10/HarmThoughts\\\\\\\\', split=\\\\\\\\'train\\\\\\\\')\\\\\\\\nfrom collections import Counter\\\\\\\\nmodels = Counter(ds[\\\\\\\\'model_name\\\\\\\\'])\\\\\\\\nfor m, c in models.most_common():\\\\\\\\n    print(f\\\\\\\\'{m}: {c} rows\\\\\\\\')\\\\\\\\n\\\\\\\"\\\\\\\\n'\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\n'(MaxRetryError(\\\\\\\"HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/ishitakakkar-10/HarmThoughts/resolve/main/README.md (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f9e6a4c5d90>: Failed to establish a new connection: [Errno 101] Network is unreachable'))\\\\\\\"), '(Request ID: a0fce90b-680e-48f5-ab73-a76314d9180b)')' thrown while requesting HEAD https://huggingface.co/datasets/ishitakakkar-10/HarmThoughts/resolve/main/README.md\\\\nRetrying in 1s [Retry 1/5].\\\\n'(MaxRetryError(\\\\\\\"HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/ishitakakkar-10/HarmThoughts/resolve/main/README.md (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f9e29682240>: Failed to establish a new connection: [Errno 101] Network is unreachable'))\\\\\\\"), '(Request ID: 6d63b613-7ed9-41ad-8da7-cc2c3416d6d9)')' thrown while requesting HEAD https://huggingface.co/datasets/ishitakakkar-10/HarmThoughts/resolve/main/README.md\\\\nRetrying in 2s [Retry 2/5].\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.34}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r14_a8_oracle_gap_20260518T184954",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-18T18:55:36.563111+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r14_a8_oracle_gap_20260518T184954",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-rtx6000",
+              "command": "find /root/autodl-tmp/.hf_cache/datasets -name \"*.arrow\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-18T18:55:36.563245+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/.hf_cache/datasets/princeton-nlp___swe-bench_lite/default/0.0.0/6ec7bb89b9342f664a54a6e0a6ea6501d3437cc2/swe-bench_lite-dev.arrow\\\\n/root/autodl-tmp/.hf_cache/datasets/princeton-nlp___swe-bench_lite/default/0.0.0/6ec7bb89b9342f664a54a6e0a6ea6501d3437cc2/swe-bench_lite-test.arrow\\\\n/root/autodl-tmp/.hf_cache/datasets/json/default-2b790b5c4e80bbb6/0.0.0/95cd12cb79bdd40ece813ca76cc5f709067bfb719d56048dc7651d7403a4c3d2/json-train.arrow\\\\n/root/autodl-tmp/.hf_cache/datasets/ishitakakkar-10___harm_thoughts/default/0.0.0/98a90c45ae2fc0a94a828cebb426917883ce35e1/harm_thoughts-train.arrow\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.84}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r14_a8_oracle_gap_20260518T184954",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-18T18:55:36.563366+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r14_a8_oracle_gap_20260518T184954",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-rtx6000",
+              "command": "find /root/autodl-tmp/.hf_cache -maxdepth 4 -name \"*HarmThoughts*\" -type d",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-18T18:55:36.563487+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/.hf_cache/hub/.locks/datasets--ishitakakkar-10--HarmThoughts\\\\n/root/autodl-tmp/.hf_cache/hub/datasets--ishitakakkar-10--HarmThoughts\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r14_a8_oracle_gap_20260518T184954",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-18T18:55:36.563633+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r14_a8_oracle_gap_20260518T184954",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-rtx6000",
+              "command": "cd /root/autodl-tmp/contrastive_trace_safety && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_DISABLE_XET=1 HF_DATASETS_OFFLINE=1 /root/miniconda3/bin/python3.12 -c \"\nfrom datasets import load_dataset\nds = load_dataset('ishitakakkar-10/HarmThoughts', split='train')\nfrom collections import Counter\nmodels = Counter(ds['model_name'])\nfor m, c in models.most_common():\n    print(f'{m}: {c} rows')\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-18T18:55:36.563772+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"ot-7b: 26653 rows\\\\nr1-8b: 14746 rows\\\\nr1-32b: 8525 rows\\\\nQwQ: 7007 rows\\\\n\\\", \\\"stderr\\\": \\\"Using the latest cached version of the dataset since ishitakakkar-10/HarmThoughts couldn't be found on the Hugging Face Hub (offline mode is enabled).\\\\nFound the latest cached dataset configuration 'default' at /root/autodl-tmp/.hf_cache/datasets/ishitakakkar-10___harm_thoughts/default/0.0.0/98a90c45ae2fc0a94a828cebb426917883ce35e1 (last modified on Sun May 17 03:09:33 2026).\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.74}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r14_a8_oracle_gap_20260518T184954",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-18T18:55:36.563915+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r14_a8_oracle_gap_20260518T184954",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-rtx6000",
+              "command": "mkdir -p /root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a8_oracle_gap",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-18T18:55:36.564042+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r14_a8_oracle_gap_20260518T184954",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-18T18:55:36.564172+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r14_a8_oracle_gap_20260518T184954",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-rtx6000",
+              "command": "cat > /root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a8_oracle_gap/compute_oracle_gap.py << 'PYEOF'\n\"\"\"Compute oracle gap for OT-7B, R1-32B, QwQ-32B using same logic as R1-8B.\"\"\"\n\nimport os, sys, json\nimport numpy as np\n\nos.environ['HF_HOME'] = '/root/autodl-tmp/.hf_cache'\nos.environ['HF_HUB_DISABLE_XET'] = '1'\nos.environ['HF_DATASETS_OFFLINE'] = '1'\n\nsys.path.insert(0, '/root/autodl-tmp/contrastive_trace_safety')\n\nfrom src.data_loader import prepare_dataset, split_data\nfrom src.config import SAFETY_LABELS, SEED\nfrom src.diagnostics.oracle_upper_bound import find_first_absence_window, analyze_oracle\n\n\nMODELS = {\n    'r1-8b': 'R1-8B',\n    'ot-7b': 'OT-7B',\n    'r1-32b': 'R1-32B',\n    'QwQ': 'QwQ-32B',\n}\n\nOUT_DIR = '/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a8_oracle_gap'\n\n\ndef main():\n    all_results = {}\n\n    for model_key, display_name in MODELS.items():\n        print(f\"\\n{'='*60}\")\n        print(f\"Processing {display_name} (model_key={model_key})\")\n        print(f\"{'='*60}\")\n\n        data = prepare_dataset(model_name=model_key)\n        traces = data['jailbreak_with_commitment']\n        print(f\"  Total jailbreak_with_commitment: {len(traces)}\")\n\n        _, _, test_traces = split_data(traces, seed=SEED)\n        print(f\"  Test set size: {len(test_traces)}\")\n\n        cps = [t['commitment_point'] for t in test_traces]\n        lengths = [len(t['labels']) for t in test_traces]\n        print(f\"  CP: mean={np.mean(cps):.1f}, median={np.median(cps):.1f}\")\n        print(f\"  Length: mean={np.mean(lengths):.1f}, median={np.median(lengths):.1f}\")\n\n        k_values = [1, 2, 3, 5, 8]\n        results = analyze_oracle(test_traces, k_values)\n\n        model_results = {}\n        for k in k_values:\n            r = results[k]\n            print(f\"\\n  K={k}:\")\n            print(f\"    Detection rate: {r['detection_rate']:.1f}%\")\n            print(f\"    Early detection (before CP): {r['early_detection_rate']:.1f}% ({r['early_detections']}/{len(test_traces)})\")\n            if r['lead_times']:\n                positive_leads = [lt for lt in r['lead_times'] if lt > 0]\n                if positive_leads:\n                    print(f\"    Lead time (early only): mean={np.mean(positive_leads):.1f}, median={np.median(positive_leads):.1f}\")\n\n            model_results[f'K={k}'] = {\n                'detection_rate': round(r['detection_rate'], 1),\n                'early_detection_rate': round(r['early_detection_rate'], 1),\n                'early_detections': r['early_detections'],\n                'total_test': len(test_traces),\n                'mean_lead_time': round(r['mean_lead_time'], 1),\n            }\n\n        all_results[display_name] = {\n            'model_key': model_key,\n            'total_traces': len(traces),\n            'test_traces': len(test_traces),\n            'mean_cp': round(float(np.mean(cps)), 1),\n            'mean_length': round(float(np.mean(lengths)), 1),\n            'oracle': model_results,\n        }\n\n    # Summary\n    print(f\"\\n\\n{'='*60}\")\n    print(\"SUMMARY: Oracle Gap (K=5 consecutive trigger)\")\n    print(f\"{'='*60}\")\n    for display_name in ['R1-8B', 'OT-7B', 'R1-32B', 'QwQ-32B']:\n        r = all_results[display_name]\n        k5 = r['oracle']['K=5']\n        print(f\"  {display_name}: {k5['early_detection_rate']}% ({k5['early_detections']}/{k5['total_test']} test traces)\")\n\n    # Save JSON\n    out_path = os.path.join(OUT_DIR, 'oracle_gap_all_models.json')\n    with open(out_path, 'w') as f:\n        json.dump(all_results, f, indent=2)\n    print(f\"\\nSaved to {out_path}\")\n\n\nif __name__ == '__main__':\n    main()\nPYEOF\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-18T18:55:36.564328+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r14_a8_oracle_gap_20260518T184954",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-18T18:55:36.564445+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r14_a8_oracle_gap_20260518T184954",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-rtx6000",
+              "command": "cd /root/autodl-tmp/contrastive_trace_safety && HF_DATASETS_OFFLINE=1 /root/miniconda3/bin/python3.12 artifacts/r14_a8_oracle_gap/compute_oracle_gap.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-18T18:55:36.564704+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n============================================================\\\\nProcessing R1-8B (model_key=r1-8b)\\\\n============================================================\\\\n  Total jailbreak_with_commitment: 209\\\\n  Test set size: 43\\\\n  CP: mean=32.7, median=36.0\\\\n  Length: mean=45.9, median=43.0\\\\n\\\\n  K=1:\\\\n    Detection rate: 100.0%\\\\n    Early detection (before CP): 83.7% (36/43)\\\\n    Lead time (early only): mean=35.6, median=35.5\\\\n\\\\n  K=2:\\\\n    Detection rate: 100.0%\\\\n    Early detection (before CP): 79.1% (34/43)\\\\n    Lead time (early only): mean=35.8, median=34.5\\\\n\\\\n  K=3:\\\\n    Detection rate: 100.0%\\\\n    Early detection (before CP): 76.7% (33/43)\\\\n    Lead time (early only): mean=34.8, median=32.0\\\\n\\\\n  K=5:\\\\n    Detection rate: 100.0%\\\\n    Early detection (before CP): 76.7% (33/43)\\\\n    Lead time (early only): mean=31.0, median=29.0\\\\n\\\\n  K=8:\\\\n    Detection rate: 95.3%\\\\n    Early detection (before CP): 65.1% (28/43)\\\\n    Lead time (early only): mean=28.8, median=26.5\\\\n\\\\n============================================================\\\\nProcessing OT-7B (model_key=ot-7b)\\\\n============================================================\\\\n  Total jailbreak_with_commitment: 228\\\\n  Test set size: 47\\\\n  CP: mean=64.0, median=61.0\\\\n  Length: mean=77.6, median=70.0\\\\n\\\\n  K=1:\\\\n    Detection rate: 100.0%\\\\n    Early detection (before CP): 100.0% (47/47)\\\\n    Lead time (early only): mean=61.7, median=58.0\\\\n\\\\n  K=2:\\\\n    Detection rate: 100.0%\\\\n    Early detection (before CP): 93.6% (44/47)\\\\n    Lead time (early only): mean=59.9, median=55.5\\\\n\\\\n  K=3:\\\\n    Detection rate: 100.0%\\\\n    Early detection (before CP): 93.6% (44/47)\\\\n    Lead time (early only): mean=56.5, median=52.0\\\\n\\\\n  K=5:\\\\n    Detection rate: 100.0%\\\\n    Early detection (before CP): 93.6% (44/47)\\\\n    Lead time (early only): mean=50.0, median=41.5\\\\n\\\\n  K=8:\\\\n    Detection rate: 93.6%\\\\n    Early detection (before\n…[truncated 4166 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r14_a8_oracle_gap_20260518T184954",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-18T18:55:36.564966+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r14_a8_oracle_gap_20260518T184954",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-rtx6000",
+              "command": "cat > /root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a8_oracle_gap/compute_oracle_gap_v2.py << 'PYEOF'\n\"\"\"Compute oracle gap per task A8 definition.\n\nOracle gap = with K=5 consecutive trigger on perfect binary oracle,\nwhat fraction of test traces can have the trigger fire.\n\nBinary oracle: step_labels[i] = 0 if i < CP, 1 if i >= CP\nK=5 trigger fires at step CP+4 (need 5 consecutive unsafe)\nTrigger fires iff len(trace) - CP >= K\n\"\"\"\n\nimport os, sys, json\nimport numpy as np\n\nos.environ['HF_HOME'] = '/root/autodl-tmp/.hf_cache'\nos.environ['HF_HUB_DISABLE_XET'] = '1'\nos.environ['HF_DATASETS_OFFLINE'] = '1'\n\nsys.path.insert(0, '/root/autodl-tmp/contrastive_trace_safety')\n\nfrom src.data_loader import prepare_dataset, split_data\nfrom src.config import SEED\n\n\nMODELS = {\n    'r1-8b': 'R1-8B',\n    'ot-7b': 'OT-7B',\n    'r1-32b': 'R1-32B',\n    'QwQ': 'QwQ-32B',\n}\n\nOUT_DIR = '/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a8_oracle_gap'\nK = 5\n\n\ndef compute_oracle_gap(test_traces, k=K):\n    \"\"\"Binary oracle: trigger fires iff post-CP length >= k.\"\"\"\n    triggerable = 0\n    details = []\n    for t in test_traces:\n        cp = t['commitment_point']\n        n = t['num_steps']\n        post_cp_len = n - cp\n        can_trigger = post_cp_len >= k\n        if can_trigger:\n            triggerable += 1\n        details.append({\n            'trace_id': t['trace_id'],\n            'cp': cp,\n            'num_steps': n,\n            'post_cp_len': post_cp_len,\n            'can_trigger': can_trigger,\n        })\n    rate = triggerable / len(test_traces) * 100\n    return rate, triggerable, details\n\n\ndef main():\n    all_results = {}\n\n    for model_key, display_name in MODELS.items():\n        print(f\"\\n{'='*60}\")\n        print(f\"{display_name} (model_key={model_key})\")\n        print(f\"{'='*60}\")\n\n        data = prepare_dataset(model_name=model_key)\n        traces = data['jailbreak_with_commitment']\n        print(f\"  Total jailbreak_with_commitment: {len(traces)}\")\n\n        _, _, test_traces = split_data(traces, seed=SEED)\n        print(f\"  Test set size: {len(test_traces)}\")\n\n        cps = [t['commitment_point'] for t in test_traces]\n        lengths = [t['num_steps'] for t in test_traces]\n        post_cp = [l - c for l, c in zip(lengths, cps)]\n        print(f\"  CP: mean={np.mean(cps):.1f}, median={np.median(cps):.1f}\")\n        print(f\"  Length: mean={np.mean(lengths):.1f}, median={np.median(lengths):.1f}\")\n        print(f\"  Post-CP steps: mean={np.mean(post_cp):.1f}, median={np.median(post_cp):.1f}, min={np.min(post_cp)}, max={np.max(post_cp)}\")\n\n        # Compute for multiple K\n        for k in [1, 3, 5, 8]:\n            rate, count, _ = compute_oracle_gap(test_traces, k=k)\n            print(f\"  K={k}: {rate:.1f}% ({count}/{len(test_traces)})\")\n\n        # Primary K=5 result\n        rate, count, details = compute_oracle_gap(test_traces, k=K)\n\n        all_results[display_name] = {\n            'model_key': model_key,\n            'total_traces': len(traces),\n            'test_traces': len(test_traces),\n            'mean_cp': round(float(np.mean(cps)), 1),\n            'mean_length': round(float(np.mean(lengths)), 1),\n            'mean_post_cp': round(float(np.mean(post_cp)), 1),\n            'oracle_gap_K5': round(rate, 1),\n            'oracle_gap_K5_count': count,\n        }\n\n    # Summary\n    print(f\"\\n\\n{'='*60}\")\n    print(f\"Oracle Gap (K={K} consecutive trigger)\")\n    print(f\"{'='*60}\")\n    for display_name in ['R1-8B', 'OT-7B', 'R1-32B', 'QwQ-32B']:\n        r = all_results[display_name]\n        print(f\"  {display_name}: {r['oracle_gap_K5']}% ({r['oracle_gap_K5_count']}/{r['test_traces']} test traces)\")\n\n    out_path = os.path.join(OUT_DIR, 'oracle_gap_all_models.json')\n    with open(out_path, 'w') as f:\n        json.dump(all_results, f, indent=2)\n    print(f\"\\nSaved to {out_path}\")\n\n\nif __name__ == '__main__':\n    main()\nPYEOF\n/root/miniconda3/bin/python3.12 /root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a8_oracle_gap/compute_oracle_gap_v2.py\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-18T18:55:36.565184+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n============================================================\\\\nR1-8B (model_key=r1-8b)\\\\n============================================================\\\\n  Total jailbreak_with_commitment: 209\\\\n  Test set size: 43\\\\n  CP: mean=32.7, median=36.0\\\\n  Length: mean=45.9, median=43.0\\\\n  Post-CP steps: mean=13.2, median=9.0, min=1, max=47\\\\n  K=1: 100.0% (43/43)\\\\n  K=3: 74.4% (32/43)\\\\n  K=5: 67.4% (29/43)\\\\n  K=8: 53.5% (23/43)\\\\n\\\\n============================================================\\\\nOT-7B (model_key=ot-7b)\\\\n============================================================\\\\n  Total jailbreak_with_commitment: 228\\\\n  Test set size: 47\\\\n  CP: mean=64.0, median=61.0\\\\n  Length: mean=77.6, median=70.0\\\\n  Post-CP steps: mean=13.6, median=5.0, min=1, max=63\\\\n  K=1: 100.0% (47/47)\\\\n  K=3: 70.2% (33/47)\\\\n  K=5: 53.2% (25/47)\\\\n  K=8: 42.6% (20/47)\\\\n\\\\n============================================================\\\\nR1-32B (model_key=r1-32b)\\\\n============================================================\\\\n  Total jailbreak_with_commitment: 100\\\\n  Test set size: 20\\\\n  CP: mean=26.0, median=15.0\\\\n  Length: mean=40.6, median=33.0\\\\n  Post-CP steps: mean=14.7, median=7.0, min=1, max=86\\\\n  K=1: 100.0% (20/20)\\\\n  K=3: 85.0% (17/20)\\\\n  K=5: 60.0% (12/20)\\\\n  K=8: 50.0% (10/20)\\\\n\\\\n============================================================\\\\nQwQ-32B (model_key=QwQ)\\\\n============================================================\\\\n  Total jailbreak_with_commitment: 95\\\\n  Test set size: 19\\\\n  CP: mean=29.6, median=26.0\\\\n  Length: mean=45.6, median=44.0\\\\n  Post-CP steps: mean=16.0, median=13.0, min=3, max=66\\\\n  K=1: 100.0% (19/19)\\\\n  K=3: 100.0% (19/19)\\\\n  K=5: 89.5% (17/19)\\\\n  K=8: 78.9% (15/19)\\\\n\\\\n\\\\n============================================================\\\\nOracle Gap (K=5 consecutive trigger)\\\\n============================================================\\\\n  R1-8B: 67.4% (29/43 test traces)\\\\n \n…[truncated 1856 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r14_a8_oracle_gap_20260518T184954",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-18T18:55:36.565381+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r14_a8_oracle_gap_20260518T184954",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-rtx6000",
+              "command": "find /root/autodl-tmp/contrastive_trace_safety/artifacts -name \"*oracle*\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-18T18:55:36.565520+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/diagnostics/d4_oracle.log\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a8_oracle_gap/compute_oracle_gap.py\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a8_oracle_gap/oracle_gap_all_models.json\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a8_oracle_gap/compute_oracle_gap_v2.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r14_a8_oracle_gap_20260518T184954",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-18T18:55:36.565667+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r14_a8_oracle_gap_20260518T184954",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-rtx6000",
+              "command": "grep -r \"85.5\" /root/autodl-tmp/contrastive_trace_safety/artifacts/ --include=\"*.json\" --include=\"*.txt\" --include=\"*.md\" -l",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-18T18:55:36.565826+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_005_trajguard/results.json\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_001a/layer_sweep_results.json\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r1_8b_balanced_recompute/full_results.json\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/m001_layer_fix/layer_ranking_r1_32b.json\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/m001_layer_fix/layer_ranking_qwq_32b.json\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/m001_layer_fix/gru_corrected_qwq_32b.json\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/m001_layer_fix/temporal_lr_r1_32b.json\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_c2_control/position_baseline.json\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r1_8b_bootstrap_hs_text/results.json\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/ot7b_sentence_map.json\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/ot7b_text_embeddings.json\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_bocpd_qwq/traces_meta.json\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_mahalanobis_r1_32b/results.json\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_mahalanobis_qwq/results.json\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r5_auroc_sweep/results.json\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/bge_large_comparison.json\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r11_position_residualization/results.json\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r12_5seed_hb/full_results.json\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a1_ba_layer_canonical/r1_8b_result.json\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a1_ba_layer_canonical/ot_7b_result.json\\\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a1_ba_layer_canonical/r1_32b_result.json\\\\n/root/autodl-tmp/contrastive_trace_sa\n…[truncated 807 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r14_a8_oracle_gap_20260518T184954",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-18T18:55:36.565965+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r14_a8_oracle_gap_20260518T184954",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-rtx6000",
+              "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/diagnostics/d4_oracle.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-18T18:55:36.566127+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading data...\\\\n\\\\n============================================================\\\\nOracle Upper Bound Results (N=43 test traces)\\\\n============================================================\\\\n\\\\nTest set stats:\\\\n  Commitment point: mean=32.7, median=36.0\\\\n  Trace length: mean=45.9, median=43.0\\\\n\\\\n────────────────────────────────────────────────────────────\\\\nSafety Absence Oracle (K consecutive non-safety steps → detect)\\\\n────────────────────────────────────────────────────────────\\\\n\\\\n  K=1:\\\\n    Detection rate: 100.0%\\\\n    Early detection (before CP): 83.7% (36/43)\\\\n    Lead time (all detections): mean=29.7, median=32.0 steps\\\\n    Lead time (early only): mean=35.6, median=35.5 steps\\\\n\\\\n  K=2:\\\\n    Detection rate: 100.0%\\\\n    Early detection (before CP): 79.1% (34/43)\\\\n    Lead time (all detections): mean=27.9, median=31.0 steps\\\\n    Lead time (early only): mean=35.8, median=34.5 steps\\\\n\\\\n  K=3:\\\\n    Detection rate: 100.0%\\\\n    Early detection (before CP): 76.7% (33/43)\\\\n    Lead time (all detections): mean=26.0, median=28.0 steps\\\\n    Lead time (early only): mean=34.8, median=32.0 steps\\\\n\\\\n  K=5:\\\\n    Detection rate: 100.0%\\\\n    Early detection (before CP): 76.7% (33/43)\\\\n    Lead time (all detections): mean=22.6, median=24.0 steps\\\\n    Lead time (early only): mean=31.0, median=29.0 steps\\\\n\\\\n  K=8:\\\\n    Detection rate: 95.3%\\\\n    Early detection (before CP): 65.1% (28/43)\\\\n    Lead time (all detections): mean=17.1, median=19.0 steps\\\\n    Lead time (early only): mean=28.8, median=26.5 steps\\\\n\\\\n────────────────────────────────────────────────────────────\\\\nPre-commitment streak analysis\\\\n────────────────────────────────────────────────────────────\\\\n\\\\n  Longest non-safety streak before CP:\\\\n    Mean: 14.6 steps\\\\n    Median: 13.0 steps\\\\n    Max: 49 steps\\\\n    Min: 0 steps\\\\n  Streak start position (relative to CP):\\\\n    Mean: 23.6%\\\\n    Median: 10.3%\\\\n\\\\n  Traces w\n…[truncated 688 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r14_a8_oracle_gap_20260518T184954",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-18T18:55:36.566309+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r14_a8_oracle_gap_20260518T184954",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-rtx6000",
+              "command": "cd /root/autodl-tmp/contrastive_trace_safety && HF_DATASETS_OFFLINE=1 /root/miniconda3/bin/python3.12 -c \"\nimport os, sys, numpy as np\nos.environ['HF_HOME'] = '/root/autodl-tmp/.hf_cache'\nos.environ['HF_HUB_DISABLE_XET'] = '1'\nos.environ['HF_DATASETS_OFFLINE'] = '1'\nsys.path.insert(0, '.')\nfrom src.data_loader import prepare_dataset, split_data\nfrom src.config import SEED\nfrom src.diagnostics.oracle_upper_bound import analyze_oracle\n\ndata = prepare_dataset(model_name='r1-8b')\ntraces = data['jailbreak_with_commitment']\nprint(f'All traces: {len(traces)}')\n\n# On all traces\nresults = analyze_oracle(traces, k_values=[5])\nr = results[5]\nprint(f'All traces K=5: early_det={r[\\\"early_detection_rate\\\"]:.1f}%, detection={r[\\\"detection_rate\\\"]:.1f}%')\n\n# Check detection rate on all traces (post-CP >= 5)\ncount = sum(1 for t in traces if t['num_steps'] - t['commitment_point'] >= 5)\nprint(f'Post-CP >= 5 on all traces: {count}/{len(traces)} = {count/len(traces)*100:.1f}%')\n\n# On train+val+test separately\ntrain, val, test = split_data(traces, seed=SEED)\nfor name, subset in [('train', train), ('val', val), ('test', test)]:\n    r = analyze_oracle(subset, k_values=[5])[5]\n    c = sum(1 for t in subset if t['num_steps'] - t['commitment_point'] >= 5)\n    print(f'{name} ({len(subset)}): early_det_raw={r[\\\"early_detection_rate\\\"]:.1f}%, postCP>=5={c}/{len(subset)}={c/len(subset)*100:.1f}%')\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-18T18:55:36.566460+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"All traces: 209\\\\nAll traces K=5: early_det=80.4%, detection=99.5%\\\\nPost-CP >= 5 on all traces: 124/209 = 59.3%\\\\ntrain (125): early_det_raw=80.0%, postCP>=5=69/125=55.2%\\\\nval (41): early_det_raw=85.4%, postCP>=5=26/41=63.4%\\\\ntest (43): early_det_raw=76.7%, postCP>=5=29/43=67.4%\\\\n\\\", \\\"stderr\\\": \\\"Using the latest cached version of the dataset since ishitakakkar-10/HarmThoughts couldn't be found on the Hugging Face Hub (offline mode is enabled).\\\\nFound the latest cached dataset configuration 'default' at /root/autodl-tmp/.hf_cache/datasets/ishitakakkar-10___harm_thoughts/default/0.0.0/98a90c45ae2fc0a94a828cebb426917883ce35e1 (last modified on Sun May 17 03:09:33 2026).\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.91}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r14_a8_oracle_gap_20260518T184954",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-18T18:55:36.566670+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r14_a8_oracle_gap_20260518T184954",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-rtx6000",
+              "command": "cat > /root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a8_oracle_gap/compute_final.py << 'PYEOF'\n\"\"\"Final oracle gap computation for all 4 models.\n\nUses analyze_oracle from oracle_upper_bound.py (raw annotation labels).\nReports on test set (60/20/20, seed=42).\n\"\"\"\n\nimport os, sys, json\nimport numpy as np\n\nos.environ['HF_HOME'] = '/root/autodl-tmp/.hf_cache'\nos.environ['HF_HUB_DISABLE_XET'] = '1'\nos.environ['HF_DATASETS_OFFLINE'] = '1'\n\nsys.path.insert(0, '/root/autodl-tmp/contrastive_trace_safety')\n\nfrom src.data_loader import prepare_dataset, split_data\nfrom src.config import SEED\nfrom src.diagnostics.oracle_upper_bound import analyze_oracle\n\nMODELS = [\n    ('r1-8b', 'R1-8B'),\n    ('ot-7b', 'OT-7B'),\n    ('r1-32b', 'R1-32B'),\n    ('QwQ', 'QwQ-32B'),\n]\n\nOUT_DIR = '/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a8_oracle_gap'\nK_VALUES = [1, 3, 5, 8]\n\n\ndef main():\n    all_results = {}\n\n    for model_key, display_name in MODELS:\n        data = prepare_dataset(model_name=model_key)\n        traces = data['jailbreak_with_commitment']\n        _, _, test_traces = split_data(traces, seed=SEED)\n\n        cps = np.array([t['commitment_point'] for t in test_traces])\n        lengths = np.array([t['num_steps'] for t in test_traces])\n        post_cp = lengths - cps\n\n        results = analyze_oracle(test_traces, k_values=K_VALUES)\n\n        model_data = {\n            'model_key': model_key,\n            'display_name': display_name,\n            'total_traces': len(traces),\n            'test_traces': len(test_traces),\n            'stats': {\n                'mean_cp': round(float(np.mean(cps)), 1),\n                'median_cp': round(float(np.median(cps)), 1),\n                'mean_length': round(float(np.mean(lengths)), 1),\n                'mean_post_cp': round(float(np.mean(post_cp)), 1),\n            },\n            'oracle': {},\n        }\n\n        for k in K_VALUES:\n            r = results[k]\n            positive_leads = [lt for lt in r['lead_times'] if lt > 0]\n            model_data['oracle'][f'K={k}'] = {\n                'detection_rate': round(r['detection_rate'], 1),\n                'early_detection_rate': round(r['early_detection_rate'], 1),\n                'early_detections': r['early_detections'],\n                'total_test': len(test_traces),\n                'mean_lead_time_early': round(float(np.mean(positive_leads)), 1) if positive_leads else None,\n                'median_lead_time_early': round(float(np.median(positive_leads)), 1) if positive_leads else None,\n            }\n\n        all_results[display_name] = model_data\n\n    # Print summary table\n    print(\"\\nOracle Early Detection Rate (before CP) on Test Set\")\n    print(\"=\" * 70)\n    header = f\"{'Model':<10}\"\n    for k in K_VALUES:\n        header += f\"  K={k:>2}\"\n    print(header)\n    print(\"-\" * 70)\n\n    for _, display_name in MODELS:\n        r = all_results[display_name]\n        row = f\"{display_name:<10}\"\n        for k in K_VALUES:\n            o = r['oracle'][f'K={k}']\n            row += f\"  {o['early_detection_rate']:5.1f}%\"\n        row += f\"  (N={r['test_traces']})\"\n        print(row)\n\n    print()\n    print(\"Oracle Gap (K=5):\")\n    for _, display_name in MODELS:\n        r = all_results[display_name]\n        o = r['oracle']['K=5']\n        lead = o.get('mean_lead_time_early')\n        lead_str = f\", mean lead={lead:.1f} steps\" if lead else \"\"\n        print(f\"  {display_name}: {o['early_detection_rate']}% ({o['early_detections']}/{o['total_test']}){lead_str}\")\n\n    out_path = os.path.join(OUT_DIR, 'oracle_gap_all_models.json')\n    with open(out_path, 'w') as f:\n        json.dump(all_results, f, indent=2)\n    print(f\"\\nSaved: {out_path}\")\n\n\nif __name__ == '__main__':\n    main()\nPYEOF\ncd /root/autodl-tmp/contrastive_trace_safety && HF_DATASETS_OFFLINE=1 /root/miniconda3/bin/python3.12 artifacts/r14_a8_oracle_gap/compute_final.py\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-18T18:55:36.566876+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\nOracle Early Detection Rate (before CP) on Test Set\\\\n======================================================================\\\\nModel       K= 1  K= 3  K= 5  K= 8\\\\n----------------------------------------------------------------------\\\\nR1-8B        83.7%   76.7%   76.7%   65.1%  (N=43)\\\\nOT-7B       100.0%   93.6%   93.6%   83.0%  (N=47)\\\\nR1-32B       80.0%   60.0%   50.0%   35.0%  (N=20)\\\\nQwQ-32B      89.5%   89.5%   84.2%   68.4%  (N=19)\\\\n\\\\nOracle Gap (K=5):\\\\n  R1-8B: 76.7% (33/43), mean lead=31.0 steps\\\\n  OT-7B: 93.6% (44/47), mean lead=50.0 steps\\\\n  R1-32B: 50.0% (10/20), mean lead=32.4 steps\\\\n  QwQ-32B: 84.2% (16/19), mean lead=24.4 steps\\\\n\\\\nSaved: /root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a8_oracle_gap/oracle_gap_all_models.json\\\\n\\\", \\\"stderr\\\": \\\"Using the latest cached version of the dataset since ishitakakkar-10/HarmThoughts couldn't be found on the Hugging Face Hub (offline mode is enabled).\\\\nFound the latest cached dataset configuration 'default' at /root/autodl-tmp/.hf_cache/datasets/ishitakakkar-10___harm_thoughts/default/0.0.0/98a90c45ae2fc0a94a828cebb426917883ce35e1 (last modified on Sun May 17 03:09:33 2026).\\\\nUsing the latest cached version of the dataset since ishitakakkar-10/HarmThoughts couldn't be found on the Hugging Face Hub (offline mode is enabled).\\\\nFound the latest cached dataset configuration 'default' at /root/autodl-tmp/.hf_cache/datasets/ishitakakkar-10___harm_thoughts/default/0.0.0/98a90c45ae2fc0a94a828cebb426917883ce35e1 (last modified on Sun May 17 03:09:33 2026).\\\\nUsing the latest cached version of the dataset since ishitakakkar-10/HarmThoughts couldn't be found on the Hugging Face Hub (offline mode is enabled).\\\\nFound the latest cached dataset configuration 'default' at /root/autodl-tmp/.hf_cache/datasets/ishitakakkar-10___harm_thoughts/default/0.0.0/98a90c45ae2fc0a94a828cebb426917883ce35e1 (last modified on Sun May 17 03:09:33 2026).\\\\nUsing\n…[truncated 462 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r14_a8_oracle_gap_20260518T184954",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-18T18:55:36.567040+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__save_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r14_a8_oracle_gap_20260518T184954",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "tool_args": {
+              "project": "contrastive_trace_safety",
+              "file": "memory.md",
+              "content": "# Memory\n\n## A8 Oracle Gap Results (2026-05-18)\n\nOracle gap (K=5 consecutive trigger, early detection before CP) on test set (60/20/20, seed=42):\n\n| Model | Oracle Gap (K=5) | Test N | Mean Lead Time |\n|-------|-----------------|--------|----------------|\n| R1-8B | 76.7% (33/43) | 43 | 31.0 steps |\n| OT-7B | 93.6% (44/47) | 47 | 50.0 steps |\n| R1-32B | 50.0% (10/20) | 20 | 32.4 steps |\n| QwQ-32B | 84.2% (16/19) | 19 | 24.4 steps |\n\nMethod: `analyze_oracle()` from `src/diagnostics/oracle_upper_bound.py` uses raw annotation labels, finding K consecutive non-safety labels before CP.\n\nNote: Task referenced R1-8B=85.5%, but that appears to be from val set (85.4%). Test set consistently gives 76.7%.\n\nFull results: `artifacts/r14_a8_oracle_gap/oracle_gap_all_models.json`\n"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-18T18:55:36.567174+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/memory.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r14_a8_oracle_gap_20260518T184954",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-18T18:55:36.567298+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r14_a8_oracle_gap_20260518T184954",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "r14_a8_oracle_gap",
+              "type": "data",
+              "description": "Oracle gap (K=5) for all 4 models: R1-8B 76.7%, OT-7B 93.6%, R1-32B 50.0%, QwQ-32B 84.2%. Test set 60/20/20 seed=42.",
+              "project": "contrastive_trace_safety",
+              "source_path": "/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a8_oracle_gap/oracle_gap_all_models.json",
+              "tags": "['oracle', 'upper-bound', 'multi-model', 'A8']"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-18T18:55:36.567425+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a8_oracle_gap/oracle_gap_all_models.json\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r14_a8_oracle_gap_20260518T184954",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-18T18:55:36.567539+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r14_a8_oracle_gap_20260518T184954",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-rtx6000",
+              "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a8_oracle_gap/oracle_gap_all_models.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-18T18:55:36.567778+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"R1-8B\\\\\\\": {\\\\n    \\\\\\\"model_key\\\\\\\": \\\\\\\"r1-8b\\\\\\\",\\\\n    \\\\\\\"display_name\\\\\\\": \\\\\\\"R1-8B\\\\\\\",\\\\n    \\\\\\\"total_traces\\\\\\\": 209,\\\\n    \\\\\\\"test_traces\\\\\\\": 43,\\\\n    \\\\\\\"stats\\\\\\\": {\\\\n      \\\\\\\"mean_cp\\\\\\\": 32.7,\\\\n      \\\\\\\"median_cp\\\\\\\": 36.0,\\\\n      \\\\\\\"mean_length\\\\\\\": 45.9,\\\\n      \\\\\\\"mean_post_cp\\\\\\\": 13.2\\\\n    },\\\\n    \\\\\\\"oracle\\\\\\\": {\\\\n      \\\\\\\"K=1\\\\\\\": {\\\\n        \\\\\\\"detection_rate\\\\\\\": 100.0,\\\\n        \\\\\\\"early_detection_rate\\\\\\\": 83.7,\\\\n        \\\\\\\"early_detections\\\\\\\": 36,\\\\n        \\\\\\\"total_test\\\\\\\": 43,\\\\n        \\\\\\\"mean_lead_time_early\\\\\\\": 35.6,\\\\n        \\\\\\\"median_lead_time_early\\\\\\\": 35.5\\\\n      },\\\\n      \\\\\\\"K=3\\\\\\\": {\\\\n        \\\\\\\"detection_rate\\\\\\\": 100.0,\\\\n        \\\\\\\"early_detection_rate\\\\\\\": 76.7,\\\\n        \\\\\\\"early_detections\\\\\\\": 33,\\\\n        \\\\\\\"total_test\\\\\\\": 43,\\\\n        \\\\\\\"mean_lead_time_early\\\\\\\": 34.8,\\\\n        \\\\\\\"median_lead_time_early\\\\\\\": 32.0\\\\n      },\\\\n      \\\\\\\"K=5\\\\\\\": {\\\\n        \\\\\\\"detection_rate\\\\\\\": 100.0,\\\\n        \\\\\\\"early_detection_rate\\\\\\\": 76.7,\\\\n        \\\\\\\"early_detections\\\\\\\": 33,\\\\n        \\\\\\\"total_test\\\\\\\": 43,\\\\n        \\\\\\\"mean_lead_time_early\\\\\\\": 31.0,\\\\n        \\\\\\\"median_lead_time_early\\\\\\\": 29.0\\\\n      },\\\\n      \\\\\\\"K=8\\\\\\\": {\\\\n        \\\\\\\"detection_rate\\\\\\\": 95.3,\\\\n        \\\\\\\"early_detection_rate\\\\\\\": 65.1,\\\\n        \\\\\\\"early_detections\\\\\\\": 28,\\\\n        \\\\\\\"total_test\\\\\\\": 43,\\\\n        \\\\\\\"mean_lead_time_early\\\\\\\": 28.8,\\\\n        \\\\\\\"median_lead_time_early\\\\\\\": 26.5\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"OT-7B\\\\\\\": {\\\\n    \\\\\\\"model_key\\\\\\\": \\\\\\\"ot-7b\\\\\\\",\\\\n    \\\\\\\"display_name\\\\\\\": \\\\\\\"OT-7B\\\\\\\",\\\\n    \\\\\\\"total_traces\\\\\\\": 228,\\\\n    \\\\\\\"test_traces\\\\\\\": 47,\\\\n    \\\\\\\"stats\\\\\\\": {\\\\n      \\\\\\\"mean_cp\\\\\\\": 64.0,\\\\n      \\\\\\\"median_cp\\\\\\\": 61.0,\\\\n      \\\\\\\"mean_length\\\\\\\": 77.6,\\\\n      \\\\\\\"mean_post_cp\\\\\\\": 13.6\\\\n    },\\\\n    \\\\\\\"oracle\\\\\\\": {\\\\n      \\\\\\\"K=1\\\\\\\": {\\\\n        \\\\\\\"detection_rate\\\\\\\": 100.\n…[truncated 4259 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r14_a8_oracle_gap_20260518T184954",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-18T18:55:36.567943+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r14_a8_oracle_gap_20260518T184954",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "r14_a8_oracle_gap",
+              "type": "data",
+              "description": "Oracle gap (K=5) for all 4 models: R1-8B 76.7%, OT-7B 93.6%, R1-32B 50.0%, QwQ-32B 84.2%. Test set 60/20/20 seed=42.",
+              "project": "contrastive_trace_safety",
+              "content": "{\n  \"summary\": \"Oracle Early Detection Rate (before CP), K=5 consecutive trigger, test set 60/20/20 seed=42\",\n  \"results\": {\n    \"R1-8B\": {\"oracle_gap\": 76.7, \"count\": \"33/43\", \"mean_lead\": 31.0},\n    \"OT-7B\": {\"oracle_gap\": 93.6, \"count\": \"44/47\", \"mean_lead\": 50.0},\n    \"R1-32B\": {\"oracle_gap\": 50.0, \"count\": \"10/20\", \"mean_lead\": 32.4},\n    \"QwQ-32B\": {\"oracle_gap\": 84.2, \"count\": \"16/19\", \"mean_lead\": 24.4}\n  },\n  \"note\": \"Uses analyze_oracle() from src/diagnostics/oracle_upper_bound.py (raw annotation labels, K consecutive non-safety labels before CP)\",\n  \"full_json\": \"artifacts/r14_a8_oracle_gap/oracle_gap_all_models.json\"\n}",
+              "content_filename": "r14_a8_oracle_gap_summary.json",
+              "tags": "['oracle', 'upper-bound', 'multi-model', 'A8']"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-18T18:55:36.568081+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'summary': 'Oracle Early...le_gap_all_models.json'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r14_a8_oracle_gap_20260518T184954",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-18T18:55:36.568207+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r14_a8_oracle_gap_20260518T184954",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "r14_a8_oracle_gap",
+              "type": "data",
+              "description": "Oracle gap (K=5) for all 4 models: R1-8B 76.7%, OT-7B 93.6%, R1-32B 50.0%, QwQ-32B 84.2%. Test set 60/20/20 seed=42.",
+              "project": "contrastive_trace_safety",
+              "content": "{\"summary\": \"Oracle Early Detection Rate (before CP), K=5 consecutive trigger, test set 60/20/20 seed=42\", \"results\": {\"R1-8B\": {\"oracle_gap\": 76.7, \"count\": \"33/43\", \"mean_lead\": 31.0}, \"OT-7B\": {\"oracle_gap\": 93.6, \"count\": \"44/47\", \"mean_lead\": 50.0}, \"R1-32B\": {\"oracle_gap\": 50.0, \"count\": \"10/20\", \"mean_lead\": 32.4}, \"QwQ-32B\": {\"oracle_gap\": 84.2, \"count\": \"16/19\", \"mean_lead\": 24.4}}, \"note\": \"Uses analyze_oracle() from src/diagnostics/oracle_upper_bound.py (raw annotation labels, K consecutive non-safety labels before CP)\", \"full_json\": \"artifacts/r14_a8_oracle_gap/oracle_gap_all_models.json\"}",
+              "content_filename": "r14_a8_oracle_gap_summary.json",
+              "tags": "['oracle', 'upper-bound', 'multi-model', 'A8']"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-18T18:55:36.568335+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'summary': 'Oracle Early...le_gap_all_models.json'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r14_a8_oracle_gap_20260518T184954",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-18T18:55:36.568452+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r14_a8_oracle_gap_20260518T184954",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "r14_a8_oracle_gap",
+              "type": "data",
+              "description": "Oracle gap (K=5) for all 4 models: R1-8B 76.7%, OT-7B 93.6%, R1-32B 50.0%, QwQ-32B 84.2%. Test set 60/20/20 seed=42. Full JSON at artifacts/r14_a8_oracle_gap/oracle_gap_all_models.json",
+              "project": "contrastive_trace_safety",
+              "tags": "['oracle', 'upper-bound', 'multi-model', 'A8']"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-18T18:55:36.568624+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"One of source_path, content, or url must be provided.\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r14_a8_oracle_gap_20260518T184954",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-18T18:55:36.568787+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r14_a8_oracle_gap_20260518T184954",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "r14_a8_oracle_gap",
+              "type": "data",
+              "description": "Oracle gap (K=5) for all 4 models: R1-8B 76.7%, OT-7B 93.6%, R1-32B 50.0%, QwQ-32B 84.2%. Test set 60/20/20 seed=42.",
+              "project": "contrastive_trace_safety",
+              "content": "Oracle Gap (K=5 consecutive trigger, early detection before CP) on test set 60/20/20 seed=42:\nR1-8B: 76.7% (33/43), mean lead=31.0 steps\nOT-7B: 93.6% (44/47), mean lead=50.0 steps\nR1-32B: 50.0% (10/20), mean lead=32.4 steps\nQwQ-32B: 84.2% (16/19), mean lead=24.4 steps\nFull results: artifacts/r14_a8_oracle_gap/oracle_gap_all_models.json",
+              "content_filename": "r14_a8_oracle_gap_summary.txt",
+              "tags": "['oracle', 'upper-bound', 'multi-model', 'A8']"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-18T18:55:36.568933+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260518_9a7bc6\\\", \\\"name\\\": \\\"r14_a8_oracle_gap\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Oracle gap (K=5) for all 4 models: R1-8B 76.7%, OT-7B 93.6%, R1-32B 50.0%, QwQ-32B 84.2%. Test set 60/20/20 seed=42.\\\", \\\"path\\\": \\\"projects/contrastive_trace_safety/artifacts/_project/data/r14_a8_oracle_gap_summary.txt\\\", \\\"url\\\": null, \\\"project\\\": \\\"contrastive_trace_safety\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-18T18:55:27.103951+00:00\\\", \\\"tags\\\": [\\\"oracle\\\", \\\"upper-bound\\\", \\\"multi-model\\\", \\\"A8\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r14_a8_oracle_gap_20260518T184954",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-18T18:55:36.569096+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Oracle Gap (K=5 consecutive trigger, early detection before CP), test set 60/20/20 seed=42:\n\n```\nModel     Oracle Gap   Count    Mean Lead Time\nR1-8B     76.7%        33/43    31.0 steps\nOT-7B     93.6%        44/47    50.0 steps\nR1-32B    50.0%        10/20    32.4 steps\nQwQ-32B   84.2%        16/19    24.4 steps\n```\n\nOT-7B 最高 (93.6%)，因为其 trace 更长、CP 前有更多 non-safety 标注；R1-32B 最低 (50.0%)，test set 只有 20 条且 median CP=15 较早，CP 前 non-safety 窗口不足。\n\n关于 R1-8B 参考值：task 提到 85.5%，实际 test set 为 76.7%。85.5% 对应 val set (85.4%)，可能来自早期分析。4 个模型均使用相同代码路径 (`analyze_oracle` from `oracle_upper_bound.py`)，结果可直接对比。\n\n结果已存入 `artifacts/r14_a8_oracle_gap/oracle_gap_all_models.json` 并注册。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r14_a8_oracle_gap_20260518T184954"
+          },
+          "id": "event-000057"
+        }
+      ],
+      "message_count": 57
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-r14-a8-oracle-gap.md"
+}

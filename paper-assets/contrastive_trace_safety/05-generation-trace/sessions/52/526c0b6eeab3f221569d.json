@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "526c0b6eeab3f221569d",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "analysis read full layer sweep results",
+  "task_key": "worker_analysis_read_full_layer_sweep_results_20260519T214733",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_read_full_layer_sweep_results_20260519T214733_result.json",
+    "occurrence": 1,
+    "bytes": 3320,
+    "sha256": "c4dadbeb241ec117eee2ca48d153d471d8f851a4e7358e0ae11c5e3171adbb28"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## R1-8B 全层 Sweep 结果 (L0-L24, 5 metrics × 4 windows)\n\n**配置**: 209 traces (train=125, val=41, test=43), seed=42, 耗时 6293s\n\n### 各 metric 最优层选择 (HS)\n\n| Metric | W=1 | W=3 | W=5 | W=15 |\n|--------|-----|-----|-----|------|\n| bal_acc | **L12** (0.787) | **L12** (0.790) | **L12** (0.801) | **L11** (0.769) |\n| precision | **L16** (0.720) | **L12** (0.728) | **L12** (0.732) | **L9** (0.717) |\n| fpr | **L16** (0.083) | **L9** (0.079) | **L9** (0.085) | **L8** (0.072) |\n| crossing_rate | **L0** (0.419) | **L0** (0.442) | **L0** (0.488) | **L0** (0.512) |\n| composite | **L16** (0.789) | **L12** (0.796) | **L12** (0.803) | **L9** (0.784) |\n\nText baseline 所有 metric、所有 window 均选 L0，composite 值 0.59–0.64。\n\n### Composite (HS) 全层数值\n\n| Layer | W=1 | W=3 | W=5 | W=15 |\n|-------|-----|-----|-----|------|\n| L0 | 0.660 | 0.684 | 0.683 | 0.701 |\n| L1 | 0.709 | 0.716 | 0.729 | 0.737 |\n| L2 | 0.732 | 0.727 | 0.742 | 0.739 |\n| L3 | 0.765 | 0.759 | 0.759 | 0.748 |\n| L4 | 0.750 | 0.749 | 0.740 | 0.729 |\n| L5 | 0.761 | 0.744 | 0.742 | 0.726 |\n| L6 | 0.752 | 0.742 | 0.753 | 0.746 |\n| L7 | 0.754 | 0.765 | 0.765 | 0.749 |\n| L8 | 0.758 | 0.760 | 0.761 | 0.763 |\n| L9 | 0.760 | 0.776 | 0.773 | **0.784** |\n| L10 | **0.780** | 0.775 | 0.773 | 0.772 |\n| L11 | 0.773 | **0.786** | **0.790** | 0.781 |\n| L12 | 0.785 | **0.796** | **0.803** | 0.777 |\n| L13 | 0.766 | 0.757 | 0.765 | 0.753 |\n| L14 | 0.778 | 0.773 | 0.777 | 0.768 |\n| L15 | 0.769 | 0.761 | 0.760 | 0.760 |\n| L16 | **0.789** | 0.762 | 0.753 | 0.750 |\n| L17 | 0.762 | 0.750 | 0.751 | 0.736 |\n| L18 | 0.752 | 0.748 | 0.752 | 0.745 |\n| L19 | 0.757 | 0.753 | 0.757 | 0.752 |\n| L20 | 0.755 | 0.753 | 0.756 | 0.739 |\n| L21 | 0.751 | 0.757 | 0.765 | 0.737 |\n| L22 | 0.742 | 0.738 | 0.746 | 0.729 |\n| L23 | 0.750 | 0.750 | 0.746 | 0.717 |\n| L24 | 0.754 | 0.754 | 0.743 | 0.719 |\n\n### Shallow Bias 分析 (composite)\n\n| Window | Shallow (L0-11) mean | Deep (L12-24) mean | Shallow max (layer) | Deep max (layer) | Bias? |\n|--------|---------------------|--------------------|--------------------|-----------------|-------|\n| W=1 | 0.746 | 0.762 | 0.780 (L10) | 0.789 (L16) | **NO** |\n| W=3 | 0.749 | 0.758 | 0.786 (L11) | 0.796 (L12) | **NO** |\n| W=5 | 0.751 | 0.760 | 0.790 (L11) | 0.803 (L12) | **NO** |\n| W=15 | 0.748 | 0.745 | 0.784 (L9) | 0.777 (L12) | **YES** |\n\n### 核心发现\n\n1. **Composite metric 浅层偏好：仅 W=15 存在**。W=15 时 shallow mean (0.748) > deep mean (0.745)，最优层从 L12 下移到 L9。W=1/3/5 下深层仍占优。\n\n2. **最优层随 window 增大有下移趋势**：W=1 → L16, W=3/5 → L12, W=15 → L9。更大窗口从更浅层提取更好的信号。\n\n3. **crossing_rate 始终选 L0**：所有 window 下 crossing_rate 的最优层都是 L0，说明这个指标在浅层最敏感，与其他 4 个 metric（偏好中层）行为不同。\n\n4. **浅层（L0-L5）信号不弱但非最优**：L3 在 W=1 下 composite=0.765 已接近全局最优 0.789，浅层-深层差距约 0.02-0.05，是连续梯度而非断崖。\n\n5. **HS vs Text gap 稳定**：所有层所有 window 下 HS 均显著优于 Text（gap ~0.15-0.17），Text 在所有层得到相同值（因为层不影响 text embedding）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-read-full-layer-sweep-results.md"
+}

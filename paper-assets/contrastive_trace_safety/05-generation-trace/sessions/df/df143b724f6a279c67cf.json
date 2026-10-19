@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "df143b724f6a279c67cf",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code r9 loo cv wait collect",
+  "task_key": "worker_code_r9_loo_cv_wait_collect_20260518T105354",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r9_loo_cv_wait_collect_20260518T105354_result.json",
+    "occurrence": 1,
+    "bytes": 107,
+    "sha256": "1942f687334726705d63b8c9722ffe8bc5a933bce6641c572bd3f6dd22647f9e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Polling in ~4.5 minutes. Process is at 256/448 combos for qwq_32b, then needs to run r1_32b."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r9-loo-cv-wait-collect.md"
+}

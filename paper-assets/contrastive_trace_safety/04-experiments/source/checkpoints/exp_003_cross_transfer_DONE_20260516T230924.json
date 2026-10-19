@@ -1,0 +1,92 @@
+{
+  "exp_id": "exp_003_cross_transfer",
+  "project": "contrastive_trace_safety",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-16T22:23:29.492Z",
+    "updated_at": "2026-05-16T23:09:24.435Z",
+    "hypothesis": "Safety commitment probes trained on one reasoning model can transfer to other architectures/scales via simple dimension projection, because the safety signal is a universal representation rather than model-specific.",
+    "parent": "exp_001a_r1_32b",
+    "completed_at": "2026-05-16T22:34:34.323Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "negative",
+        "metrics": {
+          "baselines": {
+            "r1_8b": {
+              "acc": 0.8234,
+              "crossing_rate": 0.4127,
+              "lead_mean": -1.46
+            },
+            "r1_32b": {
+              "acc": 0.6516,
+              "crossing_rate": 0.6333,
+              "lead_mean": 11.74
+            },
+            "qwq_32b": {
+              "acc": 0.7171,
+              "crossing_rate": 0.7241,
+              "lead_mean": 9.24
+            }
+          },
+          "best_transfers": {
+            "r1_8b_to_r1_32b": {
+              "acc": 0.522,
+              "method": "pca_2048"
+            },
+            "r1_8b_to_qwq_32b": {
+              "acc": 0.5948,
+              "method": "pca_2048"
+            },
+            "r1_32b_to_qwq_32b": {
+              "acc": 0.5499,
+              "method": "pca_2048"
+            },
+            "qwq_32b_to_r1_32b": {
+              "acc": 0.6726,
+              "method": "direct"
+            },
+            "r1_32b_to_r1_8b": {
+              "acc": 0.5828,
+              "method": "pca_1024"
+            }
+          }
+        }
+      }
+    },
+    "spec": {
+      "command": "python src/experiments/cross_model_transfer.py",
+      "server": "autodl-rtx6000",
+      "data_path": "artifacts/hidden_states/ + hidden_states_r1_32b/ + hidden_states_qwq_32b/",
+      "data_count": 404,
+      "model_name": "r1-8b/R1-32B/QwQ-32B cross-transfer",
+      "seed": 42,
+      "checkpoint_path": "artifacts/exp_003_cross_transfer/",
+      "log_path": "artifacts/exp_003_cross_transfer/",
+      "checkpoint_source": "exp_001a_r1_32b + exp_001b_qwq_32b",
+      "eval_data": "cross-model hidden states (r1-8b 209 + R1-32B 100 + QwQ 95 traces)"
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "baselines": {
+        "r1_8b_acc": 0.8234,
+        "r1_32b_acc": 0.6516,
+        "qwq_32b_acc": 0.7171
+      },
+      "best_transfer_acc": {
+        "r1_8b_to_r1_32b": 0.522,
+        "r1_8b_to_qwq": 0.5948,
+        "r1_32b_to_qwq": 0.5499,
+        "qwq_to_r1_32b": 0.6726,
+        "r1_32b_to_r1_8b": 0.5828
+      },
+      "transfer_method": "PCA projection",
+      "conclusion_detail": "Simple PCA projection insufficient for zero-shot cross-model transfer. Signal is model-specific in geometric encoding."
+    }
+  },
+  "timestamp": "2026-05-16T23:09:24.465344+00:00",
+  "trigger": "update_registry"
+}

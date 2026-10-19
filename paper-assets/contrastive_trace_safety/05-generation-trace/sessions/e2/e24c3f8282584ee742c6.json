@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e24c3f8282584ee742c6",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "analysis sf3 quadratic position residual",
+  "task_key": "worker_analysis_sf3_quadratic_position_residual_20260519T143405",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_sf3_quadratic_position_residual_20260519T143405_result.json",
+    "occurrence": 1,
+    "bytes": 1502,
+    "sha256": "5876d94a7457fcb79faac11d6fc79530406e8e679ff19b8c08dd0ba7cde5a944"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. All three output files updated. Here's the summary:\n\n**SF3: Linear vs Quadratic Position Residualization**\n\n| Model | Method | HS BA | Txt BA | Gap | p | HB p | Pass |\n|-------|--------|-------|--------|-----|---|------|------|\n| R1-8B | linear | .658 | .554 | +10.4pp | <.0001 | <.0001 | Y |\n| R1-8B | quadratic | .652 | .549 | +10.3pp | <.0001 | <.0001 | Y |\n| OT-7B | linear | .697 | .582 | +11.4pp | <.0001 | <.0001 | Y |\n| OT-7B | quadratic | .631 | .534 | +9.8pp | .0001 | .0003 | Y |\n| R1-32B | linear | .574 | .587 | -1.4pp | .598 | .598 | N |\n| R1-32B | quadratic | .594 | .593 | +0.0pp | .499 | .499 | N |\n| QwQ-32B | linear | .606 | .598 | +0.9pp | .415 | .831 | N |\n| QwQ-32B | quadratic | .630 | .561 | +6.8pp | .046 | .091 | N |\n\n**Validation**: R1-8B and OT-7B linear per-trace HS BAs match exp_r11 reference exactly (to 4 decimal places).\n\n**Key findings**:\n- R1-8B and OT-7B retain significant HS advantage under both linear and quadratic residualization (HB pass)\n- Quadratic slightly reduces the gap (OT-7B: 11.4 → 9.8pp) but doesn't eliminate it\n- R1-32B remains NS under both methods\n- QwQ-32B (L63, W=5): linear NS, quadratic marginally significant raw (p=.046) but fails HB correction (p=.091)\n\n**Output files** at `/root/autodl-tmp/contrastive_trace_safety/artifacts/sf3_quadratic_residual/`:\n- `results.json` — full results with per-trace BAs\n- `comparison_table.csv` — summary table\n- `report.txt` — human-readable report"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-sf3-quadratic-position-residual.md"
+}

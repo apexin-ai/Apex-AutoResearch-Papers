@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "44eaecd487189bbbef93",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code sync and extract",
+  "task_key": "worker_code_sync_and_extract_20260516T191140",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_sync_and_extract_20260516T191140_result.json",
+    "occurrence": 1,
+    "bytes": 443,
+    "sha256": "18e4c9b24e6c3382941f07d4066c20698407880baf532a74482ce2cd741a60e4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报：\n\n**Extraction 结果：**\n- 提取了 **268** 个 traces 的 hidden states（209 jailbreak + 59 safe）\n- 总大小：**1.2 GB**\n- ���文件大小：3.0–5.4 MB（取决于 trace 长度，每个 trace 形状 `[num_sentences, 13, 4096]` fp16）\n- 耗时：~79 秒（3.38 it/s 平均）\n- 无错误\n- 磁盘剩余：33 GB（充裕）\n\n可以进入下一步 `--step train` 训练 probes。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-sync-and-extract.md"
+}

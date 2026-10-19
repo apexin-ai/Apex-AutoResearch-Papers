@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "b6cc382cc4330aa33062",
+  "project": "contrastive_trace_safety",
+  "kind": "worker",
+  "title": "code sync and extract",
+  "task_key": "worker_code_sync_and_extract_20260516T191140",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_sync_and_extract_20260516T191140.log",
+    "occurrence": 1,
+    "bytes": 647193,
+    "sha256": "ef0c613a69f9929d0bd2089f4110dc3e1de2cc9364ef7171d36d35def42525f3"
+  },
+  "statistics": {
+    "messages": 147,
+    "user_turns": 0,
+    "tool_calls": 51,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 41,
+      "tool_call": 51,
+      "tool_result": 51,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 147,
+      "chunks": [
+        {
+          "path": "b6cc382cc4330aa33062-part-0001.json",
+          "message_count": 139
+        },
+        {
+          "path": "b6cc382cc4330aa33062-part-0002.json",
+          "message_count": 8
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-sync-and-extract.md"
+}

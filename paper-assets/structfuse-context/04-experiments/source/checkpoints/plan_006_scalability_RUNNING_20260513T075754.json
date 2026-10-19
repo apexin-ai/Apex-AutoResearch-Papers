@@ -1,0 +1,26 @@
+{
+  "exp_id": "plan_006_scalability",
+  "project": "structfuse-context",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T07:57:43.631Z",
+    "updated_at": "2026-05-13T07:57:54.938Z",
+    "spec": {
+      "command": "M1 scalability statistics analysis (29/131 repos)",
+      "server": "bjb1-42106",
+      "data_path": "/root/autodl-tmp/structfuse/m1_extraction/",
+      "data_count": 8171,
+      "model_name": "N/A (CPU analysis)",
+      "seed": "N/A",
+      "description": "Plan 006: M1 extraction scalability stats - timeout rate, extraction time, coverage, Z% by repo size. Partial results from 29/131 repos.",
+      "checkpoint_path": "N/A",
+      "log_path": "N/A"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-13T07:57:54.987049+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "34aa37ed501ed5f3bdcb",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code exp r11 r1 8b w15 residualization",
+  "task_key": "worker_code_exp_r11_r1_8b_w15_residualization_20260518T123644",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_r11_r1_8b_w15_residualization_20260518T123644_result.json",
+    "occurrence": 1,
+    "bytes": 1146,
+    "sha256": "d3e2cdda99139276cf9137f9db54c1515aef288e7117bce5a8517ba6051bdedc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## E-R11-2 结果：R1-8B W=15 Position Residualization\n\n### W=3 vs W=15 对比 (R1-8B, L14)\n\n| Metric | W=3 | W=15 |\n|---|---|---|\n| Original HS BA | 0.813 | **0.834** |\n| Residualized HS BA | 0.571 | **0.669** |\n| Drop (pp) | 24.3 | **16.5** |\n| Position-only BA | 0.706 | **0.706** |\n| Original Text BA | — | 0.757 |\n| Residualized Text BA | — | 0.605 |\n\n### 统计检验 (W=15 residualized)\n- Binomial test vs chance: p < 1e-6\n- Wilcoxon signed-rank vs 0.5: p < 1e-6\n- Per-trace BA 分布: 43 traces, mean ≈ 0.78, min=0.30, max=0.95\n\n### 关键发现\n\n1. **W=15 下 residualization drop 显著更小** (16.5pp vs 24.3pp)，说明 W=3 的 drop 部分来自 small window 的 position confound 更强。\n2. **Residualized HS 仍远超 chance** (0.669 vs 0.5, p ≈ 0)，确认 hidden states 包含真正的 safety-relevant 信号而非仅仅是 positional artifact。\n3. **Position-only BA 完全相同** (0.706)，因为 position-only 不受 window 影响（n_pca=1, 无 windowing）。\n4. **Original HS BA 从 0.813 升至 0.834**，更大窗口提供了更多上下文，略微提高分类性能。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-r11-r1-8b-w15-residualization.md"
+}

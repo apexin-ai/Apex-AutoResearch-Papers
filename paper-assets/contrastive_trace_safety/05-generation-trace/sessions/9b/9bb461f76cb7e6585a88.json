@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9bb461f76cb7e6585a88",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "analysis status check gemma progress",
+  "task_key": "worker_analysis_status_check_gemma_progress_20260522T143527",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_status_check_gemma_progress_20260522T143527_result.json",
+    "occurrence": 1,
+    "bytes": 326,
+    "sha256": "7fdf6ea2d2b2be22519a9af831db3a6d72897d3f6c8733be7558c28ca1e1e535"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "| 项目 | 状态 |\n|------|------|\n| **Gemma-4 full 520** | **170/520** (~33%), ETA ~75min |\n| **Gemma-2 下载** | **RUNNING** (PID 60731), 2/4 safetensors 完成, file 1 at 65%, file 3 at 63%, ~380kB/s, ETA ~1.5h |\n| **脚本同步** | **成功** — `N_STORED_LAYERS = 42` ✓, `HIDDEN_DIM = 3584` ✓ |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-status-check-gemma-progress.md"
+}

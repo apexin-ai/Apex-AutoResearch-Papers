@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3a86b226e6a4f52bec9a",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code qwq safe fpr correct lr",
+  "task_key": "worker_code_qwq_safe_fpr_correct_lr_20260517T210912",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_qwq_safe_fpr_correct_lr_20260517T210912_result.json",
+    "occurrence": 1,
+    "bytes": 1255,
+    "sha256": "4a886eb3e1cd19dc6d1f4303fb294cff37d232748ac26f2157e16545fc743b64"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果总结：\n\n## QwQ-32B Safe-trace FPR（正确方法：LogisticRegression lbfgs）\n\n| Method | CV Acc | Step-level FPR | Trace-level FPR (K=5) |\n|--------|--------|----------------|----------------------|\n| **HS L60 static** | 93.5% | 27.9% | 47.5% |\n| **Text MiniLM** | 66.7% | 39.4% | 50.0% |\n\n**结论**：\n\n1. HS probe 的 FPR 确实很高（step 28%，trace 47.5%），用正确的 LogisticRegression 方法重算后比之前 SGDClassifier 的 50% 略好但本质相同——QwQ-32B 的 L60 hidden state probe 在 safe traces 上有严重的 false positive 问题。\n\n2. HS probe 虽然 CV acc 高达 93.5%（在 jailbreak 内部的 pre/post-CP 分类很好），但泛化到 safe traces 时大量误判为 unsafe。\n\n3. Text probe 更差：CV acc 仅 66.7%（连 jailbreak 内部分类都不行），safe trace FPR 也是 50%（等同随机）。\n\n4. HS probe 优于 Text probe（step FPR 28% vs 39%），但两者的 trace-level FPR 都接近 50%，说明 QwQ-32B 的 safe trace representations 与 jailbreak pre-CP steps 确实存在系统性差异，probe 无法有效区分\"safe trace 正常推理\"和\"jailbreak 正在 comply\"。\n\n结果已保存到 `artifacts/qwq_safe_fpr_correct_lr.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-qwq-safe-fpr-correct-lr.md"
+}

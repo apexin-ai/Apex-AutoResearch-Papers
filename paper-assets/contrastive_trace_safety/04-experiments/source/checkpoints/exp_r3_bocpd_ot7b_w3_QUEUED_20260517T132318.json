@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_r3_bocpd_ot7b_w3",
+  "project": "contrastive_trace_safety",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T13:23:15.031Z",
+    "updated_at": "2026-05-17T13:23:18.642Z",
+    "hypothesis": "BOCPD/CUSUM on OT-7B probe scores with corrected W=3 (Layer 16) should either replicate R1-8B's BOCPD partial success (high detection but low lead) or reveal model-specific commitment dynamics. If BOCPD also fails on OT-7B, the negative result generalizes beyond a single model (R3-W2)."
+  },
+  "timestamp": "2026-05-17T13:23:18.719480+00:00",
+  "trigger": "update_registry"
+}

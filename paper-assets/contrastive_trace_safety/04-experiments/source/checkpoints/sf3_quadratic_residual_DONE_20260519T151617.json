@@ -1,0 +1,53 @@
+{
+  "exp_id": "sf3_quadratic_residual",
+  "project": "contrastive_trace_safety",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T14:55:46.812Z",
+    "updated_at": "2026-05-19T15:16:17.152Z",
+    "hypothesis": "Adding a quadratic (t/T)² term to position residualization does not eliminate the HS vs Text BA advantage for R1-8B and OT-7B, confirming the advantage is not an artifact of nonlinear positional encoding. If quadratic residualization substantially reduces the gap compared to linear, position effects have a nonlinear component worth controlling for.",
+    "spec": {
+      "command": "sf3_quadratic_residual.py (4 models, linear + quadratic)",
+      "server": "autodl-rtx6000",
+      "data_path": "/root/autodl-tmp/contrastive_trace_safety/artifacts/",
+      "data_count": "209 (R1-8B) + 228 (OT-7B) + 100 (R1-32B) + 95 (QwQ-32B) traces",
+      "model_name": "R1-8B, OT-7B, R1-32B, QwQ-32B",
+      "seed": 42
+    },
+    "conclusion": "success",
+    "metrics": {
+      "r1_8b_linear_gap": 0.104,
+      "r1_8b_linear_p": 0.0001,
+      "r1_8b_linear_hb": true,
+      "r1_8b_quad_gap": 0.103,
+      "r1_8b_quad_p": 0.0001,
+      "r1_8b_quad_hb": true,
+      "ot_7b_linear_gap": 0.114,
+      "ot_7b_linear_p": 0.0001,
+      "ot_7b_linear_hb": true,
+      "ot_7b_quad_gap": 0.098,
+      "ot_7b_quad_p": 0.0003,
+      "ot_7b_quad_hb": true,
+      "r1_32b_linear_gap": -0.014,
+      "r1_32b_linear_p": 0.598,
+      "r1_32b_linear_hb": false,
+      "r1_32b_quad_gap": 0,
+      "r1_32b_quad_p": 0.499,
+      "r1_32b_quad_hb": false,
+      "qwq_32b_w3_linear_gap": 0.014,
+      "qwq_32b_w3_linear_p": 0.3107,
+      "qwq_32b_w3_linear_hb": false,
+      "qwq_32b_w3_quad_gap": 0.037,
+      "qwq_32b_w3_quad_p": 0.068,
+      "qwq_32b_w3_quad_hb": false
+    },
+    "checkpoint_path": "/root/autodl-tmp/contrastive_trace_safety/artifacts/sf3_quadratic_residual/",
+    "log_path": "/root/autodl-tmp/contrastive_trace_safety/artifacts/sf3_quadratic_residual/report.txt",
+    "completed_at": "2026-05-19T15:16:17.153Z"
+  },
+  "timestamp": "2026-05-19T15:16:17.255124+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e484e5333ef6fc2fefbc",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code exp 003 cross transfer",
+  "task_key": "worker_code_exp_003_cross_transfer_20260516T222021",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_003_cross_transfer_20260516T222021_result.json",
+    "occurrence": 1,
+    "bytes": 1817,
+    "sha256": "41e36e267cd2a96d60c2be2eefa23f1ae2742c6330ee02b455f7336339077a2e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Experiment exp-003 complete. Here's the summary:\n\n---\n\n## Results: Cross-Model Transfer Probing\n\n### Same-Model Baselines (upper bounds)\n\n| Model | Accuracy | Crossing Rate | Lead Mean |\n|-------|----------|---------------|-----------|\n| r1-8b | 0.8234 | 0.413 | -1.46 |\n| R1-32B | 0.6516 | 0.633 | 11.74 |\n| QwQ-32B | 0.7171 | 0.724 | 9.24 |\n\n### Transfer Matrix (best accuracy per pair)\n\n| Source\\Target | r1-8b | R1-32B | QwQ-32B |\n|---|---|---|---|\n| **r1-8b** | 0.8234 | 0.5220 | 0.5948 |\n| **R1-32B** | 0.5828 | 0.6516 | 0.5499 |\n| **QwQ-32B** | N/A | 0.6726 | 0.7171 |\n\n### Key Findings\n\n1. **QwQ-32B → R1-32B (direct, same-dim 5120)**: acc=0.6726 exceeds R1-32B self-baseline (0.6516), BUT crossing_rate drops to 0.01 (probe almost never triggers the detection). High accuracy comes from correctly predicting the majority class, not from temporal detection.\n\n2. **Cross-architecture PCA transfers** (8b↔32b): 51-59% accuracy (marginally above chance), with crossing rates of 15-46%. PCA alignment enables *some* signal transfer but far below baselines.\n\n3. **Same-arch direct transfer fails directionally**: R1-32B→QwQ (direct) gets acc=0.38 with xr=1.0 (always triggers), while reverse QwQ→R1-32B gets 0.67 with xr=0.01 (never triggers). The weight vectors are not interchangeable despite same architecture.\n\n4. **PCA dimension has minimal impact**: 512 vs 1024 vs 2048 components yield similar results (~1-2% difference).\n\n### Conclusion: **Negative**\n\nSimple dimension projection (PCA) is insufficient for reliable zero-shot cross-model transfer. The safety commitment signal appears model-specific in its geometric encoding rather than being a universal linear direction. Shared architecture helps accuracy but destroys temporal detection quality."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-003-cross-transfer.md"
+}

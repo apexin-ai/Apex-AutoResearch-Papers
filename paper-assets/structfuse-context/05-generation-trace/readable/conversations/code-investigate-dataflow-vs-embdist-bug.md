@@ -1,0 +1,1924 @@
+# code investigate dataflow vs embdist bug
+
+**StructFuse: Structure-Grounded Hard Negative Mining for Contrastive Code Context Retrieval** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 63
+- **Recorded user turns:** 0
+- **Tool calls:** 31
+- **Original source:** `logs/chats/worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104.jsonl`
+- **Structured JSON:** [`0d904e5adac1b8de4cfa.json`](../../sessions/0d/0d904e5adac1b8de4cfa.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+63 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-12T19:24:57.601171+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-12T19:24:57.601519+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-12T19:24:57.601743+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/structfuse/scripts/run_p2b_all.sh",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "cat /root/structfuse/scripts/run_p2b_all.sh",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-12T19:24:57.601900+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls -la /root/structfuse/mvp_data/training_data/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "ls -la /root/structfuse/mvp_data/training_data/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-12T19:24:57.602104+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\n\\nsource /root/miniconda3/etc/profile.d/conda.sh\\nconda activate base\\ncd /root/structfuse\\n\\nexport CUDA_VISIBLE_DEVICES=4\\nexport WANDB_MODE=disabled\\nexport PYTHONUNBUFFERED=1\\n\\nDATA_DIR=/root/structfuse/mvp_data/training_data\\nCKPT_DIR=/root/autodl-tmp/structfuse/checkpoints\\nMODEL=/root/structfuse/models/Qwen/Qwen2.5-Coder-3B\\nGRAPH=$DATA_DIR/dataflow_graph.json\\nVAL=$DATA_DIR/val.jsonl\\n\\nSEEDS=(42 123 456)\\nSTRATEGIES=(random embedding_distance dataflow_aware)\\nTRAIN_FILES=(train_random.jsonl train_embedding.jsonl train_dataflow.jsonl)\\n\\nTOTAL=9\\nCOUNT=0\\nFAILED_RUNS=\\\"\\\"\\n\\nfor si in 0 1 2; do\\n    strategy=${STRATEGIES[$si]}\\n    train_file=${TRAIN_FILES[$si]}\\n    for seed in \\\"${SEEDS[@]}\\\"; do\\n        COUNT=$((COUNT + 1))\\n        RUN_NAME=\\\"p2b_${strategy}_s${seed}\\\"\\n        OUT_DIR=\\\"${CKPT_DIR}/${RUN_NAME}\\\"\\n        LOG=\\\"/tmp/p2b_${RUN_NAME}.log\\\"\\n\\n        # Skip if already completed\\n        if [ -f \\\"$OUT_DIR/final/model.pt\\\" ] || [ -f \\\"$OUT_DIR/model.pt\\\" ]; then\\n            echo \\\"Skipping ${RUN_NAME} (already completed)\\\"\\n            continue\\n        fi\\n\\n        echo \\\"==============================================\\\"\\n        echo \\\"[${COUNT}/${TOTAL}] ${RUN_NAME} — $(date)\\\"\\n        echo \\\"==============================================\\\"\\n\\n        if ! python -u training/train.py \\\\\\n            --model-name $MODEL \\\\\\n            --train-file $DATA_DIR/$train_file \\\\\\n            --val-file $VAL \\\\\\n            --output-dir $OUT_DIR \\\\\\n            --hard-negative-strategy $strategy \\\\\\n            --num-epochs 3 \\\\\\n            --batch-size 2 \\\\\\n            --learning-rate 2e-5 \\\\\\n            --num-negatives 3 \\\\\\n            --max-seq-length 512 \\\\\\n            --use-lora \\\\\\n            --gradient-checkpointing \\\\\\n            --eva
+…[truncated 1195 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-12T19:24:57.602270+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 142072\\ndrwxr-xr-x 2 root root      157 May 12 20:08 .\\ndrwxr-xr-x 5 root root      124 May 12 20:08 ..\\n-rw-r--r-- 1 root root   184991 May 12 20:10 dataflow_graph.json\\n-rw-r--r-- 1 root root 53649714 May 12 20:10 train_dataflow.jsonl\\n-rw-r--r-- 1 root root 53649714 May 12 20:10 train_embedding.jsonl\\n-rw-r--r-- 1 root root 30786674 May 12 20:10 train_random.jsonl\\n-rw-r--r-- 1 root root  7196188 May 12 20:10 val.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-12T19:24:57.602411+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "head -100 /root/structfuse/train.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "head -100 /root/structfuse/train.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-12T19:24:57.602541+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"head: cannot open '/root/structfuse/train.py' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-12T19:24:57.602728+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "head -5 /root/structfuse/mvp_data/training_data/train_dataflow.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "head -5 /root/structfuse/mvp_data/training_data/train_dataflow.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-12T19:24:57.603045+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"query_id\\\": \\\"pylint-dev__pylint-5859::pylint/checkers/misc.py\\\", \\\"query_tokens\\\": \\\"# Licensed under the GPL: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html\\\\n# For details: https://github.com/pylint-dev/pylint/blob/main/LICENSE\\\\n# Copyright (c) https://github.com/pylint-dev/pylint/blob/main/CONTRIBUTORS.txt\\\\n\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Check source code is ascii only or has an encoding declaration (PEP 263).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nfrom __future__ import annotations\\\\n\\\\nimport re\\\\nimport tokenize\\\\nfrom typing import TYPE_CHECKING\\\\n\\\\nfrom astroid import nodes\\\\n\\\\nfrom pylint.checkers import BaseRawFileChecker, BaseTokenChecker\\\\nfrom pylint.typing import ManagedMessage\\\\n\\\\nif TYPE_CHECKING:\\\\n    from pylint.lint import PyLinter\\\\n\\\\n\\\\nclass ByIdManagedMessagesChecker(BaseRawFileChecker):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Checks for messages that are enabled or disabled by id instead of symbol.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    name = \\\\\\\"miscellaneous\\\\\\\"\\\\n    msgs = {\\\\n        \\\\\\\"I0023\\\\\\\": (\\\\n            \\\\\\\"%s\\\\\\\",\\\\n            \\\\\\\"use-symbolic-message-instead\\\\\\\",\\\\n            \\\\\\\"Used when a message is enabled or disabled by id.\\\\\\\",\\\\n            {\\\\\\\"default_enabled\\\\\\\": False},\\\\n        )\\\\n    }\\\\n    options = ()\\\\n\\\\n    def _clear_by_id_managed_msgs(self) -> None:\\\\n        self.linter._by_id_managed_msgs.clear()\\\\n\\\\n    def _get_by_id_managed_msgs(self) -> list[ManagedMessage]:\\\\n        return self.linter._by_id_managed_msgs\\\\n\\\\n    def process_module(self, node: nodes.Module) -> None:\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"Inspect the source file to find messages activated or deactivated by id.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        managed_msgs = self._get_by_id_managed_msgs()\\\\n        for mod_name, msgid, symbol, lineno, is_
+…[truncated 8233 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-12T19:24:57.603215+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "head -5 /root/structfuse/mvp_data/training_data/train_embedding.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "head -5 /root/structfuse/mvp_data/training_data/train_embedding.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-12T19:24:57.603343+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "head -100 /root/structfuse/training/train.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "head -100 /root/structfuse/training/train.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-12T19:24:57.603667+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"query_id\\\": \\\"pylint-dev__pylint-5859::pylint/checkers/misc.py\\\", \\\"query_tokens\\\": \\\"# Licensed under the GPL: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html\\\\n# For details: https://github.com/pylint-dev/pylint/blob/main/LICENSE\\\\n# Copyright (c) https://github.com/pylint-dev/pylint/blob/main/CONTRIBUTORS.txt\\\\n\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Check source code is ascii only or has an encoding declaration (PEP 263).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nfrom __future__ import annotations\\\\n\\\\nimport re\\\\nimport tokenize\\\\nfrom typing import TYPE_CHECKING\\\\n\\\\nfrom astroid import nodes\\\\n\\\\nfrom pylint.checkers import BaseRawFileChecker, BaseTokenChecker\\\\nfrom pylint.typing import ManagedMessage\\\\n\\\\nif TYPE_CHECKING:\\\\n    from pylint.lint import PyLinter\\\\n\\\\n\\\\nclass ByIdManagedMessagesChecker(BaseRawFileChecker):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Checks for messages that are enabled or disabled by id instead of symbol.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    name = \\\\\\\"miscellaneous\\\\\\\"\\\\n    msgs = {\\\\n        \\\\\\\"I0023\\\\\\\": (\\\\n            \\\\\\\"%s\\\\\\\",\\\\n            \\\\\\\"use-symbolic-message-instead\\\\\\\",\\\\n            \\\\\\\"Used when a message is enabled or disabled by id.\\\\\\\",\\\\n            {\\\\\\\"default_enabled\\\\\\\": False},\\\\n        )\\\\n    }\\\\n    options = ()\\\\n\\\\n    def _clear_by_id_managed_msgs(self) -> None:\\\\n        self.linter._by_id_managed_msgs.clear()\\\\n\\\\n    def _get_by_id_managed_msgs(self) -> list[ManagedMessage]:\\\\n        return self.linter._by_id_managed_msgs\\\\n\\\\n    def process_module(self, node: nodes.Module) -> None:\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"Inspect the source file to find messages activated or deactivated by id.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        managed_msgs = self._get_by_id_managed_msgs()\\\\n        for mod_name, msgid, symbol, lineno, is_
+…[truncated 8233 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-12T19:24:57.603892+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"from __future__ import annotations\\n\\nimport os\\nos.environ[\\\"CUDA_VISIBLE_DEVICES\\\"] = \\\"4\\\"\\n\\n\\\"\\\"\\\"StructFuse contrastive training entry point.\\n\\nTrains a bi-encoder (Qwen2.5-Coder-3B) with InfoNCE loss, data-flow-weighted\\npositives, and configurable hard-negative mining.  Supports single/multi-GPU\\nvia HuggingFace Accelerate, LoRA, gradient checkpointing, and W&B logging.\\n\\\"\\\"\\\"\\n\\n\\nimport argparse\\nimport json\\nimport math\\nimport os\\nimport random\\nimport shutil\\nfrom pathlib import Path\\nfrom typing import Any, Dict, List\\n\\nimport numpy as np\\nimport torch\\nfrom torch.utils.data import DataLoader, Dataset\\nfrom transformers import AutoTokenizer, get_cosine_schedule_with_warmup\\n\\nfrom accelerate import Accelerator\\nfrom accelerate.utils import set_seed\\n\\nfrom contrastive_model import StructFuseEncoder\\nfrom hard_negative_mining import build_miner, mine_batch\\n\\n\\n# ── Dataset ─────────────────────────────────────────────��────────────\\n\\nclass ContrastiveDataset(Dataset):\\n    \\\"\\\"\\\"\\n    Each sample: {query, positive, negatives[], pos_weight, features[]}.\\n\\n    The raw data file is JSONL with fields:\\n        query_id, query_tokens, pos_id, pos_tokens, pos_dataflow_distance,\\n        neg_candidates (list of file ids), features (dict per candidate).\\n\\n    Negatives are mined dynamically per epoch via `refresh_negatives()`.\\n    \\\"\\\"\\\"\\n\\n    def __init__(\\n        self,\\n        data_path: str,\\n        tokenizer: AutoTokenizer,\\n        max_seq_length: int,\\n        num_negatives: int,\\n        pos_weight_alpha: float,\\n        use_fusion_head: bool,\\n    ):\\n        self.tokenizer = tokenizer\\n        self.max_seq_length = max_seq_length\\n        self.num_negatives = num_negatives\\n        self.alpha = pos_weight_alpha\\n        self.use_fusion_head = use_fusion_head\\n\\n        self.samples: List[Dict[
+…[truncated 1514 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-12T19:24:57.604073+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls -la /root/structfuse/data/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "ls -la /root/structfuse/data/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-12T19:24:57.604215+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/structfuse/data/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-12T19:24:57.604385+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "python3 -c \"import hashlib; print('dataflow:', hashlib.md5(open('/root/structfuse/mvp_data/training_data/train_dataflow.jsonl','rb').read()).hexdigest()); print('embedding:', hashlib.md5(open('/root/structfuse/mvp_data/training_data/train_embedding.jsonl','rb').read()).hexdigest()); print('random:', hashlib.md5(open('/root/structfuse/mvp_data/training_data/train_random.jsonl','rb').read()).hexdigest())\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "python3 -c \"import hashlib; print('dataflow:', hashlib.md5(open('/root/structfuse/mvp_data/training_data/train_dataflow.jsonl','rb').read()).hexdigest()); print('embedding:', hashlib.md5(open('/root/structfuse/mvp_data/training_data/train_embedding.jsonl','rb').read()).hexdigest()); print('random:', hashlib.md5(open('/root/structfuse/mvp_data/training_data/train_random.jsonl','rb').read()).hexdigest())\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-12T19:24:57.604516+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-12T19:24:57.604666+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/structfuse -name \"*.py\" -path \"*/data*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "find /root/structfuse -name \"*.py\" -path \"*/data*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-12T19:24:57.604796+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-12T19:24:57.604914+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/structfuse/hard_negative_mining.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "cat /root/structfuse/hard_negative_mining.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-12T19:24:57.605035+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/structfuse/hard_negative_mining.py: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-12T19:24:57.605150+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/structfuse -name \"generate*\" -o -name \"prepare*\" -o -name \"build_data*\" -o -name \"create_train*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "find /root/structfuse -name \"generate*\" -o -name \"prepare*\" -o -name \"build_data*\" -o -name \"create_train*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-12T19:24:57.605269+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-12T19:24:57.605412+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "python3 -c \"import hashlib; f1=open('/root/structfuse/mvp_data/training_data/train_dataflow.jsonl','rb').read(); f2=open('/root/structfuse/mvp_data/training_data/train_embedding.jsonl','rb').read(); print('identical:', f1==f2, 'md5_df:', hashlib.md5(f1).hexdigest(), 'md5_emb:', hashlib.md5(f2).hexdigest())\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "python3 -c \"import hashlib; f1=open('/root/structfuse/mvp_data/training_data/train_dataflow.jsonl','rb').read(); f2=open('/root/structfuse/mvp_data/training_data/train_embedding.jsonl','rb').read(); print('identical:', f1==f2, 'md5_df:', hashlib.md5(f1).hexdigest(), 'md5_emb:', hashlib.md5(f2).hexdigest())\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-12T19:24:57.605533+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-12T19:24:57.605669+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/structfuse -name \"hard_negative*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "find /root/structfuse -name \"hard_negative*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-12T19:24:57.605798+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-12T19:24:57.605913+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls -R /root/structfuse/training/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "ls -R /root/structfuse/training/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-12T19:24:57.606034+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/structfuse/training/:\\n__pycache__\\ncontrastive_model.py\\nhard_negative_mining.py\\ntrain.py\\n\\n/root/structfuse/training/__pycache__:\\ncontrastive_model.cpython-312.pyc\\nhard_negative_mining.cpython-312.pyc\\ntrain.cpython-312.pyc\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-12T19:24:57.606150+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/structfuse -name \"*.py\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "find /root/structfuse -name \"*.py\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-12T19:24:57.606265+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-12T19:24:57.606408+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "python3 -c \"print(open('/root/structfuse/mvp_data/training_data/train_dataflow.jsonl','rb').read() == open('/root/structfuse/mvp_data/training_data/train_embedding.jsonl','rb').read())\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "python3 -c \"print(open('/root/structfuse/mvp_data/training_data/train_dataflow.jsonl','rb').read() == open('/root/structfuse/mvp_data/training_data/train_embedding.jsonl','rb').read())\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-12T19:24:57.606528+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-12T19:24:57.606660+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/structfuse/training/hard_negative_mining.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "cat /root/structfuse/training/hard_negative_mining.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-12T19:24:57.606873+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Data-flow-aware hard negative mining for StructFuse.\\n\\nThree strategies:\\n  1. random         — baseline, random non-positive from same repo\\n  2. embedding_distance — CoCoHaNeRe-style nearest-neighbour non-positives\\n  3. dataflow_aware — lexically similar but data-flow disconnected (our contribution)\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport random as stdlib_random\\nfrom abc import ABC, abstractmethod\\nfrom pathlib import Path\\nfrom typing import Dict, List, Set, Tuple\\n\\nimport numpy as np\\n\\n\\nclass HardNegativeMiner(ABC):\\n    \\\"\\\"\\\"Base class for hard-negative mining strategies.\\\"\\\"\\\"\\n\\n    def __init__(\\n        self,\\n        dataflow_graph: Dict[str, Set[str]] | None = None,\\n        embeddings: Dict[str, np.ndarray] | None = None,\\n        bm25_index: object | None = None,\\n    ):\\n        self.dataflow_graph = dataflow_graph or {}\\n        self.embeddings = embeddings or {}\\n        self.bm25_index = bm25_index\\n\\n    @abstractmethod\\n    def mine(\\n        self,\\n        query: str,\\n        positives: List[str],\\n        candidates: List[str],\\n        num_negatives: int,\\n    ) -> List[Tuple[str, float]]:\\n        \\\"\\\"\\\"Return list of (candidate_id, hardness_score) tuples.\\\"\\\"\\\"\\n        ...\\n\\n    # ── shared helpers ──────────────────────────────────────────────\\n\\n    @staticmethod\\n    def _exclude(candidates: List[str], exclude: Set[str]) -> List[str]:\\n        return [c for c in candidates if c not in exclude]\\n\\n    @staticmethod\\n    def load_embeddings(path: str | Path) -> Dict[str, np.ndarray]:\\n        \\\"\\\"\\\"Load pre-computed embeddings from a .npz file (keys=file ids).\\\"\\\"\\\"\\n        data = np.load(path, allow_pickle=True)\\n        return {str(k): data[k] for k in data.files}\\n\\n    @staticmethod\\n    def save_embeddings(embs: Dict[str, np.ndarray], path: str | P
+…[truncated 6454 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-12T19:24:57.607067+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "tail -200 /root/structfuse/training/train.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "tail -200 /root/structfuse/training/train.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-12T19:24:57.607314+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"            config=vars(args),\\n            init_kwargs={\\\"wandb\\\": {\\\"name\\\": args.wandb_run_name}},\\n        )\\n\\n    # tokenizer\\n    tokenizer = AutoTokenizer.from_pretrained(args.model_name, trust_remote_code=True)\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n\\n    # model\\n    model = StructFuseEncoder(\\n        model_name=args.model_name,\\n        proj_dim=args.proj_dim,\\n        use_projection=True,\\n        use_lora=args.use_lora,\\n        lora_r=args.lora_r,\\n        lora_alpha=args.lora_r * 2,\\n        use_fusion_head=args.use_fusion_head,\\n    )\\n    if args.gradient_checkpointing:\\n        model.enable_gradient_checkpointing()\\n\\n    # datasets\\n    train_ds = ContrastiveDataset(\\n        args.train_file, tokenizer, args.max_seq_length,\\n        args.num_negatives, args.pos_weight_alpha, args.use_fusion_head,\\n    )\\n    val_ds = ContrastiveDataset(\\n        args.val_file, tokenizer, args.max_seq_length,\\n        args.num_negatives, args.pos_weight_alpha, args.use_fusion_head,\\n    )\\n\\n    train_loader = DataLoader(\\n        train_ds, batch_size=args.batch_size, shuffle=True,\\n        collate_fn=collate_fn, num_workers=4, pin_memory=True,\\n    )\\n    val_loader = DataLoader(\\n        val_ds, batch_size=args.batch_size, shuffle=False,\\n        collate_fn=collate_fn, num_workers=2, pin_memory=True,\\n    )\\n\\n    # hard-negative miner\\n    dataflow_graph = _load_json_as_sets(args.dataflow_graph_file) if args.dataflow_graph_file else None\\n    embeddings = _load_embeddings(args.embeddings_file) if args.embeddings_file else None\\n    miner = build_miner(\\n        strategy=args.hard_negative_strategy,\\n        dataflow_graph=dataflow_graph,\\n        embeddings=embeddings,\\n    )\\n\\n    # optimizer & scheduler\\n    optimizer = torch.optim.AdamW(model.parameters(), lr=args.learning_rate, weight_decay=0.0
+…[truncated 7024 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-12T19:24:57.607572+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -n \"dataflow\\|miner\\|build_miner\\|mine_batch\\|graph\\|embedding\" /root/structfuse/training/train.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "grep -n \"dataflow\\|miner\\|build_miner\\|mine_batch\\|graph\\|embedding\" /root/structfuse/training/train.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-12T19:24:57.607769+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-12T19:24:57.607904+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "diff /root/structfuse/mvp_data/training_data/train_dataflow.jsonl /root/structfuse/mvp_data/training_data/train_embedding.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "diff /root/structfuse/mvp_data/training_data/train_dataflow.jsonl /root/structfuse/mvp_data/training_data/train_embedding.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-12T19:24:57.608047+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'diff' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-12T19:24:57.608223+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "head -150 /root/structfuse/training/train.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "head -150 /root/structfuse/training/train.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-12T19:24:57.608431+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"from __future__ import annotations\\n\\nimport os\\nos.environ[\\\"CUDA_VISIBLE_DEVICES\\\"] = \\\"4\\\"\\n\\n\\\"\\\"\\\"StructFuse contrastive training entry point.\\n\\nTrains a bi-encoder (Qwen2.5-Coder-3B) with InfoNCE loss, data-flow-weighted\\npositives, and configurable hard-negative mining.  Supports single/multi-GPU\\nvia HuggingFace Accelerate, LoRA, gradient checkpointing, and W&B logging.\\n\\\"\\\"\\\"\\n\\n\\nimport argparse\\nimport json\\nimport math\\nimport os\\nimport random\\nimport shutil\\nfrom pathlib import Path\\nfrom typing import Any, Dict, List\\n\\nimport numpy as np\\nimport torch\\nfrom torch.utils.data import DataLoader, Dataset\\nfrom transformers import AutoTokenizer, get_cosine_schedule_with_warmup\\n\\nfrom accelerate import Accelerator\\nfrom accelerate.utils import set_seed\\n\\nfrom contrastive_model import StructFuseEncoder\\nfrom hard_negative_mining import build_miner, mine_batch\\n\\n\\n# ── Dataset ─────────────────────────────────────────────��────────────\\n\\nclass ContrastiveDataset(Dataset):\\n    \\\"\\\"\\\"\\n    Each sample: {query, positive, negatives[], pos_weight, features[]}.\\n\\n    The raw data file is JSONL with fields:\\n        query_id, query_tokens, pos_id, pos_tokens, pos_dataflow_distance,\\n        neg_candidates (list of file ids), features (dict per candidate).\\n\\n    Negatives are mined dynamically per epoch via `refresh_negatives()`.\\n    \\\"\\\"\\\"\\n\\n    def __init__(\\n        self,\\n        data_path: str,\\n        tokenizer: AutoTokenizer,\\n        max_seq_length: int,\\n        num_negatives: int,\\n        pos_weight_alpha: float,\\n        use_fusion_head: bool,\\n    ):\\n        self.tokenizer = tokenizer\\n        self.max_seq_length = max_seq_length\\n        self.num_negatives = num_negatives\\n        self.alpha = pos_weight_alpha\\n        self.use_fusion_head = use_fusion_head\\n\\n        self.samples: List[Dict[
+…[truncated 3654 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-12T19:24:57.608590+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/structfuse/mvp_data -name \"*.py\" -o -name \"*.sh\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "find /root/structfuse/mvp_data -name \"*.py\" -o -name \"*.sh\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-12T19:24:57.608740+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls -la /root/structfuse/mvp_data/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "ls -la /root/structfuse/mvp_data/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-12T19:24:57.608946+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/structfuse/mvp_data/repos/flask/docs/conf.py\\n/root/structfuse/mvp_data/repos/flask/src/flask/__init__.py\\n/root/structfuse/mvp_data/repos/flask/src/flask/__main__.py\\n/root/structfuse/mvp_data/repos/flask/src/flask/app.py\\n/root/structfuse/mvp_data/repos/flask/src/flask/blueprints.py\\n/root/structfuse/mvp_data/repos/flask/src/flask/cli.py\\n/root/structfuse/mvp_data/repos/flask/src/flask/config.py\\n/root/structfuse/mvp_data/repos/flask/src/flask/ctx.py\\n/root/structfuse/mvp_data/repos/flask/src/flask/debughelpers.py\\n/root/structfuse/mvp_data/repos/flask/src/flask/globals.py\\n/root/structfuse/mvp_data/repos/flask/src/flask/helpers.py\\n/root/structfuse/mvp_data/repos/flask/src/flask/logging.py\\n/root/structfuse/mvp_data/repos/flask/src/flask/sessions.py\\n/root/structfuse/mvp_data/repos/flask/src/flask/signals.py\\n/root/structfuse/mvp_data/repos/flask/src/flask/templating.py\\n/root/structfuse/mvp_data/repos/flask/src/flask/testing.py\\n/root/structfuse/mvp_data/repos/flask/src/flask/typing.py\\n/root/structfuse/mvp_data/repos/flask/src/flask/views.py\\n/root/structfuse/mvp_data/repos/flask/src/flask/wrappers.py\\n/root/structfuse/mvp_data/repos/flask/src/flask/json/__init__.py\\n/root/structfuse/mvp_data/repos/flask/src/flask/json/provider.py\\n/root/structfuse/mvp_data/repos/flask/src/flask/json/tag.py\\n/root/structfuse/mvp_data/repos/flask/src/flask/sansio/scaffold.py\\n/root/structfuse/mvp_data/repos/flask/src/flask/sansio/app.py\\n/root/structfuse/mvp_data/repos/flask/src/flask/sansio/blueprints.py\\n/root/structfuse/mvp_data/repos/flask/.devcontainer/on-create-command.sh\\n/root/structfuse/mvp_data/repos/flask/tests/test_apps/helloworld/hello.py\\n/root/structfuse/mvp_data/repos/flask/tests/test_apps/helloworld/wsgi.py\\n/root/structfuse/mvp_data/repos/flask/tests/test_apps/blueprintapp/__init__.py\\n/root/structfuse/mvp_data/repos/flask/tests/test_apps/blueprintapp/apps/frontend/__init
+…[truncated 6445 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-12T19:24:57.609097+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/structfuse/scripts -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "find /root/structfuse/scripts -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-12T19:24:57.609231+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 24\\ndrwxr-xr-x  5 root root  124 May 12 20:08 .\\ndrwxr-xr-x 15 root root 4096 May 12 23:15 ..\\ndrwxr-xr-x  2 root root 4096 May 12 19:15 bm25\\n-rw-r--r--  1 root root 4230 May 12 19:12 dummy_train.jsonl\\n-rw-r--r--  1 root root 4230 May 12 19:12 dummy_val.jsonl\\ndrwxr-xr-x 12 root root  188 May 12 19:14 repos\\ndrwxr-xr-x  2 root root  157 May 12 20:08 training_data\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-12T19:24:57.609360+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/structfuse/scripts/build_p2b_data.py\\n/root/structfuse/scripts/run_p2b_all.sh\\n/root/structfuse/scripts/eval_p2b.py\\n/root/structfuse/scripts/collect_p2b_results.py\\n/root/structfuse/scripts/run_eval_all.sh\\n/root/structfuse/scripts/run_m1_extraction.sh\\n/root/structfuse/scripts/eval_p2b_pooled.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-12T19:24:57.609589+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/structfuse/scripts/build_p2b_data.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "cat /root/structfuse/scripts/build_p2b_data.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-12T19:24:57.609903+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Build Phase 2b training data from Phase 1 extraction results.\\\"\\\"\\\"\\n\\nimport csv\\nimport json\\nimport os\\nimport random\\nimport zipfile\\nfrom collections import defaultdict\\n\\nrandom.seed(42)\\n\\nPHASE1_DIR = \\\"/root/autodl-tmp/mvp_results\\\"\\nOUTPUT_DIR = \\\"/root/structfuse/mvp_data/training_data\\\"\\nPHASE1_REPORT = os.path.join(PHASE1_DIR, \\\"mvp_phase1_report_fixed.json\\\")\\n\\nMAX_FILE_CHARS = 4096\\nCANDIDATE_POOL_SIZE = 25\\nMAX_PER_REPO = 200\\n\\n\\ndef get_zip_prefix(instance_id):\\n    repo_name = instance_id.rsplit('-', 1)[0]\\n    return \\\"root/autodl-tmp/mvp_data/\\\" + repo_name + \\\"/\\\"\\n\\n\\ndef extract_source_files(instance_id):\\n    src_zip = os.path.join(PHASE1_DIR, instance_id, \\\"codeql_db\\\", \\\"src.zip\\\")\\n    prefix = get_zip_prefix(instance_id)\\n    files = {}\\n    with zipfile.ZipFile(src_zip, 'r') as zf:\\n        for name in zf.namelist():\\n            if name.endswith('.py'):\\n                rel = name[len(prefix):] if name.startswith(prefix) else name\\n                try:\\n                    content = zf.read(name).decode('utf-8', errors='replace')\\n                    files[rel] = content[:MAX_FILE_CHARS]\\n                except Exception:\\n                    pass\\n    return files\\n\\n\\ndef read_dataflow_connectivity(instance_id):\\n    csv_path = os.path.join(PHASE1_DIR, instance_id, \\\"bounded_dataflow.csv\\\")\\n    connections = defaultdict(set)\\n    with open(csv_path) as f:\\n        reader = csv.DictReader(f)\\n        for row in reader:\\n            sf = row.get('source_file', '')\\n            df = row.get('sink_file', '')\\n            if sf and df and sf != df:\\n                connections[sf].add(df)\\n                connections[df].add(sf)\\n    return connections\\n\\n\\ndef compute_bm25_scores(query_content, all_files, file_contents):\\n    from rank_bm25 import BM25
+…[truncated 6919 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-12T19:24:57.610075+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "wc -l /root/structfuse/mvp_data/training_data/train_dataflow.jsonl /root/structfuse/mvp_data/training_data/train_embedding.jsonl /root/structfuse/mvp_data/training_data/train_random.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "wc -l /root/structfuse/mvp_data/training_data/train_dataflow.jsonl /root/structfuse/mvp_data/training_data/train_embedding.jsonl /root/structfuse/mvp_data/training_data/train_random.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-12T19:24:57.610214+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"      505 /root/structfuse/mvp_data/training_data/train_dataflow.jsonl\\n      505 /root/structfuse/mvp_data/training_data/train_embedding.jsonl\\n      505 /root/structfuse/mvp_data/training_data/train_random.jsonl\\n     1515 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-12T19:24:57.610414+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "wc -c /root/structfuse/mvp_data/training_data/dataflow_graph.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "wc -c /root/structfuse/mvp_data/training_data/dataflow_graph.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-12T19:24:57.610548+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"184991 /root/structfuse/mvp_data/training_data/dataflow_graph.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-12T19:24:57.610692+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "head -3 /root/structfuse/mvp_data/training_data/dataflow_graph.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "head -3 /root/structfuse/mvp_data/training_data/dataflow_graph.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-12T19:24:57.610929+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"pallets__flask-4045::src/flask/sansio/blueprints.py\\\": [\\\"pallets__flask-4045::src/flask/blueprints.py\\\", \\\"pallets__flask-4045::src/flask/sansio/scaffold.py\\\"], \\\"pallets__flask-4045::src/flask/blueprints.py\\\": [\\\"pallets__flask-4045::src/flask/sansio/blueprints.py\\\", \\\"pallets__flask-4045::src/flask/sansio/scaffold.py\\\", \\\"pallets__flask-4045::src/flask/testing.py\\\", \\\"pallets__flask-4045::src/flask/sansio/app.py\\\", \\\"pallets__flask-4045::src/flask/helpers.py\\\", \\\"pallets__flask-4045::src/flask/app.py\\\", \\\"pallets__flask-4045::src/flask/cli.py\\\", \\\"pallets__flask-4045::src/flask/config.py\\\", \\\"pallets__flask-4045::src/flask/templating.py\\\", \\\"pallets__flask-4045::src/flask/json/tag.py\\\", \\\"pallets__flask-4045::src/flask/sessions.py\\\", \\\"pallets__flask-4045::src/flask/json/provider.py\\\", \\\"pallets__flask-4045::src/flask/ctx.py\\\", \\\"pallets__flask-4045::src/flask/blueprints.py\\\", \\\"pallets__flask-4045::src/flask/debughelpers.py\\\"], \\\"pallets__flask-4045::src/flask/sansio/app.py\\\": [\\\"pallets__flask-4045::src/flask/templating.py\\\", \\\"pallets__flask-4045::src/flask/app.py\\\", \\\"pallets__flask-4045::src/flask/sansio/scaffold.py\\\"], \\\"pallets__flask-4045::src/flask/templating.py\\\": [\\\"pallets__flask-4045::src/flask/sansio/app.py\\\"], \\\"pallets__flask-4045::src/flask/sansio/scaffold.py\\\": [\\\"pallets__flask-4045::src/flask/app.py\\\", \\\"pallets__flask-4045::src/flask/blueprints.py\\\", \\\"pallets__flask-4045::src/flask/sansio/blueprints.py\\\", \\\"pallets__flask-4045::src/flask/sansio/app.py\\\"], \\\"pallets__flask-4045::src/flask/app.py\\\": [\\\"pallets__flask-4045::src/flask/ctx.py\\\", \\\"pallets__flask-4045::src/flask/sansio/scaffold.py\\\", \\\"pallets__flask-4045::src/flask/sansio/app.py\\\"], \\\"pallets__flask-4045::src/flask/ctx.py\\\": [\\\"pallets__flask-4045::src/flask/app.py\\\"], \\\"psf__re
+…[truncated 7049 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-12T19:24:57.611087+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "tail -5 /root/structfuse/mvp_data/training_data/train_dataflow.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "tail -5 /root/structfuse/mvp_data/training_data/train_dataflow.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60 · 2026-05-12T19:24:57.611213+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "tail -5 /root/structfuse/mvp_data/training_data/train_embedding.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "tail -5 /root/structfuse/mvp_data/training_data/train_embedding.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-12T19:24:57.611479+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"query_id\\\": \\\"pallets__flask-4045::src/flask/sessions.py\\\", \\\"query_tokens\\\": \\\"from __future__ import annotations\\\\n\\\\nimport collections.abc as c\\\\nimport hashlib\\\\nimport typing as t\\\\nfrom collections.abc import MutableMapping\\\\nfrom datetime import datetime\\\\nfrom datetime import timezone\\\\n\\\\nfrom itsdangerous import BadSignature\\\\nfrom itsdangerous import URLSafeTimedSerializer\\\\nfrom werkzeug.datastructures import CallbackDict\\\\n\\\\nfrom .json.tag import TaggedJSONSerializer\\\\n\\\\nif t.TYPE_CHECKING:  # pragma: no cover\\\\n    import typing_extensions as te\\\\n\\\\n    from .app import Flask\\\\n    from .wrappers import Request\\\\n    from .wrappers import Response\\\\n\\\\n\\\\nclass SessionMixin(MutableMapping[str, t.Any]):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Expands a basic dictionary with session attributes.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    @property\\\\n    def permanent(self) -> bool:\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"This reflects the ``'_permanent'`` key in the dict.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        return self.get(\\\\\\\"_permanent\\\\\\\", False)  # type: ignore[no-any-return]\\\\n\\\\n    @permanent.setter\\\\n    def permanent(self, value: bool) -> None:\\\\n        self[\\\\\\\"_permanent\\\\\\\"] = bool(value)\\\\n\\\\n    #: Some implementations can detect whether a session is newly\\\\n    #: created, but that is not guaranteed. Use with caution. The mixin\\\\n    # default is hard-coded ``False``.\\\\n    new = False\\\\n\\\\n    #: Some implementations can detect changes to the session and set\\\\n    #: this when that happens. The mixin default is hard coded to\\\\n    #: ``True``.\\\\n    modified = True\\\\n\\\\n    accessed = False\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Indicates if the session was accessed, even if it was not modified. This\\\\n    is set when the session object is accessed through the request context,\\\\n    includ
+…[truncated 7552 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-12T19:24:57.611801+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"query_id\\\": \\\"pallets__flask-4045::src/flask/sessions.py\\\", \\\"query_tokens\\\": \\\"from __future__ import annotations\\\\n\\\\nimport collections.abc as c\\\\nimport hashlib\\\\nimport typing as t\\\\nfrom collections.abc import MutableMapping\\\\nfrom datetime import datetime\\\\nfrom datetime import timezone\\\\n\\\\nfrom itsdangerous import BadSignature\\\\nfrom itsdangerous import URLSafeTimedSerializer\\\\nfrom werkzeug.datastructures import CallbackDict\\\\n\\\\nfrom .json.tag import TaggedJSONSerializer\\\\n\\\\nif t.TYPE_CHECKING:  # pragma: no cover\\\\n    import typing_extensions as te\\\\n\\\\n    from .app import Flask\\\\n    from .wrappers import Request\\\\n    from .wrappers import Response\\\\n\\\\n\\\\nclass SessionMixin(MutableMapping[str, t.Any]):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Expands a basic dictionary with session attributes.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    @property\\\\n    def permanent(self) -> bool:\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"This reflects the ``'_permanent'`` key in the dict.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        return self.get(\\\\\\\"_permanent\\\\\\\", False)  # type: ignore[no-any-return]\\\\n\\\\n    @permanent.setter\\\\n    def permanent(self, value: bool) -> None:\\\\n        self[\\\\\\\"_permanent\\\\\\\"] = bool(value)\\\\n\\\\n    #: Some implementations can detect whether a session is newly\\\\n    #: created, but that is not guaranteed. Use with caution. The mixin\\\\n    # default is hard-coded ``False``.\\\\n    new = False\\\\n\\\\n    #: Some implementations can detect changes to the session and set\\\\n    #: this when that happens. The mixin default is hard coded to\\\\n    #: ``True``.\\\\n    modified = True\\\\n\\\\n    accessed = False\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Indicates if the session was accessed, even if it was not modified. This\\\\n    is set when the session object is accessed through the request context,\\\\n    includ
+…[truncated 7551 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 63 · 2026-05-12T19:24:57.612067+00:00_
+
+确认完毕。两个文件的 tail 也完全相同。诊断报告如下：
+
+---
+
+## 诊断报告：dataflow_aware 与 embedding_distance 结果完全一致
+
+### Root Cause
+
+**文件：`/root/structfuse/scripts/build_p2b_data.py`，`main()` 函数中 `non_pos` 的定义。**
+
+```python
+# build_p2b_data.py main(), ~line 90
+non_pos = [f for f in all_py if f != buggy_file and f not in connected_all]
+pools = build_candidate_pools(non_pos, bm25, connected_all, CANDIDATE_POOL_SIZE)
+```
+
+`non_pos` 在传入 `build_candidate_pools` 之前已经排除了所有 `connected_all` 中的文件。
+
+而 `build_candidate_pools` 中 dataflow 策略的 "disconnected" 过滤是：
+
+```python
+disconnected = [f for f in non_pos_files if f not in connected_set]
+```
+
+由于 `non_pos_files` 中的每个元素都已经 `not in connected_set`（因为 `connected_set == connected_all`），**这行过滤是 no-op**。
+
+结果：`disconnected == non_pos_files`，`pools['dataflow'] == pools['embedding']`（都是 `non_pos` 按 BM25 降序取 top-25）。
+
+### Evidence
+
+1. **文件完全一致**：`train_dataflow.jsonl` 和 `train_embedding.jsonl` 大小均为 53,649,714 bytes，行数均为 505，首尾内容相同
+2. **代码逻辑证明**：`non_pos` 定义已排除 `connected_all` → `build_candidate_pools` 中 `f not in connected_set` 恒为 True → embedding 和 dataflow pools 完全相同
+3. **双重失效**：`train.py` 中虽然构建了 `miner` 对象（根据 `--hard-negative-strategy` 参数），但训练循环中 `refresh_negatives()` 从未被调用（注释 "P2b: negatives pre-mined per strategy in data files"）。`__getitem__` 的 fallback path 直接从数据文件的 `neg_candidates` 字段取 negatives，miner 完全被绕过
+
+### Fix Suggestion
+
+**Fix 1（核心修复）— `build_p2b_data.py`：**
+
+`main()` 中传入更宽的候选集，让各策略自行决定过滤逻辑：
+
+```python
+# Before (buggy):
+non_pos = [f for f in all_py if f != buggy_file and f not in connected_all]
+pools = build_candidate_pools(non_pos, bm25, connected_all, CANDIDATE_POOL_SIZE)
+
+# After (fixed):
+all_non_query = [f for f in all_py if f != buggy_file]
+pools = build_candidate_pools(all_non_query, bm25, connected_all, CANDIDATE_POOL_SIZE)
+```
+
+`build_candidate_pools` 改为：
+
+```python
+def build_candidate_pools(all_files, bm25_scores, connected_set, pool_size):
+    non_connected = [f for f in all_files if f not in connected_set]
+
+    # random: 从 disconnected 文件中随机抽样
+    shuffled = list(non_connected)
+    random.shuffle(shuffled)
+    pools['random'] = shuffled[:pool_size]
+
+    # embedding: 从 ALL non-query 文件中按 BM25 取 top-K（可能包含 connected 文件）
+    scored = sorted(all_files, key=lambda f: -bm25_scores.get(f, 0))
+    pools['embedding'] = scored[:pool_size]
+
+    # dataflow: 从 disconnected 文件中按 BM25 取 top-K
+    scored_disc = sorted(non_connected, key=lambda f: -bm25_scores.get(f, 0))
+    pools['dataflow'] = scored_disc[:pool_size]
+
+    return pools
+```
+
+这样 `embedding` 策略的 negatives 会包含一些 dataflow-connected 文件（"有相关性但仍作为 negative"的 hard negatives），而 `dataflow` 策略的 negatives 严格排除 connected 文件——两者产生有意义的差异。
+
+**Fix 2（可选）— `train.py`：** 删除未使用的 miner 构建代码，或者恢复 per-epoch `refresh_negatives()` 调用，使动态 mining 真正生效。
+
+**修复后需要：** 重新运行 `build_p2b_data.py` 生成数据 → 重跑 9 个训练 runs。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_code_investigate_dataflow_vs_embdist_bug_20260512T192104"
+}
+```
+
+</details>
+
+---

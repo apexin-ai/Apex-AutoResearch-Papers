@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d4ab4262891b34f17a68",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code r11 7b8b position residualization",
+  "task_key": "worker_code_r11_7b8b_position_residualization_20260518T120530",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r11_7b8b_position_residualization_20260518T120530_result.json",
+    "occurrence": 1,
+    "bytes": 2030,
+    "sha256": "c9410f2eab6618cc3a03279e103d7016380a97569176a63301ff4fbdfe83841d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results complete. Here's the summary:\n\n```\n=== R1-8B (L14, W=3, n_test=43) ===\nOriginal HS BA:        0.813\nResidualized HS BA:    0.571 (drop: 24.3pp)\nResidualized HS p-val: <0.000001 (binomial), 0.000007 (Wilcoxon)\nPosition-only BA:      0.706\nOriginal Text BA:      0.652\nResidualized Text BA:  0.534\n\n=== OT-7B (L16, W=3, n_test=47) ===\nOriginal HS BA:        0.732\nResidualized HS BA:    0.609 (drop: 12.3pp)\nResidualized HS p-val: <0.000001 (binomial), <0.000001 (Wilcoxon)\nPosition-only BA:      0.736\nOriginal Text BA:      0.593\nResidualized Text BA:  0.540\n\n=== Cross-model comparison ===\n| Model         | Orig BA | Resid BA | Drop   | Resid p  | Pos-only |\n|---------------|---------|----------|--------|----------|----------|\n| R1-8B         | 0.813   | 0.571    | 24.3pp | <0.0001  | 0.706    |\n| OT-7B         | 0.732   | 0.609    | 12.3pp | <0.0001  | 0.736    |\n| QwQ-32B (ref) | 0.735   | 0.612    | 12.3pp | 0.0024   | 0.519    |\n```\n\n**Key findings** (counter to initial hypothesis):\n\n1. **Both 7-8B models have high position-only BA** (0.706, 0.736) vs QwQ-32B's 0.519. Position is much more informative for smaller models.\n\n2. **R1-8B shows the largest drop** (24.3pp) after residualization, suggesting its HS signal is heavily position-mediated. However, residualized BA (0.571) is still significantly above chance (p < 0.001).\n\n3. **OT-7B's position-only BA (0.736) actually exceeds its original HS BA (0.732)**, indicating the probe largely learns position. Residualized BA (0.609) still above chance.\n\n4. **Text probes**: Both models' text probes drop to near-chance after residualization (0.534, 0.540), confirming text content is more position-confounded than HS.\n\nThe initial hypothesis that 7-8B models have \"position-independent\" HS advantage (contrasting with QwQ's \"position-mediated\") is **not supported**. Instead, position plays an even larger role in smaller models, though a significant residual HS signal persists above chance in both."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r11-7b8b-position-residualization.md"
+}

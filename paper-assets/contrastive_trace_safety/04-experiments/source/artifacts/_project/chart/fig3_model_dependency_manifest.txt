@@ -1,0 +1,5 @@
+Remote files on autodl-rtx6000 (generated 2026-05-17 09:33 UTC+8, verified by Reviewer):
+- fig3_model_dependency.pdf (20KB)
+- fig3_model_dependency.png (78KB)
+
+Worker failed at artifact registration step (timeout), not script error. Files confirmed valid.

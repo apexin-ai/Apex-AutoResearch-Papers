@@ -1,0 +1,145 @@
+paper_key: "zhou2020bert"
+title: "BERT Loses Patience: Fast and Robust Inference with Early Exit"
+venue: "NeurIPS 2020"
+full_text_available: true
+
+research:
+  baselines:
+    - "ALBERT-base (12 layers, 12M params)"
+    - "ALBERT-6L (6 layers)"
+    - "ALBERT-9L (9 layers)"
+    - "ALBERT-large (24 layers, 18M params)"
+    - "BERT-base (12 layers, 108M params)"
+    - "BERT-6L (66M params)"
+    - "BERT-9L (87M params)"
+    - "LayerDrop"
+    - "DistilBERT (66M params)"
+    - "BERT-PKD (66M params)"
+    - "BERT-of-Theseus (66M params)"
+    - "BranchyNet"
+    - "Shallow-Deep Networks"
+    - "RightTool"
+  metrics:
+    - {name: "Task Accuracy/F1 (per GLUE task)", direction: "higher_better"}
+    - {name: "Macro Score (GLUE average)", direction: "higher_better"}
+    - {name: "Speed-up Ratio", direction: "higher_better"}
+    - {name: "After-Attack Accuracy (adversarial robustness)", direction: "higher_better"}
+    - {name: "Query Number (attack cost)", direction: "higher_better"}
+  datasets:
+    - {name: "CoLA", size: "GLUE subtask, linguistic acceptability"}
+    - {name: "MNLI", size: "GLUE subtask, natural language inference, 392K pairs"}
+    - {name: "MRPC", size: "GLUE subtask, paraphrase detection, 5.8K pairs"}
+    - {name: "QNLI", size: "GLUE subtask, question NLI"}
+    - {name: "QQP", size: "GLUE subtask, question pair similarity, 363K pairs"}
+    - {name: "RTE", size: "GLUE subtask, textual entailment, 2.5K pairs"}
+    - {name: "SST-2", size: "GLUE subtask, sentiment analysis, 67K sentences"}
+    - {name: "STS-B", size: "GLUE subtask, semantic textual similarity, 8.6K pairs"}
+    - {name: "SNLI", size: "natural language inference, ~570K pairs (adversarial eval)"}
+    - {name: "Yelp", size: "sentiment classification (adversarial eval)"}
+    - {name: "CIFAR-10", size: "image classification, 10 classes (appendix)"}
+    - {name: "CIFAR-100", size: "image classification, 100 classes (appendix)"}
+  ablation_dimensions:
+    - "Patience parameter t (1-11)"
+    - "Model depth (12-layer vs 24-layer)"
+    - "Model family (ALBERT vs BERT)"
+    - "Task type (classification vs regression)"
+    - "Early exit method (PABEE vs confidence-based vs entropy-based)"
+  training_recipe:
+    optimizer: "Adam"
+    lr: "grid search over {1e-5, 2e-5, 3e-5, 5e-5}"
+    batch_size: "grid search over {16, 32, 128}; inference batch size = 1"
+    hardware: "single Nvidia V100 16GB GPU"
+    early_stopping: "applied, best dev performance checkpoint"
+    random_seeds: "5 runs, median reported"
+    additional_params: "+36K parameters (0.33% of ALBERT-base 12M)"
+    loss_function: "weighted cross-entropy: sum(j * L_j) / sum(j) for j=1..n layers"
+    training_time_overhead: "negligible (MNLI: 234->227 min for ALBERT, 247->242 min for BERT)"
+  method_family: "Early exit / patience-based adaptive computation / cross-layer consistency"
+
+positioning:
+  core_claim: "Cross-layer prediction consistency (patience) is a more robust and accurate early exit criterion than single-layer confidence, simultaneously improving speed, accuracy, and adversarial robustness"
+  key_results: "ALBERT-base: 85.1 macro (+0.7 over baseline) with 1.57x speedup; ALBERT-large: 2.42x speedup with accuracy gain; adversarial robustness 3x improvement on NLI (SNLI after-attack: 5.5% -> 19.3%); only +36K params (0.33% overhead)"
+  limitations:
+    - "Currently only works on models with single branch (no multi-branch architectures)"
+    - "Inference must be done one sample at a time (batch size 1) for per-instance early exit"
+    - "Patience parameter t requires tuning per task/model combination"
+    - "BranchyNet and Shallow-Deep cannot handle regression tasks (STS-B) -- PABEE can but this limits direct comparison"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "化繁为简型"
+  hook: "Opens with the established pretraining+fine-tuning paradigm in NLP, then immediately frames computational cost as the critical bottleneck preventing deployment. Not a dramatic hook but a problem-statement opening that resonates with practitioners."
+  tension: "Existing early exit methods rely on single-layer prediction confidence which is unreliable -- a single classifier might be overconfident on wrong predictions. The paper frames this as analogous to overfitting: just as training too long causes overfitting, computing too deep causes 'overthinking' in inference."
+  key_insight: "The overfitting-overthinking parallel (Figure 2) is the conceptual centerpiece: validation error increases after optimal training epoch = prediction error increases after optimal inference layer. This motivates patience (multi-layer agreement) as the inference analog of early stopping in training."
+  argument_chain: "PLMs are expensive -> overthinking wastes compute AND hurts accuracy -> single-layer confidence is unreliable -> patience (cross-layer consistency) is more robust -> theoretical analysis shows feasibility -> empirical results show simultaneous speed + accuracy + robustness gains"
+  contribution_framing: "Two-fold contribution: (1) propose patience-based early exit mechanism with theoretical feasibility analysis, (2) empirical validation showing simultaneous improvements in accuracy, robustness, and speed. Clean dual structure."
+  intro_structure: "3 paragraphs: P1=problem setup (PLM cost + overthinking); P2=PABEE solution with mechanism description; P3=contribution summary and broader applicability note"
+  notable_technique: "The overfitting-overthinking analogy (Figure 2) is brilliant framing -- it repurposes a universally understood ML concept (overfitting/early stopping in training) to explain the inference phenomenon, making the solution (patience = early stopping for inference) feel natural and inevitable."
+
+figures:
+  figure_count: 5
+  figure1:
+    type: "method_overview"
+    description: "Three side-by-side architecture diagrams: (a) standard deep network, (b) Shallow-Deep Net with confidence-based exit, (c) PABEE with patience-based exit. Shows classifiers C1..Cn attached at each layer, with PABEE checking consecutive agreement rather than single-layer confidence."
+    narrative_role: "Establishes PABEE's position relative to prior work (Shallow-Deep) at a glance. The three-panel comparison makes the conceptual advance immediately clear without reading any text."
+    design_elements: ["three-panel comparison layout", "classifier attachment points clearly marked", "exit decision mechanism visualized"]
+    visual_style: "Simple schematic diagrams with layer blocks and classifier boxes. Minimal decoration, emphasis on structural comparison between methods. Clean lines, no color gradient."
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "line_plot"
+      what_compared: "Speed-accuracy tradeoff curves for PABEE vs BranchyNet vs Shallow-Deep on MNLI and SST-2"
+      how_gain_highlighted: "PABEE's curve dominates (upper-left), maintaining higher accuracy at each speedup level"
+      design_note: "Pareto frontier visualization -- the most convincing way to show speed-accuracy tradeoff superiority. Each method's curve is generated by varying its hyperparameter (patience t or confidence threshold)."
+    - figure_id: "Figure 4"
+      viz_type: "line_plot"
+      what_compared: "Accuracy and speed-up ratio as function of patience parameter t on multiple GLUE tasks (ALBERT-base)"
+      how_gain_highlighted: "Shows inverted-U curve for accuracy peaking around t=6-7, demonstrating that optimal patience exists (too little or too much patience both hurt)"
+      design_note: "Dual-axis plot showing both accuracy and speedup vs patience parameter. Reveals the sweet spot where both metrics are favorable."
+  ablation_figures:
+    - figure_id: "Figure 2"
+      viz_type: "line_plot"
+      dimensions_varied: ["training epochs (overfitting analogy)", "inference layers (overthinking)"]
+      design_note: "Two-panel analogy figure: left shows train/val error curves (classic overfitting), right shows per-layer inference accuracy/confidence (overthinking). The visual parallel between the two panels is the paper's conceptual contribution."
+    - figure_id: "Figure 5"
+      viz_type: "line_plot"
+      dimensions_varied: ["Monte Carlo simulation of classifier accuracy requirements vs patience"]
+      design_note: "Appendix figure validating theoretical analysis. Shows PABEE reduces individual classifier accuracy requirements for maintaining overall performance. Optimal patience around t=3 in simulation vs t=6 in practice."
+  figure_narrative_role: "Figure 1 (what is PABEE vs prior work) -> Figure 2 (why it works: overfitting-overthinking analogy) -> Figure 3 (speed-accuracy dominance) -> Figure 4 (patience parameter analysis) -> Figure 5 (theoretical validation via simulation)"
+
+tables:
+  table_count: 6
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods"
+    col_axis: "GLUE tasks (CoLA, MNLI, MRPC, QNLI, QQP, RTE, SST-2, STS-B) + Macro Score"
+    row_organization: "by_category"
+    col_organization: "grouped_by_metric"
+    highlight_strategy: "bold for PABEE rows; PABEE achieves best macro score (85.1 vs 84.4 baseline)"
+    statistical_reporting: "median of 5 runs"
+    num_baselines: 7
+    design_note: "Comprehensive GLUE comparison with all 8 tasks shown. Includes #Param and Speed-up columns alongside accuracy, enabling readers to assess efficiency-accuracy tradeoff in one table. BranchyNet and Shallow-Deep cannot handle STS-B regression -- shown as dashes, highlighting PABEE's broader applicability."
+  ablation_tables:
+    - table_id: "Table 2"
+      what_varied: ["model family (BERT vs ALBERT)", "method (baselines vs PABEE)"]
+      variation_style: "full_numbers"
+      design_note: "BERT-base results on subset of tasks (MNLI, SST-2, STS-B). Demonstrates PABEE generalizes across model families. Includes distillation baselines (DistilBERT, BERT-PKD, BERT-of-Theseus) as additional comparison category."
+    - table_id: "Table 3"
+      what_varied: ["training cost with vs without PABEE"]
+      variation_style: "full_numbers"
+      design_note: "Training time comparison showing negligible overhead (MNLI: 234->227 min ALBERT, 247->242 min BERT). Key message: PABEE is essentially free at training time."
+    - table_id: "Table 4"
+      what_varied: ["model depth (12 vs 24 layers)", "with/without PABEE"]
+      variation_style: "full_numbers"
+      design_note: "Shows deeper models benefit MORE from PABEE (2.42x speedup for 24-layer vs 1.57x for 12-layer), with accuracy gains in both cases."
+    - table_id: "Table 5"
+      what_varied: ["adversarial attack (TextFooler) on different NLI/sentiment tasks"]
+      variation_style: "full_numbers"
+      design_note: "Adversarial robustness table comparing original acc, after-attack acc, and query count. PABEE shows ~3x improvement in after-attack accuracy over vanilla ALBERT, demonstrating early exit as implicit defense."
+    - table_id: "Table 6"
+      what_varied: ["method (BranchyNet, Shallow-Deep, PABEE) on image classification"]
+      variation_style: "full_numbers"
+      design_note: "Appendix table showing PABEE also works for CNNs on CIFAR-10/100, demonstrating domain generality beyond NLP."
+  supplementary_tables:
+    in_appendix: true
+    content: "Table 6 (image classification results on CIFAR), Monte Carlo simulation results"
+    reason: "Image classification is secondary to the NLP focus -- placed in appendix to keep main paper focused on GLUE/NLI while demonstrating generality"

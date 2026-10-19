@@ -1,0 +1,1 @@
+Experiment: advbench_layer_bias_gemma4\nServer: westd-15904\nTmux session: gemma4_full\nLog: /tmp/gemma4_full.log\nCommand: python -u scripts/advbench_layer_bias_gemma4.py --phase both\nStarted: 2026-05-22 21:59 UTC\nModel: gemma-4-e4b-it (42 layers, 2560 hidden dim)\nPrompts: 520\nGPU: NVIDIA RTX PRO 6000 (98GB)

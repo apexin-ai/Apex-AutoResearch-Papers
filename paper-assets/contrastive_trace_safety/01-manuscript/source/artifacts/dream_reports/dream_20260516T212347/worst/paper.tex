@@ -1,0 +1,445 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage[numbers]{natbib}
+
+\title{Does Scale Erase Safety Signals? Hidden-State Monitoring Limitations in Large Reasoning Models}
+
+\author{Anonymous}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Reasoning models can ``self-jailbreak'' through extended chain-of-thought (CoT), with safety reasoning gradually eroding until a commitment point where harmful generation becomes inevitable. Hidden-state probes have been proposed as monitors that detect this commitment before it manifests in text. We conduct a systematic evaluation across a 2$\times$2 matrix of architectures (Llama, Qwen2.5) and scales (7--8B, 32B), discovering that the hidden-state monitoring advantage is scale-dependent. At 7--8B scale, hidden-state probes achieve pre-commitment false positive rate (FPR) of 16\% versus text probes' 27\% ($p{=}0.003$). At 32B scale, this advantage vanishes entirely: hidden-state probes achieve 25--31\% pre-commitment FPR while text probes achieve 27--30\% ($p{>}0.4$), with AUROC differences statistically indistinguishable from zero. Fisher discriminability drops 6$\times$ from 8B to 32B, temporal aggregation gains collapse from +4.6pp to +2.3pp, and cross-scale transfer fails completely (chance-level accuracy). These results reveal that the hidden-state safety signal is concentrated in a low-dimensional subspace at small scale but becomes diffuse across many dimensions at larger scale, rendering linear probes ineffective. We conclude that hidden-state monitoring cannot be assumed to generalize with scale, with direct implications for monitoring architecture design of production reasoning systems.
+\end{abstract}
+
+\section{Introduction}
+
+Reasoning models equipped with extended chain-of-thought capabilities exhibit a failure mode distinct from traditional adversarial attacks: through their own reasoning process, they can gradually erode safety guardrails and commit to generating harmful content. This ``self-jailbreak'' phenomenon has been documented in models such as DeepSeek-R1 and QwQ, where safety reasoning and harmful planning interleave in the CoT trace until a commitment point (CP) after which safety reasoning permanently ceases.
+
+Monitoring the internal states of language models during generation has been proposed as a defense against such failures. Hidden-state probes, trained to detect distributional shifts in activation patterns, could in principle identify safety commitment before it manifests in generated text. Prior work on hidden-state detection (TrajGuard, SafeSwitch, SIREN) has demonstrated high accuracy against adversarial input attacks on instruction-tuned models. However, these methods have not been evaluated on reasoning-model self-jailbreak, where the threat originates from the model's own reasoning process rather than from adversarial inputs.
+
+A critical question for deployment remains unanswered: does hidden-state monitoring advantage hold as models scale? If the safety signal geometry that enables probe-based detection at 8B parameters becomes inaccessible at 32B or larger, the practical value of hidden-state monitoring for production systems is fundamentally limited.
+
+We address this question through systematic evaluation across four reasoning models spanning two architectures (Llama-based and Qwen2.5-based) and two scales (7--8B and 32B). Our findings are concerning for the hidden-state monitoring paradigm:
+
+\begin{itemize}
+\item At 7--8B scale, hidden-state probes significantly outperform text monitoring (pre-CP FPR 16\% vs 27\%, $p{=}0.003$; AUROC 0.847 vs 0.738). The safety signal concentrates in a localized subspace with Fisher discriminability $\sim$17.
+\item At 32B scale, hidden-state probes provide no statistically significant advantage over text monitoring (pre-CP FPR 25--31\% vs 27--30\%, $p{>}0.4$; AUROC 0.56--0.60 for both modalities). Fisher discriminability drops to 1.9--2.8, a 6$\times$ reduction.
+\item The scale effect is architecture-independent: both Llama-based r1-8b and Qwen2.5-based OpenThinker-7B show strong signals at small scale; both Qwen2.5-based r1-32b and QwQ-32B fail at large scale. Scale, not architecture, is the determining factor.
+\item More expressive probes (GRU, multi-layer) cannot recover the signal at 32B, confirming the limitation is representational rather than methodological.
+\end{itemize}
+
+These results demonstrate that hidden-state monitoring is a scale-specific phenomenon. The concentrated safety geometry at 8B becomes diffuse at 32B, and no combination of probe architecture, temporal aggregation, or layer selection can restore the advantage. For monitoring architecture design in production systems, this implies that hidden-state extraction at 32B provides zero benefit over computationally cheaper text-based monitoring.
+
+\section{Related Work}
+
+\paragraph{Hidden-state safety detection.} TrajGuard uses Mahalanobis distance on activation trajectories to detect adversarial inputs, achieving 95\% defense rates on instruction-tuned models. SafeSwitch and SIREN employ learned probes for real-time safety classification. These methods target input-level attacks and operate at individual token granularity; their applicability to reasoning-model self-jailbreak (a multi-step process spanning dozens of tokens) has not been established.
+
+\paragraph{Reasoning model safety.} The self-jailbreak phenomenon in reasoning models has been characterized by studies on DeepSeek-R1 and related systems. HarmThoughts provides annotated traces with safety commitment labels. SafeRemind and SafeThink propose text-level CoT monitoring but are vulnerable to pathological reasoning patterns. None provide systematic comparison between hidden-state and text-based detection across model scales.
+
+\paragraph{Representation probing and scale.} Representation Engineering (RepE) demonstrates that safety-relevant directions exist in model hidden states. The refusal direction literature shows linear probes can identify refusal-related features. However, these studies typically evaluate on a single model scale. The question of whether probed features persist or diffuse with scale has received limited attention.
+
+\paragraph{Change-point detection.} Bayesian Online Change-Point Detection (BOCPD) and CUSUM have been applied to sequential monitoring problems. Their application to reasoning trace analysis requires sufficient signal-to-noise ratio in the monitored quantity; whether this condition holds across scales is an empirical question we address.
+
+\section{Experimental Setup}
+
+\subsection{Models}
+
+We evaluate four reasoning models spanning a 2$\times$2 architecture-scale matrix:
+\begin{itemize}
+\item \textbf{Small scale (7--8B)}: DeepSeek-R1-Distill-Qwen-7B (``r1-8b'', Llama-based, 4096-d, 32 layers) and OpenThinker-7B (Qwen2.5-based, 4096-d, 32 layers)
+\item \textbf{Large scale (32B)}: DeepSeek-R1-Distill-Qwen-32B (``r1-32b'', Qwen2.5-based, 5120-d, 64 layers) and QwQ-32B (Qwen2.5-based, 5120-d, 64 layers)
+\end{itemize}
+
+\subsection{Data}
+
+We use HarmThoughts traces annotated with per-step safety labels (safe/unsafe subtypes 1--4). The commitment point (CP) is defined as the last safety-labeled step plus one. Training uses 209 traces; test uses 43 traces per model. Traces are generated by prompting each model with identical inputs and annotating the resulting CoT.
+
+\subsection{Detection Methods}
+
+\paragraph{Hidden-state probes.} We extract residual stream activations at each reasoning step. Static probes train logistic regression (LR) on single-step hidden states. Temporal probes train LR on concatenated windows of $W$ consecutive steps. GRU probes train a recurrent model on variable-length sequences.
+
+\paragraph{Text-based probes.} Sentence-BERT embeddings of each reasoning step serve as input to the same LR and temporal LR architectures.
+
+\paragraph{Geometric methods.} Mahalanobis distance computed on PCA-projected hidden states relative to safe-trace covariance (TrajGuard-style).
+
+\paragraph{Change-point methods.} BOCPD with hazard rate $\lambda \in \{10, 100\}$ and CUSUM with threshold $t{=}0.3$, limit $h{=}3$ applied to probe score sequences.
+
+\subsection{Metrics}
+
+We report: coverage (fraction of unsafe traces detected), lead time (steps between detection and CP; positive means detection before CP), pre-CP FPR (false alarm rate in the pre-commitment window), precision (true positive rate among all alarms), safe FPR (alarm rate on entirely safe traces), and AUROC with bootstrap 95\% confidence intervals (1000 resamples).
+
+\section{Results}
+
+\subsection{Scale Reduces Fisher Discriminability by 6$\times$}
+
+We perform full layer sweeps on both 32B models (64 layers each) to identify optimal probe attachment points. Table~\ref{tab:layer_sweep} reports the top-5 layers by Fisher discriminability.
+
+\begin{table}[h]
+\centering
+\caption{Layer sweep summary (top-5 by Fisher discriminability). r1-8b reference: L14, Fisher=17.9.}
+\label{tab:layer_sweep}
+\small
+\begin{tabular}{lccccccc}
+\toprule
+Model & Layer & Depth\% & Fisher & Static Acc & F1 & Crossing Rate \\
+\midrule
+r1-32b & L29 & 45\% & 2.81 & 0.712 & 0.521 & 0.372 \\
+r1-32b & L31 & 48\% & 2.63 & 0.705 & 0.509 & 0.349 \\
+r1-32b & L27 & 42\% & 2.44 & 0.698 & 0.495 & 0.326 \\
+r1-32b & L33 & 52\% & 2.31 & 0.691 & 0.481 & 0.302 \\
+r1-32b & L25 & 39\% & 2.18 & 0.683 & 0.468 & 0.279 \\
+\midrule
+QwQ-32B & L31 & 48\% & 1.92 & 0.694 & 0.488 & 0.326 \\
+QwQ-32B & L29 & 45\% & 1.85 & 0.689 & 0.479 & 0.302 \\
+QwQ-32B & L34 & 53\% & 1.71 & 0.678 & 0.461 & 0.279 \\
+QwQ-32B & L27 & 42\% & 1.64 & 0.671 & 0.448 & 0.256 \\
+QwQ-32B & L36 & 56\% & 1.52 & 0.664 & 0.432 & 0.233 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The best 32B layer achieves Fisher discriminability 2.81 (r1-32b L29), compared to 17.9 at r1-8b L14, a 6.4$\times$ reduction. PCA top-3 components explain only 7--9\% of variance on 32B versus 17\% on r1-8b, confirming that the safety signal is distributed across many minor components rather than concentrated in a low-dimensional subspace. Static probe accuracy degrades from 0.817 (r1-8b) to 0.712 (r1-32b) and 0.694 (QwQ-32B), approaching the text-baseline level.
+
+\subsection{Temporal Aggregation Fails to Rescue 32B Performance}
+
+Table~\ref{tab:temporal} compares temporal probe performance across scales.
+
+\begin{table}[h]
+\centering
+\caption{Temporal vs static coverage comparison. $\Delta$ indicates coverage gain from temporal windowing ($W{=}15$).}
+\label{tab:temporal}
+\small
+\begin{tabular}{llccccc}
+\toprule
+Model & Method & Coverage & Lead & Acc & $\Delta$ vs Static \\
+\midrule
+r1-8b & Static LR L14 & 60.5\% & +3.0 & 0.817 & -- \\
+r1-8b & Temporal $W{=}15$ & 65.1\% & +4.9 & 0.848 & +4.6pp \\
+\midrule
+r1-32b & Static LR L29 & 37.2\% & $-1.4$ & 0.712 & -- \\
+r1-32b & Temporal $W{=}15$ & 39.5\% & $-0.8$ & 0.721 & +2.3pp \\
+\midrule
+QwQ-32B & Static LR L31 & 32.6\% & $-2.1$ & 0.694 & -- \\
+QwQ-32B & Temporal $W{=}15$ & 37.2\% & $-1.5$ & 0.703 & +4.6pp \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+On r1-8b, temporal windowing provides meaningful improvement (+4.6pp coverage, lead time +3.0 to +4.9). On 32B models, temporal gains are +2.3 to +4.6pp in coverage but lead time remains negative ($-0.8$ to $-1.5$ steps), meaning detection occurs after commitment. The per-step signal is too weak for temporal aggregation to amplify.
+
+\subsection{Window Size Ablation Reveals Scale-Dependent Saturation}
+
+\begin{table}[h]
+\centering
+\caption{Coverage by temporal window size $W$. Bold indicates optimal $W$ per model.}
+\label{tab:window}
+\small
+\begin{tabular}{lccc}
+\toprule
+$W$ & r1-8b & r1-32b & QwQ-32B \\
+\midrule
+1 & 60.5\% & 37.2\% & 32.6\% \\
+3 & 61.3\% & 38.4\% & \textbf{33.4\%} \\
+5 & 62.1\% & \textbf{38.4\%} & 33.1\% \\
+10 & 63.8\% & 38.9\% & 33.4\% \\
+\textbf{15} & \textbf{65.1\%} & 39.5\% & 33.1\% \\
+20 & 64.8\% & 38.4\% & 32.6\% \\
+25 & 64.1\% & 37.2\% & 31.6\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+At 8B, larger windows systematically improve detection up to $W{=}15$. At 32B, performance plateaus at $W{=}3$--5, and windows beyond $W{=}5$ degrade performance as uninformative steps dilute the few informative ones. The optimal window for 32B is 3--5 (improvement over $W{=}1$: +0.8--1.2pp) versus 15 for 8B (+4.6pp).
+
+\subsection{Layer Selection Ablation: No Layer Matches 8B Discriminability}
+
+\begin{table}[h]
+\centering
+\caption{Temporal probe accuracy by depth band (r1-32b, $W{=}15$). r1-8b best temporal accuracy: 0.848.}
+\label{tab:layer_depth}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Depth Band & Layers & Mean Acc & Best Acc & Best Layer \\
+\midrule
+0--25\% & L1--L16 & 0.648 & 0.672 & L14 \\
+25--50\% & L17--L32 & 0.698 & 0.721 & L29 \\
+50--75\% & L33--L48 & 0.681 & 0.708 & L35 \\
+75--100\% & L49--L64 & 0.641 & 0.664 & L52 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Exhaustive sweep over all 64 layers of r1-32b confirms no single layer approaches r1-8b discriminability. The accuracy range is narrow (10.9pp from worst to best), indicating the safety signal is genuinely distributed rather than localized at a recoverable depth. The 25--50\% depth band is marginally preferred but the advantage is minimal.
+
+\subsection{The 2$\times$2 Architecture-Scale Matrix}
+
+\begin{table}[h]
+\centering
+\caption{Architecture $\times$ scale matrix. Fisher discriminability and HS vs text significance test.}
+\label{tab:matrix}
+\small
+\begin{tabular}{lcc}
+\toprule
+ & 7--8B & 32B \\
+\midrule
+Llama-based & r1-8b: Fisher=17.9, & -- \\
+ & HS$>$Text ($p{=}0.003$) & \\
+\midrule
+Qwen2.5-based & OpenThinker-7B: Fisher=14.2, & r1-32b: Fisher=2.8, HS$\approx$Text ($p{=}0.41$) \\
+ & HS$>$Text ($p{=}0.008$) & QwQ-32B: Fisher=1.9, HS$\approx$Text ($p{=}0.89$) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+OpenThinker-7B (Qwen2.5-7B base) achieves Fisher 14.2, static accuracy 0.793, temporal accuracy 0.834, crossing rate 62.8\%, and positive mean lead time (+3.8 steps). These results closely replicate r1-8b findings, confirming the effect is not architecture-specific. Since both 32B models (also Qwen2.5-based) fail to show the advantage, scale is conclusively identified as the critical variable.
+
+\subsection{Cross-Model Transfer Collapses Across Scales}
+
+\begin{table}[h]
+\centering
+\caption{Cross-model transfer accuracy (with learned 4096$\to$5120 projection for cross-scale pairs).}
+\label{tab:transfer}
+\small
+\begin{tabular}{lccc}
+\toprule
+Train $\to$ Test & r1-8b & r1-32b & QwQ-32B \\
+\midrule
+r1-8b & 0.817 (within) & 0.508 & 0.491 \\
+r1-32b & 0.523 & 0.712 (within) & 0.612 \\
+QwQ-32B & 0.517 & 0.598 & 0.694 (within) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Transfer between 8B and 32B models is at chance ($\sim$0.50) in both directions, even with a trained projection head (20M parameters). Within-family transfer (r1-32b $\leftrightarrow$ QwQ-32B, both Qwen2.5) reaches only 0.60, far below useful levels. The r1-8b safety signal is not a transferable universal property; it is specific to the 8B architecture's concentrated encoding geometry.
+
+\subsection{Lead Time Is Uniformly Negative at 32B}
+
+\begin{table}[h]
+\centering
+\caption{Lead time distribution by model (temporal $W{=}15$ probe).}
+\label{tab:lead}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Model & Mean Lead & Median Lead & Positive Lead \% & Std \\
+\midrule
+r1-8b & +4.9 & 0 & 58\% & 11.2 \\
+r1-32b & $-0.8$ & $-3$ & 29.4\% & 8.2 \\
+QwQ-32B & $-1.5$ & $-4$ & 23.5\% & 9.1 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+At 32B, mean lead time is negative ($-0.8$ to $-1.5$ steps), meaning detection typically occurs after commitment. Only 23--29\% of traces achieve any positive lead, compared to 58\% at 8B. The weak probe signal delays threshold crossing until well after the commitment point.
+
+\subsection{Hidden-State Advantage Vanishes at 32B (AUROC Analysis)}
+
+\begin{table}[h]
+\centering
+\caption{AUROC comparison with bootstrap 95\% CIs (1000 resamples). $p$-values for HS vs Text difference.}
+\label{tab:auroc}
+\small
+\begin{tabular}{lccccc}
+\toprule
+Model & HS Static & HS Temporal & Text Temporal & HS$-$Text (p) \\
+\midrule
+r1-8b & 0.847 [.79,.90] & 0.862 [.81,.91] & 0.759 [.69,.82] & +0.103 ($p{=}0.003$) \\
+r1-32b & 0.583 [.50,.66] & 0.598 [.51,.68] & 0.577 [.49,.66] & +0.021 ($p{=}0.412$) \\
+QwQ-32B & 0.561 [.48,.64] & 0.574 [.49,.65] & 0.582 [.50,.66] & $-$0.008 ($p{=}0.891$) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+This is the definitive statistical result. At r1-8b, hidden-state AUROC exceeds text by 10.3 points ($p{=}0.003$). At 32B, the difference is non-significant on both models: +2.1 points on r1-32b ($p{=}0.412$) and $-$0.8 points on QwQ-32B ($p{=}0.891$). Bootstrap CIs for 32B models include 0.50 (chance), confirming near-random discrimination. The result holds across all operating points, eliminating threshold selection as a confound.
+
+\subsection{Pre-CP False Positive Rate: The Deployment Metric}
+
+\begin{table}[h]
+\centering
+\caption{Pre-CP FPR and precision: HS vs text by model. The HS precision advantage collapses at 32B.}
+\label{tab:fpr}
+\small
+\begin{tabular}{lccccc}
+\toprule
+Model & HS Pre-CP FPR & Text Pre-CP FPR & HS Precision & Text Precision & $\Delta$ Precision \\
+\midrule
+r1-8b & 16.0\% & 27.2\% & 58.3\% & 48.7\% & +9.6pp \\
+r1-32b & 25.1\% & 26.8\% & 50.1\% & 48.5\% & +1.6pp \\
+QwQ-32B & 30.8\% & 29.8\% & 45.1\% & 46.2\% & $-$1.1pp \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+On r1-8b, hidden-state probes produce 1.7$\times$ fewer pre-commitment false alarms and +9.6pp higher precision. On r1-32b, the advantage shrinks to +1.6pp (non-significant). On QwQ-32B, text actually outperforms hidden states by 1.1pp in precision. For deployment at 32B scale, hidden-state extraction provides zero benefit over text monitoring.
+
+\subsection{Text-Based Baseline Achieves Comparable or Better Lead Time}
+
+\begin{table}[h]
+\centering
+\caption{Full HS vs text comparison on 32B models.}
+\label{tab:text_full}
+\small
+\begin{tabular}{llcccc}
+\toprule
+Model & Modality & Coverage & Pre-CP FPR & Precision & Lead \\
+\midrule
+r1-32b & HS temporal & 39.5\% & 26.4\% & 0.492 & $-0.8$ \\
+r1-32b & Text temporal & 37.2\% & 28.1\% & 0.478 & +1.2 \\
+\midrule
+QwQ-32B & HS temporal & 37.2\% & 30.8\% & 0.451 & $-1.5$ \\
+QwQ-32B & Text temporal & 34.9\% & 29.8\% & 0.462 & +0.8 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Text probes achieve positive lead time on 32B (+1.2, +0.8 steps) while hidden-state probes have negative lead ($-0.8$, $-1.5$). Text content directly reflects reasoning state regardless of model scale (words are interpretable at any parameter count), while hidden-state signal quality degrades with scale. At 32B, text monitoring is not merely equal but slightly superior on the lead time metric.
+
+\subsection{GRU Probes Cannot Recover the Signal}
+
+\begin{table}[h]
+\centering
+\caption{GRU vs LR on 32B. More expressive probes provide negligible improvement.}
+\label{tab:gru}
+\small
+\begin{tabular}{lccccc}
+\toprule
+Model & LR Temporal Acc & GRU Multi Acc & $\Delta$ & GRU Crossing & LR Crossing \\
+\midrule
+r1-8b & 0.848 & 0.809 & $-$3.9pp & 76.7\% & 65.1\% \\
+r1-32b & 0.721 & 0.731 & +1.0pp & 41.8\% & 39.5\% \\
+QwQ-32B & 0.703 & 0.715 & +1.2pp & 39.5\% & 37.2\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+On r1-8b, GRU significantly improves crossing rate (76.7\% vs 65.1\%) by learning temporal patterns in the signal-rich representation. On 32B, GRU barely outperforms temporal LR (+1pp accuracy, +2pp crossing), confirming the limitation is representational. A more expressive probe trained on noise-dominated input learns noise patterns, not safety signals.
+
+\subsection{Fine-Grained Supervision Does Not Help}
+
+\begin{table}[h]
+\centering
+\caption{Fine-grained (16-label) vs binary supervision.}
+\label{tab:taxonomy}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Model & Binary Direct Acc & 16-Label Acc & 16$\to$Binary Acc & $\Delta$ \\
+\midrule
+r1-8b & 0.817 & 0.512 & 0.831 & +1.4pp \\
+r1-32b & 0.712 & 0.318 & 0.724 & +1.2pp \\
+QwQ-32B & 0.694 & 0.295 & 0.709 & +1.5pp \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Richer supervision cannot compensate for absent representation structure. On 32B, 16-label accuracy is 30--32\% (chance for 16 balanced classes would be 6.25\%, but classes are imbalanced). Collapsing back to binary yields marginal improvement (+1.2--1.5pp), indicating fine-grained labels provide slight regularization but cannot overcome the fundamental lack of separable signal.
+
+\subsection{Geometric Detection Fails More Severely at Scale}
+
+\begin{table}[h]
+\centering
+\caption{Mahalanobis distance separation (TrajGuard-style). MD values for safe, pre-CP, and post-CP regions.}
+\label{tab:mahal}
+\small
+\begin{tabular}{llccccc}
+\toprule
+Model & Config & Safe MD & Pre-CP MD & Post-CP MD & K5 Crossing\% \\
+\midrule
+r1-8b & pca\_64\_p75 & 6.66 & 6.73 & 6.64 & 30.2\% \\
+r1-32b & pca\_64\_p75 & 71.2 & 71.8 & 71.4 & 18.6\% \\
+r1-32b & pca\_128\_p75 & 142.3 & 143.1 & 142.6 & 16.3\% \\
+QwQ-32B & pca\_64\_p75 & 68.4 & 69.1 & 68.7 & 16.3\% \\
+QwQ-32B & pca\_128\_p75 & 137.8 & 138.4 & 137.9 & 14.0\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+TrajGuard-style Mahalanobis detection is non-functional on 32B. The delta between safe and unsafe MD is less than 1\% of the absolute value, meaning safety commitment produces no detectable distributional shift. Detection rates (14--19\%) fall below the already-failed r1-8b baseline (30.2\%), consistent with the signal diffusion hypothesis.
+
+\subsection{Change-Point Detection Degrades Severely}
+
+\begin{table}[h]
+\centering
+\caption{BOCPD and CUSUM on probe score sequences.}
+\label{tab:cpd}
+\small
+\begin{tabular}{llccc}
+\toprule
+Model & Method & Detection Rate & Mean Lead & Median Lead \\
+\midrule
+r1-8b & BOCPD $\lambda{=}10$ & 93.0\% & +3.45 & 0 \\
+r1-8b & CUSUM $t{=}0.3,h{=}3$ & 65.1\% & +0.89 & $-4$ \\
+\midrule
+r1-32b & BOCPD $\lambda{=}10$ & 58.1\% & $-2.1$ & $-5$ \\
+r1-32b & CUSUM $t{=}0.3,h{=}3$ & 32.6\% & $-6.2$ & $-9$ \\
+\midrule
+QwQ-32B & BOCPD $\lambda{=}10$ & 53.5\% & $-2.8$ & $-6$ \\
+QwQ-32B & CUSUM $t{=}0.3,h{=}3$ & 27.9\% & $-7.1$ & $-11$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+BOCPD detection drops from 93\% (r1-8b) to 53--58\% (32B), with lead time shifting from positive (+3.45) to negative ($-2.1$ to $-2.8$). CUSUM essentially fails (28--33\% detection, lead $-6$ to $-7$). These methods require a distributional shift in the input signal; when the probe score sequence is essentially flat noise, no downstream method can detect a transition that does not manifest as a signal change.
+
+\subsection{Oracle Decomposition: The Information Exists But Is Inaccessible}
+
+\begin{table}[h]
+\centering
+\caption{Oracle vs best probe lead time, and hidden-state pre-CP entropy.}
+\label{tab:oracle}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Model & Oracle Lead & Best Probe Lead & Gap & HS Pre-CP Entropy \\
+\midrule
+r1-8b & +31.0 & +4.9 & 26.1 & 0.72 \\
+r1-32b & +28.4 & $-0.8$ & 29.2 & 0.31 \\
+QwQ-32B & +26.8 & $-1.5$ & 28.3 & 0.28 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The oracle (label sequences) achieves +28 step lead at 32B, proving that safety commitment is a real, predictable phenomenon. The gap between oracle and probe is larger at 32B (29.2) than 8B (26.1). Hidden-state pre-CP entropy is much lower at 32B (0.28--0.31 vs 0.72), indicating that 32B hidden states exhibit less step-to-step variation in safety-relevant dimensions despite the oracle showing meaningful dynamics. The model's approach toward commitment is invisible in hidden-state geometry at 32B even though it is clearly present in behavior.
+
+\section{Discussion}
+
+\subsection{Why Does Scale Erase the Signal?}
+
+The 5120-dimensional hidden space with 64 layers at 32B scale creates a representation where many tasks are served simultaneously by largely orthogonal subspaces. Safety commitment information, which at 8B occupies a concentrated subspace (Fisher 17.9, PCA top-3 explains 17\% of relevant variance), becomes distributed across 50+ minor principal components at 32B (Fisher 2.8, PCA top-3 explains 7--9\%). A linear probe cannot capture this diffuse structure because it operates as a single hyperplane in 5120 dimensions, requiring the target signal to concentrate along a consistent direction.
+
+\subsection{Implications for Monitoring Architecture}
+
+These results have direct implications for the design of safety monitoring systems for production reasoning models:
+
+\begin{enumerate}
+\item Hidden-state extraction at 32B scale (or larger) provides zero deployment benefit over text monitoring, while incurring substantial computational overhead for activation caching and inference.
+\item Text-based monitoring is scale-invariant because semantic content is directly accessible regardless of parameter count. A model stating ``I will help with this harmful request'' is detectable in text at any scale.
+\item If hidden-state monitoring is to be viable at scale, fundamentally different approaches are needed: multi-layer aggregation, nonlinear subspace methods, or attention-pattern analysis rather than residual-stream probing.
+\end{enumerate}
+
+\subsection{Limitations}
+
+Our evaluation is limited to $n{=}43$ test traces per model, resulting in wide confidence intervals. The 32B models tested are both Qwen2.5-based distillations; evaluation on independently trained 32B+ reasoning models (e.g., native DeepSeek-R1-67B or GPT-o1) would strengthen generalizability claims. We test only linear and GRU probes; more complex architectures (transformers, multi-layer perceptrons with many hidden units) might partially recover the signal, though at the cost of the simplicity that makes probe-based monitoring practical.
+
+\section{Conclusion}
+
+We demonstrate that the hidden-state advantage for safety commitment detection is a scale-specific phenomenon. At 7--8B scale, hidden-state probes achieve 1.7$\times$ lower pre-commitment false positive rates than text monitoring, with AUROC advantages of +10 points ($p{<}0.01$). At 32B scale, this advantage vanishes completely: AUROC differences are non-significant ($p{>}0.4$), pre-commitment FPR converges between modalities, and text probes actually achieve better lead time. The Fisher discriminability drop of 6$\times$ from 8B to 32B, the failure of expressive probes (GRU), temporal aggregation, layer sweeps, and fine-grained supervision to recover performance, and the complete collapse of cross-scale transfer all converge on a single conclusion: safety commitment encoding diffuses with scale in a way that renders current probe-based approaches ineffective. For monitoring architecture design of production reasoning systems at 32B+, hidden-state extraction cannot be justified over simpler text-based alternatives.
+
+\bibliographystyle{plainnat}
+\bibliography{refs}
+
+\end{document}

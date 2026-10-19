@@ -1,0 +1,52 @@
+{
+  "exp_id": "exp_r3_mahalanobis_r1_32b_qwq",
+  "project": "contrastive_trace_safety",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T15:36:04.726Z",
+    "updated_at": "2026-05-17T15:38:06.680Z",
+    "hypothesis": "Mahalanobis distance on R1-32B (Layer 63) and QwQ-32B (Layer 60) should fail as commitment detector for the same reason as R1-8B and OT-7B: discriminative signal resides in PCA minor components not captured by covariance-based distance. If confirmed, 4/4 models negative generalizes the finding.",
+    "spec": {
+      "command": "python exp_r3_mahalanobis_r1_32b.py + exp_r3_mahalanobis_qwq.py",
+      "server": "autodl-rtx6000",
+      "data_path": "/root/autodl-tmp/contrastive_trace_safety/data/",
+      "data_count": 195,
+      "model_name": "R1-32B L63 + QwQ L60",
+      "seed": 42,
+      "checkpoint_path": "N/A (CPU analysis)",
+      "log_path": "/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_mahalanobis_r1_32b/results.json"
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "r1_32b": {
+        "layer": 63,
+        "safe_md": 6.73,
+        "post_md": 6.88,
+        "separation": 0.15,
+        "best_pca": 64
+      },
+      "qwq_32b": {
+        "layer": 60,
+        "safe_md": 3.22,
+        "post_md": 3.42,
+        "separation": 0.2,
+        "best_pca": 16
+      },
+      "cross_model_summary": {
+        "r1_8b_sep": 0.07,
+        "ot_7b_sep": 0.03,
+        "r1_32b_sep": 0.15,
+        "qwq_32b_sep": 0.2,
+        "max_separation": 0.2,
+        "all_fail": true
+      },
+      "finding": "4/4 models Mahalanobis fails. Max separation 0.20 (QwQ), false alarm rate >= true positive at every threshold. Signal in minor PCA components, not principal directions."
+    },
+    "completed_at": "2026-05-17T15:38:06.680Z"
+  },
+  "timestamp": "2026-05-17T15:38:06.753827+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,15 @@
+{
+  "exp_id": "nested_cv_7_8b",
+  "project": "contrastive_trace_safety",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T12:17:26.169Z",
+    "updated_at": "2026-05-19T12:17:33.354Z",
+    "hypothesis": "HS precision advantage over text probes survives nested 5-fold CV with inner hyperparameter selection, ruling out overfitting to a single train/test split. If ΔPrecision remains positive across all outer folds, the advantage is robust to data partitioning."
+  },
+  "timestamp": "2026-05-19T12:17:33.489583+00:00",
+  "trigger": "update_registry"
+}

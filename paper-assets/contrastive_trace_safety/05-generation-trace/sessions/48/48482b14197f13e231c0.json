@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "48482b14197f13e231c0",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code fix and rerun bootstrap",
+  "task_key": "worker_code_fix_and_rerun_bootstrap_20260522T184513",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_and_rerun_bootstrap_20260522T184513_result.json",
+    "occurrence": 1,
+    "bytes": 835,
+    "sha256": "c1985fdf35a13b4a31aa93b9e854b0f8763d1c963b06a494b52f426997feff0f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here's the summary:\n\n**Crash diagnosis**: The original run was **not a crash** — it was launched with `> /dev/null 2>&1`, so no log was ever created. The process (PID 96402) was actually still running silently for 54 minutes. I killed it along with a stuck diagnostic run.\n\n**v3 rerun status**:\n- **PID 97210** — running, healthy\n- 520 traces loaded (159 JB, 361 safe), split 312/208\n- In Phase 1 (training 128 probes on ~50K×4096 features) — first checkpoint at L8/32 hasn't printed yet after 7 min, which is expected: LBFGS on high-dim data is slow, and `classifier_sensitivity.py` (PID 93351, 1182% CPU, 8GB RSS) is competing for cores\n- Phase 1 will likely take 15-30 min total; Phase 3 (1000 bootstrap iterations, pure numpy indexing) should be much faster\n\n**Log**: `tail /tmp/bootstrap_ci_v3.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-and-rerun-bootstrap.md"
+}

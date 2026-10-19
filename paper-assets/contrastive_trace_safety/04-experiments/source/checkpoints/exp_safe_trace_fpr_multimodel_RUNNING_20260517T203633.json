@@ -1,0 +1,23 @@
+{
+  "exp_id": "exp_safe_trace_fpr_multimodel",
+  "project": "contrastive_trace_safety",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T20:36:09.897Z",
+    "updated_at": "2026-05-17T20:36:32.966Z",
+    "hypothesis": "HS probes should have lower FPR on safe (benign) traces than text probes across OT-7B, QwQ-32B, R1-32B, extending the R1-8B-only FPR result to multi-model. If HS FPR is consistently lower, the paper can claim cross-model FPR advantage.",
+    "spec": {
+      "command": "python safe_fpr_multimodel.py (SGDClassifier log_loss, K=5 consecutive trigger)",
+      "server": "autodl-rtx6000",
+      "data_path": "artifacts/hidden_states_{model}_safe/",
+      "data_count": "174 safe traces (OT-7B:63, QwQ:40, R1-32B:71)",
+      "model_name": "OT-7B L16 W3, QwQ-32B L60 W3, R1-32B L63 W1",
+      "seed": "42"
+    }
+  },
+  "timestamp": "2026-05-17T20:36:33.057725+00:00",
+  "trigger": "update_registry"
+}

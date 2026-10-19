@@ -1,0 +1,68 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{jimenez2024swebench}
+\citation{robinson2021contrastive}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Background and Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Background and Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Code Retrieval for Repair.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Hard Negative Mining.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Structural Analysis for Code.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Structural Signal Extraction}{2}{subsection.3.1}\protected@file@percent }
+\newlabel{sec:extraction}{{3.1}{2}{Structural Signal Extraction}{subsection.3.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces CodeQL extraction statistics by repository size. $Z\%$ denotes the percentage of instances with non-trivial structural signal (connected $\neq  $ gold).}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:extraction}{{1}{3}{CodeQL extraction statistics by repository size. $Z\%$ denotes the percentage of instances with non-trivial structural signal (connected $\neq $ gold)}{table.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Three Negative Mining Strategies}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Training Setup}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Results}{3}{section.4}\protected@file@percent }
+\newlabel{sec:main_results}{{4}{3}{Results}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Structural Signal Sparsity at Scale}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Retrieval performance by negative mining strategy (pool size = 200, 3 seeds). All differences vs.\ random are consistent across seeds.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:retrieval}{{2}{4}{Retrieval performance by negative mining strategy (pool size = 200, 3 seeds). All differences vs.\ random are consistent across seeds}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces End-to-end (SWE-bench Lite, 300 instances) and transfer (RepoBench-R, 1,200 samples) evaluation.}}{4}{table.3}\protected@file@percent }
+\newlabel{tab:e2e}{{3}{4}{End-to-end (SWE-bench Lite, 300 instances) and transfer (RepoBench-R, 1,200 samples) evaluation}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Retrieval Performance}{4}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}End-to-End and Transfer Evaluation}{4}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Analysis: Why Structure-Grounded Negatives Fail}{4}{section.5}\protected@file@percent }
+\newlabel{sec:analysis}{{5}{4}{Analysis: Why Structure-Grounded Negatives Fail}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}The Hop-Bounding Dilemma}{4}{subsection.5.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Hop bounding trade-off for call-graph reachability analysis.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:hops}{{4}{5}{Hop bounding trade-off for call-graph reachability analysis}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Data scaling ablation (dataflow strategy). The performance gap vs.\ random \emph  {widens} with more training data.}}{5}{table.5}\protected@file@percent }
+\newlabel{tab:scaling}{{5}{5}{Data scaling ablation (dataflow strategy). The performance gap vs.\ random \emph {widens} with more training data}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Scaling Makes the Gap Worse}{5}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Embedding-Distance Harm Is Conditional}{5}{subsection.5.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Embedding-distance harm stratified by repository characteristics. Harm concentrates in high-similarity codebases.}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:emb_harm}{{6}{6}{Embedding-distance harm stratified by repository characteristics. Harm concentrates in high-similarity codebases}{table.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Fusion head ablation. Adding structural features to the embedding hurts performance.}}{6}{table.7}\protected@file@percent }
+\newlabel{tab:fusion}{{7}{6}{Fusion head ablation. Adding structural features to the embedding hurts performance}{table.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Fusion Head Ablation}{6}{subsection.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Distance Weighting Is Degenerate}{6}{subsection.5.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Failure Taxonomy}{6}{section.6}\protected@file@percent }
+\newlabel{sec:failure}{{6}{6}{Failure Taxonomy}{section.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Failure taxonomy from manual analysis of 50 retrieval errors. ``Helpful'' means dataflow connectivity could correctly identify the needed file; ``Harmful'' means it would mislead retrieval.}}{7}{table.8}\protected@file@percent }
+\newlabel{tab:failure}{{8}{7}{Failure taxonomy from manual analysis of 50 retrieval errors. ``Helpful'' means dataflow connectivity could correctly identify the needed file; ``Harmful'' means it would mislead retrieval}{table.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Discussion}{7}{section.7}\protected@file@percent }
+\newlabel{sec:discussion}{{7}{7}{Discussion}{section.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{Why Random Negatives Win.}{7}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Implications for Structure-Aware Training.}{7}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Cross-Domain Generalization.}{7}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Practical Recommendation.}{7}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{7}{section.8}\protected@file@percent }
+\newlabel{sec:conclusion}{{8}{7}{Conclusion}{section.8}{}}
+\bibstyle{plainnat}
+\bibcite{jimenez2024swebench}{{1}{2024}{{Jim{\'e}nez et~al.}}{{}}}
+\bibcite{robinson2021contrastive}{{2}{2021}{{Robinson et~al.}}{{}}}
+\bibcite{zhang2024coderank}{{3}{2024}{{Zhang et~al.}}{{}}}
+\bibcite{liu2023repobench}{{4}{2023}{{Liu et~al.}}{{}}}
+\bibcite{chen2024cocohanere}{{5}{2024}{{Chen et~al.}}{{}}}
+\bibcite{codeql2024}{{6}{2024}{{CodeQL}}{{}}}
+\bibcite{pei2024arise}{{7}{2024}{{Pei et~al.}}{{}}}
+\bibcite{swesmith2025}{{8}{2025}{{SWE-smith}}{{}}}
+\bibcite{hu2022lora}{{9}{2022}{{Hu et~al.}}{{}}}
+\gdef \@abspage@last{8}

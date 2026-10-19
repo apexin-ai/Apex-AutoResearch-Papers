@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ba8e142d8c3a6e8c6412",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "research api key fallback",
+  "task_key": "worker_research_api_key_fallback_20260518T202806",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_api_key_fallback_20260518T202806_result.json",
+    "occurrence": 1,
+    "bytes": 560,
+    "sha256": "8c0d003773e78f8716e417b5f8d727747f82f86df0c6f5a452d5556fe4fef583"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/api_key_fallback_eval.md`。\n\n核心发现:\n\n1. **服务器上所有 instruction-tuned LLM (QwQ-32B, R1-32B, R1-8B, OT-7B) 都是被研究模型**, 用它们做标注存在 circular concern\n2. **推荐方案: Groq 免费 tier 的 Qwen3-32B** — 非被研究模型, 32B reasoning quality, 免费即用, 60-90 分钟可完成 100 条标注\n3. **备选: Google AI Studio (Gemini 2.5 Flash)** — 完全不同的 model family, 零 circular risk\n4. 等 Claude API key 可以并行推进, 到了就追加一轮验证"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-api-key-fallback.md"
+}

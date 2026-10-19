@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_bge_large_text_comparison",
+  "project": "contrastive_trace_safety",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T00:30:42.031Z",
+    "updated_at": "2026-05-18T00:35:34.180Z",
+    "hypothesis": "HS advantage over text probes persists even with a stronger text encoder (BGE-large 1024d vs MiniLM 384d). If HS advantage shrinks but remains significant under HB correction, the paper claim is strengthened against dimensionality/encoder-quality confounds."
+  },
+  "timestamp": "2026-05-18T00:35:34.274041+00:00",
+  "trigger": "update_registry"
+}

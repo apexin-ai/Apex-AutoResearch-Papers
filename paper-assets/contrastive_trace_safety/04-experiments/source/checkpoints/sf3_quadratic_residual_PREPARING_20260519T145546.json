@@ -1,0 +1,14 @@
+{
+  "exp_id": "sf3_quadratic_residual",
+  "project": "contrastive_trace_safety",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T14:55:46.812Z",
+    "updated_at": "2026-05-19T14:55:46.812Z"
+  },
+  "timestamp": "2026-05-19T14:55:46.909861+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e8f45b970243af2a828e",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code r1 32b selectivity raw features",
+  "task_key": "worker_code_r1_32b_selectivity_raw_features_20260517T133358",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r1_32b_selectivity_raw_features_20260517T133358_result.json",
+    "occurrence": 1,
+    "bytes": 947,
+    "sha256": "4a6cefbe3d71c06698d1636d1c2d0f967600a9372b4cc965d97e8ec4c254aff7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results:\n\n| Metric | Value |\n|--------|-------|\n| Feature type | raw 5120-d (no PCA) |\n| Baseline selectivity | 7.6pp (real=0.584, random=0.508) |\n| Bootstrap mean | 8.4pp |\n| Bootstrap std | 6.7pp |\n| 95% CI | [-3.9, 22.7]pp |\n| p-value (sel <= 0) | 0.107 |\n| Significant (p<0.05) | **No** |\n| CI lower > 5pp | **No** |\n\nKey findings:\n- The raw-feature selectivity (7.6pp) is consistent with the known 7.5pp\n- However, it is **not statistically significant** (p=0.107, CI includes 0)\n- The CI lower bound (-3.9pp) is well below both 0 and the 5pp threshold\n- High variance in random probe accuracy (std=5.1%) drives the wide CI\n- With only 20 test traces, the bootstrap has limited statistical power\n\nThis contrasts sharply with the PCA-128 result (15.9pp, p=0.000, CI [9.7, 21.9]pp). The raw features underperform because the 5120-d space is under-determined (n=2076 < p=5120) without dimensionality reduction."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r1-32b-selectivity-raw-features.md"
+}

@@ -1,0 +1,53 @@
+{
+  "exp_id": "exp_r3_coverage_bias",
+  "project": "contrastive_trace_safety",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T15:36:08.744Z",
+    "updated_at": "2026-05-17T15:38:08.545Z",
+    "hypothesis": "R1-8B trace exclusion rate should be explained by jailbreak traces without any safety reasoning phase (no commitment point annotatable), not by systematic sampling bias. If exclusion is task-definitional rather than methodological, the coverage metric is valid within the annotatable population.",
+    "spec": {
+      "command": "python exp_r3_coverage_bias.py",
+      "server": "autodl-rtx6000",
+      "data_path": "/root/autodl-tmp/contrastive_trace_safety/data/r1_8b/",
+      "data_count": 268,
+      "model_name": "R1-8B coverage analysis",
+      "seed": 42,
+      "checkpoint_path": "N/A (CPU analysis)",
+      "log_path": "/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_coverage_bias/results.json"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "r1_8b": {
+        "total": 268,
+        "included": 209,
+        "excluded": 59,
+        "exclusion_rate": 0.22
+      },
+      "r1_32b": {
+        "total": 100,
+        "excluded": 0,
+        "exclusion_rate": 0
+      },
+      "qwq_32b": {
+        "total": 95,
+        "excluded": 0,
+        "exclusion_rate": 0
+      },
+      "exclusion_reason": "All 59 excluded traces are jailbreak with no safety reasoning phase (no commitment point annotatable)",
+      "length_test": {
+        "excluded_mean": 38,
+        "included_mean": 46.3,
+        "mann_whitney_p": 0.0001,
+        "excluded_shorter": true
+      },
+      "finding": "22% exclusion in R1-8B is task-definitional (no CP to annotate), not sampling bias. R1-32B/QwQ 0% exclusion. Coverage metric valid within annotatable population."
+    },
+    "completed_at": "2026-05-17T15:38:08.545Z"
+  },
+  "timestamp": "2026-05-17T15:38:08.622143+00:00",
+  "trigger": "update_registry"
+}

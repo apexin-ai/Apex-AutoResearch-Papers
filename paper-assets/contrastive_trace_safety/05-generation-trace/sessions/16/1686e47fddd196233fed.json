@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "1686e47fddd196233fed",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code fix appendix table overlap",
+  "task_key": "worker_code_fix_appendix_table_overlap_20260520T161525",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_appendix_table_overlap_20260520T161525_result.json",
+    "occurrence": 1,
+    "bytes": 2104641,
+    "sha256": "36ed292a297700afe8b0e90f2cdb44d1de27555300b0ae2a46546884fc255347"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "1686e47fddd196233fed-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-appendix-table-overlap.md"
+}

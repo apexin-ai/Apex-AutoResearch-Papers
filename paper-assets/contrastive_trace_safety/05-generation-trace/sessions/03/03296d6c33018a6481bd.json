@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "03296d6c33018a6481bd",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "analysis sf3 qwq w3 rerun",
+  "task_key": "worker_analysis_sf3_qwq_w3_rerun_20260519T145600",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_sf3_qwq_w3_rerun_20260519T145600_result.json",
+    "occurrence": 1,
+    "bytes": 639,
+    "sha256": "bf7014bb6c4552bac078d57c263b7aa8750178576f5c3071ff17c07c0b143950"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "QwQ-32B W=3 重跑完成。结果：\n\n| Method | HS BA | Txt BA | Gap | p |\n|---|---|---|---|---|\n| linear | 0.6148 | 0.6006 | **1.4pp** | 0.3107 |\n| quadratic | 0.6272 | 0.5901 | **3.7pp** | 0.0680 |\n\n注意：3.7pp 出现在 **quadratic** 而非 linear。Linear gap 仅 1.4pp（与之前 W=5 的 0.9pp 方向一致但略大）。如果论文 tab:position_residual 预期 linear gap ≈ 3.7pp，可能需要核实表中对应的是哪行/哪种 residualization。\n\n产出文件：\n- `artifacts/sf3_quadratic_residual/qwq_w3_results.json`\n- `artifacts/sf3_quadratic_residual/report.txt`（已追加 W=3 section）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-sf3-qwq-w3-rerun.md"
+}

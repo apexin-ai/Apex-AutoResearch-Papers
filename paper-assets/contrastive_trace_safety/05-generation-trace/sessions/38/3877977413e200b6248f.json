@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "id": "3877977413e200b6248f",
+  "project": "contrastive_trace_safety",
+  "kind": "worker",
+  "title": "analysis harmthoughts r1 8b full layer",
+  "task_key": "worker_analysis_harmthoughts_r1_8b_full_layer_20260519T194656",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_harmthoughts_r1_8b_full_layer_20260519T194656.log",
+    "occurrence": 1,
+    "bytes": 2103298,
+    "sha256": "3e081d3aa22afd5d43652492881e89b67da02bba73fa410b1e7af31cdc0b33b6"
+  },
+  "statistics": {
+    "messages": 935,
+    "user_turns": 1,
+    "tool_calls": 245,
+    "roles": {
+      "log": 1,
+      "system": 112,
+      "record": 1,
+      "assistant": 229,
+      "tool_call": 245,
+      "tool_result": 245,
+      "user": 1,
+      "result": 101
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 397,
+      "chunks": [
+        {
+          "path": "3877977413e200b6248f-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "3877977413e200b6248f-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "3877977413e200b6248f-part-0003.json",
+          "message_count": 37
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 538,
+      "chunks": [
+        {
+          "path": "3877977413e200b6248f-part-0003.json",
+          "message_count": 95
+        },
+        {
+          "path": "3877977413e200b6248f-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "3877977413e200b6248f-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "3877977413e200b6248f-part-0006.json",
+          "message_count": 83
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-harmthoughts-r1-8b-full-layer.md"
+}

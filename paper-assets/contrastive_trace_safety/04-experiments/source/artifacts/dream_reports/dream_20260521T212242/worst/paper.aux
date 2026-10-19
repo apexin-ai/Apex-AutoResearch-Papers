@@ -1,0 +1,98 @@
+\relax 
+\citation{deepseekai2025deepseekr1}
+\citation{qwq32b}
+\citation{wen2025thinkingmakesllmssusceptible}
+\citation{zhou2025hiddenriskslargereasoning}
+\citation{wang2024mitigating}
+\citation{ji2024llmguard}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{}\protected@file@percent }
+\citation{wang2024mitigating}
+\citation{ji2024llmguard}
+\citation{wen2025thinkingmakesllmssusceptible}
+\citation{zhou2025hiddenriskslargereasoning}
+\citation{zheng2025safethink}
+\citation{li2024inferencetime}
+\citation{burns2023discovering}
+\citation{zou2023representation}
+\citation{belrose2023eliciting}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Hidden-state safety monitoring.}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Reasoning model safety.}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Representation probing.}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Task: Safety Commitment Detection}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Models}{2}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Model characteristics and test set sizes.}}{3}{}\protected@file@percent }
+\newlabel{tab:models}{{1}{3}{}{table.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Detection Methods}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Layer Selection Sensitivity Analysis}{3}{}\protected@file@percent }
+\newlabel{sec:layer_selection}{{3.4}{3}{}{subsection.3.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Statistical Framework}{3}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Layer selected by each metric (depth \%) across four models. The biased composite \texttt  {bal\_acc $\times $ crossing\_rate} selects shallow layers for 32B models (3--16\% depth), while three threshold-dependent metrics converge on deep layers (94--98\%).}}{4}{}\protected@file@percent }
+\newlabel{tab:layer_selection}{{2}{4}{}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces HS vs.\ text precision ($\Delta $Prec), balanced accuracy ($\Delta $BA), and false positive rate ($\Delta $FPR) deltas in percentage points at corrected layers. All 12/12 tests pass Holm--Bonferroni at $\alpha {=}0.05$. ** $p{<}0.01$, * $p{<}0.05$ (HB-adjusted). Note: window sizes differ per model.}}{4}{}\protected@file@percent }
+\newlabel{tab:hb_summary}{{3}{4}{}{table.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments and Results}{4}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Layer Selection Bias}{4}{}\protected@file@percent }
+\newlabel{sec:layer_bias}{{4.1}{4}{}{subsection.4.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Impact on conclusions.}{4}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}HS vs.\ Text at Corrected Layers}{4}{}\protected@file@percent }
+\newlabel{sec:hs_vs_text}{{4.2}{4}{}{subsection.4.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Balanced accuracy of HS temporal probes by window size. R1-8B improves with larger $W$; R1-32B \emph  {degrades} ($-$10.5pp by W=15) due to dimensionality constraints (51,200 $\times $ $W$ features for $n{=}20$). * marks best $W$ per model.}}{5}{}\protected@file@percent }
+\newlabel{tab:temporal}{{4}{5}{}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Mahalanobis distance from safe-trace covariance. Separation is $<$0.21 for all models; false alarm rate exceeds true positive rate at every threshold.}}{5}{}\protected@file@percent }
+\newlabel{tab:mahal}{{5}{5}{}{table.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{BA-layer robustness check.}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Temporal Window Effects}{5}{}\protected@file@percent }
+\newlabel{sec:temporal}{{4.3}{5}{}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Precision--coverage tradeoff.}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Alternative Methods: Comprehensive Negative Results}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Mahalanobis distance.}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{BOCPD and CUSUM.}{5}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Change-point detection methods. BOCPD fails on 3/4 models. FCP (simple threshold) achieves comparable or better detection and lead time than both BOCPD and CUSUM.}}{6}{}\protected@file@percent }
+\newlabel{tab:cpd}{{6}{6}{}{table.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces GRU vs.\ temporal LR. GRU improves over LR on only 1/4 models (OT-7B), confirming linear probes are at or near the information ceiling for this task.}}{6}{}\protected@file@percent }
+\newlabel{tab:gru}{{7}{6}{}{table.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{GRU sequence model.}{6}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{16-label taxonomy.}{6}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Cross-Model Transfer}{6}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Lead Time Analysis}{6}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Oracle decomposition.}{6}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces 16-label vs.\ binary supervision. After collapsing 16 labels to binary, improvement is marginal ($\leq $1.1pp), suggesting linear probes are saturated at the binary detection boundary.}}{7}{}\protected@file@percent }
+\newlabel{tab:taxonomy}{{8}{7}{}{table.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Cross-model transfer accuracy. Self-accuracy (diagonal, italic) far exceeds any transfer pair. The best transfer (67.3\%, Qwen-32B internal) is 7--15pp below self-accuracy. Cross-family transfer is at chance.}}{7}{}\protected@file@percent }
+\newlabel{tab:transfer}{{9}{7}{}{table.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}False Positive Analysis}{7}{}\protected@file@percent }
+\newlabel{sec:fpr}{{4.7}{7}{}{subsection.4.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{Deployment viability.}{7}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}Bootstrap Confidence Intervals}{7}{}\protected@file@percent }
+\newlabel{sec:bootstrap}{{4.8}{7}{}{subsection.4.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.9}Ensemble Cross-Validation (7--8B)}{7}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{7}{}\protected@file@percent }
+\newlabel{sec:discussion}{{5}{7}{}{section.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{Layer selection as researcher degree of freedom.}{7}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces HS vs.\ text lead time. $\dagger $: inflated by high pre-CP FPR. $\ddagger $: inflated by long traces ($\sim $80 sentences). QwQ-32B position baseline (Pos BA) exceeds HS BA, questioning the value of white-box access for that model.}}{8}{}\protected@file@percent }
+\newlabel{tab:lead}{{10}{8}{}{table.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Safe-trace false positive rates. Median FPR $\approx $0.39 across methods. QwQ-32B HS FPR (0.45--0.50) \emph  {exceeds} text FPR (0.325--0.425).}}{8}{}\protected@file@percent }
+\newlabel{tab:fpr_safe}{{11}{8}{}{table.11}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cost-benefit analysis.}{8}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Fundamental limitation: reactive, not predictive.}{8}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Cross-model transfer failure.}{8}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{8}{}\protected@file@percent }
+\bibstyle{acl_natbib}
+\bibcite{deepseekai2025deepseekr1}{\citename {DeepSeek-AI}2025}
+\bibcite{qwq32b}{\citename {Qwen Team}2025}
+\bibcite{wen2025thinkingmakesllmssusceptible}{\citename {Wen et al.}2025}
+\bibcite{zhou2025hiddenriskslargereasoning}{\citename {Zhou et al.}2025}
+\bibcite{wang2024mitigating}{\citename {Wang et al.}2024}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Holm--Bonferroni step-down results. 12/12 pass ($\alpha {=}0.05$). Tests ranked by $p$-value. CI widths for 32B models are wide ($\sim $0.12--0.15 for BA) due to small $n$.}}{9}{}\protected@file@percent }
+\newlabel{tab:hb_full}{{12}{9}{}{table.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Cross-validated ensemble results on 7--8B models. HS advantage over text is validated under CV ($p \leq 0.002$).}}{9}{}\protected@file@percent }
+\newlabel{tab:ensemble}{{13}{9}{}{table.13}{}}
+\bibcite{ji2024llmguard}{\citename {Ji et al.}2024}
+\bibcite{li2024inferencetime}{\citename {Li et al.}2024}
+\bibcite{burns2023discovering}{\citename {Burns et al.}2023}
+\bibcite{zou2023representation}{\citename {Zou et al.}2023}
+\bibcite{belrose2023eliciting}{\citename {Belrose et al.}2023}
+\bibcite{zheng2025safethink}{\citename {Zheng et al.}2025}
+\gdef \@abspage@last{10}

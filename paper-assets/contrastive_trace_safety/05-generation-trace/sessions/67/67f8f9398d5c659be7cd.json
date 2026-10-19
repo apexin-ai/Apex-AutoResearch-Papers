@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "67f8f9398d5c659be7cd",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code exp ot7b full pipeline",
+  "task_key": "worker_code_exp_ot7b_full_pipeline_20260517T061417",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_ot7b_full_pipeline_20260517T061417_result.json",
+    "occurrence": 1,
+    "bytes": 157,
+    "sha256": "0010991996434be8742aa9ccbc6f9d6dc7667965e4a5a51a9ca7db9044bd3ae4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Pipeline is running in the background (PID 60094). Model download is in progress. Will check back in 3 minutes to monitor extraction progress."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-ot7b-full-pipeline.md"
+}

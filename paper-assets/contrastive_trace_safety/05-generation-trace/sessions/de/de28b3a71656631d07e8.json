@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "de28b3a71656631d07e8",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "analysis r14 a7 random projection",
+  "task_key": "worker_analysis_r14_a7_random_projection_20260518T182945",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r14_a7_random_projection_20260518T182945_result.json",
+    "occurrence": 1,
+    "bytes": 1115,
+    "sha256": "360b4fc4e1236fd3db437961fb0df5a7bfd17c795204d6365da6f093e1e10a78"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "A7 完成。结果：\n\n| Model | RP-384d Prec | Text Prec | ΔPrec | RP-384d BA | Text BA | ΔBA | RP-384d AUC | Text AUC | ΔAUC |\n|-------|-------------|-----------|-------|-----------|---------|-----|------------|----------|------|\n| R1-8B | 0.621±0.009 | 0.416 | **+0.205** | 0.787±0.004 | 0.647 | **+0.140** | 0.871±0.003 | 0.705 | **+0.166** |\n| OT-7B | 0.371±0.001 | 0.244 | **+0.127** | 0.708±0.004 | 0.580 | **+0.128** | 0.779±0.008 | 0.597 | **+0.182** |\n| R1-32B | 0.524±0.017 | 0.441 | **+0.083** | 0.686±0.010 | 0.601 | **+0.085** | 0.738±0.014 | 0.637 | **+0.101** |\n| QwQ-32B | 0.563±0.003 | 0.391 | **+0.172** | 0.724±0.009 | 0.591 | **+0.132** | 0.800±0.005 | 0.624 | **+0.176** |\n\n**结论：HS 优势不依赖 PCA 的 variance-preserving 性质。** 随机高斯投影到 384d 后，HS 在所有 4 个模型上仍显著优于同维度的 text embeddings（所有 bootstrap p=1.000），ΔBA +8.5 到 +14.0pp，ΔAUC +10.1 到 +18.2pp。跨 3 个 RP seed 的方差极小（std < 0.02），说明信号在高维空间中分布广泛，随机投影即可保留。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-r14-a7-random-projection.md"
+}

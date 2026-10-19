@@ -1,0 +1,1518 @@
+tier: best
+narrative_guidance: 'Framing B 完全成立：Paper = systematic mining study + methodological
+  contribution。
+
+  Standard eval 上 embed Δ 较小（Qwen ~+0.4pp, StarCoder ~+0.6pp），但 D062 query-split  evaluation
+  揭示标准评估因 checkpoint 过拟合掩盖了真实效应——held-out evaluation 上 embed Δ  恢复至 Qwen +1.4pp, StarCoder
+  +0.9pp（均在 best 档预设范围内）。这一发现本身就是方法论贡献： checkpoint selection criterion effect (+16.3pp
+  max) > mining strategy effect (~1pp)， 说明社区低估了 mining 效果是因为评估方法论缺陷。
+
+  BM25 negatives 在两个 encoder 上均 harm（Δ ≤ -1.5pp），empirically 关闭 CoCoHaNeRe 修正论证。 UniXcoder
+  3-seed null result 干净地归因于 125M scale boundary condition。 RepoBench-R 替代 SWE-bench
+  作为 held-out external validation，CIs non-overlapping。
+
+  3 claims 原样成立：Claim 1 (embed mining reliable) + Claim 2 (exploratory representation  geometry
+  interaction) + 额外贡献 (checkpoint criterion methodology)。EMNLP Main 强投。
+
+  M2 anchors — Standard eval: Qwen random=0.570, embed=0.573, SC random=0.479, embed=0.485。
+  D062 query-split: Qwen random=0.361, embed=0.375, SC random=0.305, embed=0.314。
+
+  '
+imagined_experiments:
+- name: M3a SWE-bench Lite E2E — OOD Limitation Disclosure
+  plan_id: plan_003
+  description: '3 strategies × best Qwen checkpoint on SWE-bench Lite 300 instances。
+    实际已完成（random_s42, 100 instances + BM25 baseline 300）。结果为 OOD 泛化失败， 在论文中作为 limitation
+    呈现而非贡献。
+
+    '
+  expected_results:
+    random_s42_100:
+      R_at_1: 0.04
+      R_at_5: 0.11
+      R_at_10: 0.14
+      R_at_20: 0.16
+      MRR: 0.0698
+    bm25_baseline_300:
+      R_at_1: 0.2733
+      R_at_5: 0.4667
+      R_at_10: 0.55
+    neural_vs_bm25_gap_R1_pp: -23.3
+    status: DONE_FAILED
+    director_decision: 放弃 SWE-bench 作为论文贡献，外部验证改用 RepoBench-R
+  result_rationale: 'R@1=0.04 vs BM25=0.2733 表明 contrastive retriever 在 OOD 跨 repo
+    场景完全失败。 根因：SWE-smith 训练数据是 intra-repo 检索（query 与 candidates 来自同一 repo）， 而 SWE-bench
+    是 cross-repo 设置（模型未见过的 repo）。Contrastive fine-tuning在小 pool  内 intra-repo 检索上过拟合，丧失了
+    pretrained encoder 的 cross-repo 泛化能力。 BM25 因为是 lexical matching（不依赖 learned representations）所以不受此影响。
+
+    在 best tier 下，这一失败被 strategically 利用：(1) 诚实报告增强论文可信度， (2) 明确 scope boundary "our
+    results apply to intra-repo retrieval settings"， (3) 激发 future work 方向 "bridging
+    the intra/cross-repo gap"。 RepoBench-R 替代作为 held-out evaluation（仍是 cross-file
+    但 repo-aware 设置）。
+
+    '
+  tables:
+  - name: 'Table S4: SWE-bench OOD Evaluation (Limitation)'
+    columns:
+    - Retriever
+    - R@1
+    - R@5
+    - R@10
+    - MRR
+    - N
+    rows:
+    - - BM25 (reference)
+      - 0.273
+      - 0.467
+      - 0.55
+      - 0.36
+      - 300
+    - - StructFuse-random
+      - 0.04
+      - 0.11
+      - 0.14
+      - 0.07
+      - 100
+  figures_description:
+  - 'Fig S7: SWE-bench R@K curve showing neural retriever collapse below BM25 at all
+    K'
+  analysis: 'SWE-bench failure 在 best tier 下反而加强了论文：它划定了清晰的 scope boundary， 展示了作者的自我审视能力。Reviewer
+    concern "no downstream eval" 由 RepoBench-R 回应， SWE-bench 失败则作为 honest limitation
+    处理，1-2 段落放在 Limitations section。
+
+    '
+- name: RepoBench-R Cross-File Retrieval with 3-Seed Bootstrap CIs
+  plan_id: plan_004
+  description: 'RepoBench-R test_easy (pool ~6) 和 test_hard (pool ~18) 上评估 3 seeds
+    ×  3 strategies × 2 encoders（Qwen, StarCoder）。报告 R@1 均值 + 95% bootstrap CI。 这是
+    SWE-bench 失败后的替代 held-out external validation。
+
+    '
+  expected_results:
+    qwen_test_hard:
+      random_R1_mean: 0.62
+      random_R1_ci:
+      - 0.615
+      - 0.625
+      embedding_R1_mean: 0.632
+      embedding_R1_ci:
+      - 0.626
+      - 0.638
+      dataflow_R1_mean: 0.626
+      dataflow_R1_ci:
+      - 0.62
+      - 0.632
+      bm25_R1_mean: 0.601
+      bm25_R1_ci:
+      - 0.595
+      - 0.607
+      embedding_minus_random_pp: 1.2
+      bm25_minus_random_pp: -1.9
+    qwen_test_easy:
+      random_R1_mean: 0.842
+      embedding_R1_mean: 0.851
+      dataflow_R1_mean: 0.847
+      embedding_minus_random_pp: 0.9
+    starcoder_test_hard:
+      random_R1_mean: 0.571
+      random_R1_ci:
+      - 0.565
+      - 0.577
+      embedding_R1_mean: 0.579
+      embedding_R1_ci:
+      - 0.573
+      - 0.585
+      dataflow_R1_mean: 0.568
+      dataflow_R1_ci:
+      - 0.562
+      - 0.574
+      bm25_R1_mean: 0.553
+      bm25_R1_ci:
+      - 0.547
+      - 0.559
+      embedding_minus_random_pp: 0.8
+      bm25_minus_random_pp: -1.8
+    starcoder_test_easy:
+      random_R1_mean: 0.81
+      embedding_R1_mean: 0.816
+      embedding_minus_random_pp: 0.6
+    repobench_embed_vs_random_avg_pp: 1.0
+    CI_non_overlapping_embed_vs_random: true
+    bootstrap_N: 10000
+  result_rationale: 'RepoBench-R 是 cross-file code completion 任务，与 SWE-smith (bug-fix
+    retrieval)  领域不同但任务结构相似（从 repo 内候选文件中检索正确文件）。Pool=18 (test_hard) 提供 足够的 distractor
+    使 mining 质量差异体现。
+
+    Embedding mining 在 test_hard 上持续帮助两个 encoder（Qwen +1.2pp, StarCoder +0.8pp）， 因为
+    harder negatives 训练使 encoder 更善于区分 "semantically similar but functionally  distinct"
+    文件——这一能力跨任务泛化。CIs non-overlapping 因为 8K test instances 提供 足够的统计功效，即使只有 3 seeds，instance-level
+    bootstrap 也能给出 tight CIs。
+
+    BM25 negatives 在 RepoBench-R 上同样 harm（-1.8 to -1.9pp），与 SWE-smith 一致， 说明 BM25
+    harm 不是 benchmark-specific artifact 而是 strategy 固有问题。
+
+    Test_easy (pool=6) 上 delta 压缩至 0.6-0.9pp 是预期的 ceiling effect—— 6 candidates 中选对
+    1 个的 baseline 已经很高。
+
+    Dataflow 在 Qwen test_hard 上 +0.6pp 但 CI 与 random 接近重叠， StarCoder 上 -0.3pp（CI 含零）——与
+    SWE-smith encoder-strategy interaction 一致。
+
+    '
+  tables:
+  - name: 'Table 5: RepoBench-R Results (test_hard, pool≈18)'
+    columns:
+    - Encoder
+    - Strategy
+    - R@1 (%)
+    - 95% CI
+    - Δ vs Random (pp)
+    rows:
+    - - Qwen
+      - BM25
+      - 60.1
+      - '[59.5, 60.7]'
+      - '-1.9'
+    - - Qwen
+      - random
+      - 62.0
+      - '[61.5, 62.5]'
+      - —
+    - - Qwen
+      - dataflow
+      - 62.6
+      - '[62.0, 63.2]'
+      - '+0.6'
+    - - Qwen
+      - embedding
+      - 63.2
+      - '[62.6, 63.8]'
+      - '+1.2'
+    - - StarCoder
+      - BM25
+      - 55.3
+      - '[54.7, 55.9]'
+      - '-1.8'
+    - - StarCoder
+      - random
+      - 57.1
+      - '[56.5, 57.7]'
+      - —
+    - - StarCoder
+      - dataflow
+      - 56.8
+      - '[56.2, 57.4]'
+      - '-0.3'
+    - - StarCoder
+      - embedding
+      - 57.9
+      - '[57.3, 58.5]'
+      - '+0.8'
+  figures_description:
+  - 'Fig 5: RepoBench-R R@1 grouped bar chart (2 encoders × 4 strategies) with CI
+    whiskers'
+  - 'Fig 5b: test_easy vs test_hard side-by-side, showing ceiling compression'
+  analysis: 'Cross-benchmark 一致性是 best tier 核心证据：embedding mining 在 SWE-smith 和  RepoBench-R
+    上均显著提升两个 encoder，BM25 均 harm。这排除了 "单 benchmark artifact"  reviewer concern。Strategy
+    ranking BM25 < random < dataflow ≤ embedding 完美保持。 test_easy ceiling effect 间接验证了
+    pool size 对效果幅度的调节作用（与 plan_019 互补）。
+
+    '
+- name: Stratified Analysis with 5 Strata (D062 Query-Split Evaluation)
+  plan_id: plan_005
+  description: '5 层分层分析：repo size / pool size / query-positive similarity /  structural
+    data availability (90% with m1_reextract_v2 vs 10% remaining errors) /  neg_difficulty
+    quartile。使用 M2 best checkpoints 在 D062 query-split held-out  evaluation 上重新评估。
+
+    '
+  expected_results:
+    stratum_structural_available:
+      with_dataflow_90pct:
+        qwen_dataflow_minus_random_pp: 0.8
+        qwen_embed_minus_random_pp: 1.3
+        starcoder_dataflow_minus_random_pp: -0.2
+        n_instances: ~13000
+        note: m1_reextract_v2 提升 coverage 从 34% 到 90%
+      no_dataflow_10pct:
+        qwen_dataflow_minus_random_pp: 0.1
+        qwen_embed_minus_random_pp: 1.4
+        n_instances: ~1400
+    stratum_neg_difficulty_quartile:
+      Q1_easiest:
+        qwen_embed_minus_random_pp: 0.6
+        qwen_dataflow_minus_random_pp: 0.2
+      Q2:
+        qwen_embed_minus_random_pp: 1.1
+        qwen_dataflow_minus_random_pp: 0.5
+      Q3:
+        qwen_embed_minus_random_pp: 1.7
+        qwen_dataflow_minus_random_pp: 0.9
+      Q4_hardest:
+        qwen_embed_minus_random_pp: 2.3
+        qwen_dataflow_minus_random_pp: 1.5
+    stratum_repo_size:
+      small_lt50:
+        embedding_delta_pp: 2.0
+        n: ~500
+      medium_50_200:
+        embedding_delta_pp: 1.6
+        n: ~4100
+      large_200_500:
+        embedding_delta_pp: 1.3
+        n: ~5500
+      xlarge_500plus:
+        embedding_delta_pp: 1.0
+        n: ~5100
+    stratum_pool_size:
+      pool_lt20:
+        embedding_delta_pp: 0.7
+        dataflow_delta_pp: 0.2
+      pool_20_50:
+        embedding_delta_pp: 1.5
+        dataflow_delta_pp: 0.6
+      pool_gt50:
+        embedding_delta_pp: 1.9
+        dataflow_delta_pp: 0.9
+    stratum_query_pos_sim:
+      high_sim_gt095:
+        embedding_delta_pp: 1.8
+        dataflow_delta_pp: 1.2
+      medium_sim_085_095:
+        embedding_delta_pp: 1.3
+        dataflow_delta_pp: 0.5
+      low_sim_lt085:
+        embedding_delta_pp: 0.8
+        dataflow_delta_pp: 0.1
+  result_rationale: 'm1_reextract_v2 将 structural data rate 从 34% 提升到 90%，彻底改变了 structural  stratum
+    分析。90% stratum 上 dataflow Δ=+0.8pp（显著）因为绝大部分 instance 现在 获得真实 dataflow-disconnected
+    negatives。10% remaining errors 上 dataflow 退化为  random（Δ≈0），因为缺乏结构数据意味着 fallback
+    策略无差异。
+
+    Neg difficulty Q4（最难 quartile）embed Δ=+2.3pp 是 overall 的 ~1.6 倍——越难的  instance（margin
+    最小）从 harder negatives 获益最多，这是 representation saturation  理论的直接预测。Q1（最易）Δ 最小（0.6pp）因为
+    random negatives 已足够区分。
+
+    Repo size 上 small repo Δ 最大（2.0pp）因为小 repo candidate pool 集中，mining  质量差异更容易体现。Pool
+    size > 50 时 delta 增大到 1.9pp，说明 mining 在更大搜索 空间下更有价值。
+
+    Query-positive similarity 分层显示 high sim（>0.95）时 delta 最大，与 Qwen  saturation 分析一致——高相似度区域是
+    embedding mining 最有价值的场景。
+
+    '
+  tables:
+  - name: 'Table 6: Stratified Embed-Random Δ by Neg Difficulty Quartile (Qwen, D062
+      eval)'
+    columns:
+    - Quartile
+    - margin_mean
+    - emb−rand (pp)
+    - df−rand (pp)
+    rows:
+    - - Q1 (easiest)
+      - 0.135
+      - '+0.6'
+      - '+0.2'
+    - - Q2
+      - 0.072
+      - '+1.1'
+      - '+0.5'
+    - - Q3
+      - 0.028
+      - '+1.7'
+      - '+0.9'
+    - - Q4 (hardest)
+      - 0.007
+      - '+2.3'
+      - '+1.5'
+  - name: 'Table 6b: Stratified by Structural Data Availability (Qwen)'
+    columns:
+    - Stratum
+    - N
+    - emb−rand (pp)
+    - df−rand (pp)
+    rows:
+    - - With dataflow (90%)
+      - ~13K
+      - '+1.3'
+      - '+0.8'
+    - - No dataflow (10%)
+      - ~1.4K
+      - '+1.4'
+      - '+0.1'
+  figures_description:
+  - 'Fig 6: Neg difficulty quartile × strategy interaction line plot'
+  - 'Fig 7: Heatmap — R@1 delta (strategy × stratum), separate panels for Qwen and
+    StarCoder'
+  analysis: 'Neg difficulty quartile 分析是 best tier 最强 mechanistic 证据。Q4 的 2.3pp  embed
+    delta 是 overall 1.4pp 的 1.6 倍——直接验证 "harder instances benefit more  from harder
+    negatives" 的理论预测。Structural availability 分析从 34%→90% coverage  升级后说服力大增——90% stratum
+    的 dataflow Δ=+0.8pp 是 clean signal。 Confound analysis（rich-dataflow 99.3% 在 large/xlarge
+    repo）仍需控制 repo size  来隔离 dataflow richness 独立效应。
+
+    '
+- name: Call-Graph Hop Depth Ablation (1/2/3-hop)
+  plan_id: plan_007
+  description: '比较 1-hop / 2-hop / 3-hop call-graph bounding 对 dataflow negative 质量影响。
+    Qwen encoder, 1 seed, SWE-smith validation。使用 m1_reextract_v2 数据（90% coverage）。
+
+    '
+  expected_results:
+    hop_1:
+      R1: 0.548
+      connected_coverage_pct: 15.2
+      negatives_per_query_mean: 21.4
+    hop_2:
+      R1: 0.558
+      connected_coverage_pct: 45.8
+      negatives_per_query_mean: 38.6
+    hop_3:
+      R1: 0.553
+      connected_coverage_pct: 72.1
+      negatives_per_query_mean: 55.3
+    optimal_hop: 2
+    hop2_minus_hop1_pp: 1.0
+    hop3_minus_hop2_pp: -0.5
+  result_rationale: 'm1_reextract_v2 90% coverage 下，各 hop depth 的 connected coverage
+    均高于原 34%。 2-hop 最优因为：(1) 1-hop 仅覆盖 15.2% instances（直接 caller/callee），大部分 instance  没有足够
+    connected nodes 定义 meaningful disconnection，退化为 random；(2) 3-hop  coverage 72.1%
+    过高，"disconnected" 定义过窄——许多语义相关但 3-hop 可达的文件被错误排除 在 negative pool 外；(3) 2-hop coverage
+    45.8%（近一半 instance 有 meaningful  structural signal）平衡了 signal quality 和 coverage。
+
+    2-hop 对应 inter-procedural 语义：直接 caller/callee + 一层间接调用。 这是 principled 选择而非纯 empirical
+    tuning。
+
+    '
+  tables:
+  - name: 'Table S1: Hop Depth Ablation (Qwen, dataflow strategy)'
+    columns:
+    - Hops
+    - Coverage (%)
+    - Neg/query
+    - R@1 (%)
+    - Δ vs 2-hop (pp)
+    rows:
+    - - 1
+      - 15.2
+      - 21.4
+      - 54.8
+      - '-1.0'
+    - - 2
+      - 45.8
+      - 38.6
+      - 55.8
+      - —
+    - - 3
+      - 72.1
+      - 55.3
+      - 55.3
+      - '-0.5'
+  figures_description:
+  - 'Fig S1: Hop depth vs R@1 line plot with coverage % on secondary y-axis'
+  analysis: 'Inverted-U pattern（1-hop < 2-hop > 3-hop）支持 "optimal structural granularity"  narrative。2-hop
+    + m1_reextract_v2 (90% coverage) 的组合是论文推荐配置。
+
+    '
+- name: Training Data Size Scaling (1K/3K/5K instances)
+  plan_id: plan_008
+  description: '固定 Qwen encoder + 3 strategies，训练数据从 1K / 3K / 5K instances 增长， 观察
+    R@1 变化和策略排名稳定性。1 seed per size。
+
+    '
+  expected_results:
+    size_1K:
+      random_R1: 0.515
+      embedding_R1: 0.524
+      dataflow_R1: 0.518
+      embedding_minus_random_pp: 0.9
+      seed_std: 0.018
+    size_3K:
+      random_R1: 0.54
+      embedding_R1: 0.552
+      dataflow_R1: 0.545
+      embedding_minus_random_pp: 1.2
+      seed_std: 0.012
+    size_5K:
+      random_R1: 0.553
+      embedding_R1: 0.567
+      dataflow_R1: 0.559
+      embedding_minus_random_pp: 1.4
+      seed_std: 0.009
+    ranking_stable: true
+    monotonic_improvement: true
+  result_rationale: '策略排名在 3 个尺度上保持一致（embedding > dataflow > random），delta 幅度随数据量
+    增大而增大（1K: 0.9pp → 5K: 1.4pp）。更大训练集提供更多 diverse negatives，mining  策略差异更充分体现。1K
+    时 seed variance 较大（1.8pp std）因为 negative 多样性不足， 个别 seed 的采样偶然性影响结果。5K 时 variance
+    收敛至 0.9pp。 No diminishing returns at 5K 暗示进一步 scaling 可能有益。
+
+    '
+  tables:
+  - name: 'Table S2: Data Size Scaling (Qwen)'
+    columns:
+    - Size
+    - random
+    - embedding
+    - dataflow
+    - emb−rand (pp)
+    - σ (pp)
+    rows:
+    - - 1K
+      - 51.5
+      - 52.4
+      - 51.8
+      - '+0.9'
+      - 1.8
+    - - 3K
+      - 54.0
+      - 55.2
+      - 54.5
+      - '+1.2'
+      - 1.2
+    - - 5K
+      - 55.3
+      - 56.7
+      - 55.9
+      - '+1.4'
+      - 0.9
+  figures_description:
+  - 'Fig S2: R@1 vs training size for 3 strategies with shaded variance bands'
+  analysis: 'Stable ranking + growing delta 说明 mining effect 不是 small-data artifact。
+    5K 未达 diminishing returns，当前 delta 是下界不是上界——回应 "effect marginal" concern。
+
+    '
+- name: Fusion Head Ablation (mining vs inference-time features)
+  plan_id: plan_009
+  description: '比较 embedding-only / structural-features-only / combined fusion head。
+    隔离 training-time mining 价值与 inference-time feature injection。 Qwen + StarCoder,
+    best embedding checkpoint。
+
+    '
+  expected_results:
+    embedding_only:
+      qwen_R1: 0.567
+      starcoder_R1: 0.485
+    structural_features_only:
+      qwen_R1: 0.501
+      starcoder_R1: 0.422
+    combined_fusion:
+      qwen_R1: 0.564
+      starcoder_R1: 0.483
+    embedding_only_minus_combined_pp: 0.3
+    embedding_only_minus_structural_only_pp: 6.6
+    conclusion: mining >> fusion; structural features at inference add noise
+  result_rationale: 'Embedding-only（mining 训练，inference 不注入结构特征）表现最好或 tied with combined。
+    Combined 略低 0.3pp 因为 inference-time structural features 引入不精确信号—— 即使 m1_reextract_v2
+    coverage 90%，仍有 10% instance 收到 zero-vector structural  features 引入 noise。
+
+    Structural-features-only（不用 mining，仅 inference 时注入）远低于 embedding-only （-6.6pp
+    Qwen），证明核心价值在 training-time negative mining 而非 inference-time  feature engineering。Paper
+    可据此明确：StructFuse 的贡献是 mining strategy，不是 fusion。
+
+    '
+  tables:
+  - name: 'Table S3: Fusion Head Ablation'
+    columns:
+    - Configuration
+    - Qwen R@1 (%)
+    - StarCoder R@1 (%)
+    rows:
+    - - embedding-only (ours)
+      - 56.7
+      - 48.5
+    - - structural-features-only
+      - 50.1
+      - 42.2
+    - - combined fusion
+      - 56.4
+      - 48.3
+  figures_description:
+  - 'Fig S3: Ablation bar chart comparing 3 fusion configurations'
+  analysis: 'Mining（间接 structural signal）> fusion（直接 structural features）。 原因：mining
+    让 encoder 自己学习 structure-relevant representations， 直接注入 features 绕过了学习过程且引入 coverage
+    noise。强化论文 narrative。
+
+    '
+- name: Dataflow-Distance Weighted vs Binary Negatives
+  plan_id: plan_010
+  description: '比较 binary connected/disconnected 与 dataflow-distance weighted negative
+    sampling。 Weighted: disconnected 且 hop-distance 更远的文件赋予更高采样概率。
+
+    '
+  expected_results:
+    binary_qwen_R1: 0.559
+    weighted_qwen_R1: 0.561
+    binary_starcoder_R1: 0.472
+    weighted_starcoder_R1: 0.473
+    weighted_minus_binary_qwen_pp: 0.2
+    weighted_minus_binary_starcoder_pp: 0.1
+    significant: false
+  result_rationale: 'Weighted 仅微弱提升 +0.1~0.2pp（不显著）。Binary disconnected/connected
+    已捕获 最关键的 structural distinction——"是否在调用链上"。进一步按 hop distance 加权引入的 额外信号被 noise
+    抵消：距离更远 ≠ 更好 negative（utility 文件可能 hop=∞ 但也是  trivial negative）。Binary 的简洁性是优势——fewer
+    hyperparameters, same effect。
+
+    '
+  tables:
+  - name: 'Table S5: Weighted vs Binary Dataflow Negatives'
+    columns:
+    - Method
+    - Qwen R@1 (%)
+    - StarCoder R@1 (%)
+    - Δ vs Binary (pp)
+    rows:
+    - - Binary (default)
+      - 55.9
+      - 47.2
+      - —
+    - - Distance-weighted
+      - 56.1
+      - 47.3
+      - +0.2 / +0.1
+  figures_description: []
+  analysis: 'Binary sufficient — weighted complexity not justified。 论文 ablation section
+    用一句话报告，强化 "simple binary is the key insight"。
+
+    '
+- name: SWE-smith Retrieval Failure Analysis (repurposed from SWE-bench)
+  plan_id: plan_011
+  description: '原计划分析 SWE-bench 失败案例。SWE-bench 已失败（R@1=0.04, OOD），改为分析 SWE-smith validation
+    上 random retriever 失败的 50 个案例，分类失败原因， 标注 embedding/dataflow mining 能否帮助。
+
+    '
+  expected_results:
+    total_analyzed: 50
+    source: SWE-smith validation set (intra-repo setting)
+    category_breakdown:
+      similar_but_wrong_file: 19
+      distant_but_correct_file: 12
+      pool_saturation_all_similar: 9
+      query_ambiguity: 6
+      singleton_gold_no_candidates: 4
+    mining_would_help:
+      embedding_helps: 17
+      dataflow_helps: 8
+      neither_helps: 25
+    embedding_help_rate: 0.34
+    dataflow_additional_help_rate: 0.16
+  result_rationale: '50 个失败中 19 个是 "similar but wrong"——检索到与 gold 高文本相似但非同一 call chain  的文件。Embedding
+    mining 训练可帮助其中 17 个（让 encoder 学会区分高相似度区域内的细微差异）。 Dataflow 额外帮助 8 个涉及跨模块调用链的案例（embedding
+    mining 无法捕获的 structural  dependencies）。25 个 "neither helps" 主要是 pool saturation（候选全部高度相似）和  query
+    ambiguity（issue 描述模糊无法定位）。
+
+    34% embedding help rate 与 observed 1.0-1.4pp delta 一致： 如果 34% 的失败中有一部分被修正，对应 ~1-2pp
+    总体提升。
+
+    '
+  tables:
+  - name: 'Table S6: Failure Category Breakdown (SWE-smith)'
+    columns:
+    - Category
+    - Count
+    - '% of 50'
+    - Mining Helps?
+    rows:
+    - - Similar but wrong file
+      - 19
+      - 38
+      - 17/19 (embed)
+    - - Distant correct file
+      - 12
+      - 24
+      - 8/12 (dataflow)
+    - - Pool saturation
+      - 9
+      - 18
+      - 2/9 (partial)
+    - - Query ambiguity
+      - 6
+      - 12
+      - 0/6
+    - - Singleton gold
+      - 4
+      - 8
+      - 0/4
+  figures_description:
+  - 'Fig S4: Failure category pie chart with mining-could-help overlay'
+  analysis: 'Failure analysis 将抽象 delta 转化为具体机制。"Similar but wrong" 是最大失败类别 且最易被 embedding
+    mining 修正——直接支持 Claim 1 的 mechanistic explanation。
+
+    '
+- name: Qualitative Examples (5-8 cases from SWE-smith)
+  plan_id: plan_012
+  description: '从 SWE-smith 中选取 5-8 个 embedding/dataflow mining 改变检索结果的典型案例。 （原依赖
+    SWE-bench，现改用 SWE-smith internal data。）
+
+    '
+  expected_results:
+    total_examples: 7
+    example_categories:
+      caller_callee_confusion: 3
+      utility_file_distraction: 2
+      cross_module_import_chain: 1
+      test_vs_source: 1
+    illustrative_example:
+      repo: sample-python-project
+      query: issue about incorrect cache invalidation
+      random_top1: cache/utils.py (lexical match on 'cache')
+      embedding_top1: cache/backend.py (semantically similar, shares embedding cluster)
+      dataflow_top1: cache/backend.py + storage/driver.py (caller chain)
+      gold: cache/backend.py
+  result_rationale: '7 个案例覆盖 4 个失败模式。Caller-callee confusion（3 个）最常见——文本相似的  wrapper
+    函数 vs 实际实现是 code retrieval 的核心挑战。案例具体展示了  "lexical similarity ≠ structural relevance"，使抽象的
+    representation geometry  论证变得具体可感。
+
+    '
+  tables: []
+  figures_description:
+  - 'Fig 8: Side-by-side retrieval ranking for 3 representative cases with dependency
+    graph overlay'
+  analysis: 'Qualitative examples 是论文 "aha moment"——即使对统计显著性持怀疑态度的 reviewer， 也能通过具体案例理解
+    mining 策略的作用机制。
+
+    '
+- name: Temperature Ablation τ ∈ {0.05, 0.1, 0.2} (Full)
+  plan_id: plan_014
+  description: '3 temperatures × 3 strategies × 2 encoders, 1 seed each。 测试 strategy
+    ranking 是否 temperature-regime-specific。 （plan_021 为 reduced 版本；如果时间足够，运行 full
+    plan_014。）
+
+    '
+  expected_results:
+    tau_005:
+      qwen_random_R1: 0.56
+      qwen_embedding_R1: 0.576
+      qwen_dataflow_R1: 0.568
+      qwen_embedding_minus_random_pp: 1.6
+      starcoder_random_R1: 0.487
+      starcoder_embedding_R1: 0.497
+      starcoder_embedding_minus_random_pp: 1.0
+    tau_010:
+      qwen_random_R1: 0.553
+      qwen_embedding_R1: 0.567
+      qwen_dataflow_R1: 0.559
+      qwen_embedding_minus_random_pp: 1.4
+      starcoder_random_R1: 0.479
+      starcoder_embedding_R1: 0.485
+      starcoder_embedding_minus_random_pp: 0.6
+    tau_020:
+      qwen_random_R1: 0.538
+      qwen_embedding_R1: 0.55
+      qwen_dataflow_R1: 0.544
+      qwen_embedding_minus_random_pp: 1.2
+      starcoder_random_R1: 0.465
+      starcoder_embedding_R1: 0.472
+      starcoder_embedding_minus_random_pp: 0.7
+    ranking_preserved_across_tau: true
+    optimal_tau: 0.05
+  result_rationale: 'Strategy ranking（embedding > dataflow > random for Qwen; embedding
+    > random ≈  dataflow for StarCoder）在三个 τ 下保持一致。τ=0.05 绝对性能最高——sharper temperature  使
+    contrastive loss 更有效地放大相似度差异。τ=0.2 下 delta 缩小（1.2pp vs 1.4pp  for Qwen）——softer
+    temperature 压缩所有 similarity 到窄范围，减弱 hard vs easy  negatives 的梯度差异。
+
+    关键结论：findings 不是 temperature-regime-specific。直接回应 median reviewer 的  "τ=0.05 unusually
+    low" concern。τ=0.1 作为 paper default（literature convention）， τ=0.05 作为 alternative
+    best configuration 在 ablation 报告。
+
+    '
+  tables:
+  - name: 'Table 7: Temperature Ablation (R@1 %)'
+    columns:
+    - τ
+    - Encoder
+    - random
+    - embedding
+    - dataflow
+    - emb−rand (pp)
+    rows:
+    - - 0.05
+      - Qwen
+      - 56.0
+      - 57.6
+      - 56.8
+      - '+1.6'
+    - - 0.05
+      - StarCoder
+      - 48.7
+      - 49.7
+      - 48.5
+      - '+1.0'
+    - - 0.1
+      - Qwen
+      - 55.3
+      - 56.7
+      - 55.9
+      - '+1.4'
+    - - 0.1
+      - StarCoder
+      - 47.9
+      - 48.5
+      - 47.4
+      - '+0.6'
+    - - 0.2
+      - Qwen
+      - 53.8
+      - 55.0
+      - 54.4
+      - '+1.2'
+    - - 0.2
+      - StarCoder
+      - 46.5
+      - 47.2
+      - 46.3
+      - '+0.7'
+  figures_description:
+  - 'Fig S5: Temperature × strategy interaction plot, separate panels per encoder'
+  analysis: 'Ranking stability across τ 是关键 robustness 证据。τ=0.2 delta 缩小但不翻转—— mining
+    quality 的价值在不同 loss sharpness 下都存在。
+
+    '
+- name: Dynamic vs Static Embedding Mining
+  plan_id: plan_015
+  description: 'Dynamic: 每 epoch 用当前 encoder 重新挖 embedding negatives。 Static: 仅用 pretrained
+    encoder 挖一次（当前做法）。 Qwen + StarCoder, 1 seed each。Phase 2 (GPU) QUEUED。
+
+    '
+  expected_results:
+    qwen_static_R1: 0.567
+    qwen_dynamic_R1: 0.569
+    qwen_dynamic_minus_static_pp: 0.2
+    starcoder_static_R1: 0.485
+    starcoder_dynamic_R1: 0.486
+    starcoder_dynamic_minus_static_pp: 0.1
+    dynamic_significant: false
+    curriculum_confound_ruled_out: true
+  result_rationale: 'Dynamic 仅微弱提升 +0.1~0.2pp（不显著），因为 LoRA rank 16 fine-tuning 只轻微
+    改变 embedding space——pretrained encoder 的 nearest neighbors 训练后大部分不变。 这排除了 "static
+    mining 优势来自 curriculum effect (early hard → stale negatives)"  的 confound。
+
+    对 Claim 2 重要：mining strategy 的选择（what to mine）比 mining schedule  （when to mine）更关键。Dynamic
+    的 compute overhead（每 epoch 重新 encode + kNN） not justified——强化 "zero-cost" framing。
+
+    '
+  tables:
+  - name: 'Table S7: Static vs Dynamic Embedding Mining'
+    columns:
+    - Encoder
+    - Static R@1 (%)
+    - Dynamic R@1 (%)
+    - Δ (pp)
+    - p-value
+    rows:
+    - - Qwen
+      - 56.7
+      - 56.9
+      - '+0.2'
+      - 0.44
+    - - StarCoder
+      - 48.5
+      - 48.6
+      - '+0.1'
+      - 0.56
+  figures_description:
+  - 'Fig S6: Learning curves for static vs dynamic mining, overlaid'
+  analysis: 'Static ≈ dynamic 是 clean negative result。强化 "mine once from pretrained,  no
+    re-mining needed" 的 practitioner recommendation。
+
+    '
+- name: Bootstrap CIs for M2 Main Results + RepoBench-R
+  plan_id: plan_016
+  description: '原为 SWE-bench CIs，现 repurpose 为 M2 main results (D062 query-split eval)  和
+    RepoBench-R 的 paired bootstrap 95% CIs。10K resamples。 统一统计框架覆盖所有 pairwise comparisons。
+
+    '
+  expected_results:
+    m2_query_split_eval:
+      qwen_embed_minus_random:
+        delta_pp: 1.4
+        ci_95:
+        - 0.5
+        - 2.3
+        p_value: 0.012
+        significant: true
+      starcoder_embed_minus_random:
+        delta_pp: 0.9
+        ci_95:
+        - 0.1
+        - 1.7
+        p_value: 0.038
+        significant: true
+      qwen_bm25_minus_random:
+        delta_pp: -2.9
+        ci_95:
+        - -4.1
+        - -1.7
+        p_value: 0.001
+        significant: true
+      starcoder_bm25_minus_random:
+        delta_pp: -2.5
+        ci_95:
+        - -3.8
+        - -1.2
+        p_value: 0.003
+        significant: true
+      qwen_dataflow_minus_random:
+        delta_pp: 0.7
+        ci_95:
+        - -0.2
+        - 1.6
+        p_value: 0.089
+        significant: false
+    repobench_r_test_hard:
+      qwen_embed_minus_random:
+        delta_pp: 1.2
+        ci_95:
+        - 0.6
+        - 1.8
+        p_value: 0.002
+        significant: true
+      starcoder_embed_minus_random:
+        delta_pp: 0.8
+        ci_95:
+        - 0.2
+        - 1.4
+        p_value: 0.014
+        significant: true
+    bootstrap_n: 10000
+    all_embed_vs_random_exclude_zero: true
+    all_bm25_vs_random_exclude_zero: true
+  result_rationale: 'D062 query-split eval 上 embed vs random CI 下界 > 0 for both encoders，
+    confirming statistical significance。BM25 vs random CI 上界 < 0，confirming harm。
+    Dataflow vs random 在 Qwen 上 borderline（p=0.089, CI 含零）——consistent with  Claim
+    2 的 "exploratory/conditional" framing。
+
+    RepoBench-R CIs 更 tight（8K test instances 提供更大统计功效），两个 encoder  embed vs random
+    均显著。Cross-benchmark significance 是 Claim 1 的 statistical  closure。
+
+    3 seeds 的 seed-level variance 通过 instance-level bootstrap 吸收—— CI 主要反映 instance-level
+    variability 而非 seed variance，这对 3-seed 设计 是有利的（seed 数少不直接导致 CI 变宽，因为每个 seed 有大量
+    instance）。
+
+    '
+  tables:
+  - name: 'Table 3: Main Results with Bootstrap 95% CIs (D062 query-split)'
+    columns:
+    - Encoder
+    - Comparison
+    - Δ (pp)
+    - 95% CI
+    - p-value
+    rows:
+    - - Qwen
+      - embed − random
+      - '+1.4'
+      - '[+0.5, +2.3]'
+      - 0.012
+    - - Qwen
+      - dataflow − random
+      - '+0.7'
+      - '[−0.2, +1.6]'
+      - 0.089
+    - - Qwen
+      - BM25 − random
+      - −2.9
+      - '[−4.1, −1.7]'
+      - 0.001
+    - - StarCoder
+      - embed − random
+      - '+0.9'
+      - '[+0.1, +1.7]'
+      - 0.038
+    - - StarCoder
+      - dataflow − random
+      - −0.5
+      - '[−1.4, +0.4]'
+      - 0.21
+    - - StarCoder
+      - BM25 − random
+      - −2.5
+      - '[−3.8, −1.2]'
+      - 0.003
+  figures_description:
+  - 'Fig 4: Forest plot showing pairwise deltas with 95% CIs for all comparisons'
+  - 'Fig 4b: Bootstrap distribution histograms for embed−random (both encoders)'
+  analysis: 'CI 下界 > 0 for embed, 上界 < 0 for BM25, dataflow borderline——这是理想的 statistical
+    picture for the best tier。Three-tier significance pattern  (BM25 harm ✓, embed
+    help ✓, dataflow conditional ?) 完美映射到三条 claims。
+
+    '
+- name: BM25 Negative Baseline — Closing CoCoHaNeRe Argument
+  plan_id: plan_018
+  description: 'BM25-based hard negatives 作为第 4 策略。Phase 1 (CPU) DONE：BM25 index built，
+    training data mined（11K+ records/seed, k=50）。Phase 2 (GPU)：train 3 seeds ×  2
+    encoders。验证 CoCoHaNeRe 报告的 "embedding negatives harm" 是 BM25-proxy artifact。
+
+    '
+  expected_results:
+    qwen:
+      bm25_s42_R1: 0.535
+      bm25_s43_R1: 0.538
+      bm25_s44_R1: 0.541
+      bm25_mean_R1: 0.538
+      random_mean_R1: 0.57
+      bm25_minus_random_pp: -3.2
+      embed_mean_R1: 0.573
+      embed_minus_bm25_pp: 3.5
+    starcoder:
+      bm25_s42_R1: 0.452
+      bm25_s43_R1: 0.462
+      bm25_s44_R1: 0.458
+      bm25_mean_R1: 0.457
+      random_mean_R1: 0.479
+      bm25_minus_random_pp: -2.2
+      embed_mean_R1: 0.485
+      embed_minus_bm25_pp: 2.8
+    bm25_harms_both_encoders: true
+    cocohanere_artifact_confirmed: true
+    bm25_minus_random_avg_pp: -2.7
+    bm25_overlap_context:
+      bm25_vs_embedding_top7_jaccard_large_repos: 0.297
+      bm25_vs_random_top7_jaccard_large_repos: 0.007
+  result_rationale: 'BM25 negatives 在两个 encoder 上均 harm（Qwen -3.2pp, StarCoder -2.2pp），
+    mean -2.7pp 位于 best 档 [-3.0, -1.0] 范围内。
+
+    BM25 选取的是 lexically similar 但 semantically ambiguous 的文件——共享大量  token overlap（函数名、变量名、import
+    patterns），但这种 overlap 恰恰是 contrastive  learning 用来区分 positive/negative 的信号。用 BM25
+    选的 negatives 使模型学会  ignore lexical cues，但这些 cues 在 code retrieval 中是有效信号。
+
+    Overlap 分析（phase 1 已完成）支持这一解释：大 repo 上 BM25 与 embedding  top-7 Jaccard 仅 0.297——两种
+    mining 选取的 negatives 差异很大。BM25 与 random  仅 0.007——说明 BM25 negatives 与 random sampling
+    几乎无交集（高度 targeted）， 但 targeted 到了错误方向。
+
+    这直接回应 CoCoHaNeRe (ACM TOSEM 2025)：他们报告的 "embedding negatives harm"  实际是 BM25-proxy
+    artifact。True embedding distance negatives 方向相反（+0.6~1.4pp）。 BM25 vs embedding
+    的 3.5pp 差距是论文最大的 single pairwise comparison。
+
+    '
+  tables:
+  - name: 'Table 2: Full 4-Strategy Comparison (Standard Eval, best_by_R@1)'
+    columns:
+    - Encoder
+    - Strategy
+    - Mean R@1 (%)
+    - 95% CI
+    - Δ vs Random (pp)
+    rows:
+    - - Qwen
+      - BM25
+      - 53.8
+      - '[52.9, 54.7]'
+      - −3.2
+    - - Qwen
+      - random
+      - 57.0
+      - '[55.5, 58.5]'
+      - —
+    - - Qwen
+      - dataflow
+      - 55.9
+      - '[55.3, 56.5]'
+      - −1.1
+    - - Qwen
+      - embedding
+      - 57.3
+      - '[56.5, 58.1]'
+      - '+0.3'
+    - - StarCoder
+      - BM25
+      - 45.7
+      - '[44.8, 46.6]'
+      - −2.2
+    - - StarCoder
+      - random
+      - 47.9
+      - '[46.0, 49.0]'
+      - —
+    - - StarCoder
+      - dataflow
+      - 47.2
+      - '[46.5, 47.9]'
+      - −0.7
+    - - StarCoder
+      - embedding
+      - 48.5
+      - '[47.2, 50.1]'
+      - '+0.6'
+  - name: 'Table 2b: 4-Strategy on D062 Query-Split Eval'
+    columns:
+    - Encoder
+    - Strategy
+    - Mean R@1 (%)
+    - Δ vs Random (pp)
+    rows:
+    - - Qwen
+      - BM25
+      - 33.2
+      - −2.9
+    - - Qwen
+      - random
+      - 36.1
+      - —
+    - - Qwen
+      - dataflow
+      - 36.8
+      - '+0.7'
+    - - Qwen
+      - embedding
+      - 37.5
+      - '+1.4'
+    - - StarCoder
+      - BM25
+      - 28.0
+      - −2.5
+    - - StarCoder
+      - random
+      - 30.5
+      - —
+    - - StarCoder
+      - dataflow
+      - 30.1
+      - −0.4
+    - - StarCoder
+      - embedding
+      - 31.4
+      - '+0.9'
+  figures_description:
+  - 'Fig 3: 4-strategy R@1 bar chart (D062 eval) with BM25 in red, annotation arrow
+    showing BM25→embed gap'
+  - 'Fig 3b: Neg similarity histograms for 4 strategies showing BM25 occupies distinct
+    region'
+  analysis: 'BM25 baseline 是 best tier 的 crown jewel。将 Claim 1 从 "argumentative correction"  升级为
+    "empirical demonstration"：不仅指出 CoCoHaNeRe 用了 BM25 proxy，还实际 复现 harm effect 并展示
+    true embedding negatives 方向相反。
+
+    4-strategy ordering BM25 < random < dataflow ≤ embedding 清晰展示 negative  mining
+    的 quality spectrum。注意 standard eval 上 embed Δ 较小（+0.3pp Qwen）， 但 D062 query-split
+    上 embed Δ=+1.4pp——checkpoint selection methodology 揭示 了被 standard eval 掩盖的真实效应。
+
+    '
+- name: Pool Size Sensitivity (50/100/200/500)
+  plan_id: plan_019
+  description: 'SWE-smith validation 上用 pool={50, 100, 200, 500} 重新评估 M2 best checkpoints，
+    测试 strategy ranking 在 realistic pool sizes 下的稳定性。
+
+    '
+  expected_results:
+    qwen:
+      pool_50:
+        random_R1: 0.57
+        embedding_R1: 0.573
+        dataflow_R1: 0.559
+        embedding_minus_random_pp: 0.3
+        note: pool=50 与 standard eval (pool=8) anchor 接近但稍低
+      pool_100:
+        random_R1: 0.432
+        embedding_R1: 0.446
+        embedding_minus_random_pp: 1.4
+      pool_200:
+        random_R1: 0.348
+        embedding_R1: 0.361
+        embedding_minus_random_pp: 1.3
+      pool_500:
+        random_R1: 0.265
+        embedding_R1: 0.277
+        embedding_minus_random_pp: 1.2
+    starcoder:
+      pool_50:
+        random_R1: 0.479
+        embedding_R1: 0.485
+        embedding_minus_random_pp: 0.6
+      pool_100:
+        random_R1: 0.365
+        embedding_R1: 0.377
+        embedding_minus_random_pp: 1.2
+      pool_200:
+        random_R1: 0.29
+        embedding_R1: 0.301
+        embedding_minus_random_pp: 1.1
+      pool_500:
+        random_R1: 0.222
+        embedding_R1: 0.232
+        embedding_minus_random_pp: 1.0
+    ranking_stable_across_pools: true
+    pool_ranking_stable_pct: 100
+    delta_trend: Δ increases from pool=50 to pool=100, then gradually shrinks at larger
+      pools
+  result_rationale: 'Strategy ranking 在 50→500 全程保持稳定（100% stability）。关键发现：delta 从  pool=50
+    的 0.3-0.6pp 跃升至 pool=100 的 1.2-1.4pp，然后缓慢缩小到 pool=500 的  1.0-1.2pp。
+
+    Pool=50 delta 小是因为标准 eval pool=8 的 ceiling effect 延伸——候选太少， random 已经有较高 baseline。Pool=100
+    时 distractor 数量足够使 mining 质量差异 充分体现（sweet spot）。Pool>200 时 delta 开始缩小因为大 pool
+    中 random negatives  偶然包含 "hard" negative 的概率增加（base rate effect），部分弥合了 mining
+    差距。 但核心 signal 不消失——pool=500 仍有 +1.0~1.2pp。
+
+    这直接回应 reviewer "pool=50 unrealistically small" concern：即使 10x 扩大， strategy ranking
+    完全不翻转，且 delta 在 realistic pool sizes 反而更大。
+
+    '
+  tables:
+  - name: 'Table 8: Pool Size Sensitivity (R@1 %)'
+    columns:
+    - Pool
+    - Encoder
+    - random
+    - embedding
+    - dataflow
+    - emb−rand (pp)
+    - Ranking
+    rows:
+    - - 50
+      - Qwen
+      - 57.0
+      - 57.3
+      - 55.9
+      - '+0.3'
+      - E≥R>D
+    - - 100
+      - Qwen
+      - 43.2
+      - 44.6
+      - 43.0
+      - '+1.4'
+      - E>R≥D
+    - - 200
+      - Qwen
+      - 34.8
+      - 36.1
+      - 35.0
+      - '+1.3'
+      - E>D>R
+    - - 500
+      - Qwen
+      - 26.5
+      - 27.7
+      - 26.2
+      - '+1.2'
+      - E>R>D
+    - - 50
+      - StarCoder
+      - 47.9
+      - 48.5
+      - 47.2
+      - '+0.6'
+      - E>R>D
+    - - 100
+      - StarCoder
+      - 36.5
+      - 37.7
+      - 36.2
+      - '+1.2'
+      - E>R>D
+    - - 200
+      - StarCoder
+      - 29.0
+      - 30.1
+      - 28.8
+      - '+1.1'
+      - E>R>D
+    - - 500
+      - StarCoder
+      - 22.2
+      - 23.2
+      - 22.0
+      - '+1.0'
+      - E>R≈D
+  figures_description:
+  - 'Fig 9: Pool size (x-axis, log) vs R@1 (y-axis), 3 strategies overlaid, separate
+    panels per encoder'
+  - 'Fig 9b: Delta (embed − random) vs pool size, showing non-monotonic pattern'
+  analysis: 'Pool size sensitivity 是外部有效性关键证据。非单调 pattern（小 pool delta 小 →  medium
+    pool delta 大 → large pool delta 缩小）提供了 mechanistic insight： mining 的价值在 moderate
+    difficulty 区间最大（Goldilocks zone）。 100% ranking stability 在全范围保持是 best tier 标志。
+
+    '
+- name: UniXcoder Multi-Seed Validation (3 seeds × 3 strategies)
+  plan_id: plan_020
+  description: 'UniXcoder-base (encoder-only, 125M) 3 seeds × 3 strategies。 s42 DONE（null
+    result, 0.37pp span）。s43 RUNNING（random done, embed running）。 s44 PREPARING。验证
+    scale boundary condition。
+
+    '
+  expected_results:
+    s42:
+      random_R1: 0.5534
+      embedding_R1: 0.5497
+      dataflow_R1: 0.551
+      span_pp: 0.37
+    s43:
+      random_R1: 0.577
+      embedding_R1: 0.575
+      dataflow_R1: 0.574
+      span_pp: 0.3
+    s44:
+      random_R1: 0.562
+      embedding_R1: 0.56
+      dataflow_R1: 0.561
+      span_pp: 0.2
+    mean_across_seeds:
+      random_R1: 0.564
+      embedding_R1: 0.561
+      dataflow_R1: 0.562
+    overall_span_pp: 0.3
+    max_pairwise_delta_pp: 0.3
+    all_deltas_nonsignificant: true
+    bootstrap_ci_all_contain_zero: true
+    conclusion: 125M encoder-only model saturates regardless of mining strategy
+  result_rationale: 'UniXcoder (125M params, encoder-only architecture) 在所有 3 seeds
+    上均显示  null result——3 策略 R@1 span < 0.4pp，远小于 seed variance (~1.4pp)。
+
+    原因：125M 模型 representation capacity 不足以利用 harder negatives 的信号。 Neg difficulty
+    分析显示 UniXcoder 的 margin 分布已高度压缩（与 Qwen 类似的  high pos_sim），但不同于 Qwen（3B, enough
+    capacity to learn from margin signal）， 125M 模型缺乏参数量来在这个压缩空间中进一步微调区分。
+
+    这干净地归因于 model scale 而非 architecture（UniXcoder 是 encoder-only 但 这不是核心因素——125M 即使是
+    decoder-only 也大概率 saturate）。Paper 中作为  "effect requires sufficient model capacity"
+    的 boundary condition，增强故事 的科学严谨性——不是所有模型都能 benefit from mining。
+
+    '
+  tables:
+  - name: 'Table 4: UniXcoder-base (125M) — Scale Boundary Condition'
+    columns:
+    - Seed
+    - random
+    - embedding
+    - dataflow
+    - Span (pp)
+    rows:
+    - - 42
+      - 55.34
+      - 54.97
+      - 55.1
+      - 0.37
+    - - 43
+      - 57.7
+      - 57.5
+      - 57.4
+      - 0.3
+    - - 44
+      - 56.2
+      - 56.0
+      - 56.1
+      - 0.2
+    - - Mean
+      - 56.41
+      - 56.16
+      - 56.2
+      - 0.25
+  figures_description:
+  - 'Fig S8: UniXcoder 3-strategy comparison across 3 seeds — flat lines within noise'
+  analysis: '3-seed null result 排除了 "s42 可能是巧合" 的 concern。Consistent null across  seeds
+    + significant effect on 3B models = clean scale boundary at ~125M-3B range。 Paper
+    可以明确声明："mining strategy effects require models above ~1B parameters  to manifest."
+
+    '
+- name: Temperature Ablation Reduced (τ = 0.05, 0.2)
+  plan_id: plan_021
+  description: 'plan_014 的 reduced 版本：τ ∈ {0.05, 0.2} × random+embedding × Qwen ×
+    seed 42。 如果 plan_014 (full, 70h) 无法执行，用 plan_021 (15h) 作为 minimum。
+
+    '
+  expected_results:
+    tau_005:
+      qwen_random_R1: 0.56
+      qwen_embedding_R1: 0.576
+      qwen_embedding_minus_random_pp: 1.6
+    tau_020:
+      qwen_random_R1: 0.538
+      qwen_embedding_R1: 0.55
+      qwen_embedding_minus_random_pp: 1.2
+    tau_010_reference:
+      qwen_random_R1: 0.553
+      qwen_embedding_R1: 0.567
+      qwen_embedding_minus_random_pp: 1.4
+    ranking_preserved: true
+    regime_specific: false
+  result_rationale: '与 plan_014 相同逻辑，仅覆盖 Qwen + random/embedding。如果 τ=0.05 和 τ=0.2  均显示
+    embedding > random（1.2-1.6pp），且 ranking 不翻转，则 regime-specificity  concern 被关闭。15h
+    GPU budget 是可接受的 minimum viable ablation。
+
+    '
+  tables:
+  - name: 'Table S8: Temperature Ablation (Reduced, Qwen only)'
+    columns:
+    - τ
+    - random R@1 (%)
+    - embedding R@1 (%)
+    - Δ (pp)
+    rows:
+    - - 0.05
+      - 56.0
+      - 57.6
+      - '+1.6'
+    - - 0.1
+      - 55.3
+      - 56.7
+      - '+1.4'
+    - - 0.2
+      - 53.8
+      - 55.0
+      - '+1.2'
+  figures_description: []
+  analysis: 'Reduced ablation 足以回应 reviewer concern。如果 GPU budget 允许， 扩展到 StarCoder
+    + dataflow（plan_014 full）提供更完整覆盖。
+
+    '
+- name: D062 Checkpoint Selection Criterion Effect Analysis
+  plan_id: d062_checkpoint_criterion
+  description: 'D062 创新方法论贡献：从 2980 val queries 分出 500-query selection set（用于  checkpoint
+    selection）+ 2480-query held-out evaluation set。分析 checkpoint  选择标准（best_by_val_loss
+    vs best_by_R@1）对最终性能的影响。
+
+    D065 发现：Qwen random_s43 by_R@1=0.504 vs by_val_loss=0.341（+16.3pp）， s42 两标准同一
+    checkpoint（R@1=0.230）。这一效应远大于 mining strategy effect。
+
+    '
+  expected_results:
+    qwen_query_split:
+      random_s42:
+        by_val_loss_R1: 0.23
+        by_recall_at_1_R1: 0.23
+        criterion_gap_pp: 0.0
+        note: 两标准选到同一 checkpoint
+      random_s43:
+        by_val_loss_R1: 0.341
+        by_recall_at_1_R1: 0.504
+        criterion_gap_pp: 16.3
+        note: 最大 criterion effect，val_loss 选 step 500, R@1 选 step 1500
+      random_s44:
+        by_val_loss_R1: 0.35
+        by_recall_at_1_R1: 0.385
+        criterion_gap_pp: 3.5
+      embed_s42:
+        by_val_loss_R1: 0.245
+        by_recall_at_1_R1: 0.265
+        criterion_gap_pp: 2.0
+      embed_s43:
+        by_val_loss_R1: 0.365
+        by_recall_at_1_R1: 0.518
+        criterion_gap_pp: 15.3
+      embed_s44:
+        by_val_loss_R1: 0.37
+        by_recall_at_1_R1: 0.395
+        criterion_gap_pp: 2.5
+      dataflow_s43:
+        by_val_loss_R1: 0.355
+        by_recall_at_1_R1: 0.51
+        criterion_gap_pp: 15.5
+    starcoder_query_split:
+      random_s42:
+        by_val_loss_R1: 0.28
+        by_recall_at_1_R1: 0.31
+        criterion_gap_pp: 3.0
+      random_s43:
+        by_val_loss_R1: 0.295
+        by_recall_at_1_R1: 0.42
+        criterion_gap_pp: 12.5
+      embed_s42:
+        by_val_loss_R1: 0.27
+        by_recall_at_1_R1: 0.305
+        criterion_gap_pp: 3.5
+      embed_s43:
+        by_val_loss_R1: 0.3
+        by_recall_at_1_R1: 0.435
+        criterion_gap_pp: 13.5
+    summary_statistics:
+      max_criterion_effect_pp: 16.3
+      mean_criterion_effect_pp: 8.5
+      median_criterion_effect_pp: 3.5
+      criterion_effect_nonzero_rate: 0.72
+      mining_strategy_mean_effect_pp: 1.2
+      criterion_to_mining_ratio: 7.1
+    replicates_across_encoders: true
+    replicates_across_seeds: true
+  result_rationale: 'D062 query-split evaluation 揭示了一个被忽视的方法论问题：标准 contrastive  retrieval
+    评估中，checkpoint 是在 val set 上选择的，然后在 SAME val set 上 报告 R@1——这导致 checkpoint selection
+    过拟合 val queries。
+
+    Query-split 方法将 val queries 分为 selection set (500) 和 evaluation set  (2480)。在
+    held-out evaluation 上，best_by_val_loss 与 best_by_R@1 的差距 高达 16.3pp（Qwen s43），因为：
+
+    (1) val_loss 在 step 500 最低——此时模型刚开始训练，泛化最好但 ranking 能力不足； (2) R@1 在 step 1500
+    最高——此时模型已学会 ranking 但开始 overfit； (3) 在 held-out queries 上，step 1500 的 ranking
+    能力泛化良好（0.504）， 而 step 500 的 ranking 能力不足（0.341）。
+
+    The criterion effect (+16.3pp max, 8.5pp mean) >> mining strategy effect (~1.2pp)，
+    ratio 7:1。这意味着社区对 mining strategy 效果的评估被 checkpoint selection  noise 掩盖。
+
+    StarCoder 上 effect 稍小（max 13.5pp）但方向一致——pattern replicates。
+
+    这是论文独立方法论贡献： - 发现：standard eval 系统性高估所有策略的绝对 R@1（因为 checkpoint overfit） - 发现：standard
+    eval 系统性低估策略间差异（因为 criterion noise 掩盖 signal） - 推荐：use query-split + R@1 criterion
+    for checkpoint selection
+
+    '
+  tables:
+  - name: 'Table 9: Checkpoint Criterion Effect (D062 Query-Split, Qwen)'
+    columns:
+    - Strategy
+    - Seed
+    - by val_loss R@1
+    - by R@1 R@1
+    - Gap (pp)
+    rows:
+    - - random
+      - 42
+      - 0.23
+      - 0.23
+      - '0.0'
+    - - random
+      - 43
+      - 0.341
+      - 0.504
+      - '+16.3'
+    - - random
+      - 44
+      - 0.35
+      - 0.385
+      - '+3.5'
+    - - embedding
+      - 42
+      - 0.245
+      - 0.265
+      - '+2.0'
+    - - embedding
+      - 43
+      - 0.365
+      - 0.518
+      - '+15.3'
+    - - embedding
+      - 44
+      - 0.37
+      - 0.395
+      - '+2.5'
+    - - dataflow
+      - 43
+      - 0.355
+      - 0.51
+      - '+15.5'
+  - name: 'Table 9b: Criterion Effect Summary'
+    columns:
+    - Statistic
+    - Value
+    rows:
+    - - Max criterion effect
+      - +16.3pp
+    - - Mean criterion effect
+      - +8.5pp
+    - - Mean mining strategy effect
+      - +1.2pp
+    - - Criterion-to-mining ratio
+      - 7.1×
+    - - Runs with >5pp criterion effect
+      - 3/14 (21%)
+    - - Replicates across encoders
+      - 'Yes'
+  figures_description:
+  - 'Fig 2: Criterion effect scatter plot — each point is one run, x=by_val_loss R@1,
+    y=by_R@1 R@1, diagonal line shows equality'
+  - 'Fig 2b: Training trajectory for s43 showing val_loss/R@1 divergence annotated
+    with criterion effect'
+  analysis: 'Checkpoint criterion effect 是 D062 论文最意外也最有影响力的发现。
+
+    +16.3pp >> +1.2pp (mining) 意味着： (1) 论文不仅展示 "mining helps" 还展示 "how to properly
+    evaluate whether mining helps" (2) 解释了为什么文献中 mining strategy delta 通常很小——standard
+    eval 掩盖了 signal (3) 提供了 evaluation protocol 改进建议，对整个 contrastive retrieval 社区有价值
+
+    s43 的 16.3pp 出现在 val_loss 和 R@1 最严重分歧时——val_loss 选择了训练最早期 的 checkpoint（泛化好但 ranking
+    弱），R@1 选择了训练中期的 checkpoint（ranking  最优但即将 overfit）。只有 query-split 方法才能在 held-out
+    上正确评判这一差异。
+
+    这一发现使论文从 "mining strategy comparison" 升级为 "evaluation methodology +  mining strategy
+    comparison"——双重贡献，EMNLP Main 更强。'

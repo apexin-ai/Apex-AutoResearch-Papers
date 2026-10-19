@@ -1,0 +1,35 @@
+{
+  "exp_id": "qwen3_cp_dryrun",
+  "project": "contrastive_trace_safety",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T06:03:03.467Z",
+    "updated_at": "2026-05-21T09:13:18.041Z",
+    "spec": {
+      "command": "killed before run",
+      "server": "autodl-rtx6000",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "482601",
+      "log_path": "~/runs/contrastive_trace_safety/qwen3_cp_dryrun.log",
+      "submitted_at": "2026-05-20T06:03:03.313Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "N/A",
+      "data_count": 0,
+      "model_name": "N/A",
+      "seed": 0,
+      "wall_clock_seconds": 97814.7,
+      "gpu_hours": 27.17
+    },
+    "conclusion": "killed",
+    "completed_at": "2026-05-21T09:13:18.041Z"
+  },
+  "timestamp": "2026-05-21T09:13:18.159044+00:00",
+  "trigger": "update_registry"
+}

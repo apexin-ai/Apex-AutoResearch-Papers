@@ -1,0 +1,87 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{cocohaner2025}
+\citation{locagent2024}
+\citation{arise2024}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{cocohaner2025}
+\citation{xiong2021approximate}
+\citation{locagent2024}
+\citation{ranger2024}
+\citation{codexgraph2024}
+\citation{arise2024}
+\citation{zobel1998reliable}
+\citation{swesmith2025}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Hard negative mining for code.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Structure-aware code retrieval.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Evaluation methodology in IR.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Task and Training Setup}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Mining Strategies}{2}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Random.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Embedding-distance.}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{BM25.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Dataflow-aware.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Encoders}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Evaluation Protocol}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Main Results: Mining Strategy Comparison}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Qwen2.5-Coder-3B R@1 (pool=8, best-by-R@1 checkpoint). 3 strategies $\times $ 3 seeds.}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:qwen_main}{{1}{3}{Qwen2.5-Coder-3B R@1 (pool=8, best-by-R@1 checkpoint). 3 strategies $\times $ 3 seeds}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces StarCoder2-3B R@1 (pool=8, best-by-R@1 checkpoint). 3 strategies $\times $ 3 seeds.}}{3}{table.2}\protected@file@percent }
+\newlabel{tab:starcoder_main}{{2}{3}{StarCoder2-3B R@1 (pool=8, best-by-R@1 checkpoint). 3 strategies $\times $ 3 seeds}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces BM25 vs other strategies (mean R@1, pool=8, 3 seeds).}}{4}{table.3}\protected@file@percent }
+\newlabel{tab:bm25}{{3}{4}{BM25 vs other strategies (mean R@1, pool=8, 3 seeds)}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}BM25 Baseline}{4}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}UniXcoder: Complete Null Result}{4}{subsection.4.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces UniXcoder-base 125M results. Maximum span across strategies $<$0.4pp in every seed.}}{4}{table.4}\protected@file@percent }
+\newlabel{tab:unixcoder}{{4}{4}{UniXcoder-base 125M results. Maximum span across strategies $<$0.4pp in every seed}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Core Finding: Evaluation Methodology Dominates}{4}{subsection.4.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Methodology confound decomposition. Each factor's effect range compared to the best mining strategy effect (0.4pp).}}{4}{table.5}\protected@file@percent }
+\newlabel{tab:methodology}{{5}{4}{Methodology confound decomposition. Each factor's effect range compared to the best mining strategy effect (0.4pp)}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Pool Size Sensitivity}{5}{subsection.4.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces R@1 by pool size (Qwen, embedding strategy, mean across seeds). Strategy delta is stable; absolute R@1 drops sharply.}}{5}{table.6}\protected@file@percent }
+\newlabel{tab:pool_size}{{6}{5}{R@1 by pool size (Qwen, embedding strategy, mean across seeds). Strategy delta is stable; absolute R@1 drops sharply}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Checkpoint Selection Criterion}{5}{subsection.4.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Impact of checkpoint selection criterion on reported R@1 at pool=50 (Qwen, random strategy, seed 42).}}{5}{table.7}\protected@file@percent }
+\newlabel{tab:criterion}{{7}{5}{Impact of checkpoint selection criterion on reported R@1 at pool=50 (Qwen, random strategy, seed 42)}{table.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Temperature Ablation}{5}{subsection.4.7}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Temperature $\times $ strategy interaction (Qwen and StarCoder, seed 42).}}{5}{table.8}\protected@file@percent }
+\newlabel{tab:temperature}{{8}{5}{Temperature $\times $ strategy interaction (Qwen and StarCoder, seed 42)}{table.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}Data Size Scaling}{6}{subsection.4.8}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Training data size scaling (Qwen, seed 42). Mining advantage diminishes with more data.}}{6}{table.9}\protected@file@percent }
+\newlabel{tab:data_scaling}{{9}{6}{Training data size scaling (Qwen, seed 42). Mining advantage diminishes with more data}{table.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.9}Dynamic Mining Ablation}{6}{subsection.4.9}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Static vs.\ dynamic (per-epoch re-mined) embedding negatives.}}{6}{table.10}\protected@file@percent }
+\newlabel{tab:dynamic}{{10}{6}{Static vs.\ dynamic (per-epoch re-mined) embedding negatives}{table.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.10}RepoBench-R Cross-file Evaluation}{6}{subsection.4.10}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces RepoBench-R results (mean R@1 $\pm $ 95\% CI across 3 seeds).}}{6}{table.11}\protected@file@percent }
+\newlabel{tab:repobench}{{11}{6}{RepoBench-R results (mean R@1 $\pm $ 95\% CI across 3 seeds)}{table.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Stratified embed$-$random $\Delta $ by instance characteristics (Qwen, all seeds pooled).}}{7}{table.12}\protected@file@percent }
+\newlabel{tab:stratified}{{12}{7}{Stratified embed$-$random $\Delta $ by instance characteristics (Qwen, all seeds pooled)}{table.12}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.11}Stratified Analysis}{7}{subsection.4.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.12}Statistical Summary}{7}{subsection.4.12}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Bootstrap 95\% confidence intervals and effect sizes for all primary comparisons.}}{7}{table.13}\protected@file@percent }
+\newlabel{tab:stats}{{13}{7}{Bootstrap 95\% confidence intervals and effect sizes for all primary comparisons}{table.13}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.13}Hop Depth and Fusion Ablations}{7}{subsection.4.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{7}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Why Methodology Dominates}{7}{subsection.5.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Hop depth ablation for dataflow extraction and fusion head comparison.}}{8}{table.14}\protected@file@percent }
+\newlabel{tab:ablation}{{14}{8}{Hop depth ablation for dataflow extraction and fusion head comparison}{table.14}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Encoder-Specificity via Geometry}{8}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Implications for Prior Work}{8}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Limitations}{8}{subsection.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{8}{section.6}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{cocohaner2025}{{1}{2025}{{CoCoHaNeRe}}{{}}}
+\bibcite{locagent2024}{{2}{2024}{{LocAgent}}{{}}}
+\bibcite{ranger2024}{{3}{2024}{{RANGER}}{{}}}
+\bibcite{codexgraph2024}{{4}{2024}{{CodexGraph}}{{}}}
+\bibcite{arise2024}{{5}{2024}{{ARISE}}{{}}}
+\bibcite{xiong2021approximate}{{6}{2021}{{Xiong et~al.}}{{}}}
+\bibcite{zobel1998reliable}{{7}{1998}{{Zobel}}{{}}}
+\bibcite{swesmith2025}{{8}{2025}{{SWE-smith}}{{}}}
+\gdef \@abspage@last{9}

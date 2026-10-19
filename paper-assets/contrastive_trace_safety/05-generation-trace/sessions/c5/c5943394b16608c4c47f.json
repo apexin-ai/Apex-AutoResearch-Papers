@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c5943394b16608c4c47f",
+  "project": "contrastive_trace_safety",
+  "kind": "history",
+  "title": "director / loop_8.md",
+  "task_key": "loop_8",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_8.md",
+    "occurrence": 1,
+    "bytes": 2926,
+    "sha256": "11fd14c731888ee60786227ffed28d6362ff440b0123921348d058d3c5ed10f1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: max_messages\nupdated: '2026-05-25T06:31:23+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目无 GPU 实验（纯论文写作阶段），无 GPU 设备号约束\n- 匿名仓库推送必须用 `_anonymous_repo.json` 中的 push_url，force push 到 `main` 分支：`git push <url> master:main --force`\n- 论文正文严格 ≤8 页（EMNLP 2026 ARR），abstract ≤200 words\n- 已进入审稿阶段（review_chat_id: `oc_4a087be8d8cfffc128323993d357d229`），研究实验方面由 Research Director 继续推进，论文格式/投稿材料由 Group C 团队负责\n\n### 2. 🖥️ 基础设施快照\n- 无远程服务器，所有工作在本地 workspace 完成\n- 论文目录：`/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/docs/paper/`\n- 图表脚本：`scripts/plot_layer_heatmap.py`（Figure 3）等在项目根 `scripts/` 下\n- 编译：`paper_compile_and_check(project=\"contrastive_trace_safety\")` — pdflatex，30 页（含附录）\n- 匿名仓库：`github.com/anonymous-nlp-2026-2/contrastive_trace_safety`\n- 无活跃进程 / 无 tmux / 无 cron 任务\n\n### 3. 📊 当前状态\n刚完成 Figure 3 x 轴标签重叠修复（64 层面板 tick step 8→16），已 commit（c9134ca）并 push 到匿名仓库。\n\n之前完成的大改动（本轮 session）：\n1. Intro/Related Work 压缩（各约减半篇幅）\n2. 叙事重构：主线从 \"HS beats text\" 改为 \"metric-induced layer selection bias reverses conclusions\"\n3. Abstract 重写（180 words，无缩写堆砌）\n4. 证据等级明确化：7-8B cross-validated / 32B suggestive\n5. 从附录提升 tab:negative + tab:ensemble 到正文\n6. 新增 tab:consolidated（Discussion 汇总表）\n7. Discussion 扩充为 4 段（Implications / Practical recommendations / Boundary conditions / Future work）\n\nregistry 无 RUNNING/PREPARING 实验。无等待中的 Worker 回调或 Cron。\n\n### 4. 📋 待办\n- 用户反馈论文其他问题 → 按指令修改，编译验证，commit + push\n- 收到审稿报告 `[审稿报告]` → 按报告末尾的强制处理协议逐条执行（先 Holistic Pass，再 Per-Comment Action Matrix）\n- 用户说\"进入审稿阶段\"或\"重新审稿\" → 必须调 `submit_paper_to_review`\n\n### 5. 🎯 战略上下文\n- 核心贡献是 **metric-induced layer selection bias**（C1），不是 \"HS probe beats text\"。这是贾骁涵明确要求的 reframing，绝不能回退\n- 证据分级：layer bias = 强结论（4 模型 + AdvBench + Gemma-2）；7-8B HS advantage = cross-validated（+20-22pp）；32B = suggestive only（n≤20）\n- 易错点：`paper_compile_and_check` 的 page_status 会把附录页也算入，显示 \"over_limit\"。实际判断正文是否 ≤8 页需要看 PDF 图片（p8/p9 分界线）\n- 两位用户：周俊伟（排版/篇幅）、贾骁涵（叙事/学术质量），贾骁涵的意见优先级更高（editorial direction）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8.md"
+}

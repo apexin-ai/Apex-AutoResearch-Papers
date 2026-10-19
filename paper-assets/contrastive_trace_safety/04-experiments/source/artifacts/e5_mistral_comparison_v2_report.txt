@@ -1,0 +1,110 @@
+E5-Mistral Comparison v2 (Corrected HS Layers)
+============================================================
+
+Layer mapping:
+  R1-8B:   layer_idx=2  -> L14 (stored layers 12-24, offset=12)
+  OT-7B:   layer_idx=16 -> L16 (full layers 0-27)
+  R1-32B:  layer_idx=63 -> L63 (full layers 0-63)
+  QwQ-32B: layer_idx=63 -> L63 (full layers 0-63)
+
+E5-Mistral: intfloat/e5-mistral-7b-instruct (4096d -> PCA 384d)
+MiniLM: all-MiniLM-L6-v2 (384d)
+Probe: LogisticRegression(C=1.0, class_weight='balanced', max_iter=2000)
+Feature: moving average window + StandardScaler
+Permutation test: 10000 resamples, null-centered, two-sided
+Split: 60/20/20, seed=42, trace-level
+
+R1-8B (layer_idx=2, L14, W=3)
+  PCA explained variance: 0.8628
+  Traces: 209 total, 166 train+val, 43 test
+
+  Method                     BA     Prec      FPR
+  ------------------------------------------------
+  E5-Mistral-384d        0.6715   0.4799   0.1937
+  MiniLM-384d            0.6552   0.4339   0.2386
+  HS (L14)               0.7568   0.6298   0.1251
+
+  E5 vs HS permutation:
+    BA:   diff=-0.0854  p=0.0041
+    Prec: diff=-0.1499  p=0.0013
+    FPR:  diff=+0.0687  p=0.0214
+
+OT-7B (layer_idx=16, L16, W=3)
+  PCA explained variance: 0.8455
+  Traces: 228 total, 181 train+val, 47 test
+
+  Method                     BA     Prec      FPR
+  ------------------------------------------------
+  E5-Mistral-384d        0.6308   0.3208   0.2304
+  MiniLM-384d            0.5754   0.2464   0.3152
+  HS (L16)               0.6821   0.4460   0.1379
+
+  E5 vs HS permutation:
+    BA:   diff=-0.0513  p=0.0900
+    Prec: diff=-0.1253  p=0.0089
+    FPR:  diff=+0.0925  p=0.0066
+
+R1-32B (layer_idx=63, L63, W=1)
+  PCA explained variance: 0.8959
+  Traces: 100 total, 80 train+val, 20 test
+
+  Method                     BA     Prec      FPR
+  ------------------------------------------------
+  E5-Mistral-384d        0.6666   0.5061   0.3370
+  MiniLM-384d            0.6273   0.4723   0.3454
+  HS (L63)               0.7419   0.5882   0.2730
+
+  E5 vs HS permutation:
+    BA:   diff=-0.0753  p=0.0910
+    Prec: diff=-0.0821  p=0.2345
+    FPR:  diff=+0.0641  p=0.5333
+
+QwQ-32B (layer_idx=63, L63, W=5)
+  PCA explained variance: 0.8709
+  Traces: 95 total, 76 train+val, 19 test
+
+  Method                     BA     Prec      FPR
+  ------------------------------------------------
+  E5-Mistral-384d        0.6303   0.4471   0.2480
+  MiniLM-384d            0.5431   0.3298   0.3469
+  HS (L63)               0.7194   0.5152   0.2588
+
+  E5 vs HS permutation:
+    BA:   diff=-0.0891  p=0.0758
+    Prec: diff=-0.0681  p=0.3684
+    FPR:  diff=-0.0108  p=0.9010
+
+------------------------------------------------------------
+v1 vs v2 comparison (what changed):
+------------------------------------------------------------
+
+R1-8B [CHANGED]
+  v1: layer_idx=5, W=15
+  v2: layer_idx=2, W=3 (L14, stored layers 12-24, offset=12)
+  v1 HS: BA=0.7555  Prec=0.5323  FPR=0.2114
+  v2 HS: BA=0.7568  Prec=0.6298  FPR=0.1251
+  delta: BA=+0.0013  Prec=+0.0974  FPR=-0.0863
+
+OT-7B [CHANGED]
+  v1: layer_idx=2, W=3
+  v2: layer_idx=16, W=3 (L16, full layers 0-27)
+  v1 HS: BA=0.6385  Prec=0.3724  FPR=0.1645
+  v2 HS: BA=0.6821  Prec=0.4460  FPR=0.1379
+  delta: BA=+0.0437  Prec=+0.0736  FPR=-0.0266
+
+R1-32B [CHANGED]
+  v1: layer_idx=46, W=1
+  v2: layer_idx=63, W=1 (L63, full layers 0-63)
+  v1 HS: BA=0.7236  Prec=0.5525  FPR=0.3203
+  v2 HS: BA=0.7419  Prec=0.5882  FPR=0.2730
+  delta: BA=+0.0183  Prec=+0.0357  FPR=-0.0474
+
+QwQ-32B [UNCHANGED]
+  v1: layer_idx=63, W=5
+  v2: layer_idx=63, W=5 (L63, full layers 0-63)
+  v1 HS: BA=0.7194  Prec=0.5152  FPR=0.2588
+  v2 HS: BA=0.7194  Prec=0.5152  FPR=0.2588
+  delta: BA=+0.0000  Prec=+0.0000  FPR=+0.0000
+
+------------------------------------------------------------
+Total elapsed: 97.3s

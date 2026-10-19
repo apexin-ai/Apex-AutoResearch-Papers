@@ -1,0 +1,49 @@
+{
+  "task": "ensemble_holdout_verification",
+  "models": {
+    "r1_8b": {
+      "layers": {
+        "precision": 14,
+        "ba": 12,
+        "fpr": 13
+      },
+      "n_unique_layers": 3,
+      "window": 15,
+      "ens_precision": 0.6225,
+      "ens_ba": 0.7255,
+      "ens_fpr": 0.1142,
+      "text_precision": 0.4494,
+      "ens_text_delta_pp": 17.3,
+      "bootstrap_p": 0.0672,
+      "paper_ens_prec": 0.565,
+      "paper_ens_text_delta": 19.3,
+      "n_test_traces": 43,
+      "per_layer_metrics": {
+        "L14": {
+          "bal_acc": 0.699,
+          "precision": 0.5801,
+          "fpr": 0.1264
+        },
+        "L12": {
+          "bal_acc": 0.7358,
+          "precision": 0.6087,
+          "fpr": 0.1285
+        },
+        "L13": {
+          "bal_acc": 0.7184,
+          "precision": 0.6131,
+          "fpr": 0.1162
+        }
+      }
+    }
+  },
+  "missing_models": [
+    "ot_7b",
+    "qwq_32b",
+    "r1_32b"
+  ],
+  "missing_reason": "Hidden states for OT-7B, QwQ-32B, R1-32B not available on this server",
+  "timestamp": "2026-05-23T19:53:22",
+  "elapsed_seconds": 184.4,
+  "data_note": "Same data note as BGE verification. Ensemble layers L14/L12/L13 correspond to stored indices 14/12/13 in hidden_states_r1_8b_full (L0-L24). Paper used different data extraction."
+}

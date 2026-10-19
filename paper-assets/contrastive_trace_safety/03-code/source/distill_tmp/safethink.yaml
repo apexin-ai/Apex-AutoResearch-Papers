@@ -1,0 +1,127 @@
+paper_key: "safethink"
+title: "Safety Recovery in Reasoning Models Is Only a Few Early Steering Steps Away"
+venue: "arXiv 2026"
+full_text_available: true
+note: "Literature map lists title as 'SafeThink: Enhancing Safety of Language Models with Chain-of-Thought Based Reasoning' with arxiv_id 2501.14899, but bib and actual paper are arXiv:2602.11096 (Feb 2026). The original arxiv ID resolves to a withdrawn math paper."
+
+research:
+  baselines:
+    - "ZeroThink (empty thinking segment)"
+    - "LessThink (minimal reasoning trace)"
+    - "ZS-SafePath (fixed 8-token safety prefix)"
+    - "AdaShield (comprehensive defense prompt)"
+  metrics:
+    - {name: "Attack Success Rate (ASR)", direction: "lower_better"}
+    - {name: "MathVista Accuracy", direction: "higher_better"}
+    - {name: "Inference Latency (seconds)", direction: "lower_better"}
+  datasets:
+    - {name: "JailbreakV-28K", size: "28,000 adversarial text prompts with diverse images"}
+    - {name: "Hades", size: "5 harm categories × 3 image strategies (SD, TYPO, ADV)"}
+    - {name: "FigStep", size: "10 restricted categories with typographic images"}
+    - {name: "MM-SafetyBench", size: "13 restricted categories × 3 image modalities"}
+    - {name: "MathVista", size: "used for utility preservation evaluation"}
+  ablation_dimensions:
+    - "Safety threshold τ (range: -0.3 to 0.3)"
+    - "Steering token selection (5 candidates)"
+    - "Steering depth m (number of early steps)"
+    - "Safety reward model choice (Llama-Guard-3 vs Qwen-Guard-3)"
+    - "Sample budget k"
+  training_recipe:
+    optimizer: "N/A (inference-time method, no training)"
+    lr: "N/A"
+    hardware: "Nvidia RTX A6000"
+    software: "Python 3.12.8, Transformers 4.53.0, PyTorch 2.7.1"
+    steering_token_construction: "500 validation samples + GPT-4 generated corrective phrases"
+    optimal_steering_token: "Wait, think safely"
+    safety_threshold: "τ = 0"
+    sample_budget: "k = 3"
+  method_family: "inference-time safety steering via conditional prefix injection"
+
+positioning:
+  core_claim: "Safety recovery in RL-finetuned reasoning models requires only 1-3 early steering steps at inference time, achieving 30-60% ASR reduction without sacrificing reasoning capability."
+  key_results: "LlamaV-o1 ASR: 63.33% → 5.74% on JailbreakV-28K; R1-Onevision ASR: 69.07% → 5.65% on Hades; MathVista accuracy preserved within ±0.5%; latency overhead only 0.4s (7.62s → 8.02s avg)"
+  limitations:
+    - "Effectiveness depends on quality of external safety reward model (Llama-Guard-3/Qwen-Guard-3)"
+    - "Only evaluated on multimodal reasoning models (7B scale), not text-only or larger models"
+    - "Steering token set constructed offline with GPT-4, may not generalize to all attack types"
+    - "Assumes access to reliable safety reward models"
+  relation_to_us: "complementary"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "RL-based reasoning finetuning creates a 'reasoning tax on safety' — models become smarter but dramatically less safe (69% ASR on Hades for R1-Onevision vs 19% for base model)"
+  tension: "Existing defenses either kill reasoning (ZeroThink/LessThink lose 9-17% MathVista accuracy) or are ineffective (ZS-SafePath/AdaShield barely reduce ASR). The safety-reasoning tradeoff seems fundamental."
+  key_insight: "Revealed in the satisficing principle section and Figure 4: safe continuations exist latently in reasoning models but have near-zero probability under adversarial conditioning. Intervening at just the first 1-3 reasoning steps is sufficient to redirect the entire generation trajectory — safety recovery is 'only a few steering steps away.'"
+  argument_chain: "Problem (reasoning tax on safety) → Analysis (conditional coverage collapse explains why naive sampling fails) → Theory (satisficing principle: threshold-based safety > maximization) → Method (conditional step-wise steering with lightweight prefix injection) → Key Insight (few-step sufficiency) → Validation (30-60% ASR reduction across 6 models × 4 benchmarks with preserved reasoning)"
+  contribution_framing: "4 contributions listed: (1) theoretical framing (satisficing safety), (2) method (conditional step-wise steering), (3) empirical discovery (few-step sufficiency), (4) comprehensive evaluation. Heavy emphasis on the theoretical framing distinguishing from prior work."
+  intro_structure: "~6 paragraphs: (1) problem statement — reasoning finetuning degrades safety, (2) quantify the gap with specific numbers, (3) critique existing defenses, (4) introduce satisficing principle as conceptual solution, (5) describe SafeThink mechanism, (6) summarize contributions"
+  notable_technique: "The 'satisficing' framing is rhetorically powerful — by arguing safety should be threshold-based rather than maximized, they justify why lightweight intervention works and pre-empt the objection that their method isn't 'safe enough.' The few-step sufficiency claim is also a compelling narrative device, compressing a complex inference-time algorithm into an intuitive takeaway."
+
+figures:
+  figure_count: 16
+  figure1:
+    type: "method_overview"
+    description: "Two-panel figure. (a) Flow diagram: adversarial query → reasoning MLRM → unsafe reasoning → unsafe response (top path, red-shaded); SafeThink path below shows safety steering tokens injected at Steps 1-2, then normal Steps 3-4, leading to recovered safe response + preserved reasoning utility. (b) Bar chart showing safety and reasoning scores across three stages: Base MLRM (high safety, low reasoning) → Reasoning MLRM (low safety, high reasoning) → Reasoning MLRM + SafeThink (high safety, high reasoning)."
+    narrative_role: "Establishes the problem (reasoning tax) and solution (targeted steering) in one visual. The bar chart in (b) is particularly effective as a teaser result showing SafeThink recovers safety without losing reasoning."
+    design_elements: ["two-panel layout (process + result)", "red-shaded unsafe path vs green safe path", "robot icon for reasoning model", "green checkmark for safe response", "bar chart with before/after/with-method comparison"]
+    visual_style: "Clean flow diagram with color-coded safety states (red=unsafe, green=safe). The bar chart uses contrasting blue/orange bars with explicit 'Reasoning Tax' and 'Safety Steering' arrows annotating the transitions. Light background with rounded boxes."
+  result_figures:
+    - figure_id: "Figure 6"
+      viz_type: "grouped_bar_chart"
+      what_compared: "ASR across 6 defense methods (Original, ZeroThink, LessThink, ZS-SafePath, AdaShield, SafeThink) for 6 models on JailbreakV-28K"
+      how_gain_highlighted: "SafeThink bars (red/coral) are dramatically shorter than all others; exact ASR values annotated in red text above SafeThink bars (10.4, 1.1, 4.4, 3.6, 5.7, 6.6)"
+      design_note: "Color palette uses dark teal → green → yellow → orange for baselines, with SafeThink in distinctive coral/red. Only SafeThink values are annotated, drawing eye directly to the gap. Clean horizontal gridlines."
+    - figure_id: "Figure 7"
+      viz_type: "grouped_bar_chart"
+      what_compared: "Same comparison on Hades benchmark"
+      how_gain_highlighted: "Same annotation strategy with red values for SafeThink"
+      design_note: "Consistent visual language across all benchmark figures"
+    - figure_id: "Figure 9"
+      viz_type: "grouped_bar_chart"
+      what_compared: "MathVista accuracy across defense methods — utility preservation"
+      how_gain_highlighted: "SafeThink bars match or exceed Original, while ZeroThink/LessThink show visible drops"
+      design_note: "Paired with safety figures to demonstrate no accuracy degradation"
+  ablation_figures:
+    - figure_id: "Figure 4"
+      viz_type: "line_plot (3 panels)"
+      dimensions_varied: ["steering depth m (0-6)", "model identity"]
+      design_note: "Three panels (R1-Onevision, VLAA-Thinker, Vision-R1) showing ASR vs steering depth. Steep drop in first 1-3 steps then plateau, visually confirming the 'few-step sufficiency' claim."
+    - figure_id: "Figure 5"
+      viz_type: "scatter/ranking plot (2 panels)"
+      dimensions_varied: ["steering token candidates", "safety success probability vs KL divergence"]
+      design_note: "Panel (a) shows P_safe for each token, panel (b) shows KL divergence. 'Wait, think safely' appears optimal on both axes."
+    - figure_id: "Figure 14"
+      viz_type: "multi-line plot"
+      dimensions_varied: ["safety threshold τ", "safety rate vs MathVista accuracy"]
+      design_note: "Shows the safety-accuracy tradeoff as τ increases. Safety plateaus while accuracy degrades beyond τ=0, justifying the chosen threshold."
+  figure_narrative_role: "Figure 1 (method overview + teaser) → Figure 2 (why naive sampling fails) → Figure 3 (satisficing principle validation) → Figure 4 (few-step sufficiency — key insight) → Figure 5 (steering token selection) → Figures 6-8,11 (main results across 4 benchmarks) → Figure 9 (utility preservation) → Figures 10,15,16 (qualitative examples) → Figures 12-13 (robustness to reward model) → Figure 14 (threshold ablation)"
+
+tables:
+  table_count: 4
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "defense strategies"
+    col_axis: "Avg Time (sec) | ASR (%) | Reasoning Acc (%)"
+    row_organization: "by_category"
+    col_organization: "flat"
+    highlight_strategy: "Not explicitly bold/underline; SafeThink row stands out by having lowest ASR (5.30%) and highest reasoning accuracy (63.46%) among defenses"
+    statistical_reporting: "Single-run averages across 6 MLRMs, 100 samples per model"
+    num_baselines: 4
+    design_note: "Compact summary table combining latency, safety, and utility in one view. Effective for the latency argument — SafeThink adds only 0.4s while being dramatically better on safety."
+  ablation_tables:
+    - table_id: "Table 2"
+      what_varied: ["defense strategy × model × image type (noise/blank/nature/SD)"]
+      variation_style: "full_numbers"
+      design_note: "Detailed JailbreakV-28K breakdown by image attack type. Shows SafeThink effective across all image modalities."
+    - table_id: "Table 3"
+      what_varied: ["defense strategy × model × harm category (Animal/Financial/Privacy/Self-Harm/Violence)"]
+      variation_style: "full_numbers"
+      design_note: "Hades per-category breakdown. Demonstrates consistent gains across harm types."
+    - table_id: "Table 4"
+      what_varied: ["defense strategy × model × 10 restricted categories on FigStep"]
+      variation_style: "full_numbers"
+      design_note: "Fine-grained FigStep results with 10 category abbreviations. Most detailed table."
+  supplementary_tables:
+    in_appendix: true
+    content: "Tables 2-4 are effectively supplementary detail tables supporting the main bar chart figures. Additional qualitative examples (Figures 10, 15, 16) in appendix."
+    reason: "Main results presented as figures (grouped bar charts) for visual impact; tables provide fine-grained per-category breakdowns for thoroughness."

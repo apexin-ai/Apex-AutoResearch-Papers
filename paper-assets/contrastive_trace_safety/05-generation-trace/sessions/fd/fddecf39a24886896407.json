@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fddecf39a24886896407",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code r8 qwq position control",
+  "task_key": "worker_code_r8_qwq_position_control_20260518T070944",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r8_qwq_position_control_20260518T070944_result.json",
+    "occurrence": 1,
+    "bytes": 1152,
+    "sha256": "457677149ccc52f843188fad42ad78fc322c767f474fcc25ffb27df9f1f4ae02"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nQwQ-32B Position Control (L60, W=3):\n\n| Method              | Bal_Acc | Precision | FPR   |\n|---------------------|---------|-----------|-------|\n| HS-only (baseline)  | 0.796   | 0.564     | 0.217 |\n| Position-only       | 0.832   | 0.519     | 0.241 |\n| Residualized HS (a) | 0.612   | 0.361     | 0.342 |\n| HS + Position (b)   | 0.794   | 0.557     | 0.220 |\n```\n\n**解读：**\n\n- **Residualized HS << HS-only** (bal_acc 下降 18.3pp, precision 下降 20.3pp, FPR 上升 12.5pp) → **HS probe 严重依赖位置信息**。去掉位置后 HS 几乎丧失判别力，residualized 性能甚至低于 position-only baseline。\n\n- **HS+Position ≈ HS-only** (差异 <0.5pp) → HS features 已经内含位置信息，显式加入 position features 无增量。（注：PCA(500) 在 15362 维中会淹没 2 维 position features，但这恰好反映 HS 本身已编码位置。）\n\n- **结论：QwQ-32B L60 的 HS probe 大部分预测力来自位置信息，而非 safety-specific 的内容信号。** Position-only (0.832) > HS-only (0.796) > Residualized HS (0.612)，说明 HS 中的 content-only 信号很弱。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r8-qwq-position-control.md"
+}

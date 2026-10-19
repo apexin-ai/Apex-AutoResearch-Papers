@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "80b016cc0b35af74c331",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "paper writing conclusion d032",
+  "task_key": "worker_paper_writing_conclusion_d032_20260517T170304",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_conclusion_d032_20260517T170304_result.json",
+    "occurrence": 1,
+    "bytes": 600,
+    "sha256": "4f775d6532f5ce081d0c79e87ae48e5c5c44697414944ccf8d2a2eba2f7a7463"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The `-ing` matches are nouns (\"probing\", \"patching\", \"settings\"), not the prohibited participial phrase endings like \"..., demonstrating the effectiveness of...\". All style rules pass.\n\nConclusion written to `conclusion.tex`: 2 paragraphs, ~350 words, reflecting the D032 reframe. Para 1 covers the universal HS advantage (12/12 Holm-Bonferroni, +15.4 to +23.6pp) and the layer selection bias as the true moderator. Para 2 covers practical defaults (W=3-15, pure bal_acc), per-model validation needs, the 39-62% FPR / 85.5% oracle gap characterization, and future directions."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-conclusion-d032.md"
+}

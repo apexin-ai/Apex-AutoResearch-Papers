@@ -1,0 +1,1 @@
+BGE-large 60/20/20 results on server: /root/autodl-tmp/contrastive_trace_safety/artifacts/bge_large_60_20_20/\n\nHB correction (HS vs BGE, 12 tests): 3/12 reject — only OT-7B 3/3 pass\nHS advantage directionally positive across all 4 models\nBGE vs MiniLM: mostly NS\n\nWARNING: HS layer_idx may need verification (worker spawned before layer correction)

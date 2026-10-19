@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b022e1a18bd6dada08f",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code coverage bias selectivity gru seed",
+  "task_key": "worker_code_coverage_bias_selectivity_gru_seed_20260517T131645",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_coverage_bias_selectivity_gru_seed_20260517T131645_result.json",
+    "occurrence": 1,
+    "bytes": 1785,
+    "sha256": "82d2743986c2b7e9d9c4f2f77f27852cd243eaf65af2a7a2a1a1fda59090d4cc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三项任务全部完成。\n\n---\n\n## 结果汇总\n\n### Task A: Coverage/排除偏差分析\n\n| Model | Total | Included | Excluded | Rate | Flag |\n|-------|-------|----------|----------|------|------|\n| r1_8b | 268 | 209 | 59 | 22.0% | HIGH |\n| r1_32b | 100 | 100 | 0 | 0.0% | LOW |\n| qwq_32b | 95 | 95 | 0 | 0.0% | LOW |\n\nr1_8b 排除的 59 条 traces 全部是 jailbreak 且无任何 safety label（模型直接生成有害内容，没有安全推理阶段）。排除 traces 显著更短（mean 38.0 vs 46.3, Mann-Whitney p=0.0001）。排除是任务定义的固有限制（无 commitment point 可标注），非采样偏差。\n\n### Task B: R1-32B Layer 10 Selectivity CI\n\n| Metric | Value |\n|--------|-------|\n| Real accuracy | 0.7077 |\n| Random mean | 0.5511 |\n| Selectivity | **15.7pp** |\n| Bootstrap mean | 15.9pp |\n| Bootstrap std | 3.1pp |\n| 95% CI | **[9.7, 21.9]pp** |\n| p-value | **< 0.001** |\n\nLayer 10 selectivity 显著 > 0。注意：使用 static features + PCA(128)，结果为 15.7pp 而非预期的 7.5pp，可能因特征类型（static vs temporal）或 PCA 配置不同。\n\n### Task C: GRU Per-Seed 70/30\n\n| Seed | bal_acc | crossing | lead | fpr |\n|------|---------|----------|------|-----|\n| 42 | 0.796 | 0.714 | 2.96 | 0.143 |\n| 123 | 0.743 | 0.778 | 11.16 | 0.311 |\n| 456 | 0.729 | 0.508 | 9.03 | 0.179 |\n| 789 | 0.833 | 0.683 | 7.65 | 0.187 |\n| 1024 | 0.758 | 0.873 | 10.09 | 0.328 |\n| **mean±std** | **0.772±0.038** | **0.711±0.121** | **8.2±2.9** | **0.229±0.075** |\n\n对比原 single-seed (bal_acc=0.839, cross=0.721, lead=3.5)：bal_acc 多 seed 均值降低约 6.7pp，方差较小(std=0.038)；crossing_rate 稳定；lead_mean 方差大(std=2.9)，说明 lead time 对数据划分敏感。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-coverage-bias-selectivity-gru-seed.md"
+}

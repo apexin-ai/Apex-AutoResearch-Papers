@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "91703fd6008db2ff300f",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "verification bge 1024d ensemble",
+  "task_key": "worker_verification_bge_1024d_ensemble_20260523T112237",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verification_bge_1024d_ensemble_20260523T112237_result.json",
+    "occurrence": 1,
+    "bytes": 2195,
+    "sha256": "4545fb6c40813ec3979bad0b374583a69861c990e395c923d5b4b2d2ce867fa1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "JSON 文件已复制到本地。以下是验证报告。\n\n---\n\n## 验证报告\n\n### 可验证范围\n\n4 个模型中，**仅 R1-8B** 的 hidden states 存在于 westd-15904 服务器上。OT-7B、QwQ-32B、R1-32B 的 hidden states 均不存在。\n\n### 数据不一致性（关键发现）\n\n服务器上的 `hidden_states_r1_8b_full/` 目录包含 **25 层 (L0-L24)**，与论文使用的 `hidden_states/` 目录 (**13 层 L12-L24**) 不同。原始数据目录已不在服务器上。对所有 25 层做 precision sweep，最高值为 0.585 (idx=19)，无法达到论文的 0.629。这表明两个数据集来自不同的提取流程。\n\n### Task 4: BGE-1024d 文本编码器对比 (R1-8B)\n\n| 指标 | 本次验证 | 论文值 |\n|------|---------|--------|\n| HS Precision | 0.539 | 0.629 |\n| BGE-1024d Text Precision | 0.514 | 0.429 |\n| ΔPrec (pp) | **+2.4** | **+5.8** |\n| Bootstrap p | 0.044 | — |\n\n**方向一致**（HS > Text），但绝对值因数据提取差异而偏移。HS precision 低于论文，text precision 高于论文，导致 gap 缩小。\n\n### Task 5: 3-metric Ensemble Holdout (R1-8B)\n\n| 指标 | 本次验证 | 论文值 |\n|------|---------|--------|\n| Ens Precision | 0.623 | 0.565 |\n| Text Precision | 0.449 | 0.272 |\n| Ens−Text (pp) | **+17.3** | **+19.3** |\n| Bootstrap p | 0.067 | ≤0.002 |\n\nEnsemble 选层：L14 (precision-best), L12 (BA-best), L13 (FPR-best)。方向一致，但 p 值偏高（0.067 vs ≤0.002），与数据差异一致。\n\n### 缺失数据与重现步骤\n\n要完整重现论文结果，需要：\n\n1. **原始 hidden_states 目录**（R1-8B, 13 层 L12-L24）— 已不在服务器上。需用原始提取代码重新从 R1-8B 模型提取，或从备份恢复。\n2. **OT-7B hidden states** — 需从 OpenThinker-7B 模型提取 (对应层范围待确认)。\n3. **QwQ-32B hidden states** — 需从 QwQ-32B-preview 模型提取 (L63 为目标层)。\n4. **R1-32B hidden states** — 需从 DeepSeek-R1-32B 模型提取 (L63 为目标层)。\n5. **Text embedding .pkl 文件** — MiniLM-384d 和 BGE-1024d 的预计算 embeddings，可用验证脚本中的编码逻辑重新生成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verification-bge-1024d-ensemble.md"
+}

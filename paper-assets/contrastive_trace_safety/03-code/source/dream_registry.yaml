@@ -1,0 +1,176 @@
+dreams:
+  dream_20260516T194646:
+    dream_id: dream_20260516T194646
+    project: contrastive_trace_safety
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 'Key risks: (1) method is too simple (temporal LR) — reviewers may say
+      no novelty; (2) negative lead time finding may be seen as limitation not contribution;
+      (3) cross-architecture results unknown — if temporal advantage doesn''t hold
+      on Qwen2.5 models, Claim 2 weakens significantly. Evaluate whether coverage
+      story + negative finding + cross-architecture empirical study is enough for
+      EMNLP Main vs Findings.'
+    what_if: []
+    pid: 821497
+    chat_id: oc_2af5cf9f542b9e0dc11648403c217173
+    card_message_id: om_x100b6fb8d4436ca0c31325c167a4d48
+    started_at: '2026-05-16T19:46:46+00:00'
+    updated_at: '2026-05-16T20:23:40+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 1589a1a01d991074029ebd29817839c4354e13e3e9d862198f8c8a6c081a3479
+  dream_20260516T203948:
+    dream_id: dream_20260516T203948
+    project: contrastive_trace_safety
+    status: failed
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 'Key improvements since last dream: (1) GRU achieves +4.7 lead time (Claim
+      3 now ''unreliable positive'' not ''no method achieves''), (2) text-based baseline
+      added (exp-013) to prove hidden-state unique value, (3) BOCPD change-point detection
+      added (exp-014) as novel method component addressing lead-time gap, (4) FPR
+      analysis on safe traces added (exp-015), (5) expanded metrics: AUROC, PR curves,
+      detection delay CDF. Related work now covers: Zou 2023 RepE, Arditi 2024 refusal
+      direction, Lightman 2023 PRMs, Adams & MacKay 2007 BOCPD. Title will drop ''Contrastive''.'
+    what_if: []
+    pid: null
+    chat_id: oc_2af5cf9f542b9e0dc11648403c217173
+    card_message_id: om_x100b6fb92f8054a0c383cbb57285c68
+    started_at: '2026-05-16T20:39:48+00:00'
+    updated_at: '2026-05-16T21:08:39+00:00'
+    stages_completed:
+    - imagine
+    error: 'zombie: orchestrator process crashed'
+    context_hash: 07df61cb0f33376ac0541a9a07756ff2edfa463b3051c8beeb908ef93c46a886
+  dream_20260516T210856:
+    dream_id: dream_20260516T210856
+    project: contrastive_trace_safety
+    status: failed
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 'Key improvements since last dream: (1) GRU achieves +4.7 lead time (Claim
+      3 now ''unreliable positive'' not ''no method achieves''), (2) text-based baseline
+      added (exp-013) to prove hidden-state unique value, (3) BOCPD change-point detection
+      added (exp-014) as novel method component addressing lead-time gap, (4) FPR
+      analysis on safe traces added (exp-015), (5) expanded metrics: AUROC, PR curves,
+      detection delay CDF. Related work now covers: Zou 2023 RepE, Arditi 2024 refusal
+      direction, Lightman 2023 PRMs, Adams & MacKay 2007 BOCPD. Title will drop ''Contrastive''.'
+    what_if: []
+    pid: null
+    chat_id: oc_2af5cf9f542b9e0dc11648403c217173
+    card_message_id: om_x100b6fb98046f4a0c4d238f9de95d73
+    started_at: '2026-05-16T21:08:56+00:00'
+    updated_at: '2026-05-16T21:23:34+00:00'
+    stages_completed: []
+    error: 'zombie: orchestrator process crashed'
+    context_hash: 9610901be8759811912d9b54e90e64041d46eadaabfee2e706a2089edfc8139c
+  dream_20260516T212347:
+    dream_id: dream_20260516T212347
+    project: contrastive_trace_safety
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 'Key improvements since last dream: (1) GRU achieves +4.7 lead time (Claim
+      3 now ''unreliable positive'' not ''no method achieves''), (2) text-based baseline
+      added (exp-013) to prove hidden-state unique value, (3) BOCPD change-point detection
+      added (exp-014) as novel method component addressing lead-time gap, (4) FPR
+      analysis on safe traces added (exp-015), (5) expanded metrics: AUROC, PR curves,
+      detection delay CDF. Related work now covers: Zou 2023 RepE, Arditi 2024 refusal
+      direction, Lightman 2023 PRMs, Adams & MacKay 2007 BOCPD. Title will drop ''Contrastive''.'
+    what_if: []
+    pid: 837990
+    chat_id: oc_2af5cf9f542b9e0dc11648403c217173
+    card_message_id: om_x100b6fba488e70a4c4e0938cfc4e3f4
+    started_at: '2026-05-16T21:23:47+00:00'
+    updated_at: '2026-05-16T22:12:23+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 56e9a653e46f6e5952bdcbb0343aa5f1d350df2bc573178cfbfd34721a7bf08f
+  dream_20260521T212242:
+    dream_id: dream_20260521T212242
+    project: contrastive_trace_safety
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: emnlp-2026
+    focus: 'Evaluate whether adding CV-validated ensemble results (currently p≤0.002
+      without CV) meaningfully improves paper acceptance probability at EMNLP 2026.
+      Key question: does upgrading ensemble from ''preliminary'' to ''CV-validated''
+      move the needle from Findings to Main, or is it marginal? Also assess current
+      paper state post-R30 fixes (commit 322b668) — are there any OTHER low-cost improvements
+      the dream reviewers would prioritize?'
+    what_if:
+    - name: ensemble_cv_7b
+      claim: C1 (layer selection bias mitigation)
+      description: 5-fold CV validation of multi-metric ensemble layer selection on
+        7-8B models (R1-8B + OT-7B). Validates that ensemble eliminates metric-induced
+        bias under cross-validation, upgrading from preliminary to validated diagnostic
+        guidance.
+      estimated_gpu_hours: 0.5
+    pid: 1827424
+    chat_id: oc_2af5cf9f542b9e0dc11648403c217173
+    card_message_id: om_x100b6fc3349894a0c43802be5982bf7
+    started_at: '2026-05-21T21:22:42+00:00'
+    updated_at: '2026-05-21T22:23:55+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: c9cbd92e269a330364e3765a143ab1aaea4917c681f9c720d0c2764f66612287
+    review_quality:
+      best: simulated
+      median: simulated
+      worst: simulated
+  dream_20260522T085530:
+    dream_id: dream_20260522T085530
+    project: contrastive_trace_safety
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: emnlp-2026
+    focus: 'Evaluate whether adding AdvBench layer selection bias replication moves
+      the paper from Findings (3.0) toward Borderline Conference (3.5). Previous Dream
+      scored 3.0 across all tiers. Key question: does cross-dataset C1 validation
+      meaningfully strengthen the paper?'
+    what_if:
+    - name: advbench_layer_bias_replication
+      claim: C1 (layer selection bias)
+      description: 'Replicate layer selection bias on AdvBench using jailbreak/safe
+        binary labels (no CP needed). Train probes on R1-8B AdvBench traces, run 5-metric
+        layer selection analysis. Expected: CR-composite selects shallow layers, threshold-based
+        selects deep layers, confirming bias is model-geometric not dataset-specific.
+        Results in appendix table + main text one-sentence reference.'
+      estimated_gpu_hours: 6.0
+    pid: 1888077
+    chat_id: oc_2af5cf9f542b9e0dc11648403c217173
+    card_message_id: om_x100b6e35eee3908cc3c4f3204f20a15
+    started_at: '2026-05-22T08:55:30+00:00'
+    updated_at: '2026-05-22T10:14:19+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: ba1acee39bc48da38eb136c319be600dbdbeca33fa04970292bdb2239c8a120c
+    review_quality:
+      best: simulated
+      median: simulated
+      worst: simulated

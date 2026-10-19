@@ -1,0 +1,320 @@
+{
+  "schema_version": "1.0",
+  "id": "dbd236cb3058d797bf8d",
+  "project": "contrastive_trace_safety",
+  "kind": "conversation",
+  "title": "research arxiv verification r6",
+  "task_key": "worker_research_arxiv_verification_r6_20260518T015913",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_research_arxiv_verification_r6_20260518T015913.jsonl",
+    "occurrence": 1,
+    "bytes": 17769,
+    "sha256": "fec1179d6aa5d63baa397994193560e811a5a74227f2f47b8dc075c51b97548a"
+  },
+  "statistics": {
+    "messages": 15,
+    "user_turns": 0,
+    "tool_calls": 7,
+    "roles": {
+      "tool_call": 7,
+      "tool_result": 7,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-18T02:00:24.294428+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arxiv_verification_r6_20260518T015913",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebSearch",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-18T02:00:24.294989+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arxiv_verification_r6_20260518T015913",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-18T02:00:24.295167+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arxiv_verification_r6_20260518T015913",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "site:arxiv.org 2504.05419"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-18T02:00:24.295301+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arxiv_verification_r6_20260518T015913",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "site:arxiv.org 2510.21285"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-18T02:00:24.295423+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arxiv_verification_r6_20260518T015913",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "site:arxiv.org 2605.13772"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-18T02:00:24.295577+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"site:arxiv.org 2510.21285\"\n\nLinks: [{\"title\":\"[2510.21285] When Models Outthink Their Safety: Unveiling and Mitigating Self-Jailbreak in Large Reasoning Models\",\"url\":\"https://arxiv.org/abs/2510.21285\"},{\"title\":\"When Models Outthink Their Safety: Unveiling and Mitigating Self-Jailbreak in Large Reasoning Models\",\"url\":\"https://arxiv.org/html/2510.21285\"},{\"title\":\"Diffusion Transformers with Representation Autoencoders\",\"url\":\"https://arxiv.org/html/2510.11690v1\"},{\"title\":\"[2509.21285] Decaying superfluid turbulence near an anomalous non-thermal fixed point\",\"url\":\"https://arxiv.org/abs/2509.21285\"},{\"title\":\"[2510.15089] Stability of the spatially homogeneous Landau equation in relative entropy and applications to score-based numerical methods\",\"url\":\"https://arxiv.org/abs/2510.15089\"},{\"title\":\"Arxiv\",\"url\":\"https://arxiv.org/pdf/2407.21285\"},{\"title\":\"Mathematics Oct 2025\",\"url\":\"https://arxiv.org/list/math/2025-10?skip=2300&show=100\"},{\"title\":\"[2511.21285] PEFT-Bench: A Parameter-Efficient Fine-Tuning Methods Benchmark\",\"url\":\"https://arxiv.org/abs/2511.21285\"},{\"title\":\"[2502.21285] Power sum expansions for Kromatic symmetric functions using Lyndon heaps\",\"url\":\"https://arxiv.org/abs/2502.21285\"},{\"title\":\"Contents\",\"url\":\"https://arxiv.org/html/2510.02782\"}]\n\nBased on the search results, the arXiv paper **2510.21285** is titled \"When Models Outthink Their Safety: Unveiling and Mitigating Self-Jailbreak in Large Reasoning Models.\"\n\nThe paper addresses safety issues in Large Reasoning Models (LRMs). The authors uncover a failure mode called \"Self-Jailbreak,\" where models initially recognize the harmful intent of a query, but override this judgment during subsequent reasoning steps, ultimately generating unsafe outputs. They propose Chain-of-Guardrail (CoG), a trajectory-level training framework that mitigates Self-Jailbreak via targeted, step-level interventions while maintaining reasoning ability.\n\n\nREMINDER: You MUST include t\n…[truncated 72 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arxiv_verification_r6_20260518T015913",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-18T02:00:24.295802+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"site:arxiv.org 2504.05419\"\n\nLinks: [{\"title\":\"[2504.05419] Reasoning Models Know When They're Right: Probing Hidden States for Self-Verification\",\"url\":\"https://arxiv.org/abs/2504.05419\"},{\"title\":\"Reasoning Models Know When They’re Right: Probing Hidden States for Self-Verification\",\"url\":\"https://arxiv.org/html/2504.05419\"},{\"title\":\"[2505.05419] A new time-dependent quantum theory based on Tsallis' distribution\",\"url\":\"https://arxiv.org/abs/2505.05419\"},{\"title\":\"[2502.05419] The non-conservative compressible two-fluid system with common pressure: Global existence and sharp time asymptotics\",\"url\":\"https://arxiv.org/abs/2502.05419\"},{\"title\":\"[2501.05419] Caroli-de Gennes-Matricon Analogs in Full-Shell Hybrid Nanowires\",\"url\":\"https://arxiv.org/abs/2501.05419\"},{\"title\":\"arXiv:2406.05419v1 [math.CO] 8 Jun 2024 FOUNDATIONS OF ITERATED STAR MAPS\",\"url\":\"https://arxiv.org/pdf/2406.05419\"},{\"title\":\"1 Introduction\",\"url\":\"https://arxiv.org/html/2505.05419\"},{\"title\":\"Caroli–de Gennes–Matricon Analogs in Full-Shell Hybrid Nanowires\",\"url\":\"https://arxiv.org/html/2501.05419\"},{\"title\":\"[2507.05419] Motion Generation: A Survey of Generative Approaches and Benchmarks\",\"url\":\"https://arxiv.org/abs/2507.05419\"},{\"title\":\"[2511.05419] Crossing the veil of the brightest radio relic in the sky MACS J0717.6+3745\",\"url\":\"https://arxiv.org/abs/2511.05419\"}]\n\nBased on the search results, I found the paper you're looking for:\n\n**Title:** \"Reasoning Models Know When They're Right: Probing Hidden States for Self-Verification\"\n\n**Key Information:**\n- The paper addresses how reasoning models have achieved remarkable performance on math and logical reasoning tasks, but still suffer from overthinking, often performing unnecessary reasoning steps even after reaching the correct answer.\n\n- The work studies whether reasoning models encode information about answer correctness through probing the model's hidden states, and the resulting probe can verify interme\n…[truncated 630 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arxiv_verification_r6_20260518T015913",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-18T02:00:24.296001+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"site:arxiv.org 2605.13772\"\n\nLinks: [{\"title\":\"[2605.13772] Where Does Reasoning Break? Step-Level Hallucination Detection via Hidden-State Transport Geometry\",\"url\":\"https://arxiv.org/abs/2605.13772\"},{\"title\":\"[2605.01172] A Theory of Generalization in Deep Learning\",\"url\":\"https://arxiv.org/abs/2605.01172\"},{\"title\":\"[2601.13772] A Blockchain-Oriented Software Engineering Architecture for Carbon Credit Certification Systems\",\"url\":\"https://arxiv.org/abs/2601.13772\"},{\"title\":\"Where Does Reasoning Break? Step-Level Hallucination Detection via Hidden-State Transport Geometry\",\"url\":\"https://arxiv.org/html/2605.13772\"},{\"title\":\"[2605.12832] Digital Twins as Synthetic Controls in Single-Arm Trials\",\"url\":\"https://arxiv.org/abs/2605.12832\"},{\"title\":\"HDPO: Hybrid Distillation Policy Optimization via Privileged Self-Distillation\",\"url\":\"https://arxiv.org/pdf/2603.23871\"},{\"title\":\"Machine Learning\",\"url\":\"https://arxiv.org/list/cs.LG/recent?skip=149&show=1000\"},{\"title\":\"[2605.05242] Beyond Semantic Similarity: Rethinking Retrieval for Agentic Search via Direct Corpus Interaction\",\"url\":\"https://arxiv.org/abs/2605.05242\"},{\"title\":\"[2603.07952] VisualAD: Language-Free Zero-Shot Anomaly Detection via Vision Transformer\",\"url\":\"https://arxiv.org/abs/2603.07952\"},{\"title\":\"[2603.23871] HDPO: Hybrid Distillation Policy Optimization via Privileged Self-Distillation\",\"url\":\"https://arxiv.org/abs/2603.23871\"}]\n\nBased on the search results, I found the paper you're looking for:\n\n**Title:** \"Where Does Reasoning Break? Step-Level Hallucination Detection via Hidden-State Transport Geometry\"\n\n**arXiv ID:** 2605.13772\n\n**Authors:** Tyler Alvarez and Ali Baheri\n\n**Key Findings:**\n\nLarge language models hallucinate during multi-step reasoning, but most existing detectors operate at the trace level: they assign one confidence score to a full output, fail to localize the first error, and often require multiple sampled completions.\n\nThe paper proposes a n\n…[truncated 750 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arxiv_verification_r6_20260518T015913",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-18T02:00:24.296200+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arxiv_verification_r6_20260518T015913",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "arxiv 2504.05419 \"Reasoning Models Know When They're Right\" authors Stechly"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-18T02:00:24.296342+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arxiv_verification_r6_20260518T015913",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "arxiv 2510.21285 \"When Models Outthink Their Safety\" authors Mao"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-18T02:00:24.296466+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arxiv_verification_r6_20260518T015913",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "arxiv 2605.13772 \"Where Does Reasoning Break\" authors 2026"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-18T02:00:24.296674+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"arxiv 2504.05419 \"Reasoning Models Know When They're Right\" authors Stechly\"\n\nLinks: [{\"title\":\"[2504.05419] Reasoning Models Know When They're Right: Probing Hidden States for Self-Verification\",\"url\":\"https://arxiv.org/abs/2504.05419\"},{\"title\":\"Reasoning Models Know When They’re Right: Probing Hidden States for Self-Verification\",\"url\":\"https://arxiv.org/html/2504.05419v1\"},{\"title\":\"[2504.05419v1] Reasoning Models Know When They're Right: Probing Hidden States for Self-Verification\",\"url\":\"https://arxiv.org/abs/2504.05419v1\"},{\"title\":\"Reasoning Models Know When They're Right: Probing Hidden States for Self-Verification - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/arXiv:2504.05419\"},{\"title\":\"Reasoning Models Know When They're Right: Probing Hidden States for Self-Verification | alphaXiv\",\"url\":\"https://www.alphaxiv.org/resources/2504.05419\"},{\"title\":\"arXiv:2504.05419v1 [cs.AI] 7 Apr 2025\",\"url\":\"https://arxiv.org/pdf/2504.05419\"},{\"title\":\"dblp: Reasoning Models Know When They're Right: Probing Hidden States for Self-Verification.\",\"url\":\"https://dblp.org/rec/journals/corr/abs-2504-05419.html\"},{\"title\":\"The Geometry of Self-Verification in a Task-Specific Reasoning Model\",\"url\":\"https://arxiv.org/html/2504.14379v1\"},{\"title\":\"Reasoning Models Better Express Their Confidence\",\"url\":\"https://arxiv.org/html/2505.14489v2\"},{\"title\":\"Thinking Out Loud: Do Reasoning Models Know When They're Right? - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/arXiv:2504.06564\"}]\n\nI found the paper arxiv 2504.05419 \"Reasoning Models Know When They're Right: Probing Hidden States for Self-Verification.\"\n\nHowever, I should note that the authors listed for this paper are Anqi Zhang, Yulin Chen, Jane Pan, Chen Zhao, Aurojit Panda, Jinyang Li, and He He. There is no author named Stechly on this paper according to the search results.\n\nHere's what the paper is about:\n\nThe work studies whether reasoning models encode information about answer correctness t\n…[truncated 747 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arxiv_verification_r6_20260518T015913",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-18T02:00:24.296854+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"arxiv 2605.13772 \"Where Does Reasoning Break\" authors 2026\"\n\nLinks: [{\"title\":\"[2605.13772] Where Does Reasoning Break? Step-Level Hallucination Detection via Hidden-State Transport Geometry\",\"url\":\"https://arxiv.org/abs/2605.13772\"},{\"title\":\"Where Does Reasoning Break? Step-Level Hallucination Detection via Hidden-State Transport Geometry\",\"url\":\"https://arxiv.org/html/2605.13772\"}]\n\nBased on the search results, here's what I found about arxiv paper 2605.13772:\n\n**Paper Title:** Where Does Reasoning Break? Step-Level Hallucination Detection via Hidden-State Transport Geometry\n\n**Authors:** Tyler Alvarez and Ali Baheri\n\n**Submission Date:** 13 May 2026\n\n**Summary:** Large language models hallucinate during multi-step reasoning, but most existing detectors operate at the trace level: they assign one confidence score to a full output, fail to localize the first error, and often require multiple sampled completions. The paper proposes a novel approach that frames correct reasoning as moving through a stable manifold of locally coherent transitions, where a first error appears as a localized excursion in transport cost away from this manifold.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arxiv_verification_r6_20260518T015913",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-18T02:00:24.297033+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"arxiv 2510.21285 \"When Models Outthink Their Safety\" authors Mao\"\n\nLinks: [{\"title\":\"[2510.21285] When Models Outthink Their Safety: Unveiling and Mitigating Self-Jailbreak in Large Reasoning Models\",\"url\":\"https://arxiv.org/abs/2510.21285\"},{\"title\":\"[2510.21285v1] When Models Outthink Their Safety: Mitigating Self-Jailbreak in Large Reasoning Models with Chain-of-Guardrails\",\"url\":\"https://arxiv.org/abs/2510.21285v1\"},{\"title\":\"When Models Outthink Their Safety: Unveiling and Mitigating Self-Jailbreak in Large Reasoning Models\",\"url\":\"https://arxiv.org/html/2510.21285\"},{\"title\":\"When Models Outthink Their Safety: Mitigating Self-Jailbreak in Large Reasoning Models with Chain-of-Guardrails\",\"url\":\"https://arxiv.org/html/2510.21285v1\"},{\"title\":\"Paper page - When Models Outthink Their Safety: Mitigating Self-Jailbreak in Large Reasoning Models with Chain-of-Guardrails\",\"url\":\"https://huggingface.co/papers/2510.21285\"},{\"title\":\"WHEN MODELS OUTTHINK THEIR SAFETY: MITIGATING SELF-JAILBREAK IN LARGE REASONING\",\"url\":\"https://arxiv.org/pdf/2510.21285v1\"},{\"title\":\"When Models Outthink Their Safety:\",\"url\":\"https://arxiv.org/pdf/2510.21285\"},{\"title\":\"When Models Outthink Their Safety: Mitigating Self-Jailbreak in Large Reasoning Models with Chain-of-Guardrails | alphaXiv\",\"url\":\"https://www.alphaxiv.org/overview/2510.21285v1\"},{\"title\":\"Artificial Intelligence Jun 2025\",\"url\":\"https://www.arxiv.org/list/cs.AI/2025-06?skip=0&show=2000\"},{\"title\":\"Safety in Large Reasoning Models: A Survey\",\"url\":\"https://arxiv.org/html/2504.17704v1\"}]\n\nI found the paper! Here are the details about arxiv paper 2510.21285:\n\n**Title:** \"When Models Outthink Their Safety: Unveiling and Mitigating Self-Jailbreak in Large Reasoning Models\"\n\n**Authors:** Yingzhi Mao, Chunkang Zhang, Junxiang Wang, Xinyan Guan, Boxi Cao, Yaojie Lu, Hongyu Lin, Xianpei Han, Le Sun\n\n**Main Contribution:** The paper uncovers a previously underexplored failure mode in Large Reasoning \n…[truncated 653 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arxiv_verification_r6_20260518T015913",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-18T02:00:24.297266+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 验证结果\n\n---\n\n### 论文 1: `2504.05419`\n\n| 项目 | 结果 |\n|------|------|\n| **存在性** | 存在 |\n| **真实标题** | \"Reasoning Models Know When They're Right: Probing Hidden States for Self-Verification\" |\n| **标题匹配** | 部分匹配 — 声称标题是完整标题的前半部分，省略了副标题 |\n| **真实作者** | Anqi Zhang, Yulin Chen, Jane Pan, Chen Zhao, Aurojit Panda, Jinyang Li, He He |\n| **作者匹配** | **不匹配** — 声称 \"Stechly et al.\"，实际第一作者为 Anqi Zhang，作者列表中无 Stechly |\n| **相关性** | **高度相关** — 直接研究 reasoning model hidden states 中的 correctness probing，用于 self-verification |\n| **结论** | **MISMATCH** — ID 和标题真实，但作者归属错误 |\n\n---\n\n### 论文 2: `2510.21285`\n\n| 项目 | 结果 |\n|------|------|\n| **存在性** | 存在 |\n| **真实标题** | \"When Models Outthink Their Safety: Unveiling and Mitigating Self-Jailbreak in Large Reasoning Models\" |\n| **标题匹配** | 匹配 — 声称标题是完整标题的主标题部分 |\n| **真实作者** | Yingzhi Mao, Chunkang Zhang, Junxiang Wang, Xinyan Guan, Boxi Cao, Yaojie Lu, Hongyu Lin, Xianpei Han, Le Sun |\n| **作者匹配** | **匹配** — 第一作者确为 Mao，提交于 2025 年 10 月 |\n| **相关性** | **相关** — 研究 reasoning model 的安全失败模式（Self-Jailbreak），提出 Chain-of-Guardrail 框架 |\n| **结论** | **VERIFIED** |\n\n---\n\n### 论文 3: `2605.13772`（2026 年 5 月）\n\n| 项目 | 结果 |\n|------|------|\n| **存在性** | 存在 — 提交于 2026-05-13（5 天前） |\n| **真实标题** | \"Where Does Reasoning Break? Step-Level Hallucination Detection via Hidden-State Transport Geometry\" |\n| **标题匹配** | 匹配 — 声称标题是完整标题的主标题部分 |\n| **真实作者** | Tyler Alvarez, Ali Baheri |\n| **作者匹配** | 声称中未提供具体作者，无法判断匹配性 |\n| **相关性** | **极高相关** — 用 hidden-state transport geometry 做 step-level hallucination detection，与 contrastive trace safety 直接相关（contrastive PCA lens + geometric transition features） |\n| **结论** | **VERIFIED** |\n\n---\n\n### 汇总\n\n| 论文 | ID | 结论 | 问题 |\n|------|-----|------|------|\n| 1 | 2504.05419 | **MISMATCH** | 作者错误：实际为 Zhang et al.，非 Stechly et al. |\n| 2 | 2510.21285 | **VERIFIED** | — |\n| 3 | 2605.13772 | **VERIFIED** | 2026 年本月论文，确实存在 |\n\nSources:\n- [2504.05419 - Reasoning Models Know When They're Right](https://arxiv.org/abs/2504.05419)\n- [2510.21285 - When Models Outthink Their Safety](https://arxiv.org/abs/2510.21285)\n- [2605.13772 - Where Does Reasoning Break?](https://arxiv.org/abs/2605.13772)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arxiv_verification_r6_20260518T015913"
+          },
+          "id": "event-000015"
+        }
+      ],
+      "message_count": 15
+    }
+  ],
+  "readable_path": "readable/conversations/research-arxiv-verification-r6.md"
+}

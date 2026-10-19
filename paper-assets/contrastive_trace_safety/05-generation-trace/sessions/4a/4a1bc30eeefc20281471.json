@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "4a1bc30eeefc20281471",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code advbench pipeline fix",
+  "task_key": "worker_code_advbench_pipeline_fix_20260519T194632",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_advbench_pipeline_fix_20260519T194632_result.json",
+    "occurrence": 1,
+    "bytes": 1317,
+    "sha256": "70831b22d348c45b982d419b026de4d767545689bc9e64bdabcd2fffe78d3b09"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n### 产出总结\n\n| 文件 | 操作 | 内容 |\n|------|------|------|\n| `src/advbench/convert_annotations.py` | 新建 | 扫描 trace JSON 的 `cp_step` → 生成 `cp_annotations.json`（含 `commitment_point` + `is_jailbreak` + `total_steps`） |\n| `src/advbench/extract_hidden_states.py` | 重写 | 数据源从 HarmThoughts HF dataset 改为本地 `data/advbench/traces/*.json`，输出路径改为 `artifacts/hidden_states_advbench/` |\n| `src/advbench/extract_text_embeddings.py` | 重写 | 同上，输出改为 per-trace `.pkl` 文件到 `artifacts/text_embeddings_advbench/` |\n| `src/advbench/generate_traces.py` | 修改 | 顶部添加 step splitting 注释，trace 输出添加 `\"metadata\": {\"step_split_method\": \"double_newline\"}` |\n| `src/advbench/data_loader.py` | 修改 | 顶部添加 step splitting 注释 |\n\n### Dry-Run 结果\n\n3 条 mock trace（2 jailbreak + 1 safe）通过完整管线：\n- `convert_annotations.py` → 正确生成 `cp_annotations.json`\n- `data_loader.py.prepare_dataset()` → 正确分桶：`jailbreak_with_commitment=2, jailbreak_no_commitment=0, safe=1`\n- 所有字段一致：`trace_id`, `sentences`, `labels`, `commitment_point`, `is_jailbreak`, `step_labels`"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "step_split_method": "double_newline"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-advbench-pipeline-fix.md"
+}

@@ -1,0 +1,213 @@
+{
+  "schema_version": "1.0",
+  "id": "efa374bef3a57b0776fa",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code ensemble 5fold cv",
+  "task_key": "worker_code_ensemble_5fold_cv_20260522T072555",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_ensemble_5fold_cv_20260522T072555_result.json",
+    "occurrence": 1,
+    "bytes": 6824,
+    "sha256": "072619929721ddd1169f859da0309d947ad0a534e9b3fb1d823ecf712b35bdb5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Complete results JSON:\n\n```json\n{\n  \"R1-8B\": {\n    \"model\": \"R1-8B\",\n    \"n_traces\": 209,\n    \"n_folds\": 5,\n    \"cv_type\": \"5-fold_stratified\",\n    \"window\": 15,\n    \"layer_offset\": 12,\n    \"metrics\": {\n      \"ensemble_cv\": {\n        \"bal_acc\": 0.711,\n        \"precision\": 0.5516,\n        \"fpr\": 0.1631\n      },\n      \"single_precision_cv\": {\n        \"bal_acc\": 0.7119,\n        \"precision\": 0.5417,\n        \"fpr\": 0.1731\n      },\n      \"single_ba_cv\": {\n        \"bal_acc\": 0.6982,\n        \"precision\": 0.515,\n        \"fpr\": 0.1891\n      },\n      \"single_fpr_cv\": {\n        \"bal_acc\": 0.7002,\n        \"precision\": 0.5257,\n        \"fpr\": 0.1793\n      }\n    },\n    \"per_trace_stats\": {\n      \"ensemble_ba\": {\n        \"mean\": 0.7813,\n        \"std\": 0.1754,\n        \"min\": 0.1875,\n        \"max\": 1.0\n      },\n      \"ensemble_precision\": {\n        \"mean\": 0.5663,\n        \"std\": 0.3672,\n        \"min\": 0.0,\n        \"max\": 1.0\n      },\n      \"ensemble_fpr\": {\n        \"mean\": 0.1783,\n        \"std\": 0.2453,\n        \"min\": 0.0,\n        \"max\": 1.0\n      }\n    },\n    \"layer_selection_stability\": {\n      \"precision_layers\": [22, 18, 23, 22, 24],\n      \"ba_layers\": [15, 17, 23, 22, 15],\n      \"fpr_layers\": [13, 18, 19, 24, 22],\n      \"precision_counts\": {\"22\": 2, \"18\": 1, \"23\": 1, \"24\": 1},\n      \"ba_counts\": {\"15\": 2, \"17\": 1, \"23\": 1, \"22\": 1},\n      \"fpr_counts\": {\"13\": 1, \"18\": 1, \"19\": 1, \"24\": 1, \"22\": 1}\n    },\n    \"fold_details\": [\n      {\"fold\": 0, \"n_train\": 167, \"n_test\": 42, \"selected_layers\": {\"precision\": 22, \"ba\": 15, \"fpr\": 13}, \"n_unique_layers\": 3, \"elapsed_seconds\": 125.2},\n      {\"fold\": 1, \"n_train\": 167, \"n_test\": 42, \"selected_layers\": {\"precision\": 18, \"ba\": 17, \"fpr\": 18}, \"n_unique_layers\": 2, \"elapsed_seconds\": 85.0},\n      {\"fold\": 2, \"n_train\": 167, \"n_test\": 42, \"selected_layers\": {\"precision\": 23, \"ba\": 23, \"fpr\": 19}, \"n_unique_layers\": 2, \"elapsed_seconds\": 86.1},\n      {\"fold\": 3, \"n_train\": 167, \"n_test\": 42, \"selected_layers\": {\"precision\": 22, \"ba\": 22, \"fpr\": 24}, \"n_unique_layers\": 2, \"elapsed_seconds\": 76.5},\n      {\"fold\": 4, \"n_train\": 168, \"n_test\": 41, \"selected_layers\": {\"precision\": 24, \"ba\": 15, \"fpr\": 22}, \"n_unique_layers\": 3, \"elapsed_seconds\": 89.8}\n    ],\n    \"elapsed_seconds\": 462.8\n  },\n  \"_meta\": {\n    \"script\": \"n7_ensemble_loocv.py\",\n    \"elapsed_seconds\": 466.2,\n    \"seed\": 42,\n    \"n_folds\": 5,\n    \"timestamp\": \"2026-05-22T15:35:54\",\n    \"description\": \"5-fold stratified CV validation of multi-metric ensemble layer selection. Layer selection happens INSIDE each fold (inner 80/20 split of training set). R1-8B only.\"\n  }\n}\n```\n\nEnsemble achieves the best precision (0.5516) and lowest FPR (0.1631) among all methods, while maintaining competitive BA (0.711). Layer selection stability is moderate — precision favors L22 (2/5 folds), BA favors L15 (2/5), FPR has no repeats across folds."
+            }
+          ],
+          "metadata": {
+            "data": {
+              "R1-8B": {
+                "model": "R1-8B",
+                "n_traces": 209,
+                "n_folds": 5,
+                "cv_type": "5-fold_stratified",
+                "window": 15,
+                "layer_offset": 12,
+                "metrics": {
+                  "ensemble_cv": {
+                    "bal_acc": 0.711,
+                    "precision": 0.5516,
+                    "fpr": 0.1631
+                  },
+                  "single_precision_cv": {
+                    "bal_acc": 0.7119,
+                    "precision": 0.5417,
+                    "fpr": 0.1731
+                  },
+                  "single_ba_cv": {
+                    "bal_acc": 0.6982,
+                    "precision": 0.515,
+                    "fpr": 0.1891
+                  },
+                  "single_fpr_cv": {
+                    "bal_acc": 0.7002,
+                    "precision": 0.5257,
+                    "fpr": 0.1793
+                  }
+                },
+                "per_trace_stats": {
+                  "ensemble_ba": {
+                    "mean": 0.7813,
+                    "std": 0.1754,
+                    "min": 0.1875,
+                    "max": 1.0
+                  },
+                  "ensemble_precision": {
+                    "mean": 0.5663,
+                    "std": 0.3672,
+                    "min": 0.0,
+                    "max": 1.0
+                  },
+                  "ensemble_fpr": {
+                    "mean": 0.1783,
+                    "std": 0.2453,
+                    "min": 0.0,
+                    "max": 1.0
+                  }
+                },
+                "layer_selection_stability": {
+                  "precision_layers": [
+                    22,
+                    18,
+                    23,
+                    22,
+                    24
+                  ],
+                  "ba_layers": [
+                    15,
+                    17,
+                    23,
+                    22,
+                    15
+                  ],
+                  "fpr_layers": [
+                    13,
+                    18,
+                    19,
+                    24,
+                    22
+                  ],
+                  "precision_counts": {
+                    "22": 2,
+                    "18": 1,
+                    "23": 1,
+                    "24": 1
+                  },
+                  "ba_counts": {
+                    "15": 2,
+                    "17": 1,
+                    "23": 1,
+                    "22": 1
+                  },
+                  "fpr_counts": {
+                    "13": 1,
+                    "18": 1,
+                    "19": 1,
+                    "24": 1,
+                    "22": 1
+                  }
+                },
+                "fold_details": [
+                  {
+                    "fold": 0,
+                    "n_train": 167,
+                    "n_test": 42,
+                    "selected_layers": {
+                      "precision": 22,
+                      "ba": 15,
+                      "fpr": 13
+                    },
+                    "n_unique_layers": 3,
+                    "elapsed_seconds": 125.2
+                  },
+                  {
+                    "fold": 1,
+                    "n_train": 167,
+                    "n_test": 42,
+                    "selected_layers": {
+                      "precision": 18,
+                      "ba": 17,
+                      "fpr": 18
+                    },
+                    "n_unique_layers": 2,
+                    "elapsed_seconds": 85.0
+                  },
+                  {
+                    "fold": 2,
+                    "n_train": 167,
+                    "n_test": 42,
+                    "selected_layers": {
+                      "precision": 23,
+                      "ba": 23,
+                      "fpr": 19
+                    },
+                    "n_unique_layers": 2,
+                    "elapsed_seconds": 86.1
+                  },
+                  {
+                    "fold": 3,
+                    "n_train": 167,
+                    "n_test": 42,
+                    "selected_layers": {
+                      "precision": 22,
+                      "ba": 22,
+                      "fpr": 24
+                    },
+                    "n_unique_layers": 2,
+                    "elapsed_seconds": 76.5
+                  },
+                  {
+                    "fold": 4,
+                    "n_train": 168,
+                    "n_test": 41,
+                    "selected_layers": {
+                      "precision": 24,
+                      "ba": 15,
+                      "fpr": 22
+                    },
+                    "n_unique_layers": 3,
+                    "elapsed_seconds": 89.8
+                  }
+                ],
+                "elapsed_seconds": 462.8
+              },
+              "_meta": {
+                "script": "n7_ensemble_loocv.py",
+                "elapsed_seconds": 466.2,
+                "seed": 42,
+                "n_folds": 5,
+                "timestamp": "2026-05-22T15:35:54",
+                "description": "5-fold stratified CV validation of multi-metric ensemble layer selection. Layer selection happens INSIDE each fold (inner 80/20 split of training set). R1-8B only."
+              }
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-ensemble-5fold-cv.md"
+}

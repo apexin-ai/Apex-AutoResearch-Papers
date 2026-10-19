@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b9897fbc58cb79ce8a76",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code exp 001a r1 32b",
+  "task_key": "worker_code_exp_001a_r1_32b_20260516T215732",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_001a_r1_32b_20260516T215732_result.json",
+    "occurrence": 1,
+    "bytes": 1117,
+    "sha256": "42ed20173cdbb54c1134366362cf8cb66cfe229e25c10c496ab45f6e26f505ad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 5 phases completed successfully. Here's the summary:\n\n## exp_001a Results Summary\n\n**Phase 1**: Extracted 100 R1-32B traces (3,506 steps, 64,727 tokens) into `artifacts/hidden_states_r1_32b/` (2.2GB, 0 errors).\n\n**Phase 2 (Layer Sweep)**: Best layer = 2 (score=7.60). Early layers (0-2) dominate the ranking by the crossing_rate x lead_mean metric, though deeper layers (56-63) have higher raw accuracy (~0.73 vs ~0.62).\n\n**Phase 3 (Temporal LR)**: Window=15 achieves best accuracy (0.70) but shortest lead (7.3 steps). Window=5 preserves longer lead time (10.6 steps) with lower accuracy (0.63).\n\n**Phase 4 (GRU 3-seed)**: \n- Crossing rate: 0.667 +/- 0.085 (better than LR's 0.50-0.55)\n- Lead mean: 11.2 +/- 0.76 steps\n- Accuracy: 0.595 +/- 0.029\n\n**Phase 5 (Bootstrap)**: No significant difference between temporal LR and GRU pre-CP FPR (p=0.54).\n\n**vs R1-8B**: R1-32B shows lower absolute accuracy but longer lead times and different layer dynamics (early layers dominate vs mid-layers for 8B). The 32B model appears to encode safety-relevant signals earlier in its layer stack."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-001a-r1-32b.md"
+}

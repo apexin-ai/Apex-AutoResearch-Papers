@@ -1,0 +1,1758 @@
+# code r1 32b selectivity raw features
+
+**Layer Selection Sensitivity in Hidden-State Safety Probes for Reasoning Models** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 59
+- **Recorded user turns:** 0
+- **Tool calls:** 29
+- **Original source:** `logs/chats/worker_code_r1_32b_selectivity_raw_features_20260517T133358.jsonl`
+- **Structured JSON:** [`b5d0fd760aae873e733b.json`](../../sessions/b5/b5d0fd760aae873e733b.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+59 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-17T13:43:59.753036+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_32b_selectivity_raw_features_20260517T133358",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-17T13:43:59.753355+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_32b_selectivity_raw_features_20260517T133358",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-17T13:43:59.753540+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "grep -rl \"selectivity\\|random_label\\|control_task\" /root/autodl-tmp/contrastive_trace_safety/src/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_32b_selectivity_raw_features_20260517T133358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "grep -rl \"selectivity\\|random_label\\|control_task\" /root/autodl-tmp/contrastive_trace_safety/src/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-17T13:43:59.753711+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_32b_selectivity_raw_features_20260517T133358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-17T13:43:59.753844+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "find /root/autodl-tmp/contrastive_trace_safety -path \"*/hidden_states*\" -name \"*R1*\" -o -path \"*/hidden_states*\" -name \"*r1*\" -o -path \"*/R1*\" -name \"*.pt\" -o -path \"*/R1*\" -name \"*.npy\" 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_32b_selectivity_raw_features_20260517T133358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "find /root/autodl-tmp/contrastive_trace_safety -path \"*/hidden_states*\" -name \"*R1*\" -o -path \"*/hidden_states*\" -name \"*r1*\" -o -path \"*/R1*\" -name \"*.pt\" -o -path \"*/R1*\" -name \"*.npy\" 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-17T13:43:59.753970+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_32b_selectivity_raw_features_20260517T133358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-17T13:43:59.754087+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "grep -rl \"selectivity\" /root/autodl-tmp/contrastive_trace_safety/src/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_32b_selectivity_raw_features_20260517T133358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "grep -rl \"selectivity\" /root/autodl-tmp/contrastive_trace_safety/src/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-17T13:43:59.754204+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "find /root/autodl-tmp/contrastive_trace_safety -name \"*R1*\" -name \"*.pt\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_32b_selectivity_raw_features_20260517T133358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "find /root/autodl-tmp/contrastive_trace_safety -name \"*R1*\" -name \"*.pt\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-17T13:43:59.754326+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/contrastive_trace_safety/src/experiments/__pycache__/exp_ot7b_full_pipeline.cpython-312.pyc\\n/root/autodl-tmp/contrastive_trace_safety/src/experiments/exp_c2_control_task.py\\n/root/autodl-tmp/contrastive_trace_safety/src/experiments/run_selectivity_qwq_l2.py\\n/root/autodl-tmp/contrastive_trace_safety/src/experiments/exp_ot7b_full_pipeline.py\\n/root/autodl-tmp/contrastive_trace_safety/src/experiments/exp_ot7b_continue_p4.py\\n/root/autodl-tmp/contrastive_trace_safety/src/experiments/exp_ot7b_layer16_bootstrap_full.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.09}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_32b_selectivity_raw_features_20260517T133358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-17T13:43:59.754454+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_32b_selectivity_raw_features_20260517T133358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-17T13:43:59.754569+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "find /root/autodl-tmp/contrastive_trace_safety -name \"*r1*\" -name \"*.npy\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_32b_selectivity_raw_features_20260517T133358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "find /root/autodl-tmp/contrastive_trace_safety -name \"*r1*\" -name \"*.npy\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-17T13:43:59.754709+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ls /root/autodl-tmp/contrastive_trace_safety/data/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_32b_selectivity_raw_features_20260517T133358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ls /root/autodl-tmp/contrastive_trace_safety/data/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-17T13:43:59.754836+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_layer_ablation/cache/qwq_layer1.npy\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_layer_ablation/cache/qwq_layer10.npy\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_layer_ablation/cache/qwq_layer11.npy\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_layer_ablation/cache/qwq_layer12.npy\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_layer_ablation/cache/qwq_layer13.npy\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_layer_ablation/cache/qwq_layer14.npy\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_layer_ablation/cache/qwq_layer15.npy\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_layer_ablation/cache/qwq_layer16.npy\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_layer_ablation/cache/qwq_layer17.npy\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_layer_ablation/cache/qwq_layer18.npy\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_layer_ablation/cache/qwq_layer19.npy\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_32b_selectivity_raw_features_20260517T133358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-17T13:43:59.754958+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/contrastive_trace_safety/data/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_32b_selectivity_raw_features_20260517T133358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-17T13:43:59.755095+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "find /root/autodl-tmp/contrastive_trace_safety -name \"*r1*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_32b_selectivity_raw_features_20260517T133358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "find /root/autodl-tmp/contrastive_trace_safety -name \"*r1*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-17T13:43:59.755238+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/contrastive_trace_safety/artifacts/diagnostics/pca_layer12.png\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/diagnostics/pca_layer14.png\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/m001_layer_fix/layer_ranking_r1_32b.json\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/m001_layer_fix/gru_corrected_r1_32b.json\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/m001_layer_fix/temporal_lr_r1_32b.json\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/m001_layer_fix/bootstrap_hs_vs_text_r1_32b.json\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r1_8b_bootstrap_run.log\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/report_r1_32b_selectivity_l10.md\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/text_window_ablation_r1_8b_run.log\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/ot7b_layer16_verification/layer16_data.npz\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/ot7b_layer16_verification/layer16_traces.pkl\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/ot7b_layer16_verification_split.pt\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r1_8b_supplement.log\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/ot7b_layer16_hs_probes.json\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_mlp_probe/results_r1_8b.json\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_mlp_probe/results_r1_32b.json\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_layer_ablation/cache/qwq_layer1.npy\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_layer_ablation/cache/qwq_layer10.npy\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_layer_ablation/cache/qwq_layer11.npy\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_layer_ablation/cache/qwq_layer12.npy\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_layer_ablation/cache/qwq_layer13.npy\\n/root/autodl-tmp/contrastive_
+…[truncated 1651 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_32b_selectivity_raw_features_20260517T133358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-17T13:43:59.755380+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "find /root/autodl-tmp/contrastive_trace_safety -name \"*R1*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_32b_selectivity_raw_features_20260517T133358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "find /root/autodl-tmp/contrastive_trace_safety -name \"*R1*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-17T13:43:59.755507+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_32b_selectivity_raw_features_20260517T133358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-17T13:43:59.755638+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/src/experiments/exp_c2_control_task.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_32b_selectivity_raw_features_20260517T133358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat /root/autodl-tmp/contrastive_trace_safety/src/experiments/exp_c2_control_task.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-17T13:43:59.755907+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"exp_c2_control_task: Hewitt & Liang (2019) control task to exclude position confound.\\n\\nOptimized: process models sequentially, use PCA for high-dim features, unbuffered output.\\n\\\"\\\"\\\"\\n\\nimport sys, json, warnings, gc\\nimport numpy as np\\nfrom pathlib import Path\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.metrics import accuracy_score\\nfrom sklearn.decomposition import PCA\\n\\nsys.path.insert(0, \\\"/root/autodl-tmp/contrastive_trace_safety\\\")\\nwarnings.filterwarnings(\\\"ignore\\\")\\n\\nimport torch\\n\\nOUT_DIR = Path(\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_c2_control\\\")\\nOUT_DIR.mkdir(parents=True, exist_ok=True)\\n\\nMODELS = {\\n    \\\"r1_8b\\\": {\\n        \\\"hs_dir\\\": Path(\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states\\\"),\\n        \\\"best_layer_idx\\\": 2,  # layer 14 in saved tensor (13 layers: 12-24)\\n        \\\"best_layer_absolute\\\": 14,\\n    },\\n    \\\"r1_32b\\\": {\\n        \\\"hs_dir\\\": Path(\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_r1_32b\\\"),\\n        \\\"best_layer_idx\\\": 2,\\n        \\\"best_layer_absolute\\\": 2,\\n    },\\n    \\\"qwq_32b\\\": {\\n        \\\"hs_dir\\\": Path(\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_qwq_32b\\\"),\\n        \\\"best_layer_idx\\\": 1,\\n        \\\"best_layer_absolute\\\": 1,\\n    },\\n}\\n\\nWINDOW = 15\\nSEED = 42\\nN_RANDOM_REPEATS = 10\\nK_CONSECUTIVE = 5\\n\\n\\ndef flush_print(*args, **kwargs):\\n    print(*args, **kwargs, flush=True)\\n\\n\\ndef load_traces_from_pt(hs_dir):\\n    traces = []\\n    for pt_file in sorted(hs_dir.glob(\\\"*.pt\\\")):\\n        data = torch.load(pt_file, map_location=\\\"cpu\\\", weights_only=False)\\n        if data.get(\\\"step_labels\\\") is None or data.get(\\\"commitment_point\\\") is None:\\n            continue\\n        traces.appen
+…[truncated 7182 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_32b_selectivity_raw_features_20260517T133358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-17T13:43:59.756102+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_supplementary/r1_32b_selectivity_ci.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_32b_selectivity_raw_features_20260517T133358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_supplementary/r1_32b_selectivity_ci.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-17T13:43:59.756259+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"r1_32b\\\",\\n  \\\"layer_idx\\\": 10,\\n  \\\"feature_type\\\": \\\"static_pca128\\\",\\n  \\\"hidden_dim\\\": 5120,\\n  \\\"pca_components\\\": 128,\\n  \\\"pca_var_retained\\\": 0.8447,\\n  \\\"n_traces\\\": 100,\\n  \\\"n_train\\\": 80,\\n  \\\"n_test\\\": 20,\\n  \\\"baseline\\\": {\\n    \\\"real_acc\\\": 0.7077,\\n    \\\"random_mean\\\": 0.5511,\\n    \\\"random_std\\\": 0.013,\\n    \\\"random_accs\\\": [\\n      0.5607,\\n      0.5533,\\n      0.5643,\\n      0.5533,\\n      0.5312,\\n      0.5386,\\n      0.5276,\\n      0.5662,\\n      0.5588,\\n      0.557\\n    ],\\n    \\\"selectivity_pp\\\": 15.66\\n  },\\n  \\\"bootstrap\\\": {\\n    \\\"n_iterations\\\": 1000,\\n    \\\"mean_pp\\\": 15.85,\\n    \\\"std_pp\\\": 3.1,\\n    \\\"ci95_low_pp\\\": 9.74,\\n    \\\"ci95_high_pp\\\": 21.93,\\n    \\\"p_value\\\": 0.0,\\n    \\\"significant\\\": true\\n  },\\n  \\\"conclusion\\\": \\\"Layer 10 selectivity IS significant: 15.9pp, 95% CI [9.7, 21.9]pp, p=0.0000\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_32b_selectivity_raw_features_20260517T133358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-17T13:43:59.756393+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_r1_32b/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_32b_selectivity_raw_features_20260517T133358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_r1_32b/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-17T13:43:59.756631+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0340a9c152a84e88a1bb1a1b0c1ece69.pt\\n03ab25e611ab42d5bab0e091b2bfb4db.pt\\n03e731a127e4403ea8b4f6b0da22d40b.pt\\n065cd061633b48ffba91c8ab8468aee5.pt\\n072fffe312724613b373f5e9423bec9e.pt\\n077d0c46eeaa4d26bcf796ff257b4107.pt\\n078bffd5b7bf41229684593b116e9b64.pt\\n0d024d64ea6f4fe7a326c146bf004b9d.pt\\n0e290c942d794d6a9b60fade0b82ba11.pt\\n133bb30152c348aa914bef1a46cd5065.pt\\n1366b9a156ef444eaf0fabf28b0fd17b.pt\\n14745efac5e24605833ff1a36d3bea9c.pt\\n1616070d73a044c9b80fd6fb09bc7dad.pt\\n181fe09ad4d14befa56def067985a204.pt\\n192fc3f6944947f5a8f9bfa4bf79bc72.pt\\n1ddd805c9c69471bb91971a3ee33c32c.pt\\n2011a70d7e5f4cc681606c655581d0d4.pt\\n2013ecb74dda42488eb7caad35193314.pt\\n21c16ece865541588c7ec69bea892c79.pt\\n2239e2c5ff6b47fe88e4d70829aa02e7.pt\\n225661d7e1fb4c3c88693d53091206ca.pt\\n22c71ef412f042b3b1eae36f3b8d0a57.pt\\n23ceb4debb184eeabaa722b5bc148171.pt\\n2426e92a447a414c95dcfb4dbdbecd8b.pt\\n297fc59b3baa47e3a6365c5bec100ad2.pt\\n2989f4f4b129410e99ecccdd81fd9fea.pt\\n2b065031a798402791fbc376a7f84d7c.pt\\n2b91b6c7c2814afba34da843197964c6.pt\\n2c0260c7322b4d0c98c751ecb6d55ee5.pt\\n2d2b904c8d7946b9ae11b460e3d503fa.pt\\n2d3d6eec4132486986192862f7e9961c.pt\\n2dd179bd68cc4f20a9231b1d96328d99.pt\\n2e340305abb747b98426f999b57586a3.pt\\n2e6a68c203c44e9886a106da957bfafb.pt\\n31337720fdd9418492a4d118fba549c6.pt\\n3318d4e152204670877251dd9e73d999.pt\\n33c6a82d38b14a7480065fd7cc7a52d8.pt\\n365cab697ffe461a80ddb6cd2b7c7ca1.pt\\n36b9c92c286d4529acec148e5c04eb2f.pt\\n3a8da7148d6a40b8a093713502df1735.pt\\n3aa7b05627f04350bc7141d9c5402799.pt\\n3f1e1cfdb7b74292a2c483219b6a3a35.pt\\n40ce79d4a62549339ad84b32eaaf38ab.pt\\n42ce50f59c454232903c343fd934ffd7.pt\\n451e48b93ec3417badeb7eec1d1e606f.pt\\n4522b1a20a0c4514859150cb4a40cb29.pt\\n453cd67cf5c44bcea3cf4d4a20b08f29.pt\\n45f0198e7b054e21b358a3ddf5b25233.pt\\n474c2b11e4614bdc81fee0b0e1ccf21c.pt\\n4796bb358cea4cafa963d7b8a7c9f776.pt\\n488a8b25d77445cd850d416ff1752f8d.pt\\n4a0e76
+…[truncated 1986 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_32b_selectivity_raw_features_20260517T133358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-17T13:43:59.756810+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/report_r1_32b_selectivity_l10.md",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_32b_selectivity_raw_features_20260517T133358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/report_r1_32b_selectivity_l10.md",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-17T13:43:59.756960+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"# R1-32B Selectivity on Corrected Layer 10\\n\\n## Setup\\n- Model: DeepSeek-R1-32B\\n- Layer: 10 (M001 corrected best layer)\\n- Hidden states: 100 traces, 3506 total steps (5120-d)\\n- Split: 60/20/20 by trace (seed=42), train=2076, test=703\\n- Probe: Temporal LR (window=10, class_weight=balanced, C=1.0, StandardScaler)\\n- Random baseline: 10 repeats, within-trace step-label shuffle\\n\\n## Results\\n\\n| Metric | Value |\\n|--------|-------|\\n| Real probe bal_acc (layer 10) | 58.3% |\\n| Random probe mean (10 reps) | 50.8% +/- 5.1% |\\n| **Selectivity** | **7.5pp** |\\n| Old layer 2 selectivity | 16.8pp |\\n| Delta | -9.3pp |\\n\\n## Random probe individual runs\\n| Rep | Bal_acc |\\n|-----|---------|\\n| 1 | 43.6% |\\n| 2 | 45.5% |\\n| 3 | 52.8% |\\n| 4 | 50.3% |\\n| 5 | 49.3% |\\n| 6 | 46.2% |\\n| 7 | 53.2% |\\n| 8 | 61.3% |\\n| 9 | 56.6% |\\n| 10 | 49.4% |\\n\\n## Interpretation\\n- Layer 10 selectivity (7.5pp) is substantially lower than the previously reported layer 2 result (16.8pp)\\n- The real probe accuracy itself is modest (58.3%), only marginally above chance\\n- Random baseline variance is high (std=5.1%), with some runs (Rep 8: 61.3%) exceeding the real probe\\n- This suggests layer 10 hidden states in R1-32B carry weak signal for the C2 control task at the step level\\n- The corrected best layer (10) does not improve selectivity over layer 2; the original 16.8pp on layer 2 remains the stronger result for R1-32B\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_32b_selectivity_raw_features_20260517T133358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-17T13:43:59.757130+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_r1_32b/extraction_summary.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_32b_selectivity_raw_features_20260517T133358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_r1_32b/extraction_summary.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-17T13:43:59.757266+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"DeepSeek-R1-Distill-Qwen-32B\\\",\\n  \\\"num_traces\\\": 100,\\n  \\\"num_extracted\\\": 100,\\n  \\\"total_steps\\\": 3506,\\n  \\\"total_tokens\\\": 64727,\\n  \\\"num_layers\\\": 64,\\n  \\\"hidden_dim\\\": 5120,\\n  \\\"errors\\\": []\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_32b_selectivity_raw_features_20260517T133358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-17T13:43:59.757389+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "head -20 /root/autodl-tmp/contrastive_trace_safety/src/experiments/run_selectivity_qwq_l2.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_32b_selectivity_raw_features_20260517T133358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "head -20 /root/autodl-tmp/contrastive_trace_safety/src/experiments/run_selectivity_qwq_l2.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-17T13:43:59.757519+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"import torch, os, numpy as np, sys\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.metrics import balanced_accuracy_score\\nfrom sklearn.model_selection import train_test_split\\nfrom sklearn.preprocessing import StandardScaler\\n\\nLAYER = 2\\nDATA_DIR = 'artifacts/hidden_states_qwq_32b/'\\nSEED = 42\\nWINDOW = 10\\nN_RANDOM = 10\\n\\nos.chdir('/root/autodl-tmp/contrastive_trace_safety')\\n\\nfiles = sorted([f for f in os.listdir(DATA_DIR) if f.endswith('.pt')])\\nprint(f\\\"Loading {len(files)} traces, layer {LAYER}...\\\", flush=True)\\n\\nall_X = []\\nall_y = []\\ntrace_ids = []\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_32b_selectivity_raw_features_20260517T133358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-17T13:43:59.757676+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/src/experiments/run_selectivity_qwq_l2.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_32b_selectivity_raw_features_20260517T133358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat /root/autodl-tmp/contrastive_trace_safety/src/experiments/run_selectivity_qwq_l2.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-17T13:43:59.757866+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"import torch, os, numpy as np, sys\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.metrics import balanced_accuracy_score\\nfrom sklearn.model_selection import train_test_split\\nfrom sklearn.preprocessing import StandardScaler\\n\\nLAYER = 2\\nDATA_DIR = 'artifacts/hidden_states_qwq_32b/'\\nSEED = 42\\nWINDOW = 10\\nN_RANDOM = 10\\n\\nos.chdir('/root/autodl-tmp/contrastive_trace_safety')\\n\\nfiles = sorted([f for f in os.listdir(DATA_DIR) if f.endswith('.pt')])\\nprint(f\\\"Loading {len(files)} traces, layer {LAYER}...\\\", flush=True)\\n\\nall_X = []\\nall_y = []\\ntrace_ids = []\\ntrace_lengths = []\\ntrace_cps = []\\n\\nfor i, f in enumerate(files):\\n    data = torch.load(DATA_DIR + f, map_location='cpu', weights_only=False)\\n    hs = data['hidden_states'][:, LAYER, :].numpy().astype(np.float32)\\n    labels = np.array(data['step_labels'], dtype=np.int32)\\n    cp = int(data.get('commitment_point', -1))\\n    n_steps = hs.shape[0]\\n    \\n    cumsum = np.cumsum(hs, axis=0)\\n    X_windowed = np.zeros_like(hs)\\n    for t in range(n_steps):\\n        start = max(0, t - WINDOW + 1)\\n        if start == 0:\\n            X_windowed[t] = cumsum[t] / (t + 1)\\n        else:\\n            X_windowed[t] = (cumsum[t] - cumsum[start-1]) / (t - start + 1)\\n    \\n    all_X.append(X_windowed)\\n    all_y.append(labels)\\n    trace_ids.extend([i] * n_steps)\\n    trace_lengths.extend([n_steps] * n_steps)\\n    trace_cps.extend([cp] * n_steps)\\n\\nall_X = np.concatenate(all_X, axis=0)\\nall_y = np.concatenate(all_y, axis=0)\\ntrace_ids = np.array(trace_ids)\\ntrace_lengths = np.array(trace_lengths)\\ntrace_cps = np.array(trace_cps)\\n\\n# Position features: normalized position within trace\\nall_pos = np.zeros((all_X.shape[0], 2), dtype=np.float32)\\nidx = 0\\nfor i, f in enumerate(files):\\n    data = torch.load(DATA_DIR + f, map_location='cpu', weights_only=False)\\n    n_steps = data['hidde
+…[truncated 4466 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_32b_selectivity_raw_features_20260517T133358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-17T13:43:59.758122+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat << 'PYEOF' > /root/autodl-tmp/contrastive_trace_safety/scripts/r1_32b_selectivity_ci_raw.py\n\"\"\"R1-32B Layer 10 selectivity bootstrap CI with RAW features (no PCA).\"\"\"\nimport torch, os, sys, json, warnings\nimport numpy as np\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import balanced_accuracy_score\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler\n\nwarnings.filterwarnings(\"ignore\")\n\nLAYER = 10\nDATA_DIR = '/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_r1_32b/'\nSEED = 42\nWINDOW = 10\nN_RANDOM = 10\nN_BOOTSTRAP = 1000\nOUT_DIR = '/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_selectivity_ci/'\n\nos.makedirs(OUT_DIR, exist_ok=True)\n\nfiles = sorted([f for f in os.listdir(DATA_DIR) if f.endswith('.pt')])\nprint(f\"Loading {len(files)} traces, layer {LAYER}...\", flush=True)\n\nall_traces = []\nfor i, f in enumerate(files):\n    data = torch.load(DATA_DIR + f, map_location='cpu', weights_only=False)\n    hs = data['hidden_states'][:, LAYER, :].numpy().astype(np.float32)\n    labels = np.array(data['step_labels'], dtype=np.int32)\n    n_steps = min(hs.shape[0], len(labels))\n    hs = hs[:n_steps]\n    labels = labels[:n_steps]\n\n    # Sliding window mean\n    cumsum = np.cumsum(hs, axis=0)\n    X_windowed = np.zeros_like(hs)\n    for t in range(n_steps):\n        start = max(0, t - WINDOW + 1)\n        if start == 0:\n            X_windowed[t] = cumsum[t] / (t + 1)\n        else:\n            X_windowed[t] = (cumsum[t] - cumsum[start-1]) / (t - start + 1)\n\n    all_traces.append({'X': X_windowed, 'y': labels, 'n': n_steps})\n    if (i+1) % 20 == 0:\n        print(f\"  {i+1}/{len(files)}\", flush=True)\n\nprint(f\"Loaded {len(all_traces)} traces, total steps: {sum(t['n'] for t in all_traces)}\", flush=True)\nprint(f\"Feature dim: {all_traces[0]['X'].shape[1]} (raw, no PCA)\", flush=True)\n\n# Split 60/20/20 by trace\nunique_traces = np.arange(len(all_traces))\ntrain_traces, temp_traces = train_test_split(unique_traces, test_size=0.4, random_state=SEED)\nval_traces, test_traces = train_test_split(temp_traces, test_size=0.5, random_state=SEED)\n\ndef build_data(trace_indices):\n    X_list = [all_traces[i]['X'] for i in trace_indices]\n    y_list = [all_traces[i]['y'] for i in trace_indices]\n    return np.concatenate(X_list), np.concatenate(y_list)\n\nX_train, y_train = build_data(train_traces)\nX_test, y_test = build_data(test_traces)\nprint(f\"Train: {X_train.shape[0]} steps, Test: {X_test.shape[0]} steps\", flush=True)\n\nscaler = StandardScaler()\nX_train_s = scaler.fit_transform(X_train)\nX_test_s = scaler.transform(X_test)\n\n# Build trace ID arrays for within-trace shuffling\ntrain_trace_ids = np.concatenate([[idx]*all_traces[ti]['n'] for idx, ti in enumerate(train_traces)])\n\n# Train real probe\nprint(\"Training real probe (liblinear, raw 5120-d)...\", flush=True)\nclf_real = LogisticRegression(C=1.0, class_weight='balanced', max_iter=2000, solver='liblinear', random_state=SEED)\nclf_real.fit(X_train_s, y_train)\nreal_preds = clf_real.predict(X_test_s)\nreal_acc = balanced_accuracy_score(y_test, real_preds)\nprint(f\"Real probe bal_acc: {real_acc:.4f}\", flush=True)\n\n# Train 10 random probes\nprint(\"Training 10 random probes...\", flush=True)\nrng = np.random.default_rng(SEED)\nrandom_probes = []\nrandom_accs_baseline = []\n\nfor rep in range(N_RANDOM):\n    y_shuffled = y_train.copy()\n    for idx in range(len(train_traces)):\n        mask_t = train_trace_ids == idx\n        y_shuffled[mask_t] = rng.permutation(y_shuffled[mask_t])\n\n    clf_r = LogisticRegression(C=1.0, class_weight='balanced', max_iter=2000, solver='liblinear', random_state=SEED)\n    clf_r.fit(X_train_s, y_shuffled)\n    preds_r = clf_r.predict(X_test_s)\n    racc = balanced_accuracy_score(y_test, preds_r)\n    random_probes.append(clf_r)\n    random_accs_baseline.append(racc)\n    print(f\"  Rep {rep+1}: {racc:.4f}\", flush=True)\n\nrandom_mean_baseline = np.mean(random_accs_baseline)\nrandom_std_baseline = np.std(random_accs_baseline)\nselectivity_baseline = real_acc - random_mean_baseline\nprint(f\"\\nBaseline: real={real_acc:.4f}, random_mean={random_mean_baseline:.4f}, selectivity={selectivity_baseline*100:.1f}pp\", flush=True)\n\n# Pre-compute per-trace predictions for bootstrap\ntest_trace_labels = {}\ntest_trace_real_preds = {}\ntest_trace_random_preds = {}\n\nstep_offset = 0\nfor ti in test_traces:\n    n = all_traces[ti]['n']\n    test_trace_labels[ti] = y_test[step_offset:step_offset+n]\n    test_trace_real_preds[ti] = real_preds[step_offset:step_offset+n]\n    test_trace_random_preds[ti] = []\n    X_ti = X_test_s[step_offset:step_offset+n]\n    for clf_r in random_probes:\n        test_trace_random_preds[ti].append(clf_r.predict(X_ti))\n    step_offset += n\n\n# Bootstrap CI\nprint(f\"\\nBootstrap CI ({N_BOOTSTRAP} resamples)...\", flush=True)\nbootstrap_rng = np.random.default_rng(123)\nselectivities = []\n\nfor b in range(N_BOOTSTRAP):\n    resampled = bootstrap_rng.choice(test_traces, size=len(test_traces), replace=True)\n\n    y_true_b = np.concatenate([test_trace_labels[ti] for ti in resampled])\n    y_pred_real_b = np.concatenate([test_trace_real_preds[ti] for ti in resampled])\n    b_real_acc = balanced_accuracy_score(y_true_b, y_pred_real_b)\n\n    b_random_accs = []\n    for r in range(N_RANDOM):\n        y_pred_rand_b = np.concatenate([test_trace_random_preds[ti][r] for ti in resampled])\n        b_random_accs.append(balanced_accuracy_score(y_true_b, y_pred_rand_b))\n\n    selectivities.append(b_real_acc - np.mean(b_random_accs))\n\n    if (b+1) % 250 == 0:\n        print(f\"  {b+1}/{N_BOOTSTRAP}\", flush=True)\n\nselectivities = np.array(selectivities)\nmean_sel = np.mean(selectivities)\nstd_sel = np.std(selectivities)\nci_low = np.percentile(selectivities, 2.5)\nci_high = np.percentile(selectivities, 97.5)\np_value = float(np.mean(selectivities <= 0))\n\nprint(f\"\\n{'='*60}\", flush=True)\nprint(f\"R1-32B Layer 10 Selectivity Bootstrap CI (RAW features)\", flush=True)\nprint(f\"{'='*60}\", flush=True)\nprint(f\"Feature dim:        {X_train.shape[1]} (raw, no PCA)\", flush=True)\nprint(f\"Solver:             liblinear\", flush=True)\nprint(f\"Baseline selectivity: {selectivity_baseline*100:.1f}pp\", flush=True)\nprint(f\"Bootstrap mean:     {mean_sel*100:.1f}pp\", flush=True)\nprint(f\"Bootstrap std:      {std_sel*100:.1f}pp\", flush=True)\nprint(f\"95% CI:             [{ci_low*100:.1f}, {ci_high*100:.1f}]pp\", flush=True)\nprint(f\"p-value (sel <= 0): {p_value:.4f}\", flush=True)\nprint(f\"Significant (p<0.05): {p_value < 0.05}\", flush=True)\nprint(f\"CI lower > 5pp:     {ci_low > 0.05}\", flush=True)\n\nresults = {\n    \"model\": \"r1_32b\",\n    \"layer\": 10,\n    \"feature_type\": \"raw\",\n    \"hidden_dim\": int(X_train.shape[1]),\n    \"pca_components\": None,\n    \"n_traces\": len(all_traces),\n    \"n_train_traces\": int(len(train_traces)),\n    \"n_test_traces\": int(len(test_traces)),\n    \"n_train_steps\": int(X_train.shape[0]),\n    \"n_test_steps\": int(X_test.shape[0]),\n    \"window\": WINDOW,\n    \"solver\": \"liblinear\",\n    \"n_random_repeats\": N_RANDOM,\n    \"baseline\": {\n        \"real_acc\": float(real_acc),\n        \"random_mean\": float(random_mean_baseline),\n        \"random_std\": float(random_std_baseline),\n        \"random_accs\": [float(x) for x in random_accs_baseline],\n        \"selectivity_pp\": round(float(selectivity_baseline * 100), 2),\n    },\n    \"bootstrap\": {\n        \"n_iterations\": N_BOOTSTRAP,\n        \"mean_pp\": round(float(mean_sel * 100), 2),\n        \"std_pp\": round(float(std_sel * 100), 2),\n        \"ci95_low_pp\": round(float(ci_low * 100), 2),\n        \"ci95_high_pp\": round(float(ci_high * 100), 2),\n        \"p_value\": float(p_value),\n        \"significant\": bool(p_value < 0.05),\n        \"above_5pp_threshold\": bool(ci_low > 0.05),\n    },\n}\n\nwith open(os.path.join(OUT_DIR, 'results.json'), 'w') as f:\n    json.dump(results, f, indent=2)\nprint(f\"\\nSaved: {OUT_DIR}results.json\", flush=True)\nPYEOF\necho \"Script written.\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_32b_selectivity_raw_features_20260517T133358",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat << 'PYEOF' > /root/autodl-tmp/contrastive_trace_safety/scripts/r1_32b_selectivity_ci_raw.py\n\"\"\"R1-32B Layer 10 selectivity bootstrap CI with RAW features (no PCA).\"\"\"\nimport torch, os, sys, json, warnings\nimport numpy as np\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import balanced_accuracy_score\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler\n\nwarnings.filterwarnings(\"ignore\")\n\nLAYER = 10\nDATA_DIR = '/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_r1_32b/'\nSEED = 42\nWINDOW = 10\nN_RANDOM = 10\nN_BOOTSTRAP = 1000\nOUT_DIR = '/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_selectivity_ci/'\n\nos.makedirs(OUT_DIR, exist_ok=True)\n\nfiles = sorted([f for f in os.listdir(DATA_DIR) if f.endswith('.pt')])\nprint(f\"Loading {len(files)} traces, layer {LAYER}...\", flush=True)\n\nall_traces = []\nfor i, f in enumerate(files):\n    data = torch.load(DATA_DIR + f, map_location='cpu', weights_only=False)\n    hs = data['hidden_states'][:, LAYER, :].numpy().astype(np.float32)\n    labels = np.array(data['step_labels'], dtype=np.int32)\n    n_steps = min(hs.shape[0], len(labels))\n    hs = hs[:n_steps]\n    labels = labels[:n_steps]\n\n    # Sliding window mean\n    cumsum = np.cumsum(hs, axis=0)\n    X_windowed = np.zeros_like(hs)\n    for t in range(n_steps):\n        start = max(0, t - WINDOW + 1)\n        if start == 0:\n            X_windowed[t] = cumsum[t] / (t + 1)\n        else:\n            X_windowed[t] = (cumsum[t] - cumsum[start-1]) / (t - start + 1)\n\n    all_traces.append({'X': X_windowed, 'y': labels, 'n': n_steps})\n    if (i+1) % 20 == 0:\n        print(f\"  {i+1}/{len(files)}\", flush=True)\n\nprint(f\"Loaded {len(all_traces)} traces, total steps: {sum(t['n'] for t in all_traces)}\", flush=True)\nprint(f\"Feature dim: {all_traces[0]['X'].shape[1]} (raw, no PCA)\", flush=True)\n\n# Split 60/20/20 by trace\nunique_traces = np.arange(len(all_traces))\ntrain_traces, temp_traces = train_test_split(unique_traces, test_size=0.4, random_state=SEED)\nval_traces, test_traces = train_test_split(temp_traces, test_size=0.5, random_state=SEED)\n\ndef build_data(trace_indices):\n    X_list = [all_traces[i]['X'] for i in trace_indices]\n    y_list = [all_traces[i]['y'] for i in trace_indices]\n    return np.concatenate(X_list), np.concatenate(y_list)\n\nX_train, y_train = build_data(train_traces)\nX_test, y_test = build_data(test_traces)\nprint(f\"Train: {X_train.shape[0]} steps, Test: {X_test.shape[0]} steps\", flush=True)\n\nscaler = StandardScaler()\nX_train_s = scaler.fit_transform(X_train)\nX_test_s = scaler.transform(X_test)\n\n# Build trace ID arrays for within-trace shuffling\ntrain_trace_ids = np.concatenate([[idx]*all_traces[ti]['n'] for idx, ti in enumerate(train_traces)])\n\n# Train real probe\nprint(\"Training real probe (liblinear, raw 5120-d)...\", flush=True)\nclf_real = LogisticRegression(C=1.0, class_weight='balanced', max_iter=2000, solver='liblinear', random_state=SEED)\nclf_real.fit(X_train_s, y_train)\nreal_preds = clf_real.predict(X_test_s)\nreal_acc = balanced_accuracy_score(y_test, real_preds)\nprint(f\"Real probe bal_acc: {real_acc:.4f}\", flush=True)\n\n# Train 10 random probes\nprint(\"Training 10 random probes...\", flush=True)\nrng = np.random.default_rng(SEED)\nrandom_probes = []\nrandom_accs_baseline = []\n\nfor rep in range(N_RANDOM):\n    y_shuffled = y_train.copy()\n    for idx in range(len(train_traces)):\n        mask_t = train_trace_ids == idx\n        y_shuffled[mask_t] = rng.permutation(y_shuffled[mask_t])\n\n    clf_r = LogisticRegression(C=1.0, class_weight='balanced', max_iter=2000, solver='liblinear', random_state=SEED)\n    clf_r.fit(X_train_s, y_shuffled)\n    preds_r = clf_r.predict(X_test_s)\n    racc = balanced_accuracy_score(y_test, preds_r)\n    random_probes.append(clf_r)\n    random_accs_baseline.append(racc)\n    print(f\"  Rep {rep+1}: {racc:.4f}\", flush=True)\n\nrandom_mean_baseline = np.mean(random_accs_baseline)\nrandom_std_baseline = np.std(random_accs_baseline)\nselectivity_baseline = real_acc - random_mean_baseline\nprint(f\"\\nBaseline: real={real_acc:.4f}, random_mean={random_mean_baseline:.4f}, selectivity={selectivity_baseline*100:.1f}pp\", flush=True)\n\n# Pre-compute per-trace predictions for bootstrap\ntest_trace_labels = {}\ntest_trace_real_preds = {}\ntest_trace_random_preds = {}\n\nstep_offset = 0\nfor ti in test_traces:\n    n = all_traces[ti]['n']\n    test_trace_labels[ti] = y_test[step_offset:step_offset+n]\n    test_trace_real_preds[ti] = real_preds[step_offset:step_offset+n]\n    test_trace_random_preds[ti] = []\n    X_ti = X_test_s[step_offset:step_offset+n]\n    for clf_r in random_probes:\n        test_trace_random_preds[ti].append(clf_r.predict(X_ti))\n    step_offset += n\n\n# Bootstrap CI\nprint(f\"\\nBootstrap CI ({N_BOOTSTRAP} resamples)...\", flush=True)\nbootstrap_rng = np.random.default_rng(123)\nselectivities = []\n\nfor b in range(N_BOOTSTRAP):\n    resampled = bootstrap_rng.choice(test_traces, size=len(test_traces), replace=True)\n\n    y_true_b = np.concatenate([test_trace_labels[ti] for ti in resampled])\n    y_pred_real_b = np.concatenate([test_trace_real_preds[ti] for ti in resampled])\n    b_real_acc = balanced_accuracy_score(y_true_b, y_pred_real_b)\n\n    b_random_accs = []\n    for r in range(N_RANDOM):\n        y_pred_rand_b = np.concatenate([test_trace_random_preds[ti][r] for ti in resampled])\n        b_random_accs.append(balanced_accuracy_score(y_true_b, y_pred_rand_b))\n\n    selectivities.append(b_real_acc - np.mean(b_random_accs))\n\n    if (b+1) % 250 == 0:\n        print(f\"  {b+1}/{N_BOOTSTRAP}\", flush=True)\n\nselectivities = np.array(selectivities)\nmean_sel = np.mean(selectivities)\nstd_sel = np.std(selectivities)\nci_low = np.percentile(selectivities, 2.5)\nci_high = np.percentile(selectivities, 97.5)\np_value = float(np.mean(selectivities <= 0))\n\nprint(f\"\\n{'='*60}\", flush=True)\nprint(f\"R1-32B Layer 10 Selectivity Bootstrap CI (RAW features)\", flush=True)\nprint(f\"{'='*60}\", flush=True)\nprint(f\"Feature dim:        {X_train.shape[1]} (raw, no PCA)\", flush=True)\nprint(f\"Solver:             liblinear\", flush=True)\nprint(f\"Baseline selectivity: {selectivity_baseline*100:.1f}pp\", flush=True)\nprint(f\"Bootstrap mean:     {mean_sel*100:.1f}pp\", flush=True)\nprint(f\"Bootstrap std:      {std_sel*100:.1f}pp\", flush=True)\nprint(f\"95% CI:             [{ci_low*100:.1f}, {ci_high*100:.1f}]pp\", flush=True)\nprint(f\"p-value (sel <= 0): {p_value:.4f}\", flush=True)\nprint(f\"Significant (p<0.05): {p_value < 0.05}\", flush=True)\nprint(f\"CI lower > 5pp:     {ci_low > 0.05}\", flush=True)\n\nresults = {\n    \"model\": \"r1_32b\",\n    \"layer\": 10,\n    \"feature_type\": \"raw\",\n    \"hidden_dim\": int(X_train.shape[1]),\n    \"pca_components\": None,\n    \"n_traces\": len(all_traces),\n    \"n_train_traces\": int(len(train_traces)),\n    \"n_test_traces\": int(len(test_traces)),\n    \"n_train_steps\": int(X_train.shape[0]),\n    \"n_test_steps\": int(X_test.shape[0]),\n    \"window\": WINDOW,\n    \"solver\": \"liblinear\",\n    \"n_random_repeats\": N_RANDOM,\n    \"baseline\": {\n        \"real_acc\": float(real_acc),\n        \"random_mean\": float(random_mean_baseline),\n        \"random_std\": float(random_std_baseline),\n        \"random_accs\": [float(x) for x in random_accs_baseline],\n        \"selectivity_pp\": round(float(selectivity_baseline * 100), 2),\n    },\n    \"bootstrap\": {\n        \"n_iterations\": N_BOOTSTRAP,\n        \"mean_pp\": round(float(mean_sel * 100), 2),\n        \"std_pp\": round(float(std_sel * 100), 2),\n        \"ci95_low_pp\": round(float(ci_low * 100), 2),\n        \"ci95_high_pp\": round(float(ci_high * 100), 2),\n        \"p_value\": float(p_value),\n        \"significant\": bool(p_value < 0.05),\n        \"above_5pp_threshold\": bool(ci_low > 0.05),\n    },\n}\n\nwith open(os.path.join(OUT_DIR, 'results.json'), 'w') as f:\n    json.dump(results, f, indent=2)\nprint(f\"\\nSaved: {OUT_DIR}results.json\", flush=True)\nPYEOF\necho \"Script written.\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-17T13:43:59.758328+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_32b_selectivity_raw_features_20260517T133358",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-17T13:43:59.758455+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "source /root/miniconda3/bin/activate && cd /root/autodl-tmp/contrastive_trace_safety && python scripts/r1_32b_selectivity_ci_raw.py",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_32b_selectivity_raw_features_20260517T133358",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "source /root/miniconda3/bin/activate && cd /root/autodl-tmp/contrastive_trace_safety && python scripts/r1_32b_selectivity_ci_raw.py",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-17T13:43:59.758622+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/bin/activate && cd /root/autodl-tmp/contrastive_trace_safety && python scripts/r1_32b_selectivity_ci_raw.py'\\n\\nStdout:\\n\\n  40/100\\n  60/100\\n  80/100\\n  100/100\\nLoaded 100 traces, total steps: 3506\\nFeature dim: 5120 (raw, no PCA)\\nTrain: 2076 steps, Test: 703 steps\\nTraining real probe (liblinear, raw 5120-d)...\\nReal probe bal_acc: 0.5882\\nTraining 10 random probes...\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_32b_selectivity_raw_features_20260517T133358",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-17T13:43:59.758825+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat << 'PYEOF' > /root/autodl-tmp/contrastive_trace_safety/scripts/r1_32b_sel_phase1.py\n\"\"\"Phase 1: Load data, train probes, save predictions.\"\"\"\nimport torch, os, json, warnings, pickle\nimport numpy as np\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import balanced_accuracy_score\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler\nwarnings.filterwarnings(\"ignore\")\n\nLAYER = 10\nDATA_DIR = '/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_r1_32b/'\nOUT_DIR = '/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_selectivity_ci/'\nSEED, WINDOW, N_RANDOM = 42, 10, 10\nos.makedirs(OUT_DIR, exist_ok=True)\n\nfiles = sorted([f for f in os.listdir(DATA_DIR) if f.endswith('.pt')])\nprint(f\"Loading {len(files)} traces, layer {LAYER}...\", flush=True)\n\nall_traces = []\nfor f in files:\n    data = torch.load(DATA_DIR + f, map_location='cpu', weights_only=False)\n    hs = data['hidden_states'][:, LAYER, :].numpy().astype(np.float32)\n    labels = np.array(data['step_labels'], dtype=np.int32)\n    n = min(hs.shape[0], len(labels))\n    hs, labels = hs[:n], labels[:n]\n    cumsum = np.cumsum(hs, axis=0)\n    X = np.zeros_like(hs)\n    for t in range(n):\n        s = max(0, t - WINDOW + 1)\n        X[t] = cumsum[t] / (t+1) if s == 0 else (cumsum[t] - cumsum[s-1]) / (t-s+1)\n    all_traces.append({'X': X, 'y': labels, 'n': n})\n\nprint(f\"Loaded, dim={all_traces[0]['X'].shape[1]}, total_steps={sum(t['n'] for t in all_traces)}\", flush=True)\n\n# Split\nidx = np.arange(len(all_traces))\ntr, tmp = train_test_split(idx, test_size=0.4, random_state=SEED)\nva, te = train_test_split(tmp, test_size=0.5, random_state=SEED)\n\ndef build(ids):\n    return np.concatenate([all_traces[i]['X'] for i in ids]), np.concatenate([all_traces[i]['y'] for i in ids])\n\nX_tr, y_tr = build(tr)\nX_te, y_te = build(te)\nsc = StandardScaler(); X_tr_s = sc.fit_transform(X_tr); X_te_s = sc.transform(X_te)\nprint(f\"Train={X_tr.shape[0]}, Test={X_te.shape[0]}\", flush=True)\n\n# Train real probe\nclf = LogisticRegression(C=1.0, class_weight='balanced', max_iter=2000, solver='liblinear', random_state=SEED)\nclf.fit(X_tr_s, y_tr)\nreal_preds = clf.predict(X_te_s)\nreal_acc = balanced_accuracy_score(y_te, real_preds)\nprint(f\"real_acc={real_acc:.4f}\", flush=True)\n\n# Save phase 1 results for phase 2\n# Per-trace test predictions\ntrace_data = {}\noff = 0\nfor ti in te:\n    n = all_traces[ti]['n']\n    trace_data[int(ti)] = {\n        'y': y_te[off:off+n].tolist(),\n        'real_pred': real_preds[off:off+n].tolist(),\n    }\n    off += n\n\n# Save intermediate\nphase1 = {\n    'test_traces': te.tolist(),\n    'train_traces': tr.tolist(),\n    'trace_data': trace_data,\n    'real_acc': float(real_acc),\n    'n_train': int(X_tr.shape[0]),\n    'n_test': int(X_te.shape[0]),\n    'hdim': int(X_tr.shape[1]),\n    'X_te_s_path': os.path.join(OUT_DIR, 'X_te_s.npy'),\n    'train_trace_ids': [],\n    'y_tr': y_tr.tolist(),\n}\n# Save scaled test features for random probe prediction in phase 2\nnp.save(os.path.join(OUT_DIR, 'X_te_s.npy'), X_te_s)\n# Save training data for random probes\nnp.save(os.path.join(OUT_DIR, 'X_tr_s.npy'), X_tr_s)\nnp.save(os.path.join(OUT_DIR, 'y_tr.npy'), y_tr)\n# Save trace IDs\ntr_ids = np.concatenate([[idx]*all_traces[ti]['n'] for idx, ti in enumerate(tr)])\nnp.save(os.path.join(OUT_DIR, 'train_trace_ids.npy'), tr_ids)\n\nwith open(os.path.join(OUT_DIR, 'phase1.json'), 'w') as f:\n    json.dump(phase1, f)\nprint(\"Phase 1 saved.\", flush=True)\nPYEOF\necho \"Phase 1 script ready.\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_32b_selectivity_raw_features_20260517T133358",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat << 'PYEOF' > /root/autodl-tmp/contrastive_trace_safety/scripts/r1_32b_sel_phase1.py\n\"\"\"Phase 1: Load data, train probes, save predictions.\"\"\"\nimport torch, os, json, warnings, pickle\nimport numpy as np\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import balanced_accuracy_score\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler\nwarnings.filterwarnings(\"ignore\")\n\nLAYER = 10\nDATA_DIR = '/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_r1_32b/'\nOUT_DIR = '/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_selectivity_ci/'\nSEED, WINDOW, N_RANDOM = 42, 10, 10\nos.makedirs(OUT_DIR, exist_ok=True)\n\nfiles = sorted([f for f in os.listdir(DATA_DIR) if f.endswith('.pt')])\nprint(f\"Loading {len(files)} traces, layer {LAYER}...\", flush=True)\n\nall_traces = []\nfor f in files:\n    data = torch.load(DATA_DIR + f, map_location='cpu', weights_only=False)\n    hs = data['hidden_states'][:, LAYER, :].numpy().astype(np.float32)\n    labels = np.array(data['step_labels'], dtype=np.int32)\n    n = min(hs.shape[0], len(labels))\n    hs, labels = hs[:n], labels[:n]\n    cumsum = np.cumsum(hs, axis=0)\n    X = np.zeros_like(hs)\n    for t in range(n):\n        s = max(0, t - WINDOW + 1)\n        X[t] = cumsum[t] / (t+1) if s == 0 else (cumsum[t] - cumsum[s-1]) / (t-s+1)\n    all_traces.append({'X': X, 'y': labels, 'n': n})\n\nprint(f\"Loaded, dim={all_traces[0]['X'].shape[1]}, total_steps={sum(t['n'] for t in all_traces)}\", flush=True)\n\n# Split\nidx = np.arange(len(all_traces))\ntr, tmp = train_test_split(idx, test_size=0.4, random_state=SEED)\nva, te = train_test_split(tmp, test_size=0.5, random_state=SEED)\n\ndef build(ids):\n    return np.concatenate([all_traces[i]['X'] for i in ids]), np.concatenate([all_traces[i]['y'] for i in ids])\n\nX_tr, y_tr = build(tr)\nX_te, y_te = build(te)\nsc = StandardScaler(); X_tr_s = sc.fit_transform(X_tr); X_te_s = sc.transform(X_te)\nprint(f\"Train={X_tr.shape[0]}, Test={X_te.shape[0]}\", flush=True)\n\n# Train real probe\nclf = LogisticRegression(C=1.0, class_weight='balanced', max_iter=2000, solver='liblinear', random_state=SEED)\nclf.fit(X_tr_s, y_tr)\nreal_preds = clf.predict(X_te_s)\nreal_acc = balanced_accuracy_score(y_te, real_preds)\nprint(f\"real_acc={real_acc:.4f}\", flush=True)\n\n# Save phase 1 results for phase 2\n# Per-trace test predictions\ntrace_data = {}\noff = 0\nfor ti in te:\n    n = all_traces[ti]['n']\n    trace_data[int(ti)] = {\n        'y': y_te[off:off+n].tolist(),\n        'real_pred': real_preds[off:off+n].tolist(),\n    }\n    off += n\n\n# Save intermediate\nphase1 = {\n    'test_traces': te.tolist(),\n    'train_traces': tr.tolist(),\n    'trace_data': trace_data,\n    'real_acc': float(real_acc),\n    'n_train': int(X_tr.shape[0]),\n    'n_test': int(X_te.shape[0]),\n    'hdim': int(X_tr.shape[1]),\n    'X_te_s_path': os.path.join(OUT_DIR, 'X_te_s.npy'),\n    'train_trace_ids': [],\n    'y_tr': y_tr.tolist(),\n}\n# Save scaled test features for random probe prediction in phase 2\nnp.save(os.path.join(OUT_DIR, 'X_te_s.npy'), X_te_s)\n# Save training data for random probes\nnp.save(os.path.join(OUT_DIR, 'X_tr_s.npy'), X_tr_s)\nnp.save(os.path.join(OUT_DIR, 'y_tr.npy'), y_tr)\n# Save trace IDs\ntr_ids = np.concatenate([[idx]*all_traces[ti]['n'] for idx, ti in enumerate(tr)])\nnp.save(os.path.join(OUT_DIR, 'train_trace_ids.npy'), tr_ids)\n\nwith open(os.path.join(OUT_DIR, 'phase1.json'), 'w') as f:\n    json.dump(phase1, f)\nprint(\"Phase 1 saved.\", flush=True)\nPYEOF\necho \"Phase 1 script ready.\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-17T13:43:59.758985+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Phase 1 script ready.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.72}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_32b_selectivity_raw_features_20260517T133358",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-17T13:43:59.759114+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "source /root/miniconda3/bin/activate && python /root/autodl-tmp/contrastive_trace_safety/scripts/r1_32b_sel_phase1.py",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_32b_selectivity_raw_features_20260517T133358",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "source /root/miniconda3/bin/activate && python /root/autodl-tmp/contrastive_trace_safety/scripts/r1_32b_sel_phase1.py",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-17T13:43:59.759242+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading 100 traces, layer 10...\\nLoaded, dim=5120, total_steps=3506\\nTrain=2076, Test=703\\nreal_acc=0.5882\\nPhase 1 saved.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 13.4}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_32b_selectivity_raw_features_20260517T133358",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-17T13:43:59.759390+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat << 'PYEOF' > /root/autodl-tmp/contrastive_trace_safety/scripts/r1_32b_sel_phase2.py\n\"\"\"Phase 2: Train random probes, compute bootstrap CI.\"\"\"\nimport os, json, warnings\nimport numpy as np\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import balanced_accuracy_score\nwarnings.filterwarnings(\"ignore\")\n\nSEED, N_RANDOM, N_BOOTSTRAP = 42, 10, 1000\nOUT_DIR = '/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_selectivity_ci/'\n\nwith open(os.path.join(OUT_DIR, 'phase1.json')) as f:\n    p1 = json.load(f)\n\nX_tr_s = np.load(os.path.join(OUT_DIR, 'X_tr_s.npy'))\nX_te_s = np.load(os.path.join(OUT_DIR, 'X_te_s.npy'))\ny_tr = np.load(os.path.join(OUT_DIR, 'y_tr.npy'))\ntr_ids = np.load(os.path.join(OUT_DIR, 'train_trace_ids.npy'))\ntest_traces = np.array(p1['test_traces'])\nreal_acc = p1['real_acc']\n\nprint(f\"Loaded: train={X_tr_s.shape}, test={X_te_s.shape}\", flush=True)\n\n# Reconstruct test labels and real predictions per trace\ntrace_data = p1['trace_data']\ny_te = np.concatenate([np.array(trace_data[str(ti)]['y']) for ti in test_traces])\nreal_preds = np.concatenate([np.array(trace_data[str(ti)]['real_pred']) for ti in test_traces])\n\n# Train 10 random probes\nprint(\"Training 10 random probes...\", flush=True)\nrng = np.random.default_rng(SEED)\nn_train_traces = len(p1['train_traces'])\nrandom_accs = []\nrandom_preds_all = []\n\nfor rep in range(N_RANDOM):\n    y_shuf = y_tr.copy()\n    for idx in range(n_train_traces):\n        mask = tr_ids == idx\n        y_shuf[mask] = rng.permutation(y_shuf[mask])\n    clf = LogisticRegression(C=1.0, class_weight='balanced', max_iter=2000, solver='liblinear', random_state=SEED)\n    clf.fit(X_tr_s, y_shuf)\n    preds = clf.predict(X_te_s)\n    racc = balanced_accuracy_score(y_te, preds)\n    random_accs.append(racc)\n    random_preds_all.append(preds)\n    print(f\"  Rep {rep+1}: {racc:.4f}\", flush=True)\n\nrmean = np.mean(random_accs)\nrstd = np.std(random_accs)\nsel_base = real_acc - rmean\nprint(f\"Baseline: real={real_acc:.4f}, random_mean={rmean:.4f}, selectivity={sel_base*100:.1f}pp\", flush=True)\n\n# Per-trace predictions for bootstrap\ntest_trace_y = {}\ntest_trace_rp = {}\ntest_trace_rand = {}\noff = 0\nfor ti in test_traces:\n    n = len(trace_data[str(ti)]['y'])\n    test_trace_y[ti] = y_te[off:off+n]\n    test_trace_rp[ti] = real_preds[off:off+n]\n    test_trace_rand[ti] = [rp[off:off+n] for rp in random_preds_all]\n    off += n\n\n# Bootstrap\nprint(f\"Bootstrap ({N_BOOTSTRAP})...\", flush=True)\nbrng = np.random.default_rng(123)\nsels = []\nfor b in range(N_BOOTSTRAP):\n    rs = brng.choice(test_traces, size=len(test_traces), replace=True)\n    yt = np.concatenate([test_trace_y[t] for t in rs])\n    ypr = np.concatenate([test_trace_rp[t] for t in rs])\n    ba = balanced_accuracy_score(yt, ypr)\n    ras = [balanced_accuracy_score(yt, np.concatenate([test_trace_rand[t][r] for t in rs])) for r in range(N_RANDOM)]\n    sels.append(ba - np.mean(ras))\n    if (b+1) % 500 == 0:\n        print(f\"  {b+1}/{N_BOOTSTRAP}\", flush=True)\n\nsels = np.array(sels)\nm, s = np.mean(sels), np.std(sels)\nci_lo, ci_hi = np.percentile(sels, 2.5), np.percentile(sels, 97.5)\npv = float(np.mean(sels <= 0))\n\nprint(f\"\\n{'='*60}\", flush=True)\nprint(f\"R1-32B Layer 10 Selectivity CI (RAW 5120-d, liblinear)\", flush=True)\nprint(f\"{'='*60}\", flush=True)\nprint(f\"Baseline selectivity: {sel_base*100:.1f}pp\", flush=True)\nprint(f\"Bootstrap mean:       {m*100:.1f}pp\", flush=True)\nprint(f\"Bootstrap std:        {s*100:.1f}pp\", flush=True)\nprint(f\"95% CI:               [{ci_lo*100:.1f}, {ci_hi*100:.1f}]pp\", flush=True)\nprint(f\"p-value (sel<=0):     {pv:.4f}\", flush=True)\nprint(f\"Significant (p<0.05): {pv < 0.05}\", flush=True)\nprint(f\"CI lower > 5pp:       {ci_lo > 0.05}\", flush=True)\n\nresults = {\n    \"model\": \"r1_32b\",\n    \"layer\": 10,\n    \"feature_type\": \"raw\",\n    \"hidden_dim\": int(X_tr_s.shape[1]),\n    \"pca_components\": None,\n    \"n_traces\": 100,\n    \"n_train_traces\": int(len(p1['train_traces'])),\n    \"n_test_traces\": int(len(test_traces)),\n    \"n_train_steps\": int(X_tr_s.shape[0]),\n    \"n_test_steps\": int(X_te_s.shape[0]),\n    \"window\": 10,\n    \"solver\": \"liblinear\",\n    \"n_random_repeats\": N_RANDOM,\n    \"baseline\": {\n        \"real_acc\": float(real_acc),\n        \"random_mean\": round(float(rmean), 4),\n        \"random_std\": round(float(rstd), 4),\n        \"random_accs\": [round(float(x), 4) for x in random_accs],\n        \"selectivity_pp\": round(float(sel_base*100), 2),\n    },\n    \"bootstrap\": {\n        \"n_iterations\": N_BOOTSTRAP,\n        \"mean_pp\": round(float(m*100), 2),\n        \"std_pp\": round(float(s*100), 2),\n        \"ci95_low_pp\": round(float(ci_lo*100), 2),\n        \"ci95_high_pp\": round(float(ci_hi*100), 2),\n        \"p_value\": float(pv),\n        \"significant\": bool(pv < 0.05),\n        \"above_5pp_threshold\": bool(ci_lo > 0.05),\n    },\n}\n\nwith open(os.path.join(OUT_DIR, 'results.json'), 'w') as f:\n    json.dump(results, f, indent=2)\nprint(f\"\\nSaved: {OUT_DIR}results.json\", flush=True)\nPYEOF\necho \"Phase 2 script ready.\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_32b_selectivity_raw_features_20260517T133358",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat << 'PYEOF' > /root/autodl-tmp/contrastive_trace_safety/scripts/r1_32b_sel_phase2.py\n\"\"\"Phase 2: Train random probes, compute bootstrap CI.\"\"\"\nimport os, json, warnings\nimport numpy as np\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import balanced_accuracy_score\nwarnings.filterwarnings(\"ignore\")\n\nSEED, N_RANDOM, N_BOOTSTRAP = 42, 10, 1000\nOUT_DIR = '/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_selectivity_ci/'\n\nwith open(os.path.join(OUT_DIR, 'phase1.json')) as f:\n    p1 = json.load(f)\n\nX_tr_s = np.load(os.path.join(OUT_DIR, 'X_tr_s.npy'))\nX_te_s = np.load(os.path.join(OUT_DIR, 'X_te_s.npy'))\ny_tr = np.load(os.path.join(OUT_DIR, 'y_tr.npy'))\ntr_ids = np.load(os.path.join(OUT_DIR, 'train_trace_ids.npy'))\ntest_traces = np.array(p1['test_traces'])\nreal_acc = p1['real_acc']\n\nprint(f\"Loaded: train={X_tr_s.shape}, test={X_te_s.shape}\", flush=True)\n\n# Reconstruct test labels and real predictions per trace\ntrace_data = p1['trace_data']\ny_te = np.concatenate([np.array(trace_data[str(ti)]['y']) for ti in test_traces])\nreal_preds = np.concatenate([np.array(trace_data[str(ti)]['real_pred']) for ti in test_traces])\n\n# Train 10 random probes\nprint(\"Training 10 random probes...\", flush=True)\nrng = np.random.default_rng(SEED)\nn_train_traces = len(p1['train_traces'])\nrandom_accs = []\nrandom_preds_all = []\n\nfor rep in range(N_RANDOM):\n    y_shuf = y_tr.copy()\n    for idx in range(n_train_traces):\n        mask = tr_ids == idx\n        y_shuf[mask] = rng.permutation(y_shuf[mask])\n    clf = LogisticRegression(C=1.0, class_weight='balanced', max_iter=2000, solver='liblinear', random_state=SEED)\n    clf.fit(X_tr_s, y_shuf)\n    preds = clf.predict(X_te_s)\n    racc = balanced_accuracy_score(y_te, preds)\n    random_accs.append(racc)\n    random_preds_all.append(preds)\n    print(f\"  Rep {rep+1}: {racc:.4f}\", flush=True)\n\nrmean = np.mean(random_accs)\nrstd = np.std(random_accs)\nsel_base = real_acc - rmean\nprint(f\"Baseline: real={real_acc:.4f}, random_mean={rmean:.4f}, selectivity={sel_base*100:.1f}pp\", flush=True)\n\n# Per-trace predictions for bootstrap\ntest_trace_y = {}\ntest_trace_rp = {}\ntest_trace_rand = {}\noff = 0\nfor ti in test_traces:\n    n = len(trace_data[str(ti)]['y'])\n    test_trace_y[ti] = y_te[off:off+n]\n    test_trace_rp[ti] = real_preds[off:off+n]\n    test_trace_rand[ti] = [rp[off:off+n] for rp in random_preds_all]\n    off += n\n\n# Bootstrap\nprint(f\"Bootstrap ({N_BOOTSTRAP})...\", flush=True)\nbrng = np.random.default_rng(123)\nsels = []\nfor b in range(N_BOOTSTRAP):\n    rs = brng.choice(test_traces, size=len(test_traces), replace=True)\n    yt = np.concatenate([test_trace_y[t] for t in rs])\n    ypr = np.concatenate([test_trace_rp[t] for t in rs])\n    ba = balanced_accuracy_score(yt, ypr)\n    ras = [balanced_accuracy_score(yt, np.concatenate([test_trace_rand[t][r] for t in rs])) for r in range(N_RANDOM)]\n    sels.append(ba - np.mean(ras))\n    if (b+1) % 500 == 0:\n        print(f\"  {b+1}/{N_BOOTSTRAP}\", flush=True)\n\nsels = np.array(sels)\nm, s = np.mean(sels), np.std(sels)\nci_lo, ci_hi = np.percentile(sels, 2.5), np.percentile(sels, 97.5)\npv = float(np.mean(sels <= 0))\n\nprint(f\"\\n{'='*60}\", flush=True)\nprint(f\"R1-32B Layer 10 Selectivity CI (RAW 5120-d, liblinear)\", flush=True)\nprint(f\"{'='*60}\", flush=True)\nprint(f\"Baseline selectivity: {sel_base*100:.1f}pp\", flush=True)\nprint(f\"Bootstrap mean:       {m*100:.1f}pp\", flush=True)\nprint(f\"Bootstrap std:        {s*100:.1f}pp\", flush=True)\nprint(f\"95% CI:               [{ci_lo*100:.1f}, {ci_hi*100:.1f}]pp\", flush=True)\nprint(f\"p-value (sel<=0):     {pv:.4f}\", flush=True)\nprint(f\"Significant (p<0.05): {pv < 0.05}\", flush=True)\nprint(f\"CI lower > 5pp:       {ci_lo > 0.05}\", flush=True)\n\nresults = {\n    \"model\": \"r1_32b\",\n    \"layer\": 10,\n    \"feature_type\": \"raw\",\n    \"hidden_dim\": int(X_tr_s.shape[1]),\n    \"pca_components\": None,\n    \"n_traces\": 100,\n    \"n_train_traces\": int(len(p1['train_traces'])),\n    \"n_test_traces\": int(len(test_traces)),\n    \"n_train_steps\": int(X_tr_s.shape[0]),\n    \"n_test_steps\": int(X_te_s.shape[0]),\n    \"window\": 10,\n    \"solver\": \"liblinear\",\n    \"n_random_repeats\": N_RANDOM,\n    \"baseline\": {\n        \"real_acc\": float(real_acc),\n        \"random_mean\": round(float(rmean), 4),\n        \"random_std\": round(float(rstd), 4),\n        \"random_accs\": [round(float(x), 4) for x in random_accs],\n        \"selectivity_pp\": round(float(sel_base*100), 2),\n    },\n    \"bootstrap\": {\n        \"n_iterations\": N_BOOTSTRAP,\n        \"mean_pp\": round(float(m*100), 2),\n        \"std_pp\": round(float(s*100), 2),\n        \"ci95_low_pp\": round(float(ci_lo*100), 2),\n        \"ci95_high_pp\": round(float(ci_hi*100), 2),\n        \"p_value\": float(pv),\n        \"significant\": bool(pv < 0.05),\n        \"above_5pp_threshold\": bool(ci_lo > 0.05),\n    },\n}\n\nwith open(os.path.join(OUT_DIR, 'results.json'), 'w') as f:\n    json.dump(results, f, indent=2)\nprint(f\"\\nSaved: {OUT_DIR}results.json\", flush=True)\nPYEOF\necho \"Phase 2 script ready.\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-17T13:43:59.759559+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Phase 2 script ready.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_32b_selectivity_raw_features_20260517T133358",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-17T13:43:59.759706+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "source /root/miniconda3/bin/activate && python /root/autodl-tmp/contrastive_trace_safety/scripts/r1_32b_sel_phase2.py",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_32b_selectivity_raw_features_20260517T133358",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "source /root/miniconda3/bin/activate && python /root/autodl-tmp/contrastive_trace_safety/scripts/r1_32b_sel_phase2.py",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-17T13:43:59.759832+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/bin/activate && python /root/autodl-tmp/contrastive_trace_safety/scripts/r1_32b_sel_phase2.py'\\n\\nStdout:\\n\\nLoaded: train=(2076, 5120), test=(703, 5120)\\nTraining 10 random probes...\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_32b_selectivity_raw_features_20260517T133358",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-17T13:43:59.759991+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat << 'PYEOF' > /root/autodl-tmp/contrastive_trace_safety/scripts/r1_32b_sel_train_random.py\n\"\"\"Train random probes in batches, save predictions.\"\"\"\nimport os, sys, json, warnings\nimport numpy as np\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import balanced_accuracy_score\nwarnings.filterwarnings(\"ignore\")\n\nOUT_DIR = '/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_selectivity_ci/'\nSEED = 42\nBATCH_START = int(sys.argv[1])  # 0 or 5\nBATCH_SIZE = int(sys.argv[2])   # 5\n\nX_tr_s = np.load(os.path.join(OUT_DIR, 'X_tr_s.npy'))\nX_te_s = np.load(os.path.join(OUT_DIR, 'X_te_s.npy'))\ny_tr = np.load(os.path.join(OUT_DIR, 'y_tr.npy'))\ntr_ids = np.load(os.path.join(OUT_DIR, 'train_trace_ids.npy'))\nwith open(os.path.join(OUT_DIR, 'phase1.json')) as f:\n    p1 = json.load(f)\n\ntest_traces = np.array(p1['test_traces'])\ny_te = np.concatenate([np.array(p1['trace_data'][str(ti)]['y']) for ti in test_traces])\nn_train_traces = len(p1['train_traces'])\n\nrng = np.random.default_rng(SEED)\n# Advance RNG to correct position\nfor _ in range(BATCH_START):\n    y_tmp = y_tr.copy()\n    for idx in range(n_train_traces):\n        mask = tr_ids == idx\n        y_tmp[mask] = rng.permutation(y_tmp[mask])\n\nprint(f\"Training random probes {BATCH_START}-{BATCH_START+BATCH_SIZE-1}...\", flush=True)\nfor rep in range(BATCH_SIZE):\n    actual_rep = BATCH_START + rep\n    y_shuf = y_tr.copy()\n    for idx in range(n_train_traces):\n        mask = tr_ids == idx\n        y_shuf[mask] = rng.permutation(y_shuf[mask])\n    clf = LogisticRegression(C=1.0, class_weight='balanced', max_iter=2000, solver='liblinear', random_state=SEED)\n    clf.fit(X_tr_s, y_shuf)\n    preds = clf.predict(X_te_s)\n    racc = balanced_accuracy_score(y_te, preds)\n    np.save(os.path.join(OUT_DIR, f'rand_preds_{actual_rep}.npy'), preds)\n    print(f\"  Rep {actual_rep}: {racc:.4f}\", flush=True)\n\nprint(\"Done.\", flush=True)\nPYEOF\necho \"Script ready.\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_32b_selectivity_raw_features_20260517T133358",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat << 'PYEOF' > /root/autodl-tmp/contrastive_trace_safety/scripts/r1_32b_sel_train_random.py\n\"\"\"Train random probes in batches, save predictions.\"\"\"\nimport os, sys, json, warnings\nimport numpy as np\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import balanced_accuracy_score\nwarnings.filterwarnings(\"ignore\")\n\nOUT_DIR = '/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_selectivity_ci/'\nSEED = 42\nBATCH_START = int(sys.argv[1])  # 0 or 5\nBATCH_SIZE = int(sys.argv[2])   # 5\n\nX_tr_s = np.load(os.path.join(OUT_DIR, 'X_tr_s.npy'))\nX_te_s = np.load(os.path.join(OUT_DIR, 'X_te_s.npy'))\ny_tr = np.load(os.path.join(OUT_DIR, 'y_tr.npy'))\ntr_ids = np.load(os.path.join(OUT_DIR, 'train_trace_ids.npy'))\nwith open(os.path.join(OUT_DIR, 'phase1.json')) as f:\n    p1 = json.load(f)\n\ntest_traces = np.array(p1['test_traces'])\ny_te = np.concatenate([np.array(p1['trace_data'][str(ti)]['y']) for ti in test_traces])\nn_train_traces = len(p1['train_traces'])\n\nrng = np.random.default_rng(SEED)\n# Advance RNG to correct position\nfor _ in range(BATCH_START):\n    y_tmp = y_tr.copy()\n    for idx in range(n_train_traces):\n        mask = tr_ids == idx\n        y_tmp[mask] = rng.permutation(y_tmp[mask])\n\nprint(f\"Training random probes {BATCH_START}-{BATCH_START+BATCH_SIZE-1}...\", flush=True)\nfor rep in range(BATCH_SIZE):\n    actual_rep = BATCH_START + rep\n    y_shuf = y_tr.copy()\n    for idx in range(n_train_traces):\n        mask = tr_ids == idx\n        y_shuf[mask] = rng.permutation(y_shuf[mask])\n    clf = LogisticRegression(C=1.0, class_weight='balanced', max_iter=2000, solver='liblinear', random_state=SEED)\n    clf.fit(X_tr_s, y_shuf)\n    preds = clf.predict(X_te_s)\n    racc = balanced_accuracy_score(y_te, preds)\n    np.save(os.path.join(OUT_DIR, f'rand_preds_{actual_rep}.npy'), preds)\n    print(f\"  Rep {actual_rep}: {racc:.4f}\", flush=True)\n\nprint(\"Done.\", flush=True)\nPYEOF\necho \"Script ready.\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-17T13:43:59.760131+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script ready.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.85}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_32b_selectivity_raw_features_20260517T133358",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-17T13:43:59.760247+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "source /root/miniconda3/bin/activate && python /root/autodl-tmp/contrastive_trace_safety/scripts/r1_32b_sel_train_random.py 0 5",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_32b_selectivity_raw_features_20260517T133358",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "source /root/miniconda3/bin/activate && python /root/autodl-tmp/contrastive_trace_safety/scripts/r1_32b_sel_train_random.py 0 5",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-17T13:43:59.760369+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/bin/activate && python /root/autodl-tmp/contrastive_trace_safety/scripts/r1_32b_sel_train_random.py 0 5'\\n\\nStdout:\\n\\nTraining random probes 0-4...\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.34}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_32b_selectivity_raw_features_20260517T133358",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-17T13:43:59.760517+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "source /root/miniconda3/bin/activate && python -c \"\nimport numpy as np, time, warnings\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import balanced_accuracy_score\nwarnings.filterwarnings('ignore')\nD='/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_selectivity_ci/'\nt0=time.time()\nX=np.load(D+'X_tr_s.npy'); y=np.load(D+'y_tr.npy')\nprint(f'Load: {time.time()-t0:.1f}s', flush=True)\nt1=time.time()\nclf=LogisticRegression(C=1.0,class_weight='balanced',max_iter=2000,solver='liblinear',random_state=42)\nclf.fit(X,y)\nprint(f'Fit: {time.time()-t1:.1f}s', flush=True)\nt2=time.time()\nXt=np.load(D+'X_te_s.npy')\np=clf.predict(Xt)\nprint(f'Predict: {time.time()-t2:.1f}s', flush=True)\nprint(f'Total: {time.time()-t0:.1f}s', flush=True)\n\"",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_32b_selectivity_raw_features_20260517T133358",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "source /root/miniconda3/bin/activate && python -c \"\nimport numpy as np, time, warnings\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import balanced_accuracy_score\nwarnings.filterwarnings('ignore')\nD='/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_selectivity_ci/'\nt0=time.time()\nX=np.load(D+'X_tr_s.npy'); y=np.load(D+'y_tr.npy')\nprint(f'Load: {time.time()-t0:.1f}s', flush=True)\nt1=time.time()\nclf=LogisticRegression(C=1.0,class_weight='balanced',max_iter=2000,solver='liblinear',random_state=42)\nclf.fit(X,y)\nprint(f'Fit: {time.time()-t1:.1f}s', flush=True)\nt2=time.time()\nXt=np.load(D+'X_te_s.npy')\np=clf.predict(Xt)\nprint(f'Predict: {time.time()-t2:.1f}s', flush=True)\nprint(f'Total: {time.time()-t0:.1f}s', flush=True)\n\"",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-17T13:43:59.760681+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Load: 0.0s\\nFit: 9.7s\\nPredict: 0.0s\\nTotal: 9.7s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 11.88}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_32b_selectivity_raw_features_20260517T133358",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-17T13:43:59.760837+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "source /root/miniconda3/bin/activate && python -c \"\nimport numpy as np, time, warnings\nfrom sklearn.linear_model import LogisticRegression\nwarnings.filterwarnings('ignore')\nD='/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_selectivity_ci/'\nX=np.load(D+'X_tr_s.npy'); y=np.load(D+'y_tr.npy')\nfor solver in ['lbfgs','saga']:\n    t0=time.time()\n    clf=LogisticRegression(C=1.0,class_weight='balanced',max_iter=2000,solver=solver,random_state=42)\n    clf.fit(X,y)\n    print(f'{solver}: {time.time()-t0:.1f}s', flush=True)\n\"",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_32b_selectivity_raw_features_20260517T133358",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "source /root/miniconda3/bin/activate && python -c \"\nimport numpy as np, time, warnings\nfrom sklearn.linear_model import LogisticRegression\nwarnings.filterwarnings('ignore')\nD='/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_selectivity_ci/'\nX=np.load(D+'X_tr_s.npy'); y=np.load(D+'y_tr.npy')\nfor solver in ['lbfgs','saga']:\n    t0=time.time()\n    clf=LogisticRegression(C=1.0,class_weight='balanced',max_iter=2000,solver=solver,random_state=42)\n    clf.fit(X,y)\n    print(f'{solver}: {time.time()-t0:.1f}s', flush=True)\n\"",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-17T13:43:59.760975+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/bin/activate && python -c \\\"\\\\nimport numpy as np, time, warnings\\\\nfrom sklearn.linear_model import LogisticRegression\\\\nwarnings.filterwarnings(\\\\'ignore\\\\')\\\\nD=\\\\'/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_selectivity_ci/\\\\'\\\\nX=np.load(D+\\\\'X_tr_s.npy\\\\'); y=np.load(D+\\\\'y_tr.npy\\\\')\\\\nfor solver in [\\\\'lbfgs\\\\',\\\\'saga\\\\']:\\\\n    t0=time.time()\\\\n    clf=LogisticRegression(C=1.0,class_weight=\\\\'balanced\\\\',max_iter=2000,solver=solver,random_state=42)\\\\n    clf.fit(X,y)\\\\n    print(f\\\\'{solver}: {time.time()-t0:.1f}s\\\\', flush=True)\\\\n\\\"'\\n\\nStdout:\\n\\nlbfgs: 0.4s\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_32b_selectivity_raw_features_20260517T133358",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-17T13:43:59.761152+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat << 'PYEOF' > /root/autodl-tmp/contrastive_trace_safety/scripts/r1_32b_sel_full.py\n\"\"\"R1-32B Layer 10 selectivity bootstrap CI - RAW 5120-d features, lbfgs solver.\"\"\"\nimport os, json, warnings\nimport numpy as np\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import balanced_accuracy_score\nwarnings.filterwarnings(\"ignore\")\n\nSEED, N_RANDOM, N_BOOTSTRAP = 42, 10, 1000\nOUT_DIR = '/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_selectivity_ci/'\n\nX_tr_s = np.load(os.path.join(OUT_DIR, 'X_tr_s.npy'))\nX_te_s = np.load(os.path.join(OUT_DIR, 'X_te_s.npy'))\ny_tr = np.load(os.path.join(OUT_DIR, 'y_tr.npy'))\ntr_ids = np.load(os.path.join(OUT_DIR, 'train_trace_ids.npy'))\nwith open(os.path.join(OUT_DIR, 'phase1.json')) as f:\n    p1 = json.load(f)\n\ntest_traces = np.array(p1['test_traces'])\nn_train_traces = len(p1['train_traces'])\n\n# Rebuild test labels\ny_te = np.concatenate([np.array(p1['trace_data'][str(ti)]['y']) for ti in test_traces])\n\n# Train real probe with lbfgs\nclf_real = LogisticRegression(C=1.0, class_weight='balanced', max_iter=2000, solver='lbfgs', random_state=SEED)\nclf_real.fit(X_tr_s, y_tr)\nreal_preds = clf_real.predict(X_te_s)\nreal_acc = balanced_accuracy_score(y_te, real_preds)\nprint(f\"Real probe bal_acc (lbfgs): {real_acc:.4f}\", flush=True)\n\n# Train 10 random probes\nrng = np.random.default_rng(SEED)\nrandom_accs = []\nrandom_preds_list = []\n\nfor rep in range(N_RANDOM):\n    y_shuf = y_tr.copy()\n    for idx in range(n_train_traces):\n        mask = tr_ids == idx\n        y_shuf[mask] = rng.permutation(y_shuf[mask])\n    clf = LogisticRegression(C=1.0, class_weight='balanced', max_iter=2000, solver='lbfgs', random_state=SEED)\n    clf.fit(X_tr_s, y_shuf)\n    preds = clf.predict(X_te_s)\n    racc = balanced_accuracy_score(y_te, preds)\n    random_accs.append(racc)\n    random_preds_list.append(preds)\n    print(f\"  Random {rep+1}: {racc:.4f}\", flush=True)\n\nrmean = np.mean(random_accs)\nrstd = np.std(random_accs)\nsel_base = real_acc - rmean\nprint(f\"Baseline: real={real_acc:.4f}, random_mean={rmean:.4f}+-{rstd:.4f}, sel={sel_base*100:.1f}pp\", flush=True)\n\n# Per-trace predictions for bootstrap\ntest_trace_y, test_trace_rp, test_trace_rand = {}, {}, {}\noff = 0\nfor ti in test_traces:\n    n = len(p1['trace_data'][str(ti)]['y'])\n    test_trace_y[ti] = y_te[off:off+n]\n    test_trace_rp[ti] = real_preds[off:off+n]\n    test_trace_rand[ti] = [rp[off:off+n] for rp in random_preds_list]\n    off += n\n\n# Bootstrap\nprint(f\"Bootstrap ({N_BOOTSTRAP})...\", flush=True)\nbrng = np.random.default_rng(123)\nsels = []\nfor b in range(N_BOOTSTRAP):\n    rs = brng.choice(test_traces, size=len(test_traces), replace=True)\n    yt = np.concatenate([test_trace_y[t] for t in rs])\n    ypr = np.concatenate([test_trace_rp[t] for t in rs])\n    ba = balanced_accuracy_score(yt, ypr)\n    ras = [balanced_accuracy_score(yt, np.concatenate([test_trace_rand[t][r] for t in rs])) for r in range(N_RANDOM)]\n    sels.append(ba - np.mean(ras))\n    if (b+1) % 500 == 0:\n        print(f\"  {b+1}/{N_BOOTSTRAP}\", flush=True)\n\nsels = np.array(sels)\nm, s = np.mean(sels), np.std(sels)\nci_lo, ci_hi = np.percentile(sels, 2.5), np.percentile(sels, 97.5)\npv = float(np.mean(sels <= 0))\n\nprint(f\"\\n{'='*60}\", flush=True)\nprint(f\"R1-32B Layer 10 Selectivity CI (RAW 5120-d, lbfgs)\", flush=True)\nprint(f\"{'='*60}\", flush=True)\nprint(f\"Baseline selectivity: {sel_base*100:.1f}pp (real={real_acc:.4f}, rand={rmean:.4f})\", flush=True)\nprint(f\"Bootstrap mean:       {m*100:.1f}pp\", flush=True)\nprint(f\"Bootstrap std:        {s*100:.1f}pp\", flush=True)\nprint(f\"95% CI:               [{ci_lo*100:.1f}, {ci_hi*100:.1f}]pp\", flush=True)\nprint(f\"p-value (sel<=0):     {pv:.4f}\", flush=True)\nprint(f\"Significant (p<0.05): {pv < 0.05}\", flush=True)\nprint(f\"CI lower > 5pp:       {ci_lo > 0.05}\", flush=True)\n\nresults = {\n    \"model\": \"r1_32b\",\n    \"layer\": 10,\n    \"feature_type\": \"raw\",\n    \"hidden_dim\": int(X_tr_s.shape[1]),\n    \"pca_components\": None,\n    \"n_traces\": 100,\n    \"n_train_traces\": n_train_traces,\n    \"n_test_traces\": int(len(test_traces)),\n    \"n_train_steps\": int(X_tr_s.shape[0]),\n    \"n_test_steps\": int(X_te_s.shape[0]),\n    \"window\": 10,\n    \"solver\": \"lbfgs\",\n    \"n_random_repeats\": N_RANDOM,\n    \"baseline\": {\n        \"real_acc\": round(float(real_acc), 4),\n        \"random_mean\": round(float(rmean), 4),\n        \"random_std\": round(float(rstd), 4),\n        \"random_accs\": [round(float(x), 4) for x in random_accs],\n        \"selectivity_pp\": round(float(sel_base*100), 2),\n    },\n    \"bootstrap\": {\n        \"n_iterations\": N_BOOTSTRAP,\n        \"mean_pp\": round(float(m*100), 2),\n        \"std_pp\": round(float(s*100), 2),\n        \"ci95_low_pp\": round(float(ci_lo*100), 2),\n        \"ci95_high_pp\": round(float(ci_hi*100), 2),\n        \"p_value\": float(pv),\n        \"significant\": bool(pv < 0.05),\n        \"above_5pp_threshold\": bool(ci_lo > 0.05),\n    },\n}\n\nwith open(os.path.join(OUT_DIR, 'results.json'), 'w') as f:\n    json.dump(results, f, indent=2)\nprint(f\"\\nSaved: {OUT_DIR}results.json\", flush=True)\nPYEOF\necho \"Script ready.\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_32b_selectivity_raw_features_20260517T133358",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat << 'PYEOF' > /root/autodl-tmp/contrastive_trace_safety/scripts/r1_32b_sel_full.py\n\"\"\"R1-32B Layer 10 selectivity bootstrap CI - RAW 5120-d features, lbfgs solver.\"\"\"\nimport os, json, warnings\nimport numpy as np\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import balanced_accuracy_score\nwarnings.filterwarnings(\"ignore\")\n\nSEED, N_RANDOM, N_BOOTSTRAP = 42, 10, 1000\nOUT_DIR = '/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_selectivity_ci/'\n\nX_tr_s = np.load(os.path.join(OUT_DIR, 'X_tr_s.npy'))\nX_te_s = np.load(os.path.join(OUT_DIR, 'X_te_s.npy'))\ny_tr = np.load(os.path.join(OUT_DIR, 'y_tr.npy'))\ntr_ids = np.load(os.path.join(OUT_DIR, 'train_trace_ids.npy'))\nwith open(os.path.join(OUT_DIR, 'phase1.json')) as f:\n    p1 = json.load(f)\n\ntest_traces = np.array(p1['test_traces'])\nn_train_traces = len(p1['train_traces'])\n\n# Rebuild test labels\ny_te = np.concatenate([np.array(p1['trace_data'][str(ti)]['y']) for ti in test_traces])\n\n# Train real probe with lbfgs\nclf_real = LogisticRegression(C=1.0, class_weight='balanced', max_iter=2000, solver='lbfgs', random_state=SEED)\nclf_real.fit(X_tr_s, y_tr)\nreal_preds = clf_real.predict(X_te_s)\nreal_acc = balanced_accuracy_score(y_te, real_preds)\nprint(f\"Real probe bal_acc (lbfgs): {real_acc:.4f}\", flush=True)\n\n# Train 10 random probes\nrng = np.random.default_rng(SEED)\nrandom_accs = []\nrandom_preds_list = []\n\nfor rep in range(N_RANDOM):\n    y_shuf = y_tr.copy()\n    for idx in range(n_train_traces):\n        mask = tr_ids == idx\n        y_shuf[mask] = rng.permutation(y_shuf[mask])\n    clf = LogisticRegression(C=1.0, class_weight='balanced', max_iter=2000, solver='lbfgs', random_state=SEED)\n    clf.fit(X_tr_s, y_shuf)\n    preds = clf.predict(X_te_s)\n    racc = balanced_accuracy_score(y_te, preds)\n    random_accs.append(racc)\n    random_preds_list.append(preds)\n    print(f\"  Random {rep+1}: {racc:.4f}\", flush=True)\n\nrmean = np.mean(random_accs)\nrstd = np.std(random_accs)\nsel_base = real_acc - rmean\nprint(f\"Baseline: real={real_acc:.4f}, random_mean={rmean:.4f}+-{rstd:.4f}, sel={sel_base*100:.1f}pp\", flush=True)\n\n# Per-trace predictions for bootstrap\ntest_trace_y, test_trace_rp, test_trace_rand = {}, {}, {}\noff = 0\nfor ti in test_traces:\n    n = len(p1['trace_data'][str(ti)]['y'])\n    test_trace_y[ti] = y_te[off:off+n]\n    test_trace_rp[ti] = real_preds[off:off+n]\n    test_trace_rand[ti] = [rp[off:off+n] for rp in random_preds_list]\n    off += n\n\n# Bootstrap\nprint(f\"Bootstrap ({N_BOOTSTRAP})...\", flush=True)\nbrng = np.random.default_rng(123)\nsels = []\nfor b in range(N_BOOTSTRAP):\n    rs = brng.choice(test_traces, size=len(test_traces), replace=True)\n    yt = np.concatenate([test_trace_y[t] for t in rs])\n    ypr = np.concatenate([test_trace_rp[t] for t in rs])\n    ba = balanced_accuracy_score(yt, ypr)\n    ras = [balanced_accuracy_score(yt, np.concatenate([test_trace_rand[t][r] for t in rs])) for r in range(N_RANDOM)]\n    sels.append(ba - np.mean(ras))\n    if (b+1) % 500 == 0:\n        print(f\"  {b+1}/{N_BOOTSTRAP}\", flush=True)\n\nsels = np.array(sels)\nm, s = np.mean(sels), np.std(sels)\nci_lo, ci_hi = np.percentile(sels, 2.5), np.percentile(sels, 97.5)\npv = float(np.mean(sels <= 0))\n\nprint(f\"\\n{'='*60}\", flush=True)\nprint(f\"R1-32B Layer 10 Selectivity CI (RAW 5120-d, lbfgs)\", flush=True)\nprint(f\"{'='*60}\", flush=True)\nprint(f\"Baseline selectivity: {sel_base*100:.1f}pp (real={real_acc:.4f}, rand={rmean:.4f})\", flush=True)\nprint(f\"Bootstrap mean:       {m*100:.1f}pp\", flush=True)\nprint(f\"Bootstrap std:        {s*100:.1f}pp\", flush=True)\nprint(f\"95% CI:               [{ci_lo*100:.1f}, {ci_hi*100:.1f}]pp\", flush=True)\nprint(f\"p-value (sel<=0):     {pv:.4f}\", flush=True)\nprint(f\"Significant (p<0.05): {pv < 0.05}\", flush=True)\nprint(f\"CI lower > 5pp:       {ci_lo > 0.05}\", flush=True)\n\nresults = {\n    \"model\": \"r1_32b\",\n    \"layer\": 10,\n    \"feature_type\": \"raw\",\n    \"hidden_dim\": int(X_tr_s.shape[1]),\n    \"pca_components\": None,\n    \"n_traces\": 100,\n    \"n_train_traces\": n_train_traces,\n    \"n_test_traces\": int(len(test_traces)),\n    \"n_train_steps\": int(X_tr_s.shape[0]),\n    \"n_test_steps\": int(X_te_s.shape[0]),\n    \"window\": 10,\n    \"solver\": \"lbfgs\",\n    \"n_random_repeats\": N_RANDOM,\n    \"baseline\": {\n        \"real_acc\": round(float(real_acc), 4),\n        \"random_mean\": round(float(rmean), 4),\n        \"random_std\": round(float(rstd), 4),\n        \"random_accs\": [round(float(x), 4) for x in random_accs],\n        \"selectivity_pp\": round(float(sel_base*100), 2),\n    },\n    \"bootstrap\": {\n        \"n_iterations\": N_BOOTSTRAP,\n        \"mean_pp\": round(float(m*100), 2),\n        \"std_pp\": round(float(s*100), 2),\n        \"ci95_low_pp\": round(float(ci_lo*100), 2),\n        \"ci95_high_pp\": round(float(ci_hi*100), 2),\n        \"p_value\": float(pv),\n        \"significant\": bool(pv < 0.05),\n        \"above_5pp_threshold\": bool(ci_lo > 0.05),\n    },\n}\n\nwith open(os.path.join(OUT_DIR, 'results.json'), 'w') as f:\n    json.dump(results, f, indent=2)\nprint(f\"\\nSaved: {OUT_DIR}results.json\", flush=True)\nPYEOF\necho \"Script ready.\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-17T13:43:59.761326+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script ready.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.88}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_32b_selectivity_raw_features_20260517T133358",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-17T13:43:59.761447+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "source /root/miniconda3/bin/activate && python /root/autodl-tmp/contrastive_trace_safety/scripts/r1_32b_sel_full.py",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_32b_selectivity_raw_features_20260517T133358",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "source /root/miniconda3/bin/activate && python /root/autodl-tmp/contrastive_trace_safety/scripts/r1_32b_sel_full.py",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-17T13:43:59.761578+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Real probe bal_acc (lbfgs): 0.5837\\n  Random 1: 0.4344\\n  Random 2: 0.4546\\n  Random 3: 0.5240\\n  Random 4: 0.5033\\n  Random 5: 0.4900\\n  Random 6: 0.4617\\n  Random 7: 0.5351\\n  Random 8: 0.6125\\n  Random 9: 0.5647\\n  Random 10: 0.4954\\nBaseline: real=0.5837, random_mean=0.5076+-0.0510, sel=7.6pp\\nBootstrap (1000)...\\n  500/1000\\n  1000/1000\\n\\n============================================================\\nR1-32B Layer 10 Selectivity CI (RAW 5120-d, lbfgs)\\n============================================================\\nBaseline selectivity: 7.6pp (real=0.5837, rand=0.5076)\\nBootstrap mean:       8.4pp\\nBootstrap std:        6.7pp\\n95% CI:               [-3.9, 22.7]pp\\np-value (sel<=0):     0.1070\\nSignificant (p<0.05): False\\nCI lower > 5pp:       False\\n\\nSaved: /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_selectivity_ci/results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 17.6}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_32b_selectivity_raw_features_20260517T133358",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-17T13:43:59.761737+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_selectivity_ci/results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_32b_selectivity_raw_features_20260517T133358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_selectivity_ci/results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-17T13:43:59.761883+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"r1_32b\\\",\\n  \\\"layer\\\": 10,\\n  \\\"feature_type\\\": \\\"raw\\\",\\n  \\\"hidden_dim\\\": 5120,\\n  \\\"pca_components\\\": null,\\n  \\\"n_traces\\\": 100,\\n  \\\"n_train_traces\\\": 60,\\n  \\\"n_test_traces\\\": 20,\\n  \\\"n_train_steps\\\": 2076,\\n  \\\"n_test_steps\\\": 703,\\n  \\\"window\\\": 10,\\n  \\\"solver\\\": \\\"lbfgs\\\",\\n  \\\"n_random_repeats\\\": 10,\\n  \\\"baseline\\\": {\\n    \\\"real_acc\\\": 0.5837,\\n    \\\"random_mean\\\": 0.5076,\\n    \\\"random_std\\\": 0.051,\\n    \\\"random_accs\\\": [\\n      0.4344,\\n      0.4546,\\n      0.524,\\n      0.5033,\\n      0.49,\\n      0.4617,\\n      0.5351,\\n      0.6125,\\n      0.5647,\\n      0.4954\\n    ],\\n    \\\"selectivity_pp\\\": 7.62\\n  },\\n  \\\"bootstrap\\\": {\\n    \\\"n_iterations\\\": 1000,\\n    \\\"mean_pp\\\": 8.44,\\n    \\\"std_pp\\\": 6.74,\\n    \\\"ci95_low_pp\\\": -3.93,\\n    \\\"ci95_high_pp\\\": 22.74,\\n    \\\"p_value\\\": 0.107,\\n    \\\"significant\\\": false,\\n    \\\"above_5pp_threshold\\\": false\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_32b_selectivity_raw_features_20260517T133358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 59 · 2026-05-17T13:43:59.762052+00:00_
+
+Results:
+
+| Metric | Value |
+|--------|-------|
+| Feature type | raw 5120-d (no PCA) |
+| Baseline selectivity | 7.6pp (real=0.584, random=0.508) |
+| Bootstrap mean | 8.4pp |
+| Bootstrap std | 6.7pp |
+| 95% CI | [-3.9, 22.7]pp |
+| p-value (sel <= 0) | 0.107 |
+| Significant (p<0.05) | **No** |
+| CI lower > 5pp | **No** |
+
+Key findings:
+- The raw-feature selectivity (7.6pp) is consistent with the known 7.5pp
+- However, it is **not statistically significant** (p=0.107, CI includes 0)
+- The CI lower bound (-3.9pp) is well below both 0 and the 5pp threshold
+- High variance in random probe accuracy (std=5.1%) drives the wide CI
+- With only 20 test traces, the bootstrap has limited statistical power
+
+This contrasts sharply with the PCA-128 result (15.9pp, p=0.000, CI [9.7, 21.9]pp). The raw features underperform because the 5120-d space is under-determined (n=2076 < p=5120) without dimensionality reduction.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_code_r1_32b_selectivity_raw_features_20260517T133358"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,311 @@
+## Writing Plan — contrastive_trace_safety (D032 Reframe)
+## Updated: 2026-05-17
+## Venue: EMNLP 2026 Main (LLM Security Track), ARR May 25
+
+meta:
+  framing_version: D032
+  title_candidates:
+    - "Layer Selection Sensitivity in Hidden-State Probes for Reasoning Model Safety Monitoring"
+    - "What Detects Safety Commitment in Reasoning Models? A Systematic Comparison of Probe-Based Methods"
+    - "Hidden-State vs Text Monitoring for Reasoning Model Safety: Layer Selection as the Missing Variable"
+  working_title: "Layer Selection Sensitivity in Hidden-State Probes for Reasoning Model Safety Monitoring"
+  contribution_structure:
+    primary: "Methodological — layer selection metric sensitivity analysis showing biased metrics reverse conclusions"
+    secondary: "Empirical — HS probes universally outperform text at correct layers (12/12 Holm-Bonferroni, precision +15-24pp)"
+    tertiary: "Negative results — 6 alternative methods fail (BOCPD/CUSUM, Mahalanobis, RepE, MLP, CCS, cross-transfer)"
+  template: neurips_2024  # EMNLP 2026 template TBD, using compatible format
+  page_limit: 8  # main body, unlimited appendix
+
+paper_outline:
+  abstract:
+    word_budget: 200
+    key_elements:
+      - Problem: reasoning model self-jailbreak, commitment point detection
+      - Gap: no systematic comparison of HS vs text probes; no layer selection analysis
+      - Method: 4 models × 2 arch × 2 training × 2 scales, temporal probing
+      - Finding 1: layer selection metric bias masks HS advantage at 32B
+      - Finding 2: at correct layers, HS outperforms text universally (12/12 Holm-Bonf)
+      - Finding 3: 6 alternative methods fail
+      - Implication: principled layer selection + temporal windowing is the robust approach
+
+  introduction:
+    word_budget: 1200
+    structure:
+      - para_1: reasoning models self-jailbreak phenomenon, commitment point concept
+      - para_2: existing detectors (TrajGuard, SafeSwitch) target input attacks, not self-jailbreak
+      - para_3: HS vs text assumption gap — intuition says HS should dominate but untested
+      - para_4: our discovery — layer selection methodology is the hidden variable that determines whether HS advantage is observed
+      - para_5: contributions list (3 items matching contribution_structure)
+    contributions:
+      - "Layer selection sensitivity as methodological contribution: biased composite metric reverses conclusions; 5-metric ablation across 4 models establishes principled selection"
+      - "Universal HS advantage at correct layers: 12/12 Holm-Bonferroni (precision +15-24pp), with model-specific practical trade-offs at 32B"
+      - "Comprehensive negative results: 6 methods fail (BOCPD/CUSUM, Mahalanobis, RepE, MLP, CCS, cross-transfer), defining boundaries of current approaches"
+
+  related_work:
+    word_budget: 800
+    clusters:
+      - name: reasoning_model_safety
+        topics: "self-jailbreak, HarmThoughts, SafeThink, SafeRemind, pathological CoT"
+        must_cite: [harmthoughts, selfjailbreak, safethink, saferemind]
+      - name: hidden_state_probing
+        topics: "linear probes, layer selection, Belinkov survey, probing methodology"
+        must_cite: [belinkov2022probing, tenney2019bert, hewitt2019control]
+      - name: safety_detectors
+        topics: "TrajGuard, SafeSwitch, SIREN, activation-based detection"
+        must_cite: [trajguard, safeswitch]
+      - name: change_point_detection
+        topics: "BOCPD, CUSUM, online monitoring"
+        must_cite: [adams2007bayesian]
+      - name: representation_engineering
+        topics: "RepE, CCS, contrast-consistent search"
+        must_cite: [burns2023discovering, zou2023representation]
+
+  method:
+    word_budget: 1800
+    subsections:
+      - title: "Problem Formulation"
+        content: "Commitment point definition, trace segmentation, detection as binary classification per step"
+        word_budget: 300
+      - title: "Probe Architecture"
+        content: "Linear temporal probe (LR on windowed features), text probe (sentence embeddings), GRU sequence model"
+        word_budget: 400
+      - title: "Layer Selection Sensitivity Analysis"
+        content: "5 metrics (bal_acc × crossing_rate, pure bal_acc, precision, pre_cp_fpr, composite), mechanistic explanation of crossing_rate bias, convergence analysis"
+        word_budget: 500
+        key_table: tab:layer_selection
+        note: "PRIMARY CONTRIBUTION — dedicated subsection"
+      - title: "Baseline Methods"
+        content: "BOCPD/CUSUM, Mahalanobis distance, RepE direction, MLP probe, CCS-adapted, cross-model transfer, position-only"
+        word_budget: 300
+      - title: "Evaluation Protocol"
+        content: "Metrics (bal_acc, precision, pre-CP FPR, coverage, lead time), Holm-Bonferroni correction, bootstrap testing, control task"
+        word_budget: 300
+
+  experiments:
+    word_budget: 2200
+    subsections:
+      - title: "Experimental Setup"
+        content: "4 models (R1-8B, OT-7B, QwQ-32B, R1-32B), data splits, hyperparameters"
+        word_budget: 300
+      - title: "Layer Selection Results"
+        content: "Metric ablation table, depth pattern, impact on HS-text comparison"
+        word_budget: 400
+        key_table: tab:layer_selection
+      - title: "HS vs Text Comparison"
+        content: "12/12 Holm-Bonferroni results, effect size consistency (+15-24pp precision), per-model breakdown"
+        word_budget: 500
+        key_table: tab:hs_vs_text
+      - title: "Temporal Context Effects"
+        content: "Window size sweep, universal text improvement, HS temporal patterns (OT-7B saturation)"
+        word_budget: 400
+      - title: "32B Model-Specific Analysis"
+        content: "R1-32B (W=1 only, 25% coverage, +13 lead) vs QwQ (all W, negative lead, position competitive)"
+        word_budget: 300
+      - title: "Negative Results"
+        content: "6 methods fail — BOCPD/CUSUM, Mahalanobis, RepE, MLP, CCS, cross-transfer"
+        word_budget: 300
+        key_table: tab:negative
+
+  discussion:
+    word_budget: 800
+    paragraphs:
+      - "Layer selection as researcher degree of freedom — implications for probing literature"
+      - "Why temporal context dominates: gradual commitment process"
+      - "32B divergence: R1-32B vs QwQ trade-offs (lead time vs coverage vs significance breadth)"
+      - "Design implications: temporal windowing + principled layer selection as robust default"
+
+  limitations:
+    word_budget: 400
+    items:
+      - "R1-32B W=1 only (25% coverage), dimensionality constraint at large W"
+      - "QwQ negative lead time — HS detects later despite higher accuracy"
+      - "Safe FPR 39-62% across all methods — diagnostic, not production-ready"
+      - "4 models, 2 architectures — needs expansion to intermediate scales"
+      - "32B GRU/RepE results at biased layers, not yet re-evaluated at corrected layers"
+
+  conclusion:
+    word_budget: 400
+    key_message: "First systematic evaluation showing (1) layer selection methodology critically determines probe effectiveness, (2) HS universally outperforms text at correct layers, (3) 6 alternative methods fail. Principled layer selection + temporal windowing is the robust approach."
+
+table_plan:
+  - table_id: tab:layer_selection
+    title: "Layer selection sensitivity: 4 models × 5 metrics"
+    columns: [Model, Metric, Selected Layer, Depth%, HS bal_acc, HS>Text sig?]
+    data_source: "registry: exp_layer_selection_ablation, paper_framing.md §Methodological Contribution"
+    placement: "§4.2 (Experiments: Layer Selection Results)"
+    note: "Shows how biased metric selects shallow layers; 4/5 converge on deep"
+
+  - table_id: tab:hs_vs_text
+    title: "HS vs Text probes at correctly selected layers (12/12 Holm-Bonferroni)"
+    columns: [Model, Arch, Scale, Layer, W, Δbal_acc, Δprecision, ΔFPR, Holm-Bonf]
+    data_source: "paper_framing.md §4-Model Holm-Bonferroni Summary"
+    placement: "§4.3 (Experiments: HS vs Text)"
+    note: "All 12 tests pass step-down correction. Precision +15-24pp consistent."
+
+  - table_id: tab:temporal
+    title: "Temporal context effects by modality and model"
+    columns: [Model, Modality, W=1, W=3, W=5, W=10, W=15, W=20, W=25]
+    data_source: "registry: exp_temporal_sweep"
+    placement: "§4.4 (Experiments: Temporal)"
+    note: "Shows universal text improvement; HS saturation patterns"
+
+  - table_id: tab:negative
+    title: "Negative results: 6 alternative methods"
+    columns: [Method, R1-8B, OT-7B, QwQ-32B, R1-32B, Failure Mode]
+    data_source: "registry: exp_bocpd, exp_mahalanobis, exp_repe, exp_mlp, exp_ccs, exp_003"
+    placement: "§4.6 (Experiments: Negative Results)"
+    note: "Compact summary of why each fails"
+
+  - table_id: tab:control
+    title: "Control task selectivity"
+    columns: [Model, Real Acc, Random Acc, Selectivity]
+    data_source: "registry: exp_control_task"
+    placement: "§4.3 or Appendix"
+    note: "All 4 models exceed 5pp threshold (7.5-18.3pp)"
+
+visualization_plan:
+  - fig_id: fig_layer_sensitivity
+    type: heatmap_or_line
+    tool: matplotlib
+    description: "Layer depth vs probe accuracy for 4 models, highlighting biased vs correct selection points"
+    data_source: "registry: exp_layer_sweep_all_models"
+    placement: "§3.3 or §4.2"
+    aspect_ratio: "2:1"
+    priority: high
+
+  - fig_id: fig_temporal_curves
+    type: line_plot
+    tool: matplotlib
+    description: "Window size vs accuracy/precision for HS and text probes, 4 models (2×2 subplots)"
+    data_source: "registry: exp_temporal_sweep"
+    placement: "§4.4"
+    aspect_ratio: "2:1"
+    priority: high
+
+  - fig_id: fig_holm_bonferroni
+    type: forest_plot_or_table
+    tool: matplotlib
+    description: "12/12 Holm-Bonferroni results as forest plot (effect size + CI for each test)"
+    data_source: "paper_framing.md §Holm-Bonferroni table"
+    placement: "§4.3"
+    aspect_ratio: "1.5:1"
+    priority: high
+
+  - fig_id: fig_32b_tradeoff
+    type: scatter_or_radar
+    tool: matplotlib
+    description: "R1-32B vs QwQ-32B trade-off visualization (lead time, coverage, significance breadth)"
+    data_source: "paper_framing.md §32B cross-model divergence"
+    placement: "§4.5 or Discussion"
+    aspect_ratio: "1:1"
+    priority: medium
+
+  - fig_id: fig_concept
+    type: schematic
+    tool: matplotlib
+    description: "Overview figure: reasoning trace → commitment point → probe comparison pipeline"
+    data_source: "conceptual"
+    placement: "§1 or §3"
+    aspect_ratio: "3:1"
+    priority: medium
+
+literature_strategy:
+  macro_context: "Reasoning model safety monitoring, probing methodology, change-point detection"
+  citation_budget: 35-45
+  micro_clusters:
+    - cluster_name: reasoning_model_safety
+      target_count: 8
+      must_cite: [harmthoughts, selfjailbreak, safethink, saferemind]
+    - cluster_name: probing_methodology
+      target_count: 8
+      must_cite: [belinkov2022probing, tenney2019bert, hewitt2019control]
+    - cluster_name: safety_detectors
+      target_count: 6
+      must_cite: [trajguard, safeswitch]
+    - cluster_name: change_point_unsupervised
+      target_count: 5
+      must_cite: [adams2007bayesian, burns2023discovering, zou2023representation]
+    - cluster_name: reasoning_models
+      target_count: 5
+      must_cite: [deepseekr1, qwq]
+
+writing_order:
+  # Rationale: Method first (layer selection is primary contribution),
+  # then Experiments (validates method), then narrative sections
+  - section: method
+    dependencies: [paper_framing.md, registry]
+    priority: 1
+  - section: experiments
+    dependencies: [method, registry, all_tables]
+    priority: 2
+  - section: introduction
+    dependencies: [method, experiments]
+    priority: 3
+  - section: related_work
+    dependencies: [introduction, literature_map]
+    priority: 4
+  - section: discussion
+    dependencies: [experiments]
+    priority: 5
+  - section: limitations
+    dependencies: [experiments, discussion]
+    priority: 6
+  - section: conclusion
+    dependencies: [all_sections]
+    priority: 7
+  - section: abstract
+    dependencies: [all_sections]
+    priority: 8
+
+key_data_points:
+  models:
+    - name: R1-8B
+      arch: Llama-8B
+      training: R1-distilled
+      scale: 8B
+      n_test: 43
+      best_layer: 14
+      layer_depth: 45%
+      best_W: 15
+    - name: OT-7B
+      arch: Qwen-7B
+      training: STILL
+      scale: 7B
+      n_test: 47
+      best_layer: 16
+      layer_depth: 57%
+      best_W: 3
+    - name: QwQ-32B
+      arch: Qwen-32B
+      training: native
+      scale: 32B
+      n_test: 19-20
+      best_layer: 60
+      layer_depth: 94%
+      best_W: 3
+    - name: R1-32B
+      arch: Qwen-32B
+      training: R1-distilled
+      scale: 32B
+      n_test: 20
+      best_layer: 63
+      layer_depth: 98%
+      best_W: 1
+
+  holm_bonferroni: "12/12 pass (α=0.05 step-down)"
+  precision_range: "+15.4 to +23.6pp"
+  negative_methods: 6
+  selectivity_range: "7.5-18.3pp"
+
+  anti_circular_defense:
+    - "crossing_rate has mechanistic bias (shallow layers more volatile)"
+    - "4/5 metrics converge on deep layers independently"
+    - "probing literature supports mid-to-deep task representations"
+    - "frame as sensitivity analysis, not correct vs incorrect"
+
+narrative_spine:
+  hook: "Reasoning models self-jailbreak through their own CoT"
+  gap: "No systematic comparison of detection modalities; no layer selection methodology analysis"
+  insight: "Layer selection metric is a hidden variable that entirely determines whether HS advantage is observed"
+  evidence: "12/12 Holm-Bonferroni at correct layers vs 5/12 at biased layers; 6 alternative methods fail"
+  implication: "Principled layer selection + temporal windowing = robust monitoring default"

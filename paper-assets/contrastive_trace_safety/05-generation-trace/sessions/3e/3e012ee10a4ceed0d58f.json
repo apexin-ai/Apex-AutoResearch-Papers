@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3e012ee10a4ceed0d58f",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code r1 32b l63 pvalue and qwq l60 prec fpr",
+  "task_key": "worker_code_r1_32b_l63_pvalue_and_qwq_l60_prec_fpr_20260517T145554",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r1_32b_l63_pvalue_and_qwq_l60_prec_fpr_20260517T145554_result.json",
+    "occurrence": 1,
+    "bytes": 1479,
+    "sha256": "79c286e9907b36843e326b3d2d37b51defb342a3b3bfbfdce7ce391e85f71569"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both tasks complete. Summary:\n\n## Task A: R1-32B L63 p-value unification\n\nv2 (`exp_r3_r1_32b_l63_bootstrap_v2`) already had null-centered two-sided bootstrap. Created comparison at `exp_r3_r1_32b_l63_pvalue_unified/results.json`.\n\n**Old (one-sided) → New (null-centered two-sided):**\n\n| W | Metric | p_old | p_new | Bonf sig? |\n|---|--------|-------|-------|-----------|\n| W1 | bal_acc | 0.000 | 0.000 | **yes** |\n| W1 | precision | 0.000 | 0.000 | **yes** |\n| W1 | precp_fpr | 0.004 | 0.007 | **yes** |\n| W3 | bal_acc | 0.009 | 0.020 | **lost** |\n| W3 | precision | 0.004 | 0.032 | **lost** |\n| W3 | precp_fpr | 0.037 | 0.077 | no |\n| W5+ | all | — | — | no |\n\nSignificance changed: W3 bal_acc and W3 precision lost Bonferroni significance (5→3 significant tests).\n\n## Task C: QwQ L60 W=3 precision/FPR\n\nExtracted to `exp_r3_qwq_l60_precision_fpr/results.json`. QwQ already used null-centered two-sided.\n\n| Metric | HS | Text | Diff | 95% CI | p | Bonf sig? |\n|--------|-----|------|------|--------|---|-----------|\n| precision | 0.631 | 0.439 | +0.236 | [0.130, 0.345] | 0.000 | **yes** |\n| pre_cp_fpr | 0.140 | 0.224 | −0.098 | [−0.169, −0.031] | 0.004 | **yes** |\n| bal_acc | 0.733 | 0.610 | +0.154 | [0.100, 0.218] | 0.000 | **yes** |\n\n## Bonferroni summary (α=0.0167)\n\n**R1-32B L63 (unified):** Only W1 passes all 3 metrics. W3+ all fail.\n\n**QwQ L60 W=3:** All 3 metrics (bal_acc, precision, pre_cp_fpr) pass."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r1-32b-l63-pvalue-and-qwq-l60-prec-fpr.md"
+}

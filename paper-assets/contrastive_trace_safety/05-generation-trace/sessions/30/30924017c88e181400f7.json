@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "30924017c88e181400f7",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "exp advbench phase3 cp annotation",
+  "task_key": "worker_exp_advbench_phase3_cp_annotation_20260520T054047",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_advbench_phase3_cp_annotation_20260520T054047_result.json",
+    "occurrence": 1,
+    "bytes": 678,
+    "sha256": "b8d737ac8a12853bae3554434e4134da7bf002334fd3f5f53aed9a77074eaee8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进度正常，0.29/s 速率，ETA ~22 分钟。任务正在跑。\n\n**当前状态总结**:\n- **脚本**: `scripts/annotate_cp_llm.py` 使用 `gpt-4o-mini` 通过 OpenAI-compatible API\n- **全量任务**: tmux session `advbench_llm_cp_full`，387 条 B-class traces，~22 分钟完成\n- **输出**: `/root/autodl-tmp/contrastive_trace_safety/artifacts/advbench_cp_annotations/llm_cp_annotations.json`\n- **模型**: 原计划 qwen3-32b（思考模型 content 字段为 None 导致不可用），回退到 gpt-4o-mini\n- **Dry-run**: 10/10 成功，2 jailbreak / 8 non-jailbreak，CP 分布合理\n- **Checkpoint**: 每 50 条自动保存，支持断点续传"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-advbench-phase3-cp-annotation.md"
+}

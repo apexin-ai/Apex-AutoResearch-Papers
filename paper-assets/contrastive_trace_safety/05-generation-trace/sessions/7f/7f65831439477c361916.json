@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7f65831439477c361916",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code r8 loo layer stability",
+  "task_key": "worker_code_r8_loo_layer_stability_20260518T070913",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r8_loo_layer_stability_20260518T070913_result.json",
+    "occurrence": 1,
+    "bytes": 1551,
+    "sha256": "60c4e01e86fa5b8fd667447079d756f055b152589dbb0460054fa8f95fd38261"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results complete. Here's the summary:\n\n## LOO-CV Layer Selection Stability Results\n\n### QwQ-32B (19 folds, train=57, val=19)\n\n| Layer | Folds Selected | % |\n|-------|---------------|------|\n| **L30** | **13/19** | **68%** |\n| L29 | 2/19 | 11% |\n| L55 | 2/19 | 11% |\n| L56 | 2/19 | 11% |\n\nFull val best: **L30** (bal_acc=0.7513). L60 val bal_acc = 0.7101, never selected.\n\n### R1-32B (20 folds, train=60, val=20)\n\n| Layer | Folds Selected | % |\n|-------|---------------|------|\n| **L47** | **13/20** | **65%** |\n| L38 | 3/20 | 15% |\n| L32 | 2/20 | 10% |\n| L43 | 1/20 | 5% |\n| L48 | 1/20 | 5% |\n\nFull val best: **L47** (bal_acc=0.8290). L63 val bal_acc = 0.7585, never selected.\n\n### Key Findings\n\n1. **Layer selection is stable under LOO-CV**: A single layer dominates 65-68% of folds, with alternatives clustered in neighboring layers.\n\n2. **Best layers by pure val bal_acc differ from previously reported L60/L63**: The pure bal_acc winners are L30 (QwQ, middle layers) and L47 (R1, upper-middle layers). The previously reported L60/L63 were selected using a composite metric that includes crossing_rate, which favors later layers that detect commitment points earlier. Under pure bal_acc alone, middle layers outperform.\n\n3. **Stability applies to whichever metric is used for selection**: The LOO analysis shows removing any single val trace rarely changes the winner, confirming the selection is robust to val set composition.\n\nResults saved to `artifacts/exp_r8_loo_layer_stability/results.json`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r8-loo-layer-stability.md"
+}

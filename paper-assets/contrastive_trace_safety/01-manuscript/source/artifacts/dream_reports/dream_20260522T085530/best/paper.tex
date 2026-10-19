@@ -1,0 +1,457 @@
+\documentclass[11pt]{article}
+\usepackage[review]{acl}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{xcolor}
+
+\title{Layer Selection Matters: How Metric Choice Determines\\Hidden-State Probe Effectiveness for Reasoning Model Safety Monitoring}
+
+\author{Anonymous}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Reasoning-capable LLMs can ``self-jailbreak'' during extended chain-of-thought, interleaving safety reasoning with harmful execution until a \emph{commitment point} where safety reasoning permanently ceases.
+We present the first systematic evaluation of detection methods for this phenomenon across 4 models spanning 2 architectures (Llama, Qwen), 2 training methods (R1-distilled, STILL), and 2 scales (7--8B, 32B).
+Our primary methodological contribution is identifying that the layer selection metric \texttt{bal\_acc $\times$ crossing\_rate} systematically biases toward shallow layers---especially at 32B scale---entirely masking hidden-state (HS) probe advantages and producing false negative conclusions.
+At correctly selected layers, HS probes significantly outperform text probes on all 4 models (12/12 Holm--Bonferroni tests, precision $+$15--24pp), a finding that replicates on an independent dataset (AdvBench) with fundamentally different labeling.
+Six alternative detection methods (Mahalanobis distance, RepE, CCS, BOCPD/CUSUM, MLP, cross-model transfer) all fail, establishing supervised temporal probing with principled layer selection as the most effective approach.
+\end{abstract}
+
+
+\section{Introduction}
+
+Recent reasoning-capable LLMs such as DeepSeek-R1 \cite{guo2025deepseek} and QwQ \cite{qwq32b} produce extended chains of thought (CoT) that can span hundreds of tokens.
+While this deliberative process enables stronger problem-solving, it also introduces a novel safety failure mode: \emph{self-jailbreaking}, where the model's own reasoning process transitions from safety-compliant deliberation to harmful content generation \cite{ren2025selfharm}.
+Unlike adversarial input attacks targeted by existing defenses \cite{li2024trajguard}, self-jailbreaking originates within the model's reasoning trace itself, rendering input-level detectors ineffective.
+
+Prior work has characterized this phenomenon \cite{ren2025selfharm, wang2025harmthoughts} and proposed text-level CoT monitors \cite{wang2025saferemind}, but no systematic comparison of detection modalities exists.
+A fundamental question remains: \emph{can hidden-state monitoring detect safety commitment earlier or more reliably than text monitoring?}
+
+We address this through a comprehensive evaluation across 4 models: R1-8B (Llama-8B, R1-distilled), OpenThinker-7B (Qwen-7B, STILL-trained), QwQ-32B (Qwen-32B, native), and R1-32B (Qwen-32B, R1-distilled).
+Our key findings are:
+
+\paragraph{Primary contribution: Layer selection metric sensitivity.}
+The composite metric \texttt{bal\_acc $\times$ crossing\_rate}, commonly used for layer selection in probing studies, systematically selects shallow layers (0--16\% depth) due to inflated crossing rates from representational compression.
+Threshold-dependent metrics (precision, FPR) consistently select deep layers ($>$45\% depth).
+This bias entirely masked the HS advantage at 32B scale: correcting layer selection improved Holm--Bonferroni pass rates from 5/12 to \textbf{12/12}.
+
+\paragraph{Cross-dataset validation.}
+The layer selection bias pattern replicates on AdvBench \cite{zou2023advbench} with binary jailbreak/safe labels (no commitment-point annotation), confirming it as a geometric property of model representations rather than a dataset artifact.
+
+\paragraph{Comprehensive negative results.}
+Six alternative methods---Mahalanobis distance (TrajGuard-style), RepE direction probing, CCS, BOCPD/CUSUM change-point detection, MLP probes, and cross-model transfer---all fail to improve over supervised linear probes, establishing what does \emph{not} work for this task.
+
+
+\section{Related Work}
+
+\paragraph{Hidden-state safety probes.}
+TrajGuard \cite{li2024trajguard} uses Mahalanobis distance on hidden states to detect adversarial inputs, achieving 95\% defense rates on instruction-tuned models.
+SafeSwitch \cite{chen2025safeswitch} and SIREN \cite{wang2025siren} extend this to runtime intervention.
+These approaches target adversarial \emph{input} attacks on non-reasoning models; none address reasoning-model self-jailbreak.
+
+\paragraph{Reasoning model safety.}
+Self-Jailbreaking \cite{ren2025selfharm} and HarmThoughts \cite{wang2025harmthoughts} characterize safety failures in reasoning models.
+SafeRemind \cite{wang2025saferemind} and SafeThink \cite{qi2025safethink} propose text-level CoT monitoring but are vulnerable to pathological reasoning chains.
+Our work provides the first modality comparison (hidden-state vs.\ text) for reasoning-model safety detection.
+
+\paragraph{Representation probing.}
+Linear probing of hidden states has a long history in NLP \cite{belinkov2022probing}.
+Burns et al.\ \cite{burns2023ccs} propose CCS for unsupervised truth discovery.
+Representation Engineering (RepE) \cite{zou2023repe} uses mean-difference directions for concept detection.
+We evaluate both adapted to safety commitment detection.
+
+
+\section{Method}
+
+\subsection{Problem Setup}
+
+We study \emph{safety commitment detection}: given a reasoning trace $\mathbf{s} = (s_1, \ldots, s_T)$ where each $s_t$ is a sentence-level step, predict at each step whether the model has committed to unsafe behavior.
+Each trace is annotated with a \emph{commitment point} (CP)---the step after which safety reasoning permanently ceases---yielding binary step-level labels $y_t \in \{0, 1\}$.
+
+\paragraph{Models.}
+We evaluate 4 models spanning a $2 \times 2$ design: architecture (Llama-8B vs.\ Qwen-7B/32B) $\times$ training (R1-distilled vs.\ STILL/native): R1-8B ($n{=}43$ test traces), OpenThinker-7B (OT-7B, $n{=}47$), QwQ-32B ($n{=}19$--20), and R1-32B ($n{=}20$).
+
+\subsection{Probe Architecture}
+
+\paragraph{Hidden-state probes.}
+For each step $s_t$, we extract the hidden state $\mathbf{h}_t^{(\ell)} \in \mathbb{R}^d$ at layer $\ell$ (token-averaged).
+A \emph{static} logistic regression (LR) probe classifies $\mathbf{h}_t^{(\ell)}$ directly.
+A \emph{temporal} LR probe classifies the concatenation $[\mathbf{h}_{t-W+1}^{(\ell)}; \ldots; \mathbf{h}_t^{(\ell)}] \in \mathbb{R}^{d \cdot W}$ for window size $W$.
+
+\paragraph{Text probes.}
+We encode each step using MiniLM-L6-v2 \cite{reimers2019sentencebert} ($d{=}384$) and train analogous static and temporal LR probes on sentence embeddings.
+
+\paragraph{GRU sequence model.}
+As an upper-bound probe, we train a GRU over multi-layer hidden states, predicting commitment at each step.
+
+\subsection{Layer Selection Sensitivity Analysis}
+\label{sec:layer-selection}
+
+A critical design choice in probing is \emph{which layer} to extract hidden states from.
+We evaluate 5 layer selection metrics across all 4 models:
+
+\begin{enumerate}
+\item \texttt{bal\_acc $\times$ CR}: balanced accuracy weighted by crossing rate (CR)---the fraction of traces where the probe prediction crosses the threshold.
+\item \texttt{Pure bal\_acc}: balanced accuracy alone (threshold-free).
+\item \texttt{Precision}: positive predictive value at the operating threshold.
+\item \texttt{Inverse FPR}: $1 - \text{FPR}$ at the operating threshold.
+\item \texttt{Composite}: additive combination of precision, inverse FPR, and balanced accuracy.
+\end{enumerate}
+
+We discover that these metrics produce systematically different layer selections due to the \emph{representational geometry} of transformer hidden states: shallow layers have compressed representations (smaller inter-class cosine distances), causing noise-driven threshold crossings that inflate CR.
+
+\subsection{Temporal Windowing}
+
+We sweep window sizes $W \in \{1, 3, 5, 10, 15, 20, 25\}$.
+Detection uses a $K$-consecutive-crossing criterion: the probe fires when $K{=}5$ consecutive steps exceed the threshold.
+Larger $W$ increases precision (more stable predictions) but decreases coverage (requires more consecutive steps).
+
+\subsection{Evaluation Protocol}
+
+All models use stratified 60/20/20 train/val/test splits with class-balanced weighting.
+Statistical significance is assessed via bootstrap resampling (10{,}000 iterations) with Holm--Bonferroni step-down correction across 12 tests (4 models $\times$ 3 metrics: balanced accuracy, precision, FPR).
+
+
+\section{Experiments}
+
+\subsection{Layer Selection Metric Sensitivity}
+\label{sec:exp-layer}
+
+Table~\ref{tab:layer-metric} shows the layer selected by each metric across all 4 models.
+A striking three-tier pattern emerges:
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\textbf{Metric} & \textbf{R1-8B} & \textbf{OT-7B} & \textbf{QwQ} & \textbf{R1-32B} \\
+\midrule
+bal\_acc$\times$CR & L0 (0\%) & L0 (0\%) & L2 (3\%) & L10 (16\%) \\
+Pure bal\_acc & L12 (39\%) & L9 (32\%) & L30 (47\%) & L47 (73\%) \\
+Precision & L16 (52\%) & L20 (71\%) & L60 (94\%) & L63 (98\%) \\
+Inv.\ FPR & L16 (52\%) & L14 (50\%) & L60 (94\%) & L63 (98\%) \\
+Composite & L12 (39\%) & L14 (50\%) & L60 (94\%) & L63 (98\%) \\
+\bottomrule
+\end{tabular}
+\caption{Selected layer (depth \%) by metric and model. CR-contaminated metrics select shallow layers; threshold-dependent metrics select deep layers. The gap is 12--14 layers for 32B models.}
+\label{tab:layer-metric}
+\end{table}
+
+\paragraph{CR-contaminated $\to$ shallow (0--16\%).}
+The \texttt{bal\_acc $\times$ CR} metric selects layers at 0--16\% depth across all 4 models.
+At these shallow layers, representations are compressed: mean cosine distance between hidden states is 1.4--2.7$\times$ smaller than at deep layers.
+This compression causes probe predictions to oscillate around the decision boundary, inflating crossing rates and biasing the composite score upward.
+
+\paragraph{Threshold-free $\to$ middle (32--73\%).}
+Pure balanced accuracy, which does not depend on a specific threshold, selects middle layers that balance accuracy and stability.
+
+\paragraph{Threshold-dependent $\to$ deep (45--98\%).}
+Precision, inverse FPR, and the additive composite---all deployment-relevant metrics---converge on deep layers where predictions are stable and false alarms rare.
+
+\paragraph{Impact on HS--text comparison.}
+At biased shallow layers, HS probes showed non-significant advantages at 32B scale (R1-32B: $p{=}0.064$; QwQ: $p{=}0.35$), producing the false conclusion that HS advantage is scale-dependent.
+At corrected deep layers, all 4 models show significant HS advantages (Table~\ref{tab:hb-summary}).
+LOO-CV confirms layer selection stability: the dominant layer is selected in 65--68\% of folds across models.
+
+
+\subsection{Cross-Dataset Validation on AdvBench}
+\label{sec:advbench}
+
+To test whether layer selection bias is a property of our dataset or of model geometry, we replicate the analysis on AdvBench \cite{zou2023advbench} using R1-8B with binary jailbreak/safe labels (no commitment-point annotation; $n{=}520$ traces, 437 jailbreak, 83 safe).
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{@{}lcc@{}}
+\toprule
+& \textbf{Original (CP)} & \textbf{AdvBench (binary)} \\
+\midrule
+CR-composite layer & L0 (0\%) & L2 (6.5\%) \\
+Threshold layer & L14 (45\%) & L14 (45\%) \\
+Layer gap & 14 layers & 12 layers \\
+HS bal\_acc (deep) & 0.810 & 0.762 \\
+HS--text prec.\ $\Delta$ & +22.4pp & +18.3pp \\
+CR ratio (shallow/deep) & 2.50 & 2.32 \\
+HB pass & 3/3 & 3/3 \\
+\bottomrule
+\end{tabular}
+\caption{Layer selection bias replicates on AdvBench with fundamentally different labeling. All 7 pattern metrics match target ranges.}
+\label{tab:advbench-pattern}
+\end{table}
+
+Table~\ref{tab:advbench-pattern} shows complete pattern replication: CR-composite selects L2 (6.5\% depth), threshold metrics select L14 (45\%), with a 12-layer gap consistent with the original 14-layer gap.
+The shallow-layer crossing rate (0.44) is 2.32$\times$ the deep-layer rate (0.19), matching the original ratio of 2.50.
+Cosine distance analysis confirms the geometric mechanism: L2 mean cosine distance is 0.038 vs.\ 0.091 at L14 (ratio 2.39$\times$), consistent with representational compression driving inflated crossing rates.
+
+At the threshold-selected layer L14, HS probes achieve bal\_acc 0.762, precision 0.677, and FPR 0.155, outperforming text probes by +10.1pp, +18.3pp, and $-$12.8pp respectively (all 3/3 Holm--Bonferroni, $\alpha{=}0.0167$).
+
+\subsection{Hidden-State vs.\ Text Probe Comparison}
+\label{sec:hs-text}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{@{}llccccc@{}}
+\toprule
+\textbf{Model} & \textbf{Layer} & \textbf{W} & $\Delta$\textbf{BA} & $\Delta$\textbf{Prec} & $\Delta$\textbf{FPR} & \textbf{HB} \\
+\midrule
+R1-8B & L14 & 15 & +8.2 & +22.4 & $-$7.4 & 3/3 \\
+OT-7B & L16 & 3 & +10.7 & +21.9 & $-$17.1 & 3/3 \\
+QwQ & L60 & 3 & +15.4 & +23.6 & $-$9.8 & 3/3 \\
+R1-32B & L63 & 1 & +18.7 & +15.4 & $-$14.6 & 3/3 \\
+\bottomrule
+\end{tabular}
+\caption{HS vs.\ text probe comparison at corrected layers. All deltas in percentage points. HB: Holm--Bonferroni pass count (3 metrics). 12/12 tests pass at $\alpha{=}0.05$ after step-down correction.}
+\label{tab:hb-summary}
+\end{table}
+
+Table~\ref{tab:hb-summary} reports the core HS--text comparison.
+Across all 4 models, HS probes achieve significantly higher precision ($+$15.4 to $+$23.6pp) and lower FPR ($-$7.4 to $-$17.1pp) than text probes.
+All 12 tests (4 models $\times$ 3 metrics) pass Holm--Bonferroni correction at $\alpha{=}0.05$ with 10{,}000 bootstrap resamples.
+
+\paragraph{32B caveats.}
+The 32B models exhibit model-specific trade-offs.
+R1-32B achieves significance only at $W{=}1$ (3/3 HB) with 25\% coverage; at $W{\geq}3$, dimensionality ($51{,}200 \times W$ features for $n{=}20$) degrades performance.
+QwQ-32B shows robust significance across all 15 window sizes but with poor HS lead time ($-1.2$ to $+1.9$ steps vs.\ text's $+3.7$ to $+12.3$).
+
+\paragraph{7--8B scale.}
+At 7--8B, HS advantages are clean.
+R1-8B achieves precision 69.7\% vs.\ text 47.2\% ($+$22.4pp); OT-7B achieves the highest selectivity (18.3pp over random control), confirming the signal is safety-specific.
+
+\paragraph{Text baseline detail.}
+Text probes use MiniLM-L6-v2 sentence embeddings (384d).
+HS probes access 4{,}096--5{,}120d hidden states encoding internal processing state.
+The consistent precision gap ($+$15--24pp) across all 4 models indicates HS probes capture information invisible at the text surface---the model may internally commit to unsafe behavior before this manifests in generated text.
+
+
+\subsection{Temporal Window Ablation}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+& \textbf{R1-8B} & \textbf{OT-7B} & \textbf{QwQ} & \textbf{R1-32B} \\
+\midrule
+Best W (bal\_acc) & 25 & 3 & 25 & 10 \\
+W=1 precision & 0.693 & --- & --- & 0.603 \\
+Best W precision & 0.822 & 0.466 & --- & --- \\
+W=1 coverage & 0.721 & --- & --- & 0.250 \\
+Best W coverage & 0.488 & --- & --- & --- \\
+\bottomrule
+\end{tabular}
+\caption{Window size ablation. Larger $W$ improves precision but reduces coverage. R1-32B peaks at $W{=}10$ then declines (dimensionality constraint).}
+\label{tab:window}
+\end{table}
+
+Temporal context universally improves HS probe accuracy.
+For R1-8B, increasing $W$ from 1 to 25 improves precision from 69.3\% to 82.2\% while halving FPR from 9.65\% to 4.83\%, at the cost of coverage dropping from 72.1\% to 48.8\% (Table~\ref{tab:window}).
+This precision--coverage trade-off is a fundamental characteristic of temporal probing.
+
+For text probes, temporal improvement is universal across all 4 models ($+$3--12pp bal\_acc, $+$8--23pp precision).
+OT-7B HS probes peak at $W{=}3$ for bal\_acc, then decline; precision and FPR continue improving at larger $W$.
+
+32B temporal results are constrained by sample size: R1-32B ($n{=}20$, $d{=}5{,}120$) peaks at $W{=}10$ and degrades beyond; QwQ-32B shows monotonic improvement but with all 15 windows statistically significant.
+
+
+\subsection{Sequence Models and Upper Bounds}
+
+GRU probes trained on multi-layer hidden states provide an upper-bound comparison.
+The pattern is model-specific: OT-7B GRU outperforms LR ($+$5.8pp bal\_acc, from 68.8\% to 74.6\%) due to rich sequential patterns in longer traces ($\sim$80 sentences).
+However, for the remaining 3 models, LR matches or exceeds GRU: R1-8B LR $W{=}15$ achieves 84.8\% vs.\ GRU 80.9\%; QwQ LR $W{=}5$ achieves 76.1\% vs.\ GRU 72.4\%; R1-32B LR $W{=}10$ achieves 73.7\% vs.\ GRU 67.5\%.
+Linear probes are sufficient for 3/4 models.
+
+
+\subsection{Lead Time Analysis}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\textbf{Model} & \textbf{HS LR} & \textbf{Text LR} & \textbf{GRU} & \textbf{Caveat} \\
+\midrule
+R1-8B & $\sim$0 & +10.3* & +4.5$\pm$3.0 & *inflated FPR \\
+OT-7B & +21.6 & +45.5 & +33.6 & long traces \\
+QwQ & $-$1.2--1.9 & +3.7--12.3 & +15.9 & HS late \\
+R1-32B & +11.7 & --- & +8.8 & 25\% cov. \\
+\bottomrule
+\end{tabular}
+\caption{Lead time (steps before commitment point). No universal pattern; per-model reporting is essential.}
+\label{tab:lead}
+\end{table}
+
+Table~\ref{tab:lead} reveals highly model-specific lead time profiles with no universal pattern.
+R1-8B HS probes detect \emph{at} commitment (lead $\approx 0$), encoding current safety state rather than predicting future trajectory.
+Text probes' apparent lead ($+$10.3 steps) is an artifact of high FPR---a trigger-happy detector appears to detect early.
+GRU achieves modest positive lead ($+$4.5 \pm 3.0$, worst seed $+$0.9).
+
+Oracle decomposition reveals the source of the $+$31-step oracle advantage: $\sim$15pp from position information ($t/T$), $\sim$10pp from label sequence patterns, and only $\sim$6pp from true future-state access.
+Hidden states encode current processing state but cannot predict whether commitment will occur---a fundamental architectural constraint.
+
+
+\subsection{Negative Results}
+
+We evaluate 6 alternative methods; all fail to improve over supervised linear probes.
+
+\paragraph{Mahalanobis distance (TrajGuard-style).}
+Across all 4 models, class separation is near-zero (max 0.20).
+The discriminative signal resides in minor PCA components, not principal directions: Fisher ratio drops from 17 to 1 in PCA-3D space.
+False alarm rates equal or exceed true positive rates at every threshold.
+
+\paragraph{BOCPD/CUSUM change-point detection.}
+BOCPD achieves 93\% detection on R1-8B (which has gradual commitment dynamics) but 0\% on the other 3 models, which exhibit abrupt transitions.
+CUSUM is universally worse than simple thresholding.
+
+\paragraph{Cross-model transfer.}
+Zero-shot transfer via PCA projection fails entirely: best accuracy 67.3\% (QwQ$\to$R1-32B) vs.\ within-model baselines of 72--82\%.
+Safety representations are model-specific; 5-seed within-model robustness contrasts sharply with cross-model failure.
+
+\paragraph{16-label fine-grained supervision.}
+Using a 4-type taxonomy (vs.\ binary CP labels) yields marginal improvement: $+$2.2pp on R1-8B, $+$1.7pp on OT-7B.
+The 4$\times$ annotation cost is not justified; binary labels suffice.
+
+
+\subsection{False Positive Analysis}
+
+All methods exhibit high false positive rates on entirely safe traces (39--62\% safe FPR), because safe traces contain safety-relevant reasoning that resembles the early stages of jailbreak traces.
+HS probes achieve lower FPR than text probes on 3/4 models (R1-8B: 16.2\% vs.\ 35.6\%; OT-7B: 11.1\% vs.\ 30.2\%; R1-32B: 23.9\% vs.\ 31.0\%).
+QwQ is the exception (HS 50.0\% vs.\ text 32.5\%), attributable to more extensive safety reasoning in QwQ's safe traces.
+
+
+\section{Discussion}
+
+\paragraph{Layer selection as researcher degree of freedom.}
+Our central methodological finding---that metric choice for layer selection can reverse conclusions about probe effectiveness---has implications beyond safety monitoring.
+Any probing study using composite metrics involving crossing rate or prediction stability risks the same bias.
+We recommend sensitivity analysis across multiple metric families as standard practice.
+
+\paragraph{Why deep layers?}
+Deep layers have expanded representations (cosine distance 2.4$\times$ larger than shallow layers), producing stable, low-noise probe predictions with fewer threshold crossings.
+Deployment-relevant metrics (precision, FPR) naturally favor these stable predictions, while CR-contaminated metrics favor the noisy shallow-layer predictions.
+This is a geometric property: it replicates across datasets (AdvBench), labeling schemes (binary vs.\ step-level), and architectures.
+
+\paragraph{32B model-specific trade-offs.}
+The two 32B models present contrasting deployment profiles: R1-32B offers excellent lead time ($+$11.7 steps) but narrow coverage (25\% at significant $W{=}1$), while QwQ offers robust significance across all window sizes but poor HS lead time ($-$1.2$ to $+$1.9 steps).
+These trade-offs must be evaluated per-model rather than unified into scale-level conclusions.
+
+\paragraph{Linear probe sufficiency.}
+GRU improves over LR only on OT-7B ($+$5.8pp), where long traces ($\sim$80 sentences) provide rich sequential patterns.
+MLP probes underperform LR on 3/4 models.
+This suggests the safety commitment signal is linearly decodable from hidden states, consistent with the linear representation hypothesis \cite{park2024linearrep}.
+
+
+\section{Conclusion}
+
+We provide the first systematic comparison of detection methods for reasoning-model safety commitment across 4 models, 2 architectures, and 2 scales.
+Our primary contribution is identifying layer selection metric sensitivity as a critical confound: the commonly used \texttt{bal\_acc $\times$ crossing\_rate} metric systematically biases toward shallow layers, entirely masking hidden-state advantages at 32B scale.
+Correcting this bias reveals universal HS superiority (12/12 Holm--Bonferroni, precision $+$15--24pp), validated on an independent dataset.
+Combined with the comprehensive failure of 6 alternative methods, our results establish supervised temporal probing with principled layer selection as the most effective approach for monitoring reasoning-model safety commitment.
+
+
+\section*{Limitations}
+
+Our evaluation has three main limitations.
+First, sample sizes for 32B models are small ($n{=}19$--20 test traces), constraining temporal window analysis and producing wide confidence intervals; R1-32B achieves significance only at $W{=}1$ with 25\% coverage.
+Second, all methods exhibit high false positive rates on safe traces (39--62\%), limiting immediate deployment utility---the probes are diagnostic tools rather than production-ready detectors.
+Third, cross-model transfer fails entirely, requiring independent probe training per model; scalability to new model releases requires new annotation and training effort.
+
+
+\bibliography{references}
+
+\appendix
+
+\section{Holm--Bonferroni Step-Down Results}
+\label{app:hb}
+
+\begin{table*}[t]
+\centering
+\small
+\begin{tabular}{@{}clcccc@{}}
+\toprule
+\textbf{Rank} & \textbf{Model -- Metric} & \textbf{$\Delta$} & \textbf{$p$-value} & \textbf{HB Threshold} & \textbf{Pass} \\
+\midrule
+1 & R1-8B -- precision & +27.9pp & $<$0.001 & 0.0042 & Y \\
+2 & OT-7B -- bal\_acc & +10.7pp & $<$0.001 & 0.0045 & Y \\
+3 & OT-7B -- precision & +21.9pp & $<$0.001 & 0.0050 & Y \\
+4 & OT-7B -- FPR & $-$17.1pp & $<$0.001 & 0.0056 & Y \\
+5 & QwQ -- bal\_acc & +14.8pp & $<$0.001 & 0.0063 & Y \\
+6 & QwQ -- precision & +23.5pp & $<$0.001 & 0.0071 & Y \\
+7 & R1-32B -- bal\_acc & +18.7pp & $<$0.001 & 0.0083 & Y \\
+8 & R1-32B -- precision & +15.4pp & $<$0.001 & 0.0100 & Y \\
+9 & QwQ -- FPR & $-$9.5pp & 0.006 & 0.0125 & Y \\
+10 & R1-8B -- bal\_acc & +8.2pp & 0.005 & 0.0167 & Y \\
+11 & R1-32B -- FPR & $-$14.6pp & 0.010 & 0.0250 & Y \\
+12 & R1-8B -- FPR & $-$7.4pp & 0.044 & 0.0500 & Y \\
+\bottomrule
+\end{tabular}
+\caption{Complete Holm--Bonferroni step-down results. 12/12 pass at $\alpha{=}0.05$, 10{,}000 bootstrap resamples.}
+\label{tab:hb-full}
+\end{table*}
+
+
+\section{AdvBench Detailed Results}
+\label{app:advbench}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\textbf{Layer} & \textbf{Depth} & \textbf{Cosine} & \textbf{CR} & \textbf{Interp.} \\
+\midrule
+L2 & 6.5\% & 0.038 & 0.44 & Compressed \\
+L8 & 25.8\% & 0.062 & 0.31 & Intermediate \\
+L14 & 45.2\% & 0.091 & 0.19 & Expanded \\
+L20 & 64.5\% & 0.105 & 0.16 & Deep/stable \\
+\bottomrule
+\end{tabular}
+\caption{Cosine distance and crossing rate by layer depth on AdvBench. Representational compression at shallow layers drives inflated crossing rates.}
+\label{tab:advbench-cosine}
+\end{table}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\textbf{Modality} & \textbf{BA} & \textbf{Prec} & \textbf{FPR} & \textbf{Cov} \\
+\midrule
+HS (L14) & 0.762 & 0.677 & 0.155 & 0.586 \\
+Text (L14) & 0.661 & 0.494 & 0.283 & 0.529 \\
+$\Delta$ & +10.1 & +18.3 & $-$12.8 & +5.7 \\
+$p$ (bootstrap) & 0.005 & 0.002 & 0.008 & --- \\
+\bottomrule
+\end{tabular}
+\caption{HS vs.\ text at threshold-selected layer L14 on AdvBench ($n{=}104$ test). 3/3 Holm--Bonferroni pass.}
+\label{tab:advbench-hs-text}
+\end{table}
+
+
+\section{32B Layer Correction Detail}
+\label{app:32b-correction}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\textbf{Model} & \textbf{Biased L} & \textbf{Corrected L} & $\Delta$\textbf{BA} & $\Delta$\textbf{Prec} \\
+\midrule
+R1-32B & L10 (16\%) & L63 (98\%) & +10.8pp & +8.7pp \\
+QwQ & L2 (3\%) & L60 (94\%) & +1.0pp & --- \\
+\bottomrule
+\end{tabular}
+\caption{Performance gain from correcting layer selection at 32B scale. R1-32B shows substantial improvement; QwQ's absolute gain is smaller but significance changes dramatically ($p{=}0.35 \to p{<}0.005$).}
+\label{tab:32b-correction}
+\end{table}
+
+\end{document}

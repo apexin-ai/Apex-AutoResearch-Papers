@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "53b672b2233a77452333",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "analysis gemma2 download check",
+  "task_key": "worker_analysis_gemma2_download_check_20260522T132425",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gemma2_download_check_20260522T132425_result.json",
+    "occurrence": 1,
+    "bytes": 1016,
+    "sha256": "39f2e4c6fa0806d203dfed95fdc60a9e12d4f14196d2c5c070d74e9d2ca38a76"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n**状态：RUNNING**（PID 60731 仍在运行）\n\n**下载进度**（4 个 safetensors 分片）：\n\n| 分片 | 进度 | 已下载/总大小 | 速度 |\n|------|------|-------------|------|\n| model-00001-of-00004 | 32% | 1.46G / 4.57G | 317 kB/s |\n| model-00002-of-00004 | 67% | 3.07G / 4.61G | 680 kB/s |\n| model-00003-of-00004 | 31% | 1.44G / 4.62G | 321 kB/s |\n| model-00004-of-00004 | 93% | 3.19G / 3.42G | 759 kB/s |\n\n总大小约 17.22 GB，已下载约 9.16 GB（~53%）。按当前速度预计还需 **1.5-3 小时**。\n\n**config.json 验证通过**：\n- `num_hidden_layers`: **42** ✓\n- `hidden_size`: **3584** ✓\n- `model_type`: **gemma2** ✓\n\n**模型文件完整路径**：`/root/autodl-tmp/models/gemma2_9b_it/LLM-Research/gemma-2-9b-it/`\n\nModelScope 下载到了 `LLM-Research/gemma-2-9b-it` 子目录。tokenizer、config 等小文件已就位，4 个 safetensors 权重文件还在下载中。速度偏慢（300-760 kB/s），shard-04 即将完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-gemma2-download-check.md"
+}

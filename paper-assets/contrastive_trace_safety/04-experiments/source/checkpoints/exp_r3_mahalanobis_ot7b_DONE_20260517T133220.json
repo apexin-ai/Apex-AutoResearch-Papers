@@ -1,0 +1,27 @@
+{
+  "exp_id": "exp_r3_mahalanobis_ot7b",
+  "project": "contrastive_trace_safety",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T13:32:01.661Z",
+    "updated_at": "2026-05-17T13:32:20.343Z",
+    "hypothesis": "Mahalanobis distance from safe trace distribution on OT-7B (Layer 16) should fail as commitment detector for the same reason as R1-8B: discriminative signal resides in PCA minor components, not principal directions that dominate covariance. If confirmed, negative result generalizes cross-model (R3-W2).",
+    "spec": {
+      "command": "python mahalanobis_ot7b.py",
+      "server": "autodl-rtx6000",
+      "data_path": "/root/autodl-tmp/contrastive_trace_safety/data/harmthoughts/ot-7b",
+      "data_count": "228 traces (OT-7B Layer 16)",
+      "model_name": "Mahalanobis distance on OT-7B hidden states",
+      "seed": "42",
+      "checkpoint_path": "N/A (analysis experiment)",
+      "log_path": "/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_mahalanobis_ot7b/results.json"
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-17T13:32:20.343Z"
+  },
+  "timestamp": "2026-05-17T13:32:20.404698+00:00",
+  "trigger": "update_registry"
+}

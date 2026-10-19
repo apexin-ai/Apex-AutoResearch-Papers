@@ -1,0 +1,28 @@
+{
+  "exp_id": "m2_early_pilot_v3",
+  "project": "structfuse-context",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T01:59:06.557Z",
+    "updated_at": "2026-05-13T02:09:33.299Z",
+    "spec": {
+      "command": "bash -c \"bash /root/structfuse/run_m2_early_pilot.sh\"",
+      "server": "cqa1-21977",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "897651",
+      "log_path": "~/runs/structfuse-context/m2_early_pilot_v3.log",
+      "submitted_at": "2026-05-13T02:04:31.768Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-13T02:09:33.354786+00:00",
+  "trigger": "update_registry"
+}

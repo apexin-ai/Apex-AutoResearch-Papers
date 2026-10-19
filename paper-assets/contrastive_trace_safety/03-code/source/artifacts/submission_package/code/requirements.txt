@@ -1,0 +1,9 @@
+torch>=2.0
+transformers>=4.40
+datasets
+accelerate
+einops
+scikit-learn
+numpy
+tqdm
+sentence-transformers

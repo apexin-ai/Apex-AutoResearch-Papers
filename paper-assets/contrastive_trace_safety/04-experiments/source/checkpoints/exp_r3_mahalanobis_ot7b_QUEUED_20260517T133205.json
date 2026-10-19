@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_r3_mahalanobis_ot7b",
+  "project": "contrastive_trace_safety",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T13:32:01.661Z",
+    "updated_at": "2026-05-17T13:32:05.447Z",
+    "hypothesis": "Mahalanobis distance from safe trace distribution on OT-7B (Layer 16) should fail as commitment detector for the same reason as R1-8B: discriminative signal resides in PCA minor components, not principal directions that dominate covariance. If confirmed, negative result generalizes cross-model (R3-W2)."
+  },
+  "timestamp": "2026-05-17T13:32:05.529321+00:00",
+  "trigger": "update_registry"
+}

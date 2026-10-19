@@ -1,0 +1,84 @@
+\section{Experiments}
+\label{sec:experiments}
+
+We evaluate contrastive trace probes across three reasoning models (R1-8B, R1-32B, QwQ-32B), two signal modalities (hidden states and text), and multiple temporal aggregation strategies. Our experiments address four questions: (1) How much does temporal context improve detection? (2) Does the choice of signal modality matter? (3) Can sequence models detect unsafe reasoning earlier? (4) Do probes transfer across models?
+
+\subsection{Temporal Context as Primary Factor}
+\label{sec:temporal_primary}
+
+The most consistent finding across all experimental conditions is that temporal context dominates detection performance, regardless of signal modality. \cref{fig:temporal_improvement} shows this pattern across models.
+
+For R1-8B with hidden state (HS) probes, static (single-step) classification achieves 46.5\% coverage at a 10\% false positive rate (FPR) threshold. Expanding the observation window to $W{=}15$ steps raises coverage to 76.7\%, a gain of 30.2 percentage points. Text-based probes show the same directional effect: static coverage of 60.5\% improves to 65.1\% with temporal context. The text modality starts higher in static conditions because surface-level cues (e.g., explicit refusal language) are immediately informative, but the temporal gain is smaller (+4.6pp) because text features saturate quickly once the model commits to a trajectory.
+
+This pattern holds across model scales. \cref{tab:temporal_main} reports temporal improvement for all three models. The key observation is that both modalities benefit from temporal aggregation, and the magnitude of improvement (15 to 30 percentage points) dwarfs the modality gap (0 to 7 percentage points in any single condition). Temporal context is modality-agnostic: whether probes read hidden activations or generated text, observing multiple reasoning steps provides the dominant source of discriminative information.
+
+\subsection{Hidden States vs. Text: Model-Dependent Effects}
+\label{sec:hs_vs_text}
+
+Given the dominance of temporal context, we ask whether the residual modality gap is consistent across models. We apply a bootstrap paired test (1000 resamples at the trace level with BCa confidence intervals) to compare HS and text probes under matched temporal conditions.
+
+\cref{tab:hs_vs_text} reports the full results. For R1-8B, text probes achieve higher trace-level coverage than HS probes (22.2\% vs. 14.8\%, $\Delta{=}{-}7.4$pp, $p{=}0.044$, 95\% CI $[{-}15.6\%, {-}0.4\%]$). For QwQ-32B, the difference vanishes: HS 22.4\% vs. text 21.4\% ($\Delta{=}{+}1.0$pp, $p{=}0.904$). R1-32B shows a similar null result: HS 26.0\% vs. text 24.6\% ($\Delta{=}{+}1.4$pp, $p{=}0.999$). After Bonferroni correction for three comparisons ($\alpha{=}0.017$), no model shows a statistically reliable modality difference.
+
+At the step level, however, R1-8B reveals an asymmetry in deployment-relevant terms (\cref{fig:model_dependency}). The HS probe achieves 8.8\% step-level FPR compared to 20.5\% for the text probe. This discrepancy between trace-level and step-level metrics arises because a small number of traces contain steps with very high individual FPR, which inflates the trace-level mean without proportionally affecting the step-level aggregate. For the 32B models, step-level FPR differences are negligible.
+
+The practical implication is clear: modality choice should be guided by model-specific validation rather than a priori assumptions about representation quality.
+
+\subsection{Detection Timing Profiles}
+\label{sec:timing}
+
+Beyond aggregate accuracy, we examine when probes first detect unsafe reasoning relative to the commitment point (the step at which the model irreversibly begins generating harmful content).
+
+On R1-8B, the HS temporal probe detects unsafe traces at approximately the commitment point itself (lead $\approx$ 0 steps, low FPR). The text temporal probe detects roughly 10 steps earlier (lead $\approx$ +10), but at the cost of higher FPR. This timing asymmetry reflects the nature of the two signals: text features become discriminative as soon as the model begins articulating a plan, while hidden state features consolidate only when the internal representation fully commits to the unsafe trajectory.
+
+This timing trade-off is specific to R1-8B. On QwQ-32B and R1-32B, both modalities show comparable detection timing with no reliable FPR difference between them. We caution against interpreting the R1-8B pattern as a universal property of the two modalities.
+
+\subsection{GRU Sequence Models}
+\label{sec:gru}
+
+Static and windowed probes discard sequential structure. We train Gated Recurrent Unit (GRU) classifiers on the full step sequence to ask whether temporal dependencies beyond a fixed window improve early detection. \cref{tab:gru_results} reports crossing accuracy (the accuracy at which the probe first exceeds chance with sustained performance) and detection lead (steps before the commitment point).
+
+For R1-8B, a single-layer GRU trained on layer 14 hidden states achieves 83.9\% peak accuracy with a crossing point at 72.1\% and a mean lead of +3.5 steps across three seeds. A multi-layer GRU using seven layers reaches 76.7\% crossing accuracy and extends the lead to +4.7 steps. The worst individual seed achieves a lead of only +0.9 steps, indicating high variance in early detection on this model.
+
+QwQ-32B benefits more from sequence modeling. The single-layer GRU achieves 75.0\% crossing accuracy with a lead of +19.3 steps; the multi-layer variant reaches 84.0\% crossing with +15.9 steps lead. These longer leads suggest that QwQ-32B's hidden states encode planning information well before the commitment point.
+
+R1-32B shows weaker GRU performance overall: single-layer crossing at 30.0\% with +9.1 lead, multi-layer at 23.0\% with +8.8 lead. The low crossing accuracy indicates that R1-32B's safety-relevant signal is more diffuse across layers and harder to capture with a compact sequence model.
+
+All results are reported as mean $\pm$ standard deviation over three random seeds.
+
+\subsection{Control Task: Signal Validation}
+\label{sec:control}
+
+A probe that achieves high accuracy on structured labels might simply exploit positional information (e.g., unsafe steps tend to occur later in a trace). Following \cite{hewitt2019control}, we train control probes on randomly permuted labels to measure selectivity: the gap between linguistic probe accuracy and control probe accuracy.
+
+\cref{tab:control} reports selectivity scores. R1-8B achieves 12.5 percentage points of selectivity, R1-32B reaches 16.8pp, and QwQ-32B shows the highest at 18.9pp. All values exceed the threshold typically considered meaningful ($>$5pp), confirming that probes exploit genuine safety-related structure in the representations rather than positional artifacts.
+
+As an additional validation, we compare the HS probe FPR against a position-only baseline that predicts ``unsafe'' based solely on step index. On R1-8B, the HS probe achieves 8.1\% FPR compared to 15.8\% for the position-only baseline. The probe's superior precision further rules out the hypothesis that temporal position alone drives detection.
+
+\subsection{Negative Results: Change-Point and Geometric Methods}
+\label{sec:negative}
+
+We evaluate two families of methods from the anomaly detection literature that, a priori, seem well-suited to temporal safety monitoring.
+
+\paragraph{Bayesian Online Change-Point Detection (BOCPD).} With hazard rate $\lambda{=}10$, BOCPD applied to probe scores achieves 93\% detection rate but with a mean lead of only +3.5 steps. A simple threshold on the temporal probe score achieves +4.9 steps lead with comparable detection rate. CUSUM (Cumulative Sum) variants perform worse across all configurations. The sequential structure of probe scores does not exhibit the abrupt distributional shifts that change-point methods are designed to detect; instead, the transition is gradual. \cref{tab:negative} reports detailed comparisons.
+
+\paragraph{Mahalanobis Distance (TrajGuard).} We compute Mahalanobis distances of hidden state trajectories from class-conditional distributions. Safe and jailbreak traces produce nearly identical distances (6.66 vs. 6.73 for jailbreak, 6.64 for safe on R1-8B). The geometric separation between trajectory distributions is negligible in the high-dimensional activation space, rendering distance-based methods ineffective for this task.
+
+These negative results carry practical value: they redirect future work away from off-the-shelf change-point and geometric anomaly detection toward learned temporal classifiers.
+
+\subsection{Cross-Model Transfer}
+\label{sec:transfer}
+
+We test whether a probe trained on one model's hidden states can detect unsafe reasoning in another model. For each source-target pair, we apply PCA to align the source model's representation space to the target's dimensionality, then evaluate the transferred probe.
+
+All transfer directions fail. The best-performing transfer (QwQ-32B $\rightarrow$ R1-32B) achieves 67.3\% accuracy against a random baseline of 65.2\%, a margin within noise. Other directions perform at or below chance.
+
+This result indicates that safety-relevant representations are model-specific. Each model encodes reasoning trajectories in idiosyncratic geometric configurations that do not share a common subspace across architectures. Deployment of contrastive trace probes requires per-model training; a universal probe is not feasible with current methods.
+
+\subsection{Oracle Decomposition}
+\label{sec:oracle}
+
+To quantify the remaining performance gap, we construct an oracle detector with access to $K{=}5$ future steps (lookahead). The oracle achieves 100\% detection rate with 76.7\% of detections classified as ``early'' (before the commitment point), and a mean lead of +31 steps.
+
+The information gap between the best learned probe (lead +4.9 steps) and the oracle (lead +31 steps) is $1 - (4.9/31) \approx 62\%$ when measured as the fraction of oracle lead that remains uncaptured by the probe. Hidden states encode the model's current safety state reliably, as evidenced by high probe accuracy, but they poorly predict future trajectory evolution. The majority of early detection potential remains unrealized, suggesting that safety monitoring at inference time faces a fundamental information bottleneck: the model's internal state at step $t$ carries limited predictive power about behavior at step $t{+}k$ for large $k$.
+
+This decomposition provides a concrete upper bound for future work on temporal safety probes and clarifies that the primary challenge is not representation quality but temporal prediction.

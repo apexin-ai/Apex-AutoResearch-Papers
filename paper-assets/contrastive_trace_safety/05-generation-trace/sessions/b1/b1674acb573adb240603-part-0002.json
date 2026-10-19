@@ -1,0 +1,1395 @@
+{
+  "schema_version": "1.0",
+  "session_id": "b1674acb573adb240603",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 181,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "QwQ-32B W=5 metrics computed, bootstrap running. Should finish soon."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fbcebfef-3e8e-4f9a-a5f4-89483d370521",
+            "uuid": "bf115393-2009-423c-8e2d-a669c391f651",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MyfAnamj3gmkuEVeMP5vpa",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 999,
+                "cache_read_input_tokens": 101475,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 999
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000181"
+        },
+        {
+          "source_line": 182,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GCETQxmLPtfHydcBssXJgy",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "autodl-rtx6000",
+                "command": "tail -30 /root/autodl-tmp/contrastive_trace_safety/artifacts/bge_large_60_20_20/run.log 2>/dev/null",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fbcebfef-3e8e-4f9a-a5f4-89483d370521",
+            "uuid": "d382bcb8-544d-4ab3-883e-42b1c64b8d26",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MyfAnamj3gmkuEVeMP5vpa",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 999,
+                "cache_read_input_tokens": 101475,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 999
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000182"
+        },
+        {
+          "source_line": 183,
+          "timestamp": "2026-05-18T20:37:40.334Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GCETQxmLPtfHydcBssXJgy",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  HS_vs_BGE:\\\\n    bal_acc: diff=+0.1093 CI=[0.0232, 0.1993] p=0.0128\\\\n    precision: diff=+0.1132 CI=[-0.0015, 0.2426] p=0.0732\\\\n    fpr: diff=+0.0780 CI=[-0.0747, 0.2255] p=0.3273\\\\n  HS_vs_MiniLM:\\\\n    bal_acc: diff=+0.1146 CI=[0.0129, 0.2056] p=0.0187\\\\n    precision: diff=+0.1159 CI=[-0.0154, 0.2596] p=0.1119\\\\n    fpr: diff=+0.0724 CI=[-0.1019, 0.2263] p=0.4186\\\\n  BGE_vs_MiniLM:\\\\n    bal_acc: diff=+0.0053 CI=[-0.0581, 0.0665] p=0.8685\\\\n    precision: diff=+0.0027 CI=[-0.0611, 0.08] p=0.9433\\\\n    fpr: diff=-0.0056 CI=[-0.0946, 0.0857] p=0.9016\\\\n\\\\n================================================================================\\\\n  Model: qwq_32b (layer=60, W=5)\\\\n================================================================================\\\\n  140 traces with sentences\\\\n  95 valid traces\\\\n  Split: train=57, val=19, test=19\\\\n  Encoding BGE-large...\\\\n  Encoding MiniLM...\\\\n  HS: (3823, 5120), BGE: (3823, 1024), MiniLM: (3823, 384)\\\\n  Training HS probe (5120d)...\\\\n  Training BGE probe (1024d)...\\\\n  Training MiniLM probe (384d)...\\\\n  HS:     BA=0.7252  Prec=0.5244  FPR=0.2507\\\\n  BGE:    BA=0.6346  Prec=0.4419  FPR=0.2669\\\\n  MiniLM: BA=0.5431  Prec=0.3298  FPR=0.3469\\\\n  Bootstrap HS vs BGE (10000 resamples)...\\\\n  Bootstrap HS vs MiniLM (10000 resamples)...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "fbcebfef-3e8e-4f9a-a5f4-89483d370521",
+            "uuid": "f900df71-650a-4efc-afe1-7def41496703",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  HS_vs_BGE:\\\\n    bal_acc: diff=+0.1093 CI=[0.0232, 0.1993] p=0.0128\\\\n    precision: diff=+0.1132 CI=[-0.0015, 0.2426] p=0.0732\\\\n    fpr: diff=+0.0780 CI=[-0.0747, 0.2255] p=0.3273\\\\n  HS_vs_MiniLM:\\\\n    bal_acc: diff=+0.1146 CI=[0.0129, 0.2056] p=0.0187\\\\n    precision: diff=+0.1159 CI=[-0.0154, 0.2596] p=0.1119\\\\n    fpr: diff=+0.0724 CI=[-0.1019, 0.2263] p=0.4186\\\\n  BGE_vs_MiniLM:\\\\n    bal_acc: diff=+0.0053 CI=[-0.0581, 0.0665] p=0.8685\\\\n    precision: diff=+0.0027 CI=[-0.0611, 0.08] p=0.9433\\\\n    fpr: diff=-0.0056 CI=[-0.0946, 0.0857] p=0.9016\\\\n\\\\n================================================================================\\\\n  Model: qwq_32b (layer=60, W=5)\\\\n================================================================================\\\\n  140 traces with sentences\\\\n  95 valid traces\\\\n  Split: train=57, val=19, test=19\\\\n  Encoding BGE-large...\\\\n  Encoding MiniLM...\\\\n  HS: (3823, 5120), BGE: (3823, 1024), MiniLM: (3823, 384)\\\\n  Training HS probe (5120d)...\\\\n  Training BGE probe (1024d)...\\\\n  Training MiniLM probe (384d)...\\\\n  HS:     BA=0.7252  Prec=0.5244  FPR=0.2507\\\\n  BGE:    BA=0.6346  Prec=0.4419  FPR=0.2669\\\\n  MiniLM: BA=0.5431  Prec=0.3298  FPR=0.3469\\\\n  Bootstrap HS vs BGE (10000 resamples)...\\\\n  Bootstrap HS vs MiniLM (10000 resamples)...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"  HS_vs_BGE:\\n    bal_acc: diff=+0.1093 CI=[0.0232, 0.1993] p=0.0128\\n    precision: diff=+0.1132 CI=[-0.0015, 0.2426] p=0.0732\\n    fpr: diff=+0.0780 CI=[-0.0747, 0.2255] p=0.3273\\n  HS_vs_MiniLM:\\n    bal_acc: diff=+0.1146 CI=[0.0129, 0.2056] p=0.0187\\n    precision: diff=+0.1159 CI=[-0.0154, 0.2596] p=0.1119\\n    fpr: diff=+0.0724 CI=[-0.1019, 0.2263] p=0.4186\\n  BGE_vs_MiniLM:\\n    bal_acc: diff=+0.0053 CI=[-0.0581, 0.0665] p=0.8685\\n    precision: diff=+0.0027 CI=[-0.0611, 0.08] p=0.9433\\n    fpr: diff=-0.0056 CI=[-0.0946, 0.0857] p=0.9016\\n\\n================================================================================\\n  Model: qwq_32b (layer=60, W=5)\\n================================================================================\\n  140 traces with sentences\\n  95 valid traces\\n  Split: train=57, val=19, test=19\\n  Encoding BGE-large...\\n  Encoding MiniLM...\\n  HS: (3823, 5120), BGE: (3823, 1024), MiniLM: (3823, 384)\\n  Training HS probe (5120d)...\\n  Training BGE probe (1024d)...\\n  Training MiniLM probe (384d)...\\n  HS:     BA=0.7252  Prec=0.5244  FPR=0.2507\\n  BGE:    BA=0.6346  Prec=0.4419  FPR=0.2669\\n  MiniLM: BA=0.5431  Prec=0.3298  FPR=0.3469\\n  Bootstrap HS vs BGE (10000 resamples)...\\n  Bootstrap HS vs MiniLM (10000 resamples)...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000183"
+        },
+        {
+          "source_line": 184,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018v33Bx7GcM5edMGn8r3aKq",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "autodl-rtx6000",
+                "command": "tail -20 /root/autodl-tmp/contrastive_trace_safety/artifacts/bge_large_60_20_20/run.log 2>/dev/null; echo \"===\"; ps aux | grep bge_large_60 | grep python | grep -v grep | wc -l",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fbcebfef-3e8e-4f9a-a5f4-89483d370521",
+            "uuid": "183f59b2-ab85-40f9-ba01-efdc47f46056",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017ZHBxw5628Gdjqsoyukv56",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1214,
+                "cache_read_input_tokens": 102474,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1214
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000184"
+        },
+        {
+          "source_line": 185,
+          "timestamp": "2026-05-18T20:37:44.588Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018v33Bx7GcM5edMGn8r3aKq",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    precision: diff=+0.0027 CI=[-0.0611, 0.08] p=0.9433\\\\n    fpr: diff=-0.0056 CI=[-0.0946, 0.0857] p=0.9016\\\\n\\\\n================================================================================\\\\n  Model: qwq_32b (layer=60, W=5)\\\\n================================================================================\\\\n  140 traces with sentences\\\\n  95 valid traces\\\\n  Split: train=57, val=19, test=19\\\\n  Encoding BGE-large...\\\\n  Encoding MiniLM...\\\\n  HS: (3823, 5120), BGE: (3823, 1024), MiniLM: (3823, 384)\\\\n  Training HS probe (5120d)...\\\\n  Training BGE probe (1024d)...\\\\n  Training MiniLM probe (384d)...\\\\n  HS:     BA=0.7252  Prec=0.5244  FPR=0.2507\\\\n  BGE:    BA=0.6346  Prec=0.4419  FPR=0.2669\\\\n  MiniLM: BA=0.5431  Prec=0.3298  FPR=0.3469\\\\n  Bootstrap HS vs BGE (10000 resamples)...\\\\n  Bootstrap HS vs MiniLM (10000 resamples)...\\\\n===\\\\n2\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "fbcebfef-3e8e-4f9a-a5f4-89483d370521",
+            "uuid": "7a6dc4d9-b5ce-48ab-8a31-65bd9a8e95f6",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    precision: diff=+0.0027 CI=[-0.0611, 0.08] p=0.9433\\\\n    fpr: diff=-0.0056 CI=[-0.0946, 0.0857] p=0.9016\\\\n\\\\n================================================================================\\\\n  Model: qwq_32b (layer=60, W=5)\\\\n================================================================================\\\\n  140 traces with sentences\\\\n  95 valid traces\\\\n  Split: train=57, val=19, test=19\\\\n  Encoding BGE-large...\\\\n  Encoding MiniLM...\\\\n  HS: (3823, 5120), BGE: (3823, 1024), MiniLM: (3823, 384)\\\\n  Training HS probe (5120d)...\\\\n  Training BGE probe (1024d)...\\\\n  Training MiniLM probe (384d)...\\\\n  HS:     BA=0.7252  Prec=0.5244  FPR=0.2507\\\\n  BGE:    BA=0.6346  Prec=0.4419  FPR=0.2669\\\\n  MiniLM: BA=0.5431  Prec=0.3298  FPR=0.3469\\\\n  Bootstrap HS vs BGE (10000 resamples)...\\\\n  Bootstrap HS vs MiniLM (10000 resamples)...\\\\n===\\\\n2\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"    precision: diff=+0.0027 CI=[-0.0611, 0.08] p=0.9433\\n    fpr: diff=-0.0056 CI=[-0.0946, 0.0857] p=0.9016\\n\\n================================================================================\\n  Model: qwq_32b (layer=60, W=5)\\n================================================================================\\n  140 traces with sentences\\n  95 valid traces\\n  Split: train=57, val=19, test=19\\n  Encoding BGE-large...\\n  Encoding MiniLM...\\n  HS: (3823, 5120), BGE: (3823, 1024), MiniLM: (3823, 384)\\n  Training HS probe (5120d)...\\n  Training BGE probe (1024d)...\\n  Training MiniLM probe (384d)...\\n  HS:     BA=0.7252  Prec=0.5244  FPR=0.2507\\n  BGE:    BA=0.6346  Prec=0.4419  FPR=0.2669\\n  MiniLM: BA=0.5431  Prec=0.3298  FPR=0.3469\\n  Bootstrap HS vs BGE (10000 resamples)...\\n  Bootstrap HS vs MiniLM (10000 resamples)...\\n===\\n2\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+              }
+            }
+          },
+          "id": "event-000185"
+        },
+        {
+          "source_line": 186,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CcVFobfngAiUAHMei69Bjv",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "autodl-rtx6000",
+                "command": "tail -30 /root/autodl-tmp/contrastive_trace_safety/artifacts/bge_large_60_20_20/run.log 2>/dev/null",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fbcebfef-3e8e-4f9a-a5f4-89483d370521",
+            "uuid": "7e2b83c0-0958-4ba4-9ef0-6fda0036d18c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UcCnouNU3nZo9amUqGaPVM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 606,
+                "cache_read_input_tokens": 103688,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 606
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000186"
+        },
+        {
+          "source_line": 187,
+          "timestamp": "2026-05-18T20:37:48.910Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CcVFobfngAiUAHMei69Bjv",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    bal_acc: diff=+0.1093 CI=[0.0232, 0.1993] p=0.0128\\\\n    precision: diff=+0.1132 CI=[-0.0015, 0.2426] p=0.0732\\\\n    fpr: diff=+0.0780 CI=[-0.0747, 0.2255] p=0.3273\\\\n  HS_vs_MiniLM:\\\\n    bal_acc: diff=+0.1146 CI=[0.0129, 0.2056] p=0.0187\\\\n    precision: diff=+0.1159 CI=[-0.0154, 0.2596] p=0.1119\\\\n    fpr: diff=+0.0724 CI=[-0.1019, 0.2263] p=0.4186\\\\n  BGE_vs_MiniLM:\\\\n    bal_acc: diff=+0.0053 CI=[-0.0581, 0.0665] p=0.8685\\\\n    precision: diff=+0.0027 CI=[-0.0611, 0.08] p=0.9433\\\\n    fpr: diff=-0.0056 CI=[-0.0946, 0.0857] p=0.9016\\\\n\\\\n================================================================================\\\\n  Model: qwq_32b (layer=60, W=5)\\\\n================================================================================\\\\n  140 traces with sentences\\\\n  95 valid traces\\\\n  Split: train=57, val=19, test=19\\\\n  Encoding BGE-large...\\\\n  Encoding MiniLM...\\\\n  HS: (3823, 5120), BGE: (3823, 1024), MiniLM: (3823, 384)\\\\n  Training HS probe (5120d)...\\\\n  Training BGE probe (1024d)...\\\\n  Training MiniLM probe (384d)...\\\\n  HS:     BA=0.7252  Prec=0.5244  FPR=0.2507\\\\n  BGE:    BA=0.6346  Prec=0.4419  FPR=0.2669\\\\n  MiniLM: BA=0.5431  Prec=0.3298  FPR=0.3469\\\\n  Bootstrap HS vs BGE (10000 resamples)...\\\\n  Bootstrap HS vs MiniLM (10000 resamples)...\\\\n  Bootstrap BGE vs MiniLM (10000 resamples)...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "fbcebfef-3e8e-4f9a-a5f4-89483d370521",
+            "uuid": "a938f613-a87a-40ed-b9a3-5c94cb6c91e4",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    bal_acc: diff=+0.1093 CI=[0.0232, 0.1993] p=0.0128\\\\n    precision: diff=+0.1132 CI=[-0.0015, 0.2426] p=0.0732\\\\n    fpr: diff=+0.0780 CI=[-0.0747, 0.2255] p=0.3273\\\\n  HS_vs_MiniLM:\\\\n    bal_acc: diff=+0.1146 CI=[0.0129, 0.2056] p=0.0187\\\\n    precision: diff=+0.1159 CI=[-0.0154, 0.2596] p=0.1119\\\\n    fpr: diff=+0.0724 CI=[-0.1019, 0.2263] p=0.4186\\\\n  BGE_vs_MiniLM:\\\\n    bal_acc: diff=+0.0053 CI=[-0.0581, 0.0665] p=0.8685\\\\n    precision: diff=+0.0027 CI=[-0.0611, 0.08] p=0.9433\\\\n    fpr: diff=-0.0056 CI=[-0.0946, 0.0857] p=0.9016\\\\n\\\\n================================================================================\\\\n  Model: qwq_32b (layer=60, W=5)\\\\n================================================================================\\\\n  140 traces with sentences\\\\n  95 valid traces\\\\n  Split: train=57, val=19, test=19\\\\n  Encoding BGE-large...\\\\n  Encoding MiniLM...\\\\n  HS: (3823, 5120), BGE: (3823, 1024), MiniLM: (3823, 384)\\\\n  Training HS probe (5120d)...\\\\n  Training BGE probe (1024d)...\\\\n  Training MiniLM probe (384d)...\\\\n  HS:     BA=0.7252  Prec=0.5244  FPR=0.2507\\\\n  BGE:    BA=0.6346  Prec=0.4419  FPR=0.2669\\\\n  MiniLM: BA=0.5431  Prec=0.3298  FPR=0.3469\\\\n  Bootstrap HS vs BGE (10000 resamples)...\\\\n  Bootstrap HS vs MiniLM (10000 resamples)...\\\\n  Bootstrap BGE vs MiniLM (10000 resamples)...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"    bal_acc: diff=+0.1093 CI=[0.0232, 0.1993] p=0.0128\\n    precision: diff=+0.1132 CI=[-0.0015, 0.2426] p=0.0732\\n    fpr: diff=+0.0780 CI=[-0.0747, 0.2255] p=0.3273\\n  HS_vs_MiniLM:\\n    bal_acc: diff=+0.1146 CI=[0.0129, 0.2056] p=0.0187\\n    precision: diff=+0.1159 CI=[-0.0154, 0.2596] p=0.1119\\n    fpr: diff=+0.0724 CI=[-0.1019, 0.2263] p=0.4186\\n  BGE_vs_MiniLM:\\n    bal_acc: diff=+0.0053 CI=[-0.0581, 0.0665] p=0.8685\\n    precision: diff=+0.0027 CI=[-0.0611, 0.08] p=0.9433\\n    fpr: diff=-0.0056 CI=[-0.0946, 0.0857] p=0.9016\\n\\n================================================================================\\n  Model: qwq_32b (layer=60, W=5)\\n================================================================================\\n  140 traces with sentences\\n  95 valid traces\\n  Split: train=57, val=19, test=19\\n  Encoding BGE-large...\\n  Encoding MiniLM...\\n  HS: (3823, 5120), BGE: (3823, 1024), MiniLM: (3823, 384)\\n  Training HS probe (5120d)...\\n  Training BGE probe (1024d)...\\n  Training MiniLM probe (384d)...\\n  HS:     BA=0.7252  Prec=0.5244  FPR=0.2507\\n  BGE:    BA=0.6346  Prec=0.4419  FPR=0.2669\\n  MiniLM: BA=0.5431  Prec=0.3298  FPR=0.3469\\n  Bootstrap HS vs BGE (10000 resamples)...\\n  Bootstrap HS vs MiniLM (10000 resamples)...\\n  Bootstrap BGE vs MiniLM (10000 resamples)...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000187"
+        },
+        {
+          "source_line": 188,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XWY7gTHKWotBpLBKM94eU5",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "autodl-rtx6000",
+                "command": "tail -15 /root/autodl-tmp/contrastive_trace_safety/artifacts/bge_large_60_20_20/run.log 2>/dev/null; echo \"===RUNNING===\"; ps aux | grep bge_large_60 | grep python | grep -v grep | wc -l",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fbcebfef-3e8e-4f9a-a5f4-89483d370521",
+            "uuid": "455cb259-c27b-4810-b5b0-370bb91e99cd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01J89G1Wq4pnrWToAjioPBEr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 852,
+                "cache_read_input_tokens": 104294,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 852
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000188"
+        },
+        {
+          "source_line": 189,
+          "timestamp": "2026-05-18T20:37:52.916Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XWY7gTHKWotBpLBKM94eU5",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  140 traces with sentences\\\\n  95 valid traces\\\\n  Split: train=57, val=19, test=19\\\\n  Encoding BGE-large...\\\\n  Encoding MiniLM...\\\\n  HS: (3823, 5120), BGE: (3823, 1024), MiniLM: (3823, 384)\\\\n  Training HS probe (5120d)...\\\\n  Training BGE probe (1024d)...\\\\n  Training MiniLM probe (384d)...\\\\n  HS:     BA=0.7252  Prec=0.5244  FPR=0.2507\\\\n  BGE:    BA=0.6346  Prec=0.4419  FPR=0.2669\\\\n  MiniLM: BA=0.5431  Prec=0.3298  FPR=0.3469\\\\n  Bootstrap HS vs BGE (10000 resamples)...\\\\n  Bootstrap HS vs MiniLM (10000 resamples)...\\\\n  Bootstrap BGE vs MiniLM (10000 resamples)...\\\\n===RUNNING===\\\\n2\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "fbcebfef-3e8e-4f9a-a5f4-89483d370521",
+            "uuid": "920b3083-f26d-4980-9487-197bab73133a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  140 traces with sentences\\\\n  95 valid traces\\\\n  Split: train=57, val=19, test=19\\\\n  Encoding BGE-large...\\\\n  Encoding MiniLM...\\\\n  HS: (3823, 5120), BGE: (3823, 1024), MiniLM: (3823, 384)\\\\n  Training HS probe (5120d)...\\\\n  Training BGE probe (1024d)...\\\\n  Training MiniLM probe (384d)...\\\\n  HS:     BA=0.7252  Prec=0.5244  FPR=0.2507\\\\n  BGE:    BA=0.6346  Prec=0.4419  FPR=0.2669\\\\n  MiniLM: BA=0.5431  Prec=0.3298  FPR=0.3469\\\\n  Bootstrap HS vs BGE (10000 resamples)...\\\\n  Bootstrap HS vs MiniLM (10000 resamples)...\\\\n  Bootstrap BGE vs MiniLM (10000 resamples)...\\\\n===RUNNING===\\\\n2\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"  140 traces with sentences\\n  95 valid traces\\n  Split: train=57, val=19, test=19\\n  Encoding BGE-large...\\n  Encoding MiniLM...\\n  HS: (3823, 5120), BGE: (3823, 1024), MiniLM: (3823, 384)\\n  Training HS probe (5120d)...\\n  Training BGE probe (1024d)...\\n  Training MiniLM probe (384d)...\\n  HS:     BA=0.7252  Prec=0.5244  FPR=0.2507\\n  BGE:    BA=0.6346  Prec=0.4419  FPR=0.2669\\n  MiniLM: BA=0.5431  Prec=0.3298  FPR=0.3469\\n  Bootstrap HS vs BGE (10000 resamples)...\\n  Bootstrap HS vs MiniLM (10000 resamples)...\\n  Bootstrap BGE vs MiniLM (10000 resamples)...\\n===RUNNING===\\n2\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000189"
+        },
+        {
+          "source_line": 190,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JQbMJ3Mi8dvbvypm6pgMnB",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "autodl-rtx6000",
+                "command": "tail -30 /root/autodl-tmp/contrastive_trace_safety/artifacts/bge_large_60_20_20/run.log 2>/dev/null",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fbcebfef-3e8e-4f9a-a5f4-89483d370521",
+            "uuid": "dd5d578d-0b00-47f9-8592-8a8083f47d84",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011MC86X1YPjj14DUNszbii4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 537,
+                "cache_read_input_tokens": 105146,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 537
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000190"
+        },
+        {
+          "source_line": 191,
+          "timestamp": "2026-05-18T20:37:56.539Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JQbMJ3Mi8dvbvypm6pgMnB",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    bal_acc: diff=+0.1093 CI=[0.0232, 0.1993] p=0.0128\\\\n    precision: diff=+0.1132 CI=[-0.0015, 0.2426] p=0.0732\\\\n    fpr: diff=+0.0780 CI=[-0.0747, 0.2255] p=0.3273\\\\n  HS_vs_MiniLM:\\\\n    bal_acc: diff=+0.1146 CI=[0.0129, 0.2056] p=0.0187\\\\n    precision: diff=+0.1159 CI=[-0.0154, 0.2596] p=0.1119\\\\n    fpr: diff=+0.0724 CI=[-0.1019, 0.2263] p=0.4186\\\\n  BGE_vs_MiniLM:\\\\n    bal_acc: diff=+0.0053 CI=[-0.0581, 0.0665] p=0.8685\\\\n    precision: diff=+0.0027 CI=[-0.0611, 0.08] p=0.9433\\\\n    fpr: diff=-0.0056 CI=[-0.0946, 0.0857] p=0.9016\\\\n\\\\n================================================================================\\\\n  Model: qwq_32b (layer=60, W=5)\\\\n================================================================================\\\\n  140 traces with sentences\\\\n  95 valid traces\\\\n  Split: train=57, val=19, test=19\\\\n  Encoding BGE-large...\\\\n  Encoding MiniLM...\\\\n  HS: (3823, 5120), BGE: (3823, 1024), MiniLM: (3823, 384)\\\\n  Training HS probe (5120d)...\\\\n  Training BGE probe (1024d)...\\\\n  Training MiniLM probe (384d)...\\\\n  HS:     BA=0.7252  Prec=0.5244  FPR=0.2507\\\\n  BGE:    BA=0.6346  Prec=0.4419  FPR=0.2669\\\\n  MiniLM: BA=0.5431  Prec=0.3298  FPR=0.3469\\\\n  Bootstrap HS vs BGE (10000 resamples)...\\\\n  Bootstrap HS vs MiniLM (10000 resamples)...\\\\n  Bootstrap BGE vs MiniLM (10000 resamples)...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "fbcebfef-3e8e-4f9a-a5f4-89483d370521",
+            "uuid": "9aaefd0f-d978-4c56-bd49-d2af72a49cf6",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    bal_acc: diff=+0.1093 CI=[0.0232, 0.1993] p=0.0128\\\\n    precision: diff=+0.1132 CI=[-0.0015, 0.2426] p=0.0732\\\\n    fpr: diff=+0.0780 CI=[-0.0747, 0.2255] p=0.3273\\\\n  HS_vs_MiniLM:\\\\n    bal_acc: diff=+0.1146 CI=[0.0129, 0.2056] p=0.0187\\\\n    precision: diff=+0.1159 CI=[-0.0154, 0.2596] p=0.1119\\\\n    fpr: diff=+0.0724 CI=[-0.1019, 0.2263] p=0.4186\\\\n  BGE_vs_MiniLM:\\\\n    bal_acc: diff=+0.0053 CI=[-0.0581, 0.0665] p=0.8685\\\\n    precision: diff=+0.0027 CI=[-0.0611, 0.08] p=0.9433\\\\n    fpr: diff=-0.0056 CI=[-0.0946, 0.0857] p=0.9016\\\\n\\\\n================================================================================\\\\n  Model: qwq_32b (layer=60, W=5)\\\\n================================================================================\\\\n  140 traces with sentences\\\\n  95 valid traces\\\\n  Split: train=57, val=19, test=19\\\\n  Encoding BGE-large...\\\\n  Encoding MiniLM...\\\\n  HS: (3823, 5120), BGE: (3823, 1024), MiniLM: (3823, 384)\\\\n  Training HS probe (5120d)...\\\\n  Training BGE probe (1024d)...\\\\n  Training MiniLM probe (384d)...\\\\n  HS:     BA=0.7252  Prec=0.5244  FPR=0.2507\\\\n  BGE:    BA=0.6346  Prec=0.4419  FPR=0.2669\\\\n  MiniLM: BA=0.5431  Prec=0.3298  FPR=0.3469\\\\n  Bootstrap HS vs BGE (10000 resamples)...\\\\n  Bootstrap HS vs MiniLM (10000 resamples)...\\\\n  Bootstrap BGE vs MiniLM (10000 resamples)...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"    bal_acc: diff=+0.1093 CI=[0.0232, 0.1993] p=0.0128\\n    precision: diff=+0.1132 CI=[-0.0015, 0.2426] p=0.0732\\n    fpr: diff=+0.0780 CI=[-0.0747, 0.2255] p=0.3273\\n  HS_vs_MiniLM:\\n    bal_acc: diff=+0.1146 CI=[0.0129, 0.2056] p=0.0187\\n    precision: diff=+0.1159 CI=[-0.0154, 0.2596] p=0.1119\\n    fpr: diff=+0.0724 CI=[-0.1019, 0.2263] p=0.4186\\n  BGE_vs_MiniLM:\\n    bal_acc: diff=+0.0053 CI=[-0.0581, 0.0665] p=0.8685\\n    precision: diff=+0.0027 CI=[-0.0611, 0.08] p=0.9433\\n    fpr: diff=-0.0056 CI=[-0.0946, 0.0857] p=0.9016\\n\\n================================================================================\\n  Model: qwq_32b (layer=60, W=5)\\n================================================================================\\n  140 traces with sentences\\n  95 valid traces\\n  Split: train=57, val=19, test=19\\n  Encoding BGE-large...\\n  Encoding MiniLM...\\n  HS: (3823, 5120), BGE: (3823, 1024), MiniLM: (3823, 384)\\n  Training HS probe (5120d)...\\n  Training BGE probe (1024d)...\\n  Training MiniLM probe (384d)...\\n  HS:     BA=0.7252  Prec=0.5244  FPR=0.2507\\n  BGE:    BA=0.6346  Prec=0.4419  FPR=0.2669\\n  MiniLM: BA=0.5431  Prec=0.3298  FPR=0.3469\\n  Bootstrap HS vs BGE (10000 resamples)...\\n  Bootstrap HS vs MiniLM (10000 resamples)...\\n  Bootstrap BGE vs MiniLM (10000 resamples)...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000191"
+        },
+        {
+          "source_line": 192,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "QwQ is running bootstraps - all three are printed. Let me wait for the final results. The QwQ test set has 1029 steps and 19 traces, so each bootstrap loop is about the same size as R1-8B. Should be done soon.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fbcebfef-3e8e-4f9a-a5f4-89483d370521",
+            "uuid": "d0fab060-804a-4407-8856-eb3915e41f21",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Avm6za4GfQk9N1vAf2Qwjy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 852,
+                "cache_read_input_tokens": 105683,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 852
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000192"
+        },
+        {
+          "source_line": 193,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WqDLEzqKwDvGrKrMLrQLgA",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "autodl-rtx6000",
+                "command": "tail -20 /root/autodl-tmp/contrastive_trace_safety/artifacts/bge_large_60_20_20/run.log 2>/dev/null",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fbcebfef-3e8e-4f9a-a5f4-89483d370521",
+            "uuid": "06f05814-4816-4800-9d6c-b503a775ede6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Avm6za4GfQk9N1vAf2Qwjy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 852,
+                "cache_read_input_tokens": 105683,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 852
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000193"
+        },
+        {
+          "source_line": 194,
+          "timestamp": "2026-05-18T20:38:01.805Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WqDLEzqKwDvGrKrMLrQLgA",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"      precision: diff=+0.1946 CI=[0.063, 0.343] p=0.0056\\\\n      fpr: diff=+0.0962 CI=[0.007, 0.1962] p=0.0460\\\\n    BGE vs MiniLM:\\\\n      bal_acc: diff=+0.0915 CI=[-0.0003, 0.1687] p=0.0334\\\\n      precision: diff=+0.1121 CI=[-0.0077, 0.2129] p=0.0462\\\\n      fpr: diff=+0.0799 CI=[-0.0746, 0.2277] p=0.3082\\\\n\\\\nHolm-Bonferroni (BGE vs HS, 12 tests): 3/12 reject\\\\n  ot_7b      precision    p=0.0006  REJECT\\\\n  ot_7b      fpr          p=0.0020  REJECT\\\\n  ot_7b      bal_acc      p=0.0026  REJECT\\\\n  r1_32b     bal_acc      p=0.0128  fail\\\\n  r1_8b      bal_acc      p=0.0630  fail\\\\n  r1_32b     precision    p=0.0732  fail\\\\n  qwq_32b    bal_acc      p=0.2336  fail\\\\n  r1_32b     fpr          p=0.3273  fail\\\\n  r1_8b      precision    p=0.3660  fail\\\\n  qwq_32b    precision    p=0.3865  fail\\\\n  qwq_32b    fpr          p=0.8220  fail\\\\n  r1_8b      fpr          p=0.8316  fail\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "fbcebfef-3e8e-4f9a-a5f4-89483d370521",
+            "uuid": "5e56fe1c-e06d-4e2f-9473-46e8ce6e7d1f",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"      precision: diff=+0.1946 CI=[0.063, 0.343] p=0.0056\\\\n      fpr: diff=+0.0962 CI=[0.007, 0.1962] p=0.0460\\\\n    BGE vs MiniLM:\\\\n      bal_acc: diff=+0.0915 CI=[-0.0003, 0.1687] p=0.0334\\\\n      precision: diff=+0.1121 CI=[-0.0077, 0.2129] p=0.0462\\\\n      fpr: diff=+0.0799 CI=[-0.0746, 0.2277] p=0.3082\\\\n\\\\nHolm-Bonferroni (BGE vs HS, 12 tests): 3/12 reject\\\\n  ot_7b      precision    p=0.0006  REJECT\\\\n  ot_7b      fpr          p=0.0020  REJECT\\\\n  ot_7b      bal_acc      p=0.0026  REJECT\\\\n  r1_32b     bal_acc      p=0.0128  fail\\\\n  r1_8b      bal_acc      p=0.0630  fail\\\\n  r1_32b     precision    p=0.0732  fail\\\\n  qwq_32b    bal_acc      p=0.2336  fail\\\\n  r1_32b     fpr          p=0.3273  fail\\\\n  r1_8b      precision    p=0.3660  fail\\\\n  qwq_32b    precision    p=0.3865  fail\\\\n  qwq_32b    fpr          p=0.8220  fail\\\\n  r1_8b      fpr          p=0.8316  fail\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"      precision: diff=+0.1946 CI=[0.063, 0.343] p=0.0056\\n      fpr: diff=+0.0962 CI=[0.007, 0.1962] p=0.0460\\n    BGE vs MiniLM:\\n      bal_acc: diff=+0.0915 CI=[-0.0003, 0.1687] p=0.0334\\n      precision: diff=+0.1121 CI=[-0.0077, 0.2129] p=0.0462\\n      fpr: diff=+0.0799 CI=[-0.0746, 0.2277] p=0.3082\\n\\nHolm-Bonferroni (BGE vs HS, 12 tests): 3/12 reject\\n  ot_7b      precision    p=0.0006  REJECT\\n  ot_7b      fpr          p=0.0020  REJECT\\n  ot_7b      bal_acc      p=0.0026  REJECT\\n  r1_32b     bal_acc      p=0.0128  fail\\n  r1_8b      bal_acc      p=0.0630  fail\\n  r1_32b     precision    p=0.0732  fail\\n  qwq_32b    bal_acc      p=0.2336  fail\\n  r1_32b     fpr          p=0.3273  fail\\n  r1_8b      precision    p=0.3660  fail\\n  qwq_32b    precision    p=0.3865  fail\\n  qwq_32b    fpr          p=0.8220  fail\\n  r1_8b      fpr          p=0.8316  fail\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000194"
+        },
+        {
+          "source_line": 195,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The script has completed. Let me get the full results.",
+              "signature": "EvEBClkIDRgCKkCbtwa2Lged4kEVKU5Fc+ysc0HAGEmopb4JXiGQVSoYgIMG+eCHQ8BPmCml0NECAB+kSVSvdfZtW+GyvBiKpmnVMg9jbGF1ZGUtb3B1cy00LTY4ABIMB8ID4LeQpHGO2XtnGgy+OU4TOfV2F3scKSwiMM8T2UxZ9WEmA8b9aohTXig/dbGdiD7rltS5pkWEV2oslvk/w532p/FnHE/fGR1kXypGvpiHTgo2VkgPY26/CEc3n34FR9y7iLViGoA8Dz4TXB8d8RaIS+pWdRLUckMbxX+2ur5P6IJlFiH16uCX22Dty28VpNlOWxgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fbcebfef-3e8e-4f9a-a5f4-89483d370521",
+            "uuid": "58f7190f-0ebc-48e0-8563-911ccee1b9ba",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01K9LtYaT4XzuJStjgnV1dBB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 742,
+                "cache_read_input_tokens": 106535,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 742
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000195"
+        },
+        {
+          "source_line": 196,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Script completed. Let me read the full outputs."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fbcebfef-3e8e-4f9a-a5f4-89483d370521",
+            "uuid": "d8278801-519b-4382-b0be-2a2bf3fc5c25",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01K9LtYaT4XzuJStjgnV1dBB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 742,
+                "cache_read_input_tokens": 106535,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 742
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000196"
+        },
+        {
+          "source_line": 197,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RWomKNgdWVL92knPnM3drK",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "autodl-rtx6000",
+                "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/bge_large_60_20_20/results_summary.txt",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fbcebfef-3e8e-4f9a-a5f4-89483d370521",
+            "uuid": "8b74a196-26fe-4763-a861-b9680a48d605",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01K9LtYaT4XzuJStjgnV1dBB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 742,
+                "cache_read_input_tokens": 106535,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 742
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000197"
+        },
+        {
+          "source_line": 198,
+          "timestamp": "2026-05-18T20:38:07.059Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RWomKNgdWVL92knPnM3drK",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"BGE-large-en-v1.5 60/20/20 Verification\\\\n============================================================\\\\nStatus: RERUN completed\\\\nSplit: 60/20/20, seed=42\\\\nBootstrap: 10000 resamples, two-sided p-values\\\\nElapsed: 197.2s\\\\n\\\\n  r1_8b (L2, W=15):\\\\n    n_traces=209, train=125, val=41, test=43\\\\n    BGE-large:  BA=0.6457, Prec=0.4358, FPR=0.2209\\\\n    MiniLM:     BA=0.6593, Prec=0.4000, FPR=0.3182\\\\n    HS:         BA=0.7293, Prec=0.4971, FPR=0.2332\\\\n    HS vs BGE:\\\\n      bal_acc: diff=+0.0837 CI=[-0.0069, 0.1701] p=0.0630 HB=fail\\\\n      precision: diff=+0.0613 CI=[-0.0735, 0.1946] p=0.3660 HB=fail\\\\n      fpr: diff=-0.0122 CI=[-0.1184, 0.1082] p=0.8316 HB=fail\\\\n    HS vs MiniLM:\\\\n      bal_acc: diff=+0.0700 CI=[-0.0274, 0.1665] p=0.1606\\\\n      precision: diff=+0.0971 CI=[-0.0351, 0.2217] p=0.1394\\\\n      fpr: diff=+0.0850 CI=[-0.0596, 0.2272] p=0.2470\\\\n    BGE vs MiniLM:\\\\n      bal_acc: diff=-0.0136 CI=[-0.0992, 0.075] p=0.7601\\\\n      precision: diff=+0.0358 CI=[-0.0722, 0.1521] p=0.5262\\\\n      fpr: diff=+0.0972 CI=[-0.0019, 0.2017] p=0.0605\\\\n\\\\n  ot_7b (L16, W=3):\\\\n    n_traces=228, train=136, val=45, test=47\\\\n    BGE-large:  BA=0.5745, Prec=0.2629, FPR=0.2432\\\\n    MiniLM:     BA=0.5768, Prec=0.2475, FPR=0.3152\\\\n    HS:         BA=0.6821, Prec=0.4460, FPR=0.1379\\\\n    HS vs BGE:\\\\n      bal_acc: diff=+0.1076 CI=[0.0411, 0.1798] p=0.0026 HB=PASS\\\\n      precision: diff=+0.1832 CI=[0.0839, 0.2902] p=0.0006 HB=PASS\\\\n      fpr: diff=+0.1053 CI=[0.0385, 0.1682] p=0.0020 HB=PASS\\\\n    HS vs MiniLM:\\\\n      bal_acc: diff=+0.1053 CI=[0.0505, 0.1629] p=0.0002\\\\n      precision: diff=+0.1985 CI=[0.1136, 0.2976] p=0.0001\\\\n      fpr: diff=+0.1773 CI=[0.1139, 0.2376] p=0.0000\\\\n    BGE vs MiniLM:\\\\n      bal_acc: diff=-0.0024 CI=[-0.0461, 0.0357] p=0.9065\\\\n      precision: diff=+0.0153 CI=[-0.03, 0.0625] p=0.4965\\\\n      fpr: diff=+0.0720 CI=[0.0154, 0.1257] p=0.0115\\\\n\\\\n  r1_32b (L63, W=1):\\\\n    n_traces=100, train=60, val=20, test=20\\\\n    BGE-large:  BA=0.6326, Prec=0.4750, FPR=0.3510\\\\n    MiniLM:     BA=0.6273, Prec=0.4723, FPR=0.3454\\\\n    HS:         BA=0.7419, Prec=0.5882, FPR=0.2730\\\\n    HS vs BGE:\\\\n      bal_acc: diff=+0.1093 CI=[0.0232, 0.1993] p=0.0128 HB=fail\\\\n      precision: diff=+0.1132 CI=[-0.0015, 0.2426] p=0.0732 HB=fail\\\\n      fpr: diff=+0.0780 CI=[-0.0747, 0.2255] p=0.3273 HB=fail\\\\n    HS vs MiniLM:\\\\n      bal_acc: diff=+0.1146 CI=[0.0129, 0.2056] p=0.0187\\\\n      precision: diff=+0.1159 CI=[-0.0154, 0.2596] p=0.1119\\\\n      fpr: diff=+0.0724 CI=[-0.1019, 0.2263] p=0.4186\\\\n    BGE vs MiniLM:\\\\n      bal_acc: diff=+0.0053 CI=[-0.0581, 0.0665] p=0.8685\\\\n      precision: diff=+0.0027 CI=[-0.0611, 0.08] p=0.9433\\\\n      fpr: diff=-0.0056 CI=[-0.0946, 0.0857] p=0.9016\\\\n\\\\n  qwq_32b (L60, W=5):\\\\n    n_traces=95, train=57, val=19, test=19\\\\n    BGE-large:  BA=0.6346, Prec=0.4419, FPR=0.2669\\\\n    MiniLM:     BA=0.5431, Prec=0.3298, FPR=0.3469\\\\n    HS:         BA=0.7252, Prec=0.5244, FPR=0.2507\\\\n    HS vs BGE:\\\\n      bal_acc: diff=+0.0906 CI=[-0.0494, 0.2305] p=0.2336 HB=fail\\\\n      precision: diff=+0.0825 CI=[-0.0866, 0.2733] p=0.3865 HB=fail\\\\n      fpr: diff=+0.0163 CI=[-0.1292, 0.16] p=0.8220 HB=fail\\\\n    HS vs MiniLM:\\\\n      bal_acc: diff=+0.1821 CI=[0.0661, 0.2982] p=0.0004\\\\n      precision: diff=+0.1946 CI=[0.063, 0.343] p=0.0056\\\\n      fpr: diff=+0.0962 CI=[0.007, 0.1962] p=0.0460\\\\n    BGE vs MiniLM:\\\\n      bal_acc: diff=+0.0915 CI=[-0.0003, 0.1687] p=0.0334\\\\n      precision: diff=+0.1121 CI=[-0.0077, 0.2129] p=0.0462\\\\n      fpr: diff=+0.0799 CI=[-0.0746, 0.2277] p=0.3082\\\\n\\\\nHolm-Bonferroni (BGE vs HS, 12 tests): 3/12 reject\\\\n  ot_7b      precision    p=0.0006  REJECT\\\\n  ot_7b      fpr          p=0.0020  REJECT\\\\n  ot_7b      bal_acc      p=0.0026  REJECT\\\\n  r1_32b     bal_acc      p=0.0128  fail\\\\n  r1_8b      bal_acc      p=0.0630  fail\\\\n  r1_32b     precision    p=0.0732  fail\\\\n  qwq_32b    bal_acc      p=0.2336  fail\\\\n  r1_32b     fpr          p=0.3273  fail\\\\n  r1_8b      precision    p=0.3660  fail\\\\n  qwq_32b    precision    p=0.3865  fail\\\\n  qwq_32b    fpr          p=0.8220  fail\\\\n  r1_8b      fpr          p=0.8316  fail\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "fbcebfef-3e8e-4f9a-a5f4-89483d370521",
+            "uuid": "36135550-241b-4172-8a2b-58e6527bc50d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"BGE-large-en-v1.5 60/20/20 Verification\\\\n============================================================\\\\nStatus: RERUN completed\\\\nSplit: 60/20/20, seed=42\\\\nBootstrap: 10000 resamples, two-sided p-values\\\\nElapsed: 197.2s\\\\n\\\\n  r1_8b (L2, W=15):\\\\n    n_traces=209, train=125, val=41, test=43\\\\n    BGE-large:  BA=0.6457, Prec=0.4358, FPR=0.2209\\\\n    MiniLM:     BA=0.6593, Prec=0.4000, FPR=0.3182\\\\n    HS:         BA=0.7293, Prec=0.4971, FPR=0.2332\\\\n    HS vs BGE:\\\\n      bal_acc: diff=+0.0837 CI=[-0.0069, 0.1701] p=0.0630 HB=fail\\\\n      precision: diff=+0.0613 CI=[-0.0735, 0.1946] p=0.3660 HB=fail\\\\n      fpr: diff=-0.0122 CI=[-0.1184, 0.1082] p=0.8316 HB=fail\\\\n    HS vs MiniLM:\\\\n      bal_acc: diff=+0.0700 CI=[-0.0274, 0.1665] p=0.1606\\\\n      precision: diff=+0.0971 CI=[-0.0351, 0.2217] p=0.1394\\\\n      fpr: diff=+0.0850 CI=[-0.0596, 0.2272] p=0.2470\\\\n    BGE vs MiniLM:\\\\n      bal_acc: diff=-0.0136 CI=[-0.0992, 0.075] p=0.7601\\\\n      precision: diff=+0.0358 CI=[-0.0722, 0.1521] p=0.5262\\\\n      fpr: diff=+0.0972 CI=[-0.0019, 0.2017] p=0.0605\\\\n\\\\n  ot_7b (L16, W=3):\\\\n    n_traces=228, train=136, val=45, test=47\\\\n    BGE-large:  BA=0.5745, Prec=0.2629, FPR=0.2432\\\\n    MiniLM:     BA=0.5768, Prec=0.2475, FPR=0.3152\\\\n    HS:         BA=0.6821, Prec=0.4460, FPR=0.1379\\\\n    HS vs BGE:\\\\n      bal_acc: diff=+0.1076 CI=[0.0411, 0.1798] p=0.0026 HB=PASS\\\\n      precision: diff=+0.1832 CI=[0.0839, 0.2902] p=0.0006 HB=PASS\\\\n      fpr: diff=+0.1053 CI=[0.0385, 0.1682] p=0.0020 HB=PASS\\\\n    HS vs MiniLM:\\\\n      bal_acc: diff=+0.1053 CI=[0.0505, 0.1629] p=0.0002\\\\n      precision: diff=+0.1985 CI=[0.1136, 0.2976] p=0.0001\\\\n      fpr: diff=+0.1773 CI=[0.1139, 0.2376] p=0.0000\\\\n    BGE vs MiniLM:\\\\n      bal_acc: diff=-0.0024 CI=[-0.0461, 0.0357] p=0.9065\\\\n      precision: diff=+0.0153 CI=[-0.03, 0.0625] p=0.4965\\\\n      fpr: diff=+0.0720 CI=[0.0154, 0.1257] p=0.0115\\\\n\\\\n  r1_32b (L63, W=1):\\\\n    n_traces=100, train=60, val=20, test=20\\\\n    BGE-large:  BA=0.6326, Prec=0.4750, FPR=0.3510\\\\n    MiniLM:     BA=0.6273, Prec=0.4723, FPR=0.3454\\\\n    HS:         BA=0.7419, Prec=0.5882, FPR=0.2730\\\\n    HS vs BGE:\\\\n      bal_acc: diff=+0.1093 CI=[0.0232, 0.1993] p=0.0128 HB=fail\\\\n      precision: diff=+0.1132 CI=[-0.0015, 0.2426] p=0.0732 HB=fail\\\\n      fpr: diff=+0.0780 CI=[-0.0747, 0.2255] p=0.3273 HB=fail\\\\n    HS vs MiniLM:\\\\n      bal_acc: diff=+0.1146 CI=[0.0129, 0.2056] p=0.0187\\\\n      precision: diff=+0.1159 CI=[-0.0154, 0.2596] p=0.1119\\\\n      fpr: diff=+0.0724 CI=[-0.1019, 0.2263] p=0.4186\\\\n    BGE vs MiniLM:\\\\n      bal_acc: diff=+0.0053 CI=[-0.0581, 0.0665] p=0.8685\\\\n      precision: diff=+0.0027 CI=[-0.0611, 0.08] p=0.9433\\\\n      fpr: diff=-0.0056 CI=[-0.0946, 0.0857] p=0.9016\\\\n\\\\n  qwq_32b (L60, W=5):\\\\n    n_traces=95, train=57, val=19, test=19\\\\n    BGE-large:  BA=0.6346, Prec=0.4419, FPR=0.2669\\\\n    MiniLM:     BA=0.5431, Prec=0.3298, FPR=0.3469\\\\n    HS:         BA=0.7252, Prec=0.5244, FPR=0.2507\\\\n    HS vs BGE:\\\\n      bal_acc: diff=+0.0906 CI=[-0.0494, 0.2305] p=0.2336 HB=fail\\\\n      precision: diff=+0.0825 CI=[-0.0866, 0.2733] p=0.3865 HB=fail\\\\n      fpr: diff=+0.0163 CI=[-0.1292, 0.16] p=0.8220 HB=fail\\\\n    HS vs MiniLM:\\\\n      bal_acc: diff=+0.1821 CI=[0.0661, 0.2982] p=0.0004\\\\n      precision: diff=+0.1946 CI=[0.063, 0.343] p=0.0056\\\\n      fpr: diff=+0.0962 CI=[0.007, 0.1962] p=0.0460\\\\n    BGE vs MiniLM:\\\\n      bal_acc: diff=+0.0915 CI=[-0.0003, 0.1687] p=0.0334\\\\n      precision: diff=+0.1121 CI=[-0.0077, 0.2129] p=0.0462\\\\n      fpr: diff=+0.0799 CI=[-0.0746, 0.2277] p=0.3082\\\\n\\\\nHolm-Bonferroni (BGE vs HS, 12 tests): 3/12 reject\\\\n  ot_7b      precision    p=0.0006  REJECT\\\\n  ot_7b      fpr          p=0.0020  REJECT\\\\n  ot_7b      bal_acc      p=0.0026  REJECT\\\\n  r1_32b     bal_acc      p=0.0128  fail\\\\n  r1_8b      bal_acc      p=0.0630  fail\\\\n  r1_32b     precision    p=0.0732  fail\\\\n  qwq_32b    bal_acc      p=0.2336  fail\\\\n  r1_32b     fpr          p=0.3273  fail\\\\n  r1_8b      precision    p=0.3660  fail\\\\n  qwq_32b    precision    p=0.3865  fail\\\\n  qwq_32b    fpr          p=0.8220  fail\\\\n  r1_8b      fpr          p=0.8316  fail\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"BGE-large-en-v1.5 60/20/20 Verification\\n============================================================\\nStatus: RERUN completed\\nSplit: 60/20/20, seed=42\\nBootstrap: 10000 resamples, two-sided p-values\\nElapsed: 197.2s\\n\\n  r1_8b (L2, W=15):\\n    n_traces=209, train=125, val=41, test=43\\n    BGE-large:  BA=0.6457, Prec=0.4358, FPR=0.2209\\n    MiniLM:     BA=0.6593, Prec=0.4000, FPR=0.3182\\n    HS:         BA=0.7293, Prec=0.4971, FPR=0.2332\\n    HS vs BGE:\\n      bal_acc: diff=+0.0837 CI=[-0.0069, 0.1701] p=0.0630 HB=fail\\n      precision: diff=+0.0613 CI=[-0.0735, 0.1946] p=0.3660 HB=fail\\n      fpr: diff=-0.0122 CI=[-0.1184, 0.1082] p=0.8316 HB=fail\\n    HS vs MiniLM:\\n      bal_acc: diff=+0.0700 CI=[-0.0274, 0.1665] p=0.1606\\n      precision: diff=+0.0971 CI=[-0.0351, 0.2217] p=0.1394\\n      fpr: diff=+0.0850 CI=[-0.0596, 0.2272] p=0.2470\\n    BGE vs MiniLM:\\n      bal_acc: diff=-0.0136 CI=[-0.0992, 0.075] p=0.7601\\n      precision: diff=+0.0358 CI=[-0.0722, 0.1521] p=0.5262\\n      fpr: diff=+0.0972 CI=[-0.0019, 0.2017] p=0.0605\\n\\n  ot_7b (L16, W=3):\\n    n_traces=228, train=136, val=45, test=47\\n    BGE-large:  BA=0.5745, Prec=0.2629, FPR=0.2432\\n    MiniLM:     BA=0.5768, Prec=0.2475, FPR=0.3152\\n    HS:         BA=0.6821, Prec=0.4460, FPR=0.1379\\n    HS vs BGE:\\n      bal_acc: diff=+0.1076 CI=[0.0411, 0.1798] p=0.0026 HB=PASS\\n      precision: diff=+0.1832 CI=[0.0839, 0.2902] p=0.0006 HB=PASS\\n      fpr: diff=+0.1053 CI=[0.0385, 0.1682] p=0.0020 HB=PASS\\n    HS vs MiniLM:\\n      bal_acc: diff=+0.1053 CI=[0.0505, 0.1629] p=0.0002\\n      precision: diff=+0.1985 CI=[0.1136, 0.2976] p=0.0001\\n      fpr: diff=+0.1773 CI=[0.1139, 0.2376] p=0.0000\\n    BGE vs MiniLM:\\n      bal_acc: diff=-0.0024 CI=[-0.0461, 0.0357] p=0.9065\\n      precision: diff=+0.0153 CI=[-0.03, 0.0625] p=0.4965\\n      fpr: diff=+0.0720 CI=[0.0154, 0.1257] p=0.0115\\n\\n  r1_32b (L63, W=1):\\n    n_traces=100, train=60, val=20, test=20\\n    BGE-large:  BA=0.6326, Prec=0.4750, FPR=0.3510\\n    MiniLM:     BA=0.6273, Prec=0.4723, FPR=0.3454\\n    HS:         BA=0.7419, Prec=0.5882, FPR=0.2730\\n    HS vs BGE:\\n      bal_acc: diff=+0.1093 CI=[0.0232, 0.1993] p=0.0128 HB=fail\\n      precision: diff=+0.1132 CI=[-0.0015, 0.2426] p=0.0732 HB=fail\\n      fpr: diff=+0.0780 CI=[-0.0747, 0.2255] p=0.3273 HB=fail\\n    HS vs MiniLM:\\n      bal_acc: diff=+0.1146 CI=[0.0129, 0.2056] p=0.0187\\n      precision: diff=+0.1159 CI=[-0.0154, 0.2596] p=0.1119\\n      fpr: diff=+0.0724 CI=[-0.1019, 0.2263] p=0.4186\\n    BGE vs MiniLM:\\n      bal_acc: diff=+0.0053 CI=[-0.0581, 0.0665] p=0.8685\\n      precision: diff=+0.0027 CI=[-0.0611, 0.08] p=0.9433\\n      fpr: diff=-0.0056 CI=[-0.0946, 0.0857] p=0.9016\\n\\n  qwq_32b (L60, W=5):\\n    n_traces=95, train=57, val=19, test=19\\n    BGE-large:  BA=0.6346, Prec=0.4419, FPR=0.2669\\n    MiniLM:     BA=0.5431, Prec=0.3298, FPR=0.3469\\n    HS:         BA=0.7252, Prec=0.5244, FPR=0.2507\\n    HS vs BGE:\\n      bal_acc: diff=+0.0906 CI=[-0.0494, 0.2305] p=0.2336 HB=fail\\n      precision: diff=+0.0825 CI=[-0.0866, 0.2733] p=0.3865 HB=fail\\n      fpr: diff=+0.0163 CI=[-0.1292, 0.16] p=0.8220 HB=fail\\n    HS vs MiniLM:\\n      bal_acc: diff=+0.1821 CI=[0.0661, 0.2982] p=0.0004\\n      precision: diff=+0.1946 CI=[0.063, 0.343] p=0.0056\\n      fpr: diff=+0.0962 CI=[0.007, 0.1962] p=0.0460\\n    BGE vs MiniLM:\\n      bal_acc: diff=+0.0915 CI=[-0.0003, 0.1687] p=0.0334\\n      precision: diff=+0.1121 CI=[-0.0077, 0.2129] p=0.0462\\n      fpr: diff=+0.0799 CI=[-0.0746, 0.2277] p=0.3082\\n\\nHolm-Bonferroni (BGE vs HS, 12 tests): 3/12 reject\\n  ot_7b      precision    p=0.0006  REJECT\\n  ot_7b      fpr          p=0.0020  REJECT\\n  ot_7b      bal_acc      p=0.0026  REJECT\\n  r1_32b     bal_acc      p=0.0128  fail\\n  r1_8b      bal_acc      p=0.0630  fail\\n  r1_32b     precision    p=0.0732  fail\\n  qwq_32b    bal_acc      p=0.2336  fail\\n  r1_32b     fpr          p=0.3273  fail\\n  r1_8b      precision    p=0.3660  fail\\n  qwq_32b    precision    p=0.3865  fail\\n  qwq_32b    fpr          p=0.8220  fail\\n  r1_8b      fpr          p=0.8316  fail\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000198"
+        },
+        {
+          "source_line": 199,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Q9cQRR7o645g3hbQ5aW4CZ",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "autodl-rtx6000",
+                "command": "ls -la /root/autodl-tmp/contrastive_trace_safety/artifacts/bge_large_60_20_20/; echo \"===\"; wc -c /root/autodl-tmp/contrastive_trace_safety/artifacts/bge_large_60_20_20/results.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fbcebfef-3e8e-4f9a-a5f4-89483d370521",
+            "uuid": "46c991ee-901e-48c6-90c4-36d5e54d6524",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01K9LtYaT4XzuJStjgnV1dBB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 742,
+                "cache_read_input_tokens": 106535,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 742
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000199"
+        },
+        {
+          "source_line": 200,
+          "timestamp": "2026-05-18T20:38:08.198Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Q9cQRR7o645g3hbQ5aW4CZ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 44\\\\ndrwxr-xr-x   2 root root    84 May 19 04:37 .\\\\ndrwxr-xr-x 106 root root  8192 May 19 04:36 ..\\\\n-rw-r--r--   1 root root 15763 May 19 04:37 results.json\\\\n-rw-r--r--   1 root root  3984 May 19 04:37 results_summary.txt\\\\n-rw-r--r--   1 root root  9406 May 19 04:37 run.log\\\\n===\\\\n15763 /root/autodl-tmp/contrastive_trace_safety/artifacts/bge_large_60_20_20/results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "fbcebfef-3e8e-4f9a-a5f4-89483d370521",
+            "uuid": "4e5e4cc5-0b80-4b2c-ac44-43eb8b0347ce",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 44\\\\ndrwxr-xr-x   2 root root    84 May 19 04:37 .\\\\ndrwxr-xr-x 106 root root  8192 May 19 04:36 ..\\\\n-rw-r--r--   1 root root 15763 May 19 04:37 results.json\\\\n-rw-r--r--   1 root root  3984 May 19 04:37 results_summary.txt\\\\n-rw-r--r--   1 root root  9406 May 19 04:37 run.log\\\\n===\\\\n15763 /root/autodl-tmp/contrastive_trace_safety/artifacts/bge_large_60_20_20/results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"total 44\\ndrwxr-xr-x   2 root root    84 May 19 04:37 .\\ndrwxr-xr-x 106 root root  8192 May 19 04:36 ..\\n-rw-r--r--   1 root root 15763 May 19 04:37 results.json\\n-rw-r--r--   1 root root  3984 May 19 04:37 results_summary.txt\\n-rw-r--r--   1 root root  9406 May 19 04:37 run.log\\n===\\n15763 /root/autodl-tmp/contrastive_trace_safety/artifacts/bge_large_60_20_20/results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000200"
+        },
+        {
+          "source_line": 201,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The script completed successfully. Let me verify the results.json is complete and register the artifact.\n\nKey findings:\n1. **Split is confirmed 60/20/20 (seed=42)** - all models match expected split sizes\n2. **QwQ-32B now uses W=5** (corrected from W=3)\n3. **Three-way comparison complete**: HS vs BGE, HS vs MiniLM, BGE vs MiniLM\n\n**Holm-Bonferroni (BGE vs HS, 12 tests): 3/12 reject**\n- Only OT-7B passes all 3 metrics (BA, Prec, FPR) under HB correction\n\n\n- R1-32B's BA is borderline (p=0.0128) but doesn't survive correction, while R1-8B and QwQ-32B show no significant metrics\n\nHS maintains a consistent directional advantage over both text encoders, though statistical significance is sparse after correction. OT-7B stands out as the only model where HS's edge over BGE holds up under Holm-Bonferroni, while QwQ-32B shows HS significantly outperforms MiniLM on BA and precision but not BGE. BGE and MiniLM are largely indistinguishable across most comparisons.\n\nI'm also noticing that QwQ's metrics shift noticeably depending on the window size—when I adjust from W=3 to W=5, the performance values change slightly but the p-values shift more dramatically, particularly for BA where significance drops from 0.0665 to 0.2336. This suggests the results are somewhat sensitive to that parameter choice.\n\nLet me verify the results file is complete and then wrap up with a summary.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fbcebfef-3e8e-4f9a-a5f4-89483d370521",
+            "uuid": "1a283542-1174-458a-96cf-f0ad4307033c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Tbos3kCY3ijxSZXCg4Ahnf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2998,
+                "cache_read_input_tokens": 107277,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2998
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000201"
+        },
+        {
+          "source_line": 202,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 4 models done. Let me verify the JSON is complete and register the artifact."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fbcebfef-3e8e-4f9a-a5f4-89483d370521",
+            "uuid": "0a42aaca-d2d6-4b65-9ed7-b8fe7965f947",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Tbos3kCY3ijxSZXCg4Ahnf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2998,
+                "cache_read_input_tokens": 107277,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2998
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000202"
+        },
+        {
+          "source_line": 203,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KHAMNUMGSq3NBWHm6b11ab",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "autodl-rtx6000",
+                "command": "tail -20 /root/autodl-tmp/contrastive_trace_safety/artifacts/bge_large_60_20_20/results.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fbcebfef-3e8e-4f9a-a5f4-89483d370521",
+            "uuid": "0d609044-eb54-4bf2-81be-01e6900d07df",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Tbos3kCY3ijxSZXCg4Ahnf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2998,
+                "cache_read_input_tokens": 107277,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2998
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000203"
+        },
+        {
+          "source_line": 204,
+          "timestamp": "2026-05-18T20:38:24.374Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KHAMNUMGSq3NBWHm6b11ab",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"        \\\\\\\"model\\\\\\\": \\\\\\\"qwq_32b\\\\\\\",\\\\n        \\\\\\\"metric\\\\\\\": \\\\\\\"precision\\\\\\\",\\\\n        \\\\\\\"p_value\\\\\\\": 0.3865,\\\\n        \\\\\\\"hb_reject\\\\\\\": false\\\\n      },\\\\n      {\\\\n        \\\\\\\"model\\\\\\\": \\\\\\\"qwq_32b\\\\\\\",\\\\n        \\\\\\\"metric\\\\\\\": \\\\\\\"fpr\\\\\\\",\\\\n        \\\\\\\"p_value\\\\\\\": 0.822,\\\\n        \\\\\\\"hb_reject\\\\\\\": false\\\\n      },\\\\n      {\\\\n        \\\\\\\"model\\\\\\\": \\\\\\\"r1_8b\\\\\\\",\\\\n        \\\\\\\"metric\\\\\\\": \\\\\\\"fpr\\\\\\\",\\\\n        \\\\\\\"p_value\\\\\\\": 0.8316,\\\\n        \\\\\\\"hb_reject\\\\\\\": false\\\\n      }\\\\n    ]\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "fbcebfef-3e8e-4f9a-a5f4-89483d370521",
+            "uuid": "272a1a50-cece-47bb-b8bf-7d91114e09b9",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"        \\\\\\\"model\\\\\\\": \\\\\\\"qwq_32b\\\\\\\",\\\\n        \\\\\\\"metric\\\\\\\": \\\\\\\"precision\\\\\\\",\\\\n        \\\\\\\"p_value\\\\\\\": 0.3865,\\\\n        \\\\\\\"hb_reject\\\\\\\": false\\\\n      },\\\\n      {\\\\n        \\\\\\\"model\\\\\\\": \\\\\\\"qwq_32b\\\\\\\",\\\\n        \\\\\\\"metric\\\\\\\": \\\\\\\"fpr\\\\\\\",\\\\n        \\\\\\\"p_value\\\\\\\": 0.822,\\\\n        \\\\\\\"hb_reject\\\\\\\": false\\\\n      },\\\\n      {\\\\n        \\\\\\\"model\\\\\\\": \\\\\\\"r1_8b\\\\\\\",\\\\n        \\\\\\\"metric\\\\\\\": \\\\\\\"fpr\\\\\\\",\\\\n        \\\\\\\"p_value\\\\\\\": 0.8316,\\\\n        \\\\\\\"hb_reject\\\\\\\": false\\\\n      }\\\\n    ]\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"        \\\"model\\\": \\\"qwq_32b\\\",\\n        \\\"metric\\\": \\\"precision\\\",\\n        \\\"p_value\\\": 0.3865,\\n        \\\"hb_reject\\\": false\\n      },\\n      {\\n        \\\"model\\\": \\\"qwq_32b\\\",\\n        \\\"metric\\\": \\\"fpr\\\",\\n        \\\"p_value\\\": 0.822,\\n        \\\"hb_reject\\\": false\\n      },\\n      {\\n        \\\"model\\\": \\\"r1_8b\\\",\\n        \\\"metric\\\": \\\"fpr\\\",\\n        \\\"p_value\\\": 0.8316,\\n        \\\"hb_reject\\\": false\\n      }\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000204"
+        },
+        {
+          "source_line": 205,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "JSON is complete. Registering the artifact."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fbcebfef-3e8e-4f9a-a5f4-89483d370521",
+            "uuid": "345ff9f7-3498-4ea9-aca5-d1077d2d2d07",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0138ipEt7fEYdwh1vVwHU4QV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1192,
+                "cache_read_input_tokens": 110275,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1192
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000205"
+        },
+        {
+          "source_line": 206,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015YUpwWrn9xFLePULyRn2X2",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "bge_large_60_20_20",
+                "type": "data",
+                "description": "BGE-large 60/20/20 three-way comparison (HS vs MiniLM vs BGE-large) with corrected QwQ W=5, 10k bootstrap, Holm-Bonferroni across 12 tests",
+                "project": "contrastive_trace_safety",
+                "source_path": "/root/autodl-tmp/contrastive_trace_safety/artifacts/bge_large_60_20_20/results.json",
+                "tags": [
+                  "bge-large",
+                  "60-20-20",
+                  "bootstrap",
+                  "holm-bonferroni",
+                  "three-way"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fbcebfef-3e8e-4f9a-a5f4-89483d370521",
+            "uuid": "f15e9f56-8213-43a5-9233-83a21a784269",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0138ipEt7fEYdwh1vVwHU4QV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1192,
+                "cache_read_input_tokens": 110275,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1192
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000206"
+        },
+        {
+          "source_line": 207,
+          "timestamp": "2026-05-18T20:38:30.502Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015YUpwWrn9xFLePULyRn2X2",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/autodl-tmp/contrastive_trace_safety/artifacts/bge_large_60_20_20/results.json\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "fbcebfef-3e8e-4f9a-a5f4-89483d370521",
+            "uuid": "83e4213d-63a3-487d-a072-b135788b158b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/autodl-tmp/contrastive_trace_safety/artifacts/bge_large_60_20_20/results.json\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/autodl-tmp/contrastive_trace_safety/artifacts/bge_large_60_20_20/results.json\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000207"
+        },
+        {
+          "source_line": 208,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The source_path is on the remote server, not locally. Let me use the content parameter instead by reading the results.json and passing it.",
+              "signature": "EsYCClkIDRgCKkDLL+D58luM/hUqd44O6EigSSJPv4C99LOWMOeBdxGwwm1sbz5eeEDoG+6l264eZzGdnVF4g112AP19iVVFdVqQMg9jbGF1ZGUtb3B1cy00LTY4ABIMIS3/Qt2tEJcerizCGgyWa46TxvIOiYgkhpoiMAQM4xukln+SMRIFqT7SBpAOaUTuOcRcvwsZ2yqxc272ZOkyxP5l15NdT6lKbUheJCqaASqSho3GkNRmO2EfvBXQszpfKPQivwvCd1Te6WNhYijeJzg0PsyNnwG8kXHj9Fdnj7LBN1QXQLew1AjfJutPwXePEkAYEC6GjOQVULSSqP1sL+cjAPxyAXVC0RAMLMmLWb6ESPtpq3aHB2U5Xgh4RwOKw4OmDMwv1TfxIYqIqGcCknF/DQ4t8mu28CqOc9NS/CwtzWaRKbf4SUUYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fbcebfef-3e8e-4f9a-a5f4-89483d370521",
+            "uuid": "13f7f0ef-1a51-42d0-9438-ff2b5a496876",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RLWYEUnmKMpGguzqzndoYH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 371,
+                "cache_read_input_tokens": 111467,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 371
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000208"
+        },
+        {
+          "source_line": 209,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UcYAY8e1m4jyRLPLfXni1p",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "autodl-rtx6000",
+                "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/bge_large_60_20_20/results_summary.txt",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fbcebfef-3e8e-4f9a-a5f4-89483d370521",
+            "uuid": "a2272d7f-629a-4118-8031-596b3b7dc5c1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RLWYEUnmKMpGguzqzndoYH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 371,
+                "cache_read_input_tokens": 111467,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 371
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000209"
+        },
+        {
+          "source_line": 210,
+          "timestamp": "2026-05-18T20:38:37.416Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UcYAY8e1m4jyRLPLfXni1p",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"BGE-large-en-v1.5 60/20/20 Verification\\\\n============================================================\\\\nStatus: RERUN completed\\\\nSplit: 60/20/20, seed=42\\\\nBootstrap: 10000 resamples, two-sided p-values\\\\nElapsed: 197.2s\\\\n\\\\n  r1_8b (L2, W=15):\\\\n    n_traces=209, train=125, val=41, test=43\\\\n    BGE-large:  BA=0.6457, Prec=0.4358, FPR=0.2209\\\\n    MiniLM:     BA=0.6593, Prec=0.4000, FPR=0.3182\\\\n    HS:         BA=0.7293, Prec=0.4971, FPR=0.2332\\\\n    HS vs BGE:\\\\n      bal_acc: diff=+0.0837 CI=[-0.0069, 0.1701] p=0.0630 HB=fail\\\\n      precision: diff=+0.0613 CI=[-0.0735, 0.1946] p=0.3660 HB=fail\\\\n      fpr: diff=-0.0122 CI=[-0.1184, 0.1082] p=0.8316 HB=fail\\\\n    HS vs MiniLM:\\\\n      bal_acc: diff=+0.0700 CI=[-0.0274, 0.1665] p=0.1606\\\\n      precision: diff=+0.0971 CI=[-0.0351, 0.2217] p=0.1394\\\\n      fpr: diff=+0.0850 CI=[-0.0596, 0.2272] p=0.2470\\\\n    BGE vs MiniLM:\\\\n      bal_acc: diff=-0.0136 CI=[-0.0992, 0.075] p=0.7601\\\\n      precision: diff=+0.0358 CI=[-0.0722, 0.1521] p=0.5262\\\\n      fpr: diff=+0.0972 CI=[-0.0019, 0.2017] p=0.0605\\\\n\\\\n  ot_7b (L16, W=3):\\\\n    n_traces=228, train=136, val=45, test=47\\\\n    BGE-large:  BA=0.5745, Prec=0.2629, FPR=0.2432\\\\n    MiniLM:     BA=0.5768, Prec=0.2475, FPR=0.3152\\\\n    HS:         BA=0.6821, Prec=0.4460, FPR=0.1379\\\\n    HS vs BGE:\\\\n      bal_acc: diff=+0.1076 CI=[0.0411, 0.1798] p=0.0026 HB=PASS\\\\n      precision: diff=+0.1832 CI=[0.0839, 0.2902] p=0.0006 HB=PASS\\\\n      fpr: diff=+0.1053 CI=[0.0385, 0.1682] p=0.0020 HB=PASS\\\\n    HS vs MiniLM:\\\\n      bal_acc: diff=+0.1053 CI=[0.0505, 0.1629] p=0.0002\\\\n      precision: diff=+0.1985 CI=[0.1136, 0.2976] p=0.0001\\\\n      fpr: diff=+0.1773 CI=[0.1139, 0.2376] p=0.0000\\\\n    BGE vs MiniLM:\\\\n      bal_acc: diff=-0.0024 CI=[-0.0461, 0.0357] p=0.9065\\\\n      precision: diff=+0.0153 CI=[-0.03, 0.0625] p=0.4965\\\\n      fpr: diff=+0.0720 CI=[0.0154, 0.1257] p=0.0115\\\\n\\\\n  r1_32b (L63, W=1):\\\\n    n_traces=100, train=60, val=20, test=20\\\\n    BGE-large:  BA=0.6326, Prec=0.4750, FPR=0.3510\\\\n    MiniLM:     BA=0.6273, Prec=0.4723, FPR=0.3454\\\\n    HS:         BA=0.7419, Prec=0.5882, FPR=0.2730\\\\n    HS vs BGE:\\\\n      bal_acc: diff=+0.1093 CI=[0.0232, 0.1993] p=0.0128 HB=fail\\\\n      precision: diff=+0.1132 CI=[-0.0015, 0.2426] p=0.0732 HB=fail\\\\n      fpr: diff=+0.0780 CI=[-0.0747, 0.2255] p=0.3273 HB=fail\\\\n    HS vs MiniLM:\\\\n      bal_acc: diff=+0.1146 CI=[0.0129, 0.2056] p=0.0187\\\\n      precision: diff=+0.1159 CI=[-0.0154, 0.2596] p=0.1119\\\\n      fpr: diff=+0.0724 CI=[-0.1019, 0.2263] p=0.4186\\\\n    BGE vs MiniLM:\\\\n      bal_acc: diff=+0.0053 CI=[-0.0581, 0.0665] p=0.8685\\\\n      precision: diff=+0.0027 CI=[-0.0611, 0.08] p=0.9433\\\\n      fpr: diff=-0.0056 CI=[-0.0946, 0.0857] p=0.9016\\\\n\\\\n  qwq_32b (L60, W=5):\\\\n    n_traces=95, train=57, val=19, test=19\\\\n    BGE-large:  BA=0.6346, Prec=0.4419, FPR=0.2669\\\\n    MiniLM:     BA=0.5431, Prec=0.3298, FPR=0.3469\\\\n    HS:         BA=0.7252, Prec=0.5244, FPR=0.2507\\\\n    HS vs BGE:\\\\n      bal_acc: diff=+0.0906 CI=[-0.0494, 0.2305] p=0.2336 HB=fail\\\\n      precision: diff=+0.0825 CI=[-0.0866, 0.2733] p=0.3865 HB=fail\\\\n      fpr: diff=+0.0163 CI=[-0.1292, 0.16] p=0.8220 HB=fail\\\\n    HS vs MiniLM:\\\\n      bal_acc: diff=+0.1821 CI=[0.0661, 0.2982] p=0.0004\\\\n      precision: diff=+0.1946 CI=[0.063, 0.343] p=0.0056\\\\n      fpr: diff=+0.0962 CI=[0.007, 0.1962] p=0.0460\\\\n    BGE vs MiniLM:\\\\n      bal_acc: diff=+0.0915 CI=[-0.0003, 0.1687] p=0.0334\\\\n      precision: diff=+0.1121 CI=[-0.0077, 0.2129] p=0.0462\\\\n      fpr: diff=+0.0799 CI=[-0.0746, 0.2277] p=0.3082\\\\n\\\\nHolm-Bonferroni (BGE vs HS, 12 tests): 3/12 reject\\\\n  ot_7b      precision    p=0.0006  REJECT\\\\n  ot_7b      fpr          p=0.0020  REJECT\\\\n  ot_7b      bal_acc      p=0.0026  REJECT\\\\n  r1_32b     bal_acc      p=0.0128  fail\\\\n  r1_8b      bal_acc      p=0.0630  fail\\\\n  r1_32b     precision    p=0.0732  fail\\\\n  qwq_32b    bal_acc      p=0.2336  fail\\\\n  r1_32b     fpr          p=0.3273  fail\\\\n  r1_8b      precision    p=0.3660  fail\\\\n  qwq_32b    precision    p=0.3865  fail\\\\n  qwq_32b    fpr          p=0.8220  fail\\\\n  r1_8b      fpr          p=0.8316  fail\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "fbcebfef-3e8e-4f9a-a5f4-89483d370521",
+            "uuid": "6495999a-a013-4f74-941e-a200a9ae0016",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"BGE-large-en-v1.5 60/20/20 Verification\\\\n============================================================\\\\nStatus: RERUN completed\\\\nSplit: 60/20/20, seed=42\\\\nBootstrap: 10000 resamples, two-sided p-values\\\\nElapsed: 197.2s\\\\n\\\\n  r1_8b (L2, W=15):\\\\n    n_traces=209, train=125, val=41, test=43\\\\n    BGE-large:  BA=0.6457, Prec=0.4358, FPR=0.2209\\\\n    MiniLM:     BA=0.6593, Prec=0.4000, FPR=0.3182\\\\n    HS:         BA=0.7293, Prec=0.4971, FPR=0.2332\\\\n    HS vs BGE:\\\\n      bal_acc: diff=+0.0837 CI=[-0.0069, 0.1701] p=0.0630 HB=fail\\\\n      precision: diff=+0.0613 CI=[-0.0735, 0.1946] p=0.3660 HB=fail\\\\n      fpr: diff=-0.0122 CI=[-0.1184, 0.1082] p=0.8316 HB=fail\\\\n    HS vs MiniLM:\\\\n      bal_acc: diff=+0.0700 CI=[-0.0274, 0.1665] p=0.1606\\\\n      precision: diff=+0.0971 CI=[-0.0351, 0.2217] p=0.1394\\\\n      fpr: diff=+0.0850 CI=[-0.0596, 0.2272] p=0.2470\\\\n    BGE vs MiniLM:\\\\n      bal_acc: diff=-0.0136 CI=[-0.0992, 0.075] p=0.7601\\\\n      precision: diff=+0.0358 CI=[-0.0722, 0.1521] p=0.5262\\\\n      fpr: diff=+0.0972 CI=[-0.0019, 0.2017] p=0.0605\\\\n\\\\n  ot_7b (L16, W=3):\\\\n    n_traces=228, train=136, val=45, test=47\\\\n    BGE-large:  BA=0.5745, Prec=0.2629, FPR=0.2432\\\\n    MiniLM:     BA=0.5768, Prec=0.2475, FPR=0.3152\\\\n    HS:         BA=0.6821, Prec=0.4460, FPR=0.1379\\\\n    HS vs BGE:\\\\n      bal_acc: diff=+0.1076 CI=[0.0411, 0.1798] p=0.0026 HB=PASS\\\\n      precision: diff=+0.1832 CI=[0.0839, 0.2902] p=0.0006 HB=PASS\\\\n      fpr: diff=+0.1053 CI=[0.0385, 0.1682] p=0.0020 HB=PASS\\\\n    HS vs MiniLM:\\\\n      bal_acc: diff=+0.1053 CI=[0.0505, 0.1629] p=0.0002\\\\n      precision: diff=+0.1985 CI=[0.1136, 0.2976] p=0.0001\\\\n      fpr: diff=+0.1773 CI=[0.1139, 0.2376] p=0.0000\\\\n    BGE vs MiniLM:\\\\n      bal_acc: diff=-0.0024 CI=[-0.0461, 0.0357] p=0.9065\\\\n      precision: diff=+0.0153 CI=[-0.03, 0.0625] p=0.4965\\\\n      fpr: diff=+0.0720 CI=[0.0154, 0.1257] p=0.0115\\\\n\\\\n  r1_32b (L63, W=1):\\\\n    n_traces=100, train=60, val=20, test=20\\\\n    BGE-large:  BA=0.6326, Prec=0.4750, FPR=0.3510\\\\n    MiniLM:     BA=0.6273, Prec=0.4723, FPR=0.3454\\\\n    HS:         BA=0.7419, Prec=0.5882, FPR=0.2730\\\\n    HS vs BGE:\\\\n      bal_acc: diff=+0.1093 CI=[0.0232, 0.1993] p=0.0128 HB=fail\\\\n      precision: diff=+0.1132 CI=[-0.0015, 0.2426] p=0.0732 HB=fail\\\\n      fpr: diff=+0.0780 CI=[-0.0747, 0.2255] p=0.3273 HB=fail\\\\n    HS vs MiniLM:\\\\n      bal_acc: diff=+0.1146 CI=[0.0129, 0.2056] p=0.0187\\\\n      precision: diff=+0.1159 CI=[-0.0154, 0.2596] p=0.1119\\\\n      fpr: diff=+0.0724 CI=[-0.1019, 0.2263] p=0.4186\\\\n    BGE vs MiniLM:\\\\n      bal_acc: diff=+0.0053 CI=[-0.0581, 0.0665] p=0.8685\\\\n      precision: diff=+0.0027 CI=[-0.0611, 0.08] p=0.9433\\\\n      fpr: diff=-0.0056 CI=[-0.0946, 0.0857] p=0.9016\\\\n\\\\n  qwq_32b (L60, W=5):\\\\n    n_traces=95, train=57, val=19, test=19\\\\n    BGE-large:  BA=0.6346, Prec=0.4419, FPR=0.2669\\\\n    MiniLM:     BA=0.5431, Prec=0.3298, FPR=0.3469\\\\n    HS:         BA=0.7252, Prec=0.5244, FPR=0.2507\\\\n    HS vs BGE:\\\\n      bal_acc: diff=+0.0906 CI=[-0.0494, 0.2305] p=0.2336 HB=fail\\\\n      precision: diff=+0.0825 CI=[-0.0866, 0.2733] p=0.3865 HB=fail\\\\n      fpr: diff=+0.0163 CI=[-0.1292, 0.16] p=0.8220 HB=fail\\\\n    HS vs MiniLM:\\\\n      bal_acc: diff=+0.1821 CI=[0.0661, 0.2982] p=0.0004\\\\n      precision: diff=+0.1946 CI=[0.063, 0.343] p=0.0056\\\\n      fpr: diff=+0.0962 CI=[0.007, 0.1962] p=0.0460\\\\n    BGE vs MiniLM:\\\\n      bal_acc: diff=+0.0915 CI=[-0.0003, 0.1687] p=0.0334\\\\n      precision: diff=+0.1121 CI=[-0.0077, 0.2129] p=0.0462\\\\n      fpr: diff=+0.0799 CI=[-0.0746, 0.2277] p=0.3082\\\\n\\\\nHolm-Bonferroni (BGE vs HS, 12 tests): 3/12 reject\\\\n  ot_7b      precision    p=0.0006  REJECT\\\\n  ot_7b      fpr          p=0.0020  REJECT\\\\n  ot_7b      bal_acc      p=0.0026  REJECT\\\\n  r1_32b     bal_acc      p=0.0128  fail\\\\n  r1_8b      bal_acc      p=0.0630  fail\\\\n  r1_32b     precision    p=0.0732  fail\\\\n  qwq_32b    bal_acc      p=0.2336  fail\\\\n  r1_32b     fpr          p=0.3273  fail\\\\n  r1_8b      precision    p=0.3660  fail\\\\n  qwq_32b    precision    p=0.3865  fail\\\\n  qwq_32b    fpr          p=0.8220  fail\\\\n  r1_8b      fpr          p=0.8316  fail\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"BGE-large-en-v1.5 60/20/20 Verification\\n============================================================\\nStatus: RERUN completed\\nSplit: 60/20/20, seed=42\\nBootstrap: 10000 resamples, two-sided p-values\\nElapsed: 197.2s\\n\\n  r1_8b (L2, W=15):\\n    n_traces=209, train=125, val=41, test=43\\n    BGE-large:  BA=0.6457, Prec=0.4358, FPR=0.2209\\n    MiniLM:     BA=0.6593, Prec=0.4000, FPR=0.3182\\n    HS:         BA=0.7293, Prec=0.4971, FPR=0.2332\\n    HS vs BGE:\\n      bal_acc: diff=+0.0837 CI=[-0.0069, 0.1701] p=0.0630 HB=fail\\n      precision: diff=+0.0613 CI=[-0.0735, 0.1946] p=0.3660 HB=fail\\n      fpr: diff=-0.0122 CI=[-0.1184, 0.1082] p=0.8316 HB=fail\\n    HS vs MiniLM:\\n      bal_acc: diff=+0.0700 CI=[-0.0274, 0.1665] p=0.1606\\n      precision: diff=+0.0971 CI=[-0.0351, 0.2217] p=0.1394\\n      fpr: diff=+0.0850 CI=[-0.0596, 0.2272] p=0.2470\\n    BGE vs MiniLM:\\n      bal_acc: diff=-0.0136 CI=[-0.0992, 0.075] p=0.7601\\n      precision: diff=+0.0358 CI=[-0.0722, 0.1521] p=0.5262\\n      fpr: diff=+0.0972 CI=[-0.0019, 0.2017] p=0.0605\\n\\n  ot_7b (L16, W=3):\\n    n_traces=228, train=136, val=45, test=47\\n    BGE-large:  BA=0.5745, Prec=0.2629, FPR=0.2432\\n    MiniLM:     BA=0.5768, Prec=0.2475, FPR=0.3152\\n    HS:         BA=0.6821, Prec=0.4460, FPR=0.1379\\n    HS vs BGE:\\n      bal_acc: diff=+0.1076 CI=[0.0411, 0.1798] p=0.0026 HB=PASS\\n      precision: diff=+0.1832 CI=[0.0839, 0.2902] p=0.0006 HB=PASS\\n      fpr: diff=+0.1053 CI=[0.0385, 0.1682] p=0.0020 HB=PASS\\n    HS vs MiniLM:\\n      bal_acc: diff=+0.1053 CI=[0.0505, 0.1629] p=0.0002\\n      precision: diff=+0.1985 CI=[0.1136, 0.2976] p=0.0001\\n      fpr: diff=+0.1773 CI=[0.1139, 0.2376] p=0.0000\\n    BGE vs MiniLM:\\n      bal_acc: diff=-0.0024 CI=[-0.0461, 0.0357] p=0.9065\\n      precision: diff=+0.0153 CI=[-0.03, 0.0625] p=0.4965\\n      fpr: diff=+0.0720 CI=[0.0154, 0.1257] p=0.0115\\n\\n  r1_32b (L63, W=1):\\n    n_traces=100, train=60, val=20, test=20\\n    BGE-large:  BA=0.6326, Prec=0.4750, FPR=0.3510\\n    MiniLM:     BA=0.6273, Prec=0.4723, FPR=0.3454\\n    HS:         BA=0.7419, Prec=0.5882, FPR=0.2730\\n    HS vs BGE:\\n      bal_acc: diff=+0.1093 CI=[0.0232, 0.1993] p=0.0128 HB=fail\\n      precision: diff=+0.1132 CI=[-0.0015, 0.2426] p=0.0732 HB=fail\\n      fpr: diff=+0.0780 CI=[-0.0747, 0.2255] p=0.3273 HB=fail\\n    HS vs MiniLM:\\n      bal_acc: diff=+0.1146 CI=[0.0129, 0.2056] p=0.0187\\n      precision: diff=+0.1159 CI=[-0.0154, 0.2596] p=0.1119\\n      fpr: diff=+0.0724 CI=[-0.1019, 0.2263] p=0.4186\\n    BGE vs MiniLM:\\n      bal_acc: diff=+0.0053 CI=[-0.0581, 0.0665] p=0.8685\\n      precision: diff=+0.0027 CI=[-0.0611, 0.08] p=0.9433\\n      fpr: diff=-0.0056 CI=[-0.0946, 0.0857] p=0.9016\\n\\n  qwq_32b (L60, W=5):\\n    n_traces=95, train=57, val=19, test=19\\n    BGE-large:  BA=0.6346, Prec=0.4419, FPR=0.2669\\n    MiniLM:     BA=0.5431, Prec=0.3298, FPR=0.3469\\n    HS:         BA=0.7252, Prec=0.5244, FPR=0.2507\\n    HS vs BGE:\\n      bal_acc: diff=+0.0906 CI=[-0.0494, 0.2305] p=0.2336 HB=fail\\n      precision: diff=+0.0825 CI=[-0.0866, 0.2733] p=0.3865 HB=fail\\n      fpr: diff=+0.0163 CI=[-0.1292, 0.16] p=0.8220 HB=fail\\n    HS vs MiniLM:\\n      bal_acc: diff=+0.1821 CI=[0.0661, 0.2982] p=0.0004\\n      precision: diff=+0.1946 CI=[0.063, 0.343] p=0.0056\\n      fpr: diff=+0.0962 CI=[0.007, 0.1962] p=0.0460\\n    BGE vs MiniLM:\\n      bal_acc: diff=+0.0915 CI=[-0.0003, 0.1687] p=0.0334\\n      precision: diff=+0.1121 CI=[-0.0077, 0.2129] p=0.0462\\n      fpr: diff=+0.0799 CI=[-0.0746, 0.2277] p=0.3082\\n\\nHolm-Bonferroni (BGE vs HS, 12 tests): 3/12 reject\\n  ot_7b      precision    p=0.0006  REJECT\\n  ot_7b      fpr          p=0.0020  REJECT\\n  ot_7b      bal_acc      p=0.0026  REJECT\\n  r1_32b     bal_acc      p=0.0128  fail\\n  r1_8b      bal_acc      p=0.0630  fail\\n  r1_32b     precision    p=0.0732  fail\\n  qwq_32b    bal_acc      p=0.2336  fail\\n  r1_32b     fpr          p=0.3273  fail\\n  r1_8b      precision    p=0.3660  fail\\n  qwq_32b    precision    p=0.3865  fail\\n  qwq_32b    fpr          p=0.8220  fail\\n  r1_8b      fpr          p=0.8316  fail\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000210"
+        },
+        {
+          "source_line": 211,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BUF25juYfAaUWu8oQd56vB",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "bge_large_60_20_20_results",
+                "type": "report",
+                "description": "BGE-large 60/20/20 three-way comparison (HS vs MiniLM vs BGE-large), corrected QwQ W=5, 10k bootstrap, HB 12 tests. OT-7B 3/3 PASS, others fail HB.",
+                "project": "contrastive_trace_safety",
+                "content": "BGE-large-en-v1.5 60/20/20 Verification\n============================================================\nStatus: RERUN completed\nSplit: 60/20/20, seed=42\nBootstrap: 10000 resamples, two-sided p-values\nElapsed: 197.2s\n\n  r1_8b (L2, W=15):\n    n_traces=209, train=125, val=41, test=43\n    BGE-large:  BA=0.6457, Prec=0.4358, FPR=0.2209\n    MiniLM:     BA=0.6593, Prec=0.4000, FPR=0.3182\n    HS:         BA=0.7293, Prec=0.4971, FPR=0.2332\n    HS vs BGE:\n      bal_acc: diff=+0.0837 CI=[-0.0069, 0.1701] p=0.0630 HB=fail\n      precision: diff=+0.0613 CI=[-0.0735, 0.1946] p=0.3660 HB=fail\n      fpr: diff=-0.0122 CI=[-0.1184, 0.1082] p=0.8316 HB=fail\n    HS vs MiniLM:\n      bal_acc: diff=+0.0700 CI=[-0.0274, 0.1665] p=0.1606\n      precision: diff=+0.0971 CI=[-0.0351, 0.2217] p=0.1394\n      fpr: diff=+0.0850 CI=[-0.0596, 0.2272] p=0.2470\n    BGE vs MiniLM:\n      bal_acc: diff=-0.0136 CI=[-0.0992, 0.075] p=0.7601\n      precision: diff=+0.0358 CI=[-0.0722, 0.1521] p=0.5262\n      fpr: diff=+0.0972 CI=[-0.0019, 0.2017] p=0.0605\n\n  ot_7b (L16, W=3):\n    n_traces=228, train=136, val=45, test=47\n    BGE-large:  BA=0.5745, Prec=0.2629, FPR=0.2432\n    MiniLM:     BA=0.5768, Prec=0.2475, FPR=0.3152\n    HS:         BA=0.6821, Prec=0.4460, FPR=0.1379\n    HS vs BGE:\n      bal_acc: diff=+0.1076 CI=[0.0411, 0.1798] p=0.0026 HB=PASS\n      precision: diff=+0.1832 CI=[0.0839, 0.2902] p=0.0006 HB=PASS\n      fpr: diff=+0.1053 CI=[0.0385, 0.1682] p=0.0020 HB=PASS\n    HS vs MiniLM:\n      bal_acc: diff=+0.1053 CI=[0.0505, 0.1629] p=0.0002\n      precision: diff=+0.1985 CI=[0.1136, 0.2976] p=0.0001\n      fpr: diff=+0.1773 CI=[0.1139, 0.2376] p=0.0000\n    BGE vs MiniLM:\n      bal_acc: diff=-0.0024 CI=[-0.0461, 0.0357] p=0.9065\n      precision: diff=+0.0153 CI=[-0.03, 0.0625] p=0.4965\n      fpr: diff=+0.0720 CI=[0.0154, 0.1257] p=0.0115\n\n  r1_32b (L63, W=1):\n    n_traces=100, train=60, val=20, test=20\n    BGE-large:  BA=0.6326, Prec=0.4750, FPR=0.3510\n    MiniLM:     BA=0.6273, Prec=0.4723, FPR=0.3454\n    HS:         BA=0.7419, Prec=0.5882, FPR=0.2730\n    HS vs BGE:\n      bal_acc: diff=+0.1093 CI=[0.0232, 0.1993] p=0.0128 HB=fail\n      precision: diff=+0.1132 CI=[-0.0015, 0.2426] p=0.0732 HB=fail\n      fpr: diff=+0.0780 CI=[-0.0747, 0.2255] p=0.3273 HB=fail\n    HS vs MiniLM:\n      bal_acc: diff=+0.1146 CI=[0.0129, 0.2056] p=0.0187\n      precision: diff=+0.1159 CI=[-0.0154, 0.2596] p=0.1119\n      fpr: diff=+0.0724 CI=[-0.1019, 0.2263] p=0.4186\n    BGE vs MiniLM:\n      bal_acc: diff=+0.0053 CI=[-0.0581, 0.0665] p=0.8685\n      precision: diff=+0.0027 CI=[-0.0611, 0.08] p=0.9433\n      fpr: diff=-0.0056 CI=[-0.0946, 0.0857] p=0.9016\n\n  qwq_32b (L60, W=5):\n    n_traces=95, train=57, val=19, test=19\n    BGE-large:  BA=0.6346, Prec=0.4419, FPR=0.2669\n    MiniLM:     BA=0.5431, Prec=0.3298, FPR=0.3469\n    HS:         BA=0.7252, Prec=0.5244, FPR=0.2507\n    HS vs BGE:\n      bal_acc: diff=+0.0906 CI=[-0.0494, 0.2305] p=0.2336 HB=fail\n      precision: diff=+0.0825 CI=[-0.0866, 0.2733] p=0.3865 HB=fail\n      fpr: diff=+0.0163 CI=[-0.1292, 0.16] p=0.8220 HB=fail\n    HS vs MiniLM:\n      bal_acc: diff=+0.1821 CI=[0.0661, 0.2982] p=0.0004\n      precision: diff=+0.1946 CI=[0.063, 0.343] p=0.0056\n      fpr: diff=+0.0962 CI=[0.007, 0.1962] p=0.0460\n    BGE vs MiniLM:\n      bal_acc: diff=+0.0915 CI=[-0.0003, 0.1687] p=0.0334\n      precision: diff=+0.1121 CI=[-0.0077, 0.2129] p=0.0462\n      fpr: diff=+0.0799 CI=[-0.0746, 0.2277] p=0.3082\n\nHolm-Bonferroni (BGE vs HS, 12 tests): 3/12 reject\n  ot_7b      precision    p=0.0006  REJECT\n  ot_7b      fpr          p=0.0020  REJECT\n  ot_7b      bal_acc      p=0.0026  REJECT\n  r1_32b     bal_acc      p=0.0128  fail\n  r1_8b      bal_acc      p=0.0630  fail\n  r1_32b     precision    p=0.0732  fail\n  qwq_32b    bal_acc      p=0.2336  fail\n  r1_32b     fpr          p=0.3273  fail\n  r1_8b      precision    p=0.3660  fail\n  qwq_32b    precision    p=0.3865  fail\n  qwq_32b    fpr          p=0.8220  fail\n  r1_8b      fpr          p=0.8316  fail",
+                "content_filename": "bge_large_60_20_20_summary.txt",
+                "tags": [
+                  "bge-large",
+                  "60-20-20",
+                  "bootstrap",
+                  "holm-bonferroni",
+                  "three-way"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fbcebfef-3e8e-4f9a-a5f4-89483d370521",
+            "uuid": "7e5bf294-773f-453d-a3a5-ca1fd70ea6d7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011nSWiV3xbB9eHd6Ag96mEu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2524,
+                "cache_read_input_tokens": 111838,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2524
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000211"
+        },
+        {
+          "source_line": 212,
+          "timestamp": "2026-05-18T20:38:58.597Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BUF25juYfAaUWu8oQd56vB",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260518_6bb32f\\\", \\\"name\\\": \\\"bge_large_60_20_20_results\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"BGE-large 60/20/20 three-way comparison (HS vs MiniLM vs BGE-large), corrected QwQ W=5, 10k bootstrap, HB 12 tests. OT-7B 3/3 PASS, others fail HB.\\\", \\\"path\\\": \\\"projects/contrastive_trace_safety/artifacts/_project/report/bge_large_60_20_20_summary.txt\\\", \\\"url\\\": null, \\\"project\\\": \\\"contrastive_trace_safety\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-18T20:38:58.472473+00:00\\\", \\\"tags\\\": [\\\"bge-large\\\", \\\"60-20-20\\\", \\\"bootstrap\\\", \\\"holm-bonferroni\\\", \\\"three-way\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "fbcebfef-3e8e-4f9a-a5f4-89483d370521",
+            "uuid": "dcacad04-e8b6-489a-8fcf-82d44b8bc0f3",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260518_6bb32f\\\", \\\"name\\\": \\\"bge_large_60_20_20_results\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"BGE-large 60/20/20 three-way comparison (HS vs MiniLM vs BGE-large), corrected QwQ W=5, 10k bootstrap, HB 12 tests. OT-7B 3/3 PASS, others fail HB.\\\", \\\"path\\\": \\\"projects/contrastive_trace_safety/artifacts/_project/report/bge_large_60_20_20_summary.txt\\\", \\\"url\\\": null, \\\"project\\\": \\\"contrastive_trace_safety\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-18T20:38:58.472473+00:00\\\", \\\"tags\\\": [\\\"bge-large\\\", \\\"60-20-20\\\", \\\"bootstrap\\\", \\\"holm-bonferroni\\\", \\\"three-way\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260518_6bb32f\", \"name\": \"bge_large_60_20_20_results\", \"type\": \"report\", \"description\": \"BGE-large 60/20/20 three-way comparison (HS vs MiniLM vs BGE-large), corrected QwQ W=5, 10k bootstrap, HB 12 tests. OT-7B 3/3 PASS, others fail HB.\", \"path\": \"projects/contrastive_trace_safety/artifacts/_project/report/bge_large_60_20_20_summary.txt\", \"url\": null, \"project\": \"contrastive_trace_safety\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-18T20:38:58.472473+00:00\", \"tags\": [\"bge-large\", \"60-20-20\", \"bootstrap\", \"holm-bonferroni\", \"three-way\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000212"
+        },
+        {
+          "source_line": 213,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Completed. Here's the summary:\n\n## BGE-large 60/20/20 Results\n\n**Status**: RERUN completed (QwQ corrected W=3→W=5, MiniLM added)\n**Config**: 60/20/20 split, seed=42, LR(C=1.0, balanced), 10k bootstrap, two-sided p-values\n\n### Per-model metrics\n\n| Model | Modality | BA | Prec | FPR |\n|-------|----------|-----|------|-----|\n| **R1-8B** (W=15) | HS | .729 | .497 | .233 |\n| | BGE | .646 | .436 | .221 |\n| | MiniLM | .659 | .400 | .318 |\n| **OT-7B** (W=3) | HS | .682 | .446 | .138 |\n| | BGE | .575 | .263 | .243 |\n| | MiniLM | .577 | .248 | .315 |\n| **R1-32B** (W=1) | HS | .742 | .588 | .273 |\n| | BGE | .633 | .475 | .351 |\n| | MiniLM | .627 | .472 | .345 |\n| **QwQ-32B** (W=5) | HS | .725 | .524 | .251 |\n| | BGE | .635 | .442 | .267 |\n| | MiniLM | .543 | .330 | .347 |\n\n### Holm-Bonferroni (HS vs BGE, 12 tests): **3/12 reject**\n- **OT-7B**: all 3 metrics PASS (p=0.0006, 0.0020, 0.0026)\n- **R1-32B**: BA uncorrected p=0.013, but fails HB threshold\n- **R1-8B, QwQ-32B**: no metrics pass HB\n\n### Key observations\n- HS advantage is **directionally positive across all 4 models** for all metrics (except R1-8B FPR: -1.2pp adverse)\n- Only OT-7B survives full HB correction against BGE — consistent with paper's \"encoder-conditional\" framing\n- BGE vs MiniLM: mostly NS (BGE slightly better on FPR, otherwise indistinguishable)\n- QwQ W=5 results differ from old W=3: HS-BGE gaps narrowed and lost significance\n\n**Artifacts**: `results.json` and `results_summary.txt` saved to `/root/autodl-tmp/contrastive_trace_safety/artifacts/bge_large_60_20_20/`"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fbcebfef-3e8e-4f9a-a5f4-89483d370521",
+            "uuid": "471eda45-76c3-43a5-99b6-fe1e807fee14",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NX6yfdCFJj5nrxF9oNvy1Q",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2819,
+                "cache_read_input_tokens": 114362,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2819
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000213"
+        },
+        {
+          "source_line": 214,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Completed. Here's the summary:\n\n## BGE-large 60/20/20 Results\n\n**Status**: RERUN completed (QwQ corrected W=3→W=5, MiniLM added)\n**Config**: 60/20/20 split, seed=42, LR(C=1.0, balanced), 10k bootstrap, two-sided p-values\n\n### Per-model metrics\n\n| Model | Modality | BA | Prec | FPR |\n|-------|----------|-----|------|-----|\n| **R1-8B** (W=15) | HS | .729 | .497 | .233 |\n| | BGE | .646 | .436 | .221 |\n| | MiniLM | .659 | .400 | .318 |\n| **OT-7B** (W=3) | HS | .682 | .446 | .138 |\n| | BGE | .575 | .263 | .243 |\n| | MiniLM | .577 | .248 | .315 |\n| **R1-32B** (W=1) | HS | .742 | .588 | .273 |\n| | BGE | .633 | .475 | .351 |\n| | MiniLM | .627 | .472 | .345 |\n| **QwQ-32B** (W=5) | HS | .725 | .524 | .251 |\n| | BGE | .635 | .442 | .267 |\n| | MiniLM | .543 | .330 | .347 |\n\n### Holm-Bonferroni (HS vs BGE, 12 tests): **3/12 reject**\n- **OT-7B**: all 3 metrics PASS (p=0.0006, 0.0020, 0.0026)\n- **R1-32B**: BA uncorrected p=0.013, but fails HB threshold\n- **R1-8B, QwQ-32B**: no metrics pass HB\n\n### Key observations\n- HS advantage is **directionally positive across all 4 models** for all metrics (except R1-8B FPR: -1.2pp adverse)\n- Only OT-7B survives full HB correction against BGE — consistent with paper's \"encoder-conditional\" framing\n- BGE vs MiniLM: mostly NS (BGE slightly better on FPR, otherwise indistinguishable)\n- QwQ W=5 results differ from old W=3: HS-BGE gaps narrowed and lost significance\n\n**Artifacts**: `results.json` and `results_summary.txt` saved to `/root/autodl-tmp/contrastive_trace_safety/artifacts/bge_large_60_20_20/`"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 711244,
+            "duration_api_ms": 592370,
+            "num_turns": 66,
+            "stop_reason": "end_turn",
+            "session_id": "fbcebfef-3e8e-4f9a-a5f4-89483d370521",
+            "total_cost_usd": 3.66881045,
+            "usage": {
+              "input_tokens": 53,
+              "cache_creation_input_tokens": 105340,
+              "cache_read_input_tokens": 4147454,
+              "output_tokens": 34878,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 105340,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 690,
+                  "cache_read_input_tokens": 114362,
+                  "cache_creation_input_tokens": 2819,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 2819
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2049,
+                "outputTokens": 1919,
+                "cacheReadInputTokens": 112907,
+                "cacheCreationInputTokens": 33247,
+                "webSearchRequests": 0,
+                "costUSD": 0.06449345000000001,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 53,
+                "outputTokens": 34878,
+                "cacheReadInputTokens": 4147454,
+                "cacheCreationInputTokens": 105340,
+                "webSearchRequests": 0,
+                "costUSD": 3.6043169999999995,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "b46a11db-2f5d-4a96-aca4-b37349ea71ce"
+          },
+          "id": "event-000214"
+        }
+      ]
+    }
+  ]
+}

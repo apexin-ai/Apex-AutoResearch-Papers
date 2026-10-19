@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a0076fe576a05b5ba9c2",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "analysis r13 ba layer modality",
+  "task_key": "worker_analysis_r13_ba_layer_modality_20260518T143902",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r13_ba_layer_modality_20260518T143902_result.json",
+    "occurrence": 1,
+    "bytes": 1680,
+    "sha256": "7e095aff298d7774587ef2975af3523cf14eeacdf2f7a9ddbe830032ffe216c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Experiment complete. Here's the summary:\n\n## R13: BA-Selected Layers HS vs Text Modality Comparison\n\n**BA-optimal layers** (threshold-free, pure balanced accuracy selection):\n- R1-8B: L12 | OT-7B: L9 | R1-32B: L47 (LOO) | QwQ-32B: L30 (LOO)\n\n**Result: HS > Text on all 4 models, all 4 metrics (16/16 HB-corrected p < 0.05)**\n\n| Model | BA-L | HS Prec | Text Prec | dPrec | p_adj | HS FPR | Text FPR | dFPR | p_adj | HS BA | Text BA | dBA | p_adj | HS AUC | Text AUC | dAUC | p_adj | HB |\n|-------|------|---------|-----------|-------|-------|--------|----------|------|-------|-------|---------|-----|-------|--------|----------|------|-------|----|\n| R1-8B | L12 | .767 | .589 | +.178 | .004 | .121 | .250 | -.129 | .004 | .777 | .699 | +.078 | .004 | .945 | .852 | +.093 | .004 | Y |\n| OT-7B | L9 | .532 | .277 | +.254 | .004 | .125 | .318 | -.193 | .004 | .756 | .639 | +.117 | .004 | .881 | .733 | +.148 | .004 | Y |\n| R1-32B | L47 | .628 | .491 | +.137 | .004 | .249 | .480 | -.231 | .004 | .758 | .609 | +.149 | .004 | .932 | .722 | +.211 | .004 | Y |\n| QwQ-32B | L30 | .668 | .489 | +.180 | .006 | .196 | .276 | -.080 | .041 | .796 | .648 | +.148 | .004 | .896 | .722 | +.173 | .004 | Y |\n\n**Interpretation**: HS advantage is robust across layers and metrics. Even when layers are selected purely by BA (threshold-free), HS probes significantly outperform text probes on precision, FPR, BA, and AUROC for all 4 models. This eliminates metric circularity as a concern. Weakest signal: QwQ FPR (adj_p=0.041), all other 15 tests p <= 0.006.\n\nResults saved to `artifacts/r13_ba_layer_modality/results.json` on server and registered as artifact."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-r13-ba-layer-modality.md"
+}

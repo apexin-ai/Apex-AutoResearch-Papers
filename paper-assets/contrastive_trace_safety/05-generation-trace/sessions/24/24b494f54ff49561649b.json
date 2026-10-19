@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "24b494f54ff49561649b",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code diag d4 oracle",
+  "task_key": "worker_code_diag_d4_oracle_20260516T193009",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_diag_d4_oracle_20260516T193009_result.json",
+    "occurrence": 1,
+    "bytes": 774,
+    "sha256": "ba7be6af32e557b4cab03ee33d23d64d0300127445692215bdba457ce4c0cc1b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. `diag_d4_oracle_upper_bound` registered as DONE/success.\n\n## 结果\n\n**结论：任务可解，hidden-state 方法有大量空间。**\n\n| K (连续无 safety 步数) | 检测率 | 可提前检测比例 | 平均 lead time (提前检测的 traces) |\n|---|---|---|---|\n| 1 | 100% | 83.7% | 35.6 steps |\n| 3 | 100% | 76.7% | 34.8 steps |\n| 5 | 100% | 76.7% | 31.0 steps |\n| 8 | 95.3% | 65.1% | 28.8 steps |\n\n关键发现：\n- 用 K=5 oracle，**76.7% 的 traces 在 commitment 前就能被检测**，平均提前 31 步\n- pre-commitment 区间内最长无 safety streak 平均 14.6 步（中位数 13 步）\n- 这意味着 safety labels 在 commitment 前很早就开始消失，hidden-state probe 的理论天花板远高于 5 步 lead time"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-diag-d4-oracle.md"
+}

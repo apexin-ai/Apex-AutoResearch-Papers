@@ -1,0 +1,36 @@
+{
+  "task": "ot_7b_holdout_verification",
+  "model": "open-thoughts/OpenThinker-7B",
+  "layer": 16,
+  "window": 3,
+  "split": "60/20/20",
+  "seed": 42,
+  "results": {
+    "hs_ba": 0.6901,
+    "text_ba": 0.584,
+    "delta_ba": 10.6,
+    "hs_precision": 0.3299,
+    "text_precision": 0.2522,
+    "delta_precision": 7.8,
+    "ci_95_lower": 10.6,
+    "ci_95_upper": 23.2,
+    "hs_fpr": 0.3101,
+    "text_fpr": 0.3197,
+    "delta_fpr": -1.0,
+    "n_bootstrap": 10000,
+    "pca_dim": 100,
+    "pca_explained_var_hs": 0.5716
+  },
+  "paper_values": {
+    "delta_ba": 10.7,
+    "delta_prec": 21.9,
+    "ci": [
+      14.4,
+      29.6
+    ],
+    "delta_fpr": -17.1
+  },
+  "match": false,
+  "data_path": "/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_ot7b_verify",
+  "timestamp": "2026-05-23T20:45:57.052817"
+}

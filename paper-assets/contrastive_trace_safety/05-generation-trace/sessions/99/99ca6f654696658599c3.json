@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "99ca6f654696658599c3",
+  "project": "contrastive_trace_safety",
+  "kind": "worker",
+  "title": "analysis e5 mistral text encoder",
+  "task_key": "worker_analysis_e5_mistral_text_encoder_20260518T195441",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_e5_mistral_text_encoder_20260518T195441.log",
+    "occurrence": 1,
+    "bytes": 1354761,
+    "sha256": "7c3af43aad11ea9c10bf9e89b618bc6fa2b191e53580e76b2fd379b0fc84b28c"
+  },
+  "statistics": {
+    "messages": 702,
+    "user_turns": 1,
+    "tool_calls": 280,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 134,
+      "tool_call": 280,
+      "tool_result": 280,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 462,
+      "chunks": [
+        {
+          "path": "99ca6f654696658599c3-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "99ca6f654696658599c3-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "99ca6f654696658599c3-part-0003.json",
+          "message_count": 102
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 240,
+      "chunks": [
+        {
+          "path": "99ca6f654696658599c3-part-0003.json",
+          "message_count": 78
+        },
+        {
+          "path": "99ca6f654696658599c3-part-0004.json",
+          "message_count": 162
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-e5-mistral-text-encoder.md"
+}

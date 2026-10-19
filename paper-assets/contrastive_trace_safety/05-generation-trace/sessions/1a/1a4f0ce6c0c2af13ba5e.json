@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1a4f0ce6c0c2af13ba5e",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "ops await qwen3 final",
+  "task_key": "worker_ops_await_qwen3_final_20260520T062619",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_await_qwen3_final_20260520T062619_result.json",
+    "occurrence": 1,
+    "bytes": 79,
+    "sha256": "dde9858520118e9d987257851eb3418e46bfd58259bdc8aa17527eb1a254a5a9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Session still alive as of 14:26 CST. Polling again in 2 minutes."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-await-qwen3-final.md"
+}

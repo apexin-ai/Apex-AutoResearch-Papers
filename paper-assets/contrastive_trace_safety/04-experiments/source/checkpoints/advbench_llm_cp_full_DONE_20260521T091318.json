@@ -1,0 +1,35 @@
+{
+  "exp_id": "advbench_llm_cp_full",
+  "project": "contrastive_trace_safety",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T05:55:23.490Z",
+    "updated_at": "2026-05-21T09:13:18.739Z",
+    "spec": {
+      "command": "killed before run",
+      "server": "autodl-rtx6000",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "481861",
+      "log_path": "~/runs/contrastive_trace_safety/advbench_llm_cp_full.log",
+      "submitted_at": "2026-05-20T05:55:23.340Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "N/A",
+      "data_count": 0,
+      "model_name": "N/A",
+      "seed": 0,
+      "wall_clock_seconds": 98275.4,
+      "gpu_hours": 27.3
+    },
+    "conclusion": "killed",
+    "completed_at": "2026-05-21T09:13:18.739Z"
+  },
+  "timestamp": "2026-05-21T09:13:18.851325+00:00",
+  "trigger": "update_registry"
+}

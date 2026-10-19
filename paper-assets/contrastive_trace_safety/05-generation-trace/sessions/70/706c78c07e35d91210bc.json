@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "706c78c07e35d91210bc",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "analysis bootstrap ci",
+  "task_key": "worker_analysis_bootstrap_ci_20260522T182027",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bootstrap_ci_20260522T182027_result.json",
+    "occurrence": 1,
+    "bytes": 2361413,
+    "sha256": "4284a3223af4bf5879a19504f202aa3f9239f486ce7558280bef525782a7bfb7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "706c78c07e35d91210bc-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-bootstrap-ci.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d44da201790b6ca1b860",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "analysis random cp qwq32b",
+  "task_key": "worker_analysis_random_cp_qwq32b_20260519T115416",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_random_cp_qwq32b_20260519T115416_result.json",
+    "occurrence": 1,
+    "bytes": 1453,
+    "sha256": "8cde4926c200be941493484c03dd9a82ac6054b92f5c5089727a64e79e182a5a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 3 output files saved. Here are the results:\n\n## QwQ-32B Random-CP Control Results\n\n**Real-CP Baseline (confirms disagreement):**\n| Metric | Best Layer |\n|--------|-----------|\n| CR-composite | **L4** (shallow) |\n| Precision | **L63** (deep) |\n| FPR | **L62** (deep) |\n| BA | L63 |\n| Crossing rate | L4 |\n| **Disagreement gap** | **59 layers** |\n\n**Random-CP (10 repeats, seeds 42-51):**\n| Metric | Mean L | Std | Shallow (L<=10) | Deep (L>=50) |\n|--------|--------|-----|-----------------|--------------|\n| bal_acc | 33.3 | 20.3 | 20% | 40% |\n| precision | 33.8 | 19.8 | 20% | 20% |\n| pre_cp_fpr | 36.4 | 17.0 | 10% | 10% |\n| crossing_rate | 3.4 | 2.6 | **100%** | 0% |\n| cr_composite | 13.1 | 18.1 | **80%** | 10% |\n\n**Metric disagreement replicates: False**\n\nKey findings:\n- With real CPs, CR-composite selects L4 (shallow) while precision/FPR select L62-63 (deep), gap=59 layers\n- With random CPs, precision/FPR scatter across all layers (only 10-20% deep), not consistently selecting deep layers\n- CR-composite still prefers shallow layers with random CPs (80%), driven by `crossing_rate` which always selects L0-L7\n- The critical asymmetry is that **threshold-based metrics lose their deep-layer preference** under random CPs (15% vs 100% with real CPs)\n- This supports the claim that the metric disagreement requires real CP labels and reflects genuine behavioral structure, not a geometry artifact"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-random-cp-qwq32b.md"
+}

@@ -1,0 +1,39 @@
+{
+  "exp_id": "m1_reextract_v2",
+  "project": "structfuse-context",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-13T20:00:20.578Z",
+    "updated_at": "2026-05-16T03:01:15.211Z",
+    "hypothesis": "M1 重提取 v2：恢复 28,276 个因运行时瞬态文件系统故障失败的 instances（82 repos）。CodeQL pack 已修复，端到端测试通过。预期将训练数据从 15,897 提升至 ~44,173。D022 批准。",
+    "parent": "m1_extraction",
+    "spec": {
+      "command": "bash scripts/rerun_m1_failed.sh (4 CPU workers, CodeQL 2-hop, pack installed)",
+      "server": "bjb1-42106",
+      "data_path": "/root/autodl-tmp/structfuse/full_m1_data/",
+      "data_count": 28276,
+      "model_name": "N/A (CodeQL extraction)",
+      "seed": "N/A",
+      "log_path": "/root/runs/structfuse-context/m1_reextract_v2.log",
+      "checkpoint_source": "rerun of m1_extraction failed instances (v2, CodeQL fixed)",
+      "eval_data": "N/A"
+    },
+    "notes": "moto CodeQL call_graph.ql timeout (NOT OOM): directCallEdge predicate exceeds 300s timeout on every instance (exit code 33). 536 moto instances all fail call_graph, fallback to embedding-distance. Isolated failure — 1/4 workers stuck on moto (~5min/instance, ~38h total), other 3 workers process pydicom/conan/MONAI normally. DB creation succeeded; bounded_dataflow.ql unaffected. [2026-05-16] Combine script ready: /root/structfuse/scripts/combine_m1_reextract.py. Dry-run stats: 39,712/44,173 (89.9%) structural data rate. Run after extraction completes: source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 /root/structfuse/scripts/combine_m1_reextract.py",
+    "metrics": {
+      "all_jsonl_lines": 44173,
+      "repos_completed": 71,
+      "repos_total": 72,
+      "skipped_repo": "getmoto/moto",
+      "skip_reason": "CodeQL call_graph.ql exit code 33 infinite retry loop (536 instances, ~1.2% of total). Director approved skip.",
+      "skip_log_lines": 582
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/structfuse/full_m1_data/all.jsonl",
+    "completed_at": "2026-05-16T03:01:15.211Z"
+  },
+  "timestamp": "2026-05-16T03:01:15.291803+00:00",
+  "trigger": "update_registry"
+}

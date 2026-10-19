@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fed9d2c8c92ddc8028eb",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "paper fig3 data update",
+  "task_key": "worker_paper_fig3_data_update_20260517T034243",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fig3_data_update_20260517T034243_result.json",
+    "occurrence": 1,
+    "bytes": 570,
+    "sha256": "cddd2b314d97f66fc60923c389fea19c61efdfa38ccf74426f3e6ddbefeac741"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**更新总结：**\n\n1. **数据文件** `artifacts/paper_data/fig3_bootstrap_ci.json` 中 R1-32B 已更新为 canonical 版本（liblinear solver, two-sided p-values）：\n   - accuracy: hs=0.7945, text=0.7105, p=0.08\n   - precision: hs=0.61, text=0.516, p=0.05\n   - fpr: hs=0.2415, text=0.3259, p=0.114\n\n2. **图表已重新生成**：\n   - PDF: `artifacts/figures/paper/fig3_model_dependency.pdf` (20.6 KB)\n   - PNG: `artifacts/figures/paper/fig3_model_dependency.png` (77.8 KB)\n   - 时间戳: 2026-05-17 11:44（刚刚生成）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fig3-data-update.md"
+}

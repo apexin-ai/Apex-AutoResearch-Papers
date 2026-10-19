@@ -1,0 +1,1408 @@
+# data full m2 data build
+
+**StructFuse: Structure-Grounded Hard Negative Mining for Contrastive Code Context Retrieval** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 47
+- **Recorded user turns:** 0
+- **Tool calls:** 23
+- **Original source:** `logs/chats/worker_data_full_m2_data_build_20260513T160451.jsonl`
+- **Structured JSON:** [`ed5f9ee13d3ed894282d.json`](../../sessions/ed/ed5f9ee13d3ed894282d.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+47 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-13T16:06:20.175939+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_data_full_m2_data_build_20260513T160451",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-13T16:06:20.176324+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_data_full_m2_data_build_20260513T160451",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-13T16:06:20.176501+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "ls -lh /root/autodl-tmp/structfuse/full_m1_data/all.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_data_full_m2_data_build_20260513T160451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "ls -lh /root/autodl-tmp/structfuse/full_m1_data/all.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-13T16:06:20.176684+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "ls -la /root/structfuse/build_full_m2_data.sh",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_data_full_m2_data_build_20260513T160451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "ls -la /root/structfuse/build_full_m2_data.sh",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-13T16:06:20.176838+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 6.2G May 13 18:46 /root/autodl-tmp/structfuse/full_m1_data/all.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.16}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_data_full_m2_data_build_20260513T160451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-13T16:06:20.176969+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "df -h /root/autodl-tmp/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_data_full_m2_data_build_20260513T160451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "df -h /root/autodl-tmp/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-13T16:06:20.177095+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/structfuse/build_full_m2_data.sh': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_data_full_m2_data_build_20260513T160451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-13T16:06:20.177216+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Filesystem      Size  Used Avail Use% Mounted on\\n/dev/md0        250G  111G  140G  45% /root/autodl-tmp\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_data_full_m2_data_build_20260513T160451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-13T16:06:20.177333+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "ls /root/autodl-tmp/structfuse/models/Qwen/Qwen2.5-Coder-3B/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_data_full_m2_data_build_20260513T160451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "ls /root/autodl-tmp/structfuse/models/Qwen/Qwen2.5-Coder-3B/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-13T16:06:20.177499+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "ls /root/autodl-tmp/structfuse/full_m1_data/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_data_full_m2_data_build_20260513T160451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "ls /root/autodl-tmp/structfuse/full_m1_data/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-13T16:06:20.177692+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"LICENSE\\nREADME.md\\nconfig.json\\nconfiguration.json\\ngeneration_config.json\\nmerges.txt\\nmodel-00001-of-00002.safetensors\\nmodel-00002-of-00002.safetensors\\nmodel.safetensors.index.json\\ntokenizer.json\\ntokenizer_config.json\\nvocab.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_data_full_m2_data_build_20260513T160451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-13T16:06:20.177927+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Cog-Creators__Red-DiscordBot.33e0eac7.combine_file__041av9lh.json\\nCog-Creators__Red-DiscordBot.33e0eac7.combine_file__08222ijt.json\\nCog-Creators__Red-DiscordBot.33e0eac7.combine_file__087t8zrv.json\\nCog-Creators__Red-DiscordBot.33e0eac7.combine_file__09r9m56h.json\\nCog-Creators__Red-DiscordBot.33e0eac7.combine_file__0pgv38lu.json\\nCog-Creators__Red-DiscordBot.33e0eac7.combine_file__1saqryqs.json\\nCog-Creators__Red-DiscordBot.33e0eac7.combine_file__1tzqbvbn.json\\nCog-Creators__Red-DiscordBot.33e0eac7.combine_file__1uip6nek.json\\nCog-Creators__Red-DiscordBot.33e0eac7.combine_file__2q6emitb.json\\nCog-Creators__Red-DiscordBot.33e0eac7.combine_file__37pg0tud.json\\nCog-Creators__Red-DiscordBot.33e0eac7.combine_file__4mst4vlk.json\\nCog-Creators__Red-DiscordBot.33e0eac7.combine_file__534o1yuq.json\\nCog-Creators__Red-DiscordBot.33e0eac7.combine_file__55bivpbr.json\\nCog-Creators__Red-DiscordBot.33e0eac7.combine_file__5nmwjxc8.json\\nCog-Creators__Red-DiscordBot.33e0eac7.combine_file__5x7jn623.json\\nCog-Creators__Red-DiscordBot.33e0eac7.combine_file__6koxthdy.json\\nCog-Creators__Red-DiscordBot.33e0eac7.combine_file__6pbit1uf.json\\nCog-Creators__Red-DiscordBot.33e0eac7.combine_file__6qknycp1.json\\nCog-Creators__Red-DiscordBot.33e0eac7.combine_file__7xapgtwa.json\\nCog-Creators__Red-DiscordBot.33e0eac7.combine_file__7yi8dsns.json\\nCog-Creators__Red-DiscordBot.33e0eac7.combine_file__81lxzncn.json\\nCog-Creators__Red-DiscordBot.33e0eac7.combine_file__9gfdmym0.json\\nCog-Creators__Red-DiscordBot.33e0eac7.combine_file__a31dhzob.json\\nCog-Creators__Red-DiscordBot.33e0eac7.combine_file__a8m3r6xb.json\\nCog-Creators__Red-DiscordBot.33e0eac7.combine_file__b6sq1hn0.json\\nCog-Creators__Red-DiscordBot.33e0eac7.combine_file__clkl76q2.json\\nCog-Creators__Red-DiscordBot.33e0eac7.combine_file__cu9qfznh.json\\nCog-Creators__Red-DiscordBot.33e0eac7.combine_file__d97cxah7.json\\nCog-Creators__Red-DiscordBot.33e0eac7.co
+…[truncated 6456 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_data_full_m2_data_build_20260513T160451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-13T16:06:20.178113+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "ls /root/structfuse/*.sh",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_data_full_m2_data_build_20260513T160451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "ls /root/structfuse/*.sh",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-13T16:06:20.178247+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/structfuse/auto_start_dataflow.sh\\n/root/structfuse/run_m2_early_pilot.sh\\n/root/structfuse/run_m2_embed_verify.sh\\n/root/structfuse/run_m2_embed_verify_continuation.sh\\n/root/structfuse/run_plan013_dataflow_retry.sh\\n/root/structfuse/run_plan013_starcoder.sh\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_data_full_m2_data_build_20260513T160451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-13T16:06:20.178369+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "ls /root/structfuse/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_data_full_m2_data_build_20260513T160451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "ls /root/structfuse/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-13T16:06:20.178495+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"auto_start_dataflow.sh\\neval_checkpoint.py\\nevaluation\\nextraction\\nmvp_phase1.py\\nmvp_phase1.py.bak\\nrequirements.txt\\nresults\\nrun_m2_early_pilot.sh\\nrun_m2_embed_verify.sh\\nrun_m2_embed_verify_continuation.sh\\nrun_plan013_dataflow_retry.sh\\nrun_plan013_starcoder.sh\\nscripts\\ntea_debug.log\\ntraining\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_data_full_m2_data_build_20260513T160451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-13T16:06:20.178641+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "find /root/structfuse/ -name \"*m2*\" -o -name \"*build*\" -o -name \"*negative*\" -o -name \"*mining*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_data_full_m2_data_build_20260513T160451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "find /root/structfuse/ -name \"*m2*\" -o -name \"*build*\" -o -name \"*negative*\" -o -name \"*mining*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-13T16:06:20.178780+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/structfuse/training/hard_negative_mining.py\\n/root/structfuse/training/__pycache__/hard_negative_mining.cpython-312.pyc\\n/root/structfuse/scripts/build_p2b_data.py\\n/root/structfuse/scripts/build_m1_training_data.py\\n/root/structfuse/scripts/build_m1_training_data.py.bak\\n/root/structfuse/scripts/run_m2_pilot.sh\\n/root/structfuse/scripts/__pycache__/build_m1_training_data.cpython-312.pyc\\n/root/structfuse/scripts/build_full_m2_data.sh\\n/root/structfuse/scripts/run_full_m2_training.sh\\n/root/structfuse/scripts/schedule_m2_runs.sh\\n/root/structfuse/extraction/build_training_data.py\\n/root/structfuse/extraction/precompute_bm25.py\\n/root/structfuse/run_m2_early_pilot.sh\\n/root/structfuse/run_m2_embed_verify.sh\\n/root/structfuse/run_m2_embed_verify_continuation.sh\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_data_full_m2_data_build_20260513T160451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-13T16:06:20.178930+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "cat /root/structfuse/scripts/build_full_m2_data.sh",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_data_full_m2_data_build_20260513T160451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "cat /root/structfuse/scripts/build_full_m2_data.sh",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-13T16:06:20.179119+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\n# ============================================================================\\n# build_full_m2_data.sh — 从 M1 extraction 构建 M2 训练数据\\n#\\n# 为 3 strategies × 3 seeds 生成训练/验证 JSONL 和 dataflow_graph.json\\n#\\n# Usage:\\n#   bash build_full_m2_data.sh\\n#\\n# 输入:\\n#   /root/autodl-tmp/structfuse/full_m1_data/  (migrate_m1_data.sh 迁移的 raw extraction)\\n#\\n# 输出:\\n#   /root/autodl-tmp/structfuse/full_m2_training_data/\\n#     train_{strategy}_s{seed}.jsonl   (strategy = random | embedding_distance | dataflow_aware)\\n#     val_{strategy}_s{seed}.jsonl\\n#     dataflow_graph.json\\n# ============================================================================\\n\\nset -euo pipefail\\n\\nPROJECT_ROOT=\\\"/root/structfuse\\\"\\nBUILD_SCRIPT=\\\"${PROJECT_ROOT}/scripts/build_m1_training_data.py\\\"\\nEXTRACTION_DIR=\\\"/root/autodl-tmp/structfuse/full_m1_data\\\"\\nREPOS_DIR=\\\"/root/autodl-tmp/structfuse/full_m1_data/repos\\\"\\nMODEL_PATH=\\\"/root/autodl-tmp/structfuse/models/Qwen/Qwen2.5-Coder-3B\\\"\\nOUTPUT_DIR=\\\"/root/autodl-tmp/structfuse/full_m2_training_data\\\"\\n\\nSEEDS=(42 43 44)\\n\\n# build_m1_training_data.py 输出名 → run_full_m2_training.sh 期望名\\ndeclare -A STRATEGY_MAP=(\\n    [\\\"random\\\"]=\\\"random\\\"\\n    [\\\"embedding\\\"]=\\\"embedding_distance\\\"\\n    [\\\"dataflow\\\"]=\\\"dataflow_aware\\\"\\n)\\n\\necho \\\"============================================\\\"\\necho \\\" Build Full M2 Training Data\\\"\\necho \\\" Start: $(date '+%Y-%m-%d %H:%M:%S')\\\"\\necho \\\" Seeds: ${SEEDS[*]}\\\"\\necho \\\" Output: ${OUTPUT_DIR}\\\"\\necho \\\"============================================\\\"\\n\\n# 前置检查\\nfor f in \\\"$BUILD_SCRIPT\\\" \\\"$EXTRACTION_DIR\\\" \\\"$MODEL_PATH/config.json\\\"; do\\n    if [ ! -e \\\"$f\\\" ]; then\\n        echo \\\"ERROR: not found: $f\\\"\\n        exit 1\\n    fi\\ndone\\n\\nif [ ! -d \\\"$REPOS_DIR\\\" ]; then\\n    echo \\\"WARNING: repos di
+…[truncated 1968 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_data_full_m2_data_build_20260513T160451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-13T16:06:20.179272+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "head -100 /root/structfuse/training/hard_negative_mining.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_data_full_m2_data_build_20260513T160451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "head -100 /root/structfuse/training/hard_negative_mining.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-13T16:06:20.179444+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Data-flow-aware hard negative mining for StructFuse.\\n\\nThree strategies:\\n  1. random         — baseline, random non-positive from same repo\\n  2. embedding_distance — CoCoHaNeRe-style nearest-neighbour non-positives\\n  3. dataflow_aware — lexically similar but data-flow disconnected (our contribution)\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport random as stdlib_random\\nfrom abc import ABC, abstractmethod\\nfrom pathlib import Path\\nfrom typing import Dict, List, Set, Tuple\\n\\nimport numpy as np\\n\\n\\nclass HardNegativeMiner(ABC):\\n    \\\"\\\"\\\"Base class for hard-negative mining strategies.\\\"\\\"\\\"\\n\\n    def __init__(\\n        self,\\n        dataflow_graph: Dict[str, Set[str]] | None = None,\\n        embeddings: Dict[str, np.ndarray] | None = None,\\n        bm25_index: object | None = None,\\n    ):\\n        self.dataflow_graph = dataflow_graph or {}\\n        self.embeddings = embeddings or {}\\n        self.bm25_index = bm25_index\\n\\n    @abstractmethod\\n    def mine(\\n        self,\\n        query: str,\\n        positives: List[str],\\n        candidates: List[str],\\n        num_negatives: int,\\n    ) -> List[Tuple[str, float]]:\\n        \\\"\\\"\\\"Return list of (candidate_id, hardness_score) tuples.\\\"\\\"\\\"\\n        ...\\n\\n    # ── shared helpers ──────────────────────────────────────────────\\n\\n    @staticmethod\\n    def _exclude(candidates: List[str], exclude: Set[str]) -> List[str]:\\n        return [c for c in candidates if c not in exclude]\\n\\n    @staticmethod\\n    def load_embeddings(path: str | Path) -> Dict[str, np.ndarray]:\\n        \\\"\\\"\\\"Load pre-computed embeddings from a .npz file (keys=file ids).\\\"\\\"\\\"\\n        data = np.load(path, allow_pickle=True)\\n        return {str(k): data[k] for k in data.files}\\n\\n    @staticmethod\\n    def save_embeddings(embs: Dict[str, np.ndarray], path: str | P
+…[truncated 1919 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_data_full_m2_data_build_20260513T160451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-13T16:06:20.179634+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "ls -d /root/autodl-tmp/structfuse/full_m1_data/repos",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_data_full_m2_data_build_20260513T160451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "ls -d /root/autodl-tmp/structfuse/full_m1_data/repos",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-13T16:06:20.179776+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/structfuse/full_m1_data/repos\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_data_full_m2_data_build_20260513T160451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-13T16:06:20.179896+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "ls -d /root/autodl-tmp/structfuse/full_m1_data/repos_*",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_data_full_m2_data_build_20260513T160451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "ls -d /root/autodl-tmp/structfuse/full_m1_data/repos_*",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-13T16:06:20.180028+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/structfuse/full_m1_data/repos_*': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_data_full_m2_data_build_20260513T160451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-13T16:06:20.180145+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "find /root/autodl-tmp/structfuse/full_m1_data/ -maxdepth 1 -type d",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_data_full_m2_data_build_20260513T160451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "find /root/autodl-tmp/structfuse/full_m1_data/ -maxdepth 1 -type d",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-13T16:06:20.180263+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/structfuse/full_m1_data/\\n/root/autodl-tmp/structfuse/full_m1_data/repos\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_data_full_m2_data_build_20260513T160451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-13T16:06:20.180404+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "ls /root/autodl-tmp/structfuse/full_m1_data/repos/ -1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_data_full_m2_data_build_20260513T160451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "ls /root/autodl-tmp/structfuse/full_m1_data/repos/ -1",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-13T16:06:20.180554+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Cog-Creators__Red-DiscordBot\\nHIPS__autograd\\nInstagram__MonkeyType\\nKnio__dominate\\nMimino666__langdetect\\nProject-MONAI__MONAI\\nPyCQA__flake8\\nSuor__funcy\\nadrienverge__yamllint\\nagronholm__exceptiongroup\\nagronholm__typeguard\\naio-libs__async-timeout\\nalanjds__drf-nested-routers\\nalecthomas__voluptuous\\nandialbrecht__sqlparse\\narrow-py__arrow\\nbenoitc__gunicorn\\nborntyping__python-colorlog\\nbottlepy__bottle\\nburiy__python-readability\\nburnash__gspread\\ncantools__cantools\\nchardet__chardet\\ncknd__stackprinter\\ncloudpipe__cloudpickle\\nconan-io__conan\\ncookiecutter__cookiecutter\\ncool-RR__PySnooper\\ndask__dask\\ndatamade__usaddress\\ndavidhalter__parso\\ndbader__schedule\\ndjango-money__django-money\\ndjango__channels\\ndjango__daphne\\nencode__starlette\\nerikrose__parsimonious\\nfacebookresearch__fvcore\\nfacebookresearch__hydra\\nfacelessuser__soupsieve\\ngawel__pyquery\\ngetmoto__moto\\ngetnikola__nikola\\ngoogle__textfsm\\ngraphql-python__graphene\\ngruns__furl\\ngruns__icecream\\ngweis__isodate\\niterative__dvc\\njaraco__inflect\\njawah__charset_normalizer\\njd__tenacity\\njohn-kurkowski__tldextract\\njoke2k__faker\\njsvine__pdfplumber\\nkayak__pypika\\nkeleshev__schema\\nkennethreitz__records\\nkurtmckee__feedparser\\nlepture__mistune\\nlife4__textdistance\\nlincolnloop__python-qrcode\\nluozhouyang__python-string-similarity\\nmadzak__python-json-logger\\nmahmoud__boltons\\nmahmoud__glom\\nmarshmallow-code__apispec\\nmarshmallow-code__marshmallow\\nmarshmallow-code__webargs\\nmartinblech__xmltodict\\nmatthewwithanm__python-markdownify\\nmewwts__addict\\nmido__mido\\nmodin-project__modin\\nmozilla__bleach\\nmozillazg__python-pinyin\\nmsiemens__tinydb\\noauthlib__oauthlib\\npallets__click\\npallets__jinja\\npallets__markupsafe\\nparamiko__paramiko\\npexpect__ptyprocess\\npndurette__gTTS\\nprettytable__prettytable\\npudo__dataset\\npwaller__pyfiglet\\npyasn1__pyasn1\\npyca__pyopen
+…[truncated 835 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_data_full_m2_data_build_20260513T160451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-13T16:06:20.180718+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "head -80 /root/structfuse/scripts/build_m1_training_data.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_data_full_m2_data_build_20260513T160451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "head -80 /root/structfuse/scripts/build_m1_training_data.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-13T16:06:20.180841+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "ls /root/autodl-tmp/structfuse/full_m2_training_data/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_data_full_m2_data_build_20260513T160451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "ls /root/autodl-tmp/structfuse/full_m2_training_data/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-13T16:06:20.180996+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Build contrastive training data from M1 full extraction results.\\n\\nReads individual M1 extraction JSON files, reads source code from repo\\ndirectories, and produces per-strategy JSONL files compatible with\\ntraining/train.py.\\n\\nKey design: two levels of connectivity:\\n  - positive_files: direct inter-file dataflow connections (training positives)\\n  - full_connected: positive_files + call graph neighbors (broader, for\\n    dataflow_aware negative filtering)\\n\\nThis ensures embedding and dataflow_aware strategies produce DIFFERENT\\nnegative pools: embedding includes call-graph-connected files as negatives,\\nwhile dataflow_aware excludes them.\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport random\\nfrom collections import defaultdict\\nfrom pathlib import Path\\nimport time\\n\\nrandom.seed(42)\\n\\nMAX_FILE_CHARS = 4096\\nCANDIDATE_POOL_SIZE = 50\\nMAX_PER_REPO = 200\\n\\n\\ndef collect_py_files(repo_path: str) -> dict[str, str]:\\n    files = {}\\n    for root, dirs, filenames in os.walk(repo_path):\\n        dirs[:] = [d for d in dirs if not d.startswith(\\\".\\\") and d != \\\"__pycache__\\\"\\n                   and d != \\\"node_modules\\\" and d != \\\".git\\\"]\\n        for fname in filenames:\\n            if fname.endswith(\\\".py\\\"):\\n                full = os.path.join(root, fname)\\n                rel = os.path.relpath(full, repo_path)\\n                try:\\n                    with open(full, encoding=\\\"utf-8\\\", errors=\\\"replace\\\") as f:\\n                        content = f.read()\\n                    files[rel] = content[:MAX_FILE_CHARS]\\n                except OSError:\\n                    pass\\n    return files\\n\\n\\ndef resolve_file(target: str, all_files: list[str]) -> str | None:\\n    if target in all_files:\\n        return target\\n    for f in all_files:\\n        if f.endswith(\\\"/\\\" + tar
+…[truncated 1133 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_data_full_m2_data_build_20260513T160451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-13T16:06:20.181151+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"dataflow_graph.json\\ntrain_dataflow_aware_s42.jsonl\\ntrain_dataflow_aware_s43.jsonl\\ntrain_dataflow_aware_s44.jsonl\\ntrain_embedding_distance_s42.jsonl\\ntrain_embedding_distance_s43.jsonl\\ntrain_embedding_distance_s44.jsonl\\ntrain_random_s42.jsonl\\ntrain_random_s43.jsonl\\ntrain_random_s44.jsonl\\nval_dataflow_aware_s42.jsonl\\nval_dataflow_aware_s43.jsonl\\nval_dataflow_aware_s44.jsonl\\nval_embedding_distance_s42.jsonl\\nval_embedding_distance_s43.jsonl\\nval_embedding_distance_s44.jsonl\\nval_random_s42.jsonl\\nval_random_s43.jsonl\\nval_random_s44.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_data_full_m2_data_build_20260513T160451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-13T16:06:20.181304+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "ls -lh /root/autodl-tmp/structfuse/full_m2_training_data/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_data_full_m2_data_build_20260513T160451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "ls -lh /root/autodl-tmp/structfuse/full_m2_training_data/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-13T16:06:20.181440+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 13G\\n-rw-r--r-- 1 root root  94M May 13 23:35 dataflow_graph.json\\n-rw-r--r-- 1 root root 1.1G May 13 23:35 train_dataflow_aware_s42.jsonl\\n-rw-r--r-- 1 root root 1.1G May 13 23:48 train_dataflow_aware_s43.jsonl\\n-rw-r--r-- 1 root root 1.2G May 14 00:01 train_dataflow_aware_s44.jsonl\\n-rw-r--r-- 1 root root 1.3G May 13 23:34 train_embedding_distance_s42.jsonl\\n-rw-r--r-- 1 root root 1.2G May 13 23:47 train_embedding_distance_s43.jsonl\\n-rw-r--r-- 1 root root 1.3G May 14 00:01 train_embedding_distance_s44.jsonl\\n-rw-r--r-- 1 root root 1.1G May 13 23:34 train_random_s42.jsonl\\n-rw-r--r-- 1 root root 1.1G May 13 23:47 train_random_s43.jsonl\\n-rw-r--r-- 1 root root 1.2G May 14 00:01 train_random_s44.jsonl\\n-rw-r--r-- 1 root root 345M May 13 23:35 val_dataflow_aware_s42.jsonl\\n-rw-r--r-- 1 root root 317M May 13 23:48 val_dataflow_aware_s43.jsonl\\n-rw-r--r-- 1 root root 296M May 14 00:01 val_dataflow_aware_s44.jsonl\\n-rw-r--r-- 1 root root 345M May 13 23:35 val_embedding_distance_s42.jsonl\\n-rw-r--r-- 1 root root 317M May 13 23:48 val_embedding_distance_s43.jsonl\\n-rw-r--r-- 1 root root 296M May 14 00:01 val_embedding_distance_s44.jsonl\\n-rw-r--r-- 1 root root 345M May 13 23:35 val_random_s42.jsonl\\n-rw-r--r-- 1 root root 317M May 13 23:48 val_random_s43.jsonl\\n-rw-r--r-- 1 root root 296M May 14 00:01 val_random_s44.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_data_full_m2_data_build_20260513T160451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-13T16:06:20.181563+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "wc -l /root/autodl-tmp/structfuse/full_m2_training_data/*.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_data_full_m2_data_build_20260513T160451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "wc -l /root/autodl-tmp/structfuse/full_m2_training_data/*.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-13T16:06:20.181698+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "du -sh /root/autodl-tmp/structfuse/full_m2_training_data/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_data_full_m2_data_build_20260513T160451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "du -sh /root/autodl-tmp/structfuse/full_m2_training_data/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-13T16:06:20.181835+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"      11308 /root/autodl-tmp/structfuse/full_m2_training_data/train_dataflow_aware_s42.jsonl\\n      11236 /root/autodl-tmp/structfuse/full_m2_training_data/train_dataflow_aware_s43.jsonl\\n      11264 /root/autodl-tmp/structfuse/full_m2_training_data/train_dataflow_aware_s44.jsonl\\n      11308 /root/autodl-tmp/structfuse/full_m2_training_data/train_embedding_distance_s42.jsonl\\n      11236 /root/autodl-tmp/structfuse/full_m2_training_data/train_embedding_distance_s43.jsonl\\n      11264 /root/autodl-tmp/structfuse/full_m2_training_data/train_embedding_distance_s44.jsonl\\n      11308 /root/autodl-tmp/structfuse/full_m2_training_data/train_random_s42.jsonl\\n      11236 /root/autodl-tmp/structfuse/full_m2_training_data/train_random_s43.jsonl\\n      11264 /root/autodl-tmp/structfuse/full_m2_training_data/train_random_s44.jsonl\\n       2980 /root/autodl-tmp/structfuse/full_m2_training_data/val_dataflow_aware_s42.jsonl\\n       3052 /root/autodl-tmp/structfuse/full_m2_training_data/val_dataflow_aware_s43.jsonl\\n       3024 /root/autodl-tmp/structfuse/full_m2_training_data/val_dataflow_aware_s44.jsonl\\n       2980 /root/autodl-tmp/structfuse/full_m2_training_data/val_embedding_distance_s42.jsonl\\n       3052 /root/autodl-tmp/structfuse/full_m2_training_data/val_embedding_distance_s43.jsonl\\n       3024 /root/autodl-tmp/structfuse/full_m2_training_data/val_embedding_distance_s44.jsonl\\n       2980 /root/autodl-tmp/structfuse/full_m2_training_data/val_random_s42.jsonl\\n       3052 /root/autodl-tmp/structfuse/full_m2_training_data/val_random_s43.jsonl\\n       3024 /root/autodl-tmp/structfuse/full_m2_training_data/val_random_s44.jsonl\\n     128592 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.77}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_data_full_m2_data_build_20260513T160451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-13T16:06:20.181964+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"13G\\t/root/autodl-tmp/structfuse/full_m2_training_data/\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_data_full_m2_data_build_20260513T160451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-13T16:06:20.182105+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "head -1 /root/autodl-tmp/structfuse/full_m2_training_data/train_random_s42.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_data_full_m2_data_build_20260513T160451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "head -1 /root/autodl-tmp/structfuse/full_m2_training_data/train_random_s42.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-13T16:06:20.182225+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "head -1 /root/autodl-tmp/structfuse/full_m2_training_data/train_embedding_distance_s42.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_data_full_m2_data_build_20260513T160451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "head -1 /root/autodl-tmp/structfuse/full_m2_training_data/train_embedding_distance_s42.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-13T16:06:20.182464+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"query_id\\\": \\\"oauthlib__oauthlib.1fd52536.lm_rewrite__e551pdwl::oauthlib/openid/connect/core/grant_types/dispatchers.py\\\", \\\"query_tokens\\\": \\\"import logging\\\\n\\\\nlog = logging.getLogger(__name__)\\\\n\\\\n\\\\nclass Dispatcher:\\\\n    default_grant = None\\\\n    oidc_grant = None\\\\n\\\\n\\\\nclass AuthorizationCodeGrantDispatcher(Dispatcher):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    This is an adapter class that will route simple Authorization Code\\\\n    requests, those that have `response_type=code` and a scope including\\\\n    `openid` to either the `default_grant` or the `oidc_grant` based on\\\\n    the scopes requested.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    def __init__(self, default_grant=None, oidc_grant=None):\\\\n        self.default_grant = default_grant\\\\n        self.oidc_grant = oidc_grant\\\\n\\\\n    def _handler_for_request(self, request):\\\\n        handler = self.default_grant\\\\n\\\\n        if request.scopes and \\\\\\\"openid\\\\\\\" in request.scopes:\\\\n            handler = self.oidc_grant\\\\n\\\\n        log.debug('Selecting handler for request %r.', handler)\\\\n        return handler\\\\n\\\\n    def create_authorization_response(self, request, token_handler):\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"Read scope and route to the designated handler.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        return self._handler_for_request(request).create_authorization_response(request, token_handler)\\\\n\\\\n    def validate_authorization_request(self, request):\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"Read scope and route to the designated handler.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        return self._handler_for_request(request).validate_authorization_request(request)\\\\n\\\\n\\\\nclass ImplicitTokenGrantDispatcher(Dispatcher):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    This is an adapter class that will route simple Authorization\\\\n    requests, those that have `id_token` in `resp
+…[truncated 7171 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_data_full_m2_data_build_20260513T160451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-13T16:06:20.182768+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"query_id\\\": \\\"oauthlib__oauthlib.1fd52536.lm_rewrite__e551pdwl::oauthlib/openid/connect/core/grant_types/dispatchers.py\\\", \\\"query_tokens\\\": \\\"import logging\\\\n\\\\nlog = logging.getLogger(__name__)\\\\n\\\\n\\\\nclass Dispatcher:\\\\n    default_grant = None\\\\n    oidc_grant = None\\\\n\\\\n\\\\nclass AuthorizationCodeGrantDispatcher(Dispatcher):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    This is an adapter class that will route simple Authorization Code\\\\n    requests, those that have `response_type=code` and a scope including\\\\n    `openid` to either the `default_grant` or the `oidc_grant` based on\\\\n    the scopes requested.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    def __init__(self, default_grant=None, oidc_grant=None):\\\\n        self.default_grant = default_grant\\\\n        self.oidc_grant = oidc_grant\\\\n\\\\n    def _handler_for_request(self, request):\\\\n        handler = self.default_grant\\\\n\\\\n        if request.scopes and \\\\\\\"openid\\\\\\\" in request.scopes:\\\\n            handler = self.oidc_grant\\\\n\\\\n        log.debug('Selecting handler for request %r.', handler)\\\\n        return handler\\\\n\\\\n    def create_authorization_response(self, request, token_handler):\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"Read scope and route to the designated handler.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        return self._handler_for_request(request).create_authorization_response(request, token_handler)\\\\n\\\\n    def validate_authorization_request(self, request):\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"Read scope and route to the designated handler.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        return self._handler_for_request(request).validate_authorization_request(request)\\\\n\\\\n\\\\nclass ImplicitTokenGrantDispatcher(Dispatcher):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    This is an adapter class that will route simple Authorization\\\\n    requests, those that have `id_token` in `resp
+…[truncated 7060 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_data_full_m2_data_build_20260513T160451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-13T16:06:20.182944+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "head -1 /root/autodl-tmp/structfuse/full_m2_training_data/train_dataflow_aware_s42.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_data_full_m2_data_build_20260513T160451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "head -1 /root/autodl-tmp/structfuse/full_m2_training_data/train_dataflow_aware_s42.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-13T16:06:20.183196+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"query_id\\\": \\\"oauthlib__oauthlib.1fd52536.lm_rewrite__e551pdwl::oauthlib/openid/connect/core/grant_types/dispatchers.py\\\", \\\"query_tokens\\\": \\\"import logging\\\\n\\\\nlog = logging.getLogger(__name__)\\\\n\\\\n\\\\nclass Dispatcher:\\\\n    default_grant = None\\\\n    oidc_grant = None\\\\n\\\\n\\\\nclass AuthorizationCodeGrantDispatcher(Dispatcher):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    This is an adapter class that will route simple Authorization Code\\\\n    requests, those that have `response_type=code` and a scope including\\\\n    `openid` to either the `default_grant` or the `oidc_grant` based on\\\\n    the scopes requested.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    def __init__(self, default_grant=None, oidc_grant=None):\\\\n        self.default_grant = default_grant\\\\n        self.oidc_grant = oidc_grant\\\\n\\\\n    def _handler_for_request(self, request):\\\\n        handler = self.default_grant\\\\n\\\\n        if request.scopes and \\\\\\\"openid\\\\\\\" in request.scopes:\\\\n            handler = self.oidc_grant\\\\n\\\\n        log.debug('Selecting handler for request %r.', handler)\\\\n        return handler\\\\n\\\\n    def create_authorization_response(self, request, token_handler):\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"Read scope and route to the designated handler.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        return self._handler_for_request(request).create_authorization_response(request, token_handler)\\\\n\\\\n    def validate_authorization_request(self, request):\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"Read scope and route to the designated handler.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        return self._handler_for_request(request).validate_authorization_request(request)\\\\n\\\\n\\\\nclass ImplicitTokenGrantDispatcher(Dispatcher):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    This is an adapter class that will route simple Authorization\\\\n    requests, those that have `id_token` in `resp
+…[truncated 7191 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_data_full_m2_data_build_20260513T160451",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47 · 2026-05-13T16:06:20.183404+00:00_
+
+M2 训练数据已全部构建完成，无需重新运行。
+
+## 产出汇总
+
+**路径**: `/root/autodl-tmp/structfuse/full_m2_training_data/`
+
+| 文件 | 行数 | 大小 |
+|------|------|------|
+| `train_random_s42.jsonl` | 11,308 | 1.1G |
+| `train_random_s43.jsonl` | 11,236 | 1.1G |
+| `train_random_s44.jsonl` | 11,264 | 1.2G |
+| `train_embedding_distance_s42.jsonl` | 11,308 | 1.3G |
+| `train_embedding_distance_s43.jsonl` | 11,236 | 1.2G |
+| `train_embedding_distance_s44.jsonl` | 11,264 | 1.3G |
+| `train_dataflow_aware_s42.jsonl` | 11,308 | 1.1G |
+| `train_dataflow_aware_s43.jsonl` | 11,236 | 1.1G |
+| `train_dataflow_aware_s44.jsonl` | 11,264 | 1.2G |
+| `val_*_s42.jsonl` (×3) | 2,980 each | 345M each |
+| `val_*_s43.jsonl` (×3) | 3,052 each | 317M each |
+| `val_*_s44.jsonl` (×3) | 3,024 each | 296M each |
+| `dataflow_graph.json` | — | 94M |
+
+**总磁盘占用**: 13GB
+
+**数据差异验证**: 3 策略 train 文件行数相同但大小不同（random ~1.1G, embedding_distance ~1.3G, dataflow_aware ~1.1G），确认 negative mining 策略生效。embedding_distance 文件更大，因为 cosine-nearest negatives 倾向于选择更长的相似文件。
+
+**构建时间**: 根据文件时间戳，2026-05-13 23:34 ~ 05-14 00:01，约 27 分钟完成 3 seeds。
+
+**注意**: 脚本使用 seeds (42, 43, 44)，非任务描述中的 (42, 123, 456)。每 seed 约 11,200-11,300 train + 3,000 val instances，总 train ~33,808，val ~9,056。磁盘剩余 127GB 充足。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_data_full_m2_data_build_20260513T160451"
+}
+```
+
+</details>
+
+---

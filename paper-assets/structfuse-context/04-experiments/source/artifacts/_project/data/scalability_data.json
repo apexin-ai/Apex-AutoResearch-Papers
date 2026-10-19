@@ -1,0 +1,92 @@
+{
+  "meta": {
+    "plan_id": "plan_006",
+    "collected_at": "2026-05-13T12:22:00Z",
+    "source": "cqa1-21977:/root/autodl-tmp/structfuse/m1_extraction/",
+    "status": "partial",
+    "repos_analyzed": 29,
+    "repos_target": 131,
+    "coverage_pct": 22.1
+  },
+  "overall": {
+    "total_instances": 8171,
+    "total_repos": 29,
+    "z_total": 5923,
+    "z_pct": 72.5,
+    "success_rate": 100.0,
+    "error_rate": 0.0,
+    "timeout_rate": 0.0,
+    "skip_clone_failed": 660
+  },
+  "by_size": [
+    {
+      "category": "small",
+      "criteria": "<100 instances",
+      "repos": 8,
+      "instances": 484,
+      "z_pct": 42.6,
+      "z_instances_est": 206
+    },
+    {
+      "category": "medium",
+      "criteria": "100-500 instances",
+      "repos": 16,
+      "instances": 3836,
+      "z_pct": 64.2,
+      "z_instances_est": 2463
+    },
+    {
+      "category": "large",
+      "criteria": ">500 instances",
+      "repos": 5,
+      "instances": 3851,
+      "z_pct": 84.5,
+      "z_instances_est": 3254
+    }
+  ],
+  "extraction_time": {
+    "mean_s": 26.5,
+    "median_s": 23.67,
+    "p95_s": 43.65,
+    "max_s": 112.93,
+    "min_s": 6.47
+  },
+  "zero_z_repos": [
+    {"repo": "bottlepy/bottle", "instances": 373, "avg_time_s": 21.84, "reason": "single-file architecture"},
+    {"repo": "jaraco/inflect", "instances": 133, "avg_time_s": 20.30, "reason": "monolithic module"},
+    {"repo": "keleshev/schema", "instances": 88, "avg_time_s": 24.68, "reason": "minimal codebase"},
+    {"repo": "matthewwithanm/python-markdownify", "instances": 83, "avg_time_s": 24.38, "reason": "small self-contained library"},
+    {"repo": "madzak/python-json-logger", "instances": 38, "avg_time_s": 18.15, "reason": "tiny codebase"}
+  ],
+  "per_repo": [
+    {"repo": "oauthlib/oauthlib", "instances": 940, "z_pct": 93.5, "avg_time_s": 24.80, "size": "large"},
+    {"repo": "pygments/pygments", "instances": 739, "z_pct": 87.6, "avg_time_s": 34.89, "size": "large"},
+    {"repo": "mahmoud/boltons", "instances": 737, "z_pct": 91.6, "avg_time_s": 25.59, "size": "large"},
+    {"repo": "cantools/cantools", "instances": 735, "z_pct": 88.4, "avg_time_s": 27.22, "size": "large"},
+    {"repo": "pyupio/safety", "instances": 700, "z_pct": 57.4, "avg_time_s": 24.14, "size": "large"},
+    {"repo": "Cog-Creators/Red-DiscordBot", "instances": 460, "z_pct": 85.7, "avg_time_s": 35.14, "size": "medium"},
+    {"repo": "PyCQA/flake8", "instances": 454, "z_pct": 90.1, "avg_time_s": 20.40, "size": "medium"},
+    {"repo": "bottlepy/bottle", "instances": 373, "z_pct": 0.0, "avg_time_s": 21.84, "size": "medium"},
+    {"repo": "agronholm/typeguard", "instances": 333, "z_pct": 64.6, "avg_time_s": 18.02, "size": "medium"},
+    {"repo": "marshmallow-code/webargs", "instances": 321, "z_pct": 65.4, "avg_time_s": 24.40, "size": "medium"},
+    {"repo": "Suor/funcy", "instances": 306, "z_pct": 23.2, "avg_time_s": 19.53, "size": "medium"},
+    {"repo": "joke2k/faker", "instances": 295, "z_pct": 94.2, "avg_time_s": 71.41, "size": "medium"},
+    {"repo": "rsalmei/alive-progress", "instances": 197, "z_pct": 20.8, "avg_time_s": 19.08, "size": "medium"},
+    {"repo": "paramiko/paramiko", "instances": 165, "z_pct": 98.8, "avg_time_s": 27.78, "size": "medium"},
+    {"repo": "jd/tenacity", "instances": 152, "z_pct": 87.5, "avg_time_s": 20.41, "size": "medium"},
+    {"repo": "chardet/chardet", "instances": 149, "z_pct": 94.6, "avg_time_s": 23.05, "size": "medium"},
+    {"repo": "agronholm/exceptiongroup", "instances": 139, "z_pct": 72.7, "avg_time_s": 18.50, "size": "medium"},
+    {"repo": "cknd/stackprinter", "instances": 137, "z_pct": 73.7, "avg_time_s": 18.52, "size": "medium"},
+    {"repo": "jaraco/inflect", "instances": 133, "z_pct": 0.0, "avg_time_s": 20.30, "size": "medium"},
+    {"repo": "andialbrecht/sqlparse", "instances": 115, "z_pct": 95.7, "avg_time_s": 19.35, "size": "medium"},
+    {"repo": "pudo/dataset", "instances": 107, "z_pct": 90.7, "avg_time_s": 19.36, "size": "medium"},
+    {"repo": "keleshev/schema", "instances": 88, "z_pct": 0.0, "avg_time_s": 24.68, "size": "small"},
+    {"repo": "matthewwithanm/python-markdownify", "instances": 83, "z_pct": 0.0, "avg_time_s": 24.38, "size": "small"},
+    {"repo": "google/textfsm", "instances": 79, "z_pct": 92.4, "avg_time_s": 25.62, "size": "small"},
+    {"repo": "pytest-dev/iniconfig", "instances": 63, "z_pct": 87.3, "avg_time_s": 17.71, "size": "small"},
+    {"repo": "luozhouyang/python-string-similarity", "instances": 59, "z_pct": 76.3, "avg_time_s": 15.34, "size": "small"},
+    {"repo": "Knio/dominate", "instances": 42, "z_pct": 54.8, "avg_time_s": 16.84, "size": "small"},
+    {"repo": "madzak/python-json-logger", "instances": 38, "z_pct": 0.0, "avg_time_s": 18.15, "size": "small"},
+    {"repo": "seatgeek/thefuzz", "instances": 32, "z_pct": 31.2, "avg_time_s": 18.33, "size": "small"}
+  ]
+}

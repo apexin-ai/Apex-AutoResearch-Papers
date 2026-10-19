@@ -1,0 +1,27 @@
+{
+  "exp_id": "p2b-all-9runs",
+  "project": "structfuse-context",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-12T12:34:24.923Z",
+    "updated_at": "2026-05-12T15:05:06.563Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/structfuse/scripts/run_p2b_all.sh > /tmp/p2b_all_runs.log 2>&1\"",
+      "server": "cqa1-21977",
+      "gpu": [
+        "cuda:4"
+      ],
+      "pid": "92636",
+      "log_path": "~/runs/structfuse-context/p2b-all-9runs.log",
+      "submitted_at": "2026-05-12T12:34:24.908Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-12T15:05:06.584557+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,15 @@
+{
+  "exp_id": "advbench_r1_8b_full",
+  "project": "contrastive_trace_safety",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T22:09:22.527Z",
+    "updated_at": "2026-05-19T23:59:24.822Z",
+    "hypothesis": "The metric-dependent layer selection pattern observed on HarmThoughts (crossing_rate selecting shallow layers vs threshold-based metrics selecting deep layers) generalizes to AdvBench, a second dataset with different prompt distribution (adversarial jailbreak prompts vs safety-relevant reasoning). Cross-dataset replication strengthens the claim that layer selection sensitivity is a fundamental property of hidden-state probes, not a dataset-specific artifact."
+  },
+  "timestamp": "2026-05-19T23:59:24.944520+00:00",
+  "trigger": "update_registry"
+}

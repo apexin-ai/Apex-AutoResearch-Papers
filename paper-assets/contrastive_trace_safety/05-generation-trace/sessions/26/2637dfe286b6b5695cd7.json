@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2637dfe286b6b5695cd7",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "infra verify 32b downloads",
+  "task_key": "worker_infra_verify_32b_downloads_20260516T200027",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_verify_32b_downloads_20260516T200027_result.json",
+    "occurrence": 1,
+    "bytes": 2607,
+    "sha256": "49d9d5862f3330274078262906fdb1caee6c7273a8d0e1318ea51ffc9c0f0e50"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 验证结果：下载未完成，仍在进行中\n\n### Step 1: 进程状态\n```\n两个下载进程仍在运行：\n- PID 213895: snapshot_download(\"deepseek-ai/DeepSeek-R1-Distill-Qwen-32B\") — CPU 29.5%\n- PID 213886: snapshot_download(\"Qwen/QwQ-32B\") — CPU 24.7%\n```\n\n### Step 2: 下载日志尾部\n**R1-Distill-Qwen-32B:**\n```\nmodel-00006-of-000008.safetensors:  52% | 4.21G/8.17G [09:54<17:39, 4.02MB/s]\nmodel-00005-of-000008.safetensors:  23% | 1.92G/8.17G [09:54<15:47, 7.09MB/s]\nmodel-00004-of-000008.safetensors:  14% | 1.12G/8.17G [09:54<51:57, 2.43MB/s]\nmodel-00001-of-000008.safetensors:  18% | 1.44G/8.19G [09:54<31:38, 3.82MB/s]\n```\n\n**QwQ-32B:**\n```\nmodel-00007-of-00014.safetensors:  75% | 3.39G/4.54G [09:54<02:25, 8.52MB/s]\nmodel-00006-of-00014.safetensors:  31% | 1.39G/4.54G [09:54<24:42, 2.28MB/s]\nmodel-00004-of-00014.safetensors:  47% | 2.11G/4.54G [09:54<05:56, 7.30MB/s]\nmodel-00003-of-00014.safetensors:  26% | 1.16G/4.54G [09:54<13:54, 4.34MB/s]\nmodel-00001-of-00014.safetensors:  20% | 928M/4.56G [09:54<26:11, 2.49MB/s]\n```\n\n### Step 3: safetensors 文件（>1G）\n| 模型 | 已完成文件数 | 需要总数 | 状态 |\n|------|------------|---------|------|\n| R1-Distill-Qwen-32B | 7（1完成 + 6在temp） | 8 | 缺 model-00002 |\n| QwQ-32B | 5（全在temp） | 14 | 缺 9 个 |\n\n**R1-32B 已有文件：**\n```\nmodel-00008 (3.8G) — 已完成（在最终目录）\nmodel-00001 (1.5G), model-00003 (2.2G), model-00004 (1.2G), model-00005 (2.0G), model-00006 (4.3G), model-00007 (3.5G) — 在 ._____temp/ 中，正在下载\n```\n\n**QwQ-32B 已有文件：**\n```\nmodel-00003 (1.2G), model-00004 (2.2G), model-00006 (1.4G), model-00007 (3.5G), model-00008 (4.0G) — 全在 ._____temp/\n```\n\n### Step 4: config.json\n```\n✅ R1-32B: /root/autodl-tmp/.hf_cache/deepseek-ai/DeepSeek-R1-Distill-Qwen-32B/config.json (664B)\n✅ QwQ-32B: /root/autodl-tmp/.hf_cache/Qwen/QwQ-32B/config.json (662B)\n```\n\n### Step 5: 磁盘占用\n```\ndeepseek-ai/: 19G\nQwen/:        2.0M（safetensors 都在 ._____temp/ 所以这里只有 config）\n总 .hf_cache/: 62G\n磁盘: /dev/md0 250G, 已用 65G, 可用 186G (26%)\n```\n\n### 进度评估\n\n| 模型 | 预计总大小 | 当前进度 | 预估剩余时间 |\n|------|-----------|---------|-------------|\n| R1-Distill-Qwen-32B (8 shards × ~8G = ~65G) | ~40% | ~30-50 min |\n| QwQ-32B (14 shards × ~4.5G = ~63G) | ~20% | ~50-70 min |\n\n**结论：两个模型都还在下载中，预计还需 50-70 分钟完成。磁盘空间充足（186G 可用），不会爆盘。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-verify-32b-downloads.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "92d591611ba55cf259a3",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code r6 bootstrap ci extraction",
+  "task_key": "worker_code_r6_bootstrap_ci_extraction_20260518T024936",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r6_bootstrap_ci_extraction_20260518T024936_result.json",
+    "occurrence": 1,
+    "bytes": 850,
+    "sha256": "be8445336ab3e2d2e7055dbd715600bf74fc187872aa25bc8a857403c0c05196"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "JSON 已有 percentile-based 95% CI。提取 precision metric 结果：\n\n| Model | Precision Δ (HS − Text) | 95% CI lower | 95% CI upper | p-value |\n|---------|------------------------|-------------|-------------|---------|\n| R1-8B | +0.2786 | +0.1854 | +0.3781 | <0.0001 |\n| OT-7B | +0.2189 | +0.1441 | +0.2961 | <0.0001 |\n| QwQ-32B | +0.2349 | +0.1287 | +0.3510 | <0.0001 |\n| R1-32B | +0.1544 | +0.0867 | +0.2262 | <0.0001 |\n\n**R1-32B 分析**: delta 最小 (+0.154)，但 CI 下界 +0.087，远离 0，统计显著性没有问题。CI 宽度 0.140，与其他模型相当。\n\n补充信息：\n- 所有 12 项 Holm-Bonferroni 校正测试通过 (12/12 pass)\n- p 值均为 0.0（10000 次 resampling 中零次出现反向结果）\n- QwQ-32B 的 CI 最宽（0.222），R1-32B 次之（0.140），OT-7B 最窄（0.152）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r6-bootstrap-ci-extraction.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5ed3ee4a6241288b363e",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code exp 001b qwq 32b",
+  "task_key": "worker_code_exp_001b_qwq_32b_20260516T215746",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_001b_qwq_32b_20260516T215746_result.json",
+    "occurrence": 1,
+    "bytes": 1134,
+    "sha256": "d27a7b77344d61c86c145df48cb0835a40530e55301a8a4b5c716c1256901361"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 5 phases of exp_001b are complete. Here's the summary:\n\n## Results\n\n**Phase 1 - Extraction**: 95 QwQ-32B traces extracted (4,852 steps, 64 layers, hidden_dim=5120). 3.18 GB total. Zero errors.\n\n**Phase 2 - Layer Sweep**: Best layers are **early (0-6)**, not middle layers like R1-8B (layer 14). Best: layer 1 with acc=0.737, crossing_rate=47.4%, lead_mean=16.3 steps.\n\n**Phase 3 - Temporal LR**: Window=10 achieves best lead_mean=21.9 steps, crossing_rate=42.1%.\n\n**Phase 4 - GRU 3-seed**: Acc=0.713 +/- 0.005, crossing_rate=63.2% +/- 12.9%, lead_mean=12.4 +/- 0.75.\n\n**Phase 5 - Bootstrap**: HS probe pre-CP FPR (0.164) significantly lower than text baseline (0.312), p=0.001.\n\n## Key Finding vs R1-8B\n\nQwQ-32B has **lower accuracy** (~73% vs 81%) but **dramatically better lead times** (16-22 steps vs ~0 for R1-8B) and higher crossing rates. The signal concentrates in very early layers (0-6) rather than middle layers, suggesting a different encoding strategy for safety-relevant representations. The bootstrap test confirms HS probes provide significantly earlier detection than text baselines."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-001b-qwq-32b.md"
+}

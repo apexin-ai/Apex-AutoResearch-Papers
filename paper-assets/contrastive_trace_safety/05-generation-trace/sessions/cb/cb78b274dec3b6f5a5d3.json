@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cb78b274dec3b6f5a5d3",
+  "project": "contrastive_trace_safety",
+  "kind": "history",
+  "title": "director / loop_4.md",
+  "task_key": "loop_4",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_4.md",
+    "occurrence": 1,
+    "bytes": 3029,
+    "sha256": "f890627c4a9acb1416210945fed043c227040f5e903cbdd5efab3402e6702d8d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: max_wall_time\nupdated: '2026-05-21T18:54:39+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU westd-15904 cuda:0 挂项目名下但 0% 利用率，无补充实验计划。已向用户建议释放，等用户确认前不要在上面启动任何任务\n- enlargethispage 已经 10+11=21 baselineskip（page 8），极度激进，不能再加\n- 用户明确指示\"内部审核仅作参考，不代表真实水平\"——不要为了提升内部审稿分数做大幅 rewrite\n- 论文经 R24-R29 六轮打磨已达 text-editing 收益极限，Reviewer 确认进一步迭代边际收益趋近于零\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-15904，GPU cuda:0（空闲）\n- 论文目录：`/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/docs/paper/`\n- 最新 PDF：`docs/paper/main.pdf`（commit 91288e2，32 页含附录，主文 8 页合规）\n- 活跃进程：无。无 RUNNING 实验、无 Worker、无 cron 任务\n- 审稿提交：apr_20260521T164232_yyxq（R29 continue 模式，pending 等用户审批）\n\n### 3. 📊 当前状态\n刚完成 R29 quick fixes（commit 91288e2）：conditional inference caveat、CR-composite motivation、E5-Mistral PCA label、7-8B/32B 区分、ITI + Levinstein refs。\n- Registry：无 RUNNING/PREPARING 实验，实验阶段已结束（27 成功 / 20 阴性）\n- 等待：R29 审稿审批（用户需在飞书点 approve）；GPU 释放确认\n- review_issues.yaml 已更新至 R28 fixes，R29 新 issues 尚未写入（因为 R29 是最新轮次，fixes 刚提交）\n\n### 4. 📋 待办\n- R29 审稿审批通过 → 等审稿报告回传 → 按 review-report-action skill 处理（但 Reviewer 建议停止迭代）\n- 用户确认 GPU 释放 → 不需要额外操作（archive_project 时自动释放）\n- 用户说\"提交 ARR\" → 确认 venue/deadline，准备 submission checklist（anonymous、page limit、supplementary）\n- 用户说\"准备 rebuttal\" → 从 review_issues.yaml 提取结构性限制的回应策略：(1) HarmThoughts 是唯一有 step-level CP 的公开数据集 (2) AdvBench validates geometric precondition 1.67× (3) 3/4 Qwen hedging 已 5 处到位\n\n### 5. 🎯 战略上下文\n- 核心贡献：metric-induced layer selection bias 可逆转 HS probe 结论（C1，robust across 4 models）；HS advantage doubly conditional on encoder quality + position（C2，7-8B validated, 32B exploratory）\n- 内部审稿轨迹：R24→R29 = 3.5→3.5→3.0→3.5→3.0→3.0。分数波动主要因 fresh vs continue 模式差异，非论文质量倒退\n- 结构性天花板：单数据集 + 3/4 Qwen + 32B underpowered 是无法通过编辑解决的，rebuttal 策略已准备好\n- 易错点：不要被内部审稿的 recurring issues（conditional inference 4 轮、architecture diversity 7 轮）带节奏做过度修改——这些在真实 EMNLP NLP safety track 不太会被深究到这个程度\n- 易错点：Abstract/Intro/Discussion 多轮密集修改后，检查前后一致性再做任何新改动\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4.md"
+}

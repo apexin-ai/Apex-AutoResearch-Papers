@@ -1,0 +1,1 @@
+See remote: /root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a6_cp_perturbation/results.json and summary.json. Script: scripts/r14_a6_cp_perturbation.py. Summary within ±2 steps - R1-8B: |dPrec|=0.046 |dBA|=0.009 |dFPR|=0.015; OT-7B: |dPrec|=0.040 |dBA|=0.006 |dFPR|=0.011; R1-32B: |dPrec|=0.033 |dBA|=0.025 |dFPR|=0.052; QwQ-32B: |dPrec|=0.053 |dBA|=0.019 |dFPR|=0.017

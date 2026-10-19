@@ -1,0 +1,4077 @@
+# ops unixcoder training launch
+
+**StructFuse: Structure-Grounded Hard Negative Mining for Contrastive Code Context Retrieval** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 139
+- **Recorded user turns:** 0
+- **Tool calls:** 69
+- **Original source:** `logs/chats/worker_ops_unixcoder_training_launch_20260516T055854.jsonl`
+- **Structured JSON:** [`c16e91ee31d2453c93df.json`](../../sessions/c1/c16e91ee31d2453c93df.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+139 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-16T06:07:05.967950+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__detect_image",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__detect_image",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-16T06:07:05.968330+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-16T06:07:05.968573+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "nvidia-smi --query-gpu=index,memory.used,memory.total,memory.free --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "nvidia-smi --query-gpu=index,memory.used,memory.total,memory.free --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-16T06:07:05.968789+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "head -80 /root/structfuse/training/train.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "head -80 /root/structfuse/training/train.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-16T06:07:05.968942+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 50801 MiB, 97887 MiB, 46453 MiB\\n1, 71598 MiB, 97887 MiB, 25655 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.13}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T06:07:05.969131+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"from __future__ import annotations\\n\\nimport os\\n\\n\\\"\\\"\\\"StructFuse contrastive training entry point.\\n\\nTrains a bi-encoder (Qwen2.5-Coder-3B) with InfoNCE loss, data-flow-weighted\\npositives, and configurable hard-negative mining.  Supports single/multi-GPU\\nvia HuggingFace Accelerate, LoRA, gradient checkpointing, and W&B logging.\\n\\\"\\\"\\\"\\n\\n\\nimport argparse\\nimport sys\\nimport json\\nimport math\\nimport os\\nimport random\\nimport shutil\\nfrom pathlib import Path\\nfrom typing import Any, Dict, List\\n\\nimport numpy as np\\nimport torch\\nfrom torch.utils.data import DataLoader, Dataset\\nfrom transformers import AutoTokenizer, get_cosine_schedule_with_warmup\\n\\nfrom accelerate import Accelerator\\nfrom accelerate.utils import set_seed\\n\\nfrom contrastive_model import StructFuseEncoder\\nfrom hard_negative_mining import build_miner, mine_batch\\n\\n\\n\\ndef _print_flush(*args, **kwargs):\\n    \\\"\\\"\\\"Print with explicit flush for file-redirect compatibility.\\\"\\\"\\\"\\n    kwargs['flush'] = True\\n    print(*args, **kwargs)\\n\\n# ── Dataset ──���───────────────────────────────────────────────────────\\n\\nclass ContrastiveDataset(Dataset):\\n    \\\"\\\"\\\"\\n    Each sample: {query, positive, negatives[], pos_weight, features[]}.\\n\\n    The raw data file is JSONL with fields:\\n        query_id, query_tokens, pos_id, pos_tokens, pos_dataflow_distance,\\n        neg_candidates (list of file ids), features (dict per candidate).\\n\\n    Negatives are mined dynamically per epoch via `refresh_negatives()`.\\n    \\\"\\\"\\\"\\n\\n    def __init__(\\n        self,\\n        data_path: str,\\n        tokenizer: AutoTokenizer,\\n        max_seq_length: int,\\n        num_negatives: int,\\n        pos_weight_alpha: float,\\n        use_fusion_head: bool,\\n    ):\\n        self.tokenizer = tokenizer\\n        self.max_seq_length = max_seq_length\\n        self.num_neg
+…[truncated 733 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-16T06:07:05.969320+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "grep -n \"add_argument\" /root/structfuse/training/train.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "grep -n \"add_argument\" /root/structfuse/training/train.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-16T06:07:05.969498+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"597:    p.add_argument(\\\"--model-name\\\", default=\\\"Qwen/Qwen2.5-Coder-3B\\\")\\n598:    p.add_argument(\\\"--train-file\\\", required=True)\\n599:    p.add_argument(\\\"--val-file\\\", required=True)\\n600:    p.add_argument(\\\"--output-dir\\\", required=True)\\n601:    p.add_argument(\\\"--batch-size\\\", type=int, default=8)\\n602:    p.add_argument(\\\"--learning-rate\\\", type=float, default=2e-5)\\n603:    p.add_argument(\\\"--num-epochs\\\", type=int, default=3)\\n604:    p.add_argument(\\\"--warmup-ratio\\\", type=float, default=0.1)\\n605:    p.add_argument(\\\"--num-negatives\\\", type=int, default=7)\\n606:    p.add_argument(\\\"--hard-negative-strategy\\\", choices=[\\\"random\\\", \\\"embedding_distance\\\", \\\"dataflow_aware\\\", \\\"bm25\\\"], default=\\\"dataflow_aware\\\")\\n607:    p.add_argument(\\\"--hard-negative-ratio\\\", type=float, default=0.5)\\n608:    p.add_argument(\\\"--temperature\\\", type=float, default=0.07)\\n609:    p.add_argument(\\\"--pos-weight-alpha\\\", type=float, default=1.0)\\n610:    p.add_argument(\\\"--use-fusion-head\\\", action=\\\"store_true\\\")\\n611:    p.add_argument(\\\"--use-lora\\\", action=\\\"store_true\\\")\\n612:    p.add_argument(\\\"--lora-r\\\", type=int, default=16)\\n613:    p.add_argument(\\\"--lora-target-modules\\\", nargs=\\\"*\\\", default=None,\\n615:    p.add_argument(\\\"--proj-dim\\\", type=int, default=256)\\n616:    p.add_argument(\\\"--gradient-checkpointing\\\", action=\\\"store_true\\\")\\n617:    p.add_argument(\\\"--eval-steps\\\", type=int, default=500)\\n618:    p.add_argument(\\\"--save-steps\\\", type=int, default=1000)\\n619:    p.add_argument(\\\"--max-seq-length\\\", type=int, default=2048)\\n620:    p.add_argument(\\\"--seed\\\", type=int, default=42)\\n621:    p.add_argument(\\\"--wandb-project\\\", default=\\\"structfuse\\\")\\n622:    p.add_argument(\\\"--wandb-run-name\\\", default=None)\\n623:    p.add_argument
+…[truncated 552 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-16T06:07:05.969710+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "ls /root/autodl-tmp/structfuse/data/m1/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "ls /root/autodl-tmp/structfuse/data/m1/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-16T06:07:05.969854+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/structfuse/data/m1/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-16T06:07:05.970000+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "grep -n \"class StructFuseEncoder\\|class ContrastiveModel\\|def __init__\" /root/structfuse/training/contrastive_model.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "grep -n \"class StructFuseEncoder\\|class ContrastiveModel\\|def __init__\" /root/structfuse/training/contrastive_model.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-16T06:07:05.970131+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-16T06:07:05.970257+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "find /root/autodl-tmp/structfuse/data -name \"*.jsonl\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "find /root/autodl-tmp/structfuse/data -name \"*.jsonl\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-16T06:07:05.970383+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-16T06:07:05.970502+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "grep -n \"class StructFuseEncoder\\|class ContrastiveModel\" /root/structfuse/training/contrastive_model.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "grep -n \"class StructFuseEncoder\\|class ContrastiveModel\" /root/structfuse/training/contrastive_model.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-16T06:07:05.970644+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-16T06:07:05.970773+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "find /root/autodl-tmp/structfuse -type f -name \"*.jsonl\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "find /root/autodl-tmp/structfuse -type f -name \"*.jsonl\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-16T06:07:05.970931+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/structfuse/full_m1_data/all.jsonl\\n/root/autodl-tmp/structfuse/full_m1_data/skip_log.jsonl\\n/root/autodl-tmp/structfuse/full_m1_data/skip_log_rerun.jsonl\\n/root/autodl-tmp/structfuse/full_m2_training_data/train_embedding_distance_s42.jsonl\\n/root/autodl-tmp/structfuse/full_m2_training_data/train_random_s42.jsonl\\n/root/autodl-tmp/structfuse/full_m2_training_data/train_dataflow_aware_s42.jsonl\\n/root/autodl-tmp/structfuse/full_m2_training_data/val_embedding_distance_s42.jsonl\\n/root/autodl-tmp/structfuse/full_m2_training_data/val_random_s42.jsonl\\n/root/autodl-tmp/structfuse/full_m2_training_data/val_dataflow_aware_s42.jsonl\\n/root/autodl-tmp/structfuse/full_m2_training_data/train_embedding_distance_s43.jsonl\\n/root/autodl-tmp/structfuse/full_m2_training_data/train_random_s43.jsonl\\n/root/autodl-tmp/structfuse/full_m2_training_data/train_dataflow_aware_s43.jsonl\\n/root/autodl-tmp/structfuse/full_m2_training_data/val_embedding_distance_s43.jsonl\\n/root/autodl-tmp/structfuse/full_m2_training_data/val_random_s43.jsonl\\n/root/autodl-tmp/structfuse/full_m2_training_data/val_dataflow_aware_s43.jsonl\\n/root/autodl-tmp/structfuse/full_m2_training_data/train_embedding_distance_s44.jsonl\\n/root/autodl-tmp/structfuse/full_m2_training_data/train_random_s44.jsonl\\n/root/autodl-tmp/structfuse/full_m2_training_data/train_dataflow_aware_s44.jsonl\\n/root/autodl-tmp/structfuse/full_m2_training_data/val_embedding_distance_s44.jsonl\\n/root/autodl-tmp/structfuse/full_m2_training_data/val_random_s44.jsonl\\n/root/autodl-tmp/structfuse/full_m2_training_data/val_dataflow_aware_s44.jsonl\\n/root/autodl-tmp/structfuse/full_m2_training_data/val_bm25_s42.jsonl\\n/root/autodl-tmp/structfuse/full_m2_training_data/train_bm25_s42.jsonl\\n/root/autodl-tmp/structfuse/full_m2_training_data/val_bm25_s43.jsonl\\n/root/autodl-tmp/structfuse/full_m2_training_data/train_bm25_s43.jsonl\\n/root/autodl-tmp/structfuse/f
+…[truncated 2921 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-16T06:07:05.971086+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "grep -n \"class StructFuseEncoder\" /root/structfuse/training/contrastive_model.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "grep -n \"class StructFuseEncoder\" /root/structfuse/training/contrastive_model.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-16T06:07:05.971217+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"54:class StructFuseEncoder(nn.Module):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-16T06:07:05.971338+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "grep -n \"class ContrastiveModel\" /root/structfuse/training/contrastive_model.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "grep -n \"class ContrastiveModel\" /root/structfuse/training/contrastive_model.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-16T06:07:05.971461+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-16T06:07:05.971631+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "head -120 /root/structfuse/training/contrastive_model.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "head -120 /root/structfuse/training/contrastive_model.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-16T06:07:05.971825+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"StructFuse contrastive bi-encoder with fusion head.\\n\\nBi-encoder over Qwen2.5-Coder-3B with InfoNCE loss, weighted positives\\n(data-flow path distance), and an optional lightweight fusion head that\\ncombines embedding similarity with explicit structural features.\\n\\\"\\\"\\\"\\n\\nimport math\\nimport torch\\nimport torch.nn as nn\\nimport torch.nn.functional as F\\nfrom transformers import AutoModel, AutoConfig\\n\\n\\nclass FusionHead(nn.Module):\\n    \\\"\\\"\\\"MLP that fuses embedding similarity with explicit features into a relevance score.\\\"\\\"\\\"\\n\\n    FEATURE_NAMES = [\\n        \\\"dataflow_distance\\\",\\n        \\\"bm25_score\\\",\\n        \\\"co_change_freq\\\",\\n        \\\"inter_procedural_flag\\\",\\n        \\\"path_count\\\",\\n    ]\\n    NUM_EXPLICIT = len(FEATURE_NAMES)\\n\\n    def __init__(self, hidden_dim: int = 128):\\n        super().__init__()\\n        input_dim = 1 + self.NUM_EXPLICIT  # embed_similarity + explicit features\\n        self.net = nn.Sequential(\\n            nn.Linear(input_dim, hidden_dim),\\n            nn.GELU(),\\n            nn.Linear(hidden_dim, hidden_dim),\\n            nn.GELU(),\\n            nn.Linear(hidden_dim, 1),\\n        )\\n\\n    def forward(self, embed_similarity: torch.Tensor, features: torch.Tensor) -> torch.Tensor:\\n        \\\"\\\"\\\"\\n        Args:\\n            embed_similarity: (B,) or (B, K) cosine similarities.\\n            features: same leading dims + NUM_EXPLICIT trailing dim.\\n        Returns:\\n            scores with same shape as embed_similarity.\\n        \\\"\\\"\\\"\\n        orig_shape = embed_similarity.shape\\n        sim = embed_similarity.unsqueeze(-1)  # (..., 1)\\n        x = torch.cat([sim, features], dim=-1)  # (..., 1+NUM_EXPLICIT)\\n        x = x.view(-1, x.size(-1))\\n        out = self.net(x).squeeze(-1)\\n        return out.view(orig_shape)\\n\\n\\nclass StructFuseEncoder(nn.Modul
+…[truncated 2971 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-16T06:07:05.971983+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "find /root/autodl-tmp/structfuse -type d -name \"*unixcoder*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "find /root/autodl-tmp/structfuse -type d -name \"*unixcoder*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-16T06:07:05.972116+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.68}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-16T06:07:05.972282+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "head -1 /root/autodl-tmp/structfuse/full_m2_training_data/train_random_s42.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "head -1 /root/autodl-tmp/structfuse/full_m2_training_data/train_random_s42.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-16T06:07:05.972750+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"query_id\\\": \\\"oauthlib__oauthlib.1fd52536.lm_rewrite__e551pdwl::oauthlib/openid/connect/core/grant_types/dispatchers.py\\\", \\\"query_tokens\\\": \\\"import logging\\\\n\\\\nlog = logging.getLogger(__name__)\\\\n\\\\n\\\\nclass Dispatcher:\\\\n    default_grant = None\\\\n    oidc_grant = None\\\\n\\\\n\\\\nclass AuthorizationCodeGrantDispatcher(Dispatcher):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    This is an adapter class that will route simple Authorization Code\\\\n    requests, those that have `response_type=code` and a scope including\\\\n    `openid` to either the `default_grant` or the `oidc_grant` based on\\\\n    the scopes requested.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    def __init__(self, default_grant=None, oidc_grant=None):\\\\n        self.default_grant = default_grant\\\\n        self.oidc_grant = oidc_grant\\\\n\\\\n    def _handler_for_request(self, request):\\\\n        handler = self.default_grant\\\\n\\\\n        if request.scopes and \\\\\\\"openid\\\\\\\" in request.scopes:\\\\n            handler = self.oidc_grant\\\\n\\\\n        log.debug('Selecting handler for request %r.', handler)\\\\n        return handler\\\\n\\\\n    def create_authorization_response(self, request, token_handler):\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"Read scope and route to the designated handler.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        return self._handler_for_request(request).create_authorization_response(request, token_handler)\\\\n\\\\n    def validate_authorization_request(self, request):\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"Read scope and route to the designated handler.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        return self._handler_for_request(request).validate_authorization_request(request)\\\\n\\\\n\\\\nclass ImplicitTokenGrantDispatcher(Dispatcher):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    This is an adapter class that will route simple Authorization\\\\n    requests, those that have `id_token` in `resp
+…[truncated 7171 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-16T06:07:05.972961+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "grep -n \"def _encode_text\\|tokenizer\\|input_ids\" /root/structfuse/training/train.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "grep -n \"def _encode_text\\|tokenizer\\|input_ids\" /root/structfuse/training/train.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-16T06:07:05.973107+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-16T06:07:05.973278+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "grep -n \"def encode\\|def _pool\\|def forward\\|query_tokens\\|pos_tokens\\|last_hidden\" /root/structfuse/training/contrastive_model.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "grep -n \"def encode\\|def _pool\\|def forward\\|query_tokens\\|pos_tokens\\|last_hidden\" /root/structfuse/training/contrastive_model.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-16T06:07:05.973413+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-16T06:07:05.973540+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "grep -n \"def __getitem__\\|query_tokens\\|pos_tokens\\|tokenizer\" /root/structfuse/training/train.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "grep -n \"def __getitem__\\|query_tokens\\|pos_tokens\\|tokenizer\" /root/structfuse/training/train.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-16T06:07:05.973695+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-16T06:07:05.973837+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "grep -n \"def encode\\|def _pool\\|def forward\" /root/structfuse/training/contrastive_model.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "grep -n \"def encode\\|def _pool\\|def forward\" /root/structfuse/training/contrastive_model.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-16T06:07:05.973972+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-16T06:07:05.974101+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "grep -n \"query_tokens\\|pos_tokens\\|__getitem__\" /root/structfuse/training/train.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "grep -n \"query_tokens\\|pos_tokens\\|__getitem__\" /root/structfuse/training/train.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-16T06:07:05.974238+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-16T06:07:05.974376+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "grep -n \"def encode\" /root/structfuse/training/contrastive_model.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "grep -n \"def encode\" /root/structfuse/training/contrastive_model.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-16T06:07:05.974505+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"133:    def encode(self, input_ids: torch.Tensor, attention_mask: torch.Tensor) -> torch.Tensor:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-16T06:07:05.974647+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "grep -n \"__getitem__\" /root/structfuse/training/train.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "grep -n \"__getitem__\" /root/structfuse/training/train.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-16T06:07:05.974782+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"102:    def __getitem__(self, idx):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-16T06:07:05.974906+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "grep -n \"query_tokens\" /root/structfuse/training/train.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "grep -n \"query_tokens\" /root/structfuse/training/train.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-16T06:07:05.975033+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"48:        query_id, query_tokens, pos_id, pos_tokens, pos_dataflow_distance,\\n106:            s[\\\"query_tokens\\\"], truncation=True, max_length=self.max_seq_length,\\n540:            query_text = sample[\\\"query_tokens\\\"]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-16T06:07:05.975165+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "cat -n /root/structfuse/training/train.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "cat -n /root/structfuse/training/train.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-16T06:07:05.975429+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"     1\\tfrom __future__ import annotations\\n     2\\t\\n     3\\timport os\\n     4\\t\\n     5\\t\\\"\\\"\\\"StructFuse contrastive training entry point.\\n     6\\t\\n     7\\tTrains a bi-encoder (Qwen2.5-Coder-3B) with InfoNCE loss, data-flow-weighted\\n     8\\tpositives, and configurable hard-negative mining.  Supports single/multi-GPU\\n     9\\tvia HuggingFace Accelerate, LoRA, gradient checkpointing, and W&B logging.\\n    10\\t\\\"\\\"\\\"\\n    11\\t\\n    12\\t\\n    13\\timport argparse\\n    14\\timport sys\\n    15\\timport json\\n    16\\timport math\\n    17\\timport os\\n    18\\timport random\\n    19\\timport shutil\\n    20\\tfrom pathlib import Path\\n    21\\tfrom typing import Any, Dict, List\\n    22\\t\\n    23\\timport numpy as np\\n    24\\timport torch\\n    25\\tfrom torch.utils.data import DataLoader, Dataset\\n    26\\tfrom transformers import AutoTokenizer, get_cosine_schedule_with_warmup\\n    27\\t\\n    28\\tfrom accelerate import Accelerator\\n    29\\tfrom accelerate.utils import set_seed\\n    30\\t\\n    31\\tfrom contrastive_model import StructFuseEncoder\\n    32\\tfrom hard_negative_mining import build_miner, mine_batch\\n    33\\t\\n    34\\t\\n    35\\t\\n    36\\tdef _print_flush(*args, **kwargs):\\n    37\\t    \\\"\\\"\\\"Print with explicit flush for file-redirect compatibility.\\\"\\\"\\\"\\n    38\\t    kwargs['flush'] = True\\n    39\\t    print(*args, **kwargs)\\n    40\\t\\n    41\\t# ── Dataset ──────────────────────────────────────────────────────────\\n    42\\t\\n    43\\tclass ContrastiveDataset(Dataset):\\n    44\\t    \\\"\\\"\\\"\\n    45\\t    Each sample: {query, positive, negatives[], pos_weight, features[]}.\\n    46\\t\\n    47\\t    The raw data file is JSONL with fields:\\n    48\\t        query_id, query_tokens, pos_id, pos_tokens, pos_dataflow_distance,\\n    49\\t        neg_candidates (list of file ids), features (dict per candidate).\\n 
+…[truncated 7365 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-16T06:07:05.975622+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "cat -n /root/structfuse/training/contrastive_model.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "cat -n /root/structfuse/training/contrastive_model.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-16T06:07:05.975891+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"     1\\t\\\"\\\"\\\"StructFuse contrastive bi-encoder with fusion head.\\n     2\\t\\n     3\\tBi-encoder over Qwen2.5-Coder-3B with InfoNCE loss, weighted positives\\n     4\\t(data-flow path distance), and an optional lightweight fusion head that\\n     5\\tcombines embedding similarity with explicit structural features.\\n     6\\t\\\"\\\"\\\"\\n     7\\t\\n     8\\timport math\\n     9\\timport torch\\n    10\\timport torch.nn as nn\\n    11\\timport torch.nn.functional as F\\n    12\\tfrom transformers import AutoModel, AutoConfig\\n    13\\t\\n    14\\t\\n    15\\tclass FusionHead(nn.Module):\\n    16\\t    \\\"\\\"\\\"MLP that fuses embedding similarity with explicit features into a relevance score.\\\"\\\"\\\"\\n    17\\t\\n    18\\t    FEATURE_NAMES = [\\n    19\\t        \\\"dataflow_distance\\\",\\n    20\\t        \\\"bm25_score\\\",\\n    21\\t        \\\"co_change_freq\\\",\\n    22\\t        \\\"inter_procedural_flag\\\",\\n    23\\t        \\\"path_count\\\",\\n    24\\t    ]\\n    25\\t    NUM_EXPLICIT = len(FEATURE_NAMES)\\n    26\\t\\n    27\\t    def __init__(self, hidden_dim: int = 128):\\n    28\\t        super().__init__()\\n    29\\t        input_dim = 1 + self.NUM_EXPLICIT  # embed_similarity + explicit features\\n    30\\t        self.net = nn.Sequential(\\n    31\\t            nn.Linear(input_dim, hidden_dim),\\n    32\\t            nn.GELU(),\\n    33\\t            nn.Linear(hidden_dim, hidden_dim),\\n    34\\t            nn.GELU(),\\n    35\\t            nn.Linear(hidden_dim, 1),\\n    36\\t        )\\n    37\\t\\n    38\\t    def forward(self, embed_similarity: torch.Tensor, features: torch.Tensor) -> torch.Tensor:\\n    39\\t        \\\"\\\"\\\"\\n    40\\t        Args:\\n    41\\t            embed_similarity: (B,) or (B, K) cosine similarities.\\n    42\\t            features: same leading dims + NUM_EXPLICIT trailing dim.\\n    43\\t        Returns:\\n    44\\t            score
+…[truncated 7057 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-16T06:07:05.976098+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/structfuse/training && python3 -c \\\"\nfrom contrastive_model import StructFuseEncoder\nmodel = StructFuseEncoder('microsoft/unixcoder-base', use_lora=True)\ntotal = sum(p.numel() for p in model.parameters())\ntrainable = sum(p.numel() for p in model.parameters() if p.requires_grad)\nprint(f'OK: total={total/1e6:.2f}M, trainable={trainable/1e6:.2f}M')\nprint(f'max_pos_emb={model.backbone.config.max_position_embeddings}')\nprint(f'hidden_size={model.backbone.config.hidden_size}')\n\\\"\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/structfuse/training && python3 -c \\\"\nfrom contrastive_model import StructFuseEncoder\nmodel = StructFuseEncoder('microsoft/unixcoder-base', use_lora=True)\ntotal = sum(p.numel() for p in model.parameters())\ntrainable = sum(p.numel() for p in model.parameters() if p.requires_grad)\nprint(f'OK: total={total/1e6:.2f}M, trainable={trainable/1e6:.2f}M')\nprint(f'max_pos_emb={model.backbone.config.max_position_embeddings}')\nprint(f'hidden_size={model.backbone.config.hidden_size}')\n\\\"\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-16T06:07:05.976264+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/structfuse/training && python3 -c \\\\\\\\\\\"\\\\nfrom contrastive_model import StructFuseEncoder\\\\nmodel = StructFuseEncoder(\\\\'microsoft/unixcoder-base\\\\', use_lora=True)\\\\ntotal = sum(p.numel() for p in model.parameters())\\\\ntrainable = sum(p.numel() for p in model.parameters() if p.requires_grad)\\\\nprint(f\\\\'OK: total={total/1e6:.2f}M, trainable={trainable/1e6:.2f}M\\\\')\\\\nprint(f\\\\'max_pos_emb={model.backbone.config.max_position_embeddings}\\\\')\\\\nprint(f\\\\'hidden_size={model.backbone.config.hidden_size}\\\\')\\\\n\\\\\\\\\\\"\\\"'\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n'(MaxRetryError(\\\"HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /microsoft/unixcoder-base/resolve/main/config.json (Caused by NewConnectionError('&lt;urllib3.connection.HTTPSConnection object at 0x7f66ab3ae2a0>: Failed to establish a new connection: [Errno 101] Network is unreachable'))\\\"), '(Request ID: 533d4fdb-9399-44ab-92f0-e1746e2a065d)')' thrown while requesting HEAD https://huggingface.co/microsoft/unixcoder-base/resolve/main/config.json\\nRetrying in 1s [Retry 1/5].\\n'(MaxRetryError(\\\"HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /microsoft/unixcoder-base/resolve/main/config.json (Caused by NewConnectionError('&lt;urllib3.connection.HTTPSConnection object at 0x7f66a9b99790>: Failed to establish a new connection: [Errno 101] Network is unreachable'))\\\"), '(Request ID: 0cb831c5-3f72-40ed-a5d7-6ebc9d346caa)')' thrown while requesting HEAD https://huggingface.co/microsoft/unixcoder-base/resolve/main/config.json\\nRetrying in 2s [Retry 2/5].\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.34}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-16T06:07:05.976444+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "find /root/autodl-tmp -type d -name \"unixcoder*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "find /root/autodl-tmp -type d -name \"unixcoder*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-16T06:07:05.976643+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "find /root/.cache -type d -name \"*unixcoder*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "find /root/.cache -type d -name \"*unixcoder*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-16T06:07:05.976847+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-16T06:07:05.976987+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/.cache/huggingface/hub/.locks/models--microsoft--unixcoder-base\\n/root/.cache/huggingface/hub/models--microsoft--unixcoder-base\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-16T06:07:05.977138+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HUB_OFFLINE=1 && cd /root/structfuse/training && python3 -c \\\"\nfrom contrastive_model import StructFuseEncoder\nmodel = StructFuseEncoder('microsoft/unixcoder-base', use_lora=True)\ntotal = sum(p.numel() for p in model.parameters())\ntrainable = sum(p.numel() for p in model.parameters() if p.requires_grad)\nprint(f'OK: total={total/1e6:.2f}M, trainable={trainable/1e6:.2f}M')\nprint(f'max_pos_emb={model.backbone.config.max_position_embeddings}')\nprint(f'hidden_size={model.backbone.config.hidden_size}')\n\\\"\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HUB_OFFLINE=1 && cd /root/structfuse/training && python3 -c \\\"\nfrom contrastive_model import StructFuseEncoder\nmodel = StructFuseEncoder('microsoft/unixcoder-base', use_lora=True)\ntotal = sum(p.numel() for p in model.parameters())\ntrainable = sum(p.numel() for p in model.parameters() if p.requires_grad)\nprint(f'OK: total={total/1e6:.2f}M, trainable={trainable/1e6:.2f}M')\nprint(f'max_pos_emb={model.backbone.config.max_position_embeddings}')\nprint(f'hidden_size={model.backbone.config.hidden_size}')\n\\\"\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-16T06:07:05.977276+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"OK: total=127.31M, trainable=1.38M\\nmax_pos_emb=1026\\nhidden_size=768\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.67}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-16T06:07:05.977439+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "ls /root/structfuse/scripts/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "ls /root/structfuse/scripts/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-16T06:07:05.977588+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"__pycache__\\nanalyze_bm25_overlap_stratified.py\\nanalyze_confound.py\\nanalyze_m2_stats.py\\nanalyze_stratified.py\\nbootstrap_paired_test.py\\nbuild_full_m2_data.sh\\nbuild_m1_training_data.py\\nbuild_m1_training_data.py.bak\\nbuild_p2b_data.py\\nclone_repos.sh\\ncollect_p2b_results.py\\ncombine_m1_reextract.py\\ncompute_full_z_percent.py\\ndownload_metadata.py\\neval_p2b.py\\neval_p2b_pooled.py\\neval_swebench_e2e.py\\neval_swebench_e2e.py.bak.20260516032207\\nevaluate_stratified.py\\nextract_eval_trajectories.py\\nfix_metadata.py\\nfix_metadata_arrow.py\\nm2_statistical_analysis.py\\nmigrate_m1_data.sh\\nmine_bm25_negatives.py\\nplot_neg_difficulty.py\\nplot_overfitting_mechanism.py\\nplot_per_seed_delta.py\\nprepare_m1_rerun.py\\nprepare_stratification_index.py\\nrerun_m1_failed.sh\\nrun_50repo_overlap.py\\nrun_eval_5missing.sh\\nrun_eval_all.sh\\nrun_eval_p50.sh\\nrun_full_m2_training.sh\\nrun_m1_extraction.sh\\nrun_m2_full_bm25_qwen.sh\\nrun_m2_full_bm25_starcoder.sh\\nrun_m2_pilot.sh\\nrun_p2b_all.sh\\nrun_plan005_s43.sh\\nschedule_m2_runs.sh\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-16T06:07:05.977751+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "cat /root/structfuse/scripts/run_full_m2_training.sh",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "cat /root/structfuse/scripts/run_full_m2_training.sh",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-16T06:07:05.977951+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\n# ============================================================================\\n# run_full_m2_training.sh — 全量 M2 单次训练 wrapper\\n#\\n# Usage:\\n#   bash run_full_m2_training.sh &lt;strategy> &lt;seed> &lt;gpu_id>\\n#\\n# Args:\\n#   strategy  — hard-negative 策略: random | embedding_distance | dataflow_aware\\n#   seed      — 随机种子: 42 | 43 | 44\\n#   gpu_id    — GPU 编号: 0 | 1\\n#\\n# Example:\\n#   bash run_full_m2_training.sh random 42 0\\n#   bash run_full_m2_training.sh embedding_distance 43 1\\n#\\n# 训练参数 (D013 确认):\\n#   batch_size=8, num_negatives=7, max_seq_length=2048, epochs=2\\n#   eval_steps=500, lr=2e-5, LoRA (r=16), gradient checkpointing\\n#\\n# 输出:\\n#   /root/autodl-tmp/structfuse/full_m2_outputs/${strategy}_s${seed}/\\n#\\n# 注意:\\n#   - 使用 --early-stopping-patience 3 (D013 配置)\\n# ============================================================================\\n\\nset -euo pipefail\\n\\n# ── 参数解析 ─────────────────────────────────────────────────────────\\nSTRATEGY=\\\"${1:?Usage: $0 &lt;strategy> &lt;seed> &lt;gpu_id>}\\\"\\nSEED=\\\"${2:?Usage: $0 &lt;strategy> &lt;seed> &lt;gpu_id>}\\\"\\nGPU_ID=\\\"${3:?Usage: $0 &lt;strategy> &lt;seed> &lt;gpu_id>}\\\"\\n\\nVALID_STRATEGIES=\\\"random embedding_distance dataflow_aware\\\"\\nif ! echo \\\"$VALID_STRATEGIES\\\" | grep -qw \\\"$STRATEGY\\\"; then\\n    echo \\\"ERROR: strategy must be one of: $VALID_STRATEGIES\\\"\\n    exit 1\\nfi\\n\\n# ── 路径 ─────────────────────────────────────────────────────────────\\nPROJECT_ROOT=\\\"/root/structfuse\\\"\\nMODEL_PATH=\\\"/root/autodl-tmp/structfuse/models/Qwen/Qwen2.5-Coder-3B\\\"\\nDATA_DIR=\\\"/root/autodl-tmp/structfuse/full_m2_training_data\\\"\\nOUTPUT_DIR=\\\"/root/autodl-tmp/structfuse/full_m2_outputs/${STRATEGY}_s${SEED}\\\"\\nTRAIN_FILE=\\\"${DATA_DIR}/train_${STRATEGY}_s${SEED}.jsonl\\\"\\nVAL_FILE=\\\"${DATA_DIR}/val_${STRATEGY}_s${SEED}.jsonl\\\"\\nDATAFLOW_GRAPH=\\\"${DATA_DIR}/dataflow_graph.json\\\"\\nEMBEDDINGS_F
+…[truncated 2777 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-16T06:07:05.978162+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "wc -l /root/autodl-tmp/structfuse/full_m2_training_data/train_random_s42.jsonl /root/autodl-tmp/structfuse/full_m2_training_data/val_random_s42.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "wc -l /root/autodl-tmp/structfuse/full_m2_training_data/train_random_s42.jsonl /root/autodl-tmp/structfuse/full_m2_training_data/val_random_s42.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62 · 2026-05-16T06:07:05.978303+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "ls /root/autodl-tmp/structfuse/full_m2_training_data/dataflow_graph.json /root/autodl-tmp/structfuse/full_m2_training_data/embeddings.npz",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "ls /root/autodl-tmp/structfuse/full_m2_training_data/dataflow_graph.json /root/autodl-tmp/structfuse/full_m2_training_data/embeddings.npz",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-16T06:07:05.978437+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"     11308 /root/autodl-tmp/structfuse/full_m2_training_data/train_random_s42.jsonl\\n      2980 /root/autodl-tmp/structfuse/full_m2_training_data/val_random_s42.jsonl\\n     14288 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.57}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-16T06:07:05.978568+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"/root/autodl-tmp/structfuse/full_m2_training_data/dataflow_graph.json\\n\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/structfuse/full_m2_training_data/embeddings.npz': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-16T06:07:05.978768+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "cat > /root/structfuse/scripts/run_unixcoder_3strategies_s42.sh << 'SCRIPT_EOF'\n#!/bin/bash\n# ============================================================================\n# run_unixcoder_3strategies_s42.sh — UniXcoder-base 3 strategies × seed 42\n#\n# Usage: bash run_unixcoder_3strategies_s42.sh &lt;gpu_id>\n#\n# UniXcoder-base: 127M total / 1.38M trainable (LoRA), VRAM ~1.5GB\n# max_position_embeddings=1026 → max_seq_length=1024\n# batch_size=32 (small model allows larger batches)\n# ============================================================================\n\nset -euo pipefail\n\nGPU_ID=\"${1:?Usage: $0 &lt;gpu_id>}\"\n\nPROJECT_ROOT=\"/root/structfuse\"\nDATA_DIR=\"/root/autodl-tmp/structfuse/full_m2_training_data\"\nOUTPUT_BASE=\"/root/autodl-tmp/structfuse/full_m2_unixcoder_outputs\"\nDATAFLOW_GRAPH=\"${DATA_DIR}/dataflow_graph.json\"\n\nexport CUDA_VISIBLE_DEVICES=\"$GPU_ID\"\nexport WANDB_MODE=offline\nexport TRANSFORMERS_OFFLINE=1\nexport HF_HUB_OFFLINE=1\nexport PYTHONUNBUFFERED=1\n\nSEED=42\nMODEL=\"microsoft/unixcoder-base\"\nSTRATEGIES=\"random embedding_distance dataflow_aware\"\n\nfor STRATEGY in $STRATEGIES; do\n    OUTPUT_DIR=\"${OUTPUT_BASE}/${STRATEGY}_s${SEED}\"\n    TRAIN_FILE=\"${DATA_DIR}/train_${STRATEGY}_s${SEED}.jsonl\"\n    VAL_FILE=\"${DATA_DIR}/val_${STRATEGY}_s${SEED}.jsonl\"\n    LOG_FILE=\"${OUTPUT_DIR}/train.log\"\n\n    for f in \"$TRAIN_FILE\" \"$VAL_FILE\"; do\n        if [ ! -e \"$f\" ]; then\n            echo \"ERROR: required file not found: $f\"\n            exit 1\n        fi\n    done\n\n    mkdir -p \"$OUTPUT_DIR\"\n\n    TRAIN_CMD=(\n        python -u \"${PROJECT_ROOT}/training/train.py\"\n        --model-name \"$MODEL\"\n        --train-file \"$TRAIN_FILE\"\n        --val-file \"$VAL_FILE\"\n        --output-dir \"$OUTPUT_DIR\"\n        --hard-negative-strategy \"$STRATEGY\"\n        --seed \"$SEED\"\n        --batch-size 32\n        --num-negatives 7\n        --max-seq-length 1024\n        --num-epochs 2\n        --learning-rate 2e-5\n        --eval-steps 200\n        --save-steps 500\n        --use-lora\n        --wandb-project structfuse\n        --wandb-run-name \"unixcoder_${STRATEGY}_s${SEED}\"\n        --early-stopping-patience 3\n    )\n\n    if [ \"$STRATEGY\" = \"dataflow_aware\" ] && [ -f \"$DATAFLOW_GRAPH\" ]; then\n        TRAIN_CMD+=(--dataflow-graph-file \"$DATAFLOW_GRAPH\")\n    fi\n\n    echo \"==========================================\"\n    echo \" UniXcoder: strategy=$STRATEGY seed=$SEED gpu=$GPU_ID\"\n    echo \" output=$OUTPUT_DIR\"\n    echo \"==========================================\"\n    echo \"[$(date '+%Y-%m-%d %H:%M:%S')] START: ${TRAIN_CMD[*]}\" | tee \"$LOG_FILE\"\n    \"${TRAIN_CMD[@]}\" 2>&1 | tee -a \"$LOG_FILE\"\n    echo \"[$(date '+%Y-%m-%d %H:%M:%S')] DONE: strategy=$STRATEGY seed=$SEED\" | tee -a \"$LOG_FILE\"\ndone\n\necho \"=== All 3 UniXcoder runs completed at $(date) ===\"\nSCRIPT_EOF\nchmod +x /root/structfuse/scripts/run_unixcoder_3strategies_s42.sh",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "cat > /root/structfuse/scripts/run_unixcoder_3strategies_s42.sh << 'SCRIPT_EOF'\n#!/bin/bash\n# ============================================================================\n# run_unixcoder_3strategies_s42.sh — UniXcoder-base 3 strategies × seed 42\n#\n# Usage: bash run_unixcoder_3strategies_s42.sh &lt;gpu_id>\n#\n# UniXcoder-base: 127M total / 1.38M trainable (LoRA), VRAM ~1.5GB\n# max_position_embeddings=1026 → max_seq_length=1024\n# batch_size=32 (small model allows larger batches)\n# ============================================================================\n\nset -euo pipefail\n\nGPU_ID=\"${1:?Usage: $0 &lt;gpu_id>}\"\n\nPROJECT_ROOT=\"/root/structfuse\"\nDATA_DIR=\"/root/autodl-tmp/structfuse/full_m2_training_data\"\nOUTPUT_BASE=\"/root/autodl-tmp/structfuse/full_m2_unixcoder_outputs\"\nDATAFLOW_GRAPH=\"${DATA_DIR}/dataflow_graph.json\"\n\nexport CUDA_VISIBLE_DEVICES=\"$GPU_ID\"\nexport WANDB_MODE=offline\nexport TRANSFORMERS_OFFLINE=1\nexport HF_HUB_OFFLINE=1\nexport PYTHONUNBUFFERED=1\n\nSEED=42\nMODEL=\"microsoft/unixcoder-base\"\nSTRATEGIES=\"random embedding_distance dataflow_aware\"\n\nfor STRATEGY in $STRATEGIES; do\n    OUTPUT_DIR=\"${OUTPUT_BASE}/${STRATEGY}_s${SEED}\"\n    TRAIN_FILE=\"${DATA_DIR}/train_${STRATEGY}_s${SEED}.jsonl\"\n    VAL_FILE=\"${DATA_DIR}/val_${STRATEGY}_s${SEED}.jsonl\"\n    LOG_FILE=\"${OUTPUT_DIR}/train.log\"\n\n    for f in \"$TRAIN_FILE\" \"$VAL_FILE\"; do\n        if [ ! -e \"$f\" ]; then\n            echo \"ERROR: required file not found: $f\"\n            exit 1\n        fi\n    done\n\n    mkdir -p \"$OUTPUT_DIR\"\n\n    TRAIN_CMD=(\n        python -u \"${PROJECT_ROOT}/training/train.py\"\n        --model-name \"$MODEL\"\n        --train-file \"$TRAIN_FILE\"\n        --val-file \"$VAL_FILE\"\n        --output-dir \"$OUTPUT_DIR\"\n        --hard-negative-strategy \"$STRATEGY\"\n        --seed \"$SEED\"\n        --batch-size 32\n        --num-negatives 7\n        --max-seq-length 1024\n        --num-epochs 2\n        --learning-rate 2e-5\n        --eval-steps 200\n        --save-steps 500\n        --use-lora\n        --wandb-project structfuse\n        --wandb-run-name \"unixcoder_${STRATEGY}_s${SEED}\"\n        --early-stopping-patience 3\n    )\n\n    if [ \"$STRATEGY\" = \"dataflow_aware\" ] && [ -f \"$DATAFLOW_GRAPH\" ]; then\n        TRAIN_CMD+=(--dataflow-graph-file \"$DATAFLOW_GRAPH\")\n    fi\n\n    echo \"==========================================\"\n    echo \" UniXcoder: strategy=$STRATEGY seed=$SEED gpu=$GPU_ID\"\n    echo \" output=$OUTPUT_DIR\"\n    echo \"==========================================\"\n    echo \"[$(date '+%Y-%m-%d %H:%M:%S')] START: ${TRAIN_CMD[*]}\" | tee \"$LOG_FILE\"\n    \"${TRAIN_CMD[@]}\" 2>&1 | tee -a \"$LOG_FILE\"\n    echo \"[$(date '+%Y-%m-%d %H:%M:%S')] DONE: strategy=$STRATEGY seed=$SEED\" | tee -a \"$LOG_FILE\"\ndone\n\necho \"=== All 3 UniXcoder runs completed at $(date) ===\"\nSCRIPT_EOF\nchmod +x /root/structfuse/scripts/run_unixcoder_3strategies_s42.sh",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-16T06:07:05.978944+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-16T06:07:05.979090+00:00_
+
+called mcp__agent-ml-research__submit_training_job
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__submit_training_job</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "gpu_ids": "['cuda:0']",
+  "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/structfuse/scripts/run_unixcoder_3strategies_s42.sh 0\"",
+  "exp_id": "unixcoder-3strat-s42",
+  "timeout_hours": "4",
+  "account": "root",
+  "project": "structfuse-context"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__submit_training_job",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "gpu_ids": "['cuda:0']",
+    "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/structfuse/scripts/run_unixcoder_3strategies_s42.sh 0\"",
+    "exp_id": "unixcoder-3strat-s42",
+    "timeout_hours": "4",
+    "account": "root",
+    "project": "structfuse-context"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-16T06:07:05.979232+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"pid\": \"149220\", \"log_file\": \"~/runs/structfuse-context/unixcoder-3strat-s42.log\", \"gpu_ids\": [\"cuda:0\"], \"server\": \"bjb1-42106\", \"account\": \"root\", \"cuda_visible_devices\": \"0\", \"backend\": \"tmux\", \"tmux_session\": \"unixcoder-3strat-s42\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.88}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__submit_training_job",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-16T06:07:05.979375+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "tail -20 /root/runs/structfuse-context/unixcoder-3strat-s42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "tail -20 /root/runs/structfuse-context/unixcoder-3strat-s42.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-16T06:07:05.979516+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"==========================================\\n UniXcoder: strategy=random seed=42 gpu=0\\n output=/root/autodl-tmp/structfuse/full_m2_unixcoder_outputs/random_s42\\n==========================================\\n[2026-05-16 14:02:42] START: python -u /root/structfuse/training/train.py --model-name microsoft/unixcoder-base --train-file /root/autodl-tmp/structfuse/full_m2_training_data/train_random_s42.jsonl --val-file /root/autodl-tmp/structfuse/full_m2_training_data/val_random_s42.jsonl --output-dir /root/autodl-tmp/structfuse/full_m2_unixcoder_outputs/random_s42 --hard-negative-strategy random --seed 42 --batch-size 32 --num-negatives 7 --max-seq-length 1024 --num-epochs 2 --learning-rate 2e-5 --eval-steps 200 --save-steps 500 --use-lora --wandb-project structfuse --wandb-run-name unixcoder_random_s42 --early-stopping-patience 3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-16T06:07:05.979703+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "tail -30 /root/runs/structfuse-context/unixcoder-3strat-s42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "tail -30 /root/runs/structfuse-context/unixcoder-3strat-s42.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-16T06:07:05.979847+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"==========================================\\n UniXcoder: strategy=random seed=42 gpu=0\\n output=/root/autodl-tmp/structfuse/full_m2_unixcoder_outputs/random_s42\\n==========================================\\n[2026-05-16 14:02:42] START: python -u /root/structfuse/training/train.py --model-name microsoft/unixcoder-base --train-file /root/autodl-tmp/structfuse/full_m2_training_data/train_random_s42.jsonl --val-file /root/autodl-tmp/structfuse/full_m2_training_data/val_random_s42.jsonl --output-dir /root/autodl-tmp/structfuse/full_m2_unixcoder_outputs/random_s42 --hard-negative-strategy random --seed 42 --batch-size 32 --num-negatives 7 --max-seq-length 1024 --num-epochs 2 --learning-rate 2e-5 --eval-steps 200 --save-steps 500 --use-lora --wandb-project structfuse --wandb-run-name unixcoder_random_s42 --early-stopping-patience 3\\nwandb: Tracking run with wandb version 0.26.0\\nwandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.\\nwandb: Run data is saved locally in /root/structfuse-context/wandb/offline-run-20260516_140249-w8v05ta0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-16T06:07:05.979980+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "nvidia-smi --query-gpu=index,memory.used,memory.total --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "nvidia-smi --query-gpu=index,memory.used,memory.total --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-16T06:07:05.980109+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 50801 MiB, 97887 MiB\\n1, 65964 MiB, 97887 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-16T06:07:05.980271+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "tail -40 /root/runs/structfuse-context/unixcoder-3strat-s42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "tail -40 /root/runs/structfuse-context/unixcoder-3strat-s42.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-16T06:07:05.980413+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"==========================================\\n UniXcoder: strategy=random seed=42 gpu=0\\n output=/root/autodl-tmp/structfuse/full_m2_unixcoder_outputs/random_s42\\n==========================================\\n[2026-05-16 14:02:42] START: python -u /root/structfuse/training/train.py --model-name microsoft/unixcoder-base --train-file /root/autodl-tmp/structfuse/full_m2_training_data/train_random_s42.jsonl --val-file /root/autodl-tmp/structfuse/full_m2_training_data/val_random_s42.jsonl --output-dir /root/autodl-tmp/structfuse/full_m2_unixcoder_outputs/random_s42 --hard-negative-strategy random --seed 42 --batch-size 32 --num-negatives 7 --max-seq-length 1024 --num-epochs 2 --learning-rate 2e-5 --eval-steps 200 --save-steps 500 --use-lora --wandb-project structfuse --wandb-run-name unixcoder_random_s42 --early-stopping-patience 3\\nwandb: Tracking run with wandb version 0.26.0\\nwandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.\\nwandb: Run data is saved locally in /root/structfuse-context/wandb/offline-run-20260516_140249-w8v05ta0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-16T06:07:05.980573+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "tail -50 /root/runs/structfuse-context/unixcoder-3strat-s42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "tail -50 /root/runs/structfuse-context/unixcoder-3strat-s42.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-16T06:07:05.980771+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  File \\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\", line 1787, in _call_impl\\n    return forward_call(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/models/roberta/modeling_roberta.py\\\", line 606, in forward\\n    layer_outputs = layer_module(\\n                    ^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/modeling_layers.py\\\", line 94, in __call__\\n    return super().__call__(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\", line 1776, in _wrapped_call_impl\\n    return self._call_impl(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\", line 1787, in _call_impl\\n    return forward_call(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/utils/deprecation.py\\\", line 172, in wrapped_func\\n    return func(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/models/roberta/modeling_roberta.py\\\", line 543, in forward\\n    layer_output = apply_chunking_to_forward(\\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/pytorch_utils.py\\\", line 257, in apply_chunking_to_forward\\n    return forward_fn(*input_tensors)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/models/roberta/modeling_roberta.py\\\", line 551, in feed_forward_chunk\\n    intermediate_output = self.intermediate(attention_output)\\n                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n
+…[truncated 2380 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-16T06:07:05.980970+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "nvidia-smi --query-gpu=index,memory.used,memory.total,memory.free --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "nvidia-smi --query-gpu=index,memory.used,memory.total,memory.free --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-16T06:07:05.981112+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 50801 MiB, 97887 MiB, 46453 MiB\\n1, 68526 MiB, 97887 MiB, 28727 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-16T06:07:05.981317+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "cat > /root/structfuse/scripts/run_unixcoder_3strategies_s42.sh << 'SCRIPT_EOF'\n#!/bin/bash\n# ============================================================================\n# run_unixcoder_3strategies_s42.sh — UniXcoder-base 3 strategies × seed 42\n#\n# Usage: bash run_unixcoder_3strategies_s42.sh &lt;gpu_id>\n#\n# UniXcoder-base: 127M total / 1.38M trainable (LoRA), VRAM ~8-12GB\n# max_position_embeddings=1026 → max_seq_length=1024\n# batch_size=16 + gradient checkpointing (7 negatives → 144 seqs/batch)\n# ============================================================================\n\nset -euo pipefail\n\nGPU_ID=\"${1:?Usage: $0 &lt;gpu_id>}\"\n\nPROJECT_ROOT=\"/root/structfuse\"\nDATA_DIR=\"/root/autodl-tmp/structfuse/full_m2_training_data\"\nOUTPUT_BASE=\"/root/autodl-tmp/structfuse/full_m2_unixcoder_outputs\"\nDATAFLOW_GRAPH=\"${DATA_DIR}/dataflow_graph.json\"\n\nexport CUDA_VISIBLE_DEVICES=\"$GPU_ID\"\nexport WANDB_MODE=offline\nexport TRANSFORMERS_OFFLINE=1\nexport HF_HUB_OFFLINE=1\nexport PYTHONUNBUFFERED=1\n\nSEED=42\nMODEL=\"microsoft/unixcoder-base\"\nSTRATEGIES=\"random embedding_distance dataflow_aware\"\n\nfor STRATEGY in $STRATEGIES; do\n    OUTPUT_DIR=\"${OUTPUT_BASE}/${STRATEGY}_s${SEED}\"\n    TRAIN_FILE=\"${DATA_DIR}/train_${STRATEGY}_s${SEED}.jsonl\"\n    VAL_FILE=\"${DATA_DIR}/val_${STRATEGY}_s${SEED}.jsonl\"\n    LOG_FILE=\"${OUTPUT_DIR}/train.log\"\n\n    for f in \"$TRAIN_FILE\" \"$VAL_FILE\"; do\n        if [ ! -e \"$f\" ]; then\n            echo \"ERROR: required file not found: $f\"\n            exit 1\n        fi\n    done\n\n    mkdir -p \"$OUTPUT_DIR\"\n\n    TRAIN_CMD=(\n        python -u \"${PROJECT_ROOT}/training/train.py\"\n        --model-name \"$MODEL\"\n        --train-file \"$TRAIN_FILE\"\n        --val-file \"$VAL_FILE\"\n        --output-dir \"$OUTPUT_DIR\"\n        --hard-negative-strategy \"$STRATEGY\"\n        --seed \"$SEED\"\n        --batch-size 16\n        --num-negatives 7\n        --max-seq-length 1024\n        --num-epochs 2\n        --learning-rate 2e-5\n        --eval-steps 200\n        --save-steps 500\n        --use-lora\n        --gradient-checkpointing\n        --wandb-project structfuse\n        --wandb-run-name \"unixcoder_${STRATEGY}_s${SEED}\"\n        --early-stopping-patience 3\n    )\n\n    if [ \"$STRATEGY\" = \"dataflow_aware\" ] && [ -f \"$DATAFLOW_GRAPH\" ]; then\n        TRAIN_CMD+=(--dataflow-graph-file \"$DATAFLOW_GRAPH\")\n    fi\n\n    echo \"==========================================\"\n    echo \" UniXcoder: strategy=$STRATEGY seed=$SEED gpu=$GPU_ID\"\n    echo \" output=$OUTPUT_DIR\"\n    echo \"==========================================\"\n    echo \"[$(date '+%Y-%m-%d %H:%M:%S')] START: ${TRAIN_CMD[*]}\" | tee \"$LOG_FILE\"\n    \"${TRAIN_CMD[@]}\" 2>&1 | tee -a \"$LOG_FILE\"\n    echo \"[$(date '+%Y-%m-%d %H:%M:%S')] DONE: strategy=$STRATEGY seed=$SEED\" | tee -a \"$LOG_FILE\"\ndone\n\necho \"=== All 3 UniXcoder runs completed at $(date) ===\"\nSCRIPT_EOF\nchmod +x /root/structfuse/scripts/run_unixcoder_3strategies_s42.sh",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "cat > /root/structfuse/scripts/run_unixcoder_3strategies_s42.sh << 'SCRIPT_EOF'\n#!/bin/bash\n# ============================================================================\n# run_unixcoder_3strategies_s42.sh — UniXcoder-base 3 strategies × seed 42\n#\n# Usage: bash run_unixcoder_3strategies_s42.sh &lt;gpu_id>\n#\n# UniXcoder-base: 127M total / 1.38M trainable (LoRA), VRAM ~8-12GB\n# max_position_embeddings=1026 → max_seq_length=1024\n# batch_size=16 + gradient checkpointing (7 negatives → 144 seqs/batch)\n# ============================================================================\n\nset -euo pipefail\n\nGPU_ID=\"${1:?Usage: $0 &lt;gpu_id>}\"\n\nPROJECT_ROOT=\"/root/structfuse\"\nDATA_DIR=\"/root/autodl-tmp/structfuse/full_m2_training_data\"\nOUTPUT_BASE=\"/root/autodl-tmp/structfuse/full_m2_unixcoder_outputs\"\nDATAFLOW_GRAPH=\"${DATA_DIR}/dataflow_graph.json\"\n\nexport CUDA_VISIBLE_DEVICES=\"$GPU_ID\"\nexport WANDB_MODE=offline\nexport TRANSFORMERS_OFFLINE=1\nexport HF_HUB_OFFLINE=1\nexport PYTHONUNBUFFERED=1\n\nSEED=42\nMODEL=\"microsoft/unixcoder-base\"\nSTRATEGIES=\"random embedding_distance dataflow_aware\"\n\nfor STRATEGY in $STRATEGIES; do\n    OUTPUT_DIR=\"${OUTPUT_BASE}/${STRATEGY}_s${SEED}\"\n    TRAIN_FILE=\"${DATA_DIR}/train_${STRATEGY}_s${SEED}.jsonl\"\n    VAL_FILE=\"${DATA_DIR}/val_${STRATEGY}_s${SEED}.jsonl\"\n    LOG_FILE=\"${OUTPUT_DIR}/train.log\"\n\n    for f in \"$TRAIN_FILE\" \"$VAL_FILE\"; do\n        if [ ! -e \"$f\" ]; then\n            echo \"ERROR: required file not found: $f\"\n            exit 1\n        fi\n    done\n\n    mkdir -p \"$OUTPUT_DIR\"\n\n    TRAIN_CMD=(\n        python -u \"${PROJECT_ROOT}/training/train.py\"\n        --model-name \"$MODEL\"\n        --train-file \"$TRAIN_FILE\"\n        --val-file \"$VAL_FILE\"\n        --output-dir \"$OUTPUT_DIR\"\n        --hard-negative-strategy \"$STRATEGY\"\n        --seed \"$SEED\"\n        --batch-size 16\n        --num-negatives 7\n        --max-seq-length 1024\n        --num-epochs 2\n        --learning-rate 2e-5\n        --eval-steps 200\n        --save-steps 500\n        --use-lora\n        --gradient-checkpointing\n        --wandb-project structfuse\n        --wandb-run-name \"unixcoder_${STRATEGY}_s${SEED}\"\n        --early-stopping-patience 3\n    )\n\n    if [ \"$STRATEGY\" = \"dataflow_aware\" ] && [ -f \"$DATAFLOW_GRAPH\" ]; then\n        TRAIN_CMD+=(--dataflow-graph-file \"$DATAFLOW_GRAPH\")\n    fi\n\n    echo \"==========================================\"\n    echo \" UniXcoder: strategy=$STRATEGY seed=$SEED gpu=$GPU_ID\"\n    echo \" output=$OUTPUT_DIR\"\n    echo \"==========================================\"\n    echo \"[$(date '+%Y-%m-%d %H:%M:%S')] START: ${TRAIN_CMD[*]}\" | tee \"$LOG_FILE\"\n    \"${TRAIN_CMD[@]}\" 2>&1 | tee -a \"$LOG_FILE\"\n    echo \"[$(date '+%Y-%m-%d %H:%M:%S')] DONE: strategy=$STRATEGY seed=$SEED\" | tee -a \"$LOG_FILE\"\ndone\n\necho \"=== All 3 UniXcoder runs completed at $(date) ===\"\nSCRIPT_EOF\nchmod +x /root/structfuse/scripts/run_unixcoder_3strategies_s42.sh",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-16T06:07:05.981494+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-16T06:07:05.981662+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "rm -rf /root/autodl-tmp/structfuse/full_m2_unixcoder_outputs/random_s42",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "rm -rf /root/autodl-tmp/structfuse/full_m2_unixcoder_outputs/random_s42",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-16T06:07:05.981802+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-16T06:07:05.981931+00:00_
+
+called mcp__agent-ml-research__submit_training_job
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__submit_training_job</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "gpu_ids": "['cuda:0']",
+  "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/structfuse/scripts/run_unixcoder_3strategies_s42.sh 0\"",
+  "exp_id": "unixcoder-3strat-s42",
+  "timeout_hours": "4",
+  "account": "root",
+  "project": "structfuse-context"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__submit_training_job",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "gpu_ids": "['cuda:0']",
+    "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/structfuse/scripts/run_unixcoder_3strategies_s42.sh 0\"",
+    "exp_id": "unixcoder-3strat-s42",
+    "timeout_hours": "4",
+    "account": "root",
+    "project": "structfuse-context"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-16T06:07:05.982075+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"pid\": \"149858\", \"log_file\": \"~/runs/structfuse-context/unixcoder-3strat-s42.log\", \"gpu_ids\": [\"cuda:0\"], \"server\": \"bjb1-42106\", \"account\": \"root\", \"cuda_visible_devices\": \"0\", \"backend\": \"tmux\", \"tmux_session\": \"unixcoder-3strat-s42\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.09}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__submit_training_job",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-16T06:07:05.982203+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "tail -30 /root/runs/structfuse-context/unixcoder-3strat-s42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "tail -30 /root/runs/structfuse-context/unixcoder-3strat-s42.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-16T06:07:05.982336+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"==========================================\\n UniXcoder: strategy=random seed=42 gpu=0\\n output=/root/autodl-tmp/structfuse/full_m2_unixcoder_outputs/random_s42\\n==========================================\\n[2026-05-16 14:04:45] START: python -u /root/structfuse/training/train.py --model-name microsoft/unixcoder-base --train-file /root/autodl-tmp/structfuse/full_m2_training_data/train_random_s42.jsonl --val-file /root/autodl-tmp/structfuse/full_m2_training_data/val_random_s42.jsonl --output-dir /root/autodl-tmp/structfuse/full_m2_unixcoder_outputs/random_s42 --hard-negative-strategy random --seed 42 --batch-size 16 --num-negatives 7 --max-seq-length 1024 --num-epochs 2 --learning-rate 2e-5 --eval-steps 200 --save-steps 500 --use-lora --gradient-checkpointing --wandb-project structfuse --wandb-run-name unixcoder_random_s42 --early-stopping-patience 3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-16T06:07:05.982474+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "tail -30 /root/runs/structfuse-context/unixcoder-3strat-s42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "tail -30 /root/runs/structfuse-context/unixcoder-3strat-s42.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-16T06:07:05.982625+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"==========================================\\n UniXcoder: strategy=random seed=42 gpu=0\\n output=/root/autodl-tmp/structfuse/full_m2_unixcoder_outputs/random_s42\\n==========================================\\n[2026-05-16 14:04:45] START: python -u /root/structfuse/training/train.py --model-name microsoft/unixcoder-base --train-file /root/autodl-tmp/structfuse/full_m2_training_data/train_random_s42.jsonl --val-file /root/autodl-tmp/structfuse/full_m2_training_data/val_random_s42.jsonl --output-dir /root/autodl-tmp/structfuse/full_m2_unixcoder_outputs/random_s42 --hard-negative-strategy random --seed 42 --batch-size 16 --num-negatives 7 --max-seq-length 1024 --num-epochs 2 --learning-rate 2e-5 --eval-steps 200 --save-steps 500 --use-lora --gradient-checkpointing --wandb-project structfuse --wandb-run-name unixcoder_random_s42 --early-stopping-patience 3\\nwandb: Tracking run with wandb version 0.26.0\\nwandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.\\nwandb: Run data is saved locally in /root/structfuse-context/wandb/offline-run-20260516_140449-0blt4al6\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-16T06:07:05.982779+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "tail -40 /root/runs/structfuse-context/unixcoder-3strat-s42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "tail -40 /root/runs/structfuse-context/unixcoder-3strat-s42.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-16T06:07:05.982916+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"==========================================\\n UniXcoder: strategy=random seed=42 gpu=0\\n output=/root/autodl-tmp/structfuse/full_m2_unixcoder_outputs/random_s42\\n==========================================\\n[2026-05-16 14:04:45] START: python -u /root/structfuse/training/train.py --model-name microsoft/unixcoder-base --train-file /root/autodl-tmp/structfuse/full_m2_training_data/train_random_s42.jsonl --val-file /root/autodl-tmp/structfuse/full_m2_training_data/val_random_s42.jsonl --output-dir /root/autodl-tmp/structfuse/full_m2_unixcoder_outputs/random_s42 --hard-negative-strategy random --seed 42 --batch-size 16 --num-negatives 7 --max-seq-length 1024 --num-epochs 2 --learning-rate 2e-5 --eval-steps 200 --save-steps 500 --use-lora --gradient-checkpointing --wandb-project structfuse --wandb-run-name unixcoder_random_s42 --early-stopping-patience 3\\nwandb: Tracking run with wandb version 0.26.0\\nwandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.\\nwandb: Run data is saved locally in /root/structfuse-context/wandb/offline-run-20260516_140449-0blt4al6\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93 · 2026-05-16T06:07:05.983053+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "tail -50 /root/runs/structfuse-context/unixcoder-3strat-s42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "tail -50 /root/runs/structfuse-context/unixcoder-3strat-s42.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-16T06:07:05.983190+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"==========================================\\n UniXcoder: strategy=random seed=42 gpu=0\\n output=/root/autodl-tmp/structfuse/full_m2_unixcoder_outputs/random_s42\\n==========================================\\n[2026-05-16 14:04:45] START: python -u /root/structfuse/training/train.py --model-name microsoft/unixcoder-base --train-file /root/autodl-tmp/structfuse/full_m2_training_data/train_random_s42.jsonl --val-file /root/autodl-tmp/structfuse/full_m2_training_data/val_random_s42.jsonl --output-dir /root/autodl-tmp/structfuse/full_m2_unixcoder_outputs/random_s42 --hard-negative-strategy random --seed 42 --batch-size 16 --num-negatives 7 --max-seq-length 1024 --num-epochs 2 --learning-rate 2e-5 --eval-steps 200 --save-steps 500 --use-lora --gradient-checkpointing --wandb-project structfuse --wandb-run-name unixcoder_random_s42 --early-stopping-patience 3\\nwandb: Tracking run with wandb version 0.26.0\\nwandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.\\nwandb: Run data is saved locally in /root/structfuse-context/wandb/offline-run-20260516_140449-0blt4al6\\n[Epoch 1] Using pre-mined negatives (random)...\\n  Training loop start: 707 batches/epoch, total_steps_per_epoch=707\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95 · 2026-05-16T06:07:05.983340+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "tail -20 /root/runs/structfuse-context/unixcoder-3strat-s42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "tail -20 /root/runs/structfuse-context/unixcoder-3strat-s42.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-16T06:07:05.983476+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"==========================================\\n UniXcoder: strategy=random seed=42 gpu=0\\n output=/root/autodl-tmp/structfuse/full_m2_unixcoder_outputs/random_s42\\n==========================================\\n[2026-05-16 14:04:45] START: python -u /root/structfuse/training/train.py --model-name microsoft/unixcoder-base --train-file /root/autodl-tmp/structfuse/full_m2_training_data/train_random_s42.jsonl --val-file /root/autodl-tmp/structfuse/full_m2_training_data/val_random_s42.jsonl --output-dir /root/autodl-tmp/structfuse/full_m2_unixcoder_outputs/random_s42 --hard-negative-strategy random --seed 42 --batch-size 16 --num-negatives 7 --max-seq-length 1024 --num-epochs 2 --learning-rate 2e-5 --eval-steps 200 --save-steps 500 --use-lora --gradient-checkpointing --wandb-project structfuse --wandb-run-name unixcoder_random_s42 --early-stopping-patience 3\\nwandb: Tracking run with wandb version 0.26.0\\nwandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.\\nwandb: Run data is saved locally in /root/structfuse-context/wandb/offline-run-20260516_140449-0blt4al6\\n[Epoch 1] Using pre-mined negatives (random)...\\n  Training loop start: 707 batches/epoch, total_steps_per_epoch=707\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97 · 2026-05-16T06:07:05.983630+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "nvidia-smi --query-gpu=index,memory.used,memory.total,memory.free --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "nvidia-smi --query-gpu=index,memory.used,memory.total,memory.free --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-16T06:07:05.983772+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 64354 MiB, 97887 MiB, 32899 MiB\\n1, 71598 MiB, 97887 MiB, 25655 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 99 · 2026-05-16T06:07:05.983928+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "tail -20 /root/runs/structfuse-context/unixcoder-3strat-s42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "tail -20 /root/runs/structfuse-context/unixcoder-3strat-s42.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-16T06:07:05.984066+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"==========================================\\n UniXcoder: strategy=random seed=42 gpu=0\\n output=/root/autodl-tmp/structfuse/full_m2_unixcoder_outputs/random_s42\\n==========================================\\n[2026-05-16 14:04:45] START: python -u /root/structfuse/training/train.py --model-name microsoft/unixcoder-base --train-file /root/autodl-tmp/structfuse/full_m2_training_data/train_random_s42.jsonl --val-file /root/autodl-tmp/structfuse/full_m2_training_data/val_random_s42.jsonl --output-dir /root/autodl-tmp/structfuse/full_m2_unixcoder_outputs/random_s42 --hard-negative-strategy random --seed 42 --batch-size 16 --num-negatives 7 --max-seq-length 1024 --num-epochs 2 --learning-rate 2e-5 --eval-steps 200 --save-steps 500 --use-lora --gradient-checkpointing --wandb-project structfuse --wandb-run-name unixcoder_random_s42 --early-stopping-patience 3\\nwandb: Tracking run with wandb version 0.26.0\\nwandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.\\nwandb: Run data is saved locally in /root/structfuse-context/wandb/offline-run-20260516_140449-0blt4al6\\n[Epoch 1] Using pre-mined negatives (random)...\\n  Training loop start: 707 batches/epoch, total_steps_per_epoch=707\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 101 · 2026-05-16T06:07:05.984201+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "tail -30 /root/autodl-tmp/structfuse/full_m2_unixcoder_outputs/random_s42/train.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "tail -30 /root/autodl-tmp/structfuse/full_m2_unixcoder_outputs/random_s42/train.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 102 · 2026-05-16T06:07:05.984341+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[2026-05-16 14:04:45] START: python -u /root/structfuse/training/train.py --model-name microsoft/unixcoder-base --train-file /root/autodl-tmp/structfuse/full_m2_training_data/train_random_s42.jsonl --val-file /root/autodl-tmp/structfuse/full_m2_training_data/val_random_s42.jsonl --output-dir /root/autodl-tmp/structfuse/full_m2_unixcoder_outputs/random_s42 --hard-negative-strategy random --seed 42 --batch-size 16 --num-negatives 7 --max-seq-length 1024 --num-epochs 2 --learning-rate 2e-5 --eval-steps 200 --save-steps 500 --use-lora --gradient-checkpointing --wandb-project structfuse --wandb-run-name unixcoder_random_s42 --early-stopping-patience 3\\nwandb: Tracking run with wandb version 0.26.0\\nwandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.\\nwandb: Run data is saved locally in /root/structfuse-context/wandb/offline-run-20260516_140449-0blt4al6\\n[Epoch 1] Using pre-mined negatives (random)...\\n  Training loop start: 707 batches/epoch, total_steps_per_epoch=707\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 103 · 2026-05-16T06:07:05.984486+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "tail -20 /root/runs/structfuse-context/unixcoder-3strat-s42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "tail -20 /root/runs/structfuse-context/unixcoder-3strat-s42.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-16T06:07:05.984658+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"==========================================\\n UniXcoder: strategy=random seed=42 gpu=0\\n output=/root/autodl-tmp/structfuse/full_m2_unixcoder_outputs/random_s42\\n==========================================\\n[2026-05-16 14:04:45] START: python -u /root/structfuse/training/train.py --model-name microsoft/unixcoder-base --train-file /root/autodl-tmp/structfuse/full_m2_training_data/train_random_s42.jsonl --val-file /root/autodl-tmp/structfuse/full_m2_training_data/val_random_s42.jsonl --output-dir /root/autodl-tmp/structfuse/full_m2_unixcoder_outputs/random_s42 --hard-negative-strategy random --seed 42 --batch-size 16 --num-negatives 7 --max-seq-length 1024 --num-epochs 2 --learning-rate 2e-5 --eval-steps 200 --save-steps 500 --use-lora --gradient-checkpointing --wandb-project structfuse --wandb-run-name unixcoder_random_s42 --early-stopping-patience 3\\nwandb: Tracking run with wandb version 0.26.0\\nwandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.\\nwandb: Run data is saved locally in /root/structfuse-context/wandb/offline-run-20260516_140449-0blt4al6\\n[Epoch 1] Using pre-mined negatives (random)...\\n  Training loop start: 707 batches/epoch, total_steps_per_epoch=707\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 105 · 2026-05-16T06:07:05.984810+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "find /root/autodl-tmp/structfuse/full_m2_unixcoder_outputs -type f -name \"*.log\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "find /root/autodl-tmp/structfuse/full_m2_unixcoder_outputs -type f -name \"*.log\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 106 · 2026-05-16T06:07:05.984941+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/structfuse/full_m2_unixcoder_outputs/random_s42/train.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 107 · 2026-05-16T06:07:05.985073+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "nvidia-smi --query-compute-apps=pid,used_memory,name --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "nvidia-smi --query-compute-apps=pid,used_memory,name --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 108 · 2026-05-16T06:07:05.985202+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"134514, 50792 MiB, python\\n149872, 13548 MiB, python\\n129747, 53458 MiB, python\\n142971, 18126 MiB, python\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 109 · 2026-05-16T06:07:05.985370+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "tail -30 /root/runs/structfuse-context/unixcoder-3strat-s42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "tail -30 /root/runs/structfuse-context/unixcoder-3strat-s42.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 110 · 2026-05-16T06:07:05.985510+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"==========================================\\n UniXcoder: strategy=random seed=42 gpu=0\\n output=/root/autodl-tmp/structfuse/full_m2_unixcoder_outputs/random_s42\\n==========================================\\n[2026-05-16 14:04:45] START: python -u /root/structfuse/training/train.py --model-name microsoft/unixcoder-base --train-file /root/autodl-tmp/structfuse/full_m2_training_data/train_random_s42.jsonl --val-file /root/autodl-tmp/structfuse/full_m2_training_data/val_random_s42.jsonl --output-dir /root/autodl-tmp/structfuse/full_m2_unixcoder_outputs/random_s42 --hard-negative-strategy random --seed 42 --batch-size 16 --num-negatives 7 --max-seq-length 1024 --num-epochs 2 --learning-rate 2e-5 --eval-steps 200 --save-steps 500 --use-lora --gradient-checkpointing --wandb-project structfuse --wandb-run-name unixcoder_random_s42 --early-stopping-patience 3\\nwandb: Tracking run with wandb version 0.26.0\\nwandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.\\nwandb: Run data is saved locally in /root/structfuse-context/wandb/offline-run-20260516_140449-0blt4al6\\n[Epoch 1] Using pre-mined negatives (random)...\\n  Training loop start: 707 batches/epoch, total_steps_per_epoch=707\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 111 · 2026-05-16T06:07:05.985680+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "grep -n \"_print_flush\\|print(\" /root/structfuse/training/train.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "grep -n \"_print_flush\\|print(\" /root/structfuse/training/train.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 112 · 2026-05-16T06:07:05.985813+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 113 · 2026-05-16T06:07:05.985942+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "grep -n \"_print_flush\" /root/structfuse/training/train.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "grep -n \"_print_flush\" /root/structfuse/training/train.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 114 · 2026-05-16T06:07:05.986091+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"36:def _print_flush(*args, **kwargs):\\n360:            _print_flush(f\\\"Loaded {len(candidate_pools)} candidate pools for dynamic mining\\\")\\n387:                _print_flush(f\\\"[Epoch {epoch+1}] Dynamic mining: re-encoding candidates...\\\")\\n399:                _print_flush(f\\\"  Mined negatives for {len(mined)} queries\\\")\\n402:                _print_flush(f\\\"[Epoch {epoch+1}] Using pre-mined negatives ({args.hard_negative_strategy})...\\\")\\n408:            _print_flush(f\\\"  Training loop start: {len(train_loader)} batches/epoch, total_steps_per_epoch={len(train_loader)}\\\")\\n433:                _print_flush(f\\\"  step {global_step}  loss={loss.item():.4f}  lr={lr:.2e}\\\")\\n442:                    _print_flush(f\\\"  [eval@{global_step}] {metrics}\\\")\\n450:                            _print_flush(f\\\"WARNING: Only {free_gb:.1f}GB free, skipping best checkpoint save\\\")\\n458:                            _print_flush(f\\\"  New best val_loss={cur_val_loss:.4f}, saved to {best_dir}\\\")\\n462:                        _print_flush(f\\\"  val_loss not improved ({no_improve_count}/{args.early_stopping_patience})\\\")\\n468:                            _print_flush(f\\\"WARNING: Only {free_gb:.1f}GB free, skipping best R@1 checkpoint save\\\")\\n475:                            _print_flush(f\\\"  New best R@1={cur_recall_at_1:.4f}, saved to {best_r1_dir}\\\")\\n478:                        _print_flush(f\\\"Early stopping triggered at step {global_step}, best val_loss={best_val_loss:.4f} at step {best_val_loss_step}\\\")\\n485:        _print_flush(f\\\"[Final eval] {final_metrics}\\\")\\n490:            _print_flush(f\\\"WARNING: Only {free_gb:.1f}GB free, skipping final checkpoint save\\\")\\n493:            _print_flush(f\\\"Training complete. Model saved to {output_dir / 'final'}\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 115 · 2026-05-16T06:07:05.986242+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "cat -n /root/structfuse/training/train.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "cat -n /root/structfuse/training/train.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 116 · 2026-05-16T06:07:05.986505+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"     1\\tfrom __future__ import annotations\\n     2\\t\\n     3\\timport os\\n     4\\t\\n     5\\t\\\"\\\"\\\"StructFuse contrastive training entry point.\\n     6\\t\\n     7\\tTrains a bi-encoder (Qwen2.5-Coder-3B) with InfoNCE loss, data-flow-weighted\\n     8\\tpositives, and configurable hard-negative mining.  Supports single/multi-GPU\\n     9\\tvia HuggingFace Accelerate, LoRA, gradient checkpointing, and W&B logging.\\n    10\\t\\\"\\\"\\\"\\n    11\\t\\n    12\\t\\n    13\\timport argparse\\n    14\\timport sys\\n    15\\timport json\\n    16\\timport math\\n    17\\timport os\\n    18\\timport random\\n    19\\timport shutil\\n    20\\tfrom pathlib import Path\\n    21\\tfrom typing import Any, Dict, List\\n    22\\t\\n    23\\timport numpy as np\\n    24\\timport torch\\n    25\\tfrom torch.utils.data import DataLoader, Dataset\\n    26\\tfrom transformers import AutoTokenizer, get_cosine_schedule_with_warmup\\n    27\\t\\n    28\\tfrom accelerate import Accelerator\\n    29\\tfrom accelerate.utils import set_seed\\n    30\\t\\n    31\\tfrom contrastive_model import StructFuseEncoder\\n    32\\tfrom hard_negative_mining import build_miner, mine_batch\\n    33\\t\\n    34\\t\\n    35\\t\\n    36\\tdef _print_flush(*args, **kwargs):\\n    37\\t    \\\"\\\"\\\"Print with explicit flush for file-redirect compatibility.\\\"\\\"\\\"\\n    38\\t    kwargs['flush'] = True\\n    39\\t    print(*args, **kwargs)\\n    40\\t\\n    41\\t# ── Dataset ──────────────────────────────────────────────────────────\\n    42\\t\\n    43\\tclass ContrastiveDataset(Dataset):\\n    44\\t    \\\"\\\"\\\"\\n    45\\t    Each sample: {query, positive, negatives[], pos_weight, features[]}.\\n    46\\t\\n    47\\t    The raw data file is JSONL with fields:\\n    48\\t        query_id, query_tokens, pos_id, pos_tokens, pos_dataflow_distance,\\n    49\\t        neg_candidates (list of file ids), features (dict per candidate).\\n 
+…[truncated 7365 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 117 · 2026-05-16T06:07:05.986713+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "cat -n /root/structfuse/training/train.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "cat -n /root/structfuse/training/train.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 118 · 2026-05-16T06:07:05.986985+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"     1\\tfrom __future__ import annotations\\n     2\\t\\n     3\\timport os\\n     4\\t\\n     5\\t\\\"\\\"\\\"StructFuse contrastive training entry point.\\n     6\\t\\n     7\\tTrains a bi-encoder (Qwen2.5-Coder-3B) with InfoNCE loss, data-flow-weighted\\n     8\\tpositives, and configurable hard-negative mining.  Supports single/multi-GPU\\n     9\\tvia HuggingFace Accelerate, LoRA, gradient checkpointing, and W&B logging.\\n    10\\t\\\"\\\"\\\"\\n    11\\t\\n    12\\t\\n    13\\timport argparse\\n    14\\timport sys\\n    15\\timport json\\n    16\\timport math\\n    17\\timport os\\n    18\\timport random\\n    19\\timport shutil\\n    20\\tfrom pathlib import Path\\n    21\\tfrom typing import Any, Dict, List\\n    22\\t\\n    23\\timport numpy as np\\n    24\\timport torch\\n    25\\tfrom torch.utils.data import DataLoader, Dataset\\n    26\\tfrom transformers import AutoTokenizer, get_cosine_schedule_with_warmup\\n    27\\t\\n    28\\tfrom accelerate import Accelerator\\n    29\\tfrom accelerate.utils import set_seed\\n    30\\t\\n    31\\tfrom contrastive_model import StructFuseEncoder\\n    32\\tfrom hard_negative_mining import build_miner, mine_batch\\n    33\\t\\n    34\\t\\n    35\\t\\n    36\\tdef _print_flush(*args, **kwargs):\\n    37\\t    \\\"\\\"\\\"Print with explicit flush for file-redirect compatibility.\\\"\\\"\\\"\\n    38\\t    kwargs['flush'] = True\\n    39\\t    print(*args, **kwargs)\\n    40\\t\\n    41\\t# ── Dataset ──────────────────────────────────────────────────────────\\n    42\\t\\n    43\\tclass ContrastiveDataset(Dataset):\\n    44\\t    \\\"\\\"\\\"\\n    45\\t    Each sample: {query, positive, negatives[], pos_weight, features[]}.\\n    46\\t\\n    47\\t    The raw data file is JSONL with fields:\\n    48\\t        query_id, query_tokens, pos_id, pos_tokens, pos_dataflow_distance,\\n    49\\t        neg_candidates (list of file ids), features (dict per candidate).\\n 
+…[truncated 7366 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 119 · 2026-05-16T06:07:05.987167+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "head -445 /root/structfuse/training/train.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "head -445 /root/structfuse/training/train.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 120 · 2026-05-16T06:07:05.987413+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"from __future__ import annotations\\n\\nimport os\\n\\n\\\"\\\"\\\"StructFuse contrastive training entry point.\\n\\nTrains a bi-encoder (Qwen2.5-Coder-3B) with InfoNCE loss, data-flow-weighted\\npositives, and configurable hard-negative mining.  Supports single/multi-GPU\\nvia HuggingFace Accelerate, LoRA, gradient checkpointing, and W&B logging.\\n\\\"\\\"\\\"\\n\\n\\nimport argparse\\nimport sys\\nimport json\\nimport math\\nimport os\\nimport random\\nimport shutil\\nfrom pathlib import Path\\nfrom typing import Any, Dict, List\\n\\nimport numpy as np\\nimport torch\\nfrom torch.utils.data import DataLoader, Dataset\\nfrom transformers import AutoTokenizer, get_cosine_schedule_with_warmup\\n\\nfrom accelerate import Accelerator\\nfrom accelerate.utils import set_seed\\n\\nfrom contrastive_model import StructFuseEncoder\\nfrom hard_negative_mining import build_miner, mine_batch\\n\\n\\n\\ndef _print_flush(*args, **kwargs):\\n    \\\"\\\"\\\"Print with explicit flush for file-redirect compatibility.\\\"\\\"\\\"\\n    kwargs['flush'] = True\\n    print(*args, **kwargs)\\n\\n# ── Dataset ──���───────────────────────────────────────────────────────\\n\\nclass ContrastiveDataset(Dataset):\\n    \\\"\\\"\\\"\\n    Each sample: {query, positive, negatives[], pos_weight, features[]}.\\n\\n    The raw data file is JSONL with fields:\\n        query_id, query_tokens, pos_id, pos_tokens, pos_dataflow_distance,\\n        neg_candidates (list of file ids), features (dict per candidate).\\n\\n    Negatives are mined dynamically per epoch via `refresh_negatives()`.\\n    \\\"\\\"\\\"\\n\\n    def __init__(\\n        self,\\n        data_path: str,\\n        tokenizer: AutoTokenizer,\\n        max_seq_length: int,\\n        num_negatives: int,\\n        pos_weight_alpha: float,\\n        use_fusion_head: bool,\\n    ):\\n        self.tokenizer = tokenizer\\n        self.max_seq_length = max_seq_length\\n        self.num_neg
+…[truncated 6959 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 121 · 2026-05-16T06:07:05.987624+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "tail -10 /root/runs/structfuse-context/unixcoder-3strat-s42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "tail -10 /root/runs/structfuse-context/unixcoder-3strat-s42.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 122 · 2026-05-16T06:07:05.987782+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"==========================================\\n UniXcoder: strategy=random seed=42 gpu=0\\n output=/root/autodl-tmp/structfuse/full_m2_unixcoder_outputs/random_s42\\n==========================================\\n[2026-05-16 14:04:45] START: python -u /root/structfuse/training/train.py --model-name microsoft/unixcoder-base --train-file /root/autodl-tmp/structfuse/full_m2_training_data/train_random_s42.jsonl --val-file /root/autodl-tmp/structfuse/full_m2_training_data/val_random_s42.jsonl --output-dir /root/autodl-tmp/structfuse/full_m2_unixcoder_outputs/random_s42 --hard-negative-strategy random --seed 42 --batch-size 16 --num-negatives 7 --max-seq-length 1024 --num-epochs 2 --learning-rate 2e-5 --eval-steps 200 --save-steps 500 --use-lora --gradient-checkpointing --wandb-project structfuse --wandb-run-name unixcoder_random_s42 --early-stopping-patience 3\\nwandb: Tracking run with wandb version 0.26.0\\nwandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.\\nwandb: Run data is saved locally in /root/structfuse-context/wandb/offline-run-20260516_140449-0blt4al6\\n[Epoch 1] Using pre-mined negatives (random)...\\n  Training loop start: 707 batches/epoch, total_steps_per_epoch=707\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 123 · 2026-05-16T06:07:05.988093+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "tail -10 /root/runs/structfuse-context/unixcoder-3strat-s42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "tail -10 /root/runs/structfuse-context/unixcoder-3strat-s42.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 124 · 2026-05-16T06:07:05.988262+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"==========================================\\n UniXcoder: strategy=random seed=42 gpu=0\\n output=/root/autodl-tmp/structfuse/full_m2_unixcoder_outputs/random_s42\\n==========================================\\n[2026-05-16 14:04:45] START: python -u /root/structfuse/training/train.py --model-name microsoft/unixcoder-base --train-file /root/autodl-tmp/structfuse/full_m2_training_data/train_random_s42.jsonl --val-file /root/autodl-tmp/structfuse/full_m2_training_data/val_random_s42.jsonl --output-dir /root/autodl-tmp/structfuse/full_m2_unixcoder_outputs/random_s42 --hard-negative-strategy random --seed 42 --batch-size 16 --num-negatives 7 --max-seq-length 1024 --num-epochs 2 --learning-rate 2e-5 --eval-steps 200 --save-steps 500 --use-lora --gradient-checkpointing --wandb-project structfuse --wandb-run-name unixcoder_random_s42 --early-stopping-patience 3\\nwandb: Tracking run with wandb version 0.26.0\\nwandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.\\nwandb: Run data is saved locally in /root/structfuse-context/wandb/offline-run-20260516_140449-0blt4al6\\n[Epoch 1] Using pre-mined negatives (random)...\\n  Training loop start: 707 batches/epoch, total_steps_per_epoch=707\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 125 · 2026-05-16T06:07:05.988418+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "nvidia-smi --query-compute-apps=pid,used_memory --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "nvidia-smi --query-compute-apps=pid,used_memory --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 126 · 2026-05-16T06:07:05.988570+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"134514, 50792 MiB\\n149872, 13548 MiB\\n129747, 53458 MiB\\n142971, 18126 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 127 · 2026-05-16T06:07:05.988758+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "tail -15 /root/runs/structfuse-context/unixcoder-3strat-s42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "tail -15 /root/runs/structfuse-context/unixcoder-3strat-s42.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 128 · 2026-05-16T06:07:05.988904+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"==========================================\\n UniXcoder: strategy=random seed=42 gpu=0\\n output=/root/autodl-tmp/structfuse/full_m2_unixcoder_outputs/random_s42\\n==========================================\\n[2026-05-16 14:04:45] START: python -u /root/structfuse/training/train.py --model-name microsoft/unixcoder-base --train-file /root/autodl-tmp/structfuse/full_m2_training_data/train_random_s42.jsonl --val-file /root/autodl-tmp/structfuse/full_m2_training_data/val_random_s42.jsonl --output-dir /root/autodl-tmp/structfuse/full_m2_unixcoder_outputs/random_s42 --hard-negative-strategy random --seed 42 --batch-size 16 --num-negatives 7 --max-seq-length 1024 --num-epochs 2 --learning-rate 2e-5 --eval-steps 200 --save-steps 500 --use-lora --gradient-checkpointing --wandb-project structfuse --wandb-run-name unixcoder_random_s42 --early-stopping-patience 3\\nwandb: Tracking run with wandb version 0.26.0\\nwandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.\\nwandb: Run data is saved locally in /root/structfuse-context/wandb/offline-run-20260516_140449-0blt4al6\\n[Epoch 1] Using pre-mined negatives (random)...\\n  Training loop start: 707 batches/epoch, total_steps_per_epoch=707\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 129 · 2026-05-16T06:07:05.989055+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "tail -10 /root/autodl-tmp/structfuse/full_m2_unixcoder_outputs/random_s42/train.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "tail -10 /root/autodl-tmp/structfuse/full_m2_unixcoder_outputs/random_s42/train.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 130 · 2026-05-16T06:07:05.989196+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[2026-05-16 14:04:45] START: python -u /root/structfuse/training/train.py --model-name microsoft/unixcoder-base --train-file /root/autodl-tmp/structfuse/full_m2_training_data/train_random_s42.jsonl --val-file /root/autodl-tmp/structfuse/full_m2_training_data/val_random_s42.jsonl --output-dir /root/autodl-tmp/structfuse/full_m2_unixcoder_outputs/random_s42 --hard-negative-strategy random --seed 42 --batch-size 16 --num-negatives 7 --max-seq-length 1024 --num-epochs 2 --learning-rate 2e-5 --eval-steps 200 --save-steps 500 --use-lora --gradient-checkpointing --wandb-project structfuse --wandb-run-name unixcoder_random_s42 --early-stopping-patience 3\\nwandb: Tracking run with wandb version 0.26.0\\nwandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.\\nwandb: Run data is saved locally in /root/structfuse-context/wandb/offline-run-20260516_140449-0blt4al6\\n[Epoch 1] Using pre-mined negatives (random)...\\n  Training loop start: 707 batches/epoch, total_steps_per_epoch=707\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 131 · 2026-05-16T06:07:05.989363+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "tail -5 /root/runs/structfuse-context/unixcoder-3strat-s42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "tail -5 /root/runs/structfuse-context/unixcoder-3strat-s42.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 132 · 2026-05-16T06:07:05.989505+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"wandb: Tracking run with wandb version 0.26.0\\nwandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.\\nwandb: Run data is saved locally in /root/structfuse-context/wandb/offline-run-20260516_140449-0blt4al6\\n[Epoch 1] Using pre-mined negatives (random)...\\n  Training loop start: 707 batches/epoch, total_steps_per_epoch=707\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 133 · 2026-05-16T06:07:05.989659+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "tail -5 /root/runs/structfuse-context/unixcoder-3strat-s42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "tail -5 /root/runs/structfuse-context/unixcoder-3strat-s42.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 134 · 2026-05-16T06:07:05.989798+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"wandb: Tracking run with wandb version 0.26.0\\nwandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.\\nwandb: Run data is saved locally in /root/structfuse-context/wandb/offline-run-20260516_140449-0blt4al6\\n[Epoch 1] Using pre-mined negatives (random)...\\n  Training loop start: 707 batches/epoch, total_steps_per_epoch=707\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 135 · 2026-05-16T06:07:05.989940+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "ls -la /proc/149872/status",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "ls -la /proc/149872/status",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 136 · 2026-05-16T06:07:05.990070+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-r--r--r-- 1 root root 0 May 16 14:04 /proc/149872/status\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 137 · 2026-05-16T06:07:05.990194+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "tail -5 /root/runs/structfuse-context/unixcoder-3strat-s42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-42106",
+    "command": "tail -5 /root/runs/structfuse-context/unixcoder-3strat-s42.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 138 · 2026-05-16T06:07:05.990325+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.\\nwandb: Run data is saved locally in /root/structfuse-context/wandb/offline-run-20260516_140449-0blt4al6\\n[Epoch 1] Using pre-mined negatives (random)...\\n  Training loop start: 707 batches/epoch, total_steps_per_epoch=707\\n  step 50  loss=0.6284  lr=7.09e-06\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 139 · 2026-05-16T06:07:05.990497+00:00_
+
+训练正常运行！step 50, loss=0.6284。Loss 在正常范围内（InfoNCE with 8 candidates, random chance log(8)≈2.08，0.63 说明模型已在学习）。
+
+训练已成功启动：
+- **Job**: `unixcoder-3strat-s42`（tmux session）
+- **GPU 0**: 13.5 GiB VRAM
+- **配置**: batch_size=16, max_seq_length=1024, gradient-checkpointing, LoRA
+- **进度**: 707 steps/epoch × 2 epochs = 1414 总步数，3 个 strategy 串行
+- **首个 loss**: step 50, loss=0.6284
+- **输出**: `/root/autodl-tmp/structfuse/full_m2_unixcoder_outputs/{strategy}_s42/`
+- **预计总时长**: ~2-3 小时（3 runs 串行）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_ops_unixcoder_training_launch_20260516T055854"
+}
+```
+
+</details>
+
+---

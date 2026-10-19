@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "358ef791408cef8c0ec8",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code fix and restart advbench r1 8b",
+  "task_key": "worker_code_fix_and_restart_advbench_r1_8b_20260522T122139",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_and_restart_advbench_r1_8b_20260522T122139_result.json",
+    "occurrence": 1,
+    "bytes": 879,
+    "sha256": "b8b3243733d1365dc587e933ddb079b279591424c9a8e743a2436fbe33495546"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Status: Experiment is running successfully — no fix needed.**\n\nThe server script **already had both fixes** applied. The `--phase both` run (PID 51257) has:\n\n- **Phase 1 (generate): Complete** — 520/520 traces, 412 jailbreak / 108 safe, took 8597s (~2.4h)\n- **Phase 2 (analyze): In progress** — 24/128 layer×window evaluations done (~19%), est. ~20 min remaining\n\nResults are writing to `artifacts/advbench_layer_bias_log.txt`. Early results look reasonable (bal_acc 0.63–0.68, precision 0.91–0.92 range across L0–L5).\n\nI killed my duplicate analyze run (PID 62378). The original run (PID 51257) will complete and save results to `artifacts/advbench_layer_bias_results.json`.\n\n**exp_id context**: This is the `--phase both` run that was already submitted earlier today (not by me). No new submission needed — it's completing on its own."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-and-restart-advbench-r1-8b.md"
+}

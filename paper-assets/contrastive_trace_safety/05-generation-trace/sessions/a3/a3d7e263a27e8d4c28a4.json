@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a3d7e263a27e8d4c28a4",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code ot7b gru layer16",
+  "task_key": "worker_code_ot7b_gru_layer16_20260517T110235",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_ot7b_gru_layer16_20260517T110235_result.json",
+    "occurrence": 1,
+    "bytes": 1168,
+    "sha256": "74d55f688213c005589b6d8afc115970ba24610ec74f2aa352959682f4b6c537"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结果：\n\n**OT-7B GRU (Layer 16) — 3 seeds mean ± std:**\n\n| Config | bal_acc | coverage | lead_mean | pre_cp_fpr |\n|--------|---------|----------|-----------|------------|\n| GRU Single (L16) | 0.7246 ± 0.0094 | 66.7% ± 4.4% | 35.25 ± 3.35 | 0.2904 ± 0.0527 |\n| GRU Multi (L13-19) | 0.7464 ± 0.0127 | 64.5% ± 7.0% | 33.61 ± 4.83 | 0.2741 ± 0.0612 |\n\n**与其他模型对比:**\n\n| Model | Single bal_acc | Single coverage | Single lead | Multi bal_acc | Multi coverage | Multi lead |\n|-------|---------------|----------------|-------------|---------------|----------------|------------|\n| R1-32B | 0.675 | 30% | 9.1 | 0.655 | 23% | 8.8 |\n| QwQ-32B | 0.694 | 75% | 19.3 | 0.724 | 84% | 15.9 |\n| **OT-7B** | **0.725** | **66.7%** | **35.3** | **0.746** | **64.5%** | **33.6** |\n\nOT-7B 的 bal_acc 和 lead_mean 均高于其他模型，但 pre_cp_fpr 也偏高（~0.29），说明在 CP 前有较多假阳性。\n\n产出：\n- 脚本: `/root/autodl-tmp/contrastive_trace_safety/src/experiments/exp_ot7b_gru_layer16.py`\n- 结果: `/root/autodl-tmp/contrastive_trace_safety/artifacts/ot7b_gru_layer16/results.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-ot7b-gru-layer16.md"
+}

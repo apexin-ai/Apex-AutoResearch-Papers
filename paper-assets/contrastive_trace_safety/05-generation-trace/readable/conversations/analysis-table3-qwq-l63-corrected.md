@@ -1,0 +1,657 @@
+# analysis table3 qwq l63 corrected
+
+**Layer Selection Sensitivity in Hidden-State Safety Probes for Reasoning Models** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 21
+- **Recorded user turns:** 0
+- **Tool calls:** 10
+- **Original source:** `logs/chats/worker_analysis_table3_qwq_l63_corrected_20260518T182812.jsonl`
+- **Structured JSON:** [`942083283df3c786e3d4.json`](../../sessions/94/942083283df3c786e3d4.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+21 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-18T18:30:15.014792+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_table3_qwq_l63_corrected_20260518T182812",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-18T18:30:15.015280+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_table3_qwq_l63_corrected_20260518T182812",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-18T18:30:15.015477+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a1_*/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_table3_qwq_l63_corrected_20260518T182812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a1_*/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-18T18:30:15.015632+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/table3_qwq_l63_corrected/ 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_table3_qwq_l63_corrected_20260518T182812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/table3_qwq_l63_corrected/ 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-18T18:30:15.015829+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a1_ba_layer_canonical/:\\nDONE\\nfull_results.json\\not_7b_result.json\\nqwq_32b_result.json\\nr1_32b_result.json\\nr1_8b_result.json\\nrun.log\\nstdout.log\\n\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a1_ot7b_rerun/:\\nDONE\\nresult.json\\nstdout.log\\n\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a1_qwq_rerun/:\\nhs_preds.pkl\\npredictions.pkl\\nresults.json\\nrun.log\\nrun_a1_qwq.py\\nsplits.pkl\\nsweep_0_5.json\\nsweep_0_8.json\\nsweep_10_15.json\\nsweep_15_20.json\\nsweep_20_25.json\\nsweep_25_30.json\\nsweep_30_35.json\\nsweep_35_40.json\\nsweep_40_45.json\\nsweep_45_50.json\\nsweep_50_55.json\\nsweep_55_60.json\\nsweep_5_10.json\\nsweep_60_64.json\\nsweep_merged.json\\ntext_preds.pkl\\n\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a1_r1_32b_rerun/:\\nboot_auroc.json\\nboot_bal_acc.json\\nboot_fpr.json\\nboot_prec.json\\nbootstrap_pvalues.json\\ncompare_probs.npz\\ncompare_results.json\\nlayer_ba_sweep.json\\nresults.json\\nsplits.pkl\\nsweep_0_16.json\\nsweep_0_4.json\\nsweep_12_20.json\\nsweep_20_28.json\\nsweep_28_36.json\\nsweep_36_44.json\\nsweep_44_52.json\\nsweep_4_12.json\\nsweep_52_60.json\\nsweep_60_64.json\\nte_X_L00.npy\\nte_X_L01.npy\\nte_X_L02.npy\\nte_X_L03.npy\\nte_X_L04.npy\\nte_X_L05.npy\\nte_X_L06.npy\\nte_X_L07.npy\\nte_X_L08.npy\\nte_X_L09.npy\\nte_X_L10.npy\\nte_X_L11.npy\\nte_X_L12.npy\\nte_X_L13.npy\\nte_X_L14.npy\\nte_X_L15.npy\\nte_X_L16.npy\\nte_X_L17.npy\\nte_X_L18.npy\\nte_X_L19.npy\\nte_X_L20.npy\\nte_X_L21.npy\\nte_X_L22.npy\\nte_X_L23.npy\\nte_X_L24.npy\\nte_X_L25.npy\\nte_X_L26.npy\\nte_X_L27.npy\\nte_X_L28.npy\\nte_X_L29.npy\\nte_X_L30.npy\\nte_X_L31.npy\\nte_X_L32.npy\\nte_X_L33.npy\\nte_X_L34.npy\\nte_X_L35.npy\\nte_X_L36.npy\\nte_X_L37.npy\\nte_X_L38.npy\\nte_X_L39.npy\\nte_X_L40.npy\\nte_X_L41.npy\\nte_X_L42.npy\\nte_X_L43.npy\\nte_X_L44.npy\\nte_X_L45.npy\\nte_X_L46.npy\
+…[truncated 1358 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_table3_qwq_l63_corrected_20260518T182812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-18T18:30:15.015984+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_table3_qwq_l63_corrected_20260518T182812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-18T18:30:15.016153+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a1_qwq_rerun/results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_table3_qwq_l63_corrected_20260518T182812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a1_qwq_rerun/results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-18T18:30:15.016366+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"QwQ-32B\\\",\\n  \\\"max_iter\\\": 2000,\\n  \\\"window\\\": 5,\\n  \\\"pca_dim\\\": 100,\\n  \\\"split\\\": \\\"60/20/20\\\",\\n  \\\"seed\\\": 42,\\n  \\\"n_traces\\\": 95,\\n  \\\"n_train\\\": 57,\\n  \\\"n_val\\\": 19,\\n  \\\"n_test\\\": 19,\\n  \\\"n_train_val_steps\\\": 3823,\\n  \\\"n_test_steps\\\": 1029,\\n  \\\"layer_bas\\\": {\\n    \\\"L0\\\": 0.79,\\n    \\\"L1\\\": 0.7941,\\n    \\\"L2\\\": 0.7795,\\n    \\\"L3\\\": 0.7604,\\n    \\\"L4\\\": 0.7669,\\n    \\\"L5\\\": 0.7689,\\n    \\\"L6\\\": 0.7902,\\n    \\\"L7\\\": 0.7993,\\n    \\\"L8\\\": 0.8031,\\n    \\\"L9\\\": 0.8062,\\n    \\\"L10\\\": 0.7951,\\n    \\\"L11\\\": 0.7733,\\n    \\\"L12\\\": 0.7729,\\n    \\\"L13\\\": 0.7719,\\n    \\\"L14\\\": 0.776,\\n    \\\"L15\\\": 0.786,\\n    \\\"L16\\\": 0.7874,\\n    \\\"L17\\\": 0.8063,\\n    \\\"L18\\\": 0.82,\\n    \\\"L19\\\": 0.8167,\\n    \\\"L20\\\": 0.8009,\\n    \\\"L21\\\": 0.7894,\\n    \\\"L22\\\": 0.8056,\\n    \\\"L23\\\": 0.8262,\\n    \\\"L24\\\": 0.8217,\\n    \\\"L25\\\": 0.8262,\\n    \\\"L26\\\": 0.827,\\n    \\\"L27\\\": 0.8193,\\n    \\\"L28\\\": 0.8195,\\n    \\\"L29\\\": 0.8199,\\n    \\\"L30\\\": 0.8284,\\n    \\\"L31\\\": 0.8294,\\n    \\\"L32\\\": 0.833,\\n    \\\"L33\\\": 0.8381,\\n    \\\"L34\\\": 0.8319,\\n    \\\"L35\\\": 0.8305,\\n    \\\"L36\\\": 0.8145,\\n    \\\"L37\\\": 0.8131,\\n    \\\"L38\\\": 0.8318,\\n    \\\"L39\\\": 0.8343,\\n    \\\"L40\\\": 0.8324,\\n    \\\"L41\\\": 0.8441,\\n    \\\"L42\\\": 0.8383,\\n    \\\"L43\\\": 0.8384,\\n    \\\"L44\\\": 0.8352,\\n    \\\"L45\\\": 0.8403,\\n    \\\"L46\\\": 0.853,\\n    \\\"L47\\\": 0.8709,\\n    \\\"L48\\\": 0.8637,\\n    \\\"L49\\\": 0.8653,\\n    \\\"L50\\\": 0.8698,\\n    \\\"L51\\\": 0.8702,\\n    \\\"L52\\\": 0.8711,\\n    \\\"L53\\\": 0.8671,\\n    \\\"L54\\\": 0.8673,\\n    \\\"L55\\\": 0.8676,\\n    \\\"L56\\\": 0.8768,\\n    \\\"L57\\\": 0.8773,\\n    \\\"L58\\\": 0.8782,\\n  
+…[truncated 1940 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_table3_qwq_l63_corrected_20260518T182812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-18T18:30:15.016520+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "head -80 /root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a1_qwq_rerun/run_a1_qwq.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_table3_qwq_l63_corrected_20260518T182812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "head -80 /root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a1_qwq_rerun/run_a1_qwq.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-18T18:30:15.016759+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"R14 A1: QwQ-32B BA-layer canonical rerun (max_iter=2000, 60/20/20, W=5, PCA=100d)\\n\\nSteps:\\n  1. Load all 95 traces, trace-level 60/20/20 split (seed=42)\\n  2. Sweep all 64 layers: W=5 concat -> PCA 100d -> 5-fold CV LogReg(max_iter=2000)\\n  3. Pick BA-optimal layer\\n  4. HS vs Text comparison on BA-optimal layer with 10k bootstrap\\n\\\"\\\"\\\"\\nimport os\\nos.environ[\\\"TOKENIZERS_PARALLELISM\\\"] = \\\"false\\\"\\nos.environ[\\\"HF_DATASETS_OFFLINE\\\"] = \\\"1\\\"\\nos.environ[\\\"TRANSFORMERS_OFFLINE\\\"] = \\\"1\\\"\\nos.environ[\\\"HF_HUB_OFFLINE\\\"] = \\\"1\\\"\\n\\nimport json, time, glob, warnings\\nfrom pathlib import Path\\nimport numpy as np\\nimport torch\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.model_selection import StratifiedKFold\\nfrom sklearn.metrics import balanced_accuracy_score, precision_score, roc_auc_score\\nfrom sklearn.preprocessing import StandardScaler\\nfrom sklearn.decomposition import PCA\\n\\nwarnings.filterwarnings(\\\"ignore\\\")\\n\\nSEED = 42\\nMAX_ITER = 2000\\nN_FOLDS = 5\\nWINDOW = 5\\nHIDDEN_DIM = 5120\\nPCA_DIM = 100\\nN_LAYERS = 64\\nN_RESAMPLES = 10000\\n\\nBASE = Path(\\\"/root/autodl-tmp/contrastive_trace_safety\\\")\\nHS_DIR = BASE / \\\"artifacts/hidden_states_qwq_32b\\\"\\nOUTPUT_DIR = BASE / \\\"artifacts/r14_a1_qwq_rerun\\\"\\nOUTPUT_DIR.mkdir(parents=True, exist_ok=True)\\n\\n\\ndef load_traces():\\n    traces = []\\n    for pt_file in sorted(glob.glob(str(HS_DIR / \\\"*.pt\\\"))):\\n        d = torch.load(pt_file, map_location=\\\"cpu\\\", weights_only=False)\\n        if d.get(\\\"step_labels\\\") is None:\\n            continue\\n        hs = d[\\\"hidden_states\\\"]\\n        if isinstance(hs, torch.Tensor):\\n            hs = hs.float().numpy()\\n        labels = np.array(d[\\\"step_labels\\\"], dtype=np.int32)\\n        n = min(hs.shape[0], len(labels))\\n        if np.sum(labels[:n]) == 0 or np.sum(lab
+…[truncated 1028 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_table3_qwq_l63_corrected_20260518T182812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-18T18:30:15.016996+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "mkdir -p /root/autodl-tmp/contrastive_trace_safety/artifacts/table3_qwq_l63_corrected && cp /root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a1_qwq_rerun/results.json /root/autodl-tmp/contrastive_trace_safety/artifacts/table3_qwq_l63_corrected/results.json && echo \"done\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_table3_qwq_l63_corrected_20260518T182812",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "mkdir -p /root/autodl-tmp/contrastive_trace_safety/artifacts/table3_qwq_l63_corrected && cp /root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a1_qwq_rerun/results.json /root/autodl-tmp/contrastive_trace_safety/artifacts/table3_qwq_l63_corrected/results.json && echo \"done\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-18T18:30:15.017139+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"done\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_table3_qwq_l63_corrected_20260518T182812",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-18T18:30:15.017263+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_table3_qwq_l63_corrected_20260518T182812",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-18T18:30:15.017381+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_table3_qwq_l63_corrected_20260518T182812",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-18T18:30:15.017494+00:00_
+
+called mcp__agent-ml-research__save_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__save_project_file</summary>
+
+```json
+{
+  "project": "contrastive_trace_safety",
+  "file": "memory.md",
+  "content": "# Memory\n\n## Table 3 QwQ-32B L63 Corrected Results (2026-05-18)\n\nA1 rerun (`r14_a1_qwq_rerun`) already contains L63 data with all required parameters. Copied to `table3_qwq_l63_corrected/`.\n\nParameters verified: QwQ-32B, L63, W=5, PCA=100d, max_iter=2000, 60/20/20 seed=42, 95 traces, 10k bootstrap.\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_table3_qwq_l63_corrected_20260518T182812",
+  "tool": "mcp__agent-ml-research__save_project_file",
+  "tool_args": {
+    "project": "contrastive_trace_safety",
+    "file": "memory.md",
+    "content": "# Memory\n\n## Table 3 QwQ-32B L63 Corrected Results (2026-05-18)\n\nA1 rerun (`r14_a1_qwq_rerun`) already contains L63 data with all required parameters. Copied to `table3_qwq_l63_corrected/`.\n\nParameters verified: QwQ-32B, L63, W=5, PCA=100d, max_iter=2000, 60/20/20 seed=42, 95 traces, 10k bootstrap.\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-18T18:30:15.017641+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_table3_qwq_l63_corrected_20260518T182812",
+  "tool": "mcp__agent-ml-research__save_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-18T18:30:15.017771+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "table3_qwq_l63_corrected",
+  "type": "data",
+  "description": "Table 3 QwQ-32B L63 corrected results (60/20/20, PCA=100d, 10k bootstrap). Extracted from r14_a1_qwq_rerun which already had correct L63 parameters.",
+  "project": "contrastive_trace_safety",
+  "source_path": "/root/autodl-tmp/contrastive_trace_safety/artifacts/table3_qwq_l63_corrected/results.json",
+  "tags": "['table3', 'qwq-32b', 'L63', 'corrected', 'bootstrap']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_table3_qwq_l63_corrected_20260518T182812",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "table3_qwq_l63_corrected",
+    "type": "data",
+    "description": "Table 3 QwQ-32B L63 corrected results (60/20/20, PCA=100d, 10k bootstrap). Extracted from r14_a1_qwq_rerun which already had correct L63 parameters.",
+    "project": "contrastive_trace_safety",
+    "source_path": "/root/autodl-tmp/contrastive_trace_safety/artifacts/table3_qwq_l63_corrected/results.json",
+    "tags": "['table3', 'qwq-32b', 'L63', 'corrected', 'bootstrap']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-18T18:30:15.017896+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/autodl-tmp/contrastive_trace_safety/artifacts/table3_qwq_l63_corrected/results.json\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_table3_qwq_l63_corrected_20260518T182812",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-18T18:30:15.018045+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "table3_qwq_l63_corrected",
+  "type": "data",
+  "description": "Table 3 QwQ-32B L63 corrected results (60/20/20, PCA=100d, 10k bootstrap). Source: r14_a1_qwq_rerun/results.json on autodl-rtx6000.",
+  "project": "contrastive_trace_safety",
+  "content": "QwQ-32B (W=5, L63, 60/20/20, PCA=100d, 10k bootstrap):\n  n_test = 19 (traces), 1029 (steps)\n  HS Prec: 0.522 | Text Prec: 0.330\n  ΔPrec: +0.192pp, p=0.0057, CI=[0.093, 0.335]\n\n  HS BA: 0.673 | Text BA: 0.543\n  ΔBA: +0.130pp, p=0.0000, CI=[0.072, 0.191]\n\n  HS FPR: 0.197 | Text FPR: 0.347\n  ΔFPR: -0.150pp, p=0.0003, CI=[-0.229, -0.076]\n\n  HS AUROC: 0.812 | Text AUROC: 0.554\n  ΔAUROC: +0.258pp, p=0.0000, CI=[0.158, 0.368]\n\n  HB (3 tests: Prec, BA, FPR): 3/3 pass\n\nSource: /root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a1_qwq_rerun/results.json\nAlso copied to: /root/autodl-tmp/contrastive_trace_safety/artifacts/table3_qwq_l63_corrected/results.json",
+  "content_filename": "table3_qwq_l63_summary.txt",
+  "tags": "['table3', 'qwq-32b', 'L63', 'corrected', 'bootstrap']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_table3_qwq_l63_corrected_20260518T182812",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "table3_qwq_l63_corrected",
+    "type": "data",
+    "description": "Table 3 QwQ-32B L63 corrected results (60/20/20, PCA=100d, 10k bootstrap). Source: r14_a1_qwq_rerun/results.json on autodl-rtx6000.",
+    "project": "contrastive_trace_safety",
+    "content": "QwQ-32B (W=5, L63, 60/20/20, PCA=100d, 10k bootstrap):\n  n_test = 19 (traces), 1029 (steps)\n  HS Prec: 0.522 | Text Prec: 0.330\n  ΔPrec: +0.192pp, p=0.0057, CI=[0.093, 0.335]\n\n  HS BA: 0.673 | Text BA: 0.543\n  ΔBA: +0.130pp, p=0.0000, CI=[0.072, 0.191]\n\n  HS FPR: 0.197 | Text FPR: 0.347\n  ΔFPR: -0.150pp, p=0.0003, CI=[-0.229, -0.076]\n\n  HS AUROC: 0.812 | Text AUROC: 0.554\n  ΔAUROC: +0.258pp, p=0.0000, CI=[0.158, 0.368]\n\n  HB (3 tests: Prec, BA, FPR): 3/3 pass\n\nSource: /root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a1_qwq_rerun/results.json\nAlso copied to: /root/autodl-tmp/contrastive_trace_safety/artifacts/table3_qwq_l63_corrected/results.json",
+    "content_filename": "table3_qwq_l63_summary.txt",
+    "tags": "['table3', 'qwq-32b', 'L63', 'corrected', 'bootstrap']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-18T18:30:15.018195+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260518_ad8dd6\", \"name\": \"table3_qwq_l63_corrected\", \"type\": \"data\", \"description\": \"Table 3 QwQ-32B L63 corrected results (60/20/20, PCA=100d, 10k bootstrap). Source: r14_a1_qwq_rerun/results.json on autodl-rtx6000.\", \"path\": \"projects/contrastive_trace_safety/artifacts/_project/data/table3_qwq_l63_summary.txt\", \"url\": null, \"project\": \"contrastive_trace_safety\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-18T18:30:06.558442+00:00\", \"tags\": [\"table3\", \"qwq-32b\", \"L63\", \"corrected\", \"bootstrap\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_table3_qwq_l63_corrected_20260518T182812",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21 · 2026-05-18T18:30:15.018380+00:00_
+
+A1 rerun 已有完整 L63 数据，无需重跑。格式化结果：
+
+```
+QwQ-32B (W=5, L63, 60/20/20, PCA=100d, 10k bootstrap):
+  n_test = 19
+  HS Prec: 0.522 [bootstrap mean]
+  Text Prec: 0.330 [bootstrap mean]
+  ΔPrec: +0.192pp, p=0.0057, CI=[0.093, 0.335]
+  
+  HS BA: 0.673
+  Text BA: 0.543
+  ΔBA: +0.130pp, p=0.0000, CI=[0.072, 0.191]
+  
+  HS FPR: 0.197
+  Text FPR: 0.347
+  ΔFPR: -0.150pp, p=0.0003, CI=[-0.229, -0.076]
+  
+  HS AUROC: 0.812
+  Text AUROC: 0.554
+  ΔAUROC: +0.258pp, p=0.0000, CI=[0.158, 0.368]
+  
+  HB (3 tests: Prec, BA, FPR): 3/3 pass
+```
+
+**来源**：`r14_a1_qwq_rerun/results.json` 参数完全匹配（L63, PCA=100d, max_iter=2000, 60/20/20 seed=42, 95 traces, 10k bootstrap, null-centered two-sided paired）。BA-optimal layer sweep 确认 L63 = 0.893 BA（全层最高）。已复制到 `table3_qwq_l63_corrected/` 并注册 artifact。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_table3_qwq_l63_corrected_20260518T182812"
+}
+```
+
+</details>
+
+---

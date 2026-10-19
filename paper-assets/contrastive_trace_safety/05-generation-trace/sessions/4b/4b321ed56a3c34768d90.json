@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0",
+  "id": "4b321ed56a3c34768d90",
+  "project": "contrastive_trace_safety",
+  "kind": "worker",
+  "title": "analysis n6 multi metric ensemble",
+  "task_key": "worker_analysis_n6_multi_metric_ensemble_20260519T161804",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_n6_multi_metric_ensemble_20260519T161804.log",
+    "occurrence": 1,
+    "bytes": 1054684,
+    "sha256": "779c1e766559d9cb3a8daac8bb8536b0fea8edeca0a07c8185c899f72fdf5415"
+  },
+  "statistics": {
+    "messages": 383,
+    "user_turns": 2,
+    "tool_calls": 131,
+    "roles": {
+      "log": 1,
+      "system": 79,
+      "record": 1,
+      "assistant": 37,
+      "tool_call": 131,
+      "user": 2,
+      "tool_result": 131,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "4b321ed56a3c34768d90-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 68,
+      "chunks": [
+        {
+          "path": "4b321ed56a3c34768d90-part-0001.json",
+          "message_count": 68
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 308,
+      "chunks": [
+        {
+          "path": "4b321ed56a3c34768d90-part-0001.json",
+          "message_count": 105
+        },
+        {
+          "path": "4b321ed56a3c34768d90-part-0002.json",
+          "message_count": 170
+        },
+        {
+          "path": "4b321ed56a3c34768d90-part-0003.json",
+          "message_count": 33
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-n6-multi-metric-ensemble.md"
+}

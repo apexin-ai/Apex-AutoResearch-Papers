@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "68910c68c40305d67075",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "gpu advbench heuristic cp sweep",
+  "task_key": "worker_gpu_advbench_heuristic_cp_sweep_20260520T022513",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu_advbench_heuristic_cp_sweep_20260520T022513_result.json",
+    "occurrence": 1,
+    "bytes": 2343,
+    "sha256": "eb1b1c322a06a518f0cbe77a6f724b8f02076cdd56c6c40387aa9ad1bc0044d4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Artifacts registered. Here are the results:\n\n---\n\n## AdvBench Preliminary Layer Sweep (Pseudo-CP, DeepSeek-R1-Distill-Qwen-8B)\n\n**Setup**: 387 B-class traces, heuristic CP (max cosine dist in text embeddings), L0–L24 × W={1,3,5,15}, PCA→100d, LR(C=1.0, balanced), 60/20/20 split, seed=42\n\n### 各 metric 最优层选择 (HS):\n\n| Metric | W=1 | W=3 | W=5 | W=15 |\n|--------|-----|-----|-----|------|\n| bal_acc | **L21** (0.763) | **L10** (0.775) | **L23** (0.778) | **L19** (0.776) |\n| precision | **L8** (0.690) | **L10** (0.698) | **L0** (0.706) | **L0** (0.759) |\n| fpr | **L8** (0.167) | **L0** (0.082) | **L0** (0.099) | **L0** (0.113) |\n| crossing_rate | **L0**† (0.974) | **L20** (0.462) | **L19** (0.462) | **L9** (0.474) |\n| composite | **L0**† (0.450) | **L20** (0.353) | **L19** (0.355) | **L10** (0.363) |\n\n### Bootstrap 95% CI (overall best per metric):\n\n| Metric | Best config | Point est. | Bootstrap mean [95% CI] |\n|--------|------------|------------|------------------------|\n| bal_acc | L23 W5 | 0.778 | 0.787 [0.743, 0.824] |\n| precision | L0 W15 | 0.759 | 0.765 [0.680, 0.840] |\n| fpr | L0 W3 | 0.082 | 0.082 [0.053, 0.112] |\n| crossing_rate | L0 W1† | 0.974 | 0.002 [0.000, 0.013] |\n| composite | L0 W1† | 0.450 | 0.001 [0.000, 0.007] |\n\n†L0 W1 is **degenerate**: ba=0.462 (below chance), fpr=0.917 — the model predicts class 1 almost everywhere, inflating crossing_rate. Bootstrap correctly exposes this as unstable.\n\n### 核心问题\n\n**CR 是否选 shallow?** 表面上 W=1 选 L0，但这是退化解（ba < chance）。排除 L0 W1 后，CR 选 **mid-deep**: L20 (W3), L19 (W5), L9 (W15)。与 HarmThoughts 的 shallow bias 不同。\n\n**Precision 是否选 deep?** **否** — precision 选 shallow: L0 (W5, W15) 和 L8/L10 (W1, W3)。FPR 同样选 L0/L8。这与 HarmThoughts 的 pattern 反转。\n\n**Ba 是否选 deep?** **是** — ba 一致选 mid-to-deep: L21 (W1), L10 (W3), L23 (W5), L19 (W15)。Bootstrap CI [0.743, 0.824] 表明 L23 W5 的 0.778 是 robust 的。\n\n**关键差异 vs HarmThoughts**: AdvBench pseudo-CP 的 precision/FPR 偏好 shallow (L0)，而 ba 偏好 deep。这可能反映 pseudo-CP 标签噪声大（heuristic max cosine dist），shallow 层的 embedding 结构恰好与 text-level 的 embedding 变化更相关。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-advbench-heuristic-cp-sweep.md"
+}

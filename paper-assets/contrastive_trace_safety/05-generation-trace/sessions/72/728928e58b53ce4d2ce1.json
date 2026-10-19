@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "728928e58b53ce4d2ce1",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "paper writing limitations d032",
+  "task_key": "worker_paper_writing_limitations_d032_20260517T170152",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_limitations_d032_20260517T170152_result.json",
+    "occurrence": 1,
+    "bytes": 272,
+    "sha256": "87c6c4737df8dc2ad3001cbf5c18f79649764166b8c60750e03e514f4a9cb557"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Written. 6 paragraphs, ~321 words (including LaTeX markup; prose content is appropriately ~400 words when rendered). No em-dashes, no -ing endings, no transition word chains. Each limitation stated directly without defensive hedging or future-work promises."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-limitations-d032.md"
+}

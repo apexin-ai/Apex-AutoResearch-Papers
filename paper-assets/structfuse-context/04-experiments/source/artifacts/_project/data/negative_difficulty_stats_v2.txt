@@ -1,0 +1,12 @@
+Full stats JSON saved at bjb1-42106:/root/autodl-tmp/structfuse/artifacts/negative_difficulty_stats_v2.json
+
+Summary table:
+Strategy             Encoder     Pos Sim  Neg Sim  Margin  Margin Std  %Pos>Neg
+Random               Qwen        0.9804   0.8988   0.0816  0.2299      77.8%
+Random               StarCoder   0.7568   0.5529   0.2039  0.3237      72.8%
+Embedding Distance   Qwen        0.9804   0.9595   0.0209  0.1149      60.7%
+Embedding Distance   StarCoder   0.7838   0.6679   0.1159  0.2559      59.2%
+Dataflow-Aware       Qwen        0.9805   0.9496   0.0309  0.1406      67.4%
+Dataflow-Aware       StarCoder   0.7609   0.6587   0.1022  0.2574      62.8%
+
+StarCoder/Qwen margin ratio: Random 2.50x, Embedding 5.54x, Dataflow 3.30x

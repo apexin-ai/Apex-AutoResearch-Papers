@@ -1,0 +1,35 @@
+{
+  "experiment": "exp_r11_r1_8b_w15_residualization",
+  "seed": 42,
+  "window": 15,
+  "result": {
+    "model": "R1-8B",
+    "layer": 14,
+    "window": 15,
+    "n_test_traces": 43,
+    "n_test_steps": 1961,
+    "original_hs_ba": 0.8337,
+    "residualized_hs_ba": 0.6688,
+    "drop_pp": 16.5,
+    "residualized_hs_p_binomial": 0.0,
+    "residualized_hs_p_wilcoxon": 0.0,
+    "per_trace_bas_residualized": [
+      0.8182, 0.7105, 0.8511, 0.6667, 0.8182, 0.6875, 0.8417, 0.7756,
+      0.8675, 0.7865, 0.7907, 0.8077, 0.8617, 0.3, 0.7857, 0.8397,
+      0.8109, 0.822, 0.7812, 0.7102, 0.8077, 0.6308, 0.7412, 0.7083,
+      0.8493, 0.8429, 0.5941, 0.88, 0.8372, 0.8537, 0.8415, 0.9107,
+      0.68, 0.8448, 0.4688, 0.8333, 0.9048, 0.8346, 0.75, 0.9306,
+      0.9545, 0.8548, 0.8095
+    ],
+    "position_only_ba": 0.7062,
+    "original_text_ba": 0.7575,
+    "residualized_text_ba": 0.6052
+  },
+  "w3_reference": {
+    "original_hs_ba": 0.813,
+    "residualized_hs_ba": 0.571,
+    "drop_pp": 24.3,
+    "position_only_ba": 0.706
+  },
+  "elapsed_seconds": 50.2
+}

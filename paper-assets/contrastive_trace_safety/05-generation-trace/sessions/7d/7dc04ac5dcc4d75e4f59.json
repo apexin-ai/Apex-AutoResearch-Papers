@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7dc04ac5dcc4d75e4f59",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "paper appendix tbd fill",
+  "task_key": "worker_paper_appendix_tbd_fill_20260517T015959",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_appendix_tbd_fill_20260517T015959_result.json",
+    "occurrence": 1,
+    "bytes": 1171,
+    "sha256": "bafd33d82e5f0438104ddc02f21bb173b360010534bc08b86673f4afd10dd448"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No paper directory on the server. The local `docs/paper/sections/appendix.tex` is the authoritative copy.\n\n**Summary of changes made to `docs/paper/sections/appendix.tex`:**\n\n1. **Window Ablation Table (lines 31-70):** Replaced the condensed endpoint-only table with a full 7×3 table containing all real exp_007 data for R1-8B, R1-32B, and QwQ-32B. All values converted from raw proportions to percentages matching the established format (1dp for acc/precision/coverage, 2dp for FPR).\n\n2. **Narrative paragraphs (lines 72-80):** Updated to accurately reflect the real data patterns:\n   - R1-8B: \"general upward trend\" (not \"monotonic\") with noted dip at W=5\n   - R1-32B: peaks at W=10 (73.7%), declines after (correct)\n   - QwQ-32B: \"broadly increasing with local non-monotonicity\" (peaks at W=5, dips, recovers at W=25)\n   - Added W=15 selection justification: \"good balance of accuracy and FPR reduction while maintaining reasonable coverage across models\"\n\n3. **QwQ selectivity:** Already corrected to 15.3pp (layer 2) by a prior edit - no [TBD] remained there.\n\n4. **No remaining [TBD] markers** in the file (confirmed via grep)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-appendix-tbd-fill.md"
+}

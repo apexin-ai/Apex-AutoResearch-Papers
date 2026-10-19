@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8f87ed449e1e20f6f975",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "analysis cosine number discrepancy",
+  "task_key": "worker_analysis_cosine_number_discrepancy_20260522T184356",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cosine_number_discrepancy_20260522T184356_result.json",
+    "occurrence": 1,
+    "bytes": 1651,
+    "sha256": "75d7c6f5934010d7d5839f1420ea736ab34d83b9e4f4341509447bfd47681806"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here's the full picture:\n\n## Findings\n\n### 1. Worker results: 520 traces, no filtering\n- JSON: `n_traces: 520`, `n_step_pairs: 403776`\n- The script processes all 520 .pt files, only skipping traces with `n_steps < 2` (none were skipped — all 520 passed)\n- L2 = 0.306824, L14 = 0.471799, ratio = 0.472/0.307 = **1.54×**\n\n### 2. Paper already uses the corrected numbers\nThe appendix.tex has **already been updated** to match the Worker results:\n- Line 180: \"deep-layer mean cosine distance (0.472) is $1.54\\times$ the shallow-layer mean (0.307)\"\n- Line 204: \"volatility ratio $1.54\\times$\"\n- Line 253 (cross-arch table): R1-8B = $1.54\\times$\n\n**0.265 does not appear anywhere** in the current paper source. The old numbers (0.265/0.442/1.67×) are not in appendix.tex anymore.\n\n### 3. Stale 1.67× remains only in draft/rebuttal files\n- `rebuttal_letter_draft.md` — 4 occurrences of 1.67×\n- `_drafts/author_response_template.md` — 3 occurrences of 1.67×\n\nThese are not part of the compiled paper but should be updated for consistency.\n\n### 4. Root cause\nThe original 0.265/0.442/1.67× numbers likely came from an earlier cosine analysis with a different methodology (possibly different layer range definitions or different step-pair selection). The Worker recomputed on the full 520-trace set with explicit probe-selected layers (L2 vs L14) and got 0.307/0.472/1.54×. The paper has already been corrected.\n\n### Recommendation\n- **Paper (appendix.tex)**: Already correct — no action needed.\n- **Rebuttal drafts**: Update 7 stale references from 1.67× to 1.54× if these drafts will be used."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cosine-number-discrepancy.md"
+}

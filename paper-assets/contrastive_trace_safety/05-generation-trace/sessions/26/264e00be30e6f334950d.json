@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "264e00be30e6f334950d",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code ensemble cv results check",
+  "task_key": "worker_code_ensemble_cv_results_check_20260522T020845",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_ensemble_cv_results_check_20260522T020845_result.json",
+    "occurrence": 1,
+    "bytes": 195,
+    "sha256": "39919f1524f8d4fbd54c3062efcaae3cfd1a8f6a5639158a3a87f190d2e9d646"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "SSH 不通（端口 15904 连接失败），AutoDL 实例重启后端口已变。需要你去 AutoDL 控制台确认 westd-15904 的新 SSH 端口，然后更新 `~/.ssh/config`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-ensemble-cv-results-check.md"
+}

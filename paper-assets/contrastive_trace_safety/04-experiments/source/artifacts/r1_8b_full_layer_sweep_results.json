@@ -1,0 +1,71 @@
+{
+  "experiment": "r1_8b_full_layer_sweep",
+  "model": "DeepSeek-R1-Distill-Qwen-8B",
+  "dataset": "HarmThoughts",
+  "traces": 209,
+  "split": {"train": 125, "val": 41, "test": 43},
+  "seed": 42,
+  "layers": 25,
+  "layer_range": "L0-L24",
+  "windows": [1, 3, 5, 15],
+  "metrics": ["bal_acc", "precision", "fpr", "crossing_rate", "composite"],
+  "runtime_seconds": 6293,
+
+  "best_layers_hs": {
+    "bal_acc":       {"W1": {"layer": "L12", "value": 0.787}, "W3": {"layer": "L12", "value": 0.790}, "W5": {"layer": "L12", "value": 0.801}, "W15": {"layer": "L11", "value": 0.769}},
+    "precision":     {"W1": {"layer": "L16", "value": 0.720}, "W3": {"layer": "L12", "value": 0.728}, "W5": {"layer": "L12", "value": 0.732}, "W15": {"layer": "L9",  "value": 0.717}},
+    "fpr":           {"W1": {"layer": "L16", "value": 0.083}, "W3": {"layer": "L9",  "value": 0.079}, "W5": {"layer": "L9",  "value": 0.085}, "W15": {"layer": "L8",  "value": 0.072}},
+    "crossing_rate": {"W1": {"layer": "L0",  "value": 0.419}, "W3": {"layer": "L0",  "value": 0.442}, "W5": {"layer": "L0",  "value": 0.488}, "W15": {"layer": "L0",  "value": 0.512}},
+    "composite":     {"W1": {"layer": "L16", "value": 0.789}, "W3": {"layer": "L12", "value": 0.796}, "W5": {"layer": "L12", "value": 0.803}, "W15": {"layer": "L9",  "value": 0.784}}
+  },
+
+  "text_baseline": {
+    "note": "Text baseline selects L0 for all metrics and all windows",
+    "composite_range": [0.59, 0.64]
+  },
+
+  "composite_hs_full_table": {
+    "L0":  {"W1": 0.660, "W3": 0.684, "W5": 0.683, "W15": 0.701},
+    "L1":  {"W1": 0.709, "W3": 0.716, "W5": 0.729, "W15": 0.737},
+    "L2":  {"W1": 0.732, "W3": 0.727, "W5": 0.742, "W15": 0.739},
+    "L3":  {"W1": 0.765, "W3": 0.759, "W5": 0.759, "W15": 0.748},
+    "L4":  {"W1": 0.750, "W3": 0.749, "W5": 0.740, "W15": 0.729},
+    "L5":  {"W1": 0.761, "W3": 0.744, "W5": 0.742, "W15": 0.726},
+    "L6":  {"W1": 0.752, "W3": 0.742, "W5": 0.753, "W15": 0.746},
+    "L7":  {"W1": 0.754, "W3": 0.765, "W5": 0.765, "W15": 0.749},
+    "L8":  {"W1": 0.758, "W3": 0.760, "W5": 0.761, "W15": 0.763},
+    "L9":  {"W1": 0.760, "W3": 0.776, "W5": 0.773, "W15": 0.784},
+    "L10": {"W1": 0.780, "W3": 0.775, "W5": 0.773, "W15": 0.772},
+    "L11": {"W1": 0.773, "W3": 0.786, "W5": 0.790, "W15": 0.781},
+    "L12": {"W1": 0.785, "W3": 0.796, "W5": 0.803, "W15": 0.777},
+    "L13": {"W1": 0.766, "W3": 0.757, "W5": 0.765, "W15": 0.753},
+    "L14": {"W1": 0.778, "W3": 0.773, "W5": 0.777, "W15": 0.768},
+    "L15": {"W1": 0.769, "W3": 0.761, "W5": 0.760, "W15": 0.760},
+    "L16": {"W1": 0.789, "W3": 0.762, "W5": 0.753, "W15": 0.750},
+    "L17": {"W1": 0.762, "W3": 0.750, "W5": 0.751, "W15": 0.736},
+    "L18": {"W1": 0.752, "W3": 0.748, "W5": 0.752, "W15": 0.745},
+    "L19": {"W1": 0.757, "W3": 0.753, "W5": 0.757, "W15": 0.752},
+    "L20": {"W1": 0.755, "W3": 0.753, "W5": 0.756, "W15": 0.739},
+    "L21": {"W1": 0.751, "W3": 0.757, "W5": 0.765, "W15": 0.737},
+    "L22": {"W1": 0.742, "W3": 0.738, "W5": 0.746, "W15": 0.729},
+    "L23": {"W1": 0.750, "W3": 0.750, "W5": 0.746, "W15": 0.717},
+    "L24": {"W1": 0.754, "W3": 0.754, "W5": 0.743, "W15": 0.719}
+  },
+
+  "shallow_bias_analysis": {
+    "W1":  {"shallow_mean": 0.746, "deep_mean": 0.762, "shallow_max": {"layer": "L10", "value": 0.780}, "deep_max": {"layer": "L16", "value": 0.789}, "bias": false},
+    "W3":  {"shallow_mean": 0.749, "deep_mean": 0.758, "shallow_max": {"layer": "L11", "value": 0.786}, "deep_max": {"layer": "L12", "value": 0.796}, "bias": false},
+    "W5":  {"shallow_mean": 0.751, "deep_mean": 0.760, "shallow_max": {"layer": "L11", "value": 0.790}, "deep_max": {"layer": "L12", "value": 0.803}, "bias": false},
+    "W15": {"shallow_mean": 0.748, "deep_mean": 0.745, "shallow_max": {"layer": "L9",  "value": 0.784}, "deep_max": {"layer": "L12", "value": 0.777}, "bias": true}
+  },
+
+  "key_findings": [
+    "crossing_rate selects L0 across all 4 windows (extreme shallow bias)",
+    "Other 4 metrics select L9-L16 (mid-deep layers)",
+    "Max layer gap within same model: 16 layers (L0 vs L16)",
+    "Composite shallow bias only at W=15 (shallow mean 0.748 > deep mean 0.745)",
+    "Best layer shifts down with increasing window: W1→L16, W3/5→L12, W15→L9",
+    "HS vs Text gap stable at ~0.15-0.17 across all layers and windows",
+    "Shallow layers (L0-L5) have signal but not optimal: L3 composite=0.765 vs best=0.789"
+  ]
+}

@@ -1,0 +1,34 @@
+paper_key: "zou2023universal"
+title: "Universal and Transferable Adversarial Attacks on Aligned Language Models"
+venue: "arXiv 2023"
+full_text_available: false
+
+research:
+  baselines:
+    - "manual jailbreak prompts"
+    - "past automatic prompt generation methods"
+  metrics:
+    - {name: "attack success rate (objectionable content generation)", direction: "higher_better"}
+    - {name: "transferability rate across models", direction: "higher_better"}
+  datasets:
+    - {name: "AdvBench (harmful behaviors)", size: "unknown_from_abstract"}
+    - {name: "multiple objectionable content query types", size: "unknown_from_abstract"}
+  ablation_dimensions:
+    - "training models (Vicuna-7B, Vicuna-13B, single vs multi-model)"
+    - "single prompt vs multi-prompt suffix optimization"
+    - "transfer targets (open-source vs black-box API models)"
+  training_recipe:
+    optimizer: "greedy + gradient-based search (GCG)"
+    lr: "unknown_from_abstract"
+    hardware: "unknown_from_abstract"
+  method_family: "adversarial suffix optimization / gradient-based jailbreak"
+
+positioning:
+  core_claim: "Automated greedy-and-gradient-based search can generate universal adversarial suffixes that reliably jailbreak aligned LLMs, with surprising transferability to black-box models including ChatGPT, Bard, and Claude."
+  key_results: "N/A - abstract only"
+  limitations: ["N/A"]
+  relation_to_us: "foundation"
+
+narrative: "N/A - abstract only"
+figures: "N/A - abstract only"
+tables: "N/A - abstract only"

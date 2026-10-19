@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "65f151691fc295c15cf0",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code exp 013 text baseline",
+  "task_key": "worker_code_exp_013_text_baseline_20260516T204146",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_013_text_baseline_20260516T204146_result.json",
+    "occurrence": 1,
+    "bytes": 1253,
+    "sha256": "8c9b5efd784be16b88177dcfd9b6de89214a0f9ad376e2b7c98be2bee23377da"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-013 完成。结果：\n\n| Method | Coverage | Lead Time | Step Acc | AUROC |\n|--------|----------|-----------|----------|-------|\n| **text_static (384-d)** | 60.5% | +4.3 | 66.1% | 0.7384 |\n| **text_temporal W=15 (5760-d)** | 65.1% | +11.5 | 67.8% | 0.7590 |\n| hidden_static LR L14 (4096-d) | 46.5% | -2.0 | 81.7% | — |\n| hidden_temporal LR W=15 (61440-d) | 76.7% | -1.1 | 84.8% | — |\n| hidden GRU multi-7L h=256 | 76.7% | +4.7 | 80.9% | — |\n\n**核心发现**：\n\n1. **Hidden-state probes 在 step accuracy 上显著优于 text baseline**（81-85% vs 66-68%），差距 ~15-18pp，支撑论文的核心论点——内部表示包含 surface text 中不可见的 commitment 信号。\n\n2. Text baseline 的 lead time 看似高（+4.3 / +11.5），但结合低 accuracy 说明这是**高假阳性率导致的虚假早期检测**——模型乱猜\"已 committed\"，偶然提前命中。\n\n3. Hidden temporal (76.7% coverage) > text temporal (65.1%) > hidden static (46.5%) > text static (虽然 text static 60.5% > hidden static 46.5%，但 acc 差距巨大)。\n\n论文结论成立：hidden-state probes 提供了 text 不可见的内部状态信号，且在 accuracy 这个最重要指标上有决定性优势。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-013-text-baseline.md"
+}

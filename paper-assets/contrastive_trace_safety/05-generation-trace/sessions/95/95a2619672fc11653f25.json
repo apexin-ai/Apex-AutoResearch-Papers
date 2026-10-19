@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "95a2619672fc11653f25",
+  "project": "contrastive_trace_safety",
+  "kind": "worker",
+  "title": "code coverage bias selectivity gru seed",
+  "task_key": "worker_code_coverage_bias_selectivity_gru_seed_20260517T131645",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_coverage_bias_selectivity_gru_seed_20260517T131645.log",
+    "occurrence": 1,
+    "bytes": 634859,
+    "sha256": "8ea33040351a9c42403f656d1eb61f0ecd42b72a8f4d6b845158214806dd9709"
+  },
+  "statistics": {
+    "messages": 286,
+    "user_turns": 1,
+    "tool_calls": 99,
+    "roles": {
+      "log": 1,
+      "system": 46,
+      "record": 1,
+      "assistant": 38,
+      "tool_call": 99,
+      "user": 1,
+      "tool_result": 99,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "95a2619672fc11653f25-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 279,
+      "chunks": [
+        {
+          "path": "95a2619672fc11653f25-part-0001.json",
+          "message_count": 173
+        },
+        {
+          "path": "95a2619672fc11653f25-part-0002.json",
+          "message_count": 106
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-coverage-bias-selectivity-gru-seed.md"
+}

@@ -1,0 +1,14 @@
+{
+  "exp_id": "neg_difficulty_analysis",
+  "project": "structfuse-context",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T19:39:20.016Z",
+    "updated_at": "2026-05-13T19:39:20.016Z"
+  },
+  "timestamp": "2026-05-13T19:39:20.066387+00:00",
+  "trigger": "update_registry"
+}

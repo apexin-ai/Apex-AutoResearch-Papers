@@ -1,0 +1,41 @@
+{
+  "exp_id": "exp_safe_trace_fpr_multimodel",
+  "project": "contrastive_trace_safety",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T20:36:09.897Z",
+    "updated_at": "2026-05-17T20:36:43.962Z",
+    "hypothesis": "HS probes should have lower FPR on safe (benign) traces than text probes across OT-7B, QwQ-32B, R1-32B, extending the R1-8B-only FPR result to multi-model. If HS FPR is consistently lower, the paper can claim cross-model FPR advantage.",
+    "spec": {
+      "command": "python safe_fpr_multimodel.py (SGDClassifier log_loss, K=5 consecutive trigger)",
+      "server": "autodl-rtx6000",
+      "data_path": "artifacts/hidden_states_{model}_safe/",
+      "data_count": "174 safe traces (OT-7B:63, QwQ:40, R1-32B:71)",
+      "model_name": "OT-7B L16 W3, QwQ-32B L60 W3, R1-32B L63 W1",
+      "seed": "42",
+      "checkpoint_path": "artifacts/safe_fpr_results.json",
+      "log_path": "artifacts/safe_fpr_results.json"
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "ot7b_hs_static_fpr": 0.111,
+      "ot7b_text_static_fpr": 0.302,
+      "ot7b_hs_temp_fpr": 0.175,
+      "ot7b_text_temp_fpr": 0.46,
+      "qwq_hs_static_fpr": 0.5,
+      "qwq_text_static_fpr": 0.325,
+      "qwq_hs_temp_fpr": 0.45,
+      "qwq_text_temp_fpr": 0.425,
+      "r1_32b_hs_static_fpr": 0.239,
+      "r1_32b_text_static_fpr": 0.31,
+      "r1_32b_hs_temp_fpr": 0.239,
+      "r1_32b_text_temp_fpr": 0.31
+    },
+    "completed_at": "2026-05-17T20:36:43.962Z"
+  },
+  "timestamp": "2026-05-17T20:36:44.050772+00:00",
+  "trigger": "update_registry"
+}

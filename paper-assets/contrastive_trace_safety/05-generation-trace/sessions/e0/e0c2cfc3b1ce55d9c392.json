@@ -1,0 +1,132 @@
+{
+  "schema_version": "1.0",
+  "id": "e0c2cfc3b1ce55d9c392",
+  "project": "contrastive_trace_safety",
+  "kind": "conversation",
+  "title": "code r8 bge ci readback",
+  "task_key": "worker_code_r8_bge_ci_readback_20260518T073238",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_r8_bge_ci_readback_20260518T073238.jsonl",
+    "occurrence": 1,
+    "bytes": 7183,
+    "sha256": "2bdfb3fadeeb1e2bbf5badc60d40bd18fdfdc2ea09310d2e42190e381d24d86c"
+  },
+  "statistics": {
+    "messages": 5,
+    "user_turns": 0,
+    "tool_calls": 2,
+    "roles": {
+      "tool_call": 2,
+      "tool_result": 2,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-18T07:33:13.631692+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r8_bge_ci_readback_20260518T073238",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-18T07:33:13.632052+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r8_bge_ci_readback_20260518T073238",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-18T07:33:13.632223+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r8_bge_ci_readback_20260518T073238",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-rtx6000",
+              "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r8_bge_bootstrap_ci/results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-18T07:33:13.632466+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"n_resamples\\\\\\\": 10000,\\\\n  \\\\\\\"seed\\\\\\\": 42,\\\\n  \\\\\\\"elapsed_seconds\\\\\\\": 110.4,\\\\n  \\\\\\\"probe\\\\\\\": \\\\\\\"LogisticRegression(C=1.0, class_weight='balanced', max_iter=2000)\\\\\\\",\\\\n  \\\\\\\"text_encoder\\\\\\\": \\\\\\\"BAAI/bge-large-en-v1.5\\\\\\\",\\\\n  \\\\\\\"note\\\\\\\": \\\\\\\"Correct layer indexing: hs[:, layer_idx, :] for (steps, layers, dim) tensors\\\\\\\",\\\\n  \\\\\\\"diff_convention\\\\\\\": {\\\\n    \\\\\\\"bal_acc\\\\\\\": \\\\\\\"HS - BGE (positive = HS better)\\\\\\\",\\\\n    \\\\\\\"fpr\\\\\\\": \\\\\\\"BGE - HS (positive = HS better, i.e. lower FPR)\\\\\\\",\\\\n    \\\\\\\"precision\\\\\\\": \\\\\\\"HS - BGE (positive = HS better)\\\\\\\"\\\\n  },\\\\n  \\\\\\\"models\\\\\\\": {\\\\n    \\\\\\\"r1_8b\\\\\\\": {\\\\n      \\\\\\\"n_traces\\\\\\\": 209,\\\\n      \\\\\\\"n_test\\\\\\\": 43,\\\\n      \\\\\\\"layer\\\\\\\": 2,\\\\n      \\\\\\\"window\\\\\\\": 15,\\\\n      \\\\\\\"bootstrap\\\\\\\": {\\\\n        \\\\\\\"bal_acc\\\\\\\": {\\\\n          \\\\\\\"hs_value\\\\\\\": 0.729331,\\\\n          \\\\\\\"bge_value\\\\\\\": 0.645653,\\\\n          \\\\\\\"observed_diff\\\\\\\": 0.083678,\\\\n          \\\\\\\"ci_95\\\\\\\": [\\\\n            -0.0069,\\\\n            0.1701\\\\n          ],\\\\n          \\\\\\\"p_value\\\\\\\": 0.0291,\\\\n          \\\\\\\"bootstrap_std\\\\\\\": 0.045234\\\\n        },\\\\n        \\\\\\\"fpr\\\\\\\": {\\\\n          \\\\\\\"hs_value\\\\\\\": 0.233175,\\\\n          \\\\\\\"bge_value\\\\\\\": 0.220938,\\\\n          \\\\\\\"observed_diff\\\\\\\": -0.012237,\\\\n          \\\\\\\"ci_95\\\\\\\": [\\\\n            -0.1184,\\\\n            0.1082\\\\n          ],\\\\n          \\\\\\\"p_value\\\\\\\": 0.5638,\\\\n          \\\\\\\"bootstrap_std\\\\\\\": 0.057503\\\\n        },\\\\n        \\\\\\\"precision\\\\\\\": {\\\\n          \\\\\\\"hs_value\\\\\\\": 0.497067,\\\\n          \\\\\\\"bge_value\\\\\\\": 0.435764,\\\\n          \\\\\\\"observed_diff\\\\\\\": 0.061304,\\\\n          \\\\\\\"ci_95\\\\\\\": [\\\\n            -0.0735,\\\\n            0.1946\\\\n          ],\\\\n          \\\\\\\"p_value\\\\\\\": 0.1816,\\\\n          \\\\\\\"bootstrap_std\\\\\\\": 0.068235\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"ot_7b\\\\\\\": {\\\\n      \\\\\\\"n_traces\\\\\\\": 228,\\\\n      \\\\\\\"n_test\\\\\\\": 47,\\\\n      \\\\\\\"layer\\\\\\\": 16,\\\\n      \\\\\\\"window\\\\\\\": 3,\\\\n\n…[truncated 3539 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r8_bge_ci_readback_20260518T073238",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-18T07:33:13.632805+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "```json\n{\n  \"n_resamples\": 10000,\n  \"seed\": 42,\n  \"elapsed_seconds\": 110.4,\n  \"probe\": \"LogisticRegression(C=1.0, class_weight='balanced', max_iter=2000)\",\n  \"text_encoder\": \"BAAI/bge-large-en-v1.5\",\n  \"note\": \"Correct layer indexing: hs[:, layer_idx, :] for (steps, layers, dim) tensors\",\n  \"diff_convention\": {\n    \"bal_acc\": \"HS - BGE (positive = HS better)\",\n    \"fpr\": \"BGE - HS (positive = HS better, i.e. lower FPR)\",\n    \"precision\": \"HS - BGE (positive = HS better)\"\n  },\n  \"models\": {\n    \"r1_8b\": {\n      \"n_traces\": 209, \"n_test\": 43, \"layer\": 2, \"window\": 15,\n      \"bootstrap\": {\n        \"bal_acc\":   { \"hs_value\": 0.7293, \"bge_value\": 0.6457, \"observed_diff\": 0.0837, \"ci_95\": [-0.0069, 0.1701], \"p_value\": 0.0291, \"bootstrap_std\": 0.0452 },\n        \"fpr\":       { \"hs_value\": 0.2332, \"bge_value\": 0.2209, \"observed_diff\": -0.0122, \"ci_95\": [-0.1184, 0.1082], \"p_value\": 0.5638, \"bootstrap_std\": 0.0575 },\n        \"precision\": { \"hs_value\": 0.4971, \"bge_value\": 0.4358, \"observed_diff\": 0.0613, \"ci_95\": [-0.0735, 0.1946], \"p_value\": 0.1816, \"bootstrap_std\": 0.0682 }\n      }\n    },\n    \"ot_7b\": {\n      \"n_traces\": 228, \"n_test\": 47, \"layer\": 16, \"window\": 3,\n      \"bootstrap\": {\n        \"bal_acc\":   { \"hs_value\": 0.6821, \"bge_value\": 0.5745, \"observed_diff\": 0.1076, \"ci_95\": [0.0411, 0.1798], \"p_value\": 0.0019, \"bootstrap_std\": 0.0353 },\n        \"fpr\":       { \"hs_value\": 0.1379, \"bge_value\": 0.2432, \"observed_diff\": 0.1053, \"ci_95\": [0.0385, 0.1682], \"p_value\": 0.0003, \"bootstrap_std\": 0.0333 },\n        \"precision\": { \"hs_value\": 0.4460, \"bge_value\": 0.2629, \"observed_diff\": 0.1832, \"ci_95\": [0.0839, 0.2902], \"p_value\": 0.0003, \"bootstrap_std\": 0.0526 }\n      }\n    },\n    \"qwq_32b\": {\n      \"n_traces\": 95, \"n_test\": 19, \"layer\": 60, \"window\": 3,\n      \"bootstrap\": {\n        \"bal_acc\":   { \"hs_value\": 0.7353, \"bge_value\": 0.6428, \"observed_diff\": 0.0926, \"ci_95\": [-0.0307, 0.2093], \"p_value\": 0.0665, \"bootstrap_std\": 0.0629 },\n        \"fpr\":       { \"hs_value\": 0.2304, \"bge_value\": 0.2575, \"observed_diff\": 0.0271, \"ci_95\": [-0.1272, 0.1773], \"p_value\": 0.3682, \"bootstrap_std\": 0.0771 },\n        \"precision\": { \"hs_value\": 0.5455, \"bge_value\": 0.4540, \"observed_diff\": 0.0914, \"ci_95\": [-0.0706, 0.2774], \"p_value\": 0.1534, \"bootstrap_std\": 0.0895 }\n      }\n    },\n    \"r1_32b\": {\n      \"n_traces\": 100, \"n_test\": 20, \"layer\": 63, \"window\": 1,\n      \"bootstrap\": {\n        \"bal_acc\":   { \"hs_value\": 0.7419, \"bge_value\": 0.6326, \"observed_diff\": 0.1093, \"ci_95\": [0.0232, 0.1993], \"p_value\": 0.0077, \"bootstrap_std\": 0.0449 },\n        \"fpr\":       { \"hs_value\": 0.2730, \"bge_value\": 0.3510, \"observed_diff\": 0.0780, \"ci_95\": [-0.0747, 0.2255], \"p_value\": 0.1654, \"bootstrap_std\": 0.0780 },\n        \"precision\": { \"hs_value\": 0.5882, \"bge_value\": 0.4750, \"observed_diff\": 0.1132, \"ci_95\": [-0.0015, 0.2426], \"p_value\": 0.0423, \"bootstrap_std\": 0.0641 }\n      }\n    }\n  }\n}\n```\n\nHS (hidden states) 在所有 4 个模型上 bal_acc 均优于 BGE baseline。统计显著性方面：**ot_7b** 三项指标全部显著 (p<0.002)；**r1_32b** bal_acc 显著 (p=0.0077)；**r1_8b** bal_acc 显著 (p=0.029)；**qwq_32b** 趋势明显但 CI 跨零 (p=0.067)，样本量最小 (n=95)。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_r8_bge_ci_readback_20260518T073238"
+          },
+          "id": "event-000005"
+        }
+      ],
+      "message_count": 5
+    }
+  ],
+  "readable_path": "readable/conversations/code-r8-bge-ci-readback.md"
+}

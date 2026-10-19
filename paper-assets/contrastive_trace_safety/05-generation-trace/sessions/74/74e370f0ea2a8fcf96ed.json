@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "74e370f0ea2a8fcf96ed",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code bib fix and compile",
+  "task_key": "worker_code_bib_fix_and_compile_20260517T214951",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_bib_fix_and_compile_20260517T214951_result.json",
+    "occurrence": 1,
+    "bytes": 1216,
+    "sha256": "a291de06377dad3fa751b16cb826212f2cce6d30335988bf44e287b3329a64d4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### Step 1: bib 修复完成\n- `tenney2019bert`: `@article` → `@inproceedings`, `journal` → `booktitle` (加了 `(ACL)`)\n- `alain2017understanding`: `@article` → `@inproceedings`, `journal` → `booktitle` (首字母大写 `Workshop Track`)\n\n### Step 2: 编译成功\n总页数：**22 页**\n\n### Step 3: 页数分布\n\n| Section | 起始页 | 页数(约) |\n|---------|--------|----------|\n| Introduction | 1 | 2 |\n| Related Work | 3 | 2 |\n| Problem Setup and Methods | 5 | 3 |\n| Experiments | 8 | 4 |\n| Discussion | 12 | 1 |\n| Conclusion | 13 | <1 |\n| Limitations | 13 | <1 |\n| **References** | **14** | 2 |\n| **Appendix** | **16** | 7 |\n\n**正文（含 Limitations，不含 References）：13 页。超 8 页限制，正文约 13 页。**\n\n### Step 4: 编译 Warnings\n\n- **Undefined references**: 0\n- **Missing citations**: 0\n- **Overfull hbox > 10pt**: 6 处\n  - 58.6pt (appendix lines 71–112)\n  - 35.9pt (appendix lines 228–239)\n  - 34.7pt (appendix lines 328–354)\n  - 29.5pt (appendix lines 38–56)\n  - 23.2pt (appendix lines 165–179)\n  - 10.5pt (main lines 45–55)\n- 其他：3 个 float specifier `h` → `ht` 警告（无害）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-bib-fix-and-compile.md"
+}

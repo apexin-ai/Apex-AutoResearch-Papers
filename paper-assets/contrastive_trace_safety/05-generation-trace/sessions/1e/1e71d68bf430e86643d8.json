@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "id": "1e71d68bf430e86643d8",
+  "project": "contrastive_trace_safety",
+  "kind": "worker",
+  "title": "code exp ot7b execute",
+  "task_key": "worker_code_exp_ot7b_execute_20260517T065302",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_ot7b_execute_20260517T065302.log",
+    "occurrence": 1,
+    "bytes": 1832286,
+    "sha256": "e51a076e2672a8693ab75464112f3600110e00e28dbdf405a71dcc5e27e4ae4f"
+  },
+  "statistics": {
+    "messages": 1069,
+    "user_turns": 1,
+    "tool_calls": 399,
+    "roles": {
+      "log": 1,
+      "system": 80,
+      "record": 1,
+      "assistant": 168,
+      "tool_call": 399,
+      "tool_result": 399,
+      "user": 1,
+      "result": 20
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 609,
+      "chunks": [
+        {
+          "path": "1e71d68bf430e86643d8-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "1e71d68bf430e86643d8-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "1e71d68bf430e86643d8-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "1e71d68bf430e86643d8-part-0004.json",
+          "message_count": 69
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 460,
+      "chunks": [
+        {
+          "path": "1e71d68bf430e86643d8-part-0004.json",
+          "message_count": 111
+        },
+        {
+          "path": "1e71d68bf430e86643d8-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "1e71d68bf430e86643d8-part-0006.json",
+          "message_count": 169
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp-ot7b-execute.md"
+}

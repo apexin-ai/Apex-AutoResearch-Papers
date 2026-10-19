@@ -1,0 +1,27 @@
+{
+  "exp_id": "exp_qwq_safe_fpr_correct_lr",
+  "project": "contrastive_trace_safety",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T21:29:06.481Z",
+    "updated_at": "2026-05-17T21:29:29.488Z",
+    "hypothesis": "QwQ-32B safe-trace FPR=50% (SGDClassifier) may be a method artifact. Rerunning with paper's LogisticRegression(lbfgs, C=1.0, class_weight=balanced, max_iter=2000) to confirm whether HS probe truly has higher FPR than text probe on safe traces.",
+    "parent": "exp_safe_trace_fpr_multimodel",
+    "spec": {
+      "command": "LogisticRegression(solver='lbfgs', C=1.0, class_weight='balanced', max_iter=2000)",
+      "server": "autodl-rtx6000",
+      "data_path": "artifacts/hidden_states_qwq_32b/ + artifacts/hidden_states_qwq_32b_safe/",
+      "data_count": "95 jailbreak + 40 safe traces",
+      "model_name": "QwQ-32B L60",
+      "seed": "42",
+      "checkpoint_source": "exp_safe_trace_fpr_multimodel",
+      "eval_data": "artifacts/hidden_states_qwq_32b_safe/ (40 safe traces)"
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-17T21:29:29.576775+00:00",
+  "trigger": "update_registry"
+}

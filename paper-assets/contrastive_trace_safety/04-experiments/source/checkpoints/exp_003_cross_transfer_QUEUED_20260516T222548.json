@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_003_cross_transfer",
+  "project": "contrastive_trace_safety",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T22:23:29.492Z",
+    "updated_at": "2026-05-16T22:25:48.436Z",
+    "hypothesis": "Safety commitment probes trained on one reasoning model can transfer to other architectures/scales via simple dimension projection, because the safety signal is a universal representation rather than model-specific.",
+    "parent": "exp_001a_r1_32b"
+  },
+  "timestamp": "2026-05-16T22:25:48.485504+00:00",
+  "trigger": "update_registry"
+}

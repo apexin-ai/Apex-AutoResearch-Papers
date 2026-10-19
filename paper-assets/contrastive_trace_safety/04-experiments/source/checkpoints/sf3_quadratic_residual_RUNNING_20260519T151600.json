@@ -1,0 +1,24 @@
+{
+  "exp_id": "sf3_quadratic_residual",
+  "project": "contrastive_trace_safety",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T14:55:46.812Z",
+    "updated_at": "2026-05-19T15:16:00.661Z",
+    "hypothesis": "Adding a quadratic (t/T)² term to position residualization does not eliminate the HS vs Text BA advantage for R1-8B and OT-7B, confirming the advantage is not an artifact of nonlinear positional encoding. If quadratic residualization substantially reduces the gap compared to linear, position effects have a nonlinear component worth controlling for.",
+    "spec": {
+      "command": "sf3_quadratic_residual.py (4 models, linear + quadratic)",
+      "server": "autodl-rtx6000",
+      "data_path": "/root/autodl-tmp/contrastive_trace_safety/artifacts/",
+      "data_count": "209 (R1-8B) + 228 (OT-7B) + 100 (R1-32B) + 95 (QwQ-32B) traces",
+      "model_name": "R1-8B, OT-7B, R1-32B, QwQ-32B",
+      "seed": 42
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-19T15:16:00.768231+00:00",
+  "trigger": "update_registry"
+}

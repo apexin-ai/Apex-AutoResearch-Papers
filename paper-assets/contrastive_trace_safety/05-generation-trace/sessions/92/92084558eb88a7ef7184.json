@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "92084558eb88a7ef7184",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code r7 layer heatmap fix",
+  "task_key": "worker_code_r7_layer_heatmap_fix_20260518T055921",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r7_layer_heatmap_fix_20260518T055921_result.json",
+    "occurrence": 1,
+    "bytes": 710,
+    "sha256": "1421111a92ca8ee0ee74e071d1ef3073fce3df4a733f02ab3cae243f707dc14b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图已生成。验证汇总：\n\n- **R1-8B**: biased=L14, corrected=L14 → 单条绿色虚线，标注 \"corrected = biased (L14)\"\n- **OT-7B**: biased=L0（红色虚线），corrected=L16（绿色虚线）\n- **QwQ-32B**: biased=L2（红色虚线），corrected=L60（绿色虚线）— 不变\n- **R1-32B**: biased=L10（红色虚线），corrected=L63（绿色虚线）— 不变\n\n输出文件：\n- PDF: `/root/autodl-tmp/contrastive_trace_safety/docs/paper/figures/fig_layer_heatmap.pdf` (46KB)\n- PNG: `/root/autodl-tmp/contrastive_trace_safety/docs/paper/figures/fig_layer_heatmap.png` (237KB)\n\n绘图脚本保存在 `scripts/plot_layer_heatmap.py`，后续可直接修改重跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r7-layer-heatmap-fix.md"
+}

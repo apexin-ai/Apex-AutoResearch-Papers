@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "effcc0edc0bdb58571d7",
+  "project": "contrastive_trace_safety",
+  "kind": "worker",
+  "title": "research path a pilot investigate",
+  "task_key": "worker_research_path_a_pilot_investigate_20260517T052318",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_path_a_pilot_investigate_20260517T052318.log",
+    "occurrence": 1,
+    "bytes": 886475,
+    "sha256": "2ba8be9f165db9265da5662dbe6ca865c6fd4391d866fa9da47f522285120118"
+  },
+  "statistics": {
+    "messages": 592,
+    "user_turns": 0,
+    "tool_calls": 230,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 128,
+      "tool_call": 230,
+      "tool_result": 230,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 592,
+      "chunks": [
+        {
+          "path": "effcc0edc0bdb58571d7-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "effcc0edc0bdb58571d7-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "effcc0edc0bdb58571d7-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "effcc0edc0bdb58571d7-part-0004.json",
+          "message_count": 52
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-path-a-pilot-investigate.md"
+}

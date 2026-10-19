@@ -1,0 +1,673 @@
+issues:
+  # ========== Round 22 遗留 issues ==========
+
+  - id: "R22-N1"
+    summary: "HB correction scope covers only 12 final tests vs ~2,240 search space"
+    category: method
+    severity: critical
+    status: resolved
+    first_raised_round: 22
+    last_seen_round: 35
+    mentions:
+      - {round: 35, reviewers: [R1, R2], note: "Re-raised as R1-W2: two-stage design exploration freedom. Validation→test same distribution, no nested CV. Table 34 13-25% shrinkage quantifies optimism. Section V/X.2 partially mitigate but insufficient. AGREE consensus."}
+    resolution: "Two-stage design explained in Method 3.5; evidence gradient 3-tier classification; Cohen's d; nested CV confirms 7-8B results."
+    resolution_round: 25
+
+  - id: "R22-N2"
+    summary: "Abstract selectively reports position confound (linear 3/4, omits quadratic 2/4)"
+    category: writing
+    severity: critical
+    status: resolved
+    first_raised_round: 22
+    last_seen_round: 23
+    resolution: "Abstract rewritten with 'doubly conditional' framing covering both encoder and position conditions"
+    resolution_round: 23
+
+  - id: "R22-N3"
+    summary: "Random-label control only on QwQ-32B, insufficient for architecture-independent claim"
+    category: experiment
+    severity: critical
+    status: resolved
+    first_raised_round: 22
+    last_seen_round: 25
+    resolution: "Abstract '(3 Qwen-family, 1 Llama)'; Discussion discusses Qwen-specific geometric bias vs Llama label-dependent bias"
+    resolution_round: 25
+
+  - id: "R22-N4"
+    summary: "Encoder-quality finding undermines HS advantage narrative in abstract"
+    category: framing
+    severity: critical
+    status: resolved
+    first_raised_round: 22
+    last_seen_round: 23
+    resolution: "Abstract rewritten with 'doubly conditional' framing"
+    resolution_round: 23
+
+  - id: "R22-N5"
+    summary: "Main text exceeds 8-page limit"
+    category: format
+    severity: critical
+    status: resolved
+    first_raised_round: 22
+    last_seen_round: 33
+    resolution: "Conclusion merged into 'Discussion and Conclusion' (Section 5); enlargethispage removed; §4.3-4.5 compressed. Main text Sections 1-5 fully within p8. Natural compliance, no hacks. 12-round critical issue closed."
+    resolution_round: 33
+
+  - id: "R22-W1"
+    summary: "32B small-sample overinterpretation"
+    category: writing
+    severity: critical
+    status: resolved
+    first_raised_round: 22
+    last_seen_round: 35
+    mentions:
+      - {round: 35, reviewers: [R1, R2], note: "Re-raised as R1-W3/R2-W3: n=19-20 LOO-CV fold stability only 65-68% dominant layer selection (vs R1-8B 100%). BCa coverage reduced. AGREE consensus."}
+    resolution: "Section 4.4 opening 'Exploratory status' paragraph with MDE; Table 4 * markers for sub-MDE effects; Discussion explicitly separates 'confirmed at 7-8B' from 'exploratory at 32B'."
+    resolution_round: 32
+
+  - id: "R22-W2"
+    summary: "Single dataset external validity"
+    category: experiment
+    severity: warning
+    status: wont_fix
+    first_raised_round: 22
+    last_seen_round: 35
+    mentions:
+      - {round: 34, reviewers: [R1, R2], note: "Re-raised as consensus critical: HarmThoughts only for C2/C3, AdvBench only validates C1 layer pattern."}
+      - {round: 35, reviewers: [R1, R2], note: "Re-raised as R1-W1: AdvBench validates C1 but not C2. AGREE consensus."}
+    resolution: "Structural limitation — HarmThoughts is only public step-level CP dataset. AdvBench validates geometry only. Findings-acceptable."
+    resolution_round: 30
+
+  - id: "R22-W3"
+    summary: "CP annotation lacks human IAA"
+    category: experiment
+    severity: warning
+    status: in_progress
+    first_raised_round: 22
+    last_seen_round: 35
+    mentions:
+      - {round: 34, reviewers: [R1, R2], note: "Re-raised: human-human agreement still unreported. Table 21 LLM-only (kappa=0.606, 37% exact match)."}
+      - {round: 35, reviewers: [R1, R2], note: "Raised as Q4. Not elevated to must-fix but still unresolved."}
+    action_items:
+      - {round: 34, action: "Limitations 明确标注 human-human IAA 缺失", assigned_to: main_agent, status: in_progress}
+    resolution: ""
+    resolution_round: null
+
+  - id: "R22-W4"
+    summary: "Framing inconsistency: monitoring vs retrospective"
+    category: framing
+    severity: warning
+    status: resolved
+    first_raised_round: 22
+    last_seen_round: 32
+    resolution: "Practical mitigation moved to appendix; Introduction explicitly states 'retrospective classification, not online detection'."
+    resolution_round: 32
+
+  - id: "R22-W5"
+    summary: "'Cross-validated' non-standard terminology"
+    category: writing
+    severity: warning
+    status: resolved
+    first_raised_round: 22
+    last_seen_round: 22
+    resolution: "Abstract/Intro changed to 'validated via nested 5-fold CV'"
+    resolution_round: 23
+
+  - id: "R22-W6"
+    summary: "5-metric classification is post-hoc"
+    category: method
+    severity: warning
+    status: resolved
+    first_raised_round: 22
+    last_seen_round: 25
+    resolution: "Intro C1 acknowledges Belinkov + positions novelty as qualitative reversal in safety-critical application"
+    resolution_round: 28
+
+  - id: "R22-W7"
+    summary: "Chan & Yong (2025) discussion insufficient"
+    category: writing
+    severity: warning
+    status: resolved
+    first_raised_round: 22
+    last_seen_round: 29
+    resolution: "Full comparison paragraph in Related Work"
+    resolution_round: 27
+
+  - id: "R22-W8"
+    summary: "GRU vs LR comparison unfair"
+    category: method
+    severity: warning
+    status: resolved
+    first_raised_round: 22
+    last_seen_round: 30
+    resolution: "Protocol difference noted in Method; 60/20/20 GRU results in Appendix F Table 16"
+    resolution_round: 23
+
+  - id: "R22-M2"
+    summary: "Figure 1 colorblind-unfriendly colormap"
+    category: format
+    severity: info
+    status: resolved
+    first_raised_round: 22
+    last_seen_round: 23
+    resolution: "Viridis colormap applied"
+    resolution_round: 23
+
+  - id: "R22-M5"
+    summary: "geiger2025causal bib year mismatch"
+    category: format
+    severity: info
+    status: resolved
+    first_raised_round: 22
+    last_seen_round: 22
+    resolution: "Bib year corrected"
+    resolution_round: 23
+
+  - id: "R22-M6"
+    summary: "Figure 2 label size too small"
+    category: format
+    severity: info
+    status: resolved
+    first_raised_round: 22
+    last_seen_round: 29
+    resolution: "Figure 2 redrawn with larger labels"
+    resolution_round: 23
+
+  - id: "R22-M8"
+    summary: "'7-8B models' imprecise grouping"
+    category: writing
+    severity: info
+    status: resolved
+    first_raised_round: 22
+    last_seen_round: 22
+    resolution: "Model names listed at first mention"
+    resolution_round: 23
+
+  - id: "R22-REF"
+    summary: "Missing references from R22"
+    category: writing
+    severity: info
+    status: resolved
+    first_raised_round: 22
+    last_seen_round: 23
+    resolution: "3 references added"
+    resolution_round: 23
+
+  # ========== Round 23 遗留 issues ==========
+
+  - id: "R23-N1"
+    summary: "32B sample size (n=19-20) underpowered"
+    category: experiment
+    severity: critical
+    status: resolved
+    first_raised_round: 23
+    last_seen_round: 25
+    resolution: "32B results consistently marked exploratory with dagger notation; evidence gradient 3-tier"
+    resolution_round: 25
+
+  - id: "R23-N2"
+    summary: "Architecture diversity: 3/4 Qwen, 'cross-architecture' overclaim"
+    category: framing
+    severity: critical
+    status: wont_fix
+    first_raised_round: 23
+    last_seen_round: 35
+    mentions:
+      - {round: 34, reviewers: [R1, R2], note: "Re-raised: R1 critical, R2 agrees with nuance."}
+      - {round: 35, reviewers: [R1, R2], note: "AGREE consensus. R1 adds new dimension: all 4 models are reasoning models, no non-reasoning control. Title implies reasoning-model specificity but experiment cannot test this. Llama-3.1-8B-Instruct (non-reasoning, same architecture) would be low-cost control. R2 confirms R1's 1 Llama + 3 Qwen analysis more precise than R2's initial framing."}
+    resolution: "Structural limitation — 2025 open-source reasoning model ecosystem dominated by Qwen. Hedging at 5+ locations."
+    resolution_round: 30
+
+  - id: "R23-N3"
+    summary: "Novelty unclear vs Belinkov (2022) general sensitivity"
+    category: framing
+    severity: warning
+    status: in_progress
+    first_raised_round: 23
+    last_seen_round: 35
+    mentions:
+      - {round: 23, reviewers: [R1, R2], note: "consensus"}
+      - {round: 30, reviewers: [R1, R2], note: "R2-N1 Critical: 已知问题的领域迁移; R1 partial REBUT"}
+      - {round: 31, reviewers: [R1, R2], note: "R2-N1 Critical 维持; R1 REBUT; Director 倾向 R2"}
+      - {round: 32, reviewers: [R2], note: "PARTIALLY_RESOLVED; Voita MDL 仅引用无实质对比"}
+      - {round: 33, reviewers: [R1, R2], note: "MDL 对比已添加; R1 3.5 vs R2 3.0; 双方同意交由AC"}
+      - {round: 34, reviewers: [R1, R2], note: "Key divergence: R2 critical vs R1 REBUT"}
+      - {round: 35, reviewers: [R1, R2], note: "KEY DIVERGENCE persists. R2-N1: C1 is domain-specific instantiation of known probing sensitivity. R1 REBUT with 3 arguments: (1) 14-61 layer divergence quantitatively exceeds prior work (Tenney 2019 reports gradual task-layer associations, not opposing selections + conclusion reversal); (2) conclusion sign-flip in safety-critical domain has independent paper-level value; (3) cosine compression as specific geometric mechanism is new observation. R1 suggests downgrade to Should-Fix. R2 maintains as core concern driving 3.0 vs R1's 3.5. Director assessment: R1's arguments partially persuasive on quantitative scale, but R2's concern about conceptual incrementality remains valid. Both agree Related Work needs deeper Belinkov/Voita/Hewitt comparison."}
+    action_items:
+      - {round: 24, action: "C1 Intro acknowledge Belinkov + position novelty", assigned_to: paper_agent, status: resolved}
+      - {round: 31, action: "Related Work 深入对比 Voita MDL", assigned_to: paper_agent, status: resolved}
+      - {round: 32, action: "Discussion 加 MDL 对比句", assigned_to: paper_agent, status: resolved}
+      - {round: 33, action: "不再修改 — legitimate disagreement deferred to AC", assigned_to: director, status: resolved}
+      - {round: 34, action: "Introduction 加 C1 cascade novelty 定位 vs Belinkov/Voita", assigned_to: main_agent, status: in_progress}
+    resolution: ""
+    resolution_round: null
+
+  - id: "R23-N4"
+    summary: "No actionable solution; ensemble Ens-Best not significant"
+    category: method
+    severity: warning
+    status: resolved
+    first_raised_round: 23
+    last_seen_round: 32
+    resolution: "Experiments new ensemble paragraph: 3-layer ensemble, p≤0.002 all 4 models."
+    resolution_round: 32
+
+  - id: "R23-N5"
+    summary: "Single dataset limits all claims; AdvBench unused for layer reversal"
+    category: experiment
+    severity: critical
+    status: wont_fix
+    first_raised_round: 23
+    last_seen_round: 30
+    resolution: "Merged with R22-W2. Structural limitation, Findings-acceptable."
+    resolution_round: 30
+
+  - id: "R23-W3"
+    summary: "CP binary formulation too crude; oscillating traces unquantified"
+    category: method
+    severity: warning
+    status: wont_fix
+    first_raised_round: 23
+    last_seen_round: 28
+    resolution: "Method 3.1 documents handling strategy."
+    resolution_round: 30
+
+  - id: "R23-W4"
+    summary: "Abstract information overload"
+    category: writing
+    severity: info
+    status: wont_fix
+    first_raised_round: 23
+    last_seen_round: 33
+    resolution: "Minor, non-blocking."
+    resolution_round: 33
+
+  - id: "R23-VIS"
+    summary: "Visual: pages 3-5 text wall, low display-item density"
+    category: format
+    severity: info
+    status: wont_fix
+    first_raised_round: 23
+    last_seen_round: 35
+    mentions:
+      - {round: 33, reviewers: [visual_agent], note: "3 warnings: pp3-5 文字墙"}
+      - {round: 34, reviewers: [visual_agent], note: "1 warning: pp4-5 连续纯文本"}
+      - {round: 35, reviewers: [visual_agent], note: "3 warnings: p5 density, p7 most dense page, Appendix pp11-23 visually monotone"}
+    resolution: "Structural constraint: 8-page limit."
+    resolution_round: 33
+
+  # ========== Round 24-28 遗留 issues ==========
+
+  - id: "R25-N2"
+    summary: "Negative results configuration fairness"
+    category: method
+    severity: warning
+    status: resolved
+    first_raised_round: 25
+    last_seen_round: 28
+    resolution: "MLP details + disclaimer added."
+    resolution_round: 28
+
+  - id: "R25-M1"
+    summary: "Statistical reporting style inconsistent"
+    category: writing
+    severity: info
+    status: wont_fix
+    first_raised_round: 25
+    last_seen_round: 28
+    resolution: "Camera-ready item."
+    resolution_round: 30
+
+  - id: "R26-N1"
+    summary: "Two-stage design FWER protection gap"
+    category: method
+    severity: warning
+    status: resolved
+    first_raised_round: 26
+    last_seen_round: 30
+    resolution: "Three-layer coverage: main text, Discussion, Appendix W."
+    resolution_round: 30
+
+  - id: "R26-N2"
+    summary: "32B power + BCa small-sample coverage"
+    category: writing
+    severity: critical
+    status: resolved
+    first_raised_round: 26
+    last_seen_round: 32
+    resolution: "Method 3.5: exact permutation primary for 32B, BCa supplementary."
+    resolution_round: 32
+
+  - id: "R26-W1"
+    summary: "CR-composite vs threshold-based taxonomy lacks a priori theoretical basis"
+    category: method
+    severity: warning
+    status: wont_fix
+    first_raised_round: 26
+    last_seen_round: 30
+    resolution: "Taxonomy empirically grounded by random-label control."
+    resolution_round: 32
+
+  - id: "R26-W2"
+    summary: "QwQ-32B HS advantage fully absorbed by quadratic position"
+    category: framing
+    severity: warning
+    status: resolved
+    first_raised_round: 26
+    last_seen_round: 35
+    mentions:
+      - {round: 33, reviewers: [R1, R2], note: "RESOLVED: Discussion 新增 confound caveat"}
+      - {round: 35, reviewers: [R1, R2], note: "Subsumed by R35-W2. R2 adds linear vs quadratic discrepancy analysis. R1 identifies power confound dimension."}
+    resolution: "Discussion: confound vs genuine signal caveat added."
+    resolution_round: 33
+
+  - id: "R27-N1"
+    summary: "Central claim framing: 'reversal' is metric×layer interaction"
+    category: framing
+    severity: warning
+    status: wont_fix
+    first_raised_round: 27
+    last_seen_round: 28
+    resolution: "Title accurately captures the phenomenon."
+    resolution_round: 30
+
+  - id: "R27-M2"
+    summary: "enlargethispage aggressive"
+    category: format
+    severity: info
+    status: resolved
+    first_raised_round: 27
+    last_seen_round: 33
+    resolution: "enlargethispage removed."
+    resolution_round: 33
+
+  # ========== Round 29-30 遗留 issues ==========
+
+  - id: "R29-N1"
+    summary: "E5-Mistral PCA dimensionality confound"
+    category: experiment
+    severity: critical
+    status: wont_fix
+    first_raised_round: 29
+    last_seen_round: 29
+    resolution: "E5-Mistral is supplementary."
+    resolution_round: 30
+
+  - id: "R29-W1"
+    summary: "Evidence gradient 贡献定位模糊"
+    category: framing
+    severity: warning
+    status: wont_fix
+    first_raised_round: 29
+    last_seen_round: 29
+    resolution: "Evidence gradient is experimental design aspect."
+    resolution_round: 30
+
+  - id: "R29-W2"
+    summary: "Discussion 过度压缩"
+    category: writing
+    severity: warning
+    status: in_progress
+    first_raised_round: 29
+    last_seen_round: 35
+    mentions:
+      - {round: 33, reviewers: [R1, R2], note: "Discussion and Conclusion 仅 4 句"}
+      - {round: 34, reviewers: [R1, R2], note: "Re-raised: ~3-4 sentences"}
+      - {round: 35, reviewers: [R1, R2], note: "Still ~4 paragraphs, boundary conditions added. R1 notes missing: C1 impact on existing literature, practical layer selection caveats, MDL probing depth. Mentioned in Detailed Comments section of report."}
+    action_items:
+      - {round: 34, action: "移32B到appendix释放空间, 扩展Discussion", assigned_to: main_agent, status: in_progress}
+    resolution: ""
+    resolution_round: null
+
+  - id: "R29-REF"
+    summary: "Missing references from R29"
+    category: writing
+    severity: info
+    status: resolved
+    first_raised_round: 29
+    last_seen_round: 29
+    resolution: "R29 commit added ITI + Levinstein refs."
+    resolution_round: 31
+
+  - id: "R30-N1"
+    summary: "'Doubly conditional' framing: factors are correlated not independent"
+    category: framing
+    severity: warning
+    status: resolved
+    first_raised_round: 30
+    last_seen_round: 32
+    resolution: "Abstract/Intro rewritten."
+    resolution_round: 32
+
+  - id: "R30-W1"
+    summary: "32B exploratory results over-represented in abstract"
+    category: writing
+    severity: info
+    status: wont_fix
+    first_raised_round: 30
+    last_seen_round: 33
+    resolution: "32B results consistently marked exploratory†. Minor."
+    resolution_round: 33
+
+  - id: "R30-REF"
+    summary: "Missing references from R30"
+    category: writing
+    severity: info
+    status: resolved
+    first_raised_round: 30
+    last_seen_round: 30
+    resolution: "All R30 references verified."
+    resolution_round: 32
+
+  # ========== Round 31 issues ==========
+
+  - id: "R31-N1"
+    summary: "Multi-layer probing literature entirely absent"
+    category: framing
+    severity: critical
+    status: resolved
+    first_raised_round: 31
+    last_seen_round: 32
+    resolution: "Related Work new 'Multi-Layer Probing' paragraph."
+    resolution_round: 32
+
+  - id: "R31-W1"
+    summary: "Cosine compression → crossing-rate inflation 因果链缺直接干预"
+    category: method
+    severity: warning
+    status: open
+    first_raised_round: 31
+    last_seen_round: 35
+    mentions:
+      - {round: 32, reviewers: [R1, R2], note: "RESOLVED: Discussion + Limitations dual correlational caveat."}
+      - {round: 35, reviewers: [R1, R2], note: "Re-raised and UPGRADED to Must-Fix (R35-W3). AGREE consensus across both reviewers. R1 maintains must-fix because causal mechanism is Discussion's core narrative pillar. R1 proposes specific experiment: L2-normalize hidden states per layer then recompute crossing rate — if CR-composite no longer prefers shallow layers, causal chain confirmed; if still prefers, non-compression factors at play. R2 adds alternative explanations: lower-rank structure, proximity to input embeddings."}
+    action_items:
+      - {round: 32, action: "Discussion + Limitations dual correlational caveat", assigned_to: paper_agent, status: resolved}
+      - {round: 35, action: "Abstract改'mechanism'为'candidate mechanism'/'geometric correlate'", assigned_to: main_agent, status: open}
+    resolution: ""
+    resolution_round: null
+
+  - id: "R31-W2"
+    summary: "Position residualization confound vs genuine signal"
+    category: method
+    severity: warning
+    status: resolved
+    first_raised_round: 31
+    last_seen_round: 33
+    resolution: "Discussion caveat added."
+    resolution_round: 33
+
+  - id: "R31-W3"
+    summary: "K=5 consecutive crossings: per-model optimal K 未报告"
+    category: method
+    severity: warning
+    status: resolved
+    first_raised_round: 31
+    last_seen_round: 32
+    resolution: "Method 3.5: K=3-7 range, conclusion direction consistent."
+    resolution_round: 32
+
+  - id: "R31-W4"
+    summary: "Negative results (C3) 信息量分歧"
+    category: framing
+    severity: warning
+    status: resolved
+    first_raised_round: 31
+    last_seen_round: 32
+    resolution: "Section 4.6 compressed."
+    resolution_round: 32
+
+  - id: "R31-W5"
+    summary: "BA 锚定 C2 的逻辑张力"
+    category: framing
+    severity: info
+    status: wont_fix
+    first_raised_round: 31
+    last_seen_round: 33
+    resolution: "Downgraded to minor by R33 consensus."
+    resolution_round: 33
+
+  - id: "R31-REF"
+    summary: "Missing references from R31"
+    category: writing
+    severity: info
+    status: resolved
+    first_raised_round: 31
+    last_seen_round: 32
+    resolution: "All 5 references added."
+    resolution_round: 32
+
+  # ========== Round 34 issues ==========
+
+  - id: "R34-N1"
+    summary: "32B results underpowered (MDE 8.6-9.5pp >> observed +1.9pp) but over-represented in main text"
+    category: experiment
+    severity: critical
+    status: in_progress
+    first_raised_round: 34
+    last_seen_round: 35
+    mentions:
+      - {round: 34, reviewers: [R1, R2], note: "Consensus AGREE."}
+      - {round: 35, reviewers: [R1, R2], note: "Subsumed by R35-W2/W6. Power confound dimension added by R1."}
+    action_items:
+      - {round: 34, action: "将Section 4.3大部分32B分析移至附录", assigned_to: main_agent, status: in_progress}
+    resolution: ""
+    resolution_round: null
+
+  - id: "R34-N2"
+    summary: "HS advantage fragile under stronger controls but framing emphasizes positive 384d results"
+    category: framing
+    severity: warning
+    status: in_progress
+    first_raised_round: 34
+    last_seen_round: 35
+    mentions:
+      - {round: 34, reviewers: [R1, R2], note: "Progressive weakening pattern."}
+      - {round: 35, reviewers: [R1, R2], note: "Subsumed by R35-W2. Linear vs quadratic discrepancy analysis added."}
+    action_items:
+      - {round: 34, action: "Discussion讨论encoder ceiling interpretation", assigned_to: main_agent, status: in_progress}
+      - {round: 34, action: "报告BGE-large + quadratic叠加结果", assigned_to: main_agent, status: wont_fix_ddl}
+    resolution: ""
+    resolution_round: null
+
+  - id: "R34-N3"
+    summary: "'Confound' terminology overstates causation"
+    category: writing
+    severity: warning
+    status: in_progress
+    first_raised_round: 34
+    last_seen_round: 35
+    mentions:
+      - {round: 34, reviewers: [R1, R2], note: "Consensus AGREE."}
+      - {round: 35, reviewers: [R1, R2], note: "Subsumed by R35-W3 (causal language). Abstract still says 'The mechanism is cosine compression'."}
+    action_items:
+      - {round: 34, action: "'uncontrolled confound'→'critical specification choice'", assigned_to: main_agent, status: in_progress}
+    resolution: ""
+    resolution_round: null
+
+  - id: "R34-W1"
+    summary: "Negative results (C3) attribution insufficient in main text"
+    category: writing
+    severity: warning
+    status: in_progress
+    first_raised_round: 34
+    last_seen_round: 35
+    mentions:
+      - {round: 34, reviewers: [R1, R2], note: "Main text Section 4.6 too brief."}
+      - {round: 35, reviewers: [R1, R2], note: "R1 AGREE with R2-W2. R1 adds: CCS failure→safety signal not aligned with contrast-consistent directions; cross-model transfer failure→model-specific safety encoding, tension with 'architecture-general' claim. Should-fix."}
+    action_items:
+      - {round: 34, action: "Section 4.6 add pointers to Appendix J/P", assigned_to: main_agent, status: in_progress}
+    resolution: ""
+    resolution_round: null
+
+  - id: "R34-W2"
+    summary: "BGE-large + quadratic residualization combined test unreported"
+    category: experiment
+    severity: warning
+    status: wont_fix
+    first_raised_round: 34
+    last_seen_round: 35
+    mentions:
+      - {round: 34, reviewers: [R1, R2], note: "Critical missing experiment."}
+      - {round: 35, reviewers: [R1, R2], note: "Still unreported. Subsumed by W2 position confound discussion."}
+    resolution: "Hidden states cleaned from server; re-extraction infeasible before DDL. Rebuttal/camera-ready item."
+    resolution_round: null
+
+  - id: "R34-I1"
+    summary: "Figure 2 red-green colormap not colorblind-safe"
+    category: format
+    severity: info
+    status: open
+    first_raised_round: 34
+    last_seen_round: 35
+    mentions:
+      - {round: 34, reviewers: [visual_agent, R2], note: "Red-green gradient heatmap."}
+      - {round: 35, reviewers: [visual_agent], note: "Confirmed: Figure 3 heatmap red-green, Figure 4 hollow/filled dots limited in grayscale."}
+    resolution: "Camera-ready item."
+    resolution_round: null
+
+  - id: "R34-REF"
+    summary: "Missing references from R34-35"
+    category: writing
+    severity: info
+    status: in_progress
+    first_raised_round: 34
+    last_seen_round: 35
+    mentions:
+      - {round: 34, reviewers: [R2], note: "Tenney 2019, Ravichander 2021."}
+      - {round: 35, reviewers: [R1, R2], note: "R1 adds critical missing ref: Ethayarajh (2019) 'How Contextual are Contextualized Word Representations?' — directly studies anisotropy (paper's 'cosine compression'), foundational work in representation geometry. R1: 'most inexcusable omission'. Also: Voita & Titov (2020) MDL probing, Pimentel et al. (2020) info-theoretic probing, Elazar et al. (2021) amnesic probing."}
+    action_items:
+      - {round: 34, action: "添加Tenney2019和Ravichander2021", assigned_to: main_agent, status: in_progress}
+      - {round: 35, action: "添加Ethayarajh2019(必须), Pimentel2020, Elazar2021到bib和Related Work", assigned_to: main_agent, status: open}
+    resolution: ""
+    resolution_round: null
+
+  # ========== Round 35 新增 issues ==========
+
+  - id: "R35-W7"
+    summary: "Ensemble holdout selection bias — ensemble composition data-driven but evaluated on same-distribution data"
+    category: method
+    severity: warning
+    status: open
+    first_raised_round: 35
+    last_seen_round: 35
+    mentions:
+      - {round: 35, reviewers: [R1, R2], note: "AGREE consensus. Table 3 ensemble = precision-best + BA-best + inverse-FPR-best layers, all selected on validation, evaluated on same-distribution test. Table 34: 13-25% shrinkage. R1 adds: Ens-Best p>0.22 not significant — no statistical evidence ensemble outperforms best single metric. Level 3 recommendation should be weakened to 'potential improvement pending further validation'."}
+    action_items:
+      - {round: 35, action: "Limitations/Discussion 承认 ensemble selection bias + p>0.22 non-significance; 弱化 Level 3 推荐措辞", assigned_to: main_agent, status: open}
+    resolution: ""
+    resolution_round: null
+
+  - id: "R35-N-reasoning"
+    summary: "No non-reasoning model control — cannot distinguish reasoning-model-specific vs general safety probing property"
+    category: experiment
+    severity: warning
+    status: open
+    first_raised_round: 35
+    last_seen_round: 35
+    mentions:
+      - {round: 35, reviewers: [R1, R2], note: "R2-N2 raised, R1 AGREE and amplifies. All 4 models are reasoning models. Title implies reasoning-model specificity but experiment cannot test this. Low-cost control available: Llama-3.1-8B-Instruct (non-reasoning, same architecture as R1-8B) or Qwen2.5-7B-Instruct (non-reasoning, same architecture as OT-7B). If layer selection bias exists in non-reasoning models, paper's impact actually increases."}
+    action_items:
+      - {round: 35, action: "考虑补充非reasoning模型控制实验(Llama-3.1-8B-Instruct), 或在Discussion/Limitations中明确标注此限制", assigned_to: main_agent, status: open}
+    resolution: ""
+    resolution_round: null

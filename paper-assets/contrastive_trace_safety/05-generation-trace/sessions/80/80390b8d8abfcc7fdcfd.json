@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "80390b8d8abfcc7fdcfd",
+  "project": "contrastive_trace_safety",
+  "kind": "worker",
+  "title": "code advbench hs extraction",
+  "task_key": "worker_code_advbench_hs_extraction_20260519T193710",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_advbench_hs_extraction_20260519T193710.log",
+    "occurrence": 1,
+    "bytes": 640284,
+    "sha256": "76d031cf7c97c6877cc536bcd72f6a408fe39c4b85c47e618315864110c586ca"
+  },
+  "statistics": {
+    "messages": 209,
+    "user_turns": 1,
+    "tool_calls": 74,
+    "roles": {
+      "log": 1,
+      "system": 31,
+      "record": 1,
+      "assistant": 26,
+      "tool_call": 74,
+      "user": 1,
+      "tool_result": 74,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "80390b8d8abfcc7fdcfd-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 202,
+      "chunks": [
+        {
+          "path": "80390b8d8abfcc7fdcfd-part-0001.json",
+          "message_count": 173
+        },
+        {
+          "path": "80390b8d8abfcc7fdcfd-part-0002.json",
+          "message_count": 29
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-advbench-hs-extraction.md"
+}

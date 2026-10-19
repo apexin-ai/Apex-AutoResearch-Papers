@@ -1,0 +1,1 @@
+n_common: 388, is_jailbreak_kappa: 0.6063, agreement: 87.4%, qwen3_jb: 52, gpt4omini_jb: 99, tp: 51, tn: 288, fp: 48, fn: 1, both_jb: 51, cp_exact_match: 19/51 (37%), cp_within_2: 20/51 (39%), cp_within_5: 24/51 (47%), cp_mean_abs_diff: 8.5 steps

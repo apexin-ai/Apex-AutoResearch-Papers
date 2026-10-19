@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ec62b10d730eff9b9f18",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "analysis transfer implementation extract",
+  "task_key": "worker_analysis_transfer_implementation_extract_20260517T044108",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_transfer_implementation_extract_20260517T044108_result.json",
+    "occurrence": 1,
+    "bytes": 951,
+    "sha256": "e0b27d883d9497798ef3b29d3e9f17648610a26d2441c7bbb12902309ca49436"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文档已生成：`artifacts/exp_003_cross_transfer_details.md`\n\n核心发现：\n\n1. **维度对齐方法极其简单** — 不是 Procrustes/CCA/learned mapping，而是对每个模型独立做 PCA 降到相同维度（2048/1024/512），然后直接在不同模型的 PCA 空间之间迁移 probe。两个 PCA 基底之间没有任何对齐步骤。\n\n2. **没有尝试过替代方案** — 代码中没有注释掉的其他方法，没有 config 选项，只实现了\"独立 PCA + 直接迁移\"和\"同维度直接迁移\"两种。\n\n3. **PCA 用全量数据拟合** — 不区分 train/test，所有 traces 的所有 steps 拼接后 fit PCA。Train/test split 仅用于 LogisticRegression 的 baseline 评估。\n\n4. **值得注意的结果** — qwq_32b→r1_32b 的 direct transfer（同为 5120 维）accuracy 0.673 甚至略超 r1_32b 自身 baseline 0.652，说明安全信号在同维模型间有较强的通用性。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-transfer-implementation-extract.md"
+}

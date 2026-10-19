@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4f71804bf40a18e7bde6",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "research reasoningshield exploration",
+  "task_key": "worker_research_reasoningshield_exploration_20260519T184024",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_reasoningshield_exploration_20260519T184024_result.json",
+    "occurrence": 1,
+    "bytes": 868,
+    "sha256": "ca490dcba2b46f7bf45badf19f36cd9aba73e71b48eb73cde5dc1af351698cfb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "探索完成。核心发现：\n\n**数据集概况**: 9,200 条，3 个 config（SFT 4358 / DPO 2642 / Test 2200），8 个 LRM 模型。\n\n**CP 兼容性: 中等**\n- **无 step-level 安全标注** — 只有 trace-level 3-tier 标签（safe 0.0 / borderline 0.5 / unsafe 1.0）\n- 需自行切分 + 逐句打分来定位 CP\n- 281 条 refusal→comply traces + 334 条 borderline traces = **615 条可用于 CP 分析**，超过 100 条目标\n- **r1-8b 存在**（Test 360 条，SFT 862 条），直接对应我们的实验模型\n\n**主要限制**: model_thinking 是纯文本（无 `<think>` 标签），median 仅 692 tokens，CP 需要外部 safety classifier 辅助定位。\n\n**转换代码量**: ~120–200 行。\n\n报告已写入 `artifacts/reasoningshield_exploration.md`，探索脚本在服务器 `src/reasoningshield_explore.py`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-reasoningshield-exploration.md"
+}

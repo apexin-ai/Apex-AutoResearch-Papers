@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4b9ff6adf3c74408a278",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code selectivity corrected layers",
+  "task_key": "worker_code_selectivity_corrected_layers_20260517T175238",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_selectivity_corrected_layers_20260517T175238_result.json",
+    "occurrence": 1,
+    "bytes": 928,
+    "sha256": "83ba056542bbdf9f406a247fa53a365baf27d6a32f57f86ef4fd696ef5aeaa77"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已保存。汇总如下：\n\n## Selectivity at Corrected Layers — 结果\n\n| Model | Layer (biased) | Selectivity (old) | Layer (corrected) | Selectivity (new) | >5pp? |\n|-------|---------------|-------------------|-------------------|-------------------|-------|\n| QwQ-32B | L2 | 15.3pp | **L60** | **14.4pp** | PASS |\n| R1-32B | L10 | 7.5pp | **L63** | **19.7pp** | PASS |\n\n**两个corrected layer的selectivity均通过5pp阈值。**\n\n关键数据：\n- **QwQ-32B L60**: real_acc=66.7%, random_mean=52.3%±5.1%, selectivity=14.4pp, position baseline=70.5%\n- **R1-32B L63**: real_acc=74.6%, random_mean=54.9%±6.0%, selectivity=19.7pp, position baseline=62.4%\n\nR1-32B在corrected layer (L63)的selectivity反而大幅高于biased layer (L10)，从7.5pp提升到19.7pp，说明探针在高层提取到了更多超越位置信息的commitment信号。QwQ-32B基本持平（15.3→14.4pp）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-selectivity-corrected-layers.md"
+}

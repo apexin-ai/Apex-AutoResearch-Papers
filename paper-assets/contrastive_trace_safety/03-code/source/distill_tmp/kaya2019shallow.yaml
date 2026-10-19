@@ -1,0 +1,112 @@
+paper_key: "kaya2019shallow"
+title: "Shallow-Deep Networks: Understanding and Mitigating Network Overthinking"
+venue: "ICML 2019"
+full_text_available: true
+
+research:
+  baselines:
+    - "VGG-16 (original)"
+    - "ResNet-56 (original)"
+    - "WRN-32-4 (original)"
+    - "MobileNet (original)"
+    - "Softmax confidence baseline (for error detection)"
+  metrics:
+    - {name: "Top-1 Accuracy", direction: "higher_better"}
+    - {name: "Inference Cost (FLOPs)", direction: "lower_better"}
+    - {name: "Normalized Confusion Score", direction: "lower_better"}
+    - {name: "Early Exit Accuracy under Budget Constraint", direction: "higher_better"}
+  datasets:
+    - {name: "CIFAR-10", size: "50K train / 10K val, 32x32, 10 classes"}
+    - {name: "CIFAR-100", size: "50K train / 10K val, 32x32, 100 classes"}
+    - {name: "Tiny ImageNet", size: "200 classes, 500 train / 50 val per class, 64x64"}
+  ablation_dimensions:
+    - "Number of internal classifiers (IC placement)"
+    - "Training mode (IC-only vs SDN from scratch)"
+    - "Confidence threshold q for early exit"
+    - "Architecture (VGG, ResNet, WRN, MobileNet)"
+    - "Dataset complexity (CIFAR-10 vs CIFAR-100 vs Tiny ImageNet)"
+  training_recipe:
+    optimizer: "Adam (for IC-only training)"
+    lr: "not explicitly stated"
+    epochs_original: "100 epochs for original networks"
+    epochs_ic_only: "25 epochs for IC-only training"
+    epochs_sdn: "100 epochs for SDN from-scratch training"
+    hardware: "not specified"
+    data_augmentation: "padding + random crop + horizontal flip (CIFAR); random crops + mirroring + RGB scaling (Tiny ImageNet)"
+  method_family: "Early exit / internal classifier / adaptive computation"
+
+positioning:
+  core_claim: "Deep networks suffer from 'overthinking' where correct early-layer predictions get corrupted by later layers, and this destructive effect accounts for ~50% of misclassifications"
+  key_results: "50%+ inference cost reduction on CIFAR with maintained accuracy; 95% of CIFAR-10 samples don't need full depth; destructive overthinking in ~50% of misclassifications; confusion metric separates correct (avg -0.29) vs wrong (avg 0.71) predictions by >1 std dev"
+  limitations:
+    - "Only evaluated on image classification (CNNs), not NLP or other domains"
+    - "Confidence threshold requires tuning on a holdout set per deployment scenario"
+    - "SDN adds parameter overhead (e.g., VGG 21.2M -> 26.8M; MobileNet 3.4M -> 11.2M)"
+    - "Tiny ImageNet gains more modest (~25% cost reduction) vs CIFAR (~50%+)"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "Opens with DNN success then pivots to a fundamental question: 'Are deep neural networks also susceptible to overthinking?' -- uses human cognition analogy to make the problem instantly relatable"
+  tension: "Conventional DNNs require the same computational effort on all inputs regardless of difficulty, contrasting with humans who allocate effort selectively. The paper frames this as both wasteful (unnecessary computation) and destructive (corrupting correct predictions)."
+  key_insight: "The dual nature of overthinking -- not just wasteful but actively destructive, causing correct early predictions to become wrong at deeper layers -- is revealed in Section 4 with the quantitative finding that ~50% of misclassifications exhibit this destructive pattern."
+  argument_chain: "human overthinking analogy -> formalize network overthinking -> SDN with internal classifiers -> quantify wasteful overthinking (95% CIFAR-10 samples exit early) -> quantify destructive overthinking (~50% of errors) -> mitigate via early exit + confusion metric -> validate cost savings and error detection"
+  contribution_framing: "Three contributions framed as: (1) architectural modification (SDN), (2) problem characterization (prevalence of overthinking), (3) mitigation heuristics (early exit + confusion metric). Ordered from tool to insight to application."
+  intro_structure: "5 paragraphs: P1=DNN success + human overthinking analogy as hook; P2=formal definition of network overthinking; P3=SDN contribution introduction; P4=characterization of overthinking as wasteful + destructive; P5=mitigation heuristics and paper structure"
+  notable_technique: "The human cognition analogy ('overthinking') gives a memorable name to a technical phenomenon, making the paper's contribution instantly communicable. The dual framing of wasteful vs destructive effects creates a stronger narrative than either alone."
+
+figures:
+  figure_count: 5
+  figure1:
+    type: "method_overview"
+    description: "Standard CNN architecture modified with internal classifiers (shown as dotted components). Diagram shows a network producing multiple predictions at different depths -- two internal classifier outputs plus the final layer output."
+    narrative_role: "Immediately establishes what an SDN is at a glance -- the architectural modification is simple and visual, lowering the barrier to understanding the paper's core contribution."
+    design_elements: ["dotted components for added ICs", "multiple prediction outputs shown", "clean layer-by-layer progression"]
+    visual_style: "Simple network diagram with standard CNN blocks, dotted additions clearly distinguished from original architecture. Minimal color, emphasis on structural clarity."
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "qualitative_comparison"
+      what_compared: "Sample images grouped by which internal classifier first correctly classifies them -- showing progressive difficulty from IC1 (easy, prototypical) to final layer (hard, ambiguous)"
+      how_gain_highlighted: "Visual evidence that easy samples are recognizable even to humans, making the 'overthinking' argument tangible"
+      design_note: "Uses actual dataset images rather than charts -- makes the overthinking concept visceral and intuitive"
+    - figure_id: "Figure 4"
+      viz_type: "histogram"
+      what_compared: "Distribution of normalized confusion scores for correctly classified vs misclassified samples"
+      how_gain_highlighted: "Clear visual separation between the two distributions (means at -0.29 vs 0.71), showing >1 std dev gap"
+      design_note: "Overlapping histograms make the discriminative power of the confusion metric immediately apparent"
+  ablation_figures:
+    - figure_id: "Figure 3"
+      viz_type: "qualitative_comparison"
+      dimensions_varied: ["samples that only IC1 classifies correctly (destructive overthinking examples)"]
+      design_note: "Shows actual images where overthinking causes misclassification -- makes the destructive effect concrete rather than just statistical"
+    - figure_id: "Figure 5"
+      viz_type: "heatmap"
+      dimensions_varied: ["Grad-CAM attention maps", "IC1 vs final classifier"]
+      design_note: "Grad-CAM visualizations comparing where IC1 focuses vs where the final classifier focuses, showing how later layers attend to misleading features"
+  figure_narrative_role: "Figure 1 (what is SDN) -> Figure 2 (qualitative evidence of varying difficulty) -> Figure 3 (destructive overthinking examples) -> Figure 4 (quantitative confusion metric) -> Figure 5 (mechanistic explanation via Grad-CAM)"
+
+tables:
+  table_count: 3
+  main_result_table:
+    table_id: "Table 3"
+    row_axis: "methods (architectures x datasets)"
+    col_axis: "early exit accuracy under budget constraints (<=25%, <=50%, <=75% of original cost)"
+    row_organization: "by_category"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "comparison between IC-only and SDN training modes"
+    statistical_reporting: "single run accuracy percentages"
+    num_baselines: 4
+    design_note: "Organized by computational budget tiers, directly addressing the practical question 'how much accuracy do you lose at X% cost?'. Left/right values in each cell compare IC-only vs SDN training."
+  ablation_tables:
+    - table_id: "Table 1"
+      what_varied: ["architecture (VGG, ResNet, WRN, MobileNet)", "original vs SDN parameter count and FLOPs"]
+      variation_style: "full_numbers"
+      design_note: "Computational overhead table showing parameter count, FLOPs, and training time. SDN overhead is modest for most architectures except MobileNet (3.4M -> 11.2M params)."
+    - table_id: "Table 2"
+      what_varied: ["architecture", "IC position at which 80%/90% accuracy threshold is reached"]
+      variation_style: "full_numbers"
+      design_note: "Shows at which depth each architecture achieves 80% and 90% of its final accuracy, quantifying how early correct predictions emerge."
+  supplementary_tables:
+    in_appendix: false
+    content: "No separate appendix tables; all results in main paper"
+    reason: "Paper is relatively compact (3301-3310 pages in proceedings), all results fit in main text"

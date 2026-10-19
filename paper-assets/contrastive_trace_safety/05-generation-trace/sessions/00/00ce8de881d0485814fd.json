@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "00ce8de881d0485814fd",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "research harmthoughts iaa investigation",
+  "task_key": "worker_research_harmthoughts_iaa_investigation_20260519T181350",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_harmthoughts_iaa_investigation_20260519T181350_result.json",
+    "occurrence": 1,
+    "bytes": 812,
+    "sha256": "b1e5bf614e91d7dcf04ca44449891b0d78a01809b4c1168431bf721ea0e8ad8b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调查完成，文件已写入 `artifacts/harmthoughts_iaa_investigation.md`。\n\n核心发现：\n\n1. **IAA 有报告**：Fleiss' κ = 0.74 (Group 1) 和 0.80 (Group 2)，但仅覆盖 13 条 trace (691 sentences)，占总数据的 1.2%\n2. **98.8% 数据由 Claude Sonnet 4.6 标注**，human-LLM 一致性仅通过 JSD=0.035 bits 验证（分布级别，非逐样本）\n3. **CP 是我们自己的构造**：HarmThoughts 本身不定义 Commitment Point，我们从其 behavioral labels（RA/AL/CC/ED/IA 永久消失的位置）推导而来\n4. **零引用**，无外部讨论——论文太新（2026年4月）\n\n**Rebuttal 最大风险**：reviewer 可能质疑 LLM 标注的逐样本可靠性，因为原论文只做了分布级验证，未报告 human-vs-LLM 的 per-instance agreement。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-harmthoughts-iaa-investigation.md"
+}

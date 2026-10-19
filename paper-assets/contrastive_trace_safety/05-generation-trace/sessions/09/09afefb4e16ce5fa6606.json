@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "09afefb4e16ce5fa6606",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code hs vs text acc extract",
+  "task_key": "worker_code_hs_vs_text_acc_extract_20260516T235541",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_hs_vs_text_acc_extract_20260516T235541_result.json",
+    "occurrence": 1,
+    "bytes": 657,
+    "sha256": "af547eae16ed2263985adc2a646860a3a870de224004321cccc7e154153e2533"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果：\n\n| Model | HS bal_acc | Text bal_acc | Δ acc | HS precision | Text precision | Δ prec |\n|-------|-----------|-------------|-------|-------------|---------------|--------|\n| r1-8b | 81.3% | 72.9% | **+8.4pp** | 69.7% | 47.2% | **+22.5pp** |\n| R1-32B | 70.2% | 67.3% | **+2.9pp** | 55.1% | 50.2% | **+4.9pp** |\n| QwQ-32B | 71.4% | 61.7% | **+9.6pp** | 51.4% | 46.0% | **+5.4pp** |\n\n**3/3 models HS acc > text acc, 3/3 models HS precision > text precision。** 效果量从 r1-8b 最大到 R1-32B 最小。报告已写入 `artifacts/report_hs_vs_text_acc.md`，原始数据在 `artifacts/hs_vs_text_acc_prec.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-hs-vs-text-acc-extract.md"
+}

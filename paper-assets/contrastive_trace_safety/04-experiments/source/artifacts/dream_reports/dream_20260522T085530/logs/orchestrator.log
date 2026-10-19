@@ -1,0 +1,3 @@
+2026-05-22 09:59:20,408 INFO    core.tools.dream  [dream] appended reference check results for contrastive_trace_safety/best
+2026-05-22 10:07:09,602 INFO    core.tools.dream  [dream] appended reference check results for contrastive_trace_safety/median
+2026-05-22 10:14:19,220 INFO    core.tools.dream  [dream] appended reference check results for contrastive_trace_safety/worst

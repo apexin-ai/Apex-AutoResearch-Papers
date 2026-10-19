@@ -1,0 +1,48 @@
+{
+  "experiment": "structfuse_pilot",
+  "seed": 42,
+  "data": {"train_samples": 3282, "val_samples": 1148, "repos": 24},
+  "encoders": {
+    "qwen2.5-coder-3b": {
+      "experiment_id": "m2_embed_verify",
+      "strategies": {
+        "random": {
+          "status": "completed",
+          "best_step": 500,
+          "best_metrics": {"val_loss": 0.4834, "recall_at_1": 0.5357, "recall_at_5": 0.9808, "recall_at_10": 1.0},
+          "final_metrics": {"val_loss": 0.5978, "recall_at_1": 0.5122}
+        },
+        "embedding_distance": {
+          "status": "completed",
+          "best_step": 500,
+          "best_metrics": {"val_loss": 0.4603, "recall_at_1": 0.5557, "recall_at_5": 0.9808, "recall_at_10": 1.0},
+          "final_metrics": {"val_loss": 0.5935}
+        },
+        "dataflow_aware": {
+          "status": "running"
+        }
+      }
+    },
+    "starcoder2-3b": {
+      "experiment_id": "plan_013_starcoder",
+      "strategies": {
+        "random": {
+          "status": "completed",
+          "best_step": 500,
+          "best_metrics": {"val_loss": 0.5113, "recall_at_1": 0.4922, "recall_at_5": 0.98, "recall_at_10": 1.0}
+        },
+        "embedding_distance": {
+          "status": "completed",
+          "best_step": 1000,
+          "best_metrics": {"val_loss": 0.4816, "recall_at_1": 0.5078, "recall_at_5": 0.9843, "recall_at_10": 1.0},
+          "final_metrics": {"val_loss": 0.5060}
+        },
+        "dataflow_aware": {
+          "status": "running",
+          "best_step": 500,
+          "best_metrics": {"val_loss": 0.5257, "recall_at_1": 0.4756}
+        }
+      }
+    }
+  }
+}

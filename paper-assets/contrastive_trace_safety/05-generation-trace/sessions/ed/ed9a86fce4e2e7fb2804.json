@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ed9a86fce4e2e7fb2804",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code ensemble cv recover",
+  "task_key": "worker_code_ensemble_cv_recover_20260522T034558",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_ensemble_cv_recover_20260522T034558_result.json",
+    "occurrence": 1,
+    "bytes": 606,
+    "sha256": "19638464765339906bff5b8bbf1fcf33696187c12fdb5864d5b387a885ebd90a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Python 进程（PID 4049）在跑，CPU 1838%，RSS 3.2GB，正在加载数据和跑 LOO-CV。日志还没 flush 到文件，脚本可能用了 buffered IO。\n\n之前跑了 58 分钟完成，预计类似时长。任务已在后台运行，关键信息：\n\n- **服务器**: westd-15904\n- **tmux session**: `ensemble_cv_7_8b`\n- **日志**: `~/runs/contrastive_trace_safety/ensemble_cv_7_8b.log`\n- **预计完成**: ~60 分钟后\n- **结果文件**: `/root/autodl-tmp/contrastive_trace_safety/artifacts/ensemble_cv_results.json`\n\n完成后需要读取结果 JSON 并更新 registry。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-ensemble-cv-recover.md"
+}

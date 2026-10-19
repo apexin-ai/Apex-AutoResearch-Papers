@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "4c627fbe254d032dcf93",
+  "project": "contrastive_trace_safety",
+  "kind": "worker",
+  "title": "analysis r13 ba layer modality",
+  "task_key": "worker_analysis_r13_ba_layer_modality_20260518T143902",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r13_ba_layer_modality_20260518T143902.log",
+    "occurrence": 1,
+    "bytes": 747684,
+    "sha256": "5272f192e6a420b7e0abf6266aea2dc2781ad2b1a01102faa914cf317219f198"
+  },
+  "statistics": {
+    "messages": 186,
+    "user_turns": 0,
+    "tool_calls": 67,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 48,
+      "tool_call": 67,
+      "tool_result": 67,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 186,
+      "chunks": [
+        {
+          "path": "4c627fbe254d032dcf93-part-0001.json",
+          "message_count": 125
+        },
+        {
+          "path": "4c627fbe254d032dcf93-part-0002.json",
+          "message_count": 61
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-r13-ba-layer-modality.md"
+}

@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_r3_mahalanobis_r1_32b_qwq",
+  "project": "contrastive_trace_safety",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T15:36:04.726Z",
+    "updated_at": "2026-05-17T15:36:21.426Z",
+    "hypothesis": "Mahalanobis distance on R1-32B (Layer 63) and QwQ-32B (Layer 60) should fail as commitment detector for the same reason as R1-8B and OT-7B: discriminative signal resides in PCA minor components not captured by covariance-based distance. If confirmed, 4/4 models negative generalizes the finding."
+  },
+  "timestamp": "2026-05-17T15:36:21.502814+00:00",
+  "trigger": "update_registry"
+}

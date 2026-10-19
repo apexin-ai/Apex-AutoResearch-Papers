@@ -1,0 +1,105 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{deepseekr1}
+\citation{qwq}
+\citation{harmthoughts,selfjailbreak}
+\citation{trajguard}
+\citation{safeswitch,siren}
+\citation{saferemind,safethink}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{trajguard}
+\citation{safeswitch}
+\citation{siren}
+\citation{repe}
+\citation{refusal_direction}
+\citation{harmthoughts}
+\citation{selfjailbreak}
+\citation{saferemind}
+\citation{safethink}
+\citation{bocpd}
+\citation{cusum}
+\citation{prm}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Hidden-state safety detection.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Reasoning model safety.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Change-point detection.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Problem Setup}{3}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Safety Commitment in Reasoning Models}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Detection Task}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Models and Data}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Methods}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Hidden-State Probes}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Static logistic regression.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Temporal logistic regression.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{GRU sequence model.}{3}{section*.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Static probe results across architectures. All models show consistent pre-CP FPR in the 14--16\% range and optimal layer at 44--47\% depth.}}{4}{table.caption.9}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:static_cross}{{1}{4}{Static probe results across architectures. All models show consistent pre-CP FPR in the 14--16\% range and optimal layer at 44--47\% depth}{table.caption.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Text-Based Probes}{4}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Baselines}{4}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{TrajGuard/Mahalanobis.}{4}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{BOCPD.}{4}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Cross-Model Transfer}{4}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Experiments}{4}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Cross-Architecture Static Probe Evaluation}{4}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Temporal Context Improves Coverage Universally}{4}{subsection.5.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Temporal vs. static probe comparison. Temporal windowing provides +5--7pp coverage gain across all models while maintaining low pre-CP FPR.}}{5}{table.caption.10}\protected@file@percent }
+\newlabel{tab:temporal_cross}{{2}{5}{Temporal vs. static probe comparison. Temporal windowing provides +5--7pp coverage gain across all models while maintaining low pre-CP FPR}{table.caption.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Cross-model transfer accuracy. A learned linear projection maps between hidden spaces. All conditions exceed chance (50\%), revealing shared safety geometry.}}{5}{table.caption.11}\protected@file@percent }
+\newlabel{tab:transfer}{{3}{5}{Cross-model transfer accuracy. A learned linear projection maps between hidden spaces. All conditions exceed chance (50\%), revealing shared safety geometry}{table.caption.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Cross-Model Transfer}{5}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Lead Time Analysis}{5}{subsection.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}TrajGuard/Mahalanobis Failure}{5}{subsection.5.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Pooled Statistical Analysis}{5}{subsection.5.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Lead time distribution across models. Positive mean with zero/negative median indicates that most detections coincide with or follow the textual commitment point.}}{6}{table.caption.12}\protected@file@percent }
+\newlabel{tab:lead}{{4}{6}{Lead time distribution across models. Positive mean with zero/negative median indicates that most detections coincide with or follow the textual commitment point}{table.caption.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces TrajGuard (Mahalanobis distance) failure across models. The negligible $\Delta $ between safe and jailbreak MD values confirms geometric methods cannot detect commitment.}}{6}{table.caption.13}\protected@file@percent }
+\newlabel{tab:trajguard}{{5}{6}{TrajGuard (Mahalanobis distance) failure across models. The negligible $\Delta $ between safe and jailbreak MD values confirms geometric methods cannot detect commitment}{table.caption.13}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Oracle Decomposition}{6}{subsection.5.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}Architecture $\times $ Scale Analysis}{6}{subsection.5.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Ablations}{6}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Window Size}{6}{subsection.6.1}\protected@file@percent }
+\newlabel{sec:window_ablation}{{6.1}{6}{Window Size}{subsection.6.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Layer Selection}{6}{subsection.6.2}\protected@file@percent }
+\newlabel{sec:layer_ablation}{{6.2}{6}{Layer Selection}{subsection.6.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Pooled three-model bootstrap analysis. Low $I^2$ indicates consistent effects across architectures. The HS precision advantage reaches p=0.003 when pooled.}}{7}{table.caption.14}\protected@file@percent }
+\newlabel{tab:pooled}{{6}{7}{Pooled three-model bootstrap analysis. Low $I^2$ indicates consistent effects across architectures. The HS precision advantage reaches p=0.003 when pooled}{table.caption.14}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Oracle advantage decomposition. The majority (62\%) of the gap is attributable to future information, establishing a principled limit on real-time detection.}}{7}{table.caption.15}\protected@file@percent }
+\newlabel{tab:oracle}{{7}{7}{Oracle advantage decomposition. The majority (62\%) of the gap is attributable to future information, establishing a principled limit on real-time detection}{table.caption.15}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}16-Label Taxonomy Supervision}{7}{subsection.6.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}GRU vs. Temporal LR on 32B Models}{7}{subsection.6.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Discussion}{7}{section.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Universality of findings.}{7}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Practical implications.}{7}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Fundamental limits.}{7}{section*.23}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{deepseekr1}{{1}{2025}{{DeepSeek-AI}}{{}}}
+\bibcite{qwq}{{2}{2025}{{Qwen}}{{}}}
+\bibcite{harmthoughts}{{3}{2024}{{Zhang et~al.}}{{}}}
+\bibcite{selfjailbreak}{{4}{2024}{{Li et~al.}}{{}}}
+\bibcite{trajguard}{{5}{2024}{{Wang et~al.}}{{}}}
+\bibcite{safeswitch}{{6}{2024}{{Chen et~al.}}{{}}}
+\bibcite{siren}{{7}{2024}{{Liu et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces 2$\times $2 architecture $\times $ scale matrix. Both factors contribute modestly; reasoning training is the primary determinant of probe quality.}}{8}{table.caption.16}\protected@file@percent }
+\newlabel{tab:scale}{{8}{8}{2$\times $2 architecture $\times $ scale matrix. Both factors contribute modestly; reasoning training is the primary determinant of probe quality}{table.caption.16}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Window size ablation. Coverage saturates at $W$=15--20; pre-CP FPR remains stable regardless of window size.}}{8}{table.caption.17}\protected@file@percent }
+\newlabel{tab:window}{{9}{8}{Window size ablation. Coverage saturates at $W$=15--20; pre-CP FPR remains stable regardless of window size}{table.caption.17}{}}
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{8}{section*.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{8}{section.8}\protected@file@percent }
+\bibcite{repe}{{8}{2024}{{Zou et~al.}}{{}}}
+\bibcite{refusal_direction}{{9}{2024}{{Arditi et~al.}}{{}}}
+\bibcite{bocpd}{{10}{2007}{{Adams and MacKay}}{{}}}
+\bibcite{cusum}{{11}{1954}{{Page}}{{}}}
+\bibcite{prm}{{12}{2023}{{Lightman et~al.}}{{}}}
+\bibcite{saferemind}{{13}{2025}{{Xie et~al.}}{{}}}
+\bibcite{safethink}{{14}{2025}{{Wu et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Layer selection ablation with temporal probes. The optimal layer at 44--47\% depth is consistent across architectures with a broad plateau ($\pm $5 layers within 2pp of peak).}}{9}{table.caption.18}\protected@file@percent }
+\newlabel{tab:layer_ablation}{{10}{9}{Layer selection ablation with temporal probes. The optimal layer at 44--47\% depth is consistent across architectures with a broad plateau ($\pm $5 layers within 2pp of peak)}{table.caption.18}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Binary vs. 16-label supervision. Fine-grained labels provide modest gains, with Type 3 transitions most informative.}}{9}{table.caption.19}\protected@file@percent }
+\newlabel{tab:16label}{{11}{9}{Binary vs. 16-label supervision. Fine-grained labels provide modest gains, with Type 3 transitions most informative}{table.caption.19}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Confidence Intervals}{9}{appendix.A}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces GRU vs. temporal LR on 32B models (5-seed mean$\pm $std). GRU trades precision for coverage: +20pp coverage at +22pp safe FPR cost.}}{10}{table.caption.20}\protected@file@percent }
+\newlabel{tab:gru_32b}{{12}{10}{GRU vs. temporal LR on 32B models (5-seed mean$\pm $std). GRU trades precision for coverage: +20pp coverage at +22pp safe FPR cost}{table.caption.20}{}}
+\gdef \@abspage@last{10}

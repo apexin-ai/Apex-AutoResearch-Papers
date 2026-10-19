@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b61fc34aae158c2805d",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "analysis check sensitivity after restart",
+  "task_key": "worker_analysis_check_sensitivity_after_restart_20260523T033922",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_check_sensitivity_after_restart_20260523T033922_result.json",
+    "occurrence": 1,
+    "bytes": 1083,
+    "sha256": "0da02abdac12d66020db551474ec2c2277a49a1a7f8f93a73f9e7d2873e8e34d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PID 100754 已结束，脚本正常跑完 128/128 配置，耗时 11912s (~3.3h)。结果已复制到本地。\n\n## 结果汇总\n\n| | Threshold ≥1 | Threshold ≥2 | Threshold ≥3 |\n|---|---|---|---|\n| **JB / Safe** | 159 / 361 | 304 / 216 | 453 / 67 |\n| **JB Rate** | 30.6% | 58.5% | 87.1% |\n| **CR-composite best** | L2 (6.5%) | L0 (0.0%) | L8 (25.8%) |\n| **Precision best** | L12 (38.7%), 0.725 | L5 (16.1%), 0.892 | L12 (38.7%), 0.972 |\n| **Divergence** | **32.2pp** | **16.1pp** | **12.9pp** |\n| **Replicated (>15pp)** | **Yes** | **Yes** | **No** (12.9pp) |\n\n关键发现：\n- **≥1 和 ≥2 均 replicate**（divergence 32.2pp / 16.1pp，均 >15pp 阈值）\n- **≥3 未达标**（12.9pp < 15pp），但这在预期内——87.1% JB rate 下 safe 样本仅 67 个，class imbalance 极端\n- Precision best layer 在 ≥3 条件下达到 0.972（L12），说明即使极端 imbalance 下分类器仍能找到高精度层\n- CR-composite 在不同 threshold 下选出的层差异大（L2 → L0 → L8），说明该指标对 label 分布敏感"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-check-sensitivity-after-restart.md"
+}

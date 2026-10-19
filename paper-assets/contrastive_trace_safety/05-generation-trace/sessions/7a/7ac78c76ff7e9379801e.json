@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7ac78c76ff7e9379801e",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "research camera ready precheck",
+  "task_key": "worker_research_camera_ready_precheck_20260517T212955",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_camera_ready_precheck_20260517T212955_result.json",
+    "occurrence": 1,
+    "bytes": 582,
+    "sha256": "a4a0f7c2bf6a46a220be13319cf6b1b5bec8a5edfc320ea4207bdc8ac68a8c27"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Report saved to `artifacts/camera_ready_precheck.md`.\n\n**Summary:**\n- **2 must-fix items**: Two bib entries (`tenney2019bert`, `alain2017understanding`) use wrong entry types (`@article` instead of `@inproceedings`)\n- **5 verify items**: Page count (compile needed), acl.sty freshness, arXiv preprints that may now be published, unused figure files, minor label naming\n- **Everything else passes**: documentclass, review options, anonymization, line numbers, limitations placement, captions, cross-references, no residual TODOs/undefined refs, no AI-style dashes"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-camera-ready-precheck.md"
+}

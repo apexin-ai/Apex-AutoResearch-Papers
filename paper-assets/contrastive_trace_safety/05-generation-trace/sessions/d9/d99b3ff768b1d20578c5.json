@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d99b3ff768b1d20578c5",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code fix fig2 fpr definition",
+  "task_key": "worker_code_fix_fig2_fpr_definition_20260517T011624",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_fig2_fpr_definition_20260517T011624_result.json",
+    "occurrence": 1,
+    "bytes": 513,
+    "sha256": "198203b65fd7f996521e8cb1d9facfacd53dc5434f3e852e9cfabbe67462497b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成修正。所有 `precp_fpr` 现在统一为 step-level：\n\n| 模型 | 修改前 (trace) | 修改后 (step) |\n|------|---------------|---------------|\n| r1_8b_hs W=1 | 0.1037 | **0.0965** |\n| r1_8b_hs W=5 | 0.0913 | **0.0809** |\n| r1_8b_hs W=10 | 0.0865 | **0.0761** |\n| r1_8b_hs W=15 | 0.0701 | **0.0639** |\n| r1_8b_hs W=25 | 0.0545 | **0.0483** |\n| r1_32b_best | 0.1891 | **0.2340** |\n| qwq_32b_best | 0.1795 | **0.2168** |\n\n`r1_8b_text` 保持不变（已是 step-level）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-fig2-fpr-definition.md"
+}

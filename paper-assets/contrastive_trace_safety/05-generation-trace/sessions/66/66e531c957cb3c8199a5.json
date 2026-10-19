@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "66e531c957cb3c8199a5",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "ops migrate westd49253 data",
+  "task_key": "worker_ops_migrate_westd49253_data_20260523T052326",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_migrate_westd49253_data_20260523T052326_result.json",
+    "occurrence": 1,
+    "bytes": 280,
+    "sha256": "09fc80e2731b4363ed93df9ba34b9f81dfda4fcac90c583c304d4289aafdb429"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "westd-49253 上没有 contrastive_trace_safety 项目目录。autodl-tmp 下只有模型缓存（.hf_cache、modelscope_cache）和下载日志，无项目代码或实验数据。\n\n**结论：westd-49253 上无本项目数据，无需迁移，可直接释放。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-migrate-westd49253-data.md"
+}

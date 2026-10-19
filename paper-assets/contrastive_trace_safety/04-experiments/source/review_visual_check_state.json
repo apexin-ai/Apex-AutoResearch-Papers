@@ -1,0 +1,102 @@
+{
+  "status": "done",
+  "started_at": "2026-05-25T21:15:32.111844+00:00",
+  "completed_at": "2026-05-25T21:20:05.911075+00:00",
+  "findings": [
+    {
+      "severity": "info",
+      "dimension": "page 1",
+      "message": "首页无 display item，视觉锚点出现在 page 2 顶部（Figure 1 三面板概念图）。距首页仅 1 页，审稿人翻页即见核心 idea，可接受。Title/Author/Abstract 排版整洁，ACL 双栏模板标准。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 2",
+      "message": "Figure 1 三面板（task / reversal / mechanism）信息传达清晰，caption 自包含，是有效的视觉锚点。面板内文字可读，颜色区分度良好。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 5",
+      "message": "Figure 3 per-layer heatmap 的单元格数值和 x 轴 layer index 字号偏小（约正文 60%），打印后可能难以辨认。建议增大 axis tick 字号或减少 x 轴刻度密度。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 5",
+      "message": "单页承载 Figure 3（全左栏）+ Table 2 + Table 3，视觉密度较高。Table 2/3 的标题行与 Figure 3 caption 距离近，快速浏览时容易混淆。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 7",
+      "message": "单页包含 Figure 5 + Table 4 + Table 5，是全文最密集的一页。Table 5（7 行 alternative approaches）紧贴 Table 4 底部，留白极少。建议考虑将 Table 5 推至下一页或合并精简。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 4",
+      "message": "Figure 2 bar chart 清晰，error bars 可读，caption 自包含。booktabs 风格表格全文统一。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 6",
+      "message": "Figure 4 scatter plot 用不同颜色和标记区分模型，legend 清晰。hollow vs. filled dot 的区分（doc.net vs. text）在灰度打印时可能不够明显。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 7",
+      "message": "Table 4 最优结果已加粗标注，格式规范。Table 5 \"Failure\" 列用 ✗ 标记，信息传达直观。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 8",
+      "message": "Figure 6 四面板 trajectory plot 清晰，shaded confidence bands 可读。Section 5 Discussion 起始位置合理，Limitations 段简短（~3 点），符合 EMNLP 要求。"
+    },
+    {
+      "severity": "info",
+      "dimension": "pages 1-8",
+      "message": "主文 8 页内包含 6 figures + 5 tables = 11 display items（~1.4/页），密度适合实证论文。无连续 2 页纯文本，布局节奏良好。"
+    },
+    {
+      "severity": "info",
+      "dimension": "pages 9-10",
+      "message": "参考文献排版规范，无 [?] 未解析引用，格式统一（ACL style），无溢出。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 11",
+      "message": "Appendix 目录清晰，列出所有 appendix section（A-Z.2），方便审稿人定位。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "pages 11-23",
+      "message": "Appendix 前 13 页中仅 page 23 有 1 个 figure（Figure 7），其余全为文本+表格。虽然 appendix 以补充数据为主可以接受，但视觉单调。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 23",
+      "message": "Figure 7 Pareto front 图清晰，但尺寸较小（约 1/4 页），线条和标记在打印时可能偏小。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 26",
+      "message": "Tables 32, 33 格式正确，booktabs 风格，数值精度一致。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 31",
+      "message": "末页内容约占 55-60%，底部约 40% 空白。Table 44 + \"Use of AI Assistants\" 段落后即结束。因为是 appendix 末页且包含必要的 AI 使用声明，可接受但可考虑上移内容填充。"
+    },
+    {
+      "severity": "info",
+      "dimension": "全文",
+      "message": "公式渲染正确，未见 LaTeX 错误残留或 overfull hbox。Section heading 均无孤悬页底现象。双栏对齐良好，margin 无溢出。"
+    },
+    {
+      "severity": "info",
+      "dimension": "全文",
+      "message": "全文颜色语义基本一致：CR-composite 用红色系，threshold-based 用绿色/蓝色系。Figure 3 heatmap 的红-绿色阶对色盲用户不够友好，建议改用 blue-orange 或 viridis 色阶。"
+    }
+  ],
+  "counts": {
+    "critical": 0,
+    "warning": 3,
+    "info": 15
+  }
+}

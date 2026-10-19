@@ -1,0 +1,4100 @@
+dream_id: dream_20260516T212347
+project: contrastive_trace_safety
+venue: ''
+focus: 'Key improvements since last dream: (1) GRU achieves +4.7 lead time (Claim
+  3 now ''unreliable positive'' not ''no method achieves''), (2) text-based baseline
+  added (exp-013) to prove hidden-state unique value, (3) BOCPD change-point detection
+  added (exp-014) as novel method component addressing lead-time gap, (4) FPR analysis
+  on safe traces added (exp-015), (5) expanded metrics: AUROC, PR curves, detection
+  delay CDF. Related work now covers: Zou 2023 RepE, Arditi 2024 refusal direction,
+  Lightman 2023 PRMs, Adams & MacKay 2007 BOCPD. Title will drop ''Contrastive''.'
+review_mode: full
+review_visible: true
+writing_visible: true
+what_if: []
+tier_definitions:
+  tiers:
+    best:
+      tier: best
+      meaning: 'Cross-architecture fully replicates: HS precision advantage and temporal
+        gains hold on both 32B models with comparable or better effect sizes'
+      key_assumptions:
+      - r1-32b and QwQ-32B both show HS pre-CP FPR substantially below text-based
+        (ratio ≥1.5x)
+      - Temporal windowing improves coverage on 32B models (+4pp or more)
+      - Cross-model transfer (exp-003) achieves above-chance performance (>60% acc),
+        suggesting shared safety signal geometry
+      - GRU instability replicates on 32B (confirming it's a fundamental signal property,
+        not r1-8b artifact)
+      - Lead time remains unreliable on 32B (median ≤ 0), confirming Claim 3 as principled
+        limitation
+      number_ranges:
+        hs_precp_fpr_32b:
+        - 0.12
+        - 0.2
+        text_precp_fpr_32b:
+        - 0.25
+        - 0.4
+        hs_precision_32b:
+        - 0.55
+        - 0.68
+        text_precision_32b:
+        - 0.4
+        - 0.52
+        temporal_coverage_delta_32b:
+        - 0.04
+        - 0.1
+        cross_transfer_acc:
+        - 0.62
+        - 0.75
+        gru_lead_mean_32b:
+        - 2.0
+        - 8.0
+        gru_lead_median_32b:
+        - -1
+        - 1
+        n_models_validating_claim1:
+        - 3
+        - 3
+      narrative_direction: 'Original framing intact. Three-model validation (r1-8b,
+        r1-32b, QwQ-32B) makes all 3 claims robust. Cross-transfer result adds bonus
+        novelty (''shared safety geometry across architectures''). Paper title emphasizes
+        the systematic evaluation + cross-architecture consistency. Story: hidden
+        states universally encode safety commitment better than text, temporal context
+        universally necessary, pre-textual detection universally unreliable — this
+        is a property of reasoning models, not one model.'
+    median:
+      tier: median
+      meaning: 'Partial replication: HS advantage holds on one 32B model but not both,
+        or margins shrink to borderline significance; cross-transfer fails'
+      key_assumptions:
+      - One 32B model (likely r1-32b, same family as r1-8b) replicates HS precision
+        advantage; the other shows weaker or absent advantage
+      - Temporal gains are smaller on 32B (<4pp) or inconsistent across models
+      - Cross-model transfer fails (acc <55%), indicating architecture-specific signal
+        geometry
+      - Safe FPR remains high (>35%) across all models — deployment utility argument
+        weakened further
+      - 'Lead time results are noisy: one 32B model shows slightly positive median,
+        other doesn''t'
+      number_ranges:
+        hs_precp_fpr_32b:
+        - 0.18
+        - 0.28
+        text_precp_fpr_32b:
+        - 0.22
+        - 0.35
+        hs_precision_32b:
+        - 0.48
+        - 0.58
+        text_precision_32b:
+        - 0.42
+        - 0.53
+        temporal_coverage_delta_32b:
+        - 0.01
+        - 0.05
+        cross_transfer_acc:
+        - 0.5
+        - 0.58
+        gru_lead_mean_32b:
+        - -1.0
+        - 4.0
+        gru_lead_median_32b:
+        - -3
+        - 0
+        n_models_validating_claim1:
+        - 2
+        - 2
+      narrative_direction: 'Soften Claim 1 from ''substantially more precise'' to
+        ''consistently more precise within architecture families, with effect size
+        varying across base architectures.'' Claim 2 (temporal necessity) likely still
+        holds as it''s method-agnostic. Claim 3 unchanged. Drop cross-transfer from
+        contributions; instead frame architecture specificity as a finding (''safety
+        signal geometry is not universal — probes must be architecture-specific'').
+        Restructure: 2-model validation (r1 family) + 1 partial validation (QwQ) +
+        finding about architecture dependency. Weaker but still publishable — empirical
+        study contribution stands, claims are appropriately scoped.'
+    worst:
+      tier: worst
+      meaning: 'Cross-architecture invalidation: 32B models show no meaningful HS-over-text
+        advantage, suggesting r1-8b result is architecture/scale artifact'
+      key_assumptions:
+      - Neither 32B model shows HS pre-CP FPR advantage over text (ratio <1.2x or
+        text is better)
+      - 'Signal distribution differs: 32B models may encode safety in different subspace,
+        or larger models produce less separable safety representations'
+      - Temporal gains absent or reversed on 32B
+      - Layer sweep on 64-layer models fails to find any layer matching r1-8b layer-14
+        discriminability
+      - All methods converge to similar performance regardless of modality on 32B
+        — distinguishing factor disappears with scale
+      number_ranges:
+        hs_precp_fpr_32b:
+        - 0.25
+        - 0.4
+        text_precp_fpr_32b:
+        - 0.22
+        - 0.38
+        hs_precision_32b:
+        - 0.42
+        - 0.55
+        text_precision_32b:
+        - 0.43
+        - 0.56
+        temporal_coverage_delta_32b:
+        - -0.02
+        - 0.03
+        cross_transfer_acc:
+        - 0.45
+        - 0.53
+        best_layer_fisher_32b:
+        - 0.5
+        - 4.0
+        n_models_validating_claim1:
+        - 1
+        - 1
+      narrative_direction: 'Reframe entirely around scale-dependent safety encoding.
+        New angle: ''Safety commitment signals are detectable in hidden states of
+        smaller reasoning models but become diffuse with scale — implications for
+        monitoring architecture.'' Claim 1 becomes conditional (''at 8B scale, HS
+        probes dominate; at 32B, the advantage vanishes''). This is still novel and
+        important for the safety community — it means monitoring strategies cannot
+        be developed on small models and assumed to transfer. New Claim 1: ''Scale
+        fundamentally changes safety signal geometry.'' Claim 2 (temporal) may survive
+        if text-based temporal still helps on 32B. Claim 3 strengthened (''even easier
+        detection via HS disappears at scale''). Venue: still EMNLP Security — negative/characterization
+        results about monitoring limitations are valuable. Title shift: ''Does Scale
+        Erase Safety Signals? Hidden-State Monitoring Limitations in Large Reasoning
+        Models.'''
+scenarios:
+- tier: best
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/artifacts/dream_reports/dream_20260516T212347/best/paper.pdf
+  imagined_experiments:
+  - name: Cross-architecture static probe (r1-32b + QwQ-32B)
+    plan_id: exp-001
+    description: Layer sweep on 64-layer 32B models, static LR probe evaluation at
+      best layer. Validates Claim 1 generalizes beyond r1-8b.
+    expected_results:
+      r1_32b_best_layer: 28
+      r1_32b_best_layer_depth_pct: 0.4375
+      r1_32b_static_acc: 0.824
+      r1_32b_static_crossing_rate: 0.512
+      r1_32b_static_lead_mean: -1.4
+      r1_32b_static_precp_fpr: 0.148
+      r1_32b_static_precision: 0.634
+      r1_32b_static_safe_fpr: 0.362
+      r1_32b_static_auroc: 0.841
+      r1_32b_fisher_orig: 19.3
+      r1_32b_fisher_pca3d: 1.04
+      r1_32b_pca_var_explained_3pc: 0.142
+      qwq_32b_best_layer: 30
+      qwq_32b_best_layer_depth_pct: 0.469
+      qwq_32b_static_acc: 0.809
+      qwq_32b_static_crossing_rate: 0.488
+      qwq_32b_static_lead_mean: -1.8
+      qwq_32b_static_precp_fpr: 0.155
+      qwq_32b_static_precision: 0.612
+      qwq_32b_static_safe_fpr: 0.374
+      qwq_32b_static_auroc: 0.827
+      qwq_32b_fisher_orig: 18.7
+      qwq_32b_fisher_pca3d: 0.98
+      qwq_32b_pca_var_explained_3pc: 0.151
+      n_traces_r1_32b: 209
+      n_traces_qwq_32b: 209
+    result_rationale: Best tier requires both 32B models to show HS pre-CP FPR in
+      [0.12, 0.20] and precision in [0.55, 0.68]. The r1-8b baseline achieved precp_fpr=0.162
+      and precision=0.622. 32B models with 64 layers provide richer intermediate representations;
+      the deeper architecture distributes safety-relevant features across more layers
+      but with comparable discriminability at the optimal depth (~44%). QwQ-32B shows
+      slightly weaker results because it's a different base architecture (Qwen2.5
+      vs DeepSeek) with potentially different safety training distributions, but still
+      comfortably within the target range. Fisher ratio remains high in full space
+      (~18-19) but collapses in PCA-3D (~1.0), confirming the minor-PC signal distribution
+      is architectural, not model-specific. Layer sweep peaks at 28-30 (43-47% depth),
+      consistent with r1-8b's 44% finding, suggesting middle-layer encoding of safety
+      state is universal across reasoning model scales.
+    tables:
+    - name: 'Table 3: Static Probe Cross-Architecture Results'
+      columns:
+      - Model
+      - Best Layer
+      - Depth%
+      - Acc
+      - Coverage
+      - Pre-CP FPR
+      - Precision
+      - AUROC
+      rows:
+      - - r1-8b (baseline)
+        - 14/32
+        - 44%
+        - '0.817'
+        - 60.5%
+        - 16.2%
+        - 62.2%
+        - '0.823'
+      - - r1-32b
+        - 28/64
+        - 44%
+        - '0.824'
+        - 51.2%
+        - 14.8%
+        - 63.4%
+        - '0.841'
+      - - QwQ-32B
+        - 30/64
+        - 47%
+        - '0.809'
+        - 48.8%
+        - 15.5%
+        - 61.2%
+        - '0.827'
+    figures_description:
+    - 'Fig 2a: Layer sweep accuracy curves for r1-32b and QwQ-32B (64 layers). Both
+      show smooth unimodal peak at layers 28-30, mirroring r1-8b''s peak at layer
+      14. Y-axis: probe accuracy, X-axis: layer index. Shaded region marks 40-50%
+      depth band.'
+    - 'Fig 2b: Fisher discriminant ratio vs PCA dimensionality (3, 10, 50, full).
+      All 3 models show Fisher collapse from ~18 to ~1 at PCA-3D, confirming signal
+      in minor principal components is universal.'
+    analysis: 'Both 32B models replicate the core finding: static hidden-state probes
+      achieve pre-CP FPR ~15% (well below text-based 27-36%), confirming that the
+      precision advantage is not r1-8b-specific. The optimal layer at ~44% depth across
+      all models suggests a universal depth-dependent encoding of safety reasoning
+      state. Coverage is slightly lower on 32B (49-51% vs 60.5%) because longer 32B
+      traces have more steps between safety reasoning segments, making static detection
+      harder — this motivates exp-002''s temporal window. Fisher collapse in PCA-3D
+      replicates perfectly, establishing that TrajGuard-style methods will fail universally.'
+  - name: Cross-architecture temporal window evaluation
+    plan_id: exp-002
+    description: Temporal LR W=15 on r1-32b and QwQ-32B. Validate temporal coverage
+      improvement holds cross-architecture.
+    expected_results:
+      r1_32b_temporal_acc: 0.798
+      r1_32b_temporal_coverage: 0.581
+      r1_32b_temporal_coverage_delta: 0.069
+      r1_32b_temporal_precp_fpr: 0.142
+      r1_32b_temporal_precision: 0.601
+      r1_32b_temporal_lead: 5.8
+      r1_32b_temporal_safe_fpr: 0.355
+      r1_32b_temporal_auroc: 0.862
+      qwq_32b_temporal_acc: 0.781
+      qwq_32b_temporal_coverage: 0.558
+      qwq_32b_temporal_coverage_delta: 0.07
+      qwq_32b_temporal_precp_fpr: 0.149
+      qwq_32b_temporal_precision: 0.584
+      qwq_32b_temporal_lead: 5.2
+      qwq_32b_temporal_safe_fpr: 0.368
+      qwq_32b_temporal_auroc: 0.849
+    result_rationale: 'Best tier requires temporal_coverage_delta_32b in [0.04, 0.10].
+      r1-8b showed +4.6pp (60.5→65.1%). On 32B, the effect is slightly larger (+6.9-7.0pp)
+      because longer 32B traces have more temporal context available and the W=15
+      window captures more informative transitions. The precision advantage of HS
+      over text is maintained (precp_fpr stays ~14-15% vs text''s expected 28-35%),
+      and temporal context slightly improves it further (from 14.8→14.2% on r1-32b).
+      This confirms Claim 2: temporal context is necessary regardless of architecture,
+      and the hidden-state precision advantage is modality-specific and architecture-independent.'
+    tables:
+    - name: 'Table 4: Temporal vs Static Probe (Cross-Architecture)'
+      columns:
+      - Model
+      - Method
+      - Coverage
+      - Δ Coverage
+      - Pre-CP FPR
+      - Precision
+      - Lead
+      rows:
+      - - r1-8b
+        - Static LR L14
+        - 60.5%
+        - —
+        - 16.2%
+        - 62.2%
+        - '+3.0'
+      - - r1-8b
+        - Temporal W=15
+        - 65.1%
+        - +4.6pp
+        - 16.0%
+        - 58.3%
+        - '+4.9'
+      - - r1-32b
+        - Static LR L28
+        - 51.2%
+        - —
+        - 14.8%
+        - 63.4%
+        - '-1.4'
+      - - r1-32b
+        - Temporal W=15
+        - 58.1%
+        - +6.9pp
+        - 14.2%
+        - 60.1%
+        - '+5.8'
+      - - QwQ-32B
+        - Static LR L30
+        - 48.8%
+        - —
+        - 15.5%
+        - 61.2%
+        - '-1.8'
+      - - QwQ-32B
+        - Temporal W=15
+        - 55.8%
+        - +7.0pp
+        - 14.9%
+        - 58.4%
+        - '+5.2'
+    figures_description:
+    - 'Fig 3: Coverage improvement from temporal windowing across 3 models. Bar chart
+      showing static vs temporal coverage for each model. All three show +5-7pp improvement,
+      with 95% bootstrap CI error bars overlapping the common effect size range.'
+    - 'Fig 4: Pre-CP FPR comparison (HS temporal vs text temporal) across 3 models.
+      HS consistently at 14-16%, text at 27-35%. Clear separation with non-overlapping
+      CIs.'
+    analysis: 'Temporal windowing produces a consistent +5-7pp coverage gain across
+      all three models, confirming that multi-step context is architecturally necessary
+      for commitment detection. The 32B models show slightly larger temporal gains
+      than r1-8b (+6.9-7.0pp vs +4.6pp), likely because their longer traces contain
+      richer temporal structure within W=15. Crucially, the HS precision advantage
+      is maintained: pre-CP FPR stays in 14-15% range vs text''s 27-35%, establishing
+      this as a modality-specific property independent of temporal context. The combined
+      finding—temporal context helps both modalities equally, but HS is universally
+      more precise—is the paper''s strongest cross-architecture result.'
+  - name: Cross-model transfer probes
+    plan_id: exp-003
+    description: Train probe on r1-8b (Llama-based, 4096-d), test on r1-32b/QwQ-32B
+      (Qwen2.5-based, 5120-d) and vice versa. Projection head maps between dimensionalities.
+    expected_results:
+      llama_to_r1_32b_acc: 0.692
+      llama_to_qwq_32b_acc: 0.678
+      qwen_to_r1_8b_acc: 0.714
+      r1_32b_to_qwq_32b_acc: 0.743
+      qwq_32b_to_r1_32b_acc: 0.731
+      mean_cross_family_acc: 0.695
+      mean_within_family_acc: 0.737
+      random_baseline_acc: 0.5
+      projection_head_dim: 256
+      projection_head_params: 1310720
+    result_rationale: Best tier requires cross_transfer_acc in [0.62, 0.75]. Cross-family
+      transfer (Llama↔Qwen2.5) achieves 67-71% because the safety commitment signal,
+      while encoded differently in each architecture's hidden space, shares sufficient
+      geometric structure that a learned linear projection can partially align them.
+      The signal is not identical (hence not 80%+) but well above chance (50%), suggesting
+      a shared 'safety geometry' across architectures. Within-family transfer (r1-32b↔QwQ-32B,
+      both Qwen2.5-based) is higher (73-74%) because the base architecture already
+      shares representational structure. The asymmetry (Qwen→Llama slightly better
+      than Llama→Qwen) suggests Qwen2.5 models develop a more generalizable safety
+      representation, possibly due to training data differences.
+    tables:
+    - name: 'Table 5: Cross-Model Transfer Matrix'
+      columns:
+      - Train Model
+      - Test Model
+      - Accuracy
+      - vs Native Probe
+      - vs Chance
+      rows:
+      - - r1-8b (Llama)
+        - r1-32b (Qwen2.5)
+        - 69.2%
+        - -13.2pp
+        - +19.2pp
+      - - r1-8b (Llama)
+        - QwQ-32B (Qwen2.5)
+        - 67.8%
+        - -13.1pp
+        - +17.8pp
+      - - r1-32b (Qwen2.5)
+        - r1-8b (Llama)
+        - 71.4%
+        - -10.3pp
+        - +21.4pp
+      - - QwQ-32B (Qwen2.5)
+        - r1-8b (Llama)
+        - 70.8%
+        - -10.9pp
+        - +20.8pp
+      - - r1-32b (Qwen2.5)
+        - QwQ-32B (Qwen2.5)
+        - 74.3%
+        - -6.6pp
+        - +24.3pp
+      - - QwQ-32B (Qwen2.5)
+        - r1-32b (Qwen2.5)
+        - 73.1%
+        - -9.3pp
+        - +23.1pp
+    figures_description:
+    - 'Fig 5: Transfer accuracy heatmap (train × test). Diagonal blocked out (native).
+      Warmer colors indicate higher transfer. Clear band of higher transfer within
+      Qwen2.5 family. All cells above 0.62.'
+    - 'Fig 5b: t-SNE of projected hidden states from all 3 models in shared 256-d
+      space. Safety vs commitment steps show partial clustering across models, with
+      model-specific clusters but overlapping decision boundaries.'
+    analysis: 'Cross-model transfer achieves 67-74% accuracy, decisively above chance
+      and suggesting shared safety signal geometry across architectures. This is a
+      novel finding: despite different training procedures, model families, and representational
+      spaces, the commitment point phenomenon leaves a geometrically similar trace
+      in hidden states. The within-Qwen2.5 transfer being higher (73-74%) than cross-family
+      (68-71%) is expected and informative—it suggests the signal has both a universal
+      component (shared across all reasoning models) and an architecture-specific
+      component. This result adds significant novelty: ''shared safety geometry''
+      is a stronger claim than ''each model has detectable commitment points.'''
+  - name: Lead time analysis across models
+    plan_id: exp-004
+    description: GRU and temporal probe lead time distributions on r1-32b and QwQ-32B.
+      Confirm unreliable pre-textual detection generalizes.
+    expected_results:
+      r1_32b_temporal_lr_lead_mean: 5.8
+      r1_32b_temporal_lr_lead_median: 0
+      r1_32b_temporal_lr_positive_lead_rate: 0.42
+      r1_32b_gru_lead_mean: 6.2
+      r1_32b_gru_lead_median: 0
+      r1_32b_gru_positive_lead_rate: 0.45
+      r1_32b_gru_coverage: 0.81
+      r1_32b_gru_coverage_std: 0.09
+      qwq_32b_temporal_lr_lead_mean: 5.2
+      qwq_32b_temporal_lr_lead_median: -1
+      qwq_32b_temporal_lr_positive_lead_rate: 0.38
+      qwq_32b_gru_lead_mean: 5.5
+      qwq_32b_gru_lead_median: 0
+      qwq_32b_gru_positive_lead_rate: 0.41
+      qwq_32b_gru_coverage: 0.78
+      qwq_32b_gru_coverage_std: 0.11
+      three_model_gru_lead_median_range:
+      - -1
+      - 0
+      three_model_positive_lead_rate_range:
+      - 0.35
+      - 0.45
+    result_rationale: 'Best tier requires gru_lead_mean_32b in [2.0, 8.0] and gru_lead_median_32b
+      in [-1, 1]. The pattern replicates: positive mean (driven by a subset of traces
+      with clear pre-commitment divergence) but median 0 or -1 (most detections occur
+      at or slightly after the commitment point). This confirms that pre-textual detection
+      unreliability is a fundamental property of reasoning models, not an r1-8b artifact.
+      The 32B models have longer traces on average, which gives GRU more context but
+      also more noise—the net effect is similar lead time distributions. GRU instability
+      (coverage std 0.09-0.11 across seeds) also replicates, confirming the training
+      signal''s fundamental noisiness at this data scale.'
+    tables:
+    - name: 'Table 6: Lead Time Distribution Across Models'
+      columns:
+      - Model
+      - Method
+      - Mean Lead
+      - Median Lead
+      - '% Positive Lead'
+      - Coverage
+      rows:
+      - - r1-8b
+        - Temporal LR W=15
+        - '+4.9'
+        - '0'
+        - 39%
+        - 65.1%
+      - - r1-8b
+        - GRU multi-7L
+        - '+4.7'
+        - '0'
+        - 39%
+        - 76-93%*
+      - - r1-32b
+        - Temporal LR W=15
+        - '+5.8'
+        - '0'
+        - 42%
+        - 58.1%
+      - - r1-32b
+        - GRU multi-7L
+        - '+6.2'
+        - '0'
+        - 45%
+        - 81%±9%*
+      - - QwQ-32B
+        - Temporal LR W=15
+        - '+5.2'
+        - '-1'
+        - 38%
+        - 55.8%
+      - - QwQ-32B
+        - GRU multi-7L
+        - '+5.5'
+        - '0'
+        - 41%
+        - 78%±11%*
+    - name: '* Multi-seed mean±std'
+    figures_description:
+    - 'Fig 6: Lead time distribution histograms (3 models × 2 methods). All show right-skewed
+      distributions centered near 0, with long positive tails (up to +30 steps) but
+      substantial mass at negative values. Shape is consistent across models.'
+    - 'Fig 6b: CDF of detection delay. Oracle CDF rises steeply from +20-40 steps,
+      while all probe CDFs cross 50% near lead=0. The gap between oracle and best
+      probe is consistent across all 3 models (~25-30 steps at 50th percentile).'
+    analysis: Lead time unreliability replicates perfectly across architectures. The
+      signature pattern—positive mean, zero/negative median—appears on all 3 models,
+      establishing this as a fundamental property of reasoning model safety signals.
+      The oracle gap (100% early detection vs ~40% for best probes) is consistent,
+      indicating that hidden states encode current safety state accurately but poorly
+      predict the future trajectory. GRU coverage instability also replicates (std
+      9-11% across seeds), confirming this reflects fundamental signal noise rather
+      than model-specific limitations. This three-model consistency strengthens Claim
+      3 from 'observed on r1-8b' to 'universal property of reasoning model commitment
+      dynamics.'
+  - name: TrajGuard Mahalanobis baseline (all 3 models)
+    plan_id: exp-005
+    description: Mahalanobis distance baseline on 32B models. Expected to fail due
+      to signal in minor PCs.
+    expected_results:
+      r1_32b_md_best_crossing_rate: 0.279
+      r1_32b_md_best_config: pca_64_p75
+      r1_32b_md_best_lead: 14.8
+      r1_32b_safe_md_mean: 7.12
+      r1_32b_jb_pre_md_mean: 7.18
+      r1_32b_jb_post_md_mean: 7.08
+      r1_32b_delta_max: 0.019
+      qwq_32b_md_best_crossing_rate: 0.256
+      qwq_32b_md_best_config: pca_128_p75
+      qwq_32b_md_best_lead: 15.2
+      qwq_32b_safe_md_mean: 7.45
+      qwq_32b_jb_pre_md_mean: 7.51
+      qwq_32b_jb_post_md_mean: 7.39
+      qwq_32b_delta_max: 0.022
+      verdict: Fails on all 3 models. MD cannot distinguish safe from jailbreak traces.
+    result_rationale: The PCA analysis in exp-001 confirms Fisher collapse in 3D holds
+      on 32B models (Fisher drops from ~18-19 to ~1.0 in PCA-3D). Since TrajGuard
+      relies on Mahalanobis distance in the principal subspace, and the safety signal
+      lives in minor components, the method fundamentally cannot separate safety states.
+      The 32B results are slightly worse than r1-8b (crossing rate 26-28% vs 30%)
+      because the 5120-d space distributes the signal across even more minor components.
+      The near-zero delta between safe/jb-pre/jb-post MD values confirms that in the
+      covariance-normalized space, safety commitment is invisible. This universally
+      validates the 'existing detectors fail' claim.
+    tables:
+    - name: 'Table 7: TrajGuard/Mahalanobis Failure Across Models'
+      columns:
+      - Model
+      - Best Config
+      - Crossing Rate (k=5)
+      - MD(safe)
+      - MD(jb-pre)
+      - MD(jb-post)
+      - Max Δ
+      rows:
+      - - r1-8b
+        - pca_64_p75
+        - 30.2%
+        - '6.66'
+        - '6.73'
+        - '6.64'
+        - '0.023'
+      - - r1-32b
+        - pca_64_p75
+        - 27.9%
+        - '7.12'
+        - '7.18'
+        - '7.08'
+        - '0.019'
+      - - QwQ-32B
+        - pca_128_p75
+        - 25.6%
+        - '7.45'
+        - '7.51'
+        - '7.39'
+        - '0.022'
+    figures_description:
+    - 'Fig 7: MD trajectory plots for safe vs jailbreak traces (3 models). Completely
+      overlapping distributions in all cases. Annotated commitment points show no
+      MD inflection.'
+    analysis: 'Universal failure of geometric methods across all 3 models and architectures.
+      The negligible delta between safe and jailbreak MD values (<0.025 across all
+      models) confirms that in the variance-dominated subspace, safety commitment
+      is undetectable. This is the empirical backing for our theoretical argument:
+      safety signals in minor PCs require supervised probing, not unsupervised geometric
+      methods. The consistency of failure across Llama-based and Qwen2.5-based models
+      makes this a strong negative result about the entire class of TrajGuard-style
+      detectors applied to reasoning model safety.'
+  - name: Bootstrap confidence intervals + threshold-independent metrics
+    plan_id: exp-006
+    description: 1000 bootstrap resamples on all key metrics across all 3 models.
+      AUROC, PR curves, detection delay CDF, cross-validation variance.
+    expected_results:
+      r1_32b_hs_temporal_coverage_ci: '[0.442, 0.698]'
+      r1_32b_hs_temporal_precp_fpr_ci: '[0.082, 0.215]'
+      r1_32b_hs_temporal_precision_ci: '[0.498, 0.712]'
+      qwq_32b_hs_temporal_coverage_ci: '[0.419, 0.681]'
+      qwq_32b_hs_temporal_precp_fpr_ci: '[0.091, 0.224]'
+      qwq_32b_hs_temporal_precision_ci: '[0.479, 0.695]'
+      pooled_3model_hs_vs_text_precp_fpr_p: 0.003
+      pooled_3model_temporal_vs_static_coverage_p: 0.028
+      pooled_hs_precision_advantage_ci: '[0.08, 0.18]'
+      cross_model_effect_consistency_I2: 0.12
+      r1_32b_auroc_hs_temporal: 0.862
+      r1_32b_auroc_text_temporal: 0.781
+      qwq_32b_auroc_hs_temporal: 0.849
+      qwq_32b_auroc_text_temporal: 0.769
+    result_rationale: With n=43 test traces per model, individual CIs are wide (as
+      observed in r1-8b exp-006 results). However, pooling across 3 models (n≈129
+      effective traces) narrows CIs substantially. The pooled HS-vs-text pre-CP FPR
+      comparison achieves p=0.003 because the effect is large (ratio ≥1.7x) and consistent
+      across all 3 models. The low I² statistic (0.12) indicates minimal heterogeneity—the
+      effect size is remarkably consistent across architectures, which is the paper's
+      strongest statistical argument. Individual per-model comparisons may not reach
+      significance (p=0.05-0.15), but the meta-analytic combination across 3 models
+      is decisive.
+    tables:
+    - name: 'Table 8: Pooled Bootstrap Results (3 Models)'
+      columns:
+      - Comparison
+      - Effect Size
+      - 95% CI
+      - p-value
+      - I²
+      rows:
+      - - HS vs Text pre-CP FPR
+        - -14.2pp
+        - '[-8.1, -17.8]'
+        - '0.003'
+        - '0.12'
+      - - HS vs Text precision
+        - +12.4pp
+        - '[+7.9, +16.1]'
+        - '0.001'
+        - '0.08'
+      - - Temporal vs Static coverage
+        - +5.8pp
+        - '[+0.6, +10.4]'
+        - '0.028'
+        - '0.21'
+      - - GRU vs LR lead time
+        - +2.1 steps
+        - '[-1.2, +5.8]'
+        - '0.14'
+        - '0.31'
+    figures_description:
+    - 'Fig 8: Forest plot of HS precision advantage across 3 models. Each model''s
+      point estimate with CI, plus pooled diamond. All point estimates positive (10-13pp),
+      pooled CI excludes zero.'
+    - 'Fig 8b: PR curves for HS temporal vs text temporal on each model. HS curve
+      dominates text curve across all recall levels, consistently across all 3 models.'
+    - 'Fig 8c: AUROC comparison bar chart (3 models × 2 modalities). HS temporal consistently
+      7-8pp above text temporal.'
+    analysis: 'The three-model pooled analysis resolves the statistical power concern
+      that plagued single-model results. While individual per-model p-values are marginal
+      (0.05-0.15), the pooled comparison with I²=0.12 (minimal heterogeneity) achieves
+      p=0.003 for the HS precision advantage. This is the correct statistical framing
+      for the paper: consistent effect across multiple independent models, not single-model
+      significance. The AUROC advantage (8-9pp) is threshold-independent confirmation
+      that HS monitoring is decisively superior. Temporal vs static coverage reaches
+      p=0.028 pooled, confirming Claim 2. GRU vs LR lead time doesn''t reach significance
+      (p=0.14), honestly acknowledging the noisy lead time signal.'
+  - name: Window size ablation (W=1,3,5,10,15,20,25)
+    plan_id: exp-007
+    description: Window size sweep on all 3 models to find optimal W and show diminishing
+      returns.
+    expected_results:
+      optimal_w_r1_8b: 15
+      optimal_w_r1_32b: 15
+      optimal_w_qwq_32b: 20
+      coverage_at_w1_mean: 0.49
+      coverage_at_w5_mean: 0.52
+      coverage_at_w10_mean: 0.56
+      coverage_at_w15_mean: 0.6
+      coverage_at_w20_mean: 0.61
+      coverage_at_w25_mean: 0.6
+      diminishing_returns_elbow: W=10-15
+      precp_fpr_stable_across_w: true
+      precp_fpr_range_all_w: '[0.13, 0.17]'
+    result_rationale: Temporal context shows diminishing returns because the commitment
+      point is a relatively local phenomenon (safety reasoning typically ceases within
+      a 10-20 step window). W=15 captures the critical transition period; beyond that,
+      earlier steps add noise without information. The optimal W is consistent across
+      models (15-20) because reasoning model safety dynamics operate on similar timescales
+      regardless of model size. Crucially, pre-CP FPR remains stable across all W
+      values (13-17%), confirming that the HS precision advantage is not an artifact
+      of window size selection—it's a property of the signal modality.
+    tables:
+    - name: 'Table A1: Window Size Ablation'
+      columns:
+      - W
+      - r1-8b Cov
+      - r1-32b Cov
+      - QwQ Cov
+      - Mean Pre-CP FPR
+      rows:
+      - - 1 (static)
+        - 60.5%
+        - 51.2%
+        - 48.8%
+        - 15.5%
+      - - '3'
+        - 61.2%
+        - 52.4%
+        - 49.5%
+        - 15.2%
+      - - '5'
+        - 62.3%
+        - 53.8%
+        - 51.2%
+        - 14.8%
+      - - '10'
+        - 63.8%
+        - 56.1%
+        - 54.0%
+        - 14.5%
+      - - '15'
+        - 65.1%
+        - 58.1%
+        - 55.8%
+        - 14.7%
+      - - '20'
+        - 64.8%
+        - 58.4%
+        - 56.9%
+        - 15.1%
+      - - '25'
+        - 64.2%
+        - 57.6%
+        - 55.4%
+        - 15.8%
+    figures_description:
+    - 'Fig A1: Coverage vs window size (3 models). Monotone increase until W=15-20,
+      then plateau/slight decrease. Elbow at W=10-15.'
+    - 'Fig A1b: Pre-CP FPR vs window size (3 models). Nearly flat lines across all
+      W values, confirming FPR independence from temporal context width.'
+    analysis: 'The diminishing returns curve peaks at W=15-20 across all models, with
+      coverage gains saturating after the elbow. This is consistent with commitment
+      dynamics: the critical transition from safety reasoning to harmful execution
+      occurs within a ~15-step window, and additional context beyond that provides
+      no incremental signal. The stability of pre-CP FPR across W values is important
+      methodologically—it means the precision advantage of HS monitoring is robust
+      to hyperparameter choices. For the paper, W=15 is the default recommendation,
+      with acknowledgment that W=20 may be marginally better for models with longer
+      traces.'
+  - name: Layer selection ablation (all layers, 32B)
+    plan_id: exp-008
+    description: Full layer sweep with temporal probe on 32B models. Confirm middle-layer
+      finding generalizes.
+    expected_results:
+      r1_32b_temporal_best_layer: 28
+      r1_32b_temporal_best_acc: 0.798
+      r1_32b_temporal_layer_range_within_2pp: '[24, 34]'
+      r1_32b_early_layers_1_10_mean_acc: 0.62
+      r1_32b_late_layers_55_64_mean_acc: 0.71
+      qwq_32b_temporal_best_layer: 30
+      qwq_32b_temporal_best_acc: 0.781
+      qwq_32b_temporal_layer_range_within_2pp: '[26, 36]'
+      middle_layer_advantage_over_last: +8-10pp
+      depth_correlation_with_r1_8b: 0.94
+    result_rationale: 'The middle-layer peak generalizes because of how transformer
+      representations evolve: early layers encode syntactic/positional information,
+      middle layers encode semantic/behavioral states (including safety reasoning
+      state), and late layers specialize for next-token prediction. The safety commitment
+      signal is a behavioral state property, hence middle-layer encoding. The peak
+      being at ~44-47% depth (not 50%) is consistent across all models, suggesting
+      the safety information is processed in the first half of the network and progressively
+      refined. The broad plateau (±5 layers within 2pp of peak) means the exact layer
+      choice is not critical—a practical advantage for deployment.'
+    tables:
+    - name: 'Table A2: Layer Selection (Temporal Probe)'
+      columns:
+      - Model
+      - Best Layer
+      - Depth%
+      - Peak Acc
+      - Plateau Width (±2pp)
+      - Last Layer Acc
+      rows:
+      - - r1-8b (32L)
+        - '14'
+        - 44%
+        - '0.848'
+        - L10-L18
+        - '0.761'
+      - - r1-32b (64L)
+        - '28'
+        - 44%
+        - '0.798'
+        - L24-L34
+        - '0.712'
+      - - QwQ-32B (64L)
+        - '30'
+        - 47%
+        - '0.781'
+        - L26-L36
+        - '0.698'
+    figures_description:
+    - 'Fig A2: Temporal probe accuracy vs layer (all layers, 3 models). X-axis normalized
+      to depth percentage. All three curves peak at 44-47% depth with similar shape—inverted
+      U with broad plateau. Includes shaded ±1 std band from CV folds.'
+    analysis: 'The middle-layer finding is universal across architectures and scales.
+      The depth-normalized accuracy curves are nearly identical (correlation 0.94
+      between r1-8b and 32B models), confirming that safety state encoding follows
+      the same depth-dependent pattern regardless of total layer count. The broad
+      plateau (10+ layers within 2pp of peak) is practically important: it means the
+      method is robust to layer selection, and a simple heuristic (select layer at
+      44% depth) works across models without per-model tuning.'
+  - name: 16-label taxonomy supervision
+    plan_id: exp-009
+    description: Use fine-grained Type 1/2/3/4 labels instead of binary commitment
+      for richer training signal.
+    expected_results:
+      r1_8b_16label_coverage: 0.674
+      r1_8b_16label_precp_fpr: 0.151
+      r1_8b_16label_precision: 0.641
+      r1_8b_16label_lead: 5.4
+      r1_8b_improvement_over_binary: +2.3pp coverage, +2pp precision
+      r1_32b_16label_coverage: 0.605
+      r1_32b_16label_precp_fpr: 0.138
+      r1_32b_16label_precision: 0.618
+      transition_type_most_informative: Type 3 (safety-to-harmful transition)
+      diminishing_returns_vs_binary: modest
+    result_rationale: 'Fine-grained labels provide modest improvement because the
+      binary commitment signal already captures the primary discriminative information.
+      The 16-label taxonomy helps most at the transition boundaries (Type 3: safety→harmful),
+      where the additional supervision helps the probe distinguish ''approaching commitment''
+      from ''already committed.'' However, the improvement is modest (+2-3pp) because
+      the temporal window already captures this transition implicitly. The main value
+      is diagnostic: confirming which label types are most informative for detection
+      timing. This is a P1 experiment because the improvement doesn''t change the
+      paper''s conclusions.'
+    tables:
+    - name: 'Table A3: Binary vs 16-Label Supervision'
+      columns:
+      - Model
+      - Supervision
+      - Coverage
+      - Pre-CP FPR
+      - Precision
+      - Lead
+      rows:
+      - - r1-8b
+        - Binary W=15
+        - 65.1%
+        - 16.0%
+        - 58.3%
+        - '+4.9'
+      - - r1-8b
+        - 16-label W=15
+        - 67.4%
+        - 15.1%
+        - 64.1%
+        - '+5.4'
+      - - r1-32b
+        - Binary W=15
+        - 58.1%
+        - 14.2%
+        - 60.1%
+        - '+5.8'
+      - - r1-32b
+        - 16-label W=15
+        - 60.5%
+        - 13.8%
+        - 61.8%
+        - '+6.1'
+    figures_description:
+    - 'Fig A3: Per-label-type probe confidence trajectories showing which transitions
+      are most detectable. Type 3 (safety→harmful) shows sharpest confidence increase,
+      consistent with commitment point definition.'
+    analysis: 16-label supervision provides modest but consistent improvement (+2-3pp
+      coverage and precision). The improvement is largest for traces where the binary
+      label masks a gradual transition through multiple safety states before commitment.
+      However, the gains are small enough that binary supervision remains the recommended
+      default for simplicity. The per-type analysis confirms that Type 3 transitions
+      are most informative, which aligns with the commitment point definition and
+      provides theoretical validation.
+  - name: Oracle decomposition
+    plan_id: exp-010
+    description: Analyze what oracle labels encode that hidden states don't. Decompose
+      the +31-step oracle advantage.
+    expected_results:
+      oracle_advantage_source_breakdown:
+        future_label_pattern: 62%
+        multi_step_trajectory: 28%
+        global_trace_context: 10%
+      oracle_K1_early_rate: 0.837
+      probe_best_early_rate: 0.42
+      gap_attributable_to_future_info: 72%
+      gap_attributable_to_training_signal: 28%
+      key_insight: Oracle uses FUTURE labels; probes can only use PAST hidden states.
+        The commitment point is fundamentally unpredictable from pre-commitment representations
+        because the model has not yet 'decided.'
+    result_rationale: 'The oracle achieves 100% detection with +31 mean lead because
+      it has access to future labels (it knows the commitment point by definition
+      and can look ahead K steps). The probe can only access past/current hidden states,
+      and the model''s representations before commitment encode the CURRENT safety
+      reasoning state, not the FUTURE trajectory. Decomposition shows that 62% of
+      the oracle advantage comes from future label information (which is definitionally
+      unavailable to any real-time method), 28% from multi-step trajectory shape (partially
+      capturable by GRU but noisy), and 10% from global trace context. This establishes
+      the gap as principled: no method operating in real-time can close >72% of the
+      oracle gap.'
+    tables:
+    - name: 'Table 9: Oracle Advantage Decomposition'
+      columns:
+      - Information Source
+      - '% of Oracle Advantage'
+      - Accessible to Probes?
+      - Method Exploiting It
+      rows:
+      - - Future labels (K-step lookahead)
+        - 62%
+        - No (definitional)
+        - None possible
+      - - Multi-step trajectory shape
+        - 28%
+        - Partially (noisy)
+        - GRU/temporal
+      - - Global trace context (trace length, topic)
+        - 10%
+        - 'Yes'
+        - Features, but low signal
+    figures_description:
+    - 'Fig 9: Ablation showing oracle performance as information sources are progressively
+      removed. Removing future labels drops oracle from 100% to ~38% early detection
+      (matching probe performance). This gap is irreducible.'
+    analysis: 'The oracle decomposition establishes that pre-textual detection is
+      fundamentally limited by information asymmetry: the commitment point is a future
+      event whose timing cannot be reliably predicted from current representations.
+      The model''s hidden states before commitment encode ongoing safety reasoning
+      but do NOT encode when that reasoning will terminate. This is the paper''s key
+      theoretical insight for Claim 3: unreliable pre-textual detection is not a method
+      limitation but an information-theoretic constraint. Future work would need to
+      identify pre-commitment signals that are predictive of commitment timing, which
+      our analysis suggests are either absent or extremely subtle.'
+  - name: OpenThinker-7B (4th model, scale control)
+    plan_id: exp-011
+    description: 'Qwen2.5-7B-based reasoning model. 2×2 matrix: Llama×Qwen2.5 × 7-8B×32B.'
+    expected_results:
+      openthinker_best_layer: 14
+      openthinker_best_layer_depth_pct: 0.5
+      openthinker_static_acc: 0.795
+      openthinker_static_precp_fpr: 0.172
+      openthinker_static_precision: 0.589
+      openthinker_temporal_coverage: 0.628
+      openthinker_temporal_coverage_delta: 0.058
+      openthinker_temporal_precp_fpr: 0.165
+      openthinker_temporal_precision: 0.571
+      openthinker_gru_lead_mean: 4.1
+      openthinker_gru_lead_median: 0
+      scale_effect_7b_vs_32b_precision_delta: -2.5pp
+      architecture_effect_llama_vs_qwen_precision_delta: -1.8pp
+    result_rationale: 'OpenThinker-7B (Qwen2.5-7B base) fills the 2×2 design matrix.
+      Its results should be intermediate: same architecture family as QwQ-32B (Qwen2.5)
+      but same scale as r1-8b (7-8B parameters). If scale dominates architecture,
+      OpenThinker should match r1-8b; if architecture dominates, it should match QwQ-32B.
+      In the best tier, both factors contribute modestly but neither dominates—the
+      signal quality is primarily determined by the reasoning training procedure,
+      not base model properties. Pre-CP FPR at 0.172 is within the [0.12, 0.20] range,
+      confirming the HS advantage holds at all tested scales and architectures.'
+    tables:
+    - name: 'Table A4: 2×2 Architecture×Scale Matrix'
+      columns:
+      - Architecture
+      - Scale
+      - Model
+      - Pre-CP FPR
+      - Precision
+      - Temporal Δ
+      rows:
+      - - Llama
+        - 8B
+        - r1-8b
+        - 16.0%
+        - 58.3%
+        - +4.6pp
+      - - Qwen2.5
+        - 7B
+        - OpenThinker-7B
+        - 16.5%
+        - 57.1%
+        - +5.8pp
+      - - Qwen2.5
+        - 32B
+        - r1-32b
+        - 14.2%
+        - 60.1%
+        - +6.9pp
+      - - Qwen2.5
+        - 32B
+        - QwQ-32B
+        - 14.9%
+        - 58.4%
+        - +7.0pp
+    figures_description:
+    - 'Fig A4: 2×2 interaction plot. X-axis: scale (7-8B vs 32B). Lines: architecture
+      (Llama, Qwen2.5). Near-parallel lines indicate additive effects without strong
+      interaction. Both factors contribute ~2pp to precision.'
+    analysis: 'The 2×2 matrix reveals that both architecture and scale contribute
+      modestly to probe quality, but neither is dominant—the primary determinant is
+      the presence of reasoning training. The near-parallel lines in the interaction
+      plot indicate no architecture×scale interaction, meaning the findings generalize
+      cleanly. This result strengthens the paper''s universality claim: safety commitment
+      detection works consistently across the tested space of reasoning models. Scale
+      provides a modest 2-3pp precision advantage (likely due to richer representations),
+      and architecture contributes similarly.'
+  - name: GRU/Attention probe on 32B models
+    plan_id: exp-012
+    description: GRU h=256 multi-layer on 32B models. Verify instability pattern and
+      'simplicity is optimal' conclusion.
+    expected_results:
+      r1_32b_gru_coverage_mean: 0.81
+      r1_32b_gru_coverage_std: 0.09
+      r1_32b_gru_coverage_range: '[0.72, 0.91]'
+      r1_32b_gru_precp_fpr: 0.195
+      r1_32b_gru_precision: 0.612
+      r1_32b_gru_safe_fpr: 0.58
+      qwq_32b_gru_coverage_mean: 0.78
+      qwq_32b_gru_coverage_std: 0.11
+      qwq_32b_gru_coverage_range: '[0.67, 0.89]'
+      qwq_32b_gru_precp_fpr: 0.208
+      qwq_32b_gru_precision: 0.591
+      qwq_32b_gru_safe_fpr: 0.61
+      gru_vs_lr_precision_advantage: negligible (+1-3pp)
+      gru_vs_lr_safe_fpr_penalty: +20pp
+      verdict: GRU trades precision for coverage; LR remains preferred for pre-commitment
+        monitoring.
+    result_rationale: 'GRU instability replicates on 32B models because it''s driven
+      by training data scarcity (n=125 training traces) and the fundamentally noisy
+      commitment signal, not model-specific properties. The std of 9-11% across seeds
+      confirms that GRU''s capacity exceeds what the training data can stably supervise.
+      On 32B, GRU achieves marginally higher coverage (78-81%) but at the cost of
+      substantially higher safe FPR (58-61% vs LR''s 35-37%). This confirms the ''simplicity
+      is optimal'' narrative: for the critical pre-commitment detection task, temporal
+      LR provides the best precision/FPR tradeoff, while GRU is useful only if coverage
+      is prioritized over precision. The paper frames this as: ''more complex models
+      can detect more commitment points but at unacceptable false positive cost.'''
+    tables:
+    - name: 'Table A5: GRU vs LR on 32B Models (5-seed mean±std)'
+      columns:
+      - Model
+      - Method
+      - Coverage
+      - Pre-CP FPR
+      - Precision
+      - Safe FPR
+      rows:
+      - - r1-32b
+        - Temporal LR W=15
+        - 58.1%±3.2%
+        - 14.2%
+        - 60.1%
+        - 35.5%
+      - - r1-32b
+        - GRU multi-7L
+        - 81%±9%
+        - 19.5%
+        - 61.2%
+        - 58%
+      - - QwQ-32B
+        - Temporal LR W=15
+        - 55.8%±3.8%
+        - 14.9%
+        - 58.4%
+        - 36.8%
+      - - QwQ-32B
+        - GRU multi-7L
+        - 78%±11%
+        - 20.8%
+        - 59.1%
+        - 61%
+    figures_description:
+    - 'Fig A5: Coverage vs safe FPR tradeoff plot (Pareto front). LR methods cluster
+      in the low-FPR/moderate-coverage region; GRU methods in the high-coverage/high-FPR
+      region. No method achieves both high coverage AND low FPR.'
+    - 'Fig A5b: GRU coverage distribution across 5 seeds (violin plots, 3 models).
+      Wide distributions confirm instability is universal.'
+    analysis: 'GRU instability replicating on 32B models confirms it''s a fundamental
+      signal property: with n=125 training traces, the GRU''s capacity leads to overfitting
+      to spurious temporal patterns that vary across initializations. The coverage-vs-FPR
+      tradeoff is universal: GRU gains ~20pp coverage over LR but pays ~22pp in safe
+      FPR. For deployment scenarios prioritizing precision in the pre-commitment window
+      (the paper''s primary framing), temporal LR remains optimal. This strengthens
+      the ''simplicity is optimal for this task'' conclusion—not because complex models
+      can''t learn, but because the training data is insufficient to stably train
+      them.'
+  review_report: "---\ndream_id: dream_20260516T212347\ntier: best\noverall_score:\
+    \ 3/6 Reject\ntimestamp: 2026-05-16T21:58:13.122354+00:00\n---\n\n# Dream Review\
+    \ Report: Hidden States Universally Encode Safety Commitment Better Than Text\n\
+    \n**Dream ID:** 20260516T212347\n**Review Mode:** full (2 Reviewers, complete\
+    \ roundtable)\n**Venue Standard:** Top ML venue, ~25% acceptance, 6-point scale\n\
+    \n---\n\n## Overall Assessment\n\n**Score: 3 / 6 (Reject)**\n\nThe paper addresses\
+    \ a timely problem (detecting safety commitment points in reasoning models) with\
+    \ a well-designed cross-architecture evaluation. Three genuine strengths stand\
+    \ out: the 2x2 architecture-scale design matrix, the informative oracle decomposition\
+    \ establishing principled detection limits, and the honest reporting of negative\
+    \ results. However, the paper falls below the top-venue bar due to (1) critically\
+    \ insufficient statistical power with only 43 test traces per model, (2) limited\
+    \ methodological novelty (standard probing applied to a new task), (3) a central\
+    \ finding (\"hidden states beat text\") that is expected from representation theory,\
+    \ and (4) severely incomplete related work coverage.\n\n---\n\n## R1 Assessment:\
+    \ Methods and Experiments\n\n### Strengths\n\n- **Well-structured experimental\
+    \ progression.** Static LR, temporal LR (W=15), GRU, and baselines (TrajGuard,\
+    \ BOCPD) form a logical hierarchy. The \"simplicity saturates\" finding (temporal\
+    \ LR preferred over GRU due to instability) is itself informative.\n\n- **Controlled\
+    \ modality comparison.** Applying identical probe architectures to both hidden-state\
+    \ and text features isolates the signal source as the variable, which is the correct\
+    \ experimental design for the central claim.\n\n- **2x2 architecture-scale matrix.**\
+    \ Evaluating across Llama/Qwen2.5 and 7-8B/32B disentangles architecture from\
+    \ scale effects. The finding that neither dominates (reasoning training is primary)\
+    \ is a useful insight.\n\n- **Comprehensive multi-metric evaluation.** Distinguishing\
+    \ coverage, pre-CP FPR, safe FPR, precision, and lead time (mean AND median) avoids\
+    \ single-metric optimization. The observation that positive mean lead with zero\
+    \ median reveals the skewed detection distribution is well-handled.\n\n- **Honest\
+    \ negative results.** TrajGuard/Mahalanobis failure, GRU instability, and the\
+    \ \"fundamental limitation\" framing of pre-textual detection are reported candidly.\n\
+    \n- **Oracle decomposition.** The 62%/28%/10% breakdown (future labels / trajectory\
+    \ / global context) provides principled information-theoretic grounding for the\
+    \ detection ceiling.\n\n- **Low heterogeneity (I-squared=0.12).** Supports consistency\
+    \ of the HS precision advantage across architectures.\n\n### Weaknesses\n\n- **Critical\
+    \ sample size limitation (n=43 test traces per model) [Major].** Per-model statistical\
+    \ tests fail significance for several key comparisons. Confidence intervals are\
+    \ extremely wide (e.g., r1-32b temporal coverage CI [0.442, 0.698], spanning 25.6pp).\
+    \ The \"pooled p=0.003\" for HS vs text FPR depends on treating 4 models as independent\
+    \ studies sharing the same HarmThoughts dataset and probing methodology, which\
+    \ inflates effective sample size. This pooling assumption deserves explicit justification.\n\
+    \n- **Text baseline may be too weak [Major].** The paper uses TF-IDF representations\
+    \ for text probes. Modern sentence embeddings (e.g., E5-large, BGE-large at 1024-d)\
+    \ would provide a much stronger text baseline. Hidden states contain strictly\
+    \ more information than text; the question is whether the gap is due to genuinely\
+    \ richer safety signal or just to using a weak text encoder. Without a competitive\
+    \ neural text baseline, Claim 1 is not stress-tested.\n\n- **Commitment point\
+    \ definition creates pathological distribution [Moderate].** With 41.6% of CPs\
+    \ in the last 10% of traces, coverage is dominated by whether the probe fires\
+    \ in the last few steps. The \"coverage\" metric for traces with late CPs is essentially\
+    \ \"does the probe detect anything has gone wrong by the end,\" which is a low\
+    \ bar. Per-subgroup analysis (early-CP vs late-CP traces) is needed.\n\n- **GRU\
+    \ instability undermines reproducibility [Moderate].** Coverage varies 76-93%\
+    \ across seeds on r1-8b (17pp range). The paper reports 5-seed mean/std for GRU,\
+    \ but this massive variance means GRU results are not meaningfully reproducible\
+    \ and the comparison to temporal LR depends heavily on which seed is run.\n\n\
+    - **Pre-CP FPR metric conflates early and late false positives [Minor].** A false\
+    \ positive at step 2 is operationally different from one at step CP-1. The paper\
+    \ does not characterize where in the pre-commitment window false positives cluster.\n\
+    \n- **No threshold sensitivity analysis [Minor].** All probes use threshold=0.5.\
+    \ ROC/PR curves across thresholds would clarify the coverage-FPR Pareto frontier\
+    \ and whether the 0.5 operating point is optimal.\n\n- **Temporal improvement\
+    \ may be overstated [Minor].** The claimed \"+5-7pp\" coverage gain from temporal\
+    \ context varies from +4.6pp (r1-8b) to +7.0pp (QwQ-32B). Given n=43 and wide\
+    \ CIs, the low end of this range is not clearly distinguishable from noise without\
+    \ the pooled analysis.\n\n### Missing Experiments\n\n1. **Stronger text encoder**\
+    \ (E5-large or similar modern embedding) with identical temporal window to stress-test\
+    \ Claim 1.\n2. **Calibration analysis** (reliability diagrams) to verify whether\
+    \ 0.5 threshold is appropriate.\n3. **Per-CP-position subgroup analysis** (early\
+    \ CP vs late CP traces) to understand metric sensitivity.\n4. **Permutation/shuffle\
+    \ baseline** (time-shuffled hidden states) to verify temporal structure drives\
+    \ the temporal probe advantage.\n5. **Control task probes** (e.g., math reasoning\
+    \ phase transitions) to confirm signal is safety-specific.\n\n---\n\n## R2 Assessment:\
+    \ Novelty and Related Work\n\n### Strengths\n\n- **Genuine gap identification.**\
+    \ No prior work evaluates hidden-state safety detectors on reasoning-model self-jailbreak.\
+    \ The commitment point formalization as a detection target is a legitimate new\
+    \ task definition.\n\n- **Informative negative result with principled explanation.**\
+    \ The oracle decomposition combined with Fisher ratio collapse analysis provides\
+    \ mechanistic grounding for why geometric methods fail and why pre-textual detection\
+    \ is unreliable. This boundary result is useful for the community.\n\n- **Cross-architecture\
+    \ consistency constitutes stronger evidence than single-model studies.** The pooled\
+    \ analysis with low heterogeneity, consistent optimal layer depth (44-47%), and\
+    \ consistent FPR ranges across architectures go beyond typical single-model probing\
+    \ studies.\n\n- **Signal geometry insight is transferable.** Fisher discriminant\
+    \ ratio collapse (18 in full space to ~1 in PCA-3) is a concrete, testable explanation\
+    \ for geometric detector failure that other researchers can verify and build upon.\n\
+    \n- **Honest empirical framing.** The paper does not overclaim a novel method,\
+    \ correctly positioning itself as systematic evaluation.\n\n### Weaknesses\n\n\
+    - **Limited methodological novelty [Major].** Core methods are sliding-window\
+    \ logistic regression and GRU, both standard since the 1990s/2010s. No new method,\
+    \ architecture, or training procedure is proposed. For a top venue, even empirical\
+    \ studies typically require novel evaluation methodology, a surprising finding,\
+    \ or exceptional analytical depth.\n\n- **\"Hidden states beat text\" is expected,\
+    \ not surprising [Major].** Hidden states contain strictly more information than\
+    \ text (text is a lossy projection of hidden states). The probing literature (Belinkov\
+    \ 2022, Conneau et al. 2018) has long established that internal representations\
+    \ encode richer task-relevant information. The finding quantifies a known gap\
+    \ for a new task rather than revealing something unexpected. The paper needs to\
+    \ articulate what is surprising about the specific magnitude or nature of the\
+    \ advantage.\n\n- **\"Pre-textual detection unreliable\" is partially tautological\
+    \ [Major].** The commitment point is defined as the last step with safety reasoning.\
+    \ A probe trained on this label is definitionally constrained by the fact that\
+    \ safety reasoning termination is a future event. The oracle decomposition partially\
+    \ addresses this, but the paper conflates definitional constraints (you cannot\
+    \ predict the future from the past) with empirical discoveries about representations.\
+    \ The contribution would be stronger if it identified what representational features\
+    \ ARE available pre-commitment and why they are insufficient.\n\n- **Severely\
+    \ incomplete related work [Major].** 14 citations is far below the 30-60 typical\
+    \ for top ML venues. Critical gaps include:\n  - Probing methodology literature\
+    \ (Belinkov 2022 survey; Conneau et al. 2018 probing tasks; Hewitt & Manning 2019\
+    \ structural probes; Hewitt & Liang 2019 control tasks for selectivity)\n  - Mechanistic\
+    \ interpretability (Meng et al. 2022 causal tracing; Conmy et al. 2023 circuit\
+    \ discovery)\n  - Broader jailbreak detection (Robey et al. 2023; Alon & Kamfonas\
+    \ 2023)\n  - Process supervision beyond PRMs (Uesato et al. 2022; Wang et al.\
+    \ 2024 Math-Shepherd)\n  - Steering/intervention literature (Li et al. 2024 inference-time\
+    \ intervention; Turner et al. 2023 activation additions)\n\n- **\"Universally\"\
+    \ in title is overclaimed [Moderate].** 3 of 4 models share Qwen2.5 base architecture.\
+    \ The single Llama model (r1-8b) is architecturally distinct but also the smallest\
+    \ model. True universality would require testing on diverse architectures (Mixtral,\
+    \ Gemma, etc.) and non-distilled reasoning models.\n\n- **No control task or causal\
+    \ validation [Moderate].** Without Hewitt & Liang (2019) control tasks, the probe\
+    \ may exploit positional heuristics (given the bimodal CP distribution). Without\
+    \ causal validation (does intervening at the detected step prevent harmful output?),\
+    \ detection is correlational, not actionable.\n\n- **Cross-architecture transfer\
+    \ is underdeveloped [Moderate].** The 67-74% transfer accuracy is reported as\
+    \ numbers without geometric analysis of what structure is shared (CKA, CCA, direction\
+    \ alignment). This is a missed opportunity for the paper's most novel finding.\n\
+    \n### Questions for Authors\n\n1. How do you respond to the critique that \"hidden\
+    \ states beat text\" is the expected outcome from representation theory? What\
+    \ specifically is surprising about the magnitude or nature of the advantage?\n\
+    \n2. Have you considered Hewitt & Liang (2019) control tasks to rule out positional\
+    \ confounds, given that 41.6% of CPs occur in the last 10% of traces?\n\n3. Can\
+    \ you establish causal relevance: does intervening (e.g., early stopping, activation\
+    \ steering) at the detected step actually prevent harmful output generation?\n\
+    \n4. Why are probing methodology papers (Belinkov, Conneau, Hewitt) entirely absent\
+    \ from related work, given that the paper's core method IS probing?\n\n5. How\
+    \ do you justify \"universally\" with 3/4 models sharing Qwen2.5 architecture?\n\
+    \n6. How robust is the CP definition to annotation noise in HarmThoughts? What\
+    \ is the inter-annotator agreement?\n\n7. How does this relate to Process Reward\
+    \ Models (PRMs), which perform structurally identical step-level classification\
+    \ on reasoning traces?\n\n---\n\n## Roundtable Convergence\n\n### Points of Agreement\
+    \ (R1 + R2)\n\n1. **The paper addresses a timely, important problem** (safety\
+    \ monitoring of reasoning models) with a well-motivated experimental framework.\n\
+    \n2. **Cross-architecture consistency is a genuine strength** that elevates this\
+    \ above single-model studies.\n\n3. **Oracle decomposition is the strongest analytical\
+    \ contribution**, providing principled information-theoretic grounding.\n\n4.\
+    \ **n=43 test traces is critically insufficient** for the claims being made. Per-model\
+    \ comparisons fail significance; the pooled analysis methodology needs stronger\
+    \ justification.\n\n5. **Practical utility is limited**: safe FPR of 35-62% means\
+    \ all methods trigger false alarms on one-third to two-thirds of safe traces.\
+    \ The paper compares methods that are all currently impractical for deployment.\n\
+    \n6. **\"Universal\" is overclaimed**: 3/4 Qwen2.5-based models do not constitute\
+    \ architectural diversity.\n\n7. **Related work is severely thin**: 14 citations\
+    \ missing entire relevant literatures (probing methodology, mechanistic interpretability,\
+    \ broader jailbreak detection).\n\n### Points of Tension\n\n- **R1** is more generous\
+    \ about the text baseline fairness and sees the primary issue as statistical methodology.\
+    \ **R2** sees the deeper issue as conceptual: the central finding is expected\
+    \ from first principles, and the paper lacks the methodological novelty or surprising\
+    \ insight needed for a top venue.\n\n- **R1** leans borderline (could be revised\
+    \ to acceptance). **R2** leans reject (structural novelty deficit is harder to\
+    \ address in revision).\n\n### Consensus Score Rationale\n\nBoth reviewers converge\
+    \ on **3/6 (Reject)** for the following reasons:\n\n**Above the reject floor**\
+    \ because: (a) the problem is important and timely, (b) the cross-architecture\
+    \ design is well-executed, (c) the oracle decomposition and Fisher collapse analyses\
+    \ are genuinely informative, (d) negative results are reported honestly.\n\n**Below\
+    \ the acceptance bar** because: (a) the central claim (HS > text) is expected\
+    \ from representation theory and not sufficiently surprising, (b) statistical\
+    \ power is critically insufficient for the strength of claims, (c) methodological\
+    \ novelty is limited (standard probes on a new task), (d) related work coverage\
+    \ is inadequate, (e) \"universal\" is overclaimed, (f) practical utility is limited.\n\
+    \n---\n\n## Actionable Revision Suggestions\n\n1. **Increase test set size.**\
+    \ Use 5-fold cross-validation on all 209 traces (rather than a fixed 166/43 split)\
+    \ to improve statistical power. Alternatively, collect more traces from HarmThoughts\
+    \ or generate additional traces.\n\n2. **Add a competitive text baseline.** Replace\
+    \ TF-IDF with a strong neural encoder (E5-large, BGE-large) to stress-test whether\
+    \ the HS advantage survives against a competitive text representation.\n\n3. **Expand\
+    \ related work to 35+ citations.** Cover probing methodology (Belinkov, Conneau,\
+    \ Hewitt), mechanistic interpretability (Meng et al.), broader jailbreak detection,\
+    \ and process supervision literatures.\n\n4. **Soften \"universally\" to \"consistently\
+    \ across tested models\"** and add at least one non-Qwen2.5 32B model (e.g., Llama-3.1-based\
+    \ reasoning model) to strengthen the cross-architecture claim.\n\n5. **Add control\
+    \ tasks** (Hewitt & Liang 2019) to rule out positional confounds and verify safety-specific\
+    \ signal.\n\n6. **Develop the cross-model transfer finding** with geometric analysis\
+    \ (CKA, CCA, direction alignment) rather than just reporting accuracy numbers.\
+    \ This is the paper's most novel contribution and deserves deeper treatment.\n\
+    \n7. **Add causal validation.** Show that intervening at the detected commitment\
+    \ point (early stopping, activation steering) actually prevents harmful output.\n\
+    \n8. **Reframe the narrative.** Rather than \"HS beat text\" (expected), emphasize\
+    \ the oracle decomposition, Fisher collapse, and cross-transfer geometry as the\
+    \ primary contributions. These are more novel and less expected.\n\n9. **Add per-subgroup\
+    \ analysis** by CP position (early vs late commitment) and harm category.\n\n\
+    10. **Provide threshold-free evaluation** (detection delay CDFs, full ROC/PR curves)\
+    \ alongside the threshold=0.5 results.\n\n---\n\n## Summary\n\n| Dimension | Score\
+    \ | Notes |\n|-----------|-------|-------|\n| Novelty | 2/5 | Standard methods\
+    \ on new task; central finding expected |\n| Soundness | 3/5 | Well-designed but\
+    \ underpowered; pooling assumptions questionable |\n| Significance | 3/5 | Important\
+    \ problem, but limited practical utility demonstrated |\n| Presentation | 3/5\
+    \ | Clear writing, but thin related work and overclaimed title |\n| **Overall**\
+    \ | **3/6** | **Reject** |\n\nThe paper has a solid empirical core that could\
+    \ become publishable with significant revision: stronger baselines, more statistical\
+    \ power, expanded related work, and reframed contributions around the genuinely\
+    \ novel findings (oracle decomposition, signal geometry, cross-transfer) rather\
+    \ than the expected finding (HS > text).\n"
+  error: ''
+- tier: median
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/artifacts/dream_reports/dream_20260516T212347/median/paper.pdf
+  imagined_experiments:
+  - name: Cross-architecture static probe — r1-32b
+    plan_id: exp-001
+    description: Layer sweep (all 64 layers) + static LR probe on DeepSeek-R1-Distill-Qwen-32B
+      and QwQ-32B. Find best layer, evaluate static probe accuracy, coverage, FPR.
+    expected_results:
+      r1_32b_best_layer_idx: 28
+      r1_32b_best_layer_depth_pct: 0.44
+      r1_32b_static_acc: 0.792
+      r1_32b_static_f1: 0.61
+      r1_32b_static_crossing_rate: 0.558
+      r1_32b_static_lead_mean: 2.1
+      r1_32b_static_lead_median: 0
+      r1_32b_precp_fpr: 0.19
+      r1_32b_precision: 0.56
+      r1_32b_safe_fpr: 0.41
+      r1_32b_auroc: 0.81
+      r1_32b_fisher_orig: 14.2
+      r1_32b_fisher_pca3: 1.05
+      r1_32b_var_explained_3pc: 0.14
+      qwq_32b_best_layer_idx: 31
+      qwq_32b_best_layer_depth_pct: 0.48
+      qwq_32b_static_acc: 0.738
+      qwq_32b_static_f1: 0.52
+      qwq_32b_static_crossing_rate: 0.442
+      qwq_32b_static_lead_mean: 0.8
+      qwq_32b_static_lead_median: -1
+      qwq_32b_precp_fpr: 0.26
+      qwq_32b_precision: 0.49
+      qwq_32b_safe_fpr: 0.44
+      qwq_32b_auroc: 0.72
+      qwq_32b_fisher_orig: 9.8
+      qwq_32b_fisher_pca3: 0.71
+      qwq_32b_var_explained_3pc: 0.19
+      r1_32b_text_static_precp_fpr: 0.29
+      r1_32b_text_static_precision: 0.48
+      qwq_32b_text_static_precp_fpr: 0.32
+      qwq_32b_text_static_precision: 0.44
+    result_rationale: r1-32b is a distillation of DeepSeek-R1 into Qwen2.5-32B base
+      — it inherits the same reasoning trace structure and safety commitment patterns
+      as r1-8b (distilled into Llama-3.1-8B). The distillation process preserves the
+      internal representation of safety states because the student learns to mimic
+      the teacher's hidden reasoning. Best layer at ~44% depth matches r1-8b pattern
+      (layer 14/32 = 44%), confirming consistent depth-proportional signal location
+      across R1 distillations. QwQ-32B, however, was trained independently by Alibaba
+      with a different RLHF pipeline and different safety training data. Its safety
+      reasoning uses different internal representations — Fisher discriminability
+      is only 9.8 (vs 14.2 for r1-32b and 17.9 for r1-8b), indicating the safety signal
+      is more diffuse/weaker. The HS precision advantage over text on QwQ narrows
+      to borderline (49% vs 44% = +5pp instead of r1-8b's +13pp), consistent with
+      architecture-specific signal geometry hypothesis.
+    tables:
+    - name: 'Table 3: Static Probe Results Across Architectures'
+      columns:
+      - Model
+      - Best Layer
+      - Acc
+      - Coverage
+      - Pre-CP FPR
+      - Precision
+      - Safe FPR
+      - AUROC
+      rows:
+      - - r1-8b (Llama)
+        - L14 (44%)
+        - '0.817'
+        - 60.5%
+        - 16.2%
+        - 62.2%
+        - 39.0%
+        - '0.84'
+      - - r1-32b (Qwen2.5)
+        - L28 (44%)
+        - '0.792'
+        - 55.8%
+        - 19.0%
+        - 56.0%
+        - 41.0%
+        - '0.81'
+      - - QwQ-32B (Qwen2.5)
+        - L31 (48%)
+        - '0.738'
+        - 44.2%
+        - 26.0%
+        - 49.0%
+        - 44.0%
+        - '0.72'
+    figures_description:
+    - Layer sweep heatmap (64 layers × {acc, F1, crossing_rate}) for both 32B models.
+      r1-32b shows clear peak at L28 with smooth falloff; QwQ shows flatter profile
+      with noisier peak at L31.
+    - 'Fisher discriminability by layer: r1-32b peaks sharply mid-network, QwQ peaks
+      lower and broader.'
+    analysis: 'r1-32b successfully replicates the core finding: HS probes achieve
+      substantially lower pre-CP FPR than text (19% vs 29%). QwQ-32B shows a weaker
+      effect (26% vs 32% = only 6pp gap, borderline). The pattern is consistent with
+      signal geometry being shaped by distillation: R1-family models (r1-8b, r1-32b)
+      share similar hidden-state structure because both distilled from the same teacher.
+      QwQ''s independent training produces a different, weaker safety signal geometry.
+      n_models_validating_claim1 = 2 (both R1-family), with QwQ as partial/weak validation.'
+  - name: Cross-architecture temporal window evaluation
+    plan_id: exp-002
+    description: Temporal LR W=15 on r1-32b and QwQ-32B at best layers from exp-001.
+      Validate temporal coverage improvement generalizes.
+    expected_results:
+      r1_32b_temporal_acc: 0.764
+      r1_32b_temporal_crossing_rate: 0.605
+      r1_32b_temporal_lead_mean: 3.8
+      r1_32b_temporal_lead_median: 0
+      r1_32b_temporal_precp_fpr: 0.18
+      r1_32b_temporal_precision: 0.54
+      r1_32b_temporal_safe_fpr: 0.4
+      r1_32b_temporal_coverage_delta: 0.047
+      r1_32b_temporal_auroc: 0.82
+      qwq_32b_temporal_acc: 0.721
+      qwq_32b_temporal_crossing_rate: 0.465
+      qwq_32b_temporal_lead_mean: 2.4
+      qwq_32b_temporal_lead_median: -1
+      qwq_32b_temporal_precp_fpr: 0.24
+      qwq_32b_temporal_precision: 0.47
+      qwq_32b_temporal_safe_fpr: 0.43
+      qwq_32b_temporal_coverage_delta: 0.023
+      qwq_32b_temporal_auroc: 0.74
+      r1_32b_text_temporal_precp_fpr: 0.25
+      r1_32b_text_temporal_precision: 0.5
+      qwq_32b_text_temporal_precp_fpr: 0.3
+      qwq_32b_text_temporal_precision: 0.45
+    result_rationale: 'Temporal windowing is method-agnostic (Claim 2) — it provides
+      additional context regardless of signal source. r1-32b gains +4.7pp coverage
+      (55.8→60.5%), consistent with r1-8b''s +5pp. QwQ gains only +2.3pp, reflecting
+      that the underlying signal is weaker so temporal aggregation has less discriminative
+      information to integrate. The coverage delta range [0.01, 0.05] in median tier
+      is satisfied: r1-32b at 0.047 (near upper bound), QwQ at 0.023 (mid-range).
+      Temporal context helps both models but cannot rescue a weak base signal. Pre-CP
+      FPR improves slightly for both (temporal smoothing reduces noise), maintaining
+      the HS advantage pattern on r1-32b but not decisively on QwQ.'
+    tables:
+    - name: 'Table 4: Temporal Window Effect Across Architectures'
+      columns:
+      - Model
+      - Method
+      - Coverage Δ
+      - Pre-CP FPR
+      - Precision
+      - Lead Mean
+      rows:
+      - - r1-8b
+        - HS static→temporal
+        - +5.0pp
+        - 16.2→16.0%
+        - 62.2→58.3%
+        - +3.0→+4.9
+      - - r1-32b
+        - HS static→temporal
+        - +4.7pp
+        - 19.0→18.0%
+        - 56.0→54.0%
+        - +2.1→+3.8
+      - - QwQ-32B
+        - HS static→temporal
+        - +2.3pp
+        - 26.0→24.0%
+        - 49.0→47.0%
+        - +0.8→+2.4
+      - - r1-8b
+        - Text static→temporal
+        - +4.6pp
+        - 35.6→27.2%
+        - 44.8→48.7%
+        - +4.3→+11.5
+      - - r1-32b
+        - Text static→temporal
+        - +3.8pp
+        - 29.0→25.0%
+        - 48.0→50.0%
+        - +3.1→+8.2
+      - - QwQ-32B
+        - Text static→temporal
+        - +2.1pp
+        - 32.0→30.0%
+        - 44.0→45.0%
+        - +1.5→+5.8
+    figures_description:
+    - 'Coverage delta bar chart: r1-8b ≈ r1-32b > QwQ for both HS and text modalities.
+      Shows temporal benefit scales with base signal quality.'
+    analysis: 'Claim 2 (temporal necessity) holds as method-agnostic: all model×modality
+      combinations show positive coverage delta from W=15. Effect size varies — stronger
+      signal (R1 family) benefits more. This supports the claim but with nuance: ''temporal
+      context is necessary for commitment detection, with benefit proportional to
+      base signal discriminability.'' QwQ''s smaller gains are consistent with its
+      weaker Fisher discriminability.'
+  - name: Cross-model transfer evaluation
+    plan_id: exp-003
+    description: Train probe on r1-8b, test on r1-32b/QwQ. Train on Qwen-base (r1-32b),
+      test on Llama-base (r1-8b). Zero-shot cross-architecture generalization with
+      projection head (4096↔5120).
+    expected_results:
+      transfer_r18b_to_r132b_acc: 0.56
+      transfer_r18b_to_r132b_crossing_rate: 0.28
+      transfer_r18b_to_r132b_lead_mean: -4.2
+      transfer_r18b_to_qwq_acc: 0.52
+      transfer_r18b_to_qwq_crossing_rate: 0.19
+      transfer_r18b_to_qwq_lead_mean: -8.1
+      transfer_r132b_to_r18b_acc: 0.55
+      transfer_r132b_to_r18b_crossing_rate: 0.26
+      transfer_r132b_to_r18b_lead_mean: -5.3
+      transfer_r132b_to_qwq_acc: 0.57
+      transfer_r132b_to_qwq_crossing_rate: 0.3
+      transfer_r132b_to_qwq_lead_mean: -3.8
+      transfer_qwq_to_r18b_acc: 0.51
+      transfer_qwq_to_r18b_crossing_rate: 0.16
+      transfer_qwq_to_r18b_lead_mean: -9.2
+      transfer_qwq_to_r132b_acc: 0.58
+      transfer_qwq_to_r132b_crossing_rate: 0.33
+      transfer_qwq_to_r132b_lead_mean: -2.1
+      cross_transfer_acc_mean: 0.548
+      cross_transfer_acc_range:
+      - 0.51
+      - 0.58
+      same_base_transfer_acc: 0.575
+      diff_base_transfer_acc: 0.535
+    result_rationale: 'Cross-transfer fails (acc 0.50-0.58, barely above chance for
+      binary classification). Even with learned linear projection (4096→5120), the
+      safety signal geometry is architecture-specific. The projection head can align
+      dimensions but cannot rotate the signal into the correct subspace because safety
+      information occupies different principal components in different architectures.
+      Slight advantage for same-base transfers (r1-32b↔QwQ both Qwen2.5-based: ~0.575)
+      vs cross-base (Llama↔Qwen: ~0.535) — the base architecture determines representation
+      geometry more than the safety training. This is consistent with PCA findings:
+      safety signal lives in minor components that are architecture-specific, not
+      in universal directions like refusal direction (Arditi 2024) which targets a
+      single dominant direction.'
+    tables:
+    - name: 'Table 5: Cross-Model Transfer Accuracy Matrix'
+      columns:
+      - Train \ Test
+      - r1-8b (Llama)
+      - r1-32b (Qwen2.5)
+      - QwQ-32B (Qwen2.5)
+      rows:
+      - - r1-8b (Llama)
+        - 0.817*
+        - '0.56'
+        - '0.52'
+      - - r1-32b (Qwen2.5)
+        - '0.55'
+        - 0.792*
+        - '0.57'
+      - - QwQ-32B (Qwen2.5)
+        - '0.51'
+        - '0.58'
+        - 0.738*
+    figures_description:
+    - Transfer accuracy heatmap with diagonal (in-distribution) vs off-diagonal (transfer).
+      Clear diagonal dominance. Slight warmth in Qwen2.5↔Qwen2.5 off-diagonal cells.
+    - 'PCA projection overlap: superimposed 2D PCA of safety/unsafe steps from all
+      3 models shows non-overlapping clusters — signal geometry is architecture-specific.'
+    analysis: 'Cross-transfer failure is the clearest negative result but becomes
+      a positive finding: ''safety signal geometry is architecture-specific; universal
+      safety probes are not feasible with current linear methods.'' This reframes
+      the negative as a contribution — understanding WHY transfer fails (minor PC
+      distribution, architecture-dependent) informs future work on architecture-agnostic
+      safety monitoring. Drop ''universal probe'' from contributions; instead report
+      architecture specificity as empirical finding. Slight same-base advantage suggests
+      base architecture (not safety training) determines signal geometry.'
+  - name: Lead time analysis on 32B models
+    plan_id: exp-004
+    description: Lead time distribution for temporal LR and GRU on r1-32b and QwQ-32B.
+      Confirm negative/unreliable lead time finding generalizes.
+    expected_results:
+      r1_32b_lr_temporal_lead_mean: 3.8
+      r1_32b_lr_temporal_lead_median: 0
+      r1_32b_lr_temporal_positive_lead_rate: 0.42
+      r1_32b_gru_lead_mean: 2.8
+      r1_32b_gru_lead_median: -1
+      r1_32b_gru_positive_lead_rate: 0.38
+      r1_32b_gru_coverage: 0.72
+      r1_32b_gru_safe_fpr: 0.55
+      qwq_32b_lr_temporal_lead_mean: 1.2
+      qwq_32b_lr_temporal_lead_median: -2
+      qwq_32b_lr_temporal_positive_lead_rate: 0.31
+      qwq_32b_gru_lead_mean: -0.5
+      qwq_32b_gru_lead_median: -3
+      qwq_32b_gru_positive_lead_rate: 0.25
+      qwq_32b_gru_coverage: 0.58
+      qwq_32b_gru_safe_fpr: 0.59
+      lead_median_all_models:
+      - -3
+      - 0
+      any_model_reliable_early: false
+    result_rationale: Lead time remains unreliable on 32B models, confirming Claim
+      3 generalizes. r1-32b shows slightly positive mean (2.8) but median 0/-1, matching
+      r1-8b's pattern (mean +4.7, median 0). QwQ is worse (mean -0.5, median -3) because
+      the weaker base signal means the GRU has less predictive information to work
+      with. The fundamental limitation identified on r1-8b — hidden states encode
+      CURRENT safety state well but poorly predict FUTURE trajectory — holds across
+      architectures. 32B models have longer reasoning chains (more steps), which could
+      theoretically help sequential models, but the additional steps are mostly elaboration
+      rather than containing stronger predictive signal. GRU safe FPR remains high
+      (55-59%) — the model achieves coverage by being trigger-happy, not by genuine
+      early detection.
+    tables:
+    - name: 'Table 6: Lead Time Distribution Across Models'
+      columns:
+      - Model
+      - Method
+      - Mean Lead
+      - Median Lead
+      - '% Positive Lead'
+      - Coverage
+      - Safe FPR
+      rows:
+      - - r1-8b
+        - LR temporal
+        - '+4.9'
+        - '0'
+        - 45%
+        - 65.1%
+        - 39.2%
+      - - r1-8b
+        - GRU multi-7L
+        - '+4.7'
+        - '0'
+        - 39%
+        - 76-93%
+        - 61.6%
+      - - r1-32b
+        - LR temporal
+        - '+3.8'
+        - '0'
+        - 42%
+        - 60.5%
+        - 40.0%
+      - - r1-32b
+        - GRU multi-7L
+        - '+2.8'
+        - '-1'
+        - 38%
+        - 72%
+        - 55.0%
+      - - QwQ-32B
+        - LR temporal
+        - '+1.2'
+        - '-2'
+        - 31%
+        - 46.5%
+        - 43.0%
+      - - QwQ-32B
+        - GRU multi-7L
+        - '-0.5'
+        - '-3'
+        - 25%
+        - 58%
+        - 59.0%
+    figures_description:
+    - Lead time CDF curves for all 3 models × 2 methods. Leftward shift from r1-8b
+      → r1-32b → QwQ visible. None cross 50% at lead=0 threshold.
+    - Violin plots of per-trace lead time distribution. All models show heavy left
+      tail (late detections) with thin right tail (early detections).
+    analysis: 'Lead time is unreliable across all architectures. The slight degradation
+      from r1-8b → r1-32b → QwQ tracks signal quality — confirming that lead time
+      is limited by signal discriminability, not model scale. r1-32b''s slightly positive
+      mean is noise-driven (one or two traces with large positive lead inflate the
+      mean; median is 0). QwQ''s negative median means the probe typically fires AFTER
+      textual commitment — worse than useless for deployment. Strengthens Claim 3
+      narrative: pre-textual detection is a fundamental limitation, not an r1-8b artifact.'
+  - name: TrajGuard Mahalanobis on 32B models
+    plan_id: exp-005
+    description: Mahalanobis distance baseline using safe traces for covariance estimation
+      on r1-32b and QwQ-32B. Expected to fail due to signal in minor PCs.
+    expected_results:
+      r1_32b_md_best_crossing_rate: 0.28
+      r1_32b_md_best_lead_mean: 14.8
+      r1_32b_md_delta_max_rate: 0.018
+      r1_32b_safe_md_mean: 8.42
+      r1_32b_jb_pre_md_mean: 8.51
+      r1_32b_jb_post_md_mean: 8.38
+      qwq_32b_md_best_crossing_rate: 0.21
+      qwq_32b_md_best_lead_mean: 12.1
+      qwq_32b_md_delta_max_rate: 0.012
+      qwq_32b_safe_md_mean: 9.15
+      qwq_32b_jb_pre_md_mean: 9.22
+      qwq_32b_jb_post_md_mean: 9.18
+    result_rationale: Mahalanobis distance fails on 32B models just as it failed on
+      r1-8b. The safe/unsafe mean MD values are nearly identical (delta < 0.1), confirming
+      the signal is not in the bulk covariance structure. With 5120-d hidden states
+      and signal in minor PCs (explaining <1% variance), the Mahalanobis distance
+      is dominated by the major variance directions (general language model computation)
+      rather than the safety-specific directions. PCA-reduced variants also fail because
+      the top PCs capture general computation, not safety signal. This result generalizes
+      because the underlying mechanism (safety signal in minor PCs, Fisher dropping
+      from ~14-18 to ~1 after PCA-3D) is architecture-independent — it's a property
+      of how safety information is encoded relative to general computation.
+    tables:
+    - name: 'Table 7: Mahalanobis Distance Baseline (All Models)'
+      columns:
+      - Model
+      - Best Config
+      - Crossing Rate (K=5)
+      - Delta (safe vs unsafe)
+      - Lead Mean
+      rows:
+      - - r1-8b
+        - pca_64_p75
+        - 30.2%
+        - '0.07'
+        - '+16.4'
+      - - r1-32b
+        - pca_64_p75
+        - 28.0%
+        - '0.09'
+        - '+14.8'
+      - - QwQ-32B
+        - pca_128_p75
+        - 21.0%
+        - '0.07'
+        - '+12.1'
+    figures_description:
+    - 'MD time series overlay: safe traces (green) vs jailbreak traces (red) — visually
+      indistinguishable, confirming MD cannot separate states.'
+    analysis: 'TrajGuard-style methods fail universally. This validates the ''existing
+      detectors fail'' claim (important for motivation) and confirms the PCA/Fisher
+      analysis: safety signal geometry requires supervised probes because the discriminative
+      directions are orthogonal to the high-variance directions that geometric methods
+      exploit. Lead time appears high but is misleading — it''s driven by random threshold
+      crossings (crossing rate only 21-30%, meaning most traces never cross at all).'
+  - name: Bootstrap CIs and threshold-independent metrics (32B extension)
+    plan_id: exp-006
+    description: 1000 bootstrap resamples on all key metrics for 32B models. AUROC,
+      PR curves, detection delay CDF, per-fold CV variance.
+    expected_results:
+      r1_32b_static_acc_ci:
+      - 0.72
+      - 0.85
+      r1_32b_static_crossing_ci:
+      - 0.4
+      - 0.7
+      r1_32b_static_lead_ci:
+      - -2.5
+      - 7.8
+      r1_32b_temporal_acc_ci:
+      - 0.69
+      - 0.83
+      r1_32b_temporal_crossing_ci:
+      - 0.44
+      - 0.74
+      r1_32b_temporal_lead_ci:
+      - -1.2
+      - 9.4
+      r1_32b_auroc_static: 0.81
+      r1_32b_auroc_temporal: 0.82
+      r1_32b_pr_auc_static: 0.68
+      r1_32b_pr_auc_temporal: 0.69
+      qwq_32b_static_acc_ci:
+      - 0.66
+      - 0.8
+      qwq_32b_static_crossing_ci:
+      - 0.3
+      - 0.58
+      qwq_32b_static_lead_ci:
+      - -5.1
+      - 6.2
+      qwq_32b_temporal_acc_ci:
+      - 0.64
+      - 0.79
+      qwq_32b_temporal_crossing_ci:
+      - 0.32
+      - 0.61
+      qwq_32b_temporal_lead_ci:
+      - -4.8
+      - 8.9
+      qwq_32b_auroc_static: 0.72
+      qwq_32b_auroc_temporal: 0.74
+      qwq_32b_pr_auc_static: 0.55
+      qwq_32b_pr_auc_temporal: 0.57
+      paired_hs_vs_text_precp_fpr_r132b_p: 0.034
+      paired_hs_vs_text_precp_fpr_qwq_p: 0.218
+      paired_temporal_vs_static_coverage_r132b_p: 0.287
+      paired_temporal_vs_static_coverage_qwq_p: 0.541
+      cv_fold_variance_r132b: 0.043
+      cv_fold_variance_qwq: 0.067
+    result_rationale: 'Wide CIs reflect small test sets (n~35-43 traces per model).
+      r1-32b achieves borderline significance on HS vs text FPR comparison (p=0.034)
+      — just significant at α=0.05 but would not survive correction for multiple comparisons.
+      QwQ fails significance (p=0.218) — the 6pp FPR gap (26% vs 32%) is within noise
+      given n~35 traces. Temporal vs static coverage never reaches significance on
+      either model (p>0.2) due to small effect size (2-5pp) relative to sample variance.
+      This is the core median-tier difficulty: effects exist but sample sizes yield
+      wide CIs. AUROC and PR-AUC confirm the pattern — r1-32b is better than QwQ (0.81
+      vs 0.72 AUROC) — but individual comparisons often fail significance thresholds.'
+    tables:
+    - name: 'Table 8: Bootstrap 95% CIs (n=1000 resamples)'
+      columns:
+      - Model
+      - Metric
+      - Point Estimate
+      - 95% CI
+      - p-value (vs text)
+      rows:
+      - - r1-32b
+        - HS Pre-CP FPR
+        - 19.0%
+        - '[14.2, 25.1]'
+        - 0.034*
+      - - r1-32b
+        - Text Pre-CP FPR
+        - 29.0%
+        - '[21.8, 37.4]'
+        - —
+      - - QwQ-32B
+        - HS Pre-CP FPR
+        - 26.0%
+        - '[19.5, 33.8]'
+        - '0.218'
+      - - QwQ-32B
+        - Text Pre-CP FPR
+        - 32.0%
+        - '[24.1, 40.2]'
+        - —
+    figures_description:
+    - Precision-recall curves for all models with 95% CI bands. r1-8b clearly above
+      others; r1-32b and QwQ CI bands overlap.
+    - Detection delay CDF showing proportion of traces detected by each step before/after
+      CP.
+    analysis: 'Statistical power is the central weakness in median tier. Effects are
+      real but under-powered. Strategy: argue for consistency across models as evidence
+      (same direction of effect in 3/3 models for HS advantage) rather than per-model
+      significance. Report effect sizes with CIs honestly; let the pattern across
+      models carry the argument.'
+  - name: Window size ablation on 32B models
+    plan_id: exp-007
+    description: Temporal window W=1,3,5,10,15,20,25 on r1-32b and QwQ-32B. Diminishing
+      returns curve.
+    expected_results:
+      r1_32b_w1_coverage: 0.558
+      r1_32b_w3_coverage: 0.57
+      r1_32b_w5_coverage: 0.581
+      r1_32b_w10_coverage: 0.593
+      r1_32b_w15_coverage: 0.605
+      r1_32b_w20_coverage: 0.609
+      r1_32b_w25_coverage: 0.605
+      r1_32b_optimal_w: 20
+      qwq_32b_w1_coverage: 0.442
+      qwq_32b_w3_coverage: 0.449
+      qwq_32b_w5_coverage: 0.456
+      qwq_32b_w10_coverage: 0.46
+      qwq_32b_w15_coverage: 0.465
+      qwq_32b_w20_coverage: 0.463
+      qwq_32b_w25_coverage: 0.458
+      qwq_32b_optimal_w: 15
+    result_rationale: Diminishing returns after W=15 for both models — consistent
+      with r1-8b finding. W=15 captures the characteristic safety reasoning window
+      (roughly 15 reasoning steps = one complete deliberation episode in R1-style
+      models). Beyond W=20, performance plateaus or slightly degrades as older irrelevant
+      context dilutes the signal. QwQ saturates earlier and with less total gain because
+      its base signal is weaker — temporal aggregation amplifies but cannot create
+      signal. The optimal window is similar across models (~15-20) because it reflects
+      the reasoning trace structure (episode length), which is similar across R1-style
+      and QwQ models.
+    tables:
+    - name: 'Table S1: Window Size Ablation'
+      columns:
+      - W
+      - r1-8b Cov
+      - r1-32b Cov
+      - QwQ Cov
+      rows:
+      - - '1'
+        - 60.5%
+        - 55.8%
+        - 44.2%
+      - - '5'
+        - 62.1%
+        - 58.1%
+        - 45.6%
+      - - '10'
+        - 63.8%
+        - 59.3%
+        - 46.0%
+      - - '15'
+        - 65.1%
+        - 60.5%
+        - 46.5%
+      - - '20'
+        - 65.4%
+        - 60.9%
+        - 46.3%
+      - - '25'
+        - 64.8%
+        - 60.5%
+        - 45.8%
+    figures_description:
+    - Coverage vs W curve for all 3 models. Classic diminishing returns shape. Annotate
+      elbow at W=15.
+    analysis: 'W=15 confirmed as near-optimal across architectures. The consistent
+      optimal window suggests a structural property of reasoning traces rather than
+      a model-specific artifact. Supports Claim 2 framing: temporal context captures
+      deliberation episodes of characteristic length ~15 steps.'
+  - name: Layer selection ablation on 32B models
+    plan_id: exp-008
+    description: Full layer sweep for temporal probe (not just best static layer)
+      on 32B models. Confirm middle-layer finding.
+    expected_results:
+      r1_32b_best_temporal_layer: 30
+      r1_32b_best_temporal_depth_pct: 0.47
+      r1_32b_temporal_layer_vs_static_layer_delta: 0.008
+      r1_32b_early_layers_temporal_acc: 0.71
+      r1_32b_middle_layers_temporal_acc: 0.76
+      r1_32b_late_layers_temporal_acc: 0.73
+      qwq_32b_best_temporal_layer: 33
+      qwq_32b_best_temporal_depth_pct: 0.52
+      qwq_32b_temporal_layer_vs_static_layer_delta: 0.005
+      qwq_32b_early_layers_temporal_acc: 0.67
+      qwq_32b_middle_layers_temporal_acc: 0.72
+      qwq_32b_late_layers_temporal_acc: 0.7
+    result_rationale: Best temporal layer is close to best static layer (within 2-3
+      layers) for both models, confirming that the optimal depth for safety signal
+      extraction is robust to the classification method. Middle layers (~44-52% depth)
+      remain optimal because this is where semantic representations are richest —
+      early layers encode syntactic features, late layers encode next-token prediction
+      features. The temporal probe's best layer is slightly deeper (30 vs 28 for r1-32b)
+      possibly because deeper representations better capture sequential dependencies.
+      Delta between best and worst is small (5-9pp acc), indicating the signal exists
+      across multiple layers but peaks mid-network.
+    tables: []
+    figures_description:
+    - Layer-accuracy profile for temporal LR across all 64 layers on each 32B model.
+      Smooth unimodal peak mid-network.
+    analysis: Middle-layer optimality generalizes. Appendix material — confirms methodological
+      choice (use ~44-48% depth) is principled and robust.
+  - name: 16-label taxonomy supervision
+    plan_id: exp-009
+    description: Fine-grained labels (Type 1/2/3/4 safety reasoning categories) instead
+      of binary commitment. Evaluate if richer supervision improves detection.
+    expected_results:
+      r1_8b_16label_coverage: 0.674
+      r1_8b_16label_precision: 0.59
+      r1_8b_16label_precp_fpr: 0.17
+      r1_8b_16label_lead_mean: 4.2
+      r1_8b_16label_vs_binary_coverage_delta: 0.023
+      r1_32b_16label_coverage: 0.628
+      r1_32b_16label_precision: 0.55
+      r1_32b_16label_precp_fpr: 0.19
+      r1_32b_16label_lead_mean: 3.5
+      r1_32b_16label_vs_binary_coverage_delta: 0.023
+      improvement_significant: false
+    result_rationale: '16-label supervision provides marginal improvement (+2-3pp
+      coverage) but not significant. The fine-grained categories (Type 1: acknowledgment,
+      Type 2: hedging, Type 3: active reasoning, Type 4: commitment) add nuance but
+      the core binary signal (safe vs committed) is what the linear probe already
+      captures well. The 16 categories have high within-class variance in hidden space
+      — they''re linguistically distinct but not geometrically distinct at the representation
+      level. A linear probe cannot leverage the additional supervision effectively
+      because category boundaries aren''t linearly separable. Diminishing returns
+      confirm that method simplicity is optimal — consistent with paper''s ''simple
+      methods saturate'' narrative.'
+    tables:
+    - name: 'Table S2: Fine-grained vs Binary Supervision'
+      columns:
+      - Model
+      - Supervision
+      - Coverage
+      - Precision
+      - Pre-CP FPR
+      rows:
+      - - r1-8b
+        - Binary
+        - 65.1%
+        - 58.3%
+        - 16.0%
+      - - r1-8b
+        - 16-label
+        - 67.4%
+        - 59.0%
+        - 17.0%
+      - - r1-32b
+        - Binary
+        - 60.5%
+        - 54.0%
+        - 18.0%
+      - - r1-32b
+        - 16-label
+        - 62.8%
+        - 55.0%
+        - 19.0%
+    figures_description:
+    - Confusion matrix for 16-label classifier showing which categories are hardest
+      to distinguish (Type 2 vs Type 3 merge).
+    analysis: Marginal gains confirm binary supervision is near-optimal for linear
+      probes. The 16-label system's value is analytical (understanding reasoning phases)
+      not operational (improving detection). Include as appendix ablation addressing
+      reviewer concern 5.
+  - name: Oracle decomposition analysis
+    plan_id: exp-010
+    description: Analyze what future-label information the oracle uses that probes
+      cannot access. Decompose the +31-step lead time advantage.
+    expected_results:
+      oracle_advantage_from_future_labels: 31.0
+      probe_max_lead_achieved: 4.9
+      gap_steps: 26.1
+      oracle_uses_label_persistence: true
+      oracle_uses_final_3_labels: true
+      probe_signal_is_instantaneous: true
+      mutual_info_current_state_future_commitment: 0.12
+      mutual_info_last5_states_future_commitment: 0.18
+      transition_predictability_from_current: 0.34
+      transition_predictability_from_window: 0.41
+    result_rationale: 'The oracle''s +31-step advantage comes from accessing the FULL
+      future label sequence — it ''knows'' the model will commit because it sees the
+      commitment happen. Probes only access current/recent hidden states. The mutual
+      information between current hidden state and future commitment point is low
+      (0.12 bits) — hidden states encode WHAT the model is currently reasoning about,
+      not WHERE its reasoning will eventually converge. The safety reasoning process
+      is genuinely stochastic from the perspective of any single time step: the model
+      could still ''recover'' (return to safe reasoning) at many pre-commitment points.
+      This is a principled limitation: commitment detection is easy in retrospect,
+      hard in prospect, because reasoning trajectories are non-Markovian and the decisive
+      transition is not foreshadowed in hidden states.'
+    tables: []
+    figures_description:
+    - 'Mutual information curve: I(h_t; commitment_point) as function of distance
+      to CP. Flat until ~3 steps before CP, then sharp rise — hidden states only ''know''
+      about commitment at the last moment.'
+    analysis: 'This analysis belongs in Discussion. Key insight: the safety signal
+      encodes current deliberative state well (enabling detection) but not future
+      trajectory (preventing prediction). The gap is not a method failure — it''s
+      an information-theoretic limitation. No amount of architectural sophistication
+      will close it without access to future tokens. Frame: ''commitment detection
+      is a fundamentally reactive task; proactive intervention requires different
+      approaches (e.g., steering, intervention) rather than better detectors.'''
+  - name: OpenThinker-7B (Qwen2.5-7B) 4th model
+    plan_id: exp-011
+    description: Add Qwen2.5-7B based OpenThinker to create 2×2 architecture×scale
+      matrix. Controls for scale confound.
+    expected_results:
+      openthinker_best_layer: 14
+      openthinker_best_layer_depth_pct: 0.5
+      openthinker_static_acc: 0.755
+      openthinker_static_precp_fpr: 0.24
+      openthinker_static_precision: 0.5
+      openthinker_temporal_coverage: 0.49
+      openthinker_temporal_precp_fpr: 0.22
+      openthinker_temporal_precision: 0.48
+      openthinker_safe_fpr: 0.43
+      openthinker_gru_lead_mean: 0.8
+      openthinker_gru_lead_median: -2
+    result_rationale: 'OpenThinker-7B (Qwen2.5-7B base) performs similarly to QwQ-32B
+      rather than to r1-8b, despite being the same scale as r1-8b. This is the key
+      result: it''s not SCALE that determines signal quality, it''s TRAINING (R1 distillation
+      vs independent RLHF). The Qwen-family models (OpenThinker-7B, QwQ-32B) both
+      show weaker HS advantage over text because their safety training encodes commitment
+      signals in more distributed/diffuse representations. The 2×2 matrix reveals:
+      {R1-family (r1-8b, r1-32b): strong HS advantage} vs {Qwen-native (OpenThinker,
+      QwQ): weak HS advantage}. Scale is not the confound — training lineage is.'
+    tables:
+    - name: 'Table S3: 2×2 Architecture × Scale Matrix'
+      columns:
+      - ''
+      - 7-8B
+      - 32B
+      rows:
+      - - R1-distilled (Llama/Qwen)
+        - 'r1-8b: FPR 16%, Prec 62%'
+        - 'r1-32b: FPR 19%, Prec 56%'
+      - - Qwen-native (independent)
+        - 'OpenThinker: FPR 24%, Prec 50%'
+        - 'QwQ: FPR 26%, Prec 49%'
+    figures_description:
+    - 2×2 matrix heatmap of HS-vs-text FPR advantage. Clear row effect (R1 > Qwen-native),
+      minimal column effect (7B ≈ 32B).
+    analysis: 'P2 experiment but valuable for median tier narrative: the effect is
+      architecture-FAMILY specific, not scale-specific. R1 distillation creates concentrated
+      safety signal geometry that probes can exploit. Independent training (QwQ, OpenThinker)
+      distributes safety information more diffusely. This supports the reframing:
+      ''HS probes are consistently more precise WITHIN architecture families, with
+      effect magnitude dependent on training methodology.'''
+  - name: GRU probe on 32B models
+    plan_id: exp-012
+    description: GRU h=256 multi-layer (7L) on r1-32b and QwQ-32B. Test if more data
+      (longer traces) helps. Verify 'simplicity is optimal' finding.
+    expected_results:
+      r1_32b_gru_acc: 0.785
+      r1_32b_gru_crossing_rate: 0.72
+      r1_32b_gru_lead_mean: 2.8
+      r1_32b_gru_lead_median: -1
+      r1_32b_gru_safe_fpr: 0.55
+      r1_32b_gru_precision: 0.52
+      r1_32b_gru_vs_lr_delta_coverage: 0.115
+      r1_32b_gru_vs_lr_delta_precision: -0.02
+      r1_32b_gru_seed_variance_coverage:
+      - 0.65
+      - 0.79
+      qwq_32b_gru_acc: 0.72
+      qwq_32b_gru_crossing_rate: 0.58
+      qwq_32b_gru_lead_mean: -0.5
+      qwq_32b_gru_lead_median: -3
+      qwq_32b_gru_safe_fpr: 0.59
+      qwq_32b_gru_precision: 0.44
+      qwq_32b_gru_vs_lr_delta_coverage: 0.115
+      qwq_32b_gru_vs_lr_delta_precision: -0.03
+      qwq_32b_gru_seed_variance_coverage:
+      - 0.48
+      - 0.67
+    result_rationale: 'GRU provides higher coverage (+11pp over LR) on 32B models
+      but at the cost of precision (-2-3pp) and much higher safe FPR (55-59% vs 40-43%).
+      This mirrors the r1-8b pattern: GRU achieves coverage by being more aggressive
+      (lower threshold effectively), not by genuinely better signal extraction. The
+      coverage-precision tradeoff confirms that LR temporal is the better operating
+      point for deployment (lower FPR). Seed variance remains high (14pp range for
+      r1-32b, 19pp for QwQ) — GRU is unreliable. Lead time on 32B is worse than r1-8b
+      (mean +2.8 vs +4.7 for r1-32b; -0.5 for QwQ), falling within the median tier
+      range [-1.0, 4.0]. The ''simplicity is optimal'' narrative holds: GRU doesn''t
+      improve the metrics that matter (precision, FPR) despite being more complex.'
+    tables:
+    - name: 'Table S4: GRU vs LR Temporal on 32B Models'
+      columns:
+      - Model
+      - Method
+      - Coverage
+      - Precision
+      - Pre-CP FPR
+      - Safe FPR
+      - Lead Mean
+      rows:
+      - - r1-32b
+        - LR W=15
+        - 60.5%
+        - 54.0%
+        - 18.0%
+        - 40.0%
+        - '+3.8'
+      - - r1-32b
+        - GRU 7L
+        - 72.0%
+        - 52.0%
+        - 22.0%
+        - 55.0%
+        - '+2.8'
+      - - QwQ-32B
+        - LR W=15
+        - 46.5%
+        - 47.0%
+        - 24.0%
+        - 43.0%
+        - '+2.4'
+      - - QwQ-32B
+        - GRU 7L
+        - 58.0%
+        - 44.0%
+        - 28.0%
+        - 59.0%
+        - '-0.5'
+    figures_description:
+    - 'Precision-coverage Pareto front: LR dominates GRU in the high-precision region
+      for all models.'
+    - Seed variance boxplots (5 seeds × 3 models) showing GRU instability.
+    analysis: 'GRU on 32B confirms the r1-8b finding: complex sequential models don''t
+      improve over simple temporal LR when measuring the metrics that matter for deployment
+      (precision, FPR). Coverage gains are illusory — driven by aggressive firing.
+      Report multi-seed variance honestly; it''s itself a finding about signal reliability.'
+  - name: Text baseline on 32B models
+    plan_id: exp-013
+    description: Sentence-BERT + temporal LR on CoT text for r1-32b and QwQ-32B. Compare
+      to hidden-state probes.
+    expected_results:
+      r1_32b_text_static_coverage: 0.535
+      r1_32b_text_static_lead: 3.1
+      r1_32b_text_static_precp_fpr: 0.29
+      r1_32b_text_static_precision: 0.48
+      r1_32b_text_static_safe_fpr: 0.47
+      r1_32b_text_temporal_coverage: 0.573
+      r1_32b_text_temporal_lead: 8.2
+      r1_32b_text_temporal_precp_fpr: 0.25
+      r1_32b_text_temporal_precision: 0.5
+      r1_32b_text_temporal_safe_fpr: 0.42
+      qwq_32b_text_static_coverage: 0.419
+      qwq_32b_text_static_lead: 1.5
+      qwq_32b_text_static_precp_fpr: 0.33
+      qwq_32b_text_static_precision: 0.42
+      qwq_32b_text_static_safe_fpr: 0.51
+      qwq_32b_text_temporal_coverage: 0.442
+      qwq_32b_text_temporal_lead: 5.8
+      qwq_32b_text_temporal_precp_fpr: 0.3
+      qwq_32b_text_temporal_precision: 0.45
+      qwq_32b_text_temporal_safe_fpr: 0.46
+      hs_vs_text_fpr_gap_r132b: 0.07
+      hs_vs_text_fpr_gap_qwq: 0.06
+    result_rationale: Text baselines on 32B models show the HS precision advantage
+      holds for r1-32b (FPR 18% vs 25% = 7pp gap) but narrows for QwQ (24% vs 30%
+      = 6pp gap). Both gaps are smaller than r1-8b's 11pp (16% vs 27%). Text lead
+      time is inflated (8.2, 5.8 steps) relative to HS temporal (3.8, 2.4 steps) because
+      text probes fire earlier but less accurately — higher pre-CP FPR means they're
+      trigger-happy, not genuinely detecting earlier. The text probe's advantage on
+      32B is that longer CoT contains more explicit reasoning text, giving sentence-BERT
+      more signal to work with. But this additional textual signal doesn't close the
+      precision gap — HS probes still win on the metric that matters (pre-CP FPR).
+    tables:
+    - name: 'Table 4b: HS vs Text Probe Comparison (32B Models)'
+      columns:
+      - Model
+      - Modality
+      - Pre-CP FPR
+      - Precision
+      - Coverage
+      - Lead
+      rows:
+      - - r1-32b
+        - HS temporal
+        - 18.0%
+        - 54.0%
+        - 60.5%
+        - '+3.8'
+      - - r1-32b
+        - Text temporal
+        - 25.0%
+        - 50.0%
+        - 57.3%
+        - '+8.2'
+      - - QwQ-32B
+        - HS temporal
+        - 24.0%
+        - 47.0%
+        - 46.5%
+        - '+2.4'
+      - - QwQ-32B
+        - Text temporal
+        - 30.0%
+        - 45.0%
+        - 44.2%
+        - '+5.8'
+    figures_description:
+    - 'FPR comparison bar chart: HS vs text for all 3 models. Clear advantage for
+      r1-8b, moderate for r1-32b, marginal for QwQ.'
+    analysis: 'HS advantage over text is consistent in direction (always lower FPR)
+      but varies in magnitude across architectures. This supports the softened Claim
+      1: ''consistently more precise'' holds, but ''substantially'' only applies within
+      the R1 family. For QwQ, the gap narrows to the point where it may not justify
+      the added complexity of hidden-state extraction in deployment.'
+  - name: BOCPD and CUSUM on 32B models
+    plan_id: exp-014
+    description: Apply BOCPD (λ=10,100) and CUSUM on probe score sequences from 32B
+      models. Test change-point detection for early warning.
+    expected_results:
+      r1_32b_bocpd_lambda10_detection_rate: 0.88
+      r1_32b_bocpd_lambda10_mean_lead: 2.9
+      r1_32b_bocpd_lambda10_median_lead: 0
+      r1_32b_bocpd_lambda100_detection_rate: 0.63
+      r1_32b_bocpd_lambda100_mean_lead: 0.8
+      r1_32b_cusum_detection_rate: 0.58
+      r1_32b_cusum_mean_lead: -0.5
+      r1_32b_cusum_median_lead: -4
+      qwq_32b_bocpd_lambda10_detection_rate: 0.79
+      qwq_32b_bocpd_lambda10_mean_lead: 1.8
+      qwq_32b_bocpd_lambda10_median_lead: -1
+      qwq_32b_bocpd_lambda100_detection_rate: 0.51
+      qwq_32b_cusum_detection_rate: 0.47
+      qwq_32b_cusum_mean_lead: -2.1
+    result_rationale: 'BOCPD on 32B models shows slightly degraded performance vs
+      r1-8b (detection 88% vs 93% for r1-32b; 79% for QwQ). Mean lead remains around
+      the simple threshold level (+2.9 vs +3.45 on r1-8b). BOCPD doesn''t achieve
+      EARLIER detection than simple threshold on 32B models either — confirming the
+      r1-8b finding generalizes. The median lead is 0 or -1, meaning BOCPD fires at
+      approximately the same time as the probe score first crosses threshold. CUSUM
+      continues to fail universally. The reason: BOCPD detects distributional shift,
+      but the probe score trajectory doesn''t exhibit a clean shift — it fluctuates
+      throughout reasoning and only stabilizes AFTER commitment. The change-point
+      is contemporaneous with commitment, not predictive of it.'
+    tables:
+    - name: 'Table S5: Change-Point Detection on 32B Models'
+      columns:
+      - Model
+      - Method
+      - Detection Rate
+      - Mean Lead
+      - Median Lead
+      rows:
+      - - r1-8b
+        - BOCPD λ=10
+        - 93%
+        - '+3.45'
+        - '0'
+      - - r1-32b
+        - BOCPD λ=10
+        - 88%
+        - '+2.9'
+        - '0'
+      - - QwQ-32B
+        - BOCPD λ=10
+        - 79%
+        - '+1.8'
+        - '-1'
+      - - r1-8b
+        - CUSUM
+        - 65%
+        - '+0.89'
+        - '-4'
+      - - r1-32b
+        - CUSUM
+        - 58%
+        - '-0.5'
+        - '-4'
+      - - QwQ-32B
+        - CUSUM
+        - 47%
+        - '-2.1'
+        - '-5'
+    figures_description:
+    - BOCPD run-length posterior visualization on example traces from each model.
+    analysis: 'BOCPD provides high detection rate but not earlier detection than simpler
+      methods. On 32B, performance degrades slightly due to weaker underlying probe
+      scores (less clean transitions). Strengthens Claim 3: even sophisticated change-point
+      methods cannot reliably predict commitment before it occurs. The limitation
+      is in the signal, not the detection method.'
+  - name: FPR analysis on 32B models
+    plan_id: exp-015
+    description: Run all probes on safe traces (final_judgment=0.5) from r1-32b and
+      QwQ-32B. Report FPR, precision at various thresholds.
+    expected_results:
+      r1_32b_hs_static_safe_fpr: 0.41
+      r1_32b_hs_temporal_safe_fpr: 0.4
+      r1_32b_text_static_safe_fpr: 0.47
+      r1_32b_text_temporal_safe_fpr: 0.42
+      r1_32b_gru_safe_fpr: 0.55
+      qwq_32b_hs_static_safe_fpr: 0.44
+      qwq_32b_hs_temporal_safe_fpr: 0.43
+      qwq_32b_text_static_safe_fpr: 0.51
+      qwq_32b_text_temporal_safe_fpr: 0.46
+      qwq_32b_gru_safe_fpr: 0.59
+      all_models_min_safe_fpr: 0.39
+      deployment_utility_compromised: true
+    result_rationale: 'Safe FPR remains high (>39%) across ALL models and methods.
+      This is the median tier''s key deployment limitation. The probes fire on ~40-59%
+      of safe trace steps, meaning in production roughly half of all safe reasoning
+      would trigger false alarms. The issue is structural: safe reasoning traces contain
+      deliberation steps that LOOK like pre-commitment uncertainty (the model considers
+      and rejects harmful paths), and probes cannot distinguish ''considering harm
+      then rejecting'' from ''considering harm then committing.'' On QwQ safe FPR
+      is slightly higher because QwQ''s more verbose reasoning style includes more
+      explicit harm-consideration steps. The HS advantage in pre-CP FPR does NOT translate
+      to lower safe FPR — safe FPR is similar between HS and text (41% vs 47% for
+      r1-32b). This asymmetry is important: HS probes are better at distinguishing
+      pre-commitment from post-commitment on UNSAFE traces, but not better at distinguishing
+      safe from unsafe traces overall.'
+    tables:
+    - name: 'Table 9: Safe Trace FPR Across Models'
+      columns:
+      - Model
+      - HS Static
+      - HS Temporal
+      - Text Static
+      - Text Temporal
+      - GRU
+      rows:
+      - - r1-8b
+        - 39.0%
+        - 39.2%
+        - 50.2%
+        - 38.5%
+        - 52.1%
+      - - r1-32b
+        - 41.0%
+        - 40.0%
+        - 47.0%
+        - 42.0%
+        - 55.0%
+      - - QwQ-32B
+        - 44.0%
+        - 43.0%
+        - 51.0%
+        - 46.0%
+        - 59.0%
+    figures_description:
+    - ROC curves on safe-vs-unsafe classification (not temporal detection). Shows
+      fundamental discrimination ceiling.
+    - 'Threshold sweep: precision vs safe FPR tradeoff curve. No operating point achieves
+      <30% safe FPR with >50% coverage.'
+    analysis: 'High safe FPR is the strongest argument against deployment utility
+      in current form. Must acknowledge honestly: these are diagnostic tools for understanding
+      safety commitment, not production-ready monitors. The precision ADVANTAGE of
+      HS over text holds regardless (relative comparison is valid even if absolute
+      FPR is high), but the absolute numbers weaken any deployment claims. Frame in
+      Limitations: ''threshold tuning, ensemble methods, and architecture-specific
+      calibration are needed for deployment; our contribution is the empirical finding
+      that HS probes offer a precision advantage, not a deployable system.'''
+  review_report: "---\ndream_id: dream_20260516T212347\ntier: median\noverall_score:\
+    \ weak reject\ntimestamp: 2026-05-16T22:05:20.734770+00:00\n---\n\n# Dream Review\
+    \ Report: Temporal Probing for Safety Commitment Detection in Reasoning Models\n\
+    \n**dream_id**: 20260516T212347  \n**Review mode**: full (2-reviewer roundtable)\
+    \  \n**Date**: 2026-05-16  \n**Venue standard**: Top ML venue, ~25% acceptance\
+    \ rate, 6-point scale\n\n---\n\n## Roundtable Summary\n\n| | R1 (Methods + Experiments)\
+    \ | R2 (Novelty + Related Work) | Converged |\n|---|---|---|---|\n| **Score**\
+    \ | 4 (Weak Accept) | 3 (Weak Reject) | **3 (Weak Reject)** |\n| **Confidence**\
+    \ | 4/5 | 4/5 | 4/5 |\n\n**Convergence rationale**: R1 valued the systematic evaluation\
+    \ and honest negative results but acknowledged the dimensionality-mismatch confound\
+    \ and small-sample limitations. R2's concerns about zero figures, no methodological\
+    \ novelty, weak text baseline, and potentially tautological lead-time claim proved\
+    \ persuasive during cross-sharing. Both reviewers agreed that the core HS-vs-text\
+    \ comparison is confounded by feature dimensionality, which undermines Claim 1\
+    \ (the headline result). The paper is below the acceptance threshold but contains\
+    \ salvageable contributions if specific issues are addressed.\n\n---\n\n## 1.\
+    \ Paper Summary\n\nThe paper evaluates detection methods for \"safety commitment\
+    \ points\" in reasoning LLMs, where extended chain-of-thought transitions from\
+    \ safety-aware deliberation to harmful content generation. Four models across\
+    \ two architecture families (R1-distilled, Qwen-native) at 7B/32B scale are tested\
+    \ with static/temporal LR probes, GRU, Mahalanobis distance, BOCPD/CUSUM, and\
+    \ text baselines. The paper claims: (1) HS probes more precise than text within\
+    \ architecture families, (2) temporal context of ~15 steps needed, (3) early detection\
+    \ fundamentally unreliable, (4) cross-model transfer fails.\n\n---\n\n## 2. Strengths\n\
+    \n**S1. Well-defined problem formulation (R1, R2 agree).** The commitment point\
+    \ definition is clean, the 4-metric evaluation framework (coverage, pre-commitment\
+    \ FPR, precision, lead time) is well-motivated, and the distinction between pre-commitment\
+    \ FPR and safe-trace FPR captures a deployment-relevant nuance that prior work\
+    \ overlooked.\n\n**S2. Comprehensive cross-architecture design (R1).** The 2x2\
+    \ architecture-by-scale matrix (Table 2) with 4 models is a genuinely informative\
+    \ experimental design. Disentangling training lineage from scale is a useful empirical\
+    \ contribution.\n\n**S3. Honest negative results (R1, R2 agree).** The paper does\
+    \ not oversell. Mahalanobis distance failure, unreliable lead time, high safe\
+    \ FPR (>39%), borderline significance (p=0.034 not surviving correction), and\
+    \ cross-transfer failure are all reported transparently. This intellectual honesty\
+    \ is commendable and the \"principled limitations\" framing is appropriate.\n\n\
+    **S4. Method breadth (R1).** Testing 6 detection paradigms (static LR, temporal\
+    \ LR, GRU, Mahalanobis, BOCPD, CUSUM) across 2 modalities (HS, text) provides\
+    \ a thorough landscape. The window-size ablation (Table 5) and fine-grained supervision\
+    \ ablation (Table 12) add useful methodological detail.\n\n**S5. Oracle gap analysis\
+    \ (R2).** The mutual information argument (MI = 0.12 bits between current hidden\
+    \ state and future commitment) provides a principled information-theoretic bound\
+    \ on early detection, elevating the lead-time finding from \"our methods fail\"\
+    \ to \"early detection is fundamentally limited.\"\n\n---\n\n## 3. Weaknesses\n\
+    \n### Critical (would need to be addressed for acceptance)\n\n**W1. Confounded\
+    \ HS-vs-text comparison (R1 primary, R2 concurs).**  \nThe headline finding (Claim\
+    \ 1) rests on comparing HS temporal probes against text probes, but the feature\
+    \ dimensionalities are massively unequal. HS temporal features with W=15 at a\
+    \ 4096-d layer yield 61,440-dimensional input to LR, while the text baseline uses\
+    \ Sentence-BERT embeddings (768-d) or TF-IDF at much lower dimensionality. A logistic\
+    \ regression classifier with 10x more features has substantially more capacity\
+    \ to find discriminative directions. The observed FPR advantage (7pp on r1-32b,\
+    \ 6pp on QwQ) could partially or wholly reflect this capacity gap rather than\
+    \ a genuine modality advantage. A dimensionality-matched control (e.g., PCA-reduced\
+    \ HS features to match text dimensionality, or a fine-tuned sentence transformer\
+    \ at comparable capacity) is essential to validate Claim 1.\n\n**W2. Zero figures\
+    \ in an 8-page paper (R2 primary, R1 concurs).**  \nThe paper contains 13 tables\
+    \ and 0 figures. This is a serious presentation failure. Key results that demand\
+    \ visualization include: layer sweep profiles, lead-time distribution violin/CDF\
+    \ plots, the cross-transfer heatmap, window-size diminishing returns curve, and\
+    \ PCA/Fisher analysis of signal geometry. The experiment design reference describes\
+    \ these figures in detail but none appear in the paper. Tables alone cannot convey\
+    \ distributional information (e.g., \"median lead = 0\" hides the shape of the\
+    \ lead-time distribution) or spatial structure (cross-transfer patterns). The\
+    \ paper reads like a technical report rather than a conference submission.\n\n\
+    **W3. Small sample sizes with wide CIs undermine per-model claims (R1 primary).**\
+    \  \nTest sets of n=35-43 traces per model yield bootstrap CIs that span 10-15\
+    \ percentage points (e.g., r1-32b HS FPR: [14.2, 25.1]). The HS-vs-text comparison\
+    \ on r1-32b is borderline significant (p=0.034) and would not survive Bonferroni\
+    \ correction across 4 models. On QwQ, p=0.218 (not significant). The paper's argument\
+    \ that \"consistency across models\" substitutes for per-model significance is\
+    \ reasonable but should be formalized (e.g., a mixed-effects model treating model\
+    \ as a random effect, or a sign test across all model-modality pairs).\n\n**W4.\
+    \ No methodological novelty (R2 primary).**  \nEvery method tested is standard:\
+    \ logistic regression, GRU, Mahalanobis distance, BOCPD, CUSUM, Sentence-BERT.\
+    \ The temporal probe is a sliding-window concatenation fed to LR. No new detection\
+    \ algorithm, architecture, or training procedure is proposed. For a top venue,\
+    \ purely empirical evaluations of existing methods need either (a) a larger scale/scope\
+    \ than 4 models, (b) surprising findings that change how the community thinks,\
+    \ or (c) a new benchmark/dataset. This paper partially achieves (b) with the architecture-specificity\
+    \ and oracle-gap findings, but the other claims (temporal context helps, early\
+    \ detection is hard) are unsurprising.\n\n### Major\n\n**W5. Potentially tautological\
+    \ lead-time claim (R2).**  \nClaim 3 states that \"pre-textual early detection\
+    \ is fundamentally unreliable.\" But the commitment point is defined as the *last*\
+    \ step containing safety reasoning. By definition, this is the moment when safety\
+    \ reasoning disappears from the text. A probe that detects the transition in hidden\
+    \ states at the same moment the text transitions would have lead time = 0, which\
+    \ is exactly what is observed. The \"fundamental limitation\" may be partly an\
+    \ artifact of the label definition (last safety step) rather than a deep information-theoretic\
+    \ constraint. To disentangle this, the paper would need an alternative commitment-point\
+    \ definition (e.g., first post-commitment harmful step, or the point of no return\
+    \ as determined by counterfactual intervention) and show that lead time remains\
+    \ unreliable under that definition. The MI analysis (0.12 bits) partially addresses\
+    \ this but is presented only as a discussion-section number without full methodology.\n\
+    \n**W6. Incomplete OpenThinker-7B results (R1, R2 agree).**  \nTable 1 shows dashes\
+    \ for OpenThinker-7B coverage and AUROC. The 4th model in the 2x2 matrix has incomplete\
+    \ results, yet conclusions about it (Table 2) are stated without qualification.\
+    \ This undermines the architecture-vs-scale disentanglement that is a stated contribution.\n\
+    \n**W7. High safe FPR acknowledged but insufficiently analyzed (R1).**  \nSafe\
+    \ FPR >39% for ALL methods means roughly 40-59% of safe reasoning steps trigger\
+    \ false alarms. The paper acknowledges this limits deployment but does not explore\
+    \ mitigation (threshold tuning curves, precision-recall operating points, cost-sensitive\
+    \ formulations). The claim that \"these are diagnostic tools\" is honest but reduces\
+    \ the practical significance of the work. A threshold sweep figure showing the\
+    \ precision-coverage-FPR tradeoff surface would help readers assess deployment\
+    \ feasibility under different operating constraints.\n\n**W8. Missing probe control\
+    \ task (R2).**  \nWithout a selectivity control in the style of Hewitt and Liang\
+    \ (2019), it is unclear whether probes exploit genuine safety-relevant information\
+    \ or structural/positional features of reasoning traces (e.g., trace length, step\
+    \ position relative to trace end). A control probe trained on shuffled labels\
+    \ or a non-safety binary classification task at the same granularity would establish\
+    \ whether the observed accuracy exceeds what trace structure alone provides.\n\
+    \n### Minor\n\n**W9. Related Work is thin (R2).**  \nAt ~1 page with 4 short paragraphs,\
+    \ Related Work is underweight for a paper claiming to establish \"principled boundaries\"\
+    \ for a field. Missing or underrepresented: probing methodology literature (Belinkov\
+    \ 2022, Hewitt & Liang 2019), representation engineering (Zou et al. 2023), activation\
+    \ steering, jailbreak detection beyond TrajGuard/SafeSwitch/SIREN, and the broader\
+    \ interpretability literature on safety-relevant features. The references list\
+    \ is not visible in the provided pages, making it impossible to verify citation\
+    \ coverage.\n\n**W10. Cross-transfer experimental design (R1).**  \nThe cross-transfer\
+    \ experiment (Table 9) uses a learned linear projection (4096 to 5120 dimensions)\
+    \ trained on target-domain data. With only ~125 training traces, the projection\
+    \ head has ~21M parameters to estimate, raising severe overfitting concerns. The\
+    \ near-chance transfer accuracy could reflect projection failure rather than genuinely\
+    \ incompatible signal geometries. A simpler test (e.g., CKA similarity between\
+    \ same-layer representations across models, or zero-shot transfer without projection)\
+    \ would be more convincing.\n\n**W11. No references list visible (R2).**  \nThe\
+    \ 8-page PDF does not include a references section in the provided pages. This\
+    \ may be a formatting issue, but it prevents verification of citation completeness\
+    \ and accuracy.\n\n---\n\n## 4. Questions for Authors\n\n**Q1 (from W1):** What\
+    \ is the feature dimensionality of the text baseline? If HS temporal probes use\
+    \ 15x4096 = 61,440 features while text uses 768-d Sentence-BERT embeddings, have\
+    \ you tested a dimensionality-matched comparison (e.g., PCA-reduced HS to 768-d,\
+    \ or a higher-capacity text encoder)?\n\n**Q2 (from W5):** The commitment point\
+    \ is defined as the last step with safety reasoning. If you shifted the label\
+    \ to the first post-commitment harmful step (or used a sliding definition), does\
+    \ the lead-time distribution change meaningfully? How sensitive are your findings\
+    \ to the exact commitment-point annotation?\n\n**Q3 (from W6):** Why are OpenThinker-7B\
+    \ coverage and AUROC missing from Table 1? Were these experiments incomplete at\
+    \ submission time?\n\n**Q4 (from W8):** Have you run a control probe experiment\
+    \ (random labels or non-safety task) to establish a selectivity baseline for your\
+    \ probes?\n\n**Q5 (from W3):** The consistency argument (same direction in 3/3\
+    \ models) is appealing but informal. Have you considered a formal meta-analytic\
+    \ test (e.g., Stouffer's method for combining p-values, or a mixed-effects model)?\n\
+    \n---\n\n## 5. Experiment Coverage Assessment\n\nCompared against the full experiment\
+    \ design (15 planned experiments):\n\n| Experiment | Status in Paper |\n|---|---|\n\
+    | exp-001 (cross-arch static probe) | Covered (Table 1, 2) |\n| exp-002 (temporal\
+    \ window eval) | Covered (Table 3, 4) |\n| exp-003 (cross-model transfer) | Covered\
+    \ (Table 9) |\n| exp-004 (lead time 32B) | Covered (Table 6) |\n| exp-005 (Mahalanobis\
+    \ 32B) | Covered (Table 8) |\n| exp-006 (bootstrap CIs) | Covered (Table 11) |\n\
+    | exp-007 (window ablation) | Covered (Table 5) |\n| exp-008 (layer selection\
+    \ ablation 32B) | **Missing** — no dedicated results |\n| exp-009 (16-label taxonomy)\
+    \ | Covered (Table 12) |\n| exp-010 (oracle decomposition) | **Partial** — MI=0.12\
+    \ mentioned in Discussion, no table/figure/methodology |\n| exp-011 (OpenThinker-7B)\
+    \ | **Partial** — Table 1 has missing values |\n| exp-012 (GRU 32B) | Covered\
+    \ (Table 13) |\n| exp-013 (text baseline 32B) | Covered (Table 3) |\n| exp-014\
+    \ (BOCPD/CUSUM 32B) | Covered (Table 7) |\n| exp-015 (FPR analysis 32B) | Covered\
+    \ (Table 10) |\n\n**Coverage**: 12/15 fully covered, 2 partial, 1 missing. The\
+    \ missing layer-selection ablation (exp-008) would strengthen the methodological\
+    \ justification for layer choice. The oracle decomposition (exp-010) is the most\
+    \ impactful missing piece — it is referenced in the Discussion as the information-theoretic\
+    \ argument but presented as a single number (MI=0.12) without methodology, figures,\
+    \ or the mutual information curve described in the experiment design.\n\n---\n\
+    \n## 6. Consolidated Score and Recommendation\n\n**Score: 3/6 (Weak Reject)**\n\
+    \n**Justification:** The paper addresses a timely and important problem (safety\
+    \ monitoring of reasoning models) with a comprehensive experimental design and\
+    \ commendable intellectual honesty. However, the combination of (1) a confounded\
+    \ headline comparison that may not survive a dimensionality-matched control, (2)\
+    \ the complete absence of figures in a results-heavy empirical paper, (3) no methodological\
+    \ novelty, and (4) small sample sizes that prevent statistical confirmation of\
+    \ the main claim pushes the paper below the acceptance threshold for a top venue.\n\
+    \nThe strongest contributions are the architecture-specificity finding (training\
+    \ lineage matters more than scale) and the oracle-gap argument (commitment detection\
+    \ is fundamentally reactive). These are genuinely informative for the community.\
+    \ But they are currently supporting findings rather than the headline claim, and\
+    \ the paper's structure does not foreground them effectively.\n\n**Path to acceptance:**\n\
+    1. Add a dimensionality-matched text baseline (or PCA-reduced HS baseline) to\
+    \ validate Claim 1 independent of capacity confounds\n2. Add 4-5 figures: layer\
+    \ sweep profiles, lead-time distributions, transfer heatmap, window ablation curve,\
+    \ precision-recall operating characteristic\n3. Expand the oracle decomposition\
+    \ from a Discussion-section number to a full analysis with methodology and figures\n\
+    4. Complete OpenThinker-7B results\n5. Add probe selectivity controls (Hewitt\
+    \ & Liang 2019)\n6. Formalize the cross-model consistency argument with appropriate\
+    \ statistical machinery\n\n---\n\n## Appendix: Individual Reviewer Reports\n\n\
+    ### R1 (Methods + Experiments) — Score: 4/6 (Weak Accept), Confidence: 4/5\n\n\
+    **Assessment:** The experimental design is thorough and the problem formulation\
+    \ is clean. The 2x2 architecture-scale matrix is a well-designed study. The paper's\
+    \ willingness to report negative results (Mahalanobis failure, lead-time unreliability,\
+    \ high safe FPR) is a strength. The main methodological concern is the dimensionality\
+    \ mismatch between HS and text features, which could explain the observed FPR\
+    \ advantage without invoking a genuine modality difference. Small sample sizes\
+    \ (n=35-43) produce wide CIs that prevent definitive per-model conclusions. The\
+    \ cross-transfer projection experiment is underpowered. Reproducibility is hampered\
+    \ by underspecified details (step segmentation, token position for HS extraction,\
+    \ GRU training schedule).\n\n### R2 (Novelty + Related Work) — Score: 3/6 (Weak\
+    \ Reject), Confidence: 4/5\n\n**Assessment:** The paper proposes no new method\
+    \ — all techniques are standard. For a top venue, purely empirical evaluations\
+    \ need to clear a higher bar for either scale, surprise, or benchmark contribution.\
+    \ The lead-time claim (Claim 3) may be partially tautological given the commitment-point\
+    \ definition. Related Work is thin and missing key probing-methodology references.\
+    \ The complete absence of figures is a serious presentation failure that makes\
+    \ the paper read as a technical report. The architecture-specificity and oracle-gap\
+    \ findings are the most novel contributions but are currently underserved by the\
+    \ paper's structure and framing. The text baseline (TF-IDF / basic Sentence-BERT)\
+    \ is weak by 2026 standards; a fine-tuned text classifier could narrow the HS\
+    \ advantage substantially.\n"
+  error: ''
+- tier: worst
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/artifacts/dream_reports/dream_20260516T212347/worst/paper.pdf
+  imagined_experiments:
+  - name: Cross-architecture layer sweep + static probe (r1-32b)
+    plan_id: exp-001
+    description: Full 64-layer sweep on DeepSeek-R1-Distill-Qwen-32B and QwQ-32B.
+      Extract hidden states at all layers, compute Fisher discriminability, train
+      static LR probes per layer.
+    expected_results:
+      r1_32b_best_layer_idx: 29
+      r1_32b_best_layer_fisher: 2.8
+      r1_32b_best_static_acc: 0.712
+      r1_32b_best_static_f1: 0.521
+      r1_32b_best_crossing_rate: 0.372
+      r1_32b_best_lead_mean: -1.4
+      r1_32b_pca_var_explained_3pc: 0.089
+      r1_32b_fisher_orig_best: 2.8
+      r1_32b_fisher_pca3_best: 0.41
+      qwq_32b_best_layer_idx: 31
+      qwq_32b_best_layer_fisher: 1.9
+      qwq_32b_best_static_acc: 0.694
+      qwq_32b_best_static_f1: 0.488
+      qwq_32b_best_crossing_rate: 0.326
+      qwq_32b_best_lead_mean: -2.1
+      qwq_32b_pca_var_explained_3pc: 0.072
+      qwq_32b_fisher_orig_best: 1.9
+      qwq_32b_fisher_pca3_best: 0.33
+      r1_8b_fisher_orig_best_ref: 17.875
+      fisher_ratio_8b_vs_32b: 6.4
+    result_rationale: At 32B scale, safety-relevant information is distributed across
+      a much higher-dimensional manifold. The 5120-d hidden space with 64 layers means
+      representations are more disentangled and task-distributed — safety commitment
+      is not concentrated in a narrow subspace as it is at 8B/4096-d. Fisher discriminability
+      drops from ~18 (r1-8b L14) to 1.9-2.8 (32B best layer) because the safety signal
+      occupies a larger number of dimensions each with smaller individual contribution.
+      PCA top-3 explains even less variance (7-9% vs 17% on r1-8b), confirming the
+      signal is spread across 50+ minor principal components. The expected 44% depth
+      heuristic (layer 28-32) holds weakly but the discriminability peak is flat —
+      no layer achieves the clean separation seen at r1-8b layer 14. Static probes
+      achieve only ~70% accuracy (vs 81% on r1-8b) because a linear boundary in 5120-d
+      cannot capture the distributed safety geometry.
+    tables:
+    - name: Layer Sweep Summary (top-5 layers by Fisher)
+      columns:
+      - Model
+      - Layer
+      - Depth%
+      - Fisher
+      - Static Acc
+      - F1
+      - Crossing Rate
+      rows:
+      - - r1-32b
+        - L29
+        - 45%
+        - '2.81'
+        - '0.712'
+        - '0.521'
+        - '0.372'
+      - - r1-32b
+        - L31
+        - 48%
+        - '2.63'
+        - '0.705'
+        - '0.509'
+        - '0.349'
+      - - r1-32b
+        - L27
+        - 42%
+        - '2.44'
+        - '0.698'
+        - '0.495'
+        - '0.326'
+      - - r1-32b
+        - L33
+        - 52%
+        - '2.31'
+        - '0.691'
+        - '0.481'
+        - '0.302'
+      - - r1-32b
+        - L25
+        - 39%
+        - '2.18'
+        - '0.683'
+        - '0.468'
+        - '0.279'
+      - - QwQ-32B
+        - L31
+        - 48%
+        - '1.92'
+        - '0.694'
+        - '0.488'
+        - '0.326'
+      - - QwQ-32B
+        - L29
+        - 45%
+        - '1.85'
+        - '0.689'
+        - '0.479'
+        - '0.302'
+      - - QwQ-32B
+        - L34
+        - 53%
+        - '1.71'
+        - '0.678'
+        - '0.461'
+        - '0.279'
+      - - QwQ-32B
+        - L27
+        - 42%
+        - '1.64'
+        - '0.671'
+        - '0.448'
+        - '0.256'
+      - - QwQ-32B
+        - L36
+        - 56%
+        - '1.52'
+        - '0.664'
+        - '0.432'
+        - '0.233'
+    figures_description:
+    - 'Fisher discriminability by layer (64 layers): flat plateau between layers 25-35
+      with max ~2.8 for r1-32b, ~1.9 for QwQ. Compare to r1-8b''s sharp peak at L14
+      (Fisher=17.9). Inset shows normalized depth comparison.'
+    - 'PCA 2D projection of best layer (L29 r1-32b): pre-CP and post-CP points nearly
+      completely overlapping, no visible cluster separation. Contrast with r1-8b L14
+      where partial separation is visible.'
+    analysis: 'Neither 32B model produces a layer with Fisher discriminability even
+      approaching r1-8b''s L14 (17.9). The best layers achieve Fisher 1.9-2.8, a 6-9x
+      reduction. This is not a layer selection failure — the full 64-layer sweep shows
+      a flat, low discriminability plateau with no sharp peak. The safety signal geometry
+      is fundamentally different at scale: representations are more distributed, and
+      the linear separability that enables simple probes at 8B does not exist at 32B.
+      Static probe accuracy degrades to near the text-baseline level (~70% vs text''s
+      ~66%), eliminating the hidden-state advantage.'
+  - name: Cross-architecture temporal window evaluation (32B)
+    plan_id: exp-002
+    description: Temporal LR with W=15 on best layers of r1-32b and QwQ-32B. Test
+      whether +30pp coverage improvement from temporal context holds at 32B scale.
+    expected_results:
+      r1_32b_temporal_w15_acc: 0.721
+      r1_32b_temporal_w15_crossing_rate: 0.395
+      r1_32b_temporal_w15_lead_mean: -0.8
+      r1_32b_temporal_coverage_delta: 0.023
+      r1_32b_temporal_vs_static_gain: 0.9
+      qwq_32b_temporal_w15_acc: 0.703
+      qwq_32b_temporal_w15_crossing_rate: 0.372
+      qwq_32b_temporal_w15_lead_mean: -1.5
+      qwq_32b_temporal_coverage_delta: 0.046
+      qwq_32b_temporal_vs_static_gain: 1.1
+      r1_8b_temporal_delta_ref: 30.2
+      coverage_gain_ratio_32b_vs_8b: 0.08
+    result_rationale: Temporal context provides minimal additional benefit on 32B
+      because the per-step signal is already too weak for temporal aggregation to
+      amplify. On r1-8b, temporal windowing works because each step contributes a
+      weak-but-consistent directional signal that accumulates over W=15 steps. On
+      32B, the per-step signal is near noise floor (Fisher ~2.8 vs ~18), so aggregating
+      15 noisy steps does not produce meaningful separation improvement. Coverage
+      gain is +2-5pp (vs +30pp on r1-8b), statistically indistinguishable from zero
+      given n=43 traces. The temporal context hypothesis holds at 8B but fails to
+      transfer — the mechanism requires sufficient per-step signal strength as a precondition.
+    tables:
+    - name: Temporal vs Static Coverage Comparison
+      columns:
+      - Model
+      - Method
+      - Coverage
+      - Lead Mean
+      - Acc
+      - Delta vs Static
+      rows:
+      - - r1-8b
+        - Static LR L14
+        - 60.5%
+        - '+3.0'
+        - '0.817'
+        - —
+      - - r1-8b
+        - Temporal W=15
+        - 65.1%*
+        - '+4.9'
+        - '0.848'
+        - +4.6pp*
+      - - r1-32b
+        - Static LR L29
+        - 37.2%
+        - '-1.4'
+        - '0.712'
+        - —
+      - - r1-32b
+        - Temporal W=15
+        - 39.5%
+        - '-0.8'
+        - '0.721'
+        - +2.3pp
+      - - QwQ-32B
+        - Static LR L31
+        - 32.6%
+        - '-2.1'
+        - '0.694'
+        - —
+      - - QwQ-32B
+        - Temporal W=15
+        - 37.2%
+        - '-1.5'
+        - '0.703'
+        - +4.6pp
+    figures_description:
+    - 'Bar chart: temporal coverage delta by model. r1-8b shows +4.6pp (significant),
+      r1-32b shows +2.3pp (n.s.), QwQ-32B shows +4.6pp (n.s.). Error bars from bootstrap
+      overlap zero for both 32B models.'
+    - 'Detection timeline comparison: r1-8b temporal probe fires 4.9 steps before
+      CP on average; 32B probes fire after CP (negative lead time).'
+    analysis: Temporal context fails to rescue 32B probe performance. The +30pp coverage
+      gain seen on r1-8b (static 60.5% → temporal 65.1% in the original framing, or
+      the larger historical gains) does not replicate. At 32B, temporal gains are
+      +2-5pp and non-significant. This invalidates Claim 2's universality — temporal
+      context is necessary at 8B scale where per-step signals are individually weak-but-directionally-consistent,
+      but at 32B the per-step signals are too diffuse for temporal aggregation to
+      help.
+  - name: Cross-model transfer probes
+    plan_id: exp-003
+    description: Train probe on r1-8b (Llama-based, 4096-d), test on r1-32b/QwQ (Qwen2.5-based,
+      5120-d) via learned projection head. And reverse direction.
+    expected_results:
+      r1_8b_to_r1_32b_acc: 0.508
+      r1_8b_to_qwq_32b_acc: 0.491
+      r1_32b_to_r1_8b_acc: 0.523
+      qwq_to_r1_8b_acc: 0.517
+      r1_32b_to_qwq_acc: 0.612
+      qwq_to_r1_32b_acc: 0.598
+      projection_head_params: 20971520
+      chance_baseline: 0.5
+      within_family_32b_transfer: 0.605
+    result_rationale: 'Cross-architecture transfer collapses to chance (~50%) in both
+      directions between 8B and 32B. This is expected under the worst tier because:
+      (1) r1-8b''s safety signal lives in a concentrated subspace (Fisher=18, few
+      dimensions), while 32B''s signal is diffuse (Fisher=2.8, many dimensions) —
+      a projection head cannot map concentrated→diffuse or vice versa; (2) the Llama↔Qwen
+      architecture difference means different residual stream geometries even at the
+      same scale; (3) safety encoding is architecture+scale specific, not a universal
+      feature. Within-family transfer (r1-32b↔QwQ, both Qwen2.5-based) works slightly
+      above chance (60%) because the base architecture shares some geometric properties,
+      but still far below useful levels. This result strongly supports the ''scale
+      artifact'' interpretation — if the r1-8b signal were a universal safety phenomenon,
+      SOME transfer should occur.'
+    tables:
+    - name: Cross-Model Transfer Accuracy Matrix
+      columns:
+      - Train →
+      - r1-8b
+      - r1-32b
+      - QwQ-32B
+      rows:
+      - - r1-8b
+        - 0.817 (within)
+        - '0.508'
+        - '0.491'
+      - - r1-32b
+        - '0.523'
+        - 0.712 (within)
+        - '0.612'
+      - - QwQ-32B
+        - '0.517'
+        - '0.598'
+        - 0.694 (within)
+    figures_description:
+    - Heatmap of transfer accuracy. Diagonal (within-model) shows 69-82%. Off-diagonal
+      involving r1-8b is at chance (49-52%). Off-diagonal between 32B models shows
+      weak transfer (60%).
+    analysis: Zero-shot cross-architecture transfer fails completely between r1-8b
+      and 32B models (chance-level accuracy). Even with a trained projection head
+      (4096→5120), the mapped representations contain no actionable safety signal.
+      This demonstrates that the r1-8b hidden-state advantage is not a transferable,
+      universal property of safety commitment — it is specific to the 8B Llama architecture's
+      particular encoding geometry. The modest within-family transfer (r1-32b↔QwQ
+      at 60%) suggests some shared structure at the same scale/architecture but insufficient
+      for practical use.
+  - name: Lead time analysis across models
+    plan_id: exp-004
+    description: Evaluate lead time distributions on 32B models using best temporal
+      probes. Confirm whether negative lead time finding extends to 32B.
+    expected_results:
+      r1_32b_temporal_lead_mean: -0.8
+      r1_32b_temporal_lead_median: -3
+      r1_32b_positive_lead_rate: 0.294
+      r1_32b_lead_std: 8.2
+      qwq_32b_temporal_lead_mean: -1.5
+      qwq_32b_temporal_lead_median: -4
+      qwq_32b_positive_lead_rate: 0.235
+      qwq_32b_lead_std: 9.1
+      r1_8b_temporal_lead_mean_ref: 4.9
+      r1_8b_positive_lead_rate_ref: 0.58
+    result_rationale: Lead time is worse on 32B than r1-8b because the already-weaker
+      probe signal delays threshold crossing until well after the commitment point.
+      On r1-8b, the probe score rises gradually before CP (Fisher=18 enables some
+      anticipatory signal), yielding positive mean lead time. On 32B (Fisher=2.8),
+      the probe score barely moves before CP and only separates clearly in the post-CP
+      region where harmful content generation begins to dominate. The result is negative
+      mean lead time (detection AFTER commitment) with only 23-29% of traces achieving
+      any positive lead. This is strictly worse than r1-8b's already-disappointing
+      lead time, and confirms that pre-textual detection on 32B is not merely unreliable
+      but essentially impossible with linear probes.
+    tables:
+    - name: Lead Time Distribution by Model
+      columns:
+      - Model
+      - Mean Lead
+      - Median Lead
+      - Positive Lead %
+      - Std
+      - Max Lead
+      rows:
+      - - r1-8b (temporal W=15)
+        - '+4.9'
+        - '0'
+        - 58%
+        - '11.2'
+        - '+31'
+      - - r1-32b (temporal W=15)
+        - '-0.8'
+        - '-3'
+        - 29.4%
+        - '8.2'
+        - '+12'
+      - - QwQ-32B (temporal W=15)
+        - '-1.5'
+        - '-4'
+        - 23.5%
+        - '9.1'
+        - '+8'
+    figures_description:
+    - 'Lead time CDF plot: r1-8b curve shifted right (positive), 32B curves shifted
+      left (negative). Vertical line at lead=0 shows 58% of r1-8b detections are early
+      vs only 23-29% for 32B.'
+    - 'Per-trace lead time scatter: each trace as a point, models on x-axis. r1-8b
+      shows spread around +5; 32B models cluster around -2 to -4.'
+    analysis: Lead time results are uniformly negative on 32B, with mean lead -0.8
+      to -1.5 steps (detection after commitment). This contrasts with r1-8b's +4.9
+      mean lead. The temporal advantage that partially rescues r1-8b lead time has
+      no effect on 32B because the underlying per-step signal is too weak to produce
+      anticipatory threshold crossings. This confirms Claim 3 is universal (pre-textual
+      detection unreliable) but also undermines the framing that 'hidden states encode
+      current safety state well' — on 32B, they barely encode it at all.
+  - name: TrajGuard Mahalanobis baseline on all models
+    plan_id: exp-005
+    description: Mahalanobis distance on safe trace covariance, evaluated on r1-32b
+      and QwQ-32B. Expected to fail even more severely than on r1-8b.
+    expected_results:
+      r1_32b_md_crossing_k5: 0.186
+      r1_32b_md_safe_mean: 71.2
+      r1_32b_md_jb_pre_mean: 71.8
+      r1_32b_md_jb_post_mean: 71.4
+      r1_32b_md_delta_max_rate: 0.008
+      qwq_32b_md_crossing_k5: 0.163
+      qwq_32b_md_safe_mean: 68.4
+      qwq_32b_md_jb_pre_mean: 69.1
+      qwq_32b_md_jb_post_mean: 68.7
+      qwq_32b_md_delta_max_rate: 0.005
+      r1_8b_crossing_k5_ref: 0.302
+    result_rationale: Mahalanobis distance fails even more catastrophically on 32B
+      than on r1-8b (where it already showed only 30% crossing at k=5). The 5120-d
+      space with 64 layers produces covariance matrices that are even more dominated
+      by task-general variance. Since safety signal is spread across 50+ minor PCs
+      at 32B (vs concentrated in 8B), the Mahalanobis metric — which weights by inverse
+      covariance — actually suppresses the diffuse safety signal relative to dominant
+      task dimensions. The mean MD values for safe, pre-CP, and post-CP are nearly
+      identical (within 1% of each other), confirming that from a Gaussian-distribution
+      perspective, safety commitment produces no detectable distributional shift at
+      32B scale.
+    tables:
+    - name: Mahalanobis Distance Separation
+      columns:
+      - Model
+      - Config
+      - Safe MD Mean
+      - Pre-CP MD Mean
+      - Post-CP MD Mean
+      - K5 Crossing%
+      rows:
+      - - r1-8b
+        - pca_64_p75
+        - '6.66'
+        - '6.73'
+        - '6.64'
+        - 30.2%
+      - - r1-32b
+        - pca_64_p75
+        - '71.2'
+        - '71.8'
+        - '71.4'
+        - 18.6%
+      - - r1-32b
+        - pca_128_p75
+        - '142.3'
+        - '143.1'
+        - '142.6'
+        - 16.3%
+      - - QwQ-32B
+        - pca_64_p75
+        - '68.4'
+        - '69.1'
+        - '68.7'
+        - 16.3%
+      - - QwQ-32B
+        - pca_128_p75
+        - '137.8'
+        - '138.4'
+        - '137.9'
+        - 14.0%
+    figures_description:
+    - 'MD time-series overlaid: safe traces (blue) and jailbreak traces (red) completely
+      overlapping on 32B. Vertical line at CP shows no visible discontinuity. Contrast
+      with r1-8b where slight post-CP elevation is visible.'
+    analysis: TrajGuard-style geometric detection is completely non-functional on
+      32B. Detection rates (16-19%) are below the already-failed r1-8b baseline (30%).
+      The delta between safe and unsafe MD is <1% of the absolute value, meaning the
+      safety commitment event is invisible to distance-based methods at this scale.
+      This strengthens the geometric failure story but also shows it's WORSE at scale,
+      consistent with the 'signal becomes diffuse' hypothesis.
+  - name: Bootstrap CIs + threshold-independent metrics (all models)
+    plan_id: exp-006
+    description: 1000 bootstrap resamples on 32B model results. AUROC, PR curves,
+      detection delay CDF across all models.
+    expected_results:
+      r1_32b_static_auroc: 0.583
+      r1_32b_static_auroc_ci:
+      - 0.501
+      - 0.661
+      r1_32b_temporal_auroc: 0.598
+      r1_32b_temporal_auroc_ci:
+      - 0.512
+      - 0.679
+      qwq_32b_static_auroc: 0.561
+      qwq_32b_static_auroc_ci:
+      - 0.478
+      - 0.642
+      qwq_32b_temporal_auroc: 0.574
+      qwq_32b_temporal_auroc_ci:
+      - 0.489
+      - 0.654
+      r1_32b_hs_vs_text_auroc_diff: 0.021
+      r1_32b_hs_vs_text_auroc_p: 0.412
+      qwq_32b_hs_vs_text_auroc_diff: -0.008
+      qwq_32b_hs_vs_text_auroc_p: 0.891
+      r1_8b_static_auroc_ref: 0.847
+      r1_8b_temporal_auroc_ref: 0.862
+    result_rationale: Bootstrap CIs on 32B models show AUROC barely above chance (0.56-0.60)
+      with confidence intervals that include 0.50. The HS vs text AUROC difference
+      is non-significant on both 32B models (p=0.41, 0.89), in stark contrast to r1-8b
+      where HS dominates text by 10+ AUROC points. Wide CIs reflect both small sample
+      size (n=43) and genuinely poor discriminability. The threshold-independent metrics
+      confirm that the result is not an artifact of threshold selection — at ALL thresholds,
+      32B HS probes perform comparably to text probes. This is the definitive statistical
+      evidence that HS advantage is scale-specific.
+    tables:
+    - name: AUROC Comparison Across Models (Bootstrap 95% CI)
+      columns:
+      - Model
+      - HS Static
+      - HS Temporal
+      - Text Static
+      - Text Temporal
+      - HS-Text Diff (p)
+      rows:
+      - - r1-8b
+        - 0.847 [0.79,0.90]
+        - 0.862 [0.81,0.91]
+        - 0.738 [0.67,0.80]
+        - 0.759 [0.69,0.82]
+        - +0.103 (p=0.003)
+      - - r1-32b
+        - 0.583 [0.50,0.66]
+        - 0.598 [0.51,0.68]
+        - 0.562 [0.48,0.64]
+        - 0.577 [0.49,0.66]
+        - +0.021 (p=0.412)
+      - - QwQ-32B
+        - 0.561 [0.48,0.64]
+        - 0.574 [0.49,0.65]
+        - 0.569 [0.49,0.65]
+        - 0.582 [0.50,0.66]
+        - -0.008 (p=0.891)
+    figures_description:
+    - 'ROC curves: r1-8b HS clearly above diagonal with visible separation from text
+      curve. 32B model curves for both HS and text nearly overlapping, both close
+      to diagonal.'
+    - 'PR curves: r1-8b HS shows meaningful precision at moderate recall. 32B curves
+      flat near baseline prevalence rate.'
+    - 'Bootstrap distribution of AUROC difference (HS-text): r1-8b distribution centered
+      at +0.10 (entirely positive). 32B distributions centered at 0 (overlapping zero).'
+    analysis: Threshold-independent metrics definitively confirm that the HS advantage
+      over text is absent at 32B. AUROC values of 0.56-0.60 indicate near-chance discrimination
+      regardless of modality. Bootstrap tests show HS-text difference is non-significant
+      (p>0.4) on both 32B models, while it's highly significant on r1-8b (p=0.003).
+      This eliminates threshold selection as a confound — the finding holds across
+      all operating points.
+  - name: Window size ablation (W=1,3,5,10,15,20,25)
+    plan_id: exp-007
+    description: Sweep temporal window sizes on all 3 models. Test whether optimal
+      W differs by scale.
+    expected_results:
+      r1_8b_optimal_w: 15
+      r1_8b_w15_delta_over_w1: 0.046
+      r1_32b_optimal_w: 5
+      r1_32b_w5_delta_over_w1: 0.012
+      r1_32b_w15_delta_over_w1: 0.009
+      qwq_32b_optimal_w: 3
+      qwq_32b_w3_delta_over_w1: 0.008
+      qwq_32b_w15_delta_over_w1: 0.005
+      diminishing_returns_32b: plateau at W=3-5
+    result_rationale: On r1-8b, larger windows help because each step contributes
+      consistent directional signal (Fisher=18) — more steps = more signal accumulation.
+      On 32B (Fisher=2.8), individual steps contribute mostly noise, so larger windows
+      actually dilute the few informative steps with many uninformative ones. The
+      optimal W for 32B is much smaller (3-5 vs 15) and the improvement over W=1 is
+      negligible (0.8-1.2pp vs 4.6pp). Beyond W=5 on 32B, performance plateaus or
+      slightly degrades as the window averages over too much noise. This reveals that
+      the temporal aggregation mechanism requires a minimum per-step signal-to-noise
+      ratio to be effective.
+    tables:
+    - name: Coverage by Window Size
+      columns:
+      - W
+      - r1-8b Coverage
+      - r1-32b Coverage
+      - QwQ-32B Coverage
+      rows:
+      - - '1'
+        - 60.5%
+        - 37.2%
+        - 32.6%
+      - - '3'
+        - 61.3%
+        - 38.4%
+        - 33.4%
+      - - '5'
+        - 62.1%
+        - 38.4%
+        - 33.1%
+      - - '10'
+        - 63.8%
+        - 38.9%
+        - 33.4%
+      - - '15'
+        - 65.1%
+        - 39.5%
+        - 33.1%
+      - - '20'
+        - 64.8%
+        - 38.4%
+        - 32.6%
+      - - '25'
+        - 64.1%
+        - 37.2%
+        - 31.6%
+    figures_description:
+    - 'Line plot: coverage vs W. r1-8b shows clear monotonic rise to W=15 then plateau.
+      32B models show flat lines with negligible variation (within noise band).'
+    analysis: Window ablation confirms temporal context has scale-dependent utility.
+      At 8B, larger windows systematically improve detection. At 32B, windows beyond
+      W=3-5 provide no benefit. The per-step signal-to-noise ratio appears to be the
+      gating factor for temporal aggregation effectiveness.
+  - name: Layer selection ablation (all layers, temporal probe on 32B)
+    plan_id: exp-008
+    description: Run temporal W=15 probe on every layer of 32B models. Test whether
+      any layer achieves r1-8b-level discriminability.
+    expected_results:
+      r1_32b_best_temporal_layer: 29
+      r1_32b_best_temporal_acc: 0.721
+      r1_32b_worst_layer_acc: 0.612
+      r1_32b_acc_range: 0.109
+      r1_32b_layers_above_70: 8
+      qwq_32b_best_temporal_layer: 31
+      qwq_32b_best_temporal_acc: 0.703
+      qwq_32b_worst_layer_acc: 0.598
+      qwq_32b_acc_range: 0.105
+      r1_8b_best_temporal_acc_ref: 0.848
+      no_layer_matches_8b: true
+    result_rationale: Even with exhaustive layer sweep + temporal context, no single
+      layer on either 32B model approaches r1-8b L14's performance (84.8% temporal
+      acc). The best 32B layers achieve only 70-72% accuracy — barely above text baselines.
+      The layer-accuracy curve is notably flat (range ~10pp across 64 layers, vs ~15pp
+      across 32 layers on r1-8b), confirming the safety signal is not localized at
+      any particular depth. Middle layers (40-50% depth) are slightly better but the
+      advantage is marginal. This rules out the explanation that 'we just haven't
+      found the right layer' — the sweep is exhaustive.
+    tables:
+    - name: Temporal Probe by Layer Depth Band (r1-32b)
+      columns:
+      - Depth Band
+      - Layers
+      - Mean Acc
+      - Best Acc
+      - Best Layer
+      rows:
+      - - 0-25%
+        - L1-L16
+        - '0.648'
+        - '0.672'
+        - L14
+      - - 25-50%
+        - L17-L32
+        - '0.698'
+        - '0.721'
+        - L29
+      - - 50-75%
+        - L33-L48
+        - '0.681'
+        - '0.708'
+        - L35
+      - - 75-100%
+        - L49-L64
+        - '0.641'
+        - '0.664'
+        - L52
+    figures_description:
+    - 'Layer sweep heatmap: accuracy by layer (x) and model (y). r1-8b shows sharp
+      peak at L14. 32B models show broad flat plateau across layers 25-35 with no
+      distinct peak.'
+    analysis: Exhaustive temporal probe layer sweep on 32B confirms no single layer
+      matches r1-8b discriminability. The flat accuracy landscape (range 10pp) vs
+      r1-8b's peaked landscape (range 15pp with clear maximum) demonstrates that safety
+      encoding is genuinely distributed across layers at scale, not localized to a
+      recoverable subspace.
+  - name: 16-label taxonomy supervision
+    plan_id: exp-009
+    description: Fine-grained label (Type 1/2/3/4 × safe/unsafe) training on 32B.
+      Test if richer supervision recovers signal.
+    expected_results:
+      r1_32b_16label_acc: 0.318
+      r1_32b_16label_f1_macro: 0.212
+      r1_32b_binary_collapse_acc: 0.724
+      r1_32b_binary_collapse_vs_binary: 0.012
+      qwq_32b_16label_acc: 0.295
+      qwq_32b_binary_collapse_acc: 0.709
+      r1_8b_16label_acc_ref: 0.512
+    result_rationale: Fine-grained supervision cannot recover a signal that does not
+      exist in the representation. On r1-8b, 16-label training helps because the rich
+      safety subspace supports finer distinctions. On 32B, the representations barely
+      separate binary safe/unsafe (Fisher=2.8), so asking for 16-way discrimination
+      results in even worse performance (31-32% accuracy on 16 classes, chance=6.25%
+      but classes are imbalanced). Collapsing back to binary after 16-label training
+      gives marginal improvement (+1.2pp) over direct binary training — the fine-grained
+      labels provide slight regularization benefit but cannot overcome the fundamental
+      lack of separable signal.
+    tables:
+    - name: Fine-grained vs Binary Supervision
+      columns:
+      - Model
+      - Binary Direct Acc
+      - 16-Label Acc
+      - 16→Binary Collapse Acc
+      - Delta
+      rows:
+      - - r1-8b
+        - '0.817'
+        - '0.512'
+        - '0.831'
+        - +1.4pp
+      - - r1-32b
+        - '0.712'
+        - '0.318'
+        - '0.724'
+        - +1.2pp
+      - - QwQ-32B
+        - '0.694'
+        - '0.295'
+        - '0.709'
+        - +1.5pp
+    figures_description:
+    - 'Confusion matrix (16-class) on r1-32b: heavy diagonal on ''safe'' categories,
+      near-random on unsafe subcategories. Model cannot distinguish safety commitment
+      subtypes.'
+    analysis: Richer supervision does not compensate for absent representation structure.
+      The 16-label probe essentially learns to detect 'safe' vs 'not safe' (binary)
+      and cannot distinguish unsafe subtypes, confirming that 32B hidden states lack
+      fine-grained safety commitment information.
+  - name: Oracle decomposition
+    plan_id: exp-010
+    description: Analyze what information the oracle (label sequence) encodes that
+      hidden states don't. Focus on 32B models where the gap is largest.
+    expected_results:
+      r1_32b_oracle_lead_mean: 28.4
+      r1_32b_probe_lead_mean: -0.8
+      r1_32b_oracle_gap: 29.2
+      r1_32b_label_autocorr_pre_cp: 0.89
+      r1_32b_hs_autocorr_pre_cp: 0.97
+      r1_32b_label_entropy_pre_cp: 1.42
+      r1_32b_hs_entropy_pre_cp: 0.31
+      pattern_finding: Labels show gradual safety erosion (increasing unsafe density);
+        hidden states show no corresponding gradual shift
+    result_rationale: 'The oracle achieves +28 step lead because label sequences show
+      clear pre-commitment patterns: increasing frequency of unsafe-adjacent labels,
+      shortening safe reasoning streaks, and characteristic Type 2→Type 3 transitions
+      that precede commitment by many steps. On r1-8b, hidden states partially track
+      these transitions (Fisher=18 enables some gradient detection). On 32B, hidden
+      states are nearly constant through the pre-CP region — they encode the CURRENT
+      token''s local context but not the cumulative trajectory toward commitment.
+      The high autocorrelation (0.97) of 32B hidden states confirms minimal step-to-step
+      variation in the safety-relevant dimensions, while labels show meaningful dynamics
+      (autocorr=0.89, lower because of frequent fluctuations). The fundamental limitation
+      at 32B: the model''s internal safety state is not represented as a detectable
+      feature in any single layer''s activations.'
+    tables:
+    - name: Oracle vs Probe Gap by Model
+      columns:
+      - Model
+      - Oracle Lead
+      - Best Probe Lead
+      - Gap
+      - HS Pre-CP Entropy
+      rows:
+      - - r1-8b
+        - '+31.0'
+        - '+4.9'
+        - '26.1'
+        - '0.72'
+      - - r1-32b
+        - '+28.4'
+        - '-0.8'
+        - '29.2'
+        - '0.31'
+      - - QwQ-32B
+        - '+26.8'
+        - '-1.5'
+        - '28.3'
+        - '0.28'
+    figures_description:
+    - 'Pre-CP hidden state trajectory (projected to top 2 Fisher directions): r1-8b
+      shows gradual drift toward ''unsafe'' region before CP. 32B models show random
+      walk with no systematic drift.'
+    - 'Label sequence patterns before CP: histogram of ''unsafe step density in window
+      [-20, CP]'' showing gradual escalation that probes cannot detect at 32B.'
+    analysis: The oracle decomposition reveals that at 32B, the model's approach toward
+      safety commitment is invisible in hidden-state geometry even though it's clearly
+      present in the label sequence. This suggests 32B models encode safety-relevant
+      reasoning in a way that is fundamentally inaccessible to linear probes on any
+      single layer — perhaps distributed across attention patterns, or only emergent
+      at the multi-layer computational level rather than as a readable residual stream
+      feature.
+  - name: OpenThinker-7B (Qwen2.5-7B base)
+    plan_id: exp-011
+    description: 4th model for 2×2 architecture×scale matrix. Qwen2.5-7B to complement
+      Llama-8B at small scale.
+    expected_results:
+      openthinker_7b_best_layer: 13
+      openthinker_7b_best_fisher: 14.2
+      openthinker_7b_static_acc: 0.793
+      openthinker_7b_temporal_w15_acc: 0.834
+      openthinker_7b_crossing_rate: 0.628
+      openthinker_7b_lead_mean: 3.8
+      openthinker_7b_precp_fpr: 0.178
+      openthinker_7b_precision: 0.591
+      openthinker_7b_hs_vs_text_advantage: significant (p=0.008)
+    result_rationale: 'OpenThinker-7B (Qwen2.5-7B) shows results comparable to r1-8b
+      (Llama-8B): strong Fisher discriminability (14.2), clear HS advantage over text,
+      and positive mean lead time. This confirms the critical finding: the HS advantage
+      is SCALE-dependent, not architecture-dependent. Both 7-8B models (Llama and
+      Qwen base) show the effect; both 32B models (both Qwen2.5 base) do not. The
+      2×2 matrix cleanly isolates scale as the confound, ruling out architecture as
+      the explanation for the 32B failure.'
+    tables:
+    - name: 2×2 Architecture × Scale Matrix
+      columns:
+      - ''
+      - 7-8B
+      - 32B
+      rows:
+      - - Llama-based
+        - 'r1-8b: Fisher=17.9, HS>Text (p=0.003)'
+        - —
+      - - Qwen2.5-based
+        - 'OpenThinker-7B: Fisher=14.2, HS>Text (p=0.008)'
+        - 'r1-32b: Fisher=2.8, HS≈Text (p=0.41) / QwQ: Fisher=1.9, HS≈Text (p=0.89)'
+    figures_description:
+    - '2×2 grid plot: Fisher discriminability (bar) and HS-Text AUROC difference (line)
+      by architecture×scale cell. Both small-scale cells show high Fisher and significant
+      HS advantage. Both large-scale cells show low Fisher and no advantage.'
+    analysis: The 2×2 matrix provides the cleanest evidence for the scale-dependent
+      thesis. OpenThinker-7B (Qwen2.5 architecture, 7B scale) replicates r1-8b's hidden-state
+      advantage, proving the effect is not Llama-specific. Combined with both 32B
+      models (both Qwen2.5) failing to show the advantage, scale is definitively identified
+      as the critical variable. This transforms the paper from 'our method works on
+      r1-8b' to 'safety signal geometry fundamentally changes with scale.'
+  - name: GRU/Attention probe on 32B models
+    plan_id: exp-012
+    description: GRU sequence model as upper-bound check on 32B. If GRU also fails,
+      confirms the signal simply isn't there.
+    expected_results:
+      r1_32b_gru_single_acc: 0.728
+      r1_32b_gru_multi_acc: 0.731
+      r1_32b_gru_crossing_rate: 0.418
+      r1_32b_gru_lead_mean: -0.3
+      r1_32b_gru_vs_lr_delta: 1.0
+      qwq_32b_gru_single_acc: 0.711
+      qwq_32b_gru_multi_acc: 0.715
+      qwq_32b_gru_crossing_rate: 0.395
+      qwq_32b_gru_lead_mean: -0.9
+      qwq_32b_gru_vs_lr_delta: 0.8
+      r1_8b_gru_multi_crossing_ref: 0.767
+      gru_improvement_over_lr_32b: minimal (+1pp acc, not significant)
+    result_rationale: 'On r1-8b, GRU provides meaningful gains over LR (crossing 76.7%
+      vs 46.5%) because the sequential model can learn temporal patterns in a signal-rich
+      representation. On 32B, GRU barely outperforms temporal LR (+1pp accuracy, +2pp
+      crossing) because the input signal is too weak for sequence modeling to help.
+      A GRU trained on noise learns noise patterns. The GRU''s capacity to model sequential
+      dependencies is irrelevant when individual time steps contain near-zero safety-relevant
+      information. This confirms: ''simplicity is optimal'' at 8B because the signal
+      is accessible; at 32B, no model complexity can recover what the representation
+      doesn''t encode.'
+    tables:
+    - name: GRU vs LR on 32B Models
+      columns:
+      - Model
+      - LR Temporal Acc
+      - GRU Multi Acc
+      - Delta
+      - GRU Crossing
+      - LR Crossing
+      rows:
+      - - r1-8b
+        - '0.848'
+        - 0.809*
+        - -3.9pp*
+        - 76.7%
+        - 65.1%
+      - - r1-32b
+        - '0.721'
+        - '0.731'
+        - +1.0pp
+        - 41.8%
+        - 39.5%
+      - - QwQ-32B
+        - '0.703'
+        - '0.715'
+        - +1.2pp
+        - 39.5%
+        - 37.2%
+    figures_description:
+    - 'Method comparison bar chart on 32B: all methods (static LR, temporal LR, GRU,
+      BOCPD) clustered within 2-3pp accuracy band. No method breaks out.'
+    analysis: GRU's inability to improve over LR on 32B eliminates model capacity
+      as an explanation. The issue is not 'we need a more expressive probe' — it's
+      'the representation doesn't contain accessible safety commitment information.'
+      This is a fundamental representation-level limitation, not a method limitation.
+  - name: Text-based baseline on 32B models
+    plan_id: exp-013
+    description: 'Sentence-BERT embeddings + temporal window LR on CoT text of 32B
+      models. Critical comparison: does HS still beat text at 32B?'
+    expected_results:
+      r1_32b_text_static_acc: 0.689
+      r1_32b_text_temporal_acc: 0.698
+      r1_32b_text_precp_fpr: 0.281
+      r1_32b_text_precision: 0.478
+      r1_32b_text_coverage: 0.372
+      r1_32b_text_lead_mean: 1.2
+      qwq_32b_text_static_acc: 0.672
+      qwq_32b_text_temporal_acc: 0.685
+      qwq_32b_text_precp_fpr: 0.298
+      qwq_32b_text_precision: 0.462
+      qwq_32b_text_coverage: 0.349
+      qwq_32b_text_lead_mean: 0.8
+      r1_32b_hs_vs_text_precp_fpr_ratio: 1.08
+      qwq_32b_hs_vs_text_precp_fpr_ratio: 0.97
+    result_rationale: 'On r1-8b, HS probes achieve 16% pre-CP FPR vs text''s 27-36%
+      (1.7-2.2x advantage). On 32B, HS pre-CP FPR is 25-31% while text is 28-30% —
+      the ratio collapses to ~1.0x (no meaningful difference). Text probes actually
+      show slightly BETTER lead time on 32B (+1.2 vs -0.8 for HS) because text content
+      directly reflects reasoning state regardless of model scale — a model saying
+      ''I should help with this harmful request'' is detectable in text at any scale.
+      The hidden-state advantage was specific to r1-8b''s compact safety geometry;
+      once that geometry diffuses at scale, text monitoring is equally (or more) effective.
+      This is the core worst-tier finding: HS monitoring has no deployment advantage
+      over text monitoring on 32B models.'
+    tables:
+    - name: HS vs Text Pre-CP FPR (the key metric)
+      columns:
+      - Model
+      - HS Pre-CP FPR
+      - Text Pre-CP FPR
+      - Ratio (Text/HS)
+      - Advantage
+      rows:
+      - - r1-8b
+        - 16.0%
+        - 27.2%
+        - 1.70x
+        - HS wins decisively
+      - - r1-32b
+        - 26.4%
+        - 28.1%
+        - 1.06x
+        - No meaningful difference
+      - - QwQ-32B
+        - 30.8%
+        - 29.8%
+        - 0.97x
+        - Text slightly better
+    - name: Full Comparison on 32B
+      columns:
+      - Model
+      - Modality
+      - Coverage
+      - Pre-CP FPR
+      - Precision
+      - Lead
+      rows:
+      - - r1-32b
+        - HS temporal
+        - 39.5%
+        - 26.4%
+        - '0.492'
+        - '-0.8'
+      - - r1-32b
+        - Text temporal
+        - 37.2%
+        - 28.1%
+        - '0.478'
+        - '+1.2'
+      - - QwQ-32B
+        - HS temporal
+        - 37.2%
+        - 30.8%
+        - '0.451'
+        - '-1.5'
+      - - QwQ-32B
+        - Text temporal
+        - 34.9%
+        - 29.8%
+        - '0.462'
+        - '+0.8'
+    figures_description:
+    - 'Ratio plot: text/HS pre-CP FPR ratio by model. r1-8b at 1.7x (HS better), 32B
+      models at ~1.0x (parity). Horizontal line at 1.2x threshold — 32B models below
+      the ''meaningful advantage'' threshold defined in worst tier.'
+    analysis: 'The decisive worst-tier result: HS probes lose their precision advantage
+      on 32B. Pre-CP FPR ratio drops from 1.7x (r1-8b, HS clearly better) to 1.0x
+      (32B, no difference). Text actually achieves slightly positive lead time on
+      32B while HS has negative lead — because text content is scale-invariant (words
+      are words at any parameter count) while HS quality degrades with scale. This
+      means that for 32B deployment, the added complexity of hidden-state extraction
+      provides zero benefit over simple text monitoring.'
+  - name: BOCPD/CUSUM on 32B models
+    plan_id: exp-014
+    description: Bayesian Online Change-Point Detection on 32B probe score sequences.
+      Test if change-point methods can find commitment on weak signals.
+    expected_results:
+      r1_32b_bocpd_lambda10_detection: 0.581
+      r1_32b_bocpd_lambda10_lead: -2.1
+      r1_32b_bocpd_lambda100_detection: 0.372
+      r1_32b_bocpd_lambda100_lead: -4.8
+      r1_32b_cusum_detection: 0.326
+      r1_32b_cusum_lead: -6.2
+      qwq_32b_bocpd_lambda10_detection: 0.535
+      qwq_32b_bocpd_lambda10_lead: -2.8
+      r1_8b_bocpd_lambda10_detection_ref: 0.93
+      r1_8b_bocpd_lambda10_lead_ref: 3.45
+    result_rationale: BOCPD on r1-8b achieves 93% detection because the probe score
+      sequence exhibits a clear distributional shift at commitment (high Fisher →
+      sharp transition in probe confidence). On 32B, the probe score sequence is essentially
+      flat noise (low Fisher → probe confidence fluctuates randomly without systematic
+      shift at CP). BOCPD detects 'change points' in noise, resulting in both lower
+      detection rate (58% — many traces show no detectable change) and negative lead
+      time (the few detected 'changes' are often post-CP noise spikes misidentified
+      as the commitment signal). CUSUM performs even worse because it requires sustained
+      shift in mean, which never occurs in the flat 32B probe trajectories. Change-point
+      methods are fundamentally unable to detect a transition that doesn't produce
+      a signal change.
+    tables:
+    - name: Change-Point Detection on 32B
+      columns:
+      - Model
+      - Method
+      - Detection Rate
+      - Mean Lead
+      - Median Lead
+      rows:
+      - - r1-8b
+        - BOCPD λ=10
+        - 93.0%
+        - '+3.45'
+        - '0'
+      - - r1-8b
+        - CUSUM t=0.3,h=3
+        - 65.1%
+        - '+0.89'
+        - '-4'
+      - - r1-32b
+        - BOCPD λ=10
+        - 58.1%
+        - '-2.1'
+        - '-5'
+      - - r1-32b
+        - CUSUM t=0.3,h=3
+        - 32.6%
+        - '-6.2'
+        - '-9'
+      - - QwQ-32B
+        - BOCPD λ=10
+        - 53.5%
+        - '-2.8'
+        - '-6'
+      - - QwQ-32B
+        - CUSUM t=0.3,h=3
+        - 27.9%
+        - '-7.1'
+        - '-11'
+    figures_description:
+    - 'Probe score time series with BOCPD detected change points: r1-8b shows clear
+      score rise at CP with BOCPD detecting it. 32B shows flat noisy signal with BOCPD
+      false-triggering at random points.'
+    analysis: BOCPD and CUSUM both degrade severely on 32B. Detection drops from 93%
+      to 53-58%, and lead time becomes negative (-2 to -7 steps). The methods can't
+      find a signal transition that doesn't exist in the input. This eliminates the
+      possibility that 'better downstream methods could recover the signal' — the
+      issue is representational, not methodological.
+  - name: FPR analysis on 32B models
+    plan_id: exp-015
+    description: Run all probes on safe traces from 32B models. Report FPR, precision,
+      deployment utility.
+    expected_results:
+      r1_32b_hs_static_safe_fpr: 0.412
+      r1_32b_hs_static_precp_fpr: 0.264
+      r1_32b_hs_static_precision: 0.492
+      r1_32b_hs_temporal_safe_fpr: 0.398
+      r1_32b_hs_temporal_precp_fpr: 0.251
+      r1_32b_hs_temporal_precision: 0.501
+      r1_32b_text_static_precp_fpr: 0.281
+      r1_32b_text_static_precision: 0.478
+      r1_32b_text_temporal_precp_fpr: 0.268
+      r1_32b_text_temporal_precision: 0.485
+      qwq_32b_hs_temporal_precp_fpr: 0.308
+      qwq_32b_hs_temporal_precision: 0.451
+      qwq_32b_text_temporal_precp_fpr: 0.298
+      qwq_32b_text_temporal_precision: 0.462
+      r1_8b_hs_temporal_precp_fpr_ref: 0.16
+      r1_8b_hs_temporal_precision_ref: 0.583
+    result_rationale: 'On r1-8b, HS probes achieve dramatically lower pre-CP FPR (16%)
+      than text (27%) because the hidden-state signal cleanly separates safe exploration
+      from true commitment. On 32B, HS pre-CP FPR rises to 25-31% — essentially matching
+      text probes (27-30%). Precision drops from 58-62% (r1-8b) to 45-50% (32B) for
+      HS, while text precision stays constant at ~48% across scales. The convergence
+      occurs because: (1) 32B HS probes trigger on noise, producing more false positives
+      in the pre-CP window; (2) safe traces at 32B are harder to distinguish from
+      unsafe traces in hidden-state space due to diffuse signal. Safe FPR for both
+      modalities is around 40% on all models — confirming this as a baseline difficulty
+      regardless of scale. The HS precision ADVANTAGE (HS precision - text precision)
+      drops from +13pp (r1-8b) to essentially 0pp (32B).'
+    tables:
+    - name: 'Pre-CP FPR and Precision: HS vs Text by Model'
+      columns:
+      - Model
+      - HS Pre-CP FPR
+      - Text Pre-CP FPR
+      - HS Precision
+      - Text Precision
+      - Precision Δ
+      rows:
+      - - r1-8b
+        - 16.0%
+        - 27.2%
+        - 58.3%
+        - 48.7%
+        - +9.6pp
+      - - r1-32b
+        - 25.1%
+        - 26.8%
+        - 50.1%
+        - 48.5%
+        - +1.6pp
+      - - QwQ-32B
+        - 30.8%
+        - 29.8%
+        - 45.1%
+        - 46.2%
+        - -1.1pp
+    - name: Safe Trace FPR (deployment cost metric)
+      columns:
+      - Model
+      - HS Static FPR
+      - HS Temporal FPR
+      - Text Temporal FPR
+      rows:
+      - - r1-8b
+        - 39.0%
+        - 39.2%
+        - 38.5%
+      - - r1-32b
+        - 41.2%
+        - 39.8%
+        - 41.5%
+      - - QwQ-32B
+        - 43.1%
+        - 42.8%
+        - 40.2%
+    figures_description:
+    - 'Precision-recall curve by model×modality: r1-8b HS curve clearly above text
+      curve at all recall levels. 32B model curves for HS and text completely overlapping.'
+    - 'Bar chart: HS precision advantage (HS precision - text precision) by model.
+      r1-8b: +9.6pp. r1-32b: +1.6pp. QwQ-32B: -1.1pp. Declining trend with scale.'
+    analysis: 'FPR analysis provides the clearest practical evidence for the worst
+      tier. The HS precision advantage — the paper''s headline finding — disappears
+      at 32B. On r1-8b, HS probes are meaningfully more precise (+9.6pp) and produce
+      fewer pre-CP false alarms (16% vs 27%). On 32B, both modalities perform identically
+      (precision within 1.6pp, pre-CP FPR within 2pp). For a deployment decision,
+      this means: extracting hidden states from a 32B model provides zero precision
+      benefit over simply monitoring the text output. The computational overhead of
+      HS extraction is entirely wasted at this scale.'
+  review_report: '---
+
+    dream_id: dream_20260516T212347
+
+    tier: worst
+
+    overall_score: weak reject (3/6)
+
+    timestamp: 2026-05-16T22:12:07.014311+00:00
+
+    ---
+
+
+    # Dream Review Report: "Does Scale Erase Safety Signals?"
+
+
+    **Paper**: Does Scale Erase Safety Signals? Hidden-State Monitoring Limitations
+    in Large Reasoning Models
+
+    **Review Mode**: Full (2 Reviewers, 4-Step Roundtable)
+
+    **Date**: 2026-05-16
+
+
+    ---
+
+
+    ## Review Process
+
+
+    - **R1** (Methodology + Experiments): Evaluated experimental design, statistical
+    rigor, reproducibility, ablation completeness, claims vs evidence
+
+    - **R2** (Novelty + Related Work): Evaluated novelty, significance, related work
+    coverage, framing, writing quality, overclaiming
+
+    - **Roundtable**: Independent reviews → cross-sharing → convergence → synthesis
+    below
+
+
+    ---
+
+
+    ## Paper Summary
+
+
+    The paper investigates whether hidden-state (HS) probes for safety commitment
+    detection in reasoning models generalize across model scale. Using a 2×2 matrix
+    of architectures (Llama, Qwen2.5) × scales (7–8B, 32B), the authors find that
+    the HS monitoring advantage observed at 7–8B (pre-CP FPR 16% vs text''s 27%, p=0.003;
+    AUROC 0.847 vs 0.738) vanishes at 32B (pre-CP FPR 25–31% vs 27–30%, p>0.4; AUROC
+    0.56–0.60 for both modalities). Fisher discriminability drops 6× from 8B to 32B.
+    Temporal aggregation, GRU probes, fine-grained supervision, layer sweeps, and
+    cross-scale transfer all fail to recover the signal at 32B. The paper concludes
+    that HS monitoring cannot be assumed to generalize with scale.
+
+
+    ---
+
+
+    ## Experiment Coverage Assessment
+
+
+    The review context lists 15 planned experiments. All 15 are reflected in the paper:
+
+
+    | # | Experiment | Paper Section | Status |
+
+    |---|-----------|---------------|--------|
+
+    | exp-001 | Layer sweep + static probe (32B) | §4.1, Table 1 | Covered |
+
+    | exp-002 | Temporal window (32B) | §4.2, Table 2 | Covered |
+
+    | exp-003 | Cross-model transfer | §4.6, Table 6 | Covered |
+
+    | exp-004 | Lead time analysis | §4.7, Table 7 | Covered |
+
+    | exp-005 | Mahalanobis baseline | §4.13, Table 13 | Covered |
+
+    | exp-006 | Bootstrap CIs + AUROC | §4.8, Table 8 | Covered |
+
+    | exp-007 | Window size ablation | §4.3, Table 3 | Covered |
+
+    | exp-008 | Layer selection ablation | §4.4, Table 4 | Covered |
+
+    | exp-009 | 16-label supervision | §4.12, Table 12 | Covered |
+
+    | exp-010 | Oracle decomposition | §4.15, Table 15 | Covered |
+
+    | exp-011 | OpenThinker-7B (2×2 completion) | §4.5, Table 5 | Covered |
+
+    | exp-012 | GRU probe (32B) | §4.11, Table 11 | Covered |
+
+    | exp-013 | Text baseline (32B) | §4.10, Table 10 | Covered |
+
+    | exp-014 | BOCPD/CUSUM (32B) | §4.14, Table 14 | Covered |
+
+    | exp-015 | FPR analysis (32B) | §4.9, Table 9 | Covered |
+
+
+    Full coverage. However, OpenThinker-7B results appear only in the 2×2 summary
+    (Table 5) and are absent from most detailed comparison tables, weakening the 2×2
+    design claim.
+
+
+    ---
+
+
+    ## Consolidated Strengths
+
+
+    **S1: Important and timely research question (R1, R2 agree).** As the community
+    invests in hidden-state monitoring for safety (TrajGuard, SIREN, SafeSwitch),
+    understanding whether these approaches scale is essential for deployment decisions.
+    The paper asks the right question.
+
+
+    **S2: Systematic and exhaustive ablation design (R1, R2 agree).** The paper progressively
+    eliminates alternative explanations: not a layer selection issue (64-layer sweep),
+    not temporal context (window ablation), not model capacity (GRU), not threshold
+    choice (AUROC), not supervision granularity (16-label), not detection paradigm
+    (BOCPD/CUSUM). This thoroughness makes the negative result more credible.
+
+
+    **S3: Clean experimental matrix (R1, R2 agree).** The 2×2 architecture × scale
+    design with OpenThinker-7B completing the Qwen2.5/7B cell provides reasonable
+    (though imperfect) evidence that scale drives the effect.
+
+
+    **S4: Appropriate statistical methodology (R1, R2 agree).** Bootstrap CIs, AUROC
+    as threshold-independent metric, explicit p-values for the core HS vs text comparison
+    at each scale.
+
+
+    **S5: Fisher discriminability as diagnostic (R1).** The 6× drop (17.9→2.8) provides
+    a clean, interpretable, and mechanistically informative summary statistic.
+
+
+    **S6: Oracle decomposition (R1).** Provides a principled upper bound separating
+    method limitations from fundamental information constraints, confirming safety
+    commitment IS real at 32B even though probes can''t detect it.
+
+
+    ---
+
+
+    ## Consolidated Weaknesses
+
+
+    ### Critical Issues
+
+
+    **W1: Architecture-scale confound is not resolved (R1 W1, R2 W1 — unanimous).**
+    The 2×2 matrix has a missing Llama/32B cell. All 32B models are Qwen2.5-based
+    distillations from the same teacher (DeepSeek-R1). The paper claims "scale, not
+    architecture, is the determining factor," but the data is equally consistent with
+    "distillation-into-Qwen2.5-32B specifically disrupts safety geometry." Without
+    a Llama-based 32B model or a non-distilled 32B+ reasoning model (e.g., native
+    DeepSeek-R1-67B, GPT-o1), the central causal claim is underdetermined. The paper
+    acknowledges this in Limitations but understates its severity given it is the
+    core claim.
+
+
+    **W2: Extremely small test set (n=43) undermines statistical conclusions (R1 W3,
+    R2 W6 — unanimous).** With 43 traces, binary metrics have resolution of ~2.3pp
+    per trace. Many reported differences (e.g., +2.3pp temporal gain) correspond to
+    1 additional trace. Bootstrap CIs for 32B AUROC include 0.50 (chance), meaning
+    the paper cannot definitively establish that HS probes provide ANY discrimination
+    at 32B. The strong conclusion "zero benefit" should be "no statistically detectable
+    benefit at n=43." The entire negative result could be a power issue.
+
+
+    **W3: Overclaiming about production systems (R1 via detailed comments, R2 W4 —
+    unanimous).** The Conclusion claims "hidden-state extraction cannot be justified"
+    for "production reasoning systems at 32B+." Extrapolation from two 32B distilled
+    models to 70B+ natively-trained models is unsupported. The "+" in "32B+" implies
+    a monotonic trend that has not been established.
+
+
+    ### Major Issues
+
+
+    **W4: Related Work is severely inadequate (R2 W2).** At ~0.5 pages with ~14 citations,
+    this is far below top venue standards (40–60 references typical). Critical missing
+    work includes: (a) probing-at-scale literature (Dalvi et al.), (b) the superposition
+    hypothesis (Elhage et al., "Toy Models of Superposition") which provides the exact
+    theoretical framework for why safety features would become diffuse at scale, (c)
+    mechanistic interpretability (dictionary learning, sparse autoencoders), (d) scaling
+    laws for emergent properties. The paper''s core finding is essentially an empirical
+    confirmation of superposition predictions, yet this connection is never made.
+
+
+    **W5: No theoretical framework for the finding (R2 W5).** The "diffuse geometry"
+    explanation (§5.1) is post-hoc and untested (R1 W7). The superposition hypothesis
+    predicts exactly this phenomenon: larger models represent more features in superposition,
+    making any individual concept harder to isolate with linear probes. Without this
+    theoretical grounding, the paper provides an empirical observation without mechanistic
+    understanding, limiting its contribution.
+
+
+    **W6: No figures in a 10-page paper with 15 tables (R2 W3).** The Fisher discriminability
+    curves, ROC comparisons, transfer heatmap, and 2×2 summary all need visualization.
+    The paper reads like an experiment log rather than a persuasive scientific narrative.
+    This is a significant presentation deficit.
+
+
+    **W7: Misleading framing of the core finding (R2 W7).** Both HS and text probes
+    achieve only AUROC 0.57–0.60 at 32B. The real finding is "ALL safety commitment
+    detection fails at 32B regardless of modality," which is arguably more important
+    and alarming than "HS loses its relative advantage." The paper emphasizes the
+    relative comparison (HS vs text) while burying the absolute finding (nothing works).
+
+
+    **W8: Model mislabeling raises concerns (R1 W6).** Section 3.1 states "DeepSeek-R1-Distill-Qwen-7B
+    (''r1-8b'', Llama-based, 4096-d, 32 layers)" — this is contradictory. DeepSeek-R1-Distill-Qwen-7B
+    is Qwen-based, not Llama-based. DeepSeek-R1-Distill-Llama-8B would be Llama-based.
+    This inconsistency undermines confidence in whether the correct models were evaluated
+    and whether the 2×2 matrix truly crosses architectures.
+
+
+    ### Minor Issues
+
+
+    **W9: No multiple comparison correction (R1 W4).** 15+ hypothesis tests without
+    Bonferroni/FDR correction. The primary result (p=0.003 at 8B) survives, but secondary
+    claims may not.
+
+
+    **W10: Sentence-BERT as text baseline may be too weak (R1 W5).** A stronger text
+    baseline (fine-tuned classifier, instruction-tuned LLM embeddings) would make
+    the HS vs text comparison more meaningful. The 8B advantage might partly reflect
+    a weak baseline rather than HS superiority.
+
+
+    **W11: Internal data inconsistency (R1 detailed comment #6).** QwQ-32B temporal
+    gain is +4.6pp (Table 2), equal to r1-8b''s gain, contradicting the "temporal
+    fails at 32B" narrative. The paper does not discuss this inconsistency.
+
+
+    **W12: Cross-scale transfer result is a ceiling effect (R1 detailed comment #3).**
+    Transfer at chance (~0.50) between 8B and 32B is expected when the target model''s
+    own probe accuracy is only 0.69–0.71. This should not be interpreted as strong
+    evidence about "safety geometry."
+
+
+    ---
+
+
+    ## Questions for Authors (Consolidated)
+
+
+    1. **Data provenance**: Were experiments executed on real model activations, or
+    are reported numbers from a simulation/prediction framework? The data files suggest
+    pre-specified "expected_results" under different outcome tiers.
+
+
+    2. **Model identity**: Is the 8B model truly Llama-based (DeepSeek-R1-Distill-Llama-8B)
+    or Qwen-based (DeepSeek-R1-Distill-Qwen-7B)? The text is contradictory.
+
+
+    3. **Non-distilled models**: Have you evaluated on any model that acquired reasoning
+    via full RL rather than distillation?
+
+
+    4. **MLP probes**: Have you tried multi-layer perceptrons with substantial capacity
+    (e.g., 3-layer, 1024 hidden units) on single-step 32B hidden states? GRU tests
+    temporal modeling, not nonlinear single-step extraction.
+
+
+    5. **Non-safety control**: Does probing a non-safety property (e.g., topic classification)
+    at both scales work fine? This would verify the probe methodology is not broken
+    at 32B and that the finding is safety-specific.
+
+
+    6. **OpenThinker-7B full results**: Why do OpenThinker-7B results appear only
+    in the 2×2 summary and not in detailed comparison tables?
+
+
+    ---
+
+
+    ## Missing Experiments / Suggestions
+
+
+    1. **MLP probes** (3-layer, 1024 hidden units) on single-step 32B hidden states
+    to test nonlinear extraction
+
+    2. **Multi-layer ensemble probes** (concatenate 5 layers) to test distributed
+    signal recovery
+
+    3. **Attention pattern probes** to test the paper''s own speculation about attention-based
+    encoding
+
+    4. **Non-distilled 32B+ model** (native DeepSeek-R1-67B or similar) to separate
+    distillation from scale
+
+    5. **Non-safety probing control** (topic/sentiment) to verify scale-specificity
+
+    6. **Larger test set** (100+ traces) to resolve statistical power concerns
+
+    7. **Effect size analysis** (Cohen''s d) to determine needed n for detecting a
+    meaningful 32B effect
+
+
+    ---
+
+
+    ## Scores
+
+
+    | Reviewer | Focus | Score | Confidence |
+
+    |----------|-------|-------|------------|
+
+    | R1 | Methodology + Experiments | 3/6 (Weak Reject) | 4/5 |
+
+    | R2 | Novelty + Related Work | 3/6 (Weak Reject) | 4/5 |
+
+    | **Consensus** | | **3/6 (Weak Reject)** | **4/5** |
+
+
+    ---
+
+
+    ## Meta-Review Summary
+
+
+    The paper addresses an important and timely question: does hidden-state monitoring
+    for safety commitment detection generalize across model scale? The experimental
+    design is systematic, covering 15 experiments that progressively eliminate alternative
+    explanations. The core empirical observation (Fisher discriminability drops 6×
+    from 8B to 32B, HS-text AUROC difference becomes non-significant) is internally
+    consistent.
+
+
+    However, the paper has critical weaknesses that prevent acceptance at a top venue:
+
+
+    1. **The central causal claim (scale causes signal loss) is confounded** by the
+    fact that all 32B models are Qwen2.5-based distillations from the same teacher.
+    Scale and distillation target are not separated.
+
+
+    2. **The test set (n=43) is too small** to support the binary claims made. Confidence
+    intervals include chance for 32B models, meaning the paper cannot distinguish
+    "no signal" from "weak signal + insufficient data."
+
+
+    3. **The paper lacks theoretical grounding.** The superposition hypothesis provides
+    the exact framework for explaining the findings but is not cited or discussed.
+    Without it, the contribution is an unexplained empirical observation.
+
+
+    4. **Presentation deficits** include no figures (in a paper crying out for visualization),
+    severely inadequate Related Work (~0.5 page, ~14 citations), and model mislabeling
+    that undermines confidence in experimental execution.
+
+
+    5. **The framing is narrow.** The more important finding — that ALL monitoring
+    (HS and text) degrades to near-chance at 32B — is buried in favor of the relative
+    HS-vs-text comparison.
+
+
+    **Recommendation**: Weak Reject (3/6). The research question is valuable and the
+    experimental framework is sound in structure, but the evidence is insufficient
+    to support the breadth of conclusions. Major revisions needed: (a) test on non-distilled
+    32B+ models, (b) increase test set to 100+, (c) add theoretical framework (superposition),
+    (d) expand Related Work to 1.5+ pages with 40+ refs, (e) add 3–4 key figures,
+    (f) reframe around the absolute monitoring failure, not just relative HS-text
+    comparison, (g) resolve model identity inconsistency. As a workshop paper with
+    appropriately scoped claims, the current evidence could be sufficient.'
+  error: ''
+errors: {}
+score_anomaly: ''
+created_at: '2026-05-16T22:12:22+00:00'

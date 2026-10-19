@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fde05bb88cc279c8237c",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code ot7b bootstrap w audit",
+  "task_key": "worker_code_ot7b_bootstrap_w_audit_20260517T083823",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_ot7b_bootstrap_w_audit_20260517T083823_result.json",
+    "occurrence": 1,
+    "bytes": 768,
+    "sha256": "10bd7dc291e1534d46fdd615350c67d5ea0351569a551d24fca1c73af3480965"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。报告已保存并注册。核心结论：\n\n1. **Bootstrap W-matching: PASS** - OT-7B bootstrap 在 W=3 下对 HS 和 Text 是 matched 的。`phase5_bootstrap` 的代码明确对两者都传入 `best_w=3`。所有模型 bootstrap 同理，无需补跑。\n\n2. **Layer 0 定义: CONSISTENT** - 所有模型用 `hidden_states[layer_idx + 1]`，layer 0 = transformer block 0 output（跳过 embedding layer），定义一致。\n\n3. **R1-8B Layer Sweep 覆盖缺口** (额外发现) - R1-8B 仅提取了 layers 12-24，其他三个模型(R1-32B/QwQ/OT-7B)都扫描了全部层且 best layer 均在 0-6 范围。R1-8B 的 \"best layer=14\" 可能不是真正的全局最优，建议补提取 early layers 或在论文中注明此限制。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-ot7b-bootstrap-w-audit.md"
+}

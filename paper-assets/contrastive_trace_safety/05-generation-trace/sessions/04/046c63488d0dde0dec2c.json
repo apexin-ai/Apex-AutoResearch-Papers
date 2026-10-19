@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "046c63488d0dde0dec2c",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code gru256 multilayer",
+  "task_key": "worker_code_gru256_multilayer_20260516T194158",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gru256_multilayer_20260516T194158_result.json",
+    "occurrence": 1,
+    "bytes": 967,
+    "sha256": "dd4142f0f657d179bcc7276a419b5fb237fb9337e9dd8fb9cebd3cc7e6ea42d7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。\n\n## 结果汇总\n\n| Method | Acc | Crossing% | Lead Mean | Lead Med | Pos Lead |\n|---|---|---|---|---|---|\n| **GRU single L14** | 0.8386 | 72.1% | +3.5 | 0.0 | 13/31 |\n| **GRU multi 7L** | **0.8094** | **76.7%** | **+4.7** | 0.0 | 13/33 |\n| LR single L14 | 0.8172 | 46.5% | -2.0 | -2.0 | 6/20 |\n| LR multi 7L | 0.8060 | 39.5% | +1.1 | 0.0 | 6/17 |\n\n## Pass/Fail 判断：**PASS — STRONG SIGNAL**\n\n- **Best GRU** (multi-7L): lead = **+4.7 步**\n- **Best LR** (multi-7L): lead = +1.1 步\n- **Delta = 3.7 步 > 3 阈值** → 序列建模确认有效\n- GRU crossing rate (72-77%) 远高于 LR (40-47%)，检出能力大幅提升\n- Multi-layer GRU 略优于 single-layer (4.7 vs 3.5 lead)，聚合分布式信号有帮助\n- 两个 GRU 都在 epoch 11 early stop，训练快速收敛\n\nCheckpoints 已保存至 `artifacts/diagnostics/gru256_single_l14.pt` 和 `gru256_multi_7l.pt`。Registry 已更新为 DONE/success。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-gru256-multilayer.md"
+}

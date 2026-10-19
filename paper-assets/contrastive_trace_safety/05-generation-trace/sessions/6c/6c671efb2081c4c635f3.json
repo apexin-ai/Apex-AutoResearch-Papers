@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "6c671efb2081c4c635f3",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "verification holdout ot7b r132b",
+  "task_key": "worker_verification_holdout_ot7b_r132b_20260523T112218",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verification_holdout_ot7b_r132b_20260523T112218_result.json",
+    "occurrence": 1,
+    "bytes": 2255067,
+    "sha256": "402cf810dde54af975374daf2ca8199f8ecefb5e578810067df266a72f4b85cd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "6c671efb2081c4c635f3-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/verification-holdout-ot7b-r132b.md"
+}

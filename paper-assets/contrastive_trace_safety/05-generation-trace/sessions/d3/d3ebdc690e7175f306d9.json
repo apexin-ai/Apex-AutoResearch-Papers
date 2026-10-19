@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d3ebdc690e7175f306d9",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "data exp007 full table extract",
+  "task_key": "worker_data_exp007_full_table_extract_20260517T012957",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_exp007_full_table_extract_20260517T012957_result.json",
+    "occurrence": 1,
+    "bytes": 2329,
+    "sha256": "b594923d8b6b019c743d4cdf873f9b6d29b83dec8aeb7f977323140d163940ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据提取完成。额外字段：`precp_fpr_step`（step-level FPR）和 `lead_mean`（平均提前量）。\n\n### R1-32B\n| W | bal_acc | precision | coverage | precp_fpr_trace | precp_fpr_step | lead_mean |\n|---|---------|-----------|----------|-----------------|----------------|-----------|\n| 1 | 0.7182 | 0.5490 | 0.8000 | 0.2764 | 0.3203 | 12.88 |\n| 3 | 0.7252 | 0.5600 | 0.8000 | 0.2576 | 0.3064 | 11.38 |\n| 5 | 0.7309 | 0.5750 | 0.7500 | 0.2393 | 0.2841 | 11.07 |\n| 10 | 0.7371 | 0.6093 | 0.7000 | 0.1891 | 0.2340 | 10.79 |\n| 15 | 0.7207 | 0.5907 | 0.7000 | 0.2089 | 0.2451 | 10.86 |\n| 20 | 0.6961 | 0.5628 | 0.6500 | 0.2193 | 0.2618 | 9.62 |\n| 25 | 0.7028 | 0.5662 | 0.7000 | 0.2282 | 0.2646 | 10.71 |\n\n### QwQ-32B\n| W | bal_acc | precision | coverage | precp_fpr_trace | precp_fpr_step | lead_mean |\n|---|---------|-----------|----------|-----------------|----------------|-----------|\n| 1 | 0.7298 | 0.5435 | 0.7895 | 0.1850 | 0.2276 | 19.73 |\n| 3 | 0.7452 | 0.5647 | 0.7368 | 0.1750 | 0.2141 | 20.64 |\n| 5 | 0.7610 | 0.5733 | 0.7368 | 0.1795 | 0.2168 | 20.07 |\n| 10 | 0.7469 | 0.5714 | 0.7368 | 0.1707 | 0.2073 | 18.43 |\n| 15 | 0.7412 | 0.5816 | 0.6842 | 0.1605 | 0.1911 | 15.77 |\n| 20 | 0.7542 | 0.6024 | 0.6316 | 0.1567 | 0.1789 | 15.75 |\n| 25 | 0.7624 | 0.6177 | 0.5789 | 0.1476 | 0.1694 | 14.91 |\n\n### R1-8B (参照)\n| W | bal_acc | precision | coverage | precp_fpr_trace | precp_fpr_step | lead_mean |\n|---|---------|-----------|----------|-----------------|----------------|-----------|\n| 1 | 0.7783 | 0.6926 | 0.7209 | 0.1037 | 0.0965 | 13.84 |\n| 3 | 0.7902 | 0.7228 | 0.6977 | 0.0988 | 0.0850 | 12.07 |\n| 5 | 0.7810 | 0.7258 | 0.6512 | 0.0913 | 0.0809 | 8.25 |\n| 10 | 0.7925 | 0.7431 | 0.5581 | 0.0865 | 0.0761 | 10.04 |\n| 15 | 0.8017 | 0.7767 | 0.5116 | 0.0701 | 0.0639 | 7.23 |\n| 20 | 0.8072 | 0.7862 | 0.5349 | 0.0661 | 0.0612 | 7.43 |\n| 25 | 0.8095 | 0.8216 | 0.4884 | 0.0545 | 0.0483 | 8.14 |\n\n**观察**：R1-8B 在所有 W 上表现最好（高 bal_acc + 低 FPR）。两个 32B 模型表现相近，但 QwQ-32B 的 FPR 显著低于 R1-32B，且 lead_mean 更大（提前检测更早）。三个模型都呈现 W 增大时 coverage 下降、precision 上升的 trade-off。R1-32B 最优 W=10，QwQ-32B 最优 W=5 或 W=25（取决于优化目标）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-exp007-full-table-extract.md"
+}

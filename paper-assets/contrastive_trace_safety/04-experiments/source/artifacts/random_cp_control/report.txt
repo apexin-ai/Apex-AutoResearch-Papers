@@ -1,0 +1,39 @@
+Random-CP Control Experiment: OT-7B
+=======================================================
+Traces: 228, Layers: 28, Window: 3, PCA: 100d
+Repeats: 10 (seeds 42-51)
+Split: 136/45/47
+
+Layer selection by metric (across 10 random-CP repeats):
+  Metric            Mean L   Std  Shallow%  Deep% Layers
+---------------------------------------------------------------------------
+  bal_acc             13.5   7.6       30%    60% [5, 20, 20, 19, 5, 18, 21, 8, 19, 0]
+  precision           14.4   8.0       30%    70% [4, 21, 20, 19, 4, 26, 21, 3, 16, 10]
+  pre_cp_fpr          15.3   8.7       30%    70% [5, 27, 20, 21, 4, 26, 21, 3, 16, 10]
+  crossing_rate       13.3   9.3       30%    60% [18, 1, 1, 27, 24, 4, 8, 24, 10, 16]
+  cr_composite        14.2   9.2       30%    70% [18, 1, 1, 27, 24, 4, 15, 24, 10, 18]
+
+Key findings:
+  CR-composite selects shallow (L<=5) in 30% of repeats
+  Precision selects deep (L>=10) in 70% of repeats
+  FPR selects deep (L>=10) in 70% of repeats
+  Metric disagreement replicates with random CP: False
+
+Interpretation:
+  The metric disagreement pattern does NOT replicate with random CPs,
+  supporting that the pattern requires real CP labels and reflects
+  genuine model behavioral structure.
+
+Total time: 132s
+
+--- Comparison with Real-CP ---
+
+Real-CP layer selection (from exp_r3_layer_ablation):
+  bal_acc                  -> L 9 ( 33.3%)
+  bal_acc_x_crossing (CR)  -> L 0 (  0.0%)  <-- extreme shallow
+  precision                -> L19 ( 70.4%)  <-- deep
+  pre_cp_fpr               -> L18 ( 66.7%)  <-- deep
+  composite                -> L 9 ( 33.3%)
+
+With real CPs: clear metric disagreement (CR->L0, Precision->L19, FPR->L18)
+With random CPs: all metrics scatter uniformly (mean 13-15, std 8-9), no systematic split

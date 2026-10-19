@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "b6dd6d29877d3e658b94",
+  "project": "contrastive_trace_safety",
+  "kind": "worker",
+  "title": "analysis r12 5seed hb",
+  "task_key": "worker_analysis_r12_5seed_hb_20260518T132721",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r12_5seed_hb_20260518T132721.log",
+    "occurrence": 1,
+    "bytes": 682037,
+    "sha256": "6cc86eddf409cb6865b5103cbc66e11d673ce2ede8fcc53ed17376517371aba7"
+  },
+  "statistics": {
+    "messages": 205,
+    "user_turns": 0,
+    "tool_calls": 77,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 47,
+      "tool_call": 77,
+      "tool_result": 77,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 205,
+      "chunks": [
+        {
+          "path": "b6dd6d29877d3e658b94-part-0001.json",
+          "message_count": 168
+        },
+        {
+          "path": "b6dd6d29877d3e658b94-part-0002.json",
+          "message_count": 37
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-r12-5seed-hb.md"
+}

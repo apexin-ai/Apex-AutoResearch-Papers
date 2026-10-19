@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "13b39b4b346bb6663ccb",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "research crossing rate literature",
+  "task_key": "worker_research_crossing_rate_literature_20260520T045810",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_crossing_rate_literature_20260520T045810_result.json",
+    "occurrence": 1,
+    "bytes": 1396,
+    "sha256": "0cbc16b0f7f1832ede2b30aee72e5450ac8be092e65fbfce4a11827653b802bf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已完成，保存在 `artifacts/crossing_rate_literature_survey.md`。\n\n## 核心结论\n\n**CR 作为精确定义的 metric 是新颖的**——42 组关键词、~117 篇论文中无人定义过 \"跨层 probe 预测翻转计数\"。但这不是 straw man，因为：\n\n### 最强反驳证据\n\n1. **Kaya et al. (ICML 2019)** — \"overthinking\" + confusion metric 已识别跨层预测翻转问题，但未形式化为评估指标\n2. **PABEE (NeurIPS 2020)** — 直接用跨层预测一致性作为 early exit 判据，证明这个信号有实际价值\n3. **Miller & Blume (2026)** — 独立提出 Decision Flip Rate (eDFR)，概念上等价于 CR（只是在不同轴上计数翻转）\n4. **Keoliya et al. (2025)** — 提出惩罚振荡的 stability metric，发现 \"existing methods struggle to jointly optimize accuracy and stability\"\n5. **Wildi (2026)** — 在计量经济学中显式连接 sign accuracy 和 zero-crossing rate，数学上与 CR-composite 分解完全平行\n\n### 建议 framing\n\n不要说 \"别人也用 CR\"，而是说：\n- CR 形式化了已被观察到但未被量化的现象（overthinking, cross-layer disagreement）\n- CR 是 online safety monitoring 场景的自然需求（SafeSwitch, TrajGuard 等系统需要稳定的监控信号）\n- CR 是 ZCR / eDFR / Lipschitz stability 这类既有概念在新领域的实例化"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-crossing-rate-literature.md"
+}

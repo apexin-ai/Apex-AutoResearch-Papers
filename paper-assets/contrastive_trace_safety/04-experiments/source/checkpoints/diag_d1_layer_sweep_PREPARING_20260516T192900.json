@@ -1,0 +1,24 @@
+{
+  "exp_id": "diag_d1_layer_sweep",
+  "project": "contrastive_trace_safety",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T19:29:00.134Z",
+    "updated_at": "2026-05-16T19:29:00.134Z",
+    "spec": {
+      "hypothesis": "Signal may exist in layers other than 20; layer sweep finds best layer for commitment detection",
+      "parent": "mvp_v1",
+      "command": "python -m src.diagnostics.layer_sweep",
+      "server": "autodl-rtx6000",
+      "data_path": "artifacts/hidden_states/",
+      "data_count": 209,
+      "model_name": "DeepSeek-R1-Distill-Llama-8B",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-16T19:29:00.145663+00:00",
+  "trigger": "update_registry"
+}

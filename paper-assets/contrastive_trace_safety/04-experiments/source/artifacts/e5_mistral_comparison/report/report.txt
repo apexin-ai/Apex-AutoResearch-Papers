@@ -1,0 +1,73 @@
+E5-Mistral-7B-Instruct vs MiniLM-L6-v2 vs Hidden State Comparison
+======================================================================
+
+E5-Mistral: intfloat/e5-mistral-7b-instruct (4096d -> PCA 384d)
+MiniLM: all-MiniLM-L6-v2 (384d)
+Probe: LogisticRegression(C=1.0, class_weight='balanced', max_iter=2000)
+Feature: moving average window + StandardScaler
+Permutation test: 10000 resamples, null-centered, two-sided
+Split: 60/20/20, seed=42, trace-level
+
+R1-8B (W=15, HS layer_idx=5)
+  PCA explained variance: 0.8628
+  Traces: 209 total, 166 train+val, 43 test
+
+  Method                     BA     Prec      FPR
+  ------------------------------------------------
+  E5-Mistral-384d        0.6406   0.4003   0.2801
+  MiniLM-384d            0.6607   0.4013   0.3175
+  HS (BA-opt layer)      0.7555   0.5323   0.2114
+
+  Permutation test (E5 - HS):
+    BA:   diff=-0.1149  p=0.0399 *
+    Prec: diff=-0.1320  p=0.0330 *
+    FPR:  diff=+0.0687  p=0.2093
+
+OT-7B (W=3, HS layer_idx=2)
+  PCA explained variance: 0.8455
+  Traces: 228 total, 181 train+val, 47 test
+
+  Method                     BA     Prec      FPR
+  ------------------------------------------------
+  E5-Mistral-384d        0.6308   0.3208   0.2304
+  MiniLM-384d            0.5754   0.2464   0.3152
+  HS (BA-opt layer)      0.6385   0.3724   0.1645
+
+  Permutation test (E5 - HS):
+    BA:   diff=-0.0076  p=0.8042
+    Prec: diff=-0.0517  p=0.3635
+    FPR:  diff=+0.0659  p=0.1808
+
+R1-32B (W=1, HS layer_idx=46)
+  PCA explained variance: 0.8959
+  Traces: 100 total, 80 train+val, 20 test
+
+  Method                     BA     Prec      FPR
+  ------------------------------------------------
+  E5-Mistral-384d        0.6666   0.5061   0.3370
+  MiniLM-384d            0.6273   0.4723   0.3454
+  HS (BA-opt layer)      0.7236   0.5525   0.3203
+
+  Permutation test (E5 - HS):
+    BA:   diff=-0.0570  p=0.2581
+    Prec: diff=-0.0464  p=0.5352
+    FPR:  diff=+0.0167  p=0.9121
+
+QwQ-32B (W=5, HS layer_idx=63)
+  PCA explained variance: 0.8709
+  Traces: 95 total, 76 train+val, 19 test
+
+  Method                     BA     Prec      FPR
+  ------------------------------------------------
+  E5-Mistral-384d        0.6303   0.4471   0.2480
+  MiniLM-384d            0.5431   0.3298   0.3469
+  HS (BA-opt layer)      0.7194   0.5152   0.2588
+
+  Permutation test (E5 - HS):
+    BA:   diff=-0.0891  p=0.0758
+    Prec: diff=-0.0681  p=0.3684
+    FPR:  diff=-0.0108  p=0.9010
+
+----------------------------------------------------------------------
+Artifacts on server: /root/autodl-tmp/contrastive_trace_safety/artifacts/e5_mistral_comparison/
+Total elapsed: 1365.4s

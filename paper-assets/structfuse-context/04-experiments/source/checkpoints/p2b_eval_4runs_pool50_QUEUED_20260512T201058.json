@@ -1,0 +1,25 @@
+{
+  "exp_id": "p2b_eval_4runs_pool50",
+  "project": "structfuse-context",
+  "state": "QUEUED",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-12T20:10:54.579Z",
+    "updated_at": "2026-05-12T20:10:58.158Z",
+    "spec": {
+      "command": "eval_p2b.py on 4 checkpoints with new val.jsonl pool_size=50",
+      "server": "cqa1-21977",
+      "data_path": "/root/structfuse",
+      "data_count": 127,
+      "model_name": "Qwen2.5-Coder-3B (LoRA)",
+      "seed": "42,123,456",
+      "checkpoint_source": "p2b_5reruns (random×3 + emb_dist×1)",
+      "eval_data": "val.jsonl pool_size=50"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-12T20:10:58.186965+00:00",
+  "trigger": "update_registry"
+}

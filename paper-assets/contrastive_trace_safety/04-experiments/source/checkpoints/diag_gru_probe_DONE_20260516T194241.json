@@ -1,0 +1,41 @@
+{
+  "exp_id": "diag_gru_probe",
+  "project": "contrastive_trace_safety",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T19:38:52.099Z",
+    "updated_at": "2026-05-16T19:42:41.943Z",
+    "spec": {
+      "hypothesis": "GRU can capture sequential safety-density decay patterns that linear/LR probes miss, yielding positive lead time",
+      "parent": "diag_d3_regularized_probes",
+      "command": "python -m src.diagnostics.gru_probe",
+      "server": "autodl-rtx6000",
+      "data_path": "artifacts/hidden_states/",
+      "data_count": 209,
+      "model_name": "GRUProbe(h=128)",
+      "seed": 42
+    },
+    "checkpoint_path": "artifacts/diagnostics/gru_best.pt",
+    "log_path": "/tmp/gru_probe.log",
+    "metrics": {
+      "test_acc": 0.8305,
+      "test_acc_std": 0.1856,
+      "crossing_rate": 0.6744,
+      "lead_mean": -0.207,
+      "lead_median": -1,
+      "lead_std": 13,
+      "positive_lead_rate": 0.345,
+      "n_positive_lead": 10,
+      "n_detected": 29,
+      "early_stop_epoch": 14,
+      "model_params": 1622913
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-16T19:42:41.943Z"
+  },
+  "timestamp": "2026-05-16T19:42:41.963229+00:00",
+  "trigger": "update_registry"
+}

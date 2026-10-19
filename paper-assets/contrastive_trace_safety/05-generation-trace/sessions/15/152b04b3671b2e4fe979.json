@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "152b04b3671b2e4fe979",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "analysis r14 a1 ot7b rerun",
+  "task_key": "worker_analysis_r14_a1_ot7b_rerun_20260518T170819",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r14_a1_ot7b_rerun_20260518T170819_result.json",
+    "occurrence": 1,
+    "bytes": 1330,
+    "sha256": "bd2de86308cf7600e0cb418b8af30eafd3bd4e8529b00ca7114122968b990492"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results:\n\n```\nOT-7B BA Layer Sweep (max_iter=2000, 60/20/20):\nLayer BA curve: L0=0.839, L1=0.869, L2=0.886, L3=0.876, L4=0.867, L5=0.881, L6=0.858, L7=0.830, L8=0.821, L9=0.842, L10=0.843, L11=0.826, L12=0.836, L13=0.847, L14=0.848, L15=0.838, L16=0.849, L17=0.839, L18=0.856, L19=0.871, L20=0.868, L21=0.874, L22=0.870, L23=0.873, L24=0.873, L25=0.876, L26=0.885, L27=0.884\nBA-optimal: L2 (ba=0.8862)\nBA range: max-min = 6.5pp\n\nHS vs Text on BA-optimal layer L2:\n| Metric | HS     | Text   | Delta   | p_raw  | adj_p  | HB? |\n|--------|--------|--------|---------|--------|--------|-----|\n| Prec   | 0.5369 | 0.3481 | +0.1849 | 0.0000 | 0.0000 | Y   |\n| BA     | 0.7379 | 0.6577 | +0.0802 | 0.0057 | 0.0057 | Y   |\n| FPR    | 0.1367 | 0.2701 | -0.1334 | 0.0001 | 0.0002 | Y   |\n| AUROC  | 0.9061 | 0.7210 | +0.1851 | 0.0000 | -      | -   |\nHB pass: 3/3\n```\n\n**L2 is NOT a convergence artifact.** With max_iter=2000, L2 remains BA-optimal (0.886 vs 0.877 at max_iter=500). All layers improved uniformly (+0.8 to +2.1pp) but rankings unchanged. The major improvement is in final probe quality: HS AUROC jumped from 0.732 (max_iter=500) to 0.906 (max_iter=2000), a +17pp gain, while text AUROC also improved 0.604 to 0.721. HB significance strengthened to 3/3 (was already 3/3 but margins widened)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-r14-a1-ot7b-rerun.md"
+}

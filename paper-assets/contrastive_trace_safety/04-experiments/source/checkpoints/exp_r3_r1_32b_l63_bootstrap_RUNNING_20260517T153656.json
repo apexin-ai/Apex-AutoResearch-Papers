@@ -1,0 +1,26 @@
+{
+  "exp_id": "exp_r3_r1_32b_l63_bootstrap",
+  "project": "contrastive_trace_safety",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T15:35:54.733Z",
+    "updated_at": "2026-05-17T15:36:56.413Z",
+    "hypothesis": "R1-32B at corrected Layer 63 (95% depth) should show significant HS vs text advantage after null-centered two-sided bootstrap, confirming that the non-significance at biased Layer 10 was a layer-selection artifact rather than a true scale-dependent limitation.",
+    "spec": {
+      "command": "python exp_r3_r1_32b_l63_bootstrap_v2.py + pvalue_unified.py",
+      "server": "autodl-rtx6000",
+      "data_path": "/root/autodl-tmp/contrastive_trace_safety/data/r1_32b/",
+      "data_count": 100,
+      "model_name": "R1-Distill-Qwen-32B Layer 63",
+      "seed": 42,
+      "checkpoint_path": "N/A (CPU bootstrap)",
+      "log_path": "/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_r1_32b_l63_bootstrap_v2/results.json"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-17T15:36:56.478245+00:00",
+  "trigger": "update_registry"
+}

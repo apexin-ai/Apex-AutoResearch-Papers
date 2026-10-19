@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "20269ad82dd6fad6e271",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "experiment qwq hs vs text bootstrap",
+  "task_key": "worker_experiment_qwq_hs_vs_text_bootstrap_20260517T030045",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_qwq_hs_vs_text_bootstrap_20260517T030045_result.json",
+    "occurrence": 1,
+    "bytes": 1084,
+    "sha256": "d05dae6ea9651c70a20bbc3e554d6a774adc85712afc995a21cae74ad7a8264f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All results collected. Here's the complete summary:\n\n---\n\n## QwQ-32B HS vs Text Paired Bootstrap (n=1000)\n\nSettings: layer=2, W=5, text encoder=all-MiniLM-L6-v2, 19 test traces\n\n| Metric | HS | Text | Δ | 95% CI | p-value | Bonferroni α=0.017 |\n|--------|-----|------|---|--------|---------|-------------------|\n| **Balanced Accuracy** | 67.9% | 67.1% | +0.9pp | [-6.2, +7.3] | 0.828 | FAIL |\n| **Precision** | 58.3% | 52.5% | +5.7pp | [-5.8, +16.8] | 0.346 | FAIL |\n| **Pre-CP FPR** | 20.8% | 17.8% | +3.0pp (HS *worse*) | [-4.5, +10.5] | 0.785 | FAIL |\n\n**Conclusion**: On QwQ-32B, HS probes show no statistically significant advantage over text probes on any metric. The differences are small and confidence intervals all cross zero. This contrasts sharply with r1-8b where HS dominates (precision +22.4pp p<0.001, accuracy +8.2pp p=0.005).\n\nFor pre-CP FPR, HS actually has *higher* FPR than text (20.8% vs 17.8%), meaning text is slightly better at avoiding false alarms before commitment, though this difference is also not significant (p=0.785)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-qwq-hs-vs-text-bootstrap.md"
+}

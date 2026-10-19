@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "321761ebd958f060d839",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code advbench sync and submit",
+  "task_key": "worker_code_advbench_sync_and_submit_20260522T093708",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_advbench_sync_and_submit_20260522T093708_result.json",
+    "occurrence": 1,
+    "bytes": 552,
+    "sha256": "cfaed96528b00d13740280bdb250a6dd465ab05de86c4f7c6ceaa6253ce64b4e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部通过：\n\n| 检查项 | 结果 |\n|--------|------|\n| 文件行数 | 498 行（本地 499，heredoc 末尾无空行，正常） |\n| 语法检查 | Syntax OK |\n| 依赖导入 | All imports OK, torch=2.8.0+cu128, cuda=True |\n| AdvBench 下载 | 520 prompts，网络正常 |\n| 目录创建 | data/advbench, artifacts/hidden_states_advbench_r1_8b, artifacts/advbench_traces_r1_8b 均已就绪 |\n\n脚本已同步到 `westd-15904:/root/autodl-tmp/contrastive_trace_safety/scripts/advbench_layer_bias.py`，可以直接运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-advbench-sync-and-submit.md"
+}

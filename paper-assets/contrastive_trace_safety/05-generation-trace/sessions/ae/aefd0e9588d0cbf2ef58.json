@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aefd0e9588d0cbf2ef58",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "analysis n6 multi metric ensemble",
+  "task_key": "worker_analysis_n6_multi_metric_ensemble_20260519T161804",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_n6_multi_metric_ensemble_20260519T161804_result.json",
+    "occurrence": 1,
+    "bytes": 1466,
+    "sha256": "f02f006c7a18dd9a598af2a9d519292dc1a64a108056e5e520a5fb31be3a16a5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 4 models completed successfully. Results:\n\n**Key findings:**\n\n| Model | Best Single | Ensemble | Delta | Text | Ens-Text |\n|-------|------------|----------|-------|------|----------|\n| R1-8B | 0.6040 | 0.5651 | -0.039 | 0.3718 | +0.193 |\n| OT-7B | 0.4731 | **0.5060** | **+0.033** | 0.2360 | +0.270 |\n| QwQ-32B | 0.5777 | 0.5775 | -0.000 | 0.3741 | +0.203 |\n| R1-32B | 0.5833 | 0.5810 | -0.002 | 0.4764 | +0.105 |\n\n**Ensemble vs Text**: Significant on all 4 models (p<0.05 for precision across all, 11/12 HB-correctable). The HS ensemble dominates text by +10-27pp precision.\n\n**Ensemble vs best single layer**: Ensemble is comparable to or slightly below the best single layer on 3/4 models (R1-8B, QwQ-32B, R1-32B) — this is expected since ensemble smooths toward the mean. On OT-7B, ensemble actually *beats* the best single layer (+3.3pp precision), showing the variance reduction benefit.\n\n**Layer sensitivity mitigation**: Ensemble consistently falls within or above the single-layer range, eliminating the worst-case penalty. For QwQ-32B, the single-layer precision range was 4.3pp (0.535-0.578) — ensemble lands at 0.578, near the top.\n\n3rd candidates found:\n- R1-8B: L20 (FPR-best from val sweep)\n- OT-7B: L18 (FPR-best from random-CP data)\n- QwQ-32B: L63 (paper's threshold consensus)\n- R1-32B: L44 (FPR-best from val sweep)\n\nOutputs saved to `artifacts/n6_multi_metric_ensemble/results.json` and `report.txt`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-n6-multi-metric-ensemble.md"
+}

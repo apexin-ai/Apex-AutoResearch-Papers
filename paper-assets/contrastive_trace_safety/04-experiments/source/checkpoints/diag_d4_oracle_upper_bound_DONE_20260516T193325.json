@@ -1,0 +1,38 @@
+{
+  "exp_id": "diag_d4_oracle_upper_bound",
+  "project": "contrastive_trace_safety",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T19:29:02.931Z",
+    "updated_at": "2026-05-16T19:33:25.131Z",
+    "spec": {
+      "hypothesis": "Oracle label-based detection gives upper bound for hidden-state methods; if oracle < 90% the task itself is ill-posed",
+      "parent": "mvp_v1",
+      "command": "python -m src.diagnostics.oracle_upper_bound",
+      "server": "autodl-rtx6000",
+      "data_path": "HuggingFace: ishitakakkar-10/HarmThoughts",
+      "data_count": 43,
+      "model_name": "oracle (ground-truth labels)",
+      "seed": 42
+    },
+    "metrics": {
+      "K5_detection_rate": 100,
+      "K5_early_detection_rate": 76.7,
+      "K5_mean_lead_time": 31,
+      "K5_median_lead_time": 29,
+      "K1_early_detection_rate": 83.7,
+      "K8_early_detection_rate": 65.1,
+      "pre_cp_mean_longest_streak": 14.6,
+      "test_traces": 43
+    },
+    "conclusion": "success",
+    "log_path": "/tmp/d4_oracle.log",
+    "checkpoint_path": "N/A (diagnostic, no checkpoint)",
+    "completed_at": "2026-05-16T19:33:25.131Z"
+  },
+  "timestamp": "2026-05-16T19:33:25.153941+00:00",
+  "trigger": "update_registry"
+}

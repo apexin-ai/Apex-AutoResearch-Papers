@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "12ac1a165db38b8dac49",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "paper figure p14 font fix",
+  "task_key": "worker_paper_figure_p14_font_fix_20260518T163351",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_p14_font_fix_20260518T163351_result.json",
+    "occurrence": 1,
+    "bytes": 432,
+    "sha256": "10bddfe18611b3c6a194948cacedf953dee73bd2d80ea68cf5853ead687c4a5c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。修复内容：\n\n- **字体**：base 9pt, title 10pt, tick labels 8pt, legend 8pt（原版 legend 6.5pt 违规）\n- **figsize**：从 `(6.75, 5.5)` 增大到 `(7, 10.5)`，4 个子图有足够空间\n- **图例**：使用 `bbox_to_anchor=(1.01, 1.0)` 放在图外右侧，不遮挡数据\n- 输出已保存到本地 `docs/paper/figures/fig_layer_heatmap.pdf` 和远程 `artifacts/` + `docs/paper/figures/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-p14-font-fix.md"
+}

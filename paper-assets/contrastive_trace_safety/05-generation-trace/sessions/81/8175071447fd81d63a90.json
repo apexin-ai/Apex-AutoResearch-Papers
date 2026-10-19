@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8175071447fd81d63a90",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "ops qwen3 final check v2",
+  "task_key": "worker_ops_qwen3_final_check_v2_20260520T063007",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_qwen3_final_check_v2_20260520T063007_result.json",
+    "occurrence": 1,
+    "bytes": 122,
+    "sha256": "5a66226fa2628bb3895fb58e57c37e2f7cf8c1c538c7fe1587181aff97f876f7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已设置约 4.5 分钟后唤醒（保持缓存热），届时检查 `tmux has-session -t qwen3_cp_full`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-qwen3-final-check-v2.md"
+}

@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "98946aa42f51ae77cfff",
+  "project": "contrastive_trace_safety",
+  "kind": "worker",
+  "title": "setup download gemma4 e4b",
+  "task_key": "worker_setup_download_gemma4_e4b_20260522T120049",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_setup_download_gemma4_e4b_20260522T120049.log",
+    "occurrence": 1,
+    "bytes": 785729,
+    "sha256": "b2ac0049d62e99b5c9334e1ebc381a665b1174ad879bed0c6e84b1b38afeccea"
+  },
+  "statistics": {
+    "messages": 621,
+    "user_turns": 0,
+    "tool_calls": 264,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 89,
+      "tool_call": 264,
+      "tool_result": 264,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 621,
+      "chunks": [
+        {
+          "path": "98946aa42f51ae77cfff-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "98946aa42f51ae77cfff-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "98946aa42f51ae77cfff-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "98946aa42f51ae77cfff-part-0004.json",
+          "message_count": 81
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/setup-download-gemma4-e4b.md"
+}

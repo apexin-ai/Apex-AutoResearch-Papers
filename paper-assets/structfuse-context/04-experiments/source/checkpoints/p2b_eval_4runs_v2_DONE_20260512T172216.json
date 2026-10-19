@@ -1,0 +1,51 @@
+{
+  "exp_id": "p2b_eval_4runs_v2",
+  "project": "structfuse-context",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-12T17:21:49.599Z",
+    "updated_at": "2026-05-12T17:22:16.595Z",
+    "spec": {
+      "command": "eval 4 runs (3 random seeds + 1 emb_dist) with pool_size=26",
+      "server": "cqa1-21977",
+      "data_path": "/root/structfuse",
+      "data_count": 127,
+      "model_name": "Qwen2.5-Coder-3B (LoRA)",
+      "seed": "42,123,456",
+      "description": "Phase 2b eval v2: pool_size=26 评估 random vs emb_dist"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "random_seed42": {
+        "recall@1": 0.9449,
+        "recall@5": 0.9843,
+        "recall@10": 0.9843
+      },
+      "random_seed123": {
+        "recall@1": 0.9449,
+        "recall@5": 0.9921,
+        "recall@10": 0.9921
+      },
+      "random_seed456": {
+        "recall@1": 0.9291,
+        "recall@5": 0.9921,
+        "recall@10": 0.9921
+      },
+      "emb_dist_seed42": {
+        "recall@1": 0.6693,
+        "recall@5": 0.8898,
+        "recall@10": 0.9291
+      },
+      "pool_size": 26,
+      "n_samples": 127
+    },
+    "checkpoint_path": "/root/autodl-tmp/structfuse/checkpoints/ (4 runs: random_s42/123/456, emb_dist_s42)",
+    "log_path": "/root/autodl-tmp/structfuse/eval_results/",
+    "completed_at": "2026-05-12T17:22:16.595Z"
+  },
+  "timestamp": "2026-05-12T17:22:16.617187+00:00",
+  "trigger": "update_registry"
+}

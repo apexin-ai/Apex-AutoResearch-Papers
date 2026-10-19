@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "60a226f0f3541953fe08",
+  "project": "contrastive_trace_safety",
+  "kind": "worker",
+  "title": "code exp 006 bootstrap",
+  "task_key": "worker_code_exp_006_bootstrap_20260516T203617",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_006_bootstrap_20260516T203617.log",
+    "occurrence": 1,
+    "bytes": 989139,
+    "sha256": "325622c96db805b84022e2853a0df2557609cc771f377a90a86f1dd73c603bca"
+  },
+  "statistics": {
+    "messages": 483,
+    "user_turns": 1,
+    "tool_calls": 178,
+    "roles": {
+      "log": 1,
+      "system": 34,
+      "record": 3,
+      "assistant": 87,
+      "tool_call": 178,
+      "user": 1,
+      "tool_result": 178,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "60a226f0f3541953fe08-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 476,
+      "chunks": [
+        {
+          "path": "60a226f0f3541953fe08-part-0001.json",
+          "message_count": 173
+        },
+        {
+          "path": "60a226f0f3541953fe08-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "60a226f0f3541953fe08-part-0003.json",
+          "message_count": 123
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp-006-bootstrap.md"
+}

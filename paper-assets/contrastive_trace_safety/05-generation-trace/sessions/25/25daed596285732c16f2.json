@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "25daed596285732c16f2",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "analysis r14 a5 residualized control",
+  "task_key": "worker_analysis_r14_a5_residualized_control_20260518T164827",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r14_a5_residualized_control_20260518T164827_result.json",
+    "occurrence": 1,
+    "bytes": 1043,
+    "sha256": "22377e759259b1e71dcac75cf796ab38cbed70d8cd6ab84445cabe661763f946"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "A5 完成。结果汇总：\n\n| Model | Orig BA | Orig Rnd BA | Orig Sel | Resid BA | Resid Rnd BA | Resid Sel | >5pp |\n|-------|---------|-------------|----------|----------|--------------|-----------|------|\n| R1-8B | 0.8259 | 0.6848±0.009 | 14.1pp | 0.6991 | 0.4706±0.015 | **22.8pp** | **Y** |\n| OT-7B | 0.7006 | 0.5900±0.010 | 11.1pp | 0.6110 | 0.5070±0.014 | **10.4pp** | **Y** |\n| R1-32B | 0.7265 | 0.5586±0.015 | 16.8pp | 0.5302 | 0.5002±0.021 | **3.0pp** | **N** |\n| QwQ-32B | 0.7455 | 0.5828±0.012 | 16.3pp | 0.6051 | 0.5050±0.025 | **10.0pp** | **Y** |\n\n3/4 模型通过 >5pp 阈值，确认 residualized HS 中存在 genuine safety signal。R1-32B 失败（3.0pp），因为 W=1 时去除位置信息后几乎无剩余信号（BA 降至 0.53，接近随机）。R1-8B 的 residualized selectivity（22.8pp）反而高于 original（14.1pp），因为 random baseline 在去位置后跌到近 0.47。\n\n输出目录：`/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a5_residualized_control/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-r14-a5-residualized-control.md"
+}

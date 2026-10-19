@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cafad6427a8833216180",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code sync gemma2 v2 classifier",
+  "task_key": "worker_code_sync_gemma2_v2_classifier_20260522T145609",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_sync_gemma2_v2_classifier_20260522T145609_result.json",
+    "occurrence": 1,
+    "bytes": 420,
+    "sha256": "c08d2af16692e30c6f6288233bb3c7fbae0c2be31e103912d7c0e4cba8fae468"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "同步完成，3 项验证全部通过：\n\n- `refusal_count >= 1` — 行 144 ✓\n- `\"is illegal\"` — REFUSAL_PHRASES 中存在 ✓  \n- `threshold >= 1` — docstring 行 141 ✓\n\n`classify_trace` 已从 v1（threshold >= 2 + short-text 特殊逻辑）更新为 v2（threshold >= 1，统一判定）。REFUSAL_PHRASES 服务器上已是 23 个短语，无需改动。Gemma-4 实验未受影响。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-sync-gemma2-v2-classifier.md"
+}

@@ -1,0 +1,108 @@
+paper_key: "hewitt2019control"
+title: "Designing and Interpreting Probes with Control Tasks"
+venue: "EMNLP 2019"
+full_text_available: true
+
+research:
+  baselines:
+    - "Linear probe"
+    - "MLP-1 probe (one hidden layer)"
+    - "MLP-2 probe (two hidden layers)"
+    - "Bilinear probe (for dependency edge prediction)"
+    - "Proj0 (untrained BiLSTM on ELMo character CNN embeddings)"
+  metrics:
+    - {name: "Linguistic task accuracy", direction: "higher_better"}
+    - {name: "Control task accuracy", direction: "lower_better"}
+    - {name: "Selectivity (linguistic accuracy - control accuracy)", direction: "higher_better"}
+  datasets:
+    - {name: "Penn Treebank (PTB)", size: "39832 training sentences, standard parsing splits"}
+  ablation_dimensions:
+    - "probe family (linear, bilinear, MLP-1, MLP-2)"
+    - "rank/hidden dimensionality constraint (2, 4, 10, 45 for POS; 5, 10, 50, 100 for DEP)"
+    - "dropout probability (0, 0.2, 0.4, 0.6, 0.8)"
+    - "number of training examples (400, 4000, 39832)"
+    - "L2 weight decay (0, 0.01, 0.1, 1.0, 10.0)"
+    - "early stopping (gradient steps: 1500, 3000, 6000, 12500, 25000, 50000, 100000)"
+    - "ELMo layer (ELMo1 vs ELMo2 vs Proj0)"
+  training_recipe:
+    optimizer: "Adam"
+    lr: "default Adam, annealed by 0.5 on dev plateau, stop after 4 consecutive non-improving epochs"
+    hardware: "not specified"
+    max_gradient_steps: 100000  # approximately 40 epochs
+    default_hidden_dim: 1000
+    default_dropout: 0
+  method_family: "probing methodology / representation analysis"
+
+positioning:
+  core_claim: "Probe accuracy alone is insufficient to conclude representations encode linguistic structure; control tasks (random word-type-to-label mappings) measure probe selectivity, revealing that popular MLP probes memorize rather than reflect representation properties."
+  key_results: "MLP-1 default: 97.3 POS accuracy but only 4.5 selectivity (92.8 control task accuracy). Linear default: 97.2 POS accuracy with 26.0 selectivity (71.2 control). With control-task-guided design: MLP-1 achieves 16.6 selectivity (up from 4.5) at 97.2 accuracy. ELMo2 selectivity 31.4 vs ELMo1 selectivity 26.0, despite ELMo1 having slightly higher raw accuracy (97.2 vs 96.6)."
+  limitations:
+    - "Only evaluated on ELMo representations; not tested on BERT or other transformer models"
+    - "Control tasks limited to English POS tagging and dependency edge prediction"
+    - "Does not provide a principled way to choose the 'right' selectivity threshold"
+    - "Type-level control tasks may not capture token-level memorization patterns"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "Opens with the success story of probing (high accuracy on linguistic tasks) then immediately introduces the core doubt: does high accuracy mean the representation encodes structure, or has the probe just learned the task?"
+  tension: "There is no consensus on how to design probes. Linear probes are used for 'simplicity' but MLPs are popular because useful properties might be encoded non-linearly. Both camps report similar trends without resolution. The lack of a principled evaluation framework is the gap."
+  key_insight: "Introduced at the end of Section 1 and formalized in Section 2: control tasks that map word types to random outputs. By construction, these can ONLY be solved by memorization. The elegant insight is that selectivity (linguistic accuracy minus control accuracy) cleanly separates representation quality from probe expressivity."
+  argument_chain: "probes achieve high accuracy -> but is this representation or probe? -> define control tasks (random type-to-label) -> define selectivity metric -> show popular MLP probes are NOT selective -> show dropout doesn't help -> find that rank constraints and weight decay DO help -> demonstrate ELMo layer comparison is confounded without selectivity"
+  contribution_framing: "Three numbered findings in the introduction: (1) MLP probes with default hyperparameters achieve very low selectivity, (2) linear/bilinear probes achieve relatively high selectivity, (3) dropout is ineffective but other regularization works. Plus a final unnumbered contribution about ELMo layer comparison."
+  intro_structure: "6 paragraphs: P1 sets up probing success; P2 raises the probe-vs-representation question; P3 introduces control tasks and selectivity concept with Figure 2; P4 describes the probe design landscape; P5 summarizes construction of control tasks for POS and dependency; P6 presents three main findings as numbered list."
+  notable_technique: "The 'challenge accepted' rhetorical structure: each finding directly challenges a common practice (MLPs are fine -> they're not selective; dropout helps -> it doesn't; ELMo1 is better for POS -> not when you consider selectivity). The paper systematically overturns assumptions one by one."
+
+figures:
+  figure_count: 4
+  figure1:
+    type: "problem_illustration"
+    description: "Illustrates the control task concept for POS tagging. Shows two sentences where each word type is assigned a random integer label (e.g., 'The' always maps to 10, 'cat' to 37, 'dog' to 15). The mapping is deterministic per type but random overall."
+    narrative_role: "Immediately makes the abstract concept of 'control task' concrete and intuitive. Placed right after the abstract, it lets readers grasp the core idea before formal definitions."
+    design_elements: ["two example sentences side-by-side", "POS labels on one row, control task labels on another", "same word types showing same control labels across sentences", "clean tabular layout"]
+    visual_style: "Simple two-row annotation diagram with sentence tokens, POS tags, and random control labels. Minimal, no colors, relies on spatial alignment to convey the type-level determinism."
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "scatter"
+      what_compared: "Selectivity vs probe type, showing how different probes with similar linguistic task accuracies can have vastly different selectivities"
+      how_gain_highlighted: "The visual gap between high-selectivity and low-selectivity probes at similar accuracy levels is the key message. Demonstrates that accuracy alone is misleading."
+      design_note: "Simple 2D visualization that encapsulates the paper's entire argument in one figure. Placed in the introduction for maximum impact."
+    - figure_id: "Figure 4"
+      viz_type: "line_plot"
+      what_compared: "Part-of-speech accuracy (top) and selectivity (bottom) across 5 complexity control methods (sample count, rank/hidden dim, dropout, weight decay, gradient steps) for linear, MLP-1, MLP-2 probes"
+      how_gain_highlighted: "Dual y-axis panels (accuracy above, selectivity below) for each method. Shows that accuracy remains stable while selectivity varies dramatically across methods - the decoupling is the key message."
+      design_note: "10-panel grid (2 rows x 5 columns) with shared y-axes across columns. Categorical x-axes ordered from most constrained to least constrained. Color/marker coding by probe type. This is the paper's most information-dense figure."
+  ablation_figures:
+    - figure_id: "Figure 3"
+      viz_type: "qualitative_comparison"
+      what_compared: "Real dependency tree vs control task dependency structure for the same sentence"
+      dimensions_varied: ["linguistic task (real dependencies)", "control task (random attachments: self, first, last)"]
+      design_note: "Visual parallel between linguistic and control dependency structures makes the dependency edge prediction control task intuitive. Shows that control produces non-tree structures."
+    - figure_id: "Figure 4 (lower panels)"
+      viz_type: "line_plot"
+      what_compared: "Dependency edge prediction accuracy and selectivity across same 5 complexity control methods for bilinear, MLP-1, MLP-2"
+      dimensions_varied: ["probe family", "complexity control method and its hyperparameters"]
+      design_note: "Mirror of upper panels but for dependency task, allowing cross-task comparison of regularization effects."
+  figure_narrative_role: "Figure 1 (concept illustration) -> Figure 2 (thesis in visual form: selectivity matters) -> Figure 3 (dependency control task illustration) -> Figure 4 (comprehensive experimental evidence). Moves from intuition-building to proof."
+
+tables:
+  table_count: 2
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods (probes grouped by configuration: default, 0.4 dropout, control-task-designed)"
+    col_axis: "POS accuracy + POS control + POS selectivity + DEP accuracy + DEP control + DEP selectivity"
+    row_organization: "by_category"  # three blocks: default, dropout, designed
+    col_organization: "grouped_by_dataset"  # POS group and DEP group
+    highlight_strategy: "no bold/underline; three-block structure lets reader compare across configurations visually"
+    statistical_reporting: "single run on development set"
+    num_baselines: 4  # linear, bilinear, MLP-1, MLP-2
+    design_note: "Compact 3-block table that tells the complete story: (1) defaults are not selective, (2) dropout doesn't help, (3) control-task-guided design does. Each block has the same 4 probe rows for direct comparison. The table IS the argument."
+  ablation_tables:
+    - table_id: "Table 2"
+      what_varied: ["ELMo layer (Proj0, ELMo1, ELMo2)", "probe type (linear/MLP-1 for POS, bilinear/MLP-1 for DEP)"]
+      variation_style: "full_numbers"
+      design_note: "Four-column layout (accuracy + selectivity) for each probe type. The key comparison is that ELMo2 has lower accuracy but higher selectivity than ELMo1, challenging the conventional layer ranking."
+  supplementary_tables:
+    in_appendix: false
+    content: "No appendix tables. All results fit in 2 main tables + 1 comprehensive figure."
+    reason: "Paper is methodologically focused with a single representation (ELMo) and two tasks, so all results fit compactly in the main text."

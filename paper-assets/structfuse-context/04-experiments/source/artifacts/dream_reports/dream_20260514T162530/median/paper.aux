@@ -1,0 +1,108 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{karpukhin2020dense,xiong2021approximate}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\citation{karpukhin2020dense}
+\citation{xiong2021approximate}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Hard Negative Mining for Dense Retrieval.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Code Retrieval for Software Engineering.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Structure-Aware Code Intelligence.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Setup}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Negative Mining Strategies}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Random.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{BM25-Proxy.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Embedding-Distance.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Dataflow-Disconnected.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Structural Analysis Pipeline}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Training Configuration}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\newlabel{sec:experiments}{{4}{3}{Experiments}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Primary Results: SWE-smith Retrieval}{3}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:primary}{{4.1}{3}{Primary Results: SWE-smith Retrieval}{subsection.4.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces R@1 on SWE-smith validation (pool=50) by strategy. Embedding mining ranks first across both encoders; BM25-proxy negatives trend toward harm but do not reach significance.}}{4}{table.caption.8}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:four-strategy}{{1}{4}{R@1 on SWE-smith validation (pool=50) by strategy. Embedding mining ranks first across both encoders; BM25-proxy negatives trend toward harm but do not reach significance}{table.caption.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces The BM25--embedding gap in our controlled setup vs.\ CoCoHaNeRe's reported values. Direction is consistent but magnitude is far smaller.}}{4}{table.caption.10}\protected@file@percent }
+\newlabel{tab:bm25-gap}{{2}{4}{The BM25--embedding gap in our controlled setup vs.\ CoCoHaNeRe's reported values. Direction is consistent but magnitude is far smaller}{table.caption.10}{}}
+\@writefile{toc}{\contentsline {paragraph}{BM25 vs.\ Embedding: Partial CoCoHaNeRe Correction.}{4}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Cross-Benchmark Validation: RepoBench-R}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:repobench}{{4.2}{4}{Cross-Benchmark Validation: RepoBench-R}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Downstream Evaluation: SWE-bench Lite}{4}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:swebench}{{4.3}{4}{Downstream Evaluation: SWE-bench Lite}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Stratified Analysis}{4}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:stratified}{{4.4}{4}{Stratified Analysis}{subsection.4.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces RepoBench-R R@1 (\%) by strategy, encoder, and difficulty. Values are mean $\pm $ std across 3 seeds. CI width is 2--4\,\text  {pp}{} for all deltas.}}{5}{table.caption.11}\protected@file@percent }
+\newlabel{tab:repobench}{{3}{5}{RepoBench-R R@1 (\%) by strategy, encoder, and difficulty. Values are mean $\pm $ std across 3 seeds. CI width is 2--4\pp {} for all deltas}{table.caption.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces SWE-bench Lite resolve rate by retrieval strategy. Differences are $<$1\,\text  {pp}{} and not significant.}}{5}{table.caption.12}\protected@file@percent }
+\newlabel{tab:swebench}{{4}{5}{SWE-bench Lite resolve rate by retrieval strategy. Differences are $<$1\pp {} and not significant}{table.caption.12}{}}
+\@writefile{toc}{\contentsline {paragraph}{Repository Size.}{5}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Structural Data Availability.}{5}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Negative Difficulty Quartile.}{5}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Pool Size Sensitivity}{5}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:poolsize}{{4.5}{5}{Pool Size Sensitivity}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Ablation Studies}{5}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:ablations}{{4.6}{5}{Ablation Studies}{subsection.4.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Temperature.}{5}{section*.22}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Bootstrap 95\% CIs for SWE-bench strategy comparisons ($n=10{,}000$). No comparison is significant.}}{6}{table.caption.13}\protected@file@percent }
+\newlabel{tab:swebench-ci}{{5}{6}{Bootstrap 95\% CIs for SWE-bench strategy comparisons ($n=10{,}000$). No comparison is significant}{table.caption.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Embedding $\Delta $ vs.\ random by repository size stratum (Qwen encoder).}}{6}{table.caption.15}\protected@file@percent }
+\newlabel{tab:strat-repo}{{6}{6}{Embedding $\Delta $ vs.\ random by repository size stratum (Qwen encoder)}{table.caption.15}{}}
+\@writefile{toc}{\contentsline {paragraph}{Training Data Size.}{6}{section*.25}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Fusion Head.}{6}{section*.27}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Call-Graph Hop Count.}{6}{section*.29}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Dynamic vs.\ Static Mining.}{6}{section*.31}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Weighted vs.\ Binary Dataflow Negatives.}{6}{section*.33}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Failure Analysis and Case Studies}{6}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:failure}{{4.7}{6}{Failure Analysis and Case Studies}{subsection.4.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{Failure Categorization.}{6}{section*.35}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Strategy deltas by structural data availability (Qwen encoder).}}{7}{table.caption.17}\protected@file@percent }
+\newlabel{tab:strat-structural}{{7}{7}{Strategy deltas by structural data availability (Qwen encoder)}{table.caption.17}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Strategy delta by negative difficulty quartile (Qwen). Q4 = hardest negatives (margin $<$ 0.02).}}{7}{table.caption.19}\protected@file@percent }
+\newlabel{tab:strat-negdiff}{{8}{7}{Strategy delta by negative difficulty quartile (Qwen). Q4 = hardest negatives (margin $<$ 0.02)}{table.caption.19}{}}
+\@writefile{toc}{\contentsline {paragraph}{Illustrative Case Studies.}{7}{section*.37}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}Comparison with Inference-Time Graph Methods}{7}{subsection.4.8}\protected@file@percent }
+\newlabel{sec:inference-comparison}{{4.8}{7}{Comparison with Inference-Time Graph Methods}{subsection.4.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{7}{section.5}\protected@file@percent }
+\newlabel{sec:discussion}{{5}{7}{Discussion}{section.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{Summary of Findings.}{7}{section*.40}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Dataflow as Exploratory Observation.}{7}{section*.41}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces R@1 by pool size (Qwen). Embedding advantage is consistent but diminishes at larger pools.}}{8}{table.caption.20}\protected@file@percent }
+\newlabel{tab:pool-qwen}{{9}{8}{R@1 by pool size (Qwen). Embedding advantage is consistent but diminishes at larger pools}{table.caption.20}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces R@1 by pool size (StarCoder). At pool $\geq 200$, strategy differences converge.}}{8}{table.caption.21}\protected@file@percent }
+\newlabel{tab:pool-starcoder}{{10}{8}{R@1 by pool size (StarCoder). At pool $\geq 200$, strategy differences converge}{table.caption.21}{}}
+\@writefile{toc}{\contentsline {paragraph}{Where Mining Matters.}{8}{section*.42}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Practical Implications.}{8}{section*.43}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{8}{section*.44}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{karpukhin2020dense}{{1}{2020}{{Karpukhin et~al.}}{{}}}
+\bibcite{xiong2021approximate}{{2}{2021}{{Xiong et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces R@1 by temperature (Qwen). Strategy ranking is preserved; delta shrinks at higher $\tau $.}}{9}{table.caption.23}\protected@file@percent }
+\newlabel{tab:temp-qwen}{{11}{9}{R@1 by temperature (Qwen). Strategy ranking is preserved; delta shrinks at higher $\tau $}{table.caption.23}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces R@1 by temperature (StarCoder). Same pattern: ranking preserved, delta shrinks.}}{9}{table.caption.24}\protected@file@percent }
+\newlabel{tab:temp-starcoder}{{12}{9}{R@1 by temperature (StarCoder). Same pattern: ranking preserved, delta shrinks}{table.caption.24}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{9}{section.6}\protected@file@percent }
+\newlabel{sec:conclusion}{{6}{9}{Conclusion}{section.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces R@1 by training data size (Qwen). Embedding advantage grows with data, sub-linearly.}}{10}{table.caption.26}\protected@file@percent }
+\newlabel{tab:datasize}{{13}{10}{R@1 by training data size (Qwen). Embedding advantage grows with data, sub-linearly}{table.caption.26}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Fusion head ablation. Structural features alone are weak; combining with embeddings adds marginal value.}}{10}{table.caption.28}\protected@file@percent }
+\newlabel{tab:fusion}{{14}{10}{Fusion head ablation. Structural features alone are weak; combining with embeddings adds marginal value}{table.caption.28}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces Dataflow R@1 by hop count and negative pool statistics.}}{10}{table.caption.30}\protected@file@percent }
+\newlabel{tab:hopcnt}{{15}{10}{Dataflow R@1 by hop count and negative pool statistics}{table.caption.30}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces Static vs.\ dynamic embedding mining (Qwen). Dynamic adds negligible benefit at 2.3$\times $ cost.}}{10}{table.caption.32}\protected@file@percent }
+\newlabel{tab:dynamic}{{16}{10}{Static vs.\ dynamic embedding mining (Qwen). Dynamic adds negligible benefit at 2.3$\times $ cost}{table.caption.32}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {17}{\ignorespaces Binary vs.\ weighted dataflow negatives. No significant difference.}}{10}{table.caption.34}\protected@file@percent }
+\newlabel{tab:weighted}{{17}{10}{Binary vs.\ weighted dataflow negatives. No significant difference}{table.caption.34}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {18}{\ignorespaces Failure categories from 50 SWE-bench retrieval failures, with per-strategy help rates.}}{10}{table.caption.36}\protected@file@percent }
+\newlabel{tab:failure}{{18}{10}{Failure categories from 50 SWE-bench retrieval failures, with per-strategy help rates}{table.caption.36}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {19}{\ignorespaces Selected qualitative cases. Ranks are within the candidate pool. Cases are illustrative, not representative.}}{11}{table.caption.38}\protected@file@percent }
+\newlabel{tab:cases}{{19}{11}{Selected qualitative cases. Ranks are within the candidate pool. Cases are illustrative, not representative}{table.caption.38}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {20}{\ignorespaces Comparison with inference-time graph methods. StructFuse operates at training time, making it complementary.}}{11}{table.caption.39}\protected@file@percent }
+\newlabel{tab:inference-methods}{{20}{11}{Comparison with inference-time graph methods. StructFuse operates at training time, making it complementary}{table.caption.39}{}}
+\gdef \@abspage@last{11}

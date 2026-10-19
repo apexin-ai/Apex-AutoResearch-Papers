@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "be82f55379515a9000c1",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code r9 joint loo cv",
+  "task_key": "worker_code_r9_joint_loo_cv_20260518T085929",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r9_joint_loo_cv_20260518T085929_result.json",
+    "occurrence": 1,
+    "bytes": 2390120,
+    "sha256": "f08249f9bb4b120654bd8ea2e5a6beb2058e5693a628bf7d16cfffeee4f5d66f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "be82f55379515a9000c1-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/code-r9-joint-loo-cv.md"
+}

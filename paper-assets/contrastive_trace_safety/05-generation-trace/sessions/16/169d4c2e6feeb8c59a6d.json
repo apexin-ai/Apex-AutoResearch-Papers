@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "169d4c2e6feeb8c59a6d",
+  "project": "contrastive_trace_safety",
+  "kind": "history",
+  "title": "reviewer / loop_4.md",
+  "task_key": "loop_4",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_4.md",
+    "occurrence": 1,
+    "bytes": 4000,
+    "sha256": "f66814885473306833920317238bd101d12fd564d08ad644b8db8969cc0ff8da"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: max_wall_time\nupdated: '2026-05-21T01:22:27+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目 Reviewer 角色是**只读**——不执行实验、不修改文件、不 ssh_execute。唯一输出渠道 `reviewer_post_to_director`。\n- EMNLP 2026 ARR 截稿 **2026-05-25**，主文 **8 页严格限制**（不含 references/limitations）。当前两处 `\\enlargethispage`（10+7 baselineskip）已接近极限，任何主文扩写必须先检查编译后 PDF 页数。\n- QwQ-32B threshold p-value 是 **p<0.005**（不是 p<0.001）——Intro/Table 2/Appendix 已统一，**不要再改回 p<0.001**。之前出过此 bug（commit 5087a69 修复）。\n- HS-vs-text 在 quadratic residualization 后 **p=0.133（不显著）**——rebuttal 已修正为同时报 p<0.001（above chance）+ p=0.133（vs text）。不要只引 p<0.001。\n\n### 2. 🖥️ 基础设施快照\n- Reviewer 角色**无远程服务器访问需求**（只读审查）\n- 本地 workspace: `/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/`\n- 论文源码: `docs/paper/` (main.tex → sections/*.tex, references.bib, figures/)\n- Rebuttal: `docs/paper/rebuttal_letter_draft.md`\n- Registry: `registry.yaml`\n- Paper provenance: `paper_provenance.yaml`\n- 远程代码根（ssh_read_only 用）: `/root/autodl-tmp/contrastive_trace_safety`\n- 无活跃进程/cron/tmux（Reviewer 不跑实验）\n\n### 3. 📊 当前状态\n**刚完成**：论文质量最大化审查（6 维度），已通过 `reviewer_post_to_director` 发送完整报告，包含 5 HIGH / 7 MEDIUM / 3 LOW 改进项，每项附工作量估算。\n\n**之前本轮完成的审查**（按时间顺序）：\n1. R23 Action Matrix 独立审查 → PASS with warnings\n2. Rebuttal letter 质量审查 → 3 轮迭代（初审→7 fixes→2 fixes→PASS）\n3. 深度质量最大化审查 → 已发送（最后一条消息）\n\n**等待**：Director 对质量最大化报告的响应决策（哪些改进项要做）。\n\n### 4. 📋 待办\n- Director 批准质量改进项 → Worker 修改后需要**再次审查修改是否引入新问题**（特别是 H5 的 \"significant\" 措辞修改、H1 的 negative results 总结是否 overclaim）\n- 如果 Agent 补跑 R1-8B random-label control → 审查实验设计是否与 QwQ-32B 的 random-label protocol 一致（seeds、permutation 次数、metric set）\n- 论文最终提交前 → 需做一轮 PDF 视觉审查（页数、图表质量、\\enlargethispage 是否导致超页）——加载 `paper-visual-review` skill\n- Rebuttal 最终版提交前 → 快速扫描 appendix 引用编号是否仍然正确（之前出过 off-by-one 的系统性错误）\n\n### 5. 🎯 战略上下文\n- **核心结论**：Layer selection metric choice 可以 reverse HS probe conclusions（C1）；HS advantage 是 doubly conditional（C2：encoder quality + position）；7 alternative methods 全部 fail（C3）。\n- **审稿人 R23 给了 3.0 (Findings)**，主要攻击面：(1) 单 benchmark (HarmThoughts)、Qwen-dominated (3/4)；(2) 方法论 novelty vs Belinkov 2022 的区分度；(3) negative results 缺 insight。其中 (1) 无法纯写作解决，(2)(3) 已在 rebuttal + 论文修改中 addressed。\n- **写作天花板 ~3.25**，配合 R1-8B random-label control 补实验可触及 3.5。关键变量：审稿人是否 weight methodology > experimental scope。\n- **易错点**：Belinkov 2022 的 novelty distinction 是 \"directional/systematic bias driven by geometry\" vs \"general sensitivity\"——这个区分已独立验证为 valid，不要弱化。\n- **易错点**：Appendix 编号用字母 A-Z（不是数字），且 NLP Checklist = Appendix A，所以实际内容从 B 开始。之前 rebuttal 出过系统性 off-by-one 错误。\n- **3 个新增 concurrent references**：Chrabąszcz (2605.18549) 最直接相关——track probe trajectories across reasoning steps，但不做 layer selection sensitivity analysis。这是与本文的 key differential。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-copy-3.md"
+}

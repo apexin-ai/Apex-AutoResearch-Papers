@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "b1674acb573adb240603",
+  "project": "contrastive_trace_safety",
+  "kind": "worker",
+  "title": "analysis bge large 60 20 20",
+  "task_key": "worker_analysis_bge_large_60_20_20_20260518T202717",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bge_large_60_20_20_20260518T202717.log",
+    "occurrence": 1,
+    "bytes": 623202,
+    "sha256": "3edc23348e34ab4597f899385ca722492cac74795a6a0d1366974b69a81e2384"
+  },
+  "statistics": {
+    "messages": 214,
+    "user_turns": 1,
+    "tool_calls": 72,
+    "roles": {
+      "log": 1,
+      "system": 10,
+      "record": 1,
+      "assistant": 56,
+      "tool_call": 72,
+      "tool_result": 72,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 58,
+      "chunks": [
+        {
+          "path": "b1674acb573adb240603-part-0001.json",
+          "message_count": 58
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 156,
+      "chunks": [
+        {
+          "path": "b1674acb573adb240603-part-0001.json",
+          "message_count": 122
+        },
+        {
+          "path": "b1674acb573adb240603-part-0002.json",
+          "message_count": 34
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-bge-large-60-20-20.md"
+}

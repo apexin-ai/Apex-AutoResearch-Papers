@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "70215eced77c7c62c89c",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code qwq layer60 hs vs text bootstrap",
+  "task_key": "worker_code_qwq_layer60_hs_vs_text_bootstrap_20260517T133345",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_qwq_layer60_hs_vs_text_bootstrap_20260517T133345_result.json",
+    "occurrence": 1,
+    "bytes": 2228,
+    "sha256": "bfa631c7bcec1e610333c0d4833facd7aed71ce3207ac89a63d33cb2892b8425"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results saved. Here's the complete summary:\n\n## QwQ-32B Layer 60 HS vs Text Bootstrap Results\n\n### HS Probe Metrics (Layer 60)\n\n| W | HS bal_acc | HS prec | HS FPR | Coverage | Lead |\n|---|-----------|---------|--------|----------|------|\n| 1 | **0.739** | 0.658 | 0.123 | 0.737 | -1.4 |\n| 3 | 0.726 | 0.622 | 0.142 | 0.789 | 1.1 |\n| 5 | 0.731 | 0.638 | 0.133 | 0.789 | -0.1 |\n| 10 | 0.726 | **0.671** | **0.108** | 0.789 | -1.0 |\n| 15 | 0.733 | **0.688** | **0.102** | 0.632 | 1.0 |\n\n### Paired Bootstrap (HS - Text, Bonferroni 0.0167)\n\n| W | ba delta | ba p | prec delta | prec p | FPR delta | FPR p | sig |\n|---|---------|------|-----------|--------|----------|-------|-----|\n| 1 | +0.218 | <0.001 | +0.302 | <0.001 | -0.171 | <0.001 | **3/3** |\n| 3 | +0.148 | <0.001 | +0.235 | <0.001 | -0.095 | 0.005 | **3/3** |\n| 5 | +0.138 | <0.001 | +0.135 | 0.003 | -0.065 | 0.019 | 2/3 |\n| 10 | +0.122 | <0.001 | +0.232 | 0.006 | -0.081 | 0.007 | **3/3** |\n| 15 | +0.132 | <0.001 | +0.279 | <0.001 | -0.089 | 0.011 | **3/3** |\n\n### Position Baseline\n- Layer 60 position: bal_acc=0.746 > Best HS (W=1)=0.739 (delta=-0.007)\n- Layer 2 position: 0.706 > HS=0.678\n\n### Key Findings\n\n1. **Layer 60 HS significantly outperforms text** across all 5 window sizes (14/15 metrics pass Bonferroni). This is a stark contrast to Layer 2 where 0/3 passed.\n\n2. **Layer-selection dependent**: The QwQ-32B HS vs text comparison is definitively layer-dependent:\n   - Layer 2 (3.2% depth): HS ≈ Text (delta=+0.9pp, p=0.828)\n   - Layer 60 (95.2% depth): HS >> Text (delta=+12-22pp, all p<0.001)\n\n3. **Position baseline still competitive**: Position (0.746) slightly exceeds best HS (0.739), consistent with the Layer 2 pattern (0.706 > 0.678). The position baseline's advantage is small and likely reflects the fixed commitment-point structure of the dataset.\n\n4. **Precision gains are largest**: HS precision (0.66-0.69) vs text (0.39-0.46) shows the biggest deltas (+13-30pp), meaning the HS probe makes far fewer false positive predictions when it does predict \"committed.\"\n\nResults JSON saved to: `/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_qwq_layer60_bootstrap/results.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-qwq-layer60-hs-vs-text-bootstrap.md"
+}

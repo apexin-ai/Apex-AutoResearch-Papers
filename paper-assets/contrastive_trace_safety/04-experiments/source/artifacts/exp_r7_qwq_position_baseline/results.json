@@ -1,0 +1,43 @@
+{
+  "experiment": "QwQ-32B position-only baseline for reviewer Q2",
+  "model": "QwQ-32B",
+  "layer": 60,
+  "window": 3,
+  "seed": 42,
+  "k_consecutive": 3,
+  "n_train": 57,
+  "n_test": 19,
+  "position_2d": {
+    "step_accuracy": 0.6957,
+    "bal_acc": 0.8172,
+    "crossing_rate": 1.0,
+    "lead_mean": 6.0,
+    "pre_cp_fpr": 0.2465,
+    "precision": 0.5188,
+    "n_traces": 19
+  },
+  "position_temporal_w3": {
+    "step_accuracy": 0.7083,
+    "bal_acc": 0.8320,
+    "crossing_rate": 1.0,
+    "lead_mean": 8.05,
+    "pre_cp_fpr": 0.2414,
+    "precision": 0.5192,
+    "n_traces": 19
+  },
+  "hs_l60_w3": {
+    "step_accuracy": 0.7392,
+    "bal_acc": 0.7955,
+    "crossing_rate": 0.9474,
+    "lead_mean": 11.56,
+    "pre_cp_fpr": 0.2165,
+    "precision": 0.5640,
+    "n_traces": 19
+  },
+  "gaps": {
+    "hs_vs_pos2d_precision_pp": 4.5,
+    "hs_vs_pos2d_fpr_pp": -3.0,
+    "hs_vs_postempw3_precision_pp": 4.5,
+    "hs_vs_postempw3_fpr_pp": -2.5
+  }
+}

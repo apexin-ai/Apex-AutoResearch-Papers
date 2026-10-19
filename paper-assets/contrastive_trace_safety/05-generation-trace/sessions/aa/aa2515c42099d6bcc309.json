@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aa2515c42099d6bcc309",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code r9 qwq hs vs position bootstrap",
+  "task_key": "worker_code_r9_qwq_hs_vs_position_bootstrap_20260518T083619",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r9_qwq_hs_vs_position_bootstrap_20260518T083619_result.json",
+    "occurrence": 1,
+    "bytes": 960,
+    "sha256": "f539a792c9895a33ea87ccfb87fac96a485aa65769e8767d952686879eb392e0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Aggregates now match exactly (HS precision=0.5640, FPR=0.2165; Position precision=0.5192, FPR=0.2414). Results saved.\n\n```\nQwQ-32B HS vs Position (L60, W=3) - Paired Bootstrap (10k resamples, n=19):\n| Metric    | HS     | Position | Δ       | 95% CI              | p-value |\n|-----------|--------|----------|---------|---------------------|---------|\n| precision | 0.5640 | 0.5192   | +0.0448 | [-0.0321, +0.1275]  | 0.1325  |\n| FPR       | 0.2165 | 0.2414   | +0.0249 | [-0.0606, +0.1104]  | 0.2792  |\n```\n\nBoth differences are **not statistically significant** (precision p=0.133, FPR p=0.279). The 95% CIs span zero in both cases. With only 19 test traces, the HS probe's +4.5pp precision advantage and +2.5pp FPR advantage over position-only are directionally consistent but lack statistical power to reject the null.\n\nSaved to `artifacts/exp_r9_qwq_hs_vs_position/results.json` (includes per-trace arrays for further analysis)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r9-qwq-hs-vs-position-bootstrap.md"
+}

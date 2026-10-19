@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bb2512ef36f1b9cd9e32",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code acc precision bootstrap",
+  "task_key": "worker_code_acc_precision_bootstrap_20260517T000825",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_acc_precision_bootstrap_20260517T000825_result.json",
+    "occurrence": 1,
+    "bytes": 854,
+    "sha256": "4c97f3efea8766b8d14b81fa551b649789cf302acc5138b0f60d9f8407050654"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果:\n\n| Model | Accuracy diff | p | Precision diff | p | Bonferroni |\n|-------|--------------|---|---------------|---|------------|\n| **r1-8b** | +8.2pp | 0.005 | +22.4pp | 0.000 | **通过** |\n| R1-32B | +6.2pp | 0.13 | +9.4pp | 0.064 | 未通过 |\n| QwQ-32B | +0.9pp | 0.83 | +5.8pp | 0.35 | 未通过 |\n\n**关键发现:**\n- r1-8b 的 HS 优势在 accuracy 和 precision 上都显著通过 Bonferroni 校正 (α=0.0167)，效应量远强于之前的 FPR bootstrap (p=0.044)\n- R1-32B 和 QwQ-32B 效应方向一致 (HS > Text) 但统计不显著，主因是 test set 太小 (n=20, 19)\n- R1-32B precision CI=[0.0003, 0.205] 边缘排除 0，暗示更多数据可能达到显著\n- QwQ HS probe 存在 convergence warning，可能低估了 HS 性能\n\n报告已存于 `artifacts/acc_precision_bootstrap/report.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-acc-precision-bootstrap.md"
+}

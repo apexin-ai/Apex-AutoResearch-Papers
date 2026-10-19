@@ -1,0 +1,64 @@
+{
+  "exp_id": "exp_r3_layer_ablation",
+  "project": "contrastive_trace_safety",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T15:35:59.921Z",
+    "updated_at": "2026-05-17T15:38:05.729Z",
+    "hypothesis": "The bal_acc x crossing_rate layer selection metric systematically biases toward shallow layers because crossing_rate correlates with early threshold crossing. Ablating across 5 metrics on 4 models should reveal that pure bal_acc or precision metrics select mid-to-deep layers (40-95% depth), exposing the metric as confounded.",
+    "spec": {
+      "command": "python exp_r3_layer_metric_ablation.py",
+      "server": "autodl-rtx6000",
+      "data_path": "/root/autodl-tmp/contrastive_trace_safety/data/",
+      "data_count": 632,
+      "model_name": "4 models x 5 metrics",
+      "seed": 42,
+      "checkpoint_path": "N/A (CPU analysis)",
+      "log_path": "/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_layer_ablation/layer_metric_ablation.json"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "models_tested": 4,
+      "metrics_tested": 5,
+      "bias_discovered": "bal_acc x crossing_rate systematically selects shallow layers",
+      "qwq_32b": {
+        "biased_layer": 2,
+        "corrected_layer": 60,
+        "bal_acc_gain": "+1.75pp",
+        "precision_gain": "+11.5pp",
+        "fpr_reduction": "-8.3pp"
+      },
+      "r1_32b": {
+        "biased_layer": 10,
+        "corrected_layer": 63,
+        "bal_acc_gain": "+3.7pp",
+        "precision_gain": "+4.1pp",
+        "fpr_reduction": "-4.3pp"
+      },
+      "r1_8b": {
+        "biased_layer": 0,
+        "best_layer": 12,
+        "consistency": "L12-L16 cluster, current L14 near-optimal"
+      },
+      "ot_7b": {
+        "biased_layer": 0,
+        "best_layer": 9,
+        "current_layer": 16,
+        "note": "4 metrics select 4 different layers"
+      },
+      "cross_metric_consistency": {
+        "r1_8b": "CONSISTENT",
+        "r1_32b": "VARIED (all point deep)",
+        "qwq_32b": "VARIED (all point deep)",
+        "ot_7b": "VARIED"
+      },
+      "finding": "crossing_rate biases layer selection to shallow layers. Pure bal_acc/precision select mid-to-deep layers (40-95% depth). R1-32B and QwQ affected most severely."
+    },
+    "completed_at": "2026-05-17T15:38:05.729Z"
+  },
+  "timestamp": "2026-05-17T15:38:05.801511+00:00",
+  "trigger": "update_registry"
+}

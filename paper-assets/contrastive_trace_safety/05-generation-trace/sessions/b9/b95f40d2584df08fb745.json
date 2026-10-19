@@ -1,0 +1,131 @@
+{
+  "schema_version": "1.0",
+  "id": "b95f40d2584df08fb745",
+  "project": "contrastive_trace_safety",
+  "kind": "worker",
+  "title": "code r9 joint loo cv",
+  "task_key": "worker_code_r9_joint_loo_cv_20260518T085929",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r9_joint_loo_cv_20260518T085929.log",
+    "occurrence": 1,
+    "bytes": 3018662,
+    "sha256": "8832ca2e235cf2fe3f10375b857158eb006d4bf48a983f77a41797cc1f5858a1"
+  },
+  "statistics": {
+    "messages": 2479,
+    "user_turns": 3,
+    "tool_calls": 1123,
+    "roles": {
+      "log": 1,
+      "system": 10,
+      "record": 1,
+      "assistant": 217,
+      "tool_call": 1123,
+      "tool_result": 1123,
+      "user": 3,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 285,
+      "chunks": [
+        {
+          "path": "b95f40d2584df08fb745-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "b95f40d2584df08fb745-part-0002.json",
+          "message_count": 105
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 1175,
+      "chunks": [
+        {
+          "path": "b95f40d2584df08fb745-part-0002.json",
+          "message_count": 75
+        },
+        {
+          "path": "b95f40d2584df08fb745-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "b95f40d2584df08fb745-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "b95f40d2584df08fb745-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "b95f40d2584df08fb745-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "b95f40d2584df08fb745-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "b95f40d2584df08fb745-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "b95f40d2584df08fb745-part-0009.json",
+          "message_count": 20
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 995,
+      "chunks": [
+        {
+          "path": "b95f40d2584df08fb745-part-0009.json",
+          "message_count": 160
+        },
+        {
+          "path": "b95f40d2584df08fb745-part-0010.json",
+          "message_count": 180
+        },
+        {
+          "path": "b95f40d2584df08fb745-part-0011.json",
+          "message_count": 180
+        },
+        {
+          "path": "b95f40d2584df08fb745-part-0012.json",
+          "message_count": 180
+        },
+        {
+          "path": "b95f40d2584df08fb745-part-0013.json",
+          "message_count": 180
+        },
+        {
+          "path": "b95f40d2584df08fb745-part-0014.json",
+          "message_count": 115
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 24,
+      "chunks": [
+        {
+          "path": "b95f40d2584df08fb745-part-0014.json",
+          "message_count": 24
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-r9-joint-loo-cv.md"
+}

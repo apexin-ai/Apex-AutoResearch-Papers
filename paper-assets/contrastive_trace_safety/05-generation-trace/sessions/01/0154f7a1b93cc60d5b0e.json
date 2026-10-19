@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0154f7a1b93cc60d5b0e",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code exp 005 trajguard",
+  "task_key": "worker_code_exp_005_trajguard_20260516T203547",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_005_trajguard_20260516T203547_result.json",
+    "occurrence": 1,
+    "bytes": 1467,
+    "sha256": "227746f4c3df6e9a09d5091e259c85a74eef62ff3e94c3cb590f6a79f6b61f15"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Experiment completed and registered. Here's the full results summary:\n\n---\n\n## exp-005 TrajGuard Mahalanobis Distance — NEGATIVE RESULT\n\n**核心发现：** Mahalanobis distance 从 safe 参考分布出发无法检测 commitment point。Safe/jailbreak-pre/jailbreak-post 三组的 MD 分布几乎完全相同。\n\n### MD 分布对比 (PCA-64, Layer 14)\n\n| Group | MD Mean | MD Std |\n|-------|---------|--------|\n| Safe val | 6.66 | 0.79 |\n| JB pre-commit | 6.73 | 0.74 |\n| JB post-commit | 6.64 | 0.86 |\n\n### 检测结果 (K=5, 标准窗口)\n\n| Config | Pctl | CrossRate | LeadMean |\n|--------|------|-----------|----------|\n| pca_64 | p75 | 30.2% | +16.4 |\n| pca_32 | p75 | 27.9% | +8.8 |\n| pca_128 | p75 | 18.6% | +17.2 |\n| pca_64 | p85 | 11.6% | +3.4 |\n| p90+ thresholds | — | 0-9% | — |\n\n### Delta（相对变化）方法\n- 最大 crossing_rate = 2.3%（基本无效）\n\n### 与现有方法对比\n\n| Method | CrossRate | LeadMean |\n|--------|-----------|----------|\n| Static LR L14 | 46.5% | -2.0 |\n| Temporal LR W=15 | 76.7% | -1.1 |\n| GRU multi-7L h=256 | 76.7% | +4.7 |\n| **TrajGuard best (K=5)** | **30.2%** | **+16.4** |\n\n**结论：** 高 lead time (+16~+30) 说明\"检测\"发生在 trace 开头（噪声），不是 commitment 转折点。TrajGuard 的无监督 anomaly detection 思路不适用于此数据——commitment 的信号在 supervised 的判别方向上，不在主成分方向上。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-005-trajguard.md"
+}

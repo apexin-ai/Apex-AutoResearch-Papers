@@ -1,0 +1,5228 @@
+# code r1 8b layer supplement
+
+**Layer Selection Sensitivity in Hidden-State Safety Probes for Reasoning Models** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 179
+- **Recorded user turns:** 0
+- **Tool calls:** 89
+- **Original source:** `logs/chats/worker_code_r1_8b_layer_supplement_20260517T084838.jsonl`
+- **Structured JSON:** [`8cc61775e493e4a71dbc.json`](../../sessions/8c/8cc61775e493e4a71dbc.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+179 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-17T09:04:57.081844+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__ssh_read_only",
+  "max_results": "7"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__ssh_read_only",
+    "max_results": "7"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-17T09:04:57.082184+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-17T09:04:57.082374+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-17T09:04:57.082691+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"008edcde3b3d48dcaee8313c4779f687.pt\\n018ad1b2027a488aad4ce925258db0c7.pt\\n02361be96b4e4f11af5524a64c34f612.pt\\n023c413259524b2187989e61d96e351c.pt\\n02fad27f069d4009861ea612984ab65c.pt\\n0334a1be1cc84efc853bd93eb5327499.pt\\n03a149305aae4ed58d62489ed1f66329.pt\\n04e287adbc58415cb184c3db0ac3d8c5.pt\\n0516bc55867f4454966f3ecfd6cd85c5.pt\\n051a975475d7420d99f686fe89e83691.pt\\n05e1498f8ff741718f500af3772def28.pt\\n0601b6d225274449bcfcca10af190a9a.pt\\n06470bdf141a4267b541332987c6f695.pt\\n06d85d8b941f4a4e97dc7f33c81c34c4.pt\\n0828a2af61e846f1aea6a834017ec7be.pt\\n0901d657f92b441e8cac21db87d066e5.pt\\n0a31d31d974b410eb923f33cfbf6e6b9.pt\\n0c9c5e6cf60849bb925d007dd2b061fc.pt\\n0d13aa7b2f374a3fa367bdea42493ed5.pt\\n0d19422cc82743568f671961b534c215.pt\\n0d8b146a9bce48f7a8083f6ed962664e.pt\\n0daf036448c04433859bdf6758495bc3.pt\\n0f35040637024040b7944abd48472d22.pt\\n0f6bdcb1133f442ba26e11047e5351c6.pt\\n0f860c71503e43c985eafc0142546731.pt\\n10a2a6c355d4408ab97b759b490a6a8b.pt\\n10a3ace02006485ca641aaa88684b5dd.pt\\n10e4c756140247b4af10559f16d8f876.pt\\n114499174dfa48daa5e053c629c83a10.pt\\n116042e8dc164c17b02d5670b015f807.pt\\n11a094cbf15549bca819c57910c2a2ff.pt\\n11c4c8713262422eb211ec189c3715ab.pt\\n11f61793e9b449e799abe7ce14cbcf6c.pt\\n1249b76a00da42b8be3aa81d823cd820.pt\\n130e2b41b4bf43f883f087b5036afe85.pt\\n13258d4ff6e04f67b9510328b89251ea.pt\\n1362fe58c432487aac432b576babe0c2.pt\\n13b5b2b441534e818b1a2d2f577cb99c.pt\\n153e58ce7b554163a43030ecfa47a304.pt\\n1582380f856b429490eca59328ce551d.pt\\n15e5e40e8ddc475594dce89bc52c9056.pt\\n16015e85a86d4ad6aae05eda39472b0a.pt\\n16d9dd7bb2484ec19ed11d44fb46af7f.pt\\n177c234e76104e7b9f2858bdd71f4963.pt\\n17a5d38bd028469aad6f4cb0304c7e01.pt\\n17d1d68121644dec87c3bb936abfb615.pt\\n181e5d60e4f1457fb60796052713110b.pt\\n18ca23538f9d4c3faa4cb9c4e2ec4c2d.pt\\n196b722aadd6473f9ce6795294f9a88a.pt\\n1a27d43f250e4201bb0099ae23551974.pt\\n1a2bca42efbd45458fe50b6a6b44242f.pt\\n1af63c
+…[truncated 6646 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-17T09:04:57.082974+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/src/extract_hidden_states.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat /root/autodl-tmp/contrastive_trace_safety/src/extract_hidden_states.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-17T09:04:57.083311+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Extract hidden states from DeepSeek-R1-Distill-Llama-8B for each sentence in traces.\\n\\nInput: List of trace dicts (from data_loader.prepare_dataset)\\nOutput: Per-trace .pt files with tensor [num_sentences, 13, 4096] + metadata\\n\\\"\\\"\\\"\\n\\nimport os\\nfrom pathlib import Path\\nfrom typing import List, Dict\\n\\nimport torch\\nfrom transformers import AutoTokenizer, AutoModelForCausalLM\\nfrom tqdm import tqdm\\n\\nfrom .config import (\\n    MODEL_PATH, LAYERS, HIDDEN_DIM, NUM_LAYERS,\\n    HIDDEN_STATES_DIR, EXTRACT_BATCH_SIZE, DEVICE\\n)\\n\\n\\ndef load_model(model_path: str = MODEL_PATH, device: str = DEVICE):\\n    \\\"\\\"\\\"Load model and tokenizer.\\\"\\\"\\\"\\n    tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n\\n    model = AutoModelForCausalLM.from_pretrained(\\n        model_path,\\n        torch_dtype=torch.float16,\\n        device_map=device,\\n        trust_remote_code=True,\\n    )\\n    model.eval()\\n    return model, tokenizer\\n\\n\\ndef find_sentence_boundaries(tokenizer, sentences: List[str]) -> List[int]:\\n    \\\"\\\"\\\"Find each sentence's last token position via char-to-token offset mapping.\\n\\n    Tokenizes the full joined text once, then maps each sentence's char span\\n    to token positions. This avoids BPE context mismatch from per-sentence tokenization.\\n    \\\"\\\"\\\"\\n    full_text = \\\" \\\".join(sentences)\\n    encoding = tokenizer(\\n        full_text,\\n        return_offsets_mapping=True,\\n        return_tensors=\\\"pt\\\",\\n        truncation=True,\\n        max_length=8192,\\n    )\\n    offsets = encoding[\\\"offset_mapping\\\"][0]  # (num_tokens, 2)\\n\\n    boundaries = []\\n    char_pos = 0\\n    for sent in sentences:\\n        char_end = char_pos + len(sent)\\n        last_token_idx = 0\\n        for tok_i
+…[truncated 4584 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-17T09:04:57.083639+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ls /root/autodl-tmp/contrastive_trace_safety/src/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ls /root/autodl-tmp/contrastive_trace_safety/src/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-17T09:04:57.083866+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"__init__.py\\n__pycache__\\nbaselines\\nconfig.py\\ncrta\\ndata_loader.py\\ndiagnostics\\neval\\nexperiments\\nextract_hidden_states.py\\nrun_pipeline.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-17T09:04:57.084097+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/src/config.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat /root/autodl-tmp/contrastive_trace_safety/src/config.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-17T09:04:57.084324+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Central configuration for contrastive_trace_safety project.\\\"\\\"\\\"\\n\\nimport os\\nfrom pathlib import Path\\n\\n# Paths\\nPROJECT_ROOT = Path(\\\"/root/autodl-tmp/contrastive_trace_safety\\\")\\nARTIFACTS_DIR = PROJECT_ROOT / \\\"artifacts\\\"\\nHIDDEN_STATES_DIR = ARTIFACTS_DIR / \\\"hidden_states\\\"\\nPROBES_DIR = ARTIFACTS_DIR / \\\"probes\\\"\\n\\n# Model\\nMODEL_NAME = \\\"deepseek-ai/DeepSeek-R1-Distill-Llama-8B\\\"\\nMODEL_PATH = \\\"/root/autodl-tmp/.hf_cache/deepseek-ai/DeepSeek-R1-Distill-Llama-8B\\\"\\n\\n# Dataset\\nHF_DATASET = \\\"ishitakakkar-10/HarmThoughts\\\"\\nTARGET_MODEL = \\\"r1-8b\\\"\\n\\n# Hidden state extraction\\nLAYERS = list(range(12, 25))  # layers 12-24, 13 layers total\\nNUM_LAYERS = len(LAYERS)\\nHIDDEN_DIM = 4096\\nEXTRACT_BATCH_SIZE = 4\\nDEVICE = \\\"cuda:0\\\"\\n\\n# Probes\\nWINDOW_SIZE = 5\\nTEMPORAL_HIDDEN_DIM = 512\\nLEARNING_RATE = 1e-3\\nTRAIN_EPOCHS = 20\\nPROBE_BATCH_SIZE = 64\\nDEFAULT_LAYER = 20  # for static probe\\n\\n# Data split\\nTRAIN_RATIO = 0.6\\nVAL_RATIO = 0.2\\nSEED = 42\\n\\n# Evaluation\\nDETECTION_THRESHOLD = 0.9\\nDETECTION_WINDOW = 5\\n\\n# Safety labels that define commitment point\\nSAFETY_LABELS = {\\\"RA\\\", \\\"AL\\\", \\\"CC\\\", \\\"ED\\\", \\\"IA\\\"}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-17T09:04:57.084555+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 -c \"\nimport torch, os\nd = 'artifacts/hidden_states/'\nfiles = sorted([f for f in os.listdir(d) if f.endswith('.pt')])\nprint(f'Total files: {len(files)}')\nf = torch.load(d + files[0], map_location='cpu', weights_only=False)\nprint('Keys:', list(f.keys()))\nhs = f['hidden_states']\nprint('Shape:', hs.shape)\nprint('Dtype:', hs.dtype)\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 -c \"\nimport torch, os\nd = 'artifacts/hidden_states/'\nfiles = sorted([f for f in os.listdir(d) if f.endswith('.pt')])\nprint(f'Total files: {len(files)}')\nf = torch.load(d + files[0], map_location='cpu', weights_only=False)\nprint('Keys:', list(f.keys()))\nhs = f['hidden_states']\nprint('Shape:', hs.shape)\nprint('Dtype:', hs.dtype)\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-17T09:04:57.084774+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "wc -l /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/*.pt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "wc -l /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/*.pt",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-17T09:04:57.084962+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Total files: 268\\nKeys: ['hidden_states', 'trace_id', 'num_sentences', 'commitment_point', 'step_labels']\\nShape: torch.Size([46, 13, 4096])\\nDtype: torch.float16\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.91}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-17T09:04:57.085244+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"     12401 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/008edcde3b3d48dcaee8313c4779f687.pt\\n     12164 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/018ad1b2027a488aad4ce925258db0c7.pt\\n     14217 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/02361be96b4e4f11af5524a64c34f612.pt\\n      9806 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/023c413259524b2187989e61d96e351c.pt\\n      7895 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/02fad27f069d4009861ea612984ab65c.pt\\n     22348 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/0334a1be1cc84efc853bd93eb5327499.pt\\n     14185 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/03a149305aae4ed58d62489ed1f66329.pt\\n     11423 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/04e287adbc58415cb184c3db0ac3d8c5.pt\\n      8087 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/0516bc55867f4454966f3ecfd6cd85c5.pt\\n     26239 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/051a975475d7420d99f686fe89e83691.pt\\n      7532 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/05e1498f8ff741718f500af3772def28.pt\\n      8748 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/0601b6d225274449bcfcca10af190a9a.pt\\n      8283 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/06470bdf141a4267b541332987c6f695.pt\\n      8312 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/06d85d8b941f4a4e97dc7f33c81c34c4.pt\\n     13231 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/0828a2af61e846f1aea6a834017ec7be.pt\\n     15320 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/0901d657f92b441e8cac21db87d066e5.pt\\n      6176 /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/0a31d31d974b410eb923f33cfbf
+…[truncated 6346 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-17T09:04:57.085522+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/src/data_loader.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat /root/autodl-tmp/contrastive_trace_safety/src/data_loader.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-17T09:04:57.085837+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Load HarmThoughts dataset and extract commitment points.\\n\\nInput: HuggingFace dataset \\\"ishitakakkar-10/HarmThoughts\\\"\\nOutput: List of trace dicts with sentences, labels, commitment_point, split assignments\\n\\\"\\\"\\\"\\n\\nfrom collections import defaultdict\\nfrom typing import List, Optional, Dict, Any\\nimport numpy as np\\nfrom datasets import load_dataset\\n\\nfrom .config import (\\n    HF_DATASET, TARGET_MODEL, SAFETY_LABELS,\\n    TRAIN_RATIO, VAL_RATIO, SEED\\n)\\n\\n\\ndef load_harmthoughts(model_name: str = TARGET_MODEL) -> Dict[str, List[Dict]]:\\n    \\\"\\\"\\\"Load HarmThoughts from HF and group by trace_id.\\\"\\\"\\\"\\n    ds = load_dataset(HF_DATASET, split=\\\"train\\\")\\n\\n    traces = defaultdict(list)\\n    for row in ds:\\n        if row[\\\"model_name\\\"] != model_name:\\n            continue\\n        # trace_id is the part before the last dash in sentence_id\\n        sid = row[\\\"sentence_id\\\"]\\n        parts = sid.rsplit(\\\"-\\\", 1)\\n        trace_id = parts[0]\\n        step_idx = int(parts[1]) - 1  # convert to 0-indexed\\n\\n        traces[trace_id].append({\\n            \\\"sentence_id\\\": sid,\\n            \\\"step_idx\\\": step_idx,\\n            \\\"sentence\\\": row[\\\"sentence\\\"],\\n            \\\"label\\\": row[\\\"llm_annotation\\\"],\\n            \\\"query\\\": row[\\\"query\\\"],\\n            \\\"final_judgment\\\": row[\\\"final_judgment\\\"],\\n        })\\n\\n    # Sort each trace by step_idx\\n    for tid in traces:\\n        traces[tid].sort(key=lambda x: x[\\\"step_idx\\\"])\\n\\n    return dict(traces)\\n\\n\\ndef extract_commitment_point(labels: List[str]) -> Optional[int]:\\n    \\\"\\\"\\\"Find the commitment point in a sequence of labels.\\n\\n    Returns the index after the last safety label, or None if:\\n    - No safety labels exist in the trace\\n    - The last safety label is at the final position (no post-comm
+…[truncated 4406 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-17T09:04:57.086014+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ls /root/autodl-tmp/contrastive_trace_safety/src/experiments/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ls /root/autodl-tmp/contrastive_trace_safety/src/experiments/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-17T09:04:57.086164+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"__init__.py\\n__pycache__\\nbocpd_poc.py\\nbootstrap_ci.py\\nexp_001a_bootstrap_hs_vs_text.py\\nexp_001a_extract_r1_32b.py\\nexp_001a_probing.py\\nexp_001b_bootstrap.py\\nexp_001b_extract_qwq.py\\nexp_001b_probing.py\\nexp_003_cross_transfer.py\\nexp_007_window_ablation.py\\nexp_c2_control_task.py\\nexp_ot7b_continue_p4.py\\nexp_ot7b_full_pipeline.py\\nexp_pathC_two_stage_sim.py\\nfpr_analysis.py\\ngru_multilayer_ablation.py\\ngru_per_seed_eval.py\\nm001_layer_fix.py\\nr1_8b_bootstrap_hs_text.py\\nrun_selectivity_qwq_l2.py\\ntext_baseline.py\\ntext_window_ablation_r1_8b.py\\ntrajguard_mahalanobis.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-17T09:04:57.086294+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "find /root/autodl-tmp/contrastive_trace_safety/src -name \"*.py\" -path \"*sweep*\" -o -name \"*.py\" -path \"*layer*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "find /root/autodl-tmp/contrastive_trace_safety/src -name \"*.py\" -path \"*sweep*\" -o -name \"*.py\" -path \"*layer*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-17T09:04:57.086423+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/contrastive_trace_safety/src/diagnostics/layer_sweep.py\\n/root/autodl-tmp/contrastive_trace_safety/src/experiments/gru_multilayer_ablation.py\\n/root/autodl-tmp/contrastive_trace_safety/src/experiments/m001_layer_fix.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-17T09:04:57.086568+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/src/diagnostics/layer_sweep.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat /root/autodl-tmp/contrastive_trace_safety/src/diagnostics/layer_sweep.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-17T09:04:57.086733+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/src/experiments/m001_layer_fix.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat /root/autodl-tmp/contrastive_trace_safety/src/experiments/m001_layer_fix.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-17T09:04:57.086984+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Layer sweep: train static LogisticRegression on each of 13 layers.\\\"\\\"\\\"\\n\\nimport sys\\nimport numpy as np\\nimport torch\\nfrom pathlib import Path\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.metrics import accuracy_score, f1_score\\nfrom collections import defaultdict\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parents[2]))\\nfrom src.config import HIDDEN_STATES_DIR, LAYERS, TRAIN_RATIO, VAL_RATIO, SEED\\n\\n\\ndef first_crossing(probs_class1, threshold=0.5, k=5):\\n    \\\"\\\"\\\"First position where prob > threshold for k consecutive steps.\\\"\\\"\\\"\\n    for i in range(len(probs_class1) - k + 1):\\n        if all(p > threshold for p in probs_class1[i:i+k]):\\n            return i\\n    return None\\n\\n\\ndef load_traces():\\n    \\\"\\\"\\\"Load all traces with step_labels (jailbreak_with_commitment only).\\\"\\\"\\\"\\n    traces = []\\n    for pt_file in sorted(HIDDEN_STATES_DIR.glob(\\\"*.pt\\\")):\\n        data = torch.load(pt_file, map_location=\\\"cpu\\\", weights_only=False)\\n        step_labels = data.get(\\\"step_labels\\\", None)\\n        if step_labels is None:\\n            continue\\n        commitment_point = data.get(\\\"commitment_point\\\", None)\\n        if commitment_point is None:\\n            continue\\n        hs = data[\\\"hidden_states\\\"]  # [num_sentences, 13, 4096]\\n        traces.append({\\n            \\\"trace_id\\\": data[\\\"trace_id\\\"],\\n            \\\"hidden_states\\\": hs,\\n            \\\"step_labels\\\": step_labels,\\n            \\\"commitment_point\\\": commitment_point,\\n        })\\n    return traces\\n\\n\\ndef split_traces(traces, seed=SEED):\\n    \\\"\\\"\\\"Split traces into train/val/test at trace level.\\\"\\\"\\\"\\n    rng = np.random.RandomState(seed)\\n    n = len(traces)\\n    indices = rng.permutation(n)\\n    n_train = int(n * TRAIN_RATIO)\\n    n_val = int(n * VAL_RATIO)\\n    t
+…[truncated 4491 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-17T09:04:57.087284+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"M001: Layer selection fix - use balanced_accuracy instead of crossing_rate*lead_mean.\\\"\\\"\\\"\\n\\nimport os, sys, json, time\\nos.environ[\\\"TOKENIZERS_PARALLELISM\\\"] = \\\"false\\\"\\nos.environ[\\\"HF_ENDPOINT\\\"] = \\\"https://hf-mirror.com\\\"\\n\\nimport numpy as np\\nimport torch\\nimport torch.nn as nn\\nfrom torch.utils.data import Dataset, DataLoader\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.metrics import balanced_accuracy_score, accuracy_score, f1_score\\nfrom pathlib import Path\\n\\nsys.path.insert(0, \\\"/root/autodl-tmp/contrastive_trace_safety\\\")\\n\\nNUM_LAYERS = 64\\nHIDDEN_DIM = 5120\\nK_CONSECUTIVE = 5\\nTHRESHOLD = 0.5\\nDEVICE = \\\"cpu\\\"\\n\\nOUTPUT_DIR = Path(\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/m001_layer_fix\\\")\\nOUTPUT_DIR.mkdir(parents=True, exist_ok=True)\\n\\n\\ndef load_traces(hs_dir):\\n    traces = []\\n    for pt_file in sorted(Path(hs_dir).glob(\\\"*.pt\\\")):\\n        data = torch.load(pt_file, map_location=\\\"cpu\\\", weights_only=False)\\n        if data.get(\\\"step_labels\\\") is None or data.get(\\\"commitment_point\\\") is None:\\n            continue\\n        traces.append(data)\\n    return traces\\n\\n\\ndef split_traces(traces, train_ratio=0.6, val_ratio=0.2, seed=42):\\n    rng = np.random.default_rng(seed)\\n    indices = rng.permutation(len(traces))\\n    n_train = int(len(traces) * train_ratio)\\n    n_val = int(len(traces) * val_ratio)\\n    return (\\n        [traces[i] for i in indices[:n_train]],\\n        [traces[i] for i in indices[n_train:n_train+n_val]],\\n        [traces[i] for i in indices[n_train+n_val:]],\\n    )\\n\\n\\ndef extract_layer_data(traces, layer_idx):\\n    X_list, y_list = [], []\\n    for t in traces:\\n        hs = t[\\\"hidden_states\\\"][:, layer_idx, :].float().numpy()\\n        labels = np.array(t[\\\"step_labels\\\"])\\n        n = min(hs.shape[0], len(lab
+…[truncated 7098 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-17T09:04:57.087520+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ls /root/autodl-tmp/.hf_cache/deepseek-ai/DeepSeek-R1-Distill-Llama-8B/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ls /root/autodl-tmp/.hf_cache/deepseek-ai/DeepSeek-R1-Distill-Llama-8B/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-17T09:04:57.087726+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"LICENSE\\nREADME.md\\nconfig.json\\nconfiguration.json\\nfigures\\ngeneration_config.json\\nmodel-00001-of-000002.safetensors\\nmodel-00002-of-000002.safetensors\\nmodel.safetensors.index.json\\ntokenizer.json\\ntokenizer_config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-17T09:04:57.087869+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "nvidia-smi --query-gpu=index,name,memory.used,memory.total --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "nvidia-smi --query-gpu=index,name,memory.used,memory.total --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-17T09:04:57.088002+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 0 MiB, 97887 MiB\\n1, NVIDIA RTX PRO 6000 Blackwell Server Edition, 0 MiB, 97887 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-17T09:04:57.088319+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat > /root/autodl-tmp/contrastive_trace_safety/scripts/r1_8b_early_layer_supplement.py << 'PYEOF'\n\"\"\"R1-8B Early Layer Supplement: Extract layers 0-11, full layer sweep.\"\"\"\n\nimport os, sys, json, time\nos.environ[\"TOKENIZERS_PARALLELISM\"] = \"false\"\nos.environ[\"HF_ENDPOINT\"] = \"https://hf-mirror.com\"\nos.environ[\"CUDA_VISIBLE_DEVICES\"] = \"0\"\n\nimport numpy as np\nimport torch\nfrom pathlib import Path\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import balanced_accuracy_score, precision_score\nfrom tqdm import tqdm\n\nPROJECT = Path(\"/root/autodl-tmp/contrastive_trace_safety\")\nHS_DIR = PROJECT / \"artifacts\" / \"hidden_states\"\nEARLY_HS_DIR = PROJECT / \"artifacts\" / \"hidden_states_early_r1_8b\"\nOUTPUT_DIR = PROJECT / \"artifacts\" / \"r1_8b_layer_supplement\"\nMODEL_PATH = \"/root/autodl-tmp/.hf_cache/deepseek-ai/DeepSeek-R1-Distill-Llama-8B\"\n\nSEED = 42\nTOTAL_MODEL_LAYERS = 32\nHIDDEN_DIM = 4096\nEARLY_LAYERS = list(range(0, 12))  # layers 0-11\nORIG_LAYERS = list(range(12, 25))  # layers 12-24\n\nK_CONSECUTIVE = 5\nTHRESHOLD = 0.5\n\n\ndef load_traces_with_commitment():\n    \"\"\"Load all traces that have step_labels and commitment_point.\"\"\"\n    traces = []\n    for pt_file in sorted(HS_DIR.glob(\"*.pt\")):\n        data = torch.load(pt_file, map_location=\"cpu\", weights_only=False)\n        if data.get(\"step_labels\") is None or data.get(\"commitment_point\") is None:\n            continue\n        traces.append(data)\n    return traces\n\n\ndef split_traces(traces, seed=SEED):\n    rng = np.random.default_rng(seed)\n    indices = rng.permutation(len(traces))\n    n_train = int(len(traces) * 0.6)\n    n_val = int(len(traces) * 0.2)\n    return (\n        [traces[i] for i in indices[:n_train]],\n        [traces[i] for i in indices[n_train:n_train+n_val]],\n        [traces[i] for i in indices[n_train+n_val:]],\n    )\n\n\n# ============ STEP 1: EXTRACT EARLY LAYERS ============\n\ndef find_sentence_boundaries(tokenizer, sentences):\n    full_text = \" \".join(sentences)\n    encoding = tokenizer(\n        full_text,\n        return_offsets_mapping=True,\n        return_tensors=\"pt\",\n        truncation=True,\n        max_length=8192,\n    )\n    offsets = encoding[\"offset_mapping\"][0]\n    boundaries = []\n    char_pos = 0\n    for sent in sentences:\n        char_end = char_pos + len(sent)\n        last_token_idx = 0\n        for tok_idx, (start, end) in enumerate(offsets):\n            if start < char_end:\n                last_token_idx = tok_idx\n        boundaries.append(last_token_idx)\n        char_pos = char_end + 1\n    return boundaries, encoding\n\n\ndef extract_early_layers():\n    \"\"\"Extract layers 0-11 for all traces that have existing hidden states.\"\"\"\n    EARLY_HS_DIR.mkdir(parents=True, exist_ok=True)\n\n    # Check which traces already done\n    existing_early = {f.stem for f in EARLY_HS_DIR.glob(\"*.pt\")}\n    all_pt_files = sorted(HS_DIR.glob(\"*.pt\"))\n    remaining = [f for f in all_pt_files if f.stem not in existing_early]\n\n    if not remaining:\n        print(f\"All {len(all_pt_files)} early layer files already exist. Skipping extraction.\")\n        return\n\n    print(f\"Need to extract early layers for {len(remaining)}/{len(all_pt_files)} traces\")\n\n    from transformers import AutoTokenizer, AutoModelForCausalLM\n\n    print(\"Loading R1-8B model...\")\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH, trust_remote_code=True)\n    if tokenizer.pad_token is None:\n        tokenizer.pad_token = tokenizer.eos_token\n\n    model = AutoModelForCausalLM.from_pretrained(\n        MODEL_PATH,\n        torch_dtype=torch.bfloat16,\n        device_map=\"cuda:0\",\n        trust_remote_code=True,\n    )\n    model.eval()\n    print(\"Model loaded.\")\n\n    # Load dataset to get sentences for each trace\n    sys.path.insert(0, str(PROJECT))\n    from src.data_loader import load_harmthoughts\n    raw_traces = load_harmthoughts(\"r1-8b\")\n    trace_sentences = {}\n    for trace_id, steps in raw_traces.items():\n        trace_sentences[trace_id] = [s[\"sentence\"] for s in steps]\n\n    for pt_file in tqdm(remaining, desc=\"Extracting early layers\"):\n        data = torch.load(pt_file, map_location=\"cpu\", weights_only=False)\n        trace_id = data[\"trace_id\"]\n\n        if trace_id not in trace_sentences:\n            print(f\"WARNING: trace {trace_id} not found in dataset, skipping\")\n            continue\n\n        sentences = trace_sentences[trace_id]\n        boundaries, _ = find_sentence_boundaries(tokenizer, sentences)\n\n        full_text = \" \".join(sentences)\n        inputs = tokenizer(\n            full_text,\n            return_tensors=\"pt\",\n            truncation=True,\n            max_length=8192,\n        ).to(\"cuda:0\")\n\n        num_tokens = inputs[\"input_ids\"].shape[1]\n        boundaries = [min(p, num_tokens - 1) for p in boundaries]\n\n        with torch.no_grad():\n            outputs = model(**inputs, output_hidden_states=True)\n\n        hidden_states = outputs.hidden_states\n        num_sentences = len(sentences)\n        result = torch.zeros(num_sentences, len(EARLY_LAYERS), HIDDEN_DIM, dtype=torch.float16)\n\n        for sent_idx, pos in enumerate(boundaries):\n            for layer_idx, layer_num in enumerate(EARLY_LAYERS):\n                hs = hidden_states[layer_num + 1][0, pos, :]\n                result[sent_idx, layer_idx, :] = hs.cpu().float().half()\n\n        save_dict = {\n            \"hidden_states\": result,\n            \"trace_id\": trace_id,\n            \"num_sentences\": num_sentences,\n            \"commitment_point\": data.get(\"commitment_point\"),\n            \"step_labels\": data.get(\"step_labels\"),\n            \"layers\": EARLY_LAYERS,\n        }\n\n        torch.save(save_dict, EARLY_HS_DIR / f\"{trace_id}.pt\")\n\n        del outputs, hidden_states\n        torch.cuda.empty_cache()\n\n    del model, tokenizer\n    torch.cuda.empty_cache()\n    print(\"Early layer extraction complete.\")\n\n\n# ============ STEP 2: FULL LAYER SWEEP ============\n\ndef get_hidden_states_for_layer(trace_id, model_layer, early_data_cache):\n    \"\"\"Get hidden states for a specific model layer from the appropriate source.\"\"\"\n    if model_layer in range(0, 12):\n        # From early files\n        if trace_id not in early_data_cache:\n            path = EARLY_HS_DIR / f\"{trace_id}.pt\"\n            if not path.exists():\n                return None\n            early_data_cache[trace_id] = torch.load(path, map_location=\"cpu\", weights_only=False)\n        data = early_data_cache[trace_id]\n        layer_idx = model_layer  # layers stored as 0-11, idx matches\n        return data[\"hidden_states\"][:, layer_idx, :]\n    else:\n        # From original files (layers 12-24)\n        path = HS_DIR / f\"{trace_id}.pt\"\n        if not path.exists():\n            return None\n        data = torch.load(path, map_location=\"cpu\", weights_only=False)\n        layer_idx = model_layer - 12  # layer 12 -> idx 0, layer 24 -> idx 12\n        if layer_idx >= data[\"hidden_states\"].shape[1]:\n            return None\n        return data[\"hidden_states\"][:, layer_idx, :]\n\n\ndef first_crossing(probs, threshold=THRESHOLD, k=K_CONSECUTIVE):\n    for i in range(len(probs) - k + 1):\n        if all(p > threshold for p in probs[i:i+k]):\n            return i\n    return None\n\n\ndef compute_precp_fpr(clf, traces, model_layer, early_cache):\n    fprs = []\n    for t in traces:\n        cp = t[\"commitment_point\"]\n        if cp <= 0:\n            continue\n        hs = get_hidden_states_for_layer(t[\"trace_id\"], model_layer, early_cache)\n        if hs is None:\n            continue\n        labels = t[\"step_labels\"]\n        n = min(hs.shape[0], len(labels), cp)\n        X = hs[:n].float().numpy()\n        if len(X) == 0:\n            continue\n        preds = clf.predict(X)\n        fprs.append(float(preds.mean()))\n    return float(np.mean(fprs)) if fprs else 0.0\n\n\ndef full_layer_sweep():\n    \"\"\"Run layer sweep across all available layers.\"\"\"\n    print(\"\\n\" + \"=\"*70)\n    print(\"FULL LAYER SWEEP: R1-8B\")\n    print(\"=\"*70)\n\n    # Load traces with commitment points from original dir\n    traces = load_traces_with_commitment()\n    print(f\"Loaded {len(traces)} traces with commitment points\")\n\n    # Check which have early layer data\n    early_available = {f.stem for f in EARLY_HS_DIR.glob(\"*.pt\")}\n    traces_with_early = [t for t in traces if t[\"trace_id\"] in early_available]\n    print(f\"Traces with early layer data: {len(traces_with_early)}\")\n\n    # Use only traces that have both early and original data\n    train, val, test = split_traces(traces_with_early)\n    print(f\"Split: train={len(train)}, val={len(val)}, test={len(test)}\")\n\n    # Sweep layers: 0, 1, 2, ..., 24 (all available)\n    sweep_layers = list(range(0, 25))  # layers 0-24\n    early_cache = {}\n\n    results = []\n    print(f\"\\n{'Layer':<6} {'Depth%':<7} {'bal_acc':<9} {'cross_rate':<11} {'lead_mean':<10} {'pre_cp_fpr':<11}\")\n    print(\"-\" * 55)\n\n    for model_layer in sweep_layers:\n        # Extract train data\n        X_train_list, y_train_list = [], []\n        for t in train:\n            hs = get_hidden_states_for_layer(t[\"trace_id\"], model_layer, early_cache)\n            if hs is None:\n                continue\n            labels = np.array(t[\"step_labels\"])\n            n = min(hs.shape[0], len(labels))\n            X_train_list.append(hs[:n].float().numpy())\n            y_train_list.append(labels[:n])\n\n        if not X_train_list:\n            print(f\"{model_layer:<6} {'N/A'}\")\n            continue\n\n        X_train = np.concatenate(X_train_list)\n        y_train = np.concatenate(y_train_list)\n\n        # Extract test data\n        X_test_list, y_test_list = [], []\n        for t in test:\n            hs = get_hidden_states_for_layer(t[\"trace_id\"], model_layer, early_cache)\n            if hs is None:\n                continue\n            labels = np.array(t[\"step_labels\"])\n            n = min(hs.shape[0], len(labels))\n            X_test_list.append(hs[:n].float().numpy())\n            y_test_list.append(labels[:n])\n\n        X_test = np.concatenate(X_test_list)\n        y_test = np.concatenate(y_test_list)\n\n        clf = LogisticRegression(\n            C=1.0, max_iter=1000, solver='liblinear',\n            class_weight='balanced', random_state=SEED\n        )\n        clf.fit(X_train, y_train)\n        y_pred = clf.predict(X_test)\n        bal_acc = balanced_accuracy_score(y_test, y_pred)\n\n        # Crossing metrics\n        lead_times = []\n        n_crossings = 0\n        for t in test:\n            hs = get_hidden_states_for_layer(t[\"trace_id\"], model_layer, early_cache)\n            if hs is None:\n                continue\n            labels = t[\"step_labels\"]\n            n = min(hs.shape[0], len(labels))\n            X = hs[:n].float().numpy()\n            probs = clf.predict_proba(X)[:, 1]\n            cp = t[\"commitment_point\"]\n            fc = first_crossing(probs.tolist())\n            if fc is not None and fc < cp:\n                lead_times.append(cp - fc)\n                n_crossings += 1\n\n        n_total = len(test)\n        crossing_rate = n_crossings / n_total if n_total > 0 else 0\n        mean_lead = float(np.mean(lead_times)) if lead_times else 0.0\n\n        precp_fpr = compute_precp_fpr(clf, test, model_layer, early_cache)\n\n        depth_pct = model_layer / (TOTAL_MODEL_LAYERS - 1) * 100\n\n        results.append({\n            \"layer\": model_layer,\n            \"depth_pct\": round(depth_pct, 1),\n            \"bal_acc\": round(bal_acc, 4),\n            \"crossing_rate\": round(crossing_rate, 4),\n            \"lead_mean\": round(mean_lead, 2),\n            \"pre_cp_fpr\": round(precp_fpr, 4),\n        })\n        print(f\"{model_layer:<6} {depth_pct:<7.1f} {bal_acc:<9.4f} {crossing_rate:<11.4f} {mean_lead:<10.2f} {precp_fpr:<11.4f}\")\n\n    # Sort by bal_acc\n    results_sorted = sorted(results, key=lambda x: x[\"bal_acc\"], reverse=True)\n\n    print(\"\\n\\nRanking by bal_acc:\")\n    print(f\"{'Rank':<5} {'Layer':<6} {'Depth%':<7} {'bal_acc':<9} {'cross_rate':<11} {'lead_mean':<10} {'pre_cp_fpr':<11}\")\n    print(\"-\" * 60)\n    for i, r in enumerate(results_sorted):\n        print(f\"{i+1:<5} {r['layer']:<6} {r['depth_pct']:<7.1f} {r['bal_acc']:<9.4f} {r['crossing_rate']:<11.4f} {r['lead_mean']:<10.2f} {r['pre_cp_fpr']:<11.4f}\")\n\n    best = results_sorted[0]\n    print(f\"\\nBest layer: {best['layer']} (depth {best['depth_pct']}%), bal_acc={best['bal_acc']}\")\n\n    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)\n    with open(OUTPUT_DIR / \"layer_sweep_full.json\", \"w\") as f:\n        json.dump({\"results\": results, \"results_sorted\": results_sorted, \"best\": best}, f, indent=2)\n\n    return results_sorted, train, val, test, early_cache\n\n\n# ============ STEP 3: TEMPORAL PROBES (if new best layer) ============\n\ndef run_temporal_probes_hs(train, val, test, best_layer, early_cache):\n    \"\"\"HS temporal probes at various window sizes.\"\"\"\n    print(f\"\\n{'='*70}\")\n    print(f\"TEMPORAL PROBES (HS) at layer {best_layer}\")\n    print(f\"{'='*70}\")\n\n    windows = [1, 3, 5, 10, 15, 20, 25]\n    results = []\n\n    for W in windows:\n        X_train_list, y_train_list = [], []\n        for t in train:\n            hs = get_hidden_states_for_layer(t[\"trace_id\"], best_layer, early_cache)\n            if hs is None:\n                continue\n            labels = np.array(t[\"step_labels\"])\n            n = min(hs.shape[0], len(labels))\n            hs_np = hs[:n].float().numpy()\n            for i in range(n):\n                start = max(0, i - W + 1)\n                window = hs_np[start:i+1]\n                if window.shape[0] < W:\n                    pad = np.zeros((W - window.shape[0], HIDDEN_DIM), dtype=np.float32)\n                    window = np.concatenate([pad, window], axis=0)\n                X_train_list.append(window.flatten())\n                y_train_list.append(labels[i])\n\n        X_train = np.array(X_train_list)\n        y_train = np.array(y_train_list)\n\n        X_test_list, y_test_list = [], []\n        for t in test:\n            hs = get_hidden_states_for_layer(t[\"trace_id\"], best_layer, early_cache)\n            if hs is None:\n                continue\n            labels = np.array(t[\"step_labels\"])\n            n = min(hs.shape[0], len(labels))\n            hs_np = hs[:n].float().numpy()\n            for i in range(n):\n                start = max(0, i - W + 1)\n                window = hs_np[start:i+1]\n                if window.shape[0] < W:\n                    pad = np.zeros((W - window.shape[0], HIDDEN_DIM), dtype=np.float32)\n                    window = np.concatenate([pad, window], axis=0)\n                X_test_list.append(window.flatten())\n                y_test_list.append(labels[i])\n\n        X_test = np.array(X_test_list)\n        y_test = np.array(y_test_list)\n\n        clf = LogisticRegression(\n            C=1.0, max_iter=1000, solver='liblinear',\n            class_weight='balanced', random_state=SEED\n        )\n        clf.fit(X_train, y_train)\n        y_pred = clf.predict(X_test)\n        y_proba = clf.predict_proba(X_test)[:, 1]\n\n        bal_acc = balanced_accuracy_score(y_test, y_pred)\n        prec = precision_score(y_test, y_pred, zero_division=0)\n\n        # Coverage: fraction of positive predictions among positive samples\n        pos_mask = y_test == 1\n        coverage = y_pred[pos_mask].mean() if pos_mask.sum() > 0 else 0.0\n\n        # Pre-CP FPR\n        fprs = []\n        for t in test:\n            cp = t[\"commitment_point\"]\n            if cp <= 0:\n                continue\n            hs = get_hidden_states_for_layer(t[\"trace_id\"], best_layer, early_cache)\n            if hs is None:\n                continue\n            labels = t[\"step_labels\"]\n            n = min(hs.shape[0], len(labels), cp)\n            hs_np = hs[:n].float().numpy()\n            X_pre = []\n            for i in range(n):\n                start = max(0, i - W + 1)\n                window = hs_np[start:i+1]\n                if window.shape[0] < W:\n                    pad = np.zeros((W - window.shape[0], HIDDEN_DIM), dtype=np.float32)\n                    window = np.concatenate([pad, window], axis=0)\n                X_pre.append(window.flatten())\n            if not X_pre:\n                continue\n            X_pre = np.array(X_pre)\n            preds = clf.predict(X_pre)\n            fprs.append(float(preds.mean()))\n        precp_fpr = float(np.mean(fprs)) if fprs else 0.0\n\n        # Lead mean\n        lead_times = []\n        n_crossings = 0\n        for t in test:\n            hs = get_hidden_states_for_layer(t[\"trace_id\"], best_layer, early_cache)\n            if hs is None:\n                continue\n            labels = t[\"step_labels\"]\n            n = min(hs.shape[0], len(labels))\n            hs_np = hs[:n].float().numpy()\n            X_all = []\n            for i in range(n):\n                start = max(0, i - W + 1)\n                window = hs_np[start:i+1]\n                if window.shape[0] < W:\n                    pad = np.zeros((W - window.shape[0], HIDDEN_DIM), dtype=np.float32)\n                    window = np.concatenate([pad, window], axis=0)\n                X_all.append(window.flatten())\n            X_all = np.array(X_all)\n            probs = clf.predict_proba(X_all)[:, 1]\n            cp = t[\"commitment_point\"]\n            fc = first_crossing(probs.tolist())\n            if fc is not None and fc < cp:\n                lead_times.append(cp - fc)\n                n_crossings += 1\n        lead_mean = float(np.mean(lead_times)) if lead_times else 0.0\n\n        results.append({\n            \"window\": W,\n            \"bal_acc\": round(bal_acc, 4),\n            \"precision\": round(prec, 4),\n            \"coverage\": round(float(coverage), 4),\n            \"pre_cp_fpr\": round(precp_fpr, 4),\n            \"lead_mean\": round(lead_mean, 2),\n        })\n        print(f\"  W={W:<3} bal_acc={bal_acc:.4f} prec={prec:.4f} cov={coverage:.4f} fpr={precp_fpr:.4f} lead={lead_mean:.2f}\")\n\n    with open(OUTPUT_DIR / \"temporal_probes_hs.json\", \"w\") as f:\n        json.dump(results, f, indent=2)\n\n    best_w = max(results, key=lambda x: x[\"bal_acc\"])\n    print(f\"\\n  Best HS window: W={best_w['window']}, bal_acc={best_w['bal_acc']}\")\n    return results, best_w[\"window\"]\n\n\ndef run_temporal_probes_text(train, val, test, best_layer, early_cache):\n    \"\"\"Text temporal probes using all-MiniLM-L6-v2.\"\"\"\n    print(f\"\\n{'='*70}\")\n    print(f\"TEMPORAL PROBES (Text) - all-MiniLM-L6-v2\")\n    print(f\"{'='*70}\")\n\n    from sentence_transformers import SentenceTransformer\n\n    # Load dataset for sentences\n    sys.path.insert(0, str(PROJECT))\n    from src.data_loader import load_harmthoughts\n    raw_traces = load_harmthoughts(\"r1-8b\")\n    trace_sentences = {}\n    for tid, steps in raw_traces.items():\n        trace_sentences[tid] = [s[\"sentence\"] for s in steps]\n\n    st_model = SentenceTransformer(\"all-MiniLM-L6-v2\")\n    EMB_DIM = 384\n\n    # Pre-compute embeddings\n    trace_embeddings = {}\n    all_trace_ids = set(t[\"trace_id\"] for t in train + val + test)\n    for tid in tqdm(all_trace_ids, desc=\"Encoding sentences\"):\n        if tid in trace_sentences:\n            embs = st_model.encode(trace_sentences[tid], show_progress_bar=False)\n            trace_embeddings[tid] = embs\n\n    windows = [1, 3, 5, 10, 15, 20, 25]\n    results = []\n\n    for W in windows:\n        X_train_list, y_train_list = [], []\n        for t in train:\n            tid = t[\"trace_id\"]\n            if tid not in trace_embeddings:\n                continue\n            embs = trace_embeddings[tid]\n            labels = np.array(t[\"step_labels\"])\n            n = min(len(embs), len(labels))\n            for i in range(n):\n                start = max(0, i - W + 1)\n                window = embs[start:i+1]\n                if window.shape[0] < W:\n                    pad = np.zeros((W - window.shape[0], EMB_DIM), dtype=np.float32)\n                    window = np.concatenate([pad, window], axis=0)\n                X_train_list.append(window.flatten())\n                y_train_list.append(labels[i])\n\n        X_train = np.array(X_train_list)\n        y_train = np.array(y_train_list)\n\n        X_test_list, y_test_list = [], []\n        for t in test:\n            tid = t[\"trace_id\"]\n            if tid not in trace_embeddings:\n                continue\n            embs = trace_embeddings[tid]\n            labels = np.array(t[\"step_labels\"])\n            n = min(len(embs), len(labels))\n            for i in range(n):\n                start = max(0, i - W + 1)\n                window = embs[start:i+1]\n                if window.shape[0] < W:\n                    pad = np.zeros((W - window.shape[0], EMB_DIM), dtype=np.float32)\n                    window = np.concatenate([pad, window], axis=0)\n                X_test_list.append(window.flatten())\n                y_test_list.append(labels[i])\n\n        X_test = np.array(X_test_list)\n        y_test = np.array(y_test_list)\n\n        clf = LogisticRegression(\n            C=1.0, max_iter=1000, solver='liblinear',\n            class_weight='balanced', random_state=SEED\n        )\n        clf.fit(X_train, y_train)\n        y_pred = clf.predict(X_test)\n        bal_acc = balanced_accuracy_score(y_test, y_pred)\n        prec = precision_score(y_test, y_pred, zero_division=0)\n        pos_mask = y_test == 1\n        coverage = y_pred[pos_mask].mean() if pos_mask.sum() > 0 else 0.0\n\n        # Pre-CP FPR\n        fprs = []\n        for t in test:\n            tid = t[\"trace_id\"]\n            if tid not in trace_embeddings:\n                continue\n            cp = t[\"commitment_point\"]\n            if cp <= 0:\n                continue\n            embs = trace_embeddings[tid]\n            labels = t[\"step_labels\"]\n            n = min(len(embs), len(labels), cp)\n            X_pre = []\n            for i in range(n):\n                start = max(0, i - W + 1)\n                window = embs[start:i+1]\n                if window.shape[0] < W:\n                    pad = np.zeros((W - window.shape[0], EMB_DIM), dtype=np.float32)\n                    window = np.concatenate([pad, window], axis=0)\n                X_pre.append(window.flatten())\n            if not X_pre:\n                continue\n            X_pre = np.array(X_pre)\n            preds = clf.predict(X_pre)\n            fprs.append(float(preds.mean()))\n        precp_fpr = float(np.mean(fprs)) if fprs else 0.0\n\n        # Lead mean\n        lead_times = []\n        for t in test:\n            tid = t[\"trace_id\"]\n            if tid not in trace_embeddings:\n                continue\n            embs = trace_embeddings[tid]\n            labels = t[\"step_labels\"]\n            n = min(len(embs), len(labels))\n            X_all = []\n            for i in range(n):\n                start = max(0, i - W + 1)\n                window = embs[start:i+1]\n                if window.shape[0] < W:\n                    pad = np.zeros((W - window.shape[0], EMB_DIM), dtype=np.float32)\n                    window = np.concatenate([pad, window], axis=0)\n                X_all.append(window.flatten())\n            X_all = np.array(X_all)\n            probs = clf.predict_proba(X_all)[:, 1]\n            cp = t[\"commitment_point\"]\n            fc = first_crossing(probs.tolist())\n            if fc is not None and fc < cp:\n                lead_times.append(cp - fc)\n        lead_mean = float(np.mean(lead_times)) if lead_times else 0.0\n\n        results.append({\n            \"window\": W,\n            \"bal_acc\": round(bal_acc, 4),\n            \"precision\": round(prec, 4),\n            \"coverage\": round(float(coverage), 4),\n            \"pre_cp_fpr\": round(precp_fpr, 4),\n            \"lead_mean\": round(lead_mean, 2),\n        })\n        print(f\"  W={W:<3} bal_acc={bal_acc:.4f} prec={prec:.4f} cov={coverage:.4f} fpr={precp_fpr:.4f} lead={lead_mean:.2f}\")\n\n    with open(OUTPUT_DIR / \"temporal_probes_text.json\", \"w\") as f:\n        json.dump(results, f, indent=2)\n\n    best_w = max(results, key=lambda x: x[\"bal_acc\"])\n    print(f\"\\n  Best Text window: W={best_w['window']}, bal_acc={best_w['bal_acc']}\")\n    return results, best_w[\"window\"]\n\n\n# ============ STEP 4: PAIRED BOOTSTRAP ============\n\ndef run_paired_bootstrap(train, test, best_layer, best_hs_w, best_text_w, early_cache):\n    \"\"\"Paired bootstrap comparing HS vs Text at matched window sizes.\"\"\"\n    print(f\"\\n{'='*70}\")\n    print(f\"PAIRED BOOTSTRAP: HS(layer={best_layer}, W={best_hs_w}) vs Text(W={best_text_w})\")\n    print(f\"{'='*70}\")\n\n    from sentence_transformers import SentenceTransformer\n\n    sys.path.insert(0, str(PROJECT))\n    from src.data_loader import load_harmthoughts\n    raw_traces = load_harmthoughts(\"r1-8b\")\n    trace_sentences = {}\n    for tid, steps in raw_traces.items():\n        trace_sentences[tid] = [s[\"sentence\"] for s in steps]\n\n    st_model = SentenceTransformer(\"all-MiniLM-L6-v2\")\n    EMB_DIM = 384\n\n    all_tids = set(t[\"trace_id\"] for t in train + test)\n    trace_embs = {}\n    for tid in all_tids:\n        if tid in trace_sentences:\n            trace_embs[tid] = st_model.encode(trace_sentences[tid], show_progress_bar=False)\n\n    # Train HS model\n    W = best_hs_w\n    X_hs_train, y_hs_train = [], []\n    for t in train:\n        hs = get_hidden_states_for_layer(t[\"trace_id\"], best_layer, early_cache)\n        if hs is None:\n            continue\n        labels = np.array(t[\"step_labels\"])\n        n = min(hs.shape[0], len(labels))\n        hs_np = hs[:n].float().numpy()\n        for i in range(n):\n            start = max(0, i - W + 1)\n            window = hs_np[start:i+1]\n            if window.shape[0] < W:\n                pad = np.zeros((W - window.shape[0], HIDDEN_DIM), dtype=np.float32)\n                window = np.concatenate([pad, window], axis=0)\n            X_hs_train.append(window.flatten())\n            y_hs_train.append(labels[i])\n\n    clf_hs = LogisticRegression(C=1.0, max_iter=1000, solver='liblinear',\n                                 class_weight='balanced', random_state=SEED)\n    clf_hs.fit(np.array(X_hs_train), np.array(y_hs_train))\n\n    # Train Text model\n    W_t = best_text_w\n    X_text_train, y_text_train = [], []\n    for t in train:\n        tid = t[\"trace_id\"]\n        if tid not in trace_embs:\n            continue\n        embs = trace_embs[tid]\n        labels = np.array(t[\"step_labels\"])\n        n = min(len(embs), len(labels))\n        for i in range(n):\n            start = max(0, i - W_t + 1)\n            window = embs[start:i+1]\n            if window.shape[0] < W_t:\n                pad = np.zeros((W_t - window.shape[0], EMB_DIM), dtype=np.float32)\n                window = np.concatenate([pad, window], axis=0)\n            X_text_train.append(window.flatten())\n            y_text_train.append(labels[i])\n\n    clf_text = LogisticRegression(C=1.0, max_iter=1000, solver='liblinear',\n                                   class_weight='balanced', random_state=SEED)\n    clf_text.fit(np.array(X_text_train), np.array(y_text_train))\n\n    # Per-trace metrics on test\n    hs_bal_accs, text_bal_accs = [], []\n    hs_precs, text_precs = [], []\n    hs_fprs, text_fprs = [], []\n\n    for t in test:\n        tid = t[\"trace_id\"]\n        hs = get_hidden_states_for_layer(tid, best_layer, early_cache)\n        if hs is None or tid not in trace_embs:\n            continue\n        labels = np.array(t[\"step_labels\"])\n        embs = trace_embs[tid]\n        n = min(hs.shape[0], len(labels), len(embs))\n        cp = t[\"commitment_point\"]\n\n        # HS predictions\n        hs_np = hs[:n].float().numpy()\n        X_hs = []\n        for i in range(n):\n            start = max(0, i - W + 1)\n            window = hs_np[start:i+1]\n            if window.shape[0] < W:\n                pad = np.zeros((W - window.shape[0], HIDDEN_DIM), dtype=np.float32)\n                window = np.concatenate([pad, window], axis=0)\n            X_hs.append(window.flatten())\n        X_hs = np.array(X_hs)\n        hs_pred = clf_hs.predict(X_hs)\n        hs_bal_accs.append(balanced_accuracy_score(labels[:n], hs_pred))\n        hs_precs.append(precision_score(labels[:n], hs_pred, zero_division=0))\n\n        # Text predictions\n        X_text = []\n        for i in range(n):\n            start = max(0, i - W_t + 1)\n            window = embs[start:i+1]\n            if window.shape[0] < W_t:\n                pad = np.zeros((W_t - window.shape[0], EMB_DIM), dtype=np.float32)\n                window = np.concatenate([pad, window], axis=0)\n            X_text.append(window.flatten())\n        X_text = np.array(X_text)\n        text_pred = clf_text.predict(X_text)\n        text_bal_accs.append(balanced_accuracy_score(labels[:n], text_pred))\n        text_precs.append(precision_score(labels[:n], text_pred, zero_division=0))\n\n        # Pre-CP FPR\n        if cp > 0:\n            n_pre = min(n, cp)\n            hs_pre_pred = clf_hs.predict(X_hs[:n_pre])\n            text_pre_pred = clf_text.predict(X_text[:n_pre])\n            hs_fprs.append(float(hs_pre_pred.mean()))\n            text_fprs.append(float(text_pre_pred.mean()))\n\n    # Bootstrap\n    rng = np.random.default_rng(SEED)\n    n_resamples = 1000\n    alpha = 0.017  # Bonferroni corrected\n\n    metrics = {\n        \"bal_acc\": (np.array(hs_bal_accs), np.array(text_bal_accs)),\n        \"precision\": (np.array(hs_precs), np.array(text_precs)),\n        \"pre_cp_fpr\": (np.array(hs_fprs), np.array(text_fprs)),\n    }\n\n    bootstrap_results = {}\n    for metric_name, (hs_vals, text_vals) in metrics.items():\n        n = min(len(hs_vals), len(text_vals))\n        hs_v = hs_vals[:n]\n        text_v = text_vals[:n]\n        observed_diff = float(hs_v.mean() - text_v.mean())\n        diffs = []\n        for _ in range(n_resamples):\n            idx = rng.choice(n, size=n, replace=True)\n            diffs.append(float(hs_v[idx].mean() - text_v[idx].mean()))\n        diffs = np.array(diffs)\n        p_value = float((np.abs(diffs - diffs.mean()) >= np.abs(observed_diff - diffs.mean())).mean())\n        ci_lower = float(np.percentile(diffs, 100 * alpha / 2))\n        ci_upper = float(np.percentile(diffs, 100 * (1 - alpha / 2)))\n\n        bootstrap_results[metric_name] = {\n            \"hs_mean\": round(float(hs_v.mean()), 4),\n            \"text_mean\": round(float(text_v.mean()), 4),\n            \"diff_hs_minus_text\": round(observed_diff, 4),\n            \"p_value\": round(p_value, 4),\n            \"ci\": [round(ci_lower, 4), round(ci_upper, 4)],\n            \"significant\": p_value < alpha,\n        }\n        sig = \"*\" if p_value < alpha else \"\"\n        print(f\"  {metric_name}: HS={hs_v.mean():.4f} Text={text_v.mean():.4f} diff={observed_diff:.4f} p={p_value:.4f}{sig}\")\n\n    with open(OUTPUT_DIR / \"bootstrap_hs_vs_text.json\", \"w\") as f:\n        json.dump(bootstrap_results, f, indent=2)\n\n    return bootstrap_results\n\n\n# ============ STEP 5: SELECTIVITY CONTROL ============\n\ndef run_selectivity_control(train, test, best_layer, early_cache, n_perms=10):\n    \"\"\"Selectivity control: random label permutation test.\"\"\"\n    print(f\"\\n{'='*70}\")\n    print(f\"SELECTIVITY CONTROL (10x random label permutation)\")\n    print(f\"{'='*70}\")\n\n    rng = np.random.default_rng(SEED)\n\n    # Real labels\n    X_train_list, y_train_list = [], []\n    for t in train:\n        hs = get_hidden_states_for_layer(t[\"trace_id\"], best_layer, early_cache)\n        if hs is None:\n            continue\n        labels = np.array(t[\"step_labels\"])\n        n = min(hs.shape[0], len(labels))\n        X_train_list.append(hs[:n].float().numpy())\n        y_train_list.append(labels[:n])\n\n    X_train = np.concatenate(X_train_list)\n    y_train = np.concatenate(y_train_list)\n\n    X_test_list, y_test_list = [], []\n    for t in test:\n        hs = get_hidden_states_for_layer(t[\"trace_id\"], best_layer, early_cache)\n        if hs is None:\n            continue\n        labels = np.array(t[\"step_labels\"])\n        n = min(hs.shape[0], len(labels))\n        X_test_list.append(hs[:n].float().numpy())\n        y_test_list.append(labels[:n])\n\n    X_test = np.concatenate(X_test_list)\n    y_test = np.concatenate(y_test_list)\n\n    # Real performance\n    clf = LogisticRegression(C=1.0, max_iter=1000, solver='liblinear',\n                             class_weight='balanced', random_state=SEED)\n    clf.fit(X_train, y_train)\n    real_bal_acc = balanced_accuracy_score(y_test, clf.predict(X_test))\n\n    # Permuted\n    perm_accs = []\n    for i in range(n_perms):\n        y_perm = rng.permutation(y_train)\n        clf_p = LogisticRegression(C=1.0, max_iter=1000, solver='liblinear',\n                                    class_weight='balanced', random_state=SEED)\n        clf_p.fit(X_train, y_perm)\n        perm_acc = balanced_accuracy_score(y_test, clf_p.predict(X_test))\n        perm_accs.append(perm_acc)\n        print(f\"  Perm {i+1}: bal_acc={perm_acc:.4f}\")\n\n    perm_accs = np.array(perm_accs)\n    selectivity_gap = real_bal_acc - perm_accs.mean()\n\n    result = {\n        \"real_bal_acc\": round(real_bal_acc, 4),\n        \"perm_mean\": round(float(perm_accs.mean()), 4),\n        \"perm_std\": round(float(perm_accs.std()), 4),\n        \"selectivity_gap\": round(selectivity_gap, 4),\n        \"n_perms\": n_perms,\n    }\n    print(f\"\\n  Real: {real_bal_acc:.4f}, Perm mean: {perm_accs.mean():.4f} ± {perm_accs.std():.4f}\")\n    print(f\"  Selectivity gap: {selectivity_gap:.4f}\")\n\n    with open(OUTPUT_DIR / \"selectivity_control.json\", \"w\") as f:\n        json.dump(result, f, indent=2)\n\n    return result\n\n\n# ============ MAIN ============\n\ndef main():\n    t0 = time.time()\n\n    # Step 1: Extract early layers\n    print(\"=\"*70)\n    print(\"STEP 1: Extract early layers (0-11)\")\n    print(\"=\"*70)\n    extract_early_layers()\n\n    # Step 2: Full layer sweep\n    results_sorted, train, val, test, early_cache = full_layer_sweep()\n\n    best = results_sorted[0]\n    old_best_layer = 14\n    old_best_bal_acc = 0.8172\n\n    if best[\"layer\"] != old_best_layer and best[\"bal_acc\"] > old_best_bal_acc:\n        print(f\"\\nNEW BEST LAYER FOUND: {best['layer']} (bal_acc={best['bal_acc']}) > old layer {old_best_layer} (bal_acc={old_best_bal_acc})\")\n\n        # Step 3a: Temporal HS probes\n        hs_results, best_hs_w = run_temporal_probes_hs(train, val, test, best[\"layer\"], early_cache)\n\n        # Step 3b: Temporal Text probes\n        text_results, best_text_w = run_temporal_probes_text(train, val, test, best[\"layer\"], early_cache)\n\n        # Step 3c: Paired bootstrap\n        bootstrap = run_paired_bootstrap(train, test, best[\"layer\"], best_hs_w, best_text_w, early_cache)\n\n        # Step 3d: Selectivity control\n        selectivity = run_selectivity_control(train, test, best[\"layer\"], early_cache)\n    else:\n        print(f\"\\nLayer {old_best_layer} remains best or no improvement. Only reporting sweep results.\")\n\n    elapsed = time.time() - t0\n    print(f\"\\n{'='*70}\")\n    print(f\"COMPLETE in {elapsed:.0f}s\")\n    print(f\"All outputs in: {OUTPUT_DIR}\")\n    print(f\"{'='*70}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written.\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat > /root/autodl-tmp/contrastive_trace_safety/scripts/r1_8b_early_layer_supplement.py << 'PYEOF'\n\"\"\"R1-8B Early Layer Supplement: Extract layers 0-11, full layer sweep.\"\"\"\n\nimport os, sys, json, time\nos.environ[\"TOKENIZERS_PARALLELISM\"] = \"false\"\nos.environ[\"HF_ENDPOINT\"] = \"https://hf-mirror.com\"\nos.environ[\"CUDA_VISIBLE_DEVICES\"] = \"0\"\n\nimport numpy as np\nimport torch\nfrom pathlib import Path\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import balanced_accuracy_score, precision_score\nfrom tqdm import tqdm\n\nPROJECT = Path(\"/root/autodl-tmp/contrastive_trace_safety\")\nHS_DIR = PROJECT / \"artifacts\" / \"hidden_states\"\nEARLY_HS_DIR = PROJECT / \"artifacts\" / \"hidden_states_early_r1_8b\"\nOUTPUT_DIR = PROJECT / \"artifacts\" / \"r1_8b_layer_supplement\"\nMODEL_PATH = \"/root/autodl-tmp/.hf_cache/deepseek-ai/DeepSeek-R1-Distill-Llama-8B\"\n\nSEED = 42\nTOTAL_MODEL_LAYERS = 32\nHIDDEN_DIM = 4096\nEARLY_LAYERS = list(range(0, 12))  # layers 0-11\nORIG_LAYERS = list(range(12, 25))  # layers 12-24\n\nK_CONSECUTIVE = 5\nTHRESHOLD = 0.5\n\n\ndef load_traces_with_commitment():\n    \"\"\"Load all traces that have step_labels and commitment_point.\"\"\"\n    traces = []\n    for pt_file in sorted(HS_DIR.glob(\"*.pt\")):\n        data = torch.load(pt_file, map_location=\"cpu\", weights_only=False)\n        if data.get(\"step_labels\") is None or data.get(\"commitment_point\") is None:\n            continue\n        traces.append(data)\n    return traces\n\n\ndef split_traces(traces, seed=SEED):\n    rng = np.random.default_rng(seed)\n    indices = rng.permutation(len(traces))\n    n_train = int(len(traces) * 0.6)\n    n_val = int(len(traces) * 0.2)\n    return (\n        [traces[i] for i in indices[:n_train]],\n        [traces[i] for i in indices[n_train:n_train+n_val]],\n        [traces[i] for i in indices[n_train+n_val:]],\n    )\n\n\n# ============ STEP 1: EXTRACT EARLY LAYERS ============\n\ndef find_sentence_boundaries(tokenizer, sentences):\n    full_text = \" \".join(sentences)\n    encoding = tokenizer(\n        full_text,\n        return_offsets_mapping=True,\n        return_tensors=\"pt\",\n        truncation=True,\n        max_length=8192,\n    )\n    offsets = encoding[\"offset_mapping\"][0]\n    boundaries = []\n    char_pos = 0\n    for sent in sentences:\n        char_end = char_pos + len(sent)\n        last_token_idx = 0\n        for tok_idx, (start, end) in enumerate(offsets):\n            if start < char_end:\n                last_token_idx = tok_idx\n        boundaries.append(last_token_idx)\n        char_pos = char_end + 1\n    return boundaries, encoding\n\n\ndef extract_early_layers():\n    \"\"\"Extract layers 0-11 for all traces that have existing hidden states.\"\"\"\n    EARLY_HS_DIR.mkdir(parents=True, exist_ok=True)\n\n    # Check which traces already done\n    existing_early = {f.stem for f in EARLY_HS_DIR.glob(\"*.pt\")}\n    all_pt_files = sorted(HS_DIR.glob(\"*.pt\"))\n    remaining = [f for f in all_pt_files if f.stem not in existing_early]\n\n    if not remaining:\n        print(f\"All {len(all_pt_files)} early layer files already exist. Skipping extraction.\")\n        return\n\n    print(f\"Need to extract early layers for {len(remaining)}/{len(all_pt_files)} traces\")\n\n    from transformers import AutoTokenizer, AutoModelForCausalLM\n\n    print(\"Loading R1-8B model...\")\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH, trust_remote_code=True)\n    if tokenizer.pad_token is None:\n        tokenizer.pad_token = tokenizer.eos_token\n\n    model = AutoModelForCausalLM.from_pretrained(\n        MODEL_PATH,\n        torch_dtype=torch.bfloat16,\n        device_map=\"cuda:0\",\n        trust_remote_code=True,\n    )\n    model.eval()\n    print(\"Model loaded.\")\n\n    # Load dataset to get sentences for each trace\n    sys.path.insert(0, str(PROJECT))\n    from src.data_loader import load_harmthoughts\n    raw_traces = load_harmthoughts(\"r1-8b\")\n    trace_sentences = {}\n    for trace_id, steps in raw_traces.items():\n        trace_sentences[trace_id] = [s[\"sentence\"] for s in steps]\n\n    for pt_file in tqdm(remaining, desc=\"Extracting early layers\"):\n        data = torch.load(pt_file, map_location=\"cpu\", weights_only=False)\n        trace_id = data[\"trace_id\"]\n\n        if trace_id not in trace_sentences:\n            print(f\"WARNING: trace {trace_id} not found in dataset, skipping\")\n            continue\n\n        sentences = trace_sentences[trace_id]\n        boundaries, _ = find_sentence_boundaries(tokenizer, sentences)\n\n        full_text = \" \".join(sentences)\n        inputs = tokenizer(\n            full_text,\n            return_tensors=\"pt\",\n            truncation=True,\n            max_length=8192,\n        ).to(\"cuda:0\")\n\n        num_tokens = inputs[\"input_ids\"].shape[1]\n        boundaries = [min(p, num_tokens - 1) for p in boundaries]\n\n        with torch.no_grad():\n            outputs = model(**inputs, output_hidden_states=True)\n\n        hidden_states = outputs.hidden_states\n        num_sentences = len(sentences)\n        result = torch.zeros(num_sentences, len(EARLY_LAYERS), HIDDEN_DIM, dtype=torch.float16)\n\n        for sent_idx, pos in enumerate(boundaries):\n            for layer_idx, layer_num in enumerate(EARLY_LAYERS):\n                hs = hidden_states[layer_num + 1][0, pos, :]\n                result[sent_idx, layer_idx, :] = hs.cpu().float().half()\n\n        save_dict = {\n            \"hidden_states\": result,\n            \"trace_id\": trace_id,\n            \"num_sentences\": num_sentences,\n            \"commitment_point\": data.get(\"commitment_point\"),\n            \"step_labels\": data.get(\"step_labels\"),\n            \"layers\": EARLY_LAYERS,\n        }\n\n        torch.save(save_dict, EARLY_HS_DIR / f\"{trace_id}.pt\")\n\n        del outputs, hidden_states\n        torch.cuda.empty_cache()\n\n    del model, tokenizer\n    torch.cuda.empty_cache()\n    print(\"Early layer extraction complete.\")\n\n\n# ============ STEP 2: FULL LAYER SWEEP ============\n\ndef get_hidden_states_for_layer(trace_id, model_layer, early_data_cache):\n    \"\"\"Get hidden states for a specific model layer from the appropriate source.\"\"\"\n    if model_layer in range(0, 12):\n        # From early files\n        if trace_id not in early_data_cache:\n            path = EARLY_HS_DIR / f\"{trace_id}.pt\"\n            if not path.exists():\n                return None\n            early_data_cache[trace_id] = torch.load(path, map_location=\"cpu\", weights_only=False)\n        data = early_data_cache[trace_id]\n        layer_idx = model_layer  # layers stored as 0-11, idx matches\n        return data[\"hidden_states\"][:, layer_idx, :]\n    else:\n        # From original files (layers 12-24)\n        path = HS_DIR / f\"{trace_id}.pt\"\n        if not path.exists():\n            return None\n        data = torch.load(path, map_location=\"cpu\", weights_only=False)\n        layer_idx = model_layer - 12  # layer 12 -> idx 0, layer 24 -> idx 12\n        if layer_idx >= data[\"hidden_states\"].shape[1]:\n            return None\n        return data[\"hidden_states\"][:, layer_idx, :]\n\n\ndef first_crossing(probs, threshold=THRESHOLD, k=K_CONSECUTIVE):\n    for i in range(len(probs) - k + 1):\n        if all(p > threshold for p in probs[i:i+k]):\n            return i\n    return None\n\n\ndef compute_precp_fpr(clf, traces, model_layer, early_cache):\n    fprs = []\n    for t in traces:\n        cp = t[\"commitment_point\"]\n        if cp <= 0:\n            continue\n        hs = get_hidden_states_for_layer(t[\"trace_id\"], model_layer, early_cache)\n        if hs is None:\n            continue\n        labels = t[\"step_labels\"]\n        n = min(hs.shape[0], len(labels), cp)\n        X = hs[:n].float().numpy()\n        if len(X) == 0:\n            continue\n        preds = clf.predict(X)\n        fprs.append(float(preds.mean()))\n    return float(np.mean(fprs)) if fprs else 0.0\n\n\ndef full_layer_sweep():\n    \"\"\"Run layer sweep across all available layers.\"\"\"\n    print(\"\\n\" + \"=\"*70)\n    print(\"FULL LAYER SWEEP: R1-8B\")\n    print(\"=\"*70)\n\n    # Load traces with commitment points from original dir\n    traces = load_traces_with_commitment()\n    print(f\"Loaded {len(traces)} traces with commitment points\")\n\n    # Check which have early layer data\n    early_available = {f.stem for f in EARLY_HS_DIR.glob(\"*.pt\")}\n    traces_with_early = [t for t in traces if t[\"trace_id\"] in early_available]\n    print(f\"Traces with early layer data: {len(traces_with_early)}\")\n\n    # Use only traces that have both early and original data\n    train, val, test = split_traces(traces_with_early)\n    print(f\"Split: train={len(train)}, val={len(val)}, test={len(test)}\")\n\n    # Sweep layers: 0, 1, 2, ..., 24 (all available)\n    sweep_layers = list(range(0, 25))  # layers 0-24\n    early_cache = {}\n\n    results = []\n    print(f\"\\n{'Layer':<6} {'Depth%':<7} {'bal_acc':<9} {'cross_rate':<11} {'lead_mean':<10} {'pre_cp_fpr':<11}\")\n    print(\"-\" * 55)\n\n    for model_layer in sweep_layers:\n        # Extract train data\n        X_train_list, y_train_list = [], []\n        for t in train:\n            hs = get_hidden_states_for_layer(t[\"trace_id\"], model_layer, early_cache)\n            if hs is None:\n                continue\n            labels = np.array(t[\"step_labels\"])\n            n = min(hs.shape[0], len(labels))\n            X_train_list.append(hs[:n].float().numpy())\n            y_train_list.append(labels[:n])\n\n        if not X_train_list:\n            print(f\"{model_layer:<6} {'N/A'}\")\n            continue\n\n        X_train = np.concatenate(X_train_list)\n        y_train = np.concatenate(y_train_list)\n\n        # Extract test data\n        X_test_list, y_test_list = [], []\n        for t in test:\n            hs = get_hidden_states_for_layer(t[\"trace_id\"], model_layer, early_cache)\n            if hs is None:\n                continue\n            labels = np.array(t[\"step_labels\"])\n            n = min(hs.shape[0], len(labels))\n            X_test_list.append(hs[:n].float().numpy())\n            y_test_list.append(labels[:n])\n\n        X_test = np.concatenate(X_test_list)\n        y_test = np.concatenate(y_test_list)\n\n        clf = LogisticRegression(\n            C=1.0, max_iter=1000, solver='liblinear',\n            class_weight='balanced', random_state=SEED\n        )\n        clf.fit(X_train, y_train)\n        y_pred = clf.predict(X_test)\n        bal_acc = balanced_accuracy_score(y_test, y_pred)\n\n        # Crossing metrics\n        lead_times = []\n        n_crossings = 0\n        for t in test:\n            hs = get_hidden_states_for_layer(t[\"trace_id\"], model_layer, early_cache)\n            if hs is None:\n                continue\n            labels = t[\"step_labels\"]\n            n = min(hs.shape[0], len(labels))\n            X = hs[:n].float().numpy()\n            probs = clf.predict_proba(X)[:, 1]\n            cp = t[\"commitment_point\"]\n            fc = first_crossing(probs.tolist())\n            if fc is not None and fc < cp:\n                lead_times.append(cp - fc)\n                n_crossings += 1\n\n        n_total = len(test)\n        crossing_rate = n_crossings / n_total if n_total > 0 else 0\n        mean_lead = float(np.mean(lead_times)) if lead_times else 0.0\n\n        precp_fpr = compute_precp_fpr(clf, test, model_layer, early_cache)\n\n        depth_pct = model_layer / (TOTAL_MODEL_LAYERS - 1) * 100\n\n        results.append({\n            \"layer\": model_layer,\n            \"depth_pct\": round(depth_pct, 1),\n            \"bal_acc\": round(bal_acc, 4),\n            \"crossing_rate\": round(crossing_rate, 4),\n            \"lead_mean\": round(mean_lead, 2),\n            \"pre_cp_fpr\": round(precp_fpr, 4),\n        })\n        print(f\"{model_layer:<6} {depth_pct:<7.1f} {bal_acc:<9.4f} {crossing_rate:<11.4f} {mean_lead:<10.2f} {precp_fpr:<11.4f}\")\n\n    # Sort by bal_acc\n    results_sorted = sorted(results, key=lambda x: x[\"bal_acc\"], reverse=True)\n\n    print(\"\\n\\nRanking by bal_acc:\")\n    print(f\"{'Rank':<5} {'Layer':<6} {'Depth%':<7} {'bal_acc':<9} {'cross_rate':<11} {'lead_mean':<10} {'pre_cp_fpr':<11}\")\n    print(\"-\" * 60)\n    for i, r in enumerate(results_sorted):\n        print(f\"{i+1:<5} {r['layer']:<6} {r['depth_pct']:<7.1f} {r['bal_acc']:<9.4f} {r['crossing_rate']:<11.4f} {r['lead_mean']:<10.2f} {r['pre_cp_fpr']:<11.4f}\")\n\n    best = results_sorted[0]\n    print(f\"\\nBest layer: {best['layer']} (depth {best['depth_pct']}%), bal_acc={best['bal_acc']}\")\n\n    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)\n    with open(OUTPUT_DIR / \"layer_sweep_full.json\", \"w\") as f:\n        json.dump({\"results\": results, \"results_sorted\": results_sorted, \"best\": best}, f, indent=2)\n\n    return results_sorted, train, val, test, early_cache\n\n\n# ============ STEP 3: TEMPORAL PROBES (if new best layer) ============\n\ndef run_temporal_probes_hs(train, val, test, best_layer, early_cache):\n    \"\"\"HS temporal probes at various window sizes.\"\"\"\n    print(f\"\\n{'='*70}\")\n    print(f\"TEMPORAL PROBES (HS) at layer {best_layer}\")\n    print(f\"{'='*70}\")\n\n    windows = [1, 3, 5, 10, 15, 20, 25]\n    results = []\n\n    for W in windows:\n        X_train_list, y_train_list = [], []\n        for t in train:\n            hs = get_hidden_states_for_layer(t[\"trace_id\"], best_layer, early_cache)\n            if hs is None:\n                continue\n            labels = np.array(t[\"step_labels\"])\n            n = min(hs.shape[0], len(labels))\n            hs_np = hs[:n].float().numpy()\n            for i in range(n):\n                start = max(0, i - W + 1)\n                window = hs_np[start:i+1]\n                if window.shape[0] < W:\n                    pad = np.zeros((W - window.shape[0], HIDDEN_DIM), dtype=np.float32)\n                    window = np.concatenate([pad, window], axis=0)\n                X_train_list.append(window.flatten())\n                y_train_list.append(labels[i])\n\n        X_train = np.array(X_train_list)\n        y_train = np.array(y_train_list)\n\n        X_test_list, y_test_list = [], []\n        for t in test:\n            hs = get_hidden_states_for_layer(t[\"trace_id\"], best_layer, early_cache)\n            if hs is None:\n                continue\n            labels = np.array(t[\"step_labels\"])\n            n = min(hs.shape[0], len(labels))\n            hs_np = hs[:n].float().numpy()\n            for i in range(n):\n                start = max(0, i - W + 1)\n                window = hs_np[start:i+1]\n                if window.shape[0] < W:\n                    pad = np.zeros((W - window.shape[0], HIDDEN_DIM), dtype=np.float32)\n                    window = np.concatenate([pad, window], axis=0)\n                X_test_list.append(window.flatten())\n                y_test_list.append(labels[i])\n\n        X_test = np.array(X_test_list)\n        y_test = np.array(y_test_list)\n\n        clf = LogisticRegression(\n            C=1.0, max_iter=1000, solver='liblinear',\n            class_weight='balanced', random_state=SEED\n        )\n        clf.fit(X_train, y_train)\n        y_pred = clf.predict(X_test)\n        y_proba = clf.predict_proba(X_test)[:, 1]\n\n        bal_acc = balanced_accuracy_score(y_test, y_pred)\n        prec = precision_score(y_test, y_pred, zero_division=0)\n\n        # Coverage: fraction of positive predictions among positive samples\n        pos_mask = y_test == 1\n        coverage = y_pred[pos_mask].mean() if pos_mask.sum() > 0 else 0.0\n\n        # Pre-CP FPR\n        fprs = []\n        for t in test:\n            cp = t[\"commitment_point\"]\n            if cp <= 0:\n                continue\n            hs = get_hidden_states_for_layer(t[\"trace_id\"], best_layer, early_cache)\n            if hs is None:\n                continue\n            labels = t[\"step_labels\"]\n            n = min(hs.shape[0], len(labels), cp)\n            hs_np = hs[:n].float().numpy()\n            X_pre = []\n            for i in range(n):\n                start = max(0, i - W + 1)\n                window = hs_np[start:i+1]\n                if window.shape[0] < W:\n                    pad = np.zeros((W - window.shape[0], HIDDEN_DIM), dtype=np.float32)\n                    window = np.concatenate([pad, window], axis=0)\n                X_pre.append(window.flatten())\n            if not X_pre:\n                continue\n            X_pre = np.array(X_pre)\n            preds = clf.predict(X_pre)\n            fprs.append(float(preds.mean()))\n        precp_fpr = float(np.mean(fprs)) if fprs else 0.0\n\n        # Lead mean\n        lead_times = []\n        n_crossings = 0\n        for t in test:\n            hs = get_hidden_states_for_layer(t[\"trace_id\"], best_layer, early_cache)\n            if hs is None:\n                continue\n            labels = t[\"step_labels\"]\n            n = min(hs.shape[0], len(labels))\n            hs_np = hs[:n].float().numpy()\n            X_all = []\n            for i in range(n):\n                start = max(0, i - W + 1)\n                window = hs_np[start:i+1]\n                if window.shape[0] < W:\n                    pad = np.zeros((W - window.shape[0], HIDDEN_DIM), dtype=np.float32)\n                    window = np.concatenate([pad, window], axis=0)\n                X_all.append(window.flatten())\n            X_all = np.array(X_all)\n            probs = clf.predict_proba(X_all)[:, 1]\n            cp = t[\"commitment_point\"]\n            fc = first_crossing(probs.tolist())\n            if fc is not None and fc < cp:\n                lead_times.append(cp - fc)\n                n_crossings += 1\n        lead_mean = float(np.mean(lead_times)) if lead_times else 0.0\n\n        results.append({\n            \"window\": W,\n            \"bal_acc\": round(bal_acc, 4),\n            \"precision\": round(prec, 4),\n            \"coverage\": round(float(coverage), 4),\n            \"pre_cp_fpr\": round(precp_fpr, 4),\n            \"lead_mean\": round(lead_mean, 2),\n        })\n        print(f\"  W={W:<3} bal_acc={bal_acc:.4f} prec={prec:.4f} cov={coverage:.4f} fpr={precp_fpr:.4f} lead={lead_mean:.2f}\")\n\n    with open(OUTPUT_DIR / \"temporal_probes_hs.json\", \"w\") as f:\n        json.dump(results, f, indent=2)\n\n    best_w = max(results, key=lambda x: x[\"bal_acc\"])\n    print(f\"\\n  Best HS window: W={best_w['window']}, bal_acc={best_w['bal_acc']}\")\n    return results, best_w[\"window\"]\n\n\ndef run_temporal_probes_text(train, val, test, best_layer, early_cache):\n    \"\"\"Text temporal probes using all-MiniLM-L6-v2.\"\"\"\n    print(f\"\\n{'='*70}\")\n    print(f\"TEMPORAL PROBES (Text) - all-MiniLM-L6-v2\")\n    print(f\"{'='*70}\")\n\n    from sentence_transformers import SentenceTransformer\n\n    # Load dataset for sentences\n    sys.path.insert(0, str(PROJECT))\n    from src.data_loader import load_harmthoughts\n    raw_traces = load_harmthoughts(\"r1-8b\")\n    trace_sentences = {}\n    for tid, steps in raw_traces.items():\n        trace_sentences[tid] = [s[\"sentence\"] for s in steps]\n\n    st_model = SentenceTransformer(\"all-MiniLM-L6-v2\")\n    EMB_DIM = 384\n\n    # Pre-compute embeddings\n    trace_embeddings = {}\n    all_trace_ids = set(t[\"trace_id\"] for t in train + val + test)\n    for tid in tqdm(all_trace_ids, desc=\"Encoding sentences\"):\n        if tid in trace_sentences:\n            embs = st_model.encode(trace_sentences[tid], show_progress_bar=False)\n            trace_embeddings[tid] = embs\n\n    windows = [1, 3, 5, 10, 15, 20, 25]\n    results = []\n\n    for W in windows:\n        X_train_list, y_train_list = [], []\n        for t in train:\n            tid = t[\"trace_id\"]\n            if tid not in trace_embeddings:\n                continue\n            embs = trace_embeddings[tid]\n            labels = np.array(t[\"step_labels\"])\n            n = min(len(embs), len(labels))\n            for i in range(n):\n                start = max(0, i - W + 1)\n                window = embs[start:i+1]\n                if window.shape[0] < W:\n                    pad = np.zeros((W - window.shape[0], EMB_DIM), dtype=np.float32)\n                    window = np.concatenate([pad, window], axis=0)\n                X_train_list.append(window.flatten())\n                y_train_list.append(labels[i])\n\n        X_train = np.array(X_train_list)\n        y_train = np.array(y_train_list)\n\n        X_test_list, y_test_list = [], []\n        for t in test:\n            tid = t[\"trace_id\"]\n            if tid not in trace_embeddings:\n                continue\n            embs = trace_embeddings[tid]\n            labels = np.array(t[\"step_labels\"])\n            n = min(len(embs), len(labels))\n            for i in range(n):\n                start = max(0, i - W + 1)\n                window = embs[start:i+1]\n                if window.shape[0] < W:\n                    pad = np.zeros((W - window.shape[0], EMB_DIM), dtype=np.float32)\n                    window = np.concatenate([pad, window], axis=0)\n                X_test_list.append(window.flatten())\n                y_test_list.append(labels[i])\n\n        X_test = np.array(X_test_list)\n        y_test = np.array(y_test_list)\n\n        clf = LogisticRegression(\n            C=1.0, max_iter=1000, solver='liblinear',\n            class_weight='balanced', random_state=SEED\n        )\n        clf.fit(X_train, y_train)\n        y_pred = clf.predict(X_test)\n        bal_acc = balanced_accuracy_score(y_test, y_pred)\n        prec = precision_score(y_test, y_pred, zero_division=0)\n        pos_mask = y_test == 1\n        coverage = y_pred[pos_mask].mean() if pos_mask.sum() > 0 else 0.0\n\n        # Pre-CP FPR\n        fprs = []\n        for t in test:\n            tid = t[\"trace_id\"]\n            if tid not in trace_embeddings:\n                continue\n            cp = t[\"commitment_point\"]\n            if cp <= 0:\n                continue\n            embs = trace_embeddings[tid]\n            labels = t[\"step_labels\"]\n            n = min(len(embs), len(labels), cp)\n            X_pre = []\n            for i in range(n):\n                start = max(0, i - W + 1)\n                window = embs[start:i+1]\n                if window.shape[0] < W:\n                    pad = np.zeros((W - window.shape[0], EMB_DIM), dtype=np.float32)\n                    window = np.concatenate([pad, window], axis=0)\n                X_pre.append(window.flatten())\n            if not X_pre:\n                continue\n            X_pre = np.array(X_pre)\n            preds = clf.predict(X_pre)\n            fprs.append(float(preds.mean()))\n        precp_fpr = float(np.mean(fprs)) if fprs else 0.0\n\n        # Lead mean\n        lead_times = []\n        for t in test:\n            tid = t[\"trace_id\"]\n            if tid not in trace_embeddings:\n                continue\n            embs = trace_embeddings[tid]\n            labels = t[\"step_labels\"]\n            n = min(len(embs), len(labels))\n            X_all = []\n            for i in range(n):\n                start = max(0, i - W + 1)\n                window = embs[start:i+1]\n                if window.shape[0] < W:\n                    pad = np.zeros((W - window.shape[0], EMB_DIM), dtype=np.float32)\n                    window = np.concatenate([pad, window], axis=0)\n                X_all.append(window.flatten())\n            X_all = np.array(X_all)\n            probs = clf.predict_proba(X_all)[:, 1]\n            cp = t[\"commitment_point\"]\n            fc = first_crossing(probs.tolist())\n            if fc is not None and fc < cp:\n                lead_times.append(cp - fc)\n        lead_mean = float(np.mean(lead_times)) if lead_times else 0.0\n\n        results.append({\n            \"window\": W,\n            \"bal_acc\": round(bal_acc, 4),\n            \"precision\": round(prec, 4),\n            \"coverage\": round(float(coverage), 4),\n            \"pre_cp_fpr\": round(precp_fpr, 4),\n            \"lead_mean\": round(lead_mean, 2),\n        })\n        print(f\"  W={W:<3} bal_acc={bal_acc:.4f} prec={prec:.4f} cov={coverage:.4f} fpr={precp_fpr:.4f} lead={lead_mean:.2f}\")\n\n    with open(OUTPUT_DIR / \"temporal_probes_text.json\", \"w\") as f:\n        json.dump(results, f, indent=2)\n\n    best_w = max(results, key=lambda x: x[\"bal_acc\"])\n    print(f\"\\n  Best Text window: W={best_w['window']}, bal_acc={best_w['bal_acc']}\")\n    return results, best_w[\"window\"]\n\n\n# ============ STEP 4: PAIRED BOOTSTRAP ============\n\ndef run_paired_bootstrap(train, test, best_layer, best_hs_w, best_text_w, early_cache):\n    \"\"\"Paired bootstrap comparing HS vs Text at matched window sizes.\"\"\"\n    print(f\"\\n{'='*70}\")\n    print(f\"PAIRED BOOTSTRAP: HS(layer={best_layer}, W={best_hs_w}) vs Text(W={best_text_w})\")\n    print(f\"{'='*70}\")\n\n    from sentence_transformers import SentenceTransformer\n\n    sys.path.insert(0, str(PROJECT))\n    from src.data_loader import load_harmthoughts\n    raw_traces = load_harmthoughts(\"r1-8b\")\n    trace_sentences = {}\n    for tid, steps in raw_traces.items():\n        trace_sentences[tid] = [s[\"sentence\"] for s in steps]\n\n    st_model = SentenceTransformer(\"all-MiniLM-L6-v2\")\n    EMB_DIM = 384\n\n    all_tids = set(t[\"trace_id\"] for t in train + test)\n    trace_embs = {}\n    for tid in all_tids:\n        if tid in trace_sentences:\n            trace_embs[tid] = st_model.encode(trace_sentences[tid], show_progress_bar=False)\n\n    # Train HS model\n    W = best_hs_w\n    X_hs_train, y_hs_train = [], []\n    for t in train:\n        hs = get_hidden_states_for_layer(t[\"trace_id\"], best_layer, early_cache)\n        if hs is None:\n            continue\n        labels = np.array(t[\"step_labels\"])\n        n = min(hs.shape[0], len(labels))\n        hs_np = hs[:n].float().numpy()\n        for i in range(n):\n            start = max(0, i - W + 1)\n            window = hs_np[start:i+1]\n            if window.shape[0] < W:\n                pad = np.zeros((W - window.shape[0], HIDDEN_DIM), dtype=np.float32)\n                window = np.concatenate([pad, window], axis=0)\n            X_hs_train.append(window.flatten())\n            y_hs_train.append(labels[i])\n\n    clf_hs = LogisticRegression(C=1.0, max_iter=1000, solver='liblinear',\n                                 class_weight='balanced', random_state=SEED)\n    clf_hs.fit(np.array(X_hs_train), np.array(y_hs_train))\n\n    # Train Text model\n    W_t = best_text_w\n    X_text_train, y_text_train = [], []\n    for t in train:\n        tid = t[\"trace_id\"]\n        if tid not in trace_embs:\n            continue\n        embs = trace_embs[tid]\n        labels = np.array(t[\"step_labels\"])\n        n = min(len(embs), len(labels))\n        for i in range(n):\n            start = max(0, i - W_t + 1)\n            window = embs[start:i+1]\n            if window.shape[0] < W_t:\n                pad = np.zeros((W_t - window.shape[0], EMB_DIM), dtype=np.float32)\n                window = np.concatenate([pad, window], axis=0)\n            X_text_train.append(window.flatten())\n            y_text_train.append(labels[i])\n\n    clf_text = LogisticRegression(C=1.0, max_iter=1000, solver='liblinear',\n                                   class_weight='balanced', random_state=SEED)\n    clf_text.fit(np.array(X_text_train), np.array(y_text_train))\n\n    # Per-trace metrics on test\n    hs_bal_accs, text_bal_accs = [], []\n    hs_precs, text_precs = [], []\n    hs_fprs, text_fprs = [], []\n\n    for t in test:\n        tid = t[\"trace_id\"]\n        hs = get_hidden_states_for_layer(tid, best_layer, early_cache)\n        if hs is None or tid not in trace_embs:\n            continue\n        labels = np.array(t[\"step_labels\"])\n        embs = trace_embs[tid]\n        n = min(hs.shape[0], len(labels), len(embs))\n        cp = t[\"commitment_point\"]\n\n        # HS predictions\n        hs_np = hs[:n].float().numpy()\n        X_hs = []\n        for i in range(n):\n            start = max(0, i - W + 1)\n            window = hs_np[start:i+1]\n            if window.shape[0] < W:\n                pad = np.zeros((W - window.shape[0], HIDDEN_DIM), dtype=np.float32)\n                window = np.concatenate([pad, window], axis=0)\n            X_hs.append(window.flatten())\n        X_hs = np.array(X_hs)\n        hs_pred = clf_hs.predict(X_hs)\n        hs_bal_accs.append(balanced_accuracy_score(labels[:n], hs_pred))\n        hs_precs.append(precision_score(labels[:n], hs_pred, zero_division=0))\n\n        # Text predictions\n        X_text = []\n        for i in range(n):\n            start = max(0, i - W_t + 1)\n            window = embs[start:i+1]\n            if window.shape[0] < W_t:\n                pad = np.zeros((W_t - window.shape[0], EMB_DIM), dtype=np.float32)\n                window = np.concatenate([pad, window], axis=0)\n            X_text.append(window.flatten())\n        X_text = np.array(X_text)\n        text_pred = clf_text.predict(X_text)\n        text_bal_accs.append(balanced_accuracy_score(labels[:n], text_pred))\n        text_precs.append(precision_score(labels[:n], text_pred, zero_division=0))\n\n        # Pre-CP FPR\n        if cp > 0:\n            n_pre = min(n, cp)\n            hs_pre_pred = clf_hs.predict(X_hs[:n_pre])\n            text_pre_pred = clf_text.predict(X_text[:n_pre])\n            hs_fprs.append(float(hs_pre_pred.mean()))\n            text_fprs.append(float(text_pre_pred.mean()))\n\n    # Bootstrap\n    rng = np.random.default_rng(SEED)\n    n_resamples = 1000\n    alpha = 0.017  # Bonferroni corrected\n\n    metrics = {\n        \"bal_acc\": (np.array(hs_bal_accs), np.array(text_bal_accs)),\n        \"precision\": (np.array(hs_precs), np.array(text_precs)),\n        \"pre_cp_fpr\": (np.array(hs_fprs), np.array(text_fprs)),\n    }\n\n    bootstrap_results = {}\n    for metric_name, (hs_vals, text_vals) in metrics.items():\n        n = min(len(hs_vals), len(text_vals))\n        hs_v = hs_vals[:n]\n        text_v = text_vals[:n]\n        observed_diff = float(hs_v.mean() - text_v.mean())\n        diffs = []\n        for _ in range(n_resamples):\n            idx = rng.choice(n, size=n, replace=True)\n            diffs.append(float(hs_v[idx].mean() - text_v[idx].mean()))\n        diffs = np.array(diffs)\n        p_value = float((np.abs(diffs - diffs.mean()) >= np.abs(observed_diff - diffs.mean())).mean())\n        ci_lower = float(np.percentile(diffs, 100 * alpha / 2))\n        ci_upper = float(np.percentile(diffs, 100 * (1 - alpha / 2)))\n\n        bootstrap_results[metric_name] = {\n            \"hs_mean\": round(float(hs_v.mean()), 4),\n            \"text_mean\": round(float(text_v.mean()), 4),\n            \"diff_hs_minus_text\": round(observed_diff, 4),\n            \"p_value\": round(p_value, 4),\n            \"ci\": [round(ci_lower, 4), round(ci_upper, 4)],\n            \"significant\": p_value < alpha,\n        }\n        sig = \"*\" if p_value < alpha else \"\"\n        print(f\"  {metric_name}: HS={hs_v.mean():.4f} Text={text_v.mean():.4f} diff={observed_diff:.4f} p={p_value:.4f}{sig}\")\n\n    with open(OUTPUT_DIR / \"bootstrap_hs_vs_text.json\", \"w\") as f:\n        json.dump(bootstrap_results, f, indent=2)\n\n    return bootstrap_results\n\n\n# ============ STEP 5: SELECTIVITY CONTROL ============\n\ndef run_selectivity_control(train, test, best_layer, early_cache, n_perms=10):\n    \"\"\"Selectivity control: random label permutation test.\"\"\"\n    print(f\"\\n{'='*70}\")\n    print(f\"SELECTIVITY CONTROL (10x random label permutation)\")\n    print(f\"{'='*70}\")\n\n    rng = np.random.default_rng(SEED)\n\n    # Real labels\n    X_train_list, y_train_list = [], []\n    for t in train:\n        hs = get_hidden_states_for_layer(t[\"trace_id\"], best_layer, early_cache)\n        if hs is None:\n            continue\n        labels = np.array(t[\"step_labels\"])\n        n = min(hs.shape[0], len(labels))\n        X_train_list.append(hs[:n].float().numpy())\n        y_train_list.append(labels[:n])\n\n    X_train = np.concatenate(X_train_list)\n    y_train = np.concatenate(y_train_list)\n\n    X_test_list, y_test_list = [], []\n    for t in test:\n        hs = get_hidden_states_for_layer(t[\"trace_id\"], best_layer, early_cache)\n        if hs is None:\n            continue\n        labels = np.array(t[\"step_labels\"])\n        n = min(hs.shape[0], len(labels))\n        X_test_list.append(hs[:n].float().numpy())\n        y_test_list.append(labels[:n])\n\n    X_test = np.concatenate(X_test_list)\n    y_test = np.concatenate(y_test_list)\n\n    # Real performance\n    clf = LogisticRegression(C=1.0, max_iter=1000, solver='liblinear',\n                             class_weight='balanced', random_state=SEED)\n    clf.fit(X_train, y_train)\n    real_bal_acc = balanced_accuracy_score(y_test, clf.predict(X_test))\n\n    # Permuted\n    perm_accs = []\n    for i in range(n_perms):\n        y_perm = rng.permutation(y_train)\n        clf_p = LogisticRegression(C=1.0, max_iter=1000, solver='liblinear',\n                                    class_weight='balanced', random_state=SEED)\n        clf_p.fit(X_train, y_perm)\n        perm_acc = balanced_accuracy_score(y_test, clf_p.predict(X_test))\n        perm_accs.append(perm_acc)\n        print(f\"  Perm {i+1}: bal_acc={perm_acc:.4f}\")\n\n    perm_accs = np.array(perm_accs)\n    selectivity_gap = real_bal_acc - perm_accs.mean()\n\n    result = {\n        \"real_bal_acc\": round(real_bal_acc, 4),\n        \"perm_mean\": round(float(perm_accs.mean()), 4),\n        \"perm_std\": round(float(perm_accs.std()), 4),\n        \"selectivity_gap\": round(selectivity_gap, 4),\n        \"n_perms\": n_perms,\n    }\n    print(f\"\\n  Real: {real_bal_acc:.4f}, Perm mean: {perm_accs.mean():.4f} ± {perm_accs.std():.4f}\")\n    print(f\"  Selectivity gap: {selectivity_gap:.4f}\")\n\n    with open(OUTPUT_DIR / \"selectivity_control.json\", \"w\") as f:\n        json.dump(result, f, indent=2)\n\n    return result\n\n\n# ============ MAIN ============\n\ndef main():\n    t0 = time.time()\n\n    # Step 1: Extract early layers\n    print(\"=\"*70)\n    print(\"STEP 1: Extract early layers (0-11)\")\n    print(\"=\"*70)\n    extract_early_layers()\n\n    # Step 2: Full layer sweep\n    results_sorted, train, val, test, early_cache = full_layer_sweep()\n\n    best = results_sorted[0]\n    old_best_layer = 14\n    old_best_bal_acc = 0.8172\n\n    if best[\"layer\"] != old_best_layer and best[\"bal_acc\"] > old_best_bal_acc:\n        print(f\"\\nNEW BEST LAYER FOUND: {best['layer']} (bal_acc={best['bal_acc']}) > old layer {old_best_layer} (bal_acc={old_best_bal_acc})\")\n\n        # Step 3a: Temporal HS probes\n        hs_results, best_hs_w = run_temporal_probes_hs(train, val, test, best[\"layer\"], early_cache)\n\n        # Step 3b: Temporal Text probes\n        text_results, best_text_w = run_temporal_probes_text(train, val, test, best[\"layer\"], early_cache)\n\n        # Step 3c: Paired bootstrap\n        bootstrap = run_paired_bootstrap(train, test, best[\"layer\"], best_hs_w, best_text_w, early_cache)\n\n        # Step 3d: Selectivity control\n        selectivity = run_selectivity_control(train, test, best[\"layer\"], early_cache)\n    else:\n        print(f\"\\nLayer {old_best_layer} remains best or no improvement. Only reporting sweep results.\")\n\n    elapsed = time.time() - t0\n    print(f\"\\n{'='*70}\")\n    print(f\"COMPLETE in {elapsed:.0f}s\")\n    print(f\"All outputs in: {OUTPUT_DIR}\")\n    print(f\"{'='*70}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written.\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-17T09:04:57.088853+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written.\\n\", \"stderr\": \"bash: line 1: /root/autodl-tmp/contrastive_trace_safety/scripts/r1_8b_early_layer_supplement.py: No such file or directory\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-17T09:04:57.089120+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "mkdir -p /root/autodl-tmp/contrastive_trace_safety/scripts && cat > /root/autodl-tmp/contrastive_trace_safety/scripts/r1_8b_early_layer_supplement.py << 'PYEOF'\n\"\"\"R1-8B Early Layer Supplement: Extract layers 0-11, full layer sweep.\"\"\"\n\nimport os, sys, json, time\nos.environ[\"TOKENIZERS_PARALLELISM\"] = \"false\"\nos.environ[\"HF_ENDPOINT\"] = \"https://hf-mirror.com\"\nos.environ[\"CUDA_VISIBLE_DEVICES\"] = \"0\"\n\nimport numpy as np\nimport torch\nfrom pathlib import Path\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import balanced_accuracy_score, precision_score\nfrom tqdm import tqdm\n\nPROJECT = Path(\"/root/autodl-tmp/contrastive_trace_safety\")\nHS_DIR = PROJECT / \"artifacts\" / \"hidden_states\"\nEARLY_HS_DIR = PROJECT / \"artifacts\" / \"hidden_states_early_r1_8b\"\nOUTPUT_DIR = PROJECT / \"artifacts\" / \"r1_8b_layer_supplement\"\nMODEL_PATH = \"/root/autodl-tmp/.hf_cache/deepseek-ai/DeepSeek-R1-Distill-Llama-8B\"\n\nSEED = 42\nTOTAL_MODEL_LAYERS = 32\nHIDDEN_DIM = 4096\nEARLY_LAYERS = list(range(0, 12))\nORIG_LAYERS = list(range(12, 25))\n\nK_CONSECUTIVE = 5\nTHRESHOLD = 0.5\n\n\ndef load_traces_with_commitment():\n    traces = []\n    for pt_file in sorted(HS_DIR.glob(\"*.pt\")):\n        data = torch.load(pt_file, map_location=\"cpu\", weights_only=False)\n        if data.get(\"step_labels\") is None or data.get(\"commitment_point\") is None:\n            continue\n        traces.append(data)\n    return traces\n\n\ndef split_traces(traces, seed=SEED):\n    rng = np.random.default_rng(seed)\n    indices = rng.permutation(len(traces))\n    n_train = int(len(traces) * 0.6)\n    n_val = int(len(traces) * 0.2)\n    return (\n        [traces[i] for i in indices[:n_train]],\n        [traces[i] for i in indices[n_train:n_train+n_val]],\n        [traces[i] for i in indices[n_train+n_val:]],\n    )\n\n\ndef find_sentence_boundaries(tokenizer, sentences):\n    full_text = \" \".join(sentences)\n    encoding = tokenizer(\n        full_text,\n        return_offsets_mapping=True,\n        return_tensors=\"pt\",\n        truncation=True,\n        max_length=8192,\n    )\n    offsets = encoding[\"offset_mapping\"][0]\n    boundaries = []\n    char_pos = 0\n    for sent in sentences:\n        char_end = char_pos + len(sent)\n        last_token_idx = 0\n        for tok_idx, (start, end) in enumerate(offsets):\n            if start < char_end:\n                last_token_idx = tok_idx\n        boundaries.append(last_token_idx)\n        char_pos = char_end + 1\n    return boundaries, encoding\n\n\ndef extract_early_layers():\n    EARLY_HS_DIR.mkdir(parents=True, exist_ok=True)\n    existing_early = {f.stem for f in EARLY_HS_DIR.glob(\"*.pt\")}\n    all_pt_files = sorted(HS_DIR.glob(\"*.pt\"))\n    remaining = [f for f in all_pt_files if f.stem not in existing_early]\n\n    if not remaining:\n        print(f\"All {len(all_pt_files)} early layer files already exist. Skipping extraction.\")\n        return\n\n    print(f\"Need to extract early layers for {len(remaining)}/{len(all_pt_files)} traces\")\n\n    from transformers import AutoTokenizer, AutoModelForCausalLM\n\n    print(\"Loading R1-8B model...\")\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH, trust_remote_code=True)\n    if tokenizer.pad_token is None:\n        tokenizer.pad_token = tokenizer.eos_token\n\n    model = AutoModelForCausalLM.from_pretrained(\n        MODEL_PATH,\n        torch_dtype=torch.bfloat16,\n        device_map=\"cuda:0\",\n        trust_remote_code=True,\n    )\n    model.eval()\n    print(\"Model loaded.\")\n\n    sys.path.insert(0, str(PROJECT))\n    from src.data_loader import load_harmthoughts\n    raw_traces = load_harmthoughts(\"r1-8b\")\n    trace_sentences = {}\n    for trace_id, steps in raw_traces.items():\n        trace_sentences[trace_id] = [s[\"sentence\"] for s in steps]\n\n    for pt_file in tqdm(remaining, desc=\"Extracting early layers\"):\n        data = torch.load(pt_file, map_location=\"cpu\", weights_only=False)\n        trace_id = data[\"trace_id\"]\n\n        if trace_id not in trace_sentences:\n            print(f\"WARNING: trace {trace_id} not found in dataset, skipping\")\n            continue\n\n        sentences = trace_sentences[trace_id]\n        boundaries, _ = find_sentence_boundaries(tokenizer, sentences)\n\n        full_text = \" \".join(sentences)\n        inputs = tokenizer(\n            full_text,\n            return_tensors=\"pt\",\n            truncation=True,\n            max_length=8192,\n        ).to(\"cuda:0\")\n\n        num_tokens = inputs[\"input_ids\"].shape[1]\n        boundaries = [min(p, num_tokens - 1) for p in boundaries]\n\n        with torch.no_grad():\n            outputs = model(**inputs, output_hidden_states=True)\n\n        hidden_states = outputs.hidden_states\n        num_sentences = len(sentences)\n        result = torch.zeros(num_sentences, len(EARLY_LAYERS), HIDDEN_DIM, dtype=torch.float16)\n\n        for sent_idx, pos in enumerate(boundaries):\n            for layer_idx, layer_num in enumerate(EARLY_LAYERS):\n                hs = hidden_states[layer_num + 1][0, pos, :]\n                result[sent_idx, layer_idx, :] = hs.cpu().float().half()\n\n        save_dict = {\n            \"hidden_states\": result,\n            \"trace_id\": trace_id,\n            \"num_sentences\": num_sentences,\n            \"commitment_point\": data.get(\"commitment_point\"),\n            \"step_labels\": data.get(\"step_labels\"),\n            \"layers\": EARLY_LAYERS,\n        }\n\n        torch.save(save_dict, EARLY_HS_DIR / f\"{trace_id}.pt\")\n        del outputs, hidden_states\n        torch.cuda.empty_cache()\n\n    del model, tokenizer\n    torch.cuda.empty_cache()\n    print(\"Early layer extraction complete.\")\n\n\ndef get_hidden_states_for_layer(trace_id, model_layer, early_data_cache):\n    if model_layer < 12:\n        if trace_id not in early_data_cache:\n            path = EARLY_HS_DIR / f\"{trace_id}.pt\"\n            if not path.exists():\n                return None\n            early_data_cache[trace_id] = torch.load(path, map_location=\"cpu\", weights_only=False)\n        data = early_data_cache[trace_id]\n        layer_idx = model_layer\n        return data[\"hidden_states\"][:, layer_idx, :]\n    else:\n        path = HS_DIR / f\"{trace_id}.pt\"\n        if not path.exists():\n            return None\n        data = torch.load(path, map_location=\"cpu\", weights_only=False)\n        layer_idx = model_layer - 12\n        if layer_idx >= data[\"hidden_states\"].shape[1]:\n            return None\n        return data[\"hidden_states\"][:, layer_idx, :]\n\n\ndef first_crossing(probs, threshold=THRESHOLD, k=K_CONSECUTIVE):\n    for i in range(len(probs) - k + 1):\n        if all(p > threshold for p in probs[i:i+k]):\n            return i\n    return None\n\n\ndef compute_precp_fpr(clf, traces, model_layer, early_cache):\n    fprs = []\n    for t in traces:\n        cp = t[\"commitment_point\"]\n        if cp <= 0:\n            continue\n        hs = get_hidden_states_for_layer(t[\"trace_id\"], model_layer, early_cache)\n        if hs is None:\n            continue\n        labels = t[\"step_labels\"]\n        n = min(hs.shape[0], len(labels), cp)\n        X = hs[:n].float().numpy()\n        if len(X) == 0:\n            continue\n        preds = clf.predict(X)\n        fprs.append(float(preds.mean()))\n    return float(np.mean(fprs)) if fprs else 0.0\n\n\ndef full_layer_sweep():\n    print(\"\\n\" + \"=\"*70)\n    print(\"FULL LAYER SWEEP: R1-8B\")\n    print(\"=\"*70)\n\n    traces = load_traces_with_commitment()\n    print(f\"Loaded {len(traces)} traces with commitment points\")\n\n    early_available = {f.stem for f in EARLY_HS_DIR.glob(\"*.pt\")}\n    traces_with_early = [t for t in traces if t[\"trace_id\"] in early_available]\n    print(f\"Traces with early layer data: {len(traces_with_early)}\")\n\n    train, val, test = split_traces(traces_with_early)\n    print(f\"Split: train={len(train)}, val={len(val)}, test={len(test)}\")\n\n    sweep_layers = list(range(0, 25))\n    early_cache = {}\n\n    results = []\n    print(f\"\\n{'Layer':<6} {'Depth%':<7} {'bal_acc':<9} {'cross_rate':<11} {'lead_mean':<10} {'pre_cp_fpr':<11}\")\n    print(\"-\" * 55)\n\n    for model_layer in sweep_layers:\n        X_train_list, y_train_list = [], []\n        for t in train:\n            hs = get_hidden_states_for_layer(t[\"trace_id\"], model_layer, early_cache)\n            if hs is None:\n                continue\n            labels = np.array(t[\"step_labels\"])\n            n = min(hs.shape[0], len(labels))\n            X_train_list.append(hs[:n].float().numpy())\n            y_train_list.append(labels[:n])\n\n        if not X_train_list:\n            print(f\"{model_layer:<6} N/A\")\n            continue\n\n        X_train = np.concatenate(X_train_list)\n        y_train = np.concatenate(y_train_list)\n\n        X_test_list, y_test_list = [], []\n        for t in test:\n            hs = get_hidden_states_for_layer(t[\"trace_id\"], model_layer, early_cache)\n            if hs is None:\n                continue\n            labels = np.array(t[\"step_labels\"])\n            n = min(hs.shape[0], len(labels))\n            X_test_list.append(hs[:n].float().numpy())\n            y_test_list.append(labels[:n])\n\n        X_test = np.concatenate(X_test_list)\n        y_test = np.concatenate(y_test_list)\n\n        clf = LogisticRegression(\n            C=1.0, max_iter=1000, solver='liblinear',\n            class_weight='balanced', random_state=SEED\n        )\n        clf.fit(X_train, y_train)\n        y_pred = clf.predict(X_test)\n        bal_acc = balanced_accuracy_score(y_test, y_pred)\n\n        lead_times = []\n        n_crossings = 0\n        for t in test:\n            hs = get_hidden_states_for_layer(t[\"trace_id\"], model_layer, early_cache)\n            if hs is None:\n                continue\n            labels = t[\"step_labels\"]\n            n = min(hs.shape[0], len(labels))\n            X = hs[:n].float().numpy()\n            probs = clf.predict_proba(X)[:, 1]\n            cp = t[\"commitment_point\"]\n            fc = first_crossing(probs.tolist())\n            if fc is not None and fc < cp:\n                lead_times.append(cp - fc)\n                n_crossings += 1\n\n        n_total = len(test)\n        crossing_rate = n_crossings / n_total if n_total > 0 else 0\n        mean_lead = float(np.mean(lead_times)) if lead_times else 0.0\n        precp_fpr = compute_precp_fpr(clf, test, model_layer, early_cache)\n        depth_pct = model_layer / (TOTAL_MODEL_LAYERS - 1) * 100\n\n        results.append({\n            \"layer\": model_layer,\n            \"depth_pct\": round(depth_pct, 1),\n            \"bal_acc\": round(bal_acc, 4),\n            \"crossing_rate\": round(crossing_rate, 4),\n            \"lead_mean\": round(mean_lead, 2),\n            \"pre_cp_fpr\": round(precp_fpr, 4),\n        })\n        print(f\"{model_layer:<6} {depth_pct:<7.1f} {bal_acc:<9.4f} {crossing_rate:<11.4f} {mean_lead:<10.2f} {precp_fpr:<11.4f}\")\n\n    results_sorted = sorted(results, key=lambda x: x[\"bal_acc\"], reverse=True)\n\n    print(\"\\n\\nRanking by bal_acc:\")\n    print(f\"{'Rank':<5} {'Layer':<6} {'Depth%':<7} {'bal_acc':<9} {'cross_rate':<11} {'lead_mean':<10} {'pre_cp_fpr':<11}\")\n    print(\"-\" * 60)\n    for i, r in enumerate(results_sorted):\n        print(f\"{i+1:<5} {r['layer']:<6} {r['depth_pct']:<7.1f} {r['bal_acc']:<9.4f} {r['crossing_rate']:<11.4f} {r['lead_mean']:<10.2f} {r['pre_cp_fpr']:<11.4f}\")\n\n    best = results_sorted[0]\n    print(f\"\\nBest layer: {best['layer']} (depth {best['depth_pct']}%), bal_acc={best['bal_acc']}\")\n\n    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)\n    with open(OUTPUT_DIR / \"layer_sweep_full.json\", \"w\") as f:\n        json.dump({\"results\": results, \"results_sorted\": results_sorted, \"best\": best}, f, indent=2)\n\n    return results_sorted, train, val, test, early_cache\n\n\ndef run_temporal_probes_hs(train, val, test, best_layer, early_cache):\n    print(f\"\\n{'='*70}\")\n    print(f\"TEMPORAL PROBES (HS) at layer {best_layer}\")\n    print(f\"{'='*70}\")\n\n    windows = [1, 3, 5, 10, 15, 20, 25]\n    results = []\n\n    for W in windows:\n        X_train_list, y_train_list = [], []\n        for t in train:\n            hs = get_hidden_states_for_layer(t[\"trace_id\"], best_layer, early_cache)\n            if hs is None:\n                continue\n            labels = np.array(t[\"step_labels\"])\n            n = min(hs.shape[0], len(labels))\n            hs_np = hs[:n].float().numpy()\n            for i in range(n):\n                start = max(0, i - W + 1)\n                window = hs_np[start:i+1]\n                if window.shape[0] < W:\n                    pad = np.zeros((W - window.shape[0], HIDDEN_DIM), dtype=np.float32)\n                    window = np.concatenate([pad, window], axis=0)\n                X_train_list.append(window.flatten())\n                y_train_list.append(labels[i])\n\n        X_train = np.array(X_train_list)\n        y_train = np.array(y_train_list)\n\n        X_test_list, y_test_list = [], []\n        for t in test:\n            hs = get_hidden_states_for_layer(t[\"trace_id\"], best_layer, early_cache)\n            if hs is None:\n                continue\n            labels = np.array(t[\"step_labels\"])\n            n = min(hs.shape[0], len(labels))\n            hs_np = hs[:n].float().numpy()\n            for i in range(n):\n                start = max(0, i - W + 1)\n                window = hs_np[start:i+1]\n                if window.shape[0] < W:\n                    pad = np.zeros((W - window.shape[0], HIDDEN_DIM), dtype=np.float32)\n                    window = np.concatenate([pad, window], axis=0)\n                X_test_list.append(window.flatten())\n                y_test_list.append(labels[i])\n\n        X_test = np.array(X_test_list)\n        y_test = np.array(y_test_list)\n\n        clf = LogisticRegression(C=1.0, max_iter=1000, solver='liblinear',\n                                 class_weight='balanced', random_state=SEED)\n        clf.fit(X_train, y_train)\n        y_pred = clf.predict(X_test)\n\n        bal_acc = balanced_accuracy_score(y_test, y_pred)\n        prec = precision_score(y_test, y_pred, zero_division=0)\n        pos_mask = y_test == 1\n        coverage = y_pred[pos_mask].mean() if pos_mask.sum() > 0 else 0.0\n\n        fprs = []\n        for t in test:\n            cp = t[\"commitment_point\"]\n            if cp <= 0:\n                continue\n            hs = get_hidden_states_for_layer(t[\"trace_id\"], best_layer, early_cache)\n            if hs is None:\n                continue\n            labels = t[\"step_labels\"]\n            n = min(hs.shape[0], len(labels), cp)\n            hs_np = hs[:n].float().numpy()\n            X_pre = []\n            for i in range(n):\n                start = max(0, i - W + 1)\n                window = hs_np[start:i+1]\n                if window.shape[0] < W:\n                    pad = np.zeros((W - window.shape[0], HIDDEN_DIM), dtype=np.float32)\n                    window = np.concatenate([pad, window], axis=0)\n                X_pre.append(window.flatten())\n            if not X_pre:\n                continue\n            X_pre = np.array(X_pre)\n            preds = clf.predict(X_pre)\n            fprs.append(float(preds.mean()))\n        precp_fpr = float(np.mean(fprs)) if fprs else 0.0\n\n        lead_times = []\n        for t in test:\n            hs = get_hidden_states_for_layer(t[\"trace_id\"], best_layer, early_cache)\n            if hs is None:\n                continue\n            labels = t[\"step_labels\"]\n            n = min(hs.shape[0], len(labels))\n            hs_np = hs[:n].float().numpy()\n            X_all = []\n            for i in range(n):\n                start = max(0, i - W + 1)\n                window = hs_np[start:i+1]\n                if window.shape[0] < W:\n                    pad = np.zeros((W - window.shape[0], HIDDEN_DIM), dtype=np.float32)\n                    window = np.concatenate([pad, window], axis=0)\n                X_all.append(window.flatten())\n            X_all = np.array(X_all)\n            probs = clf.predict_proba(X_all)[:, 1]\n            cp = t[\"commitment_point\"]\n            fc = first_crossing(probs.tolist())\n            if fc is not None and fc < cp:\n                lead_times.append(cp - fc)\n        lead_mean = float(np.mean(lead_times)) if lead_times else 0.0\n\n        results.append({\n            \"window\": W,\n            \"bal_acc\": round(bal_acc, 4),\n            \"precision\": round(prec, 4),\n            \"coverage\": round(float(coverage), 4),\n            \"pre_cp_fpr\": round(precp_fpr, 4),\n            \"lead_mean\": round(lead_mean, 2),\n        })\n        print(f\"  W={W:<3} bal_acc={bal_acc:.4f} prec={prec:.4f} cov={coverage:.4f} fpr={precp_fpr:.4f} lead={lead_mean:.2f}\")\n\n    with open(OUTPUT_DIR / \"temporal_probes_hs.json\", \"w\") as f:\n        json.dump(results, f, indent=2)\n\n    best_w = max(results, key=lambda x: x[\"bal_acc\"])\n    print(f\"\\n  Best HS window: W={best_w['window']}, bal_acc={best_w['bal_acc']}\")\n    return results, best_w[\"window\"]\n\n\ndef run_temporal_probes_text(train, val, test, best_layer, early_cache):\n    print(f\"\\n{'='*70}\")\n    print(f\"TEMPORAL PROBES (Text) - all-MiniLM-L6-v2\")\n    print(f\"{'='*70}\")\n\n    from sentence_transformers import SentenceTransformer\n\n    sys.path.insert(0, str(PROJECT))\n    from src.data_loader import load_harmthoughts\n    raw_traces = load_harmthoughts(\"r1-8b\")\n    trace_sentences = {}\n    for tid, steps in raw_traces.items():\n        trace_sentences[tid] = [s[\"sentence\"] for s in steps]\n\n    st_model = SentenceTransformer(\"all-MiniLM-L6-v2\")\n    EMB_DIM = 384\n\n    trace_embeddings = {}\n    all_trace_ids = set(t[\"trace_id\"] for t in train + val + test)\n    for tid in tqdm(all_trace_ids, desc=\"Encoding sentences\"):\n        if tid in trace_sentences:\n            embs = st_model.encode(trace_sentences[tid], show_progress_bar=False)\n            trace_embeddings[tid] = embs\n\n    windows = [1, 3, 5, 10, 15, 20, 25]\n    results = []\n\n    for W in windows:\n        X_train_list, y_train_list = [], []\n        for t in train:\n            tid = t[\"trace_id\"]\n            if tid not in trace_embeddings:\n                continue\n            embs = trace_embeddings[tid]\n            labels = np.array(t[\"step_labels\"])\n            n = min(len(embs), len(labels))\n            for i in range(n):\n                start = max(0, i - W + 1)\n                window = embs[start:i+1]\n                if window.shape[0] < W:\n                    pad = np.zeros((W - window.shape[0], EMB_DIM), dtype=np.float32)\n                    window = np.concatenate([pad, window], axis=0)\n                X_train_list.append(window.flatten())\n                y_train_list.append(labels[i])\n\n        X_train = np.array(X_train_list)\n        y_train = np.array(y_train_list)\n\n        X_test_list, y_test_list = [], []\n        for t in test:\n            tid = t[\"trace_id\"]\n            if tid not in trace_embeddings:\n                continue\n            embs = trace_embeddings[tid]\n            labels = np.array(t[\"step_labels\"])\n            n = min(len(embs), len(labels))\n            for i in range(n):\n                start = max(0, i - W + 1)\n                window = embs[start:i+1]\n                if window.shape[0] < W:\n                    pad = np.zeros((W - window.shape[0], EMB_DIM), dtype=np.float32)\n                    window = np.concatenate([pad, window], axis=0)\n                X_test_list.append(window.flatten())\n                y_test_list.append(labels[i])\n\n        X_test = np.array(X_test_list)\n        y_test = np.array(y_test_list)\n\n        clf = LogisticRegression(C=1.0, max_iter=1000, solver='liblinear',\n                                 class_weight='balanced', random_state=SEED)\n        clf.fit(X_train, y_train)\n        y_pred = clf.predict(X_test)\n        bal_acc = balanced_accuracy_score(y_test, y_pred)\n        prec = precision_score(y_test, y_pred, zero_division=0)\n        pos_mask = y_test == 1\n        coverage = y_pred[pos_mask].mean() if pos_mask.sum() > 0 else 0.0\n\n        fprs = []\n        for t in test:\n            tid = t[\"trace_id\"]\n            if tid not in trace_embeddings:\n                continue\n            cp = t[\"commitment_point\"]\n            if cp <= 0:\n                continue\n            embs = trace_embeddings[tid]\n            labels = t[\"step_labels\"]\n            n = min(len(embs), len(labels), cp)\n            X_pre = []\n            for i in range(n):\n                start = max(0, i - W + 1)\n                window = embs[start:i+1]\n                if window.shape[0] < W:\n                    pad = np.zeros((W - window.shape[0], EMB_DIM), dtype=np.float32)\n                    window = np.concatenate([pad, window], axis=0)\n                X_pre.append(window.flatten())\n            if not X_pre:\n                continue\n            X_pre = np.array(X_pre)\n            preds = clf.predict(X_pre)\n            fprs.append(float(preds.mean()))\n        precp_fpr = float(np.mean(fprs)) if fprs else 0.0\n\n        lead_times = []\n        for t in test:\n            tid = t[\"trace_id\"]\n            if tid not in trace_embeddings:\n                continue\n            embs = trace_embeddings[tid]\n            labels = t[\"step_labels\"]\n            n = min(len(embs), len(labels))\n            X_all = []\n            for i in range(n):\n                start = max(0, i - W + 1)\n                window = embs[start:i+1]\n                if window.shape[0] < W:\n                    pad = np.zeros((W - window.shape[0], EMB_DIM), dtype=np.float32)\n                    window = np.concatenate([pad, window], axis=0)\n                X_all.append(window.flatten())\n            X_all = np.array(X_all)\n            probs = clf.predict_proba(X_all)[:, 1]\n            cp = t[\"commitment_point\"]\n            fc = first_crossing(probs.tolist())\n            if fc is not None and fc < cp:\n                lead_times.append(cp - fc)\n        lead_mean = float(np.mean(lead_times)) if lead_times else 0.0\n\n        results.append({\n            \"window\": W,\n            \"bal_acc\": round(bal_acc, 4),\n            \"precision\": round(prec, 4),\n            \"coverage\": round(float(coverage), 4),\n            \"pre_cp_fpr\": round(precp_fpr, 4),\n            \"lead_mean\": round(lead_mean, 2),\n        })\n        print(f\"  W={W:<3} bal_acc={bal_acc:.4f} prec={prec:.4f} cov={coverage:.4f} fpr={precp_fpr:.4f} lead={lead_mean:.2f}\")\n\n    with open(OUTPUT_DIR / \"temporal_probes_text.json\", \"w\") as f:\n        json.dump(results, f, indent=2)\n\n    best_w = max(results, key=lambda x: x[\"bal_acc\"])\n    print(f\"\\n  Best Text window: W={best_w['window']}, bal_acc={best_w['bal_acc']}\")\n    return results, best_w[\"window\"]\n\n\ndef run_paired_bootstrap(train, test, best_layer, best_hs_w, best_text_w, early_cache):\n    print(f\"\\n{'='*70}\")\n    print(f\"PAIRED BOOTSTRAP: HS(layer={best_layer}, W={best_hs_w}) vs Text(W={best_text_w})\")\n    print(f\"{'='*70}\")\n\n    from sentence_transformers import SentenceTransformer\n\n    sys.path.insert(0, str(PROJECT))\n    from src.data_loader import load_harmthoughts\n    raw_traces = load_harmthoughts(\"r1-8b\")\n    trace_sentences = {}\n    for tid, steps in raw_traces.items():\n        trace_sentences[tid] = [s[\"sentence\"] for s in steps]\n\n    st_model = SentenceTransformer(\"all-MiniLM-L6-v2\")\n    EMB_DIM = 384\n\n    all_tids = set(t[\"trace_id\"] for t in train + test)\n    trace_embs = {}\n    for tid in all_tids:\n        if tid in trace_sentences:\n            trace_embs[tid] = st_model.encode(trace_sentences[tid], show_progress_bar=False)\n\n    W = best_hs_w\n    X_hs_train, y_hs_train = [], []\n    for t in train:\n        hs = get_hidden_states_for_layer(t[\"trace_id\"], best_layer, early_cache)\n        if hs is None:\n            continue\n        labels = np.array(t[\"step_labels\"])\n        n = min(hs.shape[0], len(labels))\n        hs_np = hs[:n].float().numpy()\n        for i in range(n):\n            start = max(0, i - W + 1)\n            window = hs_np[start:i+1]\n            if window.shape[0] < W:\n                pad = np.zeros((W - window.shape[0], HIDDEN_DIM), dtype=np.float32)\n                window = np.concatenate([pad, window], axis=0)\n            X_hs_train.append(window.flatten())\n            y_hs_train.append(labels[i])\n\n    clf_hs = LogisticRegression(C=1.0, max_iter=1000, solver='liblinear',\n                                 class_weight='balanced', random_state=SEED)\n    clf_hs.fit(np.array(X_hs_train), np.array(y_hs_train))\n\n    W_t = best_text_w\n    X_text_train, y_text_train = [], []\n    for t in train:\n        tid = t[\"trace_id\"]\n        if tid not in trace_embs:\n            continue\n        embs = trace_embs[tid]\n        labels = np.array(t[\"step_labels\"])\n        n = min(len(embs), len(labels))\n        for i in range(n):\n            start = max(0, i - W_t + 1)\n            window = embs[start:i+1]\n            if window.shape[0] < W_t:\n                pad = np.zeros((W_t - window.shape[0], EMB_DIM), dtype=np.float32)\n                window = np.concatenate([pad, window], axis=0)\n            X_text_train.append(window.flatten())\n            y_text_train.append(labels[i])\n\n    clf_text = LogisticRegression(C=1.0, max_iter=1000, solver='liblinear',\n                                   class_weight='balanced', random_state=SEED)\n    clf_text.fit(np.array(X_text_train), np.array(y_text_train))\n\n    hs_bal_accs, text_bal_accs = [], []\n    hs_precs, text_precs = [], []\n    hs_fprs, text_fprs = [], []\n\n    for t in test:\n        tid = t[\"trace_id\"]\n        hs = get_hidden_states_for_layer(tid, best_layer, early_cache)\n        if hs is None or tid not in trace_embs:\n            continue\n        labels = np.array(t[\"step_labels\"])\n        embs = trace_embs[tid]\n        n = min(hs.shape[0], len(labels), len(embs))\n        cp = t[\"commitment_point\"]\n\n        hs_np = hs[:n].float().numpy()\n        X_hs = []\n        for i in range(n):\n            start = max(0, i - W + 1)\n            window = hs_np[start:i+1]\n            if window.shape[0] < W:\n                pad = np.zeros((W - window.shape[0], HIDDEN_DIM), dtype=np.float32)\n                window = np.concatenate([pad, window], axis=0)\n            X_hs.append(window.flatten())\n        X_hs = np.array(X_hs)\n        hs_pred = clf_hs.predict(X_hs)\n        hs_bal_accs.append(balanced_accuracy_score(labels[:n], hs_pred))\n        hs_precs.append(precision_score(labels[:n], hs_pred, zero_division=0))\n\n        X_text = []\n        for i in range(n):\n            start = max(0, i - W_t + 1)\n            window = embs[start:i+1]\n            if window.shape[0] < W_t:\n                pad = np.zeros((W_t - window.shape[0], EMB_DIM), dtype=np.float32)\n                window = np.concatenate([pad, window], axis=0)\n            X_text.append(window.flatten())\n        X_text = np.array(X_text)\n        text_pred = clf_text.predict(X_text)\n        text_bal_accs.append(balanced_accuracy_score(labels[:n], text_pred))\n        text_precs.append(precision_score(labels[:n], text_pred, zero_division=0))\n\n        if cp > 0:\n            n_pre = min(n, cp)\n            hs_pre_pred = clf_hs.predict(X_hs[:n_pre])\n            text_pre_pred = clf_text.predict(X_text[:n_pre])\n            hs_fprs.append(float(hs_pre_pred.mean()))\n            text_fprs.append(float(text_pre_pred.mean()))\n\n    rng = np.random.default_rng(SEED)\n    n_resamples = 1000\n    alpha = 0.017\n\n    metrics = {\n        \"bal_acc\": (np.array(hs_bal_accs), np.array(text_bal_accs)),\n        \"precision\": (np.array(hs_precs), np.array(text_precs)),\n        \"pre_cp_fpr\": (np.array(hs_fprs), np.array(text_fprs)),\n    }\n\n    bootstrap_results = {}\n    for metric_name, (hs_vals, text_vals) in metrics.items():\n        n = min(len(hs_vals), len(text_vals))\n        hs_v = hs_vals[:n]\n        text_v = text_vals[:n]\n        observed_diff = float(hs_v.mean() - text_v.mean())\n        diffs = []\n        for _ in range(n_resamples):\n            idx = rng.choice(n, size=n, replace=True)\n            diffs.append(float(hs_v[idx].mean() - text_v[idx].mean()))\n        diffs = np.array(diffs)\n        p_value = float((np.abs(diffs - diffs.mean()) >= np.abs(observed_diff - diffs.mean())).mean())\n        ci_lower = float(np.percentile(diffs, 100 * alpha / 2))\n        ci_upper = float(np.percentile(diffs, 100 * (1 - alpha / 2)))\n\n        bootstrap_results[metric_name] = {\n            \"hs_mean\": round(float(hs_v.mean()), 4),\n            \"text_mean\": round(float(text_v.mean()), 4),\n            \"diff_hs_minus_text\": round(observed_diff, 4),\n            \"p_value\": round(p_value, 4),\n            \"ci\": [round(ci_lower, 4), round(ci_upper, 4)],\n            \"significant\": p_value < alpha,\n        }\n        sig = \"*\" if p_value < alpha else \"\"\n        print(f\"  {metric_name}: HS={hs_v.mean():.4f} Text={text_v.mean():.4f} diff={observed_diff:.4f} p={p_value:.4f}{sig}\")\n\n    with open(OUTPUT_DIR / \"bootstrap_hs_vs_text.json\", \"w\") as f:\n        json.dump(bootstrap_results, f, indent=2)\n\n    return bootstrap_results\n\n\ndef run_selectivity_control(train, test, best_layer, early_cache, n_perms=10):\n    print(f\"\\n{'='*70}\")\n    print(f\"SELECTIVITY CONTROL (10x random label permutation)\")\n    print(f\"{'='*70}\")\n\n    rng = np.random.default_rng(SEED)\n\n    X_train_list, y_train_list = [], []\n    for t in train:\n        hs = get_hidden_states_for_layer(t[\"trace_id\"], best_layer, early_cache)\n        if hs is None:\n            continue\n        labels = np.array(t[\"step_labels\"])\n        n = min(hs.shape[0], len(labels))\n        X_train_list.append(hs[:n].float().numpy())\n        y_train_list.append(labels[:n])\n\n    X_train = np.concatenate(X_train_list)\n    y_train = np.concatenate(y_train_list)\n\n    X_test_list, y_test_list = [], []\n    for t in test:\n        hs = get_hidden_states_for_layer(t[\"trace_id\"], best_layer, early_cache)\n        if hs is None:\n            continue\n        labels = np.array(t[\"step_labels\"])\n        n = min(hs.shape[0], len(labels))\n        X_test_list.append(hs[:n].float().numpy())\n        y_test_list.append(labels[:n])\n\n    X_test = np.concatenate(X_test_list)\n    y_test = np.concatenate(y_test_list)\n\n    clf = LogisticRegression(C=1.0, max_iter=1000, solver='liblinear',\n                             class_weight='balanced', random_state=SEED)\n    clf.fit(X_train, y_train)\n    real_bal_acc = balanced_accuracy_score(y_test, clf.predict(X_test))\n\n    perm_accs = []\n    for i in range(n_perms):\n        y_perm = rng.permutation(y_train)\n        clf_p = LogisticRegression(C=1.0, max_iter=1000, solver='liblinear',\n                                    class_weight='balanced', random_state=SEED)\n        clf_p.fit(X_train, y_perm)\n        perm_acc = balanced_accuracy_score(y_test, clf_p.predict(X_test))\n        perm_accs.append(perm_acc)\n        print(f\"  Perm {i+1}: bal_acc={perm_acc:.4f}\")\n\n    perm_accs = np.array(perm_accs)\n    selectivity_gap = real_bal_acc - perm_accs.mean()\n\n    result = {\n        \"real_bal_acc\": round(real_bal_acc, 4),\n        \"perm_mean\": round(float(perm_accs.mean()), 4),\n        \"perm_std\": round(float(perm_accs.std()), 4),\n        \"selectivity_gap\": round(selectivity_gap, 4),\n        \"n_perms\": n_perms,\n    }\n    print(f\"\\n  Real: {real_bal_acc:.4f}, Perm mean: {perm_accs.mean():.4f} +/- {perm_accs.std():.4f}\")\n    print(f\"  Selectivity gap: {selectivity_gap:.4f}\")\n\n    with open(OUTPUT_DIR / \"selectivity_control.json\", \"w\") as f:\n        json.dump(result, f, indent=2)\n\n    return result\n\n\ndef main():\n    t0 = time.time()\n\n    print(\"=\"*70)\n    print(\"STEP 1: Extract early layers (0-11)\")\n    print(\"=\"*70)\n    extract_early_layers()\n\n    results_sorted, train, val, test, early_cache = full_layer_sweep()\n\n    best = results_sorted[0]\n    old_best_layer = 14\n    old_best_bal_acc = 0.8172\n\n    if best[\"layer\"] != old_best_layer and best[\"bal_acc\"] > old_best_bal_acc:\n        print(f\"\\nNEW BEST LAYER: {best['layer']} (bal_acc={best['bal_acc']}) > old layer {old_best_layer} ({old_best_bal_acc})\")\n\n        hs_results, best_hs_w = run_temporal_probes_hs(train, val, test, best[\"layer\"], early_cache)\n        text_results, best_text_w = run_temporal_probes_text(train, val, test, best[\"layer\"], early_cache)\n        bootstrap = run_paired_bootstrap(train, test, best[\"layer\"], best_hs_w, best_text_w, early_cache)\n        selectivity = run_selectivity_control(train, test, best[\"layer\"], early_cache)\n    else:\n        print(f\"\\nLayer {old_best_layer} remains best or no improvement. Only sweep results reported.\")\n\n    elapsed = time.time() - t0\n    print(f\"\\n{'='*70}\")\n    print(f\"COMPLETE in {elapsed:.0f}s\")\n    print(f\"All outputs in: {OUTPUT_DIR}\")\n    print(f\"{'='*70}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written successfully.\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "mkdir -p /root/autodl-tmp/contrastive_trace_safety/scripts && cat > /root/autodl-tmp/contrastive_trace_safety/scripts/r1_8b_early_layer_supplement.py << 'PYEOF'\n\"\"\"R1-8B Early Layer Supplement: Extract layers 0-11, full layer sweep.\"\"\"\n\nimport os, sys, json, time\nos.environ[\"TOKENIZERS_PARALLELISM\"] = \"false\"\nos.environ[\"HF_ENDPOINT\"] = \"https://hf-mirror.com\"\nos.environ[\"CUDA_VISIBLE_DEVICES\"] = \"0\"\n\nimport numpy as np\nimport torch\nfrom pathlib import Path\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import balanced_accuracy_score, precision_score\nfrom tqdm import tqdm\n\nPROJECT = Path(\"/root/autodl-tmp/contrastive_trace_safety\")\nHS_DIR = PROJECT / \"artifacts\" / \"hidden_states\"\nEARLY_HS_DIR = PROJECT / \"artifacts\" / \"hidden_states_early_r1_8b\"\nOUTPUT_DIR = PROJECT / \"artifacts\" / \"r1_8b_layer_supplement\"\nMODEL_PATH = \"/root/autodl-tmp/.hf_cache/deepseek-ai/DeepSeek-R1-Distill-Llama-8B\"\n\nSEED = 42\nTOTAL_MODEL_LAYERS = 32\nHIDDEN_DIM = 4096\nEARLY_LAYERS = list(range(0, 12))\nORIG_LAYERS = list(range(12, 25))\n\nK_CONSECUTIVE = 5\nTHRESHOLD = 0.5\n\n\ndef load_traces_with_commitment():\n    traces = []\n    for pt_file in sorted(HS_DIR.glob(\"*.pt\")):\n        data = torch.load(pt_file, map_location=\"cpu\", weights_only=False)\n        if data.get(\"step_labels\") is None or data.get(\"commitment_point\") is None:\n            continue\n        traces.append(data)\n    return traces\n\n\ndef split_traces(traces, seed=SEED):\n    rng = np.random.default_rng(seed)\n    indices = rng.permutation(len(traces))\n    n_train = int(len(traces) * 0.6)\n    n_val = int(len(traces) * 0.2)\n    return (\n        [traces[i] for i in indices[:n_train]],\n        [traces[i] for i in indices[n_train:n_train+n_val]],\n        [traces[i] for i in indices[n_train+n_val:]],\n    )\n\n\ndef find_sentence_boundaries(tokenizer, sentences):\n    full_text = \" \".join(sentences)\n    encoding = tokenizer(\n        full_text,\n        return_offsets_mapping=True,\n        return_tensors=\"pt\",\n        truncation=True,\n        max_length=8192,\n    )\n    offsets = encoding[\"offset_mapping\"][0]\n    boundaries = []\n    char_pos = 0\n    for sent in sentences:\n        char_end = char_pos + len(sent)\n        last_token_idx = 0\n        for tok_idx, (start, end) in enumerate(offsets):\n            if start < char_end:\n                last_token_idx = tok_idx\n        boundaries.append(last_token_idx)\n        char_pos = char_end + 1\n    return boundaries, encoding\n\n\ndef extract_early_layers():\n    EARLY_HS_DIR.mkdir(parents=True, exist_ok=True)\n    existing_early = {f.stem for f in EARLY_HS_DIR.glob(\"*.pt\")}\n    all_pt_files = sorted(HS_DIR.glob(\"*.pt\"))\n    remaining = [f for f in all_pt_files if f.stem not in existing_early]\n\n    if not remaining:\n        print(f\"All {len(all_pt_files)} early layer files already exist. Skipping extraction.\")\n        return\n\n    print(f\"Need to extract early layers for {len(remaining)}/{len(all_pt_files)} traces\")\n\n    from transformers import AutoTokenizer, AutoModelForCausalLM\n\n    print(\"Loading R1-8B model...\")\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH, trust_remote_code=True)\n    if tokenizer.pad_token is None:\n        tokenizer.pad_token = tokenizer.eos_token\n\n    model = AutoModelForCausalLM.from_pretrained(\n        MODEL_PATH,\n        torch_dtype=torch.bfloat16,\n        device_map=\"cuda:0\",\n        trust_remote_code=True,\n    )\n    model.eval()\n    print(\"Model loaded.\")\n\n    sys.path.insert(0, str(PROJECT))\n    from src.data_loader import load_harmthoughts\n    raw_traces = load_harmthoughts(\"r1-8b\")\n    trace_sentences = {}\n    for trace_id, steps in raw_traces.items():\n        trace_sentences[trace_id] = [s[\"sentence\"] for s in steps]\n\n    for pt_file in tqdm(remaining, desc=\"Extracting early layers\"):\n        data = torch.load(pt_file, map_location=\"cpu\", weights_only=False)\n        trace_id = data[\"trace_id\"]\n\n        if trace_id not in trace_sentences:\n            print(f\"WARNING: trace {trace_id} not found in dataset, skipping\")\n            continue\n\n        sentences = trace_sentences[trace_id]\n        boundaries, _ = find_sentence_boundaries(tokenizer, sentences)\n\n        full_text = \" \".join(sentences)\n        inputs = tokenizer(\n            full_text,\n            return_tensors=\"pt\",\n            truncation=True,\n            max_length=8192,\n        ).to(\"cuda:0\")\n\n        num_tokens = inputs[\"input_ids\"].shape[1]\n        boundaries = [min(p, num_tokens - 1) for p in boundaries]\n\n        with torch.no_grad():\n            outputs = model(**inputs, output_hidden_states=True)\n\n        hidden_states = outputs.hidden_states\n        num_sentences = len(sentences)\n        result = torch.zeros(num_sentences, len(EARLY_LAYERS), HIDDEN_DIM, dtype=torch.float16)\n\n        for sent_idx, pos in enumerate(boundaries):\n            for layer_idx, layer_num in enumerate(EARLY_LAYERS):\n                hs = hidden_states[layer_num + 1][0, pos, :]\n                result[sent_idx, layer_idx, :] = hs.cpu().float().half()\n\n        save_dict = {\n            \"hidden_states\": result,\n            \"trace_id\": trace_id,\n            \"num_sentences\": num_sentences,\n            \"commitment_point\": data.get(\"commitment_point\"),\n            \"step_labels\": data.get(\"step_labels\"),\n            \"layers\": EARLY_LAYERS,\n        }\n\n        torch.save(save_dict, EARLY_HS_DIR / f\"{trace_id}.pt\")\n        del outputs, hidden_states\n        torch.cuda.empty_cache()\n\n    del model, tokenizer\n    torch.cuda.empty_cache()\n    print(\"Early layer extraction complete.\")\n\n\ndef get_hidden_states_for_layer(trace_id, model_layer, early_data_cache):\n    if model_layer < 12:\n        if trace_id not in early_data_cache:\n            path = EARLY_HS_DIR / f\"{trace_id}.pt\"\n            if not path.exists():\n                return None\n            early_data_cache[trace_id] = torch.load(path, map_location=\"cpu\", weights_only=False)\n        data = early_data_cache[trace_id]\n        layer_idx = model_layer\n        return data[\"hidden_states\"][:, layer_idx, :]\n    else:\n        path = HS_DIR / f\"{trace_id}.pt\"\n        if not path.exists():\n            return None\n        data = torch.load(path, map_location=\"cpu\", weights_only=False)\n        layer_idx = model_layer - 12\n        if layer_idx >= data[\"hidden_states\"].shape[1]:\n            return None\n        return data[\"hidden_states\"][:, layer_idx, :]\n\n\ndef first_crossing(probs, threshold=THRESHOLD, k=K_CONSECUTIVE):\n    for i in range(len(probs) - k + 1):\n        if all(p > threshold for p in probs[i:i+k]):\n            return i\n    return None\n\n\ndef compute_precp_fpr(clf, traces, model_layer, early_cache):\n    fprs = []\n    for t in traces:\n        cp = t[\"commitment_point\"]\n        if cp <= 0:\n            continue\n        hs = get_hidden_states_for_layer(t[\"trace_id\"], model_layer, early_cache)\n        if hs is None:\n            continue\n        labels = t[\"step_labels\"]\n        n = min(hs.shape[0], len(labels), cp)\n        X = hs[:n].float().numpy()\n        if len(X) == 0:\n            continue\n        preds = clf.predict(X)\n        fprs.append(float(preds.mean()))\n    return float(np.mean(fprs)) if fprs else 0.0\n\n\ndef full_layer_sweep():\n    print(\"\\n\" + \"=\"*70)\n    print(\"FULL LAYER SWEEP: R1-8B\")\n    print(\"=\"*70)\n\n    traces = load_traces_with_commitment()\n    print(f\"Loaded {len(traces)} traces with commitment points\")\n\n    early_available = {f.stem for f in EARLY_HS_DIR.glob(\"*.pt\")}\n    traces_with_early = [t for t in traces if t[\"trace_id\"] in early_available]\n    print(f\"Traces with early layer data: {len(traces_with_early)}\")\n\n    train, val, test = split_traces(traces_with_early)\n    print(f\"Split: train={len(train)}, val={len(val)}, test={len(test)}\")\n\n    sweep_layers = list(range(0, 25))\n    early_cache = {}\n\n    results = []\n    print(f\"\\n{'Layer':<6} {'Depth%':<7} {'bal_acc':<9} {'cross_rate':<11} {'lead_mean':<10} {'pre_cp_fpr':<11}\")\n    print(\"-\" * 55)\n\n    for model_layer in sweep_layers:\n        X_train_list, y_train_list = [], []\n        for t in train:\n            hs = get_hidden_states_for_layer(t[\"trace_id\"], model_layer, early_cache)\n            if hs is None:\n                continue\n            labels = np.array(t[\"step_labels\"])\n            n = min(hs.shape[0], len(labels))\n            X_train_list.append(hs[:n].float().numpy())\n            y_train_list.append(labels[:n])\n\n        if not X_train_list:\n            print(f\"{model_layer:<6} N/A\")\n            continue\n\n        X_train = np.concatenate(X_train_list)\n        y_train = np.concatenate(y_train_list)\n\n        X_test_list, y_test_list = [], []\n        for t in test:\n            hs = get_hidden_states_for_layer(t[\"trace_id\"], model_layer, early_cache)\n            if hs is None:\n                continue\n            labels = np.array(t[\"step_labels\"])\n            n = min(hs.shape[0], len(labels))\n            X_test_list.append(hs[:n].float().numpy())\n            y_test_list.append(labels[:n])\n\n        X_test = np.concatenate(X_test_list)\n        y_test = np.concatenate(y_test_list)\n\n        clf = LogisticRegression(\n            C=1.0, max_iter=1000, solver='liblinear',\n            class_weight='balanced', random_state=SEED\n        )\n        clf.fit(X_train, y_train)\n        y_pred = clf.predict(X_test)\n        bal_acc = balanced_accuracy_score(y_test, y_pred)\n\n        lead_times = []\n        n_crossings = 0\n        for t in test:\n            hs = get_hidden_states_for_layer(t[\"trace_id\"], model_layer, early_cache)\n            if hs is None:\n                continue\n            labels = t[\"step_labels\"]\n            n = min(hs.shape[0], len(labels))\n            X = hs[:n].float().numpy()\n            probs = clf.predict_proba(X)[:, 1]\n            cp = t[\"commitment_point\"]\n            fc = first_crossing(probs.tolist())\n            if fc is not None and fc < cp:\n                lead_times.append(cp - fc)\n                n_crossings += 1\n\n        n_total = len(test)\n        crossing_rate = n_crossings / n_total if n_total > 0 else 0\n        mean_lead = float(np.mean(lead_times)) if lead_times else 0.0\n        precp_fpr = compute_precp_fpr(clf, test, model_layer, early_cache)\n        depth_pct = model_layer / (TOTAL_MODEL_LAYERS - 1) * 100\n\n        results.append({\n            \"layer\": model_layer,\n            \"depth_pct\": round(depth_pct, 1),\n            \"bal_acc\": round(bal_acc, 4),\n            \"crossing_rate\": round(crossing_rate, 4),\n            \"lead_mean\": round(mean_lead, 2),\n            \"pre_cp_fpr\": round(precp_fpr, 4),\n        })\n        print(f\"{model_layer:<6} {depth_pct:<7.1f} {bal_acc:<9.4f} {crossing_rate:<11.4f} {mean_lead:<10.2f} {precp_fpr:<11.4f}\")\n\n    results_sorted = sorted(results, key=lambda x: x[\"bal_acc\"], reverse=True)\n\n    print(\"\\n\\nRanking by bal_acc:\")\n    print(f\"{'Rank':<5} {'Layer':<6} {'Depth%':<7} {'bal_acc':<9} {'cross_rate':<11} {'lead_mean':<10} {'pre_cp_fpr':<11}\")\n    print(\"-\" * 60)\n    for i, r in enumerate(results_sorted):\n        print(f\"{i+1:<5} {r['layer']:<6} {r['depth_pct']:<7.1f} {r['bal_acc']:<9.4f} {r['crossing_rate']:<11.4f} {r['lead_mean']:<10.2f} {r['pre_cp_fpr']:<11.4f}\")\n\n    best = results_sorted[0]\n    print(f\"\\nBest layer: {best['layer']} (depth {best['depth_pct']}%), bal_acc={best['bal_acc']}\")\n\n    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)\n    with open(OUTPUT_DIR / \"layer_sweep_full.json\", \"w\") as f:\n        json.dump({\"results\": results, \"results_sorted\": results_sorted, \"best\": best}, f, indent=2)\n\n    return results_sorted, train, val, test, early_cache\n\n\ndef run_temporal_probes_hs(train, val, test, best_layer, early_cache):\n    print(f\"\\n{'='*70}\")\n    print(f\"TEMPORAL PROBES (HS) at layer {best_layer}\")\n    print(f\"{'='*70}\")\n\n    windows = [1, 3, 5, 10, 15, 20, 25]\n    results = []\n\n    for W in windows:\n        X_train_list, y_train_list = [], []\n        for t in train:\n            hs = get_hidden_states_for_layer(t[\"trace_id\"], best_layer, early_cache)\n            if hs is None:\n                continue\n            labels = np.array(t[\"step_labels\"])\n            n = min(hs.shape[0], len(labels))\n            hs_np = hs[:n].float().numpy()\n            for i in range(n):\n                start = max(0, i - W + 1)\n                window = hs_np[start:i+1]\n                if window.shape[0] < W:\n                    pad = np.zeros((W - window.shape[0], HIDDEN_DIM), dtype=np.float32)\n                    window = np.concatenate([pad, window], axis=0)\n                X_train_list.append(window.flatten())\n                y_train_list.append(labels[i])\n\n        X_train = np.array(X_train_list)\n        y_train = np.array(y_train_list)\n\n        X_test_list, y_test_list = [], []\n        for t in test:\n            hs = get_hidden_states_for_layer(t[\"trace_id\"], best_layer, early_cache)\n            if hs is None:\n                continue\n            labels = np.array(t[\"step_labels\"])\n            n = min(hs.shape[0], len(labels))\n            hs_np = hs[:n].float().numpy()\n            for i in range(n):\n                start = max(0, i - W + 1)\n                window = hs_np[start:i+1]\n                if window.shape[0] < W:\n                    pad = np.zeros((W - window.shape[0], HIDDEN_DIM), dtype=np.float32)\n                    window = np.concatenate([pad, window], axis=0)\n                X_test_list.append(window.flatten())\n                y_test_list.append(labels[i])\n\n        X_test = np.array(X_test_list)\n        y_test = np.array(y_test_list)\n\n        clf = LogisticRegression(C=1.0, max_iter=1000, solver='liblinear',\n                                 class_weight='balanced', random_state=SEED)\n        clf.fit(X_train, y_train)\n        y_pred = clf.predict(X_test)\n\n        bal_acc = balanced_accuracy_score(y_test, y_pred)\n        prec = precision_score(y_test, y_pred, zero_division=0)\n        pos_mask = y_test == 1\n        coverage = y_pred[pos_mask].mean() if pos_mask.sum() > 0 else 0.0\n\n        fprs = []\n        for t in test:\n            cp = t[\"commitment_point\"]\n            if cp <= 0:\n                continue\n            hs = get_hidden_states_for_layer(t[\"trace_id\"], best_layer, early_cache)\n            if hs is None:\n                continue\n            labels = t[\"step_labels\"]\n            n = min(hs.shape[0], len(labels), cp)\n            hs_np = hs[:n].float().numpy()\n            X_pre = []\n            for i in range(n):\n                start = max(0, i - W + 1)\n                window = hs_np[start:i+1]\n                if window.shape[0] < W:\n                    pad = np.zeros((W - window.shape[0], HIDDEN_DIM), dtype=np.float32)\n                    window = np.concatenate([pad, window], axis=0)\n                X_pre.append(window.flatten())\n            if not X_pre:\n                continue\n            X_pre = np.array(X_pre)\n            preds = clf.predict(X_pre)\n            fprs.append(float(preds.mean()))\n        precp_fpr = float(np.mean(fprs)) if fprs else 0.0\n\n        lead_times = []\n        for t in test:\n            hs = get_hidden_states_for_layer(t[\"trace_id\"], best_layer, early_cache)\n            if hs is None:\n                continue\n            labels = t[\"step_labels\"]\n            n = min(hs.shape[0], len(labels))\n            hs_np = hs[:n].float().numpy()\n            X_all = []\n            for i in range(n):\n                start = max(0, i - W + 1)\n                window = hs_np[start:i+1]\n                if window.shape[0] < W:\n                    pad = np.zeros((W - window.shape[0], HIDDEN_DIM), dtype=np.float32)\n                    window = np.concatenate([pad, window], axis=0)\n                X_all.append(window.flatten())\n            X_all = np.array(X_all)\n            probs = clf.predict_proba(X_all)[:, 1]\n            cp = t[\"commitment_point\"]\n            fc = first_crossing(probs.tolist())\n            if fc is not None and fc < cp:\n                lead_times.append(cp - fc)\n        lead_mean = float(np.mean(lead_times)) if lead_times else 0.0\n\n        results.append({\n            \"window\": W,\n            \"bal_acc\": round(bal_acc, 4),\n            \"precision\": round(prec, 4),\n            \"coverage\": round(float(coverage), 4),\n            \"pre_cp_fpr\": round(precp_fpr, 4),\n            \"lead_mean\": round(lead_mean, 2),\n        })\n        print(f\"  W={W:<3} bal_acc={bal_acc:.4f} prec={prec:.4f} cov={coverage:.4f} fpr={precp_fpr:.4f} lead={lead_mean:.2f}\")\n\n    with open(OUTPUT_DIR / \"temporal_probes_hs.json\", \"w\") as f:\n        json.dump(results, f, indent=2)\n\n    best_w = max(results, key=lambda x: x[\"bal_acc\"])\n    print(f\"\\n  Best HS window: W={best_w['window']}, bal_acc={best_w['bal_acc']}\")\n    return results, best_w[\"window\"]\n\n\ndef run_temporal_probes_text(train, val, test, best_layer, early_cache):\n    print(f\"\\n{'='*70}\")\n    print(f\"TEMPORAL PROBES (Text) - all-MiniLM-L6-v2\")\n    print(f\"{'='*70}\")\n\n    from sentence_transformers import SentenceTransformer\n\n    sys.path.insert(0, str(PROJECT))\n    from src.data_loader import load_harmthoughts\n    raw_traces = load_harmthoughts(\"r1-8b\")\n    trace_sentences = {}\n    for tid, steps in raw_traces.items():\n        trace_sentences[tid] = [s[\"sentence\"] for s in steps]\n\n    st_model = SentenceTransformer(\"all-MiniLM-L6-v2\")\n    EMB_DIM = 384\n\n    trace_embeddings = {}\n    all_trace_ids = set(t[\"trace_id\"] for t in train + val + test)\n    for tid in tqdm(all_trace_ids, desc=\"Encoding sentences\"):\n        if tid in trace_sentences:\n            embs = st_model.encode(trace_sentences[tid], show_progress_bar=False)\n            trace_embeddings[tid] = embs\n\n    windows = [1, 3, 5, 10, 15, 20, 25]\n    results = []\n\n    for W in windows:\n        X_train_list, y_train_list = [], []\n        for t in train:\n            tid = t[\"trace_id\"]\n            if tid not in trace_embeddings:\n                continue\n            embs = trace_embeddings[tid]\n            labels = np.array(t[\"step_labels\"])\n            n = min(len(embs), len(labels))\n            for i in range(n):\n                start = max(0, i - W + 1)\n                window = embs[start:i+1]\n                if window.shape[0] < W:\n                    pad = np.zeros((W - window.shape[0], EMB_DIM), dtype=np.float32)\n                    window = np.concatenate([pad, window], axis=0)\n                X_train_list.append(window.flatten())\n                y_train_list.append(labels[i])\n\n        X_train = np.array(X_train_list)\n        y_train = np.array(y_train_list)\n\n        X_test_list, y_test_list = [], []\n        for t in test:\n            tid = t[\"trace_id\"]\n            if tid not in trace_embeddings:\n                continue\n            embs = trace_embeddings[tid]\n            labels = np.array(t[\"step_labels\"])\n            n = min(len(embs), len(labels))\n            for i in range(n):\n                start = max(0, i - W + 1)\n                window = embs[start:i+1]\n                if window.shape[0] < W:\n                    pad = np.zeros((W - window.shape[0], EMB_DIM), dtype=np.float32)\n                    window = np.concatenate([pad, window], axis=0)\n                X_test_list.append(window.flatten())\n                y_test_list.append(labels[i])\n\n        X_test = np.array(X_test_list)\n        y_test = np.array(y_test_list)\n\n        clf = LogisticRegression(C=1.0, max_iter=1000, solver='liblinear',\n                                 class_weight='balanced', random_state=SEED)\n        clf.fit(X_train, y_train)\n        y_pred = clf.predict(X_test)\n        bal_acc = balanced_accuracy_score(y_test, y_pred)\n        prec = precision_score(y_test, y_pred, zero_division=0)\n        pos_mask = y_test == 1\n        coverage = y_pred[pos_mask].mean() if pos_mask.sum() > 0 else 0.0\n\n        fprs = []\n        for t in test:\n            tid = t[\"trace_id\"]\n            if tid not in trace_embeddings:\n                continue\n            cp = t[\"commitment_point\"]\n            if cp <= 0:\n                continue\n            embs = trace_embeddings[tid]\n            labels = t[\"step_labels\"]\n            n = min(len(embs), len(labels), cp)\n            X_pre = []\n            for i in range(n):\n                start = max(0, i - W + 1)\n                window = embs[start:i+1]\n                if window.shape[0] < W:\n                    pad = np.zeros((W - window.shape[0], EMB_DIM), dtype=np.float32)\n                    window = np.concatenate([pad, window], axis=0)\n                X_pre.append(window.flatten())\n            if not X_pre:\n                continue\n            X_pre = np.array(X_pre)\n            preds = clf.predict(X_pre)\n            fprs.append(float(preds.mean()))\n        precp_fpr = float(np.mean(fprs)) if fprs else 0.0\n\n        lead_times = []\n        for t in test:\n            tid = t[\"trace_id\"]\n            if tid not in trace_embeddings:\n                continue\n            embs = trace_embeddings[tid]\n            labels = t[\"step_labels\"]\n            n = min(len(embs), len(labels))\n            X_all = []\n            for i in range(n):\n                start = max(0, i - W + 1)\n                window = embs[start:i+1]\n                if window.shape[0] < W:\n                    pad = np.zeros((W - window.shape[0], EMB_DIM), dtype=np.float32)\n                    window = np.concatenate([pad, window], axis=0)\n                X_all.append(window.flatten())\n            X_all = np.array(X_all)\n            probs = clf.predict_proba(X_all)[:, 1]\n            cp = t[\"commitment_point\"]\n            fc = first_crossing(probs.tolist())\n            if fc is not None and fc < cp:\n                lead_times.append(cp - fc)\n        lead_mean = float(np.mean(lead_times)) if lead_times else 0.0\n\n        results.append({\n            \"window\": W,\n            \"bal_acc\": round(bal_acc, 4),\n            \"precision\": round(prec, 4),\n            \"coverage\": round(float(coverage), 4),\n            \"pre_cp_fpr\": round(precp_fpr, 4),\n            \"lead_mean\": round(lead_mean, 2),\n        })\n        print(f\"  W={W:<3} bal_acc={bal_acc:.4f} prec={prec:.4f} cov={coverage:.4f} fpr={precp_fpr:.4f} lead={lead_mean:.2f}\")\n\n    with open(OUTPUT_DIR / \"temporal_probes_text.json\", \"w\") as f:\n        json.dump(results, f, indent=2)\n\n    best_w = max(results, key=lambda x: x[\"bal_acc\"])\n    print(f\"\\n  Best Text window: W={best_w['window']}, bal_acc={best_w['bal_acc']}\")\n    return results, best_w[\"window\"]\n\n\ndef run_paired_bootstrap(train, test, best_layer, best_hs_w, best_text_w, early_cache):\n    print(f\"\\n{'='*70}\")\n    print(f\"PAIRED BOOTSTRAP: HS(layer={best_layer}, W={best_hs_w}) vs Text(W={best_text_w})\")\n    print(f\"{'='*70}\")\n\n    from sentence_transformers import SentenceTransformer\n\n    sys.path.insert(0, str(PROJECT))\n    from src.data_loader import load_harmthoughts\n    raw_traces = load_harmthoughts(\"r1-8b\")\n    trace_sentences = {}\n    for tid, steps in raw_traces.items():\n        trace_sentences[tid] = [s[\"sentence\"] for s in steps]\n\n    st_model = SentenceTransformer(\"all-MiniLM-L6-v2\")\n    EMB_DIM = 384\n\n    all_tids = set(t[\"trace_id\"] for t in train + test)\n    trace_embs = {}\n    for tid in all_tids:\n        if tid in trace_sentences:\n            trace_embs[tid] = st_model.encode(trace_sentences[tid], show_progress_bar=False)\n\n    W = best_hs_w\n    X_hs_train, y_hs_train = [], []\n    for t in train:\n        hs = get_hidden_states_for_layer(t[\"trace_id\"], best_layer, early_cache)\n        if hs is None:\n            continue\n        labels = np.array(t[\"step_labels\"])\n        n = min(hs.shape[0], len(labels))\n        hs_np = hs[:n].float().numpy()\n        for i in range(n):\n            start = max(0, i - W + 1)\n            window = hs_np[start:i+1]\n            if window.shape[0] < W:\n                pad = np.zeros((W - window.shape[0], HIDDEN_DIM), dtype=np.float32)\n                window = np.concatenate([pad, window], axis=0)\n            X_hs_train.append(window.flatten())\n            y_hs_train.append(labels[i])\n\n    clf_hs = LogisticRegression(C=1.0, max_iter=1000, solver='liblinear',\n                                 class_weight='balanced', random_state=SEED)\n    clf_hs.fit(np.array(X_hs_train), np.array(y_hs_train))\n\n    W_t = best_text_w\n    X_text_train, y_text_train = [], []\n    for t in train:\n        tid = t[\"trace_id\"]\n        if tid not in trace_embs:\n            continue\n        embs = trace_embs[tid]\n        labels = np.array(t[\"step_labels\"])\n        n = min(len(embs), len(labels))\n        for i in range(n):\n            start = max(0, i - W_t + 1)\n            window = embs[start:i+1]\n            if window.shape[0] < W_t:\n                pad = np.zeros((W_t - window.shape[0], EMB_DIM), dtype=np.float32)\n                window = np.concatenate([pad, window], axis=0)\n            X_text_train.append(window.flatten())\n            y_text_train.append(labels[i])\n\n    clf_text = LogisticRegression(C=1.0, max_iter=1000, solver='liblinear',\n                                   class_weight='balanced', random_state=SEED)\n    clf_text.fit(np.array(X_text_train), np.array(y_text_train))\n\n    hs_bal_accs, text_bal_accs = [], []\n    hs_precs, text_precs = [], []\n    hs_fprs, text_fprs = [], []\n\n    for t in test:\n        tid = t[\"trace_id\"]\n        hs = get_hidden_states_for_layer(tid, best_layer, early_cache)\n        if hs is None or tid not in trace_embs:\n            continue\n        labels = np.array(t[\"step_labels\"])\n        embs = trace_embs[tid]\n        n = min(hs.shape[0], len(labels), len(embs))\n        cp = t[\"commitment_point\"]\n\n        hs_np = hs[:n].float().numpy()\n        X_hs = []\n        for i in range(n):\n            start = max(0, i - W + 1)\n            window = hs_np[start:i+1]\n            if window.shape[0] < W:\n                pad = np.zeros((W - window.shape[0], HIDDEN_DIM), dtype=np.float32)\n                window = np.concatenate([pad, window], axis=0)\n            X_hs.append(window.flatten())\n        X_hs = np.array(X_hs)\n        hs_pred = clf_hs.predict(X_hs)\n        hs_bal_accs.append(balanced_accuracy_score(labels[:n], hs_pred))\n        hs_precs.append(precision_score(labels[:n], hs_pred, zero_division=0))\n\n        X_text = []\n        for i in range(n):\n            start = max(0, i - W_t + 1)\n            window = embs[start:i+1]\n            if window.shape[0] < W_t:\n                pad = np.zeros((W_t - window.shape[0], EMB_DIM), dtype=np.float32)\n                window = np.concatenate([pad, window], axis=0)\n            X_text.append(window.flatten())\n        X_text = np.array(X_text)\n        text_pred = clf_text.predict(X_text)\n        text_bal_accs.append(balanced_accuracy_score(labels[:n], text_pred))\n        text_precs.append(precision_score(labels[:n], text_pred, zero_division=0))\n\n        if cp > 0:\n            n_pre = min(n, cp)\n            hs_pre_pred = clf_hs.predict(X_hs[:n_pre])\n            text_pre_pred = clf_text.predict(X_text[:n_pre])\n            hs_fprs.append(float(hs_pre_pred.mean()))\n            text_fprs.append(float(text_pre_pred.mean()))\n\n    rng = np.random.default_rng(SEED)\n    n_resamples = 1000\n    alpha = 0.017\n\n    metrics = {\n        \"bal_acc\": (np.array(hs_bal_accs), np.array(text_bal_accs)),\n        \"precision\": (np.array(hs_precs), np.array(text_precs)),\n        \"pre_cp_fpr\": (np.array(hs_fprs), np.array(text_fprs)),\n    }\n\n    bootstrap_results = {}\n    for metric_name, (hs_vals, text_vals) in metrics.items():\n        n = min(len(hs_vals), len(text_vals))\n        hs_v = hs_vals[:n]\n        text_v = text_vals[:n]\n        observed_diff = float(hs_v.mean() - text_v.mean())\n        diffs = []\n        for _ in range(n_resamples):\n            idx = rng.choice(n, size=n, replace=True)\n            diffs.append(float(hs_v[idx].mean() - text_v[idx].mean()))\n        diffs = np.array(diffs)\n        p_value = float((np.abs(diffs - diffs.mean()) >= np.abs(observed_diff - diffs.mean())).mean())\n        ci_lower = float(np.percentile(diffs, 100 * alpha / 2))\n        ci_upper = float(np.percentile(diffs, 100 * (1 - alpha / 2)))\n\n        bootstrap_results[metric_name] = {\n            \"hs_mean\": round(float(hs_v.mean()), 4),\n            \"text_mean\": round(float(text_v.mean()), 4),\n            \"diff_hs_minus_text\": round(observed_diff, 4),\n            \"p_value\": round(p_value, 4),\n            \"ci\": [round(ci_lower, 4), round(ci_upper, 4)],\n            \"significant\": p_value < alpha,\n        }\n        sig = \"*\" if p_value < alpha else \"\"\n        print(f\"  {metric_name}: HS={hs_v.mean():.4f} Text={text_v.mean():.4f} diff={observed_diff:.4f} p={p_value:.4f}{sig}\")\n\n    with open(OUTPUT_DIR / \"bootstrap_hs_vs_text.json\", \"w\") as f:\n        json.dump(bootstrap_results, f, indent=2)\n\n    return bootstrap_results\n\n\ndef run_selectivity_control(train, test, best_layer, early_cache, n_perms=10):\n    print(f\"\\n{'='*70}\")\n    print(f\"SELECTIVITY CONTROL (10x random label permutation)\")\n    print(f\"{'='*70}\")\n\n    rng = np.random.default_rng(SEED)\n\n    X_train_list, y_train_list = [], []\n    for t in train:\n        hs = get_hidden_states_for_layer(t[\"trace_id\"], best_layer, early_cache)\n        if hs is None:\n            continue\n        labels = np.array(t[\"step_labels\"])\n        n = min(hs.shape[0], len(labels))\n        X_train_list.append(hs[:n].float().numpy())\n        y_train_list.append(labels[:n])\n\n    X_train = np.concatenate(X_train_list)\n    y_train = np.concatenate(y_train_list)\n\n    X_test_list, y_test_list = [], []\n    for t in test:\n        hs = get_hidden_states_for_layer(t[\"trace_id\"], best_layer, early_cache)\n        if hs is None:\n            continue\n        labels = np.array(t[\"step_labels\"])\n        n = min(hs.shape[0], len(labels))\n        X_test_list.append(hs[:n].float().numpy())\n        y_test_list.append(labels[:n])\n\n    X_test = np.concatenate(X_test_list)\n    y_test = np.concatenate(y_test_list)\n\n    clf = LogisticRegression(C=1.0, max_iter=1000, solver='liblinear',\n                             class_weight='balanced', random_state=SEED)\n    clf.fit(X_train, y_train)\n    real_bal_acc = balanced_accuracy_score(y_test, clf.predict(X_test))\n\n    perm_accs = []\n    for i in range(n_perms):\n        y_perm = rng.permutation(y_train)\n        clf_p = LogisticRegression(C=1.0, max_iter=1000, solver='liblinear',\n                                    class_weight='balanced', random_state=SEED)\n        clf_p.fit(X_train, y_perm)\n        perm_acc = balanced_accuracy_score(y_test, clf_p.predict(X_test))\n        perm_accs.append(perm_acc)\n        print(f\"  Perm {i+1}: bal_acc={perm_acc:.4f}\")\n\n    perm_accs = np.array(perm_accs)\n    selectivity_gap = real_bal_acc - perm_accs.mean()\n\n    result = {\n        \"real_bal_acc\": round(real_bal_acc, 4),\n        \"perm_mean\": round(float(perm_accs.mean()), 4),\n        \"perm_std\": round(float(perm_accs.std()), 4),\n        \"selectivity_gap\": round(selectivity_gap, 4),\n        \"n_perms\": n_perms,\n    }\n    print(f\"\\n  Real: {real_bal_acc:.4f}, Perm mean: {perm_accs.mean():.4f} +/- {perm_accs.std():.4f}\")\n    print(f\"  Selectivity gap: {selectivity_gap:.4f}\")\n\n    with open(OUTPUT_DIR / \"selectivity_control.json\", \"w\") as f:\n        json.dump(result, f, indent=2)\n\n    return result\n\n\ndef main():\n    t0 = time.time()\n\n    print(\"=\"*70)\n    print(\"STEP 1: Extract early layers (0-11)\")\n    print(\"=\"*70)\n    extract_early_layers()\n\n    results_sorted, train, val, test, early_cache = full_layer_sweep()\n\n    best = results_sorted[0]\n    old_best_layer = 14\n    old_best_bal_acc = 0.8172\n\n    if best[\"layer\"] != old_best_layer and best[\"bal_acc\"] > old_best_bal_acc:\n        print(f\"\\nNEW BEST LAYER: {best['layer']} (bal_acc={best['bal_acc']}) > old layer {old_best_layer} ({old_best_bal_acc})\")\n\n        hs_results, best_hs_w = run_temporal_probes_hs(train, val, test, best[\"layer\"], early_cache)\n        text_results, best_text_w = run_temporal_probes_text(train, val, test, best[\"layer\"], early_cache)\n        bootstrap = run_paired_bootstrap(train, test, best[\"layer\"], best_hs_w, best_text_w, early_cache)\n        selectivity = run_selectivity_control(train, test, best[\"layer\"], early_cache)\n    else:\n        print(f\"\\nLayer {old_best_layer} remains best or no improvement. Only sweep results reported.\")\n\n    elapsed = time.time() - t0\n    print(f\"\\n{'='*70}\")\n    print(f\"COMPLETE in {elapsed:.0f}s\")\n    print(f\"All outputs in: {OUTPUT_DIR}\")\n    print(f\"{'='*70}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written successfully.\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-17T09:04:57.089516+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written successfully.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-17T09:04:57.089685+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && CUDA_VISIBLE_DEVICES=0 HF_ENDPOINT=https://hf-mirror.com /root/miniconda3/bin/python3.12 scripts/r1_8b_early_layer_supplement.py 2>&1",
+  "account": "root",
+  "warn": "True",
+  "timeout": "600000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cd /root/autodl-tmp/contrastive_trace_safety && CUDA_VISIBLE_DEVICES=0 HF_ENDPOINT=https://hf-mirror.com /root/miniconda3/bin/python3.12 scripts/r1_8b_early_layer_supplement.py 2>&1",
+    "account": "root",
+    "warn": "True",
+    "timeout": "600000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-17T09:04:57.089837+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/autodl-tmp/contrastive_trace_safety && CUDA_VISIBLE_DEVICES=0 HF_ENDPOINT=https://hf-mirror.com /root/miniconda3/bin/python3.12 scripts/r1_8b_early_layer_supplement.py 2>&1'\\n\\nStdout:\\n\\nExtracting early layers:   3%|▎         | 8/268 [00:03<01:49,  2.37it/s]\\nExtracting early layers:   3%|▎         | 9/268 [00:03<01:25,  3.02it/s]\\nExtracting early layers:   4%|▎         | 10/268 [00:04<02:03,  2.09it/s]\\nExtracting early layers:   4%|▍         | 11/268 [00:04<01:45,  2.44it/s]\\nExtracting early layers:   4%|▍         | 12/268 [00:04<01:23,  3.05it/s]\\nExtracting early layers:   5%|▍         | 13/268 [00:04<01:09,  3.69it/s]\\nExtracting early layers:   5%|▌         | 14/268 [00:05<01:01,  4.11it/s]\\nExtracting early layers:   6%|▌         | 15/268 [00:05<01:14,  3.42it/s]\\nExtracting early layers:   6%|▌         | 16/268 [00:05<01:21,  3.07it/s]\\nExtracting early layers:   6%|▋         | 17/268 [00:06<01:05,  3.84it/s]\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-17T09:04:57.090023+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && nohup /root/miniconda3/bin/python3.12 -u scripts/r1_8b_early_layer_supplement.py > artifacts/r1_8b_supplement.log 2>&1 & echo \"PID: $!\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cd /root/autodl-tmp/contrastive_trace_safety && nohup /root/miniconda3/bin/python3.12 -u scripts/r1_8b_early_layer_supplement.py > artifacts/r1_8b_supplement.log 2>&1 & echo \"PID: $!\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-17T09:04:57.090162+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/autodl-tmp/contrastive_trace_safety && nohup /root/miniconda3/bin/python3.12 -u scripts/r1_8b_early_layer_supplement.py > artifacts/r1_8b_supplement.log 2>&1 & echo \\\"PID: $!\\\"'\\n\\nStdout:\\n\\nPID: 74153\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.72}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-17T09:04:57.090311+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_early_r1_8b/*.pt 2>/dev/null | head -5",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_early_r1_8b/*.pt 2>/dev/null | head -5",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-17T09:04:57.090437+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-17T09:04:57.090556+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_early_r1_8b/ | wc -l",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_early_r1_8b/ | wc -l",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-17T09:04:57.090701+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"38\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-17T09:04:57.090851+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "sleep 60 && ls /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_early_r1_8b/ | wc -l && ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "sleep 60 && ls /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_early_r1_8b/ | wc -l && ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-17T09:04:57.090978+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'sleep 60 && ls /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_early_r1_8b/ | wc -l && ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \\\"Process finished\\\"'\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-17T09:04:57.091097+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_early_r1_8b/ | wc -l && ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_early_r1_8b/ | wc -l && ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-17T09:04:57.091266+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"160\\n 74153 S       01:21\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.79}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-17T09:04:57.091409+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "while ps -p 74153 > /dev/null 2>&1; do sleep 5; done && echo \"DONE\" && ls /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_early_r1_8b/ | wc -l",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "while ps -p 74153 > /dev/null 2>&1; do sleep 5; done && echo \"DONE\" && ls /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_early_r1_8b/ | wc -l",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-17T09:04:57.091537+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'while ps -p 74153 > /dev/null 2>&1; do sleep 5; done && echo \\\"DONE\\\" && ls /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_early_r1_8b/ | wc -l'\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-17T09:04:57.091691+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_early_r1_8b/ | wc -l && ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_early_r1_8b/ | wc -l && ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-17T09:04:57.091837+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"264\\n 74153 S       02:00\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.87}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-17T09:04:57.092007+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_early_r1_8b/ | wc -l && ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_early_r1_8b/ | wc -l && ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-17T09:04:57.092138+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"268\\n 74153 S       02:04\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-17T09:04:57.092267+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-17T09:04:57.092388+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \" 74153 S       02:08\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-17T09:04:57.092502+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-17T09:04:57.092684+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \" 74153 S       02:11\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-17T09:04:57.092815+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "tail -30 /root/autodl-tmp/contrastive_trace_safety/artifacts/r1_8b_supplement.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "tail -30 /root/autodl-tmp/contrastive_trace_safety/artifacts/r1_8b_supplement.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-17T09:04:57.093007+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"======================================================================\\nSTEP 1: Extract early layers (0-11)\\n======================================================================\\nNeed to extract early layers for 249/268 traces\\nLoading R1-8B model...\\n`torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]\\rLoading checkpoint shards:  50%|█████     | 1/2 [00:01<00:01,  1.92s/it]\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.68s/it]\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.72s/it]\\nModel loaded.\\n\\rExtracting early layers:   0%|          | 0/249 [00:00<?, ?it/s]\\rExtracting early layers:   0%|          | 1/249 [00:00<03:14,  1.28it/s]\\rExtracting early layers:   1%|          | 2/249 [00:01<02:28,  1.67it/s]\\rExtracting early layers:   1%|          | 3/249 [00:01<02:40,  1.53it/s]\\rExtracting early layers:   2%|▏         | 4/249 [00:02<01:51,  2.19it/s]\\rExtracting early layers:   2%|▏         | 5/249 [00:02<01:41,  2.42it/s]\\rExtracting early layers:   2%|▏         | 6/249 [00:02<01:25,  2.83it/s]\\rExtracting early layers:   3%|▎         | 8/249 [00:02<00:58,  4.11it/s]\\rExtracting early layers:   4%|▎         | 9/249 [00:03<01:07,  3.58it/s]\\rExtracting early layers:   4%|▍         | 10/249 [00:03<01:02,  3.85it/s]\\rExtracting early layers:   4%|▍         | 11/249 [00:04<01:22,  2.87it/s]\\rExtracting early layers:   5%|▍         | 12/249 [00:04<01:36,  2.46it/s]\\rExtracting early layers:   6%|▌         | 14/249 [00:05<01:23,  2.80it/s]\\rExtracting early layers:   6%|▌         | 15/249 [00:05<01:37,  2.39it/s]\\rExtracting early layers:   6%|▋         | 16/249 [00:06<01:26,  2.70it/s]\\rExtracting early layers:   7%|▋         | 17/249 [00:06<01:13,  3.14it/s]\\rExtracting early layers:   7%|▋         | 18/249 [00:06<01:04,  3.57it/s]\\rExtracting early layers:   8%|▊         | 19
+…[truncated 6439 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-17T09:04:57.093190+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-17T09:04:57.093321+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \" 74153 S       02:24\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-17T09:04:57.093442+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "tail -50 /root/autodl-tmp/contrastive_trace_safety/artifacts/r1_8b_supplement.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "tail -50 /root/autodl-tmp/contrastive_trace_safety/artifacts/r1_8b_supplement.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-17T09:04:57.093659+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"======================================================================\\nSTEP 1: Extract early layers (0-11)\\n======================================================================\\nNeed to extract early layers for 249/268 traces\\nLoading R1-8B model...\\n`torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]\\rLoading checkpoint shards:  50%|█████     | 1/2 [00:01<00:01,  1.92s/it]\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.68s/it]\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.72s/it]\\nModel loaded.\\n\\rExtracting early layers:   0%|          | 0/249 [00:00<?, ?it/s]\\rExtracting early layers:   0%|          | 1/249 [00:00<03:14,  1.28it/s]\\rExtracting early layers:   1%|          | 2/249 [00:01<02:28,  1.67it/s]\\rExtracting early layers:   1%|          | 3/249 [00:01<02:40,  1.53it/s]\\rExtracting early layers:   2%|▏         | 4/249 [00:02<01:51,  2.19it/s]\\rExtracting early layers:   2%|▏         | 5/249 [00:02<01:41,  2.42it/s]\\rExtracting early layers:   2%|▏         | 6/249 [00:02<01:25,  2.83it/s]\\rExtracting early layers:   3%|▎         | 8/249 [00:02<00:58,  4.11it/s]\\rExtracting early layers:   4%|▎         | 9/249 [00:03<01:07,  3.58it/s]\\rExtracting early layers:   4%|▍         | 10/249 [00:03<01:02,  3.85it/s]\\rExtracting early layers:   4%|▍         | 11/249 [00:04<01:22,  2.87it/s]\\rExtracting early layers:   5%|▍         | 12/249 [00:04<01:36,  2.46it/s]\\rExtracting early layers:   6%|▌         | 14/249 [00:05<01:23,  2.80it/s]\\rExtracting early layers:   6%|▌         | 15/249 [00:05<01:37,  2.39it/s]\\rExtracting early layers:   6%|▋         | 16/249 [00:06<01:26,  2.70it/s]\\rExtracting early layers:   7%|▋         | 17/249 [00:06<01:13,  3.14it/s]\\rExtracting early layers:   7%|▋         | 18/249 [00:06<01:04,  3.57it/s]\\rExtracting early layers:   8%|▊         | 19
+…[truncated 6440 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-17T09:04:57.093879+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-17T09:04:57.094017+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \" 74153 S       02:34\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-17T09:04:57.094138+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-17T09:04:57.094262+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \" 74153 S       02:37\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-17T09:04:57.094379+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-17T09:04:57.094499+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \" 74153 S       02:39\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-17T09:04:57.094642+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-17T09:04:57.094802+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \" 74153 S       02:42\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-17T09:04:57.095052+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "tail -20 /root/autodl-tmp/contrastive_trace_safety/artifacts/r1_8b_supplement.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "tail -20 /root/autodl-tmp/contrastive_trace_safety/artifacts/r1_8b_supplement.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-17T09:04:57.095286+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"`torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]\\rLoading checkpoint shards:  50%|█████     | 1/2 [00:01<00:01,  1.92s/it]\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.68s/it]\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.72s/it]\\nModel loaded.\\n\\rExtracting early layers:   0%|          | 0/249 [00:00<?, ?it/s]\\rExtracting early layers:   0%|          | 1/249 [00:00<03:14,  1.28it/s]\\rExtracting early layers:   1%|          | 2/249 [00:01<02:28,  1.67it/s]\\rExtracting early layers:   1%|          | 3/249 [00:01<02:40,  1.53it/s]\\rExtracting early layers:   2%|▏         | 4/249 [00:02<01:51,  2.19it/s]\\rExtracting early layers:   2%|▏         | 5/249 [00:02<01:41,  2.42it/s]\\rExtracting early layers:   2%|▏         | 6/249 [00:02<01:25,  2.83it/s]\\rExtracting early layers:   3%|▎         | 8/249 [00:02<00:58,  4.11it/s]\\rExtracting early layers:   4%|▎         | 9/249 [00:03<01:07,  3.58it/s]\\rExtracting early layers:   4%|▍         | 10/249 [00:03<01:02,  3.85it/s]\\rExtracting early layers:   4%|▍         | 11/249 [00:04<01:22,  2.87it/s]\\rExtracting early layers:   5%|▍         | 12/249 [00:04<01:36,  2.46it/s]\\rExtracting early layers:   6%|▌         | 14/249 [00:05<01:23,  2.80it/s]\\rExtracting early layers:   6%|▌         | 15/249 [00:05<01:37,  2.39it/s]\\rExtracting early layers:   6%|▋         | 16/249 [00:06<01:26,  2.70it/s]\\rExtracting early layers:   7%|▋         | 17/249 [00:06<01:13,  3.14it/s]\\rExtracting early layers:   7%|▋         | 18/249 [00:06<01:04,  3.57it/s]\\rExtracting early layers:   8%|▊         | 19/249 [00:06<01:04,  3.54it/s]\\rExtracting early layers:   8%|▊         | 20/249 [00:07<01:11,  3.20it/s]\\rExtracting early layers:   9%|▉         | 22/249 [00:07<01:04,  3.54it/s]\\rExtracting early layers:   9%|▉         | 23/249 [00:07<01:06,  3.42it/s]\\
+…[truncated 6436 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-17T09:04:57.095467+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-17T09:04:57.095623+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \" 74153 S       02:52\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-17T09:04:57.095769+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-17T09:04:57.095905+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \" 74153 S       02:55\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-17T09:04:57.096025+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-17T09:04:57.096145+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \" 74153 S       02:58\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-17T09:04:57.096260+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-17T09:04:57.096378+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \" 74153 S       03:01\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-17T09:04:57.096492+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "grep -c \"^[0-9]\" /root/autodl-tmp/contrastive_trace_safety/artifacts/r1_8b_supplement.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "grep -c \"^[0-9]\" /root/autodl-tmp/contrastive_trace_safety/artifacts/r1_8b_supplement.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-17T09:04:57.096663+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"7\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-17T09:04:57.096814+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-17T09:04:57.096936+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \" 74153 S       03:14\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-17T09:04:57.097050+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-17T09:04:57.097175+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \" 74153 S       03:17\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-17T09:04:57.097289+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-17T09:04:57.097405+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \" 74153 S       03:23\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-17T09:04:57.097517+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-17T09:04:57.097651+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \" 74153 S       03:30\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-17T09:04:57.097801+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-17T09:04:57.097933+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \" 74153 S       03:34\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-17T09:04:57.098048+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "grep -E \"^(Layer|[0-9]|Best|NEW|Ranking|=)\" /root/autodl-tmp/contrastive_trace_safety/artifacts/r1_8b_supplement.log | tail -40",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "grep -E \"^(Layer|[0-9]|Best|NEW|Ranking|=)\" /root/autodl-tmp/contrastive_trace_safety/artifacts/r1_8b_supplement.log | tail -40",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-17T09:04:57.098178+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"======================================================================\\n======================================================================\\n======================================================================\\n======================================================================\\nLayer  Depth%  bal_acc   cross_rate  lead_mean  pre_cp_fpr \\n0      0.0     0.7103    0.4186      15.83      0.1949     \\n1      3.2     0.7467    0.3256      14.57      0.1523     \\n2      6.5     0.7586    0.2558      11.82      0.1346     \\n3      9.7     0.7841    0.2093      14.11      0.1194     \\n4      12.9    0.7626    0.1395      16.00      0.1183     \\n5      16.1    0.7606    0.1395      16.33      0.0984     \\n6      19.4    0.7623    0.1860      17.88      0.1114     \\n7      22.6    0.7630    0.1860      16.25      0.1156     \\n8      25.8    0.7630    0.1860      13.88      0.1096     \\n9      29.0    0.7555    0.1395      17.67      0.1028     \\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93 · 2026-05-17T09:04:57.098336+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-17T09:04:57.098461+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \" 74153 S       03:49\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95 · 2026-05-17T09:04:57.098576+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-17T09:04:57.098739+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \" 74153 S       03:59\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.66}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97 · 2026-05-17T09:04:57.098858+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-17T09:04:57.098978+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \" 74153 S       04:02\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 99 · 2026-05-17T09:04:57.099091+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "grep -E \"^(Layer|[0-9]|Best|NEW|Ranking|=|TEMPO|W=|BOOT|SELEC|Perm|Real|Comp)\" /root/autodl-tmp/contrastive_trace_safety/artifacts/r1_8b_supplement.log | tail -50",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "grep -E \"^(Layer|[0-9]|Best|NEW|Ranking|=|TEMPO|W=|BOOT|SELEC|Perm|Real|Comp)\" /root/autodl-tmp/contrastive_trace_safety/artifacts/r1_8b_supplement.log | tail -50",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-17T09:04:57.099220+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"======================================================================\\n======================================================================\\n======================================================================\\n======================================================================\\nLayer  Depth%  bal_acc   cross_rate  lead_mean  pre_cp_fpr \\n0      0.0     0.7103    0.4186      15.83      0.1949     \\n1      3.2     0.7467    0.3256      14.57      0.1523     \\n2      6.5     0.7586    0.2558      11.82      0.1346     \\n3      9.7     0.7841    0.2093      14.11      0.1194     \\n4      12.9    0.7626    0.1395      16.00      0.1183     \\n5      16.1    0.7606    0.1395      16.33      0.0984     \\n6      19.4    0.7623    0.1860      17.88      0.1114     \\n7      22.6    0.7630    0.1860      16.25      0.1156     \\n8      25.8    0.7630    0.1860      13.88      0.1096     \\n9      29.0    0.7555    0.1395      17.67      0.1028     \\n10     32.3    0.7749    0.1395      18.50      0.0868     \\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 101 · 2026-05-17T09:04:57.099364+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 102 · 2026-05-17T09:04:57.099487+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \" 74153 S       04:13\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 103 · 2026-05-17T09:04:57.099617+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-17T09:04:57.099744+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \" 74153 S       04:17\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 105 · 2026-05-17T09:04:57.099859+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 106 · 2026-05-17T09:04:57.099976+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \" 74153 S       04:21\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 107 · 2026-05-17T09:04:57.100090+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "grep -E \"^(Layer|[0-9]|Best|NEW|Ranking|COMP)\" /root/autodl-tmp/contrastive_trace_safety/artifacts/r1_8b_supplement.log | tail -30",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "grep -E \"^(Layer|[0-9]|Best|NEW|Ranking|COMP)\" /root/autodl-tmp/contrastive_trace_safety/artifacts/r1_8b_supplement.log | tail -30",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 108 · 2026-05-17T09:04:57.100218+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Layer  Depth%  bal_acc   cross_rate  lead_mean  pre_cp_fpr \\n0      0.0     0.7103    0.4186      15.83      0.1949     \\n1      3.2     0.7467    0.3256      14.57      0.1523     \\n2      6.5     0.7586    0.2558      11.82      0.1346     \\n3      9.7     0.7841    0.2093      14.11      0.1194     \\n4      12.9    0.7626    0.1395      16.00      0.1183     \\n5      16.1    0.7606    0.1395      16.33      0.0984     \\n6      19.4    0.7623    0.1860      17.88      0.1114     \\n7      22.6    0.7630    0.1860      16.25      0.1156     \\n8      25.8    0.7630    0.1860      13.88      0.1096     \\n9      29.0    0.7555    0.1395      17.67      0.1028     \\n10     32.3    0.7749    0.1395      18.50      0.0868     \\n11     35.5    0.7762    0.2093      11.22      0.1060     \\n12     38.7    0.7871    0.1628      13.29      0.0939     \\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 109 · 2026-05-17T09:04:57.100375+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 110 · 2026-05-17T09:04:57.100498+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \" 74153 S       04:32\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 111 · 2026-05-17T09:04:57.100666+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 112 · 2026-05-17T09:04:57.100794+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \" 74153 S       04:34\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 113 · 2026-05-17T09:04:57.100911+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 114 · 2026-05-17T09:04:57.101034+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \" 74153 S       04:37\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 115 · 2026-05-17T09:04:57.101147+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 116 · 2026-05-17T09:04:57.101264+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \" 74153 S       04:40\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 117 · 2026-05-17T09:04:57.101385+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "grep -E \"^(Layer|[0-9]|Best|NEW|Ranking|COMP)\" /root/autodl-tmp/contrastive_trace_safety/artifacts/r1_8b_supplement.log | tail -30",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "grep -E \"^(Layer|[0-9]|Best|NEW|Ranking|COMP)\" /root/autodl-tmp/contrastive_trace_safety/artifacts/r1_8b_supplement.log | tail -30",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 118 · 2026-05-17T09:04:57.101515+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Layer  Depth%  bal_acc   cross_rate  lead_mean  pre_cp_fpr \\n0      0.0     0.7103    0.4186      15.83      0.1949     \\n1      3.2     0.7467    0.3256      14.57      0.1523     \\n2      6.5     0.7586    0.2558      11.82      0.1346     \\n3      9.7     0.7841    0.2093      14.11      0.1194     \\n4      12.9    0.7626    0.1395      16.00      0.1183     \\n5      16.1    0.7606    0.1395      16.33      0.0984     \\n6      19.4    0.7623    0.1860      17.88      0.1114     \\n7      22.6    0.7630    0.1860      16.25      0.1156     \\n8      25.8    0.7630    0.1860      13.88      0.1096     \\n9      29.0    0.7555    0.1395      17.67      0.1028     \\n10     32.3    0.7749    0.1395      18.50      0.0868     \\n11     35.5    0.7762    0.2093      11.22      0.1060     \\n12     38.7    0.7871    0.1628      13.29      0.0939     \\n13     41.9    0.7701    0.1628      17.57      0.1086     \\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 119 · 2026-05-17T09:04:57.101657+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 120 · 2026-05-17T09:04:57.101779+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \" 74153 S       04:50\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.96}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 121 · 2026-05-17T09:04:57.101893+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 122 · 2026-05-17T09:04:57.102012+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \" 74153 S       04:53\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 123 · 2026-05-17T09:04:57.102126+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 124 · 2026-05-17T09:04:57.102250+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \" 74153 S       04:57\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 125 · 2026-05-17T09:04:57.102365+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 126 · 2026-05-17T09:04:57.102481+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \" 74153 S       04:59\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 127 · 2026-05-17T09:04:57.102593+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "grep -E \"^([0-9]|Best|NEW|Ranking|COMP|Layer )\" /root/autodl-tmp/contrastive_trace_safety/artifacts/r1_8b_supplement.log | tail -30",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "grep -E \"^([0-9]|Best|NEW|Ranking|COMP|Layer )\" /root/autodl-tmp/contrastive_trace_safety/artifacts/r1_8b_supplement.log | tail -30",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 128 · 2026-05-17T09:04:57.102743+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Layer  Depth%  bal_acc   cross_rate  lead_mean  pre_cp_fpr \\n0      0.0     0.7103    0.4186      15.83      0.1949     \\n1      3.2     0.7467    0.3256      14.57      0.1523     \\n2      6.5     0.7586    0.2558      11.82      0.1346     \\n3      9.7     0.7841    0.2093      14.11      0.1194     \\n4      12.9    0.7626    0.1395      16.00      0.1183     \\n5      16.1    0.7606    0.1395      16.33      0.0984     \\n6      19.4    0.7623    0.1860      17.88      0.1114     \\n7      22.6    0.7630    0.1860      16.25      0.1156     \\n8      25.8    0.7630    0.1860      13.88      0.1096     \\n9      29.0    0.7555    0.1395      17.67      0.1028     \\n10     32.3    0.7749    0.1395      18.50      0.0868     \\n11     35.5    0.7762    0.2093      11.22      0.1060     \\n12     38.7    0.7871    0.1628      13.29      0.0939     \\n13     41.9    0.7701    0.1628      17.57      0.1086     \\n14     45.2    0.7830    0.1395      13.83      0.1112     \\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 129 · 2026-05-17T09:04:57.102894+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 130 · 2026-05-17T09:04:57.103015+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \" 74153 S       05:11\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 131 · 2026-05-17T09:04:57.103129+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 132 · 2026-05-17T09:04:57.103254+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \" 74153 S       05:15\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 133 · 2026-05-17T09:04:57.103370+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 134 · 2026-05-17T09:04:57.103527+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \" 74153 S       05:18\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 135 · 2026-05-17T09:04:57.103713+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "grep -E \"^([0-9]|Best|NEW|Layer |Rank)\" /root/autodl-tmp/contrastive_trace_safety/artifacts/r1_8b_supplement.log | tail -30",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "grep -E \"^([0-9]|Best|NEW|Layer |Rank)\" /root/autodl-tmp/contrastive_trace_safety/artifacts/r1_8b_supplement.log | tail -30",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 136 · 2026-05-17T09:04:57.103908+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Layer  Depth%  bal_acc   cross_rate  lead_mean  pre_cp_fpr \\n0      0.0     0.7103    0.4186      15.83      0.1949     \\n1      3.2     0.7467    0.3256      14.57      0.1523     \\n2      6.5     0.7586    0.2558      11.82      0.1346     \\n3      9.7     0.7841    0.2093      14.11      0.1194     \\n4      12.9    0.7626    0.1395      16.00      0.1183     \\n5      16.1    0.7606    0.1395      16.33      0.0984     \\n6      19.4    0.7623    0.1860      17.88      0.1114     \\n7      22.6    0.7630    0.1860      16.25      0.1156     \\n8      25.8    0.7630    0.1860      13.88      0.1096     \\n9      29.0    0.7555    0.1395      17.67      0.1028     \\n10     32.3    0.7749    0.1395      18.50      0.0868     \\n11     35.5    0.7762    0.2093      11.22      0.1060     \\n12     38.7    0.7871    0.1628      13.29      0.0939     \\n13     41.9    0.7701    0.1628      17.57      0.1086     \\n14     45.2    0.7830    0.1395      13.83      0.1112     \\n15     48.4    0.7694    0.1860      14.12      0.1075     \\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 137 · 2026-05-17T09:04:57.104052+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 138 · 2026-05-17T09:04:57.104177+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \" 74153 S       05:25\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 139 · 2026-05-17T09:04:57.104302+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 140 · 2026-05-17T09:04:57.104426+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \" 74153 S       05:28\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 141 · 2026-05-17T09:04:57.104638+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 142 · 2026-05-17T09:04:57.104803+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \" 74153 S       05:33\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 143 · 2026-05-17T09:04:57.104927+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 144 · 2026-05-17T09:04:57.105049+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \" 74153 S       06:00\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 145 · 2026-05-17T09:04:57.105166+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "grep -E \"^([0-9]|Best|NEW|Layer |Rank)\" /root/autodl-tmp/contrastive_trace_safety/artifacts/r1_8b_supplement.log | tail -35",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "grep -E \"^([0-9]|Best|NEW|Layer |Rank)\" /root/autodl-tmp/contrastive_trace_safety/artifacts/r1_8b_supplement.log | tail -35",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 146 · 2026-05-17T09:04:57.105299+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Layer  Depth%  bal_acc   cross_rate  lead_mean  pre_cp_fpr \\n0      0.0     0.7103    0.4186      15.83      0.1949     \\n1      3.2     0.7467    0.3256      14.57      0.1523     \\n2      6.5     0.7586    0.2558      11.82      0.1346     \\n3      9.7     0.7841    0.2093      14.11      0.1194     \\n4      12.9    0.7626    0.1395      16.00      0.1183     \\n5      16.1    0.7606    0.1395      16.33      0.0984     \\n6      19.4    0.7623    0.1860      17.88      0.1114     \\n7      22.6    0.7630    0.1860      16.25      0.1156     \\n8      25.8    0.7630    0.1860      13.88      0.1096     \\n9      29.0    0.7555    0.1395      17.67      0.1028     \\n10     32.3    0.7749    0.1395      18.50      0.0868     \\n11     35.5    0.7762    0.2093      11.22      0.1060     \\n12     38.7    0.7871    0.1628      13.29      0.0939     \\n13     41.9    0.7701    0.1628      17.57      0.1086     \\n14     45.2    0.7830    0.1395      13.83      0.1112     \\n15     48.4    0.7694    0.1860      14.12      0.1075     \\n16     51.6    0.7789    0.1395      13.83      0.0829     \\n17     54.8    0.7541    0.1395      17.50      0.0923     \\n18     58.1    0.7443    0.1628      16.00      0.0953     \\n19     61.3    0.7568    0.1860      18.00      0.1029     \\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 147 · 2026-05-17T09:04:57.105459+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 148 · 2026-05-17T09:04:57.105584+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \" 74153 S       06:24\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 149 · 2026-05-17T09:04:57.105727+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 150 · 2026-05-17T09:04:57.105850+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \" 74153 S       06:28\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 151 · 2026-05-17T09:04:57.105967+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "grep -E \"^([0-9]|Best|NEW|Layer |Rank|COMP)\" /root/autodl-tmp/contrastive_trace_safety/artifacts/r1_8b_supplement.log | tail -35",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "grep -E \"^([0-9]|Best|NEW|Layer |Rank|COMP)\" /root/autodl-tmp/contrastive_trace_safety/artifacts/r1_8b_supplement.log | tail -35",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 152 · 2026-05-17T09:04:57.106099+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Layer  Depth%  bal_acc   cross_rate  lead_mean  pre_cp_fpr \\n0      0.0     0.7103    0.4186      15.83      0.1949     \\n1      3.2     0.7467    0.3256      14.57      0.1523     \\n2      6.5     0.7586    0.2558      11.82      0.1346     \\n3      9.7     0.7841    0.2093      14.11      0.1194     \\n4      12.9    0.7626    0.1395      16.00      0.1183     \\n5      16.1    0.7606    0.1395      16.33      0.0984     \\n6      19.4    0.7623    0.1860      17.88      0.1114     \\n7      22.6    0.7630    0.1860      16.25      0.1156     \\n8      25.8    0.7630    0.1860      13.88      0.1096     \\n9      29.0    0.7555    0.1395      17.67      0.1028     \\n10     32.3    0.7749    0.1395      18.50      0.0868     \\n11     35.5    0.7762    0.2093      11.22      0.1060     \\n12     38.7    0.7871    0.1628      13.29      0.0939     \\n13     41.9    0.7701    0.1628      17.57      0.1086     \\n14     45.2    0.7830    0.1395      13.83      0.1112     \\n15     48.4    0.7694    0.1860      14.12      0.1075     \\n16     51.6    0.7789    0.1395      13.83      0.0829     \\n17     54.8    0.7541    0.1395      17.50      0.0923     \\n18     58.1    0.7443    0.1628      16.00      0.0953     \\n19     61.3    0.7568    0.1860      18.00      0.1029     \\n20     64.5    0.7470    0.1860      15.50      0.0955     \\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 153 · 2026-05-17T09:04:57.106233+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 154 · 2026-05-17T09:04:57.106355+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \" 74153 S       06:41\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 155 · 2026-05-17T09:04:57.106471+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 156 · 2026-05-17T09:04:57.106590+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \" 74153 S       06:46\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 157 · 2026-05-17T09:04:57.106729+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 158 · 2026-05-17T09:04:57.106848+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \" 74153 S       06:52\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 159 · 2026-05-17T09:04:57.106965+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "grep -E \"^([0-9]|Best|NEW|Layer |Rank|COMP)\" /root/autodl-tmp/contrastive_trace_safety/artifacts/r1_8b_supplement.log | tail -40",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "grep -E \"^([0-9]|Best|NEW|Layer |Rank|COMP)\" /root/autodl-tmp/contrastive_trace_safety/artifacts/r1_8b_supplement.log | tail -40",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 160 · 2026-05-17T09:04:57.107097+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Layer  Depth%  bal_acc   cross_rate  lead_mean  pre_cp_fpr \\n0      0.0     0.7103    0.4186      15.83      0.1949     \\n1      3.2     0.7467    0.3256      14.57      0.1523     \\n2      6.5     0.7586    0.2558      11.82      0.1346     \\n3      9.7     0.7841    0.2093      14.11      0.1194     \\n4      12.9    0.7626    0.1395      16.00      0.1183     \\n5      16.1    0.7606    0.1395      16.33      0.0984     \\n6      19.4    0.7623    0.1860      17.88      0.1114     \\n7      22.6    0.7630    0.1860      16.25      0.1156     \\n8      25.8    0.7630    0.1860      13.88      0.1096     \\n9      29.0    0.7555    0.1395      17.67      0.1028     \\n10     32.3    0.7749    0.1395      18.50      0.0868     \\n11     35.5    0.7762    0.2093      11.22      0.1060     \\n12     38.7    0.7871    0.1628      13.29      0.0939     \\n13     41.9    0.7701    0.1628      17.57      0.1086     \\n14     45.2    0.7830    0.1395      13.83      0.1112     \\n15     48.4    0.7694    0.1860      14.12      0.1075     \\n16     51.6    0.7789    0.1395      13.83      0.0829     \\n17     54.8    0.7541    0.1395      17.50      0.0923     \\n18     58.1    0.7443    0.1628      16.00      0.0953     \\n19     61.3    0.7568    0.1860      18.00      0.1029     \\n20     64.5    0.7470    0.1860      15.50      0.0955     \\n21     67.7    0.7426    0.1395      17.33      0.0968     \\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 161 · 2026-05-17T09:04:57.107230+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 162 · 2026-05-17T09:04:57.107351+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \" 74153 S       07:01\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 163 · 2026-05-17T09:04:57.107465+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 164 · 2026-05-17T09:04:57.107583+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \" 74153 S       07:20\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 165 · 2026-05-17T09:04:57.107722+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "grep -E \"^([0-9]|Best|NEW|Layer |Rank|COMP)\" /root/autodl-tmp/contrastive_trace_safety/artifacts/r1_8b_supplement.log | tail -40",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "grep -E \"^([0-9]|Best|NEW|Layer |Rank|COMP)\" /root/autodl-tmp/contrastive_trace_safety/artifacts/r1_8b_supplement.log | tail -40",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 166 · 2026-05-17T09:04:57.107877+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Layer  Depth%  bal_acc   cross_rate  lead_mean  pre_cp_fpr \\n0      0.0     0.7103    0.4186      15.83      0.1949     \\n1      3.2     0.7467    0.3256      14.57      0.1523     \\n2      6.5     0.7586    0.2558      11.82      0.1346     \\n3      9.7     0.7841    0.2093      14.11      0.1194     \\n4      12.9    0.7626    0.1395      16.00      0.1183     \\n5      16.1    0.7606    0.1395      16.33      0.0984     \\n6      19.4    0.7623    0.1860      17.88      0.1114     \\n7      22.6    0.7630    0.1860      16.25      0.1156     \\n8      25.8    0.7630    0.1860      13.88      0.1096     \\n9      29.0    0.7555    0.1395      17.67      0.1028     \\n10     32.3    0.7749    0.1395      18.50      0.0868     \\n11     35.5    0.7762    0.2093      11.22      0.1060     \\n12     38.7    0.7871    0.1628      13.29      0.0939     \\n13     41.9    0.7701    0.1628      17.57      0.1086     \\n14     45.2    0.7830    0.1395      13.83      0.1112     \\n15     48.4    0.7694    0.1860      14.12      0.1075     \\n16     51.6    0.7789    0.1395      13.83      0.0829     \\n17     54.8    0.7541    0.1395      17.50      0.0923     \\n18     58.1    0.7443    0.1628      16.00      0.0953     \\n19     61.3    0.7568    0.1860      18.00      0.1029     \\n20     64.5    0.7470    0.1860      15.50      0.0955     \\n21     67.7    0.7426    0.1395      17.33      0.0968     \\n22     71.0    0.7388    0.1395      21.00      0.1066     \\n23     74.2    0.7300    0.1395      13.83      0.0903     \\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 167 · 2026-05-17T09:04:57.108074+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ps -p 74153 -o pid,state,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 168 · 2026-05-17T09:04:57.108204+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Process finished\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 169 · 2026-05-17T09:04:57.108334+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "grep -E \"^([0-9]|Best|NEW|Layer |Rank|COMP|=)\" /root/autodl-tmp/contrastive_trace_safety/artifacts/r1_8b_supplement.log | grep -v \"^=.*$\" | tail -40",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "grep -E \"^([0-9]|Best|NEW|Layer |Rank|COMP|=)\" /root/autodl-tmp/contrastive_trace_safety/artifacts/r1_8b_supplement.log | grep -v \"^=.*$\" | tail -40",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 170 · 2026-05-17T09:04:57.108480+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"15     48.4    0.7694    0.1860      14.12      0.1075     \\n16     51.6    0.7789    0.1395      13.83      0.0829     \\n17     54.8    0.7541    0.1395      17.50      0.0923     \\n18     58.1    0.7443    0.1628      16.00      0.0953     \\n19     61.3    0.7568    0.1860      18.00      0.1029     \\n20     64.5    0.7470    0.1860      15.50      0.0955     \\n21     67.7    0.7426    0.1395      17.33      0.0968     \\n22     71.0    0.7388    0.1395      21.00      0.1066     \\n23     74.2    0.7300    0.1395      13.83      0.0903     \\n24     77.4    0.7286    0.1163      16.00      0.0844     \\nRanking by bal_acc:\\nRank  Layer  Depth%  bal_acc   cross_rate  lead_mean  pre_cp_fpr \\n1     12     38.7    0.7871    0.1628      13.29      0.0939     \\n2     3      9.7     0.7841    0.2093      14.11      0.1194     \\n3     14     45.2    0.7830    0.1395      13.83      0.1112     \\n4     16     51.6    0.7789    0.1395      13.83      0.0829     \\n5     11     35.5    0.7762    0.2093      11.22      0.1060     \\n6     10     32.3    0.7749    0.1395      18.50      0.0868     \\n7     13     41.9    0.7701    0.1628      17.57      0.1086     \\n8     15     48.4    0.7694    0.1860      14.12      0.1075     \\n9     7      22.6    0.7630    0.1860      16.25      0.1156     \\n10    8      25.8    0.7630    0.1860      13.88      0.1096     \\n11    4      12.9    0.7626    0.1395      16.00      0.1183     \\n12    6      19.4    0.7623    0.1860      17.88      0.1114     \\n13    5      16.1    0.7606    0.1395      16.33      0.0984     \\n14    2      6.5     0.7586    0.2558      11.82      0.1346     \\n15    19     61.3    0.7568    0.1860      18.00      0.1029     \\n16    9      29.0    0.7555    0.1395      17.67      0.1028     \\n17    17     54.8    0.7541    0.1395      17.50      0.0923     \\n18    20     64.5    0.7470    0.1860      15.50      0.0955     \\n19    1   
+…[truncated 708 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 171 · 2026-05-17T09:04:57.108819+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/r1_8b_layer_supplement/layer_sweep_full.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/r1_8b_layer_supplement/layer_sweep_full.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 172 · 2026-05-17T09:04:57.109193+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"results\\\": [\\n    {\\n      \\\"layer\\\": 0,\\n      \\\"depth_pct\\\": 0.0,\\n      \\\"bal_acc\\\": 0.7103,\\n      \\\"crossing_rate\\\": 0.4186,\\n      \\\"lead_mean\\\": 15.83,\\n      \\\"pre_cp_fpr\\\": 0.1949\\n    },\\n    {\\n      \\\"layer\\\": 1,\\n      \\\"depth_pct\\\": 3.2,\\n      \\\"bal_acc\\\": 0.7467,\\n      \\\"crossing_rate\\\": 0.3256,\\n      \\\"lead_mean\\\": 14.57,\\n      \\\"pre_cp_fpr\\\": 0.1523\\n    },\\n    {\\n      \\\"layer\\\": 2,\\n      \\\"depth_pct\\\": 6.5,\\n      \\\"bal_acc\\\": 0.7586,\\n      \\\"crossing_rate\\\": 0.2558,\\n      \\\"lead_mean\\\": 11.82,\\n      \\\"pre_cp_fpr\\\": 0.1346\\n    },\\n    {\\n      \\\"layer\\\": 3,\\n      \\\"depth_pct\\\": 9.7,\\n      \\\"bal_acc\\\": 0.7841,\\n      \\\"crossing_rate\\\": 0.2093,\\n      \\\"lead_mean\\\": 14.11,\\n      \\\"pre_cp_fpr\\\": 0.1194\\n    },\\n    {\\n      \\\"layer\\\": 4,\\n      \\\"depth_pct\\\": 12.9,\\n      \\\"bal_acc\\\": 0.7626,\\n      \\\"crossing_rate\\\": 0.1395,\\n      \\\"lead_mean\\\": 16.0,\\n      \\\"pre_cp_fpr\\\": 0.1183\\n    },\\n    {\\n      \\\"layer\\\": 5,\\n      \\\"depth_pct\\\": 16.1,\\n      \\\"bal_acc\\\": 0.7606,\\n      \\\"crossing_rate\\\": 0.1395,\\n      \\\"lead_mean\\\": 16.33,\\n      \\\"pre_cp_fpr\\\": 0.0984\\n    },\\n    {\\n      \\\"layer\\\": 6,\\n      \\\"depth_pct\\\": 19.4,\\n      \\\"bal_acc\\\": 0.7623,\\n      \\\"crossing_rate\\\": 0.186,\\n      \\\"lead_mean\\\": 17.88,\\n      \\\"pre_cp_fpr\\\": 0.1114\\n    },\\n    {\\n      \\\"layer\\\": 7,\\n      \\\"depth_pct\\\": 22.6,\\n      \\\"bal_acc\\\": 0.763,\\n      \\\"crossing_rate\\\": 0.186,\\n      \\\"lead_mean\\\": 16.25,\\n      \\\"pre_cp_fpr\\\": 0.1156\\n    },\\n    {\\n      \\\"layer\\\": 8,\\n      \\\"depth_pct\\\": 25.8,\\n      \\\"bal_acc\\\": 0.763,\\n      \\\"crossing_rate\\\": 0.186,\\n      \\\"lead_mean\\\": 13.88,\\n      \\\"pre_cp_f
+…[truncated 8742 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 173 · 2026-05-17T09:04:57.109397+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/artifacts/r1_8b_layer_supplement",
+  "description": "Create local output directory for report"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/artifacts/r1_8b_layer_supplement",
+    "description": "Create local output directory for report"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 174 · 2026-05-17T09:04:57.109538+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 175 · 2026-05-17T09:04:57.109695+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/artifacts/r1_8b_layer_supplement/report.md",
+  "content": "# R1-8B Full Layer Sweep Results\n\n## Setup\n- Model: DeepSeek-R1-Distill-Llama-8B (32 layers, hidden_dim=4096)\n- Traces: 209 jailbreak traces with commitment points\n- Split: train=125, val=41, test=43 (60/20/20, seed=42)\n- Probe: LogisticRegression(solver='liblinear', class_weight='balanced', C=1.0)\n- Layers tested: 0-24 (full sweep, previously only 12-24)\n- Early layers 0-11 newly extracted using BF16 forward pass on cuda:0\n\n## Layer Sweep (bal_acc sorted)\n\n| Rank | Layer | Depth% | bal_acc | crossing_rate | lead_mean | pre_cp_fpr |\n|------|-------|--------|---------|---------------|-----------|------------|\n| 1    | 12    | 38.7   | 0.7871  | 0.1628        | 13.29     | 0.0939     |\n| 2    | 3     | 9.7    | 0.7841  | 0.2093        | 14.11     | 0.1194     |\n| 3    | 14    | 45.2   | 0.7830  | 0.1395        | 13.83     | 0.1112     |\n| 4    | 16    | 51.6   | 0.7789  | 0.1395        | 13.83     | 0.0829     |\n| 5    | 11    | 35.5   | 0.7762  | 0.2093        | 11.22     | 0.1060     |\n| 6    | 10    | 32.3   | 0.7749  | 0.1395        | 18.50     | 0.0868     |\n| 7    | 13    | 41.9   | 0.7701  | 0.1628        | 17.57     | 0.1086     |\n| 8    | 15    | 48.4   | 0.7694  | 0.1860        | 14.12     | 0.1075     |\n| 9    | 7     | 22.6   | 0.7630  | 0.1860        | 16.25     | 0.1156     |\n| 10   | 8     | 25.8   | 0.7630  | 0.1860        | 13.88     | 0.1096     |\n| 11   | 4     | 12.9   | 0.7626  | 0.1395        | 16.00     | 0.1183     |\n| 12   | 6     | 19.4   | 0.7623  | 0.1860        | 17.88     | 0.1114     |\n| 13   | 5     | 16.1   | 0.7606  | 0.1395        | 16.33     | 0.0984     |\n| 14   | 2     | 6.5    | 0.7586  | 0.2558        | 11.82     | 0.1346     |\n| 15   | 19    | 61.3   | 0.7568  | 0.1860        | 18.00     | 0.1029     |\n| 16   | 9     | 29.0   | 0.7555  | 0.1395        | 17.67     | 0.1028     |\n| 17   | 17    | 54.8   | 0.7541  | 0.1395        | 17.50     | 0.0923     |\n| 18   | 20    | 64.5   | 0.7470  | 0.1860        | 15.50     | 0.0955     |\n| 19   | 1     | 3.2    | 0.7467  | 0.3256        | 14.57     | 0.1523     |\n| 20   | 18    | 58.1   | 0.7443  | 0.1628        | 16.00     | 0.0953     |\n| 21   | 21    | 67.7   | 0.7426  | 0.1395        | 17.33     | 0.0968     |\n| 22   | 22    | 71.0   | 0.7388  | 0.1395        | 21.00     | 0.1066     |\n| 23   | 23    | 74.2   | 0.7300  | 0.1395        | 13.83     | 0.0903     |\n| 24   | 24    | 77.4   | 0.7286  | 0.1163        | 16.00     | 0.0844     |\n| 25   | 0     | 0.0    | 0.7103  | 0.4186        | 15.83     | 0.1949     |\n\n## Old Best vs New Best\n- Old: Layer 14 (45.2%), bal_acc=0.7830\n- New global best: Layer 12 (38.7%), bal_acc=0.7871 (+0.004)\n- Best early layer: Layer 3 (9.7%), bal_acc=0.7841 (marginally above L14)\n- Difference L12 vs L14: 0.004 bal_acc (not practically significant)\n\n## Comparison with Other Models\n\n| Model       | Total Layers | Best Layer | Depth%  | bal_acc |\n|-------------|-------------|------------|---------|---------|\n| R1-8B       | 32          | 12         | 38.7%   | 0.7871  |\n| R1-32B      | 64          | 0-2        | 0-3%    | ~0.85+  |\n| QwQ-32B     | 64          | 0-2        | 0-3%    | ~0.85+  |\n| OT-7B       | 32          | 0-2        | 0-6%    | ~0.85+  |\n\n## Key Observations\n\n1. **R1-8B differs from 32B models**: Signal peaks at middle layers (12-14, ~39-45% depth), not early layers (0-2) as in R1-32B, QwQ-32B, and OT-7B.\n\n2. **Flat profile across layers 3-16**: bal_acc ranges from 0.76-0.79 across a wide band (layers 3-16). The signal is broadly distributed rather than concentrated in specific layers.\n\n3. **Early layers are competitive but not superior**: Layer 3 (bal_acc=0.7841) ranks #2 overall, close to Layer 12's 0.7871, but does not clearly surpass the middle-layer range.\n\n4. **Late layers degrade**: Layers 17+ show declining performance, with layers 22-24 at 0.73. The \"last-third\" of the model carries less commitment signal.\n\n5. **Layer 0 is worst** (0.7103): Unlike 32B models where layer 0 is among the best, R1-8B's embedding-adjacent representations lack discriminative power for this task.\n\n6. **No change to existing layer 14 selection**: The marginal improvement of L12 over L14 (0.004) does not warrant re-running temporal probes, bootstrap tests, or updating the registry. Layer 14 (or L12) remain valid choices.\n\n## Conclusion\n\nThe R1-8B early layer supplement confirms that **no early layer provides superior signal** for commitment detection compared to the existing middle-layer selection. This represents a qualitative difference from the three 32B-scale models (R1-32B, QwQ-32B, OT-7B), which all find optimal signal in layers 0-2. The 8B model's safety-relevant representations are organized differently, with peak signal at ~39-45% depth rather than at the input-adjacent layers.\n\nThe existing layer 14 selection remains valid; layer 12 is a marginal alternative (+0.004 bal_acc) within the same depth band.\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/artifacts/r1_8b_layer_supplement/report.md",
+    "content": "# R1-8B Full Layer Sweep Results\n\n## Setup\n- Model: DeepSeek-R1-Distill-Llama-8B (32 layers, hidden_dim=4096)\n- Traces: 209 jailbreak traces with commitment points\n- Split: train=125, val=41, test=43 (60/20/20, seed=42)\n- Probe: LogisticRegression(solver='liblinear', class_weight='balanced', C=1.0)\n- Layers tested: 0-24 (full sweep, previously only 12-24)\n- Early layers 0-11 newly extracted using BF16 forward pass on cuda:0\n\n## Layer Sweep (bal_acc sorted)\n\n| Rank | Layer | Depth% | bal_acc | crossing_rate | lead_mean | pre_cp_fpr |\n|------|-------|--------|---------|---------------|-----------|------------|\n| 1    | 12    | 38.7   | 0.7871  | 0.1628        | 13.29     | 0.0939     |\n| 2    | 3     | 9.7    | 0.7841  | 0.2093        | 14.11     | 0.1194     |\n| 3    | 14    | 45.2   | 0.7830  | 0.1395        | 13.83     | 0.1112     |\n| 4    | 16    | 51.6   | 0.7789  | 0.1395        | 13.83     | 0.0829     |\n| 5    | 11    | 35.5   | 0.7762  | 0.2093        | 11.22     | 0.1060     |\n| 6    | 10    | 32.3   | 0.7749  | 0.1395        | 18.50     | 0.0868     |\n| 7    | 13    | 41.9   | 0.7701  | 0.1628        | 17.57     | 0.1086     |\n| 8    | 15    | 48.4   | 0.7694  | 0.1860        | 14.12     | 0.1075     |\n| 9    | 7     | 22.6   | 0.7630  | 0.1860        | 16.25     | 0.1156     |\n| 10   | 8     | 25.8   | 0.7630  | 0.1860        | 13.88     | 0.1096     |\n| 11   | 4     | 12.9   | 0.7626  | 0.1395        | 16.00     | 0.1183     |\n| 12   | 6     | 19.4   | 0.7623  | 0.1860        | 17.88     | 0.1114     |\n| 13   | 5     | 16.1   | 0.7606  | 0.1395        | 16.33     | 0.0984     |\n| 14   | 2     | 6.5    | 0.7586  | 0.2558        | 11.82     | 0.1346     |\n| 15   | 19    | 61.3   | 0.7568  | 0.1860        | 18.00     | 0.1029     |\n| 16   | 9     | 29.0   | 0.7555  | 0.1395        | 17.67     | 0.1028     |\n| 17   | 17    | 54.8   | 0.7541  | 0.1395        | 17.50     | 0.0923     |\n| 18   | 20    | 64.5   | 0.7470  | 0.1860        | 15.50     | 0.0955     |\n| 19   | 1     | 3.2    | 0.7467  | 0.3256        | 14.57     | 0.1523     |\n| 20   | 18    | 58.1   | 0.7443  | 0.1628        | 16.00     | 0.0953     |\n| 21   | 21    | 67.7   | 0.7426  | 0.1395        | 17.33     | 0.0968     |\n| 22   | 22    | 71.0   | 0.7388  | 0.1395        | 21.00     | 0.1066     |\n| 23   | 23    | 74.2   | 0.7300  | 0.1395        | 13.83     | 0.0903     |\n| 24   | 24    | 77.4   | 0.7286  | 0.1163        | 16.00     | 0.0844     |\n| 25   | 0     | 0.0    | 0.7103  | 0.4186        | 15.83     | 0.1949     |\n\n## Old Best vs New Best\n- Old: Layer 14 (45.2%), bal_acc=0.7830\n- New global best: Layer 12 (38.7%), bal_acc=0.7871 (+0.004)\n- Best early layer: Layer 3 (9.7%), bal_acc=0.7841 (marginally above L14)\n- Difference L12 vs L14: 0.004 bal_acc (not practically significant)\n\n## Comparison with Other Models\n\n| Model       | Total Layers | Best Layer | Depth%  | bal_acc |\n|-------------|-------------|------------|---------|---------|\n| R1-8B       | 32          | 12         | 38.7%   | 0.7871  |\n| R1-32B      | 64          | 0-2        | 0-3%    | ~0.85+  |\n| QwQ-32B     | 64          | 0-2        | 0-3%    | ~0.85+  |\n| OT-7B       | 32          | 0-2        | 0-6%    | ~0.85+  |\n\n## Key Observations\n\n1. **R1-8B differs from 32B models**: Signal peaks at middle layers (12-14, ~39-45% depth), not early layers (0-2) as in R1-32B, QwQ-32B, and OT-7B.\n\n2. **Flat profile across layers 3-16**: bal_acc ranges from 0.76-0.79 across a wide band (layers 3-16). The signal is broadly distributed rather than concentrated in specific layers.\n\n3. **Early layers are competitive but not superior**: Layer 3 (bal_acc=0.7841) ranks #2 overall, close to Layer 12's 0.7871, but does not clearly surpass the middle-layer range.\n\n4. **Late layers degrade**: Layers 17+ show declining performance, with layers 22-24 at 0.73. The \"last-third\" of the model carries less commitment signal.\n\n5. **Layer 0 is worst** (0.7103): Unlike 32B models where layer 0 is among the best, R1-8B's embedding-adjacent representations lack discriminative power for this task.\n\n6. **No change to existing layer 14 selection**: The marginal improvement of L12 over L14 (0.004) does not warrant re-running temporal probes, bootstrap tests, or updating the registry. Layer 14 (or L12) remain valid choices.\n\n## Conclusion\n\nThe R1-8B early layer supplement confirms that **no early layer provides superior signal** for commitment detection compared to the existing middle-layer selection. This represents a qualitative difference from the three 32B-scale models (R1-32B, QwQ-32B, OT-7B), which all find optimal signal in layers 0-2. The 8B model's safety-relevant representations are organized differently, with peak signal at ~39-45% depth rather than at the input-adjacent layers.\n\nThe existing layer 14 selection remains valid; layer 12 is a marginal alternative (+0.004 bal_acc) within the same depth band.\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 176 · 2026-05-17T09:04:57.109877+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/artifacts/r1_8b_layer_supplement/report.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 177 · 2026-05-17T09:04:57.110017+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "R1-8B Full Layer Sweep Report",
+  "type": "report",
+  "description": "Full layer sweep (0-24) for R1-8B, supplementing the original layers 12-24 with newly extracted early layers 0-11. Confirms no early layer beats middle-layer selection (L12/L14). R1-8B differs from 32B models in optimal layer depth.",
+  "project": "contrastive_trace_safety",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/artifacts/r1_8b_layer_supplement/report.md",
+  "tags": "['r1-8b', 'layer-sweep', 'early-layers', 'supplement']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "R1-8B Full Layer Sweep Report",
+    "type": "report",
+    "description": "Full layer sweep (0-24) for R1-8B, supplementing the original layers 12-24 with newly extracted early layers 0-11. Confirms no early layer beats middle-layer selection (L12/L14). R1-8B differs from 32B models in optimal layer depth.",
+    "project": "contrastive_trace_safety",
+    "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/artifacts/r1_8b_layer_supplement/report.md",
+    "tags": "['r1-8b', 'layer-sweep', 'early-layers', 'supplement']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 178 · 2026-05-17T09:04:57.110162+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260517_eabada\", \"name\": \"R1-8B Full Layer Sweep Report\", \"type\": \"report\", \"description\": \"Full layer sweep (0-24) for R1-8B, supplementing the original layers 12-24 with newly extracted early layers 0-11. Confirms no early layer beats middle-layer selection (L12/L14). R1-8B differs from 32B models in optimal layer depth.\", \"path\": \"projects/contrastive_trace_safety/artifacts/_project/report/report_eabada.md\", \"url\": null, \"project\": \"contrastive_trace_safety\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-17T09:04:49.446304+00:00\", \"tags\": [\"r1-8b\", \"layer-sweep\", \"early-layers\", \"supplement\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 179 · 2026-05-17T09:04:57.110320+00:00_
+
+Complete. Summary:
+
+**R1-8B Full Layer Sweep (layers 0-24)**:
+- Extracted early layers 0-11 for all 268 traces (249 new + 19 already cached)
+- Best layer: **Layer 12** (38.7% depth), bal_acc = 0.7871
+- Layer 14 (old best): bal_acc = 0.7830 (difference: +0.004, negligible)
+- Best early layer: **Layer 3** (9.7% depth), bal_acc = 0.7841 (#2 overall, but no clear advantage)
+- **No early layer beats the middle-layer range** for R1-8B
+- R1-8B differs qualitatively from the 32B models (R1-32B, QwQ, OT-7B), which all peak at layers 0-2. The 8B model peaks at ~39-45% depth instead.
+- Existing layer 14 selection remains valid. No registry update needed.
+
+Report saved to `artifacts/r1_8b_layer_supplement/report.md` and registered as `art_20260517_eabada`.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_code_r1_8b_layer_supplement_20260517T084838"
+}
+```
+
+</details>
+
+---

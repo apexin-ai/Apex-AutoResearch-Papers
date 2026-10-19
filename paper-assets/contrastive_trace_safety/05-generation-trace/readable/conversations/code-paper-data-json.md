@@ -1,0 +1,1518 @@
+# code paper data json
+
+**Layer Selection Sensitivity in Hidden-State Safety Probes for Reasoning Models** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 51
+- **Recorded user turns:** 0
+- **Tool calls:** 25
+- **Original source:** `logs/chats/worker_code_paper_data_json_20260517T005602.jsonl`
+- **Structured JSON:** [`a1d29187b9f350981faf.json`](../../sessions/a1/a1d29187b9f350981faf.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+51 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-17T00:58:41.254383+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__save_project_file",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_paper_data_json_20260517T005602",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__save_project_file",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-17T00:58:41.254730+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_paper_data_json_20260517T005602",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-17T00:58:41.254916+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_paper_data_json_20260517T005602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-17T00:58:41.255073+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"acc_precision_bootstrap\\ndiagnostics\\neval_results.json\\nexp_001a\\nexp_001a_extraction.log\\nexp_001a_probing.log\\nexp_001b\\nexp_003_cross_transfer\\nexp_005_trajguard\\nexp_006_bootstrap\\nexp_007_window_ablation\\nexp_013_text_baseline\\nexp_014_bocpd\\nexp_015_fpr\\nexp_c2_control\\nhidden_states\\nhidden_states_qwq_32b\\nhidden_states_r1_32b\\nhs_vs_text_acc_prec.json\\nm001_layer_fix\\nprobes\\nqwq_text_verify\\nr1_8b_balanced_recompute\\nr1_8b_bootstrap_hs_text\\nr1_8b_bootstrap_run.log\\nreport_hs_vs_text_acc.md\\nreport_r1_32b_selectivity_l10.md\\ntext_window_ablation_r1_8b\\ntext_window_ablation_r1_8b_run.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.02}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_paper_data_json_20260517T005602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-17T00:58:41.255206+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/text_window_ablation_r1_8b/results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_paper_data_json_20260517T005602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/text_window_ablation_r1_8b/results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-17T00:58:41.255368+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"W=1\\\": {\\n    \\\"bal_acc\\\": 0.6467,\\n    \\\"coverage\\\": 0.9535,\\n    \\\"precp_fpr\\\": 0.2576,\\n    \\\"precision\\\": 0.416\\n  },\\n  \\\"W=3\\\": {\\n    \\\"bal_acc\\\": 0.6919,\\n    \\\"coverage\\\": 0.9302,\\n    \\\"precp_fpr\\\": 0.206,\\n    \\\"precision\\\": 0.4882\\n  },\\n  \\\"W=5\\\": {\\n    \\\"bal_acc\\\": 0.6994,\\n    \\\"coverage\\\": 0.8605,\\n    \\\"precp_fpr\\\": 0.1849,\\n    \\\"precision\\\": 0.5125\\n  },\\n  \\\"W=10\\\": {\\n    \\\"bal_acc\\\": 0.7262,\\n    \\\"coverage\\\": 0.7209,\\n    \\\"precp_fpr\\\": 0.1659,\\n    \\\"precision\\\": 0.5539\\n  },\\n  \\\"W=15\\\": {\\n    \\\"bal_acc\\\": 0.7398,\\n    \\\"coverage\\\": 0.5814,\\n    \\\"precp_fpr\\\": 0.1285,\\n    \\\"precision\\\": 0.6119\\n  },\\n  \\\"W=20\\\": {\\n    \\\"bal_acc\\\": 0.7514,\\n    \\\"coverage\\\": 0.5814,\\n    \\\"precp_fpr\\\": 0.1298,\\n    \\\"precision\\\": 0.6188\\n  },\\n  \\\"W=25\\\": {\\n    \\\"bal_acc\\\": 0.7674,\\n    \\\"coverage\\\": 0.5814,\\n    \\\"precp_fpr\\\": 0.1183,\\n    \\\"precision\\\": 0.6478\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_paper_data_json_20260517T005602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-17T00:58:41.255512+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_007_window_ablation/results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_paper_data_json_20260517T005602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_007_window_ablation/results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-17T00:58:41.255748+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"r1_8b\\\": {\\n    \\\"W=1\\\": {\\n      \\\"bal_acc\\\": 0.7783,\\n      \\\"coverage\\\": 0.7209,\\n      \\\"precp_fpr_step\\\": 0.0965,\\n      \\\"precp_fpr_trace\\\": 0.1037,\\n      \\\"lead_mean\\\": 13.84,\\n      \\\"precision\\\": 0.6926\\n    },\\n    \\\"W=3\\\": {\\n      \\\"bal_acc\\\": 0.7902,\\n      \\\"coverage\\\": 0.6977,\\n      \\\"precp_fpr_step\\\": 0.085,\\n      \\\"precp_fpr_trace\\\": 0.0988,\\n      \\\"lead_mean\\\": 12.07,\\n      \\\"precision\\\": 0.7228\\n    },\\n    \\\"W=5\\\": {\\n      \\\"bal_acc\\\": 0.781,\\n      \\\"coverage\\\": 0.6512,\\n      \\\"precp_fpr_step\\\": 0.0809,\\n      \\\"precp_fpr_trace\\\": 0.0913,\\n      \\\"lead_mean\\\": 8.25,\\n      \\\"precision\\\": 0.7258\\n    },\\n    \\\"W=10\\\": {\\n      \\\"bal_acc\\\": 0.7925,\\n      \\\"coverage\\\": 0.5581,\\n      \\\"precp_fpr_step\\\": 0.0761,\\n      \\\"precp_fpr_trace\\\": 0.0865,\\n      \\\"lead_mean\\\": 10.04,\\n      \\\"precision\\\": 0.7431\\n    },\\n    \\\"W=15\\\": {\\n      \\\"bal_acc\\\": 0.8017,\\n      \\\"coverage\\\": 0.5116,\\n      \\\"precp_fpr_step\\\": 0.0639,\\n      \\\"precp_fpr_trace\\\": 0.0701,\\n      \\\"lead_mean\\\": 7.23,\\n      \\\"precision\\\": 0.7767\\n    },\\n    \\\"W=20\\\": {\\n      \\\"bal_acc\\\": 0.8072,\\n      \\\"coverage\\\": 0.5349,\\n      \\\"precp_fpr_step\\\": 0.0612,\\n      \\\"precp_fpr_trace\\\": 0.0661,\\n      \\\"lead_mean\\\": 7.43,\\n      \\\"precision\\\": 0.7862\\n    },\\n    \\\"W=25\\\": {\\n      \\\"bal_acc\\\": 0.8095,\\n      \\\"coverage\\\": 0.4884,\\n      \\\"precp_fpr_step\\\": 0.0483,\\n      \\\"precp_fpr_trace\\\": 0.0545,\\n      \\\"lead_mean\\\": 8.14,\\n      \\\"precision\\\": 0.8216\\n    }\\n  },\\n  \\\"r1_32b\\\": {\\n    \\\"W=1\\\": {\\n      \\\"bal_acc\\\": 0.7182,\\n      \\\"coverage\\\": 0.8,\\n      \\\"precp_fpr_step\\\": 0.3203,\\n      \\\"precp_fpr_trace\\\": 0.2764,\\n     
+…[truncated 3392 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_paper_data_json_20260517T005602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-17T00:58:41.255910+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/m001_layer_fix/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_paper_data_json_20260517T005602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/m001_layer_fix/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-17T00:58:41.256042+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"bootstrap_hs_vs_text_r1_32b.json\\ngru_corrected_qwq_32b.json\\ngru_corrected_r1_32b.json\\nlayer_ranking_qwq_32b.json\\nlayer_ranking_r1_32b.json\\nrun.log\\ntemporal_lr_qwq_32b.json\\ntemporal_lr_r1_32b.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_paper_data_json_20260517T005602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-17T00:58:41.256170+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/acc_precision_bootstrap/results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_paper_data_json_20260517T005602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/acc_precision_bootstrap/results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-17T00:58:41.256339+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"r1_8b\\\": {\\n    \\\"n_test_traces\\\": 43,\\n    \\\"n_prec_valid_traces\\\": 33,\\n    \\\"n_prec_excluded\\\": 10,\\n    \\\"hs_acc_mean\\\": 0.8125516424642037,\\n    \\\"text_acc_mean\\\": 0.7307081928314669,\\n    \\\"acc_diff_mean\\\": 0.08184344963273703,\\n    \\\"acc_diff_ci95\\\": [\\n      0.02632531340338604,\\n      0.13837524447558702\\n    ],\\n    \\\"acc_p_value\\\": 0.005,\\n    \\\"hs_prec_mean\\\": 0.7677909809488757,\\n    \\\"text_prec_mean\\\": 0.5442063152123122,\\n    \\\"prec_diff_mean\\\": 0.2235846657365634,\\n    \\\"prec_diff_ci95\\\": [\\n      0.12454858435000564,\\n      0.3341096182721348\\n    ],\\n    \\\"prec_p_value\\\": 0.0\\n  },\\n  \\\"r1_32b\\\": {\\n    \\\"n_test_traces\\\": 20,\\n    \\\"n_prec_valid_traces\\\": 20,\\n    \\\"n_prec_excluded\\\": 0,\\n    \\\"hs_acc_mean\\\": 0.70354812452159,\\n    \\\"text_acc_mean\\\": 0.6412063820072131,\\n    \\\"acc_diff_mean\\\": 0.0623417425143768,\\n    \\\"acc_diff_ci95\\\": [\\n      -0.01705401275573909,\\n      0.14586188358742705\\n    ],\\n    \\\"acc_p_value\\\": 0.13,\\n    \\\"hs_prec_mean\\\": 0.6099723631631526,\\n    \\\"text_prec_mean\\\": 0.5160197368421053,\\n    \\\"prec_diff_mean\\\": 0.09395262632104737,\\n    \\\"prec_diff_ci95\\\": [\\n      0.00028475517538017916,\\n      0.2046046650717703\\n    ],\\n    \\\"prec_p_value\\\": 0.064\\n  },\\n  \\\"qwq_32b\\\": {\\n    \\\"n_test_traces\\\": 19,\\n    \\\"n_prec_valid_traces\\\": 18,\\n    \\\"n_prec_excluded\\\": 1,\\n    \\\"hs_acc_mean\\\": 0.6794778205841906,\\n    \\\"text_acc_mean\\\": 0.6708109256303593,\\n    \\\"acc_diff_mean\\\": 0.008666894953831205,\\n    \\\"acc_diff_ci95\\\": [\\n      -0.06183913243706158,\\n      0.07344865829081285\\n    ],\\n    \\\"acc_p_value\\\": 0.828,\\n    \\\"hs_prec_mean\\\": 0.5826768733759271,\\n    \\\"text_prec_mean\\\": 0.5251866615592106,\\n    \\\"prec_diff_mean\\\": 0.05749021181671662,\\n  
+…[truncated 529 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_paper_data_json_20260517T005602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-17T00:58:41.256486+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/r1_8b_bootstrap_hs_text/results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_paper_data_json_20260517T005602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/r1_8b_bootstrap_hs_text/results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-17T00:58:41.256677+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"r1-8b\\\",\\n  \\\"layer\\\": 14,\\n  \\\"window\\\": 15,\\n  \\\"hs_precp_fpr_mean\\\": 0.1483665597701362,\\n  \\\"text_precp_fpr_mean\\\": 0.22192538830579658,\\n  \\\"difference_mean\\\": -0.07355882853566037,\\n  \\\"difference_ci_95\\\": [\\n    -0.15581308843147962,\\n    -0.0035979738892938417\\n  ],\\n  \\\"p_value\\\": 0.044,\\n  \\\"n_traces_test\\\": 43,\\n  \\\"n_resamples\\\": 1000,\\n  \\\"hs_config\\\": \\\"LR balanced C=1.0 W=15 layer=14\\\",\\n  \\\"text_config\\\": \\\"all-MiniLM-L6-v2 LR balanced C=1.0 W=15\\\",\\n  \\\"per_trace_hs_fprs\\\": [\\n    0.0,\\n    0.0,\\n    0.0,\\n    0.1111111111111111,\\n    0.0,\\n    0.0,\\n    0.02857142857142857,\\n    0.0,\\n    0.0,\\n    0.0,\\n    0.8518518518518519,\\n    0.6944444444444444,\\n    0.0,\\n    0.0,\\n    0.0,\\n    0.0,\\n    0.7674418604651163,\\n    0.30303030303030304,\\n    0.0,\\n    0.0,\\n    0.0,\\n    0.0,\\n    0.02631578947368421,\\n    0.296875,\\n    0.0,\\n    0.13043478260869565,\\n    0.5,\\n    0.013157894736842105,\\n    0.38461538461538464,\\n    0.0,\\n    0.8,\\n    0.07462686567164178,\\n    0.10909090909090909,\\n    0.0,\\n    0.8125,\\n    0.4444444444444444,\\n    0.0,\\n    0.0,\\n    0.03125,\\n    0.0,\\n    0.0,\\n    0.0,\\n    0.0\\n  ],\\n  \\\"per_trace_text_fprs\\\": [\\n    0.0,\\n    0.0,\\n    0.10204081632653061,\\n    0.6296296296296297,\\n    0.23684210526315788,\\n    0.057692307692307696,\\n    0.7142857142857143,\\n    0.0,\\n    0.5333333333333333,\\n    0.0,\\n    0.5925925925925926,\\n    0.75,\\n    0.0,\\n    0.0,\\n    0.0,\\n    0.22413793103448276,\\n    0.9534883720930233,\\n    0.0,\\n    0.0,\\n    0.0,\\n    0.0,\\n    0.02702702702702703,\\n    0.15789473684210525,\\n    0.484375,\\n    0.0,\\n    0.13043478260869565,\\n    0.3333333333333333,\\n    0.14473684210526316,\\n    0.8974358974358975,\\n    0.0,\\n    0.3,\\n    0.0,\\n    0.01818181818181818,
+…[truncated 273 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_paper_data_json_20260517T005602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-17T00:58:41.256837+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/qwq_text_verify/bootstrap_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_paper_data_json_20260517T005602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/qwq_text_verify/bootstrap_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-17T00:58:41.256999+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"QwQ-32B\\\",\\n  \\\"layer\\\": 2,\\n  \\\"window\\\": 15,\\n  \\\"text_encoder\\\": \\\"all-MiniLM-L6-v2\\\",\\n  \\\"hs_precp_fpr_mean\\\": 0.22397713953038592,\\n  \\\"hs_precp_fpr_std\\\": 0.2628430075122786,\\n  \\\"text_precp_fpr_mean\\\": 0.21436948715736381,\\n  \\\"text_precp_fpr_std\\\": 0.23946422462498512,\\n  \\\"bootstrap_test\\\": {\\n    \\\"difference_mean\\\": 0.00960765237302208,\\n    \\\"difference_ci_95\\\": [\\n      -0.09964627049073238,\\n      0.12019239937600912\\n    ],\\n    \\\"p_value\\\": 0.904,\\n    \\\"n_traces\\\": 19,\\n    \\\"n_resamples\\\": 1000\\n  },\\n  \\\"n_traces_total\\\": 95,\\n  \\\"n_traces_train\\\": 57,\\n  \\\"n_traces_test\\\": 19,\\n  \\\"per_trace_hs_fprs\\\": [\\n    0.20588235294117646,\\n    0.0,\\n    0.0,\\n    0.36363636363636365,\\n    0.0,\\n    0.0,\\n    0.0,\\n    0.014925373134328358,\\n    0.15384615384615385,\\n    0.8333333333333334,\\n    0.23076923076923078,\\n    0.28888888888888886,\\n    0.0,\\n    0.5714285714285714,\\n    0.0,\\n    0.4878048780487805,\\n    0.0,\\n    0.37777777777777777,\\n    0.7272727272727273\\n  ],\\n  \\\"per_trace_text_fprs\\\": [\\n    0.17647058823529413,\\n    0.0,\\n    0.0,\\n    0.0,\\n    0.0,\\n    0.0,\\n    0.038461538461538464,\\n    0.08955223880597014,\\n    0.5769230769230769,\\n    0.6851851851851852,\\n    0.3076923076923077,\\n    0.5333333333333333,\\n    0.0,\\n    0.5,\\n    0.0,\\n    0.4024390243902439,\\n    0.5185185185185185,\\n    0.24444444444444444,\\n    0.0\\n  ],\\n  \\\"original_invalid_result\\\": {\\n    \\\"note\\\": \\\"Original exp_001b_bootstrap.py used midpoint heuristic, not real text embeddings\\\",\\n    \\\"original_p_value\\\": 0.001,\\n    \\\"original_text_baseline\\\": \\\"predict 1 if step_index >= n//2 (midpoint heuristic)\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}
+…[truncated 2 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_paper_data_json_20260517T005602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-17T00:58:41.257161+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/r1_8b_balanced_recompute/full_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_paper_data_json_20260517T005602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/r1_8b_balanced_recompute/full_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-17T00:58:41.257353+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"hs_static_lr_l14\\\": {\\n    \\\"acc\\\": 0.8172057539118186,\\n    \\\"coverage\\\": 0.46511627906976744,\\n    \\\"lead_mean\\\": -2.0,\\n    \\\"lead_median\\\": -2.0,\\n    \\\"pre_cp_fpr\\\": 0.09653297076818491,\\n    \\\"precision\\\": 0.6926406926406926,\\n    \\\"n_valid\\\": 43,\\n    \\\"n_crossing\\\": 20,\\n    \\\"n_leads\\\": 20\\n  },\\n  \\\"hs_temporal_lr_w5_l14\\\": {\\n    \\\"acc\\\": 0.8204366068619702,\\n    \\\"coverage\\\": 0.6744186046511628,\\n    \\\"lead_mean\\\": 0.5517241379310345,\\n    \\\"lead_median\\\": 0.0,\\n    \\\"pre_cp_fpr\\\": 0.10197144799456152,\\n    \\\"precision\\\": 0.6855345911949685,\\n    \\\"n_valid\\\": 43,\\n    \\\"n_crossing\\\": 29,\\n    \\\"n_leads\\\": 29\\n  },\\n  \\\"hs_temporal_lr_w10_l14\\\": {\\n    \\\"acc\\\": 0.8144761896745013,\\n    \\\"coverage\\\": 0.6976744186046512,\\n    \\\"lead_mean\\\": 0.3,\\n    \\\"lead_median\\\": -1.5,\\n    \\\"pre_cp_fpr\\\": 0.09857239972807613,\\n    \\\"precision\\\": 0.6827133479212254,\\n    \\\"n_valid\\\": 43,\\n    \\\"n_crossing\\\": 30,\\n    \\\"n_leads\\\": 30\\n  },\\n  \\\"hs_temporal_lr_w15_l14\\\": {\\n    \\\"acc\\\": 0.8128931418346814,\\n    \\\"coverage\\\": 0.627906976744186,\\n    \\\"lead_mean\\\": -0.1111111111111111,\\n    \\\"lead_median\\\": 0.0,\\n    \\\"pre_cp_fpr\\\": 0.08769544527532291,\\n    \\\"precision\\\": 0.6971830985915493,\\n    \\\"n_valid\\\": 43,\\n    \\\"n_crossing\\\": 27,\\n    \\\"n_leads\\\": 27\\n  },\\n  \\\"gru_multi7l_h256\\\": {\\n    \\\"acc_mean\\\": 0.8175437524472935,\\n    \\\"acc_std\\\": 0.010198279533769648,\\n    \\\"coverage_mean\\\": 0.7286821705426356,\\n    \\\"coverage_std\\\": 0.03952728305110688,\\n    \\\"lead_mean_mean\\\": 4.541775513758273,\\n    \\\"lead_mean_std\\\": 2.9906912295369756,\\n    \\\"pre_cp_fpr_mean\\\": 0.16542034896895538,\\n    \\\"pre_cp_fpr_std\\\": 0.04132263610428209,\\n    \\\"precision_mean\\\": 0.622
+…[truncated 2024 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_paper_data_json_20260517T005602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-17T00:58:41.257507+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/m001_layer_fix/temporal_lr_r1_32b.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_paper_data_json_20260517T005602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/m001_layer_fix/temporal_lr_r1_32b.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-17T00:58:41.257674+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"window_5\\\": {\\n    \\\"balanced_accuracy\\\": 0.7309116916359256,\\n    \\\"accuracy\\\": 0.7261029411764706,\\n    \\\"crossing_rate\\\": 0.55,\\n    \\\"lead_mean\\\": 11.818181818181818,\\n    \\\"lead_median\\\": 12.0,\\n    \\\"precp_fpr\\\": 0.2392851563874419\\n  },\\n  \\\"window_10\\\": {\\n    \\\"balanced_accuracy\\\": 0.737062410600015,\\n    \\\"accuracy\\\": 0.7463235294117647,\\n    \\\"crossing_rate\\\": 0.5,\\n    \\\"lead_mean\\\": 9.0,\\n    \\\"lead_median\\\": 5.5,\\n    \\\"precp_fpr\\\": 0.189063211969021\\n  },\\n  \\\"window_15\\\": {\\n    \\\"balanced_accuracy\\\": 0.7206805691485357,\\n    \\\"accuracy\\\": 0.7316176470588235,\\n    \\\"crossing_rate\\\": 0.6,\\n    \\\"lead_mean\\\": 7.5,\\n    \\\"lead_median\\\": 5.5,\\n    \\\"precp_fpr\\\": 0.20893995246324848\\n  },\\n  \\\"best_window\\\": 10,\\n  \\\"best_layer\\\": 10\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_paper_data_json_20260517T005602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-17T00:58:41.257809+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/m001_layer_fix/temporal_lr_qwq_32b.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_paper_data_json_20260517T005602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/m001_layer_fix/temporal_lr_qwq_32b.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-17T00:58:41.257951+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"window_5\\\": {\\n    \\\"balanced_accuracy\\\": 0.7610147235492974,\\n    \\\"accuracy\\\": 0.7706511175898931,\\n    \\\"crossing_rate\\\": 0.42105263157894735,\\n    \\\"lead_mean\\\": 23.5,\\n    \\\"lead_median\\\": 26.0,\\n    \\\"precp_fpr\\\": 0.17951778766576262\\n  },\\n  \\\"window_10\\\": {\\n    \\\"balanced_accuracy\\\": 0.7468569273321599,\\n    \\\"accuracy\\\": 0.7667638483965015,\\n    \\\"crossing_rate\\\": 0.42105263157894735,\\n    \\\"lead_mean\\\": 20.75,\\n    \\\"lead_median\\\": 23.5,\\n    \\\"precp_fpr\\\": 0.17069277703672603\\n  },\\n  \\\"window_15\\\": {\\n    \\\"balanced_accuracy\\\": 0.741241304165619,\\n    \\\"accuracy\\\": 0.7706511175898931,\\n    \\\"crossing_rate\\\": 0.47368421052631576,\\n    \\\"lead_mean\\\": 17.555555555555557,\\n    \\\"lead_median\\\": 20.0,\\n    \\\"precp_fpr\\\": 0.1605444209983368\\n  },\\n  \\\"best_window\\\": 5,\\n  \\\"best_layer\\\": 2\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_paper_data_json_20260517T005602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-17T00:58:41.258077+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/m001_layer_fix/bootstrap_hs_vs_text_r1_32b.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_paper_data_json_20260517T005602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/m001_layer_fix/bootstrap_hs_vs_text_r1_32b.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-17T00:58:41.258215+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"hs_precp_fpr_mean\\\": 0.2603541508615688,\\n  \\\"hs_precp_fpr_std\\\": 0.29808655723836813,\\n  \\\"text_precp_fpr_mean\\\": 0.24610403057335956,\\n  \\\"text_precp_fpr_std\\\": 0.2600505337543362,\\n  \\\"difference_hs_minus_text\\\": 0.014250120288209267,\\n  \\\"p_value\\\": 0.999,\\n  \\\"ci_95\\\": [\\n    -0.10348528321434798,\\n    0.12685438816953282\\n  ],\\n  \\\"n_traces\\\": 20,\\n  \\\"n_resamples\\\": 1000,\\n  \\\"hs_config\\\": \\\"LR balanced C=1.0 layer=10 window=10\\\",\\n  \\\"text_config\\\": \\\"all-MiniLM-L6-v2 temporal window=10\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_paper_data_json_20260517T005602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-17T00:58:41.258382+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/m001_layer_fix/layer_ranking_r1_32b.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_paper_data_json_20260517T005602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/m001_layer_fix/layer_ranking_r1_32b.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-17T00:58:41.258710+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"R1-32B\\\",\\n  \\\"num_layers\\\": 64,\\n  \\\"best_layer_scheme_A\\\": 63,\\n  \\\"best_layer_scheme_B\\\": 10,\\n  \\\"selected_best_layer\\\": 10,\\n  \\\"depth_ratio\\\": 0.15625,\\n  \\\"top10_scheme_A\\\": [\\n    {\\n      \\\"layer_idx\\\": 63,\\n      \\\"balanced_accuracy\\\": 0.7552360159602499,\\n      \\\"accuracy\\\": 0.7426470588235294,\\n      \\\"f1\\\": 0.6774193548387096,\\n      \\\"crossing_rate\\\": 0.25,\\n      \\\"lead_mean\\\": 12.8,\\n      \\\"lead_median\\\": 8.0,\\n      \\\"precp_fpr\\\": 0.2335304441703731,\\n      \\\"old_score\\\": 3.2,\\n      \\\"new_score_B\\\": 0.18880900399006248\\n    },\\n    {\\n      \\\"layer_idx\\\": 45,\\n      \\\"balanced_accuracy\\\": 0.7523676880222842,\\n      \\\"accuracy\\\": 0.7371323529411765,\\n      \\\"f1\\\": 0.6742596810933941,\\n      \\\"crossing_rate\\\": 0.35,\\n      \\\"lead_mean\\\": 9.714285714285714,\\n      \\\"lead_median\\\": 5.0,\\n      \\\"precp_fpr\\\": 0.24785657326181018,\\n      \\\"old_score\\\": 3.3999999999999995,\\n      \\\"new_score_B\\\": 0.2633286908077994\\n    },\\n    {\\n      \\\"layer_idx\\\": 62,\\n      \\\"balanced_accuracy\\\": 0.7445080177670707,\\n      \\\"accuracy\\\": 0.7371323529411765,\\n      \\\"f1\\\": 0.6651053864168618,\\n      \\\"crossing_rate\\\": 0.25,\\n      \\\"lead_mean\\\": 13.0,\\n      \\\"lead_median\\\": 8.0,\\n      \\\"precp_fpr\\\": 0.22904301040750558,\\n      \\\"old_score\\\": 3.25,\\n      \\\"new_score_B\\\": 0.18612700444176766\\n    },\\n    {\\n      \\\"layer_idx\\\": 44,\\n      \\\"balanced_accuracy\\\": 0.7413912519762103,\\n      \\\"accuracy\\\": 0.7261029411764706,\\n      \\\"f1\\\": 0.6621315192743764,\\n      \\\"crossing_rate\\\": 0.35,\\n      \\\"lead_mean\\\": 9.714285714285714,\\n      \\\"lead_median\\\": 5.0,\\n      \\\"precp_fpr\\\": 0.27167177679213,\\n      \\\"old_score\\\": 3.3999999999999995,\\n      \\\"new_score_
+…[truncated 8160 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_paper_data_json_20260517T005602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-17T00:58:41.258887+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/m001_layer_fix/layer_ranking_qwq_32b.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_paper_data_json_20260517T005602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/m001_layer_fix/layer_ranking_qwq_32b.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-17T00:58:41.259198+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"QwQ-32B\\\",\\n  \\\"num_layers\\\": 64,\\n  \\\"best_layer_scheme_A\\\": 60,\\n  \\\"best_layer_scheme_B\\\": 2,\\n  \\\"selected_best_layer\\\": 2,\\n  \\\"depth_ratio\\\": 0.03125,\\n  \\\"top10_scheme_A\\\": [\\n    {\\n      \\\"layer_idx\\\": 60,\\n      \\\"balanced_accuracy\\\": 0.7473109267175146,\\n      \\\"accuracy\\\": 0.8017492711370262,\\n      \\\"f1\\\": 0.6395759717314488,\\n      \\\"crossing_rate\\\": 0.3684210526315789,\\n      \\\"lead_mean\\\": 8.714285714285714,\\n      \\\"lead_median\\\": 4.0,\\n      \\\"precp_fpr\\\": 0.10230914520695064,\\n      \\\"old_score\\\": 3.210526315789473,\\n      \\\"new_score_B\\\": 0.2753250782643475\\n    },\\n    {\\n      \\\"layer_idx\\\": 63,\\n      \\\"balanced_accuracy\\\": 0.7437068700583913,\\n      \\\"accuracy\\\": 0.7891156462585034,\\n      \\\"f1\\\": 0.631578947368421,\\n      \\\"crossing_rate\\\": 0.3684210526315789,\\n      \\\"lead_mean\\\": 11.571428571428571,\\n      \\\"lead_median\\\": 4.0,\\n      \\\"precp_fpr\\\": 0.12147752664643886,\\n      \\\"old_score\\\": 4.263157894736842,\\n      \\\"new_score_B\\\": 0.2739972679162494\\n    },\\n    {\\n      \\\"layer_idx\\\": 59,\\n      \\\"balanced_accuracy\\\": 0.7435113010923924,\\n      \\\"accuracy\\\": 0.8007774538386784,\\n      \\\"f1\\\": 0.6345811051693404,\\n      \\\"crossing_rate\\\": 0.2631578947368421,\\n      \\\"lead_mean\\\": 10.0,\\n      \\\"lead_median\\\": 4.0,\\n      \\\"precp_fpr\\\": 0.10120301671914571,\\n      \\\"old_score\\\": 2.631578947368421,\\n      \\\"new_score_B\\\": 0.1956608687085243\\n    },\\n    {\\n      \\\"layer_idx\\\": 62,\\n      \\\"balanced_accuracy\\\": 0.7408012739921214,\\n      \\\"accuracy\\\": 0.7968901846452867,\\n      \\\"f1\\\": 0.6300884955752213,\\n      \\\"crossing_rate\\\": 0.3684210526315789,\\n      \\\"lead_mean\\\": 13.142857142857142,\\n      \\\"lead_median\\\": 4.0,\\n      \\\"precp_fp
+…[truncated 8042 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_paper_data_json_20260517T005602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-17T00:58:41.259353+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/m001_layer_fix/gru_corrected_r1_32b.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_paper_data_json_20260517T005602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/m001_layer_fix/gru_corrected_r1_32b.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-17T00:58:41.259527+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"single_layer\\\": [\\n    {\\n      \\\"balanced_accuracy\\\": 0.6658285025973049,\\n      \\\"accuracy\\\": 0.7352941176470589,\\n      \\\"crossing_rate\\\": 0.2,\\n      \\\"lead_mean\\\": 8.0,\\n      \\\"lead_median\\\": 5.5,\\n      \\\"precp_fpr\\\": 0.09404268139715063,\\n      \\\"seed\\\": 42\\n    },\\n    {\\n      \\\"balanced_accuracy\\\": 0.6769555070390725,\\n      \\\"accuracy\\\": 0.7205882352941176,\\n      \\\"crossing_rate\\\": 0.35,\\n      \\\"lead_mean\\\": 9.857142857142858,\\n      \\\"lead_median\\\": 9.0,\\n      \\\"precp_fpr\\\": 0.16309504925176405,\\n      \\\"seed\\\": 123\\n    },\\n    {\\n      \\\"balanced_accuracy\\\": 0.6826093502973726,\\n      \\\"accuracy\\\": 0.7297794117647058,\\n      \\\"crossing_rate\\\": 0.35,\\n      \\\"lead_mean\\\": 9.428571428571429,\\n      \\\"lead_median\\\": 12.0,\\n      \\\"precp_fpr\\\": 0.14898402384209497,\\n      \\\"seed\\\": 456\\n    }\\n  ],\\n  \\\"multi_layer\\\": [\\n    {\\n      \\\"balanced_accuracy\\\": 0.6383196567040579,\\n      \\\"accuracy\\\": 0.7352941176470589,\\n      \\\"crossing_rate\\\": 0.05,\\n      \\\"lead_mean\\\": 4.0,\\n      \\\"lead_median\\\": 4.0,\\n      \\\"precp_fpr\\\": 0.04512648701242001,\\n      \\\"seed\\\": 42\\n    },\\n    {\\n      \\\"balanced_accuracy\\\": 0.6589475269141007,\\n      \\\"accuracy\\\": 0.7279411764705882,\\n      \\\"crossing_rate\\\": 0.25,\\n      \\\"lead_mean\\\": 10.2,\\n      \\\"lead_median\\\": 8.0,\\n      \\\"precp_fpr\\\": 0.10721899224806201,\\n      \\\"seed\\\": 123\\n    },\\n    {\\n      \\\"balanced_accuracy\\\": 0.6670405781826394,\\n      \\\"accuracy\\\": 0.7040441176470589,\\n      \\\"crossing_rate\\\": 0.4,\\n      \\\"lead_mean\\\": 12.25,\\n      \\\"lead_median\\\": 12.0,\\n      \\\"precp_fpr\\\": 0.18927911862419386,\\n      \\\"seed\\\": 456\\n    }\\n  ],\\n  \\\"single_layer_mean\\\": {\\n    \\\"balanced_accuracy\\\": 0.67513111
+…[truncated 795 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_paper_data_json_20260517T005602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-17T00:58:41.259703+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/m001_layer_fix/gru_corrected_qwq_32b.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_paper_data_json_20260517T005602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/m001_layer_fix/gru_corrected_qwq_32b.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-17T00:58:41.259878+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"single_layer\\\": [\\n    {\\n      \\\"balanced_accuracy\\\": 0.6806358785237336,\\n      \\\"accuracy\\\": 0.640427599611273,\\n      \\\"crossing_rate\\\": 0.7894736842105263,\\n      \\\"lead_mean\\\": 20.533333333333335,\\n      \\\"lead_median\\\": 18.0,\\n      \\\"precp_fpr\\\": 0.32901775834501185,\\n      \\\"seed\\\": 42\\n    },\\n    {\\n      \\\"balanced_accuracy\\\": 0.7140711871036236,\\n      \\\"accuracy\\\": 0.7152575315840622,\\n      \\\"crossing_rate\\\": 0.631578947368421,\\n      \\\"lead_mean\\\": 17.5,\\n      \\\"lead_median\\\": 15.5,\\n      \\\"precp_fpr\\\": 0.22916265651781617,\\n      \\\"seed\\\": 123\\n    },\\n    {\\n      \\\"balanced_accuracy\\\": 0.6872922079736261,\\n      \\\"accuracy\\\": 0.6365403304178814,\\n      \\\"crossing_rate\\\": 0.8421052631578947,\\n      \\\"lead_mean\\\": 19.875,\\n      \\\"lead_median\\\": 19.0,\\n      \\\"precp_fpr\\\": 0.3494706780018884,\\n      \\\"seed\\\": 456\\n    }\\n  ],\\n  \\\"multi_layer\\\": [\\n    {\\n      \\\"balanced_accuracy\\\": 0.6933827843433074,\\n      \\\"accuracy\\\": 0.6870748299319728,\\n      \\\"crossing_rate\\\": 0.8421052631578947,\\n      \\\"lead_mean\\\": 14.5,\\n      \\\"lead_median\\\": 11.5,\\n      \\\"precp_fpr\\\": 0.26402719424226073,\\n      \\\"seed\\\": 42\\n    },\\n    {\\n      \\\"balanced_accuracy\\\": 0.7572709747716034,\\n      \\\"accuracy\\\": 0.7249757045675413,\\n      \\\"crossing_rate\\\": 0.8421052631578947,\\n      \\\"lead_mean\\\": 14.6875,\\n      \\\"lead_median\\\": 13.0,\\n      \\\"precp_fpr\\\": 0.26333480142910054,\\n      \\\"seed\\\": 123\\n    },\\n    {\\n      \\\"balanced_accuracy\\\": 0.7204690861341603,\\n      \\\"accuracy\\\": 0.6647230320699709,\\n      \\\"crossing_rate\\\": 0.8421052631578947,\\n      \\\"lead_mean\\\": 18.5625,\\n      \\\"lead_median\\\": 17.5,\\n      \\\"precp_fpr\\\": 0.3386739167535064,\\n      \\\"seed\\\": 456\\n    }\
+…[truncated 857 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_paper_data_json_20260517T005602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-17T00:58:41.260082+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "mkdir -p /root/autodl-tmp/contrastive_trace_safety/artifacts/paper_data",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_paper_data_json_20260517T005602",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "mkdir -p /root/autodl-tmp/contrastive_trace_safety/artifacts/paper_data",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-17T00:58:41.260214+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_paper_data_json_20260517T005602",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-17T00:58:41.260344+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat > /root/autodl-tmp/contrastive_trace_safety/artifacts/paper_data/fig2_temporal_improvement.json << 'EOF'\n{\n  \"r1_8b_hs\": {\n    \"W=1\": {\"bal_acc\": 0.7783, \"precision\": 0.6926, \"precp_fpr\": 0.1037, \"coverage\": 0.7209},\n    \"W=5\": {\"bal_acc\": 0.7810, \"precision\": 0.7258, \"precp_fpr\": 0.0913, \"coverage\": 0.6512},\n    \"W=10\": {\"bal_acc\": 0.7925, \"precision\": 0.7431, \"precp_fpr\": 0.0865, \"coverage\": 0.5581},\n    \"W=15\": {\"bal_acc\": 0.8017, \"precision\": 0.7767, \"precp_fpr\": 0.0701, \"coverage\": 0.5116},\n    \"W=25\": {\"bal_acc\": 0.8095, \"precision\": 0.8216, \"precp_fpr\": 0.0545, \"coverage\": 0.4884}\n  },\n  \"r1_8b_text\": {\n    \"W=1\": {\"bal_acc\": 0.6467, \"precision\": 0.4160, \"precp_fpr\": 0.2576, \"coverage\": 0.9535},\n    \"W=5\": {\"bal_acc\": 0.6994, \"precision\": 0.5125, \"precp_fpr\": 0.1849, \"coverage\": 0.8605},\n    \"W=10\": {\"bal_acc\": 0.7262, \"precision\": 0.5539, \"precp_fpr\": 0.1659, \"coverage\": 0.7209},\n    \"W=15\": {\"bal_acc\": 0.7398, \"precision\": 0.6119, \"precp_fpr\": 0.1285, \"coverage\": 0.5814},\n    \"W=25\": {\"bal_acc\": 0.7674, \"precision\": 0.6478, \"precp_fpr\": 0.1183, \"coverage\": 0.5814}\n  },\n  \"r1_32b_best\": {\"layer\": 10, \"window\": 10, \"bal_acc\": 0.7371, \"precision\": 0.6093, \"precp_fpr\": 0.1891, \"coverage\": 0.7000},\n  \"qwq_32b_best\": {\"layer\": 2, \"window\": 5, \"bal_acc\": 0.7610, \"precision\": 0.5733, \"precp_fpr\": 0.1795, \"coverage\": 0.7368}\n}\nEOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_paper_data_json_20260517T005602",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat > /root/autodl-tmp/contrastive_trace_safety/artifacts/paper_data/fig2_temporal_improvement.json << 'EOF'\n{\n  \"r1_8b_hs\": {\n    \"W=1\": {\"bal_acc\": 0.7783, \"precision\": 0.6926, \"precp_fpr\": 0.1037, \"coverage\": 0.7209},\n    \"W=5\": {\"bal_acc\": 0.7810, \"precision\": 0.7258, \"precp_fpr\": 0.0913, \"coverage\": 0.6512},\n    \"W=10\": {\"bal_acc\": 0.7925, \"precision\": 0.7431, \"precp_fpr\": 0.0865, \"coverage\": 0.5581},\n    \"W=15\": {\"bal_acc\": 0.8017, \"precision\": 0.7767, \"precp_fpr\": 0.0701, \"coverage\": 0.5116},\n    \"W=25\": {\"bal_acc\": 0.8095, \"precision\": 0.8216, \"precp_fpr\": 0.0545, \"coverage\": 0.4884}\n  },\n  \"r1_8b_text\": {\n    \"W=1\": {\"bal_acc\": 0.6467, \"precision\": 0.4160, \"precp_fpr\": 0.2576, \"coverage\": 0.9535},\n    \"W=5\": {\"bal_acc\": 0.6994, \"precision\": 0.5125, \"precp_fpr\": 0.1849, \"coverage\": 0.8605},\n    \"W=10\": {\"bal_acc\": 0.7262, \"precision\": 0.5539, \"precp_fpr\": 0.1659, \"coverage\": 0.7209},\n    \"W=15\": {\"bal_acc\": 0.7398, \"precision\": 0.6119, \"precp_fpr\": 0.1285, \"coverage\": 0.5814},\n    \"W=25\": {\"bal_acc\": 0.7674, \"precision\": 0.6478, \"precp_fpr\": 0.1183, \"coverage\": 0.5814}\n  },\n  \"r1_32b_best\": {\"layer\": 10, \"window\": 10, \"bal_acc\": 0.7371, \"precision\": 0.6093, \"precp_fpr\": 0.1891, \"coverage\": 0.7000},\n  \"qwq_32b_best\": {\"layer\": 2, \"window\": 5, \"bal_acc\": 0.7610, \"precision\": 0.5733, \"precp_fpr\": 0.1795, \"coverage\": 0.7368}\n}\nEOF",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-17T00:58:41.260484+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_paper_data_json_20260517T005602",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-17T00:58:41.260642+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat > /root/autodl-tmp/contrastive_trace_safety/artifacts/paper_data/fig3_bootstrap_ci.json << 'EOF'\n{\n  \"r1_8b\": {\n    \"n_test\": 43,\n    \"accuracy\": {\"hs\": 0.8126, \"text\": 0.7307, \"diff\": 0.0818, \"ci95\": [0.0263, 0.1384], \"p\": 0.005},\n    \"precision\": {\"hs\": 0.7678, \"text\": 0.5442, \"diff\": 0.2236, \"ci95\": [0.1245, 0.3341], \"p\": 0.0},\n    \"fpr\": {\"hs\": 0.1484, \"text\": 0.2219, \"diff\": -0.0736, \"ci95\": [-0.1558, -0.0036], \"p\": 0.044}\n  },\n  \"r1_32b\": {\n    \"n_test\": 20,\n    \"accuracy\": {\"hs\": 0.7035, \"text\": 0.6412, \"diff\": 0.0623, \"ci95\": [-0.0171, 0.1459], \"p\": 0.13},\n    \"precision\": {\"hs\": 0.6100, \"text\": 0.5160, \"diff\": 0.0940, \"ci95\": [0.0003, 0.2046], \"p\": 0.064},\n    \"fpr\": {\"hs\": 0.2604, \"text\": 0.2461, \"diff\": 0.0143, \"ci95\": [-0.1035, 0.1269], \"p\": 0.999}\n  },\n  \"qwq_32b\": {\n    \"n_test\": 19,\n    \"accuracy\": {\"hs\": 0.6795, \"text\": 0.6708, \"diff\": 0.0087, \"ci95\": [-0.0618, 0.0734], \"p\": 0.828},\n    \"precision\": {\"hs\": 0.5827, \"text\": 0.5252, \"diff\": 0.0575, \"ci95\": [-0.0583, 0.1676], \"p\": 0.346},\n    \"fpr\": {\"hs\": 0.2240, \"text\": 0.2144, \"diff\": 0.0096, \"ci95\": [-0.0996, 0.1202], \"p\": 0.904}\n  }\n}\nEOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_paper_data_json_20260517T005602",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat > /root/autodl-tmp/contrastive_trace_safety/artifacts/paper_data/fig3_bootstrap_ci.json << 'EOF'\n{\n  \"r1_8b\": {\n    \"n_test\": 43,\n    \"accuracy\": {\"hs\": 0.8126, \"text\": 0.7307, \"diff\": 0.0818, \"ci95\": [0.0263, 0.1384], \"p\": 0.005},\n    \"precision\": {\"hs\": 0.7678, \"text\": 0.5442, \"diff\": 0.2236, \"ci95\": [0.1245, 0.3341], \"p\": 0.0},\n    \"fpr\": {\"hs\": 0.1484, \"text\": 0.2219, \"diff\": -0.0736, \"ci95\": [-0.1558, -0.0036], \"p\": 0.044}\n  },\n  \"r1_32b\": {\n    \"n_test\": 20,\n    \"accuracy\": {\"hs\": 0.7035, \"text\": 0.6412, \"diff\": 0.0623, \"ci95\": [-0.0171, 0.1459], \"p\": 0.13},\n    \"precision\": {\"hs\": 0.6100, \"text\": 0.5160, \"diff\": 0.0940, \"ci95\": [0.0003, 0.2046], \"p\": 0.064},\n    \"fpr\": {\"hs\": 0.2604, \"text\": 0.2461, \"diff\": 0.0143, \"ci95\": [-0.1035, 0.1269], \"p\": 0.999}\n  },\n  \"qwq_32b\": {\n    \"n_test\": 19,\n    \"accuracy\": {\"hs\": 0.6795, \"text\": 0.6708, \"diff\": 0.0087, \"ci95\": [-0.0618, 0.0734], \"p\": 0.828},\n    \"precision\": {\"hs\": 0.5827, \"text\": 0.5252, \"diff\": 0.0575, \"ci95\": [-0.0583, 0.1676], \"p\": 0.346},\n    \"fpr\": {\"hs\": 0.2240, \"text\": 0.2144, \"diff\": 0.0096, \"ci95\": [-0.0996, 0.1202], \"p\": 0.904}\n  }\n}\nEOF",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-17T00:58:41.260784+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_paper_data_json_20260517T005602",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-17T00:58:41.260919+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/contrastive_trace_safety/artifacts/paper_data/fig2_temporal_improvement.json')); print('fig2 keys:', list(d.keys())); print('r1_8b_hs windows:', list(d['r1_8b_hs'].keys()))\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_paper_data_json_20260517T005602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/contrastive_trace_safety/artifacts/paper_data/fig2_temporal_improvement.json')); print('fig2 keys:', list(d.keys())); print('r1_8b_hs windows:', list(d['r1_8b_hs'].keys()))\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-17T00:58:41.261044+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_paper_data_json_20260517T005602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-17T00:58:41.261161+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/contrastive_trace_safety/artifacts/paper_data/fig3_bootstrap_ci.json')); print('fig3 keys:', list(d.keys())); print('r1_8b metrics:', list(d['r1_8b'].keys()))\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_paper_data_json_20260517T005602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/contrastive_trace_safety/artifacts/paper_data/fig3_bootstrap_ci.json')); print('fig3 keys:', list(d.keys())); print('r1_8b metrics:', list(d['r1_8b'].keys()))\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-17T00:58:41.261281+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_paper_data_json_20260517T005602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-17T00:58:41.261402+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/contrastive_trace_safety/artifacts/paper_data/fig2_temporal_improvement.json')); print(json.dumps(d, indent=2))\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_paper_data_json_20260517T005602",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/contrastive_trace_safety/artifacts/paper_data/fig2_temporal_improvement.json')); print(json.dumps(d, indent=2))\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-17T00:58:41.261529+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'python3 -c \\\"import json; d=json.load(open(\\\\'/root/autodl-tmp/contrastive_trace_safety/artifacts/paper_data/fig2_temporal_improvement.json\\\\')); print(json.dumps(d, indent=2))\\\"'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_paper_data_json_20260517T005602",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-17T00:58:41.261696+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/contrastive_trace_safety/artifacts/paper_data/fig3_bootstrap_ci.json')); print(json.dumps(d, indent=2))\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_paper_data_json_20260517T005602",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/contrastive_trace_safety/artifacts/paper_data/fig3_bootstrap_ci.json')); print(json.dumps(d, indent=2))\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-17T00:58:41.261845+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'python3 -c \\\"import json; d=json.load(open(\\\\'/root/autodl-tmp/contrastive_trace_safety/artifacts/paper_data/fig3_bootstrap_ci.json\\\\')); print(json.dumps(d, indent=2))\\\"'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.82}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_paper_data_json_20260517T005602",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-17T00:58:41.261965+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/paper_data/fig2_temporal_improvement.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_paper_data_json_20260517T005602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/paper_data/fig2_temporal_improvement.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-17T00:58:41.262083+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/paper_data/fig3_bootstrap_ci.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_paper_data_json_20260517T005602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/paper_data/fig3_bootstrap_ci.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-17T00:58:41.262234+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"r1_8b_hs\\\": {\\n    \\\"W=1\\\": {\\\"bal_acc\\\": 0.7783, \\\"precision\\\": 0.6926, \\\"precp_fpr\\\": 0.1037, \\\"coverage\\\": 0.7209},\\n    \\\"W=5\\\": {\\\"bal_acc\\\": 0.7810, \\\"precision\\\": 0.7258, \\\"precp_fpr\\\": 0.0913, \\\"coverage\\\": 0.6512},\\n    \\\"W=10\\\": {\\\"bal_acc\\\": 0.7925, \\\"precision\\\": 0.7431, \\\"precp_fpr\\\": 0.0865, \\\"coverage\\\": 0.5581},\\n    \\\"W=15\\\": {\\\"bal_acc\\\": 0.8017, \\\"precision\\\": 0.7767, \\\"precp_fpr\\\": 0.0701, \\\"coverage\\\": 0.5116},\\n    \\\"W=25\\\": {\\\"bal_acc\\\": 0.8095, \\\"precision\\\": 0.8216, \\\"precp_fpr\\\": 0.0545, \\\"coverage\\\": 0.4884}\\n  },\\n  \\\"r1_8b_text\\\": {\\n    \\\"W=1\\\": {\\\"bal_acc\\\": 0.6467, \\\"precision\\\": 0.4160, \\\"precp_fpr\\\": 0.2576, \\\"coverage\\\": 0.9535},\\n    \\\"W=5\\\": {\\\"bal_acc\\\": 0.6994, \\\"precision\\\": 0.5125, \\\"precp_fpr\\\": 0.1849, \\\"coverage\\\": 0.8605},\\n    \\\"W=10\\\": {\\\"bal_acc\\\": 0.7262, \\\"precision\\\": 0.5539, \\\"precp_fpr\\\": 0.1659, \\\"coverage\\\": 0.7209},\\n    \\\"W=15\\\": {\\\"bal_acc\\\": 0.7398, \\\"precision\\\": 0.6119, \\\"precp_fpr\\\": 0.1285, \\\"coverage\\\": 0.5814},\\n    \\\"W=25\\\": {\\\"bal_acc\\\": 0.7674, \\\"precision\\\": 0.6478, \\\"precp_fpr\\\": 0.1183, \\\"coverage\\\": 0.5814}\\n  },\\n  \\\"r1_32b_best\\\": {\\\"layer\\\": 10, \\\"window\\\": 10, \\\"bal_acc\\\": 0.7371, \\\"precision\\\": 0.6093, \\\"precp_fpr\\\": 0.1891, \\\"coverage\\\": 0.7000},\\n  \\\"qwq_32b_best\\\": {\\\"layer\\\": 2, \\\"window\\\": 5, \\\"bal_acc\\\": 0.7610, \\\"precision\\\": 0.5733, \\\"precp_fpr\\\": 0.1795, \\\"coverage\\\": 0.7368}\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.83}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_paper_data_json_20260517T005602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-17T00:58:41.262401+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"r1_8b\\\": {\\n    \\\"n_test\\\": 43,\\n    \\\"accuracy\\\": {\\\"hs\\\": 0.8126, \\\"text\\\": 0.7307, \\\"diff\\\": 0.0818, \\\"ci95\\\": [0.0263, 0.1384], \\\"p\\\": 0.005},\\n    \\\"precision\\\": {\\\"hs\\\": 0.7678, \\\"text\\\": 0.5442, \\\"diff\\\": 0.2236, \\\"ci95\\\": [0.1245, 0.3341], \\\"p\\\": 0.0},\\n    \\\"fpr\\\": {\\\"hs\\\": 0.1484, \\\"text\\\": 0.2219, \\\"diff\\\": -0.0736, \\\"ci95\\\": [-0.1558, -0.0036], \\\"p\\\": 0.044}\\n  },\\n  \\\"r1_32b\\\": {\\n    \\\"n_test\\\": 20,\\n    \\\"accuracy\\\": {\\\"hs\\\": 0.7035, \\\"text\\\": 0.6412, \\\"diff\\\": 0.0623, \\\"ci95\\\": [-0.0171, 0.1459], \\\"p\\\": 0.13},\\n    \\\"precision\\\": {\\\"hs\\\": 0.6100, \\\"text\\\": 0.5160, \\\"diff\\\": 0.0940, \\\"ci95\\\": [0.0003, 0.2046], \\\"p\\\": 0.064},\\n    \\\"fpr\\\": {\\\"hs\\\": 0.2604, \\\"text\\\": 0.2461, \\\"diff\\\": 0.0143, \\\"ci95\\\": [-0.1035, 0.1269], \\\"p\\\": 0.999}\\n  },\\n  \\\"qwq_32b\\\": {\\n    \\\"n_test\\\": 19,\\n    \\\"accuracy\\\": {\\\"hs\\\": 0.6795, \\\"text\\\": 0.6708, \\\"diff\\\": 0.0087, \\\"ci95\\\": [-0.0618, 0.0734], \\\"p\\\": 0.828},\\n    \\\"precision\\\": {\\\"hs\\\": 0.5827, \\\"text\\\": 0.5252, \\\"diff\\\": 0.0575, \\\"ci95\\\": [-0.0583, 0.1676], \\\"p\\\": 0.346},\\n    \\\"fpr\\\": {\\\"hs\\\": 0.2240, \\\"text\\\": 0.2144, \\\"diff\\\": 0.0096, \\\"ci95\\\": [-0.0996, 0.1202], \\\"p\\\": 0.904}\\n  }\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_paper_data_json_20260517T005602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51 · 2026-05-17T00:58:41.262584+00:00_
+
+两个文件已成功创建。
+
+## 数据提取报告
+
+### 成功提取
+
+**fig2_temporal_improvement.json** — 全部字段已填充：
+- `r1_8b_hs`: 来自 `exp_007_window_ablation/results.json` (precp_fpr_trace 作为 precp_fpr)
+- `r1_8b_text`: 来自 `text_window_ablation_r1_8b/results.json`
+- `r1_32b_best`: layer=10/window=10，bal_acc 和 precp_fpr 来自 `m001_layer_fix/temporal_lr_r1_32b.json`，precision 和 coverage 来自 `exp_007_window_ablation/results.json`（两文件 bal_acc/precp_fpr 一致，确认使用相同配置）
+- `qwq_32b_best`: layer=2/window=5，同上逻辑
+
+**fig3_bootstrap_ci.json** — 全部字段已填充：
+- `r1_8b` accuracy/precision: `acc_precision_bootstrap/results.json`；fpr: `r1_8b_bootstrap_hs_text/results.json`
+- `r1_32b` accuracy/precision: `acc_precision_bootstrap/results.json`；fpr: `m001_layer_fix/bootstrap_hs_vs_text_r1_32b.json`
+- `qwq_32b` accuracy/precision: `acc_precision_bootstrap/results.json`；fpr: `qwq_text_verify/bootstrap_results.json`
+
+### 注意事项
+
+- fig2 中 `precp_fpr` 对于 HS 方法使用的是 `precp_fpr_trace`（trace-level FPR），与 text baseline 的 `precp_fpr` 定义一致
+- fig2 中 R1-32B/QwQ-32B 的 `coverage` 使用 exp_007 中的值（与 m001_layer_fix 中的 `crossing_rate` 定义略有不同：0.7 vs 0.5 for R1-32B）
+- fig3 中 R1-32B 和 QwQ-32B 的 FPR 差异不显著（p=0.999 和 p=0.904），HS 优势仅在 R1-8B 上显著
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_code_paper_data_json_20260517T005602"
+}
+```
+
+</details>
+
+---

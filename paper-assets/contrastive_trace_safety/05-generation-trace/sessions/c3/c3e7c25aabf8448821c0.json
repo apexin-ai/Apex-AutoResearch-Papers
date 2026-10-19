@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c3e7c25aabf8448821c0",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "research r7 arxiv verification 4papers",
+  "task_key": "worker_research_r7_arxiv_verification_4papers_20260518T053434",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_r7_arxiv_verification_4papers_20260518T053434_result.json",
+    "occurrence": 1,
+    "bytes": 2293,
+    "sha256": "158258481f7e60e9e0a515f69d83c91905e8eb3ce0a2bdb2d03e5c160c0cdf49"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "| # | arXiv ID | 存在 | 真实标题 | 真实作者 | 与声称匹配 | 相关性 |\n|---|----------|------|----------|----------|-----------|--------|\n| 1 | 2503.11926 | ✓ | Monitoring Reasoning Models for Misbehavior and the Risks of Promoting Obfuscation | Baker, Huizinga, Gao, Dou, Guan, Madry, Zaremba, Pachocki, Farhi | **MISMATCH**: 标题缺少后半部分 \"and the Risks of Promoting Obfuscation\" | **高** — CoT monitoring 检测 reasoning model 的 misbehavior，与本项目 probing hidden states for safety detection 直接相关 |\n| 2 | 2510.06594 | ✓ | Do Internal Layers of LLMs Reveal Patterns for Jailbreak Detection? | Kadali, Papalexakis | 匹配 | **高** — 研究 LLM 内部层对 jailbreak 的响应模式，与本项目 probing internal representations 方法高度一致 |\n| 3 | 2510.06036 | ✓ | Refusal Falls off a Cliff: How Safety Alignment Fails in Reasoning? | Yin, Leong, Yang, Huang, Li, Wang, Yoon 等 | **MISMATCH**: 声称标题 \"Refusal Falls Off a Cliff\"，真实标题含副标题 \"How Safety Alignment Fails in Reasoning?\" | **高** — mechanistic interpretability 分析 reasoning model 的 safety failure（refusal cliff），与本项目 contrastive trace analysis 直接相关 |\n| 4 | 2509.21344 | ✓ | Linear probes rely on textual evidence: Results from leakage mitigation studies in language models | Boxo, Neelappa, Raval | **MISMATCH**: 声称标题缺少副标题 | **极高** — 直接研究 linear probe 检测 harmful behavior 的局限性（依赖文本证据而非深层模式），是本项目方法的核心 baseline/对比工作 |\n\n**MISMATCH 汇总**：\n- **#1**: 声称标题 \"Monitoring Reasoning Models for Misbehavior\"，实际为 \"Monitoring Reasoning Models for Misbehavior **and the Risks of Promoting Obfuscation**\"\n- **#3**: 声称标题 \"Refusal Falls Off a Cliff\"，实际为 \"Refusal Falls off a Cliff: **How Safety Alignment Fails in Reasoning?**\"\n- **#4**: 声称标题 \"Linear probes rely on textual evidence\"，实际为 \"Linear probes rely on textual evidence: **Results from leakage mitigation studies in language models**\"\n\n三处 mismatch 均为省略了副标题，主标题部分正确。4 篇论文全部存在，与项目相关性均为高或极高。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-r7-arxiv-verification-4papers.md"
+}

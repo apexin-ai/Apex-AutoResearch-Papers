@@ -1,0 +1,18 @@
+QwQ-32B (W=5, L63, 60/20/20, PCA=100d, 10k bootstrap):
+  n_test = 19 (traces), 1029 (steps)
+  HS Prec: 0.522 | Text Prec: 0.330
+  ΔPrec: +0.192pp, p=0.0057, CI=[0.093, 0.335]
+
+  HS BA: 0.673 | Text BA: 0.543
+  ΔBA: +0.130pp, p=0.0000, CI=[0.072, 0.191]
+
+  HS FPR: 0.197 | Text FPR: 0.347
+  ΔFPR: -0.150pp, p=0.0003, CI=[-0.229, -0.076]
+
+  HS AUROC: 0.812 | Text AUROC: 0.554
+  ΔAUROC: +0.258pp, p=0.0000, CI=[0.158, 0.368]
+
+  HB (3 tests: Prec, BA, FPR): 3/3 pass
+
+Source: /root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a1_qwq_rerun/results.json
+Also copied to: /root/autodl-tmp/contrastive_trace_safety/artifacts/table3_qwq_l63_corrected/results.json

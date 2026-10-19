@@ -1,0 +1,5 @@
+Directory: /root/autodl-tmp/contrastive_trace_safety/artifacts/text_embeddings_advbench/
+Files: 520 .pkl files
+Array shape: (T, 384) float32
+Steps per trace: min=2, mean=19.3, max=61
+Total size: 14.7 MB

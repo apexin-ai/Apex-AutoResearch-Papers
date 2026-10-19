@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "5c805a67303e9884cefa",
+  "project": "contrastive_trace_safety",
+  "kind": "worker",
+  "title": "code ensemble 5fold cv",
+  "task_key": "worker_code_ensemble_5fold_cv_20260522T072555",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_ensemble_5fold_cv_20260522T072555.log",
+    "occurrence": 1,
+    "bytes": 555132,
+    "sha256": "e37fdd9b236e3dd53db47a1389c61dda189db4c4a7ec52f498a928a319c6bfe8"
+  },
+  "statistics": {
+    "messages": 289,
+    "user_turns": 0,
+    "tool_calls": 120,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 3,
+      "assistant": 43,
+      "tool_call": 120,
+      "tool_result": 120,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 289,
+      "chunks": [
+        {
+          "path": "5c805a67303e9884cefa-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "5c805a67303e9884cefa-part-0002.json",
+          "message_count": 109
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-ensemble-5fold-cv.md"
+}

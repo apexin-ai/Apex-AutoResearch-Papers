@@ -1,0 +1,9 @@
+Output files on server bjb1-42106:
+- PDF: /root/autodl-tmp/structfuse/artifacts/neg_difficulty_analysis/overfitting_mechanism.pdf
+- PNG: /root/autodl-tmp/structfuse/artifacts/neg_difficulty_analysis/overfitting_mechanism.png
+- CSV: /root/autodl-tmp/structfuse/artifacts/neg_difficulty_analysis/eval_trajectories.csv
+
+Panel B correlation:
+  Pearson r = -0.60, p = 0.069 (marginally significant, n=10)
+  Spearman rho = -0.43, p = 0.215
+  Direction: lower margin (harder negatives) → steeper eval loss increase (faster overfitting)

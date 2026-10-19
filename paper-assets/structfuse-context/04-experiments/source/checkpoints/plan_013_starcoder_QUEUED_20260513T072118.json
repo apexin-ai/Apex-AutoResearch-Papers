@@ -1,0 +1,52 @@
+{
+  "exp_id": "plan_013_starcoder",
+  "project": "structfuse-context",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-13T05:09:14.885Z",
+    "updated_at": "2026-05-13T07:21:18.378Z",
+    "hypothesis": "Architecture generalization: validate StructFuse with StarCoder2-3B encoder (vs Qwen2.5-Coder-3B in m2_embed_verify). If both encoders show same strategy ranking → method is encoder-agnostic, strengthening the core claim. Key differentiator for best→accept at Dream.",
+    "spec": {
+      "command": "bash -c \"bash /root/structfuse/run_plan013_starcoder.sh\"",
+      "server": "bjb1-42106",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "23798",
+      "log_path": "~/runs/structfuse-context/plan_013_starcoder.log",
+      "submitted_at": "2026-05-13T05:26:21.946Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "notes": "StarCoder2-3B encoder validation. 共享 m2_embed_verify_data（Qwen-mined）。首次提交(PID 20005)缺 early stopping。二次提交(PID 20813) OOM 崩溃——StarCoder2 hidden_size=3072（比 Qwen 2048 大 50%），batch=8+neg=7 显存不足。三次提交降参数：batch=4, neg=5, seq=2048, epochs=2, ES=3。",
+    "metrics": {
+      "pid": 23810,
+      "gpu": "cuda:0",
+      "server": "bjb1-42106",
+      "gpu_mem_mb": 24298,
+      "gpu_util_pct": 100,
+      "batch_size": 4,
+      "num_negatives": 5,
+      "max_seq_length": 2048,
+      "epochs": 2,
+      "eval_steps": 500,
+      "early_stopping_patience": 3,
+      "model": "StarCoder2-3B (3030.4M params, hidden_size=3072)",
+      "train_samples": 3282,
+      "val_samples": 1148,
+      "current_strategy": "random",
+      "current_epoch": 1,
+      "current_step": 500,
+      "total_steps_per_epoch": 820,
+      "loss_trend": "0.59→0.52→0.05→0.17 (normal)",
+      "eta_hours": 1.9,
+      "status_check_at": "2026-05-13T06:17:00Z"
+    }
+  },
+  "timestamp": "2026-05-13T07:21:18.420788+00:00",
+  "trigger": "update_registry"
+}

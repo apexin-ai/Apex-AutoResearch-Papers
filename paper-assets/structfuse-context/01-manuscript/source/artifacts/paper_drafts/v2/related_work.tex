@@ -1,0 +1,69 @@
+%==============================================================================
+\section{Related Work}
+\label{sec:related}
+%==============================================================================
+
+\subsection{Dense Retrieval for Code}
+\label{sec:related-retrieval}
+
+Code retrieval has evolved from sparse lexical methods such as BM25~\cite{robertson2009bm25} to dense neural approaches.
+Early pretrained code models---CodeBERT~\cite{feng2020codebert}, UniXcoder~\cite{guo2022unixcoder}, and InferCode~\cite{bui2021infercode}---learn general-purpose code representations through masked language modeling and related pretraining objectives, enabling semantic matching beyond surface-level token overlap.
+More recent large-scale code models, including StarCoder2~\cite{lozhkov2024starcoder2} and Qwen2.5-Coder~\cite{hui2024qwen25coder}, provide powerful encoder backbones trained on trillions of code tokens.
+In the retrieval domain, CodeSage~\cite{zhang2024codesage} and SCodeR~\cite{li2022scoder} introduce contrastive fine-tuning strategies that adapt pretrained representations for code search.
+
+The growing importance of repository-level retrieval---driven by benchmarks like SWE-bench~\cite{jimenez2024swebench}---has motivated specialized systems: SweRank~\cite{reddy2025swerank} formulates issue localization as code ranking, while SWE-Fixer~\cite{xie2025swefixer} combines BM25 with neural reranking in a coarse-to-fine pipeline.
+Our work builds on this foundation by systematically comparing negative mining strategies for contrastive code retrieval, demonstrating that both mining strategy \emph{and} evaluation methodology meaningfully affect measured retrieval quality.
+
+\subsection{Contrastive Learning and Hard Negative Mining}
+\label{sec:related-mining}
+
+Sentence-BERT~\cite{reimers2019sentencebert} established contrastive fine-tuning of pretrained encoders for dense text retrieval.
+In open-domain text retrieval, DPR~\cite{karpukhin2020dpr} established BM25-retrieved passages as hard negatives.
+ANCE~\cite{xiong2021ance} dynamically mines negatives from an approximate nearest neighbor index updated during training, while RocketQA~\cite{qu2021rocketqa} introduces cross-batch denoised negatives with knowledge distillation.
+STAR~\cite{zhan2021star} uses the retriever's own top-ranked passages as training negatives.
+Curriculum-based approaches---CL-DRD~\cite{zeng2022cldrd} and CAPSTONE~\cite{he2023capstone}---schedule negative difficulty progressively during training.
+
+In the code domain, ContraCode~\cite{jain2021contracode} generates functionally equivalent program variants through compiler transformations.
+CodeRetriever~\cite{li2022coderetriever} combines unimodal code-code and bimodal code-text contrastive objectives.
+GraphCodeBERT~\cite{guo2021graphcodebert} incorporates data-flow edges into pretraining, demonstrating that structural information improves code understanding tasks.
+CoCoHaNeRe~\cite{fan2025cocohanere} proposes gradient-based hard negative mining for code search, arguing that non-differentiable embedding-based negatives are ``slow and ineffective.''
+However, their evaluation uses BM25-based retrieval as a proxy for embedding distance---a methodological conflation we disentangle by evaluating true embedding-distance mining and BM25 mining as separate strategies.
+
+\subsection{Evaluation Methodology for Dense Retrieval}
+\label{sec:related-eval}
+
+The reliability of dense retrieval evaluation depends on choices that are often treated as implementation details rather than studied systematically.
+
+\paragraph{Checkpoint selection.}
+Contrastive fine-tuning optimizes a surrogate loss (InfoNCE) that does not directly correspond to the downstream retrieval metric (Recall@$k$).
+Prior work in NLP has documented loss--metric misalignment: validation loss can continue improving after task performance degrades~\cite{dodge2020finetuning} [VERIFY].
+In dense retrieval specifically, Thakur et al.\ note that BEIR benchmark rankings are sensitive to checkpoint selection~\cite{thakur2021beir} [VERIFY], yet most papers report only a single ``best'' checkpoint without specifying the selection criterion.
+We quantify this effect for code retrieval, finding that the choice between best-by-loss and best-by-R@1 checkpoints yields a \placeholder{+16.3pp} difference---larger than any strategy effect we measure.
+
+\paragraph{Evaluation pool size.}
+Standard contrastive training evaluations use small fixed pools (often 50--100 candidates) where most negatives are trivially distinguishable.
+BEIR~\cite{thakur2021beir} and MTEB~\cite{muennighoff2023mteb} [VERIFY] evaluate at corpus scale, but per-paper ablation studies typically use smaller pools for computational tractability.
+The gap between small-pool and corpus-scale evaluation is well-documented in information retrieval~\cite{craswell2020overview} [VERIFY]: strategy differences that appear at small pool sizes may not transfer to realistic retrieval scenarios.
+We evaluate at multiple pool sizes (\{50, 200, 500\}) to characterize this interaction.
+
+\paragraph{Query overlap.}
+When evaluation queries overlap with training queries (differing only in the negative pool composition), performance reflects memorization of query-specific patterns rather than generalizable retrieval ability.
+Query-split evaluation---holding out queries not seen during training---is standard in open-domain QA~\cite{karpukhin2020dpr} but is not consistently applied in code retrieval evaluations that use pool-based metrics.
+We adopt a strict query-split protocol to ensure measured improvements reflect genuine retrieval generalization.
+
+\subsection{Code Structure in Machine Learning}
+\label{sec:related-structure}
+
+Program dependence graphs~\cite{ferrante1987pdg} and code property graphs~\cite{yamaguchi2014cpg} have long served program analysis; tools like CodeQL~\cite{avgustinov2016ql} make inter-procedural analysis accessible at scale.
+In machine learning, code2vec~\cite{alon2019code2vec} pioneered learning from AST paths, while ProGraML~\cite{cummins2021programl} demonstrated that whole-program graph representations are learnable and effective for compiler optimization tasks.
+
+Recent inference-time graph methods bring structural reasoning to LLM-based software engineering.
+CodexGraph~\cite{liu2025codexgraph} materializes code property graphs for LLM agent navigation; RepoGraph~\cite{ouyang2025repograph} provides line-level code graph navigation; LocAgent~\cite{chen2025locagent} and RANGER~\cite{shah2025ranger} employ multi-hop graph reasoning for fault localization and retrieval.
+GraphCoder~\cite{liu2024graphcoder} and ARISE~\cite{seddik2026arise} incorporate data-flow edges but remain limited to intra-procedural scope.
+GRACE~\cite{wang2025grace} constructs multi-level code graphs spanning repository, module, and function granularity for hierarchical retrieval-augmented completion.
+
+These methods leverage structural graphs at \emph{inference time}, incurring per-query latency proportional to graph complexity.
+Our work operates in a complementary regime: we use inter-procedural data-flow graphs at \emph{training time} to construct hard negatives, with zero inference overhead.
+A model trained with our approach can serve as an efficient first-stage retriever for inference-time graph systems.
+
+%==============================================================================

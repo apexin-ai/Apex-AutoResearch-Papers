@@ -1,0 +1,24 @@
+{
+  "exp_id": "diag_d3_regularized_probes",
+  "project": "contrastive_trace_safety",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T19:29:07.038Z",
+    "updated_at": "2026-05-16T19:29:07.038Z",
+    "spec": {
+      "hypothesis": "Class weighting + reduced capacity temporal probe may fix overfitting and reveal temporal advantage",
+      "parent": "diag_d1_layer_sweep",
+      "command": "python -m src.diagnostics.regularized_probes",
+      "server": "autodl-rtx6000",
+      "data_path": "artifacts/hidden_states/",
+      "data_count": 209,
+      "model_name": "DeepSeek-R1-Distill-Llama-8B",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-16T19:29:07.045329+00:00",
+  "trigger": "update_registry"
+}

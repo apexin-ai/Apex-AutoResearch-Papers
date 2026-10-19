@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a568c7c2239fbf72719b",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "analysis adaptive window simulation",
+  "task_key": "worker_analysis_adaptive_window_simulation_20260517T052256",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_adaptive_window_simulation_20260517T052256_result.json",
+    "occurrence": 1,
+    "bytes": 1156,
+    "sha256": "ba101e3aa8619b3ceb2ee4ed46e39db6dd55766d804d7a8e346137422a4474b4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果总结\n\n**结论：POSITIVE，但改进幅度有限。**\n\nTwo-stage (W_screen=3, W_confirm=15, k=1) 实现了对 single-stage Pareto frontier 的技术性 domination：\n- 相同 coverage (0.7692) 下 precision 提升 +1.3pp（对比 W=15）\n- 相同 precision (0.7222) 下 coverage 提升 +5.1pp（对比 W=20）\n\n**关键限制：**\n1. 测试集小（n=55），1-5pp 的差异在噪声范围内\n2. 所有方法的 benign FPR 极高（93-100%），因为 probe 仅在 jailbreak traces 上训练，无法区分 benign 与 pre-CP 状态\n3. 未能 dominate 最高 coverage 点 W=1（cov=0.8462）\n4. 最优配置 k=1，Stage 2 实质是大窗口 probe 的单步确认，非真正的连续步确认\n\n**建议**：Two-stage 作为 methodological contribution 较弱（改进在噪声范围内）。适合作为 \"practical deployment strategy\" 在 discussion 中提及，而非核心方法贡献。\n\n产出已保存至：\n- `artifacts/exp_pathC_two_stage/results.json`\n- `artifacts/exp_pathC_two_stage/pareto_comparison.pdf`\n- `artifacts/exp_pathC_two_stage_summary.md`\n- `src/experiments/exp_pathC_two_stage_sim.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-adaptive-window-simulation.md"
+}

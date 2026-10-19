@@ -1,0 +1,41 @@
+% Per-seed performance of GRU(h=256) and Logistic Regression probes
+% Data source: R1-8B hidden states, 268 traces, 60/20/20 split per seed
+% Seeds: 42, 123, 456
+
+\begin{table}[h]
+\centering
+\caption{Per-seed performance of GRU and LR probes on R1-8B commitment detection.
+Single = layer 14 only; Multi = 7-layer mean (layers 12--24, stride 2).
+Lead = commitment point minus first crossing (positive = early detection).}
+\label{tab:gru_per_seed}
+\small
+\begin{tabular}{llccccc}
+\toprule
+Model & Seed & Acc & Prec & FPR & Cross.\% & Lead \\
+\midrule
+GRU-single & 42  & 0.845 & 0.657 & 0.139 & 72.1\% & 3.55 \\
+GRU-single & 123 & 0.760 & 0.454 & 0.191 & 65.1\% & 7.39 \\
+GRU-single & 456 & 0.792 & 0.474 & 0.203 & 67.4\% & 8.45 \\
+\rowcolor{gray!10}
+GRU-single & \textit{mean} & 0.799$\pm$0.035 & 0.528$\pm$0.091 & 0.178$\pm$0.028 & 68.2$\pm$2.9\% & 6.46$\pm$2.10 \\
+\midrule
+GRU-multi  & 42  & 0.824 & 0.616 & 0.164 & 74.4\% & 5.66 \\
+GRU-multi  & 123 & 0.759 & 0.454 & 0.195 & 65.1\% & 6.43 \\
+GRU-multi  & 456 & 0.784 & 0.460 & 0.207 & 65.1\% & 8.93 \\
+\rowcolor{gray!10}
+GRU-multi  & \textit{mean} & 0.789$\pm$0.027 & 0.510$\pm$0.075 & 0.189$\pm$0.018 & 68.2$\pm$4.4\% & 7.01$\pm$1.40 \\
+\midrule
+LR-single  & 42  & 0.841 & 0.693 & 0.097 & 46.5\% & $-$2.00 \\
+LR-single  & 123 & 0.753 & 0.436 & 0.181 & 53.5\% & 5.26 \\
+LR-single  & 456 & 0.814 & 0.512 & 0.146 & 41.9\% & 3.94 \\
+\rowcolor{gray!10}
+LR-single  & \textit{mean} & 0.803$\pm$0.037 & 0.547$\pm$0.108 & 0.141$\pm$0.035 & 47.3$\pm$4.8\% & 2.40$\pm$3.16 \\
+\midrule
+LR-multi   & 42  & 0.827 & 0.679 & 0.092 & 39.5\% & 1.06 \\
+LR-multi   & 123 & 0.756 & 0.442 & 0.180 & 46.5\% & 7.30 \\
+LR-multi   & 456 & 0.817 & 0.521 & 0.130 & 34.9\% & 4.00 \\
+\rowcolor{gray!10}
+LR-multi   & \textit{mean} & 0.800$\pm$0.032 & 0.547$\pm$0.099 & 0.134$\pm$0.036 & 40.3$\pm$4.8\% & 4.12$\pm$2.55 \\
+\bottomrule
+\end{tabular}
+\end{table}

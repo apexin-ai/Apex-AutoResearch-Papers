@@ -1,0 +1,88 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{robinson2021contrastive}
+\citation{xiong2021approximate}
+\citation{cocohanere2025}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{xiong2021approximate}
+\citation{karpukhin2020dense}
+\citation{robinson2021contrastive}
+\citation{cocohanere2025}
+\citation{jimenez2024swerank}
+\citation{guo2021graphcodebert}
+\citation{reimers2019sentence}
+\citation{jimenez2024swesmith}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Hard Negative Mining for Dense Retrieval}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Code Retrieval and Mining}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Evaluation Methodology in Retrieval}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Methodology}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Task and Dataset}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Mining Strategies}{2}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Random Baseline}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Embedding-Distance Mining}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Dataflow-Aware Mining}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{BM25 Mining}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}CodeQL Pipeline}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Training Configuration}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Encoders}{3}{subsection.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Main Results: Mining Strategy Comparison}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Qwen2.5-Coder-3B R@1 across 4 strategies $\times $ 3 seeds (pool=8, best checkpoint by R@1). All 95\% CIs include zero.}}{4}{table.caption.8}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:qwen_main}{{1}{4}{Qwen2.5-Coder-3B R@1 across 4 strategies $\times $ 3 seeds (pool=8, best checkpoint by R@1). All 95\% CIs include zero}{table.caption.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Paired within-seed strategy deltas (pp) for Qwen. Sign-inconsistent across seeds; no strategy reliably outperforms random.}}{4}{table.caption.9}\protected@file@percent }
+\newlabel{tab:paired_deltas}{{2}{4}{Paired within-seed strategy deltas (pp) for Qwen. Sign-inconsistent across seeds; no strategy reliably outperforms random}{table.caption.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Cross-Architecture Confirmation}{4}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Data Size Scaling Analysis}{4}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Pool Size Sensitivity}{4}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}External Validation: RepoBench-R}{4}{subsection.4.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces StarCoder2-3B R@1 (pool=8, 3 seeds). Per-encoder CIs exclude zero---mining strategies consistently \textit  {hurt} StarCoder. Pooled cross-encoder CI includes zero.}}{5}{table.caption.10}\protected@file@percent }
+\newlabel{tab:starcoder_main}{{3}{5}{StarCoder2-3B R@1 (pool=8, 3 seeds). Per-encoder CIs exclude zero---mining strategies consistently \textit {hurt} StarCoder. Pooled cross-encoder CI includes zero}{table.caption.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces UniXcoder-base (125M) R@1 (pool=8, 3 seeds). Strategy range $<$0.4pp per seed, confirming null across encoder-only architecture.}}{5}{table.caption.11}\protected@file@percent }
+\newlabel{tab:unixcoder_main}{{4}{5}{UniXcoder-base (125M) R@1 (pool=8, 3 seeds). Strategy range $<$0.4pp per seed, confirming null across encoder-only architecture}{table.caption.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Checkpoint Selection Criterion Effect}{5}{subsection.4.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Power Analysis}{5}{subsection.4.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}Reproduction of Published Claims}{5}{subsection.4.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.9}Temperature Ablation}{5}{subsection.4.9}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Embed$-$random delta vs.\ training data size (Qwen). Mining benefit monotonically decreases, crossing zero at $\sim $4K instances.}}{6}{table.caption.12}\protected@file@percent }
+\newlabel{tab:scaling}{{5}{6}{Embed$-$random delta vs.\ training data size (Qwen). Mining benefit monotonically decreases, crossing zero at $\sim $4K instances}{table.caption.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Qwen R@1 by evaluation pool size. Pool 8$\to $500 causes 45.5pp drop; strategy delta remains $<$0.5pp throughout. Pool-to-strategy ratio: 227$\times $.}}{6}{table.caption.13}\protected@file@percent }
+\newlabel{tab:pool_size}{{6}{6}{Qwen R@1 by evaluation pool size. Pool 8$\to $500 causes 45.5pp drop; strategy delta remains $<$0.5pp throughout. Pool-to-strategy ratio: 227$\times $}{table.caption.13}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.10}Stratified Analysis}{6}{subsection.4.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.11}Additional Ablations}{6}{subsection.4.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Dynamic vs.\ Static Mining}{6}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Call-Graph Hop Depth}{6}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Dataflow Distance Weighting}{6}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Fusion Head}{6}{section*.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Failure Analysis}{6}{section*.25}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces RepoBench-R R@1 (Qwen, 3 seeds). Pool size effect ($\sim $36pp) $\gg $ strategy effect ($<$1pp). All cross-seed 95\% CIs include zero.}}{7}{table.caption.14}\protected@file@percent }
+\newlabel{tab:repobench}{{7}{7}{RepoBench-R R@1 (Qwen, 3 seeds). Pool size effect ($\sim $36pp) $\gg $ strategy effect ($<$1pp). All cross-seed 95\% CIs include zero}{table.caption.14}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Checkpoint criterion divergence: R@1 of best-by-R@1 vs.\ best-by-val-loss checkpoints. 67\% of runs show divergence; 3 strategy ranking flips observed.}}{7}{table.caption.15}\protected@file@percent }
+\newlabel{tab:checkpoint}{{8}{7}{Checkpoint criterion divergence: R@1 of best-by-R@1 vs.\ best-by-val-loss checkpoints. 67\% of runs show divergence; 3 strategy ranking flips observed}{table.caption.15}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{7}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Why Mining Fails at Scale}{7}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Representation Geometry}{7}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Implications for the Field}{7}{subsection.5.3}\protected@file@percent }
+\bibcite{robinson2021contrastive}{1}
+\bibcite{xiong2021approximate}{2}
+\bibcite{cocohanere2025}{3}
+\bibcite{jimenez2024swerank}{4}
+\bibcite{jimenez2024swesmith}{5}
+\bibcite{guo2021graphcodebert}{6}
+\bibcite{karpukhin2020dense}{7}
+\bibcite{reimers2019sentence}{8}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Analyst flexibility decomposition. Methodological choices create 30$\times $ more variance than the mining strategy effect being studied.}}{8}{table.caption.16}\protected@file@percent }
+\newlabel{tab:flexibility}{{9}{8}{Analyst flexibility decomposition. Methodological choices create 30$\times $ more variance than the mining strategy effect being studied}{table.caption.16}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Power analysis: minimum detectable effect at 80\% power given cross-seed std $\approx $2.7pp. Detecting 0.3pp effects requires $>$50 seeds.}}{8}{table.caption.17}\protected@file@percent }
+\newlabel{tab:power}{{10}{8}{Power analysis: minimum detectable effect at 80\% power given cross-seed std $\approx $2.7pp. Detecting 0.3pp effects requires $>$50 seeds}{table.caption.17}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{8}{section.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Reproduction of published mining strategy gains in our controlled setting (multi-seed, fixed pool). Neither replicates.}}{9}{table.caption.18}\protected@file@percent }
+\newlabel{tab:reproduction}{{11}{9}{Reproduction of published mining strategy gains in our controlled setting (multi-seed, fixed pool). Neither replicates}{table.caption.18}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Embed$-$random delta by temperature. Null result is regime-independent: no temperature rescues mining effectiveness.}}{9}{table.caption.19}\protected@file@percent }
+\newlabel{tab:temperature}{{12}{9}{Embed$-$random delta by temperature. Null result is regime-independent: no temperature rescues mining effectiveness}{table.caption.19}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Stratified embed$-$random delta by repository size (Qwen, mean across seeds). No stratum shows significant strategy advantage.}}{10}{table.caption.20}\protected@file@percent }
+\newlabel{tab:stratified}{{13}{10}{Stratified embed$-$random delta by repository size (Qwen, mean across seeds). No stratum shows significant strategy advantage}{table.caption.20}{}}
+\gdef \@abspage@last{10}

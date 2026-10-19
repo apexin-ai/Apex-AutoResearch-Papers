@@ -1,0 +1,36 @@
+{
+  "exp_id": "nested_cv_7_8b",
+  "project": "contrastive_trace_safety",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T12:17:26.169Z",
+    "updated_at": "2026-05-19T12:20:49.459Z",
+    "hypothesis": "HS precision advantage over text probes survives nested 5-fold CV with inner hyperparameter selection, ruling out overfitting to a single train/test split. If ΔPrecision remains positive across all outer folds, the advantage is robust to data partitioning.",
+    "spec": {
+      "command": "nested_5fold_cv.py (R1-8B + OT-7B)",
+      "server": "autodl-rtx6000",
+      "data_path": "/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/",
+      "data_count": "209 traces (R1-8B) + 228 traces (OT-7B)",
+      "model_name": "R1-8B + OT-7B",
+      "seed": 42
+    },
+    "conclusion": "success",
+    "metrics": {
+      "r1_8b_mean_delta_prec": 0.174,
+      "r1_8b_std_delta_prec": 0.026,
+      "r1_8b_hs_better_folds": "5/5",
+      "ot_7b_mean_delta_prec": 0.164,
+      "ot_7b_std_delta_prec": 0.033,
+      "ot_7b_hs_better_folds": "5/5",
+      "total_hs_better": "10/10"
+    },
+    "checkpoint_path": "/root/autodl-tmp/contrastive_trace_safety/artifacts/nested_cv/",
+    "log_path": "/root/autodl-tmp/contrastive_trace_safety/artifacts/nested_cv/report.txt",
+    "completed_at": "2026-05-19T12:20:49.459Z"
+  },
+  "timestamp": "2026-05-19T12:20:49.558631+00:00",
+  "trigger": "update_registry"
+}

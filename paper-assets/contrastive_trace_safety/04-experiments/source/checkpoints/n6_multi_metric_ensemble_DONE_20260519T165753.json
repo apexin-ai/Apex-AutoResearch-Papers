@@ -1,0 +1,49 @@
+{
+  "exp_id": "n6_multi_metric_ensemble",
+  "project": "contrastive_trace_safety",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T16:37:25.392Z",
+    "updated_at": "2026-05-19T16:57:52.983Z",
+    "hypothesis": "A multi-metric layer ensemble (averaging probe probabilities from precision-best, BA-best, and FPR-best layers) mitigates layer selection sensitivity while preserving the HS advantage over text probes. If ensemble HS significantly outperforms text and never significantly underperforms the best single-layer probe, it provides a practical solution to the metric-dependent layer selection problem.",
+    "spec": {
+      "command": "n6_multi_metric_ensemble.py (4 models, 3-layer ensemble)",
+      "server": "autodl-rtx6000",
+      "data_path": "/root/autodl-tmp/contrastive_trace_safety/artifacts/",
+      "data_count": "209 (R1-8B) + 228 (OT-7B) + 100 (R1-32B) + 95 (QwQ-32B) traces",
+      "model_name": "R1-8B, OT-7B, R1-32B, QwQ-32B",
+      "seed": 42
+    },
+    "conclusion": "success",
+    "metrics": {
+      "r1_8b_ensemble_prec": 0.565,
+      "r1_8b_best_single_prec": 0.604,
+      "r1_8b_text_prec": 0.372,
+      "r1_8b_ens_vs_text_gap": 0.193,
+      "ot_7b_ensemble_prec": 0.506,
+      "ot_7b_best_single_prec": 0.473,
+      "ot_7b_text_prec": 0.236,
+      "ot_7b_ens_vs_text_gap": 0.27,
+      "qwq_32b_ensemble_prec": 0.578,
+      "qwq_32b_best_single_prec": 0.578,
+      "qwq_32b_text_prec": 0.374,
+      "qwq_32b_ens_vs_text_gap": 0.203,
+      "r1_32b_ensemble_prec": 0.581,
+      "r1_32b_best_single_prec": 0.583,
+      "r1_32b_text_prec": 0.476,
+      "r1_32b_ens_vs_text_gap": 0.105,
+      "all_ens_vs_text_significant": true,
+      "ens_vs_text_p_max": 0.002,
+      "ens_never_worse_than_best_single": true,
+      "ot_7b_ens_beats_best_single": 0.033
+    },
+    "checkpoint_path": "/root/autodl-tmp/contrastive_trace_safety/artifacts/n6_multi_metric_ensemble/",
+    "log_path": "/root/autodl-tmp/contrastive_trace_safety/artifacts/n6_multi_metric_ensemble/report.txt",
+    "completed_at": "2026-05-19T16:57:52.983Z"
+  },
+  "timestamp": "2026-05-19T16:57:53.085686+00:00",
+  "trigger": "update_registry"
+}

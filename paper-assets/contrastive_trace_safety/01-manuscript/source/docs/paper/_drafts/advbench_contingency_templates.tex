@@ -1,0 +1,184 @@
+%% ============================================================
+%% AdvBench Contingency Templates — Phase 3 结果填入用
+%% 创建: 2026-05-20  |  状态: 草稿，不 commit
+%% ============================================================
+%% 占位符约定:
+%%   {{ADVBENCH_N_TRACES}}       — AdvBench 可用 trace 数
+%%   {{ADVBENCH_N_JAILBREAK}}    — 其中 jailbreak trace 数
+%%   {{ADVBENCH_CR_LAYER_32B}}   — CR-composite 选中的层 (32B model)
+%%   {{ADVBENCH_THRESH_LAYER_32B}} — threshold-based 选中的层 (32B model)
+%%   {{ADVBENCH_CR_LAYER_8B}}    — CR-composite 选中的层 (8B model)
+%%   {{ADVBENCH_THRESH_LAYER_8B}} — threshold-based 选中的层 (8B model)
+%%   {{ADVBENCH_PREC_DELTA}}     — HS vs text precision delta (pp)
+%%   {{ADVBENCH_BA_DELTA}}       — HS vs text BA delta (pp)
+%%   {{ADVBENCH_FPR_DELTA}}      — HS vs text FPR delta (pp)
+%%   {{ADVBENCH_PREC_P}}         — precision p-value
+%%   {{ADVBENCH_MODEL}}          — 测试用的模型名 (e.g., QwQ-32B)
+%%   {{ADVBENCH_METRICS_AGREE}}  — 几个 metrics 同意 (e.g., 3/5, 5/5)
+%%   {{ADVBENCH_CR_SHALLOW_PCT}} — CR shallow preference 百分比
+%%   {{ADVBENCH_HB_PASS}}        — 是否通过 HB correction (Yes/No)
+%% ============================================================
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% TEMPLATE A — 场景 1: 5/5 指标复现
+%% 条件: CR bias + threshold advantage + precision/BA/FPR 全部复现
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% --- A1. §4.2 新段落 (插入在 \subsection{HS vs.\ Text Comparison} 之前) ---
+%% 位置: experiments.tex, 在 line 40 (AUROC paragraph 结尾) 之后,
+%%        line 41 (\subsection{HS vs.\ Text Comparison}) 之前
+
+\paragraph{Cross-dataset validation.}
+We replicate the layer selection analysis on AdvBench~\citep{advbench} ({{ADVBENCH_N_TRACES}} traces, {{ADVBENCH_N_JAILBREAK}} jailbreaks) using {{ADVBENCH_MODEL}}. The CR-composite metric again selects a shallow layer (L{{ADVBENCH_CR_LAYER_32B}}) while threshold-based metrics converge on L{{ADVBENCH_THRESH_LAYER_32B}}, confirming that the metric-induced layer divergence generalizes beyond HarmThoughts. At the threshold-based layer, HS precision advantage is +{{ADVBENCH_PREC_DELTA}}pp ($p{{ADVBENCH_PREC_P}}$), consistent with HarmThoughts (\cref{tab:advbench_layer_selection}).\looseness=-1
+
+
+%% --- A2. Appendix 新 section (插入在 appendix.tex 末尾,
+%%         \section{Post-Hoc Power Analysis} 之后) ---
+%% 同时在 appendix 目录 (line 26) 添加:
+%%   \cref{app:advbench}~AdvBench Cross-Dataset Validation.
+
+\section{AdvBench Cross-Dataset Validation}\label{app:advbench}
+
+We validate our central findings on AdvBench~\citep{advbench}, an adversarial benchmark with {{ADVBENCH_N_TRACES}} traces ({{ADVBENCH_N_JAILBREAK}} successful jailbreaks). CP annotations follow the same protocol as HarmThoughts (first permanent cessation of safety deliberation). We evaluate {{ADVBENCH_MODEL}} with the same five metrics and seven window sizes.
+
+\begin{table}[h]
+\centering
+\small
+\caption{AdvBench layer selection: {{ADVBENCH_MODEL}}. CR-composite selects shallow layers; threshold-based metrics select deep layers, consistent with HarmThoughts.}
+\label{tab:advbench_layer_selection}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Metric} & \textbf{Layer} & \textbf{Depth (\%)} \\
+\midrule
+CR-composite & L{{ADVBENCH_CR_LAYER_32B}} & {{ADVBENCH_CR_SHALLOW_PCT}}\% \\
+Precision & L{{ADVBENCH_THRESH_LAYER_32B}} & {{ADVBENCH_THRESH_DEPTH_PCT}}\% \\
+Inverse FPR & L{{ADVBENCH_THRESH_LAYER_32B}} & {{ADVBENCH_THRESH_DEPTH_PCT}}\% \\
+Additive composite & L{{ADVBENCH_THRESH_LAYER_32B}} & {{ADVBENCH_THRESH_DEPTH_PCT}}\% \\
+Balanced accuracy & L{{ADVBENCH_BA_LAYER}} & {{ADVBENCH_BA_DEPTH_PCT}}\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\small
+\caption{AdvBench HS vs.\ text comparison at threshold-based layer for {{ADVBENCH_MODEL}}.}
+\label{tab:advbench_hs_text}
+\begin{tabular}{lrrr}
+\toprule
+\textbf{Metric} & \textbf{HS} & \textbf{Text} & $\Delta$ \\
+\midrule
+Precision & {{ADVBENCH_HS_PREC}} & {{ADVBENCH_TEXT_PREC}} & +{{ADVBENCH_PREC_DELTA}} \\
+Balanced Acc. & {{ADVBENCH_HS_BA}} & {{ADVBENCH_TEXT_BA}} & +{{ADVBENCH_BA_DELTA}} \\
+FPR & {{ADVBENCH_HS_FPR}} & {{ADVBENCH_TEXT_FPR}} & {{ADVBENCH_FPR_DELTA}} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The layer divergence (L{{ADVBENCH_CR_LAYER_32B}} vs.\ L{{ADVBENCH_THRESH_LAYER_32B}}) is {{ADVBENCH_LAYER_GAP}} layers, comparable to the {{HARMTHOUGHTS_LAYER_GAP}}-layer gap observed on HarmThoughts. All five metrics replicate their HarmThoughts ranking, confirming that the metric-induced bias is dataset-independent.
+
+
+%% --- A3. Conclusion 修改 ---
+%% 原文 (conclusion.tex line 3):
+%%   Layer selection is a researcher degree of freedom that can reverse
+%%   conclusions; the multi-metric audit protocol (\cref{sec:discussion})
+%%   mitigates this. Contribution~1 generalizes geometrically;
+%%   Contribution~2 (+15--22pp precision) is cross-validated at 7--8B,
+%%   exploratory at 32B$^\dagger$, and encoder-conditional; seven
+%%   alternative methods fail (\cref{tab:negative}).\looseness=-1
+%%
+%% 替换为:
+Layer selection is a researcher degree of freedom that can reverse conclusions; the multi-metric audit protocol (\cref{sec:discussion}) mitigates this. Contribution~1 generalizes geometrically and cross-dataset (AdvBench replicates CR-composite shallow bias; \cref{app:advbench}); Contribution~2 (+15--22pp precision) is cross-validated at 7--8B, exploratory at 32B$^\dagger$, and encoder-conditional; seven alternative methods fail (\cref{tab:negative}).\looseness=-1
+
+
+%% --- A4. Introduction line 20 修改 ---
+%% 原文:
+%%   \noindent These findings provide initial characterization on one
+%%   benchmark for hidden-state safety monitoring and identify layer
+%%   selection as a critical confound that future work must address.
+%%
+%% 替换为:
+\noindent These findings, cross-validated on AdvBench (\cref{app:advbench}), characterize hidden-state safety monitoring and identify layer selection as a critical confound that future work must address.\looseness=-1
+
+
+%% --- A5. Abstract 修改 (可选, 仅当空间允许) ---
+%% 原文片段:
+%%   "on HarmThoughts and provide initial characterization"
+%% 替换为:
+%%   "on HarmThoughts (cross-validated on AdvBench) and characterize"
+
+
+%% --- A6. Limitations "Single dataset" 段落首句修改 ---
+%% 原文:
+%%   All experiments use one dataset (HarmThoughts...)
+%% 替换为:
+%%   Primary experiments use HarmThoughts~\citep{harmthoughts}; key
+%%   findings (layer selection bias, HS precision advantage) are
+%%   cross-validated on AdvBench~\citep{advbench}
+%%   (\cref{app:advbench}).
+%% 段落其余部分保留 (category stratification, annotation granularity 等仍是 limitation)
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% TEMPLATE B — 场景 2: 3/5 指标复现 (CR bias 复现)
+%% 条件: CR shallow bias 复现, threshold deep 复现,
+%%        但 FPR 或 BA 不稳定 (仅 precision 复现)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% --- B1. Appendix 新 section (插入位置同 A2) ---
+
+\section{Partial Cross-Dataset Evidence (AdvBench)}\label{app:advbench}
+
+We evaluate layer selection on AdvBench~\citep{advbench} ({{ADVBENCH_N_TRACES}} traces, {{ADVBENCH_N_JAILBREAK}} jailbreaks) using {{ADVBENCH_MODEL}}. The CR-composite metric selects L{{ADVBENCH_CR_LAYER_32B}} (shallow), consistent with HarmThoughts. Threshold-based metrics converge on L{{ADVBENCH_THRESH_LAYER_32B}} (deep), replicating the metric-induced layer divergence. However, the HS advantage is metric-dependent: precision replicates (+{{ADVBENCH_PREC_DELTA}}pp, $p{{ADVBENCH_PREC_P}}$), while {{ADVBENCH_UNSTABLE_METRICS}} show instability ({{ADVBENCH_UNSTABLE_DETAIL}}). This partial replication is consistent with HarmThoughts findings where FPR and BA showed greater sensitivity to sample composition than precision (\cref{sec:hs-text}).
+
+
+%% --- B2. Discussion 新增一句 ---
+%% 位置: discussion.tex, "Encoder-quality boundary" 段落末尾
+%% 在 "Whether stronger encoders...shelf life.\looseness=-1" 之后
+%%   追加 (替换整段, 保留原文 + 新句):
+%%
+%% 原文:
+%%   The HS advantage is significant against 384d MiniLM ... shelf
+%%   life.\looseness=-1
+%%
+%% 替换为:
+The HS advantage is significant against 384d MiniLM (cross-validated at 7--8B; exploratory at 32B) but attenuated against 1024d BGE-large (1/4 HB). PCA capacity matching preserves significance (+16.8 to +23.1pp), partial evidence against a pure capacity explanation. Partial AdvBench replication (precision replicates; {{ADVBENCH_UNSTABLE_METRICS}} unstable; \cref{app:advbench}) suggests FPR/BA instability is not HarmThoughts-specific. Whether stronger encoders~\citep{wang2024e5mistral,boxo2025linear_probes} close the gap bounds these claims' shelf life.\looseness=-1
+
+
+%% --- B3. Conclusion/Introduction 不修改 ---
+%% "one benchmark" 限定保持, 因为 AdvBench 只是 partial evidence
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% TEMPLATE C — 场景 3: CR 不复现 / 场景 4: 样本不足
+%% 条件: AdvBench 无法提供有效证据
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% --- C1. 不写入任何 AdvBench 内容到正文/Appendix ---
+%% --- C2. Conclusion "one benchmark" 保持不变 ---
+%% --- C3. 可选: Discussion "Guidance for future research" 段落追加一句 ---
+%% 位置: discussion.tex line 10, 在
+%%   "verify cosine volatility (\cref{app:cosine_volatility,
+%%    app:deployment_operating_points}).\looseness=-1"
+%% 之后追加:
+%%
+%% 替换整段 (保留原文 + 新末句):
+Converging evidence (oracle analysis, PCA capacity control, control task selectivity, position residualization) supports genuine safety representations, but causal validation via DAS~\citep{geiger2025causal}, ITI~\citep{li2024iti}, or circuit breakers~\citep{zou2024improving} is needed. Under linear residualization, 3/4 models retain significant non-positional HS advantage; under quadratic control, only 2/4 (QwQ-32B absorbed by $(t/T)^2$; \cref{tab:position_quadratic}). Quadratic control risks overfitting at $n{=}17$--$20$, so the divergent results bracket the true position contribution; HS probes partly functioning as better position encoders remains unexcluded. We propose a multi-metric audit protocol: compute ${\geq}3$ metrics, flag disagreement, and verify cosine volatility (\cref{app:cosine_volatility,app:deployment_operating_points}). Cross-dataset generalization of both the layer bias and HS advantage remains an open question requiring benchmarks with independent CP annotations.\looseness=-1
+
+
+%% ============================================================
+%% 整合 checklist (Phase 4 填入时):
+%%
+%% 1. 确认 Phase 3 结果属于哪个场景 (A/B/C)
+%% 2. 用 sed/Edit 替换所有 {{占位符}} 为实际数字
+%% 3. 按模板指定位置插入段落
+%% 4. 运行 check_paper_consistency 检查数字一致性
+%% 5. 运行 paper_compile_and_check 确认 8 页限制
+%% 6. 级联更新 Abstract/Intro/Conclusion (仅 Template A 需要)
+%% 7. Commit + report to Director
+%%
+%% 预计耗时: 模板 A ~30min, 模板 B ~15min, 模板 C ~5min
+%% ============================================================

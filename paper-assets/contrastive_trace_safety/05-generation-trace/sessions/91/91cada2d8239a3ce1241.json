@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "91cada2d8239a3ce1241",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "analysis table3 qwq l63 corrected",
+  "task_key": "worker_analysis_table3_qwq_l63_corrected_20260518T182812",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_table3_qwq_l63_corrected_20260518T182812_result.json",
+    "occurrence": 1,
+    "bytes": 908,
+    "sha256": "b22c85cbd7bf51a141f53ad2efeb970e13d17c9518384d62cf7aa71bf6a61751"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "A1 rerun 已有完整 L63 数据，无需重跑。格式化结果：\n\n```\nQwQ-32B (W=5, L63, 60/20/20, PCA=100d, 10k bootstrap):\n  n_test = 19\n  HS Prec: 0.522 [bootstrap mean]\n  Text Prec: 0.330 [bootstrap mean]\n  ΔPrec: +0.192pp, p=0.0057, CI=[0.093, 0.335]\n  \n  HS BA: 0.673\n  Text BA: 0.543\n  ΔBA: +0.130pp, p=0.0000, CI=[0.072, 0.191]\n  \n  HS FPR: 0.197\n  Text FPR: 0.347\n  ΔFPR: -0.150pp, p=0.0003, CI=[-0.229, -0.076]\n  \n  HS AUROC: 0.812\n  Text AUROC: 0.554\n  ΔAUROC: +0.258pp, p=0.0000, CI=[0.158, 0.368]\n  \n  HB (3 tests: Prec, BA, FPR): 3/3 pass\n```\n\n**来源**：`r14_a1_qwq_rerun/results.json` 参数完全匹配（L63, PCA=100d, max_iter=2000, 60/20/20 seed=42, 95 traces, 10k bootstrap, null-centered two-sided paired）。BA-optimal layer sweep 确认 L63 = 0.893 BA（全层最高）。已复制到 `table3_qwq_l63_corrected/` 并注册 artifact。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-table3-qwq-l63-corrected.md"
+}

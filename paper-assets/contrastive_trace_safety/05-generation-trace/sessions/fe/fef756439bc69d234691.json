@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "fef756439bc69d234691",
+  "project": "contrastive_trace_safety",
+  "kind": "worker",
+  "title": "code exp 001a r1 32b",
+  "task_key": "worker_code_exp_001a_r1_32b_20260516T215732",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_001a_r1_32b_20260516T215732.log",
+    "occurrence": 1,
+    "bytes": 678956,
+    "sha256": "320e8f8125977451a907f32bdd6c2b7dbfd265e54e6f5b2d886efb918e7c5cdc"
+  },
+  "statistics": {
+    "messages": 301,
+    "user_turns": 0,
+    "tool_calls": 116,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 65,
+      "tool_call": 116,
+      "tool_result": 116,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 301,
+      "chunks": [
+        {
+          "path": "fef756439bc69d234691-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "fef756439bc69d234691-part-0002.json",
+          "message_count": 121
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp-001a-r1-32b.md"
+}

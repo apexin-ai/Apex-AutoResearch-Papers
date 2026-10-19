@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4954d5d33f8463370c02",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "analysis r13 power analysis",
+  "task_key": "worker_analysis_r13_power_analysis_20260518T143918",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r13_power_analysis_20260518T143918_result.json",
+    "occurrence": 1,
+    "bytes": 1019,
+    "sha256": "b5ee1bbc458282151cb09c5d4c8607cec73493021e284859788702a03715c07b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果摘要：\n\n**实际测试集大小**：R1-32B n=30, QwQ-32B n=29（非任务假设的 n=20）\n\n**Power Table（核心结果）**：\n\n| Model | n | 5pp | 10pp | 15pp | 20pp | MDE(80%) |\n|-------|---|-----|------|------|------|----------|\n| R1-32B | 30 | .368 | **.901** | .998 | 1.00 | 8.6pp |\n| QwQ-32B | 29 | .313 | **.837** | .993 | 1.00 | 9.5pp |\n| 32B (n=20) | 20 | .239 | **.704** | .963 | 1.00 | 11.2pp |\n| R1-8B | 63 | .478 | **.968** | 1.00 | 1.00 | 7.4pp |\n| OT-7B | 69 | .558 | **.988** | 1.00 | 1.00 | 6.7pp |\n\n**论文用句**：With n=29-30 paired traces for the 32B models, post-hoc power analysis indicates approximately 84-90% power to detect a 10pp balanced accuracy difference at alpha=0.05, with the minimum detectable effect at 80% power being 8.6-9.5pp. The 7-8B models (n=63-69) are well-powered (>96%) for the same effect size.\n\n结果和脚本已保存到远程 `artifacts/r13_power_analysis/`，report 已注册为 artifact `art_20260518_3e29cc`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-r13-power-analysis.md"
+}

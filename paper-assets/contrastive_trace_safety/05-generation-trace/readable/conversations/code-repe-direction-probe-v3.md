@@ -1,0 +1,2156 @@
+# code repe direction probe v3
+
+**Layer Selection Sensitivity in Hidden-State Safety Probes for Reasoning Models** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 73
+- **Recorded user turns:** 0
+- **Tool calls:** 36
+- **Original source:** `logs/chats/worker_code_repe_direction_probe_v3_20260517T121511.jsonl`
+- **Structured JSON:** [`a2c3f3cfd1de4a578ecd.json`](../../sessions/a2/a2c3f3cfd1de4a578ecd.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+73 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-17T12:19:07.799859+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-17T12:19:07.800215+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-17T12:19:07.800422+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ls /root/autodl-tmp/contrastive_trace_safety/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ls /root/autodl-tmp/contrastive_trace_safety/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-17T12:19:07.800586+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "find /root/autodl-tmp/contrastive_trace_safety -name \"*.pt\" -o -name \"*.npy\" | head -30",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "find /root/autodl-tmp/contrastive_trace_safety -name \"*.pt\" -o -name \"*.npy\" | head -30",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-17T12:19:07.800778+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "find /root/autodl-tmp/contrastive_trace_safety -name \"*probe*\" -o -name \"*train*\" | head -30",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "find /root/autodl-tmp/contrastive_trace_safety -name \"*probe*\" -o -name \"*train*\" | head -30",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-17T12:19:07.800929+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"analyze_excluded_traces.py\\nartifacts\\nexperiments\\nfig3_gen.py\\npilot_7b.py\\npilot_7b_output.log\\npilot_7b_results.json\\npilot_queries_7b.json\\nrecompute_two_sided_pvalues.py\\nrequirements.txt\\nrun_metric_correlation.py\\nrun_qwq_fpr_bootstrap_w5.py\\nrun_r1_32b_paired_bootstrap.py\\nrun_selectivity_l10.py\\nscripts\\nsrc\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-17T12:19:07.801060+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-17T12:19:07.801189+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-17T12:19:07.801312+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "find /root/autodl-tmp/contrastive_trace_safety -name \"*.pt\" -o -name \"*.npy\" | head -30",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "find /root/autodl-tmp/contrastive_trace_safety -name \"*.pt\" -o -name \"*.npy\" | head -30",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-17T12:19:07.801458+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/7f588b58a71c4dea9918c04b796a8293.pt\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/4cdd1e2fbf0a47faa420d1957ca7e188.pt\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/3c8be659d39144059439dc42be9571d3.pt\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/830df8a1bd1843b6b64ea8445dd451e0.pt\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/6f7acaf2ebcf48a4bdd182d02735438a.pt\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/17a5d38bd028469aad6f4cb0304c7e01.pt\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/507bb6792e484863b1914ed4dcbd5d95.pt\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/5ac06f6c582446ce822265932c65bcfa.pt\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/321d35141e1e4f93a69d6dffabbf930b.pt\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/6516812742694943849a2057fcc808af.pt\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/6c7b35bcc28b4c9287c3728459a9905a.pt\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/74a7d23217224a7fac131ce4cd40f144.pt\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/5512d3204bbc425da0303edcb0ba5406.pt\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/408aa12fe8b14401963570f3180c5f84.pt\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/1c3096481fe34904820e6140c2d91d3d.pt\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/34899f65ad16465cb4c57715f86a79c8.pt\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/177c234e76104e7b9f2858bdd71f4963.pt\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/1e550c0bbf4841c4bb5c1a7bf64caa1e.pt\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/5bc4d1
+…[truncated 1280 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-17T12:19:07.801629+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "find /root/autodl-tmp/contrastive_trace_safety -name \"*probe*\" -o -name \"*train*\" | head -30",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "find /root/autodl-tmp/contrastive_trace_safety -name \"*probe*\" -o -name \"*train*\" | head -30",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-17T12:19:07.801780+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/contrastive_trace_safety/artifacts/probes\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/probes/static_mlp_probe.pt\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/probes/temporal_probe.pt\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/diagnostics/d3_probes.log\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/ot7b_layer16_verification/hs_probes.json\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/ot7b_layer16_hs_probes.json\\n/root/autodl-tmp/contrastive_trace_safety/src/baselines/linear_probe.py\\n/root/autodl-tmp/contrastive_trace_safety/src/crta/temporal_probe.py\\n/root/autodl-tmp/contrastive_trace_safety/src/diagnostics/regularized_probes.py\\n/root/autodl-tmp/contrastive_trace_safety/src/diagnostics/gru_probe.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-17T12:19:07.801911+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ls /root/autodl-tmp/contrastive_trace_safety/experiments/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ls /root/autodl-tmp/contrastive_trace_safety/experiments/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-17T12:19:07.802034+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"exp_pathb_annotation_validation\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-17T12:19:07.802169+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/src/baselines/linear_probe.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat /root/autodl-tmp/contrastive_trace_safety/src/baselines/linear_probe.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-17T12:19:07.802379+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Static linear probe baseline.\\n\\nInput: Single-step hidden state from a specified layer\\nOutput: Pre/post commitment probability\\n\\\"\\\"\\\"\\n\\nimport os\\nfrom pathlib import Path\\nfrom typing import List, Dict, Tuple\\n\\nimport numpy as np\\nimport torch\\nimport torch.nn as nn\\nfrom torch.utils.data import DataLoader, TensorDataset\\nfrom sklearn.linear_model import LogisticRegression\\nfrom tqdm import tqdm\\n\\nfrom ..config import (\\n    HIDDEN_DIM, DEFAULT_LAYER, LAYERS, PROBES_DIR,\\n    LEARNING_RATE, TRAIN_EPOCHS, PROBE_BATCH_SIZE, SEED, HIDDEN_STATES_DIR\\n)\\n\\n\\nclass MLPProbe(nn.Module):\\n    \\\"\\\"\\\"2-layer MLP probe for step-level classification.\\\"\\\"\\\"\\n\\n    def __init__(self, input_dim: int = HIDDEN_DIM, hidden_dim: int = 256):\\n        super().__init__()\\n        self.net = nn.Sequential(\\n            nn.Linear(input_dim, hidden_dim),\\n            nn.ReLU(),\\n            nn.Dropout(0.1),\\n            nn.Linear(hidden_dim, 2),\\n        )\\n\\n    def forward(self, x):\\n        return self.net(x)\\n\\n\\ndef collect_step_features(\\n    traces: List[Dict],\\n    layer_idx: int = None,\\n    hidden_states_dir: str = None,\\n) -> Tuple[np.ndarray, np.ndarray]:\\n    \\\"\\\"\\\"Collect (hidden_state, label) pairs for all steps across traces.\\n\\n    Args:\\n        traces: list of trace dicts with step_labels and trace_id\\n        layer_idx: index into LAYERS list (0-12), default maps to layer 20\\n        hidden_states_dir: directory containing .pt files\\n\\n    Returns:\\n        features: [N, hidden_dim] array\\n        labels: [N] array of 0/1\\n    \\\"\\\"\\\"\\n    if layer_idx is None:\\n        layer_idx = LAYERS.index(DEFAULT_LAYER)\\n    if hidden_states_dir is None:\\n        hidden_states_dir = str(HIDDEN_STATES_DIR)\\n\\n    all_features = []\\n    all_labels = []\\n\\n    for trace in traces:\\n        pt_path = Path(hidden_states_d
+…[truncated 6107 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-17T12:19:07.802547+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/src/config.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat /root/autodl-tmp/contrastive_trace_safety/src/config.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-17T12:19:07.802721+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Central configuration for contrastive_trace_safety project.\\\"\\\"\\\"\\n\\nimport os\\nfrom pathlib import Path\\n\\n# Paths\\nPROJECT_ROOT = Path(\\\"/root/autodl-tmp/contrastive_trace_safety\\\")\\nARTIFACTS_DIR = PROJECT_ROOT / \\\"artifacts\\\"\\nHIDDEN_STATES_DIR = ARTIFACTS_DIR / \\\"hidden_states\\\"\\nPROBES_DIR = ARTIFACTS_DIR / \\\"probes\\\"\\n\\n# Model\\nMODEL_NAME = \\\"deepseek-ai/DeepSeek-R1-Distill-Llama-8B\\\"\\nMODEL_PATH = \\\"/root/autodl-tmp/.hf_cache/deepseek-ai/DeepSeek-R1-Distill-Llama-8B\\\"\\n\\n# Dataset\\nHF_DATASET = \\\"ishitakakkar-10/HarmThoughts\\\"\\nTARGET_MODEL = \\\"r1-8b\\\"\\n\\n# Hidden state extraction\\nLAYERS = list(range(12, 25))  # layers 12-24, 13 layers total\\nNUM_LAYERS = len(LAYERS)\\nHIDDEN_DIM = 4096\\nEXTRACT_BATCH_SIZE = 4\\nDEVICE = \\\"cuda:0\\\"\\n\\n# Probes\\nWINDOW_SIZE = 5\\nTEMPORAL_HIDDEN_DIM = 512\\nLEARNING_RATE = 1e-3\\nTRAIN_EPOCHS = 20\\nPROBE_BATCH_SIZE = 64\\nDEFAULT_LAYER = 20  # for static probe\\n\\n# Data split\\nTRAIN_RATIO = 0.6\\nVAL_RATIO = 0.2\\nSEED = 42\\n\\n# Evaluation\\nDETECTION_THRESHOLD = 0.9\\nDETECTION_WINDOW = 5\\n\\n# Safety labels that define commitment point\\nSAFETY_LABELS = {\\\"RA\\\", \\\"AL\\\", \\\"CC\\\", \\\"ED\\\", \\\"IA\\\"}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-17T12:19:07.802865+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ls /root/autodl-tmp/contrastive_trace_safety/scripts/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ls /root/autodl-tmp/contrastive_trace_safety/scripts/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-17T12:19:07.802989+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ls /root/autodl-tmp/contrastive_trace_safety/src/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ls /root/autodl-tmp/contrastive_trace_safety/src/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-17T12:19:07.803111+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"r1_8b_early_layer_supplement.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-17T12:19:07.803252+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"__init__.py\\n__pycache__\\nbaselines\\nconfig.py\\ncrta\\ndata_loader.py\\ndiagnostics\\neval\\nexperiments\\nextract_hidden_states.py\\nrun_pipeline.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-17T12:19:07.803376+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/src/data_loader.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat /root/autodl-tmp/contrastive_trace_safety/src/data_loader.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-17T12:19:07.803493+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ls /root/autodl-tmp/contrastive_trace_safety/src/eval/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ls /root/autodl-tmp/contrastive_trace_safety/src/eval/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-17T12:19:07.803702+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Load HarmThoughts dataset and extract commitment points.\\n\\nInput: HuggingFace dataset \\\"ishitakakkar-10/HarmThoughts\\\"\\nOutput: List of trace dicts with sentences, labels, commitment_point, split assignments\\n\\\"\\\"\\\"\\n\\nfrom collections import defaultdict\\nfrom typing import List, Optional, Dict, Any\\nimport numpy as np\\nfrom datasets import load_dataset\\n\\nfrom .config import (\\n    HF_DATASET, TARGET_MODEL, SAFETY_LABELS,\\n    TRAIN_RATIO, VAL_RATIO, SEED\\n)\\n\\n\\ndef load_harmthoughts(model_name: str = TARGET_MODEL) -> Dict[str, List[Dict]]:\\n    \\\"\\\"\\\"Load HarmThoughts from HF and group by trace_id.\\\"\\\"\\\"\\n    ds = load_dataset(HF_DATASET, split=\\\"train\\\")\\n\\n    traces = defaultdict(list)\\n    for row in ds:\\n        if row[\\\"model_name\\\"] != model_name:\\n            continue\\n        # trace_id is the part before the last dash in sentence_id\\n        sid = row[\\\"sentence_id\\\"]\\n        parts = sid.rsplit(\\\"-\\\", 1)\\n        trace_id = parts[0]\\n        step_idx = int(parts[1]) - 1  # convert to 0-indexed\\n\\n        traces[trace_id].append({\\n            \\\"sentence_id\\\": sid,\\n            \\\"step_idx\\\": step_idx,\\n            \\\"sentence\\\": row[\\\"sentence\\\"],\\n            \\\"label\\\": row[\\\"llm_annotation\\\"],\\n            \\\"query\\\": row[\\\"query\\\"],\\n            \\\"final_judgment\\\": row[\\\"final_judgment\\\"],\\n        })\\n\\n    # Sort each trace by step_idx\\n    for tid in traces:\\n        traces[tid].sort(key=lambda x: x[\\\"step_idx\\\"])\\n\\n    return dict(traces)\\n\\n\\ndef extract_commitment_point(labels: List[str]) -> Optional[int]:\\n    \\\"\\\"\\\"Find the commitment point in a sequence of labels.\\n\\n    Returns the index after the last safety label, or None if:\\n    - No safety labels exist in the trace\\n    - The last safety label is at the final position (no post-comm
+…[truncated 4406 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-17T12:19:07.803866+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"__init__.py\\n__pycache__\\nevaluate.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-17T12:19:07.803992+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/src/eval/evaluate.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat /root/autodl-tmp/contrastive_trace_safety/src/eval/evaluate.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-17T12:19:07.804203+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Evaluation metrics for commitment point detection.\\n\\nMetrics:\\n- Step-level accuracy\\n- Earliest reliable detection point\\n- Detection lead time (how early before commitment point)\\n\\\"\\\"\\\"\\n\\nfrom typing import List, Dict, Optional, Tuple\\nimport numpy as np\\n\\nfrom ..config import DETECTION_THRESHOLD, DETECTION_WINDOW\\n\\n\\ndef step_accuracy(predictions: np.ndarray, labels: np.ndarray) -> float:\\n    \\\"\\\"\\\"Overall step-level accuracy.\\\"\\\"\\\"\\n    return float((predictions == labels).mean())\\n\\n\\ndef earliest_reliable_detection(\\n    probs: np.ndarray,\\n    labels: np.ndarray,\\n    threshold: float = DETECTION_THRESHOLD,\\n    window: int = DETECTION_WINDOW,\\n) -> Optional[int]:\\n    \\\"\\\"\\\"Find first position where model reliably detects post-commitment.\\n\\n    Scans from trace start, finds first position where consecutive `window` steps\\n    all have predicted prob > threshold AND predictions are correct.\\n\\n    Returns step index or None if never reliably detected.\\n    \\\"\\\"\\\"\\n    n = len(probs)\\n    if n < window:\\n        return None\\n\\n    for i in range(n - window + 1):\\n        segment_probs = probs[i:i + window]\\n        segment_labels = labels[i:i + window]\\n\\n        # All probs above threshold\\n        if not np.all(segment_probs > threshold):\\n            continue\\n\\n        # All predictions correct (prob > 0.5 means predict class 1)\\n        segment_preds = (segment_probs > 0.5).astype(int)\\n        if not np.all(segment_preds == segment_labels):\\n            continue\\n\\n        return i\\n\\n    return None\\n\\n\\ndef first_crossing_point(\\n    probs_class1: np.ndarray,\\n    threshold: float = 0.5,\\n    consecutive_k: int = DETECTION_WINDOW,\\n) -> Optional[int]:\\n    \\\"\\\"\\\"First position where prob(post-commitment) > threshold for K consecutive steps.\\n\\n    Unlike earliest_reliable_detection, 
+…[truncated 5913 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-17T12:19:07.804382+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "find /root/autodl-tmp/contrastive_trace_safety -name \"*.py\" | xargs grep -l \"r1-32b\\|qwq-32b\\|ot-7b\\|r1-8b\" 2>/dev/null | head -20",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "find /root/autodl-tmp/contrastive_trace_safety -name \"*.py\" | xargs grep -l \"r1-32b\\|qwq-32b\\|ot-7b\\|r1-8b\" 2>/dev/null | head -20",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-17T12:19:07.804529+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/contrastive_trace_safety/artifacts/r1_8b_balanced_recompute/recompute_all.py\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/acc_precision_bootstrap/run_bootstrap.py\\n/root/autodl-tmp/contrastive_trace_safety/src/config.py\\n/root/autodl-tmp/contrastive_trace_safety/src/experiments/text_baseline.py\\n/root/autodl-tmp/contrastive_trace_safety/src/experiments/bocpd_poc.py\\n/root/autodl-tmp/contrastive_trace_safety/src/experiments/fpr_analysis.py\\n/root/autodl-tmp/contrastive_trace_safety/src/experiments/exp_001a_extract_r1_32b.py\\n/root/autodl-tmp/contrastive_trace_safety/src/experiments/exp_001a_bootstrap_hs_vs_text.py\\n/root/autodl-tmp/contrastive_trace_safety/src/experiments/m001_layer_fix.py\\n/root/autodl-tmp/contrastive_trace_safety/src/experiments/r1_8b_bootstrap_hs_text.py\\n/root/autodl-tmp/contrastive_trace_safety/src/experiments/text_window_ablation_r1_8b.py\\n/root/autodl-tmp/contrastive_trace_safety/src/experiments/exp_ot7b_full_pipeline.py\\n/root/autodl-tmp/contrastive_trace_safety/src/experiments/exp_ot7b_layer16_verify.py\\n/root/autodl-tmp/contrastive_trace_safety/fig3_gen.py\\n/root/autodl-tmp/contrastive_trace_safety/run_r1_32b_paired_bootstrap.py\\n/root/autodl-tmp/contrastive_trace_safety/analyze_excluded_traces.py\\n/root/autodl-tmp/contrastive_trace_safety/run_metric_correlation.py\\n/root/autodl-tmp/contrastive_trace_safety/experiments/exp_pathb_annotation_validation/run.py\\n/root/autodl-tmp/contrastive_trace_safety/scripts/r1_8b_early_layer_supplement.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-17T12:19:07.804813+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-17T12:19:07.804981+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"acc_precision_bootstrap\\ndiagnostics\\neval_results.json\\nexp_001a\\nexp_001a_extraction.log\\nexp_001a_probing.log\\nexp_001b\\nexp_003_cross_transfer\\nexp_005_trajguard\\nexp_006_bootstrap\\nexp_007_window_ablation\\nexp_013_text_baseline\\nexp_014_bocpd\\nexp_015_fpr\\nexp_c2_control\\nexp_ot7b_full_pipeline\\nexp_ot7b_full_pipeline.log\\nexp_pathC_two_stage\\nfigures\\nhidden_states\\nhidden_states_early_r1_8b\\nhidden_states_ot7b\\nhidden_states_qwq_32b\\nhidden_states_r1_32b\\nhs_vs_text_acc_prec.json\\nm001_layer_fix\\nmetric_correlation\\not7b_bocpd_cusum\\not7b_gru_layer16\\not7b_layer16_bootstrap\\not7b_layer16_hs_probes.json\\not7b_layer16_verification\\not7b_layer16_verification_split.pt\\not7b_sentence_map.json\\not7b_text_embeddings.json\\not7b_text_embeddings.pkl\\npaper_data\\npower_analysis\\nprobes\\nqwq_paired_bootstrap_w5\\nqwq_text_verify\\nr1_32b_paired_bootstrap\\nr1_8b_balanced_recompute\\nr1_8b_bootstrap_hs_text\\nr1_8b_bootstrap_run.log\\nr1_8b_layer_supplement\\nr1_8b_supplement.log\\nreport_hs_vs_text_acc.md\\nreport_r1_32b_selectivity_l10.md\\ntext_window_ablation_r1_8b\\ntext_window_ablation_r1_8b_run.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-17T12:19:07.805118+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/src/experiments/exp_001a_extract_r1_32b.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat /root/autodl-tmp/contrastive_trace_safety/src/experiments/exp_001a_extract_r1_32b.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-17T12:19:07.805341+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Phase 1: Extract hidden states from DeepSeek-R1-Distill-Qwen-32B for all 64 layers.\\\"\\\"\\\"\\n\\nimport os, sys, json, time\\nos.environ[\\\"HF_ENDPOINT\\\"] = \\\"https://hf-mirror.com\\\"\\n\\nimport torch\\nfrom pathlib import Path\\nfrom transformers import AutoTokenizer, AutoModelForCausalLM\\nfrom tqdm import tqdm\\n\\nsys.path.insert(0, \\\"/root/autodl-tmp/contrastive_trace_safety\\\")\\nfrom src.data_loader import load_harmthoughts, extract_commitment_point, create_step_labels\\nfrom src.config import SAFETY_LABELS\\n\\nMODEL_PATH = \\\"/root/autodl-tmp/.hf_cache/deepseek-ai/DeepSeek-R1-Distill-Qwen-32B\\\"\\nOUTPUT_DIR = Path(\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_r1_32b\\\")\\nNUM_LAYERS = 64\\nHIDDEN_DIM = 5120\\nDEVICE = \\\"cuda:0\\\"\\nMAX_LENGTH = 8192\\n\\n\\ndef load_model():\\n    print(\\\"Loading R1-32B tokenizer...\\\")\\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH, trust_remote_code=True)\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n\\n    print(\\\"Loading R1-32B model (fp16)...\\\")\\n    t0 = time.time()\\n    model = AutoModelForCausalLM.from_pretrained(\\n        MODEL_PATH,\\n        torch_dtype=torch.float16,\\n        device_map=DEVICE,\\n        trust_remote_code=True,\\n    )\\n    model.eval()\\n    print(f\\\"Model loaded in {time.time()-t0:.1f}s\\\")\\n    return model, tokenizer\\n\\n\\ndef find_sentence_boundaries(tokenizer, sentences):\\n    full_text = \\\" \\\".join(sentences)\\n    encoding = tokenizer(\\n        full_text,\\n        return_offsets_mapping=True,\\n        return_tensors=\\\"pt\\\",\\n        truncation=True,\\n        max_length=MAX_LENGTH,\\n    )\\n    offsets = encoding[\\\"offset_mapping\\\"][0]\\n\\n    boundaries = []\\n    char_pos = 0\\n    for sent in sentences:\\n        char_end = char_pos + len(sent)\\n        last_token_idx = 0\\n     
+…[truncated 5216 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-17T12:19:07.805501+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_r1_32b/ | head -10",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_r1_32b/ | head -10",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-17T12:19:07.805659+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0340a9c152a84e88a1bb1a1b0c1ece69.pt\\n03ab25e611ab42d5bab0e091b2bfb4db.pt\\n03e731a127e4403ea8b4f6b0da22d40b.pt\\n065cd061633b48ffba91c8ab8468aee5.pt\\n072fffe312724613b373f5e9423bec9e.pt\\n077d0c46eeaa4d26bcf796ff257b4107.pt\\n078bffd5b7bf41229684593b116e9b64.pt\\n0d024d64ea6f4fe7a326c146bf004b9d.pt\\n0e290c942d794d6a9b60fade0b82ba11.pt\\n133bb30152c348aa914bef1a46cd5065.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-17T12:19:07.805792+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_qwq_32b/ | head -10",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_qwq_32b/ | head -10",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-17T12:19:07.805920+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"004ee4398ad043f88590dc868baed39c.pt\\n0067d71cad0d4adba09c0ca1ba6de9f4.pt\\n043bdc40cc3a425da4a80dd2c3b54093.pt\\n069b39dd44c749edac6b2b9a22000146.pt\\n069c405acb984a728d6d4b4a4403dc2e.pt\\n08c889f0d70b4a9cb94a1c50eb7809c3.pt\\n08f53c080455450a875a13e071520fcc.pt\\n09e1cee11dc944ae89c4a077451046cc.pt\\n0c8ae288d6de43058d6a4c7dc97f72b8.pt\\n104fb6e29e284eadb21d6e934f30ac32.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-17T12:19:07.806041+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_ot7b/ | head -5",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_ot7b/ | head -5",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-17T12:19:07.806165+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"00071414b7d44aa4b0c5c2a274306519.pt\\n016e64f7afdb457686c6ccdd45db5963.pt\\n0174b202067f41ea8e40869a567520ee.pt\\n030917f2f64246aa9e692065e3a89760.pt\\n04e869e807a446cba9448fbbffc7ffd6.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-17T12:19:07.806282+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/run_r1_32b_paired_bootstrap.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat /root/autodl-tmp/contrastive_trace_safety/run_r1_32b_paired_bootstrap.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-17T12:19:07.806558+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"R1-32B HS vs Text paired bootstrap: bal_acc, precision, pre-CP FPR.\\\"\\\"\\\"\\n\\nimport os, sys, json, glob\\nos.environ[\\\"TOKENIZERS_PARALLELISM\\\"] = \\\"false\\\"\\nos.environ[\\\"HF_ENDPOINT\\\"] = \\\"https://hf-mirror.com\\\"\\n\\nimport numpy as np\\nimport torch\\nfrom pathlib import Path\\nfrom collections import defaultdict\\nfrom sklearn.linear_model import LogisticRegression\\n\\nsys.path.insert(0, \\\"/root/autodl-tmp/contrastive_trace_safety\\\")\\n\\nSEED = 42\\nN_BOOTSTRAP = 1000\\n\\nHS_DIR = Path(\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_r1_32b\\\")\\nLAYER_IDX = 10\\nHIDDEN_DIM = 5120\\nWINDOW = 10\\nTEXT_DIM = 384\\n\\nOUTPUT_DIR = Path(\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/r1_32b_paired_bootstrap\\\")\\nOUTPUT_DIR.mkdir(parents=True, exist_ok=True)\\n\\n\\ndef load_sentences_from_hf():\\n    from datasets import load_dataset\\n    ds = load_dataset(\\\"ishitakakkar-10/HarmThoughts\\\", split=\\\"train\\\")\\n    traces = defaultdict(list)\\n    for row in ds:\\n        if row[\\\"model_name\\\"] != \\\"r1-32b\\\":\\n            continue\\n        sid = row[\\\"sentence_id\\\"]\\n        parts = sid.rsplit(\\\"-\\\", 1)\\n        trace_id = parts[0]\\n        step_idx = int(parts[1]) - 1\\n        traces[trace_id].append((step_idx, row[\\\"sentence\\\"]))\\n    for tid in traces:\\n        traces[tid].sort(key=lambda x: x[0])\\n        traces[tid] = [s for _, s in traces[tid]]\\n    return dict(traces)\\n\\n\\ndef load_traces(sentences_map):\\n    traces = []\\n    for pt_file in sorted(glob.glob(str(HS_DIR / \\\"*.pt\\\"))):\\n        d = torch.load(pt_file, map_location=\\\"cpu\\\", weights_only=False)\\n        if d.get(\\\"step_labels\\\") is None:\\n            continue\\n        cp = d.get(\\\"commitment_point\\\")\\n        if cp is None:\\n            continue\\n        trace_id = d[\\\"trace_id\\\"]\\n        if trace_
+…[truncated 7269 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-17T12:19:07.806768+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/scripts/r1_8b_early_layer_supplement.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat /root/autodl-tmp/contrastive_trace_safety/scripts/r1_8b_early_layer_supplement.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-17T12:19:07.807040+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"R1-8B Early Layer Supplement: Extract layers 0-11, full layer sweep.\\\"\\\"\\\"\\n\\nimport os, sys, json, time\\nos.environ[\\\"TOKENIZERS_PARALLELISM\\\"] = \\\"false\\\"\\nos.environ[\\\"HF_ENDPOINT\\\"] = \\\"https://hf-mirror.com\\\"\\nos.environ[\\\"CUDA_VISIBLE_DEVICES\\\"] = \\\"0\\\"\\n\\nimport numpy as np\\nimport torch\\nfrom pathlib import Path\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.metrics import balanced_accuracy_score, precision_score\\nfrom tqdm import tqdm\\n\\nPROJECT = Path(\\\"/root/autodl-tmp/contrastive_trace_safety\\\")\\nHS_DIR = PROJECT / \\\"artifacts\\\" / \\\"hidden_states\\\"\\nEARLY_HS_DIR = PROJECT / \\\"artifacts\\\" / \\\"hidden_states_early_r1_8b\\\"\\nOUTPUT_DIR = PROJECT / \\\"artifacts\\\" / \\\"r1_8b_layer_supplement\\\"\\nMODEL_PATH = \\\"/root/autodl-tmp/.hf_cache/deepseek-ai/DeepSeek-R1-Distill-Llama-8B\\\"\\n\\nSEED = 42\\nTOTAL_MODEL_LAYERS = 32\\nHIDDEN_DIM = 4096\\nEARLY_LAYERS = list(range(0, 12))\\nORIG_LAYERS = list(range(12, 25))\\n\\nK_CONSECUTIVE = 5\\nTHRESHOLD = 0.5\\n\\n\\ndef load_traces_with_commitment():\\n    traces = []\\n    for pt_file in sorted(HS_DIR.glob(\\\"*.pt\\\")):\\n        data = torch.load(pt_file, map_location=\\\"cpu\\\", weights_only=False)\\n        if data.get(\\\"step_labels\\\") is None or data.get(\\\"commitment_point\\\") is None:\\n            continue\\n        traces.append(data)\\n    return traces\\n\\n\\ndef split_traces(traces, seed=SEED):\\n    rng = np.random.default_rng(seed)\\n    indices = rng.permutation(len(traces))\\n    n_train = int(len(traces) * 0.6)\\n    n_val = int(len(traces) * 0.2)\\n    return (\\n        [traces[i] for i in indices[:n_train]],\\n        [traces[i] for i in indices[n_train:n_train+n_val]],\\n        [traces[i] for i in indices[n_train+n_val:]],\\n    )\\n\\n\\ndef find_sentence_boundaries(tokenizer, sentences):\\n    full_text = \\\" \\\".join(sent
+…[truncated 7127 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-17T12:19:07.807205+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_early_r1_8b/ | head -5",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_early_r1_8b/ | head -5",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-17T12:19:07.807342+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"008edcde3b3d48dcaee8313c4779f687.pt\\n018ad1b2027a488aad4ce925258db0c7.pt\\n02361be96b4e4f11af5524a64c34f612.pt\\n023c413259524b2187989e61d96e351c.pt\\n02fad27f069d4009861ea612984ab65c.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-17T12:19:07.807489+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && source /root/miniconda3/bin/activate && python -c \"\nimport torch\n# r1-8b original\nd = torch.load('artifacts/hidden_states/7f588b58a71c4dea9918c04b796a8293.pt', map_location='cpu', weights_only=False)\nprint('r1-8b keys:', list(d.keys()))\nprint('r1-8b hs shape:', d['hidden_states'].shape)\nprint('r1-8b step_labels:', d.get('step_labels'))\nprint('r1-8b cp:', d.get('commitment_point'))\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cd /root/autodl-tmp/contrastive_trace_safety && source /root/miniconda3/bin/activate && python -c \"\nimport torch\n# r1-8b original\nd = torch.load('artifacts/hidden_states/7f588b58a71c4dea9918c04b796a8293.pt', map_location='cpu', weights_only=False)\nprint('r1-8b keys:', list(d.keys()))\nprint('r1-8b hs shape:', d['hidden_states'].shape)\nprint('r1-8b step_labels:', d.get('step_labels'))\nprint('r1-8b cp:', d.get('commitment_point'))\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-17T12:19:07.807639+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"r1-8b keys: ['hidden_states', 'trace_id', 'num_sentences', 'commitment_point', 'step_labels']\\nr1-8b hs shape: torch.Size([57, 13, 4096])\\nr1-8b step_labels: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1]\\nr1-8b cp: 54\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.89}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-17T12:19:07.807783+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && source /root/miniconda3/bin/activate && python -c \"\nimport torch\n# r1-32b\nd = torch.load('artifacts/hidden_states_r1_32b/0340a9c152a84e88a1bb1a1b0c1ece69.pt', map_location='cpu', weights_only=False)\nprint('r1-32b keys:', list(d.keys()))\nprint('r1-32b hs shape:', d['hidden_states'].shape)\nprint('r1-32b cp:', d.get('commitment_point'))\nprint('r1-32b step_labels len:', len(d['step_labels']) if d.get('step_labels') else None)\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cd /root/autodl-tmp/contrastive_trace_safety && source /root/miniconda3/bin/activate && python -c \"\nimport torch\n# r1-32b\nd = torch.load('artifacts/hidden_states_r1_32b/0340a9c152a84e88a1bb1a1b0c1ece69.pt', map_location='cpu', weights_only=False)\nprint('r1-32b keys:', list(d.keys()))\nprint('r1-32b hs shape:', d['hidden_states'].shape)\nprint('r1-32b cp:', d.get('commitment_point'))\nprint('r1-32b step_labels len:', len(d['step_labels']) if d.get('step_labels') else None)\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-17T12:19:07.807917+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"r1-32b keys: ['hidden_states', 'trace_id', 'num_sentences', 'commitment_point', 'step_labels', 'query']\\nr1-32b hs shape: torch.Size([36, 64, 5120])\\nr1-32b cp: 32\\nr1-32b step_labels len: 36\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.99}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-17T12:19:07.808041+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && source /root/miniconda3/bin/activate && python -c \"\nimport torch\n# qwq-32b\nd = torch.load('artifacts/hidden_states_qwq_32b/004ee4398ad043f88590dc868baed39c.pt', map_location='cpu', weights_only=False)\nprint('qwq-32b keys:', list(d.keys()))\nprint('qwq-32b hs shape:', d['hidden_states'].shape)\nprint('qwq-32b cp:', d.get('commitment_point'))\nprint('qwq-32b step_labels len:', len(d['step_labels']) if d.get('step_labels') else None)\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cd /root/autodl-tmp/contrastive_trace_safety && source /root/miniconda3/bin/activate && python -c \"\nimport torch\n# qwq-32b\nd = torch.load('artifacts/hidden_states_qwq_32b/004ee4398ad043f88590dc868baed39c.pt', map_location='cpu', weights_only=False)\nprint('qwq-32b keys:', list(d.keys()))\nprint('qwq-32b hs shape:', d['hidden_states'].shape)\nprint('qwq-32b cp:', d.get('commitment_point'))\nprint('qwq-32b step_labels len:', len(d['step_labels']) if d.get('step_labels') else None)\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-17T12:19:07.808168+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"qwq-32b keys: ['hidden_states', 'trace_id', 'num_sentences', 'commitment_point', 'step_labels', 'query']\\nqwq-32b hs shape: torch.Size([48, 64, 5120])\\nqwq-32b cp: 8\\nqwq-32b step_labels len: 48\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.86}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-17T12:19:07.808289+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && source /root/miniconda3/bin/activate && python -c \"\nimport torch\n# ot-7b\nd = torch.load('artifacts/hidden_states_ot7b/00071414b7d44aa4b0c5c2a274306519.pt', map_location='cpu', weights_only=False)\nprint('ot-7b keys:', list(d.keys()))\nprint('ot-7b hs shape:', d['hidden_states'].shape)\nprint('ot-7b cp:', d.get('commitment_point'))\nprint('ot-7b step_labels len:', len(d['step_labels']) if d.get('step_labels') else None)\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cd /root/autodl-tmp/contrastive_trace_safety && source /root/miniconda3/bin/activate && python -c \"\nimport torch\n# ot-7b\nd = torch.load('artifacts/hidden_states_ot7b/00071414b7d44aa4b0c5c2a274306519.pt', map_location='cpu', weights_only=False)\nprint('ot-7b keys:', list(d.keys()))\nprint('ot-7b hs shape:', d['hidden_states'].shape)\nprint('ot-7b cp:', d.get('commitment_point'))\nprint('ot-7b step_labels len:', len(d['step_labels']) if d.get('step_labels') else None)\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-17T12:19:07.808411+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && source /root/miniconda3/bin/activate && python -c \"\nimport torch\n# r1-8b early layer\nd = torch.load('artifacts/hidden_states_early_r1_8b/008edcde3b3d48dcaee8313c4779f687.pt', map_location='cpu', weights_only=False)\nprint('r1-8b early keys:', list(d.keys()))\nprint('r1-8b early hs shape:', d['hidden_states'].shape)\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cd /root/autodl-tmp/contrastive_trace_safety && source /root/miniconda3/bin/activate && python -c \"\nimport torch\n# r1-8b early layer\nd = torch.load('artifacts/hidden_states_early_r1_8b/008edcde3b3d48dcaee8313c4779f687.pt', map_location='cpu', weights_only=False)\nprint('r1-8b early keys:', list(d.keys()))\nprint('r1-8b early hs shape:', d['hidden_states'].shape)\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-17T12:19:07.808558+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"ot-7b keys: ['hidden_states', 'trace_id', 'num_sentences', 'commitment_point', 'step_labels', 'query']\\not-7b hs shape: torch.Size([59, 28, 3584])\\not-7b cp: 58\\not-7b step_labels len: 59\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.8}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-17T12:19:07.808751+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"r1-8b early keys: ['hidden_states', 'trace_id', 'num_sentences', 'commitment_point', 'step_labels', 'layers']\\nr1-8b early hs shape: torch.Size([46, 12, 4096])\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.89}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-17T12:19:07.808910+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && wc -l <(ls artifacts/hidden_states/*.pt) <(ls artifacts/hidden_states_r1_32b/*.pt) <(ls artifacts/hidden_states_qwq_32b/*.pt) <(ls artifacts/hidden_states_ot7b/*.pt)",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cd /root/autodl-tmp/contrastive_trace_safety && wc -l <(ls artifacts/hidden_states/*.pt) <(ls artifacts/hidden_states_r1_32b/*.pt) <(ls artifacts/hidden_states_qwq_32b/*.pt) <(ls artifacts/hidden_states_ot7b/*.pt)",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-17T12:19:07.809043+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    268 /dev/fd/63\\n    100 /dev/fd/62\\n     95 /dev/fd/61\\n    228 /dev/fd/60\\n    691 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-17T12:19:07.809164+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/run_qwq_fpr_bootstrap_w5.py | head -150",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat /root/autodl-tmp/contrastive_trace_safety/run_qwq_fpr_bootstrap_w5.py | head -150",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-17T12:19:07.809350+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"QwQ-32B: Pre-CP FPR Paired Bootstrap Test with W=5 (validation-optimal window).\\nHS probe vs real text embedding probe (all-MiniLM-L6-v2).\\nLayer: 2 (corrected best layer). Window: 5.\\n\\\"\\\"\\\"\\n\\nimport os, sys, json, glob\\nos.environ[\\\"TOKENIZERS_PARALLELISM\\\"] = \\\"false\\\"\\nos.environ[\\\"HF_ENDPOINT\\\"] = \\\"https://hf-mirror.com\\\"\\n\\nimport numpy as np\\nimport torch\\nfrom sklearn.linear_model import LogisticRegression\\nfrom pathlib import Path\\nfrom collections import defaultdict\\n\\nsys.path.insert(0, \\\"/root/autodl-tmp/contrastive_trace_safety\\\")\\n\\nHS_DIR = Path(\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_qwq_32b\\\")\\nOUTPUT_DIR = Path(\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/qwq_paired_bootstrap_w5\\\")\\nOUTPUT_DIR.mkdir(parents=True, exist_ok=True)\\n\\nHIDDEN_DIM = 5120\\nTEXT_DIM = 384\\nLAYER_IDX = 2\\nWINDOW_SIZE = 5\\nSEED = 42\\nN_BOOTSTRAP = 1000\\n\\n\\ndef load_sentences_from_hf():\\n    from datasets import load_dataset\\n    ds = load_dataset(\\\"ishitakakkar-10/HarmThoughts\\\", split=\\\"train\\\")\\n    traces = defaultdict(list)\\n    for row in ds:\\n        if row[\\\"model_name\\\"] != \\\"QwQ\\\":\\n            continue\\n        sid = row[\\\"sentence_id\\\"]\\n        parts = sid.rsplit(\\\"-\\\", 1)\\n        trace_id = parts[0]\\n        step_idx = int(parts[1]) - 1\\n        traces[trace_id].append((step_idx, row[\\\"sentence\\\"]))\\n    for tid in traces:\\n        traces[tid].sort(key=lambda x: x[0])\\n        traces[tid] = [s for _, s in traces[tid]]\\n    return dict(traces)\\n\\n\\ndef load_traces(sentences_map):\\n    traces = []\\n    for pt_file in sorted(glob.glob(str(HS_DIR / \\\"*.pt\\\"))):\\n        d = torch.load(pt_file, map_location=\\\"cpu\\\", weights_only=False)\\n        if d.get(\\\"step_labels\\\") is None:\\n            continue\\n        cp = d.get(\\\"commitment_
+…[truncated 3682 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-17T12:19:07.809520+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "find /root/autodl-tmp/contrastive_trace_safety -name \"*.json\" | xargs grep -l \"coverage\\|lead_mean\" 2>/dev/null | head -10",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "find /root/autodl-tmp/contrastive_trace_safety -name \"*.json\" | xargs grep -l \"coverage\\|lead_mean\" 2>/dev/null | head -10",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-17T12:19:07.809684+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/contrastive_trace_safety/artifacts/diagnostics/gru256_per_seed_results.json\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_013_text_baseline/results.json\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_015_fpr/fpr_results.json\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_001b/layer_sweep_results.json\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_001b/temporal_lr_results.json\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_001b/gru_results.json\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_001a/layer_sweep_results.json\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_001a/temporal_lr_results.json\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_001a/gru_results.json\\n/root/autodl-tmp/contrastive_trace_safety/artifacts/r1_8b_balanced_recompute/full_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.81}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-17T12:19:07.809823+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && source /root/miniconda3/bin/activate && python -c \"\nimport json\nwith open('artifacts/r1_8b_balanced_recompute/full_results.json') as f:\n    d = json.load(f)\nprint(json.dumps(list(d.keys()), indent=2))\nif 'lr_static' in d:\n    print('lr_static keys:', list(d['lr_static'].keys()))\n    print(json.dumps(d['lr_static'], indent=2)[:2000])\nelif 'best_layer' in d:\n    print(json.dumps({k:v for k,v in d.items() if k != 'per_trace_results'}, indent=2)[:2000])\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cd /root/autodl-tmp/contrastive_trace_safety && source /root/miniconda3/bin/activate && python -c \"\nimport json\nwith open('artifacts/r1_8b_balanced_recompute/full_results.json') as f:\n    d = json.load(f)\nprint(json.dumps(list(d.keys()), indent=2))\nif 'lr_static' in d:\n    print('lr_static keys:', list(d['lr_static'].keys()))\n    print(json.dumps(d['lr_static'], indent=2)[:2000])\nelif 'best_layer' in d:\n    print(json.dumps({k:v for k,v in d.items() if k != 'per_trace_results'}, indent=2)[:2000])\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-17T12:19:07.809958+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[\\n  \\\"hs_static_lr_l14\\\",\\n  \\\"hs_temporal_lr_w5_l14\\\",\\n  \\\"hs_temporal_lr_w10_l14\\\",\\n  \\\"hs_temporal_lr_w15_l14\\\",\\n  \\\"gru_multi7l_h256\\\",\\n  \\\"text_static\\\",\\n  \\\"text_temporal_w15\\\"\\n]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-17T12:19:07.810086+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && source /root/miniconda3/bin/activate && python -c \"\nimport json\nwith open('artifacts/r1_8b_balanced_recompute/full_results.json') as f:\n    d = json.load(f)\nprint(json.dumps(d['hs_static_lr_l14'], indent=2))\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cd /root/autodl-tmp/contrastive_trace_safety && source /root/miniconda3/bin/activate && python -c \"\nimport json\nwith open('artifacts/r1_8b_balanced_recompute/full_results.json') as f:\n    d = json.load(f)\nprint(json.dumps(d['hs_static_lr_l14'], indent=2))\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-17T12:19:07.810219+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"acc\\\": 0.8172057539118186,\\n  \\\"coverage\\\": 0.46511627906976744,\\n  \\\"lead_mean\\\": -2.0,\\n  \\\"lead_median\\\": -2.0,\\n  \\\"pre_cp_fpr\\\": 0.09653297076818491,\\n  \\\"precision\\\": 0.6926406926406926,\\n  \\\"n_valid\\\": 43,\\n  \\\"n_crossing\\\": 20,\\n  \\\"n_leads\\\": 20\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-17T12:19:07.810354+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/r1_8b_balanced_recompute/recompute_all.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/r1_8b_balanced_recompute/recompute_all.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-17T12:19:07.810642+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"P0-3: Unified balanced recomputation of all r1-8b metrics.\\n\\nConfig: LogisticRegression(class_weight=\\\"balanced\\\", C=1.0, max_iter=1000)\\nSplit: 60/20/20, seed=42\\n\\\"\\\"\\\"\\n\\nimport sys, os, json, glob, warnings\\nimport numpy as np\\nimport torch\\nimport torch.nn as nn\\nfrom pathlib import Path\\n\\nsys.path.insert(0, '/root/autodl-tmp/contrastive_trace_safety')\\nwarnings.filterwarnings(\\\"ignore\\\")\\n\\nfrom src.config import SEED, DETECTION_WINDOW\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.metrics import accuracy_score\\n\\n# === Constants ===\\nHS_DIR = Path(\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states\\\")\\nOUT_DIR = Path(\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/r1_8b_balanced_recompute\\\")\\nOUT_DIR.mkdir(parents=True, exist_ok=True)\\n\\nLAYER_IDX = 2  # Layer 14 = LAYERS[2] (LAYERS starts at 12)\\nMULTI_LAYER_INDICES = [0, 2, 4, 6, 8, 10, 12]  # layers 12,14,16,18,20,22,24\\nK_CONSECUTIVE = DETECTION_WINDOW  # 5\\nTHRESHOLD = 0.5\\n\\n# GRU config\\nGRU_HIDDEN = 256\\nGRU_DROPOUT = 0.3\\nGRU_LR = 1e-3\\nGRU_WEIGHT_DECAY = 1e-4\\nGRU_PATIENCE = 10\\nGRU_EPOCHS = 50\\nGRU_BATCH_SIZE = 8\\nGRU_SEEDS = [42, 123, 456]\\n\\n# === Data Loading ===\\ndef load_traces(hs_dir):\\n    traces = []\\n    for pt_file in sorted(glob.glob(os.path.join(hs_dir, \\\"*.pt\\\"))):\\n        data = torch.load(pt_file, map_location=\\\"cpu\\\", weights_only=False)\\n        if data.get(\\\"step_labels\\\") is None:\\n            continue\\n        traces.append(data)\\n    return traces\\n\\ndef split_traces(traces, seed=42):\\n    rng = np.random.default_rng(seed)\\n    indices = rng.permutation(len(traces))\\n    n_train = int(len(traces) * 0.6)\\n    n_val = int(len(traces) * 0.2)\\n    return (\\n        [traces[i] for i in indices[:n_train]],\\n        [traces[i] for i in indices[n_train:n_train+n_val]],\\n        [traces
+…[truncated 7177 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-17T12:19:07.810896+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat << 'SCRIPT' > /root/autodl-tmp/contrastive_trace_safety/exp_repe_direction_probe.py\n\"\"\"RepE Direction Probe for safety commitment point detection.\n\nComputes a safety direction vector as the mean difference between post-CP and\npre-CP hidden states, then projects each step onto this direction to produce\na scalar score. A threshold is optimized on train set (maximize balanced_accuracy).\n\nInput: Per-model hidden state .pt files with step_labels and commitment_point\nOutput: results_repe_direction.json with metrics for all 4 models\n\"\"\"\n\nimport os, sys, json, glob, warnings\nos.environ[\"TOKENIZERS_PARALLELISM\"] = \"false\"\nos.environ[\"HF_ENDPOINT\"] = \"https://hf-mirror.com\"\nwarnings.filterwarnings(\"ignore\")\n\nimport numpy as np\nimport torch\nfrom pathlib import Path\nfrom sklearn.metrics import balanced_accuracy_score, precision_score\n\nsys.path.insert(0, \"/root/autodl-tmp/contrastive_trace_safety\")\nfrom src.config import SEED, DETECTION_WINDOW\n\nPROJECT = Path(\"/root/autodl-tmp/contrastive_trace_safety\")\nK_CONSECUTIVE = DETECTION_WINDOW  # 5\nTHRESHOLD_SEARCH_STEPS = 200\n\nMODEL_CONFIGS = {\n    \"r1-8b\": {\n        \"hs_dir\": PROJECT / \"artifacts\" / \"hidden_states\",\n        \"layer_idx\": 2,  # layer 14 = LAYERS[2] (LAYERS starts at 12)\n        \"hidden_dim\": 4096,\n    },\n    \"r1-32b\": {\n        \"hs_dir\": PROJECT / \"artifacts\" / \"hidden_states_r1_32b\",\n        \"layer_idx\": 10,\n        \"hidden_dim\": 5120,\n    },\n    \"qwq-32b\": {\n        \"hs_dir\": PROJECT / \"artifacts\" / \"hidden_states_qwq_32b\",\n        \"layer_idx\": 2,\n        \"hidden_dim\": 5120,\n    },\n    \"ot-7b\": {\n        \"hs_dir\": PROJECT / \"artifacts\" / \"hidden_states_ot7b\",\n        \"layer_idx\": 16,\n        \"hidden_dim\": 3584,\n    },\n}\n\n\ndef load_traces(hs_dir):\n    traces = []\n    for pt_file in sorted(glob.glob(str(hs_dir / \"*.pt\"))):\n        data = torch.load(pt_file, map_location=\"cpu\", weights_only=False)\n        if data.get(\"step_labels\") is None or data.get(\"commitment_point\") is None:\n            continue\n        traces.append(data)\n    return traces\n\n\ndef split_traces(traces, seed=SEED):\n    rng = np.random.default_rng(seed)\n    indices = rng.permutation(len(traces))\n    n_train = int(len(traces) * 0.6)\n    n_val = int(len(traces) * 0.2)\n    return (\n        [traces[i] for i in indices[:n_train]],\n        [traces[i] for i in indices[n_train:n_train + n_val]],\n        [traces[i] for i in indices[n_train + n_val:]],\n    )\n\n\ndef compute_direction(train_traces, layer_idx):\n    \"\"\"Compute RepE safety direction: mean(post_CP) - mean(pre_CP).\"\"\"\n    pre_vecs = []\n    post_vecs = []\n    for t in train_traces:\n        hs = t[\"hidden_states\"][:, layer_idx, :].float().numpy()\n        labels = np.array(t[\"step_labels\"])\n        n = min(hs.shape[0], len(labels))\n        hs = hs[:n]\n        labels = labels[:n]\n        pre_vecs.append(hs[labels == 0])\n        post_vecs.append(hs[labels == 1])\n\n    pre_all = np.concatenate(pre_vecs, axis=0)\n    post_all = np.concatenate(post_vecs, axis=0)\n\n    direction = post_all.mean(axis=0) - pre_all.mean(axis=0)\n    norm = np.linalg.norm(direction)\n    if norm < 1e-10:\n        return direction\n    direction = direction / norm\n    return direction\n\n\ndef project_scores(traces, layer_idx, direction):\n    \"\"\"Project hidden states onto direction vector, return per-trace scores.\"\"\"\n    results = []\n    for t in traces:\n        hs = t[\"hidden_states\"][:, layer_idx, :].float().numpy()\n        labels = np.array(t[\"step_labels\"])\n        n = min(hs.shape[0], len(labels))\n        hs = hs[:n]\n        labels = labels[:n]\n        scores = hs @ direction  # [n_steps]\n        results.append({\n            \"trace_id\": t[\"trace_id\"],\n            \"scores\": scores,\n            \"labels\": labels,\n            \"commitment_point\": t[\"commitment_point\"],\n        })\n    return results\n\n\ndef find_optimal_threshold(train_results):\n    \"\"\"Search for threshold that maximizes balanced accuracy on train set.\"\"\"\n    all_scores = np.concatenate([r[\"scores\"] for r in train_results])\n    all_labels = np.concatenate([r[\"labels\"] for r in train_results])\n\n    lo, hi = all_scores.min(), all_scores.max()\n    thresholds = np.linspace(lo, hi, THRESHOLD_SEARCH_STEPS)\n\n    best_thr = 0.0\n    best_bal_acc = 0.0\n    for thr in thresholds:\n        preds = (all_scores > thr).astype(int)\n        bal_acc = balanced_accuracy_score(all_labels, preds)\n        if bal_acc > best_bal_acc:\n            best_bal_acc = bal_acc\n            best_thr = thr\n\n    return best_thr, best_bal_acc\n\n\ndef first_crossing_point(scores, threshold, k=K_CONSECUTIVE):\n    \"\"\"First position where score > threshold for k consecutive steps.\"\"\"\n    n = len(scores)\n    if n < k:\n        return None\n    for i in range(n - k + 1):\n        if all(s > threshold for s in scores[i:i + k]):\n            return i\n    return None\n\n\ndef evaluate(test_results, threshold):\n    \"\"\"Compute all metrics on test set.\"\"\"\n    all_labels = []\n    all_preds = []\n    leads = []\n    n_crossing = 0\n    n_valid = 0\n    total_pre_cp_steps = 0\n    fp_pre_cp = 0\n\n    for r in test_results:\n        scores = r[\"scores\"]\n        labels = r[\"labels\"]\n        cp = r[\"commitment_point\"]\n        preds = (scores > threshold).astype(int)\n\n        all_labels.append(labels)\n        all_preds.append(preds)\n        n_valid += 1\n\n        # Pre-CP FPR\n        pre_mask = np.arange(len(labels)) < cp\n        pre_preds = preds[pre_mask]\n        pre_labels = labels[pre_mask]\n        n_neg = (pre_labels == 0).sum()\n        total_pre_cp_steps += n_neg\n        fp_pre_cp += ((pre_preds == 1) & (pre_labels == 0)).sum()\n\n        # Coverage and lead\n        fcp = first_crossing_point(scores, threshold, K_CONSECUTIVE)\n        if fcp is not None and fcp <= cp:\n            n_crossing += 1\n            leads.append(cp - fcp)\n\n    all_labels_flat = np.concatenate(all_labels)\n    all_preds_flat = np.concatenate(all_preds)\n\n    bal_acc = balanced_accuracy_score(all_labels_flat, all_preds_flat)\n\n    tp = ((all_preds_flat == 1) & (all_labels_flat == 1)).sum()\n    fp = ((all_preds_flat == 1) & (all_labels_flat == 0)).sum()\n    precision = tp / (tp + fp) if (tp + fp) > 0 else 0.0\n\n    pre_cp_fpr = fp_pre_cp / total_pre_cp_steps if total_pre_cp_steps > 0 else 0.0\n    coverage = n_crossing / n_valid if n_valid > 0 else 0.0\n    lead_mean = float(np.mean(leads)) if leads else None\n\n    return {\n        \"bal_acc\": round(float(bal_acc), 4),\n        \"precision\": round(float(precision), 4),\n        \"pre_cp_fpr\": round(float(pre_cp_fpr), 4),\n        \"coverage\": round(float(coverage), 4),\n        \"lead_mean\": round(lead_mean, 1) if lead_mean is not None else None,\n        \"n_valid\": n_valid,\n        \"n_crossing\": n_crossing,\n        \"threshold\": round(float(threshold), 6),\n    }\n\n\ndef run_model(model_name, config):\n    \"\"\"Run RepE direction probe for a single model.\"\"\"\n    print(f\"\\n{'='*60}\")\n    print(f\"MODEL: {model_name}\")\n    print(f\"  hs_dir: {config['hs_dir']}\")\n    print(f\"  layer_idx: {config['layer_idx']}, hidden_dim: {config['hidden_dim']}\")\n    print(f\"{'='*60}\")\n\n    if not config[\"hs_dir\"].exists():\n        print(f\"  SKIP: directory does not exist\")\n        return None\n\n    traces = load_traces(config[\"hs_dir\"])\n    print(f\"  Loaded {len(traces)} traces with commitment points\")\n\n    if len(traces) < 5:\n        print(f\"  SKIP: too few traces\")\n        return None\n\n    train, val, test = split_traces(traces)\n    print(f\"  Split: train={len(train)}, val={len(val)}, test={len(test)}\")\n\n    # Compute direction from train set\n    direction = compute_direction(train, config[\"layer_idx\"])\n    print(f\"  Direction norm (before normalization): computed\")\n    print(f\"  Direction vector shape: {direction.shape}\")\n\n    # Project all sets\n    train_results = project_scores(train, config[\"layer_idx\"], direction)\n    val_results = project_scores(val, config[\"layer_idx\"], direction)\n    test_results = project_scores(test, config[\"layer_idx\"], direction)\n\n    # Find optimal threshold on train\n    train_thr, train_bal_acc = find_optimal_threshold(train_results)\n    print(f\"  Train optimal threshold: {train_thr:.4f} (bal_acc={train_bal_acc:.4f})\")\n\n    # Also try val for comparison\n    val_thr, val_bal_acc = find_optimal_threshold(val_results)\n    print(f\"  Val optimal threshold: {val_thr:.4f} (bal_acc={val_bal_acc:.4f})\")\n\n    # Evaluate on test with train threshold\n    metrics = evaluate(test_results, train_thr)\n    print(f\"\\n  TEST RESULTS (threshold from train):\")\n    print(f\"    bal_acc:    {metrics['bal_acc']:.4f}\")\n    print(f\"    precision:  {metrics['precision']:.4f}\")\n    print(f\"    pre_cp_fpr: {metrics['pre_cp_fpr']:.4f}\")\n    print(f\"    coverage:   {metrics['coverage']:.4f}\")\n    print(f\"    lead_mean:  {metrics['lead_mean']}\")\n\n    metrics[\"train_bal_acc\"] = round(train_bal_acc, 4)\n    metrics[\"direction_layer\"] = config[\"layer_idx\"]\n    return metrics\n\n\ndef main():\n    print(\"=\"*60)\n    print(\"RepE DIRECTION PROBE: 4-Model Evaluation\")\n    print(\"=\"*60)\n    print(f\"Seed: {SEED}, K_consecutive: {K_CONSECUTIVE}\")\n\n    all_results = {}\n    for model_name, config in MODEL_CONFIGS.items():\n        result = run_model(model_name, config)\n        if result is not None:\n            all_results[model_name] = result\n\n    # Save results\n    out_path = PROJECT / \"results_repe_direction.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(all_results, f, indent=2)\n    print(f\"\\nResults saved to: {out_path}\")\n\n    # Print summary table\n    print(f\"\\n{'='*70}\")\n    print(\"SUMMARY: RepE Direction Probe\")\n    print(f\"{'='*70}\")\n    print(f\"{'Model':<10} {'bal_acc':>8} {'precision':>10} {'pre_cp_fpr':>11} {'coverage':>9} {'lead_mean':>10}\")\n    print(\"-\"*70)\n    for m, r in all_results.items():\n        lead_str = f\"{r['lead_mean']:+.1f}\" if r['lead_mean'] is not None else \"N/A\"\n        print(f\"{m:<10} {r['bal_acc']:>8.4f} {r['precision']:>10.4f} {r['pre_cp_fpr']:>11.4f} {r['coverage']:>9.4f} {lead_str:>10}\")\n    print(\"=\"*70)\n\n    # Reference LR probe results for comparison\n    lr_reference = {\n        \"r1-8b\": {\"bal_acc\": 0.8172, \"precision\": 0.6926, \"pre_cp_fpr\": 0.0965, \"coverage\": 0.4651, \"lead_mean\": -2.0},\n    }\n    lr_ref_path = PROJECT / \"artifacts\" / \"r1_8b_balanced_recompute\" / \"full_results.json\"\n    if lr_ref_path.exists():\n        with open(lr_ref_path) as f:\n            lr_data = json.load(f)\n        if \"hs_static_lr_l14\" in lr_data:\n            d = lr_data[\"hs_static_lr_l14\"]\n            lr_reference[\"r1-8b\"] = {\n                \"bal_acc\": d[\"acc\"], \"precision\": d[\"precision\"],\n                \"pre_cp_fpr\": d[\"pre_cp_fpr\"], \"coverage\": d[\"coverage\"],\n                \"lead_mean\": d[\"lead_mean\"],\n            }\n\n    print(f\"\\n{'='*70}\")\n    print(\"COMPARISON: RepE vs LR Probe (where available)\")\n    print(f\"{'='*70}\")\n    for m in all_results:\n        if m in lr_reference:\n            rep = all_results[m]\n            lr = lr_reference[m]\n            print(f\"\\n  {m}:\")\n            print(f\"    {'Metric':<12} {'RepE':>8} {'LR':>8} {'Delta':>8}\")\n            print(f\"    {'bal_acc':<12} {rep['bal_acc']:>8.4f} {lr['bal_acc']:>8.4f} {rep['bal_acc']-lr['bal_acc']:>+8.4f}\")\n            print(f\"    {'precision':<12} {rep['precision']:>8.4f} {lr['precision']:>8.4f} {rep['precision']-lr['precision']:>+8.4f}\")\n            print(f\"    {'pre_cp_fpr':<12} {rep['pre_cp_fpr']:>8.4f} {lr['pre_cp_fpr']:>8.4f} {rep['pre_cp_fpr']-lr['pre_cp_fpr']:>+8.4f}\")\n            print(f\"    {'coverage':<12} {rep['coverage']:>8.4f} {lr['coverage']:>8.4f} {rep['coverage']-lr['coverage']:>+8.4f}\")\n            lr_lead = lr['lead_mean'] if lr['lead_mean'] is not None else 0\n            rep_lead = rep['lead_mean'] if rep['lead_mean'] is not None else 0\n            print(f\"    {'lead_mean':<12} {rep_lead:>+8.1f} {lr_lead:>+8.1f}\")\n\n    sys.stdout.flush()\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT\necho \"Script written successfully\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat << 'SCRIPT' > /root/autodl-tmp/contrastive_trace_safety/exp_repe_direction_probe.py\n\"\"\"RepE Direction Probe for safety commitment point detection.\n\nComputes a safety direction vector as the mean difference between post-CP and\npre-CP hidden states, then projects each step onto this direction to produce\na scalar score. A threshold is optimized on train set (maximize balanced_accuracy).\n\nInput: Per-model hidden state .pt files with step_labels and commitment_point\nOutput: results_repe_direction.json with metrics for all 4 models\n\"\"\"\n\nimport os, sys, json, glob, warnings\nos.environ[\"TOKENIZERS_PARALLELISM\"] = \"false\"\nos.environ[\"HF_ENDPOINT\"] = \"https://hf-mirror.com\"\nwarnings.filterwarnings(\"ignore\")\n\nimport numpy as np\nimport torch\nfrom pathlib import Path\nfrom sklearn.metrics import balanced_accuracy_score, precision_score\n\nsys.path.insert(0, \"/root/autodl-tmp/contrastive_trace_safety\")\nfrom src.config import SEED, DETECTION_WINDOW\n\nPROJECT = Path(\"/root/autodl-tmp/contrastive_trace_safety\")\nK_CONSECUTIVE = DETECTION_WINDOW  # 5\nTHRESHOLD_SEARCH_STEPS = 200\n\nMODEL_CONFIGS = {\n    \"r1-8b\": {\n        \"hs_dir\": PROJECT / \"artifacts\" / \"hidden_states\",\n        \"layer_idx\": 2,  # layer 14 = LAYERS[2] (LAYERS starts at 12)\n        \"hidden_dim\": 4096,\n    },\n    \"r1-32b\": {\n        \"hs_dir\": PROJECT / \"artifacts\" / \"hidden_states_r1_32b\",\n        \"layer_idx\": 10,\n        \"hidden_dim\": 5120,\n    },\n    \"qwq-32b\": {\n        \"hs_dir\": PROJECT / \"artifacts\" / \"hidden_states_qwq_32b\",\n        \"layer_idx\": 2,\n        \"hidden_dim\": 5120,\n    },\n    \"ot-7b\": {\n        \"hs_dir\": PROJECT / \"artifacts\" / \"hidden_states_ot7b\",\n        \"layer_idx\": 16,\n        \"hidden_dim\": 3584,\n    },\n}\n\n\ndef load_traces(hs_dir):\n    traces = []\n    for pt_file in sorted(glob.glob(str(hs_dir / \"*.pt\"))):\n        data = torch.load(pt_file, map_location=\"cpu\", weights_only=False)\n        if data.get(\"step_labels\") is None or data.get(\"commitment_point\") is None:\n            continue\n        traces.append(data)\n    return traces\n\n\ndef split_traces(traces, seed=SEED):\n    rng = np.random.default_rng(seed)\n    indices = rng.permutation(len(traces))\n    n_train = int(len(traces) * 0.6)\n    n_val = int(len(traces) * 0.2)\n    return (\n        [traces[i] for i in indices[:n_train]],\n        [traces[i] for i in indices[n_train:n_train + n_val]],\n        [traces[i] for i in indices[n_train + n_val:]],\n    )\n\n\ndef compute_direction(train_traces, layer_idx):\n    \"\"\"Compute RepE safety direction: mean(post_CP) - mean(pre_CP).\"\"\"\n    pre_vecs = []\n    post_vecs = []\n    for t in train_traces:\n        hs = t[\"hidden_states\"][:, layer_idx, :].float().numpy()\n        labels = np.array(t[\"step_labels\"])\n        n = min(hs.shape[0], len(labels))\n        hs = hs[:n]\n        labels = labels[:n]\n        pre_vecs.append(hs[labels == 0])\n        post_vecs.append(hs[labels == 1])\n\n    pre_all = np.concatenate(pre_vecs, axis=0)\n    post_all = np.concatenate(post_vecs, axis=0)\n\n    direction = post_all.mean(axis=0) - pre_all.mean(axis=0)\n    norm = np.linalg.norm(direction)\n    if norm < 1e-10:\n        return direction\n    direction = direction / norm\n    return direction\n\n\ndef project_scores(traces, layer_idx, direction):\n    \"\"\"Project hidden states onto direction vector, return per-trace scores.\"\"\"\n    results = []\n    for t in traces:\n        hs = t[\"hidden_states\"][:, layer_idx, :].float().numpy()\n        labels = np.array(t[\"step_labels\"])\n        n = min(hs.shape[0], len(labels))\n        hs = hs[:n]\n        labels = labels[:n]\n        scores = hs @ direction  # [n_steps]\n        results.append({\n            \"trace_id\": t[\"trace_id\"],\n            \"scores\": scores,\n            \"labels\": labels,\n            \"commitment_point\": t[\"commitment_point\"],\n        })\n    return results\n\n\ndef find_optimal_threshold(train_results):\n    \"\"\"Search for threshold that maximizes balanced accuracy on train set.\"\"\"\n    all_scores = np.concatenate([r[\"scores\"] for r in train_results])\n    all_labels = np.concatenate([r[\"labels\"] for r in train_results])\n\n    lo, hi = all_scores.min(), all_scores.max()\n    thresholds = np.linspace(lo, hi, THRESHOLD_SEARCH_STEPS)\n\n    best_thr = 0.0\n    best_bal_acc = 0.0\n    for thr in thresholds:\n        preds = (all_scores > thr).astype(int)\n        bal_acc = balanced_accuracy_score(all_labels, preds)\n        if bal_acc > best_bal_acc:\n            best_bal_acc = bal_acc\n            best_thr = thr\n\n    return best_thr, best_bal_acc\n\n\ndef first_crossing_point(scores, threshold, k=K_CONSECUTIVE):\n    \"\"\"First position where score > threshold for k consecutive steps.\"\"\"\n    n = len(scores)\n    if n < k:\n        return None\n    for i in range(n - k + 1):\n        if all(s > threshold for s in scores[i:i + k]):\n            return i\n    return None\n\n\ndef evaluate(test_results, threshold):\n    \"\"\"Compute all metrics on test set.\"\"\"\n    all_labels = []\n    all_preds = []\n    leads = []\n    n_crossing = 0\n    n_valid = 0\n    total_pre_cp_steps = 0\n    fp_pre_cp = 0\n\n    for r in test_results:\n        scores = r[\"scores\"]\n        labels = r[\"labels\"]\n        cp = r[\"commitment_point\"]\n        preds = (scores > threshold).astype(int)\n\n        all_labels.append(labels)\n        all_preds.append(preds)\n        n_valid += 1\n\n        # Pre-CP FPR\n        pre_mask = np.arange(len(labels)) < cp\n        pre_preds = preds[pre_mask]\n        pre_labels = labels[pre_mask]\n        n_neg = (pre_labels == 0).sum()\n        total_pre_cp_steps += n_neg\n        fp_pre_cp += ((pre_preds == 1) & (pre_labels == 0)).sum()\n\n        # Coverage and lead\n        fcp = first_crossing_point(scores, threshold, K_CONSECUTIVE)\n        if fcp is not None and fcp <= cp:\n            n_crossing += 1\n            leads.append(cp - fcp)\n\n    all_labels_flat = np.concatenate(all_labels)\n    all_preds_flat = np.concatenate(all_preds)\n\n    bal_acc = balanced_accuracy_score(all_labels_flat, all_preds_flat)\n\n    tp = ((all_preds_flat == 1) & (all_labels_flat == 1)).sum()\n    fp = ((all_preds_flat == 1) & (all_labels_flat == 0)).sum()\n    precision = tp / (tp + fp) if (tp + fp) > 0 else 0.0\n\n    pre_cp_fpr = fp_pre_cp / total_pre_cp_steps if total_pre_cp_steps > 0 else 0.0\n    coverage = n_crossing / n_valid if n_valid > 0 else 0.0\n    lead_mean = float(np.mean(leads)) if leads else None\n\n    return {\n        \"bal_acc\": round(float(bal_acc), 4),\n        \"precision\": round(float(precision), 4),\n        \"pre_cp_fpr\": round(float(pre_cp_fpr), 4),\n        \"coverage\": round(float(coverage), 4),\n        \"lead_mean\": round(lead_mean, 1) if lead_mean is not None else None,\n        \"n_valid\": n_valid,\n        \"n_crossing\": n_crossing,\n        \"threshold\": round(float(threshold), 6),\n    }\n\n\ndef run_model(model_name, config):\n    \"\"\"Run RepE direction probe for a single model.\"\"\"\n    print(f\"\\n{'='*60}\")\n    print(f\"MODEL: {model_name}\")\n    print(f\"  hs_dir: {config['hs_dir']}\")\n    print(f\"  layer_idx: {config['layer_idx']}, hidden_dim: {config['hidden_dim']}\")\n    print(f\"{'='*60}\")\n\n    if not config[\"hs_dir\"].exists():\n        print(f\"  SKIP: directory does not exist\")\n        return None\n\n    traces = load_traces(config[\"hs_dir\"])\n    print(f\"  Loaded {len(traces)} traces with commitment points\")\n\n    if len(traces) < 5:\n        print(f\"  SKIP: too few traces\")\n        return None\n\n    train, val, test = split_traces(traces)\n    print(f\"  Split: train={len(train)}, val={len(val)}, test={len(test)}\")\n\n    # Compute direction from train set\n    direction = compute_direction(train, config[\"layer_idx\"])\n    print(f\"  Direction norm (before normalization): computed\")\n    print(f\"  Direction vector shape: {direction.shape}\")\n\n    # Project all sets\n    train_results = project_scores(train, config[\"layer_idx\"], direction)\n    val_results = project_scores(val, config[\"layer_idx\"], direction)\n    test_results = project_scores(test, config[\"layer_idx\"], direction)\n\n    # Find optimal threshold on train\n    train_thr, train_bal_acc = find_optimal_threshold(train_results)\n    print(f\"  Train optimal threshold: {train_thr:.4f} (bal_acc={train_bal_acc:.4f})\")\n\n    # Also try val for comparison\n    val_thr, val_bal_acc = find_optimal_threshold(val_results)\n    print(f\"  Val optimal threshold: {val_thr:.4f} (bal_acc={val_bal_acc:.4f})\")\n\n    # Evaluate on test with train threshold\n    metrics = evaluate(test_results, train_thr)\n    print(f\"\\n  TEST RESULTS (threshold from train):\")\n    print(f\"    bal_acc:    {metrics['bal_acc']:.4f}\")\n    print(f\"    precision:  {metrics['precision']:.4f}\")\n    print(f\"    pre_cp_fpr: {metrics['pre_cp_fpr']:.4f}\")\n    print(f\"    coverage:   {metrics['coverage']:.4f}\")\n    print(f\"    lead_mean:  {metrics['lead_mean']}\")\n\n    metrics[\"train_bal_acc\"] = round(train_bal_acc, 4)\n    metrics[\"direction_layer\"] = config[\"layer_idx\"]\n    return metrics\n\n\ndef main():\n    print(\"=\"*60)\n    print(\"RepE DIRECTION PROBE: 4-Model Evaluation\")\n    print(\"=\"*60)\n    print(f\"Seed: {SEED}, K_consecutive: {K_CONSECUTIVE}\")\n\n    all_results = {}\n    for model_name, config in MODEL_CONFIGS.items():\n        result = run_model(model_name, config)\n        if result is not None:\n            all_results[model_name] = result\n\n    # Save results\n    out_path = PROJECT / \"results_repe_direction.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(all_results, f, indent=2)\n    print(f\"\\nResults saved to: {out_path}\")\n\n    # Print summary table\n    print(f\"\\n{'='*70}\")\n    print(\"SUMMARY: RepE Direction Probe\")\n    print(f\"{'='*70}\")\n    print(f\"{'Model':<10} {'bal_acc':>8} {'precision':>10} {'pre_cp_fpr':>11} {'coverage':>9} {'lead_mean':>10}\")\n    print(\"-\"*70)\n    for m, r in all_results.items():\n        lead_str = f\"{r['lead_mean']:+.1f}\" if r['lead_mean'] is not None else \"N/A\"\n        print(f\"{m:<10} {r['bal_acc']:>8.4f} {r['precision']:>10.4f} {r['pre_cp_fpr']:>11.4f} {r['coverage']:>9.4f} {lead_str:>10}\")\n    print(\"=\"*70)\n\n    # Reference LR probe results for comparison\n    lr_reference = {\n        \"r1-8b\": {\"bal_acc\": 0.8172, \"precision\": 0.6926, \"pre_cp_fpr\": 0.0965, \"coverage\": 0.4651, \"lead_mean\": -2.0},\n    }\n    lr_ref_path = PROJECT / \"artifacts\" / \"r1_8b_balanced_recompute\" / \"full_results.json\"\n    if lr_ref_path.exists():\n        with open(lr_ref_path) as f:\n            lr_data = json.load(f)\n        if \"hs_static_lr_l14\" in lr_data:\n            d = lr_data[\"hs_static_lr_l14\"]\n            lr_reference[\"r1-8b\"] = {\n                \"bal_acc\": d[\"acc\"], \"precision\": d[\"precision\"],\n                \"pre_cp_fpr\": d[\"pre_cp_fpr\"], \"coverage\": d[\"coverage\"],\n                \"lead_mean\": d[\"lead_mean\"],\n            }\n\n    print(f\"\\n{'='*70}\")\n    print(\"COMPARISON: RepE vs LR Probe (where available)\")\n    print(f\"{'='*70}\")\n    for m in all_results:\n        if m in lr_reference:\n            rep = all_results[m]\n            lr = lr_reference[m]\n            print(f\"\\n  {m}:\")\n            print(f\"    {'Metric':<12} {'RepE':>8} {'LR':>8} {'Delta':>8}\")\n            print(f\"    {'bal_acc':<12} {rep['bal_acc']:>8.4f} {lr['bal_acc']:>8.4f} {rep['bal_acc']-lr['bal_acc']:>+8.4f}\")\n            print(f\"    {'precision':<12} {rep['precision']:>8.4f} {lr['precision']:>8.4f} {rep['precision']-lr['precision']:>+8.4f}\")\n            print(f\"    {'pre_cp_fpr':<12} {rep['pre_cp_fpr']:>8.4f} {lr['pre_cp_fpr']:>8.4f} {rep['pre_cp_fpr']-lr['pre_cp_fpr']:>+8.4f}\")\n            print(f\"    {'coverage':<12} {rep['coverage']:>8.4f} {lr['coverage']:>8.4f} {rep['coverage']-lr['coverage']:>+8.4f}\")\n            lr_lead = lr['lead_mean'] if lr['lead_mean'] is not None else 0\n            rep_lead = rep['lead_mean'] if rep['lead_mean'] is not None else 0\n            print(f\"    {'lead_mean':<12} {rep_lead:>+8.1f} {lr_lead:>+8.1f}\")\n\n    sys.stdout.flush()\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT\necho \"Script written successfully\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-17T12:19:07.811144+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written successfully\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-17T12:19:07.811276+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && source /root/miniconda3/bin/activate && python exp_repe_direction_probe.py",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cd /root/autodl-tmp/contrastive_trace_safety && source /root/miniconda3/bin/activate && python exp_repe_direction_probe.py",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-17T12:19:07.811443+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"============================================================\\nRepE DIRECTION PROBE: 4-Model Evaluation\\n============================================================\\nSeed: 42, K_consecutive: 5\\n\\n============================================================\\nMODEL: r1-8b\\n  hs_dir: /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states\\n  layer_idx: 2, hidden_dim: 4096\\n============================================================\\n  Loaded 209 traces with commitment points\\n  Split: train=125, val=41, test=43\\n  Direction norm (before normalization): computed\\n  Direction vector shape: (4096,)\\n  Train optimal threshold: -0.0640 (bal_acc=0.7276)\\n  Val optimal threshold: -0.2956 (bal_acc=0.6875)\\n\\n  TEST RESULTS (threshold from train):\\n    bal_acc:    0.7491\\n    precision:  0.5160\\n    pre_cp_fpr: 0.2264\\n    coverage:   0.3953\\n    lead_mean:  9.7\\n\\n============================================================\\nMODEL: r1-32b\\n  hs_dir: /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_r1_32b\\n  layer_idx: 10, hidden_dim: 5120\\n============================================================\\n  Loaded 100 traces with commitment points\\n  Split: train=60, val=20, test=20\\n  Direction norm (before normalization): computed\\n  Direction vector shape: (5120,)\\n  Train optimal threshold: 15.5046 (bal_acc=0.6810)\\n  Val optimal threshold: 17.8264 (bal_acc=0.7497)\\n\\n  TEST RESULTS (threshold from train):\\n    bal_acc:    0.6707\\n    precision:  0.5538\\n    pre_cp_fpr: 0.2423\\n    coverage:   0.4500\\n    lead_mean:  6.3\\n\\n============================================================\\nMODEL: qwq-32b\\n  hs_dir: /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_qwq_32b\\n  layer_idx: 2, hidden_dim: 5120\\n============================================================\\n  Loaded 95 traces with commitment points\\n  Split: train=57, val=19, 
+…[truncated 2413 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 73 · 2026-05-17T12:19:07.811655+00:00_
+
+运行完成。结果已保存到 `results_repe_direction.json`。
+
+**4 模型 RepE 方向探针结果：**
+
+| Model | bal_acc | precision | pre_cp_fpr | coverage | lead_mean |
+|-------|---------|-----------|------------|----------|-----------|
+| r1-8b | 0.7491 | 0.5160 | 0.2264 | 0.3953 | +9.7 |
+| r1-32b | 0.6707 | 0.5538 | 0.2423 | 0.4500 | +6.3 |
+| qwq-32b | 0.6661 | 0.4193 | 0.3997 | 0.7368 | +13.4 |
+| ot-7b | 0.7180 | 0.3733 | 0.2573 | 0.5319 | +26.1 |
+
+**与 LR Probe 对比（r1-8b）：**
+- bal_acc: RepE 0.749 vs LR 0.817 (-0.068)
+- precision: RepE 0.516 vs LR 0.693 (-0.177)
+- pre_cp_fpr: RepE 0.226 vs LR 0.097 (+0.130, worse)
+- coverage: RepE 0.395 vs LR 0.465 (-0.070)
+- lead_mean: RepE +9.7 vs LR -2.0 (RepE detects much earlier when it does detect)
+
+RepE 方向探针整体 accuracy/precision 低于 LR probe，但 lead_mean 显著更大（检测更早）。这符合预期：单方向投影是比 LR 更弱的线性分类器，但它提取的 "safety direction" 在 commitment 之前就已经有信号，所以 crossing 更早（代价是更高 FPR）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_code_repe_direction_probe_v3_20260517T121511"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "abd4e1bd1c456c2fac6c",
+  "project": "contrastive_trace_safety",
+  "kind": "worker",
+  "title": "ops anonymous repo push",
+  "task_key": "worker_ops_anonymous_repo_push_20260523T124819",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_anonymous_repo_push_20260523T124819.log",
+    "occurrence": 1,
+    "bytes": 610879,
+    "sha256": "2ddae2da1dd117a45b23aa8de6245dfbe3dc72d7e443bcee3519eb6fd8557655"
+  },
+  "statistics": {
+    "messages": 137,
+    "user_turns": 0,
+    "tool_calls": 51,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 31,
+      "tool_call": 51,
+      "tool_result": 51,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 137,
+      "chunks": [
+        {
+          "path": "abd4e1bd1c456c2fac6c-part-0001.json",
+          "message_count": 133
+        },
+        {
+          "path": "abd4e1bd1c456c2fac6c-part-0002.json",
+          "message_count": 4
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-anonymous-repo-push.md"
+}

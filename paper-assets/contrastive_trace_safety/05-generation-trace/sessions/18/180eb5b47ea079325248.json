@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "180eb5b47ea079325248",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "research path a pilot investigate",
+  "task_key": "worker_research_path_a_pilot_investigate_20260517T052318",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_path_a_pilot_investigate_20260517T052318_result.json",
+    "occurrence": 1,
+    "bytes": 2163,
+    "sha256": "eb2cc1eb1b1e9bd98515be41a91efdf7a2a9d958a957cd3483eaa6fec71ba753"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## Pilot 结果总结\n\n### Phase 1: 数据调查\n\n| 项目 | 结果 |\n|------|------|\n| HarmThoughts 总样本 | 56,931 |\n| 模型 | r1-8b (14,746), r1-32b (8,525), QwQ (7,007), ot-7b (26,653) |\n| **R1-Distill-Qwen-7B 在数据集中** | **不存在** |\n| r1-8b jailbreak queries | 265 个唯一 query |\n| 当前 hidden states | R1-8B: 268, R1-32B: 101, QwQ-32B: 96 |\n\n### Phase 2: 7B 模型可行性\n\n| 项目 | 结果 |\n|------|------|\n| 模型 | deepseek-ai/DeepSeek-R1-Distill-Qwen-7B |\n| 模型大小 | ~15.2GB (2 shards: 6.6GB + 8.6GB) |\n| GPU 占用 | 15.4GB / 98GB VRAM |\n| 架构 | Qwen2-7B, 28 layers, hidden_dim=3584 |\n\n### Phase 3: Pilot 结果 (关键发现)\n\n| 指标 | 结果 |\n|------|------|\n| **Jailbreak rate** | **0/10 (0%)** |\n| `<think>` tags | **无** — 模型不产生 think tags |\n| Safety reasoning | 0/10 |\n| Direct compliance | 4/10 (直接执行有害请求，无安全推理) |\n| Avg response length | ~7,337 chars |\n| CoT 风格 | \"Okay, so I...\" 式思考，但无显式分隔 |\n\n### 问题分析\n\nR1-Distill-Qwen-7B 的行为与 R1-8B **截然不同**：\n\n1. **无 `<think>` tags** — 输出是一个连续的 CoT 流（\"Okay, so I'm trying to figure out...\"），没有 think/answer 分离\n2. **无 self-jailbreak 模式** — 不存在\"safety commitment → 继续生成有害内容\"的转折，模型要么直接 comply，要么 refuse\n3. **可能原因**：chat template 未正确触发 thinking 模式；或此模型的 distillation 未保留 think tag 行为\n\n### 可行性判断\n\n**当前形式不可用**。需要进一步调查：\n- 检查 tokenizer chat template 是否正确触发 thinking mode（可能需要加 system prompt 或调整 generation 参数）\n- 对比 R1-8B 的 prompt format（HarmThoughts 中 R1-8B 的 traces 确实有 \"Okay, so...\" 开头的 CoT，说明原始数据生成时可能使用了不同 prompt 策略）\n- 如果调整 prompt 后仍无 think tags 和 self-jailbreak 行为，则此模型不适用于当前实验框架\n\n是否需要我进一步调查 prompt format 或尝试其他方式触发 thinking 行为？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-path-a-pilot-investigate.md"
+}

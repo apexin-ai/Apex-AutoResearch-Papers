@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "414522e61420fedab125",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code mahalanobis r1 32b qwq",
+  "task_key": "worker_code_mahalanobis_r1_32b_qwq_20260517T145609",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mahalanobis_r1_32b_qwq_20260517T145609_result.json",
+    "occurrence": 1,
+    "bytes": 895,
+    "sha256": "d56adc519624adac9bed7d24cacc534cafcd32ea8649e26cdb66fae8763a86b7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结果汇总:\n\n## 4-Model Mahalanobis Comparison\n\n| Model | Layer | safe_MD | post_MD | separation | Best PCA |\n|-------|-------|---------|---------|------------|----------|\n| R1-8B | L28 | 6.66 | 6.73 | 0.07 | (prev) |\n| OT-7B | L16 | 7.68 | 7.71 | 0.03 | (prev) |\n| R1-32B | L63 | 6.73 | 6.88 | 0.15 | pca_64 |\n| QwQ-32B | L60 | 3.22 | 3.42 | 0.20 | pca_16 |\n\n所有 4 个模型 separation 均 < 0.21，Mahalanobis distance 无判别力。即使 crossing rate 最高的配置（R1-32B: 0.65, QwQ: 0.58），对应的 false alarm rate 也极高（0.45, 0.42），几乎等同于随机检测。\n\n**结论: 4/4 模型 Mahalanobis 均失败。** 结果已保存至:\n- `/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_mahalanobis_r1_32b/results.json`\n- `/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_mahalanobis_qwq/results.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mahalanobis-r1-32b-qwq.md"
+}

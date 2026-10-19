@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "28bcb32535213220a832",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code text window ablation r1 8b",
+  "task_key": "worker_code_text_window_ablation_r1_8b_20260517T001923",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_text_window_ablation_r1_8b_20260517T001923_result.json",
+    "occurrence": 1,
+    "bytes": 649,
+    "sha256": "493f07b5808173d5724a3d993a2ad22bbc1ce347d6338df1514ce6d6959a9387"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果支持 \"method-agnostic\" claim。\n\n**核心发现**: Text probe 和 HS probe 在 W 增大时表现出完全一致的趋势方向:\n- accuracy↑, coverage↓, FPR↓, precision↑\n\n**对比亮点**:\n- Text probe 从 windowing 获得更大相对收益 (bal_acc +18.6% vs HS +4.0%)，因为单步 text embeddings 本身较弱\n- HS probe 在所有 W 下绝对值均优于 text (bal_acc 高 10-13pp, FPR �� 6-15pp)\n- Text coverage 在 W≥15 后饱和 (0.5814)，而 HS 继续下降\n\n**输出位置**:\n- `artifacts/text_window_ablation_r1_8b/results.json`\n- `artifacts/text_window_ablation_r1_8b/report.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-text-window-ablation-r1-8b.md"
+}

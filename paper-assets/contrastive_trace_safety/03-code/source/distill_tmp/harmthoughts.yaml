@@ -1,0 +1,121 @@
+paper_key: "harmthoughts"
+title: "When Safety Fails Before the Answer: Benchmarking Harmful Behavior Detection in Reasoning Chains"
+venue: "arXiv 2026"
+full_text_available: true
+
+research:
+  baselines:
+    - "GPT-4o (zero-shot and few-shot)"
+    - "Gemini-2.0-flash (zero-shot and few-shot)"
+    - "Gemini-2.5-pro (zero-shot and few-shot)"
+    - "Llama-3.3-70b (zero-shot and few-shot)"
+    - "Difference of Means (DoM)"
+    - "Recursive Feature Machine (RFM)"
+    - "Linear Probing (logistic regression on activations)"
+  metrics:
+    - {name: "Macro-F1", direction: "higher_better", note: "primary metric for 16-label classification"}
+    - {name: "Macro-AUPRC", direction: "higher_better", note: "robustness to class imbalance"}
+    - {name: "Top-k Accuracy", direction: "higher_better", note: "k in {1,2,3,4,5}"}
+    - {name: "Fleiss' Kappa", direction: "higher_better", note: "inter-annotator agreement"}
+    - {name: "Jensen-Shannon divergence", direction: "lower_better", note: "human-machine annotation consistency"}
+  datasets:
+    - {name: "HarmThoughts", size: "56,931 annotated sentences from 1,018 jailbroken reasoning traces", source: "ReasoningShield-train-SFT"}
+    - {name: "Source prompts", size: "916 unique jailbreak prompts; 102 shared across models", source: "AIR-Bench, SALAD-Bench, Alpaca"}
+  ablation_dimensions:
+    - "Label granularity (16-label -> 6-class -> ternary -> binary)"
+    - "Model family (OpenThinker-7B, DeepSeek-R1-8B, DeepSeek-R1-32B, QwQ-32B)"
+    - "Detection method type (white-box vs black-box)"
+    - "Transformer layer depth (activation extraction across layers)"
+    - "Component type (attention, MLP, residual stream)"
+    - "Prompting strategy (zero-shot vs few-shot)"
+  training_recipe:
+    optimizer: "Adam (for linear probing baseline only)"
+    lr: "0.01 (for linear probing, 200 epochs)"
+    hardware: "N/A for main benchmark; annotation cost: $22.38 using Claude Sonnet 4.6 (33.76M input tokens, 303K output tokens)"
+    annotation_details: "8 human annotators selected from 12 candidates (60%+ screening threshold); Fleiss' Kappa 0.74-0.80; machine annotation via Claude Sonnet 4.6 with few-shot examples"
+  method_family: "Safety benchmark / Behavioral taxonomy / Process-level safety evaluation"
+
+positioning:
+  core_claim: "Existing safety detectors fail at fine-grained behavioral classification within reasoning traces; HarmThoughts reveals that safe-looking outputs can mask unsafe reasoning, and that 16 distinct harmful reasoning behaviors occupy geometrically separable directions in activation space."
+  key_results: "Best white-box (Linear Probe): ~0.49 Macro F1; Best black-box (Gemini-2.5-pro): 0.56 Macro F1 on full 16-label task. Performance collapses from >0.85 (binary) to 0.25-0.50 (16-label). Safe outputs mask unsafe reasoning in identified inversion cases (62.5% harmful reasoning internally yet safer output label). Behavioral steering vectors are near-orthogonal for functionally opposite categories."
+  limitations:
+    - "16-behavior taxonomy not exhaustive; new jailbreak strategies may elicit patterns outside this set"
+    - "Only benchmarks four open-weight model families; generalization to closed-weight models remains open"
+    - "LLM-generated annotations with human validation on subset; some semantic adjacencies inherently ambiguous"
+    - "Baselines treat each sentence independently; context-aware methods conditioning on trace history may substantially improve"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "Large reasoning models produce multi-step reasoning traces, yet safety evaluation focuses exclusively on final outputs - this misses where and how harm actually emerges during reasoning."
+  tension: "Existing evaluation treats the final response as the unit of analysis, missing that harm unfolds through distinct behavioral steps (suppressing refusal, rationalizing compliance, decomposing tasks, concealing risk). No benchmark captures this at sentence-level granularity."
+  key_insight: "Process-level analysis reveals that output-based safety signals can be directionally misleading: models producing safer-looking final outputs sometimes contain MORE harmful reasoning steps internally. This means RLHF/RLVR reward signals may train models to hide harm rather than avoid it."
+  argument_chain: "reasoning models expose intermediate decisions -> existing eval ignores process -> we build sentence-level taxonomy of 16 harm propagation behaviors -> annotate 56,931 sentences across 4 model families -> test white-box and black-box detectors -> detectors fail at fine-grained level -> safe outputs mask unsafe reasoning -> behavioral categories are geometrically separable -> implications for process-level monitoring"
+  contribution_framing: "Five contributions: (1) HarmThoughts benchmark, (2) 16-label behavioral taxonomy organized by harm propagation mechanism, (3) process-level analysis revealing output-safety inversions, (4) geometric grounding of behavioral categories in activation space, (5) quantification of detector performance gap from binary to fine-grained."
+  intro_structure: "4 paragraphs: P1=observation (CoT exposes intermediate decisions, safety eval ignores them); P2=problem definition (no benchmark for sentence-level behavioral classification in reasoning traces); P3=solution overview (HarmThoughts benchmark + taxonomy + findings); P4=contribution list"
+  notable_technique: "The 'safe output masks unsafe reasoning' finding is the paper's most provocative insight, framed as a direct challenge to RLHF/RLVR methodology. The taxonomy is organized by PROPAGATION MECHANISM (how harm spreads) rather than TOPIC (what harm is about), which is a deliberate design choice that distinguishes it from content-based taxonomies."
+
+figures:
+  figure_count: 7
+  figure1:
+    type: "motivation"
+    description: "Annotated jailbreak reasoning trace from OpenThinker-7B showing the full 16-category taxonomy applied to a real trace. Shows transitions from neutral deliberation through harmless acknowledgment into harmful execution."
+    narrative_role: "Establishes the core problem visually: reasoning traces contain rich behavioral structure invisible to output-level evaluation. Motivates why sentence-level annotation is needed."
+    design_elements: ["Color-coded sentence-level labels", "Full reasoning trace with annotations", "Temporal progression visible", "Taxonomy categories labeled inline"]
+    visual_style: "Annotated text example with color highlighting per behavioral category; serves as both a data sample and taxonomy illustration simultaneously"
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "bar_chart"
+      what_compared: "Macro F1 of white-box (DoM, RFM, Linear Probe) vs black-box (GPT-4o, Gemini-2.0-flash, Gemini-2.5-pro, Llama-3.3-70b) baselines on 16-label task"
+      how_gain_highlighted: "All methods clustered below 0.56, emphasizing the difficulty of the task"
+      design_note: "Side-by-side comparison of two paradigms; emphasizes that even the strongest commercial API (Gemini-2.5-pro) struggles"
+    - figure_id: "Figure 3"
+      viz_type: "line_plot"
+      what_compared: "Macro F1 across 4 granularity stages (binary -> ternary -> 6-class -> 16-label) for different methods on OpenThinker-7B and QwQ-32B"
+      how_gain_highlighted: "Steep performance drop as granularity increases; from >0.85 binary to 0.25-0.50 on full taxonomy"
+      design_note: "Multi-panel showing the granularity stress test; the slope of degradation is the key visual message"
+    - figure_id: "Figure 6"
+      viz_type: "qualitative_comparison"
+      what_compared: "Queries where two models produce different output-level safety judgments but inverse internal harm proportions"
+      how_gain_highlighted: "Inversion cases highlighted: safer output label but MORE harmful reasoning"
+      design_note: "Case study format proving the safe-output-masks-unsafe-reasoning claim with concrete evidence"
+  ablation_figures:
+    - figure_id: "Figure 4"
+      viz_type: "line_plot"
+      dimensions_varied: ["Behavior pair type", "Residual stream layer depth"]
+      design_note: "Cosine similarity between steering vectors of semantically motivated behavior pairs across layers in QwQ-32B. Shows near-orthogonality for functionally opposite categories (e.g., Refusal Suppression vs Risk Acknowledgement). Directly connects to Arditi et al.'s finding that safety features occupy distinct directions."
+  figure_narrative_role: "Figure 1 (motivating example with full taxonomy) -> Figure 2 (main results: methods struggle) -> Figure 3 (granularity stress test) -> Figure 4 (geometric analysis of behavioral directions) -> Figure 6 (safe output masking unsafe reasoning case study). Narrative flow: here's the problem -> here's our benchmark -> detection is hard -> behaviors are geometrically real -> implications."
+
+tables:
+  table_count: 5
+  main_result_table:
+    table_id: "Table 4"
+    row_axis: "methods (Linear Probe, RFM, DoM)"
+    col_axis: "model families (OpenThinker-7B, QwQ-32B, DeepSeek-R1-8B, DeepSeek-R1-32B)"
+    row_organization: "by_category"
+    col_organization: "grouped_by_model"
+    highlight_strategy: "Bold best per column"
+    statistical_reporting: "Single values (Macro F1)"
+    num_baselines: 3
+    design_note: "White-box results table; compact format. Linear Probe consistently best at ~0.49."
+  ablation_tables:
+    - table_id: "Table 5"
+      what_varied: ["Prompting strategy (zero-shot, few-shot)", "LLM baseline (GPT-4o, Gemini variants, Llama)"]
+      variation_style: "full_numbers"
+      design_note: "Black-box results; includes parse failure rates as additional diagnostic column. Reveals Gemini-2.0-flash has 34.29% parse failure in few-shot."
+    - table_id: "Table 2"
+      what_varied: ["Model family", "Dataset statistics (traces, sentences, avg length, harmful/harmless/neutral %)"]
+      variation_style: "full_numbers"
+      design_note: "Dataset composition table showing cross-model coverage. OpenThinker-7B dominates with 333 traces and 26,653 sentences (longest traces at avg 80.0 sentences)."
+    - table_id: "Table 1"
+      what_varied: ["Evaluation tool comparison dimensions (Evaluation Level, Taxonomy, Annotation, Regime, Method, Reasoning)"]
+      variation_style: "checkmark_grid"
+      design_note: "Positioning table comparing HarmThoughts against existing safety benchmarks. Shows HarmThoughts is unique in: step-level granularity + harm propagation taxonomy + jailbroken regime + designed for CoT reasoning."
+    - table_id: "Table 3"
+      what_varied: ["16 behavioral labels with definitions"]
+      variation_style: "full_numbers"
+      design_note: "Taxonomy reference table organized by 4 functional groups (Disabling Safety, Enabling Compliance, Executing Harm, Concealing Harm) plus Harmless and Neutral. Core contribution of the paper."
+  supplementary_tables:
+    in_appendix: true
+    content: "Extended per-model breakdowns, annotation guidelines, few-shot examples"
+    reason: "Main paper keeps taxonomy definition (Table 3), dataset stats (Table 2), positioning comparison (Table 1), and main results (Tables 4-5) in the body; detailed annotation protocol and extended results in appendix"

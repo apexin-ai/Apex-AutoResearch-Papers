@@ -1,0 +1,92 @@
+BGE-large-en-v1.5 60/20/20 Verification
+============================================================
+Status: RERUN completed
+Split: 60/20/20, seed=42
+Bootstrap: 10000 resamples, two-sided p-values
+Elapsed: 197.2s
+
+  r1_8b (L2, W=15):
+    n_traces=209, train=125, val=41, test=43
+    BGE-large:  BA=0.6457, Prec=0.4358, FPR=0.2209
+    MiniLM:     BA=0.6593, Prec=0.4000, FPR=0.3182
+    HS:         BA=0.7293, Prec=0.4971, FPR=0.2332
+    HS vs BGE:
+      bal_acc: diff=+0.0837 CI=[-0.0069, 0.1701] p=0.0630 HB=fail
+      precision: diff=+0.0613 CI=[-0.0735, 0.1946] p=0.3660 HB=fail
+      fpr: diff=-0.0122 CI=[-0.1184, 0.1082] p=0.8316 HB=fail
+    HS vs MiniLM:
+      bal_acc: diff=+0.0700 CI=[-0.0274, 0.1665] p=0.1606
+      precision: diff=+0.0971 CI=[-0.0351, 0.2217] p=0.1394
+      fpr: diff=+0.0850 CI=[-0.0596, 0.2272] p=0.2470
+    BGE vs MiniLM:
+      bal_acc: diff=-0.0136 CI=[-0.0992, 0.075] p=0.7601
+      precision: diff=+0.0358 CI=[-0.0722, 0.1521] p=0.5262
+      fpr: diff=+0.0972 CI=[-0.0019, 0.2017] p=0.0605
+
+  ot_7b (L16, W=3):
+    n_traces=228, train=136, val=45, test=47
+    BGE-large:  BA=0.5745, Prec=0.2629, FPR=0.2432
+    MiniLM:     BA=0.5768, Prec=0.2475, FPR=0.3152
+    HS:         BA=0.6821, Prec=0.4460, FPR=0.1379
+    HS vs BGE:
+      bal_acc: diff=+0.1076 CI=[0.0411, 0.1798] p=0.0026 HB=PASS
+      precision: diff=+0.1832 CI=[0.0839, 0.2902] p=0.0006 HB=PASS
+      fpr: diff=+0.1053 CI=[0.0385, 0.1682] p=0.0020 HB=PASS
+    HS vs MiniLM:
+      bal_acc: diff=+0.1053 CI=[0.0505, 0.1629] p=0.0002
+      precision: diff=+0.1985 CI=[0.1136, 0.2976] p=0.0001
+      fpr: diff=+0.1773 CI=[0.1139, 0.2376] p=0.0000
+    BGE vs MiniLM:
+      bal_acc: diff=-0.0024 CI=[-0.0461, 0.0357] p=0.9065
+      precision: diff=+0.0153 CI=[-0.03, 0.0625] p=0.4965
+      fpr: diff=+0.0720 CI=[0.0154, 0.1257] p=0.0115
+
+  r1_32b (L63, W=1):
+    n_traces=100, train=60, val=20, test=20
+    BGE-large:  BA=0.6326, Prec=0.4750, FPR=0.3510
+    MiniLM:     BA=0.6273, Prec=0.4723, FPR=0.3454
+    HS:         BA=0.7419, Prec=0.5882, FPR=0.2730
+    HS vs BGE:
+      bal_acc: diff=+0.1093 CI=[0.0232, 0.1993] p=0.0128 HB=fail
+      precision: diff=+0.1132 CI=[-0.0015, 0.2426] p=0.0732 HB=fail
+      fpr: diff=+0.0780 CI=[-0.0747, 0.2255] p=0.3273 HB=fail
+    HS vs MiniLM:
+      bal_acc: diff=+0.1146 CI=[0.0129, 0.2056] p=0.0187
+      precision: diff=+0.1159 CI=[-0.0154, 0.2596] p=0.1119
+      fpr: diff=+0.0724 CI=[-0.1019, 0.2263] p=0.4186
+    BGE vs MiniLM:
+      bal_acc: diff=+0.0053 CI=[-0.0581, 0.0665] p=0.8685
+      precision: diff=+0.0027 CI=[-0.0611, 0.08] p=0.9433
+      fpr: diff=-0.0056 CI=[-0.0946, 0.0857] p=0.9016
+
+  qwq_32b (L60, W=5):
+    n_traces=95, train=57, val=19, test=19
+    BGE-large:  BA=0.6346, Prec=0.4419, FPR=0.2669
+    MiniLM:     BA=0.5431, Prec=0.3298, FPR=0.3469
+    HS:         BA=0.7252, Prec=0.5244, FPR=0.2507
+    HS vs BGE:
+      bal_acc: diff=+0.0906 CI=[-0.0494, 0.2305] p=0.2336 HB=fail
+      precision: diff=+0.0825 CI=[-0.0866, 0.2733] p=0.3865 HB=fail
+      fpr: diff=+0.0163 CI=[-0.1292, 0.16] p=0.8220 HB=fail
+    HS vs MiniLM:
+      bal_acc: diff=+0.1821 CI=[0.0661, 0.2982] p=0.0004
+      precision: diff=+0.1946 CI=[0.063, 0.343] p=0.0056
+      fpr: diff=+0.0962 CI=[0.007, 0.1962] p=0.0460
+    BGE vs MiniLM:
+      bal_acc: diff=+0.0915 CI=[-0.0003, 0.1687] p=0.0334
+      precision: diff=+0.1121 CI=[-0.0077, 0.2129] p=0.0462
+      fpr: diff=+0.0799 CI=[-0.0746, 0.2277] p=0.3082
+
+Holm-Bonferroni (BGE vs HS, 12 tests): 3/12 reject
+  ot_7b      precision    p=0.0006  REJECT
+  ot_7b      fpr          p=0.0020  REJECT
+  ot_7b      bal_acc      p=0.0026  REJECT
+  r1_32b     bal_acc      p=0.0128  fail
+  r1_8b      bal_acc      p=0.0630  fail
+  r1_32b     precision    p=0.0732  fail
+  qwq_32b    bal_acc      p=0.2336  fail
+  r1_32b     fpr          p=0.3273  fail
+  r1_8b      precision    p=0.3660  fail
+  qwq_32b    precision    p=0.3865  fail
+  qwq_32b    fpr          p=0.8220  fail
+  r1_8b      fpr          p=0.8316  fail

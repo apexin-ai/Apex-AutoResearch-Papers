@@ -1,0 +1,26 @@
+D2 PCA Visualization Results
+============================
+
+Test set: 43 traces, 1835 steps (494 post-commit, 1341 pre-commit)
+
+Layer | Fisher(orig) | Fisher(PCA-3d) | Var Explained
+------|-------------|----------------|---------------
+  12  |    17.462   |     0.953      |    16.6%
+  14  |    17.875   |     0.928      |    17.0%
+  20  |    18.614   |     0.920      |    16.6%
+  24  |    18.106   |     1.111      |    15.9%
+
+Notes:
+- Fisher ratio in original 4096-dim space is high (~17-18) across all layers
+- In PCA 3-component projection: ~0.9-1.1, confirming moderate but real separation
+- Variance explained by top-3 PCs is low (16-17%), signal spread across many dimensions
+- Layer 24 shows best PCA-space separability (1.111)
+
+Conclusion: Signal EXISTS — separation visible in PCA but not dominant in top components.
+This explains why linear probes achieve 78-81% (D1) — the signal is real but distributed.
+
+Files on server:
+- /root/autodl-tmp/contrastive_trace_safety/artifacts/diagnostics/pca_layer12.png
+- /root/autodl-tmp/contrastive_trace_safety/artifacts/diagnostics/pca_layer14.png
+- /root/autodl-tmp/contrastive_trace_safety/artifacts/diagnostics/pca_layer20.png
+- /root/autodl-tmp/contrastive_trace_safety/artifacts/diagnostics/pca_layer24.png

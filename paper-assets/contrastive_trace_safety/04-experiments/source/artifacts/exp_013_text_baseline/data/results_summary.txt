@@ -1,0 +1,12 @@
+EXP-013 Text Baseline Results
+
+Method                             Coverage  Lead Time  Step Acc  AUROC
+text_static (384-d)                  60.5%       4.3     66.1%   0.7384
+text_temporal W=15 (5760-d)          65.1%      11.5     67.8%   0.7590
+hidden_static LR L14 (4096-d)       46.5%      -2.0     81.7%      -
+hidden_temporal LR W=15 (61440-d)    76.7%      -1.1     84.8%      -
+hidden GRU multi-7L h=256            76.7%      +4.7     80.9%      -
+
+Key: Hidden-state probes achieve 15-18pp higher step accuracy.
+Text baseline has higher coverage than static hidden (60.5 vs 46.5) but lower than temporal (65.1 vs 76.7).
+Text lead times are positive (early detection) but with lower accuracy - likely false positives.

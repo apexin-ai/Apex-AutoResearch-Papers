@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a3695f2f95a3f655eda2",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "paper figure fig2 temporal improvement",
+  "task_key": "worker_paper_figure_fig2_temporal_improvement_20260517T000329",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig2_temporal_improvement_20260517T000329_result.json",
+    "occurrence": 1,
+    "bytes": 426,
+    "sha256": "df3749211a19ad49cb713451011031b4b5c53c7ba63e79da4c2a86964f2b4cf4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表已生成并注册。\n\n输出文件：\n- PDF: `artifacts/figures/paper/fig2_temporal_improvement.pdf` (27KB)\n- PNG: `artifacts/figures/paper/fig2_temporal_improvement.png` (134KB, 300 DPI)\n\n核心信息清晰可读：HS probe 从 Static 46.5% 到 W=15 76.7%（+30.2pp），右侧双箭头标注增幅。Text probe 仅有 Static 和 W=15 两个数据点。exp-007 完整数据到位后替换即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig2-temporal-improvement.md"
+}

@@ -1,0 +1,117 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{deepseekai2025}
+\citation{qwq32b}
+\citation{jiang2025safechain,tang2025harmbench}
+\citation{xie2024trajguard}
+\citation{zheng2024safeswitch}
+\citation{chen2024siren}
+\citation{wang2024saferemind,zhong2024safethink}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\citation{xie2024trajguard}
+\citation{zheng2024safeswitch}
+\citation{chen2024siren}
+\citation{jiang2025safechain}
+\citation{tang2025harmbench}
+\citation{wang2024saferemind}
+\citation{zhong2024safethink}
+\citation{burns2023discovering}
+\citation{li2024inference}
+\citation{arditi2024refusal}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Hidden-state jailbreak detection.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Reasoning model safety.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Probing LLM representations.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Formulation}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Detection Methods}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Static probe.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Temporal window probe.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Mahalanobis distance baseline.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Sequential probes (GRU, Self-Attention).}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Oracle baseline.}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Cross-Architecture Evaluation}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Signal Geometry Analysis}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{3}{section.4}\protected@file@percent }
+\newlabel{sec:setup}{{4}{3}{Experimental Setup}{section.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Data.}{3}{section*.9}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Static probe results. $J_\text  {orig}$: Fisher discriminant in full space; $J_\text  {PCA3}$: Fisher in PCA top-3 space. Qwen2.5 has lower full-space Fisher but higher PCA-space Fisher, indicating more concentrated safety signal.}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:static}{{1}{4}{Static probe results. $J_\text {orig}$: Fisher discriminant in full space; $J_\text {PCA3}$: Fisher in PCA top-3 space. Qwen2.5 has lower full-space Fisher but higher PCA-space Fisher, indicating more concentrated safety signal}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Temporal window probe ($W{=}15$). $\Delta $: improvement over static (pp). Temporal advantage is consistent (+14--30pp) but architecture-dependent in magnitude.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:temporal}{{2}{4}{Temporal window probe ($W{=}15$). $\Delta $: improvement over static (pp). Temporal advantage is consistent (+14--30pp) but architecture-dependent in magnitude}{table.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Hidden state extraction.}{4}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Evaluation.}{4}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{4}{section.5}\protected@file@percent }
+\newlabel{sec:results}{{5}{4}{Results}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Static Probes Across Architectures}{4}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:static}{{5.1}{4}{Static Probes Across Architectures}{subsection.5.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Temporal Window Probes}{4}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:temporal}{{5.2}{4}{Temporal Window Probes}{subsection.5.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Architecture $\times $ Scale Matrix}{4}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:matrix}{{5.3}{4}{Architecture $\times $ Scale Matrix}{subsection.5.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Architecture$\times $scale matrix. $W^*$: optimal window size. Architecture determines temporal advantage magnitude; scale has minimal effect within architecture (+1.6pp static, +3.5pp temporal from Qwen 7B$\to $32B).}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:matrix}{{3}{5}{Architecture$\times $scale matrix. $W^*$: optimal window size. Architecture determines temporal advantage magnitude; scale has minimal effect within architecture (+1.6pp static, +3.5pp temporal from Qwen 7B$\to $32B)}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Coverage by window size $W$. Bold: architecture-specific optimum. Llama saturates later ($W{=}15$) while Qwen2.5 peaks earlier ($W{=}10$) and declines with larger windows.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:window}{{4}{5}{Coverage by window size $W$. Bold: architecture-specific optimum. Llama saturates later ($W{=}15$) while Qwen2.5 peaks earlier ($W{=}10$) and declines with larger windows}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Window Size Ablation}{5}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:window}{{5.4}{5}{Window Size Ablation}{subsection.5.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Layer Selection Ablation}{5}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:layer}{{5.5}{5}{Layer Selection Ablation}{subsection.5.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Mahalanobis Distance Baseline}{5}{subsection.5.6}\protected@file@percent }
+\newlabel{sec:mahalanobis}{{5.6}{5}{Mahalanobis Distance Baseline}{subsection.5.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Layer selection ablation on r1-32b ($W{=}10$). Peak at 50\% depth matches the Llama finding, suggesting safety state is encoded as a mid-level semantic abstraction.}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:layer}{{5}{6}{Layer selection ablation on r1-32b ($W{=}10$). Peak at 50\% depth matches the Llama finding, suggesting safety state is encoded as a mid-level semantic abstraction}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Mahalanobis distance baseline. ``vs Static'': coverage difference from static LR (pp). The architecture-dependent performance correlates with PCA concentration of safety signal.}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:mahal}{{6}{6}{Mahalanobis distance baseline. ``vs Static'': coverage difference from static LR (pp). The architecture-dependent performance correlates with PCA concentration of safety signal}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Cross-Architecture Transfer}{6}{subsection.5.7}\protected@file@percent }
+\newlabel{sec:transfer}{{5.7}{6}{Cross-Architecture Transfer}{subsection.5.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}Lead Time Analysis}{6}{subsection.5.8}\protected@file@percent }
+\newlabel{sec:leadtime}{{5.8}{6}{Lead Time Analysis}{subsection.5.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.9}Oracle Decomposition}{6}{subsection.5.9}\protected@file@percent }
+\newlabel{sec:oracle}{{5.9}{6}{Oracle Decomposition}{subsection.5.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.10}Complex Probe Architectures}{6}{subsection.5.10}\protected@file@percent }
+\newlabel{sec:complex}{{5.10}{6}{Complex Probe Architectures}{subsection.5.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Cross-architecture transfer via learned linear projection. Within-architecture transfer (Qwen$\to $Qwen) nearly matches in-domain; cross-architecture transfer drops 12--37pp.}}{7}{table.7}\protected@file@percent }
+\newlabel{tab:transfer}{{7}{7}{Cross-architecture transfer via learned linear projection. Within-architecture transfer (Qwen$\to $Qwen) nearly matches in-domain; cross-architecture transfer drops 12--37pp}{table.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Lead time distribution (temporal probe, steps). The r1-32b positive mean is not statistically distinguishable from zero (CI spans $-1.47$ to $+2.51$).}}{7}{table.8}\protected@file@percent }
+\newlabel{tab:leadtime}{{8}{7}{Lead time distribution (temporal probe, steps). The r1-32b positive mean is not statistically distinguishable from zero (CI spans $-1.47$ to $+2.51$)}{table.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.11}Fine-Grained Label Supervision}{7}{subsection.5.11}\protected@file@percent }
+\newlabel{sec:finelabel}{{5.11}{7}{Fine-Grained Label Supervision}{subsection.5.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.12}Statistical Reliability}{7}{subsection.5.12}\protected@file@percent }
+\newlabel{sec:bootstrap}{{5.12}{7}{Statistical Reliability}{subsection.5.12}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{7}{section.6}\protected@file@percent }
+\newlabel{sec:discussion}{{6}{7}{Discussion}{section.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Why do architectures differ?}{7}{section*.12}\protected@file@percent }
+\bibstyle{plainnat}
+\bibdata{references}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Oracle decomposition. 93\% of the oracle's lead time ($+28.9$ of $+31$ steps) comes from future label visibility. The mutual information between current hidden state and future labels ($t{+}5$ to $t{+}15$) is 0.043 bits.}}{8}{table.9}\protected@file@percent }
+\newlabel{tab:oracle}{{9}{8}{Oracle decomposition. 93\% of the oracle's lead time ($+28.9$ of $+31$ steps) comes from future label visibility. The mutual information between current hidden state and future labels ($t{+}5$ to $t{+}15$) is 0.043 bits}{table.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Complex probe architectures on Qwen2.5 models. $\Delta $: coverage change vs.\ temporal LR (pp). GRU's 20$\times $ parameter count yields $<$2pp improvement, confirming the coverage ceiling is an information limit.}}{8}{table.10}\protected@file@percent }
+\newlabel{tab:complex}{{10}{8}{Complex probe architectures on Qwen2.5 models. $\Delta $: coverage change vs.\ temporal LR (pp). GRU's 20$\times $ parameter count yields $<$2pp improvement, confirming the coverage ceiling is an information limit}{table.10}{}}
+\@writefile{toc}{\contentsline {paragraph}{Practical deployment implications.}{8}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{8}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Future directions.}{8}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{8}{section.7}\protected@file@percent }
+\newlabel{sec:conclusion}{{7}{8}{Conclusion}{section.7}{}}
+\bibcite{arditi2024refusal}{{1}{2024}{{Arditi et~al.}}{{}}}
+\bibcite{burns2023discovering}{{2}{2023}{{Burns et~al.}}{{}}}
+\bibcite{chen2024siren}{{3}{2024}{{Chen et~al.}}{{}}}
+\bibcite{deepseekai2025}{{4}{2025}{{DeepSeek-AI}}{{}}}
+\bibcite{jiang2025safechain}{{5}{2025}{{Jiang et~al.}}{{}}}
+\bibcite{li2024inference}{{6}{2024}{{Li et~al.}}{{}}}
+\bibcite{tang2025harmbench}{{7}{2025}{{Tang et~al.}}{{}}}
+\bibcite{qwq32b}{{8}{2024}{{Team}}{{}}}
+\bibcite{wang2024saferemind}{{9}{2024}{{Wang et~al.}}{{}}}
+\bibcite{xie2024trajguard}{{10}{2024}{{Xie et~al.}}{{}}}
+\bibcite{zheng2024safeswitch}{{11}{2024}{{Zheng et~al.}}{{}}}
+\bibcite{zhong2024safethink}{{12}{2024}{{Zhong et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Fine-grained 16-label vs.\ binary supervision. 16-label provides marginal coverage improvement (+2--3pp) with substantially lower macro accuracy due to inter-class confusion.}}{9}{table.11}\protected@file@percent }
+\newlabel{tab:finelabel}{{11}{9}{Fine-grained 16-label vs.\ binary supervision. 16-label provides marginal coverage improvement (+2--3pp) with substantially lower macro accuracy due to inter-class confusion}{table.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Bootstrap 95\% CIs (1000 resamples). The temporal advantage is statistically significant on all architectures ($\Delta $ CI lower bound $>0$). Lead time CIs span zero on all models.}}{9}{table.12}\protected@file@percent }
+\newlabel{tab:bootstrap}{{12}{9}{Bootstrap 95\% CIs (1000 resamples). The temporal advantage is statistically significant on all architectures ($\Delta $ CI lower bound $>0$). Lead time CIs span zero on all models}{table.12}{}}
+\gdef \@abspage@last{9}

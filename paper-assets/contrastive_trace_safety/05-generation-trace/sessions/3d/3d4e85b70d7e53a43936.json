@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3d4e85b70d7e53a43936",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code auroc layer selection",
+  "task_key": "worker_code_auroc_layer_selection_20260517T190736",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_auroc_layer_selection_20260517T190736_result.json",
+    "occurrence": 1,
+    "bytes": 1789,
+    "sha256": "d90a92ea09db5e4e0cc8fb77c7674640ee8ef89b6a509c8f585ecf0708733527"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Experiment complete. Here's the full summary:\n\n```\nModel     | AUROC-best Layer  | Paper Layer  | Match?  | AUROC@best  | AUROC@paper\n----------+------------------+-------------+--------+------------+------------\nr1-8b     | L13               | L14          | No      | 0.8060      | 0.8031\not-7b     | L1                | L16          | No      | 0.7770      | 0.7463\nqwq-32b   | L32               | L60          | No      | 0.8390      | 0.7561\nr1-32b    | L31               | L63          | No      | 0.8972      | 0.7668\n```\n\n**Key findings:**\n\n1. **R1-8B**: Near-match. AUROC selects L13 vs paper's L14 (delta = 0.003, adjacent layers in top-3). Both are \"early\" within the stored range [12-24]. AUROC confirms early-deep layers are best.\n\n2. **OT-7B**: Mismatch. AUROC selects L1 (shallowest, 0.777) over paper's L16 (0.746). However, the AUROC landscape is flat (range 0.70–0.78 across all 28 layers), suggesting weak layer preference.\n\n3. **QWQ-32B**: AUROC selects L32 (mid-depth, 50th percentile, 0.839) vs paper's L60 (94th percentile, 0.756). A clear broad peak at layers 25-50.\n\n4. **R1-32B**: AUROC selects L31 (0.897) vs paper's L63 (0.767). Strong mid-depth peak at layers 25-50 with second plateau at layers 40-50.\n\n**Answer to key question**: AUROC does NOT consistently select the same deep layers as the paper's multi-metric approach. For 32B models, AUROC prefers mid-depth (~50% of total layers) rather than the very deep layers (>90% depth) selected by the paper. For R1-8B it approximately agrees (all stored layers are already deep). The PCA reduction (256 dims) on 32B models may affect this, but the trend is clear.\n\nResults saved to `/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r5_auroc_sweep/results.json`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-auroc-layer-selection.md"
+}

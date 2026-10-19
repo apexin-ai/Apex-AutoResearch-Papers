@@ -1,0 +1,8 @@
+See server file: /root/autodl-tmp/structfuse/artifacts/plan006_full_scalability.json
+
+Key results:
+- 44,173 instances, 123 repos, 15,153 with structural data (34.3%)
+- Error rate: 64.0% overall, scales with repo size (5.4% small -> 67.6% xlarge)
+- Structural data rate: 34.3% overall (81% small -> 31.4% xlarge)
+- Processing time: mean 8.93s, p95 31.95s, max 633.68s, total 109.58 hours
+- Connected-not-gold ratio: mean 0.687, median 0.909 (scales with repo size)

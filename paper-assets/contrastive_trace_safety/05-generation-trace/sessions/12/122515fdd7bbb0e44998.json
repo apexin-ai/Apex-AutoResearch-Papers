@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "122515fdd7bbb0e44998",
+  "project": "contrastive_trace_safety",
+  "kind": "history",
+  "title": "reviewer / loop_5.md",
+  "task_key": "loop_5",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_5.md",
+    "occurrence": 1,
+    "bytes": 3661,
+    "sha256": "c7927dc8c9cd043c54f243c568a334f1f898b454dbc0a66710927d9035d69fb4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: max_wall_time\nupdated: '2026-05-21T20:25:40+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目 GPU 为 westd-15904 cuda:0，当前 0% 利用率，Director 建议释放但**等用户确认后才能操作**，不要自行释放\n- 论文已进入 ARR 提交准备阶段，**不要再做文本修改**——6 轮打磨（R24-R30）已达收益极限，每次改动引入 regression 的风险 > 收益\n- \"doubly conditional\" 已在 R30 commit 322b668 改为 \"correlated factors\"。如果有人要求改回或换其他表述，注意 Abstract/Intro C2/Conclusion 三处必须同步\n- 内部审稿分数（3.0-3.5）仅作参考，不代表真实 reviewer 水平。不要因为内部分数低就建议降级 venue 或大改论文\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-15904(root)，代码根目录 /root/autodl-tmp/contrastive_trace_safety\n- 本地 workspace：/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/\n- 论文目录：上述 workspace 下 docs/paper/（main.tex, sections/*.tex, references.bib）\n- 活跃进程：无。无 tmux session、无 cron、无训练任务\n- registry：55 实验（27 success / 20 negative / 1 failed / 7 killed），全部 DONE 或 KILLED，无 RUNNING/PREPARING\n\n### 3. 📊 当前状态\n**刚完成**：R30 Action Matrix 独立评估 + ROADMAP 审查。最新 commit 322b668 实现 R30 全部 7 项文本修正（doubly-conditional 修复、32B preliminary 标注、R1-32B MDE、ensemble Discussion 段、CR artifact 句、3 篇新引用）。\n\n**等待中**：\n- 用户确认 GPU cuda:0 释放\n- 用户执行 ARR 系统提交（DDL 2026-05-25）\n- 用户手动填写 OpenReview ARR Responsible NLP Checklist\n\n**未完成提交前 checklist**：anonymous 检查（\\author{} 匿名化、PDF metadata、self-citation 暗示）、supplementary materials 准备\n\n### 4. 📋 待办\n- Director 触发 anonymous 检查 → 用 Read 检查 main.tex \\author{}/\\hypersetup{}、grep \"github\"/\"our lab\"/机构名，报告结果\n- Director 触发 R31+ 审稿 → 建议拒绝（收益极限已达），如果必须审，按 §5 审查模式 B 执行但 severity 上调门槛（只报 critical，不报 warning/info）\n- Director 转发 Paper Agent 提交差异审查 → 检查最终 PDF 与 commit 322b668 是否一致\n- 用户问 rebuttal 准备 → review_issues.yaml（artifacts/review_issues.yaml）有完整 30 轮 issue 追踪 + 4 条结构性限制 rebuttal 策略\n\n### 5. 🎯 战略上下文\n- **项目核心结论**：layer selection metric choice reverses safety probe conclusions（C1，robust across architectures）；HS advantage +15-22pp conditional on encoder quality + position（C2，validated at 7-8B only）\n- **评分轨迹**：R24→R30 = 3.5/3.5/3.0/3.5/3.0/3.0/3.5。在 Findings（3.0）到 Borderline Conference（3.5）区间稳定。结构性天花板（单数据集 ~35% + 3/4 Qwen ~25%）无法通过文本编辑突破\n- **最容易判断错的事**：\n  1. \"doubly conditional\" 指的是 C2（encoder + position），不是 C1（metric→layer）。R30 reviewer 混淆了这两者，Director 最初的修复方案也搞混了（我在评估中纠正）\n  2. E5-Mistral PCA confound 的方向：PCA 削弱 E5 → 如果用 full-dim E5，HS advantage 会更小 → encoder gradient 趋势只会更陡不会反转。不需要新实验\n  3. Non-safety probing comparison 是**高风险实验**——如果 reversal 在非 safety tasks 也出现，C1 \"safety-specific\" framing 瓦解。Director 正确决定不做\n  4. Abstract 已在两处标注 32B 为 \"exploratory†\"。如果 reviewer 仍 flag，是 Fresh 模式盲区，不是遗漏\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-copy-2.md"
+}

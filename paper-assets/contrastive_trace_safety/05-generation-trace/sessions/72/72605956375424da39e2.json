@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "72605956375424da39e2",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "paper writing abstract",
+  "task_key": "worker_paper_writing_abstract_20260517T004131",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_abstract_20260517T004131_result.json",
+    "occurrence": 1,
+    "bytes": 462,
+    "sha256": "d2fa79dbf99ad8282b7a3a6f773c5c95eb7e382276fed0aa3c58ed5666771de6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "213 words，已写入 `abstract.tex`。\n\n自检通过项：\n- 四个必答问题覆盖（问题→Gap→方法→结果）\n- 缩写全部首次定义（LLM, CoT, HS, FPR, GRU, CUSUM）\n- 关键数字仅 2 个（12.9pp precision gain, 2.9-9.6pp accuracy advantage）\n- 无 em-dash/en-dash、无 -ing 尾句、无禁用词汇\n- 三个 Claims 对应三个 findings，C3 负面结果明确\n- 未引用 QwQ p=0.001，未使用 \"significantly\""
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-abstract.md"
+}

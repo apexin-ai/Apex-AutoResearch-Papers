@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "c17ab75e2f8803bb5bcb",
+  "project": "contrastive_trace_safety",
+  "kind": "worker",
+  "title": "code r1 32b layer63 hs vs text bootstrap",
+  "task_key": "worker_code_r1_32b_layer63_hs_vs_text_bootstrap_20260517T135436",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r1_32b_layer63_hs_vs_text_bootstrap_20260517T135436.log",
+    "occurrence": 1,
+    "bytes": 861678,
+    "sha256": "e25b03c0012302dc45636cf15b4fca95994f03060eb2ea66b7c6ce3d07087e44"
+  },
+  "statistics": {
+    "messages": 386,
+    "user_turns": 0,
+    "tool_calls": 163,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 56,
+      "tool_call": 163,
+      "tool_result": 163,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 386,
+      "chunks": [
+        {
+          "path": "c17ab75e2f8803bb5bcb-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "c17ab75e2f8803bb5bcb-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "c17ab75e2f8803bb5bcb-part-0003.json",
+          "message_count": 26
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-r1-32b-layer63-hs-vs-text-bootstrap.md"
+}

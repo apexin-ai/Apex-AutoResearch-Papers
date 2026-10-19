@@ -1,0 +1,1217 @@
+{
+  "schema_version": "1.0",
+  "id": "2da652c170b77fbda5e9",
+  "project": "contrastive_trace_safety",
+  "kind": "worker",
+  "title": "code r9 r1 32b w1 threshold",
+  "task_key": "worker_code_r9_r1_32b_w1_threshold_20260518T105020",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r9_r1_32b_w1_threshold_20260518T105020.log",
+    "occurrence": 1,
+    "bytes": 134359,
+    "sha256": "050849665fd7c0f3ba9fc3d0d5b93510f351371fd091bd74daff3b054563acf5"
+  },
+  "statistics": {
+    "messages": 28,
+    "user_turns": 0,
+    "tool_calls": 8,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 8,
+      "tool_call": 8,
+      "tool_result": 8,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+                "session_id": "2e4775c4-0d6a-4c0f-ba9f-f5232e640871",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only",
+                  "mcp__agent-ml-research__update_registry"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "c2e355a8-66b4-46be-a309-2ca1175a1876",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-5-projects-contrastive-trace-safety/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779115800,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "891abb2a-fc23-4992-9839-a5c21b8188d5",
+                "session_id": "2e4775c4-0d6a-4c0f-ba9f-f5232e640871"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll check the existing threshold sensitivity script first."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e4775c4-0d6a-4c0f-ba9f-f5232e640871",
+            "uuid": "51fc40f0-5acc-45ed-a9f9-9899b0a0da06",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014wGRmmeA7NpnZXH9E2v4MV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12715,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12715
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018PjbbeWSDD6UDuiHjYsMdw",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e4775c4-0d6a-4c0f-ba9f-f5232e640871",
+            "uuid": "21032bf0-aa22-4b81-8f0c-8c5a387f0224",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014wGRmmeA7NpnZXH9E2v4MV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12715,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12715
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-18T10:50:30.419Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_018PjbbeWSDD6UDuiHjYsMdw",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2e4775c4-0d6a-4c0f-ba9f-f5232e640871",
+            "uuid": "b003b71a-2ad1-4ede-80f1-9d2854c9b30f",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_execute",
+                "mcp__agent-ml-research__ssh_read_only"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+              "total_deferred_tools": 26
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me read the existing threshold sensitivity script first.",
+              "signature": "EvcBClkIDRgCKkAWKvXs4iNqumMwf6zw6z2FVLMHrrAR2h4HEiVGgsOm6BXGeCQB9UMteBJJ+rqB2Rj7SE+ZnisUoQg/8ei6CWcSMg9jbGF1ZGUtb3B1cy00LTY4ABIMyplQCiCrsa0o3vvMGgzsOivi+8DbjYOjBJEiMAkqXeUq3WnIt7GY1fi2RIhTjkWP79LjsxpoZlmffHy3UQt3NlzT+cQ2Hb8yQ2qFUSpMurIYh+JxhDi4dmjKDsXMwKmG5ijJb3OT155sWWUsQ6OmRBWmHGkqpRGsbHaUU8gtQQZNufv4dpiIvujNfho634Uejs7I/t7CR5YdTBgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e4775c4-0d6a-4c0f-ba9f-f5232e640871",
+            "uuid": "78a14b6a-3dca-47a3-8750-760833448db0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TUhx57ohA7JgRHiMWnPZKw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 682,
+                "cache_read_input_tokens": 24556,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 682
+                },
+                "output_tokens": 43,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KMipSpE2GqvNcRstHxfaw6",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-rtx6000",
+                "command": "cat /root/autodl-tmp/contrastive_trace_safety/scripts/run_threshold_sensitivity.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e4775c4-0d6a-4c0f-ba9f-f5232e640871",
+            "uuid": "3f6668e6-cb55-478b-a227-60c5541a3e4a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TUhx57ohA7JgRHiMWnPZKw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 682,
+                "cache_read_input_tokens": 24556,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 682
+                },
+                "output_tokens": 43,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-18T10:50:35.061Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KMipSpE2GqvNcRstHxfaw6",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Threshold sensitivity analysis for QwQ-32B and R1-32B.\\\\n\\\\nSweeps classification threshold in [0.3, 0.4, 0.5, 0.6, 0.7] and\\\\nK-consecutive in [3, 5, 7, 10] to verify detection robustness.\\\\nEvaluates both HS probe and Text (BGE-large) probe.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport os\\\\nos.environ[\\\\\\\"TOKENIZERS_PARALLELISM\\\\\\\"] = \\\\\\\"false\\\\\\\"\\\\nos.environ[\\\\\\\"HF_ENDPOINT\\\\\\\"] = \\\\\\\"https://hf-mirror.com\\\\\\\"\\\\n\\\\nimport sys\\\\nimport json\\\\nimport warnings\\\\nimport time\\\\nimport numpy as np\\\\nimport torch\\\\nfrom pathlib import Path\\\\nfrom collections import defaultdict\\\\nfrom sklearn.linear_model import LogisticRegression\\\\nfrom sklearn.metrics import balanced_accuracy_score\\\\nfrom sklearn.preprocessing import StandardScaler\\\\n\\\\nsys.path.insert(0, \\\\\\\"/root/autodl-tmp/contrastive_trace_safety\\\\\\\")\\\\nwarnings.filterwarnings(\\\\\\\"ignore\\\\\\\")\\\\n\\\\nBASE = Path(\\\\\\\"/root/autodl-tmp/contrastive_trace_safety\\\\\\\")\\\\nOUT_DIR = BASE / \\\\\\\"artifacts/exp_r9_threshold_sensitivity\\\\\\\"\\\\nOUT_DIR.mkdir(parents=True, exist_ok=True)\\\\n\\\\nBGE_MODEL_PATH = str(BASE / \\\\\\\"models/bge-large-en-v1.5\\\\\\\")\\\\nBGE_DIM = 1024\\\\nSEED = 42\\\\nTHRESHOLDS = [0.3, 0.4, 0.5, 0.6, 0.7]\\\\nK_VALUES = [3, 5, 7, 10]\\\\n\\\\nMODEL_CONFIGS = {\\\\n    \\\\\\\"qwq_32b\\\\\\\": {\\\\n        \\\\\\\"model_name_hf\\\\\\\": \\\\\\\"QwQ\\\\\\\",\\\\n        \\\\\\\"hs_dir\\\\\\\": BASE / \\\\\\\"artifacts/hidden_states_qwq_32b\\\\\\\",\\\\n        \\\\\\\"layer_idx\\\\\\\": 60,\\\\n        \\\\\\\"hidden_dim\\\\\\\": 5120,\\\\n        \\\\\\\"window\\\\\\\": 3,\\\\n    },\\\\n    \\\\\\\"r1_32b\\\\\\\": {\\\\n        \\\\\\\"model_name_hf\\\\\\\": \\\\\\\"r1-32b\\\\\\\",\\\\n        \\\\\\\"hs_dir\\\\\\\": BASE / \\\\\\\"artifacts/hidden_states_r1_32b\\\\\\\",\\\\n        \\\\\\\"layer_idx\\\\\\\": 63,\\\\n        \\\\\\\"hidden_dim\\\\\\\": 5120,\\\\n        \\\\\\\"window\\\\\\\": 10,\\\\n    },\\\\n}\\\\n\\\\n\\\\ndef load_sentences_from_hf(model_name_hf):\\\\n    from datasets import load_dataset\\\\n    ds = load_dataset(\\\\\\\"ishitakakkar-10/HarmThoughts\\\\\\\", split=\\\\\\\"train\\\\\\\")\\\\n    traces = defaultdict(list)\\\\n    for row in ds:\\\\n        if row[\\\\\\\"model_name\\\\\\\"] != model_name_hf:\\\\n            continue\\\\n        sid = row[\\\\\\\"sentence_id\\\\\\\"]\\\\n        parts = sid.rsplit(\\\\\\\"-\\\\\\\", 1)\\\\n        trace_id = parts[0]\\\\n        step_idx = int(parts[1]) - 1\\\\n        traces[trace_id].append((step_idx, row[\\\\\\\"sentence\\\\\\\"]))\\\\n    for tid in traces:\\\\n        traces[tid].sort(key=lambda x: x[0])\\\\n        traces[tid] = [s for _, s in traces[tid]]\\\\n    return dict(traces)\\\\n\\\\n\\\\ndef load_traces(hs_dir, sentences_map, layer_idx):\\\\n    traces = []\\\\n    for pt_file in sorted(hs_dir.glob(\\\\\\\"*.pt\\\\\\\")):\\\\n        d = torch.load(pt_file, map_location=\\\\\\\"cpu\\\\\\\", weights_only=False)\\\\n        if d.get(\\\\\\\"step_labels\\\\\\\") is None or d.get(\\\\\\\"commitment_point\\\\\\\") is None:\\\\n            continue\\\\n        trace_id = d[\\\\\\\"trace_id\\\\\\\"]\\\\n        if trace_id not in sentences_map:\\\\n            continue\\\\n        sentences = sentences_map[trace_id]\\\\n        sl = d[\\\\\\\"step_labels\\\\\\\"]\\\\n        if isinstance(sl, torch.Tensor):\\\\n            sl = sl.tolist()\\\\n        else:\\\\n            sl = list(sl)\\\\n        n_steps = len(sl)\\\\n        if len(sentences) < n_steps:\\\\n            continue\\\\n        hs = d[\\\\\\\"hidden_states\\\\\\\"][:n_steps, layer_idx, :].float().numpy()\\\\n        traces.append({\\\\n            \\\\\\\"trace_id\\\\\\\": trace_id,\\\\n            \\\\\\\"hidden_states\\\\\\\": hs.astype(np.float32),\\\\n            \\\\\\\"step_labels\\\\\\\": sl,\\\\n            \\\\\\\"sentences\\\\\\\": sentences[:n_steps],\\\\n            \\\\\\\"commitment_point\\\\\\\": int(d[\\\\\\\"commitment_point\\\\\\\"]),\\\\n        })\\\\n    return traces\\\\n\\\\n\\\\ndef split_traces(traces, seed=SEED):\\\\n    rng = np.random.default_rng(seed)\\\\n    indices = rng.permutation(len(traces))\\\\n    n_train = int(len(traces) * 0.6)\\\\n    n_val = int(len(traces) * 0.2)\\\\n    return (\\\\n        [traces[i] for i in indices[:n_train]],\\\\n        [traces[i] for i in indices[n_train:n_train + n_val]],\\\\n        [traces[i] for i in indices[n_train + n_val:]],\\\\n    )\\\\n\\\\n\\\\ndef compute_windowed_average(features, window):\\\\n    n_steps = features.shape[0]\\\\n    cumsum = np.cumsum(features, axis=0)\\\\n    X = np.zeros_like(features)\\\\n    for t in range(n_steps):\\\\n        start = max(0, t - window + 1)\\\\n        if start == 0:\\\\n            X[t] = cumsum[t] / (t + 1)\\\\n        else:\\\\n            X[t] = (cumsum[t] - cumsum[start - 1]) / (t - start + 1)\\\\n    return X\\\\n\\\\n\\\\ndef build_hs_features(traces, window):\\\\n    X_list, y_list = [], []\\\\n    for t in traces:\\\\n        hs = t[\\\\\\\"hidden_states\\\\\\\"]\\\\n        labels = np.array(t[\\\\\\\"step_labels\\\\\\\"], dtype=np.in\\\\n\\\\n... [截断: 输出过长，省略 5788 字符] ...\\\\n\\\\n[k])\\\\n        for k in delta_metrics:\\\\n            delta_metrics[k].append(round(hs_m[k] - text_m[k], 4))\\\\n\\\\n        hs_dr = trace_level_detection_rate(hs_results, 5, thr)\\\\n        text_dr = trace_level_detection_rate(text_results, 5, thr)\\\\n        hs_det_k5.append(hs_dr)\\\\n        text_det_k5.append(text_dr)\\\\n\\\\n        print(f\\\\\\\"  thr={thr}: HS bal_acc={hs_m['bal_acc']:.4f} prec={hs_m['precision']:.4f} \\\\\\\"\\\\n              f\\\\\\\"fpr={hs_m['fpr']:.4f} det_K5={hs_dr:.4f} | \\\\\\\"\\\\n              f\\\\\\\"Text bal_acc={text_m['bal_acc']:.4f} prec={text_m['precision']:.4f} \\\\\\\"\\\\n              f\\\\\\\"fpr={text_m['fpr']:.4f} det_K5={text_dr:.4f}\\\\\\\", flush=True)\\\\n\\\\n    hs_metrics[\\\\\\\"detection_rate_K5\\\\\\\"] = hs_det_k5\\\\n    text_metrics[\\\\\\\"detection_rate_K5\\\\\\\"] = text_det_k5\\\\n\\\\n    # --- K sweep at multiple thresholds ---\\\\n    print(\\\\\\\"\\\\\\\\nK sweep (trace-level detection rate):\\\\\\\", flush=True)\\\\n    k_sweep = {}\\\\n    for thr in THRESHOLDS:\\\\n        key = f\\\\\\\"threshold_{thr}\\\\\\\"\\\\n        hs_drs = [trace_level_detection_rate(hs_results, k, thr) for k in K_VALUES]\\\\n        text_drs = [trace_level_detection_rate(text_results, k, thr) for k in K_VALUES]\\\\n        k_sweep[key] = {\\\\\\\"K\\\\\\\": K_VALUES, \\\\\\\"hs_det_rate\\\\\\\": hs_drs, \\\\\\\"text_det_rate\\\\\\\": text_drs}\\\\n        print(f\\\\\\\"  thr={thr}: K={K_VALUES}\\\\\\\", flush=True)\\\\n        print(f\\\\\\\"    HS   det_rate={hs_drs}\\\\\\\", flush=True)\\\\n        print(f\\\\\\\"    Text det_rate={text_drs}\\\\\\\", flush=True)\\\\n\\\\n    return {\\\\n        \\\\\\\"thresholds\\\\\\\": THRESHOLDS,\\\\n        \\\\\\\"hs\\\\\\\": hs_metrics,\\\\n        \\\\\\\"text\\\\\\\": text_metrics,\\\\n        \\\\\\\"delta\\\\\\\": delta_metrics,\\\\n        \\\\\\\"k_sweep\\\\\\\": k_sweep,\\\\n        \\\\\\\"n_train\\\\\\\": len(train_val),\\\\n        \\\\\\\"n_test\\\\\\\": len(test),\\\\n    }\\\\n\\\\n\\\\ndef print_summary_table(results):\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 80, flush=True)\\\\n    print(\\\\\\\"SUMMARY: Threshold Sensitivity Analysis\\\\\\\", flush=True)\\\\n    print(\\\\\\\"=\\\\\\\" * 80, flush=True)\\\\n\\\\n    for model_key, res in results.items():\\\\n        print(f\\\\\\\"\\\\\\\\n--- {model_key} (n_test={res['n_test']}) ---\\\\\\\", flush=True)\\\\n\\\\n        print(f\\\\\\\"\\\\\\\\n  {'Threshold':<12} {'HS bal_acc':<12} {'Text bal_acc':<13} {'Delta':<10} \\\\\\\"\\\\n              f\\\\\\\"{'HS FPR':<10} {'Text FPR':<10} {'HS det_K5':<11} {'Text det_K5':<12}\\\\\\\", flush=True)\\\\n        print(\\\\\\\"  \\\\\\\" + \\\\\\\"-\\\\\\\" * 90, flush=True)\\\\n        for i, thr in enumerate(res[\\\\\\\"thresholds\\\\\\\"]):\\\\n            print(f\\\\\\\"  {thr:<12.1f} {res['hs']['bal_acc'][i]:<12.4f} \\\\\\\"\\\\n                  f\\\\\\\"{res['text']['bal_acc'][i]:<13.4f} {res['delta']['bal_acc'][i]:<10.4f} \\\\\\\"\\\\n                  f\\\\\\\"{res['hs']['fpr'][i]:<10.4f} {res['text']['fpr'][i]:<10.4f} \\\\\\\"\\\\n                  f\\\\\\\"{res['hs']['detection_rate_K5'][i]:<11.4f} \\\\\\\"\\\\n                  f\\\\\\\"{res['text']['detection_rate_K5'][i]:<12.4f}\\\\\\\", flush=True)\\\\n\\\\n        print(f\\\\\\\"\\\\\\\\n  K sweep at threshold=0.5:\\\\\\\", flush=True)\\\\n        ks = res[\\\\\\\"k_sweep\\\\\\\"][\\\\\\\"threshold_0.5\\\\\\\"]\\\\n        print(f\\\\\\\"    K:         {ks['K']}\\\\\\\", flush=True)\\\\n        print(f\\\\\\\"    HS det:    {ks['hs_det_rate']}\\\\\\\", flush=True)\\\\n        print(f\\\\\\\"    Text det:  {ks['text_det_rate']}\\\\\\\", flush=True)\\\\n\\\\n        ba_range = max(res[\\\\\\\"hs\\\\\\\"][\\\\\\\"bal_acc\\\\\\\"]) - min(res[\\\\\\\"hs\\\\\\\"][\\\\\\\"bal_acc\\\\\\\"])\\\\n        fpr_range = max(res[\\\\\\\"hs\\\\\\\"][\\\\\\\"fpr\\\\\\\"]) - min(res[\\\\\\\"hs\\\\\\\"][\\\\\\\"fpr\\\\\\\"])\\\\n        print(f\\\\\\\"\\\\\\\\n  HS bal_acc range across thresholds: {ba_range:.4f}\\\\\\\", flush=True)\\\\n        print(f\\\\\\\"  HS FPR range across thresholds: {fpr_range:.4f}\\\\\\\", flush=True)\\\\n        delta_ba = res[\\\\\\\"delta\\\\\\\"][\\\\\\\"bal_acc\\\\\\\"]\\\\n        print(f\\\\\\\"  Delta(HS-Text) bal_acc: min={min(delta_ba):.4f} max={max(delta_ba):.4f}\\\\\\\", flush=True)\\\\n\\\\n\\\\ndef main():\\\\n    t0 = time.time()\\\\n\\\\n    print(\\\\\\\"Loading BGE-large model...\\\\\\\", flush=True)\\\\n    from sentence_transformers import SentenceTransformer\\\\n    st_model = SentenceTransformer(BGE_MODEL_PATH)\\\\n    print(f\\\\\\\"  BGE-large loaded in {time.time()-t0:.1f}s\\\\\\\", flush=True)\\\\n\\\\n    results = {}\\\\n    for model_key, cfg in MODEL_CONFIGS.items():\\\\n        results[model_key] = run_model(model_key, cfg, st_model)\\\\n\\\\n    out_path = OUT_DIR / \\\\\\\"results.json\\\\\\\"\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(results, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nResults saved to {out_path}\\\\\\\", flush=True)\\\\n\\\\n    print_summary_table(results)\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nTotal time: {time.time()-t0:.1f}s\\\\\\\", flush=True)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.95}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2e4775c4-0d6a-4c0f-ba9f-f5232e640871",
+            "uuid": "70408b5d-b34c-477a-9b24-ab12e99ecc2d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Threshold sensitivity analysis for QwQ-32B and R1-32B.\\\\n\\\\nSweeps classification threshold in [0.3, 0.4, 0.5, 0.6, 0.7] and\\\\nK-consecutive in [3, 5, 7, 10] to verify detection robustness.\\\\nEvaluates both HS probe and Text (BGE-large) probe.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport os\\\\nos.environ[\\\\\\\"TOKENIZERS_PARALLELISM\\\\\\\"] = \\\\\\\"false\\\\\\\"\\\\nos.environ[\\\\\\\"HF_ENDPOINT\\\\\\\"] = \\\\\\\"https://hf-mirror.com\\\\\\\"\\\\n\\\\nimport sys\\\\nimport json\\\\nimport warnings\\\\nimport time\\\\nimport numpy as np\\\\nimport torch\\\\nfrom pathlib import Path\\\\nfrom collections import defaultdict\\\\nfrom sklearn.linear_model import LogisticRegression\\\\nfrom sklearn.metrics import balanced_accuracy_score\\\\nfrom sklearn.preprocessing import StandardScaler\\\\n\\\\nsys.path.insert(0, \\\\\\\"/root/autodl-tmp/contrastive_trace_safety\\\\\\\")\\\\nwarnings.filterwarnings(\\\\\\\"ignore\\\\\\\")\\\\n\\\\nBASE = Path(\\\\\\\"/root/autodl-tmp/contrastive_trace_safety\\\\\\\")\\\\nOUT_DIR = BASE / \\\\\\\"artifacts/exp_r9_threshold_sensitivity\\\\\\\"\\\\nOUT_DIR.mkdir(parents=True, exist_ok=True)\\\\n\\\\nBGE_MODEL_PATH = str(BASE / \\\\\\\"models/bge-large-en-v1.5\\\\\\\")\\\\nBGE_DIM = 1024\\\\nSEED = 42\\\\nTHRESHOLDS = [0.3, 0.4, 0.5, 0.6, 0.7]\\\\nK_VALUES = [3, 5, 7, 10]\\\\n\\\\nMODEL_CONFIGS = {\\\\n    \\\\\\\"qwq_32b\\\\\\\": {\\\\n        \\\\\\\"model_name_hf\\\\\\\": \\\\\\\"QwQ\\\\\\\",\\\\n        \\\\\\\"hs_dir\\\\\\\": BASE / \\\\\\\"artifacts/hidden_states_qwq_32b\\\\\\\",\\\\n        \\\\\\\"layer_idx\\\\\\\": 60,\\\\n        \\\\\\\"hidden_dim\\\\\\\": 5120,\\\\n        \\\\\\\"window\\\\\\\": 3,\\\\n    },\\\\n    \\\\\\\"r1_32b\\\\\\\": {\\\\n        \\\\\\\"model_name_hf\\\\\\\": \\\\\\\"r1-32b\\\\\\\",\\\\n        \\\\\\\"hs_dir\\\\\\\": BASE / \\\\\\\"artifacts/hidden_states_r1_32b\\\\\\\",\\\\n        \\\\\\\"layer_idx\\\\\\\": 63,\\\\n        \\\\\\\"hidden_dim\\\\\\\": 5120,\\\\n        \\\\\\\"window\\\\\\\": 10,\\\\n    },\\\\n}\\\\n\\\\n\\\\ndef load_sentences_from_hf(model_name_hf):\\\\n    from datasets import load_dataset\\\\n    ds = load_dataset(\\\\\\\"ishitakakkar-10/HarmThoughts\\\\\\\", split=\\\\\\\"train\\\\\\\")\\\\n    traces = defaultdict(list)\\\\n    for row in ds:\\\\n        if row[\\\\\\\"model_name\\\\\\\"] != model_name_hf:\\\\n            continue\\\\n        sid = row[\\\\\\\"sentence_id\\\\\\\"]\\\\n        parts = sid.rsplit(\\\\\\\"-\\\\\\\", 1)\\\\n        trace_id = parts[0]\\\\n        step_idx = int(parts[1]) - 1\\\\n        traces[trace_id].append((step_idx, row[\\\\\\\"sentence\\\\\\\"]))\\\\n    for tid in traces:\\\\n        traces[tid].sort(key=lambda x: x[0])\\\\n        traces[tid] = [s for _, s in traces[tid]]\\\\n    return dict(traces)\\\\n\\\\n\\\\ndef load_traces(hs_dir, sentences_map, layer_idx):\\\\n    traces = []\\\\n    for pt_file in sorted(hs_dir.glob(\\\\\\\"*.pt\\\\\\\")):\\\\n        d = torch.load(pt_file, map_location=\\\\\\\"cpu\\\\\\\", weights_only=False)\\\\n        if d.get(\\\\\\\"step_labels\\\\\\\") is None or d.get(\\\\\\\"commitment_point\\\\\\\") is None:\\\\n            continue\\\\n        trace_id = d[\\\\\\\"trace_id\\\\\\\"]\\\\n        if trace_id not in sentences_map:\\\\n            continue\\\\n        sentences = sentences_map[trace_id]\\\\n        sl = d[\\\\\\\"step_labels\\\\\\\"]\\\\n        if isinstance(sl, torch.Tensor):\\\\n            sl = sl.tolist()\\\\n        else:\\\\n            sl = list(sl)\\\\n        n_steps = len(sl)\\\\n        if len(sentences) < n_steps:\\\\n            continue\\\\n        hs = d[\\\\\\\"hidden_states\\\\\\\"][:n_steps, layer_idx, :].float().numpy()\\\\n        traces.append({\\\\n            \\\\\\\"trace_id\\\\\\\": trace_id,\\\\n            \\\\\\\"hidden_states\\\\\\\": hs.astype(np.float32),\\\\n            \\\\\\\"step_labels\\\\\\\": sl,\\\\n            \\\\\\\"sentences\\\\\\\": sentences[:n_steps],\\\\n            \\\\\\\"commitment_point\\\\\\\": int(d[\\\\\\\"commitment_point\\\\\\\"]),\\\\n        })\\\\n    return traces\\\\n\\\\n\\\\ndef split_traces(traces, seed=SEED):\\\\n    rng = np.random.default_rng(seed)\\\\n    indices = rng.permutation(len(traces))\\\\n    n_train = int(len(traces) * 0.6)\\\\n    n_val = int(len(traces) * 0.2)\\\\n    return (\\\\n        [traces[i] for i in indices[:n_train]],\\\\n        [traces[i] for i in indices[n_train:n_train + n_val]],\\\\n        [traces[i] for i in indices[n_train + n_val:]],\\\\n    )\\\\n\\\\n\\\\ndef compute_windowed_average(features, window):\\\\n    n_steps = features.shape[0]\\\\n    cumsum = np.cumsum(features, axis=0)\\\\n    X = np.zeros_like(features)\\\\n    for t in range(n_steps):\\\\n        start = max(0, t - window + 1)\\\\n        if start == 0:\\\\n            X[t] = cumsum[t] / (t + 1)\\\\n        else:\\\\n            X[t] = (cumsum[t] - cumsum[start - 1]) / (t - start + 1)\\\\n    return X\\\\n\\\\n\\\\ndef build_hs_features(traces, window):\\\\n    X_list, y_list = [], []\\\\n    for t in traces:\\\\n        hs = t[\\\\\\\"hidden_states\\\\\\\"]\\\\n        labels = np.array(t[\\\\\\\"step_labels\\\\\\\"], dtype=np.in\\\\n\\\\n... [截断: 输出过长，省略 5788 字符] ...\\\\n\\\\n[k])\\\\n        for k in delta_metrics:\\\\n            delta_metrics[k].append(round(hs_m[k] - text_m[k], 4))\\\\n\\\\n        hs_dr = trace_level_detection_rate(hs_results, 5, thr)\\\\n        text_dr = trace_level_detection_rate(text_results, 5, thr)\\\\n        hs_det_k5.append(hs_dr)\\\\n        text_det_k5.append(text_dr)\\\\n\\\\n        print(f\\\\\\\"  thr={thr}: HS bal_acc={hs_m['bal_acc']:.4f} prec={hs_m['precision']:.4f} \\\\\\\"\\\\n              f\\\\\\\"fpr={hs_m['fpr']:.4f} det_K5={hs_dr:.4f} | \\\\\\\"\\\\n              f\\\\\\\"Text bal_acc={text_m['bal_acc']:.4f} prec={text_m['precision']:.4f} \\\\\\\"\\\\n              f\\\\\\\"fpr={text_m['fpr']:.4f} det_K5={text_dr:.4f}\\\\\\\", flush=True)\\\\n\\\\n    hs_metrics[\\\\\\\"detection_rate_K5\\\\\\\"] = hs_det_k5\\\\n    text_metrics[\\\\\\\"detection_rate_K5\\\\\\\"] = text_det_k5\\\\n\\\\n    # --- K sweep at multiple thresholds ---\\\\n    print(\\\\\\\"\\\\\\\\nK sweep (trace-level detection rate):\\\\\\\", flush=True)\\\\n    k_sweep = {}\\\\n    for thr in THRESHOLDS:\\\\n        key = f\\\\\\\"threshold_{thr}\\\\\\\"\\\\n        hs_drs = [trace_level_detection_rate(hs_results, k, thr) for k in K_VALUES]\\\\n        text_drs = [trace_level_detection_rate(text_results, k, thr) for k in K_VALUES]\\\\n        k_sweep[key] = {\\\\\\\"K\\\\\\\": K_VALUES, \\\\\\\"hs_det_rate\\\\\\\": hs_drs, \\\\\\\"text_det_rate\\\\\\\": text_drs}\\\\n        print(f\\\\\\\"  thr={thr}: K={K_VALUES}\\\\\\\", flush=True)\\\\n        print(f\\\\\\\"    HS   det_rate={hs_drs}\\\\\\\", flush=True)\\\\n        print(f\\\\\\\"    Text det_rate={text_drs}\\\\\\\", flush=True)\\\\n\\\\n    return {\\\\n        \\\\\\\"thresholds\\\\\\\": THRESHOLDS,\\\\n        \\\\\\\"hs\\\\\\\": hs_metrics,\\\\n        \\\\\\\"text\\\\\\\": text_metrics,\\\\n        \\\\\\\"delta\\\\\\\": delta_metrics,\\\\n        \\\\\\\"k_sweep\\\\\\\": k_sweep,\\\\n        \\\\\\\"n_train\\\\\\\": len(train_val),\\\\n        \\\\\\\"n_test\\\\\\\": len(test),\\\\n    }\\\\n\\\\n\\\\ndef print_summary_table(results):\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 80, flush=True)\\\\n    print(\\\\\\\"SUMMARY: Threshold Sensitivity Analysis\\\\\\\", flush=True)\\\\n    print(\\\\\\\"=\\\\\\\" * 80, flush=True)\\\\n\\\\n    for model_key, res in results.items():\\\\n        print(f\\\\\\\"\\\\\\\\n--- {model_key} (n_test={res['n_test']}) ---\\\\\\\", flush=True)\\\\n\\\\n        print(f\\\\\\\"\\\\\\\\n  {'Threshold':<12} {'HS bal_acc':<12} {'Text bal_acc':<13} {'Delta':<10} \\\\\\\"\\\\n              f\\\\\\\"{'HS FPR':<10} {'Text FPR':<10} {'HS det_K5':<11} {'Text det_K5':<12}\\\\\\\", flush=True)\\\\n        print(\\\\\\\"  \\\\\\\" + \\\\\\\"-\\\\\\\" * 90, flush=True)\\\\n        for i, thr in enumerate(res[\\\\\\\"thresholds\\\\\\\"]):\\\\n            print(f\\\\\\\"  {thr:<12.1f} {res['hs']['bal_acc'][i]:<12.4f} \\\\\\\"\\\\n                  f\\\\\\\"{res['text']['bal_acc'][i]:<13.4f} {res['delta']['bal_acc'][i]:<10.4f} \\\\\\\"\\\\n                  f\\\\\\\"{res['hs']['fpr'][i]:<10.4f} {res['text']['fpr'][i]:<10.4f} \\\\\\\"\\\\n                  f\\\\\\\"{res['hs']['detection_rate_K5'][i]:<11.4f} \\\\\\\"\\\\n                  f\\\\\\\"{res['text']['detection_rate_K5'][i]:<12.4f}\\\\\\\", flush=True)\\\\n\\\\n        print(f\\\\\\\"\\\\\\\\n  K sweep at threshold=0.5:\\\\\\\", flush=True)\\\\n        ks = res[\\\\\\\"k_sweep\\\\\\\"][\\\\\\\"threshold_0.5\\\\\\\"]\\\\n        print(f\\\\\\\"    K:         {ks['K']}\\\\\\\", flush=True)\\\\n        print(f\\\\\\\"    HS det:    {ks['hs_det_rate']}\\\\\\\", flush=True)\\\\n        print(f\\\\\\\"    Text det:  {ks['text_det_rate']}\\\\\\\", flush=True)\\\\n\\\\n        ba_range = max(res[\\\\\\\"hs\\\\\\\"][\\\\\\\"bal_acc\\\\\\\"]) - min(res[\\\\\\\"hs\\\\\\\"][\\\\\\\"bal_acc\\\\\\\"])\\\\n        fpr_range = max(res[\\\\\\\"hs\\\\\\\"][\\\\\\\"fpr\\\\\\\"]) - min(res[\\\\\\\"hs\\\\\\\"][\\\\\\\"fpr\\\\\\\"])\\\\n        print(f\\\\\\\"\\\\\\\\n  HS bal_acc range across thresholds: {ba_range:.4f}\\\\\\\", flush=True)\\\\n        print(f\\\\\\\"  HS FPR range across thresholds: {fpr_range:.4f}\\\\\\\", flush=True)\\\\n        delta_ba = res[\\\\\\\"delta\\\\\\\"][\\\\\\\"bal_acc\\\\\\\"]\\\\n        print(f\\\\\\\"  Delta(HS-Text) bal_acc: min={min(delta_ba):.4f} max={max(delta_ba):.4f}\\\\\\\", flush=True)\\\\n\\\\n\\\\ndef main():\\\\n    t0 = time.time()\\\\n\\\\n    print(\\\\\\\"Loading BGE-large model...\\\\\\\", flush=True)\\\\n    from sentence_transformers import SentenceTransformer\\\\n    st_model = SentenceTransformer(BGE_MODEL_PATH)\\\\n    print(f\\\\\\\"  BGE-large loaded in {time.time()-t0:.1f}s\\\\\\\", flush=True)\\\\n\\\\n    results = {}\\\\n    for model_key, cfg in MODEL_CONFIGS.items():\\\\n        results[model_key] = run_model(model_key, cfg, st_model)\\\\n\\\\n    out_path = OUT_DIR / \\\\\\\"results.json\\\\\\\"\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(results, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nResults saved to {out_path}\\\\\\\", flush=True)\\\\n\\\\n    print_summary_table(results)\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nTotal time: {time.time()-t0:.1f}s\\\\\\\", flush=True)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.95}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Threshold sensitivity analysis for QwQ-32B and R1-32B.\\n\\nSweeps classification threshold in [0.3, 0.4, 0.5, 0.6, 0.7] and\\nK-consecutive in [3, 5, 7, 10] to verify detection robustness.\\nEvaluates both HS probe and Text (BGE-large) probe.\\n\\\"\\\"\\\"\\n\\nimport os\\nos.environ[\\\"TOKENIZERS_PARALLELISM\\\"] = \\\"false\\\"\\nos.environ[\\\"HF_ENDPOINT\\\"] = \\\"https://hf-mirror.com\\\"\\n\\nimport sys\\nimport json\\nimport warnings\\nimport time\\nimport numpy as np\\nimport torch\\nfrom pathlib import Path\\nfrom collections import defaultdict\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.metrics import balanced_accuracy_score\\nfrom sklearn.preprocessing import StandardScaler\\n\\nsys.path.insert(0, \\\"/root/autodl-tmp/contrastive_trace_safety\\\")\\nwarnings.filterwarnings(\\\"ignore\\\")\\n\\nBASE = Path(\\\"/root/autodl-tmp/contrastive_trace_safety\\\")\\nOUT_DIR = BASE / \\\"artifacts/exp_r9_threshold_sensitivity\\\"\\nOUT_DIR.mkdir(parents=True, exist_ok=True)\\n\\nBGE_MODEL_PATH = str(BASE / \\\"models/bge-large-en-v1.5\\\")\\nBGE_DIM = 1024\\nSEED = 42\\nTHRESHOLDS = [0.3, 0.4, 0.5, 0.6, 0.7]\\nK_VALUES = [3, 5, 7, 10]\\n\\nMODEL_CONFIGS = {\\n    \\\"qwq_32b\\\": {\\n        \\\"model_name_hf\\\": \\\"QwQ\\\",\\n        \\\"hs_dir\\\": BASE / \\\"artifacts/hidden_states_qwq_32b\\\",\\n        \\\"layer_idx\\\": 60,\\n        \\\"hidden_dim\\\": 5120,\\n        \\\"window\\\": 3,\\n    },\\n    \\\"r1_32b\\\": {\\n        \\\"model_name_hf\\\": \\\"r1-32b\\\",\\n        \\\"hs_dir\\\": BASE / \\\"artifacts/hidden_states_r1_32b\\\",\\n        \\\"layer_idx\\\": 63,\\n        \\\"hidden_dim\\\": 5120,\\n        \\\"window\\\": 10,\\n    },\\n}\\n\\n\\ndef load_sentences_from_hf(model_name_hf):\\n    from datasets import load_dataset\\n    ds = load_dataset(\\\"ishitakakkar-10/HarmThoughts\\\", split=\\\"train\\\")\\n    traces = defaultdict(list)\\n    for row in ds:\\n        if row[\\\"model_name\\\"] != model_name_hf:\\n            continue\\n        sid = row[\\\"sentence_id\\\"]\\n        parts = sid.rsplit(\\\"-\\\", 1)\\n        trace_id = parts[0]\\n        step_idx = int(parts[1]) - 1\\n        traces[trace_id].append((step_idx, row[\\\"sentence\\\"]))\\n    for tid in traces:\\n        traces[tid].sort(key=lambda x: x[0])\\n        traces[tid] = [s for _, s in traces[tid]]\\n    return dict(traces)\\n\\n\\ndef load_traces(hs_dir, sentences_map, layer_idx):\\n    traces = []\\n    for pt_file in sorted(hs_dir.glob(\\\"*.pt\\\")):\\n        d = torch.load(pt_file, map_location=\\\"cpu\\\", weights_only=False)\\n        if d.get(\\\"step_labels\\\") is None or d.get(\\\"commitment_point\\\") is None:\\n            continue\\n        trace_id = d[\\\"trace_id\\\"]\\n        if trace_id not in sentences_map:\\n            continue\\n        sentences = sentences_map[trace_id]\\n        sl = d[\\\"step_labels\\\"]\\n        if isinstance(sl, torch.Tensor):\\n            sl = sl.tolist()\\n        else:\\n            sl = list(sl)\\n        n_steps = len(sl)\\n        if len(sentences) < n_steps:\\n            continue\\n        hs = d[\\\"hidden_states\\\"][:n_steps, layer_idx, :].float().numpy()\\n        traces.append({\\n            \\\"trace_id\\\": trace_id,\\n            \\\"hidden_states\\\": hs.astype(np.float32),\\n            \\\"step_labels\\\": sl,\\n            \\\"sentences\\\": sentences[:n_steps],\\n            \\\"commitment_point\\\": int(d[\\\"commitment_point\\\"]),\\n        })\\n    return traces\\n\\n\\ndef split_traces(traces, seed=SEED):\\n    rng = np.random.default_rng(seed)\\n    indices = rng.permutation(len(traces))\\n    n_train = int(len(traces) * 0.6)\\n    n_val = int(len(traces) * 0.2)\\n    return (\\n        [traces[i] for i in indices[:n_train]],\\n        [traces[i] for i in indices[n_train:n_train + n_val]],\\n        [traces[i] for i in indices[n_train + n_val:]],\\n    )\\n\\n\\ndef compute_windowed_average(features, window):\\n    n_steps = features.shape[0]\\n    cumsum = np.cumsum(features, axis=0)\\n    X = np.zeros_like(features)\\n    for t in range(n_steps):\\n        start = max(0, t - window + 1)\\n        if start == 0:\\n            X[t] = cumsum[t] / (t + 1)\\n        else:\\n            X[t] = (cumsum[t] - cumsum[start - 1]) / (t - start + 1)\\n    return X\\n\\n\\ndef build_hs_features(traces, window):\\n    X_list, y_list = [], []\\n    for t in traces:\\n        hs = t[\\\"hidden_states\\\"]\\n        labels = np.array(t[\\\"step_labels\\\"], dtype=np.in\\n\\n... [截断: 输出过长，省略 5788 字符] ...\\n\\n[k])\\n        for k in delta_metrics:\\n            delta_metrics[k].append(round(hs_m[k] - text_m[k], 4))\\n\\n        hs_dr = trace_level_detection_rate(hs_results, 5, thr)\\n        text_dr = trace_level_detection_rate(text_results, 5, thr)\\n        hs_det_k5.append(hs_dr)\\n        text_det_k5.append(text_dr)\\n\\n        print(f\\\"  thr={thr}: HS bal_acc={hs_m['bal_acc']:.4f} prec={hs_m['precision']:.4f} \\\"\\n              f\\\"fpr={hs_m['fpr']:.4f} det_K5={hs_dr:.4f} | \\\"\\n              f\\\"Text bal_acc={text_m['bal_acc']:.4f} prec={text_m['precision']:.4f} \\\"\\n              f\\\"fpr={text_m['fpr']:.4f} det_K5={text_dr:.4f}\\\", flush=True)\\n\\n    hs_metrics[\\\"detection_rate_K5\\\"] = hs_det_k5\\n    text_metrics[\\\"detection_rate_K5\\\"] = text_det_k5\\n\\n    # --- K sweep at multiple thresholds ---\\n    print(\\\"\\\\nK sweep (trace-level detection rate):\\\", flush=True)\\n    k_sweep = {}\\n    for thr in THRESHOLDS:\\n        key = f\\\"threshold_{thr}\\\"\\n        hs_drs = [trace_level_detection_rate(hs_results, k, thr) for k in K_VALUES]\\n        text_drs = [trace_level_detection_rate(text_results, k, thr) for k in K_VALUES]\\n        k_sweep[key] = {\\\"K\\\": K_VALUES, \\\"hs_det_rate\\\": hs_drs, \\\"text_det_rate\\\": text_drs}\\n        print(f\\\"  thr={thr}: K={K_VALUES}\\\", flush=True)\\n        print(f\\\"    HS   det_rate={hs_drs}\\\", flush=True)\\n        print(f\\\"    Text det_rate={text_drs}\\\", flush=True)\\n\\n    return {\\n        \\\"thresholds\\\": THRESHOLDS,\\n        \\\"hs\\\": hs_metrics,\\n        \\\"text\\\": text_metrics,\\n        \\\"delta\\\": delta_metrics,\\n        \\\"k_sweep\\\": k_sweep,\\n        \\\"n_train\\\": len(train_val),\\n        \\\"n_test\\\": len(test),\\n    }\\n\\n\\ndef print_summary_table(results):\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 80, flush=True)\\n    print(\\\"SUMMARY: Threshold Sensitivity Analysis\\\", flush=True)\\n    print(\\\"=\\\" * 80, flush=True)\\n\\n    for model_key, res in results.items():\\n        print(f\\\"\\\\n--- {model_key} (n_test={res['n_test']}) ---\\\", flush=True)\\n\\n        print(f\\\"\\\\n  {'Threshold':<12} {'HS bal_acc':<12} {'Text bal_acc':<13} {'Delta':<10} \\\"\\n              f\\\"{'HS FPR':<10} {'Text FPR':<10} {'HS det_K5':<11} {'Text det_K5':<12}\\\", flush=True)\\n        print(\\\"  \\\" + \\\"-\\\" * 90, flush=True)\\n        for i, thr in enumerate(res[\\\"thresholds\\\"]):\\n            print(f\\\"  {thr:<12.1f} {res['hs']['bal_acc'][i]:<12.4f} \\\"\\n                  f\\\"{res['text']['bal_acc'][i]:<13.4f} {res['delta']['bal_acc'][i]:<10.4f} \\\"\\n                  f\\\"{res['hs']['fpr'][i]:<10.4f} {res['text']['fpr'][i]:<10.4f} \\\"\\n                  f\\\"{res['hs']['detection_rate_K5'][i]:<11.4f} \\\"\\n                  f\\\"{res['text']['detection_rate_K5'][i]:<12.4f}\\\", flush=True)\\n\\n        print(f\\\"\\\\n  K sweep at threshold=0.5:\\\", flush=True)\\n        ks = res[\\\"k_sweep\\\"][\\\"threshold_0.5\\\"]\\n        print(f\\\"    K:         {ks['K']}\\\", flush=True)\\n        print(f\\\"    HS det:    {ks['hs_det_rate']}\\\", flush=True)\\n        print(f\\\"    Text det:  {ks['text_det_rate']}\\\", flush=True)\\n\\n        ba_range = max(res[\\\"hs\\\"][\\\"bal_acc\\\"]) - min(res[\\\"hs\\\"][\\\"bal_acc\\\"])\\n        fpr_range = max(res[\\\"hs\\\"][\\\"fpr\\\"]) - min(res[\\\"hs\\\"][\\\"fpr\\\"])\\n        print(f\\\"\\\\n  HS bal_acc range across thresholds: {ba_range:.4f}\\\", flush=True)\\n        print(f\\\"  HS FPR range across thresholds: {fpr_range:.4f}\\\", flush=True)\\n        delta_ba = res[\\\"delta\\\"][\\\"bal_acc\\\"]\\n        print(f\\\"  Delta(HS-Text) bal_acc: min={min(delta_ba):.4f} max={max(delta_ba):.4f}\\\", flush=True)\\n\\n\\ndef main():\\n    t0 = time.time()\\n\\n    print(\\\"Loading BGE-large model...\\\", flush=True)\\n    from sentence_transformers import SentenceTransformer\\n    st_model = SentenceTransformer(BGE_MODEL_PATH)\\n    print(f\\\"  BGE-large loaded in {time.time()-t0:.1f}s\\\", flush=True)\\n\\n    results = {}\\n    for model_key, cfg in MODEL_CONFIGS.items():\\n        results[model_key] = run_model(model_key, cfg, st_model)\\n\\n    out_path = OUT_DIR / \\\"results.json\\\"\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n    print(f\\\"\\\\nResults saved to {out_path}\\\", flush=True)\\n\\n    print_summary_table(results)\\n\\n    print(f\\\"\\\\nTotal time: {time.time()-t0:.1f}s\\\", flush=True)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.95}}"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The script was truncated. Let me get the full content - I need to see the middle parts that were cut off. Let me also check what's in the output directory already.",
+              "signature": "Et8CClkIDRgCKkBGMC74pMxEVDB+yAHo1j0Rh0cIi7eFJSqX+NcS0TgUw5k+HKJbLgWDTUO39ZYotetBcNbBq8wp2CkPIaO/aF9XMg9jbGF1ZGUtb3B1cy00LTY4ABIM1JvMbPmPdFhWMxL7GgxbYj4v+x/1DbD17a8iMKHp4rg0nFXlvO62jg9VheDVhr5Lh72qq/zCKZxeXkpxZOPRAYZI4O9BlMfWxlJZ5SqzASBhOlxNecojsuMGmBkpDgksr/bsna1xPyNP3PgIGbaInN2zuPto1Dc0wf9y0kjO34+TgWgaJhlVWjIftom0DFr/t6cYOHRxCZhY7hKo7T2nroD4LrbXagDZD5ecpWuRaWBioD9zv7N8FvcJL4szoK4YIQXo+aO1p3Li18W3FrF0Yecig0eY0XWgaxS4NAssdUYU8Vly95fySaK1IMWdJg7tRIcqZiEpsJqeu3rPgYcSqcJ4GAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e4775c4-0d6a-4c0f-ba9f-f5232e640871",
+            "uuid": "5a2a5b04-59e7-42a5-8501-d95ba3af620d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BLNKwmFhEyxsvFW8LHRCi4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3946,
+                "cache_read_input_tokens": 25238,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3946
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The output was truncated. Let me get the missing middle section and check existing artifacts."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e4775c4-0d6a-4c0f-ba9f-f5232e640871",
+            "uuid": "ceaa45d1-765b-41c9-9b3e-3489b4b33e35",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BLNKwmFhEyxsvFW8LHRCi4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3946,
+                "cache_read_input_tokens": 25238,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3946
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011SUr5DAJ9ouaB2P27rkemU",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-rtx6000",
+                "command": "wc -l /root/autodl-tmp/contrastive_trace_safety/scripts/run_threshold_sensitivity.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e4775c4-0d6a-4c0f-ba9f-f5232e640871",
+            "uuid": "cb7ac680-7092-4f1d-8e80-a607b306c4e0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BLNKwmFhEyxsvFW8LHRCi4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3946,
+                "cache_read_input_tokens": 25238,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3946
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Y3y6EqBs9NF3omQLCCdWNZ",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-rtx6000",
+                "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r9_threshold_sensitivity/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e4775c4-0d6a-4c0f-ba9f-f5232e640871",
+            "uuid": "f7141ce4-d1e0-4f0a-8af3-c3244e2a15e0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BLNKwmFhEyxsvFW8LHRCi4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3946,
+                "cache_read_input_tokens": 25238,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3946
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-18T10:50:41.418Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011SUr5DAJ9ouaB2P27rkemU",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"391 /root/autodl-tmp/contrastive_trace_safety/scripts/run_threshold_sensitivity.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.16}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2e4775c4-0d6a-4c0f-ba9f-f5232e640871",
+            "uuid": "5b42fa00-311d-4ab8-a297-7b47d8d9338f",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"391 /root/autodl-tmp/contrastive_trace_safety/scripts/run_threshold_sensitivity.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.16}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"391 /root/autodl-tmp/contrastive_trace_safety/scripts/run_threshold_sensitivity.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.16}}"
+              }
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-18T10:50:41.843Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Y3y6EqBs9NF3omQLCCdWNZ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2e4775c4-0d6a-4c0f-ba9f-f5232e640871",
+            "uuid": "97a018ba-c194-43e3-8ce3-8c4c16e9cc80",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MKVwysiAXMRqNZv9jedP9W",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-rtx6000",
+                "command": "head -n 200 /root/autodl-tmp/contrastive_trace_safety/scripts/run_threshold_sensitivity.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e4775c4-0d6a-4c0f-ba9f-f5232e640871",
+            "uuid": "1c9fbd11-9959-4323-a2a1-f8694dac8159",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Spz2zWjLtPWEpEpVscKjjV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 558,
+                "cache_read_input_tokens": 29184,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 558
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-18T10:50:45.339Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MKVwysiAXMRqNZv9jedP9W",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Threshold sensitivity analysis for QwQ-32B and R1-32B.\\\\n\\\\nSweeps classification threshold in [0.3, 0.4, 0.5, 0.6, 0.7] and\\\\nK-consecutive in [3, 5, 7, 10] to verify detection robustness.\\\\nEvaluates both HS probe and Text (BGE-large) probe.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport os\\\\nos.environ[\\\\\\\"TOKENIZERS_PARALLELISM\\\\\\\"] = \\\\\\\"false\\\\\\\"\\\\nos.environ[\\\\\\\"HF_ENDPOINT\\\\\\\"] = \\\\\\\"https://hf-mirror.com\\\\\\\"\\\\n\\\\nimport sys\\\\nimport json\\\\nimport warnings\\\\nimport time\\\\nimport numpy as np\\\\nimport torch\\\\nfrom pathlib import Path\\\\nfrom collections import defaultdict\\\\nfrom sklearn.linear_model import LogisticRegression\\\\nfrom sklearn.metrics import balanced_accuracy_score\\\\nfrom sklearn.preprocessing import StandardScaler\\\\n\\\\nsys.path.insert(0, \\\\\\\"/root/autodl-tmp/contrastive_trace_safety\\\\\\\")\\\\nwarnings.filterwarnings(\\\\\\\"ignore\\\\\\\")\\\\n\\\\nBASE = Path(\\\\\\\"/root/autodl-tmp/contrastive_trace_safety\\\\\\\")\\\\nOUT_DIR = BASE / \\\\\\\"artifacts/exp_r9_threshold_sensitivity\\\\\\\"\\\\nOUT_DIR.mkdir(parents=True, exist_ok=True)\\\\n\\\\nBGE_MODEL_PATH = str(BASE / \\\\\\\"models/bge-large-en-v1.5\\\\\\\")\\\\nBGE_DIM = 1024\\\\nSEED = 42\\\\nTHRESHOLDS = [0.3, 0.4, 0.5, 0.6, 0.7]\\\\nK_VALUES = [3, 5, 7, 10]\\\\n\\\\nMODEL_CONFIGS = {\\\\n    \\\\\\\"qwq_32b\\\\\\\": {\\\\n        \\\\\\\"model_name_hf\\\\\\\": \\\\\\\"QwQ\\\\\\\",\\\\n        \\\\\\\"hs_dir\\\\\\\": BASE / \\\\\\\"artifacts/hidden_states_qwq_32b\\\\\\\",\\\\n        \\\\\\\"layer_idx\\\\\\\": 60,\\\\n        \\\\\\\"hidden_dim\\\\\\\": 5120,\\\\n        \\\\\\\"window\\\\\\\": 3,\\\\n    },\\\\n    \\\\\\\"r1_32b\\\\\\\": {\\\\n        \\\\\\\"model_name_hf\\\\\\\": \\\\\\\"r1-32b\\\\\\\",\\\\n        \\\\\\\"hs_dir\\\\\\\": BASE / \\\\\\\"artifacts/hidden_states_r1_32b\\\\\\\",\\\\n        \\\\\\\"layer_idx\\\\\\\": 63,\\\\n        \\\\\\\"hidden_dim\\\\\\\": 5120,\\\\n        \\\\\\\"window\\\\\\\": 10,\\\\n    },\\\\n}\\\\n\\\\n\\\\ndef load_sentences_from_hf(model_name_hf):\\\\n    from datasets import load_dataset\\\\n    ds = load_dataset(\\\\\\\"ishitakakkar-10/HarmThoughts\\\\\\\", split=\\\\\\\"train\\\\\\\")\\\\n    traces = defaultdict(list)\\\\n    for row in ds:\\\\n        if row[\\\\\\\"model_name\\\\\\\"] != model_name_hf:\\\\n            continue\\\\n        sid = row[\\\\\\\"sentence_id\\\\\\\"]\\\\n        parts = sid.rsplit(\\\\\\\"-\\\\\\\", 1)\\\\n        trace_id = parts[0]\\\\n        step_idx = int(parts[1]) - 1\\\\n        traces[trace_id].append((step_idx, row[\\\\\\\"sentence\\\\\\\"]))\\\\n    for tid in traces:\\\\n        traces[tid].sort(key=lambda x: x[0])\\\\n        traces[tid] = [s for _, s in traces[tid]]\\\\n    return dict(traces)\\\\n\\\\n\\\\ndef load_traces(hs_dir, sentences_map, layer_idx):\\\\n    traces = []\\\\n    for pt_file in sorted(hs_dir.glob(\\\\\\\"*.pt\\\\\\\")):\\\\n        d = torch.load(pt_file, map_location=\\\\\\\"cpu\\\\\\\", weights_only=False)\\\\n        if d.get(\\\\\\\"step_labels\\\\\\\") is None or d.get(\\\\\\\"commitment_point\\\\\\\") is None:\\\\n            continue\\\\n        trace_id = d[\\\\\\\"trace_id\\\\\\\"]\\\\n        if trace_id not in sentences_map:\\\\n            continue\\\\n        sentences = sentences_map[trace_id]\\\\n        sl = d[\\\\\\\"step_labels\\\\\\\"]\\\\n        if isinstance(sl, torch.Tensor):\\\\n            sl = sl.tolist()\\\\n        else:\\\\n            sl = list(sl)\\\\n        n_steps = len(sl)\\\\n        if len(sentences) < n_steps:\\\\n            continue\\\\n        hs = d[\\\\\\\"hidden_states\\\\\\\"][:n_steps, layer_idx, :].float().numpy()\\\\n        traces.append({\\\\n            \\\\\\\"trace_id\\\\\\\": trace_id,\\\\n            \\\\\\\"hidden_states\\\\\\\": hs.astype(np.float32),\\\\n            \\\\\\\"step_labels\\\\\\\": sl,\\\\n            \\\\\\\"sentences\\\\\\\": sentences[:n_steps],\\\\n            \\\\\\\"commitment_point\\\\\\\": int(d[\\\\\\\"commitment_point\\\\\\\"]),\\\\n        })\\\\n    return traces\\\\n\\\\n\\\\ndef split_traces(traces, seed=SEED):\\\\n    rng = np.random.default_rng(seed)\\\\n    indices = rng.permutation(len(traces))\\\\n    n_train = int(len(traces) * 0.6)\\\\n    n_val = int(len(traces) * 0.2)\\\\n    return (\\\\n        [traces[i] for i in indices[:n_train]],\\\\n        [traces[i] for i in indices[n_train:n_train + n_val]],\\\\n        [traces[i] for i in indices[n_train + n_val:]],\\\\n    )\\\\n\\\\n\\\\ndef compute_windowed_average(features, window):\\\\n    n_steps = features.shape[0]\\\\n    cumsum = np.cumsum(features, axis=0)\\\\n    X = np.zeros_like(features)\\\\n    for t in range(n_steps):\\\\n        start = max(0, t - window + 1)\\\\n        if start == 0:\\\\n            X[t] = cumsum[t] / (t + 1)\\\\n        else:\\\\n            X[t] = (cumsum[t] - cumsum[start - 1]) / (t - start + 1)\\\\n    return X\\\\n\\\\n\\\\ndef build_hs_features(traces, window):\\\\n    X_list, y_list = [], []\\\\n    for t in traces:\\\\n        hs = t[\\\\\\\"hidden_states\\\\\\\"]\\\\n        labels = np.array(t[\\\\\\\"step_labels\\\\\\\"], dtype=np.int32)\\\\n        n = min(hs.shape[0], len(labels))\\\\n        windowed = compute_windowed_average(hs[:n], window)\\\\n        X_list.append(windowed)\\\\n        y_list.append(labels[:n])\\\\n    return np.concatenate(X_list, axis=0), np.concatenate(y_list)\\\\n\\\\n\\\\ndef build_text_features(traces, st_model, window):\\\\n    X_list, y_list = [], []\\\\n    for t in traces:\\\\n        sentences = t[\\\\\\\"sentences\\\\\\\"]\\\\n        labels = np.array(t[\\\\\\\"step_labels\\\\\\\"], dtype=np.int32)\\\\n        n = min(len(sentences), len(labels))\\\\n        embeddings = st_model.encode(sentences[:n], show_progress_bar=False,\\\\n                                     normalize_embeddings=True)\\\\n        windowed = compute_windowed_average(embeddings, window)\\\\n        X_list.append(windowed)\\\\n        y_list.append(labels[:n])\\\\n    return np.concatenate(X_list, axis=0), np.concatenate(y_list)\\\\n\\\\n\\\\ndef train_lr(X_train, y_train):\\\\n    scaler = StandardScaler()\\\\n    X_scaled = scaler.fit_transform(X_train)\\\\n    lr = LogisticRegression(\\\\n        C=1.0, class_weight=\\\\\\\"balanced\\\\\\\", solver=\\\\\\\"lbfgs\\\\\\\",\\\\n        max_iter=2000, random_state=SEED\\\\n    )\\\\n    lr.fit(X_scaled, y_train)\\\\n    return lr, scaler\\\\n\\\\n\\\\ndef predict_per_trace(lr, scaler, traces, feature_fn):\\\\n    results = []\\\\n    for t in traces:\\\\n        X = feature_fn(t)\\\\n        X_scaled = scaler.transform(X)\\\\n        probs = lr.predict_proba(X_scaled)[:, 1]\\\\n        labels = np.array(t[\\\\\\\"step_labels\\\\\\\"], dtype=np.int32)\\\\n        n = min(len(probs), len(labels))\\\\n        results.append({\\\\n            \\\\\\\"probs\\\\\\\": probs[:n],\\\\n            \\\\\\\"labels\\\\\\\": labels[:n],\\\\n            \\\\\\\"cp\\\\\\\": t[\\\\\\\"commitment_point\\\\\\\"],\\\\n        })\\\\n    return results\\\\n\\\\n\\\\ndef step_level_metrics(trace_results, threshold):\\\\n    all_preds, all_labels = [], []\\\\n    all_pre_cp_preds, all_pre_cp_labels = [], []\\\\n    for tr in trace_results:\\\\n        preds = (tr[\\\\\\\"probs\\\\\\\"] > threshold).astype(int)\\\\n        labels = tr[\\\\\\\"labels\\\\\\\"]\\\\n        n = min(len(preds), len(labels))\\\\n        all_preds.append(preds[:n])\\\\n        all_labels.append(labels[:n])\\\\n        cp = tr[\\\\\\\"cp\\\\\\\"]\\\\n        if cp > 0 and cp <= n:\\\\n            all_pre_cp_preds.append(preds[:cp])\\\\n            all_pre_cp_labels.append(labels[:cp])\\\\n\\\\n    preds = np.concatenate(all_preds)\\\\n    labels = np.concatenate(all_labels)\\\\n\\\\n    tp = int(((preds == 1) & (labels == 1)).sum())\\\\n    fp = int(((preds == 1) & (labels == 0)).sum())\\\\n    tn = int(((preds == 0) & (labels == 0)).sum())\\\\n    fn = int(((preds == 0) & (labels == 1)).sum())\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2e4775c4-0d6a-4c0f-ba9f-f5232e640871",
+            "uuid": "4da61b03-6dd6-4209-ae80-6a70030334c7",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Threshold sensitivity analysis for QwQ-32B and R1-32B.\\\\n\\\\nSweeps classification threshold in [0.3, 0.4, 0.5, 0.6, 0.7] and\\\\nK-consecutive in [3, 5, 7, 10] to verify detection robustness.\\\\nEvaluates both HS probe and Text (BGE-large) probe.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport os\\\\nos.environ[\\\\\\\"TOKENIZERS_PARALLELISM\\\\\\\"] = \\\\\\\"false\\\\\\\"\\\\nos.environ[\\\\\\\"HF_ENDPOINT\\\\\\\"] = \\\\\\\"https://hf-mirror.com\\\\\\\"\\\\n\\\\nimport sys\\\\nimport json\\\\nimport warnings\\\\nimport time\\\\nimport numpy as np\\\\nimport torch\\\\nfrom pathlib import Path\\\\nfrom collections import defaultdict\\\\nfrom sklearn.linear_model import LogisticRegression\\\\nfrom sklearn.metrics import balanced_accuracy_score\\\\nfrom sklearn.preprocessing import StandardScaler\\\\n\\\\nsys.path.insert(0, \\\\\\\"/root/autodl-tmp/contrastive_trace_safety\\\\\\\")\\\\nwarnings.filterwarnings(\\\\\\\"ignore\\\\\\\")\\\\n\\\\nBASE = Path(\\\\\\\"/root/autodl-tmp/contrastive_trace_safety\\\\\\\")\\\\nOUT_DIR = BASE / \\\\\\\"artifacts/exp_r9_threshold_sensitivity\\\\\\\"\\\\nOUT_DIR.mkdir(parents=True, exist_ok=True)\\\\n\\\\nBGE_MODEL_PATH = str(BASE / \\\\\\\"models/bge-large-en-v1.5\\\\\\\")\\\\nBGE_DIM = 1024\\\\nSEED = 42\\\\nTHRESHOLDS = [0.3, 0.4, 0.5, 0.6, 0.7]\\\\nK_VALUES = [3, 5, 7, 10]\\\\n\\\\nMODEL_CONFIGS = {\\\\n    \\\\\\\"qwq_32b\\\\\\\": {\\\\n        \\\\\\\"model_name_hf\\\\\\\": \\\\\\\"QwQ\\\\\\\",\\\\n        \\\\\\\"hs_dir\\\\\\\": BASE / \\\\\\\"artifacts/hidden_states_qwq_32b\\\\\\\",\\\\n        \\\\\\\"layer_idx\\\\\\\": 60,\\\\n        \\\\\\\"hidden_dim\\\\\\\": 5120,\\\\n        \\\\\\\"window\\\\\\\": 3,\\\\n    },\\\\n    \\\\\\\"r1_32b\\\\\\\": {\\\\n        \\\\\\\"model_name_hf\\\\\\\": \\\\\\\"r1-32b\\\\\\\",\\\\n        \\\\\\\"hs_dir\\\\\\\": BASE / \\\\\\\"artifacts/hidden_states_r1_32b\\\\\\\",\\\\n        \\\\\\\"layer_idx\\\\\\\": 63,\\\\n        \\\\\\\"hidden_dim\\\\\\\": 5120,\\\\n        \\\\\\\"window\\\\\\\": 10,\\\\n    },\\\\n}\\\\n\\\\n\\\\ndef load_sentences_from_hf(model_name_hf):\\\\n    from datasets import load_dataset\\\\n    ds = load_dataset(\\\\\\\"ishitakakkar-10/HarmThoughts\\\\\\\", split=\\\\\\\"train\\\\\\\")\\\\n    traces = defaultdict(list)\\\\n    for row in ds:\\\\n        if row[\\\\\\\"model_name\\\\\\\"] != model_name_hf:\\\\n            continue\\\\n        sid = row[\\\\\\\"sentence_id\\\\\\\"]\\\\n        parts = sid.rsplit(\\\\\\\"-\\\\\\\", 1)\\\\n        trace_id = parts[0]\\\\n        step_idx = int(parts[1]) - 1\\\\n        traces[trace_id].append((step_idx, row[\\\\\\\"sentence\\\\\\\"]))\\\\n    for tid in traces:\\\\n        traces[tid].sort(key=lambda x: x[0])\\\\n        traces[tid] = [s for _, s in traces[tid]]\\\\n    return dict(traces)\\\\n\\\\n\\\\ndef load_traces(hs_dir, sentences_map, layer_idx):\\\\n    traces = []\\\\n    for pt_file in sorted(hs_dir.glob(\\\\\\\"*.pt\\\\\\\")):\\\\n        d = torch.load(pt_file, map_location=\\\\\\\"cpu\\\\\\\", weights_only=False)\\\\n        if d.get(\\\\\\\"step_labels\\\\\\\") is None or d.get(\\\\\\\"commitment_point\\\\\\\") is None:\\\\n            continue\\\\n        trace_id = d[\\\\\\\"trace_id\\\\\\\"]\\\\n        if trace_id not in sentences_map:\\\\n            continue\\\\n        sentences = sentences_map[trace_id]\\\\n        sl = d[\\\\\\\"step_labels\\\\\\\"]\\\\n        if isinstance(sl, torch.Tensor):\\\\n            sl = sl.tolist()\\\\n        else:\\\\n            sl = list(sl)\\\\n        n_steps = len(sl)\\\\n        if len(sentences) < n_steps:\\\\n            continue\\\\n        hs = d[\\\\\\\"hidden_states\\\\\\\"][:n_steps, layer_idx, :].float().numpy()\\\\n        traces.append({\\\\n            \\\\\\\"trace_id\\\\\\\": trace_id,\\\\n            \\\\\\\"hidden_states\\\\\\\": hs.astype(np.float32),\\\\n            \\\\\\\"step_labels\\\\\\\": sl,\\\\n            \\\\\\\"sentences\\\\\\\": sentences[:n_steps],\\\\n            \\\\\\\"commitment_point\\\\\\\": int(d[\\\\\\\"commitment_point\\\\\\\"]),\\\\n        })\\\\n    return traces\\\\n\\\\n\\\\ndef split_traces(traces, seed=SEED):\\\\n    rng = np.random.default_rng(seed)\\\\n    indices = rng.permutation(len(traces))\\\\n    n_train = int(len(traces) * 0.6)\\\\n    n_val = int(len(traces) * 0.2)\\\\n    return (\\\\n        [traces[i] for i in indices[:n_train]],\\\\n        [traces[i] for i in indices[n_train:n_train + n_val]],\\\\n        [traces[i] for i in indices[n_train + n_val:]],\\\\n    )\\\\n\\\\n\\\\ndef compute_windowed_average(features, window):\\\\n    n_steps = features.shape[0]\\\\n    cumsum = np.cumsum(features, axis=0)\\\\n    X = np.zeros_like(features)\\\\n    for t in range(n_steps):\\\\n        start = max(0, t - window + 1)\\\\n        if start == 0:\\\\n            X[t] = cumsum[t] / (t + 1)\\\\n        else:\\\\n            X[t] = (cumsum[t] - cumsum[start - 1]) / (t - start + 1)\\\\n    return X\\\\n\\\\n\\\\ndef build_hs_features(traces, window):\\\\n    X_list, y_list = [], []\\\\n    for t in traces:\\\\n        hs = t[\\\\\\\"hidden_states\\\\\\\"]\\\\n        labels = np.array(t[\\\\\\\"step_labels\\\\\\\"], dtype=np.int32)\\\\n        n = min(hs.shape[0], len(labels))\\\\n        windowed = compute_windowed_average(hs[:n], window)\\\\n        X_list.append(windowed)\\\\n        y_list.append(labels[:n])\\\\n    return np.concatenate(X_list, axis=0), np.concatenate(y_list)\\\\n\\\\n\\\\ndef build_text_features(traces, st_model, window):\\\\n    X_list, y_list = [], []\\\\n    for t in traces:\\\\n        sentences = t[\\\\\\\"sentences\\\\\\\"]\\\\n        labels = np.array(t[\\\\\\\"step_labels\\\\\\\"], dtype=np.int32)\\\\n        n = min(len(sentences), len(labels))\\\\n        embeddings = st_model.encode(sentences[:n], show_progress_bar=False,\\\\n                                     normalize_embeddings=True)\\\\n        windowed = compute_windowed_average(embeddings, window)\\\\n        X_list.append(windowed)\\\\n        y_list.append(labels[:n])\\\\n    return np.concatenate(X_list, axis=0), np.concatenate(y_list)\\\\n\\\\n\\\\ndef train_lr(X_train, y_train):\\\\n    scaler = StandardScaler()\\\\n    X_scaled = scaler.fit_transform(X_train)\\\\n    lr = LogisticRegression(\\\\n        C=1.0, class_weight=\\\\\\\"balanced\\\\\\\", solver=\\\\\\\"lbfgs\\\\\\\",\\\\n        max_iter=2000, random_state=SEED\\\\n    )\\\\n    lr.fit(X_scaled, y_train)\\\\n    return lr, scaler\\\\n\\\\n\\\\ndef predict_per_trace(lr, scaler, traces, feature_fn):\\\\n    results = []\\\\n    for t in traces:\\\\n        X = feature_fn(t)\\\\n        X_scaled = scaler.transform(X)\\\\n        probs = lr.predict_proba(X_scaled)[:, 1]\\\\n        labels = np.array(t[\\\\\\\"step_labels\\\\\\\"], dtype=np.int32)\\\\n        n = min(len(probs), len(labels))\\\\n        results.append({\\\\n            \\\\\\\"probs\\\\\\\": probs[:n],\\\\n            \\\\\\\"labels\\\\\\\": labels[:n],\\\\n            \\\\\\\"cp\\\\\\\": t[\\\\\\\"commitment_point\\\\\\\"],\\\\n        })\\\\n    return results\\\\n\\\\n\\\\ndef step_level_metrics(trace_results, threshold):\\\\n    all_preds, all_labels = [], []\\\\n    all_pre_cp_preds, all_pre_cp_labels = [], []\\\\n    for tr in trace_results:\\\\n        preds = (tr[\\\\\\\"probs\\\\\\\"] > threshold).astype(int)\\\\n        labels = tr[\\\\\\\"labels\\\\\\\"]\\\\n        n = min(len(preds), len(labels))\\\\n        all_preds.append(preds[:n])\\\\n        all_labels.append(labels[:n])\\\\n        cp = tr[\\\\\\\"cp\\\\\\\"]\\\\n        if cp > 0 and cp <= n:\\\\n            all_pre_cp_preds.append(preds[:cp])\\\\n            all_pre_cp_labels.append(labels[:cp])\\\\n\\\\n    preds = np.concatenate(all_preds)\\\\n    labels = np.concatenate(all_labels)\\\\n\\\\n    tp = int(((preds == 1) & (labels == 1)).sum())\\\\n    fp = int(((preds == 1) & (labels == 0)).sum())\\\\n    tn = int(((preds == 0) & (labels == 0)).sum())\\\\n    fn = int(((preds == 0) & (labels == 1)).sum())\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Threshold sensitivity analysis for QwQ-32B and R1-32B.\\n\\nSweeps classification threshold in [0.3, 0.4, 0.5, 0.6, 0.7] and\\nK-consecutive in [3, 5, 7, 10] to verify detection robustness.\\nEvaluates both HS probe and Text (BGE-large) probe.\\n\\\"\\\"\\\"\\n\\nimport os\\nos.environ[\\\"TOKENIZERS_PARALLELISM\\\"] = \\\"false\\\"\\nos.environ[\\\"HF_ENDPOINT\\\"] = \\\"https://hf-mirror.com\\\"\\n\\nimport sys\\nimport json\\nimport warnings\\nimport time\\nimport numpy as np\\nimport torch\\nfrom pathlib import Path\\nfrom collections import defaultdict\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.metrics import balanced_accuracy_score\\nfrom sklearn.preprocessing import StandardScaler\\n\\nsys.path.insert(0, \\\"/root/autodl-tmp/contrastive_trace_safety\\\")\\nwarnings.filterwarnings(\\\"ignore\\\")\\n\\nBASE = Path(\\\"/root/autodl-tmp/contrastive_trace_safety\\\")\\nOUT_DIR = BASE / \\\"artifacts/exp_r9_threshold_sensitivity\\\"\\nOUT_DIR.mkdir(parents=True, exist_ok=True)\\n\\nBGE_MODEL_PATH = str(BASE / \\\"models/bge-large-en-v1.5\\\")\\nBGE_DIM = 1024\\nSEED = 42\\nTHRESHOLDS = [0.3, 0.4, 0.5, 0.6, 0.7]\\nK_VALUES = [3, 5, 7, 10]\\n\\nMODEL_CONFIGS = {\\n    \\\"qwq_32b\\\": {\\n        \\\"model_name_hf\\\": \\\"QwQ\\\",\\n        \\\"hs_dir\\\": BASE / \\\"artifacts/hidden_states_qwq_32b\\\",\\n        \\\"layer_idx\\\": 60,\\n        \\\"hidden_dim\\\": 5120,\\n        \\\"window\\\": 3,\\n    },\\n    \\\"r1_32b\\\": {\\n        \\\"model_name_hf\\\": \\\"r1-32b\\\",\\n        \\\"hs_dir\\\": BASE / \\\"artifacts/hidden_states_r1_32b\\\",\\n        \\\"layer_idx\\\": 63,\\n        \\\"hidden_dim\\\": 5120,\\n        \\\"window\\\": 10,\\n    },\\n}\\n\\n\\ndef load_sentences_from_hf(model_name_hf):\\n    from datasets import load_dataset\\n    ds = load_dataset(\\\"ishitakakkar-10/HarmThoughts\\\", split=\\\"train\\\")\\n    traces = defaultdict(list)\\n    for row in ds:\\n        if row[\\\"model_name\\\"] != model_name_hf:\\n            continue\\n        sid = row[\\\"sentence_id\\\"]\\n        parts = sid.rsplit(\\\"-\\\", 1)\\n        trace_id = parts[0]\\n        step_idx = int(parts[1]) - 1\\n        traces[trace_id].append((step_idx, row[\\\"sentence\\\"]))\\n    for tid in traces:\\n        traces[tid].sort(key=lambda x: x[0])\\n        traces[tid] = [s for _, s in traces[tid]]\\n    return dict(traces)\\n\\n\\ndef load_traces(hs_dir, sentences_map, layer_idx):\\n    traces = []\\n    for pt_file in sorted(hs_dir.glob(\\\"*.pt\\\")):\\n        d = torch.load(pt_file, map_location=\\\"cpu\\\", weights_only=False)\\n        if d.get(\\\"step_labels\\\") is None or d.get(\\\"commitment_point\\\") is None:\\n            continue\\n        trace_id = d[\\\"trace_id\\\"]\\n        if trace_id not in sentences_map:\\n            continue\\n        sentences = sentences_map[trace_id]\\n        sl = d[\\\"step_labels\\\"]\\n        if isinstance(sl, torch.Tensor):\\n            sl = sl.tolist()\\n        else:\\n            sl = list(sl)\\n        n_steps = len(sl)\\n        if len(sentences) < n_steps:\\n            continue\\n        hs = d[\\\"hidden_states\\\"][:n_steps, layer_idx, :].float().numpy()\\n        traces.append({\\n            \\\"trace_id\\\": trace_id,\\n            \\\"hidden_states\\\": hs.astype(np.float32),\\n            \\\"step_labels\\\": sl,\\n            \\\"sentences\\\": sentences[:n_steps],\\n            \\\"commitment_point\\\": int(d[\\\"commitment_point\\\"]),\\n        })\\n    return traces\\n\\n\\ndef split_traces(traces, seed=SEED):\\n    rng = np.random.default_rng(seed)\\n    indices = rng.permutation(len(traces))\\n    n_train = int(len(traces) * 0.6)\\n    n_val = int(len(traces) * 0.2)\\n    return (\\n        [traces[i] for i in indices[:n_train]],\\n        [traces[i] for i in indices[n_train:n_train + n_val]],\\n        [traces[i] for i in indices[n_train + n_val:]],\\n    )\\n\\n\\ndef compute_windowed_average(features, window):\\n    n_steps = features.shape[0]\\n    cumsum = np.cumsum(features, axis=0)\\n    X = np.zeros_like(features)\\n    for t in range(n_steps):\\n        start = max(0, t - window + 1)\\n        if start == 0:\\n            X[t] = cumsum[t] / (t + 1)\\n        else:\\n            X[t] = (cumsum[t] - cumsum[start - 1]) / (t - start + 1)\\n    return X\\n\\n\\ndef build_hs_features(traces, window):\\n    X_list, y_list = [], []\\n    for t in traces:\\n        hs = t[\\\"hidden_states\\\"]\\n        labels = np.array(t[\\\"step_labels\\\"], dtype=np.int32)\\n        n = min(hs.shape[0], len(labels))\\n        windowed = compute_windowed_average(hs[:n], window)\\n        X_list.append(windowed)\\n        y_list.append(labels[:n])\\n    return np.concatenate(X_list, axis=0), np.concatenate(y_list)\\n\\n\\ndef build_text_features(traces, st_model, window):\\n    X_list, y_list = [], []\\n    for t in traces:\\n        sentences = t[\\\"sentences\\\"]\\n        labels = np.array(t[\\\"step_labels\\\"], dtype=np.int32)\\n        n = min(len(sentences), len(labels))\\n        embeddings = st_model.encode(sentences[:n], show_progress_bar=False,\\n                                     normalize_embeddings=True)\\n        windowed = compute_windowed_average(embeddings, window)\\n        X_list.append(windowed)\\n        y_list.append(labels[:n])\\n    return np.concatenate(X_list, axis=0), np.concatenate(y_list)\\n\\n\\ndef train_lr(X_train, y_train):\\n    scaler = StandardScaler()\\n    X_scaled = scaler.fit_transform(X_train)\\n    lr = LogisticRegression(\\n        C=1.0, class_weight=\\\"balanced\\\", solver=\\\"lbfgs\\\",\\n        max_iter=2000, random_state=SEED\\n    )\\n    lr.fit(X_scaled, y_train)\\n    return lr, scaler\\n\\n\\ndef predict_per_trace(lr, scaler, traces, feature_fn):\\n    results = []\\n    for t in traces:\\n        X = feature_fn(t)\\n        X_scaled = scaler.transform(X)\\n        probs = lr.predict_proba(X_scaled)[:, 1]\\n        labels = np.array(t[\\\"step_labels\\\"], dtype=np.int32)\\n        n = min(len(probs), len(labels))\\n        results.append({\\n            \\\"probs\\\": probs[:n],\\n            \\\"labels\\\": labels[:n],\\n            \\\"cp\\\": t[\\\"commitment_point\\\"],\\n        })\\n    return results\\n\\n\\ndef step_level_metrics(trace_results, threshold):\\n    all_preds, all_labels = [], []\\n    all_pre_cp_preds, all_pre_cp_labels = [], []\\n    for tr in trace_results:\\n        preds = (tr[\\\"probs\\\"] > threshold).astype(int)\\n        labels = tr[\\\"labels\\\"]\\n        n = min(len(preds), len(labels))\\n        all_preds.append(preds[:n])\\n        all_labels.append(labels[:n])\\n        cp = tr[\\\"cp\\\"]\\n        if cp > 0 and cp <= n:\\n            all_pre_cp_preds.append(preds[:cp])\\n            all_pre_cp_labels.append(labels[:cp])\\n\\n    preds = np.concatenate(all_preds)\\n    labels = np.concatenate(all_labels)\\n\\n    tp = int(((preds == 1) & (labels == 1)).sum())\\n    fp = int(((preds == 1) & (labels == 0)).sum())\\n    tn = int(((preds == 0) & (labels == 0)).sum())\\n    fn = int(((preds == 0) & (labels == 1)).sum())\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017t5xPQoNVQRajCuyFe7ThC",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-rtx6000",
+                "command": "tail -n 200 /root/autodl-tmp/contrastive_trace_safety/scripts/run_threshold_sensitivity.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e4775c4-0d6a-4c0f-ba9f-f5232e640871",
+            "uuid": "d140877f-0c83-48ca-b6b6-cc4d2db13591",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WNLJKvd37t6K8qfKWe37Mo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2925,
+                "cache_read_input_tokens": 29742,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2925
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-18T10:50:49.057Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017t5xPQoNVQRajCuyFe7ThC",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"            all_pre_cp_labels.append(labels[:cp])\\\\n\\\\n    preds = np.concatenate(all_preds)\\\\n    labels = np.concatenate(all_labels)\\\\n\\\\n    tp = int(((preds == 1) & (labels == 1)).sum())\\\\n    fp = int(((preds == 1) & (labels == 0)).sum())\\\\n    tn = int(((preds == 0) & (labels == 0)).sum())\\\\n    fn = int(((preds == 0) & (labels == 1)).sum())\\\\n\\\\n    tpr = tp / (tp + fn) if (tp + fn) > 0 else 0.0\\\\n    tnr = tn / (tn + fp) if (tn + fp) > 0 else 0.0\\\\n    bal_acc = (tpr + tnr) / 2\\\\n    precision = tp / (tp + fp) if (tp + fp) > 0 else 0.0\\\\n    recall = tpr\\\\n    fpr = fp / (fp + tn) if (fp + tn) > 0 else 0.0\\\\n\\\\n    return {\\\\n        \\\\\\\"bal_acc\\\\\\\": round(bal_acc, 4),\\\\n        \\\\\\\"precision\\\\\\\": round(precision, 4),\\\\n        \\\\\\\"recall\\\\\\\": round(recall, 4),\\\\n        \\\\\\\"fpr\\\\\\\": round(fpr, 4),\\\\n    }\\\\n\\\\n\\\\ndef k_consecutive_detection(probs, k, threshold):\\\\n    above = probs > threshold\\\\n    count = 0\\\\n    for a in above:\\\\n        if a:\\\\n            count += 1\\\\n            if count >= k:\\\\n                return True\\\\n        else:\\\\n            count = 0\\\\n    return False\\\\n\\\\n\\\\ndef trace_level_detection_rate(trace_results, k, threshold):\\\\n    detected = sum(\\\\n        1 for tr in trace_results\\\\n        if k_consecutive_detection(tr[\\\\\\\"probs\\\\\\\"], k, threshold)\\\\n    )\\\\n    return round(detected / len(trace_results), 4) if trace_results else 0.0\\\\n\\\\n\\\\ndef run_model(model_key, cfg, st_model):\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"  {model_key}: Layer {cfg['layer_idx']}, W={cfg['window']}\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"{'='*60}\\\\\\\", flush=True)\\\\n\\\\n    print(\\\\\\\"Loading sentences from HF...\\\\\\\", flush=True)\\\\n    sentences_map = load_sentences_from_hf(cfg[\\\\\\\"model_name_hf\\\\\\\"])\\\\n    print(f\\\\\\\"  Found {len(sentences_map)} traces in HF dataset\\\\\\\", flush=True)\\\\n\\\\n    print(\\\\\\\"Loading .pt traces...\\\\\\\", flush=True)\\\\n    traces = load_traces(cfg[\\\\\\\"hs_dir\\\\\\\"], sentences_map, cfg[\\\\\\\"layer_idx\\\\\\\"])\\\\n    print(f\\\\\\\"  Loaded {len(traces)} traces with HS + sentences\\\\\\\", flush=True)\\\\n\\\\n    train, val, test = split_traces(traces)\\\\n    print(f\\\\\\\"  Split: train={len(train)}, val={len(val)}, test={len(test)}\\\\\\\", flush=True)\\\\n    train_val = train + val\\\\n\\\\n    # --- HS probe ---\\\\n    print(\\\\\\\"Training HS probe...\\\\\\\", flush=True)\\\\n    X_tr_hs, y_tr_hs = build_hs_features(train_val, cfg[\\\\\\\"window\\\\\\\"])\\\\n    lr_hs, scaler_hs = train_lr(X_tr_hs, y_tr_hs)\\\\n\\\\n    def hs_feat_fn(t):\\\\n        hs = t[\\\\\\\"hidden_states\\\\\\\"]\\\\n        labels = np.array(t[\\\\\\\"step_labels\\\\\\\"])\\\\n        n = min(hs.shape[0], len(labels))\\\\n        return compute_windowed_average(hs[:n], cfg[\\\\\\\"window\\\\\\\"])\\\\n\\\\n    hs_results = predict_per_trace(lr_hs, scaler_hs, test, hs_feat_fn)\\\\n\\\\n    # --- Text probe ---\\\\n    print(\\\\\\\"Training Text probe (BGE-large)...\\\\\\\", flush=True)\\\\n    X_tr_text, y_tr_text = build_text_features(train_val, st_model, cfg[\\\\\\\"window\\\\\\\"])\\\\n    lr_text, scaler_text = train_lr(X_tr_text, y_tr_text)\\\\n\\\\n    def text_feat_fn(t):\\\\n        sentences = t[\\\\\\\"sentences\\\\\\\"]\\\\n        labels = np.array(t[\\\\\\\"step_labels\\\\\\\"])\\\\n        n = min(len(sentences), len(labels))\\\\n        emb = st_model.encode(sentences[:n], show_progress_bar=False,\\\\n                              normalize_embeddings=True)\\\\n        return compute_windowed_average(emb, cfg[\\\\\\\"window\\\\\\\"])\\\\n\\\\n    text_results = predict_per_trace(lr_text, scaler_text, test, text_feat_fn)\\\\n\\\\n    # --- Threshold sweep ---\\\\n    print(\\\\\\\"\\\\\\\\nThreshold sweep (step-level):\\\\\\\", flush=True)\\\\n    hs_metrics = {k: [] for k in [\\\\\\\"bal_acc\\\\\\\", \\\\\\\"precision\\\\\\\", \\\\\\\"recall\\\\\\\", \\\\\\\"fpr\\\\\\\"]}\\\\n    text_metrics = {k: [] for k in [\\\\\\\"bal_acc\\\\\\\", \\\\\\\"precision\\\\\\\", \\\\\\\"recall\\\\\\\", \\\\\\\"fpr\\\\\\\"]}\\\\n    delta_metrics = {k: [] for k in [\\\\\\\"bal_acc\\\\\\\", \\\\\\\"precision\\\\\\\", \\\\\\\"fpr\\\\\\\"]}\\\\n    hs_det_k5 = []\\\\n    text_det_k5 = []\\\\n\\\\n    for thr in THRESHOLDS:\\\\n        hs_m = step_level_metrics(hs_results, thr)\\\\n        text_m = step_level_metrics(text_results, thr)\\\\n        for k in hs_metrics:\\\\n            hs_metrics[k].append(hs_m[k])\\\\n            text_metrics[k].append(text_m[k])\\\\n        for k in delta_metrics:\\\\n            delta_metrics[k].append(round(hs_m[k] - text_m[k], 4))\\\\n\\\\n        hs_dr = trace_level_detection_rate(hs_results, 5, thr)\\\\n        text_dr = trace_level_detection_rate(text_results, 5, thr)\\\\n        hs_det_k5.append(hs_dr)\\\\n        text_det_k5.append(text_dr)\\\\n\\\\n        print(f\\\\\\\"  thr={thr}: HS bal_acc={hs_m['bal_acc']:.4f} prec={hs_m['precision']:.4f} \\\\\\\"\\\\n              f\\\\\\\"fpr={hs_m['fpr']:.4f} det_K5={hs_dr:.4f} | \\\\\\\"\\\\n              f\\\\\\\"Text bal_acc={text_m['bal_acc']:.4f} prec={text_m['precision']:.4f} \\\\\\\"\\\\n              f\\\\\\\"fpr={text_m['fpr']:.4f} det_K5={text_dr:.4f}\\\\\\\", flush=True)\\\\n\\\\n    hs_metrics[\\\\\\\"detection_rate_K5\\\\\\\"] = hs_det_k5\\\\n    text_metrics[\\\\\\\"detection_rate_K5\\\\\\\"] = text_det_k5\\\\n\\\\n    # --- K sweep at multiple thresholds ---\\\\n    print(\\\\\\\"\\\\\\\\nK sweep (trace-level detection rate):\\\\\\\", flush=True)\\\\n    k_sweep = {}\\\\n    for thr in THRESHOLDS:\\\\n        key = f\\\\\\\"threshold_{thr}\\\\\\\"\\\\n        hs_drs = [trace_level_detection_rate(hs_results, k, thr) for k in K_VALUES]\\\\n        text_drs = [trace_level_detection_rate(text_results, k, thr) for k in K_VALUES]\\\\n        k_sweep[key] = {\\\\\\\"K\\\\\\\": K_VALUES, \\\\\\\"hs_det_rate\\\\\\\": hs_drs, \\\\\\\"text_det_rate\\\\\\\": text_drs}\\\\n        print(f\\\\\\\"  thr={thr}: K={K_VALUES}\\\\\\\", flush=True)\\\\n        print(f\\\\\\\"    HS   det_rate={hs_drs}\\\\\\\", flush=True)\\\\n        print(f\\\\\\\"    Text det_rate={text_drs}\\\\\\\", flush=True)\\\\n\\\\n    return {\\\\n        \\\\\\\"thresholds\\\\\\\": THRESHOLDS,\\\\n        \\\\\\\"hs\\\\\\\": hs_metrics,\\\\n        \\\\\\\"text\\\\\\\": text_metrics,\\\\n        \\\\\\\"delta\\\\\\\": delta_metrics,\\\\n        \\\\\\\"k_sweep\\\\\\\": k_sweep,\\\\n        \\\\\\\"n_train\\\\\\\": len(train_val),\\\\n        \\\\\\\"n_test\\\\\\\": len(test),\\\\n    }\\\\n\\\\n\\\\ndef print_summary_table(results):\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 80, flush=True)\\\\n    print(\\\\\\\"SUMMARY: Threshold Sensitivity Analysis\\\\\\\", flush=True)\\\\n    print(\\\\\\\"=\\\\\\\" * 80, flush=True)\\\\n\\\\n    for model_key, res in results.items():\\\\n        print(f\\\\\\\"\\\\\\\\n--- {model_key} (n_test={res['n_test']}) ---\\\\\\\", flush=True)\\\\n\\\\n        print(f\\\\\\\"\\\\\\\\n  {'Threshold':<12} {'HS bal_acc':<12} {'Text bal_acc':<13} {'Delta':<10} \\\\\\\"\\\\n              f\\\\\\\"{'HS FPR':<10} {'Text FPR':<10} {'HS det_K5':<11} {'Text det_K5':<12}\\\\\\\", flush=True)\\\\n        print(\\\\\\\"  \\\\\\\" + \\\\\\\"-\\\\\\\" * 90, flush=True)\\\\n        for i, thr in enumerate(res[\\\\\\\"thresholds\\\\\\\"]):\\\\n            print(f\\\\\\\"  {thr:<12.1f} {res['hs']['bal_acc'][i]:<12.4f} \\\\\\\"\\\\n                  f\\\\\\\"{res['text']['bal_acc'][i]:<13.4f} {res['delta']['bal_acc'][i]:<10.4f} \\\\\\\"\\\\n                  f\\\\\\\"{res['hs']['fpr'][i]:<10.4f} {res['text']['fpr'][i]:<10.4f} \\\\\\\"\\\\n                  f\\\\\\\"{res['hs']['detection_rate_K5'][i]:<11.4f} \\\\\\\"\\\\n                  f\\\\\\\"{res['text']['detection_rate_K5'][i]:<12.4f}\\\\\\\", flush=True)\\\\n\\\\n        print(f\\\\\\\"\\\\\\\\n  K sweep at threshold=0.5:\\\\\\\", flush=True)\\\\n        ks = res[\\\\\\\"k_sweep\\\\\\\"][\\\\\\\"threshold_0.5\\\\\\\"]\\\\n        print(f\\\\\\\"    K:         {ks['K']}\\\\\\\", flush=True)\\\\n        print(f\\\\\\\"    HS det:    {ks['hs_det_rate']}\\\\\\\", flush=True)\\\\n        print(f\\\\\\\"    Text det:  {ks['text_det_rate']}\\\\\\\", flush=True)\\\\n\\\\n        ba_range = max(res[\\\\\\\"hs\\\\\\\"][\\\\\\\"bal_acc\\\\\\\"]) - min(res[\\\\\\\"hs\\\\\\\"][\\\\\\\"bal_acc\\\\\\\"])\\\\n        fpr_range = max(res[\\\\\\\"hs\\\\\\\"][\\\\\\\"fpr\\\\\\\"]) - min(res[\\\\\\\"hs\\\\\\\"][\\\\\\\"fpr\\\\\\\"])\\\\n        print(f\\\\\\\"\\\\\\\\n  HS bal_acc range across thresholds: {ba_range:.4f}\\\\\\\", flush=True)\\\\n        print(f\\\\\\\"  HS FPR range across thresholds: {fpr_range:.4f}\\\\\\\", flush=True)\\\\n        delta_ba = res[\\\\\\\"delta\\\\\\\"][\\\\\\\"bal_acc\\\\\\\"]\\\\n        print(f\\\\\\\"  Delta(HS-Text) bal_acc: min={min(delta_ba):.4f} max={max(delta_ba):.4f}\\\\\\\", flush=True)\\\\n\\\\n\\\\ndef main():\\\\n    t0 = time.time()\\\\n\\\\n    print(\\\\\\\"Loading BGE-large model...\\\\\\\", flush=True)\\\\n    from sentence_transformers import SentenceTransformer\\\\n    st_model = SentenceTransformer(BGE_MODEL_PATH)\\\\n    print(f\\\\\\\"  BGE-large loaded in {time.time()-t0:.1f}s\\\\\\\", flush=True)\\\\n\\\\n    results = {}\\\\n    for model_key, cfg in MODEL_CONFIGS.items():\\\\n        results[model_key] = run_model(model_key, cfg, st_model)\\\\n\\\\n    out_path = OUT_DIR / \\\\\\\"results.json\\\\\\\"\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(results, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nResults saved to {out_path}\\\\\\\", flush=True)\\\\n\\\\n    print_summary_table(results)\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nTotal time: {time.time()-t0:.1f}s\\\\\\\", flush=True)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2e4775c4-0d6a-4c0f-ba9f-f5232e640871",
+            "uuid": "da68e349-9106-4ae7-aee6-8263fb21bbcf",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"            all_pre_cp_labels.append(labels[:cp])\\\\n\\\\n    preds = np.concatenate(all_preds)\\\\n    labels = np.concatenate(all_labels)\\\\n\\\\n    tp = int(((preds == 1) & (labels == 1)).sum())\\\\n    fp = int(((preds == 1) & (labels == 0)).sum())\\\\n    tn = int(((preds == 0) & (labels == 0)).sum())\\\\n    fn = int(((preds == 0) & (labels == 1)).sum())\\\\n\\\\n    tpr = tp / (tp + fn) if (tp + fn) > 0 else 0.0\\\\n    tnr = tn / (tn + fp) if (tn + fp) > 0 else 0.0\\\\n    bal_acc = (tpr + tnr) / 2\\\\n    precision = tp / (tp + fp) if (tp + fp) > 0 else 0.0\\\\n    recall = tpr\\\\n    fpr = fp / (fp + tn) if (fp + tn) > 0 else 0.0\\\\n\\\\n    return {\\\\n        \\\\\\\"bal_acc\\\\\\\": round(bal_acc, 4),\\\\n        \\\\\\\"precision\\\\\\\": round(precision, 4),\\\\n        \\\\\\\"recall\\\\\\\": round(recall, 4),\\\\n        \\\\\\\"fpr\\\\\\\": round(fpr, 4),\\\\n    }\\\\n\\\\n\\\\ndef k_consecutive_detection(probs, k, threshold):\\\\n    above = probs > threshold\\\\n    count = 0\\\\n    for a in above:\\\\n        if a:\\\\n            count += 1\\\\n            if count >= k:\\\\n                return True\\\\n        else:\\\\n            count = 0\\\\n    return False\\\\n\\\\n\\\\ndef trace_level_detection_rate(trace_results, k, threshold):\\\\n    detected = sum(\\\\n        1 for tr in trace_results\\\\n        if k_consecutive_detection(tr[\\\\\\\"probs\\\\\\\"], k, threshold)\\\\n    )\\\\n    return round(detected / len(trace_results), 4) if trace_results else 0.0\\\\n\\\\n\\\\ndef run_model(model_key, cfg, st_model):\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"  {model_key}: Layer {cfg['layer_idx']}, W={cfg['window']}\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"{'='*60}\\\\\\\", flush=True)\\\\n\\\\n    print(\\\\\\\"Loading sentences from HF...\\\\\\\", flush=True)\\\\n    sentences_map = load_sentences_from_hf(cfg[\\\\\\\"model_name_hf\\\\\\\"])\\\\n    print(f\\\\\\\"  Found {len(sentences_map)} traces in HF dataset\\\\\\\", flush=True)\\\\n\\\\n    print(\\\\\\\"Loading .pt traces...\\\\\\\", flush=True)\\\\n    traces = load_traces(cfg[\\\\\\\"hs_dir\\\\\\\"], sentences_map, cfg[\\\\\\\"layer_idx\\\\\\\"])\\\\n    print(f\\\\\\\"  Loaded {len(traces)} traces with HS + sentences\\\\\\\", flush=True)\\\\n\\\\n    train, val, test = split_traces(traces)\\\\n    print(f\\\\\\\"  Split: train={len(train)}, val={len(val)}, test={len(test)}\\\\\\\", flush=True)\\\\n    train_val = train + val\\\\n\\\\n    # --- HS probe ---\\\\n    print(\\\\\\\"Training HS probe...\\\\\\\", flush=True)\\\\n    X_tr_hs, y_tr_hs = build_hs_features(train_val, cfg[\\\\\\\"window\\\\\\\"])\\\\n    lr_hs, scaler_hs = train_lr(X_tr_hs, y_tr_hs)\\\\n\\\\n    def hs_feat_fn(t):\\\\n        hs = t[\\\\\\\"hidden_states\\\\\\\"]\\\\n        labels = np.array(t[\\\\\\\"step_labels\\\\\\\"])\\\\n        n = min(hs.shape[0], len(labels))\\\\n        return compute_windowed_average(hs[:n], cfg[\\\\\\\"window\\\\\\\"])\\\\n\\\\n    hs_results = predict_per_trace(lr_hs, scaler_hs, test, hs_feat_fn)\\\\n\\\\n    # --- Text probe ---\\\\n    print(\\\\\\\"Training Text probe (BGE-large)...\\\\\\\", flush=True)\\\\n    X_tr_text, y_tr_text = build_text_features(train_val, st_model, cfg[\\\\\\\"window\\\\\\\"])\\\\n    lr_text, scaler_text = train_lr(X_tr_text, y_tr_text)\\\\n\\\\n    def text_feat_fn(t):\\\\n        sentences = t[\\\\\\\"sentences\\\\\\\"]\\\\n        labels = np.array(t[\\\\\\\"step_labels\\\\\\\"])\\\\n        n = min(len(sentences), len(labels))\\\\n        emb = st_model.encode(sentences[:n], show_progress_bar=False,\\\\n                              normalize_embeddings=True)\\\\n        return compute_windowed_average(emb, cfg[\\\\\\\"window\\\\\\\"])\\\\n\\\\n    text_results = predict_per_trace(lr_text, scaler_text, test, text_feat_fn)\\\\n\\\\n    # --- Threshold sweep ---\\\\n    print(\\\\\\\"\\\\\\\\nThreshold sweep (step-level):\\\\\\\", flush=True)\\\\n    hs_metrics = {k: [] for k in [\\\\\\\"bal_acc\\\\\\\", \\\\\\\"precision\\\\\\\", \\\\\\\"recall\\\\\\\", \\\\\\\"fpr\\\\\\\"]}\\\\n    text_metrics = {k: [] for k in [\\\\\\\"bal_acc\\\\\\\", \\\\\\\"precision\\\\\\\", \\\\\\\"recall\\\\\\\", \\\\\\\"fpr\\\\\\\"]}\\\\n    delta_metrics = {k: [] for k in [\\\\\\\"bal_acc\\\\\\\", \\\\\\\"precision\\\\\\\", \\\\\\\"fpr\\\\\\\"]}\\\\n    hs_det_k5 = []\\\\n    text_det_k5 = []\\\\n\\\\n    for thr in THRESHOLDS:\\\\n        hs_m = step_level_metrics(hs_results, thr)\\\\n        text_m = step_level_metrics(text_results, thr)\\\\n        for k in hs_metrics:\\\\n            hs_metrics[k].append(hs_m[k])\\\\n            text_metrics[k].append(text_m[k])\\\\n        for k in delta_metrics:\\\\n            delta_metrics[k].append(round(hs_m[k] - text_m[k], 4))\\\\n\\\\n        hs_dr = trace_level_detection_rate(hs_results, 5, thr)\\\\n        text_dr = trace_level_detection_rate(text_results, 5, thr)\\\\n        hs_det_k5.append(hs_dr)\\\\n        text_det_k5.append(text_dr)\\\\n\\\\n        print(f\\\\\\\"  thr={thr}: HS bal_acc={hs_m['bal_acc']:.4f} prec={hs_m['precision']:.4f} \\\\\\\"\\\\n              f\\\\\\\"fpr={hs_m['fpr']:.4f} det_K5={hs_dr:.4f} | \\\\\\\"\\\\n              f\\\\\\\"Text bal_acc={text_m['bal_acc']:.4f} prec={text_m['precision']:.4f} \\\\\\\"\\\\n              f\\\\\\\"fpr={text_m['fpr']:.4f} det_K5={text_dr:.4f}\\\\\\\", flush=True)\\\\n\\\\n    hs_metrics[\\\\\\\"detection_rate_K5\\\\\\\"] = hs_det_k5\\\\n    text_metrics[\\\\\\\"detection_rate_K5\\\\\\\"] = text_det_k5\\\\n\\\\n    # --- K sweep at multiple thresholds ---\\\\n    print(\\\\\\\"\\\\\\\\nK sweep (trace-level detection rate):\\\\\\\", flush=True)\\\\n    k_sweep = {}\\\\n    for thr in THRESHOLDS:\\\\n        key = f\\\\\\\"threshold_{thr}\\\\\\\"\\\\n        hs_drs = [trace_level_detection_rate(hs_results, k, thr) for k in K_VALUES]\\\\n        text_drs = [trace_level_detection_rate(text_results, k, thr) for k in K_VALUES]\\\\n        k_sweep[key] = {\\\\\\\"K\\\\\\\": K_VALUES, \\\\\\\"hs_det_rate\\\\\\\": hs_drs, \\\\\\\"text_det_rate\\\\\\\": text_drs}\\\\n        print(f\\\\\\\"  thr={thr}: K={K_VALUES}\\\\\\\", flush=True)\\\\n        print(f\\\\\\\"    HS   det_rate={hs_drs}\\\\\\\", flush=True)\\\\n        print(f\\\\\\\"    Text det_rate={text_drs}\\\\\\\", flush=True)\\\\n\\\\n    return {\\\\n        \\\\\\\"thresholds\\\\\\\": THRESHOLDS,\\\\n        \\\\\\\"hs\\\\\\\": hs_metrics,\\\\n        \\\\\\\"text\\\\\\\": text_metrics,\\\\n        \\\\\\\"delta\\\\\\\": delta_metrics,\\\\n        \\\\\\\"k_sweep\\\\\\\": k_sweep,\\\\n        \\\\\\\"n_train\\\\\\\": len(train_val),\\\\n        \\\\\\\"n_test\\\\\\\": len(test),\\\\n    }\\\\n\\\\n\\\\ndef print_summary_table(results):\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 80, flush=True)\\\\n    print(\\\\\\\"SUMMARY: Threshold Sensitivity Analysis\\\\\\\", flush=True)\\\\n    print(\\\\\\\"=\\\\\\\" * 80, flush=True)\\\\n\\\\n    for model_key, res in results.items():\\\\n        print(f\\\\\\\"\\\\\\\\n--- {model_key} (n_test={res['n_test']}) ---\\\\\\\", flush=True)\\\\n\\\\n        print(f\\\\\\\"\\\\\\\\n  {'Threshold':<12} {'HS bal_acc':<12} {'Text bal_acc':<13} {'Delta':<10} \\\\\\\"\\\\n              f\\\\\\\"{'HS FPR':<10} {'Text FPR':<10} {'HS det_K5':<11} {'Text det_K5':<12}\\\\\\\", flush=True)\\\\n        print(\\\\\\\"  \\\\\\\" + \\\\\\\"-\\\\\\\" * 90, flush=True)\\\\n        for i, thr in enumerate(res[\\\\\\\"thresholds\\\\\\\"]):\\\\n            print(f\\\\\\\"  {thr:<12.1f} {res['hs']['bal_acc'][i]:<12.4f} \\\\\\\"\\\\n                  f\\\\\\\"{res['text']['bal_acc'][i]:<13.4f} {res['delta']['bal_acc'][i]:<10.4f} \\\\\\\"\\\\n                  f\\\\\\\"{res['hs']['fpr'][i]:<10.4f} {res['text']['fpr'][i]:<10.4f} \\\\\\\"\\\\n                  f\\\\\\\"{res['hs']['detection_rate_K5'][i]:<11.4f} \\\\\\\"\\\\n                  f\\\\\\\"{res['text']['detection_rate_K5'][i]:<12.4f}\\\\\\\", flush=True)\\\\n\\\\n        print(f\\\\\\\"\\\\\\\\n  K sweep at threshold=0.5:\\\\\\\", flush=True)\\\\n        ks = res[\\\\\\\"k_sweep\\\\\\\"][\\\\\\\"threshold_0.5\\\\\\\"]\\\\n        print(f\\\\\\\"    K:         {ks['K']}\\\\\\\", flush=True)\\\\n        print(f\\\\\\\"    HS det:    {ks['hs_det_rate']}\\\\\\\", flush=True)\\\\n        print(f\\\\\\\"    Text det:  {ks['text_det_rate']}\\\\\\\", flush=True)\\\\n\\\\n        ba_range = max(res[\\\\\\\"hs\\\\\\\"][\\\\\\\"bal_acc\\\\\\\"]) - min(res[\\\\\\\"hs\\\\\\\"][\\\\\\\"bal_acc\\\\\\\"])\\\\n        fpr_range = max(res[\\\\\\\"hs\\\\\\\"][\\\\\\\"fpr\\\\\\\"]) - min(res[\\\\\\\"hs\\\\\\\"][\\\\\\\"fpr\\\\\\\"])\\\\n        print(f\\\\\\\"\\\\\\\\n  HS bal_acc range across thresholds: {ba_range:.4f}\\\\\\\", flush=True)\\\\n        print(f\\\\\\\"  HS FPR range across thresholds: {fpr_range:.4f}\\\\\\\", flush=True)\\\\n        delta_ba = res[\\\\\\\"delta\\\\\\\"][\\\\\\\"bal_acc\\\\\\\"]\\\\n        print(f\\\\\\\"  Delta(HS-Text) bal_acc: min={min(delta_ba):.4f} max={max(delta_ba):.4f}\\\\\\\", flush=True)\\\\n\\\\n\\\\ndef main():\\\\n    t0 = time.time()\\\\n\\\\n    print(\\\\\\\"Loading BGE-large model...\\\\\\\", flush=True)\\\\n    from sentence_transformers import SentenceTransformer\\\\n    st_model = SentenceTransformer(BGE_MODEL_PATH)\\\\n    print(f\\\\\\\"  BGE-large loaded in {time.time()-t0:.1f}s\\\\\\\", flush=True)\\\\n\\\\n    results = {}\\\\n    for model_key, cfg in MODEL_CONFIGS.items():\\\\n        results[model_key] = run_model(model_key, cfg, st_model)\\\\n\\\\n    out_path = OUT_DIR / \\\\\\\"results.json\\\\\\\"\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(results, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nResults saved to {out_path}\\\\\\\", flush=True)\\\\n\\\\n    print_summary_table(results)\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nTotal time: {time.time()-t0:.1f}s\\\\\\\", flush=True)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"            all_pre_cp_labels.append(labels[:cp])\\n\\n    preds = np.concatenate(all_preds)\\n    labels = np.concatenate(all_labels)\\n\\n    tp = int(((preds == 1) & (labels == 1)).sum())\\n    fp = int(((preds == 1) & (labels == 0)).sum())\\n    tn = int(((preds == 0) & (labels == 0)).sum())\\n    fn = int(((preds == 0) & (labels == 1)).sum())\\n\\n    tpr = tp / (tp + fn) if (tp + fn) > 0 else 0.0\\n    tnr = tn / (tn + fp) if (tn + fp) > 0 else 0.0\\n    bal_acc = (tpr + tnr) / 2\\n    precision = tp / (tp + fp) if (tp + fp) > 0 else 0.0\\n    recall = tpr\\n    fpr = fp / (fp + tn) if (fp + tn) > 0 else 0.0\\n\\n    return {\\n        \\\"bal_acc\\\": round(bal_acc, 4),\\n        \\\"precision\\\": round(precision, 4),\\n        \\\"recall\\\": round(recall, 4),\\n        \\\"fpr\\\": round(fpr, 4),\\n    }\\n\\n\\ndef k_consecutive_detection(probs, k, threshold):\\n    above = probs > threshold\\n    count = 0\\n    for a in above:\\n        if a:\\n            count += 1\\n            if count >= k:\\n                return True\\n        else:\\n            count = 0\\n    return False\\n\\n\\ndef trace_level_detection_rate(trace_results, k, threshold):\\n    detected = sum(\\n        1 for tr in trace_results\\n        if k_consecutive_detection(tr[\\\"probs\\\"], k, threshold)\\n    )\\n    return round(detected / len(trace_results), 4) if trace_results else 0.0\\n\\n\\ndef run_model(model_key, cfg, st_model):\\n    print(f\\\"\\\\n{'='*60}\\\", flush=True)\\n    print(f\\\"  {model_key}: Layer {cfg['layer_idx']}, W={cfg['window']}\\\", flush=True)\\n    print(f\\\"{'='*60}\\\", flush=True)\\n\\n    print(\\\"Loading sentences from HF...\\\", flush=True)\\n    sentences_map = load_sentences_from_hf(cfg[\\\"model_name_hf\\\"])\\n    print(f\\\"  Found {len(sentences_map)} traces in HF dataset\\\", flush=True)\\n\\n    print(\\\"Loading .pt traces...\\\", flush=True)\\n    traces = load_traces(cfg[\\\"hs_dir\\\"], sentences_map, cfg[\\\"layer_idx\\\"])\\n    print(f\\\"  Loaded {len(traces)} traces with HS + sentences\\\", flush=True)\\n\\n    train, val, test = split_traces(traces)\\n    print(f\\\"  Split: train={len(train)}, val={len(val)}, test={len(test)}\\\", flush=True)\\n    train_val = train + val\\n\\n    # --- HS probe ---\\n    print(\\\"Training HS probe...\\\", flush=True)\\n    X_tr_hs, y_tr_hs = build_hs_features(train_val, cfg[\\\"window\\\"])\\n    lr_hs, scaler_hs = train_lr(X_tr_hs, y_tr_hs)\\n\\n    def hs_feat_fn(t):\\n        hs = t[\\\"hidden_states\\\"]\\n        labels = np.array(t[\\\"step_labels\\\"])\\n        n = min(hs.shape[0], len(labels))\\n        return compute_windowed_average(hs[:n], cfg[\\\"window\\\"])\\n\\n    hs_results = predict_per_trace(lr_hs, scaler_hs, test, hs_feat_fn)\\n\\n    # --- Text probe ---\\n    print(\\\"Training Text probe (BGE-large)...\\\", flush=True)\\n    X_tr_text, y_tr_text = build_text_features(train_val, st_model, cfg[\\\"window\\\"])\\n    lr_text, scaler_text = train_lr(X_tr_text, y_tr_text)\\n\\n    def text_feat_fn(t):\\n        sentences = t[\\\"sentences\\\"]\\n        labels = np.array(t[\\\"step_labels\\\"])\\n        n = min(len(sentences), len(labels))\\n        emb = st_model.encode(sentences[:n], show_progress_bar=False,\\n                              normalize_embeddings=True)\\n        return compute_windowed_average(emb, cfg[\\\"window\\\"])\\n\\n    text_results = predict_per_trace(lr_text, scaler_text, test, text_feat_fn)\\n\\n    # --- Threshold sweep ---\\n    print(\\\"\\\\nThreshold sweep (step-level):\\\", flush=True)\\n    hs_metrics = {k: [] for k in [\\\"bal_acc\\\", \\\"precision\\\", \\\"recall\\\", \\\"fpr\\\"]}\\n    text_metrics = {k: [] for k in [\\\"bal_acc\\\", \\\"precision\\\", \\\"recall\\\", \\\"fpr\\\"]}\\n    delta_metrics = {k: [] for k in [\\\"bal_acc\\\", \\\"precision\\\", \\\"fpr\\\"]}\\n    hs_det_k5 = []\\n    text_det_k5 = []\\n\\n    for thr in THRESHOLDS:\\n        hs_m = step_level_metrics(hs_results, thr)\\n        text_m = step_level_metrics(text_results, thr)\\n        for k in hs_metrics:\\n            hs_metrics[k].append(hs_m[k])\\n            text_metrics[k].append(text_m[k])\\n        for k in delta_metrics:\\n            delta_metrics[k].append(round(hs_m[k] - text_m[k], 4))\\n\\n        hs_dr = trace_level_detection_rate(hs_results, 5, thr)\\n        text_dr = trace_level_detection_rate(text_results, 5, thr)\\n        hs_det_k5.append(hs_dr)\\n        text_det_k5.append(text_dr)\\n\\n        print(f\\\"  thr={thr}: HS bal_acc={hs_m['bal_acc']:.4f} prec={hs_m['precision']:.4f} \\\"\\n              f\\\"fpr={hs_m['fpr']:.4f} det_K5={hs_dr:.4f} | \\\"\\n              f\\\"Text bal_acc={text_m['bal_acc']:.4f} prec={text_m['precision']:.4f} \\\"\\n              f\\\"fpr={text_m['fpr']:.4f} det_K5={text_dr:.4f}\\\", flush=True)\\n\\n    hs_metrics[\\\"detection_rate_K5\\\"] = hs_det_k5\\n    text_metrics[\\\"detection_rate_K5\\\"] = text_det_k5\\n\\n    # --- K sweep at multiple thresholds ---\\n    print(\\\"\\\\nK sweep (trace-level detection rate):\\\", flush=True)\\n    k_sweep = {}\\n    for thr in THRESHOLDS:\\n        key = f\\\"threshold_{thr}\\\"\\n        hs_drs = [trace_level_detection_rate(hs_results, k, thr) for k in K_VALUES]\\n        text_drs = [trace_level_detection_rate(text_results, k, thr) for k in K_VALUES]\\n        k_sweep[key] = {\\\"K\\\": K_VALUES, \\\"hs_det_rate\\\": hs_drs, \\\"text_det_rate\\\": text_drs}\\n        print(f\\\"  thr={thr}: K={K_VALUES}\\\", flush=True)\\n        print(f\\\"    HS   det_rate={hs_drs}\\\", flush=True)\\n        print(f\\\"    Text det_rate={text_drs}\\\", flush=True)\\n\\n    return {\\n        \\\"thresholds\\\": THRESHOLDS,\\n        \\\"hs\\\": hs_metrics,\\n        \\\"text\\\": text_metrics,\\n        \\\"delta\\\": delta_metrics,\\n        \\\"k_sweep\\\": k_sweep,\\n        \\\"n_train\\\": len(train_val),\\n        \\\"n_test\\\": len(test),\\n    }\\n\\n\\ndef print_summary_table(results):\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 80, flush=True)\\n    print(\\\"SUMMARY: Threshold Sensitivity Analysis\\\", flush=True)\\n    print(\\\"=\\\" * 80, flush=True)\\n\\n    for model_key, res in results.items():\\n        print(f\\\"\\\\n--- {model_key} (n_test={res['n_test']}) ---\\\", flush=True)\\n\\n        print(f\\\"\\\\n  {'Threshold':<12} {'HS bal_acc':<12} {'Text bal_acc':<13} {'Delta':<10} \\\"\\n              f\\\"{'HS FPR':<10} {'Text FPR':<10} {'HS det_K5':<11} {'Text det_K5':<12}\\\", flush=True)\\n        print(\\\"  \\\" + \\\"-\\\" * 90, flush=True)\\n        for i, thr in enumerate(res[\\\"thresholds\\\"]):\\n            print(f\\\"  {thr:<12.1f} {res['hs']['bal_acc'][i]:<12.4f} \\\"\\n                  f\\\"{res['text']['bal_acc'][i]:<13.4f} {res['delta']['bal_acc'][i]:<10.4f} \\\"\\n                  f\\\"{res['hs']['fpr'][i]:<10.4f} {res['text']['fpr'][i]:<10.4f} \\\"\\n                  f\\\"{res['hs']['detection_rate_K5'][i]:<11.4f} \\\"\\n                  f\\\"{res['text']['detection_rate_K5'][i]:<12.4f}\\\", flush=True)\\n\\n        print(f\\\"\\\\n  K sweep at threshold=0.5:\\\", flush=True)\\n        ks = res[\\\"k_sweep\\\"][\\\"threshold_0.5\\\"]\\n        print(f\\\"    K:         {ks['K']}\\\", flush=True)\\n        print(f\\\"    HS det:    {ks['hs_det_rate']}\\\", flush=True)\\n        print(f\\\"    Text det:  {ks['text_det_rate']}\\\", flush=True)\\n\\n        ba_range = max(res[\\\"hs\\\"][\\\"bal_acc\\\"]) - min(res[\\\"hs\\\"][\\\"bal_acc\\\"])\\n        fpr_range = max(res[\\\"hs\\\"][\\\"fpr\\\"]) - min(res[\\\"hs\\\"][\\\"fpr\\\"])\\n        print(f\\\"\\\\n  HS bal_acc range across thresholds: {ba_range:.4f}\\\", flush=True)\\n        print(f\\\"  HS FPR range across thresholds: {fpr_range:.4f}\\\", flush=True)\\n        delta_ba = res[\\\"delta\\\"][\\\"bal_acc\\\"]\\n        print(f\\\"  Delta(HS-Text) bal_acc: min={min(delta_ba):.4f} max={max(delta_ba):.4f}\\\", flush=True)\\n\\n\\ndef main():\\n    t0 = time.time()\\n\\n    print(\\\"Loading BGE-large model...\\\", flush=True)\\n    from sentence_transformers import SentenceTransformer\\n    st_model = SentenceTransformer(BGE_MODEL_PATH)\\n    print(f\\\"  BGE-large loaded in {time.time()-t0:.1f}s\\\", flush=True)\\n\\n    results = {}\\n    for model_key, cfg in MODEL_CONFIGS.items():\\n        results[model_key] = run_model(model_key, cfg, st_model)\\n\\n    out_path = OUT_DIR / \\\"results.json\\\"\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n    print(f\\\"\\\\nResults saved to {out_path}\\\", flush=True)\\n\\n    print_summary_table(results)\\n\\n    print(f\\\"\\\\nTotal time: {time.time()-t0:.1f}s\\\", flush=True)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have the full script. I need to create a modified version that:\n1. Only runs R1-32B (not QwQ-32B)\n2. Changes W from 10 to 1 for R1-32B\n3. Uses n_test=20\n4. Saves to artifacts/exp_r9_r1_32b_w1_threshold/results.json\n5. Prints a comprehensive table with all the required columns\n\nLet me write a modified script. The key changes:\n- MODEL_CONFIGS only has r1_32b with window=1\n\n\n- OUT_DIR set to artifacts/exp_r9_r1_32b_w1_threshold\n- Adjusting the split_traces function to ensure exactly 20 test samples, since the original 60/20/20% split should naturally give us around 20 if there are roughly 100 traces total\n- Formatting the output table with all specified columns\n\nWriting the modified script...",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e4775c4-0d6a-4c0f-ba9f-f5232e640871",
+            "uuid": "661a5caa-1631-419f-8b9e-035bbb222aa6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RsR98C36J2gvPKCRmmGE18",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3765,
+                "cache_read_input_tokens": 32667,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3765
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Got the full script. Now I'll create the W=1 variant for R1-32B only and run it."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e4775c4-0d6a-4c0f-ba9f-f5232e640871",
+            "uuid": "30950c40-a139-41d6-b4ea-fcac67c1e048",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RsR98C36J2gvPKCRmmGE18",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3765,
+                "cache_read_input_tokens": 32667,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3765
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01396MVuVUu5VRxrme9cBLVx",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "autodl-rtx6000",
+                "command": "cat > /root/autodl-tmp/contrastive_trace_safety/scripts/run_r1_32b_w1_threshold.py << 'PYEOF'\n\"\"\"R1-32B threshold sensitivity with W=1 (canonical setting).\n\nReplicates exp_r9 threshold sensitivity but with W=1 instead of W=10.\nOnly runs R1-32B.\n\"\"\"\n\nimport os\nos.environ[\"TOKENIZERS_PARALLELISM\"] = \"false\"\nos.environ[\"HF_ENDPOINT\"] = \"https://hf-mirror.com\"\n\nimport sys\nimport json\nimport warnings\nimport time\nimport numpy as np\nimport torch\nfrom pathlib import Path\nfrom collections import defaultdict\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import balanced_accuracy_score\nfrom sklearn.preprocessing import StandardScaler\n\nsys.path.insert(0, \"/root/autodl-tmp/contrastive_trace_safety\")\nwarnings.filterwarnings(\"ignore\")\n\nBASE = Path(\"/root/autodl-tmp/contrastive_trace_safety\")\nOUT_DIR = BASE / \"artifacts/exp_r9_r1_32b_w1_threshold\"\nOUT_DIR.mkdir(parents=True, exist_ok=True)\n\nBGE_MODEL_PATH = str(BASE / \"models/bge-large-en-v1.5\")\nBGE_DIM = 1024\nSEED = 42\nTHRESHOLDS = [0.3, 0.4, 0.5, 0.6, 0.7]\nK_VALUES = [3, 5, 7, 10]\nN_TEST = 20\n\nCFG = {\n    \"model_name_hf\": \"r1-32b\",\n    \"hs_dir\": BASE / \"artifacts/hidden_states_r1_32b\",\n    \"layer_idx\": 63,\n    \"hidden_dim\": 5120,\n    \"window\": 1,\n}\n\n\ndef load_sentences_from_hf(model_name_hf):\n    from datasets import load_dataset\n    ds = load_dataset(\"ishitakakkar-10/HarmThoughts\", split=\"train\")\n    traces = defaultdict(list)\n    for row in ds:\n        if row[\"model_name\"] != model_name_hf:\n            continue\n        sid = row[\"sentence_id\"]\n        parts = sid.rsplit(\"-\", 1)\n        trace_id = parts[0]\n        step_idx = int(parts[1]) - 1\n        traces[trace_id].append((step_idx, row[\"sentence\"]))\n    for tid in traces:\n        traces[tid].sort(key=lambda x: x[0])\n        traces[tid] = [s for _, s in traces[tid]]\n    return dict(traces)\n\n\ndef load_traces(hs_dir, sentences_map, layer_idx):\n    traces = []\n    for pt_file in sorted(hs_dir.glob(\"*.pt\")):\n        d = torch.load(pt_file, map_location=\"cpu\", weights_only=False)\n        if d.get(\"step_labels\") is None or d.get(\"commitment_point\") is None:\n            continue\n        trace_id = d[\"trace_id\"]\n        if trace_id not in sentences_map:\n            continue\n        sentences = sentences_map[trace_id]\n        sl = d[\"step_labels\"]\n        if isinstance(sl, torch.Tensor):\n            sl = sl.tolist()\n        else:\n            sl = list(sl)\n        n_steps = len(sl)\n        if len(sentences) < n_steps:\n            continue\n        hs = d[\"hidden_states\"][:n_steps, layer_idx, :].float().numpy()\n        traces.append({\n            \"trace_id\": trace_id,\n            \"hidden_states\": hs.astype(np.float32),\n            \"step_labels\": sl,\n            \"sentences\": sentences[:n_steps],\n            \"commitment_point\": int(d[\"commitment_point\"]),\n        })\n    return traces\n\n\ndef split_traces(traces, n_test=N_TEST, seed=SEED):\n    rng = np.random.default_rng(seed)\n    indices = rng.permutation(len(traces))\n    train_val = [traces[i] for i in indices[:-n_test]]\n    test = [traces[i] for i in indices[-n_test:]]\n    return train_val, test\n\n\ndef compute_windowed_average(features, window):\n    if window == 1:\n        return features\n    n_steps = features.shape[0]\n    cumsum = np.cumsum(features, axis=0)\n    X = np.zeros_like(features)\n    for t in range(n_steps):\n        start = max(0, t - window + 1)\n        if start == 0:\n            X[t] = cumsum[t] / (t + 1)\n        else:\n            X[t] = (cumsum[t] - cumsum[start - 1]) / (t - start + 1)\n    return X\n\n\ndef build_hs_features(traces, window):\n    X_list, y_list = [], []\n    for t in traces:\n        hs = t[\"hidden_states\"]\n        labels = np.array(t[\"step_labels\"], dtype=np.int32)\n        n = min(hs.shape[0], len(labels))\n        windowed = compute_windowed_average(hs[:n], window)\n        X_list.append(windowed)\n        y_list.append(labels[:n])\n    return np.concatenate(X_list, axis=0), np.concatenate(y_list)\n\n\ndef build_text_features(traces, st_model, window):\n    X_list, y_list = [], []\n    for t in traces:\n        sentences = t[\"sentences\"]\n        labels = np.array(t[\"step_labels\"], dtype=np.int32)\n        n = min(len(sentences), len(labels))\n        embeddings = st_model.encode(sentences[:n], show_progress_bar=False,\n                                     normalize_embeddings=True)\n        windowed = compute_windowed_average(embeddings, window)\n        X_list.append(windowed)\n        y_list.append(labels[:n])\n    return np.concatenate(X_list, axis=0), np.concatenate(y_list)\n\n\ndef train_lr(X_train, y_train):\n    scaler = StandardScaler()\n    X_scaled = scaler.fit_transform(X_train)\n    lr = LogisticRegression(\n        C=1.0, class_weight=\"balanced\", solver=\"lbfgs\",\n        max_iter=2000, random_state=SEED\n    )\n    lr.fit(X_scaled, y_train)\n    return lr, scaler\n\n\ndef predict_per_trace(lr, scaler, traces, feature_fn):\n    results = []\n    for t in traces:\n        X = feature_fn(t)\n        X_scaled = scaler.transform(X)\n        probs = lr.predict_proba(X_scaled)[:, 1]\n        labels = np.array(t[\"step_labels\"], dtype=np.int32)\n        n = min(len(probs), len(labels))\n        results.append({\n            \"probs\": probs[:n],\n            \"labels\": labels[:n],\n            \"cp\": t[\"commitment_point\"],\n        })\n    return results\n\n\ndef step_level_metrics(trace_results, threshold):\n    all_preds, all_labels = [], []\n    for tr in trace_results:\n        preds = (tr[\"probs\"] > threshold).astype(int)\n        labels = tr[\"labels\"]\n        n = min(len(preds), len(labels))\n        all_preds.append(preds[:n])\n        all_labels.append(labels[:n])\n\n    preds = np.concatenate(all_preds)\n    labels = np.concatenate(all_labels)\n\n    tp = int(((preds == 1) & (labels == 1)).sum())\n    fp = int(((preds == 1) & (labels == 0)).sum())\n    tn = int(((preds == 0) & (labels == 0)).sum())\n    fn = int(((preds == 0) & (labels == 1)).sum())\n\n    tpr = tp / (tp + fn) if (tp + fn) > 0 else 0.0\n    tnr = tn / (tn + fp) if (tn + fp) > 0 else 0.0\n    bal_acc = (tpr + tnr) / 2\n    precision = tp / (tp + fp) if (tp + fp) > 0 else 0.0\n    recall = tpr\n    fpr = fp / (fp + tn) if (fp + tn) > 0 else 0.0\n\n    return {\n        \"bal_acc\": round(bal_acc, 4),\n        \"precision\": round(precision, 4),\n        \"recall\": round(recall, 4),\n        \"fpr\": round(fpr, 4),\n    }\n\n\ndef k_consecutive_detection(probs, k, threshold):\n    above = probs > threshold\n    count = 0\n    for a in above:\n        if a:\n            count += 1\n            if count >= k:\n                return True\n        else:\n            count = 0\n    return False\n\n\ndef trace_level_detection_rate(trace_results, k, threshold):\n    detected = sum(\n        1 for tr in trace_results\n        if k_consecutive_detection(tr[\"probs\"], k, threshold)\n    )\n    return round(detected / len(trace_results), 4) if trace_results else 0.0\n\n\ndef main():\n    t0 = time.time()\n    window = CFG[\"window\"]\n\n    print(f\"R1-32B Threshold Sensitivity: Layer {CFG['layer_idx']}, W={window}, n_test={N_TEST}\", flush=True)\n\n    print(\"Loading BGE-large model...\", flush=True)\n    from sentence_transformers import SentenceTransformer\n    st_model = SentenceTransformer(BGE_MODEL_PATH)\n    print(f\"  BGE-large loaded in {time.time()-t0:.1f}s\", flush=True)\n\n    print(\"Loading sentences from HF...\", flush=True)\n    sentences_map = load_sentences_from_hf(CFG[\"model_name_hf\"])\n    print(f\"  Found {len(sentences_map)} traces in HF dataset\", flush=True)\n\n    print(\"Loading .pt traces...\", flush=True)\n    traces = load_traces(CFG[\"hs_dir\"], sentences_map, CFG[\"layer_idx\"])\n    print(f\"  Loaded {len(traces)} traces with HS + sentences\", flush=True)\n\n    train_val, test = split_traces(traces)\n    print(f\"  Split: train_val={len(train_val)}, test={len(test)}\", flush=True)\n\n    # --- HS probe ---\n    print(\"Training HS probe...\", flush=True)\n    X_tr_hs, y_tr_hs = build_hs_features(train_val, window)\n    lr_hs, scaler_hs = train_lr(X_tr_hs, y_tr_hs)\n\n    def hs_feat_fn(t):\n        hs = t[\"hidden_states\"]\n        labels = np.array(t[\"step_labels\"])\n        n = min(hs.shape[0], len(labels))\n        return compute_windowed_average(hs[:n], window)\n\n    hs_results = predict_per_trace(lr_hs, scaler_hs, test, hs_feat_fn)\n\n    # --- Text probe ---\n    print(\"Training Text probe (BGE-large)...\", flush=True)\n    X_tr_text, y_tr_text = build_text_features(train_val, st_model, window)\n    lr_text, scaler_text = train_lr(X_tr_text, y_tr_text)\n\n    def text_feat_fn(t):\n        sentences = t[\"sentences\"]\n        labels = np.array(t[\"step_labels\"])\n        n = min(len(sentences), len(labels))\n        emb = st_model.encode(sentences[:n], show_progress_bar=False,\n                              normalize_embeddings=True)\n        return compute_windowed_average(emb, window)\n\n    text_results = predict_per_trace(lr_text, scaler_text, test, text_feat_fn)\n\n    # --- Threshold sweep ---\n    print(\"\\nThreshold sweep (step-level):\", flush=True)\n    hs_metrics = {k: [] for k in [\"bal_acc\", \"precision\", \"recall\", \"fpr\"]}\n    text_metrics = {k: [] for k in [\"bal_acc\", \"precision\", \"recall\", \"fpr\"]}\n    delta_metrics = {k: [] for k in [\"bal_acc\", \"precision\", \"fpr\"]}\n    hs_det_k5 = []\n    text_det_k5 = []\n\n    for thr in THRESHOLDS:\n        hs_m = step_level_metrics(hs_results, thr)\n        text_m = step_level_metrics(text_results, thr)\n        for k in hs_metrics:\n            hs_metrics[k].append(hs_m[k])\n            text_metrics[k].append(text_m[k])\n        for k in delta_metrics:\n            delta_metrics[k].append(round(hs_m[k] - text_m[k], 4))\n\n        hs_dr = trace_level_detection_rate(hs_results, 5, thr)\n        text_dr = trace_level_detection_rate(text_results, 5, thr)\n        hs_det_k5.append(hs_dr)\n        text_det_k5.append(text_dr)\n\n        print(f\"  thr={thr}: HS bal_acc={hs_m['bal_acc']:.4f} prec={hs_m['precision']:.4f} \"\n              f\"fpr={hs_m['fpr']:.4f} det_K5={hs_dr:.4f} | \"\n              f\"Text bal_acc={text_m['bal_acc']:.4f} prec={text_m['precision']:.4f} \"\n              f\"fpr={text_m['fpr']:.4f} det_K5={text_dr:.4f}\", flush=True)\n\n    hs_metrics[\"detection_rate_K5\"] = hs_det_k5\n    text_metrics[\"detection_rate_K5\"] = text_det_k5\n\n    # --- K sweep at all thresholds ---\n    print(\"\\nK sweep (trace-level detection rate):\", flush=True)\n    k_sweep = {}\n    for thr in THRESHOLDS:\n        key = f\"threshold_{thr}\"\n        hs_drs = [trace_level_detection_rate(hs_results, k, thr) for k in K_VALUES]\n        text_drs = [trace_level_detection_rate(text_results, k, thr) for k in K_VALUES]\n        k_sweep[key] = {\"K\": K_VALUES, \"hs_det_rate\": hs_drs, \"text_det_rate\": text_drs}\n        print(f\"  thr={thr}: K={K_VALUES}\", flush=True)\n        print(f\"    HS   det_rate={hs_drs}\", flush=True)\n        print(f\"    Text det_rate={text_drs}\", flush=True)\n\n    result = {\n        \"r1_32b_w1\": {\n            \"config\": {\n                \"layer_idx\": CFG[\"layer_idx\"],\n                \"window\": window,\n                \"n_test\": N_TEST,\n                \"n_train_val\": len(train_val),\n            },\n            \"thresholds\": THRESHOLDS,\n            \"hs\": hs_metrics,\n            \"text\": text_metrics,\n            \"delta\": delta_metrics,\n            \"k_sweep\": k_sweep,\n            \"n_train\": len(train_val),\n            \"n_test\": len(test),\n        }\n    }\n\n    out_path = OUT_DIR / \"results.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(result, f, indent=2)\n    print(f\"\\nResults saved to {out_path}\", flush=True)\n\n    # --- Print formatted table ---\n    res = result[\"r1_32b_w1\"]\n    print(\"\\n\" + \"=\" * 130, flush=True)\n    print(f\"R1-32B W=1 Threshold Sensitivity (n_test={res['n_test']})\", flush=True)\n    print(\"=\" * 130, flush=True)\n\n    hdr = (f\"{'Thr':<5} | {'HS bal_acc':<10} {'Txt bal_acc':<11} {'D_ba':<7} | \"\n           f\"{'HS prec':<8} {'Txt prec':<9} {'D_pr':<7} | \"\n           f\"{'HS FPR':<7} {'Txt FPR':<8} {'D_fpr':<7} | \"\n           f\"{'HS det_K5':<10} {'Txt det_K5':<10}\")\n    print(hdr, flush=True)\n    print(\"-\" * 130, flush=True)\n\n    for i, thr in enumerate(THRESHOLDS):\n        d_ba = res[\"delta\"][\"bal_acc\"][i]\n        d_pr = round(res[\"hs\"][\"precision\"][i] - res[\"text\"][\"precision\"][i], 4)\n        d_fpr = res[\"delta\"][\"fpr\"][i]\n        print(f\"{thr:<5.1f} | {res['hs']['bal_acc'][i]:<10.4f} {res['text']['bal_acc'][i]:<11.4f} {d_ba:<+7.4f} | \"\n              f\"{res['hs']['precision'][i]:<8.4f} {res['text']['precision'][i]:<9.4f} {d_pr:<+7.4f} | \"\n              f\"{res['hs']['fpr'][i]:<7.4f} {res['text']['fpr'][i]:<8.4f} {d_fpr:<+7.4f} | \"\n              f\"{res['hs']['detection_rate_K5'][i]:<10.4f} {res['text']['detection_rate_K5'][i]:<10.4f}\", flush=True)\n\n    print(f\"\\nK sweep at threshold=0.5:\", flush=True)\n    ks = res[\"k_sweep\"][\"threshold_0.5\"]\n    print(f\"  K:         {ks['K']}\", flush=True)\n    print(f\"  HS det:    {ks['hs_det_rate']}\", flush=True)\n    print(f\"  Text det:  {ks['text_det_rate']}\", flush=True)\n\n    ba_range = max(res[\"hs\"][\"bal_acc\"]) - min(res[\"hs\"][\"bal_acc\"])\n    fpr_range = max(res[\"hs\"][\"fpr\"]) - min(res[\"hs\"][\"fpr\"])\n    print(f\"\\n  HS bal_acc range: {ba_range:.4f}\", flush=True)\n    print(f\"  HS FPR range: {fpr_range:.4f}\", flush=True)\n\n    print(f\"\\nTotal time: {time.time()-t0:.1f}s\", flush=True)\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written OK\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e4775c4-0d6a-4c0f-ba9f-f5232e640871",
+            "uuid": "51311edc-bcc3-45e1-83de-f4bbfb7967bf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RsR98C36J2gvPKCRmmGE18",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3765,
+                "cache_read_input_tokens": 32667,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3765
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-18T10:51:50.991Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01396MVuVUu5VRxrme9cBLVx",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2e4775c4-0d6a-4c0f-ba9f-f5232e640871",
+            "uuid": "4d046627-e7bf-417c-bfc6-14307c0c87cd",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Script written OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Script written. Running it now synchronously."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e4775c4-0d6a-4c0f-ba9f-f5232e640871",
+            "uuid": "42f8c75f-dac5-4db5-9bd0-58cb42bd8e51",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01X36A1KHYSNrWF4BubG6n1M",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5623,
+                "cache_read_input_tokens": 36432,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5623
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QXUyzVhyqa9QXXx8rFWRPJ",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "autodl-rtx6000",
+                "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 scripts/run_r1_32b_w1_threshold.py 2>&1",
+                "account": "root",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e4775c4-0d6a-4c0f-ba9f-f5232e640871",
+            "uuid": "68deb225-0ac1-41d6-b909-ac44ad32cc7c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01X36A1KHYSNrWF4BubG6n1M",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5623,
+                "cache_read_input_tokens": 36432,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5623
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-18T10:52:25.192Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QXUyzVhyqa9QXXx8rFWRPJ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"R1-32B Threshold Sensitivity: Layer 63, W=1, n_test=20\\\\nLoading BGE-large model...\\\\n  BGE-large loaded in 6.9s\\\\nLoading sentences from HF...\\\\n  Found 221 traces in HF dataset\\\\nLoading .pt traces...\\\\n  Loaded 100 traces with HS + sentences\\\\n  Split: train_val=80, test=20\\\\nTraining HS probe...\\\\nTraining Text probe (BGE-large)...\\\\n\\\\nThreshold sweep (step-level):\\\\n  thr=0.3: HS bal_acc=0.7524 prec=0.5827 fpr=0.2953 det_K5=0.6500 | Text bal_acc=0.6265 prec=0.4566 fpr=0.4011 det_K5=0.5500\\\\n  thr=0.4: HS bal_acc=0.7458 prec=0.5861 fpr=0.2813 det_K5=0.6000 | Text bal_acc=0.6296 prec=0.4661 fpr=0.3733 det_K5=0.5000\\\\n  thr=0.5: HS bal_acc=0.7419 prec=0.5882 fpr=0.2730 det_K5=0.5000 | Text bal_acc=0.6326 prec=0.4750 fpr=0.3510 det_K5=0.5000\\\\n  thr=0.6: HS bal_acc=0.7408 prec=0.5991 fpr=0.2535 det_K5=0.5000 | Text bal_acc=0.6289 prec=0.4800 fpr=0.3259 det_K5=0.3500\\\\n  thr=0.7: HS bal_acc=0.7426 prec=0.6168 fpr=0.2284 det_K5=0.4500 | Text bal_acc=0.6170 prec=0.4742 fpr=0.3120 det_K5=0.3500\\\\n\\\\nK sweep (trace-level detection rate):\\\\n  thr=0.3: K=[3, 5, 7, 10]\\\\n    HS   det_rate=[0.9, 0.65, 0.4, 0.25]\\\\n    Text det_rate=[0.95, 0.55, 0.2, 0.05]\\\\n  thr=0.4: K=[3, 5, 7, 10]\\\\n    HS   det_rate=[0.9, 0.6, 0.35, 0.25]\\\\n    Text det_rate=[0.95, 0.5, 0.15, 0.05]\\\\n  thr=0.5: K=[3, 5, 7, 10]\\\\n    HS   det_rate=[0.9, 0.5, 0.35, 0.25]\\\\n    Text det_rate=[0.95, 0.5, 0.15, 0.05]\\\\n  thr=0.6: K=[3, 5, 7, 10]\\\\n    HS   det_rate=[0.8, 0.5, 0.3, 0.25]\\\\n    Text det_rate=[0.9, 0.35, 0.1, 0.05]\\\\n  thr=0.7: K=[3, 5, 7, 10]\\\\n    HS   det_rate=[0.75, 0.45, 0.3, 0.2]\\\\n    Text det_rate=[0.9, 0.35, 0.1, 0.05]\\\\n\\\\nResults saved to /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r9_r1_32b_w1_threshold/results.json\\\\n\\\\n==================================================================================================================================\\\\nR1-32B W=1 Threshold Sensitivity (n_test=20)\\\\n==================================================================================================================================\\\\nThr   | HS bal_acc Txt bal_acc D_ba    | HS prec  Txt prec  D_pr    | HS FPR  Txt FPR  D_fpr   | HS det_K5  Txt det_K5\\\\n----------------------------------------------------------------------------------------------------------------------------------\\\\n0.3   | 0.7524     0.6265      +0.1259 | 0.5827   0.4566    +0.1261 | 0.2953  0.4011   -0.1058 | 0.6500     0.5500    \\\\n0.4   | 0.7458     0.6296      +0.1162 | 0.5861   0.4661    +0.1200 | 0.2813  0.3733   -0.0920 | 0.6000     0.5000    \\\\n0.5   | 0.7419     0.6326      +0.1093 | 0.5882   0.4750    +0.1132 | 0.2730  0.3510   -0.0780 | 0.5000     0.5000    \\\\n0.6   | 0.7408     0.6289      +0.1119 | 0.5991   0.4800    +0.1191 | 0.2535  0.3259   -0.0724 | 0.5000     0.3500    \\\\n0.7   | 0.7426     0.6170      +0.1256 | 0.6168   0.4742    +0.1426 | 0.2284  0.3120   -0.0836 | 0.4500     0.3500    \\\\n\\\\nK sweep at threshold=0.5:\\\\n  K:         [3, 5, 7, 10]\\\\n  HS det:    [0.9, 0.5, 0.35, 0.25]\\\\n  Text det:  [0.95, 0.5, 0.15, 0.05]\\\\n\\\\n  HS bal_acc range: 0.0116\\\\n  HS FPR range: 0.0669\\\\n\\\\nTotal time: 23.4s\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 28.72}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2e4775c4-0d6a-4c0f-ba9f-f5232e640871",
+            "uuid": "9e2c8494-82f0-48a8-be0c-51479de5a366",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"R1-32B Threshold Sensitivity: Layer 63, W=1, n_test=20\\\\nLoading BGE-large model...\\\\n  BGE-large loaded in 6.9s\\\\nLoading sentences from HF...\\\\n  Found 221 traces in HF dataset\\\\nLoading .pt traces...\\\\n  Loaded 100 traces with HS + sentences\\\\n  Split: train_val=80, test=20\\\\nTraining HS probe...\\\\nTraining Text probe (BGE-large)...\\\\n\\\\nThreshold sweep (step-level):\\\\n  thr=0.3: HS bal_acc=0.7524 prec=0.5827 fpr=0.2953 det_K5=0.6500 | Text bal_acc=0.6265 prec=0.4566 fpr=0.4011 det_K5=0.5500\\\\n  thr=0.4: HS bal_acc=0.7458 prec=0.5861 fpr=0.2813 det_K5=0.6000 | Text bal_acc=0.6296 prec=0.4661 fpr=0.3733 det_K5=0.5000\\\\n  thr=0.5: HS bal_acc=0.7419 prec=0.5882 fpr=0.2730 det_K5=0.5000 | Text bal_acc=0.6326 prec=0.4750 fpr=0.3510 det_K5=0.5000\\\\n  thr=0.6: HS bal_acc=0.7408 prec=0.5991 fpr=0.2535 det_K5=0.5000 | Text bal_acc=0.6289 prec=0.4800 fpr=0.3259 det_K5=0.3500\\\\n  thr=0.7: HS bal_acc=0.7426 prec=0.6168 fpr=0.2284 det_K5=0.4500 | Text bal_acc=0.6170 prec=0.4742 fpr=0.3120 det_K5=0.3500\\\\n\\\\nK sweep (trace-level detection rate):\\\\n  thr=0.3: K=[3, 5, 7, 10]\\\\n    HS   det_rate=[0.9, 0.65, 0.4, 0.25]\\\\n    Text det_rate=[0.95, 0.55, 0.2, 0.05]\\\\n  thr=0.4: K=[3, 5, 7, 10]\\\\n    HS   det_rate=[0.9, 0.6, 0.35, 0.25]\\\\n    Text det_rate=[0.95, 0.5, 0.15, 0.05]\\\\n  thr=0.5: K=[3, 5, 7, 10]\\\\n    HS   det_rate=[0.9, 0.5, 0.35, 0.25]\\\\n    Text det_rate=[0.95, 0.5, 0.15, 0.05]\\\\n  thr=0.6: K=[3, 5, 7, 10]\\\\n    HS   det_rate=[0.8, 0.5, 0.3, 0.25]\\\\n    Text det_rate=[0.9, 0.35, 0.1, 0.05]\\\\n  thr=0.7: K=[3, 5, 7, 10]\\\\n    HS   det_rate=[0.75, 0.45, 0.3, 0.2]\\\\n    Text det_rate=[0.9, 0.35, 0.1, 0.05]\\\\n\\\\nResults saved to /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r9_r1_32b_w1_threshold/results.json\\\\n\\\\n==================================================================================================================================\\\\nR1-32B W=1 Threshold Sensitivity (n_test=20)\\\\n==================================================================================================================================\\\\nThr   | HS bal_acc Txt bal_acc D_ba    | HS prec  Txt prec  D_pr    | HS FPR  Txt FPR  D_fpr   | HS det_K5  Txt det_K5\\\\n----------------------------------------------------------------------------------------------------------------------------------\\\\n0.3   | 0.7524     0.6265      +0.1259 | 0.5827   0.4566    +0.1261 | 0.2953  0.4011   -0.1058 | 0.6500     0.5500    \\\\n0.4   | 0.7458     0.6296      +0.1162 | 0.5861   0.4661    +0.1200 | 0.2813  0.3733   -0.0920 | 0.6000     0.5000    \\\\n0.5   | 0.7419     0.6326      +0.1093 | 0.5882   0.4750    +0.1132 | 0.2730  0.3510   -0.0780 | 0.5000     0.5000    \\\\n0.6   | 0.7408     0.6289      +0.1119 | 0.5991   0.4800    +0.1191 | 0.2535  0.3259   -0.0724 | 0.5000     0.3500    \\\\n0.7   | 0.7426     0.6170      +0.1256 | 0.6168   0.4742    +0.1426 | 0.2284  0.3120   -0.0836 | 0.4500     0.3500    \\\\n\\\\nK sweep at threshold=0.5:\\\\n  K:         [3, 5, 7, 10]\\\\n  HS det:    [0.9, 0.5, 0.35, 0.25]\\\\n  Text det:  [0.95, 0.5, 0.15, 0.05]\\\\n\\\\n  HS bal_acc range: 0.0116\\\\n  HS FPR range: 0.0669\\\\n\\\\nTotal time: 23.4s\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 28.72}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"R1-32B Threshold Sensitivity: Layer 63, W=1, n_test=20\\nLoading BGE-large model...\\n  BGE-large loaded in 6.9s\\nLoading sentences from HF...\\n  Found 221 traces in HF dataset\\nLoading .pt traces...\\n  Loaded 100 traces with HS + sentences\\n  Split: train_val=80, test=20\\nTraining HS probe...\\nTraining Text probe (BGE-large)...\\n\\nThreshold sweep (step-level):\\n  thr=0.3: HS bal_acc=0.7524 prec=0.5827 fpr=0.2953 det_K5=0.6500 | Text bal_acc=0.6265 prec=0.4566 fpr=0.4011 det_K5=0.5500\\n  thr=0.4: HS bal_acc=0.7458 prec=0.5861 fpr=0.2813 det_K5=0.6000 | Text bal_acc=0.6296 prec=0.4661 fpr=0.3733 det_K5=0.5000\\n  thr=0.5: HS bal_acc=0.7419 prec=0.5882 fpr=0.2730 det_K5=0.5000 | Text bal_acc=0.6326 prec=0.4750 fpr=0.3510 det_K5=0.5000\\n  thr=0.6: HS bal_acc=0.7408 prec=0.5991 fpr=0.2535 det_K5=0.5000 | Text bal_acc=0.6289 prec=0.4800 fpr=0.3259 det_K5=0.3500\\n  thr=0.7: HS bal_acc=0.7426 prec=0.6168 fpr=0.2284 det_K5=0.4500 | Text bal_acc=0.6170 prec=0.4742 fpr=0.3120 det_K5=0.3500\\n\\nK sweep (trace-level detection rate):\\n  thr=0.3: K=[3, 5, 7, 10]\\n    HS   det_rate=[0.9, 0.65, 0.4, 0.25]\\n    Text det_rate=[0.95, 0.55, 0.2, 0.05]\\n  thr=0.4: K=[3, 5, 7, 10]\\n    HS   det_rate=[0.9, 0.6, 0.35, 0.25]\\n    Text det_rate=[0.95, 0.5, 0.15, 0.05]\\n  thr=0.5: K=[3, 5, 7, 10]\\n    HS   det_rate=[0.9, 0.5, 0.35, 0.25]\\n    Text det_rate=[0.95, 0.5, 0.15, 0.05]\\n  thr=0.6: K=[3, 5, 7, 10]\\n    HS   det_rate=[0.8, 0.5, 0.3, 0.25]\\n    Text det_rate=[0.9, 0.35, 0.1, 0.05]\\n  thr=0.7: K=[3, 5, 7, 10]\\n    HS   det_rate=[0.75, 0.45, 0.3, 0.2]\\n    Text det_rate=[0.9, 0.35, 0.1, 0.05]\\n\\nResults saved to /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r9_r1_32b_w1_threshold/results.json\\n\\n==================================================================================================================================\\nR1-32B W=1 Threshold Sensitivity (n_test=20)\\n==================================================================================================================================\\nThr   | HS bal_acc Txt bal_acc D_ba    | HS prec  Txt prec  D_pr    | HS FPR  Txt FPR  D_fpr   | HS det_K5  Txt det_K5\\n----------------------------------------------------------------------------------------------------------------------------------\\n0.3   | 0.7524     0.6265      +0.1259 | 0.5827   0.4566    +0.1261 | 0.2953  0.4011   -0.1058 | 0.6500     0.5500    \\n0.4   | 0.7458     0.6296      +0.1162 | 0.5861   0.4661    +0.1200 | 0.2813  0.3733   -0.0920 | 0.6000     0.5000    \\n0.5   | 0.7419     0.6326      +0.1093 | 0.5882   0.4750    +0.1132 | 0.2730  0.3510   -0.0780 | 0.5000     0.5000    \\n0.6   | 0.7408     0.6289      +0.1119 | 0.5991   0.4800    +0.1191 | 0.2535  0.3259   -0.0724 | 0.5000     0.3500    \\n0.7   | 0.7426     0.6170      +0.1256 | 0.6168   0.4742    +0.1426 | 0.2284  0.3120   -0.0836 | 0.4500     0.3500    \\n\\nK sweep at threshold=0.5:\\n  K:         [3, 5, 7, 10]\\n  HS det:    [0.9, 0.5, 0.35, 0.25]\\n  Text det:  [0.95, 0.5, 0.15, 0.05]\\n\\n  HS bal_acc range: 0.0116\\n  HS FPR range: 0.0669\\n\\nTotal time: 23.4s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 28.72}}"
+              }
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果已保存到 `artifacts/exp_r9_r1_32b_w1_threshold/results.json`。\n\n**R1-32B W=1 Threshold Sensitivity (n_test=20)**\n\n| Thr | HS bal_acc | Txt bal_acc | Δ_ba | HS prec | Txt prec | Δ_pr | HS FPR | Txt FPR | Δ_fpr | HS det_K5 | Txt det_K5 |\n|-----|-----------|------------|-------|---------|---------|-------|--------|---------|-------|-----------|------------|\n| 0.3 | 0.7524 | 0.6265 | +0.126 | 0.5827 | 0.4566 | +0.126 | 0.2953 | 0.4011 | -0.106 | 0.65 | 0.55 |\n| 0.4 | 0.7458 | 0.6296 | +0.116 | 0.5861 | 0.4661 | +0.120 | 0.2813 | 0.3733 | -0.092 | 0.60 | 0.50 |\n| 0.5 | 0.7419 | 0.6326 | +0.109 | 0.5882 | 0.4750 | +0.113 | 0.2730 | 0.3510 | -0.078 | 0.50 | 0.50 |\n| 0.6 | 0.7408 | 0.6289 | +0.112 | 0.5991 | 0.4800 | +0.119 | 0.2535 | 0.3259 | -0.072 | 0.50 | 0.35 |\n| 0.7 | 0.7426 | 0.6170 | +0.126 | 0.6168 | 0.4742 | +0.143 | 0.2284 | 0.3120 | -0.084 | 0.45 | 0.35 |\n\n**K sweep at threshold=0.5:**\n| K | HS det_rate | Text det_rate |\n|---|------------|--------------|\n| 3 | 0.90 | 0.95 |\n| 5 | 0.50 | 0.50 |\n| 7 | 0.35 | 0.15 |\n| 10 | 0.25 | 0.05 |\n\n关键发现：\n- HS bal_acc 在 0.74-0.75 范围内，across thresholds 极其稳定（range 仅 0.0116）\n- HS 一致性优于 Text（Δ_ba 约 +0.11 到 +0.13）\n- HS FPR 也一致低于 Text（Δ_fpr 约 -0.07 到 -0.11）\n- K sweep 中 K≥7 时 HS 优势明显（0.35 vs 0.15, 0.25 vs 0.05）"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e4775c4-0d6a-4c0f-ba9f-f5232e640871",
+            "uuid": "b63f5683-d75e-4593-9ac6-697a2c6c3693",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017Cx3xRQ1uTAyYdrvbunKto",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1859,
+                "cache_read_input_tokens": 42055,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1859
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果已保存到 `artifacts/exp_r9_r1_32b_w1_threshold/results.json`。\n\n**R1-32B W=1 Threshold Sensitivity (n_test=20)**\n\n| Thr | HS bal_acc | Txt bal_acc | Δ_ba | HS prec | Txt prec | Δ_pr | HS FPR | Txt FPR | Δ_fpr | HS det_K5 | Txt det_K5 |\n|-----|-----------|------------|-------|---------|---------|-------|--------|---------|-------|-----------|------------|\n| 0.3 | 0.7524 | 0.6265 | +0.126 | 0.5827 | 0.4566 | +0.126 | 0.2953 | 0.4011 | -0.106 | 0.65 | 0.55 |\n| 0.4 | 0.7458 | 0.6296 | +0.116 | 0.5861 | 0.4661 | +0.120 | 0.2813 | 0.3733 | -0.092 | 0.60 | 0.50 |\n| 0.5 | 0.7419 | 0.6326 | +0.109 | 0.5882 | 0.4750 | +0.113 | 0.2730 | 0.3510 | -0.078 | 0.50 | 0.50 |\n| 0.6 | 0.7408 | 0.6289 | +0.112 | 0.5991 | 0.4800 | +0.119 | 0.2535 | 0.3259 | -0.072 | 0.50 | 0.35 |\n| 0.7 | 0.7426 | 0.6170 | +0.126 | 0.6168 | 0.4742 | +0.143 | 0.2284 | 0.3120 | -0.084 | 0.45 | 0.35 |\n\n**K sweep at threshold=0.5:**\n| K | HS det_rate | Text det_rate |\n|---|------------|--------------|\n| 3 | 0.90 | 0.95 |\n| 5 | 0.50 | 0.50 |\n| 7 | 0.35 | 0.15 |\n| 10 | 0.25 | 0.05 |\n\n关键发现：\n- HS bal_acc 在 0.74-0.75 范围内，across thresholds 极其稳定（range 仅 0.0116）\n- HS 一致性优于 Text（Δ_ba 约 +0.11 到 +0.13）\n- HS FPR 也一致低于 Text（Δ_fpr 约 -0.07 到 -0.11）\n- K sweep 中 K≥7 时 HS 优势明显（0.35 vs 0.15, 0.25 vs 0.05）"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 129744,
+            "duration_api_ms": 99464,
+            "num_turns": 9,
+            "stop_reason": "end_turn",
+            "session_id": "2e4775c4-0d6a-4c0f-ba9f-f5232e640871",
+            "total_cost_usd": 0.5002777500000001,
+            "usage": {
+              "input_tokens": 12,
+              "cache_creation_input_tokens": 32073,
+              "cache_read_input_tokens": 231715,
+              "output_tokens": 7301,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 32073,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 827,
+                  "cache_read_input_tokens": 42055,
+                  "cache_creation_input_tokens": 1859,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1859
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1274,
+                "outputTokens": 21,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001379,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 12,
+                "outputTokens": 7301,
+                "cacheReadInputTokens": 231715,
+                "cacheCreationInputTokens": 32073,
+                "webSearchRequests": 0,
+                "costUSD": 0.49889875000000006,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "7c51c60d-d4ab-4708-af5c-ef26cc95828a"
+          },
+          "id": "event-000028"
+        }
+      ],
+      "message_count": 28
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-r9-r1-32b-w1-threshold.md"
+}

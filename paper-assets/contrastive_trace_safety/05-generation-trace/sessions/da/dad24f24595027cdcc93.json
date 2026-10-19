@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dad24f24595027cdcc93",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "ops data archive westd15904",
+  "task_key": "worker_ops_data-archive-westd15904_20260525T204340",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_data-archive-westd15904_20260525T204340_result.json",
+    "occurrence": 1,
+    "bytes": 880,
+    "sha256": "fec98aaf0f77363609d9435e68097dffda70228006309df4ea11f04a1523e31e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "归档完成。\n\n## 归档报告\n\n**路径**: `~/contrastive_trace_safety_archive/` (westd-15904)\n**总大小**: 7.5G\n\n| 目录 | 大小 | 内容 |\n|------|------|------|\n| `code/` | 280K | scripts/ 下 16 个实验脚本（.py, .sh） |\n| `data/` | 7.5G | hidden_states × 6 套（r1_8b_full, advbench_r1_8b/gemma2/gemma4, ot7b_verify, r1_32b_verify）+ advbench_traces × 3 套 + advbench/harmful_behaviors.csv |\n| `results/` | 308K | 12 个 JSON 结果文件 + 1 个 TXT 日志 + verification/（5 个验证 JSON）+ random_cp_control/ |\n| `paper/` | 256K | figures/（fig_cosine_cross_arch.pdf/png） |\n\n**跳过的内容**:\n- `models/bge-large-en-v1.5/` (3.8G) — 公开预训练模型，无需归档\n- `.git/` — 原项目不存在 git 仓库\n- `wandb/` — 不存在\n- `checkpoints/` — 不存在训练 checkpoint，未创建此子目录"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-data-archive-westd15904.md"
+}

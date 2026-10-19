@@ -1,0 +1,49 @@
+% Checkpoint criterion ablation table (D036)
+% Generated 2026-05-15
+
+\begin{table*}[t]
+\centering
+\caption{%
+  Ablation on checkpoint selection criterion.
+  We compare selecting the best checkpoint by validation loss vs.\ by the downstream metric Recall@1.
+  Following Decision D036, we adopt R@1 as the primary criterion.
+  $\Delta$\,R@1 denotes the gain from switching to the R@1 criterion.
+}
+\label{tab:checkpoint-criterion}
+\small
+\begin{tabular}{ll c cc cc c c}
+\toprule
+& & & \multicolumn{2}{c}{\textbf{Best by Val Loss}} & \multicolumn{2}{c}{\textbf{Best by R@1}} & & \\
+\cmidrule(lr){4-5} \cmidrule(lr){6-7}
+\textbf{Encoder} & \textbf{Strategy} & \textbf{Seed} & Step & R@1 & Step & R@1 & $\Delta$\,R@1 & Match? \\
+\midrule
+% --- Qwen2.5-Coder-3B ---
+Qwen2.5-Coder-3B & random & 42 & 1000 & 0.5527 & 1000 & 0.5527 & 0.00 & \cmark \\
+Qwen2.5-Coder-3B & random & 43 &  500 & 0.5357 & 1500 & 0.5554 & +1.97 & \xmark \\
+Qwen2.5-Coder-3B & random & 44 &  500 & 0.6009 &  500 & 0.6009 & 0.00 & \cmark \\
+\addlinespace
+% --- StarCoder2-3B ---
+StarCoder2-3B     & random & 42 & 1000 & 0.4540 & 2500 & 0.4604 & +0.64 & \xmark \\
+\midrule
+% --- Placeholder: embedding strategy ---
+Qwen2.5-Coder-3B & embedding & --- & --- & --- & --- & --- & --- & --- \\
+StarCoder2-3B     & embedding & --- & --- & --- & --- & --- & --- & --- \\
+\addlinespace
+% --- Placeholder: dataflow strategy ---
+Qwen2.5-Coder-3B & dataflow  & --- & --- & --- & --- & --- & --- & --- \\
+StarCoder2-3B     & dataflow  & --- & --- & --- & --- & --- & --- & --- \\
+\midrule
+\multicolumn{3}{l}{\textit{Summary (random, $n{=}4$)}}
+  & \multicolumn{4}{l}{Divergence rate: 2/4 (50\%)}
+  & \multicolumn{2}{l}{Mean $\Delta$ when diverge: +1.31\,pp} \\
+\bottomrule
+\end{tabular}
+
+\smallskip
+\parbox{\textwidth}{\footnotesize
+  \textbf{Note:}
+  Divergence is encoder-dependent: StarCoder2 shows a larger step gap (1500 steps vs.\ 1000) when criteria disagree, consistent with its larger pretrained--finetuned margin.
+  $\Delta$\,R@1 values in percentage points (pp).
+  \cmark/\xmark\ indicate whether both criteria select the same checkpoint.
+}
+\end{table*}

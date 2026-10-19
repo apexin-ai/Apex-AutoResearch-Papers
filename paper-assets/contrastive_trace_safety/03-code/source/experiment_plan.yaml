@@ -1,0 +1,125 @@
+experiments:
+  # === P0: Must-run for paper submission ===
+
+  - id: exp-001
+    claim: 1
+    description: "Cross-architecture hidden-state extraction + layer sweep + static probe evaluation on r1-32b and QwQ-32B. Includes mandatory layer sweep (all layers) to find best layer for 64-layer models before probe evaluation. Validates Claim 1 generalizes beyond r1-8b."
+    priority: P0
+    gpu_budget_hours: 10
+    deps: []
+    models: [DeepSeek-R1-Distill-Qwen-32B, QwQ-32B]
+    notes: "32B models have 64 layers, 5120-d hidden. r1-8b best layer was 14/32 (44% depth) → expect best around layer 28-32 for 64-layer models. Extract ALL layers for sweep, then select best for subsequent experiments. Must do layer sweep BEFORE reporting static probe results — using wrong layer would produce false negative."
+
+  - id: exp-002
+    claim: 2
+    description: "Cross-architecture temporal window evaluation: temporal LR W=15 on r1-32b and QwQ-32B. Validate +30pp coverage improvement holds cross-architecture."
+    priority: P0
+    gpu_budget_hours: 4
+    deps: [exp-001]
+    models: [DeepSeek-R1-Distill-Qwen-32B, QwQ-32B]
+
+  - id: exp-003
+    claim: [1, 2]
+    description: "Cross-model transfer: train probe on r1-8b (Llama), test on r1-32b/QwQ (Qwen2.5). Train on Qwen, test on Llama. Measures zero-shot cross-architecture generalization."
+    priority: P0
+    gpu_budget_hours: 2
+    deps: [exp-001]
+    notes: "Key for cross-architecture story. Projection head needed (4096→5120 or vice versa)."
+
+  - id: exp-004
+    claim: 3
+    description: "Lead time analysis across models: confirm negative lead time finding on 32B models. Report lead time distribution per model."
+    priority: P0
+    gpu_budget_hours: 1
+    deps: [exp-001, exp-002]
+
+  - id: exp-005
+    claim: [1, 2, 3]
+    description: "TrajGuard-style Mahalanobis baseline: implement and evaluate on all 3 models. Expected to fail (signal in minor PCs, Fisher drops 17→1 in PCA-3D)."
+    priority: P0
+    gpu_budget_hours: 2
+    deps: [exp-001]
+    notes: "Critical baseline for 'existing detectors fail' claim. Use safe traces to estimate covariance, compute MD per step."
+
+  - id: exp-006
+    claim: [1, 2]
+    description: "Bootstrap confidence intervals + threshold-independent metrics: 1000 bootstrap resamples on all key metrics (coverage, lead time, accuracy). ALSO report AUROC, precision-recall curves, detection delay CDF, cross-validation per-fold variance, and FPR on safe traces (final_judgment=0.5)."
+    priority: P0
+    gpu_budget_hours: 1
+    deps: [exp-001, exp-002, exp-003, exp-004, exp-005]
+
+  # === P1: Important but deferrable ===
+
+  - id: exp-007
+    claim: 2
+    description: "Window size ablation: W=1,3,5,10,15,20,25 on all 3 models. Find optimal W and show diminishing returns curve."
+    priority: P1
+    gpu_budget_hours: 2
+    deps: [exp-001]
+
+  - id: exp-008
+    claim: 2
+    description: "Layer selection ablation: all layers (not just 14) for temporal probe on 32B models. Confirm middle-layer finding generalizes."
+    priority: P1
+    gpu_budget_hours: 3
+    deps: [exp-001]
+
+  - id: exp-009
+    claim: 2
+    description: "16-label taxonomy supervision: use fine-grained labels (Type 1/2/3/4) instead of binary commitment for richer training signal. May improve both coverage and timing."
+    priority: P1
+    gpu_budget_hours: 2
+    deps: [exp-001]
+    notes: "Addresses reviewer concern about underusing available supervision."
+
+  - id: exp-010
+    claim: 3
+    description: "Oracle decomposition: why can oracle but not probes achieve positive lead time? Analyze what label patterns encode that hidden states don't."
+    priority: P1
+    gpu_budget_hours: 1
+    deps: [exp-004]
+    notes: "For Discussion section. May reveal what architectural changes could close the gap."
+
+  # === P2: Nice-to-have ===
+
+  - id: exp-011
+    claim: 2
+    description: "OpenThinker-7B (Qwen2.5-7B base): 4th model for 2×2 architecture×scale matrix. Controls for scale confound."
+    priority: P2
+    gpu_budget_hours: 4
+    deps: [exp-002]
+    notes: "From Human Review Note point 5. Adds Qwen2.5-7B to complement Llama-8B for scale-matched comparison."
+
+  - id: exp-012
+    claim: [1, 2]
+    description: "GRU/Attention probe as upper bound: verify GRU finding holds on 32B models with more data. If still no improvement over LR, strengthens 'simplicity is optimal' story."
+    priority: P2
+    gpu_budget_hours: 4
+    deps: [exp-001, exp-002]
+
+  - id: exp-013
+    claim: [1, 2]
+    description: "Text-based baseline: sentence-BERT embeddings (all-MiniLM-L6-v2) + same temporal window LR (W=15) on CoT text. Compare coverage/lead time to hidden-state probes. CRITICAL for proving hidden-state monitoring adds unique value over cheap text monitoring. If text achieves comparable performance, paper motivation needs restructuring."
+    priority: P0
+    gpu_budget_hours: 0.5
+    deps: []
+    notes: "No GPU needed for embedding extraction (small model, CPU-feasible). Run on all 4 models. This is the single most important missing baseline per Dream review (flagged by all 3 tiers, both reviewers)."
+
+  - id: exp-014
+    claim: 3
+    description: "Bayesian Online Change-Point Detection (BOCPD) on per-step probe scores: apply Adams & MacKay 2007 to the sequence of probe confidence scores. Could achieve positive lead time by detecting distributional shift before textual commitment. Also test CUSUM as simpler alternative."
+    priority: P0
+    gpu_budget_hours: 0.5
+    deps: [exp-001]
+    notes: "Addresses both 'no method novelty' and 'no positive lead time' criticisms simultaneously. If BOCPD achieves reliable lead time where GRU doesn't, this becomes a genuine methods contribution. If it also fails, strengthens the 'fundamental limitation' narrative."
+
+  - id: exp-015
+    claim: [1, 2]
+    description: "False positive analysis: run all probes (static, temporal, GRU, BOCPD) on safe traces (final_judgment=0.5). Report FPR, precision-recall curves at various thresholds. Essential for deployment utility claims."
+    priority: P0
+    gpu_budget_hours: 0.5
+    deps: [exp-001, exp-002]
+    notes: "Dream flagged missing FPR as critical gap across median and worst tiers. Without this, 'coverage' metric is uninterpretable — a probe that fires everywhere gets 100% coverage."
+
+gpu_budget_total: "~37 A100-hours (P0: 19.5h, P1: 8h, P2: 8h, new P0: +1.5h)"
+timeline: "P0 experiments: May 17-19 (3 days). P1: May 19-21. Paper writing: May 21-25. Text baseline (exp-013) can start immediately (no GPU). BOCPD (exp-014) after first probe scores available."

@@ -1,0 +1,971 @@
+{
+  "schema_version": "1.0",
+  "id": "ee8a539874d7bc537fe0",
+  "project": "contrastive_trace_safety",
+  "kind": "worker",
+  "title": "paper writing method",
+  "task_key": "worker_paper_writing_method_20260517T001252",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_method_20260517T001252.log",
+    "occurrence": 1,
+    "bytes": 90883,
+    "sha256": "c557aad51218916d6618951d009d1595725621ecd7a3f45289de9bbcfad34135"
+  },
+  "statistics": {
+    "messages": 21,
+    "user_turns": 0,
+    "tool_calls": 6,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 5,
+      "tool_call": 6,
+      "tool_result": 6,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+                "session_id": "31e71776-27e0-442d-aed0-be8fb526f93b",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__auto_build_provenance",
+                  "mcp__agent-ml-research__bootstrap_provenance",
+                  "mcp__agent-ml-research__check_paper_consistency",
+                  "mcp__agent-ml-research__check_provenance_completeness",
+                  "mcp__agent-ml-research__cleanup_pdf_images",
+                  "mcp__agent-ml-research__compute_coverage_matrix",
+                  "mcp__agent-ml-research__edit_paper_section",
+                  "mcp__agent-ml-research__get_image_info",
+                  "mcp__agent-ml-research__get_worker_status",
+                  "mcp__agent-ml-research__list_artifacts",
+                  "mcp__agent-ml-research__list_workers",
+                  "mcp__agent-ml-research__load_project_config",
+                  "mcp__agent-ml-research__overleaf_init",
+                  "mcp__agent-ml-research__overleaf_pull",
+                  "mcp__agent-ml-research__overleaf_push",
+                  "mcp__agent-ml-research__overleaf_status",
+                  "mcp__agent-ml-research__overleaf_sync",
+                  "mcp__agent-ml-research__paper_agent_post_to_director",
+                  "mcp__agent-ml-research__paper_agent_request_review",
+                  "mcp__agent-ml-research__paper_compile_and_check",
+                  "mcp__agent-ml-research__pdf_to_images",
+                  "mcp__agent-ml-research__read_experiment_plan_with_status",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__read_roadmap",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__save_project_file",
+                  "mcp__agent-ml-research__send_progress",
+                  "mcp__agent-ml-research__spawn_worker",
+                  "mcp__agent-ml-research__verify_references",
+                  "mcp__agent-ml-research__write_paper_section"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "c248be3d-be10-498a-86f6-f46d131a1b49",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-5-projects-contrastive-trace-safety/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778979600,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "a50ec0e2-3e6e-4601-9dfb-c3e110958f05",
+                "session_id": "31e71776-27e0-442d-aed0-be8fb526f93b"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user wants me to write a Method section (Section 3) for a paper. Let me first read the required skill files, then write the LaTeX content.",
+              "signature": "EsoCClkIDRgCKkDgtCifMa0Sniy/SASNRFsWElq9vEnijjDw1vM8aqd2vt1v6/nbcMSv6DuZsO+kLIBy8d2ekI9eAh2EmSMti+gyMg9jbGF1ZGUtb3B1cy00LTY4ABIM+5aP7ol5xtHHUD16Ggxxo9OloYQa9c9hCoAiMCl9T1imvYDvAK9zP9tET5+1693TUOBxXCIfUbbPkSo0L79VV6KJ/1LHqkXdpfmk2SqeAVn0cT5kSQAzG+xRXcsmJ2BV3FlFYQt11DY/6xrDjE7YJrOiA6ZARGR5iRIuhcOKQT17Y//G47HzJn0IAarZHmCzhS+DIAImtcAGnPukwuK7OeBzLz0RojjBbjbjgf/YUCdgHXdwJDfgMPqJ3VwbfRDLaYBowKBO3wvJGQ0m5QDkotxNlEOtiiGSEZyuv+0BWEuvcwl7wwNlBkzV3qlBGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "31e71776-27e0-442d-aed0-be8fb526f93b",
+            "uuid": "86d04bf8-6f5a-4687-bc2e-acf2b335911f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WPrNRzDRc7PEd62N812PRW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 14565,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14565
+                },
+                "output_tokens": 33,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll read the required skill files first, then write the Method section."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "31e71776-27e0-442d-aed0-be8fb526f93b",
+            "uuid": "0f511777-40e1-4b55-8d6a-989936523926",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WPrNRzDRc7PEd62N812PRW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 14565,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14565
+                },
+                "output_tokens": 33,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012PLWuAPj1ijCS4LptB9byM",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "31e71776-27e0-442d-aed0-be8fb526f93b",
+            "uuid": "a8571345-930b-4ff7-8c94-5e7f687726cc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WPrNRzDRc7PEd62N812PRW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 14565,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14565
+                },
+                "output_tokens": 33,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-17T00:13:06.267Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012PLWuAPj1ijCS4LptB9byM",
+              "type": "tool_result",
+              "content": "1\t---\n2\tname: paper-writing-norms\n3\tdescription: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。\n4\tallowed-tools: [Read, Write, Edit, Glob, Grep]\n5\tscope: global\n6\tversion: 2\n7\tpriority: 9\n8\ttags:\n9\t  - writing\n10\t  - paper\n11\t  - style\n12\t  - norms\n13\troles:\n14\t  - agent\n15\t  - worker\n16\t  - paper_agent\n17\t---\n18\t\n19\t# 论文写作风格规范\n20\t\n21\t> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。\n22\t\n23\t---\n24\t\n25\t## 一、总体写作哲学\n26\t\n27\t### 1.1 故事驱动，不是数据堆砌\n28\t\n29\t- 论文必须以\"故事线\"为核心展开：问题 → 洞察 → 方法 → 验证\n30\t- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进\n31\t- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌\n32\t- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing\n33\t\n34\t### 1.2 主线统一性\n35\t\n36\t- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**\n37\t- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C\n38\t- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机\n39\t- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线\n40\t\n41\t### 1.3 专有名词必须有定义\n42\t\n43\t- 首次出现的专有名词/缩写必须给出完整定义和解释\n44\t- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）\n45\t- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用\n46\t- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug\n47\t\n48\t### 1.4 写作前必读同类优秀论文\n49\t\n50\t- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可\n51\t- 重点学：\n52\t  - Abstract 怎么用最少篇幅讲完故事\n53\t  - Introduction 怎么从大问题切入到具体贡献\n54\t  - Related Work 怎么 positioning 自己（不是 survey）\n55\t  - Table/Figure 怎么压缩信息密度\n56\t- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大\n57\t- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文\n58\t\n59\t---\n60\t\n61\t## 二、Abstract 写作规范\n62\t\n63\t### 2.1 四个必答问题（150-250 words）\n64\t\n65\tAbstract 必须在很短的篇幅内清楚回答：\n66\t1. **研究什么问题** — 1-2 句话交代背景和痛点\n67\t2. **为什么重要** — 现有方法的不足（不用写太多）\n68\t3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）\n69\t4. **结果说明什么** — 用具体实验结论支撑贡献\n70\t\n71\t### 2.2 禁忌\n72\t\n73\t- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim\n74\t- **禁止过度宣传**：不说 \"revolutionary\"、\"groundbreaking\"\n75\t- **禁止写成 Introduction 的缩写**：Abstract 是独立阅读单元\n76\t- **禁止术语堆积**：如果审稿人几十秒内判断不出价值，就失败了\n77\t- **缩写必须定义**：Abstract 中首次出现的缩写必须展开\n78\t\n79\t### 2.3 审稿人视角检验\n80\t\n81\t写完后用这个标准自检：审稿人能否在 30 秒内判断——\n82\t- 问题是否重要？\n83\t- 方法是否清楚？\n84\t- 贡献是否可信？\n85\t- 结果是否有说服力？\n86\t\n87\t---\n88\t\n89\t## 三、Introduction 写作规范\n90\t\n91\t### 3.1 完整叙事线（5 段结构）\n92\t\n93\tIntroduction 需要从一个清晰、重要的问题切入，逐步把读者带到核心贡献：\n94\t\n95\t1. **研究背景**（1-2 段）：大模型在某类能力/应用中已取得进展，但仍存在一个关键瓶颈\n96\t2. **问题重要性**（1 段）：结合真实应用、已有方法局限或当前趋势，说明这不是小问题\n97\t3. **现有方法不足**（1 段）：系统梳理为什么不够（依赖更大模型/更多数据/更复杂推理/更高成本，或只在特定 benchmark 有效）\n98\t4. **本文核心想法**（1 段）：我们观察到什么、提出了什么方法、为什么能解决上述问题\n99\t5. **贡献总结**（列表）：清楚列出方法贡献、实验贡献和分析贡献\n100\t\n101\t### 3.2 整体叙事结构\n102\t\n103\t```\n104\t现有进展 → 关键缺口 → 本文洞察 → 方法概述 → 实验证据 → 贡献总结\n105\t```\n106\t\n107\t### 3.3 禁忌\n108\t\n109\t- **禁止泛泛介绍**：不要开头就写 \"LLMs have shown remarkable capabilities...\"，要从具体问题切入\n110\t- **禁止缺少过渡**：每段之间必须有逻辑连接\n111\t- **禁止实验报告风格**：Introduction 不是 \"我们做了 X 实验得到了 Y 结果\" 的罗列\n112\t- 每条 Contribution 必须有对应的 section/table 支撑\n113\t- Contribution 列表中不能出现未在前文铺垫过的概念\n114\t\n115\t---\n116\t\n117\t## 四、Related Work 写作规范\n118\t\n119\t### 4.1 目标\n120\t\n121\t让审稿人相信：作者理解这个领域，知道自己的方法站在什么位置，清楚相对已有工作的真实增量在哪里。\n122\t\n123\t### 4.2 结构要求\n124\t\n125\t- 把已有工作分成几个清晰的主题（如模型训练、推理增强、工具调用、数据构建、评测等）\n126\t- 每类简要说明：已有方法做了什么、解决了哪些问题、和本文的关系\n127\t- 帮助读者理解：哪些是本文直接继承的，哪些方法不同但解决相似问题，哪些留下了本文要解决的缺口\n128\t\n129\t### 4.3 禁忌\n130\t\n131\t- **禁止论文堆砌**：不要写成 \"A proposed X. B proposed Y. C proposed Z.\" 的列表\n132\t- **目标不是展示读了多少论文**，而是做归纳和比较\n133\t- Contribution claim（\"To our knowledge, no prior work...\"）应放在 Introduction，不在 Related Work\n134\t\n135\t### 4.4 引用充足度\n136\t\n137\t- 引用必须覆盖：**直接相关方法、baseline 论文、评测 benchmark 论文、理论基础**\n138\t- 任何一类缺失，审稿人会立刻看出来调研不充分\n139\t- 引用密度参照目标会议近年录用论文的量级——明显偏少意味着 Related Work 调研不足\n140\t\n141\t---\n142\t\n143\t## 五、去 AI 写作风格（硬规则）\n144\t\n145\t以下模式是 AI 生成文本的典型标志，审稿人一眼能看出。**必须全部消除。**\n146\t\n147\t### 5.1 严禁破折号（最显著的 AI 痕迹）\n148\t\n149\t**这是 AI 写作最容易被识别的标志，审稿人最敏感。单列为最高优先级硬规则。**\n150\t\n151\t- 解释性 em-dash（—，U+2014）和 en-dash（–，U+2013）必须**全部删除**\n152\t- 替代方式：用逗号、括号或拆分为两个句子\n153\t- 强制检查命令：\n154\t  ```bash\n155\t  grep -n \"—\" paper/*.tex     # em-dash，每处人工判断是否必要\n156\t  grep -n \" – \" paper/*.tex   # 解释性 en-dash，几乎都应删除\n157\t  ```\n158\t- 例外（允许保留）：表格分隔符、数字范围（`2020–2024`、`pp. 12–18`）、专有名词（`Newton–Raphson`）\n159\t\n160\t### 5.2 段落与句式\n161\t\n162\t- **禁止过度分段**：不需要每 2-3 句就换段，自然段 5-8 句是正常的\n163\t- **减少关系从句**（which, that, who）：能用简洁直接的句子就不用从句\n164\t- **禁止 -ing 短语结尾**：如 \"..., highlighting the applicability of...\" / \"..., demonstrating the effectiveness of...\"。这是 AI 写作最典型的标志之一\n165\t- **禁止连续使用 \"Furthermore\" / \"Moreover\" / \"Additionally\"**：一段内最多用一个过渡词\n166\t- **避免 \"It is worth noting that...\" / \"Notably, ...\"**：直接写要说的内容\n167\t\n168\t### 5.3 用词黑名单\n169\t\n170\t- 避免 \"delve into\" / \"leverage\" / \"utilize\" / \"facilitate\" — 用 \"explore\" / \"use\" / \"enable\"\n171\t- 避免 \"a myriad of\" / \"a plethora of\" — 用 \"many\" / \"various\"\n172\t- 避免 \"in the realm of\" / \"in the context of\" — 直接说\n173\t- 避免 \"paradigm shift\" / \"novel\" 过度使用\n174\t\n175\t### 5.4 校对清单（4 步）\n176\t\n177\t1. 全文 proofread 语法和拼写\n178\t2. 检查所有代词/指示词（this, that, it）是否指代明确\n179\t3. **`grep \"—\"` + `grep \" – \"` 全文清零**（删除所有解释性 dash，§5.1）\n180\t4. `grep \"ing,\"` 模式——大部分 -ing 分词短语需要改写\n181\t\n182\t---\n183\t\n184\t## 六、图表与视觉规范\n185\t\n186\t### 6.1 知识密度原则\n187\t\n188\t- **图表的信息必须紧凑**——不能为了美观而留大量白空间\n189\t- 一张图如果只传达一个简单信息，要么缩小要么合并到其他图中\n190\t- 能用 inline text 说清的不要占一整个 Figure\n191\t\n192\t### 6.2 表格规范\n193\t\n194\t- 表格和正文文字不能视觉重叠（检查 column 宽度和 alignment）\n195\t- 小数精度全表统一\n196\t- 最优加粗、次优下划线\n197\t- Caption 必须自包含\n198\t\n199\t### 6.3 图片规范\n200\t\n201\t- 数值标签不能被线、bar、点遮住——用白色背景或偏移标签\n202\t- 图中字体 >= 7pt（打印后仍可读）\n203\t- 栏宽约束需匹配目标 venue 模板要求\n204\t- 概念图/流程图要有信息量，不要画一个 trivial 的 pipeline 然后占半页\n205\t\n206\t### 6.4 空间效率\n207\t\n208\t- 顶会正文页数严格受限（具体页数查目标会议官网），每 cm² 都是宝贵资源\n209\t- 优先使用 `\\subfigure` 合并相关图\n210\t- Table 能 inline 就不要单独浮动\n211\t- 图表占比与其对叙事的贡献成正比\n212\t\n213\t---\n214\t\n215\t## 七、投稿前通用准备\n216\t\n217\t### 7.1 模板必须官方（硬规则）\n218\t\n219\t- LaTeX 模板**必须从目标会议官网下载**（CallForPapers / Author Instructions 页面）\n220\t- **不要用**：\n221\t  - 网上他人转载的复制版本（可能被改过 margin / 行号设置）\n222\t  - 上一年的模板（参数可能变：字体、margin、行号、anonymous 选项等）\n223\t  - 组里学长留的旧版本（来源不明、无法追溯）\n224\t- 风险：\n225\t  - 样式不符合 → desk reject\n226\t  - margin 不对 → 被审稿人质疑诚信\n227\t  - reference 格式错 → 被认为不规范\n228\t- 流程：先查会议官网 templates → 找不到再 `WebSearch \"{venue} {year} latex template official\"` → 仍找不到汇报 Director（不要用就近年版本顶替）\n229\t- `\\documentclass[]{}` 选项必须与目标 venue + 阶段（review / camera-ready）一致\n230\t\n231\t### 7.2 投稿要求逐项核对\n232\t\n233\t- 目标会议如要求 Checklist / Ethical Statement / Broader Impact Statement / Reproducibility Statement，必须**认真填每一项**，不要全写 N/A\n234\t- 页数限制：查目标会议官网\n235\t- 匿名化要求：review 版 vs camera-ready 版本设置不同\n236\t- 行号开启（review 版常需）\n237\t- 字体大小、margin 不得修改 sty 文件\n238\t\n239\t### 7.3 最终修改 10 项检查流程\n240\t\n241\t提交前必须逐一检查：\n242\t1. 所有最新实验结果已全部录入\n243\t2. 根据实验结果将叙事调至最优状态\n244\t3. 附录所有内容在正文中被引用且融入叙事\n245\t4. 无数据堆砌（每个数字服务于叙事推进）\n246\t5. Abstract 和 Introduction 具有吸引力（不是实验报告风格）\n247\t6. 全文主线统一（idea 变化后各章节逻辑一致）\n248\t7. 所有专有名词有定义\n249\t8. 无 AI 风格标志（dash、-ing phrases、过度分段）\n250\t9. 图表知识密度高、无视觉遮挡\n251\t10. Reference 覆盖直接相关方法、baseline、benchmark、理论基础\n252\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "31e71776-27e0-442d-aed0-be8fb526f93b",
+            "uuid": "6b5cc0b6-ebf9-4835-824f-37bef8a220e6",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md",
+                "content": "---\nname: paper-writing-norms\ndescription: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。\nallowed-tools: [Read, Write, Edit, Glob, Grep]\nscope: global\nversion: 2\npriority: 9\ntags:\n  - writing\n  - paper\n  - style\n  - norms\nroles:\n  - agent\n  - worker\n  - paper_agent\n---\n\n# 论文写作风格规范\n\n> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。\n\n---\n\n## 一、总体写作哲学\n\n### 1.1 故事驱动，不是数据堆砌\n\n- 论文必须以\"故事线\"为核心展开：问题 → 洞察 → 方法 → 验证\n- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进\n- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌\n- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing\n\n### 1.2 主线统一性\n\n- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**\n- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C\n- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机\n- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线\n\n### 1.3 专有名词必须有定义\n\n- 首次出现的专有名词/缩写必须给出完整定义和解释\n- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）\n- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用\n- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug\n\n### 1.4 写作前必读同类优秀论文\n\n- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可\n- 重点学：\n  - Abstract 怎么用最少篇幅讲完故事\n  - Introduction 怎么从大问题切入到具体贡献\n  - Related Work 怎么 positioning 自己（不是 survey）\n  - Table/Figure 怎么压缩信息密度\n- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大\n- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文\n\n---\n\n## 二、Abstract 写作规范\n\n### 2.1 四个必答问题（150-250 words）\n\nAbstract 必须在很短的篇幅内清楚回答：\n1. **研究什么问题** — 1-2 句话交代背景和痛点\n2. **为什么重要** — 现有方法的不足（不用写太多）\n3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）\n4. **结果说明什么** — 用具体实验结论支撑贡献\n\n### 2.2 禁忌\n\n- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim\n- **禁止过度宣传**：不说 \"revolutionary\"、\"groundbreaking\"\n- **禁止写成 Introduction 的缩写**：Abstract 是独立阅读单元\n- **禁止术语堆积**：如果审稿人几十秒内判断不出价值，就失败了\n- **缩写必须定义**：Abstract 中首次出现的缩写必须展开\n\n### 2.3 审稿人视角检验\n\n写完后用这个标准自检：审稿人能否在 30 秒内判断——\n- 问题是否重要？\n- 方法是否清楚？\n- 贡献是否可信？\n- 结果是否有说服力？\n\n---\n\n## 三、Introduction 写作规范\n\n### 3.1 完整叙事线（5 段结构）\n\nIntroduction 需要从一个清晰、重要的问题切入，逐步把读者带到核心贡献：\n\n1. **研究背景**（1-2 段）：大模型在某类能力/应用中已取得进展，但仍存在一个关键瓶颈\n2. **问题重要性**（1 段）：结合真实应用、已有方法局限或当前趋势，说明这不是小问题\n3. **现有方法不足**（1 段）：系统梳理为什么不够（依赖更大模型/更多数据/更复杂推理/更高成本，或只在特定 benchmark 有效）\n4. **本文核心想法**（1 段）：我们观察到什么、提出了什么方法、为什么能解决上述问题\n5. **贡献总结**（列表）：清楚列出方法贡献、实验贡献和分析贡献\n\n### 3.2 整体叙事结构\n\n```\n现有进展 → 关键缺口 → 本文洞察 → 方法概述 → 实验证据 → 贡献总结\n```\n\n### 3.3 禁忌\n\n- **禁止泛泛介绍**：不要开头就写 \"LLMs have shown remarkable capabilities...\"，要从具体问题切入\n- **禁止缺少过渡**：每段之间必须有逻辑连接\n- **禁止实验报告风格**：Introduction 不是 \"我们做了 X 实验得到了 Y 结果\" 的罗列\n- 每条 Contribution 必须有对应的 section/table 支撑\n- Contribution 列表中不能出现未在前文铺垫过的概念\n\n---\n\n## 四、Related Work 写作规范\n\n### 4.1 目标\n\n让审稿人相信：作者理解这个领域，知道自己的方法站在什么位置，清楚相对已有工作的真实增量在哪里。\n\n### 4.2 结构要求\n\n- 把已有工作分成几个清晰的主题（如模型训练、推理增强、工具调用、数据构建、评测等）\n- 每类简要说明：已有方法做了什么、解决了哪些问题、和本文的关系\n- 帮助读者理解：哪些是本文直接继承的，哪些方法不同但解决相似问题，哪些留下了本文要解决的缺口\n\n### 4.3 禁忌\n\n- **禁止论文堆砌**：不要写成 \"A proposed X. B proposed Y. C proposed Z.\" 的列表\n- **目标不是展示读了多少论文**，而是做归纳和比较\n- Contribution claim（\"To our knowledge, no prior work...\"）应放在 Introduction，不在 Related Work\n\n### 4.4 引用充足度\n\n- 引用必须覆盖：**直接相关方法、baseline 论文、评测 benchmark 论文、理论基础**\n- 任何一类缺失，审稿人会立刻看出来调研不充分\n- 引用密度参照目标会议近年录用论文的量级——明显偏少意味着 Related Work 调研不足\n\n---\n\n## 五、去 AI 写作风格（硬规则）\n\n以下模式是 AI 生成文本的典型标志，审稿人一眼能看出。**必须全部消除。**\n\n### 5.1 严禁破折号（最显著的 AI 痕迹）\n\n**这是 AI 写作最容易被识别的标志，审稿人最敏感。单列为最高优先级硬规则。**\n\n- 解释性 em-dash（—，U+2014）和 en-dash（–，U+2013）必须**全部删除**\n- 替代方式：用逗号、括号或拆分为两个句子\n- 强制检查命令：\n  ```bash\n  grep -n \"—\" paper/*.tex     # em-dash，每处人工判断是否必要\n  grep -n \" – \" paper/*.tex   # 解释性 en-dash，几乎都应删除\n  ```\n- 例外（允许保留）：表格分隔符、数字范围（`2020–2024`、`pp. 12–18`）、专有名词（`Newton–Raphson`）\n\n### 5.2 段落与句式\n\n- **禁止过度分段**：不需要每 2-3 句就换段，自然段 5-8 句是正常的\n- **减少关系从句**（which, that, who）：能用简洁直接的句子就不用从句\n- **禁止 -ing 短语结尾**：如 \"..., highlighting the applicability of...\" / \"..., demonstrating the effectiveness of...\"。这是 AI 写作最典型的标志之一\n- **禁止连续使用 \"Furthermore\" / \"Moreover\" / \"Additionally\"**：一段内最多用一个过渡词\n- **避免 \"It is worth noting that...\" / \"Notably, ...\"**：直接写要说的内容\n\n### 5.3 用词黑名单\n\n- 避免 \"delve into\" / \"leverage\" / \"utilize\" / \"facilitate\" — 用 \"explore\" / \"use\" / \"enable\"\n- 避免 \"a myriad of\" / \"a plethora of\" — 用 \"many\" / \"various\"\n- 避免 \"in the realm of\" / \"in the context of\" — 直接说\n- 避免 \"paradigm shift\" / \"novel\" 过度使用\n\n### 5.4 校对清单（4 步）\n\n1. 全文 proofread 语法和拼写\n2. 检查所有代词/指示词（this, that, it）是否指代明确\n3. **`grep \"—\"` + `grep \" – \"` 全文清零**（删除所有解释性 dash，§5.1）\n4. `grep \"ing,\"` 模式——大部分 -ing 分词短语需要改写\n\n---\n\n## 六、图表与视觉规范\n\n### 6.1 知识密度原则\n\n- **图表的信息必须紧凑**——不能为了美观而留大量白空间\n- 一张图如果只传达一个简单信息，要么缩小要么合并到其他图中\n- 能用 inline text 说清的不要占一整个 Figure\n\n### 6.2 表格规范\n\n- 表格和正文文字不能视觉重叠（检查 column 宽度和 alignment）\n- 小数精度全表统一\n- 最优加粗、次优下划线\n- Caption 必须自包含\n\n### 6.3 图片规范\n\n- 数值标签不能被线、bar、点遮住——用白色背景或偏移标签\n- 图中字体 >= 7pt（打印后仍可读）\n- 栏宽约束需匹配目标 venue 模板要求\n- 概念图/流程图要有信息量，不要画一个 trivial 的 pipeline 然后占半页\n\n### 6.4 空间效率\n\n- 顶会正文页数严格受限（具体页数查目标会议官网），每 cm² 都是宝贵资源\n- 优先使用 `\\subfigure` 合并相关图\n- Table 能 inline 就不要单独浮动\n- 图表占比与其对叙事的贡献成正比\n\n---\n\n## 七、投稿前通用准备\n\n### 7.1 模板必须官方（硬规则）\n\n- LaTeX 模板**必须从目标会议官网下载**（CallForPapers / Author Instructions 页面）\n- **不要用**：\n  - 网上他人转载的复制版本（可能被改过 margin / 行号设置）\n  - 上一年的模板（参数可能变：字体、margin、行号、anonymous 选项等）\n  - 组里学长留的旧版本（来源不明、无法追溯）\n- 风险：\n  - 样式不符合 → desk reject\n  - margin 不对 → 被审稿人质疑诚信\n  - reference 格式错 → 被认为不规范\n- 流程：先查会议官网 templates → 找不到再 `WebSearch \"{venue} {year} latex template official\"` → 仍找不到汇报 Director（不要用就近年版本顶替）\n- `\\documentclass[]{}` 选项必须与目标 venue + 阶段（review / camera-ready）一致\n\n### 7.2 投稿要求逐项核对\n\n- 目标会议如要求 Checklist / Ethical Statement / Broader Impact Statement / Reproducibility Statement，必须**认真填每一项**，不要全写 N/A\n- 页数限制：查目标会议官网\n- 匿名化要求：review 版 vs camera-ready 版本设置不同\n- 行号开启（review 版常需）\n- 字体大小、margin 不得修改 sty 文件\n\n### 7.3 最终修改 10 项检查流程\n\n提交前必须逐一检查：\n1. 所有最新实验结果已全部录入\n2. 根据实验结果将叙事调至最优状态\n3. 附录所有内容在正文中被引用且融入叙事\n4. 无数据堆砌（每个数字服务于叙事推进）\n5. Abstract 和 Introduction 具有吸引力（不是实验报告风格）\n6. 全文主线统一（idea 变化后各章节逻辑一致）\n7. 所有专有名词有定义\n8. 无 AI 风格标志（dash、-ing phrases、过度分段）\n9. 图表知识密度高、无视觉遮挡\n10. Reference 覆盖直接相关方法、baseline、benchmark、理论基础\n",
+                "numLines": 252,
+                "startLine": 1,
+                "totalLines": 252
+              }
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ReBKu5fbkiojDRzMKY4xDL",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "31e71776-27e0-442d-aed0-be8fb526f93b",
+            "uuid": "725f8ca1-5141-451f-a748-d96e086af3ea",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WPrNRzDRc7PEd62N812PRW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 14565,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14565
+                },
+                "output_tokens": 33,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-17T00:13:06.305Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01ReBKu5fbkiojDRzMKY4xDL",
+              "type": "tool_result",
+              "content": "1\t---\n2\tname: latex-paper\n3\tdescription: ML 顶会论文 LaTeX 写作全流程——Claim-Evidence 方法论、引用防幻觉、顶会模板速查、投稿工程链、会议转投。写论文/投稿时参考。\n4\tscope: global\n5\ttags:\n6\t- latex\n7\t- paper-writing\n8\t- academic\n9\t- citation\n10\t- submission\n11\tversion: 1\n12\troles:\n13\t- agent\n14\t- worker\n15\t---\n16\t\n17\t# LaTeX 论文写作全流程\n18\t\n19\tML/AI 顶会论文从草稿到投稿的完整指南。整合 Orchestra Research、VibeSkills、claim2evidence 三方最佳实践。\n20\t\n21\t---\n22\t\n23\t## 1. 工作模式\n24\t\n25\t开始前选择模式：\n26\t\n27\t| 模式 | 说明 | 适用 |\n28\t|------|------|------|\n29\t| **Build** | 从实验笔记/结果/代码生成论文 | 新稿 |\n30\t| **Improve** | 改写已有章节，强化论证 | 修改稿 |\n31\t| **Audit** | 输出风险列表 + 缺失证据 + 修复建议 | 投前检查 |\n32\t\n33\t---\n34\t\n35\t## 2. Claim-Evidence 方法论\n36\t\n37\t**核心原则：论文是一个有中心贡献的故事，不是实验的堆砌。**\n38\t\n39\t### 2.1 一句话贡献\n40\t\n41\t在写任何内容之前，必须能用一句话说清贡献。如果不能，说明还没准备好写论文。\n42\t\n43\t### 2.2 Claim-Evidence Map\n44\t\n45\t为每个 contribution 建立 claim→evidence 映射表：\n46\t\n47\t| Contribution | Claim | Evidence | Table/Figure |\n48\t|-------------|-------|----------|-------------|\n49\t| C1: 方法 X 在 Y 上 SOTA | 比所有 baseline 高 ≥2% | 5-seed 平均，p<0.05 | Table 1 |\n50\t| C2: 消融证明 Z 是关键 | 去掉 Z 后掉 >5% | 消融实验 | Table 2 |\n51\t| C3: 计算效率 | 比 baseline 快 3× | FLOPs + wall-clock | Figure 3 |\n52\t\n53\t**没有直接证据支撑的 claim 必须删除或降级为 discussion。**\n54\t\n55\t### 2.3 章节起草顺序\n56\t\n57\t```\n58\t1. Introduction + Experiments（先确定 claim 和 evidence）\n59\t2. Method（评估问题稳定后再写细节）\n60\t3. Related Work\n61\t4. Abstract + Title（核心 claim 定型后最后写）\n62\t```\n63\t\n64\t### 2.4 Quality Gates\n65\t\n66\t投稿前必须通过：\n67\t- [ ] 前两段出现显式 novelty 声明\n68\t- [ ] 每个 contribution 有可验证的 evidence\n69\t- [ ] Abstract / Intro / Conclusion 的 claim 一致\n70\t- [ ] Limitations 真实且技术性诚实\n71\t- [ ] 审稿人两分钟内能识别 delta\n72\t\n73\t---\n74\t\n75\t## 3. 引用防幻觉（CRITICAL）\n76\t\n77\t**AI 生成引用有 ~40% 错误率。绝对禁止凭记忆写 BibTeX。**\n78\t\n79\t### 3.1 黄金法则\n80\t\n81\t```\n82\tIF 无法程序化获取引用:\n83\t    → 标记 [CITATION NEEDED] 或 \\cite{PLACEHOLDER_verify}\n84\t    → 明确告知用户\n85\t    → 绝不编造看似合理的引用\n86\t```\n87\t\n88\t### 3.2 五步验证流程\n89\t\n90\t```\n91\t1. SEARCH  → Semantic Scholar API 搜索关键词\n92\t2. VERIFY  → 至少 2 个来源确认论文存在（S2 + arXiv/CrossRef）\n93\t3. RETRIEVE → 通过 DOI 获取 BibTeX（程序化，非记忆）\n94\t4. CHECK   → 确认你引用的 claim 确实出自该论文\n95\t5. ADD     → 加入 .bib 文件\n96\t```\n97\t\n98\t### 3.3 API 速查\n99\t\n100\t| API | 用途 | 限制 |\n101\t|-----|------|------|\n102\t| **Semantic Scholar** | ML/AI 论文搜索 | 1 RPS (免费) |\n103\t| **CrossRef** | DOI → BibTeX | 需 mailto 头 |\n104\t| **arXiv** | 预印本搜索 | 3s 间隔 |\n105\t\n106\t```python\n107\t# DOI → BibTeX（最可靠的方式）\n108\timport requests\n109\tdef doi_to_bibtex(doi: str) -> str:\n110\t    r = requests.get(f\"https://doi.org/{doi}\",\n111\t                     headers={\"Accept\": \"application/x-bibtex\"})\n112\t    r.raise_for_status()\n113\t    return r.text\n114\t\n115\t# Semantic Scholar 搜索\n116\tfrom semanticscholar import SemanticScholar\n117\tsch = SemanticScholar()\n118\tresults = sch.search_paper(\"attention mechanism transformers\", limit=5)\n119\tfor p in results:\n120\t    print(f\"{p.title} | DOI: {p.externalIds.get('DOI', 'N/A')}\")\n121\t```\n122\t\n123\t### 3.4 引用处理规则\n124\t\n125\t| 情况 | 处理 |\n126\t|------|------|\n127\t| 找到论文 + DOI + BibTeX | 直接用 |\n128\t| 找到论文，无 DOI | 用 arXiv BibTeX |\n129\t| 论文存在但无法获取 BibTeX | 标记 placeholder，告知用户 |\n130\t| 不确定论文是否存在 | 标记 `[CITATION NEEDED]`，告知用户 |\n131\t| \"我觉得有篇关于 X 的论文\" | **绝不引用** — 先搜索或标记 |\n132\t\n133\t---\n134\t\n135\t## 4. 顶会模板速查\n136\t\n137\t### 4.1 ML/AI 会议\n138\t\n139\t| 会议 | 页数限制 | 主文件 | 样式文件 | 必须项 |\n140\t|------|---------|--------|---------|--------|\n141\t| **NeurIPS** | 9 页 | `main.tex` | `neurips.sty` | Paper Checklist |\n142\t| **ICML** | 8 页 (+1 camera-ready) | `example_paper.tex` | `icml2026.sty` | Broader Impact |\n143\t| **ICLR** | 9 页 (+1) | `iclr_conference.tex` | `iclr_conference.sty` | LLM 使用声明 |\n144\t| **ACL/EMNLP** | 8 页 (long) | `acl_latex.tex` | `acl.sty` | Limitations 必须 |\n145\t| **AAAI** | 7 页 (+1) | `aaai_template.tex` | `aaai.sty` | 严格样式 |\n146\t| **COLM** | 9 页 (+1) | `colm_conference.tex` | `colm_conference.sty` | 语言模型聚焦 |\n147\t\n148\t### 4.2 系统会议\n149\t\n150\t| 会议 | 页数限制 | 模板类型 | 关键要求 |\n151\t|------|---------|---------|---------|\n152\t| **OSDI** | 12 页 (+2) | USENIX `usenix.sty` | Research / Operational 双 track |\n153\t| **NSDI** | 12 页 | USENIX | Introduction 预筛 |\n154\t| **ASPLOS** | 12 页 | ACM `acmart.cls (sigplan)` | 前 2 页快速评审 |\n155\t| **SOSP** | 12 页 | ACM `acmart.cls (sigplan)` | 可选 Artifact Evaluation |\n156\t\n157\t### 4.3 模板使用原则\n158\t\n159\t```bash\n160\t# 1. 复制整个模板目录（不要只拷 .tex）\n161\tcp -r templates/neurips2025/ ~/papers/my-paper/\n162\t\n163\t# 2. 先编译未修改的模板，确认能跑通\n164\tlatexmk -pdf main.tex\n165\t\n166\t# 3. 逐章替换内容，频繁编译\n167\t```\n168\t\n169\t**禁止事项：**\n170\t- 不要修改 `.sty` 文件\n171\t- 不要在会议模板间复制 `\\usepackage` 行\n172\t- 不要只复制 `.tex` 而不带 `.sty/.bst`\n173\t\n174\t---\n175\t\n176\t## 5. 写作规范\n177\t\n178\t### 5.1 时间分配（Neel Nanda）\n179\t\n180\t花**大致相等**的时间在：\n181\t1. Abstract\n182\t2. Introduction\n183\t3. 图表\n184\t4. **其余所有内容加起来**\n185\t\n186\t审稿人读论文的顺序：标题 → 摘要 → 引言 → 图表 → 也许正文。\n187\t\n188\t### 5.2 Abstract 五句法（Sebastian Farquhar）\n189\t\n190\t```\n191\t1. 你做了什么（\"We introduce/prove/demonstrate...\"）\n192\t2. 为什么这很难且重要\n193\t3. 怎么做的（含专业关键词以便检索）\n194\t4. 有什么证据\n195\t5. 最惊人的数字/结果\n196\t```\n197\t\n198\t删除一切泛泛的开头：~~\"Large language models have achieved remarkable success...\"~~\n199\t\n200\t### 5.3 句子级清晰度（Gopen & Swan）\n201\t\n202\t| 原则 | 规则 |\n203\t|------|------|\n204\t| 主谓紧邻 | 不要在主语和动词之间插入长从句 |\n205\t| 重点在句尾 | 把关键数字/结论放在句末 |\n206\t| 旧信息在前 | 先放读者已知的内容，再引入新概念 |\n207\t| 动词表达动作 | \"We analyzed\" 而非 \"We performed an analysis\" |\n208\t\n209\t### 5.4 常见修改\n210\t\n211\t| 问题 | 修复 |\n212\t|------|------|\n213\t| Abstract 太泛 | 删第一句（如果它能放在任何 ML 论文前面） |\n214\t| Introduction 超 1.5 页 | 背景挪到 Related Work |\n215\t| 实验没有显式 claim | 每个实验前加 \"This tests whether...\" |\n216\t| 缺统计显著性 | 加 error bars + 运行次数 + 计算方法 |\n217\t\n218\t---\n219\t\n220\t## 6. 投稿工程链\n221\t\n222\t### 6.1 构建\n223\t\n224\t```bash\n225\t# 推荐：latexmk 一键构建\n226\tlatexmk -pdf -interaction=nonstopmode -halt-on-error main.tex\n227\t\n228\t# 手动：需要多次编译\n229\tpdflatex main.tex && bibtex main && pdflatex main.tex && pdflatex main.tex\n230\t```\n231\t\n232\t### 6.2 Lint + 格式化\n233\t\n234\t```bash\n235\t# Lint: 检查常见 LaTeX 问题\n236\tchktex main.tex\n237\t\n238\t# 格式化: 减少 diff 噪声\n239\tlatexindent -w main.tex\n240\t```\n241\t\n242\t### 6.3 图表格式\n243\t\n244\t| 类型 | 格式 | 说明 |\n245\t|------|------|------|\n246\t| 矢量图（plot、diagram） | PDF | matplotlib: `plt.savefig('fig.pdf')` |\n247\t| 照片/heatmap | PNG 600dpi 或 TIFF | 栅格图 |\n248\t| 表格 | `booktabs` 包 | `\\toprule/\\midrule/\\bottomrule` |\n249\t\n250\t```latex\n251\t\\usepackage{booktabs}\n252\t\\begin{tabular}{lcc}\n253\t\\toprule\n254\tMethod & Accuracy $\\uparrow$ & Latency $\\downarrow$ \\\\\n255\t\\midrule\n256\tBaseline & 85.2 & 45ms \\\\\n257\t\\textbf{Ours} & \\textbf{92.1} & 38ms \\\\\n258\t\\bottomrule\n259\t\\end{tabular}\n260\t```\n261\t\n262\t**图表规范：**\n263\t- 用色盲友好色板（Okabe-Ito 或 Paul Tol）\n264\t- 图内不放标题（用 caption）\n265\t- Caption 独立可理解（不依赖正文）\n266\t- 最佳值加粗，标注方向符号（↑ 越高越好，↓ 越低越好）\n267\t\n268\t### 6.4 投稿打包\n269\t\n270\t```bash\n271\t# 清理辅助文件\n272\tlatexmk -c\n273\t\n274\t# 打包投稿\n275\tzip -r submission.zip main.tex *.sty *.bst *.bib figures/ --exclude='*.aux' --exclude='*.log'\n276\t```\n277\t\n278\t### 6.5 常见失败点\n279\t\n280\t| 问题 | 解决 |\n281\t|------|------|\n282\t| 图片格式混用导致编译失败 | 统一用 PDF |\n283\t| 字体未嵌入 | `pdffonts output.pdf` 检查 |\n284\t| Overfull box 过多 | 关键位置手动调行 |\n285\t| 引用缺字段 | 检查 DOI/年份/期刊名 |\n286\t| 超页数 | 用 `\\vspace{-Xpt}` 微调，或精简内容 |\n287\t\n288\t---\n289\t\n290\t## 7. 会议转投\n291\t\n292\t当论文被拒或转投其他会议时：\n293\t\n294\t### 7.1 ML/AI 会议间转换\n295\t\n296\t| 转换 | 页数变化 | 关键调整 |\n297\t|------|---------|---------|\n298\t| NeurIPS → ICML | 9→8 | 删 1 页，加 Broader Impact |\n299\t| ICML → ICLR | 8→9 | 可扩展实验 + LLM 声明 |\n300\t| NeurIPS → ACL | 9→8 | 按 NLP 惯例重组 + Limitations |\n301\t| ICLR → AAAI | 9→7 | 大幅精简，严格样式 |\n302\t\n303\t### 7.2 转投原则\n304\t\n305\t1. **永远用目标模板重新开始** — 复制目标模板，迁移内容，不要合并 preamble\n306\t2. **只迁移正文内容** — 不复制 `\\usepackage`、header/footer 命令\n307\t3. **根据审稿意见改进** — 但不要在新稿中提及旧投稿（双盲）\n308\t4. **检查目标会议特殊要求** — checklist、ethics statement、LLM 声明等\n309\t\n310\t---\n311\t\n312\t## 8. 投前清单\n313\t\n314\t### 通用清单\n315\t\n316\t- [ ] Abstract/Intro/Conclusion 的 claim 一致\n317\t- [ ] 每个 contribution 有对应 evidence\n318\t- [ ] 所有引用已程序化验证（无幻觉引用）\n319\t- [ ] Error bars + 运行次数 + 统计方法\n320\t- [ ] Limitations 章节存在且诚实\n321\t- [ ] 匿名化（双盲审稿）\n322\t- [ ] 符合页数限制\n323\t- [ ] 所有图表有自包含 caption\n324\t- [ ] `.bib` 中无缺失字段\n325\t- [ ] PDF 编译无 warning\n326\t\n327\t### 会议特定\n328\t\n329\t| 会议 | 额外要求 |\n330\t|------|---------|\n331\t| NeurIPS | 16 项 Paper Checklist（附录，不计页数） |\n332\t| ICML | Broader Impact Statement |\n333\t| ICLR | LLM 使用声明 |\n334\t| ACL/EMNLP | Limitations 章节（必须），Ethics Statement |\n335\t| AAAI | 严格样式文件合规 |\n336\t\n337\t---\n338\t\n339\t## 参考资源\n340\t\n341\t**写作方法论：**\n342\t- [Neel Nanda: How to Write ML Papers](https://www.alignmentforum.org/posts/eJGptPbbFPZGLpjsp/) — What/Why/So What 框架\n343\t- [Farquhar: How to Write ML Papers](https://sebastianfarquhar.com/on-research/2024/11/04/how_to_write_ml_papers/) — 五句法 Abstract\n344\t- [Gopen & Swan: Science of Scientific Writing](https://cseweb.ucsd.edu/~swanson/papers/science-of-writing.pdf) — 读者预期 7 原则\n345\t- [Lipton: Heuristics for Scientific Writing](https://www.approximatelycorrect.com/2018/01/29/heuristics-technical-scientific-writing-machine-learning-perspective/) — 用词\n346\t- [Perez: Easy Paper Writing Tips](https://ethanperez.net/easy-paper-writing-tips/) — 微观清晰度\n347\t\n348\t**API：**\n349\t- [Semantic Scholar](https://api.semanticscholar.org/api-docs/) | [CrossRef](https://www.crossref.org/documentation/) | [arXiv](https://info.arxiv.org/help/api/)\n350\t\n351\t**会议官方：**\n352\t- [NeurIPS](https://neurips.cc/) | [ICML](https://icml.cc/) | [ICLR](https://iclr.cc/) | [ACL](https://www.aclweb.org/) | [AAAI](https://aaai.org/) | [EMNLP](https://2025.emnlp.org/)\n353\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "31e71776-27e0-442d-aed0-be8fb526f93b",
+            "uuid": "570c415f-2fc0-4d8c-b655-d963036fed70",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md",
+                "content": "---\nname: latex-paper\ndescription: ML 顶会论文 LaTeX 写作全流程——Claim-Evidence 方法论、引用防幻觉、顶会模板速查、投稿工程链、会议转投。写论文/投稿时参考。\nscope: global\ntags:\n- latex\n- paper-writing\n- academic\n- citation\n- submission\nversion: 1\nroles:\n- agent\n- worker\n---\n\n# LaTeX 论文写作全流程\n\nML/AI 顶会论文从草稿到投稿的完整指南。整合 Orchestra Research、VibeSkills、claim2evidence 三方最佳实践。\n\n---\n\n## 1. 工作模式\n\n开始前选择模式：\n\n| 模式 | 说明 | 适用 |\n|------|------|------|\n| **Build** | 从实验笔记/结果/代码生成论文 | 新稿 |\n| **Improve** | 改写已有章节，强化论证 | 修改稿 |\n| **Audit** | 输出风险列表 + 缺失证据 + 修复建议 | 投前检查 |\n\n---\n\n## 2. Claim-Evidence 方法论\n\n**核心原则：论文是一个有中心贡献的故事，不是实验的堆砌。**\n\n### 2.1 一句话贡献\n\n在写任何内容之前，必须能用一句话说清贡献。如果不能，说明还没准备好写论文。\n\n### 2.2 Claim-Evidence Map\n\n为每个 contribution 建立 claim→evidence 映射表：\n\n| Contribution | Claim | Evidence | Table/Figure |\n|-------------|-------|----------|-------------|\n| C1: 方法 X 在 Y 上 SOTA | 比所有 baseline 高 ≥2% | 5-seed 平均，p<0.05 | Table 1 |\n| C2: 消融证明 Z 是关键 | 去掉 Z 后掉 >5% | 消融实验 | Table 2 |\n| C3: 计算效率 | 比 baseline 快 3× | FLOPs + wall-clock | Figure 3 |\n\n**没有直接证据支撑的 claim 必须删除或降级为 discussion。**\n\n### 2.3 章节起草顺序\n\n```\n1. Introduction + Experiments（先确定 claim 和 evidence）\n2. Method（评估问题稳定后再写细节）\n3. Related Work\n4. Abstract + Title（核心 claim 定型后最后写）\n```\n\n### 2.4 Quality Gates\n\n投稿前必须通过：\n- [ ] 前两段出现显式 novelty 声明\n- [ ] 每个 contribution 有可验证的 evidence\n- [ ] Abstract / Intro / Conclusion 的 claim 一致\n- [ ] Limitations 真实且技术性诚实\n- [ ] 审稿人两分钟内能识别 delta\n\n---\n\n## 3. 引用防幻觉（CRITICAL）\n\n**AI 生成引用有 ~40% 错误率。绝对禁止凭记忆写 BibTeX。**\n\n### 3.1 黄金法则\n\n```\nIF 无法程序化获取引用:\n    → 标记 [CITATION NEEDED] 或 \\cite{PLACEHOLDER_verify}\n    → 明确告知用户\n    → 绝不编造看似合理的引用\n```\n\n### 3.2 五步验证流程\n\n```\n1. SEARCH  → Semantic Scholar API 搜索关键词\n2. VERIFY  → 至少 2 个来源确认论文存在（S2 + arXiv/CrossRef）\n3. RETRIEVE → 通过 DOI 获取 BibTeX（程序化，非记忆）\n4. CHECK   → 确认你引用的 claim 确实出自该论文\n5. ADD     → 加入 .bib 文件\n```\n\n### 3.3 API 速查\n\n| API | 用途 | 限制 |\n|-----|------|------|\n| **Semantic Scholar** | ML/AI 论文搜索 | 1 RPS (免费) |\n| **CrossRef** | DOI → BibTeX | 需 mailto 头 |\n| **arXiv** | 预印本搜索 | 3s 间隔 |\n\n```python\n# DOI → BibTeX（最可靠的方式）\nimport requests\ndef doi_to_bibtex(doi: str) -> str:\n    r = requests.get(f\"https://doi.org/{doi}\",\n                     headers={\"Accept\": \"application/x-bibtex\"})\n    r.raise_for_status()\n    return r.text\n\n# Semantic Scholar 搜索\nfrom semanticscholar import SemanticScholar\nsch = SemanticScholar()\nresults = sch.search_paper(\"attention mechanism transformers\", limit=5)\nfor p in results:\n    print(f\"{p.title} | DOI: {p.externalIds.get('DOI', 'N/A')}\")\n```\n\n### 3.4 引用处理规则\n\n| 情况 | 处理 |\n|------|------|\n| 找到论文 + DOI + BibTeX | 直接用 |\n| 找到论文，无 DOI | 用 arXiv BibTeX |\n| 论文存在但无法获取 BibTeX | 标记 placeholder，告知用户 |\n| 不确定论文是否存在 | 标记 `[CITATION NEEDED]`，告知用户 |\n| \"我觉得有篇关于 X 的论文\" | **绝不引用** — 先搜索或标记 |\n\n---\n\n## 4. 顶会模板速查\n\n### 4.1 ML/AI 会议\n\n| 会议 | 页数限制 | 主文件 | 样式文件 | 必须项 |\n|------|---------|--------|---------|--------|\n| **NeurIPS** | 9 页 | `main.tex` | `neurips.sty` | Paper Checklist |\n| **ICML** | 8 页 (+1 camera-ready) | `example_paper.tex` | `icml2026.sty` | Broader Impact |\n| **ICLR** | 9 页 (+1) | `iclr_conference.tex` | `iclr_conference.sty` | LLM 使用声明 |\n| **ACL/EMNLP** | 8 页 (long) | `acl_latex.tex` | `acl.sty` | Limitations 必须 |\n| **AAAI** | 7 页 (+1) | `aaai_template.tex` | `aaai.sty` | 严格样式 |\n| **COLM** | 9 页 (+1) | `colm_conference.tex` | `colm_conference.sty` | 语言模型聚焦 |\n\n### 4.2 系统会议\n\n| 会议 | 页数限制 | 模板类型 | 关键要求 |\n|------|---------|---------|---------|\n| **OSDI** | 12 页 (+2) | USENIX `usenix.sty` | Research / Operational 双 track |\n| **NSDI** | 12 页 | USENIX | Introduction 预筛 |\n| **ASPLOS** | 12 页 | ACM `acmart.cls (sigplan)` | 前 2 页快速评审 |\n| **SOSP** | 12 页 | ACM `acmart.cls (sigplan)` | 可选 Artifact Evaluation |\n\n### 4.3 模板使用原则\n\n```bash\n# 1. 复制整个模板目录（不要只拷 .tex）\ncp -r templates/neurips2025/ ~/papers/my-paper/\n\n# 2. 先编译未修改的模板，确认能跑通\nlatexmk -pdf main.tex\n\n# 3. 逐章替换内容，频繁编译\n```\n\n**禁止事项：**\n- 不要修改 `.sty` 文件\n- 不要在会议模板间复制 `\\usepackage` 行\n- 不要只复制 `.tex` 而不带 `.sty/.bst`\n\n---\n\n## 5. 写作规范\n\n### 5.1 时间分配（Neel Nanda）\n\n花**大致相等**的时间在：\n1. Abstract\n2. Introduction\n3. 图表\n4. **其余所有内容加起来**\n\n审稿人读论文的顺序：标题 → 摘要 → 引言 → 图表 → 也许正文。\n\n### 5.2 Abstract 五句法（Sebastian Farquhar）\n\n```\n1. 你做了什么（\"We introduce/prove/demonstrate...\"）\n2. 为什么这很难且重要\n3. 怎么做的（含专业关键词以便检索）\n4. 有什么证据\n5. 最惊人的数字/结果\n```\n\n删除一切泛泛的开头：~~\"Large language models have achieved remarkable success...\"~~\n\n### 5.3 句子级清晰度（Gopen & Swan）\n\n| 原则 | 规则 |\n|------|------|\n| 主谓紧邻 | 不要在主语和动词之间插入长从句 |\n| 重点在句尾 | 把关键数字/结论放在句末 |\n| 旧信息在前 | 先放读者已知的内容，再引入新概念 |\n| 动词表达动作 | \"We analyzed\" 而非 \"We performed an analysis\" |\n\n### 5.4 常见修改\n\n| 问题 | 修复 |\n|------|------|\n| Abstract 太泛 | 删第一句（如果它能放在任何 ML 论文前面） |\n| Introduction 超 1.5 页 | 背景挪到 Related Work |\n| 实验没有显式 claim | 每个实验前加 \"This tests whether...\" |\n| 缺统计显著性 | 加 error bars + 运行次数 + 计算方法 |\n\n---\n\n## 6. 投稿工程链\n\n### 6.1 构建\n\n```bash\n# 推荐：latexmk 一键构建\nlatexmk -pdf -interaction=nonstopmode -halt-on-error main.tex\n\n# 手动：需要多次编译\npdflatex main.tex && bibtex main && pdflatex main.tex && pdflatex main.tex\n```\n\n### 6.2 Lint + 格式化\n\n```bash\n# Lint: 检查常见 LaTeX 问题\nchktex main.tex\n\n# 格式化: 减少 diff 噪声\nlatexindent -w main.tex\n```\n\n### 6.3 图表格式\n\n| 类型 | 格式 | 说明 |\n|------|------|------|\n| 矢量图（plot、diagram） | PDF | matplotlib: `plt.savefig('fig.pdf')` |\n| 照片/heatmap | PNG 600dpi 或 TIFF | 栅格图 |\n| 表格 | `booktabs` 包 | `\\toprule/\\midrule/\\bottomrule` |\n\n```latex\n\\usepackage{booktabs}\n\\begin{tabular}{lcc}\n\\toprule\nMethod & Accuracy $\\uparrow$ & Latency $\\downarrow$ \\\\\n\\midrule\nBaseline & 85.2 & 45ms \\\\\n\\textbf{Ours} & \\textbf{92.1} & 38ms \\\\\n\\bottomrule\n\\end{tabular}\n```\n\n**图表规范：**\n- 用色盲友好色板（Okabe-Ito 或 Paul Tol）\n- 图内不放标题（用 caption）\n- Caption 独立可理解（不依赖正文）\n- 最佳值加粗，标注方向符号（↑ 越高越好，↓ 越低越好）\n\n### 6.4 投稿打包\n\n```bash\n# 清理辅助文件\nlatexmk -c\n\n# 打包投稿\nzip -r submission.zip main.tex *.sty *.bst *.bib figures/ --exclude='*.aux' --exclude='*.log'\n```\n\n### 6.5 常见失败点\n\n| 问题 | 解决 |\n|------|------|\n| 图片格式混用导致编译失败 | 统一用 PDF |\n| 字体未嵌入 | `pdffonts output.pdf` 检查 |\n| Overfull box 过多 | 关键位置手动调行 |\n| 引用缺字段 | 检查 DOI/年份/期刊名 |\n| 超页数 | 用 `\\vspace{-Xpt}` 微调，或精简内容 |\n\n---\n\n## 7. 会议转投\n\n当论文被拒或转投其他会议时：\n\n### 7.1 ML/AI 会议间转换\n\n| 转换 | 页数变化 | 关键调整 |\n|------|---------|---------|\n| NeurIPS → ICML | 9→8 | 删 1 页，加 Broader Impact |\n| ICML → ICLR | 8→9 | 可扩展实验 + LLM 声明 |\n| NeurIPS → ACL | 9→8 | 按 NLP 惯例重组 + Limitations |\n| ICLR → AAAI | 9→7 | 大幅精简，严格样式 |\n\n### 7.2 转投原则\n\n1. **永远用目标模板重新开始** — 复制目标模板，迁移内容，不要合并 preamble\n2. **只迁移正文内容** — 不复制 `\\usepackage`、header/footer 命令\n3. **根据审稿意见改进** — 但不要在新稿中提及旧投稿（双盲）\n4. **检查目标会议特殊要求** — checklist、ethics statement、LLM 声明等\n\n---\n\n## 8. 投前清单\n\n### 通用清单\n\n- [ ] Abstract/Intro/Conclusion 的 claim 一致\n- [ ] 每个 contribution 有对应 evidence\n- [ ] 所有引用已程序化验证（无幻觉引用）\n- [ ] Error bars + 运行次数 + 统计方法\n- [ ] Limitations 章节存在且诚实\n- [ ] 匿名化（双盲审稿）\n- [ ] 符合页数限制\n- [ ] 所有图表有自包含 caption\n- [ ] `.bib` 中无缺失字段\n- [ ] PDF 编译无 warning\n\n### 会议特定\n\n| 会议 | 额外要求 |\n|------|---------|\n| NeurIPS | 16 项 Paper Checklist（附录，不计页数） |\n| ICML | Broader Impact Statement |\n| ICLR | LLM 使用声明 |\n| ACL/EMNLP | Limitations 章节（必须），Ethics Statement |\n| AAAI | 严格样式文件合规 |\n\n---\n\n## 参考资源\n\n**写作方法论：**\n- [Neel Nanda: How to Write ML Papers](https://www.alignmentforum.org/posts/eJGptPbbFPZGLpjsp/) — What/Why/So What 框架\n- [Farquhar: How to Write ML Papers](https://sebastianfarquhar.com/on-research/2024/11/04/how_to_write_ml_papers/) — 五句法 Abstract\n- [Gopen & Swan: Science of Scientific Writing](https://cseweb.ucsd.edu/~swanson/papers/science-of-writing.pdf) — 读者预期 7 原则\n- [Lipton: Heuristics for Scientific Writing](https://www.approximatelycorrect.com/2018/01/29/heuristics-technical-scientific-writing-machine-learning-perspective/) — 用词\n- [Perez: Easy Paper Writing Tips](https://ethanperez.net/easy-paper-writing-tips/) — 微观清晰度\n\n**API：**\n- [Semantic Scholar](https://api.semanticscholar.org/api-docs/) | [CrossRef](https://www.crossref.org/documentation/) | [arXiv](https://info.arxiv.org/help/api/)\n\n**会议官方：**\n- [NeurIPS](https://neurips.cc/) | [ICML](https://icml.cc/) | [ICLR](https://iclr.cc/) | [ACL](https://www.aclweb.org/) | [AAAI](https://aaai.org/) | [EMNLP](https://2025.emnlp.org/)\n",
+                "numLines": 353,
+                "startLine": 1,
+                "totalLines": 353
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I'll create the directory and write the method section."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "31e71776-27e0-442d-aed0-be8fb526f93b",
+            "uuid": "2233ade8-ec25-41a7-a80b-a0c7c9f14acc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0173ub2ZR1wx3BJBAbaMm7g7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 10560,
+                "cache_read_input_tokens": 26012,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 10560
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014hv3aRWEcEYEGnDDmwReZv",
+              "name": "Bash",
+              "input": {
+                "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/docs/paper/sections/",
+                "description": "Create paper sections directory"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "31e71776-27e0-442d-aed0-be8fb526f93b",
+            "uuid": "fb7b176c-4fda-42f2-974a-3b95f2cd7879",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0173ub2ZR1wx3BJBAbaMm7g7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 10560,
+                "cache_read_input_tokens": 26012,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 10560
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-17T00:13:13.164Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014hv3aRWEcEYEGnDDmwReZv",
+              "type": "tool_result",
+              "content": "(Bash completed with no output)",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "31e71776-27e0-442d-aed0-be8fb526f93b",
+            "uuid": "9215ee5e-0ede-4a49-a6c6-ef1d96a416fe",
+            "tool_use_result": {
+              "stdout": "",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": true
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Ua2qbFox9zkxjUdZ3Hgkza",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/docs/paper/sections/method.tex",
+                "content": "\\section{Problem Setup and Methods}\n\\label{sec:method}\n\nWe formalize the problem of detecting when a reasoning model commits to generating harmful content, define the metrics for evaluating detection systems, and describe the probing methods and baselines.\n\n\\subsection{Safety Commitment Point}\n\\label{sec:commitment-point}\n\nChain-of-thought reasoning models produce extended internal reasoning traces before generating a final response. When a model is successfully jailbroken, its reasoning trace transitions from safety-aware deliberation to committed harmful generation. We define the \\textbf{Safety Commitment Point} (CP) as the first reasoning step after which safety reasoning permanently ceases and the model commits to producing harmful content.\n\nWe operationalize CP annotation on HarmThoughts traces as follows. Each reasoning step is labeled for the presence or absence of safety-related reasoning (refusal considerations, ethical concerns, policy references). The CP is the earliest step $t^*$ such that no step $t > t^*$ contains safety reasoning. This yields a binary classification at each step: steps at or before CP are \\emph{pre-commitment} (the model has not yet committed to harm), and steps after CP are \\emph{post-commitment} (the model is committed to harmful generation). A successful detector should identify post-commitment steps while avoiding false alarms on pre-commitment steps.\n\n\\subsection{Detection Task Formulation}\n\\label{sec:metrics}\n\nWe evaluate detectors using the following metrics. Let $s_t$ denote the probe score at reasoning step $t$, $\\tau$ the detection threshold, and $t^*$ the annotated CP for a given trace.\n\n\\paragraph{Coverage (detection rate).} The fraction of jailbreak traces where the probe score crosses the threshold at any step:\n\\begin{equation}\n    \\text{Coverage} = \\frac{1}{N} \\sum_{i=1}^{N} \\mathbf{1}\\left[\\exists\\, t : s_t^{(i)} > \\tau \\right]\n\\end{equation}\nwhere $N$ is the number of jailbreak traces. Coverage measures whether the detector fires at all on a given trace.\n\n\\paragraph{Pre-CP False Positive Rate (FPR).} We report two complementary definitions of Pre-CP FPR:\n\n\\emph{Step-level FPR}: the probability of a false positive at any given pre-commitment step, computed by pooling all pre-CP steps across all traces:\n\\begin{equation}\n    \\text{FPR}_{\\text{step}} = \\frac{\\sum_{i=1}^{N} \\sum_{t \\leq t_i^*} \\mathbf{1}[s_t^{(i)} > \\tau]}{\\sum_{i=1}^{N} (t_i^* + 1)}\n\\end{equation}\nThis metric has a direct deployment interpretation: it gives the expected fraction of benign reasoning steps that would trigger an alert.\n\n\\emph{Trace-level FPR}: the mean per-trace FPR, computed by averaging each trace's step-level FPR:\n\\begin{equation}\n    \\text{FPR}_{\\text{trace}} = \\frac{1}{N} \\sum_{i=1}^{N} \\frac{\\sum_{t \\leq t_i^*} \\mathbf{1}[s_t^{(i)} > \\tau]}{t_i^* + 1}\n\\end{equation}\nWe use trace-level FPR for statistical comparisons (bootstrap confidence intervals) because it treats each trace as an independent observation. The two definitions can diverge: a few traces with unusually high step-level FPR inflate the trace-level mean without proportionally affecting the step-level aggregate.\n\n\\paragraph{Precision.} The fraction of positive detections (steps where $s_t > \\tau$) that are true positives (post-CP steps):\n\\begin{equation}\n    \\text{Precision} = \\frac{\\text{TP}}{\\text{TP} + \\text{FP}}\n\\end{equation}\n\n\\paragraph{Lead time.} The number of steps between the first detection and the commitment point: $\\Delta t = t^* - t_{\\text{detect}}$. Positive lead time indicates early detection (before commitment); negative values indicate late detection.\n\n\\paragraph{Safe FPR.} The false positive rate on entirely safe (non-jailbreak) traces, where no CP exists and no step should trigger detection.\n\n\\paragraph{Detection criterion $K$.} The number of consecutive threshold crossings required before declaring a detection. We use $K=1$ (single crossing) throughout unless otherwise noted.\n\n\\subsection{Models and Data}\n\\label{sec:models-data}\n\nWe study three reasoning models spanning two architectures and two parameter scales (\\cref{tab:models}):\n\n\\begin{itemize}\n    \\item \\textbf{DeepSeek-R1-Distill-Llama-8B} (R1-8B): built on the Llama architecture with 32 layers, 4096 hidden dimensions, and 8 billion parameters. This model is distilled from the full DeepSeek-R1.\n    \\item \\textbf{DeepSeek-R1-Distill-Qwen-32B} (R1-32B): built on the Qwen architecture with 64 layers, 5120 hidden dimensions, and 32 billion parameters. Also distilled from DeepSeek-R1.\n    \\item \\textbf{QwQ-32B-Preview} (QwQ-32B): a native reasoning model (not distilled) built on the Qwen architecture with 64 layers, 5120 hidden dimensions, and 32 billion parameters.\n\\end{itemize}\n\nThis selection covers two architectures (Llama, Qwen) and two scales (8B, 32B). We exclude OpenThinker-7B because including it would make four of five models Qwen-based, biasing the study toward a single architecture family. Three models already cover the 2 architecture $\\times$ 2 scale design space.\n\n\\paragraph{Data.} We use HarmThoughts traces containing 209 traces per model. Each trace consists of the full chain-of-thought reasoning produced in response to a jailbreak prompt, with step-level CP annotations. We split the data 60/20/20 into 125 training, 41 validation, and 43 test traces. The validation set is used exclusively for threshold tuning, ensuring no test set leakage into the detection threshold.\n\n\\subsection{Hidden-State Probes}\n\\label{sec:hs-probes}\n\nOur primary detection method trains linear probes on model-internal hidden states (HS).\n\n\\paragraph{Feature extraction.} At each reasoning step, we extract the hidden state of the \\emph{last generated token} from a given layer. We use the raw last-token representation rather than pooled or CLS-style features, as the last token aggregates information from the entire step through causal attention.\n\n\\paragraph{Layer selection.} We sweep all layers of each model and score candidate layers using the product of balanced accuracy and crossing rate (scheme B):\n\\begin{equation}\n    \\text{score}(l) = \\text{BalancedAcc}(l) \\times \\text{CrossingRate}(l)\n\\end{equation}\nBalanced accuracy measures classification quality; crossing rate measures how often the probe exceeds the threshold on jailbreak traces. Their product selects layers that are both accurate and capable of early detection. The best layers identified are: R1-8B layer 14 (44\\% of network depth), R1-32B layer 10 (15.6\\% depth), and QwQ-32B layer 2 (3.1\\% depth).\n\n\\paragraph{Classifier.} We train an L2-regularized logistic regression classifier on the extracted hidden states, with binary labels (pre-CP vs.\\ post-CP). The detection threshold is tuned on the validation set to maximize coverage subject to a FPR constraint.\n\n\\subsection{Text Baseline}\n\\label{sec:text-baseline}\n\nTo quantify what is achievable without access to model internals, we train an equivalent probe on text-level features.\n\n\\paragraph{Feature extraction.} We encode the full text of each reasoning step using all-MiniLM-L6-v2, a 384-dimensional sentence embedding model from the sentence-transformers library. This encoder maps each step's text into a fixed-dimensional vector regardless of step length.\n\n\\paragraph{Classifier.} We apply the same L2-regularized logistic regression and threshold tuning procedure as the HS probes. The text baseline represents the detection performance achievable from surface-level linguistic signals alone, without access to internal representations.\n\n\\subsection{Temporal Methods}\n\\label{sec:temporal}\n\nSafety commitment is a temporal process: the model transitions from safe to unsafe reasoning over multiple steps. We evaluate whether incorporating temporal context improves detection.\n\n\\paragraph{Window concatenation.} For each step $t$, we concatenate features from the preceding window of steps $[t-W+1, \\ldots, t]$ into a single input vector. We evaluate window sizes $W \\in \\{1, 3, 5, 10, 15, 20, 25\\}$. The $W=1$ case reduces to the single-step probe. Larger windows provide temporal context at the cost of increased dimensionality and delayed detection (the detector cannot fire until $W$ steps have elapsed).\n\n\\paragraph{GRU sequence models.} We train Gated Recurrent Unit (GRU) models on full step sequences to capture long-range temporal dependencies. We evaluate two variants:\n\\begin{itemize}\n    \\item \\emph{Single-layer}: input features from the best individual layer (selected by scheme B).\n    \\item \\emph{Multi-layer}: input features from 7 layers concatenated, providing a richer representation of model state.\n\\end{itemize}\nBoth variants are trained with 3 random seeds to estimate variance. The GRU outputs a score at each step, and detection follows the same threshold mechanism.\n\n\\paragraph{Detection criterion.} We apply threshold-based detection with $K=1$ (single crossing) as the primary setting. We also evaluate $K=5$ (five consecutive crossings) as a stricter criterion that reduces false positives at the cost of detection delay.\n\n\\subsection{Baselines}\n\\label{sec:baselines}\n\nWe compare against three methods from the sequential anomaly detection and representation geometry literature.\n\n\\paragraph{Bayesian Online Change-Point Detection (BOCPD).} BOCPD models the probe score sequence as a series of segments with potentially different parameters, and maintains a posterior over the most recent change-point location. We apply BOCPD to the temporal sequence of probe scores to test whether safety commitment produces an abrupt distributional shift detectable without supervised labels.\n\n\\paragraph{Cumulative Sum (CUSUM).} CUSUM is a parametric sequential detection method that accumulates evidence for a mean shift in a signal. We define the statistic $S_t = \\max(0, S_{t-1} + s_t - \\mu_0 - \\delta)$ where $\\mu_0$ is the pre-change mean and $\\delta$ is the drift allowance. Detection occurs when $S_t$ exceeds a threshold $h$. We evaluate multiple configurations of $(\\delta, h)$ to characterize CUSUM's operating envelope.\n\n\\paragraph{Mahalanobis distance.} Following the TrajGuard approach, we compute the Mahalanobis distance of each step's hidden state from class-conditional Gaussian distributions fitted to the training data. This tests whether pre-commitment and post-commitment states are geometrically separable in representation space without requiring temporal modeling.\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "31e71776-27e0-442d-aed0-be8fb526f93b",
+            "uuid": "1680b9dd-7825-4323-963c-7e47dce71d77",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MWo4Cn99y1p96yz1iqjzpU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 141,
+                "cache_read_input_tokens": 36572,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 141
+                },
+                "output_tokens": 53,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-17T00:14:20.068Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Ua2qbFox9zkxjUdZ3Hgkza",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/docs/paper/sections/method.tex"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "31e71776-27e0-442d-aed0-be8fb526f93b",
+            "uuid": "5d7dbcec-73b0-43b3-b853-126b43f0f4ac",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/docs/paper/sections/method.tex",
+              "content": "\\section{Problem Setup and Methods}\n\\label{sec:method}\n\nWe formalize the problem of detecting when a reasoning model commits to generating harmful content, define the metrics for evaluating detection systems, and describe the probing methods and baselines.\n\n\\subsection{Safety Commitment Point}\n\\label{sec:commitment-point}\n\nChain-of-thought reasoning models produce extended internal reasoning traces before generating a final response. When a model is successfully jailbroken, its reasoning trace transitions from safety-aware deliberation to committed harmful generation. We define the \\textbf{Safety Commitment Point} (CP) as the first reasoning step after which safety reasoning permanently ceases and the model commits to producing harmful content.\n\nWe operationalize CP annotation on HarmThoughts traces as follows. Each reasoning step is labeled for the presence or absence of safety-related reasoning (refusal considerations, ethical concerns, policy references). The CP is the earliest step $t^*$ such that no step $t > t^*$ contains safety reasoning. This yields a binary classification at each step: steps at or before CP are \\emph{pre-commitment} (the model has not yet committed to harm), and steps after CP are \\emph{post-commitment} (the model is committed to harmful generation). A successful detector should identify post-commitment steps while avoiding false alarms on pre-commitment steps.\n\n\\subsection{Detection Task Formulation}\n\\label{sec:metrics}\n\nWe evaluate detectors using the following metrics. Let $s_t$ denote the probe score at reasoning step $t$, $\\tau$ the detection threshold, and $t^*$ the annotated CP for a given trace.\n\n\\paragraph{Coverage (detection rate).} The fraction of jailbreak traces where the probe score crosses the threshold at any step:\n\\begin{equation}\n    \\text{Coverage} = \\frac{1}{N} \\sum_{i=1}^{N} \\mathbf{1}\\left[\\exists\\, t : s_t^{(i)} > \\tau \\right]\n\\end{equation}\nwhere $N$ is the number of jailbreak traces. Coverage measures whether the detector fires at all on a given trace.\n\n\\paragraph{Pre-CP False Positive Rate (FPR).} We report two complementary definitions of Pre-CP FPR:\n\n\\emph{Step-level FPR}: the probability of a false positive at any given pre-commitment step, computed by pooling all pre-CP steps across all traces:\n\\begin{equation}\n    \\text{FPR}_{\\text{step}} = \\frac{\\sum_{i=1}^{N} \\sum_{t \\leq t_i^*} \\mathbf{1}[s_t^{(i)} > \\tau]}{\\sum_{i=1}^{N} (t_i^* + 1)}\n\\end{equation}\nThis metric has a direct deployment interpretation: it gives the expected fraction of benign reasoning steps that would trigger an alert.\n\n\\emph{Trace-level FPR}: the mean per-trace FPR, computed by averaging each trace's step-level FPR:\n\\begin{equation}\n    \\text{FPR}_{\\text{trace}} = \\frac{1}{N} \\sum_{i=1}^{N} \\frac{\\sum_{t \\leq t_i^*} \\mathbf{1}[s_t^{(i)} > \\tau]}{t_i^* + 1}\n\\end{equation}\nWe use trace-level FPR for statistical comparisons (bootstrap confidence intervals) because it treats each trace as an independent observation. The two definitions can diverge: a few traces with unusually high step-level FPR inflate the trace-level mean without proportionally affecting the step-level aggregate.\n\n\\paragraph{Precision.} The fraction of positive detections (steps where $s_t > \\tau$) that are true positives (post-CP steps):\n\\begin{equation}\n    \\text{Precision} = \\frac{\\text{TP}}{\\text{TP} + \\text{FP}}\n\\end{equation}\n\n\\paragraph{Lead time.} The number of steps between the first detection and the commitment point: $\\Delta t = t^* - t_{\\text{detect}}$. Positive lead time indicates early detection (before commitment); negative values indicate late detection.\n\n\\paragraph{Safe FPR.} The false positive rate on entirely safe (non-jailbreak) traces, where no CP exists and no step should trigger detection.\n\n\\paragraph{Detection criterion $K$.} The number of consecutive threshold crossings required before declaring a detection. We use $K=1$ (single crossing) throughout unless otherwise noted.\n\n\\subsection{Models and Data}\n\\label{sec:models-data}\n\nWe study three reasoning models spanning two architectures and two parameter scales (\\cref{tab:models}):\n\n\\begin{itemize}\n    \\item \\textbf{DeepSeek-R1-Distill-Llama-8B} (R1-8B): built on the Llama architecture with 32 layers, 4096 hidden dimensions, and 8 billion parameters. This model is distilled from the full DeepSeek-R1.\n    \\item \\textbf{DeepSeek-R1-Distill-Qwen-32B} (R1-32B): built on the Qwen architecture with 64 layers, 5120 hidden dimensions, and 32 billion parameters. Also distilled from DeepSeek-R1.\n    \\item \\textbf{QwQ-32B-Preview} (QwQ-32B): a native reasoning model (not distilled) built on the Qwen architecture with 64 layers, 5120 hidden dimensions, and 32 billion parameters.\n\\end{itemize}\n\nThis selection covers two architectures (Llama, Qwen) and two scales (8B, 32B). We exclude OpenThinker-7B because including it would make four of five models Qwen-based, biasing the study toward a single architecture family. Three models already cover the 2 architecture $\\times$ 2 scale design space.\n\n\\paragraph{Data.} We use HarmThoughts traces containing 209 traces per model. Each trace consists of the full chain-of-thought reasoning produced in response to a jailbreak prompt, with step-level CP annotations. We split the data 60/20/20 into 125 training, 41 validation, and 43 test traces. The validation set is used exclusively for threshold tuning, ensuring no test set leakage into the detection threshold.\n\n\\subsection{Hidden-State Probes}\n\\label{sec:hs-probes}\n\nOur primary detection method trains linear probes on model-internal hidden states (HS).\n\n\\paragraph{Feature extraction.} At each reasoning step, we extract the hidden state of the \\emph{last generated token} from a given layer. We use the raw last-token representation rather than pooled or CLS-style features, as the last token aggregates information from the entire step through causal attention.\n\n\\paragraph{Layer selection.} We sweep all layers of each model and score candidate layers using the product of balanced accuracy and crossing rate (scheme B):\n\\begin{equation}\n    \\text{score}(l) = \\text{BalancedAcc}(l) \\times \\text{CrossingRate}(l)\n\\end{equation}\nBalanced accuracy measures classification quality; crossing rate measures how often the probe exceeds the threshold on jailbreak traces. Their product selects layers that are both accurate and capable of early detection. The best layers identified are: R1-8B layer 14 (44\\% of network depth), R1-32B layer 10 (15.6\\% depth), and QwQ-32B layer 2 (3.1\\% depth).\n\n\\paragraph{Classifier.} We train an L2-regularized logistic regression classifier on the extracted hidden states, with binary labels (pre-CP vs.\\ post-CP). The detection threshold is tuned on the validation set to maximize coverage subject to a FPR constraint.\n\n\\subsection{Text Baseline}\n\\label{sec:text-baseline}\n\nTo quantify what is achievable without access to model internals, we train an equivalent probe on text-level features.\n\n\\paragraph{Feature extraction.} We encode the full text of each reasoning step using all-MiniLM-L6-v2, a 384-dimensional sentence embedding model from the sentence-transformers library. This encoder maps each step's text into a fixed-dimensional vector regardless of step length.\n\n\\paragraph{Classifier.} We apply the same L2-regularized logistic regression and threshold tuning procedure as the HS probes. The text baseline represents the detection performance achievable from surface-level linguistic signals alone, without access to internal representations.\n\n\\subsection{Temporal Methods}\n\\label{sec:temporal}\n\nSafety commitment is a temporal process: the model transitions from safe to unsafe reasoning over multiple steps. We evaluate whether incorporating temporal context improves detection.\n\n\\paragraph{Window concatenation.} For each step $t$, we concatenate features from the preceding window of steps $[t-W+1, \\ldots, t]$ into a single input vector. We evaluate window sizes $W \\in \\{1, 3, 5, 10, 15, 20, 25\\}$. The $W=1$ case reduces to the single-step probe. Larger windows provide temporal context at the cost of increased dimensionality and delayed detection (the detector cannot fire until $W$ steps have elapsed).\n\n\\paragraph{GRU sequence models.} We train Gated Recurrent Unit (GRU) models on full step sequences to capture long-range temporal dependencies. We evaluate two variants:\n\\begin{itemize}\n    \\item \\emph{Single-layer}: input features from the best individual layer (selected by scheme B).\n    \\item \\emph{Multi-layer}: input features from 7 layers concatenated, providing a richer representation of model state.\n\\end{itemize}\nBoth variants are trained with 3 random seeds to estimate variance. The GRU outputs a score at each step, and detection follows the same threshold mechanism.\n\n\\paragraph{Detection criterion.} We apply threshold-based detection with $K=1$ (single crossing) as the primary setting. We also evaluate $K=5$ (five consecutive crossings) as a stricter criterion that reduces false positives at the cost of detection delay.\n\n\\subsection{Baselines}\n\\label{sec:baselines}\n\nWe compare against three methods from the sequential anomaly detection and representation geometry literature.\n\n\\paragraph{Bayesian Online Change-Point Detection (BOCPD).} BOCPD models the probe score sequence as a series of segments with potentially different parameters, and maintains a posterior over the most recent change-point location. We apply BOCPD to the temporal sequence of probe scores to test whether safety commitment produces an abrupt distributional shift detectable without supervised labels.\n\n\\paragraph{Cumulative Sum (CUSUM).} CUSUM is a parametric sequential detection method that accumulates evidence for a mean shift in a signal. We define the statistic $S_t = \\max(0, S_{t-1} + s_t - \\mu_0 - \\delta)$ where $\\mu_0$ is the pre-change mean and $\\delta$ is the drift allowance. Detection occurs when $S_t$ exceeds a threshold $h$. We evaluate multiple configurations of $(\\delta, h)$ to characterize CUSUM's operating envelope.\n\n\\paragraph{Mahalanobis distance.} Following the TrajGuard approach, we compute the Mahalanobis distance of each step's hidden state from class-conditional Gaussian distributions fitted to the training data. This tests whether pre-commitment and post-commitment states are geometrically separable in representation space without requiring temporal modeling.\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me register this artifact."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "31e71776-27e0-442d-aed0-be8fb526f93b",
+            "uuid": "26a5dd26-f962-4a84-b57c-640ef8948a46",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CSrXSryiDSLthhhyXgzD6Q",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2922,
+                "cache_read_input_tokens": 36713,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2922
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LNTEAf3jnxUdygvydnLSmD",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__register_artifact",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "31e71776-27e0-442d-aed0-be8fb526f93b",
+            "uuid": "dc83923e-b968-4924-8dc5-f9237a379137",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CSrXSryiDSLthhhyXgzD6Q",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2922,
+                "cache_read_input_tokens": 36713,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2922
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-17T00:14:24.298Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01LNTEAf3jnxUdygvydnLSmD",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__register_artifact"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "31e71776-27e0-442d-aed0-be8fb526f93b",
+            "uuid": "e11728f7-08ff-4c25-8584-14f5e27b3d04",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__register_artifact"
+              ],
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "total_deferred_tools": 50
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012eHJNf8n3aHV5hwrTHXBFM",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "method_section_v1",
+                "type": "paper",
+                "description": "Method section (Section 3) LaTeX: Problem Setup and Methods, covering CP definition, metrics, models/data, HS probes, text baseline, temporal methods, and baselines.",
+                "project": "contrastive_trace_safety",
+                "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/docs/paper/sections/method.tex",
+                "tags": [
+                  "paper",
+                  "method",
+                  "latex"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "31e71776-27e0-442d-aed0-be8fb526f93b",
+            "uuid": "a553d7ca-984f-4a83-a1c5-265e01e5ca09",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01V82D4WDfXxPmZCjf8exPaW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 720,
+                "cache_read_input_tokens": 39635,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 720
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-17T00:14:29.913Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012eHJNf8n3aHV5hwrTHXBFM",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260517_debc13\\\", \\\"name\\\": \\\"method_section_v1\\\", \\\"type\\\": \\\"paper\\\", \\\"description\\\": \\\"Method section (Section 3) LaTeX: Problem Setup and Methods, covering CP definition, metrics, models/data, HS probes, text baseline, temporal methods, and baselines.\\\", \\\"path\\\": \\\"projects/contrastive_trace_safety/artifacts/_project/paper/method.tex\\\", \\\"url\\\": null, \\\"project\\\": \\\"contrastive_trace_safety\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-17T00:14:29.860240+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"method\\\", \\\"latex\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "31e71776-27e0-442d-aed0-be8fb526f93b",
+            "uuid": "5949a082-146b-4618-abed-75a23950dffd",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260517_debc13\\\", \\\"name\\\": \\\"method_section_v1\\\", \\\"type\\\": \\\"paper\\\", \\\"description\\\": \\\"Method section (Section 3) LaTeX: Problem Setup and Methods, covering CP definition, metrics, models/data, HS probes, text baseline, temporal methods, and baselines.\\\", \\\"path\\\": \\\"projects/contrastive_trace_safety/artifacts/_project/paper/method.tex\\\", \\\"url\\\": null, \\\"project\\\": \\\"contrastive_trace_safety\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-17T00:14:29.860240+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"method\\\", \\\"latex\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260517_debc13\", \"name\": \"method_section_v1\", \"type\": \"paper\", \"description\": \"Method section (Section 3) LaTeX: Problem Setup and Methods, covering CP definition, metrics, models/data, HS probes, text baseline, temporal methods, and baselines.\", \"path\": \"projects/contrastive_trace_safety/artifacts/_project/paper/method.tex\", \"url\": null, \"project\": \"contrastive_trace_safety\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-17T00:14:29.860240+00:00\", \"tags\": [\"paper\", \"method\", \"latex\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Method section 已写入 `docs/paper/sections/method.tex`，约 1500 words，包含 7 个 subsection。\n\n关键覆盖项：\n- CP 定义及 operationalization\n- 6 个 metric 的精确数学定义（含 Pre-CP FPR 双定义及差异解释）\n- 3 模型 + 架构/规模设计 + OpenThinker 排除理由\n- 60/20/20 split（125/41/43），val 用于 threshold tuning\n- HS probe: last token hidden state, layer selection = balanced_acc × crossing_rate (scheme B)\n- Text baseline: all-MiniLM-L6-v2 (384-d)\n- Temporal: window concatenation (W=1..25) + GRU (single/multi-layer, 3 seeds)\n- Baselines: BOCPD, CUSUM, Mahalanobis\n\n无 em-dash、无 -ing 结尾、所有缩写首次出现已定义。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "31e71776-27e0-442d-aed0-be8fb526f93b",
+            "uuid": "8fcfcccf-3df9-4707-9966-a6e930fe4179",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019J1PScQd5ezKNuxGgMpcQe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 523,
+                "cache_read_input_tokens": 40355,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 523
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Method section 已写入 `docs/paper/sections/method.tex`，约 1500 words，包含 7 个 subsection。\n\n关键覆盖项：\n- CP 定义及 operationalization\n- 6 个 metric 的精确数学定义（含 Pre-CP FPR 双定义及差异解释）\n- 3 模型 + 架构/规模设计 + OpenThinker 排除理由\n- 60/20/20 split（125/41/43），val 用于 threshold tuning\n- HS probe: last token hidden state, layer selection = balanced_acc × crossing_rate (scheme B)\n- Text baseline: all-MiniLM-L6-v2 (384-d)\n- Temporal: window concatenation (W=1..25) + GRU (single/multi-layer, 3 seeds)\n- Baselines: BOCPD, CUSUM, Mahalanobis\n\n无 em-dash、无 -ing 结尾、所有缩写首次出现已定义。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 97427,
+            "duration_api_ms": 98095,
+            "num_turns": 7,
+            "stop_reason": "end_turn",
+            "session_id": "31e71776-27e0-442d-aed0-be8fb526f93b",
+            "total_cost_usd": 0.37682475,
+            "usage": {
+              "input_tokens": 9,
+              "cache_creation_input_tokens": 29431,
+              "cache_read_input_tokens": 190734,
+              "output_tokens": 3802,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 29431,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 276,
+                  "cache_read_input_tokens": 40355,
+                  "cache_creation_input_tokens": 523,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 523
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2339,
+                "outputTokens": 16,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002419,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 9,
+                "outputTokens": 3802,
+                "cacheReadInputTokens": 190734,
+                "cacheCreationInputTokens": 29431,
+                "webSearchRequests": 0,
+                "costUSD": 0.37440575,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "bbfb1580-4903-47f4-8a05-bfdc4bd9378e"
+          },
+          "id": "event-000021"
+        }
+      ],
+      "message_count": 21
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-writing-method.md"
+}

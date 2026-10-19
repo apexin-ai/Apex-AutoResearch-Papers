@@ -1,0 +1,435 @@
+{
+  "metadata": {
+    "generated_at": "2026-05-16T02:00:00+08:00",
+    "source": "registry + server logs (cross-validated)",
+    "encoder": "Qwen2.5-Coder-3B",
+    "model_path": "/root/autodl-tmp/structfuse/models/Qwen/Qwen2.5-Coder-3B",
+    "training_config": {
+      "lr": 2e-5,
+      "batch_size": 8,
+      "num_negatives": 7,
+      "hard_negative_ratio": 0.5,
+      "max_seq_length": 2048,
+      "temperature": 0.07,
+      "lora_rank": 16,
+      "proj_dim": 256,
+      "warmup_ratio": 0.1,
+      "weight_decay": 0.01,
+      "gradient_checkpointing": true,
+      "eval_steps": 500,
+      "save_steps": 1000,
+      "pos_weight_alpha": 1.0,
+      "use_fusion_head": false
+    },
+    "data_source": "/root/autodl-tmp/structfuse/full_m2_training_data/",
+    "notes": {
+      "s42_regime": "3 epochs, no early stopping (early_stopping_patience=0)",
+      "s43_s44_regime": "2 epochs, early_stopping_patience=2",
+      "val_loss_criterion": "early stopping tracks val_loss only; R@1 best saved independently",
+      "registry_vs_log_discrepancy": "registry had rounded values (3-4 sig figs); log values are full precision. Registry for random_s42 was missing eval@3500, eval@4000, and final_eval. All other values match after rounding."
+    },
+    "incomplete_runs": {
+      "dataflow_aware_s43": "running, at step 500 (no eval checkpoint yet as of 2026-05-16T02:00 CST)",
+      "dataflow_aware_s44": "queued (after dataflow_aware_s43)",
+      "embedding_distance_s42": "not yet started (in s42_supplement batch)",
+      "dataflow_aware_s42": "not yet started (in s42_supplement batch)",
+      "bm25_s42": "queued (after dataflow_aware_s44)",
+      "bm25_s43": "not yet started",
+      "bm25_s44": "not yet started"
+    }
+  },
+  "runs": {
+    "random_s42": {
+      "seed": 42,
+      "strategy": "random",
+      "regime": "3 epochs, no early stop",
+      "num_epochs": 3,
+      "total_steps": 4242,
+      "steps_per_epoch": 1414,
+      "early_stopping_patience": 0,
+      "early_stopped": false,
+      "train_samples": 11308,
+      "val_samples": 2980,
+      "best_by_val_loss": {
+        "step": 1000,
+        "val_loss": 0.4650662785708504,
+        "R@1": 0.5526845637583893,
+        "R@5": 0.9593959731543624,
+        "R@10": 1.0
+      },
+      "best_by_R@1": {
+        "step": 1000,
+        "val_loss": 0.4650662785708504,
+        "R@1": 0.5526845637583893,
+        "R@5": 0.9593959731543624,
+        "R@10": 1.0
+      },
+      "trajectory": [
+        {
+          "step": 500,
+          "epoch": 1,
+          "val_loss": 0.486931758338973,
+          "R@1": 0.5332214765100671,
+          "R@5": 0.9540268456375839,
+          "R@10": 1.0
+        },
+        {
+          "step": 1000,
+          "epoch": 1,
+          "val_loss": 0.4650662785708504,
+          "R@1": 0.5526845637583893,
+          "R@5": 0.9593959731543624,
+          "R@10": 1.0
+        },
+        {
+          "step": 1500,
+          "epoch": 2,
+          "val_loss": 0.5364526285221113,
+          "R@1": 0.5228187919463088,
+          "R@5": 0.9550335570469799,
+          "R@10": 1.0
+        },
+        {
+          "step": 2000,
+          "epoch": 2,
+          "val_loss": 0.5162166327238082,
+          "R@1": 0.5228187919463088,
+          "R@5": 0.9543624161073826,
+          "R@10": 1.0
+        },
+        {
+          "step": 2500,
+          "epoch": 2,
+          "val_loss": 0.5264100839827685,
+          "R@1": 0.5268456375838926,
+          "R@5": 0.9563758389261745,
+          "R@10": 1.0
+        },
+        {
+          "step": 3000,
+          "epoch": 3,
+          "val_loss": 0.5405804200060416,
+          "R@1": 0.5355704697986577,
+          "R@5": 0.9493288590604027,
+          "R@10": 1.0
+        },
+        {
+          "step": 3500,
+          "epoch": 3,
+          "val_loss": 0.5600887083367213,
+          "R@1": 0.5335570469798657,
+          "R@5": 0.9493288590604027,
+          "R@10": 1.0
+        },
+        {
+          "step": 4000,
+          "epoch": 3,
+          "val_loss": 0.5509598255757517,
+          "R@1": 0.5345637583892617,
+          "R@5": 0.9439597315436241,
+          "R@10": 1.0
+        }
+      ],
+      "final_eval": {
+        "val_loss": 0.545638095677499,
+        "R@1": 0.5503355704697986,
+        "R@5": 0.9463087248322147,
+        "R@10": 1.0
+      },
+      "wandb_run_id": "pthrowuk",
+      "wandb_run_name": "m2_full_random_s42",
+      "log_file": "/root/runs/m2_full_qwen/random_s42.log"
+    },
+    "random_s43": {
+      "seed": 43,
+      "strategy": "random",
+      "regime": "2 epochs, early stopped at step 1500",
+      "num_epochs": 2,
+      "total_steps": 2810,
+      "steps_per_epoch": 1405,
+      "early_stopping_patience": 2,
+      "early_stopped": true,
+      "early_stop_step": 1500,
+      "train_samples": 11236,
+      "val_samples": 3052,
+      "best_by_val_loss": {
+        "step": 500,
+        "val_loss": 0.4476428985947238,
+        "R@1": 0.5357142857142857,
+        "R@5": 0.9698558322411533,
+        "R@10": 1.0
+      },
+      "best_by_R@1": {
+        "step": 1500,
+        "val_loss": 0.5476617613712114,
+        "R@1": 0.5553735255570118,
+        "R@5": 0.9544560943643512,
+        "R@10": 1.0
+      },
+      "trajectory": [
+        {
+          "step": 500,
+          "epoch": 1,
+          "val_loss": 0.4476428985947238,
+          "R@1": 0.5357142857142857,
+          "R@5": 0.9698558322411533,
+          "R@10": 1.0
+        },
+        {
+          "step": 1000,
+          "epoch": 1,
+          "val_loss": 0.4637672980834741,
+          "R@1": 0.5285058977719528,
+          "R@5": 0.9672346002621232,
+          "R@10": 1.0
+        },
+        {
+          "step": 1500,
+          "epoch": 2,
+          "val_loss": 0.5476617613712114,
+          "R@1": 0.5553735255570118,
+          "R@5": 0.9544560943643512,
+          "R@10": 1.0
+        }
+      ],
+      "final_eval": {
+        "val_loss": 0.5434050835463979,
+        "R@1": 0.5501310615989515,
+        "R@5": 0.9583879423328965,
+        "R@10": 1.0
+      },
+      "wandb_run_id": "ejygo7zh",
+      "wandb_run_name": "m2_full_random_s43",
+      "log_file": "/root/runs/m2_full_qwen/random_s43.log"
+    },
+    "random_s44": {
+      "seed": 44,
+      "strategy": "random",
+      "regime": "2 epochs, early stopped at step 1500",
+      "num_epochs": 2,
+      "total_steps": 2816,
+      "steps_per_epoch": 1408,
+      "early_stopping_patience": 2,
+      "early_stopped": true,
+      "early_stop_step": 1500,
+      "train_samples": 11264,
+      "val_samples": 3024,
+      "best_by_val_loss": {
+        "step": 500,
+        "val_loss": 0.4251521137498674,
+        "R@1": 0.6008597883597884,
+        "R@5": 0.9583333333333334,
+        "R@10": 1.0
+      },
+      "best_by_R@1": {
+        "step": 500,
+        "val_loss": 0.4251521137498674,
+        "R@1": 0.6008597883597884,
+        "R@5": 0.9583333333333334,
+        "R@10": 1.0
+      },
+      "trajectory": [
+        {
+          "step": 500,
+          "epoch": 1,
+          "val_loss": 0.4251521137498674,
+          "R@1": 0.6008597883597884,
+          "R@5": 0.9583333333333334,
+          "R@10": 1.0
+        },
+        {
+          "step": 1000,
+          "epoch": 1,
+          "val_loss": 0.46949244308329763,
+          "R@1": 0.5638227513227513,
+          "R@5": 0.9523809523809523,
+          "R@10": 1.0
+        },
+        {
+          "step": 1500,
+          "epoch": 2,
+          "val_loss": 0.49175971771082866,
+          "R@1": 0.5591931216931217,
+          "R@5": 0.9503968253968254,
+          "R@10": 1.0
+        }
+      ],
+      "final_eval": {
+        "val_loss": 0.4943022895702925,
+        "R@1": 0.5542328042328042,
+        "R@5": 0.9513888888888888,
+        "R@10": 1.0
+      },
+      "wandb_run_id": "hfo1edho",
+      "wandb_run_name": "m2_full_random_s44",
+      "log_file": "/root/runs/m2_full_qwen/random_s44.log"
+    },
+    "embedding_distance_s43": {
+      "seed": 43,
+      "strategy": "embedding_distance",
+      "regime": "2 epochs, early stopped at step 1500",
+      "num_epochs": 2,
+      "total_steps": 2810,
+      "steps_per_epoch": 1405,
+      "early_stopping_patience": 2,
+      "early_stopped": true,
+      "early_stop_step": 1500,
+      "train_samples": 11236,
+      "val_samples": 3052,
+      "best_by_val_loss": {
+        "step": 500,
+        "val_loss": 0.45413682116671594,
+        "R@1": 0.5445609436435125,
+        "R@5": 0.9665792922673656,
+        "R@10": 1.0
+      },
+      "best_by_R@1": {
+        "step": 1500,
+        "val_loss": 0.49263691808418086,
+        "R@1": 0.5606159895150721,
+        "R@5": 0.9629750982961992,
+        "R@10": 1.0
+      },
+      "trajectory": [
+        {
+          "step": 500,
+          "epoch": 1,
+          "val_loss": 0.45413682116671594,
+          "R@1": 0.5445609436435125,
+          "R@5": 0.9665792922673656,
+          "R@10": 1.0
+        },
+        {
+          "step": 1000,
+          "epoch": 1,
+          "val_loss": 0.47089352574917154,
+          "R@1": 0.5389908256880734,
+          "R@5": 0.9655963302752294,
+          "R@10": 1.0
+        },
+        {
+          "step": 1500,
+          "epoch": 2,
+          "val_loss": 0.49263691808418086,
+          "R@1": 0.5606159895150721,
+          "R@5": 0.9629750982961992,
+          "R@10": 1.0
+        }
+      ],
+      "final_eval": {
+        "val_loss": 0.4875504152256102,
+        "R@1": 0.5655307994757536,
+        "R@5": 0.966251638269987,
+        "R@10": 1.0
+      },
+      "wandb_run_id": "4iueajjf",
+      "wandb_run_name": "m2_full_embedding_distance_s43",
+      "log_file": "/root/runs/m2_full_qwen/embedding_distance_s43.log"
+    },
+    "embedding_distance_s44": {
+      "seed": 44,
+      "strategy": "embedding_distance",
+      "regime": "2 epochs, early stopped at step 2000",
+      "num_epochs": 2,
+      "total_steps": 2816,
+      "steps_per_epoch": 1408,
+      "early_stopping_patience": 2,
+      "early_stopped": true,
+      "early_stop_step": 2000,
+      "train_samples": 11264,
+      "val_samples": 3024,
+      "best_by_val_loss": {
+        "step": 1000,
+        "val_loss": 0.4341431890648824,
+        "R@1": 0.5813492063492064,
+        "R@5": 0.9642857142857143,
+        "R@10": 1.0
+      },
+      "best_by_R@1": {
+        "step": 500,
+        "val_loss": 0.44032017948726815,
+        "R@1": 0.5942460317460317,
+        "R@5": 0.9563492063492064,
+        "R@10": 1.0
+      },
+      "trajectory": [
+        {
+          "step": 500,
+          "epoch": 1,
+          "val_loss": 0.44032017948726815,
+          "R@1": 0.5942460317460317,
+          "R@5": 0.9563492063492064,
+          "R@10": 1.0
+        },
+        {
+          "step": 1000,
+          "epoch": 1,
+          "val_loss": 0.4341431890648824,
+          "R@1": 0.5813492063492064,
+          "R@5": 0.9642857142857143,
+          "R@10": 1.0
+        },
+        {
+          "step": 1500,
+          "epoch": 2,
+          "val_loss": 0.5255766192342711,
+          "R@1": 0.5472883597883598,
+          "R@5": 0.9421296296296297,
+          "R@10": 1.0
+        },
+        {
+          "step": 2000,
+          "epoch": 2,
+          "val_loss": 0.5182343455691817,
+          "R@1": 0.5390211640211641,
+          "R@5": 0.9467592592592593,
+          "R@10": 1.0
+        }
+      ],
+      "final_eval": {
+        "val_loss": 0.5123182460172939,
+        "R@1": 0.546957671957672,
+        "R@5": 0.9480820105820106,
+        "R@10": 1.0
+      },
+      "wandb_run_id": "tdmforx1",
+      "wandb_run_name": "m2_full_embedding_distance_s44",
+      "log_file": "/root/runs/m2_full_qwen/embedding_distance_s44.log"
+    }
+  },
+  "summary": {
+    "completed_runs": 5,
+    "strategies_with_data": ["random", "embedding_distance"],
+    "seeds_with_data": {
+      "random": [42, 43, 44],
+      "embedding_distance": [43, 44]
+    },
+    "cross_strategy_comparison": {
+      "note": "Compare same-seed runs. s42 only has random (3 epochs). s43 and s44 have both random and embedding_distance.",
+      "s43_random_vs_embedding": {
+        "random_best_R@1": 0.5554,
+        "embedding_best_R@1": 0.5606,
+        "delta_R@1": 0.0052,
+        "random_best_val_loss": 0.4476,
+        "embedding_best_val_loss": 0.4541,
+        "delta_val_loss": 0.0065
+      },
+      "s44_random_vs_embedding": {
+        "random_best_R@1": 0.6009,
+        "embedding_best_R@1": 0.5942,
+        "delta_R@1": -0.0067,
+        "random_best_val_loss": 0.4252,
+        "embedding_best_val_loss": 0.4341,
+        "delta_val_loss": 0.0089
+      }
+    },
+    "key_observations": [
+      "All runs reach R@10=1.0 at every eval step (val set too easy for R@10 discrimination)",
+      "R@5 consistently 0.94-0.97, also near ceiling",
+      "Best R@1 typically at step 500-1000 (first epoch), overfitting starts in epoch 2",
+      "val_loss and R@1 can diverge: random_s43 best val_loss at step 500 but best R@1 at step 1500",
+      "s44 val set appears systematically easier (R@1~0.60 vs s42/s43~0.55), consistent across strategies",
+      "embedding_distance vs random delta is small (+0.52pp for s43, -0.67pp for s44) and sign-inconsistent"
+    ]
+  }
+}

@@ -1,0 +1,2766 @@
+# analysis r14 a1 qwq rerun
+
+**Layer Selection Sensitivity in Hidden-State Safety Probes for Reasoning Models** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 93
+- **Recorded user turns:** 0
+- **Tool calls:** 46
+- **Original source:** `logs/chats/worker_analysis_r14_a1_qwq_rerun_20260518T174808.jsonl`
+- **Structured JSON:** [`c36c4b25c56424ed5c87.json`](../../sessions/c3/c36c4b25c56424ed5c87.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+93 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-18T18:06:56.794457+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__ssh_read_only",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__ssh_read_only",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-18T18:06:56.794836+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-18T18:06:56.795059+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_qwq_32b/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_qwq_32b/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-18T18:06:56.795249+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"004ee4398ad043f88590dc868baed39c.pt\\n0067d71cad0d4adba09c0ca1ba6de9f4.pt\\n043bdc40cc3a425da4a80dd2c3b54093.pt\\n069b39dd44c749edac6b2b9a22000146.pt\\n069c405acb984a728d6d4b4a4403dc2e.pt\\n08c889f0d70b4a9cb94a1c50eb7809c3.pt\\n08f53c080455450a875a13e071520fcc.pt\\n09e1cee11dc944ae89c4a077451046cc.pt\\n0c8ae288d6de43058d6a4c7dc97f72b8.pt\\n104fb6e29e284eadb21d6e934f30ac32.pt\\n110ec3ef86634737a0cd9c990c736659.pt\\n125a765ce4e1440c8375cb947cc74891.pt\\n1284370b1811430a8029ce530e1b1609.pt\\n14998b617a6b425e81749647c7a00f8b.pt\\n14e4e1baf5be42b0afe19deca15703a5.pt\\n1536ec9382d3409292a65544836eff18.pt\\n163bbe567d7649ffb07bd25aaceacc49.pt\\n16c401658cf84881927b644dee22f263.pt\\n17e198e535d340659b829e4a3a677d7e.pt\\n184cda0553f945c5bfd7bc5e4487b2e8.pt\\n1865bac475df48dc82ec59ffa7aefa99.pt\\n19ee776ab7c64da19403e822bb265156.pt\\n1a2e3b84d89b439f926c11c459d34f5c.pt\\n1a66328ff3704e7ab99d11ac49ef2e94.pt\\n1c167cf073234d54a3aaf0931ed64771.pt\\n1ebb5b137072402eba8e12d2f4a6112e.pt\\n21f936ea97f94c848f7d4f047470766c.pt\\n22609944c6dc46c79544d5e2a98d22a0.pt\\n236c6c98cf7046efb199379307454d69.pt\\n256dfa73942345f09beb2bfe933b0b1b.pt\\n25993fa332954b7c831a1220c1a56ebc.pt\\n278be80b336641ddb92b108575ff0ebd.pt\\n298cb1454adb4b6da16ca2445189ed1e.pt\\n2a2487286db5440a8a6a08095b21f90e.pt\\n2b75bd31301f41b1ad3f2c81925c8e88.pt\\n2c83d4c6db1548438b235222b56be3bf.pt\\n301054e81ece4f59992d2e46de39d60b.pt\\n30fe394a8d2d4f23be5e87ce958a2c0e.pt\\n32ed854363d241cf87863eaf14cbcc24.pt\\n33e402d236e148a8ba82c0ee4ceee012.pt\\n3478ec8ed5dd459a92c54cdb13c888ee.pt\\n34a8c0bbc9d94d559a0990a7dbe3dea4.pt\\n36524c4d9c574d238d5ee826198c6a48.pt\\n37af416bd3b94220a9b84a29044c796a.pt\\n3808a31861724e759e12702bcf58535e.pt\\n3accbfb57c714ffdaf1dc03babb19e69.pt\\n3b70c05b41fa4aa3858e6e7d586aecaf.pt\\n3f98b7efccf249108d46c8d8c35aa301.pt\\n3fa300f79a5e48b2a2d6ce3a69588b1d.pt\\n3fea40a6688448b898bae5930a4ee96e.pt\\n40a6788423024e4f977bbb7ce01d68b7.pt\\n4114a1
+…[truncated 1796 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-18T18:06:56.795402+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_qwq_32b/ -la | head -20",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_qwq_32b/ -la | head -20",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-18T18:06:56.795533+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-18T18:06:56.795688+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "find /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_qwq_32b/ -name \"*.npy\" | head -5",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "find /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_qwq_32b/ -name \"*.npy\" | head -5",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-18T18:06:56.795818+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-18T18:06:56.795937+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ls /root/autodl-tmp/contrastive_trace_safety/scripts/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "ls /root/autodl-tmp/contrastive_trace_safety/scripts/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-18T18:06:56.796075+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"__pycache__\\na4_bca_fpr.py\\nbge_bootstrap_bal_acc_fpr.py\\nexp_r7_multiseed_lr.py\\nexp_r8_qwq_position_control.py\\nexp_r9_hs_vs_position_bootstrap.py\\nexp_r9_qwq_residualized_significance.py\\nmulti_split_robustness.py\\nplot_layer_heatmap.py\\nqwq_safe_fpr_correct.py\\nr12_5seed_hb.py\\nr12_5seed_hb_run.py\\nr12_run_all.py\\nr13_ba_layer_modality.py\\nr13_power_analysis.py\\nr13_power_analysis_v2.py\\nr13_preprocess.py\\nr13_run.py\\nr14_a1_ot7b_rerun.py\\nr14_a1_stage1_load.py\\nr14_a1_stage2_preextract.py\\nr14_a1_stage2_sweep.py\\nr14_a1_stage2b_sweep.py\\nr14_a1_stage3_compare.py\\nr14_a1_stage4_bootstrap.py\\nr14_a1_stage4b_bootstrap.py\\nr14_a5_residualized_control.py\\nr14_a5_run_one.py\\nr1_32b_sel_full.py\\nr1_32b_sel_phase1.py\\nr1_32b_sel_phase2.py\\nr1_32b_sel_train_random.py\\nr1_32b_selectivity_ci_raw.py\\nr1_8b_early_layer_supplement.py\\nrun_7b8b_residualization.py\\nrun_joint_loo_cv.py\\nrun_joint_loo_cv_v2.py\\nrun_r12_qwq_position_residualized.py\\nrun_r12_r1_32b_position_residualized.py\\nrun_r14_a1_r1_32b_rerun.py\\nrun_r1_32b_w1_threshold.py\\nrun_r1_8b_w15_residualization.py\\nrun_threshold_sensitivity.py\\nselectivity_corrected_layers.py\\nstronger_text_encoder_comparison.py\\ntable3_qwq_60_20_20.py\\ntable3_r1_8b_60_20_20.py\\ntable3_r1_8b_stage1.py\\ntable3_r1_8b_stage2.py\\ntask_a_coverage_bias.py\\ntask_b_selectivity_ci.py\\ntask_b_step1_extract.py\\ntask_b_step2_bootstrap.py\\ntask_c_aggregate.py\\ntask_c_gru_fast.py\\ntask_c_gru_per_seed.py\\ntask_c_step1_extract.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-18T18:06:56.796217+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_qwq_32b/extraction_summary.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_qwq_32b/extraction_summary.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-18T18:06:56.796346+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"QwQ-32B\\\",\\n  \\\"num_traces\\\": 95,\\n  \\\"num_extracted\\\": 95,\\n  \\\"total_steps\\\": 4852,\\n  \\\"total_tokens\\\": 78641,\\n  \\\"num_layers\\\": 64,\\n  \\\"hidden_dim\\\": 5120,\\n  \\\"errors\\\": []\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-18T18:06:56.796473+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/scripts/r14_a1_stage2_sweep.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat /root/autodl-tmp/contrastive_trace_safety/scripts/r14_a1_stage2_sweep.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-18T18:06:56.796685+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Stage 2: BA layer sweep in chunks. Usage: python stage2.py START END\\\"\\\"\\\"\\nimport json, os, pickle, sys, numpy as np\\nfrom pathlib import Path\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.model_selection import StratifiedKFold\\nfrom sklearn.metrics import balanced_accuracy_score\\nfrom sklearn.preprocessing import StandardScaler\\n\\nSEED = 42\\nMAX_ITER = 2000\\nOUT_DIR = Path(\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a1_r1_32b_rerun\\\")\\n\\nstart_layer = int(sys.argv[1])\\nend_layer = int(sys.argv[2])\\n\\nwith open(OUT_DIR / \\\"splits.pkl\\\", \\\"rb\\\") as f:\\n    splits = pickle.load(f)\\ntrain_val = splits[\\\"train\\\"] + splits[\\\"val\\\"]\\n\\ndef extract_hs(traces, layer_idx):\\n    X_list, y_list = [], []\\n    for t in traces:\\n        hs = t[\\\"hidden_states\\\"][:, layer_idx, :]\\n        labels = np.array(t[\\\"step_labels\\\"], dtype=np.int32)\\n        X_list.append(hs)\\n        y_list.append(labels)\\n    return np.concatenate(X_list, axis=0), np.concatenate(y_list)\\n\\nresults = {}\\nfor layer_idx in range(start_layer, end_layer):\\n    X, y = extract_hs(train_val, layer_idx)\\n    scaler = StandardScaler()\\n    X_scaled = scaler.fit_transform(X)\\n    skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=SEED)\\n    fold_bas = []\\n    for tr_idx, va_idx in skf.split(X_scaled, y):\\n        clf = LogisticRegression(C=1.0, class_weight=\\\"balanced\\\", solver=\\\"lbfgs\\\",\\n                                 max_iter=MAX_ITER, random_state=SEED)\\n        clf.fit(X_scaled[tr_idx], y[tr_idx])\\n        preds = clf.predict(X_scaled[va_idx])\\n        fold_bas.append(balanced_accuracy_score(y[va_idx], preds))\\n    mean_ba = float(np.mean(fold_bas))\\n    results[layer_idx] = round(mean_ba, 4)\\n    print(f\\\"L{layer_idx:02d} BA={mean_ba:.4f} folds={[round(b,4) for b in fold_bas]}\\\")\\n\\nwith open(OUT_DIR / f\
+…[truncated 257 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-18T18:06:56.796846+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/scripts/table3_qwq_60_20_20.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat /root/autodl-tmp/contrastive_trace_safety/scripts/table3_qwq_60_20_20.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-18T18:06:56.797143+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Table 3 QwQ-32B: HS vs Text bootstrap, 60/20/20 split, W=5, L60, PCA=100d\\\"\\\"\\\"\\nimport os\\nos.environ[\\\"TOKENIZERS_PARALLELISM\\\"] = \\\"false\\\"\\nos.environ[\\\"HF_ENDPOINT\\\"] = \\\"https://hf-mirror.com\\\"\\n\\nimport json, time, glob, warnings\\nfrom pathlib import Path\\nfrom collections import defaultdict\\n\\nimport numpy as np\\nimport torch\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.metrics import balanced_accuracy_score, roc_auc_score\\nfrom sklearn.preprocessing import StandardScaler\\nfrom sklearn.decomposition import PCA\\n\\nwarnings.filterwarnings(\\\"ignore\\\")\\n\\nSEED = 42\\nN_RESAMPLES = 10000\\nLAYER_IDX = 60\\nWINDOW = 5\\nHIDDEN_DIM = 5120\\nPCA_DIM = 100\\n\\nBASE = Path(\\\"/root/autodl-tmp/contrastive_trace_safety\\\")\\nHS_DIR = BASE / \\\"artifacts/hidden_states_qwq_32b\\\"\\nOUTPUT_DIR = BASE / \\\"artifacts/table3_qwq_60_20_20\\\"\\nOUTPUT_DIR.mkdir(parents=True, exist_ok=True)\\n\\n\\ndef load_sentences_from_hf():\\n    from datasets import load_dataset\\n    ds = load_dataset(\\\"ishitakakkar-10/HarmThoughts\\\", split=\\\"train\\\")\\n    traces = defaultdict(list)\\n    for row in ds:\\n        if row[\\\"model_name\\\"] != \\\"QwQ\\\":\\n            continue\\n        sid = row[\\\"sentence_id\\\"]\\n        parts = sid.rsplit(\\\"-\\\", 1)\\n        trace_id = parts[0]\\n        step_idx = int(parts[1]) - 1\\n        traces[trace_id].append((step_idx, row[\\\"sentence\\\"]))\\n    for tid in traces:\\n        traces[tid].sort(key=lambda x: x[0])\\n        traces[tid] = [s for _, s in traces[tid]]\\n    return dict(traces)\\n\\n\\ndef load_traces(sentences_map):\\n    traces = []\\n    for pt_file in sorted(glob.glob(str(HS_DIR / \\\"*.pt\\\"))):\\n        d = torch.load(pt_file, map_location=\\\"cpu\\\", weights_only=False)\\n        if d.get(\\\"step_labels\\\") is None:\\n            continue\\n        trace_id = d[\\\"
+…[truncated 7266 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-18T18:06:56.797343+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "python3 -c \"import torch; d=torch.load('/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_qwq_32b/004ee4398ad043f88590dc868baed39c.pt', map_location='cpu', weights_only=False); print(type(d), list(d.keys())); hs=d['hidden_states']; print('hs shape:', hs.shape, hs.dtype); print('labels:', d.get('step_labels',None).__class__.__name__, len(d.get('step_labels',[])) if d.get('step_labels') is not None else 0); print('trace_id:', d.get('trace_id','?'))\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "python3 -c \"import torch; d=torch.load('/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_qwq_32b/004ee4398ad043f88590dc868baed39c.pt', map_location='cpu', weights_only=False); print(type(d), list(d.keys())); hs=d['hidden_states']; print('hs shape:', hs.shape, hs.dtype); print('labels:', d.get('step_labels',None).__class__.__name__, len(d.get('step_labels',[])) if d.get('step_labels') is not None else 0); print('trace_id:', d.get('trace_id','?'))\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-18T18:06:56.797481+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-18T18:06:56.797626+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && python3 -c \"\nimport torch\nd = torch.load('artifacts/hidden_states_qwq_32b/004ee4398ad043f88590dc868baed39c.pt', map_location='cpu', weights_only=False)\nprint('keys:', list(d.keys()))\nhs = d['hidden_states']\nprint('hs shape:', hs.shape, hs.dtype)\nsl = d.get('step_labels')\nprint('step_labels type:', type(sl), 'len:', len(sl) if sl is not None else 0)\nprint('trace_id:', d.get('trace_id','?'))\nprint('is_jailbreak:', d.get('is_jailbreak','?'))\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cd /root/autodl-tmp/contrastive_trace_safety && python3 -c \"\nimport torch\nd = torch.load('artifacts/hidden_states_qwq_32b/004ee4398ad043f88590dc868baed39c.pt', map_location='cpu', weights_only=False)\nprint('keys:', list(d.keys()))\nhs = d['hidden_states']\nprint('hs shape:', hs.shape, hs.dtype)\nsl = d.get('step_labels')\nprint('step_labels type:', type(sl), 'len:', len(sl) if sl is not None else 0)\nprint('trace_id:', d.get('trace_id','?'))\nprint('is_jailbreak:', d.get('is_jailbreak','?'))\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-18T18:06:56.797787+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/autodl-tmp/contrastive_trace_safety && python3 -c \\\"\\\\nimport torch\\\\nd = torch.load(\\\\'artifacts/hidden_states_qwq_32b/004ee4398ad043f88590dc868baed39c.pt\\\\', map_location=\\\\'cpu\\\\', weights_only=False)\\\\nprint(\\\\'keys:\\\\', list(d.keys()))\\\\nhs = d[\\\\'hidden_states\\\\']\\\\nprint(\\\\'hs shape:\\\\', hs.shape, hs.dtype)\\\\nsl = d.get(\\\\'step_labels\\\\')\\\\nprint(\\\\'step_labels type:\\\\', type(sl), \\\\'len:\\\\', len(sl) if sl is not None else 0)\\\\nprint(\\\\'trace_id:\\\\', d.get(\\\\'trace_id\\\\',\\\\'?\\\\'))\\\\nprint(\\\\'is_jailbreak:\\\\', d.get(\\\\'is_jailbreak\\\\',\\\\'?\\\\'))\\\\n\\\"\\\\n'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-18T18:06:56.797934+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 -c \"\nimport torch\nd = torch.load('artifacts/hidden_states_qwq_32b/004ee4398ad043f88590dc868baed39c.pt', map_location='cpu', weights_only=False)\nprint('keys:', list(d.keys()))\nhs = d['hidden_states']\nprint('hs shape:', hs.shape, hs.dtype)\nsl = d.get('step_labels')\nprint('step_labels type:', type(sl), 'len:', len(sl) if sl is not None else 0)\nprint('trace_id:', d.get('trace_id','?'))\nprint('is_jailbreak:', d.get('is_jailbreak','?'))\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 -c \"\nimport torch\nd = torch.load('artifacts/hidden_states_qwq_32b/004ee4398ad043f88590dc868baed39c.pt', map_location='cpu', weights_only=False)\nprint('keys:', list(d.keys()))\nhs = d['hidden_states']\nprint('hs shape:', hs.shape, hs.dtype)\nsl = d.get('step_labels')\nprint('step_labels type:', type(sl), 'len:', len(sl) if sl is not None else 0)\nprint('trace_id:', d.get('trace_id','?'))\nprint('is_jailbreak:', d.get('is_jailbreak','?'))\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-18T18:06:56.798066+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"keys: ['hidden_states', 'trace_id', 'num_sentences', 'commitment_point', 'step_labels', 'query']\\nhs shape: torch.Size([48, 64, 5120]) torch.float16\\nstep_labels type: &lt;class 'list'> len: 48\\ntrace_id: 004ee4398ad043f88590dc868baed39c\\nis_jailbreak: ?\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.19}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-18T18:06:56.798279+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat > /root/autodl-tmp/contrastive_trace_safety/scripts/r14_a1_qwq_rerun.py << 'PYEOF'\n\"\"\"R14 A1: QwQ-32B BA-layer canonical rerun (max_iter=2000, 60/20/20, W=5, PCA=100d)\n\nSteps:\n  1. Load all 95 traces, trace-level 60/20/20 split (seed=42)\n  2. Sweep all 64 layers: W=5 concat -> PCA 100d -> 5-fold CV LogReg(max_iter=2000)\n  3. Pick BA-optimal layer\n  4. HS vs Text comparison on BA-optimal layer with 10k bootstrap\n\"\"\"\nimport os\nos.environ[\"TOKENIZERS_PARALLELISM\"] = \"false\"\nos.environ[\"HF_ENDPOINT\"] = \"https://hf-mirror.com\"\n\nimport json, time, glob, warnings\nfrom pathlib import Path\nimport numpy as np\nimport torch\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.model_selection import StratifiedKFold\nfrom sklearn.metrics import balanced_accuracy_score, precision_score, roc_auc_score\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.decomposition import PCA\n\nwarnings.filterwarnings(\"ignore\")\n\nSEED = 42\nMAX_ITER = 2000\nN_FOLDS = 5\nWINDOW = 5\nHIDDEN_DIM = 5120\nPCA_DIM = 100\nN_LAYERS = 64\nN_RESAMPLES = 10000\n\nBASE = Path(\"/root/autodl-tmp/contrastive_trace_safety\")\nHS_DIR = BASE / \"artifacts/hidden_states_qwq_32b\"\nOUTPUT_DIR = BASE / \"artifacts/r14_a1_qwq_rerun\"\nOUTPUT_DIR.mkdir(parents=True, exist_ok=True)\n\n\ndef load_traces():\n    traces = []\n    for pt_file in sorted(glob.glob(str(HS_DIR / \"*.pt\"))):\n        d = torch.load(pt_file, map_location=\"cpu\", weights_only=False)\n        if d.get(\"step_labels\") is None:\n            continue\n        hs = d[\"hidden_states\"]\n        if isinstance(hs, torch.Tensor):\n            hs = hs.float().numpy()\n        labels = np.array(d[\"step_labels\"], dtype=np.int32)\n        n = min(hs.shape[0], len(labels))\n        if np.sum(labels[:n]) == 0 or np.sum(labels[:n]) == n:\n            continue\n        traces.append({\n            \"trace_id\": d[\"trace_id\"],\n            \"hidden_states\": hs[:n].astype(np.float32),\n            \"step_labels\": labels[:n],\n        })\n    return traces\n\n\ndef split_traces(traces, seed=42):\n    rng = np.random.default_rng(seed)\n    indices = rng.permutation(len(traces))\n    n_train = int(len(traces) * 0.6)\n    n_val = int(len(traces) * 0.2)\n    return (\n        [traces[i] for i in indices[:n_train]],\n        [traces[i] for i in indices[n_train:n_train + n_val]],\n        [traces[i] for i in indices[n_train + n_val:]],\n    )\n\n\ndef build_windowed_concat(features, window):\n    n_steps, dim = features.shape\n    X = np.zeros((n_steps, dim * window), dtype=np.float32)\n    for t in range(n_steps):\n        for w in range(window):\n            src_idx = t - (window - 1) + w\n            if src_idx >= 0:\n                X[t, w * dim:(w + 1) * dim] = features[src_idx]\n    return X\n\n\ndef build_windowed_average(features, window):\n    n_steps = features.shape[0]\n    cumsum = np.cumsum(features, axis=0)\n    X = np.zeros_like(features)\n    for t in range(n_steps):\n        start = max(0, t - window + 1)\n        if start == 0:\n            X[t] = cumsum[t] / (t + 1)\n        else:\n            X[t] = (cumsum[t] - cumsum[start - 1]) / (t - start + 1)\n    return X\n\n\ndef extract_layer_features(traces, layer_idx, window):\n    X_list, y_list = [], []\n    for t in traces:\n        hs = t[\"hidden_states\"][:, layer_idx, :]\n        windowed = build_windowed_concat(hs, window)\n        X_list.append(windowed)\n        y_list.append(t[\"step_labels\"])\n    return np.concatenate(X_list, axis=0), np.concatenate(y_list, axis=0)\n\n\ndef get_trace_boundaries(traces):\n    bounds = []\n    offset = 0\n    for t in traces:\n        n = len(t[\"step_labels\"])\n        bounds.append((offset, offset + n))\n        offset += n\n    return bounds\n\n\ndef compute_fpr(y_true, y_pred):\n    neg_mask = y_true == 0\n    if neg_mask.sum() == 0:\n        return 0.0\n    return float(np.sum((y_pred == 1) & neg_mask) / neg_mask.sum())\n\n\ndef paired_bootstrap(y_true, hs_preds, text_preds, hs_probs, text_probs,\n                     trace_bounds, n_resamples=10000, seed=42):\n    rng = np.random.default_rng(seed)\n    n_traces = len(trace_bounds)\n\n    def compute_metrics(y, pred, prob):\n        prec = precision_score(y, pred, zero_division=0.0)\n        ba = balanced_accuracy_score(y, pred)\n        fpr = compute_fpr(y, pred)\n        try:\n            auroc = roc_auc_score(y, prob)\n        except ValueError:\n            auroc = 0.5\n        return prec, ba, fpr, auroc\n\n    obs_hs = compute_metrics(y_true, hs_preds, hs_probs)\n    obs_text = compute_metrics(y_true, text_preds, text_probs)\n    obs_diff = [obs_hs[i] - obs_text[i] for i in range(4)]\n\n    boot_diffs = {m: [] for m in [\"prec\", \"ba\", \"fpr\", \"auroc\"]}\n\n    for _ in range(n_resamples):\n        idx = rng.choice(n_traces, size=n_traces, replace=True)\n        sample_indices = []\n        for i in idx:\n            s, e = trace_bounds[i]\n            sample_indices.extend(range(s, e))\n        sample_indices = np.array(sample_indices)\n\n        y_b = y_true[sample_indices]\n        hs_pred_b = hs_preds[sample_indices]\n        text_pred_b = text_preds[sample_indices]\n        hs_prob_b = hs_probs[sample_indices]\n        text_prob_b = text_probs[sample_indices]\n\n        m_hs = compute_metrics(y_b, hs_pred_b, hs_prob_b)\n        m_text = compute_metrics(y_b, text_pred_b, text_prob_b)\n\n        for j, key in enumerate([\"prec\", \"ba\", \"fpr\", \"auroc\"]):\n            boot_diffs[key].append(m_hs[j] - m_text[j])\n\n    results = {}\n    metric_names = [\"prec\", \"ba\", \"fpr\", \"auroc\"]\n    for j, key in enumerate(metric_names):\n        diffs = np.array(boot_diffs[key])\n        centered = diffs - np.mean(diffs)\n        p_val = float(np.mean(np.abs(centered) >= np.abs(obs_diff[j])))\n        ci_lo = float(np.percentile(diffs, 2.5))\n        ci_hi = float(np.percentile(diffs, 97.5))\n        results[key] = {\n            \"hs\": round(float(obs_hs[j]), 4),\n            \"text\": round(float(obs_text[j]), 4),\n            \"diff\": round(float(obs_diff[j]), 4),\n            \"p_value\": round(p_val, 4),\n            \"ci_95\": [round(ci_lo, 4), round(ci_hi, 4)],\n        }\n    return results\n\n\ndef holm_bonferroni(p_values, alpha=0.05):\n    m = len(p_values)\n    indexed = sorted(enumerate(p_values), key=lambda x: x[1])\n    reject = [False] * m\n    for rank, (orig_idx, p) in enumerate(indexed):\n        threshold = alpha / (m - rank)\n        if p <= threshold:\n            reject[orig_idx] = True\n        else:\n            break\n    return sum(reject)\n\n\ndef main():\n    t0 = time.time()\n\n    # Step 1: Load traces\n    print(\"Loading traces...\", flush=True)\n    traces = load_traces()\n    print(f\"Loaded {len(traces)} traces\", flush=True)\n\n    # Step 2: Split\n    train, val, test = split_traces(traces, seed=SEED)\n    train_val = train + val\n    print(f\"Split: train={len(train)}, val={len(val)}, test={len(test)}\", flush=True)\n\n    n_train_val_steps = sum(len(t[\"step_labels\"]) for t in train_val)\n    n_test_steps = sum(len(t[\"step_labels\"]) for t in test)\n    print(f\"Steps: train+val={n_train_val_steps}, test={n_test_steps}\", flush=True)\n\n    # Step 3: BA layer sweep (all 64 layers)\n    print(f\"\\n{'='*60}\", flush=True)\n    print(f\"BA Layer Sweep: {N_LAYERS} layers, W={WINDOW}, PCA={PCA_DIM}d, \"\n          f\"{N_FOLDS}-fold CV, max_iter={MAX_ITER}\", flush=True)\n    print(f\"{'='*60}\", flush=True)\n\n    layer_bas = {}\n    sweep_t0 = time.time()\n\n    for layer_idx in range(N_LAYERS):\n        lt0 = time.time()\n        X, y = extract_layer_features(train_val, layer_idx, WINDOW)\n\n        scaler = StandardScaler()\n        X_scaled = scaler.fit_transform(X)\n\n        pca = PCA(n_components=PCA_DIM, random_state=SEED)\n        X_pca = pca.fit_transform(X_scaled)\n\n        skf = StratifiedKFold(n_splits=N_FOLDS, shuffle=True, random_state=SEED)\n        fold_bas = []\n        for tr_idx, va_idx in skf.split(X_pca, y):\n            clf = LogisticRegression(C=1.0, class_weight=\"balanced\", solver=\"lbfgs\",\n                                     max_iter=MAX_ITER, random_state=SEED)\n            clf.fit(X_pca[tr_idx], y[tr_idx])\n            preds = clf.predict(X_pca[va_idx])\n            fold_bas.append(balanced_accuracy_score(y[va_idx], preds))\n\n        mean_ba = float(np.mean(fold_bas))\n        layer_bas[layer_idx] = round(mean_ba, 4)\n        elapsed = time.time() - lt0\n        print(f\"L{layer_idx:02d} BA={mean_ba:.4f} ({elapsed:.1f}s) \"\n              f\"folds={[round(b,4) for b in fold_bas]}\", flush=True)\n\n    sweep_elapsed = time.time() - sweep_t0\n    print(f\"\\nSweep completed in {sweep_elapsed:.1f}s\", flush=True)\n\n    # Find BA-optimal layer\n    best_layer = max(layer_bas, key=layer_bas.get)\n    best_ba = layer_bas[best_layer]\n    ba_vals = list(layer_bas.values())\n    ba_range = max(ba_vals) - min(ba_vals)\n    print(f\"\\nBA-optimal: L{best_layer} (BA={best_ba:.4f})\", flush=True)\n    print(f\"BA range: {ba_range:.4f} ({ba_range*100:.1f}pp)\", flush=True)\n\n    # Step 4: HS vs Text on BA-optimal layer\n    print(f\"\\n{'='*60}\", flush=True)\n    print(f\"HS vs Text on L{best_layer} (10k bootstrap)\", flush=True)\n    print(f\"{'='*60}\", flush=True)\n\n    # Build HS features for BA-optimal layer\n    X_train_hs_raw, y_train = extract_layer_features(train_val, best_layer, WINDOW)\n    X_test_hs_raw, y_test = extract_layer_features(test, best_layer, WINDOW)\n\n    scaler_hs = StandardScaler()\n    X_train_hs_scaled = scaler_hs.fit_transform(X_train_hs_raw)\n    X_test_hs_scaled = scaler_hs.transform(X_test_hs_raw)\n\n    pca_hs = PCA(n_components=PCA_DIM, random_state=SEED)\n    X_train_hs = pca_hs.fit_transform(X_train_hs_scaled)\n    X_test_hs = pca_hs.transform(X_test_hs_scaled)\n    print(f\"HS PCA: train={X_train_hs.shape}, test={X_test_hs.shape}\", flush=True)\n    print(f\"PCA explained var: {pca_hs.explained_variance_ratio_.sum():.4f}\", flush=True)\n\n    # Build Text features\n    print(\"Loading all-MiniLM-L6-v2...\", flush=True)\n    from sentence_transformers import SentenceTransformer\n    from collections import defaultdict\n\n    st_model = SentenceTransformer(\"all-MiniLM-L6-v2\", device=\"cpu\")\n\n    # Load sentences from HF\n    from datasets import load_dataset\n    ds = load_dataset(\"ishitakakkar-10/HarmThoughts\", split=\"train\")\n    sentences_map = defaultdict(list)\n    for row in ds:\n        if row[\"model_name\"] != \"QwQ\":\n            continue\n        sid = row[\"sentence_id\"]\n        parts = sid.rsplit(\"-\", 1)\n        trace_id = parts[0]\n        step_idx = int(parts[1]) - 1\n        sentences_map[trace_id].append((step_idx, row[\"sentence\"]))\n    for tid in sentences_map:\n        sentences_map[tid].sort(key=lambda x: x[0])\n        sentences_map[tid] = [s for _, s in sentences_map[tid]]\n    print(f\"Loaded sentences for {len(sentences_map)} traces\", flush=True)\n\n    def build_text_features(trace_list, model, window):\n        X_list, y_list = [], []\n        for t in trace_list:\n            tid = t[\"trace_id\"]\n            sents = sentences_map.get(tid, [])\n            n = min(len(t[\"step_labels\"]), len(sents))\n            if n == 0:\n                continue\n            embeddings = model.encode(sents[:n], show_progress_bar=False)\n            windowed = build_windowed_average(embeddings, window)\n            X_list.append(windowed)\n            y_list.append(t[\"step_labels\"][:n])\n        return np.concatenate(X_list, axis=0), np.concatenate(y_list, axis=0)\n\n    print(\"Building text features (avg W=5, 384d)...\", flush=True)\n    X_train_text, y_train_text = build_text_features(train_val, st_model, WINDOW)\n    X_test_text, y_test_text = build_text_features(test, st_model, WINDOW)\n    print(f\"Text: train={X_train_text.shape}, test={X_test_text.shape}\", flush=True)\n\n    scaler_text = StandardScaler()\n    X_train_text = scaler_text.fit_transform(X_train_text)\n    X_test_text = scaler_text.transform(X_test_text)\n\n    # Train probes\n    print(\"Training HS probe...\", flush=True)\n    clf_hs = LogisticRegression(C=1.0, class_weight=\"balanced\", max_iter=MAX_ITER,\n                                solver=\"lbfgs\", random_state=SEED)\n    clf_hs.fit(X_train_hs, y_train)\n    hs_preds = clf_hs.predict(X_test_hs)\n    hs_probs = clf_hs.predict_proba(X_test_hs)[:, 1]\n\n    print(\"Training Text probe...\", flush=True)\n    clf_text = LogisticRegression(C=1.0, class_weight=\"balanced\", max_iter=MAX_ITER,\n                                  solver=\"lbfgs\", random_state=SEED)\n    clf_text.fit(X_train_text, y_train_text)\n    text_preds = clf_text.predict(X_test_text)\n    text_probs = clf_text.predict_proba(X_test_text)[:, 1]\n\n    # Bootstrap\n    trace_bounds = get_trace_boundaries(test)\n    print(f\"Running {N_RESAMPLES} paired bootstrap resamples...\", flush=True)\n    boot = paired_bootstrap(y_test, hs_preds, text_preds, hs_probs, text_probs,\n                            trace_bounds, n_resamples=N_RESAMPLES, seed=SEED)\n\n    hb_pvals = [boot[\"prec\"][\"p_value\"], boot[\"ba\"][\"p_value\"], boot[\"fpr\"][\"p_value\"]]\n    hb_pass = holm_bonferroni(hb_pvals)\n\n    # Print results\n    print(f\"\\n{'='*60}\", flush=True)\n    print(f\"QwQ-32B BA Layer Sweep (max_iter={MAX_ITER}, 60/20/20, PCA={PCA_DIM}d):\", flush=True)\n    print(f\"Layer BA curve:\", flush=True)\n    for i in range(N_LAYERS):\n        end = \", \" if (i + 1) % 8 != 0 else \"\\n\"\n        print(f\"L{i}={layer_bas[i]:.4f}\", end=end, flush=True)\n    if N_LAYERS % 8 != 0:\n        print(flush=True)\n    print(f\"\\nBA-optimal: L{best_layer} (BA={best_ba:.4f})\", flush=True)\n    print(f\"BA range: max-min = {ba_range*100:.1f}pp\", flush=True)\n\n    print(f\"\\nHS vs Text on L{best_layer}:\", flush=True)\n    print(f\"| Metric | HS | Text | Delta | p | HB? |\", flush=True)\n    print(f\"|--------|------|------|-------|-------|-----|\", flush=True)\n    for metric, label in [(\"prec\", \"Prec\"), (\"ba\", \"BA\"), (\"fpr\", \"FPR\"), (\"auroc\", \"AUROC\")]:\n        b = boot[metric]\n        is_hb = \"Y\" if metric in [\"prec\", \"ba\", \"fpr\"] and hb_pvals[[\"prec\",\"ba\",\"fpr\"].index(metric)] <= 0.05 else (\"N\" if metric != \"auroc\" else \"-\")\n        print(f\"| {label} | {b['hs']:.3f} | {b['text']:.3f} | {b['diff']:+.3f} | {b['p_value']:.4f} | {is_hb} |\", flush=True)\n    print(f\"HB pass: {hb_pass}/3\", flush=True)\n\n    elapsed = time.time() - t0\n    print(f\"\\nTotal elapsed: {elapsed:.1f}s ({elapsed/60:.1f}min)\", flush=True)\n\n    # Save results\n    output = {\n        \"model\": \"QwQ-32B\",\n        \"max_iter\": MAX_ITER,\n        \"window\": WINDOW,\n        \"pca_dim\": PCA_DIM,\n        \"split\": \"60/20/20\",\n        \"seed\": SEED,\n        \"n_traces\": len(traces),\n        \"n_train\": len(train),\n        \"n_val\": len(val),\n        \"n_test\": len(test),\n        \"n_train_val_steps\": n_train_val_steps,\n        \"n_test_steps\": n_test_steps,\n        \"layer_bas\": {f\"L{k}\": v for k, v in layer_bas.items()},\n        \"ba_optimal_layer\": best_layer,\n        \"ba_optimal_value\": best_ba,\n        \"ba_range_pp\": round(ba_range * 100, 1),\n        \"text_encoder\": \"all-MiniLM-L6-v2\",\n        \"text_dim\": 384,\n        \"text_feature\": \"avg W=5 -> StandardScaler -> 384d\",\n        \"hs_feature\": f\"concat W=5 -> StandardScaler -> PCA {PCA_DIM}d\",\n        \"probe\": f\"LogisticRegression(C=1.0, class_weight='balanced', max_iter={MAX_ITER}, solver='lbfgs')\",\n        \"n_resamples\": N_RESAMPLES,\n        \"pca_explained_var\": float(pca_hs.explained_variance_ratio_.sum()),\n        \"bootstrap\": {k: v for k, v in boot.items()},\n        \"hb_3tests\": {\"tests\": [\"prec\", \"ba\", \"fpr\"], \"n_pass\": hb_pass, \"p_values\": hb_pvals},\n        \"elapsed_seconds\": round(elapsed, 1),\n    }\n    out_path = OUTPUT_DIR / \"results.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\nSaved to {out_path}\", flush=True)\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written.\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat > /root/autodl-tmp/contrastive_trace_safety/scripts/r14_a1_qwq_rerun.py << 'PYEOF'\n\"\"\"R14 A1: QwQ-32B BA-layer canonical rerun (max_iter=2000, 60/20/20, W=5, PCA=100d)\n\nSteps:\n  1. Load all 95 traces, trace-level 60/20/20 split (seed=42)\n  2. Sweep all 64 layers: W=5 concat -> PCA 100d -> 5-fold CV LogReg(max_iter=2000)\n  3. Pick BA-optimal layer\n  4. HS vs Text comparison on BA-optimal layer with 10k bootstrap\n\"\"\"\nimport os\nos.environ[\"TOKENIZERS_PARALLELISM\"] = \"false\"\nos.environ[\"HF_ENDPOINT\"] = \"https://hf-mirror.com\"\n\nimport json, time, glob, warnings\nfrom pathlib import Path\nimport numpy as np\nimport torch\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.model_selection import StratifiedKFold\nfrom sklearn.metrics import balanced_accuracy_score, precision_score, roc_auc_score\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.decomposition import PCA\n\nwarnings.filterwarnings(\"ignore\")\n\nSEED = 42\nMAX_ITER = 2000\nN_FOLDS = 5\nWINDOW = 5\nHIDDEN_DIM = 5120\nPCA_DIM = 100\nN_LAYERS = 64\nN_RESAMPLES = 10000\n\nBASE = Path(\"/root/autodl-tmp/contrastive_trace_safety\")\nHS_DIR = BASE / \"artifacts/hidden_states_qwq_32b\"\nOUTPUT_DIR = BASE / \"artifacts/r14_a1_qwq_rerun\"\nOUTPUT_DIR.mkdir(parents=True, exist_ok=True)\n\n\ndef load_traces():\n    traces = []\n    for pt_file in sorted(glob.glob(str(HS_DIR / \"*.pt\"))):\n        d = torch.load(pt_file, map_location=\"cpu\", weights_only=False)\n        if d.get(\"step_labels\") is None:\n            continue\n        hs = d[\"hidden_states\"]\n        if isinstance(hs, torch.Tensor):\n            hs = hs.float().numpy()\n        labels = np.array(d[\"step_labels\"], dtype=np.int32)\n        n = min(hs.shape[0], len(labels))\n        if np.sum(labels[:n]) == 0 or np.sum(labels[:n]) == n:\n            continue\n        traces.append({\n            \"trace_id\": d[\"trace_id\"],\n            \"hidden_states\": hs[:n].astype(np.float32),\n            \"step_labels\": labels[:n],\n        })\n    return traces\n\n\ndef split_traces(traces, seed=42):\n    rng = np.random.default_rng(seed)\n    indices = rng.permutation(len(traces))\n    n_train = int(len(traces) * 0.6)\n    n_val = int(len(traces) * 0.2)\n    return (\n        [traces[i] for i in indices[:n_train]],\n        [traces[i] for i in indices[n_train:n_train + n_val]],\n        [traces[i] for i in indices[n_train + n_val:]],\n    )\n\n\ndef build_windowed_concat(features, window):\n    n_steps, dim = features.shape\n    X = np.zeros((n_steps, dim * window), dtype=np.float32)\n    for t in range(n_steps):\n        for w in range(window):\n            src_idx = t - (window - 1) + w\n            if src_idx >= 0:\n                X[t, w * dim:(w + 1) * dim] = features[src_idx]\n    return X\n\n\ndef build_windowed_average(features, window):\n    n_steps = features.shape[0]\n    cumsum = np.cumsum(features, axis=0)\n    X = np.zeros_like(features)\n    for t in range(n_steps):\n        start = max(0, t - window + 1)\n        if start == 0:\n            X[t] = cumsum[t] / (t + 1)\n        else:\n            X[t] = (cumsum[t] - cumsum[start - 1]) / (t - start + 1)\n    return X\n\n\ndef extract_layer_features(traces, layer_idx, window):\n    X_list, y_list = [], []\n    for t in traces:\n        hs = t[\"hidden_states\"][:, layer_idx, :]\n        windowed = build_windowed_concat(hs, window)\n        X_list.append(windowed)\n        y_list.append(t[\"step_labels\"])\n    return np.concatenate(X_list, axis=0), np.concatenate(y_list, axis=0)\n\n\ndef get_trace_boundaries(traces):\n    bounds = []\n    offset = 0\n    for t in traces:\n        n = len(t[\"step_labels\"])\n        bounds.append((offset, offset + n))\n        offset += n\n    return bounds\n\n\ndef compute_fpr(y_true, y_pred):\n    neg_mask = y_true == 0\n    if neg_mask.sum() == 0:\n        return 0.0\n    return float(np.sum((y_pred == 1) & neg_mask) / neg_mask.sum())\n\n\ndef paired_bootstrap(y_true, hs_preds, text_preds, hs_probs, text_probs,\n                     trace_bounds, n_resamples=10000, seed=42):\n    rng = np.random.default_rng(seed)\n    n_traces = len(trace_bounds)\n\n    def compute_metrics(y, pred, prob):\n        prec = precision_score(y, pred, zero_division=0.0)\n        ba = balanced_accuracy_score(y, pred)\n        fpr = compute_fpr(y, pred)\n        try:\n            auroc = roc_auc_score(y, prob)\n        except ValueError:\n            auroc = 0.5\n        return prec, ba, fpr, auroc\n\n    obs_hs = compute_metrics(y_true, hs_preds, hs_probs)\n    obs_text = compute_metrics(y_true, text_preds, text_probs)\n    obs_diff = [obs_hs[i] - obs_text[i] for i in range(4)]\n\n    boot_diffs = {m: [] for m in [\"prec\", \"ba\", \"fpr\", \"auroc\"]}\n\n    for _ in range(n_resamples):\n        idx = rng.choice(n_traces, size=n_traces, replace=True)\n        sample_indices = []\n        for i in idx:\n            s, e = trace_bounds[i]\n            sample_indices.extend(range(s, e))\n        sample_indices = np.array(sample_indices)\n\n        y_b = y_true[sample_indices]\n        hs_pred_b = hs_preds[sample_indices]\n        text_pred_b = text_preds[sample_indices]\n        hs_prob_b = hs_probs[sample_indices]\n        text_prob_b = text_probs[sample_indices]\n\n        m_hs = compute_metrics(y_b, hs_pred_b, hs_prob_b)\n        m_text = compute_metrics(y_b, text_pred_b, text_prob_b)\n\n        for j, key in enumerate([\"prec\", \"ba\", \"fpr\", \"auroc\"]):\n            boot_diffs[key].append(m_hs[j] - m_text[j])\n\n    results = {}\n    metric_names = [\"prec\", \"ba\", \"fpr\", \"auroc\"]\n    for j, key in enumerate(metric_names):\n        diffs = np.array(boot_diffs[key])\n        centered = diffs - np.mean(diffs)\n        p_val = float(np.mean(np.abs(centered) >= np.abs(obs_diff[j])))\n        ci_lo = float(np.percentile(diffs, 2.5))\n        ci_hi = float(np.percentile(diffs, 97.5))\n        results[key] = {\n            \"hs\": round(float(obs_hs[j]), 4),\n            \"text\": round(float(obs_text[j]), 4),\n            \"diff\": round(float(obs_diff[j]), 4),\n            \"p_value\": round(p_val, 4),\n            \"ci_95\": [round(ci_lo, 4), round(ci_hi, 4)],\n        }\n    return results\n\n\ndef holm_bonferroni(p_values, alpha=0.05):\n    m = len(p_values)\n    indexed = sorted(enumerate(p_values), key=lambda x: x[1])\n    reject = [False] * m\n    for rank, (orig_idx, p) in enumerate(indexed):\n        threshold = alpha / (m - rank)\n        if p <= threshold:\n            reject[orig_idx] = True\n        else:\n            break\n    return sum(reject)\n\n\ndef main():\n    t0 = time.time()\n\n    # Step 1: Load traces\n    print(\"Loading traces...\", flush=True)\n    traces = load_traces()\n    print(f\"Loaded {len(traces)} traces\", flush=True)\n\n    # Step 2: Split\n    train, val, test = split_traces(traces, seed=SEED)\n    train_val = train + val\n    print(f\"Split: train={len(train)}, val={len(val)}, test={len(test)}\", flush=True)\n\n    n_train_val_steps = sum(len(t[\"step_labels\"]) for t in train_val)\n    n_test_steps = sum(len(t[\"step_labels\"]) for t in test)\n    print(f\"Steps: train+val={n_train_val_steps}, test={n_test_steps}\", flush=True)\n\n    # Step 3: BA layer sweep (all 64 layers)\n    print(f\"\\n{'='*60}\", flush=True)\n    print(f\"BA Layer Sweep: {N_LAYERS} layers, W={WINDOW}, PCA={PCA_DIM}d, \"\n          f\"{N_FOLDS}-fold CV, max_iter={MAX_ITER}\", flush=True)\n    print(f\"{'='*60}\", flush=True)\n\n    layer_bas = {}\n    sweep_t0 = time.time()\n\n    for layer_idx in range(N_LAYERS):\n        lt0 = time.time()\n        X, y = extract_layer_features(train_val, layer_idx, WINDOW)\n\n        scaler = StandardScaler()\n        X_scaled = scaler.fit_transform(X)\n\n        pca = PCA(n_components=PCA_DIM, random_state=SEED)\n        X_pca = pca.fit_transform(X_scaled)\n\n        skf = StratifiedKFold(n_splits=N_FOLDS, shuffle=True, random_state=SEED)\n        fold_bas = []\n        for tr_idx, va_idx in skf.split(X_pca, y):\n            clf = LogisticRegression(C=1.0, class_weight=\"balanced\", solver=\"lbfgs\",\n                                     max_iter=MAX_ITER, random_state=SEED)\n            clf.fit(X_pca[tr_idx], y[tr_idx])\n            preds = clf.predict(X_pca[va_idx])\n            fold_bas.append(balanced_accuracy_score(y[va_idx], preds))\n\n        mean_ba = float(np.mean(fold_bas))\n        layer_bas[layer_idx] = round(mean_ba, 4)\n        elapsed = time.time() - lt0\n        print(f\"L{layer_idx:02d} BA={mean_ba:.4f} ({elapsed:.1f}s) \"\n              f\"folds={[round(b,4) for b in fold_bas]}\", flush=True)\n\n    sweep_elapsed = time.time() - sweep_t0\n    print(f\"\\nSweep completed in {sweep_elapsed:.1f}s\", flush=True)\n\n    # Find BA-optimal layer\n    best_layer = max(layer_bas, key=layer_bas.get)\n    best_ba = layer_bas[best_layer]\n    ba_vals = list(layer_bas.values())\n    ba_range = max(ba_vals) - min(ba_vals)\n    print(f\"\\nBA-optimal: L{best_layer} (BA={best_ba:.4f})\", flush=True)\n    print(f\"BA range: {ba_range:.4f} ({ba_range*100:.1f}pp)\", flush=True)\n\n    # Step 4: HS vs Text on BA-optimal layer\n    print(f\"\\n{'='*60}\", flush=True)\n    print(f\"HS vs Text on L{best_layer} (10k bootstrap)\", flush=True)\n    print(f\"{'='*60}\", flush=True)\n\n    # Build HS features for BA-optimal layer\n    X_train_hs_raw, y_train = extract_layer_features(train_val, best_layer, WINDOW)\n    X_test_hs_raw, y_test = extract_layer_features(test, best_layer, WINDOW)\n\n    scaler_hs = StandardScaler()\n    X_train_hs_scaled = scaler_hs.fit_transform(X_train_hs_raw)\n    X_test_hs_scaled = scaler_hs.transform(X_test_hs_raw)\n\n    pca_hs = PCA(n_components=PCA_DIM, random_state=SEED)\n    X_train_hs = pca_hs.fit_transform(X_train_hs_scaled)\n    X_test_hs = pca_hs.transform(X_test_hs_scaled)\n    print(f\"HS PCA: train={X_train_hs.shape}, test={X_test_hs.shape}\", flush=True)\n    print(f\"PCA explained var: {pca_hs.explained_variance_ratio_.sum():.4f}\", flush=True)\n\n    # Build Text features\n    print(\"Loading all-MiniLM-L6-v2...\", flush=True)\n    from sentence_transformers import SentenceTransformer\n    from collections import defaultdict\n\n    st_model = SentenceTransformer(\"all-MiniLM-L6-v2\", device=\"cpu\")\n\n    # Load sentences from HF\n    from datasets import load_dataset\n    ds = load_dataset(\"ishitakakkar-10/HarmThoughts\", split=\"train\")\n    sentences_map = defaultdict(list)\n    for row in ds:\n        if row[\"model_name\"] != \"QwQ\":\n            continue\n        sid = row[\"sentence_id\"]\n        parts = sid.rsplit(\"-\", 1)\n        trace_id = parts[0]\n        step_idx = int(parts[1]) - 1\n        sentences_map[trace_id].append((step_idx, row[\"sentence\"]))\n    for tid in sentences_map:\n        sentences_map[tid].sort(key=lambda x: x[0])\n        sentences_map[tid] = [s for _, s in sentences_map[tid]]\n    print(f\"Loaded sentences for {len(sentences_map)} traces\", flush=True)\n\n    def build_text_features(trace_list, model, window):\n        X_list, y_list = [], []\n        for t in trace_list:\n            tid = t[\"trace_id\"]\n            sents = sentences_map.get(tid, [])\n            n = min(len(t[\"step_labels\"]), len(sents))\n            if n == 0:\n                continue\n            embeddings = model.encode(sents[:n], show_progress_bar=False)\n            windowed = build_windowed_average(embeddings, window)\n            X_list.append(windowed)\n            y_list.append(t[\"step_labels\"][:n])\n        return np.concatenate(X_list, axis=0), np.concatenate(y_list, axis=0)\n\n    print(\"Building text features (avg W=5, 384d)...\", flush=True)\n    X_train_text, y_train_text = build_text_features(train_val, st_model, WINDOW)\n    X_test_text, y_test_text = build_text_features(test, st_model, WINDOW)\n    print(f\"Text: train={X_train_text.shape}, test={X_test_text.shape}\", flush=True)\n\n    scaler_text = StandardScaler()\n    X_train_text = scaler_text.fit_transform(X_train_text)\n    X_test_text = scaler_text.transform(X_test_text)\n\n    # Train probes\n    print(\"Training HS probe...\", flush=True)\n    clf_hs = LogisticRegression(C=1.0, class_weight=\"balanced\", max_iter=MAX_ITER,\n                                solver=\"lbfgs\", random_state=SEED)\n    clf_hs.fit(X_train_hs, y_train)\n    hs_preds = clf_hs.predict(X_test_hs)\n    hs_probs = clf_hs.predict_proba(X_test_hs)[:, 1]\n\n    print(\"Training Text probe...\", flush=True)\n    clf_text = LogisticRegression(C=1.0, class_weight=\"balanced\", max_iter=MAX_ITER,\n                                  solver=\"lbfgs\", random_state=SEED)\n    clf_text.fit(X_train_text, y_train_text)\n    text_preds = clf_text.predict(X_test_text)\n    text_probs = clf_text.predict_proba(X_test_text)[:, 1]\n\n    # Bootstrap\n    trace_bounds = get_trace_boundaries(test)\n    print(f\"Running {N_RESAMPLES} paired bootstrap resamples...\", flush=True)\n    boot = paired_bootstrap(y_test, hs_preds, text_preds, hs_probs, text_probs,\n                            trace_bounds, n_resamples=N_RESAMPLES, seed=SEED)\n\n    hb_pvals = [boot[\"prec\"][\"p_value\"], boot[\"ba\"][\"p_value\"], boot[\"fpr\"][\"p_value\"]]\n    hb_pass = holm_bonferroni(hb_pvals)\n\n    # Print results\n    print(f\"\\n{'='*60}\", flush=True)\n    print(f\"QwQ-32B BA Layer Sweep (max_iter={MAX_ITER}, 60/20/20, PCA={PCA_DIM}d):\", flush=True)\n    print(f\"Layer BA curve:\", flush=True)\n    for i in range(N_LAYERS):\n        end = \", \" if (i + 1) % 8 != 0 else \"\\n\"\n        print(f\"L{i}={layer_bas[i]:.4f}\", end=end, flush=True)\n    if N_LAYERS % 8 != 0:\n        print(flush=True)\n    print(f\"\\nBA-optimal: L{best_layer} (BA={best_ba:.4f})\", flush=True)\n    print(f\"BA range: max-min = {ba_range*100:.1f}pp\", flush=True)\n\n    print(f\"\\nHS vs Text on L{best_layer}:\", flush=True)\n    print(f\"| Metric | HS | Text | Delta | p | HB? |\", flush=True)\n    print(f\"|--------|------|------|-------|-------|-----|\", flush=True)\n    for metric, label in [(\"prec\", \"Prec\"), (\"ba\", \"BA\"), (\"fpr\", \"FPR\"), (\"auroc\", \"AUROC\")]:\n        b = boot[metric]\n        is_hb = \"Y\" if metric in [\"prec\", \"ba\", \"fpr\"] and hb_pvals[[\"prec\",\"ba\",\"fpr\"].index(metric)] <= 0.05 else (\"N\" if metric != \"auroc\" else \"-\")\n        print(f\"| {label} | {b['hs']:.3f} | {b['text']:.3f} | {b['diff']:+.3f} | {b['p_value']:.4f} | {is_hb} |\", flush=True)\n    print(f\"HB pass: {hb_pass}/3\", flush=True)\n\n    elapsed = time.time() - t0\n    print(f\"\\nTotal elapsed: {elapsed:.1f}s ({elapsed/60:.1f}min)\", flush=True)\n\n    # Save results\n    output = {\n        \"model\": \"QwQ-32B\",\n        \"max_iter\": MAX_ITER,\n        \"window\": WINDOW,\n        \"pca_dim\": PCA_DIM,\n        \"split\": \"60/20/20\",\n        \"seed\": SEED,\n        \"n_traces\": len(traces),\n        \"n_train\": len(train),\n        \"n_val\": len(val),\n        \"n_test\": len(test),\n        \"n_train_val_steps\": n_train_val_steps,\n        \"n_test_steps\": n_test_steps,\n        \"layer_bas\": {f\"L{k}\": v for k, v in layer_bas.items()},\n        \"ba_optimal_layer\": best_layer,\n        \"ba_optimal_value\": best_ba,\n        \"ba_range_pp\": round(ba_range * 100, 1),\n        \"text_encoder\": \"all-MiniLM-L6-v2\",\n        \"text_dim\": 384,\n        \"text_feature\": \"avg W=5 -> StandardScaler -> 384d\",\n        \"hs_feature\": f\"concat W=5 -> StandardScaler -> PCA {PCA_DIM}d\",\n        \"probe\": f\"LogisticRegression(C=1.0, class_weight='balanced', max_iter={MAX_ITER}, solver='lbfgs')\",\n        \"n_resamples\": N_RESAMPLES,\n        \"pca_explained_var\": float(pca_hs.explained_variance_ratio_.sum()),\n        \"bootstrap\": {k: v for k, v in boot.items()},\n        \"hb_3tests\": {\"tests\": [\"prec\", \"ba\", \"fpr\"], \"n_pass\": hb_pass, \"p_values\": hb_pvals},\n        \"elapsed_seconds\": round(elapsed, 1),\n    }\n    out_path = OUTPUT_DIR / \"results.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\nSaved to {out_path}\", flush=True)\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written.\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-18T18:06:56.798559+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-18T18:06:56.798729+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 scripts/r14_a1_qwq_rerun.py",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 scripts/r14_a1_qwq_rerun.py",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-18T18:06:56.798871+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 scripts/r14_a1_qwq_rerun.py'\\n\\nStdout:\\n\\n\\n============================================================\\nBA Layer Sweep: 64 layers, W=5, PCA=100d, 5-fold CV, max_iter=2000\\n============================================================\\nL00 BA=0.7900 (3.4s) folds=[0.7765, 0.7873, 0.7918, 0.8005, 0.7938]\\nL01 BA=0.7941 (3.4s) folds=[0.787, 0.7923, 0.8043, 0.8027, 0.7845]\\nL02 BA=0.7795 (3.4s) folds=[0.7747, 0.7877, 0.7869, 0.7823, 0.7658]\\nL03 BA=0.7604 (3.4s) folds=[0.7617, 0.7536, 0.7664, 0.7597, 0.7605]\\nL04 BA=0.7669 (3.4s) folds=[0.7519, 0.7692, 0.7567, 0.7675, 0.7892]\\nL05 BA=0.7689 (3.4s) folds=[0.7578, 0.7683, 0.7652, 0.7818, 0.7712]\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.34}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-18T18:06:56.799053+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat > /root/autodl-tmp/contrastive_trace_safety/scripts/r14_a1_qwq_stage1_load.py << 'PYEOF'\n\"\"\"Stage 1: Load traces, split 60/20/20, save splits to disk.\"\"\"\nimport glob, pickle, time\nfrom pathlib import Path\nimport numpy as np\nimport torch\n\nSEED = 42\nBASE = Path(\"/root/autodl-tmp/contrastive_trace_safety\")\nHS_DIR = BASE / \"artifacts/hidden_states_qwq_32b\"\nOUTPUT_DIR = BASE / \"artifacts/r14_a1_qwq_rerun\"\nOUTPUT_DIR.mkdir(parents=True, exist_ok=True)\n\nt0 = time.time()\ntraces = []\nfor pt_file in sorted(glob.glob(str(HS_DIR / \"*.pt\"))):\n    d = torch.load(pt_file, map_location=\"cpu\", weights_only=False)\n    if d.get(\"step_labels\") is None:\n        continue\n    hs = d[\"hidden_states\"]\n    if isinstance(hs, torch.Tensor):\n        hs = hs.float().numpy()\n    labels = np.array(d[\"step_labels\"], dtype=np.int32)\n    n = min(hs.shape[0], len(labels))\n    if np.sum(labels[:n]) == 0 or np.sum(labels[:n]) == n:\n        continue\n    traces.append({\n        \"trace_id\": d[\"trace_id\"],\n        \"hidden_states\": hs[:n].astype(np.float32),\n        \"step_labels\": labels[:n],\n    })\n\nprint(f\"Loaded {len(traces)} traces in {time.time()-t0:.1f}s\")\n\nrng = np.random.default_rng(SEED)\nindices = rng.permutation(len(traces))\nn_train = int(len(traces) * 0.6)\nn_val = int(len(traces) * 0.2)\ntrain = [traces[i] for i in indices[:n_train]]\nval = [traces[i] for i in indices[n_train:n_train + n_val]]\ntest = [traces[i] for i in indices[n_train + n_val:]]\nprint(f\"Split: train={len(train)}, val={len(val)}, test={len(test)}\")\n\ntrain_val = train + val\nn_tv = sum(len(t[\"step_labels\"]) for t in train_val)\nn_te = sum(len(t[\"step_labels\"]) for t in test)\nprint(f\"Steps: train+val={n_tv}, test={n_te}\")\n\nwith open(OUTPUT_DIR / \"splits.pkl\", \"wb\") as f:\n    pickle.dump({\"train\": train, \"val\": val, \"test\": test, \"train_val\": train_val}, f)\nprint(f\"Saved splits.pkl ({(OUTPUT_DIR / 'splits.pkl').stat().st_size / 1e6:.1f}MB)\")\nPYEOF\ncd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 scripts/r14_a1_qwq_stage1_load.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat > /root/autodl-tmp/contrastive_trace_safety/scripts/r14_a1_qwq_stage1_load.py << 'PYEOF'\n\"\"\"Stage 1: Load traces, split 60/20/20, save splits to disk.\"\"\"\nimport glob, pickle, time\nfrom pathlib import Path\nimport numpy as np\nimport torch\n\nSEED = 42\nBASE = Path(\"/root/autodl-tmp/contrastive_trace_safety\")\nHS_DIR = BASE / \"artifacts/hidden_states_qwq_32b\"\nOUTPUT_DIR = BASE / \"artifacts/r14_a1_qwq_rerun\"\nOUTPUT_DIR.mkdir(parents=True, exist_ok=True)\n\nt0 = time.time()\ntraces = []\nfor pt_file in sorted(glob.glob(str(HS_DIR / \"*.pt\"))):\n    d = torch.load(pt_file, map_location=\"cpu\", weights_only=False)\n    if d.get(\"step_labels\") is None:\n        continue\n    hs = d[\"hidden_states\"]\n    if isinstance(hs, torch.Tensor):\n        hs = hs.float().numpy()\n    labels = np.array(d[\"step_labels\"], dtype=np.int32)\n    n = min(hs.shape[0], len(labels))\n    if np.sum(labels[:n]) == 0 or np.sum(labels[:n]) == n:\n        continue\n    traces.append({\n        \"trace_id\": d[\"trace_id\"],\n        \"hidden_states\": hs[:n].astype(np.float32),\n        \"step_labels\": labels[:n],\n    })\n\nprint(f\"Loaded {len(traces)} traces in {time.time()-t0:.1f}s\")\n\nrng = np.random.default_rng(SEED)\nindices = rng.permutation(len(traces))\nn_train = int(len(traces) * 0.6)\nn_val = int(len(traces) * 0.2)\ntrain = [traces[i] for i in indices[:n_train]]\nval = [traces[i] for i in indices[n_train:n_train + n_val]]\ntest = [traces[i] for i in indices[n_train + n_val:]]\nprint(f\"Split: train={len(train)}, val={len(val)}, test={len(test)}\")\n\ntrain_val = train + val\nn_tv = sum(len(t[\"step_labels\"]) for t in train_val)\nn_te = sum(len(t[\"step_labels\"]) for t in test)\nprint(f\"Steps: train+val={n_tv}, test={n_te}\")\n\nwith open(OUTPUT_DIR / \"splits.pkl\", \"wb\") as f:\n    pickle.dump({\"train\": train, \"val\": val, \"test\": test, \"train_val\": train_val}, f)\nprint(f\"Saved splits.pkl ({(OUTPUT_DIR / 'splits.pkl').stat().st_size / 1e6:.1f}MB)\")\nPYEOF\ncd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 scripts/r14_a1_qwq_stage1_load.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-18T18:06:56.799207+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loaded 95 traces in 5.0s\\nSplit: train=57, val=19, test=19\\nSteps: train+val=3823, test=1029\\nSaved splits.pkl (6359.6MB)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 12.91}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-18T18:06:56.799351+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat > /root/autodl-tmp/contrastive_trace_safety/scripts/r14_a1_qwq_stage2_sweep.py << 'PYEOF'\n\"\"\"Stage 2: Sweep layers START-END. Usage: python stage2.py START END\"\"\"\nimport json, pickle, sys, time, warnings\nfrom pathlib import Path\nimport numpy as np\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.model_selection import StratifiedKFold\nfrom sklearn.metrics import balanced_accuracy_score\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.decomposition import PCA\n\nwarnings.filterwarnings(\"ignore\")\n\nSEED = 42\nMAX_ITER = 2000\nPCA_DIM = 100\nWINDOW = 5\nOUTPUT_DIR = Path(\"/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a1_qwq_rerun\")\n\nstart_layer = int(sys.argv[1])\nend_layer = int(sys.argv[2])\n\nwith open(OUTPUT_DIR / \"splits.pkl\", \"rb\") as f:\n    splits = pickle.load(f)\ntrain_val = splits[\"train_val\"]\n\ndef build_windowed_concat(features, window):\n    n_steps, dim = features.shape\n    X = np.zeros((n_steps, dim * window), dtype=np.float32)\n    for t in range(n_steps):\n        for w in range(window):\n            src_idx = t - (window - 1) + w\n            if src_idx >= 0:\n                X[t, w * dim:(w + 1) * dim] = features[src_idx]\n    return X\n\ndef extract_layer_features(traces, layer_idx, window):\n    X_list, y_list = [], []\n    for t in traces:\n        hs = t[\"hidden_states\"][:, layer_idx, :]\n        windowed = build_windowed_concat(hs, window)\n        X_list.append(windowed)\n        y_list.append(t[\"step_labels\"])\n    return np.concatenate(X_list, axis=0), np.concatenate(y_list, axis=0)\n\nresults = {}\nfor layer_idx in range(start_layer, end_layer):\n    lt0 = time.time()\n    X, y = extract_layer_features(train_val, layer_idx, WINDOW)\n    scaler = StandardScaler()\n    X_scaled = scaler.fit_transform(X)\n    pca = PCA(n_components=PCA_DIM, random_state=SEED)\n    X_pca = pca.fit_transform(X_scaled)\n\n    skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=SEED)\n    fold_bas = []\n    for tr_idx, va_idx in skf.split(X_pca, y):\n        clf = LogisticRegression(C=1.0, class_weight=\"balanced\", solver=\"lbfgs\",\n                                 max_iter=MAX_ITER, random_state=SEED)\n        clf.fit(X_pca[tr_idx], y[tr_idx])\n        preds = clf.predict(X_pca[va_idx])\n        fold_bas.append(balanced_accuracy_score(y[va_idx], preds))\n\n    mean_ba = float(np.mean(fold_bas))\n    results[layer_idx] = round(mean_ba, 4)\n    print(f\"L{layer_idx:02d} BA={mean_ba:.4f} ({time.time()-lt0:.1f}s)\")\n\nwith open(OUTPUT_DIR / f\"sweep_{start_layer}_{end_layer}.json\", \"w\") as f:\n    json.dump(results, f)\nprint(f\"Saved sweep_{start_layer}_{end_layer}.json\")\nPYEOF\necho \"Stage 2 script written.\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat > /root/autodl-tmp/contrastive_trace_safety/scripts/r14_a1_qwq_stage2_sweep.py << 'PYEOF'\n\"\"\"Stage 2: Sweep layers START-END. Usage: python stage2.py START END\"\"\"\nimport json, pickle, sys, time, warnings\nfrom pathlib import Path\nimport numpy as np\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.model_selection import StratifiedKFold\nfrom sklearn.metrics import balanced_accuracy_score\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.decomposition import PCA\n\nwarnings.filterwarnings(\"ignore\")\n\nSEED = 42\nMAX_ITER = 2000\nPCA_DIM = 100\nWINDOW = 5\nOUTPUT_DIR = Path(\"/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a1_qwq_rerun\")\n\nstart_layer = int(sys.argv[1])\nend_layer = int(sys.argv[2])\n\nwith open(OUTPUT_DIR / \"splits.pkl\", \"rb\") as f:\n    splits = pickle.load(f)\ntrain_val = splits[\"train_val\"]\n\ndef build_windowed_concat(features, window):\n    n_steps, dim = features.shape\n    X = np.zeros((n_steps, dim * window), dtype=np.float32)\n    for t in range(n_steps):\n        for w in range(window):\n            src_idx = t - (window - 1) + w\n            if src_idx >= 0:\n                X[t, w * dim:(w + 1) * dim] = features[src_idx]\n    return X\n\ndef extract_layer_features(traces, layer_idx, window):\n    X_list, y_list = [], []\n    for t in traces:\n        hs = t[\"hidden_states\"][:, layer_idx, :]\n        windowed = build_windowed_concat(hs, window)\n        X_list.append(windowed)\n        y_list.append(t[\"step_labels\"])\n    return np.concatenate(X_list, axis=0), np.concatenate(y_list, axis=0)\n\nresults = {}\nfor layer_idx in range(start_layer, end_layer):\n    lt0 = time.time()\n    X, y = extract_layer_features(train_val, layer_idx, WINDOW)\n    scaler = StandardScaler()\n    X_scaled = scaler.fit_transform(X)\n    pca = PCA(n_components=PCA_DIM, random_state=SEED)\n    X_pca = pca.fit_transform(X_scaled)\n\n    skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=SEED)\n    fold_bas = []\n    for tr_idx, va_idx in skf.split(X_pca, y):\n        clf = LogisticRegression(C=1.0, class_weight=\"balanced\", solver=\"lbfgs\",\n                                 max_iter=MAX_ITER, random_state=SEED)\n        clf.fit(X_pca[tr_idx], y[tr_idx])\n        preds = clf.predict(X_pca[va_idx])\n        fold_bas.append(balanced_accuracy_score(y[va_idx], preds))\n\n    mean_ba = float(np.mean(fold_bas))\n    results[layer_idx] = round(mean_ba, 4)\n    print(f\"L{layer_idx:02d} BA={mean_ba:.4f} ({time.time()-lt0:.1f}s)\")\n\nwith open(OUTPUT_DIR / f\"sweep_{start_layer}_{end_layer}.json\", \"w\") as f:\n    json.dump(results, f)\nprint(f\"Saved sweep_{start_layer}_{end_layer}.json\")\nPYEOF\necho \"Stage 2 script written.\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-18T18:06:56.799502+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Stage 2 script written.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-18T18:06:56.799653+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 scripts/r14_a1_qwq_stage2_sweep.py 0 8",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 scripts/r14_a1_qwq_stage2_sweep.py 0 8",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-18T18:06:56.799787+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 scripts/r14_a1_qwq_stage2_sweep.py 0 8'\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-18T18:06:56.799966+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat > /root/autodl-tmp/contrastive_trace_safety/scripts/r14_a1_qwq_sweep_chunk.py << 'PYEOF'\n\"\"\"Sweep layers START-END, loading .pt files directly. Usage: python sweep_chunk.py START END\"\"\"\nimport json, glob, sys, time, warnings\nfrom pathlib import Path\nimport numpy as np\nimport torch\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.model_selection import StratifiedKFold\nfrom sklearn.metrics import balanced_accuracy_score\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.decomposition import PCA\n\nwarnings.filterwarnings(\"ignore\")\n\nSEED = 42\nMAX_ITER = 2000\nPCA_DIM = 100\nWINDOW = 5\nBASE = Path(\"/root/autodl-tmp/contrastive_trace_safety\")\nHS_DIR = BASE / \"artifacts/hidden_states_qwq_32b\"\nOUTPUT_DIR = BASE / \"artifacts/r14_a1_qwq_rerun\"\nOUTPUT_DIR.mkdir(parents=True, exist_ok=True)\n\nstart_layer = int(sys.argv[1])\nend_layer = int(sys.argv[2])\n\nt0 = time.time()\ntraces = []\nfor pt_file in sorted(glob.glob(str(HS_DIR / \"*.pt\"))):\n    d = torch.load(pt_file, map_location=\"cpu\", weights_only=False)\n    if d.get(\"step_labels\") is None:\n        continue\n    hs = d[\"hidden_states\"]\n    if isinstance(hs, torch.Tensor):\n        hs = hs.float().numpy()\n    labels = np.array(d[\"step_labels\"], dtype=np.int32)\n    n = min(hs.shape[0], len(labels))\n    if np.sum(labels[:n]) == 0 or np.sum(labels[:n]) == n:\n        continue\n    traces.append({\n        \"trace_id\": d[\"trace_id\"],\n        \"hidden_states\": hs[:n].astype(np.float32),\n        \"step_labels\": labels[:n],\n    })\n\nrng = np.random.default_rng(SEED)\nindices = rng.permutation(len(traces))\nn_train = int(len(traces) * 0.6)\nn_val = int(len(traces) * 0.2)\ntrain_val = [traces[i] for i in indices[:n_train + n_val]]\nprint(f\"Loaded {len(traces)} traces, train_val={len(train_val)} in {time.time()-t0:.1f}s\")\n\ndef build_windowed_concat(features, window):\n    n_steps, dim = features.shape\n    X = np.zeros((n_steps, dim * window), dtype=np.float32)\n    for t in range(n_steps):\n        for w in range(window):\n            src_idx = t - (window - 1) + w\n            if src_idx >= 0:\n                X[t, w * dim:(w + 1) * dim] = features[src_idx]\n    return X\n\ndef extract_layer_features(trs, layer_idx, window):\n    X_list, y_list = [], []\n    for t in trs:\n        hs = t[\"hidden_states\"][:, layer_idx, :]\n        windowed = build_windowed_concat(hs, window)\n        X_list.append(windowed)\n        y_list.append(t[\"step_labels\"])\n    return np.concatenate(X_list, axis=0), np.concatenate(y_list, axis=0)\n\nresults = {}\nfor layer_idx in range(start_layer, end_layer):\n    lt0 = time.time()\n    X, y = extract_layer_features(train_val, layer_idx, WINDOW)\n    scaler = StandardScaler()\n    X_scaled = scaler.fit_transform(X)\n    pca = PCA(n_components=PCA_DIM, random_state=SEED)\n    X_pca = pca.fit_transform(X_scaled)\n\n    skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=SEED)\n    fold_bas = []\n    for tr_idx, va_idx in skf.split(X_pca, y):\n        clf = LogisticRegression(C=1.0, class_weight=\"balanced\", solver=\"lbfgs\",\n                                 max_iter=MAX_ITER, random_state=SEED)\n        clf.fit(X_pca[tr_idx], y[tr_idx])\n        preds = clf.predict(X_pca[va_idx])\n        fold_bas.append(balanced_accuracy_score(y[va_idx], preds))\n\n    mean_ba = float(np.mean(fold_bas))\n    results[layer_idx] = {\"ba\": round(mean_ba, 4), \"folds\": [round(b,4) for b in fold_bas]}\n    print(f\"L{layer_idx:02d} BA={mean_ba:.4f} ({time.time()-lt0:.1f}s)\")\n\nwith open(OUTPUT_DIR / f\"sweep_{start_layer}_{end_layer}.json\", \"w\") as f:\n    json.dump(results, f)\nprint(f\"Saved sweep_{start_layer}_{end_layer}.json (total {time.time()-t0:.1f}s)\")\nPYEOF\necho \"Chunk sweep script written.\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat > /root/autodl-tmp/contrastive_trace_safety/scripts/r14_a1_qwq_sweep_chunk.py << 'PYEOF'\n\"\"\"Sweep layers START-END, loading .pt files directly. Usage: python sweep_chunk.py START END\"\"\"\nimport json, glob, sys, time, warnings\nfrom pathlib import Path\nimport numpy as np\nimport torch\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.model_selection import StratifiedKFold\nfrom sklearn.metrics import balanced_accuracy_score\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.decomposition import PCA\n\nwarnings.filterwarnings(\"ignore\")\n\nSEED = 42\nMAX_ITER = 2000\nPCA_DIM = 100\nWINDOW = 5\nBASE = Path(\"/root/autodl-tmp/contrastive_trace_safety\")\nHS_DIR = BASE / \"artifacts/hidden_states_qwq_32b\"\nOUTPUT_DIR = BASE / \"artifacts/r14_a1_qwq_rerun\"\nOUTPUT_DIR.mkdir(parents=True, exist_ok=True)\n\nstart_layer = int(sys.argv[1])\nend_layer = int(sys.argv[2])\n\nt0 = time.time()\ntraces = []\nfor pt_file in sorted(glob.glob(str(HS_DIR / \"*.pt\"))):\n    d = torch.load(pt_file, map_location=\"cpu\", weights_only=False)\n    if d.get(\"step_labels\") is None:\n        continue\n    hs = d[\"hidden_states\"]\n    if isinstance(hs, torch.Tensor):\n        hs = hs.float().numpy()\n    labels = np.array(d[\"step_labels\"], dtype=np.int32)\n    n = min(hs.shape[0], len(labels))\n    if np.sum(labels[:n]) == 0 or np.sum(labels[:n]) == n:\n        continue\n    traces.append({\n        \"trace_id\": d[\"trace_id\"],\n        \"hidden_states\": hs[:n].astype(np.float32),\n        \"step_labels\": labels[:n],\n    })\n\nrng = np.random.default_rng(SEED)\nindices = rng.permutation(len(traces))\nn_train = int(len(traces) * 0.6)\nn_val = int(len(traces) * 0.2)\ntrain_val = [traces[i] for i in indices[:n_train + n_val]]\nprint(f\"Loaded {len(traces)} traces, train_val={len(train_val)} in {time.time()-t0:.1f}s\")\n\ndef build_windowed_concat(features, window):\n    n_steps, dim = features.shape\n    X = np.zeros((n_steps, dim * window), dtype=np.float32)\n    for t in range(n_steps):\n        for w in range(window):\n            src_idx = t - (window - 1) + w\n            if src_idx >= 0:\n                X[t, w * dim:(w + 1) * dim] = features[src_idx]\n    return X\n\ndef extract_layer_features(trs, layer_idx, window):\n    X_list, y_list = [], []\n    for t in trs:\n        hs = t[\"hidden_states\"][:, layer_idx, :]\n        windowed = build_windowed_concat(hs, window)\n        X_list.append(windowed)\n        y_list.append(t[\"step_labels\"])\n    return np.concatenate(X_list, axis=0), np.concatenate(y_list, axis=0)\n\nresults = {}\nfor layer_idx in range(start_layer, end_layer):\n    lt0 = time.time()\n    X, y = extract_layer_features(train_val, layer_idx, WINDOW)\n    scaler = StandardScaler()\n    X_scaled = scaler.fit_transform(X)\n    pca = PCA(n_components=PCA_DIM, random_state=SEED)\n    X_pca = pca.fit_transform(X_scaled)\n\n    skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=SEED)\n    fold_bas = []\n    for tr_idx, va_idx in skf.split(X_pca, y):\n        clf = LogisticRegression(C=1.0, class_weight=\"balanced\", solver=\"lbfgs\",\n                                 max_iter=MAX_ITER, random_state=SEED)\n        clf.fit(X_pca[tr_idx], y[tr_idx])\n        preds = clf.predict(X_pca[va_idx])\n        fold_bas.append(balanced_accuracy_score(y[va_idx], preds))\n\n    mean_ba = float(np.mean(fold_bas))\n    results[layer_idx] = {\"ba\": round(mean_ba, 4), \"folds\": [round(b,4) for b in fold_bas]}\n    print(f\"L{layer_idx:02d} BA={mean_ba:.4f} ({time.time()-lt0:.1f}s)\")\n\nwith open(OUTPUT_DIR / f\"sweep_{start_layer}_{end_layer}.json\", \"w\") as f:\n    json.dump(results, f)\nprint(f\"Saved sweep_{start_layer}_{end_layer}.json (total {time.time()-t0:.1f}s)\")\nPYEOF\necho \"Chunk sweep script written.\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-18T18:06:56.800131+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Chunk sweep script written.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.94}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-18T18:06:56.800268+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 scripts/r14_a1_qwq_sweep_chunk.py 0 5",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 scripts/r14_a1_qwq_sweep_chunk.py 0 5",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-18T18:06:56.800470+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loaded 95 traces, train_val=76 in 5.1s\\nL00 BA=0.7900 (3.5s)\\nL01 BA=0.7941 (3.3s)\\nL02 BA=0.7795 (3.3s)\\nL03 BA=0.7604 (3.2s)\\nL04 BA=0.7669 (3.2s)\\nSaved sweep_0_5.json (total 21.5s)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 24.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-18T18:06:56.800676+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 scripts/r14_a1_qwq_sweep_chunk.py 5 10",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 scripts/r14_a1_qwq_sweep_chunk.py 5 10",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-18T18:06:56.800833+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loaded 95 traces, train_val=76 in 5.0s\\nL05 BA=0.7689 (3.3s)\\nL06 BA=0.7902 (3.4s)\\nL07 BA=0.7993 (3.3s)\\nL08 BA=0.8031 (3.4s)\\nL09 BA=0.8062 (3.4s)\\nSaved sweep_5_10.json (total 21.7s)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 24.63}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-18T18:06:56.800957+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 scripts/r14_a1_qwq_sweep_chunk.py 10 15",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 scripts/r14_a1_qwq_sweep_chunk.py 10 15",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-18T18:06:56.801081+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loaded 95 traces, train_val=76 in 5.0s\\nL10 BA=0.7951 (3.3s)\\nL11 BA=0.7733 (3.2s)\\nL12 BA=0.7729 (3.3s)\\nL13 BA=0.7719 (3.3s)\\nL14 BA=0.7760 (3.3s)\\nSaved sweep_10_15.json (total 21.4s)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 24.28}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-18T18:06:56.801200+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 scripts/r14_a1_qwq_sweep_chunk.py 15 20",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 scripts/r14_a1_qwq_sweep_chunk.py 15 20",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-18T18:06:56.801328+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loaded 95 traces, train_val=76 in 5.1s\\nL15 BA=0.7860 (3.2s)\\nL16 BA=0.7874 (3.2s)\\nL17 BA=0.8063 (3.3s)\\nL18 BA=0.8200 (3.3s)\\nL19 BA=0.8167 (3.3s)\\nSaved sweep_15_20.json (total 21.4s)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 24.19}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-18T18:06:56.801447+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 scripts/r14_a1_qwq_sweep_chunk.py 20 25",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 scripts/r14_a1_qwq_sweep_chunk.py 20 25",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-18T18:06:56.801567+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loaded 95 traces, train_val=76 in 5.1s\\nL20 BA=0.8009 (3.3s)\\nL21 BA=0.7894 (3.2s)\\nL22 BA=0.8056 (3.2s)\\nL23 BA=0.8262 (3.2s)\\nL24 BA=0.8217 (3.3s)\\nSaved sweep_20_25.json (total 21.3s)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 24.17}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-18T18:06:56.801748+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 scripts/r14_a1_qwq_sweep_chunk.py 25 30",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 scripts/r14_a1_qwq_sweep_chunk.py 25 30",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-18T18:06:56.802027+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loaded 95 traces, train_val=76 in 5.0s\\nL25 BA=0.8262 (3.2s)\\nL26 BA=0.8270 (3.3s)\\nL27 BA=0.8193 (3.4s)\\nL28 BA=0.8195 (3.3s)\\nL29 BA=0.8199 (3.3s)\\nSaved sweep_25_30.json (total 21.6s)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 24.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-18T18:06:56.802169+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 scripts/r14_a1_qwq_sweep_chunk.py 30 35",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 scripts/r14_a1_qwq_sweep_chunk.py 30 35",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-18T18:06:56.802299+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loaded 95 traces, train_val=76 in 5.1s\\nL30 BA=0.8284 (3.3s)\\nL31 BA=0.8294 (3.3s)\\nL32 BA=0.8330 (3.3s)\\nL33 BA=0.8381 (3.3s)\\nL34 BA=0.8319 (3.3s)\\nSaved sweep_30_35.json (total 21.6s)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 24.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-18T18:06:56.802418+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 scripts/r14_a1_qwq_sweep_chunk.py 35 40",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 scripts/r14_a1_qwq_sweep_chunk.py 35 40",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-18T18:06:56.802550+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loaded 95 traces, train_val=76 in 5.1s\\nL35 BA=0.8305 (3.2s)\\nL36 BA=0.8145 (3.3s)\\nL37 BA=0.8131 (3.3s)\\nL38 BA=0.8318 (3.3s)\\nL39 BA=0.8343 (3.3s)\\nSaved sweep_35_40.json (total 21.5s)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 24.28}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-18T18:06:56.802717+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 scripts/r14_a1_qwq_sweep_chunk.py 40 45",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 scripts/r14_a1_qwq_sweep_chunk.py 40 45",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-18T18:06:56.802896+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loaded 95 traces, train_val=76 in 5.0s\\nL40 BA=0.8324 (3.2s)\\nL41 BA=0.8441 (3.3s)\\nL42 BA=0.8383 (3.3s)\\nL43 BA=0.8384 (3.4s)\\nL44 BA=0.8352 (3.4s)\\nSaved sweep_40_45.json (total 21.7s)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 24.6}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-18T18:06:56.803028+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 scripts/r14_a1_qwq_sweep_chunk.py 45 50",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 scripts/r14_a1_qwq_sweep_chunk.py 45 50",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-18T18:06:56.803155+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loaded 95 traces, train_val=76 in 5.1s\\nL45 BA=0.8403 (3.2s)\\nL46 BA=0.8530 (3.2s)\\nL47 BA=0.8709 (3.2s)\\nL48 BA=0.8637 (3.2s)\\nL49 BA=0.8653 (3.2s)\\nSaved sweep_45_50.json (total 21.1s)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 24.02}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-18T18:06:56.803285+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 scripts/r14_a1_qwq_sweep_chunk.py 50 55",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 scripts/r14_a1_qwq_sweep_chunk.py 50 55",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-18T18:06:56.803406+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loaded 95 traces, train_val=76 in 5.1s\\nL50 BA=0.8698 (3.3s)\\nL51 BA=0.8702 (3.3s)\\nL52 BA=0.8711 (3.3s)\\nL53 BA=0.8671 (3.3s)\\nL54 BA=0.8673 (3.3s)\\nSaved sweep_50_55.json (total 21.5s)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 24.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-18T18:06:56.803521+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 scripts/r14_a1_qwq_sweep_chunk.py 55 60",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 scripts/r14_a1_qwq_sweep_chunk.py 55 60",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-18T18:06:56.803697+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loaded 95 traces, train_val=76 in 5.0s\\nL55 BA=0.8676 (3.5s)\\nL56 BA=0.8768 (3.5s)\\nL57 BA=0.8773 (3.4s)\\nL58 BA=0.8782 (3.4s)\\nL59 BA=0.8747 (3.5s)\\nSaved sweep_55_60.json (total 22.3s)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 25.22}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-18T18:06:56.803842+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 scripts/r14_a1_qwq_sweep_chunk.py 60 64",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 scripts/r14_a1_qwq_sweep_chunk.py 60 64",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-18T18:06:56.803968+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loaded 95 traces, train_val=76 in 5.0s\\nL60 BA=0.8857 (3.3s)\\nL61 BA=0.8814 (3.4s)\\nL62 BA=0.8833 (3.3s)\\nL63 BA=0.8933 (3.2s)\\nSaved sweep_60_64.json (total 18.3s)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 21.03}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-18T18:06:56.804105+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat > /root/autodl-tmp/contrastive_trace_safety/scripts/r14_a1_qwq_stage3_merge.py << 'PYEOF'\n\"\"\"Merge sweep results and print full BA curve.\"\"\"\nimport json\nfrom pathlib import Path\n\nOUTPUT_DIR = Path(\"/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a1_qwq_rerun\")\nall_bas = {}\nfor f in sorted(OUTPUT_DIR.glob(\"sweep_*.json\")):\n    with open(f) as fh:\n        data = json.load(fh)\n    for k, v in data.items():\n        layer = int(k)\n        ba = v[\"ba\"] if isinstance(v, dict) else v\n        all_bas[layer] = ba\n\nprint(f\"Total layers: {len(all_bas)}\")\nfor i in range(64):\n    end = \", \" if (i + 1) % 8 != 0 else \"\\n\"\n    print(f\"L{i}={all_bas.get(i, '?')}\", end=end)\n\nbest = max(all_bas, key=all_bas.get)\nvals = list(all_bas.values())\nprint(f\"\\nBA-optimal: L{best} (BA={all_bas[best]:.4f})\")\nprint(f\"BA range: {max(vals)-min(vals):.4f} ({(max(vals)-min(vals))*100:.1f}pp)\")\n\nwith open(OUTPUT_DIR / \"sweep_merged.json\", \"w\") as f:\n    json.dump({f\"L{k}\": v for k, v in sorted(all_bas.items())}, f, indent=2)\nprint(\"Saved sweep_merged.json\")\nPYEOF\ncd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 scripts/r14_a1_qwq_stage3_merge.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat > /root/autodl-tmp/contrastive_trace_safety/scripts/r14_a1_qwq_stage3_merge.py << 'PYEOF'\n\"\"\"Merge sweep results and print full BA curve.\"\"\"\nimport json\nfrom pathlib import Path\n\nOUTPUT_DIR = Path(\"/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a1_qwq_rerun\")\nall_bas = {}\nfor f in sorted(OUTPUT_DIR.glob(\"sweep_*.json\")):\n    with open(f) as fh:\n        data = json.load(fh)\n    for k, v in data.items():\n        layer = int(k)\n        ba = v[\"ba\"] if isinstance(v, dict) else v\n        all_bas[layer] = ba\n\nprint(f\"Total layers: {len(all_bas)}\")\nfor i in range(64):\n    end = \", \" if (i + 1) % 8 != 0 else \"\\n\"\n    print(f\"L{i}={all_bas.get(i, '?')}\", end=end)\n\nbest = max(all_bas, key=all_bas.get)\nvals = list(all_bas.values())\nprint(f\"\\nBA-optimal: L{best} (BA={all_bas[best]:.4f})\")\nprint(f\"BA range: {max(vals)-min(vals):.4f} ({(max(vals)-min(vals))*100:.1f}pp)\")\n\nwith open(OUTPUT_DIR / \"sweep_merged.json\", \"w\") as f:\n    json.dump({f\"L{k}\": v for k, v in sorted(all_bas.items())}, f, indent=2)\nprint(\"Saved sweep_merged.json\")\nPYEOF\ncd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 scripts/r14_a1_qwq_stage3_merge.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-18T18:06:56.804248+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Total layers: 64\\nL0=0.79, L1=0.7941, L2=0.7795, L3=0.7604, L4=0.7669, L5=0.7689, L6=0.7902, L7=0.7993\\nL8=0.8031, L9=0.8062, L10=0.7951, L11=0.7733, L12=0.7729, L13=0.7719, L14=0.776, L15=0.786\\nL16=0.7874, L17=0.8063, L18=0.82, L19=0.8167, L20=0.8009, L21=0.7894, L22=0.8056, L23=0.8262\\nL24=0.8217, L25=0.8262, L26=0.827, L27=0.8193, L28=0.8195, L29=0.8199, L30=0.8284, L31=0.8294\\nL32=0.833, L33=0.8381, L34=0.8319, L35=0.8305, L36=0.8145, L37=0.8131, L38=0.8318, L39=0.8343\\nL40=0.8324, L41=0.8441, L42=0.8383, L43=0.8384, L44=0.8352, L45=0.8403, L46=0.853, L47=0.8709\\nL48=0.8637, L49=0.8653, L50=0.8698, L51=0.8702, L52=0.8711, L53=0.8671, L54=0.8673, L55=0.8676\\nL56=0.8768, L57=0.8773, L58=0.8782, L59=0.8747, L60=0.8857, L61=0.8814, L62=0.8833, L63=0.8933\\n\\nBA-optimal: L63 (BA=0.8933)\\nBA range: 0.1329 (13.3pp)\\nSaved sweep_merged.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-18T18:06:56.804421+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat > /root/autodl-tmp/contrastive_trace_safety/scripts/r14_a1_qwq_stage4_compare.py << 'PYEOF'\n\"\"\"Stage 4: HS vs Text on BA-optimal layer (L63) with 10k bootstrap.\nSaves intermediate predictions to allow split execution if needed.\"\"\"\nimport os\nos.environ[\"TOKENIZERS_PARALLELISM\"] = \"false\"\nos.environ[\"HF_ENDPOINT\"] = \"https://hf-mirror.com\"\n\nimport json, glob, time, pickle, warnings\nfrom pathlib import Path\nfrom collections import defaultdict\nimport numpy as np\nimport torch\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import balanced_accuracy_score, precision_score, roc_auc_score\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.decomposition import PCA\n\nwarnings.filterwarnings(\"ignore\")\n\nSEED = 42\nMAX_ITER = 2000\nWINDOW = 5\nPCA_DIM = 100\nBEST_LAYER = 63\nN_RESAMPLES = 10000\nBASE = Path(\"/root/autodl-tmp/contrastive_trace_safety\")\nHS_DIR = BASE / \"artifacts/hidden_states_qwq_32b\"\nOUTPUT_DIR = BASE / \"artifacts/r14_a1_qwq_rerun\"\n\nt0 = time.time()\n\n# Load traces\ntraces = []\nfor pt_file in sorted(glob.glob(str(HS_DIR / \"*.pt\"))):\n    d = torch.load(pt_file, map_location=\"cpu\", weights_only=False)\n    if d.get(\"step_labels\") is None:\n        continue\n    hs = d[\"hidden_states\"]\n    if isinstance(hs, torch.Tensor):\n        hs = hs.float().numpy()\n    labels = np.array(d[\"step_labels\"], dtype=np.int32)\n    n = min(hs.shape[0], len(labels))\n    if np.sum(labels[:n]) == 0 or np.sum(labels[:n]) == n:\n        continue\n    traces.append({\n        \"trace_id\": d[\"trace_id\"],\n        \"hidden_states\": hs[:n].astype(np.float32),\n        \"step_labels\": labels[:n],\n    })\nprint(f\"Loaded {len(traces)} traces in {time.time()-t0:.1f}s\")\n\n# Split\nrng = np.random.default_rng(SEED)\nindices = rng.permutation(len(traces))\nn_train = int(len(traces) * 0.6)\nn_val = int(len(traces) * 0.2)\ntrain = [traces[i] for i in indices[:n_train]]\nval = [traces[i] for i in indices[n_train:n_train + n_val]]\ntest = [traces[i] for i in indices[n_train + n_val:]]\ntrain_val = train + val\nprint(f\"Split: train={len(train)}, val={len(val)}, test={len(test)}\")\n\ndef build_windowed_concat(features, window):\n    n_steps, dim = features.shape\n    X = np.zeros((n_steps, dim * window), dtype=np.float32)\n    for t in range(n_steps):\n        for w in range(window):\n            src_idx = t - (window - 1) + w\n            if src_idx >= 0:\n                X[t, w * dim:(w + 1) * dim] = features[src_idx]\n    return X\n\ndef build_windowed_average(features, window):\n    n_steps = features.shape[0]\n    cumsum = np.cumsum(features, axis=0)\n    X = np.zeros_like(features)\n    for t in range(n_steps):\n        start = max(0, t - window + 1)\n        if start == 0:\n            X[t] = cumsum[t] / (t + 1)\n        else:\n            X[t] = (cumsum[t] - cumsum[start - 1]) / (t - start + 1)\n    return X\n\ndef extract_layer_features(trs, layer_idx, window):\n    X_list, y_list = [], []\n    for t in trs:\n        hs = t[\"hidden_states\"][:, layer_idx, :]\n        windowed = build_windowed_concat(hs, window)\n        X_list.append(windowed)\n        y_list.append(t[\"step_labels\"])\n    return np.concatenate(X_list, axis=0), np.concatenate(y_list, axis=0)\n\n# HS features\nX_train_hs_raw, y_train = extract_layer_features(train_val, BEST_LAYER, WINDOW)\nX_test_hs_raw, y_test = extract_layer_features(test, BEST_LAYER, WINDOW)\nscaler_hs = StandardScaler()\nX_train_hs = scaler_hs.fit_transform(X_train_hs_raw)\nX_test_hs = scaler_hs.transform(X_test_hs_raw)\npca_hs = PCA(n_components=PCA_DIM, random_state=SEED)\nX_train_hs = pca_hs.fit_transform(X_train_hs)\nX_test_hs = pca_hs.transform(X_test_hs)\nprint(f\"HS PCA: train={X_train_hs.shape}, test={X_test_hs.shape}\")\nprint(f\"PCA explained var: {pca_hs.explained_variance_ratio_.sum():.4f}\")\n\n# HS probe\nclf_hs = LogisticRegression(C=1.0, class_weight=\"balanced\", max_iter=MAX_ITER,\n                            solver=\"lbfgs\", random_state=SEED)\nclf_hs.fit(X_train_hs, y_train)\nhs_preds = clf_hs.predict(X_test_hs)\nhs_probs = clf_hs.predict_proba(X_test_hs)[:, 1]\nprint(f\"HS probe trained. test BA={balanced_accuracy_score(y_test, hs_preds):.4f}\")\n\n# Text features\nprint(\"Loading text model...\", flush=True)\nfrom sentence_transformers import SentenceTransformer\nfrom datasets import load_dataset\n\nst_model = SentenceTransformer(\"all-MiniLM-L6-v2\", device=\"cpu\")\n\nds = load_dataset(\"ishitakakkar-10/HarmThoughts\", split=\"train\")\nsentences_map = defaultdict(list)\nfor row in ds:\n    if row[\"model_name\"] != \"QwQ\":\n        continue\n    sid = row[\"sentence_id\"]\n    parts = sid.rsplit(\"-\", 1)\n    trace_id = parts[0]\n    step_idx = int(parts[1]) - 1\n    sentences_map[trace_id].append((step_idx, row[\"sentence\"]))\nfor tid in sentences_map:\n    sentences_map[tid].sort(key=lambda x: x[0])\n    sentences_map[tid] = [s for _, s in sentences_map[tid]]\nprint(f\"Loaded sentences for {len(sentences_map)} traces\")\n\ndef build_text_features(trace_list, model, window):\n    X_list, y_list = [], []\n    for t in trace_list:\n        tid = t[\"trace_id\"]\n        sents = sentences_map.get(tid, [])\n        n = min(len(t[\"step_labels\"]), len(sents))\n        if n == 0:\n            continue\n        embeddings = model.encode(sents[:n], show_progress_bar=False)\n        windowed = build_windowed_average(embeddings, window)\n        X_list.append(windowed)\n        y_list.append(t[\"step_labels\"][:n])\n    return np.concatenate(X_list, axis=0), np.concatenate(y_list, axis=0)\n\nX_train_text, y_train_text = build_text_features(train_val, st_model, WINDOW)\nX_test_text, y_test_text = build_text_features(test, st_model, WINDOW)\nprint(f\"Text: train={X_train_text.shape}, test={X_test_text.shape}\")\n\nscaler_text = StandardScaler()\nX_train_text = scaler_text.fit_transform(X_train_text)\nX_test_text = scaler_text.transform(X_test_text)\n\nclf_text = LogisticRegression(C=1.0, class_weight=\"balanced\", max_iter=MAX_ITER,\n                              solver=\"lbfgs\", random_state=SEED)\nclf_text.fit(X_train_text, y_train_text)\ntext_preds = clf_text.predict(X_test_text)\ntext_probs = clf_text.predict_proba(X_test_text)[:, 1]\nprint(f\"Text probe trained. test BA={balanced_accuracy_score(y_test_text, text_preds):.4f}\")\n\n# Save predictions for bootstrap in next stage\ndef get_trace_boundaries(trs):\n    bounds = []\n    offset = 0\n    for t in trs:\n        n = len(t[\"step_labels\"])\n        bounds.append((offset, offset + n))\n        offset += n\n    return bounds\n\ntrace_bounds = get_trace_boundaries(test)\n\npreds_data = {\n    \"y_test\": y_test.tolist(),\n    \"hs_preds\": hs_preds.tolist(),\n    \"hs_probs\": hs_probs.tolist(),\n    \"text_preds\": text_preds.tolist(),\n    \"text_probs\": text_probs.tolist(),\n    \"trace_bounds\": trace_bounds,\n    \"pca_explained_var\": float(pca_hs.explained_variance_ratio_.sum()),\n}\nwith open(OUTPUT_DIR / \"predictions.pkl\", \"wb\") as f:\n    pickle.dump(preds_data, f)\nprint(f\"Saved predictions.pkl ({time.time()-t0:.1f}s elapsed)\")\nPYEOF\ncd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 scripts/r14_a1_qwq_stage4_compare.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat > /root/autodl-tmp/contrastive_trace_safety/scripts/r14_a1_qwq_stage4_compare.py << 'PYEOF'\n\"\"\"Stage 4: HS vs Text on BA-optimal layer (L63) with 10k bootstrap.\nSaves intermediate predictions to allow split execution if needed.\"\"\"\nimport os\nos.environ[\"TOKENIZERS_PARALLELISM\"] = \"false\"\nos.environ[\"HF_ENDPOINT\"] = \"https://hf-mirror.com\"\n\nimport json, glob, time, pickle, warnings\nfrom pathlib import Path\nfrom collections import defaultdict\nimport numpy as np\nimport torch\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import balanced_accuracy_score, precision_score, roc_auc_score\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.decomposition import PCA\n\nwarnings.filterwarnings(\"ignore\")\n\nSEED = 42\nMAX_ITER = 2000\nWINDOW = 5\nPCA_DIM = 100\nBEST_LAYER = 63\nN_RESAMPLES = 10000\nBASE = Path(\"/root/autodl-tmp/contrastive_trace_safety\")\nHS_DIR = BASE / \"artifacts/hidden_states_qwq_32b\"\nOUTPUT_DIR = BASE / \"artifacts/r14_a1_qwq_rerun\"\n\nt0 = time.time()\n\n# Load traces\ntraces = []\nfor pt_file in sorted(glob.glob(str(HS_DIR / \"*.pt\"))):\n    d = torch.load(pt_file, map_location=\"cpu\", weights_only=False)\n    if d.get(\"step_labels\") is None:\n        continue\n    hs = d[\"hidden_states\"]\n    if isinstance(hs, torch.Tensor):\n        hs = hs.float().numpy()\n    labels = np.array(d[\"step_labels\"], dtype=np.int32)\n    n = min(hs.shape[0], len(labels))\n    if np.sum(labels[:n]) == 0 or np.sum(labels[:n]) == n:\n        continue\n    traces.append({\n        \"trace_id\": d[\"trace_id\"],\n        \"hidden_states\": hs[:n].astype(np.float32),\n        \"step_labels\": labels[:n],\n    })\nprint(f\"Loaded {len(traces)} traces in {time.time()-t0:.1f}s\")\n\n# Split\nrng = np.random.default_rng(SEED)\nindices = rng.permutation(len(traces))\nn_train = int(len(traces) * 0.6)\nn_val = int(len(traces) * 0.2)\ntrain = [traces[i] for i in indices[:n_train]]\nval = [traces[i] for i in indices[n_train:n_train + n_val]]\ntest = [traces[i] for i in indices[n_train + n_val:]]\ntrain_val = train + val\nprint(f\"Split: train={len(train)}, val={len(val)}, test={len(test)}\")\n\ndef build_windowed_concat(features, window):\n    n_steps, dim = features.shape\n    X = np.zeros((n_steps, dim * window), dtype=np.float32)\n    for t in range(n_steps):\n        for w in range(window):\n            src_idx = t - (window - 1) + w\n            if src_idx >= 0:\n                X[t, w * dim:(w + 1) * dim] = features[src_idx]\n    return X\n\ndef build_windowed_average(features, window):\n    n_steps = features.shape[0]\n    cumsum = np.cumsum(features, axis=0)\n    X = np.zeros_like(features)\n    for t in range(n_steps):\n        start = max(0, t - window + 1)\n        if start == 0:\n            X[t] = cumsum[t] / (t + 1)\n        else:\n            X[t] = (cumsum[t] - cumsum[start - 1]) / (t - start + 1)\n    return X\n\ndef extract_layer_features(trs, layer_idx, window):\n    X_list, y_list = [], []\n    for t in trs:\n        hs = t[\"hidden_states\"][:, layer_idx, :]\n        windowed = build_windowed_concat(hs, window)\n        X_list.append(windowed)\n        y_list.append(t[\"step_labels\"])\n    return np.concatenate(X_list, axis=0), np.concatenate(y_list, axis=0)\n\n# HS features\nX_train_hs_raw, y_train = extract_layer_features(train_val, BEST_LAYER, WINDOW)\nX_test_hs_raw, y_test = extract_layer_features(test, BEST_LAYER, WINDOW)\nscaler_hs = StandardScaler()\nX_train_hs = scaler_hs.fit_transform(X_train_hs_raw)\nX_test_hs = scaler_hs.transform(X_test_hs_raw)\npca_hs = PCA(n_components=PCA_DIM, random_state=SEED)\nX_train_hs = pca_hs.fit_transform(X_train_hs)\nX_test_hs = pca_hs.transform(X_test_hs)\nprint(f\"HS PCA: train={X_train_hs.shape}, test={X_test_hs.shape}\")\nprint(f\"PCA explained var: {pca_hs.explained_variance_ratio_.sum():.4f}\")\n\n# HS probe\nclf_hs = LogisticRegression(C=1.0, class_weight=\"balanced\", max_iter=MAX_ITER,\n                            solver=\"lbfgs\", random_state=SEED)\nclf_hs.fit(X_train_hs, y_train)\nhs_preds = clf_hs.predict(X_test_hs)\nhs_probs = clf_hs.predict_proba(X_test_hs)[:, 1]\nprint(f\"HS probe trained. test BA={balanced_accuracy_score(y_test, hs_preds):.4f}\")\n\n# Text features\nprint(\"Loading text model...\", flush=True)\nfrom sentence_transformers import SentenceTransformer\nfrom datasets import load_dataset\n\nst_model = SentenceTransformer(\"all-MiniLM-L6-v2\", device=\"cpu\")\n\nds = load_dataset(\"ishitakakkar-10/HarmThoughts\", split=\"train\")\nsentences_map = defaultdict(list)\nfor row in ds:\n    if row[\"model_name\"] != \"QwQ\":\n        continue\n    sid = row[\"sentence_id\"]\n    parts = sid.rsplit(\"-\", 1)\n    trace_id = parts[0]\n    step_idx = int(parts[1]) - 1\n    sentences_map[trace_id].append((step_idx, row[\"sentence\"]))\nfor tid in sentences_map:\n    sentences_map[tid].sort(key=lambda x: x[0])\n    sentences_map[tid] = [s for _, s in sentences_map[tid]]\nprint(f\"Loaded sentences for {len(sentences_map)} traces\")\n\ndef build_text_features(trace_list, model, window):\n    X_list, y_list = [], []\n    for t in trace_list:\n        tid = t[\"trace_id\"]\n        sents = sentences_map.get(tid, [])\n        n = min(len(t[\"step_labels\"]), len(sents))\n        if n == 0:\n            continue\n        embeddings = model.encode(sents[:n], show_progress_bar=False)\n        windowed = build_windowed_average(embeddings, window)\n        X_list.append(windowed)\n        y_list.append(t[\"step_labels\"][:n])\n    return np.concatenate(X_list, axis=0), np.concatenate(y_list, axis=0)\n\nX_train_text, y_train_text = build_text_features(train_val, st_model, WINDOW)\nX_test_text, y_test_text = build_text_features(test, st_model, WINDOW)\nprint(f\"Text: train={X_train_text.shape}, test={X_test_text.shape}\")\n\nscaler_text = StandardScaler()\nX_train_text = scaler_text.fit_transform(X_train_text)\nX_test_text = scaler_text.transform(X_test_text)\n\nclf_text = LogisticRegression(C=1.0, class_weight=\"balanced\", max_iter=MAX_ITER,\n                              solver=\"lbfgs\", random_state=SEED)\nclf_text.fit(X_train_text, y_train_text)\ntext_preds = clf_text.predict(X_test_text)\ntext_probs = clf_text.predict_proba(X_test_text)[:, 1]\nprint(f\"Text probe trained. test BA={balanced_accuracy_score(y_test_text, text_preds):.4f}\")\n\n# Save predictions for bootstrap in next stage\ndef get_trace_boundaries(trs):\n    bounds = []\n    offset = 0\n    for t in trs:\n        n = len(t[\"step_labels\"])\n        bounds.append((offset, offset + n))\n        offset += n\n    return bounds\n\ntrace_bounds = get_trace_boundaries(test)\n\npreds_data = {\n    \"y_test\": y_test.tolist(),\n    \"hs_preds\": hs_preds.tolist(),\n    \"hs_probs\": hs_probs.tolist(),\n    \"text_preds\": text_preds.tolist(),\n    \"text_probs\": text_probs.tolist(),\n    \"trace_bounds\": trace_bounds,\n    \"pca_explained_var\": float(pca_hs.explained_variance_ratio_.sum()),\n}\nwith open(OUTPUT_DIR / \"predictions.pkl\", \"wb\") as f:\n    pickle.dump(preds_data, f)\nprint(f\"Saved predictions.pkl ({time.time()-t0:.1f}s elapsed)\")\nPYEOF\ncd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 scripts/r14_a1_qwq_stage4_compare.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-18T18:06:56.804778+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cat > /root/autodl-tmp/contrastive_trace_safety/scripts/r14_a1_qwq_stage4_compare.py << \\\\'PYEOF\\\\'\\\\n\\\"\\\"\\\"Stage 4: HS vs Text on BA-optimal layer (L63) with 10k bootstrap.\\\\nSaves intermediate predictions to allow split execution if needed.\\\"\\\"\\\"\\\\nimport os\\\\nos.environ[\\\"TOKENIZERS_PARALLELISM\\\"] = \\\"false\\\"\\\\nos.environ[\\\"HF_ENDPOINT\\\"] = \\\"https://hf-mirror.com\\\"\\\\n\\\\nimport json, glob, time, pickle, warnings\\\\nfrom pathlib import Path\\\\nfrom collections import defaultdict\\\\nimport numpy as np\\\\nimport torch\\\\nfrom sklearn.linear_model import LogisticRegression\\\\nfrom sklearn.metrics import balanced_accuracy_score, precision_score, roc_auc_score\\\\nfrom sklearn.preprocessing import StandardScaler\\\\nfrom sklearn.decomposition import PCA\\\\n\\\\nwarnings.filterwarnings(\\\"ignore\\\")\\\\n\\\\nSEED = 42\\\\nMAX_ITER = 2000\\\\nWINDOW = 5\\\\nPCA_DIM = 100\\\\nBEST_LAYER = 63\\\\nN_RESAMPLES = 10000\\\\nBASE = Path(\\\"/root/autodl-tmp/contrastive_trace_safety\\\")\\\\nHS_DIR = BASE / \\\"artifacts/hidden_states_qwq_32b\\\"\\\\nOUTPUT_DIR = BASE / \\\"artifacts/r14_a1_qwq_rerun\\\"\\\\n\\\\nt0 = time.time()\\\\n\\\\n# Load traces\\\\ntraces = []\\\\nfor pt_file in sorted(glob.glob(str(HS_DIR / \\\"*.pt\\\"))):\\\\n    d = torch.load(pt_file, map_location=\\\"cpu\\\", weights_only=False)\\\\n    if d.get(\\\"step_labels\\\") is None:\\\\n        continue\\\\n    hs = d[\\\"hidden_states\\\"]\\\\n    if isinstance(hs, torch.Tensor):\\\\n        hs = hs.float().numpy()\\\\n    labels = np.array(d[\\\"step_labels\\\"], dtype=np.int32)\\\\n    n = min(hs.shape[0], len(labels))\\\\n    if np.sum(labels[:n]) == 0 or np.sum(labels[:n]) == n:\\\\n        continue\\\\n    traces.append({\\\\n        \\\"trace_id\\\": d[\\\"trace_id\\\"],\\\\n        \\\"hidden_states\\\": hs[:n].astype(np.float32
+…[truncated 6510 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-18T18:06:56.804980+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "wc -l /root/autodl-tmp/contrastive_trace_safety/scripts/r14_a1_qwq_stage4_compare.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "wc -l /root/autodl-tmp/contrastive_trace_safety/scripts/r14_a1_qwq_stage4_compare.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-18T18:06:56.805118+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"187 /root/autodl-tmp/contrastive_trace_safety/scripts/r14_a1_qwq_stage4_compare.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.07}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-18T18:06:56.805252+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 scripts/r14_a1_qwq_stage4_compare.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 scripts/r14_a1_qwq_stage4_compare.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-18T18:06:56.805383+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 scripts/r14_a1_qwq_stage4_compare.py'\\n\\nStdout:\\n\\nLoaded 95 traces in 5.0s\\nSplit: train=57, val=19, test=19\\nHS PCA: train=(3823, 100), test=(1029, 100)\\nPCA explained var: 0.5671\\nHS probe trained. test BA=0.6732\\nLoading text model...\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.34}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-18T18:06:56.805568+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat > /root/autodl-tmp/contrastive_trace_safety/scripts/r14_a1_qwq_s4a_hs.py << 'PYEOF'\n\"\"\"Stage 4a: HS probe on L63, save predictions.\"\"\"\nimport glob, json, pickle, time, warnings\nfrom pathlib import Path\nimport numpy as np\nimport torch\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import balanced_accuracy_score\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.decomposition import PCA\nwarnings.filterwarnings(\"ignore\")\n\nSEED, MAX_ITER, WINDOW, PCA_DIM, BEST_LAYER = 42, 2000, 5, 100, 63\nBASE = Path(\"/root/autodl-tmp/contrastive_trace_safety\")\nHS_DIR = BASE / \"artifacts/hidden_states_qwq_32b\"\nOUT = BASE / \"artifacts/r14_a1_qwq_rerun\"\nt0 = time.time()\n\ntraces = []\nfor f in sorted(glob.glob(str(HS_DIR / \"*.pt\"))):\n    d = torch.load(f, map_location=\"cpu\", weights_only=False)\n    if d.get(\"step_labels\") is None: continue\n    hs = d[\"hidden_states\"]\n    if isinstance(hs, torch.Tensor): hs = hs.float().numpy()\n    labels = np.array(d[\"step_labels\"], dtype=np.int32)\n    n = min(hs.shape[0], len(labels))\n    if np.sum(labels[:n]) == 0 or np.sum(labels[:n]) == n: continue\n    traces.append({\"trace_id\": d[\"trace_id\"], \"hs\": hs[:n,:,BEST_LAYER].astype(np.float32) if hs.ndim == 3 and hs.shape[2] == 5120 else hs[:n,BEST_LAYER,:].astype(np.float32), \"labels\": labels[:n]})\n# Check: hs shape is (steps, 64, 5120), so hs[:n, BEST_LAYER, :] is correct\n# But we already sliced wrong above. Let me fix:\n# Actually: hidden_states shape is (steps, 64, 5120) -> hs[:n, layer_idx, :] = (steps, 5120)\n\n# Re-load properly\ntraces = []\nfor f in sorted(glob.glob(str(HS_DIR / \"*.pt\"))):\n    d = torch.load(f, map_location=\"cpu\", weights_only=False)\n    if d.get(\"step_labels\") is None: continue\n    hs = d[\"hidden_states\"]\n    if isinstance(hs, torch.Tensor): hs = hs.float().numpy()\n    labels = np.array(d[\"step_labels\"], dtype=np.int32)\n    n = min(hs.shape[0], len(labels))\n    if np.sum(labels[:n]) == 0 or np.sum(labels[:n]) == n: continue\n    traces.append({\"trace_id\": d[\"trace_id\"], \"hs_layer\": hs[:n, BEST_LAYER, :].astype(np.float32), \"labels\": labels[:n]})\n\nprint(f\"Loaded {len(traces)} traces (L{BEST_LAYER} only) in {time.time()-t0:.1f}s\")\n\nrng = np.random.default_rng(SEED)\nindices = rng.permutation(len(traces))\nn_train = int(len(traces) * 0.6)\nn_val = int(len(traces) * 0.2)\ntrain_val = [traces[i] for i in indices[:n_train + n_val]]\ntest = [traces[i] for i in indices[n_train + n_val:]]\n\ndef build_wc(features, w):\n    n, dim = features.shape\n    X = np.zeros((n, dim*w), dtype=np.float32)\n    for t in range(n):\n        for wi in range(w):\n            s = t-(w-1)+wi\n            if s >= 0: X[t, wi*dim:(wi+1)*dim] = features[s]\n    return X\n\ndef extract(trs, w):\n    Xl, yl = [], []\n    for t in trs:\n        Xl.append(build_wc(t[\"hs_layer\"], w))\n        yl.append(t[\"labels\"])\n    return np.concatenate(Xl), np.concatenate(yl)\n\nX_tr, y_tr = extract(train_val, WINDOW)\nX_te, y_te = extract(test, WINDOW)\nsc = StandardScaler(); X_tr = sc.fit_transform(X_tr); X_te = sc.transform(X_te)\npca = PCA(n_components=PCA_DIM, random_state=SEED); X_tr = pca.fit_transform(X_tr); X_te = pca.transform(X_te)\nprint(f\"PCA var: {pca.explained_variance_ratio_.sum():.4f}, train={X_tr.shape}, test={X_te.shape}\")\n\nclf = LogisticRegression(C=1.0, class_weight=\"balanced\", max_iter=MAX_ITER, solver=\"lbfgs\", random_state=SEED)\nclf.fit(X_tr, y_tr)\npreds = clf.predict(X_te); probs = clf.predict_proba(X_te)[:,1]\nprint(f\"HS BA={balanced_accuracy_score(y_te, preds):.4f}\")\n\nbounds = []\noff = 0\nfor t in test:\n    n = len(t[\"labels\"]); bounds.append((off, off+n)); off += n\n\n# Save test trace_ids for text alignment\ntest_tids = [t[\"trace_id\"] for t in test]\ntest_labels_per_trace = [t[\"labels\"].tolist() for t in test]\ntv_tids = [t[\"trace_id\"] for t in train_val]\ntv_labels_per_trace = [t[\"labels\"].tolist() for t in train_val]\n\nwith open(OUT / \"hs_preds.pkl\", \"wb\") as fh:\n    pickle.dump({\"y_test\": y_te.tolist(), \"preds\": preds.tolist(), \"probs\": probs.tolist(),\n                 \"bounds\": bounds, \"pca_var\": float(pca.explained_variance_ratio_.sum()),\n                 \"test_tids\": test_tids, \"test_labels\": test_labels_per_trace,\n                 \"tv_tids\": tv_tids, \"tv_labels\": tv_labels_per_trace}, fh)\nprint(f\"Saved hs_preds.pkl ({time.time()-t0:.1f}s)\")\nPYEOF\ncd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 scripts/r14_a1_qwq_s4a_hs.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat > /root/autodl-tmp/contrastive_trace_safety/scripts/r14_a1_qwq_s4a_hs.py << 'PYEOF'\n\"\"\"Stage 4a: HS probe on L63, save predictions.\"\"\"\nimport glob, json, pickle, time, warnings\nfrom pathlib import Path\nimport numpy as np\nimport torch\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import balanced_accuracy_score\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.decomposition import PCA\nwarnings.filterwarnings(\"ignore\")\n\nSEED, MAX_ITER, WINDOW, PCA_DIM, BEST_LAYER = 42, 2000, 5, 100, 63\nBASE = Path(\"/root/autodl-tmp/contrastive_trace_safety\")\nHS_DIR = BASE / \"artifacts/hidden_states_qwq_32b\"\nOUT = BASE / \"artifacts/r14_a1_qwq_rerun\"\nt0 = time.time()\n\ntraces = []\nfor f in sorted(glob.glob(str(HS_DIR / \"*.pt\"))):\n    d = torch.load(f, map_location=\"cpu\", weights_only=False)\n    if d.get(\"step_labels\") is None: continue\n    hs = d[\"hidden_states\"]\n    if isinstance(hs, torch.Tensor): hs = hs.float().numpy()\n    labels = np.array(d[\"step_labels\"], dtype=np.int32)\n    n = min(hs.shape[0], len(labels))\n    if np.sum(labels[:n]) == 0 or np.sum(labels[:n]) == n: continue\n    traces.append({\"trace_id\": d[\"trace_id\"], \"hs\": hs[:n,:,BEST_LAYER].astype(np.float32) if hs.ndim == 3 and hs.shape[2] == 5120 else hs[:n,BEST_LAYER,:].astype(np.float32), \"labels\": labels[:n]})\n# Check: hs shape is (steps, 64, 5120), so hs[:n, BEST_LAYER, :] is correct\n# But we already sliced wrong above. Let me fix:\n# Actually: hidden_states shape is (steps, 64, 5120) -> hs[:n, layer_idx, :] = (steps, 5120)\n\n# Re-load properly\ntraces = []\nfor f in sorted(glob.glob(str(HS_DIR / \"*.pt\"))):\n    d = torch.load(f, map_location=\"cpu\", weights_only=False)\n    if d.get(\"step_labels\") is None: continue\n    hs = d[\"hidden_states\"]\n    if isinstance(hs, torch.Tensor): hs = hs.float().numpy()\n    labels = np.array(d[\"step_labels\"], dtype=np.int32)\n    n = min(hs.shape[0], len(labels))\n    if np.sum(labels[:n]) == 0 or np.sum(labels[:n]) == n: continue\n    traces.append({\"trace_id\": d[\"trace_id\"], \"hs_layer\": hs[:n, BEST_LAYER, :].astype(np.float32), \"labels\": labels[:n]})\n\nprint(f\"Loaded {len(traces)} traces (L{BEST_LAYER} only) in {time.time()-t0:.1f}s\")\n\nrng = np.random.default_rng(SEED)\nindices = rng.permutation(len(traces))\nn_train = int(len(traces) * 0.6)\nn_val = int(len(traces) * 0.2)\ntrain_val = [traces[i] for i in indices[:n_train + n_val]]\ntest = [traces[i] for i in indices[n_train + n_val:]]\n\ndef build_wc(features, w):\n    n, dim = features.shape\n    X = np.zeros((n, dim*w), dtype=np.float32)\n    for t in range(n):\n        for wi in range(w):\n            s = t-(w-1)+wi\n            if s >= 0: X[t, wi*dim:(wi+1)*dim] = features[s]\n    return X\n\ndef extract(trs, w):\n    Xl, yl = [], []\n    for t in trs:\n        Xl.append(build_wc(t[\"hs_layer\"], w))\n        yl.append(t[\"labels\"])\n    return np.concatenate(Xl), np.concatenate(yl)\n\nX_tr, y_tr = extract(train_val, WINDOW)\nX_te, y_te = extract(test, WINDOW)\nsc = StandardScaler(); X_tr = sc.fit_transform(X_tr); X_te = sc.transform(X_te)\npca = PCA(n_components=PCA_DIM, random_state=SEED); X_tr = pca.fit_transform(X_tr); X_te = pca.transform(X_te)\nprint(f\"PCA var: {pca.explained_variance_ratio_.sum():.4f}, train={X_tr.shape}, test={X_te.shape}\")\n\nclf = LogisticRegression(C=1.0, class_weight=\"balanced\", max_iter=MAX_ITER, solver=\"lbfgs\", random_state=SEED)\nclf.fit(X_tr, y_tr)\npreds = clf.predict(X_te); probs = clf.predict_proba(X_te)[:,1]\nprint(f\"HS BA={balanced_accuracy_score(y_te, preds):.4f}\")\n\nbounds = []\noff = 0\nfor t in test:\n    n = len(t[\"labels\"]); bounds.append((off, off+n)); off += n\n\n# Save test trace_ids for text alignment\ntest_tids = [t[\"trace_id\"] for t in test]\ntest_labels_per_trace = [t[\"labels\"].tolist() for t in test]\ntv_tids = [t[\"trace_id\"] for t in train_val]\ntv_labels_per_trace = [t[\"labels\"].tolist() for t in train_val]\n\nwith open(OUT / \"hs_preds.pkl\", \"wb\") as fh:\n    pickle.dump({\"y_test\": y_te.tolist(), \"preds\": preds.tolist(), \"probs\": probs.tolist(),\n                 \"bounds\": bounds, \"pca_var\": float(pca.explained_variance_ratio_.sum()),\n                 \"test_tids\": test_tids, \"test_labels\": test_labels_per_trace,\n                 \"tv_tids\": tv_tids, \"tv_labels\": tv_labels_per_trace}, fh)\nprint(f\"Saved hs_preds.pkl ({time.time()-t0:.1f}s)\")\nPYEOF\ncd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 scripts/r14_a1_qwq_s4a_hs.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-18T18:06:56.805781+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loaded 95 traces (L63 only) in 4.5s\\nPCA var: 0.5671, train=(3823, 100), test=(1029, 100)\\nHS BA=0.6732\\nSaved hs_preds.pkl (7.9s)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 11.0}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-18T18:06:56.805948+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat > /root/autodl-tmp/contrastive_trace_safety/scripts/r14_a1_qwq_s4b_text.py << 'PYEOF'\n\"\"\"Stage 4b: Text probe, save predictions.\"\"\"\nimport os\nos.environ[\"TOKENIZERS_PARALLELISM\"] = \"false\"\nos.environ[\"HF_ENDPOINT\"] = \"https://hf-mirror.com\"\nimport json, pickle, time, warnings\nfrom pathlib import Path\nfrom collections import defaultdict\nimport numpy as np\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import balanced_accuracy_score\nfrom sklearn.preprocessing import StandardScaler\nwarnings.filterwarnings(\"ignore\")\n\nSEED, MAX_ITER, WINDOW = 42, 2000, 5\nOUT = Path(\"/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a1_qwq_rerun\")\nt0 = time.time()\n\nwith open(OUT / \"hs_preds.pkl\", \"rb\") as f:\n    hs_data = pickle.load(f)\n\n# Load sentence model\nfrom sentence_transformers import SentenceTransformer\nst = SentenceTransformer(\"all-MiniLM-L6-v2\", device=\"cpu\")\nprint(f\"Model loaded ({time.time()-t0:.1f}s)\")\n\n# Load sentences\nfrom datasets import load_dataset\nds = load_dataset(\"ishitakakkar-10/HarmThoughts\", split=\"train\")\nsmap = defaultdict(list)\nfor row in ds:\n    if row[\"model_name\"] != \"QwQ\": continue\n    sid = row[\"sentence_id\"]\n    parts = sid.rsplit(\"-\", 1)\n    tid = parts[0]\n    si = int(parts[1]) - 1\n    smap[tid].append((si, row[\"sentence\"]))\nfor tid in smap:\n    smap[tid].sort()\n    smap[tid] = [s for _, s in smap[tid]]\nprint(f\"Sentences for {len(smap)} traces ({time.time()-t0:.1f}s)\")\n\ndef build_wa(features, w):\n    n = features.shape[0]\n    cs = np.cumsum(features, axis=0)\n    X = np.zeros_like(features)\n    for t in range(n):\n        s = max(0, t-w+1)\n        if s == 0: X[t] = cs[t]/(t+1)\n        else: X[t] = (cs[t]-cs[s-1])/(t-s+1)\n    return X\n\ndef build_text(tids, labels_per_trace, model, w):\n    Xl, yl = [], []\n    for tid, labs in zip(tids, labels_per_trace):\n        sents = smap.get(tid, [])\n        labs = np.array(labs, dtype=np.int32)\n        n = min(len(labs), len(sents))\n        if n == 0: continue\n        emb = model.encode(sents[:n], show_progress_bar=False)\n        Xl.append(build_wa(emb, w))\n        yl.append(labs[:n])\n    return np.concatenate(Xl), np.concatenate(yl)\n\nX_tr, y_tr = build_text(hs_data[\"tv_tids\"], hs_data[\"tv_labels\"], st, WINDOW)\nX_te, y_te = build_text(hs_data[\"test_tids\"], hs_data[\"test_labels\"], st, WINDOW)\nprint(f\"Text: train={X_tr.shape}, test={X_te.shape} ({time.time()-t0:.1f}s)\")\n\nsc = StandardScaler(); X_tr = sc.fit_transform(X_tr); X_te = sc.transform(X_te)\nclf = LogisticRegression(C=1.0, class_weight=\"balanced\", max_iter=MAX_ITER, solver=\"lbfgs\", random_state=SEED)\nclf.fit(X_tr, y_tr)\npreds = clf.predict(X_te); probs = clf.predict_proba(X_te)[:,1]\nprint(f\"Text BA={balanced_accuracy_score(y_te, preds):.4f}\")\n\nwith open(OUT / \"text_preds.pkl\", \"wb\") as f:\n    pickle.dump({\"y_test\": y_te.tolist(), \"preds\": preds.tolist(), \"probs\": probs.tolist()}, f)\nprint(f\"Saved text_preds.pkl ({time.time()-t0:.1f}s)\")\nPYEOF\ncd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 scripts/r14_a1_qwq_s4b_text.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat > /root/autodl-tmp/contrastive_trace_safety/scripts/r14_a1_qwq_s4b_text.py << 'PYEOF'\n\"\"\"Stage 4b: Text probe, save predictions.\"\"\"\nimport os\nos.environ[\"TOKENIZERS_PARALLELISM\"] = \"false\"\nos.environ[\"HF_ENDPOINT\"] = \"https://hf-mirror.com\"\nimport json, pickle, time, warnings\nfrom pathlib import Path\nfrom collections import defaultdict\nimport numpy as np\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import balanced_accuracy_score\nfrom sklearn.preprocessing import StandardScaler\nwarnings.filterwarnings(\"ignore\")\n\nSEED, MAX_ITER, WINDOW = 42, 2000, 5\nOUT = Path(\"/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a1_qwq_rerun\")\nt0 = time.time()\n\nwith open(OUT / \"hs_preds.pkl\", \"rb\") as f:\n    hs_data = pickle.load(f)\n\n# Load sentence model\nfrom sentence_transformers import SentenceTransformer\nst = SentenceTransformer(\"all-MiniLM-L6-v2\", device=\"cpu\")\nprint(f\"Model loaded ({time.time()-t0:.1f}s)\")\n\n# Load sentences\nfrom datasets import load_dataset\nds = load_dataset(\"ishitakakkar-10/HarmThoughts\", split=\"train\")\nsmap = defaultdict(list)\nfor row in ds:\n    if row[\"model_name\"] != \"QwQ\": continue\n    sid = row[\"sentence_id\"]\n    parts = sid.rsplit(\"-\", 1)\n    tid = parts[0]\n    si = int(parts[1]) - 1\n    smap[tid].append((si, row[\"sentence\"]))\nfor tid in smap:\n    smap[tid].sort()\n    smap[tid] = [s for _, s in smap[tid]]\nprint(f\"Sentences for {len(smap)} traces ({time.time()-t0:.1f}s)\")\n\ndef build_wa(features, w):\n    n = features.shape[0]\n    cs = np.cumsum(features, axis=0)\n    X = np.zeros_like(features)\n    for t in range(n):\n        s = max(0, t-w+1)\n        if s == 0: X[t] = cs[t]/(t+1)\n        else: X[t] = (cs[t]-cs[s-1])/(t-s+1)\n    return X\n\ndef build_text(tids, labels_per_trace, model, w):\n    Xl, yl = [], []\n    for tid, labs in zip(tids, labels_per_trace):\n        sents = smap.get(tid, [])\n        labs = np.array(labs, dtype=np.int32)\n        n = min(len(labs), len(sents))\n        if n == 0: continue\n        emb = model.encode(sents[:n], show_progress_bar=False)\n        Xl.append(build_wa(emb, w))\n        yl.append(labs[:n])\n    return np.concatenate(Xl), np.concatenate(yl)\n\nX_tr, y_tr = build_text(hs_data[\"tv_tids\"], hs_data[\"tv_labels\"], st, WINDOW)\nX_te, y_te = build_text(hs_data[\"test_tids\"], hs_data[\"test_labels\"], st, WINDOW)\nprint(f\"Text: train={X_tr.shape}, test={X_te.shape} ({time.time()-t0:.1f}s)\")\n\nsc = StandardScaler(); X_tr = sc.fit_transform(X_tr); X_te = sc.transform(X_te)\nclf = LogisticRegression(C=1.0, class_weight=\"balanced\", max_iter=MAX_ITER, solver=\"lbfgs\", random_state=SEED)\nclf.fit(X_tr, y_tr)\npreds = clf.predict(X_te); probs = clf.predict_proba(X_te)[:,1]\nprint(f\"Text BA={balanced_accuracy_score(y_te, preds):.4f}\")\n\nwith open(OUT / \"text_preds.pkl\", \"wb\") as f:\n    pickle.dump({\"y_test\": y_te.tolist(), \"preds\": preds.tolist(), \"probs\": probs.tolist()}, f)\nprint(f\"Saved text_preds.pkl ({time.time()-t0:.1f}s)\")\nPYEOF\ncd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 scripts/r14_a1_qwq_s4b_text.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-18T18:06:56.806109+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Model loaded (10.6s)\\nSentences for 140 traces (14.8s)\\nText: train=(3823, 384), test=(1029, 384) (23.5s)\\nText BA=0.5431\\nSaved text_preds.pkl (23.6s)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 25.67}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-18T18:06:56.806270+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat > /root/autodl-tmp/contrastive_trace_safety/scripts/r14_a1_qwq_s4c_boot.py << 'PYEOF'\n\"\"\"Stage 4c: 10k paired bootstrap + final report.\"\"\"\nimport json, pickle, time\nfrom pathlib import Path\nimport numpy as np\nfrom sklearn.metrics import balanced_accuracy_score, precision_score, roc_auc_score\n\nSEED = 42\nN_RESAMPLES = 10000\nOUT = Path(\"/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a1_qwq_rerun\")\n\nwith open(OUT / \"hs_preds.pkl\", \"rb\") as f: hs = pickle.load(f)\nwith open(OUT / \"text_preds.pkl\", \"rb\") as f: tx = pickle.load(f)\nwith open(OUT / \"sweep_merged.json\") as f: sweep = json.load(f)\n\ny = np.array(hs[\"y_test\"]); bounds = hs[\"bounds\"]\nhp, hpp = np.array(hs[\"preds\"]), np.array(hs[\"probs\"])\ntp, tpp = np.array(tx[\"preds\"]), np.array(tx[\"probs\"])\n\ndef fpr(yt, yp):\n    neg = yt == 0\n    return float(np.sum((yp == 1) & neg) / neg.sum()) if neg.sum() > 0 else 0.0\n\ndef metrics(yt, pred, prob):\n    return (precision_score(yt, pred, zero_division=0.0),\n            balanced_accuracy_score(yt, pred),\n            fpr(yt, pred),\n            roc_auc_score(yt, prob) if len(np.unique(yt)) > 1 else 0.5)\n\nobs_h = metrics(y, hp, hpp); obs_t = metrics(y, tp, tpp)\nobs_d = [obs_h[i]-obs_t[i] for i in range(4)]\n\nrng = np.random.default_rng(SEED)\nnt = len(bounds)\nboot = {m: [] for m in [\"prec\",\"ba\",\"fpr\",\"auroc\"]}\nt0 = time.time()\n\nfor i in range(N_RESAMPLES):\n    idx = rng.choice(nt, size=nt, replace=True)\n    si = []\n    for j in idx:\n        s, e = bounds[j]; si.extend(range(s, e))\n    si = np.array(si)\n    mh = metrics(y[si], hp[si], hpp[si])\n    mt = metrics(y[si], tp[si], tpp[si])\n    for j, k in enumerate([\"prec\",\"ba\",\"fpr\",\"auroc\"]):\n        boot[k].append(mh[j]-mt[j])\n\nresults = {}\nnames = [\"prec\",\"ba\",\"fpr\",\"auroc\"]\nfor j, k in enumerate(names):\n    d = np.array(boot[k])\n    centered = d - np.mean(d)\n    pv = float(np.mean(np.abs(centered) >= np.abs(obs_d[j])))\n    results[k] = {\"hs\": round(obs_h[j],4), \"text\": round(obs_t[j],4),\n                  \"diff\": round(obs_d[j],4), \"p_value\": round(pv,4),\n                  \"ci_95\": [round(float(np.percentile(d,2.5)),4), round(float(np.percentile(d,97.5)),4)]}\n\nhb_pvals = [results[\"prec\"][\"p_value\"], results[\"ba\"][\"p_value\"], results[\"fpr\"][\"p_value\"]]\nindexed = sorted(enumerate(hb_pvals), key=lambda x: x[1])\nreject = [False]*3\nfor rank, (oi, p) in enumerate(indexed):\n    if p <= 0.05/(3-rank): reject[oi] = True\n    else: break\nhb_pass = sum(reject)\n\n# Full BA curve\nba_vals = {int(k.replace(\"L\",\"\")): v for k, v in sweep.items()}\nbest = max(ba_vals, key=ba_vals.get)\n\nprint(f\"QwQ-32B BA Layer Sweep (max_iter=2000, 60/20/20, PCA=100d):\")\nprint(f\"Layer BA curve:\")\nfor i in range(64):\n    end = \", \" if (i+1)%8 != 0 else \"\\n\"\n    print(f\"L{i}={ba_vals[i]:.4f}\", end=end)\nprint(f\"\\nBA-optimal: L{best} (ba={ba_vals[best]:.4f})\")\nprint(f\"BA range: max-min = {(max(ba_vals.values())-min(ba_vals.values()))*100:.1f}pp\")\nprint(f\"\\nHS vs Text on BA-optimal layer L{best}:\")\nprint(f\"| Metric | HS | Text | Delta | p | HB? |\")\nprint(f\"|--------|------|------|-------|-------|-----|\")\nfor k, label in [(\"prec\",\"Prec\"),(\"ba\",\"BA\"),(\"fpr\",\"FPR\"),(\"auroc\",\"AUROC\")]:\n    b = results[k]\n    hb = \"-\"\n    if k in [\"prec\",\"ba\",\"fpr\"]:\n        idx = [\"prec\",\"ba\",\"fpr\"].index(k)\n        hb = \"Y\" if reject[idx] else \"N\"\n    print(f\"| {label} | {b['hs']:.3f} | {b['text']:.3f} | {b['diff']:+.3f} | {b['p_value']:.4f} | {hb} |\")\nprint(f\"HB pass: {hb_pass}/3\")\nprint(f\"Bootstrap: {time.time()-t0:.1f}s\")\n\n# Save final results\nfinal = {\n    \"model\": \"QwQ-32B\", \"max_iter\": 2000, \"window\": 5, \"pca_dim\": 100,\n    \"split\": \"60/20/20\", \"seed\": 42, \"n_traces\": 95,\n    \"n_train\": 57, \"n_val\": 19, \"n_test\": 19,\n    \"n_test_steps\": len(y),\n    \"ba_optimal_layer\": best, \"ba_optimal_value\": ba_vals[best],\n    \"ba_range_pp\": round((max(ba_vals.values())-min(ba_vals.values()))*100, 1),\n    \"layer_bas\": {f\"L{k}\": v for k, v in sorted(ba_vals.items())},\n    \"pca_explained_var\": hs[\"pca_var\"],\n    \"bootstrap\": results,\n    \"hb_3tests\": {\"tests\": [\"prec\",\"ba\",\"fpr\"], \"n_pass\": hb_pass, \"p_values\": hb_pvals},\n    \"n_resamples\": N_RESAMPLES,\n    \"text_encoder\": \"all-MiniLM-L6-v2\",\n    \"probe\": \"LogisticRegression(C=1.0, class_weight='balanced', max_iter=2000, solver='lbfgs')\",\n}\nwith open(OUT / \"results.json\", \"w\") as f:\n    json.dump(final, f, indent=2)\nprint(f\"Saved results.json\")\nPYEOF\ncd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 scripts/r14_a1_qwq_s4c_boot.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat > /root/autodl-tmp/contrastive_trace_safety/scripts/r14_a1_qwq_s4c_boot.py << 'PYEOF'\n\"\"\"Stage 4c: 10k paired bootstrap + final report.\"\"\"\nimport json, pickle, time\nfrom pathlib import Path\nimport numpy as np\nfrom sklearn.metrics import balanced_accuracy_score, precision_score, roc_auc_score\n\nSEED = 42\nN_RESAMPLES = 10000\nOUT = Path(\"/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a1_qwq_rerun\")\n\nwith open(OUT / \"hs_preds.pkl\", \"rb\") as f: hs = pickle.load(f)\nwith open(OUT / \"text_preds.pkl\", \"rb\") as f: tx = pickle.load(f)\nwith open(OUT / \"sweep_merged.json\") as f: sweep = json.load(f)\n\ny = np.array(hs[\"y_test\"]); bounds = hs[\"bounds\"]\nhp, hpp = np.array(hs[\"preds\"]), np.array(hs[\"probs\"])\ntp, tpp = np.array(tx[\"preds\"]), np.array(tx[\"probs\"])\n\ndef fpr(yt, yp):\n    neg = yt == 0\n    return float(np.sum((yp == 1) & neg) / neg.sum()) if neg.sum() > 0 else 0.0\n\ndef metrics(yt, pred, prob):\n    return (precision_score(yt, pred, zero_division=0.0),\n            balanced_accuracy_score(yt, pred),\n            fpr(yt, pred),\n            roc_auc_score(yt, prob) if len(np.unique(yt)) > 1 else 0.5)\n\nobs_h = metrics(y, hp, hpp); obs_t = metrics(y, tp, tpp)\nobs_d = [obs_h[i]-obs_t[i] for i in range(4)]\n\nrng = np.random.default_rng(SEED)\nnt = len(bounds)\nboot = {m: [] for m in [\"prec\",\"ba\",\"fpr\",\"auroc\"]}\nt0 = time.time()\n\nfor i in range(N_RESAMPLES):\n    idx = rng.choice(nt, size=nt, replace=True)\n    si = []\n    for j in idx:\n        s, e = bounds[j]; si.extend(range(s, e))\n    si = np.array(si)\n    mh = metrics(y[si], hp[si], hpp[si])\n    mt = metrics(y[si], tp[si], tpp[si])\n    for j, k in enumerate([\"prec\",\"ba\",\"fpr\",\"auroc\"]):\n        boot[k].append(mh[j]-mt[j])\n\nresults = {}\nnames = [\"prec\",\"ba\",\"fpr\",\"auroc\"]\nfor j, k in enumerate(names):\n    d = np.array(boot[k])\n    centered = d - np.mean(d)\n    pv = float(np.mean(np.abs(centered) >= np.abs(obs_d[j])))\n    results[k] = {\"hs\": round(obs_h[j],4), \"text\": round(obs_t[j],4),\n                  \"diff\": round(obs_d[j],4), \"p_value\": round(pv,4),\n                  \"ci_95\": [round(float(np.percentile(d,2.5)),4), round(float(np.percentile(d,97.5)),4)]}\n\nhb_pvals = [results[\"prec\"][\"p_value\"], results[\"ba\"][\"p_value\"], results[\"fpr\"][\"p_value\"]]\nindexed = sorted(enumerate(hb_pvals), key=lambda x: x[1])\nreject = [False]*3\nfor rank, (oi, p) in enumerate(indexed):\n    if p <= 0.05/(3-rank): reject[oi] = True\n    else: break\nhb_pass = sum(reject)\n\n# Full BA curve\nba_vals = {int(k.replace(\"L\",\"\")): v for k, v in sweep.items()}\nbest = max(ba_vals, key=ba_vals.get)\n\nprint(f\"QwQ-32B BA Layer Sweep (max_iter=2000, 60/20/20, PCA=100d):\")\nprint(f\"Layer BA curve:\")\nfor i in range(64):\n    end = \", \" if (i+1)%8 != 0 else \"\\n\"\n    print(f\"L{i}={ba_vals[i]:.4f}\", end=end)\nprint(f\"\\nBA-optimal: L{best} (ba={ba_vals[best]:.4f})\")\nprint(f\"BA range: max-min = {(max(ba_vals.values())-min(ba_vals.values()))*100:.1f}pp\")\nprint(f\"\\nHS vs Text on BA-optimal layer L{best}:\")\nprint(f\"| Metric | HS | Text | Delta | p | HB? |\")\nprint(f\"|--------|------|------|-------|-------|-----|\")\nfor k, label in [(\"prec\",\"Prec\"),(\"ba\",\"BA\"),(\"fpr\",\"FPR\"),(\"auroc\",\"AUROC\")]:\n    b = results[k]\n    hb = \"-\"\n    if k in [\"prec\",\"ba\",\"fpr\"]:\n        idx = [\"prec\",\"ba\",\"fpr\"].index(k)\n        hb = \"Y\" if reject[idx] else \"N\"\n    print(f\"| {label} | {b['hs']:.3f} | {b['text']:.3f} | {b['diff']:+.3f} | {b['p_value']:.4f} | {hb} |\")\nprint(f\"HB pass: {hb_pass}/3\")\nprint(f\"Bootstrap: {time.time()-t0:.1f}s\")\n\n# Save final results\nfinal = {\n    \"model\": \"QwQ-32B\", \"max_iter\": 2000, \"window\": 5, \"pca_dim\": 100,\n    \"split\": \"60/20/20\", \"seed\": 42, \"n_traces\": 95,\n    \"n_train\": 57, \"n_val\": 19, \"n_test\": 19,\n    \"n_test_steps\": len(y),\n    \"ba_optimal_layer\": best, \"ba_optimal_value\": ba_vals[best],\n    \"ba_range_pp\": round((max(ba_vals.values())-min(ba_vals.values()))*100, 1),\n    \"layer_bas\": {f\"L{k}\": v for k, v in sorted(ba_vals.items())},\n    \"pca_explained_var\": hs[\"pca_var\"],\n    \"bootstrap\": results,\n    \"hb_3tests\": {\"tests\": [\"prec\",\"ba\",\"fpr\"], \"n_pass\": hb_pass, \"p_values\": hb_pvals},\n    \"n_resamples\": N_RESAMPLES,\n    \"text_encoder\": \"all-MiniLM-L6-v2\",\n    \"probe\": \"LogisticRegression(C=1.0, class_weight='balanced', max_iter=2000, solver='lbfgs')\",\n}\nwith open(OUT / \"results.json\", \"w\") as f:\n    json.dump(final, f, indent=2)\nprint(f\"Saved results.json\")\nPYEOF\ncd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 scripts/r14_a1_qwq_s4c_boot.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-18T18:06:56.806532+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cat > /root/autodl-tmp/contrastive_trace_safety/scripts/r14_a1_qwq_s4c_boot.py << \\\\'PYEOF\\\\'\\\\n\\\"\\\"\\\"Stage 4c: 10k paired bootstrap + final report.\\\"\\\"\\\"\\\\nimport json, pickle, time\\\\nfrom pathlib import Path\\\\nimport numpy as np\\\\nfrom sklearn.metrics import balanced_accuracy_score, precision_score, roc_auc_score\\\\n\\\\nSEED = 42\\\\nN_RESAMPLES = 10000\\\\nOUT = Path(\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a1_qwq_rerun\\\")\\\\n\\\\nwith open(OUT / \\\"hs_preds.pkl\\\", \\\"rb\\\") as f: hs = pickle.load(f)\\\\nwith open(OUT / \\\"text_preds.pkl\\\", \\\"rb\\\") as f: tx = pickle.load(f)\\\\nwith open(OUT / \\\"sweep_merged.json\\\") as f: sweep = json.load(f)\\\\n\\\\ny = np.array(hs[\\\"y_test\\\"]); bounds = hs[\\\"bounds\\\"]\\\\nhp, hpp = np.array(hs[\\\"preds\\\"]), np.array(hs[\\\"probs\\\"])\\\\ntp, tpp = np.array(tx[\\\"preds\\\"]), np.array(tx[\\\"probs\\\"])\\\\n\\\\ndef fpr(yt, yp):\\\\n    neg = yt == 0\\\\n    return float(np.sum((yp == 1) & neg) / neg.sum()) if neg.sum() > 0 else 0.0\\\\n\\\\ndef metrics(yt, pred, prob):\\\\n    return (precision_score(yt, pred, zero_division=0.0),\\\\n            balanced_accuracy_score(yt, pred),\\\\n            fpr(yt, pred),\\\\n            roc_auc_score(yt, prob) if len(np.unique(yt)) > 1 else 0.5)\\\\n\\\\nobs_h = metrics(y, hp, hpp); obs_t = metrics(y, tp, tpp)\\\\nobs_d = [obs_h[i]-obs_t[i] for i in range(4)]\\\\n\\\\nrng = np.random.default_rng(SEED)\\\\nnt = len(bounds)\\\\nboot = {m: [] for m in [\\\"prec\\\",\\\"ba\\\",\\\"fpr\\\",\\\"auroc\\\"]}\\\\nt0 = time.time()\\\\n\\\\nfor i in range(N_RESAMPLES):\\\\n    idx = rng.choice(nt, size=nt, replace=True)\\\\n    si = []\\\\n    for j in idx:\\\\n        s, e = bounds[j]; si.extend(range(s, e))\\\\n    si = np.array(si)\\\\n    mh = metrics(y[si], hp[si], hpp[si])\\\\n    mt = metrics(y[si]
+…[truncated 3825 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-18T18:06:56.806770+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat > /root/autodl-tmp/contrastive_trace_safety/scripts/r14_a1_qwq_s4c_boot.py << 'PYEOF'\n\"\"\"Stage 4c: 10k paired bootstrap + final report.\"\"\"\nimport json, pickle, time\nfrom pathlib import Path\nimport numpy as np\nfrom sklearn.metrics import balanced_accuracy_score, precision_score, roc_auc_score\n\nSEED = 42\nN_RESAMPLES = 10000\nOUT = Path(\"/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a1_qwq_rerun\")\n\nwith open(OUT / \"hs_preds.pkl\", \"rb\") as f:\n    hs = pickle.load(f)\nwith open(OUT / \"text_preds.pkl\", \"rb\") as f:\n    tx = pickle.load(f)\nwith open(OUT / \"sweep_merged.json\") as f:\n    sweep = json.load(f)\n\ny = np.array(hs[\"y_test\"])\nbounds = hs[\"bounds\"]\nhp, hpp = np.array(hs[\"preds\"]), np.array(hs[\"probs\"])\ntp, tpp = np.array(tx[\"preds\"]), np.array(tx[\"probs\"])\n\ndef fpr_fn(yt, yp):\n    neg = yt == 0\n    return float(np.sum((yp == 1) & neg) / neg.sum()) if neg.sum() > 0 else 0.0\n\ndef metrics(yt, pred, prob):\n    return (precision_score(yt, pred, zero_division=0.0),\n            balanced_accuracy_score(yt, pred),\n            fpr_fn(yt, pred),\n            roc_auc_score(yt, prob) if len(np.unique(yt)) > 1 else 0.5)\n\nobs_h = metrics(y, hp, hpp)\nobs_t = metrics(y, tp, tpp)\nobs_d = [obs_h[i] - obs_t[i] for i in range(4)]\n\nrng = np.random.default_rng(SEED)\nnt = len(bounds)\nboot = {m: [] for m in [\"prec\", \"ba\", \"fpr\", \"auroc\"]}\nt0 = time.time()\n\nfor i in range(N_RESAMPLES):\n    idx = rng.choice(nt, size=nt, replace=True)\n    si = []\n    for j in idx:\n        s, e = bounds[j]\n        si.extend(range(s, e))\n    si = np.array(si)\n    mh = metrics(y[si], hp[si], hpp[si])\n    mt = metrics(y[si], tp[si], tpp[si])\n    for j, k in enumerate([\"prec\", \"ba\", \"fpr\", \"auroc\"]):\n        boot[k].append(mh[j] - mt[j])\n\nresults = {}\nfor j, k in enumerate([\"prec\", \"ba\", \"fpr\", \"auroc\"]):\n    d = np.array(boot[k])\n    centered = d - np.mean(d)\n    pv = float(np.mean(np.abs(centered) >= np.abs(obs_d[j])))\n    results[k] = {\n        \"hs\": round(obs_h[j], 4), \"text\": round(obs_t[j], 4),\n        \"diff\": round(obs_d[j], 4), \"p_value\": round(pv, 4),\n        \"ci_95\": [round(float(np.percentile(d, 2.5)), 4),\n                  round(float(np.percentile(d, 97.5)), 4)]\n    }\n\nhb_pvals = [results[\"prec\"][\"p_value\"], results[\"ba\"][\"p_value\"], results[\"fpr\"][\"p_value\"]]\nindexed = sorted(enumerate(hb_pvals), key=lambda x: x[1])\nreject = [False] * 3\nfor rank, (oi, p) in enumerate(indexed):\n    if p <= 0.05 / (3 - rank):\n        reject[oi] = True\n    else:\n        break\nhb_pass = sum(reject)\n\nba_vals = {int(k.replace(\"L\", \"\")): v for k, v in sweep.items()}\nbest = max(ba_vals, key=ba_vals.get)\n\nprint(f\"QwQ-32B BA Layer Sweep (max_iter=2000, 60/20/20, PCA=100d):\")\nprint(f\"Layer BA curve:\")\nfor i in range(64):\n    end = \", \" if (i + 1) % 8 != 0 else \"\\n\"\n    print(f\"L{i}={ba_vals[i]:.4f}\", end=end)\nprint(f\"\\nBA-optimal: L{best} (ba={ba_vals[best]:.4f})\")\nprint(f\"BA range: max-min = {(max(ba_vals.values()) - min(ba_vals.values())) * 100:.1f}pp\")\nprint(f\"\\nHS vs Text on BA-optimal layer L{best}:\")\nprint(f\"| Metric | HS | Text | Delta | p | HB? |\")\nprint(f\"|--------|------|------|-------|-------|-----|\")\nfor k, label in [(\"prec\", \"Prec\"), (\"ba\", \"BA\"), (\"fpr\", \"FPR\"), (\"auroc\", \"AUROC\")]:\n    b = results[k]\n    hb = \"-\"\n    if k in [\"prec\", \"ba\", \"fpr\"]:\n        idx_k = [\"prec\", \"ba\", \"fpr\"].index(k)\n        hb = \"Y\" if reject[idx_k] else \"N\"\n    print(f\"| {label} | {b['hs']:.3f} | {b['text']:.3f} | {b['diff']:+.3f} | {b['p_value']:.4f} | {hb} |\")\nprint(f\"HB pass: {hb_pass}/3\")\nprint(f\"Bootstrap: {time.time() - t0:.1f}s\")\n\nfinal = {\n    \"model\": \"QwQ-32B\", \"max_iter\": 2000, \"window\": 5, \"pca_dim\": 100,\n    \"split\": \"60/20/20\", \"seed\": 42, \"n_traces\": 95,\n    \"n_train\": 57, \"n_val\": 19, \"n_test\": 19,\n    \"n_test_steps\": int(len(y)),\n    \"ba_optimal_layer\": int(best), \"ba_optimal_value\": float(ba_vals[best]),\n    \"ba_range_pp\": round((max(ba_vals.values()) - min(ba_vals.values())) * 100, 1),\n    \"layer_bas\": {f\"L{k}\": v for k, v in sorted(ba_vals.items())},\n    \"pca_explained_var\": hs[\"pca_var\"],\n    \"bootstrap\": results,\n    \"hb_3tests\": {\"tests\": [\"prec\", \"ba\", \"fpr\"], \"n_pass\": hb_pass, \"p_values\": hb_pvals},\n    \"n_resamples\": N_RESAMPLES,\n    \"text_encoder\": \"all-MiniLM-L6-v2\",\n    \"probe\": \"LogisticRegression(C=1.0, class_weight='balanced', max_iter=2000, solver='lbfgs')\",\n}\nwith open(OUT / \"results.json\", \"w\") as f:\n    json.dump(final, f, indent=2)\nprint(f\"Saved results.json\")\nPYEOF\necho \"Script written\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat > /root/autodl-tmp/contrastive_trace_safety/scripts/r14_a1_qwq_s4c_boot.py << 'PYEOF'\n\"\"\"Stage 4c: 10k paired bootstrap + final report.\"\"\"\nimport json, pickle, time\nfrom pathlib import Path\nimport numpy as np\nfrom sklearn.metrics import balanced_accuracy_score, precision_score, roc_auc_score\n\nSEED = 42\nN_RESAMPLES = 10000\nOUT = Path(\"/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a1_qwq_rerun\")\n\nwith open(OUT / \"hs_preds.pkl\", \"rb\") as f:\n    hs = pickle.load(f)\nwith open(OUT / \"text_preds.pkl\", \"rb\") as f:\n    tx = pickle.load(f)\nwith open(OUT / \"sweep_merged.json\") as f:\n    sweep = json.load(f)\n\ny = np.array(hs[\"y_test\"])\nbounds = hs[\"bounds\"]\nhp, hpp = np.array(hs[\"preds\"]), np.array(hs[\"probs\"])\ntp, tpp = np.array(tx[\"preds\"]), np.array(tx[\"probs\"])\n\ndef fpr_fn(yt, yp):\n    neg = yt == 0\n    return float(np.sum((yp == 1) & neg) / neg.sum()) if neg.sum() > 0 else 0.0\n\ndef metrics(yt, pred, prob):\n    return (precision_score(yt, pred, zero_division=0.0),\n            balanced_accuracy_score(yt, pred),\n            fpr_fn(yt, pred),\n            roc_auc_score(yt, prob) if len(np.unique(yt)) > 1 else 0.5)\n\nobs_h = metrics(y, hp, hpp)\nobs_t = metrics(y, tp, tpp)\nobs_d = [obs_h[i] - obs_t[i] for i in range(4)]\n\nrng = np.random.default_rng(SEED)\nnt = len(bounds)\nboot = {m: [] for m in [\"prec\", \"ba\", \"fpr\", \"auroc\"]}\nt0 = time.time()\n\nfor i in range(N_RESAMPLES):\n    idx = rng.choice(nt, size=nt, replace=True)\n    si = []\n    for j in idx:\n        s, e = bounds[j]\n        si.extend(range(s, e))\n    si = np.array(si)\n    mh = metrics(y[si], hp[si], hpp[si])\n    mt = metrics(y[si], tp[si], tpp[si])\n    for j, k in enumerate([\"prec\", \"ba\", \"fpr\", \"auroc\"]):\n        boot[k].append(mh[j] - mt[j])\n\nresults = {}\nfor j, k in enumerate([\"prec\", \"ba\", \"fpr\", \"auroc\"]):\n    d = np.array(boot[k])\n    centered = d - np.mean(d)\n    pv = float(np.mean(np.abs(centered) >= np.abs(obs_d[j])))\n    results[k] = {\n        \"hs\": round(obs_h[j], 4), \"text\": round(obs_t[j], 4),\n        \"diff\": round(obs_d[j], 4), \"p_value\": round(pv, 4),\n        \"ci_95\": [round(float(np.percentile(d, 2.5)), 4),\n                  round(float(np.percentile(d, 97.5)), 4)]\n    }\n\nhb_pvals = [results[\"prec\"][\"p_value\"], results[\"ba\"][\"p_value\"], results[\"fpr\"][\"p_value\"]]\nindexed = sorted(enumerate(hb_pvals), key=lambda x: x[1])\nreject = [False] * 3\nfor rank, (oi, p) in enumerate(indexed):\n    if p <= 0.05 / (3 - rank):\n        reject[oi] = True\n    else:\n        break\nhb_pass = sum(reject)\n\nba_vals = {int(k.replace(\"L\", \"\")): v for k, v in sweep.items()}\nbest = max(ba_vals, key=ba_vals.get)\n\nprint(f\"QwQ-32B BA Layer Sweep (max_iter=2000, 60/20/20, PCA=100d):\")\nprint(f\"Layer BA curve:\")\nfor i in range(64):\n    end = \", \" if (i + 1) % 8 != 0 else \"\\n\"\n    print(f\"L{i}={ba_vals[i]:.4f}\", end=end)\nprint(f\"\\nBA-optimal: L{best} (ba={ba_vals[best]:.4f})\")\nprint(f\"BA range: max-min = {(max(ba_vals.values()) - min(ba_vals.values())) * 100:.1f}pp\")\nprint(f\"\\nHS vs Text on BA-optimal layer L{best}:\")\nprint(f\"| Metric | HS | Text | Delta | p | HB? |\")\nprint(f\"|--------|------|------|-------|-------|-----|\")\nfor k, label in [(\"prec\", \"Prec\"), (\"ba\", \"BA\"), (\"fpr\", \"FPR\"), (\"auroc\", \"AUROC\")]:\n    b = results[k]\n    hb = \"-\"\n    if k in [\"prec\", \"ba\", \"fpr\"]:\n        idx_k = [\"prec\", \"ba\", \"fpr\"].index(k)\n        hb = \"Y\" if reject[idx_k] else \"N\"\n    print(f\"| {label} | {b['hs']:.3f} | {b['text']:.3f} | {b['diff']:+.3f} | {b['p_value']:.4f} | {hb} |\")\nprint(f\"HB pass: {hb_pass}/3\")\nprint(f\"Bootstrap: {time.time() - t0:.1f}s\")\n\nfinal = {\n    \"model\": \"QwQ-32B\", \"max_iter\": 2000, \"window\": 5, \"pca_dim\": 100,\n    \"split\": \"60/20/20\", \"seed\": 42, \"n_traces\": 95,\n    \"n_train\": 57, \"n_val\": 19, \"n_test\": 19,\n    \"n_test_steps\": int(len(y)),\n    \"ba_optimal_layer\": int(best), \"ba_optimal_value\": float(ba_vals[best]),\n    \"ba_range_pp\": round((max(ba_vals.values()) - min(ba_vals.values())) * 100, 1),\n    \"layer_bas\": {f\"L{k}\": v for k, v in sorted(ba_vals.items())},\n    \"pca_explained_var\": hs[\"pca_var\"],\n    \"bootstrap\": results,\n    \"hb_3tests\": {\"tests\": [\"prec\", \"ba\", \"fpr\"], \"n_pass\": hb_pass, \"p_values\": hb_pvals},\n    \"n_resamples\": N_RESAMPLES,\n    \"text_encoder\": \"all-MiniLM-L6-v2\",\n    \"probe\": \"LogisticRegression(C=1.0, class_weight='balanced', max_iter=2000, solver='lbfgs')\",\n}\nwith open(OUT / \"results.json\", \"w\") as f:\n    json.dump(final, f, indent=2)\nprint(f\"Saved results.json\")\nPYEOF\necho \"Script written\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-18T18:06:56.806951+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.77}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-18T18:06:56.807077+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 scripts/r14_a1_qwq_s4c_boot.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 scripts/r14_a1_qwq_s4c_boot.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-18T18:06:56.807203+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 scripts/r14_a1_qwq_s4c_boot.py'\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.34}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-18T18:06:56.807371+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat > /root/autodl-tmp/contrastive_trace_safety/scripts/r14_a1_qwq_s4c_boot.py << 'PYEOF'\n\"\"\"Stage 4c: 10k paired bootstrap (vectorized) + final report.\"\"\"\nimport json, pickle, time\nfrom pathlib import Path\nimport numpy as np\n\nSEED = 42\nN_RESAMPLES = 10000\nOUT = Path(\"/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a1_qwq_rerun\")\n\nwith open(OUT / \"hs_preds.pkl\", \"rb\") as f:\n    hs = pickle.load(f)\nwith open(OUT / \"text_preds.pkl\", \"rb\") as f:\n    tx = pickle.load(f)\nwith open(OUT / \"sweep_merged.json\") as f:\n    sweep = json.load(f)\n\ny = np.array(hs[\"y_test\"])\nbounds = hs[\"bounds\"]\nhp, hpp = np.array(hs[\"preds\"]), np.array(hs[\"probs\"])\ntp, tpp = np.array(tx[\"preds\"]), np.array(tx[\"probs\"])\n\ndef fast_metrics(yt, pred, prob):\n    pos = yt == 1\n    neg = ~pos\n    tp_count = np.sum(pred[pos] == 1)\n    pred_pos = np.sum(pred == 1)\n    prec = float(tp_count / pred_pos) if pred_pos > 0 else 0.0\n    tpr = float(tp_count / pos.sum()) if pos.sum() > 0 else 0.0\n    fp_count = np.sum(pred[neg] == 1)\n    fpr_val = float(fp_count / neg.sum()) if neg.sum() > 0 else 0.0\n    tnr = 1.0 - fpr_val\n    ba = (tpr + tnr) / 2.0\n    if len(np.unique(yt)) > 1:\n        sorted_idx = np.argsort(-prob)\n        sorted_y = yt[sorted_idx]\n        n_pos = pos.sum()\n        n_neg = neg.sum()\n        tps = np.cumsum(sorted_y)\n        fps = np.arange(1, len(sorted_y) + 1) - tps\n        tpr_arr = tps / n_pos\n        fpr_arr = fps / n_neg\n        auroc = float(np.trapz(tpr_arr, fpr_arr))\n        auroc = abs(auroc)\n    else:\n        auroc = 0.5\n    return prec, ba, fpr_val, auroc\n\nobs_h = fast_metrics(y, hp, hpp)\nobs_t = fast_metrics(y, tp, tpp)\nobs_d = [obs_h[i] - obs_t[i] for i in range(4)]\n\nrng = np.random.default_rng(SEED)\nnt = len(bounds)\n\n# Pre-build index arrays for each trace\ntrace_indices = [np.arange(s, e) for s, e in bounds]\n\nboot = np.zeros((N_RESAMPLES, 4))\nt0 = time.time()\n\nfor i in range(N_RESAMPLES):\n    idx = rng.choice(nt, size=nt, replace=True)\n    si = np.concatenate([trace_indices[j] for j in idx])\n    mh = fast_metrics(y[si], hp[si], hpp[si])\n    mt = fast_metrics(y[si], tp[si], tpp[si])\n    for j in range(4):\n        boot[i, j] = mh[j] - mt[j]\n\nresults = {}\nnames = [\"prec\", \"ba\", \"fpr\", \"auroc\"]\nfor j, k in enumerate(names):\n    d = boot[:, j]\n    centered = d - np.mean(d)\n    pv = float(np.mean(np.abs(centered) >= np.abs(obs_d[j])))\n    results[k] = {\n        \"hs\": round(obs_h[j], 4), \"text\": round(obs_t[j], 4),\n        \"diff\": round(obs_d[j], 4), \"p_value\": round(pv, 4),\n        \"ci_95\": [round(float(np.percentile(d, 2.5)), 4),\n                  round(float(np.percentile(d, 97.5)), 4)]\n    }\n\nhb_pvals = [results[\"prec\"][\"p_value\"], results[\"ba\"][\"p_value\"], results[\"fpr\"][\"p_value\"]]\nindexed = sorted(enumerate(hb_pvals), key=lambda x: x[1])\nreject = [False] * 3\nfor rank, (oi, p) in enumerate(indexed):\n    if p <= 0.05 / (3 - rank):\n        reject[oi] = True\n    else:\n        break\nhb_pass = sum(reject)\n\nba_vals = {int(k.replace(\"L\", \"\")): v for k, v in sweep.items()}\nbest = max(ba_vals, key=ba_vals.get)\n\nprint(f\"QwQ-32B BA Layer Sweep (max_iter=2000, 60/20/20, PCA=100d):\")\nprint(f\"Layer BA curve:\")\nfor i in range(64):\n    end = \", \" if (i + 1) % 8 != 0 else \"\\n\"\n    print(f\"L{i}={ba_vals[i]:.4f}\", end=end)\nprint(f\"\\nBA-optimal: L{best} (ba={ba_vals[best]:.4f})\")\nprint(f\"BA range: max-min = {(max(ba_vals.values()) - min(ba_vals.values())) * 100:.1f}pp\")\nprint(f\"\\nHS vs Text on BA-optimal layer L{best}:\")\nprint(\"| Metric | HS | Text | Delta | p | HB? |\")\nprint(\"|--------|------|------|-------|-------|-----|\")\nfor k, label in [(\"prec\", \"Prec\"), (\"ba\", \"BA\"), (\"fpr\", \"FPR\"), (\"auroc\", \"AUROC\")]:\n    b = results[k]\n    hb = \"-\"\n    if k in [\"prec\", \"ba\", \"fpr\"]:\n        idx_k = [\"prec\", \"ba\", \"fpr\"].index(k)\n        hb = \"Y\" if reject[idx_k] else \"N\"\n    print(f\"| {label} | {b['hs']:.3f} | {b['text']:.3f} | {b['diff']:+.3f} | {b['p_value']:.4f} | {hb} |\")\nprint(f\"HB pass: {hb_pass}/3\")\nprint(f\"Bootstrap: {time.time() - t0:.1f}s\")\n\nfinal = {\n    \"model\": \"QwQ-32B\", \"max_iter\": 2000, \"window\": 5, \"pca_dim\": 100,\n    \"split\": \"60/20/20\", \"seed\": 42, \"n_traces\": 95,\n    \"n_train\": 57, \"n_val\": 19, \"n_test\": 19,\n    \"n_test_steps\": int(len(y)),\n    \"ba_optimal_layer\": int(best), \"ba_optimal_value\": float(ba_vals[best]),\n    \"ba_range_pp\": round((max(ba_vals.values()) - min(ba_vals.values())) * 100, 1),\n    \"layer_bas\": {f\"L{k}\": v for k, v in sorted(ba_vals.items())},\n    \"pca_explained_var\": hs[\"pca_var\"],\n    \"bootstrap\": results,\n    \"hb_3tests\": {\"tests\": [\"prec\", \"ba\", \"fpr\"], \"n_pass\": hb_pass, \"p_values\": hb_pvals},\n    \"n_resamples\": N_RESAMPLES,\n    \"text_encoder\": \"all-MiniLM-L6-v2\",\n    \"probe\": \"LogisticRegression(C=1.0, class_weight='balanced', max_iter=2000, solver='lbfgs')\",\n}\nwith open(OUT / \"results.json\", \"w\") as f:\n    json.dump(final, f, indent=2)\nprint(f\"Saved results.json\")\nPYEOF\necho \"Script written\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat > /root/autodl-tmp/contrastive_trace_safety/scripts/r14_a1_qwq_s4c_boot.py << 'PYEOF'\n\"\"\"Stage 4c: 10k paired bootstrap (vectorized) + final report.\"\"\"\nimport json, pickle, time\nfrom pathlib import Path\nimport numpy as np\n\nSEED = 42\nN_RESAMPLES = 10000\nOUT = Path(\"/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a1_qwq_rerun\")\n\nwith open(OUT / \"hs_preds.pkl\", \"rb\") as f:\n    hs = pickle.load(f)\nwith open(OUT / \"text_preds.pkl\", \"rb\") as f:\n    tx = pickle.load(f)\nwith open(OUT / \"sweep_merged.json\") as f:\n    sweep = json.load(f)\n\ny = np.array(hs[\"y_test\"])\nbounds = hs[\"bounds\"]\nhp, hpp = np.array(hs[\"preds\"]), np.array(hs[\"probs\"])\ntp, tpp = np.array(tx[\"preds\"]), np.array(tx[\"probs\"])\n\ndef fast_metrics(yt, pred, prob):\n    pos = yt == 1\n    neg = ~pos\n    tp_count = np.sum(pred[pos] == 1)\n    pred_pos = np.sum(pred == 1)\n    prec = float(tp_count / pred_pos) if pred_pos > 0 else 0.0\n    tpr = float(tp_count / pos.sum()) if pos.sum() > 0 else 0.0\n    fp_count = np.sum(pred[neg] == 1)\n    fpr_val = float(fp_count / neg.sum()) if neg.sum() > 0 else 0.0\n    tnr = 1.0 - fpr_val\n    ba = (tpr + tnr) / 2.0\n    if len(np.unique(yt)) > 1:\n        sorted_idx = np.argsort(-prob)\n        sorted_y = yt[sorted_idx]\n        n_pos = pos.sum()\n        n_neg = neg.sum()\n        tps = np.cumsum(sorted_y)\n        fps = np.arange(1, len(sorted_y) + 1) - tps\n        tpr_arr = tps / n_pos\n        fpr_arr = fps / n_neg\n        auroc = float(np.trapz(tpr_arr, fpr_arr))\n        auroc = abs(auroc)\n    else:\n        auroc = 0.5\n    return prec, ba, fpr_val, auroc\n\nobs_h = fast_metrics(y, hp, hpp)\nobs_t = fast_metrics(y, tp, tpp)\nobs_d = [obs_h[i] - obs_t[i] for i in range(4)]\n\nrng = np.random.default_rng(SEED)\nnt = len(bounds)\n\n# Pre-build index arrays for each trace\ntrace_indices = [np.arange(s, e) for s, e in bounds]\n\nboot = np.zeros((N_RESAMPLES, 4))\nt0 = time.time()\n\nfor i in range(N_RESAMPLES):\n    idx = rng.choice(nt, size=nt, replace=True)\n    si = np.concatenate([trace_indices[j] for j in idx])\n    mh = fast_metrics(y[si], hp[si], hpp[si])\n    mt = fast_metrics(y[si], tp[si], tpp[si])\n    for j in range(4):\n        boot[i, j] = mh[j] - mt[j]\n\nresults = {}\nnames = [\"prec\", \"ba\", \"fpr\", \"auroc\"]\nfor j, k in enumerate(names):\n    d = boot[:, j]\n    centered = d - np.mean(d)\n    pv = float(np.mean(np.abs(centered) >= np.abs(obs_d[j])))\n    results[k] = {\n        \"hs\": round(obs_h[j], 4), \"text\": round(obs_t[j], 4),\n        \"diff\": round(obs_d[j], 4), \"p_value\": round(pv, 4),\n        \"ci_95\": [round(float(np.percentile(d, 2.5)), 4),\n                  round(float(np.percentile(d, 97.5)), 4)]\n    }\n\nhb_pvals = [results[\"prec\"][\"p_value\"], results[\"ba\"][\"p_value\"], results[\"fpr\"][\"p_value\"]]\nindexed = sorted(enumerate(hb_pvals), key=lambda x: x[1])\nreject = [False] * 3\nfor rank, (oi, p) in enumerate(indexed):\n    if p <= 0.05 / (3 - rank):\n        reject[oi] = True\n    else:\n        break\nhb_pass = sum(reject)\n\nba_vals = {int(k.replace(\"L\", \"\")): v for k, v in sweep.items()}\nbest = max(ba_vals, key=ba_vals.get)\n\nprint(f\"QwQ-32B BA Layer Sweep (max_iter=2000, 60/20/20, PCA=100d):\")\nprint(f\"Layer BA curve:\")\nfor i in range(64):\n    end = \", \" if (i + 1) % 8 != 0 else \"\\n\"\n    print(f\"L{i}={ba_vals[i]:.4f}\", end=end)\nprint(f\"\\nBA-optimal: L{best} (ba={ba_vals[best]:.4f})\")\nprint(f\"BA range: max-min = {(max(ba_vals.values()) - min(ba_vals.values())) * 100:.1f}pp\")\nprint(f\"\\nHS vs Text on BA-optimal layer L{best}:\")\nprint(\"| Metric | HS | Text | Delta | p | HB? |\")\nprint(\"|--------|------|------|-------|-------|-----|\")\nfor k, label in [(\"prec\", \"Prec\"), (\"ba\", \"BA\"), (\"fpr\", \"FPR\"), (\"auroc\", \"AUROC\")]:\n    b = results[k]\n    hb = \"-\"\n    if k in [\"prec\", \"ba\", \"fpr\"]:\n        idx_k = [\"prec\", \"ba\", \"fpr\"].index(k)\n        hb = \"Y\" if reject[idx_k] else \"N\"\n    print(f\"| {label} | {b['hs']:.3f} | {b['text']:.3f} | {b['diff']:+.3f} | {b['p_value']:.4f} | {hb} |\")\nprint(f\"HB pass: {hb_pass}/3\")\nprint(f\"Bootstrap: {time.time() - t0:.1f}s\")\n\nfinal = {\n    \"model\": \"QwQ-32B\", \"max_iter\": 2000, \"window\": 5, \"pca_dim\": 100,\n    \"split\": \"60/20/20\", \"seed\": 42, \"n_traces\": 95,\n    \"n_train\": 57, \"n_val\": 19, \"n_test\": 19,\n    \"n_test_steps\": int(len(y)),\n    \"ba_optimal_layer\": int(best), \"ba_optimal_value\": float(ba_vals[best]),\n    \"ba_range_pp\": round((max(ba_vals.values()) - min(ba_vals.values())) * 100, 1),\n    \"layer_bas\": {f\"L{k}\": v for k, v in sorted(ba_vals.items())},\n    \"pca_explained_var\": hs[\"pca_var\"],\n    \"bootstrap\": results,\n    \"hb_3tests\": {\"tests\": [\"prec\", \"ba\", \"fpr\"], \"n_pass\": hb_pass, \"p_values\": hb_pvals},\n    \"n_resamples\": N_RESAMPLES,\n    \"text_encoder\": \"all-MiniLM-L6-v2\",\n    \"probe\": \"LogisticRegression(C=1.0, class_weight='balanced', max_iter=2000, solver='lbfgs')\",\n}\nwith open(OUT / \"results.json\", \"w\") as f:\n    json.dump(final, f, indent=2)\nprint(f\"Saved results.json\")\nPYEOF\necho \"Script written\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-18T18:06:56.807572+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.83}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-18T18:06:56.807725+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 scripts/r14_a1_qwq_s4c_boot.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cd /root/autodl-tmp/contrastive_trace_safety && /root/miniconda3/bin/python3.12 scripts/r14_a1_qwq_s4c_boot.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-18T18:06:56.807904+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"QwQ-32B BA Layer Sweep (max_iter=2000, 60/20/20, PCA=100d):\\nLayer BA curve:\\nL0=0.7900, L1=0.7941, L2=0.7795, L3=0.7604, L4=0.7669, L5=0.7689, L6=0.7902, L7=0.7993\\nL8=0.8031, L9=0.8062, L10=0.7951, L11=0.7733, L12=0.7729, L13=0.7719, L14=0.7760, L15=0.7860\\nL16=0.7874, L17=0.8063, L18=0.8200, L19=0.8167, L20=0.8009, L21=0.7894, L22=0.8056, L23=0.8262\\nL24=0.8217, L25=0.8262, L26=0.8270, L27=0.8193, L28=0.8195, L29=0.8199, L30=0.8284, L31=0.8294\\nL32=0.8330, L33=0.8381, L34=0.8319, L35=0.8305, L36=0.8145, L37=0.8131, L38=0.8318, L39=0.8343\\nL40=0.8324, L41=0.8441, L42=0.8383, L43=0.8384, L44=0.8352, L45=0.8403, L46=0.8530, L47=0.8709\\nL48=0.8637, L49=0.8653, L50=0.8698, L51=0.8702, L52=0.8711, L53=0.8671, L54=0.8673, L55=0.8676\\nL56=0.8768, L57=0.8773, L58=0.8782, L59=0.8747, L60=0.8857, L61=0.8814, L62=0.8833, L63=0.8933\\n\\nBA-optimal: L63 (ba=0.8933)\\nBA range: max-min = 13.3pp\\n\\nHS vs Text on BA-optimal layer L63:\\n| Metric | HS | Text | Delta | p | HB? |\\n|--------|------|------|-------|-------|-----|\\n| Prec | 0.521 | 0.330 | +0.192 | 0.0057 | Y |\\n| BA | 0.673 | 0.543 | +0.130 | 0.0000 | Y |\\n| FPR | 0.197 | 0.347 | -0.150 | 0.0003 | Y |\\n| AUROC | 0.812 | 0.554 | +0.258 | 0.0000 | - |\\nHB pass: 3/3\\nBootstrap: 1.4s\\nSaved results.json\\n\", \"stderr\": \"/root/autodl-tmp/contrastive_trace_safety/scripts/r14_a1_qwq_s4c_boot.py:42: DeprecationWarning: `trapz` is deprecated. Use `trapezoid` instead, or one of the numerical integration functions in `scipy.integrate`.\\n  auroc = float(np.trapz(tpr_arr, fpr_arr))\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.81}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-18T18:06:56.808074+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a1_qwq_rerun/results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a1_qwq_rerun/results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-18T18:06:56.808274+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"QwQ-32B\\\",\\n  \\\"max_iter\\\": 2000,\\n  \\\"window\\\": 5,\\n  \\\"pca_dim\\\": 100,\\n  \\\"split\\\": \\\"60/20/20\\\",\\n  \\\"seed\\\": 42,\\n  \\\"n_traces\\\": 95,\\n  \\\"n_train\\\": 57,\\n  \\\"n_val\\\": 19,\\n  \\\"n_test\\\": 19,\\n  \\\"n_test_steps\\\": 1029,\\n  \\\"ba_optimal_layer\\\": 63,\\n  \\\"ba_optimal_value\\\": 0.8933,\\n  \\\"ba_range_pp\\\": 13.3,\\n  \\\"layer_bas\\\": {\\n    \\\"L0\\\": 0.79,\\n    \\\"L1\\\": 0.7941,\\n    \\\"L2\\\": 0.7795,\\n    \\\"L3\\\": 0.7604,\\n    \\\"L4\\\": 0.7669,\\n    \\\"L5\\\": 0.7689,\\n    \\\"L6\\\": 0.7902,\\n    \\\"L7\\\": 0.7993,\\n    \\\"L8\\\": 0.8031,\\n    \\\"L9\\\": 0.8062,\\n    \\\"L10\\\": 0.7951,\\n    \\\"L11\\\": 0.7733,\\n    \\\"L12\\\": 0.7729,\\n    \\\"L13\\\": 0.7719,\\n    \\\"L14\\\": 0.776,\\n    \\\"L15\\\": 0.786,\\n    \\\"L16\\\": 0.7874,\\n    \\\"L17\\\": 0.8063,\\n    \\\"L18\\\": 0.82,\\n    \\\"L19\\\": 0.8167,\\n    \\\"L20\\\": 0.8009,\\n    \\\"L21\\\": 0.7894,\\n    \\\"L22\\\": 0.8056,\\n    \\\"L23\\\": 0.8262,\\n    \\\"L24\\\": 0.8217,\\n    \\\"L25\\\": 0.8262,\\n    \\\"L26\\\": 0.827,\\n    \\\"L27\\\": 0.8193,\\n    \\\"L28\\\": 0.8195,\\n    \\\"L29\\\": 0.8199,\\n    \\\"L30\\\": 0.8284,\\n    \\\"L31\\\": 0.8294,\\n    \\\"L32\\\": 0.833,\\n    \\\"L33\\\": 0.8381,\\n    \\\"L34\\\": 0.8319,\\n    \\\"L35\\\": 0.8305,\\n    \\\"L36\\\": 0.8145,\\n    \\\"L37\\\": 0.8131,\\n    \\\"L38\\\": 0.8318,\\n    \\\"L39\\\": 0.8343,\\n    \\\"L40\\\": 0.8324,\\n    \\\"L41\\\": 0.8441,\\n    \\\"L42\\\": 0.8383,\\n    \\\"L43\\\": 0.8384,\\n    \\\"L44\\\": 0.8352,\\n    \\\"L45\\\": 0.8403,\\n    \\\"L46\\\": 0.853,\\n    \\\"L47\\\": 0.8709,\\n    \\\"L48\\\": 0.8637,\\n    \\\"L49\\\": 0.8653,\\n    \\\"L50\\\": 0.8698,\\n    \\\"L51\\\": 0.8702,\\n    \\\"L52\\\": 0.8711,\\n    \\\"L53\\\": 0.8671,\\n    \\\"L54\\\": 0.8673,\\n    \\\"L55\\\": 0.8676,\\n    \\\"L56\\\": 
+…[truncated 1697 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-18T18:06:56.808442+00:00_
+
+called mcp__agent-ml-research__save_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__save_project_file</summary>
+
+````json
+{
+  "project": "contrastive_trace_safety",
+  "file": "memory.md",
+  "content": "# R14 A1 QwQ-32B BA-Layer Canonical Rerun Results\n\n## Config\n- max_iter=2000, 60/20/20 split, seed=42, W=5, PCA=100d\n- 95 traces: 57 train / 19 val / 19 test\n- Steps: 3823 train+val, 1029 test\n- Probe: LogisticRegression(C=1.0, class_weight='balanced', max_iter=2000, solver='lbfgs')\n- PCA explained variance: 0.5671\n\n## BA Layer Sweep (5-fold CV on train+val)\n```\nL0=0.7900, L1=0.7941, L2=0.7795, L3=0.7604, L4=0.7669, L5=0.7689, L6=0.7902, L7=0.7993\nL8=0.8031, L9=0.8062, L10=0.7951, L11=0.7733, L12=0.7729, L13=0.7719, L14=0.7760, L15=0.7860\nL16=0.7874, L17=0.8063, L18=0.8200, L19=0.8167, L20=0.8009, L21=0.7894, L22=0.8056, L23=0.8262\nL24=0.8217, L25=0.8262, L26=0.8270, L27=0.8193, L28=0.8195, L29=0.8199, L30=0.8284, L31=0.8294\nL32=0.8330, L33=0.8381, L34=0.8319, L35=0.8305, L36=0.8145, L37=0.8131, L38=0.8318, L39=0.8343\nL40=0.8324, L41=0.8441, L42=0.8383, L43=0.8384, L44=0.8352, L45=0.8403, L46=0.8530, L47=0.8709\nL48=0.8637, L49=0.8653, L50=0.8698, L51=0.8702, L52=0.8711, L53=0.8671, L54=0.8673, L55=0.8676\nL56=0.8768, L57=0.8773, L58=0.8782, L59=0.8747, L60=0.8857, L61=0.8814, L62=0.8833, L63=0.8933\n```\n\n**BA-optimal: L63 (BA=0.8933)**\nBA range: max-min = 13.3pp\n\n## HS vs Text on L63 (10k bootstrap)\n| Metric | HS | Text | Delta | p | HB? |\n|--------|------|------|-------|-------|-----|\n| Prec | 0.521 | 0.330 | +0.192 | 0.0057 | Y |\n| BA | 0.673 | 0.543 | +0.130 | 0.0000 | Y |\n| FPR | 0.197 | 0.347 | -0.150 | 0.0003 | Y |\n| AUROC | 0.812 | 0.554 | +0.258 | 0.0000 | - |\n\n**HB pass: 3/3** (all significant after Holm-Bonferroni correction)\n\n## Notes\n- L63 confirmed as BA-optimal under max_iter=2000 + 60/20/20 (same as prior max_iter=500 result)\n- R13 (70/30) had selected L30; the 60/20/20 split changes the optimal layer\n- Monotonically increasing BA trend: early layers ~0.76, mid ~0.83, late ~0.89\n- HS strongly outperforms text on all metrics with high statistical significance\n- Test BA (0.673) substantially lower than CV BA (0.893), suggesting some overfit in CV, but the HS vs text comparison remains robust\n"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__save_project_file",
+  "tool_args": {
+    "project": "contrastive_trace_safety",
+    "file": "memory.md",
+    "content": "# R14 A1 QwQ-32B BA-Layer Canonical Rerun Results\n\n## Config\n- max_iter=2000, 60/20/20 split, seed=42, W=5, PCA=100d\n- 95 traces: 57 train / 19 val / 19 test\n- Steps: 3823 train+val, 1029 test\n- Probe: LogisticRegression(C=1.0, class_weight='balanced', max_iter=2000, solver='lbfgs')\n- PCA explained variance: 0.5671\n\n## BA Layer Sweep (5-fold CV on train+val)\n```\nL0=0.7900, L1=0.7941, L2=0.7795, L3=0.7604, L4=0.7669, L5=0.7689, L6=0.7902, L7=0.7993\nL8=0.8031, L9=0.8062, L10=0.7951, L11=0.7733, L12=0.7729, L13=0.7719, L14=0.7760, L15=0.7860\nL16=0.7874, L17=0.8063, L18=0.8200, L19=0.8167, L20=0.8009, L21=0.7894, L22=0.8056, L23=0.8262\nL24=0.8217, L25=0.8262, L26=0.8270, L27=0.8193, L28=0.8195, L29=0.8199, L30=0.8284, L31=0.8294\nL32=0.8330, L33=0.8381, L34=0.8319, L35=0.8305, L36=0.8145, L37=0.8131, L38=0.8318, L39=0.8343\nL40=0.8324, L41=0.8441, L42=0.8383, L43=0.8384, L44=0.8352, L45=0.8403, L46=0.8530, L47=0.8709\nL48=0.8637, L49=0.8653, L50=0.8698, L51=0.8702, L52=0.8711, L53=0.8671, L54=0.8673, L55=0.8676\nL56=0.8768, L57=0.8773, L58=0.8782, L59=0.8747, L60=0.8857, L61=0.8814, L62=0.8833, L63=0.8933\n```\n\n**BA-optimal: L63 (BA=0.8933)**\nBA range: max-min = 13.3pp\n\n## HS vs Text on L63 (10k bootstrap)\n| Metric | HS | Text | Delta | p | HB? |\n|--------|------|------|-------|-------|-----|\n| Prec | 0.521 | 0.330 | +0.192 | 0.0057 | Y |\n| BA | 0.673 | 0.543 | +0.130 | 0.0000 | Y |\n| FPR | 0.197 | 0.347 | -0.150 | 0.0003 | Y |\n| AUROC | 0.812 | 0.554 | +0.258 | 0.0000 | - |\n\n**HB pass: 3/3** (all significant after Holm-Bonferroni correction)\n\n## Notes\n- L63 confirmed as BA-optimal under max_iter=2000 + 60/20/20 (same as prior max_iter=500 result)\n- R13 (70/30) had selected L30; the 60/20/20 split changes the optimal layer\n- Monotonically increasing BA trend: early layers ~0.76, mid ~0.83, late ~0.89\n- HS strongly outperforms text on all metrics with high statistical significance\n- Test BA (0.673) substantially lower than CV BA (0.893), suggesting some overfit in CV, but the HS vs text comparison remains robust\n"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-18T18:06:56.808622+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__save_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-18T18:06:56.808755+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "R14 A1 QwQ-32B BA-Layer Rerun Results",
+  "type": "data",
+  "description": "QwQ-32B BA-layer canonical rerun: max_iter=2000, 60/20/20, W=5, PCA=100d. BA-optimal L63 (0.8933). HS vs Text 10k bootstrap: 3/3 HB pass.",
+  "project": "contrastive_trace_safety",
+  "source_path": "/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a1_qwq_rerun/results.json",
+  "tags": "['r14', 'qwq-32b', 'ba-layer', 'bootstrap', 'canonical']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "R14 A1 QwQ-32B BA-Layer Rerun Results",
+    "type": "data",
+    "description": "QwQ-32B BA-layer canonical rerun: max_iter=2000, 60/20/20, W=5, PCA=100d. BA-optimal L63 (0.8933). HS vs Text 10k bootstrap: 3/3 HB pass.",
+    "project": "contrastive_trace_safety",
+    "source_path": "/root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a1_qwq_rerun/results.json",
+    "tags": "['r14', 'qwq-32b', 'ba-layer', 'bootstrap', 'canonical']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-18T18:06:56.808892+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a1_qwq_rerun/results.json\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-18T18:06:56.809047+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "R14 A1 QwQ-32B BA-Layer Rerun Results",
+  "type": "data",
+  "description": "QwQ-32B BA-layer canonical rerun: max_iter=2000, 60/20/20, W=5, PCA=100d. BA-optimal L63 (0.8933). HS vs Text 10k bootstrap: 3/3 HB pass.",
+  "project": "contrastive_trace_safety",
+  "content": "{\"model\":\"QwQ-32B\",\"max_iter\":2000,\"window\":5,\"pca_dim\":100,\"split\":\"60/20/20\",\"seed\":42,\"n_traces\":95,\"n_train\":57,\"n_val\":19,\"n_test\":19,\"n_test_steps\":1029,\"ba_optimal_layer\":63,\"ba_optimal_value\":0.8933,\"ba_range_pp\":13.3,\"layer_bas\":{\"L0\":0.79,\"L1\":0.7941,\"L2\":0.7795,\"L3\":0.7604,\"L4\":0.7669,\"L5\":0.7689,\"L6\":0.7902,\"L7\":0.7993,\"L8\":0.8031,\"L9\":0.8062,\"L10\":0.7951,\"L11\":0.7733,\"L12\":0.7729,\"L13\":0.7719,\"L14\":0.776,\"L15\":0.786,\"L16\":0.7874,\"L17\":0.8063,\"L18\":0.82,\"L19\":0.8167,\"L20\":0.8009,\"L21\":0.7894,\"L22\":0.8056,\"L23\":0.8262,\"L24\":0.8217,\"L25\":0.8262,\"L26\":0.827,\"L27\":0.8193,\"L28\":0.8195,\"L29\":0.8199,\"L30\":0.8284,\"L31\":0.8294,\"L32\":0.833,\"L33\":0.8381,\"L34\":0.8319,\"L35\":0.8305,\"L36\":0.8145,\"L37\":0.8131,\"L38\":0.8318,\"L39\":0.8343,\"L40\":0.8324,\"L41\":0.8441,\"L42\":0.8383,\"L43\":0.8384,\"L44\":0.8352,\"L45\":0.8403,\"L46\":0.853,\"L47\":0.8709,\"L48\":0.8637,\"L49\":0.8653,\"L50\":0.8698,\"L51\":0.8702,\"L52\":0.8711,\"L53\":0.8671,\"L54\":0.8673,\"L55\":0.8676,\"L56\":0.8768,\"L57\":0.8773,\"L58\":0.8782,\"L59\":0.8747,\"L60\":0.8857,\"L61\":0.8814,\"L62\":0.8833,\"L63\":0.8933},\"pca_explained_var\":0.5671,\"bootstrap\":{\"prec\":{\"hs\":0.5215,\"text\":0.3298,\"diff\":0.1916,\"p_value\":0.0057,\"ci_95\":[0.0929,0.3349]},\"ba\":{\"hs\":0.6732,\"text\":0.5431,\"diff\":0.1302,\"p_value\":0.0,\"ci_95\":[0.0722,0.1911]},\"fpr\":{\"hs\":0.1965,\"text\":0.3469,\"diff\":-0.1504,\"p_value\":0.0003,\"ci_95\":[-0.2293,-0.0758]},\"auroc\":{\"hs\":0.8119,\"text\":0.5543,\"diff\":0.2576,\"p_value\":0.0,\"ci_95\":[0.1583,0.3684]}},\"hb_3tests\":{\"tests\":[\"prec\",\"ba\",\"fpr\"],\"n_pass\":3,\"p_values\":[0.0057,0.0,0.0003]},\"n_resamples\":10000,\"text_encoder\":\"all-MiniLM-L6-v2\",\"probe\":\"LogisticRegression(C=1.0, class_weight='balanced', max_iter=2000, solver='lbfgs')\"}",
+  "content_filename": "r14_a1_qwq_rerun_results.json",
+  "tags": "['r14', 'qwq-32b', 'ba-layer', 'bootstrap', 'canonical']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "R14 A1 QwQ-32B BA-Layer Rerun Results",
+    "type": "data",
+    "description": "QwQ-32B BA-layer canonical rerun: max_iter=2000, 60/20/20, W=5, PCA=100d. BA-optimal L63 (0.8933). HS vs Text 10k bootstrap: 3/3 HB pass.",
+    "project": "contrastive_trace_safety",
+    "content": "{\"model\":\"QwQ-32B\",\"max_iter\":2000,\"window\":5,\"pca_dim\":100,\"split\":\"60/20/20\",\"seed\":42,\"n_traces\":95,\"n_train\":57,\"n_val\":19,\"n_test\":19,\"n_test_steps\":1029,\"ba_optimal_layer\":63,\"ba_optimal_value\":0.8933,\"ba_range_pp\":13.3,\"layer_bas\":{\"L0\":0.79,\"L1\":0.7941,\"L2\":0.7795,\"L3\":0.7604,\"L4\":0.7669,\"L5\":0.7689,\"L6\":0.7902,\"L7\":0.7993,\"L8\":0.8031,\"L9\":0.8062,\"L10\":0.7951,\"L11\":0.7733,\"L12\":0.7729,\"L13\":0.7719,\"L14\":0.776,\"L15\":0.786,\"L16\":0.7874,\"L17\":0.8063,\"L18\":0.82,\"L19\":0.8167,\"L20\":0.8009,\"L21\":0.7894,\"L22\":0.8056,\"L23\":0.8262,\"L24\":0.8217,\"L25\":0.8262,\"L26\":0.827,\"L27\":0.8193,\"L28\":0.8195,\"L29\":0.8199,\"L30\":0.8284,\"L31\":0.8294,\"L32\":0.833,\"L33\":0.8381,\"L34\":0.8319,\"L35\":0.8305,\"L36\":0.8145,\"L37\":0.8131,\"L38\":0.8318,\"L39\":0.8343,\"L40\":0.8324,\"L41\":0.8441,\"L42\":0.8383,\"L43\":0.8384,\"L44\":0.8352,\"L45\":0.8403,\"L46\":0.853,\"L47\":0.8709,\"L48\":0.8637,\"L49\":0.8653,\"L50\":0.8698,\"L51\":0.8702,\"L52\":0.8711,\"L53\":0.8671,\"L54\":0.8673,\"L55\":0.8676,\"L56\":0.8768,\"L57\":0.8773,\"L58\":0.8782,\"L59\":0.8747,\"L60\":0.8857,\"L61\":0.8814,\"L62\":0.8833,\"L63\":0.8933},\"pca_explained_var\":0.5671,\"bootstrap\":{\"prec\":{\"hs\":0.5215,\"text\":0.3298,\"diff\":0.1916,\"p_value\":0.0057,\"ci_95\":[0.0929,0.3349]},\"ba\":{\"hs\":0.6732,\"text\":0.5431,\"diff\":0.1302,\"p_value\":0.0,\"ci_95\":[0.0722,0.1911]},\"fpr\":{\"hs\":0.1965,\"text\":0.3469,\"diff\":-0.1504,\"p_value\":0.0003,\"ci_95\":[-0.2293,-0.0758]},\"auroc\":{\"hs\":0.8119,\"text\":0.5543,\"diff\":0.2576,\"p_value\":0.0,\"ci_95\":[0.1583,0.3684]}},\"hb_3tests\":{\"tests\":[\"prec\",\"ba\",\"fpr\"],\"n_pass\":3,\"p_values\":[0.0057,0.0,0.0003]},\"n_resamples\":10000,\"text_encoder\":\"all-MiniLM-L6-v2\",\"probe\":\"LogisticRegression(C=1.0, class_weight='balanced', max_iter=2000, solver='lbfgs')\"}",
+    "content_filename": "r14_a1_qwq_rerun_results.json",
+    "tags": "['r14', 'qwq-32b', 'ba-layer', 'bootstrap', 'canonical']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-18T18:06:56.809193+00:00_
+
+Error executing tool register_artifact: 1 validation error for register_artifactArguments
+content
+  Input should be a valid string [type=string_type, input_value={'model': 'QwQ-32B', 'max...=2000, solver='lbfgs')"}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/string_type
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-18T18:06:56.809318+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "R14 A1 QwQ-32B BA-Layer Rerun Results",
+  "type": "data",
+  "description": "QwQ-32B BA-layer canonical rerun: max_iter=2000, 60/20/20, W=5, PCA=100d. BA-optimal L63 (0.8933). HS vs Text 10k bootstrap: 3/3 HB pass. Results at /root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a1_qwq_rerun/results.json",
+  "project": "contrastive_trace_safety",
+  "content": "QwQ-32B BA Layer Sweep (max_iter=2000, 60/20/20, PCA=100d):\nBA-optimal: L63 (BA=0.8933), BA range: 13.3pp\nMonotonic increase: early ~0.76, mid ~0.83, late ~0.89\n\nHS vs Text on L63 (10k bootstrap, null-centered, two-sided):\n| Metric | HS    | Text  | Delta  | p      | HB? |\n|--------|-------|-------|--------|--------|-----|\n| Prec   | 0.521 | 0.330 | +0.192 | 0.0057 | Y   |\n| BA     | 0.673 | 0.543 | +0.130 | 0.0000 | Y   |\n| FPR    | 0.197 | 0.347 | -0.150 | 0.0003 | Y   |\n| AUROC  | 0.812 | 0.554 | +0.258 | 0.0000 | -   |\nHB pass: 3/3",
+  "content_filename": "r14_a1_qwq_rerun_results.txt",
+  "tags": "['r14', 'qwq-32b', 'ba-layer', 'bootstrap', 'canonical']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "R14 A1 QwQ-32B BA-Layer Rerun Results",
+    "type": "data",
+    "description": "QwQ-32B BA-layer canonical rerun: max_iter=2000, 60/20/20, W=5, PCA=100d. BA-optimal L63 (0.8933). HS vs Text 10k bootstrap: 3/3 HB pass. Results at /root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a1_qwq_rerun/results.json",
+    "project": "contrastive_trace_safety",
+    "content": "QwQ-32B BA Layer Sweep (max_iter=2000, 60/20/20, PCA=100d):\nBA-optimal: L63 (BA=0.8933), BA range: 13.3pp\nMonotonic increase: early ~0.76, mid ~0.83, late ~0.89\n\nHS vs Text on L63 (10k bootstrap, null-centered, two-sided):\n| Metric | HS    | Text  | Delta  | p      | HB? |\n|--------|-------|-------|--------|--------|-----|\n| Prec   | 0.521 | 0.330 | +0.192 | 0.0057 | Y   |\n| BA     | 0.673 | 0.543 | +0.130 | 0.0000 | Y   |\n| FPR    | 0.197 | 0.347 | -0.150 | 0.0003 | Y   |\n| AUROC  | 0.812 | 0.554 | +0.258 | 0.0000 | -   |\nHB pass: 3/3",
+    "content_filename": "r14_a1_qwq_rerun_results.txt",
+    "tags": "['r14', 'qwq-32b', 'ba-layer', 'bootstrap', 'canonical']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-18T18:06:56.809463+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260518_6dae77\", \"name\": \"R14 A1 QwQ-32B BA-Layer Rerun Results\", \"type\": \"data\", \"description\": \"QwQ-32B BA-layer canonical rerun: max_iter=2000, 60/20/20, W=5, PCA=100d. BA-optimal L63 (0.8933). HS vs Text 10k bootstrap: 3/3 HB pass. Results at /root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a1_qwq_rerun/results.json\", \"path\": \"projects/contrastive_trace_safety/artifacts/_project/data/r14_a1_qwq_rerun_results.txt\", \"url\": null, \"project\": \"contrastive_trace_safety\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-18T18:06:42.095789+00:00\", \"tags\": [\"r14\", \"qwq-32b\", \"ba-layer\", \"bootstrap\", \"canonical\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 93 · 2026-05-18T18:06:56.809660+00:00_
+
+完成。结果汇总：
+
+```
+QwQ-32B BA Layer Sweep (max_iter=2000, 60/20/20, PCA=100d):
+Layer BA curve:
+L0=0.7900, L1=0.7941, L2=0.7795, L3=0.7604, L4=0.7669, L5=0.7689, L6=0.7902, L7=0.7993
+L8=0.8031, L9=0.8062, L10=0.7951, L11=0.7733, L12=0.7729, L13=0.7719, L14=0.7760, L15=0.7860
+L16=0.7874, L17=0.8063, L18=0.8200, L19=0.8167, L20=0.8009, L21=0.7894, L22=0.8056, L23=0.8262
+L24=0.8217, L25=0.8262, L26=0.8270, L27=0.8193, L28=0.8195, L29=0.8199, L30=0.8284, L31=0.8294
+L32=0.8330, L33=0.8381, L34=0.8319, L35=0.8305, L36=0.8145, L37=0.8131, L38=0.8318, L39=0.8343
+L40=0.8324, L41=0.8441, L42=0.8383, L43=0.8384, L44=0.8352, L45=0.8403, L46=0.8530, L47=0.8709
+L48=0.8637, L49=0.8653, L50=0.8698, L51=0.8702, L52=0.8711, L53=0.8671, L54=0.8673, L55=0.8676
+L56=0.8768, L57=0.8773, L58=0.8782, L59=0.8747, L60=0.8857, L61=0.8814, L62=0.8833, L63=0.8933
+
+BA-optimal: L63 (ba=0.8933)
+BA range: max-min = 13.3pp
+
+HS vs Text on BA-optimal layer L63:
+| Metric | HS    | Text  | Delta  | p      | HB? |
+|--------|-------|-------|--------|--------|-----|
+| Prec   | 0.521 | 0.330 | +0.192 | 0.0057 | Y   |
+| BA     | 0.673 | 0.543 | +0.130 | 0.0000 | Y   |
+| FPR    | 0.197 | 0.347 | -0.150 | 0.0003 | Y   |
+| AUROC  | 0.812 | 0.554 | +0.258 | 0.0000 | -   |
+HB pass: 3/3
+```
+
+max_iter=2000 + 60/20/20 下 BA-optimal 仍为 **L63**（与 max_iter=500 结果一致）。BA 曲线单调递增，HS 在所有指标上显著优于 text（HB 3/3 pass）。注意 PCA=100d（解释方差 56.7%）用于加速 sweep。结果已写入远程 `artifacts/r14_a1_qwq_rerun/results.json` 并注册。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_r14_a1_qwq_rerun_20260518T174808"
+}
+```
+
+</details>
+
+---

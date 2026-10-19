@@ -1,0 +1,106 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\bibstyle{plainnat}
+\citation{deepseekr1,qwq32b}
+\citation{harmthoughts,selfjailbreaking}
+\citation{trajguard}
+\citation{safeswitch}
+\citation{siren}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{trajguard}
+\citation{safeswitch}
+\citation{siren}
+\citation{selfjailbreaking}
+\citation{harmthoughts}
+\citation{saferemind}
+\citation{safethink}
+\citation{belinkov2022probing}
+\citation{li2024inference}
+\citation{tigges2023linear}
+\citation{meng2022locating}
+\@writefile{toc}{\contentsline {paragraph}{Claim 1: Static probes fail reliably.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Claim 2: Temporal window probes saturate oracle coverage.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Claim 3: Pre-textual detection is fundamentally limited.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Hidden-state jailbreak detection.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Reasoning model safety.}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Linear probing of LLM representations.}{2}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Task Definition}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Hidden-State Extraction}{2}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Static Probe}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Temporal Window Probe}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Mahalanobis Distance Baseline}{3}{subsection.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}GRU Sequential Probe}{3}{subsection.3.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.7}Label-Sequence Oracle}{3}{subsection.3.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.8}Cross-Architecture Transfer}{3}{subsection.3.8}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Static probe performance across architectures. Coverage is below 50\% for all models despite high Fisher discriminant ratios in original space. Fisher(PCA-3) collapses to $<$1, confirming signal concentration in minor PCs.}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:static}{{1}{4}{Static probe performance across architectures. Coverage is below 50\% for all models despite high Fisher discriminant ratios in original space. Fisher(PCA-3) collapses to $<$1, confirming signal concentration in minor PCs}{table.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.9}Evaluation Metrics}{4}{subsection.3.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{4}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Models.}{4}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Dataset.}{4}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Layer selection.}{4}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{4}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Claim 1: Static Probes Fail Across Architectures}{4}{subsection.5.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Mahalanobis distance baseline vs.\ temporal probe. Geometric anomaly detection fails because safety signal concentrates in minor PCs that contribute negligibly to Mahalanobis distance.}}{5}{table.2}\protected@file@percent }
+\newlabel{tab:mahalanobis}{{2}{5}{Mahalanobis distance baseline vs.\ temporal probe. Geometric anomaly detection fails because safety signal concentrates in minor PCs that contribute negligibly to Mahalanobis distance}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Temporal window probe ($W$=15) vs.\ static probe. Coverage improvement of +30--35pp is consistent across architectures. Lead time is the mean number of steps relative to commitment point (negative = after).}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:temporal}{{3}{5}{Temporal window probe ($W$=15) vs.\ static probe. Coverage improvement of +30--35pp is consistent across architectures. Lead time is the mean number of steps relative to commitment point (negative = after)}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Claim 2: Temporal Window Probes Saturate Oracle Coverage}{5}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Architecture $\times $ Scale matrix.}{5}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Claim 3: Pre-Textual Detection Is Fundamentally Limited}{5}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Oracle decomposition.}{5}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Cross-Architecture Transfer}{5}{subsection.5.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Temporal $W$=15 coverage in the 2$\times $2 architecture--scale matrix. Scale effect (+7pp) and architecture effect ($-$4.6pp) are both small relative to method effect (+30pp).}}{6}{table.4}\protected@file@percent }
+\newlabel{tab:arch_scale}{{4}{6}{Temporal $W$=15 coverage in the 2$\times $2 architecture--scale matrix. Scale effect (+7pp) and architecture effect ($-$4.6pp) are both small relative to method effect (+30pp)}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Detection lead time across architectures. Lead = mean steps before commitment (positive = early). No hidden-state method crosses zero; the oracle's +31-step advantage comes from label-sequence statistics unavailable to hidden-state probes.}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:leadtime}{{5}{6}{Detection lead time across architectures. Lead = mean steps before commitment (positive = early). No hidden-state method crosses zero; the oracle's +31-step advantage comes from label-sequence statistics unavailable to hidden-state probes}{table.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Ablation Studies}{6}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Window Size}{6}{subsection.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Layer Selection}{6}{subsection.6.2}\protected@file@percent }
+\newlabel{sec:layer_ablation}{{6.2}{6}{Layer Selection}{subsection.6.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}GRU Upper Bound}{6}{subsection.6.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Mutual information between hidden states (resp.\ label history $W$=15) and label sequences. Hidden states encode current state but not future trajectory.}}{7}{table.6}\protected@file@percent }
+\newlabel{tab:oracle_mi}{{6}{7}{Mutual information between hidden states (resp.\ label history $W$=15) and label sequences. Hidden states encode current state but not future trajectory}{table.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Cross-architecture transfer matrix (temporal $W$=15 coverage). \textsuperscript  {*}In-distribution. Same-family transfer achieves $>$70\%; cross-family transfer achieves $>$58\%.}}{7}{table.7}\protected@file@percent }
+\newlabel{tab:transfer}{{7}{7}{Cross-architecture transfer matrix (temporal $W$=15 coverage). \textsuperscript {*}In-distribution. Same-family transfer achieves $>$70\%; cross-family transfer achieves $>$58\%}{table.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}16-Label Fine-Grained Supervision}{7}{subsection.6.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5}Statistical Validation}{7}{subsection.6.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Discussion}{7}{section.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Why does method simplicity win?}{7}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Practical implications of negative lead time.}{7}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Universality of safety signal geometry.}{7}{section*.14}\protected@file@percent }
+\bibdata{custom}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Coverage vs.\ window size. Saturation at $W$=15 is universal across architectures. Decline at $W$=25 reflects overfitting from increased feature dimensionality.}}{8}{table.8}\protected@file@percent }
+\newlabel{tab:window}{{8}{8}{Coverage vs.\ window size. Saturation at $W$=15 is universal across architectures. Decline at $W$=25 reflects overfitting from increased feature dimensionality}{table.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Temporal $W$=15 coverage by relative layer depth. Bold = best per model. The optimal region (35--44\% depth) generalizes across architectures.}}{8}{table.9}\protected@file@percent }
+\newlabel{tab:layers}{{9}{8}{Temporal $W$=15 coverage by relative layer depth. Bold = best per model. The optimal region (35--44\% depth) generalizes across architectures}{table.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Limitations}{8}{section.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Sample size.}{8}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Model coverage.}{8}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Commitment point definition.}{8}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Probe access assumption.}{8}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {9}Conclusion}{8}{section.9}\protected@file@percent }
+\bibcite{belinkov2022probing}{{1}{2022}{{Belinkov}}{{}}}
+\bibcite{trajguard}{{2}{2025}{{Chen et~al.}}{{Chen, Zhang, et~al.}}}
+\bibcite{deepseekr1}{{3}{2025}{{DeepSeek-AI}}{{}}}
+\bibcite{li2024inference}{{4}{2024}{{Li et~al.}}{{}}}
+\bibcite{saferemind}{{5}{2025}{{Li et~al.}}{{}}}
+\bibcite{safeswitch}{{6}{2025}{{Liu et~al.}}{{}}}
+\bibcite{meng2022locating}{{7}{2022}{{Meng et~al.}}{{Meng, Bau, et~al.}}}
+\bibcite{siren}{{8}{2025}{{Park et~al.}}{{}}}
+\bibcite{qwq32b}{{9}{2024}{{Team}}{{}}}
+\bibcite{tigges2023linear}{{10}{2023}{{Tigges et~al.}}{{}}}
+\bibcite{selfjailbreaking}{{11}{2025}{{Wang et~al.}}{{Wang, Li, et~al.}}}
+\bibcite{harmthoughts}{{12}{2025}{{Zhang et~al.}}{{Zhang, Liu, et~al.}}}
+\bibcite{safethink}{{13}{2025}{{Zhou et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces GRU vs.\ temporal LR on 32B models. GRU's 21$\times $ parameter increase yields no coverage improvement, confirming that the bottleneck is data scale, not model capacity.}}{9}{table.10}\protected@file@percent }
+\newlabel{tab:gru}{{10}{9}{GRU vs.\ temporal LR on 32B models. GRU's 21$\times $ parameter increase yields no coverage improvement, confirming that the bottleneck is data scale, not model capacity}{table.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Binary vs.\ 16-label supervision (temporal $W$=15). Fine-grained labels offer marginal improvement, confirming that hidden-state temporal capacity---not supervision quality---is the bottleneck.}}{9}{table.11}\protected@file@percent }
+\newlabel{tab:16label}{{11}{9}{Binary vs.\ 16-label supervision (temporal $W$=15). Fine-grained labels offer marginal improvement, confirming that hidden-state temporal capacity---not supervision quality---is the bottleneck}{table.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Bootstrap 95\% CIs (1000 resamples). All $\Delta $ CIs exclude zero. Wide intervals reflect sample size (209 traces) but effect sizes are large relative to uncertainty.}}{10}{table.12}\protected@file@percent }
+\newlabel{tab:bootstrap}{{12}{10}{Bootstrap 95\% CIs (1000 resamples). All $\Delta $ CIs exclude zero. Wide intervals reflect sample size (209 traces) but effect sizes are large relative to uncertainty}{table.12}{}}
+\gdef \@abspage@last{10}

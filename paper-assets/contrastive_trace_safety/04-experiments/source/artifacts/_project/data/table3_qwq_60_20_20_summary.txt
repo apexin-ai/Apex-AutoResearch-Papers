@@ -1,0 +1,9 @@
+QwQ-32B (W=5, L60, 60/20/20, PCA=100d, 10k bootstrap):
+  n_test = 1029 (19 traces, 95 total)
+  HS Prec: 0.566, Text Prec: 0.330, DPrec: +0.236pp, p=0.0019, CI=[0.121, 0.384]
+  HS BA: 0.705, Text BA: 0.543, DBA: +0.162pp, p=0.0000, CI=[0.091, 0.218]
+  HS FPR: 0.178, Text FPR: 0.347, DFPR: -0.169pp, p=0.0000, CI=[-0.243, -0.102]
+  HS AUROC: 0.833, Text AUROC: 0.554, DAUROC: +0.279pp, p=0.0000, CI=[0.166, 0.391]
+  HB (3 tests: Prec, BA, FPR): 3/3 pass, p-values: [0.0019, 0.0, 0.0]
+  PCA explained var: 51.3%
+  Elapsed: 81.7s

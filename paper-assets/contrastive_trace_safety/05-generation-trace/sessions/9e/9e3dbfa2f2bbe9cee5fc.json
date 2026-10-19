@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9e3dbfa2f2bbe9cee5fc",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "paper writing appendix",
+  "task_key": "worker_paper_writing_appendix_20260517T010041",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_appendix_20260517T010041_result.json",
+    "occurrence": 1,
+    "bytes": 722,
+    "sha256": "aee5b7d29f5b243569d7119a38e2aa7d74a5ab3f126e6116864fdcb5f8784174"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Clean. The appendix is written to `docs/paper/sections/appendix.tex`. It contains all 7 sections (A through G), totals approximately 1500 words, and:\n\n- Uses no em-dashes or en-dashes\n- Has no -ing participial phrase endings\n- Avoids AI-style vocabulary\n- Matches all numerical constraints from the main text (temporal +3.4pp/+12.9pp/-4.8pp, selectivity 12.5/16.8/18.9pp, BOCPD lambda=10 at 93% detection +3.5 lead, GRU r1-8b 83.9% peak 72.1% crossing +3.5 lead, position baseline 15.8% vs probe 8.1%)\n- Includes the ARR checklist, layer sweep rationale, full window ablation table, GRU training details with per-seed results, control task methodology, BOCPD/CUSUM sweep table, and M002 bug disclosure"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-appendix.md"
+}

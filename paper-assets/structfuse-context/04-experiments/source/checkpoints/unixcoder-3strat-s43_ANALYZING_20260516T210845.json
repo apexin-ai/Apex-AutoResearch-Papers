@@ -1,0 +1,83 @@
+{
+  "exp_id": "unixcoder-3strat-s43",
+  "project": "structfuse-context",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T09:31:22.489Z",
+    "updated_at": "2026-05-16T21:08:45.658Z",
+    "hypothesis": "UniXcoder-base s43: 3 strategies (random/embedding/dataflow) × seed 43, patience=2。与 s42 (patience=3) 构成 2-seed 统计，验证 null result 稳定性。Director D064 批准。",
+    "parent": "unixcoder-3strat-s42",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/structfuse/scripts/run_unixcoder_s43_s44_chain.sh 0",
+      "server": "bjb1-42106",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "167371",
+      "log_path": "~/runs/structfuse-context/unixcoder-3strat-s43.log",
+      "submitted_at": "2026-05-16T09:36:48.173Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/structfuse/full_m2_training_data/",
+      "data_count": 0,
+      "model_name": "microsoft/unixcoder-base",
+      "seed": 43,
+      "checkpoint_path": "/root/autodl-tmp/structfuse/full_m2_unixcoder_outputs/",
+      "checkpoint_source": "N/A (training, not eval)",
+      "eval_data": "N/A (training, not eval)"
+    },
+    "notes": "Chain script (s43→s44 串行) on cuda:0。首次启动失败（python not found, conda 未激活）。修复：三个脚本均添加 conda 激活行。重新提交后确认运行：PID 168000, 16042 MiB, step 50/703, loss=0.6417, random strategy first。与 Qwen 主链 (~50 GiB) + D062 eval (~16 GiB) 共享 cuda:0。patience=2, batch_size=16, max_seq_length=1024, LoRA。输出：/root/autodl-tmp/structfuse/full_m2_unixcoder_outputs/{strategy}_s43/。ETA ~6h total (s43+s44)。",
+    "metrics": {
+      "random_s43": {
+        "status": "DONE",
+        "best_R@1": 0.577,
+        "best_R@5": 0.977,
+        "best_val_loss": 0.4238,
+        "best_val_loss_step": 800,
+        "early_stopped_step": 1200
+      },
+      "embedding_distance_s43": {
+        "status": "DONE",
+        "best_R@1": 0.5747,
+        "best_val_loss": 0.4257,
+        "best_val_loss_step": 800,
+        "early_stopped_step": 1200
+      },
+      "dataflow_aware_s43": {
+        "status": "DONE",
+        "best_R@1": 0.5678,
+        "best_val_loss": 0.4411,
+        "best_val_loss_step": 600,
+        "early_stopped_step": 1000
+      },
+      "s43_summary": {
+        "R@1_range": "0.5678-0.5770 (0.92pp span)",
+        "strategy_ranking_R@1": "random > embedding > dataflow",
+        "finding": "Null result confirmed for seed 43. Consistent with s42."
+      },
+      "s44_partial": {
+        "random_s44": {
+          "status": "DONE",
+          "best_R@1": 0.6028,
+          "early_stopped_step": 1000
+        },
+        "embedding_distance_s44": {
+          "status": "RUNNING",
+          "best_R@1_at_600": 0.6068
+        },
+        "dataflow_aware_s44": {
+          "status": "PENDING"
+        }
+      }
+    },
+    "reproduce": {
+      "finished_at": "2026-05-16T21:08:45.469Z"
+    }
+  },
+  "timestamp": "2026-05-16T21:08:45.738065+00:00",
+  "trigger": "update_registry"
+}

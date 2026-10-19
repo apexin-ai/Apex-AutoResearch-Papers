@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fb2b9ba56e30d8c89e73",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "ops check qwen3 status now",
+  "task_key": "worker_ops_check_qwen3_status_now_20260520T062822",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_qwen3_status_now_20260520T062822_result.json",
+    "occurrence": 1,
+    "bytes": 69,
+    "sha256": "273210d093f6c350795c65a4180a696c08b221c784bc1c3e683f609cddc60111"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Still running, at 350/520. Jailbreak count so far: 44."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-qwen3-status-now.md"
+}

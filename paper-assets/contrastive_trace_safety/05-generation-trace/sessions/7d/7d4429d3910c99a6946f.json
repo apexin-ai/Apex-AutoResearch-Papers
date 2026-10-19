@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7d4429d3910c99a6946f",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code advbench resync resubmit",
+  "task_key": "worker_code_advbench_resync_resubmit_20260522T094430",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_advbench_resync_resubmit_20260522T094430_result.json",
+    "occurrence": 1,
+    "bytes": 480,
+    "sha256": "56ecd648602002abaf2fc79ba09308b15e944e8e434c7694072232c6bb3e5253"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All checks pass:\n\n| Check | Result |\n|-------|--------|\n| **Constants** | `EXTRACT_LAYERS = list(range(0, 32))`, `LAYER_OFFSET = 0`, `N_STORED_LAYERS = 32` — correct |\n| **Stale data** | No .pt files from old run; removed stale `_meta.json` (had `L12-L24` with 0 traces) |\n| **Traces dir** | Empty — clean start |\n| **Syntax** | OK |\n| **GPU** | NVIDIA RTX PRO 6000 (98GB), **0 MiB used** — fully free |\n\nScript is synced and server is ready to run."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-advbench-resync-resubmit.md"
+}

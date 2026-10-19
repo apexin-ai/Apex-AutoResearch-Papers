@@ -1,0 +1,1 @@
+QwQ-32B BA-layer rerun (max_iter=2000, 60/20/20). BA-optimal: L63=0.8933. HS vs Text on L63: Prec 0.522 vs 0.330 (p=0.006), BA 0.673 vs 0.543 (p<0.001), FPR 0.197 vs 0.347 (p=0.0003), AUROC 0.812 vs 0.554 (p<0.001). HB 3/3. Remote: /root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a1_qwq_rerun/

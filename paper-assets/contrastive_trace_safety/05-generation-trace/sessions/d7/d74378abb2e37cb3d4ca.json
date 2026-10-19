@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d74378abb2e37cb3d4ca",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "infra kill structfuse v2",
+  "task_key": "worker_infra_kill_structfuse_v2_20260516T200116",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_kill_structfuse_v2_20260516T200116_result.json",
+    "occurrence": 1,
+    "bytes": 559,
+    "sha256": "351297cc4c761a81f1542719df4532ea40ce687dad28e1597829ccf5d7d4207d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果如下：\n\n## Step 4: GPU 状态\n\n```\n# 无计算进程\n---\n0, 0 MiB, 97253 MiB\n1, 0 MiB, 97253 MiB\n```\n\n**两块 GPU 完全释放，各 97GB 显存可用，structfuse 已清除干净。**\n\n## Step 5: 下载状态\n\n```\nQwQ RUNNING\nR1-32B RUNNING\n---\n(download_full.log 为空或不存在)\n---\nFilesystem      Size  Used Avail Use% Mounted on\n/dev/md0        250G   73G  178G  29% /root/autodl-tmp\n```\n\n**两个下载进程均在运行中。数据盘已用 73G / 250G (29%)，剩余 178G 空间充足。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-kill-structfuse-v2.md"
+}

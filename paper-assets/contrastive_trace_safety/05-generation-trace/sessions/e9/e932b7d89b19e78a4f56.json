@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e932b7d89b19e78a4f56",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "exp r1 8b random cp control",
+  "task_key": "worker_exp_r1_8b_random_cp_control_20260521T064711",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_r1_8b_random_cp_control_20260521T064711_result.json",
+    "occurrence": 1,
+    "bytes": 1384,
+    "sha256": "ee3af7024bc865737d9d5437c3dca5690b9f52699709ca289345fb2954b37a39"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "R1-8B Random-CP Control experiment complete. Here are the results:\n\n**Real-CP Baseline (ground truth labels):**\n| Metric | Best Layer |\n|--------|-----------|\n| CR-composite | **L0** (shallow) |\n| Crossing Rate | **L0** (shallow) |\n| Balanced Accuracy | **L19** (deep) |\n| Precision | **L23** (deep) |\n| FPR | **L13** (mid-deep) |\n| **Disagreement gap** | **23 layers** |\n\n**Random-CP Control (10 repeats, seeds 42-51):**\n| Metric | Mean Layer | Std | Shallow% | Deep% |\n|--------|-----------|-----|----------|-------|\n| bal_acc | 14.0 | 4.0 | 0% | 20% |\n| precision | **0.0** | 0.0 | **100%** | 0% |\n| pre_cp_fpr | **0.0** | 0.0 | **100%** | 0% |\n| crossing_rate | 10.7 | 4.8 | 0% | 10% |\n| cr_composite | 13.7 | 6.7 | **0%** | 30% |\n\n**Key conclusion:** The metric disagreement pattern does **NOT** replicate with random CPs. With real labels, CR-composite selects L0 (shallow) while precision selects L23 (deep) — a 23-layer gap. With random labels, CR-composite never selects shallow (0% vs the real CP's L0), and precision/FPR collapse to L0. This confirms the shallow vs. deep disagreement requires real commitment point labels and reflects genuine model behavioral structure, not geometric bias.\n\nResults saved to `artifacts/random_cp_control/r1_8b/` (report.txt, random_cp_summary.json) and registered as artifact `art_20260521_62443e`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-r1-8b-random-cp-control.md"
+}

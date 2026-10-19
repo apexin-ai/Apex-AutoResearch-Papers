@@ -1,0 +1,358 @@
+{
+  "schema_version": "1.0",
+  "id": "0eaed29804a5b3b27fea",
+  "project": "contrastive_trace_safety",
+  "kind": "conversation",
+  "title": "research r8 reference search",
+  "task_key": "worker_research_r8_reference_search_20260518T070953",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_research_r8_reference_search_20260518T070953.jsonl",
+    "occurrence": 1,
+    "bytes": 20805,
+    "sha256": "3119471afff5c8bfed1b32f730978c84da95a61e1d0c2c6977c637bf2cc65723"
+  },
+  "statistics": {
+    "messages": 17,
+    "user_turns": 0,
+    "tool_calls": 8,
+    "roles": {
+      "tool_call": 8,
+      "tool_result": 8,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-18T07:10:52.693867+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_r8_reference_search_20260518T070953",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebSearch",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-18T07:10:52.694281+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_r8_reference_search_20260518T070953",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-18T07:10:52.694471+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_r8_reference_search_20260518T070953",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Page 1954 \"Continuous inspection schemes\" Biometrika BibTeX"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-18T07:10:52.694642+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_r8_reference_search_20260518T070953",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Reimers Gurevych 2019 \"Sentence-BERT\" EMNLP BibTeX"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-18T07:10:52.694987+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_r8_reference_search_20260518T070953",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Xiao et al 2023 \"C-Pack\" BGE embedding BibTeX"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-18T07:10:52.695160+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_r8_reference_search_20260518T070953",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Meng et al 2022 \"Locating and Editing Factual Associations in GPT\" NeurIPS BibTeX"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-18T07:10:52.695299+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_r8_reference_search_20260518T070953",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Li et al \"Inference-Time Intervention\" ITI truthful language model BibTeX venue"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-18T07:10:52.695507+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Page 1954 \"Continuous inspection schemes\" Biometrika BibTeX\"\n\nLinks: [{\"title\":\"CONTINUOUS INSPECTION SCHEMES – ScienceOpen\",\"url\":\"https://www.scienceopen.com/document?vid=224e2c81-6327-4838-b2e9-78a006610245\"},{\"title\":\"Page, E.S. (1954) Continuous Inspection Schemes. Biometrika, 41, 100-115. - References - Scientific Research Publishing\",\"url\":\"https://www.scirp.org/reference/referencespapers?referenceid=1853242\"},{\"title\":\"CONTINUOUS INSPECTION SCHEMES | Biometrika | Oxford Academic\",\"url\":\"https://academic.oup.com/biomet/article-abstract/41/1-2/100/456627\"},{\"title\":\"CONTINUOUS INSPECTION SCHEMES | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/CONTINUOUS-INSPECTION-SCHEMES-Page/ae3c60cf4066589d91256d52c6f568665f70568e\"},{\"title\":\"E. S. Page, “Continuous Inspection Schemes,” Biometrika, Vol. 41, No. 1-2, 1954, pp.100-114. doi10.1093/biomet/41.1-2.100 - References - Scientific Research Publishing\",\"url\":\"https://www.scirp.org/(S(ny23rubfvg45z345vbrepxrl))/reference/referencespapers?referenceid=431059\"},{\"title\":\"Page, E. (1954) Continuous Inspection Schemes. Biometrika, 14, 100-115. - References - Scientific Research Publishing\",\"url\":\"https://www.scirp.org/reference/referencespapers?referenceid=2246687\"},{\"title\":\"Vol. 41, No. 1/2, Jun., 1954 of Biometrika on JSTOR\",\"url\":\"https://www.jstor.org/stable/i315422\"},{\"title\":\"CGR-CUSUM: a continuous time generalized rapid response cumulative sum chart | Biostatistics | Oxford Academic\",\"url\":\"https://academic.oup.com/biostatistics/article/25/1/253/6705266\"},{\"title\":\"Ongetiteld\",\"url\":\"https://hal.science/hal-00516996v1/html_references\"},{\"title\":\"PageHinkley — CapyMOA\",\"url\":\"https://capymoa.org/api/modules/capymoa.drift.detectors.PageHinkley.html\"}]\n\nBased on the search results, I found the bibliographic information for the article \"Continuous Inspection Schemes\" published in 1954:\n\nThe article is by E. S. Page, titled \"Continuous Inspection Schemes,\" published in Bio\n…[truncated 482 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_r8_reference_search_20260518T070953",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-18T07:10:52.695743+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Reimers Gurevych 2019 \"Sentence-BERT\" EMNLP BibTeX\"\n\nLinks: [{\"title\":\"Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks - ACL Anthology\",\"url\":\"https://aclanthology.org/D19-1410/\"},{\"title\":\"Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks | BibSonomy\",\"url\":\"https://www.bibsonomy.org/bibtex/292afb49328e6651f17dc1e1b8c304aae/nosebrain\"},{\"title\":\"Reimers, N. and Gurevych, I. (2019) Sentence-BERT Sentence Embeddings Using Siamese BERT-Networks. Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing and the 9th International Joint Conference on Natural Language Pro-cessing (EMNLP-IJCNLP), Hong Kong, November 2019, 3982-3992. - References - Scientific Research Publishing\",\"url\":\"https://www.scirp.org/reference/referencespapers?referenceid=3422225\"},{\"title\":\"[1908.10084] Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks\",\"url\":\"https://arxiv.org/abs/1908.10084\"},{\"title\":\"[PDF] Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Sentence-BERT:-Sentence-Embeddings-using-Siamese-Reimers-Gurevych/93d63ec754f29fa22572615320afe0521f7ec66d\"},{\"title\":\"Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks | Request PDF\",\"url\":\"https://www.researchgate.net/publication/336996965_Sentence-BERT_Sentence_Embeddings_using_Siamese_BERT-Networks\"},{\"title\":\"Google Scholar\",\"url\":\"https://scholar.google.com/scholar_lookup?title=Sentence-BERT:+Sentence+Embeddings+Using+Siamese+BERT-Networks&conference=Proceedings+of+the+2019+Conference+on+Empirical+Methods+in+Natural+Language+Processing+and+the+9th+International+Joint+Conference+on+Natural+Language+Processing+(EMNLP-IJCNLP)&author=Reimers,+N.&author=Gurevych,+I.&publication_year=2019&pages=3982%E2%80%933992&doi=10.18653/v1/D19-1410\"},{\"title\":\"Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks\",\"url\":\"https://arxiv.org/pdf/1908.10084\"},{\"\n…[truncated 1141 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_r8_reference_search_20260518T070953",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-18T07:10:52.695951+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Xiao et al 2023 \"C-Pack\" BGE embedding BibTeX\"\n\nLinks: [{\"title\":\"C-Pack: Packed Resources For General Chinese Embeddings Shitao Xiao†\",\"url\":\"https://arxiv.org/pdf/2309.07597\"},{\"title\":\"[2309.07597] C-Pack: Packed Resources For General Chinese Embeddings\",\"url\":\"https://arxiv.org/abs/2309.07597\"},{\"title\":\"C-Pack: Packed Resources For General Chinese Embeddings | Request PDF\",\"url\":\"https://www.researchgate.net/publication/382190819_C-Pack_Packed_Resources_For_General_Chinese_Embeddings\"},{\"title\":\"C-Pack: Packed Resources For General Chinese Embeddings\",\"url\":\"https://arxiv.org/html/2309.07597v5\"},{\"title\":\"C-Pack: Packaged Resources To Advance General Chinese Embedding\",\"url\":\"https://arxiv.org/html/2309.07597v2\"},{\"title\":\"BGE M3-Embedding: Multi-Lingual, Multi-Functionality, Multi-Granularity Text Embeddings Through Self-Knowledge Distillation\",\"url\":\"https://arxiv.org/html/2402.03216v3\"},{\"title\":\"BAAI/bge-large-en · Hugging Face\",\"url\":\"https://huggingface.co/BAAI/bge-large-en\"},{\"title\":\"[2309.07597v5] C-Pack: Packed Resources For General Chinese Embeddings\",\"url\":\"https://arxiv.org/abs/2309.07597v5\"},{\"title\":\"Extending Embedding Models for Long Context Retrieval\",\"url\":\"https://aclanthology.org/2024.emnlp-main.47.pdf\"},{\"title\":\"2309.07597 - C-Pack: Packaged Resources To Advance ...\",\"url\":\"https://www.emergentmind.com/papers/2309.07597\"}]\n\nBased on the search results, I found the BibTeX citation for the Xiao et al. 2023 \"C-Pack\" paper. The BibTeX entry is:\n\n```\n@misc{bge_embedding, \n  title={C-Pack: Packaged Resources To Advance General Chinese Embedding}, \n  author={Shitao Xiao and Zheng Liu and Peitian Zhang and Niklas Muennighoff}, \n  year={2023}, \n  eprint={2309.07597}, \n  archivePrefix={arXiv}, \n  primaryClass={cs.CL}\n}\n```\n\n\nThis is the official BibTeX citation found on the Hugging Face model card for the BGE embeddings, which are the models described in the C-Pack paper.\n\n\nREMINDER: You MUST include the sources above\n…[truncated 56 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_r8_reference_search_20260518T070953",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-18T07:10:52.696215+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Li et al \"Inference-Time Intervention\" ITI truthful language model BibTeX venue\"\n\nLinks: [{\"title\":\"[2306.03341] Inference-Time Intervention: Eliciting Truthful Answers from a Language Model\",\"url\":\"https://arxiv.org/abs/2306.03341\"},{\"title\":\"Inference-time intervention: eliciting truthful answers from ...\",\"url\":\"https://dl.acm.org/doi/10.5555/3666122.3667919\"},{\"title\":\"Inference-Time Intervention: Eliciting Truthful Answers from a Language Model\",\"url\":\"https://arxiv.org/pdf/2306.03341\"},{\"title\":\"[PDF] Inference-Time Intervention: Eliciting Truthful Answers from a Language Model | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Inference-Time-Intervention:-Eliciting-Truthful-a-Li-Patel/405f8f5f1c6df1b3343c812832479aad5180b65f\"},{\"title\":\"Inference-Time Intervention (ITI)\",\"url\":\"https://www.emergentmind.com/topics/inference-time-intervention-iti\"},{\"title\":\"GitHub - likenneth/honest_llama: Inference-Time Intervention: Eliciting Truthful Answers from a Language Model · GitHub\",\"url\":\"https://github.com/likenneth/honest_llama\"},{\"title\":\"Inference-Time Intervention: Eliciting Truthful Answers from a Language Model | OpenReview\",\"url\":\"https://openreview.net/forum?id=aLLuYpn83y\"},{\"title\":\"Inference-Time Intervention: Eliciting Truthful Answers from ...\",\"url\":\"https://www.lesswrong.com/posts/kuQfnotjkQA4Kkfou/inference-time-intervention-eliciting-truthful-answers-from\"},{\"title\":\"(PDF) Inference-Time Intervention: Eliciting Truthful Answers from a Language Model\",\"url\":\"https://www.researchgate.net/publication/371347185_Inference-Time_Intervention_Eliciting_Truthful_Answers_from_a_Language_Model\"},{\"title\":\"[2306.03341v6] Inference-Time Intervention: Eliciting Truthful Answers from a Language Model\",\"url\":\"https://arxiv.org/abs/2306.03341v6\"}]\n\nBased on the search results, here is the information about the Li et al. \"Inference-Time Intervention\" paper:\n\n## Paper Details\n\n**Title:** Inference-Time Intervention: Eliciti\n…[truncated 946 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_r8_reference_search_20260518T070953",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-18T07:10:52.696575+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Meng et al 2022 \"Locating and Editing Factual Associations in GPT\" NeurIPS BibTeX\"\n\nLinks: [{\"title\":\"Locating and Editing Factual Associations in GPT Kevin Meng⇤ MIT CSAIL\",\"url\":\"https://proceedings.neurips.cc/paper_files/paper/2022/file/6f1d43d5a82a37e89b0665b33bf3a182-Paper-Conference.pdf\"},{\"title\":\"Locating and Editing Factual Associations in GPT\",\"url\":\"https://proceedings.neurips.cc/paper_files/paper/2022/hash/6f1d43d5a82a37e89b0665b33bf3a182-Abstract-Conference.html\"},{\"title\":\"[2202.05262] Locating and Editing Factual Associations in GPT\",\"url\":\"https://arxiv.org/abs/2202.05262\"},{\"title\":\"Locating and Editing Factual Associations in GPT\",\"url\":\"https://neurips.cc/media/neurips-2022/Slides/53864.pdf\"},{\"title\":\"Locating and Editing Factual Associations in GPT | OpenReview\",\"url\":\"https://openreview.net/forum?id=-h6WAS6eE4\"},{\"title\":\"[PDF] Locating and Editing Factual Associations in GPT | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Locating-and-Editing-Factual-Associations-in-GPT-Meng-Bau/996445d847f06e99b0bd259345408a0cf1bce87e\"},{\"title\":\"Locating and Editing Factual Associations in GPT\",\"url\":\"https://bibbase.org/network/publication/meng-bau-andonian-belinkov-locatingandeditingfactualassociationsingpt-2022\"},{\"title\":\"Locating and Editing Factual Associations in GPT\",\"url\":\"https://rome.baulab.info/\"},{\"title\":\"Locating and Editing Factual Associations in GPT Kevin Meng∗ MIT CSAIL\",\"url\":\"https://arxiv.org/pdf/2202.05262\"},{\"title\":\"Locating and Editing Factual Associations in GPT - ar5iv - arXiv\",\"url\":\"https://ar5iv.labs.arxiv.org/html/2202.05262\"}]\n\nI found the paper and BibTeX information! Here's what I found:\n\n## Paper Details\n\nThe paper \"Locating and Editing Factual Associations in GPT\" by Kevin Meng, David Bau, Alex Andonian, and Yonatan Belinkov was published at Advances in Neural Information Processing Systems 35 (NeurIPS 2022).\n\n## BibTeX Citation\n\nThe BibTeX entry is:\n\n```\n@inproceedings{DBLP\n…[truncated 878 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_r8_reference_search_20260518T070953",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-18T07:10:52.696899+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_r8_reference_search_20260518T070953",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "C-Pack BGE embedding SIGIR 2024 Shitao Xiao venue published"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-18T07:10:52.697108+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_r8_reference_search_20260518T070953",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Li Kenneth \"Inference-Time Intervention\" NeurIPS 2023 proceedings volume pages"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-18T07:10:52.697350+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"C-Pack BGE embedding SIGIR 2024 Shitao Xiao venue published\"\n\nLinks: [{\"title\":\"C-Pack: Packed Resources For General Chinese Embeddings Shitao Xiao†\",\"url\":\"https://arxiv.org/pdf/2309.07597\"},{\"title\":\"C-Pack: Packed Resources For General Chinese Embeddings | Request PDF\",\"url\":\"https://www.researchgate.net/publication/382190819_C-Pack_Packed_Resources_For_General_Chinese_Embeddings\"},{\"title\":\"C-Pack: Packed Resources For General Chinese Embeddings | Proceedings of the 47th International ACM SIGIR Conference on Research and Development in Information Retrieval\",\"url\":\"https://doi.org/10.1145/3626772.3657878\"},{\"title\":\"C-Pack: Packed Resources For General Chinese Embeddings\",\"url\":\"https://arxiv.org/html/2309.07597v3\"},{\"title\":\"[PDF] C-Pack: Packed Resources For General Chinese Embeddings | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/C-Pack:-Packed-Resources-For-General-Chinese-Xiao-Liu/95dda1571f1a33245726fb53e9d5060ac7a0af25\"},{\"title\":\"Making Text Embedders Few-Shot Learners\",\"url\":\"https://arxiv.org/html/2409.15700v1\"},{\"title\":\"[2309.07597] C-Pack: Packed Resources For General Chinese Embeddings\",\"url\":\"https://arxiv.org/abs/2309.07597\"},{\"title\":\"Google Scholar\",\"url\":\"https://scholar.google.com/scholar_lookup?doi=10.1145/3626772.3657878\"},{\"title\":\"BGE M3-Embedding: Multi-Lingual, Multi-Functionality, Multi-Granularity Text Embeddings Through Self-Knowledge Distillation\",\"url\":\"https://arxiv.org/html/2402.03216v3\"},{\"title\":\"BAAI/bge-small-en-v1.5 · Hugging Face\",\"url\":\"https://huggingface.co/BAAI/bge-small-en-v1.5\"}]\n\nBased on the search results, here's the information about the C-Pack BGE embedding paper:\n\n**Venue:** The paper was published in the Proceedings of the 47th International ACM Conference on Research and Development in Information Retrieval (SIGIR '24), July 14–18, 2024, Washington, DC, USA.\n\n**Published:** SIGIR '24, July 14–18, 2024, Washington, DC, USA\n\n**Author:** Shitao Xiao et al.\n\n**Paper\n…[truncated 607 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_r8_reference_search_20260518T070953",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-18T07:10:52.697663+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Li Kenneth \"Inference-Time Intervention\" NeurIPS 2023 proceedings volume pages\"\n\nLinks: [{\"title\":\"Inference-Time Intervention: Eliciting Truthful Answers from a Language Model\",\"url\":\"https://proceedings.neurips.cc/paper_files/paper/2023/hash/81b8390039b7302c909cb769f8b6cd93-Abstract-Conference.html\"},{\"title\":\"NeurIPS Poster Inference-Time Intervention: Eliciting Truthful Answers from a Language Model\",\"url\":\"https://neurips.cc/virtual/2023/poster/71200\"},{\"title\":\"Inference-time intervention | Proceedings of the 37th International Conference on Neural Information Processing Systems\",\"url\":\"https://dl.acm.org/doi/10.5555/3666122.3667919\"},{\"title\":\"[2306.03341] Inference-Time Intervention: Eliciting Truthful Answers from a Language Model\",\"url\":\"https://arxiv.org/abs/2306.03341\"},{\"title\":\"Inference-Time Intervention: Eliciting Truthful Answers from a Language Model | OpenReview\",\"url\":\"https://openreview.net/forum?id=aLLuYpn83y\"},{\"title\":\"GitHub - likenneth/honest_llama: Inference-Time Intervention: Eliciting Truthful Answers from a Language Model · GitHub\",\"url\":\"https://github.com/likenneth/honest_llama\"},{\"title\":\"Inference-Time Intervention: Eliciting Truthful Answers from a Language Model - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/2023arXiv230603341L/abstract\"},{\"title\":\"[Quick Review] Inference-Time Intervention: Eliciting Truthful Answers from a Language Model\",\"url\":\"https://liner.com/review/inferencetime-intervention-eliciting-truthful-answers-from-a-language-model\"},{\"title\":\"NeurIPS Poster Inference-Time Intervention: Eliciting Truthful Answers from a Language Model\",\"url\":\"https://nips.cc/virtual/2023/poster/71200\"},{\"title\":\"[PDF] Inference-Time Intervention: Eliciting Truthful Answers from a Language Model | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Inference-Time-Intervention:-Eliciting-Truthful-a-Li-Patel/405f8f5f1c6df1b3343c812832479aad5180b65f\"}]\n\nBased on the search results, here is the \n…[truncated 962 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_r8_reference_search_20260518T070953",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-18T07:10:52.698004+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "确认完毕。C-Pack 发表于 SIGIR 2024，ITI 发表于 NeurIPS 2023。以下是 5 篇论文的完整 BibTeX：\n\n```bibtex\n@article{page1954cusum,\n  title={Continuous Inspection Schemes},\n  author={Page, E. S.},\n  journal={Biometrika},\n  volume={41},\n  number={1-2},\n  pages={100--115},\n  year={1954},\n  url={https://doi.org/10.1093/biomet/41.1-2.100}\n}\n\n@inproceedings{reimers2019sentencebert,\n  title={Sentence-{BERT}: Sentence Embeddings using Siamese {BERT}-Networks},\n  author={Reimers, Nils and Gurevych, Iryna},\n  booktitle={Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing and the 9th International Joint Conference on Natural Language Processing (EMNLP-IJCNLP)},\n  pages={3982--3992},\n  year={2019},\n  publisher={Association for Computational Linguistics},\n  url={https://doi.org/10.18653/v1/D19-1410}\n}\n\n@inproceedings{xiao2024cpack,\n  title={C-Pack: Packed Resources For General Chinese Embeddings},\n  author={Xiao, Shitao and Liu, Zheng and Zhang, Peitian and Muennighoff, Niklas},\n  booktitle={Proceedings of the 47th International ACM SIGIR Conference on Research and Development in Information Retrieval},\n  year={2024},\n  url={https://doi.org/10.1145/3626772.3657878}\n}\n\n@inproceedings{meng2022locating,\n  title={Locating and Editing Factual Associations in {GPT}},\n  author={Meng, Kevin and Bau, David and Andonian, Alex and Belinkov, Yonatan},\n  booktitle={Advances in Neural Information Processing Systems 35 (NeurIPS)},\n  year={2022},\n  url={https://proceedings.neurips.cc/paper_files/paper/2022/hash/6f1d43d5a82a37e89b0665b33bf3a182-Abstract-Conference.html}\n}\n\n@inproceedings{li2023iti,\n  title={Inference-Time Intervention: Eliciting Truthful Answers from a Language Model},\n  author={Li, Kenneth and Patel, Oam and Vi{\\'e}gas, Fernanda and Pfister, Hanspeter and Wattenberg, Martin},\n  booktitle={Advances in Neural Information Processing Systems 36 (NeurIPS)},\n  year={2023},\n  url={https://proceedings.neurips.cc/paper_files/paper/2023/hash/81b8390039b7302c909cb769f8b6cd93-Abstract-Conference.html}\n}\n```\n\n关键确认：\n- **Page 1954**: Biometrika, Vol 41(1-2), pp 100-115\n- **Sentence-BERT**: EMNLP-IJCNLP 2019, pp 3982-3992\n- **C-Pack/BGE**: SIGIR 2024（arXiv preprint 2023，正式发表 SIGIR 2024）\n- **Meng et al. (ROME)**: NeurIPS 2022\n- **Li et al. (ITI)**: NeurIPS 2023（不是 ICLR 2024）"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_r8_reference_search_20260518T070953"
+          },
+          "id": "event-000017"
+        }
+      ],
+      "message_count": 17
+    }
+  ],
+  "readable_path": "readable/conversations/research-r8-reference-search.md"
+}

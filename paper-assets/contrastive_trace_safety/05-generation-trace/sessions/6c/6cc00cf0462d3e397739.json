@@ -1,0 +1,100 @@
+{
+  "schema_version": "1.0",
+  "id": "6cc00cf0462d3e397739",
+  "project": "contrastive_trace_safety",
+  "kind": "worker",
+  "title": "analysis bootstrap ci",
+  "task_key": "worker_analysis_bootstrap_ci_20260522T182027",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bootstrap_ci_20260522T182027.log",
+    "occurrence": 1,
+    "bytes": 2364771,
+    "sha256": "1e628de8322872e3f12a186188ad9d4e1733b7325e83060b9548386779976dad"
+  },
+  "statistics": {
+    "messages": 1481,
+    "user_turns": 2,
+    "tool_calls": 639,
+    "roles": {
+      "log": 1,
+      "system": 7,
+      "record": 1,
+      "assistant": 191,
+      "tool_call": 639,
+      "tool_result": 639,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 731,
+      "chunks": [
+        {
+          "path": "6cc00cf0462d3e397739-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "6cc00cf0462d3e397739-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "6cc00cf0462d3e397739-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "6cc00cf0462d3e397739-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "6cc00cf0462d3e397739-part-0005.json",
+          "message_count": 11
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 689,
+      "chunks": [
+        {
+          "path": "6cc00cf0462d3e397739-part-0005.json",
+          "message_count": 169
+        },
+        {
+          "path": "6cc00cf0462d3e397739-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "6cc00cf0462d3e397739-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "6cc00cf0462d3e397739-part-0008.json",
+          "message_count": 160
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 61,
+      "chunks": [
+        {
+          "path": "6cc00cf0462d3e397739-part-0008.json",
+          "message_count": 20
+        },
+        {
+          "path": "6cc00cf0462d3e397739-part-0009.json",
+          "message_count": 41
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-bootstrap-ci.md"
+}

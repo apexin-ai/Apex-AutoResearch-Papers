@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b05c20505e54ac5177c4",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code qwq text baseline verify",
+  "task_key": "worker_code_qwq_text_baseline_verify_20260516T231355",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_qwq_text_baseline_verify_20260516T231355_result.json",
+    "occurrence": 1,
+    "bytes": 773,
+    "sha256": "e4688d741b2c6d0f397674524c2b274510b60ad15a6319e44c34109b9cf8a8cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。总结：\n\n## 结果\n\n### Step A: 代码审计\n**确认：原 exp_001b_bootstrap.py 的 text baseline 是 midpoint heuristic**（`predict 1 if step >= n//2`），不是 all-MiniLM-L6-v2 embedding probe。p=0.001 无效。\n\n### Step B: 真正 text embedding 重跑\n\n| | HS Probe (Layer 2) | Text Probe (MiniLM) |\n|---|---|---|\n| Pre-CP FPR | 0.2240 | 0.2144 |\n| **Difference** | **+0.0096** | (HS 反而略差) |\n| **p-value** | **0.904** | (完全不显著) |\n| 95% CI | [-0.100, +0.120] | (跨零) |\n\n### 结论\n**Claim 1 在 QwQ-32B 上失效。** Hidden state probe 在 layer 2 上与 text embedding probe 表现无差异。跨模型泛化证据仅来自 r1-8b。\n\n所有产出已保存至 `artifacts/qwq_text_verify/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-qwq-text-baseline-verify.md"
+}

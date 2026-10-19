@@ -1,0 +1,144 @@
+paper_key: "arditi2024refusal"
+title: "Refusal in Language Models Is Mediated by a Single Direction"
+venue: "NeurIPS 2024"
+full_text_available: true
+
+research:
+  baselines:
+    - "GCG (Greedy Coordinate Gradient)"
+    - "GCG-M (multi-prompt GCG)"
+    - "GCG-T (transferable GCG)"
+    - "HUMAN (Do Anything Now adversarial templates)"
+    - "AP (AutoPrompt)"
+    - "PAIR (black-box jailbreak)"
+    - "DR (Direct Response, no jailbreak)"
+    - "Fine-tuning (LoRA)"
+    - "Activation addition (steering vector subtraction)"
+  metrics:
+    - {name: "Refusal score", direction: "context_dependent", note: "1 if completion contains refusal substring, 0 otherwise"}
+    - {name: "Safety score", direction: "higher_better", note: "1 if Meta Llama Guard 2 classifies as safe, 0 otherwise"}
+    - {name: "Attack Success Rate (ASR)", direction: "higher_better", note: "proportion of completions classified as bypassing refusal on HarmBench"}
+    - {name: "MMLU", direction: "higher_better"}
+    - {name: "ARC", direction: "higher_better"}
+    - {name: "GSM8K", direction: "higher_better"}
+    - {name: "TruthfulQA", direction: "higher_better"}
+    - {name: "WinoGrande", direction: "higher_better"}
+    - {name: "TinyHellaSwag", direction: "higher_better"}
+    - {name: "CE Loss (The Pile)", direction: "lower_better"}
+    - {name: "CE Loss (Alpaca)", direction: "lower_better"}
+    - {name: "Refusal metric (log-odds)", direction: "context_dependent"}
+  datasets:
+    - {name: "D_harmful (train)", size: "128 harmful instructions", source: "AdvBench, MaliciousInstruct, TDC2023, HarmBench"}
+    - {name: "D_harmful (val)", size: "32 instructions from HarmBench validation"}
+    - {name: "D_harmless (train)", size: "128 harmless instructions from Alpaca"}
+    - {name: "D_harmless (val)", size: "32 harmless instructions from Alpaca"}
+    - {name: "JailbreakBench", size: "100 harmful instructions spanning 10 categories"}
+    - {name: "HarmBench test set", size: "159 standard behaviors"}
+    - {name: "Alpaca (eval)", size: "100 randomly sampled harmless instructions"}
+  ablation_dimensions:
+    - "Layer selection for refusal direction (l*/L ratio)"
+    - "Token position selection (post-instruction tokens)"
+    - "Intervention type (directional ablation vs activation addition vs weight orthogonalization)"
+    - "System prompt presence/absence"
+    - "Comparison to fine-tuning"
+  training_recipe:
+    optimizer: "N/A for main method (no training); LoRA comparison: Adam, rank=16, alpha=32"
+    lr: "N/A for main method"
+    hardware: "A100 GPU with 80GB VRAM (for LoRA comparison only); Together AI remote inference for safety_score; TransformerLens + HuggingFace + vLLM"
+    compute_note: "Direction selection ~1 hour for 72B models; LoRA fine-tuning ~10 minutes; weight orthogonalization requires <$5 compute for 70B model"
+  method_family: "Mechanistic interpretability / Activation engineering / Linear representation hypothesis"
+
+positioning:
+  core_claim: "Refusal in safety-tuned LLMs is mediated by a single one-dimensional direction in residual stream activation space; erasing it bypasses refusal while adding it induces refusal, enabling a simple weight-edit jailbreak that preserves model coherence."
+  key_results: "Across 13 models (1.8B-72B): directional ablation drops refusal score from ~0.9 to ~0.0; weight orthogonalization achieves ASR 22.6-84.3% on HarmBench (competitive with GCG); MMLU/ARC/GSM8K performance within 99% CI of baseline for most models; TruthfulQA consistently drops 1-6 points."
+  limitations:
+    - "May not generalize to proprietary models or future models at greater scale"
+    - "Difference-in-means extraction methodology is likely not optimal and relies on heuristics"
+    - "Adversarial suffix analysis restricted to single model (Qwen 1.8B) and single suffix"
+    - "Semantic meaning of the refusal direction remains unclear (could represent harm, danger, or other concepts)"
+    - "Coherence metrics are each individually flawed; multiple metrics used as approximation"
+    - "TruthfulQA consistently degrades after orthogonalization"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "Opens with the tension between helpfulness and harmlessness in deployed LLMs, then immediately frames jailbreaking as an important research problem given increasing model agency."
+  tension: "Despite widespread refusal behavior across chat models, the underlying mechanisms remain poorly understood. Current safety fine-tuning is treated as a black box."
+  key_insight: "Revealed in paragraph 4 of intro: refusal is mediated by a ONE-DIMENSIONAL subspace extractable via difference-in-means from a small contrastive set. This single direction is both necessary (ablating it bypasses refusal) and sufficient (adding it induces refusal)."
+  argument_chain: "safety is important but fragile -> mechanisms unknown -> we use contrastive pairs to extract a single direction -> ablation bypasses refusal (Section 3.1) -> addition induces refusal (Section 3.2) -> weight orthogonalization as practical jailbreak (Section 4) -> competitive with optimized jailbreaks while preserving coherence (Section 4.2-4.3) -> mechanistic analysis of adversarial suffixes (Section 5) -> implications for safety"
+  contribution_framing: "Three contributions implicitly structured: (1) discovery of single refusal direction across 13 models, (2) weight orthogonalization jailbreak method, (3) mechanistic analysis of how adversarial suffixes suppress the refusal direction. Framed as 'existence proof' rather than optimal methodology."
+  intro_structure: "5 paragraphs: P1=motivation (safety importance + jailbreaking context); P2=linear representation hypothesis background; P3=core finding and method overview (contrastive pairs -> direction -> interventions -> jailbreak -> adversarial suffix analysis); P4=broader significance statement; P5=N/A (contribution list embedded in P3)"
+  notable_technique: "Elegant simplicity framing: the paper repeatedly emphasizes how SIMPLE the method is (rank-one weight edit, <$5 compute, no training data needed) to maximize the alarm about safety fragility. The simplicity IS the contribution."
+
+figures:
+  figure_count: 25
+  figure1:
+    type: "teaser_result"
+    description: "Grouped bar chart showing refusal score and safety score across 13 models, comparing no intervention vs directional ablation. Shows ablation drops refusal to near-zero while eliciting unsafe completions."
+    narrative_role: "Immediate proof of the core claim - one figure demonstrates both necessity (ablation removes refusal) and severity (unsafe content generated). Placed before methodology."
+    design_elements: ["Grouped bars with two metrics (refusal + safety)", "Color coding: orange=refusal, blue/hatched=safety", "Error bars (standard error)", "Two conditions side-by-side per model", "13 models on x-axis showing generality"]
+    visual_style: "Horizontal layout with rotated model names; legend in upper right; hatched bars distinguish conditions; warm/cool color contrast between metrics"
+  result_figures:
+    - figure_id: "Figure 1"
+      viz_type: "grouped_bar_chart"
+      what_compared: "Refusal score and safety score across 13 models with/without directional ablation"
+      how_gain_highlighted: "Dramatic drop in refusal bars (from ~0.9 to ~0.0) is visually striking"
+      design_note: "Dual-metric visualization on same plot; error bars add rigor"
+    - figure_id: "Figure 3"
+      viz_type: "bar_chart"
+      what_compared: "Refusal score across 13 models with/without activation addition on harmless prompts"
+      how_gain_highlighted: "Near-zero baseline refusal jumps to ~1.0 with activation addition"
+      design_note: "Mirror of Figure 1 but for the inverse intervention (inducing refusal)"
+    - figure_id: "Figure 5"
+      viz_type: "line_plot"
+      what_compared: "Cosine similarity between last token activations and refusal direction across layers, for 4 conditions: harmful, harmful+random_suffix, harmful+adv_suffix, harmless"
+      how_gain_highlighted: "Adversarial suffix line collapses to match harmless baseline"
+      design_note: "Shaded confidence intervals; layer-by-layer trajectory shows WHERE suppression happens"
+  ablation_figures:
+    - figure_id: "Figure 11"
+      viz_type: "scatter/line_plot"
+      dimensions_varied: ["Source layer", "Token position"]
+      design_note: "bypass_score and induce_score plotted per candidate direction for Llama-3 8B; shows the Pareto frontier of direction selection"
+    - figure_id: "Figure 22"
+      viz_type: "line_plot"
+      dimensions_varied: ["Intervention type (act add vs directional ablation)", "Prompt type (harmful vs harmless)"]
+      design_note: "Shows activation addition pushes harmless activations far off-distribution while directional ablation does not - key to explaining why ablation preserves coherence better"
+    - figure_id: "Figure 24"
+      viz_type: "multi_panel_line_plot"
+      dimensions_varied: ["Base model vs chat model", "Harmful vs harmless prompts"]
+      design_note: "4 model panels showing refusal direction is already present in base models; supports 'hooked into' rather than 'learned from scratch' interpretation"
+  figure_narrative_role: "Figure 1 (teaser: ablation bypasses refusal) -> Figure 2 (qualitative example) -> Figure 3 (inverse: addition induces refusal) -> Figure 4 (qualitative example of induced refusal) -> Figure 5 (adversarial suffix suppresses direction) -> Figure 6 (attention head analysis). Main paper keeps to 6 figures; 19 more in appendix for completeness."
+
+tables:
+  table_count: 10
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "Model families (Qwen Chat, Yi Chat, Gemma IT, Llama-2 Chat, Llama-3 Instruct)"
+    col_axis: "Sizes, Alignment type (AFT/APO), Reference"
+    row_organization: "by_category"
+    col_organization: "flat"
+    highlight_strategy: "No highlighting; informational table listing models studied"
+    statistical_reporting: "N/A (descriptive)"
+    num_baselines: 13
+    design_note: "Setup table rather than results table; establishes scope of study. Compact 5-row format grouping model families."
+  ablation_tables:
+    - table_id: "Table 2"
+      what_varied: ["Jailbreak method (ORTHO, GCG-M, GCG-T, HUMAN, DR, GCG, AP, PAIR)", "Model (Llama-2 7B/13B/70B, Qwen 7B/14B/72B)"]
+      variation_style: "full_numbers"
+      design_note: "ASR comparison table; general vs prompt-specific jailbreaks separated by vertical divider; blue numbers show ASR without system prompt. Bold for best in category."
+    - table_id: "Table 3"
+      what_varied: ["Model", "Benchmark (MMLU, ARC, GSM8K, TruthfulQA)"]
+      variation_style: "full_numbers"
+      design_note: "Orthogonalized/baseline performance with absolute delta in colored text (green=increase, red=decrease). Elegant presentation showing minimal degradation."
+    - table_id: "Table 5"
+      what_varied: ["Model", "Direction selection metrics (i*, l*/L, bypass_score, induce_score, kl_score)"]
+      variation_style: "full_numbers"
+      design_note: "Appendix table showing selected direction details per model; reveals that refusal direction typically found at 40-80% depth and last/second-to-last token position."
+    - table_id: "Table 10"
+      what_varied: ["Intervention type (no intervention, directional ablation, activation addition, fine-tuning)"]
+      variation_style: "full_numbers"
+      design_note: "Head-to-head comparison of three jailbreak approaches on Llama-3 8B; shows directional ablation achieves similar refusal bypass to fine-tuning with less CE loss degradation."
+  supplementary_tables:
+    in_appendix: true
+    content: "Table 4 (refusal token sets per model family), Table 5 (direction selection details for all 13 models), Table 6 (chat templates), Table 7 (ASR with different system prompts), Table 8 (full model coherence evaluation across 6 benchmarks for all 13 models), Table 9 (CE loss across 3 datasets for all models), Table 10 (intervention comparison)"
+    reason: "Main paper keeps only the essential demonstration tables (model list, ASR comparison, coherence); appendix contains exhaustive per-model breakdowns needed for reproducibility but too large for main text."

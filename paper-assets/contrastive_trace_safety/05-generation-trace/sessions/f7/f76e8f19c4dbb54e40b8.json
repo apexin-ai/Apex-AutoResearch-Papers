@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f76e8f19c4dbb54e40b8",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "research r8 reference search",
+  "task_key": "worker_research_r8_reference_search_20260518T070953",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_r8_reference_search_20260518T070953_result.json",
+    "occurrence": 1,
+    "bytes": 2442,
+    "sha256": "0d1bae904a43d3c151f2814f71b750a4f17377130e23462510bbfbe8770cb51c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "确认完毕。C-Pack 发表于 SIGIR 2024，ITI 发表于 NeurIPS 2023。以下是 5 篇论文的完整 BibTeX：\n\n```bibtex\n@article{page1954cusum,\n  title={Continuous Inspection Schemes},\n  author={Page, E. S.},\n  journal={Biometrika},\n  volume={41},\n  number={1-2},\n  pages={100--115},\n  year={1954},\n  url={https://doi.org/10.1093/biomet/41.1-2.100}\n}\n\n@inproceedings{reimers2019sentencebert,\n  title={Sentence-{BERT}: Sentence Embeddings using Siamese {BERT}-Networks},\n  author={Reimers, Nils and Gurevych, Iryna},\n  booktitle={Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing and the 9th International Joint Conference on Natural Language Processing (EMNLP-IJCNLP)},\n  pages={3982--3992},\n  year={2019},\n  publisher={Association for Computational Linguistics},\n  url={https://doi.org/10.18653/v1/D19-1410}\n}\n\n@inproceedings{xiao2024cpack,\n  title={C-Pack: Packed Resources For General Chinese Embeddings},\n  author={Xiao, Shitao and Liu, Zheng and Zhang, Peitian and Muennighoff, Niklas},\n  booktitle={Proceedings of the 47th International ACM SIGIR Conference on Research and Development in Information Retrieval},\n  year={2024},\n  url={https://doi.org/10.1145/3626772.3657878}\n}\n\n@inproceedings{meng2022locating,\n  title={Locating and Editing Factual Associations in {GPT}},\n  author={Meng, Kevin and Bau, David and Andonian, Alex and Belinkov, Yonatan},\n  booktitle={Advances in Neural Information Processing Systems 35 (NeurIPS)},\n  year={2022},\n  url={https://proceedings.neurips.cc/paper_files/paper/2022/hash/6f1d43d5a82a37e89b0665b33bf3a182-Abstract-Conference.html}\n}\n\n@inproceedings{li2023iti,\n  title={Inference-Time Intervention: Eliciting Truthful Answers from a Language Model},\n  author={Li, Kenneth and Patel, Oam and Vi{\\'e}gas, Fernanda and Pfister, Hanspeter and Wattenberg, Martin},\n  booktitle={Advances in Neural Information Processing Systems 36 (NeurIPS)},\n  year={2023},\n  url={https://proceedings.neurips.cc/paper_files/paper/2023/hash/81b8390039b7302c909cb769f8b6cd93-Abstract-Conference.html}\n}\n```\n\n关键确认：\n- **Page 1954**: Biometrika, Vol 41(1-2), pp 100-115\n- **Sentence-BERT**: EMNLP-IJCNLP 2019, pp 3982-3992\n- **C-Pack/BGE**: SIGIR 2024（arXiv preprint 2023，正式发表 SIGIR 2024）\n- **Meng et al. (ROME)**: NeurIPS 2022\n- **Li et al. (ITI)**: NeurIPS 2023（不是 ICLR 2024）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-r8-reference-search.md"
+}

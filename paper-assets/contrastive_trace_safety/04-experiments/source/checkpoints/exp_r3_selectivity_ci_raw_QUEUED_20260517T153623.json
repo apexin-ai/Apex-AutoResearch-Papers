@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_r3_selectivity_ci_raw",
+  "project": "contrastive_trace_safety",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T15:36:11.178Z",
+    "updated_at": "2026-05-17T15:36:23.805Z",
+    "hypothesis": "R1-32B Layer 10 selectivity (real_acc - random_acc) on raw 5120-d features should be statistically significant (p less than 0.05), confirming the probe learns safety-specific signal beyond positional confounds even without PCA dimensionality reduction."
+  },
+  "timestamp": "2026-05-17T15:36:23.869481+00:00",
+  "trigger": "update_registry"
+}

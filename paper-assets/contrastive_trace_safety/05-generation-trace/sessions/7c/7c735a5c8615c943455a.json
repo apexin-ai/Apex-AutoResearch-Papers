@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "7c735a5c8615c943455a",
+  "project": "contrastive_trace_safety",
+  "kind": "worker",
+  "title": "code r7 k ablation optimal w",
+  "task_key": "worker_code_r7_k_ablation_optimal_w_20260518T051421",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r7_k_ablation_optimal_w_20260518T051421.log",
+    "occurrence": 1,
+    "bytes": 596688,
+    "sha256": "181d7c1c79be32756f73577f1b267cf6718fc1bc44b52cef55653b0a937e3174"
+  },
+  "statistics": {
+    "messages": 201,
+    "user_turns": 0,
+    "tool_calls": 69,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 3,
+      "assistant": 57,
+      "tool_call": 69,
+      "tool_result": 69,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 201,
+      "chunks": [
+        {
+          "path": "7c735a5c8615c943455a-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "7c735a5c8615c943455a-part-0002.json",
+          "message_count": 21
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-r7-k-ablation-optimal-w.md"
+}

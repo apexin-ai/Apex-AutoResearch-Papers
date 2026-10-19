@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_r3_bootstrap_10k",
+  "project": "contrastive_trace_safety",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T18:15:24.536Z",
+    "updated_at": "2026-05-17T18:15:34.422Z",
+    "hypothesis": "Increasing bootstrap resamples from 1000 to 10000 should yield more precise p-values. If R1-8B FPR p-value (currently 0.044 at rank 12) exceeds 0.05 with more resamples, 12/12 Holm-Bonferroni will drop to 11/12. Critical sensitivity test for the paper's central claim."
+  },
+  "timestamp": "2026-05-17T18:15:34.520165+00:00",
+  "trigger": "update_registry"
+}

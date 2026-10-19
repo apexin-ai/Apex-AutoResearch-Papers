@@ -1,0 +1,3219 @@
+dream_id: dream_20260514T075732
+project: structfuse-context
+venue: ''
+focus: D024 重写后的新 framing：论文从 "method paper (dataflow > all)" 转为 "systematic analysis
+  + mechanistic insight"。三条新 claim：(1) 真正的 embedding mining 普遍有效，纠正 CoCoHaNeRe BM25-proxy
+  误解；(2) dataflow mining 有条件额外有效，机制是表征空间饱和度；(3) CodeQL 可扩展。已有实证：Qwen R@1=55.3%, StarCoder
+  R@1=45.4%, neg_difficulty margin +17%/+28%, 两编码器 step 1000 过拟合。Reviewers 应重点评估：新叙事线说服力、"conditional
+  benefit" 是否被视为 weak claim、n=2 编码器统计限制、缺 SWE-bench 下游验证的影响。
+review_mode: full
+review_visible: true
+writing_visible: true
+what_if: []
+tier_definitions:
+  tiers:
+    best:
+      tier: best
+      meaning: 9-seed 全量复现 pilot 模式，embedding 和 dataflow 各自角色均统计显著，机制故事完整成立
+      key_assumptions:
+      - embedding > random 在两个编码器上均 95% CI 不含零
+      - dataflow > random 在 Qwen（饱和空间）上 95% CI 不含零，StarCoder 上无显著差异 → 干净的交互效应
+      - SWE-bench Lite 下游验证显示 resolve rate 有可观测提升
+      - 9-seed 方差可控（同策略种子间 R@1 标准差 < 1.5pp）
+      - step 1000 过拟合问题通过 early stopping 可控，不影响结论
+      number_ranges:
+        qwen_embed_vs_random_R1_pp:
+        - 1.5
+        - 3.0
+        starcoder_embed_vs_random_R1_pp:
+        - 1.0
+        - 2.5
+        qwen_dataflow_vs_random_R1_pp:
+        - 0.8
+        - 2.5
+        starcoder_dataflow_vs_random_R1_pp:
+        - -1.0
+        - 0.3
+        best_qwen_mean_R1:
+        - 0.54
+        - 0.58
+        best_starcoder_mean_R1:
+        - 0.46
+        - 0.52
+        swebench_resolve_delta_pp:
+        - 2.0
+        - 5.0
+        embed_benefit_bootstrap_p:
+        - 0.001
+        - 0.05
+        cross_seed_R1_std:
+        - 0.5
+        - 1.5
+      narrative_direction: '三条 claim 原样保留。论文叙事：(1) 纠正 CoCoHaNeRe 误解——真正 embedding
+        mining 普遍有效， prior work 的 BM25-proxy 是 artifact；(2) dataflow 提供条件性额外收益，机制通过表征饱和度
+        定量解释，neg_difficulty margin 分析提供 mechanistic evidence；(3) CodeQL 可扩展。 SWE-bench
+        下游验证补齐最后一块拼图。Framing 为 "systematic analysis + mechanistic insight"， EMNLP
+        Main 定位清晰，三个贡献互相独立且互补。
+
+        '
+    median:
+      tier: median
+      meaning: embedding benefit 可复现但效果量缩水或统计边缘，dataflow 交互效应方向正确但不显著，缺下游验证
+      key_assumptions:
+      - embedding > random 方向一致但至少一个编码器 95% CI 包含零（如 StarCoder Δ 缩至 +0.5–1.0pp）
+      - dataflow > random 在 Qwen 上方向正确但 CI 包含零（Δ ~+0.3–0.8pp）
+      - 种子间方差较大（R@1 标准差 1.5–3.0pp），削弱统计力度
+      - SWE-bench 未完成或 Δ ≤ 1pp（无法宣称下游收益）
+      - representation saturation 故事定性成立，但 n=2 编码器不足以做强因果推断
+      number_ranges:
+        qwen_embed_vs_random_R1_pp:
+        - 0.5
+        - 1.5
+        starcoder_embed_vs_random_R1_pp:
+        - 0.0
+        - 1.0
+        qwen_dataflow_vs_random_R1_pp:
+        - 0.0
+        - 0.8
+        starcoder_dataflow_vs_random_R1_pp:
+        - -1.5
+        - 0.0
+        best_qwen_mean_R1:
+        - 0.52
+        - 0.55
+        best_starcoder_mean_R1:
+        - 0.44
+        - 0.48
+        swebench_resolve_delta_pp:
+        - -0.5
+        - 1.0
+        embed_benefit_bootstrap_p:
+        - 0.05
+        - 0.2
+        cross_seed_R1_std:
+        - 1.5
+        - 3.0
+      narrative_direction: 'Claim 1 降级为 "directional evidence correcting misconception"——embedding
+        mining 不会 harm（纠正 CoCoHaNeRe），但绝对增益需要更多编码器验证。Claim 2 从 "conditional benefit"
+        降级为 "exploratory observation"——saturation 机制作为 hypothesis 提出，neg_difficulty
+        分析作为 supporting evidence 而非 proof。删除 "consistently improves" 措辞，替换为 "tends
+        to improve"。 补充 temperature ablation（plan_014）证明发现非 regime-specific。论文重心从
+        "three claims" 转为 "systematic methodology + preliminary mechanistic hypothesis"，强调方法论贡献
+        （controlled comparison framework）而非效果量。仍投 EMNLP Main，定位为 analysis paper。
+
+        '
+    worst:
+      tier: worst
+      meaning: full-scale 多种子结果未复现 pilot pattern——embedding benefit 消失或反转，核心假设不成立
+      key_assumptions:
+      - embedding vs random Δ 在至少一个编码器上为负或 < 0.3pp（pilot 的 +2.0pp 是种子/数据噪声）
+      - dataflow benefit 在所有条件下消失
+      - full-scale 数据分布与 pilot 存在系统性差异（覆盖率、难度分布变化）
+      - representation saturation 故事无法解释 full-scale 结果——机制假设被反驳或不完整
+      - SWE-bench 无差异或不可行
+      number_ranges:
+        qwen_embed_vs_random_R1_pp:
+        - -1.0
+        - 0.3
+        starcoder_embed_vs_random_R1_pp:
+        - -1.5
+        - 0.3
+        qwen_dataflow_vs_random_R1_pp:
+        - -2.0
+        - 0.3
+        starcoder_dataflow_vs_random_R1_pp:
+        - -2.5
+        - 0.0
+        best_qwen_mean_R1:
+        - 0.5
+        - 0.54
+        best_starcoder_mean_R1:
+        - 0.42
+        - 0.46
+        swebench_resolve_delta_pp:
+        - -1.0
+        - 0.5
+        embed_benefit_bootstrap_p:
+        - 0.2
+        - 1.0
+        cross_seed_R1_std:
+        - 2.5
+        - 5.0
+      narrative_direction: '原始三条 claim 全部不成立，需完全 reframe。新角度：(1) "Why Hard Negative
+        Mining Doesn''t Generalize for Code Retrieval"——negative result paper，论证 pilot-scale
+        结论不可靠， small-scale 评估是领域普遍问题（CoCoHaNeRe 的错也是我们 pilot 的错）；(2) 表征几何分析 作为独立贡献——不用于解释策略差异（因为差异不存在），而用于诊断编码器质量和预测训练难度，
+        提出 "representation saturation index" 作为通用工具；(3) CodeQL pipeline 作为开源 infrastructure
+        贡献（claim 3 不受影响）。论文标题改为 "A Cautionary Tale: Scale, Seeds, and the Fragility
+        of Hard Negative Mining for Code Retrieval"。仍投 EMNLP Main—— negative result
+        + methodological contribution 是 EMNLP 接受的论文类型。需要先排查 data pipeline bug（full-scale
+        数据分布是否变化），确认是真实 negative result 而非工程错误。'
+scenarios:
+- tier: best
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/dream_reports/dream_20260514T075732/best/paper.pdf
+  imagined_experiments:
+  - name: SWE-bench Lite End-to-End Evaluation
+    plan_id: plan_003
+    description: 3 strategies × best checkpoint on SWE-bench Lite (300), Qwen3.6-27B
+      agent, 测 resolve rate
+    expected_results:
+      random_resolve_rate: 0.227
+      embedding_distance_resolve_rate: 0.25
+      dataflow_aware_resolve_rate: 0.26
+      embed_vs_random_delta_pp: 2.3
+      dataflow_vs_random_delta_pp: 3.3
+      dataflow_vs_embed_delta_pp: 1.0
+      total_instances: 300
+      instances_resolved_random: 68
+      instances_resolved_embed: 75
+      instances_resolved_dataflow: 78
+      retrieval_recall1_random: 0.533
+      retrieval_recall1_embed: 0.556
+      retrieval_recall1_dataflow: 0.548
+    result_rationale: 'best 档下 retrieval 质量提升能传导到下游 resolve rate。Qwen best checkpoint
+      embedding R@1≈0.556 vs random 0.533， 差值 2.3pp 在 300 实例上对应约 7 个额外正确 retrieval
+      → 其中部分转化为 resolve。 转化率不是 1:1（retrieval 改善不等于 repair 改善，LLM agent 有自身能力上限）， 但
+      best 档假设转化效率约 30-40%，即 ~7 个额外正确 retrieval 中约 2-3 个转为 resolve。 Dataflow 在 Qwen
+      上的条件性收益（pilot +0.8pp R@1）进一步贡献约 1pp resolve delta。 总体 swebench_resolve_delta_pp
+      落在 [2.0, 5.0] 范围的中低段， 因为 retrieval → repair 的衰减是系统性的。SWE-bench Lite 300 实例规模下，
+      2-3pp 差异虽小但在 best 档下 bootstrap CI 可检测。
+
+      '
+    tables:
+    - caption: SWE-bench Lite Resolve Rate by Retrieval Strategy
+      columns:
+      - Strategy
+      - Resolve_Rate
+      - Delta_vs_Random
+      - Instances_Resolved
+      rows:
+      - - random
+        - 22.7%
+        - —
+        - 68
+      - - embedding_distance
+        - 25.0%
+        - +2.3pp
+        - 75
+      - - dataflow_aware
+        - 26.0%
+        - +3.3pp
+        - 78
+    figures_description:
+    - 'Bar chart: resolve rate × strategy, error bars from bootstrap resampling'
+    - 'Venn diagram: 3 strategies 各自独立解决的 instances 重叠情况，突出 dataflow-unique solves'
+    analysis: 'Resolve rate 提升确认 retrieval 质量改善能传导到实际软件工程任务。Dataflow 策略独立解决了 5 个 random/embed
+      均失败的 instance（多为跨文件 dataflow 依赖），支持 Claim 2 的条件性收益叙事。 Embed 策略独立解决 3 个（多为同文件内近义函数混淆），支持
+      Claim 1。
+
+      '
+  - name: RepoBench-R Cross-File Retrieval Evaluation
+    plan_id: plan_004
+    description: 3 strategies × best checkpoint on RepoBench-R, retrieval-only evaluation
+    expected_results:
+      random_recall1: 0.412
+      embedding_distance_recall1: 0.431
+      dataflow_aware_recall1: 0.438
+      random_mrr: 0.508
+      embedding_distance_mrr: 0.529
+      dataflow_aware_mrr: 0.534
+      embed_vs_random_R1_delta_pp: 1.9
+      dataflow_vs_random_R1_delta_pp: 2.6
+      total_queries: 1200
+    result_rationale: 'RepoBench-R 是 cross-file retrieval benchmark，天然偏向有结构依赖的查询（import/call
+      关系）。 在 best 档下，embedding 改善幅度与 SWE-smith 内部 eval 一致（~2pp）， dataflow 的额外收益在此
+      benchmark 上可能略大于 SWE-smith（因 RepoBench-R 的 cross-file 性质与 dataflow connectivity
+      天然对齐），但差异不会很大因为训练数据来自 SWE-smith 而非 RepoBench， 存在 domain gap。整体 R@1 低于 SWE-smith
+      内部 eval（0.41 vs 0.53）， 因为 pool size 和 query 分布不同。关键是方向一致且差异可检测。
+
+      '
+    tables:
+    - caption: RepoBench-R Retrieval Performance
+      columns:
+      - Strategy
+      - R@1
+      - R@5
+      - R@10
+      - MRR
+      rows:
+      - - random
+        - 0.412
+        - 0.687
+        - 0.793
+        - 0.508
+      - - embedding_distance
+        - 0.431
+        - 0.704
+        - 0.808
+        - 0.529
+      - - dataflow_aware
+        - 0.438
+        - 0.711
+        - 0.812
+        - 0.534
+    figures_description:
+    - 'Grouped bar chart: R@1, R@5, R@10 × strategy on RepoBench-R'
+    analysis: '第二 benchmark 确认 SWE-smith 上的发现不是 benchmark-specific artifact。 策略排序一致（dataflow
+      ≥ embed > random），增强论文的 external validity。
+
+      '
+  - name: Embedding vs Random Stratified Analysis
+    plan_id: plan_005
+    description: 按 repo size/complexity 分层，分析 embedding negatives 的收益分布
+    expected_results:
+      small_repo_lt50_embed_delta_pp: 0.8
+      medium_repo_50_200_embed_delta_pp: 2.1
+      large_repo_200_500_embed_delta_pp: 2.8
+      xlarge_repo_500plus_embed_delta_pp: 1.5
+      high_complexity_embed_delta_pp: 2.9
+      low_complexity_embed_delta_pp: 1.2
+      correlation_repo_size_vs_delta: 0.31
+      correlation_complexity_vs_delta: 0.42
+    result_rationale: 'best 档下 embedding mining 普遍有效但收益分布不均。中大型 repo（50-500 files）收益最大，
+      因为 pool 中有足够多的 near-miss 候选（lexically similar but not gold）， embedding mining
+      能有效挑选最有信息量的 hard negatives。小型 repo pool 太小、 embedding mining 退化为近似 random；超大型
+      repo 结构复杂度使得 embedding distance 与 relevance 的相关性下降（太多 "远但相关" 的文件）。Complexity（cyclomatic
+      complexity 或 import depth）比 size 更好地预测 embedding mining 收益， 因为高复杂度代码中相似但无关的文件更多。
+
+      '
+    tables:
+    - caption: Embedding Mining Benefit by Repo Tier
+      columns:
+      - Tier
+      - N_Instances
+      - Embed_R1
+      - Random_R1
+      - Delta_pp
+      rows:
+      - - small (<50)
+        - 500
+        - 0.568
+        - 0.56
+        - '+0.8'
+      - - medium (50-200)
+        - 4096
+        - 0.551
+        - 0.53
+        - '+2.1'
+      - - large (200-500)
+        - 13628
+        - 0.542
+        - 0.514
+        - '+2.8'
+      - - xlarge (500+)
+        - 25949
+        - 0.528
+        - 0.513
+        - '+1.5'
+    figures_description:
+    - 'Scatter plot: repo complexity vs embed-random delta, with regression line'
+    - 'Box plot: delta distribution by repo size tier'
+    analysis: '收益分布分析提供 practical guidance：embedding mining 对中大型项目最有效， 与表征空间中 near-miss
+      候选密度的直觉一致。复杂度比 size 更具预测力， 提示 negative mining 策略选择应考虑代码结构特征而非简单规模。
+
+      '
+  - name: Hop Distance Ablation
+    plan_id: plan_007
+    description: 1-hop vs 2-hop vs 3-hop call-graph bounding for dataflow extraction
+    expected_results:
+      hop1_connected_rate: 0.12
+      hop2_connected_rate: 0.34
+      hop3_connected_rate: 0.58
+      hop1_z_pct: 0.18
+      hop2_z_pct: 0.41
+      hop3_z_pct: 0.62
+      hop2_qwen_R1: 0.548
+      hop1_qwen_R1: 0.541
+      hop3_qwen_R1: 0.544
+      hop2_extraction_time_s: 8.9
+      hop3_extraction_time_s: 23.4
+    result_rationale: '2-hop 是 sweet spot。1-hop 太严格：大多数 repo 中直接 dataflow 连接的文件对稀少（12%），
+      导致 connected-not-gold set 太小，dataflow negative mining 退化为近似 random。 3-hop 太宽松：58%
+      的文件对被标记为 connected，negative pool 被过度稀释， 且提取时间增长 2.6x（路径爆炸）。2-hop（当前默认）在 coverage（34%）和
+      selectivity（Z=41%）之间取得平衡，R@1 最高。这一结果支持 Claim 3 中的 "scope-bounded" 设计选择。
+
+      '
+    tables:
+    - caption: Hop Distance Impact on Extraction and Training
+      columns:
+      - Hops
+      - Connected_Rate
+      - Z_Pct
+      - Extraction_Time_s
+      - Qwen_R1
+      rows:
+      - - 1
+        - 12%
+        - 18%
+        - 4.2
+        - 0.541
+      - - 2
+        - 34%
+        - 41%
+        - 8.9
+        - 0.548
+      - - 3
+        - 58%
+        - 62%
+        - 23.4
+        - 0.544
+    figures_description:
+    - 'Line chart: R@1 vs hop distance, with extraction time on secondary y-axis'
+    analysis: '2-hop 最优确认了设计选择的合理性。3-hop 的 R@1 回落说明过度扩展 connectivity 范围会引入噪声连接，削弱
+      structural negative 的信息量。
+
+      '
+  - name: Training Data Size Scaling
+    plan_id: plan_008
+    description: 1K vs 3K vs 5K training instances, 测 strategy 收益是否随数据量变化
+    expected_results:
+      1k_random_R1: 0.498
+      1k_embed_R1: 0.521
+      1k_dataflow_R1: 0.518
+      3k_random_R1: 0.525
+      3k_embed_R1: 0.548
+      3k_dataflow_R1: 0.543
+      5k_random_R1: 0.533
+      5k_embed_R1: 0.556
+      5k_dataflow_R1: 0.548
+      embed_delta_1k: 2.3
+      embed_delta_3k: 2.3
+      embed_delta_5k: 2.3
+      dataflow_delta_1k: 2.0
+      dataflow_delta_3k: 1.8
+      dataflow_delta_5k: 1.5
+    result_rationale: 'best 档下 embedding mining 的收益对数据量 robust（~2.3pp 几乎不变）， 因为 embedding
+      distance 提供的信息增益是 strategy-intrinsic 的，不依赖数据量。 Dataflow 收益随数据量增加略有递减（2.0→1.5pp），因为更多数据使
+      random baseline 也能隐式覆盖部分结构相关的 hard negatives（大数定律），缩小了 dataflow 的 marginal 贡献。但即使在
+      5K 下，dataflow 在 Qwen 上的条件性收益仍然存在。 绝对性能随数据量单调增长但边际递减（符合 neural scaling 预期）。
+
+      '
+    tables:
+    - caption: Strategy Benefit by Training Data Size
+      columns:
+      - Size
+      - Random_R1
+      - Embed_R1
+      - Embed_Delta
+      - Dataflow_R1
+      - DF_Delta
+      rows:
+      - - 1K
+        - 0.498
+        - 0.521
+        - '+2.3'
+        - 0.518
+        - '+2.0'
+      - - 3K
+        - 0.525
+        - 0.548
+        - '+2.3'
+        - 0.543
+        - '+1.8'
+      - - 5K
+        - 0.533
+        - 0.556
+        - '+2.3'
+        - 0.548
+        - '+1.5'
+    figures_description:
+    - 'Line chart: R@1 vs data size, 3 lines for 3 strategies, showing parallel scaling
+      for embed and convergence for dataflow'
+    analysis: 'Embedding mining 收益的 scale-invariance 强化 Claim 1（普遍有效）。 Dataflow 收益的轻微递减可解释为
+      "structural signal 被 larger random samples 部分替代"， 但不消失——支持 Claim 2 的 "conditional
+      benefit" 定位。
+
+      '
+  - name: Fusion Head Ablation
+    plan_id: plan_009
+    description: Embedding-only vs structural-features-only vs combined fusion head
+    expected_results:
+      embed_only_R1: 0.556
+      structural_only_R1: 0.487
+      combined_R1: 0.549
+      embed_only_vs_combined_delta: 0.7
+    result_rationale: 'best 档下的核心发现是 embedding-only 已经很强（因为我们的方法是 training-time mining
+      而非 inference-time fusion）。Structural-features-only 单独很弱（R@1=0.487， 低于 random
+      baseline 的 0.533），说明结构信息不能替代语义相似度，只能补充。 Combined fusion head 反而比 embed-only
+      略低（0.549 vs 0.556），因为加入 structural features 作为 inference-time signal 引入噪声（CodeQL
+      extraction 覆盖率仅 34%， inference 时 missing features 是常态）。这一结果强化论文叙事：结构信息的价值在于
+      training-time negative mining（改善表征学习），而非 inference-time feature。
+
+      '
+    tables:
+    - caption: Fusion Head Comparison (Qwen, best checkpoint)
+      columns:
+      - Head
+      - R@1
+      - R@5
+      - Note
+      rows:
+      - - embed_only
+        - 0.556
+        - 0.961
+        - Our default
+      - - structural_only
+        - 0.487
+        - 0.872
+        - Below random baseline
+      - - combined
+        - 0.549
+        - 0.958
+        - Marginal degradation vs embed_only
+    figures_description:
+    - 'Bar chart: R@1 by fusion head type'
+    analysis: 'Ablation 清晰区分了 structural information 的两种使用方式：training-time mining（有效）
+      vs inference-time feature（无效或有害）。这是对 inference-time graph methods （CodexGraph,
+      LocAgent）的重要区分点，支持 plan_017 的讨论。
+
+      '
+  - name: Dataflow-Distance Weighted Negatives
+    plan_id: plan_010
+    description: Binary connected/disconnected vs dataflow-distance weighted negative
+      sampling
+    expected_results:
+      binary_qwen_R1: 0.548
+      weighted_qwen_R1: 0.551
+      binary_starcoder_R1: 0.489
+      weighted_starcoder_R1: 0.49
+      weighted_vs_binary_qwen_delta: 0.3
+      weighted_vs_binary_starcoder_delta: 0.1
+    result_rationale: 'Distance-weighted sampling 对 Qwen 有微弱额外收益（+0.3pp），因为在饱和空间中
+      更细粒度的 difficulty gradation 提供略好的 curriculum 效果——离 gold 越远的 disconnected file
+      越 "easy"，给予更低采样权重，让训练集中在 hard disconnected 上。 但差异很小因为 binary 已经是一个合理的 proxy（connected
+      vs disconnected 的 distinction 捕获了主要信号）。StarCoder 上差异可忽略，与 Claim 2 一致—— dataflow
+      信号在非饱和空间中 marginal，更细的 granularity 自然也 marginal。 总体结论：binary 足够，weighted 是 diminishing
+      return。
+
+      '
+    tables:
+    - caption: Binary vs Weighted Dataflow Negatives
+      columns:
+      - Method
+      - Qwen_R1
+      - StarCoder_R1
+      rows:
+      - - binary (default)
+        - 0.548
+        - 0.489
+      - - distance-weighted
+        - 0.551
+        - 0.49
+    figures_description:
+    - 'Histogram: negative difficulty distribution under binary vs weighted sampling'
+    analysis: 'Binary 简单且接近最优，weighted 的微弱改善不足以 justify 额外复杂度。 这一 negative result
+      反而简化了方法描述——"disconnected = hard negative" 无需更复杂的定义。
+
+      '
+  - name: SWE-bench Failure Analysis
+    plan_id: plan_011
+    description: 50 个 SweRank/BM25 failures，按 dataflow 是否 help 分类
+    expected_results:
+      total_failures_analyzed: 50
+      dataflow_helps_count: 18
+      dataflow_helps_pct: 36
+      failure_categories:
+        cross_file_dependency: 14
+        same_file_semantic: 12
+        missing_context: 10
+        llm_reasoning_failure: 8
+        other: 6
+      dataflow_helps_by_category:
+        cross_file_dependency: 11
+        same_file_semantic: 3
+        missing_context: 3
+        llm_reasoning_failure: 1
+        other: 0
+    result_rationale: '36% 的 BM25/SweRank failure 中 dataflow mining 能提供帮助——这些 case
+      主要是 cross-file dependency 类型（gold file 与 query file 有 dataflow 连接但 lexical similarity
+      低）。这个比例与 Z%=41%（connected-not-gold rate）高度一致： 如果 ~40% 的 instances 有 structural
+      signal 可利用，那么在 failures 中 dataflow helps 的比例也应在类似量级。Same-file semantic failures
+      中 dataflow 偶尔帮助（因为相同文件内的函数调用也被 dataflow graph 捕获），但这不是主要机制。 LLM reasoning failures
+      与 retrieval 无关，dataflow 自然无法帮助。
+
+      '
+    tables:
+    - caption: 'Failure Analysis: Where Dataflow Helps'
+      columns:
+      - Category
+      - Count
+      - DF_Helps
+      - DF_Help_Rate
+      rows:
+      - - cross_file_dependency
+        - 14
+        - 11
+        - 79%
+      - - same_file_semantic
+        - 12
+        - 3
+        - 25%
+      - - missing_context
+        - 10
+        - 3
+        - 30%
+      - - llm_reasoning_failure
+        - 8
+        - 1
+        - 12%
+      - - other
+        - 6
+        - 0
+        - 0%
+    figures_description:
+    - 'Stacked bar chart: failure categories with dataflow-helps overlay'
+    - 3 representative case studies with retrieval ranking diff
+    analysis: 'Dataflow 最大价值在 cross-file dependency failures（79% help rate）， 精确对齐了
+      Claim 2 的 "structural dimension the encoder cannot separate via text alone"
+      叙事。
+
+      '
+  - name: Qualitative Case Studies
+    plan_id: plan_012
+    description: 5-10 个 structural negatives 改变 retrieval outcome 的代表性 case
+    expected_results:
+      total_cases: 8
+      categories:
+        import_chain_recovery: 3
+        utility_vs_core_disambiguation: 2
+        test_file_suppression: 2
+        config_dependency_detection: 1
+    result_rationale: 'best 档下可以找到 8 个 clean case studies，覆盖四种典型模式。 Import chain recovery
+      最多（3 个），因为这是 dataflow connectivity 最直接的信号类型： gold file 通过 import chain 与 query
+      file 连接，但 lexical similarity 很低（不同功能模块）， random/embed mining 无法区分 "lexically
+      similar but structurally irrelevant" negatives。 Utility vs core disambiguation（2
+      个）展示 dataflow 如何将 utils.py 类文件正确 判断为 connected（有 dataflow 到 core 的数据流）而非 false
+      negative。 Test file suppression（2 个）展示 test files 虽 lexically similar 但 dataflow
+      disconnected，被正确降权。
+
+      '
+    tables: []
+    figures_description:
+    - 'Figure: 4-panel case study，每 panel 展示 query、gold、top-3 retrieval（random vs
+      dataflow），附 dataflow graph 子图'
+    analysis: 'Case studies 提供 mechanistic evidence 的具体实例化，让 reviewer 直观理解 "structural
+      dimension" 到底意味着什么。选择覆盖四种不同模式以展示 generality。
+
+      '
+  - name: Temperature Ablation
+    plan_id: plan_014
+    description: τ ∈ {0.05, 0.1, 0.2} × 3 strategies × Qwen, 测 regime-specificity
+    expected_results:
+      tau_005:
+        random_R1: 0.518
+        embed_R1: 0.542
+        dataflow_R1: 0.539
+        embed_delta: 2.4
+        dataflow_delta: 2.1
+      tau_010:
+        random_R1: 0.533
+        embed_R1: 0.556
+        dataflow_R1: 0.548
+        embed_delta: 2.3
+        dataflow_delta: 1.5
+      tau_020:
+        random_R1: 0.521
+        embed_R1: 0.539
+        dataflow_R1: 0.53
+        embed_delta: 1.8
+        dataflow_delta: 0.9
+      optimal_tau: 0.1
+      embed_benefit_robust_across_tau: true
+      dataflow_benefit_strongest_at_low_tau: true
+    result_rationale: 'best 档下 embedding mining 在所有 τ 值下均有正收益（1.8-2.4pp），确认 Claim
+      1 的 robustness。τ=0.1 是 sweet spot（pilot 已用的值），R@1 最高。τ=0.05 过低导致 contrastive
+      loss landscape 太 sharp，所有 strategy 绝对性能下降但 relative ranking 不变。 τ=0.2 过高使 loss
+      过于平滑，strategy 差异缩小。Dataflow 收益随 τ 增大而递减 （2.1→1.5→0.9pp），因为高温度下 contrastive loss
+      对 hard vs easy negatives 的 区分度降低，structural difficulty gradient 被稀释。这一发现提供了
+      mechanistic insight： dataflow 的 value proposition 是提供更 hard 的 negatives， 而 temperature
+      控制了 model 对 hardness 的敏感度。
+
+      '
+    tables:
+    - caption: Temperature × Strategy Interaction (Qwen)
+      columns:
+      - τ
+      - Random_R1
+      - Embed_R1
+      - Embed_Δ
+      - DF_R1
+      - DF_Δ
+      rows:
+      - - 0.05
+        - 0.518
+        - 0.542
+        - '+2.4'
+        - 0.539
+        - '+2.1'
+      - - 0.1
+        - 0.533
+        - 0.556
+        - '+2.3'
+        - 0.548
+        - '+1.5'
+      - - 0.2
+        - 0.521
+        - 0.539
+        - '+1.8'
+        - 0.53
+        - '+0.9'
+    figures_description:
+    - 'Line chart: R@1 vs τ, 3 strategy lines, 显示 strategy gap 随 τ 变化'
+    - 'Heatmap: τ × strategy interaction strength (delta from random)'
+    analysis: 'Temperature 消融排除了 "finding is τ-specific" 的 reviewer concern。 Embedding
+      benefit 对 τ robust；dataflow benefit 在低 τ 下最强， 提供 practitioner guidance（如果 encoder
+      空间饱和 + 低温度 → dataflow 最有价值）。
+
+      '
+  - name: Dynamic Embedding Mining Baseline
+    plan_id: plan_015
+    description: 每 epoch 重新 mine embedding negatives vs 静态一次性 mine，隔离 selection criterion
+      和 curriculum shift
+    expected_results:
+      static_embed_R1: 0.556
+      dynamic_embed_R1: 0.561
+      dynamic_vs_static_delta: 0.5
+      dynamic_dataflow_R1: 0.552
+      static_dataflow_R1: 0.548
+      dynamic_training_time_multiplier: 2.8
+    result_rationale: 'Dynamic mining 提供微弱改善（+0.5pp），因为随训练进行 encoder representation
+      会 drift， 重新 mine 能保持 negatives 的 hardness。但差异很小（<1pp），说明 static mining 在 3 epoch
+      短训练中 drift 不严重——pretrained encoder 的 representation 在 LoRA fine-tune 中变化有限（LoRA
+      rank=16，参数量仅为全量的 0.3%）。 关键发现：static vs dynamic 的差异远小于 strategy 差异（embed vs random
+      = 2.3pp vs dynamic vs static = 0.5pp），确认 selection criterion（embedding distance
+      vs random） 是 primary driver，而非 curriculum shift。这排除了 "embed helps only because
+      of implicit curriculum" 的 alternative explanation。 Dynamic 的 2.8x 训练时间开销使其不实用。
+
+      '
+    tables:
+    - caption: Static vs Dynamic Mining
+      columns:
+      - Mining
+      - Strategy
+      - R1
+      - Training_Time_h
+      rows:
+      - - static
+        - embedding
+        - 0.556
+        - 3.2
+      - - dynamic
+        - embedding
+        - 0.561
+        - 9.0
+      - - static
+        - dataflow
+        - 0.548
+        - 3.2
+      - - dynamic
+        - dataflow
+        - 0.552
+        - 9.0
+    figures_description:
+    - 'Bar chart: static vs dynamic × strategy, with training time annotation'
+    analysis: 'Static mining 在成本效益上远优于 dynamic。更重要的是，排除了 curriculum confound： embedding
+      mining 的收益来自 selection criterion 本身（挑到 truly hard negatives）， 而非 training dynamics。
+
+      '
+  - name: Bootstrap CI for SWE-bench Lite
+    plan_id: plan_016
+    description: 9-seed × 3 strategies 的 bootstrap 95% CI for resolve rate
+    expected_results:
+      random_resolve_mean: 0.227
+      random_resolve_ci:
+      - 0.195
+      - 0.259
+      embed_resolve_mean: 0.25
+      embed_resolve_ci:
+      - 0.218
+      - 0.282
+      dataflow_resolve_mean: 0.26
+      dataflow_resolve_ci:
+      - 0.226
+      - 0.294
+      embed_vs_random_delta_mean: 2.3
+      embed_vs_random_delta_ci:
+      - 0.4
+      - 4.2
+      embed_vs_random_p_value: 0.012
+      dataflow_vs_random_delta_ci:
+      - 0.5
+      - 5.8
+      dataflow_vs_random_p_value: 0.008
+      bootstrap_iterations: 10000
+    result_rationale: '300 instances × 9 seeds 提供足够的 bootstrap 统计量力。best 档下 embed_vs_random
+      的 95% CI 不含零（[0.4, 4.2]pp），p=0.012，通过显著性检验。 CI 宽度 ~4pp 反映 SWE-bench 300 的固有
+      variance（每个 instance 是 binary outcome， binomial variance 较大）。9 seeds 降低了 training
+      variance 的贡献， 但 evaluation set size（300）是 CI 宽度的主要 bottleneck。 Cross-seed R@1
+      标准差 ~1.0pp（在 [0.5, 1.5] 范围内）， 确认 training 方差可控。Dataflow CI 也不含零但上界更宽（[0.5, 5.8]），
+      反映条件性收益的 inherent higher variance。
+
+      '
+    tables:
+    - caption: Bootstrap 95% CI for SWE-bench Lite Resolve Rate
+      columns:
+      - Comparison
+      - Delta_pp
+      - 95% CI
+      - p_value
+      - Significant
+      rows:
+      - - embed vs random
+        - '+2.3'
+        - '[0.4, 4.2]'
+        - 0.012
+        - 'Yes'
+      - - dataflow vs random
+        - '+3.3'
+        - '[0.5, 5.8]'
+        - 0.008
+        - 'Yes'
+      - - dataflow vs embed
+        - '+1.0'
+        - '[-0.8, 2.8]'
+        - 0.134
+        - 'No'
+    figures_description:
+    - 'Forest plot: pairwise strategy comparisons with bootstrap CIs'
+    - 'Violin plot: per-seed resolve rates by strategy'
+    analysis: 'Embed vs random 和 dataflow vs random 均显著，但 dataflow vs embed 不显著 （CI
+      含零）。这精确对应 Claim 2 的 "conditional" 定位——dataflow 相对 random 有显著收益 但相对 embed 的 incremental
+      在 300 instances 上力度不足。论文可如实报告此 pattern 并讨论 statistical power limitation。
+
+      '
+  - name: Inference-Time Graph Method Comparison Discussion
+    plan_id: plan_017
+    description: 与 CodexGraph, LocAgent 等 inference-time graph methods 的概念对比与定位
+    expected_results:
+      comparison_dimensions: 4
+      structfuse_strengths:
+      - training-time, no inference overhead
+      - model-agnostic mining
+      - compatible with any retriever
+      inference_methods_strengths:
+      - dynamic graph, adapts to query
+      - no precomputation needed
+      - can leverage runtime call stacks
+      complementarity_score: high
+      empirical_comparison: not applicable (different paradigm)
+    result_rationale: '这是 discussion section 的概念分析而非实验。best 档下不需要实际跑 inference-time
+      baselines（GPU budget=0），而是提供清晰的 taxonomy：StructFuse 是 training-time structural
+      signal injection（改善表征学习），inference-time methods 是 navigation-time structural
+      signal（改善检索路径）。两者 complementary 而非 competitive。 核心区别：StructFuse 是 offline（一次
+      mine、反复 train），inference methods 是 online（每次 query 重新构建 graph）。StructFuse 的
+      overhead 在 training 时 已 amortize，inference 零成本；inference methods 每次 query 有额外延迟。
+      但 inference methods 能适应 query-specific context（如运行时调用栈），StructFuse 不能。
+
+      '
+    tables:
+    - caption: Training-Time vs Inference-Time Structural Methods
+      columns:
+      - Dimension
+      - StructFuse
+      - CodexGraph_LocAgent
+      rows:
+      - - Signal injection
+        - Training (negative mining)
+        - Inference (graph navigation)
+      - - Inference overhead
+        - Zero
+        - Per-query graph traversal
+      - - Graph freshness
+        - Static (pretrained)
+        - Dynamic (query-adaptive)
+      - - Compatibility
+        - Any contrastive retriever
+        - Specific agent framework
+    figures_description:
+    - 'Taxonomy figure: 2×2 matrix (training/inference × structural/textual) positioning
+      StructFuse and related work'
+    analysis: '清晰定位避免了 "why not compare with X" 的 reviewer 质疑。 Complementarity framing
+      开启了 future work 方向（combine training-time mining + inference-time navigation）。
+
+      '
+  - name: M2 Full Qwen 9-Seed Results
+    plan_id: 'plan_002 (full: m2_full_qwen)'
+    description: 9 seeds × 3 strategies, Qwen2.5-Coder-3B, 全量 3-strategy 对比
+    expected_results:
+      random_mean_R1: 0.533
+      random_std_R1: 0.008
+      random_seeds:
+      - 0.527
+      - 0.53
+      - 0.531
+      - 0.533
+      - 0.534
+      - 0.535
+      - 0.536
+      - 0.538
+      - 0.54
+      embedding_mean_R1: 0.556
+      embedding_std_R1: 0.009
+      embedding_seeds:
+      - 0.547
+      - 0.55
+      - 0.553
+      - 0.555
+      - 0.556
+      - 0.558
+      - 0.559
+      - 0.561
+      - 0.564
+      dataflow_mean_R1: 0.548
+      dataflow_std_R1: 0.01
+      dataflow_seeds:
+      - 0.538
+      - 0.541
+      - 0.544
+      - 0.547
+      - 0.548
+      - 0.55
+      - 0.552
+      - 0.555
+      - 0.558
+      embed_vs_random_delta_pp: 2.3
+      dataflow_vs_random_delta_pp: 1.5
+      dataflow_vs_embed_delta_pp: -0.8
+      embed_vs_random_bootstrap_p: 0.003
+      dataflow_vs_random_bootstrap_p: 0.018
+      cross_seed_R1_std_max: 1.0
+      best_checkpoint_step: 1000
+      step_1000_overfitting: controlled via early stopping at step 500-1000
+    result_rationale: 'Pilot 数据（单 seed）显示 random=0.5357, embed=0.5557, dataflow=0.5436。
+      best 档下 9-seed 平均值保持一致趋势但因 seed variance 略有修正。 Qwen pos_sim=0.9855 的饱和空间使 random
+      negatives 太 easy（margin=0.074）， embedding mining 有效因为挑选 harder negatives（margin=0.017）。
+      Dataflow 的条件性收益（+1.5pp vs random）通过更 hard 的 structural negatives 进一步压缩 margin（margin=0.029），但
+      incremental 小于 embed 因为 embedding distance 已经捕获了大部分 difficulty gradient。Cross-seed
+      std ~0.8-1.0pp， 在 [0.5, 1.5] 范围内，说明 training 方差可控。Step 1000 过拟合通过 early stopping
+      at best validation loss 解决，不影响结论。
+
+      '
+    tables:
+    - caption: 'M2 Full Qwen: 9-Seed Summary'
+      columns:
+      - Strategy
+      - Mean_R1
+      - Std_R1
+      - 95% CI
+      - Best_Step
+      rows:
+      - - random
+        - 0.533
+        - 0.008
+        - '[0.527, 0.539]'
+        - 1000
+      - - embedding_distance
+        - 0.556
+        - 0.009
+        - '[0.549, 0.563]'
+        - 1000
+      - - dataflow_aware
+        - 0.548
+        - 0.01
+        - '[0.540, 0.556]'
+        - 500-1000
+    figures_description:
+    - 'Box plot: per-seed R@1 by strategy, 9 points each'
+    - 'Learning curve: val_loss vs step, 3 strategies × 9 seeds (band plot)'
+    analysis: '9-seed 全量结果是论文的 primary evidence for Claims 1 & 2。 Embedding > random
+      的 p=0.003 提供强统计支持。 Dataflow > random 的 p=0.018 提供充分支持但力度略弱（higher variance），
+      精确对应 "conditional benefit" 叙事。
+
+      '
+  - name: M2 Full StarCoder 9-Seed Results
+    plan_id: 'plan_002 (full: m2_full_starcoder)'
+    description: 9 seeds × 3 strategies, StarCoder2-3B, 全量交互效应验证
+    expected_results:
+      random_mean_R1: 0.49
+      random_std_R1: 0.009
+      embedding_mean_R1: 0.507
+      embedding_std_R1: 0.01
+      dataflow_mean_R1: 0.488
+      dataflow_std_R1: 0.011
+      embed_vs_random_delta_pp: 1.7
+      dataflow_vs_random_delta_pp: -0.2
+      embed_vs_random_bootstrap_p: 0.008
+      dataflow_vs_random_bootstrap_p: 0.62
+      cross_seed_R1_std_max: 1.1
+    result_rationale: 'StarCoder pos_sim=0.7985（健康空间），random negatives 已提供足够 difficulty
+      gradient （margin=0.194）。Embedding mining 仍然有效（+1.7pp, p=0.008），因为 embedding
+      distance 选择的 negatives 更 informative regardless of space geometry——这是 Claim
+      1 的关键证据 （两个编码器均显著）。Dataflow 在 StarCoder 上无显著差异（-0.2pp, p=0.62）， 产生干净的交互效应：dataflow
+      的 structural negatives 在非饱和空间中不提供 beyond-embedding 的信息增量，因为 encoder 已能通过 text
+      alone 区分结构上不同的文件。 这一 null result 是论文 mechanistic story 的关键支撑—— 不是所有方法在所有条件下都有效，而是有清晰的条件边界。
+
+      '
+    tables:
+    - caption: 'M2 Full StarCoder: 9-Seed Summary'
+      columns:
+      - Strategy
+      - Mean_R1
+      - Std_R1
+      - 95% CI
+      - p_vs_random
+      rows:
+      - - random
+        - 0.49
+        - 0.009
+        - '[0.483, 0.497]'
+        - —
+      - - embedding_distance
+        - 0.507
+        - 0.01
+        - '[0.499, 0.515]'
+        - 0.008
+      - - dataflow_aware
+        - 0.488
+        - 0.011
+        - '[0.479, 0.497]'
+        - 0.62
+    figures_description:
+    - 'Interaction plot: encoder × strategy, 显示 Qwen 和 StarCoder 的 dataflow 交互效应'
+    analysis: StarCoder 的 clean null result for dataflow 是论文 strongest mechanistic
+      evidence。 两编码器的交互效应 pattern（embed always helps, dataflow conditional on saturation）
+      完美对应表征空间几何学解释。
+  review_report: "---\ndream_id: dream_20260514T075732\ntier: best\noverall_score:\
+    \ 4/6 Weak Accept\ntimestamp: 2026-05-14T08:30:00.761428+00:00\n---\n\n# Dream\
+    \ Review Report: StructFuse — Hard Negatives for Code Retrieval\n\n**Paper**:\
+    \ \"What Makes Hard Negatives Work for Code Retrieval? A Systematic Study of Mining\
+    \ Strategies and Representation Geometry\"\n**Review Mode**: Full (2 Reviewers,\
+    \ 4-Step Roundtable)\n**Target Venue Standard**: Top ML venue (EMNLP-level), ~25%\
+    \ acceptance rate, 6-point scale\n\n---\n\n## Roundtable Summary\n\n| | R1 (Methods+Experiments)\
+    \ | R2 (Novelty+Related Work) | Consensus |\n|---|---|---|---|\n| Score | 4 (Weak\
+    \ Accept) | 4 (Weak Accept) | **4 (Weak Accept)** |\n| Confidence | 4/5 (High)\
+    \ | 4/5 (High) | 4/5 |\n\nBoth reviewers independently converged on the same score\
+    \ and identified overlapping core concerns. No significant disagreements arose\
+    \ during cross-sharing.\n\n---\n\n## Step 1–2: Independent Reviews + Cross-Sharing\n\
+    \n### Reviewer 1 (R1): Methods and Experiments\n\n**Strengths:**\n- 54 training\
+    \ runs (2 encoders × 3 strategies × 9 seeds) with paired bootstrap CIs is exemplary\
+    \ experimental rigor, well above the typical ML paper standard.\n- Extensive ablation\
+    \ suite: temperature (Table 7), hop distance (Table 8), data scaling (Table 9),\
+    \ fusion head (Table 10), static vs. dynamic mining (Table 11), binary vs. weighted\
+    \ dataflow (Table 12), failure analysis (Table 13), stratified analysis (Table\
+    \ 6). This breadth is commendable.\n- The representation saturation mechanistic\
+    \ explanation (pos_sim 0.986 vs 0.799 → different strategy effectiveness) is the\
+    \ paper's most insightful contribution.\n- Dynamic mining baseline (Table 11)\
+    \ cleanly rules out curriculum effects.\n- Fusion head ablation (Table 10) sharply\
+    \ separates training-time mining value from inference-time feature injection.\n\
+    \n**Major Weaknesses:**\n\n1. **Z% inconsistency (78% vs 41%).** Section 3.3 reports\
+    \ Z%=78% at 2-hop; Section 4.11 and Table 8 report Z%=41%. These likely refer\
+    \ to different denominators (conditional on structural data availability vs. unconditional),\
+    \ but the paper uses identical notation without disambiguation. This internal\
+    \ contradiction undermines trust in reported statistics. Must clarify and report\
+    \ both conditional/unconditional rates.\n\n2. **Missing BM25 negative baseline.**\
+    \ The paper's headline narrative is correcting CoCoHaNeRe's misconception that\
+    \ embedding negatives harm code search — attributed to BM25 proxy negatives mislabeled\
+    \ as embedding-distance. Yet the paper never runs actual BM25 negatives to demonstrate\
+    \ the claimed −27pp harm is BM25-specific. This is the single most important missing\
+    \ experiment given the paper's framing.\n\n3. **Low structural coverage (34.3%)\
+    \ is underreported.** Only ~1/3 of training instances receive dataflow-mined negatives;\
+    \ the rest fall back to embedding/random. The measured +1.5pp dataflow improvement\
+    \ on Qwen (Table 1) averages over all instances. Stratified results (structural-available\
+    \ vs. fallback) are absent — readers cannot assess the true per-instance magnitude\
+    \ of the structural contribution.\n\n4. **Dataflow vs. embedding is not significant\
+    \ (p=0.134, Table 4).** The practical case for dataflow over the simpler embedding\
+    \ strategy is weak. +1.0pp CI [−0.8, 2.8] on SWE-bench, requiring a complex CodeQL\
+    \ pipeline, is hard to justify. The paper acknowledges this but Claim 2 (\"conditional\
+    \ additional benefit\") still rests on dataflow-vs-random significance, sidestepping\
+    \ the more relevant comparison.\n\n5. **Small effect sizes.** +2.3pp R@1 (embedding)\
+    \ and +1.5pp (dataflow) are statistically significant but practically modest.\
+    \ On SWE-bench, +2.3pp = ~7 additional resolved instances out of 300, with wide\
+    \ CIs. The cost-benefit of the CodeQL extraction pipeline relative to these gains\
+    \ is not discussed.\n\n6. **StarCoder2-3B architectural mischaracterization.**\
+    \ The paper describes StarCoder2-3B as \"encoder-decoder\" but it is decoder-only\
+    \ (GPT-style autoregressive). The claimed \"architecturally distinct\" cross-encoder\
+    \ comparison is actually a difference in pretraining data/procedure, not architecture\
+    \ class. This weakens the cross-architecture generalization narrative.\n\n**Minor\
+    \ Weaknesses:**\n- CoCoHaNeRe critique lacks specific textual evidence from the\
+    \ original paper.\n- RepoBench-R (Table 5) has no statistical significance testing\
+    \ (single checkpoint, no seeds/CIs).\n- SWE-bench evaluation uses only Qwen checkpoints,\
+    \ not StarCoder.\n- Overfitting patterns across strategies not reported (project\
+    \ history shows severe overfitting, best checkpoint at step 1000/4242).\n- Number\
+    \ of negatives per query (k) not stated in paper.\n- Checkpoint selection criterion\
+    \ not specified; project history suggests strategy rankings change depending on\
+    \ criterion.\n\n**Key Questions:**\n- Q1: Clarify Z% (78% vs 41%) with explicit\
+    \ denominators.\n- Q2: Report R@1 stratified by structural data availability.\n\
+    - Q3: Provide specific textual evidence for the CoCoHaNeRe BM25-proxy claim.\n\
+    - Q4: Why is the BM25 negative baseline absent?\n- Q5: Correct the StarCoder2\
+    \ architectural description.\n- Q6: Was SWE-bench evaluation single-run or multi-seed\
+    \ per strategy?\n- Q7: Sensitivity to top-K cutoff in the dataflow miner (currently\
+    \ K=50)?\n- Q8: Per-strategy overfitting curves to confirm comparison validity.\n\
+    \n---\n\n### Reviewer 2 (R2): Novelty and Related Work\n\n**Strengths:**\n- CoCoHaNeRe\
+    \ correction has genuine community value — clearing a misconception that discourages\
+    \ a useful technique.\n- The pos_sim diagnostic as a pre-training decision tool\
+    \ is actionable and novel as a practical recommendation.\n- Honest reporting of\
+    \ conditional and null results (StarCoder dataflow p=0.62) is laudable; many papers\
+    \ would omit this.\n- The framing as \"systematic study\" with the breadth of\
+    \ ablations partially compensates for limited single-technique novelty.\n\n**Major\
+    \ Weaknesses:**\n\n1. **Thin novelty concentrated in a conditional finding.**\
+    \ Embedding-distance mining is a standard technique (low novelty); dataflow-aware\
+    \ mining via CodeQL is moderately novel but conceptually straightforward (filter\
+    \ by graph connectivity). The most novel claim — representation saturation mediates\
+    \ structural negative effectiveness — rests on only n=2 encoders, making it an\
+    \ observation rather than a validated theory.\n\n2. **Missing theoretical contextualization.**\
+    \ The difficulty–capacity interaction underlying the saturation finding is known\
+    \ in contrastive learning theory (Robinson et al. 2021 \"Contrastive Learning\
+    \ with Hard Negative Samples\"; Kalantidis et al. 2020 \"Hard Negative Mixing\
+    \ for Contrastive Learning\"). The paper presents its finding as if novel, but\
+    \ it is a domain-specific instantiation of established theory. Citing and positioning\
+    \ against this literature would strengthen the contribution.\n\n3. **Significant\
+    \ related work gaps.** For an empirical analysis paper, the related work section\
+    \ is thin. Missing references include:\n   - Foundational contrastive/retrieval:\
+    \ DPR (Karpukhin et al.), SimCLR, MoCo\n   - Code representation: CodeBERT, UniXcoder,\
+    \ CodeT5+\n   - Hard negative theory: Robinson et al. 2021, Kalantidis et al.\
+    \ 2020\n   - Structural code methods: CodeGRAG, GraphCoder, RepoGraph\n   \n \
+    \  An empirical survey-type paper must comprehensively cover the landscape it\
+    \ claims to systematize.\n\n4. **No empirical comparison with inference-time structural\
+    \ methods.** Table 14 provides a conceptual taxonomy but no experimental data.\
+    \ Claiming complementarity without evidence is unsatisfying. Even a small-scale\
+    \ comparison (e.g., STRUCTFUSE retriever + LocAgent reranking vs. either alone)\
+    \ would substantially strengthen the positioning.\n\n5. **CodeQL scalability framed\
+    \ as contribution but is engineering validation.** \"0% timeout at 123-repo scale\"\
+    \ is a pipeline reliability metric, not a research contribution. The 34% instance-level\
+    \ coverage is the more relevant number, and it is a significant limitation.\n\n\
+    **Minor Weaknesses:**\n- The paper pivots between \"systematic study\" and \"\
+    STRUCTFUSE as a system\" without clearly choosing an identity. The name STRUCTFUSE\
+    \ implies a system contribution, but the substance is an empirical analysis.\n\
+    - Claims are sometimes overcalibrated: \"consistently improves\" and \"correcting\
+    \ the prior misconception\" are strong language for +2.3pp gains and an unverified\
+    \ critique of prior work.\n- The paper lacks error analysis of *when* embedding\
+    \ mining fails (only analyzes when dataflow helps in Table 13).\n\n**Key Questions:**\n\
+    - Q1: How does the pos_sim diagnostic generalize beyond Qwen/StarCoder? Have you\
+    \ measured pos_sim for other encoders (e.g., CodeBERT, UniXcoder)?\n- Q2: Can\
+    \ you position the saturation finding against Robinson et al. 2021's theoretical\
+    \ framework for optimal negative difficulty?\n- Q3: Why not include even a small-scale\
+    \ empirical comparison with an inference-time method?\n- Q4: The paper name \"\
+    STRUCTFUSE\" implies a system — is the contribution a system or a study?\n\n---\n\
+    \n## Step 3: Convergence — Points of Agreement and Divergence\n\n### Full Agreement\
+    \ (both reviewers):\n1. **Score: 4 (Weak Accept)** — the paper has genuine merit\
+    \ but execution gaps prevent a confident accept.\n2. **The representation saturation\
+    \ insight is the paper's strongest and most novel contribution**, but is underpowered\
+    \ with only 2 encoders.\n3. **Effect sizes are small** (+1.5–2.3pp R@1) and the\
+    \ practical case for dataflow over embedding is weak (p=0.134 for the comparison\
+    \ that matters).\n4. **34% CodeQL coverage is a real limitation** that dilutes\
+    \ the measured dataflow effect and is underreported.\n5. **Experimental rigor\
+    \ is above average** — 9 seeds, bootstrap CIs, extensive ablations.\n6. **The\
+    \ CoCoHaNeRe correction is valuable** but the narrative is not fully substantiated.\n\
+    \n### R1 emphasis (methods-side):\n- Z% internal inconsistency (78% vs 41%) as\
+    \ a credibility issue\n- Missing BM25 baseline as the most critical gap\n- StarCoder2\
+    \ architectural mischaracterization\n- Confound between embedding similarity and\
+    \ dataflow disconnection\n\n### R2 emphasis (novelty-side):\n- Thin novelty —\
+    \ mostly standard techniques applied to code\n- Missing theoretical contextualization\
+    \ (Robinson et al., Kalantidis et al.)\n- Significant related work gaps (10+ missing\
+    \ references)\n- No empirical comparison with inference-time methods\n\n### No\
+    \ genuine disagreements between reviewers.\n\n---\n\n## Step 4: Consolidated Assessment\n\
+    \n### Overall Score: **4 / 6 (Weak Accept)**\n\n### Headline\nA well-executed\
+    \ empirical study of hard negative mining for code retrieval with above-average\
+    \ experimental rigor and a genuinely insightful representation saturation finding.\
+    \ The paper is held back by missing baselines (BM25), internal inconsistencies\
+    \ (Z%), thin novelty, and small effect sizes that make the practical value proposition\
+    \ of the dataflow component questionable.\n\n### Detailed Assessment\n\n**What\
+    \ the paper does well:**\n- The 2×3×9 experimental matrix with bootstrap statistics\
+    \ sets a high bar for rigor in this subfield.\n- The clean encoder–strategy interaction\
+    \ (embedding helps both; dataflow conditional on saturation) is the paper's strongest\
+    \ finding, providing a mechanistic explanation rather than just reporting numbers.\n\
+    - The ablation suite is comprehensive: temperature, hop distance, data scaling,\
+    \ fusion head, static vs. dynamic mining, binary vs. weighted, failure analysis.\
+    \ Each ablation serves a clear analytical purpose.\n- Honest reporting of null\
+    \ results (StarCoder dataflow p=0.62, dataflow-vs-embed p=0.134).\n- The fusion\
+    \ head ablation (Table 10) yields a crisp insight: structural information's value\
+    \ lies in training-time mining, not inference-time features.\n\n**What needs improvement\
+    \ for acceptance:**\n\n1. **[Critical] Add BM25 negative baseline.** The paper's\
+    \ central narrative — that CoCoHaNeRe's finding of embedding-negative harm is\
+    \ a BM25-proxy artifact — demands running BM25 negatives to close the argument.\
+    \ Without this, the correction claim is speculative.\n\n2. **[Critical] Resolve\
+    \ Z% inconsistency.** Define Z% precisely with explicit denominators. Report both\
+    \ conditional (among instances with structural data) and unconditional (all instances)\
+    \ rates. Current state is an internal contradiction.\n\n3. **[Major] Stratify\
+    \ dataflow results by structural availability.** Report R@1 separately for instances\
+    \ where CodeQL produced structural data vs. those that fell back to non-dataflow\
+    \ negatives. This is essential for interpreting the +1.5pp average.\n\n4. **[Major]\
+    \ Expand related work.** Add DPR, SimCLR/MoCo (negative mining foundations), Robinson\
+    \ et al. 2021 / Kalantidis et al. 2020 (hard negative theory directly relevant\
+    \ to the saturation finding), and standard code encoders (CodeBERT, UniXcoder,\
+    \ CodeT5+).\n\n5. **[Major] Correct StarCoder2 architecture description.** StarCoder2-3B\
+    \ is decoder-only, not encoder-decoder. Reframe the cross-encoder comparison honestly\
+    \ (different pretraining, not different architecture).\n\n6. **[Minor] Add RepoBench-R\
+    \ significance testing.** Run multiple checkpoints or seeds to get CIs.\n\n7.\
+    \ **[Minor] Discuss cost-benefit.** The CodeQL pipeline requires compiling every\
+    \ repo into a database; is +1.5pp (not significant vs. embedding) worth this infrastructure?\n\
+    \n### Experiment Coverage Assessment\nComparing the paper against the full experiment\
+    \ design (review_context.yaml):\n- All 14 imagined experiments appear in the paper\
+    \ (full coverage).\n- Quality of reporting is generally good, with tables for\
+    \ all major results.\n- The narrative guidance's three-claim structure (embedding\
+    \ universal, dataflow conditional, mechanism via saturation) is faithfully reflected.\n\
+    \n### Recommendation\nThe paper is a borderline contribution. The experimental\
+    \ execution and analytical depth are genuine strengths that distinguish it from\
+    \ typical \"we tried X and it improved by Y\" papers. The representation saturation\
+    \ finding, if validated on more encoders, could become an influential diagnostic\
+    \ tool. However, the missing BM25 baseline, Z% inconsistency, and thin novelty\
+    \ (per R2) place it below the acceptance threshold for a top venue in its current\
+    \ form. A revision addressing the critical items above would likely push it to\
+    \ a 5 (Accept).\n\n### Scores Summary\n\n| Criterion | Score | Notes |\n|---|---|---|\n\
+    | Soundness | 3.5/5 | Strong design, but Z% error and missing BM25 baseline |\n\
+    | Novelty | 2.5/5 | Saturation insight is moderate; techniques are standard |\n\
+    | Significance | 3/5 | Small effects, but actionable pos_sim diagnostic |\n| Clarity\
+    \ | 3.5/5 | Well-organized, but Z% ambiguity and arch mischaracterization |\n\
+    | Reproducibility | 3/5 | Main experiments ok; CodeQL pipeline details insufficient\
+    \ |\n| **Overall** | **4/6** | **Weak Accept** |\n"
+  error: ''
+- tier: median
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/dream_reports/dream_20260514T075732/median/paper.pdf
+  imagined_experiments:
+  - name: SWE-bench Lite end-to-end evaluation
+    plan_id: plan_003
+    description: 3 strategies × best checkpoint, Qwen3.6-27B agent, 300 SWE-bench
+      Lite instances
+    expected_results:
+      random_resolve_rate_pct: 18.3
+      embedding_distance_resolve_rate_pct: 18.7
+      dataflow_aware_resolve_rate_pct: 18.0
+      embed_vs_random_delta_pp: 0.4
+      dataflow_vs_random_delta_pp: -0.3
+      retrieval_recall_at_5_random: 0.41
+      retrieval_recall_at_5_embed: 0.43
+      retrieval_recall_at_5_dataflow: 0.42
+      instances_evaluated: 287
+      instances_failed_agent_error: 13
+    result_rationale: 'median 档下 SWE-bench Δ ≤ 1pp。原因：(1) 300 实例中仅 ~50% 的 bug 与 retrieval
+      质量相关， 其余受 patch generation 瓶颈限制——retriever 的 +1pp R@1 优势在 end-to-end pipeline
+      中被稀释； (2) SWE-bench 的 repo 分布与训练集 SWE-smith 有 domain shift， m2_full 训练中观测到的
+      step 1000 后过拟合加剧了这种 gap； (3) agent 的 file selection 依赖多轮交互，单次 retrieval 改进的边际效用递减。
+      embedding 略优于 random 但幅度 <1pp，dataflow 因在 unseen repos 上结构信号噪声更大反而微跌。 整体 resolve
+      rate ~18% 处于 baseline agent 的正常水平，无法宣称下游收益。
+
+      '
+    tables:
+    - name: 'Table: SWE-bench Lite Resolve Rate by Strategy'
+      columns:
+      - Strategy
+      - Resolve Rate (%)
+      - Δ vs Random (pp)
+      - Retrieval R@5
+      rows:
+      - - random
+        - '18.3'
+        - —
+        - '0.41'
+      - - embedding_distance
+        - '18.7'
+        - '+0.4'
+        - '0.43'
+      - - dataflow_aware
+        - '18.0'
+        - −0.3
+        - '0.42'
+    figures_description:
+    - 'Bar chart: resolve rate ± 95% binomial CI per strategy, 三根 bar 的 CI 完全重叠'
+    analysis: 'SWE-bench 无法区分三种策略。写入论文时定位为 "downstream evaluation shows no statistically
+      distinguishable difference"，并 acknowledge retrieval gains 在 end-to-end pipeline
+      中 被 generation bottleneck 稀释。这不否定 retrieval 改进，但不能用作 downstream evidence。
+
+      '
+  - name: RepoBench-R cross-file retrieval evaluation
+    plan_id: plan_004
+    description: retrieval-only evaluation on RepoBench-R, 3 strategies × best checkpoint,
+      两个编码器
+    expected_results:
+      qwen_random_R1: 0.312
+      qwen_embed_R1: 0.325
+      qwen_dataflow_R1: 0.318
+      starcoder_random_R1: 0.274
+      starcoder_embed_R1: 0.279
+      starcoder_dataflow_R1: 0.268
+      qwen_embed_vs_random_delta_pp: 1.3
+      starcoder_embed_vs_random_delta_pp: 0.5
+      qwen_dataflow_vs_random_delta_pp: 0.6
+      starcoder_dataflow_vs_random_delta_pp: -0.6
+    result_rationale: 'RepoBench-R 的 cross-file retrieval 与 SWE-smith 训练分布差异显著——RepoBench
+      侧重 next-line completion 的上下文文件，粒度更细且不直接对应 bug-fix file selection。 median 档下
+      embedding 优势方向保持但缩水：Qwen ~+1.3pp（pilot 中 +2.0pp 缩水约 35%， 因 domain shift 和 evaluation
+      granularity 不同），StarCoder ~+0.5pp（CI 将包含零）。 Dataflow 在 Qwen 上仅 +0.6pp（RepoBench
+      的文件间 dataflow 关系与训练时 CodeQL 提取的 分布不匹配），StarCoder 上略负。绝对 R@1 水平较低（0.27-0.33）因
+      RepoBench candidate pool 远大于 m2 验证集的 pool=50。方向一致性为 "directional evidence" 叙事提供第二个
+      benchmark 支持， 但效果量不足以做强声明。
+
+      '
+    tables:
+    - name: 'Table: RepoBench-R R@1 by Encoder × Strategy'
+      columns:
+      - Encoder
+      - random
+      - embedding
+      - dataflow
+      - embed Δ
+      - dataflow Δ
+      rows:
+      - - Qwen2.5-Coder-3B
+        - '0.312'
+        - '0.325'
+        - '0.318'
+        - +1.3pp
+        - +0.6pp
+      - - StarCoder2-3B
+        - '0.274'
+        - '0.279'
+        - '0.268'
+        - +0.5pp
+        - −0.6pp
+    figures_description:
+    - 'Grouped bar chart: R@1 per encoder × strategy，附 bootstrap 95% CI'
+    analysis: 'RepoBench-R 结果与 SWE-smith eval 方向一致但效果量更小，增强 "directional evidence"
+      论点。 写入论文时强调 cross-benchmark consistency of direction 而非 magnitude。
+
+      '
+  - name: Embedding vs random deep analysis by repo complexity
+    plan_id: plan_005
+    description: 按 repo size/complexity 分层分析 embedding negatives 的效果
+    expected_results:
+      small_repos_lt50_embed_delta_pp: 2.1
+      medium_repos_50_200_embed_delta_pp: 1.0
+      large_repos_200_500_embed_delta_pp: 0.3
+      xlarge_repos_500plus_embed_delta_pp: -0.2
+      complexity_correlation_r: -0.41
+      complexity_correlation_p: 0.08
+    result_rationale: 'median 档下 embedding benefit 在小 repo 上最明显（candidate pool 小，embedding
+      distance 能有效区分 near-miss），但随 repo 规模增大效果递减甚至反转。原因：大 repo 中 embedding space 拥挤程度更高，pretrained
+      encoder 的 representation 更接近 saturation， embedding-distance mining 选出的 negatives
+      与 random 的 difficulty 差异缩小。 相关性方向正确（r ≈ −0.41）但 p=0.08 不显著——样本量仅 123 repos 中有结构数据的子集，
+      power 不足。此分析为 Claim 2 的 saturation 机制提供 supporting but inconclusive evidence。
+
+      '
+    tables:
+    - name: 'Table: Embedding Δ by Repo Size Tier (Qwen)'
+      columns:
+      - Tier
+      - N repos
+      - embed Δ R@1 (pp)
+      - mean neg_difficulty margin
+      rows:
+      - - <50 instances
+        - '1'
+        - '+2.1'
+        - '0.068'
+      - - 50–200
+        - '17'
+        - '+1.0'
+        - '0.032'
+      - - 200–500
+        - '40'
+        - '+0.3'
+        - '0.019'
+      - - 500+
+        - '29'
+        - −0.2
+        - '0.014'
+    figures_description:
+    - 'Scatter plot: repo size (x) vs embedding benefit Δ (y), with regression line
+      and 95% CI band'
+    - 'Box plot: neg_difficulty margin distribution by repo size tier'
+    analysis: '趋势方向支持 saturation hypothesis 但统计力度不足（p=0.08）。 论文中作为 "exploratory analysis
+      suggesting repo complexity moderates embedding benefit"， n=2 编码器 × uneven tier
+      sizes 限制了因果推断。
+
+      '
+  - name: 1-hop vs 2-hop vs 3-hop call-graph bounding ablation
+    plan_id: plan_007
+    description: 测试不同 call-graph 深度对 dataflow negative 质量的影响
+    expected_results:
+      hop1_qwen_R1: 0.531
+      hop2_qwen_R1: 0.538
+      hop3_qwen_R1: 0.534
+      hop1_coverage_pct: 42.1
+      hop2_coverage_pct: 34.3
+      hop3_coverage_pct: 28.7
+      hop2_vs_hop1_delta_pp: 0.7
+      hop3_vs_hop2_delta_pp: -0.4
+    result_rationale: 'median 档下 hop 数的 ablation 呈倒 U 型但差异不大。2-hop（当前设置）略优于 1-hop
+      因为覆盖了更多真实的 transitive dependencies，但 3-hop 引入过多 spurious connections （大 repo
+      中 3-hop 几乎把所有文件连通），diluting structural signal。 差异仅 ~0.7pp，在 cross-seed 方差 1.5-3.0pp
+      的背景下不显著。 Coverage 随 hop 增加而下降（disconnected files 减少 → 可选 negative 减少）。 这说明当前
+      2-hop 设置合理但并非 critical design choice。
+
+      '
+    tables:
+    - name: 'Table: Hop Depth Ablation (Qwen, dataflow strategy)'
+      columns:
+      - Hops
+      - R@1
+      - Coverage (%)
+      - Avg negatives/query
+      rows:
+      - - 1-hop
+        - '0.531'
+        - '42.1'
+        - '8.3'
+      - - 2-hop
+        - '0.538'
+        - '34.3'
+        - '5.7'
+      - - 3-hop
+        - '0.534'
+        - '28.7'
+        - '3.9'
+    figures_description:
+    - 'Line plot: R@1 vs hop depth, with error bars from 3 seeds'
+    analysis: '2-hop 是 sweet spot 但差异在噪声范围内。论文中简要报告作为 design justification， 不作为独立
+      finding。
+
+      '
+  - name: Training data size scaling ablation
+    plan_id: plan_008
+    description: 1K vs 3K vs 5K training instances, 测试 data scaling behavior
+    expected_results:
+      size_1k_qwen_R1: 0.518
+      size_3k_qwen_R1: 0.541
+      size_5k_qwen_R1: 0.538
+      size_1k_embed_delta_pp: 1.8
+      size_3k_embed_delta_pp: 1.1
+      size_5k_embed_delta_pp: 0.9
+      size_1k_starcoder_R1: 0.432
+      size_3k_starcoder_R1: 0.451
+      size_5k_starcoder_R1: 0.448
+    result_rationale: 'median 档下 data scaling 呈 diminishing returns：1K→3K 有明显提升（+2.3pp），
+      3K→5K 几乎持平甚至微降（过拟合加剧，与 m2_full 观察到的 step 1000 后过拟合一致）。 更关键的是 embedding benefit
+      Δ 随数据量增加而缩小：1K 时 Δ=1.8pp（小数据下 hard negative 质量差异被放大），5K 时 Δ=0.9pp（更多数据提供足够 coverage，减少对
+      mining 策略的依赖）。 这对 median 叙事不利——暗示在更大数据规模下 embedding benefit 可能进一步缩水。
+
+      '
+    tables:
+    - name: 'Table: Data Scaling × Strategy (Qwen, embedding strategy)'
+      columns:
+      - Train Size
+      - random R@1
+      - embed R@1
+      - Δ (pp)
+      rows:
+      - - 1K
+        - '0.500'
+        - '0.518'
+        - '+1.8'
+      - - 3K
+        - '0.530'
+        - '0.541'
+        - '+1.1'
+      - - 5K
+        - '0.529'
+        - '0.538'
+        - '+0.9'
+    figures_description:
+    - 'Line plot: R@1 vs training data size, separate lines for random/embed/dataflow'
+    - 'Bar chart: embed Δ at each data size, showing diminishing gap'
+    analysis: 'Diminishing benefit at larger data scale 是 median 档的典型特征——方向正确但实际意义
+      随 scale 递减。论文中诚实报告，作为 limitation 的一部分。
+
+      '
+  - name: Fusion head ablation
+    plan_id: plan_009
+    description: embedding-only vs structural-features-only vs combined scoring
+    expected_results:
+      embed_only_qwen_R1: 0.538
+      struct_only_qwen_R1: 0.489
+      combined_qwen_R1: 0.541
+      embed_only_starcoder_R1: 0.451
+      struct_only_starcoder_R1: 0.412
+      combined_starcoder_R1: 0.448
+      combined_vs_embed_only_delta_pp: 0.3
+    result_rationale: 'median 档下 structural features alone 表现较差（R@1=0.489），因为 CodeQL
+      dataflow features 是 binary/sparse 的，单独使用缺乏 fine-grained discrimination。 Combined
+      (embed + struct) 仅比 embed-only 好 +0.3pp——structural signal 的增量贡献在融合后被稀释，且 combined
+      model 有更多参数容易过拟合（与 step 1000 过拟合现象一致）。StarCoder 上 combined 甚至略低于 embed-only（-0.3pp），
+      因为 StarCoder 的 healthy representation space 不需要额外维度的信号。 这进一步支持 "conditional
+      benefit" 的定性结论但效果量太小。
+
+      '
+    tables:
+    - name: 'Table: Fusion Head Ablation'
+      columns:
+      - Head
+      - Qwen R@1
+      - StarCoder R@1
+      rows:
+      - - embed-only
+        - '0.538'
+        - '0.451'
+      - - struct-only
+        - '0.489'
+        - '0.412'
+      - - combined
+        - '0.541'
+        - '0.448'
+    figures_description:
+    - Stacked bar chart showing contribution decomposition of embed vs struct features
+    analysis: 'Combined head 增益微乎其微，论文中报告为 "structural features provide marginal additive
+      benefit in fusion"。不值得作为独立 contribution point。
+
+      '
+  - name: Dataflow-distance weighted negatives ablation
+    plan_id: plan_010
+    description: weighted sampling by dataflow distance vs binary connected/disconnected
+    expected_results:
+      binary_qwen_R1: 0.538
+      weighted_qwen_R1: 0.535
+      binary_starcoder_R1: 0.448
+      weighted_starcoder_R1: 0.444
+    result_rationale: 'median 档下 weighted sampling 不优于 binary。原因：CodeQL 提取的 dataflow
+      distance 分布高度 bimodal（connected with distance 1-2 占大多数，disconnected 占其余）， smooth
+      weighting 在这种分布上退化为近似 binary。且 weighted 引入的额外超参数 （distance decay function）在
+      n=123 repos 的数据量下难以 tune，noise 抵消了 理论上的 curriculum benefit。这是一个 null result，说明
+      binary structural signal 已捕获大部分可用信息。
+
+      '
+    tables:
+    - name: 'Table: Weighted vs Binary Dataflow Negatives'
+      columns:
+      - Method
+      - Qwen R@1
+      - StarCoder R@1
+      rows:
+      - - binary (current)
+        - '0.538'
+        - '0.448'
+      - - distance-weighted
+        - '0.535'
+        - '0.444'
+    figures_description:
+    - Histogram of dataflow distances showing bimodal distribution
+    analysis: 'Null result，论文中用一句话在 ablation section 报告："distance-weighted sampling
+      does not improve over binary selection, likely due to the bimodal distance distribution."
+
+      '
+  - name: SWE-bench failure analysis
+    plan_id: plan_011
+    description: 50 SweRank/BM25 failure cases 分类分析
+    expected_results:
+      total_analyzed: 50
+      category_retrieval_miss: 18
+      category_generation_fail: 22
+      category_test_flaky: 4
+      category_multi_file_needed: 6
+      retrieval_miss_where_dataflow_helps: 5
+      retrieval_miss_where_dataflow_neutral: 10
+      retrieval_miss_where_dataflow_hurts: 3
+      pct_dataflow_helps_of_retrieval_miss: 27.8
+    result_rationale: 'median 档下 failure analysis 揭示 SWE-bench 上 retrieval 并非主要瓶颈——
+      50 个失败案例中仅 18 个（36%）是因为 retrieval miss，其余是 generation/test issues。 在 18 个 retrieval
+      miss 中，dataflow 仅帮助 5 个（27.8%）——这些是跨文件依赖链上的 bug，dataflow connectivity 确实提供了有用信号。但
+      10 个 neutral（文件间无 dataflow 关系或关系被 CodeQL 漏提取）和 3 个 hurt（dataflow 引入 noise 反而
+      distract） 使整体效果被抵消。这解释了为什么 plan_003 中 SWE-bench resolve rate 差异 <1pp。
+
+      '
+    tables:
+    - name: 'Table: Failure Category Distribution'
+      columns:
+      - Category
+      - Count
+      - '%'
+      rows:
+      - - Retrieval miss
+        - '18'
+        - 36%
+      - - Generation failure
+        - '22'
+        - 44%
+      - - Flaky test
+        - '4'
+        - 8%
+      - - Multi-file needed
+        - '6'
+        - 12%
+    - name: 'Table: Dataflow Impact on Retrieval Misses'
+      columns:
+      - Dataflow effect
+      - Count
+      - '%'
+      rows:
+      - - Helps
+        - '5'
+        - 27.8%
+      - - Neutral
+        - '10'
+        - 55.6%
+      - - Hurts
+        - '3'
+        - 16.7%
+    figures_description:
+    - 'Sankey diagram: failure categories → dataflow impact'
+    - 'Concrete example pair: one case where dataflow helped (cross-module dependency)
+      and one where it hurt (false connectivity)'
+    analysis: 'Failure analysis 提供定性 insight 但定量上支持 "generation bottleneck dominates
+      retrieval differences" 的结论。论文中用于 explain 为什么 SWE-bench Δ 小， 并 motivate future
+      work on generation-aware retrieval。
+
+      '
+  - name: Qualitative examples
+    plan_id: plan_012
+    description: 5-10 cases where structural negatives changed retrieval outcome
+    expected_results:
+      positive_examples_found: 4
+      negative_examples_found: 2
+      ambiguous_examples: 2
+      total_curated: 8
+    result_rationale: 'median 档下能找到 4 个 convincing positive examples（dataflow negative
+      帮助 retriever 区分 lexically similar but structurally unrelated files），但也有 2 个
+      negative examples（dataflow 引入的 structural bias 导致 miss）。 这与 median 的 "directional
+      but not definitive" 叙事一致。8 个案例中 pattern 不够 clean 来支持强因果推断——n=2 编码器 + case-by-case
+      分析 只能说明 mechanism 是 plausible 而非 proven。
+
+      '
+    tables: []
+    figures_description:
+    - 'Figure: 2 positive + 1 negative case study panels, showing query → retrieved
+      files → gold files, with dataflow graph overlay'
+    analysis: '精选 cases 放入论文 qualitative section，明确标注 positive 和 negative examples
+      以保持学术诚实。reviewer 会 appreciate balanced presentation。
+
+      '
+  - name: Temperature ablation
+    plan_id: plan_014
+    description: τ ∈ {0.05, 0.1, 0.2}, 3 strategies × 2 encoders
+    expected_results:
+      qwen_tau005_random_R1: 0.521
+      qwen_tau005_embed_R1: 0.534
+      qwen_tau005_dataflow_R1: 0.53
+      qwen_tau010_random_R1: 0.533
+      qwen_tau010_embed_R1: 0.543
+      qwen_tau010_dataflow_R1: 0.538
+      qwen_tau020_random_R1: 0.524
+      qwen_tau020_embed_R1: 0.531
+      qwen_tau020_dataflow_R1: 0.527
+      starcoder_tau005_random_R1: 0.438
+      starcoder_tau005_embed_R1: 0.443
+      starcoder_tau005_dataflow_R1: 0.43
+      starcoder_tau010_random_R1: 0.449
+      starcoder_tau010_embed_R1: 0.456
+      starcoder_tau010_dataflow_R1: 0.441
+      starcoder_tau020_random_R1: 0.442
+      starcoder_tau020_embed_R1: 0.446
+      starcoder_tau020_dataflow_R1: 0.435
+      embed_benefit_direction_consistent_across_tau: true
+      dataflow_benefit_direction_inconsistent: true
+      optimal_tau: 0.1
+    result_rationale: 'median 档下 temperature ablation 证明 embedding > random 的方向在所有
+      τ 值下一致 （这是好消息，说明发现非 regime-specific）。但 Δ 在 τ=0.05 和 τ=0.2 下缩小： τ=0.05 时 loss
+      landscape 过于 sharp，所有策略表现都下降，差异被 noise 淹没； τ=0.2 时 loss 太平滑，hard negatives 的难度梯度被抹平。τ=0.1
+      是 sweet spot。 Dataflow 的方向在 τ 间不一致——τ=0.05 时 Qwen 上 dataflow 略优于 random， τ=0.2
+      时略劣——进一步支持 "conditional and fragile" 的定性判断。 Cross-seed 方差在 τ=0.05 下最大（~3.0pp
+      std），τ=0.1 最稳定（~1.8pp std）。
+
+      '
+    tables:
+    - name: 'Table: Temperature × Strategy R@1 (Qwen)'
+      columns:
+      - τ
+      - random
+      - embed
+      - dataflow
+      - embed Δ
+      - dataflow Δ
+      rows:
+      - - '0.05'
+        - '0.521'
+        - '0.534'
+        - '0.530'
+        - '+1.3'
+        - '+0.9'
+      - - '0.10'
+        - '0.533'
+        - '0.543'
+        - '0.538'
+        - '+1.0'
+        - '+0.5'
+      - - '0.20'
+        - '0.524'
+        - '0.531'
+        - '0.527'
+        - '+0.7'
+        - '+0.3'
+    - name: 'Table: Temperature × Strategy R@1 (StarCoder)'
+      columns:
+      - τ
+      - random
+      - embed
+      - dataflow
+      - embed Δ
+      - dataflow Δ
+      rows:
+      - - '0.05'
+        - '0.438'
+        - '0.443'
+        - '0.430'
+        - '+0.5'
+        - −0.8
+      - - '0.10'
+        - '0.449'
+        - '0.456'
+        - '0.441'
+        - '+0.7'
+        - −0.8
+      - - '0.20'
+        - '0.442'
+        - '0.446'
+        - '0.435'
+        - '+0.4'
+        - −0.7
+    figures_description:
+    - 'Heatmap: τ × strategy, cell color = R@1, separate panels for Qwen and StarCoder'
+    - 'Line plot: embed Δ vs τ, showing consistent positive direction'
+    analysis: 'Temperature ablation 是 median 档的关键正面结果之一：embedding benefit 方向 robust
+      across τ。 论文中重点报告此 robustness 作为 Claim 1 的 supporting evidence， 同时 acknowledge
+      Claim 2 (dataflow) 的 τ-sensitivity 作为 limitation。
+
+      '
+  - name: Dynamic mining baseline
+    plan_id: plan_015
+    description: re-mine embedding negatives per epoch vs static (mine once from pretrained)
+    expected_results:
+      static_qwen_R1: 0.543
+      dynamic_qwen_R1: 0.547
+      static_starcoder_R1: 0.456
+      dynamic_starcoder_R1: 0.452
+      dynamic_vs_static_qwen_delta_pp: 0.4
+      dynamic_vs_static_starcoder_delta_pp: -0.4
+      dynamic_compute_overhead_factor: 3.2
+    result_rationale: 'median 档下 dynamic mining 在 Qwen 上微优（+0.4pp）但 StarCoder 上微劣（-0.4pp），
+      差异在 noise 范围内。原因：(1) static mining 在仅 3 epoch 的训练中 representation drift 有限——encoder
+      是 LoRA fine-tune，参数变化量小，pretrained 时的 embedding distance 排序在训练后基本保持；(2) dynamic
+      re-mining 引入计算开销（3.2x）但因 LoRA 的低 drift 几乎不改变 negative selection；(3) StarCoder
+      上 dynamic 略差可能因 re-mining 引入的 randomness（每次 re-mining 的 batch 不完全一致）。结论：static
+      vs dynamic 不是 关键 confound，当前 static 设计合理。
+
+      '
+    tables:
+    - name: 'Table: Static vs Dynamic Mining'
+      columns:
+      - Mining
+      - Qwen R@1
+      - StarCoder R@1
+      - GPU hours
+      rows:
+      - - Static (current)
+        - '0.543'
+        - '0.456'
+        - '3.5'
+      - - Dynamic (per-epoch)
+        - '0.547'
+        - '0.452'
+        - '11.2'
+    figures_description:
+    - 'Bar chart: static vs dynamic R@1, with compute cost annotation'
+    analysis: 'Null result for practical purposes. 论文中一句话报告："dynamic re-mining does
+      not significantly improve over static mining given the limited representation
+      drift in LoRA fine-tuning (3 epochs)"。排除了 reviewer concern about static/dynamic
+      confound。
+
+      '
+  - name: Bootstrap CI for SWE-bench Lite
+    plan_id: plan_016
+    description: 95% bootstrap CI for resolve rate differences
+    expected_results:
+      embed_vs_random_delta_pp: 0.4
+      embed_vs_random_95ci_lower: -1.8
+      embed_vs_random_95ci_upper: 2.6
+      dataflow_vs_random_delta_pp: -0.3
+      dataflow_vs_random_95ci_lower: -2.5
+      dataflow_vs_random_95ci_upper: 1.9
+      bootstrap_n: 10000
+      embed_vs_random_p_value: 0.34
+    result_rationale: 'median 档下 SWE-bench 的 Δ ≤ 1pp，在 300 instances 上 bootstrap CI
+      极宽。 300 实例的 binomial 标准误约 ±2.2pp（at resolve rate ~18%）， 所以 Δ=0.4pp 的 95% CI
+      为 [-1.8, +2.6]，包含零。p=0.34 远不显著。 这是 median 档的核心弱点：无法宣称下游收益。 Dataflow 的 CI 同样包含零且
+      point estimate 为负。
+
+      '
+    tables:
+    - name: 'Table: SWE-bench Bootstrap CI'
+      columns:
+      - Comparison
+      - Δ (pp)
+      - 95% CI
+      - p-value
+      rows:
+      - - embed vs random
+        - '+0.4'
+        - '[−1.8, +2.6]'
+        - '0.34'
+      - - dataflow vs random
+        - −0.3
+        - '[−2.5, +1.9]'
+        - '0.41'
+    figures_description:
+    - 'Forest plot: point estimates with 95% CI bars, reference line at zero'
+    analysis: 'CI 均包含零，论文中必须诚实报告 "no statistically significant difference in downstream
+      resolve rate"。但可同时 argue retrieval-level improvements (plan_002/plan_013) 的
+      bootstrap CI 更紧（pool=50 的 val set 上）， downstream pipeline 的 noise 是 confound
+      而非 evidence against retrieval gains。
+
+      '
+  - name: Inference-time graph method comparison discussion
+    plan_id: plan_017
+    description: 与 CodexGraph, LocAgent 等 inference-time 方法的定位比较
+    expected_results:
+      comparison_type: qualitative_discussion
+      codexgraph_reported_R1_improvement_pp: 5.2
+      locagent_reported_resolve_rate_pct: 26.3
+      structfuse_retrieval_R1: 0.543
+      key_distinction: training-time vs inference-time structural signal
+      complementarity_argument_strength: moderate
+    result_rationale: 'median 档下此项为 qualitative discussion 而非实验。StructFuse（training-time
+      structural mining）与 CodexGraph/LocAgent（inference-time graph navigation） 在方法论上互补：前者提升
+      base retriever 质量，后者在 inference 时做 multi-hop reasoning。但 median 档下 StructFuse
+      的 absolute improvement 较小（+1pp R@1）， complementarity argument 的说服力为 "moderate"——reviewer
+      可能问 "if inference-time methods already get +5pp, why bother with +1pp training-time
+      improvement?" 回应：training-time improvement 是 zero-cost at inference，可叠加使用。
+
+      '
+    tables:
+    - name: 'Table: Training-time vs Inference-time Structural Methods'
+      columns:
+      - Method
+      - Type
+      - Structural Signal
+      - Inference Cost
+      - Reported Gain
+      rows:
+      - - StructFuse (ours)
+        - training-time
+        - CodeQL dataflow
+        - zero
+        - +0.5–1.5pp R@1
+      - - CodexGraph
+        - inference-time
+        - LLM-built graph
+        - high (LLM calls)
+        - +5.2pp R@1
+      - - LocAgent
+        - inference-time
+        - call graph navigation
+        - moderate
+        - 26.3% resolve
+    figures_description:
+    - Comparison table in Related Work section
+    analysis: Discussion section 而非实验。定位 StructFuse 为 complementary approach—— zero
+      inference cost, improves base retriever that inference-time methods build upon.
+      Acknowledge median 档的 modest gains 使此 argument 需要 future work validation。
+  review_report: "---\ndream_id: dream_20260514T075732\ntier: median\noverall_score:\
+    \ weak reject\ntimestamp: 2026-05-14T08:36:30.193110+00:00\n---\n\n# Dream Review\
+    \ Report: \"What Makes Hard Negatives Work for Code Retrieval?\"\n\n**Dream ID:**\
+    \ 20260514T075732 | **Review Mode:** full | **Date:** 2026-05-14\n\n---\n\n##\
+    \ Paper Summary\n\nThis paper presents a controlled comparison of three hard negative\
+    \ mining strategies for contrastive code retrieval—random, embedding-distance,\
+    \ and dataflow-aware (via CodeQL inter-procedural analysis)—across two code encoders\
+    \ (Qwen2.5-Coder-3B, StarCoder2-3B) with distinct representation geometries. The\
+    \ main findings are: (1) embedding-distance mining provides directional improvement\
+    \ over random (+0.5–1.3pp R@1 on RepoBench-R), (2) dataflow-grounded negatives\
+    \ yield inconsistent effects across encoders, and (3) no strategy achieves significant\
+    \ downstream gains on SWE-bench Lite (all p > 0.3). The paper positions itself\
+    \ as an EMNLP analysis paper with methodology contributions: a controlled comparison\
+    \ framework, representation geometry analysis, and a CodeQL extraction pipeline.\n\
+    \n---\n\n## Reviewer Panel\n\n| Reviewer | Focus | Score | Confidence |\n|----------|-------|-------|------------|\n\
+    | R1 | Methods + Experiments | 4/6 (Weak Accept) | 4/5 |\n| R2 | Novelty + Related\
+    \ Work | 3/6 (Weak Reject) | 4/5 |\n\n---\n\n## R1 Review: Methods and Experiments\n\
+    \n### Strengths\n\n- **Rigorous experimental protocol.** ~54 training runs with\
+    \ paired bootstrap CIs on SWE-bench is commendable. The controlled comparison\
+    \ genuinely isolates the negative selection variable while holding all other training\
+    \ details constant.\n- **Comprehensive ablation suite.** Each ablation answers\
+    \ a specific question: temperature sensitivity (Tables 7–8), hop depth (Table\
+    \ 9), data scaling (Table 10), fusion head (Table 11), weighted vs. binary dataflow\
+    \ (Table 12), static vs. dynamic mining (Table 13). The ablation coverage is thorough\
+    \ for this subfield.\n- **Honest reporting of null and conditional results.**\
+    \ The paper openly reports that SWE-bench shows no significant differences, that\
+    \ dataflow negatives are inconsistent, and that effect sizes diminish with data\
+    \ scale. This is appropriate for an analysis paper.\n- **Failure analysis (§4.3)\
+    \ provides genuine insight.** The decomposition showing 44% generation failures\
+    \ vs. 36% retrieval misses cleanly explains the downstream null result and provides\
+    \ useful signal for the community.\n- **Temperature robustness.** The finding\
+    \ that embedding > random direction is consistent across all τ values (Tables\
+    \ 7–8) strengthens the directional claim beyond a single hyperparameter setting.\n\
+    \n### Weaknesses\n\n1. **N=2 encoders fundamentally limits the representation\
+    \ geometry claim.** The paper's central analytical contribution—linking encoder-strategy\
+    \ interaction to representation saturation—rests on exactly two data points. The\
+    \ pos_sim values (0.9855 vs. 0.7985) are an observation, not a validated mechanism.\
+    \ Any two encoders will differ in some metric; without testing whether pos_sim\
+    \ is predictive across 4–5 additional encoders, the \"representation geometry\"\
+    \ framing overpromises.\n\n2. **Missing BM25 negative baseline—the single most\
+    \ important omitted experiment.** The paper's narrative begins with correcting\
+    \ CoCoHaNeRe's conflation of BM25 and embedding-distance negatives. Yet the paper\
+    \ never runs BM25 negatives in its own framework. This experiment would (a) verify\
+    \ that BM25 negatives indeed harm performance, (b) quantify the gap between BM25-proxy\
+    \ and true embedding-distance mining, and (c) close the paper's own argument loop.\
+    \ Without it, the correction claim is asserted but unverified.\n\n3. **No error\
+    \ bars or confidence intervals on RepoBench-R results (Table 1).** The main retrieval\
+    \ results lack any statistical significance testing—no seeds, no CIs, no p-values.\
+    \ For an analysis paper emphasizing statistical rigor (bootstrap CIs on SWE-bench),\
+    \ this inconsistency is glaring. The +0.5pp StarCoder improvement could easily\
+    \ be within noise.\n\n4. **Pool size of 50 candidates per query is unrealistically\
+    \ small.** Real repositories have hundreds to thousands of files. A pool of 50\
+    \ inflates absolute R@1 values and may not preserve strategy ranking at realistic\
+    \ pool sizes. No sensitivity analysis on pool size is provided.\n\n5. **StarCoder2-3B\
+    \ is mischaracterized as \"encoder-decoder\" (§3.5).** StarCoder2-3B is a decoder-only\
+    \ model, same architectural class as Qwen2.5-Coder-3B. The actual difference is\
+    \ in pretraining data/procedure, not architecture. This factual error undermines\
+    \ the \"architecturally distinct\" framing.\n\n6. **Table 6 repo-complexity analysis\
+    \ has N=1 in the smallest tier.** The \"<50 instances\" tier contains a single\
+    \ repository, making the +2.1pp data point anecdotal. This tier should be excluded\
+    \ or merged, and the correlation analysis (r=−0.41, p=0.08) should be recomputed\
+    \ without it.\n\n7. **SWE-smith validation results are referenced but never shown.**\
+    \ The paper mentions \"consistent with SWE-smith validation results\" (§4.1) but\
+    \ the SWE-smith validation table is absent. These are presumably the primary evaluation\
+    \ results—their omission is surprising.\n\n8. **34% structural data coverage is\
+    \ underreported as a limitation.** Only 34% of training instances actually receive\
+    \ dataflow-mined negatives; the rest fall back to alternative selection. The reported\
+    \ effects average over both populations, diluting the true signal. A stratified\
+    \ analysis (structured vs. fallback instances) is needed.\n\n9. **Checkpoint selection\
+    \ criterion is unspecified.** With documented overfitting after step 1000, the\
+    \ choice of \"best checkpoint\" could reverse strategy rankings. The criterion\
+    \ (validation metric, early stopping patience) should be explicitly stated.\n\n\
+    ### Questions for Authors\n\n1. What is the per-instance effect of dataflow negatives\
+    \ stratified by whether structural data was available (34%) vs. not?\n2. Why were\
+    \ SWE-smith validation results omitted from the paper despite being referenced?\n\
+    3. Have you tested sensitivity to pool size (e.g., pool=100, 200, 500)?\n4. What\
+    \ is the checkpoint selection criterion, and how sensitive are strategy rankings\
+    \ to this choice?\n5. Can you run a BM25 negative baseline to close the CoCoHaNeRe\
+    \ correction argument?\n\n---\n\n## R2 Review: Novelty and Related Work\n\n###\
+    \ Strengths\n\n- **CoCoHaNeRe correction has community value.** If BM25-proxy\
+    \ negatives were indeed mislabeled as embedding-distance, clarifying this matters\
+    \ for practitioners and could redirect research effort.\n- **Honest reporting\
+    \ of null results.** The paper does not hide that dataflow negatives are inconsistent,\
+    \ SWE-bench shows no significant differences, and CIs include zero for StarCoder.\
+    \ This candor is increasingly valuable in ML research.\n- **Potentially actionable\
+    \ pos_sim diagnostic.** If validated on more encoders, the observation that pos_sim\
+    \ correlates with mining strategy effectiveness could become a cheap pre-training\
+    \ diagnostic for practitioners.\n- **Clean separation of training-time vs. inference-time\
+    \ value.** The fusion head ablation (Table 11) demonstrates that structural information's\
+    \ value is in negative selection, not inference-time scoring—a crisp methodological\
+    \ insight.\n- **\"Directional evidence\" framing is appropriately calibrated**\
+    \ for the evidence strength. The paper does not overclaim given the data.\n\n\
+    ### Weaknesses\n\n1. **\"First controlled comparison\" novelty claim is overstated.**\
+    \ The paper claims to be the \"first controlled comparison using true embedding-distance\
+    \ negatives for code retrieval.\" ANCE-style mining (using actual embedding distance)\
+    \ has existed since 2021 and has been applied broadly. The claim that nobody has\
+    \ done this for code requires more thorough documentation than critiquing a single\
+    \ paper.\n\n2. **CoCoHaNeRe critique is the paper's central motivation but remains\
+    \ unverified.** The entire narrative depends on CoCoHaNeRe using BM25-proxy negatives\
+    \ mislabeled as embedding-distance. Yet the paper never: (a) provides specific\
+    \ textual evidence from CoCoHaNeRe showing the mislabeling, (b) reproduces the\
+    \ CoCoHaNeRe setup with BM25 negatives, or (c) runs BM25 negatives in its own\
+    \ framework. Without a BM25 baseline experiment, the \"correcting a misconception\"\
+    \ claim is speculative.\n\n3. **Representation geometry analysis is shallow despite\
+    \ impressive terminology.** The substance is: one encoder has pos_sim=0.99 and\
+    \ the other has pos_sim=0.80, and they respond differently. With n=2, this is\
+    \ anecdotal. The paper does not connect to existing contrastive learning theory\
+    \ on negative difficulty (Robinson et al. 2021, Kalantidis et al. 2020) or provide\
+    \ any formal relationship between pos_sim and expected mining benefit.\n\n4. **Significant\
+    \ related work gaps for a \"systematic study\":**\n   - Hard negative theory:\
+    \ Robinson et al. 2021, Kalantidis et al. 2020\n   - Contrastive learning foundations:\
+    \ SimCLR, MoCo\n   - Code representation baselines: CodeBERT, UniXcoder, CodeT5+\n\
+    \   - Structural code methods: CodeGRAG, GraphCoder, RepoGraph\n   - Curriculum-based\
+    \ mining: mentioned but never cited or compared\n\n5. **CodeQL pipeline is an\
+    \ engineering artifact, not a research contribution.** \"123 repos processed with\
+    \ zero timeouts\" is a reliability metric for a tool. The 34% instance-level coverage\
+    \ is the scientifically relevant number, and it is a significant limitation that\
+    \ makes Contribution (3) underwhelming.\n\n6. **Dataflow method is introduced\
+    \ and shown not to work, but still framed as a contribution.** The dataflow strategy\
+    \ is +0.6pp on Qwen RepoBench-R but −0.6pp on StarCoder, and −0.3pp on SWE-bench\
+    \ Lite. The \"conditional benefit mediated by representation saturation\" framing\
+    \ repackages a negative result. The honest conclusion is that dataflow negatives\
+    \ failed to demonstrate consistent value.\n\n7. **Effect sizes are too small for\
+    \ practical relevance.** +0.5–1.3pp R@1 with CIs including zero on half the setups.\
+    \ Table 14 is self-damaging: StructFuse gets +0.5–1.5pp while CodexGraph gets\
+    \ +5.2pp. The cost-benefit of a CodeQL extraction pipeline for +0.5pp is hard\
+    \ to justify.\n\n8. **No comparison with other training-time hard negative mining\
+    \ approaches.** The paper compares random, static embedding, and dataflow but\
+    \ omits ANCE-style dynamic mining as a proper baseline, in-batch negatives (DPR-style),\
+    \ and curriculum-based approaches. For a paper titled \"systematic study,\" the\
+    \ strategy space is narrow.\n\n9. **Broken bibliography.** All references appear\
+    \ as [?], making it impossible to verify the claims about prior work. This is\
+    \ a serious presentation issue.\n\n### Questions for Authors\n\n1. Can you provide\
+    \ specific passages from CoCoHaNeRe where BM25-proxy negatives are presented as\
+    \ embedding-distance negatives?\n2. Have you measured pos_sim for any encoders\
+    \ beyond Qwen and StarCoder?\n3. Why were ANCE-style dynamic mining, in-batch\
+    \ negatives, and curriculum-based mining excluded from the comparison?\n4. The\
+    \ data scaling ablation (Table 10) shows benefit diminishing from +1.8pp to +0.9pp\
+    \ as data grows. What is your estimate at 50K+ instances?\n5. Why is \"StructFuse\"\
+    \ used as a system name when the paper is positioned as an analysis? Does the\
+    \ name set incorrect expectations?\n\n---\n\n## Roundtable: Cross-Reviewer Discussion\n\
+    \n### Points of Agreement (Both Reviewers)\n\n1. **Missing BM25 baseline is the\
+    \ most critical gap.** Both reviewers independently identify this as the experiment\
+    \ most needed to substantiate the paper's central narrative. Without it, the CoCoHaNeRe\
+    \ correction claim—which motivates the entire paper—is unverified.\n\n2. **N=2\
+    \ encoders is insufficient for the representation geometry claim.** Both reviewers\
+    \ agree this limits the contribution from a \"validated mechanism\" to an \"anecdotal\
+    \ observation.\" The framing should be significantly downgraded.\n\n3. **StarCoder2-3B\
+    \ architecture is mischaracterized.** Both flag that calling it \"encoder-decoder\"\
+    \ is factually incorrect (it is decoder-only), which weakens the \"architecturally\
+    \ distinct\" narrative.\n\n4. **Ablation breadth is a genuine strength.** Both\
+    \ credit the extensive ablation suite as above-average for this subfield.\n\n\
+    5. **Honest reporting is commendable.** Both appreciate the paper's willingness\
+    \ to report null and negative results without spin.\n\n6. **Effect sizes are too\
+    \ small for practical impact.** Both note that +0.5–1.3pp R@1 with no downstream\
+    \ significance limits the paper's practical contribution.\n\n7. **Missing error\
+    \ bars on RepoBench-R** is inconsistent with the statistical rigor shown on SWE-bench.\n\
+    \n### Points of Disagreement → Resolution\n\n- **R1 (4/6) vs. R2 (3/6) on overall\
+    \ score.** R1 is more generous toward the methodology framework as a standalone\
+    \ contribution; R2 argues the novelty is thin and the central narrative is unsubstantiated.\
+    \ After cross-sharing, both agree the missing BM25 baseline is disqualifying for\
+    \ the \"correcting CoCoHaNeRe\" framing, which is the paper's primary motivation.\
+    \ R1 adjusts downward; the consensus trends toward **3/6 (Weak Reject)** with\
+    \ a path to revision.\n\n- **Is the \"analysis paper\" positioning sufficient?**\
+    \ R1 initially sees the ablation suite as carrying the paper; R2 argues analysis\
+    \ papers need deeper analytical content (connection to theory, more data points).\
+    \ Consensus: the ablations are thorough but the analysis layer (representation\
+    \ geometry) is too shallow to stand as a primary contribution.\n\n---\n\n## Consolidated\
+    \ Assessment\n\n### Summary Judgment\n\nThe paper tackles a relevant question—what\
+    \ hard negative mining strategies work for code retrieval—with above-average experimental\
+    \ discipline. The ablation breadth, honest null-result reporting, and controlled\
+    \ comparison design are genuine strengths. However, the paper has several critical\
+    \ gaps that prevent acceptance at a top venue:\n\n1. **The central narrative is\
+    \ unsubstantiated.** The \"correcting CoCoHaNeRe\" motivation requires running\
+    \ BM25 negatives to close the argument. Without this, the paper's raison d'être\
+    \ is speculative.\n\n2. **The analytical contribution is too shallow.** \"Representation\
+    \ geometry\" with n=2 encoders is an observation. Without connection to contrastive\
+    \ learning theory or validation across more models, it cannot stand as a primary\
+    \ contribution.\n\n3. **Effect sizes are marginal.** +0.5–1.3pp R@1 with CIs including\
+    \ zero on one encoder, no downstream significance, and diminishing returns at\
+    \ larger data scales collectively suggest limited practical value.\n\n4. **Presentation\
+    \ issues.** Broken bibliography ([?] throughout), StarCoder architecture mischaracterization,\
+    \ missing SWE-smith validation table, and inconsistent statistical reporting (CIs\
+    \ on SWE-bench but not RepoBench-R).\n\n### What Would Improve the Paper\n\n-\
+    \ Run a BM25 negative baseline to close the CoCoHaNeRe argument\n- Add 2–3 more\
+    \ encoders with varying pos_sim to validate the saturation hypothesis\n- Provide\
+    \ error bars/CIs on RepoBench-R results across multiple seeds\n- Fix the bibliography\
+    \ and the StarCoder architecture description\n- Add pool-size sensitivity analysis\n\
+    - Connect to hard negative theory literature (Robinson et al., Kalantidis et al.)\n\
+    - Stratify dataflow results by structural data availability (34% with data vs.\
+    \ 66% fallback)\n\n### Experiment Coverage vs. Design\n\nAll 13 imagined experiments\
+    \ are reflected in the paper: SWE-bench Lite (Tables 2–3), RepoBench-R (Table\
+    \ 1), repo complexity (Table 6), hop depth (Table 9), data scaling (Table 10),\
+    \ fusion head (Table 11), weighted vs. binary dataflow (Table 12), failure analysis\
+    \ (Tables 4–5), qualitative examples (§7), temperature ablation (Tables 7–8),\
+    \ static vs. dynamic mining (Table 13), bootstrap CIs (Table 3), and inference-time\
+    \ comparison (Table 14). Coverage is complete. The issue is not missing experiments\
+    \ but missing critical baselines (BM25) and missing statistical reporting on existing\
+    \ experiments (RepoBench-R CIs).\n\n---\n\n## Final Scores\n\n| | Score | Confidence\
+    \ |\n|---|---|---|\n| R1 (Methods + Experiments) | 4/6 → 3/6 after roundtable\
+    \ | 4/5 |\n| R2 (Novelty + Related Work) | 3/6 | 4/5 |\n| **Consolidated** | **3/6\
+    \ (Weak Reject)** | **4/5** |\n\n### Decision Rationale\n\nThe paper demonstrates\
+    \ solid experimental practice but fails to substantiate its central narrative\
+    \ (CoCoHaNeRe correction without BM25 baseline), offers insufficient analytical\
+    \ depth for an analysis paper (representation geometry on n=2), and reports effect\
+    \ sizes too small for practical significance. With the suggested revisions—particularly\
+    \ the BM25 baseline, additional encoders, and RepoBench-R error bars—this could\
+    \ become a solid contribution in a future revision cycle.\n"
+  error: ''
+- tier: worst
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/dream_reports/dream_20260514T075732/worst/paper.pdf
+  imagined_experiments:
+  - name: M2 Full Qwen — 9 seeds × 3 strategies 最终结果
+    plan_id: plan_002
+    description: 'Qwen2.5-Coder-3B 在 full-scale 数据上完成全部 27 runs (9 seeds × 3 strategies)。
+      当前仅 random_s42 完成（R@1=0.553 at step 1000），预测全部完成后的汇总。
+
+      '
+    expected_results:
+      random_mean_R1: 0.523
+      random_std_R1: 0.031
+      embedding_distance_mean_R1: 0.521
+      embedding_distance_std_R1: 0.035
+      dataflow_aware_mean_R1: 0.515
+      dataflow_aware_std_R1: 0.038
+      embed_vs_random_delta_pp: -0.2
+      dataflow_vs_random_delta_pp: -0.8
+      best_single_run_R1: 0.553
+      worst_single_run_R1: 0.478
+      cross_seed_R1_std_pp: 3.1
+      best_strategy_by_seed_count:
+        random_wins: 4
+        embedding_wins: 3
+        dataflow_wins: 2
+      overfitting_step_median: 1000
+    result_rationale: 'Pilot 的 +2.0pp embed benefit 来自单种子（s42）在小规模数据上的幸运波动。 Full-scale
+      数据量从 ~2K 增至 ~15K instances，数据分布发生系统性变化： (1) large/xlarge repos 占比从 pilot 的 ~30%
+      升至 ~60%，这些 repos 的 structural_data_rate 仅 0.31-0.34，embedding negatives 的质量下降；
+      (2) 训练集难度分布更均匀，pilot 中 embedding mining 选出的"难"样本在 full-scale 中不再难于 random——因为
+      random pool 本身已足够难； (3) Qwen 的 pos_sim=0.9855 表征饱和在 full-scale 下更严重，所有策略都面临
+      margin 过小的问题（embedding margin=0.017, 但 random margin 也仅 0.074）， 导致策略间差异被优化噪声覆盖。9
+      个种子的 std~3pp 远大于策略间 delta~0.2pp。
+
+      '
+    tables:
+    - name: 'Table 2: Qwen Full-Scale R@1 by Strategy × Seed'
+      columns:
+      - seed
+      - random
+      - embedding
+      - dataflow
+      rows:
+      - - 42
+        - 0.553
+        - 0.547
+        - 0.538
+      - - 123
+        - 0.528
+        - 0.534
+        - 0.521
+      - - 456
+        - 0.512
+        - 0.498
+        - 0.503
+      - - 789
+        - 0.541
+        - 0.543
+        - 0.53
+      - - 1024
+        - 0.498
+        - 0.51
+        - 0.496
+      - - 2048
+        - 0.519
+        - 0.522
+        - 0.512
+      - - 3000
+        - 0.505
+        - 0.503
+        - 0.478
+      - - 4096
+        - 0.53
+        - 0.517
+        - 0.525
+      - - 5000
+        - 0.523
+        - 0.515
+        - 0.532
+      footer: 'Mean±std: random 0.523±0.031, embed 0.521±0.035, dataflow 0.515±0.038'
+    figures_description:
+    - 'Fig 2a: Box plot of R@1 across 9 seeds, 3 strategies. Boxes heavily overlap,
+      medians nearly identical. Whiskers for all strategies span ~0.48-0.55. No visible
+      separation between strategy distributions.'
+    - 'Fig 2b: Per-seed R@1 line plot (x=seed, y=R@1, color=strategy). Lines interleave
+      chaotically with no consistent ordering — random leads in 4 seeds, embedding
+      in 3, dataflow in 2.'
+    analysis: '策略间 delta (<1pp) 远小于种子间方差 (std~3pp)。Pilot 单种子结果是方差范围内的 正常波动。这是 worst
+      档的核心发现：embedding benefit 是 pilot-scale 的统计幻觉。
+
+      '
+  - name: M2 Full StarCoder — 9 seeds × 3 strategies 最终结果
+    plan_id: plan_013
+    description: 'StarCoder2-3B full-scale 27 runs。当前 random_s42 R@1=0.454 at step
+      1000。
+
+      '
+    expected_results:
+      random_mean_R1: 0.443
+      random_std_R1: 0.028
+      embedding_distance_mean_R1: 0.435
+      embedding_distance_std_R1: 0.033
+      dataflow_aware_mean_R1: 0.428
+      dataflow_aware_std_R1: 0.04
+      embed_vs_random_delta_pp: -0.8
+      dataflow_vs_random_delta_pp: -1.5
+      cross_seed_R1_std_pp: 3.4
+    result_rationale: 'StarCoder pilot 已经是 negative conclusion（dataflow R@1=0.487
+      < random 0.492）。 Full-scale 放大了这个趋势：(1) StarCoder 表征空间 "healthy"（pos_sim=0.80），
+      random negatives 已提供足够梯度（margin=0.194），embedding/dataflow 引入的更难 negatives 反而导致训练不稳定——loss
+      landscape 更尖锐，不同种子落入不同局部最优； (2) dataflow negatives 在 StarCoder 上 margin=0.119
+      vs embedding 0.067， dataflow 实际上更"容易"，但 full-scale 下这个 margin 差异未能转化为性能优势， 因为
+      StarCoder 的问题不是 negative difficulty 而是编码器容量限制（3B 参数 + LoRA rank 受限时，更难 negatives
+      导致梯度冲突）。Cross-seed std 3.4pp 进一步 确认策略差异 (<1.5pp) 不可靠。
+
+      '
+    tables:
+    - name: 'Table 3: StarCoder Full-Scale R@1 by Strategy × Seed'
+      columns:
+      - seed
+      - random
+      - embedding
+      - dataflow
+      rows:
+      - - 42
+        - 0.454
+        - 0.448
+        - 0.442
+      - - 123
+        - 0.44
+        - 0.425
+        - 0.418
+      - - 456
+        - 0.462
+        - 0.456
+        - 0.44
+      - - 789
+        - 0.435
+        - 0.43
+        - 0.412
+      - - 1024
+        - 0.448
+        - 0.442
+        - 0.435
+      - - 2048
+        - 0.425
+        - 0.418
+        - 0.398
+      - - 3000
+        - 0.458
+        - 0.45
+        - 0.448
+      - - 4096
+        - 0.43
+        - 0.422
+        - 0.425
+      - - 5000
+        - 0.438
+        - 0.428
+        - 0.43
+      footer: 'Mean±std: random 0.443±0.028, embed 0.435±0.033, dataflow 0.428±0.040'
+    figures_description:
+    - 'Fig 2c: StarCoder box plot 与 Qwen 类似，三策略完全重叠。Dataflow 的 whisker 下端更低（0.398），显示更大不稳定性。'
+    analysis: 'StarCoder 上 dataflow 甚至表现最差（-1.5pp vs random），方向与 pilot 一致但 幅度更大。Embedding
+      也未能帮助。结论：两编码器在 full-scale 下均不支持任何 非 random 策略的优势。
+
+      '
+  - name: M3a SWE-bench Lite End-to-End Evaluation
+    plan_id: plan_003
+    description: 'SWE-bench Lite (300 instances) end-to-end evaluation，使用 Qwen3.6-27B
+      agent， 对比 3 个 strategy 的 best checkpoint 作为 retriever。
+
+      '
+    expected_results:
+      random_resolve_rate: 0.187
+      embedding_resolve_rate: 0.19
+      dataflow_resolve_rate: 0.183
+      embed_vs_random_delta_pp: 0.3
+      dataflow_vs_random_delta_pp: -0.4
+      swebench_resolve_delta_pp: 0.3
+      retrieval_R1_on_swebench:
+        random: 0.42
+        embedding: 0.43
+        dataflow: 0.41
+      n_instances_evaluated: 287
+      n_instances_failed: 13
+    result_rationale: 'SWE-bench Lite 的 resolve rate 由 retrieval → agent pipeline
+      多阶段组成， retriever 差异被下游 agent 的 stochasticity 大幅稀释。即使 retrieval R@1 差异 存在 1pp，经过
+      agent 的 code generation + apply patch + test 环节后，resolve rate 差异被压缩到 <0.5pp。具体原因：
+      (1) SWE-bench 中很多 "easy" instances（~30%）任何 retriever 都能找到正确文件， 策略差异为零； (2) "hard"
+      instances（~25%）任何 retriever 都找不到，agent 依赖推理能力而非检索； (3) 只有 ~45% 的中间难度 instances
+      中 retrieval 策略可能产生差异，但 agent 的 code generation variance（温度、context window 限制）进一步模糊了信号；
+      (4) 300 instances 中有效差异空间 ~135 个，0.3pp delta 对应仅 ~1 个额外解决的 instance，完全在噪声范围内。此外
+      full-scale retriever 本身策略间差异已消失， SWE-bench 只是进一步确认。
+
+      '
+    tables:
+    - name: 'Table 5: SWE-bench Lite Resolve Rates'
+      columns:
+      - strategy
+      - resolve_rate
+      - retrieval_R1
+      - n_resolved
+      - n_total
+      rows:
+      - - random
+        - 0.187
+        - 0.42
+        - 54
+        - 287
+      - - embedding_distance
+        - 0.19
+        - 0.43
+        - 55
+        - 287
+      - - dataflow_aware
+        - 0.183
+        - 0.41
+        - 53
+        - 287
+      footer: 'Best delta: +0.3pp (embed vs random), not significant (p=0.89 McNemar)'
+    figures_description:
+    - 'Fig 5: Bar chart of resolve rates, 3 bars nearly identical height (~18.5%),
+      error bars from bootstrap overlap entirely. A horizontal dashed line shows SweRank
+      baseline at ~19% for reference — our best retriever 略低于 published SweRank.'
+    analysis: 'SWE-bench 结果不仅不支持 embedding/dataflow 策略的优势，甚至所有策略的 resolve rate 都低于
+      SweRank baseline。这暗示 full-scale 训练可能引入了某种 regression（数据分布 偏移？）。需排查训练数据与 SWE-bench
+      的 domain overlap。
+
+      '
+  - name: M3b RepoBench-R Cross-File Retrieval
+    plan_id: plan_004
+    description: 'RepoBench-R 作为第二基准，retrieval-only 评估，无 LLM agent。
+
+      '
+    expected_results:
+      random_R1: 0.312
+      embedding_R1: 0.308
+      dataflow_R1: 0.295
+      embed_vs_random_delta_pp: -0.4
+      dataflow_vs_random_delta_pp: -1.7
+      random_R5: 0.58
+      embedding_R5: 0.57
+      dataflow_R5: 0.56
+      pretrained_baseline_R1: 0.285
+    result_rationale: 'RepoBench-R 是 cross-file completion 任务，与 SWE-smith 的 bug localization
+      分布差异更大。Full-scale 训练在 SWE-smith 上 overfit 的模型在 RepoBench 上 表现出不同的行为模式： (1) 所有策略都优于
+      pretrained baseline（+2-3pp），说明 contrastive fine-tuning 本身有效，但策略间差异在 domain shift
+      下被进一步压缩； (2) Dataflow negatives 在 RepoBench 上表现最差，因为 SWE-smith 的 dataflow 结构
+      （bug-fix oriented）与 RepoBench 的 completion-oriented 代码结构不匹配—— SWE-smith 中 disconnected
+      = irrelevant 的假设在 completion 场景中不成立； (3) Embedding negatives 略低于 random 是因为
+      full-scale embedding mining 选出的 negatives 过度 fit 到 SWE-smith 的相似性分布，domain shift
+      后反而损害泛化。
+
+      '
+    tables:
+    - name: 'Table 6: RepoBench-R Results (Qwen encoder)'
+      columns:
+      - strategy
+      - R@1
+      - R@5
+      - R@10
+      - MRR
+      rows:
+      - - pretrained
+        - 0.285
+        - 0.52
+        - 0.68
+        - 0.401
+      - - random
+        - 0.312
+        - 0.58
+        - 0.73
+        - 0.438
+      - - embedding_distance
+        - 0.308
+        - 0.57
+        - 0.72
+        - 0.432
+      - - dataflow_aware
+        - 0.295
+        - 0.56
+        - 0.71
+        - 0.418
+    figures_description:
+    - 'Fig 6: Grouped bar chart comparing SWE-smith val vs RepoBench-R R@1。两个 benchmark
+      上策略排序不一致——SWE-smith 上 embed≈random>dataflow，RepoBench 上 random>embed>dataflow。'
+    analysis: 'RepoBench-R 进一步证明策略差异不稳定且 domain-dependent。Dataflow 策略的负迁移 尤其严重（-1.7pp），支持
+      negative result 叙事中 "structural negatives 不 generalize" 的论点。
+
+      '
+  - name: Embedding vs Random Deep Stratified Analysis
+    plan_id: plan_005
+    description: '按 repo size、code complexity、neg_difficulty 分层分析 embedding negatives
+      的效果。
+
+      '
+    expected_results:
+      by_repo_size:
+        small_lt50:
+          random_R1: 0.61
+          embedding_R1: 0.59
+          delta_pp: -2.0
+        medium_50_200:
+          random_R1: 0.54
+          embedding_R1: 0.55
+          delta_pp: 1.0
+        large_200_500:
+          random_R1: 0.51
+          embedding_R1: 0.5
+          delta_pp: -1.0
+        xlarge_500plus:
+          random_R1: 0.48
+          embedding_R1: 0.48
+          delta_pp: 0.0
+      by_neg_difficulty_quartile:
+        easy_q1_delta_pp: 0.5
+        medium_q2_delta_pp: -0.3
+        hard_q3_delta_pp: -1.2
+        hardest_q4_delta_pp: -2.1
+      correlation_margin_vs_benefit: -0.15
+      correlation_repo_size_vs_benefit: -0.08
+    result_rationale: '分层分析揭示 embedding benefit 不是"消失"而是"抵消"——在某些 strata 正向、 其他 strata
+      负向，总和接近零： (1) Small repos 上 embedding mining 实际有害（-2pp），因为小 repo 的 file pool
+      只有 ~10-50 个文件，embedding mining 选出的 "nearest" negative 往往就是 gold file 的近邻（同一个
+      module），形成 false hard negatives 损害训练信号； (2) Medium repos 上 embedding 略有优势（+1pp），因为
+      pool 足够大使 mining 选到 真正的 hard negatives，且难度梯度合理； (3) Large/xlarge repos 上差异消失，因为
+      random sampling 在大 pool 中已经有合理 概率采到 moderately hard negatives，embedding mining
+      的额外选择性优势被稀释； (4) 按 neg_difficulty 分层更清晰：最难 quartile（margin 最小）中 embedding 有害
+      （-2.1pp），因为过难的 negatives 导致梯度冲突/训练不稳定。这解释了为什么 full-scale（更多 large repos → 更多
+      hard quartile instances）中 benefit 消失。
+
+      '
+    tables:
+    - name: 'Table 7: Embedding Benefit by Repo Size'
+      columns:
+      - repo_tier
+      - n_instances
+      - random_R1
+      - embed_R1
+      - delta_pp
+      rows:
+      - - small (<50)
+        - 500
+        - 0.61
+        - 0.59
+        - -2.0
+      - - medium (50-200)
+        - 4096
+        - 0.54
+        - 0.55
+        - 1.0
+      - - large (200-500)
+        - 13628
+        - 0.51
+        - 0.5
+        - -1.0
+      - - xlarge (500+)
+        - 25949
+        - 0.48
+        - 0.48
+        - 0.0
+    figures_description:
+    - 'Fig 7a: Scatter plot of per-instance embedding benefit (Δ R@1) vs neg_difficulty
+      margin. Weak negative correlation (r=-0.15). Cloud centered around zero, no
+      clear trend.'
+    - 'Fig 7b: Heatmap of embedding benefit across repo_size × difficulty quartile.
+      Only one cell (medium × easy) is clearly positive. Most cells near zero or negative.'
+    analysis: '核心发现：embedding benefit 是 repo size 和 negative difficulty 的函数， 在 pilot
+      的 data composition 下恰好为正，在 full-scale 的 data composition 下 恰好为零或负。这不是方法失败，而是
+      pilot evaluation bias——小规模评估 over-represents 中等 repo，恰好是 embedding mining 的
+      sweet spot。
+
+      '
+  - name: Hop-Distance Call-Graph Bounding Ablation
+    plan_id: plan_007
+    description: '1-hop vs 2-hop vs 3-hop call-graph bounding 对 dataflow negative
+      质量的影响。
+
+      '
+    expected_results:
+      hop_1:
+        connected_pct: 0.12
+        disconnected_neg_margin: 0.035
+        training_R1: 0.513
+      hop_2:
+        connected_pct: 0.34
+        disconnected_neg_margin: 0.029
+        training_R1: 0.515
+      hop_3:
+        connected_pct: 0.58
+        disconnected_neg_margin: 0.022
+        training_R1: 0.51
+      delta_1hop_vs_2hop_pp: -0.2
+      delta_2hop_vs_3hop_pp: 0.5
+      all_vs_random_best_pp: -0.8
+    result_rationale: 'Hop distance 改变 connected/disconnected 的划分粒度，但在 worst 档下无法拯救
+      dataflow 策略： (1) 1-hop 过于严格（仅 12% connected），大量 gold-relevant files 被错误标记为 disconnected，产生大量
+      false hard negatives → 训练信号受损； (2) 2-hop（当前设置）是 pilot 中的最优，但 full-scale 下效果与
+      random 无异； (3) 3-hop 过于宽泛（58% connected），disconnected pool 缩小到几乎只剩 truly unrelated
+      files，这些 negatives 太容易（margin=0.022），训练信号退化为 接近 random sampling 的效果但 pool 更小；
+      (4) 三种 hop 设置的 R@1 范围仅 0.510-0.515，都低于 random baseline 0.523， 说明 structural
+      bounding 本身在 full-scale 下不是一个有效的 negative selection 维度——问题出在 "结构断开≠语义无关" 这个核心假设。
+
+      '
+    tables:
+    - name: 'Table 8: Hop-Distance Ablation (Qwen, seed 42)'
+      columns:
+      - hops
+      - connected_pct
+      - disconn_margin
+      - R@1
+      - vs_random_pp
+      rows:
+      - - 1
+        - 0.12
+        - 0.035
+        - 0.513
+        - -1.0
+      - - 2
+        - 0.34
+        - 0.029
+        - 0.515
+        - -0.8
+      - - 3
+        - 0.58
+        - 0.022
+        - 0.51
+        - -1.3
+      - - random
+        - '-'
+        - '-'
+        - 0.523
+        - 0.0
+    figures_description:
+    - 'Fig 8: Line plot of R@1 vs hop distance, with random baseline as horizontal
+      dashed line. All 3 hop settings below baseline. Curve is nearly flat.'
+    analysis: 'Hop distance 是 second-order 参数——当 first-order 效应（结构断开作为 hardness proxy）
+      本身无效时，调节粒度无法改变结论。
+
+      '
+  - name: Training Data Size Scaling Ablation
+    plan_id: plan_008
+    description: '1K vs 3K vs 5K（当前 full-scale ~15K instances 中子采样）对策略差异的影响。
+
+      '
+    expected_results:
+      size_1k:
+        random_R1: 0.505
+        embedding_R1: 0.518
+        dataflow_R1: 0.512
+        embed_delta_pp: 1.3
+      size_3k:
+        random_R1: 0.515
+        embedding_R1: 0.52
+        dataflow_R1: 0.513
+        embed_delta_pp: 0.5
+      size_5k:
+        random_R1: 0.52
+        embedding_R1: 0.521
+        dataflow_R1: 0.516
+        embed_delta_pp: 0.1
+      size_15k_full:
+        random_R1: 0.523
+        embedding_R1: 0.521
+        dataflow_R1: 0.515
+        embed_delta_pp: -0.2
+      embed_benefit_slope_per_1k: -0.11
+    result_rationale: '这个 ablation 精确解释了 pilot-to-full-scale discrepancy 的机制： (1)
+      1K instances（≈pilot 规模）复现了 pilot 的 embedding benefit（+1.3pp）， 确认 pilot 结果本身没有
+      bug——在小规模下 embedding mining 确实有效； (2) 随数据量增长，benefit 单调递减（斜率≈-0.11pp per 1K
+      instances）； (3) 原因是 data scaling 改变了有效 negative difficulty 分布——1K 时 random pool
+      中真正 hard 的 negatives 极少（小 pool → 大多是 easy negatives），embedding mining 通过选择 nearest
+      neighbors 提供了必要的 difficulty gradient。但随着 pool 增大， random sampling 的"命中率"自然上升，embedding
+      mining 的增量价值趋零； (4) 5K 处 delta 已缩至 0.1pp（不显著），15K 处反转为 -0.2pp； (5) 这是 negative
+      result paper 的关键证据：small-scale evaluation 系统性高估 hard negative mining 的收益，因为
+      scale 本身就是一种隐性的 negative difficulty 调节器。
+
+      '
+    tables:
+    - name: 'Table 9: Data Size × Strategy Interaction'
+      columns:
+      - data_size
+      - random_R1
+      - embed_R1
+      - dataflow_R1
+      - embed_delta
+      rows:
+      - - 1K
+        - 0.505
+        - 0.518
+        - 0.512
+        - 1.3
+      - - 3K
+        - 0.515
+        - 0.52
+        - 0.513
+        - 0.5
+      - - 5K
+        - 0.52
+        - 0.521
+        - 0.516
+        - 0.1
+      - - 15K (full)
+        - 0.523
+        - 0.521
+        - 0.515
+        - -0.2
+    figures_description:
+    - 'Fig 9: Dual-axis plot. Left axis: R@1 for each strategy (3 lines converging
+      as data size grows). Right axis: embed_delta_pp (descending line crossing zero
+      between 5K and 15K). Clear visual narrative of benefit disappearing with scale.'
+    analysis: '这张图是论文的核心 figure——直观展示 "hard negative mining 的收益随数据规模递减 并最终消失" 的 scaling
+      law。对 negative result paper 的贡献极大，因为它提供了 可预测的量化关系，而非仅仅 "结果没复现" 的定性陈述。
+
+      '
+  - name: Fusion Head Architecture Ablation
+    plan_id: plan_009
+    description: 'Embedding-only vs structural-features-only vs combined fusion head，
+      测试结构特征是否通过不同 fusion 方式提供价值。
+
+      '
+    expected_results:
+      embedding_only_R1: 0.523
+      structural_only_R1: 0.385
+      combined_R1: 0.519
+      embed_only_vs_combined_pp: 0.4
+    result_rationale: 'Fusion head 架构无法从无到有创造 structural signal 的价值： (1) Embedding-only
+      head 与 random strategy 性能相当（0.523），因为 LoRA fine-tuned embeddings 本身已捕获了足够的 code
+      similarity 信息； (2) Structural-features-only head 大幅下降至 0.385——结构特征（is_connected,
+      dataflow_distance, call_graph_hops）单独不足以判断 relevance，因为大部分 file pairs 的结构特征是
+      sparse 的（structural_data_rate=0.34，66% pairs 无结构信息）； (3) Combined head 反而略低于
+      embedding-only（-0.4pp），因为 noisy structural features 干扰了 embedding signal——当
+      66% instances 的结构特征为 null/zero 时， fusion layer 必须学会忽略结构维度，但 LoRA 的低秩约束使这个 "ignore"
+      信号 不够干净； (4) 这进一步支持了 structural signal 在 full-scale 下无效的结论。
+
+      '
+    tables:
+    - name: 'Table 10: Fusion Head Ablation (Qwen, seed 42)'
+      columns:
+      - head_type
+      - R@1
+      - R@5
+      - val_loss
+      rows:
+      - - embedding_only
+        - 0.523
+        - 0.955
+        - 0.486
+      - - structural_features
+        - 0.385
+        - 0.78
+        - 0.812
+      - - combined
+        - 0.519
+        - 0.95
+        - 0.495
+    figures_description:
+    - 'Fig A1 (appendix): Attention weight visualization for combined head — structural
+      feature attention weights converge toward zero during training, model learns
+      to ignore them.'
+    analysis: '结构特征作为独立信号维度不足，作为辅助信号有害。这排除了 "也许 dataflow 信号有用 但 negative mining 不是正确的注入方式"
+      的替代假设。
+
+      '
+  - name: Dataflow-Distance Weighted vs Binary Negatives
+    plan_id: plan_010
+    description: '连续 dataflow distance 加权 vs 二元 connected/disconnected 的 negative
+      selection。
+
+      '
+    expected_results:
+      binary_disconnected_R1: 0.515
+      distance_weighted_R1: 0.517
+      delta_pp: 0.2
+      vs_random_pp: -0.6
+    result_rationale: 'Distance weighting 是对 binary disconnected 的细化——用 shortest dataflow
+      path length 作为权重偏好更远的（更 disconnected）negatives。但在 worst 档下改进微乎其微 （+0.2pp vs
+      binary），因为： (1) 核心问题不是 negative selection 的粒度，而是 structural disconnection 作为
+      hardness proxy 本身的有效性——weighted 版本在一个无效信号上做更精细的选择， 不改变根本问题； (2) 距离信息 noisy——CodeQL
+      的 dataflow path 是 approximation，real shortest path 与 estimated path 的相关性仅 ~0.6（由于
+      scope bounding），weighting 基于 noisy distance 引入额外噪声； (3) 两个版本都低于 random baseline（-0.6pp），进一步确认结构信号无效。
+
+      '
+    tables: []
+    figures_description:
+    - 'Fig A2 (appendix): Histogram of dataflow distances for weighted negatives.
+      Most distances clustered at 2-3 hops, very few at 5+. Distribution too concentrated
+      to provide meaningful difficulty gradient.'
+    analysis: '细化无效信号的粒度不改善性能。这是对 "也许我们只需要更好的结构度量" 假设的反驳。
+
+      '
+  - name: 'Failure Analysis: 50 SweRank/BM25 Failures'
+    plan_id: plan_011
+    description: '对 50 个 SweRank/BM25 检索失败的 SWE-bench instances 进行手动分类， 分析 dataflow
+      信号是否能帮助。
+
+      '
+    expected_results:
+      n_analyzed: 50
+      categories:
+        cross_file_dependency: 18
+        naming_ambiguity: 12
+        scattered_changes: 9
+        test_file_confusion: 7
+        other: 4
+      dataflow_could_help: 6
+      dataflow_actually_helped: 2
+      dataflow_hurt: 3
+      dataflow_neutral: 39
+    result_rationale: '手动分析 50 个失败案例后发现 dataflow 信号能帮助的场景远少于预期： (1) Cross-file dependency（18
+      cases）是 dataflow 理论上的 sweet spot，但实际 仅 4/18 有可用的 CodeQL dataflow 路径——其余 14 个的
+      dependency 是通过 import、 type reference 或 configuration 而非 data flow，CodeQL 的
+      inter-procedural analysis 未覆盖这些； (2) Naming ambiguity（12 cases）中 dataflow 无法帮助——问题是同名函数/类在
+      不同 module 中，structural 和 textual signal 同时失效； (3) 6 个理论上 dataflow 可帮助的 cases
+      中，仅 2 个实际在 dataflow-trained model 中被正确检索——另 4 个因训练不稳定/过拟合而性能退化抵消了理论优势； (4) 3
+      个 cases 中 dataflow 实际有害——将结构上相关但 gold set 外的文件排入 top-1，挤掉了正确答案。
+
+      '
+    tables:
+    - name: 'Table 11: Failure Category Analysis'
+      columns:
+      - category
+      - count
+      - df_could_help
+      - df_actually_helped
+      - df_hurt
+      rows:
+      - - cross_file_dep
+        - 18
+        - 4
+        - 1
+        - 1
+      - - naming_ambiguity
+        - 12
+        - 0
+        - 0
+        - 1
+      - - scattered_changes
+        - 9
+        - 2
+        - 1
+        - 1
+      - - test_confusion
+        - 7
+        - 0
+        - 0
+        - 0
+      - - other
+        - 4
+        - 0
+        - 0
+        - 0
+      - - total
+        - 50
+        - 6
+        - 2
+        - 3
+    figures_description:
+    - 'Fig 10: Sankey diagram from failure categories → dataflow applicability → actual
+      outcome. Visual shows most flow going to ''neutral'' — dataflow signal is irrelevant
+      to most failure modes.'
+    analysis: 'Dataflow 的理论覆盖面（12% = 6/50 可能帮助）和实际有效率（4% = 2/50 实际帮助） 远低于立论所需。对 negative
+      result paper 的贡献：提供 error taxonomy 证明 structural signal 的适用范围窄于预期。
+
+      '
+  - name: 'Qualitative Examples: Structural Negatives Impact'
+    plan_id: plan_012
+    description: '挑选 5-10 个 structural negatives 改变检索结果的定性案例。
+
+      '
+    expected_results:
+      positive_examples_found: 3
+      negative_examples_found: 4
+      neutral_examples: 3
+      net_narrative: negative
+    result_rationale: '在 worst 档下，能找到的正面案例数量与负面案例相当甚至更少： (1) 3 个正面案例：dataflow training
+      将结构相关文件从 top-5 提升到 top-1， 但这些改善也出现在 embedding strategy 的部分种子中，不能归因于 dataflow；
+      (2) 4 个负面案例：dataflow training 将结构上相近但 gold set 外的文件推高排名， 挤掉了正确答案。典型模式：文件 A 通过
+      data flow 连接到 gold file B， dataflow 策略错误地将 A 排在 B 之前； (3) 3 个中性案例：dataflow 改变了
+      top-10 内的排序但不影响 top-1/top-5； (4) 定性分析 net negative，无法支撑 paper 中的正面叙事。对 negative
+      result paper 可用——展示 structural negatives 的 failure modes。
+
+      '
+    tables: []
+    figures_description:
+    - 'Fig A3: Side-by-side retrieval ranking comparison (random vs dataflow) for
+      3 positive and 3 negative cases. Each case shows query, top-5 files, gold files
+      highlighted. Negative cases are more dramatic — rank drops from 1→4.'
+    analysis: '定性证据反而支持 negative result 叙事。典型 failure mode（structural proximity ≠
+      task relevance）是重要的methodological insight。
+
+      '
+  - name: 'Temperature Ablation: τ ∈ {0.05, 0.1, 0.2}'
+    plan_id: plan_014
+    description: '三个温度 × 三个策略，测试 embedding benefit 是否是温度 regime-specific。
+
+      '
+    expected_results:
+      tau_005:
+        random_R1: 0.498
+        embedding_R1: 0.485
+        dataflow_R1: 0.475
+        embed_delta_pp: -1.3
+      tau_010:
+        random_R1: 0.523
+        embedding_R1: 0.521
+        dataflow_R1: 0.515
+        embed_delta_pp: -0.2
+      tau_020:
+        random_R1: 0.51
+        embedding_R1: 0.508
+        dataflow_R1: 0.502
+        embed_delta_pp: -0.2
+      best_overall_tau: 0.1
+      any_tau_with_significant_embed_benefit: false
+    result_rationale: '温度调节改变 contrastive loss 对 similarity margin 的敏感度，但无法拯救无效的 mining
+      strategy： (1) τ=0.05 使 loss 对 margin 极其敏感——在 Qwen 的 saturated space （pos_sim=0.9855,
+      embedding neg_sim=0.9685, margin=0.017）中，如此小的 margin 在 τ=0.05 下产生几乎相同的 loss
+      贡献，embedding negatives 等于 random。 但更严重的是 τ=0.05 放大了个别 extreme negative 的梯度，导致训练不稳定，
+      所有策略性能下降（尤其 dataflow，因为 dataflow negatives 的 margin distribution 更 heavy-tailed）；
+      (2) τ=0.10（当前默认）是最优温度，但策略间无显著差异； (3) τ=0.20 使 loss 对 margin 不够敏感——hard negatives
+      的额外 difficulty 被 soft temperature 压缩，embedding/dataflow mining 的理论优势被进一步稀释；
+      (4) 没有任何温度 regime 能让 embedding benefit 达到统计显著，因为 full-scale 下策略间的 "信号" 本身不存在（是
+      pilot 的噪声），温度只是调节 loss landscape 的曲率，不能创造信号。
+
+      '
+    tables:
+    - name: 'Table 12: Temperature × Strategy Interaction (Qwen, mean of 3 seeds)'
+      columns:
+      - tau
+      - random
+      - embedding
+      - dataflow
+      - best_strategy
+      rows:
+      - - 0.05
+        - 0.498
+        - 0.485
+        - 0.475
+        - random
+      - - 0.1
+        - 0.523
+        - 0.521
+        - 0.515
+        - random
+      - - 0.2
+        - 0.51
+        - 0.508
+        - 0.502
+        - random
+    figures_description:
+    - 'Fig 11: 3×3 heatmap (τ × strategy), color = R@1. Random column consistently
+      darkest (highest). No cell in embed/dataflow columns exceeds corresponding random
+      cell.'
+    analysis: 'Temperature 不是 confound——在所有温度 regime 下，random 策略都是最优或并列最优。 排除了 "pilot
+      的 embedding benefit 是因为 τ=0.1 恰好适合 embedding mining" 的假设。
+
+      '
+  - name: Dynamic Embedding Mining vs Static
+    plan_id: plan_015
+    description: 'Per-epoch 重新 mining embedding negatives vs 一次性从 pretrained model
+      mining。
+
+      '
+    expected_results:
+      static_embedding_R1: 0.521
+      dynamic_epoch1_R1: 0.521
+      dynamic_epoch2_R1: 0.519
+      dynamic_epoch3_R1: 0.515
+      dynamic_mean_R1: 0.518
+      dynamic_vs_static_pp: -0.3
+      dynamic_vs_random_pp: -0.5
+    result_rationale: 'Dynamic mining 理论上解决 "pretrained embedding 与 fine-tuned embedding
+      偏移导致 negatives 过时" 的问题。但在 worst 档下非但不改善，反而略有下降： (1) Epoch 1 dynamic ≈ static（因为
+      epoch 1 开始时 model 就是 pretrained， mining 结果相同）； (2) Epoch 2-3 的 re-mining 产生了
+      curriculum shift 效应——随着 model 改善， nearest neighbors 改变，新选出的 negatives 更难但也更
+      noisy（因为 fine-tuned model 的 embedding space 在 LoRA 下只部分更新，re-mining 的 nearest
+      neighbors 可能是 LoRA 的 artifacts 而非真正的 hard negatives）； (3) Re-mining 引入的计算开销显著（每
+      epoch 需重新编码全部 ~44K instances， ~2h per re-mining），cost-benefit 明显不值得； (4) Dynamic
+      mining 的失败进一步证明问题不是 "mining 过时" 而是 "mining 本身 在大规模下无效"。
+
+      '
+    tables:
+    - name: 'Table 13: Static vs Dynamic Mining (Qwen, seed 42)'
+      columns:
+      - method
+      - epoch1_R1
+      - epoch2_R1
+      - epoch3_R1
+      - best_R1
+      rows:
+      - - static
+        - 0.54
+        - 0.53
+        - 0.512
+        - 0.54
+      - - dynamic
+        - 0.54
+        - 0.525
+        - 0.505
+        - 0.54
+      - - random
+        - 0.535
+        - 0.528
+        - 0.51
+        - 0.535
+    figures_description:
+    - 'Fig A4: Training curves (R@1 vs step) for static, dynamic, random. Three nearly
+      overlapping curves with dynamic showing slightly more variance.'
+    analysis: 'Dynamic mining 排除了 "staleness" 作为 embedding mining 失效的解释。 Mining 策略本身在大规模下不提供增量价值。
+
+      '
+  - name: Bootstrap CI for SWE-bench Resolve Rates
+    plan_id: plan_016
+    description: '10,000 bootstrap resamples 计算 SWE-bench resolve rate 的 95% CI。
+
+      '
+    expected_results:
+      random_resolve_rate: 0.187
+      random_95ci:
+      - 0.143
+      - 0.232
+      embedding_resolve_rate: 0.19
+      embedding_95ci:
+      - 0.147
+      - 0.235
+      dataflow_resolve_rate: 0.183
+      dataflow_95ci:
+      - 0.14
+      - 0.228
+      embed_vs_random_delta: 0.003
+      embed_vs_random_delta_95ci:
+      - -0.038
+      - 0.045
+      embed_benefit_bootstrap_p: 0.78
+      dataflow_vs_random_delta: -0.004
+      dataflow_vs_random_delta_95ci:
+      - -0.048
+      - 0.038
+    result_rationale: 'Bootstrap CI 极宽（±4-5pp），因为 SWE-bench Lite 仅 300 instances，
+      有效样本更少（~287 after failures）： (1) 单策略 CI 宽度 ~9pp（±4.5pp），策略间 delta（0.3pp）远小于
+      CI 宽度； (2) Paired delta CI [-3.8pp, +4.5pp] 包含零且两侧几乎对称——没有任何方向性信号； (3) Bootstrap
+      p=0.78 远高于任何合理显著性阈值，确认 delta 不显著； (4) 即使使用 pilot 阶段的 +2.0pp delta，在 n=287 下的
+      power analysis 显示 需要 ~2000 instances 才能在 α=0.05 下 detect 2pp 的差异——SWE-bench
+      Lite 本质上 underpowered for 这个效应量； (5) 对 negative result paper 有力：不仅 point estimate
+      接近零，统计检验也 确认无法拒绝零假设。
+
+      '
+    tables:
+    - name: 'Table 14: SWE-bench Bootstrap Statistics'
+      columns:
+      - comparison
+      - delta_pp
+      - 95%_CI
+      - p_value
+      - interpretation
+      rows:
+      - - embed vs random
+        - 0.3
+        - '[-3.8, +4.5]'
+        - 0.78
+        - not significant
+      - - dataflow vs random
+        - -0.4
+        - '[-4.8, +3.8]'
+        - 0.68
+        - not significant
+      - - dataflow vs embed
+        - -0.7
+        - '[-5.2, +3.5]'
+        - 0.55
+        - not significant
+    figures_description:
+    - 'Fig 12: Bootstrap distribution of embed_vs_random delta. Gaussian-shaped, centered
+      near zero. Vertical dashed lines at 95% CI. Shaded region under the null hypothesis.
+      ~78% of distribution above zero but CI includes large negative values.'
+    analysis: '统计分析确认 SWE-bench 差异不显著。Power analysis 证明 SWE-bench Lite 的 n=300 本质上无法
+      detect <5pp 的 retriever 差异——这本身是一个 methodological contribution for the negative
+      result paper。
+
+      '
+  - name: Inference-Time Graph Method Discussion
+    plan_id: plan_017
+    description: '与 CodexGraph, LocAgent 等 inference-time graph 方法的定性比较讨论。
+
+      '
+    expected_results:
+      locagent_reported_resolve_rate: 0.262
+      our_best_resolve_rate: 0.19
+      codexgraph_reported_R1: 0.48
+      our_best_R1: 0.523
+      complementarity_evidence: none
+    result_rationale: 'Inference-time graph methods 在 SWE-bench 上的表现远优于我们的 training-time
+      structural mining approach： (1) LocAgent 报告 26.2% resolve rate（vs 我们的 ~19%），差距主要来自
+      LocAgent 使用 runtime graph navigation（动态探索 call graph at inference）， 而我们的 structural
+      signal 仅用于 static training-time negative selection—— 本质是两种完全不同的信息利用方式； (2) 在
+      worst 档下我们无法证明 "training-time structural mining 与 inference-time graph navigation
+      互补"——因为 training-time mining 本身无效，所以无互补可言； (3) 这个比较反而支持 inference-time graph
+      methods 是更有效的结构信息利用范式—— structural signal 的价值在 navigation（决定下一步看什么文件）而非 mining
+      （决定训练用什么负样本）； (4) 对 negative result paper 的 framing 有帮助：可以用 inference-time methods
+      的成功来反衬 training-time mining 的失败，论证 "structural information 有价值 但应在 inference
+      time 使用" 这一 insight。
+
+      '
+    tables:
+    - name: 'Table 15: Training-Time vs Inference-Time Structure Utilization'
+      columns:
+      - method
+      - structure_usage
+      - SWE_bench_resolve
+      - retrieval_R1
+      rows:
+      - - ours (random)
+        - training negatives
+        - 0.187
+        - 0.523
+      - - ours (dataflow)
+        - training negatives
+        - 0.183
+        - 0.515
+      - - LocAgent
+        - inference navigation
+        - 0.262
+        - '-'
+      - - CodexGraph
+        - inference navigation
+        - '-'
+        - 0.48*
+      footer: '*CodexGraph R@1 on different benchmark, not directly comparable'
+    figures_description:
+    - 'Fig 13: Conceptual diagram contrasting training-time mining (static, one-shot
+      selection → training data → fixed model) vs inference-time navigation (dynamic,
+      per-query graph exploration). Highlight: structural signal is most valuable
+      when it can adapt to the specific query.'
+    analysis: '这个比较将 negative result 升华为 positive insight：结构信息的价值在于 query-adaptive
+      navigation，而非 static negative mining。这为 related work section 提供了 coherent narrative。
+
+      '
+  - name: Data Pipeline Distribution Audit
+    plan_id: pre_analysis
+    description: '排查 full-scale 训练数据与 pilot 数据的分布差异，确认 negative result 是真实的 而非工程错误。
+
+      '
+    expected_results:
+      pilot_vs_full_repo_overlap: 0.85
+      pilot_mean_files_per_repo: 45
+      full_mean_files_per_repo: 185
+      pilot_difficulty_distribution_ks_p: 0.003
+      pilot_structural_rate: 0.58
+      full_structural_rate: 0.34
+      data_bug_found: false
+      distribution_shift_confirmed: true
+      shift_severity: moderate
+    result_rationale: 'Full-scale 数据没有 pipeline bug，但存在明确的分布偏移： (1) Pilot 用了 ~2K instances
+      从 8-10 个 medium-size repos，structural_data_rate=0.58 （大部分 instances 有结构信息）。Full-scale
+      15K instances 来自 123 repos， dominated by large/xlarge repos（69/123），structural_data_rate=0.34——
+      几乎一半 instances 在 full-scale 中没有结构信息，dataflow strategy 只能 fallback 到 random selection；
+      (2) KS test 确认难度分布显著不同（p=0.003）——full-scale 中 easy instances （大 repo 中的 trivially
+      locatable bugs）比例更高，被所有策略轻松解决， 稀释了策略间差异； (3) 这不是 "bug" 而是 "pilot selection bias"——pilot
+      repos 被挑选为 CodeQL-friendly （high structural coverage），不代表真实分布。这个 audit 本身是重要的
+      methodological contribution，论证了 pilot evaluation 的 sampling bias 问题。
+
+      '
+    tables:
+    - name: 'Table A1: Pilot vs Full-Scale Data Distribution'
+      columns:
+      - metric
+      - pilot
+      - full_scale
+      - p_value
+      rows:
+      - - n_instances
+        - ~2000
+        - 15133
+        - '-'
+      - - n_repos
+        - 8
+        - 123
+        - '-'
+      - - structural_rate
+        - 0.58
+        - 0.34
+        - <0.001
+      - - mean_files_per_repo
+        - 45
+        - 185
+        - <0.001
+      - - median_neg_margin_embed
+        - 0.025
+        - 0.017
+        - 0.003
+      - - pct_large_repos
+        - 0.3
+        - 0.56
+        - <0.001
+    figures_description:
+    - 'Fig A5: Overlaid density plots of neg_difficulty margin for pilot (blue) vs
+      full-scale (red) data. Full-scale distribution shifted left (easier negatives)
+      with heavier right tail. Clear visual evidence of distribution shift.'
+    analysis: Distribution audit 确认 negative result 是真实的——pilot selection bias 导致了
+      不可复现的初始结论。这个 audit 是 negative result paper 的必要组成部分， 否则 reviewer 会质疑 "是不是你代码有
+      bug"。
+  review_report: "---\ndream_id: dream_20260514T075732\ntier: worst\noverall_score:\
+    \ weak reject\ntimestamp: 2026-05-14T08:44:44.239047+00:00\n---\n\n# Dream Review\
+    \ Report: \"A Cautionary Tale: Scale, Seeds, and the Fragility of Hard Negative\
+    \ Mining for Code Retrieval\"\n\n**Review Mode**: Full (2 Reviewers + Roundtable)\n\
+    **Date**: 2026-05-14\n**Venue Standard**: Top ML venue, ~25% acceptance rate,\
+    \ 6-point scale\n\n---\n\n## Roundtable Summary\n\n| Reviewer | Focus | Independent\
+    \ Score | Post-Discussion Score |\n|----------|-------|:-:|:-:|\n| R1 | Methods\
+    \ + Experiments | 4/6 (Weak Accept) | 3/6 (Weak Reject) |\n| R2 | Novelty + Related\
+    \ Work | 3/6 (Weak Reject) | 3/6 (Weak Reject) |\n| **Consensus** | | | **3/6\
+    \ (Weak Reject)** |\n\n**Confidence**: 4/5\n\n---\n\n## Step 1: Independent Reviews\n\
+    \n### R1 (Methods + Experiments)\n\n**Strengths identified:**\n- 54 full-scale\
+    \ runs (9 seeds × 3 strategies × 2 encoders) far exceeds field standard of 1–3\
+    \ seeds\n- Negative result is genuine and well-powered: strategy deltas <1pp vs\
+    \ seed std ~3pp\n- Comprehensive ablation coverage: temperature, hop distance,\
+    \ fusion head, dynamic mining, distance weighting, data size scaling\n- Data pipeline\
+    \ audit (Table 9) responsibly rules out engineering bugs\n- Bootstrap CIs and\
+    \ McNemar's test are appropriate statistical choices\n\n**Major weaknesses:**\n\
+    1. **Confounded pilot-to-full comparison**: The transition from pilot (2K, 8 repos)\
+    \ to full-scale (15K, 123 repos) changes data volume AND data distribution simultaneously\
+    \ (structural_rate 0.58→0.34, files/repo 45→185, large repos 30%→56%). Table 7's\
+    \ subsampling experiment draws from the full-scale distribution, so it cannot\
+    \ reproduce the pilot's distribution. The paper cannot distinguish \"scale kills\
+    \ signal\" from \"distribution kills signal,\" yet the entire narrative rests\
+    \ on the scale interpretation.\n2. **No mechanistic explanation**: Qwen's representation\
+    \ saturation (pos_sim=0.9855) exists at both pilot and full scale. If saturation\
+    \ explains when dataflow helps, why does the signal exist in pilot but not full?\
+    \ The paper diagnoses *what* happens but not *why*.\n3. **Missing neg_difficulty\
+    \ quartile analysis**: Explicitly planned but absent. This analysis would directly\
+    \ reveal whether the pilot's difficulty distribution differs from full-scale,\
+    \ providing the missing mechanistic link.\n4. **\"Scaling law\" overfit**: 4 data\
+    \ points (1K, 3K, 5K, 15K) with no confidence intervals, no cross-encoder validation\
+    \ (StarCoder scaling not shown), reported to 2 decimal places (-0.11pp/1K). Does\
+    \ not merit the term \"law.\"\n\n**Minor weaknesses:**\n- Temperature ablation\
+    \ (Table 11): Random best at all τ, including τ=0.05 where hard negatives should\
+    \ matter most — contradicts the mechanistic story\n- Failure analysis (Table 10)\
+    \ backfires: dataflow actually helped 2/50 but hurt 3/50 — net negative in its\
+    \ own target use case\n- SWE-bench results (McNemar p=0.89) are completely null,\
+    \ adding length without evidence\n- LocAgent comparison (26.2% vs ~19%) is unflattering\
+    \ and inadequately discussed\n- Dataflow distance weighting (§6.5) has no table\
+    \ — just one sentence\n- Qualitative examples from the experiment plan are entirely\
+    \ absent\n\n**Initial score: 4/6** — The experimental scale and honest negative\
+    \ result reporting are above average, but the confounded comparison and incomplete\
+    \ mechanistic story prevent a clean accept.\n\n---\n\n### R2 (Novelty + Related\
+    \ Work)\n\n**Strengths identified:**\n- The specific demonstration that embedding\
+    \ mining benefit decays with data scale in code retrieval is a concrete, falsifiable\
+    \ observation\n- 54-run comparison practices what the paper preaches about multi-seed\
+    \ evaluation\n- Pilot vs full-scale distributional audit is methodologically instructive\n\
+    - \"Cautionary tale\" framing is effective for a negative result paper\n\n**Major\
+    \ weaknesses:**\n1. **Novelty is thin**: The central message — small-scale evaluations\
+    \ are unreliable, hard negative mining has diminishing returns at scale — is established\
+    \ knowledge in ML. Henderson et al. (2018), Dodge et al. (2019), Bouthillier et\
+    \ al. (2021) make the same argument in other domains. DPR showed BM25 negatives\
+    \ matter less as training scales. The paper treats these as discoveries rather\
+    \ than connecting to established patterns.\n2. **Related work severely insufficient**:\
+    \ 9 citations in 3 short paragraphs for a 10-page analysis paper. Missing entire\
+    \ categories:\n   - Evaluation methodology: Henderson 2018, Dodge 2019, Bouthillier\
+    \ 2021, Lucic 2018\n   - Hard negative theory: Robinson 2021, Kalantidis 2020,\
+    \ Chuang 2020\n   - Contrastive learning foundations: SimCLR, MoCo, DPR\n   -\
+    \ Code representation baselines: CodeBERT, CodeT5+, UniXcoder, StarCoder original\
+    \ paper\n   - Structural code methods: RepoGraph, RANGER, GraphCoder, CodeGRAG\n\
+    3. **CoCoHaNeRe critique unsubstantiated**: The paper's opening motivation claims\
+    \ CoCoHaNeRe \"conflated BM25-proxy negatives with true embedding-distance negatives.\"\
+    \ This is asserted but never empirically verified — no BM25 baseline is run. For\
+    \ a paper whose motivation rests on \"correcting\" a prior work, this is a disqualifying\
+    \ gap.\n4. **\"Architecturally distinct\" claim questionable**: Both Qwen2.5-Coder-3B\
+    \ and StarCoder2-3B are decoder-only transformers. They differ in pretraining\
+    \ data/procedure, not architecture. This weakens the generalization argument.\n\
+    5. **14 tables, 0 figures**: The scaling law cries out for a line plot. Per-seed\
+    \ results need box plots. Failure taxonomy would benefit from a Sankey diagram.\
+    \ The all-tables presentation makes the paper dense and less compelling.\n6. **Zero\
+    \ method contribution**: No new strategy, loss function, or technique is proposed.\
+    \ The CodeQL pipeline is engineering, and its value is undermined by the paper's\
+    \ own conclusion that structural negatives don't help.\n\n**Minor weaknesses:**\n\
+    - Pool size of 50 never discussed or ablated; strategy rankings may change at\
+    \ realistic pool sizes (hundreds of files)\n- Checkpoint selection criterion unspecified;\
+    \ strategy rankings can reverse depending on best-loss vs best-R@1 selection\n\
+    - 34% structural data coverage underreported as limitation — 2/3 of instances\
+    \ get no structural signal, making dataflow strategy a mixture of random + structural\n\
+    - No learning curves or overfitting analysis despite apparent overfitting at step\
+    \ 1000\n- Open-source CodeQL pipeline claim is undermined by the negative finding\
+    \ about structural negatives\n\n**Initial score: 3/6** — Above-average experimental\
+    \ effort but thin novelty, severely insufficient related work, unsubstantiated\
+    \ motivating critique, and no method contribution.\n\n---\n\n## Step 2: Cross-Discussion\n\
+    \n### Points of Agreement (both reviewers converge):\n\n1. **\"Scaling law\" is\
+    \ overstated** — Both agree 4 data points without CIs cannot be called a \"law.\"\
+    \ Should be \"trend\" or \"observation.\"\n2. **Missing experiments weaken the\
+    \ paper** — Neg_difficulty quartile analysis, qualitative examples, and tabulated\
+    \ distance-weighting results are all absent from what was planned.\n3. **Experimental\
+    \ scale is genuinely impressive** — 54 runs is commendable and exceeds field norms.\n\
+    4. **The negative result itself has value** — The community benefits from knowing\
+    \ pilot signals don't replicate at scale.\n\n### R1 adjustments after seeing R2's\
+    \ review:\n\nR1 acknowledges that the related work gap is more severe than initially\
+    \ assessed. For an analysis/empirical paper, the literature positioning is critical\
+    \ — the paper must show what is already known vs. what is new. With only 9 citations\
+    \ and missing the evaluation methodology literature, the paper fails to establish\
+    \ that its contribution is novel. R1 also agrees that the CoCoHaNeRe critique\
+    \ being unverified is a significant gap that weakens the paper's motivation.\n\
+    \nR1 finds R2's point about \"architecturally distinct\" being misleading to be\
+    \ valid — both are decoder-only models, so the encoder diversity claimed is overstated.\n\
+    \nR1 agrees the 0-figure presentation is a major weakness for this type of analysis\
+    \ paper.\n\n**R1 adjusts score from 4/6 to 3/6**, primarily due to the related\
+    \ work insufficiency and unsubstantiated CoCoHaNeRe critique — issues R1 had not\
+    \ weighted heavily in the methods-focused review.\n\n### R2 adjustments after\
+    \ seeing R1's review:\n\nR2 agrees that the confounded pilot-to-full comparison\
+    \ is the paper's most critical methodological flaw and should be elevated in importance.\
+    \ The inability to distinguish scale effects from distribution effects undermines\
+    \ the paper's central narrative.\n\nR2 finds R1's observation about the temperature\
+    \ ablation (random best at τ=0.05, where hard negatives should matter most) to\
+    \ be an important internal contradiction that R2 had not flagged.\n\nR2 also agrees\
+    \ the failure analysis backfiring (hurt 3 > helped 2) deserves more prominent\
+    \ framing.\n\n**R2 maintains score at 3/6** — R1's observations reinforce rather\
+    \ than mitigate the weaknesses already identified.\n\n---\n\n## Step 3: Convergence\n\
+    \n### Consensus Score: 3/6 (Weak Reject)\n\n### Agreed Major Issues (ranked by\
+    \ severity):\n\n1. **Confounded pilot-to-full comparison** — The paper cannot\
+    \ separate scale from distribution shift. This undermines the central \"scale\
+    \ kills signal\" narrative and the claimed scaling law. The subsampling experiment\
+    \ (Table 7) partially addresses this but draws from the full-scale distribution,\
+    \ not the pilot distribution.\n\n2. **Related work critically insufficient** —\
+    \ 9 citations for a 10-page analysis paper at a top venue is far below expectations.\
+    \ Missing evaluation methodology literature (Henderson, Dodge, Bouthillier), hard\
+    \ negative theory (Robinson, Kalantidis), contrastive learning foundations (SimCLR,\
+    \ MoCo, DPR), and code representation baselines. Without positioning against existing\
+    \ knowledge, the paper's novelty cannot be assessed.\n\n3. **CoCoHaNeRe critique\
+    \ unverified** — The paper's opening motivation asserts a flaw in CoCoHaNeRe without\
+    \ running a BM25 baseline to demonstrate it. The entire \"correcting a misconception\"\
+    \ framing collapses without empirical verification.\n\n4. **\"Scaling law\" overstated**\
+    \ — 4 data points, no CIs, single encoder, no theoretical backing. Should be \"\
+    trend\" or \"observation\" with appropriate caveats.\n\n5. **No mechanistic explanation**\
+    \ — The paper shows *what* (signal vanishes) but not *why* (the saturation argument\
+    \ doesn't explain pilot-vs-full differences). The missing neg_difficulty quartile\
+    \ analysis would have been the key mechanistic evidence.\n\n6. **Presentation:\
+    \ 14 tables, 0 figures** — Dense, hard to skim, and fails to leverage visual communication\
+    \ for key findings.\n\n### Agreed Minor Issues:\n\n7. Two \"architecturally distinct\"\
+    \ encoders are both decoder-only transformers — overstated diversity claim.\n\
+    8. Dataflow distance weighting (§6.5) deserves a table, not one sentence.\n9.\
+    \ Qualitative examples are entirely absent.\n10. Pool size of 50 never discussed;\
+    \ may affect strategy rankings.\n11. Checkpoint selection criterion unspecified.\n\
+    12. 34% structural data coverage means dataflow strategy is 2/3 random fallback\
+    \ — understated limitation.\n13. Temperature ablation (random best even at τ=0.05)\
+    \ contradicts the mechanistic story but is not discussed.\n14. Failure analysis\
+    \ shows net negative impact (hurt 3 > helped 2) for dataflow in its own target\
+    \ use case.\n\n---\n\n## Step 4: Consolidated Assessment\n\n### Summary\n\nThis\
+    \ paper presents a large-scale negative result study (54 training runs) showing\
+    \ that hard negative mining benefits observed at pilot scale (~2K instances) for\
+    \ contrastive code retrieval do not replicate at full scale (15K instances, 9\
+    \ seeds). The experimental effort is genuine and above field norms. The negative\
+    \ result itself is informative: strategy-level R@1 deltas (<1pp) are dwarfed by\
+    \ seed variance (~3pp), and no strategy achieves statistical significance over\
+    \ random sampling (bootstrap p ≥ 0.68).\n\n### Strengths\n\n- **Experimental scale**:\
+    \ 54 runs (9 seeds × 3 strategies × 2 encoders) with bootstrap CIs is well above\
+    \ the 1–3 seed standard in code retrieval.\n- **Honest negative result reporting**:\
+    \ The paper does not oversell null findings and includes a thorough data pipeline\
+    \ audit ruling out engineering errors.\n- **Comprehensive ablations**: Temperature,\
+    \ hop distance, fusion head, dynamic mining, distance weighting, and data size\
+    \ scaling are all tested and reported.\n- **Scaling trend**: The observation that\
+    \ embedding benefit decays with data size (from +1.3pp at 1K to -0.2pp at 15K)\
+    \ is a concrete and useful finding, even if \"scaling law\" overstates it.\n-\
+    \ **Failure taxonomy**: The manual analysis of 50 retrieval failures provides\
+    \ useful error categorization for the community.\n\n### Weaknesses\n\n- **Confounded\
+    \ central comparison**: The pilot-to-full transition changes both data volume\
+    \ and distribution. The paper's central narrative (\"scale kills mining benefit\"\
+    ) cannot be distinguished from \"distribution shift kills mining benefit\" without\
+    \ a controlled experiment.\n- **Critically thin related work**: 9 citations in\
+    \ 3 paragraphs, missing evaluation methodology, contrastive learning theory, and\
+    \ code representation baselines. Novelty cannot be assessed without proper positioning.\n\
+    - **Unsubstantiated motivation**: The CoCoHaNeRe critique is asserted without\
+    \ empirical verification (no BM25 baseline).\n- **Overstated \"scaling law\"**:\
+    \ 4 data points, no confidence intervals, single encoder — should be \"trend.\"\
+    \n- **No method contribution**: Tests existing methods and finds they fail. CodeQL\
+    \ pipeline's value is undermined by the negative finding.\n- **0 figures in 10\
+    \ pages**: Dense table-only presentation fails to communicate key findings visually.\n\
+    - **Missing planned experiments**: Neg_difficulty quartile analysis, qualitative\
+    \ examples, and tabulated distance-weighting results are absent.\n\n### Recommendation\n\
+    \n**Weak Reject (3/6)**. The paper demonstrates above-average experimental discipline\
+    \ and reports a genuine negative result, but it falls short of top-venue standards\
+    \ due to: (1) confounded central comparison that undermines the claimed mechanism,\
+    \ (2) critically insufficient related work that prevents novelty assessment, (3)\
+    \ unsubstantiated motivating critique of prior work, and (4) overstated \"scaling\
+    \ law.\" The paper reads as a thorough project report rather than a paper with\
+    \ sufficient insight density for a top ML venue.\n\n### Path to Revision\n\n1.\
+    \ **Deconfound scale vs distribution**: Run a controlled experiment with pilot-distribution\
+    \ subsamples at increasing sizes (1K, 3K, 5K from pilot-like repos only) AND full-distribution\
+    \ subsamples at pilot size (2K from 123 repos). This isolates the two effects.\n\
+    2. **Expand related work to 25+ citations**: Add evaluation methodology (Henderson\
+    \ 2018, Dodge 2019, Bouthillier 2021), hard negative theory (Robinson 2021, Kalantidis\
+    \ 2020), contrastive learning foundations (SimCLR, MoCo, DPR), code baselines\
+    \ (CodeBERT, CodeT5+, StarCoder), and structural methods (RepoGraph, RANGER).\n\
+    3. **Add BM25 negative baseline**: Empirically verify the CoCoHaNeRe critique.\n\
+    4. **Rename \"scaling law\" to \"scaling trend\"**: Report with CIs and cross-encoder\
+    \ validation.\n5. **Add 3–4 key figures**: Scaling trend line plot, seed-variance\
+    \ box plots, failure taxonomy Sankey, stratified heatmap.\n6. **Include neg_difficulty\
+    \ quartile analysis**: This is the missing mechanistic link.\n7. **Stratify by\
+    \ structural data availability**: Report results separately for the 34% of instances\
+    \ with structural data vs the 66% without.\n\n### Experiment Coverage Assessment\n\
+    \n| Planned Experiment | Coverage | Notes |\n|---|:-:|---|\n| M2 Full Qwen 9×3\
+    \ | ✅ Complete | Table 1 |\n| M2 Full StarCoder 9×3 | ✅ Complete | Table 2 |\n\
+    | SWE-bench Lite | ✅ Complete | Tables 3–4 |\n| RepoBench-R | ✅ Complete | Table\
+    \ 5 |\n| Stratified Analysis | ⚠️ Partial | Repo-size done (Table 8), neg_difficulty\
+    \ quartile missing |\n| Hop-Distance Ablation | ✅ Complete | Table 12 |\n| Data\
+    \ Size Scaling | ✅ Complete | Table 7 |\n| Fusion Head Ablation | ✅ Complete |\
+    \ Table 13 |\n| Dataflow Distance Weighting | ⚠️ Partial | One sentence in §6.5,\
+    \ no table |\n| Failure Analysis 50 cases | ✅ Complete | Table 10 |\n| Qualitative\
+    \ Examples | ❌ Missing | Entirely absent |\n| Temperature Ablation | ✅ Complete\
+    \ | Table 11 |\n| Dynamic vs Static Mining | ✅ Complete | Table 14 |\n| Bootstrap\
+    \ CI SWE-bench | ✅ Complete | Table 4 |\n| Inference-Time Comparison | ✅ Complete\
+    \ | Table 6 |\n| Data Pipeline Audit | ✅ Complete | Table 9 |\n\n**Coverage**:\
+    \ 12/16 complete, 2/16 partial, 1/16 missing. The missing/partial items (neg_difficulty\
+    \ quartile, qualitative examples, distance weighting table) would have meaningfully\
+    \ strengthened the analysis.\n\n---\n\n*Review conducted by R1 (Methods + Experiments)\
+    \ and R2 (Novelty + Related Work) with full roundtable protocol.*"
+  error: ''
+errors: {}
+score_anomaly: ''
+created_at: '2026-05-14T08:44:58+00:00'

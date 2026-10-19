@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "03842ef4208cc07033c5",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code fix sensitivity solver",
+  "task_key": "worker_code_fix_sensitivity_solver_20260522T193044",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_sensitivity_solver_20260522T193044_result.json",
+    "occurrence": 1,
+    "bytes": 1451,
+    "sha256": "27ecbf6033f536ae0e17c126d4c1b9b17f5d69a2669dcd7b624d8d0ca1b201b3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "正在等待 60 秒后检查 v3 进度，稍后报告结果。\n\n<notification>\n<title>v3 classifier sensitivity 60s progress check</title>\n<body>============================================================\nClassifier Sensitivity Analysis v2 (R1-8B AdvBench)\nThresholds: [1, 2, 3]\n============================================================\n  Loaded 520 traces\n\n  Threshold >= 1: 159 JB / 361 safe (30.6%)\n    [32/128] 62s (ETA 186s)\n    [64/128] 125s (ETA 125s)\n---PROCCHECK---\nName:\tpython\nUmask:\t0022\nState:\tR (running)\nTgid:\t100754\nNgid:\t10221</body>\n<metadata>{\"task_id\":\"bmuibdlwz\",\"is_error\":false}</metadata>\n</notification>\n\n结果出来了。\n\n## 报告\n\n**1. v2 状态**：卡在 threshold>=2，threshold>=1 跑了 1588s（~26 分钟）。进程 98451 已 kill。\n\n**2. v3 修改**：\n- `from sklearn.decomposition import PCA`（line 22）\n- PCA 降维 4096d → min(256, n_samples-1, n_features)（line 123-125）\n- `solver=\"saga\"`（line 128）\n- 缓存逻辑（cached_results）未改动\n\n**3. 新 PID**：100754，State: R (running)\n\n**4. 前 60 秒进度**：\n- 已完成 64/128 layer×window 组合（threshold>=1），用时 125s\n- v2 同样 64/128 花了 604s → v3 快了 **~4.8×**\n- 无 ConvergenceWarning\n- 按此速率，threshold>=1 约 250s 完成，全部 3 个 threshold 约 12-15 分钟"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "task_id": "bmuibdlwz",
+              "is_error": false
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-sensitivity-solver.md"
+}

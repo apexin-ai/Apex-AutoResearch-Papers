@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fb5b97dc163cd66dc87a",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "diagnose bootstrap consistency fix",
+  "task_key": "worker_diagnose_bootstrap_consistency_fix_20260517T031610",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_bootstrap_consistency_fix_20260517T031610_result.json",
+    "occurrence": 1,
+    "bytes": 3593,
+    "sha256": "e0735698d37fbf646019984788eb49fb628f068b8bfdea1822a1a6f46319d78f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the complete diagnosis:\n\n---\n\n## 诊断结论\n\n### 问题 1：R1-32B Text FPR 差异根因\n\n**Root cause: LR solver 不同**\n\n| 版本 | Solver | dual | max_iter | random_state | Text FPR | HS FPR |\n|------|--------|------|----------|--------------|----------|--------|\n| m001 (旧) | lbfgs (默认) | False | 100 (默认) | None | 0.246 | 0.260 |\n| 新版 | liblinear | True | 1000 | 42 | 0.326 | 0.242 |\n\nm001 结果 JSON 的 config 字符串 `\"LR balanced C=1.0 layer=10 window=10\"` 没有提及 solver，说明用了 sklearn 默认的 `lbfgs`。新版和 D018 统一使用 `solver='liblinear', dual=True`。\n\n证据：D018 `acc_precision_bootstrap` 使用 `liblinear`，其 R1-32B precision 值 (hs=0.6100, text=0.5160) 与新版完全一致，确认两者训练的是同一个 probe。\n\n**Canonical 版本：`r1_32b_paired_bootstrap/results.json` (新版)**\n- 使用 `liblinear` 与其他两个模型一致\n- 有 `random_state=42` 确保可复现\n- 论文应引用此文件\n\n---\n\n### 问题 2：p-value 方法不一致\n\n| 脚本 | 方法 | 类型 |\n|------|------|------|\n| `acc_precision_bootstrap/run_bootstrap.py` (D018) | `np.mean(np.abs(centered) >= np.abs(obs))` | 双侧 (permutation) |\n| `r1_8b_bootstrap_hs_text.py` | `np.mean(boot >= 0) * 2` | 双侧 (2× one-sided) |\n| `run_r1_32b_paired_bootstrap.py` | `np.mean(boot <= 0)` | **单侧** ← 需修复 |\n| `run_qwq_fpr_bootstrap_w5.py` | `(boot <= 0).sum() / n` | **单侧** ← 需修复 |\n\nD018 r1-8b 的 p-values **已经是双侧**。\n\n---\n\n### 最终双侧 Bootstrap 结果表\n\n```\nBonferroni α = 0.0167\n\n| Model   | Metric    | HS     | Text   | Δ       | p (two-sided) | Bonferroni |\n|---------|-----------|--------|--------|---------|---------------|------------|\n| R1-8B   | Accuracy  | 81.3%  | 73.1%  | +8.2pp  | 0.005         | SIG ✓      |\n| R1-8B   | Precision | 76.8%  | 54.4%  | +22.4pp | 0.000         | SIG ✓      |\n| R1-8B   | FPR       | 14.8%  | 22.2%  | -7.4pp  | 0.044         | ns         |\n| R1-32B  | Bal.Acc   | 79.4%  | 71.1%  | +8.4pp  | 0.080         | ns         |\n| R1-32B  | Precision | 61.0%  | 51.6%  | +9.4pp  | 0.050         | ns         |\n| R1-32B  | FPR       | 24.2%  | 32.6%  | -8.4pp  | 0.114         | ns         |\n| QwQ-32B | Accuracy  | 67.9%  | 67.1%  | +0.9pp  | 0.828         | ns         |\n| QwQ-32B | Precision | 58.3%  | 52.5%  | +5.7pp  | 0.346         | ns         |\n| QwQ-32B | FPR       | 20.8%  | 17.8%  | +3.0pp  | 0.430         | ns         |\n```\n\n注：\n- R1-8B Acc/Prec 用 D018 permutation 双侧方法（已是双侧）\n- R1-8B FPR 用 `2×one-sided` 方法（原脚本已是双侧）\n- R1-32B 全部从新版单侧 × 2 转换\n- QwQ Acc/Prec 用 D018 permutation 双侧方法\n- QwQ FPR 从保存的 per-trace 数据重新计算（`2×min(P(≤0), P(≥0))`）\n- D018 permutation 法与 `2×min` 法给出略有不同的结果（R1-32B precision: D018=0.064 vs 2×one-sided=0.050），差异来源于 centering\n\n---\n\n### 补充说明\n\n1. **R1-8B FPR 也存在 solver 不一致**：FPR bootstrap 脚本 (`r1_8b_bootstrap_hs_text.py`) 用 `lbfgs`（默认），而 D018 Acc/Prec 用 `liblinear`。目前这没被标记为问题因为 r1-8b 的 FPR 结果方向一致且两个版本相差不大，但严格来说 probe 配置不统一。\n\n2. **QwQ FPR 方向反转**：QwQ 的 HS probe FPR (20.8%) > Text probe FPR (17.8%)，即 HS 反而更差（与 R1-8B/32B 方向相反）。这可能是 layer/window 选择在 QwQ 上不够优化的表现。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-bootstrap-consistency-fix.md"
+}

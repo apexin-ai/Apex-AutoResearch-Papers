@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b8ddcf1d80ae26f118e6",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "ops monitor advbench cp annotation",
+  "task_key": "worker_ops_monitor_advbench_cp_annotation_20260520T055735",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_monitor_advbench_cp_annotation_20260520T055735_result.json",
+    "occurrence": 1,
+    "bytes": 108,
+    "sha256": "8d85c7f66ee5ac4f256a3c4d93aeec825e7db85461b54fd0cb8889141c77ebbf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Task is at 60/387, running smoothly at 0.33/s with 0 failures. I'll check back in ~3 minutes."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-monitor-advbench-cp-annotation.md"
+}

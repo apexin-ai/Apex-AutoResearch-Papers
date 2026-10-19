@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "855312eb975d28679ea0",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "analysis sf3 qwq l60 rerun",
+  "task_key": "worker_analysis_sf3_qwq_l60_rerun_20260519T152102",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_sf3_qwq_l60_rerun_20260519T152102_result.json",
+    "occurrence": 1,
+    "bytes": 784,
+    "sha256": "bbe67974f24cace1d2be3c015f65a3d43a0d3896c4e56e15432d4ef10168cff2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results with L60 corrected:\n\n| Method | HS BA | Text BA | Gap | p |\n|---|---|---|---|---|\n| **linear** | 0.6747 | 0.6006 | **+7.4pp** | 0.0017 |\n| **quadratic** | 0.5805 | 0.5901 | -1.0pp | 0.6384 |\n\nThe linear gap is +7.4pp (vs. expected ~3.7pp from original R12). The gap is larger than expected but directionally consistent — the difference could come from R12 using W=3 with a different PCA/bootstrap setup or different text embeddings. The key finding holds: linear residualization preserves HS advantage, quadratic residualization absorbs it (gap goes to -1.0pp, non-significant).\n\nOutput files:\n- `qwq_l60_w3_results.json` — separate corrected results\n- `qwq_w3_results.json` — updated\n- `report.txt` — appended with \"L60 corrected\" section"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-sf3-qwq-l60-rerun.md"
+}

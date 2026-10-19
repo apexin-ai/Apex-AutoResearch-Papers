@@ -1,0 +1,518 @@
+# code eval skeleton
+
+**StructFuse: Structure-Grounded Hard Negative Mining for Contrastive Code Context Retrieval** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 17
+- **Recorded user turns:** 0
+- **Tool calls:** 8
+- **Original source:** `logs/chats/worker_code_eval_skeleton_20260512T100215.jsonl`
+- **Structured JSON:** [`2aa98b611d365753387a.json`](../../sessions/2a/2aa98b611d365753387a.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+17 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-12T10:05:17.186591+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/faith-evidence-ie/artifacts/code/evaluation",
+  "description": "Create evaluation directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_eval_skeleton_20260512T100215",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/faith-evidence-ie/artifacts/code/evaluation",
+    "description": "Create evaluation directory"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-12T10:05:17.186952+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_eval_skeleton_20260512T100215",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-12T10:05:17.187168+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/faith-evidence-ie/artifacts/code/evaluation/eval_retrieval.py",
+  "content": "\"\"\"\nStructFuse Retrieval Evaluation Script\n\nEvaluates the StructFuse contrastive retriever on file-level and function-level\nretrieval tasks across SWE-bench Lite, RepoBench-R, and custom held-out sets.\n\nInput:\n  - Trained StructFuse checkpoint(s)\n  - Test file (JSON Lines): each line has {query, gold_files, gold_functions, repo_path}\n  - (Optional) CodeQL data-flow output directory\n\nOutput:\n  - JSON file with per-instance predictions and aggregate metrics:\n    Recall@1/5/10, MRR, Structural Precision\n\nDependencies: transformers, torch, rank_bm25, faiss-cpu, numpy\n\"\"\"\n\nimport argparse\nimport json\nimport os\nimport glob\nimport time\nfrom collections import defaultdict\nfrom dataclasses import dataclass, field\nfrom pathlib import Path\nfrom typing import Optional\n\nimport jsonlines\nimport numpy as np\nimport torch\nimport torch.nn.functional as F\nfrom tqdm import tqdm\nfrom transformers import AutoModel, AutoTokenizer\nfrom rank_bm25 import BM25Okapi\n\n\n@dataclass\nclass RetrievalInstance:\n    query: str\n    gold_files: list[str]\n    gold_functions: list[str] = field(default_factory=list)\n    repo_path: str = \"\"\n    instance_id: str = \"\"\n    metadata: dict = field(default_factory=dict)\n\n\n@dataclass\nclass RetrievalResult:\n    instance_id: str\n    query: str\n    gold_files: list[str]\n    predicted_files: list[str]\n    scores: list[float]\n    hits: dict[str, bool] = field(default_factory=dict)\n\n\ndef load_test_data(test_file: str, dataset: str) -> list[RetrievalInstance]:\n    \"\"\"Load test instances from JSON Lines file, adapting format per dataset.\"\"\"\n    instances = []\n    with jsonlines.open(test_file) as reader:\n        for i, item in enumerate(reader):\n            if dataset == \"swebench_lite\":\n                inst = RetrievalInstance(\n                    query=item.get(\"problem_statement\", item.get(\"query\", \"\")),\n                    gold_files=item.get(\"gold_files\", []),\n                    gold_functions=item.get(\"gold_functions\", []),\n                    repo_path=item.get(\"repo_path\", item.get(\"repo\", \"\")),\n                    instance_id=item.get(\"instance_id\", f\"swebench_{i}\"),\n                )\n            elif dataset == \"repobench\":\n                inst = RetrievalInstance(\n                    query=item.get(\"query\", \"\"),\n                    gold_files=item.get(\"gold_files\", []),\n                    gold_functions=item.get(\"gold_functions\", []),\n                    repo_path=item.get(\"repo_path\", \"\"),\n                    instance_id=item.get(\"instance_id\", f\"repobench_{i}\"),\n                )\n            else:\n                inst = RetrievalInstance(\n                    query=item[\"query\"],\n                    gold_files=item[\"gold_files\"],\n                    gold_functions=item.get(\"gold_functions\", []),\n                    repo_path=item.get(\"repo_path\", \"\"),\n                    instance_id=item.get(\"instance_id\", f\"custom_{i}\"),\n                    metadata=item.get(\"metadata\", {}),\n                )\n            instances.append(inst)\n    return instances\n\n\ndef collect_candidate_files(repo_path: str, extensions: tuple[str, ...] = (\".py\",)) -> list[dict]:\n    \"\"\"Walk repo and collect candidate source files with their content.\"\"\"\n    candidates = []\n    repo = Path(repo_path)\n    if not repo.exists():\n        return candidates\n    for ext in extensions:\n        for fpath in repo.rglob(f\"*{ext}\"):\n            rel = str(fpath.relative_to(repo))\n            if any(part.startswith(\".\") for part in fpath.parts):\n                continue\n            if \"test\" in rel.lower() or \"__pycache__\" in rel:\n                continue\n            try:\n                content = fpath.read_text(errors=\"replace\")\n            except Exception:\n                continue\n            candidates.append({\"path\": rel, \"content\": content})\n    return candidates\n\n\ndef bm25_retrieve(query: str, candidates: list[dict], top_k: int = 30) -> list[dict]:\n    \"\"\"BM25 coarse retrieval over candidate file contents.\"\"\"\n    if not candidates:\n        return []\n    corpus = [c[\"content\"].split() for c in candidates]\n    bm25 = BM25Okapi(corpus)\n    query_tokens = query.split()\n    scores = bm25.get_scores(query_tokens)\n    top_indices = np.argsort(scores)[::-1][:top_k]\n    results = []\n    for idx in top_indices:\n        results.append({**candidates[idx], \"bm25_score\": float(scores[idx])})\n    return results\n\n\ndef load_dataflow_reachability(dataflow_dir: str, instance_id: str) -> set[str]:\n    \"\"\"Load data-flow reachable files from CodeQL output for an instance.\"\"\"\n    reachable = set()\n    df_file = os.path.join(dataflow_dir, f\"{instance_id}.json\")\n    if not os.path.exists(df_file):\n        df_file = os.path.join(dataflow_dir, f\"{instance_id}.csv\")\n    if not os.path.exists(df_file):\n        return reachable\n\n    if df_file.endswith(\".json\"):\n        with open(df_file) as f:\n            data = json.load(f)\n        for edge in data if isinstance(data, list) else data.get(\"edges\", []):\n            if \"source_file\" in edge:\n                reachable.add(edge[\"source_file\"])\n            if \"sink_file\" in edge:\n                reachable.add(edge[\"sink_file\"])\n    elif df_file.endswith(\".csv\"):\n        with open(df_file) as f:\n            for line in f:\n                parts = line.strip().split(\",\")\n                for p in parts:\n                    if p.endswith(\".py\"):\n                        reachable.add(p)\n    return reachable\n\n\nclass StructFuseRetriever:\n    \"\"\"Bi-encoder retriever using a trained StructFuse checkpoint.\"\"\"\n\n    def __init__(self, model_path: str, max_seq_length: int = 2048, device: str = \"cuda\"):\n        self.device = torch.device(device if torch.cuda.is_available() else \"cpu\")\n        self.tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)\n        self.model = AutoModel.from_pretrained(model_path, trust_remote_code=True)\n        self.model.to(self.device)\n        self.model.eval()\n        self.max_seq_length = max_seq_length\n\n    @torch.no_grad()\n    def encode(self, texts: list[str], batch_size: int = 32) -> np.ndarray:\n        all_embeddings = []\n        for i in range(0, len(texts), batch_size):\n            batch = texts[i : i + batch_size]\n            encoded = self.tokenizer(\n                batch,\n                padding=True,\n                truncation=True,\n                max_length=self.max_seq_length,\n                return_tensors=\"pt\",\n            ).to(self.device)\n            outputs = self.model(**encoded)\n            # Mean pooling over non-padding tokens\n            mask = encoded[\"attention_mask\"].unsqueeze(-1).float()\n            embeddings = (outputs.last_hidden_state * mask).sum(dim=1) / mask.sum(dim=1).clamp(min=1e-9)\n            embeddings = F.normalize(embeddings, p=2, dim=1)\n            all_embeddings.append(embeddings.cpu().numpy())\n        return np.concatenate(all_embeddings, axis=0)\n\n    def rank(self, query: str, candidates: list[dict], batch_size: int = 32) -> list[dict]:\n        if not candidates:\n            return []\n        query_emb = self.encode([query], batch_size=1)\n        doc_texts = [c.get(\"content\", c.get(\"path\", \"\")) for c in candidates]\n        doc_embs = self.encode(doc_texts, batch_size=batch_size)\n        scores = (query_emb @ doc_embs.T).squeeze(0)\n        ranked_indices = np.argsort(scores)[::-1]\n        results = []\n        for idx in ranked_indices:\n            results.append({**candidates[idx], \"structfuse_score\": float(scores[idx])})\n        return results\n\n\nclass FusionRanker:\n    \"\"\"Re-ranks by combining BM25 score, data-flow signal, and StructFuse score.\"\"\"\n\n    def __init__(self, bm25_weight: float = 0.2, df_weight: float = 0.3, sf_weight: float = 0.5):\n        self.bm25_weight = bm25_weight\n        self.df_weight = df_weight\n        self.sf_weight = sf_weight\n\n    def rerank(self, candidates: list[dict], reachable_files: set[str]) -> list[dict]:\n        if not candidates:\n            return []\n        bm25_scores = np.array([c.get(\"bm25_score\", 0.0) for c in candidates])\n        sf_scores = np.array([c.get(\"structfuse_score\", 0.0) for c in candidates])\n\n        # Normalize to [0, 1]\n        if bm25_scores.max() > bm25_scores.min():\n            bm25_norm = (bm25_scores - bm25_scores.min()) / (bm25_scores.max() - bm25_scores.min())\n        else:\n            bm25_norm = np.zeros_like(bm25_scores)\n\n        if sf_scores.max() > sf_scores.min():\n            sf_norm = (sf_scores - sf_scores.min()) / (sf_scores.max() - sf_scores.min())\n        else:\n            sf_norm = np.zeros_like(sf_scores)\n\n        df_signal = np.array([1.0 if c[\"path\"] in reachable_files else 0.0 for c in candidates])\n\n        fused = self.bm25_weight * bm25_norm + self.df_weight * df_signal + self.sf_weight * sf_norm\n        ranked_indices = np.argsort(fused)[::-1]\n        results = []\n        for idx in ranked_indices:\n            results.append({**candidates[idx], \"fused_score\": float(fused[idx])})\n        return results\n\n\ndef compute_metrics(results: list[RetrievalResult], k_values: list[int]) -> dict:\n    \"\"\"Compute Recall@k, MRR, and Structural Precision.\"\"\"\n    metrics: dict = {}\n    n = len(results)\n    if n == 0:\n        return metrics\n\n    for k in k_values:\n        hits = 0\n        for r in results:\n            pred_set = set(r.predicted_files[:k])\n            if pred_set & set(r.gold_files):\n                hits += 1\n        metrics[f\"recall@{k}\"] = hits / n\n\n    # MRR\n    mrr_sum = 0.0\n    for r in results:\n        gold_set = set(r.gold_files)\n        for rank, pred in enumerate(r.predicted_files, 1):\n            if pred in gold_set:\n                mrr_sum += 1.0 / rank\n                break\n    metrics[\"mrr\"] = mrr_sum / n\n\n    return metrics\n\n\ndef compute_structural_precision(results: list[RetrievalResult], reachable_map: dict[str, set[str]]) -> float:\n    \"\"\"Fraction of retrieved files that are data-flow reachable from the query context.\"\"\"\n    total = 0\n    reachable_count = 0\n    for r in results:\n        reachable = reachable_map.get(r.instance_id, set())\n        if not reachable:\n            continue\n        for f in r.predicted_files[:10]:\n            total += 1\n            if f in reachable:\n                reachable_count += 1\n    return reachable_count / total if total > 0 else 0.0\n\n\ndef evaluate_single_model(\n    model_path: str,\n    instances: list[RetrievalInstance],\n    args: argparse.Namespace,\n    k_values: list[int],\n) -> dict:\n    \"\"\"Run full evaluation pipeline for one model checkpoint.\"\"\"\n    bm25_only = args.bm25_only\n    use_dataflow = args.use_dataflow_filter and args.dataflow_dir\n    use_fusion = args.use_fusion\n\n    retriever = None\n    if not bm25_only:\n        print(f\"Loading StructFuse model from {model_path}\")\n        retriever = StructFuseRetriever(model_path, max_seq_length=args.max_seq_length)\n\n    fusion = FusionRanker() if use_fusion else None\n    reachable_map: dict[str, set[str]] = {}\n    results: list[RetrievalResult] = []\n\n    for inst in tqdm(instances, desc=f\"Evaluating {os.path.basename(model_path)}\"):\n        candidates = collect_candidate_files(inst.repo_path)\n        if not candidates:\n            results.append(RetrievalResult(\n                instance_id=inst.instance_id,\n                query=inst.query,\n                gold_files=inst.gold_files,\n                predicted_files=[],\n                scores=[],\n            ))\n            continue\n\n        # Stage 1: BM25 coarse retrieval\n        bm25_results = bm25_retrieve(inst.query, candidates, top_k=30)\n\n        # Stage 2: Data-flow filter\n        reachable = set()\n        if use_dataflow:\n            reachable = load_dataflow_reachability(args.dataflow_dir, inst.instance_id)\n            reachable_map[inst.instance_id] = reachable\n            if reachable:\n                filtered = [c for c in bm25_results if c[\"path\"] in reachable]\n                # Keep BM25 results as fallback if filter is too aggressive\n                if len(filtered) >= 3:\n                    bm25_results = filtered\n\n        if bm25_only:\n            ranked = bm25_results\n        else:\n            # Stage 3: StructFuse bi-encoder re-ranking\n            ranked = retriever.rank(inst.query, bm25_results, batch_size=args.batch_size)\n\n            # Stage 4: Fusion re-ranking\n            if use_fusion and fusion:\n                for i, r in enumerate(ranked):\n                    for b in bm25_results:\n                        if b[\"path\"] == r[\"path\"]:\n                            ranked[i][\"bm25_score\"] = b.get(\"bm25_score\", 0.0)\n                            break\n                ranked = fusion.rerank(ranked, reachable)\n\n        predicted_files = [r[\"path\"] for r in ranked]\n        score_key = \"fused_score\" if use_fusion else (\"structfuse_score\" if not bm25_only else \"bm25_score\")\n        scores = [r.get(score_key, 0.0) for r in ranked]\n\n        results.append(RetrievalResult(\n            instance_id=inst.instance_id,\n            query=inst.query[:200],\n            gold_files=inst.gold_files,\n            predicted_files=predicted_files,\n            scores=scores,\n        ))\n\n    metrics = compute_metrics(results, k_values)\n    if reachable_map:\n        metrics[\"structural_precision\"] = compute_structural_precision(results, reachable_map)\n\n    return {\n        \"model\": model_path,\n        \"num_instances\": len(instances),\n        \"metrics\": metrics,\n        \"per_instance\": [\n            {\n                \"instance_id\": r.instance_id,\n                \"gold_files\": r.gold_files,\n                \"predicted_top10\": r.predicted_files[:10],\n                \"scores_top10\": r.scores[:10],\n            }\n            for r in results\n        ],\n    }\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"StructFuse Retrieval Evaluation\")\n    parser.add_argument(\"--model-path\", type=str, required=True,\n                        help=\"Checkpoint path(s), comma-separated for multi-model comparison\")\n    parser.add_argument(\"--test-file\", type=str, required=True,\n                        help=\"JSON Lines test file\")\n    parser.add_argument(\"--dataflow-dir\", type=str, default=None,\n                        help=\"CodeQL data-flow output directory\")\n    parser.add_argument(\"--output-file\", type=str, default=\"retrieval_results.json\",\n                        help=\"Output JSON file\")\n    parser.add_argument(\"--top-k\", type=str, default=\"1,5,10\",\n                        help=\"Comma-separated k values for Recall@k\")\n    parser.add_argument(\"--batch-size\", type=int, default=32)\n    parser.add_argument(\"--use-fusion\", action=\"store_true\",\n                        help=\"Enable fusion head re-ranking\")\n    parser.add_argument(\"--use-dataflow-filter\", action=\"store_true\",\n                        help=\"Filter candidates by data-flow reachability\")\n    parser.add_argument(\"--max-seq-length\", type=int, default=2048)\n    parser.add_argument(\"--dataset\", type=str, default=\"custom\",\n                        choices=[\"swebench_lite\", \"repobench\", \"custom\"])\n    parser.add_argument(\"--bm25-only\", action=\"store_true\",\n                        help=\"BM25 baseline mode (no model)\")\n    args = parser.parse_args()\n\n    k_values = [int(k) for k in args.top_k.split(\",\")]\n    model_paths = [p.strip() for p in args.model_path.split(\",\")]\n\n    print(f\"Dataset: {args.dataset}\")\n    print(f\"Test file: {args.test_file}\")\n    print(f\"K values: {k_values}\")\n\n    instances = load_test_data(args.test_file, args.dataset)\n    print(f\"Loaded {len(instances)} test instances\")\n\n    all_results = []\n    for mp in model_paths:\n        result = evaluate_single_model(mp, instances, args, k_values)\n        all_results.append(result)\n        print(f\"\\n{'='*60}\")\n        print(f\"Model: {mp}\")\n        for metric_name, value in result[\"metrics\"].items():\n            print(f\"  {metric_name}: {value:.4f}\")\n\n    output = {\n        \"config\": {\n            \"dataset\": args.dataset,\n            \"test_file\": args.test_file,\n            \"k_values\": k_values,\n            \"use_fusion\": args.use_fusion,\n            \"use_dataflow_filter\": args.use_dataflow_filter,\n            \"bm25_only\": args.bm25_only,\n        },\n        \"results\": all_results,\n    }\n\n    os.makedirs(os.path.dirname(os.path.abspath(args.output_file)), exist_ok=True)\n    with open(args.output_file, \"w\") as f:\n        json.dump(output, f, indent=2, ensure_ascii=False)\n    print(f\"\\nResults saved to {args.output_file}\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_eval_skeleton_20260512T100215",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/faith-evidence-ie/artifacts/code/evaluation/eval_retrieval.py",
+    "content": "\"\"\"\nStructFuse Retrieval Evaluation Script\n\nEvaluates the StructFuse contrastive retriever on file-level and function-level\nretrieval tasks across SWE-bench Lite, RepoBench-R, and custom held-out sets.\n\nInput:\n  - Trained StructFuse checkpoint(s)\n  - Test file (JSON Lines): each line has {query, gold_files, gold_functions, repo_path}\n  - (Optional) CodeQL data-flow output directory\n\nOutput:\n  - JSON file with per-instance predictions and aggregate metrics:\n    Recall@1/5/10, MRR, Structural Precision\n\nDependencies: transformers, torch, rank_bm25, faiss-cpu, numpy\n\"\"\"\n\nimport argparse\nimport json\nimport os\nimport glob\nimport time\nfrom collections import defaultdict\nfrom dataclasses import dataclass, field\nfrom pathlib import Path\nfrom typing import Optional\n\nimport jsonlines\nimport numpy as np\nimport torch\nimport torch.nn.functional as F\nfrom tqdm import tqdm\nfrom transformers import AutoModel, AutoTokenizer\nfrom rank_bm25 import BM25Okapi\n\n\n@dataclass\nclass RetrievalInstance:\n    query: str\n    gold_files: list[str]\n    gold_functions: list[str] = field(default_factory=list)\n    repo_path: str = \"\"\n    instance_id: str = \"\"\n    metadata: dict = field(default_factory=dict)\n\n\n@dataclass\nclass RetrievalResult:\n    instance_id: str\n    query: str\n    gold_files: list[str]\n    predicted_files: list[str]\n    scores: list[float]\n    hits: dict[str, bool] = field(default_factory=dict)\n\n\ndef load_test_data(test_file: str, dataset: str) -> list[RetrievalInstance]:\n    \"\"\"Load test instances from JSON Lines file, adapting format per dataset.\"\"\"\n    instances = []\n    with jsonlines.open(test_file) as reader:\n        for i, item in enumerate(reader):\n            if dataset == \"swebench_lite\":\n                inst = RetrievalInstance(\n                    query=item.get(\"problem_statement\", item.get(\"query\", \"\")),\n                    gold_files=item.get(\"gold_files\", []),\n                    gold_functions=item.get(\"gold_functions\", []),\n                    repo_path=item.get(\"repo_path\", item.get(\"repo\", \"\")),\n                    instance_id=item.get(\"instance_id\", f\"swebench_{i}\"),\n                )\n            elif dataset == \"repobench\":\n                inst = RetrievalInstance(\n                    query=item.get(\"query\", \"\"),\n                    gold_files=item.get(\"gold_files\", []),\n                    gold_functions=item.get(\"gold_functions\", []),\n                    repo_path=item.get(\"repo_path\", \"\"),\n                    instance_id=item.get(\"instance_id\", f\"repobench_{i}\"),\n                )\n            else:\n                inst = RetrievalInstance(\n                    query=item[\"query\"],\n                    gold_files=item[\"gold_files\"],\n                    gold_functions=item.get(\"gold_functions\", []),\n                    repo_path=item.get(\"repo_path\", \"\"),\n                    instance_id=item.get(\"instance_id\", f\"custom_{i}\"),\n                    metadata=item.get(\"metadata\", {}),\n                )\n            instances.append(inst)\n    return instances\n\n\ndef collect_candidate_files(repo_path: str, extensions: tuple[str, ...] = (\".py\",)) -> list[dict]:\n    \"\"\"Walk repo and collect candidate source files with their content.\"\"\"\n    candidates = []\n    repo = Path(repo_path)\n    if not repo.exists():\n        return candidates\n    for ext in extensions:\n        for fpath in repo.rglob(f\"*{ext}\"):\n            rel = str(fpath.relative_to(repo))\n            if any(part.startswith(\".\") for part in fpath.parts):\n                continue\n            if \"test\" in rel.lower() or \"__pycache__\" in rel:\n                continue\n            try:\n                content = fpath.read_text(errors=\"replace\")\n            except Exception:\n                continue\n            candidates.append({\"path\": rel, \"content\": content})\n    return candidates\n\n\ndef bm25_retrieve(query: str, candidates: list[dict], top_k: int = 30) -> list[dict]:\n    \"\"\"BM25 coarse retrieval over candidate file contents.\"\"\"\n    if not candidates:\n        return []\n    corpus = [c[\"content\"].split() for c in candidates]\n    bm25 = BM25Okapi(corpus)\n    query_tokens = query.split()\n    scores = bm25.get_scores(query_tokens)\n    top_indices = np.argsort(scores)[::-1][:top_k]\n    results = []\n    for idx in top_indices:\n        results.append({**candidates[idx], \"bm25_score\": float(scores[idx])})\n    return results\n\n\ndef load_dataflow_reachability(dataflow_dir: str, instance_id: str) -> set[str]:\n    \"\"\"Load data-flow reachable files from CodeQL output for an instance.\"\"\"\n    reachable = set()\n    df_file = os.path.join(dataflow_dir, f\"{instance_id}.json\")\n    if not os.path.exists(df_file):\n        df_file = os.path.join(dataflow_dir, f\"{instance_id}.csv\")\n    if not os.path.exists(df_file):\n        return reachable\n\n    if df_file.endswith(\".json\"):\n        with open(df_file) as f:\n            data = json.load(f)\n        for edge in data if isinstance(data, list) else data.get(\"edges\", []):\n            if \"source_file\" in edge:\n                reachable.add(edge[\"source_file\"])\n            if \"sink_file\" in edge:\n                reachable.add(edge[\"sink_file\"])\n    elif df_file.endswith(\".csv\"):\n        with open(df_file) as f:\n            for line in f:\n                parts = line.strip().split(\",\")\n                for p in parts:\n                    if p.endswith(\".py\"):\n                        reachable.add(p)\n    return reachable\n\n\nclass StructFuseRetriever:\n    \"\"\"Bi-encoder retriever using a trained StructFuse checkpoint.\"\"\"\n\n    def __init__(self, model_path: str, max_seq_length: int = 2048, device: str = \"cuda\"):\n        self.device = torch.device(device if torch.cuda.is_available() else \"cpu\")\n        self.tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)\n        self.model = AutoModel.from_pretrained(model_path, trust_remote_code=True)\n        self.model.to(self.device)\n        self.model.eval()\n        self.max_seq_length = max_seq_length\n\n    @torch.no_grad()\n    def encode(self, texts: list[str], batch_size: int = 32) -> np.ndarray:\n        all_embeddings = []\n        for i in range(0, len(texts), batch_size):\n            batch = texts[i : i + batch_size]\n            encoded = self.tokenizer(\n                batch,\n                padding=True,\n                truncation=True,\n                max_length=self.max_seq_length,\n                return_tensors=\"pt\",\n            ).to(self.device)\n            outputs = self.model(**encoded)\n            # Mean pooling over non-padding tokens\n            mask = encoded[\"attention_mask\"].unsqueeze(-1).float()\n            embeddings = (outputs.last_hidden_state * mask).sum(dim=1) / mask.sum(dim=1).clamp(min=1e-9)\n            embeddings = F.normalize(embeddings, p=2, dim=1)\n            all_embeddings.append(embeddings.cpu().numpy())\n        return np.concatenate(all_embeddings, axis=0)\n\n    def rank(self, query: str, candidates: list[dict], batch_size: int = 32) -> list[dict]:\n        if not candidates:\n            return []\n        query_emb = self.encode([query], batch_size=1)\n        doc_texts = [c.get(\"content\", c.get(\"path\", \"\")) for c in candidates]\n        doc_embs = self.encode(doc_texts, batch_size=batch_size)\n        scores = (query_emb @ doc_embs.T).squeeze(0)\n        ranked_indices = np.argsort(scores)[::-1]\n        results = []\n        for idx in ranked_indices:\n            results.append({**candidates[idx], \"structfuse_score\": float(scores[idx])})\n        return results\n\n\nclass FusionRanker:\n    \"\"\"Re-ranks by combining BM25 score, data-flow signal, and StructFuse score.\"\"\"\n\n    def __init__(self, bm25_weight: float = 0.2, df_weight: float = 0.3, sf_weight: float = 0.5):\n        self.bm25_weight = bm25_weight\n        self.df_weight = df_weight\n        self.sf_weight = sf_weight\n\n    def rerank(self, candidates: list[dict], reachable_files: set[str]) -> list[dict]:\n        if not candidates:\n            return []\n        bm25_scores = np.array([c.get(\"bm25_score\", 0.0) for c in candidates])\n        sf_scores = np.array([c.get(\"structfuse_score\", 0.0) for c in candidates])\n\n        # Normalize to [0, 1]\n        if bm25_scores.max() > bm25_scores.min():\n            bm25_norm = (bm25_scores - bm25_scores.min()) / (bm25_scores.max() - bm25_scores.min())\n        else:\n            bm25_norm = np.zeros_like(bm25_scores)\n\n        if sf_scores.max() > sf_scores.min():\n            sf_norm = (sf_scores - sf_scores.min()) / (sf_scores.max() - sf_scores.min())\n        else:\n            sf_norm = np.zeros_like(sf_scores)\n\n        df_signal = np.array([1.0 if c[\"path\"] in reachable_files else 0.0 for c in candidates])\n\n        fused = self.bm25_weight * bm25_norm + self.df_weight * df_signal + self.sf_weight * sf_norm\n        ranked_indices = np.argsort(fused)[::-1]\n        results = []\n        for idx in ranked_indices:\n            results.append({**candidates[idx], \"fused_score\": float(fused[idx])})\n        return results\n\n\ndef compute_metrics(results: list[RetrievalResult], k_values: list[int]) -> dict:\n    \"\"\"Compute Recall@k, MRR, and Structural Precision.\"\"\"\n    metrics: dict = {}\n    n = len(results)\n    if n == 0:\n        return metrics\n\n    for k in k_values:\n        hits = 0\n        for r in results:\n            pred_set = set(r.predicted_files[:k])\n            if pred_set & set(r.gold_files):\n                hits += 1\n        metrics[f\"recall@{k}\"] = hits / n\n\n    # MRR\n    mrr_sum = 0.0\n    for r in results:\n        gold_set = set(r.gold_files)\n        for rank, pred in enumerate(r.predicted_files, 1):\n            if pred in gold_set:\n                mrr_sum += 1.0 / rank\n                break\n    metrics[\"mrr\"] = mrr_sum / n\n\n    return metrics\n\n\ndef compute_structural_precision(results: list[RetrievalResult], reachable_map: dict[str, set[str]]) -> float:\n    \"\"\"Fraction of retrieved files that are data-flow reachable from the query context.\"\"\"\n    total = 0\n    reachable_count = 0\n    for r in results:\n        reachable = reachable_map.get(r.instance_id, set())\n        if not reachable:\n            continue\n        for f in r.predicted_files[:10]:\n            total += 1\n            if f in reachable:\n                reachable_count += 1\n    return reachable_count / total if total > 0 else 0.0\n\n\ndef evaluate_single_model(\n    model_path: str,\n    instances: list[RetrievalInstance],\n    args: argparse.Namespace,\n    k_values: list[int],\n) -> dict:\n    \"\"\"Run full evaluation pipeline for one model checkpoint.\"\"\"\n    bm25_only = args.bm25_only\n    use_dataflow = args.use_dataflow_filter and args.dataflow_dir\n    use_fusion = args.use_fusion\n\n    retriever = None\n    if not bm25_only:\n        print(f\"Loading StructFuse model from {model_path}\")\n        retriever = StructFuseRetriever(model_path, max_seq_length=args.max_seq_length)\n\n    fusion = FusionRanker() if use_fusion else None\n    reachable_map: dict[str, set[str]] = {}\n    results: list[RetrievalResult] = []\n\n    for inst in tqdm(instances, desc=f\"Evaluating {os.path.basename(model_path)}\"):\n        candidates = collect_candidate_files(inst.repo_path)\n        if not candidates:\n            results.append(RetrievalResult(\n                instance_id=inst.instance_id,\n                query=inst.query,\n                gold_files=inst.gold_files,\n                predicted_files=[],\n                scores=[],\n            ))\n            continue\n\n        # Stage 1: BM25 coarse retrieval\n        bm25_results = bm25_retrieve(inst.query, candidates, top_k=30)\n\n        # Stage 2: Data-flow filter\n        reachable = set()\n        if use_dataflow:\n            reachable = load_dataflow_reachability(args.dataflow_dir, inst.instance_id)\n            reachable_map[inst.instance_id] = reachable\n            if reachable:\n                filtered = [c for c in bm25_results if c[\"path\"] in reachable]\n                # Keep BM25 results as fallback if filter is too aggressive\n                if len(filtered) >= 3:\n                    bm25_results = filtered\n\n        if bm25_only:\n            ranked = bm25_results\n        else:\n            # Stage 3: StructFuse bi-encoder re-ranking\n            ranked = retriever.rank(inst.query, bm25_results, batch_size=args.batch_size)\n\n            # Stage 4: Fusion re-ranking\n            if use_fusion and fusion:\n                for i, r in enumerate(ranked):\n                    for b in bm25_results:\n                        if b[\"path\"] == r[\"path\"]:\n                            ranked[i][\"bm25_score\"] = b.get(\"bm25_score\", 0.0)\n                            break\n                ranked = fusion.rerank(ranked, reachable)\n\n        predicted_files = [r[\"path\"] for r in ranked]\n        score_key = \"fused_score\" if use_fusion else (\"structfuse_score\" if not bm25_only else \"bm25_score\")\n        scores = [r.get(score_key, 0.0) for r in ranked]\n\n        results.append(RetrievalResult(\n            instance_id=inst.instance_id,\n            query=inst.query[:200],\n            gold_files=inst.gold_files,\n            predicted_files=predicted_files,\n            scores=scores,\n        ))\n\n    metrics = compute_metrics(results, k_values)\n    if reachable_map:\n        metrics[\"structural_precision\"] = compute_structural_precision(results, reachable_map)\n\n    return {\n        \"model\": model_path,\n        \"num_instances\": len(instances),\n        \"metrics\": metrics,\n        \"per_instance\": [\n            {\n                \"instance_id\": r.instance_id,\n                \"gold_files\": r.gold_files,\n                \"predicted_top10\": r.predicted_files[:10],\n                \"scores_top10\": r.scores[:10],\n            }\n            for r in results\n        ],\n    }\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"StructFuse Retrieval Evaluation\")\n    parser.add_argument(\"--model-path\", type=str, required=True,\n                        help=\"Checkpoint path(s), comma-separated for multi-model comparison\")\n    parser.add_argument(\"--test-file\", type=str, required=True,\n                        help=\"JSON Lines test file\")\n    parser.add_argument(\"--dataflow-dir\", type=str, default=None,\n                        help=\"CodeQL data-flow output directory\")\n    parser.add_argument(\"--output-file\", type=str, default=\"retrieval_results.json\",\n                        help=\"Output JSON file\")\n    parser.add_argument(\"--top-k\", type=str, default=\"1,5,10\",\n                        help=\"Comma-separated k values for Recall@k\")\n    parser.add_argument(\"--batch-size\", type=int, default=32)\n    parser.add_argument(\"--use-fusion\", action=\"store_true\",\n                        help=\"Enable fusion head re-ranking\")\n    parser.add_argument(\"--use-dataflow-filter\", action=\"store_true\",\n                        help=\"Filter candidates by data-flow reachability\")\n    parser.add_argument(\"--max-seq-length\", type=int, default=2048)\n    parser.add_argument(\"--dataset\", type=str, default=\"custom\",\n                        choices=[\"swebench_lite\", \"repobench\", \"custom\"])\n    parser.add_argument(\"--bm25-only\", action=\"store_true\",\n                        help=\"BM25 baseline mode (no model)\")\n    args = parser.parse_args()\n\n    k_values = [int(k) for k in args.top_k.split(\",\")]\n    model_paths = [p.strip() for p in args.model_path.split(\",\")]\n\n    print(f\"Dataset: {args.dataset}\")\n    print(f\"Test file: {args.test_file}\")\n    print(f\"K values: {k_values}\")\n\n    instances = load_test_data(args.test_file, args.dataset)\n    print(f\"Loaded {len(instances)} test instances\")\n\n    all_results = []\n    for mp in model_paths:\n        result = evaluate_single_model(mp, instances, args, k_values)\n        all_results.append(result)\n        print(f\"\\n{'='*60}\")\n        print(f\"Model: {mp}\")\n        for metric_name, value in result[\"metrics\"].items():\n            print(f\"  {metric_name}: {value:.4f}\")\n\n    output = {\n        \"config\": {\n            \"dataset\": args.dataset,\n            \"test_file\": args.test_file,\n            \"k_values\": k_values,\n            \"use_fusion\": args.use_fusion,\n            \"use_dataflow_filter\": args.use_dataflow_filter,\n            \"bm25_only\": args.bm25_only,\n        },\n        \"results\": all_results,\n    }\n\n    os.makedirs(os.path.dirname(os.path.abspath(args.output_file)), exist_ok=True)\n    with open(args.output_file, \"w\") as f:\n        json.dump(output, f, indent=2, ensure_ascii=False)\n    print(f\"\\nResults saved to {args.output_file}\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-12T10:05:17.187518+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/faith-evidence-ie/artifacts/code/evaluation/eval_retrieval.py
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_eval_skeleton_20260512T100215",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-12T10:05:17.187819+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+````json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/faith-evidence-ie/artifacts/code/evaluation/eval_swebench.py",
+  "content": "\"\"\"\nStructFuse SWE-bench End-to-End Evaluation Script\n\nPipeline: issue description -> StructFuse context retrieval -> Qwen3.6-27B patch\ngeneration (via vLLM) -> SWE-bench harness evaluation.\n\nInput:\n  - Trained StructFuse checkpoint\n  - vLLM serving endpoint with Qwen3.6-27B loaded\n  - SWE-bench dataset split (lite/verified/pro)\n\nOutput:\n  - Per-instance results: retrieved files, generated patch, test outcomes\n  - Summary: Pass@1, avg tokens used, avg retrieval recall\n\nDependencies: transformers, torch, datasets, requests, rank_bm25\n\"\"\"\n\nimport argparse\nimport json\nimport os\nimport subprocess\nimport tempfile\nimport time\nimport traceback\nfrom concurrent.futures import ThreadPoolExecutor, as_completed\nfrom dataclasses import dataclass, field\nfrom pathlib import Path\n\nimport numpy as np\nimport requests\nfrom datasets import load_dataset\nfrom tqdm import tqdm\n\nfrom eval_retrieval import (\n    StructFuseRetriever,\n    FusionRanker,\n    bm25_retrieve,\n    collect_candidate_files,\n    load_dataflow_reachability,\n)\n\n\n@dataclass\nclass SWEBenchInstance:\n    instance_id: str\n    repo: str\n    base_commit: str\n    problem_statement: str\n    patch: str  # gold patch for reference\n    test_patch: str\n    gold_files: list[str] = field(default_factory=list)\n\n\n@dataclass\nclass EvalResult:\n    instance_id: str\n    status: str  # \"pass\", \"fail\", \"error\", \"timeout\", \"skipped\"\n    retrieved_files: list[str] = field(default_factory=list)\n    retrieval_recall: float = 0.0\n    generated_patch: str = \"\"\n    tokens_used: int = 0\n    error_message: str = \"\"\n    duration_seconds: float = 0.0\n\n\ndef load_swebench_instances(split: str) -> list[SWEBenchInstance]:\n    \"\"\"Load SWE-bench instances from HuggingFace datasets.\"\"\"\n    split_map = {\n        \"lite\": \"princeton-nlp/SWE-bench_Lite\",\n        \"verified\": \"princeton-nlp/SWE-bench_Verified\",\n        \"pro\": \"princeton-nlp/SWE-bench\",\n    }\n    dataset_name = split_map.get(split, split_map[\"lite\"])\n    ds = load_dataset(dataset_name, split=\"test\")\n\n    instances = []\n    for item in ds:\n        gold_files = extract_gold_files_from_patch(item.get(\"patch\", \"\"))\n        instances.append(SWEBenchInstance(\n            instance_id=item[\"instance_id\"],\n            repo=item[\"repo\"],\n            base_commit=item[\"base_commit\"],\n            problem_statement=item[\"problem_statement\"],\n            patch=item.get(\"patch\", \"\"),\n            test_patch=item.get(\"test_patch\", \"\"),\n            gold_files=gold_files,\n        ))\n    return instances\n\n\ndef extract_gold_files_from_patch(patch: str) -> list[str]:\n    \"\"\"Extract modified file paths from a unified diff patch.\"\"\"\n    files = []\n    for line in patch.split(\"\\n\"):\n        if line.startswith(\"--- a/\") or line.startswith(\"+++ b/\"):\n            fpath = line.split(\"/\", 1)[1] if \"/\" in line else \"\"\n            if fpath and fpath != \"/dev/null\" and fpath not in files:\n                files.append(fpath)\n    return files\n\n\ndef setup_repo(repo: str, base_commit: str, workspace: str) -> str:\n    \"\"\"Clone and checkout the target repo at the base commit.\"\"\"\n    repo_url = f\"https://github.com/{repo}.git\"\n    repo_dir = os.path.join(workspace, repo.replace(\"/\", \"__\"))\n\n    if not os.path.exists(repo_dir):\n        subprocess.run(\n            [\"git\", \"clone\", \"--depth\", \"50\", repo_url, repo_dir],\n            capture_output=True, timeout=120,\n        )\n    subprocess.run(\n        [\"git\", \"checkout\", base_commit],\n        cwd=repo_dir, capture_output=True, timeout=30,\n    )\n    return repo_dir\n\n\ndef build_prompt(problem_statement: str, retrieved_context: list[dict], max_tokens: int) -> str:\n    \"\"\"Construct the LLM prompt with issue description and retrieved code context.\"\"\"\n    header = (\n        \"You are an expert software engineer. Given the following GitHub issue and \"\n        \"relevant code context, generate a minimal unified diff patch that resolves the issue.\\n\\n\"\n        f\"## Issue\\n{problem_statement}\\n\\n\"\n        \"## Relevant Code\\n\"\n    )\n\n    # Budget token estimation: ~4 chars per token\n    budget = (max_tokens - len(header) // 4) * 4\n    context_parts = []\n    used = 0\n\n    for item in retrieved_context:\n        entry = f\"\\n### {item['path']}\\n```python\\n{item['content']}\\n```\\n\"\n        entry_len = len(entry)\n        if used + entry_len > budget:\n            remaining = budget - used\n            if remaining > 200:\n                truncated_content = item[\"content\"][: remaining - 100]\n                entry = f\"\\n### {item['path']} (truncated)\\n```python\\n{truncated_content}\\n```\\n\"\n                context_parts.append(entry)\n            break\n        context_parts.append(entry)\n        used += entry_len\n\n    footer = (\n        \"\\n## Instructions\\n\"\n        \"Generate a unified diff patch (```diff ... ```) that fixes the issue. \"\n        \"Only modify the files shown above. Be minimal and precise.\\n\"\n    )\n\n    return header + \"\".join(context_parts) + footer\n\n\ndef call_vllm(\n    prompt: str,\n    endpoint: str,\n    model: str,\n    max_tokens: int,\n    temperature: float = 0.0,\n) -> tuple[str, int]:\n    \"\"\"Call vLLM OpenAI-compatible API and return (response_text, tokens_used).\"\"\"\n    url = f\"{endpoint}/chat/completions\"\n    payload = {\n        \"model\": model,\n        \"messages\": [{\"role\": \"user\", \"content\": prompt}],\n        \"max_tokens\": max_tokens,\n        \"temperature\": temperature,\n        \"stop\": [\"```\\n\\n\"],\n    }\n    resp = requests.post(url, json=payload, timeout=300)\n    resp.raise_for_status()\n    data = resp.json()\n\n    text = data[\"choices\"][0][\"message\"][\"content\"]\n    tokens = data.get(\"usage\", {}).get(\"total_tokens\", 0)\n    return text, tokens\n\n\ndef extract_patch_from_response(response: str) -> str:\n    \"\"\"Extract unified diff patch from LLM response.\"\"\"\n    lines = response.split(\"\\n\")\n    in_diff = False\n    patch_lines = []\n\n    for line in lines:\n        if line.strip().startswith(\"```diff\"):\n            in_diff = True\n            continue\n        if in_diff and line.strip() == \"```\":\n            break\n        if in_diff:\n            patch_lines.append(line)\n\n    if not patch_lines:\n        # Fallback: look for diff-like content directly\n        for i, line in enumerate(lines):\n            if line.startswith(\"---\") or line.startswith(\"diff --git\"):\n                patch_lines = lines[i:]\n                break\n\n    return \"\\n\".join(patch_lines)\n\n\ndef apply_patch(repo_dir: str, patch: str) -> bool:\n    \"\"\"Apply a unified diff patch to the repo. Returns True on success.\"\"\"\n    if not patch.strip():\n        return False\n    try:\n        result = subprocess.run(\n            [\"git\", \"apply\", \"--check\", \"-\"],\n            input=patch, text=True, capture_output=True,\n            cwd=repo_dir, timeout=10,\n        )\n        if result.returncode != 0:\n            return False\n        subprocess.run(\n            [\"git\", \"apply\", \"-\"],\n            input=patch, text=True, capture_output=True,\n            cwd=repo_dir, timeout=10,\n        )\n        return True\n    except Exception:\n        return False\n\n\ndef compute_retrieval_recall(retrieved_files: list[str], gold_files: list[str], k: int = 10) -> float:\n    if not gold_files:\n        return 0.0\n    retrieved_set = set(retrieved_files[:k])\n    hits = len(retrieved_set & set(gold_files))\n    return hits / len(gold_files)\n\n\ndef load_completed_instances(output_dir: str) -> set[str]:\n    \"\"\"Load instance IDs that have already been evaluated (for resume support).\"\"\"\n    results_file = os.path.join(output_dir, \"results.jsonl\")\n    completed = set()\n    if os.path.exists(results_file):\n        with open(results_file) as f:\n            for line in f:\n                try:\n                    data = json.loads(line)\n                    completed.add(data[\"instance_id\"])\n                except (json.JSONDecodeError, KeyError):\n                    continue\n    return completed\n\n\ndef save_instance_result(output_dir: str, result: EvalResult):\n    \"\"\"Append a single instance result to the results file.\"\"\"\n    results_file = os.path.join(output_dir, \"results.jsonl\")\n    with open(results_file, \"a\") as f:\n        f.write(json.dumps({\n            \"instance_id\": result.instance_id,\n            \"status\": result.status,\n            \"retrieved_files\": result.retrieved_files[:20],\n            \"retrieval_recall\": result.retrieval_recall,\n            \"generated_patch\": result.generated_patch,\n            \"tokens_used\": result.tokens_used,\n            \"error_message\": result.error_message,\n            \"duration_seconds\": result.duration_seconds,\n        }, ensure_ascii=False) + \"\\n\")\n\n\ndef evaluate_instance(\n    instance: SWEBenchInstance,\n    retriever: StructFuseRetriever | None,\n    args: argparse.Namespace,\n    workspace: str,\n) -> EvalResult:\n    \"\"\"Evaluate a single SWE-bench instance end-to-end.\"\"\"\n    start = time.time()\n\n    try:\n        # Step 1: Setup repo\n        repo_dir = setup_repo(instance.repo, instance.base_commit, workspace)\n\n        # Step 2: StructFuse retrieval\n        candidates = collect_candidate_files(repo_dir)\n        bm25_results = bm25_retrieve(instance.problem_statement, candidates, top_k=30)\n\n        reachable = set()\n        if args.dataflow_dir:\n            reachable = load_dataflow_reachability(args.dataflow_dir, instance.instance_id)\n            if reachable:\n                filtered = [c for c in bm25_results if c[\"path\"] in reachable]\n                if len(filtered) >= 3:\n                    bm25_results = filtered\n\n        if retriever:\n            ranked = retriever.rank(instance.problem_statement, bm25_results, batch_size=16)\n        else:\n            ranked = bm25_results\n\n        if args.use_fusion and reachable:\n            fusion = FusionRanker()\n            for i, r in enumerate(ranked):\n                for b in bm25_results:\n                    if b[\"path\"] == r[\"path\"]:\n                        ranked[i][\"bm25_score\"] = b.get(\"bm25_score\", 0.0)\n                        break\n            ranked = fusion.rerank(ranked, reachable)\n\n        retrieved_files = [r[\"path\"] for r in ranked[:10]]\n        recall = compute_retrieval_recall(retrieved_files, instance.gold_files)\n\n        # Step 3: Build prompt and generate patch\n        prompt = build_prompt(instance.problem_statement, ranked[:10], args.max_context_tokens)\n        response, tokens = call_vllm(\n            prompt, args.llm_endpoint, args.llm_model, args.max_generation_tokens\n        )\n        patch = extract_patch_from_response(response)\n\n        # Step 4: Apply and test\n        applied = apply_patch(repo_dir, patch)\n        if not applied:\n            return EvalResult(\n                instance_id=instance.instance_id,\n                status=\"fail\",\n                retrieved_files=retrieved_files,\n                retrieval_recall=recall,\n                generated_patch=patch,\n                tokens_used=tokens,\n                error_message=\"patch_apply_failed\",\n                duration_seconds=time.time() - start,\n            )\n\n        # Step 5: Run tests (framework — actual SWE-bench harness integration TBD)\n        # The SWE-bench harness runs instance-specific tests. This is a placeholder\n        # that will be replaced with the actual harness invocation.\n        status = run_swebench_tests(repo_dir, instance)\n\n        return EvalResult(\n            instance_id=instance.instance_id,\n            status=status,\n            retrieved_files=retrieved_files,\n            retrieval_recall=recall,\n            generated_patch=patch,\n            tokens_used=tokens,\n            duration_seconds=time.time() - start,\n        )\n\n    except requests.exceptions.Timeout:\n        return EvalResult(\n            instance_id=instance.instance_id,\n            status=\"timeout\",\n            error_message=\"vllm_timeout\",\n            duration_seconds=time.time() - start,\n        )\n    except Exception as e:\n        return EvalResult(\n            instance_id=instance.instance_id,\n            status=\"error\",\n            error_message=f\"{type(e).__name__}: {e}\",\n            duration_seconds=time.time() - start,\n        )\n\n\ndef run_swebench_tests(repo_dir: str, instance: SWEBenchInstance) -> str:\n    \"\"\"\n    Run SWE-bench evaluation harness for a single instance.\n\n    This is a framework placeholder. In production, this will invoke the SWE-bench\n    harness (`swebench.harness.run_evaluation`) or apply the test patch and run\n    pytest on the target test files. Returns \"pass\" or \"fail\".\n    \"\"\"\n    # TODO: integrate with swebench.harness.run_evaluation or direct pytest invocation\n    # For now, check if the test patch can at least be applied\n    if instance.test_patch:\n        result = subprocess.run(\n            [\"git\", \"apply\", \"--check\", \"-\"],\n            input=instance.test_patch, text=True, capture_output=True,\n            cwd=repo_dir, timeout=10,\n        )\n        if result.returncode == 0:\n            subprocess.run(\n                [\"git\", \"apply\", \"-\"],\n                input=instance.test_patch, text=True, capture_output=True,\n                cwd=repo_dir, timeout=10,\n            )\n    # Placeholder: actual test execution TBD\n    return \"pending\"\n\n\ndef generate_summary(output_dir: str) -> dict:\n    \"\"\"Generate summary statistics from all instance results.\"\"\"\n    results_file = os.path.join(output_dir, \"results.jsonl\")\n    if not os.path.exists(results_file):\n        return {}\n\n    results = []\n    with open(results_file) as f:\n        for line in f:\n            try:\n                results.append(json.loads(line))\n            except json.JSONDecodeError:\n                continue\n\n    total = len(results)\n    if total == 0:\n        return {}\n\n    status_counts = {}\n    for r in results:\n        s = r[\"status\"]\n        status_counts[s] = status_counts.get(s, 0) + 1\n\n    pass_count = status_counts.get(\"pass\", 0)\n    recalls = [r.get(\"retrieval_recall\", 0.0) for r in results]\n    tokens = [r.get(\"tokens_used\", 0) for r in results if r.get(\"tokens_used\", 0) > 0]\n    durations = [r.get(\"duration_seconds\", 0.0) for r in results if r.get(\"duration_seconds\", 0) > 0]\n\n    summary = {\n        \"total_instances\": total,\n        \"status_counts\": status_counts,\n        \"pass_at_1\": pass_count / total if total > 0 else 0.0,\n        \"avg_retrieval_recall\": float(np.mean(recalls)) if recalls else 0.0,\n        \"avg_tokens_used\": float(np.mean(tokens)) if tokens else 0.0,\n        \"avg_duration_seconds\": float(np.mean(durations)) if durations else 0.0,\n        \"median_duration_seconds\": float(np.median(durations)) if durations else 0.0,\n    }\n    return summary\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"StructFuse SWE-bench End-to-End Evaluation\")\n    parser.add_argument(\"--model-path\", type=str, required=True,\n                        help=\"StructFuse checkpoint path\")\n    parser.add_argument(\"--llm-endpoint\", type=str, default=\"http://localhost:8000/v1\",\n                        help=\"vLLM serving endpoint URL\")\n    parser.add_argument(\"--llm-model\", type=str, default=\"Qwen/Qwen3.6-27B\",\n                        help=\"LLM model name for vLLM\")\n    parser.add_argument(\"--swebench-split\", type=str, default=\"lite\",\n                        choices=[\"lite\", \"verified\", \"pro\"])\n    parser.add_argument(\"--output-dir\", type=str, default=\"swebench_results\",\n                        help=\"Output directory for results\")\n    parser.add_argument(\"--max-context-tokens\", type=int, default=16000)\n    parser.add_argument(\"--max-generation-tokens\", type=int, default=4096)\n    parser.add_argument(\"--num-workers\", type=int, default=4,\n                        help=\"Parallel evaluation workers\")\n    parser.add_argument(\"--timeout-per-instance\", type=int, default=600)\n    parser.add_argument(\"--dataflow-dir\", type=str, default=None)\n    parser.add_argument(\"--use-fusion\", action=\"store_true\")\n    parser.add_argument(\"--agent-turns\", type=int, default=50,\n                        help=\"Max agent interaction turns (reserved for future agentic mode)\")\n    parser.add_argument(\"--bm25-only\", action=\"store_true\",\n                        help=\"Use BM25 retrieval only (no StructFuse model)\")\n    args = parser.parse_args()\n\n    os.makedirs(args.output_dir, exist_ok=True)\n    workspace = os.path.join(args.output_dir, \"repos\")\n    os.makedirs(workspace, exist_ok=True)\n\n    print(f\"Split: {args.swebench_split}\")\n    print(f\"LLM endpoint: {args.llm_endpoint}\")\n    print(f\"LLM model: {args.llm_model}\")\n\n    # Load instances\n    print(\"Loading SWE-bench instances...\")\n    instances = load_swebench_instances(args.swebench_split)\n    print(f\"Loaded {len(instances)} instances\")\n\n    # Resume support\n    completed = load_completed_instances(args.output_dir)\n    remaining = [inst for inst in instances if inst.instance_id not in completed]\n    if completed:\n        print(f\"Resuming: {len(completed)} done, {len(remaining)} remaining\")\n\n    # Load retriever\n    retriever = None\n    if not args.bm25_only:\n        print(f\"Loading StructFuse model from {args.model_path}\")\n        retriever = StructFuseRetriever(args.model_path, max_seq_length=2048)\n\n    # Evaluate\n    # Note: ThreadPoolExecutor for I/O-bound work (git clone, vLLM calls).\n    # GPU inference in the retriever is sequential due to single-GPU constraint.\n    for inst in tqdm(remaining, desc=\"SWE-bench evaluation\"):\n        result = evaluate_instance(inst, retriever, args, workspace)\n        save_instance_result(args.output_dir, result)\n\n    # Summary\n    summary = generate_summary(args.output_dir)\n    summary_file = os.path.join(args.output_dir, \"summary.json\")\n    with open(summary_file, \"w\") as f:\n        json.dump(summary, f, indent=2)\n\n    print(f\"\\n{'='*60}\")\n    print(\"Summary:\")\n    print(f\"  Total instances: {summary.get('total_instances', 0)}\")\n    print(f\"  Pass@1: {summary.get('pass_at_1', 0.0):.4f}\")\n    print(f\"  Avg retrieval recall: {summary.get('avg_retrieval_recall', 0.0):.4f}\")\n    print(f\"  Avg tokens used: {summary.get('avg_tokens_used', 0.0):.0f}\")\n    print(f\"  Status: {summary.get('status_counts', {})}\")\n    print(f\"\\nResults saved to {args.output_dir}/\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_eval_skeleton_20260512T100215",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/faith-evidence-ie/artifacts/code/evaluation/eval_swebench.py",
+    "content": "\"\"\"\nStructFuse SWE-bench End-to-End Evaluation Script\n\nPipeline: issue description -> StructFuse context retrieval -> Qwen3.6-27B patch\ngeneration (via vLLM) -> SWE-bench harness evaluation.\n\nInput:\n  - Trained StructFuse checkpoint\n  - vLLM serving endpoint with Qwen3.6-27B loaded\n  - SWE-bench dataset split (lite/verified/pro)\n\nOutput:\n  - Per-instance results: retrieved files, generated patch, test outcomes\n  - Summary: Pass@1, avg tokens used, avg retrieval recall\n\nDependencies: transformers, torch, datasets, requests, rank_bm25\n\"\"\"\n\nimport argparse\nimport json\nimport os\nimport subprocess\nimport tempfile\nimport time\nimport traceback\nfrom concurrent.futures import ThreadPoolExecutor, as_completed\nfrom dataclasses import dataclass, field\nfrom pathlib import Path\n\nimport numpy as np\nimport requests\nfrom datasets import load_dataset\nfrom tqdm import tqdm\n\nfrom eval_retrieval import (\n    StructFuseRetriever,\n    FusionRanker,\n    bm25_retrieve,\n    collect_candidate_files,\n    load_dataflow_reachability,\n)\n\n\n@dataclass\nclass SWEBenchInstance:\n    instance_id: str\n    repo: str\n    base_commit: str\n    problem_statement: str\n    patch: str  # gold patch for reference\n    test_patch: str\n    gold_files: list[str] = field(default_factory=list)\n\n\n@dataclass\nclass EvalResult:\n    instance_id: str\n    status: str  # \"pass\", \"fail\", \"error\", \"timeout\", \"skipped\"\n    retrieved_files: list[str] = field(default_factory=list)\n    retrieval_recall: float = 0.0\n    generated_patch: str = \"\"\n    tokens_used: int = 0\n    error_message: str = \"\"\n    duration_seconds: float = 0.0\n\n\ndef load_swebench_instances(split: str) -> list[SWEBenchInstance]:\n    \"\"\"Load SWE-bench instances from HuggingFace datasets.\"\"\"\n    split_map = {\n        \"lite\": \"princeton-nlp/SWE-bench_Lite\",\n        \"verified\": \"princeton-nlp/SWE-bench_Verified\",\n        \"pro\": \"princeton-nlp/SWE-bench\",\n    }\n    dataset_name = split_map.get(split, split_map[\"lite\"])\n    ds = load_dataset(dataset_name, split=\"test\")\n\n    instances = []\n    for item in ds:\n        gold_files = extract_gold_files_from_patch(item.get(\"patch\", \"\"))\n        instances.append(SWEBenchInstance(\n            instance_id=item[\"instance_id\"],\n            repo=item[\"repo\"],\n            base_commit=item[\"base_commit\"],\n            problem_statement=item[\"problem_statement\"],\n            patch=item.get(\"patch\", \"\"),\n            test_patch=item.get(\"test_patch\", \"\"),\n            gold_files=gold_files,\n        ))\n    return instances\n\n\ndef extract_gold_files_from_patch(patch: str) -> list[str]:\n    \"\"\"Extract modified file paths from a unified diff patch.\"\"\"\n    files = []\n    for line in patch.split(\"\\n\"):\n        if line.startswith(\"--- a/\") or line.startswith(\"+++ b/\"):\n            fpath = line.split(\"/\", 1)[1] if \"/\" in line else \"\"\n            if fpath and fpath != \"/dev/null\" and fpath not in files:\n                files.append(fpath)\n    return files\n\n\ndef setup_repo(repo: str, base_commit: str, workspace: str) -> str:\n    \"\"\"Clone and checkout the target repo at the base commit.\"\"\"\n    repo_url = f\"https://github.com/{repo}.git\"\n    repo_dir = os.path.join(workspace, repo.replace(\"/\", \"__\"))\n\n    if not os.path.exists(repo_dir):\n        subprocess.run(\n            [\"git\", \"clone\", \"--depth\", \"50\", repo_url, repo_dir],\n            capture_output=True, timeout=120,\n        )\n    subprocess.run(\n        [\"git\", \"checkout\", base_commit],\n        cwd=repo_dir, capture_output=True, timeout=30,\n    )\n    return repo_dir\n\n\ndef build_prompt(problem_statement: str, retrieved_context: list[dict], max_tokens: int) -> str:\n    \"\"\"Construct the LLM prompt with issue description and retrieved code context.\"\"\"\n    header = (\n        \"You are an expert software engineer. Given the following GitHub issue and \"\n        \"relevant code context, generate a minimal unified diff patch that resolves the issue.\\n\\n\"\n        f\"## Issue\\n{problem_statement}\\n\\n\"\n        \"## Relevant Code\\n\"\n    )\n\n    # Budget token estimation: ~4 chars per token\n    budget = (max_tokens - len(header) // 4) * 4\n    context_parts = []\n    used = 0\n\n    for item in retrieved_context:\n        entry = f\"\\n### {item['path']}\\n```python\\n{item['content']}\\n```\\n\"\n        entry_len = len(entry)\n        if used + entry_len > budget:\n            remaining = budget - used\n            if remaining > 200:\n                truncated_content = item[\"content\"][: remaining - 100]\n                entry = f\"\\n### {item['path']} (truncated)\\n```python\\n{truncated_content}\\n```\\n\"\n                context_parts.append(entry)\n            break\n        context_parts.append(entry)\n        used += entry_len\n\n    footer = (\n        \"\\n## Instructions\\n\"\n        \"Generate a unified diff patch (```diff ... ```) that fixes the issue. \"\n        \"Only modify the files shown above. Be minimal and precise.\\n\"\n    )\n\n    return header + \"\".join(context_parts) + footer\n\n\ndef call_vllm(\n    prompt: str,\n    endpoint: str,\n    model: str,\n    max_tokens: int,\n    temperature: float = 0.0,\n) -> tuple[str, int]:\n    \"\"\"Call vLLM OpenAI-compatible API and return (response_text, tokens_used).\"\"\"\n    url = f\"{endpoint}/chat/completions\"\n    payload = {\n        \"model\": model,\n        \"messages\": [{\"role\": \"user\", \"content\": prompt}],\n        \"max_tokens\": max_tokens,\n        \"temperature\": temperature,\n        \"stop\": [\"```\\n\\n\"],\n    }\n    resp = requests.post(url, json=payload, timeout=300)\n    resp.raise_for_status()\n    data = resp.json()\n\n    text = data[\"choices\"][0][\"message\"][\"content\"]\n    tokens = data.get(\"usage\", {}).get(\"total_tokens\", 0)\n    return text, tokens\n\n\ndef extract_patch_from_response(response: str) -> str:\n    \"\"\"Extract unified diff patch from LLM response.\"\"\"\n    lines = response.split(\"\\n\")\n    in_diff = False\n    patch_lines = []\n\n    for line in lines:\n        if line.strip().startswith(\"```diff\"):\n            in_diff = True\n            continue\n        if in_diff and line.strip() == \"```\":\n            break\n        if in_diff:\n            patch_lines.append(line)\n\n    if not patch_lines:\n        # Fallback: look for diff-like content directly\n        for i, line in enumerate(lines):\n            if line.startswith(\"---\") or line.startswith(\"diff --git\"):\n                patch_lines = lines[i:]\n                break\n\n    return \"\\n\".join(patch_lines)\n\n\ndef apply_patch(repo_dir: str, patch: str) -> bool:\n    \"\"\"Apply a unified diff patch to the repo. Returns True on success.\"\"\"\n    if not patch.strip():\n        return False\n    try:\n        result = subprocess.run(\n            [\"git\", \"apply\", \"--check\", \"-\"],\n            input=patch, text=True, capture_output=True,\n            cwd=repo_dir, timeout=10,\n        )\n        if result.returncode != 0:\n            return False\n        subprocess.run(\n            [\"git\", \"apply\", \"-\"],\n            input=patch, text=True, capture_output=True,\n            cwd=repo_dir, timeout=10,\n        )\n        return True\n    except Exception:\n        return False\n\n\ndef compute_retrieval_recall(retrieved_files: list[str], gold_files: list[str], k: int = 10) -> float:\n    if not gold_files:\n        return 0.0\n    retrieved_set = set(retrieved_files[:k])\n    hits = len(retrieved_set & set(gold_files))\n    return hits / len(gold_files)\n\n\ndef load_completed_instances(output_dir: str) -> set[str]:\n    \"\"\"Load instance IDs that have already been evaluated (for resume support).\"\"\"\n    results_file = os.path.join(output_dir, \"results.jsonl\")\n    completed = set()\n    if os.path.exists(results_file):\n        with open(results_file) as f:\n            for line in f:\n                try:\n                    data = json.loads(line)\n                    completed.add(data[\"instance_id\"])\n                except (json.JSONDecodeError, KeyError):\n                    continue\n    return completed\n\n\ndef save_instance_result(output_dir: str, result: EvalResult):\n    \"\"\"Append a single instance result to the results file.\"\"\"\n    results_file = os.path.join(output_dir, \"results.jsonl\")\n    with open(results_file, \"a\") as f:\n        f.write(json.dumps({\n            \"instance_id\": result.instance_id,\n            \"status\": result.status,\n            \"retrieved_files\": result.retrieved_files[:20],\n            \"retrieval_recall\": result.retrieval_recall,\n            \"generated_patch\": result.generated_patch,\n            \"tokens_used\": result.tokens_used,\n            \"error_message\": result.error_message,\n            \"duration_seconds\": result.duration_seconds,\n        }, ensure_ascii=False) + \"\\n\")\n\n\ndef evaluate_instance(\n    instance: SWEBenchInstance,\n    retriever: StructFuseRetriever | None,\n    args: argparse.Namespace,\n    workspace: str,\n) -> EvalResult:\n    \"\"\"Evaluate a single SWE-bench instance end-to-end.\"\"\"\n    start = time.time()\n\n    try:\n        # Step 1: Setup repo\n        repo_dir = setup_repo(instance.repo, instance.base_commit, workspace)\n\n        # Step 2: StructFuse retrieval\n        candidates = collect_candidate_files(repo_dir)\n        bm25_results = bm25_retrieve(instance.problem_statement, candidates, top_k=30)\n\n        reachable = set()\n        if args.dataflow_dir:\n            reachable = load_dataflow_reachability(args.dataflow_dir, instance.instance_id)\n            if reachable:\n                filtered = [c for c in bm25_results if c[\"path\"] in reachable]\n                if len(filtered) >= 3:\n                    bm25_results = filtered\n\n        if retriever:\n            ranked = retriever.rank(instance.problem_statement, bm25_results, batch_size=16)\n        else:\n            ranked = bm25_results\n\n        if args.use_fusion and reachable:\n            fusion = FusionRanker()\n            for i, r in enumerate(ranked):\n                for b in bm25_results:\n                    if b[\"path\"] == r[\"path\"]:\n                        ranked[i][\"bm25_score\"] = b.get(\"bm25_score\", 0.0)\n                        break\n            ranked = fusion.rerank(ranked, reachable)\n\n        retrieved_files = [r[\"path\"] for r in ranked[:10]]\n        recall = compute_retrieval_recall(retrieved_files, instance.gold_files)\n\n        # Step 3: Build prompt and generate patch\n        prompt = build_prompt(instance.problem_statement, ranked[:10], args.max_context_tokens)\n        response, tokens = call_vllm(\n            prompt, args.llm_endpoint, args.llm_model, args.max_generation_tokens\n        )\n        patch = extract_patch_from_response(response)\n\n        # Step 4: Apply and test\n        applied = apply_patch(repo_dir, patch)\n        if not applied:\n            return EvalResult(\n                instance_id=instance.instance_id,\n                status=\"fail\",\n                retrieved_files=retrieved_files,\n                retrieval_recall=recall,\n                generated_patch=patch,\n                tokens_used=tokens,\n                error_message=\"patch_apply_failed\",\n                duration_seconds=time.time() - start,\n            )\n\n        # Step 5: Run tests (framework — actual SWE-bench harness integration TBD)\n        # The SWE-bench harness runs instance-specific tests. This is a placeholder\n        # that will be replaced with the actual harness invocation.\n        status = run_swebench_tests(repo_dir, instance)\n\n        return EvalResult(\n            instance_id=instance.instance_id,\n            status=status,\n            retrieved_files=retrieved_files,\n            retrieval_recall=recall,\n            generated_patch=patch,\n            tokens_used=tokens,\n            duration_seconds=time.time() - start,\n        )\n\n    except requests.exceptions.Timeout:\n        return EvalResult(\n            instance_id=instance.instance_id,\n            status=\"timeout\",\n            error_message=\"vllm_timeout\",\n            duration_seconds=time.time() - start,\n        )\n    except Exception as e:\n        return EvalResult(\n            instance_id=instance.instance_id,\n            status=\"error\",\n            error_message=f\"{type(e).__name__}: {e}\",\n            duration_seconds=time.time() - start,\n        )\n\n\ndef run_swebench_tests(repo_dir: str, instance: SWEBenchInstance) -> str:\n    \"\"\"\n    Run SWE-bench evaluation harness for a single instance.\n\n    This is a framework placeholder. In production, this will invoke the SWE-bench\n    harness (`swebench.harness.run_evaluation`) or apply the test patch and run\n    pytest on the target test files. Returns \"pass\" or \"fail\".\n    \"\"\"\n    # TODO: integrate with swebench.harness.run_evaluation or direct pytest invocation\n    # For now, check if the test patch can at least be applied\n    if instance.test_patch:\n        result = subprocess.run(\n            [\"git\", \"apply\", \"--check\", \"-\"],\n            input=instance.test_patch, text=True, capture_output=True,\n            cwd=repo_dir, timeout=10,\n        )\n        if result.returncode == 0:\n            subprocess.run(\n                [\"git\", \"apply\", \"-\"],\n                input=instance.test_patch, text=True, capture_output=True,\n                cwd=repo_dir, timeout=10,\n            )\n    # Placeholder: actual test execution TBD\n    return \"pending\"\n\n\ndef generate_summary(output_dir: str) -> dict:\n    \"\"\"Generate summary statistics from all instance results.\"\"\"\n    results_file = os.path.join(output_dir, \"results.jsonl\")\n    if not os.path.exists(results_file):\n        return {}\n\n    results = []\n    with open(results_file) as f:\n        for line in f:\n            try:\n                results.append(json.loads(line))\n            except json.JSONDecodeError:\n                continue\n\n    total = len(results)\n    if total == 0:\n        return {}\n\n    status_counts = {}\n    for r in results:\n        s = r[\"status\"]\n        status_counts[s] = status_counts.get(s, 0) + 1\n\n    pass_count = status_counts.get(\"pass\", 0)\n    recalls = [r.get(\"retrieval_recall\", 0.0) for r in results]\n    tokens = [r.get(\"tokens_used\", 0) for r in results if r.get(\"tokens_used\", 0) > 0]\n    durations = [r.get(\"duration_seconds\", 0.0) for r in results if r.get(\"duration_seconds\", 0) > 0]\n\n    summary = {\n        \"total_instances\": total,\n        \"status_counts\": status_counts,\n        \"pass_at_1\": pass_count / total if total > 0 else 0.0,\n        \"avg_retrieval_recall\": float(np.mean(recalls)) if recalls else 0.0,\n        \"avg_tokens_used\": float(np.mean(tokens)) if tokens else 0.0,\n        \"avg_duration_seconds\": float(np.mean(durations)) if durations else 0.0,\n        \"median_duration_seconds\": float(np.median(durations)) if durations else 0.0,\n    }\n    return summary\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"StructFuse SWE-bench End-to-End Evaluation\")\n    parser.add_argument(\"--model-path\", type=str, required=True,\n                        help=\"StructFuse checkpoint path\")\n    parser.add_argument(\"--llm-endpoint\", type=str, default=\"http://localhost:8000/v1\",\n                        help=\"vLLM serving endpoint URL\")\n    parser.add_argument(\"--llm-model\", type=str, default=\"Qwen/Qwen3.6-27B\",\n                        help=\"LLM model name for vLLM\")\n    parser.add_argument(\"--swebench-split\", type=str, default=\"lite\",\n                        choices=[\"lite\", \"verified\", \"pro\"])\n    parser.add_argument(\"--output-dir\", type=str, default=\"swebench_results\",\n                        help=\"Output directory for results\")\n    parser.add_argument(\"--max-context-tokens\", type=int, default=16000)\n    parser.add_argument(\"--max-generation-tokens\", type=int, default=4096)\n    parser.add_argument(\"--num-workers\", type=int, default=4,\n                        help=\"Parallel evaluation workers\")\n    parser.add_argument(\"--timeout-per-instance\", type=int, default=600)\n    parser.add_argument(\"--dataflow-dir\", type=str, default=None)\n    parser.add_argument(\"--use-fusion\", action=\"store_true\")\n    parser.add_argument(\"--agent-turns\", type=int, default=50,\n                        help=\"Max agent interaction turns (reserved for future agentic mode)\")\n    parser.add_argument(\"--bm25-only\", action=\"store_true\",\n                        help=\"Use BM25 retrieval only (no StructFuse model)\")\n    args = parser.parse_args()\n\n    os.makedirs(args.output_dir, exist_ok=True)\n    workspace = os.path.join(args.output_dir, \"repos\")\n    os.makedirs(workspace, exist_ok=True)\n\n    print(f\"Split: {args.swebench_split}\")\n    print(f\"LLM endpoint: {args.llm_endpoint}\")\n    print(f\"LLM model: {args.llm_model}\")\n\n    # Load instances\n    print(\"Loading SWE-bench instances...\")\n    instances = load_swebench_instances(args.swebench_split)\n    print(f\"Loaded {len(instances)} instances\")\n\n    # Resume support\n    completed = load_completed_instances(args.output_dir)\n    remaining = [inst for inst in instances if inst.instance_id not in completed]\n    if completed:\n        print(f\"Resuming: {len(completed)} done, {len(remaining)} remaining\")\n\n    # Load retriever\n    retriever = None\n    if not args.bm25_only:\n        print(f\"Loading StructFuse model from {args.model_path}\")\n        retriever = StructFuseRetriever(args.model_path, max_seq_length=2048)\n\n    # Evaluate\n    # Note: ThreadPoolExecutor for I/O-bound work (git clone, vLLM calls).\n    # GPU inference in the retriever is sequential due to single-GPU constraint.\n    for inst in tqdm(remaining, desc=\"SWE-bench evaluation\"):\n        result = evaluate_instance(inst, retriever, args, workspace)\n        save_instance_result(args.output_dir, result)\n\n    # Summary\n    summary = generate_summary(args.output_dir)\n    summary_file = os.path.join(args.output_dir, \"summary.json\")\n    with open(summary_file, \"w\") as f:\n        json.dump(summary, f, indent=2)\n\n    print(f\"\\n{'='*60}\")\n    print(\"Summary:\")\n    print(f\"  Total instances: {summary.get('total_instances', 0)}\")\n    print(f\"  Pass@1: {summary.get('pass_at_1', 0.0):.4f}\")\n    print(f\"  Avg retrieval recall: {summary.get('avg_retrieval_recall', 0.0):.4f}\")\n    print(f\"  Avg tokens used: {summary.get('avg_tokens_used', 0.0):.0f}\")\n    print(f\"  Status: {summary.get('status_counts', {})}\")\n    print(f\"\\nResults saved to {args.output_dir}/\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-12T10:05:17.188282+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/faith-evidence-ie/artifacts/code/evaluation/eval_swebench.py
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_eval_skeleton_20260512T100215",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-12T10:05:17.188444+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/faith-evidence-ie/artifacts/code/requirements.txt",
+  "content": "# StructFuse project dependencies\n# Note: PyTorch CUDA version depends on server — install with appropriate --index-url:\n#   pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124\n# Note: CodeQL is a standalone CLI tool, not a pip package.\n#   Download from https://github.com/github/codeql-cli-binaries\n\ntorch>=2.2.0\ntransformers>=4.40.0\naccelerate>=0.28.0\npeft>=0.10.0\ndatasets>=2.18.0\neinops>=0.7.0\nbeniget>=0.4.0\ntree-sitter>=0.21.0\nrank-bm25>=0.2.2\nfaiss-cpu>=1.7.4\nwandb>=0.16.0\nnumpy>=1.24.0\nscipy>=1.11.0\ntqdm>=4.66.0\njsonlines>=4.0.0\nrequests>=2.31.0\nvllm>=0.4.0\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_eval_skeleton_20260512T100215",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/faith-evidence-ie/artifacts/code/requirements.txt",
+    "content": "# StructFuse project dependencies\n# Note: PyTorch CUDA version depends on server — install with appropriate --index-url:\n#   pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124\n# Note: CodeQL is a standalone CLI tool, not a pip package.\n#   Download from https://github.com/github/codeql-cli-binaries\n\ntorch>=2.2.0\ntransformers>=4.40.0\naccelerate>=0.28.0\npeft>=0.10.0\ndatasets>=2.18.0\neinops>=0.7.0\nbeniget>=0.4.0\ntree-sitter>=0.21.0\nrank-bm25>=0.2.2\nfaiss-cpu>=1.7.4\nwandb>=0.16.0\nnumpy>=1.24.0\nscipy>=1.11.0\ntqdm>=4.66.0\njsonlines>=4.0.0\nrequests>=2.31.0\nvllm>=0.4.0\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-12T10:05:17.188592+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/faith-evidence-ie/artifacts/code/requirements.txt
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_eval_skeleton_20260512T100215",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-12T10:05:17.188826+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__register_artifact",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_eval_skeleton_20260512T100215",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__register_artifact",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-12T10:05:17.188963+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_eval_skeleton_20260512T100215",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-12T10:05:17.189162+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "eval_retrieval.py",
+  "type": "data",
+  "description": "StructFuse retrieval evaluation script: Recall@k, MRR, Structural Precision on SWE-bench Lite / RepoBench-R / custom sets. Supports BM25 baseline, data-flow filter, fusion re-ranking, multi-model comparison.",
+  "project": "faith-evidence-ie",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/faith-evidence-ie/artifacts/code/evaluation/eval_retrieval.py",
+  "tags": "['evaluation', 'retrieval', 'structfuse', 'stage3']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_eval_skeleton_20260512T100215",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "eval_retrieval.py",
+    "type": "data",
+    "description": "StructFuse retrieval evaluation script: Recall@k, MRR, Structural Precision on SWE-bench Lite / RepoBench-R / custom sets. Supports BM25 baseline, data-flow filter, fusion re-ranking, multi-model comparison.",
+    "project": "faith-evidence-ie",
+    "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/faith-evidence-ie/artifacts/code/evaluation/eval_retrieval.py",
+    "tags": "['evaluation', 'retrieval', 'structfuse', 'stage3']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-12T10:05:17.189333+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260512_8aef33\", \"name\": \"eval_retrieval.py\", \"type\": \"data\", \"description\": \"StructFuse retrieval evaluation script: Recall@k, MRR, Structural Precision on SWE-bench Lite / RepoBench-R / custom sets. Supports BM25 baseline, data-flow filter, fusion re-ranking, multi-model comparison.\", \"path\": \"projects/faith-evidence-ie/artifacts/_project/data/eval_retrieval.py\", \"url\": null, \"project\": \"faith-evidence-ie\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-12T10:05:00.289408+00:00\", \"tags\": [\"evaluation\", \"retrieval\", \"structfuse\", \"stage3\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/faith-evidence-ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_eval_skeleton_20260512T100215",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-12T10:05:17.189474+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "eval_swebench.py",
+  "type": "data",
+  "description": "StructFuse SWE-bench end-to-end evaluation: issue -> StructFuse retrieval -> Qwen3.6-27B patch generation (vLLM) -> harness evaluation. Supports resume, per-instance logging, Pass@1 summary.",
+  "project": "faith-evidence-ie",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/faith-evidence-ie/artifacts/code/evaluation/eval_swebench.py",
+  "tags": "['evaluation', 'swebench', 'structfuse', 'e2e', 'stage3']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_eval_skeleton_20260512T100215",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "eval_swebench.py",
+    "type": "data",
+    "description": "StructFuse SWE-bench end-to-end evaluation: issue -> StructFuse retrieval -> Qwen3.6-27B patch generation (vLLM) -> harness evaluation. Supports resume, per-instance logging, Pass@1 summary.",
+    "project": "faith-evidence-ie",
+    "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/faith-evidence-ie/artifacts/code/evaluation/eval_swebench.py",
+    "tags": "['evaluation', 'swebench', 'structfuse', 'e2e', 'stage3']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-12T10:05:17.189661+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260512_033304\", \"name\": \"eval_swebench.py\", \"type\": \"data\", \"description\": \"StructFuse SWE-bench end-to-end evaluation: issue -> StructFuse retrieval -> Qwen3.6-27B patch generation (vLLM) -> harness evaluation. Supports resume, per-instance logging, Pass@1 summary.\", \"path\": \"projects/faith-evidence-ie/artifacts/_project/data/eval_swebench.py\", \"url\": null, \"project\": \"faith-evidence-ie\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-12T10:05:05.302147+00:00\", \"tags\": [\"evaluation\", \"swebench\", \"structfuse\", \"e2e\", \"stage3\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/faith-evidence-ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_eval_skeleton_20260512T100215",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-12T10:05:17.189828+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "requirements.txt",
+  "type": "data",
+  "description": "StructFuse project Python dependencies: torch, transformers, rank-bm25, faiss-cpu, vllm, etc.",
+  "project": "faith-evidence-ie",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/faith-evidence-ie/artifacts/code/requirements.txt",
+  "tags": "['dependencies', 'structfuse']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_eval_skeleton_20260512T100215",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "requirements.txt",
+    "type": "data",
+    "description": "StructFuse project Python dependencies: torch, transformers, rank-bm25, faiss-cpu, vllm, etc.",
+    "project": "faith-evidence-ie",
+    "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/faith-evidence-ie/artifacts/code/requirements.txt",
+    "tags": "['dependencies', 'structfuse']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-12T10:05:17.189977+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260512_e5f41c\", \"name\": \"requirements.txt\", \"type\": \"data\", \"description\": \"StructFuse project Python dependencies: torch, transformers, rank-bm25, faiss-cpu, vllm, etc.\", \"path\": \"projects/faith-evidence-ie/artifacts/_project/data/requirements.txt\", \"url\": null, \"project\": \"faith-evidence-ie\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-12T10:05:05.480895+00:00\", \"tags\": [\"dependencies\", \"structfuse\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/faith-evidence-ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_eval_skeleton_20260512T100215",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17 · 2026-05-12T10:05:17.190140+00:00_
+
+三个文件已创建并注册：
+
+- **`eval_retrieval.py`** — 检索评估脚本，支持 BM25 baseline / StructFuse bi-encoder / fusion re-ranking 三种模式，计算 Recall@k、MRR、Structural Precision，支持多模型对比和 data-flow reachability filter
+- **`eval_swebench.py`** — SWE-bench 端到端评估，pipeline: issue → StructFuse retrieval → vLLM (Qwen3.6-27B) patch generation → harness evaluation，支持断点续传，输出 Pass@1 + localization recall
+- **`requirements.txt`** — 16 个核心依赖，注释说明了 torch CUDA 版本和 CodeQL CLI 的安装方式，额外加了 `requests` 和 `vllm`（eval_swebench 需要）
+
+`eval_swebench.py` 中 `run_swebench_tests` 是框架占位，返回 `"pending"` 状态——实际 harness 集成需要根据服务器环境对接 `swebench.harness.run_evaluation` 或直接 pytest 调用。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_code_eval_skeleton_20260512T100215"
+}
+```
+
+</details>
+
+---

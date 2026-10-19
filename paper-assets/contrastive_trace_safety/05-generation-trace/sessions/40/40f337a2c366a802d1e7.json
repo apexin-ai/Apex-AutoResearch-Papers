@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "40f337a2c366a802d1e7",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code bocpd cusum r1 32b qwq",
+  "task_key": "worker_code_bocpd_cusum_r1_32b_qwq_20260517T135527",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_bocpd_cusum_r1_32b_qwq_20260517T135527_result.json",
+    "occurrence": 1,
+    "bytes": 966,
+    "sha256": "0b9c505286af6aae9aa419fc84118f18643a413394f02ee19644a6c03914d97c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。4 模型对比结果：\n\n| Model | Layer | W | BOCPD Det | Lead | CUSUM Det | Lead | FCP Det | Lead |\n|-------|-------|---|-----------|------|-----------|------|---------|------|\n| R1-8B | L14 | 15 | **93.0%** | 3.45 | 74.4% | 7.46 | 65.1% | 4.89 |\n| R1-32B | L10 | 10 | 0.0% | N/A | 85.0% | 2.59 | **95.0%** | 5.68 |\n| OT-7B | L16 | 3 | 0.0% | N/A | 74.5% | 7.46 | **89.4%** | 11.83 |\n| QwQ-32B | L2 | 5 | 0.0% | N/A | 73.7% | 9.86 | **78.9%** | 9.40 |\n\n**结论：BOCPD 在 3/4 模型上检测率为 0%（仅 R1-8B 例外），CUSUM 检测率均低于 FCP。简单阈值方法 (FCP) 在所有 4 个模型上表现最优或并列最优。高级变点检测方法不优于简单阈值，验证了负面结果的普适性。**\n\n结果 JSON 已保存至：\n- `/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_bocpd_r1_32b/results.json`\n- `/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_bocpd_qwq/results.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-bocpd-cusum-r1-32b-qwq.md"
+}

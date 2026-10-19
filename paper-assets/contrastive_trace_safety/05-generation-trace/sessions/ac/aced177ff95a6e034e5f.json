@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aced177ff95a6e034e5f",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "ops await qwen3 and prepare phase4",
+  "task_key": "worker_ops_await_qwen3_and_prepare_phase4_20260520T062418",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_await_qwen3_and_prepare_phase4_20260520T062418_result.json",
+    "occurrence": 1,
+    "bytes": 92,
+    "sha256": "05d3e520f1b682bbbe021cb6dc101472aaca6299683eccdd1299f7279b7c5b99"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Annotation at 300/520, tmux session still active. Polling again in 3 minutes."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-await-qwen3-and-prepare-phase4.md"
+}

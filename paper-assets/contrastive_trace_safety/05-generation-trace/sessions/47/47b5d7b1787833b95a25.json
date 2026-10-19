@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "47b5d7b1787833b95a25",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code r6 r1 32b c sweep",
+  "task_key": "worker_code_r6_r1_32b_c_sweep_20260518T030834",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r6_r1_32b_c_sweep_20260518T030834_result.json",
+    "occurrence": 1,
+    "bytes": 793,
+    "sha256": "35eb4c3bfbb316b79651cdb564d66843919f6d9a13a2d3324ffe38f4a2fb072c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n| C     | Precision | Bal_Acc |\n|-------|-----------|---------|\n| 0.01  | 0.5021    | 0.7669  |\n| 0.1   | 0.4876    | 0.7566  |\n| 1.0   | 0.4819    | 0.7585  |\n| 10    | 0.4873    | 0.7499  |\n| 100   | 0.5067    | 0.7552  |\n\n数据概况：Train 2197 samples (34.5% positive), Val 765 samples (21.4% positive)。\n\n**最优 C = 0.01**，bal_acc=0.7669, precision=0.5021。但各 C 值差异很小（bal_acc 范围 0.7499–0.7669, precision 0.4819–0.5067），说明 Layer 63 上 LR 对正则化强度不敏感。\n\n建议：如果要从中选一个，C=0.01 略优。但更值得注意的是 Layer 63 的整体 precision 偏低（~50%），这是最后一层，信号可能不如中间层。结果已保存到 `artifacts/exp_r6_c_sweep/results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r6-r1-32b-c-sweep.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2b72516ba6e2e1a8db55",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "research harmthoughts model census",
+  "task_key": "worker_research_harmthoughts_model_census_20260517T060103",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_harmthoughts_model_census_20260517T060103_result.json",
+    "occurrence": 1,
+    "bytes": 1055,
+    "sha256": "70c20c6eb7ec22bad4fa31b17ba6135a85a26d9cf2d2fb7722dcd60627240efe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/harmthoughts_census/report.md`。\n\n**核心发现：**\n\n| Code | 全称 | 架构 | Traces | Sentences |\n|------|------|------|--------|-----------|\n| **ot-7b** | OpenThinker-7B | Qwen2.5-7B | 333 | 26,653 |\n| r1-8b | DeepSeek-R1-Distill-**Llama**-8B | Llama-3.1-8B | 324 | 14,746 |\n| r1-32b | DeepSeek-R1-Distill-Qwen-32B | Qwen2.5-32B | 221 | 8,525 |\n| QwQ | QwQ-32B | Qwen2.5-32B | 140 | 7,007 |\n\n**关键结论：**\n\n1. 缺失的 26,653 条 = **OpenThinker-7B**（Qwen2.5-7B 架构，trace 最长 avg 80 句/trace）\n\n2. **r1-8b 是 Llama 架构**（不是 Qwen！）—— 这直接提供了 cross-architecture 对比能力\n\n3. Architecture confound 部分解决：Llama (324 traces) vs Qwen (694 traces) 的 self-jailbreak 率几乎相同（~83%），支持 \"现象跨架构存在\" 的论证\n\n4. 没有 Mistral/Gemma 等第三架构 —— 完全排除 confound 仍需外部数据\n\n5. OpenThinker-7B 的 strict refusal-suppression 率最高 (18.9%)，是研究 RS 机制的最佳候选"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-harmthoughts-model-census.md"
+}

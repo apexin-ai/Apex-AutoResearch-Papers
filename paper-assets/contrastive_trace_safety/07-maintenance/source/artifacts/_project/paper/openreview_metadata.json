@@ -1,0 +1,21 @@
+{
+  "title": "Layer Selection Sensitivity in Hidden-State Safety Probes for Reasoning Models",
+  "abstract": "Reasoning models with chain-of-thought (CoT) can self-jailbreak: their reasoning traces transition from safe deliberation to committed harmful generation without adversarial input. Detecting the commitment point (CP)---the first reasoning step after which safety deliberation permanently ceases---requires monitoring internal representations or generated text. We study four reasoning LLMs, primarily Qwen-based (3/4 models) with one Llama model for limited cross-architecture evidence, on HarmThoughts and provide initial characterization of hidden-state (HS) vs. text probe capabilities on this benchmark. The comparison depends critically on which transformer layer is monitored: a crossing-rate composite metric masks the HS advantage at 32B scale by selecting shallow layers where representation compression inflates threshold crossings. Threshold-based layer selection recovers HS precision gains of +15.4 to +21.9pp against MiniLM-384d (Holm-Bonferroni corrected; advantage is encoder-conditional and represents an upper bound); this advantage diminishes with stronger encoders (384d: 4/4 models pass HB -> 1024d BGE-large: 1/4). The 7-8B results are cross-validated (nested CV): precision and balanced accuracy confirmed; R1-8B safe-trace false positive rate (FPR) is significant but seed-sensitive (3/5 seeds pass HB). The 32B results are exploratory (sample-limited, n <= 20): QwQ-32B is significant but suggestive of position-competitiveness; R1-32B shows a pattern consistent with position mediation and falls below minimum detectable effect. A three-layer ensemble provides metric-agnostic HS advantage matching the best individual metric (4/4 models, p <= 0.002). Metric-induced layer selection bias is the robust methodological finding; the empirical HS advantage is conditional on encoder quality, model scale, and position control.",
+  "keywords": [
+    "safety probes",
+    "reasoning models",
+    "hidden states",
+    "layer selection sensitivity",
+    "commitment point detection"
+  ],
+  "ethical_considerations": "This research uses publicly available models (DeepSeek-R1, QwQ-32B, OpenThinker-7B) and datasets (HarmThoughts, AdvBench) to study safety monitoring of reasoning models. The goal is to improve detection of harmful content generation in chain-of-thought reasoning, not to generate or amplify harmful content. No new harmful data was created. All models are used under their respective open-source licenses.",
+  "formatting": {
+    "style": "ACL 2023",
+    "mode": "review (anonymous)",
+    "main_text_pages": 8,
+    "references": "unlimited",
+    "limitations": "mandatory, does not count toward page limit"
+  },
+  "submission_venue": "ARR May 2026",
+  "paper_type": "long"
+}

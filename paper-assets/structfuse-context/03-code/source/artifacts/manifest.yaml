@@ -1,0 +1,1549 @@
+- id: art_20260512_b890e8
+  name: contrastive_model.py
+  type: intermediate
+  description: StructFuse bi-encoder contrastive model with InfoNCE loss, weighted
+    positives, fusion head, LoRA support
+  path: projects/structfuse-context/artifacts/_project/intermediate/contrastive_model.py
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-12T10:04:16.728617+00:00'
+  tags:
+  - structfuse
+  - training
+  - stage2
+- id: art_20260512_a7cf03
+  name: StructFuse call_graph.ql
+  type: intermediate
+  description: CodeQL query for 2-hop call graph extraction from buggy function (Phase
+    1a)
+  path: projects/structfuse-context/artifacts/_project/intermediate/call_graph.ql
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-12T10:04:17.924200+00:00'
+  tags:
+  - structfuse
+  - stage1
+  - codeql
+- id: art_20260512_a82ef6
+  name: hard_negative_mining.py
+  type: intermediate
+  description: 'Data-flow-aware hard negative mining: random / embedding-distance
+    / dataflow-aware strategies'
+  path: projects/structfuse-context/artifacts/_project/intermediate/hard_negative_mining.py
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-12T10:04:18.671317+00:00'
+  tags:
+  - structfuse
+  - training
+  - stage2
+- id: art_20260512_99f4ec
+  name: StructFuse bounded_dataflow.ql
+  type: intermediate
+  description: CodeQL query for scope-bounded inter-procedural data-flow analysis
+    (Phase 1b)
+  path: projects/structfuse-context/artifacts/_project/intermediate/bounded_dataflow.ql
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-12T10:04:19.846492+00:00'
+  tags:
+  - structfuse
+  - stage1
+  - codeql
+  - dataflow
+- id: art_20260512_2c1b69
+  name: train.py
+  type: intermediate
+  description: 'StructFuse training entry: Accelerate, W&B, dynamic negative mining,
+    eval loop, checkpoint saving'
+  path: projects/structfuse-context/artifacts/_project/intermediate/train.py
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-12T10:04:20.628765+00:00'
+  tags:
+  - structfuse
+  - training
+  - stage2
+- id: art_20260512_21d6b6
+  name: StructFuse extract_dataflow.py
+  type: intermediate
+  description: 'Main extraction pipeline: CodeQL 2-phase analysis with Beniget fallback,
+    multiprocessing parallel, JSONL output'
+  path: projects/structfuse-context/artifacts/_project/intermediate/extract_dataflow.py
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-12T10:04:22.339431+00:00'
+  tags:
+  - structfuse
+  - stage1
+  - extraction
+  - pipeline
+- id: art_20260512_51f682
+  name: StructFuse build_training_data.py
+  type: intermediate
+  description: 'Contrastive training data builder: BM25 hard negatives, feature vectors,
+    HuggingFace-compatible JSONL output'
+  path: projects/structfuse-context/artifacts/_project/intermediate/build_training_data.py
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-12T10:04:23.854442+00:00'
+  tags:
+  - structfuse
+  - stage1
+  - training-data
+  - contrastive
+- id: art_20260512_8aef33
+  name: eval_retrieval.py
+  type: data
+  description: 'StructFuse retrieval evaluation script: Recall@k, MRR, Structural
+    Precision on SWE-bench Lite / RepoBench-R / custom sets. Supports BM25 baseline,
+    data-flow filter, fusion re-ranking, multi-model comparison.'
+  path: projects/structfuse-context/artifacts/_project/data/eval_retrieval.py
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-12T10:05:00.289408+00:00'
+  tags:
+  - evaluation
+  - retrieval
+  - structfuse
+  - stage3
+- id: art_20260512_033304
+  name: eval_swebench.py
+  type: data
+  description: 'StructFuse SWE-bench end-to-end evaluation: issue -> StructFuse retrieval
+    -> Qwen3.6-27B patch generation (vLLM) -> harness evaluation. Supports resume,
+    per-instance logging, Pass@1 summary.'
+  path: projects/structfuse-context/artifacts/_project/data/eval_swebench.py
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-12T10:05:05.302147+00:00'
+  tags:
+  - evaluation
+  - swebench
+  - structfuse
+  - e2e
+  - stage3
+- id: art_20260512_e5f41c
+  name: requirements.txt
+  type: data
+  description: 'StructFuse project Python dependencies: torch, transformers, rank-bm25,
+    faiss-cpu, vllm, etc.'
+  path: projects/structfuse-context/artifacts/_project/data/requirements.txt
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-12T10:05:05.480895+00:00'
+  tags:
+  - dependencies
+  - structfuse
+- id: art_20260512_7277a2
+  name: MVP Phase 1 Report
+  type: report
+  description: 'MVP Phase 1 CodeQL feasibility + H2 sanity check results: timeout
+    0%, connected files coverage 1.44% vs disconnected 0%, Fisher p=0.0000. Both PASS.'
+  path: projects/structfuse-context/artifacts/mvp_p1_codeql_feasibility/report/mvp_phase1_report.md
+  url: null
+  project: structfuse-context
+  exp_id: mvp_p1_codeql_feasibility
+  skill: ''
+  created_at: '2026-05-12T11:31:28.845286+00:00'
+  tags:
+  - mvp
+  - phase1
+  - codeql
+  - h2
+  - pass
+- id: art_20260512_434371
+  name: phase2a_linear_proxy_results
+  type: report
+  description: 'Phase 2a linear proxy validation - PASS: DataFlow+BM25 beats BM25-only
+    on F1/AUC/MRR. Gold file rank improved from 16→3 (flask), 4→1 (requests), 31→3
+    (pytest).'
+  path: projects/structfuse-context/artifacts/_project/report/phase2a_linear_proxy_results.txt
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-12T11:40:32.570898+00:00'
+  tags:
+  - mvp
+  - phase2a
+  - evaluation
+  - pass
+- id: art_20260512_6211d5
+  name: failure_diagnosis
+  type: report
+  description: mvp_p2b_contrastive_training 失败诊断：Run 2/9 因 ModelScope 并发下载导致模型 safetensors
+    文件缺失
+  path: projects/structfuse-context/artifacts/mvp_p2b_contrastive_training/report/failure_diagnosis.md
+  url: null
+  project: structfuse-context
+  exp_id: mvp_p2b_contrastive_training
+  skill: ''
+  created_at: '2026-05-12T13:19:19.831877+00:00'
+  tags:
+  - diagnosis
+  - failure
+  - modelscope
+- id: art_20260512_cf23fc
+  name: 50-repo overlap experiment results
+  type: report
+  description: 50-repo CodeQL 2-hop call_graph overlap experiment on SWE-smith data.
+    Validates that connected-but-not-gold files exist at scale (Z=40.8% >> 20% threshold),
+    confirming original StructFuse method is viable.
+  path: projects/structfuse-context/artifacts/_project/report/50repo_overlap_report.md
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-12T20:36:49.021879+00:00'
+  tags:
+  - experiment
+  - codeql
+  - overlap
+  - validation
+- id: art_20260513_240352
+  name: plan_006_scalability_stats_29repos
+  type: data
+  description: 'M1 scalability statistics from 29/131 repos (8171 instances): extraction
+    time, timeout rate, coverage, Z% by repo size. For plan_006.'
+  path: projects/structfuse-context/artifacts/_project/data/plan_006_scalability_stats_29repos.json
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-13T04:24:15.343120+00:00'
+  tags:
+  - plan_006
+  - scalability
+  - m1_extraction
+- id: art_20260513_ef3ab0
+  name: plan_006_scalability_summary
+  type: report
+  description: 'Plan 006 M1 extraction scalability stats (29/131 repos): Z% by size,
+    extraction perf, zero-Z repos, key findings for paper Discussion'
+  path: projects/structfuse-context/artifacts/_project/report/scalability_summary.md
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-13T06:18:14.578259+00:00'
+  tags:
+  - plan_006
+  - scalability
+  - m1_extraction
+- id: art_20260513_eaf24b
+  name: plan_006_scalability_data
+  type: data
+  description: 'Structured JSON for plan_006 scalability visualization: by_size, extraction_time,
+    zero_z_repos, per_repo breakdown (29 repos)'
+  path: projects/structfuse-context/artifacts/_project/data/scalability_data.json
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-13T06:18:16.617467+00:00'
+  tags:
+  - plan_006
+  - scalability
+  - m1_extraction
+  - visualization
+- id: art_20260513_2d4eb4
+  name: pilot_results_summary
+  type: report
+  description: StructFuse pilot results summary - Qwen2.5-Coder-3B and StarCoder2-3B
+    eval metrics across random/embedding/dataflow strategies
+  path: projects/structfuse-context/artifacts/_project/report/pilot_results_summary.md
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-13T10:34:49.209382+00:00'
+  tags:
+  - pilot
+  - eval
+  - results
+- id: art_20260513_85049a
+  name: pilot_results_data
+  type: data
+  description: StructFuse pilot results structured JSON - full eval history, checkpoint
+    paths, training config. File at bjb1-42106:/root/structfuse/results/pilot_results.json
+  path: projects/structfuse-context/artifacts/_project/data/pilot_results.json
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-13T10:35:26.154352+00:00'
+  tags:
+  - pilot
+  - eval
+  - results
+  - json
+- id: art_20260513_229113
+  name: cross_encoder_analysis
+  type: intermediate
+  description: 'Cross-encoder comparison script: Qwen2.5-Coder-3B vs StarCoder2-3B,
+    generates Markdown/LaTeX tables, strategy deltas, ranking consistency analysis,
+    and auto-narrative.'
+  path: projects/structfuse-context/artifacts/_project/intermediate/cross_encoder_analysis.py
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-13T10:42:10.274341+00:00'
+  tags:
+  - analysis
+  - cross-encoder
+  - comparison
+  - m2_embed_verify
+  - plan_013_starcoder
+- id: art_20260513_46f013
+  name: run_full_m2_training
+  type: intermediate
+  description: 全量 M2 单次训练 wrapper 脚本，接受 (strategy, seed, gpu_id) 参数运行一个训练任务
+  path: projects/structfuse-context/artifacts/_project/intermediate/run_full_m2_training.sh
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-13T10:45:57.693370+00:00'
+  tags:
+  - m2
+  - training
+  - full
+  - script
+- id: art_20260513_d36f2f
+  name: schedule_m2_runs
+  type: intermediate
+  description: 全量 M2 双卡调度脚本，9 runs (3 strategies × 3 seeds) 均衡分配到 GPU0/GPU1
+  path: projects/structfuse-context/artifacts/_project/intermediate/schedule_m2_runs.sh
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-13T10:45:59.748163+00:00'
+  tags:
+  - m2
+  - training
+  - full
+  - scheduler
+- id: art_20260513_64aa24
+  name: pilot_results_summary
+  type: report
+  description: StructFuse pilot experiment results summary - Qwen2.5-Coder-3B and
+    StarCoder2-3B across random/embedding/dataflow strategies with complete metrics
+  path: projects/structfuse-context/artifacts/_project/report/pilot_results_summary_64aa24.md
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-13T11:52:02.987195+00:00'
+  tags:
+  - pilot
+  - results
+  - metrics
+  - qwen
+  - starcoder
+- id: art_20260513_920f68
+  name: pilot_results
+  type: data
+  description: StructFuse pilot structured results JSON - complete metrics for all
+    encoder/strategy combinations
+  path: projects/structfuse-context/artifacts/_project/data/pilot_results_920f68.json
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-13T11:52:04.578072+00:00'
+  tags:
+  - pilot
+  - results
+  - structured-data
+  - json
+- id: art_20260513_a8c683
+  name: full_z_percent_stats
+  type: data
+  description: Full M1 Z% statistics (123 repos, 44173 instances). 条件 Z%=78.0%, 全量
+    Z%=26.8%. Per-repo breakdown.
+  path: projects/structfuse-context/artifacts/plan_006_scalability/data/full_z_percent_stats.json
+  url: null
+  project: structfuse-context
+  exp_id: plan_006_scalability
+  skill: ''
+  created_at: '2026-05-13T16:34:07.365228+00:00'
+  tags:
+  - z-percent
+  - m1
+  - scalability
+- id: art_20260513_c3956f
+  name: m2_full_qwen_wrapper_script
+  type: intermediate
+  description: Wrapper shell script for 9 sequential M2 full Qwen training runs (3
+    strategies × 3 seeds). set -eo pipefail, dual checkpoint, WANDB_CONSOLE=off, direct
+    file redirect.
+  path: projects/structfuse-context/artifacts/m2_full_qwen/intermediate/run_m2_full_qwen.sh
+  url: null
+  project: structfuse-context
+  exp_id: m2_full_qwen
+  skill: ''
+  created_at: '2026-05-13T16:56:34.582285+00:00'
+  tags:
+  - training
+  - shell-script
+  - m2
+- id: art_20260513_466352
+  name: plan006_full_scalability
+  type: data
+  description: 'Full M1 scalability statistics: 44173 instances across 123 repos,
+    stratified by repo size tier'
+  path: projects/structfuse-context/artifacts/plan_006_scalability/data/plan006_full_scalability.json
+  url: null
+  project: structfuse-context
+  exp_id: plan_006_scalability
+  skill: ''
+  created_at: '2026-05-13T18:48:55.784862+00:00'
+  tags:
+  - m1
+  - scalability
+  - full-run
+  - statistics
+- id: art_20260513_d262da
+  name: plan006_error_patterns
+  type: data
+  description: 'M1 extraction error pattern analysis: all 28,276 errors (64%) are
+    buggy_file_not_found - upstream SWE-smith data issue, not CodeQL failure. 82/123
+    repos affected, 36 repos with >90% error rate.'
+  path: projects/structfuse-context/artifacts/plan_006_scalability/data/plan006_error_patterns.json
+  url: null
+  project: structfuse-context
+  exp_id: plan_006_scalability
+  skill: ''
+  created_at: '2026-05-13T19:05:43.898730+00:00'
+  tags:
+  - error-analysis
+  - m1-extraction
+  - limitation
+- id: art_20260513_ca0458
+  name: negative_difficulty_charts
+  type: chart
+  description: 'Negative difficulty distribution histograms (3 figures: Qwen, StarCoder,
+    Cross-encoder comparison). Server: bjb1-42106:/root/autodl-tmp/structfuse/artifacts/negative_difficulty_{qwen,starcoder,comparison}.{pdf,png}'
+  path: projects/structfuse-context/artifacts/_project/chart/negative_difficulty_charts_index.txt
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-13T19:08:02.266021+00:00'
+  tags:
+  - analysis
+  - negative_mining
+  - visualization
+- id: art_20260513_12311f
+  name: negative_difficulty_stats
+  type: data
+  description: 'Negative difficulty distribution stats: cosine similarity between
+    query-negative pairs using pretrained Qwen2.5-Coder-3B and StarCoder2-3B across
+    3 mining strategies. 50 queries x 20 negatives per strategy.'
+  path: projects/structfuse-context/artifacts/_project/data/negative_difficulty_stats.txt
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-13T19:08:26.878004+00:00'
+  tags:
+  - analysis
+  - negative_mining
+  - difficulty_distribution
+- id: art_20260513_68a365
+  name: negative_difficulty_margin_charts
+  type: chart
+  description: '3 charts on server: margin distribution, bars (pos/neg/margin), violin
+    plot. Path: /root/autodl-tmp/structfuse/artifacts/negative_difficulty_margin_*.{png,pdf}'
+  path: projects/structfuse-context/artifacts/_project/chart/negative_difficulty_margin_charts_index.txt
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-13T19:29:14.236993+00:00'
+  tags:
+  - negative-difficulty
+  - margin
+  - chart
+- id: art_20260513_87bd9a
+  name: negative_difficulty_stats_v2
+  type: data
+  description: Margin analysis (pos_sim, neg_sim, margin) per strategy per encoder.
+    StarCoder margin 2.5-5.5x larger than Qwen.
+  path: projects/structfuse-context/artifacts/_project/data/negative_difficulty_stats_v2.txt
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-13T19:29:29.550385+00:00'
+  tags:
+  - negative-difficulty
+  - margin
+  - analysis
+- id: art_20260514_47c425
+  name: neg_difficulty_margin_comparison
+  type: chart
+  description: 论文级双面板图：Qwen vs StarCoder negative difficulty margin对比（stacked bar,
+    3 strategies × 2 encoders, 2048-token data）。展示 Qwen 表征饱和（margin 0.017~0.074）vs
+    StarCoder 健康（margin 0.067~0.194）。
+  path: projects/structfuse-context/artifacts/neg_difficulty_analysis/chart/neg_difficulty_margin_comparison_meta.txt
+  url: null
+  project: structfuse-context
+  exp_id: neg_difficulty_analysis
+  skill: draw-paper-figure
+  created_at: '2026-05-14T01:48:29.287483+00:00'
+  tags:
+  - paper
+  - visualization
+  - neg_difficulty
+  - margin
+- id: art_20260514_f75270
+  name: m2_full_qwen_analysis
+  type: report
+  description: m2_full_qwen 实验分析：9 runs 中仅 random_s42 完成，best R@1=0.5527 (step 1000)，其余
+    8 runs 未完成
+  path: projects/structfuse-context/artifacts/m2_full_qwen/report/m2_full_qwen_analysis.md
+  url: null
+  project: structfuse-context
+  exp_id: m2_full_qwen
+  skill: ''
+  created_at: '2026-05-14T11:30:04.261359+00:00'
+  tags:
+  - m2
+  - qwen
+  - experiment-analysis
+  - incomplete
+- id: art_20260514_fa81d1
+  name: m2_starcoder_status_check
+  type: report
+  description: 'm2_full_starcoder random_s42 progress diagnostic: step 3700/4242 (87%),
+    overfitting confirmed, best R@1=0.4604 @step2500'
+  path: projects/structfuse-context/artifacts/m2_full_starcoder/report/m2_starcoder_status_check.md
+  url: null
+  project: structfuse-context
+  exp_id: m2_full_starcoder
+  skill: ''
+  created_at: '2026-05-14T15:19:03.313283+00:00'
+  tags:
+  - status-check
+  - m2
+  - starcoder
+  - overfitting
+- id: art_20260514_b47344
+  name: plan_015_dynamic_mining_design
+  type: report
+  description: 'Plan 015 experiment design: Dynamic vs Static embedding negative mining,
+    with literature review, experiment variants, GPU overhead estimation, and expected
+    outcomes for reviewer rebuttal'
+  path: projects/structfuse-context/artifacts/_project/report/plan_015_dynamic_mining_design.md
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T16:16:57.329092+00:00'
+  tags:
+  - plan_015
+  - experiment_design
+  - dynamic_mining
+  - reviewer_response
+- id: art_20260514_a2e1cd
+  name: discussion_v2
+  type: paper
+  description: Discussion章节v2草稿：5.1 inference-time graph comparison, 5.2 representation
+    geometry as predictor, 5.3 limitations (5 items), 5.4 future work. ~1086 words,
+    EMNLP style.
+  path: projects/structfuse-context/artifacts/_project/paper/discussion_v2.md
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T17:07:27.036510+00:00'
+  tags:
+  - plan_017
+  - discussion
+  - paper_draft
+- id: art_20260514_01876a
+  name: neg_difficulty_margin_comparison
+  type: chart
+  description: 主图：2048t下Qwen vs StarCoder margin对比柱状图，标注ratio (2.6×/3.9×/4.1×)。Okabe-Ito配色，300DPI。
+  path: projects/structfuse-context/artifacts/neg_difficulty_analysis/chart/neg_difficulty_margin_comparison_meta_01876a.txt
+  url: null
+  project: structfuse-context
+  exp_id: neg_difficulty_analysis
+  skill: ''
+  created_at: '2026-05-14T17:08:29.200136+00:00'
+  tags:
+  - neg_difficulty
+  - paper_figure
+  - margin
+- id: art_20260514_7197a5
+  name: neg_difficulty_similarity_dist
+  type: chart
+  description: 补充图：并排子图展示Qwen/StarCoder的pos_sim和neg_sim grouped bar，箭头标注margin Δ。
+  path: projects/structfuse-context/artifacts/neg_difficulty_analysis/chart/neg_difficulty_similarity_dist_meta.txt
+  url: null
+  project: structfuse-context
+  exp_id: neg_difficulty_analysis
+  skill: ''
+  created_at: '2026-05-14T17:08:31.478220+00:00'
+  tags:
+  - neg_difficulty
+  - paper_figure
+  - similarity
+- id: art_20260514_74ea5a
+  name: neg_difficulty_ratio_heatmap
+  type: chart
+  description: Heatmap：2×3 (token length × strategy)，StarCoder/Qwen margin ratio。
+  path: projects/structfuse-context/artifacts/neg_difficulty_analysis/chart/neg_difficulty_ratio_heatmap_meta.txt
+  url: null
+  project: structfuse-context
+  exp_id: neg_difficulty_analysis
+  skill: ''
+  created_at: '2026-05-14T17:08:33.400132+00:00'
+  tags:
+  - neg_difficulty
+  - paper_figure
+  - heatmap
+- id: art_20260514_9baf69
+  name: bm25_overlap_stratified
+  type: data
+  description: BM25 vs 各策略 top-7 Jaccard 重叠率按 repo size 分层。Small 0.67, Medium 0.38,
+    Large 0.30 (vs embedding)。
+  path: projects/structfuse-context/artifacts/plan_018_bm25/data/bm25_overlap_stratified_meta.txt
+  url: null
+  project: structfuse-context
+  exp_id: plan_018_bm25
+  skill: ''
+  created_at: '2026-05-14T17:09:56.271213+00:00'
+  tags:
+  - bm25
+  - overlap
+  - stratified
+  - plan_018
+- id: art_20260514_a50aca
+  name: experimental_setup_k_checkpoint
+  type: paper
+  description: 'Paper paragraph documenting K=7 negatives per query and dual checkpoint
+    selection protocol, with registry-backed analysis of 7 completed runs (4/7 criteria
+    agree, divergence pattern: Qwen always agrees, StarCoder always diverges)'
+  path: projects/structfuse-context/artifacts/_project/paper/experimental_setup_k_checkpoint.md
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T17:55:29.479783+00:00'
+  tags:
+  - paper
+  - experimental-setup
+  - checkpoint
+  - K-negatives
+  - dream-review
+- id: art_20260514_3008c4
+  name: v1_v2_changelog
+  type: report
+  description: Stratified dry-run v1→v2 差异溯源：根因为 mock_predictions() 使用 hash(strategy)
+    构造 RNG seed，Python 3 hash randomization 导致跨进程不确定。含完整数值变化表（3 维度 × 3 策略 × 所有 strata）。
+  path: projects/structfuse-context/artifacts/plan_005_stratified/report/v1_v2_changelog.md
+  url: null
+  project: structfuse-context
+  exp_id: plan_005_stratified
+  skill: ''
+  created_at: '2026-05-14T20:40:50.297063+00:00'
+  tags:
+  - plan_005
+  - v1_v2_diff
+  - changelog
+  - mock_rng
+- id: art_20260514_fa94e9
+  name: related_work_expansion_report
+  type: report
+  description: 'Related work expansion: literature_map.yaml 从 ~22 扩展到 37 verified
+    entries (7 categories)。含 CoCoHaNeRe framing 分析、15 篇新增、2 处修正。'
+  path: projects/structfuse-context/artifacts/_project/report/related_work_expansion_report.md
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T21:27:25.138825+00:00'
+  tags:
+  - literature
+  - related-work
+  - CoCoHaNeRe
+  - paper-framing
+- id: art_20260514_98650c
+  name: related_work_v1
+  type: paper
+  description: 'Related Work section draft v1 — 3 subsections: Code Retrieval Methods,
+    Contrastive Learning for Code, Hard Negative Mining (~950 words)'
+  path: projects/structfuse-context/artifacts/_project/paper/related_work_v1.md
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T22:09:33.655871+00:00'
+  tags:
+  - paper
+  - related-work
+  - draft
+- id: art_20260514_a7df8a
+  name: SWE-bench Lite Dry-Run 预检报告
+  type: report
+  description: Plan_003 SWE-bench Lite 评估环境预检：数据、脚本、依赖、磁盘空间、checkpoint 可用性检查结果
+  path: projects/structfuse-context/artifacts/plan_003/report/swebench_dryrun_report.md
+  url: null
+  project: structfuse-context
+  exp_id: plan_003
+  skill: ''
+  created_at: '2026-05-14T22:10:14.564938+00:00'
+  tags:
+  - swebench
+  - dryrun
+  - precheck
+- id: art_20260514_dc54a3
+  name: related_work_v1
+  type: paper
+  description: 'Related Work v1 draft — patched: §2.1 "all→these" graph-guided, §2.2
+    added Sentence-BERT citation, §2.3 added pilot evidence caveat to "consistently
+    improves"'
+  path: projects/structfuse-context/artifacts/_project/paper/related_work_v1_dc54a3.md
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T22:45:19.439165+00:00'
+  tags:
+  - related-work
+  - v1
+  - patched
+- id: art_20260514_2cb18b
+  name: introduction_v1
+  type: paper
+  description: 'Introduction section draft v1 — 4-paragraph structure: code retrieval
+    importance, existing gaps (inference-only structure + no systematic negative mining
+    study), our systematic study challenging gradient-based assumptions, 3 contributions'
+  path: projects/structfuse-context/artifacts/_project/paper/introduction_v1.md
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T22:47:45.459362+00:00'
+  tags:
+  - paper
+  - introduction
+  - draft
+- id: art_20260514_5db688
+  name: method_v1
+  type: paper
+  description: 'Method section draft (§3) with 4 subsections: Problem Formulation,
+    StructFuse Pipeline, Training Objective, Negative Mining Strategies. ~1200 words,
+    LaTeX formulas, cite keys aligned with literature_map.yaml.'
+  path: projects/structfuse-context/artifacts/_project/paper/method_v1.md
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T22:49:00.699349+00:00'
+  tags:
+  - paper
+  - method
+  - draft-v1
+- id: art_20260514_25f2bc
+  name: experiments_v1
+  type: paper
+  description: Experiments section draft (§4) with setup, implementation details,
+    results tables (placeholder), representation geometry analysis (filled), and CodeQL
+    scalability (filled). ~1400 words.
+  path: projects/structfuse-context/artifacts/_project/paper/experiments_v1.md
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T22:53:24.173003+00:00'
+  tags:
+  - paper
+  - experiments
+  - draft
+- id: art_20260514_c76ce4
+  name: figure_design_v1
+  type: paper
+  description: 论文 Figure 设计稿 v1：8 个 figure 的文字 sketch（pipeline overview、mining strategies
+    illustration、main results、representation geometry、pool sensitivity、training curves、SWE-bench
+    downstream、stratified analysis），含布局、数据需求、优先级、production timeline
+  path: projects/structfuse-context/artifacts/_project/paper/figure_design_v1.md
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T22:56:43.045319+00:00'
+  tags:
+  - paper
+  - figure
+  - design
+- id: art_20260514_054f8d
+  name: experiments_v1
+  type: paper
+  description: 'Experiments v1 draft with 5 fixes: (1) Table 6 Total 36.0%→34.3% aligned
+    to registry, (2) Table 2 updated to R@1 checkpoint values with 4-decimal precision,
+    (3) SWE-bench→SWE-smith with task→instance expansion explanation, (4) cite key
+    cocohanere2025→fan2025cocohanere, (5) temperature τ=0.07 marked as learnable'
+  path: projects/structfuse-context/artifacts/_project/paper/experiments_v1_054f8d.md
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T22:59:57.770391+00:00'
+  tags:
+  - paper
+  - experiments
+  - v1-fixed
+- id: art_20260514_144ea2
+  name: fig4_rep_geometry
+  type: chart
+  description: 'Fig 4: Representation Geometry — 2-panel figure. (a) Margin comparison
+    grouped bar chart showing Qwen vs StarCoder pos-neg margins across 3 negative
+    strategies with ratio annotations. (b) Similarity distribution box plots highlighting
+    Qwen ceiling effect vs StarCoder wider spread. PDF vector + 300 DPI PNG.'
+  path: projects/structfuse-context/artifacts/_project/chart/fig4_rep_geometry.png
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T23:00:39.813252+00:00'
+  tags:
+  - paper
+  - figure
+  - neg_difficulty
+  - representation_geometry
+- id: art_20260514_8f65d6
+  name: fig4_rep_geometry_pdf
+  type: chart
+  description: Fig 4 vector PDF version for LaTeX inclusion.
+  path: projects/structfuse-context/artifacts/_project/chart/fig4_rep_geometry.pdf
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T23:00:42.196239+00:00'
+  tags:
+  - paper
+  - figure
+  - pdf
+- id: art_20260514_999157
+  name: fig4_rep_geometry_script
+  type: intermediate
+  description: Plotting script for Fig 4 Representation Geometry figure. Self-contained,
+    uses hardcoded data from neg_difficulty_analysis.
+  path: projects/structfuse-context/artifacts/_project/intermediate/fig4_rep_geometry.py
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T23:00:44.013645+00:00'
+  tags:
+  - paper
+  - script
+- id: art_20260514_3cf111
+  name: method_v1
+  type: paper
+  description: 'Method section v1 with 6 fixes: projection head corrected to two-layer
+    MLP+GELU, mean pooling described, pos_weight mechanism documented (uniform distance→unweighted
+    InfoNCE), epoch strategy corrected (2 epochs + early stopping, s42 uses 3), L2
+    normalization added, FusionHead confirmed absent.'
+  path: projects/structfuse-context/artifacts/_project/paper/method_v1_3cf111.md
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T23:03:27.091555+00:00'
+  tags:
+  - paper
+  - method
+  - v1-fixed
+- id: art_20260514_ce3556
+  name: method_v1
+  type: paper
+  description: '§3 Method draft — fixed fallback rate from 34% to 66% (line 63): 34.3%
+    is structural coverage, ~66% lack structural data and fall back to embedding-distance
+    negatives.'
+  path: projects/structfuse-context/artifacts/_project/paper/method_v1_ce3556.md
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T23:12:01.790814+00:00'
+  tags:
+  - paper-draft
+  - method
+  - bugfix
+- id: art_20260514_eccca0
+  name: experiments_v1 (round 2 fixes)
+  type: paper
+  description: 'Experiments v1 second-round fixes: 3 warnings (Table 6 repo count
+    87 vs 123, strategy count 3 core + BM25 supplementary, projection head/pooling
+    synced with method_v1) + 2 info items (structural instance count 15133, pilot
+    "confirmed at full scale" → pending M2)'
+  path: projects/structfuse-context/artifacts/_project/paper/experiments_v1_eccca0.md
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T23:12:33.473818+00:00'
+  tags:
+  - paper
+  - experiments
+  - round2-fixes
+- id: art_20260514_bcd130
+  name: experiments_v1
+  type: paper
+  description: Experiments section draft v1 — fixed Table 6 repo counts (87→123) and
+    tier label (files→instances)
+  path: projects/structfuse-context/artifacts/_project/paper/experiments_v1_bcd130.md
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T23:24:52.486733+00:00'
+  tags:
+  - paper
+  - experiments
+  - table6-fix
+- id: art_20260514_d4b180
+  name: experiments_v1
+  type: paper
+  description: 标记 Table 6 和 structural count 为 pending recalc，等待 m1_reextract_v2 完成后统一重算
+  path: projects/structfuse-context/artifacts/_project/paper/experiments_v1_d4b180.md
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T23:30:40.862339+00:00'
+  tags:
+  - pending-recalc
+  - table6
+  - reextract-v2
+- id: art_20260514_26c5b2
+  name: fig1_pipeline_overview
+  type: chart
+  description: 'Fig 1: StructFuse pipeline overview — left-to-right flow from input
+    (repo + bug report) through CodeQL extraction, negative mining (3 color-coded
+    strategies: random/embedding/dataflow), contrastive training (InfoNCE + LoRA),
+    to fine-tuned retriever. Okabe-Ito palette, serif font, 7x2.8in full-width.'
+  path: projects/structfuse-context/artifacts/_project/chart/fig1_pipeline_overview.pdf
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T23:38:53.669151+00:00'
+  tags:
+  - paper
+  - figure
+  - pipeline
+  - fig1
+- id: art_20260514_ad5cca
+  name: fig1_pipeline_overview_png
+  type: chart
+  description: Fig 1 pipeline overview PNG preview (300 DPI)
+  path: projects/structfuse-context/artifacts/_project/chart/fig1_pipeline_overview.png
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T23:38:55.554881+00:00'
+  tags:
+  - paper
+  - figure
+  - pipeline
+  - fig1
+  - preview
+- id: art_20260514_f9e844
+  name: fig1_pipeline_overview_script
+  type: intermediate
+  description: Generation script for Fig 1 pipeline overview (matplotlib, no external
+    deps)
+  path: projects/structfuse-context/artifacts/_project/intermediate/fig1_pipeline_overview.py
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T23:38:57.258190+00:00'
+  tags:
+  - paper
+  - figure
+  - script
+  - fig1
+- id: art_20260514_a5287e
+  name: fig2_mining_strategies
+  type: chart
+  description: 'Fig 2: Negative Mining Strategies — 3-panel comparison (Random / Embedding-Distance
+    / Dataflow-Aware). Shows same mini-repo graph with different negative selections
+    highlighted per strategy. Okabe-Ito colors, serif font, publication-ready.'
+  path: projects/structfuse-context/artifacts/_project/chart/fig2_mining_strategies.pdf
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T23:50:52.794198+00:00'
+  tags:
+  - paper
+  - figure
+  - negative-mining
+  - EMNLP2026
+- id: art_20260515_ae4280
+  name: method_v1
+  type: paper
+  description: 'Method section draft (§3): Problem formulation, structural information
+    extraction (M1), structure-aware negative mining (3 strategies), contrastive fine-tuning
+    (M2). All numbers sourced from registry.'
+  path: projects/structfuse-context/artifacts/_project/paper/method_v1_ae4280.md
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T01:59:32.730650+00:00'
+  tags:
+  - paper
+  - method
+  - draft
+- id: art_20260515_bba58d
+  name: experiment_setup_v1
+  type: paper
+  description: 'Experiment setup draft (§4): Dataset (SWE-smith, 131 repos, 14.3K
+    instances/seed), models (Qwen2.5-Coder-3B + StarCoder2-3B), training config (all
+    hyperparams from registry), evaluation metrics (R@k, bootstrap CI, Cohen''s d).'
+  path: projects/structfuse-context/artifacts/_project/paper/experiment_setup_v1.md
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T01:59:36.266487+00:00'
+  tags:
+  - paper
+  - experiment-setup
+  - draft
+- id: art_20260515_895cbe
+  name: introduction_v2
+  type: paper
+  description: 'Introduction v2 draft — 5-paragraph ML top-venue structure: problem/motivation,
+    current approaches & gap, StructFuse approach, key findings, contributions. Claim
+    2 marked exploratory per D035. [TBD] placeholders for M2 final numbers.'
+  path: projects/structfuse-context/artifacts/_project/paper/introduction_v2.md
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T02:00:08.505124+00:00'
+  tags:
+  - paper
+  - introduction
+  - v2
+  - writing
+- id: art_20260515_884407
+  name: Checkpoint Criterion Analysis
+  type: report
+  description: Dual checkpoint (best_by_val_loss vs best_by_R@1) alignment analysis
+    + K=7 rationale for paper ablation section. 50% alignment rate on full M2 runs,
+    mean R@1 gap +0.65pp when diverged.
+  path: projects/structfuse-context/artifacts/_project/report/checkpoint_criterion_analysis.md
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T03:21:08.324336+00:00'
+  tags:
+  - ablation
+  - checkpoint
+  - paper
+- id: art_20260515_d1d8e6
+  name: plan005_stratification_spec
+  type: report
+  description: Plan 005 分层分析规格文档：5 维分层定义、3 阶段管道、数据源、执行计划
+  path: projects/structfuse-context/artifacts/plan_005/report/plan005_stratification_spec.md
+  url: null
+  project: structfuse-context
+  exp_id: plan_005
+  skill: ''
+  created_at: '2026-05-15T05:09:44.760930+00:00'
+  tags:
+  - stratified_analysis
+  - plan_005
+  - pipeline
+- id: art_20260515_fbb594
+  name: checkpoint_criterion_table
+  type: paper
+  description: 'Checkpoint criterion ablation table (LaTeX tabular): best_by_val_loss
+    vs best_by_R@1 comparison across 4 completed M2 runs, 50% divergence rate, encoder-dependent
+    pattern'
+  path: projects/structfuse-context/artifacts/_project/paper/checkpoint_criterion_table.tex
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T06:17:19.124582+00:00'
+  tags:
+  - paper
+  - ablation
+  - checkpoint
+- id: art_20260515_b69433
+  name: fixed_checkpoint_table
+  type: paper
+  description: 'LaTeX tabular: fixed-checkpoint comparison (embedding vs random at
+    same step), eliminates selection bias. Partial — s43 @500/@1000 filled, rest TBD
+    pending M2 completion.'
+  path: projects/structfuse-context/artifacts/_project/paper/fixed_checkpoint_table.tex
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T06:20:08.689200+00:00'
+  tags:
+  - table
+  - fixed-checkpoint
+  - claim2
+  - reviewer-response
+  - draft
+- id: art_20260515_c7f173
+  name: introduction_v1
+  type: paper
+  description: 'Introduction section v1 draft (~800 words): D049-compliant softened
+    framing, 5-paragraph structure, dual pilot+M2 data reporting, all cite keys aligned
+    with references.bib'
+  path: projects/structfuse-context/artifacts/_project/paper/introduction_v1_c7f173.md
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T08:51:28.731676+00:00'
+  tags:
+  - paper
+  - introduction
+  - D049
+- id: art_20260515_82f7f1
+  name: method_v1
+  type: paper
+  description: 'Method section v1 draft (~1000 words): 5 subsections (formulation,
+    extraction, mining strategies, training, evaluation), D049/D041 compliant, hyperparams
+    from registry'
+  path: projects/structfuse-context/artifacts/_project/paper/method_v1_82f7f1.md
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T09:47:19.709540+00:00'
+  tags:
+  - paper
+  - method
+  - D049
+- id: art_20260515_5cf1f6
+  name: related_work_v1
+  type: paper
+  description: 'Related Work section v1 (~663 words, 36 unique citations): 4 subsections
+    (dense retrieval, contrastive learning, hard negative mining, code structure),
+    D049 compliant'
+  path: projects/structfuse-context/artifacts/_project/paper/related_work_v1_5cf1f6.md
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T09:51:47.169628+00:00'
+  tags:
+  - paper
+  - related-work
+  - D049
+- id: art_20260515_efa260
+  name: abstract_v2
+  type: paper
+  description: 'Abstract v2: W1 SWE-bench conditional→deleted (plan_003 pending),
+    W2 Claim 3 demoted to methodology paragraph, INFOs filled (3 seeds, 123 repos).
+    ~220 words.'
+  path: projects/structfuse-context/artifacts/_project/paper/abstract_v2.md
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T10:37:09.378681+00:00'
+  tags:
+  - paper
+  - abstract
+  - v2
+- id: art_20260515_c60654
+  name: conclusion_v1
+  type: paper
+  description: 'Conclusion v1 skeleton (~220 words): Claim 1 summary + Claim 2 exploratory
+    + CodeQL methodology + SWE-bench TBD + broader impact. D051-compliant placeholders.'
+  path: projects/structfuse-context/artifacts/_project/paper/conclusion_v1.md
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T10:40:37.927566+00:00'
+  tags:
+  - paper
+  - conclusion
+  - v1
+- id: art_20260515_1b36e4
+  name: experiments_v1_reviewer_fixes
+  type: paper
+  description: 'experiments_v1.md with reviewer fixes: pos_sim 0.798→0.799, precise
+    train/val counts, added §4.3 Structural Extraction Scalability section'
+  path: projects/structfuse-context/artifacts/_project/paper/experiments_v1_1b36e4.md
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T14:05:01.699800+00:00'
+  tags:
+  - paper
+  - reviewer-fix
+- id: art_20260515_e63490
+  name: abstract_v2_reviewer_fixes
+  type: paper
+  description: 'abstract_v2.md with reviewer fixes: weakened overclaims (entirely→largely
+    unexploited, zero→negligible cost)'
+  path: projects/structfuse-context/artifacts/_project/paper/abstract_v2_e63490.md
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T14:05:03.698508+00:00'
+  tags:
+  - paper
+  - reviewer-fix
+- id: art_20260515_deb8bc
+  name: experiments_v1_claim3_scalability
+  type: paper
+  description: 'experiments_v1.md updated with expanded Claim 3 scalability subsection:
+    setup, zero-timeout result, per-tier Z% table, bounded data-flow scalability discussion.
+    All numbers sourced from plan_006_scalability.'
+  path: projects/structfuse-context/artifacts/plan_006_scalability/paper/experiments_v1.md
+  url: null
+  project: structfuse-context
+  exp_id: plan_006_scalability
+  skill: ''
+  created_at: '2026-05-15T14:08:03.838777+00:00'
+  tags:
+  - paper
+  - claim3
+  - scalability
+  - experiments
+- id: art_20260515_56de57
+  name: Qwen Training Trajectories
+  type: data
+  description: 'Complete training trajectories for 5 finished Qwen2.5-Coder-3B M2
+    runs (random×3 + embedding_distance×2). Full eval metrics at every 500 steps:
+    val_loss, R@1, R@5, R@10. Cross-validated registry vs server logs. For §4.3.3
+    Training Dynamics analysis.'
+  path: projects/structfuse-context/artifacts/_project/data/qwen_training_trajectories.json
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T17:49:41.050627+00:00'
+  tags:
+  - qwen
+  - training-dynamics
+  - m2
+  - trajectories
+  - section-4.3.3
+- id: art_20260515_3df68e
+  name: Training Dynamics Pre-analysis for §4.3.3
+  type: report
+  description: 'Quantitative pre-analysis of 5 Qwen runs for paper §4.3.3: overfitting
+    patterns, convergence speed, R@1 vs val_loss divergence, seed variance, early
+    stopping effectiveness. Includes key observations with numbers and TBD items pending
+    dataflow runs.'
+  path: projects/structfuse-context/artifacts/_project/report/training_dynamics_analysis.md
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T18:31:06.658263+00:00'
+  tags:
+  - paper
+  - section-4.3.3
+  - training-dynamics
+  - qwen
+  - pre-analysis
+- id: art_20260515_223d71
+  name: StarCoder Training Trajectories
+  type: data
+  description: 'Complete eval trajectories for StarCoder2-3B M2 full training: random_s42/s43/s44
+    completed, embedding_distance_s42 in progress. Full precision metrics from server
+    logs, cross-validated with registry.'
+  path: projects/structfuse-context/artifacts/_project/data/starcoder_training_trajectories.json
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T18:36:06.144895+00:00'
+  tags:
+  - starcoder
+  - training-trajectories
+  - m2-full
+  - random-baseline
+- id: art_20260515_629a10
+  name: seed_variance_vs_strategy_effect
+  type: data
+  description: 'Finding #4 raw data: seed variance vs strategy effect for paper §4.3.3.
+    Cross-seed R@1 std (~2.7pp) is 4-5x larger than within-seed strategy delta (~0.6pp).'
+  path: projects/structfuse-context/artifacts/_project/data/seed_variance_vs_strategy_effect.json
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T18:38:31.593375+00:00'
+  tags:
+  - finding4
+  - seed-variance
+  - paper-data
+  - methodology
+- id: art_20260515_fb1feb
+  name: swebench_bm25_baseline_100
+  type: data
+  description: 'BM25 baseline retrieval results on 100 SWE-bench Lite instances: R@1=0.28,
+    R@5=0.51, R@10=0.58, R@20=0.63, MRR=0.3768. CPU-only, 83s total.'
+  path: projects/structfuse-context/artifacts/plan_003_swebench_eval/data/swebench_bm25_baseline_100.json
+  url: null
+  project: structfuse-context
+  exp_id: plan_003_swebench_eval
+  skill: ''
+  created_at: '2026-05-15T19:10:21.123562+00:00'
+  tags:
+  - swebench
+  - bm25
+  - baseline
+  - retrieval
+- id: art_20260515_0f954f
+  name: swebench_bm25_baseline_300
+  type: data
+  description: 'BM25 baseline retrieval on 300 SWE-bench Lite instances: R@1=0.2733,
+    R@5=0.4667, R@10=0.55, R@20=0.6467. Aligned with neural eval sample size.'
+  path: projects/structfuse-context/artifacts/plan_003_swebench_eval/data/swebench_bm25_baseline_300.md
+  url: null
+  project: structfuse-context
+  exp_id: plan_003_swebench_eval
+  skill: ''
+  created_at: '2026-05-15T21:21:58.997965+00:00'
+  tags:
+  - swebench
+  - bm25
+  - baseline
+  - retrieval
+  - '300'
+- id: art_20260515_131123
+  name: m2_eval_summary
+  type: report
+  description: M2 全策略 eval 汇总表：Qwen/StarCoder × random/embedding/dataflow × 3 seeds，含
+    Δ 对比、pilot vs full、训练动态、SWE-bench BM25 baseline。8/18 subruns done。
+  path: projects/structfuse-context/artifacts/_project/report/m2_eval_summary.md
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T23:06:15.670950+00:00'
+  tags:
+  - eval
+  - summary
+  - m2
+  - paper
+  - plan_005
+- id: art_20260515_d9f942
+  name: overfitting_mechanism_figure
+  type: chart
+  description: 'Overfitting mechanism analysis: Panel A — R@1 training curves by strategy
+    (Qwen/StarCoder), Panel B — margin vs eval-loss slope scatter (Pearson r=-0.60,
+    p=0.069). Lower margin → faster overfitting.'
+  path: projects/structfuse-context/artifacts/neg_difficulty_analysis/chart/overfitting_mechanism_meta.txt
+  url: null
+  project: structfuse-context
+  exp_id: neg_difficulty_analysis
+  skill: ''
+  created_at: '2026-05-15T23:22:42.417561+00:00'
+  tags:
+  - neg_difficulty
+  - overfitting
+  - mechanism
+  - paper
+  - figure
+- id: art_20260515_b9293c
+  name: eval_trajectories_csv
+  type: data
+  description: 'Per-step eval trajectories for all completed M2 subruns: 42 eval records
+    across 10 (model, strategy, seed) combinations. Source: trainer_state.json + wandb
+    offline runs.'
+  path: projects/structfuse-context/artifacts/neg_difficulty_analysis/data/eval_trajectories_meta.txt
+  url: null
+  project: structfuse-context
+  exp_id: neg_difficulty_analysis
+  skill: ''
+  created_at: '2026-05-15T23:22:47.682528+00:00'
+  tags:
+  - eval
+  - trajectories
+  - training_dynamics
+  - data
+- id: art_20260516_faa725
+  name: related_work_references
+  type: report
+  description: Related Work 文献收集：21 篇论文，3 方向（code retrieval negative mining 7篇, hard
+    negative overfitting 7篇, representation geometry 7篇）。含 BibTeX + 1句摘要 + 相关性标注。
+  path: projects/structfuse-context/artifacts/_project/report/related_work_references.md
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T00:21:32.001215+00:00'
+  tags:
+  - literature
+  - related_work
+  - bibtex
+  - paper
+- id: art_20260516_a6d623
+  name: run_pool_sensitivity.sh
+  type: intermediate
+  description: Pool sensitivity evaluation script for plan_019. Tests strategy ranking
+    stability across pool={50,100,200,500}. Located at /root/structfuse/scripts/run_pool_sensitivity.sh
+    on bjb1-42106.
+  path: projects/structfuse-context/artifacts/_project/intermediate/run_pool_sensitivity_readme.txt
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T08:05:49.781885+00:00'
+  tags:
+  - plan_019
+  - pool_sensitivity
+  - evaluation
+- id: art_20260516_af7d5a
+  name: methodology_v2
+  type: paper
+  description: '§3 Methodology v2 (dual-version shared): 5 subsections — Problem Formulation,
+    4 Negative Mining Strategies (random/embedding/BM25/dataflow), Structural Extraction
+    Pipeline (90% coverage post-reextract), Training Setup (3 encoders: Qwen/StarCoder/UniXcoder),
+    Query-Split Evaluation Protocol (D062). All numbers as \placeholder{} pending
+    final data.'
+  path: projects/structfuse-context/artifacts/_project/paper/methodology.tex
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T12:45:15.114354+00:00'
+  tags:
+  - paper
+  - methodology
+  - v2
+  - shared
+  - EMNLP2026
+- id: art_20260516_46130f
+  name: related_work_v2
+  type: paper
+  description: '§2 Related Work v2 (dual-version shared): 4 subsections — Dense Retrieval
+    for Code, Contrastive Learning & HN Mining, Evaluation Methodology for Dense Retrieval
+    (NEW: checkpoint selection, pool size, query overlap), Code Structure in ML. 4
+    citations marked [VERIFY].'
+  path: projects/structfuse-context/artifacts/_project/paper/related_work.tex
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T12:46:47.859245+00:00'
+  tags:
+  - paper
+  - related-work
+  - v2
+  - shared
+  - EMNLP2026
+- id: art_20260516_df45cb
+  name: introduction_v2_shared
+  type: paper
+  description: §1 Introduction v2 P1-P4 (shared) + P5 placeholder (version-dependent).
+    P1=problem, P2=CoCoHaNeRe contradiction, P3=code structure dimension, P4=evaluation
+    methodology gap (+16.3pp criterion effect). Both version A and B contribution
+    lists in comments.
+  path: projects/structfuse-context/artifacts/_project/paper/introduction.tex
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T12:46:50.446529+00:00'
+  tags:
+  - paper
+  - introduction
+  - v2
+  - shared
+  - EMNLP2026
+- id: art_20260516_359b4d
+  name: discussion_v2_tex
+  type: paper
+  description: '§5 Discussion v2 LaTeX (shared): 5 subsections — Inference-Time Complementarity,
+    When Does Mining Matter (UniXcoder boundary + rep geometry), Evaluation Methodology
+    Implications (reporting recommendations), Limitations (5 items), Future Work (3
+    directions).'
+  path: projects/structfuse-context/artifacts/_project/paper/discussion.tex
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T12:51:13.557649+00:00'
+  tags:
+  - paper
+  - discussion
+  - v2
+  - shared
+  - EMNLP2026
+- id: art_20260516_be807e
+  name: citation_verification_v2
+  type: report
+  description: Verification of 4 academic citations (dodge2020, thakur2021beir, muennighoff2023mteb,
+    craswell2020overview) for existence, correctness, and context match accuracy
+  path: projects/structfuse-context/artifacts/_project/report/citation_verification.md
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T12:51:15.723865+00:00'
+  tags:
+  - citation
+  - verification
+  - paper-v2
+- id: art_20260516_1a9596
+  name: experiments_v2_scaffold
+  type: paper
+  description: '§4 Experiments v2 scaffold: Setup + 2 main tables (pool-50 + query-split)
+    with \placeholder{} + 5 analysis subsections (criterion, pool size, training dynamics,
+    neg difficulty, cross-encoder). Figure captions for fig3/fig5. Version-dependent
+    narratives in comments.'
+  path: projects/structfuse-context/artifacts/_project/paper/experiments.tex
+  url: null
+  project: structfuse-context
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T12:51:16.716670+00:00'
+  tags:
+  - paper
+  - experiments
+  - v2
+  - scaffold
+  - EMNLP2026

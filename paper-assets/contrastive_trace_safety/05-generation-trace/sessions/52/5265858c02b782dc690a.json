@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "id": "5265858c02b782dc690a",
+  "project": "contrastive_trace_safety",
+  "kind": "worker",
+  "title": "gpu advbench sweep no pca v2",
+  "task_key": "worker_gpu_advbench_sweep_no_pca_v2_20260520T030343",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu_advbench_sweep_no_pca_v2_20260520T030343.log",
+    "occurrence": 1,
+    "bytes": 935582,
+    "sha256": "d657c6692191bc0000a8fefee405bbb206b659f8a7c7c0d5bfcb10888ff43b2e"
+  },
+  "statistics": {
+    "messages": 545,
+    "user_turns": 0,
+    "tool_calls": 218,
+    "roles": {
+      "log": 1,
+      "system": 2,
+      "record": 1,
+      "assistant": 105,
+      "tool_call": 218,
+      "tool_result": 218
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 545,
+      "chunks": [
+        {
+          "path": "5265858c02b782dc690a-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "5265858c02b782dc690a-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "5265858c02b782dc690a-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "5265858c02b782dc690a-part-0004.json",
+          "message_count": 5
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/gpu-advbench-sweep-no-pca-v2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a5168dea696cf4cfa9ed",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "code download bge large",
+  "task_key": "worker_code_download_bge_large_20260517T234508",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_download_bge_large_20260517T234508_result.json",
+    "occurrence": 1,
+    "bytes": 401,
+    "sha256": "588d00df86be092115877aecc790fd841c8e7820cdf585fe02eef265881e4274"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载完成。\n\n**结果汇总：**\n- 模型路径：`/root/autodl-tmp/contrastive_trace_safety/models/bge-large-en-v1.5/`\n- 目录大小：3.8G（清理缓存后）\n- 主要文件：`model.safetensors` (1.3G)、`pytorch_model.bin` (1.3G)、tokenizer 文件、config 等\n- Embedding 维度：**1024**（注意：bge-large 是 1024 维，不是 768。768 维是 bge-base 版本）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-download-bge-large.md"
+}

@@ -1,0 +1,27 @@
+{
+  "exp_id": "m1_reextract_v2",
+  "project": "structfuse-context",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T20:00:20.578Z",
+    "updated_at": "2026-05-13T20:00:47.974Z",
+    "hypothesis": "M1 重提取 v2：恢复 28,276 个因运行时瞬态文件系统故障失败的 instances（82 repos）。CodeQL pack 已修复，端到端测试通过。预期将训练数据从 15,897 提升至 ~44,173。D022 批准。",
+    "parent": "m1_extraction",
+    "spec": {
+      "command": "bash scripts/rerun_m1_failed.sh (4 CPU workers, CodeQL 2-hop, pack installed)",
+      "server": "bjb1-42106",
+      "data_path": "/root/autodl-tmp/structfuse/m1_extraction/",
+      "data_count": 28276,
+      "model_name": "N/A (CodeQL extraction)",
+      "seed": "N/A",
+      "log_path": "/root/runs/structfuse-context/m1_reextract_v2.log",
+      "checkpoint_source": "rerun of m1_extraction failed instances (v2, CodeQL fixed)",
+      "eval_data": "N/A"
+    }
+  },
+  "timestamp": "2026-05-13T20:00:48.025996+00:00",
+  "trigger": "update_registry"
+}

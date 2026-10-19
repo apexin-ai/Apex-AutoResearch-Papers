@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "391463b4bcfd6d248e8c",
+  "project": "contrastive_trace_safety",
+  "kind": "worker",
+  "title": "code qwq alt layers and layer ablation",
+  "task_key": "worker_code_qwq_alt_layers_and_layer_ablation_20260517T131625",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_qwq_alt_layers_and_layer_ablation_20260517T131625.log",
+    "occurrence": 1,
+    "bytes": 889335,
+    "sha256": "d16eb20fd45d9ec6f58a6e57462ea2458fceab94b0a350180b1e5e95fbb9b185"
+  },
+  "statistics": {
+    "messages": 301,
+    "user_turns": 0,
+    "tool_calls": 111,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 75,
+      "tool_call": 111,
+      "tool_result": 111,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 301,
+      "chunks": [
+        {
+          "path": "391463b4bcfd6d248e8c-part-0001.json",
+          "message_count": 150
+        },
+        {
+          "path": "391463b4bcfd6d248e8c-part-0002.json",
+          "message_count": 151
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-qwq-alt-layers-and-layer-ablation.md"
+}

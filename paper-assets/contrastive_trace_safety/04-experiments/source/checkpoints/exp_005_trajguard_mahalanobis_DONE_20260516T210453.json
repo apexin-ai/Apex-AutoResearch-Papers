@@ -1,0 +1,40 @@
+{
+  "exp_id": "exp_005_trajguard_mahalanobis",
+  "project": "contrastive_trace_safety",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T20:34:56.736Z",
+    "updated_at": "2026-05-16T21:04:53.696Z",
+    "hypothesis": "Mahalanobis distance from safe trace distribution should fail as commitment detector because PCA shows discriminative signal is in minor components, not the principal directions that dominate covariance",
+    "spec": {
+      "command": "python src/experiments/trajguard_mahalanobis.py",
+      "server": "autodl-rtx6000",
+      "data_path": "/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states/",
+      "data_count": 209,
+      "model_name": "r1-8b",
+      "seed": 42,
+      "checkpoint_path": "N/A",
+      "log_path": "/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_005_trajguard/"
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "best_k5_crossing_rate": 0.302,
+      "best_k5_lead_mean": 16.4,
+      "best_k5_config": "pca_64_p75",
+      "best_k3_crossing_rate": 0.605,
+      "best_k3_lead_mean": 20.4,
+      "delta_max_rate": 0.023,
+      "safe_md_mean": 6.66,
+      "jb_pre_md_mean": 6.73,
+      "jb_post_md_mean": 6.64
+    },
+    "checkpoint_path": "/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_005_trajguard/results.json",
+    "log_path": "/tmp/exp005.log",
+    "completed_at": "2026-05-16T20:44:42.537Z"
+  },
+  "timestamp": "2026-05-16T21:04:53.717804+00:00",
+  "trigger": "update_registry"
+}

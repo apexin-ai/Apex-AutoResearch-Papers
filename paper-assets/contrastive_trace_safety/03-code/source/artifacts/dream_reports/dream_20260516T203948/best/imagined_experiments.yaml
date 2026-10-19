@@ -1,0 +1,567 @@
+tier: best
+narrative_guidance: 'Original framing holds: temporal hidden-state probes are necessary
+  and sufficient for saturating oracle coverage cross-architecture; BOCPD as novel
+  method contribution achieves first reliable pre-textual detection; text monitoring
+  is fundamentally inferior. Paper becomes empirical methods contribution with BOCPD
+  as genuine novelty. Title emphasizes ''detecting safety commitment before it appears
+  in text''.'
+imagined_experiments:
+- name: Cross-architecture static probe (32B models)
+  plan_id: exp-001
+  description: Layer sweep + static LogisticRegression on r1-32b (Qwen2.5-base, 64
+    layers) and QwQ-32B (Qwen2.5-base, 64 layers). Extracts all 64 layers, finds optimal
+    via Fisher discriminant + probe accuracy, reports static coverage.
+  expected_results:
+    r1_32b_best_layer_idx: 28
+    r1_32b_best_layer_depth_pct: 0.44
+    r1_32b_static_acc: 0.824
+    r1_32b_static_coverage: 0.42
+    r1_32b_static_lead_mean: -1.8
+    r1_32b_fisher_orig: 19.3
+    r1_32b_fisher_pca3: 1.05
+    qwq_32b_best_layer_idx: 30
+    qwq_32b_best_layer_depth_pct: 0.47
+    qwq_32b_static_acc: 0.811
+    qwq_32b_static_coverage: 0.39
+    qwq_32b_static_lead_mean: -2.3
+    qwq_32b_fisher_orig: 18.7
+    qwq_32b_fisher_pca3: 0.98
+    var_explained_3pc_r1_32b: 0.14
+    var_explained_3pc_qwq: 0.15
+  result_rationale: Best layer at ~44% depth replicates r1-8b finding (layer 14/32
+    = 44%). Static coverage 0.39-0.42 mirrors r1-8b's 0.465 with slight degradation
+    expected from larger model's more distributed representations. Fisher discriminant
+    remains high in full space (18-19) but collapses in PCA-3D (~1.0), confirming
+    the safety signal is distributed across minor principal components regardless
+    of architecture. Qwen2.5-base models show same phenomenon as Llama-base r1-8b
+    because the distributional property is a consequence of safety fine-tuning spreading
+    signal across dimensions, not architecture-specific.
+  tables:
+  - 'Table: Layer sweep summary (top-5 layers per model by probe accuracy, with Fisher
+    ratios)'
+  - 'Table: Static probe metrics comparison across all 3 models (r1-8b, r1-32b, QwQ-32B)'
+  figures_description:
+  - 'Layer sweep curve: probe accuracy vs layer index for both 32B models, with r1-8b
+    overlaid at normalized depth'
+  - Fisher discriminant ratio (full-space vs PCA-3D) across layers for both models
+  analysis: 'Static probes replicate the r1-8b pattern on Qwen2.5-base architecture:
+    high Fisher discriminant in full representation space but collapse in low-dimensional
+    projections. The ~44% depth optimum generalizes, consistent with middle layers
+    encoding task-relevant abstractions before output-head specialization. Static
+    coverage 0.39-0.42 confirms Claim 1 cross-architecture: single-step linear probes
+    are fundamentally limited to <50% coverage regardless of model scale or architecture
+    family.'
+- name: Cross-architecture temporal window evaluation
+  plan_id: exp-002
+  description: Temporal LR (W=15) on best-layer hidden states from r1-32b and QwQ-32B.
+    Validates that +30pp coverage gap over static replicates cross-architecture.
+  expected_results:
+    r1_32b_temporal_coverage: 0.77
+    r1_32b_temporal_acc: 0.856
+    r1_32b_temporal_lead_mean: -0.6
+    r1_32b_coverage_gap_over_static_pp: 35
+    qwq_32b_temporal_coverage: 0.74
+    qwq_32b_temporal_acc: 0.843
+    qwq_32b_temporal_lead_mean: -0.9
+    qwq_32b_coverage_gap_over_static_pp: 35
+    mean_cross_arch_temporal_coverage: 0.755
+    mean_cross_arch_gap_pp: 35
+  result_rationale: 'Temporal window W=15 captures ''safety reasoning density decline''
+    — the gradual thinning of safety-labeled steps before commitment point. This pattern
+    is architectural-invariant because it arises from the shared safety fine-tuning
+    objective: all models learn to reason about safety similarly, producing similar
+    temporal density patterns. The +35pp gap over static probes occurs because the
+    commitment signature is fundamentally a trajectory property (declining safety
+    density over 10-15 steps), not a single-step state property. r1-32b slightly outperforms
+    QwQ due to deeper safety fine-tuning in the DeepSeek-R1 pipeline, but both saturate
+    near the oracle ceiling (76.7% on r1-8b), suggesting the oracle bound is also
+    architecture-invariant.'
+  tables:
+  - 'Table: Temporal vs static coverage/accuracy/lead-time across all 3 models'
+  figures_description:
+  - 'Bar chart: coverage comparison (static vs temporal) across 3 models with 95%
+    CI error bars'
+  - Coverage gap (pp) consistency plot across models
+  analysis: The ≥25pp temporal advantage replicates on both Qwen2.5-base models, confirming
+    Claim 2 is architecture-general. Coverage values (0.74-0.77) cluster near the
+    r1-8b oracle ceiling (76.7%), suggesting the ~77% bound may reflect an intrinsic
+    property of the commitment detection task (some traces have ambiguous/gradual
+    commitment without clean phase transition). The result validates that temporal
+    context — not model capacity or architecture — is the critical missing ingredient
+    for static probes.
+- name: Cross-model transfer (Llama↔Qwen)
+  plan_id: exp-003
+  description: Train temporal probe on r1-8b (Llama-3.1, 4096-d), test on r1-32b/QwQ
+    (Qwen2.5, 5120-d) via learned linear projection head. Also reverse direction.
+  expected_results:
+    llama_to_r1_32b_coverage: 0.54
+    llama_to_r1_32b_retention_pct: 0.7
+    llama_to_qwq_coverage: 0.51
+    llama_to_qwq_retention_pct: 0.66
+    qwen_to_llama_coverage: 0.52
+    qwen_to_llama_retention_pct: 0.68
+    mean_cross_transfer_retention: 0.68
+    projection_head_params: 20971520
+  result_rationale: Cross-family transfer retains ~68% performance because the safety
+    commitment signal is a shared abstract pattern (declining safety reasoning density)
+    rather than architecture-specific feature directions. The projection head (4096→5120
+    linear map, ~21M params) successfully aligns representation spaces because both
+    model families underwent similar safety fine-tuning producing structurally analogous
+    safety subspaces. Retention at 68% (not 100%) reflects residual architectural
+    differences in how safety reasoning is encoded at the feature level, but the temporal
+    pattern remains transferable. This is strong evidence that safety commitment is
+    a genuine cognitive phenomenon, not a model-specific artifact.
+  tables:
+  - 'Table: Transfer matrix (train model × test model) with coverage and retention
+    %'
+  figures_description:
+  - 'Heatmap: transfer coverage matrix across all model pairs'
+  - 'Bar chart: within-family vs cross-family transfer retention'
+  analysis: '68% mean retention demonstrates that temporal probes learn a partially
+    universal safety commitment signature. The transfer is asymmetric (Llama→Qwen
+    slightly better than Qwen→Llama) possibly because Llama''s lower-dimensional space
+    forces more compressed representations that transfer better. This result strengthens
+    the cross-architecture narrative: even zero-shot transfer achieves meaningful
+    detection, and architecture-specific fine-tuning only provides incremental improvement.'
+- name: Lead time analysis across 32B models
+  plan_id: exp-004
+  description: GRU multi-layer probe on 32B models. Report lead time distributions.
+    Under best tier, temporal LR still has negative lead time but GRU shows improvement.
+  expected_results:
+    r1_32b_gru_lead_mean: 5.2
+    r1_32b_gru_lead_median: 1
+    r1_32b_gru_early_detection_rate: 0.42
+    r1_32b_gru_crossing_rate: 0.79
+    qwq_32b_gru_lead_mean: 4.9
+    qwq_32b_gru_lead_median: 0
+    qwq_32b_gru_early_detection_rate: 0.4
+    qwq_32b_gru_crossing_rate: 0.77
+    r1_32b_temporal_lr_lead_mean: -0.6
+    qwq_32b_temporal_lr_lead_mean: -0.9
+  result_rationale: 'GRU on 32B models achieves slightly better lead time than r1-8b
+    (+5.2 vs +4.7) because 32B models have longer reasoning traces with more gradual
+    commitment transitions, giving sequential models more signal to detect early shifts.
+    However, median remains 0-1 and early detection rate 40-42% — the fundamental
+    limitation persists: hidden states encode current safety state reliably but future
+    trajectory prediction requires the BOCPD approach (exp-014) to unlock. The improvement
+    over r1-8b is modest because the bottleneck is methodological (GRU extrapolation),
+    not representational.'
+  tables:
+  - 'Table: Lead time statistics (mean/median/std/early_detection_rate) across all
+    models for GRU and temporal LR'
+  figures_description:
+  - Detection delay CDF across all 3 models (GRU)
+  - Lead time distribution histograms per model
+  analysis: 'GRU lead time replicates cross-architecture with similar characteristics:
+    positive mean but unreliable (high variance, low early detection rate). This confirms
+    that the limitation is methodological rather than representational — the hidden
+    states contain early commitment signal (as shown by oracle''s +31 steps) but sequential
+    models fail to extract it reliably. Sets up BOCPD (exp-014) as the methodological
+    solution.'
+- name: TrajGuard Mahalanobis baseline
+  plan_id: exp-005
+  description: Mahalanobis distance anomaly detection (TrajGuard-style) using safe
+    traces to estimate class-conditional Gaussians. Evaluate per-step MD as commitment
+    detector on all 3 models.
+  expected_results:
+    r1_8b_trajguard_coverage: 0.35
+    r1_8b_trajguard_auroc: 0.58
+    r1_32b_trajguard_coverage: 0.32
+    r1_32b_trajguard_auroc: 0.56
+    qwq_32b_trajguard_coverage: 0.3
+    qwq_32b_trajguard_auroc: 0.55
+    mean_trajguard_coverage: 0.32
+    best_trajguard_coverage: 0.35
+  result_rationale: Mahalanobis distance fails because it relies on the assumption
+    that class separation is captured by the covariance structure (top principal components).
+    Our PCA analysis (diag_d2) proved Fisher drops from 17→1 in PCA-3D — the safety
+    signal lives in minor components that MD effectively ignores. With variance explained
+    by top-3 PCs at only 14-17%, the Gaussian assumption in high dimensions assigns
+    similar MD to safe and unsafe steps. Coverage 0.30-0.35 is near chance for binary
+    detection. Larger models perform slightly worse because their 5120-d space distributes
+    signal even more diffusely across dimensions. This decisively confirms that geometric
+    methods designed for instruction-tuned models (where refusal is a dominant direction)
+    are inadequate for reasoning-model safety commitment.
+  tables:
+  - 'Table: TrajGuard coverage/AUROC vs temporal LR vs static LR across all models'
+  figures_description:
+  - 'ROC curves: TrajGuard MD vs temporal LR vs static LR (per model)'
+  - 'MD score distribution: safe steps vs pre-commitment vs post-commitment'
+  analysis: 'TrajGuard''s failure at 0.30-0.35 coverage (vs temporal LR at 0.74-0.77)
+    quantifies the inadequacy of geometric methods. The result is not that hidden
+    states lack signal — Fisher ratio 17-19 proves abundant signal exists — but that
+    the signal''s distribution across minor components defeats methods that rely on
+    dominant variance directions. This validates our core insight: temporal context
+    over supervised probes, not geometric distance in representation space, is the
+    correct approach for reasoning-model safety detection.'
+- name: Bootstrap CIs + threshold-independent metrics
+  plan_id: exp-006
+  description: 1000 bootstrap resamples on all key metrics across all models. AUROC,
+    PR curves, detection delay CDF, per-fold CV variance.
+  expected_results:
+    temporal_lr_coverage_ci_width_r1_8b: 0.06
+    temporal_lr_coverage_ci_width_r1_32b: 0.05
+    temporal_lr_coverage_ci_width_qwq: 0.07
+    temporal_lr_auroc_r1_8b: 0.89
+    temporal_lr_auroc_r1_32b: 0.91
+    temporal_lr_auroc_qwq: 0.88
+    static_lr_auroc_r1_8b: 0.82
+    bocpd_lead_ci_width: 2.1
+    cv_fold_variance_coverage: 0.003
+    mean_bootstrap_ci_width_coverage: 0.06
+  result_rationale: Bootstrap CI widths of 0.05-0.07 for coverage reflect the moderate
+    sample size (43 test traces for r1-8b, similar for 32B models). The CIs are tight
+    enough to confirm statistical significance of the temporal-static gap (35pp gap
+    with ~6pp CI width → non-overlapping intervals). AUROC 0.88-0.91 for temporal
+    LR confirms strong discrimination independent of threshold choice. CV fold variance
+    at 0.003 indicates stable probe training despite small dataset. Larger 32B models
+    show slightly tighter CIs due to longer traces providing more per-trace signal.
+    These intervals validate that all reported coverage differences are statistically
+    meaningful, not noise.
+  tables:
+  - 'Table: All metrics with 95% bootstrap CIs across models'
+  - 'Table: Cross-validation per-fold metrics (mean ± std)'
+  figures_description:
+  - PR curves per model (temporal LR, static LR, TrajGuard, BOCPD)
+  - Detection delay CDF across methods
+  - Bootstrap distribution histograms for key metrics
+  analysis: CI widths uniformly below 0.08 confirm all primary claims are statistically
+    robust. The temporal-static coverage gap (25-35pp) is 4-6× larger than CI width,
+    ruling out sampling variance as explanation. AUROC values (0.88-0.91) demonstrate
+    probe quality independent of threshold. Results support confident claim-making
+    at EMNLP review standards.
+- name: Window size ablation
+  plan_id: exp-007
+  description: Temporal LR with W=1,3,5,10,15,20,25 on all 3 models. Characterize
+    diminishing returns.
+  expected_results:
+    r1_8b_W1_coverage: 0.465
+    r1_8b_W3_coverage: 0.56
+    r1_8b_W5_coverage: 0.65
+    r1_8b_W10_coverage: 0.72
+    r1_8b_W15_coverage: 0.767
+    r1_8b_W20_coverage: 0.77
+    r1_8b_W25_coverage: 0.76
+    r1_32b_W15_coverage: 0.77
+    r1_32b_W10_coverage: 0.71
+    qwq_W15_coverage: 0.74
+    optimal_W_all_models: 15
+    saturation_onset_W: 10
+  result_rationale: W=1 equals static probe (0.465). Coverage increases monotonically
+    until W=15 then plateaus/slightly decreases at W=20-25. Saturation at W=15 corresponds
+    to the mean pre-CP safety reasoning streak length (14.6 steps from oracle analysis).
+    Beyond W=15, the window includes steps before safety reasoning decline began,
+    adding noise rather than signal. The consistency of optimal W=15 across architectures
+    confirms this is determined by the task structure (commitment point transition
+    dynamics) not model properties. Slight degradation at W=25 occurs because very
+    long windows dilute the commitment signal with early-trace safety reasoning that
+    is not predictive.
+  tables:
+  - 'Table: Coverage × window size × model matrix'
+  figures_description:
+  - 'Line plot: coverage vs window size for all 3 models (showing convergence to same
+    optimum)'
+  - Diminishing returns curve with annotation of oracle streak length
+  analysis: 'Optimal W=15 across all architectures is a key structural insight: the
+    commitment transition unfolds over ~15 steps regardless of model. This matches
+    the oracle''s mean longest pre-CP streak (14.6 steps), providing a mechanistic
+    explanation. The ablation transforms W=15 from arbitrary hyperparameter to principled
+    choice grounded in task structure.'
+- name: Layer selection ablation for 32B temporal probes
+  plan_id: exp-008
+  description: Full layer sweep for temporal probe (not just best static layer) on
+    32B models. Confirm middle-layer finding.
+  expected_results:
+    r1_32b_best_temporal_layer: 30
+    r1_32b_best_temporal_layer_depth_pct: 0.47
+    r1_32b_temporal_coverage_at_best: 0.78
+    r1_32b_temporal_coverage_at_layer_16: 0.68
+    r1_32b_temporal_coverage_at_layer_48: 0.62
+    qwq_best_temporal_layer: 29
+    qwq_best_temporal_layer_depth_pct: 0.45
+    layer_range_above_70pct: layers 24-36
+  result_rationale: 'Best temporal layer at 45-47% depth replicates the static probe
+    finding, confirming middle layers are optimal for both static and temporal probes.
+    The plateau from layers 24-36 (37-56% depth) shows the safety signal is broadly
+    available in middle layers with a gentle optimum. Early layers (< layer 16) lack
+    sufficient abstraction; late layers (> layer 48) are too specialized for next-token
+    prediction. The consistency of ~45% depth across architectures and probe types
+    suggests a universal property of transformer safety representations: middle layers
+    encode the richest task-level abstractions before output specialization.'
+  tables:
+  - 'Table: Top-5 temporal probe layers per model with coverage/accuracy'
+  figures_description:
+  - 'Layer sweep curve: temporal probe coverage vs normalized depth for both 32B models
+    + r1-8b overlay'
+  analysis: Middle-layer optimality generalizes from static to temporal probes and
+    from 32-layer to 64-layer models. The broad plateau (layers 24-36 all > 70% coverage)
+    means layer selection is not fragile — any middle layer works reasonably. This
+    robustness strengthens the practical deployment story.
+- name: 16-label taxonomy supervision
+  plan_id: exp-009
+  description: Replace binary commitment label with 16-category safety reasoning taxonomy.
+    Train multi-class temporal probe, derive commitment detection from class predictions.
+  expected_results:
+    taxonomy_temporal_coverage: 0.79
+    taxonomy_temporal_lead_mean: 0.3
+    taxonomy_vs_binary_coverage_delta: 0.02
+    taxonomy_16class_accuracy: 0.62
+    taxonomy_4class_accuracy: 0.74
+    taxonomy_binary_derived_accuracy: 0.85
+  result_rationale: Fine-grained labels provide marginal improvement (+2pp coverage)
+    because the binary commitment label already captures the essential transition.
+    The 16-class probe achieves only 62% accuracy on fine categories (many are rare
+    and overlapping) but when collapsed to binary commitment detection, slightly outperforms
+    the direct binary probe. The modest improvement suggests the binary label is already
+    a near-sufficient supervision signal for the commitment detection task. The primary
+    value is interpretability (knowing which safety reasoning type is declining) rather
+    than detection performance.
+  tables:
+  - 'Table: Coverage/lead-time comparison: binary vs 4-class vs 16-class derived detection'
+  figures_description:
+  - Confusion matrix for 16-class temporal probe
+  - Per-category detection accuracy (sorted)
+  analysis: 'Fine-grained supervision provides marginal quantitative improvement but
+    significant qualitative value: the taxonomy probe can report which type of safety
+    reasoning is declining, enabling more informative alerts. For the paper, this
+    addresses the reviewer concern but confirms binary labeling is near-optimal for
+    detection.'
+- name: Oracle decomposition analysis
+  plan_id: exp-010
+  description: 'Analyze why oracle achieves +31 lead time but probes achieve +4.7.
+    Decompose oracle advantage into components: label pattern recognition vs future
+    prediction.'
+  expected_results:
+    oracle_advantage_from_lookback: 0.45
+    oracle_advantage_from_future_knowledge: 0.55
+    probe_captures_of_lookback_signal: 0.72
+    probe_captures_of_future_signal: 0.08
+    mean_pre_cp_safety_gap: 8.3
+    traces_with_clear_precursor_pattern: 0.65
+  result_rationale: 'Oracle''s +31 lead time decomposes into two components: (1) lookback
+    pattern recognition (last K steps have declining safety density — 45% of advantage,
+    achievable from past data) and (2) future knowledge (knowing no safety labels
+    will ever return — 55% of advantage, requires oracle access). Probes capture 72%
+    of the lookback component but only 8% of the future component. This explains why
+    GRU achieves +4.7 (captures most of the achievable-from-past signal) but cannot
+    reach +31 (would require genuine future prediction). The 65% of traces with clear
+    precursor patterns explains BOCPD''s success — distributional shift detection
+    can identify the onset of safety reasoning decline without needing future knowledge.'
+  tables:
+  - 'Table: Oracle advantage decomposition (lookback vs future knowledge)'
+  figures_description:
+  - 'Diagram: decomposition of oracle lead time into achievable vs unachievable components'
+  - 'Scatter: per-trace oracle lead time vs probe lead time, colored by precursor
+    clarity'
+  analysis: 'The decomposition reveals a principled ceiling for non-oracle methods:
+    ~45% of oracle''s advantage is achievable from past data alone. BOCPD''s success
+    (exp-014) in reaching +8 mean lead time captures most of this achievable component
+    via distributional shift detection. The remaining 55% requires genuine future
+    prediction — a fundamental limitation, not a model capacity issue. This framing
+    positions the unreliable-lead-time finding as a principled result rather than
+    a failure.'
+- name: OpenThinker-7B (Qwen2.5-7B base)
+  plan_id: exp-011
+  description: 4th model for 2×2 architecture×scale matrix. Qwen2.5-7B-base model
+    with reasoning training. Complements Llama-8B for scale-matched comparison.
+  expected_results:
+    openthinker_best_layer: 14
+    openthinker_best_layer_depth_pct: 0.44
+    openthinker_static_coverage: 0.41
+    openthinker_temporal_coverage: 0.72
+    openthinker_coverage_gap_pp: 31
+    openthinker_gru_lead_mean: 4.1
+    scale_effect_qwen_7b_vs_32b_coverage_delta: 0.02
+    arch_effect_llama_vs_qwen_at_7b_coverage_delta: -0.05
+  result_rationale: 'OpenThinker-7B (Qwen2.5-7B, 32 layers) shows best layer at 44%
+    depth (layer 14/32), matching r1-8b exactly. Temporal coverage 0.72 is slightly
+    below 32B Qwen models (0.74-0.77), showing minimal scale effect (+2pp for 4.5×
+    parameters). Architecture effect is similarly small (Llama 0.767 vs Qwen 0.72
+    at matched 7-8B scale). This confirms the temporal advantage is driven by task
+    structure, not model capacity or architecture. The 2×2 matrix shows: scale accounts
+    for ~2pp, architecture for ~5pp, while temporal context accounts for 31pp — temporal
+    context dominates.'
+  tables:
+  - 'Table: 2×2 matrix (arch × scale) with coverage, gap, lead time'
+  figures_description:
+  - 2×2 grid showing coverage values, confirming temporal advantage dominates over
+    scale/arch effects
+  analysis: 'The 2×2 matrix provides the definitive cross-architecture argument: temporal
+    context (31pp effect) dwarfs both scale (2pp) and architecture (5pp) effects.
+    This means our findings generalize broadly — any sufficiently-trained reasoning
+    model will exhibit the same temporal advantage pattern.'
+- name: GRU/Attention probe on 32B models
+  plan_id: exp-012
+  description: GRU-256 multi-layer probe on 32B models. If no improvement over temporal
+    LR for coverage, strengthens 'simplicity is optimal' narrative.
+  expected_results:
+    r1_32b_gru_coverage: 0.79
+    r1_32b_gru_vs_lr_coverage_delta: 0.02
+    qwq_gru_coverage: 0.76
+    qwq_gru_vs_lr_coverage_delta: 0.02
+    r1_32b_gru_lead_mean: 5.2
+    qwq_gru_lead_mean: 4.9
+    attention_probe_r1_32b_coverage: 0.78
+    attention_vs_gru_delta: -0.01
+  result_rationale: GRU and attention probes provide only marginal coverage improvement
+    (+2pp) over temporal LR on 32B models, confirming that probe complexity beyond
+    temporal windowing yields diminishing returns for coverage. The coverage ceiling
+    (~77-79%) appears to be a property of the task (some traces lack clean commitment
+    transitions) rather than probe capacity. GRU's value remains primarily in lead
+    time (+5.2 steps vs -0.6 for LR), not coverage. Attention probe performs comparably
+    to GRU, suggesting the sequential inductive bias isn't critical — temporal context
+    itself is the key ingredient. This strongly supports the 'simplicity is optimal
+    for coverage' narrative.
+  tables:
+  - 'Table: Coverage/lead-time comparison across probe architectures on 32B models'
+  figures_description:
+  - 'Bar chart: probe architecture × coverage on 32B models (LR, GRU, Attention)'
+  analysis: The near-identical coverage between LR, GRU, and attention probes on 32B
+    models confirms temporal LR as the optimal cost-performance tradeoff for deployment.
+    Complex architectures add lead time capability but not coverage. This supports
+    positioning temporal LR as the practical recommendation and BOCPD as the timing
+    innovation.
+- name: Text-based baseline (sentence-BERT + temporal LR)
+  plan_id: exp-013
+  description: Sentence-BERT (all-MiniLM-L6-v2) embeddings of CoT text steps + temporal
+    LR W=15. Direct comparison to hidden-state probes. Must demonstrate hidden states
+    provide unique value.
+  expected_results:
+    text_temporal_coverage_r1_8b: 0.48
+    text_temporal_coverage_r1_32b: 0.45
+    text_temporal_coverage_qwq: 0.47
+    text_static_coverage_r1_8b: 0.38
+    text_temporal_lead_mean_r1_8b: -3.2
+    text_temporal_auroc_r1_8b: 0.76
+    hidden_vs_text_gap_pp_r1_8b: 29
+    hidden_vs_text_gap_pp_r1_32b: 32
+    hidden_vs_text_gap_pp_mean: 30
+    text_temporal_gap_over_text_static_pp: 10
+  result_rationale: 'Text-based temporal LR achieves only 0.45-0.48 coverage because
+    sentence-BERT captures semantic content but misses the pre-textual safety commitment
+    signal encoded in hidden states. Specifically: (1) hidden states encode safety
+    orientation 2-5 steps before it manifests as explicit safety text, creating a
+    fundamental timing advantage; (2) hidden states capture fine-grained confidence/uncertainty
+    signals absent from surface text; (3) sentence-BERT''s fixed 384-d representation
+    compresses away subtle safety-relevant nuances that 4096/5120-d hidden states
+    preserve. Text temporal LR does improve over text static (+10pp), confirming temporal
+    context helps even for text — but the 29-32pp gap to hidden-state temporal LR
+    proves hidden states carry unique pre-textual commitment signal. Negative lead
+    time (-3.2) for text is expected: text can only react after commitment manifests
+    linguistically.'
+  tables:
+  - 'Table: Hidden-state vs text-based probes: coverage, lead time, AUROC across all
+    models'
+  - 'Table: Text static vs text temporal (showing temporal context helps but is insufficient)'
+  figures_description:
+  - 'Bar chart: hidden-state temporal vs text temporal vs text static coverage across
+    models'
+  - 'Timeline visualization: example traces showing hidden-state probe fires before
+    text probe'
+  analysis: 'The 29-32pp gap decisively proves hidden-state monitoring adds unique
+    value over text-based approaches. This is the single most important result for
+    paper motivation: cheap text monitoring is fundamentally inferior because the
+    commitment signal exists in hidden states before it manifests textually. The negative
+    text lead time (-3.2) vs positive hidden-state lead time (+4.7 GRU, +8 BOCPD)
+    quantifies the pre-textual advantage. This validates the paper''s core thesis
+    and title emphasis on ''before it appears in text''.'
+- name: BOCPD on probe score sequences
+  plan_id: exp-014
+  description: Bayesian Online Change-Point Detection (Adams & MacKay 2007) applied
+    to temporal LR confidence scores. Detects distributional shift in probe outputs
+    as commitment signal. Also test CUSUM.
+  expected_results:
+    bocpd_lead_mean_r1_8b: 8.2
+    bocpd_lead_median_r1_8b: 6
+    bocpd_early_detection_rate_r1_8b: 0.62
+    bocpd_coverage_r1_8b: 0.72
+    bocpd_lead_mean_r1_32b: 9.1
+    bocpd_lead_median_r1_32b: 7
+    bocpd_early_detection_rate_r1_32b: 0.65
+    bocpd_lead_mean_qwq: 7.8
+    bocpd_early_detection_rate_qwq: 0.58
+    bocpd_mean_lead_all_models: 8.4
+    bocpd_mean_early_detection_rate: 0.62
+    cusum_lead_mean_r1_8b: 5.1
+    cusum_early_detection_rate_r1_8b: 0.48
+    bocpd_vs_gru_lead_improvement: 3.7
+    bocpd_hazard_rate: 0.01
+    bocpd_observation_model: gaussian
+  result_rationale: 'BOCPD achieves +8.4 mean lead time (vs GRU''s +4.7) because it
+    detects the distributional shift in probe confidence scores — the transition from
+    fluctuating (safety reasoning present) to monotonically high (commitment achieved)
+    — without needing to predict future states. This is fundamentally a change-point
+    detection problem, not a sequence prediction problem, which is why BOCPD outperforms
+    GRU. The probe score sequence exhibits a clear regime change: pre-commitment scores
+    oscillate (mean 0.6, std 0.15) while post-commitment scores stabilize (mean 0.85,
+    std 0.04). BOCPD detects this variance reduction 6-9 steps before the textual
+    commitment point because the hidden-state probe captures the onset of commitment
+    before text manifests it. 62% early detection rate (vs GRU''s 39-42%) represents
+    a major improvement. CUSUM achieves intermediate performance (+5.1 lead) — it
+    detects mean shift but is less sensitive to the critical variance reduction signal.
+    Larger models show slightly better BOCPD performance due to longer, smoother commitment
+    transitions.'
+  tables:
+  - 'Table: BOCPD vs GRU vs temporal LR: lead time, early detection rate, coverage
+    across models'
+  - 'Table: BOCPD hyperparameter sensitivity (hazard rate, observation model)'
+  figures_description:
+  - 'Example trace: probe confidence scores with BOCPD change-point posterior overlaid,
+    showing detection before textual CP'
+  - 'Lead time distribution comparison: BOCPD vs GRU vs oracle'
+  - BOCPD run-length posterior heatmap on representative traces
+  analysis: 'BOCPD emerges as the paper''s primary methods contribution. By reframing
+    commitment detection as online change-point detection on probe score sequences,
+    we achieve the first reliable pre-textual detection (+8.4 mean lead, 62% early
+    detection). The insight is that probe scores undergo a detectable regime change
+    (high variance → low variance + high mean) several steps before textual commitment.
+    This is genuinely novel: no prior work applies BOCPD to hidden-state probe outputs
+    for safety monitoring. BOCPD + temporal LR probes form a complete pipeline: temporal
+    LR provides high-coverage commitment detection, BOCPD provides reliable early
+    warning. This upgrades Claim 3 from ''unreliable'' to ''promising'' and gives
+    the paper a genuine methods contribution beyond empirical study.'
+- name: False positive analysis on safe traces
+  plan_id: exp-015
+  description: Run all probe methods on safe traces (final_judgment=0.5, model refused
+    successfully). Report FPR at operational threshold (coverage ≥70%), precision-recall
+    curves.
+  expected_results:
+    temporal_lr_fpr_at_70pct_coverage_r1_8b: 0.06
+    temporal_lr_fpr_at_70pct_coverage_r1_32b: 0.05
+    temporal_lr_fpr_at_70pct_coverage_qwq: 0.07
+    static_lr_fpr_at_same_threshold: 0.12
+    bocpd_fpr_r1_8b: 0.04
+    bocpd_fpr_r1_32b: 0.03
+    trajguard_fpr: 0.18
+    precision_at_70pct_recall_temporal: 0.92
+    precision_at_70pct_recall_bocpd: 0.94
+    n_safe_traces_tested: 85
+    safe_trace_mean_probe_score: 0.35
+    unsafe_trace_mean_probe_score: 0.78
+  result_rationale: FPR 0.05-0.07 at operational threshold because safe traces maintain
+    consistent safety reasoning throughout (no density decline), producing low, stable
+    probe scores (mean 0.35) well below the commitment detection threshold. The temporal
+    probe learns to detect sustained absence of safety reasoning — safe traces by
+    definition maintain safety reasoning, so false positives require unusual safe-trace
+    patterns (e.g., brief reasoning tangents that temporarily suspend safety discussion).
+    These are rare (~5-7% of safe traces). BOCPD achieves even lower FPR (0.03-0.04)
+    because safe traces never exhibit the variance-reduction regime change. TrajGuard's
+    high FPR (0.18) reflects its inability to discriminate — it fires on any representation
+    shift, which occurs naturally in long reasoning traces even without commitment.
+    The clear separation between safe (0.35) and unsafe (0.78) mean probe scores confirms
+    the probe captures a real phenomenon, not noise.
+  tables:
+  - 'Table: FPR at operational threshold across all methods and models'
+  - 'Table: Precision-recall at various operating points'
+  figures_description:
+  - 'PR curves: all methods on combined safe+unsafe traces'
+  - 'Probe score distribution: safe traces vs unsafe traces (showing clear separation)'
+  - ROC curves with operating point annotation
+  analysis: 'FPR 0.05-0.07 at 70% coverage demonstrates deployment viability: for
+    every 100 safe traces monitored, only 5-7 trigger false alarms. BOCPD''s lower
+    FPR (0.03-0.04) makes it the superior deployment choice when both coverage and
+    precision matter. The 0.35 vs 0.78 mean score separation provides comfortable
+    operating margin. These results transform the coverage metric from potentially
+    trivial (a probe that always fires gets 100% coverage) to meaningful: our probes
+    achieve 70-77% coverage while maintaining <10% FPR, demonstrating genuine discriminative
+    ability.'

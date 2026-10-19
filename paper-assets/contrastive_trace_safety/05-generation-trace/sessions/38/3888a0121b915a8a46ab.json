@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3888a0121b915a8a46ab",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "paper writing experiments",
+  "task_key": "worker_paper_writing_experiments_20260517T000648",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_experiments_20260517T000648_result.json",
+    "occurrence": 1,
+    "bytes": 544,
+    "sha256": "a7fda879a7f9314c17212ca6a09c42115ef8b4c2746867522f49a87dac2381df"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Experiments section 已写入 `docs/paper/sections/experiments.tex`，包含全部 8 个 subsection (5.1-5.8)。\n\n样式检查通过：无 em-dash、无解释性 en-dash、无 -ing 短语结尾、无 Furthermore/Moreover/Additionally 连用、无 \"significantly\" 无统计检验、无 \"state-of-the-art\"。\n\n所有数值按任务指定来源录入，step-level 与 trace-level 指标未混用，QwQ p=0.904，Bonferroni 后无模型存活。注意 Section 5.8 oracle information gap 使用了任务指定的 ≈62% 值。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-experiments.md"
+}

@@ -1,0 +1,28 @@
+{
+  "exp_id": "advbench_llm_cp_full",
+  "project": "contrastive_trace_safety",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T05:55:23.490Z",
+    "updated_at": "2026-05-21T09:12:24.291Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/contrastive_trace_safety && python scripts/annotate_cp_llm.py\"",
+      "server": "autodl-rtx6000",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "481861",
+      "log_path": "~/runs/contrastive_trace_safety/advbench_llm_cp_full.log",
+      "submitted_at": "2026-05-20T05:55:23.340Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-21T09:12:24.403045+00:00",
+  "trigger": "update_registry"
+}

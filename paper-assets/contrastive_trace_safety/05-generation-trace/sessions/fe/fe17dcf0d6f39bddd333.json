@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fe17dcf0d6f39bddd333",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "ops qwen3 check immediate",
+  "task_key": "worker_ops_qwen3_check_immediate_20260520T063145",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_qwen3_check_immediate_20260520T063145_result.json",
+    "occurrence": 1,
+    "bytes": 482,
+    "sha256": "8d66994a3ef15905a921271bed6a66de1dd03712c3a8f338711d66f1d83ffa81"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Qwen3 标注完成，post-hoc fix 已执行。结果：\n\n| 指标 | 值 |\n|------|-----|\n| Total annotations | 388 |\n| Jailbreak | 52 (13.4%) |\n| JB with CP | 52/52 |\n| CP mean | 1.4 (median=0, min=0, max=20) |\n| CP relative mean | 0.045 |\n| Hidden states 匹配 | 52/52 |\n| **Phase 4** | **GO** |\n\nCP 分布极度前倾（median=0, mean=1.4），说明 Qwen3 的 commitment point 出现极早。52 条 hidden states 全部就位，Phase 4 可以启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-qwen3-check-immediate.md"
+}

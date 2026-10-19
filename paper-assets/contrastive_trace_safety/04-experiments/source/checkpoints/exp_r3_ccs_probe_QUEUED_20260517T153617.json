@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_r3_ccs_probe",
+  "project": "contrastive_trace_safety",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T15:35:52.139Z",
+    "updated_at": "2026-05-17T15:36:17.847Z",
+    "hypothesis": "CCS (Burns et al. 2023) adapted for temporal safety probing should underperform supervised LR probes because the consistency+confidence loss lacks access to commitment point labels. If CCS still outperforms RepE/Mahalanobis, it represents the best unsupervised baseline but confirms the supervised gap."
+  },
+  "timestamp": "2026-05-17T15:36:17.932266+00:00",
+  "trigger": "update_registry"
+}

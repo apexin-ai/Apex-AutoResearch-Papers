@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f952e7da99ee6c1766cd",
+  "project": "contrastive_trace_safety",
+  "kind": "result",
+  "title": "paper figure fig4 window ablation",
+  "task_key": "worker_paper_figure_fig4_window_ablation_20260517T010556",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig4_window_ablation_20260517T010556_result.json",
+    "occurrence": 1,
+    "bytes": 743,
+    "sha256": "ecf4f778da53f5956eb1cdcc7917d276bcaa2b7dbbd1e12098b6f2b715fe660b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**输出文件**:\n- PDF: `artifacts/figures/paper/fig4_window_ablation.pdf`\n- PNG: `artifacts/figures/paper/fig4_window_ablation.png`\n- 生成脚本: `artifacts/figures/paper/fig4_window_ablation.py`\n\n**数据来源**: `exp_007_window_ablation/results.json`（canonical，balanced weights），包含 W=1,3,5,10,15,20,25 × 3 models 完整数据。\n\n**图表内容**: 3-panel line plot（双栏宽度 6.5\"），展示随 W 增大：\n- R1-8B: balanced accuracy 0.778→0.810，precision 0.693→0.822，FPR 0.097→0.048（单调改善）\n- QwQ-32B: 类似趋势但幅度较小\n- R1-32B: accuracy 在 W=10 达峰后回落，FPR 改善有限\n\n数值与 registry 中已知数据点一致，验证通过。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig4-window-ablation-copy-2.md"
+}
