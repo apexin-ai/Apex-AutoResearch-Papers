@@ -120,6 +120,22 @@
       }
     },
     {
+      "project": "contrastive_trace_safety",
+      "title": "Layer Selection Sensitivity in Hidden-State Safety Probes for Reasoning Models",
+      "catalog": "../paper-assets/contrastive_trace_safety/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 855,
+        "messages": 116437,
+        "user_turns": 3553,
+        "tool_calls": 48147,
+        "unparsed_lines": 350,
+        "worker": 352,
+        "result": 330,
+        "conversation": 152,
+        "history": 21
+      }
+    },
+    {
       "project": "crosscoder-behavioral-circuit-transplant",
       "title": "crosscoder behavioral circuit transplant",
       "catalog": "../paper-assets/crosscoder-behavioral-circuit-transplant/05-generation-trace/catalog.json",
@@ -255,6 +271,22 @@
         "worker": 506,
         "conversation": 217,
         "history": 45
+      }
+    },
+    {
+      "project": "structfuse-context",
+      "title": "StructFuse: Structure-Grounded Hard Negative Mining for Contrastive Code Context Retrieval",
+      "catalog": "../paper-assets/structfuse-context/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 1232,
+        "messages": 90756,
+        "user_turns": 2484,
+        "tool_calls": 36106,
+        "unparsed_lines": 512,
+        "result": 496,
+        "worker": 510,
+        "conversation": 183,
+        "history": 43
       }
     },
     {

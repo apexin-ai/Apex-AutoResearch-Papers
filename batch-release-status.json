@@ -209,6 +209,38 @@
         }
       ],
       "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39280436179"
+    },
+    "contrastive_trace_safety/workspace.tar.gz": {
+      "status": "uploaded",
+      "source": {
+        "bytes": 430731560,
+        "etag": "\"97880550927aa0fedd14511345c9194a-52\"",
+        "modified": "2026-05-31T17:30:24+00:00"
+      },
+      "archive_sha256": "88c6d1a02d1e80773bcb185855f164326f017b04337a2bc48310182a4a6804e8",
+      "projects": [
+        "structfuse-context",
+        "contrastive_trace_safety"
+      ],
+      "counts": [
+        {
+          "project": "structfuse-context",
+          "title": "StructFuse: Structure-Grounded Hard Negative Mining for Contrastive Code Context Retrieval",
+          "paper_pdf": "paper.pdf",
+          "code_count": 212,
+          "data_count": 354,
+          "trace_count": 1232
+        },
+        {
+          "project": "contrastive_trace_safety",
+          "title": "Layer Selection Sensitivity in Hidden-State Safety Probes for Reasoning Models",
+          "paper_pdf": "paper.pdf",
+          "code_count": 276,
+          "data_count": 513,
+          "trace_count": 855
+        }
+      ],
+      "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39280436179"
     }
   }
 }
