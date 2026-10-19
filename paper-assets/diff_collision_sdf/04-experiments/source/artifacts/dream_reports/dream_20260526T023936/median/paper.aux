@@ -1,0 +1,82 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{The fake safety problem.}{1}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Contributions.}{1}{section*.2}\protected@file@percent }
+\citation{black2024pi0}
+\citation{kim2024openvla}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{VLA models for manipulation.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Collision avoidance in robotics.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Safety evaluation metrics.}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Setting}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Displacement-Filtered CAR (dfCAR)}{2}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:dfcar-method}{{3.2}{2}{Displacement-Filtered CAR (dfCAR)}{subsection.3.2}{}}
+\newlabel{eq:dfcar}{{1}{2}{Displacement-Filtered CAR (dfCAR)}{equation.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}SDF Auxiliary Loss}{2}{subsection.3.3}\protected@file@percent }
+\newlabel{sec:sdf-loss}{{3.3}{2}{SDF Auxiliary Loss}{subsection.3.3}{}}
+\newlabel{eq:total-loss}{{2}{2}{SDF Auxiliary Loss}{equation.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Fake safety decomposition. A1 (Pi0, full fine-tune) achieves the highest CAR through action collapse (EE disp $<$ 1\,$\mu $m), not collision avoidance. Pi0.5 baseline achieves genuine motion but low CAR due to more collisions. dfCAR (Eq.~\ref {eq:dfcar}, $\delta = 100$\,mm) corrects for frozen episodes.}}{3}{table.caption.9}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:fake-safety}{{1}{3}{Fake safety decomposition. A1 (Pi0, full fine-tune) achieves the highest CAR through action collapse (EE disp $<$ 1\,$\mu $m), not collision avoidance. Pi0.5 baseline achieves genuine motion but low CAR due to more collisions. dfCAR (Eq.~\ref {eq:dfcar}, $\delta = 100$\,mm) corrects for frozen episodes}{table.caption.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}LoRA Fine-Tuning}{3}{subsection.3.4}\protected@file@percent }
+\newlabel{sec:lora}{{3.4}{3}{LoRA Fine-Tuning}{subsection.3.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\newlabel{sec:experiments}{{4}{3}{Experiments}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Experimental Setup}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Benchmark.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Models.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Metrics.}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Fake Safety in Standard CAR}{3}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:fake-safety}{{4.2}{3}{Fake Safety in Standard CAR}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}dfCAR Threshold Sensitivity}{3}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:dfcar}{{4.3}{3}{dfCAR Threshold Sensitivity}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Capability--Safety Anti-Correlation}{3}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:capability-safety}{{4.4}{3}{Capability--Safety Anti-Correlation}{subsection.4.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces dfCAR threshold sensitivity. The metric is invariant across $\delta \in [2, 100]$\,mm due to the extreme bimodality of EE displacement: action-collapsed episodes show displacement $<$1\,$\mu $m while genuinely active episodes show displacement $>$239\,mm. This six-order-of-magnitude gap eliminates the need for threshold tuning.}}{4}{table.caption.10}\protected@file@percent }
+\newlabel{tab:dfcar-sensitivity}{{2}{4}{dfCAR threshold sensitivity. The metric is invariant across $\delta \in [2, 100]$\,mm due to the extreme bimodality of EE displacement: action-collapsed episodes show displacement $<$1\,$\mu $m while genuinely active episodes show displacement $>$239\,mm. This six-order-of-magnitude gap eliminates the need for threshold tuning}{table.caption.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces End-effector displacement distribution by condition. Action-collapsed models (A1) exhibit displacement $<$1\,mm while all other conditions show minimum displacement $>$100\,mm, creating a six-order-of-magnitude gap.}}{4}{table.caption.11}\protected@file@percent }
+\newlabel{tab:ee-distribution}{{3}{4}{End-effector displacement distribution by condition. Action-collapsed models (A1) exhibit displacement $<$1\,mm while all other conditions show minimum displacement $>$100\,mm, creating a six-order-of-magnitude gap}{table.caption.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}EE-Only SDF Structural Limitation}{4}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:ee-limitation}{{4.5}{4}{EE-Only SDF Structural Limitation}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Fine-Tuning Attribution: Demonstrations vs.\ Geometric Supervision}{4}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:attribution}{{4.6}{4}{Fine-Tuning Attribution: Demonstrations vs.\ Geometric Supervision}{subsection.4.6}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.6.1}LoRA-Only Produces Genuine Collision Avoidance}{4}{subsubsection.4.6.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Per-task breakdown on \texttt  {spatial\_bowl} (SDF $\lambda {=}0.005$, seed0, 200 episodes). CAR is lower than \texttt  {object\_pudding} due to denser obstacle configurations. No LoRA-only control was available for this scene, precluding SDF attribution.}}{5}{table.caption.12}\protected@file@percent }
+\newlabel{tab:spatial-bowl}{{4}{5}{Per-task breakdown on \texttt {spatial\_bowl} (SDF $\lambda {=}0.005$, seed0, 200 episodes). CAR is lower than \texttt {object\_pudding} due to denser obstacle configurations. No LoRA-only control was available for this scene, precluding SDF attribution}{table.caption.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces 3v3 seed-level comparison: LoRA-only vs.\ SDF. The mean CAR difference is not statistically significant at either $\lambda $ value. SDF $\lambda {=}0.01$ shows notably lower cross-seed variance (SD = 0.3\,pp), suggesting a possible regularization effect, but this does not translate to performance gains.}}{5}{table.caption.13}\protected@file@percent }
+\newlabel{tab:3v3}{{5}{5}{3v3 seed-level comparison: LoRA-only vs.\ SDF. The mean CAR difference is not statistically significant at either $\lambda $ value. SDF $\lambda {=}0.01$ shows notably lower cross-seed variance (SD = 0.3\,pp), suggesting a possible regularization effect, but this does not translate to performance gains}{table.caption.13}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.6.2}SDF Adds No Benefit at Standard $\lambda $}{5}{subsubsection.4.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.6.3}Lambda Dose-Response: Marginal Effect at Extreme Values}{5}{subsubsection.4.6.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Phase 2: SDF Persistence After Loss Removal}{5}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:phase2}{{4.7}{5}{Phase 2: SDF Persistence After Loss Removal}{subsection.4.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Four-point lambda dose-response curve. CAR shows a weak positive trend with increasing $\lambda $, but the effect is sublinear (regression slope = 0.75\,pp per 0.01$\lambda $) and the marginal gain at $\lambda {=}0.1$ is not statistically significant. TSR monotonically decreases.}}{6}{table.caption.14}\protected@file@percent }
+\newlabel{tab:lambda-curve}{{6}{6}{Four-point lambda dose-response curve. CAR shows a weak positive trend with increasing $\lambda $, but the effect is sublinear (regression slope = 0.75\,pp per 0.01$\lambda $) and the marginal gain at $\lambda {=}0.1$ is not statistically significant. TSR monotonically decreases}{table.caption.14}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Per-task breakdown for $\lambda {=}0.1$ (2 seeds, 200 episodes each). The task-specific CAR pattern is preserved (milk $>$ orange\_juice $>$ chocolate\_pudding $>$ bbq\_sauce), consistent with LoRA-only and lower-$\lambda $ conditions.}}{6}{table.caption.15}\protected@file@percent }
+\newlabel{tab:lambda01-pertask}{{7}{6}{Per-task breakdown for $\lambda {=}0.1$ (2 seeds, 200 episodes each). The task-specific CAR pattern is preserved (milk $>$ orange\_juice $>$ chocolate\_pudding $>$ bbq\_sauce), consistent with LoRA-only and lower-$\lambda $ conditions}{table.caption.15}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{6}{section.5}\protected@file@percent }
+\newlabel{sec:discussion}{{5}{6}{Discussion}{section.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{Lambda dose-response ceiling.}{6}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Phase 2 weak persistence.}{6}{section*.19}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Phase 2 results (10K SDF $\to $ 20K $\lambda {=}0$). The weak CAR elevation and partial TSR recovery are consistent across seeds but not statistically significant. TSR remains far below the Pi0.5 baseline (73\%).}}{7}{table.caption.16}\protected@file@percent }
+\newlabel{tab:phase2}{{8}{7}{Phase 2 results (10K SDF $\to $ 20K $\lambda {=}0$). The weak CAR elevation and partial TSR recovery are consistent across seeds but not statistically significant. TSR remains far below the Pi0.5 baseline (73\%)}{table.caption.16}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Persistence comparison across all conditions. Phase 2 and $\lambda {=}0.1$ show similar marginal CAR elevations (${\sim }$6\,pp) over LoRA-only, both with $p > 0.1$. Neither achieves practical significance given TSR collapse.}}{7}{table.caption.17}\protected@file@percent }
+\newlabel{tab:persistence}{{9}{7}{Persistence comparison across all conditions. Phase 2 and $\lambda {=}0.1$ show similar marginal CAR elevations (${\sim }$6\,pp) over LoRA-only, both with $p > 0.1$. Neither achieves practical significance given TSR collapse}{table.caption.17}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cross-scene generalization.}{7}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Catastrophic task performance collapse.}{7}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{7}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{7}{section.6}\protected@file@percent }
+\newlabel{sec:conclusion}{{6}{7}{Conclusion}{section.6}{}}
+\bibstyle{plain}
+\bibcite{black2024pi0}{1}
+\bibcite{kim2024openvla}{2}
+\bibcite{safelibero}{3}
+\bibcite{hu2022lora}{4}
+\bibcite{ratliff2009chomp}{5}
+\gdef \@abspage@last{8}

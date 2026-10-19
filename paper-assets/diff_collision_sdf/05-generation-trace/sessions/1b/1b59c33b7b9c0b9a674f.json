@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1b59c33b7b9c0b9a674f",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "eval stepwise s0 l1 24k reeval",
+  "task_key": "worker_eval_stepwise_s0_l1_24k_reeval_20260527T055755",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_stepwise_s0_l1_24k_reeval_20260527T055755_result.json",
+    "occurrence": 1,
+    "bytes": 191,
+    "sha256": "bc260ed12ce2851d826d39376629501b556aff211c9cb68475f7c0b64305db3c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "24K eval 已在 westd-35807 cuda:0 上启动（PID=669037），带 `--pi05` 参数。日志写入 `/tmp/eval_24k_v2.log`。预计 ~40 分钟完成，我会定期轮询进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-stepwise-s0-l1-24k-reeval.md"
+}

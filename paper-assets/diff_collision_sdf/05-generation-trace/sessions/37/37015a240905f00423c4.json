@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "37015a240905f00423c4",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "fix lora s0 cascade all tex",
+  "task_key": "worker_fix_lora_s0_cascade_all_tex_20260528T004614",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_lora_s0_cascade_all_tex_20260528T004614.log",
+    "occurrence": 1,
+    "bytes": 884058,
+    "sha256": "b84a7251fc47b798058001bd2d4afd051df96e2dee66c1605626573af10b9840"
+  },
+  "statistics": {
+    "messages": 204,
+    "user_turns": 0,
+    "tool_calls": 76,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 48,
+      "tool_call": 76,
+      "tool_result": 76,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 204,
+      "chunks": [
+        {
+          "path": "37015a240905f00423c4-part-0001.json",
+          "message_count": 163
+        },
+        {
+          "path": "37015a240905f00423c4-part-0002.json",
+          "message_count": 41
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-lora-s0-cascade-all-tex.md"
+}

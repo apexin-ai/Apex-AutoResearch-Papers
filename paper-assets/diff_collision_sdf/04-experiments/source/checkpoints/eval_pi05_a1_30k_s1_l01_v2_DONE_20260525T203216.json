@@ -1,0 +1,44 @@
+{
+  "exp_id": "eval_pi05_a1_30k_s1_l01_v2",
+  "project": "diff_collision_sdf",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-25T12:03:24.703Z",
+    "updated_at": "2026-05-25T20:32:16.474Z",
+    "hypothesis": "Pi0.5+A1 30K eval (seed1, λ=0.01) using /30000/ checkpoint with lora_baseline model type. Corrected re-run: uses verified 30K checkpoint path + correct eval params (config_name=pi05_libero, model_type=lora_baseline). Tests actual 30K training collision avoidance for stronger SDF lambda.",
+    "parent": "train_pi05_a1_obj_s1_l01",
+    "notes": "PID 203540 on cuda:1, westd-35807. 使用 --model_type lora_baseline --config_name pi05_libero --gpu 1。LoRA 注入完成（PaliGemma rank=16, Expert rank=32），checkpoint 和 norm_stats 加载成功，模型初始化中。日志: /root/colliforce-vla/logs/eval_s1_l01_v2_*.log",
+    "spec": {
+      "command": "python scripts/eval_safelibero.py --checkpoint .../seed1_l01/30000/ --config_name pi05_libero --suite safelibero_object --model_type lora_baseline --pi05 --seed 0 --gpu 1",
+      "server": "westd-35807",
+      "data_path": "SafeLIBERO object_pudding Level II",
+      "data_count": 200,
+      "model_name": "pi05_a1_sdf_seed1_l01_30K",
+      "seed": 0,
+      "checkpoint_source": "train_pi05_a1_obj_s1_l01",
+      "eval_data": "safelibero_object 4tasks x 50eps"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "avg_TSR": 7.5,
+      "avg_CAR": 52.5,
+      "n_episodes": 200,
+      "task0_TSR": 4,
+      "task0_CAR": 54,
+      "task1_TSR": 26,
+      "task1_CAR": 48,
+      "task2_TSR": 0,
+      "task2_CAR": 94,
+      "task3_TSR": 0,
+      "task3_CAR": 14
+    },
+    "checkpoint_path": "/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed1_l01/30000",
+    "log_path": "/root/colliforce-vla/logs/eval_s1_l01_v2_*.log",
+    "completed_at": "2026-05-25T20:32:02.104Z"
+  },
+  "timestamp": "2026-05-25T20:32:16.606396+00:00",
+  "trigger": "update_registry"
+}

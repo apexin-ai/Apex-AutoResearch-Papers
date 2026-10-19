@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "14a42818bb83879931eb",
+  "project": "diff_collision_sdf",
+  "kind": "history",
+  "title": "agent / loop_3_1779836890.md",
+  "task_key": "loop_3_1779836890",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1779836890.md",
+    "occurrence": 1,
+    "bytes": 5148,
+    "sha256": "464cdfa1fcc3d58058e4a111be59428ae4ab3e9f61d5c64087ce7cec7651be85"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-26T17:43:35+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-35807 cuda:0,1,2,3 + westd-45947 cuda:0,1（共 6 张），不得用其他 GPU\n- westd-45947 是 AutoDL 实例，重启后 SSH 端口会变——连接失败时提示用户查控制台\n- submit_training_job 命令必须自带环境激活（westd-35807: `conda activate libero`; westd-45947: `conda activate base`）\n- WANDB_MODE=offline（两台服务器均无外网 W&B）\n- GPU 编号脚本内始终从 0 开始（框架自动映射）\n- 根分区空间有限，大文件放 /root/autodl-tmp/\n- LoRA baseline eval 的 model_type 也是 `lora_baseline`（架构相同，只是训练时没有 SDF loss）\n\n### 2. 🖥️ 基础设施快照\n- **westd-35807**（4× RTX PRO 6000 Blackwell 96GB）\n  - conda env: `libero` | 工作目录: /root/colliforce-vla\n  - Checkpoint: /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/\n  - Eval 结果: /root/autodl-tmp/eval_results/\n  - 活跃进程:\n    - cuda:0: spatial_bowl 训练 PID 3708 (tmux, cron 监控)\n    - cuda:1: λ=0.1 high seed0 PID 271266\n    - cuda:2: λ=0.1 high seed1 PID 274407\n    - cuda:3: Phase 2 λ=0 ablation seed2 PID 254634\n- **westd-45947**（2× RTX PRO 6000 96GB）\n  - conda env: `base` | 工作目录: /root/colliforce-vla\n  - LoRA baseline checkpoint: /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed{0,1}/\n  - 活跃进程: LoRA baseline eval s0+s1 正在由 Worker 提交中（可能已启动）\n\n### 3. 📊 当前状态\n本轮完成：\n- Session-start 初始化（registry + reconcile + report + ROADMAP）\n- 8 个已完成 30K eval 从 RUNNING 清理至 DONE（补了 checkpoint_path/log_path）\n- 收到 LoRA baseline s0+s1 训练完成 cron 回调（两个都转 ANALYZING）\n- 派 Worker `worker_analyze_lora_baseline_done_and_eval_20260526` 去 westd-45947 提取训练 metrics + 验证 checkpoint + 启动 eval\n- 派 Worker `worker_diagnose_gpu_status_both_servers_20260525` 检查两台服务器 GPU 占用（可能已完成但回调未到本 session）\n- 向 Director 汇报了 LoRA baseline 完成 + 30K eval 矩阵汇总 + westd-35807 新实验确认\n\n等待中：\n- Worker `worker_analyze_lora_baseline_done_and_eval_20260526` 回调 → 确认 eval 启动 + 训练 metrics\n- Worker `worker_diagnose_gpu_status_both_servers_20260525` 回调 → 确认 eval_best_s1_16k 和 eval_s1_disp 状态\n- westd-35807 4 个训练实验的 cron 回调（spatial_bowl ETA ~2 天, 其他 ETA 未知）\n- Director 对汇报的回复\n\nRUNNING 实验（4 个训练 + 可能 2 个 eval）：\n- train_pi05_a1_spatial_bowl_s0_l005（westd-35807 cuda:0, 从 step 8000 resume）\n- train_pi05_a1_obj_s0_l01_high（westd-35807 cuda:1, λ=0.1）\n- train_pi05_a1_obj_s1_l01_high（westd-35807 cuda:2, λ=0.1）\n- train_pi05_phase2_lambda0_s2（westd-35807 cuda:3）\n- eval_lora_baseline_30k_s0 / s1（westd-45947, Worker 提交中）\n\nANALYZING（待 Worker 处理）：\n- train_pi05_lora_baseline_s0, train_pi05_lora_baseline_s1\n\n### 4. 📋 待办\n- Worker LoRA 回调 → 确认 eval 启动成功 + update_registry 训练实验到 DONE（如 Worker 未做）\n- LoRA eval cron 回调 → 提取 CAR/TSR → 与 ColliForce 30K 对比（预期 CAR ~27% vs ColliForce ~50%）→ 填充 §5.4 LoRA-only 行 → 汇报 Director Claim 4 证据\n- Phase 2 λ=0 完成 → eval → 验证 SDF 预热后关闭是否保留 CAR + 恢复 TSR\n- λ=0.1 high 完成 → eval → 4-point lambda 曲线（0, 0.005, 0.01, 0.1）\n- spatial_bowl 完成 → eval → cross-scene generalization 证据\n- Displacement 数据缺口：s0_l005 和 s0_l01 需用新版脚本重跑（有 max_ee_displacement），排在 westd-45947 LoRA eval 完成后\n- eval_pi05_a1_best_s1_l005_16k 和 eval_pi05_a1_30k_s1_l005_disp 状态 → diagnostic Worker 回调确认\n\n### 5. 🎯 战略上下文\n- **核心故事**: ColliForce-VLA 揭示 VLA safety 中 action collapse 导致 metric contamination，提出 displacement-filtered CAR，SDF auxiliary loss 在 Pi0.5 上实现真实避碰\n- **已确立发现**: Fake Safety (99.6% fake)、TSR-CAR 负相关、EE-only SDF 限制（oracle 均劣于 baseline D010）、Pi0.5+A1 真实避碰 (10K CAR +30pp)、gradient correction 对 collapsed policy 无效 (D018)\n- **目标**: CoRL 2026 Main / ICRA 2027 (D014)\n- **30K eval 全表**: λ=0.005 mean CAR 50.5%/TSR 6.8%, λ=0.01 mean CAR 52.8%/TSR 6.8%。10K sweet spot 远优于 30K（TSR ~27% vs ~7%）\n- **易错点**:\n  - 不要混淆 Pi0 时代的 LoRA baseline eval（eval_lora_baseline_object/spatial_v11）和现在 Pi0.5 版本\n  - 16 个阴性结果已系统分析 (D018)，gradient-based correction 路线已终止 (D010)，不要重新尝试\n  - eval 参数 M040: config_name=pi05_libero, model_type=lora_baseline, 必须 --pi05 --suite safelibero_object\n  - westd-35807 上新启动的 3 个实验（λ=0.1 + phase2_λ0）是前一轮 session 启动的，不是本轮\n  - eval_pi05_a1_best_s0_l005 卡在 PREPARING（conclusion=killed, best/ 不存在），无法正常转 DONE（PREPARING→DONE 不合法），留给下一轮处理\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1779836890.md"
+}

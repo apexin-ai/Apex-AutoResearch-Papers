@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_early_signal_s0_l1_20k",
+  "project": "diff_collision_sdf",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-26T23:19:12.973Z",
+    "updated_at": "2026-05-26T23:19:32.684Z",
+    "hypothesis": "Early signal eval of Pi0.5+A1 SDF λ=0.1 (seed 0) at 20K step checkpoint. Provides advance A/B/C scenario signal before 30K training completes. If CAR already >60% at 20K, strong evidence for dose-response (Scenario A). If ≤57%, suggests Scenario B even before full training.",
+    "parent": "train_pi05_a1_obj_s0_l01_high"
+  },
+  "timestamp": "2026-05-26T23:19:32.877766+00:00",
+  "trigger": "update_registry"
+}

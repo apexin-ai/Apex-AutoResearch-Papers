@@ -1,0 +1,98 @@
+{
+  "schema_version": "1.0",
+  "id": "0a9036a028c89d7563a1",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "verify p1 final sync verify",
+  "task_key": "worker_verify_p1-final-sync-verify_20260528T064026",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_p1-final-sync-verify_20260528T064026.log",
+    "occurrence": 1,
+    "bytes": 1347253,
+    "sha256": "0f1686fead1f5980a5f90f05b3853fcbd3d20024af5ea94f7b38895a028dd8e9"
+  },
+  "statistics": {
+    "messages": 324,
+    "user_turns": 4,
+    "tool_calls": 119,
+    "roles": {
+      "log": 1,
+      "system": 13,
+      "record": 1,
+      "assistant": 66,
+      "tool_call": 119,
+      "tool_result": 119,
+      "user": 4,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 96,
+      "chunks": [
+        {
+          "path": "0a9036a028c89d7563a1-part-0001.json",
+          "message_count": 96
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 60,
+      "chunks": [
+        {
+          "path": "0a9036a028c89d7563a1-part-0001.json",
+          "message_count": 3
+        },
+        {
+          "path": "0a9036a028c89d7563a1-part-0002.json",
+          "message_count": 57
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 60,
+      "chunks": [
+        {
+          "path": "0a9036a028c89d7563a1-part-0002.json",
+          "message_count": 60
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 96,
+      "chunks": [
+        {
+          "path": "0a9036a028c89d7563a1-part-0002.json",
+          "message_count": 29
+        },
+        {
+          "path": "0a9036a028c89d7563a1-part-0003.json",
+          "message_count": 67
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 12,
+      "chunks": [
+        {
+          "path": "0a9036a028c89d7563a1-part-0003.json",
+          "message_count": 12
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/verify-p1-final-sync-verify.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3a6fdbd1da241329864a",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "paper data summary",
+  "task_key": "worker_paper_data_summary_20260524T160934",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_data_summary_20260524T160934_result.json",
+    "occurrence": 1,
+    "bytes": 713,
+    "sha256": "27147d22e1aeb3849a41149f6c6fe0b6c27b5efe05402da68b9e16e2cf856b6e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。产出文件：`artifacts/_project/report/paper_data_summary.md`（art_20260524_7c4cb0）\n\n包含 4 个数据表：\n1. **Table 1** — Pi0.5+A1 3-seed × 2-lambda 矩阵，仅 s0 10K 有数据（TSR 47-49%, CAR 56-58%），s1/s2 TBD\n2. **Claim 1 Fake Safety** — A1-LoRA 99.6% fake safe, LoRA 99.4%, Pi0.5 baseline 98.2%；Pi0.5+A1 是唯一 0% frozen 的方法\n3. **Claim 3 Oracle** — GT SDF refinement 仍 96-98% fake safe，CAR 反而比无 refine baseline 更低（73-77% vs 82%）\n4. **Scatter 数据** — 17 个数据点含 marker 建议，Pi0.5+A1 是唯一 Pareto-improving 方向\n\n末尾列出 5 项待补充数据（seed 1/2 eval、Full-FT fake_safe_rate 等）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-data-summary.md"
+}

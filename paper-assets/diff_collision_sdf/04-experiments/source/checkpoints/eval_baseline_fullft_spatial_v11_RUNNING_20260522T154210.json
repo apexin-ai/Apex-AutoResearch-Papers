@@ -1,0 +1,32 @@
+{
+  "exp_id": "eval_baseline_fullft_spatial_v11",
+  "project": "diff_collision_sdf",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T15:36:41.633Z",
+    "updated_at": "2026-05-22T15:42:10.780Z",
+    "hypothesis": "Full-FT baseline eval on safelibero_spatial with action chunking (M020) — fills critical comparison gap. LoRA baseline spatial CAR=0% (all 200 episodes collide). If full-FT also CAR≈0%, spatial_bowl is inherently extremely difficult for collision avoidance. If full-FT CAR >> 0%, LoRA capacity is the bottleneck. Essential reference for interpreting A3 spatial results.",
+    "parent": "baseline_spatial_bowl_s0_v2",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate libero && cd /root/colliforce-vla && python scripts/eval_safelibero.py --model_type baseline --checkpoint_dir /root/autodl-tmp/checkpoints/baseline_spatial_bowl/baseline_spatial_bowl_seed0 --ckpt_step best --scene safelibero_spatial --level levelII --n_episodes 200 --replan_steps 5 --gpu 0 --output_path /root/autodl-tmp/eval_results/baseline_fullft_v11_eval_safelibero_spatial_all_levelII_best_seed0.json\"",
+      "server": "westd-35807",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "690045",
+      "data_path": "safelibero_spatial_levelII",
+      "data_count": 200,
+      "model_name": "baseline_spatial_bowl_fullFT_best",
+      "seed": 0,
+      "checkpoint_source": "baseline_spatial_bowl_s0_v2",
+      "eval_data": "safelibero_spatial_all_levelII",
+      "log_path": "/root/autodl-tmp/eval_results/eval_baseline_fullft_spatial_v11.log",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/baseline_spatial_bowl/baseline_spatial_bowl_seed0/best"
+    }
+  },
+  "timestamp": "2026-05-22T15:42:10.834648+00:00",
+  "trigger": "update_registry"
+}

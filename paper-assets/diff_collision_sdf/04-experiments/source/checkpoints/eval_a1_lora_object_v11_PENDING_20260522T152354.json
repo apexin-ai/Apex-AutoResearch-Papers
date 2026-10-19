@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_a1_lora_object_v11",
+  "project": "diff_collision_sdf",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T15:23:46.462Z",
+    "updated_at": "2026-05-22T15:23:54.600Z",
+    "hypothesis": "A1 (SDF auxiliary loss + LoRA, no runtime refinement) eval on safelibero_object — tests whether SDF auxiliary training signal alone improves CAR over LoRA baseline. If A1 CAR > baseline, SDF training signal is beneficial and A3 failure is specific to runtime refinement. Critical diagnostic for separating training-time vs inference-time SDF contributions.",
+    "parent": "a1_lora_object_pudding_s0"
+  },
+  "timestamp": "2026-05-22T15:23:54.668634+00:00",
+  "trigger": "update_registry"
+}

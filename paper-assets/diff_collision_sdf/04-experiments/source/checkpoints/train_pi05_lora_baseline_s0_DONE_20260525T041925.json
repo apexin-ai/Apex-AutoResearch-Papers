@@ -1,0 +1,37 @@
+{
+  "exp_id": "train_pi05_lora_baseline_s0",
+  "project": "diff_collision_sdf",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-24T11:24:55.988Z",
+    "updated_at": "2026-05-25T04:19:25.447Z",
+    "hypothesis": "Pi0.5 LoRA baseline (no SDF) 30K on object_pudding seed 0: same LoRA architecture (rank 16/32) and training schedule as ColliForce but without SDF auxiliary loss. Isolates LoRA fine-tuning contribution from SDF-specific gains. Expected CAR ≈ Pi0.5 baseline (~27%), confirming ColliForce CAR improvement is from SDF not LoRA.",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/colliforce-vla && WANDB_MODE=offline PYTHONUNBUFFERED=1 python scripts/train_pi05_lora_baseline.py --scene object_pudding --seed 0 --gpu 0 --num_train_steps 30000 --batch_size 32",
+      "server": "westd-45947",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "757002",
+      "log_path": "~/runs/diff_collision_sdf/train_pi05_lora_baseline_s0.log",
+      "submitted_at": "2026-05-24T11:25:04.545Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "SafeLIBERO object_pudding training data",
+      "data_count": 200,
+      "model_name": "pi05_libero + LoRA only (no SDF)",
+      "seed": 0,
+      "wall_clock_seconds": 60860.9,
+      "gpu_hours": 16.91
+    },
+    "failure_reason": "SSH check failed 5x — last error: [Errno None] Unable to connect to port 45947 on 36.103.198.204",
+    "conclusion": "failed",
+    "completed_at": "2026-05-25T04:19:25.447Z"
+  },
+  "timestamp": "2026-05-25T04:19:25.541707+00:00",
+  "trigger": "update_registry"
+}

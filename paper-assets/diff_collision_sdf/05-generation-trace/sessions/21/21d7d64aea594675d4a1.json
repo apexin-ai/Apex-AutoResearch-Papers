@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "21d7d64aea594675d4a1",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops fix spatial bowl quantile",
+  "task_key": "worker_ops_fix_spatial_bowl_quantile_20260525T095942",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix_spatial_bowl_quantile_20260525T095942_result.json",
+    "occurrence": 1,
+    "bytes": 596,
+    "sha256": "70c0fb200f369eb82fce4a64ca14845efd6f9a4d7438462ee5541ac5adfc29e2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功启动，通过了 quantile norm 检查。q01/q99 值已正确加载，数据加载完成，进入训练阶段。\n\n**修复总结**：`spatial_bowl` 的 `norm_stats.json` 缺少 q01/q99 分位数统计（全为 null），而 PI05 模型强制 `use_quantile_norm=True`。从 5068 帧 parquet 数据计算了 1st/99th 百分位数并写入 `/root/colliforce-vla/assets/baseline_spatial_bowl/safelibero_spatial/norm_stats.json`。\n\n同时建议后续修复 `compute_norm_stats_custom.py` 脚本，让它也计算 q01/q99，避免新场景再次遇到同样问题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-spatial-bowl-quantile.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0369aef55d075e3e1093",
+  "project": "diff_collision_sdf",
+  "kind": "history",
+  "title": "agent / loop_1.md",
+  "task_key": "loop_1",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_1.md",
+    "occurrence": 1,
+    "bytes": 5410,
+    "sha256": "0c4f1e434da58af39609b2ecf4bd3a4e8af5846d59425ec4b3c5b113839b521e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 1\nreason: max_wall_time\nupdated: '2026-05-21T17:33:47+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- westd-35807 只能用 cuda:0/1/2/3，westd-45947 只能用 cuda:0/1（gpu_ids 白名单）\n- submit_training_job 有 24h timeout (EXIT_CODE=124)，长训练必须用 tmux 直接启动（A3 已因此被 kill 3 次）\n- Registry API 拒绝 DONE→RUNNING 转换，resume 场景必须直接 Edit registry.yaml\n- eval_safelibero.py 参数名：--checkpoint（非 --checkpoint_path）、--suite（非 --scene）、--n_episodes（非 --max_episodes）、--save_dir（非 --output_dir）\n- train_a1_sdf_aux.py 内部覆盖 CUDA_VISIBLE_DEVICES（M013），必须用 --gpu N 传 GPU 编号\n- object_pudding 的 SDF GT 文件名是 sdf_gt_object_chocolate.npz（SCENE_CONFIG 映射表决定，不是文件名拼接）\n- 两台服务器之间无直接 SSH，代码同步靠 base64 中转\n- westd-35807 上的 lora_utils.py LoRALinear 还没有 weight/bias property 修复（只修了 westd-45947 的 train_a3_hook.py）\n\n### 2. 🖥️ 基础设施快照\n- **westd-35807**: 4× RTX PRO 6000 96GB\n  - 工作目录: /root/colliforce-vla\n  - Python: /root/miniconda3/bin/python, conda env: `libero`\n  - 激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate libero`\n  - 数据: /root/autodl-tmp/colliforce_data/safelibero_spatial/ + safelibero_object/\n  - Checkpoints: /root/autodl-tmp/checkpoints/\n  - SDF GT: /root/colliforce-vla/colliforce/assets/sdf_gt_*.npz\n  - 活跃进程:\n    - cuda:0 — a1_lora_spatial_bowl_s0, PID 299910\n    - cuda:1 — baseline_lora_spatial_bowl_s0, PID 281554\n    - cuda:2 — a1_lora_object_pudding_s0, PID 292258\n    - cuda:3 — baseline_lora_object_pudding_s0, PID 281629\n\n- **westd-45947**: 2× RTX PRO 6000 96GB\n  - 工作目录: /root/colliforce-vla\n  - Python: /root/miniconda3/bin/python, conda env: `base`\n  - 激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n  - Checkpoints: /root/autodl-tmp/checkpoints/\n  - 活跃进程:\n    - cuda:0 — a3_gradient_spatial_bowl_s0, PID 191747, tmux `a3_spatial`, 日志 /tmp/spatial_bowl.log\n    - cuda:1 — a3_gradient_object_pudding_s0, PID 165990, 日志 /tmp/object_pudding.log\n  - A3 object_pudding best checkpoint: /root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best/ (best_loss 0.01439 @ step 26000)\n\n- Eval 脚本: /root/colliforce-vla/scripts/eval_safelibero.py（两台服务器都有，已同步）\n- eval_batch.sh + sweep_lambda.sh 已就绪\n\n### 3. 📊 当前状态\n刚处理完 A3 restart worker 回调并汇报 Director。\n\n**Registry RUNNING 实验（6/6 满载）**:\n| 实验 | 服务器 | GPU | Step/30K | ETA |\n|------|--------|-----|----------|-----|\n| a3_gradient_spatial_bowl_s0 | westd-45947 | cuda:0 | ~7900 (26%) | ~24.5h → 5/23 01:30 |\n| a3_gradient_object_pudding_s0 | westd-45947 | cuda:1 | ~29250 (98%) | **~50 min → 即将完成** |\n| baseline_lora_spatial_bowl_s0 | westd-35807 | cuda:1 | ~13K (44%) | ~19h |\n| baseline_lora_object_pudding_s0 | westd-35807 | cuda:3 | ~13K (44%) | ~19h |\n| a1_lora_spatial_bowl_s0 | westd-35807 | cuda:0 | ~9.6K (32%) | ~23h |\n| a1_lora_object_pudding_s0 | westd-35807 | cuda:2 | ~13K (44%) | ~19h |\n\n**已完成（success）**: baseline_spatial_bowl_s0_v2, baseline_object_pudding_s0_v2（full-FT baselines）\n\n**等待中**: 无 pending Worker。A3 object_pudding cron 回调预计 ~50 min 内触发。\n\n### 4. 📋 待办（条件触发式）\n- A3 object_pudding cron 回调（训练完成）→ 在 westd-45947 cuda:1 启动 eval：`CUDA_VISIBLE_DEVICES=1 python scripts/eval_safelibero.py --model_type a3 --checkpoint /root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best --suite object_pudding --n_episodes 50 --save_dir /root/autodl-tmp/eval_results/a3_object_pudding --gpu 1` → eval 完成后接着跑 --no_refine 版本\n- A3 object_pudding eval 启动后 → 同时在 westd-35807 跑 full-FT baseline object_pudding eval\n- A3 spatial_bowl 训练完成（~24.5h）→ 同样流程 eval\n- baseline_lora / a1_lora 完成（~19-23h）→ eval_batch.sh 批量评估\n- westd-35807 lora_utils.py 需补 weight/bias property 修复（目前只 westd-45947 修了 train_a3_hook.py 里的 LoRALinear）——在 A1 eval 前必须修，否则 A1 eval 会崩\n\n### 5. 🎯 战略上下文\n- **核心目标**: MVP 验证 ColliForce-VLA，Pass/Fail 标准：A3 vs Baseline CAR 下降 ≥15%，TSR 下降 <10%\n- **决策链**: D001 锁定 π0/openpi → D003 接受非 watertight SDF → D004 Phase B 启动 → D005 MVP 只需 1 seed → D006 kill 旧 A1（Phase 2 LoRA 解冻从未生效），释放 GPU 启动 LoRA baseline\n- **A3 是最高优先级数据点**: object_pudding 即将完成，这是第一个可以做 A3 vs baseline 对比的场景\n- **A1 Phase 2 已确认生效**: aux_metadata.pt 显示 phase=2（grep 日志因 tqdm \\r 字符遮蔽而误报无输出）\n- **M014 教训**: A1 旧版 Phase 2 LoRA 解冻从未生效（脚本未注入 LoRA 层），当前 a1_lora_* 用的是修复后的 lora_utils.py，Phase 2 已确认触发\n- **易错点**: \n  - 不要用 submit_training_job 跑长训练（24h 超时会 kill）\n  - cron 可能误报——A3 spatial 的旧 log 路径指向失败日志，实际进程日志在 /tmp/spatial_bowl.log\n  - eval 参数名和训练参数名不同，已在第 1 节列出\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-1-copy-2.md"
+}

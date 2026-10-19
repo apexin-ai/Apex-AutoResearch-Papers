@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_phase2_18k_s2",
+  "project": "diff_collision_sdf",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-28T04:44:52.983Z",
+    "updated_at": "2026-05-28T04:45:09.540Z",
+    "hypothesis": "Phase 2 18K checkpoint (λ=0 after 5K SDF) should show CAR similar to LoRA-only (54.67%), confirming SDF gradients produce no lasting behavioral effect even at intermediate training stages.",
+    "parent": "train_phase2_lambda0_s2_v4"
+  },
+  "timestamp": "2026-05-28T04:45:09.807723+00:00",
+  "trigger": "update_registry"
+}

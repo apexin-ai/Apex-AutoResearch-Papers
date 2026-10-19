@@ -1,0 +1,136 @@
+{
+  "description": "Post-reeval comparison: 180° rotation bug fix",
+  "old_data": {
+    "pi05_baseline_s0": {
+      "tsr": 74.7,
+      "car": 26.8,
+      "ee_disp": 0.367,
+      "frozen": 0.0
+    },
+    "lora_only_s0": {
+      "tsr": 6.5,
+      "car": 54.5,
+      "ee_disp": null,
+      "frozen": 0.0
+    },
+    "lora_only_s1": {
+      "tsr": 6.0,
+      "car": 56.0,
+      "ee_disp": null,
+      "frozen": null
+    },
+    "sdf_0005_s0": {
+      "tsr": 4.5,
+      "car": 53.5,
+      "ee_disp": null,
+      "frozen": null
+    },
+    "sdf_0005_s1": {
+      "tsr": 9.0,
+      "car": 50.0,
+      "ee_disp": null,
+      "frozen": null
+    },
+    "sdf_0005_s2": {
+      "tsr": 7.0,
+      "car": 48.0,
+      "ee_disp": null,
+      "frozen": null
+    },
+    "sdf_001_s0": {
+      "tsr": 8.0,
+      "car": 50.0,
+      "ee_disp": null,
+      "frozen": null
+    },
+    "sdf_001_s1": {
+      "tsr": 5.5,
+      "car": 55.0,
+      "ee_disp": null,
+      "frozen": null
+    },
+    "sdf_001_s2": {
+      "tsr": 5.0,
+      "car": 54.0,
+      "ee_disp": null,
+      "frozen": null
+    }
+  },
+  "new_data": {
+    "pi05_baseline_s0": {
+      "tsr": 71.5,
+      "car": 28.5,
+      "ee_disp": 0.367,
+      "frozen": 0.0
+    },
+    "lora_only_s0": {
+      "tsr": 51.5,
+      "car": 56.5,
+      "ee_disp": 0.396,
+      "frozen": 0.0
+    }
+  },
+  "deltas": {
+    "pi05_baseline_s0": {
+      "tsr": -3.2,
+      "car": 1.7,
+      "ee_disp": 0.0,
+      "frozen": 0.0
+    },
+    "lora_only_s0": {
+      "tsr": 45.0,
+      "car": 2.0,
+      "frozen": 0.0
+    }
+  },
+  "group_stats": {
+    "Pi0.5 baseline": {
+      "old_tsr_mean": 74.7,
+      "old_tsr_std": 0.0,
+      "old_car_mean": 26.8,
+      "old_car_std": 0.0,
+      "new_tsr_mean": 71.5,
+      "new_tsr_std": 0.0,
+      "new_car_mean": 28.5,
+      "new_car_std": 0.0
+    },
+    "LoRA-only": {
+      "old_tsr_mean": 6.25,
+      "old_tsr_std": 0.25,
+      "old_car_mean": 55.25,
+      "old_car_std": 0.75,
+      "new_tsr_mean": 51.5,
+      "new_tsr_std": 0.0,
+      "new_car_mean": 56.5,
+      "new_car_std": 0.0
+    },
+    "SDF λ=0.005": {
+      "old_tsr_mean": 6.83,
+      "old_tsr_std": 1.84,
+      "old_car_mean": 50.5,
+      "old_car_std": 2.27
+    },
+    "SDF λ=0.01": {
+      "old_tsr_mean": 6.17,
+      "old_tsr_std": 1.31,
+      "old_car_mean": 53.0,
+      "old_car_std": 2.16
+    }
+  },
+  "claim3": {
+    "data_complete": false
+  },
+  "completion": {
+    "total_models": 9,
+    "reeval_done": 2,
+    "pending": [
+      "lora_only_s1",
+      "sdf_0005_s0",
+      "sdf_0005_s1",
+      "sdf_0005_s2",
+      "sdf_001_s0",
+      "sdf_001_s1",
+      "sdf_001_s2"
+    ]
+  }
+}

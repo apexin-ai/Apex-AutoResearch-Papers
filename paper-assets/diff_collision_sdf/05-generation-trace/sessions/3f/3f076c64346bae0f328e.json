@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3f076c64346bae0f328e",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops reeval queue rotation fix",
+  "task_key": "worker_ops_reeval_queue_rotation_fix_20260526T082104",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_reeval_queue_rotation_fix_20260526T082104_result.json",
+    "occurrence": 1,
+    "bytes": 311,
+    "sha256": "2e9112adb9f900bfa7e933aa939389cbd580b7bc5be8a92c052d6f8b4316f8fb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Status update:\n- **SCP**: All 4 transfers complete, files verified on westd-45947\n- **Eval #2** (SDF s0 λ=0.01): Running, Task 0 done (TSR=28%, CAR=48%), Task 1 ~ep 40+. ~25 min to finish\n- **Batch 2 script**: Verified, all checkpoint assets in place\n- Will check back in ~5 min for progress"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-reeval-queue-rotation-fix.md"
+}

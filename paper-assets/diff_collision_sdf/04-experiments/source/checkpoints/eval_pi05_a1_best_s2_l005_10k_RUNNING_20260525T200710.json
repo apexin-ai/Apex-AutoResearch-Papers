@@ -1,0 +1,31 @@
+{
+  "exp_id": "eval_pi05_a1_best_s2_l005_10k",
+  "project": "diff_collision_sdf",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-25T17:21:50.577Z",
+    "updated_at": "2026-05-25T20:07:10.289Z",
+    "hypothesis": "Pi0.5+A1 best checkpoint eval (seed2, λ=0.005, step 10K): evaluates the sweet-spot checkpoint before action collapse. At 10K the model showed real collision avoidance (~0.4% filtered CAR). Compares with 30K (100% frozen) to demonstrate the collapse phenomenon quantitatively.",
+    "parent": "train_pi05_a1_obj_s2_l005",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate libero && cd /root/colliforce-vla && python scripts/eval_safelibero.py --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_l005/best/ --config_name pi05_libero --model_type lora_baseline --suite safelibero_object --pi05 --gpu 3 --output_path /root/autodl-tmp/eval_results/eval_s2_l005_best_10k.json\"",
+      "server": "westd-35807",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "75114",
+      "log_path": "~/runs/diff_collision_sdf/eval_pi05_a1_best_s2_l005_10k.log",
+      "submitted_at": "2026-05-25T19:17:56.698Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "notes": "服务器重启后恢复。PID 75114, cuda:3, westd-35807。Checkpoint: /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_l005/best/ (step 10000, best_loss=0.008740)。17998 MiB 显存已占用。日志: ~/runs/diff_collision_sdf/eval_pi05_a1_best_s2_l005_10k.log",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-25T20:07:10.428556+00:00",
+  "trigger": "update_registry"
+}

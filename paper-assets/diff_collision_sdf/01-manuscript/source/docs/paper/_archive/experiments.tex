@@ -1,0 +1,66 @@
+\section{Experiments}\label{sec:experiments}
+
+We evaluate ColliForce-VLA on the SafeLIBERO benchmark to answer three questions: (1) Does integrating workspace SDF into the VLA forward pass improve collision avoidance? (2) Does the gradient-guided refinement loss contribute beyond auxiliary SDF supervision alone? (3) What is the trade-off between Collision Avoidance Rate (CAR) and Task Success Rate (TSR)?
+
+\subsection{Experimental Setup}\label{sec:setup}
+
+\paragraph{Benchmark.} We evaluate on SafeLIBERO~\cite{hu2025vlsa}, a collision-specific benchmark built on the LIBERO simulation platform. We select two representative scenes that cover distinct collision scenarios: \textit{spatial\_bowl} (Level II spatial complexity, obstacles surrounding a target bowl) and \textit{object\_pudding} (Level I object-level collision, obstacles adjacent to a pudding box). Each scene defines a language-conditioned manipulation task with non-target objects positioned to induce collisions during trajectory execution.
+
+\paragraph{Methods.} We compare three training variants that share the same $\pi_0$ backbone, LoRA configuration, and training schedule, differing only in loss composition:
+\begin{itemize}
+    \item \textit{$\pi_0$-LoRA}: Standard LoRA fine-tuning with flow-matching action loss $\mathcal{L}_\mathrm{action}$ only (baseline).
+    \item \textit{ColliForce-Aux}: Adds SDF and EE auxiliary losses ($\mathcal{L}_\mathrm{SDF}$, $\mathcal{L}_\mathrm{EE}$) without gradient-guided refinement.
+    \item \textit{ColliForce}: Full method with auxiliary losses and gradient-guided refinement loss $\mathcal{L}_\mathrm{refine}$.
+\end{itemize}
+
+\paragraph{Metrics.} We report two metrics: Task Success Rate (TSR, $\uparrow$), the fraction of episodes where the manipulation task is completed, and Collision Avoidance Rate (CAR, $\uparrow$), the fraction of episodes where the end-effector does not contact any non-target obstacle. A collision is registered when the distance between the end-effector and any obstacle mesh falls below \textbf{[TODO: collision\_threshold from code]} meters.
+
+\paragraph{Evaluation protocol.} Each method is evaluated for 50 episodes per scene with fixed initial configurations. We report mean values across episodes. \textbf{[TODO: confirm if multiple seeds are available; if so, report mean $\pm$ std across seeds.]}
+
+\paragraph{Training details.} All variants train for 30K steps with batch size 32 on the same dataset. Phase 1 (steps 0--5K) trains only the SDF decoder and EE extractor on detached features; Phase 2 (steps 5K--30K) unfreezes LoRA parameters (${\sim}$33.5M) with linear gradient warmup over 100 steps. The $\pi_0$-LoRA baseline skips Phase 1 and trains for 30K steps with $\mathcal{L}_\mathrm{action}$ only. Hyperparameters follow Section~\ref{sec:training}.
+
+\subsection{Main Results}\label{sec:main_results}
+
+Table~\ref{tab:main_results} presents CAR and TSR for all methods across both scenes.
+
+\begin{table}[t]
+\centering
+\caption{Main results on SafeLIBERO collision scenarios. CAR: Collision Avoidance Rate ($\uparrow$), TSR: Task Success Rate ($\uparrow$). \textbf{Bold}: best CAR per scene.}
+\label{tab:main_results}
+\begin{tabular}{lcccc}
+\toprule
+\multirow{2}{*}{Method} & \multicolumn{2}{c}{\textit{spatial\_bowl}} & \multicolumn{2}{c}{\textit{object\_pudding}} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5}
+& CAR & TSR & CAR & TSR \\
+\midrule
+$\pi_0$-LoRA & \textbf{[TODO]} & \textbf{[TODO]} & \textbf{[TODO]} & \textbf{[TODO]} \\
+ColliForce-Aux & \textbf{[TODO]} & \textbf{[TODO]} & \textbf{[TODO]} & \textbf{[TODO]} \\
+ColliForce & \textbf{[TODO]} & \textbf{[TODO]} & \textbf{[TODO]} & \textbf{[TODO]} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{[TODO: Write narrative after results are available. Expected storyline:]}
+
+\textbf{Collision avoidance.} ColliForce achieves the highest CAR across both scenes, with [TODO: X pp] improvement over $\pi_0$-LoRA on \textit{spatial\_bowl} and [TODO: Y pp] on \textit{object\_pudding}. ColliForce-Aux also improves CAR over the baseline, confirming that auxiliary SDF supervision alone encourages the backbone to encode collision-relevant features.
+
+\textbf{Task success.} The TSR gap between ColliForce and $\pi_0$-LoRA is [TODO: characterize as negligible/modest/significant]. This indicates that internalizing collision geometry does not substantially compromise task completion, as the action loss $\mathcal{L}_\mathrm{action}$ remains the dominant training objective.
+
+\subsection{Ablation Study}\label{sec:ablation}
+
+The comparison between ColliForce-Aux and ColliForce isolates the contribution of the gradient-guided refinement loss $\mathcal{L}_\mathrm{refine}$ from that of auxiliary SDF supervision ($\mathcal{L}_\mathrm{SDF}$, $\mathcal{L}_\mathrm{EE}$).
+
+\textbf{[TODO: Write after results. Key questions to address:]}
+\begin{itemize}
+    \item Does $\mathcal{L}_\mathrm{refine}$ provide CAR gains beyond what $\mathcal{L}_\mathrm{SDF} + \mathcal{L}_\mathrm{EE}$ alone achieve?
+    \item Is the TSR cost of gradient refinement larger or smaller than that of auxiliary supervision?
+    \item How frequently does the near-collision set $\mathcal{S}$ activate during training (fraction of batches with $|\mathcal{S}| > 0$)?
+\end{itemize}
+
+\subsection{Analysis}\label{sec:analysis}
+
+\paragraph{Trajectory visualization.} Figure~\ref{fig:trajectory_viz} shows representative end-effector trajectories from $\pi_0$-LoRA and ColliForce on the same initial configuration, overlaid on a 2D slice of the workspace SDF. \textbf{[TODO: Describe qualitative differences after generating fig3\_trajectory\_viz.]}
+
+\paragraph{SDF prediction quality.} We evaluate the learned SDF decoder's prediction accuracy by computing the mean absolute error between predicted and ground-truth SDF values at the query points used during training. \textbf{[TODO: Report MAE, ideally broken down by distance to surface ($< \delta$ vs $\geq \delta$).]}
+
+\paragraph{Optional inference-time correction.} Section~\ref{sec:inference} describes an optional SDF gradient correction at inference. We evaluate its effect on ColliForce by enabling the correction during evaluation. \textbf{[TODO: Report CAR/TSR delta. Expected: minimal change, confirming that ColliForce has already internalized collision avoidance.]}

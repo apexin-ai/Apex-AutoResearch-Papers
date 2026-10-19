@@ -1,0 +1,49 @@
+{
+  "exp_id": "eval_a3_object_pudding_refine",
+  "project": "diff_collision_sdf",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T18:15:42.503Z",
+    "updated_at": "2026-05-22T03:17:48.433Z",
+    "hypothesis": "A3 gradient-guided action refinement (best ckpt step 26000) achieves CAR ≥15% improvement over baseline on object_pudding with TSR drop <10% — MVP gate check with refinement enabled.",
+    "parent": "a3_gradient_object_pudding_s0",
+    "spec": {
+      "command": "python scripts/eval_safelibero.py --model_type a3 --checkpoint /root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best --suite safelibero_object --sdf_gt_path /root/colliforce-vla/data/sdf_gt_object_chocolate.npz --n_episodes 50 --gpu 1",
+      "server": "westd-45947",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "263983",
+      "log_path": "/root/autodl-tmp/eval_results/eval_v9_a3_refine.log",
+      "checkpoint_source": "a3_gradient_object_pudding_s0 best (step 26000)",
+      "eval_data": "safelibero_object",
+      "data_path": "/root/autodl-tmp/colliforce_data/safelibero_object",
+      "data_count": 50,
+      "model_name": "pi0+A3_gradient_refine",
+      "seed": 0,
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best"
+    },
+    "conclusion": "failed",
+    "metrics": {
+      "TSR": 0,
+      "CAR_task0_orange_juice": 96,
+      "CAR_task1_chocolate_pudding": 22,
+      "CAR_task2_milk": 66,
+      "CAR_task3_bbq_sauce": 42,
+      "CAR_avg": 56.5,
+      "TSR_task0": 0,
+      "TSR_task1": 0,
+      "TSR_task2": 0,
+      "TSR_task3": 0,
+      "n_episodes": 50,
+      "refine_count_all_zero": true
+    },
+    "notes": "[2026-05-22 02:57] ⚠️ v9 结果无效（M019: state 向量格式 bug）。eval 脚本构建 state 用 quat(4D)+gripper[:1](1D)，训练数据用 rotvec(3D)+gripper(2D)。碰巧都 8D 不报错，但 z-score normalization 后产生极端 OOD 输入。已修复（quat→rotvec, gripper 2D），dry-run 显示机器人恢复正常运动。需重跑 v10 eval。",
+    "completed_at": "2026-05-21T19:49:31.218Z"
+  },
+  "timestamp": "2026-05-22T03:17:48.492318+00:00",
+  "trigger": "update_registry"
+}

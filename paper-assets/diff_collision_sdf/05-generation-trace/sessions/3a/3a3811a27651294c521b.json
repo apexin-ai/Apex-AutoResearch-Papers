@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3a3811a27651294c521b",
+  "project": "diff_collision_sdf",
+  "kind": "history",
+  "title": "director / loop_9.md",
+  "task_key": "loop_9",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_9.md",
+    "occurrence": 1,
+    "bytes": 2776,
+    "sha256": "a1c37a0b16034927c9662ac3e2d23cf3ca540e748bf28378a048ad827adf4061"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: max_messages\nupdated: '2026-05-28T16:59:32+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- CoRL 2026 DDL: 2026-05-29（明天），8 页正文限制，必须包含 Limitations section\n- 论文前 6 页已冻结（用户孙震多次强调），任何修改只能在第 7 页及之后\n- Figure 3/4 必须用 wrapfigure 环绕式排版，不能占整行（用户明确拒绝过 figure[t]）\n- Overview 主图 v5 数据已核对通过，Panel (c) 不能加 \"p < 0.001\"（论文不支持该数据）\n\n### 2. 🖥️ 基础设施快照\n- 本地工作目录：`/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/`\n- 论文源码：`docs/paper/` 下（introduction.tex, claim1.tex, claim2.tex, claim3.tex, discussion.tex）\n- 主图文件：`artifacts/figures/fig_overview_pb_v5.png`（最终版），`artifacts/figures/fig_overview_pb.pdf`（PDF 版本，可能需要从 v5 重新生成）\n- v1 备份：`artifacts/figures/fig_overview_pb_v1_backup.png`\n- PaperBanana 已安装，GOOGLE_API_KEY 已通过 secret 存储\n- 无远程服务器活跃进程，无 RUNNING 实验\n\n### 3. 📊 当前状态\n刚完成：Overview 主图 v5 生成（修正了 p<0.001 数据问题），已上传飞书给用户确认。\n等待中：用户对 v5 的确认 + 两个决策：\n  1. v5 是否可以嵌入论文作为 Figure 1\n  2. 原 Figure 1 (teaser dumbbell chart) 和 overview 图信息重叠（都展示 action collapse），保留两张还是替换\nRegistry 无 RUNNING/PREPARING 实验。项目处于审稿阶段（review_chat_id 已配置）。\n\n### 4. 📋 待办\n- 用户确认 v5 → 从 v5 PNG 生成新 PDF → 嵌入 introduction.tex 作为 Figure 1（figure*[t]）→ 处理 Figure 编号顺移（原 Fig1→Fig2, Fig2→Fig3...）→ 验证页数仍 ≤ 8 页\n- 用户决定保留/替换原 teaser → 如替换则删除旧 figure 定义；如保留则需处理 page 2 信息密度问题\n- 嵌入后 → 编译 PDF → 视觉检查第 1-2 页排版 → 确认前 6 页内容未被破坏（md5 对比 page 3-6）\n\n### 5. 🎯 战略上下文\n- 这是一篇 analysis paper：揭示 VLA collision avoidance 评估中的 action collapse 现象，提出 dfCAR 指标修正\n- 两位用户：孙震（对排版极敏感，多次因页面被动而发火）、吴俊豪（主导主图需求，要求用 PaperBanana）\n- 易踩坑：修改 introduction.tex 加主图时可能影响前 6 页排版 → 必须编译后逐页视觉核对\n- Figure 3 wrapfigure 的 line count 参数经过 4 轮迭代才稳定在 [14]，不要轻易改动\n- Figure 4 在 discussion.tex 中用 wrapfigure{R}{0.5\\linewidth}，图例在 upper-right（改过，避免与 n=3 重叠）\n- Figure 2 (claim1.tex) xlim 左边界已从 0 改为 -3（防空心点与 y 轴重叠）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9.md"
+}

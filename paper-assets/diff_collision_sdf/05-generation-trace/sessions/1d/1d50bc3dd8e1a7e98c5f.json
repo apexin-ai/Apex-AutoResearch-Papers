@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1d50bc3dd8e1a7e98c5f",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops diagnose s1 l005 exit",
+  "task_key": "worker_ops_diagnose_s1_l005_exit_20260523T055314",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_diagnose_s1_l005_exit_20260523T055314_result.json",
+    "occurrence": 1,
+    "bytes": 1282,
+    "sha256": "27607eeb830bb55a7f648e9bd030d698dc7fb09596ba15c317d7fa20f619c05b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。诊断结论：\n\n## 诊断结果\n\n**根因：数据盘 `/root/autodl-tmp` 100% 满（350G/350G，仅剩 8K）**\n\n**所有 4 个实验同时在 step 8000 checkpoint 保存时崩溃**，训练本身正常运行到 step 7999（27%/30000）。\n\n| 实验 | GPU | 最后 step | 错误 | 已保存 checkpoint |\n|------|-----|-----------|------|-------------------|\n| s1_l005 | cuda:0 | 7999 | safetensors serialize ENOSPC | 4000, 6000, best |\n| s1_l01 | cuda:1 | 7999 | safetensors serialize ENOSPC | 4000, 6000, best |\n| s2_l005 | cuda:2 | 7999 | mkdir tmp_8000 ENOSPC | 4000, 6000, best |\n| s2_l01 | cuda:3 | 7999 | mkdir tmp_8000 ENOSPC | 4000, 6000, best |\n\n**磁盘占用分布**（checkpoints ~313G / 350G）:\n- baseline_object_pudding: 76G\n- baseline_spatial_bowl: 76G\n- a1_sdf_pi05_object_pudding (本次 4 实验 + lora baseline): 112G\n- 其他: ~49G\n\n**已完成操作**:\n- 4 个 cron 已删除\n- 4 个实验 registry 已更新为 DONE/failed\n\n**恢复建议**：\n1. 清理不再需要的旧 checkpoint（baseline 两组占 152G）释放空间\n2. 删除 seed1 的 `tmp_8000` 残留目录\n3. 从 step 6000 checkpoint resume 训练（需先确保磁盘有足够空间，30000 steps 每 2000 步存一次约需额外 ~80G）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-diagnose-s1-l005-exit.md"
+}

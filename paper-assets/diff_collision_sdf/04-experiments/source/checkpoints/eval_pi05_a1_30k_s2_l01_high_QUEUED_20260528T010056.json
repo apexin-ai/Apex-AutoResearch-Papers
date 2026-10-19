@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_pi05_a1_30k_s2_l01_high",
+  "project": "diff_collision_sdf",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-28T01:00:40.157Z",
+    "updated_at": "2026-05-28T01:00:56.695Z",
+    "hypothesis": "Evaluate λ=0.1 seed2 30K checkpoint on safelibero_object. Third seed to complete 3-seed statistical power. s0 CAR=58%, s1 CAR=58.5%. Combined 3-seed mean determines final A/B/C scenario for paper.",
+    "parent": "train_pi05_a1_obj_s2_l01_high"
+  },
+  "timestamp": "2026-05-28T01:00:56.910969+00:00",
+  "trigger": "update_registry"
+}

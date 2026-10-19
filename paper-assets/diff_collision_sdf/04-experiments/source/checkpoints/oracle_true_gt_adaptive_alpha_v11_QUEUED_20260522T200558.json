@@ -1,0 +1,16 @@
+{
+  "exp_id": "oracle_true_gt_adaptive_alpha_v11",
+  "project": "diff_collision_sdf",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T20:05:31.719Z",
+    "updated_at": "2026-05-22T20:05:58.312Z",
+    "hypothesis": "True oracle SDF with adaptive alpha (min(0.1, 0.5*action_norm)) prevents overcorrection while maintaining collision avoidance. Compared to fixed alpha=0.005 control. If adaptive > fixed → alpha scaling is critical. If both improve baseline → oracle SDF refinement is viable.",
+    "parent": "oracle_true_gt_object_v11"
+  },
+  "timestamp": "2026-05-22T20:05:58.401402+00:00",
+  "trigger": "update_registry"
+}

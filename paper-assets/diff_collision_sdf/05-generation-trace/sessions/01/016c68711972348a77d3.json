@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "016c68711972348a77d3",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops disk cleanup 35807",
+  "task_key": "worker_ops_disk_cleanup_35807_20260522T122115",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_disk_cleanup_35807_20260522T122115_result.json",
+    "occurrence": 1,
+    "bytes": 386,
+    "sha256": "9e43147890e274ed88149dc21dc7bceefe3db4a4fb7e9342536913c353dd7876"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。\n\n| 项目 | 大小 |\n|------|------|\n| `a1_sdf_object_pudding_seed0` (killed) | 20G |\n| `a1_sdf_spatial_bowl_seed0` (killed) | 27G |\n| pip cache | 617M |\n| **总计释放** | **~48G** |\n\n**磁盘使用：75% (260G/350G) → 62% (214G/350G)**，可用空间从 91G 增至 137G。\n\nHF cache (1.3G) 保留未清，后续模型加载可能用到。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-disk-cleanup-35807-copy-2.md"
+}

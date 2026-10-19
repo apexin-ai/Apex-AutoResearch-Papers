@@ -1,0 +1,65 @@
+{
+  "exp_id": "a3_gradient_spatial_bowl_s0",
+  "project": "diff_collision_sdf",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 4,
+    "created_at": "2026-05-20T02:51:33.071Z",
+    "updated_at": "2026-05-21T17:14:06.361Z",
+    "hypothesis": "SDF gradient-guided action refinement during training (A3) improves collision avoidance on spatial_bowl Level II — training with lambda_refine SDF gradient loss teaches the model to generate actions that respect obstacle geometry, expecting CAR improvement over baseline with TSR drop <10%. Directly comparable to AEGIS (CAR 86%, TSR 88%) on same task.",
+    "notes": "[2026-05-21 09:15] Checkpoint 已丢失，从 step 0 重新训练。PID 164430, cuda:0, ~3.5s/step, 16907 MiB VRAM. 修复 4 个 LoRALinear bugs 后启动。ETA ~29h。Log: train_fresh.log。",
+    "reproduce": {
+      "finished_at": "2026-05-21T17:14:05.615Z"
+    },
+    "failure_reason": "EXIT_CODE=124 (timeout — exceeded timeout_hours)",
+    "completed_at": "2026-05-20T07:35:23.111Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-20T07:35:24.844687+00:00"
+        },
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-21T08:00:23.004845+00:00"
+        },
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-21T08:12:48.189722+00:00"
+        },
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-21T09:14:02.253221+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "Restarted 2026-05-20 after GPU recovery. No checkpoint found (empty dir), starting from step 0. save_interval=2000, SAVE_TOTAL_LIMIT=3. Previous crash: CUDA_ERROR_NO_DEVICE (transient GPU fault)."
+      }
+    },
+    "spec": {
+      "command": "bash -c \"export JAX_PLATFORMS=cpu && export WANDB_MODE=offline && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/colliforce-vla && python scripts/train_a3_hook.py --scene spatial_bowl --seed 0 --save_interval 2000 --batch_size 32 --gpu 0\"",
+      "server": "westd-45947",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "164430",
+      "log_path": "/root/autodl-tmp/colliforce-outputs/a3_spa_s0/train_fresh.log",
+      "submitted_at": "2026-05-20T07:59:44.362Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 86435.5,
+      "gpu_hours": 24.01
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-21T17:14:06.391299+00:00",
+  "trigger": "update_registry"
+}

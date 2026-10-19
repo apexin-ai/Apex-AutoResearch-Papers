@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_pi05_a1_30k_s1_l01_high",
+  "project": "diff_collision_sdf",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-27T10:03:52.489Z",
+    "updated_at": "2026-05-27T10:04:10.792Z",
+    "hypothesis": "Evaluate λ=0.1 seed1 30K checkpoint on safelibero_object. Combined with s0 CAR=58.0%, determines final A/B/C scenario: s1 ≤56% → B (SDF redundant), s1 ≥56% → C (gray zone, Pareto analysis needed).",
+    "parent": "train_pi05_a1_obj_s1_l01_high"
+  },
+  "timestamp": "2026-05-27T10:04:11.023317+00:00",
+  "trigger": "update_registry"
+}

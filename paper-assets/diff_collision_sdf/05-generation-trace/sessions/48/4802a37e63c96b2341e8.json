@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "4802a37e63c96b2341e8",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "ops fix pi05 baseline reeval v3",
+  "task_key": "worker_ops_fix_pi05_baseline_reeval_v3_20260526T065125",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix_pi05_baseline_reeval_v3_20260526T065125.log",
+    "occurrence": 1,
+    "bytes": 705508,
+    "sha256": "7c1649c41bdf940dbca84764f67f113c4bf222070a9ae42d584968c09625490e"
+  },
+  "statistics": {
+    "messages": 284,
+    "user_turns": 0,
+    "tool_calls": 100,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "assistant": 80,
+      "tool_call": 100,
+      "tool_result": 100,
+      "record": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 284,
+      "chunks": [
+        {
+          "path": "4802a37e63c96b2341e8-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "4802a37e63c96b2341e8-part-0002.json",
+          "message_count": 104
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-fix-pi05-baseline-reeval-v3.md"
+}

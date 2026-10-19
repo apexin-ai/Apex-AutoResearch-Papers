@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "id": "4ce3662eeed2ac01a475",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "code fix weight loading relaunch",
+  "task_key": "worker_code_fix_weight_loading_relaunch_20260519T203412",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_weight_loading_relaunch_20260519T203412.log",
+    "occurrence": 1,
+    "bytes": 1024820,
+    "sha256": "2e84e129c3f9e21918a7c883051cc053afedb7dd7673870d2f1860584670c66d"
+  },
+  "statistics": {
+    "messages": 370,
+    "user_turns": 1,
+    "tool_calls": 137,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 89,
+      "tool_call": 137,
+      "tool_result": 137,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 359,
+      "chunks": [
+        {
+          "path": "4ce3662eeed2ac01a475-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "4ce3662eeed2ac01a475-part-0002.json",
+          "message_count": 179
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 11,
+      "chunks": [
+        {
+          "path": "4ce3662eeed2ac01a475-part-0002.json",
+          "message_count": 1
+        },
+        {
+          "path": "4ce3662eeed2ac01a475-part-0003.json",
+          "message_count": 10
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-fix-weight-loading-relaunch.md"
+}

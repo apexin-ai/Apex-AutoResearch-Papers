@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_pi05_a1_30k_s0_l01",
+  "project": "diff_collision_sdf",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T07:42:50.507Z",
+    "updated_at": "2026-05-25T13:59:54.814Z",
+    "hypothesis": "Pi0.5+A1 30K eval (seed0, λ=0.01): completes 3-seed statistical coverage for stronger SDF lambda. Expects CAR ~54% and TSR ~20-25% consistent with seed1/seed2 30K results.",
+    "parent": "train_pi05_a1_obj_s0_l01"
+  },
+  "timestamp": "2026-05-25T13:59:54.926917+00:00",
+  "trigger": "update_registry"
+}

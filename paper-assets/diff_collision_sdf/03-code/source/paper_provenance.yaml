@@ -1,0 +1,1823 @@
+paper:
+  title: ''
+  version: 85
+  generated_at: '2026-05-30T03:57:38.685883+00:00'
+claims:
+- id: C001
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: AEGIS improves obstacle avoidance rate by 59.16% on SafeLIBERO
+  type: external
+  evidence:
+  - source: VLSA paper (arXiv 2512.11891)
+    verified: true
+  decisions: []
+  deprecated: true
+- id: C003
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: SafeVLA reduces safety violations by 83.58% through reward shaping
+  type: external
+  evidence:
+  - source: SafeVLA paper (arXiv 2503.03480)
+    verified: true
+  decisions: []
+  deprecated: true
+- id: C006
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: SafeLIBERO comprises 32 collision scenarios across 1600 evaluation episodes
+  type: external
+  evidence:
+  - source: VLSA paper (arXiv 2512.11891)
+    verified: true
+  decisions: []
+  deprecated: true
+- id: C010
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: SDF Decoder has ~395K parameters
+  type: architectural
+  evidence:
+  - source: method_draft.md
+    exp_id: a3_gradient_spatial_bowl_s0
+  decisions: []
+  deprecated: true
+- id: C015
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: EE Extractor has ~263K parameters
+  type: architectural
+  evidence:
+  - source: method_draft.md
+    exp_id: a3_gradient_spatial_bowl_s0
+  decisions: []
+  deprecated: true
+- id: C021
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: LoRA parameters total ~33.5M
+  type: architectural
+  evidence:
+  - source: Director confirmation from registry
+    exp_id: baseline_lora_spatial_bowl_s0
+  decisions: []
+  deprecated: true
+- id: C028
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Numerous 3D-aware VLA methods exist but none targets collision avoidance
+  type: qualitative
+  evidence:
+  - source: literature survey of 13 cited papers, all verified on arXiv
+  decisions: []
+  deprecated: true
+- id: C029
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: SDF Decoder has ~395K parameters (4-layer MLP, hidden 256, Softplus β=5)
+  type: architectural
+  evidence:
+  - source: method_draft.md
+    exp_id: a3_gradient_spatial_bowl_s0
+  decisions: []
+  deprecated: true
+- id: C031
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: EE Extractor has ~263K parameters (2-layer MLP, 1024→256→3)
+  type: architectural
+  evidence:
+  - source: method_draft.md
+    exp_id: a3_gradient_spatial_bowl_s0
+  decisions: []
+  deprecated: true
+- id: C034
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Total auxiliary module overhead < 660K parameters
+  type: architectural
+  evidence:
+  - source: 'computed: 395K + 263K = 658K'
+  decisions: []
+  deprecated: true
+- id: C038
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: LoRA total trainable parameters ~33.5M
+  type: architectural
+  evidence:
+  - source: Director confirmation
+    exp_id: baseline_lora_spatial_bowl_s0
+  decisions: []
+  deprecated: true
+- id: C043
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Safety margin m=0.01 meters
+  type: hyperparameter
+  evidence:
+  - source: method_draft.md
+  decisions: []
+  deprecated: true
+- id: C049
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: SDF clamping threshold δ=0.05 meters
+  type: hyperparameter
+  evidence:
+  - source: method_draft.md
+  decisions: []
+  deprecated: true
+- id: C056
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: 'Training: 30K steps, batch 32, AdamW cosine decay 2.5e-5→2.5e-6'
+  type: hyperparameter
+  evidence:
+  - source: method_draft.md
+  decisions: []
+  deprecated: true
+- id: C064
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: 'Phase 1 warmup: 5K steps frozen backbone'
+  type: hyperparameter
+  evidence:
+  - source: method_draft.md
+  decisions: []
+  deprecated: true
+- id: C073
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: GT SDF precomputed from obstacle meshes via trimesh/pysdf
+  type: methodology
+  evidence:
+  - source: method_draft.md + IDEA_BRIEF.md
+  decisions: []
+  deprecated: true
+- id: C083
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: W_out ∈ R^{1024×32} action output projection
+  type: architectural
+  evidence:
+  - source: method_draft.md, Director confirmed
+  decisions: []
+  deprecated: true
+- id: C084
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: No 3D-aware VLA targets collision avoidance as a design objective
+  type: positioning
+  evidence:
+  - literature_survey
+  decisions: []
+  deprecated: true
+- id: C086
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: QDepth-VLA predicts 2.5D camera-frame depth; ColliForce predicts workspace-frame
+    SDF
+  type: comparison
+  evidence:
+  - li2025qdepth
+  decisions: []
+  deprecated: true
+- id: C089
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: QDepth-VLA's VQ-VAE decoder is decoupled from the action head
+  type: comparison
+  evidence:
+  - li2025qdepth
+  decisions: []
+  deprecated: true
+- id: C093
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: Camera-frame depth provides no signal in occluded regions
+  type: technical
+  evidence:
+  - geometric_property
+  decisions: []
+  deprecated: true
+- id: C098
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: AEGIS applies CBF corrections to VLA-generated actions post-hoc
+  type: comparison
+  evidence:
+  - hu2025vlsa
+  decisions: []
+  deprecated: true
+- id: C104
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: SafeVLA formulates safety as a CMDP
+  type: comparison
+  evidence:
+  - zhang2025safevla
+  decisions: []
+  deprecated: true
+- id: C111
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: Li et al. inject collision avoidance at inference through cost-guided denoising
+  type: comparison
+  evidence:
+  - li2024langguided
+  decisions: []
+  deprecated: true
+- id: C119
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: CAPE expands trajectory distribution through context-aware priors
+  type: comparison
+  evidence:
+  - yang2025cape
+  decisions: []
+  deprecated: true
+- id: C128
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: iKinQP-RL applies inverse-kinematics QP to correct RL policy actions at runtime
+  type: comparison
+  evidence:
+  - spalter2024ikinqp
+  decisions: []
+  deprecated: true
+- id: C138
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: DiffCo introduced differentiable collision checking based on learned distance
+    fields
+  type: factual
+  evidence:
+  - zhi2021diffco
+  decisions: []
+  deprecated: true
+- id: C149
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: SAMP achieves 7% collision reduction
+  type: quantitative
+  evidence:
+  - chen2025samp
+  decisions: []
+  deprecated: true
+- id: C161
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: No prior work has integrated differentiable SDF into a VLA forward pass
+  type: positioning
+  evidence:
+  - literature_survey
+  decisions: []
+  deprecated: true
+- id: C174
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: DFM-VLA demonstrates iterative action refinement within VLA architecture
+  type: factual
+  evidence:
+  - chen2026dfmvla
+  decisions: []
+  deprecated: true
+- id: C175
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: ColliForce achieves highest CAR across both scenes
+  type: quantitative
+  evidence:
+  - TODO_pending_experiments
+  decisions: []
+  deprecated: false
+- id: C177
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: TSR gap between ColliForce and baseline is [TODO]
+  type: quantitative
+  evidence:
+  - TODO_pending_experiments
+  decisions: []
+  deprecated: false
+- id: C180
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'Evaluation: 50 episodes per method per scene'
+  type: protocol
+  evidence:
+  - experiment_design
+  decisions: []
+  deprecated: false
+- id: C184
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'Training: 30K steps, batch size 32'
+  type: protocol
+  evidence:
+  - training_config
+  decisions: []
+  deprecated: false
+- id: C185
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: ColliForce-VLA achieves CAR of [TODO]% on spatial_bowl
+  type: quantitative
+  evidence:
+  - TODO_pending_experiments
+  decisions: []
+  deprecated: true
+- id: C187
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: ColliForce-VLA achieves CAR of [TODO]% on object_pudding
+  type: quantitative
+  evidence:
+  - TODO_pending_experiments
+  decisions: []
+  deprecated: true
+- id: C190
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Gradient refinement provides [TODO] pp additional CAR gain beyond auxiliary
+    supervision alone
+  type: quantitative
+  evidence:
+  - TODO_pending_experiments
+  decisions: []
+  deprecated: true
+- id: C191
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: ColliForce-VLA improves CAR by [TODO] pp over LoRA baseline
+  type: quantitative
+  evidence:
+  - TODO_pending_experiments
+  decisions: []
+  deprecated: false
+- id: C193
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: Evaluation limited to two SafeLIBERO scenes in simulation
+  type: limitation
+  evidence:
+  - experiment_design
+  decisions: []
+  deprecated: false
+- id: C196
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: SDF ground truth requires known obstacle meshes
+  type: limitation
+  evidence:
+  - method_design
+  decisions: []
+  deprecated: false
+- id: C200
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: Validated on single base VLA (pi0)
+  type: limitation
+  evidence:
+  - experiment_design
+  decisions: []
+  deprecated: false
+- id: C201
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Pi0+A1 reports CAR=91.5% under the standard metric, but CAR_f approx 0% because
+    99.6% of its safe episodes are action-collapsed
+  type: quantitative
+  evidence:
+  - exp_id: D001
+    metric: CAR
+  - exp_id: D001
+    metric: frozen_rate
+  decisions: []
+  deprecated: false
+- id: C203
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Pi0.5 achieves CAR_f equal to its raw CAR (28.5%), with 0% of episodes filtered,
+    because all safe episodes involve EE displacement above 288mm
+  type: quantitative
+  evidence:
+  - exp_id: D002
+    metric: CAR
+  - exp_id: D002
+    metric: ee_displacement
+  decisions: []
+  deprecated: false
+- id: C206
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: SDF auxiliary heads add <660K parameters to the ~33.5M LoRA parameter budget
+  type: quantitative
+  evidence:
+  - exp_id: D006
+    metric: param_count
+  decisions: []
+  deprecated: false
+- id: C210
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: 'Displacement distribution is sharply bimodal: collapsed episodes cluster
+    below 1um, active episodes exceed 200mm'
+  type: quantitative
+  evidence:
+  - exp_id: D001
+    metric: ee_displacement
+  - exp_id: D002
+    metric: ee_displacement
+  decisions: []
+  deprecated: false
+- id: C215
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Oracle-feature averages 241.7 refinement steps per episode vs ~14 for Cartesian
+    variants
+  type: quantitative
+  evidence:
+  - exp_id: D010
+    metric: refinement_steps
+  decisions: []
+  deprecated: false
+- id: C216
+  location:
+    section: claim1
+    paragraph: 0
+    sentence: 0
+  text: Pi0+A1 CAR=91.5% across 800 episodes, 99.6% of safe episodes are fake safe
+    (729/732)
+  type: quantitative
+  evidence:
+  - exp_id: eval_a1_lora_object_v11_rerun
+    metric: CAR
+  - exp_id: eval_a1_lora_object_v11_rerun
+    metric: fake_safe_rate
+  decisions: []
+  deprecated: false
+- id: C218
+  location:
+    section: claim1
+    paragraph: 0
+    sentence: 0
+  text: Pi0+A1 CAR_f approx 0% after displacement filtering
+  type: quantitative
+  evidence:
+  - exp_id: eval_a1_lora_object_v11_rerun
+    metric: CAR_f
+  decisions: []
+  deprecated: false
+- id: C221
+  location:
+    section: claim1
+    paragraph: 0
+    sentence: 0
+  text: Pi0 Full-FT CAR=83.0%, TSR=0.5%, fake safe=99.4%
+  type: quantitative
+  evidence:
+  - exp_id: eval_baseline_v11_object
+    metric: CAR
+  - exp_id: eval_baseline_v11_object
+    metric: TSR
+  decisions: []
+  deprecated: false
+- id: C225
+  location:
+    section: claim1
+    paragraph: 0
+    sentence: 0
+  text: Pi0.5 reeval CAR=28.5%, TSR=71.5%, fake safe=0%, all 57 safe episodes >288mm
+  type: quantitative
+  evidence:
+  - exp_id: eval_pi05_baseline_reeval_disp
+    metric: CAR
+  - exp_id: eval_pi05_baseline_reeval_disp
+    metric: fake_safe_rate
+  decisions: []
+  deprecated: false
+- id: C230
+  location:
+    section: claim1
+    paragraph: 0
+    sentence: 0
+  text: Pi0.5 3-seed CAR=26.8 pm 1.6%, TSR=74.7 pm 1.5%
+  type: quantitative
+  evidence:
+  - exp_id: eval_pi05_safelibero_object_v11
+    metric: CAR
+  - exp_id: eval_pi05_safelibero_object_v11_s1
+    metric: CAR
+  - exp_id: eval_pi05_safelibero_object_v11_s2
+    metric: CAR
+  decisions: []
+  deprecated: false
+- id: C236
+  location:
+    section: claim1
+    paragraph: 0
+    sentence: 0
+  text: 'Displacement bimodal: collapsed <1um, active >200mm, 5 orders of magnitude
+    gap, tau_d in [2,200]mm identical'
+  type: quantitative
+  evidence:
+  - exp_id: eval_a1_lora_object_v11_rerun
+    metric: safe_disp_distribution
+  decisions: []
+  deprecated: false
+- id: C237
+  location:
+    section: claim2
+    paragraph: 0
+    sentence: 0
+  text: 'All three oracle variants achieve lower CAR than unrefined baselines: Oracle-feature
+    76.9% vs LoRA 82.0% and Full-FT 83.0%'
+  type: quantitative
+  evidence:
+  - exp_id: oracle_true_gt_feature_v11
+    metric: CAR
+  - exp_id: eval_lora_baseline_object_v11
+    metric: CAR
+  - exp_id: eval_baseline_v11_object
+    metric: CAR
+  decisions: []
+  deprecated: false
+- id: C239
+  location:
+    section: claim2
+    paragraph: 0
+    sentence: 0
+  text: Oracle-adaptive 75.0%, Oracle-fixed 73.1%
+  type: quantitative
+  evidence:
+  - exp_id: oracle_true_gt_adaptive_alpha_v11
+    metric: CAR
+  - exp_id: oracle_true_gt_fixed_alpha_v11
+    metric: CAR
+  decisions: []
+  deprecated: false
+- id: C242
+  location:
+    section: claim2
+    paragraph: 0
+    sentence: 0
+  text: 'Fake safe rates: Oracle-adaptive 98.3% (118/120), Oracle-fixed 98.3% (115/117),
+    Oracle-feature 96.7% (119/123)'
+  type: quantitative
+  evidence:
+  - exp_id: oracle_true_gt_adaptive_alpha_v11
+    metric: fake_safe_rate
+  - exp_id: oracle_true_gt_fixed_alpha_v11
+    metric: fake_safe_rate
+  - exp_id: oracle_true_gt_feature_v11
+    metric: fake_safe_rate
+  decisions: []
+  deprecated: false
+- id: C246
+  location:
+    section: claim2
+    paragraph: 0
+    sentence: 0
+  text: Feature-space oracle 241.7 refinements/ep vs 14.2 for Cartesian, gradient
+    mag 0.004-0.006 vs 0.18-0.49
+  type: quantitative
+  evidence:
+  - exp_id: oracle_true_gt_feature_v11
+    metric: refinement_steps
+  - exp_id: oracle_true_gt_adaptive_alpha_v11
+    metric: refinement_steps
+  decisions: []
+  deprecated: false
+- id: C251
+  location:
+    section: claim2
+    paragraph: 0
+    sentence: 0
+  text: Task 1 LoRA 46.0% → Oracle-adaptive 55.0%, Task 0 LoRA 96.0% → Oracle-adaptive
+    82.5%, Task 2 LoRA 98.0% → 77.5%
+  type: quantitative
+  evidence:
+  - exp_id: oracle_true_gt_adaptive_alpha_v11
+    metric: per_task_CAR
+  - exp_id: eval_lora_baseline_object_v11
+    metric: per_task_CAR
+  decisions: []
+  deprecated: false
+- id: C257
+  location:
+    section: claim2
+    paragraph: 0
+    sentence: 0
+  text: 'A3 learned SDF: zero refinement steps across 160 episodes, CAR 74.5%'
+  type: quantitative
+  evidence:
+  - exp_id: eval_a3_v11_object
+    metric: CAR
+  - exp_id: eval_a3_v11_object
+    metric: refined_count
+  decisions: []
+  deprecated: false
+- id: C258
+  location:
+    section: claim3
+    paragraph: 0
+    sentence: 0
+  text: LoRA-only CAR=54.5% (2 seeds) = SDF lambda=0.005 CAR=54.5% (3 seeds), SDF
+    does not improve beyond LoRA-only (p>0.1)
+  type: quantitative
+  evidence:
+  - exp_id: eval_lora_baseline_30k_s0_reeval
+    metric: CAR
+  - exp_id: reeval_lora_s1_30k
+    metric: CAR
+  - exp_id: reeval_sdf_s0_l005_30k
+    metric: CAR
+  - exp_id: reeval_sdf_s1_l005_30k
+    metric: CAR
+  - exp_id: reeval_sdf_s2_l005_30k
+    metric: CAR
+  decisions: []
+  deprecated: true
+- id: C260
+  location:
+    section: claim3
+    paragraph: 0
+    sentence: 0
+  text: SDF lambda=0.01 CAR=56.3% (3 seeds), within 0.5sigma of null (p>0.1)
+  type: quantitative
+  evidence:
+  - exp_id: reeval_sdf_s0_l01_30k
+    metric: CAR
+  - exp_id: reeval_sdf_s1_l01_30k
+    metric: CAR
+  - exp_id: reeval_sdf_s2_l01_30k
+    metric: CAR
+  decisions: []
+  deprecated: true
+- id: C263
+  location:
+    section: claim3
+    paragraph: 0
+    sentence: 0
+  text: 'Null distribution: 5 measurements, mean=55.3%, std=2.13%'
+  type: quantitative
+  evidence:
+  - exp_id: eval_lora_baseline_30k_s0_reeval
+    metric: CAR
+  - exp_id: reeval_lora_s1_30k
+    metric: CAR
+  - exp_id: reeval_sdf_s0_l005_30k
+    metric: CAR
+  - exp_id: reeval_sdf_s1_l005_30k
+    metric: CAR
+  - exp_id: reeval_sdf_s2_l005_30k
+    metric: CAR
+  decisions: []
+  deprecated: true
+- id: C267
+  location:
+    section: claim3
+    paragraph: 0
+    sentence: 0
+  text: Phase 2 lambda=0 ablation CAR=57.5%, within null range
+  type: quantitative
+  evidence:
+  - exp_id: eval_phase2_lambda0_s2
+    metric: CAR
+  decisions: []
+  deprecated: true
+- id: C272
+  location:
+    section: claim3
+    paragraph: 0
+    sentence: 0
+  text: LoRA fine-tuning raises CAR from 26.8% to ~55%, +28pp from collision-free
+    demo data
+  type: quantitative
+  evidence:
+  - exp_id: eval_pi05_safelibero_object_v11
+    metric: CAR
+  - exp_id: eval_lora_baseline_30k_s0_reeval
+    metric: CAR
+  decisions: []
+  deprecated: true
+- id: C278
+  location:
+    section: claim3
+    paragraph: 0
+    sentence: 0
+  text: TSR collapse 74.7% to 6.3-6.8%, ~68pp reduction, SDF not responsible
+  type: quantitative
+  evidence:
+  - exp_id: eval_pi05_safelibero_object_v11
+    metric: TSR
+  - exp_id: reeval_sdf_s0_l005_30k
+    metric: TSR
+  decisions: []
+  deprecated: true
+- id: C285
+  location:
+    section: claim3
+    paragraph: 0
+    sentence: 0
+  text: Safe failure rate from 0.5% to ~48-50%, 100x increase
+  type: quantitative
+  evidence:
+  - exp_id: reeval_sdf_s0_l005_30k
+    metric: safe_failure_rate
+  decisions: []
+  deprecated: true
+- id: C293
+  location:
+    section: claim3
+    paragraph: 0
+    sentence: 0
+  text: Obstacle displacement from 0.143m to 0.059m
+  type: quantitative
+  evidence:
+  - exp_id: eval_pi05_safelibero_object_v11
+    metric: obstacle_displacement
+  - exp_id: reeval_sdf_s0_l005_30k
+    metric: obstacle_displacement
+  decisions: []
+  deprecated: true
+- id: C294
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Pi0+A1 reaches 91.5% CAR across 800 episodes, 99.6% of safe episodes have
+    displacement <0.1mm
+  type: quantitative
+  evidence:
+  - exp_id: eval_a1_lora_object_v11_rerun
+    metric: CAR
+  - exp_id: eval_a1_lora_object_v11_rerun
+    metric: fake_safe_rate
+  decisions: []
+  deprecated: false
+- id: C296
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Pi0 Full-FT CAR=83.0% TSR=0.5%, 99.4% fake safe
+  type: quantitative
+  evidence:
+  - exp_id: eval_baseline_v11_object
+    metric: CAR
+  decisions: []
+  deprecated: false
+- id: C299
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Pi0.5 TSR=74.7%+/-1.5%, CAR=26.8%+/-1.6%, all safe eps >288mm, 0% fake safe
+  type: quantitative
+  evidence:
+  - exp_id: eval_pi05_safelibero_object_v11
+    metric: TSR
+  - exp_id: eval_pi05_baseline_reeval_disp
+    metric: fake_safe_rate
+  decisions: []
+  deprecated: false
+- id: C303
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Three oracle variants CAR 73.1-76.9% vs baseline 82.0-83.0%
+  type: quantitative
+  evidence:
+  - exp_id: oracle_true_gt_adaptive_alpha_v11
+    metric: CAR
+  - exp_id: oracle_true_gt_fixed_alpha_v11
+    metric: CAR
+  - exp_id: oracle_true_gt_feature_v11
+    metric: CAR
+  decisions: []
+  deprecated: false
+- id: C308
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: LoRA-only CAR=54.5% = SDF lambda=0.005 CAR=54.5%, lambda=0.01 CAR=56.3% (p>0.1)
+  type: quantitative
+  evidence:
+  - exp_id: eval_lora_baseline_30k_s0_reeval
+    metric: CAR
+  - exp_id: reeval_sdf_s0_l005_30k
+    metric: CAR
+  - exp_id: reeval_sdf_s0_l01_30k
+    metric: CAR
+  decisions: []
+  deprecated: false
+- id: C314
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: 70+ experiments and 6000+ evaluation episodes
+  type: quantitative
+  evidence:
+  - exp_id: all
+    metric: episode_count
+  decisions: []
+  deprecated: false
+- id: C315
+  location:
+    section: claim3
+    paragraph: 0
+    sentence: 0
+  text: LoRA-only CAR=54.5% (2 seeds) = SDF lambda=0.005 CAR=54.5% (3 seeds)
+  type: quantitative
+  evidence:
+  - exp_id: eval_lora_baseline_30k_s0_reeval
+    metric: CAR
+  - exp_id: reeval_lora_s1_30k
+    metric: CAR
+  - exp_id: reeval_sdf_s0_l005_30k
+    metric: CAR
+  - exp_id: reeval_sdf_s1_l005_30k
+    metric: CAR
+  - exp_id: reeval_sdf_s2_l005_30k
+    metric: CAR
+  decisions: []
+  deprecated: false
+- id: C317
+  location:
+    section: claim3
+    paragraph: 0
+    sentence: 0
+  text: SDF lambda=0.01 CAR=56.3% (3 seeds), within 0.5sigma of null (p>0.1)
+  type: quantitative
+  evidence:
+  - exp_id: reeval_sdf_s0_l01_30k
+    metric: CAR
+  - exp_id: reeval_sdf_s1_l01_30k
+    metric: CAR
+  - exp_id: reeval_sdf_s2_l01_30k
+    metric: CAR
+  decisions: []
+  deprecated: false
+- id: C320
+  location:
+    section: claim3
+    paragraph: 0
+    sentence: 0
+  text: 'Null distribution: 5 measurements, mean=54.5%, std=2.15%'
+  type: quantitative
+  evidence:
+  - exp_id: eval_lora_baseline_30k_s0_reeval
+    metric: CAR
+  - exp_id: reeval_lora_s1_30k
+    metric: CAR
+  - exp_id: reeval_sdf_s0_l005_30k
+    metric: CAR
+  - exp_id: reeval_sdf_s1_l005_30k
+    metric: CAR
+  - exp_id: reeval_sdf_s2_l005_30k
+    metric: CAR
+  decisions: []
+  deprecated: false
+- id: C324
+  location:
+    section: claim3
+    paragraph: 0
+    sentence: 0
+  text: Phase 2 lambda=0 ablation CAR=57.5%
+  type: quantitative
+  evidence:
+  - exp_id: eval_phase2_lambda0_s2
+    metric: CAR
+  decisions: []
+  deprecated: false
+- id: C329
+  location:
+    section: claim3
+    paragraph: 0
+    sentence: 0
+  text: LoRA fine-tuning raises CAR from 26.8% to ~55%, +28pp from demo data
+  type: quantitative
+  evidence:
+  - exp_id: eval_pi05_safelibero_object_v11
+    metric: CAR
+  - exp_id: eval_lora_baseline_30k_s0_reeval
+    metric: CAR
+  decisions: []
+  deprecated: false
+- id: C335
+  location:
+    section: claim3
+    paragraph: 0
+    sentence: 0
+  text: TSR degradation 74.7% to 51.5-54.0%, ~21-23pp reduction
+  type: quantitative
+  evidence:
+  - exp_id: eval_pi05_safelibero_object_v11
+    metric: TSR
+  - exp_id: reeval_sdf_s0_l005_30k
+    metric: TSR
+  - exp_id: eval_lora_baseline_30k_s0_reeval
+    metric: TSR
+  decisions: []
+  deprecated: false
+- id: C342
+  location:
+    section: claim3
+    paragraph: 0
+    sentence: 0
+  text: 'Per-task TSR: Choco Pudding ~68-78%, Orange Juice ~25-33%, no task collapses
+    to near-zero'
+  type: quantitative
+  evidence:
+  - exp_id: reeval_sdf_s0_l005_30k
+    metric: per_task_TSR
+  - exp_id: eval_lora_baseline_30k_s0_reeval
+    metric: per_task_TSR
+  decisions: []
+  deprecated: false
+- id: C343
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: 70+ experiments and 6000+ evaluation episodes on two VLA model families
+  type: aggregate
+  evidence:
+  - exp_id: aggregate
+    detail: Sum across all registry experiments
+  decisions: []
+  deprecated: false
+- id: C345
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Pi0+A1 CAR 91.5% → ≈0% after displacement filtering, 99.6% fake safe rate
+  type: quantitative
+  evidence:
+  - exp_id: D009
+    detail: Pi0+A1 800 episodes, 732 safe, 729 below 0.1mm
+  decisions: []
+  deprecated: false
+- id: C348
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Oracle variants achieve 73.1-76.9% CAR, below unrefined baselines at 82-83%
+  type: quantitative
+  evidence:
+  - exp_id: D016
+    detail: Oracle-adaptive 75.0%
+  - exp_id: D017
+    detail: Oracle-fixed 73.1%
+  - exp_id: D018
+    detail: Oracle-feature 76.9%
+  - exp_id: D008
+    detail: LoRA baseline 82.0%
+  - exp_id: D007
+    detail: Full-FT baseline 83.0%
+  decisions: []
+  deprecated: false
+- id: C352
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: LoRA-only CAR=54.5%, identical to LoRA+SDF λ=0.005, statistically indistinguishable
+    from λ=0.01 (56.3%, p>0.1)
+  type: quantitative
+  evidence:
+  - exp_id: D023
+    detail: LoRA-only 54.5%
+  - exp_id: D024
+    detail: λ=0.005 54.5%
+  - exp_id: D025
+    detail: λ=0.01 56.3%
+  decisions: []
+  deprecated: false
+- id: C357
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: 'Displacement distribution sharply bimodal: collapsed below 1μm, active above
+    200mm'
+  type: quantitative
+  evidence:
+  - exp_id: D009
+    detail: 73.9% below 1μm
+  - exp_id: D030
+    detail: Pi0.5 all safe episodes above 288mm
+  decisions: []
+  deprecated: false
+- id: C363
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: τ_d robust across [2, 200] mm — five orders of magnitude
+  type: quantitative
+  evidence:
+  - exp_id: D009
+    detail: Bimodal gap analysis
+  decisions: []
+  deprecated: false
+- id: C370
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: ~28 percentage point CAR improvement from demonstrations (26.8% → ~55%)
+  type: quantitative
+  evidence:
+  - exp_id: D030
+    detail: Pi0.5 baseline CAR 26.8%
+  - exp_id: D023
+    detail: LoRA-only 54.5%
+  decisions: []
+  deprecated: false
+- id: C378
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Pi0 Full-FT 0% CAR on spatial_bowl despite 0.29m displacement
+  type: quantitative
+  evidence:
+  - exp_id: D007_spatial
+    detail: Spatial bowl preliminary
+  decisions: []
+  deprecated: false
+- id: C387
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Pi0.5 13% CAR on spatial_bowl vs 26.8% on object_pudding
+  type: quantitative
+  evidence:
+  - exp_id: D030_spatial
+    detail: Pi0.5 spatial bowl preliminary
+  decisions: []
+  deprecated: false
+- id: C397
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: TSR degradation ~21-23pp (74.7% → 51.5-54.0%)
+  type: quantitative
+  evidence:
+  - exp_id: D030
+    detail: Pi0.5 baseline TSR 74.7%
+  - exp_id: D023
+    detail: LoRA-only TSR 51.5%
+  - exp_id: D024
+    detail: λ=0.005 TSR 54.0%
+  - exp_id: D025
+    detail: λ=0.01 TSR 53.8%
+  decisions: []
+  deprecated: false
+- id: C398
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Pi0+A1 91.5% CAR with 0% TSR, 99.6% below 0.1mm, 73.9% below 1μm
+  type: quantitative
+  evidence:
+  - exp_id: D009
+    detail: Pi0+A1 800 episodes
+  decisions: []
+  deprecated: false
+- id: C400
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Pi0.5 74.7%±1.5% TSR, 26.8%±1.6% CAR, zero fake safe, >288mm
+  type: quantitative
+  evidence:
+  - exp_id: D030
+    detail: Pi0.5 3-seed baseline
+  decisions: []
+  deprecated: false
+- id: C403
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: CAR_f collapses Pi0+A1 from 91.5% to ≈0%
+  type: quantitative
+  evidence:
+  - exp_id: D009
+    detail: 3/732 safe episodes survive filtering
+  decisions: []
+  deprecated: false
+- id: C407
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: τ_d robust across [2, 200] mm, five orders of magnitude gap
+  type: quantitative
+  evidence:
+  - exp_id: D009
+    detail: Bimodal distribution analysis
+  decisions: []
+  deprecated: false
+- id: C412
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Oracle variants 73.1-76.9% CAR, below baselines 82-83%
+  type: quantitative
+  evidence:
+  - exp_id: D016
+    detail: Oracle-adaptive 75.0%
+  - exp_id: D017
+    detail: Oracle-fixed 73.1%
+  - exp_id: D018
+    detail: Oracle-feature 76.9%
+  decisions: []
+  deprecated: false
+- id: C418
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: SDF gradients repel EE but drive arm links into obstacle volumes
+  type: mechanistic
+  evidence:
+  - exp_id: D016
+    detail: Per-task oracle analysis
+  decisions: []
+  deprecated: false
+- id: C425
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: LoRA-only CAR=54.5% matches LoRA+SDF at λ∈{0.005,0.01}, p>0.1
+  type: quantitative
+  evidence:
+  - exp_id: D023
+    detail: LoRA-only
+  - exp_id: D024
+    detail: λ=0.005
+  - exp_id: D025
+    detail: λ=0.01
+  decisions: []
+  deprecated: false
+- id: C433
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: TSR degradation ~21-23pp (74.7% → 51.5-54.0%)
+  type: quantitative
+  evidence:
+  - exp_id: D030
+    detail: Baseline
+  - exp_id: D023
+    detail: LoRA-only TSR 51.5%
+  decisions: []
+  deprecated: false
+- id: C434
+  location:
+    section: claim3
+    paragraph: 0
+    sentence: 0
+  text: λ=0.1 CAR=55.5% (seeds 55%, 56%), within null distribution (z=0.47)
+  type: quantitative
+  evidence:
+  - exp_id: D035
+    detail: λ=0.1 20K 2-seed eval, mean=55.5%, s0=55%, s1=56%
+  decisions: []
+  deprecated: false
+- id: C435
+  location:
+    section: claim3
+    paragraph: 0
+    sentence: 0
+  text: SDF redundant across full range λ∈[0.005, 0.1] (20× range)
+  type: quantitative
+  evidence:
+  - exp_id: D023
+    detail: LoRA-only 54.5%
+  - exp_id: D024
+    detail: λ=0.005 54.5%
+  - exp_id: D025
+    detail: λ=0.01 56.3%
+  - exp_id: D035
+    detail: λ=0.1 55.5%
+  decisions: []
+  deprecated: false
+- id: C436
+  location:
+    section: claim3
+    paragraph: 0
+    sentence: 0
+  text: Per-task CAR ordering identical across all conditions (chocolate_pudding >
+    milk > orange_juice > bbq_sauce)
+  type: qualitative
+  evidence:
+  - exp_id: D035
+    detail: Per-task CAR pattern matches across λ values
+  decisions: []
+  deprecated: false
+- id: C437
+  location:
+    section: claim3
+    paragraph: 0
+    sentence: 0
+  text: Binding constraint is structural mismatch (Level B), not signal magnitude
+    (Level A)
+  type: mechanistic
+  evidence:
+  - exp_id: D035
+    detail: 20× λ increase yields z=0.47, within null
+  decisions: []
+  deprecated: false
+- id: C438
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: λ=0.1 CAR within null range (55.5%), Level A signal masking not binding constraint
+  type: quantitative
+  evidence:
+  - exp_id: D035
+    detail: λ=0.1 20K 2-seed mean=55.5%, z=0.47
+  decisions: []
+  deprecated: false
+- id: C439
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Pi0.5 achieves 26.8% CAR without safety-specific training
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C440
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Collision-free demonstrations yield full ~28pp CAR gain via distributional
+    shift; same shift degrades TSR by ~21-23pp
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C441
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Phase 2 ablation (λ=0 after step 5K, CAR=57.5%) confirms no persistent SDF
+    encoding
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C442
+  location:
+    section: claim3
+    paragraph: 0
+    sentence: 0
+  text: 'Step-wise CAR remains flat: 55.5% at 16K, 55.5% at 20K, 58.5% at 22K (dual-seed
+    means), all within null range'
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C443
+  location:
+    section: claim3
+    paragraph: 0
+    sentence: 0
+  text: SDF at lambda<=0.01 adds no measurable CAR beyond LoRA-only (p>0.1)
+  type: quantitative
+  evidence:
+  - exp_id: D032
+    metric: CAR
+  decisions: []
+  deprecated: false
+- id: C444
+  location:
+    section: claim3
+    paragraph: 0
+    sentence: 0
+  text: lambda=0.1 shows marginal signal z=2.27 p~0.023 n=2
+  type: quantitative
+  evidence:
+  - exp_id: D037
+    metric: CAR_30K_2seed
+  decisions: []
+  deprecated: false
+- id: C445
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: lambda=0.1 two of three seeds show marginal signal 58.25%+-0.35 p~0.023
+  type: quantitative
+  evidence:
+  - exp_id: D037
+    metric: CAR_30K_2seed
+  decisions: []
+  deprecated: false
+- id: C446
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: per-task avoidance pattern mirrors demonstration distribution at all lambda
+  type: qualitative
+  evidence:
+  - exp_id: D037
+    metric: per_task_ordering
+  decisions: []
+  deprecated: false
+- id: C447
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: lambda=0.1 30K 2-seed CAR 58.25+-0.35, z=2.27, p~0.023, inconclusive at n=2
+  type: quantitative
+  evidence:
+  - exp_id: D037
+    metric: CAR_30K_2seed
+  decisions: []
+  deprecated: false
+- id: C448
+  location:
+    section: claim3
+    paragraph: 0
+    sentence: 0
+  text: Low lambda SDF redundant, high lambda marginal signal z=2.27 p~0.023 n=2 inconclusive,
+    same per-task ordering
+  type: quantitative
+  evidence:
+  - exp_id: D032
+    metric: CAR
+  - exp_id: D037
+    metric: CAR_30K_2seed
+  decisions: []
+  deprecated: false
+- id: C449
+  location:
+    section: claim3
+    paragraph: 0
+    sentence: 0
+  text: lambda=0.1 30K 2-seed CAR 58.25+-0.35, z=2.27 p~0.023 against updated null
+    (54.6%, sigma=2.27)
+  type: quantitative
+  evidence:
+  - exp_id: D037
+    metric: CAR_30K_2seed
+  decisions: []
+  deprecated: false
+- id: C450
+  location:
+    section: claim3
+    paragraph: 0
+    sentence: 0
+  text: 22K z=2.60 against updated null
+  type: quantitative
+  evidence:
+  - exp_id: D037
+    metric: CAR_22K_s0
+  decisions: []
+  deprecated: false
+- id: C451
+  location:
+    section: claim3
+    paragraph: 0
+    sentence: 0
+  text: 30K per-task ordering choc(74/74)>milk(68/66)>orange(60/62)>bbq(30/26) identical
+    across conditions
+  type: quantitative
+  evidence:
+  - exp_id: D037
+    metric: per_task_CAR_30K
+  decisions: []
+  deprecated: false
+- id: C452
+  location:
+    section: claim3
+    paragraph: 0
+    sentence: 0
+  text: 'Dose-dependent: low lambda redundant, high lambda marginal signal 3.7pp above
+    null'
+  type: quantitative
+  evidence:
+  - exp_id: D032
+    metric: CAR
+  - exp_id: D037
+    metric: CAR_30K_2seed
+  decisions: []
+  deprecated: false
+- id: C453
+  location:
+    section: claim3
+    paragraph: 0
+    sentence: 0
+  text: Per-task ordering preserved at all lambda values
+  type: qualitative
+  evidence:
+  - exp_id: D037
+    metric: per_task_ordering
+  decisions: []
+  deprecated: false
+- id: C454
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: 'Dose-dependent lambda-CAR: low lambda in null, high lambda marginal departure
+    p~0.023 n=2'
+  type: quantitative
+  evidence:
+  - exp_id: D037
+    metric: CAR_30K_2seed
+  decisions: []
+  deprecated: false
+- id: C455
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Low lambda no benefit; high lambda marginal inconclusive signal
+  type: quantitative
+  evidence:
+  - exp_id: D032
+    metric: CAR
+  - exp_id: D037
+    metric: CAR_30K_2seed
+  decisions: []
+  deprecated: false
+- id: C456
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: 'Low lambda: no measurable SDF effect. High lambda: marginal CAR increase
+    preserves demo-driven pattern.'
+  type: qualitative
+  evidence:
+  - exp_id: D037
+    metric: per_task_ordering
+  decisions: []
+  deprecated: false
+- id: C457
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: 'Demonstration sufficiency: 28pp gain from demos; low lambda no SDF effect;
+    high lambda marginal inconclusive n=2'
+  type: quantitative
+  evidence:
+  - exp_id: D032
+    metric: CAR
+  - exp_id: D037
+    metric: CAR_30K_2seed
+  decisions: []
+  deprecated: false
+- id: C458
+  location:
+    section: claim3
+    paragraph: 0
+    sentence: 0
+  text: 30K per-task ordering choc(74/72)>milk(68/70)>orange(60/66)>bbq(30/26) corrected
+    s1 values
+  type: quantitative
+  evidence:
+  - exp_id: D037
+    metric: per_task_CAR_30K_corrected
+  decisions: []
+  deprecated: false
+- id: C459
+  location:
+    section: claim3
+    paragraph: 0
+    sentence: 0
+  text: SSR/TSR increases from 0.39 (baseline) to 0.52-0.56 (all fine-tuned), refuting
+    reduced-exposure explanation
+  type: quantitative
+  evidence:
+  - exp_id: ssr_analysis
+    metric: SSR_TSR_ratio
+  decisions: []
+  deprecated: false
+- id: C460
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: SSR/TSR increase 0.39->0.52-0.56 rules out reduced-exposure explanation for
+    CAR gains
+  type: quantitative
+  evidence:
+  - exp_id: ssr_analysis
+    metric: SSR_TSR_ratio
+  decisions: []
+  deprecated: false
+tables:
+- id: tab:configurations
+  location:
+    section: method
+    table_number: 0
+  caption: ''
+  cells:
+  - row: Pi0 Full-FT
+    col: Trainable Params
+    value: ~3.5B
+    source:
+      exp_id: D001
+      metric: param_count
+  - row: Pi0 LoRA
+    col: Trainable Params
+    value: ~33.5M
+    source:
+      exp_id: D001
+      metric: param_count
+  - row: Pi0+A1
+    col: Trainable Params
+    value: ~34.2M
+    source:
+      exp_id: D006
+      metric: param_count
+  deprecated: false
+- id: tab:fake_safety
+  location:
+    section: claim1
+    table_number: 0
+  caption: ''
+  cells:
+  - row: Pi0+A1 (SDF)
+    col: CAR
+    value: '91.5'
+    source:
+      exp_id: eval_a1_lora_object_v11_rerun
+      metric: CAR
+  - row: Pi0+A1 (SDF)
+    col: Fake Safe
+    value: '99.6'
+    source:
+      exp_id: eval_a1_lora_object_v11_rerun
+      metric: fake_safe_rate
+  - row: Pi0 Full-FT
+    col: CAR
+    value: '83.0'
+    source:
+      exp_id: eval_baseline_v11_object
+      metric: CAR
+  - row: Pi0 LoRA
+    col: CAR
+    value: '82.0'
+    source:
+      exp_id: eval_lora_baseline_object_v11
+      metric: CAR
+  - row: Pi0.5 (reeval)
+    col: CAR
+    value: '28.5'
+    source:
+      exp_id: eval_pi05_baseline_reeval_disp
+      metric: CAR
+  deprecated: false
+- id: tab:oracle
+  location:
+    section: claim2
+    table_number: 0
+  caption: ''
+  cells:
+  - row: Oracle-adaptive
+    col: CAR
+    value: '75.0'
+    source:
+      exp_id: oracle_true_gt_adaptive_alpha_v11
+      metric: CAR
+  - row: Oracle-fixed
+    col: CAR
+    value: '73.1'
+    source:
+      exp_id: oracle_true_gt_fixed_alpha_v11
+      metric: CAR
+  - row: Oracle-feature
+    col: CAR
+    value: '76.9'
+    source:
+      exp_id: oracle_true_gt_feature_v11
+      metric: CAR
+  - row: A3 learned SDF
+    col: CAR
+    value: '74.5'
+    source:
+      exp_id: eval_a3_v11_object
+      metric: CAR
+  - row: LoRA baseline
+    col: CAR
+    value: '82.0'
+    source:
+      exp_id: eval_lora_baseline_object_v11
+      metric: CAR
+  - row: Full-FT baseline
+    col: CAR
+    value: '83.0'
+    source:
+      exp_id: eval_baseline_v11_object
+      metric: CAR
+  deprecated: false
+- id: tab:avoidance_source
+  location:
+    section: claim3
+    table_number: 0
+  caption: ''
+  cells:
+  - row: LoRA-only
+    col: CAR
+    value: '54.5'
+    source:
+      exp_id: eval_lora_baseline_30k_s0_reeval
+      metric: CAR
+  - row: LoRA+SDF 0.005
+    col: CAR
+    value: '54.5'
+    source:
+      exp_id: reeval_sdf_s0_l005_30k
+      metric: CAR
+  - row: LoRA+SDF 0.01
+    col: CAR
+    value: '56.3'
+    source:
+      exp_id: reeval_sdf_s0_l01_30k
+      metric: CAR
+  - row: Pi0.5 baseline
+    col: CAR
+    value: '26.8'
+    source:
+      exp_id: eval_pi05_safelibero_object_v11
+      metric: CAR
+  deprecated: true
+- id: tab:avoidance_source
+  location:
+    section: claim3
+    table_number: 0
+  caption: ''
+  cells:
+  - row: LoRA-only
+    col: CAR
+    value: 54.5+-2.8
+    source:
+      exp_id: eval_lora_baseline_30k_s0_reeval
+      metric: CAR
+  - row: LoRA+SDF 0.005
+    col: CAR
+    value: 54.5+-2.3
+    source:
+      exp_id: reeval_sdf_s0_l005_30k
+      metric: CAR
+  - row: LoRA+SDF 0.01
+    col: CAR
+    value: 56.3+-1.6
+    source:
+      exp_id: reeval_sdf_s0_l01_30k
+      metric: CAR
+  - row: LoRA-only
+    col: TSR
+    value: '51.5'
+    source:
+      exp_id: eval_lora_baseline_30k_s0_reeval
+      metric: TSR
+  - row: LoRA+SDF 0.005
+    col: TSR
+    value: 54.0+-3.0
+    source:
+      exp_id: reeval_sdf_s0_l005_30k
+      metric: TSR
+  - row: LoRA+SDF 0.01
+    col: TSR
+    value: 53.8+-1.5
+    source:
+      exp_id: reeval_sdf_s0_l01_30k
+      metric: TSR
+  deprecated: false
+figures: []
+_completeness:
+  coverage: 79/83
+  claims: 83
+  tables: 4
+  figures: 0
+  tier_counts:
+    tier1: 0
+    tier2: 79
+    tier3: 4
+    tierX: 0
+  last_checked: '2026-05-30T03:57:38.685936+00:00'

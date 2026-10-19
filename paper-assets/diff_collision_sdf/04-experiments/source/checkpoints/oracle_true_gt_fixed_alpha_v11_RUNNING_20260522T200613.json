@@ -1,0 +1,32 @@
+{
+  "exp_id": "oracle_true_gt_fixed_alpha_v11",
+  "project": "diff_collision_sdf",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T20:05:33.998Z",
+    "updated_at": "2026-05-22T20:06:13.698Z",
+    "hypothesis": "True oracle SDF with conservative fixed alpha=0.005 (≈0.5x typical action_norm) as control. If CAR improves over baseline → oracle refinement works even at small alpha. If similar to adaptive → alpha magnitude is not the key factor.",
+    "parent": "oracle_true_gt_object_v11",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python scripts/eval_safelibero.py --model_type a3 --checkpoint /root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best --suite safelibero_object --safety_level II --n_episodes 40 --gpu 0 --true_oracle --force_refine_oracle --refine_alpha 0.005 --sdf_gt_path /root/colliforce-vla/data/sdf_gt_object_chocolate.npz --output_path /root/autodl-tmp/eval_results/oracle_true_gt_fixed_alpha_v11.json",
+      "server": "westd-35807",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": 93306,
+      "log_path": "/root/autodl-tmp/eval_results/eval_oracle_fixed_alpha_v11.log",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best",
+      "checkpoint_source": "a3_grad_refine_object_pudding",
+      "eval_data": "safelibero_object_levelII",
+      "data_path": "/root/colliforce-vla/data/sdf_gt_object_chocolate.npz",
+      "data_count": 40,
+      "model_name": "a3_grad_refine_object_pudding",
+      "seed": 0
+    }
+  },
+  "timestamp": "2026-05-22T20:06:13.765340+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "015bbfe819f5463e8054",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "eval oracle pi05 lora",
+  "task_key": "worker_eval_oracle-pi05-lora_20260529T004154",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_oracle-pi05-lora_20260529T004154_result.json",
+    "occurrence": 1,
+    "bytes": 2396688,
+    "sha256": "21a2f4ec6e186eaf3c898dabf11551e71197073fc707949da84894ba98c5b7eb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "015bbfe819f5463e8054-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/eval-oracle-pi05-lora.md"
+}

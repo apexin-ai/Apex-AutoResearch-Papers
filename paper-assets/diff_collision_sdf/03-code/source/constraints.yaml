@@ -1,0 +1,19 @@
+_next_id: 4
+constraints:
+- id: C001
+  added: 2026-05-21 17:21 UTC
+  summary: GPU 白名单：仅可使用 westd-35807:cuda:0-3 和 westd-45947:cuda:0-1，共 6 张。禁止使用任何白名单外
+    GPU。
+  scope: all
+  reason: 'L1 硬约束 #4 — GPU 使用必须严格遵守 execution.gpu_constraint。已配置 6 张 RTX PRO 6000。'
+- id: C002
+  added: 2026-05-21 17:21 UTC
+  summary: A3 训练（预估 >24h）必须用 tmux 启动，禁止通过 submit_training_job 提交（默认 24h timeout 不够）。
+  scope: worker
+  reason: M013+M014 教训：A3 spatial_bowl 三次因 24h timeout 失败。tmux 无 timeout 限制。
+- id: C003
+  added: 2026-05-27 02:51 UTC
+  summary: submit_training_job 预估训练时长 >20h 时必须设 timeout_hours=48，禁止使用默认 24h
+  scope: all
+  reason: LoRA s2 因默认 timeout_hours=24 被杀（实际需 33.6h），浪费 22K steps 的 GPU 时间并需要从 checkpoint
+    resume。

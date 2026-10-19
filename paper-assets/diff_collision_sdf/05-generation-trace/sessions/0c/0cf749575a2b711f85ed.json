@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0cf749575a2b711f85ed",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "eval pi05 baseline reeval disp",
+  "task_key": "worker_eval_pi05_baseline_reeval_disp_20260526T025446",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_pi05_baseline_reeval_disp_20260526T025446_result.json",
+    "occurrence": 1,
+    "bytes": 660,
+    "sha256": "c44c4d3c3345c30ecf4a53eb49cdb0d042ee4a35e9e480d1f57d4a87169924c2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 已正常启动，正在运行 Task 0（pick up the orange juice）。\n\n**状态总结**：\n- **Job**: `eval_pi05_baseline_reeval_disp` 在 westd-45947 cuda:1 上 RUNNING\n- **模型**: Pi0.5 base（`/root/autodl-tmp/openpi_weights/pi05_libero`），model_type=baseline，config=pi05_libero\n- **参数**: safelibero_object, 4 tasks × 200 episodes, seed=0, safety_level=II\n- **日志**: `/root/colliforce-vla/logs/eval_pi05_baseline_reeval_disp.log`\n- **结果 JSON**: 会输出到 `/root/autodl-tmp/eval_results/pi05_base_reeval_eval_safelibero_object_*.json`\n- **预计时长**: ~3 小时（800 episodes）\n- **Registry**: RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-pi05-baseline-reeval-disp.md"
+}

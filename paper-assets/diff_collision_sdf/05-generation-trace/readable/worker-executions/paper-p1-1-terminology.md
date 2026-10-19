@@ -1,0 +1,6442 @@
+# paper p1 1 terminology
+
+**How Action Collapse Creates Illusory Safety in Diffusion-Based VLA Collision Avoidance Evaluation** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 111
+- **Recorded user turns:** 0
+- **Tool calls:** 45
+- **Original source:** `logs/workers/worker_paper_p1-1-terminology_20260528T061837.log`
+- **Structured JSON:** [`4d0a7ed7caab39849cf3.json`](../../sessions/4d/4d0a7ed7caab39849cf3.json)
+
+## Before a recorded user message
+
+111 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf",
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "f315ec5a-2ba8-4880-8924-52d5a45e8ce6",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779966600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "26ddc90b-9d76-40cf-8438-34acacb0ff39",
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+I'll start by searching for all occurrences of the target terms across the specified files.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "850b8241-0c22-44d2-a351-8b5a77e27958",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LFEpxnpURo2iwvuNWdKJvd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12608,
+      "cache_read_input_tokens": 11451,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12608
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01EAgAmUHq7MzDEA4WFxDJPX`</summary>
+
+```json
+{
+  "pattern": "frozen episode|frozen episodes|frozen rate",
+  "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper",
+  "output_mode": "content",
+  "-n": true,
+  "-i": true,
+  "glob": "*.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "9867edc4-97f8-48a1-b3e8-cdb461c0edde",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LFEpxnpURo2iwvuNWdKJvd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12608,
+      "cache_read_input_tokens": 11451,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12608
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-28T06:18:51.275Z_
+
+<details><summary>↩ Tool result · `toolu_01EAgAmUHq7MzDEA4WFxDJPX`</summary>
+
+```text
+docs/paper/claim3.tex:3:Fine-tuning on collision-free demonstrations produces genuine collision avoidance: LoRA-adapted Pi0.5 raises CAR by ${\sim}$26 percentage points with zero frozen episodes. Does SDF geometric supervision contribute additional avoidance beyond what demonstrations provide? We compare LoRA-only against LoRA+SDF across a 20$\times$ range of loss weights ($\lambda \in \{0.005, 0.01, 0.1\}$) on Pi0.5, all evaluated at the 30K-step checkpoint.
+docs/paper/claim3.tex:7:\caption{Avoidance source attribution on SafeLIBERO. SDF shows no statistically significant CAR improvement beyond LoRA-only at the tested scale $\lambda \in [0.005, 0.1]$ (all $p > 0.05$). All fine-tuned models exhibit 0\% frozen rate and displacement $>$\,0.37\,m.}
+docs/paper/claim3.tex:26:[Omitted long matching line]
+docs/paper/claim3.tex:29:Fine-tuning degrades TSR by ${\sim}$18--20\,pp (71.5\% $\to$ 51.5--54.0\%), a consequence of distributional shift from the pre-trained prior rather than learned paralysis (all models retain $>$\,0.37\,m displacement and 0\% frozen episodes). The SSR/TSR ratio increases from 0.39 (baseline) to 0.51--0.60 (Appendix~\ref{sec:appendix_ssr}): among task-completing episodes, a larger fraction avoids collisions after fine-tuning.
+docs/paper/experimental_framework.tex:25:\paragraph{Auxiliary metrics.} We additionally report the \emph{Frozen Rate}, the fraction of episodes with $d_{\max} < \tau_d$, which quantifies the severity of action collapse for each method. The \emph{Simultaneous Success Rate} (SSR $= $ TSR $\cap$ CAR) measures the fraction of episodes that achieve both task completion and collision avoidance.
+docs/paper/archive/analysis_claim3.tex:7:\caption{Avoidance source attribution on SafeLIBERO (200 episodes per seed). LoRA fine-tuning without SDF produces CAR comparable to SDF-augmented variants; SDF adds no measurable CAR beyond LoRA-only at $\lambda \in \{0.005, 0.01\}$. All fine-tuned models exhibit 0\% frozen rate, confirming active collision avoidance.}
+docs/paper/archive/analysis_claim3.tex:26:[Omitted long matching line]
+docs/paper/archive/analysis_claim3.tex:54:[Omitted long matching line]
+docs/paper/archive/analysis_claim4.tex:7:\caption{Results for Pi0.5 with training-time SDF auxiliary loss on SafeLIBERO (200 episodes per configuration). Frozen rate: fraction of episodes with $d_{\max} < \tau_d$ (action collapse; Section~\ref{sec:metrics}). Pi0.5+A1 produces 0\% frozen episodes at 10K steps, so CAR$_\text{f}$ equals raw CAR.}
+docs/paper/archive/analysis_claim4.tex:29:[Omitted long matching line]
+docs/paper/appendix.tex:14:To validate the robustness of our displacement threshold $\tau_d$, we evaluate the frozen rate across four orders of magnitude. Table~\ref{tab:threshold_sensitivity} shows that the fake safety pattern persists across all reasonable threshold choices: A1-LoRA exhibits near-total action collapse regardless of threshold, while Pi0.5+A1 maintains 0\% frozen rate even at the most conservative setting.
+docs/paper/appendix.tex:18:\caption{Frozen rate (\% of episodes with $d_\mathrm{max} < \tau_d$) across threshold values.}
+docs/paper/introduction.tex:20:[Omitted long matching line]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "cf14b9fa-2e8c-4d4a-970f-72d7697caddd",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "docs/paper/claim3.tex:3:Fine-tuning on collision-free demonstrations produces genuine collision avoidance: LoRA-adapted Pi0.5 raises CAR by ${\\sim}$26 percentage points with zero frozen episodes. Does SDF geometric supervision contribute additional avoidance beyond what demonstrations provide? We compare LoRA-only against LoRA+SDF across a 20$\\times$ range of loss weights ($\\lambda \\in \\{0.005, 0.01, 0.1\\}$) on Pi0.5, all evaluated at the 30K-step checkpoint.\ndocs/paper/claim3.tex:7:\\caption{Avoidance source attribution on SafeLIBERO. SDF shows no statistically significant CAR improvement beyond LoRA-only at the tested scale $\\lambda \\in [0.005, 0.1]$ (all $p > 0.05$). All fine-tuned models exhibit 0\\% frozen rate and displacement $>$\\,0.37\\,m.}\ndocs/paper/claim3.tex:26:[Omitted long matching line]\ndocs/paper/claim3.tex:29:Fine-tuning degrades TSR by ${\\sim}$18--20\\,pp (71.5\\% $\\to$ 51.5--54.0\\%), a consequence of distributional shift from the pre-trained prior rather than learned paralysis (all models retain $>$\\,0.37\\,m displacement and 0\\% frozen episodes). The SSR/TSR ratio increases from 0.39 (baseline) to 0.51--0.60 (Appendix~\\ref{sec:appendix_ssr}): among task-completing episodes, a larger fraction avoids collisions after fine-tuning.\ndocs/paper/experimental_framework.tex:25:\\paragraph{Auxiliary metrics.} We additionally report the \\emph{Frozen Rate}, the fraction of episodes with $d_{\\max} < \\tau_d$, which quantifies the severity of action collapse for each method. The \\emph{Simultaneous Success Rate} (SSR $= $ TSR $\\cap$ CAR) measures the fraction of episodes that achieve both task completion and collision avoidance.\ndocs/paper/archive/analysis_claim3.tex:7:\\caption{Avoidance source attribution on SafeLIBERO (200 episodes per seed). LoRA fine-tuning without SDF produces CAR comparable to SDF-augmented variants; SDF adds no measurable CAR beyond LoRA-only at $\\lambda \\in \\{0.005, 0.01\\}$. All fine-tuned models exhibit 0\\% frozen rate, confirming active collision avoidance.}\ndocs/paper/archive/analysis_claim3.tex:26:[Omitted long matching line]\ndocs/paper/archive/analysis_claim3.tex:54:[Omitted long matching line]\ndocs/paper/archive/analysis_claim4.tex:7:\\caption{Results for Pi0.5 with training-time SDF auxiliary loss on SafeLIBERO (200 episodes per configuration). Frozen rate: fraction of episodes with $d_{\\max} < \\tau_d$ (action collapse; Section~\\ref{sec:metrics}). Pi0.5+A1 produces 0\\% frozen episodes at 10K steps, so CAR$_\\text{f}$ equals raw CAR.}\ndocs/paper/archive/analysis_claim4.tex:29:[Omitted long matching line]\ndocs/paper/appendix.tex:14:To validate the robustness of our displacement threshold $\\tau_d$, we evaluate the frozen rate across four orders of magnitude. Table~\\ref{tab:threshold_sensitivity} shows that the fake safety pattern persists across all reasonable threshold choices: A1-LoRA exhibits near-total action collapse regardless of threshold, while Pi0.5+A1 maintains 0\\% frozen rate even at the most conservative setting.\ndocs/paper/appendix.tex:18:\\caption{Frozen rate (\\% of episodes with $d_\\mathrm{max} < \\tau_d$) across threshold values.}\ndocs/paper/introduction.tex:20:[Omitted long matching line]",
+    "numLines": 13
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_015qC2rN9APvKSuoFt8fnwBk`</summary>
+
+```json
+{
+  "pattern": "fake safe|fake safety|Fake Safety|Fake safe",
+  "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper",
+  "output_mode": "content",
+  "-n": true,
+  "-i": true,
+  "glob": "*.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "ac583095-0f5c-464b-ba0d-dc5667bcec0c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LFEpxnpURo2iwvuNWdKJvd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12608,
+      "cache_read_input_tokens": 11451,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12608
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-28T06:18:52.718Z_
+
+<details><summary>↩ Tool result · `toolu_015qC2rN9APvKSuoFt8fnwBk`</summary>
+
+```text
+docs/paper/archive/analysis_claim2.tex:3:[Omitted long matching line]
+docs/paper/archive/analysis_claim2.tex:7:\caption{Oracle SDF refinement with ground-truth distance fields (160 episodes, 4 tasks $\times$ 40). All three variants achieve lower CAR than unrefined baselines (LoRA 82.0\%, Full-FT 83.0\%), and fake safe rates remain above 96\%.}
+docs/paper/archive/analysis_claim2.tex:13:Method & TSR (\%) & CAR (\%) & Fake Safe (\%) & Refines/ep \\
+docs/paper/archive/analysis_claim2.tex:27:[Omitted long matching line]
+docs/paper/archive/analysis_claim1.tex:1:\subsection{The Fake Safety Problem}\label{sec:fake_safety}
+docs/paper/archive/analysis_claim1.tex:5:[Omitted long matching line]
+docs/paper/archive/analysis_claim1.tex:9:\caption{Fake safety decomposition across methods on SafeLIBERO. CAR$_\text{f}$ excludes episodes with max displacement $< \tau_d = 0.1$\,mm. Fake safe rate is computed over safe (non-collision) episodes only.}
+docs/paper/archive/analysis_claim1.tex:15:Method & CAR (\%) & TSR (\%) & Fake Safe (\%) & Real Safe & CAR$_\text{f}$ (\%) \\
+docs/paper/archive/analysis_claim1.tex:26:[Omitted long matching line]
+docs/paper/archive/analysis_claim1.tex:38:[Omitted long matching line]
+docs/paper/archive/analysis_claim4.tex:29:[Omitted long matching line]
+docs/paper/claim2.tex:13:Method & CAR (\%) & Fake Safe (\%) & Refines/ep \\
+docs/paper/appendix.tex:14:To validate the robustness of our displacement threshold $\tau_d$, we evaluate the frozen rate across four orders of magnitude. Table~\ref{tab:threshold_sensitivity} shows that the fake safety pattern persists across all reasonable threshold choices: A1-LoRA exhibits near-total action collapse regardless of threshold, while Pi0.5+A1 maintains 0\% frozen rate even at the most conservative setting.
+docs/paper/introduction.tex:8:\caption{The fake safety problem in VLA collision avoidance evaluation. Standard CAR classifies a frozen robot as safe because it produces zero collisions (left). dfCAR filters out action-collapsed episodes where displacement falls below $\tau_d$; Pi0+A1's 91.5\% safety score drops to ${\approx}$\,0\% (center). Pi0.5 exhibits genuine avoidance with active motion above 288\,mm in all safe episodes, and dfCAR equals raw CAR (right).}
+docs/paper/introduction.tex:12:[Omitted long matching line]
+docs/paper/introduction.tex:16:\textbf{Fake safety is pervasive.} We introduce displacement-filtered CAR (dfCAR), which excludes episodes below a displacement threshold $\tau_d$. dfCAR collapses Pi0+A1 from 91.5\% to ${\approx}$\,0\% (3/732 safe episodes survive). The bimodal displacement distribution makes $\tau_d$ robust across five orders of magnitude. Pi0.5 validates the metric: TSR\,=\,71.5\%, CAR\,=\,28.5\%, with every safe episode above 288\,mm displacement and dfCAR equal to raw CAR (Section~\ref{sec:fake_safety}).
+docs/paper/introduction.tex:25:    \item \textbf{Fake safety diagnosis:} 100+ experiments across Pi0/Pi0.5 showing $>$99\% of Pi0 safe episodes are action-collapse artifacts.
+docs/paper/claim1.tex:1:\section{The Fake Safety Problem}\label{sec:fake_safety}
+docs/paper/claim1.tex:3:[Omitted long matching line]
+docs/paper/claim1.tex:7:\caption{Fake safety decomposition on SafeLIBERO. dfCAR excludes episodes with displacement $< \tau_d = 0.1$\,mm.}
+docs/paper/claim1.tex:13:Method & Ep. & CAR (\%) & TSR (\%) & Fake Safe (\%) & dfCAR (\%) \\
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "ac874b61-b68d-485f-bedf-b352be5c1c04",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "docs/paper/archive/analysis_claim2.tex:3:[Omitted long matching line]\ndocs/paper/archive/analysis_claim2.tex:7:\\caption{Oracle SDF refinement with ground-truth distance fields (160 episodes, 4 tasks $\\times$ 40). All three variants achieve lower CAR than unrefined baselines (LoRA 82.0\\%, Full-FT 83.0\\%), and fake safe rates remain above 96\\%.}\ndocs/paper/archive/analysis_claim2.tex:13:Method & TSR (\\%) & CAR (\\%) & Fake Safe (\\%) & Refines/ep \\\\\ndocs/paper/archive/analysis_claim2.tex:27:[Omitted long matching line]\ndocs/paper/archive/analysis_claim1.tex:1:\\subsection{The Fake Safety Problem}\\label{sec:fake_safety}\ndocs/paper/archive/analysis_claim1.tex:5:[Omitted long matching line]\ndocs/paper/archive/analysis_claim1.tex:9:\\caption{Fake safety decomposition across methods on SafeLIBERO. CAR$_\\text{f}$ excludes episodes with max displacement $< \\tau_d = 0.1$\\,mm. Fake safe rate is computed over safe (non-collision) episodes only.}\ndocs/paper/archive/analysis_claim1.tex:15:Method & CAR (\\%) & TSR (\\%) & Fake Safe (\\%) & Real Safe & CAR$_\\text{f}$ (\\%) \\\\\ndocs/paper/archive/analysis_claim1.tex:26:[Omitted long matching line]\ndocs/paper/archive/analysis_claim1.tex:38:[Omitted long matching line]\ndocs/paper/archive/analysis_claim4.tex:29:[Omitted long matching line]\ndocs/paper/claim2.tex:13:Method & CAR (\\%) & Fake Safe (\\%) & Refines/ep \\\\\ndocs/paper/appendix.tex:14:To validate the robustness of our displacement threshold $\\tau_d$, we evaluate the frozen rate across four orders of magnitude. Table~\\ref{tab:threshold_sensitivity} shows that the fake safety pattern persists across all reasonable threshold choices: A1-LoRA exhibits near-total action collapse regardless of threshold, while Pi0.5+A1 maintains 0\\% frozen rate even at the most conservative setting.\ndocs/paper/introduction.tex:8:\\caption{The fake safety problem in VLA collision avoidance evaluation. Standard CAR classifies a frozen robot as safe because it produces zero collisions (left). dfCAR filters out action-collapsed episodes where displacement falls below $\\tau_d$; Pi0+A1's 91.5\\% safety score drops to ${\\approx}$\\,0\\% (center). Pi0.5 exhibits genuine avoidance with active motion above 288\\,mm in all safe episodes, and dfCAR equals raw CAR (right).}\ndocs/paper/introduction.tex:12:[Omitted long matching line]\ndocs/paper/introduction.tex:16:\\textbf{Fake safety is pervasive.} We introduce displacement-filtered CAR (dfCAR), which excludes episodes below a displacement threshold $\\tau_d$. dfCAR collapses Pi0+A1 from 91.5\\% to ${\\approx}$\\,0\\% (3/732 safe episodes survive). The bimodal displacement distribution makes $\\tau_d$ robust across five orders of magnitude. Pi0.5 validates the metric: TSR\\,=\\,71.5\\%, CAR\\,=\\,28.5\\%, with every safe episode above 288\\,mm displacement and dfCAR equal to raw CAR (Section~\\ref{sec:fake_safety}).\ndocs/paper/introduction.tex:25:    \\item \\textbf{Fake safety diagnosis:} 100+ experiments across Pi0/Pi0.5 showing $>$99\\% of Pi0 safe episodes are action-collapse artifacts.\ndocs/paper/claim1.tex:1:\\section{The Fake Safety Problem}\\label{sec:fake_safety}\ndocs/paper/claim1.tex:3:[Omitted long matching line]\ndocs/paper/claim1.tex:7:\\caption{Fake safety decomposition on SafeLIBERO. dfCAR excludes episodes with displacement $< \\tau_d = 0.1$\\,mm.}\ndocs/paper/claim1.tex:13:Method & Ep. & CAR (\\%) & TSR (\\%) & Fake Safe (\\%) & dfCAR (\\%) \\\\",
+    "numLines": 21
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_0197Trdfq8EDgJaxBa16gx9U`</summary>
+
+```json
+{
+  "pattern": "\\bfrozen\\b",
+  "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper",
+  "output_mode": "content",
+  "-n": true,
+  "-i": true,
+  "glob": "*.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "a3b40ba5-4a5b-4a21-a80b-73f3709d9761",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LFEpxnpURo2iwvuNWdKJvd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12608,
+      "cache_read_input_tokens": 11451,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12608
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-28T06:18:54.163Z_
+
+<details><summary>↩ Tool result · `toolu_0197Trdfq8EDgJaxBa16gx9U`</summary>
+
+```text
+docs/paper/related_work.tex:15:[Omitted long matching line]
+docs/paper/claim3.tex:3:Fine-tuning on collision-free demonstrations produces genuine collision avoidance: LoRA-adapted Pi0.5 raises CAR by ${\sim}$26 percentage points with zero frozen episodes. Does SDF geometric supervision contribute additional avoidance beyond what demonstrations provide? We compare LoRA-only against LoRA+SDF across a 20$\times$ range of loss weights ($\lambda \in \{0.005, 0.01, 0.1\}$) on Pi0.5, all evaluated at the 30K-step checkpoint.
+docs/paper/claim3.tex:7:\caption{Avoidance source attribution on SafeLIBERO. SDF shows no statistically significant CAR improvement beyond LoRA-only at the tested scale $\lambda \in [0.005, 0.1]$ (all $p > 0.05$). All fine-tuned models exhibit 0\% frozen rate and displacement $>$\,0.37\,m.}
+docs/paper/claim3.tex:26:[Omitted long matching line]
+docs/paper/claim3.tex:29:Fine-tuning degrades TSR by ${\sim}$18--20\,pp (71.5\% $\to$ 51.5--54.0\%), a consequence of distributional shift from the pre-trained prior rather than learned paralysis (all models retain $>$\,0.37\,m displacement and 0\% frozen episodes). The SSR/TSR ratio increases from 0.39 (baseline) to 0.51--0.60 (Appendix~\ref{sec:appendix_ssr}): among task-completing episodes, a larger fraction avoids collisions after fine-tuning.
+docs/paper/discussion.tex:14:[Omitted long matching line]
+docs/paper/experimental_framework.tex:25:\paragraph{Auxiliary metrics.} We additionally report the \emph{Frozen Rate}, the fraction of episodes with $d_{\max} < \tau_d$, which quantifies the severity of action collapse for each method. The \emph{Simultaneous Success Rate} (SSR $= $ TSR $\cap$ CAR) measures the fraction of episodes that achieve both task completion and collision avoidance.
+docs/paper/experimental_framework.tex:36:\item \textit{Pi0.5 + A1}: The A1 architecture applied to the Pi0.5 backbone. Training proceeds in two phases: Phase~1 (steps 0--5K) trains only the auxiliary heads on detached features with the backbone frozen; Phase~2 (steps 5K--30K) unfreezes LoRA parameters for joint optimization. We evaluate $\lambda_\text{SDF} \in \{0.005, 0.01\}$.
+docs/paper/method.tex:9:\caption{Training configurations. Trainable parameters exclude the frozen backbone.}
+docs/paper/archive/analysis_claim3.tex:7:\caption{Avoidance source attribution on SafeLIBERO (200 episodes per seed). LoRA fine-tuning without SDF produces CAR comparable to SDF-augmented variants; SDF adds no measurable CAR beyond LoRA-only at $\lambda \in \{0.005, 0.01\}$. All fine-tuned models exhibit 0\% frozen rate, confirming active collision avoidance.}
+docs/paper/archive/analysis_claim3.tex:13:Method & Seeds & TSR (\%) & CAR (\%) & EE Disp (m) & Frozen (\%) \\
+docs/paper/archive/analysis_claim3.tex:26:[Omitted long matching line]
+docs/paper/archive/analysis_claim3.tex:54:[Omitted long matching line]
+docs/paper/archive/analysis_claim4.tex:7:\caption{Results for Pi0.5 with training-time SDF auxiliary loss on SafeLIBERO (200 episodes per configuration). Frozen rate: fraction of episodes with $d_{\max} < \tau_d$ (action collapse; Section~\ref{sec:metrics}). Pi0.5+A1 produces 0\% frozen episodes at 10K steps, so CAR$_\text{f}$ equals raw CAR.}
+docs/paper/archive/analysis_claim4.tex:13:Method & TSR (\%) & CAR (\%) & CAR$_\text{f}$ (\%) & SSR (\%) & Frozen (\%) \\
+docs/paper/archive/analysis_claim4.tex:29:[Omitted long matching line]
+docs/paper/introduction.tex:8:\caption{The fake safety problem in VLA collision avoidance evaluation. Standard CAR classifies a frozen robot as safe because it produces zero collisions (left). dfCAR filters out action-collapsed episodes where displacement falls below $\tau_d$; Pi0+A1's 91.5\% safety score drops to ${\approx}$\,0\% (center). Pi0.5 exhibits genuine avoidance with active motion above 288\,mm in all safe episodes, and dfCAR equals raw CAR (right).}
+docs/paper/introduction.tex:12:[Omitted long matching line]
+docs/paper/introduction.tex:20:[Omitted long matching line]
+docs/paper/abstract.tex:3:On SafeLIBERO, an SDF-augmented Pi0 achieves 91.5\% CAR while 99.6\% of its safe episodes exhibit end-effector (EE) displacement below 0.1\,mm. The robot is frozen, not safe.
+docs/paper/appendix.tex:14:To validate the robustness of our displacement threshold $\tau_d$, we evaluate the frozen rate across four orders of magnitude. Table~\ref{tab:threshold_sensitivity} shows that the fake safety pattern persists across all reasonable threshold choices: A1-LoRA exhibits near-total action collapse regardless of threshold, while Pi0.5+A1 maintains 0\% frozen rate even at the most conservative setting.
+docs/paper/appendix.tex:18:\caption{Frozen rate (\% of episodes with $d_\mathrm{max} < \tau_d$) across threshold values.}
+docs/paper/appendix.tex:32:The choice of $\tau_d = 0.1$\,mm represents a conservative threshold: displacement below this value is physically negligible in manipulation tasks where typical action magnitudes are 1--10\,mm per step. Even at $\tau_d = 1$\,$\mu$m, 73.9\% of A1-LoRA safe episodes are classified as frozen, while all Pi0.5 episodes remain above threshold at every level tested.
+docs/paper/appendix.tex:113:For the $\lambda = 0.1$ condition, seed~1 records \texttt{avg\_max\_obstacle\_displacement} of 0.0553\,m (per-task: OJ\,=\,0.033, CP\,=\,0.055, Milk\,=\,0.041, BBQ\,=\,0.093), comparable to other fine-tuned conditions and consistent with active manipulation rather than frozen behavior.
+docs/paper/appendix.tex:321:    \item \textbf{Phase 1} (steps 0--5000): Backbone and LoRA parameters are frozen. Only the SDF decoder and EE extractor are trained, allowing them to learn meaningful representations before the policy adapts.
+docs/paper/_archive/method.tex:95:\paragraph{Phase 1: Auxiliary module warmup ($0 \to 5\mathrm{K}$ steps).} The entire backbone, including LoRA parameters, is frozen. Only the SDF decoder (${\sim}$395K params) and EE extractor (${\sim}$263K params) are trained on detached features ($\bar{\mathbf{z}}.\mathrm{detach}()$) to avoid destabilizing the pretrained backbone. This phase establishes an accurate SDF predictor anchored to the backbone's current feature distribution.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "a5847ec5-659b-4cbf-bdd5-ae40d1282ef7",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "docs/paper/related_work.tex:15:[Omitted long matching line]\ndocs/paper/claim3.tex:3:Fine-tuning on collision-free demonstrations produces genuine collision avoidance: LoRA-adapted Pi0.5 raises CAR by ${\\sim}$26 percentage points with zero frozen episodes. Does SDF geometric supervision contribute additional avoidance beyond what demonstrations provide? We compare LoRA-only against LoRA+SDF across a 20$\\times$ range of loss weights ($\\lambda \\in \\{0.005, 0.01, 0.1\\}$) on Pi0.5, all evaluated at the 30K-step checkpoint.\ndocs/paper/claim3.tex:7:\\caption{Avoidance source attribution on SafeLIBERO. SDF shows no statistically significant CAR improvement beyond LoRA-only at the tested scale $\\lambda \\in [0.005, 0.1]$ (all $p > 0.05$). All fine-tuned models exhibit 0\\% frozen rate and displacement $>$\\,0.37\\,m.}\ndocs/paper/claim3.tex:26:[Omitted long matching line]\ndocs/paper/claim3.tex:29:Fine-tuning degrades TSR by ${\\sim}$18--20\\,pp (71.5\\% $\\to$ 51.5--54.0\\%), a consequence of distributional shift from the pre-trained prior rather than learned paralysis (all models retain $>$\\,0.37\\,m displacement and 0\\% frozen episodes). The SSR/TSR ratio increases from 0.39 (baseline) to 0.51--0.60 (Appendix~\\ref{sec:appendix_ssr}): among task-completing episodes, a larger fraction avoids collisions after fine-tuning.\ndocs/paper/discussion.tex:14:[Omitted long matching line]\ndocs/paper/experimental_framework.tex:25:\\paragraph{Auxiliary metrics.} We additionally report the \\emph{Frozen Rate}, the fraction of episodes with $d_{\\max} < \\tau_d$, which quantifies the severity of action collapse for each method. The \\emph{Simultaneous Success Rate} (SSR $= $ TSR $\\cap$ CAR) measures the fraction of episodes that achieve both task completion and collision avoidance.\ndocs/paper/experimental_framework.tex:36:\\item \\textit{Pi0.5 + A1}: The A1 architecture applied to the Pi0.5 backbone. Training proceeds in two phases: Phase~1 (steps 0--5K) trains only the auxiliary heads on detached features with the backbone frozen; Phase~2 (steps 5K--30K) unfreezes LoRA parameters for joint optimization. We evaluate $\\lambda_\\text{SDF} \\in \\{0.005, 0.01\\}$.\ndocs/paper/method.tex:9:\\caption{Training configurations. Trainable parameters exclude the frozen backbone.}\ndocs/paper/archive/analysis_claim3.tex:7:\\caption{Avoidance source attribution on SafeLIBERO (200 episodes per seed). LoRA fine-tuning without SDF produces CAR comparable to SDF-augmented variants; SDF adds no measurable CAR beyond LoRA-only at $\\lambda \\in \\{0.005, 0.01\\}$. All fine-tuned models exhibit 0\\% frozen rate, confirming active collision avoidance.}\ndocs/paper/archive/analysis_claim3.tex:13:Method & Seeds & TSR (\\%) & CAR (\\%) & EE Disp (m) & Frozen (\\%) \\\\\ndocs/paper/archive/analysis_claim3.tex:26:[Omitted long matching line]\ndocs/paper/archive/analysis_claim3.tex:54:[Omitted long matching line]\ndocs/paper/archive/analysis_claim4.tex:7:\\caption{Results for Pi0.5 with training-time SDF auxiliary loss on SafeLIBERO (200 episodes per configuration). Frozen rate: fraction of episodes with $d_{\\max} < \\tau_d$ (action collapse; Section~\\ref{sec:metrics}). Pi0.5+A1 produces 0\\% frozen episodes at 10K steps, so CAR$_\\text{f}$ equals raw CAR.}\ndocs/paper/archive/analysis_claim4.tex:13:Method & TSR (\\%) & CAR (\\%) & CAR$_\\text{f}$ (\\%) & SSR (\\%) & Frozen (\\%) \\\\\ndocs/paper/archive/analysis_claim4.tex:29:[Omitted long matching line]\ndocs/paper/introduction.tex:8:\\caption{The fake safety problem in VLA collision avoidance evaluation. Standard CAR classifies a frozen robot as safe because it produces zero collisions (left). dfCAR filters out action-collapsed episodes where displacement falls below $\\tau_d$; Pi0+A1's 91.5\\% safety score drops to ${\\approx}$\\,0\\% (center). Pi0.5 exhibits genuine avoidance with active motion above 288\\,mm in all safe episodes, and dfCAR equals raw CAR (right).}\ndocs/paper/introduction.tex:12:[Omitted long matching line]\ndocs/paper/introduction.tex:20:[Omitted long matching line]\ndocs/paper/abstract.tex:3:On SafeLIBERO, an SDF-augmented Pi0 achieves 91.5\\% CAR while 99.6\\% of its safe episodes exhibit end-effector (EE) displacement below 0.1\\,mm. The robot is frozen, not safe.\ndocs/paper/appendix.tex:14:To validate the robustness of our displacement threshold $\\tau_d$, we evaluate the frozen rate across four orders of magnitude. Table~\\ref{tab:threshold_sensitivity} shows that the fake safety pattern persists across all reasonable threshold choices: A1-LoRA exhibits near-total action collapse regardless of threshold, while Pi0.5+A1 maintains 0\\% frozen rate even at the most conservative setting.\ndocs/paper/appendix.tex:18:\\caption{Frozen rate (\\% of episodes with $d_\\mathrm{max} < \\tau_d$) across threshold values.}\ndocs/paper/appendix.tex:32:The choice of $\\tau_d = 0.1$\\,mm represents a conservative threshold: displacement below this value is physically negligible in manipulation tasks where typical action magnitudes are 1--10\\,mm per step. Even at $\\tau_d = 1$\\,$\\mu$m, 73.9\\% of A1-LoRA safe episodes are classified as frozen, while all Pi0.5 episodes remain above threshold at every level tested.\ndocs/paper/appendix.tex:113:For the $\\lambda = 0.1$ condition, seed~1 records \\texttt{avg\\_max\\_obstacle\\_displacement} of 0.0553\\,m (per-task: OJ\\,=\\,0.033, CP\\,=\\,0.055, Milk\\,=\\,0.041, BBQ\\,=\\,0.093), comparable to other fine-tuned conditions and consistent with active manipulation rather than frozen behavior.\ndocs/paper/appendix.tex:321:    \\item \\textbf{Phase 1} (steps 0--5000): Backbone and LoRA parameters are frozen. Only the SDF decoder and EE extractor are trained, allowing them to learn meaningful representations before the policy adapts.\ndocs/paper/_archive/method.tex:95:\\paragraph{Phase 1: Auxiliary module warmup ($0 \\to 5\\mathrm{K}$ steps).} The entire backbone, including LoRA parameters, is frozen. Only the SDF decoder (${\\sim}$395K params) and EE extractor (${\\sim}$263K params) are trained on detached features ($\\bar{\\mathbf{z}}.\\mathrm{detach}()$) to avoid destabilizing the pretrained backbone. This phase establishes an accurate SDF predictor anchored to the backbone's current feature distribution.",
+    "numLines": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture of all occurrences. Let me read the relevant lines in each file to understand context before making replacements. Let me organize what I need to do:
+
+**Files to modify (excluding archive/):**
+
+### "frozen episodes" / "frozen episode" → "action-collapsed episodes" / "action-collapsed episode"
+1. claim3.tex:3 - "zero frozen episodes"
+2. claim3.tex:7 - "0\% frozen rate"
+3. claim3.tex:26 - need to see
+4. claim3.tex:29 - "0\% frozen episodes"
+
+
+5. experimental_framework.tex:25 - "\emph{Frozen Rate}"
+6. appendix.tex:14 - "frozen rate" (multiple)
+7. appendix.tex:18 - "Frozen rate"
+8. introduction.tex:20 - need to see
+
+### "frozen rate" → "action-collapse rate"
+Same lines as above where "frozen rate" appears.
+
+### "fake safety" / "fake safe" handling
+- introduction.tex:8 - caption with "fake safety problem" 
+- introduction.tex:12 - need to see
+- introduction.tex:16 - "Fake safety is pervasive"
+- introduction.tex:25 - "Fake safety diagnosis"
+
+Now I need to check those lines I marked as "need to see" to get the full context before proceeding with the replacements.
+
+Looking at the next set of occurrences, I see "Fake Safety Problem" appears as a section title in claim1.tex with its own label, and there are column headers using "Fake Safe (\%)" in both claim1 and claim2 tables. The appendix also has a "fake safety pattern" reference. For the standalone "frozen" instances, I'm tracking cases where it refers to the robot being frozen versus technical terms like "frozen backbone" in model training contexts—those training-related uses should probably stay as-is since they're not about the robot behavior.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "a2e00dc2-533a-4eb8-adc0-83ffa32ba28c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019xctSJnuT999z9ym2XNntb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4660,
+      "cache_read_input_tokens": 24059,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4660
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+Now let me read the relevant sections of each file to understand context before making edits.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "ca90f969-939f-4fbe-8470-93227c51f793",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019xctSJnuT999z9ym2XNntb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4660,
+      "cache_read_input_tokens": 24059,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4660
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — Read · `toolu_0154h8DPiaxmUHLrquSo7AmK`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/introduction.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "9523277f-c20e-4d20-b59a-eef5e183bdd5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019xctSJnuT999z9ym2XNntb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4660,
+      "cache_read_input_tokens": 24059,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4660
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-28T06:19:11.894Z_
+
+<details><summary>↩ Tool result · `toolu_0154h8DPiaxmUHLrquSo7AmK`</summary>
+
+```text
+1	\section{Introduction}\label{sec:intro}
+2	
+3	Collision avoidance is a prerequisite for deploying Vision-Language-Action (VLA) models in physical environments~\cite{li2026vlasafety}. The SafeLIBERO benchmark~\cite{hu2025vlsa} provides the first systematic protocol for measuring collision avoidance in VLA manipulation. Recent methods report high Collision Avoidance Rate (CAR) through SDF-augmented training~\cite{zhang2025safevla}, constraint-based planning~\cite{yang2025cape}, and collision-free demonstrations~\cite{cofreeevla2026}. Our SDF-augmented Pi0~\cite{black2024pi0} reaches 91.5\% CAR across 800 episodes. The problem appears close to solved.
+4	
+5	\begin{figure}[t]
+6	\centering
+7	\includegraphics[width=\linewidth]{fig1_teaser}
+8	\caption{The fake safety problem in VLA collision avoidance evaluation. Standard CAR classifies a frozen robot as safe because it produces zero collisions (left). dfCAR filters out action-collapsed episodes where displacement falls below $\tau_d$; Pi0+A1's 91.5\% safety score drops to ${\approx}$\,0\% (center). Pi0.5 exhibits genuine avoidance with active motion above 288\,mm in all safe episodes, and dfCAR equals raw CAR (right).}
+9	\label{fig:teaser}
+10	\end{figure}
+11	
+12	It is not (Figure~\ref{fig:teaser}). Of the 732 collision-free episodes, 99.6\% exhibit displacement below 0.1\,mm; TSR is 0\% across all 800 episodes. The robot is frozen, not safe. The same pattern holds across all Pi0 configurations (Section~\ref{sec:fake_safety}). We term this \emph{fake safety}: \emph{action collapse} (near-zero actions producing zero collisions) renders reported CAR illusory, and standard evaluation cannot distinguish inaction from deliberate avoidance~\cite{karwowski2024goodhart}.
+13	
+14	We present a systematic investigation of this problem across the Pi0 and Pi0.5~\cite{black2024pi0} model families on SafeLIBERO, spanning 100+ experiments and 6000+ evaluation episodes. Three findings emerge.
+15	
+16	\textbf{Fake safety is pervasive.} We introduce displacement-filtered CAR (dfCAR), which excludes episodes below a displacement threshold $\tau_d$. dfCAR collapses Pi0+A1 from 91.5\% to ${\approx}$\,0\% (3/732 safe episodes survive). The bimodal displacement distribution makes $\tau_d$ robust across five orders of magnitude. Pi0.5 validates the metric: TSR\,=\,71.5\%, CAR\,=\,28.5\%, with every safe episode above 288\,mm displacement and dfCAR equal to raw CAR (Section~\ref{sec:fake_safety}).
+17	
+18	\textbf{EE-only SDF refinement is structurally counterproductive.} Three ground-truth oracle variants all achieve \emph{lower} CAR than unrefined baselines (73.1--76.9\% vs.\ 82--83\%). The SDF gradient repels the EE but rotates arm links into obstacle volumes (Section~\ref{sec:ee_only}).
+19	
+20	\textbf{Collision-free demonstrations are sufficient for collision avoidance.} LoRA fine-tuning on Pi0.5 with collision-free demonstrations raises CAR by ${\sim}$26 points with zero frozen episodes. Adding SDF supervision does not yield statistically significant improvement across the tested range $\lambda \in [0.005, 0.1]$ ($p > 0.05$ for $\lambda \in \{0.01, 0.1\}$; $\lambda = 0.1$: $p = 0.131$, 3 seeds). The per-task avoidance ranking is preserved across all conditions, indicating that the demonstration distribution primarily accounts for observed avoidance (Section~\ref{sec:avoidance_source}).
+21	
+22	Our contributions are:
+23	\begin{itemize}
+24	    \item \textbf{dfCAR metric:} displacement-filtered CAR that separates genuine avoidance from action collapse, robust across $\tau_d \in [2, 200]$\,mm.
+25	    \item \textbf{Fake safety diagnosis:} 100+ experiments across Pi0/Pi0.5 showing $>$99\% of Pi0 safe episodes are action-collapse artifacts.
+26	    \item \textbf{EE-only SDF is counterproductive:} ground-truth oracle refinement \emph{reduces} CAR below unrefined baselines by redistributing collisions to unmonitored arm links.
+27	    \item \textbf{Demonstration sufficiency:} collision-free demonstrations account for nearly all measured CAR gains (${\sim}$26\,pp); SDF supervision shows no statistically significant benefit across the tested range $\lambda \in [0.005, 0.1]$ ($p > 0.05$ for $\lambda \in \{0.01, 0.1\}$, 3 seeds).
+28	\end{itemize}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "dfb4f970-5207-4ec2-88a7-cbfd64493363",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/introduction.tex",
+      "content": "\\section{Introduction}\\label{sec:intro}\n\nCollision avoidance is a prerequisite for deploying Vision-Language-Action (VLA) models in physical environments~\\cite{li2026vlasafety}. The SafeLIBERO benchmark~\\cite{hu2025vlsa} provides the first systematic protocol for measuring collision avoidance in VLA manipulation. Recent methods report high Collision Avoidance Rate (CAR) through SDF-augmented training~\\cite{zhang2025safevla}, constraint-based planning~\\cite{yang2025cape}, and collision-free demonstrations~\\cite{cofreeevla2026}. Our SDF-augmented Pi0~\\cite{black2024pi0} reaches 91.5\\% CAR across 800 episodes. The problem appears close to solved.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\linewidth]{fig1_teaser}\n\\caption{The fake safety problem in VLA collision avoidance evaluation. Standard CAR classifies a frozen robot as safe because it produces zero collisions (left). dfCAR filters out action-collapsed episodes where displacement falls below $\\tau_d$; Pi0+A1's 91.5\\% safety score drops to ${\\approx}$\\,0\\% (center). Pi0.5 exhibits genuine avoidance with active motion above 288\\,mm in all safe episodes, and dfCAR equals raw CAR (right).}\n\\label{fig:teaser}\n\\end{figure}\n\nIt is not (Figure~\\ref{fig:teaser}). Of the 732 collision-free episodes, 99.6\\% exhibit displacement below 0.1\\,mm; TSR is 0\\% across all 800 episodes. The robot is frozen, not safe. The same pattern holds across all Pi0 configurations (Section~\\ref{sec:fake_safety}). We term this \\emph{fake safety}: \\emph{action collapse} (near-zero actions producing zero collisions) renders reported CAR illusory, and standard evaluation cannot distinguish inaction from deliberate avoidance~\\cite{karwowski2024goodhart}.\n\nWe present a systematic investigation of this problem across the Pi0 and Pi0.5~\\cite{black2024pi0} model families on SafeLIBERO, spanning 100+ experiments and 6000+ evaluation episodes. Three findings emerge.\n\n\\textbf{Fake safety is pervasive.} We introduce displacement-filtered CAR (dfCAR), which excludes episodes below a displacement threshold $\\tau_d$. dfCAR collapses Pi0+A1 from 91.5\\% to ${\\approx}$\\,0\\% (3/732 safe episodes survive). The bimodal displacement distribution makes $\\tau_d$ robust across five orders of magnitude. Pi0.5 validates the metric: TSR\\,=\\,71.5\\%, CAR\\,=\\,28.5\\%, with every safe episode above 288\\,mm displacement and dfCAR equal to raw CAR (Section~\\ref{sec:fake_safety}).\n\n\\textbf{EE-only SDF refinement is structurally counterproductive.} Three ground-truth oracle variants all achieve \\emph{lower} CAR than unrefined baselines (73.1--76.9\\% vs.\\ 82--83\\%). The SDF gradient repels the EE but rotates arm links into obstacle volumes (Section~\\ref{sec:ee_only}).\n\n\\textbf{Collision-free demonstrations are sufficient for collision avoidance.} LoRA fine-tuning on Pi0.5 with collision-free demonstrations raises CAR by ${\\sim}$26 points with zero frozen episodes. Adding SDF supervision does not yield statistically significant improvement across the tested range $\\lambda \\in [0.005, 0.1]$ ($p > 0.05$ for $\\lambda \\in \\{0.01, 0.1\\}$; $\\lambda = 0.1$: $p = 0.131$, 3 seeds). The per-task avoidance ranking is preserved across all conditions, indicating that the demonstration distribution primarily accounts for observed avoidance (Section~\\ref{sec:avoidance_source}).\n\nOur contributions are:\n\\begin{itemize}\n    \\item \\textbf{dfCAR metric:} displacement-filtered CAR that separates genuine avoidance from action collapse, robust across $\\tau_d \\in [2, 200]$\\,mm.\n    \\item \\textbf{Fake safety diagnosis:} 100+ experiments across Pi0/Pi0.5 showing $>$99\\% of Pi0 safe episodes are action-collapse artifacts.\n    \\item \\textbf{EE-only SDF is counterproductive:} ground-truth oracle refinement \\emph{reduces} CAR below unrefined baselines by redistributing collisions to unmonitored arm links.\n    \\item \\textbf{Demonstration sufficiency:} collision-free demonstrations account for nearly all measured CAR gains (${\\sim}$26\\,pp); SDF supervision shows no statistically significant benefit across the tested range $\\lambda \\in [0.005, 0.1]$ ($p > 0.05$ for $\\lambda \\in \\{0.01, 0.1\\}$, 3 seeds).\n\\end{itemize}",
+      "numLines": 28,
+      "startLine": 1,
+      "totalLines": 28
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — Read · `toolu_013TqjGr6H7Tg86U9ZtdcVzL`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim1.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "fc6792c2-f168-4376-9608-832c79569449",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019xctSJnuT999z9ym2XNntb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4660,
+      "cache_read_input_tokens": 24059,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4660
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-28T06:19:12.030Z_
+
+<details><summary>↩ Tool result · `toolu_013TqjGr6H7Tg86U9ZtdcVzL`</summary>
+
+```text
+1	\section{The Fake Safety Problem}\label{sec:fake_safety}
+2	
+3	Standard CAR assumes that collision-free episodes reflect deliberate avoidance. This assumption is systematically violated: in every Pi0 configuration tested, over 99\% of collision-free episodes are action-collapse artifacts (Table~\ref{tab:fake_safety}).\footnote{Pi0-family values report obstacle displacement from the original protocol; Pi0.5 reports EE displacement from the rotation-corrected protocol (\S\ref{sec:dfcar}). Sub-millimeter displacement indicates action collapse in both cases.} Applying dfCAR collapses all three to ${\approx}$\,0\%. Pi0+A1 achieves the \emph{highest} raw CAR (91.5\%) because more complete action collapse (from a parameter-name mismatch preventing LoRA loading; Table~\ref{tab:configurations}) yields higher fake safety. Pi0.5 validates the metric from the opposite direction: every safe episode exceeds 200\,mm displacement, and dfCAR equals raw CAR (28.5\%). The displacement distribution is sharply bimodal (Appendix~\ref{sec:appendix_displacement}), with a five-order-of-magnitude gap that makes $\tau_d$ robust.
+4	
+5	\begin{table}[t]
+6	\centering
+7	\caption{Fake safety decomposition on SafeLIBERO. dfCAR excludes episodes with displacement $< \tau_d = 0.1$\,mm.}
+8	\label{tab:fake_safety}
+9	\vspace{2pt}
+10	\small
+11	\begin{tabular}{lccccc}
+12	\toprule
+13	Method & Ep. & CAR (\%) & TSR (\%) & Fake Safe (\%) & dfCAR (\%) \\
+14	\midrule
+15	Pi0 Full-FT  & 200 & 83.0 & 0.5 & 99.4 & $\approx$\,0 \\
+16	Pi0 LoRA     & 200 & 82.0 & 0.0 & ${\sim}$99 & $\approx$\,0 \\
+17	Pi0+A1 (SDF) & 800 & 91.5 & 0.0 & 99.6 & $\approx$\,0$^*$ \\
+18	\midrule
+19	Pi0.5  & 200 & 28.5 & 71.5 & 0.0 & 28.5 \\
+20	\bottomrule
+21	\end{tabular}
+22	\vspace{1pt}
+23	{\footnotesize $^*$\,3/732 safe episodes above threshold; denominator too small for reliable rate.}
+24	\end{table}
+25	
+26	Figure~\ref{fig:tsr_car_scatter} reveals spatial structure in the TSR-CAR plane.\label{sec:anticorrelation} Pi0-family models cluster in the upper-left (high CAR, near-zero TSR), Pi0.5 in the lower-right (high TSR, low CAR). The upper-right quadrant (high TSR \emph{and} CAR) represents genuinely safe behavior; the upper-left is accessible through action collapse alone. Under dfCAR, Pi0 configurations drop to the origin: the apparent safety-capability tradeoff was an artifact of action-collapse contamination.
+27	
+28	\begin{figure}[t]
+29	\centering
+30	\includegraphics[width=0.85\linewidth]{fig_tsr_car_scatter.pdf}
+31	\caption{TSR vs.\ CAR for all configurations. Pi0-family models cluster in the upper-left (high CAR from inaction), Pi0.5 in the lower-right (high TSR with collision exposure), fine-tuned Pi0.5 in the center. The upper-right quadrant (high TSR and CAR) represents genuinely safe behavior. Error bars: $\pm$1 std across seeds.}
+32	\label{fig:tsr_car_scatter}
+33	\end{figure}
+34	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "459ec682-06d6-4821-8f42-9503d50557eb",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim1.tex",
+      "content": "\\section{The Fake Safety Problem}\\label{sec:fake_safety}\n\nStandard CAR assumes that collision-free episodes reflect deliberate avoidance. This assumption is systematically violated: in every Pi0 configuration tested, over 99\\% of collision-free episodes are action-collapse artifacts (Table~\\ref{tab:fake_safety}).\\footnote{Pi0-family values report obstacle displacement from the original protocol; Pi0.5 reports EE displacement from the rotation-corrected protocol (\\S\\ref{sec:dfcar}). Sub-millimeter displacement indicates action collapse in both cases.} Applying dfCAR collapses all three to ${\\approx}$\\,0\\%. Pi0+A1 achieves the \\emph{highest} raw CAR (91.5\\%) because more complete action collapse (from a parameter-name mismatch preventing LoRA loading; Table~\\ref{tab:configurations}) yields higher fake safety. Pi0.5 validates the metric from the opposite direction: every safe episode exceeds 200\\,mm displacement, and dfCAR equals raw CAR (28.5\\%). The displacement distribution is sharply bimodal (Appendix~\\ref{sec:appendix_displacement}), with a five-order-of-magnitude gap that makes $\\tau_d$ robust.\n\n\\begin{table}[t]\n\\centering\n\\caption{Fake safety decomposition on SafeLIBERO. dfCAR excludes episodes with displacement $< \\tau_d = 0.1$\\,mm.}\n\\label{tab:fake_safety}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lccccc}\n\\toprule\nMethod & Ep. & CAR (\\%) & TSR (\\%) & Fake Safe (\\%) & dfCAR (\\%) \\\\\n\\midrule\nPi0 Full-FT  & 200 & 83.0 & 0.5 & 99.4 & $\\approx$\\,0 \\\\\nPi0 LoRA     & 200 & 82.0 & 0.0 & ${\\sim}$99 & $\\approx$\\,0 \\\\\nPi0+A1 (SDF) & 800 & 91.5 & 0.0 & 99.6 & $\\approx$\\,0$^*$ \\\\\n\\midrule\nPi0.5  & 200 & 28.5 & 71.5 & 0.0 & 28.5 \\\\\n\\bottomrule\n\\end{tabular}\n\\vspace{1pt}\n{\\footnotesize $^*$\\,3/732 safe episodes above threshold; denominator too small for reliable rate.}\n\\end{table}\n\nFigure~\\ref{fig:tsr_car_scatter} reveals spatial structure in the TSR-CAR plane.\\label{sec:anticorrelation} Pi0-family models cluster in the upper-left (high CAR, near-zero TSR), Pi0.5 in the lower-right (high TSR, low CAR). The upper-right quadrant (high TSR \\emph{and} CAR) represents genuinely safe behavior; the upper-left is accessible through action collapse alone. Under dfCAR, Pi0 configurations drop to the origin: the apparent safety-capability tradeoff was an artifact of action-collapse contamination.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.85\\linewidth]{fig_tsr_car_scatter.pdf}\n\\caption{TSR vs.\\ CAR for all configurations. Pi0-family models cluster in the upper-left (high CAR from inaction), Pi0.5 in the lower-right (high TSR with collision exposure), fine-tuned Pi0.5 in the center. The upper-right quadrant (high TSR and CAR) represents genuinely safe behavior. Error bars: $\\pm$1 std across seeds.}\n\\label{fig:tsr_car_scatter}\n\\end{figure}\n",
+      "numLines": 34,
+      "startLine": 1,
+      "totalLines": 34
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01V1GmXCwoBpuS3kT5mpJ7Jo`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim2.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "abdb9b66-c704-44bd-8d8b-ab9d7b3d5121",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019xctSJnuT999z9ym2XNntb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4660,
+      "cache_read_input_tokens": 24059,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4660
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-28T06:19:12.261Z_
+
+<details><summary>↩ Tool result · `toolu_01V1GmXCwoBpuS3kT5mpJ7Jo`</summary>
+
+```text
+1	\section{End-Effector-Only SDF Cannot Ensure Full-Body Safety}\label{sec:ee_only}
+2	
+3	Could a perfect SDF signal enable effective EE-only refinement? We replace the learned SDF with ground-truth distance fields from the simulation geometry (\S\ref{sec:oracle_setup}). Table~\ref{tab:oracle} and Figure~\ref{fig:oracle_bar} show that all three oracle variants achieve \emph{lower} CAR than unrefined baselines: the best oracle (76.9\%) falls 5.1 points below LoRA (82.0\%). Refinement with perfect distance information produces more collisions, not fewer.
+4	
+5	\begin{table}[t]
+6	\centering
+7	\caption{Oracle SDF refinement with ground-truth distance fields. All oracle variants achieve lower CAR than unrefined baselines. Per-task breakdown in Appendix~\ref{sec:appendix_pertask_oracle}.}
+8	\label{tab:oracle}
+9	\vspace{2pt}
+10	\small
+11	\begin{tabular}{lccc}
+12	\toprule
+13	Method & CAR (\%) & Fake Safe (\%) & Refines/ep \\
+14	\midrule
+15	LoRA baseline (no refine) & 82.0 & 99.4 & -- \\
+16	Full-FT baseline (no refine) & 83.0 & -- & -- \\
+17	\midrule
+18	Oracle-adaptive (GT, dyn.\ $\alpha$) & 75.0 & 98.3 & 14.2 \\
+19	Oracle-fixed (GT, $\alpha{=}0.005$) & 73.1 & 98.3 & 14.8 \\
+20	Oracle-feature (GT, feat.\ space) & 76.9 & 96.7 & 241.7 \\
+21	\midrule
+22	A3 learned SDF & 77.1 & -- & 0.0 \\
+23	\bottomrule
+24	\end{tabular}
+25	\end{table}
+26	
+27	\begin{figure}[t]
+28	\centering
+29	\includegraphics[width=0.85\linewidth]{fig_oracle_bar.pdf}
+30	\caption{CAR for oracle SDF refinement versus unrefined baselines. All GT oracle variants underperform baselines despite perfect distance information.}
+31	\label{fig:oracle_bar}
+32	\end{figure}
+33	
+34	Per-task analysis reveals the mechanism (Appendix~\ref{sec:appendix_pertask_oracle}). On the one task where the EE is the primary collision body, oracle refinement helps (+9 points). On the remaining three, the SDF gradient pushes the EE away from obstacles but rotates intermediate arm links into obstacle volumes; the net effect is one collision traded for another. The A3 learned SDF never triggers refinement (0 steps per episode). EE-only refinement is structurally counterproductive: joint-space coupling between EE displacement and arm-link rotation redistributes collisions to unmonitored links regardless of signal quality.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "587be607-cc75-46fc-a9b8-a4bda387509d",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim2.tex",
+      "content": "\\section{End-Effector-Only SDF Cannot Ensure Full-Body Safety}\\label{sec:ee_only}\n\nCould a perfect SDF signal enable effective EE-only refinement? We replace the learned SDF with ground-truth distance fields from the simulation geometry (\\S\\ref{sec:oracle_setup}). Table~\\ref{tab:oracle} and Figure~\\ref{fig:oracle_bar} show that all three oracle variants achieve \\emph{lower} CAR than unrefined baselines: the best oracle (76.9\\%) falls 5.1 points below LoRA (82.0\\%). Refinement with perfect distance information produces more collisions, not fewer.\n\n\\begin{table}[t]\n\\centering\n\\caption{Oracle SDF refinement with ground-truth distance fields. All oracle variants achieve lower CAR than unrefined baselines. Per-task breakdown in Appendix~\\ref{sec:appendix_pertask_oracle}.}\n\\label{tab:oracle}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lccc}\n\\toprule\nMethod & CAR (\\%) & Fake Safe (\\%) & Refines/ep \\\\\n\\midrule\nLoRA baseline (no refine) & 82.0 & 99.4 & -- \\\\\nFull-FT baseline (no refine) & 83.0 & -- & -- \\\\\n\\midrule\nOracle-adaptive (GT, dyn.\\ $\\alpha$) & 75.0 & 98.3 & 14.2 \\\\\nOracle-fixed (GT, $\\alpha{=}0.005$) & 73.1 & 98.3 & 14.8 \\\\\nOracle-feature (GT, feat.\\ space) & 76.9 & 96.7 & 241.7 \\\\\n\\midrule\nA3 learned SDF & 77.1 & -- & 0.0 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.85\\linewidth]{fig_oracle_bar.pdf}\n\\caption{CAR for oracle SDF refinement versus unrefined baselines. All GT oracle variants underperform baselines despite perfect distance information.}\n\\label{fig:oracle_bar}\n\\end{figure}\n\nPer-task analysis reveals the mechanism (Appendix~\\ref{sec:appendix_pertask_oracle}). On the one task where the EE is the primary collision body, oracle refinement helps (+9 points). On the remaining three, the SDF gradient pushes the EE away from obstacles but rotates intermediate arm links into obstacle volumes; the net effect is one collision traded for another. The A3 learned SDF never triggers refinement (0 steps per episode). EE-only refinement is structurally counterproductive: joint-space coupling between EE displacement and arm-link rotation redistributes collisions to unmonitored links regardless of signal quality.",
+      "numLines": 34,
+      "startLine": 1,
+      "totalLines": 34
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01SmUQSGFBi79PyeNSrzfmQf`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim3.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "80006dab-7c75-4a3a-bf83-88a12ff377ff",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019xctSJnuT999z9ym2XNntb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4660,
+      "cache_read_input_tokens": 24059,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4660
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-28T06:19:12.282Z_
+
+<details><summary>↩ Tool result · `toolu_01SmUQSGFBi79PyeNSrzfmQf`</summary>
+
+```text
+1	\section{Avoidance Source Diagnosis}\label{sec:avoidance_source}
+2	
+3	Fine-tuning on collision-free demonstrations produces genuine collision avoidance: LoRA-adapted Pi0.5 raises CAR by ${\sim}$26 percentage points with zero frozen episodes. Does SDF geometric supervision contribute additional avoidance beyond what demonstrations provide? We compare LoRA-only against LoRA+SDF across a 20$\times$ range of loss weights ($\lambda \in \{0.005, 0.01, 0.1\}$) on Pi0.5, all evaluated at the 30K-step checkpoint.
+4	
+5	\begin{table}[t]
+6	\centering
+7	\caption{Avoidance source attribution on SafeLIBERO. SDF shows no statistically significant CAR improvement beyond LoRA-only at the tested scale $\lambda \in [0.005, 0.1]$ (all $p > 0.05$). All fine-tuned models exhibit 0\% frozen rate and displacement $>$\,0.37\,m.}
+8	\label{tab:avoidance_source}
+9	\vspace{2pt}
+10	\small
+11	\begin{tabular}{lcccc}
+12	\toprule
+13	Method & Seeds & TSR (\%) & CAR (\%) & EE Disp (m) \\
+14	\midrule
+15	Pi0.5 baseline & 1 & 71.5 & 28.5 & 0.367 \\
+16	\midrule
+17	LoRA-only (no SDF) & 3 & 51.5\,$\pm$\,0.0 & 54.67\,$\pm$\,2.02 & 0.391 \\
+18	LoRA+SDF $\lambda{=}0.005$ & 3 & 54.0\,$\pm$\,3.0 & 54.5\,$\pm$\,2.29 & 0.387 \\
+19	LoRA+SDF $\lambda{=}0.01$ & 3 & 53.8\,$\pm$\,1.5 & 56.33\,$\pm$\,1.61 & 0.389 \\
+20	LoRA+SDF $\lambda{=}0.1$ & 3 & 50.2\,$\pm$\,3.9 & 57.00\,$\pm$\,2.18 & 0.394 \\
+21	\bottomrule
+22	\end{tabular}
+23	\vspace{1pt}
+24	\end{table}
+25	
+26	Table~\ref{tab:avoidance_source} shows that collision-free demonstrations alone raise CAR by ${\sim}$26 percentage points (28.5\% $\to$ 54.67\%) with zero frozen episodes and displacement above 0.37\,m, confirming genuine avoidance. Adding SDF supervision does not yield statistically significant improvement at the tested scale: LoRA-only CAR (54.67\%) is statistically indistinguishable from all SDF conditions including $\lambda = 0.1$ (57.00\%, $p = 0.131$; Appendix~\ref{sec:appendix_null}). A Phase~2 ablation ($\lambda = 0$ after step 5K) yields CAR\,=\,58.0\%\footnote{At the 18K checkpoint (13K steps of Phase~2 training, single seed s2); full 30K training did not complete due to disk constraints.}, suggesting that SDF gradients do not produce a lasting behavioral effect. The per-task CAR ordering is preserved across all conditions (chocolate\_pudding highest, bbq\_sauce lowest) and invariant to $\lambda$ across a 20$\times$ range, indicating that avoidance patterns reflect the demonstration distribution rather than geometric supervision.
+27	
+28	\paragraph{CAR--TSR trade-off.}\label{sec:tsr_collapse}
+29	Fine-tuning degrades TSR by ${\sim}$18--20\,pp (71.5\% $\to$ 51.5--54.0\%), a consequence of distributional shift from the pre-trained prior rather than learned paralysis (all models retain $>$\,0.37\,m displacement and 0\% frozen episodes). The SSR/TSR ratio increases from 0.39 (baseline) to 0.51--0.60 (Appendix~\ref{sec:appendix_ssr}): among task-completing episodes, a larger fraction avoids collisions after fine-tuning.
+30	
+31	\paragraph{Dose-response at higher loss weights.}\label{sec:lambda_high}
+32	Increasing $\lambda$ by 20$\times$ to 0.1 yields CAR\,=\,57.00\%\,$\pm$\,2.18 at the 30K checkpoint (3 seeds: 58.0\%, 58.5\%, 54.5\%), within the null distribution (mean 54.58\%, $\sigma = 1.93$; permutation $p = 0.131$\footnote{One-tailed permutation $p = 0.071$; even with the directional prior that SDF should not \emph{decrease} CAR, the result remains non-significant.}). SDF supervision does not produce statistically significant benefit across the tested range $\lambda \in [0.005, 0.1]$ (Figure~\ref{fig:lambda_car}). This result disambiguates the two-level failure analysis (Section~\ref{sec:conclusion}): because even a 20$\times$ increase in SDF loss weight fails to produce additional avoidance, the binding constraint is not training signal magnitude but the structural mismatch between end-effector monitoring and full-body collision surfaces. Stronger geometric supervision cannot compensate for supervising the wrong collision surface.
+33	
+34	\paragraph{Robustness to null construction.}
+35	The preceding permutation test pools LoRA-only and $\lambda = 0.005$ seeds as a single null (Null~B, $\binom{9}{3} = 84$ permutations, two-tailed $p = 0.131$). An alternative construction using only LoRA-only seeds (Null~A, $\binom{6}{3} = 20$ permutations) yields one-tailed $p = 0.150$, two-tailed $p = 0.300$. The conclusion is robust to null construction: neither yields significance at $\alpha = 0.05$.
+36	
+37	\paragraph{Statistical power.}
+38	With $n = 3$ seeds per group and $\sigma \approx 2.0$\,pp (LoRA cross-seed standard deviation), a two-sample $t$-test at $\alpha = 0.05$ (one-tailed) achieves 80\% power only for effects $\geq 5.0$\,pp. The observed effect of ${\sim}$2.3\,pp falls well below this minimum detectable effect (MDE), so the study is underpowered to detect a benefit of this magnitude.
+39	
+40	\paragraph{Evaluation-seed consistency.}
+41	Under matched evaluation conditions (Appendix~\ref{sec:appendix_eval_seed}), SDF $\lambda = 0.1$ yields higher CAR in all three paired eval seeds ($+$1.5, $+$2.5, $+$5.5\,pp), with lower cross-seed variance ($\sigma = 0.9$\,pp vs.\ 2.0\,pp for LoRA). At the tested scale ($n = 3$ training seeds), SDF supervision does not produce a statistically significant CAR improvement ($p = 0.131$, two-tailed permutation). The observed effect (${\sim}$2.3\,pp) falls well below the study's MDE (${\sim}$5\,pp at 80\% power). Whether this consistent directional pattern reflects a genuine small benefit or residual confounding cannot be resolved at the current sample size.
+42	
+43	\begin{figure}[t]
+44	\centering
+45	\includegraphics[width=0.85\linewidth]{fig5_lambda_curve}
+46	\caption{Effect of SDF loss weight $\lambda$ on CAR and TSR. $\lambda = 0$: LoRA-only. All tested $\lambda$ values remain within the null band ($p > 0.05$), consistent with the absence of statistically significant improvement across a 20$\times$ loss-weight range.}
+47	\label{fig:lambda_car}
+48	\end{figure}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "30fc090d-aa1b-4bbe-9d67-66f38311b74a",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim3.tex",
+      "content": "\\section{Avoidance Source Diagnosis}\\label{sec:avoidance_source}\n\nFine-tuning on collision-free demonstrations produces genuine collision avoidance: LoRA-adapted Pi0.5 raises CAR by ${\\sim}$26 percentage points with zero frozen episodes. Does SDF geometric supervision contribute additional avoidance beyond what demonstrations provide? We compare LoRA-only against LoRA+SDF across a 20$\\times$ range of loss weights ($\\lambda \\in \\{0.005, 0.01, 0.1\\}$) on Pi0.5, all evaluated at the 30K-step checkpoint.\n\n\\begin{table}[t]\n\\centering\n\\caption{Avoidance source attribution on SafeLIBERO. SDF shows no statistically significant CAR improvement beyond LoRA-only at the tested scale $\\lambda \\in [0.005, 0.1]$ (all $p > 0.05$). All fine-tuned models exhibit 0\\% frozen rate and displacement $>$\\,0.37\\,m.}\n\\label{tab:avoidance_source}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\nMethod & Seeds & TSR (\\%) & CAR (\\%) & EE Disp (m) \\\\\n\\midrule\nPi0.5 baseline & 1 & 71.5 & 28.5 & 0.367 \\\\\n\\midrule\nLoRA-only (no SDF) & 3 & 51.5\\,$\\pm$\\,0.0 & 54.67\\,$\\pm$\\,2.02 & 0.391 \\\\\nLoRA+SDF $\\lambda{=}0.005$ & 3 & 54.0\\,$\\pm$\\,3.0 & 54.5\\,$\\pm$\\,2.29 & 0.387 \\\\\nLoRA+SDF $\\lambda{=}0.01$ & 3 & 53.8\\,$\\pm$\\,1.5 & 56.33\\,$\\pm$\\,1.61 & 0.389 \\\\\nLoRA+SDF $\\lambda{=}0.1$ & 3 & 50.2\\,$\\pm$\\,3.9 & 57.00\\,$\\pm$\\,2.18 & 0.394 \\\\\n\\bottomrule\n\\end{tabular}\n\\vspace{1pt}\n\\end{table}\n\nTable~\\ref{tab:avoidance_source} shows that collision-free demonstrations alone raise CAR by ${\\sim}$26 percentage points (28.5\\% $\\to$ 54.67\\%) with zero frozen episodes and displacement above 0.37\\,m, confirming genuine avoidance. Adding SDF supervision does not yield statistically significant improvement at the tested scale: LoRA-only CAR (54.67\\%) is statistically indistinguishable from all SDF conditions including $\\lambda = 0.1$ (57.00\\%, $p = 0.131$; Appendix~\\ref{sec:appendix_null}). A Phase~2 ablation ($\\lambda = 0$ after step 5K) yields CAR\\,=\\,58.0\\%\\footnote{At the 18K checkpoint (13K steps of Phase~2 training, single seed s2); full 30K training did not complete due to disk constraints.}, suggesting that SDF gradients do not produce a lasting behavioral effect. The per-task CAR ordering is preserved across all conditions (chocolate\\_pudding highest, bbq\\_sauce lowest) and invariant to $\\lambda$ across a 20$\\times$ range, indicating that avoidance patterns reflect the demonstration distribution rather than geometric supervision.\n\n\\paragraph{CAR--TSR trade-off.}\\label{sec:tsr_collapse}\nFine-tuning degrades TSR by ${\\sim}$18--20\\,pp (71.5\\% $\\to$ 51.5--54.0\\%), a consequence of distributional shift from the pre-trained prior rather than learned paralysis (all models retain $>$\\,0.37\\,m displacement and 0\\% frozen episodes). The SSR/TSR ratio increases from 0.39 (baseline) to 0.51--0.60 (Appendix~\\ref{sec:appendix_ssr}): among task-completing episodes, a larger fraction avoids collisions after fine-tuning.\n\n\\paragraph{Dose-response at higher loss weights.}\\label{sec:lambda_high}\nIncreasing $\\lambda$ by 20$\\times$ to 0.1 yields CAR\\,=\\,57.00\\%\\,$\\pm$\\,2.18 at the 30K checkpoint (3 seeds: 58.0\\%, 58.5\\%, 54.5\\%), within the null distribution (mean 54.58\\%, $\\sigma = 1.93$; permutation $p = 0.131$\\footnote{One-tailed permutation $p = 0.071$; even with the directional prior that SDF should not \\emph{decrease} CAR, the result remains non-significant.}). SDF supervision does not produce statistically significant benefit across the tested range $\\lambda \\in [0.005, 0.1]$ (Figure~\\ref{fig:lambda_car}). This result disambiguates the two-level failure analysis (Section~\\ref{sec:conclusion}): because even a 20$\\times$ increase in SDF loss weight fails to produce additional avoidance, the binding constraint is not training signal magnitude but the structural mismatch between end-effector monitoring and full-body collision surfaces. Stronger geometric supervision cannot compensate for supervising the wrong collision surface.\n\n\\paragraph{Robustness to null construction.}\nThe preceding permutation test pools LoRA-only and $\\lambda = 0.005$ seeds as a single null (Null~B, $\\binom{9}{3} = 84$ permutations, two-tailed $p = 0.131$). An alternative construction using only LoRA-only seeds (Null~A, $\\binom{6}{3} = 20$ permutations) yields one-tailed $p = 0.150$, two-tailed $p = 0.300$. The conclusion is robust to null construction: neither yields significance at $\\alpha = 0.05$.\n\n\\paragraph{Statistical power.}\nWith $n = 3$ seeds per group and $\\sigma \\approx 2.0$\\,pp (LoRA cross-seed standard deviation), a two-sample $t$-test at $\\alpha = 0.05$ (one-tailed) achieves 80\\% power only for effects $\\geq 5.0$\\,pp. The observed effect of ${\\sim}$2.3\\,pp falls well below this minimum detectable effect (MDE), so the study is underpowered to detect a benefit of this magnitude.\n\n\\paragraph{Evaluation-seed consistency.}\nUnder matched evaluation conditions (Appendix~\\ref{sec:appendix_eval_seed}), SDF $\\lambda = 0.1$ yields higher CAR in all three paired eval seeds ($+$1.5, $+$2.5, $+$5.5\\,pp), with lower cross-seed variance ($\\sigma = 0.9$\\,pp vs.\\ 2.0\\,pp for LoRA). At the tested scale ($n = 3$ training seeds), SDF supervision does not produce a statistically significant CAR improvement ($p = 0.131$, two-tailed permutation). The observed effect (${\\sim}$2.3\\,pp) falls well below the study's MDE (${\\sim}$5\\,pp at 80\\% power). Whether this consistent directional pattern reflects a genuine small benefit or residual confounding cannot be resolved at the current sample size.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.85\\linewidth]{fig5_lambda_curve}\n\\caption{Effect of SDF loss weight $\\lambda$ on CAR and TSR. $\\lambda = 0$: LoRA-only. All tested $\\lambda$ values remain within the null band ($p > 0.05$), consistent with the absence of statistically significant improvement across a 20$\\times$ loss-weight range.}\n\\label{fig:lambda_car}\n\\end{figure}",
+      "numLines": 48,
+      "startLine": 1,
+      "totalLines": 48
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — Read · `toolu_011MkcRW3GnkkxwypCpmtm5a`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/discussion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "cf6207e4-1876-4c6c-84e7-6a31ce6eb9f1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019xctSJnuT999z9ym2XNntb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4660,
+      "cache_read_input_tokens": 24059,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4660
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-28T06:19:12.294Z_
+
+<details><summary>↩ Tool result · `toolu_011MkcRW3GnkkxwypCpmtm5a`</summary>
+
+```text
+1	\section{Discussion and Conclusion}\label{sec:conclusion}
+2	
+3	Across 100+ experiments and 6000+ evaluation episodes on two VLA model families, three findings converge: current VLA safety evaluation is structurally unreliable. Action collapse renders reported CAR illusory (\S\ref{sec:dfcar}); EE-only oracle refinement is counterproductive (\S\ref{sec:ee_only}); and collision-free demonstrations account for nearly all measured avoidance gains, with EE-only SDF contributing no statistically significant improvement (\S\ref{sec:avoidance_source}).
+4	
+5	\paragraph{Why EE-only SDF fails.}
+6	Two independent causes explain the null result. \textit{(i)~Demonstration data largely subsumes the SDF signal.} Collision-free demonstrations implicitly encode spatial avoidance; the ${\sim}$26\,pp CAR gain arises primarily from this distributional shift, with per-task ordering invariant across all SDF conditions (\S\ref{sec:avoidance_source}). Even at $\lambda = 0.1$ (20$\times$ the lowest tested weight), CAR remains within the null distribution ($p = 0.131$), suggesting that EE-only auxiliary SDF loss does not overcome Level~A signal masking---the limitation is architectural for this integration pathway. \textit{(ii)~EE monitoring cannot prevent full-body collisions.} The SDF gradient acts on a single point while collisions occur along intermediate links. Oracle experiments confirm this: ground-truth SDF refinement \emph{reduces} CAR by 6--10\,pp below unrefined baselines (\S\ref{sec:ee_only}), because pushing the EE away rotates unmonitored links through obstacles. We hypothesize that collision-free demonstration trajectories implicitly encode workspace priors through their spatial distribution: the robot learns to favor regions of the workspace that are inherently collision-free, without requiring explicit geometric supervision. These two causes are independent; effective geometric safety requires both full-body supervision and training signals beyond demonstrations. The failure of EE-only auxiliary SDF loss is architectural; constraint-based and runtime filtering approaches bypass this structural limitation through fundamentally different integration mechanisms.
+7	
+8	\paragraph{Implications for evaluation.}
+9	dfCAR corrects action-collapse contamination using only EE position logging, already available in most evaluation pipelines. The bimodal displacement distribution makes $\tau_d$ robust across five orders of magnitude. We recommend reporting both CAR and dfCAR; the gap quantifies contamination. This contamination spans a 4000$\times$ parameter range (Pi0 Full-FT ${\sim}$2.5B to Pi0+A1 ${\sim}$658K trainable), a structural consequence of evaluating avoidance without verifying motion. More broadly, safety may need to operate at the planning or joint-space constraint layer, since any EE-centric loss inherits the same blind spot.
+10	
+11	\paragraph{Scope and generalizability.} Our findings are drawn from a single benchmark (SafeLIBERO) covering two VLA model families and four pick-and-place manipulation tasks in MuJoCo simulation. The action-collapse mechanism (Claim~1) is structurally general---any policy prone to action collapse will inflate CAR under standard evaluation---but its prevalence across other benchmarks, task types, and real hardware remains an open question. The SDF redundancy finding (Claim~3) is specific to EE-only auxiliary loss integration and should not be extrapolated to alternative SDF integration pathways (Section~\ref{sec:related}).
+12	
+13	\paragraph{Limitations.}
+14	All experiments are conducted in MuJoCo simulation within the SafeLIBERO benchmark. The sim-to-real gap introduces uncertainty: collision detection precision differs between simulation and physical hardware, sensor noise may affect displacement-filtered CAR differently on real robots, and the prevalence of action collapse in physical deployments remains untested. Our evaluation covers only four pick-and-place manipulation tasks with tabletop obstacles; whether the findings generalize to more diverse task families (e.g., bi-manual manipulation, deformable objects, dynamic obstacles) is an open question. Statistical power is limited by $n{=}3$ training seeds per condition, yielding a minimum detectable effect of approximately 5 percentage points at 80\% power---smaller genuine effects, if they exist, would not be detected at this sample size. Oracle experiments used a largely frozen model (Pi0+A1, TSR${\approx}$0\%); testing on an actively moving policy would better isolate the structural limitation. Full-body SDF remains untested. Fine-tuning degrades TSR by ${\sim}$18--20\,pp, yet SSR/TSR increases from 0.39 to 0.51--0.60 (Appendix~\ref{sec:appendix_ssr}); reduced exposure alone does not explain the pattern.
+15	
+16	\paragraph{Future work.}
+17	Three directions follow: (1) full-body SDF supervision along the kinematic chain; (2) cross-architecture evaluation on OpenVLA, RT-2, and other VLA families; (3) planning-layer safety constraints in joint space rather than EE space.
+18	
+19	\paragraph{Broader impact.}
+20	The displacement-filtered CAR metric (dfCAR) is intended as a diagnostic complement to standard CAR, not a replacement; practitioners should report both metrics to distinguish genuine avoidance from action-collapse artifacts. Our finding that EE-only SDF supervision is redundant with demonstration data is an evaluation-methodology insight, not a verdict against safety-aware training---geometric supervision may prove effective through alternative integration pathways or with full-body collision surfaces. We caution against interpreting these results as evidence that VLA safety research is futile; rather, they highlight the need for evaluation protocols that can reliably separate safety improvements from measurement artifacts.
+21	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "1e2242a7-afb1-4b0c-94d5-4c750e083bc7",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/discussion.tex",
+      "content": "\\section{Discussion and Conclusion}\\label{sec:conclusion}\n\nAcross 100+ experiments and 6000+ evaluation episodes on two VLA model families, three findings converge: current VLA safety evaluation is structurally unreliable. Action collapse renders reported CAR illusory (\\S\\ref{sec:dfcar}); EE-only oracle refinement is counterproductive (\\S\\ref{sec:ee_only}); and collision-free demonstrations account for nearly all measured avoidance gains, with EE-only SDF contributing no statistically significant improvement (\\S\\ref{sec:avoidance_source}).\n\n\\paragraph{Why EE-only SDF fails.}\nTwo independent causes explain the null result. \\textit{(i)~Demonstration data largely subsumes the SDF signal.} Collision-free demonstrations implicitly encode spatial avoidance; the ${\\sim}$26\\,pp CAR gain arises primarily from this distributional shift, with per-task ordering invariant across all SDF conditions (\\S\\ref{sec:avoidance_source}). Even at $\\lambda = 0.1$ (20$\\times$ the lowest tested weight), CAR remains within the null distribution ($p = 0.131$), suggesting that EE-only auxiliary SDF loss does not overcome Level~A signal masking---the limitation is architectural for this integration pathway. \\textit{(ii)~EE monitoring cannot prevent full-body collisions.} The SDF gradient acts on a single point while collisions occur along intermediate links. Oracle experiments confirm this: ground-truth SDF refinement \\emph{reduces} CAR by 6--10\\,pp below unrefined baselines (\\S\\ref{sec:ee_only}), because pushing the EE away rotates unmonitored links through obstacles. We hypothesize that collision-free demonstration trajectories implicitly encode workspace priors through their spatial distribution: the robot learns to favor regions of the workspace that are inherently collision-free, without requiring explicit geometric supervision. These two causes are independent; effective geometric safety requires both full-body supervision and training signals beyond demonstrations. The failure of EE-only auxiliary SDF loss is architectural; constraint-based and runtime filtering approaches bypass this structural limitation through fundamentally different integration mechanisms.\n\n\\paragraph{Implications for evaluation.}\ndfCAR corrects action-collapse contamination using only EE position logging, already available in most evaluation pipelines. The bimodal displacement distribution makes $\\tau_d$ robust across five orders of magnitude. We recommend reporting both CAR and dfCAR; the gap quantifies contamination. This contamination spans a 4000$\\times$ parameter range (Pi0 Full-FT ${\\sim}$2.5B to Pi0+A1 ${\\sim}$658K trainable), a structural consequence of evaluating avoidance without verifying motion. More broadly, safety may need to operate at the planning or joint-space constraint layer, since any EE-centric loss inherits the same blind spot.\n\n\\paragraph{Scope and generalizability.} Our findings are drawn from a single benchmark (SafeLIBERO) covering two VLA model families and four pick-and-place manipulation tasks in MuJoCo simulation. The action-collapse mechanism (Claim~1) is structurally general---any policy prone to action collapse will inflate CAR under standard evaluation---but its prevalence across other benchmarks, task types, and real hardware remains an open question. The SDF redundancy finding (Claim~3) is specific to EE-only auxiliary loss integration and should not be extrapolated to alternative SDF integration pathways (Section~\\ref{sec:related}).\n\n\\paragraph{Limitations.}\nAll experiments are conducted in MuJoCo simulation within the SafeLIBERO benchmark. The sim-to-real gap introduces uncertainty: collision detection precision differs between simulation and physical hardware, sensor noise may affect displacement-filtered CAR differently on real robots, and the prevalence of action collapse in physical deployments remains untested. Our evaluation covers only four pick-and-place manipulation tasks with tabletop obstacles; whether the findings generalize to more diverse task families (e.g., bi-manual manipulation, deformable objects, dynamic obstacles) is an open question. Statistical power is limited by $n{=}3$ training seeds per condition, yielding a minimum detectable effect of approximately 5 percentage points at 80\\% power---smaller genuine effects, if they exist, would not be detected at this sample size. Oracle experiments used a largely frozen model (Pi0+A1, TSR${\\approx}$0\\%); testing on an actively moving policy would better isolate the structural limitation. Full-body SDF remains untested. Fine-tuning degrades TSR by ${\\sim}$18--20\\,pp, yet SSR/TSR increases from 0.39 to 0.51--0.60 (Appendix~\\ref{sec:appendix_ssr}); reduced exposure alone does not explain the pattern.\n\n\\paragraph{Future work.}\nThree directions follow: (1) full-body SDF supervision along the kinematic chain; (2) cross-architecture evaluation on OpenVLA, RT-2, and other VLA families; (3) planning-layer safety constraints in joint space rather than EE space.\n\n\\paragraph{Broader impact.}\nThe displacement-filtered CAR metric (dfCAR) is intended as a diagnostic complement to standard CAR, not a replacement; practitioners should report both metrics to distinguish genuine avoidance from action-collapse artifacts. Our finding that EE-only SDF supervision is redundant with demonstration data is an evaluation-methodology insight, not a verdict against safety-aware training---geometric supervision may prove effective through alternative integration pathways or with full-body collision surfaces. We caution against interpreting these results as evidence that VLA safety research is futile; rather, they highlight the need for evaluation protocols that can reliably separate safety improvements from measurement artifacts.\n",
+      "numLines": 21,
+      "startLine": 1,
+      "totalLines": 21
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Gnz6fHDfhCvFQgdHgjY7nP`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/experimental_framework.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "2401a414-07b8-4468-afed-9079f54b86e2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019xctSJnuT999z9ym2XNntb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4660,
+      "cache_read_input_tokens": 24059,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4660
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-28T06:19:12.421Z_
+
+<details><summary>↩ Tool result · `toolu_01Gnz6fHDfhCvFQgdHgjY7nP`</summary>
+
+```text
+1	\section{Experimental Framework}\label{sec:framework}
+2	
+3	This section defines the evaluation platform, metrics, and model configurations that underpin the analyses in Sections~\ref{sec:fake_safety}--\ref{sec:avoidance_source}. Our primary methodological contribution is the displacement-filtered Collision Avoidance Rate (dfCAR), which separates genuine avoidance from action collapse.
+4	
+5	\subsection{Benchmark and Evaluation Protocol}
+6	
+7	We conduct all experiments on SafeLIBERO~\cite{hu2025vlsa}, a collision-aware evaluation extension of the LIBERO simulation platform~\cite{liu2023libero}. SafeLIBERO augments standard manipulation benchmarks with per-timestep collision detection and non-target obstacle annotations, enabling systematic measurement of both task completion and safety.
+8	
+9	We select the \textit{object\_pudding} Level~I suite, which comprises four tabletop manipulation tasks. In each task, a target object is surrounded by non-target obstacles that the robot must avoid during grasping and transport. The MuJoCo physics engine provides collision detection: any contact between the robot (end-effector or arm links) and a non-target object registers as a collision event.
+10	
+11	Each method is evaluated for 50 episodes per task (200 episodes total). For multi-seed experiments (Pi0.5), we run 3 seeds to produce 600 episodes per configuration. Initial object configurations are fixed across methods to ensure fair comparison.
+12	
+13	\subsection{Evaluation Metrics}\label{sec:metrics}
+14	
+15	\paragraph{Standard metrics.} We report two conventional metrics. The \emph{Task Success Rate} (TSR) is the fraction of episodes where the manipulation task reaches completion. The \emph{Collision Avoidance Rate} (CAR) is the fraction of episodes in which no collision occurs between the robot and any non-target object.
+16	
+17	\paragraph{Displacement-filtered CAR.} Standard CAR conflates two qualitatively distinct behaviors: a robot that plans a trajectory around obstacles, and a robot that has collapsed into inaction. Both register as ``safe,'' yet only the former reflects collision avoidance capability. We propose the displacement-filtered CAR (dfCAR), which excludes episodes exhibiting action collapse from both numerator and denominator.
+18	
+19	We define an episode $e$ as \emph{action-collapsed} when its maximum end-effector displacement satisfies $d_{\max}(e) < \tau_d$, where $\tau_d = 0.1$\,mm. The filtered metric is then:
+20	\begin{equation}\label{eq:car_f}
+21	\text{dfCAR} = \frac{|\{e : \text{safe}(e) \;\land\; d_{\max}(e) \geq \tau_d\}|}{|\{e : d_{\max}(e) \geq \tau_d\}|}
+22	\end{equation}
+23	where $d_{\max}(e)$ denotes the maximum Euclidean displacement of the end-effector across all timesteps in episode $e$. The threshold $\tau_d = 0.1$\,mm corresponds to sub-actuator-resolution motion. In practice, the displacement distribution is bimodal: collapsed episodes cluster below 1\,$\mu$m and active episodes exceed 200\,mm, with no intermediate population. Consequently, any $\tau_d \in [2, 200]$\,mm produces identical filtering (Appendix~\ref{sec:appendix_threshold}).
+24	
+25	\paragraph{Auxiliary metrics.} We additionally report the \emph{Frozen Rate}, the fraction of episodes with $d_{\max} < \tau_d$, which quantifies the severity of action collapse for each method. The \emph{Simultaneous Success Rate} (SSR $= $ TSR $\cap$ CAR) measures the fraction of episodes that achieve both task completion and collision avoidance.
+26	
+27	\subsection{Models and Training}
+28	
+29	\paragraph{Base architectures.} We evaluate two VLA models from the Pi0 family~\cite{black2024pi0}. \textbf{Pi0} (${\sim}$3B parameters) uses a PaliGemma vision-language encoder paired with a dedicated action expert that generates continuous actions via flow matching~\cite{lipman2023flow}. \textbf{Pi0.5} extends this architecture to ${\sim}$3.5B parameters with broader pre-training data, and serves as a stronger baseline that exhibits less action collapse.
+30	
+31	\paragraph{Training configurations.} We evaluate four model variants:
+32	\begin{itemize}
+33	\item \textit{Full-FT baseline}: Pi0 with all parameters fine-tuned on SafeLIBERO demonstrations using the flow-matching action loss.
+34	\item \textit{LoRA baseline}: Pi0 with LoRA adapters (${\sim}$33.5M trainable parameters), same demonstrations and loss.
+35	\item \textit{A1-LoRA}: Pi0 + LoRA augmented with two auxiliary heads. An SDF Decoder (4-layer MLP, ${\sim}$395K parameters) predicts the signed distance from the end-effector to the nearest obstacle surface, supervised with a clamped $L_1$ loss and an Eikonal regularizer ($\mathcal{L}_\text{SDF}$). An EE Extractor (2-layer MLP, ${\sim}$263K parameters) predicts end-effector position from action expert features ($\mathcal{L}_\text{EE}$, MSE loss). SDF ground truth is computed from known obstacle meshes in simulation.
+36	\item \textit{Pi0.5 + A1}: The A1 architecture applied to the Pi0.5 backbone. Training proceeds in two phases: Phase~1 (steps 0--5K) trains only the auxiliary heads on detached features with the backbone frozen; Phase~2 (steps 5K--30K) unfreezes LoRA parameters for joint optimization. We evaluate $\lambda_\text{SDF} \in \{0.005, 0.01\}$.
+37	\end{itemize}
+38	
+39	\subsection{Oracle SDF Refinement}
+40	
+41	To test the theoretical upper bound of end-effector-only SDF refinement (analyzed in Section~\ref{sec:ee_only}), we replace the learned SDF network with the ground-truth signed distance field computed from simulation geometry. This eliminates prediction error and isolates the structural limitation of the refinement paradigm itself.
+42	
+43	We evaluate three oracle variants that differ in how the SDF gradient is applied:
+44	\begin{itemize}
+45	\item \textit{Oracle-adaptive}: runtime gradient refinement with a dynamic step size $\alpha$ that scales inversely with gradient magnitude.
+46	\item \textit{Oracle-fixed}: a constant step size $\alpha = 0.005$.
+47	\item \textit{Oracle-feature}: gradient applied in the VLA's latent feature space rather than Cartesian action space.
+48	\end{itemize}
+49	Each variant is evaluated for 160 episodes (4 tasks $\times$ 40 episodes) with a single seed.
+50	
+51	\subsection{SDF Ground Truth}
+52	
+53	The workspace signed distance field is computed from the known obstacle meshes available in the LIBERO/MuJoCo simulation environment. SDF values are positive in free space, zero on the obstacle surface, and negative inside the obstacle volume. Ground-truth labels are generated at query points sampled along predicted end-effector trajectories during training.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "57005820-7bb6-45bd-857e-f5ced5e1a56f",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/experimental_framework.tex",
+      "content": "\\section{Experimental Framework}\\label{sec:framework}\n\nThis section defines the evaluation platform, metrics, and model configurations that underpin the analyses in Sections~\\ref{sec:fake_safety}--\\ref{sec:avoidance_source}. Our primary methodological contribution is the displacement-filtered Collision Avoidance Rate (dfCAR), which separates genuine avoidance from action collapse.\n\n\\subsection{Benchmark and Evaluation Protocol}\n\nWe conduct all experiments on SafeLIBERO~\\cite{hu2025vlsa}, a collision-aware evaluation extension of the LIBERO simulation platform~\\cite{liu2023libero}. SafeLIBERO augments standard manipulation benchmarks with per-timestep collision detection and non-target obstacle annotations, enabling systematic measurement of both task completion and safety.\n\nWe select the \\textit{object\\_pudding} Level~I suite, which comprises four tabletop manipulation tasks. In each task, a target object is surrounded by non-target obstacles that the robot must avoid during grasping and transport. The MuJoCo physics engine provides collision detection: any contact between the robot (end-effector or arm links) and a non-target object registers as a collision event.\n\nEach method is evaluated for 50 episodes per task (200 episodes total). For multi-seed experiments (Pi0.5), we run 3 seeds to produce 600 episodes per configuration. Initial object configurations are fixed across methods to ensure fair comparison.\n\n\\subsection{Evaluation Metrics}\\label{sec:metrics}\n\n\\paragraph{Standard metrics.} We report two conventional metrics. The \\emph{Task Success Rate} (TSR) is the fraction of episodes where the manipulation task reaches completion. The \\emph{Collision Avoidance Rate} (CAR) is the fraction of episodes in which no collision occurs between the robot and any non-target object.\n\n\\paragraph{Displacement-filtered CAR.} Standard CAR conflates two qualitatively distinct behaviors: a robot that plans a trajectory around obstacles, and a robot that has collapsed into inaction. Both register as ``safe,'' yet only the former reflects collision avoidance capability. We propose the displacement-filtered CAR (dfCAR), which excludes episodes exhibiting action collapse from both numerator and denominator.\n\nWe define an episode $e$ as \\emph{action-collapsed} when its maximum end-effector displacement satisfies $d_{\\max}(e) < \\tau_d$, where $\\tau_d = 0.1$\\,mm. The filtered metric is then:\n\\begin{equation}\\label{eq:car_f}\n\\text{dfCAR} = \\frac{|\\{e : \\text{safe}(e) \\;\\land\\; d_{\\max}(e) \\geq \\tau_d\\}|}{|\\{e : d_{\\max}(e) \\geq \\tau_d\\}|}\n\\end{equation}\nwhere $d_{\\max}(e)$ denotes the maximum Euclidean displacement of the end-effector across all timesteps in episode $e$. The threshold $\\tau_d = 0.1$\\,mm corresponds to sub-actuator-resolution motion. In practice, the displacement distribution is bimodal: collapsed episodes cluster below 1\\,$\\mu$m and active episodes exceed 200\\,mm, with no intermediate population. Consequently, any $\\tau_d \\in [2, 200]$\\,mm produces identical filtering (Appendix~\\ref{sec:appendix_threshold}).\n\n\\paragraph{Auxiliary metrics.} We additionally report the \\emph{Frozen Rate}, the fraction of episodes with $d_{\\max} < \\tau_d$, which quantifies the severity of action collapse for each method. The \\emph{Simultaneous Success Rate} (SSR $= $ TSR $\\cap$ CAR) measures the fraction of episodes that achieve both task completion and collision avoidance.\n\n\\subsection{Models and Training}\n\n\\paragraph{Base architectures.} We evaluate two VLA models from the Pi0 family~\\cite{black2024pi0}. \\textbf{Pi0} (${\\sim}$3B parameters) uses a PaliGemma vision-language encoder paired with a dedicated action expert that generates continuous actions via flow matching~\\cite{lipman2023flow}. \\textbf{Pi0.5} extends this architecture to ${\\sim}$3.5B parameters with broader pre-training data, and serves as a stronger baseline that exhibits less action collapse.\n\n\\paragraph{Training configurations.} We evaluate four model variants:\n\\begin{itemize}\n\\item \\textit{Full-FT baseline}: Pi0 with all parameters fine-tuned on SafeLIBERO demonstrations using the flow-matching action loss.\n\\item \\textit{LoRA baseline}: Pi0 with LoRA adapters (${\\sim}$33.5M trainable parameters), same demonstrations and loss.\n\\item \\textit{A1-LoRA}: Pi0 + LoRA augmented with two auxiliary heads. An SDF Decoder (4-layer MLP, ${\\sim}$395K parameters) predicts the signed distance from the end-effector to the nearest obstacle surface, supervised with a clamped $L_1$ loss and an Eikonal regularizer ($\\mathcal{L}_\\text{SDF}$). An EE Extractor (2-layer MLP, ${\\sim}$263K parameters) predicts end-effector position from action expert features ($\\mathcal{L}_\\text{EE}$, MSE loss). SDF ground truth is computed from known obstacle meshes in simulation.\n\\item \\textit{Pi0.5 + A1}: The A1 architecture applied to the Pi0.5 backbone. Training proceeds in two phases: Phase~1 (steps 0--5K) trains only the auxiliary heads on detached features with the backbone frozen; Phase~2 (steps 5K--30K) unfreezes LoRA parameters for joint optimization. We evaluate $\\lambda_\\text{SDF} \\in \\{0.005, 0.01\\}$.\n\\end{itemize}\n\n\\subsection{Oracle SDF Refinement}\n\nTo test the theoretical upper bound of end-effector-only SDF refinement (analyzed in Section~\\ref{sec:ee_only}), we replace the learned SDF network with the ground-truth signed distance field computed from simulation geometry. This eliminates prediction error and isolates the structural limitation of the refinement paradigm itself.\n\nWe evaluate three oracle variants that differ in how the SDF gradient is applied:\n\\begin{itemize}\n\\item \\textit{Oracle-adaptive}: runtime gradient refinement with a dynamic step size $\\alpha$ that scales inversely with gradient magnitude.\n\\item \\textit{Oracle-fixed}: a constant step size $\\alpha = 0.005$.\n\\item \\textit{Oracle-feature}: gradient applied in the VLA's latent feature space rather than Cartesian action space.\n\\end{itemize}\nEach variant is evaluated for 160 episodes (4 tasks $\\times$ 40 episodes) with a single seed.\n\n\\subsection{SDF Ground Truth}\n\nThe workspace signed distance field is computed from the known obstacle meshes available in the LIBERO/MuJoCo simulation environment. SDF values are positive in free space, zero on the obstacle surface, and negative inside the obstacle volume. Ground-truth labels are generated at query points sampled along predicted end-effector trajectories during training.",
+      "numLines": 53,
+      "startLine": 1,
+      "totalLines": 53
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01KrrVA8rJeBQzfi9ywnNkw8`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/method.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "0521c780-914b-4689-9000-1c63377762e6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019xctSJnuT999z9ym2XNntb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4660,
+      "cache_read_input_tokens": 24059,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4660
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-28T06:19:12.894Z_
+
+<details><summary>↩ Tool result · `toolu_01KrrVA8rJeBQzfi9ywnNkw8`</summary>
+
+```text
+1	\section{Experimental Setup and Metrics}\label{sec:method}
+2	
+3	\subsection{Benchmark and Models}\label{sec:benchmark}
+4	
+5	We evaluate on SafeLIBERO~\cite{hu2025vlsa}, the \textit{object\_pudding} suite (Level~II): four tabletop pick-and-place tasks with collision hazards and per-timestep collision detection. Two VLA families are tested: \textbf{Pi0} (${\sim}$2.5B)~\cite{black2024pi0} with flow matching~\cite{lipman2023flow}, and \textbf{Pi0.5} with broader pre-training. Table~\ref{tab:configurations} lists all configurations. Each uses 50 episodes per task (200 total); Pi0.5 multi-seed runs use 3 seeds (600 episodes). All metrics are computed using a fixed evaluation seed (seed\,=\,7); the reported $\pm$ values reflect variance across training seeds, not evaluation stochasticity. We report Collision Avoidance Rate (CAR), the fraction of collision-free episodes, and Task Success Rate (TSR), the fraction of episodes that complete the task~\cite{hu2025vlsa,zhang2025safevla}.
+6	
+7	\begin{table}[t]
+8	\centering
+9	\caption{Training configurations. Trainable parameters exclude the frozen backbone.}
+10	\label{tab:configurations}
+11	\vspace{2pt}
+12	\small
+13	\begin{tabular}{llr}
+14	\toprule
+15	Configuration & Description & Trainable Params \\
+16	\midrule
+17	Pi0 Full-FT & Full fine-tune, flow-matching loss & ${\sim}$2.5B \\
+18	Pi0 LoRA & LoRA adapters only & ${\sim}$33.5M \\
+19	Pi0+A1 (SDF aux)\textsuperscript{$\dagger$} & LoRA + SDF decoder + EE extractor & ${\sim}$658K \\
+20	Pi0+A3 (learned SDF) & LoRA + SDF decoder w/ gradient refinement & ${\sim}$34.2M \\
+21	Pi0.5 (pre-trained) & No fine-tuning & 0 \\
+22	Pi0.5 LoRA & LoRA fine-tune on Pi0.5 & ${\sim}$33.5M \\
+23	Pi0.5+A1 (SDF aux) & LoRA + SDF aux on Pi0.5, $\lambda \in \{0.005, 0.01, 0.1\}$ & ${\sim}$34.2M \\
+24	\bottomrule
+25	\end{tabular}
+26	\vspace{2pt}
+27	\raggedright\footnotesize\textsuperscript{$\dagger$}LoRA weights not loaded due to parameter-name mismatch; only auxiliary heads trained.
+28	\end{table}
+29	
+30	\subsection{Displacement-Filtered CAR}\label{sec:dfcar}
+31	
+32	Standard CAR conflates genuine avoidance with action collapse. We define an episode as \emph{action-collapsed} when $d_{\max}(e) < \tau_d$ ($\tau_d = 0.1$\,mm) and exclude such episodes:
+33	\begin{equation}\label{eq:car_f}
+34	\text{dfCAR} = \frac{|\{e : \text{safe}(e) \;\land\; d_{\max}(e) \geq \tau_d\}|}{|\{e : d_{\max}(e) \geq \tau_d\}|}
+35	\end{equation}
+36	The displacement distribution is sharply bimodal, with collapsed episodes below 1\,$\mu$m and active episodes above 200\,mm; any $\tau_d \in [2, 200]$\,mm yields identical results (Appendix~\ref{sec:appendix_threshold}).\footnote{See Section~\ref{sec:fake_safety} for details on the displacement measurement protocol.}
+37	
+38	\subsection{SDF Auxiliary Training and Oracle Refinement}\label{sec:sdf_aux}
+39	
+40	We augment LoRA-adapted~\cite{hu2022lora} VLAs with an SDF decoder and an EE position extractor (Appendix~\ref{sec:appendix_training}, Table~\ref{tab:hyperparams}). The total loss is:
+41	\begin{equation}\label{eq:total_loss}
+42	\mathcal{L}_\text{total} = \mathcal{L}_\text{action} + \lambda \left( \mathcal{L}_\text{SDF} + \mathcal{L}_\text{EE} \right)
+43	\end{equation}
+44	where $\lambda \in \{0.005, 0.01, 0.1\}$. In Pi0+A1, a parameter-name mismatch prevented LoRA loading and caused action collapse (TSR\,=\,0\%; Table~\ref{tab:configurations}). To test the upper bound of EE-only refinement (Section~\ref{sec:ee_only}), we also replace the learned SDF with ground-truth distance fields from the simulation geometry in three oracle variants (Appendix~\ref{sec:appendix_oracle}).\label{sec:oracle_setup}
+45	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "72bd09a6-0c01-4098-af87-e329160f1c2d",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/method.tex",
+      "content": "\\section{Experimental Setup and Metrics}\\label{sec:method}\n\n\\subsection{Benchmark and Models}\\label{sec:benchmark}\n\nWe evaluate on SafeLIBERO~\\cite{hu2025vlsa}, the \\textit{object\\_pudding} suite (Level~II): four tabletop pick-and-place tasks with collision hazards and per-timestep collision detection. Two VLA families are tested: \\textbf{Pi0} (${\\sim}$2.5B)~\\cite{black2024pi0} with flow matching~\\cite{lipman2023flow}, and \\textbf{Pi0.5} with broader pre-training. Table~\\ref{tab:configurations} lists all configurations. Each uses 50 episodes per task (200 total); Pi0.5 multi-seed runs use 3 seeds (600 episodes). All metrics are computed using a fixed evaluation seed (seed\\,=\\,7); the reported $\\pm$ values reflect variance across training seeds, not evaluation stochasticity. We report Collision Avoidance Rate (CAR), the fraction of collision-free episodes, and Task Success Rate (TSR), the fraction of episodes that complete the task~\\cite{hu2025vlsa,zhang2025safevla}.\n\n\\begin{table}[t]\n\\centering\n\\caption{Training configurations. Trainable parameters exclude the frozen backbone.}\n\\label{tab:configurations}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{llr}\n\\toprule\nConfiguration & Description & Trainable Params \\\\\n\\midrule\nPi0 Full-FT & Full fine-tune, flow-matching loss & ${\\sim}$2.5B \\\\\nPi0 LoRA & LoRA adapters only & ${\\sim}$33.5M \\\\\nPi0+A1 (SDF aux)\\textsuperscript{$\\dagger$} & LoRA + SDF decoder + EE extractor & ${\\sim}$658K \\\\\nPi0+A3 (learned SDF) & LoRA + SDF decoder w/ gradient refinement & ${\\sim}$34.2M \\\\\nPi0.5 (pre-trained) & No fine-tuning & 0 \\\\\nPi0.5 LoRA & LoRA fine-tune on Pi0.5 & ${\\sim}$33.5M \\\\\nPi0.5+A1 (SDF aux) & LoRA + SDF aux on Pi0.5, $\\lambda \\in \\{0.005, 0.01, 0.1\\}$ & ${\\sim}$34.2M \\\\\n\\bottomrule\n\\end{tabular}\n\\vspace{2pt}\n\\raggedright\\footnotesize\\textsuperscript{$\\dagger$}LoRA weights not loaded due to parameter-name mismatch; only auxiliary heads trained.\n\\end{table}\n\n\\subsection{Displacement-Filtered CAR}\\label{sec:dfcar}\n\nStandard CAR conflates genuine avoidance with action collapse. We define an episode as \\emph{action-collapsed} when $d_{\\max}(e) < \\tau_d$ ($\\tau_d = 0.1$\\,mm) and exclude such episodes:\n\\begin{equation}\\label{eq:car_f}\n\\text{dfCAR} = \\frac{|\\{e : \\text{safe}(e) \\;\\land\\; d_{\\max}(e) \\geq \\tau_d\\}|}{|\\{e : d_{\\max}(e) \\geq \\tau_d\\}|}\n\\end{equation}\nThe displacement distribution is sharply bimodal, with collapsed episodes below 1\\,$\\mu$m and active episodes above 200\\,mm; any $\\tau_d \\in [2, 200]$\\,mm yields identical results (Appendix~\\ref{sec:appendix_threshold}).\\footnote{See Section~\\ref{sec:fake_safety} for details on the displacement measurement protocol.}\n\n\\subsection{SDF Auxiliary Training and Oracle Refinement}\\label{sec:sdf_aux}\n\nWe augment LoRA-adapted~\\cite{hu2022lora} VLAs with an SDF decoder and an EE position extractor (Appendix~\\ref{sec:appendix_training}, Table~\\ref{tab:hyperparams}). The total loss is:\n\\begin{equation}\\label{eq:total_loss}\n\\mathcal{L}_\\text{total} = \\mathcal{L}_\\text{action} + \\lambda \\left( \\mathcal{L}_\\text{SDF} + \\mathcal{L}_\\text{EE} \\right)\n\\end{equation}\nwhere $\\lambda \\in \\{0.005, 0.01, 0.1\\}$. In Pi0+A1, a parameter-name mismatch prevented LoRA loading and caused action collapse (TSR\\,=\\,0\\%; Table~\\ref{tab:configurations}). To test the upper bound of EE-only refinement (Section~\\ref{sec:ee_only}), we also replace the learned SDF with ground-truth distance fields from the simulation geometry in three oracle variants (Appendix~\\ref{sec:appendix_oracle}).\\label{sec:oracle_setup}\n",
+      "numLines": 45,
+      "startLine": 1,
+      "totalLines": 45
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — Read · `toolu_018xqLHrNZ7bHWKQCubsmfMh`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/abstract.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "f99766bf-9cee-48c9-9923-faa515f76883",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019xctSJnuT999z9ym2XNntb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4660,
+      "cache_read_input_tokens": 24059,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4660
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-28T06:19:13.847Z_
+
+<details><summary>↩ Tool result · `toolu_018xqLHrNZ7bHWKQCubsmfMh`</summary>
+
+```text
+1	\begin{abstract}
+2	Vision-Language-Action (VLA) models report high Collision Avoidance Rates (CAR) on safety benchmarks, yet we show these metrics are contaminated by action collapse, where near-zero motor output produces zero collisions through inaction rather than avoidance.
+3	On SafeLIBERO, an SDF-augmented Pi0 achieves 91.5\% CAR while 99.6\% of its safe episodes exhibit end-effector (EE) displacement below 0.1\,mm. The robot is frozen, not safe.
+4	We introduce displacement-filtered CAR (dfCAR), which excludes sub-threshold episodes. The bimodal displacement distribution makes dfCAR robust across a $[2, 200]$\,mm threshold range.
+5	We further show that end-effector-only Signed Distance Field (SDF) supervision fails to deliver collision avoidance. At inference time, ground-truth oracle refinement reduces CAR below unrefined baselines because the SDF gradient drives unmonitored arm links into obstacles. During training, collision-free demonstrations alone account for all measured avoidance gains (${\sim}$26 percentage points). SDF supervision shows no statistically significant benefit at the tested scale $\lambda \in \{0.005, 0.01, 0.1\}$ ($p > 0.05$ for $\lambda \in \{0.01, 0.1\}$; $\lambda = 0.1$: 57.00\%$\,\pm\,$2.18, 3 seeds).
+6	Displacement filtering is necessary for meaningful VLA safety evaluation. EE-only geometric supervision does not significantly improve collision avoidance across a 20$\times$ loss-weight range, suggesting that collision avoidance primarily arises from demonstration data rather than geometric supervision.
+7	\end{abstract}
+8	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "a145dbe2-7a6f-46b1-bc02-1351234fc47f",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/abstract.tex",
+      "content": "\\begin{abstract}\nVision-Language-Action (VLA) models report high Collision Avoidance Rates (CAR) on safety benchmarks, yet we show these metrics are contaminated by action collapse, where near-zero motor output produces zero collisions through inaction rather than avoidance.\nOn SafeLIBERO, an SDF-augmented Pi0 achieves 91.5\\% CAR while 99.6\\% of its safe episodes exhibit end-effector (EE) displacement below 0.1\\,mm. The robot is frozen, not safe.\nWe introduce displacement-filtered CAR (dfCAR), which excludes sub-threshold episodes. The bimodal displacement distribution makes dfCAR robust across a $[2, 200]$\\,mm threshold range.\nWe further show that end-effector-only Signed Distance Field (SDF) supervision fails to deliver collision avoidance. At inference time, ground-truth oracle refinement reduces CAR below unrefined baselines because the SDF gradient drives unmonitored arm links into obstacles. During training, collision-free demonstrations alone account for all measured avoidance gains (${\\sim}$26 percentage points). SDF supervision shows no statistically significant benefit at the tested scale $\\lambda \\in \\{0.005, 0.01, 0.1\\}$ ($p > 0.05$ for $\\lambda \\in \\{0.01, 0.1\\}$; $\\lambda = 0.1$: 57.00\\%$\\,\\pm\\,$2.18, 3 seeds).\nDisplacement filtering is necessary for meaningful VLA safety evaluation. EE-only geometric supervision does not significantly improve collision avoidance across a 20$\\times$ loss-weight range, suggesting that collision avoidance primarily arises from demonstration data rather than geometric supervision.\n\\end{abstract}\n",
+      "numLines": 8,
+      "startLine": 1,
+      "totalLines": 8
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01KXFnDupV53WxLMo9RNa8ok`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/related_work.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "9e10d952-94a3-4410-b7e7-937e398e722b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019xctSJnuT999z9ym2XNntb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4660,
+      "cache_read_input_tokens": 24059,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4660
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-28T06:19:14.320Z_
+
+<details><summary>↩ Tool result · `toolu_01KXFnDupV53WxLMo9RNa8ok`</summary>
+
+```text
+1	\section{Related Work}\label{sec:related}
+2	
+3	\paragraph{Vision-Language-Action Models.}
+4	VLA models combine pretrained vision-language backbones with action prediction for generalist manipulation~\cite{brohan2023rt2,black2024pi0,chi2023diffusionpolicy,kim2024openvla}. Recent work enhances spatial reasoning through auxiliary 3D supervision~\cite{li2025spatialforcing,li2025qdepth,depthvla2025}, but safety considerations remain largely absent: most VLAs train on collision-free demonstrations and evaluate task success alone, with no mechanism to distinguish genuine avoidance from incidental collision-free trajectories.
+5	
+6	\paragraph{Safety in Robot Learning.}
+7	Safety-aware approaches span training-time constrained RL~\cite{zhang2025safevla} and test-time filters: control barrier functions~\cite{hu2025vlsa}, collision risk gating~\cite{cofreeevla2026}, inverse kinematics QP~\cite{spalter2024ikinqp}, and diffusion-process collision costs~\cite{li2024langguided,yang2025cape}. SafeDiffuser~\cite{xiao2025safediffuser} integrates control barrier functions directly into diffusion denoising to enforce safety invariance during planning; like other test-time shields, it does not learn intrinsic collision awareness within the policy. A recent survey~\cite{li2026vlasafety} categorizes these into runtime shields, constrained optimization, and representation-based methods. Common to all is that safety is imposed externally rather than learned within the policy's representations. This work tests whether auxiliary SDF supervision can produce intrinsic collision awareness.
+8	
+9	\paragraph{Signed Distance Functions in Robotics.}
+10	SDFs encode minimum surface distance, where the sign indicates free space or penetration. Neural SDFs~\cite{park2019deepsdf} enable continuous shape representation; in robotics, SDFs serve perception~\cite{ortiz2022isdf}, planning~\cite{huang2023voxposer,vasilopoulos2023ramp}, and differentiable collision detection~\cite{zhi2021diffco}. CDF~\cite{li2024cdf} extends SDFs to robot configuration space, learning neural distance fields that provide efficient joint-angle queries with analytical gradients for manipulation planning; CSSDF-Net~\cite{chen2026cssdfnet} further develops this direction for safe motion planning. RDF~\cite{li2024rdf} represents robot geometry itself as composable per-link SDFs along the kinematic chain, enabling whole-body collision queries---directly relevant to the full-body awareness gap our work identifies. Neural SDF-based model predictive control~\cite{jacquet2025neuralnmpc} demonstrates effectiveness in classical pipelines, but integration into end-to-end learned policies remains unexplored.
+11	
+12	\paragraph{SDF integration pathways.} Geometric supervision via signed distance fields can be integrated into VLA policies through fundamentally different mechanisms. (a)~\emph{Training-time auxiliary loss}: an SDF-based collision penalty is added to the training objective, supervising only the end-effector trajectory (the approach tested in this work). (b)~\emph{Constraint-based planning}: SafeVLA~\citep{zhang2025safevla} formulates collision avoidance as a constrained MDP, using SDF constraints during planning rather than training. (c)~\emph{Runtime filtering}: VLSA~\citep{hu2025vlsa} applies control barrier functions (CBFs) with SDF at inference time, filtering unsafe actions post-hoc. Our negative finding---that EE-only auxiliary SDF loss is redundant---is specific to pathway~(a) and does not apply to pathways~(b) and~(c), which bypass the structural limitation of supervising only the end-effector during training.
+13	
+14	\paragraph{Evaluation Metrics for Safe Manipulation.}
+15	SafeLIBERO~\cite{hu2025vlsa} extends LIBERO~\cite{liu2023libero} with obstacle-augmented environments and a collision avoidance rate (CAR) metric. However, CAR treats all collision-free episodes identically: a frozen robot scores near-perfect CAR without any avoidance behavior. This failure mode echoes concerns about metric reliability~\cite{karwowski2024goodhart,gururangan2018annotation} and binary success metrics under limited samples~\cite{snyder2026beyond}. Action collapse in diffusion policies~\cite{dong2025conditioning} systematically inflates CAR but has not been previously examined as a safety evaluation confounder. We propose dfCAR (\S\ref{sec:dfcar}) to detect this contamination.
+16	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "03c72270-8248-4e68-88a4-38c5f5b0f806",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/related_work.tex",
+      "content": "\\section{Related Work}\\label{sec:related}\n\n\\paragraph{Vision-Language-Action Models.}\nVLA models combine pretrained vision-language backbones with action prediction for generalist manipulation~\\cite{brohan2023rt2,black2024pi0,chi2023diffusionpolicy,kim2024openvla}. Recent work enhances spatial reasoning through auxiliary 3D supervision~\\cite{li2025spatialforcing,li2025qdepth,depthvla2025}, but safety considerations remain largely absent: most VLAs train on collision-free demonstrations and evaluate task success alone, with no mechanism to distinguish genuine avoidance from incidental collision-free trajectories.\n\n\\paragraph{Safety in Robot Learning.}\nSafety-aware approaches span training-time constrained RL~\\cite{zhang2025safevla} and test-time filters: control barrier functions~\\cite{hu2025vlsa}, collision risk gating~\\cite{cofreeevla2026}, inverse kinematics QP~\\cite{spalter2024ikinqp}, and diffusion-process collision costs~\\cite{li2024langguided,yang2025cape}. SafeDiffuser~\\cite{xiao2025safediffuser} integrates control barrier functions directly into diffusion denoising to enforce safety invariance during planning; like other test-time shields, it does not learn intrinsic collision awareness within the policy. A recent survey~\\cite{li2026vlasafety} categorizes these into runtime shields, constrained optimization, and representation-based methods. Common to all is that safety is imposed externally rather than learned within the policy's representations. This work tests whether auxiliary SDF supervision can produce intrinsic collision awareness.\n\n\\paragraph{Signed Distance Functions in Robotics.}\nSDFs encode minimum surface distance, where the sign indicates free space or penetration. Neural SDFs~\\cite{park2019deepsdf} enable continuous shape representation; in robotics, SDFs serve perception~\\cite{ortiz2022isdf}, planning~\\cite{huang2023voxposer,vasilopoulos2023ramp}, and differentiable collision detection~\\cite{zhi2021diffco}. CDF~\\cite{li2024cdf} extends SDFs to robot configuration space, learning neural distance fields that provide efficient joint-angle queries with analytical gradients for manipulation planning; CSSDF-Net~\\cite{chen2026cssdfnet} further develops this direction for safe motion planning. RDF~\\cite{li2024rdf} represents robot geometry itself as composable per-link SDFs along the kinematic chain, enabling whole-body collision queries---directly relevant to the full-body awareness gap our work identifies. Neural SDF-based model predictive control~\\cite{jacquet2025neuralnmpc} demonstrates effectiveness in classical pipelines, but integration into end-to-end learned policies remains unexplored.\n\n\\paragraph{SDF integration pathways.} Geometric supervision via signed distance fields can be integrated into VLA policies through fundamentally different mechanisms. (a)~\\emph{Training-time auxiliary loss}: an SDF-based collision penalty is added to the training objective, supervising only the end-effector trajectory (the approach tested in this work). (b)~\\emph{Constraint-based planning}: SafeVLA~\\citep{zhang2025safevla} formulates collision avoidance as a constrained MDP, using SDF constraints during planning rather than training. (c)~\\emph{Runtime filtering}: VLSA~\\citep{hu2025vlsa} applies control barrier functions (CBFs) with SDF at inference time, filtering unsafe actions post-hoc. Our negative finding---that EE-only auxiliary SDF loss is redundant---is specific to pathway~(a) and does not apply to pathways~(b) and~(c), which bypass the structural limitation of supervising only the end-effector during training.\n\n\\paragraph{Evaluation Metrics for Safe Manipulation.}\nSafeLIBERO~\\cite{hu2025vlsa} extends LIBERO~\\cite{liu2023libero} with obstacle-augmented environments and a collision avoidance rate (CAR) metric. However, CAR treats all collision-free episodes identically: a frozen robot scores near-perfect CAR without any avoidance behavior. This failure mode echoes concerns about metric reliability~\\cite{karwowski2024goodhart,gururangan2018annotation} and binary success metrics under limited samples~\\cite{snyder2026beyond}. Action collapse in diffusion policies~\\cite{dong2025conditioning} systematically inflates CAR but has not been previously examined as a safety evaluation confounder. We propose dfCAR (\\S\\ref{sec:dfcar}) to detect this contamination.\n",
+      "numLines": 16,
+      "startLine": 1,
+      "totalLines": 16
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01D7qGWW24am4n83YczqViV1`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/appendix.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "f8178d39-e78e-4775-a9d7-c842eed0dd47",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019xctSJnuT999z9ym2XNntb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4660,
+      "cache_read_input_tokens": 24059,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4660
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-28T06:19:14.794Z_
+
+<details><summary>↩ Tool result · `toolu_01D7qGWW24am4n83YczqViV1`</summary>
+
+```text
+1	\section{Displacement Distribution}
+2	\label{sec:appendix_displacement}
+3	
+4	\begin{figure}[h]
+5	\centering
+6	\includegraphics[width=\linewidth]{fig2_ee_displacement_distribution}
+7	\caption{Displacement distribution across evaluation episodes. Pi0-family models (blue) cluster below 1\,$\mu$m, while Pi0.5 episodes (orange) exceed 200\,mm. The five-order-of-magnitude gap makes $\tau_d$ robust to any value in $[2, 200]$\,mm.}
+8	\label{fig:displacement}
+9	\end{figure}
+10	
+11	\section{Displacement Threshold Sensitivity Analysis}
+12	\label{sec:appendix_threshold}
+13	
+14	To validate the robustness of our displacement threshold $\tau_d$, we evaluate the frozen rate across four orders of magnitude. Table~\ref{tab:threshold_sensitivity} shows that the fake safety pattern persists across all reasonable threshold choices: A1-LoRA exhibits near-total action collapse regardless of threshold, while Pi0.5+A1 maintains 0\% frozen rate even at the most conservative setting.
+15	
+16	\begin{table}[h]
+17	\centering
+18	\caption{Frozen rate (\% of episodes with $d_\mathrm{max} < \tau_d$) across threshold values.}
+19	\label{tab:threshold_sensitivity}
+20	\begin{tabular}{lccc}
+21	\toprule
+22	$\tau_d$ & A1-LoRA (Pi0) & Pi0.5 Baseline & Pi0.5+A1 (SDF aux) \\
+23	\midrule
+24	0.001 mm (1\,$\mu$m) & 73.9 & 0.0 & 0.0 \\
+25	0.1 mm  & 99.6 & 0.0 & 0.0 \\
+26	1.0 mm  & 100.0 & 0.0 & 0.0 \\
+27	10 mm   & 100.0 & 0.0 & 0.0 \\
+28	\bottomrule
+29	\end{tabular}
+30	\end{table}
+31	
+32	The choice of $\tau_d = 0.1$\,mm represents a conservative threshold: displacement below this value is physically negligible in manipulation tasks where typical action magnitudes are 1--10\,mm per step. Even at $\tau_d = 1$\,$\mu$m, 73.9\% of A1-LoRA safe episodes are classified as frozen, while all Pi0.5 episodes remain above threshold at every level tested.
+33	
+34	Table~\ref{tab:dfcar_threshold} extends this analysis to dfCAR across fine-tuned Pi0.5 configurations. All eight model-seed combinations yield identical dfCAR for $\tau_d \in [2, 200]$\,mm. At $\tau_d = 300$\,mm, 0--2 episodes per seed fall below threshold (displacement 200--300\,mm), causing $\leq$0.5\,pp deviation. Our conclusions hold across the entire tested range.
+35	
+36	\begin{table}[h]
+37	\centering
+38	\caption{dfCAR (\%) across displacement thresholds for fine-tuned Pi0.5 configurations ($n = 200$ episodes per seed). Values are identical across $\tau_d \in [2, 200]$\,mm; at $\tau_d = 300$\,mm, at most 2 episodes are excluded.}
+39	\label{tab:dfcar_threshold}
+40	\vspace{2pt}
+41	\footnotesize
+42	\begin{tabular}{lcccccccc}
+43	\toprule
+44	& \multicolumn{8}{c}{$\tau_d$ (mm)} \\
+45	\cmidrule(lr){2-9}
+46	Condition & 2 & 5 & 10 & 20 & 50 & 100 & 200 & 300 \\
+47	\midrule
+48	LoRA s0            & 56.5 & 56.5 & 56.5 & 56.5 & 56.5 & 56.5 & 56.5 & 56.5 \\
+49	LoRA s1            & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 \\
+50	SDF $\lambda{=}0.005$ s0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.1 \\
+51	SDF $\lambda{=}0.005$ s1 & 54.0 & 54.0 & 54.0 & 54.0 & 54.0 & 54.0 & 54.0 & 54.0 \\
+52	SDF $\lambda{=}0.005$ s2 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.3 \\
+53	SDF $\lambda{=}0.01$ s0  & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 \\
+54	SDF $\lambda{=}0.01$ s1  & 57.5 & 57.5 & 57.5 & 57.5 & 57.5 & 57.5 & 57.5 & 57.1 \\
+55	SDF $\lambda{=}0.01$ s2  & 54.5 & 54.5 & 54.5 & 54.5 & 54.5 & 54.5 & 54.5 & 54.0 \\
+56	\bottomrule
+57	\end{tabular}
+58	\end{table}
+59	
+60	
+61	\section{Per-Task TSR Breakdown}\label{sec:appendix_tsr_pertask}
+62	
+63	Table~\ref{tab:per_task_tsr} decomposes TSR by task for the avoidance source attribution experiments (Section~\ref{sec:avoidance_source}). All tasks retain meaningful success rates after fine-tuning, with Chocolate Pudding most resilient and Orange Juice most affected.
+64	
+65	\begin{table}[h]
+66	\centering
+67	\caption{Per-task TSR (\%) at 30K training steps. Baseline reports the unified seed-7 re-evaluation (aggregate TSR\,=\,71.5\%). LoRA-only reports 3-seed means (re-evaluated with unified seed-7 protocol); SDF conditions report 3-seed means.}
+68	\label{tab:per_task_tsr}
+69	\vspace{2pt}
+70	\small
+71	\begin{tabular}{lcccc}
+72	\toprule
+73	Task & Pi0.5 Base & LoRA-only & SDF $\lambda{=}0.005$ & SDF $\lambda{=}0.01$ \\
+74	 & (seed\,=\,7) & (3 seeds) & (3 seeds) & (3 seeds) \\
+75	\midrule
+76	Orange Juice      & 74.0 & 30.0 & 33.3 & 24.7 \\
+77	Choco.\ Pudding   & 80.0 & 70.7 & 78.0 & 76.7 \\
+78	Milk              & 66.0 & 44.7 & 35.3 & 48.7 \\
+79	BBQ Sauce         & 66.0 & 60.7 & 69.3 & 65.3 \\
+80	\midrule
+81	Mean              & 71.5 & 51.5 & 54.0 & 53.8 \\
+82	\bottomrule
+83	\end{tabular}
+84	\end{table}
+85	
+86	\section{Per-Task CAR Breakdown}\label{sec:appendix_pertask_car}
+87	
+88	Table~\ref{tab:per_task_car} decomposes CAR by task for all fine-tuned conditions, supporting the claim that per-task ordering is preserved across SDF loss weights (\S\ref{sec:avoidance_source}). Chocolate Pudding is consistently highest and BBQ Sauce consistently lowest across all conditions, including $\lambda = 0.1$. The intermediate tasks (Orange Juice and Milk) exchange rank between seeds but remain bounded by the extremes. This invariance indicates that avoidance patterns reflect the spatial statistics of collision-free demonstrations rather than geometric supervision.
+89	
+90	\begin{table}[h]
+91	\centering
+92	\caption{Per-task CAR (\%) at 30K steps. $\lambda{=}0.005$, $\lambda{=}0.01$, and $\lambda{=}0.1$ report 3-seed means alongside individual seeds. Per-task ordering (CP highest, BBQ lowest) is preserved across all conditions.}
+93	\label{tab:per_task_car}
+94	\vspace{2pt}
+95	\small
+96	\begin{tabular}{lccccc}
+97	\toprule
+98	Condition & OJ & CP & Milk & BBQ & Agg. \\
+99	\midrule
+100	LoRA s0 & 56 & 74 & 70 & 26 & 56.5 \\
+101	LoRA s1 & 54 & 68 & 72 & 16 & 52.5 \\
+102	LoRA s2 & 56 & 76 & 62 & 26 & 55.0 \\
+103	SDF $\lambda{=}0.005$ (3-seed) & 54.0 & 72.7 & 71.3 & 20.0 & 54.5 \\
+104	SDF $\lambda{=}0.01$ (3-seed) & 57.3 & 72.7 & 72.0 & 23.3 & 56.3 \\
+105	SDF $\lambda{=}0.1$ s0 & 60 & 74 & 68 & 30 & 58.0 \\
+106	SDF $\lambda{=}0.1$ s1 & 66 & 72 & 70 & 26 & 58.5 \\
+107	SDF $\lambda{=}0.1$ s2 & 56 & 76 & 70 & 16 & 54.5 \\
+108	SDF $\lambda{=}0.1$ (3-seed) & 60.7 & 74.0 & 69.3 & 24.0 & 57.0 \\
+109	\bottomrule
+110	\end{tabular}
+111	\end{table}
+112	
+113	For the $\lambda = 0.1$ condition, seed~1 records \texttt{avg\_max\_obstacle\_displacement} of 0.0553\,m (per-task: OJ\,=\,0.033, CP\,=\,0.055, Milk\,=\,0.041, BBQ\,=\,0.093), comparable to other fine-tuned conditions and consistent with active manipulation rather than frozen behavior.
+114	
+115	\begin{figure}[t]
+116	\centering
+117	\includegraphics[width=\linewidth]{fig_pertask_car_fingerprint}
+118	\caption{Per-task CAR fingerprint across conditions. Each bar shows the 3-seed mean; dots indicate individual seeds. The task ordering (chocolate\_pudding highest, bbq\_sauce lowest) is preserved across all $\lambda$ values, confirming that avoidance patterns reflect the demonstration distribution rather than geometric supervision. LoRA-only: 3-seed mean.}
+119	\label{fig:pertask_fingerprint}
+120	\end{figure}
+121	
+122	\section{Safe Success Rate Analysis}\label{sec:appendix_ssr}
+123	
+124	Table~\ref{tab:ssr} reports the Safe Success Rate (SSR\,=\,TSR\,$\cap$\,CAR), the fraction of episodes achieving both task completion and collision avoidance. The SSR/TSR ratio quantifies the proportion of successful episodes that are also collision-free, controlling for task-completion rate.
+125	
+126	\begin{table}[h]
+127	\centering
+128	\caption{SSR and SSR/TSR ratio across conditions. The ratio increase from 0.39 (baseline) to 0.51--0.60 (fine-tuned) indicates that CAR gains reflect learned safer execution, not reduced task exposure.}
+129	\label{tab:ssr}
+130	\vspace{2pt}
+131	\small
+132	\begin{tabular}{lcccc}
+133	\toprule
+134	Condition & TSR (\%) & CAR (\%) & SSR (\%) & SSR/TSR \\
+135	\midrule
+136	Pi0.5 baseline & 71.5 & 28.5 & 28.0 & 0.39 \\
+137	LoRA-only (3 seeds) & 51.5 & 54.67 & 27.7 & 0.54 \\
+138	SDF $\lambda{=}0.005$ (3 seeds) & 54.0 & 54.5 & 27.8 & 0.51 \\
+139	SDF $\lambda{=}0.01$ (3 seeds) & 53.8 & 56.33 & 30.2 & 0.56 \\
+140	SDF $\lambda{=}0.1$ (3 seeds) & 50.2 & 57.00 & 30.2 & 0.60 \\
+141	\bottomrule
+142	\end{tabular}
+143	\end{table}
+144	
+145	\section{Per-Task Oracle Analysis}
+146	\label{sec:appendix_pertask}
+147	\label{sec:appendix_pertask_oracle}
+148	
+149	Table~\ref{tab:oracle_pertask} shows per-task CAR for oracle refinement. On task~1 (\texttt{chocolate\_pudding}), where the EE is the primary collision body and the LoRA baseline achieves only 46.0\% CAR, Oracle-adaptive improves to 55.0\% and Oracle-feature to 47.5\%. On the remaining tasks, all oracle variants degrade: Oracle-adaptive reduces task~0 (\texttt{orange\_juice}) from 96.0\% to 82.5\% and task~2 (\texttt{milk}) from 98.0\% to 77.5\%. The SDF gradient pushes the EE away from the nearest surface, but the resulting joint-space displacement rotates intermediate arm links into obstacle volumes.
+150	
+151	The feature-space oracle fires on nearly every timestep (241.7 refinements/episode vs.\ 14.2 for Cartesian variants) but with gradient magnitudes two orders of magnitude smaller (0.004--0.006 vs.\ 0.18--0.49), and CAR (76.9\%) shows no advantage despite 17$\times$ more steps. The A3 learned SDF never triggers refinement (0 steps/episode), as its outputs avoid the activation threshold.
+152	
+153	\begin{table}[h]
+154	\centering
+155	\caption{Per-task CAR (\%) for oracle SDF refinement variants. EE-only refinement helps only on task~1 where the EE is the primary collision body; on other tasks it trades one collision site for another.}
+156	\label{tab:oracle_pertask}
+157	\vspace{2pt}
+158	\small
+159	\begin{tabular}{lccccc}
+160	\toprule
+161	Method & Task 0 & Task 1 & Task 2 & Task 3 & Agg. \\
+162	\midrule
+163	LoRA baseline & 96.0 & 46.0 & 98.0 & 88.0 & 82.0 \\
+164	\midrule
+165	Oracle-adaptive & 82.5 & 55.0 & 77.5 & 85.0 & 75.0 \\
+166	Oracle-fixed & 85.0 & 50.0 & 77.5 & 80.0 & 73.1 \\
+167	Oracle-feature & 90.0 & 47.5 & 82.5 & 87.5 & 76.9 \\
+168	\bottomrule
+169	\end{tabular}
+170	\end{table}
+171	
+172	
+173	\section{Null Distribution for SDF Loss Weight Analysis}
+174	\label{sec:appendix_null}
+175	
+176	We construct a null distribution by pooling the three LoRA-only seeds and three $\lambda = 0.005$ seeds into six per-seed CAR measurements: 56.5\% (LoRA s0, re-evaluated), 52.5\% (LoRA s1), 55.0\% (LoRA s2), 57.0\% ($\lambda{=}0.005$ s0), 54.0\% ($\lambda{=}0.005$ s1), 52.5\% ($\lambda{=}0.005$ s2), yielding mean 54.58\% and standard deviation 1.93\% (Bessel-corrected, $n{-}1 = 5$). We treat these as exchangeable because SDF at $\lambda = 0.005$ produces no separation from LoRA-only. The $\lambda = 0.01$ mean of 56.33\% falls within $0.8\sigma$ of this null ($p > 0.1$), consistent with seed-to-seed variation rather than a treatment effect. The $\lambda = 0.1$ 30K mean of 57.00\% (3 seeds: 58.0\%, 58.5\%, 54.5\%) yields a two-tailed permutation $p = 0.131$ (one-tailed $p = 0.071$). The result is non-significant at conventional thresholds ($\alpha = 0.05$).
+177	
+178	The permutation test makes no distributional assumptions. Pooling the six null values $\{56.5, 52.5, 55, 57, 54, 52.5\}$ and three $\lambda = 0.1$ values $\{58, 58.5, 54.5\}$ into nine measurements, we enumerate all $\binom{9}{3} = 84$ three-element combinations and compute the fraction whose mean $\geq 57.00$. Six combinations meet this threshold, yielding an exact one-tailed permutation $p = 6/84 \approx 0.071$. For the two-tailed test, we additionally count combinations on the lower tail with equal or greater distance from the pooled mean, yielding $p = 11/84 \approx 0.131$. With the third seed ($s_2 = 54.5\%$) pulling the $\lambda = 0.1$ mean from 58.25\% (2 seeds) down to 57.00\%, the marginal signal observed at $n = 2$ dissolves into seed-to-seed variance.
+179	
+180	\paragraph{Alternative null construction (Null~A).}
+181	If only the three LoRA-only seeds are used as the null pool ($\{56.5, 52.5, 55.0\}$), we obtain $\binom{6}{3} = 20$ permutations for each comparison. For $\lambda = 0.1$ (treatment mean 57.00\%): one-tailed $p = 3/20 = 0.150$, two-tailed $p = 6/20 = 0.300$. For $\lambda = 0.01$ (treatment mean 56.33\%): one-tailed $p = 4/20 = 0.200$, two-tailed $p = 8/20 = 0.400$. Under the broader Null~B pool, $\lambda = 0.01$ yields one-tailed $p = 10/84 \approx 0.119$, two-tailed $p = 22/84 \approx 0.262$. All tests are non-significant at $\alpha = 0.05$; the narrower Null~A yields \emph{larger} $p$-values because the LoRA-only pool already contains a high seed (56.5\%), making the treatment means less extreme by comparison.
+182	
+183	A Phase~2 ablation reinforces this conclusion. Setting $\lambda = 0$ during Phase~2 (steps 5K--18K), so that SDF supervision is active only during auxiliary head warmup (Phase~1, steps 0--5K), yields CAR of 58.0\% at the 18K checkpoint (13K steps of Phase~2 training, single seed, s2).\footnote{Full 30K training did not complete due to disk constraints; this result uses the last complete checkpoint at step 18K.} This value lies within the null range, indicating that SDF training produces no lasting behavioral effect on collision avoidance.
+184	
+185	\section{Step-wise Checkpoint Analysis for \texorpdfstring{$\lambda = 0.1$}{lambda = 0.1}}
+186	\label{sec:appendix_stepwise}
+187	
+188	Table~\ref{tab:stepwise_lambda01} reports per-seed CAR at seven checkpoints for $\lambda = 0.1$. Seeds~0 and~1 are available at 16K, 20K, 22K, and 30K; 24K--28K report seed-0 only; seed~2 is available at 30K only. The seed-0 curve shows no monotonic trend through 28K. At 30K, the addition of seed~2 (54.5\%) pulls the three-seed mean to 57.00\%, within the null band ($p = 0.131$).
+189	
+190	\begin{table}[h]
+191	\centering
+192	\caption{Per-seed CAR (\%) at training checkpoints for $\lambda = 0.1$ (200 episodes each). 24K--28K: seed-0 only. The 30K checkpoint includes all three seeds; the three-seed mean (57.00\%) remains within the null band ($p = 0.131$, two-tailed permutation).}
+193	\label{tab:stepwise_lambda01}
+194	\vspace{2pt}
+195	\small
+196	\begin{tabular}{lcccc}
+197	\toprule
+198	Checkpoint & Seed 0 & Seed 1 & Seed 2 & Mean \\
+199	\midrule
+200	16K steps & 55.5 & 56.0 & -- & 55.75 \\
+201	20K steps & 55.0 & 56.0 & -- & 55.5 \\
+202	22K steps & 60.5 & 56.5 & -- & 58.5 \\
+203	24K steps & 52.5 & -- & -- & -- \\
+204	26K steps & 53.5 & -- & -- & -- \\
+205	28K steps & 54.5 & -- & -- & -- \\
+206	30K steps & 58.0 & 58.5 & 54.5 & 57.00 \\
+207	\bottomrule
+208	\end{tabular}
+209	\end{table}
+210	
+211	Individual seeds exhibit checkpoint-to-checkpoint CAR fluctuations of up to 8\,pp (seed~0: 52.5--60.5\%), larger than the cross-seed standard deviation at any fixed checkpoint ($\leq$3\,pp). This is consistent with binomial sampling noise at $n = 50$ episodes per task ($\sigma \approx 7$\,pp per task for $p \approx 0.5$). At 30K, the third seed ($s_2 = 54.5\%$) falls well within the null range, pulling the three-seed mean to 57.00\% and rendering the earlier two-seed departure non-significant ($p = 0.131$). The seed-averaged curve shows no monotonic trend, confirming that SDF loss weight does not produce a progressive training signal.
+212	
+213	
+214	\section{Oracle SDF Refinement Details}
+215	\label{sec:appendix_oracle}
+216	
+217	All oracle variants replace the learned SDF decoder with ground-truth distance fields computed from the simulation geometry. Each is evaluated for 160 episodes (4 tasks $\times$ 40).
+218	
+219	\paragraph{Oracle-adaptive.} At each timestep, if the ground-truth SDF at the end-effector position falls below a safety margin, the action is adjusted by a step in the negative SDF gradient direction. The step size $\alpha$ is scaled inversely with distance: smaller distances produce larger corrections. This mimics an adaptive potential field controller.
+220	
+221	\paragraph{Oracle-fixed.} Identical to Oracle-adaptive except the step size is fixed at $\alpha = 0.005$ regardless of distance. This isolates the effect of step-size adaptation from the refinement geometry.
+222	
+223	\paragraph{Oracle-feature.} Instead of modifying the action directly in Cartesian space, this variant applies the SDF gradient in the policy's latent feature space via backpropagation. The gradient of the ground-truth SDF value with respect to the intermediate features is computed and used to perturb the features before the action head decodes them. This tests whether geometric corrections are more effective when applied in the model's learned representation space. In practice, the feature-space variant fires on nearly every timestep (241.7 refinements per episode vs.\ 14.2 for Cartesian variants) but with gradient magnitudes two orders of magnitude smaller (0.004--0.006 vs.\ 0.18--0.49 in action space).
+224	
+225	
+226	\section{Cross-Scene Validation: spatial\_bowl}
+227	\label{sec:appendix_spatial_bowl}
+228	
+229	To test whether the SDF redundancy finding generalizes beyond the primary \texttt{object\_pudding} scene, we replicate the core comparison on \texttt{spatial\_bowl}, a separate SafeLIBERO suite with a distinct obstacle layout (moka pot, wine bottle, milk carton, red coffee mug, yellow book). Both conditions use the same architecture, hyperparameters, and two-phase training schedule (30K steps), differing only in the training scene.
+230	
+231	Table~\ref{tab:spatial_bowl} reports the results. The SDF condition ($\lambda = 0.005$) yields CAR of 11.5\% versus 12.0\% for LoRA-only, a $-$0.5\,pp difference well within the noise floor, indicating that SDF is essentially identical to LoRA-only on this scene. TSR is comparable across conditions (49.0\% vs.\ 51.5\%). Both evaluations use a single training seed (seed~0) and a single evaluation seed (seed~7, 200 episodes), so statistical power is limited; nevertheless, the qualitative pattern---SDF failing to improve over LoRA-only---is consistent with the \texttt{object\_pudding} findings.
+232	
+233	\begin{table}[h]
+234	\centering
+235	\caption{Cross-scene validation on \texttt{spatial\_bowl} (single training seed, 200 episodes, 30K checkpoint). The $-$0.5\,pp CAR difference is well within noise, consistent with the SDF redundancy observed on \texttt{object\_pudding}.}
+236	\label{tab:spatial_bowl}
+237	\vspace{2pt}
+238	\small
+239	\begin{tabular}{lcc}
+240	\toprule
+241	Condition & CAR (\%) & TSR (\%) \\
+242	\midrule
+243	LoRA-only & 12.0 & 49.0 \\
+244	SDF $\lambda{=}0.005$ & 11.5 & 51.5 \\
+245	\bottomrule
+246	\end{tabular}
+247	\end{table}
+248	
+249	The substantially lower CAR on \texttt{spatial\_bowl} relative to \texttt{object\_pudding} (11--12\% vs.\ 54--57\%) reflects the greater scene difficulty: \texttt{spatial\_bowl} places five cluttered obstacles around the workspace, making collision-free manipulation considerably harder. This difficulty affects both conditions equally, and the SDF condition performs comparably ($\Delta$CAR\,=\,$-$0.5\,pp, well within noise), reinforcing the conclusion that EE-only SDF auxiliary supervision does not produce a meaningful collision avoidance benefit beyond LoRA-only fine-tuning.
+250	
+251	
+252	\section{Evaluation Seed Robustness}
+253	\label{sec:appendix_eval_seed}
+254	
+255	To verify that our conclusions are not artifacts of a particular evaluation seed, we re-evaluate the LoRA-only (s0) and SDF $\lambda{=}0.1$ (s0) checkpoints under multiple evaluation seeds. Table~\ref{tab:eval_seed_car} reports aggregate CAR and Table~\ref{tab:eval_seed_tsr} reports aggregate TSR.
+256	
+257	\begin{table}[h]
+258	\centering
+259	\caption{Aggregate CAR (\%) across evaluation seeds (200 episodes each). The LoRA vs.\ SDF $\lambda{=}0.1$ ordering is preserved across all tested seeds, and per-task CAR fingerprints (CP highest, BBQ lowest) remain invariant.}
+260	\label{tab:eval_seed_car}
+261	\vspace{2pt}
+262	\small
+263	\begin{tabular}{lcccccc}
+264	\toprule
+265	& \multicolumn{4}{c}{Per-task CAR (\%)} & & \\
+266	\cmidrule(lr){2-5}
+267	Condition (eval seed) & OJ & CP & Milk & BBQ & Agg. \\
+268	\midrule
+269	LoRA s0 (seed\,=\,7)   & 56 & 74 & 70 & 26 & 56.5 \\
+270	LoRA s0 (seed\,=\,42)  & 60 & 70 & 68 & 28 & 56.5 \\
+271	LoRA s0 (seed\,=\,123) & 52 & 74 & 66 & 20 & 53.0 \\
+272	LoRA s0 mean $\pm$ std & 56.0$\pm$4.0 & 72.7$\pm$2.3 & 68.0$\pm$2.0 & 24.7$\pm$4.2 & 55.3$\pm$2.0 \\
+273	\midrule
+274	SDF $\lambda{=}0.1$ s0 (seed\,=\,7)   & 60 & 74 & 68 & 30 & 58.0 \\
+275	SDF $\lambda{=}0.1$ s0 (seed\,=\,42)  & 64 & 74 & 74 & 24 & 59.0 \\
+276	SDF $\lambda{=}0.1$ s0 (seed\,=\,123) & 62 & 76 & 74 & 22 & 58.5 \\
+277	SDF $\lambda{=}0.1$ s0 (seed\,=\,256) & 60 & 72 & 66 & 30 & 57.0 \\
+278	SDF $\lambda{=}0.1$ s0 mean $\pm$ std & 61.5$\pm$1.9 & 74.0$\pm$1.6 & 70.5$\pm$4.1 & 26.5$\pm$4.1 & 58.1$\pm$0.9 \\
+279	\bottomrule
+280	\end{tabular}
+281	\end{table}
+282	
+283	\begin{table}[h]
+284	\centering
+285	\caption{Aggregate TSR (\%) across evaluation seeds. TSR varies more across seeds than CAR (seed\,=\,42 yields consistently lower TSR), but the relative ordering between LoRA and SDF is stable.}
+286	\label{tab:eval_seed_tsr}
+287	\vspace{2pt}
+288	\small
+289	\begin{tabular}{lcccccc}
+290	\toprule
+291	& \multicolumn{4}{c}{Per-task TSR (\%)} & & \\
+292	\cmidrule(lr){2-5}
+293	Condition (eval seed) & OJ & CP & Milk & BBQ & Agg. \\
+294	\midrule
+295	LoRA s0 (seed\,=\,7)   & 32 & 74 & 42 & 58 & 51.5 \\
+296	LoRA s0 (seed\,=\,42)  & 22 & 70 & 32 & 60 & 46.0 \\
+297	LoRA s0 (seed\,=\,123) & 30 & 70 & 40 & 62 & 50.5 \\
+298	LoRA s0 mean $\pm$ std & 28.0$\pm$5.3 & 71.3$\pm$2.3 & 38.0$\pm$5.3 & 60.0$\pm$2.0 & 49.3$\pm$3.0 \\
+299	\midrule
+300	SDF $\lambda{=}0.1$ s0 (seed\,=\,7)   & 28 & 78 & 44 & 60 & 52.5 \\
+301	SDF $\lambda{=}0.1$ s0 (seed\,=\,42)  & 18 & 78 & 42 & 72 & 52.5 \\
+302	SDF $\lambda{=}0.1$ s0 (seed\,=\,123) & 26 & 82 & 38 & 68 & 53.5 \\
+303	SDF $\lambda{=}0.1$ s0 (seed\,=\,256) & 28 & 74 & 32 & 58 & 48.0 \\
+304	SDF $\lambda{=}0.1$ s0 mean $\pm$ std & 25.0$\pm$4.8 & 78.0$\pm$3.3 & 39.0$\pm$5.4 & 64.5$\pm$6.6 & 51.6$\pm$2.4 \\
+305	\bottomrule
+306	\end{tabular}
+307	\end{table}
+308	
+309	Across three matched evaluation seeds (7, 42, 123), the SDF $\lambda{=}0.1$ condition yields higher aggregate CAR than LoRA-only in all cases ($\Delta$CAR\,=\,+1.5, +2.5, +5.5\,pp). Cross-seed CAR standard deviation is 2.0\,pp for LoRA and 0.9\,pp for SDF, both small relative to the within-seed per-task variation. The per-task ordering (CP highest, BBQ lowest) is preserved across all seeds and both conditions, reinforcing the conclusion that avoidance patterns reflect the spatial statistics of training demonstrations.
+310	
+311	
+312	\section{Training Details}
+313	\label{sec:appendix_training}
+314	
+315	\paragraph{Architecture.}
+316	We use LoRA~\citep{hu2022lora} adapters injected into the PaliGemma vision encoder (rank 16, $\alpha$=16) and the action expert (rank 32, $\alpha$=32), following the configuration of OpenPi. The SDF decoder is a 4-layer MLP (hidden dimension 256) with skip connections, taking pooled suffix features (1024-d) and query points (3-d) as input. The end-effector extractor is a 2-layer MLP (1024 $\to$ 256 $\to$ 3).
+317	
+318	\paragraph{Training schedule.}
+319	Training proceeds in two phases:
+320	\begin{itemize}
+321	    \item \textbf{Phase 1} (steps 0--5000): Backbone and LoRA parameters are frozen. Only the SDF decoder and EE extractor are trained, allowing them to learn meaningful representations before the policy adapts.
+322	    \item \textbf{Phase 2} (steps 5000--30000): LoRA parameters are unfrozen with a 100-step gradient warmup ramp. All auxiliary heads continue training jointly with the policy.
+323	\end{itemize}
+324	
+325	\paragraph{Hyperparameters.}
+326	\begin{table}[h]
+327	\centering
+328	\caption{Training hyperparameters.}
+329	\label{tab:hyperparams}
+330	\begin{tabular}{ll}
+331	\toprule
+332	Parameter & Value \\
+333	\midrule
+334	Base model & Pi0.5 (OpenPi, $\sim$3.5B parameters) \\
+335	Optimizer & AdamW \\
+336	Learning rate & $2.5 \times 10^{-5}$ (cosine decay to $\mathrm{lr}/10$) \\
+337	Warmup steps & 1000 \\
+338	Batch size & 32 \\
+339	Total steps & 30000 \\
+340	$\lambda_\mathrm{sdf}$ & \{0.005, 0.01, 0.1\} \\
+341	$\lambda_\mathrm{ee}$ & 0.01 \\
+342	SDF query points per step & 64 \\
+343	SDF clamp $\delta$ & 0.05 m \\
+344	Eikonal weight & 0.1 \\
+345	LoRA rank (vision) & 16 \\
+346	LoRA rank (action) & 32 \\
+347	Phase 1 duration & 5000 steps \\
+348	\bottomrule
+349	\end{tabular}
+350	\end{table}
+351	
+352	\paragraph{Evaluation protocol.}
+353	Each episode runs for at most 300 timesteps. The policy generates a 50-step action trajectory via flow matching and executes the first 5 steps before replanning. An episode terminates early upon task completion. Collision detection uses MuJoCo's built-in contact detection: any contact between the robot and a non-target object registers as a collision. For Pi0.5 evaluations, camera images are rotated 180$^\circ$ to match the pre-training viewpoint convention; this correction was verified to restore TSR from ${\sim}$5\% to ${\sim}$52\% while leaving CAR comparable. Oracle variants use 40 episodes per task (160 total) with a single seed; all other configurations use 50 episodes per task (200 total).
+354	
+355	\paragraph{Data.}
+356	We use the SafeLIBERO object\_pudding suite with pre-computed SDF ground truth. SDF values are computed offline from the obstacle mesh using a dense $64^3$ voxel grid. During training, 64 query points are randomly sampled per step from this grid.
+357	
+358	\paragraph{Computational resources.}
+359	All training and evaluation experiments are conducted on NVIDIA RTX PRO 6000 GPUs (96\,GB). Phase~1 (5K steps) takes approximately 6 hours on a single GPU; Phase~2 (25K steps) takes approximately 32 hours. Evaluation of 200 episodes requires approximately 4 hours. Across 100+ experiments (training runs, evaluations, oracle variants, and ablations), the total computational budget is approximately 700 GPU-hours.
+360	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "26714f90-f20c-485e-acf0-26eec875b8a6",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/appendix.tex",
+      "content": "\\section{Displacement Distribution}\n\\label{sec:appendix_displacement}\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\linewidth]{fig2_ee_displacement_distribution}\n\\caption{Displacement distribution across evaluation episodes. Pi0-family models (blue) cluster below 1\\,$\\mu$m, while Pi0.5 episodes (orange) exceed 200\\,mm. The five-order-of-magnitude gap makes $\\tau_d$ robust to any value in $[2, 200]$\\,mm.}\n\\label{fig:displacement}\n\\end{figure}\n\n\\section{Displacement Threshold Sensitivity Analysis}\n\\label{sec:appendix_threshold}\n\nTo validate the robustness of our displacement threshold $\\tau_d$, we evaluate the frozen rate across four orders of magnitude. Table~\\ref{tab:threshold_sensitivity} shows that the fake safety pattern persists across all reasonable threshold choices: A1-LoRA exhibits near-total action collapse regardless of threshold, while Pi0.5+A1 maintains 0\\% frozen rate even at the most conservative setting.\n\n\\begin{table}[h]\n\\centering\n\\caption{Frozen rate (\\% of episodes with $d_\\mathrm{max} < \\tau_d$) across threshold values.}\n\\label{tab:threshold_sensitivity}\n\\begin{tabular}{lccc}\n\\toprule\n$\\tau_d$ & A1-LoRA (Pi0) & Pi0.5 Baseline & Pi0.5+A1 (SDF aux) \\\\\n\\midrule\n0.001 mm (1\\,$\\mu$m) & 73.9 & 0.0 & 0.0 \\\\\n0.1 mm  & 99.6 & 0.0 & 0.0 \\\\\n1.0 mm  & 100.0 & 0.0 & 0.0 \\\\\n10 mm   & 100.0 & 0.0 & 0.0 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe choice of $\\tau_d = 0.1$\\,mm represents a conservative threshold: displacement below this value is physically negligible in manipulation tasks where typical action magnitudes are 1--10\\,mm per step. Even at $\\tau_d = 1$\\,$\\mu$m, 73.9\\% of A1-LoRA safe episodes are classified as frozen, while all Pi0.5 episodes remain above threshold at every level tested.\n\nTable~\\ref{tab:dfcar_threshold} extends this analysis to dfCAR across fine-tuned Pi0.5 configurations. All eight model-seed combinations yield identical dfCAR for $\\tau_d \\in [2, 200]$\\,mm. At $\\tau_d = 300$\\,mm, 0--2 episodes per seed fall below threshold (displacement 200--300\\,mm), causing $\\leq$0.5\\,pp deviation. Our conclusions hold across the entire tested range.\n\n\\begin{table}[h]\n\\centering\n\\caption{dfCAR (\\%) across displacement thresholds for fine-tuned Pi0.5 configurations ($n = 200$ episodes per seed). Values are identical across $\\tau_d \\in [2, 200]$\\,mm; at $\\tau_d = 300$\\,mm, at most 2 episodes are excluded.}\n\\label{tab:dfcar_threshold}\n\\vspace{2pt}\n\\footnotesize\n\\begin{tabular}{lcccccccc}\n\\toprule\n& \\multicolumn{8}{c}{$\\tau_d$ (mm)} \\\\\n\\cmidrule(lr){2-9}\nCondition & 2 & 5 & 10 & 20 & 50 & 100 & 200 & 300 \\\\\n\\midrule\nLoRA s0            & 56.5 & 56.5 & 56.5 & 56.5 & 56.5 & 56.5 & 56.5 & 56.5 \\\\\nLoRA s1            & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 \\\\\nSDF $\\lambda{=}0.005$ s0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.1 \\\\\nSDF $\\lambda{=}0.005$ s1 & 54.0 & 54.0 & 54.0 & 54.0 & 54.0 & 54.0 & 54.0 & 54.0 \\\\\nSDF $\\lambda{=}0.005$ s2 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.3 \\\\\nSDF $\\lambda{=}0.01$ s0  & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 \\\\\nSDF $\\lambda{=}0.01$ s1  & 57.5 & 57.5 & 57.5 & 57.5 & 57.5 & 57.5 & 57.5 & 57.1 \\\\\nSDF $\\lambda{=}0.01$ s2  & 54.5 & 54.5 & 54.5 & 54.5 & 54.5 & 54.5 & 54.5 & 54.0 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\n\\section{Per-Task TSR Breakdown}\\label{sec:appendix_tsr_pertask}\n\nTable~\\ref{tab:per_task_tsr} decomposes TSR by task for the avoidance source attribution experiments (Section~\\ref{sec:avoidance_source}). All tasks retain meaningful success rates after fine-tuning, with Chocolate Pudding most resilient and Orange Juice most affected.\n\n\\begin{table}[h]\n\\centering\n\\caption{Per-task TSR (\\%) at 30K training steps. Baseline reports the unified seed-7 re-evaluation (aggregate TSR\\,=\\,71.5\\%). LoRA-only reports 3-seed means (re-evaluated with unified seed-7 protocol); SDF conditions report 3-seed means.}\n\\label{tab:per_task_tsr}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\nTask & Pi0.5 Base & LoRA-only & SDF $\\lambda{=}0.005$ & SDF $\\lambda{=}0.01$ \\\\\n & (seed\\,=\\,7) & (3 seeds) & (3 seeds) & (3 seeds) \\\\\n\\midrule\nOrange Juice      & 74.0 & 30.0 & 33.3 & 24.7 \\\\\nChoco.\\ Pudding   & 80.0 & 70.7 & 78.0 & 76.7 \\\\\nMilk              & 66.0 & 44.7 & 35.3 & 48.7 \\\\\nBBQ Sauce         & 66.0 & 60.7 & 69.3 & 65.3 \\\\\n\\midrule\nMean              & 71.5 & 51.5 & 54.0 & 53.8 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Per-Task CAR Breakdown}\\label{sec:appendix_pertask_car}\n\nTable~\\ref{tab:per_task_car} decomposes CAR by task for all fine-tuned conditions, supporting the claim that per-task ordering is preserved across SDF loss weights (\\S\\ref{sec:avoidance_source}). Chocolate Pudding is consistently highest and BBQ Sauce consistently lowest across all conditions, including $\\lambda = 0.1$. The intermediate tasks (Orange Juice and Milk) exchange rank between seeds but remain bounded by the extremes. This invariance indicates that avoidance patterns reflect the spatial statistics of collision-free demonstrations rather than geometric supervision.\n\n\\begin{table}[h]\n\\centering\n\\caption{Per-task CAR (\\%) at 30K steps. $\\lambda{=}0.005$, $\\lambda{=}0.01$, and $\\lambda{=}0.1$ report 3-seed means alongside individual seeds. Per-task ordering (CP highest, BBQ lowest) is preserved across all conditions.}\n\\label{tab:per_task_car}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lccccc}\n\\toprule\nCondition & OJ & CP & Milk & BBQ & Agg. \\\\\n\\midrule\nLoRA s0 & 56 & 74 & 70 & 26 & 56.5 \\\\\nLoRA s1 & 54 & 68 & 72 & 16 & 52.5 \\\\\nLoRA s2 & 56 & 76 & 62 & 26 & 55.0 \\\\\nSDF $\\lambda{=}0.005$ (3-seed) & 54.0 & 72.7 & 71.3 & 20.0 & 54.5 \\\\\nSDF $\\lambda{=}0.01$ (3-seed) & 57.3 & 72.7 & 72.0 & 23.3 & 56.3 \\\\\nSDF $\\lambda{=}0.1$ s0 & 60 & 74 & 68 & 30 & 58.0 \\\\\nSDF $\\lambda{=}0.1$ s1 & 66 & 72 & 70 & 26 & 58.5 \\\\\nSDF $\\lambda{=}0.1$ s2 & 56 & 76 & 70 & 16 & 54.5 \\\\\nSDF $\\lambda{=}0.1$ (3-seed) & 60.7 & 74.0 & 69.3 & 24.0 & 57.0 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nFor the $\\lambda = 0.1$ condition, seed~1 records \\texttt{avg\\_max\\_obstacle\\_displacement} of 0.0553\\,m (per-task: OJ\\,=\\,0.033, CP\\,=\\,0.055, Milk\\,=\\,0.041, BBQ\\,=\\,0.093), comparable to other fine-tuned conditions and consistent with active manipulation rather than frozen behavior.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\linewidth]{fig_pertask_car_fingerprint}\n\\caption{Per-task CAR fingerprint across conditions. Each bar shows the 3-seed mean; dots indicate individual seeds. The task ordering (chocolate\\_pudding highest, bbq\\_sauce lowest) is preserved across all $\\lambda$ values, confirming that avoidance patterns reflect the demonstration distribution rather than geometric supervision. LoRA-only: 3-seed mean.}\n\\label{fig:pertask_fingerprint}\n\\end{figure}\n\n\\section{Safe Success Rate Analysis}\\label{sec:appendix_ssr}\n\nTable~\\ref{tab:ssr} reports the Safe Success Rate (SSR\\,=\\,TSR\\,$\\cap$\\,CAR), the fraction of episodes achieving both task completion and collision avoidance. The SSR/TSR ratio quantifies the proportion of successful episodes that are also collision-free, controlling for task-completion rate.\n\n\\begin{table}[h]\n\\centering\n\\caption{SSR and SSR/TSR ratio across conditions. The ratio increase from 0.39 (baseline) to 0.51--0.60 (fine-tuned) indicates that CAR gains reflect learned safer execution, not reduced task exposure.}\n\\label{tab:ssr}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\nCondition & TSR (\\%) & CAR (\\%) & SSR (\\%) & SSR/TSR \\\\\n\\midrule\nPi0.5 baseline & 71.5 & 28.5 & 28.0 & 0.39 \\\\\nLoRA-only (3 seeds) & 51.5 & 54.67 & 27.7 & 0.54 \\\\\nSDF $\\lambda{=}0.005$ (3 seeds) & 54.0 & 54.5 & 27.8 & 0.51 \\\\\nSDF $\\lambda{=}0.01$ (3 seeds) & 53.8 & 56.33 & 30.2 & 0.56 \\\\\nSDF $\\lambda{=}0.1$ (3 seeds) & 50.2 & 57.00 & 30.2 & 0.60 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Per-Task Oracle Analysis}\n\\label{sec:appendix_pertask}\n\\label{sec:appendix_pertask_oracle}\n\nTable~\\ref{tab:oracle_pertask} shows per-task CAR for oracle refinement. On task~1 (\\texttt{chocolate\\_pudding}), where the EE is the primary collision body and the LoRA baseline achieves only 46.0\\% CAR, Oracle-adaptive improves to 55.0\\% and Oracle-feature to 47.5\\%. On the remaining tasks, all oracle variants degrade: Oracle-adaptive reduces task~0 (\\texttt{orange\\_juice}) from 96.0\\% to 82.5\\% and task~2 (\\texttt{milk}) from 98.0\\% to 77.5\\%. The SDF gradient pushes the EE away from the nearest surface, but the resulting joint-space displacement rotates intermediate arm links into obstacle volumes.\n\nThe feature-space oracle fires on nearly every timestep (241.7 refinements/episode vs.\\ 14.2 for Cartesian variants) but with gradient magnitudes two orders of magnitude smaller (0.004--0.006 vs.\\ 0.18--0.49), and CAR (76.9\\%) shows no advantage despite 17$\\times$ more steps. The A3 learned SDF never triggers refinement (0 steps/episode), as its outputs avoid the activation threshold.\n\n\\begin{table}[h]\n\\centering\n\\caption{Per-task CAR (\\%) for oracle SDF refinement variants. EE-only refinement helps only on task~1 where the EE is the primary collision body; on other tasks it trades one collision site for another.}\n\\label{tab:oracle_pertask}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lccccc}\n\\toprule\nMethod & Task 0 & Task 1 & Task 2 & Task 3 & Agg. \\\\\n\\midrule\nLoRA baseline & 96.0 & 46.0 & 98.0 & 88.0 & 82.0 \\\\\n\\midrule\nOracle-adaptive & 82.5 & 55.0 & 77.5 & 85.0 & 75.0 \\\\\nOracle-fixed & 85.0 & 50.0 & 77.5 & 80.0 & 73.1 \\\\\nOracle-feature & 90.0 & 47.5 & 82.5 & 87.5 & 76.9 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\n\\section{Null Distribution for SDF Loss Weight Analysis}\n\\label{sec:appendix_null}\n\nWe construct a null distribution by pooling the three LoRA-only seeds and three $\\lambda = 0.005$ seeds into six per-seed CAR measurements: 56.5\\% (LoRA s0, re-evaluated), 52.5\\% (LoRA s1), 55.0\\% (LoRA s2), 57.0\\% ($\\lambda{=}0.005$ s0), 54.0\\% ($\\lambda{=}0.005$ s1), 52.5\\% ($\\lambda{=}0.005$ s2), yielding mean 54.58\\% and standard deviation 1.93\\% (Bessel-corrected, $n{-}1 = 5$). We treat these as exchangeable because SDF at $\\lambda = 0.005$ produces no separation from LoRA-only. The $\\lambda = 0.01$ mean of 56.33\\% falls within $0.8\\sigma$ of this null ($p > 0.1$), consistent with seed-to-seed variation rather than a treatment effect. The $\\lambda = 0.1$ 30K mean of 57.00\\% (3 seeds: 58.0\\%, 58.5\\%, 54.5\\%) yields a two-tailed permutation $p = 0.131$ (one-tailed $p = 0.071$). The result is non-significant at conventional thresholds ($\\alpha = 0.05$).\n\nThe permutation test makes no distributional assumptions. Pooling the six null values $\\{56.5, 52.5, 55, 57, 54, 52.5\\}$ and three $\\lambda = 0.1$ values $\\{58, 58.5, 54.5\\}$ into nine measurements, we enumerate all $\\binom{9}{3} = 84$ three-element combinations and compute the fraction whose mean $\\geq 57.00$. Six combinations meet this threshold, yielding an exact one-tailed permutation $p = 6/84 \\approx 0.071$. For the two-tailed test, we additionally count combinations on the lower tail with equal or greater distance from the pooled mean, yielding $p = 11/84 \\approx 0.131$. With the third seed ($s_2 = 54.5\\%$) pulling the $\\lambda = 0.1$ mean from 58.25\\% (2 seeds) down to 57.00\\%, the marginal signal observed at $n = 2$ dissolves into seed-to-seed variance.\n\n\\paragraph{Alternative null construction (Null~A).}\nIf only the three LoRA-only seeds are used as the null pool ($\\{56.5, 52.5, 55.0\\}$), we obtain $\\binom{6}{3} = 20$ permutations for each comparison. For $\\lambda = 0.1$ (treatment mean 57.00\\%): one-tailed $p = 3/20 = 0.150$, two-tailed $p = 6/20 = 0.300$. For $\\lambda = 0.01$ (treatment mean 56.33\\%): one-tailed $p = 4/20 = 0.200$, two-tailed $p = 8/20 = 0.400$. Under the broader Null~B pool, $\\lambda = 0.01$ yields one-tailed $p = 10/84 \\approx 0.119$, two-tailed $p = 22/84 \\approx 0.262$. All tests are non-significant at $\\alpha = 0.05$; the narrower Null~A yields \\emph{larger} $p$-values because the LoRA-only pool already contains a high seed (56.5\\%), making the treatment means less extreme by comparison.\n\nA Phase~2 ablation reinforces this conclusion. Setting $\\lambda = 0$ during Phase~2 (steps 5K--18K), so that SDF supervision is active only during auxiliary head warmup (Phase~1, steps 0--5K), yields CAR of 58.0\\% at the 18K checkpoint (13K steps of Phase~2 training, single seed, s2).\\footnote{Full 30K training did not complete due to disk constraints; this result uses the last complete checkpoint at step 18K.} This value lies within the null range, indicating that SDF training produces no lasting behavioral effect on collision avoidance.\n\n\\section{Step-wise Checkpoint Analysis for \\texorpdfstring{$\\lambda = 0.1$}{lambda = 0.1}}\n\\label{sec:appendix_stepwise}\n\nTable~\\ref{tab:stepwise_lambda01} reports per-seed CAR at seven checkpoints for $\\lambda = 0.1$. Seeds~0 and~1 are available at 16K, 20K, 22K, and 30K; 24K--28K report seed-0 only; seed~2 is available at 30K only. The seed-0 curve shows no monotonic trend through 28K. At 30K, the addition of seed~2 (54.5\\%) pulls the three-seed mean to 57.00\\%, within the null band ($p = 0.131$).\n\n\\begin{table}[h]\n\\centering\n\\caption{Per-seed CAR (\\%) at training checkpoints for $\\lambda = 0.1$ (200 episodes each). 24K--28K: seed-0 only. The 30K checkpoint includes all three seeds; the three-seed mean (57.00\\%) remains within the null band ($p = 0.131$, two-tailed permutation).}\n\\label{tab:stepwise_lambda01}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\nCheckpoint & Seed 0 & Seed 1 & Seed 2 & Mean \\\\\n\\midrule\n16K steps & 55.5 & 56.0 & -- & 55.75 \\\\\n20K steps & 55.0 & 56.0 & -- & 55.5 \\\\\n22K steps & 60.5 & 56.5 & -- & 58.5 \\\\\n24K steps & 52.5 & -- & -- & -- \\\\\n26K steps & 53.5 & -- & -- & -- \\\\\n28K steps & 54.5 & -- & -- & -- \\\\\n30K steps & 58.0 & 58.5 & 54.5 & 57.00 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nIndividual seeds exhibit checkpoint-to-checkpoint CAR fluctuations of up to 8\\,pp (seed~0: 52.5--60.5\\%), larger than the cross-seed standard deviation at any fixed checkpoint ($\\leq$3\\,pp). This is consistent with binomial sampling noise at $n = 50$ episodes per task ($\\sigma \\approx 7$\\,pp per task for $p \\approx 0.5$). At 30K, the third seed ($s_2 = 54.5\\%$) falls well within the null range, pulling the three-seed mean to 57.00\\% and rendering the earlier two-seed departure non-significant ($p = 0.131$). The seed-averaged curve shows no monotonic trend, confirming that SDF loss weight does not produce a progressive training signal.\n\n\n\\section{Oracle SDF Refinement Details}\n\\label{sec:appendix_oracle}\n\nAll oracle variants replace the learned SDF decoder with ground-truth distance fields computed from the simulation geometry. Each is evaluated for 160 episodes (4 tasks $\\times$ 40).\n\n\\paragraph{Oracle-adaptive.} At each timestep, if the ground-truth SDF at the end-effector position falls below a safety margin, the action is adjusted by a step in the negative SDF gradient direction. The step size $\\alpha$ is scaled inversely with distance: smaller distances produce larger corrections. This mimics an adaptive potential field controller.\n\n\\paragraph{Oracle-fixed.} Identical to Oracle-adaptive except the step size is fixed at $\\alpha = 0.005$ regardless of distance. This isolates the effect of step-size adaptation from the refinement geometry.\n\n\\paragraph{Oracle-feature.} Instead of modifying the action directly in Cartesian space, this variant applies the SDF gradient in the policy's latent feature space via backpropagation. The gradient of the ground-truth SDF value with respect to the intermediate features is computed and used to perturb the features before the action head decodes them. This tests whether geometric corrections are more effective when applied in the model's learned representation space. In practice, the feature-space variant fires on nearly every timestep (241.7 refinements per episode vs.\\ 14.2 for Cartesian variants) but with gradient magnitudes two orders of magnitude smaller (0.004--0.006 vs.\\ 0.18--0.49 in action space).\n\n\n\\section{Cross-Scene Validation: spatial\\_bowl}\n\\label{sec:appendix_spatial_bowl}\n\nTo test whether the SDF redundancy finding generalizes beyond the primary \\texttt{object\\_pudding} scene, we replicate the core comparison on \\texttt{spatial\\_bowl}, a separate SafeLIBERO suite with a distinct obstacle layout (moka pot, wine bottle, milk carton, red coffee mug, yellow book). Both conditions use the same architecture, hyperparameters, and two-phase training schedule (30K steps), differing only in the training scene.\n\nTable~\\ref{tab:spatial_bowl} reports the results. The SDF condition ($\\lambda = 0.005$) yields CAR of 11.5\\% versus 12.0\\% for LoRA-only, a $-$0.5\\,pp difference well within the noise floor, indicating that SDF is essentially identical to LoRA-only on this scene. TSR is comparable across conditions (49.0\\% vs.\\ 51.5\\%). Both evaluations use a single training seed (seed~0) and a single evaluation seed (seed~7, 200 episodes), so statistical power is limited; nevertheless, the qualitative pattern---SDF failing to improve over LoRA-only---is consistent with the \\texttt{object\\_pudding} findings.\n\n\\begin{table}[h]\n\\centering\n\\caption{Cross-scene validation on \\texttt{spatial\\_bowl} (single training seed, 200 episodes, 30K checkpoint). The $-$0.5\\,pp CAR difference is well within noise, consistent with the SDF redundancy observed on \\texttt{object\\_pudding}.}\n\\label{tab:spatial_bowl}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lcc}\n\\toprule\nCondition & CAR (\\%) & TSR (\\%) \\\\\n\\midrule\nLoRA-only & 12.0 & 49.0 \\\\\nSDF $\\lambda{=}0.005$ & 11.5 & 51.5 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe substantially lower CAR on \\texttt{spatial\\_bowl} relative to \\texttt{object\\_pudding} (11--12\\% vs.\\ 54--57\\%) reflects the greater scene difficulty: \\texttt{spatial\\_bowl} places five cluttered obstacles around the workspace, making collision-free manipulation considerably harder. This difficulty affects both conditions equally, and the SDF condition performs comparably ($\\Delta$CAR\\,=\\,$-$0.5\\,pp, well within noise), reinforcing the conclusion that EE-only SDF auxiliary supervision does not produce a meaningful collision avoidance benefit beyond LoRA-only fine-tuning.\n\n\n\\section{Evaluation Seed Robustness}\n\\label{sec:appendix_eval_seed}\n\nTo verify that our conclusions are not artifacts of a particular evaluation seed, we re-evaluate the LoRA-only (s0) and SDF $\\lambda{=}0.1$ (s0) checkpoints under multiple evaluation seeds. Table~\\ref{tab:eval_seed_car} reports aggregate CAR and Table~\\ref{tab:eval_seed_tsr} reports aggregate TSR.\n\n\\begin{table}[h]\n\\centering\n\\caption{Aggregate CAR (\\%) across evaluation seeds (200 episodes each). The LoRA vs.\\ SDF $\\lambda{=}0.1$ ordering is preserved across all tested seeds, and per-task CAR fingerprints (CP highest, BBQ lowest) remain invariant.}\n\\label{tab:eval_seed_car}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lcccccc}\n\\toprule\n& \\multicolumn{4}{c}{Per-task CAR (\\%)} & & \\\\\n\\cmidrule(lr){2-5}\nCondition (eval seed) & OJ & CP & Milk & BBQ & Agg. \\\\\n\\midrule\nLoRA s0 (seed\\,=\\,7)   & 56 & 74 & 70 & 26 & 56.5 \\\\\nLoRA s0 (seed\\,=\\,42)  & 60 & 70 & 68 & 28 & 56.5 \\\\\nLoRA s0 (seed\\,=\\,123) & 52 & 74 & 66 & 20 & 53.0 \\\\\nLoRA s0 mean $\\pm$ std & 56.0$\\pm$4.0 & 72.7$\\pm$2.3 & 68.0$\\pm$2.0 & 24.7$\\pm$4.2 & 55.3$\\pm$2.0 \\\\\n\\midrule\nSDF $\\lambda{=}0.1$ s0 (seed\\,=\\,7)   & 60 & 74 & 68 & 30 & 58.0 \\\\\nSDF $\\lambda{=}0.1$ s0 (seed\\,=\\,42)  & 64 & 74 & 74 & 24 & 59.0 \\\\\nSDF $\\lambda{=}0.1$ s0 (seed\\,=\\,123) & 62 & 76 & 74 & 22 & 58.5 \\\\\nSDF $\\lambda{=}0.1$ s0 (seed\\,=\\,256) & 60 & 72 & 66 & 30 & 57.0 \\\\\nSDF $\\lambda{=}0.1$ s0 mean $\\pm$ std & 61.5$\\pm$1.9 & 74.0$\\pm$1.6 & 70.5$\\pm$4.1 & 26.5$\\pm$4.1 & 58.1$\\pm$0.9 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\begin{table}[h]\n\\centering\n\\caption{Aggregate TSR (\\%) across evaluation seeds. TSR varies more across seeds than CAR (seed\\,=\\,42 yields consistently lower TSR), but the relative ordering between LoRA and SDF is stable.}\n\\label{tab:eval_seed_tsr}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lcccccc}\n\\toprule\n& \\multicolumn{4}{c}{Per-task TSR (\\%)} & & \\\\\n\\cmidrule(lr){2-5}\nCondition (eval seed) & OJ & CP & Milk & BBQ & Agg. \\\\\n\\midrule\nLoRA s0 (seed\\,=\\,7)   & 32 & 74 & 42 & 58 & 51.5 \\\\\nLoRA s0 (seed\\,=\\,42)  & 22 & 70 & 32 & 60 & 46.0 \\\\\nLoRA s0 (seed\\,=\\,123) & 30 & 70 & 40 & 62 & 50.5 \\\\\nLoRA s0 mean $\\pm$ std & 28.0$\\pm$5.3 & 71.3$\\pm$2.3 & 38.0$\\pm$5.3 & 60.0$\\pm$2.0 & 49.3$\\pm$3.0 \\\\\n\\midrule\nSDF $\\lambda{=}0.1$ s0 (seed\\,=\\,7)   & 28 & 78 & 44 & 60 & 52.5 \\\\\nSDF $\\lambda{=}0.1$ s0 (seed\\,=\\,42)  & 18 & 78 & 42 & 72 & 52.5 \\\\\nSDF $\\lambda{=}0.1$ s0 (seed\\,=\\,123) & 26 & 82 & 38 & 68 & 53.5 \\\\\nSDF $\\lambda{=}0.1$ s0 (seed\\,=\\,256) & 28 & 74 & 32 & 58 & 48.0 \\\\\nSDF $\\lambda{=}0.1$ s0 mean $\\pm$ std & 25.0$\\pm$4.8 & 78.0$\\pm$3.3 & 39.0$\\pm$5.4 & 64.5$\\pm$6.6 & 51.6$\\pm$2.4 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nAcross three matched evaluation seeds (7, 42, 123), the SDF $\\lambda{=}0.1$ condition yields higher aggregate CAR than LoRA-only in all cases ($\\Delta$CAR\\,=\\,+1.5, +2.5, +5.5\\,pp). Cross-seed CAR standard deviation is 2.0\\,pp for LoRA and 0.9\\,pp for SDF, both small relative to the within-seed per-task variation. The per-task ordering (CP highest, BBQ lowest) is preserved across all seeds and both conditions, reinforcing the conclusion that avoidance patterns reflect the spatial statistics of training demonstrations.\n\n\n\\section{Training Details}\n\\label{sec:appendix_training}\n\n\\paragraph{Architecture.}\nWe use LoRA~\\citep{hu2022lora} adapters injected into the PaliGemma vision encoder (rank 16, $\\alpha$=16) and the action expert (rank 32, $\\alpha$=32), following the configuration of OpenPi. The SDF decoder is a 4-layer MLP (hidden dimension 256) with skip connections, taking pooled suffix features (1024-d) and query points (3-d) as input. The end-effector extractor is a 2-layer MLP (1024 $\\to$ 256 $\\to$ 3).\n\n\\paragraph{Training schedule.}\nTraining proceeds in two phases:\n\\begin{itemize}\n    \\item \\textbf{Phase 1} (steps 0--5000): Backbone and LoRA parameters are frozen. Only the SDF decoder and EE extractor are trained, allowing them to learn meaningful representations before the policy adapts.\n    \\item \\textbf{Phase 2} (steps 5000--30000): LoRA parameters are unfrozen with a 100-step gradient warmup ramp. All auxiliary heads continue training jointly with the policy.\n\\end{itemize}\n\n\\paragraph{Hyperparameters.}\n\\begin{table}[h]\n\\centering\n\\caption{Training hyperparameters.}\n\\label{tab:hyperparams}\n\\begin{tabular}{ll}\n\\toprule\nParameter & Value \\\\\n\\midrule\nBase model & Pi0.5 (OpenPi, $\\sim$3.5B parameters) \\\\\nOptimizer & AdamW \\\\\nLearning rate & $2.5 \\times 10^{-5}$ (cosine decay to $\\mathrm{lr}/10$) \\\\\nWarmup steps & 1000 \\\\\nBatch size & 32 \\\\\nTotal steps & 30000 \\\\\n$\\lambda_\\mathrm{sdf}$ & \\{0.005, 0.01, 0.1\\} \\\\\n$\\lambda_\\mathrm{ee}$ & 0.01 \\\\\nSDF query points per step & 64 \\\\\nSDF clamp $\\delta$ & 0.05 m \\\\\nEikonal weight & 0.1 \\\\\nLoRA rank (vision) & 16 \\\\\nLoRA rank (action) & 32 \\\\\nPhase 1 duration & 5000 steps \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Evaluation protocol.}\nEach episode runs for at most 300 timesteps. The policy generates a 50-step action trajectory via flow matching and executes the first 5 steps before replanning. An episode terminates early upon task completion. Collision detection uses MuJoCo's built-in contact detection: any contact between the robot and a non-target object registers as a collision. For Pi0.5 evaluations, camera images are rotated 180$^\\circ$ to match the pre-training viewpoint convention; this correction was verified to restore TSR from ${\\sim}$5\\% to ${\\sim}$52\\% while leaving CAR comparable. Oracle variants use 40 episodes per task (160 total) with a single seed; all other configurations use 50 episodes per task (200 total).\n\n\\paragraph{Data.}\nWe use the SafeLIBERO object\\_pudding suite with pre-computed SDF ground truth. SDF values are computed offline from the obstacle mesh using a dense $64^3$ voxel grid. During training, 64 query points are randomly sampled per step from this grid.\n\n\\paragraph{Computational resources.}\nAll training and evaluation experiments are conducted on NVIDIA RTX PRO 6000 GPUs (96\\,GB). Phase~1 (5K steps) takes approximately 6 hours on a single GPU; Phase~2 (25K steps) takes approximately 32 hours. Evaluation of 200 episodes requires approximately 4 hours. Across 100+ experiments (training runs, evaluations, oracle variants, and ablations), the total computational budget is approximately 700 GPU-hours.\n",
+      "numLines": 360,
+      "startLine": 1,
+      "totalLines": 360
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — Read · `toolu_013QZVZR1VytLKRQWJXZQJ67`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/contingency_claim3.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "1634816f-d27d-43ed-aa52-fa478bc1f783",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019xctSJnuT999z9ym2XNntb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4660,
+      "cache_read_input_tokens": 24059,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4660
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-28T06:19:15.160Z_
+
+<details><summary>↩ Tool result · `toolu_013QZVZR1VytLKRQWJXZQJ67`</summary>
+
+```text
+1	% contingency_claim3.tex — Three pre-written §6.3 paragraphs for λ=0.1 results.
+2	% NOT \input'd into main.tex. Copy the matching scenario into claim3.tex
+3	% when results arrive. Replace {MEAN}, {S0}, {S1} with actual numbers.
+4	%
+5	% Scenario selection (D033 thresholds):
+6	%   B: CAR mean ≤ 57%    → full redundancy confirmed
+7	%   C: CAR mean 57–60%   → inconclusive, flag 2/3 seeds
+8	%   A: CAR mean > 60%    → dose-response evidence
+9	%
+10	% Also includes discussion + abstract patch bullets at the end.
+11	
+12	
+13	%% ====================================================================
+14	%% SCENARIO B — Full redundancy (CAR ≤ 57%)
+15	%% ====================================================================
+16	
+17	% --- claim3 §6.3 paragraph ---
+18	\paragraph{Dose-response at higher loss weights.}\label{sec:lambda_high}
+19	Increasing $\lambda$ by 20$\times$ to 0.1 yields CAR\,=\,{MEAN}\% (seeds: {S0}\%, {S1}\%), within the null distribution (mean 54.5\%, $\sigma = 2.15$). SDF supervision is redundant with the demonstration signal across the full tested range $\lambda \in [0.005, 0.1]$ (Figure~\ref{fig:lambda_car}). This result disambiguates the two-level failure analysis (Section~\ref{sec:conclusion}): because even a 20$\times$ increase in SDF loss weight fails to produce additional avoidance, the binding constraint is not training signal magnitude (Level~A) but the structural mismatch between end-effector monitoring and full-body collision surfaces (Level~B). Stronger geometric supervision cannot compensate for supervising the wrong collision surface.
+20	
+21	
+22	%% ====================================================================
+23	%% SCENARIO C — Inconclusive / gray zone (CAR 57–60%)
+24	%% ====================================================================
+25	
+26	% --- claim3 §6.3 paragraph ---
+27	\paragraph{Dose-response at higher loss weights.}\label{sec:lambda_high}
+28	At $\lambda = 0.1$, CAR\,=\,{MEAN}\% (seeds: {S0}\%, {S1}\%), representing a suggestive but inconclusive separation from the null distribution (mean 54.5\%, $\sigma = 2.15$; Figure~\ref{fig:lambda_car}). The observed increase of {MEAN}$-$54.5\,=\,{DELTA}\,pp falls in a range where seed-to-seed variation and a genuine treatment effect are difficult to distinguish with two seeds. A third seed was in progress at submission; updated results will be provided upon completion. If the separation holds, it would indicate a dose-response threshold between $\lambda = 0.01$ and $\lambda = 0.1$, suggesting that Level~A signal masking (Section~\ref{sec:conclusion}) can be partially overcome at higher loss weights while the Level~B structural limitation of EE-only monitoring remains.
+29	
+30	
+31	%% ====================================================================
+32	%% SCENARIO A — Dose-response evidence (CAR > 60%)
+33	%% ====================================================================
+34	
+35	% --- claim3 §6.3 paragraph ---
+36	\paragraph{Dose-response at higher loss weights.}\label{sec:lambda_high}
+37	Increasing $\lambda$ to 0.1 raises CAR to {MEAN}\% (seeds: {S0}\%, {S1}\%), a {DELTA}\,pp increase beyond the null distribution mean of 54.5\% (Figure~\ref{fig:lambda_car}). This provides preliminary evidence for a dose-response relationship: SDF supervision becomes effective only when $\lambda$ exceeds a threshold between 0.01 and 0.1, below which the geometric gradient is masked by the action loss. In the two-level failure framework (Section~\ref{sec:conclusion}), this result indicates that Level~A signal masking has a breakpoint, while Level~B structural misalignment persists: oracle experiments with perfect SDF still reduce CAR below unrefined baselines regardless of signal strength, confirming that EE-only monitoring remains the binding constraint for full-body safety. Two of three planned seeds are reported; the third was in progress at submission, and updated results will be provided upon completion.
+38	
+39	
+40	%% ====================================================================
+41	%% DISCUSSION + ABSTRACT PATCH BULLETS (per scenario)
+42	%% ====================================================================
+43	
+44	% --- Scenario B discussion patch ---
+45	% In "Two-level failure" paragraph, replace the λ=0.1 placeholder with:
+46	%   "At $\lambda = 0.1$ (20$\times$ higher dose), CAR remains within
+47	%    the null range ({MEAN}\%), confirming that Level~A signal masking
+48	%    is not the binding constraint. The failure is architectural:
+49	%    EE-only supervision cannot prevent arm-body collisions regardless
+50	%    of loss weight."
+51	%
+52	% In abstract, after "LoRA+SDF at $\lambda \in \{0.005, 0.01\}$":
+53	%   Extend to: "$\lambda \in \{0.005, 0.01, 0.1\}$"
+54	%   Change "($ p > 0.1$)" scope to cover all three λ values.
+55	%
+56	% In limitations, remove the λ=0.1 placeholder entirely.
+57	
+58	% --- Scenario C discussion patch ---
+59	% In "Two-level failure" paragraph, replace the λ=0.1 placeholder with:
+60	%   "At $\lambda = 0.1$, CAR shows a suggestive increase to {MEAN}\%
+61	%    (2 seeds), but definitive assessment of whether Level~A masking
+62	%    has a breakpoint awaits the third seed."
+63	%
+64	% In abstract, after "$\lambda \in \{0.005, 0.01\}$ ($p > 0.1$)":
+65	%   Add: "; $\lambda = 0.1$ shows a suggestive but inconclusive
+66	%   increase ({MEAN}\%, 2 of 3 seeds)"
+67	%
+68	% In limitations, replace λ=0.1 placeholder with:
+69	%   "The $\lambda = 0.1$ result ({MEAN}\%, 2 seeds) is suggestive
+70	%    but underpowered; the third seed was in progress at submission."
+71	
+72	% --- Scenario A discussion patch ---
+73	% In "Two-level failure" paragraph, replace the λ=0.1 placeholder with:
+74	%   "At $\lambda = 0.1$, CAR increases to {MEAN}\% (2 seeds),
+75	%    indicating that Level~A signal masking has a breakpoint between
+76	%    $\lambda = 0.01$ and 0.1. Level~B misalignment remains: oracle
+77	%    CAR stays below baselines regardless of signal strength."
+78	%
+79	% In abstract, after "$\lambda \in \{0.005, 0.01\}$ ($p > 0.1$)":
+80	%   Add: "; at $\lambda = 0.1$, CAR rises to {MEAN}\%, suggesting a
+81	%   dose-response threshold (2 of 3 seeds; third pending)"
+82	%
+83	% In abstract, replace LAST SENTENCE with:
+84	%   "EE-only geometric supervision is structurally limited by
+85	%    representation-collision misalignment; at low loss weights
+86	%    training signals are masked by the demonstration distribution,
+87	%    but a dose-response threshold exists between $\lambda = 0.01$
+88	%    and 0.1."
+89	%
+90	% In limitations, replace λ=0.1 placeholder with:
+91	%   "The dose-response result at $\lambda = 0.1$ is based on 2 of 3
+92	%    planned seeds; the third was in progress at submission."
+93	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "098ac83e-7145-4e20-9af6-26d62148ba92",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/contingency_claim3.tex",
+      "content": "% contingency_claim3.tex — Three pre-written §6.3 paragraphs for λ=0.1 results.\n% NOT \\input'd into main.tex. Copy the matching scenario into claim3.tex\n% when results arrive. Replace {MEAN}, {S0}, {S1} with actual numbers.\n%\n% Scenario selection (D033 thresholds):\n%   B: CAR mean ≤ 57%    → full redundancy confirmed\n%   C: CAR mean 57–60%   → inconclusive, flag 2/3 seeds\n%   A: CAR mean > 60%    → dose-response evidence\n%\n% Also includes discussion + abstract patch bullets at the end.\n\n\n%% ====================================================================\n%% SCENARIO B — Full redundancy (CAR ≤ 57%)\n%% ====================================================================\n\n% --- claim3 §6.3 paragraph ---\n\\paragraph{Dose-response at higher loss weights.}\\label{sec:lambda_high}\nIncreasing $\\lambda$ by 20$\\times$ to 0.1 yields CAR\\,=\\,{MEAN}\\% (seeds: {S0}\\%, {S1}\\%), within the null distribution (mean 54.5\\%, $\\sigma = 2.15$). SDF supervision is redundant with the demonstration signal across the full tested range $\\lambda \\in [0.005, 0.1]$ (Figure~\\ref{fig:lambda_car}). This result disambiguates the two-level failure analysis (Section~\\ref{sec:conclusion}): because even a 20$\\times$ increase in SDF loss weight fails to produce additional avoidance, the binding constraint is not training signal magnitude (Level~A) but the structural mismatch between end-effector monitoring and full-body collision surfaces (Level~B). Stronger geometric supervision cannot compensate for supervising the wrong collision surface.\n\n\n%% ====================================================================\n%% SCENARIO C — Inconclusive / gray zone (CAR 57–60%)\n%% ====================================================================\n\n% --- claim3 §6.3 paragraph ---\n\\paragraph{Dose-response at higher loss weights.}\\label{sec:lambda_high}\nAt $\\lambda = 0.1$, CAR\\,=\\,{MEAN}\\% (seeds: {S0}\\%, {S1}\\%), representing a suggestive but inconclusive separation from the null distribution (mean 54.5\\%, $\\sigma = 2.15$; Figure~\\ref{fig:lambda_car}). The observed increase of {MEAN}$-$54.5\\,=\\,{DELTA}\\,pp falls in a range where seed-to-seed variation and a genuine treatment effect are difficult to distinguish with two seeds. A third seed was in progress at submission; updated results will be provided upon completion. If the separation holds, it would indicate a dose-response threshold between $\\lambda = 0.01$ and $\\lambda = 0.1$, suggesting that Level~A signal masking (Section~\\ref{sec:conclusion}) can be partially overcome at higher loss weights while the Level~B structural limitation of EE-only monitoring remains.\n\n\n%% ====================================================================\n%% SCENARIO A — Dose-response evidence (CAR > 60%)\n%% ====================================================================\n\n% --- claim3 §6.3 paragraph ---\n\\paragraph{Dose-response at higher loss weights.}\\label{sec:lambda_high}\nIncreasing $\\lambda$ to 0.1 raises CAR to {MEAN}\\% (seeds: {S0}\\%, {S1}\\%), a {DELTA}\\,pp increase beyond the null distribution mean of 54.5\\% (Figure~\\ref{fig:lambda_car}). This provides preliminary evidence for a dose-response relationship: SDF supervision becomes effective only when $\\lambda$ exceeds a threshold between 0.01 and 0.1, below which the geometric gradient is masked by the action loss. In the two-level failure framework (Section~\\ref{sec:conclusion}), this result indicates that Level~A signal masking has a breakpoint, while Level~B structural misalignment persists: oracle experiments with perfect SDF still reduce CAR below unrefined baselines regardless of signal strength, confirming that EE-only monitoring remains the binding constraint for full-body safety. Two of three planned seeds are reported; the third was in progress at submission, and updated results will be provided upon completion.\n\n\n%% ====================================================================\n%% DISCUSSION + ABSTRACT PATCH BULLETS (per scenario)\n%% ====================================================================\n\n% --- Scenario B discussion patch ---\n% In \"Two-level failure\" paragraph, replace the λ=0.1 placeholder with:\n%   \"At $\\lambda = 0.1$ (20$\\times$ higher dose), CAR remains within\n%    the null range ({MEAN}\\%), confirming that Level~A signal masking\n%    is not the binding constraint. The failure is architectural:\n%    EE-only supervision cannot prevent arm-body collisions regardless\n%    of loss weight.\"\n%\n% In abstract, after \"LoRA+SDF at $\\lambda \\in \\{0.005, 0.01\\}$\":\n%   Extend to: \"$\\lambda \\in \\{0.005, 0.01, 0.1\\}$\"\n%   Change \"($ p > 0.1$)\" scope to cover all three λ values.\n%\n% In limitations, remove the λ=0.1 placeholder entirely.\n\n% --- Scenario C discussion patch ---\n% In \"Two-level failure\" paragraph, replace the λ=0.1 placeholder with:\n%   \"At $\\lambda = 0.1$, CAR shows a suggestive increase to {MEAN}\\%\n%    (2 seeds), but definitive assessment of whether Level~A masking\n%    has a breakpoint awaits the third seed.\"\n%\n% In abstract, after \"$\\lambda \\in \\{0.005, 0.01\\}$ ($p > 0.1$)\":\n%   Add: \"; $\\lambda = 0.1$ shows a suggestive but inconclusive\n%   increase ({MEAN}\\%, 2 of 3 seeds)\"\n%\n% In limitations, replace λ=0.1 placeholder with:\n%   \"The $\\lambda = 0.1$ result ({MEAN}\\%, 2 seeds) is suggestive\n%    but underpowered; the third seed was in progress at submission.\"\n\n% --- Scenario A discussion patch ---\n% In \"Two-level failure\" paragraph, replace the λ=0.1 placeholder with:\n%   \"At $\\lambda = 0.1$, CAR increases to {MEAN}\\% (2 seeds),\n%    indicating that Level~A signal masking has a breakpoint between\n%    $\\lambda = 0.01$ and 0.1. Level~B misalignment remains: oracle\n%    CAR stays below baselines regardless of signal strength.\"\n%\n% In abstract, after \"$\\lambda \\in \\{0.005, 0.01\\}$ ($p > 0.1$)\":\n%   Add: \"; at $\\lambda = 0.1$, CAR rises to {MEAN}\\%, suggesting a\n%   dose-response threshold (2 of 3 seeds; third pending)\"\n%\n% In abstract, replace LAST SENTENCE with:\n%   \"EE-only geometric supervision is structurally limited by\n%    representation-collision misalignment; at low loss weights\n%    training signals are masked by the demonstration distribution,\n%    but a dose-response threshold exists between $\\lambda = 0.01$\n%    and 0.1.\"\n%\n% In limitations, replace λ=0.1 placeholder with:\n%   \"The dose-response result at $\\lambda = 0.1$ is based on 2 of 3\n%    planned seeds; the third was in progress at submission.\"\n",
+      "numLines": 93,
+      "startLine": 1,
+      "totalLines": 93
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a complete picture. Let me plan all the edits systematically:
+
+## Plan
+
+### 1. "frozen episodes" → "action-collapsed episodes"
+- **claim3.tex:3** — "zero frozen episodes" → "zero action-collapsed episodes"
+- **claim3.tex:29** — "0\% frozen episodes" → "0\% action-collapsed episodes"
+- **introduction.tex:20** — "zero frozen episodes" → "zero action-collapsed episodes"
+
+### 2. "frozen rate" → "action-collapse rate"
+- **claim3.tex:7** — "0\% frozen rate" → "0\% action-collapse rate"
+
+
+- **experimental_framework.tex:25** — "\emph{Frozen Rate}" → "\emph{Action-Collapse Rate}"
+- **appendix.tex:14** — "frozen rate" → "action-collapse rate" (appears twice on the same line), plus "0\% frozen rate"
+- **appendix.tex:18** — "Frozen rate" → "Action-collapse rate"
+
+### 3. "fake safety" handling
+For the first introduction in the introduction section, I'll reframe it as "action-collapsed safety (colloquially, ``fake safety'')" to establish the formal terminology while acknowledging the informal usage.
+
+Looking at the actual text in introduction.tex:12, I can see this is where the concept gets defined—the robot exhibits near-zero actions that produce zero collisions, making the reported collision avoidance rate misleading. This is the right place to introduce the formal term alongside the colloquial one.
+
+The restructuring should be: "We term this \emph{action-collapsed safety} (colloquially, ``fake safety''): \emph{action collapse}..." This way the primary term is action-collapsed safety with fake safety presented as the informal equivalent, and the colon still introduces the clarification about what action collapse means in this context.
+
+Now I need to go through the document and replace all other instances of "fake safety" with the formal term, keeping the colloquial note only at first mention. Looking at introduction.tex, I should update the caption, the bold statement about pervasiveness, and the diagnosis heading to use action-collapsed safety instead. Then I'll need to check claim1.tex and other sections for similar replacements. I'm seeing the full context now for the claim1.tex changes. The key point is that standard CAR's assumption breaks down systematically—collision-free episodes in Pi0 configurations are overwhelmingly action-collapse artifacts rather than genuine avoidance, which is why applying dfCAR collapses the metric to near zero. Pi0+A1 shows the highest raw CAR precisely because the parameter mismatch causes more complete action collapse, creating the illusion of safety. Pi0.5 validates from the opposite direction, where every safe episode involves substantial displacement and dfCAR matches raw CAR, confirming the metric works correctly when action collapse isn't the dominant factor.
+
+For the terminology updates, I need to replace "frozen" with "action-collapsed" when referring to robot behavior states, and adjust the phrasing around "fake safety" to be more precise about what's happening—the inflation of CAR scores through action collapse rather than genuine collision avoidance. I'm going through the document systematically now, replacing instances of "frozen" when it refers to robot inaction with "action-collapsed," while being careful to preserve the term in technical contexts like model training where it describes frozen parameters or backbones. I'm tracking which files need updates and distinguishing between the two uses so I don't accidentally change the ML-specific terminology. Backbone and LoRA parameters are frozen — that's a training term, so I'll keep it. Now I need to figure out what to replace "Fake Safe (%)" with in the table headers. The original phrasing refers to the percentage of safe episodes that are action-collapsed, so something like "Action-Collapsed (%)" or "Collapsed (%)" would work as a more formal replacement while keeping the column header concise. I'm settling on "Collapsed (\%)" as the column header since we're using "action-collapse" as the core terminology, and it's concise in context. I need to check both claim1.tex and claim2.tex since they both have "Fake Safe (\%)" columns that need the same replacement. Now I'm organizing all the edits I need to make across the files, starting with abstract.tex where I'll change "frozen" to "action-collapsed," then moving through introduction.tex and the other files. I'm working through the terminology replacements across the remaining files. For claim2.tex, I just need to update one caption from "Fake Safe (%)" to "Collapsed (%)". The key insight is that "Action collapse is pervasive" works better as a standalone heading than the longer phrasing, and I'm applying similar concise replacements throughout the document labels and captions. I've mapped out all the terminology replacements across the LaTeX files—swapping "frozen" language for "action-collapsed" throughout the codebase. Now I need to actually apply these edits systematically, starting with the simpler files and working through each one to make sure I catch every instance.
+
+Let me verify the claim2.tex table structure first to confirm that changing "Fake Safe (\%)" to "Collapsed (\%)" makes sense given the column values represent percentages of action-collapsed episodes. The numbers like 98.3% and 96.7% align with this interpretation, so the header change works cleanly.
+
+Now I'm checking the related_work.tex and discussion.tex sections to identify where "frozen" should be replaced with "action-collapsed" for consistency. I found the references in both files—one describing how a frozen robot doesn't demonstrate avoidance behavior, and another about a largely frozen model in the oracle experiments. Both replacements fit naturally into the context.
+
+I'm ready to execute all the edits, but I need to carefully review the introduction.tex line 12 to make sure I handle that change correctly too. I need to make those two specific edits carefully since they're on the same line, then verify that I'm preserving all the cross-references like `Table~\ref{tab:fake_safety}`, `\label{tab:fake_safety}`, and `Section~\ref{sec:fake_safety}` — those should stay unchanged. Now I'll go through and apply all the edits systematically.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "f6444f0e-8ad4-42cf-bdca-3ed629caf78b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fuk2LCye5mEEywrWgVbTsV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 43015,
+      "cache_read_input_tokens": 11451,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 43015
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36_
+
+I have a complete picture now. Let me execute all the replacements systematically, file by file.
+
+**abstract.tex:**
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "9e057400-7b1e-4d30-96fa-31c282521597",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fuk2LCye5mEEywrWgVbTsV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 43015,
+      "cache_read_input_tokens": 11451,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 43015
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01T5u9zazW3A2HnXQKLr767z`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/abstract.tex",
+  "old_string": "The robot is frozen, not safe.",
+  "new_string": "The robot is action-collapsed, not safe."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "92607d19-c952-4828-95e8-ef1297c2df65",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fuk2LCye5mEEywrWgVbTsV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 43015,
+      "cache_read_input_tokens": 11451,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 43015
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-28T06:20:45.378Z_
+
+<details><summary>↩ Tool result · `toolu_01T5u9zazW3A2HnXQKLr767z`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/abstract.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "128ed59a-caf4-4003-b369-8a482cdeada3",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/abstract.tex",
+    "oldString": "The robot is frozen, not safe.",
+    "newString": "The robot is action-collapsed, not safe.",
+    "originalFile": "\\begin{abstract}\nVision-Language-Action (VLA) models report high Collision Avoidance Rates (CAR) on safety benchmarks, yet we show these metrics are contaminated by action collapse, where near-zero motor output produces zero collisions through inaction rather than avoidance.\nOn SafeLIBERO, an SDF-augmented Pi0 achieves 91.5\\% CAR while 99.6\\% of its safe episodes exhibit end-effector (EE) displacement below 0.1\\,mm. The robot is frozen, not safe.\nWe introduce displacement-filtered CAR (dfCAR), which excludes sub-threshold episodes. The bimodal displacement distribution makes dfCAR robust across a $[2, 200]$\\,mm threshold range.\nWe further show that end-effector-only Signed Distance Field (SDF) supervision fails to deliver collision avoidance. At inference time, ground-truth oracle refinement reduces CAR below unrefined baselines because the SDF gradient drives unmonitored arm links into obstacles. During training, collision-free demonstrations alone account for all measured avoidance gains (${\\sim}$26 percentage points). SDF supervision shows no statistically significant benefit at the tested scale $\\lambda \\in \\{0.005, 0.01, 0.1\\}$ ($p > 0.05$ for $\\lambda \\in \\{0.01, 0.1\\}$; $\\lambda = 0.1$: 57.00\\%$\\,\\pm\\,$2.18, 3 seeds).\nDisplacement filtering is necessary for meaningful VLA safety evaluation. EE-only geometric supervision does not significantly improve collision avoidance across a 20$\\times$ loss-weight range, suggesting that collision avoidance primarily arises from demonstration data rather than geometric supervision.\n\\end{abstract}\n",
+    "structuredPatch": [
+      {
+        "oldStart": 1,
+        "oldLines": 6,
+        "newStart": 1,
+        "newLines": 6,
+        "lines": [
+          " \\begin{abstract}",
+          " Vision-Language-Action (VLA) models report high Collision Avoidance Rates (CAR) on safety benchmarks, yet we show these metrics are contaminated by action collapse, where near-zero motor output produces zero collisions through inaction rather than avoidance.",
+          "-On SafeLIBERO, an SDF-augmented Pi0 achieves 91.5\\% CAR while 99.6\\% of its safe episodes exhibit end-effector (EE) displacement below 0.1\\,mm. The robot is frozen, not safe.",
+          "+On SafeLIBERO, an SDF-augmented Pi0 achieves 91.5\\% CAR while 99.6\\% of its safe episodes exhibit end-effector (EE) displacement below 0.1\\,mm. The robot is action-collapsed, not safe.",
+          " We introduce displacement-filtered CAR (dfCAR), which excludes sub-threshold episodes. The bimodal displacement distribution makes dfCAR robust across a $[2, 200]$\\,mm threshold range.",
+          " We further show that end-effector-only Signed Distance Field (SDF) supervision fails to deliver collision avoidance. At inference time, ground-truth oracle refinement reduces CAR below unrefined baselines because the SDF gradient drives unmonitored arm links into obstacles. During training, collision-free demonstrations alone account for all measured avoidance gains (${\\sim}$26 percentage points). SDF supervision shows no statistically significant benefit at the tested scale $\\lambda \\in \\{0.005, 0.01, 0.1\\}$ ($p > 0.05$ for $\\lambda \\in \\{0.01, 0.1\\}$; $\\lambda = 0.1$: 57.00\\%$\\,\\pm\\,$2.18, 3 seeds).",
+          " Displacement filtering is necessary for meaningful VLA safety evaluation. EE-only geometric supervision does not significantly improve collision avoidance across a 20$\\times$ loss-weight range, suggesting that collision avoidance primarily arises from demonstration data rather than geometric supervision."
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39_
+
+**introduction.tex** — 7 edits:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "5bb706cf-f34a-4f3c-84bc-aee1572990b4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GHwwU58uyB48NZynuisdpH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4782,
+      "cache_read_input_tokens": 54466,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4782
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01JTy4jSt7hvk65bfnkGuNxV`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/introduction.tex",
+  "old_string": "\\caption{The fake safety problem in VLA collision avoidance evaluation. Standard CAR classifies a frozen robot as safe because it produces zero collisions (left).",
+  "new_string": "\\caption{The action-collapsed safety problem in VLA collision avoidance evaluation. Standard CAR classifies an action-collapsed robot as safe because it produces zero collisions (left)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "81ed1714-7399-4116-8898-c18d8b8b843a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GHwwU58uyB48NZynuisdpH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4782,
+      "cache_read_input_tokens": 54466,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4782
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-28T06:20:57.359Z_
+
+<details><summary>↩ Tool result · `toolu_01JTy4jSt7hvk65bfnkGuNxV`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/introduction.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "f2b64726-cc56-4eb5-bfdb-217ddb2da362",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/introduction.tex",
+    "oldString": "\\caption{The fake safety problem in VLA collision avoidance evaluation. Standard CAR classifies a frozen robot as safe because it produces zero collisions (left).",
+    "newString": "\\caption{The action-collapsed safety problem in VLA collision avoidance evaluation. Standard CAR classifies an action-collapsed robot as safe because it produces zero collisions (left).",
+    "originalFile": "\\section{Introduction}\\label{sec:intro}\n\nCollision avoidance is a prerequisite for deploying Vision-Language-Action (VLA) models in physical environments~\\cite{li2026vlasafety}. The SafeLIBERO benchmark~\\cite{hu2025vlsa} provides the first systematic protocol for measuring collision avoidance in VLA manipulation. Recent methods report high Collision Avoidance Rate (CAR) through SDF-augmented training~\\cite{zhang2025safevla}, constraint-based planning~\\cite{yang2025cape}, and collision-free demonstrations~\\cite{cofreeevla2026}. Our SDF-augmented Pi0~\\cite{black2024pi0} reaches 91.5\\% CAR across 800 episodes. The problem appears close to solved.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\linewidth]{fig1_teaser}\n\\caption{The fake safety problem in VLA collision avoidance evaluation. Standard CAR classifies a frozen robot as safe because it produces zero collisions (left). dfCAR filters out action-collapsed episodes where displacement falls below $\\tau_d$; Pi0+A1's 91.5\\% safety score drops to ${\\approx}$\\,0\\% (center). Pi0.5 exhibits genuine avoidance with active motion above 288\\,mm in all safe episodes, and dfCAR equals raw CAR (right).}\n\\label{fig:teaser}\n\\end{figure}\n\nIt is not (Figure~\\ref{fig:teaser}). Of the 732 collision-free episodes, 99.6\\% exhibit displacement below 0.1\\,mm; TSR is 0\\% across all 800 episodes. The robot is frozen, not safe. The same pattern holds across all Pi0 configurations (Section~\\ref{sec:fake_safety}). We term this \\emph{fake safety}: \\emph{action collapse} (near-zero actions producing zero collisions) renders reported CAR illusory, and standard evaluation cannot distinguish inaction from deliberate avoidance~\\cite{karwowski2024goodhart}.\n\nWe present a systematic investigation of this problem across the Pi0 and Pi0.5~\\cite{black2024pi0} model families on SafeLIBERO, spanning 100+ experiments and 6000+ evaluation episodes. Three findings emerge.\n\n\\textbf{Fake safety is pervasive.} We introduce displacement-filtered CAR (dfCAR), which excludes episodes below a displacement threshold $\\tau_d$. dfCAR collapses Pi0+A1 from 91.5\\% to ${\\approx}$\\,0\\% (3/732 safe episodes survive). The bimodal displacement distribution makes $\\tau_d$ robust across five orders of magnitude. Pi0.5 validates the metric: TSR\\,=\\,71.5\\%, CAR\\,=\\,28.5\\%, with every safe episode above 288\\,mm displacement and dfCAR equal to raw CAR (Section~\\ref{sec:fake_safety}).\n\n\\textbf{EE-only SDF refinement is structurally counterproductive.} Three ground-truth oracle variants all achieve \\emph{lower} CAR than unrefined baselines (73.1--76.9\\% vs.\\ 82--83\\%). The SDF gradient repels the EE but rotates arm links into obstacle volumes (Section~\\ref{sec:ee_only}).\n\n\\textbf{Collision-free demonstrations are sufficient for collision avoidance.} LoRA fine-tuning on Pi0.5 with collision-free demonstrations raises CAR by ${\\sim}$26 points with zero frozen episodes. Adding SDF supervision does not yield statistically significant improvement across the tested range $\\lambda \\in [0.005, 0.1]$ ($p > 0.05$ for $\\lambda \\in \\{0.01, 0.1\\}$; $\\lambda = 0.1$: $p = 0.131$, 3 seeds). The per-task avoidance ranking is preserved across all conditions, indicating that the demonstration distribution primarily accounts for observed avoidance (Section~\\ref{sec:avoidance_source}).\n\nOur contributions are:\n\\begin{itemize}\n    \\item \\textbf{dfCAR metric:} displacement-filtered CAR that separates genuine avoidance from action collapse, robust across $\\tau_d \\in [2, 200]$\\,mm.\n    \\item \\textbf{Fake safety diagnosis:} 100+ experiments across Pi0/Pi0.5 showing $>$99\\% of Pi0 safe episodes are action-collapse artifacts.\n    \\item \\textbf{EE-only SDF is counterproductive:} ground-truth oracle refinement \\emph{reduces} CAR below unrefined baselines by redistributing collisions to unmonitored arm links.\n    \\item \\textbf{Demonstration sufficiency:} collision-free demonstrations account for nearly all measured CAR gains (${\\sim}$26\\,pp); SDF supervision shows no statistically significant benefit across the tested range $\\lambda \\in [0.005, 0.1]$ ($p > 0.05$ for $\\lambda \\in \\{0.01, 0.1\\}$, 3 seeds).\n\\end{itemize}",
+    "structuredPatch": [
+      {
+        "oldStart": 5,
+        "oldLines": 7,
+        "newStart": 5,
+        "newLines": 7,
+        "lines": [
+          " \\begin{figure}[t]",
+          " \\centering",
+          " \\includegraphics[width=\\linewidth]{fig1_teaser}",
+          "-\\caption{The fake safety problem in VLA collision avoidance evaluation. Standard CAR classifies a frozen robot as safe because it produces zero collisions (left). dfCAR filters out action-collapsed episodes where displacement falls below $\\tau_d$; Pi0+A1's 91.5\\% safety score drops to ${\\approx}$\\,0\\% (center). Pi0.5 exhibits genuine avoidance with active motion above 288\\,mm in all safe episodes, and dfCAR equals raw CAR (right).}",
+          "+\\caption{The action-collapsed safety problem in VLA collision avoidance evaluation. Standard CAR classifies an action-collapsed robot as safe because it produces zero collisions (left). dfCAR filters out action-collapsed episodes where displacement falls below $\\tau_d$; Pi0+A1's 91.5\\% safety score drops to ${\\approx}$\\,0\\% (center). Pi0.5 exhibits genuine avoidance with active motion above 288\\,mm in all safe episodes, and dfCAR equals raw CAR (right).}",
+          " \\label{fig:teaser}",
+          " \\end{figure}",
+          " "
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01GJmKUqGy6aiLwdDeu5HFue`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/introduction.tex",
+  "old_string": "The robot is frozen, not safe. The same pattern holds across all Pi0 configurations (Section~\\ref{sec:fake_safety}). We term this \\emph{fake safety}: \\emph{action collapse}",
+  "new_string": "The robot is action-collapsed, not safe. The same pattern holds across all Pi0 configurations (Section~\\ref{sec:fake_safety}). We term this \\emph{action-collapsed safety} (colloquially, ``fake safety''): \\emph{action collapse}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "373b9b26-dc22-489c-9a22-3288eda01e90",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GHwwU58uyB48NZynuisdpH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4782,
+      "cache_read_input_tokens": 54466,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4782
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-28T06:20:58.708Z_
+
+<details><summary>↩ Tool result · `toolu_01GJmKUqGy6aiLwdDeu5HFue`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/introduction.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "f56886ff-affe-4d82-820f-c465952f9ee2",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/introduction.tex",
+    "oldString": "The robot is frozen, not safe. The same pattern holds across all Pi0 configurations (Section~\\ref{sec:fake_safety}). We term this \\emph{fake safety}: \\emph{action collapse}",
+    "newString": "The robot is action-collapsed, not safe. The same pattern holds across all Pi0 configurations (Section~\\ref{sec:fake_safety}). We term this \\emph{action-collapsed safety} (colloquially, ``fake safety''): \\emph{action collapse}",
+    "originalFile": "\\section{Introduction}\\label{sec:intro}\n\nCollision avoidance is a prerequisite for deploying Vision-Language-Action (VLA) models in physical environments~\\cite{li2026vlasafety}. The SafeLIBERO benchmark~\\cite{hu2025vlsa} provides the first systematic protocol for measuring collision avoidance in VLA manipulation. Recent methods report high Collision Avoidance Rate (CAR) through SDF-augmented training~\\cite{zhang2025safevla}, constraint-based planning~\\cite{yang2025cape}, and collision-free demonstrations~\\cite{cofreeevla2026}. Our SDF-augmented Pi0~\\cite{black2024pi0} reaches 91.5\\% CAR across 800 episodes. The problem appears close to solved.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\linewidth]{fig1_teaser}\n\\caption{The action-collapsed safety problem in VLA collision avoidance evaluation. Standard CAR classifies an action-collapsed robot as safe because it produces zero collisions (left). dfCAR filters out action-collapsed episodes where displacement falls below $\\tau_d$; Pi0+A1's 91.5\\% safety score drops to ${\\approx}$\\,0\\% (center). Pi0.5 exhibits genuine avoidance with active motion above 288\\,mm in all safe episodes, and dfCAR equals raw CAR (right).}\n\\label{fig:teaser}\n\\end{figure}\n\nIt is not (Figure~\\ref{fig:teaser}). Of the 732 collision-free episodes, 99.6\\% exhibit displacement below 0.1\\,mm; TSR is 0\\% across all 800 episodes. The robot is frozen, not safe. The same pattern holds across all Pi0 configurations (Section~\\ref{sec:fake_safety}). We term this \\emph{fake safety}: \\emph{action collapse} (near-zero actions producing zero collisions) renders reported CAR illusory, and standard evaluation cannot distinguish inaction from deliberate avoidance~\\cite{karwowski2024goodhart}.\n\nWe present a systematic investigation of this problem across the Pi0 and Pi0.5~\\cite{black2024pi0} model families on SafeLIBERO, spanning 100+ experiments and 6000+ evaluation episodes. Three findings emerge.\n\n\\textbf{Fake safety is pervasive.} We introduce displacement-filtered CAR (dfCAR), which excludes episodes below a displacement threshold $\\tau_d$. dfCAR collapses Pi0+A1 from 91.5\\% to ${\\approx}$\\,0\\% (3/732 safe episodes survive). The bimodal displacement distribution makes $\\tau_d$ robust across five orders of magnitude. Pi0.5 validates the metric: TSR\\,=\\,71.5\\%, CAR\\,=\\,28.5\\%, with every safe episode above 288\\,mm displacement and dfCAR equal to raw CAR (Section~\\ref{sec:fake_safety}).\n\n\\textbf{EE-only SDF refinement is structurally counterproductive.} Three ground-truth oracle variants all achieve \\emph{lower} CAR than unrefined baselines (73.1--76.9\\% vs.\\ 82--83\\%). The SDF gradient repels the EE but rotates arm links into obstacle volumes (Section~\\ref{sec:ee_only}).\n\n\\textbf{Collision-free demonstrations are sufficient for collision avoidance.} LoRA fine-tuning on Pi0.5 with collision-free demonstrations raises CAR by ${\\sim}$26 points with zero frozen episodes. Adding SDF supervision does not yield statistically significant improvement across the tested range $\\lambda \\in [0.005, 0.1]$ ($p > 0.05$ for $\\lambda \\in \\{0.01, 0.1\\}$; $\\lambda = 0.1$: $p = 0.131$, 3 seeds). The per-task avoidance ranking is preserved across all conditions, indicating that the demonstration distribution primarily accounts for observed avoidance (Section~\\ref{sec:avoidance_source}).\n\nOur contributions are:\n\\begin{itemize}\n    \\item \\textbf{dfCAR metric:} displacement-filtered CAR that separates genuine avoidance from action collapse, robust across $\\tau_d \\in [2, 200]$\\,mm.\n    \\item \\textbf{Fake safety diagnosis:} 100+ experiments across Pi0/Pi0.5 showing $>$99\\% of Pi0 safe episodes are action-collapse artifacts.\n    \\item \\textbf{EE-only SDF is counterproductive:} ground-truth oracle refinement \\emph{reduces} CAR below unrefined baselines by redistributing collisions to unmonitored arm links.\n    \\item \\textbf{Demonstration sufficiency:} collision-free demonstrations account for nearly all measured CAR gains (${\\sim}$26\\,pp); SDF supervision shows no statistically significant benefit across the tested range $\\lambda \\in [0.005, 0.1]$ ($p > 0.05$ for $\\lambda \\in \\{0.01, 0.1\\}$, 3 seeds).\n\\end{itemize}",
+    "structuredPatch": [
+      {
+        "oldStart": 9,
+        "oldLines": 7,
+        "newStart": 9,
+        "newLines": 7,
+        "lines": [
+          " \\label{fig:teaser}",
+          " \\end{figure}",
+          " ",
+          "-It is not (Figure~\\ref{fig:teaser}). Of the 732 collision-free episodes, 99.6\\% exhibit displacement below 0.1\\,mm; TSR is 0\\% across all 800 episodes. The robot is frozen, not safe. The same pattern holds across all Pi0 configurations (Section~\\ref{sec:fake_safety}). We term this \\emph{fake safety}: \\emph{action collapse} (near-zero actions producing zero collisions) renders reported CAR illusory, and standard evaluation cannot distinguish inaction from deliberate avoidance~\\cite{karwowski2024goodhart}.",
+          "+It is not (Figure~\\ref{fig:teaser}). Of the 732 collision-free episodes, 99.6\\% exhibit displacement below 0.1\\,mm; TSR is 0\\% across all 800 episodes. The robot is action-collapsed, not safe. The same pattern holds across all Pi0 configurations (Section~\\ref{sec:fake_safety}). We term this \\emph{action-collapsed safety} (colloquially, ``fake safety''): \\emph{action collapse} (near-zero actions producing zero collisions) renders reported CAR illusory, and standard evaluation cannot distinguish inaction from deliberate avoidance~\\cite{karwowski2024goodhart}.",
+          " ",
+          " We present a systematic investigation of this problem across the Pi0 and Pi0.5~\\cite{black2024pi0} model families on SafeLIBERO, spanning 100+ experiments and 6000+ evaluation episodes. Three findings emerge.",
+          " "
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01Ehjo6y5C6iiCzuQmNvUQnW`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/introduction.tex",
+  "old_string": "\\textbf{Fake safety is pervasive.}",
+  "new_string": "\\textbf{Action collapse is pervasive.}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "53e90b56-02a3-43a6-8356-c281612029bf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GHwwU58uyB48NZynuisdpH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4782,
+      "cache_read_input_tokens": 54466,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4782
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-28T06:21:00.007Z_
+
+<details><summary>↩ Tool result · `toolu_01Ehjo6y5C6iiCzuQmNvUQnW`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/introduction.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "af6fc87b-961a-4419-a75a-b2a20ff7770f",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/introduction.tex",
+    "oldString": "\\textbf{Fake safety is pervasive.}",
+    "newString": "\\textbf{Action collapse is pervasive.}",
+    "originalFile": "\\section{Introduction}\\label{sec:intro}\n\nCollision avoidance is a prerequisite for deploying Vision-Language-Action (VLA) models in physical environments~\\cite{li2026vlasafety}. The SafeLIBERO benchmark~\\cite{hu2025vlsa} provides the first systematic protocol for measuring collision avoidance in VLA manipulation. Recent methods report high Collision Avoidance Rate (CAR) through SDF-augmented training~\\cite{zhang2025safevla}, constraint-based planning~\\cite{yang2025cape}, and collision-free demonstrations~\\cite{cofreeevla2026}. Our SDF-augmented Pi0~\\cite{black2024pi0} reaches 91.5\\% CAR across 800 episodes. The problem appears close to solved.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\linewidth]{fig1_teaser}\n\\caption{The action-collapsed safety problem in VLA collision avoidance evaluation. Standard CAR classifies an action-collapsed robot as safe because it produces zero collisions (left). dfCAR filters out action-collapsed episodes where displacement falls below $\\tau_d$; Pi0+A1's 91.5\\% safety score drops to ${\\approx}$\\,0\\% (center). Pi0.5 exhibits genuine avoidance with active motion above 288\\,mm in all safe episodes, and dfCAR equals raw CAR (right).}\n\\label{fig:teaser}\n\\end{figure}\n\nIt is not (Figure~\\ref{fig:teaser}). Of the 732 collision-free episodes, 99.6\\% exhibit displacement below 0.1\\,mm; TSR is 0\\% across all 800 episodes. The robot is action-collapsed, not safe. The same pattern holds across all Pi0 configurations (Section~\\ref{sec:fake_safety}). We term this \\emph{action-collapsed safety} (colloquially, ``fake safety''): \\emph{action collapse} (near-zero actions producing zero collisions) renders reported CAR illusory, and standard evaluation cannot distinguish inaction from deliberate avoidance~\\cite{karwowski2024goodhart}.\n\nWe present a systematic investigation of this problem across the Pi0 and Pi0.5~\\cite{black2024pi0} model families on SafeLIBERO, spanning 100+ experiments and 6000+ evaluation episodes. Three findings emerge.\n\n\\textbf{Fake safety is pervasive.} We introduce displacement-filtered CAR (dfCAR), which excludes episodes below a displacement threshold $\\tau_d$. dfCAR collapses Pi0+A1 from 91.5\\% to ${\\approx}$\\,0\\% (3/732 safe episodes survive). The bimodal displacement distribution makes $\\tau_d$ robust across five orders of magnitude. Pi0.5 validates the metric: TSR\\,=\\,71.5\\%, CAR\\,=\\,28.5\\%, with every safe episode above 288\\,mm displacement and dfCAR equal to raw CAR (Section~\\ref{sec:fake_safety}).\n\n\\textbf{EE-only SDF refinement is structurally counterproductive.} Three ground-truth oracle variants all achieve \\emph{lower} CAR than unrefined baselines (73.1--76.9\\% vs.\\ 82--83\\%). The SDF gradient repels the EE but rotates arm links into obstacle volumes (Section~\\ref{sec:ee_only}).\n\n\\textbf{Collision-free demonstrations are sufficient for collision avoidance.} LoRA fine-tuning on Pi0.5 with collision-free demonstrations raises CAR by ${\\sim}$26 points with zero frozen episodes. Adding SDF supervision does not yield statistically significant improvement across the tested range $\\lambda \\in [0.005, 0.1]$ ($p > 0.05$ for $\\lambda \\in \\{0.01, 0.1\\}$; $\\lambda = 0.1$: $p = 0.131$, 3 seeds). The per-task avoidance ranking is preserved across all conditions, indicating that the demonstration distribution primarily accounts for observed avoidance (Section~\\ref{sec:avoidance_source}).\n\nOur contributions are:\n\\begin{itemize}\n    \\item \\textbf{dfCAR metric:} displacement-filtered CAR that separates genuine avoidance from action collapse, robust across $\\tau_d \\in [2, 200]$\\,mm.\n    \\item \\textbf{Fake safety diagnosis:} 100+ experiments across Pi0/Pi0.5 showing $>$99\\% of Pi0 safe episodes are action-collapse artifacts.\n    \\item \\textbf{EE-only SDF is counterproductive:} ground-truth oracle refinement \\emph{reduces} CAR below unrefined baselines by redistributing collisions to unmonitored arm links.\n    \\item \\textbf{Demonstration sufficiency:} collision-free demonstrations account for nearly all measured CAR gains (${\\sim}$26\\,pp); SDF supervision shows no statistically significant benefit across the tested range $\\lambda \\in [0.005, 0.1]$ ($p > 0.05$ for $\\lambda \\in \\{0.01, 0.1\\}$, 3 seeds).\n\\end{itemize}",
+    "structuredPatch": [
+      {
+        "oldStart": 13,
+        "oldLines": 7,
+        "newStart": 13,
+        "newLines": 7,
+        "lines": [
+          " ",
+          " We present a systematic investigation of this problem across the Pi0 and Pi0.5~\\cite{black2024pi0} model families on SafeLIBERO, spanning 100+ experiments and 6000+ evaluation episodes. Three findings emerge.",
+          " ",
+          "-\\textbf{Fake safety is pervasive.} We introduce displacement-filtered CAR (dfCAR), which excludes episodes below a displacement threshold $\\tau_d$. dfCAR collapses Pi0+A1 from 91.5\\% to ${\\approx}$\\,0\\% (3/732 safe episodes survive). The bimodal displacement distribution makes $\\tau_d$ robust across five orders of magnitude. Pi0.5 validates the metric: TSR\\,=\\,71.5\\%, CAR\\,=\\,28.5\\%, with every safe episode above 288\\,mm displacement and dfCAR equal to raw CAR (Section~\\ref{sec:fake_safety}).",
+          "+\\textbf{Action collapse is pervasive.} We introduce displacement-filtered CAR (dfCAR), which excludes episodes below a displacement threshold $\\tau_d$. dfCAR collapses Pi0+A1 from 91.5\\% to ${\\approx}$\\,0\\% (3/732 safe episodes survive). The bimodal displacement distribution makes $\\tau_d$ robust across five orders of magnitude. Pi0.5 validates the metric: TSR\\,=\\,71.5\\%, CAR\\,=\\,28.5\\%, with every safe episode above 288\\,mm displacement and dfCAR equal to raw CAR (Section~\\ref{sec:fake_safety}).",
+          " ",
+          " \\textbf{EE-only SDF refinement is structurally counterproductive.} Three ground-truth oracle variants all achieve \\emph{lower} CAR than unrefined baselines (73.1--76.9\\% vs.\\ 82--83\\%). The SDF gradient repels the EE but rotates arm links into obstacle volumes (Section~\\ref{sec:ee_only}).",
+          " "
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01LCvmWc3UDNPgez5UVdJ3n4`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/introduction.tex",
+  "old_string": "with zero frozen episodes. Adding",
+  "new_string": "with zero action-collapsed episodes. Adding"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "d97f706a-5e39-4f13-b032-46eac3691fe4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GHwwU58uyB48NZynuisdpH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4782,
+      "cache_read_input_tokens": 54466,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4782
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-28T06:21:01.025Z_
+
+<details><summary>↩ Tool result · `toolu_01LCvmWc3UDNPgez5UVdJ3n4`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/introduction.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "647ef1e5-7943-4653-9493-1f5982b581f1",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/introduction.tex",
+    "oldString": "with zero frozen episodes. Adding",
+    "newString": "with zero action-collapsed episodes. Adding",
+    "originalFile": "\\section{Introduction}\\label{sec:intro}\n\nCollision avoidance is a prerequisite for deploying Vision-Language-Action (VLA) models in physical environments~\\cite{li2026vlasafety}. The SafeLIBERO benchmark~\\cite{hu2025vlsa} provides the first systematic protocol for measuring collision avoidance in VLA manipulation. Recent methods report high Collision Avoidance Rate (CAR) through SDF-augmented training~\\cite{zhang2025safevla}, constraint-based planning~\\cite{yang2025cape}, and collision-free demonstrations~\\cite{cofreeevla2026}. Our SDF-augmented Pi0~\\cite{black2024pi0} reaches 91.5\\% CAR across 800 episodes. The problem appears close to solved.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\linewidth]{fig1_teaser}\n\\caption{The action-collapsed safety problem in VLA collision avoidance evaluation. Standard CAR classifies an action-collapsed robot as safe because it produces zero collisions (left). dfCAR filters out action-collapsed episodes where displacement falls below $\\tau_d$; Pi0+A1's 91.5\\% safety score drops to ${\\approx}$\\,0\\% (center). Pi0.5 exhibits genuine avoidance with active motion above 288\\,mm in all safe episodes, and dfCAR equals raw CAR (right).}\n\\label{fig:teaser}\n\\end{figure}\n\nIt is not (Figure~\\ref{fig:teaser}). Of the 732 collision-free episodes, 99.6\\% exhibit displacement below 0.1\\,mm; TSR is 0\\% across all 800 episodes. The robot is action-collapsed, not safe. The same pattern holds across all Pi0 configurations (Section~\\ref{sec:fake_safety}). We term this \\emph{action-collapsed safety} (colloquially, ``fake safety''): \\emph{action collapse} (near-zero actions producing zero collisions) renders reported CAR illusory, and standard evaluation cannot distinguish inaction from deliberate avoidance~\\cite{karwowski2024goodhart}.\n\nWe present a systematic investigation of this problem across the Pi0 and Pi0.5~\\cite{black2024pi0} model families on SafeLIBERO, spanning 100+ experiments and 6000+ evaluation episodes. Three findings emerge.\n\n\\textbf{Action collapse is pervasive.} We introduce displacement-filtered CAR (dfCAR), which excludes episodes below a displacement threshold $\\tau_d$. dfCAR collapses Pi0+A1 from 91.5\\% to ${\\approx}$\\,0\\% (3/732 safe episodes survive). The bimodal displacement distribution makes $\\tau_d$ robust across five orders of magnitude. Pi0.5 validates the metric: TSR\\,=\\,71.5\\%, CAR\\,=\\,28.5\\%, with every safe episode above 288\\,mm displacement and dfCAR equal to raw CAR (Section~\\ref{sec:fake_safety}).\n\n\\textbf{EE-only SDF refinement is structurally counterproductive.} Three ground-truth oracle variants all achieve \\emph{lower} CAR than unrefined baselines (73.1--76.9\\% vs.\\ 82--83\\%). The SDF gradient repels the EE but rotates arm links into obstacle volumes (Section~\\ref{sec:ee_only}).\n\n\\textbf{Collision-free demonstrations are sufficient for collision avoidance.} LoRA fine-tuning on Pi0.5 with collision-free demonstrations raises CAR by ${\\sim}$26 points with zero frozen episodes. Adding SDF supervision does not yield statistically significant improvement across the tested range $\\lambda \\in [0.005, 0.1]$ ($p > 0.05$ for $\\lambda \\in \\{0.01, 0.1\\}$; $\\lambda = 0.1$: $p = 0.131$, 3 seeds). The per-task avoidance ranking is preserved across all conditions, indicating that the demonstration distribution primarily accounts for observed avoidance (Section~\\ref{sec:avoidance_source}).\n\nOur contributions are:\n\\begin{itemize}\n    \\item \\textbf{dfCAR metric:} displacement-filtered CAR that separates genuine avoidance from action collapse, robust across $\\tau_d \\in [2, 200]$\\,mm.\n    \\item \\textbf{Fake safety diagnosis:} 100+ experiments across Pi0/Pi0.5 showing $>$99\\% of Pi0 safe episodes are action-collapse artifacts.\n    \\item \\textbf{EE-only SDF is counterproductive:} ground-truth oracle refinement \\emph{reduces} CAR below unrefined baselines by redistributing collisions to unmonitored arm links.\n    \\item \\textbf{Demonstration sufficiency:} collision-free demonstrations account for nearly all measured CAR gains (${\\sim}$26\\,pp); SDF supervision shows no statistically significant benefit across the tested range $\\lambda \\in [0.005, 0.1]$ ($p > 0.05$ for $\\lambda \\in \\{0.01, 0.1\\}$, 3 seeds).\n\\end{itemize}",
+    "structuredPatch": [
+      {
+        "oldStart": 17,
+        "oldLines": 7,
+        "newStart": 17,
+        "newLines": 7,
+        "lines": [
+          " ",
+          " \\textbf{EE-only SDF refinement is structurally counterproductive.} Three ground-truth oracle variants all achieve \\emph{lower} CAR than unrefined baselines (73.1--76.9\\% vs.\\ 82--83\\%). The SDF gradient repels the EE but rotates arm links into obstacle volumes (Section~\\ref{sec:ee_only}).",
+          " ",
+          "-\\textbf{Collision-free demonstrations are sufficient for collision avoidance.} LoRA fine-tuning on Pi0.5 with collision-free demonstrations raises CAR by ${\\sim}$26 points with zero frozen episodes. Adding SDF supervision does not yield statistically significant improvement across the tested range $\\lambda \\in [0.005, 0.1]$ ($p > 0.05$ for $\\lambda \\in \\{0.01, 0.1\\}$; $\\lambda = 0.1$: $p = 0.131$, 3 seeds). The per-task avoidance ranking is preserved across all conditions, indicating that the demonstration distribution primarily accounts for observed avoidance (Section~\\ref{sec:avoidance_source}).",
+          "+\\textbf{Collision-free demonstrations are sufficient for collision avoidance.} LoRA fine-tuning on Pi0.5 with collision-free demonstrations raises CAR by ${\\sim}$26 points with zero action-collapsed episodes. Adding SDF supervision does not yield statistically significant improvement across the tested range $\\lambda \\in [0.005, 0.1]$ ($p > 0.05$ for $\\lambda \\in \\{0.01, 0.1\\}$; $\\lambda = 0.1$: $p = 0.131$, 3 seeds). The per-task avoidance ranking is preserved across all conditions, indicating that the demonstration distribution primarily accounts for observed avoidance (Section~\\ref{sec:avoidance_source}).",
+          " ",
+          " Our contributions are:",
+          " \\begin{itemize}"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01L1MDU4R1UD7hLvq3cos6b5`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/introduction.tex",
+  "old_string": "\\item \\textbf{Fake safety diagnosis:}",
+  "new_string": "\\item \\textbf{Action-collapse diagnosis:}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "b2894640-f61c-4e79-a698-63b3e19b196a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GHwwU58uyB48NZynuisdpH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4782,
+      "cache_read_input_tokens": 54466,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4782
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-28T06:21:02.279Z_
+
+<details><summary>↩ Tool result · `toolu_01L1MDU4R1UD7hLvq3cos6b5`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/introduction.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "46c464f5-3873-482a-af87-aacbe7263a58",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/introduction.tex",
+    "oldString": "\\item \\textbf{Fake safety diagnosis:}",
+    "newString": "\\item \\textbf{Action-collapse diagnosis:}",
+    "originalFile": "\\section{Introduction}\\label{sec:intro}\n\nCollision avoidance is a prerequisite for deploying Vision-Language-Action (VLA) models in physical environments~\\cite{li2026vlasafety}. The SafeLIBERO benchmark~\\cite{hu2025vlsa} provides the first systematic protocol for measuring collision avoidance in VLA manipulation. Recent methods report high Collision Avoidance Rate (CAR) through SDF-augmented training~\\cite{zhang2025safevla}, constraint-based planning~\\cite{yang2025cape}, and collision-free demonstrations~\\cite{cofreeevla2026}. Our SDF-augmented Pi0~\\cite{black2024pi0} reaches 91.5\\% CAR across 800 episodes. The problem appears close to solved.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\linewidth]{fig1_teaser}\n\\caption{The action-collapsed safety problem in VLA collision avoidance evaluation. Standard CAR classifies an action-collapsed robot as safe because it produces zero collisions (left). dfCAR filters out action-collapsed episodes where displacement falls below $\\tau_d$; Pi0+A1's 91.5\\% safety score drops to ${\\approx}$\\,0\\% (center). Pi0.5 exhibits genuine avoidance with active motion above 288\\,mm in all safe episodes, and dfCAR equals raw CAR (right).}\n\\label{fig:teaser}\n\\end{figure}\n\nIt is not (Figure~\\ref{fig:teaser}). Of the 732 collision-free episodes, 99.6\\% exhibit displacement below 0.1\\,mm; TSR is 0\\% across all 800 episodes. The robot is action-collapsed, not safe. The same pattern holds across all Pi0 configurations (Section~\\ref{sec:fake_safety}). We term this \\emph{action-collapsed safety} (colloquially, ``fake safety''): \\emph{action collapse} (near-zero actions producing zero collisions) renders reported CAR illusory, and standard evaluation cannot distinguish inaction from deliberate avoidance~\\cite{karwowski2024goodhart}.\n\nWe present a systematic investigation of this problem across the Pi0 and Pi0.5~\\cite{black2024pi0} model families on SafeLIBERO, spanning 100+ experiments and 6000+ evaluation episodes. Three findings emerge.\n\n\\textbf{Action collapse is pervasive.} We introduce displacement-filtered CAR (dfCAR), which excludes episodes below a displacement threshold $\\tau_d$. dfCAR collapses Pi0+A1 from 91.5\\% to ${\\approx}$\\,0\\% (3/732 safe episodes survive). The bimodal displacement distribution makes $\\tau_d$ robust across five orders of magnitude. Pi0.5 validates the metric: TSR\\,=\\,71.5\\%, CAR\\,=\\,28.5\\%, with every safe episode above 288\\,mm displacement and dfCAR equal to raw CAR (Section~\\ref{sec:fake_safety}).\n\n\\textbf{EE-only SDF refinement is structurally counterproductive.} Three ground-truth oracle variants all achieve \\emph{lower} CAR than unrefined baselines (73.1--76.9\\% vs.\\ 82--83\\%). The SDF gradient repels the EE but rotates arm links into obstacle volumes (Section~\\ref{sec:ee_only}).\n\n\\textbf{Collision-free demonstrations are sufficient for collision avoidance.} LoRA fine-tuning on Pi0.5 with collision-free demonstrations raises CAR by ${\\sim}$26 points with zero action-collapsed episodes. Adding SDF supervision does not yield statistically significant improvement across the tested range $\\lambda \\in [0.005, 0.1]$ ($p > 0.05$ for $\\lambda \\in \\{0.01, 0.1\\}$; $\\lambda = 0.1$: $p = 0.131$, 3 seeds). The per-task avoidance ranking is preserved across all conditions, indicating that the demonstration distribution primarily accounts for observed avoidance (Section~\\ref{sec:avoidance_source}).\n\nOur contributions are:\n\\begin{itemize}\n    \\item \\textbf{dfCAR metric:} displacement-filtered CAR that separates genuine avoidance from action collapse, robust across $\\tau_d \\in [2, 200]$\\,mm.\n    \\item \\textbf{Fake safety diagnosis:} 100+ experiments across Pi0/Pi0.5 showing $>$99\\% of Pi0 safe episodes are action-collapse artifacts.\n    \\item \\textbf{EE-only SDF is counterproductive:} ground-truth oracle refinement \\emph{reduces} CAR below unrefined baselines by redistributing collisions to unmonitored arm links.\n    \\item \\textbf{Demonstration sufficiency:} collision-free demonstrations account for nearly all measured CAR gains (${\\sim}$26\\,pp); SDF supervision shows no statistically significant benefit across the tested range $\\lambda \\in [0.005, 0.1]$ ($p > 0.05$ for $\\lambda \\in \\{0.01, 0.1\\}$, 3 seeds).\n\\end{itemize}",
+    "structuredPatch": [
+      {
+        "oldStart": 22,
+        "oldLines": 7,
+        "newStart": 22,
+        "newLines": 7,
+        "lines": [
+          " Our contributions are:",
+          " \\begin{itemize}",
+          "     \\item \\textbf{dfCAR metric:} displacement-filtered CAR that separates genuine avoidance from action collapse, robust across $\\tau_d \\in [2, 200]$\\,mm.",
+          "-    \\item \\textbf{Fake safety diagnosis:} 100+ experiments across Pi0/Pi0.5 showing $>$99\\% of Pi0 safe episodes are action-collapse artifacts.",
+          "+    \\item \\textbf{Action-collapse diagnosis:} 100+ experiments across Pi0/Pi0.5 showing $>$99\\% of Pi0 safe episodes are action-collapse artifacts.",
+          "     \\item \\textbf{EE-only SDF is counterproductive:} ground-truth oracle refinement \\emph{reduces} CAR below unrefined baselines by redistributing collisions to unmonitored arm links.",
+          "     \\item \\textbf{Demonstration sufficiency:} collision-free demonstrations account for nearly all measured CAR gains (${\\sim}$26\\,pp); SDF supervision shows no statistically significant benefit across the tested range $\\lambda \\in [0.005, 0.1]$ ($p > 0.05$ for $\\lambda \\in \\{0.01, 0.1\\}$, 3 seeds).",
+          " \\end{itemize}",
+          "\\ No newline at end of file"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50_
+
+**claim1.tex** — 4 edits:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "ad6f7b4f-55a6-4c1f-bfb6-bc1aa4796775",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WNe969Mj52RZUXyaztQbb1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1243,
+      "cache_read_input_tokens": 59248,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1243
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01N3J7Y3RkyYATEDh6rYVe5D`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim1.tex",
+  "old_string": "\\section{The Fake Safety Problem}\\label{sec:fake_safety}",
+  "new_string": "\\section{The Action-Collapsed Safety Problem}\\label{sec:fake_safety}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "0d5ef594-1046-4a94-8886-7a938d2b5c48",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WNe969Mj52RZUXyaztQbb1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1243,
+      "cache_read_input_tokens": 59248,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1243
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-28T06:21:06.815Z_
+
+<details><summary>↩ Tool result · `toolu_01N3J7Y3RkyYATEDh6rYVe5D`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim1.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "6d02b6bf-bf39-41ef-9ee2-29ab05ee46b5",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim1.tex",
+    "oldString": "\\section{The Fake Safety Problem}\\label{sec:fake_safety}",
+    "newString": "\\section{The Action-Collapsed Safety Problem}\\label{sec:fake_safety}",
+    "originalFile": "\\section{The Fake Safety Problem}\\label{sec:fake_safety}\n\nStandard CAR assumes that collision-free episodes reflect deliberate avoidance. This assumption is systematically violated: in every Pi0 configuration tested, over 99\\% of collision-free episodes are action-collapse artifacts (Table~\\ref{tab:fake_safety}).\\footnote{Pi0-family values report obstacle displacement from the original protocol; Pi0.5 reports EE displacement from the rotation-corrected protocol (\\S\\ref{sec:dfcar}). Sub-millimeter displacement indicates action collapse in both cases.} Applying dfCAR collapses all three to ${\\approx}$\\,0\\%. Pi0+A1 achieves the \\emph{highest} raw CAR (91.5\\%) because more complete action collapse (from a parameter-name mismatch preventing LoRA loading; Table~\\ref{tab:configurations}) yields higher fake safety. Pi0.5 validates the metric from the opposite direction: every safe episode exceeds 200\\,mm displacement, and dfCAR equals raw CAR (28.5\\%). The displacement distribution is sharply bimodal (Appendix~\\ref{sec:appendix_displacement}), with a five-order-of-magnitude gap that makes $\\tau_d$ robust.\n\n\\begin{table}[t]\n\\centering\n\\caption{Fake safety decomposition on SafeLIBERO. dfCAR excludes episodes with displacement $< \\tau_d = 0.1$\\,mm.}\n\\label{tab:fake_safety}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lccccc}\n\\toprule\nMethod & Ep. & CAR (\\%) & TSR (\\%) & Fake Safe (\\%) & dfCAR (\\%) \\\\\n\\midrule\nPi0 Full-FT  & 200 & 83.0 & 0.5 & 99.4 & $\\approx$\\,0 \\\\\nPi0 LoRA     & 200 & 82.0 & 0.0 & ${\\sim}$99 & $\\approx$\\,0 \\\\\nPi0+A1 (SDF) & 800 & 91.5 & 0.0 & 99.6 & $\\approx$\\,0$^*$ \\\\\n\\midrule\nPi0.5  & 200 & 28.5 & 71.5 & 0.0 & 28.5 \\\\\n\\bottomrule\n\\end{tabular}\n\\vspace{1pt}\n{\\footnotesize $^*$\\,3/732 safe episodes above threshold; denominator too small for reliable rate.}\n\\end{table}\n\nFigure~\\ref{fig:tsr_car_scatter} reveals spatial structure in the TSR-CAR plane.\\label{sec:anticorrelation} Pi0-family models cluster in the upper-left (high CAR, near-zero TSR), Pi0.5 in the lower-right (high TSR, low CAR). The upper-right quadrant (high TSR \\emph{and} CAR) represents genuinely safe behavior; the upper-left is accessible through action collapse alone. Under dfCAR, Pi0 configurations drop to the origin: the apparent safety-capability tradeoff was an artifact of action-collapse contamination.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.85\\linewidth]{fig_tsr_car_scatter.pdf}\n\\caption{TSR vs.\\ CAR for all configurations. Pi0-family models cluster in the upper-left (high CAR from inaction), Pi0.5 in the lower-right (high TSR with collision exposure), fine-tuned Pi0.5 in the center. The upper-right quadrant (high TSR and CAR) represents genuinely safe behavior. Error bars: $\\pm$1 std across seeds.}\n\\label{fig:tsr_car_scatter}\n\\end{figure}\n",
+    "structuredPatch": [
+      {
+        "oldStart": 1,
+        "oldLines": 4,
+        "newStart": 1,
+        "newLines": 4,
+        "lines": [
+          "-\\section{The Fake Safety Problem}\\label{sec:fake_safety}",
+          "+\\section{The Action-Collapsed Safety Problem}\\label{sec:fake_safety}",
+          " ",
+          " Standard CAR assumes that collision-free episodes reflect deliberate avoidance. This assumption is systematically violated: in every Pi0 configuration tested, over 99\\% of collision-free episodes are action-collapse artifacts (Table~\\ref{tab:fake_safety}).\\footnote{Pi0-family values report obstacle displacement from the original protocol; Pi0.5 reports EE displacement from the rotation-corrected protocol (\\S\\ref{sec:dfcar}). Sub-millimeter displacement indicates action collapse in both cases.} Applying dfCAR collapses all three to ${\\approx}$\\,0\\%. Pi0+A1 achieves the \\emph{highest} raw CAR (91.5\\%) because more complete action collapse (from a parameter-name mismatch preventing LoRA loading; Table~\\ref{tab:configurations}) yields higher fake safety. Pi0.5 validates the metric from the opposite direction: every safe episode exceeds 200\\,mm displacement, and dfCAR equals raw CAR (28.5\\%). The displacement distribution is sharply bimodal (Appendix~\\ref{sec:appendix_displacement}), with a five-order-of-magnitude gap that makes $\\tau_d$ robust.",
+          " "
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01FhUeEUb5rSsdKofhN8vK4Z`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim1.tex",
+  "old_string": "yields higher fake safety.",
+  "new_string": "yields greater CAR inflation."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "809edeab-8864-4898-a47b-641cf79ae3c3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WNe969Mj52RZUXyaztQbb1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1243,
+      "cache_read_input_tokens": 59248,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1243
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-28T06:21:07.749Z_
+
+<details><summary>↩ Tool result · `toolu_01FhUeEUb5rSsdKofhN8vK4Z`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim1.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "41653392-29d8-4070-82cf-9ada91937e1f",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim1.tex",
+    "oldString": "yields higher fake safety.",
+    "newString": "yields greater CAR inflation.",
+    "originalFile": "\\section{The Action-Collapsed Safety Problem}\\label{sec:fake_safety}\n\nStandard CAR assumes that collision-free episodes reflect deliberate avoidance. This assumption is systematically violated: in every Pi0 configuration tested, over 99\\% of collision-free episodes are action-collapse artifacts (Table~\\ref{tab:fake_safety}).\\footnote{Pi0-family values report obstacle displacement from the original protocol; Pi0.5 reports EE displacement from the rotation-corrected protocol (\\S\\ref{sec:dfcar}). Sub-millimeter displacement indicates action collapse in both cases.} Applying dfCAR collapses all three to ${\\approx}$\\,0\\%. Pi0+A1 achieves the \\emph{highest} raw CAR (91.5\\%) because more complete action collapse (from a parameter-name mismatch preventing LoRA loading; Table~\\ref{tab:configurations}) yields higher fake safety. Pi0.5 validates the metric from the opposite direction: every safe episode exceeds 200\\,mm displacement, and dfCAR equals raw CAR (28.5\\%). The displacement distribution is sharply bimodal (Appendix~\\ref{sec:appendix_displacement}), with a five-order-of-magnitude gap that makes $\\tau_d$ robust.\n\n\\begin{table}[t]\n\\centering\n\\caption{Fake safety decomposition on SafeLIBERO. dfCAR excludes episodes with displacement $< \\tau_d = 0.1$\\,mm.}\n\\label{tab:fake_safety}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lccccc}\n\\toprule\nMethod & Ep. & CAR (\\%) & TSR (\\%) & Fake Safe (\\%) & dfCAR (\\%) \\\\\n\\midrule\nPi0 Full-FT  & 200 & 83.0 & 0.5 & 99.4 & $\\approx$\\,0 \\\\\nPi0 LoRA     & 200 & 82.0 & 0.0 & ${\\sim}$99 & $\\approx$\\,0 \\\\\nPi0+A1 (SDF) & 800 & 91.5 & 0.0 & 99.6 & $\\approx$\\,0$^*$ \\\\\n\\midrule\nPi0.5  & 200 & 28.5 & 71.5 & 0.0 & 28.5 \\\\\n\\bottomrule\n\\end{tabular}\n\\vspace{1pt}\n{\\footnotesize $^*$\\,3/732 safe episodes above threshold; denominator too small for reliable rate.}\n\\end{table}\n\nFigure~\\ref{fig:tsr_car_scatter} reveals spatial structure in the TSR-CAR plane.\\label{sec:anticorrelation} Pi0-family models cluster in the upper-left (high CAR, near-zero TSR), Pi0.5 in the lower-right (high TSR, low CAR). The upper-right quadrant (high TSR \\emph{and} CAR) represents genuinely safe behavior; the upper-left is accessible through action collapse alone. Under dfCAR, Pi0 configurations drop to the origin: the apparent safety-capability tradeoff was an artifact of action-collapse contamination.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.85\\linewidth]{fig_tsr_car_scatter.pdf}\n\\caption{TSR vs.\\ CAR for all configurations. Pi0-family models cluster in the upper-left (high CAR from inaction), Pi0.5 in the lower-right (high TSR with collision exposure), fine-tuned Pi0.5 in the center. The upper-right quadrant (high TSR and CAR) represents genuinely safe behavior. Error bars: $\\pm$1 std across seeds.}\n\\label{fig:tsr_car_scatter}\n\\end{figure}\n",
+    "structuredPatch": [
+      {
+        "oldStart": 1,
+        "oldLines": 6,
+        "newStart": 1,
+        "newLines": 6,
+        "lines": [
+          " \\section{The Action-Collapsed Safety Problem}\\label{sec:fake_safety}",
+          " ",
+          "-Standard CAR assumes that collision-free episodes reflect deliberate avoidance. This assumption is systematically violated: in every Pi0 configuration tested, over 99\\% of collision-free episodes are action-collapse artifacts (Table~\\ref{tab:fake_safety}).\\footnote{Pi0-family values report obstacle displacement from the original protocol; Pi0.5 reports EE displacement from the rotation-corrected protocol (\\S\\ref{sec:dfcar}). Sub-millimeter displacement indicates action collapse in both cases.} Applying dfCAR collapses all three to ${\\approx}$\\,0\\%. Pi0+A1 achieves the \\emph{highest} raw CAR (91.5\\%) because more complete action collapse (from a parameter-name mismatch preventing LoRA loading; Table~\\ref{tab:configurations}) yields higher fake safety. Pi0.5 validates the metric from the opposite direction: every safe episode exceeds 200\\,mm displacement, and dfCAR equals raw CAR (28.5\\%). The displacement distribution is sharply bimodal (Appendix~\\ref{sec:appendix_displacement}), with a five-order-of-magnitude gap that makes $\\tau_d$ robust.",
+          "+Standard CAR assumes that collision-free episodes reflect deliberate avoidance. This assumption is systematically violated: in every Pi0 configuration tested, over 99\\% of collision-free episodes are action-collapse artifacts (Table~\\ref{tab:fake_safety}).\\footnote{Pi0-family values report obstacle displacement from the original protocol; Pi0.5 reports EE displacement from the rotation-corrected protocol (\\S\\ref{sec:dfcar}). Sub-millimeter displacement indicates action collapse in both cases.} Applying dfCAR collapses all three to ${\\approx}$\\,0\\%. Pi0+A1 achieves the \\emph{highest} raw CAR (91.5\\%) because more complete action collapse (from a parameter-name mismatch preventing LoRA loading; Table~\\ref{tab:configurations}) yields greater CAR inflation. Pi0.5 validates the metric from the opposite direction: every safe episode exceeds 200\\,mm displacement, and dfCAR equals raw CAR (28.5\\%). The displacement distribution is sharply bimodal (Appendix~\\ref{sec:appendix_displacement}), with a five-order-of-magnitude gap that makes $\\tau_d$ robust.",
+          " ",
+          " \\begin{table}[t]",
+          " \\centering"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01FP2TsEw3WmZs99RLQx5NSb`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim1.tex",
+  "old_string": "\\caption{Fake safety decomposition on SafeLIBERO.",
+  "new_string": "\\caption{Action-collapse decomposition on SafeLIBERO."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "ae12a4b0-ccff-4fe2-b12b-cc664115e67b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WNe969Mj52RZUXyaztQbb1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1243,
+      "cache_read_input_tokens": 59248,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1243
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-28T06:21:09.159Z_
+
+<details><summary>↩ Tool result · `toolu_01FP2TsEw3WmZs99RLQx5NSb`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim1.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "960caef1-69a6-48fb-829f-3251decdcff7",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim1.tex",
+    "oldString": "\\caption{Fake safety decomposition on SafeLIBERO.",
+    "newString": "\\caption{Action-collapse decomposition on SafeLIBERO.",
+    "originalFile": "\\section{The Action-Collapsed Safety Problem}\\label{sec:fake_safety}\n\nStandard CAR assumes that collision-free episodes reflect deliberate avoidance. This assumption is systematically violated: in every Pi0 configuration tested, over 99\\% of collision-free episodes are action-collapse artifacts (Table~\\ref{tab:fake_safety}).\\footnote{Pi0-family values report obstacle displacement from the original protocol; Pi0.5 reports EE displacement from the rotation-corrected protocol (\\S\\ref{sec:dfcar}). Sub-millimeter displacement indicates action collapse in both cases.} Applying dfCAR collapses all three to ${\\approx}$\\,0\\%. Pi0+A1 achieves the \\emph{highest} raw CAR (91.5\\%) because more complete action collapse (from a parameter-name mismatch preventing LoRA loading; Table~\\ref{tab:configurations}) yields greater CAR inflation. Pi0.5 validates the metric from the opposite direction: every safe episode exceeds 200\\,mm displacement, and dfCAR equals raw CAR (28.5\\%). The displacement distribution is sharply bimodal (Appendix~\\ref{sec:appendix_displacement}), with a five-order-of-magnitude gap that makes $\\tau_d$ robust.\n\n\\begin{table}[t]\n\\centering\n\\caption{Fake safety decomposition on SafeLIBERO. dfCAR excludes episodes with displacement $< \\tau_d = 0.1$\\,mm.}\n\\label{tab:fake_safety}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lccccc}\n\\toprule\nMethod & Ep. & CAR (\\%) & TSR (\\%) & Fake Safe (\\%) & dfCAR (\\%) \\\\\n\\midrule\nPi0 Full-FT  & 200 & 83.0 & 0.5 & 99.4 & $\\approx$\\,0 \\\\\nPi0 LoRA     & 200 & 82.0 & 0.0 & ${\\sim}$99 & $\\approx$\\,0 \\\\\nPi0+A1 (SDF) & 800 & 91.5 & 0.0 & 99.6 & $\\approx$\\,0$^*$ \\\\\n\\midrule\nPi0.5  & 200 & 28.5 & 71.5 & 0.0 & 28.5 \\\\\n\\bottomrule\n\\end{tabular}\n\\vspace{1pt}\n{\\footnotesize $^*$\\,3/732 safe episodes above threshold; denominator too small for reliable rate.}\n\\end{table}\n\nFigure~\\ref{fig:tsr_car_scatter} reveals spatial structure in the TSR-CAR plane.\\label{sec:anticorrelation} Pi0-family models cluster in the upper-left (high CAR, near-zero TSR), Pi0.5 in the lower-right (high TSR, low CAR). The upper-right quadrant (high TSR \\emph{and} CAR) represents genuinely safe behavior; the upper-left is accessible through action collapse alone. Under dfCAR, Pi0 configurations drop to the origin: the apparent safety-capability tradeoff was an artifact of action-collapse contamination.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.85\\linewidth]{fig_tsr_car_scatter.pdf}\n\\caption{TSR vs.\\ CAR for all configurations. Pi0-family models cluster in the upper-left (high CAR from inaction), Pi0.5 in the lower-right (high TSR with collision exposure), fine-tuned Pi0.5 in the center. The upper-right quadrant (high TSR and CAR) represents genuinely safe behavior. Error bars: $\\pm$1 std across seeds.}\n\\label{fig:tsr_car_scatter}\n\\end{figure}\n",
+    "structuredPatch": [
+      {
+        "oldStart": 4,
+        "oldLines": 7,
+        "newStart": 4,
+        "newLines": 7,
+        "lines": [
+          " ",
+          " \\begin{table}[t]",
+          " \\centering",
+          "-\\caption{Fake safety decomposition on SafeLIBERO. dfCAR excludes episodes with displacement $< \\tau_d = 0.1$\\,mm.}",
+          "+\\caption{Action-collapse decomposition on SafeLIBERO. dfCAR excludes episodes with displacement $< \\tau_d = 0.1$\\,mm.}",
+          " \\label{tab:fake_safety}",
+          " \\vspace{2pt}",
+          " \\small"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_014tfheqb4gvf7UkfsH7f76W`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim1.tex",
+  "old_string": "Fake Safe (\\%)",
+  "new_string": "Collapsed (\\%)"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "80fd6037-2b7a-4fd9-b0ff-442947f2eefb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WNe969Mj52RZUXyaztQbb1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1243,
+      "cache_read_input_tokens": 59248,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1243
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-28T06:21:09.760Z_
+
+<details><summary>↩ Tool result · `toolu_014tfheqb4gvf7UkfsH7f76W`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim1.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "f327206d-fc74-4f73-b7dc-e20484cb1581",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim1.tex",
+    "oldString": "Fake Safe (\\%)",
+    "newString": "Collapsed (\\%)",
+    "originalFile": "\\section{The Action-Collapsed Safety Problem}\\label{sec:fake_safety}\n\nStandard CAR assumes that collision-free episodes reflect deliberate avoidance. This assumption is systematically violated: in every Pi0 configuration tested, over 99\\% of collision-free episodes are action-collapse artifacts (Table~\\ref{tab:fake_safety}).\\footnote{Pi0-family values report obstacle displacement from the original protocol; Pi0.5 reports EE displacement from the rotation-corrected protocol (\\S\\ref{sec:dfcar}). Sub-millimeter displacement indicates action collapse in both cases.} Applying dfCAR collapses all three to ${\\approx}$\\,0\\%. Pi0+A1 achieves the \\emph{highest} raw CAR (91.5\\%) because more complete action collapse (from a parameter-name mismatch preventing LoRA loading; Table~\\ref{tab:configurations}) yields greater CAR inflation. Pi0.5 validates the metric from the opposite direction: every safe episode exceeds 200\\,mm displacement, and dfCAR equals raw CAR (28.5\\%). The displacement distribution is sharply bimodal (Appendix~\\ref{sec:appendix_displacement}), with a five-order-of-magnitude gap that makes $\\tau_d$ robust.\n\n\\begin{table}[t]\n\\centering\n\\caption{Action-collapse decomposition on SafeLIBERO. dfCAR excludes episodes with displacement $< \\tau_d = 0.1$\\,mm.}\n\\label{tab:fake_safety}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lccccc}\n\\toprule\nMethod & Ep. & CAR (\\%) & TSR (\\%) & Fake Safe (\\%) & dfCAR (\\%) \\\\\n\\midrule\nPi0 Full-FT  & 200 & 83.0 & 0.5 & 99.4 & $\\approx$\\,0 \\\\\nPi0 LoRA     & 200 & 82.0 & 0.0 & ${\\sim}$99 & $\\approx$\\,0 \\\\\nPi0+A1 (SDF) & 800 & 91.5 & 0.0 & 99.6 & $\\approx$\\,0$^*$ \\\\\n\\midrule\nPi0.5  & 200 & 28.5 & 71.5 & 0.0 & 28.5 \\\\\n\\bottomrule\n\\end{tabular}\n\\vspace{1pt}\n{\\footnotesize $^*$\\,3/732 safe episodes above threshold; denominator too small for reliable rate.}\n\\end{table}\n\nFigure~\\ref{fig:tsr_car_scatter} reveals spatial structure in the TSR-CAR plane.\\label{sec:anticorrelation} Pi0-family models cluster in the upper-left (high CAR, near-zero TSR), Pi0.5 in the lower-right (high TSR, low CAR). The upper-right quadrant (high TSR \\emph{and} CAR) represents genuinely safe behavior; the upper-left is accessible through action collapse alone. Under dfCAR, Pi0 configurations drop to the origin: the apparent safety-capability tradeoff was an artifact of action-collapse contamination.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.85\\linewidth]{fig_tsr_car_scatter.pdf}\n\\caption{TSR vs.\\ CAR for all configurations. Pi0-family models cluster in the upper-left (high CAR from inaction), Pi0.5 in the lower-right (high TSR with collision exposure), fine-tuned Pi0.5 in the center. The upper-right quadrant (high TSR and CAR) represents genuinely safe behavior. Error bars: $\\pm$1 std across seeds.}\n\\label{fig:tsr_car_scatter}\n\\end{figure}\n",
+    "structuredPatch": [
+      {
+        "oldStart": 10,
+        "oldLines": 7,
+        "newStart": 10,
+        "newLines": 7,
+        "lines": [
+          " \\small",
+          " \\begin{tabular}{lccccc}",
+          " \\toprule",
+          "-Method & Ep. & CAR (\\%) & TSR (\\%) & Fake Safe (\\%) & dfCAR (\\%) \\\\",
+          "+Method & Ep. & CAR (\\%) & TSR (\\%) & Collapsed (\\%) & dfCAR (\\%) \\\\",
+          " \\midrule",
+          " Pi0 Full-FT  & 200 & 83.0 & 0.5 & 99.4 & $\\approx$\\,0 \\\\",
+          " Pi0 LoRA     & 200 & 82.0 & 0.0 & ${\\sim}$99 & $\\approx$\\,0 \\\\"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 59_
+
+**claim2.tex** — 1 edit:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "4c417859-5c81-4ee9-8b18-4f3c33e55de1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DURd4mNmTLWNgFitvRmKNm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1004,
+      "cache_read_input_tokens": 60491,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1004
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01CBdbw87qSjwXRAMNnh1rmC`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim2.tex",
+  "old_string": "Fake Safe (\\%)",
+  "new_string": "Collapsed (\\%)"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "c845cf4a-6102-468d-808b-44920bb13ec0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DURd4mNmTLWNgFitvRmKNm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1004,
+      "cache_read_input_tokens": 60491,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1004
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-28T06:21:12.744Z_
+
+<details><summary>↩ Tool result · `toolu_01CBdbw87qSjwXRAMNnh1rmC`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim2.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "2643e207-d321-457b-a8c6-d0b7523a97f3",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim2.tex",
+    "oldString": "Fake Safe (\\%)",
+    "newString": "Collapsed (\\%)",
+    "originalFile": "\\section{End-Effector-Only SDF Cannot Ensure Full-Body Safety}\\label{sec:ee_only}\n\nCould a perfect SDF signal enable effective EE-only refinement? We replace the learned SDF with ground-truth distance fields from the simulation geometry (\\S\\ref{sec:oracle_setup}). Table~\\ref{tab:oracle} and Figure~\\ref{fig:oracle_bar} show that all three oracle variants achieve \\emph{lower} CAR than unrefined baselines: the best oracle (76.9\\%) falls 5.1 points below LoRA (82.0\\%). Refinement with perfect distance information produces more collisions, not fewer.\n\n\\begin{table}[t]\n\\centering\n\\caption{Oracle SDF refinement with ground-truth distance fields. All oracle variants achieve lower CAR than unrefined baselines. Per-task breakdown in Appendix~\\ref{sec:appendix_pertask_oracle}.}\n\\label{tab:oracle}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lccc}\n\\toprule\nMethod & CAR (\\%) & Fake Safe (\\%) & Refines/ep \\\\\n\\midrule\nLoRA baseline (no refine) & 82.0 & 99.4 & -- \\\\\nFull-FT baseline (no refine) & 83.0 & -- & -- \\\\\n\\midrule\nOracle-adaptive (GT, dyn.\\ $\\alpha$) & 75.0 & 98.3 & 14.2 \\\\\nOracle-fixed (GT, $\\alpha{=}0.005$) & 73.1 & 98.3 & 14.8 \\\\\nOracle-feature (GT, feat.\\ space) & 76.9 & 96.7 & 241.7 \\\\\n\\midrule\nA3 learned SDF & 77.1 & -- & 0.0 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.85\\linewidth]{fig_oracle_bar.pdf}\n\\caption{CAR for oracle SDF refinement versus unrefined baselines. All GT oracle variants underperform baselines despite perfect distance information.}\n\\label{fig:oracle_bar}\n\\end{figure}\n\nPer-task analysis reveals the mechanism (Appendix~\\ref{sec:appendix_pertask_oracle}). On the one task where the EE is the primary collision body, oracle refinement helps (+9 points). On the remaining three, the SDF gradient pushes the EE away from obstacles but rotates intermediate arm links into obstacle volumes; the net effect is one collision traded for another. The A3 learned SDF never triggers refinement (0 steps per episode). EE-only refinement is structurally counterproductive: joint-space coupling between EE displacement and arm-link rotation redistributes collisions to unmonitored links regardless of signal quality.",
+    "structuredPatch": [
+      {
+        "oldStart": 10,
+        "oldLines": 7,
+        "newStart": 10,
+        "newLines": 7,
+        "lines": [
+          " \\small",
+          " \\begin{tabular}{lccc}",
+          " \\toprule",
+          "-Method & CAR (\\%) & Fake Safe (\\%) & Refines/ep \\\\",
+          "+Method & CAR (\\%) & Collapsed (\\%) & Refines/ep \\\\",
+          " \\midrule",
+          " LoRA baseline (no refine) & 82.0 & 99.4 & -- \\\\",
+          " Full-FT baseline (no refine) & 83.0 & -- & -- \\\\"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 62_
+
+**claim3.tex** — 4 edits:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "4f8baad6-1872-40eb-84f6-b14345b62b49",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0154Xd8cvPxnJWzy6hxSdWWh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 223,
+      "cache_read_input_tokens": 61495,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 223
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01MExAUUa21Ww4yjrhwpeYqP`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim3.tex",
+  "old_string": "with zero frozen episodes. Does SDF",
+  "new_string": "with zero action-collapsed episodes. Does SDF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "a77892e6-0e03-47a6-b0ef-efbae0f51740",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0154Xd8cvPxnJWzy6hxSdWWh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 223,
+      "cache_read_input_tokens": 61495,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 223
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-28T06:21:16.739Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01MExAUUa21Ww4yjrhwpeYqP`</summary>
+
+```text
+&lt;tool_use_error>File has been modified since read, either by the user or by a linter. Read it again before attempting to write it.&lt;/tool_use_error>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "3962dc2a-7e7a-41ed-b72f-6f6c43935ac3",
+  "tool_use_result": "Error: File has been modified since read, either by the user or by a linter. Read it again before attempting to write it."
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_014vSfaWFoAuY5exrrZq3jzH`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim3.tex",
+  "old_string": "0\\% frozen rate and displacement",
+  "new_string": "0\\% action-collapse rate and displacement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "d03f12ff-701d-4bf6-9cf4-00509f099161",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0154Xd8cvPxnJWzy6hxSdWWh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 223,
+      "cache_read_input_tokens": 61495,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 223
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-28T06:21:17.704Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_014vSfaWFoAuY5exrrZq3jzH`</summary>
+
+```text
+&lt;tool_use_error>File has been modified since read, either by the user or by a linter. Read it again before attempting to write it.&lt;/tool_use_error>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "4ab12c4e-3797-473a-a88f-b9cd2f7c79f8",
+  "tool_use_result": "Error: File has been modified since read, either by the user or by a linter. Read it again before attempting to write it."
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01AsGBxNTaSrBnJdVQnh6ESq`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim3.tex",
+  "old_string": "with zero frozen episodes and displacement above 0.37\\,m",
+  "new_string": "with zero action-collapsed episodes and displacement above 0.37\\,m"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "82e58611-e743-4bec-b52f-ea66b3786e6e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0154Xd8cvPxnJWzy6hxSdWWh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 223,
+      "cache_read_input_tokens": 61495,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 223
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-28T06:21:19.218Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01AsGBxNTaSrBnJdVQnh6ESq`</summary>
+
+```text
+&lt;tool_use_error>File has been modified since read, either by the user or by a linter. Read it again before attempting to write it.&lt;/tool_use_error>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "8f755d57-e2bb-44b7-aeef-d2512e61b235",
+  "tool_use_result": "Error: File has been modified since read, either by the user or by a linter. Read it again before attempting to write it."
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01AqN9CxLfdaTVMcLzzRqRFi`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim3.tex",
+  "old_string": "and 0\\% frozen episodes)",
+  "new_string": "and 0\\% action-collapsed episodes)"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "3e8a15cf-5efd-49b4-9dd4-47f48c90e8a2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0154Xd8cvPxnJWzy6hxSdWWh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 223,
+      "cache_read_input_tokens": 61495,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 223
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-28T06:21:20.159Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01AqN9CxLfdaTVMcLzzRqRFi`</summary>
+
+```text
+&lt;tool_use_error>File has been modified since read, either by the user or by a linter. Read it again before attempting to write it.&lt;/tool_use_error>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "5b7debf3-c446-4fff-91f3-bb753b298706",
+  "tool_use_result": "Error: File has been modified since read, either by the user or by a linter. Read it again before attempting to write it."
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01JdMnmmfhbYw3iP7wsiDKrV`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim3.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "57e07293-0dbb-47a9-b0c9-81317efd2b21",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TvkgZMd22ueTAq8sgqpRSt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 872,
+      "cache_read_input_tokens": 61718,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 872
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-28T06:21:23.352Z_
+
+<details><summary>↩ Tool result · `toolu_01JdMnmmfhbYw3iP7wsiDKrV`</summary>
+
+```text
+1	\section{Avoidance Source Diagnosis}\label{sec:avoidance_source}
+2	
+3	Fine-tuning on collision-free demonstrations produces genuine collision avoidance: LoRA-adapted Pi0.5 raises CAR by ${\sim}$26 percentage points with zero frozen episodes. Does SDF geometric supervision contribute additional avoidance beyond what demonstrations provide? We compare LoRA-only against LoRA+SDF across a 20$\times$ range of loss weights ($\lambda \in \{0.005, 0.01, 0.1\}$) on Pi0.5, all evaluated at the 30K-step checkpoint.
+4	
+5	\begin{table}[t]
+6	\centering
+7	\caption{Avoidance source attribution on SafeLIBERO. SDF shows no statistically significant CAR improvement beyond LoRA-only at the tested scale ($p > 0.05$ for $\lambda \in \{0.01, 0.1\}$). All fine-tuned models exhibit 0\% frozen rate and displacement $>$\,0.37\,m.}
+8	\label{tab:avoidance_source}
+9	\vspace{2pt}
+10	\small
+11	\begin{tabular}{lcccc}
+12	\toprule
+13	Method & Seeds & TSR (\%) & CAR (\%) & EE Disp (m) \\
+14	\midrule
+15	Pi0.5 baseline & 1 & 71.5 & 28.5 & 0.367 \\
+16	\midrule
+17	LoRA-only (no SDF) & 3 & 51.5\,$\pm$\,0.0 & 54.67\,$\pm$\,2.02 & 0.391 \\
+18	LoRA+SDF $\lambda{=}0.005$ & 3 & 54.0\,$\pm$\,3.0 & 54.5\,$\pm$\,2.29 & 0.387 \\
+19	LoRA+SDF $\lambda{=}0.01$ & 3 & 53.8\,$\pm$\,1.5 & 56.33\,$\pm$\,1.61 & 0.389 \\
+20	LoRA+SDF $\lambda{=}0.1$ & 3 & 50.2\,$\pm$\,3.9 & 57.00\,$\pm$\,2.18 & 0.394 \\
+21	\bottomrule
+22	\end{tabular}
+23	\vspace{1pt}
+24	\end{table}
+25	
+26	Table~\ref{tab:avoidance_source} shows that collision-free demonstrations alone raise CAR by ${\sim}$26 percentage points (28.5\% $\to$ 54.67\%) with zero frozen episodes and displacement above 0.37\,m, confirming genuine avoidance. Adding SDF supervision does not yield statistically significant improvement at the tested scale: LoRA-only CAR (54.67\%) is statistically indistinguishable from all SDF conditions including $\lambda = 0.1$ (57.00\%, $p = 0.131$; Appendix~\ref{sec:appendix_null}). A Phase~2 ablation ($\lambda = 0$ after step 5K) yields CAR\,=\,58.0\%\footnote{At the 18K checkpoint (13K steps of Phase~2 training, single seed s2); full 30K training did not complete due to disk constraints.}, suggesting that SDF gradients do not produce a lasting behavioral effect. The per-task CAR ordering is preserved across all conditions (chocolate\_pudding highest, bbq\_sauce lowest) and invariant to $\lambda$ across a 20$\times$ range, indicating that avoidance patterns reflect the demonstration distribution rather than geometric supervision.
+27	
+28	\paragraph{CAR--TSR trade-off.}\label{sec:tsr_collapse}
+29	Fine-tuning degrades TSR by ${\sim}$18--20\,pp (71.5\% $\to$ 51.5--54.0\%), a consequence of distributional shift from the pre-trained prior rather than learned paralysis (all models retain $>$\,0.37\,m displacement and 0\% frozen episodes). The SSR/TSR ratio increases from 0.39 (baseline) to 0.51--0.60 (Appendix~\ref{sec:appendix_ssr}): among task-completing episodes, a larger fraction avoids collisions after fine-tuning.
+30	
+31	\paragraph{Dose-response at higher loss weights.}\label{sec:lambda_high}
+32	Increasing $\lambda$ by 20$\times$ to 0.1 yields CAR\,=\,57.00\%\,$\pm$\,2.18 at the 30K checkpoint (3 seeds: 58.0\%, 58.5\%, 54.5\%), within the null distribution (mean 54.58\%, $\sigma = 1.93$; permutation $p = 0.131$\footnote{One-tailed permutation $p = 0.071$; even with the directional prior that SDF should not \emph{decrease} CAR, the result remains non-significant.}). SDF supervision does not produce statistically significant benefit across the tested range $\lambda \in [0.005, 0.1]$ (Figure~\ref{fig:lambda_car}). This result disambiguates the two-level failure analysis (Section~\ref{sec:conclusion}): because even a 20$\times$ increase in SDF loss weight fails to produce additional avoidance, the binding constraint is not training signal magnitude but the structural mismatch between end-effector monitoring and full-body collision surfaces. Stronger geometric supervision cannot compensate for supervising the wrong collision surface.
+33	
+34	\paragraph{Robustness to null construction.}
+35	The preceding permutation test pools LoRA-only and $\lambda = 0.005$ seeds as a single null (Null~B, $\binom{9}{3} = 84$ permutations, two-tailed $p = 0.131$). An alternative construction using only LoRA-only seeds (Null~A, $\binom{6}{3} = 20$ permutations) yields one-tailed $p = 0.150$, two-tailed $p = 0.300$. The conclusion is robust to null construction: neither yields significance at $\alpha = 0.05$.
+36	
+37	\paragraph{Statistical power.}
+38	With $n = 3$ seeds per group and $\sigma \approx 2.0$\,pp (LoRA cross-seed standard deviation), a two-sample $t$-test at $\alpha = 0.05$ (one-tailed) achieves 80\% power only for effects $\geq 5.0$\,pp. The observed effect of ${\sim}$2.3\,pp falls well below this minimum detectable effect (MDE), so the study is underpowered to detect a benefit of this magnitude.
+39	
+40	\paragraph{Evaluation-seed consistency.}
+41	Under matched evaluation conditions (Appendix~\ref{sec:appendix_eval_seed}), SDF $\lambda = 0.1$ yields higher CAR in all three paired eval seeds ($+$1.5, $+$2.5, $+$5.5\,pp), with lower cross-seed variance ($\sigma = 0.9$\,pp vs.\ 2.0\,pp for LoRA). At the tested scale ($n = 3$ training seeds), SDF supervision does not produce a statistically significant CAR improvement ($p = 0.131$, two-tailed permutation). The observed effect (${\sim}$2.3\,pp) falls well below the study's MDE (${\sim}$5\,pp at 80\% power). Whether this consistent directional pattern reflects a genuine small benefit or residual confounding cannot be resolved at the current sample size.
+42	
+43	\begin{figure}[t]
+44	\centering
+45	\includegraphics[width=0.85\linewidth]{fig5_lambda_curve}
+46	\caption{Effect of SDF loss weight $\lambda$ on CAR and TSR. $\lambda = 0$: LoRA-only. The $\lambda \in \{0.01, 0.1\}$ values remain within the null band ($p > 0.05$), consistent with the absence of statistically significant improvement across a 20$\times$ loss-weight range.}
+47	\label{fig:lambda_car}
+48	\end{figure}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "58b84071-fb6c-4c7b-ab24-d02d9e00903a",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim3.tex",
+      "content": "\\section{Avoidance Source Diagnosis}\\label{sec:avoidance_source}\n\nFine-tuning on collision-free demonstrations produces genuine collision avoidance: LoRA-adapted Pi0.5 raises CAR by ${\\sim}$26 percentage points with zero frozen episodes. Does SDF geometric supervision contribute additional avoidance beyond what demonstrations provide? We compare LoRA-only against LoRA+SDF across a 20$\\times$ range of loss weights ($\\lambda \\in \\{0.005, 0.01, 0.1\\}$) on Pi0.5, all evaluated at the 30K-step checkpoint.\n\n\\begin{table}[t]\n\\centering\n\\caption{Avoidance source attribution on SafeLIBERO. SDF shows no statistically significant CAR improvement beyond LoRA-only at the tested scale ($p > 0.05$ for $\\lambda \\in \\{0.01, 0.1\\}$). All fine-tuned models exhibit 0\\% frozen rate and displacement $>$\\,0.37\\,m.}\n\\label{tab:avoidance_source}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\nMethod & Seeds & TSR (\\%) & CAR (\\%) & EE Disp (m) \\\\\n\\midrule\nPi0.5 baseline & 1 & 71.5 & 28.5 & 0.367 \\\\\n\\midrule\nLoRA-only (no SDF) & 3 & 51.5\\,$\\pm$\\,0.0 & 54.67\\,$\\pm$\\,2.02 & 0.391 \\\\\nLoRA+SDF $\\lambda{=}0.005$ & 3 & 54.0\\,$\\pm$\\,3.0 & 54.5\\,$\\pm$\\,2.29 & 0.387 \\\\\nLoRA+SDF $\\lambda{=}0.01$ & 3 & 53.8\\,$\\pm$\\,1.5 & 56.33\\,$\\pm$\\,1.61 & 0.389 \\\\\nLoRA+SDF $\\lambda{=}0.1$ & 3 & 50.2\\,$\\pm$\\,3.9 & 57.00\\,$\\pm$\\,2.18 & 0.394 \\\\\n\\bottomrule\n\\end{tabular}\n\\vspace{1pt}\n\\end{table}\n\nTable~\\ref{tab:avoidance_source} shows that collision-free demonstrations alone raise CAR by ${\\sim}$26 percentage points (28.5\\% $\\to$ 54.67\\%) with zero frozen episodes and displacement above 0.37\\,m, confirming genuine avoidance. Adding SDF supervision does not yield statistically significant improvement at the tested scale: LoRA-only CAR (54.67\\%) is statistically indistinguishable from all SDF conditions including $\\lambda = 0.1$ (57.00\\%, $p = 0.131$; Appendix~\\ref{sec:appendix_null}). A Phase~2 ablation ($\\lambda = 0$ after step 5K) yields CAR\\,=\\,58.0\\%\\footnote{At the 18K checkpoint (13K steps of Phase~2 training, single seed s2); full 30K training did not complete due to disk constraints.}, suggesting that SDF gradients do not produce a lasting behavioral effect. The per-task CAR ordering is preserved across all conditions (chocolate\\_pudding highest, bbq\\_sauce lowest) and invariant to $\\lambda$ across a 20$\\times$ range, indicating that avoidance patterns reflect the demonstration distribution rather than geometric supervision.\n\n\\paragraph{CAR--TSR trade-off.}\\label{sec:tsr_collapse}\nFine-tuning degrades TSR by ${\\sim}$18--20\\,pp (71.5\\% $\\to$ 51.5--54.0\\%), a consequence of distributional shift from the pre-trained prior rather than learned paralysis (all models retain $>$\\,0.37\\,m displacement and 0\\% frozen episodes). The SSR/TSR ratio increases from 0.39 (baseline) to 0.51--0.60 (Appendix~\\ref{sec:appendix_ssr}): among task-completing episodes, a larger fraction avoids collisions after fine-tuning.\n\n\\paragraph{Dose-response at higher loss weights.}\\label{sec:lambda_high}\nIncreasing $\\lambda$ by 20$\\times$ to 0.1 yields CAR\\,=\\,57.00\\%\\,$\\pm$\\,2.18 at the 30K checkpoint (3 seeds: 58.0\\%, 58.5\\%, 54.5\\%), within the null distribution (mean 54.58\\%, $\\sigma = 1.93$; permutation $p = 0.131$\\footnote{One-tailed permutation $p = 0.071$; even with the directional prior that SDF should not \\emph{decrease} CAR, the result remains non-significant.}). SDF supervision does not produce statistically significant benefit across the tested range $\\lambda \\in [0.005, 0.1]$ (Figure~\\ref{fig:lambda_car}). This result disambiguates the two-level failure analysis (Section~\\ref{sec:conclusion}): because even a 20$\\times$ increase in SDF loss weight fails to produce additional avoidance, the binding constraint is not training signal magnitude but the structural mismatch between end-effector monitoring and full-body collision surfaces. Stronger geometric supervision cannot compensate for supervising the wrong collision surface.\n\n\\paragraph{Robustness to null construction.}\nThe preceding permutation test pools LoRA-only and $\\lambda = 0.005$ seeds as a single null (Null~B, $\\binom{9}{3} = 84$ permutations, two-tailed $p = 0.131$). An alternative construction using only LoRA-only seeds (Null~A, $\\binom{6}{3} = 20$ permutations) yields one-tailed $p = 0.150$, two-tailed $p = 0.300$. The conclusion is robust to null construction: neither yields significance at $\\alpha = 0.05$.\n\n\\paragraph{Statistical power.}\nWith $n = 3$ seeds per group and $\\sigma \\approx 2.0$\\,pp (LoRA cross-seed standard deviation), a two-sample $t$-test at $\\alpha = 0.05$ (one-tailed) achieves 80\\% power only for effects $\\geq 5.0$\\,pp. The observed effect of ${\\sim}$2.3\\,pp falls well below this minimum detectable effect (MDE), so the study is underpowered to detect a benefit of this magnitude.\n\n\\paragraph{Evaluation-seed consistency.}\nUnder matched evaluation conditions (Appendix~\\ref{sec:appendix_eval_seed}), SDF $\\lambda = 0.1$ yields higher CAR in all three paired eval seeds ($+$1.5, $+$2.5, $+$5.5\\,pp), with lower cross-seed variance ($\\sigma = 0.9$\\,pp vs.\\ 2.0\\,pp for LoRA). At the tested scale ($n = 3$ training seeds), SDF supervision does not produce a statistically significant CAR improvement ($p = 0.131$, two-tailed permutation). The observed effect (${\\sim}$2.3\\,pp) falls well below the study's MDE (${\\sim}$5\\,pp at 80\\% power). Whether this consistent directional pattern reflects a genuine small benefit or residual confounding cannot be resolved at the current sample size.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.85\\linewidth]{fig5_lambda_curve}\n\\caption{Effect of SDF loss weight $\\lambda$ on CAR and TSR. $\\lambda = 0$: LoRA-only. The $\\lambda \\in \\{0.01, 0.1\\}$ values remain within the null band ($p > 0.05$), consistent with the absence of statistically significant improvement across a 20$\\times$ loss-weight range.}\n\\label{fig:lambda_car}\n\\end{figure}",
+      "numLines": 48,
+      "startLine": 1,
+      "totalLines": 48
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01LMjkrmDRkxqWvvCqcnDePJ`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim3.tex",
+  "old_string": "with zero frozen episodes. Does SDF",
+  "new_string": "with zero action-collapsed episodes. Does SDF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "727483c5-0813-4290-8586-7bc4fae8f76a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MKd7H6rZ2AbaMUeAUiU7z1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2258,
+      "cache_read_input_tokens": 62590,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2258
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-28T06:21:29.992Z_
+
+<details><summary>↩ Tool result · `toolu_01LMjkrmDRkxqWvvCqcnDePJ`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim3.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "89642f18-abab-4dc8-85f9-fb5607f4842c",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim3.tex",
+    "oldString": "with zero frozen episodes. Does SDF",
+    "newString": "with zero action-collapsed episodes. Does SDF",
+    "originalFile": "\\section{Avoidance Source Diagnosis}\\label{sec:avoidance_source}\n\nFine-tuning on collision-free demonstrations produces genuine collision avoidance: LoRA-adapted Pi0.5 raises CAR by ${\\sim}$26 percentage points with zero frozen episodes. Does SDF geometric supervision contribute additional avoidance beyond what demonstrations provide? We compare LoRA-only against LoRA+SDF across a 20$\\times$ range of loss weights ($\\lambda \\in \\{0.005, 0.01, 0.1\\}$) on Pi0.5, all evaluated at the 30K-step checkpoint.\n\n\\begin{table}[t]\n\\centering\n\\caption{Avoidance source attribution on SafeLIBERO. SDF shows no statistically significant CAR improvement beyond LoRA-only at the tested scale ($p > 0.05$ for $\\lambda \\in \\{0.01, 0.1\\}$). All fine-tuned models exhibit 0\\% frozen rate and displacement $>$\\,0.37\\,m.}\n\\label{tab:avoidance_source}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\nMethod & Seeds & TSR (\\%) & CAR (\\%) & EE Disp (m) \\\\\n\\midrule\nPi0.5 baseline & 1 & 71.5 & 28.5 & 0.367 \\\\\n\\midrule\nLoRA-only (no SDF) & 3 & 51.5\\,$\\pm$\\,0.0 & 54.67\\,$\\pm$\\,2.02 & 0.391 \\\\\nLoRA+SDF $\\lambda{=}0.005$ & 3 & 54.0\\,$\\pm$\\,3.0 & 54.5\\,$\\pm$\\,2.29 & 0.387 \\\\\nLoRA+SDF $\\lambda{=}0.01$ & 3 & 53.8\\,$\\pm$\\,1.5 & 56.33\\,$\\pm$\\,1.61 & 0.389 \\\\\nLoRA+SDF $\\lambda{=}0.1$ & 3 & 50.2\\,$\\pm$\\,3.9 & 57.00\\,$\\pm$\\,2.18 & 0.394 \\\\\n\\bottomrule\n\\end{tabular}\n\\vspace{1pt}\n\\end{table}\n\nTable~\\ref{tab:avoidance_source} shows that collision-free demonstrations alone raise CAR by ${\\sim}$26 percentage points (28.5\\% $\\to$ 54.67\\%) with zero frozen episodes and displacement above 0.37\\,m, confirming genuine avoidance. Adding SDF supervision does not yield statistically significant improvement at the tested scale: LoRA-only CAR (54.67\\%) is statistically indistinguishable from all SDF conditions including $\\lambda = 0.1$ (57.00\\%, $p = 0.131$; Appendix~\\ref{sec:appendix_null}). A Phase~2 ablation ($\\lambda = 0$ after step 5K) yields CAR\\,=\\,58.0\\%\\footnote{At the 18K checkpoint (13K steps of Phase~2 training, single seed s2); full 30K training did not complete due to disk constraints.}, suggesting that SDF gradients do not produce a lasting behavioral effect. The per-task CAR ordering is preserved across all conditions (chocolate\\_pudding highest, bbq\\_sauce lowest) and invariant to $\\lambda$ across a 20$\\times$ range, indicating that avoidance patterns reflect the demonstration distribution rather than geometric supervision.\n\n\\paragraph{CAR--TSR trade-off.}\\label{sec:tsr_collapse}\nFine-tuning degrades TSR by ${\\sim}$18--20\\,pp (71.5\\% $\\to$ 51.5--54.0\\%), a consequence of distributional shift from the pre-trained prior rather than learned paralysis (all models retain $>$\\,0.37\\,m displacement and 0\\% frozen episodes). The SSR/TSR ratio increases from 0.39 (baseline) to 0.51--0.60 (Appendix~\\ref{sec:appendix_ssr}): among task-completing episodes, a larger fraction avoids collisions after fine-tuning.\n\n\\paragraph{Dose-response at higher loss weights.}\\label{sec:lambda_high}\nIncreasing $\\lambda$ by 20$\\times$ to 0.1 yields CAR\\,=\\,57.00\\%\\,$\\pm$\\,2.18 at the 30K checkpoint (3 seeds: 58.0\\%, 58.5\\%, 54.5\\%), within the null distribution (mean 54.58\\%, $\\sigma = 1.93$; permutation $p = 0.131$\\footnote{One-tailed permutation $p = 0.071$; even with the directional prior that SDF should not \\emph{decrease} CAR, the result remains non-significant.}). SDF supervision does not produce statistically significant benefit across the tested range $\\lambda \\in [0.005, 0.1]$ (Figure~\\ref{fig:lambda_car}). This result disambiguates the two-level failure analysis (Section~\\ref{sec:conclusion}): because even a 20$\\times$ increase in SDF loss weight fails to produce additional avoidance, the binding constraint is not training signal magnitude but the structural mismatch between end-effector monitoring and full-body collision surfaces. Stronger geometric supervision cannot compensate for supervising the wrong collision surface.\n\n\\paragraph{Robustness to null construction.}\nThe preceding permutation test pools LoRA-only and $\\lambda = 0.005$ seeds as a single null (Null~B, $\\binom{9}{3} = 84$ permutations, two-tailed $p = 0.131$). An alternative construction using only LoRA-only seeds (Null~A, $\\binom{6}{3} = 20$ permutations) yields one-tailed $p = 0.150$, two-tailed $p = 0.300$. The conclusion is robust to null construction: neither yields significance at $\\alpha = 0.05$.\n\n\\paragraph{Statistical power.}\nWith $n = 3$ seeds per group and $\\sigma \\approx 2.0$\\,pp (LoRA cross-seed standard deviation), a two-sample $t$-test at $\\alpha = 0.05$ (one-tailed) achieves 80\\% power only for effects $\\geq 5.0$\\,pp. The observed effect of ${\\sim}$2.3\\,pp falls well below this minimum detectable effect (MDE), so the study is underpowered to detect a benefit of this magnitude.\n\n\\paragraph{Evaluation-seed consistency.}\nUnder matched evaluation conditions (Appendix~\\ref{sec:appendix_eval_seed}), SDF $\\lambda = 0.1$ yields higher CAR in all three paired eval seeds ($+$1.5, $+$2.5, $+$5.5\\,pp), with lower cross-seed variance ($\\sigma = 0.9$\\,pp vs.\\ 2.0\\,pp for LoRA). At the tested scale ($n = 3$ training seeds), SDF supervision does not produce a statistically significant CAR improvement ($p = 0.131$, two-tailed permutation). The observed effect (${\\sim}$2.3\\,pp) falls well below the study's MDE (${\\sim}$5\\,pp at 80\\% power). Whether this consistent directional pattern reflects a genuine small benefit or residual confounding cannot be resolved at the current sample size.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.85\\linewidth]{fig5_lambda_curve}\n\\caption{Effect of SDF loss weight $\\lambda$ on CAR and TSR. $\\lambda = 0$: LoRA-only. The $\\lambda \\in \\{0.01, 0.1\\}$ values remain within the null band ($p > 0.05$), consistent with the absence of statistically significant improvement across a 20$\\times$ loss-weight range.}\n\\label{fig:lambda_car}\n\\end{figure}",
+    "structuredPatch": [
+      {
+        "oldStart": 1,
+        "oldLines": 6,
+        "newStart": 1,
+        "newLines": 6,
+        "lines": [
+          " \\section{Avoidance Source Diagnosis}\\label{sec:avoidance_source}",
+          " ",
+          "-Fine-tuning on collision-free demonstrations produces genuine collision avoidance: LoRA-adapted Pi0.5 raises CAR by ${\\sim}$26 percentage points with zero frozen episodes. Does SDF geometric supervision contribute additional avoidance beyond what demonstrations provide? We compare LoRA-only against LoRA+SDF across a 20$\\times$ range of loss weights ($\\lambda \\in \\{0.005, 0.01, 0.1\\}$) on Pi0.5, all evaluated at the 30K-step checkpoint.",
+          "+Fine-tuning on collision-free demonstrations produces genuine collision avoidance: LoRA-adapted Pi0.5 raises CAR by ${\\sim}$26 percentage points with zero action-collapsed episodes. Does SDF geometric supervision contribute additional avoidance beyond what demonstrations provide? We compare LoRA-only against LoRA+SDF across a 20$\\times$ range of loss weights ($\\lambda \\in \\{0.005, 0.01, 0.1\\}$) on Pi0.5, all evaluated at the 30K-step checkpoint.",
+          " ",
+          " \\begin{table}[t]",
+          " \\centering"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01R6ZofDMLBkviJzrC3qT8QS`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim3.tex",
+  "old_string": "0\\% frozen rate and displacement",
+  "new_string": "0\\% action-collapse rate and displacement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "65d3663f-6163-4a2f-8e5c-3e33fe389db5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MKd7H6rZ2AbaMUeAUiU7z1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2258,
+      "cache_read_input_tokens": 62590,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2258
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-28T06:21:30.705Z_
+
+<details><summary>↩ Tool result · `toolu_01R6ZofDMLBkviJzrC3qT8QS`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim3.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "9e8beb0f-b32d-4b0d-a309-bc3dd546fac5",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim3.tex",
+    "oldString": "0\\% frozen rate and displacement",
+    "newString": "0\\% action-collapse rate and displacement",
+    "originalFile": "\\section{Avoidance Source Diagnosis}\\label{sec:avoidance_source}\n\nFine-tuning on collision-free demonstrations produces genuine collision avoidance: LoRA-adapted Pi0.5 raises CAR by ${\\sim}$26 percentage points with zero action-collapsed episodes. Does SDF geometric supervision contribute additional avoidance beyond what demonstrations provide? We compare LoRA-only against LoRA+SDF across a 20$\\times$ range of loss weights ($\\lambda \\in \\{0.005, 0.01, 0.1\\}$) on Pi0.5, all evaluated at the 30K-step checkpoint.\n\n\\begin{table}[t]\n\\centering\n\\caption{Avoidance source attribution on SafeLIBERO. SDF shows no statistically significant CAR improvement beyond LoRA-only at the tested scale ($p > 0.05$ for $\\lambda \\in \\{0.01, 0.1\\}$). All fine-tuned models exhibit 0\\% frozen rate and displacement $>$\\,0.37\\,m.}\n\\label{tab:avoidance_source}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\nMethod & Seeds & TSR (\\%) & CAR (\\%) & EE Disp (m) \\\\\n\\midrule\nPi0.5 baseline & 1 & 71.5 & 28.5 & 0.367 \\\\\n\\midrule\nLoRA-only (no SDF) & 3 & 51.5\\,$\\pm$\\,0.0 & 54.67\\,$\\pm$\\,2.02 & 0.391 \\\\\nLoRA+SDF $\\lambda{=}0.005$ & 3 & 54.0\\,$\\pm$\\,3.0 & 54.5\\,$\\pm$\\,2.29 & 0.387 \\\\\nLoRA+SDF $\\lambda{=}0.01$ & 3 & 53.8\\,$\\pm$\\,1.5 & 56.33\\,$\\pm$\\,1.61 & 0.389 \\\\\nLoRA+SDF $\\lambda{=}0.1$ & 3 & 50.2\\,$\\pm$\\,3.9 & 57.00\\,$\\pm$\\,2.18 & 0.394 \\\\\n\\bottomrule\n\\end{tabular}\n\\vspace{1pt}\n\\end{table}\n\nTable~\\ref{tab:avoidance_source} shows that collision-free demonstrations alone raise CAR by ${\\sim}$26 percentage points (28.5\\% $\\to$ 54.67\\%) with zero frozen episodes and displacement above 0.37\\,m, confirming genuine avoidance. Adding SDF supervision does not yield statistically significant improvement at the tested scale: LoRA-only CAR (54.67\\%) is statistically indistinguishable from all SDF conditions including $\\lambda = 0.1$ (57.00\\%, $p = 0.131$; Appendix~\\ref{sec:appendix_null}). A Phase~2 ablation ($\\lambda = 0$ after step 5K) yields CAR\\,=\\,58.0\\%\\footnote{At the 18K checkpoint (13K steps of Phase~2 training, single seed s2); full 30K training did not complete due to disk constraints.}, suggesting that SDF gradients do not produce a lasting behavioral effect. The per-task CAR ordering is preserved across all conditions (chocolate\\_pudding highest, bbq\\_sauce lowest) and invariant to $\\lambda$ across a 20$\\times$ range, indicating that avoidance patterns reflect the demonstration distribution rather than geometric supervision.\n\n\\paragraph{CAR--TSR trade-off.}\\label{sec:tsr_collapse}\nFine-tuning degrades TSR by ${\\sim}$18--20\\,pp (71.5\\% $\\to$ 51.5--54.0\\%), a consequence of distributional shift from the pre-trained prior rather than learned paralysis (all models retain $>$\\,0.37\\,m displacement and 0\\% frozen episodes). The SSR/TSR ratio increases from 0.39 (baseline) to 0.51--0.60 (Appendix~\\ref{sec:appendix_ssr}): among task-completing episodes, a larger fraction avoids collisions after fine-tuning.\n\n\\paragraph{Dose-response at higher loss weights.}\\label{sec:lambda_high}\nIncreasing $\\lambda$ by 20$\\times$ to 0.1 yields CAR\\,=\\,57.00\\%\\,$\\pm$\\,2.18 at the 30K checkpoint (3 seeds: 58.0\\%, 58.5\\%, 54.5\\%), within the null distribution (mean 54.58\\%, $\\sigma = 1.93$; permutation $p = 0.131$\\footnote{One-tailed permutation $p = 0.071$; even with the directional prior that SDF should not \\emph{decrease} CAR, the result remains non-significant.}). SDF supervision does not produce statistically significant benefit across the tested range $\\lambda \\in [0.005, 0.1]$ (Figure~\\ref{fig:lambda_car}). This result disambiguates the two-level failure analysis (Section~\\ref{sec:conclusion}): because even a 20$\\times$ increase in SDF loss weight fails to produce additional avoidance, the binding constraint is not training signal magnitude but the structural mismatch between end-effector monitoring and full-body collision surfaces. Stronger geometric supervision cannot compensate for supervising the wrong collision surface.\n\n\\paragraph{Robustness to null construction.}\nThe preceding permutation test pools LoRA-only and $\\lambda = 0.005$ seeds as a single null (Null~B, $\\binom{9}{3} = 84$ permutations, two-tailed $p = 0.131$). An alternative construction using only LoRA-only seeds (Null~A, $\\binom{6}{3} = 20$ permutations) yields one-tailed $p = 0.150$, two-tailed $p = 0.300$. The conclusion is robust to null construction: neither yields significance at $\\alpha = 0.05$.\n\n\\paragraph{Statistical power.}\nWith $n = 3$ seeds per group and $\\sigma \\approx 2.0$\\,pp (LoRA cross-seed standard deviation), a two-sample $t$-test at $\\alpha = 0.05$ (one-tailed) achieves 80\\% power only for effects $\\geq 5.0$\\,pp. The observed effect of ${\\sim}$2.3\\,pp falls well below this minimum detectable effect (MDE), so the study is underpowered to detect a benefit of this magnitude.\n\n\\paragraph{Evaluation-seed consistency.}\nUnder matched evaluation conditions (Appendix~\\ref{sec:appendix_eval_seed}), SDF $\\lambda = 0.1$ yields higher CAR in all three paired eval seeds ($+$1.5, $+$2.5, $+$5.5\\,pp), with lower cross-seed variance ($\\sigma = 0.9$\\,pp vs.\\ 2.0\\,pp for LoRA). At the tested scale ($n = 3$ training seeds), SDF supervision does not produce a statistically significant CAR improvement ($p = 0.131$, two-tailed permutation). The observed effect (${\\sim}$2.3\\,pp) falls well below the study's MDE (${\\sim}$5\\,pp at 80\\% power). Whether this consistent directional pattern reflects a genuine small benefit or residual confounding cannot be resolved at the current sample size.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.85\\linewidth]{fig5_lambda_curve}\n\\caption{Effect of SDF loss weight $\\lambda$ on CAR and TSR. $\\lambda = 0$: LoRA-only. The $\\lambda \\in \\{0.01, 0.1\\}$ values remain within the null band ($p > 0.05$), consistent with the absence of statistically significant improvement across a 20$\\times$ loss-weight range.}\n\\label{fig:lambda_car}\n\\end{figure}",
+    "structuredPatch": [
+      {
+        "oldStart": 4,
+        "oldLines": 7,
+        "newStart": 4,
+        "newLines": 7,
+        "lines": [
+          " ",
+          " \\begin{table}[t]",
+          " \\centering",
+          "-\\caption{Avoidance source attribution on SafeLIBERO. SDF shows no statistically significant CAR improvement beyond LoRA-only at the tested scale ($p > 0.05$ for $\\lambda \\in \\{0.01, 0.1\\}$). All fine-tuned models exhibit 0\\% frozen rate and displacement $>$\\,0.37\\,m.}",
+          "+\\caption{Avoidance source attribution on SafeLIBERO. SDF shows no statistically significant CAR improvement beyond LoRA-only at the tested scale ($p > 0.05$ for $\\lambda \\in \\{0.01, 0.1\\}$). All fine-tuned models exhibit 0\\% action-collapse rate and displacement $>$\\,0.37\\,m.}",
+          " \\label{tab:avoidance_source}",
+          " \\vspace{2pt}",
+          " \\small"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01PGRxXEgncjb9V65Hov8JAR`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim3.tex",
+  "old_string": "with zero frozen episodes and displacement above 0.37\\,m",
+  "new_string": "with zero action-collapsed episodes and displacement above 0.37\\,m"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "c6f01631-a4fd-4867-88b3-75e0d3783e55",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MKd7H6rZ2AbaMUeAUiU7z1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2258,
+      "cache_read_input_tokens": 62590,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2258
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-28T06:21:32.091Z_
+
+<details><summary>↩ Tool result · `toolu_01PGRxXEgncjb9V65Hov8JAR`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim3.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "50f4e2db-a184-4f9a-b68a-3e5d2b0ceb98",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim3.tex",
+    "oldString": "with zero frozen episodes and displacement above 0.37\\,m",
+    "newString": "with zero action-collapsed episodes and displacement above 0.37\\,m",
+    "originalFile": "\\section{Avoidance Source Diagnosis}\\label{sec:avoidance_source}\n\nFine-tuning on collision-free demonstrations produces genuine collision avoidance: LoRA-adapted Pi0.5 raises CAR by ${\\sim}$26 percentage points with zero action-collapsed episodes. Does SDF geometric supervision contribute additional avoidance beyond what demonstrations provide? We compare LoRA-only against LoRA+SDF across a 20$\\times$ range of loss weights ($\\lambda \\in \\{0.005, 0.01, 0.1\\}$) on Pi0.5, all evaluated at the 30K-step checkpoint.\n\n\\begin{table}[t]\n\\centering\n\\caption{Avoidance source attribution on SafeLIBERO. SDF shows no statistically significant CAR improvement beyond LoRA-only at the tested scale ($p > 0.05$ for $\\lambda \\in \\{0.01, 0.1\\}$). All fine-tuned models exhibit 0\\% action-collapse rate and displacement $>$\\,0.37\\,m.}\n\\label{tab:avoidance_source}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\nMethod & Seeds & TSR (\\%) & CAR (\\%) & EE Disp (m) \\\\\n\\midrule\nPi0.5 baseline & 1 & 71.5 & 28.5 & 0.367 \\\\\n\\midrule\nLoRA-only (no SDF) & 3 & 51.5\\,$\\pm$\\,0.0 & 54.67\\,$\\pm$\\,2.02 & 0.391 \\\\\nLoRA+SDF $\\lambda{=}0.005$ & 3 & 54.0\\,$\\pm$\\,3.0 & 54.5\\,$\\pm$\\,2.29 & 0.387 \\\\\nLoRA+SDF $\\lambda{=}0.01$ & 3 & 53.8\\,$\\pm$\\,1.5 & 56.33\\,$\\pm$\\,1.61 & 0.389 \\\\\nLoRA+SDF $\\lambda{=}0.1$ & 3 & 50.2\\,$\\pm$\\,3.9 & 57.00\\,$\\pm$\\,2.18 & 0.394 \\\\\n\\bottomrule\n\\end{tabular}\n\\vspace{1pt}\n\\end{table}\n\nTable~\\ref{tab:avoidance_source} shows that collision-free demonstrations alone raise CAR by ${\\sim}$26 percentage points (28.5\\% $\\to$ 54.67\\%) with zero frozen episodes and displacement above 0.37\\,m, confirming genuine avoidance. Adding SDF supervision does not yield statistically significant improvement at the tested scale: LoRA-only CAR (54.67\\%) is statistically indistinguishable from all SDF conditions including $\\lambda = 0.1$ (57.00\\%, $p = 0.131$; Appendix~\\ref{sec:appendix_null}). A Phase~2 ablation ($\\lambda = 0$ after step 5K) yields CAR\\,=\\,58.0\\%\\footnote{At the 18K checkpoint (13K steps of Phase~2 training, single seed s2); full 30K training did not complete due to disk constraints.}, suggesting that SDF gradients do not produce a lasting behavioral effect. The per-task CAR ordering is preserved across all conditions (chocolate\\_pudding highest, bbq\\_sauce lowest) and invariant to $\\lambda$ across a 20$\\times$ range, indicating that avoidance patterns reflect the demonstration distribution rather than geometric supervision.\n\n\\paragraph{CAR--TSR trade-off.}\\label{sec:tsr_collapse}\nFine-tuning degrades TSR by ${\\sim}$18--20\\,pp (71.5\\% $\\to$ 51.5--54.0\\%), a consequence of distributional shift from the pre-trained prior rather than learned paralysis (all models retain $>$\\,0.37\\,m displacement and 0\\% frozen episodes). The SSR/TSR ratio increases from 0.39 (baseline) to 0.51--0.60 (Appendix~\\ref{sec:appendix_ssr}): among task-completing episodes, a larger fraction avoids collisions after fine-tuning.\n\n\\paragraph{Dose-response at higher loss weights.}\\label{sec:lambda_high}\nIncreasing $\\lambda$ by 20$\\times$ to 0.1 yields CAR\\,=\\,57.00\\%\\,$\\pm$\\,2.18 at the 30K checkpoint (3 seeds: 58.0\\%, 58.5\\%, 54.5\\%), within the null distribution (mean 54.58\\%, $\\sigma = 1.93$; permutation $p = 0.131$\\footnote{One-tailed permutation $p = 0.071$; even with the directional prior that SDF should not \\emph{decrease} CAR, the result remains non-significant.}). SDF supervision does not produce statistically significant benefit across the tested range $\\lambda \\in [0.005, 0.1]$ (Figure~\\ref{fig:lambda_car}). This result disambiguates the two-level failure analysis (Section~\\ref{sec:conclusion}): because even a 20$\\times$ increase in SDF loss weight fails to produce additional avoidance, the binding constraint is not training signal magnitude but the structural mismatch between end-effector monitoring and full-body collision surfaces. Stronger geometric supervision cannot compensate for supervising the wrong collision surface.\n\n\\paragraph{Robustness to null construction.}\nThe preceding permutation test pools LoRA-only and $\\lambda = 0.005$ seeds as a single null (Null~B, $\\binom{9}{3} = 84$ permutations, two-tailed $p = 0.131$). An alternative construction using only LoRA-only seeds (Null~A, $\\binom{6}{3} = 20$ permutations) yields one-tailed $p = 0.150$, two-tailed $p = 0.300$. The conclusion is robust to null construction: neither yields significance at $\\alpha = 0.05$.\n\n\\paragraph{Statistical power.}\nWith $n = 3$ seeds per group and $\\sigma \\approx 2.0$\\,pp (LoRA cross-seed standard deviation), a two-sample $t$-test at $\\alpha = 0.05$ (one-tailed) achieves 80\\% power only for effects $\\geq 5.0$\\,pp. The observed effect of ${\\sim}$2.3\\,pp falls well below this minimum detectable effect (MDE), so the study is underpowered to detect a benefit of this magnitude.\n\n\\paragraph{Evaluation-seed consistency.}\nUnder matched evaluation conditions (Appendix~\\ref{sec:appendix_eval_seed}), SDF $\\lambda = 0.1$ yields higher CAR in all three paired eval seeds ($+$1.5, $+$2.5, $+$5.5\\,pp), with lower cross-seed variance ($\\sigma = 0.9$\\,pp vs.\\ 2.0\\,pp for LoRA). At the tested scale ($n = 3$ training seeds), SDF supervision does not produce a statistically significant CAR improvement ($p = 0.131$, two-tailed permutation). The observed effect (${\\sim}$2.3\\,pp) falls well below the study's MDE (${\\sim}$5\\,pp at 80\\% power). Whether this consistent directional pattern reflects a genuine small benefit or residual confounding cannot be resolved at the current sample size.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.85\\linewidth]{fig5_lambda_curve}\n\\caption{Effect of SDF loss weight $\\lambda$ on CAR and TSR. $\\lambda = 0$: LoRA-only. The $\\lambda \\in \\{0.01, 0.1\\}$ values remain within the null band ($p > 0.05$), consistent with the absence of statistically significant improvement across a 20$\\times$ loss-weight range.}\n\\label{fig:lambda_car}\n\\end{figure}",
+    "structuredPatch": [
+      {
+        "oldStart": 23,
+        "oldLines": 7,
+        "newStart": 23,
+        "newLines": 7,
+        "lines": [
+          " \\vspace{1pt}",
+          " \\end{table}",
+          " ",
+          "-Table~\\ref{tab:avoidance_source} shows that collision-free demonstrations alone raise CAR by ${\\sim}$26 percentage points (28.5\\% $\\to$ 54.67\\%) with zero frozen episodes and displacement above 0.37\\,m, confirming genuine avoidance. Adding SDF supervision does not yield statistically significant improvement at the tested scale: LoRA-only CAR (54.67\\%) is statistically indistinguishable from all SDF conditions including $\\lambda = 0.1$ (57.00\\%, $p = 0.131$; Appendix~\\ref{sec:appendix_null}). A Phase~2 ablation ($\\lambda = 0$ after step 5K) yields CAR\\,=\\,58.0\\%\\footnote{At the 18K checkpoint (13K steps of Phase~2 training, single seed s2); full 30K training did not complete due to disk constraints.}, suggesting that SDF gradients do not produce a lasting behavioral effect. The per-task CAR ordering is preserved across all conditions (chocolate\\_pudding highest, bbq\\_sauce lowest) and invariant to $\\lambda$ across a 20$\\times$ range, indicating that avoidance patterns reflect the demonstration distribution rather than geometric supervision.",
+          "+Table~\\ref{tab:avoidance_source} shows that collision-free demonstrations alone raise CAR by ${\\sim}$26 percentage points (28.5\\% $\\to$ 54.67\\%) with zero action-collapsed episodes and displacement above 0.37\\,m, confirming genuine avoidance. Adding SDF supervision does not yield statistically significant improvement at the tested scale: LoRA-only CAR (54.67\\%) is statistically indistinguishable from all SDF conditions including $\\lambda = 0.1$ (57.00\\%, $p = 0.131$; Appendix~\\ref{sec:appendix_null}). A Phase~2 ablation ($\\lambda = 0$ after step 5K) yields CAR\\,=\\,58.0\\%\\footnote{At the 18K checkpoint (13K steps of Phase~2 training, single seed s2); full 30K training did not complete due to disk constraints.}, suggesting that SDF gradients do not produce a lasting behavioral effect. The per-task CAR ordering is preserved across all conditions (chocolate\\_pudding highest, bbq\\_sauce lowest) and invariant to $\\lambda$ across a 20$\\times$ range, indicating that avoidance patterns reflect the demonstration distribution rather than geometric supervision.",
+          " ",
+          " \\paragraph{CAR--TSR trade-off.}\\label{sec:tsr_collapse}",
+          " Fine-tuning degrades TSR by ${\\sim}$18--20\\,pp (71.5\\% $\\to$ 51.5--54.0\\%), a consequence of distributional shift from the pre-trained prior rather than learned paralysis (all models retain $>$\\,0.37\\,m displacement and 0\\% frozen episodes). The SSR/TSR ratio increases from 0.39 (baseline) to 0.51--0.60 (Appendix~\\ref{sec:appendix_ssr}): among task-completing episodes, a larger fraction avoids collisions after fine-tuning."
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01Fbhng73eR8vNSzhem54Hit`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim3.tex",
+  "old_string": "and 0\\% frozen episodes)",
+  "new_string": "and 0\\% action-collapsed episodes)"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "49270ad2-9bd5-499c-baa4-6ffe295cc27c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MKd7H6rZ2AbaMUeAUiU7z1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2258,
+      "cache_read_input_tokens": 62590,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2258
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-28T06:21:32.851Z_
+
+<details><summary>↩ Tool result · `toolu_01Fbhng73eR8vNSzhem54Hit`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim3.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "5b32388d-f2f5-495b-9537-805ca7ff783e",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim3.tex",
+    "oldString": "and 0\\% frozen episodes)",
+    "newString": "and 0\\% action-collapsed episodes)",
+    "originalFile": "\\section{Avoidance Source Diagnosis}\\label{sec:avoidance_source}\n\nFine-tuning on collision-free demonstrations produces genuine collision avoidance: LoRA-adapted Pi0.5 raises CAR by ${\\sim}$26 percentage points with zero action-collapsed episodes. Does SDF geometric supervision contribute additional avoidance beyond what demonstrations provide? We compare LoRA-only against LoRA+SDF across a 20$\\times$ range of loss weights ($\\lambda \\in \\{0.005, 0.01, 0.1\\}$) on Pi0.5, all evaluated at the 30K-step checkpoint.\n\n\\begin{table}[t]\n\\centering\n\\caption{Avoidance source attribution on SafeLIBERO. SDF shows no statistically significant CAR improvement beyond LoRA-only at the tested scale ($p > 0.05$ for $\\lambda \\in \\{0.01, 0.1\\}$). All fine-tuned models exhibit 0\\% action-collapse rate and displacement $>$\\,0.37\\,m.}\n\\label{tab:avoidance_source}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\nMethod & Seeds & TSR (\\%) & CAR (\\%) & EE Disp (m) \\\\\n\\midrule\nPi0.5 baseline & 1 & 71.5 & 28.5 & 0.367 \\\\\n\\midrule\nLoRA-only (no SDF) & 3 & 51.5\\,$\\pm$\\,0.0 & 54.67\\,$\\pm$\\,2.02 & 0.391 \\\\\nLoRA+SDF $\\lambda{=}0.005$ & 3 & 54.0\\,$\\pm$\\,3.0 & 54.5\\,$\\pm$\\,2.29 & 0.387 \\\\\nLoRA+SDF $\\lambda{=}0.01$ & 3 & 53.8\\,$\\pm$\\,1.5 & 56.33\\,$\\pm$\\,1.61 & 0.389 \\\\\nLoRA+SDF $\\lambda{=}0.1$ & 3 & 50.2\\,$\\pm$\\,3.9 & 57.00\\,$\\pm$\\,2.18 & 0.394 \\\\\n\\bottomrule\n\\end{tabular}\n\\vspace{1pt}\n\\end{table}\n\nTable~\\ref{tab:avoidance_source} shows that collision-free demonstrations alone raise CAR by ${\\sim}$26 percentage points (28.5\\% $\\to$ 54.67\\%) with zero action-collapsed episodes and displacement above 0.37\\,m, confirming genuine avoidance. Adding SDF supervision does not yield statistically significant improvement at the tested scale: LoRA-only CAR (54.67\\%) is statistically indistinguishable from all SDF conditions including $\\lambda = 0.1$ (57.00\\%, $p = 0.131$; Appendix~\\ref{sec:appendix_null}). A Phase~2 ablation ($\\lambda = 0$ after step 5K) yields CAR\\,=\\,58.0\\%\\footnote{At the 18K checkpoint (13K steps of Phase~2 training, single seed s2); full 30K training did not complete due to disk constraints.}, suggesting that SDF gradients do not produce a lasting behavioral effect. The per-task CAR ordering is preserved across all conditions (chocolate\\_pudding highest, bbq\\_sauce lowest) and invariant to $\\lambda$ across a 20$\\times$ range, indicating that avoidance patterns reflect the demonstration distribution rather than geometric supervision.\n\n\\paragraph{CAR--TSR trade-off.}\\label{sec:tsr_collapse}\nFine-tuning degrades TSR by ${\\sim}$18--20\\,pp (71.5\\% $\\to$ 51.5--54.0\\%), a consequence of distributional shift from the pre-trained prior rather than learned paralysis (all models retain $>$\\,0.37\\,m displacement and 0\\% frozen episodes). The SSR/TSR ratio increases from 0.39 (baseline) to 0.51--0.60 (Appendix~\\ref{sec:appendix_ssr}): among task-completing episodes, a larger fraction avoids collisions after fine-tuning.\n\n\\paragraph{Dose-response at higher loss weights.}\\label{sec:lambda_high}\nIncreasing $\\lambda$ by 20$\\times$ to 0.1 yields CAR\\,=\\,57.00\\%\\,$\\pm$\\,2.18 at the 30K checkpoint (3 seeds: 58.0\\%, 58.5\\%, 54.5\\%), within the null distribution (mean 54.58\\%, $\\sigma = 1.93$; permutation $p = 0.131$\\footnote{One-tailed permutation $p = 0.071$; even with the directional prior that SDF should not \\emph{decrease} CAR, the result remains non-significant.}). SDF supervision does not produce statistically significant benefit across the tested range $\\lambda \\in [0.005, 0.1]$ (Figure~\\ref{fig:lambda_car}). This result disambiguates the two-level failure analysis (Section~\\ref{sec:conclusion}): because even a 20$\\times$ increase in SDF loss weight fails to produce additional avoidance, the binding constraint is not training signal magnitude but the structural mismatch between end-effector monitoring and full-body collision surfaces. Stronger geometric supervision cannot compensate for supervising the wrong collision surface.\n\n\\paragraph{Robustness to null construction.}\nThe preceding permutation test pools LoRA-only and $\\lambda = 0.005$ seeds as a single null (Null~B, $\\binom{9}{3} = 84$ permutations, two-tailed $p = 0.131$). An alternative construction using only LoRA-only seeds (Null~A, $\\binom{6}{3} = 20$ permutations) yields one-tailed $p = 0.150$, two-tailed $p = 0.300$. The conclusion is robust to null construction: neither yields significance at $\\alpha = 0.05$.\n\n\\paragraph{Statistical power.}\nWith $n = 3$ seeds per group and $\\sigma \\approx 2.0$\\,pp (LoRA cross-seed standard deviation), a two-sample $t$-test at $\\alpha = 0.05$ (one-tailed) achieves 80\\% power only for effects $\\geq 5.0$\\,pp. The observed effect of ${\\sim}$2.3\\,pp falls well below this minimum detectable effect (MDE), so the study is underpowered to detect a benefit of this magnitude.\n\n\\paragraph{Evaluation-seed consistency.}\nUnder matched evaluation conditions (Appendix~\\ref{sec:appendix_eval_seed}), SDF $\\lambda = 0.1$ yields higher CAR in all three paired eval seeds ($+$1.5, $+$2.5, $+$5.5\\,pp), with lower cross-seed variance ($\\sigma = 0.9$\\,pp vs.\\ 2.0\\,pp for LoRA). At the tested scale ($n = 3$ training seeds), SDF supervision does not produce a statistically significant CAR improvement ($p = 0.131$, two-tailed permutation). The observed effect (${\\sim}$2.3\\,pp) falls well below the study's MDE (${\\sim}$5\\,pp at 80\\% power). Whether this consistent directional pattern reflects a genuine small benefit or residual confounding cannot be resolved at the current sample size.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.85\\linewidth]{fig5_lambda_curve}\n\\caption{Effect of SDF loss weight $\\lambda$ on CAR and TSR. $\\lambda = 0$: LoRA-only. The $\\lambda \\in \\{0.01, 0.1\\}$ values remain within the null band ($p > 0.05$), consistent with the absence of statistically significant improvement across a 20$\\times$ loss-weight range.}\n\\label{fig:lambda_car}\n\\end{figure}",
+    "structuredPatch": [
+      {
+        "oldStart": 26,
+        "oldLines": 7,
+        "newStart": 26,
+        "newLines": 7,
+        "lines": [
+          " Table~\\ref{tab:avoidance_source} shows that collision-free demonstrations alone raise CAR by ${\\sim}$26 percentage points (28.5\\% $\\to$ 54.67\\%) with zero action-collapsed episodes and displacement above 0.37\\,m, confirming genuine avoidance. Adding SDF supervision does not yield statistically significant improvement at the tested scale: LoRA-only CAR (54.67\\%) is statistically indistinguishable from all SDF conditions including $\\lambda = 0.1$ (57.00\\%, $p = 0.131$; Appendix~\\ref{sec:appendix_null}). A Phase~2 ablation ($\\lambda = 0$ after step 5K) yields CAR\\,=\\,58.0\\%\\footnote{At the 18K checkpoint (13K steps of Phase~2 training, single seed s2); full 30K training did not complete due to disk constraints.}, suggesting that SDF gradients do not produce a lasting behavioral effect. The per-task CAR ordering is preserved across all conditions (chocolate\\_pudding highest, bbq\\_sauce lowest) and invariant to $\\lambda$ across a 20$\\times$ range, indicating that avoidance patterns reflect the demonstration distribution rather than geometric supervision.",
+          " ",
+          " \\paragraph{CAR--TSR trade-off.}\\label{sec:tsr_collapse}",
+          "-Fine-tuning degrades TSR by ${\\sim}$18--20\\,pp (71.5\\% $\\to$ 51.5--54.0\\%), a consequence of distributional shift from the pre-trained prior rather than learned paralysis (all models retain $>$\\,0.37\\,m displacement and 0\\% frozen episodes). The SSR/TSR ratio increases from 0.39 (baseline) to 0.51--0.60 (Appendix~\\ref{sec:appendix_ssr}): among task-completing episodes, a larger fraction avoids collisions after fine-tuning.",
+          "+Fine-tuning degrades TSR by ${\\sim}$18--20\\,pp (71.5\\% $\\to$ 51.5--54.0\\%), a consequence of distributional shift from the pre-trained prior rather than learned paralysis (all models retain $>$\\,0.37\\,m displacement and 0\\% action-collapsed episodes). The SSR/TSR ratio increases from 0.39 (baseline) to 0.51--0.60 (Appendix~\\ref{sec:appendix_ssr}): among task-completing episodes, a larger fraction avoids collisions after fine-tuning.",
+          " ",
+          " \\paragraph{Dose-response at higher loss weights.}\\label{sec:lambda_high}",
+          " Increasing $\\lambda$ by 20$\\times$ to 0.1 yields CAR\\,=\\,57.00\\%\\,$\\pm$\\,2.18 at the 30K checkpoint (3 seeds: 58.0\\%, 58.5\\%, 54.5\\%), within the null distribution (mean 54.58\\%, $\\sigma = 1.93$; permutation $p = 0.131$\\footnote{One-tailed permutation $p = 0.071$; even with the directional prior that SDF should not \\emph{decrease} CAR, the result remains non-significant.}). SDF supervision does not produce statistically significant benefit across the tested range $\\lambda \\in [0.005, 0.1]$ (Figure~\\ref{fig:lambda_car}). This result disambiguates the two-level failure analysis (Section~\\ref{sec:conclusion}): because even a 20$\\times$ increase in SDF loss weight fails to produce additional avoidance, the binding constraint is not training signal magnitude but the structural mismatch between end-effector monitoring and full-body collision surfaces. Stronger geometric supervision cannot compensate for supervising the wrong collision surface."
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 81_
+
+**experimental_framework.tex** — 1 edit:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "4800a1ba-7946-4afb-8e9b-c37c956c4910",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ChgaNTCeSohVNSrRCoTBtD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 986,
+      "cache_read_input_tokens": 64848,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 986
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 82_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01MG44hTqVnseqcCqKqZ7aR4`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/experimental_framework.tex",
+  "old_string": "\\emph{Frozen Rate}",
+  "new_string": "\\emph{Action-Collapse Rate}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "6dbf15a1-ab49-4b4e-9636-090906ba0915",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ChgaNTCeSohVNSrRCoTBtD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 986,
+      "cache_read_input_tokens": 64848,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 986
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-28T06:21:36.778Z_
+
+<details><summary>↩ Tool result · `toolu_01MG44hTqVnseqcCqKqZ7aR4`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/experimental_framework.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "9396a66c-cb62-42d5-ba47-35b7004aecd2",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/experimental_framework.tex",
+    "oldString": "\\emph{Frozen Rate}",
+    "newString": "\\emph{Action-Collapse Rate}",
+    "originalFile": "\\section{Experimental Framework}\\label{sec:framework}\n\nThis section defines the evaluation platform, metrics, and model configurations that underpin the analyses in Sections~\\ref{sec:fake_safety}--\\ref{sec:avoidance_source}. Our primary methodological contribution is the displacement-filtered Collision Avoidance Rate (dfCAR), which separates genuine avoidance from action collapse.\n\n\\subsection{Benchmark and Evaluation Protocol}\n\nWe conduct all experiments on SafeLIBERO~\\cite{hu2025vlsa}, a collision-aware evaluation extension of the LIBERO simulation platform~\\cite{liu2023libero}. SafeLIBERO augments standard manipulation benchmarks with per-timestep collision detection and non-target obstacle annotations, enabling systematic measurement of both task completion and safety.\n\nWe select the \\textit{object\\_pudding} Level~I suite, which comprises four tabletop manipulation tasks. In each task, a target object is surrounded by non-target obstacles that the robot must avoid during grasping and transport. The MuJoCo physics engine provides collision detection: any contact between the robot (end-effector or arm links) and a non-target object registers as a collision event.\n\nEach method is evaluated for 50 episodes per task (200 episodes total). For multi-seed experiments (Pi0.5), we run 3 seeds to produce 600 episodes per configuration. Initial object configurations are fixed across methods to ensure fair comparison.\n\n\\subsection{Evaluation Metrics}\\label{sec:metrics}\n\n\\paragraph{Standard metrics.} We report two conventional metrics. The \\emph{Task Success Rate} (TSR) is the fraction of episodes where the manipulation task reaches completion. The \\emph{Collision Avoidance Rate} (CAR) is the fraction of episodes in which no collision occurs between the robot and any non-target object.\n\n\\paragraph{Displacement-filtered CAR.} Standard CAR conflates two qualitatively distinct behaviors: a robot that plans a trajectory around obstacles, and a robot that has collapsed into inaction. Both register as ``safe,'' yet only the former reflects collision avoidance capability. We propose the displacement-filtered CAR (dfCAR), which excludes episodes exhibiting action collapse from both numerator and denominator.\n\nWe define an episode $e$ as \\emph{action-collapsed} when its maximum end-effector displacement satisfies $d_{\\max}(e) < \\tau_d$, where $\\tau_d = 0.1$\\,mm. The filtered metric is then:\n\\begin{equation}\\label{eq:car_f}\n\\text{dfCAR} = \\frac{|\\{e : \\text{safe}(e) \\;\\land\\; d_{\\max}(e) \\geq \\tau_d\\}|}{|\\{e : d_{\\max}(e) \\geq \\tau_d\\}|}\n\\end{equation}\nwhere $d_{\\max}(e)$ denotes the maximum Euclidean displacement of the end-effector across all timesteps in episode $e$. The threshold $\\tau_d = 0.1$\\,mm corresponds to sub-actuator-resolution motion. In practice, the displacement distribution is bimodal: collapsed episodes cluster below 1\\,$\\mu$m and active episodes exceed 200\\,mm, with no intermediate population. Consequently, any $\\tau_d \\in [2, 200]$\\,mm produces identical filtering (Appendix~\\ref{sec:appendix_threshold}).\n\n\\paragraph{Auxiliary metrics.} We additionally report the \\emph{Frozen Rate}, the fraction of episodes with $d_{\\max} < \\tau_d$, which quantifies the severity of action collapse for each method. The \\emph{Simultaneous Success Rate} (SSR $= $ TSR $\\cap$ CAR) measures the fraction of episodes that achieve both task completion and collision avoidance.\n\n\\subsection{Models and Training}\n\n\\paragraph{Base architectures.} We evaluate two VLA models from the Pi0 family~\\cite{black2024pi0}. \\textbf{Pi0} (${\\sim}$3B parameters) uses a PaliGemma vision-language encoder paired with a dedicated action expert that generates continuous actions via flow matching~\\cite{lipman2023flow}. \\textbf{Pi0.5} extends this architecture to ${\\sim}$3.5B parameters with broader pre-training data, and serves as a stronger baseline that exhibits less action collapse.\n\n\\paragraph{Training configurations.} We evaluate four model variants:\n\\begin{itemize}\n\\item \\textit{Full-FT baseline}: Pi0 with all parameters fine-tuned on SafeLIBERO demonstrations using the flow-matching action loss.\n\\item \\textit{LoRA baseline}: Pi0 with LoRA adapters (${\\sim}$33.5M trainable parameters), same demonstrations and loss.\n\\item \\textit{A1-LoRA}: Pi0 + LoRA augmented with two auxiliary heads. An SDF Decoder (4-layer MLP, ${\\sim}$395K parameters) predicts the signed distance from the end-effector to the nearest obstacle surface, supervised with a clamped $L_1$ loss and an Eikonal regularizer ($\\mathcal{L}_\\text{SDF}$). An EE Extractor (2-layer MLP, ${\\sim}$263K parameters) predicts end-effector position from action expert features ($\\mathcal{L}_\\text{EE}$, MSE loss). SDF ground truth is computed from known obstacle meshes in simulation.\n\\item \\textit{Pi0.5 + A1}: The A1 architecture applied to the Pi0.5 backbone. Training proceeds in two phases: Phase~1 (steps 0--5K) trains only the auxiliary heads on detached features with the backbone frozen; Phase~2 (steps 5K--30K) unfreezes LoRA parameters for joint optimization. We evaluate $\\lambda_\\text{SDF} \\in \\{0.005, 0.01\\}$.\n\\end{itemize}\n\n\\subsection{Oracle SDF Refinement}\n\nTo test the theoretical upper bound of end-effector-only SDF refinement (analyzed in Section~\\ref{sec:ee_only}), we replace the learned SDF network with the ground-truth signed distance field computed from simulation geometry. This eliminates prediction error and isolates the structural limitation of the refinement paradigm itself.\n\nWe evaluate three oracle variants that differ in how the SDF gradient is applied:\n\\begin{itemize}\n\\item \\textit{Oracle-adaptive}: runtime gradient refinement with a dynamic step size $\\alpha$ that scales inversely with gradient magnitude.\n\\item \\textit{Oracle-fixed}: a constant step size $\\alpha = 0.005$.\n\\item \\textit{Oracle-feature}: gradient applied in the VLA's latent feature space rather than Cartesian action space.\n\\end{itemize}\nEach variant is evaluated for 160 episodes (4 tasks $\\times$ 40 episodes) with a single seed.\n\n\\subsection{SDF Ground Truth}\n\nThe workspace signed distance field is computed from the known obstacle meshes available in the LIBERO/MuJoCo simulation environment. SDF values are positive in free space, zero on the obstacle surface, and negative inside the obstacle volume. Ground-truth labels are generated at query points sampled along predicted end-effector trajectories during training.",
+    "structuredPatch": [
+      {
+        "oldStart": 22,
+        "oldLines": 7,
+        "newStart": 22,
+        "newLines": 7,
+        "lines": [
+          " \\end{equation}",
+          " where $d_{\\max}(e)$ denotes the maximum Euclidean displacement of the end-effector across all timesteps in episode $e$. The threshold $\\tau_d = 0.1$\\,mm corresponds to sub-actuator-resolution motion. In practice, the displacement distribution is bimodal: collapsed episodes cluster below 1\\,$\\mu$m and active episodes exceed 200\\,mm, with no intermediate population. Consequently, any $\\tau_d \\in [2, 200]$\\,mm produces identical filtering (Appendix~\\ref{sec:appendix_threshold}).",
+          " ",
+          "-\\paragraph{Auxiliary metrics.} We additionally report the \\emph{Frozen Rate}, the fraction of episodes with $d_{\\max} < \\tau_d$, which quantifies the severity of action collapse for each method. The \\emph{Simultaneous Success Rate} (SSR $= $ TSR $\\cap$ CAR) measures the fraction of episodes that achieve both task completion and collision avoidance.",
+          "+\\paragraph{Auxiliary metrics.} We additionally report the \\emph{Action-Collapse Rate}, the fraction of episodes with $d_{\\max} < \\tau_d$, which quantifies the severity of action collapse for each method. The \\emph{Simultaneous Success Rate} (SSR $= $ TSR $\\cap$ CAR) measures the fraction of episodes that achieve both task completion and collision avoidance.",
+          " ",
+          " \\subsection{Models and Training}",
+          " "
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 84_
+
+**appendix.tex** — 6 edits:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "9ac463a4-7896-4a22-88fb-aaaef642a5fe",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KTJ1Rg4MfA56Z2M7WjKZHs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 231,
+      "cache_read_input_tokens": 65834,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 231
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01GhxMAbjm9YDN5Rwz7fHwcd`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/appendix.tex",
+  "old_string": "we evaluate the frozen rate across four orders of magnitude. Table~\\ref{tab:threshold_sensitivity} shows that the fake safety pattern persists across all reasonable threshold choices: A1-LoRA exhibits near-total action collapse regardless of threshold, while Pi0.5+A1 maintains 0\\% frozen rate even at the most conservative setting.",
+  "new_string": "we evaluate the action-collapse rate across four orders of magnitude. Table~\\ref{tab:threshold_sensitivity} shows that the action-collapse pattern persists across all reasonable threshold choices: A1-LoRA exhibits near-total action collapse regardless of threshold, while Pi0.5+A1 maintains 0\\% action-collapse rate even at the most conservative setting."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "af93cb41-782a-49e6-86d6-e2db9c395180",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KTJ1Rg4MfA56Z2M7WjKZHs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 231,
+      "cache_read_input_tokens": 65834,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 231
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-28T06:21:43.608Z_
+
+<details><summary>↩ Tool result · `toolu_01GhxMAbjm9YDN5Rwz7fHwcd`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/appendix.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "5f573fa4-e301-434a-95c2-fb05720a8c85",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/appendix.tex",
+    "oldString": "we evaluate the frozen rate across four orders of magnitude. Table~\\ref{tab:threshold_sensitivity} shows that the fake safety pattern persists across all reasonable threshold choices: A1-LoRA exhibits near-total action collapse regardless of threshold, while Pi0.5+A1 maintains 0\\% frozen rate even at the most conservative setting.",
+    "newString": "we evaluate the action-collapse rate across four orders of magnitude. Table~\\ref{tab:threshold_sensitivity} shows that the action-collapse pattern persists across all reasonable threshold choices: A1-LoRA exhibits near-total action collapse regardless of threshold, while Pi0.5+A1 maintains 0\\% action-collapse rate even at the most conservative setting.",
+    "originalFile": "\\section{Displacement Distribution}\n\\label{sec:appendix_displacement}\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\linewidth]{fig2_ee_displacement_distribution}\n\\caption{Displacement distribution across evaluation episodes. Pi0-family models (blue) cluster below 1\\,$\\mu$m, while Pi0.5 episodes (orange) exceed 200\\,mm. The five-order-of-magnitude gap makes $\\tau_d$ robust to any value in $[2, 200]$\\,mm.}\n\\label{fig:displacement}\n\\end{figure}\n\n\\section{Displacement Threshold Sensitivity Analysis}\n\\label{sec:appendix_threshold}\n\nTo validate the robustness of our displacement threshold $\\tau_d$, we evaluate the frozen rate across four orders of magnitude. Table~\\ref{tab:threshold_sensitivity} shows that the fake safety pattern persists across all reasonable threshold choices: A1-LoRA exhibits near-total action collapse regardless of threshold, while Pi0.5+A1 maintains 0\\% frozen rate even at the most conservative setting.\n\n\\begin{table}[h]\n\\centering\n\\caption{Frozen rate (\\% of episodes with $d_\\mathrm{max} < \\tau_d$) across threshold values.}\n\\label{tab:threshold_sensitivity}\n\\begin{tabular}{lccc}\n\\toprule\n$\\tau_d$ & A1-LoRA (Pi0) & Pi0.5 Baseline & Pi0.5+A1 (SDF aux) \\\\\n\\midrule\n0.001 mm (1\\,$\\mu$m) & 73.9 & 0.0 & 0.0 \\\\\n0.1 mm  & 99.6 & 0.0 & 0.0 \\\\\n1.0 mm  & 100.0 & 0.0 & 0.0 \\\\\n10 mm   & 100.0 & 0.0 & 0.0 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe choice of $\\tau_d = 0.1$\\,mm represents a conservative threshold: displacement below this value is physically negligible in manipulation tasks where typical action magnitudes are 1--10\\,mm per step. Even at $\\tau_d = 1$\\,$\\mu$m, 73.9\\% of A1-LoRA safe episodes are classified as frozen, while all Pi0.5 episodes remain above threshold at every level tested.\n\nTable~\\ref{tab:dfcar_threshold} extends this analysis to dfCAR across fine-tuned Pi0.5 configurations. All eight model-seed combinations yield identical dfCAR for $\\tau_d \\in [2, 200]$\\,mm. At $\\tau_d = 300$\\,mm, 0--2 episodes per seed fall below threshold (displacement 200--300\\,mm), causing $\\leq$0.5\\,pp deviation. Our conclusions hold across the entire tested range.\n\n\\begin{table}[h]\n\\centering\n\\caption{dfCAR (\\%) across displacement thresholds for fine-tuned Pi0.5 configurations ($n = 200$ episodes per seed). Values are identical across $\\tau_d \\in [2, 200]$\\,mm; at $\\tau_d = 300$\\,mm, at most 2 episodes are excluded.}\n\\label{tab:dfcar_threshold}\n\\vspace{2pt}\n\\footnotesize\n\\begin{tabular}{lcccccccc}\n\\toprule\n& \\multicolumn{8}{c}{$\\tau_d$ (mm)} \\\\\n\\cmidrule(lr){2-9}\nCondition & 2 & 5 & 10 & 20 & 50 & 100 & 200 & 300 \\\\\n\\midrule\nLoRA s0            & 56.5 & 56.5 & 56.5 & 56.5 & 56.5 & 56.5 & 56.5 & 56.5 \\\\\nLoRA s1            & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 \\\\\nSDF $\\lambda{=}0.005$ s0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.1 \\\\\nSDF $\\lambda{=}0.005$ s1 & 54.0 & 54.0 & 54.0 & 54.0 & 54.0 & 54.0 & 54.0 & 54.0 \\\\\nSDF $\\lambda{=}0.005$ s2 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.3 \\\\\nSDF $\\lambda{=}0.01$ s0  & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 \\\\\nSDF $\\lambda{=}0.01$ s1  & 57.5 & 57.5 & 57.5 & 57.5 & 57.5 & 57.5 & 57.5 & 57.1 \\\\\nSDF $\\lambda{=}0.01$ s2  & 54.5 & 54.5 & 54.5 & 54.5 & 54.5 & 54.5 & 54.5 & 54.0 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\n\\section{Per-Task TSR Breakdown}\\label{sec:appendix_tsr_pertask}\n\nTable~\\ref{tab:per_task_tsr} decomposes TSR by task for the avoidance source attribution experiments (Section~\\ref{sec:avoidance_source}). All tasks retain meaningful success rates after fine-tuning, with Chocolate Pudding most resilient and Orange Juice most affected.\n\n\\begin{table}[h]\n\\centering\n\\caption{Per-task TSR (\\%) at 30K training steps. Baseline reports the unified seed-7 re-evaluation (aggregate TSR\\,=\\,71.5\\%). LoRA-only reports 3-seed means (re-evaluated with unified seed-7 protocol); SDF conditions report 3-seed means.}\n\\label{tab:per_task_tsr}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\nTask & Pi0.5 Base & LoRA-only & SDF $\\lambda{=}0.005$ & SDF $\\lambda{=}0.01$ \\\\\n & (seed\\,=\\,7) & (3 seeds) & (3 seeds) & (3 seeds) \\\\\n\\midrule\nOrange Juice      & 74.0 & 30.0 & 33.3 & 24.7 \\\\\nChoco.\\ Pudding   & 80.0 & 70.7 & 78.0 & 76.7 \\\\\nMilk              & 66.0 & 44.7 & 35.3 & 48.7 \\\\\nBBQ Sauce         & 66.0 & 60.7 & 69.3 & 65.3 \\\\\n\\midrule\nMean              & 71.5 & 51.5 & 54.0 & 53.8 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Per-Task CAR Breakdown}\\label{sec:appendix_pertask_car}\n\nTable~\\ref{tab:per_task_car} decomposes CAR by task for all fine-tuned conditions, supporting the claim that per-task ordering is preserved across SDF loss weights (\\S\\ref{sec:avoidance_source}). Chocolate Pudding is consistently highest and BBQ Sauce consistently lowest across all conditions, including $\\lambda = 0.1$. The intermediate tasks (Orange Juice and Milk) exchange rank between seeds but remain bounded by the extremes. This invariance indicates that avoidance patterns reflect the spatial statistics of collision-free demonstrations rather than geometric supervision.\n\n\\begin{table}[h]\n\\centering\n\\caption{Per-task CAR (\\%) at 30K steps. $\\lambda{=}0.005$, $\\lambda{=}0.01$, and $\\lambda{=}0.1$ report 3-seed means alongside individual seeds. Per-task ordering (CP highest, BBQ lowest) is preserved across all conditions.}\n\\label{tab:per_task_car}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lccccc}\n\\toprule\nCondition & OJ & CP & Milk & BBQ & Agg. \\\\\n\\midrule\nLoRA s0 & 56 & 74 & 70 & 26 & 56.5 \\\\\nLoRA s1 & 54 & 68 & 72 & 16 & 52.5 \\\\\nLoRA s2 & 56 & 76 & 62 & 26 & 55.0 \\\\\nSDF $\\lambda{=}0.005$ (3-seed) & 54.0 & 72.7 & 71.3 & 20.0 & 54.5 \\\\\nSDF $\\lambda{=}0.01$ (3-seed) & 57.3 & 72.7 & 72.0 & 23.3 & 56.3 \\\\\nSDF $\\lambda{=}0.1$ s0 & 60 & 74 & 68 & 30 & 58.0 \\\\\nSDF $\\lambda{=}0.1$ s1 & 66 & 72 & 70 & 26 & 58.5 \\\\\nSDF $\\lambda{=}0.1$ s2 & 56 & 76 & 70 & 16 & 54.5 \\\\\nSDF $\\lambda{=}0.1$ (3-seed) & 60.7 & 74.0 & 69.3 & 24.0 & 57.0 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nFor the $\\lambda = 0.1$ condition, seed~1 records \\texttt{avg\\_max\\_obstacle\\_displacement} of 0.0553\\,m (per-task: OJ\\,=\\,0.033, CP\\,=\\,0.055, Milk\\,=\\,0.041, BBQ\\,=\\,0.093), comparable to other fine-tuned conditions and consistent with active manipulation rather than frozen behavior.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\linewidth]{fig_pertask_car_fingerprint}\n\\caption{Per-task CAR fingerprint across conditions. Each bar shows the 3-seed mean; dots indicate individual seeds. The task ordering (chocolate\\_pudding highest, bbq\\_sauce lowest) is preserved across all $\\lambda$ values, confirming that avoidance patterns reflect the demonstration distribution rather than geometric supervision. LoRA-only: 3-seed mean.}\n\\label{fig:pertask_fingerprint}\n\\end{figure}\n\n\\section{Safe Success Rate Analysis}\\label{sec:appendix_ssr}\n\nTable~\\ref{tab:ssr} reports the Safe Success Rate (SSR\\,=\\,TSR\\,$\\cap$\\,CAR), the fraction of episodes achieving both task completion and collision avoidance. The SSR/TSR ratio quantifies the proportion of successful episodes that are also collision-free, controlling for task-completion rate.\n\n\\begin{table}[h]\n\\centering\n\\caption{SSR and SSR/TSR ratio across conditions. The ratio increase from 0.39 (baseline) to 0.51--0.60 (fine-tuned) indicates that CAR gains reflect learned safer execution, not reduced task exposure.}\n\\label{tab:ssr}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\nCondition & TSR (\\%) & CAR (\\%) & SSR (\\%) & SSR/TSR \\\\\n\\midrule\nPi0.5 baseline & 71.5 & 28.5 & 28.0 & 0.39 \\\\\nLoRA-only (3 seeds) & 51.5 & 54.67 & 27.7 & 0.54 \\\\\nSDF $\\lambda{=}0.005$ (3 seeds) & 54.0 & 54.5 & 27.8 & 0.51 \\\\\nSDF $\\lambda{=}0.01$ (3 seeds) & 53.8 & 56.33 & 30.2 & 0.56 \\\\\nSDF $\\lambda{=}0.1$ (3 seeds) & 50.2 & 57.00 & 30.2 & 0.60 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Per-Task Oracle Analysis}\n\\label{sec:appendix_pertask}\n\\label{sec:appendix_pertask_oracle}\n\nTable~\\ref{tab:oracle_pertask} shows per-task CAR for oracle refinement. On task~1 (\\texttt{chocolate\\_pudding}), where the EE is the primary collision body and the LoRA baseline achieves only 46.0\\% CAR, Oracle-adaptive improves to 55.0\\% and Oracle-feature to 47.5\\%. On the remaining tasks, all oracle variants degrade: Oracle-adaptive reduces task~0 (\\texttt{orange\\_juice}) from 96.0\\% to 82.5\\% and task~2 (\\texttt{milk}) from 98.0\\% to 77.5\\%. The SDF gradient pushes the EE away from the nearest surface, but the resulting joint-space displacement rotates intermediate arm links into obstacle volumes.\n\nThe feature-space oracle fires on nearly every timestep (241.7 refinements/episode vs.\\ 14.2 for Cartesian variants) but with gradient magnitudes two orders of magnitude smaller (0.004--0.006 vs.\\ 0.18--0.49), and CAR (76.9\\%) shows no advantage despite 17$\\times$ more steps. The A3 learned SDF never triggers refinement (0 steps/episode), as its outputs avoid the activation threshold.\n\n\\begin{table}[h]\n\\centering\n\\caption{Per-task CAR (\\%) for oracle SDF refinement variants. EE-only refinement helps only on task~1 where the EE is the primary collision body; on other tasks it trades one collision site for another.}\n\\label{tab:oracle_pertask}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lccccc}\n\\toprule\nMethod & Task 0 & Task 1 & Task 2 & Task 3 & Agg. \\\\\n\\midrule\nLoRA baseline & 96.0 & 46.0 & 98.0 & 88.0 & 82.0 \\\\\n\\midrule\nOracle-adaptive & 82.5 & 55.0 & 77.5 & 85.0 & 75.0 \\\\\nOracle-fixed & 85.0 & 50.0 & 77.5 & 80.0 & 73.1 \\\\\nOracle-feature & 90.0 & 47.5 & 82.5 & 87.5 & 76.9 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\n\\section{Null Distribution for SDF Loss Weight Analysis}\n\\label{sec:appendix_null}\n\nWe construct a null distribution by pooling the three LoRA-only seeds and three $\\lambda = 0.005$ seeds into six per-seed CAR measurements: 56.5\\% (LoRA s0, re-evaluated), 52.5\\% (LoRA s1), 55.0\\% (LoRA s2), 57.0\\% ($\\lambda{=}0.005$ s0), 54.0\\% ($\\lambda{=}0.005$ s1), 52.5\\% ($\\lambda{=}0.005$ s2), yielding mean 54.58\\% and standard deviation 1.93\\% (Bessel-corrected, $n{-}1 = 5$). We treat these as exchangeable because SDF at $\\lambda = 0.005$ produces no separation from LoRA-only. The $\\lambda = 0.01$ mean of 56.33\\% falls within $0.8\\sigma$ of this null ($p > 0.1$), consistent with seed-to-seed variation rather than a treatment effect. The $\\lambda = 0.1$ 30K mean of 57.00\\% (3 seeds: 58.0\\%, 58.5\\%, 54.5\\%) yields a two-tailed permutation $p = 0.131$ (one-tailed $p = 0.071$). The result is non-significant at conventional thresholds ($\\alpha = 0.05$).\n\nThe permutation test makes no distributional assumptions. Pooling the six null values $\\{56.5, 52.5, 55, 57, 54, 52.5\\}$ and three $\\lambda = 0.1$ values $\\{58, 58.5, 54.5\\}$ into nine measurements, we enumerate all $\\binom{9}{3} = 84$ three-element combinations and compute the fraction whose mean $\\geq 57.00$. Six combinations meet this threshold, yielding an exact one-tailed permutation $p = 6/84 \\approx 0.071$. For the two-tailed test, we additionally count combinations on the lower tail with equal or greater distance from the pooled mean, yielding $p = 11/84 \\approx 0.131$. With the third seed ($s_2 = 54.5\\%$) pulling the $\\lambda = 0.1$ mean from 58.25\\% (2 seeds) down to 57.00\\%, the marginal signal observed at $n = 2$ dissolves into seed-to-seed variance.\n\n\\paragraph{Alternative null construction (Null~A).}\nIf only the three LoRA-only seeds are used as the null pool ($\\{56.5, 52.5, 55.0\\}$), we obtain $\\binom{6}{3} = 20$ permutations for each comparison. For $\\lambda = 0.1$ (treatment mean 57.00\\%): one-tailed $p = 3/20 = 0.150$, two-tailed $p = 6/20 = 0.300$. For $\\lambda = 0.01$ (treatment mean 56.33\\%): one-tailed $p = 4/20 = 0.200$, two-tailed $p = 8/20 = 0.400$. Under the broader Null~B pool, $\\lambda = 0.01$ yields one-tailed $p = 10/84 \\approx 0.119$, two-tailed $p = 22/84 \\approx 0.262$. All tests are non-significant at $\\alpha = 0.05$; the narrower Null~A yields \\emph{larger} $p$-values because the LoRA-only pool already contains a high seed (56.5\\%), making the treatment means less extreme by comparison.\n\nA Phase~2 ablation reinforces this conclusion. Setting $\\lambda = 0$ during Phase~2 (steps 5K--18K), so that SDF supervision is active only during auxiliary head warmup (Phase~1, steps 0--5K), yields CAR of 58.0\\% at the 18K checkpoint (13K steps of Phase~2 training, single seed, s2).\\footnote{Full 30K training did not complete due to disk constraints; this result uses the last complete checkpoint at step 18K.} This value lies within the null range, indicating that SDF training produces no lasting behavioral effect on collision avoidance.\n\n\\section{Step-wise Checkpoint Analysis for \\texorpdfstring{$\\lambda = 0.1$}{lambda = 0.1}}\n\\label{sec:appendix_stepwise}\n\nTable~\\ref{tab:stepwise_lambda01} reports per-seed CAR at seven checkpoints for $\\lambda = 0.1$. Seeds~0 and~1 are available at 16K, 20K, 22K, and 30K; 24K--28K report seed-0 only; seed~2 is available at 30K only. The seed-0 curve shows no monotonic trend through 28K. At 30K, the addition of seed~2 (54.5\\%) pulls the three-seed mean to 57.00\\%, within the null band ($p = 0.131$).\n\n\\begin{table}[h]\n\\centering\n\\caption{Per-seed CAR (\\%) at training checkpoints for $\\lambda = 0.1$ (200 episodes each). 24K--28K: seed-0 only. The 30K checkpoint includes all three seeds; the three-seed mean (57.00\\%) remains within the null band ($p = 0.131$, two-tailed permutation).}\n\\label{tab:stepwise_lambda01}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\nCheckpoint & Seed 0 & Seed 1 & Seed 2 & Mean \\\\\n\\midrule\n16K steps & 55.5 & 56.0 & -- & 55.75 \\\\\n20K steps & 55.0 & 56.0 & -- & 55.5 \\\\\n22K steps & 60.5 & 56.5 & -- & 58.5 \\\\\n24K steps & 52.5 & -- & -- & -- \\\\\n26K steps & 53.5 & -- & -- & -- \\\\\n28K steps & 54.5 & -- & -- & -- \\\\\n30K steps & 58.0 & 58.5 & 54.5 & 57.00 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nIndividual seeds exhibit checkpoint-to-checkpoint CAR fluctuations of up to 8\\,pp (seed~0: 52.5--60.5\\%), larger than the cross-seed standard deviation at any fixed checkpoint ($\\leq$3\\,pp). This is consistent with binomial sampling noise at $n = 50$ episodes per task ($\\sigma \\approx 7$\\,pp per task for $p \\approx 0.5$). At 30K, the third seed ($s_2 = 54.5\\%$) falls well within the null range, pulling the three-seed mean to 57.00\\% and rendering the earlier two-seed departure non-significant ($p = 0.131$). The seed-averaged curve shows no monotonic trend, confirming that SDF loss weight does not produce a progressive training signal.\n\n\n\\section{Oracle SDF Refinement Details}\n\\label{sec:appendix_oracle}\n\nAll oracle variants replace the learned SDF decoder with ground-truth distance fields computed from the simulation geometry. Each is evaluated for 160 episodes (4 tasks $\\times$ 40).\n\n\\paragraph{Oracle-adaptive.} At each timestep, if the ground-truth SDF at the end-effector position falls below a safety margin, the action is adjusted by a step in the negative SDF gradient direction. The step size $\\alpha$ is scaled inversely with distance: smaller distances produce larger corrections. This mimics an adaptive potential field controller.\n\n\\paragraph{Oracle-fixed.} Identical to Oracle-adaptive except the step size is fixed at $\\alpha = 0.005$ regardless of distance. This isolates the effect of step-size adaptation from the refinement geometry.\n\n\\paragraph{Oracle-feature.} Instead of modifying the action directly in Cartesian space, this variant applies the SDF gradient in the policy's latent feature space via backpropagation. The gradient of the ground-truth SDF value with respect to the intermediate features is computed and used to perturb the features before the action head decodes them. This tests whether geometric corrections are more effective when applied in the model's learned representation space. In practice, the feature-space variant fires on nearly every timestep (241.7 refinements per episode vs.\\ 14.2 for Cartesian variants) but with gradient magnitudes two orders of magnitude smaller (0.004--0.006 vs.\\ 0.18--0.49 in action space).\n\n\n\\section{Cross-Scene Validation: spatial\\_bowl}\n\\label{sec:appendix_spatial_bowl}\n\nTo test whether the SDF redundancy finding generalizes beyond the primary \\texttt{object\\_pudding} scene, we replicate the core comparison on \\texttt{spatial\\_bowl}, a separate SafeLIBERO suite with a distinct obstacle layout (moka pot, wine bottle, milk carton, red coffee mug, yellow book). Both conditions use the same architecture, hyperparameters, and two-phase training schedule (30K steps), differing only in the training scene.\n\nTable~\\ref{tab:spatial_bowl} reports the results. The SDF condition ($\\lambda = 0.005$) yields CAR of 11.5\\% versus 12.0\\% for LoRA-only, a $-$0.5\\,pp difference well within the noise floor, indicating that SDF is essentially identical to LoRA-only on this scene. TSR is comparable across conditions (49.0\\% vs.\\ 51.5\\%). Both evaluations use a single training seed (seed~0) and a single evaluation seed (seed~7, 200 episodes), so statistical power is limited; nevertheless, the qualitative pattern---SDF failing to improve over LoRA-only---is consistent with the \\texttt{object\\_pudding} findings.\n\n\\begin{table}[h]\n\\centering\n\\caption{Cross-scene validation on \\texttt{spatial\\_bowl} (single training seed, 200 episodes, 30K checkpoint). The $-$0.5\\,pp CAR difference is well within noise, consistent with the SDF redundancy observed on \\texttt{object\\_pudding}.}\n\\label{tab:spatial_bowl}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lcc}\n\\toprule\nCondition & CAR (\\%) & TSR (\\%) \\\\\n\\midrule\nLoRA-only & 12.0 & 49.0 \\\\\nSDF $\\lambda{=}0.005$ & 11.5 & 51.5 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe substantially lower CAR on \\texttt{spatial\\_bowl} relative to \\texttt{object\\_pudding} (11--12\\% vs.\\ 54--57\\%) reflects the greater scene difficulty: \\texttt{spatial\\_bowl} places five cluttered obstacles around the workspace, making collision-free manipulation considerably harder. This difficulty affects both conditions equally, and the SDF condition performs comparably ($\\Delta$CAR\\,=\\,$-$0.5\\,pp, well within noise), reinforcing the conclusion that EE-only SDF auxiliary supervision does not produce a meaningful collision avoidance benefit beyond LoRA-only fine-tuning.\n\n\n\\section{Evaluation Seed Robustness}\n\\label{sec:appendix_eval_seed}\n\nTo verify that our conclusions are not artifacts of a particular evaluation seed, we re-evaluate the LoRA-only (s0) and SDF $\\lambda{=}0.1$ (s0) checkpoints under multiple evaluation seeds. Table~\\ref{tab:eval_seed_car} reports aggregate CAR and Table~\\ref{tab:eval_seed_tsr} reports aggregate TSR.\n\n\\begin{table}[h]\n\\centering\n\\caption{Aggregate CAR (\\%) across evaluation seeds (200 episodes each). The LoRA vs.\\ SDF $\\lambda{=}0.1$ ordering is preserved across all tested seeds, and per-task CAR fingerprints (CP highest, BBQ lowest) remain invariant.}\n\\label{tab:eval_seed_car}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lcccccc}\n\\toprule\n& \\multicolumn{4}{c}{Per-task CAR (\\%)} & & \\\\\n\\cmidrule(lr){2-5}\nCondition (eval seed) & OJ & CP & Milk & BBQ & Agg. \\\\\n\\midrule\nLoRA s0 (seed\\,=\\,7)   & 56 & 74 & 70 & 26 & 56.5 \\\\\nLoRA s0 (seed\\,=\\,42)  & 60 & 70 & 68 & 28 & 56.5 \\\\\nLoRA s0 (seed\\,=\\,123) & 52 & 74 & 66 & 20 & 53.0 \\\\\nLoRA s0 mean $\\pm$ std & 56.0$\\pm$4.0 & 72.7$\\pm$2.3 & 68.0$\\pm$2.0 & 24.7$\\pm$4.2 & 55.3$\\pm$2.0 \\\\\n\\midrule\nSDF $\\lambda{=}0.1$ s0 (seed\\,=\\,7)   & 60 & 74 & 68 & 30 & 58.0 \\\\\nSDF $\\lambda{=}0.1$ s0 (seed\\,=\\,42)  & 64 & 74 & 74 & 24 & 59.0 \\\\\nSDF $\\lambda{=}0.1$ s0 (seed\\,=\\,123) & 62 & 76 & 74 & 22 & 58.5 \\\\\nSDF $\\lambda{=}0.1$ s0 (seed\\,=\\,256) & 60 & 72 & 66 & 30 & 57.0 \\\\\nSDF $\\lambda{=}0.1$ s0 mean $\\pm$ std & 61.5$\\pm$1.9 & 74.0$\\pm$1.6 & 70.5$\\pm$4.1 & 26.5$\\pm$4.1 & 58.1$\\pm$0.9 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\begin{table}[h]\n\\centering\n\\caption{Aggregate TSR (\\%) across evaluation seeds. TSR varies more across seeds than CAR (seed\\,=\\,42 yields consistently lower TSR), but the relative ordering between LoRA and SDF is stable.}\n\\label{tab:eval_seed_tsr}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lcccccc}\n\\toprule\n& \\multicolumn{4}{c}{Per-task TSR (\\%)} & & \\\\\n\\cmidrule(lr){2-5}\nCondition (eval seed) & OJ & CP & Milk & BBQ & Agg. \\\\\n\\midrule\nLoRA s0 (seed\\,=\\,7)   & 32 & 74 & 42 & 58 & 51.5 \\\\\nLoRA s0 (seed\\,=\\,42)  & 22 & 70 & 32 & 60 & 46.0 \\\\\nLoRA s0 (seed\\,=\\,123) & 30 & 70 & 40 & 62 & 50.5 \\\\\nLoRA s0 mean $\\pm$ std & 28.0$\\pm$5.3 & 71.3$\\pm$2.3 & 38.0$\\pm$5.3 & 60.0$\\pm$2.0 & 49.3$\\pm$3.0 \\\\\n\\midrule\nSDF $\\lambda{=}0.1$ s0 (seed\\,=\\,7)   & 28 & 78 & 44 & 60 & 52.5 \\\\\nSDF $\\lambda{=}0.1$ s0 (seed\\,=\\,42)  & 18 & 78 & 42 & 72 & 52.5 \\\\\nSDF $\\lambda{=}0.1$ s0 (seed\\,=\\,123) & 26 & 82 & 38 & 68 & 53.5 \\\\\nSDF $\\lambda{=}0.1$ s0 (seed\\,=\\,256) & 28 & 74 & 32 & 58 & 48.0 \\\\\nSDF $\\lambda{=}0.1$ s0 mean $\\pm$ std & 25.0$\\pm$4.8 & 78.0$\\pm$3.3 & 39.0$\\pm$5.4 & 64.5$\\pm$6.6 & 51.6$\\pm$2.4 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nAcross three matched evaluation seeds (7, 42, 123), the SDF $\\lambda{=}0.1$ condition yields higher aggregate CAR than LoRA-only in all cases ($\\Delta$CAR\\,=\\,+1.5, +2.5, +5.5\\,pp). Cross-seed CAR standard deviation is 2.0\\,pp for LoRA and 0.9\\,pp for SDF, both small relative to the within-seed per-task variation. The per-task ordering (CP highest, BBQ lowest) is preserved across all seeds and both conditions, reinforcing the conclusion that avoidance patterns reflect the spatial statistics of training demonstrations.\n\n\n\\section{Training Details}\n\\label{sec:appendix_training}\n\n\\paragraph{Architecture.}\nWe use LoRA~\\citep{hu2022lora} adapters injected into the PaliGemma vision encoder (rank 16, $\\alpha$=16) and the action expert (rank 32, $\\alpha$=32), following the configuration of OpenPi. The SDF decoder is a 4-layer MLP (hidden dimension 256) with skip connections, taking pooled suffix features (1024-d) and query points (3-d) as input. The end-effector extractor is a 2-layer MLP (1024 $\\to$ 256 $\\to$ 3).\n\n\\paragraph{Training schedule.}\nTraining proceeds in two phases:\n\\begin{itemize}\n    \\item \\textbf{Phase 1} (steps 0--5000): Backbone and LoRA parameters are frozen. Only the SDF decoder and EE extractor are trained, allowing them to learn meaningful representations before the policy adapts.\n    \\item \\textbf{Phase 2} (steps 5000--30000): LoRA parameters are unfrozen with a 100-step gradient warmup ramp. All auxiliary heads continue training jointly with the policy.\n\\end{itemize}\n\n\\paragraph{Hyperparameters.}\n\\begin{table}[h]\n\\centering\n\\caption{Training hyperparameters.}\n\\label{tab:hyperparams}\n\\begin{tabular}{ll}\n\\toprule\nParameter & Value \\\\\n\\midrule\nBase model & Pi0.5 (OpenPi, $\\sim$3.5B parameters) \\\\\nOptimizer & AdamW \\\\\nLearning rate & $2.5 \\times 10^{-5}$ (cosine decay to $\\mathrm{lr}/10$) \\\\\nWarmup steps & 1000 \\\\\nBatch size & 32 \\\\\nTotal steps & 30000 \\\\\n$\\lambda_\\mathrm{sdf}$ & \\{0.005, 0.01, 0.1\\} \\\\\n$\\lambda_\\mathrm{ee}$ & 0.01 \\\\\nSDF query points per step & 64 \\\\\nSDF clamp $\\delta$ & 0.05 m \\\\\nEikonal weight & 0.1 \\\\\nLoRA rank (vision) & 16 \\\\\nLoRA rank (action) & 32 \\\\\nPhase 1 duration & 5000 steps \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Evaluation protocol.}\nEach episode runs for at most 300 timesteps. The policy generates a 50-step action trajectory via flow matching and executes the first 5 steps before replanning. An episode terminates early upon task completion. Collision detection uses MuJoCo's built-in contact detection: any contact between the robot and a non-target object registers as a collision. For Pi0.5 evaluations, camera images are rotated 180$^\\circ$ to match the pre-training viewpoint convention; this correction was verified to restore TSR from ${\\sim}$5\\% to ${\\sim}$52\\% while leaving CAR comparable. Oracle variants use 40 episodes per task (160 total) with a single seed; all other configurations use 50 episodes per task (200 total).\n\n\\paragraph{Data.}\nWe use the SafeLIBERO object\\_pudding suite with pre-computed SDF ground truth. SDF values are computed offline from the obstacle mesh using a dense $64^3$ voxel grid. During training, 64 query points are randomly sampled per step from this grid.\n\n\\paragraph{Computational resources.}\nAll training and evaluation experiments are conducted on NVIDIA RTX PRO 6000 GPUs (96\\,GB). Phase~1 (5K steps) takes approximately 6 hours on a single GPU; Phase~2 (25K steps) takes approximately 32 hours. Evaluation of 200 episodes requires approximately 4 hours. Across 100+ experiments (training runs, evaluations, oracle variants, and ablations), the total computational budget is approximately 700 GPU-hours.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 11,
+        "oldLines": 7,
+        "newStart": 11,
+        "newLines": 7,
+        "lines": [
+          " \\section{Displacement Threshold Sensitivity Analysis}",
+          " \\label{sec:appendix_threshold}",
+          " ",
+          "-To validate the robustness of our displacement threshold $\\tau_d$, we evaluate the frozen rate across four orders of magnitude. Table~\\ref{tab:threshold_sensitivity} shows that the fake safety pattern persists across all reasonable threshold choices: A1-LoRA exhibits near-total action collapse regardless of threshold, while Pi0.5+A1 maintains 0\\% frozen rate even at the most conservative setting.",
+          "+To validate the robustness of our displacement threshold $\\tau_d$, we evaluate the action-collapse rate across four orders of magnitude. Table~\\ref{tab:threshold_sensitivity} shows that the action-collapse pattern persists across all reasonable threshold choices: A1-LoRA exhibits near-total action collapse regardless of threshold, while Pi0.5+A1 maintains 0\\% action-collapse rate even at the most conservative setting.",
+          " ",
+          " \\begin{table}[h]",
+          " \\centering"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01E47YQFk1hMfabv1FUjTUdF`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/appendix.tex",
+  "old_string": "\\caption{Frozen rate (\\% of episodes with $d_\\mathrm{max} < \\tau_d$) across threshold values.}",
+  "new_string": "\\caption{Action-collapse rate (\\% of episodes with $d_\\mathrm{max} < \\tau_d$) across threshold values.}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "edc15c64-e24a-47c7-ab2f-ac52f0dd05c8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KTJ1Rg4MfA56Z2M7WjKZHs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 231,
+      "cache_read_input_tokens": 65834,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 231
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-28T06:21:45.946Z_
+
+<details><summary>↩ Tool result · `toolu_01E47YQFk1hMfabv1FUjTUdF`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/appendix.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "137ad698-9e37-4347-86b7-3cc8c442964a",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/appendix.tex",
+    "oldString": "\\caption{Frozen rate (\\% of episodes with $d_\\mathrm{max} < \\tau_d$) across threshold values.}",
+    "newString": "\\caption{Action-collapse rate (\\% of episodes with $d_\\mathrm{max} < \\tau_d$) across threshold values.}",
+    "originalFile": "\\section{Displacement Distribution}\n\\label{sec:appendix_displacement}\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\linewidth]{fig2_ee_displacement_distribution}\n\\caption{Displacement distribution across evaluation episodes. Pi0-family models (blue) cluster below 1\\,$\\mu$m, while Pi0.5 episodes (orange) exceed 200\\,mm. The five-order-of-magnitude gap makes $\\tau_d$ robust to any value in $[2, 200]$\\,mm.}\n\\label{fig:displacement}\n\\end{figure}\n\n\\section{Displacement Threshold Sensitivity Analysis}\n\\label{sec:appendix_threshold}\n\nTo validate the robustness of our displacement threshold $\\tau_d$, we evaluate the action-collapse rate across four orders of magnitude. Table~\\ref{tab:threshold_sensitivity} shows that the action-collapse pattern persists across all reasonable threshold choices: A1-LoRA exhibits near-total action collapse regardless of threshold, while Pi0.5+A1 maintains 0\\% action-collapse rate even at the most conservative setting.\n\n\\begin{table}[h]\n\\centering\n\\caption{Frozen rate (\\% of episodes with $d_\\mathrm{max} < \\tau_d$) across threshold values.}\n\\label{tab:threshold_sensitivity}\n\\begin{tabular}{lccc}\n\\toprule\n$\\tau_d$ & A1-LoRA (Pi0) & Pi0.5 Baseline & Pi0.5+A1 (SDF aux) \\\\\n\\midrule\n0.001 mm (1\\,$\\mu$m) & 73.9 & 0.0 & 0.0 \\\\\n0.1 mm  & 99.6 & 0.0 & 0.0 \\\\\n1.0 mm  & 100.0 & 0.0 & 0.0 \\\\\n10 mm   & 100.0 & 0.0 & 0.0 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe choice of $\\tau_d = 0.1$\\,mm represents a conservative threshold: displacement below this value is physically negligible in manipulation tasks where typical action magnitudes are 1--10\\,mm per step. Even at $\\tau_d = 1$\\,$\\mu$m, 73.9\\% of A1-LoRA safe episodes are classified as frozen, while all Pi0.5 episodes remain above threshold at every level tested.\n\nTable~\\ref{tab:dfcar_threshold} extends this analysis to dfCAR across fine-tuned Pi0.5 configurations. All eight model-seed combinations yield identical dfCAR for $\\tau_d \\in [2, 200]$\\,mm. At $\\tau_d = 300$\\,mm, 0--2 episodes per seed fall below threshold (displacement 200--300\\,mm), causing $\\leq$0.5\\,pp deviation. Our conclusions hold across the entire tested range.\n\n\\begin{table}[h]\n\\centering\n\\caption{dfCAR (\\%) across displacement thresholds for fine-tuned Pi0.5 configurations ($n = 200$ episodes per seed). Values are identical across $\\tau_d \\in [2, 200]$\\,mm; at $\\tau_d = 300$\\,mm, at most 2 episodes are excluded.}\n\\label{tab:dfcar_threshold}\n\\vspace{2pt}\n\\footnotesize\n\\begin{tabular}{lcccccccc}\n\\toprule\n& \\multicolumn{8}{c}{$\\tau_d$ (mm)} \\\\\n\\cmidrule(lr){2-9}\nCondition & 2 & 5 & 10 & 20 & 50 & 100 & 200 & 300 \\\\\n\\midrule\nLoRA s0            & 56.5 & 56.5 & 56.5 & 56.5 & 56.5 & 56.5 & 56.5 & 56.5 \\\\\nLoRA s1            & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 \\\\\nSDF $\\lambda{=}0.005$ s0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.1 \\\\\nSDF $\\lambda{=}0.005$ s1 & 54.0 & 54.0 & 54.0 & 54.0 & 54.0 & 54.0 & 54.0 & 54.0 \\\\\nSDF $\\lambda{=}0.005$ s2 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.3 \\\\\nSDF $\\lambda{=}0.01$ s0  & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 \\\\\nSDF $\\lambda{=}0.01$ s1  & 57.5 & 57.5 & 57.5 & 57.5 & 57.5 & 57.5 & 57.5 & 57.1 \\\\\nSDF $\\lambda{=}0.01$ s2  & 54.5 & 54.5 & 54.5 & 54.5 & 54.5 & 54.5 & 54.5 & 54.0 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\n\\section{Per-Task TSR Breakdown}\\label{sec:appendix_tsr_pertask}\n\nTable~\\ref{tab:per_task_tsr} decomposes TSR by task for the avoidance source attribution experiments (Section~\\ref{sec:avoidance_source}). All tasks retain meaningful success rates after fine-tuning, with Chocolate Pudding most resilient and Orange Juice most affected.\n\n\\begin{table}[h]\n\\centering\n\\caption{Per-task TSR (\\%) at 30K training steps. Baseline reports the unified seed-7 re-evaluation (aggregate TSR\\,=\\,71.5\\%). LoRA-only reports 3-seed means (re-evaluated with unified seed-7 protocol); SDF conditions report 3-seed means.}\n\\label{tab:per_task_tsr}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\nTask & Pi0.5 Base & LoRA-only & SDF $\\lambda{=}0.005$ & SDF $\\lambda{=}0.01$ \\\\\n & (seed\\,=\\,7) & (3 seeds) & (3 seeds) & (3 seeds) \\\\\n\\midrule\nOrange Juice      & 74.0 & 30.0 & 33.3 & 24.7 \\\\\nChoco.\\ Pudding   & 80.0 & 70.7 & 78.0 & 76.7 \\\\\nMilk              & 66.0 & 44.7 & 35.3 & 48.7 \\\\\nBBQ Sauce         & 66.0 & 60.7 & 69.3 & 65.3 \\\\\n\\midrule\nMean              & 71.5 & 51.5 & 54.0 & 53.8 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Per-Task CAR Breakdown}\\label{sec:appendix_pertask_car}\n\nTable~\\ref{tab:per_task_car} decomposes CAR by task for all fine-tuned conditions, supporting the claim that per-task ordering is preserved across SDF loss weights (\\S\\ref{sec:avoidance_source}). Chocolate Pudding is consistently highest and BBQ Sauce consistently lowest across all conditions, including $\\lambda = 0.1$. The intermediate tasks (Orange Juice and Milk) exchange rank between seeds but remain bounded by the extremes. This invariance indicates that avoidance patterns reflect the spatial statistics of collision-free demonstrations rather than geometric supervision.\n\n\\begin{table}[h]\n\\centering\n\\caption{Per-task CAR (\\%) at 30K steps. $\\lambda{=}0.005$, $\\lambda{=}0.01$, and $\\lambda{=}0.1$ report 3-seed means alongside individual seeds. Per-task ordering (CP highest, BBQ lowest) is preserved across all conditions.}\n\\label{tab:per_task_car}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lccccc}\n\\toprule\nCondition & OJ & CP & Milk & BBQ & Agg. \\\\\n\\midrule\nLoRA s0 & 56 & 74 & 70 & 26 & 56.5 \\\\\nLoRA s1 & 54 & 68 & 72 & 16 & 52.5 \\\\\nLoRA s2 & 56 & 76 & 62 & 26 & 55.0 \\\\\nSDF $\\lambda{=}0.005$ (3-seed) & 54.0 & 72.7 & 71.3 & 20.0 & 54.5 \\\\\nSDF $\\lambda{=}0.01$ (3-seed) & 57.3 & 72.7 & 72.0 & 23.3 & 56.3 \\\\\nSDF $\\lambda{=}0.1$ s0 & 60 & 74 & 68 & 30 & 58.0 \\\\\nSDF $\\lambda{=}0.1$ s1 & 66 & 72 & 70 & 26 & 58.5 \\\\\nSDF $\\lambda{=}0.1$ s2 & 56 & 76 & 70 & 16 & 54.5 \\\\\nSDF $\\lambda{=}0.1$ (3-seed) & 60.7 & 74.0 & 69.3 & 24.0 & 57.0 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nFor the $\\lambda = 0.1$ condition, seed~1 records \\texttt{avg\\_max\\_obstacle\\_displacement} of 0.0553\\,m (per-task: OJ\\,=\\,0.033, CP\\,=\\,0.055, Milk\\,=\\,0.041, BBQ\\,=\\,0.093), comparable to other fine-tuned conditions and consistent with active manipulation rather than frozen behavior.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\linewidth]{fig_pertask_car_fingerprint}\n\\caption{Per-task CAR fingerprint across conditions. Each bar shows the 3-seed mean; dots indicate individual seeds. The task ordering (chocolate\\_pudding highest, bbq\\_sauce lowest) is preserved across all $\\lambda$ values, confirming that avoidance patterns reflect the demonstration distribution rather than geometric supervision. LoRA-only: 3-seed mean.}\n\\label{fig:pertask_fingerprint}\n\\end{figure}\n\n\\section{Safe Success Rate Analysis}\\label{sec:appendix_ssr}\n\nTable~\\ref{tab:ssr} reports the Safe Success Rate (SSR\\,=\\,TSR\\,$\\cap$\\,CAR), the fraction of episodes achieving both task completion and collision avoidance. The SSR/TSR ratio quantifies the proportion of successful episodes that are also collision-free, controlling for task-completion rate.\n\n\\begin{table}[h]\n\\centering\n\\caption{SSR and SSR/TSR ratio across conditions. The ratio increase from 0.39 (baseline) to 0.51--0.60 (fine-tuned) indicates that CAR gains reflect learned safer execution, not reduced task exposure.}\n\\label{tab:ssr}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\nCondition & TSR (\\%) & CAR (\\%) & SSR (\\%) & SSR/TSR \\\\\n\\midrule\nPi0.5 baseline & 71.5 & 28.5 & 28.0 & 0.39 \\\\\nLoRA-only (3 seeds) & 51.5 & 54.67 & 27.7 & 0.54 \\\\\nSDF $\\lambda{=}0.005$ (3 seeds) & 54.0 & 54.5 & 27.8 & 0.51 \\\\\nSDF $\\lambda{=}0.01$ (3 seeds) & 53.8 & 56.33 & 30.2 & 0.56 \\\\\nSDF $\\lambda{=}0.1$ (3 seeds) & 50.2 & 57.00 & 30.2 & 0.60 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Per-Task Oracle Analysis}\n\\label{sec:appendix_pertask}\n\\label{sec:appendix_pertask_oracle}\n\nTable~\\ref{tab:oracle_pertask} shows per-task CAR for oracle refinement. On task~1 (\\texttt{chocolate\\_pudding}), where the EE is the primary collision body and the LoRA baseline achieves only 46.0\\% CAR, Oracle-adaptive improves to 55.0\\% and Oracle-feature to 47.5\\%. On the remaining tasks, all oracle variants degrade: Oracle-adaptive reduces task~0 (\\texttt{orange\\_juice}) from 96.0\\% to 82.5\\% and task~2 (\\texttt{milk}) from 98.0\\% to 77.5\\%. The SDF gradient pushes the EE away from the nearest surface, but the resulting joint-space displacement rotates intermediate arm links into obstacle volumes.\n\nThe feature-space oracle fires on nearly every timestep (241.7 refinements/episode vs.\\ 14.2 for Cartesian variants) but with gradient magnitudes two orders of magnitude smaller (0.004--0.006 vs.\\ 0.18--0.49), and CAR (76.9\\%) shows no advantage despite 17$\\times$ more steps. The A3 learned SDF never triggers refinement (0 steps/episode), as its outputs avoid the activation threshold.\n\n\\begin{table}[h]\n\\centering\n\\caption{Per-task CAR (\\%) for oracle SDF refinement variants. EE-only refinement helps only on task~1 where the EE is the primary collision body; on other tasks it trades one collision site for another.}\n\\label{tab:oracle_pertask}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lccccc}\n\\toprule\nMethod & Task 0 & Task 1 & Task 2 & Task 3 & Agg. \\\\\n\\midrule\nLoRA baseline & 96.0 & 46.0 & 98.0 & 88.0 & 82.0 \\\\\n\\midrule\nOracle-adaptive & 82.5 & 55.0 & 77.5 & 85.0 & 75.0 \\\\\nOracle-fixed & 85.0 & 50.0 & 77.5 & 80.0 & 73.1 \\\\\nOracle-feature & 90.0 & 47.5 & 82.5 & 87.5 & 76.9 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\n\\section{Null Distribution for SDF Loss Weight Analysis}\n\\label{sec:appendix_null}\n\nWe construct a null distribution by pooling the three LoRA-only seeds and three $\\lambda = 0.005$ seeds into six per-seed CAR measurements: 56.5\\% (LoRA s0, re-evaluated), 52.5\\% (LoRA s1), 55.0\\% (LoRA s2), 57.0\\% ($\\lambda{=}0.005$ s0), 54.0\\% ($\\lambda{=}0.005$ s1), 52.5\\% ($\\lambda{=}0.005$ s2), yielding mean 54.58\\% and standard deviation 1.93\\% (Bessel-corrected, $n{-}1 = 5$). We treat these as exchangeable because SDF at $\\lambda = 0.005$ produces no separation from LoRA-only. The $\\lambda = 0.01$ mean of 56.33\\% falls within $0.8\\sigma$ of this null ($p > 0.1$), consistent with seed-to-seed variation rather than a treatment effect. The $\\lambda = 0.1$ 30K mean of 57.00\\% (3 seeds: 58.0\\%, 58.5\\%, 54.5\\%) yields a two-tailed permutation $p = 0.131$ (one-tailed $p = 0.071$). The result is non-significant at conventional thresholds ($\\alpha = 0.05$).\n\nThe permutation test makes no distributional assumptions. Pooling the six null values $\\{56.5, 52.5, 55, 57, 54, 52.5\\}$ and three $\\lambda = 0.1$ values $\\{58, 58.5, 54.5\\}$ into nine measurements, we enumerate all $\\binom{9}{3} = 84$ three-element combinations and compute the fraction whose mean $\\geq 57.00$. Six combinations meet this threshold, yielding an exact one-tailed permutation $p = 6/84 \\approx 0.071$. For the two-tailed test, we additionally count combinations on the lower tail with equal or greater distance from the pooled mean, yielding $p = 11/84 \\approx 0.131$. With the third seed ($s_2 = 54.5\\%$) pulling the $\\lambda = 0.1$ mean from 58.25\\% (2 seeds) down to 57.00\\%, the marginal signal observed at $n = 2$ dissolves into seed-to-seed variance.\n\n\\paragraph{Alternative null construction (Null~A).}\nIf only the three LoRA-only seeds are used as the null pool ($\\{56.5, 52.5, 55.0\\}$), we obtain $\\binom{6}{3} = 20$ permutations for each comparison. For $\\lambda = 0.1$ (treatment mean 57.00\\%): one-tailed $p = 3/20 = 0.150$, two-tailed $p = 6/20 = 0.300$. For $\\lambda = 0.01$ (treatment mean 56.33\\%): one-tailed $p = 4/20 = 0.200$, two-tailed $p = 8/20 = 0.400$. Under the broader Null~B pool, $\\lambda = 0.01$ yields one-tailed $p = 10/84 \\approx 0.119$, two-tailed $p = 22/84 \\approx 0.262$. All tests are non-significant at $\\alpha = 0.05$; the narrower Null~A yields \\emph{larger} $p$-values because the LoRA-only pool already contains a high seed (56.5\\%), making the treatment means less extreme by comparison.\n\nA Phase~2 ablation reinforces this conclusion. Setting $\\lambda = 0$ during Phase~2 (steps 5K--18K), so that SDF supervision is active only during auxiliary head warmup (Phase~1, steps 0--5K), yields CAR of 58.0\\% at the 18K checkpoint (13K steps of Phase~2 training, single seed, s2).\\footnote{Full 30K training did not complete due to disk constraints; this result uses the last complete checkpoint at step 18K.} This value lies within the null range, indicating that SDF training produces no lasting behavioral effect on collision avoidance.\n\n\\section{Step-wise Checkpoint Analysis for \\texorpdfstring{$\\lambda = 0.1$}{lambda = 0.1}}\n\\label{sec:appendix_stepwise}\n\nTable~\\ref{tab:stepwise_lambda01} reports per-seed CAR at seven checkpoints for $\\lambda = 0.1$. Seeds~0 and~1 are available at 16K, 20K, 22K, and 30K; 24K--28K report seed-0 only; seed~2 is available at 30K only. The seed-0 curve shows no monotonic trend through 28K. At 30K, the addition of seed~2 (54.5\\%) pulls the three-seed mean to 57.00\\%, within the null band ($p = 0.131$).\n\n\\begin{table}[h]\n\\centering\n\\caption{Per-seed CAR (\\%) at training checkpoints for $\\lambda = 0.1$ (200 episodes each). 24K--28K: seed-0 only. The 30K checkpoint includes all three seeds; the three-seed mean (57.00\\%) remains within the null band ($p = 0.131$, two-tailed permutation).}\n\\label{tab:stepwise_lambda01}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\nCheckpoint & Seed 0 & Seed 1 & Seed 2 & Mean \\\\\n\\midrule\n16K steps & 55.5 & 56.0 & -- & 55.75 \\\\\n20K steps & 55.0 & 56.0 & -- & 55.5 \\\\\n22K steps & 60.5 & 56.5 & -- & 58.5 \\\\\n24K steps & 52.5 & -- & -- & -- \\\\\n26K steps & 53.5 & -- & -- & -- \\\\\n28K steps & 54.5 & -- & -- & -- \\\\\n30K steps & 58.0 & 58.5 & 54.5 & 57.00 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nIndividual seeds exhibit checkpoint-to-checkpoint CAR fluctuations of up to 8\\,pp (seed~0: 52.5--60.5\\%), larger than the cross-seed standard deviation at any fixed checkpoint ($\\leq$3\\,pp). This is consistent with binomial sampling noise at $n = 50$ episodes per task ($\\sigma \\approx 7$\\,pp per task for $p \\approx 0.5$). At 30K, the third seed ($s_2 = 54.5\\%$) falls well within the null range, pulling the three-seed mean to 57.00\\% and rendering the earlier two-seed departure non-significant ($p = 0.131$). The seed-averaged curve shows no monotonic trend, confirming that SDF loss weight does not produce a progressive training signal.\n\n\n\\section{Oracle SDF Refinement Details}\n\\label{sec:appendix_oracle}\n\nAll oracle variants replace the learned SDF decoder with ground-truth distance fields computed from the simulation geometry. Each is evaluated for 160 episodes (4 tasks $\\times$ 40).\n\n\\paragraph{Oracle-adaptive.} At each timestep, if the ground-truth SDF at the end-effector position falls below a safety margin, the action is adjusted by a step in the negative SDF gradient direction. The step size $\\alpha$ is scaled inversely with distance: smaller distances produce larger corrections. This mimics an adaptive potential field controller.\n\n\\paragraph{Oracle-fixed.} Identical to Oracle-adaptive except the step size is fixed at $\\alpha = 0.005$ regardless of distance. This isolates the effect of step-size adaptation from the refinement geometry.\n\n\\paragraph{Oracle-feature.} Instead of modifying the action directly in Cartesian space, this variant applies the SDF gradient in the policy's latent feature space via backpropagation. The gradient of the ground-truth SDF value with respect to the intermediate features is computed and used to perturb the features before the action head decodes them. This tests whether geometric corrections are more effective when applied in the model's learned representation space. In practice, the feature-space variant fires on nearly every timestep (241.7 refinements per episode vs.\\ 14.2 for Cartesian variants) but with gradient magnitudes two orders of magnitude smaller (0.004--0.006 vs.\\ 0.18--0.49 in action space).\n\n\n\\section{Cross-Scene Validation: spatial\\_bowl}\n\\label{sec:appendix_spatial_bowl}\n\nTo test whether the SDF redundancy finding generalizes beyond the primary \\texttt{object\\_pudding} scene, we replicate the core comparison on \\texttt{spatial\\_bowl}, a separate SafeLIBERO suite with a distinct obstacle layout (moka pot, wine bottle, milk carton, red coffee mug, yellow book). Both conditions use the same architecture, hyperparameters, and two-phase training schedule (30K steps), differing only in the training scene.\n\nTable~\\ref{tab:spatial_bowl} reports the results. The SDF condition ($\\lambda = 0.005$) yields CAR of 11.5\\% versus 12.0\\% for LoRA-only, a $-$0.5\\,pp difference well within the noise floor, indicating that SDF is essentially identical to LoRA-only on this scene. TSR is comparable across conditions (49.0\\% vs.\\ 51.5\\%). Both evaluations use a single training seed (seed~0) and a single evaluation seed (seed~7, 200 episodes), so statistical power is limited; nevertheless, the qualitative pattern---SDF failing to improve over LoRA-only---is consistent with the \\texttt{object\\_pudding} findings.\n\n\\begin{table}[h]\n\\centering\n\\caption{Cross-scene validation on \\texttt{spatial\\_bowl} (single training seed, 200 episodes, 30K checkpoint). The $-$0.5\\,pp CAR difference is well within noise, consistent with the SDF redundancy observed on \\texttt{object\\_pudding}.}\n\\label{tab:spatial_bowl}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lcc}\n\\toprule\nCondition & CAR (\\%) & TSR (\\%) \\\\\n\\midrule\nLoRA-only & 12.0 & 49.0 \\\\\nSDF $\\lambda{=}0.005$ & 11.5 & 51.5 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe substantially lower CAR on \\texttt{spatial\\_bowl} relative to \\texttt{object\\_pudding} (11--12\\% vs.\\ 54--57\\%) reflects the greater scene difficulty: \\texttt{spatial\\_bowl} places five cluttered obstacles around the workspace, making collision-free manipulation considerably harder. This difficulty affects both conditions equally, and the SDF condition performs comparably ($\\Delta$CAR\\,=\\,$-$0.5\\,pp, well within noise), reinforcing the conclusion that EE-only SDF auxiliary supervision does not produce a meaningful collision avoidance benefit beyond LoRA-only fine-tuning.\n\n\n\\section{Evaluation Seed Robustness}\n\\label{sec:appendix_eval_seed}\n\nTo verify that our conclusions are not artifacts of a particular evaluation seed, we re-evaluate the LoRA-only (s0) and SDF $\\lambda{=}0.1$ (s0) checkpoints under multiple evaluation seeds. Table~\\ref{tab:eval_seed_car} reports aggregate CAR and Table~\\ref{tab:eval_seed_tsr} reports aggregate TSR.\n\n\\begin{table}[h]\n\\centering\n\\caption{Aggregate CAR (\\%) across evaluation seeds (200 episodes each). The LoRA vs.\\ SDF $\\lambda{=}0.1$ ordering is preserved across all tested seeds, and per-task CAR fingerprints (CP highest, BBQ lowest) remain invariant.}\n\\label{tab:eval_seed_car}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lcccccc}\n\\toprule\n& \\multicolumn{4}{c}{Per-task CAR (\\%)} & & \\\\\n\\cmidrule(lr){2-5}\nCondition (eval seed) & OJ & CP & Milk & BBQ & Agg. \\\\\n\\midrule\nLoRA s0 (seed\\,=\\,7)   & 56 & 74 & 70 & 26 & 56.5 \\\\\nLoRA s0 (seed\\,=\\,42)  & 60 & 70 & 68 & 28 & 56.5 \\\\\nLoRA s0 (seed\\,=\\,123) & 52 & 74 & 66 & 20 & 53.0 \\\\\nLoRA s0 mean $\\pm$ std & 56.0$\\pm$4.0 & 72.7$\\pm$2.3 & 68.0$\\pm$2.0 & 24.7$\\pm$4.2 & 55.3$\\pm$2.0 \\\\\n\\midrule\nSDF $\\lambda{=}0.1$ s0 (seed\\,=\\,7)   & 60 & 74 & 68 & 30 & 58.0 \\\\\nSDF $\\lambda{=}0.1$ s0 (seed\\,=\\,42)  & 64 & 74 & 74 & 24 & 59.0 \\\\\nSDF $\\lambda{=}0.1$ s0 (seed\\,=\\,123) & 62 & 76 & 74 & 22 & 58.5 \\\\\nSDF $\\lambda{=}0.1$ s0 (seed\\,=\\,256) & 60 & 72 & 66 & 30 & 57.0 \\\\\nSDF $\\lambda{=}0.1$ s0 mean $\\pm$ std & 61.5$\\pm$1.9 & 74.0$\\pm$1.6 & 70.5$\\pm$4.1 & 26.5$\\pm$4.1 & 58.1$\\pm$0.9 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\begin{table}[h]\n\\centering\n\\caption{Aggregate TSR (\\%) across evaluation seeds. TSR varies more across seeds than CAR (seed\\,=\\,42 yields consistently lower TSR), but the relative ordering between LoRA and SDF is stable.}\n\\label{tab:eval_seed_tsr}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lcccccc}\n\\toprule\n& \\multicolumn{4}{c}{Per-task TSR (\\%)} & & \\\\\n\\cmidrule(lr){2-5}\nCondition (eval seed) & OJ & CP & Milk & BBQ & Agg. \\\\\n\\midrule\nLoRA s0 (seed\\,=\\,7)   & 32 & 74 & 42 & 58 & 51.5 \\\\\nLoRA s0 (seed\\,=\\,42)  & 22 & 70 & 32 & 60 & 46.0 \\\\\nLoRA s0 (seed\\,=\\,123) & 30 & 70 & 40 & 62 & 50.5 \\\\\nLoRA s0 mean $\\pm$ std & 28.0$\\pm$5.3 & 71.3$\\pm$2.3 & 38.0$\\pm$5.3 & 60.0$\\pm$2.0 & 49.3$\\pm$3.0 \\\\\n\\midrule\nSDF $\\lambda{=}0.1$ s0 (seed\\,=\\,7)   & 28 & 78 & 44 & 60 & 52.5 \\\\\nSDF $\\lambda{=}0.1$ s0 (seed\\,=\\,42)  & 18 & 78 & 42 & 72 & 52.5 \\\\\nSDF $\\lambda{=}0.1$ s0 (seed\\,=\\,123) & 26 & 82 & 38 & 68 & 53.5 \\\\\nSDF $\\lambda{=}0.1$ s0 (seed\\,=\\,256) & 28 & 74 & 32 & 58 & 48.0 \\\\\nSDF $\\lambda{=}0.1$ s0 mean $\\pm$ std & 25.0$\\pm$4.8 & 78.0$\\pm$3.3 & 39.0$\\pm$5.4 & 64.5$\\pm$6.6 & 51.6$\\pm$2.4 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nAcross three matched evaluation seeds (7, 42, 123), the SDF $\\lambda{=}0.1$ condition yields higher aggregate CAR than LoRA-only in all cases ($\\Delta$CAR\\,=\\,+1.5, +2.5, +5.5\\,pp). Cross-seed CAR standard deviation is 2.0\\,pp for LoRA and 0.9\\,pp for SDF, both small relative to the within-seed per-task variation. The per-task ordering (CP highest, BBQ lowest) is preserved across all seeds and both conditions, reinforcing the conclusion that avoidance patterns reflect the spatial statistics of training demonstrations.\n\n\n\\section{Training Details}\n\\label{sec:appendix_training}\n\n\\paragraph{Architecture.}\nWe use LoRA~\\citep{hu2022lora} adapters injected into the PaliGemma vision encoder (rank 16, $\\alpha$=16) and the action expert (rank 32, $\\alpha$=32), following the configuration of OpenPi. The SDF decoder is a 4-layer MLP (hidden dimension 256) with skip connections, taking pooled suffix features (1024-d) and query points (3-d) as input. The end-effector extractor is a 2-layer MLP (1024 $\\to$ 256 $\\to$ 3).\n\n\\paragraph{Training schedule.}\nTraining proceeds in two phases:\n\\begin{itemize}\n    \\item \\textbf{Phase 1} (steps 0--5000): Backbone and LoRA parameters are frozen. Only the SDF decoder and EE extractor are trained, allowing them to learn meaningful representations before the policy adapts.\n    \\item \\textbf{Phase 2} (steps 5000--30000): LoRA parameters are unfrozen with a 100-step gradient warmup ramp. All auxiliary heads continue training jointly with the policy.\n\\end{itemize}\n\n\\paragraph{Hyperparameters.}\n\\begin{table}[h]\n\\centering\n\\caption{Training hyperparameters.}\n\\label{tab:hyperparams}\n\\begin{tabular}{ll}\n\\toprule\nParameter & Value \\\\\n\\midrule\nBase model & Pi0.5 (OpenPi, $\\sim$3.5B parameters) \\\\\nOptimizer & AdamW \\\\\nLearning rate & $2.5 \\times 10^{-5}$ (cosine decay to $\\mathrm{lr}/10$) \\\\\nWarmup steps & 1000 \\\\\nBatch size & 32 \\\\\nTotal steps & 30000 \\\\\n$\\lambda_\\mathrm{sdf}$ & \\{0.005, 0.01, 0.1\\} \\\\\n$\\lambda_\\mathrm{ee}$ & 0.01 \\\\\nSDF query points per step & 64 \\\\\nSDF clamp $\\delta$ & 0.05 m \\\\\nEikonal weight & 0.1 \\\\\nLoRA rank (vision) & 16 \\\\\nLoRA rank (action) & 32 \\\\\nPhase 1 duration & 5000 steps \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Evaluation protocol.}\nEach episode runs for at most 300 timesteps. The policy generates a 50-step action trajectory via flow matching and executes the first 5 steps before replanning. An episode terminates early upon task completion. Collision detection uses MuJoCo's built-in contact detection: any contact between the robot and a non-target object registers as a collision. For Pi0.5 evaluations, camera images are rotated 180$^\\circ$ to match the pre-training viewpoint convention; this correction was verified to restore TSR from ${\\sim}$5\\% to ${\\sim}$52\\% while leaving CAR comparable. Oracle variants use 40 episodes per task (160 total) with a single seed; all other configurations use 50 episodes per task (200 total).\n\n\\paragraph{Data.}\nWe use the SafeLIBERO object\\_pudding suite with pre-computed SDF ground truth. SDF values are computed offline from the obstacle mesh using a dense $64^3$ voxel grid. During training, 64 query points are randomly sampled per step from this grid.\n\n\\paragraph{Computational resources.}\nAll training and evaluation experiments are conducted on NVIDIA RTX PRO 6000 GPUs (96\\,GB). Phase~1 (5K steps) takes approximately 6 hours on a single GPU; Phase~2 (25K steps) takes approximately 32 hours. Evaluation of 200 episodes requires approximately 4 hours. Across 100+ experiments (training runs, evaluations, oracle variants, and ablations), the total computational budget is approximately 700 GPU-hours.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 15,
+        "oldLines": 7,
+        "newStart": 15,
+        "newLines": 7,
+        "lines": [
+          " ",
+          " \\begin{table}[h]",
+          " \\centering",
+          "-\\caption{Frozen rate (\\% of episodes with $d_\\mathrm{max} < \\tau_d$) across threshold values.}",
+          "+\\caption{Action-collapse rate (\\% of episodes with $d_\\mathrm{max} < \\tau_d$) across threshold values.}",
+          " \\label{tab:threshold_sensitivity}",
+          " \\begin{tabular}{lccc}",
+          " \\toprule"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01HtsAqFcj5Dw6Dbkb2gbWkr`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/appendix.tex",
+  "old_string": "classified as frozen, while all Pi0.5",
+  "new_string": "classified as action-collapsed, while all Pi0.5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "710f8aea-0475-4422-ae5c-53455a79b695",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KTJ1Rg4MfA56Z2M7WjKZHs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 231,
+      "cache_read_input_tokens": 65834,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 231
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-28T06:21:47.206Z_
+
+<details><summary>↩ Tool result · `toolu_01HtsAqFcj5Dw6Dbkb2gbWkr`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/appendix.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "369a5c3b-53ea-47af-920d-a216f70b997e",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/appendix.tex",
+    "oldString": "classified as frozen, while all Pi0.5",
+    "newString": "classified as action-collapsed, while all Pi0.5",
+    "originalFile": "\\section{Displacement Distribution}\n\\label{sec:appendix_displacement}\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\linewidth]{fig2_ee_displacement_distribution}\n\\caption{Displacement distribution across evaluation episodes. Pi0-family models (blue) cluster below 1\\,$\\mu$m, while Pi0.5 episodes (orange) exceed 200\\,mm. The five-order-of-magnitude gap makes $\\tau_d$ robust to any value in $[2, 200]$\\,mm.}\n\\label{fig:displacement}\n\\end{figure}\n\n\\section{Displacement Threshold Sensitivity Analysis}\n\\label{sec:appendix_threshold}\n\nTo validate the robustness of our displacement threshold $\\tau_d$, we evaluate the action-collapse rate across four orders of magnitude. Table~\\ref{tab:threshold_sensitivity} shows that the action-collapse pattern persists across all reasonable threshold choices: A1-LoRA exhibits near-total action collapse regardless of threshold, while Pi0.5+A1 maintains 0\\% action-collapse rate even at the most conservative setting.\n\n\\begin{table}[h]\n\\centering\n\\caption{Action-collapse rate (\\% of episodes with $d_\\mathrm{max} < \\tau_d$) across threshold values.}\n\\label{tab:threshold_sensitivity}\n\\begin{tabular}{lccc}\n\\toprule\n$\\tau_d$ & A1-LoRA (Pi0) & Pi0.5 Baseline & Pi0.5+A1 (SDF aux) \\\\\n\\midrule\n0.001 mm (1\\,$\\mu$m) & 73.9 & 0.0 & 0.0 \\\\\n0.1 mm  & 99.6 & 0.0 & 0.0 \\\\\n1.0 mm  & 100.0 & 0.0 & 0.0 \\\\\n10 mm   & 100.0 & 0.0 & 0.0 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe choice of $\\tau_d = 0.1$\\,mm represents a conservative threshold: displacement below this value is physically negligible in manipulation tasks where typical action magnitudes are 1--10\\,mm per step. Even at $\\tau_d = 1$\\,$\\mu$m, 73.9\\% of A1-LoRA safe episodes are classified as frozen, while all Pi0.5 episodes remain above threshold at every level tested.\n\nTable~\\ref{tab:dfcar_threshold} extends this analysis to dfCAR across fine-tuned Pi0.5 configurations. All eight model-seed combinations yield identical dfCAR for $\\tau_d \\in [2, 200]$\\,mm. At $\\tau_d = 300$\\,mm, 0--2 episodes per seed fall below threshold (displacement 200--300\\,mm), causing $\\leq$0.5\\,pp deviation. Our conclusions hold across the entire tested range.\n\n\\begin{table}[h]\n\\centering\n\\caption{dfCAR (\\%) across displacement thresholds for fine-tuned Pi0.5 configurations ($n = 200$ episodes per seed). Values are identical across $\\tau_d \\in [2, 200]$\\,mm; at $\\tau_d = 300$\\,mm, at most 2 episodes are excluded.}\n\\label{tab:dfcar_threshold}\n\\vspace{2pt}\n\\footnotesize\n\\begin{tabular}{lcccccccc}\n\\toprule\n& \\multicolumn{8}{c}{$\\tau_d$ (mm)} \\\\\n\\cmidrule(lr){2-9}\nCondition & 2 & 5 & 10 & 20 & 50 & 100 & 200 & 300 \\\\\n\\midrule\nLoRA s0            & 56.5 & 56.5 & 56.5 & 56.5 & 56.5 & 56.5 & 56.5 & 56.5 \\\\\nLoRA s1            & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 \\\\\nSDF $\\lambda{=}0.005$ s0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.1 \\\\\nSDF $\\lambda{=}0.005$ s1 & 54.0 & 54.0 & 54.0 & 54.0 & 54.0 & 54.0 & 54.0 & 54.0 \\\\\nSDF $\\lambda{=}0.005$ s2 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.3 \\\\\nSDF $\\lambda{=}0.01$ s0  & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 \\\\\nSDF $\\lambda{=}0.01$ s1  & 57.5 & 57.5 & 57.5 & 57.5 & 57.5 & 57.5 & 57.5 & 57.1 \\\\\nSDF $\\lambda{=}0.01$ s2  & 54.5 & 54.5 & 54.5 & 54.5 & 54.5 & 54.5 & 54.5 & 54.0 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\n\\section{Per-Task TSR Breakdown}\\label{sec:appendix_tsr_pertask}\n\nTable~\\ref{tab:per_task_tsr} decomposes TSR by task for the avoidance source attribution experiments (Section~\\ref{sec:avoidance_source}). All tasks retain meaningful success rates after fine-tuning, with Chocolate Pudding most resilient and Orange Juice most affected.\n\n\\begin{table}[h]\n\\centering\n\\caption{Per-task TSR (\\%) at 30K training steps. Baseline reports the unified seed-7 re-evaluation (aggregate TSR\\,=\\,71.5\\%). LoRA-only reports 3-seed means (re-evaluated with unified seed-7 protocol); SDF conditions report 3-seed means.}\n\\label{tab:per_task_tsr}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\nTask & Pi0.5 Base & LoRA-only & SDF $\\lambda{=}0.005$ & SDF $\\lambda{=}0.01$ \\\\\n & (seed\\,=\\,7) & (3 seeds) & (3 seeds) & (3 seeds) \\\\\n\\midrule\nOrange Juice      & 74.0 & 30.0 & 33.3 & 24.7 \\\\\nChoco.\\ Pudding   & 80.0 & 70.7 & 78.0 & 76.7 \\\\\nMilk              & 66.0 & 44.7 & 35.3 & 48.7 \\\\\nBBQ Sauce         & 66.0 & 60.7 & 69.3 & 65.3 \\\\\n\\midrule\nMean              & 71.5 & 51.5 & 54.0 & 53.8 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Per-Task CAR Breakdown}\\label{sec:appendix_pertask_car}\n\nTable~\\ref{tab:per_task_car} decomposes CAR by task for all fine-tuned conditions, supporting the claim that per-task ordering is preserved across SDF loss weights (\\S\\ref{sec:avoidance_source}). Chocolate Pudding is consistently highest and BBQ Sauce consistently lowest across all conditions, including $\\lambda = 0.1$. The intermediate tasks (Orange Juice and Milk) exchange rank between seeds but remain bounded by the extremes. This invariance indicates that avoidance patterns reflect the spatial statistics of collision-free demonstrations rather than geometric supervision.\n\n\\begin{table}[h]\n\\centering\n\\caption{Per-task CAR (\\%) at 30K steps. $\\lambda{=}0.005$, $\\lambda{=}0.01$, and $\\lambda{=}0.1$ report 3-seed means alongside individual seeds. Per-task ordering (CP highest, BBQ lowest) is preserved across all conditions.}\n\\label{tab:per_task_car}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lccccc}\n\\toprule\nCondition & OJ & CP & Milk & BBQ & Agg. \\\\\n\\midrule\nLoRA s0 & 56 & 74 & 70 & 26 & 56.5 \\\\\nLoRA s1 & 54 & 68 & 72 & 16 & 52.5 \\\\\nLoRA s2 & 56 & 76 & 62 & 26 & 55.0 \\\\\nSDF $\\lambda{=}0.005$ (3-seed) & 54.0 & 72.7 & 71.3 & 20.0 & 54.5 \\\\\nSDF $\\lambda{=}0.01$ (3-seed) & 57.3 & 72.7 & 72.0 & 23.3 & 56.3 \\\\\nSDF $\\lambda{=}0.1$ s0 & 60 & 74 & 68 & 30 & 58.0 \\\\\nSDF $\\lambda{=}0.1$ s1 & 66 & 72 & 70 & 26 & 58.5 \\\\\nSDF $\\lambda{=}0.1$ s2 & 56 & 76 & 70 & 16 & 54.5 \\\\\nSDF $\\lambda{=}0.1$ (3-seed) & 60.7 & 74.0 & 69.3 & 24.0 & 57.0 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nFor the $\\lambda = 0.1$ condition, seed~1 records \\texttt{avg\\_max\\_obstacle\\_displacement} of 0.0553\\,m (per-task: OJ\\,=\\,0.033, CP\\,=\\,0.055, Milk\\,=\\,0.041, BBQ\\,=\\,0.093), comparable to other fine-tuned conditions and consistent with active manipulation rather than frozen behavior.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\linewidth]{fig_pertask_car_fingerprint}\n\\caption{Per-task CAR fingerprint across conditions. Each bar shows the 3-seed mean; dots indicate individual seeds. The task ordering (chocolate\\_pudding highest, bbq\\_sauce lowest) is preserved across all $\\lambda$ values, confirming that avoidance patterns reflect the demonstration distribution rather than geometric supervision. LoRA-only: 3-seed mean.}\n\\label{fig:pertask_fingerprint}\n\\end{figure}\n\n\\section{Safe Success Rate Analysis}\\label{sec:appendix_ssr}\n\nTable~\\ref{tab:ssr} reports the Safe Success Rate (SSR\\,=\\,TSR\\,$\\cap$\\,CAR), the fraction of episodes achieving both task completion and collision avoidance. The SSR/TSR ratio quantifies the proportion of successful episodes that are also collision-free, controlling for task-completion rate.\n\n\\begin{table}[h]\n\\centering\n\\caption{SSR and SSR/TSR ratio across conditions. The ratio increase from 0.39 (baseline) to 0.51--0.60 (fine-tuned) indicates that CAR gains reflect learned safer execution, not reduced task exposure.}\n\\label{tab:ssr}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\nCondition & TSR (\\%) & CAR (\\%) & SSR (\\%) & SSR/TSR \\\\\n\\midrule\nPi0.5 baseline & 71.5 & 28.5 & 28.0 & 0.39 \\\\\nLoRA-only (3 seeds) & 51.5 & 54.67 & 27.7 & 0.54 \\\\\nSDF $\\lambda{=}0.005$ (3 seeds) & 54.0 & 54.5 & 27.8 & 0.51 \\\\\nSDF $\\lambda{=}0.01$ (3 seeds) & 53.8 & 56.33 & 30.2 & 0.56 \\\\\nSDF $\\lambda{=}0.1$ (3 seeds) & 50.2 & 57.00 & 30.2 & 0.60 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Per-Task Oracle Analysis}\n\\label{sec:appendix_pertask}\n\\label{sec:appendix_pertask_oracle}\n\nTable~\\ref{tab:oracle_pertask} shows per-task CAR for oracle refinement. On task~1 (\\texttt{chocolate\\_pudding}), where the EE is the primary collision body and the LoRA baseline achieves only 46.0\\% CAR, Oracle-adaptive improves to 55.0\\% and Oracle-feature to 47.5\\%. On the remaining tasks, all oracle variants degrade: Oracle-adaptive reduces task~0 (\\texttt{orange\\_juice}) from 96.0\\% to 82.5\\% and task~2 (\\texttt{milk}) from 98.0\\% to 77.5\\%. The SDF gradient pushes the EE away from the nearest surface, but the resulting joint-space displacement rotates intermediate arm links into obstacle volumes.\n\nThe feature-space oracle fires on nearly every timestep (241.7 refinements/episode vs.\\ 14.2 for Cartesian variants) but with gradient magnitudes two orders of magnitude smaller (0.004--0.006 vs.\\ 0.18--0.49), and CAR (76.9\\%) shows no advantage despite 17$\\times$ more steps. The A3 learned SDF never triggers refinement (0 steps/episode), as its outputs avoid the activation threshold.\n\n\\begin{table}[h]\n\\centering\n\\caption{Per-task CAR (\\%) for oracle SDF refinement variants. EE-only refinement helps only on task~1 where the EE is the primary collision body; on other tasks it trades one collision site for another.}\n\\label{tab:oracle_pertask}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lccccc}\n\\toprule\nMethod & Task 0 & Task 1 & Task 2 & Task 3 & Agg. \\\\\n\\midrule\nLoRA baseline & 96.0 & 46.0 & 98.0 & 88.0 & 82.0 \\\\\n\\midrule\nOracle-adaptive & 82.5 & 55.0 & 77.5 & 85.0 & 75.0 \\\\\nOracle-fixed & 85.0 & 50.0 & 77.5 & 80.0 & 73.1 \\\\\nOracle-feature & 90.0 & 47.5 & 82.5 & 87.5 & 76.9 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\n\\section{Null Distribution for SDF Loss Weight Analysis}\n\\label{sec:appendix_null}\n\nWe construct a null distribution by pooling the three LoRA-only seeds and three $\\lambda = 0.005$ seeds into six per-seed CAR measurements: 56.5\\% (LoRA s0, re-evaluated), 52.5\\% (LoRA s1), 55.0\\% (LoRA s2), 57.0\\% ($\\lambda{=}0.005$ s0), 54.0\\% ($\\lambda{=}0.005$ s1), 52.5\\% ($\\lambda{=}0.005$ s2), yielding mean 54.58\\% and standard deviation 1.93\\% (Bessel-corrected, $n{-}1 = 5$). We treat these as exchangeable because SDF at $\\lambda = 0.005$ produces no separation from LoRA-only. The $\\lambda = 0.01$ mean of 56.33\\% falls within $0.8\\sigma$ of this null ($p > 0.1$), consistent with seed-to-seed variation rather than a treatment effect. The $\\lambda = 0.1$ 30K mean of 57.00\\% (3 seeds: 58.0\\%, 58.5\\%, 54.5\\%) yields a two-tailed permutation $p = 0.131$ (one-tailed $p = 0.071$). The result is non-significant at conventional thresholds ($\\alpha = 0.05$).\n\nThe permutation test makes no distributional assumptions. Pooling the six null values $\\{56.5, 52.5, 55, 57, 54, 52.5\\}$ and three $\\lambda = 0.1$ values $\\{58, 58.5, 54.5\\}$ into nine measurements, we enumerate all $\\binom{9}{3} = 84$ three-element combinations and compute the fraction whose mean $\\geq 57.00$. Six combinations meet this threshold, yielding an exact one-tailed permutation $p = 6/84 \\approx 0.071$. For the two-tailed test, we additionally count combinations on the lower tail with equal or greater distance from the pooled mean, yielding $p = 11/84 \\approx 0.131$. With the third seed ($s_2 = 54.5\\%$) pulling the $\\lambda = 0.1$ mean from 58.25\\% (2 seeds) down to 57.00\\%, the marginal signal observed at $n = 2$ dissolves into seed-to-seed variance.\n\n\\paragraph{Alternative null construction (Null~A).}\nIf only the three LoRA-only seeds are used as the null pool ($\\{56.5, 52.5, 55.0\\}$), we obtain $\\binom{6}{3} = 20$ permutations for each comparison. For $\\lambda = 0.1$ (treatment mean 57.00\\%): one-tailed $p = 3/20 = 0.150$, two-tailed $p = 6/20 = 0.300$. For $\\lambda = 0.01$ (treatment mean 56.33\\%): one-tailed $p = 4/20 = 0.200$, two-tailed $p = 8/20 = 0.400$. Under the broader Null~B pool, $\\lambda = 0.01$ yields one-tailed $p = 10/84 \\approx 0.119$, two-tailed $p = 22/84 \\approx 0.262$. All tests are non-significant at $\\alpha = 0.05$; the narrower Null~A yields \\emph{larger} $p$-values because the LoRA-only pool already contains a high seed (56.5\\%), making the treatment means less extreme by comparison.\n\nA Phase~2 ablation reinforces this conclusion. Setting $\\lambda = 0$ during Phase~2 (steps 5K--18K), so that SDF supervision is active only during auxiliary head warmup (Phase~1, steps 0--5K), yields CAR of 58.0\\% at the 18K checkpoint (13K steps of Phase~2 training, single seed, s2).\\footnote{Full 30K training did not complete due to disk constraints; this result uses the last complete checkpoint at step 18K.} This value lies within the null range, indicating that SDF training produces no lasting behavioral effect on collision avoidance.\n\n\\section{Step-wise Checkpoint Analysis for \\texorpdfstring{$\\lambda = 0.1$}{lambda = 0.1}}\n\\label{sec:appendix_stepwise}\n\nTable~\\ref{tab:stepwise_lambda01} reports per-seed CAR at seven checkpoints for $\\lambda = 0.1$. Seeds~0 and~1 are available at 16K, 20K, 22K, and 30K; 24K--28K report seed-0 only; seed~2 is available at 30K only. The seed-0 curve shows no monotonic trend through 28K. At 30K, the addition of seed~2 (54.5\\%) pulls the three-seed mean to 57.00\\%, within the null band ($p = 0.131$).\n\n\\begin{table}[h]\n\\centering\n\\caption{Per-seed CAR (\\%) at training checkpoints for $\\lambda = 0.1$ (200 episodes each). 24K--28K: seed-0 only. The 30K checkpoint includes all three seeds; the three-seed mean (57.00\\%) remains within the null band ($p = 0.131$, two-tailed permutation).}\n\\label{tab:stepwise_lambda01}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\nCheckpoint & Seed 0 & Seed 1 & Seed 2 & Mean \\\\\n\\midrule\n16K steps & 55.5 & 56.0 & -- & 55.75 \\\\\n20K steps & 55.0 & 56.0 & -- & 55.5 \\\\\n22K steps & 60.5 & 56.5 & -- & 58.5 \\\\\n24K steps & 52.5 & -- & -- & -- \\\\\n26K steps & 53.5 & -- & -- & -- \\\\\n28K steps & 54.5 & -- & -- & -- \\\\\n30K steps & 58.0 & 58.5 & 54.5 & 57.00 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nIndividual seeds exhibit checkpoint-to-checkpoint CAR fluctuations of up to 8\\,pp (seed~0: 52.5--60.5\\%), larger than the cross-seed standard deviation at any fixed checkpoint ($\\leq$3\\,pp). This is consistent with binomial sampling noise at $n = 50$ episodes per task ($\\sigma \\approx 7$\\,pp per task for $p \\approx 0.5$). At 30K, the third seed ($s_2 = 54.5\\%$) falls well within the null range, pulling the three-seed mean to 57.00\\% and rendering the earlier two-seed departure non-significant ($p = 0.131$). The seed-averaged curve shows no monotonic trend, confirming that SDF loss weight does not produce a progressive training signal.\n\n\n\\section{Oracle SDF Refinement Details}\n\\label{sec:appendix_oracle}\n\nAll oracle variants replace the learned SDF decoder with ground-truth distance fields computed from the simulation geometry. Each is evaluated for 160 episodes (4 tasks $\\times$ 40).\n\n\\paragraph{Oracle-adaptive.} At each timestep, if the ground-truth SDF at the end-effector position falls below a safety margin, the action is adjusted by a step in the negative SDF gradient direction. The step size $\\alpha$ is scaled inversely with distance: smaller distances produce larger corrections. This mimics an adaptive potential field controller.\n\n\\paragraph{Oracle-fixed.} Identical to Oracle-adaptive except the step size is fixed at $\\alpha = 0.005$ regardless of distance. This isolates the effect of step-size adaptation from the refinement geometry.\n\n\\paragraph{Oracle-feature.} Instead of modifying the action directly in Cartesian space, this variant applies the SDF gradient in the policy's latent feature space via backpropagation. The gradient of the ground-truth SDF value with respect to the intermediate features is computed and used to perturb the features before the action head decodes them. This tests whether geometric corrections are more effective when applied in the model's learned representation space. In practice, the feature-space variant fires on nearly every timestep (241.7 refinements per episode vs.\\ 14.2 for Cartesian variants) but with gradient magnitudes two orders of magnitude smaller (0.004--0.006 vs.\\ 0.18--0.49 in action space).\n\n\n\\section{Cross-Scene Validation: spatial\\_bowl}\n\\label{sec:appendix_spatial_bowl}\n\nTo test whether the SDF redundancy finding generalizes beyond the primary \\texttt{object\\_pudding} scene, we replicate the core comparison on \\texttt{spatial\\_bowl}, a separate SafeLIBERO suite with a distinct obstacle layout (moka pot, wine bottle, milk carton, red coffee mug, yellow book). Both conditions use the same architecture, hyperparameters, and two-phase training schedule (30K steps), differing only in the training scene.\n\nTable~\\ref{tab:spatial_bowl} reports the results. The SDF condition ($\\lambda = 0.005$) yields CAR of 11.5\\% versus 12.0\\% for LoRA-only, a $-$0.5\\,pp difference well within the noise floor, indicating that SDF is essentially identical to LoRA-only on this scene. TSR is comparable across conditions (49.0\\% vs.\\ 51.5\\%). Both evaluations use a single training seed (seed~0) and a single evaluation seed (seed~7, 200 episodes), so statistical power is limited; nevertheless, the qualitative pattern---SDF failing to improve over LoRA-only---is consistent with the \\texttt{object\\_pudding} findings.\n\n\\begin{table}[h]\n\\centering\n\\caption{Cross-scene validation on \\texttt{spatial\\_bowl} (single training seed, 200 episodes, 30K checkpoint). The $-$0.5\\,pp CAR difference is well within noise, consistent with the SDF redundancy observed on \\texttt{object\\_pudding}.}\n\\label{tab:spatial_bowl}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lcc}\n\\toprule\nCondition & CAR (\\%) & TSR (\\%) \\\\\n\\midrule\nLoRA-only & 12.0 & 49.0 \\\\\nSDF $\\lambda{=}0.005$ & 11.5 & 51.5 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe substantially lower CAR on \\texttt{spatial\\_bowl} relative to \\texttt{object\\_pudding} (11--12\\% vs.\\ 54--57\\%) reflects the greater scene difficulty: \\texttt{spatial\\_bowl} places five cluttered obstacles around the workspace, making collision-free manipulation considerably harder. This difficulty affects both conditions equally, and the SDF condition performs comparably ($\\Delta$CAR\\,=\\,$-$0.5\\,pp, well within noise), reinforcing the conclusion that EE-only SDF auxiliary supervision does not produce a meaningful collision avoidance benefit beyond LoRA-only fine-tuning.\n\n\n\\section{Evaluation Seed Robustness}\n\\label{sec:appendix_eval_seed}\n\nTo verify that our conclusions are not artifacts of a particular evaluation seed, we re-evaluate the LoRA-only (s0) and SDF $\\lambda{=}0.1$ (s0) checkpoints under multiple evaluation seeds. Table~\\ref{tab:eval_seed_car} reports aggregate CAR and Table~\\ref{tab:eval_seed_tsr} reports aggregate TSR.\n\n\\begin{table}[h]\n\\centering\n\\caption{Aggregate CAR (\\%) across evaluation seeds (200 episodes each). The LoRA vs.\\ SDF $\\lambda{=}0.1$ ordering is preserved across all tested seeds, and per-task CAR fingerprints (CP highest, BBQ lowest) remain invariant.}\n\\label{tab:eval_seed_car}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lcccccc}\n\\toprule\n& \\multicolumn{4}{c}{Per-task CAR (\\%)} & & \\\\\n\\cmidrule(lr){2-5}\nCondition (eval seed) & OJ & CP & Milk & BBQ & Agg. \\\\\n\\midrule\nLoRA s0 (seed\\,=\\,7)   & 56 & 74 & 70 & 26 & 56.5 \\\\\nLoRA s0 (seed\\,=\\,42)  & 60 & 70 & 68 & 28 & 56.5 \\\\\nLoRA s0 (seed\\,=\\,123) & 52 & 74 & 66 & 20 & 53.0 \\\\\nLoRA s0 mean $\\pm$ std & 56.0$\\pm$4.0 & 72.7$\\pm$2.3 & 68.0$\\pm$2.0 & 24.7$\\pm$4.2 & 55.3$\\pm$2.0 \\\\\n\\midrule\nSDF $\\lambda{=}0.1$ s0 (seed\\,=\\,7)   & 60 & 74 & 68 & 30 & 58.0 \\\\\nSDF $\\lambda{=}0.1$ s0 (seed\\,=\\,42)  & 64 & 74 & 74 & 24 & 59.0 \\\\\nSDF $\\lambda{=}0.1$ s0 (seed\\,=\\,123) & 62 & 76 & 74 & 22 & 58.5 \\\\\nSDF $\\lambda{=}0.1$ s0 (seed\\,=\\,256) & 60 & 72 & 66 & 30 & 57.0 \\\\\nSDF $\\lambda{=}0.1$ s0 mean $\\pm$ std & 61.5$\\pm$1.9 & 74.0$\\pm$1.6 & 70.5$\\pm$4.1 & 26.5$\\pm$4.1 & 58.1$\\pm$0.9 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\begin{table}[h]\n\\centering\n\\caption{Aggregate TSR (\\%) across evaluation seeds. TSR varies more across seeds than CAR (seed\\,=\\,42 yields consistently lower TSR), but the relative ordering between LoRA and SDF is stable.}\n\\label{tab:eval_seed_tsr}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lcccccc}\n\\toprule\n& \\multicolumn{4}{c}{Per-task TSR (\\%)} & & \\\\\n\\cmidrule(lr){2-5}\nCondition (eval seed) & OJ & CP & Milk & BBQ & Agg. \\\\\n\\midrule\nLoRA s0 (seed\\,=\\,7)   & 32 & 74 & 42 & 58 & 51.5 \\\\\nLoRA s0 (seed\\,=\\,42)  & 22 & 70 & 32 & 60 & 46.0 \\\\\nLoRA s0 (seed\\,=\\,123) & 30 & 70 & 40 & 62 & 50.5 \\\\\nLoRA s0 mean $\\pm$ std & 28.0$\\pm$5.3 & 71.3$\\pm$2.3 & 38.0$\\pm$5.3 & 60.0$\\pm$2.0 & 49.3$\\pm$3.0 \\\\\n\\midrule\nSDF $\\lambda{=}0.1$ s0 (seed\\,=\\,7)   & 28 & 78 & 44 & 60 & 52.5 \\\\\nSDF $\\lambda{=}0.1$ s0 (seed\\,=\\,42)  & 18 & 78 & 42 & 72 & 52.5 \\\\\nSDF $\\lambda{=}0.1$ s0 (seed\\,=\\,123) & 26 & 82 & 38 & 68 & 53.5 \\\\\nSDF $\\lambda{=}0.1$ s0 (seed\\,=\\,256) & 28 & 74 & 32 & 58 & 48.0 \\\\\nSDF $\\lambda{=}0.1$ s0 mean $\\pm$ std & 25.0$\\pm$4.8 & 78.0$\\pm$3.3 & 39.0$\\pm$5.4 & 64.5$\\pm$6.6 & 51.6$\\pm$2.4 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nAcross three matched evaluation seeds (7, 42, 123), the SDF $\\lambda{=}0.1$ condition yields higher aggregate CAR than LoRA-only in all cases ($\\Delta$CAR\\,=\\,+1.5, +2.5, +5.5\\,pp). Cross-seed CAR standard deviation is 2.0\\,pp for LoRA and 0.9\\,pp for SDF, both small relative to the within-seed per-task variation. The per-task ordering (CP highest, BBQ lowest) is preserved across all seeds and both conditions, reinforcing the conclusion that avoidance patterns reflect the spatial statistics of training demonstrations.\n\n\n\\section{Training Details}\n\\label{sec:appendix_training}\n\n\\paragraph{Architecture.}\nWe use LoRA~\\citep{hu2022lora} adapters injected into the PaliGemma vision encoder (rank 16, $\\alpha$=16) and the action expert (rank 32, $\\alpha$=32), following the configuration of OpenPi. The SDF decoder is a 4-layer MLP (hidden dimension 256) with skip connections, taking pooled suffix features (1024-d) and query points (3-d) as input. The end-effector extractor is a 2-layer MLP (1024 $\\to$ 256 $\\to$ 3).\n\n\\paragraph{Training schedule.}\nTraining proceeds in two phases:\n\\begin{itemize}\n    \\item \\textbf{Phase 1} (steps 0--5000): Backbone and LoRA parameters are frozen. Only the SDF decoder and EE extractor are trained, allowing them to learn meaningful representations before the policy adapts.\n    \\item \\textbf{Phase 2} (steps 5000--30000): LoRA parameters are unfrozen with a 100-step gradient warmup ramp. All auxiliary heads continue training jointly with the policy.\n\\end{itemize}\n\n\\paragraph{Hyperparameters.}\n\\begin{table}[h]\n\\centering\n\\caption{Training hyperparameters.}\n\\label{tab:hyperparams}\n\\begin{tabular}{ll}\n\\toprule\nParameter & Value \\\\\n\\midrule\nBase model & Pi0.5 (OpenPi, $\\sim$3.5B parameters) \\\\\nOptimizer & AdamW \\\\\nLearning rate & $2.5 \\times 10^{-5}$ (cosine decay to $\\mathrm{lr}/10$) \\\\\nWarmup steps & 1000 \\\\\nBatch size & 32 \\\\\nTotal steps & 30000 \\\\\n$\\lambda_\\mathrm{sdf}$ & \\{0.005, 0.01, 0.1\\} \\\\\n$\\lambda_\\mathrm{ee}$ & 0.01 \\\\\nSDF query points per step & 64 \\\\\nSDF clamp $\\delta$ & 0.05 m \\\\\nEikonal weight & 0.1 \\\\\nLoRA rank (vision) & 16 \\\\\nLoRA rank (action) & 32 \\\\\nPhase 1 duration & 5000 steps \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Evaluation protocol.}\nEach episode runs for at most 300 timesteps. The policy generates a 50-step action trajectory via flow matching and executes the first 5 steps before replanning. An episode terminates early upon task completion. Collision detection uses MuJoCo's built-in contact detection: any contact between the robot and a non-target object registers as a collision. For Pi0.5 evaluations, camera images are rotated 180$^\\circ$ to match the pre-training viewpoint convention; this correction was verified to restore TSR from ${\\sim}$5\\% to ${\\sim}$52\\% while leaving CAR comparable. Oracle variants use 40 episodes per task (160 total) with a single seed; all other configurations use 50 episodes per task (200 total).\n\n\\paragraph{Data.}\nWe use the SafeLIBERO object\\_pudding suite with pre-computed SDF ground truth. SDF values are computed offline from the obstacle mesh using a dense $64^3$ voxel grid. During training, 64 query points are randomly sampled per step from this grid.\n\n\\paragraph{Computational resources.}\nAll training and evaluation experiments are conducted on NVIDIA RTX PRO 6000 GPUs (96\\,GB). Phase~1 (5K steps) takes approximately 6 hours on a single GPU; Phase~2 (25K steps) takes approximately 32 hours. Evaluation of 200 episodes requires approximately 4 hours. Across 100+ experiments (training runs, evaluations, oracle variants, and ablations), the total computational budget is approximately 700 GPU-hours.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 29,
+        "oldLines": 7,
+        "newStart": 29,
+        "newLines": 7,
+        "lines": [
+          " \\end{tabular}",
+          " \\end{table}",
+          " ",
+          "-The choice of $\\tau_d = 0.1$\\,mm represents a conservative threshold: displacement below this value is physically negligible in manipulation tasks where typical action magnitudes are 1--10\\,mm per step. Even at $\\tau_d = 1$\\,$\\mu$m, 73.9\\% of A1-LoRA safe episodes are classified as frozen, while all Pi0.5 episodes remain above threshold at every level tested.",
+          "+The choice of $\\tau_d = 0.1$\\,mm represents a conservative threshold: displacement below this value is physically negligible in manipulation tasks where typical action magnitudes are 1--10\\,mm per step. Even at $\\tau_d = 1$\\,$\\mu$m, 73.9\\% of A1-LoRA safe episodes are classified as action-collapsed, while all Pi0.5 episodes remain above threshold at every level tested.",
+          " ",
+          " Table~\\ref{tab:dfcar_threshold} extends this analysis to dfCAR across fine-tuned Pi0.5 configurations. All eight model-seed combinations yield identical dfCAR for $\\tau_d \\in [2, 200]$\\,mm. At $\\tau_d = 300$\\,mm, 0--2 episodes per seed fall below threshold (displacement 200--300\\,mm), causing $\\leq$0.5\\,pp deviation. Our conclusions hold across the entire tested range.",
+          " "
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01GDTP8gkRT76SH4hivdX3cm`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/appendix.tex",
+  "old_string": "rather than frozen behavior.",
+  "new_string": "rather than action-collapsed behavior."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "c8346820-41c2-4714-8809-44175dd1f808",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KTJ1Rg4MfA56Z2M7WjKZHs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 231,
+      "cache_read_input_tokens": 65834,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 231
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-28T06:21:48.078Z_
+
+<details><summary>↩ Tool result · `toolu_01GDTP8gkRT76SH4hivdX3cm`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/appendix.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "7b905abf-21e8-47a8-9822-70c70a9af558",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/appendix.tex",
+    "oldString": "rather than frozen behavior.",
+    "newString": "rather than action-collapsed behavior.",
+    "originalFile": "\\section{Displacement Distribution}\n\\label{sec:appendix_displacement}\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\linewidth]{fig2_ee_displacement_distribution}\n\\caption{Displacement distribution across evaluation episodes. Pi0-family models (blue) cluster below 1\\,$\\mu$m, while Pi0.5 episodes (orange) exceed 200\\,mm. The five-order-of-magnitude gap makes $\\tau_d$ robust to any value in $[2, 200]$\\,mm.}\n\\label{fig:displacement}\n\\end{figure}\n\n\\section{Displacement Threshold Sensitivity Analysis}\n\\label{sec:appendix_threshold}\n\nTo validate the robustness of our displacement threshold $\\tau_d$, we evaluate the action-collapse rate across four orders of magnitude. Table~\\ref{tab:threshold_sensitivity} shows that the action-collapse pattern persists across all reasonable threshold choices: A1-LoRA exhibits near-total action collapse regardless of threshold, while Pi0.5+A1 maintains 0\\% action-collapse rate even at the most conservative setting.\n\n\\begin{table}[h]\n\\centering\n\\caption{Action-collapse rate (\\% of episodes with $d_\\mathrm{max} < \\tau_d$) across threshold values.}\n\\label{tab:threshold_sensitivity}\n\\begin{tabular}{lccc}\n\\toprule\n$\\tau_d$ & A1-LoRA (Pi0) & Pi0.5 Baseline & Pi0.5+A1 (SDF aux) \\\\\n\\midrule\n0.001 mm (1\\,$\\mu$m) & 73.9 & 0.0 & 0.0 \\\\\n0.1 mm  & 99.6 & 0.0 & 0.0 \\\\\n1.0 mm  & 100.0 & 0.0 & 0.0 \\\\\n10 mm   & 100.0 & 0.0 & 0.0 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe choice of $\\tau_d = 0.1$\\,mm represents a conservative threshold: displacement below this value is physically negligible in manipulation tasks where typical action magnitudes are 1--10\\,mm per step. Even at $\\tau_d = 1$\\,$\\mu$m, 73.9\\% of A1-LoRA safe episodes are classified as action-collapsed, while all Pi0.5 episodes remain above threshold at every level tested.\n\nTable~\\ref{tab:dfcar_threshold} extends this analysis to dfCAR across fine-tuned Pi0.5 configurations. All eight model-seed combinations yield identical dfCAR for $\\tau_d \\in [2, 200]$\\,mm. At $\\tau_d = 300$\\,mm, 0--2 episodes per seed fall below threshold (displacement 200--300\\,mm), causing $\\leq$0.5\\,pp deviation. Our conclusions hold across the entire tested range.\n\n\\begin{table}[h]\n\\centering\n\\caption{dfCAR (\\%) across displacement thresholds for fine-tuned Pi0.5 configurations ($n = 200$ episodes per seed). Values are identical across $\\tau_d \\in [2, 200]$\\,mm; at $\\tau_d = 300$\\,mm, at most 2 episodes are excluded.}\n\\label{tab:dfcar_threshold}\n\\vspace{2pt}\n\\footnotesize\n\\begin{tabular}{lcccccccc}\n\\toprule\n& \\multicolumn{8}{c}{$\\tau_d$ (mm)} \\\\\n\\cmidrule(lr){2-9}\nCondition & 2 & 5 & 10 & 20 & 50 & 100 & 200 & 300 \\\\\n\\midrule\nLoRA s0            & 56.5 & 56.5 & 56.5 & 56.5 & 56.5 & 56.5 & 56.5 & 56.5 \\\\\nLoRA s1            & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 \\\\\nSDF $\\lambda{=}0.005$ s0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.1 \\\\\nSDF $\\lambda{=}0.005$ s1 & 54.0 & 54.0 & 54.0 & 54.0 & 54.0 & 54.0 & 54.0 & 54.0 \\\\\nSDF $\\lambda{=}0.005$ s2 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.3 \\\\\nSDF $\\lambda{=}0.01$ s0  & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 \\\\\nSDF $\\lambda{=}0.01$ s1  & 57.5 & 57.5 & 57.5 & 57.5 & 57.5 & 57.5 & 57.5 & 57.1 \\\\\nSDF $\\lambda{=}0.01$ s2  & 54.5 & 54.5 & 54.5 & 54.5 & 54.5 & 54.5 & 54.5 & 54.0 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\n\\section{Per-Task TSR Breakdown}\\label{sec:appendix_tsr_pertask}\n\nTable~\\ref{tab:per_task_tsr} decomposes TSR by task for the avoidance source attribution experiments (Section~\\ref{sec:avoidance_source}). All tasks retain meaningful success rates after fine-tuning, with Chocolate Pudding most resilient and Orange Juice most affected.\n\n\\begin{table}[h]\n\\centering\n\\caption{Per-task TSR (\\%) at 30K training steps. Baseline reports the unified seed-7 re-evaluation (aggregate TSR\\,=\\,71.5\\%). LoRA-only reports 3-seed means (re-evaluated with unified seed-7 protocol); SDF conditions report 3-seed means.}\n\\label{tab:per_task_tsr}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\nTask & Pi0.5 Base & LoRA-only & SDF $\\lambda{=}0.005$ & SDF $\\lambda{=}0.01$ \\\\\n & (seed\\,=\\,7) & (3 seeds) & (3 seeds) & (3 seeds) \\\\\n\\midrule\nOrange Juice      & 74.0 & 30.0 & 33.3 & 24.7 \\\\\nChoco.\\ Pudding   & 80.0 & 70.7 & 78.0 & 76.7 \\\\\nMilk              & 66.0 & 44.7 & 35.3 & 48.7 \\\\\nBBQ Sauce         & 66.0 & 60.7 & 69.3 & 65.3 \\\\\n\\midrule\nMean              & 71.5 & 51.5 & 54.0 & 53.8 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Per-Task CAR Breakdown}\\label{sec:appendix_pertask_car}\n\nTable~\\ref{tab:per_task_car} decomposes CAR by task for all fine-tuned conditions, supporting the claim that per-task ordering is preserved across SDF loss weights (\\S\\ref{sec:avoidance_source}). Chocolate Pudding is consistently highest and BBQ Sauce consistently lowest across all conditions, including $\\lambda = 0.1$. The intermediate tasks (Orange Juice and Milk) exchange rank between seeds but remain bounded by the extremes. This invariance indicates that avoidance patterns reflect the spatial statistics of collision-free demonstrations rather than geometric supervision.\n\n\\begin{table}[h]\n\\centering\n\\caption{Per-task CAR (\\%) at 30K steps. $\\lambda{=}0.005$, $\\lambda{=}0.01$, and $\\lambda{=}0.1$ report 3-seed means alongside individual seeds. Per-task ordering (CP highest, BBQ lowest) is preserved across all conditions.}\n\\label{tab:per_task_car}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lccccc}\n\\toprule\nCondition & OJ & CP & Milk & BBQ & Agg. \\\\\n\\midrule\nLoRA s0 & 56 & 74 & 70 & 26 & 56.5 \\\\\nLoRA s1 & 54 & 68 & 72 & 16 & 52.5 \\\\\nLoRA s2 & 56 & 76 & 62 & 26 & 55.0 \\\\\nSDF $\\lambda{=}0.005$ (3-seed) & 54.0 & 72.7 & 71.3 & 20.0 & 54.5 \\\\\nSDF $\\lambda{=}0.01$ (3-seed) & 57.3 & 72.7 & 72.0 & 23.3 & 56.3 \\\\\nSDF $\\lambda{=}0.1$ s0 & 60 & 74 & 68 & 30 & 58.0 \\\\\nSDF $\\lambda{=}0.1$ s1 & 66 & 72 & 70 & 26 & 58.5 \\\\\nSDF $\\lambda{=}0.1$ s2 & 56 & 76 & 70 & 16 & 54.5 \\\\\nSDF $\\lambda{=}0.1$ (3-seed) & 60.7 & 74.0 & 69.3 & 24.0 & 57.0 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nFor the $\\lambda = 0.1$ condition, seed~1 records \\texttt{avg\\_max\\_obstacle\\_displacement} of 0.0553\\,m (per-task: OJ\\,=\\,0.033, CP\\,=\\,0.055, Milk\\,=\\,0.041, BBQ\\,=\\,0.093), comparable to other fine-tuned conditions and consistent with active manipulation rather than frozen behavior.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\linewidth]{fig_pertask_car_fingerprint}\n\\caption{Per-task CAR fingerprint across conditions. Each bar shows the 3-seed mean; dots indicate individual seeds. The task ordering (chocolate\\_pudding highest, bbq\\_sauce lowest) is preserved across all $\\lambda$ values, confirming that avoidance patterns reflect the demonstration distribution rather than geometric supervision. LoRA-only: 3-seed mean.}\n\\label{fig:pertask_fingerprint}\n\\end{figure}\n\n\\section{Safe Success Rate Analysis}\\label{sec:appendix_ssr}\n\nTable~\\ref{tab:ssr} reports the Safe Success Rate (SSR\\,=\\,TSR\\,$\\cap$\\,CAR), the fraction of episodes achieving both task completion and collision avoidance. The SSR/TSR ratio quantifies the proportion of successful episodes that are also collision-free, controlling for task-completion rate.\n\n\\begin{table}[h]\n\\centering\n\\caption{SSR and SSR/TSR ratio across conditions. The ratio increase from 0.39 (baseline) to 0.51--0.60 (fine-tuned) indicates that CAR gains reflect learned safer execution, not reduced task exposure.}\n\\label{tab:ssr}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\nCondition & TSR (\\%) & CAR (\\%) & SSR (\\%) & SSR/TSR \\\\\n\\midrule\nPi0.5 baseline & 71.5 & 28.5 & 28.0 & 0.39 \\\\\nLoRA-only (3 seeds) & 51.5 & 54.67 & 27.7 & 0.54 \\\\\nSDF $\\lambda{=}0.005$ (3 seeds) & 54.0 & 54.5 & 27.8 & 0.51 \\\\\nSDF $\\lambda{=}0.01$ (3 seeds) & 53.8 & 56.33 & 30.2 & 0.56 \\\\\nSDF $\\lambda{=}0.1$ (3 seeds) & 50.2 & 57.00 & 30.2 & 0.60 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Per-Task Oracle Analysis}\n\\label{sec:appendix_pertask}\n\\label{sec:appendix_pertask_oracle}\n\nTable~\\ref{tab:oracle_pertask} shows per-task CAR for oracle refinement. On task~1 (\\texttt{chocolate\\_pudding}), where the EE is the primary collision body and the LoRA baseline achieves only 46.0\\% CAR, Oracle-adaptive improves to 55.0\\% and Oracle-feature to 47.5\\%. On the remaining tasks, all oracle variants degrade: Oracle-adaptive reduces task~0 (\\texttt{orange\\_juice}) from 96.0\\% to 82.5\\% and task~2 (\\texttt{milk}) from 98.0\\% to 77.5\\%. The SDF gradient pushes the EE away from the nearest surface, but the resulting joint-space displacement rotates intermediate arm links into obstacle volumes.\n\nThe feature-space oracle fires on nearly every timestep (241.7 refinements/episode vs.\\ 14.2 for Cartesian variants) but with gradient magnitudes two orders of magnitude smaller (0.004--0.006 vs.\\ 0.18--0.49), and CAR (76.9\\%) shows no advantage despite 17$\\times$ more steps. The A3 learned SDF never triggers refinement (0 steps/episode), as its outputs avoid the activation threshold.\n\n\\begin{table}[h]\n\\centering\n\\caption{Per-task CAR (\\%) for oracle SDF refinement variants. EE-only refinement helps only on task~1 where the EE is the primary collision body; on other tasks it trades one collision site for another.}\n\\label{tab:oracle_pertask}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lccccc}\n\\toprule\nMethod & Task 0 & Task 1 & Task 2 & Task 3 & Agg. \\\\\n\\midrule\nLoRA baseline & 96.0 & 46.0 & 98.0 & 88.0 & 82.0 \\\\\n\\midrule\nOracle-adaptive & 82.5 & 55.0 & 77.5 & 85.0 & 75.0 \\\\\nOracle-fixed & 85.0 & 50.0 & 77.5 & 80.0 & 73.1 \\\\\nOracle-feature & 90.0 & 47.5 & 82.5 & 87.5 & 76.9 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\n\\section{Null Distribution for SDF Loss Weight Analysis}\n\\label{sec:appendix_null}\n\nWe construct a null distribution by pooling the three LoRA-only seeds and three $\\lambda = 0.005$ seeds into six per-seed CAR measurements: 56.5\\% (LoRA s0, re-evaluated), 52.5\\% (LoRA s1), 55.0\\% (LoRA s2), 57.0\\% ($\\lambda{=}0.005$ s0), 54.0\\% ($\\lambda{=}0.005$ s1), 52.5\\% ($\\lambda{=}0.005$ s2), yielding mean 54.58\\% and standard deviation 1.93\\% (Bessel-corrected, $n{-}1 = 5$). We treat these as exchangeable because SDF at $\\lambda = 0.005$ produces no separation from LoRA-only. The $\\lambda = 0.01$ mean of 56.33\\% falls within $0.8\\sigma$ of this null ($p > 0.1$), consistent with seed-to-seed variation rather than a treatment effect. The $\\lambda = 0.1$ 30K mean of 57.00\\% (3 seeds: 58.0\\%, 58.5\\%, 54.5\\%) yields a two-tailed permutation $p = 0.131$ (one-tailed $p = 0.071$). The result is non-significant at conventional thresholds ($\\alpha = 0.05$).\n\nThe permutation test makes no distributional assumptions. Pooling the six null values $\\{56.5, 52.5, 55, 57, 54, 52.5\\}$ and three $\\lambda = 0.1$ values $\\{58, 58.5, 54.5\\}$ into nine measurements, we enumerate all $\\binom{9}{3} = 84$ three-element combinations and compute the fraction whose mean $\\geq 57.00$. Six combinations meet this threshold, yielding an exact one-tailed permutation $p = 6/84 \\approx 0.071$. For the two-tailed test, we additionally count combinations on the lower tail with equal or greater distance from the pooled mean, yielding $p = 11/84 \\approx 0.131$. With the third seed ($s_2 = 54.5\\%$) pulling the $\\lambda = 0.1$ mean from 58.25\\% (2 seeds) down to 57.00\\%, the marginal signal observed at $n = 2$ dissolves into seed-to-seed variance.\n\n\\paragraph{Alternative null construction (Null~A).}\nIf only the three LoRA-only seeds are used as the null pool ($\\{56.5, 52.5, 55.0\\}$), we obtain $\\binom{6}{3} = 20$ permutations for each comparison. For $\\lambda = 0.1$ (treatment mean 57.00\\%): one-tailed $p = 3/20 = 0.150$, two-tailed $p = 6/20 = 0.300$. For $\\lambda = 0.01$ (treatment mean 56.33\\%): one-tailed $p = 4/20 = 0.200$, two-tailed $p = 8/20 = 0.400$. Under the broader Null~B pool, $\\lambda = 0.01$ yields one-tailed $p = 10/84 \\approx 0.119$, two-tailed $p = 22/84 \\approx 0.262$. All tests are non-significant at $\\alpha = 0.05$; the narrower Null~A yields \\emph{larger} $p$-values because the LoRA-only pool already contains a high seed (56.5\\%), making the treatment means less extreme by comparison.\n\nA Phase~2 ablation reinforces this conclusion. Setting $\\lambda = 0$ during Phase~2 (steps 5K--18K), so that SDF supervision is active only during auxiliary head warmup (Phase~1, steps 0--5K), yields CAR of 58.0\\% at the 18K checkpoint (13K steps of Phase~2 training, single seed, s2).\\footnote{Full 30K training did not complete due to disk constraints; this result uses the last complete checkpoint at step 18K.} This value lies within the null range, indicating that SDF training produces no lasting behavioral effect on collision avoidance.\n\n\\section{Step-wise Checkpoint Analysis for \\texorpdfstring{$\\lambda = 0.1$}{lambda = 0.1}}\n\\label{sec:appendix_stepwise}\n\nTable~\\ref{tab:stepwise_lambda01} reports per-seed CAR at seven checkpoints for $\\lambda = 0.1$. Seeds~0 and~1 are available at 16K, 20K, 22K, and 30K; 24K--28K report seed-0 only; seed~2 is available at 30K only. The seed-0 curve shows no monotonic trend through 28K. At 30K, the addition of seed~2 (54.5\\%) pulls the three-seed mean to 57.00\\%, within the null band ($p = 0.131$).\n\n\\begin{table}[h]\n\\centering\n\\caption{Per-seed CAR (\\%) at training checkpoints for $\\lambda = 0.1$ (200 episodes each). 24K--28K: seed-0 only. The 30K checkpoint includes all three seeds; the three-seed mean (57.00\\%) remains within the null band ($p = 0.131$, two-tailed permutation).}\n\\label{tab:stepwise_lambda01}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\nCheckpoint & Seed 0 & Seed 1 & Seed 2 & Mean \\\\\n\\midrule\n16K steps & 55.5 & 56.0 & -- & 55.75 \\\\\n20K steps & 55.0 & 56.0 & -- & 55.5 \\\\\n22K steps & 60.5 & 56.5 & -- & 58.5 \\\\\n24K steps & 52.5 & -- & -- & -- \\\\\n26K steps & 53.5 & -- & -- & -- \\\\\n28K steps & 54.5 & -- & -- & -- \\\\\n30K steps & 58.0 & 58.5 & 54.5 & 57.00 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nIndividual seeds exhibit checkpoint-to-checkpoint CAR fluctuations of up to 8\\,pp (seed~0: 52.5--60.5\\%), larger than the cross-seed standard deviation at any fixed checkpoint ($\\leq$3\\,pp). This is consistent with binomial sampling noise at $n = 50$ episodes per task ($\\sigma \\approx 7$\\,pp per task for $p \\approx 0.5$). At 30K, the third seed ($s_2 = 54.5\\%$) falls well within the null range, pulling the three-seed mean to 57.00\\% and rendering the earlier two-seed departure non-significant ($p = 0.131$). The seed-averaged curve shows no monotonic trend, confirming that SDF loss weight does not produce a progressive training signal.\n\n\n\\section{Oracle SDF Refinement Details}\n\\label{sec:appendix_oracle}\n\nAll oracle variants replace the learned SDF decoder with ground-truth distance fields computed from the simulation geometry. Each is evaluated for 160 episodes (4 tasks $\\times$ 40).\n\n\\paragraph{Oracle-adaptive.} At each timestep, if the ground-truth SDF at the end-effector position falls below a safety margin, the action is adjusted by a step in the negative SDF gradient direction. The step size $\\alpha$ is scaled inversely with distance: smaller distances produce larger corrections. This mimics an adaptive potential field controller.\n\n\\paragraph{Oracle-fixed.} Identical to Oracle-adaptive except the step size is fixed at $\\alpha = 0.005$ regardless of distance. This isolates the effect of step-size adaptation from the refinement geometry.\n\n\\paragraph{Oracle-feature.} Instead of modifying the action directly in Cartesian space, this variant applies the SDF gradient in the policy's latent feature space via backpropagation. The gradient of the ground-truth SDF value with respect to the intermediate features is computed and used to perturb the features before the action head decodes them. This tests whether geometric corrections are more effective when applied in the model's learned representation space. In practice, the feature-space variant fires on nearly every timestep (241.7 refinements per episode vs.\\ 14.2 for Cartesian variants) but with gradient magnitudes two orders of magnitude smaller (0.004--0.006 vs.\\ 0.18--0.49 in action space).\n\n\n\\section{Cross-Scene Validation: spatial\\_bowl}\n\\label{sec:appendix_spatial_bowl}\n\nTo test whether the SDF redundancy finding generalizes beyond the primary \\texttt{object\\_pudding} scene, we replicate the core comparison on \\texttt{spatial\\_bowl}, a separate SafeLIBERO suite with a distinct obstacle layout (moka pot, wine bottle, milk carton, red coffee mug, yellow book). Both conditions use the same architecture, hyperparameters, and two-phase training schedule (30K steps), differing only in the training scene.\n\nTable~\\ref{tab:spatial_bowl} reports the results. The SDF condition ($\\lambda = 0.005$) yields CAR of 11.5\\% versus 12.0\\% for LoRA-only, a $-$0.5\\,pp difference well within the noise floor, indicating that SDF is essentially identical to LoRA-only on this scene. TSR is comparable across conditions (49.0\\% vs.\\ 51.5\\%). Both evaluations use a single training seed (seed~0) and a single evaluation seed (seed~7, 200 episodes), so statistical power is limited; nevertheless, the qualitative pattern---SDF failing to improve over LoRA-only---is consistent with the \\texttt{object\\_pudding} findings.\n\n\\begin{table}[h]\n\\centering\n\\caption{Cross-scene validation on \\texttt{spatial\\_bowl} (single training seed, 200 episodes, 30K checkpoint). The $-$0.5\\,pp CAR difference is well within noise, consistent with the SDF redundancy observed on \\texttt{object\\_pudding}.}\n\\label{tab:spatial_bowl}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lcc}\n\\toprule\nCondition & CAR (\\%) & TSR (\\%) \\\\\n\\midrule\nLoRA-only & 12.0 & 49.0 \\\\\nSDF $\\lambda{=}0.005$ & 11.5 & 51.5 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe substantially lower CAR on \\texttt{spatial\\_bowl} relative to \\texttt{object\\_pudding} (11--12\\% vs.\\ 54--57\\%) reflects the greater scene difficulty: \\texttt{spatial\\_bowl} places five cluttered obstacles around the workspace, making collision-free manipulation considerably harder. This difficulty affects both conditions equally, and the SDF condition performs comparably ($\\Delta$CAR\\,=\\,$-$0.5\\,pp, well within noise), reinforcing the conclusion that EE-only SDF auxiliary supervision does not produce a meaningful collision avoidance benefit beyond LoRA-only fine-tuning.\n\n\n\\section{Evaluation Seed Robustness}\n\\label{sec:appendix_eval_seed}\n\nTo verify that our conclusions are not artifacts of a particular evaluation seed, we re-evaluate the LoRA-only (s0) and SDF $\\lambda{=}0.1$ (s0) checkpoints under multiple evaluation seeds. Table~\\ref{tab:eval_seed_car} reports aggregate CAR and Table~\\ref{tab:eval_seed_tsr} reports aggregate TSR.\n\n\\begin{table}[h]\n\\centering\n\\caption{Aggregate CAR (\\%) across evaluation seeds (200 episodes each). The LoRA vs.\\ SDF $\\lambda{=}0.1$ ordering is preserved across all tested seeds, and per-task CAR fingerprints (CP highest, BBQ lowest) remain invariant.}\n\\label{tab:eval_seed_car}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lcccccc}\n\\toprule\n& \\multicolumn{4}{c}{Per-task CAR (\\%)} & & \\\\\n\\cmidrule(lr){2-5}\nCondition (eval seed) & OJ & CP & Milk & BBQ & Agg. \\\\\n\\midrule\nLoRA s0 (seed\\,=\\,7)   & 56 & 74 & 70 & 26 & 56.5 \\\\\nLoRA s0 (seed\\,=\\,42)  & 60 & 70 & 68 & 28 & 56.5 \\\\\nLoRA s0 (seed\\,=\\,123) & 52 & 74 & 66 & 20 & 53.0 \\\\\nLoRA s0 mean $\\pm$ std & 56.0$\\pm$4.0 & 72.7$\\pm$2.3 & 68.0$\\pm$2.0 & 24.7$\\pm$4.2 & 55.3$\\pm$2.0 \\\\\n\\midrule\nSDF $\\lambda{=}0.1$ s0 (seed\\,=\\,7)   & 60 & 74 & 68 & 30 & 58.0 \\\\\nSDF $\\lambda{=}0.1$ s0 (seed\\,=\\,42)  & 64 & 74 & 74 & 24 & 59.0 \\\\\nSDF $\\lambda{=}0.1$ s0 (seed\\,=\\,123) & 62 & 76 & 74 & 22 & 58.5 \\\\\nSDF $\\lambda{=}0.1$ s0 (seed\\,=\\,256) & 60 & 72 & 66 & 30 & 57.0 \\\\\nSDF $\\lambda{=}0.1$ s0 mean $\\pm$ std & 61.5$\\pm$1.9 & 74.0$\\pm$1.6 & 70.5$\\pm$4.1 & 26.5$\\pm$4.1 & 58.1$\\pm$0.9 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\begin{table}[h]\n\\centering\n\\caption{Aggregate TSR (\\%) across evaluation seeds. TSR varies more across seeds than CAR (seed\\,=\\,42 yields consistently lower TSR), but the relative ordering between LoRA and SDF is stable.}\n\\label{tab:eval_seed_tsr}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lcccccc}\n\\toprule\n& \\multicolumn{4}{c}{Per-task TSR (\\%)} & & \\\\\n\\cmidrule(lr){2-5}\nCondition (eval seed) & OJ & CP & Milk & BBQ & Agg. \\\\\n\\midrule\nLoRA s0 (seed\\,=\\,7)   & 32 & 74 & 42 & 58 & 51.5 \\\\\nLoRA s0 (seed\\,=\\,42)  & 22 & 70 & 32 & 60 & 46.0 \\\\\nLoRA s0 (seed\\,=\\,123) & 30 & 70 & 40 & 62 & 50.5 \\\\\nLoRA s0 mean $\\pm$ std & 28.0$\\pm$5.3 & 71.3$\\pm$2.3 & 38.0$\\pm$5.3 & 60.0$\\pm$2.0 & 49.3$\\pm$3.0 \\\\\n\\midrule\nSDF $\\lambda{=}0.1$ s0 (seed\\,=\\,7)   & 28 & 78 & 44 & 60 & 52.5 \\\\\nSDF $\\lambda{=}0.1$ s0 (seed\\,=\\,42)  & 18 & 78 & 42 & 72 & 52.5 \\\\\nSDF $\\lambda{=}0.1$ s0 (seed\\,=\\,123) & 26 & 82 & 38 & 68 & 53.5 \\\\\nSDF $\\lambda{=}0.1$ s0 (seed\\,=\\,256) & 28 & 74 & 32 & 58 & 48.0 \\\\\nSDF $\\lambda{=}0.1$ s0 mean $\\pm$ std & 25.0$\\pm$4.8 & 78.0$\\pm$3.3 & 39.0$\\pm$5.4 & 64.5$\\pm$6.6 & 51.6$\\pm$2.4 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nAcross three matched evaluation seeds (7, 42, 123), the SDF $\\lambda{=}0.1$ condition yields higher aggregate CAR than LoRA-only in all cases ($\\Delta$CAR\\,=\\,+1.5, +2.5, +5.5\\,pp). Cross-seed CAR standard deviation is 2.0\\,pp for LoRA and 0.9\\,pp for SDF, both small relative to the within-seed per-task variation. The per-task ordering (CP highest, BBQ lowest) is preserved across all seeds and both conditions, reinforcing the conclusion that avoidance patterns reflect the spatial statistics of training demonstrations.\n\n\n\\section{Training Details}\n\\label{sec:appendix_training}\n\n\\paragraph{Architecture.}\nWe use LoRA~\\citep{hu2022lora} adapters injected into the PaliGemma vision encoder (rank 16, $\\alpha$=16) and the action expert (rank 32, $\\alpha$=32), following the configuration of OpenPi. The SDF decoder is a 4-layer MLP (hidden dimension 256) with skip connections, taking pooled suffix features (1024-d) and query points (3-d) as input. The end-effector extractor is a 2-layer MLP (1024 $\\to$ 256 $\\to$ 3).\n\n\\paragraph{Training schedule.}\nTraining proceeds in two phases:\n\\begin{itemize}\n    \\item \\textbf{Phase 1} (steps 0--5000): Backbone and LoRA parameters are frozen. Only the SDF decoder and EE extractor are trained, allowing them to learn meaningful representations before the policy adapts.\n    \\item \\textbf{Phase 2} (steps 5000--30000): LoRA parameters are unfrozen with a 100-step gradient warmup ramp. All auxiliary heads continue training jointly with the policy.\n\\end{itemize}\n\n\\paragraph{Hyperparameters.}\n\\begin{table}[h]\n\\centering\n\\caption{Training hyperparameters.}\n\\label{tab:hyperparams}\n\\begin{tabular}{ll}\n\\toprule\nParameter & Value \\\\\n\\midrule\nBase model & Pi0.5 (OpenPi, $\\sim$3.5B parameters) \\\\\nOptimizer & AdamW \\\\\nLearning rate & $2.5 \\times 10^{-5}$ (cosine decay to $\\mathrm{lr}/10$) \\\\\nWarmup steps & 1000 \\\\\nBatch size & 32 \\\\\nTotal steps & 30000 \\\\\n$\\lambda_\\mathrm{sdf}$ & \\{0.005, 0.01, 0.1\\} \\\\\n$\\lambda_\\mathrm{ee}$ & 0.01 \\\\\nSDF query points per step & 64 \\\\\nSDF clamp $\\delta$ & 0.05 m \\\\\nEikonal weight & 0.1 \\\\\nLoRA rank (vision) & 16 \\\\\nLoRA rank (action) & 32 \\\\\nPhase 1 duration & 5000 steps \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Evaluation protocol.}\nEach episode runs for at most 300 timesteps. The policy generates a 50-step action trajectory via flow matching and executes the first 5 steps before replanning. An episode terminates early upon task completion. Collision detection uses MuJoCo's built-in contact detection: any contact between the robot and a non-target object registers as a collision. For Pi0.5 evaluations, camera images are rotated 180$^\\circ$ to match the pre-training viewpoint convention; this correction was verified to restore TSR from ${\\sim}$5\\% to ${\\sim}$52\\% while leaving CAR comparable. Oracle variants use 40 episodes per task (160 total) with a single seed; all other configurations use 50 episodes per task (200 total).\n\n\\paragraph{Data.}\nWe use the SafeLIBERO object\\_pudding suite with pre-computed SDF ground truth. SDF values are computed offline from the obstacle mesh using a dense $64^3$ voxel grid. During training, 64 query points are randomly sampled per step from this grid.\n\n\\paragraph{Computational resources.}\nAll training and evaluation experiments are conducted on NVIDIA RTX PRO 6000 GPUs (96\\,GB). Phase~1 (5K steps) takes approximately 6 hours on a single GPU; Phase~2 (25K steps) takes approximately 32 hours. Evaluation of 200 episodes requires approximately 4 hours. Across 100+ experiments (training runs, evaluations, oracle variants, and ablations), the total computational budget is approximately 700 GPU-hours.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 110,
+        "oldLines": 7,
+        "newStart": 110,
+        "newLines": 7,
+        "lines": [
+          " \\end{tabular}",
+          " \\end{table}",
+          " ",
+          "-For the $\\lambda = 0.1$ condition, seed~1 records \\texttt{avg\\_max\\_obstacle\\_displacement} of 0.0553\\,m (per-task: OJ\\,=\\,0.033, CP\\,=\\,0.055, Milk\\,=\\,0.041, BBQ\\,=\\,0.093), comparable to other fine-tuned conditions and consistent with active manipulation rather than frozen behavior.",
+          "+For the $\\lambda = 0.1$ condition, seed~1 records \\texttt{avg\\_max\\_obstacle\\_displacement} of 0.0553\\,m (per-task: OJ\\,=\\,0.033, CP\\,=\\,0.055, Milk\\,=\\,0.041, BBQ\\,=\\,0.093), comparable to other fine-tuned conditions and consistent with active manipulation rather than action-collapsed behavior.",
+          " ",
+          " \\begin{figure}[t]",
+          " \\centering"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 93_
+
+**related_work.tex** — 1 edit:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "281b4086-6253-4fb2-9e9b-83cea8072eac",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ThPv3U6pSzZ9gryp6Vt7mu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1068,
+      "cache_read_input_tokens": 66065,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1068
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 94_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01LGRthRRmwEtgsfWF28GQXF`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/related_work.tex",
+  "old_string": "a frozen robot scores near-perfect CAR",
+  "new_string": "an action-collapsed robot scores near-perfect CAR"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "f222bd4c-54c8-4953-beab-41700d90366e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ThPv3U6pSzZ9gryp6Vt7mu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1068,
+      "cache_read_input_tokens": 66065,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1068
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 95 · 2026-05-28T06:21:51.744Z_
+
+<details><summary>↩ Tool result · `toolu_01LGRthRRmwEtgsfWF28GQXF`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/related_work.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "2fb6c0a2-7277-4389-b2c6-021f285cdb07",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/related_work.tex",
+    "oldString": "a frozen robot scores near-perfect CAR",
+    "newString": "an action-collapsed robot scores near-perfect CAR",
+    "originalFile": "\\section{Related Work}\\label{sec:related}\n\n\\paragraph{Vision-Language-Action Models.}\nVLA models combine pretrained vision-language backbones with action prediction for generalist manipulation~\\cite{brohan2023rt2,black2024pi0,chi2023diffusionpolicy,kim2024openvla}. Recent work enhances spatial reasoning through auxiliary 3D supervision~\\cite{li2025spatialforcing,li2025qdepth,depthvla2025}, but safety considerations remain largely absent: most VLAs train on collision-free demonstrations and evaluate task success alone, with no mechanism to distinguish genuine avoidance from incidental collision-free trajectories.\n\n\\paragraph{Safety in Robot Learning.}\nSafety-aware approaches span training-time constrained RL~\\cite{zhang2025safevla} and test-time filters: control barrier functions~\\cite{hu2025vlsa}, collision risk gating~\\cite{cofreeevla2026}, inverse kinematics QP~\\cite{spalter2024ikinqp}, and diffusion-process collision costs~\\cite{li2024langguided,yang2025cape}. SafeDiffuser~\\cite{xiao2025safediffuser} integrates control barrier functions directly into diffusion denoising to enforce safety invariance during planning; like other test-time shields, it does not learn intrinsic collision awareness within the policy. A recent survey~\\cite{li2026vlasafety} categorizes these into runtime shields, constrained optimization, and representation-based methods. Common to all is that safety is imposed externally rather than learned within the policy's representations. This work tests whether auxiliary SDF supervision can produce intrinsic collision awareness.\n\n\\paragraph{Signed Distance Functions in Robotics.}\nSDFs encode minimum surface distance, where the sign indicates free space or penetration. Neural SDFs~\\cite{park2019deepsdf} enable continuous shape representation; in robotics, SDFs serve perception~\\cite{ortiz2022isdf}, planning~\\cite{huang2023voxposer,vasilopoulos2023ramp}, and differentiable collision detection~\\cite{zhi2021diffco}. CDF~\\cite{li2024cdf} extends SDFs to robot configuration space, learning neural distance fields that provide efficient joint-angle queries with analytical gradients for manipulation planning; CSSDF-Net~\\cite{chen2026cssdfnet} further develops this direction for safe motion planning. RDF~\\cite{li2024rdf} represents robot geometry itself as composable per-link SDFs along the kinematic chain, enabling whole-body collision queries---directly relevant to the full-body awareness gap our work identifies. Neural SDF-based model predictive control~\\cite{jacquet2025neuralnmpc} demonstrates effectiveness in classical pipelines, but integration into end-to-end learned policies remains unexplored.\n\n\\paragraph{SDF integration pathways.} Geometric supervision via signed distance fields can be integrated into VLA policies through fundamentally different mechanisms. (a)~\\emph{Training-time auxiliary loss}: an SDF-based collision penalty is added to the training objective, supervising only the end-effector trajectory (the approach tested in this work). (b)~\\emph{Constraint-based planning}: SafeVLA~\\citep{zhang2025safevla} formulates collision avoidance as a constrained MDP, using SDF constraints during planning rather than training. (c)~\\emph{Runtime filtering}: VLSA~\\citep{hu2025vlsa} applies control barrier functions (CBFs) with SDF at inference time, filtering unsafe actions post-hoc. Our negative finding---that EE-only auxiliary SDF loss is redundant---is specific to pathway~(a) and does not apply to pathways~(b) and~(c), which bypass the structural limitation of supervising only the end-effector during training.\n\n\\paragraph{Evaluation Metrics for Safe Manipulation.}\nSafeLIBERO~\\cite{hu2025vlsa} extends LIBERO~\\cite{liu2023libero} with obstacle-augmented environments and a collision avoidance rate (CAR) metric. However, CAR treats all collision-free episodes identically: a frozen robot scores near-perfect CAR without any avoidance behavior. This failure mode echoes concerns about metric reliability~\\cite{karwowski2024goodhart,gururangan2018annotation} and binary success metrics under limited samples~\\cite{snyder2026beyond}. Action collapse in diffusion policies~\\cite{dong2025conditioning} systematically inflates CAR but has not been previously examined as a safety evaluation confounder. We propose dfCAR (\\S\\ref{sec:dfcar}) to detect this contamination.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 12,
+        "oldLines": 4,
+        "newStart": 12,
+        "newLines": 4,
+        "lines": [
+          " \\paragraph{SDF integration pathways.} Geometric supervision via signed distance fields can be integrated into VLA policies through fundamentally different mechanisms. (a)~\\emph{Training-time auxiliary loss}: an SDF-based collision penalty is added to the training objective, supervising only the end-effector trajectory (the approach tested in this work). (b)~\\emph{Constraint-based planning}: SafeVLA~\\citep{zhang2025safevla} formulates collision avoidance as a constrained MDP, using SDF constraints during planning rather than training. (c)~\\emph{Runtime filtering}: VLSA~\\citep{hu2025vlsa} applies control barrier functions (CBFs) with SDF at inference time, filtering unsafe actions post-hoc. Our negative finding---that EE-only auxiliary SDF loss is redundant---is specific to pathway~(a) and does not apply to pathways~(b) and~(c), which bypass the structural limitation of supervising only the end-effector during training.",
+          " ",
+          " \\paragraph{Evaluation Metrics for Safe Manipulation.}",
+          "-SafeLIBERO~\\cite{hu2025vlsa} extends LIBERO~\\cite{liu2023libero} with obstacle-augmented environments and a collision avoidance rate (CAR) metric. However, CAR treats all collision-free episodes identically: a frozen robot scores near-perfect CAR without any avoidance behavior. This failure mode echoes concerns about metric reliability~\\cite{karwowski2024goodhart,gururangan2018annotation} and binary success metrics under limited samples~\\cite{snyder2026beyond}. Action collapse in diffusion policies~\\cite{dong2025conditioning} systematically inflates CAR but has not been previously examined as a safety evaluation confounder. We propose dfCAR (\\S\\ref{sec:dfcar}) to detect this contamination.",
+          "+SafeLIBERO~\\cite{hu2025vlsa} extends LIBERO~\\cite{liu2023libero} with obstacle-augmented environments and a collision avoidance rate (CAR) metric. However, CAR treats all collision-free episodes identically: an action-collapsed robot scores near-perfect CAR without any avoidance behavior. This failure mode echoes concerns about metric reliability~\\cite{karwowski2024goodhart,gururangan2018annotation} and binary success metrics under limited samples~\\cite{snyder2026beyond}. Action collapse in diffusion policies~\\cite{dong2025conditioning} systematically inflates CAR but has not been previously examined as a safety evaluation confounder. We propose dfCAR (\\S\\ref{sec:dfcar}) to detect this contamination."
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 96_
+
+**discussion.tex** — 1 edit:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "4849a9cb-605c-45a6-a686-845e88579c50",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UdBkc8xXmxvfC17WZ4fd5i",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 235,
+      "cache_read_input_tokens": 67133,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 235
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01Dx7wu6isjMXUH73yKsVCPd`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/discussion.tex",
+  "old_string": "a largely frozen model",
+  "new_string": "a largely action-collapsed model"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "f6f7d033-be16-4f20-bcaa-a689130ac97d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UdBkc8xXmxvfC17WZ4fd5i",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 235,
+      "cache_read_input_tokens": 67133,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 235
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-28T06:21:55.470Z_
+
+<details><summary>↩ Tool result · `toolu_01Dx7wu6isjMXUH73yKsVCPd`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/discussion.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "f5feb154-be6b-4f47-ab4c-6bfc5073dbf8",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/discussion.tex",
+    "oldString": "a largely frozen model",
+    "newString": "a largely action-collapsed model",
+    "originalFile": "\\section{Discussion and Conclusion}\\label{sec:conclusion}\n\nAcross 100+ experiments and 6000+ evaluation episodes on two VLA model families, three findings converge: current VLA safety evaluation is structurally unreliable. Action collapse renders reported CAR illusory (\\S\\ref{sec:dfcar}); EE-only oracle refinement is counterproductive (\\S\\ref{sec:ee_only}); and collision-free demonstrations account for nearly all measured avoidance gains, with EE-only SDF contributing no statistically significant improvement (\\S\\ref{sec:avoidance_source}).\n\n\\paragraph{Why EE-only SDF fails.}\nTwo independent causes explain the null result. \\textit{(i)~Demonstration data largely subsumes the SDF signal.} Collision-free demonstrations implicitly encode spatial avoidance; the ${\\sim}$26\\,pp CAR gain arises primarily from this distributional shift, with per-task ordering invariant across all SDF conditions (\\S\\ref{sec:avoidance_source}). Even at $\\lambda = 0.1$ (20$\\times$ the lowest tested weight), CAR remains within the null distribution ($p = 0.131$), suggesting that EE-only auxiliary SDF loss does not overcome Level~A signal masking---the limitation is architectural for this integration pathway. \\textit{(ii)~EE monitoring cannot prevent full-body collisions.} The SDF gradient acts on a single point while collisions occur along intermediate links. Oracle experiments confirm this: ground-truth SDF refinement \\emph{reduces} CAR by 6--10\\,pp below unrefined baselines (\\S\\ref{sec:ee_only}), because pushing the EE away rotates unmonitored links through obstacles. We hypothesize that collision-free demonstration trajectories implicitly encode workspace priors through their spatial distribution: the robot learns to favor regions of the workspace that are inherently collision-free, without requiring explicit geometric supervision. These two causes are independent; effective geometric safety requires both full-body supervision and training signals beyond demonstrations. The failure of EE-only auxiliary SDF loss is architectural; constraint-based and runtime filtering approaches bypass this structural limitation through fundamentally different integration mechanisms.\n\n\\paragraph{Implications for evaluation.}\ndfCAR corrects action-collapse contamination using only EE position logging, already available in most evaluation pipelines. The bimodal displacement distribution makes $\\tau_d$ robust across five orders of magnitude. We recommend reporting both CAR and dfCAR; the gap quantifies contamination. This contamination spans a 4000$\\times$ parameter range (Pi0 Full-FT ${\\sim}$2.5B to Pi0+A1 ${\\sim}$658K trainable), a structural consequence of evaluating avoidance without verifying motion. More broadly, safety may need to operate at the planning or joint-space constraint layer, since any EE-centric loss inherits the same blind spot.\n\n\\paragraph{Scope and generalizability.} Our findings are drawn from a single benchmark (SafeLIBERO) covering two VLA model families and four pick-and-place manipulation tasks in MuJoCo simulation. The action-collapse mechanism (Claim~1) is structurally general---any policy prone to action collapse will inflate CAR under standard evaluation---but its prevalence across other benchmarks, task types, and real hardware remains an open question. The SDF redundancy finding (Claim~3) is specific to EE-only auxiliary loss integration and should not be extrapolated to alternative SDF integration pathways (Section~\\ref{sec:related}).\n\n\\paragraph{Limitations.}\nAll experiments are conducted in MuJoCo simulation within the SafeLIBERO benchmark. The sim-to-real gap introduces uncertainty: collision detection precision differs between simulation and physical hardware, sensor noise may affect displacement-filtered CAR differently on real robots, and the prevalence of action collapse in physical deployments remains untested. Our evaluation covers only four pick-and-place manipulation tasks with tabletop obstacles; whether the findings generalize to more diverse task families (e.g., bi-manual manipulation, deformable objects, dynamic obstacles) is an open question. Statistical power is limited by $n{=}3$ training seeds per condition, yielding a minimum detectable effect of approximately 5 percentage points at 80\\% power---smaller genuine effects, if they exist, would not be detected at this sample size. Oracle experiments used a largely frozen model (Pi0+A1, TSR${\\approx}$0\\%); testing on an actively moving policy would better isolate the structural limitation. Full-body SDF remains untested. Fine-tuning degrades TSR by ${\\sim}$18--20\\,pp, yet SSR/TSR increases from 0.39 to 0.51--0.60 (Appendix~\\ref{sec:appendix_ssr}); reduced exposure alone does not explain the pattern.\n\n\\paragraph{Future work.}\nThree directions follow: (1) full-body SDF supervision along the kinematic chain; (2) cross-architecture evaluation on OpenVLA, RT-2, and other VLA families; (3) planning-layer safety constraints in joint space rather than EE space.\n\n\\paragraph{Broader impact.}\nThe displacement-filtered CAR metric (dfCAR) is intended as a diagnostic complement to standard CAR, not a replacement; practitioners should report both metrics to distinguish genuine avoidance from action-collapse artifacts. Our finding that EE-only SDF supervision is redundant with demonstration data is an evaluation-methodology insight, not a verdict against safety-aware training---geometric supervision may prove effective through alternative integration pathways or with full-body collision surfaces. We caution against interpreting these results as evidence that VLA safety research is futile; rather, they highlight the need for evaluation protocols that can reliably separate safety improvements from measurement artifacts.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 11,
+        "oldLines": 7,
+        "newStart": 11,
+        "newLines": 7,
+        "lines": [
+          " \\paragraph{Scope and generalizability.} Our findings are drawn from a single benchmark (SafeLIBERO) covering two VLA model families and four pick-and-place manipulation tasks in MuJoCo simulation. The action-collapse mechanism (Claim~1) is structurally general---any policy prone to action collapse will inflate CAR under standard evaluation---but its prevalence across other benchmarks, task types, and real hardware remains an open question. The SDF redundancy finding (Claim~3) is specific to EE-only auxiliary loss integration and should not be extrapolated to alternative SDF integration pathways (Section~\\ref{sec:related}).",
+          " ",
+          " \\paragraph{Limitations.}",
+          "-All experiments are conducted in MuJoCo simulation within the SafeLIBERO benchmark. The sim-to-real gap introduces uncertainty: collision detection precision differs between simulation and physical hardware, sensor noise may affect displacement-filtered CAR differently on real robots, and the prevalence of action collapse in physical deployments remains untested. Our evaluation covers only four pick-and-place manipulation tasks with tabletop obstacles; whether the findings generalize to more diverse task families (e.g., bi-manual manipulation, deformable objects, dynamic obstacles) is an open question. Statistical power is limited by $n{=}3$ training seeds per condition, yielding a minimum detectable effect of approximately 5 percentage points at 80\\% power---smaller genuine effects, if they exist, would not be detected at this sample size. Oracle experiments used a largely frozen model (Pi0+A1, TSR${\\approx}$0\\%); testing on an actively moving policy would better isolate the structural limitation. Full-body SDF remains untested. Fine-tuning degrades TSR by ${\\sim}$18--20\\,pp, yet SSR/TSR increases from 0.39 to 0.51--0.60 (Appendix~\\ref{sec:appendix_ssr}); reduced exposure alone does not explain the pattern.",
+          "+All experiments are conducted in MuJoCo simulation within the SafeLIBERO benchmark. The sim-to-real gap introduces uncertainty: collision detection precision differs between simulation and physical hardware, sensor noise may affect displacement-filtered CAR differently on real robots, and the prevalence of action collapse in physical deployments remains untested. Our evaluation covers only four pick-and-place manipulation tasks with tabletop obstacles; whether the findings generalize to more diverse task families (e.g., bi-manual manipulation, deformable objects, dynamic obstacles) is an open question. Statistical power is limited by $n{=}3$ training seeds per condition, yielding a minimum detectable effect of approximately 5 percentage points at 80\\% power---smaller genuine effects, if they exist, would not be detected at this sample size. Oracle experiments used a largely action-collapsed model (Pi0+A1, TSR${\\approx}$0\\%); testing on an actively moving policy would better isolate the structural limitation. Full-body SDF remains untested. Fine-tuning degrades TSR by ${\\sim}$18--20\\,pp, yet SSR/TSR increases from 0.39 to 0.51--0.60 (Appendix~\\ref{sec:appendix_ssr}); reduced exposure alone does not explain the pattern.",
+          " ",
+          " \\paragraph{Future work.}",
+          " Three directions follow: (1) full-body SDF supervision along the kinematic chain; (2) cross-architecture evaluation on OpenVLA, RT-2, and other VLA families; (3) planning-layer safety constraints in joint space rather than EE space."
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 99_
+
+All edits done. Now let me verify — grep for any remaining occurrences.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "66ce87f0-43c6-4671-9e58-1d9c4c913e99",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014nEB2Hu48UaXz66B4SFR5C",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 323,
+      "cache_read_input_tokens": 67368,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 323
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 100_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_0199X9dKfHwvR6usbcJB51ij`</summary>
+
+```json
+{
+  "pattern": "frozen episode|frozen episodes|frozen rate",
+  "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper",
+  "output_mode": "content",
+  "-n": true,
+  "-i": true,
+  "glob": "*.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "5295035c-889a-42cb-b398-4858bccc3bce",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014nEB2Hu48UaXz66B4SFR5C",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 323,
+      "cache_read_input_tokens": 67368,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 323
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 101 · 2026-05-28T06:22:00.180Z_
+
+<details><summary>↩ Tool result · `toolu_0199X9dKfHwvR6usbcJB51ij`</summary>
+
+```text
+docs/paper/archive/analysis_claim3.tex:7:\caption{Avoidance source attribution on SafeLIBERO (200 episodes per seed). LoRA fine-tuning without SDF produces CAR comparable to SDF-augmented variants; SDF adds no measurable CAR beyond LoRA-only at $\lambda \in \{0.005, 0.01\}$. All fine-tuned models exhibit 0\% frozen rate, confirming active collision avoidance.}
+docs/paper/archive/analysis_claim3.tex:26:[Omitted long matching line]
+docs/paper/archive/analysis_claim3.tex:54:[Omitted long matching line]
+docs/paper/archive/analysis_claim4.tex:7:\caption{Results for Pi0.5 with training-time SDF auxiliary loss on SafeLIBERO (200 episodes per configuration). Frozen rate: fraction of episodes with $d_{\max} < \tau_d$ (action collapse; Section~\ref{sec:metrics}). Pi0.5+A1 produces 0\% frozen episodes at 10K steps, so CAR$_\text{f}$ equals raw CAR.}
+docs/paper/archive/analysis_claim4.tex:29:[Omitted long matching line]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "13df9a5b-bc2d-4fc6-9e06-590832924143",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "docs/paper/archive/analysis_claim3.tex:7:\\caption{Avoidance source attribution on SafeLIBERO (200 episodes per seed). LoRA fine-tuning without SDF produces CAR comparable to SDF-augmented variants; SDF adds no measurable CAR beyond LoRA-only at $\\lambda \\in \\{0.005, 0.01\\}$. All fine-tuned models exhibit 0\\% frozen rate, confirming active collision avoidance.}\ndocs/paper/archive/analysis_claim3.tex:26:[Omitted long matching line]\ndocs/paper/archive/analysis_claim3.tex:54:[Omitted long matching line]\ndocs/paper/archive/analysis_claim4.tex:7:\\caption{Results for Pi0.5 with training-time SDF auxiliary loss on SafeLIBERO (200 episodes per configuration). Frozen rate: fraction of episodes with $d_{\\max} < \\tau_d$ (action collapse; Section~\\ref{sec:metrics}). Pi0.5+A1 produces 0\\% frozen episodes at 10K steps, so CAR$_\\text{f}$ equals raw CAR.}\ndocs/paper/archive/analysis_claim4.tex:29:[Omitted long matching line]",
+    "numLines": 5
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 102_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_011cyV1kbpSKhDo1WY2eumJc`</summary>
+
+```json
+{
+  "pattern": "fake safe|fake safety|Fake Safety|Fake safe",
+  "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper",
+  "output_mode": "content",
+  "-n": true,
+  "-i": true,
+  "glob": "*.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "be715733-f8e9-4d7f-a3f3-5ecb77185507",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014nEB2Hu48UaXz66B4SFR5C",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 323,
+      "cache_read_input_tokens": 67368,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 323
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 103 · 2026-05-28T06:22:01.641Z_
+
+<details><summary>↩ Tool result · `toolu_011cyV1kbpSKhDo1WY2eumJc`</summary>
+
+```text
+docs/paper/archive/analysis_claim2.tex:3:[Omitted long matching line]
+docs/paper/archive/analysis_claim2.tex:7:\caption{Oracle SDF refinement with ground-truth distance fields (160 episodes, 4 tasks $\times$ 40). All three variants achieve lower CAR than unrefined baselines (LoRA 82.0\%, Full-FT 83.0\%), and fake safe rates remain above 96\%.}
+docs/paper/archive/analysis_claim2.tex:13:Method & TSR (\%) & CAR (\%) & Fake Safe (\%) & Refines/ep \\
+docs/paper/archive/analysis_claim2.tex:27:[Omitted long matching line]
+docs/paper/archive/analysis_claim1.tex:1:\subsection{The Fake Safety Problem}\label{sec:fake_safety}
+docs/paper/archive/analysis_claim1.tex:5:[Omitted long matching line]
+docs/paper/archive/analysis_claim1.tex:9:\caption{Fake safety decomposition across methods on SafeLIBERO. CAR$_\text{f}$ excludes episodes with max displacement $< \tau_d = 0.1$\,mm. Fake safe rate is computed over safe (non-collision) episodes only.}
+docs/paper/archive/analysis_claim1.tex:15:Method & CAR (\%) & TSR (\%) & Fake Safe (\%) & Real Safe & CAR$_\text{f}$ (\%) \\
+docs/paper/archive/analysis_claim1.tex:26:[Omitted long matching line]
+docs/paper/archive/analysis_claim1.tex:38:[Omitted long matching line]
+docs/paper/archive/analysis_claim4.tex:29:[Omitted long matching line]
+docs/paper/introduction.tex:12:[Omitted long matching line]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "48ebf11c-7ea7-4176-918a-67ee8d0eb4e3",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "docs/paper/archive/analysis_claim2.tex:3:[Omitted long matching line]\ndocs/paper/archive/analysis_claim2.tex:7:\\caption{Oracle SDF refinement with ground-truth distance fields (160 episodes, 4 tasks $\\times$ 40). All three variants achieve lower CAR than unrefined baselines (LoRA 82.0\\%, Full-FT 83.0\\%), and fake safe rates remain above 96\\%.}\ndocs/paper/archive/analysis_claim2.tex:13:Method & TSR (\\%) & CAR (\\%) & Fake Safe (\\%) & Refines/ep \\\\\ndocs/paper/archive/analysis_claim2.tex:27:[Omitted long matching line]\ndocs/paper/archive/analysis_claim1.tex:1:\\subsection{The Fake Safety Problem}\\label{sec:fake_safety}\ndocs/paper/archive/analysis_claim1.tex:5:[Omitted long matching line]\ndocs/paper/archive/analysis_claim1.tex:9:\\caption{Fake safety decomposition across methods on SafeLIBERO. CAR$_\\text{f}$ excludes episodes with max displacement $< \\tau_d = 0.1$\\,mm. Fake safe rate is computed over safe (non-collision) episodes only.}\ndocs/paper/archive/analysis_claim1.tex:15:Method & CAR (\\%) & TSR (\\%) & Fake Safe (\\%) & Real Safe & CAR$_\\text{f}$ (\\%) \\\\\ndocs/paper/archive/analysis_claim1.tex:26:[Omitted long matching line]\ndocs/paper/archive/analysis_claim1.tex:38:[Omitted long matching line]\ndocs/paper/archive/analysis_claim4.tex:29:[Omitted long matching line]\ndocs/paper/introduction.tex:12:[Omitted long matching line]",
+    "numLines": 12
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 104_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01QMUWcLjqHk4BT97N8FnNq5`</summary>
+
+```json
+{
+  "pattern": "\\bfrozen\\b",
+  "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper",
+  "output_mode": "content",
+  "-n": true,
+  "-i": true,
+  "glob": "*.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "89da9aa3-9346-428d-b73e-217ed23fc898",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014nEB2Hu48UaXz66B4SFR5C",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 323,
+      "cache_read_input_tokens": 67368,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 323
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 105 · 2026-05-28T06:22:02.505Z_
+
+<details><summary>↩ Tool result · `toolu_01QMUWcLjqHk4BT97N8FnNq5`</summary>
+
+```text
+docs/paper/experimental_framework.tex:36:\item \textit{Pi0.5 + A1}: The A1 architecture applied to the Pi0.5 backbone. Training proceeds in two phases: Phase~1 (steps 0--5K) trains only the auxiliary heads on detached features with the backbone frozen; Phase~2 (steps 5K--30K) unfreezes LoRA parameters for joint optimization. We evaluate $\lambda_\text{SDF} \in \{0.005, 0.01\}$.
+docs/paper/method.tex:9:\caption{Training configurations. Trainable parameters exclude the frozen backbone.}
+docs/paper/archive/analysis_claim3.tex:7:\caption{Avoidance source attribution on SafeLIBERO (200 episodes per seed). LoRA fine-tuning without SDF produces CAR comparable to SDF-augmented variants; SDF adds no measurable CAR beyond LoRA-only at $\lambda \in \{0.005, 0.01\}$. All fine-tuned models exhibit 0\% frozen rate, confirming active collision avoidance.}
+docs/paper/archive/analysis_claim3.tex:13:Method & Seeds & TSR (\%) & CAR (\%) & EE Disp (m) & Frozen (\%) \\
+docs/paper/archive/analysis_claim3.tex:26:[Omitted long matching line]
+docs/paper/archive/analysis_claim3.tex:54:[Omitted long matching line]
+docs/paper/archive/analysis_claim4.tex:7:\caption{Results for Pi0.5 with training-time SDF auxiliary loss on SafeLIBERO (200 episodes per configuration). Frozen rate: fraction of episodes with $d_{\max} < \tau_d$ (action collapse; Section~\ref{sec:metrics}). Pi0.5+A1 produces 0\% frozen episodes at 10K steps, so CAR$_\text{f}$ equals raw CAR.}
+docs/paper/archive/analysis_claim4.tex:13:Method & TSR (\%) & CAR (\%) & CAR$_\text{f}$ (\%) & SSR (\%) & Frozen (\%) \\
+docs/paper/archive/analysis_claim4.tex:29:[Omitted long matching line]
+docs/paper/_archive/method.tex:95:\paragraph{Phase 1: Auxiliary module warmup ($0 \to 5\mathrm{K}$ steps).} The entire backbone, including LoRA parameters, is frozen. Only the SDF decoder (${\sim}$395K params) and EE extractor (${\sim}$263K params) are trained on detached features ($\bar{\mathbf{z}}.\mathrm{detach}()$) to avoid destabilizing the pretrained backbone. This phase establishes an accurate SDF predictor anchored to the backbone's current feature distribution.
+docs/paper/appendix.tex:321:    \item \textbf{Phase 1} (steps 0--5000): Backbone and LoRA parameters are frozen. Only the SDF decoder and EE extractor are trained, allowing them to learn meaningful representations before the policy adapts.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "2b9abd0a-782f-4899-a037-812d59e4b29c",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "docs/paper/experimental_framework.tex:36:\\item \\textit{Pi0.5 + A1}: The A1 architecture applied to the Pi0.5 backbone. Training proceeds in two phases: Phase~1 (steps 0--5K) trains only the auxiliary heads on detached features with the backbone frozen; Phase~2 (steps 5K--30K) unfreezes LoRA parameters for joint optimization. We evaluate $\\lambda_\\text{SDF} \\in \\{0.005, 0.01\\}$.\ndocs/paper/method.tex:9:\\caption{Training configurations. Trainable parameters exclude the frozen backbone.}\ndocs/paper/archive/analysis_claim3.tex:7:\\caption{Avoidance source attribution on SafeLIBERO (200 episodes per seed). LoRA fine-tuning without SDF produces CAR comparable to SDF-augmented variants; SDF adds no measurable CAR beyond LoRA-only at $\\lambda \\in \\{0.005, 0.01\\}$. All fine-tuned models exhibit 0\\% frozen rate, confirming active collision avoidance.}\ndocs/paper/archive/analysis_claim3.tex:13:Method & Seeds & TSR (\\%) & CAR (\\%) & EE Disp (m) & Frozen (\\%) \\\\\ndocs/paper/archive/analysis_claim3.tex:26:[Omitted long matching line]\ndocs/paper/archive/analysis_claim3.tex:54:[Omitted long matching line]\ndocs/paper/archive/analysis_claim4.tex:7:\\caption{Results for Pi0.5 with training-time SDF auxiliary loss on SafeLIBERO (200 episodes per configuration). Frozen rate: fraction of episodes with $d_{\\max} < \\tau_d$ (action collapse; Section~\\ref{sec:metrics}). Pi0.5+A1 produces 0\\% frozen episodes at 10K steps, so CAR$_\\text{f}$ equals raw CAR.}\ndocs/paper/archive/analysis_claim4.tex:13:Method & TSR (\\%) & CAR (\\%) & CAR$_\\text{f}$ (\\%) & SSR (\\%) & Frozen (\\%) \\\\\ndocs/paper/archive/analysis_claim4.tex:29:[Omitted long matching line]\ndocs/paper/_archive/method.tex:95:\\paragraph{Phase 1: Auxiliary module warmup ($0 \\to 5\\mathrm{K}$ steps).} The entire backbone, including LoRA parameters, is frozen. Only the SDF decoder (${\\sim}$395K params) and EE extractor (${\\sim}$263K params) are trained on detached features ($\\bar{\\mathbf{z}}.\\mathrm{detach}()$) to avoid destabilizing the pretrained backbone. This phase establishes an accurate SDF predictor anchored to the backbone's current feature distribution.\ndocs/paper/appendix.tex:321:    \\item \\textbf{Phase 1} (steps 0--5000): Backbone and LoRA parameters are frozen. Only the SDF decoder and EE extractor are trained, allowing them to learn meaningful representations before the policy adapts.",
+    "numLines": 11
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 106_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me verify the results:
+
+1. **"frozen episode/episodes/rate"** — All remaining hits are in `archive/` directory only. Clean.
+
+2. **"fake safe/safety"** — Remaining hits are:
+   - `archive/` files — those we don't touch. Clean.
+   - `introduction.tex:12` — this is the first-mention line where we added the colloquial note. Let me verify this is the intentional "fake safety" we kept.
+
+3. **"frozen" standalone** — Remaining hits:
+   - `experimental_framework.tex:36`: "backbone frozen" — training term. Keep. ✓
+   - `method.tex:9`: "frozen backbone" — training term. Keep. ✓
+   - `archive/` files — don't touch. ✓
+   - `appendix.tex:321`: "parameters are frozen" — training term. Keep. ✓
+   - `_archive/method.tex:95`: archive, don't touch. ✓
+
+The introduction.tex:12 "fake safety" hit is the intentional colloquial mention we kept, so let me double-check that line to confirm.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "d3cec632-f93e-4880-b47b-f33176e14fb1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013pogmVvUjAPxYTHhweC8oH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2142,
+      "cache_read_input_tokens": 67691,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2142
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 107_
+
+All remaining hits are in `archive/` directories (which we skip) or are ML training terms ("frozen backbone", "parameters are frozen") that should stay. The one `fake safety` in introduction.tex:12 is the intentional colloquial note we kept.
+
+Let me do a final spot-check on the edited introduction.tex to make sure the first-mention reads well.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "b268f871-782b-4871-8f2a-63b4fdd940ee",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013pogmVvUjAPxYTHhweC8oH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2142,
+      "cache_read_input_tokens": 67691,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2142
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 108_
+
+<details open><summary>🔧 Tool call — Read · `toolu_017FzJpMNmVz4WwyAfdsNqZb`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/introduction.tex",
+  "limit": 28
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "34211618-b82b-4a63-8e24-be4581f242aa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013pogmVvUjAPxYTHhweC8oH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2142,
+      "cache_read_input_tokens": 67691,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2142
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 109 · 2026-05-28T06:22:12.660Z_
+
+<details><summary>↩ Tool result · `toolu_017FzJpMNmVz4WwyAfdsNqZb`</summary>
+
+```text
+1	\section{Introduction}\label{sec:intro}
+2	
+3	Collision avoidance is a prerequisite for deploying Vision-Language-Action (VLA) models in physical environments~\cite{li2026vlasafety}. The SafeLIBERO benchmark~\cite{hu2025vlsa} provides the first systematic protocol for measuring collision avoidance in VLA manipulation. Recent methods report high Collision Avoidance Rate (CAR) through SDF-augmented training~\cite{zhang2025safevla}, constraint-based planning~\cite{yang2025cape}, and collision-free demonstrations~\cite{cofreeevla2026}. Our SDF-augmented Pi0~\cite{black2024pi0} reaches 91.5\% CAR across 800 episodes. The problem appears close to solved.
+4	
+5	\begin{figure}[t]
+6	\centering
+7	\includegraphics[width=\linewidth]{fig1_teaser}
+8	\caption{The action-collapsed safety problem in VLA collision avoidance evaluation. Standard CAR classifies an action-collapsed robot as safe because it produces zero collisions (left). dfCAR filters out action-collapsed episodes where displacement falls below $\tau_d$; Pi0+A1's 91.5\% safety score drops to ${\approx}$\,0\% (center). Pi0.5 exhibits genuine avoidance with active motion above 288\,mm in all safe episodes, and dfCAR equals raw CAR (right).}
+9	\label{fig:teaser}
+10	\end{figure}
+11	
+12	It is not (Figure~\ref{fig:teaser}). Of the 732 collision-free episodes, 99.6\% exhibit displacement below 0.1\,mm; TSR is 0\% across all 800 episodes. The robot is action-collapsed, not safe. The same pattern holds across all Pi0 configurations (Section~\ref{sec:fake_safety}). We term this \emph{action-collapsed safety} (colloquially, ``fake safety''): \emph{action collapse} (near-zero actions producing zero collisions) renders reported CAR illusory, and standard evaluation cannot distinguish inaction from deliberate avoidance~\cite{karwowski2024goodhart}.
+13	
+14	We present a systematic investigation of this problem across the Pi0 and Pi0.5~\cite{black2024pi0} model families on SafeLIBERO, spanning 100+ experiments and 6000+ evaluation episodes. Three findings emerge.
+15	
+16	\textbf{Action collapse is pervasive.} We introduce displacement-filtered CAR (dfCAR), which excludes episodes below a displacement threshold $\tau_d$. dfCAR collapses Pi0+A1 from 91.5\% to ${\approx}$\,0\% (3/732 safe episodes survive). The bimodal displacement distribution makes $\tau_d$ robust across five orders of magnitude. Pi0.5 validates the metric: TSR\,=\,71.5\%, CAR\,=\,28.5\%, with every safe episode above 288\,mm displacement and dfCAR equal to raw CAR (Section~\ref{sec:fake_safety}).
+17	
+18	\textbf{EE-only SDF refinement is structurally counterproductive.} Three ground-truth oracle variants all achieve \emph{lower} CAR than unrefined baselines (73.1--76.9\% vs.\ 82--83\%). The SDF gradient repels the EE but rotates arm links into obstacle volumes (Section~\ref{sec:ee_only}).
+19	
+20	\textbf{Collision-free demonstrations are sufficient for collision avoidance.} LoRA fine-tuning on Pi0.5 with collision-free demonstrations raises CAR by ${\sim}$26 points with zero action-collapsed episodes. Adding SDF supervision does not yield statistically significant improvement across the tested range $\lambda \in [0.005, 0.1]$ ($p > 0.05$ for $\lambda \in \{0.01, 0.1\}$; $\lambda = 0.1$: $p = 0.131$, 3 seeds). The per-task avoidance ranking is preserved across all conditions, indicating that the demonstration distribution primarily accounts for observed avoidance (Section~\ref{sec:avoidance_source}).
+21	
+22	Our contributions are:
+23	\begin{itemize}
+24	    \item \textbf{dfCAR metric:} displacement-filtered CAR that separates genuine avoidance from action collapse, robust across $\tau_d \in [2, 200]$\,mm.
+25	    \item \textbf{Action-collapse diagnosis:} 100+ experiments across Pi0/Pi0.5 showing $>$99\% of Pi0 safe episodes are action-collapse artifacts.
+26	    \item \textbf{EE-only SDF is counterproductive:} ground-truth oracle refinement \emph{reduces} CAR below unrefined baselines by redistributing collisions to unmonitored arm links.
+27	    \item \textbf{Demonstration sufficiency:} collision-free demonstrations account for nearly all measured CAR gains (${\sim}$26\,pp); SDF supervision shows no statistically significant benefit across the tested range $\lambda \in [0.005, 0.1]$ ($p > 0.05$ for $\lambda \in \{0.01, 0.1\}$, 3 seeds).
+28	\end{itemize}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "94b02e7c-497f-4fad-9aed-b5f6f32786c4",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/introduction.tex",
+      "content": "\\section{Introduction}\\label{sec:intro}\n\nCollision avoidance is a prerequisite for deploying Vision-Language-Action (VLA) models in physical environments~\\cite{li2026vlasafety}. The SafeLIBERO benchmark~\\cite{hu2025vlsa} provides the first systematic protocol for measuring collision avoidance in VLA manipulation. Recent methods report high Collision Avoidance Rate (CAR) through SDF-augmented training~\\cite{zhang2025safevla}, constraint-based planning~\\cite{yang2025cape}, and collision-free demonstrations~\\cite{cofreeevla2026}. Our SDF-augmented Pi0~\\cite{black2024pi0} reaches 91.5\\% CAR across 800 episodes. The problem appears close to solved.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\linewidth]{fig1_teaser}\n\\caption{The action-collapsed safety problem in VLA collision avoidance evaluation. Standard CAR classifies an action-collapsed robot as safe because it produces zero collisions (left). dfCAR filters out action-collapsed episodes where displacement falls below $\\tau_d$; Pi0+A1's 91.5\\% safety score drops to ${\\approx}$\\,0\\% (center). Pi0.5 exhibits genuine avoidance with active motion above 288\\,mm in all safe episodes, and dfCAR equals raw CAR (right).}\n\\label{fig:teaser}\n\\end{figure}\n\nIt is not (Figure~\\ref{fig:teaser}). Of the 732 collision-free episodes, 99.6\\% exhibit displacement below 0.1\\,mm; TSR is 0\\% across all 800 episodes. The robot is action-collapsed, not safe. The same pattern holds across all Pi0 configurations (Section~\\ref{sec:fake_safety}). We term this \\emph{action-collapsed safety} (colloquially, ``fake safety''): \\emph{action collapse} (near-zero actions producing zero collisions) renders reported CAR illusory, and standard evaluation cannot distinguish inaction from deliberate avoidance~\\cite{karwowski2024goodhart}.\n\nWe present a systematic investigation of this problem across the Pi0 and Pi0.5~\\cite{black2024pi0} model families on SafeLIBERO, spanning 100+ experiments and 6000+ evaluation episodes. Three findings emerge.\n\n\\textbf{Action collapse is pervasive.} We introduce displacement-filtered CAR (dfCAR), which excludes episodes below a displacement threshold $\\tau_d$. dfCAR collapses Pi0+A1 from 91.5\\% to ${\\approx}$\\,0\\% (3/732 safe episodes survive). The bimodal displacement distribution makes $\\tau_d$ robust across five orders of magnitude. Pi0.5 validates the metric: TSR\\,=\\,71.5\\%, CAR\\,=\\,28.5\\%, with every safe episode above 288\\,mm displacement and dfCAR equal to raw CAR (Section~\\ref{sec:fake_safety}).\n\n\\textbf{EE-only SDF refinement is structurally counterproductive.} Three ground-truth oracle variants all achieve \\emph{lower} CAR than unrefined baselines (73.1--76.9\\% vs.\\ 82--83\\%). The SDF gradient repels the EE but rotates arm links into obstacle volumes (Section~\\ref{sec:ee_only}).\n\n\\textbf{Collision-free demonstrations are sufficient for collision avoidance.} LoRA fine-tuning on Pi0.5 with collision-free demonstrations raises CAR by ${\\sim}$26 points with zero action-collapsed episodes. Adding SDF supervision does not yield statistically significant improvement across the tested range $\\lambda \\in [0.005, 0.1]$ ($p > 0.05$ for $\\lambda \\in \\{0.01, 0.1\\}$; $\\lambda = 0.1$: $p = 0.131$, 3 seeds). The per-task avoidance ranking is preserved across all conditions, indicating that the demonstration distribution primarily accounts for observed avoidance (Section~\\ref{sec:avoidance_source}).\n\nOur contributions are:\n\\begin{itemize}\n    \\item \\textbf{dfCAR metric:} displacement-filtered CAR that separates genuine avoidance from action collapse, robust across $\\tau_d \\in [2, 200]$\\,mm.\n    \\item \\textbf{Action-collapse diagnosis:} 100+ experiments across Pi0/Pi0.5 showing $>$99\\% of Pi0 safe episodes are action-collapse artifacts.\n    \\item \\textbf{EE-only SDF is counterproductive:} ground-truth oracle refinement \\emph{reduces} CAR below unrefined baselines by redistributing collisions to unmonitored arm links.\n    \\item \\textbf{Demonstration sufficiency:} collision-free demonstrations account for nearly all measured CAR gains (${\\sim}$26\\,pp); SDF supervision shows no statistically significant benefit across the tested range $\\lambda \\in [0.005, 0.1]$ ($p > 0.05$ for $\\lambda \\in \\{0.01, 0.1\\}$, 3 seeds).\n\\end{itemize}",
+      "numLines": 28,
+      "startLine": 1,
+      "totalLines": 28
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 110_
+
+All replacements are clean and consistent. Summary of changes across 9 files:
+
+| Term | Replacement | Count |
+|---|---|---|
+| frozen episodes/episode | action-collapsed episodes/episode | 5 |
+| frozen rate / Frozen Rate | action-collapse rate / Action-Collapse Rate | 5 |
+| fake safety (after first mention) | action-collapsed safety / action-collapse / CAR inflation | 5 |
+| fake safety (first mention, intro:12) | action-collapsed safety (colloquially, "fake safety") | 1 (kept as colloquial note) |
+| Fake Safe (%) table header | Collapsed (%) | 2 |
+| frozen robot / frozen (robot behavior) | action-collapsed robot / action-collapsed | 6 |
+
+Preserved without changes:
+- All `\label{sec:fake_safety}`, `\ref{sec:fake_safety}`, `\label{tab:fake_safety}` identifiers
+- "frozen backbone", "parameters are frozen" (ML training terms)
+- All `archive/` files
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "uuid": "cd549efd-3d5c-4a97-8980-9b616ad7eac8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012rsbfeKNviQVY59E44ecwT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1832,
+      "cache_read_input_tokens": 69833,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1832
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 111_
+
+All replacements are clean and consistent. Summary of changes across 9 files:
+
+| Term | Replacement | Count |
+|---|---|---|
+| frozen episodes/episode | action-collapsed episodes/episode | 5 |
+| frozen rate / Frozen Rate | action-collapse rate / Action-Collapse Rate | 5 |
+| fake safety (after first mention) | action-collapsed safety / action-collapse / CAR inflation | 5 |
+| fake safety (first mention, intro:12) | action-collapsed safety (colloquially, "fake safety") | 1 (kept as colloquial note) |
+| Fake Safe (%) table header | Collapsed (%) | 2 |
+| frozen robot / frozen (robot behavior) | action-collapsed robot / action-collapsed | 6 |
+
+Preserved without changes:
+- All `\label{sec:fake_safety}`, `\ref{sec:fake_safety}`, `\label{tab:fake_safety}` identifiers
+- "frozen backbone", "parameters are frozen" (ML training terms)
+- All `archive/` files
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 214540,
+  "duration_api_ms": 215713,
+  "num_turns": 46,
+  "stop_reason": "end_turn",
+  "session_id": "98830acd-3a66-40f8-83da-24369d4517b9",
+  "total_cost_usd": 1.2286979999999998,
+  "usage": {
+    "input_tokens": 18,
+    "cache_creation_input_tokens": 77482,
+    "cache_read_input_tokens": 875741,
+    "output_tokens": 12176,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 77482,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 253,
+        "cache_read_input_tokens": 69833,
+        "cache_creation_input_tokens": 1832,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1832
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1980,
+      "outputTokens": 19,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002075,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 18,
+      "outputTokens": 12176,
+      "cacheReadInputTokens": 875741,
+      "cacheCreationInputTokens": 77482,
+      "webSearchRequests": 0,
+      "costUSD": 1.226623,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "69cc0f82-15b9-49bb-b687-dc607c9c5d4d"
+}
+```
+
+</details>
+
+---

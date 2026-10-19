@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_lora_baseline_object_v11",
+  "project": "diff_collision_sdf",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T14:20:50.740Z",
+    "updated_at": "2026-05-22T15:03:38.756Z",
+    "hypothesis": "LoRA baseline eval on safelibero_object with action chunking (M020) — directly compares with full-FT baseline v11 (TSR=0.5%, CAR=83%) on same suite. Quantifies TSR/CAR gap between LoRA and full-FT to establish fair A3/A1 comparison baseline.",
+    "parent": "baseline_lora_object_pudding_s0"
+  },
+  "timestamp": "2026-05-22T15:03:38.801992+00:00",
+  "trigger": "update_registry"
+}

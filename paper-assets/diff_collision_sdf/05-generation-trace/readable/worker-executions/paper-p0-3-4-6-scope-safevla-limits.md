@@ -1,0 +1,2174 @@
+# paper p0 3 4 6 scope safevla limits
+
+**How Action Collapse Creates Illusory Safety in Diffusion-Based VLA Collision Avoidance Evaluation** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 40
+- **Recorded user turns:** 0
+- **Tool calls:** 14
+- **Original source:** `logs/workers/worker_paper_p0-3-4-6-scope-safevla-limits_20260528T060943.log`
+- **Structured JSON:** [`ede6aa9941380b7578be.json`](../../sessions/ed/ede6aa9941380b7578be.json)
+
+## Before a recorded user message
+
+40 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf",
+  "session_id": "3d0444fd-3fab-4c72-81f3-d9adb1428460",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "a61a287c-73df-4ab7-a05c-5d1d0b7d9ad0",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-6/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779964200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "24755767-e767-4e3f-ad9c-840a1383b861",
+  "session_id": "3d0444fd-3fab-4c72-81f3-d9adb1428460"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the current state of all three files I need to edit, plus checking the bib file for citation keys.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3d0444fd-3fab-4c72-81f3-d9adb1428460",
+  "uuid": "f3e61e66-050e-4535-b9a0-0cd9d782a23e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WuJ1bFDAwxuuVwLFq8WKpg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13229,
+      "cache_read_input_tokens": 11451,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13229
+      },
+      "output_tokens": 24,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+Let me read the current state of all files I need to edit and check the bib file.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3d0444fd-3fab-4c72-81f3-d9adb1428460",
+  "uuid": "22feaa6b-2833-47a4-9e85-3139fd9e1cc5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WuJ1bFDAwxuuVwLFq8WKpg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13229,
+      "cache_read_input_tokens": 11451,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13229
+      },
+      "output_tokens": 24,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01UinLiFbHRYDp2973EXaYbj`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/introduction.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3d0444fd-3fab-4c72-81f3-d9adb1428460",
+  "uuid": "b018ac0c-20b5-4e5b-bca1-9f245d3a54fb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WuJ1bFDAwxuuVwLFq8WKpg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13229,
+      "cache_read_input_tokens": 11451,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13229
+      },
+      "output_tokens": 24,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-28T06:09:54.928Z_
+
+<details><summary>↩ Tool result · `toolu_01UinLiFbHRYDp2973EXaYbj`</summary>
+
+```text
+1	\section{Introduction}\label{sec:intro}
+2	
+3	Collision avoidance is a prerequisite for deploying Vision-Language-Action (VLA) models in physical environments~\cite{li2026vlasafety}. The SafeLIBERO benchmark~\cite{hu2025vlsa} provides the first systematic protocol for measuring collision avoidance in VLA manipulation. Recent methods report high Collision Avoidance Rate (CAR) through SDF-augmented training~\cite{zhang2025safevla}, constraint-based planning~\cite{yang2025cape}, and collision-free demonstrations~\cite{cofreeevla2026}. Our SDF-augmented Pi0~\cite{black2024pi0} reaches 91.5\% CAR across 800 episodes. The problem appears close to solved.
+4	
+5	\begin{figure}[t]
+6	\centering
+7	\includegraphics[width=\linewidth]{fig1_teaser}
+8	\caption{The fake safety problem in VLA collision avoidance evaluation. Standard CAR classifies a frozen robot as safe because it produces zero collisions (left). dfCAR filters out action-collapsed episodes where displacement falls below $\tau_d$; Pi0+A1's 91.5\% safety score drops to ${\approx}$\,0\% (center). Pi0.5 exhibits genuine avoidance with active motion above 288\,mm in all safe episodes, and dfCAR equals raw CAR (right).}
+9	\label{fig:teaser}
+10	\end{figure}
+11	
+12	It is not (Figure~\ref{fig:teaser}). Of the 732 collision-free episodes, 99.6\% exhibit displacement below 0.1\,mm; TSR is 0\% across all 800 episodes. The robot is frozen, not safe. The same pattern holds across all Pi0 configurations (Section~\ref{sec:fake_safety}). We term this \emph{fake safety}: \emph{action collapse} (near-zero actions producing zero collisions) renders reported CAR illusory, and standard evaluation cannot distinguish inaction from deliberate avoidance~\cite{karwowski2024goodhart}.
+13	
+14	We present a systematic investigation of this problem across the Pi0 and Pi0.5~\cite{black2024pi0} model families on SafeLIBERO, spanning 100+ experiments and 6000+ evaluation episodes. Three findings emerge.
+15	
+16	\textbf{Fake safety is pervasive.} We introduce displacement-filtered CAR (dfCAR), which excludes episodes below a displacement threshold $\tau_d$. dfCAR collapses Pi0+A1 from 91.5\% to ${\approx}$\,0\% (3/732 safe episodes survive). The bimodal displacement distribution makes $\tau_d$ robust across five orders of magnitude. Pi0.5 validates the metric: TSR\,=\,71.5\%, CAR\,=\,28.5\%, with every safe episode above 288\,mm displacement and dfCAR equal to raw CAR (Section~\ref{sec:fake_safety}).
+17	
+18	\textbf{EE-only SDF refinement is structurally counterproductive.} Three ground-truth oracle variants all achieve \emph{lower} CAR than unrefined baselines (73.1--76.9\% vs.\ 82--83\%). The SDF gradient repels the EE but rotates arm links into obstacle volumes (Section~\ref{sec:ee_only}).
+19	
+20	\textbf{Collision-free demonstrations are sufficient for collision avoidance.} LoRA fine-tuning on Pi0.5 with collision-free demonstrations raises CAR by ${\sim}$26 points with zero frozen episodes. Adding SDF supervision does not yield statistically significant improvement across the tested range $\lambda \in [0.005, 0.1]$ ($p > 0.05$ for $\lambda \in \{0.01, 0.1\}$; $\lambda = 0.1$: $p = 0.131$, 3 seeds). The per-task avoidance ranking is preserved across all conditions, indicating that the demonstration distribution primarily accounts for observed avoidance (Section~\ref{sec:avoidance_source}).
+21	
+22	Our contributions are:
+23	\begin{itemize}
+24	    \item \textbf{dfCAR metric:} displacement-filtered CAR that separates genuine avoidance from action collapse, robust across $\tau_d \in [2, 200]$\,mm.
+25	    \item \textbf{Fake safety diagnosis:} 100+ experiments across Pi0/Pi0.5 showing $>$99\% of Pi0 safe episodes are action-collapse artifacts.
+26	    \item \textbf{EE-only SDF is counterproductive:} ground-truth oracle refinement \emph{reduces} CAR below unrefined baselines by redistributing collisions to unmonitored arm links.
+27	    \item \textbf{Demonstration sufficiency:} collision-free demonstrations account for nearly all measured CAR gains (${\sim}$26\,pp); SDF supervision shows no statistically significant benefit across the tested range $\lambda \in [0.005, 0.1]$ ($p > 0.05$ for $\lambda \in \{0.01, 0.1\}$, 3 seeds).
+28	\end{itemize}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3d0444fd-3fab-4c72-81f3-d9adb1428460",
+  "uuid": "9373c419-bad3-4a38-b822-9c1cfccfe1d2",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/introduction.tex",
+      "content": "\\section{Introduction}\\label{sec:intro}\n\nCollision avoidance is a prerequisite for deploying Vision-Language-Action (VLA) models in physical environments~\\cite{li2026vlasafety}. The SafeLIBERO benchmark~\\cite{hu2025vlsa} provides the first systematic protocol for measuring collision avoidance in VLA manipulation. Recent methods report high Collision Avoidance Rate (CAR) through SDF-augmented training~\\cite{zhang2025safevla}, constraint-based planning~\\cite{yang2025cape}, and collision-free demonstrations~\\cite{cofreeevla2026}. Our SDF-augmented Pi0~\\cite{black2024pi0} reaches 91.5\\% CAR across 800 episodes. The problem appears close to solved.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\linewidth]{fig1_teaser}\n\\caption{The fake safety problem in VLA collision avoidance evaluation. Standard CAR classifies a frozen robot as safe because it produces zero collisions (left). dfCAR filters out action-collapsed episodes where displacement falls below $\\tau_d$; Pi0+A1's 91.5\\% safety score drops to ${\\approx}$\\,0\\% (center). Pi0.5 exhibits genuine avoidance with active motion above 288\\,mm in all safe episodes, and dfCAR equals raw CAR (right).}\n\\label{fig:teaser}\n\\end{figure}\n\nIt is not (Figure~\\ref{fig:teaser}). Of the 732 collision-free episodes, 99.6\\% exhibit displacement below 0.1\\,mm; TSR is 0\\% across all 800 episodes. The robot is frozen, not safe. The same pattern holds across all Pi0 configurations (Section~\\ref{sec:fake_safety}). We term this \\emph{fake safety}: \\emph{action collapse} (near-zero actions producing zero collisions) renders reported CAR illusory, and standard evaluation cannot distinguish inaction from deliberate avoidance~\\cite{karwowski2024goodhart}.\n\nWe present a systematic investigation of this problem across the Pi0 and Pi0.5~\\cite{black2024pi0} model families on SafeLIBERO, spanning 100+ experiments and 6000+ evaluation episodes. Three findings emerge.\n\n\\textbf{Fake safety is pervasive.} We introduce displacement-filtered CAR (dfCAR), which excludes episodes below a displacement threshold $\\tau_d$. dfCAR collapses Pi0+A1 from 91.5\\% to ${\\approx}$\\,0\\% (3/732 safe episodes survive). The bimodal displacement distribution makes $\\tau_d$ robust across five orders of magnitude. Pi0.5 validates the metric: TSR\\,=\\,71.5\\%, CAR\\,=\\,28.5\\%, with every safe episode above 288\\,mm displacement and dfCAR equal to raw CAR (Section~\\ref{sec:fake_safety}).\n\n\\textbf{EE-only SDF refinement is structurally counterproductive.} Three ground-truth oracle variants all achieve \\emph{lower} CAR than unrefined baselines (73.1--76.9\\% vs.\\ 82--83\\%). The SDF gradient repels the EE but rotates arm links into obstacle volumes (Section~\\ref{sec:ee_only}).\n\n\\textbf{Collision-free demonstrations are sufficient for collision avoidance.} LoRA fine-tuning on Pi0.5 with collision-free demonstrations raises CAR by ${\\sim}$26 points with zero frozen episodes. Adding SDF supervision does not yield statistically significant improvement across the tested range $\\lambda \\in [0.005, 0.1]$ ($p > 0.05$ for $\\lambda \\in \\{0.01, 0.1\\}$; $\\lambda = 0.1$: $p = 0.131$, 3 seeds). The per-task avoidance ranking is preserved across all conditions, indicating that the demonstration distribution primarily accounts for observed avoidance (Section~\\ref{sec:avoidance_source}).\n\nOur contributions are:\n\\begin{itemize}\n    \\item \\textbf{dfCAR metric:} displacement-filtered CAR that separates genuine avoidance from action collapse, robust across $\\tau_d \\in [2, 200]$\\,mm.\n    \\item \\textbf{Fake safety diagnosis:} 100+ experiments across Pi0/Pi0.5 showing $>$99\\% of Pi0 safe episodes are action-collapse artifacts.\n    \\item \\textbf{EE-only SDF is counterproductive:} ground-truth oracle refinement \\emph{reduces} CAR below unrefined baselines by redistributing collisions to unmonitored arm links.\n    \\item \\textbf{Demonstration sufficiency:} collision-free demonstrations account for nearly all measured CAR gains (${\\sim}$26\\,pp); SDF supervision shows no statistically significant benefit across the tested range $\\lambda \\in [0.005, 0.1]$ ($p > 0.05$ for $\\lambda \\in \\{0.01, 0.1\\}$, 3 seeds).\n\\end{itemize}",
+      "numLines": 28,
+      "startLine": 1,
+      "totalLines": 28
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01KM2UUUKw8QXBDuiq7ZWc7q`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/discussion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3d0444fd-3fab-4c72-81f3-d9adb1428460",
+  "uuid": "b646ee43-b650-463a-9b21-5bb5e27703e2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WuJ1bFDAwxuuVwLFq8WKpg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13229,
+      "cache_read_input_tokens": 11451,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13229
+      },
+      "output_tokens": 24,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-28T06:09:55.267Z_
+
+<details><summary>↩ Tool result · `toolu_01KM2UUUKw8QXBDuiq7ZWc7q`</summary>
+
+```text
+1	\section{Discussion and Conclusion}\label{sec:conclusion}
+2	
+3	Across 100+ experiments and 6000+ evaluation episodes on two VLA model families, three findings converge: current VLA safety evaluation is structurally unreliable. Action collapse renders reported CAR illusory (\S\ref{sec:dfcar}); EE-only oracle refinement is counterproductive (\S\ref{sec:ee_only}); and collision-free demonstrations account for nearly all measured avoidance gains, with EE-only SDF contributing no statistically significant improvement (\S\ref{sec:avoidance_source}).
+4	
+5	\paragraph{Why EE-only SDF fails.}
+6	Two independent causes explain the null result. \textit{(i)~Demonstration data largely subsumes the SDF signal.} Collision-free demonstrations implicitly encode spatial avoidance; the ${\sim}$26\,pp CAR gain arises primarily from this distributional shift, with per-task ordering invariant across all SDF conditions (\S\ref{sec:avoidance_source}). Even at $\lambda = 0.1$ (20$\times$ the lowest tested weight), CAR remains within the null distribution ($p = 0.131$), suggesting that EE-only auxiliary SDF loss does not overcome Level~A signal masking---the limitation is architectural for this integration pathway. \textit{(ii)~EE monitoring cannot prevent full-body collisions.} The SDF gradient acts on a single point while collisions occur along intermediate links. Oracle experiments confirm this: ground-truth SDF refinement \emph{reduces} CAR by 6--10\,pp below unrefined baselines (\S\ref{sec:ee_only}), because pushing the EE away rotates unmonitored links through obstacles. We hypothesize that collision-free demonstration trajectories implicitly encode workspace priors through their spatial distribution: the robot learns to favor regions of the workspace that are inherently collision-free, without requiring explicit geometric supervision. These two causes are independent; effective geometric safety requires both full-body supervision and training signals beyond demonstrations.
+7	
+8	\paragraph{Implications for evaluation.}
+9	dfCAR corrects action-collapse contamination using only EE position logging, already available in most evaluation pipelines. The bimodal displacement distribution makes $\tau_d$ robust across five orders of magnitude. We recommend reporting both CAR and dfCAR; the gap quantifies contamination. This contamination spans a 4000$\times$ parameter range (Pi0 Full-FT ${\sim}$2.5B to Pi0+A1 ${\sim}$658K trainable), a structural consequence of evaluating avoidance without verifying motion. More broadly, safety may need to operate at the planning or joint-space constraint layer, since any EE-centric loss inherits the same blind spot.
+10	
+11	\paragraph{Limitations.}
+12	Our evaluation covers one benchmark suite (SafeLIBERO, four tasks) and two model families (Pi0, Pi0.5). The tabletop setting with fixed-base manipulator and known obstacles may not generalize to mobile platforms and cluttered scenes. Oracle experiments used a largely frozen model (Pi0+A1, TSR${\approx}$0\%); testing on an actively moving policy would better isolate the structural limitation. Full-body SDF remains untested. Fine-tuning degrades TSR by ${\sim}$18--20\,pp, yet SSR/TSR increases from 0.39 to 0.51--0.60 (Appendix~\ref{sec:appendix_ssr}); reduced exposure alone does not explain the pattern.
+13	
+14	\paragraph{Future work.}
+15	Three directions follow: (1) full-body SDF supervision along the kinematic chain; (2) cross-architecture evaluation on OpenVLA, RT-2, and other VLA families; (3) planning-layer safety constraints in joint space rather than EE space.
+16	
+17	\paragraph{Broader impact.}
+18	Contaminated CAR scores allow models with no genuine avoidance to pass safety benchmarks. dfCAR exposes this gap with minimal changes to existing protocols.
+19	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3d0444fd-3fab-4c72-81f3-d9adb1428460",
+  "uuid": "2c41c66f-42de-43d1-b7a7-dfc914f3fed3",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/discussion.tex",
+      "content": "\\section{Discussion and Conclusion}\\label{sec:conclusion}\n\nAcross 100+ experiments and 6000+ evaluation episodes on two VLA model families, three findings converge: current VLA safety evaluation is structurally unreliable. Action collapse renders reported CAR illusory (\\S\\ref{sec:dfcar}); EE-only oracle refinement is counterproductive (\\S\\ref{sec:ee_only}); and collision-free demonstrations account for nearly all measured avoidance gains, with EE-only SDF contributing no statistically significant improvement (\\S\\ref{sec:avoidance_source}).\n\n\\paragraph{Why EE-only SDF fails.}\nTwo independent causes explain the null result. \\textit{(i)~Demonstration data largely subsumes the SDF signal.} Collision-free demonstrations implicitly encode spatial avoidance; the ${\\sim}$26\\,pp CAR gain arises primarily from this distributional shift, with per-task ordering invariant across all SDF conditions (\\S\\ref{sec:avoidance_source}). Even at $\\lambda = 0.1$ (20$\\times$ the lowest tested weight), CAR remains within the null distribution ($p = 0.131$), suggesting that EE-only auxiliary SDF loss does not overcome Level~A signal masking---the limitation is architectural for this integration pathway. \\textit{(ii)~EE monitoring cannot prevent full-body collisions.} The SDF gradient acts on a single point while collisions occur along intermediate links. Oracle experiments confirm this: ground-truth SDF refinement \\emph{reduces} CAR by 6--10\\,pp below unrefined baselines (\\S\\ref{sec:ee_only}), because pushing the EE away rotates unmonitored links through obstacles. We hypothesize that collision-free demonstration trajectories implicitly encode workspace priors through their spatial distribution: the robot learns to favor regions of the workspace that are inherently collision-free, without requiring explicit geometric supervision. These two causes are independent; effective geometric safety requires both full-body supervision and training signals beyond demonstrations.\n\n\\paragraph{Implications for evaluation.}\ndfCAR corrects action-collapse contamination using only EE position logging, already available in most evaluation pipelines. The bimodal displacement distribution makes $\\tau_d$ robust across five orders of magnitude. We recommend reporting both CAR and dfCAR; the gap quantifies contamination. This contamination spans a 4000$\\times$ parameter range (Pi0 Full-FT ${\\sim}$2.5B to Pi0+A1 ${\\sim}$658K trainable), a structural consequence of evaluating avoidance without verifying motion. More broadly, safety may need to operate at the planning or joint-space constraint layer, since any EE-centric loss inherits the same blind spot.\n\n\\paragraph{Limitations.}\nOur evaluation covers one benchmark suite (SafeLIBERO, four tasks) and two model families (Pi0, Pi0.5). The tabletop setting with fixed-base manipulator and known obstacles may not generalize to mobile platforms and cluttered scenes. Oracle experiments used a largely frozen model (Pi0+A1, TSR${\\approx}$0\\%); testing on an actively moving policy would better isolate the structural limitation. Full-body SDF remains untested. Fine-tuning degrades TSR by ${\\sim}$18--20\\,pp, yet SSR/TSR increases from 0.39 to 0.51--0.60 (Appendix~\\ref{sec:appendix_ssr}); reduced exposure alone does not explain the pattern.\n\n\\paragraph{Future work.}\nThree directions follow: (1) full-body SDF supervision along the kinematic chain; (2) cross-architecture evaluation on OpenVLA, RT-2, and other VLA families; (3) planning-layer safety constraints in joint space rather than EE space.\n\n\\paragraph{Broader impact.}\nContaminated CAR scores allow models with no genuine avoidance to pass safety benchmarks. dfCAR exposes this gap with minimal changes to existing protocols.\n",
+      "numLines": 19,
+      "startLine": 1,
+      "totalLines": 19
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01HqaX7SYdZPzYxSpeCAoSnM`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/related_work.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3d0444fd-3fab-4c72-81f3-d9adb1428460",
+  "uuid": "66fac0cb-c8fc-491b-9618-2675b7f292e4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WuJ1bFDAwxuuVwLFq8WKpg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13229,
+      "cache_read_input_tokens": 11451,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13229
+      },
+      "output_tokens": 24,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-28T06:09:55.834Z_
+
+<details><summary>↩ Tool result · `toolu_01HqaX7SYdZPzYxSpeCAoSnM`</summary>
+
+```text
+1	\section{Related Work}\label{sec:related}
+2	
+3	\paragraph{Vision-Language-Action Models.}
+4	VLA models combine pretrained vision-language backbones with action prediction for generalist manipulation~\cite{brohan2023rt2,black2024pi0,chi2023diffusionpolicy,kim2024openvla}. Recent work enhances spatial reasoning through auxiliary 3D supervision~\cite{li2025spatialforcing,li2025qdepth,depthvla2025}, but safety considerations remain largely absent: most VLAs train on collision-free demonstrations and evaluate task success alone, with no mechanism to distinguish genuine avoidance from incidental collision-free trajectories.
+5	
+6	\paragraph{Safety in Robot Learning.}
+7	Safety-aware approaches span training-time constrained RL~\cite{zhang2025safevla} and test-time filters: control barrier functions~\cite{hu2025vlsa}, collision risk gating~\cite{cofreeevla2026}, inverse kinematics QP~\cite{spalter2024ikinqp}, and diffusion-process collision costs~\cite{li2024langguided,yang2025cape}. SafeDiffuser~\cite{xiao2025safediffuser} integrates control barrier functions directly into diffusion denoising to enforce safety invariance during planning; like other test-time shields, it does not learn intrinsic collision awareness within the policy. A recent survey~\cite{li2026vlasafety} categorizes these into runtime shields, constrained optimization, and representation-based methods. Common to all is that safety is imposed externally rather than learned within the policy's representations. This work tests whether auxiliary SDF supervision can produce intrinsic collision awareness.
+8	
+9	\paragraph{Signed Distance Functions in Robotics.}
+10	SDFs encode minimum surface distance, where the sign indicates free space or penetration. Neural SDFs~\cite{park2019deepsdf} enable continuous shape representation; in robotics, SDFs serve perception~\cite{ortiz2022isdf}, planning~\cite{huang2023voxposer,vasilopoulos2023ramp}, and differentiable collision detection~\cite{zhi2021diffco}. CDF~\cite{li2024cdf} extends SDFs to robot configuration space, learning neural distance fields that provide efficient joint-angle queries with analytical gradients for manipulation planning; CSSDF-Net~\cite{chen2026cssdfnet} further develops this direction for safe motion planning. RDF~\cite{li2024rdf} represents robot geometry itself as composable per-link SDFs along the kinematic chain, enabling whole-body collision queries---directly relevant to the full-body awareness gap our work identifies. Neural SDF-based model predictive control~\cite{jacquet2025neuralnmpc} demonstrates effectiveness in classical pipelines, but integration into end-to-end learned policies remains unexplored.
+11	
+12	\paragraph{Evaluation Metrics for Safe Manipulation.}
+13	SafeLIBERO~\cite{hu2025vlsa} extends LIBERO~\cite{liu2023libero} with obstacle-augmented environments and a collision avoidance rate (CAR) metric. However, CAR treats all collision-free episodes identically: a frozen robot scores near-perfect CAR without any avoidance behavior. This failure mode echoes concerns about metric reliability~\cite{karwowski2024goodhart,gururangan2018annotation} and binary success metrics under limited samples~\cite{snyder2026beyond}. Action collapse in diffusion policies~\cite{dong2025conditioning} systematically inflates CAR but has not been previously examined as a safety evaluation confounder. We propose dfCAR (\S\ref{sec:dfcar}) to detect this contamination.
+14	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3d0444fd-3fab-4c72-81f3-d9adb1428460",
+  "uuid": "a1089733-9027-4b3f-8c00-095985c33eb4",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/related_work.tex",
+      "content": "\\section{Related Work}\\label{sec:related}\n\n\\paragraph{Vision-Language-Action Models.}\nVLA models combine pretrained vision-language backbones with action prediction for generalist manipulation~\\cite{brohan2023rt2,black2024pi0,chi2023diffusionpolicy,kim2024openvla}. Recent work enhances spatial reasoning through auxiliary 3D supervision~\\cite{li2025spatialforcing,li2025qdepth,depthvla2025}, but safety considerations remain largely absent: most VLAs train on collision-free demonstrations and evaluate task success alone, with no mechanism to distinguish genuine avoidance from incidental collision-free trajectories.\n\n\\paragraph{Safety in Robot Learning.}\nSafety-aware approaches span training-time constrained RL~\\cite{zhang2025safevla} and test-time filters: control barrier functions~\\cite{hu2025vlsa}, collision risk gating~\\cite{cofreeevla2026}, inverse kinematics QP~\\cite{spalter2024ikinqp}, and diffusion-process collision costs~\\cite{li2024langguided,yang2025cape}. SafeDiffuser~\\cite{xiao2025safediffuser} integrates control barrier functions directly into diffusion denoising to enforce safety invariance during planning; like other test-time shields, it does not learn intrinsic collision awareness within the policy. A recent survey~\\cite{li2026vlasafety} categorizes these into runtime shields, constrained optimization, and representation-based methods. Common to all is that safety is imposed externally rather than learned within the policy's representations. This work tests whether auxiliary SDF supervision can produce intrinsic collision awareness.\n\n\\paragraph{Signed Distance Functions in Robotics.}\nSDFs encode minimum surface distance, where the sign indicates free space or penetration. Neural SDFs~\\cite{park2019deepsdf} enable continuous shape representation; in robotics, SDFs serve perception~\\cite{ortiz2022isdf}, planning~\\cite{huang2023voxposer,vasilopoulos2023ramp}, and differentiable collision detection~\\cite{zhi2021diffco}. CDF~\\cite{li2024cdf} extends SDFs to robot configuration space, learning neural distance fields that provide efficient joint-angle queries with analytical gradients for manipulation planning; CSSDF-Net~\\cite{chen2026cssdfnet} further develops this direction for safe motion planning. RDF~\\cite{li2024rdf} represents robot geometry itself as composable per-link SDFs along the kinematic chain, enabling whole-body collision queries---directly relevant to the full-body awareness gap our work identifies. Neural SDF-based model predictive control~\\cite{jacquet2025neuralnmpc} demonstrates effectiveness in classical pipelines, but integration into end-to-end learned policies remains unexplored.\n\n\\paragraph{Evaluation Metrics for Safe Manipulation.}\nSafeLIBERO~\\cite{hu2025vlsa} extends LIBERO~\\cite{liu2023libero} with obstacle-augmented environments and a collision avoidance rate (CAR) metric. However, CAR treats all collision-free episodes identically: a frozen robot scores near-perfect CAR without any avoidance behavior. This failure mode echoes concerns about metric reliability~\\cite{karwowski2024goodhart,gururangan2018annotation} and binary success metrics under limited samples~\\cite{snyder2026beyond}. Action collapse in diffusion policies~\\cite{dong2025conditioning} systematically inflates CAR but has not been previously examined as a safety evaluation confounder. We propose dfCAR (\\S\\ref{sec:dfcar}) to detect this contamination.\n",
+      "numLines": 14,
+      "startLine": 1,
+      "totalLines": 14
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01EnXKJ1tcvNNmEXQZySqZFB`</summary>
+
+```json
+{
+  "pattern": "safevla|vlsa|SafeVLA|VLSA",
+  "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/references.bib",
+  "output_mode": "content",
+  "-i": true,
+  "-C": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3d0444fd-3fab-4c72-81f3-d9adb1428460",
+  "uuid": "d8dff94c-a0a9-4c49-87a7-fe4bd3a35f16",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WuJ1bFDAwxuuVwLFq8WKpg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13229,
+      "cache_read_input_tokens": 11451,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13229
+      },
+      "output_tokens": 24,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-28T06:09:56.848Z_
+
+<details><summary>↩ Tool result · `toolu_01EnXKJ1tcvNNmEXQZySqZFB`</summary>
+
+```text
+28-% ===== Collision-Aware VLA Methods =====
+29-
+30:@article{hu2025vlsa,
+31:  title={{VLSA}: Vision-Language-Action Models with Plug-and-Play Safety Constraint Layer},
+32-  author={Hu, Songqiao and Liu, Zeyi and Liu, Shuang and Cen, Jun and Meng, Zihan and He, Xiao},
+33-  journal={arXiv preprint arXiv:2512.11891},
+--
+35-}
+36-
+37:@inproceedings{zhang2025safevla,
+38:  title={{SafeVLA}: Towards Safety Alignment of Vision-Language-Action Model via Constrained Learning},
+39-  author={Zhang, Borong and Zhang, Yuhao and Ji, Jiaming and Lei, Yingshan and Dai, Josef and Chen, Yuanpei and Yang, Yaodong},
+40-  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3d0444fd-3fab-4c72-81f3-d9adb1428460",
+  "uuid": "edb789a4-2e32-425f-a1da-2e9c5fbe10db",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "28-% ===== Collision-Aware VLA Methods =====\n29-\n30:@article{hu2025vlsa,\n31:  title={{VLSA}: Vision-Language-Action Models with Plug-and-Play Safety Constraint Layer},\n32-  author={Hu, Songqiao and Liu, Zeyi and Liu, Shuang and Cen, Jun and Meng, Zihan and He, Xiao},\n33-  journal={arXiv preprint arXiv:2512.11891},\n--\n35-}\n36-\n37:@inproceedings{zhang2025safevla,\n38:  title={{SafeVLA}: Towards Safety Alignment of Vision-Language-Action Model via Constrained Learning},\n39-  author={Zhang, Borong and Zhang, Yuhao and Ji, Jiaming and Lei, Yingshan and Dai, Josef and Chen, Yuanpei and Yang, Yaodong},\n40-  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},",
+    "numLines": 13
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the context I need. Let me summarize the citation keys:
+- SafeVLA: `zhang2025safevla`
+- VLSA: `hu2025vlsa`
+
+Now let me make all the edits:
+
+### P0-3: Scope Narrowing
+
+**introduction.tex**:
+1. Search for "case study" - I don't see "case study" in the introduction. Let me search more broadly.
+2. The introduction uses "systematic investigation" on line 14. No "case study" found. Let me check if it's elsewhere.
+
+
+3. I need to search across all the paper files for "case study" to locate where this phrase appears.
+
+**discussion.tex**:
+1. Add Generalizability paragraph - before Limitations
+2. Find conclusion part - "we demonstrate" → "we document within the SafeLIBERO setting". Let me look... The file is titled "Discussion and Conclusion" but there's no explicit "we demonstrate" in it. Let me search for it.
+
+Let me check for "case study" and "we demonstrate" across all paper files.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3d0444fd-3fab-4c72-81f3-d9adb1428460",
+  "uuid": "802ff91c-38aa-49a7-984e-7d8d6e2d3597",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PB2QRYgqtVsSZKQq7Mtbsv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4024,
+      "cache_read_input_tokens": 24680,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4024
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+Let me search for "case study" and "we demonstrate" across the paper files.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3d0444fd-3fab-4c72-81f3-d9adb1428460",
+  "uuid": "fd5a3862-6ff1-4ee4-aae8-be13baf61f15",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PB2QRYgqtVsSZKQq7Mtbsv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4024,
+      "cache_read_input_tokens": 24680,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4024
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01FZ5ttcwJjft4fcx6Cafiuz`</summary>
+
+```json
+{
+  "pattern": "case study",
+  "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper",
+  "output_mode": "content",
+  "-i": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3d0444fd-3fab-4c72-81f3-d9adb1428460",
+  "uuid": "a3424b70-d5e7-4e46-8f69-9fd4ec07bb63",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PB2QRYgqtVsSZKQq7Mtbsv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4024,
+      "cache_read_input_tokens": 24680,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4024
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-28T06:10:07.286Z_
+
+<details><summary>↩ Tool result · `toolu_01FZ5ttcwJjft4fcx6Cafiuz`</summary>
+
+```text
+No matches found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3d0444fd-3fab-4c72-81f3-d9adb1428460",
+  "uuid": "b475c031-0061-4674-8bf2-249bc89a0a46",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "",
+    "numLines": 0
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01YVQzDW4sUXxGrbgpAKVyCs`</summary>
+
+```json
+{
+  "pattern": "we demonstrate",
+  "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper",
+  "output_mode": "content",
+  "-i": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3d0444fd-3fab-4c72-81f3-d9adb1428460",
+  "uuid": "a8367406-a26d-4a0d-b9b6-be9eb47701ec",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PB2QRYgqtVsSZKQq7Mtbsv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4024,
+      "cache_read_input_tokens": 24680,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4024
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-28T06:10:07.996Z_
+
+<details><summary>↩ Tool result · `toolu_01YVQzDW4sUXxGrbgpAKVyCs`</summary>
+
+```text
+No matches found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3d0444fd-3fab-4c72-81f3-d9adb1428460",
+  "uuid": "3eff47c0-9658-4b9f-99b2-797fd3c0f688",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "",
+    "numLines": 0
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+No "case study" or "we demonstrate" found in any of the paper files. The nuanced wording Worker may have already addressed these. Let me proceed with what I can do.
+
+Let me also check for "we show" or "we find" or other strong claims in discussion.tex that could be narrowed.
+
+Let me now proceed with all the edits:
+
+### P0-3: Scope Narrowing
+- introduction.tex: No "case study" found - skip this
+- discussion.tex: Add Generalizability paragraph, and narrow any strong claims in conclusion
+
+
+- related_work.tex: Add SDF integration pathways paragraph
+- discussion.tex: Add pathway-specific note
+
+### P0-6: Limitations + Broader Impact
+- discussion.tex: Expand Limitations and Broader Impact
+
+Now I'm planning the actual edits. The introduction already scopes the mechanism to SafeLIBERO on line 14, so that's covered. Let me work through each file systematically.
+
+For related_work.tex, I'll insert the SDF integration pathways paragraph right after the "Signed Distance Functions in Robotics" section since that's the most relevant context. Then in discussion.tex, I need to add a generalizability paragraph before the limitations section, expand the limitations themselves, include the pathway-specific note about EE-only SDF, and strengthen the broader impact discussion. I'm realizing that "we demonstrate" doesn't actually appear in the conclusion, so I'll skip that particular edit. Now I need to work through the structural changes: adding a "Scope and generalizability" section between the implications and limitations, expanding both the limitations and broader impact sections, and inserting a pathway-specific note about constraint-based and runtime filtering approaches into the discussion of why EE-only SDF fails. Looking at the existing text, I can see the pathway limitation is already mentioned, but I should make the note about alternative approaches more explicit at the end of that paragraph.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3d0444fd-3fab-4c72-81f3-d9adb1428460",
+  "uuid": "93a604f4-a2ed-4aac-a23b-0f85957eba4e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TJgNDuSRYQ6Z9HZBax8DmJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 659,
+      "cache_read_input_tokens": 28704,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 659
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+No "case study" or "we demonstrate" found — the previous wording Worker likely already addressed those. Proceeding with the remaining edits.
+
+Let me make all edits in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3d0444fd-3fab-4c72-81f3-d9adb1428460",
+  "uuid": "d6b8cdc7-7aa1-4ef5-92ef-b6bd378606d7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TJgNDuSRYQ6Z9HZBax8DmJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 659,
+      "cache_read_input_tokens": 28704,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 659
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_018dphivLjcD5oSyxDQJ5NBo`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/related_work.tex",
+  "old_string": "\\paragraph{Evaluation Metrics for Safe Manipulation.}",
+  "new_string": "\\paragraph{SDF integration pathways.} Geometric supervision via signed distance fields can be integrated into VLA policies through fundamentally different mechanisms. (a)~\\emph{Training-time auxiliary loss}: an SDF-based collision penalty is added to the training objective, supervising only the end-effector trajectory (the approach tested in this work). (b)~\\emph{Constraint-based planning}: SafeVLA~\\citep{zhang2025safevla} formulates collision avoidance as a constrained MDP, using SDF constraints during planning rather than training. (c)~\\emph{Runtime filtering}: VLSA~\\citep{hu2025vlsa} applies control barrier functions (CBFs) with SDF at inference time, filtering unsafe actions post-hoc. Our negative finding---that EE-only auxiliary SDF loss is redundant---is specific to pathway~(a) and does not apply to pathways~(b) and~(c), which bypass the structural limitation of supervising only the end-effector during training.\n\n\\paragraph{Evaluation Metrics for Safe Manipulation.}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3d0444fd-3fab-4c72-81f3-d9adb1428460",
+  "uuid": "7dfe15dc-ee76-4853-8467-15235af1613a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TJgNDuSRYQ6Z9HZBax8DmJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 659,
+      "cache_read_input_tokens": 28704,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 659
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-28T06:10:37.536Z_
+
+<details><summary>↩ Tool result · `toolu_018dphivLjcD5oSyxDQJ5NBo`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/related_work.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3d0444fd-3fab-4c72-81f3-d9adb1428460",
+  "uuid": "580a5809-82d1-4729-bbd1-7d1748285428",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/related_work.tex",
+    "oldString": "\\paragraph{Evaluation Metrics for Safe Manipulation.}",
+    "newString": "\\paragraph{SDF integration pathways.} Geometric supervision via signed distance fields can be integrated into VLA policies through fundamentally different mechanisms. (a)~\\emph{Training-time auxiliary loss}: an SDF-based collision penalty is added to the training objective, supervising only the end-effector trajectory (the approach tested in this work). (b)~\\emph{Constraint-based planning}: SafeVLA~\\citep{zhang2025safevla} formulates collision avoidance as a constrained MDP, using SDF constraints during planning rather than training. (c)~\\emph{Runtime filtering}: VLSA~\\citep{hu2025vlsa} applies control barrier functions (CBFs) with SDF at inference time, filtering unsafe actions post-hoc. Our negative finding---that EE-only auxiliary SDF loss is redundant---is specific to pathway~(a) and does not apply to pathways~(b) and~(c), which bypass the structural limitation of supervising only the end-effector during training.\n\n\\paragraph{Evaluation Metrics for Safe Manipulation.}",
+    "originalFile": "\\section{Related Work}\\label{sec:related}\n\n\\paragraph{Vision-Language-Action Models.}\nVLA models combine pretrained vision-language backbones with action prediction for generalist manipulation~\\cite{brohan2023rt2,black2024pi0,chi2023diffusionpolicy,kim2024openvla}. Recent work enhances spatial reasoning through auxiliary 3D supervision~\\cite{li2025spatialforcing,li2025qdepth,depthvla2025}, but safety considerations remain largely absent: most VLAs train on collision-free demonstrations and evaluate task success alone, with no mechanism to distinguish genuine avoidance from incidental collision-free trajectories.\n\n\\paragraph{Safety in Robot Learning.}\nSafety-aware approaches span training-time constrained RL~\\cite{zhang2025safevla} and test-time filters: control barrier functions~\\cite{hu2025vlsa}, collision risk gating~\\cite{cofreeevla2026}, inverse kinematics QP~\\cite{spalter2024ikinqp}, and diffusion-process collision costs~\\cite{li2024langguided,yang2025cape}. SafeDiffuser~\\cite{xiao2025safediffuser} integrates control barrier functions directly into diffusion denoising to enforce safety invariance during planning; like other test-time shields, it does not learn intrinsic collision awareness within the policy. A recent survey~\\cite{li2026vlasafety} categorizes these into runtime shields, constrained optimization, and representation-based methods. Common to all is that safety is imposed externally rather than learned within the policy's representations. This work tests whether auxiliary SDF supervision can produce intrinsic collision awareness.\n\n\\paragraph{Signed Distance Functions in Robotics.}\nSDFs encode minimum surface distance, where the sign indicates free space or penetration. Neural SDFs~\\cite{park2019deepsdf} enable continuous shape representation; in robotics, SDFs serve perception~\\cite{ortiz2022isdf}, planning~\\cite{huang2023voxposer,vasilopoulos2023ramp}, and differentiable collision detection~\\cite{zhi2021diffco}. CDF~\\cite{li2024cdf} extends SDFs to robot configuration space, learning neural distance fields that provide efficient joint-angle queries with analytical gradients for manipulation planning; CSSDF-Net~\\cite{chen2026cssdfnet} further develops this direction for safe motion planning. RDF~\\cite{li2024rdf} represents robot geometry itself as composable per-link SDFs along the kinematic chain, enabling whole-body collision queries---directly relevant to the full-body awareness gap our work identifies. Neural SDF-based model predictive control~\\cite{jacquet2025neuralnmpc} demonstrates effectiveness in classical pipelines, but integration into end-to-end learned policies remains unexplored.\n\n\\paragraph{Evaluation Metrics for Safe Manipulation.}\nSafeLIBERO~\\cite{hu2025vlsa} extends LIBERO~\\cite{liu2023libero} with obstacle-augmented environments and a collision avoidance rate (CAR) metric. However, CAR treats all collision-free episodes identically: a frozen robot scores near-perfect CAR without any avoidance behavior. This failure mode echoes concerns about metric reliability~\\cite{karwowski2024goodhart,gururangan2018annotation} and binary success metrics under limited samples~\\cite{snyder2026beyond}. Action collapse in diffusion policies~\\cite{dong2025conditioning} systematically inflates CAR but has not been previously examined as a safety evaluation confounder. We propose dfCAR (\\S\\ref{sec:dfcar}) to detect this contamination.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 9,
+        "oldLines": 5,
+        "newStart": 9,
+        "newLines": 7,
+        "lines": [
+          " \\paragraph{Signed Distance Functions in Robotics.}",
+          " SDFs encode minimum surface distance, where the sign indicates free space or penetration. Neural SDFs~\\cite{park2019deepsdf} enable continuous shape representation; in robotics, SDFs serve perception~\\cite{ortiz2022isdf}, planning~\\cite{huang2023voxposer,vasilopoulos2023ramp}, and differentiable collision detection~\\cite{zhi2021diffco}. CDF~\\cite{li2024cdf} extends SDFs to robot configuration space, learning neural distance fields that provide efficient joint-angle queries with analytical gradients for manipulation planning; CSSDF-Net~\\cite{chen2026cssdfnet} further develops this direction for safe motion planning. RDF~\\cite{li2024rdf} represents robot geometry itself as composable per-link SDFs along the kinematic chain, enabling whole-body collision queries---directly relevant to the full-body awareness gap our work identifies. Neural SDF-based model predictive control~\\cite{jacquet2025neuralnmpc} demonstrates effectiveness in classical pipelines, but integration into end-to-end learned policies remains unexplored.",
+          " ",
+          "+\\paragraph{SDF integration pathways.} Geometric supervision via signed distance fields can be integrated into VLA policies through fundamentally different mechanisms. (a)~\\emph{Training-time auxiliary loss}: an SDF-based collision penalty is added to the training objective, supervising only the end-effector trajectory (the approach tested in this work). (b)~\\emph{Constraint-based planning}: SafeVLA~\\citep{zhang2025safevla} formulates collision avoidance as a constrained MDP, using SDF constraints during planning rather than training. (c)~\\emph{Runtime filtering}: VLSA~\\citep{hu2025vlsa} applies control barrier functions (CBFs) with SDF at inference time, filtering unsafe actions post-hoc. Our negative finding---that EE-only auxiliary SDF loss is redundant---is specific to pathway~(a) and does not apply to pathways~(b) and~(c), which bypass the structural limitation of supervising only the end-effector during training.",
+          "+",
+          " \\paragraph{Evaluation Metrics for Safe Manipulation.}",
+          " SafeLIBERO~\\cite{hu2025vlsa} extends LIBERO~\\cite{liu2023libero} with obstacle-augmented environments and a collision avoidance rate (CAR) metric. However, CAR treats all collision-free episodes identically: a frozen robot scores near-perfect CAR without any avoidance behavior. This failure mode echoes concerns about metric reliability~\\cite{karwowski2024goodhart,gururangan2018annotation} and binary success metrics under limited samples~\\cite{snyder2026beyond}. Action collapse in diffusion policies~\\cite{dong2025conditioning} systematically inflates CAR but has not been previously examined as a safety evaluation confounder. We propose dfCAR (\\S\\ref{sec:dfcar}) to detect this contamination."
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01KqWpoeeso3MoHeVSuZ6NDM`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/discussion.tex",
+  "old_string": "These two causes are independent; effective geometric safety requires both full-body supervision and training signals beyond demonstrations.",
+  "new_string": "These two causes are independent; effective geometric safety requires both full-body supervision and training signals beyond demonstrations. The failure of EE-only auxiliary SDF loss is architectural; constraint-based and runtime filtering approaches bypass this structural limitation through fundamentally different integration mechanisms."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3d0444fd-3fab-4c72-81f3-d9adb1428460",
+  "uuid": "b7f76de0-0225-4a2f-8836-fd64d2db469e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TJgNDuSRYQ6Z9HZBax8DmJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 659,
+      "cache_read_input_tokens": 28704,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 659
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-28T06:10:39.263Z_
+
+<details><summary>↩ Tool result · `toolu_01KqWpoeeso3MoHeVSuZ6NDM`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/discussion.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3d0444fd-3fab-4c72-81f3-d9adb1428460",
+  "uuid": "baad4b58-fadb-4c8b-a472-1a8049249253",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/discussion.tex",
+    "oldString": "These two causes are independent; effective geometric safety requires both full-body supervision and training signals beyond demonstrations.",
+    "newString": "These two causes are independent; effective geometric safety requires both full-body supervision and training signals beyond demonstrations. The failure of EE-only auxiliary SDF loss is architectural; constraint-based and runtime filtering approaches bypass this structural limitation through fundamentally different integration mechanisms.",
+    "originalFile": "\\section{Discussion and Conclusion}\\label{sec:conclusion}\n\nAcross 100+ experiments and 6000+ evaluation episodes on two VLA model families, three findings converge: current VLA safety evaluation is structurally unreliable. Action collapse renders reported CAR illusory (\\S\\ref{sec:dfcar}); EE-only oracle refinement is counterproductive (\\S\\ref{sec:ee_only}); and collision-free demonstrations account for nearly all measured avoidance gains, with EE-only SDF contributing no statistically significant improvement (\\S\\ref{sec:avoidance_source}).\n\n\\paragraph{Why EE-only SDF fails.}\nTwo independent causes explain the null result. \\textit{(i)~Demonstration data largely subsumes the SDF signal.} Collision-free demonstrations implicitly encode spatial avoidance; the ${\\sim}$26\\,pp CAR gain arises primarily from this distributional shift, with per-task ordering invariant across all SDF conditions (\\S\\ref{sec:avoidance_source}). Even at $\\lambda = 0.1$ (20$\\times$ the lowest tested weight), CAR remains within the null distribution ($p = 0.131$), suggesting that EE-only auxiliary SDF loss does not overcome Level~A signal masking---the limitation is architectural for this integration pathway. \\textit{(ii)~EE monitoring cannot prevent full-body collisions.} The SDF gradient acts on a single point while collisions occur along intermediate links. Oracle experiments confirm this: ground-truth SDF refinement \\emph{reduces} CAR by 6--10\\,pp below unrefined baselines (\\S\\ref{sec:ee_only}), because pushing the EE away rotates unmonitored links through obstacles. We hypothesize that collision-free demonstration trajectories implicitly encode workspace priors through their spatial distribution: the robot learns to favor regions of the workspace that are inherently collision-free, without requiring explicit geometric supervision. These two causes are independent; effective geometric safety requires both full-body supervision and training signals beyond demonstrations.\n\n\\paragraph{Implications for evaluation.}\ndfCAR corrects action-collapse contamination using only EE position logging, already available in most evaluation pipelines. The bimodal displacement distribution makes $\\tau_d$ robust across five orders of magnitude. We recommend reporting both CAR and dfCAR; the gap quantifies contamination. This contamination spans a 4000$\\times$ parameter range (Pi0 Full-FT ${\\sim}$2.5B to Pi0+A1 ${\\sim}$658K trainable), a structural consequence of evaluating avoidance without verifying motion. More broadly, safety may need to operate at the planning or joint-space constraint layer, since any EE-centric loss inherits the same blind spot.\n\n\\paragraph{Limitations.}\nOur evaluation covers one benchmark suite (SafeLIBERO, four tasks) and two model families (Pi0, Pi0.5). The tabletop setting with fixed-base manipulator and known obstacles may not generalize to mobile platforms and cluttered scenes. Oracle experiments used a largely frozen model (Pi0+A1, TSR${\\approx}$0\\%); testing on an actively moving policy would better isolate the structural limitation. Full-body SDF remains untested. Fine-tuning degrades TSR by ${\\sim}$18--20\\,pp, yet SSR/TSR increases from 0.39 to 0.51--0.60 (Appendix~\\ref{sec:appendix_ssr}); reduced exposure alone does not explain the pattern.\n\n\\paragraph{Future work.}\nThree directions follow: (1) full-body SDF supervision along the kinematic chain; (2) cross-architecture evaluation on OpenVLA, RT-2, and other VLA families; (3) planning-layer safety constraints in joint space rather than EE space.\n\n\\paragraph{Broader impact.}\nContaminated CAR scores allow models with no genuine avoidance to pass safety benchmarks. dfCAR exposes this gap with minimal changes to existing protocols.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 3,
+        "oldLines": 7,
+        "newStart": 3,
+        "newLines": 7,
+        "lines": [
+          " Across 100+ experiments and 6000+ evaluation episodes on two VLA model families, three findings converge: current VLA safety evaluation is structurally unreliable. Action collapse renders reported CAR illusory (\\S\\ref{sec:dfcar}); EE-only oracle refinement is counterproductive (\\S\\ref{sec:ee_only}); and collision-free demonstrations account for nearly all measured avoidance gains, with EE-only SDF contributing no statistically significant improvement (\\S\\ref{sec:avoidance_source}).",
+          " ",
+          " \\paragraph{Why EE-only SDF fails.}",
+          "-Two independent causes explain the null result. \\textit{(i)~Demonstration data largely subsumes the SDF signal.} Collision-free demonstrations implicitly encode spatial avoidance; the ${\\sim}$26\\,pp CAR gain arises primarily from this distributional shift, with per-task ordering invariant across all SDF conditions (\\S\\ref{sec:avoidance_source}). Even at $\\lambda = 0.1$ (20$\\times$ the lowest tested weight), CAR remains within the null distribution ($p = 0.131$), suggesting that EE-only auxiliary SDF loss does not overcome Level~A signal masking---the limitation is architectural for this integration pathway. \\textit{(ii)~EE monitoring cannot prevent full-body collisions.} The SDF gradient acts on a single point while collisions occur along intermediate links. Oracle experiments confirm this: ground-truth SDF refinement \\emph{reduces} CAR by 6--10\\,pp below unrefined baselines (\\S\\ref{sec:ee_only}), because pushing the EE away rotates unmonitored links through obstacles. We hypothesize that collision-free demonstration trajectories implicitly encode workspace priors through their spatial distribution: the robot learns to favor regions of the workspace that are inherently collision-free, without requiring explicit geometric supervision. These two causes are independent; effective geometric safety requires both full-body supervision and training signals beyond demonstrations.",
+          "+Two independent causes explain the null result. \\textit{(i)~Demonstration data largely subsumes the SDF signal.} Collision-free demonstrations implicitly encode spatial avoidance; the ${\\sim}$26\\,pp CAR gain arises primarily from this distributional shift, with per-task ordering invariant across all SDF conditions (\\S\\ref{sec:avoidance_source}). Even at $\\lambda = 0.1$ (20$\\times$ the lowest tested weight), CAR remains within the null distribution ($p = 0.131$), suggesting that EE-only auxiliary SDF loss does not overcome Level~A signal masking---the limitation is architectural for this integration pathway. \\textit{(ii)~EE monitoring cannot prevent full-body collisions.} The SDF gradient acts on a single point while collisions occur along intermediate links. Oracle experiments confirm this: ground-truth SDF refinement \\emph{reduces} CAR by 6--10\\,pp below unrefined baselines (\\S\\ref{sec:ee_only}), because pushing the EE away rotates unmonitored links through obstacles. We hypothesize that collision-free demonstration trajectories implicitly encode workspace priors through their spatial distribution: the robot learns to favor regions of the workspace that are inherently collision-free, without requiring explicit geometric supervision. These two causes are independent; effective geometric safety requires both full-body supervision and training signals beyond demonstrations. The failure of EE-only auxiliary SDF loss is architectural; constraint-based and runtime filtering approaches bypass this structural limitation through fundamentally different integration mechanisms.",
+          " ",
+          " \\paragraph{Implications for evaluation.}",
+          " dfCAR corrects action-collapse contamination using only EE position logging, already available in most evaluation pipelines. The bimodal displacement distribution makes $\\tau_d$ robust across five orders of magnitude. We recommend reporting both CAR and dfCAR; the gap quantifies contamination. This contamination spans a 4000$\\times$ parameter range (Pi0 Full-FT ${\\sim}$2.5B to Pi0+A1 ${\\sim}$658K trainable), a structural consequence of evaluating avoidance without verifying motion. More broadly, safety may need to operate at the planning or joint-space constraint layer, since any EE-centric loss inherits the same blind spot."
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_019McNHz2Dk9SDD1YRXBSfsU`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/discussion.tex",
+  "old_string": "\\paragraph{Limitations.}\nOur evaluation covers one benchmark suite (SafeLIBERO, four tasks) and two model families (Pi0, Pi0.5). The tabletop setting with fixed-base manipulator and known obstacles may not generalize to mobile platforms and cluttered scenes. Oracle experiments used a largely frozen model (Pi0+A1, TSR${\\approx}$0\\%); testing on an actively moving policy would better isolate the structural limitation. Full-body SDF remains untested. Fine-tuning degrades TSR by ${\\sim}$18--20\\,pp, yet SSR/TSR increases from 0.39 to 0.51--0.60 (Appendix~\\ref{sec:appendix_ssr}); reduced exposure alone does not explain the pattern.",
+  "new_string": "\\paragraph{Scope and generalizability.} Our findings are drawn from a single benchmark (SafeLIBERO) covering two VLA model families and four pick-and-place manipulation tasks in MuJoCo simulation. The action-collapse mechanism (Claim~1) is structurally general---any policy prone to action collapse will inflate CAR under standard evaluation---but its prevalence across other benchmarks, task types, and real hardware remains an open question. The SDF redundancy finding (Claim~3) is specific to EE-only auxiliary loss integration and should not be extrapolated to alternative SDF integration pathways (Section~\\ref{sec:related}).\n\n\\paragraph{Limitations.}\nAll experiments are conducted in MuJoCo simulation within the SafeLIBERO benchmark. The sim-to-real gap introduces uncertainty: collision detection precision differs between simulation and physical hardware, sensor noise may affect displacement-filtered CAR differently on real robots, and the prevalence of action collapse in physical deployments remains untested. Our evaluation covers only four pick-and-place manipulation tasks with tabletop obstacles; whether the findings generalize to more diverse task families (e.g., bi-manual manipulation, deformable objects, dynamic obstacles) is an open question. Statistical power is limited by $n{=}3$ training seeds per condition, yielding a minimum detectable effect of approximately 5 percentage points at 80\\% power---smaller genuine effects, if they exist, would not be detected at this sample size. Oracle experiments used a largely frozen model (Pi0+A1, TSR${\\approx}$0\\%); testing on an actively moving policy would better isolate the structural limitation. Full-body SDF remains untested. Fine-tuning degrades TSR by ${\\sim}$18--20\\,pp, yet SSR/TSR increases from 0.39 to 0.51--0.60 (Appendix~\\ref{sec:appendix_ssr}); reduced exposure alone does not explain the pattern."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3d0444fd-3fab-4c72-81f3-d9adb1428460",
+  "uuid": "9e42b378-608e-45b6-b620-69ac7f4ca259",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TJgNDuSRYQ6Z9HZBax8DmJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 659,
+      "cache_read_input_tokens": 28704,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 659
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-28T06:10:51.710Z_
+
+<details><summary>↩ Tool result · `toolu_019McNHz2Dk9SDD1YRXBSfsU`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/discussion.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3d0444fd-3fab-4c72-81f3-d9adb1428460",
+  "uuid": "aecad552-aa98-4bb5-9ed1-c0788c742eb8",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/discussion.tex",
+    "oldString": "\\paragraph{Limitations.}\nOur evaluation covers one benchmark suite (SafeLIBERO, four tasks) and two model families (Pi0, Pi0.5). The tabletop setting with fixed-base manipulator and known obstacles may not generalize to mobile platforms and cluttered scenes. Oracle experiments used a largely frozen model (Pi0+A1, TSR${\\approx}$0\\%); testing on an actively moving policy would better isolate the structural limitation. Full-body SDF remains untested. Fine-tuning degrades TSR by ${\\sim}$18--20\\,pp, yet SSR/TSR increases from 0.39 to 0.51--0.60 (Appendix~\\ref{sec:appendix_ssr}); reduced exposure alone does not explain the pattern.",
+    "newString": "\\paragraph{Scope and generalizability.} Our findings are drawn from a single benchmark (SafeLIBERO) covering two VLA model families and four pick-and-place manipulation tasks in MuJoCo simulation. The action-collapse mechanism (Claim~1) is structurally general---any policy prone to action collapse will inflate CAR under standard evaluation---but its prevalence across other benchmarks, task types, and real hardware remains an open question. The SDF redundancy finding (Claim~3) is specific to EE-only auxiliary loss integration and should not be extrapolated to alternative SDF integration pathways (Section~\\ref{sec:related}).\n\n\\paragraph{Limitations.}\nAll experiments are conducted in MuJoCo simulation within the SafeLIBERO benchmark. The sim-to-real gap introduces uncertainty: collision detection precision differs between simulation and physical hardware, sensor noise may affect displacement-filtered CAR differently on real robots, and the prevalence of action collapse in physical deployments remains untested. Our evaluation covers only four pick-and-place manipulation tasks with tabletop obstacles; whether the findings generalize to more diverse task families (e.g., bi-manual manipulation, deformable objects, dynamic obstacles) is an open question. Statistical power is limited by $n{=}3$ training seeds per condition, yielding a minimum detectable effect of approximately 5 percentage points at 80\\% power---smaller genuine effects, if they exist, would not be detected at this sample size. Oracle experiments used a largely frozen model (Pi0+A1, TSR${\\approx}$0\\%); testing on an actively moving policy would better isolate the structural limitation. Full-body SDF remains untested. Fine-tuning degrades TSR by ${\\sim}$18--20\\,pp, yet SSR/TSR increases from 0.39 to 0.51--0.60 (Appendix~\\ref{sec:appendix_ssr}); reduced exposure alone does not explain the pattern.",
+    "originalFile": "\\section{Discussion and Conclusion}\\label{sec:conclusion}\n\nAcross 100+ experiments and 6000+ evaluation episodes on two VLA model families, three findings converge: current VLA safety evaluation is structurally unreliable. Action collapse renders reported CAR illusory (\\S\\ref{sec:dfcar}); EE-only oracle refinement is counterproductive (\\S\\ref{sec:ee_only}); and collision-free demonstrations account for nearly all measured avoidance gains, with EE-only SDF contributing no statistically significant improvement (\\S\\ref{sec:avoidance_source}).\n\n\\paragraph{Why EE-only SDF fails.}\nTwo independent causes explain the null result. \\textit{(i)~Demonstration data largely subsumes the SDF signal.} Collision-free demonstrations implicitly encode spatial avoidance; the ${\\sim}$26\\,pp CAR gain arises primarily from this distributional shift, with per-task ordering invariant across all SDF conditions (\\S\\ref{sec:avoidance_source}). Even at $\\lambda = 0.1$ (20$\\times$ the lowest tested weight), CAR remains within the null distribution ($p = 0.131$), suggesting that EE-only auxiliary SDF loss does not overcome Level~A signal masking---the limitation is architectural for this integration pathway. \\textit{(ii)~EE monitoring cannot prevent full-body collisions.} The SDF gradient acts on a single point while collisions occur along intermediate links. Oracle experiments confirm this: ground-truth SDF refinement \\emph{reduces} CAR by 6--10\\,pp below unrefined baselines (\\S\\ref{sec:ee_only}), because pushing the EE away rotates unmonitored links through obstacles. We hypothesize that collision-free demonstration trajectories implicitly encode workspace priors through their spatial distribution: the robot learns to favor regions of the workspace that are inherently collision-free, without requiring explicit geometric supervision. These two causes are independent; effective geometric safety requires both full-body supervision and training signals beyond demonstrations. The failure of EE-only auxiliary SDF loss is architectural; constraint-based and runtime filtering approaches bypass this structural limitation through fundamentally different integration mechanisms.\n\n\\paragraph{Implications for evaluation.}\ndfCAR corrects action-collapse contamination using only EE position logging, already available in most evaluation pipelines. The bimodal displacement distribution makes $\\tau_d$ robust across five orders of magnitude. We recommend reporting both CAR and dfCAR; the gap quantifies contamination. This contamination spans a 4000$\\times$ parameter range (Pi0 Full-FT ${\\sim}$2.5B to Pi0+A1 ${\\sim}$658K trainable), a structural consequence of evaluating avoidance without verifying motion. More broadly, safety may need to operate at the planning or joint-space constraint layer, since any EE-centric loss inherits the same blind spot.\n\n\\paragraph{Limitations.}\nOur evaluation covers one benchmark suite (SafeLIBERO, four tasks) and two model families (Pi0, Pi0.5). The tabletop setting with fixed-base manipulator and known obstacles may not generalize to mobile platforms and cluttered scenes. Oracle experiments used a largely frozen model (Pi0+A1, TSR${\\approx}$0\\%); testing on an actively moving policy would better isolate the structural limitation. Full-body SDF remains untested. Fine-tuning degrades TSR by ${\\sim}$18--20\\,pp, yet SSR/TSR increases from 0.39 to 0.51--0.60 (Appendix~\\ref{sec:appendix_ssr}); reduced exposure alone does not explain the pattern.\n\n\\paragraph{Future work.}\nThree directions follow: (1) full-body SDF supervision along the kinematic chain; (2) cross-architecture evaluation on OpenVLA, RT-2, and other VLA families; (3) planning-layer safety constraints in joint space rather than EE space.\n\n\\paragraph{Broader impact.}\nContaminated CAR scores allow models with no genuine avoidance to pass safety benchmarks. dfCAR exposes this gap with minimal changes to existing protocols.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 8,
+        "oldLines": 8,
+        "newStart": 8,
+        "newLines": 10,
+        "lines": [
+          " \\paragraph{Implications for evaluation.}",
+          " dfCAR corrects action-collapse contamination using only EE position logging, already available in most evaluation pipelines. The bimodal displacement distribution makes $\\tau_d$ robust across five orders of magnitude. We recommend reporting both CAR and dfCAR; the gap quantifies contamination. This contamination spans a 4000$\\times$ parameter range (Pi0 Full-FT ${\\sim}$2.5B to Pi0+A1 ${\\sim}$658K trainable), a structural consequence of evaluating avoidance without verifying motion. More broadly, safety may need to operate at the planning or joint-space constraint layer, since any EE-centric loss inherits the same blind spot.",
+          " ",
+          "+\\paragraph{Scope and generalizability.} Our findings are drawn from a single benchmark (SafeLIBERO) covering two VLA model families and four pick-and-place manipulation tasks in MuJoCo simulation. The action-collapse mechanism (Claim~1) is structurally general---any policy prone to action collapse will inflate CAR under standard evaluation---but its prevalence across other benchmarks, task types, and real hardware remains an open question. The SDF redundancy finding (Claim~3) is specific to EE-only auxiliary loss integration and should not be extrapolated to alternative SDF integration pathways (Section~\\ref{sec:related}).",
+          "+",
+          " \\paragraph{Limitations.}",
+          "-Our evaluation covers one benchmark suite (SafeLIBERO, four tasks) and two model families (Pi0, Pi0.5). The tabletop setting with fixed-base manipulator and known obstacles may not generalize to mobile platforms and cluttered scenes. Oracle experiments used a largely frozen model (Pi0+A1, TSR${\\approx}$0\\%); testing on an actively moving policy would better isolate the structural limitation. Full-body SDF remains untested. Fine-tuning degrades TSR by ${\\sim}$18--20\\,pp, yet SSR/TSR increases from 0.39 to 0.51--0.60 (Appendix~\\ref{sec:appendix_ssr}); reduced exposure alone does not explain the pattern.",
+          "+All experiments are conducted in MuJoCo simulation within the SafeLIBERO benchmark. The sim-to-real gap introduces uncertainty: collision detection precision differs between simulation and physical hardware, sensor noise may affect displacement-filtered CAR differently on real robots, and the prevalence of action collapse in physical deployments remains untested. Our evaluation covers only four pick-and-place manipulation tasks with tabletop obstacles; whether the findings generalize to more diverse task families (e.g., bi-manual manipulation, deformable objects, dynamic obstacles) is an open question. Statistical power is limited by $n{=}3$ training seeds per condition, yielding a minimum detectable effect of approximately 5 percentage points at 80\\% power---smaller genuine effects, if they exist, would not be detected at this sample size. Oracle experiments used a largely frozen model (Pi0+A1, TSR${\\approx}$0\\%); testing on an actively moving policy would better isolate the structural limitation. Full-body SDF remains untested. Fine-tuning degrades TSR by ${\\sim}$18--20\\,pp, yet SSR/TSR increases from 0.39 to 0.51--0.60 (Appendix~\\ref{sec:appendix_ssr}); reduced exposure alone does not explain the pattern.",
+          " ",
+          " \\paragraph{Future work.}",
+          " Three directions follow: (1) full-body SDF supervision along the kinematic chain; (2) cross-architecture evaluation on OpenVLA, RT-2, and other VLA families; (3) planning-layer safety constraints in joint space rather than EE space."
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01Pctyn6YheR7y9ZckJHX9mi`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/discussion.tex",
+  "old_string": "\\paragraph{Broader impact.}\nContaminated CAR scores allow models with no genuine avoidance to pass safety benchmarks. dfCAR exposes this gap with minimal changes to existing protocols.",
+  "new_string": "\\paragraph{Broader impact.}\nThe displacement-filtered CAR metric (dfCAR) is intended as a diagnostic complement to standard CAR, not a replacement; practitioners should report both metrics to distinguish genuine avoidance from action-collapse artifacts. Our finding that EE-only SDF supervision is redundant with demonstration data is an evaluation-methodology insight, not a verdict against safety-aware training---geometric supervision may prove effective through alternative integration pathways or with full-body collision surfaces. We caution against interpreting these results as evidence that VLA safety research is futile; rather, they highlight the need for evaluation protocols that can reliably separate safety improvements from measurement artifacts."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3d0444fd-3fab-4c72-81f3-d9adb1428460",
+  "uuid": "977e7fde-26ed-474c-a936-a2abf82f416a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TJgNDuSRYQ6Z9HZBax8DmJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 659,
+      "cache_read_input_tokens": 28704,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 659
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-28T06:10:56.876Z_
+
+<details><summary>↩ Tool result · `toolu_01Pctyn6YheR7y9ZckJHX9mi`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/discussion.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3d0444fd-3fab-4c72-81f3-d9adb1428460",
+  "uuid": "4362aee2-0aa9-4922-bd11-4cd51c2bd5b9",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/discussion.tex",
+    "oldString": "\\paragraph{Broader impact.}\nContaminated CAR scores allow models with no genuine avoidance to pass safety benchmarks. dfCAR exposes this gap with minimal changes to existing protocols.",
+    "newString": "\\paragraph{Broader impact.}\nThe displacement-filtered CAR metric (dfCAR) is intended as a diagnostic complement to standard CAR, not a replacement; practitioners should report both metrics to distinguish genuine avoidance from action-collapse artifacts. Our finding that EE-only SDF supervision is redundant with demonstration data is an evaluation-methodology insight, not a verdict against safety-aware training---geometric supervision may prove effective through alternative integration pathways or with full-body collision surfaces. We caution against interpreting these results as evidence that VLA safety research is futile; rather, they highlight the need for evaluation protocols that can reliably separate safety improvements from measurement artifacts.",
+    "originalFile": "\\section{Discussion and Conclusion}\\label{sec:conclusion}\n\nAcross 100+ experiments and 6000+ evaluation episodes on two VLA model families, three findings converge: current VLA safety evaluation is structurally unreliable. Action collapse renders reported CAR illusory (\\S\\ref{sec:dfcar}); EE-only oracle refinement is counterproductive (\\S\\ref{sec:ee_only}); and collision-free demonstrations account for nearly all measured avoidance gains, with EE-only SDF contributing no statistically significant improvement (\\S\\ref{sec:avoidance_source}).\n\n\\paragraph{Why EE-only SDF fails.}\nTwo independent causes explain the null result. \\textit{(i)~Demonstration data largely subsumes the SDF signal.} Collision-free demonstrations implicitly encode spatial avoidance; the ${\\sim}$26\\,pp CAR gain arises primarily from this distributional shift, with per-task ordering invariant across all SDF conditions (\\S\\ref{sec:avoidance_source}). Even at $\\lambda = 0.1$ (20$\\times$ the lowest tested weight), CAR remains within the null distribution ($p = 0.131$), suggesting that EE-only auxiliary SDF loss does not overcome Level~A signal masking---the limitation is architectural for this integration pathway. \\textit{(ii)~EE monitoring cannot prevent full-body collisions.} The SDF gradient acts on a single point while collisions occur along intermediate links. Oracle experiments confirm this: ground-truth SDF refinement \\emph{reduces} CAR by 6--10\\,pp below unrefined baselines (\\S\\ref{sec:ee_only}), because pushing the EE away rotates unmonitored links through obstacles. We hypothesize that collision-free demonstration trajectories implicitly encode workspace priors through their spatial distribution: the robot learns to favor regions of the workspace that are inherently collision-free, without requiring explicit geometric supervision. These two causes are independent; effective geometric safety requires both full-body supervision and training signals beyond demonstrations. The failure of EE-only auxiliary SDF loss is architectural; constraint-based and runtime filtering approaches bypass this structural limitation through fundamentally different integration mechanisms.\n\n\\paragraph{Implications for evaluation.}\ndfCAR corrects action-collapse contamination using only EE position logging, already available in most evaluation pipelines. The bimodal displacement distribution makes $\\tau_d$ robust across five orders of magnitude. We recommend reporting both CAR and dfCAR; the gap quantifies contamination. This contamination spans a 4000$\\times$ parameter range (Pi0 Full-FT ${\\sim}$2.5B to Pi0+A1 ${\\sim}$658K trainable), a structural consequence of evaluating avoidance without verifying motion. More broadly, safety may need to operate at the planning or joint-space constraint layer, since any EE-centric loss inherits the same blind spot.\n\n\\paragraph{Scope and generalizability.} Our findings are drawn from a single benchmark (SafeLIBERO) covering two VLA model families and four pick-and-place manipulation tasks in MuJoCo simulation. The action-collapse mechanism (Claim~1) is structurally general---any policy prone to action collapse will inflate CAR under standard evaluation---but its prevalence across other benchmarks, task types, and real hardware remains an open question. The SDF redundancy finding (Claim~3) is specific to EE-only auxiliary loss integration and should not be extrapolated to alternative SDF integration pathways (Section~\\ref{sec:related}).\n\n\\paragraph{Limitations.}\nAll experiments are conducted in MuJoCo simulation within the SafeLIBERO benchmark. The sim-to-real gap introduces uncertainty: collision detection precision differs between simulation and physical hardware, sensor noise may affect displacement-filtered CAR differently on real robots, and the prevalence of action collapse in physical deployments remains untested. Our evaluation covers only four pick-and-place manipulation tasks with tabletop obstacles; whether the findings generalize to more diverse task families (e.g., bi-manual manipulation, deformable objects, dynamic obstacles) is an open question. Statistical power is limited by $n{=}3$ training seeds per condition, yielding a minimum detectable effect of approximately 5 percentage points at 80\\% power---smaller genuine effects, if they exist, would not be detected at this sample size. Oracle experiments used a largely frozen model (Pi0+A1, TSR${\\approx}$0\\%); testing on an actively moving policy would better isolate the structural limitation. Full-body SDF remains untested. Fine-tuning degrades TSR by ${\\sim}$18--20\\,pp, yet SSR/TSR increases from 0.39 to 0.51--0.60 (Appendix~\\ref{sec:appendix_ssr}); reduced exposure alone does not explain the pattern.\n\n\\paragraph{Future work.}\nThree directions follow: (1) full-body SDF supervision along the kinematic chain; (2) cross-architecture evaluation on OpenVLA, RT-2, and other VLA families; (3) planning-layer safety constraints in joint space rather than EE space.\n\n\\paragraph{Broader impact.}\nContaminated CAR scores allow models with no genuine avoidance to pass safety benchmarks. dfCAR exposes this gap with minimal changes to existing protocols.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 17,
+        "oldLines": 4,
+        "newStart": 17,
+        "newLines": 4,
+        "lines": [
+          " Three directions follow: (1) full-body SDF supervision along the kinematic chain; (2) cross-architecture evaluation on OpenVLA, RT-2, and other VLA families; (3) planning-layer safety constraints in joint space rather than EE space.",
+          " ",
+          " \\paragraph{Broader impact.}",
+          "-Contaminated CAR scores allow models with no genuine avoidance to pass safety benchmarks. dfCAR exposes this gap with minimal changes to existing protocols.",
+          "+The displacement-filtered CAR metric (dfCAR) is intended as a diagnostic complement to standard CAR, not a replacement; practitioners should report both metrics to distinguish genuine avoidance from action-collapse artifacts. Our finding that EE-only SDF supervision is redundant with demonstration data is an evaluation-methodology insight, not a verdict against safety-aware training---geometric supervision may prove effective through alternative integration pathways or with full-body collision surfaces. We caution against interpreting these results as evidence that VLA safety research is futile; rather, they highlight the need for evaluation protocols that can reliably separate safety improvements from measurement artifacts."
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+All edits applied. Let me verify the final state of each file and run the verification script.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3d0444fd-3fab-4c72-81f3-d9adb1428460",
+  "uuid": "f4828aca-ea90-4c47-a3e2-8d24f398abda",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MkRxCZwEQEkG1eCFhJcx8c",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3077,
+      "cache_read_input_tokens": 29363,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3077
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — Read · `toolu_012rXZx21kwFyHooM9zH17zL`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/discussion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3d0444fd-3fab-4c72-81f3-d9adb1428460",
+  "uuid": "dbf8330b-233b-469a-aab0-fe498e6b832f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MkRxCZwEQEkG1eCFhJcx8c",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3077,
+      "cache_read_input_tokens": 29363,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3077
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-28T06:11:00.376Z_
+
+<details><summary>↩ Tool result · `toolu_012rXZx21kwFyHooM9zH17zL`</summary>
+
+```text
+1	\section{Discussion and Conclusion}\label{sec:conclusion}
+2	
+3	Across 100+ experiments and 6000+ evaluation episodes on two VLA model families, three findings converge: current VLA safety evaluation is structurally unreliable. Action collapse renders reported CAR illusory (\S\ref{sec:dfcar}); EE-only oracle refinement is counterproductive (\S\ref{sec:ee_only}); and collision-free demonstrations account for nearly all measured avoidance gains, with EE-only SDF contributing no statistically significant improvement (\S\ref{sec:avoidance_source}).
+4	
+5	\paragraph{Why EE-only SDF fails.}
+6	Two independent causes explain the null result. \textit{(i)~Demonstration data largely subsumes the SDF signal.} Collision-free demonstrations implicitly encode spatial avoidance; the ${\sim}$26\,pp CAR gain arises primarily from this distributional shift, with per-task ordering invariant across all SDF conditions (\S\ref{sec:avoidance_source}). Even at $\lambda = 0.1$ (20$\times$ the lowest tested weight), CAR remains within the null distribution ($p = 0.131$), suggesting that EE-only auxiliary SDF loss does not overcome Level~A signal masking---the limitation is architectural for this integration pathway. \textit{(ii)~EE monitoring cannot prevent full-body collisions.} The SDF gradient acts on a single point while collisions occur along intermediate links. Oracle experiments confirm this: ground-truth SDF refinement \emph{reduces} CAR by 6--10\,pp below unrefined baselines (\S\ref{sec:ee_only}), because pushing the EE away rotates unmonitored links through obstacles. We hypothesize that collision-free demonstration trajectories implicitly encode workspace priors through their spatial distribution: the robot learns to favor regions of the workspace that are inherently collision-free, without requiring explicit geometric supervision. These two causes are independent; effective geometric safety requires both full-body supervision and training signals beyond demonstrations. The failure of EE-only auxiliary SDF loss is architectural; constraint-based and runtime filtering approaches bypass this structural limitation through fundamentally different integration mechanisms.
+7	
+8	\paragraph{Implications for evaluation.}
+9	dfCAR corrects action-collapse contamination using only EE position logging, already available in most evaluation pipelines. The bimodal displacement distribution makes $\tau_d$ robust across five orders of magnitude. We recommend reporting both CAR and dfCAR; the gap quantifies contamination. This contamination spans a 4000$\times$ parameter range (Pi0 Full-FT ${\sim}$2.5B to Pi0+A1 ${\sim}$658K trainable), a structural consequence of evaluating avoidance without verifying motion. More broadly, safety may need to operate at the planning or joint-space constraint layer, since any EE-centric loss inherits the same blind spot.
+10	
+11	\paragraph{Scope and generalizability.} Our findings are drawn from a single benchmark (SafeLIBERO) covering two VLA model families and four pick-and-place manipulation tasks in MuJoCo simulation. The action-collapse mechanism (Claim~1) is structurally general---any policy prone to action collapse will inflate CAR under standard evaluation---but its prevalence across other benchmarks, task types, and real hardware remains an open question. The SDF redundancy finding (Claim~3) is specific to EE-only auxiliary loss integration and should not be extrapolated to alternative SDF integration pathways (Section~\ref{sec:related}).
+12	
+13	\paragraph{Limitations.}
+14	All experiments are conducted in MuJoCo simulation within the SafeLIBERO benchmark. The sim-to-real gap introduces uncertainty: collision detection precision differs between simulation and physical hardware, sensor noise may affect displacement-filtered CAR differently on real robots, and the prevalence of action collapse in physical deployments remains untested. Our evaluation covers only four pick-and-place manipulation tasks with tabletop obstacles; whether the findings generalize to more diverse task families (e.g., bi-manual manipulation, deformable objects, dynamic obstacles) is an open question. Statistical power is limited by $n{=}3$ training seeds per condition, yielding a minimum detectable effect of approximately 5 percentage points at 80\% power---smaller genuine effects, if they exist, would not be detected at this sample size. Oracle experiments used a largely frozen model (Pi0+A1, TSR${\approx}$0\%); testing on an actively moving policy would better isolate the structural limitation. Full-body SDF remains untested. Fine-tuning degrades TSR by ${\sim}$18--20\,pp, yet SSR/TSR increases from 0.39 to 0.51--0.60 (Appendix~\ref{sec:appendix_ssr}); reduced exposure alone does not explain the pattern.
+15	
+16	\paragraph{Future work.}
+17	Three directions follow: (1) full-body SDF supervision along the kinematic chain; (2) cross-architecture evaluation on OpenVLA, RT-2, and other VLA families; (3) planning-layer safety constraints in joint space rather than EE space.
+18	
+19	\paragraph{Broader impact.}
+20	The displacement-filtered CAR metric (dfCAR) is intended as a diagnostic complement to standard CAR, not a replacement; practitioners should report both metrics to distinguish genuine avoidance from action-collapse artifacts. Our finding that EE-only SDF supervision is redundant with demonstration data is an evaluation-methodology insight, not a verdict against safety-aware training---geometric supervision may prove effective through alternative integration pathways or with full-body collision surfaces. We caution against interpreting these results as evidence that VLA safety research is futile; rather, they highlight the need for evaluation protocols that can reliably separate safety improvements from measurement artifacts.
+21	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3d0444fd-3fab-4c72-81f3-d9adb1428460",
+  "uuid": "e05bae62-abcb-45a2-a5de-8dc1b3850ad2",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/discussion.tex",
+      "content": "\\section{Discussion and Conclusion}\\label{sec:conclusion}\n\nAcross 100+ experiments and 6000+ evaluation episodes on two VLA model families, three findings converge: current VLA safety evaluation is structurally unreliable. Action collapse renders reported CAR illusory (\\S\\ref{sec:dfcar}); EE-only oracle refinement is counterproductive (\\S\\ref{sec:ee_only}); and collision-free demonstrations account for nearly all measured avoidance gains, with EE-only SDF contributing no statistically significant improvement (\\S\\ref{sec:avoidance_source}).\n\n\\paragraph{Why EE-only SDF fails.}\nTwo independent causes explain the null result. \\textit{(i)~Demonstration data largely subsumes the SDF signal.} Collision-free demonstrations implicitly encode spatial avoidance; the ${\\sim}$26\\,pp CAR gain arises primarily from this distributional shift, with per-task ordering invariant across all SDF conditions (\\S\\ref{sec:avoidance_source}). Even at $\\lambda = 0.1$ (20$\\times$ the lowest tested weight), CAR remains within the null distribution ($p = 0.131$), suggesting that EE-only auxiliary SDF loss does not overcome Level~A signal masking---the limitation is architectural for this integration pathway. \\textit{(ii)~EE monitoring cannot prevent full-body collisions.} The SDF gradient acts on a single point while collisions occur along intermediate links. Oracle experiments confirm this: ground-truth SDF refinement \\emph{reduces} CAR by 6--10\\,pp below unrefined baselines (\\S\\ref{sec:ee_only}), because pushing the EE away rotates unmonitored links through obstacles. We hypothesize that collision-free demonstration trajectories implicitly encode workspace priors through their spatial distribution: the robot learns to favor regions of the workspace that are inherently collision-free, without requiring explicit geometric supervision. These two causes are independent; effective geometric safety requires both full-body supervision and training signals beyond demonstrations. The failure of EE-only auxiliary SDF loss is architectural; constraint-based and runtime filtering approaches bypass this structural limitation through fundamentally different integration mechanisms.\n\n\\paragraph{Implications for evaluation.}\ndfCAR corrects action-collapse contamination using only EE position logging, already available in most evaluation pipelines. The bimodal displacement distribution makes $\\tau_d$ robust across five orders of magnitude. We recommend reporting both CAR and dfCAR; the gap quantifies contamination. This contamination spans a 4000$\\times$ parameter range (Pi0 Full-FT ${\\sim}$2.5B to Pi0+A1 ${\\sim}$658K trainable), a structural consequence of evaluating avoidance without verifying motion. More broadly, safety may need to operate at the planning or joint-space constraint layer, since any EE-centric loss inherits the same blind spot.\n\n\\paragraph{Scope and generalizability.} Our findings are drawn from a single benchmark (SafeLIBERO) covering two VLA model families and four pick-and-place manipulation tasks in MuJoCo simulation. The action-collapse mechanism (Claim~1) is structurally general---any policy prone to action collapse will inflate CAR under standard evaluation---but its prevalence across other benchmarks, task types, and real hardware remains an open question. The SDF redundancy finding (Claim~3) is specific to EE-only auxiliary loss integration and should not be extrapolated to alternative SDF integration pathways (Section~\\ref{sec:related}).\n\n\\paragraph{Limitations.}\nAll experiments are conducted in MuJoCo simulation within the SafeLIBERO benchmark. The sim-to-real gap introduces uncertainty: collision detection precision differs between simulation and physical hardware, sensor noise may affect displacement-filtered CAR differently on real robots, and the prevalence of action collapse in physical deployments remains untested. Our evaluation covers only four pick-and-place manipulation tasks with tabletop obstacles; whether the findings generalize to more diverse task families (e.g., bi-manual manipulation, deformable objects, dynamic obstacles) is an open question. Statistical power is limited by $n{=}3$ training seeds per condition, yielding a minimum detectable effect of approximately 5 percentage points at 80\\% power---smaller genuine effects, if they exist, would not be detected at this sample size. Oracle experiments used a largely frozen model (Pi0+A1, TSR${\\approx}$0\\%); testing on an actively moving policy would better isolate the structural limitation. Full-body SDF remains untested. Fine-tuning degrades TSR by ${\\sim}$18--20\\,pp, yet SSR/TSR increases from 0.39 to 0.51--0.60 (Appendix~\\ref{sec:appendix_ssr}); reduced exposure alone does not explain the pattern.\n\n\\paragraph{Future work.}\nThree directions follow: (1) full-body SDF supervision along the kinematic chain; (2) cross-architecture evaluation on OpenVLA, RT-2, and other VLA families; (3) planning-layer safety constraints in joint space rather than EE space.\n\n\\paragraph{Broader impact.}\nThe displacement-filtered CAR metric (dfCAR) is intended as a diagnostic complement to standard CAR, not a replacement; practitioners should report both metrics to distinguish genuine avoidance from action-collapse artifacts. Our finding that EE-only SDF supervision is redundant with demonstration data is an evaluation-methodology insight, not a verdict against safety-aware training---geometric supervision may prove effective through alternative integration pathways or with full-body collision surfaces. We caution against interpreting these results as evidence that VLA safety research is futile; rather, they highlight the need for evaluation protocols that can reliably separate safety improvements from measurement artifacts.\n",
+      "numLines": 21,
+      "startLine": 1,
+      "totalLines": 21
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01TBee3tNqPXu5xZnKFhzeB7`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/related_work.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3d0444fd-3fab-4c72-81f3-d9adb1428460",
+  "uuid": "12ee6424-9a57-4c37-a31b-d8609118074d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MkRxCZwEQEkG1eCFhJcx8c",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3077,
+      "cache_read_input_tokens": 29363,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3077
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-28T06:11:00.901Z_
+
+<details><summary>↩ Tool result · `toolu_01TBee3tNqPXu5xZnKFhzeB7`</summary>
+
+```text
+1	\section{Related Work}\label{sec:related}
+2	
+3	\paragraph{Vision-Language-Action Models.}
+4	VLA models combine pretrained vision-language backbones with action prediction for generalist manipulation~\cite{brohan2023rt2,black2024pi0,chi2023diffusionpolicy,kim2024openvla}. Recent work enhances spatial reasoning through auxiliary 3D supervision~\cite{li2025spatialforcing,li2025qdepth,depthvla2025}, but safety considerations remain largely absent: most VLAs train on collision-free demonstrations and evaluate task success alone, with no mechanism to distinguish genuine avoidance from incidental collision-free trajectories.
+5	
+6	\paragraph{Safety in Robot Learning.}
+7	Safety-aware approaches span training-time constrained RL~\cite{zhang2025safevla} and test-time filters: control barrier functions~\cite{hu2025vlsa}, collision risk gating~\cite{cofreeevla2026}, inverse kinematics QP~\cite{spalter2024ikinqp}, and diffusion-process collision costs~\cite{li2024langguided,yang2025cape}. SafeDiffuser~\cite{xiao2025safediffuser} integrates control barrier functions directly into diffusion denoising to enforce safety invariance during planning; like other test-time shields, it does not learn intrinsic collision awareness within the policy. A recent survey~\cite{li2026vlasafety} categorizes these into runtime shields, constrained optimization, and representation-based methods. Common to all is that safety is imposed externally rather than learned within the policy's representations. This work tests whether auxiliary SDF supervision can produce intrinsic collision awareness.
+8	
+9	\paragraph{Signed Distance Functions in Robotics.}
+10	SDFs encode minimum surface distance, where the sign indicates free space or penetration. Neural SDFs~\cite{park2019deepsdf} enable continuous shape representation; in robotics, SDFs serve perception~\cite{ortiz2022isdf}, planning~\cite{huang2023voxposer,vasilopoulos2023ramp}, and differentiable collision detection~\cite{zhi2021diffco}. CDF~\cite{li2024cdf} extends SDFs to robot configuration space, learning neural distance fields that provide efficient joint-angle queries with analytical gradients for manipulation planning; CSSDF-Net~\cite{chen2026cssdfnet} further develops this direction for safe motion planning. RDF~\cite{li2024rdf} represents robot geometry itself as composable per-link SDFs along the kinematic chain, enabling whole-body collision queries---directly relevant to the full-body awareness gap our work identifies. Neural SDF-based model predictive control~\cite{jacquet2025neuralnmpc} demonstrates effectiveness in classical pipelines, but integration into end-to-end learned policies remains unexplored.
+11	
+12	\paragraph{SDF integration pathways.} Geometric supervision via signed distance fields can be integrated into VLA policies through fundamentally different mechanisms. (a)~\emph{Training-time auxiliary loss}: an SDF-based collision penalty is added to the training objective, supervising only the end-effector trajectory (the approach tested in this work). (b)~\emph{Constraint-based planning}: SafeVLA~\citep{zhang2025safevla} formulates collision avoidance as a constrained MDP, using SDF constraints during planning rather than training. (c)~\emph{Runtime filtering}: VLSA~\citep{hu2025vlsa} applies control barrier functions (CBFs) with SDF at inference time, filtering unsafe actions post-hoc. Our negative finding---that EE-only auxiliary SDF loss is redundant---is specific to pathway~(a) and does not apply to pathways~(b) and~(c), which bypass the structural limitation of supervising only the end-effector during training.
+13	
+14	\paragraph{Evaluation Metrics for Safe Manipulation.}
+15	SafeLIBERO~\cite{hu2025vlsa} extends LIBERO~\cite{liu2023libero} with obstacle-augmented environments and a collision avoidance rate (CAR) metric. However, CAR treats all collision-free episodes identically: a frozen robot scores near-perfect CAR without any avoidance behavior. This failure mode echoes concerns about metric reliability~\cite{karwowski2024goodhart,gururangan2018annotation} and binary success metrics under limited samples~\cite{snyder2026beyond}. Action collapse in diffusion policies~\cite{dong2025conditioning} systematically inflates CAR but has not been previously examined as a safety evaluation confounder. We propose dfCAR (\S\ref{sec:dfcar}) to detect this contamination.
+16	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3d0444fd-3fab-4c72-81f3-d9adb1428460",
+  "uuid": "c6f85683-b6da-4fc8-bd06-250e5d07af97",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/related_work.tex",
+      "content": "\\section{Related Work}\\label{sec:related}\n\n\\paragraph{Vision-Language-Action Models.}\nVLA models combine pretrained vision-language backbones with action prediction for generalist manipulation~\\cite{brohan2023rt2,black2024pi0,chi2023diffusionpolicy,kim2024openvla}. Recent work enhances spatial reasoning through auxiliary 3D supervision~\\cite{li2025spatialforcing,li2025qdepth,depthvla2025}, but safety considerations remain largely absent: most VLAs train on collision-free demonstrations and evaluate task success alone, with no mechanism to distinguish genuine avoidance from incidental collision-free trajectories.\n\n\\paragraph{Safety in Robot Learning.}\nSafety-aware approaches span training-time constrained RL~\\cite{zhang2025safevla} and test-time filters: control barrier functions~\\cite{hu2025vlsa}, collision risk gating~\\cite{cofreeevla2026}, inverse kinematics QP~\\cite{spalter2024ikinqp}, and diffusion-process collision costs~\\cite{li2024langguided,yang2025cape}. SafeDiffuser~\\cite{xiao2025safediffuser} integrates control barrier functions directly into diffusion denoising to enforce safety invariance during planning; like other test-time shields, it does not learn intrinsic collision awareness within the policy. A recent survey~\\cite{li2026vlasafety} categorizes these into runtime shields, constrained optimization, and representation-based methods. Common to all is that safety is imposed externally rather than learned within the policy's representations. This work tests whether auxiliary SDF supervision can produce intrinsic collision awareness.\n\n\\paragraph{Signed Distance Functions in Robotics.}\nSDFs encode minimum surface distance, where the sign indicates free space or penetration. Neural SDFs~\\cite{park2019deepsdf} enable continuous shape representation; in robotics, SDFs serve perception~\\cite{ortiz2022isdf}, planning~\\cite{huang2023voxposer,vasilopoulos2023ramp}, and differentiable collision detection~\\cite{zhi2021diffco}. CDF~\\cite{li2024cdf} extends SDFs to robot configuration space, learning neural distance fields that provide efficient joint-angle queries with analytical gradients for manipulation planning; CSSDF-Net~\\cite{chen2026cssdfnet} further develops this direction for safe motion planning. RDF~\\cite{li2024rdf} represents robot geometry itself as composable per-link SDFs along the kinematic chain, enabling whole-body collision queries---directly relevant to the full-body awareness gap our work identifies. Neural SDF-based model predictive control~\\cite{jacquet2025neuralnmpc} demonstrates effectiveness in classical pipelines, but integration into end-to-end learned policies remains unexplored.\n\n\\paragraph{SDF integration pathways.} Geometric supervision via signed distance fields can be integrated into VLA policies through fundamentally different mechanisms. (a)~\\emph{Training-time auxiliary loss}: an SDF-based collision penalty is added to the training objective, supervising only the end-effector trajectory (the approach tested in this work). (b)~\\emph{Constraint-based planning}: SafeVLA~\\citep{zhang2025safevla} formulates collision avoidance as a constrained MDP, using SDF constraints during planning rather than training. (c)~\\emph{Runtime filtering}: VLSA~\\citep{hu2025vlsa} applies control barrier functions (CBFs) with SDF at inference time, filtering unsafe actions post-hoc. Our negative finding---that EE-only auxiliary SDF loss is redundant---is specific to pathway~(a) and does not apply to pathways~(b) and~(c), which bypass the structural limitation of supervising only the end-effector during training.\n\n\\paragraph{Evaluation Metrics for Safe Manipulation.}\nSafeLIBERO~\\cite{hu2025vlsa} extends LIBERO~\\cite{liu2023libero} with obstacle-augmented environments and a collision avoidance rate (CAR) metric. However, CAR treats all collision-free episodes identically: a frozen robot scores near-perfect CAR without any avoidance behavior. This failure mode echoes concerns about metric reliability~\\cite{karwowski2024goodhart,gururangan2018annotation} and binary success metrics under limited samples~\\cite{snyder2026beyond}. Action collapse in diffusion policies~\\cite{dong2025conditioning} systematically inflates CAR but has not been previously examined as a safety evaluation confounder. We propose dfCAR (\\S\\ref{sec:dfcar}) to detect this contamination.\n",
+      "numLines": 16,
+      "startLine": 1,
+      "totalLines": 16
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01LAHh4u1QjDZ5Q8X8za2HCs`</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts && python paper_switch.py --verify 2>&1",
+  "description": "Run paper_switch.py --verify"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3d0444fd-3fab-4c72-81f3-d9adb1428460",
+  "uuid": "68897689-144c-44ab-973b-89f260098b08",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MkRxCZwEQEkG1eCFhJcx8c",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3077,
+      "cache_read_input_tokens": 29363,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3077
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-28T06:11:02.096Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01LAHh4u1QjDZ5Q8X8za2HCs`</summary>
+
+```text
+Exit code 127
+/bin/bash: line 1: python: command not found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3d0444fd-3fab-4c72-81f3-d9adb1428460",
+  "uuid": "a03d99cd-0dc7-4f11-aafb-92b7028daa34",
+  "tool_use_result": "Error: Exit code 127\n/bin/bash: line 1: python: command not found"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_018kaNwHsp23GjjFnDzLWKps`</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts && python3 paper_switch.py --verify 2>&1",
+  "description": "Run paper_switch.py --verify with python3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3d0444fd-3fab-4c72-81f3-d9adb1428460",
+  "uuid": "a9f6ae68-10ea-43a5-893d-c75332cc812d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y6fXgz915mbS7zL2gAfe6N",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2908,
+      "cache_read_input_tokens": 32440,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2908
+      },
+      "output_tokens": 71,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-28T06:11:05.503Z_
+
+<details><summary>↩ Tool result · `toolu_018kaNwHsp23GjjFnDzLWKps`</summary>
+
+```text
+--- Scenario B (10 items) ---
+  [OK]      abstract L5 training                abstract.tex
+  [OK]      abstract L6 conclusion              abstract.tex
+  [OK]      claim3 L3 scope                     claim3.tex
+  [OK]      claim3 L7 caption                   claim3.tex
+  [OK]      claim3 L20 table row                claim3.tex
+  [OK]      claim3 L27 body                     claim3.tex
+  [OK]      claim3 L32-33 dose-response         claim3.tex
+  [OK]      claim3 L38 fig caption              claim3.tex
+  [OK]      discussion L6                       discussion.tex
+  [OK]      discussion L12 limitation           discussion.tex
+--- Scenario C (11 items) ---
+  [OK]      abstract L5 training                abstract.tex
+  [OK]      abstract L6 conclusion              abstract.tex
+  [OK]      claim3 L3 scope                     claim3.tex
+  [OK]      claim3 L7 caption                   claim3.tex
+  [OK]      claim3 L20 table row                claim3.tex
+  [OK]      claim3 L27 body                     claim3.tex
+  [OK]      claim3 L32-33 dose-response         claim3.tex
+  [OK]      claim3 L38 fig caption              claim3.tex
+  [OK]      discussion L3 scope                 discussion.tex
+  [OK]      discussion L6                       discussion.tex
+  [OK]      discussion L12 limitation           discussion.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3d0444fd-3fab-4c72-81f3-d9adb1428460",
+  "uuid": "076a6c0b-3dc3-4d94-bd05-6efa7f79b2bc",
+  "tool_use_result": {
+    "stdout": "--- Scenario B (10 items) ---\n  [OK]      abstract L5 training                abstract.tex\n  [OK]      abstract L6 conclusion              abstract.tex\n  [OK]      claim3 L3 scope                     claim3.tex\n  [OK]      claim3 L7 caption                   claim3.tex\n  [OK]      claim3 L20 table row                claim3.tex\n  [OK]      claim3 L27 body                     claim3.tex\n  [OK]      claim3 L32-33 dose-response         claim3.tex\n  [OK]      claim3 L38 fig caption              claim3.tex\n  [OK]      discussion L6                       discussion.tex\n  [OK]      discussion L12 limitation           discussion.tex\n--- Scenario C (11 items) ---\n  [OK]      abstract L5 training                abstract.tex\n  [OK]      abstract L6 conclusion              abstract.tex\n  [OK]      claim3 L3 scope                     claim3.tex\n  [OK]      claim3 L7 caption                   claim3.tex\n  [OK]      claim3 L20 table row                claim3.tex\n  [OK]      claim3 L27 body                     claim3.tex\n  [OK]      claim3 L32-33 dose-response         claim3.tex\n  [OK]      claim3 L38 fig caption              claim3.tex\n  [OK]      discussion L3 scope                 discussion.tex\n  [OK]      discussion L6                       discussion.tex\n  [OK]      discussion L12 limitation           discussion.tex",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39_
+
+全部通过。下面是修改汇总：
+
+---
+
+### related_work.tex
+
+**新增** `\paragraph{SDF integration pathways.}`（第12行，"Signed Distance Functions in Robotics" 和 "Evaluation Metrics" 之间）：
+- 区分三种 SDF 集成路径：(a) training-time auxiliary loss, (b) constraint-based planning (SafeVLA), (c) runtime filtering (VLSA)
+- 明确本文负面发现仅适用于 pathway (a)
+- 引用键 `zhang2025safevla` 和 `hu2025vlsa` 均已验证存在于 bib 中
+
+---
+
+### discussion.tex
+
+**4 处修改**：
+
+1. **第6行末尾新增** pathway-specific 句子：
+   > "The failure of EE-only auxiliary SDF loss is architectural; constraint-based and runtime filtering approaches bypass this structural limitation through fundamentally different integration mechanisms."
+
+2. **第11行新增** `\paragraph{Scope and generalizability.}`（Implications 和 Limitations 之间）：
+   - 明确列出 scope：1 benchmark, 2 model families, 4 tasks, MuJoCo simulation
+   - 区分 Claim 1 的结构通用性 vs. prevalence 的 benchmark-specificity
+   - Claim 3 限定为 EE-only auxiliary loss pathway，引用 `\ref{sec:related}`
+
+3. **第13-14行替换** Limitations 段落：
+   - **新增**：sim-to-real gap 不确定性、sensor noise 影响、task diversity 限制、统计功效（n=3, ~5pp MDE at 80% power）
+   - **保留**：原有的 oracle frozen model、full-body SDF untested、TSR degradation 内容
+
+4. **第19-20行替换** Broader Impact 段落：
+   - **改前**：2 句（dfCAR exposes gap）
+   - **改后**：3 句——dfCAR 定位为 diagnostic complement、SDF redundancy 是 methodology insight 而非对 safety training 的否定、警告不要过度解读
+
+---
+
+### introduction.tex
+
+未修改。"case study" 和 "we demonstrate" 在当前版本中均不存在（已被前一个 Worker 处理）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3d0444fd-3fab-4c72-81f3-d9adb1428460",
+  "uuid": "924ed5e2-3ce5-48c1-a4e7-e6248438c242",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YAbVoDmvvpcLpBxQ7nxeDW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 525,
+      "cache_read_input_tokens": 35348,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 525
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 40_
+
+全部通过。下面是修改汇总：
+
+---
+
+### related_work.tex
+
+**新增** `\paragraph{SDF integration pathways.}`（第12行，"Signed Distance Functions in Robotics" 和 "Evaluation Metrics" 之间）：
+- 区分三种 SDF 集成路径：(a) training-time auxiliary loss, (b) constraint-based planning (SafeVLA), (c) runtime filtering (VLSA)
+- 明确本文负面发现仅适用于 pathway (a)
+- 引用键 `zhang2025safevla` 和 `hu2025vlsa` 均已验证存在于 bib 中
+
+---
+
+### discussion.tex
+
+**4 处修改**：
+
+1. **第6行末尾新增** pathway-specific 句子：
+   > "The failure of EE-only auxiliary SDF loss is architectural; constraint-based and runtime filtering approaches bypass this structural limitation through fundamentally different integration mechanisms."
+
+2. **第11行新增** `\paragraph{Scope and generalizability.}`（Implications 和 Limitations 之间）：
+   - 明确列出 scope：1 benchmark, 2 model families, 4 tasks, MuJoCo simulation
+   - 区分 Claim 1 的结构通用性 vs. prevalence 的 benchmark-specificity
+   - Claim 3 限定为 EE-only auxiliary loss pathway，引用 `\ref{sec:related}`
+
+3. **第13-14行替换** Limitations 段落：
+   - **新增**：sim-to-real gap 不确定性、sensor noise 影响、task diversity 限制、统计功效（n=3, ~5pp MDE at 80% power）
+   - **保留**：原有的 oracle frozen model、full-body SDF untested、TSR degradation 内容
+
+4. **第19-20行替换** Broader Impact 段落：
+   - **改前**：2 句（dfCAR exposes gap）
+   - **改后**：3 句——dfCAR 定位为 diagnostic complement、SDF redundancy 是 methodology insight 而非对 safety training 的否定、警告不要过度解读
+
+---
+
+### introduction.tex
+
+未修改。"case study" 和 "we demonstrate" 在当前版本中均不存在（已被前一个 Worker 处理）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 90360,
+  "duration_api_ms": 91516,
+  "num_turns": 15,
+  "stop_reason": "end_turn",
+  "session_id": "3d0444fd-3fab-4c72-81f3-d9adb1428460",
+  "total_cost_usd": 0.3536485,
+  "usage": {
+    "input_tokens": 8,
+    "cache_creation_input_tokens": 24422,
+    "cache_read_input_tokens": 161986,
+    "output_tokens": 4691,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 24422,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 616,
+        "cache_read_input_tokens": 35348,
+        "cache_creation_input_tokens": 525,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 525
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2603,
+      "outputTokens": 20,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0027029999999999997,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 8,
+      "outputTokens": 4691,
+      "cacheReadInputTokens": 161986,
+      "cacheCreationInputTokens": 24422,
+      "webSearchRequests": 0,
+      "costUSD": 0.35094549999999997,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "e8f73aa1-a603-4e31-bcd3-395440c815d2"
+}
+```
+
+</details>
+
+---

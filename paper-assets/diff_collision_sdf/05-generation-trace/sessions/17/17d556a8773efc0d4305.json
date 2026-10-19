@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "17d556a8773efc0d4305",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ssh d006 quick status",
+  "task_key": "worker_ssh_d006_quick_status_20260520T220712",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d006_quick_status_20260520T220712_result.json",
+    "occurrence": 1,
+    "bytes": 1315,
+    "sha256": "f67f584e6198642771e28c92b7db1735c85bb96b116f17cca6ec97e0664efb89"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇报\n\n**4 张 GPU 全部 100% 利用率，共 4 个训练进程：**\n\n| GPU | PID | 实验 | 启动时间 | 显存占用 | 备注 |\n|-----|-----|------|----------|----------|------|\n| cuda:0 | 222903 | `train_baseline --scene spatial_bowl --seed 0 --resume` | 22:37 | 35738 MiB / 97887 MiB | **旧进程** |\n| cuda:1 | 263726 | `train_baseline --scene spatial_bowl --seed 0 --num_train_steps 30000` | 05:34 | 23884 MiB / 97887 MiB | **新进程** |\n| cuda:2 | 222982 | `train_baseline --scene object_pudding --seed 0 --resume` | 22:37 | 35738 MiB / 97887 MiB | **旧进程** |\n| cuda:3 | 263799 | `train_baseline --scene object_pudding --seed 0 --num_train_steps 30000` | 05:34 | 23884 MiB / 97887 MiB | **新进程** |\n\n**日志进度（来自新进程的输出目录）：**\n\n- **baseline_lora_spa_s0**: step **464/30000**, loss=0.1208, lr=1.16e-05, ~4.0s/it\n- **baseline_lora_obj_s0**: step **464/30000**, loss=0.0878, lr=1.16e-05, ~4.0s/it\n\n**注意：存在重复运行问题。** 每个场景有两个进程——22:37 启动的旧进程（带 `--resume`）和 05:34 启动的新进程（从头训练 30000 步）同时跑在不同 GPU 上。旧进程各占 ~36GB 显存，新进程各占 ~24GB。如果旧进程不需要了，应该 kill 掉释放 GPU 0 和 GPU 2。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-d006-quick-status.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "00f15d42c8513b722e35",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops start next 3 evals",
+  "task_key": "worker_ops_start_next_3_evals_20260525T125144",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_start_next_3_evals_20260525T125144_result.json",
+    "occurrence": 1,
+    "bytes": 931,
+    "sha256": "94ce45e268edc5685f55a98f2770634fb5a64eb35c40ecebcf2f9c26b1ef589c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个 eval 都在加载模型阶段（\"Creating PI0Pytorch model and injecting LoRA...\"），正常——加载完权重后才会占 GPU 显存。\n\n## 结果\n\n| GPU | 任务 | PID | 状态 |\n|-----|------|-----|------|\n| cuda:0 | spatial_bowl 训练 | - | 27GB 占用，100% 利用率 |\n| cuda:1 | eval s2_l01 30K | 260018 | 模型加载中 |\n| cuda:2 | eval s0_l005 30K | 260019 | 模型加载中 |\n| cuda:3 | eval s0_l01 30K | 260020 | 模型加载中 |\n\n**JSON 覆写修复**：使用 `--output_path` 指定唯一路径（`--seed` 统一为 0 不影响 eval 行为），3 个输出互不干扰：\n- `/root/autodl-tmp/eval_results/eval_s2_l01_30k.json`\n- `/root/autodl-tmp/eval_results/eval_s0_l005_30k.json`\n- `/root/autodl-tmp/eval_results/eval_s0_l01_30k.json`\n\n同时用 `CUDA_VISIBLE_DEVICES` 隔离 GPU（脚本内 `--gpu 0` 映射到可见的唯一卡），比直接 `--gpu N` 更可靠。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-start-next-3-evals.md"
+}

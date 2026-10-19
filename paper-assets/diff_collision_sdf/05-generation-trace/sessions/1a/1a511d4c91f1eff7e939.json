@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1a511d4c91f1eff7e939",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "paper d019 negative results discussion",
+  "task_key": "worker_paper_d019_negative_results_discussion_20260525T074027",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_d019_negative_results_discussion_20260525T074027_result.json",
+    "occurrence": 1,
+    "bytes": 1581,
+    "sha256": "24da462028d4f6f3b3eb5462d85766d92da4c7e7a22ded222356e68c3b69b177"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已写入 `paper/section5_5_method_boundaries.md`。内容覆盖了 D019 Tier A 的三个核心 negative results：\n\n**Boundary 1: Gradient correction fails on collapsed policies**\n- 实验设置：3 组 GT SDF oracle (`oracle_true_gt_adaptive_alpha_v11`, `oracle_true_gt_fixed_alpha_v11`, `oracle_true_gt_feature_object_v11`) + A3 learned SDF (`eval_a3_object_m024fix_v11`)\n- 结果：所有 oracle CAR (73.1%–76.9%) 均低于未修正 baseline (82%–83%)；A3 learned SDF 全 160 episodes 零修正步\n- 为什么 informative：失败与 SDF 质量/梯度空间/步长策略无关，根因是 collapsed policy 没有可操作的轨迹流形\n\n**Boundary 2: Collision transfer in constrained geometries**\n- 实验设置：Pi0.5+A1 Task 3 (bbq\\_sauce)，wine\\_bottle 和 red\\_coffee\\_mug 形成 ~40cm 走廊\n- 结果：λ=0.005 CAR 降 8pp，red\\_coffee\\_mug 碰撞从 5→10 episodes；对比 Task 0 开放空间 CAR +49pp\n- 为什么 informative：点级 SDF 梯度在多障碍约束场景下将碰撞从一侧转移到另一侧，有效性取决于自由空间裕度\n\n**Boundary 3: Training-time integration is the only viable path**\n- 综合前两个 boundary：post-hoc 修正在 collapsed policy 上无效 + 点级梯度在窄走廊反效果 → training-time SDF auxiliary loss 是唯一产生真实避碰 (CAR\\_f > 0, frozen\\_rate = 0%) 的路径\n\n叙事用 \"we demonstrate\" 框架，无 AI 风格标记（无 em-dash、无 -ing 结尾、无过度分段）。下一步可转为 LaTeX 并插入 `analysis_claim3.tex` 之后。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-d019-negative-results-discussion.md"
+}

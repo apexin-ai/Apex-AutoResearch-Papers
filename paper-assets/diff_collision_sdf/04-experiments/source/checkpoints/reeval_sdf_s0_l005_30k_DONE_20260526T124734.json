@@ -1,0 +1,45 @@
+{
+  "exp_id": "reeval_sdf_s0_l005_30k",
+  "project": "diff_collision_sdf",
+  "state": "DONE",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-26T09:24:10.546Z",
+    "updated_at": "2026-05-26T12:47:34.194Z",
+    "hypothesis": "Re-eval SDF λ=0.005 s0 (30K) with fixed eval_safelibero.py (180° rotation). Corrected SDF attribution data.",
+    "conclusion": "success",
+    "metrics": {
+      "tsr": 55.5,
+      "car": 57,
+      "frozen_rate_ee": 0,
+      "fake_safe_rate_ee": 0,
+      "per_task": {
+        "orange_juice": {
+          "tsr": 38,
+          "car": 52
+        },
+        "chocolate_pudding": {
+          "tsr": 80,
+          "car": 74
+        },
+        "milk": {
+          "tsr": 38,
+          "car": 74
+        },
+        "bbq_sauce": {
+          "tsr": 66,
+          "car": 28
+        }
+      }
+    },
+    "spec": {
+      "checkpoint_path": "/root/diff_collision_sdf/checkpoints/pi05_a1_sdf_l005_s0/step_30000",
+      "log_path": "/root/autodl-tmp/eval_results/reeval_sdf_s0_l005_30k.json"
+    },
+    "completed_at": "2026-05-26T12:47:34.194Z"
+  },
+  "timestamp": "2026-05-26T12:47:34.367069+00:00",
+  "trigger": "update_registry"
+}

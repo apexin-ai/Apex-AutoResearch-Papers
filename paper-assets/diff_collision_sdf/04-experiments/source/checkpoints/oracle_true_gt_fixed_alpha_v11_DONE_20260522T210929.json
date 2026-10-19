@@ -1,0 +1,47 @@
+{
+  "exp_id": "oracle_true_gt_fixed_alpha_v11",
+  "project": "diff_collision_sdf",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T20:05:33.998Z",
+    "updated_at": "2026-05-22T21:09:29.133Z",
+    "hypothesis": "True oracle SDF with conservative fixed alpha=0.005 (≈0.5x typical action_norm) as control. If CAR improves over baseline → oracle refinement works even at small alpha. If similar to adaptive → alpha magnitude is not the key factor.",
+    "parent": "oracle_true_gt_object_v11",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python scripts/eval_safelibero.py --model_type a3 --checkpoint /root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best --suite safelibero_object --safety_level II --n_episodes 40 --gpu 0 --true_oracle --force_refine_oracle --refine_alpha 0.005 --sdf_gt_path /root/colliforce-vla/data/sdf_gt_object_chocolate.npz --output_path /root/autodl-tmp/eval_results/oracle_true_gt_fixed_alpha_v11.json",
+      "server": "westd-35807",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": 93306,
+      "log_path": "/root/autodl-tmp/eval_results/eval_oracle_fixed_alpha_v11.log",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best",
+      "checkpoint_source": "a3_grad_refine_object_pudding",
+      "eval_data": "safelibero_object_levelII",
+      "data_path": "/root/colliforce-vla/data/sdf_gt_object_chocolate.npz",
+      "data_count": 40,
+      "model_name": "a3_grad_refine_object_pudding",
+      "seed": 0
+    },
+    "reproduce": {
+      "finished_at": "2026-05-22T21:07:06.626Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "negative",
+    "completed_at": "2026-05-22T21:07:08.201Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-22T21:07:10.845533+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-22T21:09:29.222691+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3350427a717f07a8aba7",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "code train pi05 lora baseline",
+  "task_key": "worker_code_train_pi05_lora_baseline_20260523T032024",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_train_pi05_lora_baseline_20260523T032024_result.json",
+    "occurrence": 1,
+    "bytes": 2200,
+    "sha256": "3e79dcace416c3f689682e0cd365bd5681aa9d9a51d521268f9abd6948eaacdb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过：\n- **语法检查**：两台服务器均 `syntax OK`\n- **--help**：参数列表正确，无 `--lambda_sdf`/`--lambda_ee`/`--n_query_points`/`--sdf_clamp`/`--eikonal_weight`\n- **SDF/EE 清除**：仅第 9 行注释中出现（docstring），无代码引用\n- **Phase schedule 保留**：Phase 1/2 切换、LoRA freeze/unfreeze、warmup 逻辑完整（第 75-134 行）\n\n---\n\n## 报告\n\n### 差异摘要（vs `train_a1_sdf_aux_pi05.py`）\n\n| 项目 | A1 SDF Aux | Baseline |\n|------|-----------|----------|\n| 行数 | 337 | 221 |\n| Imports | sdf_decoder, ee_extractor, numpy, F | 仅 lora_utils |\n| SCENE_CONFIG | 含 `sdf_gt` 路径 | 移除 `sdf_gt` |\n| Args | `--lambda_sdf`, `--lambda_ee`, `--n_query_points`, `--sdf_clamp`, `--eikonal_weight` | 全部移除 |\n| Hooks 类 | SdfAuxHooks (含 SDFDecoder, EEExtractor, SuffixOutHook) | LoRABaselineHooks (纯 LoRA) |\n| extra_params() | sdf_decoder + ee_extractor params | `[]` (空) |\n| on_loss_computed | action_loss + λ_sdf * sdf_loss + λ_ee * ee_loss | action_loss (直接返回) |\n| on_save_checkpoint | sdf_decoder.pt + ee_extractor.pt + aux_metadata.pt | baseline_metadata.pt |\n| Phase 1/2 schedule | 完全一致 | 完全一致 |\n| LoRA 配置 | pali_rank=16, expert_rank=32 | 完全一致 |\n| lr/batch/steps/save | 完全一致 | 完全一致 |\n| exp_name | `a1_sdf_pi05_{scene}_seed{seed}_l{lambda}` | `pi05_lora_baseline_{scene}_seed{seed}` |\n\n### 训练命令\n\n```bash\n# Baseline 训练\nWANDB_MODE=offline python scripts/train_pi05_lora_baseline.py \\\n    --scene object_pudding --seed 0 --gpu 0 \\\n    --batch_size 32 --num_train_steps 30000 \\\n    --lr 2.5e-5 --save_interval 2000\n\n# Dry run 验证\npython scripts/train_pi05_lora_baseline.py --scene object_pudding --dry_run --gpu 0\n```\n\n### Eval 命令模板\n\n```bash\n# 评估 baseline checkpoint（与 A1 eval 脚本相同，只需指向 baseline 的 checkpoint 路径）\npython scripts/eval_pi05_safelibero.py \\\n    --checkpoint_dir /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/step_30000 \\\n    --scene object_pudding --gpu 0 --n_episodes 50\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-train-pi05-lora-baseline.md"
+}

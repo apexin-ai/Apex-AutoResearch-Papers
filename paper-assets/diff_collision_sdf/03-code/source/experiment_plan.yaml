@@ -1,0 +1,235 @@
+experiments:
+- id: plan_001
+  claim: 1
+  description: 'A1 EE displacement re-eval: 用修复后脚本重跑 A1 model eval (50 episodes)，获取真实
+    EE displacement 验证 Claim 1 的 fake safety 定量数据'
+  priority: P0
+  gpu_budget_hours: 1
+  deps: []
+  registry_id: null
+  status: cancelled
+  notes: 旧 Pi0 A1 checkpoint 已删除无法恢复; 现有 800ep obstacle disp + TSR=0% 双证据链足够
+- id: plan_002
+  claim: 1
+  description: 'OpenVLA zero-shot SafeLIBERO eval: 验证 fake safety (或 geometric path
+    safety) 在第三 model family 上存在。Base OpenVLA-7B on object_pudding 200 episodes'
+  priority: P0
+  gpu_budget_hours: 5
+  deps: []
+  registry_id: null
+  status: blocked
+  notes: 模型下载损坏 + 无 eval script; 论文改为 scope limitation acknowledgment
+- id: plan_003
+  claim: 3
+  description: 'LoRA baseline eval (3 seeds): 训练完成后 eval，确定 LoRA-only CAR。决定 SDF
+    的归因强度——是 SDF 贡献还是 LoRA capacity 贡献'
+  priority: P0
+  gpu_budget_hours: 20
+  deps:
+  - plan_004
+  registry_id: reeval_lora_s0_30k_v2
+  status: done
+  notes: '3-seed canonical: reeval_lora_s0_30k_v2 (CAR=57,TSR=46), reeval_lora_s1_30k (CAR=52.5,TSR=51.5), eval_lora_s2_30k_v2 (CAR=55,TSR=51.5). Mean CAR=54.83±2.25'
+- id: plan_004
+  claim: 3
+  description: 'LoRA baseline training completion (2 seeds, westd-45947): Pi0.5 +
+    LoRA only (无 SDF loss) 训练到 30K'
+  priority: P0
+  gpu_budget_hours: 40
+  deps: []
+  registry_id: train_pi05_lora_baseline_s0
+  status: done
+  notes: 'Completed. s0+s1 trained to 30K on westd-45947'
+- id: plan_005
+  claim: 3
+  description: 'Phase 2 λ=0 ablation (seed2): 从 10K SDF checkpoint resume 训练 with
+    λ=0，验证 safety encoding 能否在去除 SDF loss 后保留，同时恢复 task performance'
+  priority: P0
+  gpu_budget_hours: 30
+  deps: []
+  registry_id: train_pi05_phase2_lambda0_s2
+  status: done
+  notes: 'Completed. final_loss_action=0.0113, 10K steps, 12.88h'
+- id: plan_006
+  claim: 3
+  description: 'Phase 2 λ=0 eval: Phase 2 训练完成后 eval，提取 TSR/CAR/EE displacement'
+  priority: P0
+  gpu_budget_hours: 10
+  deps:
+  - plan_005
+  registry_id: eval_phase2_lambda0_s2
+  status: done
+  notes: 'CAR=57.5%, TSR=53.5%, disp=0.3841. Per-task: t0(56/30), t1(74/76), t2(74/42), t3(26/66)'
+- id: plan_007
+  claim: 3
+  description: 'spatial_bowl A1 训练 (seed0, λ=0.005): 跨场景泛化验证——SDF 效果是否仅限 object_pudding
+    还是跨 scene 一致'
+  priority: P1
+  gpu_budget_hours: 34
+  deps: []
+  registry_id: train_pi05_a1_spatial_bowl_s0_l005
+  status: done
+  notes: 'Completed 30K steps. best_loss=0.01063 at step 28000'
+- id: plan_008
+  claim: 3
+  description: 'spatial_bowl eval: 训练完成后 eval，验证跨场景 CAR/TSR pattern'
+  priority: P1
+  gpu_budget_hours: 10
+  deps:
+  - plan_007
+  registry_id: eval_spatial_bowl_sdf_s0_l005_30k
+  status: done
+  notes: 'SDF eval: CAR=11.5%,TSR=51.5% (negative). LoRA ctrl: eval_spatial_bowl_lora_ctrl_s0_v2 CAR=12%,TSR=49%. SDF无显著CAR增益'
+- id: plan_009
+  claim: 3
+  description: 'Lambda=0.1 bracket training (2 seeds): 构建 4-point lambda 曲线 (0/LoRA,
+    0.005, 0.01, 0.1)，支持 dose-dependent safety claim'
+  priority: P1
+  gpu_budget_hours: 68
+  deps: []
+  registry_id: train_pi05_a1_obj_s0_l01_high
+  status: done
+  notes: 'Completed. 3 seeds (s0+s1+s2) trained to 30K'
+- id: plan_010
+  claim: 3
+  description: 'Lambda=0.1 eval: 如果训练完成，eval 验证 lambda 递增是否 monotonic 提升 CAR'
+  priority: P1
+  gpu_budget_hours: 10
+  deps:
+  - plan_009
+  registry_id: eval_pi05_a1_30k_s0_l01_high
+  status: done
+  notes: '3-seed: s0(CAR=58,TSR=47), s1(CAR=58.5,TSR=49), s2(CAR=54.5,TSR=54.5). Mean CAR=57.00%. Also: eval_pi05_a1_30k_s1_l01_high, eval_pi05_a1_30k_s2_l01_high'
+- id: plan_011
+  claim: 1
+  description: Claim 1 术语验证完成后，决定是否需要 full A1 re-eval (800ep with fixed script) 还是
+    50ep sanity check 足够
+  priority: P1
+  gpu_budget_hours: 10
+  deps:
+  - plan_001
+  registry_id: null
+  status: cancelled
+  notes: 已有 800ep obstacle displacement + TSR=0% 双证据，无需重跑
+- id: plan_012
+  claim: 3
+  description: 'Phase 2 λ=0 additional seed (seed0 or seed1): 从 10K SDF checkpoint
+    resume with λ=0, 多 seed 验证 Phase 2 safety persistence 稳定性'
+  priority: P0
+  gpu_budget_hours: 30
+  deps: []
+  registry_id: null
+  status: planned
+  notes: Dream 三档均指出 Phase 2 single seed 不可接受。待 Phase 2 seed2 完成确认方向后启动
+- id: plan_013
+  claim: 3
+  description: 'LoRA baseline seed2: 第三个 LoRA-only 种子，使 SDF 归因对比有 3v3 seeds 的统计严格性'
+  priority: P1
+  gpu_budget_hours: 20
+  deps:
+  - plan_004
+  registry_id: train_pi05_lora_baseline_s2
+  status: done
+  notes: 'train failed but eval completed via eval_lora_s2_30k_v2 (CAR=55%,TSR=51.5%). 3-seed LoRA eval achieved'
+- id: plan_014
+  claim: 1
+  description: 'dfCAR threshold sensitivity analysis (CPU-only): 在 δ={2mm, 5mm, 10mm,
+    20mm, 50mm, 100mm} 上计算 filtered CAR/FSR，展示 threshold robustness'
+  priority: P0
+  gpu_budget_hours: 0
+  deps: []
+  registry_id: analysis_threshold_sensitivity
+  status: done
+  notes: 'threshold_sensitivity.csv 已产出。Dream 三档均要求。δ∈[2mm, 200mm] dfCAR 完全不变'
+- id: plan_015
+  claim: 3
+  description: 'spatial_bowl LoRA-only control: 在 spatial_bowl 场景训练 LoRA-only (无 SDF)，完成跨场景归因'
+  priority: P1
+  gpu_budget_hours: 34
+  deps:
+  - plan_007
+  registry_id: train_spatial_bowl_lora_control_s0
+  status: done
+  notes: 'Completed. Eval: eval_spatial_bowl_lora_ctrl_s0_v2 CAR=12%,TSR=49%'
+- id: plan_016
+  claim: 1
+  description: 'Pi0.5 baseline 追加 2 seeds: 当前仅 1 seed (CAR=28.5%,TSR=71.5%)，Claim 1 最薄弱环节。追加 seed1+seed2 验证 baseline CAR/TSR 稳定性'
+  priority: P0
+  gpu_budget_hours: 10
+  deps: []
+  registry_id: null
+  status: planned
+  notes: 'D049 #1 优先。eval-only (baseline checkpoint 已有)，每 seed ~5h'
+- id: plan_017
+  claim: 3
+  description: 'Demo collision-free 标注: MuJoCo 回放 200 demos，标注 collision-free/containing，确定自然 cf rate 用于 curation 分层'
+  priority: P0
+  gpu_budget_hours: 0
+  deps: []
+  registry_id: null
+  status: planned
+  notes: 'CPU-only ~10min。脚本已完成: artifacts/scripts/demo_collision_label.py (art_20260529_c18a72)'
+- id: plan_018
+  claim: 3
+  description: 'Demo curation training 多 ratio: 5 curation levels × 3 seeds + L4-SDF 对照 = 18 runs，验证 collision-free ratio → CAR 单调关系'
+  priority: P0
+  gpu_budget_hours: 756
+  deps:
+  - plan_017
+  registry_id: null
+  status: planned
+  notes: 'R3 正向贡献。方案已审批: artifacts/demo_curation_proposal.md。分层网格待标注结果确认'
+- id: plan_019
+  claim: 1
+  description: 'OpenVLA zero-shot eval: 第 3 model family 上验证 action collapse / fake safety 现象'
+  priority: P1
+  gpu_budget_hours: 5
+  deps: []
+  registry_id: null
+  status: planned
+  notes: 'R1 generalizability。需先修复模型下载问题'
+- id: plan_020
+  claim: 1
+  description: 'RoboCasa benchmark: 3 PnP tasks 跨 benchmark 验证 dfCAR 和 action collapse。Pi0.5 LoRA fine-tune + eval'
+  priority: P1
+  gpu_budget_hours: 378
+  deps: []
+  registry_id: null
+  status: planned
+  notes: 'R1 跨 benchmark。脚本已完成: robocasa_eval.py (art_20260529_01c907) + robocasa_finetune_config.py (art_20260529_701acf)'
+- id: plan_021
+  claim: 2
+  description: 'Oracle adaptive-alpha SDF refinement eval: 在 Pi0 A1 baseline 上用 true GT SDF + adaptive alpha 做 inference-time refinement，验证 EE-only oracle 仍 counterproductive'
+  priority: P0
+  gpu_budget_hours: 2
+  deps: []
+  registry_id: oracle_true_gt_adaptive_alpha_v11
+  status: done
+  notes: 'CAR=75%,TSR=0%. Oracle 提高 CAR 但完全摧毁 TSR，证明 EE-only SDF refinement counterproductive'
+- id: plan_022
+  claim: 2
+  description: 'Oracle fixed-alpha SDF refinement eval: conservative fixed alpha=0.005 仍然 counterproductive (CAR↑ TSR→0)'
+  priority: P0
+  gpu_budget_hours: 2
+  deps: []
+  registry_id: oracle_true_gt_fixed_alpha_v11
+  status: done
+  notes: 'CAR=73.1%,TSR=0%. 即使极保守的 alpha 也 TSR=0%，排除 hyperparameter 过激解释'
+- id: plan_023
+  claim: 2
+  description: 'Oracle feature-space SDF refinement eval: GT SDF gradient 通过 suffix_out → action_out_proj，测试 feature-space 梯度路径'
+  priority: P0
+  gpu_budget_hours: 2
+  deps: []
+  registry_id: oracle_true_gt_feature_v11
+  status: done
+  notes: 'CAR=76.9%,TSR=0%. Feature-space oracle 同样 counterproductive'
+- id: plan_024
+  claim: 2
+  description: 'Pi0.5 LoRA oracle-adaptive eval: 在非 action-collapsed Pi0.5 LoRA 上验证 EE-only oracle refinement 仍 counterproductive (CAR 从 54.83→51.9%)'
+  priority: P0
+  gpu_budget_hours: 3
+  deps: []
+  registry_id: eval_oracle_pi05_lora_s0
+  status: done
+  notes: 'CAR=51.9%,TSR=50.6%. 在无 action collapse 模型上 EE-only refinement 仍降低 CAR，证明 counterproductive 效果是结构性的'

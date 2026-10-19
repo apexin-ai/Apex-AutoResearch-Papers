@@ -1,0 +1,332 @@
+# ColliForce-VLA Literature Map
+# Updated: 2026-05-25
+
+papers:
+
+  # ===== 已有论文 =====
+
+  - paper_id: "2512.11891"
+    title: "VLSA: Vision-Language-Action Models with Plug-and-Play Safety Constraint Layer"
+    authors: "Hu et al."
+    year: 2025
+    venue: arXiv
+    role: direct-competitor
+    category: collision-aware-vla
+    one_line_summary: "AEGIS/SafeLIBERO — 用 CBF 安全约束层实现 VLA 碰撞回避，是外挂式安全机制，不改变 VLA 内部空间表征；ColliForce 的核心对比对象。"
+
+  - paper_id: "2510.14836"
+    title: "QDepth-VLA: Quantized Depth Prediction as Auxiliary Supervision for Vision-Language-Action Models"
+    authors: "Li et al."
+    year: 2025
+    venue: arXiv
+    role: direct-competitor
+    category: spatial-aware-vla
+    one_line_summary: "用量化深度预测作为 VLA 辅助监督增强空间推理；与 ColliForce 的 SDF 辅助损失思路类似但用深度而非 SDF，且在 camera frame 而非 workspace frame。"
+
+  - paper_id: "2510.12276"
+    title: "Spatial Forcing: Implicit Spatial Representation Alignment for Vision-language-action Model"
+    authors: "Li et al."
+    year: 2025
+    venue: ICLR 2026
+    role: method-component
+    category: spatial-aware-vla
+    one_line_summary: "隐式对齐 VLA 中间层视觉嵌入与 3D 基础模型几何表征，证明隐式 3D 对齐对 VLA 有效；ColliForce 将对齐目标从通用 3D 几何特化为 SDF/occupancy field。"
+
+  - paper_id: "2307.05973"
+    title: "VoxPoser: Composable 3D Value Maps for Robotic Manipulation with Language Models"
+    authors: "Huang et al."
+    year: 2023
+    venue: CoRL 2023
+    role: method-component
+    category: sdf-robotics
+    one_line_summary: "用 LLM 生成 3D 体素 value maps（含 avoidance maps）引导机器人操作规划；启发了 ColliForce 用 3D 空间场引导动作生成的思路。"
+
+  - paper_id: "2410.24164"
+    title: "pi0: A Vision-Language-Action Flow Model for General Robot Control"
+    authors: "Black et al., Physical Intelligence"
+    year: 2024
+    venue: arXiv
+    role: backbone
+    category: vla-foundation
+    one_line_summary: "基于 PaliGemma VLM + flow matching 的通用 VLA 基座模型；ColliForce 的基座架构，在其上添加 SDF 辅助监督分支。"
+
+  - paper_id: "1901.05103"
+    title: "DeepSDF: Learning Continuous Signed Distance Functions for Shape Representation"
+    authors: "Park et al."
+    year: 2019
+    venue: CVPR 2019
+    role: method-component
+    category: sdf-representation
+    one_line_summary: "开创性地用深度网络学习连续 SDF 表示；ColliForce 中 workspace SDF 的表征方法论基础。"
+
+  - paper_id: "2307.00533"
+    title: "Representing Robot Geometry as Distance Fields: Applications to Whole-body Manipulation"
+    authors: "Liu et al."
+    year: 2023
+    venue: arXiv
+    role: method-component
+    category: sdf-robotics
+    one_line_summary: "用 Bernstein 多项式编码机器人连杆 SDF 并集成到优化问题中实现可微碰撞检测；验证了 SDF 在机器人碰撞检测中的可行性。"
+
+  # ===== 新增 P0: 直接竞品 — 碰撞感知操纵 / Safe Manipulation =====
+
+  - paper_id: "2503.03480"
+    title: "SafeVLA: Towards Safety Alignment of Vision-Language-Action Model via Constrained Learning"
+    authors: "Zhang et al."
+    year: 2025
+    venue: NeurIPS 2025 (Spotlight)
+    arxiv: "2503.03480"
+    role: direct-competitor
+    category: collision-aware-vla
+    summary: "用 CMDP 范式对 VLA 策略施加安全约束，通过 safe RL 优化减少 83.58% 安全违规成本。"
+    relevance: "最直接竞品之一：同样关注 VLA 安全性，但走 constrained RL 路线（外部约束优化），ColliForce 走内部空间表征增强路线（SDF 辅助监督），方法论互补。"
+
+  - paper_id: "2407.00451"
+    title: "Language-Guided Object-Centric Diffusion Policy for Collision-Aware Robotic Manipulation"
+    authors: "Li et al."
+    year: 2024
+    venue: ICRA 2025
+    arxiv: "2407.00451"
+    role: direct-competitor
+    category: collision-aware-vla
+    summary: "在 3D 点云上训练 diffusion policy 预测末端轨迹，推理时通过 cost-guided denoising 实现 training-free 碰撞回避。"
+    relevance: "碰撞回避在推理阶段通过 cost optimization 注入；ColliForce 在训练阶段通过 SDF 辅助损失嵌入碰撞感知，设计哲学不同。"
+
+  - paper_id: "2511.22773"
+    title: "CAPE: Context-Aware Diffusion Policy Via Proximal Mode Expansion for Collision Avoidance"
+    authors: "Yang et al."
+    year: 2025
+    venue: arXiv
+    arxiv: "2511.22773"
+    role: direct-competitor
+    category: collision-aware-vla
+    summary: "通过 context-aware prior 和 prior-seeded iterative guided refinement 扩展轨迹分布模态，cluttered 场景碰撞回避提升 26-80%。"
+    relevance: "推理阶段碰撞回避方法，与 ColliForce 训练阶段 SDF 注入形成对比；可讨论 train-time vs. test-time 安全注入的 trade-off。"
+
+  - paper_id: "2409.08233"
+    title: "Towards Online Safety Corrections for Robotic Manipulation Policies"
+    authors: "Spalter et al."
+    year: 2024
+    venue: arXiv
+    arxiv: "2409.08233"
+    role: direct-competitor
+    category: collision-aware-vla
+    summary: "iKinQP-RL：用逆运动学 QP 控制器在运行时修正 RL 策略动作，完全消除与未见障碍物的碰撞。"
+    relevance: "运行时安全修正层，类似 VLSA 的外挂思路；ColliForce 不需额外安全层，通过 SDF 辅助监督让策略自身学会碰撞感知。"
+
+  # ===== 新增 P0b: 碰撞感知操纵补充 (2024-2026) =====
+
+  - paper_id: "2601.21712"
+    title: "CoFreeVLA: Collision-Free Dual-Arm Manipulation via Vision-Language-Action Model and Risk Estimation"
+    authors: "Zhai et al."
+    year: 2026
+    venue: arXiv
+    arxiv: "2601.21712"
+    role: direct-competitor
+    category: collision-aware-vla
+    summary: "在 VLA 策略上外挂短时域自碰撞风险估计器，预测碰撞概率并门控危险动作，通过 risk-guided 调整恢复安全状态。在 PiPER 双臂平台 5 个任务上减少自碰撞并提升成功率。"
+    relevance: "VLA + 碰撞安全的最新工作；采用外部风险估计器（post-hoc 过滤）路线，与 ColliForce 训练时 SDF 嵌入的内在路线形成对比。可讨论 internal representation vs. external filter 的 trade-off。"
+
+  - paper_id: "2404.02284"
+    title: "APEX: Ambidextrous Dual-Arm Robotic Manipulation Using Collision-Free Generative Diffusion Models"
+    authors: "Dastider et al."
+    year: 2024
+    venue: IROS 2024
+    arxiv: "2404.02284"
+    role: related-approach
+    category: collision-aware-manipulation
+    summary: "用潜在扩散模型生成双臂操作轨迹，通过 classifier-guidance 技术集成障碍物信息保证轨迹无碰撞。在双臂硬件平台上超越传统运动规划算法。"
+    relevance: "Test-time classifier-guidance 碰撞回避，与 Lan-o3dp/CAPE 同属推理阶段安全注入方法族；ColliForce 在训练阶段通过 SDF 辅助损失嵌入，不需推理时额外计算。"
+
+  - paper_id: "2512.11908"
+    title: "Safe Learning for Contact-Rich Robot Tasks: A Survey from Classical Learning-Based Methods to Safe Foundation Models"
+    authors: "Zhang et al."
+    year: 2025
+    venue: arXiv
+    arxiv: "2512.11908"
+    role: survey
+    category: collision-aware-manipulation
+    summary: "系统综述安全接触任务的学习方法，覆盖 constrained RL、risk-sensitive optimization、CBF、MPC safety shields，并延伸到 foundation model 时代的安全挑战。"
+    relevance: "Related Work 定位参考：ColliForce 属于该综述分类中 'training-time geometric supervision' 类别，与 constrained RL (SafeVLA) 和 runtime shields (VLSA/iKinQP) 构成三条路线。"
+
+  # ===== 新增 P1: SDF/距离场在机器人学中的应用 =====
+
+  - paper_id: "2204.02296"
+    title: "iSDF: Real-Time Neural Signed Distance Fields for Robot Perception"
+    authors: "Ortiz et al."
+    year: 2022
+    venue: RSS 2022
+    arxiv: "2204.02296"
+    role: method-component
+    category: sdf-robotics
+    summary: "从流式深度图像持续学习神经 SDF，将 3D 坐标映射为有符号距离值，实现实时机器人场景感知。"
+    relevance: "验证了神经 SDF 可实时构建用于机器人感知；ColliForce 的 workspace SDF ground truth 生成和在线推理可参考其方法。"
+
+  - paper_id: "2305.10534"
+    title: "RAMP: Hierarchical Reactive Motion Planning for Manipulation Tasks Using Implicit Signed Distance Functions"
+    authors: "Vasilopoulos et al."
+    year: 2023
+    venue: IROS 2023
+    arxiv: "2305.10534"
+    role: method-component
+    category: sdf-robotics
+    summary: "结合 MPPI 控制器和局部向量场控制器，用 SDF 做碰撞检测和反应式避障的层次化运动规划。"
+    relevance: "展示 SDF 在 reactive manipulation planning 中的有效性；ColliForce 将 SDF 从规划模块提升到学习模块，让策略网络直接编码距离场信息。"
+
+  - paper_id: "2102.07413"
+    title: "DiffCo: Auto-Differentiable Proxy Collision Detection with Multi-class Labels for Safety-Aware Trajectory Optimization"
+    authors: "Zhi et al."
+    year: 2021
+    venue: IEEE T-RO
+    arxiv: "2102.07413"
+    role: method-component
+    category: sdf-robotics
+    summary: "全自动可微的非参数碰撞检测模型，在线计算碰撞边界并通过反向传播提供鲁棒梯度用于轨迹优化。"
+    relevance: "可微碰撞检测关键工作，证明碰撞信息可通过梯度传播融入优化；ColliForce 的 SDF 辅助损失本质也是让碰撞信息参与梯度反传。"
+
+  # ===== 新增 P1b: SDF/距离场在机器人学补充 (2024-2025) =====
+
+  - paper_id: "2406.01137"
+    title: "Configuration Space Distance Fields for Manipulation Planning"
+    authors: "Li, Chi, Razmjoo, Calinon"
+    year: 2024
+    venue: RSS 2024
+    arxiv: "2406.01137"
+    role: method-component
+    category: sdf-robotics
+    summary: "将 SDF 从任务空间扩展到机器人构型空间（C-space），直接估计到达接触/碰撞所需的最小关节运动量，并用于操作规划优化。"
+    relevance: "直接回应 ColliForce 的 EE-only SDF 局限：CDF 在 C-space 工作天然覆盖全身碰撞，Related Work 中可作为 full-body SDF 方案的代表，讨论 task-space SDF vs. C-space SDF 的优劣。"
+
+  - paper_id: "2409.14955"
+    title: "Efficient Collision Detection Framework for Enhancing Collision-Free Robot Motion"
+    authors: "Zhu et al."
+    year: 2024
+    venue: arXiv
+    arxiv: "2409.14955"
+    role: method-component
+    category: sdf-robotics
+    summary: "通过正运动学分解机器人全身 SDF，用多个轻量并行网络近似各连杆 SDF，集成 SVM 自碰撞检测模块（SDF-SC），保持可微性用于轨迹优化。"
+    relevance: "全身 SDF 分解方案，与 Liu et al. (2023) Bernstein 多项式方法互补；ColliForce 目前仅用 EE SDF，该工作展示了扩展到全身 SDF 的工程可行性。"
+
+  - paper_id: "2511.21312"
+    title: "Neural NMPC through Signed Distance Field Encoding for Collision Avoidance"
+    authors: "Jacquet, Harms, Alexis"
+    year: 2025
+    venue: IJRR 2025
+    arxiv: "2511.21312"
+    role: method-component
+    category: sdf-robotics
+    summary: "用卷积编码器将深度图像压缩为潜向量，MLP 近似对应空间 SDF，作为 NMPC 的显式位置约束实现无地图碰撞回避。森林环境真机验证。"
+    relevance: "展示 SDF 作为控制约束的端到端集成路径（感知→SDF→控制）；ColliForce 将 SDF 集成到学习策略（感知→SDF→policy loss），两者互为对照。"
+
+  # ===== 新增 P2: VLA 基座模型系列 =====
+
+  - paper_id: "2307.15818"
+    title: "RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control"
+    authors: "Brohan et al., Google DeepMind"
+    year: 2023
+    venue: arXiv
+    arxiv: "2307.15818"
+    role: foundational
+    category: vla-foundation
+    summary: "将动作表示为文本 token，在视觉-语言任务和机器人轨迹数据上联合微调 VLM，实现网络知识到机器人控制的迁移。"
+    relevance: "VLA 范式奠基工作，确立 VLM→VLA 微调范式；ColliForce 在此范式基础上增加 SDF 辅助分支。"
+
+  - paper_id: "2406.09246"
+    title: "OpenVLA: An Open-Source Vision-Language-Action Model"
+    authors: "Kim et al."
+    year: 2024
+    venue: arXiv
+    arxiv: "2406.09246"
+    role: benchmark-source
+    category: vla-foundation
+    summary: "7B 参数开源 VLA，基于 Llama 2 + DINOv2/SigLIP，970k 真实演示训练，29 任务上超越 RT-2-X 16.5%。"
+    relevance: "主要 VLA baseline；ColliForce 可在其上验证 SDF 辅助监督的通用性。"
+
+  - paper_id: "2405.12213"
+    title: "Octo: An Open-Source Generalist Robot Policy"
+    authors: "Octo Model Team"
+    year: 2024
+    venue: arXiv
+    arxiv: "2405.12213"
+    role: benchmark-source
+    category: vla-foundation
+    summary: "基于 Transformer 的通用策略，Open X-Embodiment 800k 轨迹训练，支持多传感器多动作空间，消费级 GPU 可快速微调。"
+    relevance: "轻量级 VLA baseline；ColliForce 的 SDF 辅助分支可测试在小模型上的效果。"
+
+  # ===== 新增 P3: Benchmark =====
+
+  - title: "LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning"
+    authors: "Bo Liu, Yifeng Zhu, Chongkai Gao, Yihao Feng, Qiang Liu, Yuke Zhu, Peter Stone"
+    venue: "NeurIPS 2023"
+    arxiv: "2306.03310"
+    role: benchmark
+    relevance: "SafeLIBERO benchmark 的基础；定义了 Spatial/Goal/Object/Long 四个 suite 的任务结构和评估协议"
+
+  # ===== 新增 P4: 生成式建模基础方法 =====
+
+  - title: "Flow Matching for Generative Modeling"
+    authors: "Yaron Lipman, Ricky T. Q. Chen, Heli Ben-Hamu, Maximilian Nickel, Matt Le"
+    venue: "ICLR 2023"
+    arxiv: "2210.02747"
+    role: method-component
+    relevance: "π0 base model 使用的 flow matching 训练范式；ColliForce gradient-guided refinement 基于 flow matching 的 ODE solver 进行梯度注入"
+
+  # ===== 新增 P5: Action Collapse / Mode Collapse =====
+
+  - paper_id: "2505.11123"
+    title: "Conditioning Matters: Training Diffusion Policies is Faster Than You Think"
+    authors: "Dong et al."
+    year: 2025
+    venue: arXiv
+    arxiv: "2505.11123"
+    role: related-approach
+    category: action-collapse
+    summary: "发现 diffusion policy 训练中的 'loss collapse'——observation 条件难区分时训练退化为建模 marginal action 分布而非 condition-specific 分布，提出 Cocos 通过条件依赖的源分布锚定解决。"
+    relevance: "与 ColliForce 的 action collapse 机制类似：collision penalty 可导致策略忽略 task-relevant conditioning 而坍缩到 degenerate marginal（如静止不动），提供了 diffusion policy 中 loss collapse 的理论对照。"
+
+  - paper_id: "2303.04137"
+    title: "Diffusion Policy: Visuomotor Policy Learning via Action Diffusion"
+    authors: "Chi et al."
+    year: 2023
+    venue: RSS 2023 / IJRR 2024
+    arxiv: "2303.04137"
+    role: foundational
+    category: action-collapse
+    summary: "提出基于扩散模型的视觉运动策略，解决行为克隆中的 mode averaging 问题——标准回归策略在多模态演示上取均值产生不安全的中间轨迹。"
+    relevance: "定义了 IL 中 mode averaging/collapse 的规范表述；ColliForce 的 collision penalty 可能在表达性策略架构中重新引入类似的模态坍缩，将动作分布推向单一 'freeze' 模态。"
+
+  # ===== 新增 P6: Safe RL / Safe Imitation Learning =====
+
+  - paper_id: "1705.10528"
+    title: "Constrained Policy Optimization"
+    authors: "Achiam et al."
+    year: 2017
+    venue: ICML 2017
+    arxiv: "1705.10528"
+    role: foundational
+    category: safe-rl
+    summary: "训练时安全 RL 基础方法，在 trust-region 框架中约束策略更新满足 cost 限制，形式化为 constrained MDP。"
+    relevance: "Safe RL 奠基工作；仅用标量 cost 信号，不含几何碰撞信息，不处理高维视觉-语言观测空间。ColliForce 的可微 SDF 辅助损失提供比 CPO 标量约束更丰富的连续几何安全信号。"
+
+  - paper_id: "2409.19190"
+    title: "RAIL: Reachability-Aided Imitation Learning for Safe Policy Execution"
+    authors: "Jung et al."
+    year: 2025
+    venue: ICRA 2025
+    arxiv: "2409.19190"
+    role: related-approach
+    category: safe-rl
+    summary: "测试时安全方法：训练标准 IL 策略后用可达性分析安全过滤器在运行时覆盖不安全动作，实现 0% 碰撞率。"
+    relevance: "策略本身不学安全，与 ColliForce 训练时 SDF 嵌入形成对比。解耦方式意味着过滤器频繁干预时可能降低任务性能，ColliForce 通过让策略原生碰撞感知来避免这一问题。"
+
+  - paper_id: "2503.17432"
+    title: "TamedPUMA: Safe and Stable Imitation Learning with Geometric Fabrics"
+    authors: "Bakker et al."
+    year: 2025
+    venue: L4DC 2025
+    arxiv: "2503.17432"
+    role: related-approach
+    category: safe-rl
+    summary: "将学习的运动基元与 geometric fabrics 融合，在运行时强制碰撞回避和关节限制，需已知障碍物解析表示。"
+    relevance: "运行时安全机制叠加在 IL 之上；需要运行时解析障碍物表示，ColliForce 在训练时嵌入 SDF 使策略泛化到新场景而无需运行时几何计算。"

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1c7767759f928b3e6187",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops critical fix phase2 resume",
+  "task_key": "worker_ops_critical_fix_phase2_resume_20260523T062508",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_critical_fix_phase2_resume_20260523T062508_result.json",
+    "occurrence": 1,
+    "bytes": 522,
+    "sha256": "09e4fbca35df4c6e000a58b5ccbd7095cbd961f3553acfb6fa91677021f84e9f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**执行摘要**：\n- 4 个旧进程已 kill + tmux 清理\n- `train_a1_sdf_aux_pi05.py` 两处修复：`==` → `>=`（行 199）+ resume phase 恢复逻辑（`on_model_created` 末尾 18 行）\n- 两台服务器（westd-35807 / westd-45947）均已同步修复脚本 + baseline 脚本\n- 4 个训练从 step 6000 恢复，全部在第一个 step 成功进入 Phase 2，LoRA 33.47M 参数已解冻，GPU 显存 ~27GB，action_loss ~0.03\n- 报告写入 `artifacts/phase2_fix_report.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-critical-fix-phase2-resume.md"
+}

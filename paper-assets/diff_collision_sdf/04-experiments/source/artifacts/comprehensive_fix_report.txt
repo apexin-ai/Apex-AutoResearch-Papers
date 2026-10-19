@@ -1,0 +1,171 @@
+========================================================================
+Comprehensive Fix Report: openpi Training Pipeline + A1 SDF Integration
+Date: 2026-05-20
+Server: westd-35807 (4x NVIDIA RTX PRO 6000 Blackwell, 96GB each)
+========================================================================
+
+## 1. Root Cause: Catastrophically High Loss in Baseline Seed 1 & Object Pudding
+
+### Symptom
+- Baseline seed 0 trained normally (loss ~0.2 -> 0.01 over 2K steps)
+- Seed 1 and object_pudding had loss > 100, never converging
+
+### Root Cause: extra_delta_transform=True with Delta LIBERO Actions
+The `extra_delta_transform=True` flag applies DeltaActions transform, which
+computes deltas between consecutive action frames. LIBERO actions are ALREADY
+delta actions (velocity commands), so applying DeltaActions creates
+delta-of-deltas: nonsensical second derivatives with values near zero.
+
+When these near-zero delta-of-delta values are normalized using norm_stats
+computed from original delta actions (which have much larger magnitudes),
+the result is catastrophically large normalized values -> huge MSE loss.
+
+Seed 0 appeared to work because its norm_stats were computed from the
+same broken distribution, masking the issue. New seeds/scenes with
+different norm_stats exposed the bug.
+
+### Fix Applied
+File: /root/colliforce-vla/scripts/train_baseline.py (line 88)
+  extra_delta_transform=True  ->  extra_delta_transform=False
+
+File: /root/colliforce-vla/scripts/train_a1_sdf_aux.py (line 215)
+  extra_delta_transform=False (correctly set in rewrite)
+
+### Verification
+After fix, seed 1 and object_pudding both start with loss ~0.2,
+matching seed 0's healthy training curve.
+
+
+## 2. train_loop Normalization & Data Pipeline Summary
+
+### Data Flow
+1. LeRobotLiberoDataset loads raw LIBERO demonstrations
+2. Actions are 7D: [dx, dy, dz, droll, dpitch, dyaw, gripper]
+3. With extra_delta_transform=False, actions pass through as-is
+4. NormalizationTransform applies z-score normalization:
+   normalized = (action - mean) / std
+   using per-dimension statistics from norm_stats.json
+5. Flow matching loss:
+   u_t = noise - actions
+   x_t = t * noise + (1 - t) * actions
+   loss = MSE(model_output, u_t)
+
+### norm_stats Location
+Assets loaded from: {assets_dir}/{asset_id}/norm_stats.json
+Baseline: /root/colliforce-vla/assets/baseline_spatial_bowl/
+A1 SDF: same directory via AssetsConfig override
+
+
+## 3. LoRA Configuration Status
+
+Model config uses LoRA adapters:
+- PaliGemma (2B): gemma_2b_lora variant
+- Action Expert (300M): gemma_300m_lora variant
+
+LoRA is applied to attention projection layers. During training,
+only LoRA parameters + action head parameters are updated (controlled
+by freeze_filter from model config). Full backbone weights remain frozen
+per the LoRA fine-tuning protocol.
+
+
+## 4. TrainHooks Protocol: 13 Modifications to train_pytorch.py
+
+### New Class: TrainHooks (base class)
+  on_model_created(model, device)       - called after weight loading
+  extra_params()                        - returns additional parameters for optimizer
+  on_step_start(global_step, model)     - called before each training step
+  on_loss_computed(loss, model, obs, step) - inject auxiliary losses
+  on_save_checkpoint(step_dir, step)    - save auxiliary modules
+  on_cleanup()                          - cleanup hooks
+
+### Modifications Applied (via /tmp/patch_train.py):
+  1. Added TrainHooks class after imports
+  2. train_loop signature: added hooks=None parameter
+  3. save_checkpoint signature: added hooks=None parameter
+  4. save_checkpoint body: call hooks.on_save_checkpoint after rename
+  5. After weight loading: call hooks.on_model_created
+  6. Optimizer creation: include hooks.extra_params()
+  7. Training loop: call hooks.on_step_start before LR update
+  8. After loss.mean(): call hooks.on_loss_computed
+  9. Gradient clipping: include hooks.extra_params()
+  10. Stats collection: merge aux_info into step_info
+  11. wandb logging: log auxiliary metrics
+  12. save_checkpoint call site: pass hooks=hooks
+  13. Before wandb finish: call hooks.on_cleanup
+
+
+## 5. A1 SDF Auxiliary Task Training (train_a1_sdf_aux.py)
+
+### Architecture
+- Captures suffix_out [B, 50, 1024] via forward hook on action_out_proj
+- Mean-pools to [B, 1024] for auxiliary heads
+
+SDF Decoder (395K params):
+  - 4-layer MLP with skip connection
+  - Input: [B, 1024] context + [B, N, 3] query points -> [B, N] SDF values
+  - Loss: Clamped L1 + Eikonal regularization
+
+EE Position Extractor (263K params):
+  - 2-layer MLP
+  - Input: [B, 1024] -> [B, 3] end-effector position
+  - Loss: MSE against observation.state[:, :3]
+
+### Two-Phase Training
+Phase 1 (steps 0-5000): Backbone FROZEN
+  - Only SDF decoder + EE extractor parameters updated
+  - suffix_out features detached (no gradient to backbone)
+  - Purpose: warm up auxiliary heads before affecting backbone
+
+Phase 2 (steps 5000+): Backbone UNFROZEN
+  - All parameters updated end-to-end
+  - Gradients flow through suffix_out to backbone
+  - Total loss = action_loss + 0.1 * sdf_total + 0.01 * ee_loss
+
+### Dry Run Verification (cuda:3)
+Step 1: loss=0.2715, lr=2.50e-05
+Step 2: loss=0.2823, lr=1.38e-05
+Checkpoint saved: sdf_decoder.pt, ee_extractor.pt, aux_metadata.pt
+Status: PASS
+
+
+## 6. All Modified Files
+
+/root/colliforce-vla/scripts/train_baseline.py
+  - Line 88: extra_delta_transform=True -> False
+
+/root/colliforce-vla/openpi/scripts/train_pytorch.py
+  - 13 patches adding TrainHooks support (see section 4)
+
+/root/colliforce-vla/scripts/train_a1_sdf_aux.py
+  - Complete rewrite: standalone loop -> hooks-based via train_loop
+  - extra_delta_transform=False
+  - AssetsConfig pointing to baseline assets directory
+  - SCENE_CONFIG includes assets_dir
+
+
+## 7. Running Experiments Status
+
+GPU 0 (cuda:0): Baseline seed 0 - PID 49555
+  Step ~2126, loss ~0.02, 2h09m elapsed, HEALTHY
+
+GPU 1 (cuda:1): Baseline seed 1 (RESTARTED after fix) - PID 85141
+  Running with extra_delta_transform=False, HEALTHY
+
+GPU 2 (cuda:2): Object pudding seed 0 (RESTARTED after fix) - PID 85213
+  Running with extra_delta_transform=False, HEALTHY
+
+GPU 3 (cuda:3): FREE
+  A1 SDF dry run completed successfully
+  Available for full A1 training or verification
+
+
+## 8. GPU Status (nvidia-smi)
+
+GPU 0: RTX PRO 6000 Blackwell - 37367/97887 MiB - 100% util
+GPU 1: RTX PRO 6000 Blackwell - 37367/97887 MiB - 100% util
+GPU 2: RTX PRO 6000 Blackwell - 37367/97887 MiB -   0% util (loading)
+GPU 3: RTX PRO 6000 Blackwell -     0/97887 MiB -   0% util (free)
+
+========================================================================
+END OF REPORT
+========================================================================

@@ -1,0 +1,2555 @@
+# ops check phase2 lambda0 s2 exit
+
+**How Action Collapse Creates Illusory Safety in Diffusion-Based VLA Collision Avoidance Evaluation** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 54
+- **Recorded user turns:** 0
+- **Tool calls:** 19
+- **Original source:** `logs/workers/worker_ops_check_phase2_lambda0_s2_exit_20260526T111441.log`
+- **Structured JSON:** [`9408ff5cdafb65744ad5.json`](../../sessions/94/9408ff5cdafb65744ad5.json)
+
+## Before a recorded user message
+
+54 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf",
+  "session_id": "5b1b0d13-506d-400f-8400-8720010d07b3",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "5461d9dd-20a3-4e7a-b8ef-8bbf5133c4d5",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779808800,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "346bdc9f-de21-4c93-8634-6d494b55ce4e",
+  "session_id": "5b1b0d13-506d-400f-8400-8720010d07b3"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+Looking at the training log and checkpoint status.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5b1b0d13-506d-400f-8400-8720010d07b3",
+  "uuid": "0e48961f-b38e-48ff-868f-c5892f28253b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SKd6SEq7wAyVRaLRFsvoLK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11718,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11718
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01SvAKAVNV55d3R52ET52isy`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5b1b0d13-506d-400f-8400-8720010d07b3",
+  "uuid": "ccf64063-8a63-41c7-b3a8-52c05f5b9f49",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SKd6SEq7wAyVRaLRFsvoLK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11718,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11718
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-26T11:14:53.473Z_
+
+<details><summary>↩ Tool result · `toolu_01SvAKAVNV55d3R52ET52isy`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5b1b0d13-506d-400f-8400-8720010d07b3",
+  "uuid": "ea45c2db-a141-42d9-bff9-e97178da4709",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__read_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the training log and check checkpoints in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5b1b0d13-506d-400f-8400-8720010d07b3",
+  "uuid": "20ae9fe6-8a5c-4ee7-97c7-cd9d2d30166b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015Lx9xNenYCVyKfF1ov14ms",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1274,
+      "cache_read_input_tokens": 23559,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1274
+      },
+      "output_tokens": 17,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XJTgGzVsyYFYduytpDKxDN`</summary>
+
+```json
+{
+  "server": "westd-35807",
+  "command": "tail -100 ~/runs/diff_collision_sdf/train_pi05_phase2_lambda0_s2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5b1b0d13-506d-400f-8400-8720010d07b3",
+  "uuid": "9eda8f2d-25dc-4a84-b72d-74a336e0af70",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015Lx9xNenYCVyKfF1ov14ms",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1274,
+      "cache_read_input_tokens": 23559,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1274
+      },
+      "output_tokens": 17,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0145DPtML6kfVRHr7hBVX4Tr`</summary>
+
+```json
+{
+  "server": "westd-35807",
+  "command": "ls -la /root/colliforce-vla/checkpoints/pi05_phase2_lambda0_s2/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5b1b0d13-506d-400f-8400-8720010d07b3",
+  "uuid": "d598d539-462b-46a3-9fbc-1fd483166942",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015Lx9xNenYCVyKfF1ov14ms",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1274,
+      "cache_read_input_tokens": 23559,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1274
+      },
+      "output_tokens": 17,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-26T11:15:00.421Z_
+
+<details><summary>↩ Tool result · `toolu_01XJTgGzVsyYFYduytpDKxDN`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"tail: cannot open '/root/runs/diff_collision_sdf/train_pi05_phase2_lambda0_s2.log' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.11}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5b1b0d13-506d-400f-8400-8720010d07b3",
+  "uuid": "a18d35a0-84c7-4e36-88c7-cc9a10340ff3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"tail: cannot open '/root/runs/diff_collision_sdf/train_pi05_phase2_lambda0_s2.log' for reading: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.11}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"tail: cannot open '/root/runs/diff_collision_sdf/train_pi05_phase2_lambda0_s2.log' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.11}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-26T11:15:00.950Z_
+
+<details><summary>↩ Tool result · `toolu_0145DPtML6kfVRHr7hBVX4Tr`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/colliforce-vla/checkpoints/pi05_phase2_lambda0_s2/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5b1b0d13-506d-400f-8400-8720010d07b3",
+  "uuid": "7406343c-eef6-4b33-9604-6fcc6296f2ff",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/colliforce-vla/checkpoints/pi05_phase2_lambda0_s2/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/colliforce-vla/checkpoints/pi05_phase2_lambda0_s2/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The log file and checkpoint directory don't exist at those paths. Let me search for them.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5b1b0d13-506d-400f-8400-8720010d07b3",
+  "uuid": "53d96deb-c627-4f25-b72f-6d9d0b61d9d0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B3nESpJ1XuLV6QF1KD1Ymw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 568,
+      "cache_read_input_tokens": 24833,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 568
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+Log and checkpoint paths not found at expected locations. Searching for actual paths.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5b1b0d13-506d-400f-8400-8720010d07b3",
+  "uuid": "3511fde9-3477-4081-8c37-118f6eefc6d0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B3nESpJ1XuLV6QF1KD1Ymw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 568,
+      "cache_read_input_tokens": 24833,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 568
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TztoW7vctgSHCvbeqFnqtn`</summary>
+
+```json
+{
+  "server": "westd-35807",
+  "command": "find /root -name \"*phase2_lambda0_s2*\" -type f 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5b1b0d13-506d-400f-8400-8720010d07b3",
+  "uuid": "59c57f54-0d07-4a62-8f88-a8ad7454273c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B3nESpJ1XuLV6QF1KD1Ymw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 568,
+      "cache_read_input_tokens": 24833,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 568
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-26T11:15:04.700Z_
+
+<details><summary>↩ Tool result · `toolu_01TztoW7vctgSHCvbeqFnqtn`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5b1b0d13-506d-400f-8400-8720010d07b3",
+  "uuid": "b5a9573c-ba8b-4650-9db8-95c87d1b8835",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KZ9n1MYmXpBfpPTZeqUGNR`</summary>
+
+```json
+{
+  "server": "westd-35807",
+  "command": "find /root -name \"*phase2_lambda0_s2*\" -type d 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5b1b0d13-506d-400f-8400-8720010d07b3",
+  "uuid": "64b33cd0-8a54-44f7-9586-49f6bd54412f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B3nESpJ1XuLV6QF1KD1Ymw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 568,
+      "cache_read_input_tokens": 24833,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 568
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-26T11:15:05.652Z_
+
+<details><summary>↩ Tool result · `toolu_01KZ9n1MYmXpBfpPTZeqUGNR`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5b1b0d13-506d-400f-8400-8720010d07b3",
+  "uuid": "f31c9397-1194-4804-9150-51442f455ff9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01Am6ghG318M2WLVsXVbkhTg`</summary>
+
+```json
+{
+  "filters": {
+    "exp_id": "train_pi05_phase2_lambda0_s2"
+  },
+  "project": "diff_collision_sdf",
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5b1b0d13-506d-400f-8400-8720010d07b3",
+  "uuid": "cf765d5c-8a8a-4cea-a4bb-71729c35d69d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B3nESpJ1XuLV6QF1KD1Ymw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 568,
+      "cache_read_input_tokens": 24833,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 568
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-26T11:15:06.510Z_
+
+<details><summary>↩ Tool result · `toolu_01Am6ghG318M2WLVsXVbkhTg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2179}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5b1b0d13-506d-400f-8400-8720010d07b3",
+  "uuid": "7174684d-ee8f-4c1d-9d69-2f10a98c84d8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2179}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2179}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The `2>/dev/null` contains `>` which is blocked. Let me try without the redirect. Also the registry has no entry for this experiment. Let me search without redirects.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5b1b0d13-506d-400f-8400-8720010d07b3",
+  "uuid": "4d27e88b-300d-43d7-b949-f268d8617187",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L7jyVKhZVPjLG3EebgNLAt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 735,
+      "cache_read_input_tokens": 25401,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 735
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QykP4no6zDznicwNULB2Qx`</summary>
+
+```json
+{
+  "server": "westd-35807",
+  "command": "find /root -name \"*phase2_lambda0_s2*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5b1b0d13-506d-400f-8400-8720010d07b3",
+  "uuid": "6136b794-ec97-44bd-a7a6-6f95039a12ba",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L7jyVKhZVPjLG3EebgNLAt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 735,
+      "cache_read_input_tokens": 25401,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 735
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_017D7b9TVNHxcYR2TnrnEwmB`</summary>
+
+```json
+{
+  "project": "diff_collision_sdf",
+  "fields": [
+    "*"
+  ],
+  "limit": 20
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5b1b0d13-506d-400f-8400-8720010d07b3",
+  "uuid": "c1d431f3-140b-490f-a3b6-3c102d643a95",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L7jyVKhZVPjLG3EebgNLAt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 735,
+      "cache_read_input_tokens": 25401,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 735
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-26T11:15:10.733Z_
+
+<details><summary>↩ Tool result · `toolu_01QykP4no6zDznicwNULB2Qx`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/colliforce-vla/logs/train_phase2_lambda0_s2_gpu3.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.61}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5b1b0d13-506d-400f-8400-8720010d07b3",
+  "uuid": "8d8def6d-6887-444f-8c1b-9471cf2668c5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/colliforce-vla/logs/train_phase2_lambda0_s2_gpu3.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.61}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/colliforce-vla/logs/train_phase2_lambda0_s2_gpu3.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.61}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-26T11:15:10.955Z_
+
+<details><summary>↩ Tool result · `toolu_017D7b9TVNHxcYR2TnrnEwmB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"reeval_lora_s1_30k\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-26T09:24:09.421Z\", \"updated_at\": \"2026-05-26T09:58:19.580Z\", \"hypothesis\": \"Re-eval LoRA-only s1 (30K) with fixed eval_safelibero.py (180° rotation). Second seed for LoRA-only attribution baseline. Expected TSR ~50% (consistent with s0 re-eval=51.5%).\", \"spec\": {\"command\": \"python eval_safelibero.py --model_type pi0_fast --policy_dir /root/diff_collision_sdf/checkpoints/pi05_lora_baseline_s1/step_30000 --suite object_pudding --level 2 --n_episodes 200 --seed 1\", \"server\": \"westd-45947\", \"gpu\": \"cuda:1\", \"checkpoint_source\": \"train_pi05_lora_baseline_s1\", \"eval_data\": \"SafeLIBERO object_pudding Level II (200 episodes)\", \"model_name\": \"Pi0.5 LoRA-only s1 30K\", \"data_path\": \"SafeLIBERO object_pudding Level II\", \"data_count\": 200, \"seed\": 1, \"checkpoint_path\": \"/root/diff_collision_sdf/checkpoints/pi05_lora_baseline_s1/step_30000\", \"log_path\": \"/root/autodl-tmp/eval_results/reeval_lora_s1_30k.json\"}, \"conclusion\": \"success\", \"metrics\": {\"tsr\": 51.5, \"car\": 52.5, \"ee_disp\": 0.3882, \"frozen_rate_ee\": 0, \"fake_safe_rate_ee\": 0, \"per_task\": {\"orange_juice\": {\"tsr\": 34, \"car\": 54}, \"chocolate_pudding\": {\"tsr\": 62, \"car\": 68}, \"milk\": {\"tsr\": 50, \"car\": 72}, \"bbq_sauce\": {\"tsr\": 60, \"car\": 16}}}, \"completed_at\": \"2026-05-26T09:58:19.580Z\"}, \"reeval_sdf_s0_l005_30k\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-26T09:24:10.546Z\", \"updated_at\": \"2026-05-26T09:58:07.687Z\", \"hypothesis\": \"Re-eval SDF λ=0.005 s0 (30K) with fixed eval_safelibero.py (180° rotation). Corrected SDF attribution data.\"}, \"reeval_sdf_s0_l01_30k\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-26T09:24:07.404Z\", \"updated_at\": \"2026-05-26T09:53:17.372Z\", \"hypothesis\": \"Re-eval SDF λ=0.01 s0 (30K) with fixed eval_safelibero.py (180° rotation). Verify whether TSR collapse is real or eval bug artifact, and establish corrected SDF attribution data.\", \"spec\": {\"command\": \"python eval_safelibero.py --model_type pi0_fast --policy_dir /root/diff_collision_sdf/checkpoints/pi05_a1_sdf_l01_s0/step_30000 --suite object_pudding --level 2 --n_episodes 200 --seed 0\", \"server\": \"westd-45947\", \"gpu\": \"cuda:1\", \"checkpoint_source\": \"train_pi05_a1_obj_l01 (SCP from westd-35807)\", \"eval_data\": \"SafeLIBERO object_pudding Level II (200 episodes)\", \"model_name\": \"Pi0.5+A1 SDF lambda=0.01 s0 30K\", \"data_path\": \"SafeLIBERO object_pudding Level II\", \"data_count\": 200, \"seed\": 0, \"checkpoint_path\": \"/root/diff_collision_sdf/checkpoints/pi05_a1_sdf_l01_s0/step_30000\", \"log_path\": \"/root/autodl-tmp/eval_results/reeval_sdf_s0_l01_30k.json\"}, \"conclusion\": \"success\", \"metrics\": {\"tsr\": 52.5, \"car\": 57, \"ee_disp\": 0.3946, \"frozen_rate_ee\": 0, \"frozen_rate_obs\": 55.5, \"fake_safe_rate_ee\": 0, \"obstacle_disp\": 0.0577, \"ee_disp_range\": [0.312, 0.865], \"per_task\": {\"orange_juice\": {\"tsr\": 28, \"car\": 48}, \"chocolate_pudding\": {\"tsr\": 78, \"car\": 74}, \"milk\": {\"tsr\": 44, \"car\": 72}, \"bbq_sauce\": {\"tsr\": 60, \"car\": 34}}, \"note\": \"frozen_rate_ee = EE disp < 0.1mm (paper definition); frozen_rate_obs = obstacle disp < 0.1mm (analyzer script definition, NOT paper definition)\"}, \"completed_at\": \"2026-05-26T09:46:09.763Z\"}, \"reeval_sdf_s1_l01_30k\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-26T09:24:14.351Z\", \"updated_at\": \"2026-05-26T09:29:14.265Z\", \"hypothesis\": \"Re-eval SDF λ=0.01 s1 (30K) with fixed eval_safelibero.py (180° rotation). Second seed for λ=0.01.\"}, \"reeval_sdf_s2_l01_30k\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T09:24:15.297Z\", \"updated_at\": \"2026-05-26T09:24:15.297Z\", \"hypothesis\": \"Re-eval SDF λ=0.01 s2 (30K) with fixed eval_safelibero.py (180° rotation). Third seed for λ=0.01.\"}, \"reeval_sdf_s2_l005_30k\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T09:24:13.075Z\", \"updated_at\": \"2026-05-26T09:24:13.075Z\", \"hypothesis\": \"Re-eval SDF λ=0.005 s2 (30K) with fixed eval_safelibero.py (180° rotation). Third seed for λ=0.005.\"}, \"reeval_sdf_s1_l005_30k\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T09:24:12.095Z\", \"updated_at\": \"2026-05-26T09:24:12.095Z\", \"hypothesis\": \"Re-eval SDF λ=0.005 s1 (30K) with fixed eval_safelibero.py (180° rotation). Corrected SDF attribution data.\"}, \"eval_lora_baseline_30k_s0_reeval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-26T07:39:02.584Z\", \"updated_at\": \"2026-05-26T08:17:58.031Z\", \"hypothesis\": \"Re-eval LoRA-only s0 (30K) with fixed eval_safelibero.py (180° image rotation added). If TSR remains ~6-8%, catastrophic forgetting is real. If TSR >30%, the 68pp collapse was partially an eval bug artifact. Critical for Claim 3 validity.\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/eval_results/lora_baseline_s0_reeval_safelibero_object_levelII_seed7.json\", \"log_path\": \"/tmp/lora_reeval.log\"}, \"conclusion\": \"success\", \"notes\": \"CRITICAL FINDING: TSR=51.5% (was 6.3% with broken eval). The 68pp \\\"catastrophic forgetting\\\" was eval bug artifact (missing 180° image rotation). Real TSR drop = 74.7% → 51.5% = 23pp. CAR=56.5% (similar to before=55.3%). Frozen=56% (113/200). Per-task: OJ=32%, Choco=74%, Milk=42%, BBQ=58%. Output: /root/autodl-tmp/eval_results/lora_baseline_s0_reeval_safelibero_object_levelII_seed7.json\", \"completed_at\": \"2026-05-26T08:17:58.031Z\"}, \"eval_pi05_baseline_reeval_disp\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-26T02:35:19.204Z\", \"updated_at\": \"2026-05-26T07:59:55.686Z\", \"hypothesis\": \"Pi0.5 base model (no LoRA, no SDF) re-eval with fixed eval script on object_pudding 200ep: obtain EE displacement data for dfCAR baseline comparison. Expect CAR ≈ 27% (known baseline) with EE displacement distribution needed for dfCAR threshold analysis.\", \"spec\": {\"command\": \"bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/colliforce-vla && export WANDB_MODE=disabled && python scripts/eval_safelibero.py --default_policy --config_name pi05_libero --suite safelibero_object --pi05 --seed 0 --gpu 1 --n_episodes 200'\", \"server\": \"westd-45947\", \"gpu\": [\"cuda:1\"], \"pid\": \"132718\", \"log_path\": \"~/runs/diff_collision_sdf/eval_pi05_baseline_reeval_disp.log\", \"submitted_at\": \"2026-05-26T04:44:30.350Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"pi05_libero_base\", \"seed\": 0, \"data_path\": \"safelibero_object\", \"data_count\": 200, \"wall_clock_seconds\": 8410.8, \"gpu_hours\": 2.34}, \"notes\": \"SUCCESS. Pi0.5 baseline re-eval (fixed eval_safelibero.py with 180° rotation + 256px camera): TSR=71.5%, CAR=28.5%, Fake Safe=0% (0/57), all safe episodes EE disp > 288mm. Mean EE disp=0.367m. Confirms Pi0.5 safe episodes are genuine avoidance. Output: /root/autodl-tmp/eval_results/pi05_base_reeval_safelibero_object_levelII_seed7.json\", \"reproduce\": {\"finished_at\": \"2026-05-26T07:04:39.331Z\"}, \"failure_reason\": \"EXIT_CODE=143 (SIGTERM — graceful kill)\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-26T07:04:41.111Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-26T07:04:43.998678+00:00\"}]}}, \"train_pi05_lora_baseline_s2\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T02:35:16.818Z\", \"updated_at\": \"2026-05-26T02:38:22.037Z\", \"hypothesis\": \"LoRA baseline (no SDF auxiliary loss) seed 2 on object_pudding for 30K steps: third seed for LoRA-only attribution control, enabling 3v3 seed statistical comparison with SDF-trained models. Expected CAR ≈ 55% (consistent with s0=54.5%, s1=56%).\", \"parent\": \"train_pi05_lora_baseline_s0\", \"plan_id\": \"plan_013\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/colliforce-vla && export WANDB_MODE=disabled && python scripts/train_pi05_lora_baseline.py --scene object_pudding --seed 2 --gpu 0\\\"\", \"server\": \"westd-45947\", \"gpu\": [\"cuda:0\"], \"pid\": \"78549\", \"log_path\": \"~/runs/diff_collision_sdf/train_pi05_lora_baseline_s2.log\", \"submitted_at\": \"2026-05-26T02:36:45.923Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"safelibero_object_pudding\", \"data_count\": 200, \"model_name\": \"pi05_lora_baseline_seed2\", \"seed\": 2, \"checkpoint_source\": \"pi05_base_weights\", \"eval_data\": \"n/a (training experiment)\"}}, \"eval_lora_baseline_30k_s0_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-26T02:07:15.290Z\", \"updated_at\": \"2026-05-26T02:29:25.823Z\", \"hypothesis\": \"LoRA baseline (no SDF) 30K eval on object_pudding seed 0 (v2, base env fix): expects CAR ≈ Pi0.5 baseline (~27%), confirming ColliForce CAR improvement is from SDF not LoRA. Critical for Claim 4 SDF attribution + dfCAR ee_displacement data.\", \"parent\": \"train_pi05_lora_baseline_s0\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python scripts/eval_safelibero.py --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000 --config_name pi05_libero --model_type lora_baseline --suite safelibero_object --pi05 --gpu 0 --output_path /root/autodl-tmp/eval_results/eval_lora_baseline_s0.json\", \"server\": \"westd-45947\", \"gpu\": [\"cuda:0\"], \"pid\": \"30237\", \"log_path\": \"/root/colliforce-vla/logs/eval_lora_baseline_s0.log\", \"data_path\": \"safelibero_object\", \"data_count\": 200, \"model_name\": \"pi05_lora_baseline_seed0_30k\", \"seed\": 0, \"checkpoint_source\": \"train_pi05_lora_baseline_s0\", \"eval_data\": \"safelibero_object_levelII\"}, \"metrics\": {\"avg_TSR\": 8.5, \"avg_CAR\": 54.5, \"n_episodes\": 200, \"frozen_pct\": 0, \"avg_ee_disp\": 0.4887, \"dfCAR_100mm\": 54.5, \"per_task\": [{\"task\": \"pick_up_the_orange_juice_and_place_it_in_the_basket\", \"safety\": \"II\", \"n\": 50, \"TSR\": 0, \"CAR\": 62, \"avg_ee_disp\": 0.497, \"median_ee_disp\": 0.4208, \"frozen_pct\": 0}, {\"task\": \"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\", \"safety\": \"II\", \"n\": 50, \"TSR\": 34, \"CAR\": 44, \"avg_ee_disp\": 0.5041, \"median_ee_disp\": 0.4251, \"frozen_pct\": 0}, {\"task\": \"pick_up_the_milk_and_place_it_in_the_basket\", \"safety\": \"II\", \"n\": 50, \"TSR\": 0, \"CAR\": 94, \"avg_ee_disp\": 0.5765, \"median_ee_disp\": 0.5511, \"frozen_pct\": 0}, {\"task\": \"pick_up_the_bbq_sauce_and_place_it_in_the_basket\", \"safety\": \"II\", \"n\": 50, \"TSR\": 0, \"CAR\": 18, \"avg_ee_disp\": 0.3772, \"median_ee_disp\": 0.3712, \"frozen_pct\": 0}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000/\", \"log_path\": \"/root/autodl-tmp/eval_results/eval_lora_baseline_s0.json\", \"completed_at\": \"2026-05-26T02:29:25.823Z\"}, \"eval_lora_baseline_30k_s1_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-26T02:07:16.733Z\", \"updated_at\": \"2026-05-26T02:29:13.562Z\", \"hypothesis\": \"LoRA baseline (no SDF) 30K eval on object_pudding seed 1 (v2, base env fix): second seed for LoRA-only attribution. Paired with s0 for error bars.\", \"parent\": \"train_pi05_lora_baseline_s1\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python scripts/eval_safelibero.py --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed1/30000 --config_name pi05_libero --model_type lora_baseline --suite safelibero_object --pi05 --gpu 1 --output_path /root/autodl-tmp/eval_results/eval_lora_baseline_s1.json\", \"server\": \"westd-45947\", \"gpu\": [\"cuda:1\"], \"pid\": \"30636\", \"log_path\": \"/root/colliforce-vla/logs/eval_lora_baseline_s1.log\", \"data_path\": \"safelibero_object\", \"data_count\": 200, \"model_name\": \"pi05_lora_baseline_seed1_30k\", \"seed\": 1, \"checkpoint_source\": \"train_pi05_lora_baseline_s1\", \"eval_data\": \"safelibero_object_levelII\"}, \"metrics\": {\"avg_TSR\": 4, \"avg_CAR\": 56, \"dfCAR_100mm\": 56, \"avg_ee_disp\": 0.4669, \"frozen_pct\": 0, \"n_episodes\": 200, \"per_task\": {\"pick_up_the_orange_juice\": {\"TSR\": 2, \"CAR\": 58, \"ee_disp_mean\": 0.4827, \"ee_disp_median\": 0.4011, \"frozen_pct\": 0}, \"pick_up_the_chocolate_pudding\": {\"TSR\": 14, \"CAR\": 50, \"ee_disp_mean\": 0.538, \"ee_disp_median\": 0.4548, \"frozen_pct\": 0}, \"pick_up_the_milk\": {\"TSR\": 0, \"CAR\": 90, \"ee_disp_mean\": 0.4817, \"ee_disp_median\": 0.512, \"frozen_pct\": 0}, \"pick_up_the_bbq_sauce\": {\"TSR\": 0, \"CAR\": 26, \"ee_disp_mean\": 0.3653, \"ee_disp_median\": 0.3335, \"frozen_pct\": 0}}}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed1/30000/\", \"log_path\": \"/root/autodl-tmp/eval_results/eval_lora_baseline_s1.json\", \"completed_at\": \"2026-05-26T02:29:13.562Z\"}, \"eval_lora_baseline_30k_s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-26T01:37:49.861Z\", \"updated_at\": \"2026-05-26T01:59:03.679Z\", \"hypothesis\": \"LoRA baseline (no SDF) 30K eval on object_pudding seed 1: second seed for LoRA-only attribution. Same expected outcome as s0. Parent: train_pi05_lora_baseline_s1.\", \"parent\": \"train_pi05_lora_baseline_s1\", \"spec\": {\"command\": \"python scripts/eval_safelibero.py --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed1/30000 --config_name pi05_libero --model_type lora_baseline --suite safelibero_object --pi05 --seed 0 --gpu 1 --output_path /root/autodl-tmp/eval_results/eval_lora_baseline_30k_s1.json\", \"server\": \"westd-45947\", \"gpu\": [\"cuda:1\"], \"data_path\": \"safelibero_object\", \"data_count\": 50, \"model_name\": \"pi05_lora_baseline_seed1_30k\", \"seed\": 0, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed1/30000\", \"eval_data\": \"safelibero_object\"}, \"notes\": \"FAILED: KeyError: 'safelibero_object' — benchmark name not found in libero's BENCHMARK_MAPPING. The eval script crashed before starting simulation. No output JSON produced. Need to register 'safelibero_object' benchmark in libero package or use correct benchmark name.\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-26T01:58:57.627Z\"}, \"eval_lora_baseline_30k_s0\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-26T01:37:48.287Z\", \"updated_at\": \"2026-05-26T01:58:41.334Z\", \"hypothesis\": \"LoRA baseline (no SDF) 30K eval on object_pudding seed 0: expects CAR ≈ Pi0.5 baseline (~27%), confirming ColliForce CAR improvement is from SDF not LoRA. Parent: train_pi05_lora_baseline_s0.\", \"parent\": \"train_pi05_lora_baseline_s0\", \"spec\": {\"command\": \"python scripts/eval_safelibero.py --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000 --config_name pi05_libero --model_type lora_baseline --suite safelibero_object --pi05 --seed 0 --gpu 0 --output_path /root/autodl-tmp/eval_results/eval_lora_baseline_30k_s0.json\", \"server\": \"westd-45947\", \"gpu\": [\"cuda:0\"], \"data_path\": \"safelibero_object\", \"data_count\": 50, \"model_name\": \"pi05_lora_baseline_seed0_30k\", \"seed\": 0, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000\", \"eval_data\": \"safelibero_object\"}, \"notes\": \"Failed: KeyError 'safelibero_object' — benchmark name not found in libero BENCHMARK_MAPPING. Model loaded successfully but crashed before any episodes ran. Need to register safelibero_object in libero benchmark mapping or use correct suite name.\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-26T01:58:34.256Z\", \"log_path\": \"/tmp/eval_lora_baseline_30k_s0.log\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000/\"}, \"train_pi05_lora_baseline_s1\": {\"status\": \"DONE\", \"retry_count\": 2, \"created_at\": \"2026-05-24T11:24:57.585Z\", \"updated_at\": \"2026-05-26T01:37:24.982Z\", \"hypothesis\": \"LoRA baseline (no SDF auxiliary loss) seed 1 on object_pudding for 30K steps: second seed for LoRA-only attribution control. Expected CAR ≈ Pi0.5 baseline (~27%).\", \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"completed_at\": \"2026-05-25T04:19:31.027Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-25T04:19:33.859615+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-25T17:48:02.382507+00:00\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-26T01:33:51.313891+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"LoRA baseline（无 SDF）。从 step 16000 resume (2026-05-25 04:42 UTC)。tmux 服务器异常终止导致训练崩溃，停在 step ~25705 (86%)。最后 checkpoint: step 24000, best_loss=0.01130 @ step 14000。需从 24000 resume，剩余 ~6000 步 (~7.7h)。Checkpoint: /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed1/24000/\"}}, \"notes\": \"Pi0.5 LoRA baseline (无SDF) seed1 完成30K steps。经历3次crash/resume（首次crash→step16K resume→tmux崩溃停25705→step24K resume2）。最终loss=0.01408, best_loss=0.01130@step14000。Resume2耗时7h43m。Checkpoints: 29999, 30000, best(@14000)。\", \"reproduce\": {\"finished_at\": \"2026-05-26T01:33:45.997Z\"}, \"spec\": {\"command\": \"bash -c \\\"export WANDB_MODE=offline && cd /root/colliforce-vla && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python scripts/train_pi05_lora_baseline.py --scene object_pudding --seed 1 --gpu 1 --resume > /tmp/train_pi05_lora_baseline_s1_resume2.log 2>&1\\\"\", \"server\": \"westd-45947\", \"gpu\": [\"cuda:1\"], \"pid\": \"3712\", \"log_path\": \"/tmp/train_pi05_lora_baseline_s1_resume2.log\", \"submitted_at\": \"2026-05-26T01:48:34Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"safelibero_object_pudding\", \"data_count\": 200, \"model_name\": \"pi05_lora_baseline_seed1\", \"seed\": 1, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed1/30000\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed1/30000\", \"metrics\": {\"final_loss\": 0.01408, \"best_loss\": 0.0113, \"best_step\": 14000, \"total_steps\": 30000, \"grad_norm\": 0.10628, \"time_per_step\": 4.62}}, \"train_pi05_lora_baseline_s0\": {\"status\": \"DONE\", \"retry_count\": 2, \"created_at\": \"2026-05-24T11:24:55.988Z\", \"updated_at\": \"2026-05-26T01:37:23.409Z\", \"hypothesis\": \"LoRA baseline (no SDF auxiliary loss) trained on object_pudding for 30K steps serves as attribution control: if CAR ≈ Pi0.5 baseline (~27%), confirms ColliForce improvement is from SDF loss, not LoRA capacity.\", \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"completed_at\": \"2026-05-25T04:19:25.447Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-25T04:19:27.214462+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-25T17:47:57.154130+00:00\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-26T01:33:41.377192+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"LoRA baseline（无 SDF）。从 step 16000 resume (2026-05-25 04:42 UTC)。tmux 服务器异常终止导致训练崩溃，停在 step ~25695 (86%)。最后 checkpoint: step 24000, best_loss=0.01025。需从 24000 resume，剩余 ~6000 步 (~7.7h)。Checkpoint: /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/24000/\"}}, \"notes\": \"Pi0.5 LoRA baseline (无SDF) seed0 完成30K steps。经历3次crash/resume（首次crash→step16K resume→tmux崩溃停25695→step24K resume2）。最终loss=0.01343, best_loss=0.01025@step24000。Resume2耗时7h43m。Checkpoints: 29999, 30000, best(@24000)。\", \"reproduce\": {\"finished_at\": \"2026-05-26T01:33:38.016Z\"}, \"spec\": {\"command\": \"bash -c \\\"export WANDB_MODE=offline && cd /root/colliforce-vla && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python scripts/train_pi05_lora_baseline.py --scene object_pudding --seed 0 --gpu 0 --resume > /tmp/train_pi05_lora_baseline_s0_resume2.log 2>&1\\\"\", \"server\": \"westd-45947\", \"gpu\": [\"cuda:0\"], \"pid\": \"3622\", \"log_path\": \"/tmp/train_pi05_lora_baseline_s0_resume2.log\", \"submitted_at\": \"2026-05-26T01:48:32Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"safelibero_object_pudding\", \"data_count\": 200, \"model_name\": \"pi05_lora_baseline_seed0\", \"seed\": 0, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000\", \"metrics\": {\"final_loss\": 0.01343, \"best_loss\": 0.01025, \"best_step\": 24000, \"total_steps\": 30000, \"grad_norm\": 0.10538, \"time_per_step\": 4.613}}, \"train_pi05_a1_obj_s1_l01_high\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-25T23:52:52.613Z\", \"updated_at\": \"2026-05-25T23:53:14.015Z\", \"hypothesis\": \"Pi0.5+A1 SDF training with high lambda=0.1 (seed1, 30K steps). Second seed for lambda=0.1 to provide error bars. Paired with seed0 (GPU 1) to test whether stronger SDF penalty produces faster collision avoidance or earlier over-avoidance onset.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 python scripts/train_a1_sdf_aux_pi05.py --scene object_pudding --seed 1 --lambda_sdf 0.1 --gpu 2 --num_train_steps 30000\", \"server\": \"westd-35807\", \"gpu\": [\"cuda:2\"], \"data_path\": \"object_pudding sdf training data\", \"data_count\": 30000, \"model_name\": \"pi05_a1_sdf_seed1_l01_high\", \"seed\": 1, \"pid\": \"274407\", \"log_path\": \"/root/colliforce-vla/logs/train_lambda01_s1_gpu2.log\"}}, \"train_pi05_a1_obj_s0_l01_high\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-25T23:50:48.245Z\", \"updated_at\": \"2026-05-25T23:51:05.520Z\", \"hypothesis\": \"Pi0.5+A1 SDF training with high lambda=0.1 (seed0, 30K steps). Tests whether stronger SDF penalty produces faster collision avoidance learning or causes earlier over-avoidance onset compared to lambda=0.005/0.01. Provides error bars with seed1 (GPU 2).\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python scripts/train_a1_sdf_aux_pi05.py --scene object_pudding --seed 0 --lambda_sdf 0.1 --gpu 1 --num_train_steps 30000\", \"server\": \"westd-35807\", \"gpu\": [\"cuda:1\"], \"data_path\": \"object_pudding sdf training data\", \"data_count\": 30000, \"model_name\": \"pi05_a1_sdf_seed0_l01_high\", \"seed\": 0, \"pid\": \"271266\", \"log_path\": \"/root/colliforce-vla/logs/train_lambda01_s0_gpu1.log\"}}, \"train_pi05_phase2_lambda0_s2\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-25T22:22:58.519Z\", \"updated_at\": \"2026-05-25T23:08:17.967Z\", \"hypothesis\": \"Phase 2 λ=0 ablation (seed2): resume from seed2 l005 best (10K step) checkpoint with SDF loss disabled (λ=0). Tests whether early SDF-encoded collision awareness persists in LoRA weights when SDF loss is removed, while task performance (TSR) recovers. 10K additional steps with LoRA unfrozen.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python scripts/train_a1_sdf_aux_pi05.py --lambda_sdf 0 --resume_from /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_l005/best --warmup_phase_steps 0 --max_steps 10000 --seed 2 --output_dir /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_phase2_lambda0\", \"server\": \"westd-35807\", \"gpu\": [\"cuda:3\"], \"data_path\": \"object_pudding sdf training data\", \"data_count\": 30000, \"model_name\": \"pi05_a1_sdf_seed2_phase2_lambda0\", \"seed\": 2, \"checkpoint_source\": \"train_pi05_a1_obj_s2_l005 (best at 10K)\", \"pid\": \"254634\"}}, \"eval_pi05_a1_30k_s0_l01_disp\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-25T20:55:55.672Z\", \"updated_at\": \"2026-05-25T23:08:00.700Z\", \"hypothesis\": \"Pi0.5+A1 30K displacement eval (seed0, λ=0.01): 用修复后的eval脚本重跑seed0 l01 30K checkpoint，获取含max_ee_displacement的完整eval结果。与10K best对比验证30K是否存在action collapse。\", \"parent\": \"train_pi05_a1_obj_s0_l01\", \"spec\": {\"server\": \"westd-35807\", \"gpu\": [\"cuda:2\"], \"account\": \"root\", \"pid\": \"199726\", \"command\": \"CUDA_VISIBLE_DEVICES=2 python scripts/eval_safelibero.py --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0_l01/30000 --config_name pi05_libero --model_type lora_baseline --suite safelibero_object --pi05 --gpu 2 --output_path /root/autodl-tmp/eval_results/eval_s0_l01_30k_disp.json\", \"log_path\": \"~/runs/diff_collision_sdf/eval_pi05_a1_30k_s0_l01_disp.log\", \"data_path\": \"safelibero_object\", \"data_count\": 200, \"model_name\": \"pi05_a1_sdf_seed0_l01_30k\", \"seed\": 0, \"checkpoint_source\": \"train_pi05_a1_obj_s0_l01\", \"eval_data\": \"safelibero_object_levelII\"}, \"conclusion\": \"success\", \"metrics\": {\"avg_TSR\": 6.5, \"avg_CAR\": 52.5, \"n_episodes\": 200, \"avg_max_ee_displacement\": 0.4725, \"task0_TSR\": 0, \"task0_CAR\": 76, \"task0_ee_disp\": 0.4781, \"task0_safe_ee_disp\": 0.4627, \"task1_TSR\": 26, \"task1_CAR\": 32, \"task1_ee_disp\": 0.5387, \"task1_safe_ee_disp\": 0.4446, \"task2_TSR\": 0, \"task2_CAR\": 84, \"task2_ee_disp\": 0.5169, \"task2_safe_ee_disp\": 0.5273, \"task3_TSR\": 0, \"task3_CAR\": 18, \"task3_ee_disp\": 0.3561, \"task3_safe_ee_disp\": 0.3764, \"fake_safe_pct\": 0, \"real_safety\": true, \"frozen\": false}, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0_l01/30000/\", \"log_path\": \"/root/autodl-tmp/eval_results/eval_s0_l01_30k_disp.json\", \"completed_at\": \"2026-05-25T23:08:00.700Z\"}}, \"count\": 20, \"total\": 88, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.211}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5b1b0d13-506d-400f-8400-8720010d07b3",
+  "uuid": "da5f72f7-3f7e-4f46-b44d-91d0930e2067",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"reeval_lora_s1_30k\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T09:24:09.421Z\\\", \\\"updated_at\\\": \\\"2026-05-26T09:58:19.580Z\\\", \\\"hypothesis\\\": \\\"Re-eval LoRA-only s1 (30K) with fixed eval_safelibero.py (180° rotation). Second seed for LoRA-only attribution baseline. Expected TSR ~50% (consistent with s0 re-eval=51.5%).\\\", \\\"spec\\\": {\\\"command\\\": \\\"python eval_safelibero.py --model_type pi0_fast --policy_dir /root/diff_collision_sdf/checkpoints/pi05_lora_baseline_s1/step_30000 --suite object_pudding --level 2 --n_episodes 200 --seed 1\\\", \\\"server\\\": \\\"westd-45947\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"checkpoint_source\\\": \\\"train_pi05_lora_baseline_s1\\\", \\\"eval_data\\\": \\\"SafeLIBERO object_pudding Level II (200 episodes)\\\", \\\"model_name\\\": \\\"Pi0.5 LoRA-only s1 30K\\\", \\\"data_path\\\": \\\"SafeLIBERO object_pudding Level II\\\", \\\"data_count\\\": 200, \\\"seed\\\": 1, \\\"checkpoint_path\\\": \\\"/root/diff_collision_sdf/checkpoints/pi05_lora_baseline_s1/step_30000\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/eval_results/reeval_lora_s1_30k.json\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"tsr\\\": 51.5, \\\"car\\\": 52.5, \\\"ee_disp\\\": 0.3882, \\\"frozen_rate_ee\\\": 0, \\\"fake_safe_rate_ee\\\": 0, \\\"per_task\\\": {\\\"orange_juice\\\": {\\\"tsr\\\": 34, \\\"car\\\": 54}, \\\"chocolate_pudding\\\": {\\\"tsr\\\": 62, \\\"car\\\": 68}, \\\"milk\\\": {\\\"tsr\\\": 50, \\\"car\\\": 72}, \\\"bbq_sauce\\\": {\\\"tsr\\\": 60, \\\"car\\\": 16}}}, \\\"completed_at\\\": \\\"2026-05-26T09:58:19.580Z\\\"}, \\\"reeval_sdf_s0_l005_30k\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T09:24:10.546Z\\\", \\\"updated_at\\\": \\\"2026-05-26T09:58:07.687Z\\\", \\\"hypothesis\\\": \\\"Re-eval SDF λ=0.005 s0 (30K) with fixed eval_safelibero.py (180° rotation). Corrected SDF attribution data.\\\"}, \\\"reeval_sdf_s0_l01_30k\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T09:24:07.404Z\\\", \\\"updated_at\\\": \\\"2026-05-26T09:53:17.372Z\\\", \\\"hypothesis\\\": \\\"Re-eval SDF λ=0.01 s0 (30K) with fixed eval_safelibero.py (180° rotation). Verify whether TSR collapse is real or eval bug artifact, and establish corrected SDF attribution data.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python eval_safelibero.py --model_type pi0_fast --policy_dir /root/diff_collision_sdf/checkpoints/pi05_a1_sdf_l01_s0/step_30000 --suite object_pudding --level 2 --n_episodes 200 --seed 0\\\", \\\"server\\\": \\\"westd-45947\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"checkpoint_source\\\": \\\"train_pi05_a1_obj_l01 (SCP from westd-35807)\\\", \\\"eval_data\\\": \\\"SafeLIBERO object_pudding Level II (200 episodes)\\\", \\\"model_name\\\": \\\"Pi0.5+A1 SDF lambda=0.01 s0 30K\\\", \\\"data_path\\\": \\\"SafeLIBERO object_pudding Level II\\\", \\\"data_count\\\": 200, \\\"seed\\\": 0, \\\"checkpoint_path\\\": \\\"/root/diff_collision_sdf/checkpoints/pi05_a1_sdf_l01_s0/step_30000\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/eval_results/reeval_sdf_s0_l01_30k.json\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"tsr\\\": 52.5, \\\"car\\\": 57, \\\"ee_disp\\\": 0.3946, \\\"frozen_rate_ee\\\": 0, \\\"frozen_rate_obs\\\": 55.5, \\\"fake_safe_rate_ee\\\": 0, \\\"obstacle_disp\\\": 0.0577, \\\"ee_disp_range\\\": [0.312, 0.865], \\\"per_task\\\": {\\\"orange_juice\\\": {\\\"tsr\\\": 28, \\\"car\\\": 48}, \\\"chocolate_pudding\\\": {\\\"tsr\\\": 78, \\\"car\\\": 74}, \\\"milk\\\": {\\\"tsr\\\": 44, \\\"car\\\": 72}, \\\"bbq_sauce\\\": {\\\"tsr\\\": 60, \\\"car\\\": 34}}, \\\"note\\\": \\\"frozen_rate_ee = EE disp < 0.1mm (paper definition); frozen_rate_obs = obstacle disp < 0.1mm (analyzer script definition, NOT paper definition)\\\"}, \\\"completed_at\\\": \\\"2026-05-26T09:46:09.763Z\\\"}, \\\"reeval_sdf_s1_l01_30k\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T09:24:14.351Z\\\", \\\"updated_at\\\": \\\"2026-05-26T09:29:14.265Z\\\", \\\"hypothesis\\\": \\\"Re-eval SDF λ=0.01 s1 (30K) with fixed eval_safelibero.py (180° rotation). Second seed for λ=0.01.\\\"}, \\\"reeval_sdf_s2_l01_30k\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T09:24:15.297Z\\\", \\\"updated_at\\\": \\\"2026-05-26T09:24:15.297Z\\\", \\\"hypothesis\\\": \\\"Re-eval SDF λ=0.01 s2 (30K) with fixed eval_safelibero.py (180° rotation). Third seed for λ=0.01.\\\"}, \\\"reeval_sdf_s2_l005_30k\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T09:24:13.075Z\\\", \\\"updated_at\\\": \\\"2026-05-26T09:24:13.075Z\\\", \\\"hypothesis\\\": \\\"Re-eval SDF λ=0.005 s2 (30K) with fixed eval_safelibero.py (180° rotation). Third seed for λ=0.005.\\\"}, \\\"reeval_sdf_s1_l005_30k\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T09:24:12.095Z\\\", \\\"updated_at\\\": \\\"2026-05-26T09:24:12.095Z\\\", \\\"hypothesis\\\": \\\"Re-eval SDF λ=0.005 s1 (30K) with fixed eval_safelibero.py (180° rotation). Corrected SDF attribution data.\\\"}, \\\"eval_lora_baseline_30k_s0_reeval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T07:39:02.584Z\\\", \\\"updated_at\\\": \\\"2026-05-26T08:17:58.031Z\\\", \\\"hypothesis\\\": \\\"Re-eval LoRA-only s0 (30K) with fixed eval_safelibero.py (180° image rotation added). If TSR remains ~6-8%, catastrophic forgetting is real. If TSR >30%, the 68pp collapse was partially an eval bug artifact. Critical for Claim 3 validity.\\\", \\\"spec\\\": {\\\"checkpoint_path\\\": \\\"/root/autodl-tmp/eval_results/lora_baseline_s0_reeval_safelibero_object_levelII_seed7.json\\\", \\\"log_path\\\": \\\"/tmp/lora_reeval.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"CRITICAL FINDING: TSR=51.5% (was 6.3% with broken eval). The 68pp \\\\\\\"catastrophic forgetting\\\\\\\" was eval bug artifact (missing 180° image rotation). Real TSR drop = 74.7% → 51.5% = 23pp. CAR=56.5% (similar to before=55.3%). Frozen=56% (113/200). Per-task: OJ=32%, Choco=74%, Milk=42%, BBQ=58%. Output: /root/autodl-tmp/eval_results/lora_baseline_s0_reeval_safelibero_object_levelII_seed7.json\\\", \\\"completed_at\\\": \\\"2026-05-26T08:17:58.031Z\\\"}, \\\"eval_pi05_baseline_reeval_disp\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T02:35:19.204Z\\\", \\\"updated_at\\\": \\\"2026-05-26T07:59:55.686Z\\\", \\\"hypothesis\\\": \\\"Pi0.5 base model (no LoRA, no SDF) re-eval with fixed eval script on object_pudding 200ep: obtain EE displacement data for dfCAR baseline comparison. Expect CAR ≈ 27% (known baseline) with EE displacement distribution needed for dfCAR threshold analysis.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/colliforce-vla && export WANDB_MODE=disabled && python scripts/eval_safelibero.py --default_policy --config_name pi05_libero --suite safelibero_object --pi05 --seed 0 --gpu 1 --n_episodes 200'\\\", \\\"server\\\": \\\"westd-45947\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"132718\\\", \\\"log_path\\\": \\\"~/runs/diff_collision_sdf/eval_pi05_baseline_reeval_disp.log\\\", \\\"submitted_at\\\": \\\"2026-05-26T04:44:30.350Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"model_name\\\": \\\"pi05_libero_base\\\", \\\"seed\\\": 0, \\\"data_path\\\": \\\"safelibero_object\\\", \\\"data_count\\\": 200, \\\"wall_clock_seconds\\\": 8410.8, \\\"gpu_hours\\\": 2.34}, \\\"notes\\\": \\\"SUCCESS. Pi0.5 baseline re-eval (fixed eval_safelibero.py with 180° rotation + 256px camera): TSR=71.5%, CAR=28.5%, Fake Safe=0% (0/57), all safe episodes EE disp > 288mm. Mean EE disp=0.367m. Confirms Pi0.5 safe episodes are genuine avoidance. Output: /root/autodl-tmp/eval_results/pi05_base_reeval_safelibero_object_levelII_seed7.json\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-26T07:04:39.331Z\\\"}, \\\"failure_reason\\\": \\\"EXIT_CODE=143 (SIGTERM — graceful kill)\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-26T07:04:41.111Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-26T07:04:43.998678+00:00\\\"}]}}, \\\"train_pi05_lora_baseline_s2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T02:35:16.818Z\\\", \\\"updated_at\\\": \\\"2026-05-26T02:38:22.037Z\\\", \\\"hypothesis\\\": \\\"LoRA baseline (no SDF auxiliary loss) seed 2 on object_pudding for 30K steps: third seed for LoRA-only attribution control, enabling 3v3 seed statistical comparison with SDF-trained models. Expected CAR ≈ 55% (consistent with s0=54.5%, s1=56%).\\\", \\\"parent\\\": \\\"train_pi05_lora_baseline_s0\\\", \\\"plan_id\\\": \\\"plan_013\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/colliforce-vla && export WANDB_MODE=disabled && python scripts/train_pi05_lora_baseline.py --scene object_pudding --seed 2 --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"westd-45947\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"78549\\\", \\\"log_path\\\": \\\"~/runs/diff_collision_sdf/train_pi05_lora_baseline_s2.log\\\", \\\"submitted_at\\\": \\\"2026-05-26T02:36:45.923Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"safelibero_object_pudding\\\", \\\"data_count\\\": 200, \\\"model_name\\\": \\\"pi05_lora_baseline_seed2\\\", \\\"seed\\\": 2, \\\"checkpoint_source\\\": \\\"pi05_base_weights\\\", \\\"eval_data\\\": \\\"n/a (training experiment)\\\"}}, \\\"eval_lora_baseline_30k_s0_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T02:07:15.290Z\\\", \\\"updated_at\\\": \\\"2026-05-26T02:29:25.823Z\\\", \\\"hypothesis\\\": \\\"LoRA baseline (no SDF) 30K eval on object_pudding seed 0 (v2, base env fix): expects CAR ≈ Pi0.5 baseline (~27%), confirming ColliForce CAR improvement is from SDF not LoRA. Critical for Claim 4 SDF attribution + dfCAR ee_displacement data.\\\", \\\"parent\\\": \\\"train_pi05_lora_baseline_s0\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python scripts/eval_safelibero.py --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000 --config_name pi05_libero --model_type lora_baseline --suite safelibero_object --pi05 --gpu 0 --output_path /root/autodl-tmp/eval_results/eval_lora_baseline_s0.json\\\", \\\"server\\\": \\\"westd-45947\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"30237\\\", \\\"log_path\\\": \\\"/root/colliforce-vla/logs/eval_lora_baseline_s0.log\\\", \\\"data_path\\\": \\\"safelibero_object\\\", \\\"data_count\\\": 200, \\\"model_name\\\": \\\"pi05_lora_baseline_seed0_30k\\\", \\\"seed\\\": 0, \\\"checkpoint_source\\\": \\\"train_pi05_lora_baseline_s0\\\", \\\"eval_data\\\": \\\"safelibero_object_levelII\\\"}, \\\"metrics\\\": {\\\"avg_TSR\\\": 8.5, \\\"avg_CAR\\\": 54.5, \\\"n_episodes\\\": 200, \\\"frozen_pct\\\": 0, \\\"avg_ee_disp\\\": 0.4887, \\\"dfCAR_100mm\\\": 54.5, \\\"per_task\\\": [{\\\"task\\\": \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\", \\\"safety\\\": \\\"II\\\", \\\"n\\\": 50, \\\"TSR\\\": 0, \\\"CAR\\\": 62, \\\"avg_ee_disp\\\": 0.497, \\\"median_ee_disp\\\": 0.4208, \\\"frozen_pct\\\": 0}, {\\\"task\\\": \\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\", \\\"safety\\\": \\\"II\\\", \\\"n\\\": 50, \\\"TSR\\\": 34, \\\"CAR\\\": 44, \\\"avg_ee_disp\\\": 0.5041, \\\"median_ee_disp\\\": 0.4251, \\\"frozen_pct\\\": 0}, {\\\"task\\\": \\\"pick_up_the_milk_and_place_it_in_the_basket\\\", \\\"safety\\\": \\\"II\\\", \\\"n\\\": 50, \\\"TSR\\\": 0, \\\"CAR\\\": 94, \\\"avg_ee_disp\\\": 0.5765, \\\"median_ee_disp\\\": 0.5511, \\\"frozen_pct\\\": 0}, {\\\"task\\\": \\\"pick_up_the_bbq_sauce_and_place_it_in_the_basket\\\", \\\"safety\\\": \\\"II\\\", \\\"n\\\": 50, \\\"TSR\\\": 0, \\\"CAR\\\": 18, \\\"avg_ee_disp\\\": 0.3772, \\\"median_ee_disp\\\": 0.3712, \\\"frozen_pct\\\": 0}]}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000/\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/eval_results/eval_lora_baseline_s0.json\\\", \\\"completed_at\\\": \\\"2026-05-26T02:29:25.823Z\\\"}, \\\"eval_lora_baseline_30k_s1_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T02:07:16.733Z\\\", \\\"updated_at\\\": \\\"2026-05-26T02:29:13.562Z\\\", \\\"hypothesis\\\": \\\"LoRA baseline (no SDF) 30K eval on object_pudding seed 1 (v2, base env fix): second seed for LoRA-only attribution. Paired with s0 for error bars.\\\", \\\"parent\\\": \\\"train_pi05_lora_baseline_s1\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python scripts/eval_safelibero.py --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed1/30000 --config_name pi05_libero --model_type lora_baseline --suite safelibero_object --pi05 --gpu 1 --output_path /root/autodl-tmp/eval_results/eval_lora_baseline_s1.json\\\", \\\"server\\\": \\\"westd-45947\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"30636\\\", \\\"log_path\\\": \\\"/root/colliforce-vla/logs/eval_lora_baseline_s1.log\\\", \\\"data_path\\\": \\\"safelibero_object\\\", \\\"data_count\\\": 200, \\\"model_name\\\": \\\"pi05_lora_baseline_seed1_30k\\\", \\\"seed\\\": 1, \\\"checkpoint_source\\\": \\\"train_pi05_lora_baseline_s1\\\", \\\"eval_data\\\": \\\"safelibero_object_levelII\\\"}, \\\"metrics\\\": {\\\"avg_TSR\\\": 4, \\\"avg_CAR\\\": 56, \\\"dfCAR_100mm\\\": 56, \\\"avg_ee_disp\\\": 0.4669, \\\"frozen_pct\\\": 0, \\\"n_episodes\\\": 200, \\\"per_task\\\": {\\\"pick_up_the_orange_juice\\\": {\\\"TSR\\\": 2, \\\"CAR\\\": 58, \\\"ee_disp_mean\\\": 0.4827, \\\"ee_disp_median\\\": 0.4011, \\\"frozen_pct\\\": 0}, \\\"pick_up_the_chocolate_pudding\\\": {\\\"TSR\\\": 14, \\\"CAR\\\": 50, \\\"ee_disp_mean\\\": 0.538, \\\"ee_disp_median\\\": 0.4548, \\\"frozen_pct\\\": 0}, \\\"pick_up_the_milk\\\": {\\\"TSR\\\": 0, \\\"CAR\\\": 90, \\\"ee_disp_mean\\\": 0.4817, \\\"ee_disp_median\\\": 0.512, \\\"frozen_pct\\\": 0}, \\\"pick_up_the_bbq_sauce\\\": {\\\"TSR\\\": 0, \\\"CAR\\\": 26, \\\"ee_disp_mean\\\": 0.3653, \\\"ee_disp_median\\\": 0.3335, \\\"frozen_pct\\\": 0}}}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed1/30000/\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/eval_results/eval_lora_baseline_s1.json\\\", \\\"completed_at\\\": \\\"2026-05-26T02:29:13.562Z\\\"}, \\\"eval_lora_baseline_30k_s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T01:37:49.861Z\\\", \\\"updated_at\\\": \\\"2026-05-26T01:59:03.679Z\\\", \\\"hypothesis\\\": \\\"LoRA baseline (no SDF) 30K eval on object_pudding seed 1: second seed for LoRA-only attribution. Same expected outcome as s0. Parent: train_pi05_lora_baseline_s1.\\\", \\\"parent\\\": \\\"train_pi05_lora_baseline_s1\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/eval_safelibero.py --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed1/30000 --config_name pi05_libero --model_type lora_baseline --suite safelibero_object --pi05 --seed 0 --gpu 1 --output_path /root/autodl-tmp/eval_results/eval_lora_baseline_30k_s1.json\\\", \\\"server\\\": \\\"westd-45947\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"data_path\\\": \\\"safelibero_object\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"pi05_lora_baseline_seed1_30k\\\", \\\"seed\\\": 0, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed1/30000\\\", \\\"eval_data\\\": \\\"safelibero_object\\\"}, \\\"notes\\\": \\\"FAILED: KeyError: 'safelibero_object' — benchmark name not found in libero's BENCHMARK_MAPPING. The eval script crashed before starting simulation. No output JSON produced. Need to register 'safelibero_object' benchmark in libero package or use correct benchmark name.\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-26T01:58:57.627Z\\\"}, \\\"eval_lora_baseline_30k_s0\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T01:37:48.287Z\\\", \\\"updated_at\\\": \\\"2026-05-26T01:58:41.334Z\\\", \\\"hypothesis\\\": \\\"LoRA baseline (no SDF) 30K eval on object_pudding seed 0: expects CAR ≈ Pi0.5 baseline (~27%), confirming ColliForce CAR improvement is from SDF not LoRA. Parent: train_pi05_lora_baseline_s0.\\\", \\\"parent\\\": \\\"train_pi05_lora_baseline_s0\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/eval_safelibero.py --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000 --config_name pi05_libero --model_type lora_baseline --suite safelibero_object --pi05 --seed 0 --gpu 0 --output_path /root/autodl-tmp/eval_results/eval_lora_baseline_30k_s0.json\\\", \\\"server\\\": \\\"westd-45947\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"data_path\\\": \\\"safelibero_object\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"pi05_lora_baseline_seed0_30k\\\", \\\"seed\\\": 0, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000\\\", \\\"eval_data\\\": \\\"safelibero_object\\\"}, \\\"notes\\\": \\\"Failed: KeyError 'safelibero_object' — benchmark name not found in libero BENCHMARK_MAPPING. Model loaded successfully but crashed before any episodes ran. Need to register safelibero_object in libero benchmark mapping or use correct suite name.\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-26T01:58:34.256Z\\\", \\\"log_path\\\": \\\"/tmp/eval_lora_baseline_30k_s0.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000/\\\"}, \\\"train_pi05_lora_baseline_s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 2, \\\"created_at\\\": \\\"2026-05-24T11:24:57.585Z\\\", \\\"updated_at\\\": \\\"2026-05-26T01:37:24.982Z\\\", \\\"hypothesis\\\": \\\"LoRA baseline (no SDF auxiliary loss) seed 1 on object_pudding for 30K steps: second seed for LoRA-only attribution control. Expected CAR ≈ Pi0.5 baseline (~27%).\\\", \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed\\\", \\\"completed_at\\\": \\\"2026-05-25T04:19:31.027Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-25T04:19:33.859615+00:00\\\"}, {\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-25T17:48:02.382507+00:00\\\"}, {\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-26T01:33:51.313891+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"LoRA baseline（无 SDF）。从 step 16000 resume (2026-05-25 04:42 UTC)。tmux 服务器异常终止导致训练崩溃，停在 step ~25705 (86%)。最后 checkpoint: step 24000, best_loss=0.01130 @ step 14000。需从 24000 resume，剩余 ~6000 步 (~7.7h)。Checkpoint: /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed1/24000/\\\"}}, \\\"notes\\\": \\\"Pi0.5 LoRA baseline (无SDF) seed1 完成30K steps。经历3次crash/resume（首次crash→step16K resume→tmux崩溃停25705→step24K resume2）。最终loss=0.01408, best_loss=0.01130@step14000。Resume2耗时7h43m。Checkpoints: 29999, 30000, best(@14000)。\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-26T01:33:45.997Z\\\"}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"export WANDB_MODE=offline && cd /root/colliforce-vla && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python scripts/train_pi05_lora_baseline.py --scene object_pudding --seed 1 --gpu 1 --resume > /tmp/train_pi05_lora_baseline_s1_resume2.log 2>&1\\\\\\\"\\\", \\\"server\\\": \\\"westd-45947\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"3712\\\", \\\"log_path\\\": \\\"/tmp/train_pi05_lora_baseline_s1_resume2.log\\\", \\\"submitted_at\\\": \\\"2026-05-26T01:48:34Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"safelibero_object_pudding\\\", \\\"data_count\\\": 200, \\\"model_name\\\": \\\"pi05_lora_baseline_seed1\\\", \\\"seed\\\": 1, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed1/30000\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed1/30000\\\", \\\"metrics\\\": {\\\"final_loss\\\": 0.01408, \\\"best_loss\\\": 0.0113, \\\"best_step\\\": 14000, \\\"total_steps\\\": 30000, \\\"grad_norm\\\": 0.10628, \\\"time_per_step\\\": 4.62}}, \\\"train_pi05_lora_baseline_s0\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 2, \\\"created_at\\\": \\\"2026-05-24T11:24:55.988Z\\\", \\\"updated_at\\\": \\\"2026-05-26T01:37:23.409Z\\\", \\\"hypothesis\\\": \\\"LoRA baseline (no SDF auxiliary loss) trained on object_pudding for 30K steps serves as attribution control: if CAR ≈ Pi0.5 baseline (~27%), confirms ColliForce improvement is from SDF loss, not LoRA capacity.\\\", \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed\\\", \\\"completed_at\\\": \\\"2026-05-25T04:19:25.447Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-25T04:19:27.214462+00:00\\\"}, {\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-25T17:47:57.154130+00:00\\\"}, {\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-26T01:33:41.377192+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"LoRA baseline（无 SDF）。从 step 16000 resume (2026-05-25 04:42 UTC)。tmux 服务器异常终止导致训练崩溃，停在 step ~25695 (86%)。最后 checkpoint: step 24000, best_loss=0.01025。需从 24000 resume，剩余 ~6000 步 (~7.7h)。Checkpoint: /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/24000/\\\"}}, \\\"notes\\\": \\\"Pi0.5 LoRA baseline (无SDF) seed0 完成30K steps。经历3次crash/resume（首次crash→step16K resume→tmux崩溃停25695→step24K resume2）。最终loss=0.01343, best_loss=0.01025@step24000。Resume2耗时7h43m。Checkpoints: 29999, 30000, best(@24000)。\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-26T01:33:38.016Z\\\"}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"export WANDB_MODE=offline && cd /root/colliforce-vla && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python scripts/train_pi05_lora_baseline.py --scene object_pudding --seed 0 --gpu 0 --resume > /tmp/train_pi05_lora_baseline_s0_resume2.log 2>&1\\\\\\\"\\\", \\\"server\\\": \\\"westd-45947\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"3622\\\", \\\"log_path\\\": \\\"/tmp/train_pi05_lora_baseline_s0_resume2.log\\\", \\\"submitted_at\\\": \\\"2026-05-26T01:48:32Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"safelibero_object_pudding\\\", \\\"data_count\\\": 200, \\\"model_name\\\": \\\"pi05_lora_baseline_seed0\\\", \\\"seed\\\": 0, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000\\\", \\\"metrics\\\": {\\\"final_loss\\\": 0.01343, \\\"best_loss\\\": 0.01025, \\\"best_step\\\": 24000, \\\"total_steps\\\": 30000, \\\"grad_norm\\\": 0.10538, \\\"time_per_step\\\": 4.613}}, \\\"train_pi05_a1_obj_s1_l01_high\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T23:52:52.613Z\\\", \\\"updated_at\\\": \\\"2026-05-25T23:53:14.015Z\\\", \\\"hypothesis\\\": \\\"Pi0.5+A1 SDF training with high lambda=0.1 (seed1, 30K steps). Second seed for lambda=0.1 to provide error bars. Paired with seed0 (GPU 1) to test whether stronger SDF penalty produces faster collision avoidance or earlier over-avoidance onset.\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=2 python scripts/train_a1_sdf_aux_pi05.py --scene object_pudding --seed 1 --lambda_sdf 0.1 --gpu 2 --num_train_steps 30000\\\", \\\"server\\\": \\\"westd-35807\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"data_path\\\": \\\"object_pudding sdf training data\\\", \\\"data_count\\\": 30000, \\\"model_name\\\": \\\"pi05_a1_sdf_seed1_l01_high\\\", \\\"seed\\\": 1, \\\"pid\\\": \\\"274407\\\", \\\"log_path\\\": \\\"/root/colliforce-vla/logs/train_lambda01_s1_gpu2.log\\\"}}, \\\"train_pi05_a1_obj_s0_l01_high\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T23:50:48.245Z\\\", \\\"updated_at\\\": \\\"2026-05-25T23:51:05.520Z\\\", \\\"hypothesis\\\": \\\"Pi0.5+A1 SDF training with high lambda=0.1 (seed0, 30K steps). Tests whether stronger SDF penalty produces faster collision avoidance learning or causes earlier over-avoidance onset compared to lambda=0.005/0.01. Provides error bars with seed1 (GPU 2).\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python scripts/train_a1_sdf_aux_pi05.py --scene object_pudding --seed 0 --lambda_sdf 0.1 --gpu 1 --num_train_steps 30000\\\", \\\"server\\\": \\\"westd-35807\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"data_path\\\": \\\"object_pudding sdf training data\\\", \\\"data_count\\\": 30000, \\\"model_name\\\": \\\"pi05_a1_sdf_seed0_l01_high\\\", \\\"seed\\\": 0, \\\"pid\\\": \\\"271266\\\", \\\"log_path\\\": \\\"/root/colliforce-vla/logs/train_lambda01_s0_gpu1.log\\\"}}, \\\"train_pi05_phase2_lambda0_s2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T22:22:58.519Z\\\", \\\"updated_at\\\": \\\"2026-05-25T23:08:17.967Z\\\", \\\"hypothesis\\\": \\\"Phase 2 λ=0 ablation (seed2): resume from seed2 l005 best (10K step) checkpoint with SDF loss disabled (λ=0). Tests whether early SDF-encoded collision awareness persists in LoRA weights when SDF loss is removed, while task performance (TSR) recovers. 10K additional steps with LoRA unfrozen.\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=3 python scripts/train_a1_sdf_aux_pi05.py --lambda_sdf 0 --resume_from /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_l005/best --warmup_phase_steps 0 --max_steps 10000 --seed 2 --output_dir /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_phase2_lambda0\\\", \\\"server\\\": \\\"westd-35807\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"data_path\\\": \\\"object_pudding sdf training data\\\", \\\"data_count\\\": 30000, \\\"model_name\\\": \\\"pi05_a1_sdf_seed2_phase2_lambda0\\\", \\\"seed\\\": 2, \\\"checkpoint_source\\\": \\\"train_pi05_a1_obj_s2_l005 (best at 10K)\\\", \\\"pid\\\": \\\"254634\\\"}}, \\\"eval_pi05_a1_30k_s0_l01_disp\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T20:55:55.672Z\\\", \\\"updated_at\\\": \\\"2026-05-25T23:08:00.700Z\\\", \\\"hypothesis\\\": \\\"Pi0.5+A1 30K displacement eval (seed0, λ=0.01): 用修复后的eval脚本重跑seed0 l01 30K checkpoint，获取含max_ee_displacement的完整eval结果。与10K best对比验证30K是否存在action collapse。\\\", \\\"parent\\\": \\\"train_pi05_a1_obj_s0_l01\\\", \\\"spec\\\": {\\\"server\\\": \\\"westd-35807\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"account\\\": \\\"root\\\", \\\"pid\\\": \\\"199726\\\", \\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=2 python scripts/eval_safelibero.py --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0_l01/30000 --config_name pi05_libero --model_type lora_baseline --suite safelibero_object --pi05 --gpu 2 --output_path /root/autodl-tmp/eval_results/eval_s0_l01_30k_disp.json\\\", \\\"log_path\\\": \\\"~/runs/diff_collision_sdf/eval_pi05_a1_30k_s0_l01_disp.log\\\", \\\"data_path\\\": \\\"safelibero_object\\\", \\\"data_count\\\": 200, \\\"model_name\\\": \\\"pi05_a1_sdf_seed0_l01_30k\\\", \\\"seed\\\": 0, \\\"checkpoint_source\\\": \\\"train_pi05_a1_obj_s0_l01\\\", \\\"eval_data\\\": \\\"safelibero_object_levelII\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"avg_TSR\\\": 6.5, \\\"avg_CAR\\\": 52.5, \\\"n_episodes\\\": 200, \\\"avg_max_ee_displacement\\\": 0.4725, \\\"task0_TSR\\\": 0, \\\"task0_CAR\\\": 76, \\\"task0_ee_disp\\\": 0.4781, \\\"task0_safe_ee_disp\\\": 0.4627, \\\"task1_TSR\\\": 26, \\\"task1_CAR\\\": 32, \\\"task1_ee_disp\\\": 0.5387, \\\"task1_safe_ee_disp\\\": 0.4446, \\\"task2_TSR\\\": 0, \\\"task2_CAR\\\": 84, \\\"task2_ee_disp\\\": 0.5169, \\\"task2_safe_ee_disp\\\": 0.5273, \\\"task3_TSR\\\": 0, \\\"task3_CAR\\\": 18, \\\"task3_ee_disp\\\": 0.3561, \\\"task3_safe_ee_disp\\\": 0.3764, \\\"fake_safe_pct\\\": 0, \\\"real_safety\\\": true, \\\"frozen\\\": false}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0_l01/30000/\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/eval_results/eval_s0_l01_30k_disp.json\\\", \\\"completed_at\\\": \\\"2026-05-25T23:08:00.700Z\\\"}}, \\\"count\\\": 20, \\\"total\\\": 88, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.211}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"reeval_lora_s1_30k\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-26T09:24:09.421Z\", \"updated_at\": \"2026-05-26T09:58:19.580Z\", \"hypothesis\": \"Re-eval LoRA-only s1 (30K) with fixed eval_safelibero.py (180° rotation). Second seed for LoRA-only attribution baseline. Expected TSR ~50% (consistent with s0 re-eval=51.5%).\", \"spec\": {\"command\": \"python eval_safelibero.py --model_type pi0_fast --policy_dir /root/diff_collision_sdf/checkpoints/pi05_lora_baseline_s1/step_30000 --suite object_pudding --level 2 --n_episodes 200 --seed 1\", \"server\": \"westd-45947\", \"gpu\": \"cuda:1\", \"checkpoint_source\": \"train_pi05_lora_baseline_s1\", \"eval_data\": \"SafeLIBERO object_pudding Level II (200 episodes)\", \"model_name\": \"Pi0.5 LoRA-only s1 30K\", \"data_path\": \"SafeLIBERO object_pudding Level II\", \"data_count\": 200, \"seed\": 1, \"checkpoint_path\": \"/root/diff_collision_sdf/checkpoints/pi05_lora_baseline_s1/step_30000\", \"log_path\": \"/root/autodl-tmp/eval_results/reeval_lora_s1_30k.json\"}, \"conclusion\": \"success\", \"metrics\": {\"tsr\": 51.5, \"car\": 52.5, \"ee_disp\": 0.3882, \"frozen_rate_ee\": 0, \"fake_safe_rate_ee\": 0, \"per_task\": {\"orange_juice\": {\"tsr\": 34, \"car\": 54}, \"chocolate_pudding\": {\"tsr\": 62, \"car\": 68}, \"milk\": {\"tsr\": 50, \"car\": 72}, \"bbq_sauce\": {\"tsr\": 60, \"car\": 16}}}, \"completed_at\": \"2026-05-26T09:58:19.580Z\"}, \"reeval_sdf_s0_l005_30k\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-26T09:24:10.546Z\", \"updated_at\": \"2026-05-26T09:58:07.687Z\", \"hypothesis\": \"Re-eval SDF λ=0.005 s0 (30K) with fixed eval_safelibero.py (180° rotation). Corrected SDF attribution data.\"}, \"reeval_sdf_s0_l01_30k\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-26T09:24:07.404Z\", \"updated_at\": \"2026-05-26T09:53:17.372Z\", \"hypothesis\": \"Re-eval SDF λ=0.01 s0 (30K) with fixed eval_safelibero.py (180° rotation). Verify whether TSR collapse is real or eval bug artifact, and establish corrected SDF attribution data.\", \"spec\": {\"command\": \"python eval_safelibero.py --model_type pi0_fast --policy_dir /root/diff_collision_sdf/checkpoints/pi05_a1_sdf_l01_s0/step_30000 --suite object_pudding --level 2 --n_episodes 200 --seed 0\", \"server\": \"westd-45947\", \"gpu\": \"cuda:1\", \"checkpoint_source\": \"train_pi05_a1_obj_l01 (SCP from westd-35807)\", \"eval_data\": \"SafeLIBERO object_pudding Level II (200 episodes)\", \"model_name\": \"Pi0.5+A1 SDF lambda=0.01 s0 30K\", \"data_path\": \"SafeLIBERO object_pudding Level II\", \"data_count\": 200, \"seed\": 0, \"checkpoint_path\": \"/root/diff_collision_sdf/checkpoints/pi05_a1_sdf_l01_s0/step_30000\", \"log_path\": \"/root/autodl-tmp/eval_results/reeval_sdf_s0_l01_30k.json\"}, \"conclusion\": \"success\", \"metrics\": {\"tsr\": 52.5, \"car\": 57, \"ee_disp\": 0.3946, \"frozen_rate_ee\": 0, \"frozen_rate_obs\": 55.5, \"fake_safe_rate_ee\": 0, \"obstacle_disp\": 0.0577, \"ee_disp_range\": [0.312, 0.865], \"per_task\": {\"orange_juice\": {\"tsr\": 28, \"car\": 48}, \"chocolate_pudding\": {\"tsr\": 78, \"car\": 74}, \"milk\": {\"tsr\": 44, \"car\": 72}, \"bbq_sauce\": {\"tsr\": 60, \"car\": 34}}, \"note\": \"frozen_rate_ee = EE disp < 0.1mm (paper definition); frozen_rate_obs = obstacle disp < 0.1mm (analyzer script definition, NOT paper definition)\"}, \"completed_at\": \"2026-05-26T09:46:09.763Z\"}, \"reeval_sdf_s1_l01_30k\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-26T09:24:14.351Z\", \"updated_at\": \"2026-05-26T09:29:14.265Z\", \"hypothesis\": \"Re-eval SDF λ=0.01 s1 (30K) with fixed eval_safelibero.py (180° rotation). Second seed for λ=0.01.\"}, \"reeval_sdf_s2_l01_30k\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T09:24:15.297Z\", \"updated_at\": \"2026-05-26T09:24:15.297Z\", \"hypothesis\": \"Re-eval SDF λ=0.01 s2 (30K) with fixed eval_safelibero.py (180° rotation). Third seed for λ=0.01.\"}, \"reeval_sdf_s2_l005_30k\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T09:24:13.075Z\", \"updated_at\": \"2026-05-26T09:24:13.075Z\", \"hypothesis\": \"Re-eval SDF λ=0.005 s2 (30K) with fixed eval_safelibero.py (180° rotation). Third seed for λ=0.005.\"}, \"reeval_sdf_s1_l005_30k\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T09:24:12.095Z\", \"updated_at\": \"2026-05-26T09:24:12.095Z\", \"hypothesis\": \"Re-eval SDF λ=0.005 s1 (30K) with fixed eval_safelibero.py (180° rotation). Corrected SDF attribution data.\"}, \"eval_lora_baseline_30k_s0_reeval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-26T07:39:02.584Z\", \"updated_at\": \"2026-05-26T08:17:58.031Z\", \"hypothesis\": \"Re-eval LoRA-only s0 (30K) with fixed eval_safelibero.py (180° image rotation added). If TSR remains ~6-8%, catastrophic forgetting is real. If TSR >30%, the 68pp collapse was partially an eval bug artifact. Critical for Claim 3 validity.\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/eval_results/lora_baseline_s0_reeval_safelibero_object_levelII_seed7.json\", \"log_path\": \"/tmp/lora_reeval.log\"}, \"conclusion\": \"success\", \"notes\": \"CRITICAL FINDING: TSR=51.5% (was 6.3% with broken eval). The 68pp \\\"catastrophic forgetting\\\" was eval bug artifact (missing 180° image rotation). Real TSR drop = 74.7% → 51.5% = 23pp. CAR=56.5% (similar to before=55.3%). Frozen=56% (113/200). Per-task: OJ=32%, Choco=74%, Milk=42%, BBQ=58%. Output: /root/autodl-tmp/eval_results/lora_baseline_s0_reeval_safelibero_object_levelII_seed7.json\", \"completed_at\": \"2026-05-26T08:17:58.031Z\"}, \"eval_pi05_baseline_reeval_disp\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-26T02:35:19.204Z\", \"updated_at\": \"2026-05-26T07:59:55.686Z\", \"hypothesis\": \"Pi0.5 base model (no LoRA, no SDF) re-eval with fixed eval script on object_pudding 200ep: obtain EE displacement data for dfCAR baseline comparison. Expect CAR ≈ 27% (known baseline) with EE displacement distribution needed for dfCAR threshold analysis.\", \"spec\": {\"command\": \"bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/colliforce-vla && export WANDB_MODE=disabled && python scripts/eval_safelibero.py --default_policy --config_name pi05_libero --suite safelibero_object --pi05 --seed 0 --gpu 1 --n_episodes 200'\", \"server\": \"westd-45947\", \"gpu\": [\"cuda:1\"], \"pid\": \"132718\", \"log_path\": \"~/runs/diff_collision_sdf/eval_pi05_baseline_reeval_disp.log\", \"submitted_at\": \"2026-05-26T04:44:30.350Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"pi05_libero_base\", \"seed\": 0, \"data_path\": \"safelibero_object\", \"data_count\": 200, \"wall_clock_seconds\": 8410.8, \"gpu_hours\": 2.34}, \"notes\": \"SUCCESS. Pi0.5 baseline re-eval (fixed eval_safelibero.py with 180° rotation + 256px camera): TSR=71.5%, CAR=28.5%, Fake Safe=0% (0/57), all safe episodes EE disp > 288mm. Mean EE disp=0.367m. Confirms Pi0.5 safe episodes are genuine avoidance. Output: /root/autodl-tmp/eval_results/pi05_base_reeval_safelibero_object_levelII_seed7.json\", \"reproduce\": {\"finished_at\": \"2026-05-26T07:04:39.331Z\"}, \"failure_reason\": \"EXIT_CODE=143 (SIGTERM — graceful kill)\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-26T07:04:41.111Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-26T07:04:43.998678+00:00\"}]}}, \"train_pi05_lora_baseline_s2\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T02:35:16.818Z\", \"updated_at\": \"2026-05-26T02:38:22.037Z\", \"hypothesis\": \"LoRA baseline (no SDF auxiliary loss) seed 2 on object_pudding for 30K steps: third seed for LoRA-only attribution control, enabling 3v3 seed statistical comparison with SDF-trained models. Expected CAR ≈ 55% (consistent with s0=54.5%, s1=56%).\", \"parent\": \"train_pi05_lora_baseline_s0\", \"plan_id\": \"plan_013\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/colliforce-vla && export WANDB_MODE=disabled && python scripts/train_pi05_lora_baseline.py --scene object_pudding --seed 2 --gpu 0\\\"\", \"server\": \"westd-45947\", \"gpu\": [\"cuda:0\"], \"pid\": \"78549\", \"log_path\": \"~/runs/diff_collision_sdf/train_pi05_lora_baseline_s2.log\", \"submitted_at\": \"2026-05-26T02:36:45.923Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"safelibero_object_pudding\", \"data_count\": 200, \"model_name\": \"pi05_lora_baseline_seed2\", \"seed\": 2, \"checkpoint_source\": \"pi05_base_weights\", \"eval_data\": \"n/a (training experiment)\"}}, \"eval_lora_baseline_30k_s0_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-26T02:07:15.290Z\", \"updated_at\": \"2026-05-26T02:29:25.823Z\", \"hypothesis\": \"LoRA baseline (no SDF) 30K eval on object_pudding seed 0 (v2, base env fix): expects CAR ≈ Pi0.5 baseline (~27%), confirming ColliForce CAR improvement is from SDF not LoRA. Critical for Claim 4 SDF attribution + dfCAR ee_displacement data.\", \"parent\": \"train_pi05_lora_baseline_s0\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python scripts/eval_safelibero.py --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000 --config_name pi05_libero --model_type lora_baseline --suite safelibero_object --pi05 --gpu 0 --output_path /root/autodl-tmp/eval_results/eval_lora_baseline_s0.json\", \"server\": \"westd-45947\", \"gpu\": [\"cuda:0\"], \"pid\": \"30237\", \"log_path\": \"/root/colliforce-vla/logs/eval_lora_baseline_s0.log\", \"data_path\": \"safelibero_object\", \"data_count\": 200, \"model_name\": \"pi05_lora_baseline_seed0_30k\", \"seed\": 0, \"checkpoint_source\": \"train_pi05_lora_baseline_s0\", \"eval_data\": \"safelibero_object_levelII\"}, \"metrics\": {\"avg_TSR\": 8.5, \"avg_CAR\": 54.5, \"n_episodes\": 200, \"frozen_pct\": 0, \"avg_ee_disp\": 0.4887, \"dfCAR_100mm\": 54.5, \"per_task\": [{\"task\": \"pick_up_the_orange_juice_and_place_it_in_the_basket\", \"safety\": \"II\", \"n\": 50, \"TSR\": 0, \"CAR\": 62, \"avg_ee_disp\": 0.497, \"median_ee_disp\": 0.4208, \"frozen_pct\": 0}, {\"task\": \"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\", \"safety\": \"II\", \"n\": 50, \"TSR\": 34, \"CAR\": 44, \"avg_ee_disp\": 0.5041, \"median_ee_disp\": 0.4251, \"frozen_pct\": 0}, {\"task\": \"pick_up_the_milk_and_place_it_in_the_basket\", \"safety\": \"II\", \"n\": 50, \"TSR\": 0, \"CAR\": 94, \"avg_ee_disp\": 0.5765, \"median_ee_disp\": 0.5511, \"frozen_pct\": 0}, {\"task\": \"pick_up_the_bbq_sauce_and_place_it_in_the_basket\", \"safety\": \"II\", \"n\": 50, \"TSR\": 0, \"CAR\": 18, \"avg_ee_disp\": 0.3772, \"median_ee_disp\": 0.3712, \"frozen_pct\": 0}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000/\", \"log_path\": \"/root/autodl-tmp/eval_results/eval_lora_baseline_s0.json\", \"completed_at\": \"2026-05-26T02:29:25.823Z\"}, \"eval_lora_baseline_30k_s1_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-26T02:07:16.733Z\", \"updated_at\": \"2026-05-26T02:29:13.562Z\", \"hypothesis\": \"LoRA baseline (no SDF) 30K eval on object_pudding seed 1 (v2, base env fix): second seed for LoRA-only attribution. Paired with s0 for error bars.\", \"parent\": \"train_pi05_lora_baseline_s1\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python scripts/eval_safelibero.py --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed1/30000 --config_name pi05_libero --model_type lora_baseline --suite safelibero_object --pi05 --gpu 1 --output_path /root/autodl-tmp/eval_results/eval_lora_baseline_s1.json\", \"server\": \"westd-45947\", \"gpu\": [\"cuda:1\"], \"pid\": \"30636\", \"log_path\": \"/root/colliforce-vla/logs/eval_lora_baseline_s1.log\", \"data_path\": \"safelibero_object\", \"data_count\": 200, \"model_name\": \"pi05_lora_baseline_seed1_30k\", \"seed\": 1, \"checkpoint_source\": \"train_pi05_lora_baseline_s1\", \"eval_data\": \"safelibero_object_levelII\"}, \"metrics\": {\"avg_TSR\": 4, \"avg_CAR\": 56, \"dfCAR_100mm\": 56, \"avg_ee_disp\": 0.4669, \"frozen_pct\": 0, \"n_episodes\": 200, \"per_task\": {\"pick_up_the_orange_juice\": {\"TSR\": 2, \"CAR\": 58, \"ee_disp_mean\": 0.4827, \"ee_disp_median\": 0.4011, \"frozen_pct\": 0}, \"pick_up_the_chocolate_pudding\": {\"TSR\": 14, \"CAR\": 50, \"ee_disp_mean\": 0.538, \"ee_disp_median\": 0.4548, \"frozen_pct\": 0}, \"pick_up_the_milk\": {\"TSR\": 0, \"CAR\": 90, \"ee_disp_mean\": 0.4817, \"ee_disp_median\": 0.512, \"frozen_pct\": 0}, \"pick_up_the_bbq_sauce\": {\"TSR\": 0, \"CAR\": 26, \"ee_disp_mean\": 0.3653, \"ee_disp_median\": 0.3335, \"frozen_pct\": 0}}}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed1/30000/\", \"log_path\": \"/root/autodl-tmp/eval_results/eval_lora_baseline_s1.json\", \"completed_at\": \"2026-05-26T02:29:13.562Z\"}, \"eval_lora_baseline_30k_s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-26T01:37:49.861Z\", \"updated_at\": \"2026-05-26T01:59:03.679Z\", \"hypothesis\": \"LoRA baseline (no SDF) 30K eval on object_pudding seed 1: second seed for LoRA-only attribution. Same expected outcome as s0. Parent: train_pi05_lora_baseline_s1.\", \"parent\": \"train_pi05_lora_baseline_s1\", \"spec\": {\"command\": \"python scripts/eval_safelibero.py --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed1/30000 --config_name pi05_libero --model_type lora_baseline --suite safelibero_object --pi05 --seed 0 --gpu 1 --output_path /root/autodl-tmp/eval_results/eval_lora_baseline_30k_s1.json\", \"server\": \"westd-45947\", \"gpu\": [\"cuda:1\"], \"data_path\": \"safelibero_object\", \"data_count\": 50, \"model_name\": \"pi05_lora_baseline_seed1_30k\", \"seed\": 0, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed1/30000\", \"eval_data\": \"safelibero_object\"}, \"notes\": \"FAILED: KeyError: 'safelibero_object' — benchmark name not found in libero's BENCHMARK_MAPPING. The eval script crashed before starting simulation. No output JSON produced. Need to register 'safelibero_object' benchmark in libero package or use correct benchmark name.\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-26T01:58:57.627Z\"}, \"eval_lora_baseline_30k_s0\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-26T01:37:48.287Z\", \"updated_at\": \"2026-05-26T01:58:41.334Z\", \"hypothesis\": \"LoRA baseline (no SDF) 30K eval on object_pudding seed 0: expects CAR ≈ Pi0.5 baseline (~27%), confirming ColliForce CAR improvement is from SDF not LoRA. Parent: train_pi05_lora_baseline_s0.\", \"parent\": \"train_pi05_lora_baseline_s0\", \"spec\": {\"command\": \"python scripts/eval_safelibero.py --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000 --config_name pi05_libero --model_type lora_baseline --suite safelibero_object --pi05 --seed 0 --gpu 0 --output_path /root/autodl-tmp/eval_results/eval_lora_baseline_30k_s0.json\", \"server\": \"westd-45947\", \"gpu\": [\"cuda:0\"], \"data_path\": \"safelibero_object\", \"data_count\": 50, \"model_name\": \"pi05_lora_baseline_seed0_30k\", \"seed\": 0, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000\", \"eval_data\": \"safelibero_object\"}, \"notes\": \"Failed: KeyError 'safelibero_object' — benchmark name not found in libero BENCHMARK_MAPPING. Model loaded successfully but crashed before any episodes ran. Need to register safelibero_object in libero benchmark mapping or use correct suite name.\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-26T01:58:34.256Z\", \"log_path\": \"/tmp/eval_lora_baseline_30k_s0.log\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000/\"}, \"train_pi05_lora_baseline_s1\": {\"status\": \"DONE\", \"retry_count\": 2, \"created_at\": \"2026-05-24T11:24:57.585Z\", \"updated_at\": \"2026-05-26T01:37:24.982Z\", \"hypothesis\": \"LoRA baseline (no SDF auxiliary loss) seed 1 on object_pudding for 30K steps: second seed for LoRA-only attribution control. Expected CAR ≈ Pi0.5 baseline (~27%).\", \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"completed_at\": \"2026-05-25T04:19:31.027Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-25T04:19:33.859615+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-25T17:48:02.382507+00:00\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-26T01:33:51.313891+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"LoRA baseline（无 SDF）。从 step 16000 resume (2026-05-25 04:42 UTC)。tmux 服务器异常终止导致训练崩溃，停在 step ~25705 (86%)。最后 checkpoint: step 24000, best_loss=0.01130 @ step 14000。需从 24000 resume，剩余 ~6000 步 (~7.7h)。Checkpoint: /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed1/24000/\"}}, \"notes\": \"Pi0.5 LoRA baseline (无SDF) seed1 完成30K steps。经历3次crash/resume（首次crash→step16K resume→tmux崩溃停25705→step24K resume2）。最终loss=0.01408, best_loss=0.01130@step14000。Resume2耗时7h43m。Checkpoints: 29999, 30000, best(@14000)。\", \"reproduce\": {\"finished_at\": \"2026-05-26T01:33:45.997Z\"}, \"spec\": {\"command\": \"bash -c \\\"export WANDB_MODE=offline && cd /root/colliforce-vla && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python scripts/train_pi05_lora_baseline.py --scene object_pudding --seed 1 --gpu 1 --resume > /tmp/train_pi05_lora_baseline_s1_resume2.log 2>&1\\\"\", \"server\": \"westd-45947\", \"gpu\": [\"cuda:1\"], \"pid\": \"3712\", \"log_path\": \"/tmp/train_pi05_lora_baseline_s1_resume2.log\", \"submitted_at\": \"2026-05-26T01:48:34Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"safelibero_object_pudding\", \"data_count\": 200, \"model_name\": \"pi05_lora_baseline_seed1\", \"seed\": 1, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed1/30000\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed1/30000\", \"metrics\": {\"final_loss\": 0.01408, \"best_loss\": 0.0113, \"best_step\": 14000, \"total_steps\": 30000, \"grad_norm\": 0.10628, \"time_per_step\": 4.62}}, \"train_pi05_lora_baseline_s0\": {\"status\": \"DONE\", \"retry_count\": 2, \"created_at\": \"2026-05-24T11:24:55.988Z\", \"updated_at\": \"2026-05-26T01:37:23.409Z\", \"hypothesis\": \"LoRA baseline (no SDF auxiliary loss) trained on object_pudding for 30K steps serves as attribution control: if CAR ≈ Pi0.5 baseline (~27%), confirms ColliForce improvement is from SDF loss, not LoRA capacity.\", \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"completed_at\": \"2026-05-25T04:19:25.447Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-25T04:19:27.214462+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-25T17:47:57.154130+00:00\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-26T01:33:41.377192+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"LoRA baseline（无 SDF）。从 step 16000 resume (2026-05-25 04:42 UTC)。tmux 服务器异常终止导致训练崩溃，停在 step ~25695 (86%)。最后 checkpoint: step 24000, best_loss=0.01025。需从 24000 resume，剩余 ~6000 步 (~7.7h)。Checkpoint: /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/24000/\"}}, \"notes\": \"Pi0.5 LoRA baseline (无SDF) seed0 完成30K steps。经历3次crash/resume（首次crash→step16K resume→tmux崩溃停25695→step24K resume2）。最终loss=0.01343, best_loss=0.01025@step24000。Resume2耗时7h43m。Checkpoints: 29999, 30000, best(@24000)。\", \"reproduce\": {\"finished_at\": \"2026-05-26T01:33:38.016Z\"}, \"spec\": {\"command\": \"bash -c \\\"export WANDB_MODE=offline && cd /root/colliforce-vla && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python scripts/train_pi05_lora_baseline.py --scene object_pudding --seed 0 --gpu 0 --resume > /tmp/train_pi05_lora_baseline_s0_resume2.log 2>&1\\\"\", \"server\": \"westd-45947\", \"gpu\": [\"cuda:0\"], \"pid\": \"3622\", \"log_path\": \"/tmp/train_pi05_lora_baseline_s0_resume2.log\", \"submitted_at\": \"2026-05-26T01:48:32Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"safelibero_object_pudding\", \"data_count\": 200, \"model_name\": \"pi05_lora_baseline_seed0\", \"seed\": 0, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000\", \"metrics\": {\"final_loss\": 0.01343, \"best_loss\": 0.01025, \"best_step\": 24000, \"total_steps\": 30000, \"grad_norm\": 0.10538, \"time_per_step\": 4.613}}, \"train_pi05_a1_obj_s1_l01_high\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-25T23:52:52.613Z\", \"updated_at\": \"2026-05-25T23:53:14.015Z\", \"hypothesis\": \"Pi0.5+A1 SDF training with high lambda=0.1 (seed1, 30K steps). Second seed for lambda=0.1 to provide error bars. Paired with seed0 (GPU 1) to test whether stronger SDF penalty produces faster collision avoidance or earlier over-avoidance onset.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 python scripts/train_a1_sdf_aux_pi05.py --scene object_pudding --seed 1 --lambda_sdf 0.1 --gpu 2 --num_train_steps 30000\", \"server\": \"westd-35807\", \"gpu\": [\"cuda:2\"], \"data_path\": \"object_pudding sdf training data\", \"data_count\": 30000, \"model_name\": \"pi05_a1_sdf_seed1_l01_high\", \"seed\": 1, \"pid\": \"274407\", \"log_path\": \"/root/colliforce-vla/logs/train_lambda01_s1_gpu2.log\"}}, \"train_pi05_a1_obj_s0_l01_high\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-25T23:50:48.245Z\", \"updated_at\": \"2026-05-25T23:51:05.520Z\", \"hypothesis\": \"Pi0.5+A1 SDF training with high lambda=0.1 (seed0, 30K steps). Tests whether stronger SDF penalty produces faster collision avoidance learning or causes earlier over-avoidance onset compared to lambda=0.005/0.01. Provides error bars with seed1 (GPU 2).\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python scripts/train_a1_sdf_aux_pi05.py --scene object_pudding --seed 0 --lambda_sdf 0.1 --gpu 1 --num_train_steps 30000\", \"server\": \"westd-35807\", \"gpu\": [\"cuda:1\"], \"data_path\": \"object_pudding sdf training data\", \"data_count\": 30000, \"model_name\": \"pi05_a1_sdf_seed0_l01_high\", \"seed\": 0, \"pid\": \"271266\", \"log_path\": \"/root/colliforce-vla/logs/train_lambda01_s0_gpu1.log\"}}, \"train_pi05_phase2_lambda0_s2\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-25T22:22:58.519Z\", \"updated_at\": \"2026-05-25T23:08:17.967Z\", \"hypothesis\": \"Phase 2 λ=0 ablation (seed2): resume from seed2 l005 best (10K step) checkpoint with SDF loss disabled (λ=0). Tests whether early SDF-encoded collision awareness persists in LoRA weights when SDF loss is removed, while task performance (TSR) recovers. 10K additional steps with LoRA unfrozen.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python scripts/train_a1_sdf_aux_pi05.py --lambda_sdf 0 --resume_from /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_l005/best --warmup_phase_steps 0 --max_steps 10000 --seed 2 --output_dir /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_phase2_lambda0\", \"server\": \"westd-35807\", \"gpu\": [\"cuda:3\"], \"data_path\": \"object_pudding sdf training data\", \"data_count\": 30000, \"model_name\": \"pi05_a1_sdf_seed2_phase2_lambda0\", \"seed\": 2, \"checkpoint_source\": \"train_pi05_a1_obj_s2_l005 (best at 10K)\", \"pid\": \"254634\"}}, \"eval_pi05_a1_30k_s0_l01_disp\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-25T20:55:55.672Z\", \"updated_at\": \"2026-05-25T23:08:00.700Z\", \"hypothesis\": \"Pi0.5+A1 30K displacement eval (seed0, λ=0.01): 用修复后的eval脚本重跑seed0 l01 30K checkpoint，获取含max_ee_displacement的完整eval结果。与10K best对比验证30K是否存在action collapse。\", \"parent\": \"train_pi05_a1_obj_s0_l01\", \"spec\": {\"server\": \"westd-35807\", \"gpu\": [\"cuda:2\"], \"account\": \"root\", \"pid\": \"199726\", \"command\": \"CUDA_VISIBLE_DEVICES=2 python scripts/eval_safelibero.py --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0_l01/30000 --config_name pi05_libero --model_type lora_baseline --suite safelibero_object --pi05 --gpu 2 --output_path /root/autodl-tmp/eval_results/eval_s0_l01_30k_disp.json\", \"log_path\": \"~/runs/diff_collision_sdf/eval_pi05_a1_30k_s0_l01_disp.log\", \"data_path\": \"safelibero_object\", \"data_count\": 200, \"model_name\": \"pi05_a1_sdf_seed0_l01_30k\", \"seed\": 0, \"checkpoint_source\": \"train_pi05_a1_obj_s0_l01\", \"eval_data\": \"safelibero_object_levelII\"}, \"conclusion\": \"success\", \"metrics\": {\"avg_TSR\": 6.5, \"avg_CAR\": 52.5, \"n_episodes\": 200, \"avg_max_ee_displacement\": 0.4725, \"task0_TSR\": 0, \"task0_CAR\": 76, \"task0_ee_disp\": 0.4781, \"task0_safe_ee_disp\": 0.4627, \"task1_TSR\": 26, \"task1_CAR\": 32, \"task1_ee_disp\": 0.5387, \"task1_safe_ee_disp\": 0.4446, \"task2_TSR\": 0, \"task2_CAR\": 84, \"task2_ee_disp\": 0.5169, \"task2_safe_ee_disp\": 0.5273, \"task3_TSR\": 0, \"task3_CAR\": 18, \"task3_ee_disp\": 0.3561, \"task3_safe_ee_disp\": 0.3764, \"fake_safe_pct\": 0, \"real_safety\": true, \"frozen\": false}, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0_l01/30000/\", \"log_path\": \"/root/autodl-tmp/eval_results/eval_s0_l01_30k_disp.json\", \"completed_at\": \"2026-05-25T23:08:00.700Z\"}}, \"count\": 20, \"total\": 88, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.211}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Found the log at `/root/colliforce-vla/logs/train_phase2_lambda0_s2_gpu3.log`. The registry entry for `train_pi05_phase2_lambda0_s2` exists and is currently RUNNING. Let me read the log and check for checkpoints.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5b1b0d13-506d-400f-8400-8720010d07b3",
+  "uuid": "039c22e7-6eff-4d40-adbf-f307728427ad",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014a3aASiUKfP9SBYdqnxXBa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11950,
+      "cache_read_input_tokens": 26136,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11950
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+Found the log at `/root/colliforce-vla/logs/train_phase2_lambda0_s2_gpu3.log`. Reading it and checking checkpoints.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5b1b0d13-506d-400f-8400-8720010d07b3",
+  "uuid": "871b2188-3dd7-4e34-a921-ef83e28f7365",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014a3aASiUKfP9SBYdqnxXBa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11950,
+      "cache_read_input_tokens": 26136,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11950
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AbykbJu3qFaceeC4eWAxXM`</summary>
+
+```json
+{
+  "server": "westd-35807",
+  "command": "tail -100 /root/colliforce-vla/logs/train_phase2_lambda0_s2_gpu3.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5b1b0d13-506d-400f-8400-8720010d07b3",
+  "uuid": "e8fea42f-260e-443f-813d-51e8b81f01ff",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014a3aASiUKfP9SBYdqnxXBa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11950,
+      "cache_read_input_tokens": 26136,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11950
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PJsLjthGao9jZkp5NvThtu`</summary>
+
+```json
+{
+  "server": "westd-35807",
+  "command": "ls -la /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_phase2_lambda0/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5b1b0d13-506d-400f-8400-8720010d07b3",
+  "uuid": "f75bb42f-10ba-4306-8962-39aade57fd43",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014a3aASiUKfP9SBYdqnxXBa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11950,
+      "cache_read_input_tokens": 26136,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11950
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-26T11:15:19.623Z_
+
+<details><summary>↩ Tool result · `toolu_01AbykbJu3qFaceeC4eWAxXM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rTraining:  36%|███▌      | 3601/10000 [4:38:19<8:14:34,  4.64s/it, loss=0.0210, lr=2.07e-05, action=0.0209, sdf=0.1343, ee=0.0099]\\rTraining:  36%|███▌      | 3601/10000 [4:38:19<8:14:34,  4.64s/it, loss=0.0100, lr=2.07e-05, action=0.0099, sdf=0.1349, ee=0.0115]\\rTraining:  36%|███▌      | 3602/10000 [4:38:24<8:13:24,  4.63s/it, loss=0.0100, lr=2.07e-05, action=0.0099, sdf=0.1349, ee=0.0115]\\rTraining:  36%|███▌      | 3602/10000 [4:38:24<8:13:24,  4.63s/it, loss=0.0101, lr=2.07e-05, action=0.0100, sdf=0.1387, ee=0.0110]\\rTraining:  36%|███▌      | 3603/10000 [4:38:29<8:13:53,  4.63s/it, loss=0.0101, lr=2.07e-05, action=0.0100, sdf=0.1387, ee=0.0110]\\rTraining:  36%|███▌      | 3603/10000 [4:38:29<8:13:53,  4.63s/it, loss=0.0138, lr=2.07e-05, action=0.0136, sdf=0.1308, ee=0.0203]\\rTraining:  36%|███▌      | 3604/10000 [4:38:33<8:12:53,  4.62s/it, loss=0.0138, lr=2.07e-05, action=0.0136, sdf=0.1308, ee=0.0203]\\rTraining:  36%|███��      | 3604/10000 [4:38:33<8:12:53,  4.62s/it, loss=0.0191, lr=2.07e-05, action=0.0189, sdf=0.1331, ee=0.0139]\\rTraining:  36%|███▌      | 3605/10000 [4:38:38<8:13:23,  4.63s/it, loss=0.0191, lr=2.07e-05, action=0.0189, sdf=0.1331, ee=0.0139]\\rTraining:  36%|███▌      | 3605/10000 [4:38:38<8:13:23,  4.63s/it, loss=0.0156, lr=2.07e-05, action=0.0155, sdf=0.1388, ee=0.0096]\\rTraining:  36%|███▌      | 3606/10000 [4:38:43<8:12:29,  4.62s/it, loss=0.0156, lr=2.07e-05, action=0.0155, sdf=0.1388, ee=0.0096]\\rTraining:  36%|███▌      | 3606/10000 [4:38:43<8:12:29,  4.62s/it, loss=0.0164, lr=2.07e-05, action=0.0163, sdf=0.1342, ee=0.0107]\\rTraining:  36%|███▌      | 3607/10000 [4:38:47<8:13:06,  4.63s/it, loss=0.0164, lr=2.07e-05, action=0.0163, sdf=0.1342, ee=0.0107]\\rTraining:  36%|███▌      | 3607/10000 [4:38:47<8:13:06,  4.63s/it, loss=0.0149, lr=2.07e-05, action=0.0147, sdf=0.1303, ee=0.0134]\\rTraining:  36%|███▌      | 3608/10000 [4:38:52<8:12:20,  4.62s/it, loss=0.0149, lr=2.07e-05, action=0.0147, sdf=0.1303, ee=0.0134]\\rTraining:  36%|███▌      | 3608/10000 [4:38:52<8:12:20,  4.62s/it, loss=0.0121, lr=2.07e-05, action=0.0120, sdf=0.1424, ee=0.0145]\\rTraining:  36%|███▌      | 3609/10000 [4:38:56<8:13:02,  4.63s/it, loss=0.0121, lr=2.07e-05, action=0.0120, sdf=0.1424, ee=0.0145]\\rTraining:  36%|███▌      | 3609/10000 [4:38:56<8:13:02,  4.63s/it, loss=0.0182, lr=2.07e-05, action=0.0181, sdf=0.1338, ee=0.0153]\\rTraining:  36%|███▌      | 3610/10000 [4:39:01<8:12:09,  4.62s/it, loss=0.0182, lr=2.07e-05, action=0.0181, sdf=0.1338, ee=0.0153]\\rTraining:  36%|███▌      | 3610/10000 [4:39:01<8:12:09,  4.62s/it, loss=0.0179, lr=2.06e-05, action=0.0178, sdf=0.1376, ee=0.0158]\\rTraining:  36%|███▌      | 3611/10000 [4:39:06<8:13:14,  4.63s/it, loss=0.0179, lr=2.06e-05, action=0.0178, sdf=0.1376, ee=0.0158]\\rTraining:  36%|███▌      | 3611/10000 [4:39:06<8:13:14,  4.63s/it, loss=0.0095, lr=2.06e-05, action=0.0094, sdf=0.1398, ee=0.0122]\\rTraining:  36%|███▌      | 3612/10000 [4:39:10<8:12:19,  4.62s/it, loss=0.0095, lr=2.06e-05, action=0.0094, sdf=0.1398, ee=0.0122]\\rTraining:  36%|███▌      | 3612/10000 [4:39:10<8:12:19,  4.62s/it, loss=0.0162, lr=2.06e-05, action=0.0161, sdf=0.1370, ee=0.0078]\\rTraining:  36%|███▌      | 3613/10000 [4:39:15<8:13:00,  4.63s/it, loss=0.0162, lr=2.06e-05, action=0.0161, sdf=0.1370, ee=0.0078]\\rTraining:  36%|███▌      | 3613/10000 [4:39:15<8:13:00,  4.63s/it, loss=0.0228, lr=2.06e-05, action=0.0226, sdf=0.1383, ee=0.0178]\\rTraining:  36%|███▌      | 3614/10000 [4:39:20<8:12:04,  4.62s/it, loss=0.0228, lr=2.06e-05, action=0.0226, sdf=0.1383, ee=0.0178]\\rTraining:  36%|███▌      | 3614/10000 [4:39:20<8:12:04,  4.62s/it, loss=0.0208, lr=2.06e-05, action=0.0208, sdf=0.1288, ee=0.0078]\\rTraining:  36%|███▌      | 3615/10000 [4:39:24<8:12:34,  4.63s/it, loss=0.0208, lr=2.06e-05, action=0.0208, sdf=0.1288, ee=0.0078]\\rTraining:  36%|███▌      | 3615/10000 [4:39:24<8:12:34,  4.63s/it, loss=0.0219, lr=2.06e-05, action=0.0218, sdf=0.1338, ee=0.0113]\\rTraining:  36%|███▌      | 3616/10000 [4:39:29<8:11:37,  4.62s/it, l\\n\\n... [截断: 输出过长，省略 1678643 字符] ...\\n\\n:49<00:41,  4.62s/it, loss=0.0158, lr=2.50e-06, action=0.0157, sdf=0.1320, ee=0.0065]\\rTraining: 100%|█████████▉| 9991/10000 [12:51:49<00:41,  4.62s/it, loss=0.0191, lr=2.50e-06, action=0.0190, sdf=0.1358, ee=0.0058]\\rTraining: 100%|█████████▉| 9992/10000 [12:51:53<00:36,  4.62s/it, loss=0.0191, lr=2.50e-06, action=0.0190, sdf=0.1358, ee=0.0058]\\rTraining: 100%|█████████▉| 9992/10000 [12:51:53<00:36,  4.62s/it, loss=0.0121, lr=2.50e-06, action=0.0120, sdf=0.1361, ee=0.0064]\\rTraining: 100%|█████████▉| 9993/10000 [12:51:58<00:32,  4.62s/it, loss=0.0121, lr=2.50e-06, action=0.0120, sdf=0.1361, ee=0.0064]\\rTraining: 100%|█████████▉| 9993/10000 [12:51:58<00:32,  4.62s/it, loss=0.0111, lr=2.50e-06, action=0.0110, sdf=0.1325, ee=0.0051]\\rTraining: 100%|█████████▉| 9994/10000 [12:52:02<00:27,  4.62s/it, loss=0.0111, lr=2.50e-06, action=0.0110, sdf=0.1325, ee=0.0051]\\rTraining: 100%|█████████▉| 9994/10000 [12:52:02<00:27,  4.62s/it, loss=0.0087, lr=2.50e-06, action=0.0086, sdf=0.1333, ee=0.0071]\\rTraining: 100%|█████████▉| 9995/10000 [12:52:07<00:23,  4.62s/it, loss=0.0087, lr=2.50e-06, action=0.0086, sdf=0.1333, ee=0.0071]\\rTraining: 100%|█████████▉| 9995/10000 [12:52:07<00:23,  4.62s/it, loss=0.0177, lr=2.50e-06, action=0.0176, sdf=0.1327, ee=0.0053]\\rTraining: 100%|█████████▉| 9996/10000 [12:52:12<00:18,  4.62s/it, loss=0.0177, lr=2.50e-06, action=0.0176, sdf=0.1327, ee=0.0053]\\rTraining: 100%|█████████▉| 9996/10000 [12:52:12<00:18,  4.62s/it, loss=0.0096, lr=2.50e-06, action=0.0095, sdf=0.1326, ee=0.0101]\\rTraining: 100%|█████████▉| 9997/10000 [12:52:16<00:13,  4.62s/it, loss=0.0096, lr=2.50e-06, action=0.0095, sdf=0.1326, ee=0.0101]\\rTraining: 100%|█████████▉| 9997/10000 [12:52:16<00:13,  4.62s/it, loss=0.0167, lr=2.50e-06, action=0.0166, sdf=0.1325, ee=0.0108]\\rTraining: 100%|█████████▉| 9998/10000 [12:52:21<00:09,  4.62s/it, loss=0.0167, lr=2.50e-06, action=0.0166, sdf=0.1325, ee=0.0108]\\rTraining: 100%|█████████▉| 9998/10000 [12:52:21<00:09,  4.62s/it, loss=0.0204, lr=2.50e-06, action=0.0203, sdf=0.1362, ee=0.0094]2026-05-26 19:12:48,047 [INFO] Saved aux modules at step 9999\\n2026-05-26 19:12:48,047 [INFO] Saved checkpoint at step 9999 -> /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_l0/9999\\n2026-05-26 19:12:48,330 [INFO] Removed old checkpoint at step 6000\\n\\rTraining: 100%|█████████▉| 9999/10000 [12:52:36<00:07,  7.77s/it, loss=0.0204, lr=2.50e-06, action=0.0203, sdf=0.1362, ee=0.0094]\\rTraining: 100%|█████████▉| 9999/10000 [12:52:36<00:07,  7.77s/it, loss=0.0166, lr=2.50e-06, action=0.0165, sdf=0.1340, ee=0.0077]2026-05-26 19:13:02,858 [INFO] Saved aux modules at step 10000\\n2026-05-26 19:13:02,858 [INFO] Saved checkpoint at step 10000 -> /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_l0/10000\\n2026-05-26 19:13:03,138 [INFO] Removed old checkpoint at step 8000\\n\\rTraining: 100%|██████████| 10000/10000 [12:52:51<00:00,  9.88s/it, loss=0.0166, lr=2.50e-06, action=0.0165, sdf=0.1340, ee=0.0077]\\rTraining: 100%|██████████| 10000/10000 [12:52:51<00:00,  9.88s/it, loss=0.0114, lr=2.50e-06, action=0.0113, sdf=0.1369, ee=0.0079]\\rTraining: 100%|██████████| 10000/10000 [12:52:51<00:00,  4.64s/it, loss=0.0114, lr=2.50e-06, action=0.0113, sdf=0.1369, ee=0.0079]\\n[Step 0] Trainable params: 34,131,460\\n[Step 0] LoRA params: 33,472,512\\n[Step 10] Trainable params: 34,131,460\\n[Step 10] LoRA params: 33,472,512\\n[Step 20] Trainable params: 34,131,460\\n[Step 20] LoRA params: 33,472,512\\n[Step 30] Trainable params: 34,131,460\\n[Step 30] LoRA params: 33,472,512\\n[Step 40] Trainable params: 34,131,460\\n[Step 40] LoRA params: 33,472,512\\n[Step 50] Trainable params: 34,131,460\\n[Step 50] LoRA params: 33,472,512\\n[Step 60] Trainable params: 34,131,460\\n[Step 60] LoRA params: 33,472,512\\n[Step 70] Trainable params: 34,131,460\\n[Step 70] LoRA params: 33,472,512\\n[Step 80] Trainable params: 34,131,460\\n[Step 80] LoRA params: 33,472,512\\n[Step 90] Trainable params: 34,131,460\\n[Step 90] LoRA params: 33,472,512\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.96}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5b1b0d13-506d-400f-8400-8720010d07b3",
+  "uuid": "44248b76-ab8f-4cbf-8af5-2c4006025ea5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\rTraining:  36%|███▌      | 3601/10000 [4:38:19<8:14:34,  4.64s/it, loss=0.0210, lr=2.07e-05, action=0.0209, sdf=0.1343, ee=0.0099]\\\\rTraining:  36%|███▌      | 3601/10000 [4:38:19<8:14:34,  4.64s/it, loss=0.0100, lr=2.07e-05, action=0.0099, sdf=0.1349, ee=0.0115]\\\\rTraining:  36%|███▌      | 3602/10000 [4:38:24<8:13:24,  4.63s/it, loss=0.0100, lr=2.07e-05, action=0.0099, sdf=0.1349, ee=0.0115]\\\\rTraining:  36%|███▌      | 3602/10000 [4:38:24<8:13:24,  4.63s/it, loss=0.0101, lr=2.07e-05, action=0.0100, sdf=0.1387, ee=0.0110]\\\\rTraining:  36%|███▌      | 3603/10000 [4:38:29<8:13:53,  4.63s/it, loss=0.0101, lr=2.07e-05, action=0.0100, sdf=0.1387, ee=0.0110]\\\\rTraining:  36%|███▌      | 3603/10000 [4:38:29<8:13:53,  4.63s/it, loss=0.0138, lr=2.07e-05, action=0.0136, sdf=0.1308, ee=0.0203]\\\\rTraining:  36%|███▌      | 3604/10000 [4:38:33<8:12:53,  4.62s/it, loss=0.0138, lr=2.07e-05, action=0.0136, sdf=0.1308, ee=0.0203]\\\\rTraining:  36%|███��      | 3604/10000 [4:38:33<8:12:53,  4.62s/it, loss=0.0191, lr=2.07e-05, action=0.0189, sdf=0.1331, ee=0.0139]\\\\rTraining:  36%|███▌      | 3605/10000 [4:38:38<8:13:23,  4.63s/it, loss=0.0191, lr=2.07e-05, action=0.0189, sdf=0.1331, ee=0.0139]\\\\rTraining:  36%|███▌      | 3605/10000 [4:38:38<8:13:23,  4.63s/it, loss=0.0156, lr=2.07e-05, action=0.0155, sdf=0.1388, ee=0.0096]\\\\rTraining:  36%|███▌      | 3606/10000 [4:38:43<8:12:29,  4.62s/it, loss=0.0156, lr=2.07e-05, action=0.0155, sdf=0.1388, ee=0.0096]\\\\rTraining:  36%|███▌      | 3606/10000 [4:38:43<8:12:29,  4.62s/it, loss=0.0164, lr=2.07e-05, action=0.0163, sdf=0.1342, ee=0.0107]\\\\rTraining:  36%|███▌      | 3607/10000 [4:38:47<8:13:06,  4.63s/it, loss=0.0164, lr=2.07e-05, action=0.0163, sdf=0.1342, ee=0.0107]\\\\rTraining:  36%|███▌      | 3607/10000 [4:38:47<8:13:06,  4.63s/it, loss=0.0149, lr=2.07e-05, action=0.0147, sdf=0.1303, ee=0.0134]\\\\rTraining:  36%|███▌      | 3608/10000 [4:38:52<8:12:20,  4.62s/it, loss=0.0149, lr=2.07e-05, action=0.0147, sdf=0.1303, ee=0.0134]\\\\rTraining:  36%|███▌      | 3608/10000 [4:38:52<8:12:20,  4.62s/it, loss=0.0121, lr=2.07e-05, action=0.0120, sdf=0.1424, ee=0.0145]\\\\rTraining:  36%|███▌      | 3609/10000 [4:38:56<8:13:02,  4.63s/it, loss=0.0121, lr=2.07e-05, action=0.0120, sdf=0.1424, ee=0.0145]\\\\rTraining:  36%|███▌      | 3609/10000 [4:38:56<8:13:02,  4.63s/it, loss=0.0182, lr=2.07e-05, action=0.0181, sdf=0.1338, ee=0.0153]\\\\rTraining:  36%|███▌      | 3610/10000 [4:39:01<8:12:09,  4.62s/it, loss=0.0182, lr=2.07e-05, action=0.0181, sdf=0.1338, ee=0.0153]\\\\rTraining:  36%|███▌      | 3610/10000 [4:39:01<8:12:09,  4.62s/it, loss=0.0179, lr=2.06e-05, action=0.0178, sdf=0.1376, ee=0.0158]\\\\rTraining:  36%|███▌      | 3611/10000 [4:39:06<8:13:14,  4.63s/it, loss=0.0179, lr=2.06e-05, action=0.0178, sdf=0.1376, ee=0.0158]\\\\rTraining:  36%|███▌      | 3611/10000 [4:39:06<8:13:14,  4.63s/it, loss=0.0095, lr=2.06e-05, action=0.0094, sdf=0.1398, ee=0.0122]\\\\rTraining:  36%|███▌      | 3612/10000 [4:39:10<8:12:19,  4.62s/it, loss=0.0095, lr=2.06e-05, action=0.0094, sdf=0.1398, ee=0.0122]\\\\rTraining:  36%|███▌      | 3612/10000 [4:39:10<8:12:19,  4.62s/it, loss=0.0162, lr=2.06e-05, action=0.0161, sdf=0.1370, ee=0.0078]\\\\rTraining:  36%|███▌      | 3613/10000 [4:39:15<8:13:00,  4.63s/it, loss=0.0162, lr=2.06e-05, action=0.0161, sdf=0.1370, ee=0.0078]\\\\rTraining:  36%|███▌      | 3613/10000 [4:39:15<8:13:00,  4.63s/it, loss=0.0228, lr=2.06e-05, action=0.0226, sdf=0.1383, ee=0.0178]\\\\rTraining:  36%|███▌      | 3614/10000 [4:39:20<8:12:04,  4.62s/it, loss=0.0228, lr=2.06e-05, action=0.0226, sdf=0.1383, ee=0.0178]\\\\rTraining:  36%|███▌      | 3614/10000 [4:39:20<8:12:04,  4.62s/it, loss=0.0208, lr=2.06e-05, action=0.0208, sdf=0.1288, ee=0.0078]\\\\rTraining:  36%|███▌      | 3615/10000 [4:39:24<8:12:34,  4.63s/it, loss=0.0208, lr=2.06e-05, action=0.0208, sdf=0.1288, ee=0.0078]\\\\rTraining:  36%|███▌      | 3615/10000 [4:39:24<8:12:34,  4.63s/it, loss=0.0219, lr=2.06e-05, action=0.0218, sdf=0.1338, ee=0.0113]\\\\rTraining:  36%|███▌      | 3616/10000 [4:39:29<8:11:37,  4.62s/it, l\\\\n\\\\n... [截断: 输出过长，省略 1678643 字符] ...\\\\n\\\\n:49<00:41,  4.62s/it, loss=0.0158, lr=2.50e-06, action=0.0157, sdf=0.1320, ee=0.0065]\\\\rTraining: 100%|█████████▉| 9991/10000 [12:51:49<00:41,  4.62s/it, loss=0.0191, lr=2.50e-06, action=0.0190, sdf=0.1358, ee=0.0058]\\\\rTraining: 100%|█████████▉| 9992/10000 [12:51:53<00:36,  4.62s/it, loss=0.0191, lr=2.50e-06, action=0.0190, sdf=0.1358, ee=0.0058]\\\\rTraining: 100%|█████████▉| 9992/10000 [12:51:53<00:36,  4.62s/it, loss=0.0121, lr=2.50e-06, action=0.0120, sdf=0.1361, ee=0.0064]\\\\rTraining: 100%|█████████▉| 9993/10000 [12:51:58<00:32,  4.62s/it, loss=0.0121, lr=2.50e-06, action=0.0120, sdf=0.1361, ee=0.0064]\\\\rTraining: 100%|█████████▉| 9993/10000 [12:51:58<00:32,  4.62s/it, loss=0.0111, lr=2.50e-06, action=0.0110, sdf=0.1325, ee=0.0051]\\\\rTraining: 100%|█████████▉| 9994/10000 [12:52:02<00:27,  4.62s/it, loss=0.0111, lr=2.50e-06, action=0.0110, sdf=0.1325, ee=0.0051]\\\\rTraining: 100%|█████████▉| 9994/10000 [12:52:02<00:27,  4.62s/it, loss=0.0087, lr=2.50e-06, action=0.0086, sdf=0.1333, ee=0.0071]\\\\rTraining: 100%|█████████▉| 9995/10000 [12:52:07<00:23,  4.62s/it, loss=0.0087, lr=2.50e-06, action=0.0086, sdf=0.1333, ee=0.0071]\\\\rTraining: 100%|█████████▉| 9995/10000 [12:52:07<00:23,  4.62s/it, loss=0.0177, lr=2.50e-06, action=0.0176, sdf=0.1327, ee=0.0053]\\\\rTraining: 100%|█████████▉| 9996/10000 [12:52:12<00:18,  4.62s/it, loss=0.0177, lr=2.50e-06, action=0.0176, sdf=0.1327, ee=0.0053]\\\\rTraining: 100%|█████████▉| 9996/10000 [12:52:12<00:18,  4.62s/it, loss=0.0096, lr=2.50e-06, action=0.0095, sdf=0.1326, ee=0.0101]\\\\rTraining: 100%|█████████▉| 9997/10000 [12:52:16<00:13,  4.62s/it, loss=0.0096, lr=2.50e-06, action=0.0095, sdf=0.1326, ee=0.0101]\\\\rTraining: 100%|█████████▉| 9997/10000 [12:52:16<00:13,  4.62s/it, loss=0.0167, lr=2.50e-06, action=0.0166, sdf=0.1325, ee=0.0108]\\\\rTraining: 100%|█████████▉| 9998/10000 [12:52:21<00:09,  4.62s/it, loss=0.0167, lr=2.50e-06, action=0.0166, sdf=0.1325, ee=0.0108]\\\\rTraining: 100%|█████████▉| 9998/10000 [12:52:21<00:09,  4.62s/it, loss=0.0204, lr=2.50e-06, action=0.0203, sdf=0.1362, ee=0.0094]2026-05-26 19:12:48,047 [INFO] Saved aux modules at step 9999\\\\n2026-05-26 19:12:48,047 [INFO] Saved checkpoint at step 9999 -> /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_l0/9999\\\\n2026-05-26 19:12:48,330 [INFO] Removed old checkpoint at step 6000\\\\n\\\\rTraining: 100%|█████████▉| 9999/10000 [12:52:36<00:07,  7.77s/it, loss=0.0204, lr=2.50e-06, action=0.0203, sdf=0.1362, ee=0.0094]\\\\rTraining: 100%|█████████▉| 9999/10000 [12:52:36<00:07,  7.77s/it, loss=0.0166, lr=2.50e-06, action=0.0165, sdf=0.1340, ee=0.0077]2026-05-26 19:13:02,858 [INFO] Saved aux modules at step 10000\\\\n2026-05-26 19:13:02,858 [INFO] Saved checkpoint at step 10000 -> /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_l0/10000\\\\n2026-05-26 19:13:03,138 [INFO] Removed old checkpoint at step 8000\\\\n\\\\rTraining: 100%|██████████| 10000/10000 [12:52:51<00:00,  9.88s/it, loss=0.0166, lr=2.50e-06, action=0.0165, sdf=0.1340, ee=0.0077]\\\\rTraining: 100%|██████████| 10000/10000 [12:52:51<00:00,  9.88s/it, loss=0.0114, lr=2.50e-06, action=0.0113, sdf=0.1369, ee=0.0079]\\\\rTraining: 100%|██████████| 10000/10000 [12:52:51<00:00,  4.64s/it, loss=0.0114, lr=2.50e-06, action=0.0113, sdf=0.1369, ee=0.0079]\\\\n[Step 0] Trainable params: 34,131,460\\\\n[Step 0] LoRA params: 33,472,512\\\\n[Step 10] Trainable params: 34,131,460\\\\n[Step 10] LoRA params: 33,472,512\\\\n[Step 20] Trainable params: 34,131,460\\\\n[Step 20] LoRA params: 33,472,512\\\\n[Step 30] Trainable params: 34,131,460\\\\n[Step 30] LoRA params: 33,472,512\\\\n[Step 40] Trainable params: 34,131,460\\\\n[Step 40] LoRA params: 33,472,512\\\\n[Step 50] Trainable params: 34,131,460\\\\n[Step 50] LoRA params: 33,472,512\\\\n[Step 60] Trainable params: 34,131,460\\\\n[Step 60] LoRA params: 33,472,512\\\\n[Step 70] Trainable params: 34,131,460\\\\n[Step 70] LoRA params: 33,472,512\\\\n[Step 80] Trainable params: 34,131,460\\\\n[Step 80] LoRA params: 33,472,512\\\\n[Step 90] Trainable params: 34,131,460\\\\n[Step 90] LoRA params: 33,472,512\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.96}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\rTraining:  36%|███▌      | 3601/10000 [4:38:19<8:14:34,  4.64s/it, loss=0.0210, lr=2.07e-05, action=0.0209, sdf=0.1343, ee=0.0099]\\rTraining:  36%|███▌      | 3601/10000 [4:38:19<8:14:34,  4.64s/it, loss=0.0100, lr=2.07e-05, action=0.0099, sdf=0.1349, ee=0.0115]\\rTraining:  36%|███▌      | 3602/10000 [4:38:24<8:13:24,  4.63s/it, loss=0.0100, lr=2.07e-05, action=0.0099, sdf=0.1349, ee=0.0115]\\rTraining:  36%|███▌      | 3602/10000 [4:38:24<8:13:24,  4.63s/it, loss=0.0101, lr=2.07e-05, action=0.0100, sdf=0.1387, ee=0.0110]\\rTraining:  36%|███▌      | 3603/10000 [4:38:29<8:13:53,  4.63s/it, loss=0.0101, lr=2.07e-05, action=0.0100, sdf=0.1387, ee=0.0110]\\rTraining:  36%|███▌      | 3603/10000 [4:38:29<8:13:53,  4.63s/it, loss=0.0138, lr=2.07e-05, action=0.0136, sdf=0.1308, ee=0.0203]\\rTraining:  36%|███▌      | 3604/10000 [4:38:33<8:12:53,  4.62s/it, loss=0.0138, lr=2.07e-05, action=0.0136, sdf=0.1308, ee=0.0203]\\rTraining:  36%|███��      | 3604/10000 [4:38:33<8:12:53,  4.62s/it, loss=0.0191, lr=2.07e-05, action=0.0189, sdf=0.1331, ee=0.0139]\\rTraining:  36%|███▌      | 3605/10000 [4:38:38<8:13:23,  4.63s/it, loss=0.0191, lr=2.07e-05, action=0.0189, sdf=0.1331, ee=0.0139]\\rTraining:  36%|███▌      | 3605/10000 [4:38:38<8:13:23,  4.63s/it, loss=0.0156, lr=2.07e-05, action=0.0155, sdf=0.1388, ee=0.0096]\\rTraining:  36%|███▌      | 3606/10000 [4:38:43<8:12:29,  4.62s/it, loss=0.0156, lr=2.07e-05, action=0.0155, sdf=0.1388, ee=0.0096]\\rTraining:  36%|███▌      | 3606/10000 [4:38:43<8:12:29,  4.62s/it, loss=0.0164, lr=2.07e-05, action=0.0163, sdf=0.1342, ee=0.0107]\\rTraining:  36%|███▌      | 3607/10000 [4:38:47<8:13:06,  4.63s/it, loss=0.0164, lr=2.07e-05, action=0.0163, sdf=0.1342, ee=0.0107]\\rTraining:  36%|███▌      | 3607/10000 [4:38:47<8:13:06,  4.63s/it, loss=0.0149, lr=2.07e-05, action=0.0147, sdf=0.1303, ee=0.0134]\\rTraining:  36%|███▌      | 3608/10000 [4:38:52<8:12:20,  4.62s/it, loss=0.0149, lr=2.07e-05, action=0.0147, sdf=0.1303, ee=0.0134]\\rTraining:  36%|███▌      | 3608/10000 [4:38:52<8:12:20,  4.62s/it, loss=0.0121, lr=2.07e-05, action=0.0120, sdf=0.1424, ee=0.0145]\\rTraining:  36%|███▌      | 3609/10000 [4:38:56<8:13:02,  4.63s/it, loss=0.0121, lr=2.07e-05, action=0.0120, sdf=0.1424, ee=0.0145]\\rTraining:  36%|███▌      | 3609/10000 [4:38:56<8:13:02,  4.63s/it, loss=0.0182, lr=2.07e-05, action=0.0181, sdf=0.1338, ee=0.0153]\\rTraining:  36%|███▌      | 3610/10000 [4:39:01<8:12:09,  4.62s/it, loss=0.0182, lr=2.07e-05, action=0.0181, sdf=0.1338, ee=0.0153]\\rTraining:  36%|███▌      | 3610/10000 [4:39:01<8:12:09,  4.62s/it, loss=0.0179, lr=2.06e-05, action=0.0178, sdf=0.1376, ee=0.0158]\\rTraining:  36%|███▌      | 3611/10000 [4:39:06<8:13:14,  4.63s/it, loss=0.0179, lr=2.06e-05, action=0.0178, sdf=0.1376, ee=0.0158]\\rTraining:  36%|███▌      | 3611/10000 [4:39:06<8:13:14,  4.63s/it, loss=0.0095, lr=2.06e-05, action=0.0094, sdf=0.1398, ee=0.0122]\\rTraining:  36%|███▌      | 3612/10000 [4:39:10<8:12:19,  4.62s/it, loss=0.0095, lr=2.06e-05, action=0.0094, sdf=0.1398, ee=0.0122]\\rTraining:  36%|███▌      | 3612/10000 [4:39:10<8:12:19,  4.62s/it, loss=0.0162, lr=2.06e-05, action=0.0161, sdf=0.1370, ee=0.0078]\\rTraining:  36%|███▌      | 3613/10000 [4:39:15<8:13:00,  4.63s/it, loss=0.0162, lr=2.06e-05, action=0.0161, sdf=0.1370, ee=0.0078]\\rTraining:  36%|███▌      | 3613/10000 [4:39:15<8:13:00,  4.63s/it, loss=0.0228, lr=2.06e-05, action=0.0226, sdf=0.1383, ee=0.0178]\\rTraining:  36%|███▌      | 3614/10000 [4:39:20<8:12:04,  4.62s/it, loss=0.0228, lr=2.06e-05, action=0.0226, sdf=0.1383, ee=0.0178]\\rTraining:  36%|███▌      | 3614/10000 [4:39:20<8:12:04,  4.62s/it, loss=0.0208, lr=2.06e-05, action=0.0208, sdf=0.1288, ee=0.0078]\\rTraining:  36%|███▌      | 3615/10000 [4:39:24<8:12:34,  4.63s/it, loss=0.0208, lr=2.06e-05, action=0.0208, sdf=0.1288, ee=0.0078]\\rTraining:  36%|███▌      | 3615/10000 [4:39:24<8:12:34,  4.63s/it, loss=0.0219, lr=2.06e-05, action=0.0218, sdf=0.1338, ee=0.0113]\\rTraining:  36%|███▌      | 3616/10000 [4:39:29<8:11:37,  4.62s/it, l\\n\\n... [截断: 输出过长，省略 1678643 字符] ...\\n\\n:49<00:41,  4.62s/it, loss=0.0158, lr=2.50e-06, action=0.0157, sdf=0.1320, ee=0.0065]\\rTraining: 100%|█████████▉| 9991/10000 [12:51:49<00:41,  4.62s/it, loss=0.0191, lr=2.50e-06, action=0.0190, sdf=0.1358, ee=0.0058]\\rTraining: 100%|█████████▉| 9992/10000 [12:51:53<00:36,  4.62s/it, loss=0.0191, lr=2.50e-06, action=0.0190, sdf=0.1358, ee=0.0058]\\rTraining: 100%|█████████▉| 9992/10000 [12:51:53<00:36,  4.62s/it, loss=0.0121, lr=2.50e-06, action=0.0120, sdf=0.1361, ee=0.0064]\\rTraining: 100%|█████████▉| 9993/10000 [12:51:58<00:32,  4.62s/it, loss=0.0121, lr=2.50e-06, action=0.0120, sdf=0.1361, ee=0.0064]\\rTraining: 100%|█████████▉| 9993/10000 [12:51:58<00:32,  4.62s/it, loss=0.0111, lr=2.50e-06, action=0.0110, sdf=0.1325, ee=0.0051]\\rTraining: 100%|█████████▉| 9994/10000 [12:52:02<00:27,  4.62s/it, loss=0.0111, lr=2.50e-06, action=0.0110, sdf=0.1325, ee=0.0051]\\rTraining: 100%|█████████▉| 9994/10000 [12:52:02<00:27,  4.62s/it, loss=0.0087, lr=2.50e-06, action=0.0086, sdf=0.1333, ee=0.0071]\\rTraining: 100%|█████████▉| 9995/10000 [12:52:07<00:23,  4.62s/it, loss=0.0087, lr=2.50e-06, action=0.0086, sdf=0.1333, ee=0.0071]\\rTraining: 100%|█████████▉| 9995/10000 [12:52:07<00:23,  4.62s/it, loss=0.0177, lr=2.50e-06, action=0.0176, sdf=0.1327, ee=0.0053]\\rTraining: 100%|█████████▉| 9996/10000 [12:52:12<00:18,  4.62s/it, loss=0.0177, lr=2.50e-06, action=0.0176, sdf=0.1327, ee=0.0053]\\rTraining: 100%|█████████▉| 9996/10000 [12:52:12<00:18,  4.62s/it, loss=0.0096, lr=2.50e-06, action=0.0095, sdf=0.1326, ee=0.0101]\\rTraining: 100%|█████████▉| 9997/10000 [12:52:16<00:13,  4.62s/it, loss=0.0096, lr=2.50e-06, action=0.0095, sdf=0.1326, ee=0.0101]\\rTraining: 100%|█████████▉| 9997/10000 [12:52:16<00:13,  4.62s/it, loss=0.0167, lr=2.50e-06, action=0.0166, sdf=0.1325, ee=0.0108]\\rTraining: 100%|█████████▉| 9998/10000 [12:52:21<00:09,  4.62s/it, loss=0.0167, lr=2.50e-06, action=0.0166, sdf=0.1325, ee=0.0108]\\rTraining: 100%|█████████▉| 9998/10000 [12:52:21<00:09,  4.62s/it, loss=0.0204, lr=2.50e-06, action=0.0203, sdf=0.1362, ee=0.0094]2026-05-26 19:12:48,047 [INFO] Saved aux modules at step 9999\\n2026-05-26 19:12:48,047 [INFO] Saved checkpoint at step 9999 -> /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_l0/9999\\n2026-05-26 19:12:48,330 [INFO] Removed old checkpoint at step 6000\\n\\rTraining: 100%|█████████▉| 9999/10000 [12:52:36<00:07,  7.77s/it, loss=0.0204, lr=2.50e-06, action=0.0203, sdf=0.1362, ee=0.0094]\\rTraining: 100%|█████████▉| 9999/10000 [12:52:36<00:07,  7.77s/it, loss=0.0166, lr=2.50e-06, action=0.0165, sdf=0.1340, ee=0.0077]2026-05-26 19:13:02,858 [INFO] Saved aux modules at step 10000\\n2026-05-26 19:13:02,858 [INFO] Saved checkpoint at step 10000 -> /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_l0/10000\\n2026-05-26 19:13:03,138 [INFO] Removed old checkpoint at step 8000\\n\\rTraining: 100%|██████████| 10000/10000 [12:52:51<00:00,  9.88s/it, loss=0.0166, lr=2.50e-06, action=0.0165, sdf=0.1340, ee=0.0077]\\rTraining: 100%|██████████| 10000/10000 [12:52:51<00:00,  9.88s/it, loss=0.0114, lr=2.50e-06, action=0.0113, sdf=0.1369, ee=0.0079]\\rTraining: 100%|██████████| 10000/10000 [12:52:51<00:00,  4.64s/it, loss=0.0114, lr=2.50e-06, action=0.0113, sdf=0.1369, ee=0.0079]\\n[Step 0] Trainable params: 34,131,460\\n[Step 0] LoRA params: 33,472,512\\n[Step 10] Trainable params: 34,131,460\\n[Step 10] LoRA params: 33,472,512\\n[Step 20] Trainable params: 34,131,460\\n[Step 20] LoRA params: 33,472,512\\n[Step 30] Trainable params: 34,131,460\\n[Step 30] LoRA params: 33,472,512\\n[Step 40] Trainable params: 34,131,460\\n[Step 40] LoRA params: 33,472,512\\n[Step 50] Trainable params: 34,131,460\\n[Step 50] LoRA params: 33,472,512\\n[Step 60] Trainable params: 34,131,460\\n[Step 60] LoRA params: 33,472,512\\n[Step 70] Trainable params: 34,131,460\\n[Step 70] LoRA params: 33,472,512\\n[Step 80] Trainable params: 34,131,460\\n[Step 80] LoRA params: 33,472,512\\n[Step 90] Trainable params: 34,131,460\\n[Step 90] LoRA params: 33,472,512\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.96}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-26T11:15:20.079Z_
+
+<details><summary>↩ Tool result · `toolu_01PJsLjthGao9jZkp5NvThtu`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_phase2_lambda0/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5b1b0d13-506d-400f-8400-8720010d07b3",
+  "uuid": "281936d4-1908-4a84-85e3-f7ce8f0c2771",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_phase2_lambda0/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_phase2_lambda0/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The training completed successfully — 10000/10000 steps (not 30K as stated in the task — the task description says 30K but the spec says 10K max_steps). The checkpoint was saved to a different path than expected: `/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_l0/` (not `phase2_lambda0`).
+
+Key observations:
+- Training completed 10000/10000 steps successfully
+- Final loss at step 10000: action=0.0113, sdf=0.1369, ee=0.0079
+
+
+- Checkpoints were saved at steps 9999 and 10000, with older checkpoints from steps 6000 and 8000 cleaned up. Now I need to verify the actual checkpoint directory structure and look for the best checkpoint.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5b1b0d13-506d-400f-8400-8720010d07b3",
+  "uuid": "daf76f43-298d-4e27-b860-48cb0b01106c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018qmkD84Zs9Mmbnv5gMmUE5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5394,
+      "cache_read_input_tokens": 38086,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5394
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32_
+
+训练正常完成——10000/10000 步。Checkpoint 保存路径与 spec 中不同。确认 checkpoint 存在。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5b1b0d13-506d-400f-8400-8720010d07b3",
+  "uuid": "e61237e1-10cf-4f51-8d67-d5367b00e495",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018qmkD84Zs9Mmbnv5gMmUE5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5394,
+      "cache_read_input_tokens": 38086,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5394
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012EZJxpxwaWrPtrvFNBQKnX`</summary>
+
+```json
+{
+  "server": "westd-35807",
+  "command": "ls -la /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_l0/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5b1b0d13-506d-400f-8400-8720010d07b3",
+  "uuid": "1f071beb-6898-482a-9387-6d83af0ebf1f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018qmkD84Zs9Mmbnv5gMmUE5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5394,
+      "cache_read_input_tokens": 38086,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5394
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-26T11:15:29.256Z_
+
+<details><summary>↩ Tool result · `toolu_012EZJxpxwaWrPtrvFNBQKnX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 12\\ndrwxr-xr-x  5 root root  108 May 26 19:13 .\\ndrwxr-xr-x 13 root root 4096 May 26 07:51 ..\\ndrwxr-xr-x  3 root root  184 May 26 19:13 10000\\ndrwxr-xr-x  3 root root  184 May 26 19:12 9999\\ndrwxr-xr-x  3 root root  184 May 26 11:29 best\\n-rw-r--r--  1 root root   26 May 26 11:29 best_loss.txt\\n-rw-r--r--  1 root root   24 May 26 06:19 wandb_id.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5b1b0d13-506d-400f-8400-8720010d07b3",
+  "uuid": "d7dfcde0-4104-49a2-bc4a-dece211535b0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 12\\\\ndrwxr-xr-x  5 root root  108 May 26 19:13 .\\\\ndrwxr-xr-x 13 root root 4096 May 26 07:51 ..\\\\ndrwxr-xr-x  3 root root  184 May 26 19:13 10000\\\\ndrwxr-xr-x  3 root root  184 May 26 19:12 9999\\\\ndrwxr-xr-x  3 root root  184 May 26 11:29 best\\\\n-rw-r--r--  1 root root   26 May 26 11:29 best_loss.txt\\\\n-rw-r--r--  1 root root   24 May 26 06:19 wandb_id.txt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 12\\ndrwxr-xr-x  5 root root  108 May 26 19:13 .\\ndrwxr-xr-x 13 root root 4096 May 26 07:51 ..\\ndrwxr-xr-x  3 root root  184 May 26 19:13 10000\\ndrwxr-xr-x  3 root root  184 May 26 19:12 9999\\ndrwxr-xr-x  3 root root  184 May 26 11:29 best\\n-rw-r--r--  1 root root   26 May 26 11:29 best_loss.txt\\n-rw-r--r--  1 root root   24 May 26 06:19 wandb_id.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VwvmuKZxDa2kSWmvNgxheD`</summary>
+
+```json
+{
+  "server": "westd-35807",
+  "command": "cat /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_l0/best_loss.txt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5b1b0d13-506d-400f-8400-8720010d07b3",
+  "uuid": "d0fa1373-b26e-4836-abb5-d4059b71292c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018WfPUFqU3HHzFttSuMtFs8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 760,
+      "cache_read_input_tokens": 43480,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 760
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-26T11:15:32.536Z_
+
+<details><summary>↩ Tool result · `toolu_01VwvmuKZxDa2kSWmvNgxheD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0.0065134805627167225 4000\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5b1b0d13-506d-400f-8400-8720010d07b3",
+  "uuid": "d3bbb73f-eff5-4fc3-95ad-0ac0db5a6902",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0.0065134805627167225 4000\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"0.0065134805627167225 4000\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Summary:
+- Training completed 10000/10000 steps successfully
+- Checkpoint path: `/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_l0/`
+- Available checkpoints: 9999, 10000, best
+- Best loss: 0.00651 at step 4000
+- Final loss (step 10000): action=0.0113
+- Log path: `/root/colliforce-vla/logs/train_phase2_lambda0_s2_gpu3.log`
+
+
+- Training took about 12 hours and 52 minutes at 4.64 seconds per iteration
+
+Now I need to update the registry with the success status, metrics, and paths, then clean up the cron job. Let me load the CronDelete tool to handle that.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5b1b0d13-506d-400f-8400-8720010d07b3",
+  "uuid": "386567ae-759a-42f3-ab65-5d1c167c0e65",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013U4wKv7SxqKrkY9a4E5Xgz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 237,
+      "cache_read_input_tokens": 44240,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 237
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38_
+
+训练成功完成 10K 步。Best loss = 0.00651 @ step 4000，final checkpoint at 10000。更新 registry 并清理 cron。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5b1b0d13-506d-400f-8400-8720010d07b3",
+  "uuid": "3c56deb1-7571-4f23-89a6-23c7b3e14412",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013U4wKv7SxqKrkY9a4E5Xgz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 237,
+      "cache_read_input_tokens": 44240,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 237
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_019jyo8TFEzhr5DeMMGtTvSn`</summary>
+
+```json
+{
+  "query": "select:CronDelete",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5b1b0d13-506d-400f-8400-8720010d07b3",
+  "uuid": "edb65afb-0934-4777-8fee-6b215ef91969",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013U4wKv7SxqKrkY9a4E5Xgz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 237,
+      "cache_read_input_tokens": 44240,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 237
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-26T11:15:39.939Z_
+
+<details><summary>↩ Tool result · `toolu_019jyo8TFEzhr5DeMMGtTvSn`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "CronDelete"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5b1b0d13-506d-400f-8400-8720010d07b3",
+  "uuid": "e1297916-f1ea-46b9-bc45-44a184abc15b",
+  "tool_use_result": {
+    "matches": [
+      "CronDelete"
+    ],
+    "query": "select:CronDelete",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01JxePFFm7uYkEAsxiAb4Hq2`</summary>
+
+```json
+{
+  "exp_id": "train_pi05_phase2_lambda0_s2",
+  "field": "conclusion",
+  "value": "success",
+  "project": "diff_collision_sdf"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5b1b0d13-506d-400f-8400-8720010d07b3",
+  "uuid": "f56311ec-fe6f-40d3-9c76-a40daa3a14f9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MXVYQLvpCCQs83sbtAowzA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 493,
+      "cache_read_input_tokens": 44477,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 493
+      },
+      "output_tokens": 48,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-26T11:15:44.294Z_
+
+<details><summary>↩ Tool result · `toolu_01JxePFFm7uYkEAsxiAb4Hq2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"train_pi05_phase2_lambda0_s2\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-25T22:22:58.519Z\", \"updated_at\": \"2026-05-26T11:15:44.110Z\", \"hypothesis\": \"Phase 2 λ=0 ablation (seed2): resume from seed2 l005 best (10K step) checkpoint with SDF loss disabled (λ=0). Tests whether early SDF-encoded collision awareness persists in LoRA weights when SDF loss is removed, while task performance (TSR) recovers. 10K additional steps with LoRA unfrozen.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python scripts/train_a1_sdf_aux_pi05.py --lambda_sdf 0 --resume_from /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_l005/best --warmup_phase_steps 0 --max_steps 10000 --seed 2 --output_dir /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_phase2_lambda0\", \"server\": \"westd-35807\", \"gpu\": [\"cuda:3\"], \"data_path\": \"object_pudding sdf training data\", \"data_count\": 30000, \"model_name\": \"pi05_a1_sdf_seed2_phase2_lambda0\", \"seed\": 2, \"checkpoint_source\": \"train_pi05_a1_obj_s2_l005 (best at 10K)\", \"pid\": \"254634\"}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3908}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5b1b0d13-506d-400f-8400-8720010d07b3",
+  "uuid": "0854357d-e88f-487e-bff2-9554f6aa59f6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"train_pi05_phase2_lambda0_s2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T22:22:58.519Z\\\", \\\"updated_at\\\": \\\"2026-05-26T11:15:44.110Z\\\", \\\"hypothesis\\\": \\\"Phase 2 λ=0 ablation (seed2): resume from seed2 l005 best (10K step) checkpoint with SDF loss disabled (λ=0). Tests whether early SDF-encoded collision awareness persists in LoRA weights when SDF loss is removed, while task performance (TSR) recovers. 10K additional steps with LoRA unfrozen.\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=3 python scripts/train_a1_sdf_aux_pi05.py --lambda_sdf 0 --resume_from /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_l005/best --warmup_phase_steps 0 --max_steps 10000 --seed 2 --output_dir /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_phase2_lambda0\\\", \\\"server\\\": \\\"westd-35807\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"data_path\\\": \\\"object_pudding sdf training data\\\", \\\"data_count\\\": 30000, \\\"model_name\\\": \\\"pi05_a1_sdf_seed2_phase2_lambda0\\\", \\\"seed\\\": 2, \\\"checkpoint_source\\\": \\\"train_pi05_a1_obj_s2_l005 (best at 10K)\\\", \\\"pid\\\": \\\"254634\\\"}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3908}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"train_pi05_phase2_lambda0_s2\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-25T22:22:58.519Z\", \"updated_at\": \"2026-05-26T11:15:44.110Z\", \"hypothesis\": \"Phase 2 λ=0 ablation (seed2): resume from seed2 l005 best (10K step) checkpoint with SDF loss disabled (λ=0). Tests whether early SDF-encoded collision awareness persists in LoRA weights when SDF loss is removed, while task performance (TSR) recovers. 10K additional steps with LoRA unfrozen.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python scripts/train_a1_sdf_aux_pi05.py --lambda_sdf 0 --resume_from /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_l005/best --warmup_phase_steps 0 --max_steps 10000 --seed 2 --output_dir /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_phase2_lambda0\", \"server\": \"westd-35807\", \"gpu\": [\"cuda:3\"], \"data_path\": \"object_pudding sdf training data\", \"data_count\": 30000, \"model_name\": \"pi05_a1_sdf_seed2_phase2_lambda0\", \"seed\": 2, \"checkpoint_source\": \"train_pi05_a1_obj_s2_l005 (best at 10K)\", \"pid\": \"254634\"}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3908}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01QgnDSXtPGoaVNXiB4cmeAv`</summary>
+
+```json
+{
+  "exp_id": "train_pi05_phase2_lambda0_s2",
+  "field": "metrics",
+  "value": {
+    "final_loss_action": 0.0113,
+    "final_loss_sdf": 0.1369,
+    "final_loss_ee": 0.0079,
+    "best_loss": 0.00651,
+    "best_step": 4000,
+    "total_steps": 10000,
+    "time_per_step": 4.64,
+    "wall_clock_hours": 12.88
+  },
+  "project": "diff_collision_sdf"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5b1b0d13-506d-400f-8400-8720010d07b3",
+  "uuid": "b9e9cb24-b522-4c98-b96c-f8a9347d40f4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MXVYQLvpCCQs83sbtAowzA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 493,
+      "cache_read_input_tokens": 44477,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 493
+      },
+      "output_tokens": 48,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-26T11:15:46.205Z_
+
+<details><summary>↩ Tool result · `toolu_01QgnDSXtPGoaVNXiB4cmeAv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"train_pi05_phase2_lambda0_s2\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-25T22:22:58.519Z\", \"updated_at\": \"2026-05-26T11:15:46.050Z\", \"hypothesis\": \"Phase 2 λ=0 ablation (seed2): resume from seed2 l005 best (10K step) checkpoint with SDF loss disabled (λ=0). Tests whether early SDF-encoded collision awareness persists in LoRA weights when SDF loss is removed, while task performance (TSR) recovers. 10K additional steps with LoRA unfrozen.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python scripts/train_a1_sdf_aux_pi05.py --lambda_sdf 0 --resume_from /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_l005/best --warmup_phase_steps 0 --max_steps 10000 --seed 2 --output_dir /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_phase2_lambda0\", \"server\": \"westd-35807\", \"gpu\": [\"cuda:3\"], \"data_path\": \"object_pudding sdf training data\", \"data_count\": 30000, \"model_name\": \"pi05_a1_sdf_seed2_phase2_lambda0\", \"seed\": 2, \"checkpoint_source\": \"train_pi05_a1_obj_s2_l005 (best at 10K)\", \"pid\": \"254634\"}, \"conclusion\": \"success\", \"metrics\": {\"final_loss_action\": 0.0113, \"final_loss_sdf\": 0.1369, \"final_loss_ee\": 0.0079, \"best_loss\": 0.00651, \"best_step\": 4000, \"total_steps\": 10000, \"time_per_step\": 4.64, \"wall_clock_hours\": 12.88}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3825}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5b1b0d13-506d-400f-8400-8720010d07b3",
+  "uuid": "4de4cbee-8d71-4181-925a-e8668aa45417",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"train_pi05_phase2_lambda0_s2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T22:22:58.519Z\\\", \\\"updated_at\\\": \\\"2026-05-26T11:15:46.050Z\\\", \\\"hypothesis\\\": \\\"Phase 2 λ=0 ablation (seed2): resume from seed2 l005 best (10K step) checkpoint with SDF loss disabled (λ=0). Tests whether early SDF-encoded collision awareness persists in LoRA weights when SDF loss is removed, while task performance (TSR) recovers. 10K additional steps with LoRA unfrozen.\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=3 python scripts/train_a1_sdf_aux_pi05.py --lambda_sdf 0 --resume_from /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_l005/best --warmup_phase_steps 0 --max_steps 10000 --seed 2 --output_dir /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_phase2_lambda0\\\", \\\"server\\\": \\\"westd-35807\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"data_path\\\": \\\"object_pudding sdf training data\\\", \\\"data_count\\\": 30000, \\\"model_name\\\": \\\"pi05_a1_sdf_seed2_phase2_lambda0\\\", \\\"seed\\\": 2, \\\"checkpoint_source\\\": \\\"train_pi05_a1_obj_s2_l005 (best at 10K)\\\", \\\"pid\\\": \\\"254634\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"final_loss_action\\\": 0.0113, \\\"final_loss_sdf\\\": 0.1369, \\\"final_loss_ee\\\": 0.0079, \\\"best_loss\\\": 0.00651, \\\"best_step\\\": 4000, \\\"total_steps\\\": 10000, \\\"time_per_step\\\": 4.64, \\\"wall_clock_hours\\\": 12.88}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3825}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"train_pi05_phase2_lambda0_s2\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-25T22:22:58.519Z\", \"updated_at\": \"2026-05-26T11:15:46.050Z\", \"hypothesis\": \"Phase 2 λ=0 ablation (seed2): resume from seed2 l005 best (10K step) checkpoint with SDF loss disabled (λ=0). Tests whether early SDF-encoded collision awareness persists in LoRA weights when SDF loss is removed, while task performance (TSR) recovers. 10K additional steps with LoRA unfrozen.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python scripts/train_a1_sdf_aux_pi05.py --lambda_sdf 0 --resume_from /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_l005/best --warmup_phase_steps 0 --max_steps 10000 --seed 2 --output_dir /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_phase2_lambda0\", \"server\": \"westd-35807\", \"gpu\": [\"cuda:3\"], \"data_path\": \"object_pudding sdf training data\", \"data_count\": 30000, \"model_name\": \"pi05_a1_sdf_seed2_phase2_lambda0\", \"seed\": 2, \"checkpoint_source\": \"train_pi05_a1_obj_s2_l005 (best at 10K)\", \"pid\": \"254634\"}, \"conclusion\": \"success\", \"metrics\": {\"final_loss_action\": 0.0113, \"final_loss_sdf\": 0.1369, \"final_loss_ee\": 0.0079, \"best_loss\": 0.00651, \"best_step\": 4000, \"total_steps\": 10000, \"time_per_step\": 4.64, \"wall_clock_hours\": 12.88}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3825}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01MuwyYMjE6iT8y9UtXjaBtF`</summary>
+
+```json
+{
+  "exp_id": "train_pi05_phase2_lambda0_s2",
+  "field": "checkpoint_path",
+  "value": "/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_l0/10000",
+  "project": "diff_collision_sdf"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5b1b0d13-506d-400f-8400-8720010d07b3",
+  "uuid": "2d6bf7fe-8764-47a4-aa4c-015158534103",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MXVYQLvpCCQs83sbtAowzA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 493,
+      "cache_read_input_tokens": 44477,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 493
+      },
+      "output_tokens": 48,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-26T11:15:47.555Z_
+
+<details><summary>↩ Tool result · `toolu_01MuwyYMjE6iT8y9UtXjaBtF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"train_pi05_phase2_lambda0_s2\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-25T22:22:58.519Z\", \"updated_at\": \"2026-05-26T11:15:47.401Z\", \"hypothesis\": \"Phase 2 λ=0 ablation (seed2): resume from seed2 l005 best (10K step) checkpoint with SDF loss disabled (λ=0). Tests whether early SDF-encoded collision awareness persists in LoRA weights when SDF loss is removed, while task performance (TSR) recovers. 10K additional steps with LoRA unfrozen.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python scripts/train_a1_sdf_aux_pi05.py --lambda_sdf 0 --resume_from /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_l005/best --warmup_phase_steps 0 --max_steps 10000 --seed 2 --output_dir /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_phase2_lambda0\", \"server\": \"westd-35807\", \"gpu\": [\"cuda:3\"], \"data_path\": \"object_pudding sdf training data\", \"data_count\": 30000, \"model_name\": \"pi05_a1_sdf_seed2_phase2_lambda0\", \"seed\": 2, \"checkpoint_source\": \"train_pi05_a1_obj_s2_l005 (best at 10K)\", \"pid\": \"254634\"}, \"conclusion\": \"success\", \"metrics\": {\"final_loss_action\": 0.0113, \"final_loss_sdf\": 0.1369, \"final_loss_ee\": 0.0079, \"best_loss\": 0.00651, \"best_step\": 4000, \"total_steps\": 10000, \"time_per_step\": 4.64, \"wall_clock_hours\": 12.88}, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_l0/10000\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3583}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5b1b0d13-506d-400f-8400-8720010d07b3",
+  "uuid": "497a8457-6846-40be-9469-27d86445f7c9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"train_pi05_phase2_lambda0_s2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T22:22:58.519Z\\\", \\\"updated_at\\\": \\\"2026-05-26T11:15:47.401Z\\\", \\\"hypothesis\\\": \\\"Phase 2 λ=0 ablation (seed2): resume from seed2 l005 best (10K step) checkpoint with SDF loss disabled (λ=0). Tests whether early SDF-encoded collision awareness persists in LoRA weights when SDF loss is removed, while task performance (TSR) recovers. 10K additional steps with LoRA unfrozen.\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=3 python scripts/train_a1_sdf_aux_pi05.py --lambda_sdf 0 --resume_from /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_l005/best --warmup_phase_steps 0 --max_steps 10000 --seed 2 --output_dir /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_phase2_lambda0\\\", \\\"server\\\": \\\"westd-35807\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"data_path\\\": \\\"object_pudding sdf training data\\\", \\\"data_count\\\": 30000, \\\"model_name\\\": \\\"pi05_a1_sdf_seed2_phase2_lambda0\\\", \\\"seed\\\": 2, \\\"checkpoint_source\\\": \\\"train_pi05_a1_obj_s2_l005 (best at 10K)\\\", \\\"pid\\\": \\\"254634\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"final_loss_action\\\": 0.0113, \\\"final_loss_sdf\\\": 0.1369, \\\"final_loss_ee\\\": 0.0079, \\\"best_loss\\\": 0.00651, \\\"best_step\\\": 4000, \\\"total_steps\\\": 10000, \\\"time_per_step\\\": 4.64, \\\"wall_clock_hours\\\": 12.88}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_l0/10000\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3583}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"train_pi05_phase2_lambda0_s2\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-25T22:22:58.519Z\", \"updated_at\": \"2026-05-26T11:15:47.401Z\", \"hypothesis\": \"Phase 2 λ=0 ablation (seed2): resume from seed2 l005 best (10K step) checkpoint with SDF loss disabled (λ=0). Tests whether early SDF-encoded collision awareness persists in LoRA weights when SDF loss is removed, while task performance (TSR) recovers. 10K additional steps with LoRA unfrozen.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python scripts/train_a1_sdf_aux_pi05.py --lambda_sdf 0 --resume_from /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_l005/best --warmup_phase_steps 0 --max_steps 10000 --seed 2 --output_dir /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_phase2_lambda0\", \"server\": \"westd-35807\", \"gpu\": [\"cuda:3\"], \"data_path\": \"object_pudding sdf training data\", \"data_count\": 30000, \"model_name\": \"pi05_a1_sdf_seed2_phase2_lambda0\", \"seed\": 2, \"checkpoint_source\": \"train_pi05_a1_obj_s2_l005 (best at 10K)\", \"pid\": \"254634\"}, \"conclusion\": \"success\", \"metrics\": {\"final_loss_action\": 0.0113, \"final_loss_sdf\": 0.1369, \"final_loss_ee\": 0.0079, \"best_loss\": 0.00651, \"best_step\": 4000, \"total_steps\": 10000, \"time_per_step\": 4.64, \"wall_clock_hours\": 12.88}, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_l0/10000\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3583}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_019975nXGrHDwZxxYG6WPqmk`</summary>
+
+```json
+{
+  "exp_id": "train_pi05_phase2_lambda0_s2",
+  "field": "log_path",
+  "value": "/root/colliforce-vla/logs/train_phase2_lambda0_s2_gpu3.log",
+  "project": "diff_collision_sdf"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5b1b0d13-506d-400f-8400-8720010d07b3",
+  "uuid": "150c054c-853c-41c6-b42e-2022b335a38f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MXVYQLvpCCQs83sbtAowzA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 493,
+      "cache_read_input_tokens": 44477,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 493
+      },
+      "output_tokens": 48,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-26T11:15:48.297Z_
+
+<details><summary>↩ Tool result · `toolu_019975nXGrHDwZxxYG6WPqmk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"train_pi05_phase2_lambda0_s2\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-25T22:22:58.519Z\", \"updated_at\": \"2026-05-26T11:15:48.141Z\", \"hypothesis\": \"Phase 2 λ=0 ablation (seed2): resume from seed2 l005 best (10K step) checkpoint with SDF loss disabled (λ=0). Tests whether early SDF-encoded collision awareness persists in LoRA weights when SDF loss is removed, while task performance (TSR) recovers. 10K additional steps with LoRA unfrozen.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python scripts/train_a1_sdf_aux_pi05.py --lambda_sdf 0 --resume_from /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_l005/best --warmup_phase_steps 0 --max_steps 10000 --seed 2 --output_dir /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_phase2_lambda0\", \"server\": \"westd-35807\", \"gpu\": [\"cuda:3\"], \"data_path\": \"object_pudding sdf training data\", \"data_count\": 30000, \"model_name\": \"pi05_a1_sdf_seed2_phase2_lambda0\", \"seed\": 2, \"checkpoint_source\": \"train_pi05_a1_obj_s2_l005 (best at 10K)\", \"pid\": \"254634\"}, \"conclusion\": \"success\", \"metrics\": {\"final_loss_action\": 0.0113, \"final_loss_sdf\": 0.1369, \"final_loss_ee\": 0.0079, \"best_loss\": 0.00651, \"best_step\": 4000, \"total_steps\": 10000, \"time_per_step\": 4.64, \"wall_clock_hours\": 12.88}, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_l0/10000\", \"log_path\": \"/root/colliforce-vla/logs/train_phase2_lambda0_s2_gpu3.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3703}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5b1b0d13-506d-400f-8400-8720010d07b3",
+  "uuid": "866ced34-baea-49e5-96b7-eebc5343ff1c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"train_pi05_phase2_lambda0_s2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T22:22:58.519Z\\\", \\\"updated_at\\\": \\\"2026-05-26T11:15:48.141Z\\\", \\\"hypothesis\\\": \\\"Phase 2 λ=0 ablation (seed2): resume from seed2 l005 best (10K step) checkpoint with SDF loss disabled (λ=0). Tests whether early SDF-encoded collision awareness persists in LoRA weights when SDF loss is removed, while task performance (TSR) recovers. 10K additional steps with LoRA unfrozen.\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=3 python scripts/train_a1_sdf_aux_pi05.py --lambda_sdf 0 --resume_from /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_l005/best --warmup_phase_steps 0 --max_steps 10000 --seed 2 --output_dir /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_phase2_lambda0\\\", \\\"server\\\": \\\"westd-35807\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"data_path\\\": \\\"object_pudding sdf training data\\\", \\\"data_count\\\": 30000, \\\"model_name\\\": \\\"pi05_a1_sdf_seed2_phase2_lambda0\\\", \\\"seed\\\": 2, \\\"checkpoint_source\\\": \\\"train_pi05_a1_obj_s2_l005 (best at 10K)\\\", \\\"pid\\\": \\\"254634\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"final_loss_action\\\": 0.0113, \\\"final_loss_sdf\\\": 0.1369, \\\"final_loss_ee\\\": 0.0079, \\\"best_loss\\\": 0.00651, \\\"best_step\\\": 4000, \\\"total_steps\\\": 10000, \\\"time_per_step\\\": 4.64, \\\"wall_clock_hours\\\": 12.88}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_l0/10000\\\", \\\"log_path\\\": \\\"/root/colliforce-vla/logs/train_phase2_lambda0_s2_gpu3.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3703}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"train_pi05_phase2_lambda0_s2\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-25T22:22:58.519Z\", \"updated_at\": \"2026-05-26T11:15:48.141Z\", \"hypothesis\": \"Phase 2 λ=0 ablation (seed2): resume from seed2 l005 best (10K step) checkpoint with SDF loss disabled (λ=0). Tests whether early SDF-encoded collision awareness persists in LoRA weights when SDF loss is removed, while task performance (TSR) recovers. 10K additional steps with LoRA unfrozen.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python scripts/train_a1_sdf_aux_pi05.py --lambda_sdf 0 --resume_from /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_l005/best --warmup_phase_steps 0 --max_steps 10000 --seed 2 --output_dir /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_phase2_lambda0\", \"server\": \"westd-35807\", \"gpu\": [\"cuda:3\"], \"data_path\": \"object_pudding sdf training data\", \"data_count\": 30000, \"model_name\": \"pi05_a1_sdf_seed2_phase2_lambda0\", \"seed\": 2, \"checkpoint_source\": \"train_pi05_a1_obj_s2_l005 (best at 10K)\", \"pid\": \"254634\"}, \"conclusion\": \"success\", \"metrics\": {\"final_loss_action\": 0.0113, \"final_loss_sdf\": 0.1369, \"final_loss_ee\": 0.0079, \"best_loss\": 0.00651, \"best_step\": 4000, \"total_steps\": 10000, \"time_per_step\": 4.64, \"wall_clock_hours\": 12.88}, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_l0/10000\", \"log_path\": \"/root/colliforce-vla/logs/train_phase2_lambda0_s2_gpu3.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3703}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_011rb8EPxjjx9iYZwjSUJsTg`</summary>
+
+```json
+{
+  "exp_id": "train_pi05_phase2_lambda0_s2",
+  "field": "status",
+  "value": "DONE",
+  "project": "diff_collision_sdf"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5b1b0d13-506d-400f-8400-8720010d07b3",
+  "uuid": "d7af5e2c-9958-445b-aa5c-acd447dd0c9a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VmDo7Hfh4YakAiejA6sgzG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3481,
+      "cache_read_input_tokens": 44970,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3481
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — CronDelete · `toolu_01Wkb3RkuMxVJctBxr7rYqCb`</summary>
+
+```json
+{
+  "id": "train_pi05_phase2_lambda0_s2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5b1b0d13-506d-400f-8400-8720010d07b3",
+  "uuid": "b6329719-e4c9-4dee-9217-c076dd307f13",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VmDo7Hfh4YakAiejA6sgzG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3481,
+      "cache_read_input_tokens": 44970,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3481
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-26T11:15:52.006Z_
+
+<details><summary>↩ Tool result · `toolu_011rb8EPxjjx9iYZwjSUJsTg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"train_pi05_phase2_lambda0_s2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-25T22:22:58.519Z\", \"updated_at\": \"2026-05-26T11:15:51.477Z\", \"hypothesis\": \"Phase 2 λ=0 ablation (seed2): resume from seed2 l005 best (10K step) checkpoint with SDF loss disabled (λ=0). Tests whether early SDF-encoded collision awareness persists in LoRA weights when SDF loss is removed, while task performance (TSR) recovers. 10K additional steps with LoRA unfrozen.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python scripts/train_a1_sdf_aux_pi05.py --lambda_sdf 0 --resume_from /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_l005/best --warmup_phase_steps 0 --max_steps 10000 --seed 2 --output_dir /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_phase2_lambda0\", \"server\": \"westd-35807\", \"gpu\": [\"cuda:3\"], \"data_path\": \"object_pudding sdf training data\", \"data_count\": 30000, \"model_name\": \"pi05_a1_sdf_seed2_phase2_lambda0\", \"seed\": 2, \"checkpoint_source\": \"train_pi05_a1_obj_s2_l005 (best at 10K)\", \"pid\": \"254634\"}, \"conclusion\": \"success\", \"metrics\": {\"final_loss_action\": 0.0113, \"final_loss_sdf\": 0.1369, \"final_loss_ee\": 0.0079, \"best_loss\": 0.00651, \"best_step\": 4000, \"total_steps\": 10000, \"time_per_step\": 4.64, \"wall_clock_hours\": 12.88}, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_l0/10000\", \"log_path\": \"/root/colliforce-vla/logs/train_phase2_lambda0_s2_gpu3.log\", \"completed_at\": \"2026-05-26T11:15:51.477Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.734}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5b1b0d13-506d-400f-8400-8720010d07b3",
+  "uuid": "553c6593-c2e2-4884-b0d6-caff3293ea14",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"train_pi05_phase2_lambda0_s2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T22:22:58.519Z\\\", \\\"updated_at\\\": \\\"2026-05-26T11:15:51.477Z\\\", \\\"hypothesis\\\": \\\"Phase 2 λ=0 ablation (seed2): resume from seed2 l005 best (10K step) checkpoint with SDF loss disabled (λ=0). Tests whether early SDF-encoded collision awareness persists in LoRA weights when SDF loss is removed, while task performance (TSR) recovers. 10K additional steps with LoRA unfrozen.\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=3 python scripts/train_a1_sdf_aux_pi05.py --lambda_sdf 0 --resume_from /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_l005/best --warmup_phase_steps 0 --max_steps 10000 --seed 2 --output_dir /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_phase2_lambda0\\\", \\\"server\\\": \\\"westd-35807\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"data_path\\\": \\\"object_pudding sdf training data\\\", \\\"data_count\\\": 30000, \\\"model_name\\\": \\\"pi05_a1_sdf_seed2_phase2_lambda0\\\", \\\"seed\\\": 2, \\\"checkpoint_source\\\": \\\"train_pi05_a1_obj_s2_l005 (best at 10K)\\\", \\\"pid\\\": \\\"254634\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"final_loss_action\\\": 0.0113, \\\"final_loss_sdf\\\": 0.1369, \\\"final_loss_ee\\\": 0.0079, \\\"best_loss\\\": 0.00651, \\\"best_step\\\": 4000, \\\"total_steps\\\": 10000, \\\"time_per_step\\\": 4.64, \\\"wall_clock_hours\\\": 12.88}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_l0/10000\\\", \\\"log_path\\\": \\\"/root/colliforce-vla/logs/train_phase2_lambda0_s2_gpu3.log\\\", \\\"completed_at\\\": \\\"2026-05-26T11:15:51.477Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.734}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"train_pi05_phase2_lambda0_s2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-25T22:22:58.519Z\", \"updated_at\": \"2026-05-26T11:15:51.477Z\", \"hypothesis\": \"Phase 2 λ=0 ablation (seed2): resume from seed2 l005 best (10K step) checkpoint with SDF loss disabled (λ=0). Tests whether early SDF-encoded collision awareness persists in LoRA weights when SDF loss is removed, while task performance (TSR) recovers. 10K additional steps with LoRA unfrozen.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python scripts/train_a1_sdf_aux_pi05.py --lambda_sdf 0 --resume_from /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_l005/best --warmup_phase_steps 0 --max_steps 10000 --seed 2 --output_dir /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_phase2_lambda0\", \"server\": \"westd-35807\", \"gpu\": [\"cuda:3\"], \"data_path\": \"object_pudding sdf training data\", \"data_count\": 30000, \"model_name\": \"pi05_a1_sdf_seed2_phase2_lambda0\", \"seed\": 2, \"checkpoint_source\": \"train_pi05_a1_obj_s2_l005 (best at 10K)\", \"pid\": \"254634\"}, \"conclusion\": \"success\", \"metrics\": {\"final_loss_action\": 0.0113, \"final_loss_sdf\": 0.1369, \"final_loss_ee\": 0.0079, \"best_loss\": 0.00651, \"best_step\": 4000, \"total_steps\": 10000, \"time_per_step\": 4.64, \"wall_clock_hours\": 12.88}, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_l0/10000\", \"log_path\": \"/root/colliforce-vla/logs/train_phase2_lambda0_s2_gpu3.log\", \"completed_at\": \"2026-05-26T11:15:51.477Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.734}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-26T11:15:52.008Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01Wkb3RkuMxVJctBxr7rYqCb`</summary>
+
+```text
+&lt;tool_use_error>No scheduled job with id 'train_pi05_phase2_lambda0_s2'&lt;/tool_use_error>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5b1b0d13-506d-400f-8400-8720010d07b3",
+  "uuid": "9de72ea2-23f6-410a-ac24-0d33b0794d19",
+  "tool_use_result": "Error: No scheduled job with id 'train_pi05_phase2_lambda0_s2'"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53_
+
+**诊断结果：训练成功完成。**
+
+| 项目 | 值 |
+|------|-----|
+| 状态 | 正常完成 10000/10000 步 |
+| Final action loss | 0.0113 |
+| Best loss | 0.00651 @ step 4000 |
+| 耗时 | ~12h 53min (4.64 s/step) |
+| Checkpoint | `/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_l0/10000` |
+| 可用 ckpts | 9999, 10000, best |
+
+注意：实际 output_dir 为 `...seed2_l0/` 而非 spec 中指定的 `...seed2_phase2_lambda0/`（训练脚本自动按 lambda 值命名）。Cron 不存在，无需删除。Registry 已更新为 DONE/success。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5b1b0d13-506d-400f-8400-8720010d07b3",
+  "uuid": "7230cdbc-0915-4fbf-bce8-280c0a5f97f6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HENYv2V6BAmYT6ia3Jd28q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1069,
+      "cache_read_input_tokens": 48451,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1069
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 54_
+
+**诊断结果：训练成功完成。**
+
+| 项目 | 值 |
+|------|-----|
+| 状态 | 正常完成 10000/10000 步 |
+| Final action loss | 0.0113 |
+| Best loss | 0.00651 @ step 4000 |
+| 耗时 | ~12h 53min (4.64 s/step) |
+| Checkpoint | `/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_l0/10000` |
+| 可用 ckpts | 9999, 10000, best |
+
+注意：实际 output_dir 为 `...seed2_l0/` 而非 spec 中指定的 `...seed2_phase2_lambda0/`（训练脚本自动按 lambda 值命名）。Cron 不存在，无需删除。Registry 已更新为 DONE/success。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 70919,
+  "duration_api_ms": 67860,
+  "num_turns": 20,
+  "stop_reason": "end_turn",
+  "session_id": "5b1b0d13-506d-400f-8400-8720010d07b3",
+  "total_cost_usd": 0.51281475,
+  "usage": {
+    "input_tokens": 16,
+    "cache_creation_input_tokens": 37679,
+    "cache_read_input_tokens": 375474,
+    "output_tokens": 3517,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 37679,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 273,
+        "cache_read_input_tokens": 48451,
+        "cache_creation_input_tokens": 1069,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1069
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1444,
+      "outputTokens": 27,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0015789999999999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 16,
+      "outputTokens": 3517,
+      "cacheReadInputTokens": 375474,
+      "cacheCreationInputTokens": 37679,
+      "webSearchRequests": 0,
+      "costUSD": 0.51123575,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "37205dfc-e01b-4145-a511-812612a81275"
+}
+```
+
+</details>
+
+---

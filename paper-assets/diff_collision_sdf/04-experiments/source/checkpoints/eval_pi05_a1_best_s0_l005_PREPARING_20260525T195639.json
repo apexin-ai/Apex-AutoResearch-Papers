@@ -1,0 +1,17 @@
+{
+  "exp_id": "eval_pi05_a1_best_s0_l005",
+  "project": "diff_collision_sdf",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-25T13:17:45.538Z",
+    "updated_at": "2026-05-25T19:56:39.202Z",
+    "hypothesis": "Pi0.5+A1 best checkpoint eval (seed0, λ=0.005) using /best/ checkpoint. Completes 3-seed best-checkpoint coverage (s1 best=step16K, s2 best=step10K already done). s0 best=step26000. Tests whether best-loss checkpoint CAR/TSR matches s1/s2 pattern.",
+    "notes": "best/ 目录不存在。训练脚本 train_a1_sdf_aux_pi05.py 不支持 save_best（无 best_metric / best_checkpoint 逻辑）。seed0_l005 只有 30000/ 一个 checkpoint。无法执行 best checkpoint eval。",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-25T19:56:39.352032+00:00",
+  "trigger": "update_registry"
+}

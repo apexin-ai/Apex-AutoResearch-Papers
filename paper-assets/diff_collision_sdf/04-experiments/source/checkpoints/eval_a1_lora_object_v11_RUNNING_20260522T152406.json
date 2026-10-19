@@ -1,0 +1,31 @@
+{
+  "exp_id": "eval_a1_lora_object_v11",
+  "project": "diff_collision_sdf",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T15:23:46.462Z",
+    "updated_at": "2026-05-22T15:24:06.468Z",
+    "hypothesis": "A1 (SDF auxiliary loss + LoRA, no runtime refinement) eval on safelibero_object — tests whether SDF auxiliary training signal alone improves CAR over LoRA baseline. If A1 CAR > baseline, SDF training signal is beneficial and A3 failure is specific to runtime refinement. Critical diagnostic for separating training-time vs inference-time SDF contributions.",
+    "parent": "a1_lora_object_pudding_s0",
+    "spec": {
+      "command": "python scripts/eval_safelibero.py --model_type lora_baseline --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_object_pudding/a1_lora_object_pudding_seed0/best --suite safelibero_object --n_episodes 50 --max_steps 300 --replan_steps 5 --gpu 3",
+      "server": "westd-35807",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "660998",
+      "log_path": "/tmp/eval_a1_lora_object_v11.log",
+      "data_path": "SafeLIBERO Level II object_pudding",
+      "data_count": 200,
+      "model_name": "pi0_a1_lora_object_pudding_s0",
+      "seed": 0,
+      "checkpoint_source": "a1_lora_object_pudding_s0 best (step 29999)",
+      "eval_data": "safelibero_object 4 tasks x 50 episodes"
+    }
+  },
+  "timestamp": "2026-05-22T15:24:06.513127+00:00",
+  "trigger": "update_registry"
+}

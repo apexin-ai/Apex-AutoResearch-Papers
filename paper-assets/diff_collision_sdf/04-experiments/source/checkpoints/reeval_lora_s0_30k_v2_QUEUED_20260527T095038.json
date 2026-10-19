@@ -1,0 +1,18 @@
+{
+  "exp_id": "reeval_lora_s0_30k_v2",
+  "project": "diff_collision_sdf",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-26T12:48:40.738Z",
+    "updated_at": "2026-05-27T09:50:38.761Z",
+    "hypothesis": "Re-eval LoRA-only s0 30K with confirmed rotation-fixed eval_safelibero.py (seed=7). Previous eval_lora_baseline_30k_s0_reeval JSON was from buggy version. This provides the second reliable LoRA-only seed for Claim 3 mean±std calculation.",
+    "parent": "train_pi05_lora_baseline_s0",
+    "conclusion": "killed",
+    "notes": "Re-launched on westd-35807 cuda:1 with rotation-fixed eval_safelibero.py. Checkpoint copied from westd-45947."
+  },
+  "timestamp": "2026-05-27T09:50:38.954925+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,37 @@
+\subsection{End-Effector-Only SDF Cannot Ensure Full-Body Safety}\label{sec:ee_only}
+
+The analysis in Section~\ref{sec:fake_safety} identifies action collapse and fake safety as pervasive problems, but leaves open a natural question: could a sufficiently accurate SDF prediction still enable effective runtime refinement? To isolate the SDF representation itself from prediction quality, we construct an oracle experiment. We replace the learned SDF network with the ground-truth signed distance field computed directly from the known obstacle geometry. This oracle represents the theoretical upper bound of end-effector-only SDF refinement: it eliminates prediction error entirely and provides the refinement module with a perfect distance signal at every timestep. If the SDF refinement paradigm is sound, oracle performance should exceed that of unrefined baselines by a wide margin.
+
+\begin{table}[t]
+\centering
+\caption{Oracle SDF refinement with ground-truth distance fields (160 episodes, 4 tasks $\times$ 40). All three variants achieve lower CAR than unrefined baselines (LoRA 82.0\%, Full-FT 83.0\%), and fake safe rates remain above 96\%.}
+\label{tab:oracle}
+\vspace{2pt}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Method & TSR (\%) & CAR (\%) & Fake Safe (\%) & Refines/ep \\
+\midrule
+LoRA baseline (no refine) & 0.0 & 82.0 & 99.4 & -- \\
+Full-FT baseline (no refine) & 0.5 & 83.0 & -- & -- \\
+\midrule
+Oracle-adaptive (GT, dyn.\ $\alpha$) & 0.0 & 75.0 & 98.3 & 14.2 \\
+Oracle-fixed (GT, $\alpha{=}0.005$) & 0.0 & 73.1 & 98.3 & 14.8 \\
+Oracle-feature (GT, feat.\ space) & 0.0 & 76.9 & 96.7 & 241.7 \\
+\midrule
+A3 learned SDF & 0.0 & 74.5 & -- & 0.0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:oracle} reports the results. All three oracle variants achieve CAR below that of the unrefined baselines. The best oracle (Oracle-feature, 76.9\%) falls 5.1 percentage points below the LoRA baseline (82.0\%) and 6.1 points below Full-FT (83.0\%). The adaptive and fixed-step variants perform worse still, at 75.0\% and 73.1\% respectively. These results are not marginal: the refinement module with perfect distance information produces more collisions than doing nothing at all. The fake safe rate tells a complementary story. Oracle-adaptive and Oracle-fixed both register 98.3\% fake safe episodes (118 of 120 and 115 of 117 safe episodes, respectively), while Oracle-feature registers 96.7\% (119 of 123). Ground-truth SDF refinement does not reduce action collapse; the vast majority of safe episodes remain attributable to inaction rather than obstacle avoidance. The persistence of action collapse under gradient correction is expected: refinement can redirect existing motion away from obstacles, but cannot generate motion from a policy that has collapsed into inaction. The gradient operates on a trajectory that is already near-zero; perturbing near-zero displacement produces near-zero displacement in a different direction, not a viable collision-free path.
+
+Figure~\ref{fig:oracle_bar} visualizes this aggregate gap. The per-task breakdown reveals additional structure. On task~1, the most collision-prone task where the LoRA baseline achieves only 46.0\% CAR, Oracle-adaptive reaches 55.0\% and Oracle-feature reaches 47.5\%, a modest improvement consistent with a scenario where the end-effector is the primary collision body. On tasks~0, 2, and~3, all oracle variants produce lower CAR than the baseline: Oracle-adaptive drops from 96.0\% to 82.5\% on task~0 and from 98.0\% to 77.5\% on task~2. The refinement gradient pushes the end-effector away from the obstacle surface but perturbs the planned trajectory in ways that increase collisions elsewhere on the robot arm.
+
+This failure mode is structural. The SDF refinement paradigm as formulated in prior work~\cite{hu2025vlsa} computes the signed distance from the end-effector to the nearest obstacle surface and applies a gradient step to increase this distance when it falls below a safety threshold. The gradient operates exclusively on the end-effector position; no distance constraint applies to the remaining links of the robot arm. When the gradient pushes the end-effector away from an obstacle, the resulting joint-space displacement can rotate intermediate links toward or through the obstacle volume. The refinement thus trades one collision for another, with no mechanism to detect or prevent the substitution.
+
+The feature-space oracle makes this coupling problem explicit. It applies the SDF gradient in the policy's latent action space rather than in Cartesian coordinates, and fires on nearly every timestep (241.7 refinements per episode versus 14.2 for action-space variants). Yet its gradient magnitudes are extremely small (0.004--0.006, compared to 0.18--0.49 in action space), and the resulting CAR (76.9\%) shows no significant advantage over the action-space oracles. The latent space lacks a direct geometric relationship to full-body configuration; small perturbations in feature space do not reliably translate into collision-free joint trajectories.
+
+The A3 model with a learned SDF head illustrates the complementary failure. In this configuration, the SDF prediction network never outputs a distance below the refinement threshold across any of the 160 evaluation episodes; no refinement steps occur. The learned SDF has calibrated its predictions to avoid triggering the safety mechanism. The model thus operates as an unrefined baseline (CAR of 74.5\%, consistent with the oracle range). The refinement module, even if it could improve safety, is never activated.
+
+These results establish that end-effector-only SDF is a structural limitation, not merely an engineering gap. Perfect distance information does not compensate for the absence of full-body collision awareness. Any refinement scheme that monitors only the end-effector position will remain blind to arm-body collisions, the dominant failure mode in manipulation tasks where the robot must reach around or past obstacles. Effective collision avoidance for VLA models will require representations that account for the geometric extent of the entire manipulator, not only its tip. Section~\ref{sec:avoidance_source} investigates the source of collision avoidance in fine-tuned models and the role of geometric supervision.

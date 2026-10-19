@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2f786e5959f86d45343b",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "code fix critical bugs training",
+  "task_key": "worker_code_fix_critical_bugs_training_20260519T182717",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_critical_bugs_training_20260519T182717_result.json",
+    "occurrence": 1,
+    "bytes": 960,
+    "sha256": "61bdf6bf75121f497b203353feb24db5e1aa3f9a9a6b88b9f4bd5306325adc82"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**Bug 1 (train_baseline.py)**: 添加了 `openpi/` 根目录到 sys.path，`from scripts.train_pytorch import train_loop` 路径解析正确。完整 import 需要 `lerobot` 包（尚未安装）。\n\n**Bug 2 (eval_safelibero.py)**: 原始描述的 OBSTACLE_NAMES 实际是正确的（MuJoCo body 命名验证通过，6/6 全部找到）。但发现了 3 个更严重的运行时 bug：\n- `torch.load` weights_only 不兼容 PyTorch 2.6+（init_states 加载直接崩溃）\n- `env._get_observations()` 方法不存在\n- `env._check_success()` 应为 `env.check_success()`\n\n另修复了 joint fallback typo (`_jnt0` → `_joint0`) 并添加了 0-obstacle 警告。\n\n**Dry-run**: eval 环境加载、obstacle 检测、碰撞检测、success 判断全部验证通过。完整训练/评估 dry-run 无法执行（缺 lerobot + 训练数据）。\n\n报告已写入 `/root/colliforce-vla/data/bugfix_report.txt`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-critical-bugs-training.md"
+}

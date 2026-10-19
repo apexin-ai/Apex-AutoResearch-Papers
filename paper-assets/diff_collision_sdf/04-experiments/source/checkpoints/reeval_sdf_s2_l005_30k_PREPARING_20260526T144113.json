@@ -1,0 +1,16 @@
+{
+  "exp_id": "reeval_sdf_s2_l005_30k",
+  "project": "diff_collision_sdf",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-26T09:24:13.075Z",
+    "updated_at": "2026-05-26T14:41:13.791Z",
+    "hypothesis": "Re-eval SDF λ=0.005 s2 (30K) with fixed eval_safelibero.py (180° rotation). Third seed for λ=0.005.",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-26T14:41:13.950276+00:00",
+  "trigger": "update_registry"
+}

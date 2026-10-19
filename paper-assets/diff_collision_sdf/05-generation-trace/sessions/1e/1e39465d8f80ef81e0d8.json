@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1e39465d8f80ef81e0d8",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "infra gpu health check",
+  "task_key": "worker_infra_gpu-health-check_20260529T030258",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_gpu-health-check_20260529T030258_result.json",
+    "occurrence": 1,
+    "bytes": 1744,
+    "sha256": "b3c0da3879249796dd901254f606adc8524f871b4c5738ba21387842e8ba50c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 服务器状态汇总\n\n### westd-35807\n\n| 项目 | 状态 |\n|------|------|\n| **GPU** | 1x RTX PRO 6000 (96GB VRAM), **空闲** (0% util, 0 MiB used) |\n| **根盘** | 30G 总量, 25G 已用, **6G 可用 (81%)** ⚠️ |\n| **数据盘** | /dev/sda2: 879G 总量, 265G 已用, 570G 可用 |\n| **autodl-tmp** | 268G (其中 checkpoints 207G) |\n| **训练进程** | 无 |\n| **tmux** | 无法通过 read-only 检查 |\n| **项目目录** | /root/colliforce-vla ✅ |\n| **/root/colliforce-vla/checkpoints/** | 不存在 (checkpoints 在 autodl-tmp) |\n\n### westd-45947\n\n| 项目 | 状态 |\n|------|------|\n| **GPU** | 1x RTX PRO 6000 (96GB VRAM), **空闲** (0% util, 0 MiB used) |\n| **根盘** | 30G 总量, 17G 已用, 14G 可用 (57%) |\n| **数据盘** | /dev/sda2: 439G 总量, 16G 已用, 400G 可用 |\n| **autodl-tmp** | 240G (其中 checkpoints 196G) |\n| **训练进程** | 无 |\n| **项目目录** | /root/colliforce-vla ✅ |\n\n---\n\n### ⚠️ 关键发现：GPU 数量与约束不符\n\n**约束 C001 声称** westd-35807 有 cuda:0-3 (4张)，westd-45947 有 cuda:0-1 (2张)。\n\n**实际 nvidia-smi 只报了 1 张 GPU**（每台各 1 张）。物理机有 9/8 张 GPU（从 /proc/driver/nvidia/gpus/ 可见），但容器只分配了 1 张。环境变量中无 CUDA_VISIBLE_DEVICES 设置。\n\n**结论**：westd-35807 当前 **只有 cuda:0 可用**，无法使用 cuda:1-3。如需多卡训练，需要先在 AutoDL 控制台调整容器的 GPU 分配数量。\n\n### 其他注意事项\n- westd-35807 根盘只剩 6G，安装新依赖或写临时文件要小心，大文件务必放 autodl-tmp\n- 两台服务器 GPU 均空闲，无运行中的训练任务，单卡训练可以立即开始"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-gpu-health-check.md"
+}

@@ -1,0 +1,29 @@
+{
+  "exp_id": "eval_phase2_18k_s2",
+  "project": "diff_collision_sdf",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-28T04:44:52.983Z",
+    "updated_at": "2026-05-28T04:45:26.975Z",
+    "hypothesis": "Phase 2 18K checkpoint (λ=0 after 5K SDF) should show CAR similar to LoRA-only (54.67%), confirming SDF gradients produce no lasting behavioral effect even at intermediate training stages.",
+    "parent": "train_phase2_lambda0_s2_v4",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2 python /root/colliforce-vla/scripts/eval_safelibero.py --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_l0/18000 --model_type lora_baseline --pi05 --suite safelibero_object --safety_level II --n_episodes 50 --seed 7 --gpu 0 --output_path /root/autodl-tmp/eval_results/eval_phase2_18k_s2_l0_object.json",
+      "server": "westd-35807",
+      "data_path": "safelibero_object",
+      "data_count": 200,
+      "model_name": "pi05_lora_baseline (phase2 lambda=0, seed2, 18K steps)",
+      "seed": 7,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_l0/18000",
+      "eval_data": "safelibero_object (4 tasks x 50 episodes, safety_level=II, seed=7)",
+      "notes": "18K checkpoint (not 30K) - training stopped at step 19999 due to disk full.",
+      "pid": 31388,
+      "log_path": "/root/runs/diff_collision_sdf/eval_phase2_18k_s2_l0.log"
+    }
+  },
+  "timestamp": "2026-05-28T04:45:27.222015+00:00",
+  "trigger": "update_registry"
+}

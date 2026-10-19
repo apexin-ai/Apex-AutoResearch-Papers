@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3c97974159f2135c9e64",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "fix lora s0 cascade all tex",
+  "task_key": "worker_fix_lora_s0_cascade_all_tex_20260528T004614",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_lora_s0_cascade_all_tex_20260528T004614_result.json",
+    "occurrence": 1,
+    "bytes": 614,
+    "sha256": "f5483717bbdc0aa4dd78cde2a23789ae999b8cb5e9100eefd67650317ba1b69a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 23 项 verify 通过（Scenario B: 11/11, Scenario C: 12/12）。\n\n完成情况：\n- **本地** claim3.tex、appendix.tex — 全部数据修正完成\n- **远程** claim3.tex、appendix.tex — 全部数据修正完成（远程文件结构与本地不同，已做对应调整）\n- **paper_switch.py** — 更新了 NULL_VALUES（57→56.5）、LoRA 聚合 CAR（54.83→54.67）、null 分布参数（54.67→54.58, 2.04→1.93）、pp 差值（0.33→0.17）、sigma 倍数（0.3→0.4）、效应量（3.6→3.7），本地和远程均已同步\n- **`--verify`** — 远程全部通过"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-lora-s0-cascade-all-tex.md"
+}

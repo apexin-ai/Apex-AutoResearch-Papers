@@ -1,0 +1,42 @@
+{
+  "exp_id": "eval_a1_lora_object_v11",
+  "project": "diff_collision_sdf",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T15:23:46.462Z",
+    "updated_at": "2026-05-22T15:54:57.826Z",
+    "hypothesis": "A1 (SDF auxiliary loss + LoRA, no runtime refinement) eval on safelibero_object — tests whether SDF auxiliary training signal alone improves CAR over LoRA baseline. If A1 CAR > baseline, SDF training signal is beneficial and A3 failure is specific to runtime refinement. Critical diagnostic for separating training-time vs inference-time SDF contributions.",
+    "parent": "a1_lora_object_pudding_s0",
+    "spec": {
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/a1_sdf_object_pudding/a1_lora_object_pudding_seed0/best",
+      "log_path": "/tmp/eval_a1_lora_object_v11.log",
+      "result_json": "/root/autodl-tmp/eval_results/eval_safelibero_object_all_levelII_best_lora_baseline_seed0.json",
+      "server": "westd-35807",
+      "model_type": "lora_baseline",
+      "n_episodes": 50,
+      "seed": 0
+    },
+    "metrics": {
+      "TSR": 0,
+      "CAR_avg": 90,
+      "CAR_task0": 96,
+      "CAR_task1": 80,
+      "CAR_task2": 94,
+      "CAR_task3": 90,
+      "displacement_avg": 0.0027,
+      "displacement_task0": 0.0017,
+      "displacement_task1": 0.0076,
+      "displacement_task2": 0.0008,
+      "displacement_task3": 0.0008,
+      "n_episodes": 200
+    },
+    "notes": "A1 CAR 90% vs LoRA baseline 82% (+8pp) — SDF auxiliary training signal has clear positive effect on collision avoidance. Biggest gain on task1 chocolate_pudding: 46%→80% (+34pp). Also beats full-FT baseline (83%). A3 runtime refinement hurts: 74.5% vs A1's 90%, confirming refinement module is the bottleneck, not the SDF training signal. TSR=0% (same as LoRA baseline). Displacement greatly reduced (0.0027m vs baseline 0.01m). Result JSON: /root/autodl-tmp/eval_results/eval_safelibero_object_all_levelII_best_lora_baseline_seed0.json",
+    "conclusion": "success",
+    "completed_at": "2026-05-22T15:54:57.826Z"
+  },
+  "timestamp": "2026-05-22T15:54:57.881156+00:00",
+  "trigger": "update_registry"
+}

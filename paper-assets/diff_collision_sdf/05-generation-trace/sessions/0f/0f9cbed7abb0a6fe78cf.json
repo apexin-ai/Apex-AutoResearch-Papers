@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0f9cbed7abb0a6fe78cf",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "paper sync verify compile final",
+  "task_key": "worker_paper_sync-verify-compile-final_20260528T015813",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_sync-verify-compile-final_20260528T015813_result.json",
+    "occurrence": 1,
+    "bytes": 1638,
+    "sha256": "864dd24e5acd7caa8f8824b82846606fb25e1d0902e10c2250c06beb5de18615"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。产出报告：\n\n---\n\n### 1. paper_switch.py 模板更新\n\n**old 字符串全部重写**（12→11 项，删除 footnote 替换）：\n- tex 文件已处于 Scenario B switched 状态 → 所有 `old` 更新为当前 tex 内容\n- 删除了 `claim3 L24 footnote` 替换（footnote 已不存在）\n- `discussion L12` 重新锚定到 `\"Full-body SDF remains untested.\"` 而非已删除的 $n=2$ 文本\n\n**baseline reeval 值更新**（old + new 两侧）：\n- `${\\sim}$28 percentage points` → `${\\sim}$26 percentage points`（abstract L5, claim3 L27）\n- `26.8\\% $\\to$ 54.67\\%` → `28.5\\% $\\to$ 54.67\\%`（claim3 L27 body, 两个 scenario）\n- `$+$28\\,pp` → `$+$26\\,pp`（abstract L5 C, claim3 L7 C, claim3 L32-33 C）\n\n**λ=0.1 三种子值更新**（old 侧）：\n- `58.25\\,$\\pm$\\,0.35` / `n=2` → `57.00\\,$\\pm$\\,2.18` / `n=3`（table row, dose-response, fig caption）\n- `$p \\approx 0.071$` → `$p = 0.131$`（dose-response, fig caption, discussion L6）\n\n### 2. Verify 结果\n\n```\nScenario B: 10/10 OK\nScenario C: 11/11 OK\n```\n\n### 3. PDF 编译\n\n- **状态**: 成功，无 fatal error\n- **页数**: 16 页\n- **大小**: 563 KB\n- **Warning**: 2× float specifier `h→ht`, 1× underfull vbox, 1× underfull hbox — 均为 trivial layout warnings\n\n### 注意事项\n\n- **discussion.tex** 仍有 3 个旧值未更新：`${\\sim}$28\\,pp`(L6)、`${\\sim}$21--23\\,pp`(L12)、`0.51--0.57`(L12)。这些不在 paper_switch.py 替换范围内，需手动更新。\n- **introduction.tex L27** bullet item 仍写 `$n = 2$`，应更新为 3-seed 表述。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-sync-verify-compile-final.md"
+}

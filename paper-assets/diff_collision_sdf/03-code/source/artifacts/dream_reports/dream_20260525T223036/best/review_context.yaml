@@ -1,0 +1,680 @@
+narrative_guidance: 'SDF 归因完全成立（LoRA-only CAR ≈ baseline → +25pp 全归 SDF），Phase 2 λ=0
+  成功恢复 task performance 同时保留 safety encoding，OpenVLA 作为第 3 model family 确认 fake safety
+  跨架构存在，spatial_bowl 确认 SDF 效果跨场景一致。论文从 diagnostic paper 升级为 diagnostic + partial
+  solution paper，Claim 4 升级为 "two-phase safety training strategy"。 acceptance 估算 65-75%。
+
+  '
+imagined_experiments:
+- name: A1 EE Displacement Re-eval (50ep)
+  plan_id: plan_001
+  description: '用修复后脚本重跑 A1 (Pi0+LoRA+SDF) eval 50 episodes，提取 EE displacement 验证
+    Claim 1 的 action collapse 判定在 EE 指标上同样成立。
+
+    '
+  expected_results:
+    avg_TSR: 0
+    avg_CAR: 91
+    n_episodes: 50
+    avg_max_ee_displacement: 0.0018
+    median_ee_displacement: 0.0005
+    ee_disp_lt_1mm_pct: 0.96
+    fake_safe_pct_ee_metric: 0.98
+    safe_episodes: 46
+    safe_with_ee_disp_lt_1mm: 45
+  result_rationale: 'A1 (Pi0+LoRA+SDF) 在 800ep 研究中已确认 TSR=0% 和 99.6% 的 obstacle displacement
+    < 0.1mm。 这是 action collapse——机器人冻结在初始位置。EE displacement 必然也极低，因为 action collapse
+    意味着整个机器人（包括末端执行器）几乎不动。EE displacement 中位数约 0.5mm 对应机器人仅有的 微小抖动/噪声。96% 的 safe episodes
+    EE displacement < 1mm 进一步确认 "safe" ≠ "avoiding" 而是 "frozen"。50ep 足以验证这一 pattern
+    的统计显著性（binomial 95% CI 覆盖 800ep 结果）。
+
+    '
+  tables:
+  - name: 'Table: A1 EE Displacement vs Obstacle Displacement Comparison'
+    columns:
+    - Metric
+    - Obstacle Disp (800ep)
+    - EE Disp (50ep)
+    rows:
+    - - Avg safe episode disp
+      - 0.002mm
+      - 1.8mm
+    - - Median safe episode disp
+      - ~5nm
+      - 0.5mm
+    - - '% safe eps < 0.1mm'
+      - 99.6%
+      - 96%
+    - - Fake safe rate
+      - 99.6%
+      - 98%
+    - - TSR
+      - 0%
+      - 0%
+    - - CAR
+      - 91.5%
+      - 91%
+  figures_description:
+  - 'Fig 2 补充数据: A1 EE displacement 分布直方图（50ep），与 Pi0.5+A1 的 EE disp ~0.5m 形成鲜明对比'
+  analysis: 'EE displacement 与 obstacle displacement 高度一致，均确认 action collapse。 两个独立指标的交叉验证加强
+    Claim 1 的证据链。50ep 结果与 800ep 统计一致， 不需要 full re-eval (plan_011 决策依据)。
+
+    '
+- name: OpenVLA Zero-shot SafeLIBERO Eval
+  plan_id: plan_002
+  description: 'OpenVLA-7B 在 object_pudding 场景 200 episodes zero-shot 评估， 验证 fake
+    safety 在第三 model family（LLaVA-based VLA）上是否存在。
+
+    '
+  expected_results:
+    avg_TSR: 5
+    avg_CAR: 88
+    n_episodes: 200
+    task0_TSR: 2
+    task0_CAR: 94
+    task1_TSR: 14
+    task1_CAR: 76
+    task2_TSR: 4
+    task2_CAR: 96
+    task3_TSR: 0
+    task3_CAR: 86
+    avg_max_obstacle_displacement: 0.008
+    avg_max_ee_displacement: 0.065
+    fake_safe_rate: 0.92
+    geometric_path_safe_rate: 0.05
+    real_safe_rate: 0.03
+    action_collapse_episodes_pct: 0.55
+    geometric_safe_episodes_pct: 0.37
+  result_rationale: 'OpenVLA-7B 是 7B 参数的 LLaVA-based VLA，zero-shot 在 SafeLIBERO 上未经微调。
+    模型能力显著弱于 Pi0.5 (300M flow matching)，预期 TSR 极低 (~5%)。 低 TSR 导致高 CAR 的机制有两种：(1)
+    ~55% episodes 出现 action collapse——OpenVLA 的 action tokenization 在 out-of-distribution
+    环境中产生重复/零动作序列， 机器人冻结，displacement 极低；(2) ~37% episodes 产生保守的几何路径——模型输出 缓慢、短距离动作，恰好避开障碍物但不是有意避障。两种机制都是
+    fake safety。 仅 ~3% 的 safe episodes 展示真实避障行为（EE displacement > 0.1m 且明确绕障碍物）。 这一结果确认
+    fake safety 不是 Pi0 系列特有的——它是评估指标被低能力模型系统性 污染的普遍问题，跨越 diffusion-based (Pi0) 和 autoregressive
+    token-based (OpenVLA) 两种架构。
+
+    '
+  tables:
+  - name: 'Table: Cross-Model Fake Safety Comparison'
+    columns:
+    - Model
+    - Architecture
+    - Params
+    - TSR%
+    - CAR%
+    - Fake Safe%
+    - Primary Mechanism
+    rows:
+    - - Pi0 (A1)
+      - Flow Matching
+      - ~170M
+      - '0'
+      - '91.5'
+      - '99.6'
+      - Action collapse
+    - - Pi0.5 (baseline)
+      - Flow Matching
+      - ~300M
+      - '74.7'
+      - '26.8'
+      - 98.2*
+      - Geometric path
+    - - OpenVLA-7B
+      - AR Token
+      - 7B
+      - '5'
+      - '88'
+      - '92'
+      - Mixed collapse+geometric
+    footer: '*Pi0.5 fake_safe 统计基于 safe episodes 的 displacement 分布; safe episodes
+      总数少 (56/200)'
+  - name: 'Table: OpenVLA Per-Task Results'
+    columns:
+    - Task
+    - TSR%
+    - CAR%
+    - Avg Obstacle Disp (mm)
+    - Avg EE Disp (m)
+    - Dominant Fake Mode
+    rows:
+    - - orange_juice
+      - '2'
+      - '94'
+      - '1.2'
+      - '0.032'
+      - Action collapse
+    - - chocolate_pudding
+      - '14'
+      - '76'
+      - '18.5'
+      - '0.112'
+      - Geometric path
+    - - milk
+      - '4'
+      - '96'
+      - '0.8'
+      - '0.028'
+      - Action collapse
+    - - bbq_sauce
+      - '0'
+      - '86'
+      - '3.1'
+      - '0.088'
+      - Mixed
+  figures_description:
+  - 'Fig 3 数据点: OpenVLA 在 TSR-CAR scatter 上位于左上角 (低TSR高CAR)，与 Pi0 A1 cluster 相邻'
+  - 'Fig 1 补充: OpenVLA action 序列可视化——collapse episodes 的 action norm 时间序列趋近零'
+  analysis: 'OpenVLA 作为第 3 model family 确认 fake safety 跨架构存在。值得注意的是 OpenVLA 展示了两种
+    fake safety 机制的混合——既有 Pi0 式的 action collapse（OOD 环境下 action decoder 退化）也有 Pi0.5
+    式的 geometric path safety（保守动作恰好避障）。 这支持 Claim 1 的泛化：fake safety 不是特定训练方法或架构的 artifact，而是
+    CAR 指标本身对低活动量 episode 的系统性偏差。3 model families 跨 2 种架构 均展示 fake safety，应对 R1 reviewer
+    concern。
+
+    '
+- name: LoRA Baseline Eval (2 seeds)
+  plan_id: plan_003
+  description: 'Pi0.5 + LoRA (无 SDF loss) 训练到 30K 后 eval 2 seeds，确定 LoRA-only CAR，
+    决定 SDF 的归因强度。
+
+    '
+  expected_results:
+    seed0_TSR: 70
+    seed0_CAR: 28
+    seed1_TSR: 72
+    seed1_CAR: 26
+    avg_TSR: 71
+    avg_CAR: 27
+    n_episodes_per_seed: 200
+    seed0_ee_displacement: 0.148
+    seed1_ee_displacement: 0.155
+    seed0_fake_safe_pct: 0.98
+    seed1_fake_safe_pct: 0.97
+    seed0_task0_TSR: 60
+    seed0_task0_CAR: 8
+    seed0_task1_TSR: 82
+    seed0_task1_CAR: 50
+    seed0_task2_TSR: 68
+    seed0_task2_CAR: 16
+    seed0_task3_TSR: 70
+    seed0_task3_CAR: 38
+  result_rationale: 'LoRA-only 训练在 Pi0.5 上增加了 LoRA adapter 参数但不加 SDF 损失。 Pi0.5 zero-shot
+    baseline CAR=26.8±1.6%，TSR=74.7±1.5%。LoRA fine-tuning 在 SafeLIBERO task distribution
+    上训练，主要影响 action prediction 质量而非安全行为。 CAR ≈ 27% 与 zero-shot baseline 基本一致的原因：(1)
+    LoRA 容量主要被 task adaptation 消耗——学习特定物体的抓取策略，不改变碰撞回避行为；(2) 碰撞回避是 geometric property（路径是否经过障碍物），LoRA
+    微调不引入新的空间约束信息；(3) TSR 微降 至 ~71% 可能是 LoRA 容量不足导致轻微性能下降，但 CAR 不受影响因为 collision pattern
+    取决于路径几何而非任务成功率。 这一结果使 SDF delta = 52% - 27% = +25pp 全部归因于 SDF auxiliary loss，
+    确立 "geometric supervision is the driver" 叙事——最强归因场景。
+
+    '
+  tables:
+  - name: 'Table: LoRA Attribution Analysis'
+    columns:
+    - Condition
+    - TSR%
+    - CAR%
+    - EE Disp (m)
+    - SDF Delta CAR
+    rows:
+    - - Pi0.5 zero-shot (3-seed)
+      - 74.7±1.5
+      - 26.8±1.6
+      - '0.151'
+      - —
+    - - Pi0.5 + LoRA (2-seed)
+      - 71±1.4
+      - 27±1.4
+      - '0.152'
+      - —
+    - - Pi0.5 + LoRA + SDF λ=0.005 (3-seed)
+      - 6.8±1.8
+      - 52±2.1
+      - '0.498'
+      - +25pp
+    - - Pi0.5 + LoRA + SDF λ=0.01 (3-seed)
+      - 6.8±1.0
+      - 52.8±0.3
+      - ~0.50
+      - +25.8pp
+    footer: SDF Delta CAR = SDF condition CAR - LoRA-only CAR; all differences attributable
+      to SDF auxiliary loss
+  - name: 'Table: Per-Task LoRA vs SDF Comparison (seed0, λ=0.005)'
+    columns:
+    - Task
+    - LoRA TSR%
+    - LoRA CAR%
+    - SDF TSR%
+    - SDF CAR%
+    - CAR Delta
+    rows:
+    - - orange_juice
+      - '60'
+      - '8'
+      - '2'
+      - '58'
+      - +50pp
+    - - chocolate_pudding
+      - '82'
+      - '50'
+      - '20'
+      - '42'
+      - -8pp
+    - - milk
+      - '68'
+      - '16'
+      - '0'
+      - '86'
+      - +70pp
+    - - bbq_sauce
+      - '70'
+      - '38'
+      - '0'
+      - '14'
+      - -24pp
+  figures_description:
+  - 'Fig 5 关键数据: LoRA baseline 作为 λ=0 点，与 λ=0.005/0.01 构成 lambda-CAR 曲线的起点'
+  - 'Fig 3 数据点: LoRA baseline 在 TSR-CAR scatter 上与 Pi0.5 zero-shot 重叠，确认 LoRA ≠ safety'
+  analysis: 'LoRA-only CAR ≈ 27% 与 Pi0.5 zero-shot baseline 几乎完全一致（在 1.6% 的 seed 方差内），
+    证明 LoRA fine-tuning 不影响碰撞回避行为。SDF +25pp 的全部增量可归因于 geometric SDF supervision。这是最强归因场景，支持
+    Claim 4 的核心论点。 per-task 分析揭示有趣的不对称性：task2 (milk) 的 SDF 增益最大 (+70pp) 而 task3 (bbq_sauce)
+    反而下降 (-24pp)，可能与障碍物体积/位置相关—— 这一 pattern 与 Claim 3 (EE-only SDF limitation) 一致。
+
+    '
+- name: Phase 2 λ=0 Ablation Training
+  plan_id: plan_005
+  description: '从 10K SDF checkpoint (seed2) resume 训练 with λ=0 (无 SDF loss)， 训练 20K
+    步至 30K。验证 safety encoding 能否在去除 SDF loss 后持久保留。
+
+    '
+  expected_results:
+    steps_completed: 30000
+    resume_from_step: 10000
+    phase1_checkpoint: 10K_s2_l005
+    final_action_loss: 0.0068
+    best_action_loss: 0.0062
+    best_action_loss_step: 26000
+    training_stable: true
+    loss_trajectory: action loss 从 10K resume 的 ~0.012 快速下降至 ~0.008 (16K), 然后缓慢收敛至
+      0.0068 (30K)
+    wall_time_hours: 22
+  result_rationale: 'Phase 1 (0-10K, λ=0.005) 在模型中建立了 SDF-aware 的内部表征——LoRA adapter
+    中编码了障碍物的空间信息。当 Phase 2 移除 SDF loss (λ=0) 后，action loss 从 Phase 1 结束时的 ~0.012 开始，因为
+    SDF loss 的 multitask regularization 被移除后 action prediction 有更多优化空间。loss 快速下降至
+    ~0.008 表明模型 正在 "重新学习" task execution——Phase 1 的 SDF 训练抑制了部分 action quality， Phase
+    2 恢复之。训练稳定无 divergence 因为底层 flow matching 架构是 well-conditioned 的，移除一个 auxiliary
+    loss 只是简化了优化目标。loss 收敛到 0.0068 接近但 不完全达到 LoRA-only baseline 的 ~0.005 水平，暗示 Phase
+    1 的权重修改 引入了持久性的 inductive bias——这正是 safety encoding 保留的信号。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: '训练曲线的 shape 本身就是 evidence：loss 快速下降说明 task performance 在恢复， 但未收敛到 LoRA-only
+    baseline 水平说明 Phase 1 的影响是持久的。 这为 Phase 2 eval (plan_006) 的 "TSR 恢复 + CAR 保留"
+    预测提供基础。
+
+    '
+- name: Phase 2 λ=0 Eval
+  plan_id: plan_006
+  description: 'Phase 2 训练完成后 eval 200 episodes，提取 TSR/CAR/EE displacement， 验证 two-phase
+    safety encoding hypothesis。
+
+    '
+  expected_results:
+    avg_TSR: 48
+    avg_CAR: 45
+    n_episodes: 200
+    avg_max_ee_displacement: 0.42
+    fake_safe_pct: 0.05
+    task0_TSR: 38
+    task0_CAR: 52
+    task0_ee_disp: 0.44
+    task1_TSR: 68
+    task1_CAR: 38
+    task1_ee_disp: 0.45
+    task2_TSR: 42
+    task2_CAR: 72
+    task2_ee_disp: 0.48
+    task3_TSR: 44
+    task3_CAR: 18
+    task3_ee_disp: 0.32
+  result_rationale: 'Phase 2 (10K SDF → 30K λ=0) 实现了 two-phase safety encoding 的核心假设：
+    (1) TSR 从 Phase 1 的 ~9% 恢复至 48%——不完全恢复至 baseline 73% 是因为 Phase 1 的 10K 步 SDF 训练修改了
+    LoRA 权重的 initialization landscape， 后续 20K 步 λ=0 训练只能部分恢复，但已显著优于 continuous SDF；
+    (2) CAR 从 Phase 1 的 ~55% 降至 45%——下降 10pp 说明约 20% 的 safety behavior 是需要持续 SDF supervision
+    维持的（loss-driven avoidance），但 80% 的 safety 已经 "内化" 到模型表征中； (3) EE displacement
+    ~0.42m 确认机器人在积极运动——这不是 action collapse， 而是真实的 "完成任务同时避障"； (4) fake_safe 仅 5% (对比
+    baseline 98%)——safety 是 real 的。 per-task pattern 与 SDF 训练一致：task2 (milk) CAR 最高
+    (72%)，task3 (bbq_sauce) 最低 (18%)，说明 Phase 1 编码的 safety pattern 在 task 维度上保持一致。
+    TSR 48% + CAR 45% 同时满足 ≥40% threshold，触发论文升级。
+
+    '
+  tables:
+  - name: 'Table 2: Phase 2 λ=0 Ablation Results'
+    columns:
+    - Phase
+    - λ
+    - Steps
+    - TSR%
+    - CAR%
+    - EE Disp (m)
+    - Fake Safe%
+    rows:
+    - - Baseline (LoRA-only)
+      - —
+      - 30K
+      - '71'
+      - '27'
+      - '0.15'
+      - '98'
+    - - Phase 1 only (SDF)
+      - '0.005'
+      - 10K
+      - '9'
+      - '55.5'
+      - '0.50'
+      - '0'
+    - - Phase 1 only (SDF)
+      - '0.005'
+      - 30K
+      - '6.8'
+      - '52'
+      - '0.50'
+      - '0'
+    - - Phase 2 (SDF→λ=0)
+      - 0.005→0
+      - 10K+20K
+      - '48'
+      - '45'
+      - '0.42'
+      - '5'
+    - - Pi0.5 zero-shot
+      - —
+      - —
+      - '74.7'
+      - '26.8'
+      - '0.15'
+      - '98'
+    footer: Phase 2 同时达到 TSR≥40% 和 CAR≥40%，确认 two-phase safety encoding
+  - name: 'Table 2b: Phase 2 Per-Task Breakdown'
+    columns:
+    - Task
+    - Phase1 TSR%
+    - Phase2 TSR%
+    - Recovery
+    - Phase1 CAR%
+    - Phase2 CAR%
+    - Retention
+    rows:
+    - - orange_juice
+      - '0'
+      - '38'
+      - +38pp
+      - '68'
+      - '52'
+      - 76%
+    - - chocolate_pudding
+      - '36'
+      - '68'
+      - +32pp
+      - '44'
+      - '38'
+      - 86%
+    - - milk
+      - '0'
+      - '42'
+      - +42pp
+      - '92'
+      - '72'
+      - 78%
+    - - bbq_sauce
+      - '0'
+      - '44'
+      - +44pp
+      - '18'
+      - '18'
+      - 100%
+    - - Average
+      - '9'
+      - '48'
+      - +39pp
+      - '55.5'
+      - '45'
+      - 81%
+  figures_description:
+  - 'Fig 3 关键数据点: Phase 2 在 TSR-CAR scatter 上位于中部偏右上 (TSR=48, CAR=45)，打破 TSR-CAR 反相关
+    trend'
+  - 'Table 2 候选 camera-ready: Phase 2 ablation 结果矩阵'
+  - 'Fig 5 λ-curve 补充: Phase 2 作为 ''two-phase'' 策略点，超越单一 λ 的 Pareto frontier'
+  analysis: 'Phase 2 结果是论文最重要的升级触发器。TSR=48% + CAR=45% 同时满足阈值条件， 证明 "safety encoding
+    可以在 Phase 1 (SDF) 中建立，在 Phase 2 (标准训练) 中保留，同时恢复大部分 task performance"。CAR 保留率 81%
+    (45/55.5) 说明 绝大部分 safety 已被内化。这直接化解 R3 (no solution) 和 R5 (tradeoff too extreme)
+    两个 reviewer concerns。论文 Claim 4 从 "real but extreme safety" 升级为 "two-phase training
+    strategy that retains safety while recovering task performance"。 论文定位从纯 diagnostic
+    paper 升级为 diagnostic + partial solution paper。
+
+    '
+- name: spatial_bowl A1 Eval
+  plan_id: plan_008
+  description: 'Pi0.5+A1 SDF (λ=0.005) 在 spatial_bowl 场景训练完成后 eval 200 episodes， 验证
+    SDF 效果跨场景一致性。
+
+    '
+  expected_results:
+    avg_TSR: 12
+    avg_CAR: 45
+    n_episodes: 200
+    avg_max_ee_displacement: 0.43
+    fake_safe_pct: 0.02
+    task0_TSR: 8
+    task0_CAR: 52
+    task0_ee_disp: 0.46
+    task1_TSR: 6
+    task1_CAR: 40
+    task1_ee_disp: 0.38
+    task2_TSR: 18
+    task2_CAR: 48
+    task2_ee_disp: 0.44
+    task3_TSR: 16
+    task3_CAR: 40
+    task3_ee_disp: 0.42
+    baseline_comparison_pi05_spatial_TSR: 57.5
+    baseline_comparison_pi05_spatial_CAR: 13
+    sdf_delta_CAR: 32
+  result_rationale: 'spatial_bowl 场景与 object_pudding 有显著差异：碗作为抓取目标放置在不同障碍物之间， 障碍物布局更分散，arm-body
+    碰撞风险更高（碗在高处需要更大的 arm sweep）。 尽管场景不同，SDF auxiliary loss 的机制是通用的——它通过 EE-obstacle
+    距离梯度 产生几何约束，这一约束不依赖特定场景布局。 CAR 从 baseline 13% 提升至 45% (+32pp) 与 object_pudding
+    的 +25pp 增量 方向一致且幅度相近，说明 SDF 效果跨场景稳定。spatial_bowl 增量略大 (+32 vs +25) 可能是因为 spatial
+    场景中障碍物更均匀分布在 workspace 中，EE-only SDF gradient 有更一致的推力方向。TSR 从 57.5% 降至 12% (降幅
+    ~79%) 与 object_pudding 的 74.7% → 7% (降幅 ~91%) 类似，确认 SDF 引入的 task performance 代价
+    具有跨场景一致性。EE displacement ~0.43m 确认是 real avoidance。 per-task 方差较 object_pudding
+    小 (task CAR 40-52% vs 14-86%)， 可能因为 spatial_bowl 的障碍物几何更均匀。
+
+    '
+  tables:
+  - name: 'Table: Cross-Scene SDF Effect'
+    columns:
+    - Scene
+    - Baseline TSR%
+    - SDF TSR%
+    - Baseline CAR%
+    - SDF CAR%
+    - CAR Delta
+    - EE Disp (m)
+    rows:
+    - - object_pudding (3-seed avg)
+      - '74.7'
+      - '6.8'
+      - '26.8'
+      - '52'
+      - +25.2pp
+      - '0.50'
+    - - spatial_bowl (seed0)
+      - '57.5'
+      - '12'
+      - '13'
+      - '45'
+      - +32pp
+      - '0.43'
+    footer: 'SDF 效果跨场景一致: 两个场景均显示 CAR 大幅提升 + TSR 大幅下降 + 0% fake safety'
+  - name: 'Table: spatial_bowl Per-Task Results'
+    columns:
+    - Task
+    - Baseline TSR%
+    - SDF TSR%
+    - Baseline CAR%
+    - SDF CAR%
+    - EE Disp (m)
+    rows:
+    - - pick_bowl_between_plate_ramekin
+      - —
+      - '8'
+      - —
+      - '52'
+      - '0.46'
+    - - pick_bowl_on_ramekin
+      - —
+      - '6'
+      - —
+      - '40'
+      - '0.38'
+    - - pick_bowl_on_stove
+      - —
+      - '18'
+      - —
+      - '48'
+      - '0.44'
+    - - pick_bowl_on_cabinet
+      - —
+      - '16'
+      - —
+      - '40'
+      - '0.42'
+  figures_description:
+  - 'Fig 3 数据点: spatial_bowl SDF 在 TSR-CAR scatter 上与 object_pudding SDF cluster 相邻'
+  - '论文 generalizability section: 2 scenes × 3 model families 的完整泛化矩阵'
+  analysis: 'spatial_bowl 结果确认 scenes_with_sdf_effect = 2/2，完成泛化验证目标。 SDF 效果在两个几何差异显著的场景中一致出现（CAR
+    +25~32pp, TSR -60~80%, EE disp ~0.4-0.5m, fake_safe ≈ 0%），说明 geometric SDF supervision
+    是 场景无关的通用机制。这直接应对 R1 reviewer concern： "2 tasks + 3 models" 的泛化覆盖 + mechanistic
+    argument 将 acceptance 推至 65-75%。
+
+    '
+- name: Lambda=0.1 Bracket Training
+  plan_id: plan_009
+  description: 'Pi0.5+A1 SDF λ=0.1 (1 seed) 训练 30K 步，构建 4-point lambda 曲线的最高点。
+
+    '
+  expected_results:
+    steps_completed: 30000
+    best_action_loss: 0.0165
+    final_total_loss: 0.025
+    sdf_loss_component: 0.008
+    training_stable: true
+    wall_time_hours: 34
+    notes: action loss 比 λ=0.005/0.01 高约 50%，因 SDF loss 权重大幅增加导致 action head 优化空间被压缩
+  result_rationale: 'λ=0.1 是 λ=0.01 的 10 倍，SDF loss 在 total loss 中占比从 ~5% 升至 ~30%。
+    这大幅压缩了 action loss 的优化预算，导致 action loss 最终值 (~0.0165) 显著高于 λ=0.005 的 ~0.008 和
+    λ=0.01 的 ~0.008。训练仍然稳定（不 diverge），因为 SDF loss 和 action loss 梯度方向不完全对抗——SDF 提供空间约束，action
+    提供 运动控制，两者在 LoRA 参数空间中有足够的正交维度。 高 action loss 预示 eval 时 TSR 将极低。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: '训练成功完成，为 4-point lambda 曲线提供最高 λ 数据点。 action loss 的递增 (λ=0: 0.005, λ=0.005:
+    0.008, λ=0.01: 0.008, λ=0.1: 0.017) 为 dose-dependent tradeoff 提供 training-time
+    证据。
+
+    '
+- name: Lambda=0.1 Eval
+  plan_id: plan_010
+  description: 'λ=0.1 训练完成后 eval 200 episodes，验证 lambda 递增是否 monotonic 提升 CAR。
+
+    '
+  expected_results:
+    avg_TSR: 1.5
+    avg_CAR: 63
+    n_episodes: 200
+    avg_max_ee_displacement: 0.38
+    fake_safe_pct: 0.08
+    task0_TSR: 0
+    task0_CAR: 72
+    task1_TSR: 6
+    task1_CAR: 56
+    task2_TSR: 0
+    task2_CAR: 94
+    task3_TSR: 0
+    task3_CAR: 30
+    obstacle_disp_mean_mm: 5.2
+  result_rationale: 'λ=0.1 的 SDF loss 权重是 λ=0.01 的 10 倍，产生更强的几何约束信号。 CAR 从 λ=0.01
+    的 ~53% 提升至 63% (+10pp)，但增幅递减（λ=0→0.005 的增幅 是 +25pp，0.005→0.01 仅 +1pp，0.01→0.1
+    为 +10pp）。这呈现 S-curve 特征： (1) 低 λ 区间 SDF 信号不足，CAR 增长缓慢； (2) 中 λ 区间 (0.005-0.01)
+    SDF 信号已足够产生核心避障行为，进一步增加 λ 边际效益下降； (3) 高 λ 区间 (0.1) 额外增益来自更保守的运动策略——EE displacement
+    从 ~0.50m 降至 0.38m 说明机器人运动幅度减小，部分 CAR 增益来自 "动得少" 而非 "更聪明地避障"。 TSR 降至 1.5% (vs λ=0.01
+    的 7%) 确认高 λ 几乎完全抑制 task execution。 fake_safe 8% 略高于 λ=0.005 的 0%——部分 episodes
+    的 EE displacement 降低到 接近 freeze threshold，暗示过高 λ 可能引入类似 action collapse 的退化。
+
+    '
+  tables:
+  - name: 'Table: 4-Point Lambda Curve (Fig 5 data)'
+    columns:
+    - λ
+    - TSR%
+    - CAR%
+    - EE Disp (m)
+    - Fake Safe%
+    - ΔCAR vs LoRA
+    rows:
+    - - 0 (LoRA-only)
+      - '71'
+      - '27'
+      - '0.15'
+      - '98'
+      - —
+    - - '0.005'
+      - '6.8'
+      - '52'
+      - '0.50'
+      - '0'
+      - +25pp
+    - - '0.01'
+      - '6.8'
+      - '53'
+      - '0.50'
+      - '0'
+      - +26pp
+    - - '0.1'
+      - '1.5'
+      - '63'
+      - '0.38'
+      - '8'
+      - +36pp
+    footer: CAR 随 λ 单调递增但边际递减; TSR 单调递减; EE disp 在 λ=0.1 时下降暗示过度保守
+  figures_description:
+  - 'Fig 5: Lambda-CAR/TSR dual-axis 曲线——4 个 λ 点清晰展示 dose-dependent 关系'
+  - 'Fig 5 inset: Lambda vs EE displacement 展示运动保守化趋势'
+  analysis: '4-point lambda 曲线是论文方法贡献的关键图表。它展示： (1) SDF 效果是 dose-dependent 的——safety
+    随 λ 单调增加； (2) 边际递减——λ=0.005 已捕获大部分 safety 增益 (25/36 = 69%)； (3) 过高 λ 引入新的退化模式（运动过于保守）；
+    (4) 最优 tradeoff 可能在 λ=0.005~0.01 区间，结合 Phase 2 进一步优化。 这支持论文的实用建议：使用中等 λ + Phase
+    2 策略而非高 λ。
+
+    '
+- name: Claim 1 Full Re-eval Decision
+  plan_id: plan_011
+  description: '基于 plan_001 的 50ep 结果，决定是否需要 full 800ep A1 re-eval with fixed script。
+
+    '
+  expected_results:
+    decision: 50ep 足够，不需要 full re-eval
+    rationale_for_decision: 50ep EE displacement 确认与 800ep obstacle displacement 结论一致
+    gpu_hours_saved: 10
+    confidence: 0.95
+  result_rationale: 'plan_001 的 50ep 结果（EE disp ~0.002m, fake_safe ~98%）与 800ep 的
+    obstacle displacement 结果（99.6% fake safe）高度一致。两个独立指标交叉验证了 action collapse 的判定。50ep
+    的 binomial 95% CI 为 [89%, 100%] 对 fake_safe_rate，包含 800ep 的点估计 99.6%。统计上没有理由认为
+    full re-eval 会改变结论。 800ep 的 obstacle displacement 数据本身已经是论文级的证据强度（per-episode
+    分析、per-task breakdown、displacement 分布）。EE displacement 作为补充指标 只需要 sanity check
+    级别的验证（50ep），不需要完整重复。 节省 ~10 GPU hours 可用于更高优先级的实验（如 Phase 2 additional seeds 或
+    lambda=0.1 bracket）。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: 这是一个资源优化决策。在 best tier 下，50ep 已提供充分信息， full re-eval 的边际信息价值低于机会成本。Claim
+    1 的证据基础 已足够强：800ep obstacle displacement + 50ep EE displacement + TSR=0% 三重验证。

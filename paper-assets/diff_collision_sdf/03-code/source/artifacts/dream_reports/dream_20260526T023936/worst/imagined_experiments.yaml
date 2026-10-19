@@ -1,0 +1,706 @@
+tier: worst
+narrative_guidance: 'SDF 冗余结论在高 lambda 被推翻：Lambda=0.1 显示 SDF 确有 additive contribution
+  (+5-12pp CAR)， 但仅在高剂量下显现。LoRA seed2 CAR 偏低(40-48%)拉低 3-seed mean 至 ~50%，使得 3v3 对比中
+  SDF delta 变为正且显著。Phase 2 展示 two-phase strategy 可行(CAR 65-75%, TSR 30-55%)。 spatial_bowl
+  与 object_pudding pattern 不一致，跨场景 claim 无法做。 论文必须从 "SDF is redundant" reframe 为 decomposition
+  framing 或 two-phase discovery。 Claims 1-3 不变，Claim 4 从 negative finding 变为 nuanced
+  finding。CoRL 估算 40-50%。
+
+  '
+imagined_experiments:
+- name: Claim 1 A1 EE displacement re-eval
+  plan_id: plan_001
+  description: 用修复后脚本重跑 A1 model eval (50 episodes)，获取真实 EE displacement 验证 Claim
+    1
+  expected_results:
+    avg_TSR: 0
+    avg_CAR: 91
+    avg_ee_displacement: 0.012
+    fake_safe_rate: 0.994
+    n_episodes: 50
+  result_rationale: '此实验结果与档位无关——A1 的 action collapse 是模型固有属性，不受 SDF 归因档位影响。 A1 在
+    Pi0 上 30K 训练后 TSR=0%，EE displacement 极低(~12mm 均值，来自碰撞 episode 拉高)， 安全 episode
+    中 EE displacement 仍为微米级。800ep 已有数据的 50ep 子采样会高度一致。 此数据仅补充 EE displacement 字段，不改变
+    Claim 1 结论。
+
+    '
+  tables:
+  - name: A1 Re-eval EE Displacement Summary
+    columns:
+    - Metric
+    - Value
+    rows:
+    - - TSR
+      - 0%
+    - - CAR
+      - 91%
+    - - EE Disp (safe eps)
+      - 0.005mm
+    - - EE Disp (collision eps)
+      - 45mm
+    - - Fake Safe Rate
+      - 99.4%
+  figures_description:
+  - EE displacement 分布直方图：safe episodes 集中在 <0.01mm，collision episodes 在 10-280mm，双峰分布
+  analysis: 'A1 re-eval 仅为术语验证——确认 EE displacement 与 obstacle displacement 一致地证明 action
+    collapse。 结果完全在预期内，不影响任何 claim 的强度。
+
+    '
+- name: OpenVLA zero-shot SafeLIBERO eval
+  plan_id: plan_002
+  description: Base OpenVLA-7B 在 object_pudding 上 200 episodes zero-shot eval
+  expected_results:
+    avg_TSR: 0
+    avg_CAR: 88
+    fake_safe_rate: 0.99
+    avg_ee_displacement: 0.008
+    n_episodes: 200
+  result_rationale: 'OpenVLA-7B 作为较弱的 VLA，在 SafeLIBERO 上 zero-shot 几乎肯定 TSR≈0%(任务失败)。
+    与 Pi0 类似，低能力模型 → action collapse/极少运动 → 高 CAR 但全是 fake safety。 这将确认 fake safety
+    跨第三个 model family 存在，但模型下载损坏使此实验 BLOCKED。 worst 档位下此数据缺失意味着 generalizability claim
+    仅有 2 model families， reviewer R1 攻击面更大。
+
+    '
+  tables:
+  - name: OpenVLA Zero-shot Results (Projected)
+    columns:
+    - Metric
+    - Pi0 A1
+    - Pi0.5 Baseline
+    - OpenVLA (projected)
+    rows:
+    - - TSR
+      - 0%
+      - 73%
+      - 0%
+    - - CAR
+      - 91.5%
+      - 28%
+      - 88%
+    - - Fake Safe
+      - 99.6%
+      - 98.2%
+      - ~99%
+    - - EE Disp
+      - 0.003mm
+      - 151mm
+      - ~8mm
+  figures_description:
+  - 三 model family 的 TSR-CAR scatter plot，展示 fake safety 跨模型普遍性
+  analysis: 'BLOCKED 状态。即使能跑，OpenVLA 的 zero-shot 结果大概率确认 fake safety pattern。 论文需在
+    limitation 中 acknowledge 仅 2 model families。对 CoRL 接受率影响 -5-10pp。
+
+    '
+- name: LoRA baseline eval (2 seeds)
+  plan_id: plan_003
+  description: 已完成训练的 LoRA-only 2 seeds eval，确定 LoRA-only CAR
+  expected_results:
+    seed0_TSR: 8.5
+    seed0_CAR: 54.5
+    seed1_TSR: 4.0
+    seed1_CAR: 56.0
+    avg_TSR: 6.25
+    avg_CAR: 55.25
+    avg_ee_displacement: 0.478
+    frozen_pct: 0
+  result_rationale: 'plan_003 已有实际数据(eval_lora_baseline_30k_s0_v2, eval_lora_baseline_30k_s1_v2)。
+    2-seed 均值 CAR=55.25%，EE displacement ~0.48m，0% frozen，确认真实避障。 但 worst 档的关键在于 seed2(plan_013)
+    将显著拉低均值。此处 2-seed 数据本身是 confirmed。
+
+    '
+  tables:
+  - name: LoRA Baseline 2-seed Eval
+    columns:
+    - Seed
+    - TSR
+    - CAR
+    - EE Disp
+    - Frozen%
+    rows:
+    - - s0
+      - 8.5%
+      - 54.5%
+      - 0.489m
+      - 0%
+    - - s1
+      - 4.0%
+      - 56.0%
+      - 0.467m
+      - 0%
+    - - Mean
+      - 6.25%
+      - 55.25%
+      - 0.478m
+      - 0%
+  figures_description: []
+  analysis: '已有确认数据。在 worst 档下，这 2 seeds 本身不变，但 seed2 的加入将改变 3-seed mean。
+
+    '
+- name: LoRA baseline training (2 seeds)
+  plan_id: plan_004
+  description: Pi0.5 + LoRA only 训练到 30K
+  expected_results:
+    status: DONE
+    final_loss_s0: 0.01343
+    final_loss_s1: 0.01408
+    best_loss_s0: 0.01025
+    best_loss_s1: 0.0113
+  result_rationale: '已完成。训练 loss 收敛正常，两个 seed loss 一致。 worst 档不影响已完成训练的结果。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: 训练已完成，结果已确认。
+- name: Phase 2 lambda=0 ablation (seed2)
+  plan_id: plan_005
+  description: 从 10K SDF checkpoint resume 训练 with lambda=0，验证 safety encoding persist
+    + task recovery
+  expected_results:
+    final_loss: 0.0098
+    best_loss: 0.0085
+    steps_completed: 30000
+    training_stable: true
+  result_rationale: 'Phase 2 从 SDF 10K checkpoint resume，去除 SDF loss 后 action loss
+    会迅速下降回接近 LoRA-only 水平(~0.01)，因为模型不再受 SDF 辅助 loss 的 gradient 干扰。 训练本身应稳定收敛。worst
+    档的影响在 eval 阶段体现，不在训练阶段。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: 训练过程本身应正常。关键在 eval(plan_006)。
+- name: Phase 2 lambda=0 eval
+  plan_id: plan_006
+  description: Phase 2 训练完成后 eval，提取 TSR/CAR/EE displacement
+  expected_results:
+    avg_TSR: 42.0
+    avg_CAR: 68.0
+    avg_ee_displacement: 0.42
+    frozen_pct: 0
+    dfCAR_100mm: 68.0
+    per_task:
+      task0_TSR: 22
+      task0_CAR: 72
+      task1_TSR: 78
+      task1_CAR: 62
+      task2_TSR: 8
+      task2_CAR: 90
+      task3_TSR: 60
+      task3_CAR: 38
+  result_rationale: 'worst 档核心假设：Phase 2 CAR 显著高于 LoRA-only (65-75%) 且 TSR 部分恢复 (30-55%)。
+    这里预测 CAR=68%，比 LoRA-only 3-seed mean (~50%) 高 +18pp，比 SDF 3-seed mean (~52%) 高
+    +16pp。TSR=42% 从 LoRA-only 的 6% 大幅恢复，虽远不及 baseline 73%，但证明 two-phase strategy 可部分恢复
+    task capability。
+
+    机制解释：10K 步 SDF 训练在模型权重中编码了 geometric awareness 的某种残留表征。 当 Phase 2 去除 SDF loss
+    后，模型在 task loss 驱动下恢复 task capability，但 SDF 期间学到的避障倾向作为 inductive bias 被保留——类似
+    curriculum learning 效应。 这与 worst 档 "SDF 确有贡献" 的叙事一致：SDF 不是冗余的，而是作为训练 curriculum
+    的一部分有独立贡献。
+
+    per-task pattern 与 SDF/LoRA 部分一致(task2 milk 仍高 CAR，task3 bbq 仍低)， 但 TSR 恢复主要在
+    task1(chocolate_pudding) 和 task3，因为这些任务的 task completion 路径与避障路径冲突较小。
+
+    '
+  tables:
+  - name: Phase 2 vs LoRA-only vs SDF Comparison
+    columns:
+    - Condition
+    - CAR
+    - TSR
+    - EE Disp
+    - Frozen%
+    rows:
+    - - LoRA-only (3-seed)
+      - ~50%
+      - ~5%
+      - 0.47m
+      - 0%
+    - - SDF l=0.005 (3-seed)
+      - 52.3%
+      - 6.3%
+      - 0.50m
+      - 0%
+    - - Phase 2 l=0 (seed2)
+      - 68%
+      - 42%
+      - 0.42m
+      - 0%
+    - - Pi0.5 baseline (3-seed)
+      - 26.8%
+      - 74.7%
+      - 0.15m
+      - —
+  figures_description:
+  - TSR-CAR scatter 加入 Phase 2 点：Phase 2 位于 LoRA/SDF cluster 右上方，向 baseline 方向偏移但未到达
+  - Phase 2 per-task CAR bar chart 与 LoRA-only 对比，展示跨任务 CAR 提升一致性
+  analysis: 'Phase 2 结果是 worst 档的关键转折点。CAR=68% + TSR=42% 意味着 two-phase strategy 是可行的
+    positive method contribution。但仅 1 seed，统计可信度不足。 如果 Phase 2 确认此水平，论文 Claim 4 angle
+    B (two-phase discovery) 成为可用选项。 但需要 plan_012 (additional seed) 验证稳定性后才能作为 firm
+    claim。 单 seed Phase 2 + CAR variance ~±8pp → 实际 CAR 可能在 60-76%，TSR 在 34-50%。
+
+    '
+- name: spatial_bowl A1 训练 (seed0, lambda=0.005)
+  plan_id: plan_007
+  description: 跨场景泛化验证——SDF 效果是否跨 scene 一致
+  expected_results:
+    final_loss: 0.0155
+    best_loss: 0.0135
+    best_step: 16000
+    steps_completed: 30000
+    training_stable: true
+  result_rationale: 'spatial_bowl 场景的 SDF 训练应与 object_pudding 类似收敛。Loss 可能略高因为 spatial_bowl
+    的 bowl 目标物在桌面不同位置，动作空间变异更大。 训练本身预期稳定。worst 档影响在 eval 阶段体现。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: 训练预期正常，关键在 eval(plan_008)。
+- name: spatial_bowl eval
+  plan_id: plan_008
+  description: 训练完成后 eval，验证跨场景 CAR/TSR pattern
+  expected_results:
+    avg_TSR: 3.0
+    avg_CAR: 45.0
+    avg_ee_displacement: 0.35
+    frozen_pct: 0
+    n_episodes: 200
+    per_task:
+      task0_pick_bowl_between: 52
+      task1_pick_bowl_on_ramekin: 48
+      task2_pick_bowl_on_stove: 55
+      task3_pick_bowl_on_cabinet: 25
+  result_rationale: 'worst 档核心假设：spatial_bowl 与 object_pudding pattern 不一致。 object_pudding
+    SDF CAR ~52%, spatial_bowl SDF CAR ~45%。Delta 不同方向： object_pudding 中 SDF delta
+    ≈ 0pp (vs LoRA)，但 spatial_bowl 缺乏 LoRA control 无法计算 delta。
+
+    spatial_bowl baseline CAR=0%(已有数据 eval_baseline_fullft_spatial_v11)， 这意味着 SDF
+    在 spatial_bowl 的 +45pp CAR 看似很大，但没有 LoRA control 无法归因——可能全部来自 LoRA fine-tuning
+    的 implicit signal。
+
+    worst 档进一步假设 spatial_bowl 的 per-task pattern 与 object_pudding 完全不同： object_pudding
+    中 task2(milk) 最高 CAR ~90%，task3(bbq) 最低 ~16%； spatial_bowl 中 pattern 更均匀但整体更低，说明
+    scene geometry 影响避障 pattern。 跨场景 claim 无法做。
+
+    '
+  tables:
+  - name: Cross-Scene CAR Comparison
+    columns:
+    - Scene
+    - SDF CAR
+    - LoRA CAR
+    - SDF Delta
+    - Pattern
+    rows:
+    - - object_pudding
+      - 52%
+      - 55%
+      - -3pp (ns)
+      - task2 high, task3 low
+    - - spatial_bowl
+      - 45%
+      - N/A
+      - N/A
+      - more uniform, overall lower
+  figures_description:
+  - 双场景 per-task CAR 对比 bar chart，展示 pattern 不一致性
+  analysis: 'spatial_bowl 结果在 worst 档下暴露两个问题： (1) 缺乏 LoRA control(plan_015) 使得 SDF
+    attribution 无法做； (2) 与 object_pudding pattern 不一致使跨场景 generalization claim 不可行。
+    论文必须将跨场景分析降级为 appendix 或 limitation。
+
+    '
+- name: Lambda=0.1 bracket training (2 seeds)
+  plan_id: plan_009
+  description: 构建 4-point lambda 曲线 (0, 0.005, 0.01, 0.1)
+  expected_results:
+    seed0_final_loss: 0.0195
+    seed0_best_loss: 0.0142
+    seed1_final_loss: 0.0188
+    seed1_best_loss: 0.0148
+    steps_completed: 30000
+    training_stable: true
+    sdf_loss_higher: true
+  result_rationale: 'Lambda=0.1 是 0.005/0.01 的 10-20 倍。SDF loss 权重大幅增加会使 total loss
+    更高， action loss 可能被 SDF loss 压制。训练应仍稳定(SDF loss 本身有界)， 但 action loss 收敛会更慢/更差。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: 训练预期完成。Lambda=0.1 的 eval 是 worst 档 dose-response claim 的关键。
+- name: Lambda=0.1 eval
+  plan_id: plan_010
+  description: eval 验证 lambda 递增是否 monotonic 提升 CAR
+  expected_results:
+    seed0_CAR: 68.0
+    seed0_TSR: 2.0
+    seed1_CAR: 66.0
+    seed1_TSR: 3.0
+    avg_CAR: 67.0
+    avg_TSR: 2.5
+    avg_ee_displacement: 0.41
+    frozen_pct: 0
+    n_episodes: 200
+  result_rationale: 'worst 档核心假设：Lambda=0.1 CAR ∈ [62, 75%]，明确高于 lambda=0.005/0.01
+    的 ~52%。 这意味着 SDF 在高剂量下确实有 additive contribution，推翻 "SDF is redundant" 结论。
+
+    机制解释：lambda=0.005/0.01 时 SDF loss gradient 太弱，被 action loss 主导， 模型行为由 LoRA implicit
+    signal 决定。lambda=0.1 时 SDF gradient 足够强， 能够在 action loss 之上施加额外的几何约束，推 EE 远离障碍物。
+    代价是 TSR 进一步下降(2-3% vs 6%)，因为更强的 SDF penalty 使模型更保守。
+
+    4-point curve: lambda=[0, 0.005, 0.01, 0.1] → CAR=[50, 52, 53, 67]% 前三点几乎平坦(SDF
+    太弱，无 marginal effect)，0.1 跳升 ~15pp。 这不是 smooth monotonic curve，而是 threshold effect——SDF
+    需要足够强的 lambda 才能 overcome demo-implicit signal 的 dominance。 slope ∈ [2.0, 5.0]
+    pp per 0.01 lambda (在 0.01→0.1 段)。
+
+    '
+  tables:
+  - name: Lambda Dose-Response Curve
+    columns:
+    - Lambda
+    - CAR (2-seed mean)
+    - TSR
+    - SDF Delta vs LoRA
+    - Significant?
+    rows:
+    - - 0 (LoRA)
+      - ~50%
+      - ~5%
+      - —
+      - —
+    - - '0.005'
+      - 52.3%
+      - 6.3%
+      - +2pp
+      - No (p>0.3)
+    - - '0.01'
+      - 52.8%
+      - 6.8%
+      - +3pp
+      - No (p>0.2)
+    - - '0.1'
+      - 67%
+      - 2.5%
+      - +17pp
+      - Yes (p<0.05)
+  figures_description:
+  - 4-point Lambda-CAR curve：x=lambda, y=CAR。前三点平坦 ~50-53%，lambda=0.1 跳升至 67%。展示 threshold
+    effect 而非 linear dose-response
+  - Lambda-TSR curve 叠加：TSR 从 5-7% 单调下降到 2.5%，更强 SDF → 更保守
+  analysis: 'Lambda=0.1 结果彻底改变 Claim 4 narrative。SDF 不是 redundant——而是在低剂量下 effect
+    size 太小被 noise 淹没，高剂量下有明确 additive contribution。 但 TSR 继续下降意味着 stronger SDF =
+    more conservative = less capable。 论文 Claim 4 必须从 "SDF is redundant" reframe 为：
+    "Collision avoidance has two sources: implicit demo signals (dominant, +29pp from
+    baseline) and explicit geometric supervision (additive, +15pp at high lambda but
+    at further TSR cost)."
+
+    '
+- name: Claim 1 术语验证 → full re-eval 决策
+  plan_id: plan_011
+  description: 决定是否需要 full A1 re-eval (800ep) 还是 50ep sanity check 足够
+  expected_results:
+    decision: 50ep 足够
+    needs_full_reeval: false
+  result_rationale: '已有 800ep obstacle displacement + TSR=0% 双证据链。EE displacement
+    re-eval 仅补充一个字段，50ep 即可确认 EE disp 与 obstacle disp 一致。 worst 档不改变 Claim 1 的证据强度——无论
+    SDF 是否 redundant， A1 的 action collapse 和 fake safety 都是独立事实。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: 决策明确：不需要 full re-eval。Claim 1 证据已充分。
+- name: Phase 2 additional seed (seed0 or seed1)
+  plan_id: plan_012
+  description: 从 10K SDF checkpoint resume with lambda=0, 多 seed 验证 Phase 2 稳定性
+  expected_results:
+    seed_chosen: seed0
+    avg_TSR: 38.0
+    avg_CAR: 64.0
+    avg_ee_displacement: 0.44
+    frozen_pct: 0
+  result_rationale: 'worst 档下 Phase 2 seed2 预测 CAR=68%, TSR=42%。additional seed(seed0)
+    预期 CAR=64%, TSR=38%——方向一致但略低，展示 Phase 2 的 seed variance。 2-seed Phase 2 mean:
+    CAR=66%, TSR=40%，variance ~±4pp。
+
+    这足以 claim two-phase strategy "可行" 但不足以 claim "robust"。 reviewer 会要求更多 seeds 或不同
+    scene 验证。worst 档下这被视为 "promising but preliminary" 结果，论文中作为 future work hint。
+
+    机制：不同 SDF seed 的 10K checkpoint 编码了略不同的 geometric prior， 导致 Phase 2 recovery 路径不同。seed0
+    的 SDF 10K checkpoint 可能 学到了略弱的 geometric awareness(best_loss 在不同 step)， 所以 Phase
+    2 recovery 的 CAR 略低。
+
+    '
+  tables:
+  - name: Phase 2 Multi-seed Summary
+    columns:
+    - Seed
+    - Phase 2 CAR
+    - Phase 2 TSR
+    - EE Disp
+    rows:
+    - - seed2
+      - 68%
+      - 42%
+      - 0.42m
+    - - seed0
+      - 64%
+      - 38%
+      - 0.44m
+    - - Mean
+      - 66%
+      - 40%
+      - 0.43m
+    - - SE
+      - ±2pp
+      - ±2pp
+      - —
+  figures_description:
+  - Phase 2 2-seed 的 TSR-CAR scatter 与 LoRA/SDF cluster 对比
+  analysis: '2-seed Phase 2 mean CAR=66%, TSR=40% 满足 two-phase strategy viability
+    threshold (CAR≥60% + TSR≥40%)。但 2 seeds 统计力不足，reviewer 可攻击。 论文可将此作为 "discovery"
+    而非 "validated method"——降低 claim 强度。
+
+    '
+- name: LoRA baseline seed2
+  plan_id: plan_013
+  description: 第三个 LoRA-only 种子，使 SDF 归因对比有 3v3 seeds 统计严格性
+  expected_results:
+    avg_TSR: 2.0
+    avg_CAR: 44.0
+    avg_ee_displacement: 0.45
+    frozen_pct: 0
+    n_episodes: 200
+    per_task:
+      task0_TSR: 0
+      task0_CAR: 48
+      task1_TSR: 8
+      task1_CAR: 38
+      task2_TSR: 0
+      task2_CAR: 78
+      task3_TSR: 0
+      task3_CAR: 12
+  result_rationale: "worst 档核心假设：LoRA seed2 CAR 显著低 (40-48%)。这里预测 44%。 机制：LoRA fine-tuning\
+    \ 的 seed variance 来自 LoRA initialization random matrix 和 data shuffling。seed2\
+    \ 可能初始化到了一个 less favorable region， 导致模型学到的 \"保守行为\" 程度不同——less conservative →\
+    \ 更多碰撞 → 低 CAR。\n3-seed LoRA mean: (54.5 + 56.0 + 44.0) / 3 = 51.5% 3-seed LoRA\
+    \ SE: sqrt(var) / sqrt(3) ≈ 3.7pp\n对比 SDF 3-seed mean: - lambda=0.005: (50 + 54\
+    \ + 53) / 3 = 52.3% - lambda=0.01: (53 + 52.5 + 53) / 3 = 52.8%\nSDF delta 3v3:\
+    \ - vs l=0.005: 52.3 - 51.5 = +0.8pp (仍不显著) - 但 worst 档假设更极端：seed2 CAR=44% 时 LoRA\
+    \ mean=51.5%，\n  实际上 delta 变为 +0.8pp 到 +1.3pp，方向变正但 magnitude 很小。\n\n等等——worst\
+    \ 档说 \"SDF 3v3 delta 变为正且显著 (δ ∈ [+5, +12]pp, p<0.1)\"。 这要求 LoRA 3-seed mean 更低。如果\
+    \ seed2 CAR=40%: LoRA mean = (54.5 + 56 + 40) / 3 = 50.2% SDF l=0.005 mean = 52.3%\
+    \ → delta = +2.1pp (仍不够 +5pp)\n要实现 delta ∈ [+5, +12]，需要 lambda=0.1 的 SDF (CAR~67%)\
+    \ 参与对比， 或 LoRA seed2 极低(~35%)。重新校准：\nworst 档的 \"+5-12pp delta\" 是指 lambda=0.1\
+    \ vs LoRA 3-seed mean 的 delta， 而非 lambda=0.005/0.01 vs LoRA。即：67% - 50% = +17pp\
+    \ at lambda=0.1， 而 low lambda delta 仍不显著。\"SDF delta 变为正且显著\" 是在 high lambda condition\
+    \ 下。\n回到 seed2 预测：CAR=44% 使 LoRA variance 大 (SD≈6.5pp)， reviewer 攻击 \"2-seed LoRA\
+    \ vs 3-seed SDF 的 seed 不对称\" 变为 \"3-seed LoRA variance 太大，均值不可靠\"——新攻击面，但至少对称了。\n"
+  tables:
+  - name: LoRA 3-seed Summary (worst tier)
+    columns:
+    - Seed
+    - CAR
+    - TSR
+    - EE Disp
+    rows:
+    - - s0
+      - 54.5%
+      - 8.5%
+      - 0.489m
+    - - s1
+      - 56.0%
+      - 4.0%
+      - 0.467m
+    - - s2 (predicted)
+      - 44.0%
+      - 2.0%
+      - 0.450m
+    - - Mean
+      - 51.5%
+      - 4.8%
+      - 0.469m
+    - - SD
+      - 6.5pp
+      - 3.3pp
+      - —
+  - name: 3v3 Attribution Table (worst tier)
+    columns:
+    - Condition
+    - 3-seed CAR Mean
+    - SE
+    - Delta vs LoRA
+    - p-value
+    rows:
+    - - LoRA-only
+      - 51.5%
+      - 3.7pp
+      - —
+      - —
+    - - SDF l=0.005
+      - 52.3%
+      - 1.5pp
+      - +0.8pp
+      - '>0.5'
+    - - SDF l=0.01
+      - 52.8%
+      - 0.3pp
+      - +1.3pp
+      - '>0.3'
+    - - SDF l=0.1
+      - 67.0%
+      - 1.0pp
+      - +15.5pp
+      - <0.02
+  figures_description:
+  - LoRA 3-seed CAR 分布 vs SDF 3-seed CAR 分布的 box plot，展示 LoRA variance 显著更大
+  analysis: 'seed2 低 CAR (44%) 使 LoRA 3-seed variance 大幅增加 (SD=6.5pp vs SDF SD=1.5pp)。
+    low lambda SDF delta 仍不显著，但 high lambda (0.1) delta=+15.5pp 变为显著。 reviewer 的新攻击点：LoRA
+    variance 太大 → "mean 不可靠" → 无论 SDF delta 多少， 结论都不 robust。论文需在 discussion 中 acknowledge
+    high LoRA variance， 建议 future work 用 5+ seeds 验证。
+
+    '
+- name: dfCAR threshold sensitivity analysis
+  plan_id: plan_014
+  description: 在 delta={2mm,5mm,10mm,20mm,50mm,100mm} 上计算 filtered CAR/FSR
+  expected_results:
+    thresholds:
+      2mm:
+        dfCAR_A1: 0.4
+        dfCAR_LoRA: 54.5
+        dfCAR_baseline: 83.0
+      5mm:
+        dfCAR_A1: 0.4
+        dfCAR_LoRA: 54.5
+        dfCAR_baseline: 83.0
+      10mm:
+        dfCAR_A1: 0.4
+        dfCAR_LoRA: 54.5
+        dfCAR_baseline: 82.5
+      20mm:
+        dfCAR_A1: 0.4
+        dfCAR_LoRA: 54.5
+        dfCAR_baseline: 82.0
+      50mm:
+        dfCAR_A1: 0.4
+        dfCAR_LoRA: 54.5
+        dfCAR_baseline: 81.0
+      100mm:
+        dfCAR_A1: 0.4
+        dfCAR_LoRA: 54.5
+        dfCAR_baseline: 80.0
+  result_rationale: 'dfCAR threshold sensitivity 与档位无关——这是已有 eval JSON 的 post-hoc
+    分析。 A1 safe episodes 的 EE displacement 在 微米级 (0.001-0.01mm)，所以 2mm-100mm 任何 threshold
+    都会 filter 掉所有 safe episodes → dfCAR ≈ 0.4% (仅 3/732 real safe episodes 的 EE disp
+    > 0.1mm)。
+
+    LoRA/SDF models 的 safe episodes EE displacement ~0.35-0.58m (全部 >100mm)， 所以任何
+    threshold ≤ 100mm 都不 filter → dfCAR = raw CAR。
+
+    baseline Pi0.5 的 safe episodes 有 geometric path safety，EE displacement ~0.15m
+    = 150mm，大部分 >100mm 但少数 episode 可能在 50-100mm 之间， 所以高 threshold 会轻微 filter baseline。
+
+    关键结果：dfCAR 在 2mm 到 100mm 范围内几乎完全不变（A1 始终 ~0%， LoRA/SDF 始终 = raw CAR）。这证明 threshold
+    选择 robust—— fake safety (A1) 和 real safety (LoRA) 之间有巨大的 gap (0.01mm vs 400mm)，
+    任何 reasonable threshold 都能完美分离。
+
+    '
+  tables:
+  - name: dfCAR Threshold Sensitivity
+    columns:
+    - Threshold (mm)
+    - A1 dfCAR
+    - LoRA dfCAR
+    - SDF l=0.005 dfCAR
+    - Pi0.5 baseline dfCAR
+    rows:
+    - - '2'
+      - 0.4%
+      - 54.5%
+      - 52.3%
+      - 83.0%
+    - - '5'
+      - 0.4%
+      - 54.5%
+      - 52.3%
+      - 83.0%
+    - - '10'
+      - 0.4%
+      - 54.5%
+      - 52.3%
+      - 82.5%
+    - - '20'
+      - 0.4%
+      - 54.5%
+      - 52.3%
+      - 82.0%
+    - - '50'
+      - 0.4%
+      - 54.5%
+      - 52.3%
+      - 81.0%
+    - - '100'
+      - 0.4%
+      - 54.5%
+      - 52.3%
+      - 80.0%
+  figures_description:
+  - dfCAR vs threshold 曲线：A1 线贴底(~0%)，LoRA/SDF 线在 ~52-55% 完全平坦，baseline 在 80-83% 微降。展示
+    threshold robustness 的 'gap' 特性
+  analysis: 'dfCAR 对 threshold 极不敏感——fake safety 和 real safety 之间存在 3 个数量级的 EE displacement
+    gap (0.01mm vs 400mm)。这是 dfCAR 作为 metric 的最强卖点： 不需要精确调参，任何 reasonable threshold
+    都给出同样结论。 此分析在所有档位下一致，是论文 Claim 1 的重要支撑。
+
+    '
+- name: spatial_bowl LoRA-only control
+  plan_id: plan_015
+  description: 在 spatial_bowl 场景训练 LoRA-only，完成跨场景归因
+  expected_results:
+    avg_TSR: 1.0
+    avg_CAR: 36.0
+    avg_ee_displacement: 0.32
+    frozen_pct: 0
+    n_episodes: 200
+  result_rationale: 'worst 档核心假设：spatial_bowl SDF CAR (~45%) vs LoRA CAR (~36%) →
+    delta = +9pp。 但这与 object_pudding 的 delta ≈ 0pp 不一致——跨场景 SDF effect 不一致。
+
+    机制解释：spatial_bowl 的 bowl 在桌面不同位置(between plates, on ramekin, on stove, on cabinet)，碰撞
+    geometry 更多样。LoRA implicit signal 在 spatial_bowl 中 效果较弱(CAR=36% vs object_pudding
+    55%)，因为 demo 中的避障 pattern 在不同 spatial layout 下 generalize 更差。SDF geometric supervision
+    在这种情况下 提供了额外的 layout-specific 避障信号，所以 delta 为正(+9pp)。
+
+    但统计显著性存疑：spatial_bowl 仅 1 seed SDF + 1 seed LoRA， p-value 计算需要 bootstrap 或 per-task
+    pairing，预期 p ∈ [0.05, 0.15]—— marginal significance at best。
+
+    这个 pattern 不一致性(object_pudding: delta=0, spatial_bowl: delta=+9pp) 使得跨场景 generalization
+    claim 不可行。论文必须 acknowledge： "SDF contribution is scene-dependent; in geometry-diverse
+    scenes, SDF may provide additional benefit beyond implicit demo signals, but this
+    effect is not universal."
+
+    '
+  tables:
+  - name: Cross-Scene Attribution (worst tier)
+    columns:
+    - Scene
+    - LoRA CAR
+    - SDF CAR
+    - Delta
+    - Interpretation
+    rows:
+    - - object_pudding
+      - 51.5%
+      - 52.3%
+      - +0.8pp (ns)
+      - SDF redundant
+    - - spatial_bowl
+      - 36%
+      - 45%
+      - +9pp (marginal)
+      - SDF additive
+    - - Consistent?
+      - —
+      - —
+      - 'No'
+      - Scene-dependent
+  figures_description:
+  - 双场景 LoRA vs SDF CAR 对比 bar chart with error bars，展示 delta 方向不一致
+  analysis: spatial_bowl LoRA control 揭示 SDF 效果是 scene-dependent 而非 universal。 这是
+    worst 档最致命的发现之一：无法做跨场景 claim。 论文策略：在 object_pudding 上做 primary analysis (3v3 seeds,
+    well-powered)， spatial_bowl 作为 exploratory analysis with caveat。 reviewer R1 (generalizability)
+    攻击面进一步扩大。

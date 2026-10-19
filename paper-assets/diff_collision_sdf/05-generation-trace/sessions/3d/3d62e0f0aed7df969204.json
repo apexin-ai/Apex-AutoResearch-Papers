@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3d62e0f0aed7df969204",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "eval analyze 28k results",
+  "task_key": "worker_eval_analyze_28k_results_20260527T075104",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_analyze_28k_results_20260527T075104_result.json",
+    "occurrence": 1,
+    "bytes": 650,
+    "sha256": "d66aa1fb8055f6d417b01a2634b0a57a4b756f1b6a11385cb4f693ad171f7af1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n**eval_stepwise_s0_l1_28k → DONE (negative)**\n\n| Task | Name | TSR | CAR | avg_max_disp |\n|------|------|-----|-----|-------------|\n| 0 | orange juice | 28% | 50% | 0.062m |\n| 1 | chocolate pudding | 68% | 74% | 0.046m |\n| 2 | milk | 44% | 72% | 0.028m |\n| 3 | bbq sauce | 54% | 22% | 0.088m |\n| **Avg** | | **48.5%** | **54.5%** | |\n\n- frozen_rate = 0%, dfCAR = raw CAR = 54.5%\n- 完整曲线：16K(55.5)→20K(55)→22K(60.5)→24K(52.5)→26K(53.5)→**28K(54.5)**\n- Scenario B 持续确认：7 个数据点均值 ~55.1%，与 LoRA baseline 54.5% 一致，无 improvement 也无 collapse。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-analyze-28k-results.md"
+}

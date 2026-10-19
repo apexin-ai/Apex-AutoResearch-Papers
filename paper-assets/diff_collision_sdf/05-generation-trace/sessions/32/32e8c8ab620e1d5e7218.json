@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "32e8c8ab620e1d5e7218",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops lora s2 resume 45947",
+  "task_key": "worker_ops_lora_s2_resume_45947_20260527T024701",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_lora_s2_resume_45947_20260527T024701_result.json",
+    "occurrence": 1,
+    "bytes": 1216,
+    "sha256": "152afd13714989eb3196ca2d7d0d278951b1f35d3f5f562059ca89faa82571b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Resume 成功，已从 step 22000 恢复训练，进度 73% (22000/30000)。\n\n汇总结果：\n\n### Part 1: Checkpoint 完整性 ✅\n- 路径: `/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed2/22000/`\n- `model.safetensors` 7.5GB, `optimizer.pt` 130MB, `metadata.pt`, `norm_stats.json` 齐全\n\n### Part 2: Resume 命令 ✅\n- 脚本支持 `--resume` flag（line 68），自动定位最新 checkpoint\n\n### Part 3: 训练已提交 ✅\n- exp_id: `train_pi05_lora_baseline_s2_resume`\n- timeout: 48h\n- 已从 step 22000 成功恢复，剩余 8000 steps\n\n### Part 4: tmux timeout 根因\n- **没有 tmux 配置文件**（`/root/.tmux.conf` 和 `/etc/tmux.conf` 均不存在）\n- **timeout 来自 `submit_training_job` 的 `timeout` 命令包装**，原始任务用了 `timeout 86400`（24h），可在 ps 输出中看到。这不是 tmux 的问题，是 `timeout_hours=24` 参数的直接效果。\n\n### Part 5: 另一个训练健康 ✅\n- `train_pi05_a1_obj_s2_l01_high` (cuda:1) 正在运行，PID 425058，CPU 170%\n- 使用 `timeout 172800`（48h），有足够余量\n- 有多个 compile_worker 和 multiprocessing fork 子进程在工作"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-lora-s2-resume-45947.md"
+}

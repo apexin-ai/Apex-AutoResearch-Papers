@@ -1,0 +1,53 @@
+{
+  "exp_id": "train_phase2_lambda0_extra_seed",
+  "project": "diff_collision_sdf",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-27T13:19:43.844Z",
+    "updated_at": "2026-05-27T22:38:06.190Z",
+    "hypothesis": "Phase 2 Stage 1 with seed0 and λ_sdf=0.005 for 10K steps will produce a viable checkpoint for Stage 2 lambda-0 training on object_pudding scene",
+    "parent": "",
+    "reproduce": {
+      "finished_at": "2026-05-27T14:13:57.981Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "completed_at": "2026-05-27T14:14:01.928Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-27T14:14:05.764888+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "Stage 1 crashed at step 1768/10000 (18%). Log ends abruptly with no error message — process was killed externally (no CUDA OOM or Python traceback). Checkpoint dir only contains wandb_id.txt, no model checkpoint saved. Training started 2026-05-27 21:32, died ~36min later. No recovery possible without restart from scratch."
+      }
+    },
+    "notes": "Stage 1 restarted (PID 856552, cuda:1), at step 7429/10000 as of 19:16 UTC. Sentinel PID 872754 deployed to auto-start Stage 2 (λ=0, resume to 30K) upon Stage 1 completion. Stage 2 will use auto-generated exp_name a1_sdf_pi05_object_pudding_seed0_l0, checkpoint copied from phase2_stage1_seed0_l005/10000.",
+    "spec": {
+      "command": "Phase 2 Stage 1 seed0 λ=0.005 10K (restarted by fix worker)",
+      "server": "westd-35807",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "856552",
+      "log_path": "~/runs/diff_collision_sdf/train_phase2_lambda0_extra_seed.log",
+      "seed": 0,
+      "model_name": "pi0.5+A1",
+      "data_path": "object_pudding",
+      "data_count": "default",
+      "checkpoint_source": "N/A (fresh training)",
+      "eval_data": "N/A (training)"
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/phase2_stage1_seed0_l005/10000",
+    "log_path": "~/runs/diff_collision_sdf/train_phase2_lambda0_extra_seed.log"
+  },
+  "timestamp": "2026-05-27T22:38:06.394103+00:00",
+  "trigger": "update_registry"
+}

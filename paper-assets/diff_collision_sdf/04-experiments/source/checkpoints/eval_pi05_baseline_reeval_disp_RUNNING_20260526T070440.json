@@ -1,0 +1,38 @@
+{
+  "exp_id": "eval_pi05_baseline_reeval_disp",
+  "project": "diff_collision_sdf",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-26T02:35:19.204Z",
+    "updated_at": "2026-05-26T07:04:40.647Z",
+    "hypothesis": "Pi0.5 base model (no LoRA, no SDF) re-eval with fixed eval script on object_pudding 200ep: obtain EE displacement data for dfCAR baseline comparison. Expect CAR ≈ 27% (known baseline) with EE displacement distribution needed for dfCAR threshold analysis.",
+    "spec": {
+      "command": "bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/colliforce-vla && export WANDB_MODE=disabled && python scripts/eval_safelibero.py --default_policy --config_name pi05_libero --suite safelibero_object --pi05 --seed 0 --gpu 1 --n_episodes 200'",
+      "server": "westd-45947",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "132718",
+      "log_path": "~/runs/diff_collision_sdf/eval_pi05_baseline_reeval_disp.log",
+      "submitted_at": "2026-05-26T04:44:30.350Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "pi05_libero_base",
+      "seed": 0,
+      "data_path": "safelibero_object",
+      "data_count": 200
+    },
+    "notes": "v3 fix: eval_safelibero.py 缺少 180° 图像旋转 [::-1, ::-1] + 相机分辨率 224→256。Sanity check TSR=85% (20ep) 通过。完整 eval 已启动: tmux pi05_eval, westd-45947 cuda:1, seed=7, 50ep/task, ETA ~30-40min。输出: /root/autodl-tmp/eval_results/pi05_base_reeval_safelibero_object_levelII_seed7.json",
+    "reproduce": {
+      "finished_at": "2026-05-26T07:04:39.331Z"
+    },
+    "failure_reason": "EXIT_CODE=143 (SIGTERM — graceful kill)",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-26T07:04:40.911698+00:00",
+  "trigger": "update_registry"
+}

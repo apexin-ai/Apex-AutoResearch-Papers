@@ -1,0 +1,33 @@
+{
+  "exp_id": "baseline_object_pudding_s0_v2",
+  "project": "diff_collision_sdf",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T22:40:22.370Z",
+    "updated_at": "2026-05-19T22:40:54.129Z",
+    "hypothesis": "Vanilla pi0 fine-tune on LIBERO object_pudding establishes baseline for Level I collision scenario — expecting TSR >50%, CAR ~0%",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2 python scripts/train_baseline.py --scene object_pudding --seed 0",
+      "server": "westd-35807",
+      "data_path": "/root/autodl-tmp/colliforce_data/safelibero_object/",
+      "data_count": 7982,
+      "model_name": "pi0_base (3.5B params, full fine-tune)",
+      "seed": 0,
+      "gpu": "cuda:2",
+      "pid": 95429,
+      "log_path": "/root/autodl-tmp/logs/baseline_object_pudding_seed0.log",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/baseline_object_pudding_0/",
+      "hyperparams": {
+        "lr": "2.5e-5",
+        "batch_size": 32,
+        "num_train_steps": 30000,
+        "extra_delta_transform": false
+      }
+    }
+  },
+  "timestamp": "2026-05-19T22:40:54.142912+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,1045 @@
+# ssh gpu status 45947 v3
+
+**How Action Collapse Creates Illusory Safety in Diffusion-Based VLA Collision Avoidance Evaluation** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 21
+- **Recorded user turns:** 0
+- **Tool calls:** 7
+- **Original source:** `logs/workers/worker_ssh_gpu_status_45947_v3_20260520T111539.log`
+- **Structured JSON:** [`1630aeb1d6d1ff321833.json`](../../sessions/16/1630aeb1d6d1ff321833.json)
+
+## Before a recorded user message
+
+21 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf",
+  "session_id": "82b5e33e-fb63-42b5-b632-eef10f4a1ed4",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "7136b35e-29f5-43ae-a28e-0bdf6250b956",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779282000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "68370b29-9dbe-4c94-b14b-3d3c22477edf",
+  "session_id": "82b5e33e-fb63-42b5-b632-eef10f4a1ed4"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to check the GPU status on server westd-45947. Let me run the commands using ssh_read_only.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "82b5e33e-fb63-42b5-b632-eef10f4a1ed4",
+  "uuid": "63ad59de-e20b-474e-8591-b5a3d6781496",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V8MqwGmjr3yzLxTdaXDBdo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11201,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11201
+      },
+      "output_tokens": 37,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_011r7GKbKzrsVNwsoRLET3FT`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "82b5e33e-fb63-42b5-b632-eef10f4a1ed4",
+  "uuid": "568fcbea-a317-4170-b97f-7ffdaef85b24",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V8MqwGmjr3yzLxTdaXDBdo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11201,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11201
+      },
+      "output_tokens": 37,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-20T11:15:48.805Z_
+
+<details><summary>↩ Tool result · `toolu_011r7GKbKzrsVNwsoRLET3FT`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "82b5e33e-fb63-42b5-b632-eef10f4a1ed4",
+  "uuid": "bb7a0003-8fc4-4741-a630-d4b93ec211db",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016E4KCCKnMBtS4ydEy6V6nJ`</summary>
+
+```json
+{
+  "server": "westd-45947",
+  "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "82b5e33e-fb63-42b5-b632-eef10f4a1ed4",
+  "uuid": "f5139790-e820-4621-a7bb-ca1e317ac086",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NWgLPiDfrXoswkb6TdKZoc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 470,
+      "cache_read_input_tokens": 23042,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 470
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XcNtY3eg3UPTEPySUUXQpg`</summary>
+
+```json
+{
+  "server": "westd-45947",
+  "command": "nvidia-smi --query-gpu=index,memory.used,memory.total,utilization.gpu --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "82b5e33e-fb63-42b5-b632-eef10f4a1ed4",
+  "uuid": "ece53fbd-040e-404d-97e4-c21612be5d34",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NWgLPiDfrXoswkb6TdKZoc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 470,
+      "cache_read_input_tokens": 23042,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 470
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-20T11:15:53.334Z_
+
+<details><summary>↩ Tool result · `toolu_016E4KCCKnMBtS4ydEy6V6nJ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"pid, gpu_uuid, used_gpu_memory [MiB]\\n71494, GPU-1a00ed3e-d880-b61e-751f-d68fd42f310f, 16898 MiB\\n73165, GPU-95684c29-453a-e4bb-2c8f-1cb1dbb43655, 23926 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.26}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "82b5e33e-fb63-42b5-b632-eef10f4a1ed4",
+  "uuid": "f2861acc-846a-404b-b4a5-b4e93fc9c3bb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"pid, gpu_uuid, used_gpu_memory [MiB]\\\\n71494, GPU-1a00ed3e-d880-b61e-751f-d68fd42f310f, 16898 MiB\\\\n73165, GPU-95684c29-453a-e4bb-2c8f-1cb1dbb43655, 23926 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.26}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"pid, gpu_uuid, used_gpu_memory [MiB]\\n71494, GPU-1a00ed3e-d880-b61e-751f-d68fd42f310f, 16898 MiB\\n73165, GPU-95684c29-453a-e4bb-2c8f-1cb1dbb43655, 23926 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.26}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01ExCbZPkSBfNiWqg3eth9ku`</summary>
+
+```json
+{
+  "server": "westd-45947",
+  "command": "ps aux --no-header -o pid,command --sort=-rss",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "82b5e33e-fb63-42b5-b632-eef10f4a1ed4",
+  "uuid": "0a9e03eb-c7ac-4418-888e-4eb7d1a686ee",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NWgLPiDfrXoswkb6TdKZoc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 470,
+      "cache_read_input_tokens": 23042,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 470
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-20T11:15:54.000Z_
+
+<details><summary>↩ Tool result · `toolu_01XcNtY3eg3UPTEPySUUXQpg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 16907 MiB, 97887 MiB, 0 %\\n1, 23935 MiB, 97887 MiB, 100 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.64}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "82b5e33e-fb63-42b5-b632-eef10f4a1ed4",
+  "uuid": "bb4ed222-e5fe-4e04-8600-6fe994e0b383",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 16907 MiB, 97887 MiB, 0 %\\\\n1, 23935 MiB, 97887 MiB, 100 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.64}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"0, 16907 MiB, 97887 MiB, 0 %\\n1, 23935 MiB, 97887 MiB, 100 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.64}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-20T11:15:54.536Z_
+
+<details><summary>↩ Tool result · `toolu_01ExCbZPkSBfNiWqg3eth9ku`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"error: conflicting format options\\n\\nUsage:\\n ps [options]\\n\\n Try 'ps --help &lt;simple|list|output|threads|misc|all>'\\n  or 'ps --help &lt;s|l|o|t|m|a>'\\n for additional help text.\\n\\nFor more details see ps(1).\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "82b5e33e-fb63-42b5-b632-eef10f4a1ed4",
+  "uuid": "382030f3-ccde-44e5-92fa-a50dc53804f9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"error: conflicting format options\\\\n\\\\nUsage:\\\\n ps [options]\\\\n\\\\n Try 'ps --help &lt;simple|list|output|threads|misc|all>'\\\\n  or 'ps --help &lt;s|l|o|t|m|a>'\\\\n for additional help text.\\\\n\\\\nFor more details see ps(1).\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"error: conflicting format options\\n\\nUsage:\\n ps [options]\\n\\n Try 'ps --help &lt;simple|list|output|threads|misc|all>'\\n  or 'ps --help &lt;s|l|o|t|m|a>'\\n for additional help text.\\n\\nFor more details see ps(1).\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01M8zMMr7q9eectQHJbuh9Ev`</summary>
+
+```json
+{
+  "server": "westd-45947",
+  "command": "tail -5 /root/runs/diff_collision_sdf/a3_gradient_spatial_bowl_s0.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "82b5e33e-fb63-42b5-b632-eef10f4a1ed4",
+  "uuid": "a773ee95-507f-4d63-acf1-0a0526facf05",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NWgLPiDfrXoswkb6TdKZoc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 470,
+      "cache_read_input_tokens": 23042,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 470
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Kju7WFxepN3xc2xejmDUmB`</summary>
+
+```json
+{
+  "server": "westd-45947",
+  "command": "tail -5 /root/runs/diff_collision_sdf/a3_gradient_object_pudding_s0.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "82b5e33e-fb63-42b5-b632-eef10f4a1ed4",
+  "uuid": "9b54eea2-8b83-4df1-a8ef-6a2ff36f1204",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NWgLPiDfrXoswkb6TdKZoc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 470,
+      "cache_read_input_tokens": 23042,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 470
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DDeRoqsfC1DegfaD8jejoD`</summary>
+
+```json
+{
+  "server": "westd-45947",
+  "command": "df -h /root/autodl-tmp",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "82b5e33e-fb63-42b5-b632-eef10f4a1ed4",
+  "uuid": "ae6e2bb2-a3e1-40b9-ba1d-cba72c73fa4e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NWgLPiDfrXoswkb6TdKZoc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 470,
+      "cache_read_input_tokens": 23042,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 470
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-20T11:15:56.013Z_
+
+<details><summary>↩ Tool result · `toolu_01M8zMMr7q9eectQHJbuh9Ev`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"DIAG: AFTER load - action_in_proj.weight device=cuda:0, mean=-0.000354, std=0.177879\\nDIAG: REF from file - mean=-0.000354, std=0.177879\\n\\rTraining:   0%|          | 0/30000 [00:00<?, ?it/s]/root/miniconda3/lib/python3.12/site-packages/torch/autograd/graph.py:829: UserWarning: Attempting to run cuBLAS, but there was no current CUDA context! Attempting to set the primary context... (Triggered internally at /pytorch/aten/src/ATen/cuda/CublasHandlePool.cpp:179.)\\n  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass\\n\\rTraining:   0%|          | 1/30000 [01:07<565:36:22, 67.88s/it]\\rTraining:   0%|          | 1/30000 [01:07<565:36:22, 67.88s/it, loss=0.2450, lr=2.50e-08, step=1]\\rTraining:   0%|          | 2/30000 [01:09<243:14:32, 29.19s/it, loss=0.2450, lr=2.50e-08, step=1]\\rTraining:   0%|          | 2/30000 [01:09<243:14:32, 29.19s/it, loss=0.2765, lr=5.00e-08, step=2]\\rTraining:   0%|          | 3/30000 [01:31<213:56:49, 25.68s/it, loss=0.2765, lr=5.00e-08, step=2]\\rTraining:   0%|          | 3/30000 [01:31<213:56:49, 25.68s/it, loss=0.3007, lr=7.49e-08, step=3]\\rTraining:   0%|          | 4/30000 [01:32<133:06:56, 15.98s/it, loss=0.3007, lr=7.49e-08, step=3]\\rTraining:   0%|          | 4/30000 [01:32<133:06:56, 15.98s/it, loss=0.2590, lr=9.99e-08, step=4]\\rTraining:   0%|          | 5/30000 [01:58<162:04:04, 19.45s/it, loss=0.2590, lr=9.99e-08, step=4]\\rTraining:   0%|          | 5/30000 [01:58<162:04:04, 19.45s/it, loss=0.3099, lr=1.25e-07, step=5]\\rTraining:   0%|          | 6/30000 [01:59<110:35:12, 13.27s/it, loss=0.3099, lr=1.25e-07, step=5]\\rTraining:   0%|          | 6/30000 [01:59<110:35:12, 13.27s/it, loss=0.2592, lr=1.50e-07, step=6]\\rTraining:   0%|          | 7/30000 [02:26<146:55:08, 17.63s/it, loss=0.2592, lr=1.50e-07, step=6]\\rTraining:   0%|          | 7/30000 [02:26<146:55:08, 17.63s/it, loss=0.2505, lr=1.75e-07, step=7]\\rTraining:   0%|          | 8/30000 [02:27<104:55:54, 12.60s/it, loss=0.2505, lr=1.75e-07, step=7]\\rTraining:   0%|          | 8/30000 [02:27<104:55:54, 12.60s/it, loss=0.2780, lr=2.00e-07, step=8]\\rTraining:   0%|          | 9/30000 [02:52<135:40:40, 16.29s/it, loss=0.2780, lr=2.00e-07, \\rTraining:   0%|          | 3/30000 [14:41<2369:27:42, 284.36s/it, loss=0.2583, lr=5.00e-08, step=2]\\rTraining:   0%|          | 3/30000 [14:41<2369:27:42, 284.36s/it, loss=0.3229, lr=7.49e-08, step=3]\\rTraining:   0%|          | 4/30000 [19:04<2297:44:27, 275.77s/it, loss=0.3229, lr=7.49e-08, step=3]\\rTraining:   0%|          | 4/30000 [19:04<2297:44:27, 275.77s/it, loss=0.2627, lr=9.99e-08, step=4]\\rTraining:   0%|          | 5/30000 [23:24<2250:38:00, 270.12s/it, loss=0.2627, lr=9.99e-08, step=4]\\rTraining:   0%|          | 5/30000 [23:24<2250:38:00, 270.12s/it, loss=0.2674, lr=1.25e-07, step=5]\\rTraining:   0%|          | 6/30000 [27:44<2222:37:16, 266.77s/it, loss=0.2674, lr=1.25e-07, step=5]\\rTraining:   0%|          | 6/30000 [27:44<2222:37:16, 266.77s/it, loss=0.2576, lr=1.50e-07, step=6]]\\rTraining:   0%|          | 13/30000 [03:48<139:58:51, 16.80s/it, loss=0.2704, lr=3.25e-07, step=13]\\rTraining:   0%|          | 14/30000 [03:50<102:17:40, 12.28s/it, loss=0.2704, lr=3.25e-07, step=13]\\rTraining:   0%|          | 14/30000 [03:50<102:17:40, 12.28s/it, loss=0.3013, lr=3.50e-07, step=14]\\rTraining:   0%|          | 15/30000 [04:11<123:23:53, 14.82s/it, loss=0.3013, lr=3.50e-07, step=14]\\rTraining:   0%|          | 15/30000 [04:11<123:23:53, 14.82s/it, loss=0.2862, lr=3.75e-07, step=15]\\rTraining:   0%|          | 16/30000 [04:13<91:43:18, 11.01s/it, loss=0.2862, lr=3.75e-07, step=15] \\rTraining:   0%|          | 16/30000 [04:13<91:43:18, 11.01s/it, loss=0.2773, lr=4.00e-07, step=16]\\rTraining:   0%|          | 17/30000 [04:42<137:14:41, 16.48s/it, loss=0.2773, lr=4.00e-07, step=16]\\rTraining:   0%|          | 17/30000 [04:42<137:14:41, 16.48s/it, loss=0.2872, lr=4.25e-07, step=17]\\rTraining:   0%|          | 18/30000 [04:44<100:33:01, 12.07s/it, loss=0.2872, lr=4.25e-07, step=17]\\rTraining\\n\\n... [截断: 输出过长，省略 599355 字符] ...\\n\\ntep=2905]\\rTraining:  10%|▉         | 2906/30000 [3:08:27<23:14:10,  3.09s/it, loss=0.2892, lr=2.48e-05, step=2905]\\rTraining:  10%|▉         | 2906/30000 [3:08:27<23:14:10,  3.09s/it, loss=0.2950, lr=2.48e-05, step=2906]\\rTraining:  10%|▉         | 2907/30000 [3:08:33<30:30:55,  4.05s/it, loss=0.2950, lr=2.48e-05, step=2906]\\rTraining:  10%|▉         | 2907/30000 [3:08:33<30:30:55,  4.05s/it, loss=0.2905, lr=2.48e-05, step=2907]\\rTraining:  10%|▉         | 2908/30000 [3:08:34<23:39:20,  3.14s/it, loss=0.2905, lr=2.48e-05, step=2907]\\rTraining:  10%|▉         | 2908/30000 [3:08:34<23:39:20,  3.14s/it, loss=0.3352, lr=2.48e-05, step=2908]\\rTraining:  10%|▉         | 2909/30000 [3:08:40<30:46:56,  4.09s/it, loss=0.3352, lr=2.48e-05, step=2908]\\rTraining:  10%|▉         | 2909/30000 [3:08:40<30:46:56,  4.09s/it, loss=0.2981, lr=2.48e-05, step=2909]\\rTraining:  10%|▉         | 2910/30000 [3:08:41<23:50:08,  3.17s/it, loss=0.2981, lr=2.48e-05, step=2909]\\rTraining:  10%|▉         | 2910/30000 [3:08:41<23:50:08,  3.17s/it, loss=0.2372, lr=2.48e-05, step=2910]\\rTraining:  10%|▉         | 2911/30000 [3:08:47<30:04:47,  4.00s/it, loss=0.2372, lr=2.48e-05, step=2910]\\rTraining:  10%|▉         | 2911/30000 [3:08:47<30:04:47,  4.00s/it, loss=0.2284, lr=2.48e-05, step=2911]\\rTraining:  10%|▉         | 2912/30000 [3:08:48<23:20:52,  3.10s/it, loss=0.2284, lr=2.48e-05, step=2911]\\rTraining:  10%|▉         | 2912/30000 [3:08:48<23:20:52,  3.10s/it, loss=0.2510, lr=2.48e-05, step=2912]\\rTraining:  10%|▉         | 2913/30000 [3:08:54<29:36:52,  3.94s/it, loss=0.2510, lr=2.48e-05, step=2912]\\rTraining:  10%|▉         | 2913/30000 [3:08:54<29:36:52,  3.94s/it, loss=0.3055, lr=2.48e-05, step=2913]\\rTraining:  10%|▉         | 2914/30000 [3:08:55<23:01:20,  3.06s/it, loss=0.3055, lr=2.48e-05, step=2913]\\rTraining:  10%|▉         | 2914/30000 [3:08:55<23:01:20,  3.06s/it, loss=0.2505, lr=2.48e-05, step=2914]\\rTraining:  10%|▉         | 2915/30000 [3:09:01<29:22:18,  3.90s/it, loss=0.2505, lr=2.48e-05, step=2914]\\rTraining:  10%|��         | 2915/30000 [3:09:01<29:22:18,  3.90s/it, loss=0.2555, lr=2.48e-05, step=2915]\\rTraining:  10%|▉         | 2916/30000 [3:09:02<22:54:26,  3.04s/it, loss=0.2555, lr=2.48e-05, step=2915]\\rTraining:  10%|▉         | 2916/30000 [3:09:02<22:54:26,  3.04s/it, loss=0.2791, lr=2.48e-05, step=2916]\\rTraining:  10%|▉         | 2917/30000 [3:09:08<29:48:46,  3.96s/it, loss=0.2791, lr=2.48e-05, step=2916]\\rTraining:  10%|▉         | 2917/30000 [3:09:08<29:48:46,  3.96s/it, loss=0.2797, lr=2.48e-05, step=2917]\\rTraining:  10%|▉         | 2918/30000 [3:09:09<23:10:28,  3.08s/it, loss=0.2797, lr=2.48e-05, step=2917]\\rTraining:  10%|▉         | 2918/30000 [3:09:09<23:10:28,  3.08s/it, loss=0.2535, lr=2.48e-05, step=2918]\\rTraining:  10%|▉         | 2919/30000 [3:09:16<30:41:15,  4.08s/it, loss=0.2535, lr=2.48e-05, step=2918]\\rTraining:  10%|▉         | 2919/30000 [3:09:16<30:41:15,  4.08s/it, loss=0.2293, lr=2.48e-05, step=2919]\\rTraining:  10%|▉         | 2920/30000 [3:09:17<23:46:58,  3.16s/it, loss=0.2293, lr=2.48e-05, step=2919]\\rTraining:  10%|▉         | 2920/30000 [3:09:17<23:46:58,  3.16s/it, loss=0.2747, lr=2.48e-05, step=2920]\\rTraining:  10%|▉         | 2921/30000 [3:09:22<29:52:19,  3.97s/it, loss=0.2747, lr=2.48e-05, step=2920]\\rTraining:  10%|▉         | 2921/30000 [3:09:22<29:52:19,  3.97s/it, loss=0.2265, lr=2.48e-05, step=2921]\\rTraining:  10%|▉         | 2922/30000 [3:09:23<23:13:53,  3.09s/it, loss=0.2265, lr=2.48e-05, step=2921]\\rTraining:  10%|▉         | 2922/30000 [3:09:23<23:13:53,  3.09s/it, loss=0.2331, lr=2.48e-05, step=2922]\\rTraining:  10%|▉         | 2923/30000 [3:09:29<29:35:04,  3.93s/it, loss=0.2331, lr=2.48e-05, step=2922]\\rTraining:  10%|▉         | 2923/30000 [3:09:29<29:35:04,  3.93s/it, loss=0.2838, lr=2.48e-05, step=2923]\\rTraining:  10%|▉         | 2924/30000 [3:09:30<23:00:39,  3.06s/it, loss=0.2838, lr=2.48e-05, step=2923]\\rTraining:  10%|▉         | 2924/30000 [3:09:30<23:00:39,  3.06s/it, loss=0.2606, lr=2.48e-05, step=2924]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.11}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "82b5e33e-fb63-42b5-b632-eef10f4a1ed4",
+  "uuid": "cd4ee534-79c2-4d65-82ef-c4a3ca6b009e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"DIAG: AFTER load - action_in_proj.weight device=cuda:0, mean=-0.000354, std=0.177879\\\\nDIAG: REF from file - mean=-0.000354, std=0.177879\\\\n\\\\rTraining:   0%|          | 0/30000 [00:00<?, ?it/s]/root/miniconda3/lib/python3.12/site-packages/torch/autograd/graph.py:829: UserWarning: Attempting to run cuBLAS, but there was no current CUDA context! Attempting to set the primary context... (Triggered internally at /pytorch/aten/src/ATen/cuda/CublasHandlePool.cpp:179.)\\\\n  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass\\\\n\\\\rTraining:   0%|          | 1/30000 [01:07<565:36:22, 67.88s/it]\\\\rTraining:   0%|          | 1/30000 [01:07<565:36:22, 67.88s/it, loss=0.2450, lr=2.50e-08, step=1]\\\\rTraining:   0%|          | 2/30000 [01:09<243:14:32, 29.19s/it, loss=0.2450, lr=2.50e-08, step=1]\\\\rTraining:   0%|          | 2/30000 [01:09<243:14:32, 29.19s/it, loss=0.2765, lr=5.00e-08, step=2]\\\\rTraining:   0%|          | 3/30000 [01:31<213:56:49, 25.68s/it, loss=0.2765, lr=5.00e-08, step=2]\\\\rTraining:   0%|          | 3/30000 [01:31<213:56:49, 25.68s/it, loss=0.3007, lr=7.49e-08, step=3]\\\\rTraining:   0%|          | 4/30000 [01:32<133:06:56, 15.98s/it, loss=0.3007, lr=7.49e-08, step=3]\\\\rTraining:   0%|          | 4/30000 [01:32<133:06:56, 15.98s/it, loss=0.2590, lr=9.99e-08, step=4]\\\\rTraining:   0%|          | 5/30000 [01:58<162:04:04, 19.45s/it, loss=0.2590, lr=9.99e-08, step=4]\\\\rTraining:   0%|          | 5/30000 [01:58<162:04:04, 19.45s/it, loss=0.3099, lr=1.25e-07, step=5]\\\\rTraining:   0%|          | 6/30000 [01:59<110:35:12, 13.27s/it, loss=0.3099, lr=1.25e-07, step=5]\\\\rTraining:   0%|          | 6/30000 [01:59<110:35:12, 13.27s/it, loss=0.2592, lr=1.50e-07, step=6]\\\\rTraining:   0%|          | 7/30000 [02:26<146:55:08, 17.63s/it, loss=0.2592, lr=1.50e-07, step=6]\\\\rTraining:   0%|          | 7/30000 [02:26<146:55:08, 17.63s/it, loss=0.2505, lr=1.75e-07, step=7]\\\\rTraining:   0%|          | 8/30000 [02:27<104:55:54, 12.60s/it, loss=0.2505, lr=1.75e-07, step=7]\\\\rTraining:   0%|          | 8/30000 [02:27<104:55:54, 12.60s/it, loss=0.2780, lr=2.00e-07, step=8]\\\\rTraining:   0%|          | 9/30000 [02:52<135:40:40, 16.29s/it, loss=0.2780, lr=2.00e-07, \\\\rTraining:   0%|          | 3/30000 [14:41<2369:27:42, 284.36s/it, loss=0.2583, lr=5.00e-08, step=2]\\\\rTraining:   0%|          | 3/30000 [14:41<2369:27:42, 284.36s/it, loss=0.3229, lr=7.49e-08, step=3]\\\\rTraining:   0%|          | 4/30000 [19:04<2297:44:27, 275.77s/it, loss=0.3229, lr=7.49e-08, step=3]\\\\rTraining:   0%|          | 4/30000 [19:04<2297:44:27, 275.77s/it, loss=0.2627, lr=9.99e-08, step=4]\\\\rTraining:   0%|          | 5/30000 [23:24<2250:38:00, 270.12s/it, loss=0.2627, lr=9.99e-08, step=4]\\\\rTraining:   0%|          | 5/30000 [23:24<2250:38:00, 270.12s/it, loss=0.2674, lr=1.25e-07, step=5]\\\\rTraining:   0%|          | 6/30000 [27:44<2222:37:16, 266.77s/it, loss=0.2674, lr=1.25e-07, step=5]\\\\rTraining:   0%|          | 6/30000 [27:44<2222:37:16, 266.77s/it, loss=0.2576, lr=1.50e-07, step=6]]\\\\rTraining:   0%|          | 13/30000 [03:48<139:58:51, 16.80s/it, loss=0.2704, lr=3.25e-07, step=13]\\\\rTraining:   0%|          | 14/30000 [03:50<102:17:40, 12.28s/it, loss=0.2704, lr=3.25e-07, step=13]\\\\rTraining:   0%|          | 14/30000 [03:50<102:17:40, 12.28s/it, loss=0.3013, lr=3.50e-07, step=14]\\\\rTraining:   0%|          | 15/30000 [04:11<123:23:53, 14.82s/it, loss=0.3013, lr=3.50e-07, step=14]\\\\rTraining:   0%|          | 15/30000 [04:11<123:23:53, 14.82s/it, loss=0.2862, lr=3.75e-07, step=15]\\\\rTraining:   0%|          | 16/30000 [04:13<91:43:18, 11.01s/it, loss=0.2862, lr=3.75e-07, step=15] \\\\rTraining:   0%|          | 16/30000 [04:13<91:43:18, 11.01s/it, loss=0.2773, lr=4.00e-07, step=16]\\\\rTraining:   0%|          | 17/30000 [04:42<137:14:41, 16.48s/it, loss=0.2773, lr=4.00e-07, step=16]\\\\rTraining:   0%|          | 17/30000 [04:42<137:14:41, 16.48s/it, loss=0.2872, lr=4.25e-07, step=17]\\\\rTraining:   0%|          | 18/30000 [04:44<100:33:01, 12.07s/it, loss=0.2872, lr=4.25e-07, step=17]\\\\rTraining\\\\n\\\\n... [截断: 输出过长，省略 599355 字符] ...\\\\n\\\\ntep=2905]\\\\rTraining:  10%|▉         | 2906/30000 [3:08:27<23:14:10,  3.09s/it, loss=0.2892, lr=2.48e-05, step=2905]\\\\rTraining:  10%|▉         | 2906/30000 [3:08:27<23:14:10,  3.09s/it, loss=0.2950, lr=2.48e-05, step=2906]\\\\rTraining:  10%|▉         | 2907/30000 [3:08:33<30:30:55,  4.05s/it, loss=0.2950, lr=2.48e-05, step=2906]\\\\rTraining:  10%|▉         | 2907/30000 [3:08:33<30:30:55,  4.05s/it, loss=0.2905, lr=2.48e-05, step=2907]\\\\rTraining:  10%|▉         | 2908/30000 [3:08:34<23:39:20,  3.14s/it, loss=0.2905, lr=2.48e-05, step=2907]\\\\rTraining:  10%|▉         | 2908/30000 [3:08:34<23:39:20,  3.14s/it, loss=0.3352, lr=2.48e-05, step=2908]\\\\rTraining:  10%|▉         | 2909/30000 [3:08:40<30:46:56,  4.09s/it, loss=0.3352, lr=2.48e-05, step=2908]\\\\rTraining:  10%|▉         | 2909/30000 [3:08:40<30:46:56,  4.09s/it, loss=0.2981, lr=2.48e-05, step=2909]\\\\rTraining:  10%|▉         | 2910/30000 [3:08:41<23:50:08,  3.17s/it, loss=0.2981, lr=2.48e-05, step=2909]\\\\rTraining:  10%|▉         | 2910/30000 [3:08:41<23:50:08,  3.17s/it, loss=0.2372, lr=2.48e-05, step=2910]\\\\rTraining:  10%|▉         | 2911/30000 [3:08:47<30:04:47,  4.00s/it, loss=0.2372, lr=2.48e-05, step=2910]\\\\rTraining:  10%|▉         | 2911/30000 [3:08:47<30:04:47,  4.00s/it, loss=0.2284, lr=2.48e-05, step=2911]\\\\rTraining:  10%|▉         | 2912/30000 [3:08:48<23:20:52,  3.10s/it, loss=0.2284, lr=2.48e-05, step=2911]\\\\rTraining:  10%|▉         | 2912/30000 [3:08:48<23:20:52,  3.10s/it, loss=0.2510, lr=2.48e-05, step=2912]\\\\rTraining:  10%|▉         | 2913/30000 [3:08:54<29:36:52,  3.94s/it, loss=0.2510, lr=2.48e-05, step=2912]\\\\rTraining:  10%|▉         | 2913/30000 [3:08:54<29:36:52,  3.94s/it, loss=0.3055, lr=2.48e-05, step=2913]\\\\rTraining:  10%|▉         | 2914/30000 [3:08:55<23:01:20,  3.06s/it, loss=0.3055, lr=2.48e-05, step=2913]\\\\rTraining:  10%|▉         | 2914/30000 [3:08:55<23:01:20,  3.06s/it, loss=0.2505, lr=2.48e-05, step=2914]\\\\rTraining:  10%|▉         | 2915/30000 [3:09:01<29:22:18,  3.90s/it, loss=0.2505, lr=2.48e-05, step=2914]\\\\rTraining:  10%|��         | 2915/30000 [3:09:01<29:22:18,  3.90s/it, loss=0.2555, lr=2.48e-05, step=2915]\\\\rTraining:  10%|▉         | 2916/30000 [3:09:02<22:54:26,  3.04s/it, loss=0.2555, lr=2.48e-05, step=2915]\\\\rTraining:  10%|▉         | 2916/30000 [3:09:02<22:54:26,  3.04s/it, loss=0.2791, lr=2.48e-05, step=2916]\\\\rTraining:  10%|▉         | 2917/30000 [3:09:08<29:48:46,  3.96s/it, loss=0.2791, lr=2.48e-05, step=2916]\\\\rTraining:  10%|▉         | 2917/30000 [3:09:08<29:48:46,  3.96s/it, loss=0.2797, lr=2.48e-05, step=2917]\\\\rTraining:  10%|▉         | 2918/30000 [3:09:09<23:10:28,  3.08s/it, loss=0.2797, lr=2.48e-05, step=2917]\\\\rTraining:  10%|▉         | 2918/30000 [3:09:09<23:10:28,  3.08s/it, loss=0.2535, lr=2.48e-05, step=2918]\\\\rTraining:  10%|▉         | 2919/30000 [3:09:16<30:41:15,  4.08s/it, loss=0.2535, lr=2.48e-05, step=2918]\\\\rTraining:  10%|▉         | 2919/30000 [3:09:16<30:41:15,  4.08s/it, loss=0.2293, lr=2.48e-05, step=2919]\\\\rTraining:  10%|▉         | 2920/30000 [3:09:17<23:46:58,  3.16s/it, loss=0.2293, lr=2.48e-05, step=2919]\\\\rTraining:  10%|▉         | 2920/30000 [3:09:17<23:46:58,  3.16s/it, loss=0.2747, lr=2.48e-05, step=2920]\\\\rTraining:  10%|▉         | 2921/30000 [3:09:22<29:52:19,  3.97s/it, loss=0.2747, lr=2.48e-05, step=2920]\\\\rTraining:  10%|▉         | 2921/30000 [3:09:22<29:52:19,  3.97s/it, loss=0.2265, lr=2.48e-05, step=2921]\\\\rTraining:  10%|▉         | 2922/30000 [3:09:23<23:13:53,  3.09s/it, loss=0.2265, lr=2.48e-05, step=2921]\\\\rTraining:  10%|▉         | 2922/30000 [3:09:23<23:13:53,  3.09s/it, loss=0.2331, lr=2.48e-05, step=2922]\\\\rTraining:  10%|▉         | 2923/30000 [3:09:29<29:35:04,  3.93s/it, loss=0.2331, lr=2.48e-05, step=2922]\\\\rTraining:  10%|▉         | 2923/30000 [3:09:29<29:35:04,  3.93s/it, loss=0.2838, lr=2.48e-05, step=2923]\\\\rTraining:  10%|▉         | 2924/30000 [3:09:30<23:00:39,  3.06s/it, loss=0.2838, lr=2.48e-05, step=2923]\\\\rTraining:  10%|▉         | 2924/30000 [3:09:30<23:00:39,  3.06s/it, loss=0.2606, lr=2.48e-05, step=2924]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.11}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"DIAG: AFTER load - action_in_proj.weight device=cuda:0, mean=-0.000354, std=0.177879\\nDIAG: REF from file - mean=-0.000354, std=0.177879\\n\\rTraining:   0%|          | 0/30000 [00:00<?, ?it/s]/root/miniconda3/lib/python3.12/site-packages/torch/autograd/graph.py:829: UserWarning: Attempting to run cuBLAS, but there was no current CUDA context! Attempting to set the primary context... (Triggered internally at /pytorch/aten/src/ATen/cuda/CublasHandlePool.cpp:179.)\\n  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass\\n\\rTraining:   0%|          | 1/30000 [01:07<565:36:22, 67.88s/it]\\rTraining:   0%|          | 1/30000 [01:07<565:36:22, 67.88s/it, loss=0.2450, lr=2.50e-08, step=1]\\rTraining:   0%|          | 2/30000 [01:09<243:14:32, 29.19s/it, loss=0.2450, lr=2.50e-08, step=1]\\rTraining:   0%|          | 2/30000 [01:09<243:14:32, 29.19s/it, loss=0.2765, lr=5.00e-08, step=2]\\rTraining:   0%|          | 3/30000 [01:31<213:56:49, 25.68s/it, loss=0.2765, lr=5.00e-08, step=2]\\rTraining:   0%|          | 3/30000 [01:31<213:56:49, 25.68s/it, loss=0.3007, lr=7.49e-08, step=3]\\rTraining:   0%|          | 4/30000 [01:32<133:06:56, 15.98s/it, loss=0.3007, lr=7.49e-08, step=3]\\rTraining:   0%|          | 4/30000 [01:32<133:06:56, 15.98s/it, loss=0.2590, lr=9.99e-08, step=4]\\rTraining:   0%|          | 5/30000 [01:58<162:04:04, 19.45s/it, loss=0.2590, lr=9.99e-08, step=4]\\rTraining:   0%|          | 5/30000 [01:58<162:04:04, 19.45s/it, loss=0.3099, lr=1.25e-07, step=5]\\rTraining:   0%|          | 6/30000 [01:59<110:35:12, 13.27s/it, loss=0.3099, lr=1.25e-07, step=5]\\rTraining:   0%|          | 6/30000 [01:59<110:35:12, 13.27s/it, loss=0.2592, lr=1.50e-07, step=6]\\rTraining:   0%|          | 7/30000 [02:26<146:55:08, 17.63s/it, loss=0.2592, lr=1.50e-07, step=6]\\rTraining:   0%|          | 7/30000 [02:26<146:55:08, 17.63s/it, loss=0.2505, lr=1.75e-07, step=7]\\rTraining:   0%|          | 8/30000 [02:27<104:55:54, 12.60s/it, loss=0.2505, lr=1.75e-07, step=7]\\rTraining:   0%|          | 8/30000 [02:27<104:55:54, 12.60s/it, loss=0.2780, lr=2.00e-07, step=8]\\rTraining:   0%|          | 9/30000 [02:52<135:40:40, 16.29s/it, loss=0.2780, lr=2.00e-07, \\rTraining:   0%|          | 3/30000 [14:41<2369:27:42, 284.36s/it, loss=0.2583, lr=5.00e-08, step=2]\\rTraining:   0%|          | 3/30000 [14:41<2369:27:42, 284.36s/it, loss=0.3229, lr=7.49e-08, step=3]\\rTraining:   0%|          | 4/30000 [19:04<2297:44:27, 275.77s/it, loss=0.3229, lr=7.49e-08, step=3]\\rTraining:   0%|          | 4/30000 [19:04<2297:44:27, 275.77s/it, loss=0.2627, lr=9.99e-08, step=4]\\rTraining:   0%|          | 5/30000 [23:24<2250:38:00, 270.12s/it, loss=0.2627, lr=9.99e-08, step=4]\\rTraining:   0%|          | 5/30000 [23:24<2250:38:00, 270.12s/it, loss=0.2674, lr=1.25e-07, step=5]\\rTraining:   0%|          | 6/30000 [27:44<2222:37:16, 266.77s/it, loss=0.2674, lr=1.25e-07, step=5]\\rTraining:   0%|          | 6/30000 [27:44<2222:37:16, 266.77s/it, loss=0.2576, lr=1.50e-07, step=6]]\\rTraining:   0%|          | 13/30000 [03:48<139:58:51, 16.80s/it, loss=0.2704, lr=3.25e-07, step=13]\\rTraining:   0%|          | 14/30000 [03:50<102:17:40, 12.28s/it, loss=0.2704, lr=3.25e-07, step=13]\\rTraining:   0%|          | 14/30000 [03:50<102:17:40, 12.28s/it, loss=0.3013, lr=3.50e-07, step=14]\\rTraining:   0%|          | 15/30000 [04:11<123:23:53, 14.82s/it, loss=0.3013, lr=3.50e-07, step=14]\\rTraining:   0%|          | 15/30000 [04:11<123:23:53, 14.82s/it, loss=0.2862, lr=3.75e-07, step=15]\\rTraining:   0%|          | 16/30000 [04:13<91:43:18, 11.01s/it, loss=0.2862, lr=3.75e-07, step=15] \\rTraining:   0%|          | 16/30000 [04:13<91:43:18, 11.01s/it, loss=0.2773, lr=4.00e-07, step=16]\\rTraining:   0%|          | 17/30000 [04:42<137:14:41, 16.48s/it, loss=0.2773, lr=4.00e-07, step=16]\\rTraining:   0%|          | 17/30000 [04:42<137:14:41, 16.48s/it, loss=0.2872, lr=4.25e-07, step=17]\\rTraining:   0%|          | 18/30000 [04:44<100:33:01, 12.07s/it, loss=0.2872, lr=4.25e-07, step=17]\\rTraining\\n\\n... [截断: 输出过长，省略 599355 字符] ...\\n\\ntep=2905]\\rTraining:  10%|▉         | 2906/30000 [3:08:27<23:14:10,  3.09s/it, loss=0.2892, lr=2.48e-05, step=2905]\\rTraining:  10%|▉         | 2906/30000 [3:08:27<23:14:10,  3.09s/it, loss=0.2950, lr=2.48e-05, step=2906]\\rTraining:  10%|▉         | 2907/30000 [3:08:33<30:30:55,  4.05s/it, loss=0.2950, lr=2.48e-05, step=2906]\\rTraining:  10%|▉         | 2907/30000 [3:08:33<30:30:55,  4.05s/it, loss=0.2905, lr=2.48e-05, step=2907]\\rTraining:  10%|▉         | 2908/30000 [3:08:34<23:39:20,  3.14s/it, loss=0.2905, lr=2.48e-05, step=2907]\\rTraining:  10%|▉         | 2908/30000 [3:08:34<23:39:20,  3.14s/it, loss=0.3352, lr=2.48e-05, step=2908]\\rTraining:  10%|▉         | 2909/30000 [3:08:40<30:46:56,  4.09s/it, loss=0.3352, lr=2.48e-05, step=2908]\\rTraining:  10%|▉         | 2909/30000 [3:08:40<30:46:56,  4.09s/it, loss=0.2981, lr=2.48e-05, step=2909]\\rTraining:  10%|▉         | 2910/30000 [3:08:41<23:50:08,  3.17s/it, loss=0.2981, lr=2.48e-05, step=2909]\\rTraining:  10%|▉         | 2910/30000 [3:08:41<23:50:08,  3.17s/it, loss=0.2372, lr=2.48e-05, step=2910]\\rTraining:  10%|▉         | 2911/30000 [3:08:47<30:04:47,  4.00s/it, loss=0.2372, lr=2.48e-05, step=2910]\\rTraining:  10%|▉         | 2911/30000 [3:08:47<30:04:47,  4.00s/it, loss=0.2284, lr=2.48e-05, step=2911]\\rTraining:  10%|▉         | 2912/30000 [3:08:48<23:20:52,  3.10s/it, loss=0.2284, lr=2.48e-05, step=2911]\\rTraining:  10%|▉         | 2912/30000 [3:08:48<23:20:52,  3.10s/it, loss=0.2510, lr=2.48e-05, step=2912]\\rTraining:  10%|▉         | 2913/30000 [3:08:54<29:36:52,  3.94s/it, loss=0.2510, lr=2.48e-05, step=2912]\\rTraining:  10%|▉         | 2913/30000 [3:08:54<29:36:52,  3.94s/it, loss=0.3055, lr=2.48e-05, step=2913]\\rTraining:  10%|▉         | 2914/30000 [3:08:55<23:01:20,  3.06s/it, loss=0.3055, lr=2.48e-05, step=2913]\\rTraining:  10%|▉         | 2914/30000 [3:08:55<23:01:20,  3.06s/it, loss=0.2505, lr=2.48e-05, step=2914]\\rTraining:  10%|▉         | 2915/30000 [3:09:01<29:22:18,  3.90s/it, loss=0.2505, lr=2.48e-05, step=2914]\\rTraining:  10%|��         | 2915/30000 [3:09:01<29:22:18,  3.90s/it, loss=0.2555, lr=2.48e-05, step=2915]\\rTraining:  10%|▉         | 2916/30000 [3:09:02<22:54:26,  3.04s/it, loss=0.2555, lr=2.48e-05, step=2915]\\rTraining:  10%|▉         | 2916/30000 [3:09:02<22:54:26,  3.04s/it, loss=0.2791, lr=2.48e-05, step=2916]\\rTraining:  10%|▉         | 2917/30000 [3:09:08<29:48:46,  3.96s/it, loss=0.2791, lr=2.48e-05, step=2916]\\rTraining:  10%|▉         | 2917/30000 [3:09:08<29:48:46,  3.96s/it, loss=0.2797, lr=2.48e-05, step=2917]\\rTraining:  10%|▉         | 2918/30000 [3:09:09<23:10:28,  3.08s/it, loss=0.2797, lr=2.48e-05, step=2917]\\rTraining:  10%|▉         | 2918/30000 [3:09:09<23:10:28,  3.08s/it, loss=0.2535, lr=2.48e-05, step=2918]\\rTraining:  10%|▉         | 2919/30000 [3:09:16<30:41:15,  4.08s/it, loss=0.2535, lr=2.48e-05, step=2918]\\rTraining:  10%|▉         | 2919/30000 [3:09:16<30:41:15,  4.08s/it, loss=0.2293, lr=2.48e-05, step=2919]\\rTraining:  10%|▉         | 2920/30000 [3:09:17<23:46:58,  3.16s/it, loss=0.2293, lr=2.48e-05, step=2919]\\rTraining:  10%|▉         | 2920/30000 [3:09:17<23:46:58,  3.16s/it, loss=0.2747, lr=2.48e-05, step=2920]\\rTraining:  10%|▉         | 2921/30000 [3:09:22<29:52:19,  3.97s/it, loss=0.2747, lr=2.48e-05, step=2920]\\rTraining:  10%|▉         | 2921/30000 [3:09:22<29:52:19,  3.97s/it, loss=0.2265, lr=2.48e-05, step=2921]\\rTraining:  10%|▉         | 2922/30000 [3:09:23<23:13:53,  3.09s/it, loss=0.2265, lr=2.48e-05, step=2921]\\rTraining:  10%|▉         | 2922/30000 [3:09:23<23:13:53,  3.09s/it, loss=0.2331, lr=2.48e-05, step=2922]\\rTraining:  10%|▉         | 2923/30000 [3:09:29<29:35:04,  3.93s/it, loss=0.2331, lr=2.48e-05, step=2922]\\rTraining:  10%|▉         | 2923/30000 [3:09:29<29:35:04,  3.93s/it, loss=0.2838, lr=2.48e-05, step=2923]\\rTraining:  10%|▉         | 2924/30000 [3:09:30<23:00:39,  3.06s/it, loss=0.2838, lr=2.48e-05, step=2923]\\rTraining:  10%|▉         | 2924/30000 [3:09:30<23:00:39,  3.06s/it, loss=0.2606, lr=2.48e-05, step=2924]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.11}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-20T11:15:56.581Z_
+
+<details><summary>↩ Tool result · `toolu_01Kju7WFxepN3xc2xejmDUmB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"DIAG: AFTER load - action_in_proj.weight device=cuda:0, mean=-0.000354, std=0.177879\\nDIAG: REF from file - mean=-0.000354, std=0.177879\\n\\rTraining:   8%|▊         | 2500/30000 [00:00<?, ?it/s]/root/miniconda3/lib/python3.12/site-packages/torch/autograd/graph.py:829: UserWarning: Attempting to run cuBLAS, but there was no current CUDA context! Attempting to set the primary context... (Triggered internally at /pytorch/aten/src/ATen/cuda/CublasHandlePool.cpp:179.)\\n  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass\\n\\rTraining:   8%|▊         | 2501/30000 [01:18<600:26:12, 78.61s/it]\\rTraining:   8%|▊         | 2501/30000 [01:18<600:26:12, 78.61s/it, loss=0.1826, lr=2.49e-05, step=2501]\\rTraining:   8%|▊         | 2502/30000 [01:19<253:11:21, 33.15s/it, loss=0.1826, lr=2.49e-05, step=2501]\\rTraining:   8%|▊         | 2502/30000 [01:19<253:11:21, 33.15s/it, loss=0.2590, lr=2.49e-05, step=2502]\\rTraining:   8%|▊         | 2503/30000 [01:40<210:27:59, 27.55s/it, loss=0.2590, lr=2.49e-05, step=2502]\\rTraining:   8%|▊         | 2503/30000 [01:40<210:27:59, 27.55s/it, loss=0.2069, lr=2.49e-05, step=2503]\\rTraining:   8%|▊         | 2504/30000 [01:42<133:03:34, 17.42s/it, loss=0.2069, lr=2.49e-05, step=2503]\\rTraining:   8%|▊         | 2504/30000 [01:42<133:03:34, 17.42s/it, loss=0.1957, lr=2.49e-05, step=2504]\\rTraining:   8%|▊         | 2505/30000 [02:06<150:37:33, 19.72s/it, loss=0.1957, lr=2.49e-05, step=2504]\\rTraining:   8%|▊         | 2505/30000 [02:06<150:37:33, 19.72s/it, loss=0.2405, lr=2.49e-05, step=2505]\\rTraining:   8%|▊         | 2506/30000 [02:08<103:31:35, 13.56s/it, loss=0.2405, lr=2.49e-05, step=2505]\\rTraining:   8%|▊         | 2506/30000 [02:08<103:31:35, 13.56s/it, loss=0.2447, lr=2.49e-05, step=2506]\\rTraining:   8%|▊         | 2507/30000 [02:31<128:21:28, 16.81s/it, loss=0.2447, lr=2.49e-05, step=2506]\\rTraining:   8%|▊         | 2507/30000 [02:31<128:21:28, 16.81s/it, loss=0.1861, lr=2.49e-05, step=2507]\\rTraining:   8%|▊         | 2508/30000 [02:34<93:35:02, 12.25s/it, loss=0.1861, lr=2.49e-05, step=2507] \\rTraining:   8%|▊         | 2508/30000 [02:34<93:35:02, 12.25s/it, loss=0.2398, lr=2.49e-05, step=2\\rTraining:   8%|▊         | 2503/30000 [13:34<2152:07:13, 281.76s/it, loss=0.2250, lr=2.49e-05, step=2502]\\rTraining:   8%|▊         | 2503/30000 [13:34<2152:07:13, 281.76s/it, loss=0.2463, lr=2.49e-05, step=2503]\\rTraining:   8%|▊         | 2504/30000 [18:04<2114:58:24, 276.91s/it, loss=0.2463, lr=2.49e-05, step=2503]\\rTraining:   8%|▊         | 2504/30000 [18:04<2114:58:24, 276.91s/it, loss=0.2264, lr=2.49e-05, step=2504]\\rTraining:   8%|▊         | 2505/30000 [22:32<2090:26:40, 273.71s/it, loss=0.2264, lr=2.49e-05, step=2504]\\rTraining:   8%|▊         | 2505/30000 [22:32<2090:26:40, 273.71s/it, loss=0.2026, lr=2.49e-05, step=2505]\\rTraining:   8%|▊         | 2506/30000 [26:57<2068:26:54, 270.84s/it, loss=0.2026, lr=2.49e-05, step=2505]\\rTraining:   8%|▊         | 2506/30000 [26:57<2068:26:54, 270.84s/it, loss=0.2322, lr=2.49e-05, step=2506]\\rTraining:   8%|▊         | 2507/30000 [31:14<2034:35:05, 266.41s/it, loss=0.2322, lr=2.49e-05, step=2506]\\rTraining:   8%|▊         | 2507/30000 [31:14<2034:35:05, 266.41s/it, loss=0.2189, lr=2.49e-05, step=2507]�         | 2514/30000 [03:52<86:09:30, 11.28s/it, loss=0.2056, lr=2.48e-05, step=2513] \\rTraining:   8%|▊         | 2514/30000 [03:52<86:09:30, 11.28s/it, loss=0.1764, lr=2.48e-05, step=2514]\\rTraining:   8%|▊         | 2515/30000 [04:09<98:36:18, 12.92s/it, loss=0.1764, lr=2.48e-05, step=2514]\\rTraining:   8%|▊         | 2515/30000 [04:09<98:36:18, 12.92s/it, loss=0.2584, lr=2.48e-05, step=2515]\\rTraining:   8%|▊         | 2516/30000 [04:17<87:35:23, 11.47s/it, loss=0.2584, lr=2.48e-05, step=2515]\\rTraining:   8%|▊         | 2516/30000 [04:17<87:35:23, 11.47s/it, loss=0.2146, lr=2.48e-05, step=2516]\\rTraining:   8%|▊         | 2517/30000 [04:37<107:48:57, 14.12s/it, loss=0.2146, lr=2.48e-05, step=2516]\\rTraining:   8%|▊         | 2517/30000 [04\\n\\n... [截断: 输出过长，省略 566802 字符] ...\\n\\nep=5228]\\rTraining:  17%|█▋        | 5229/30000 [3:08:56<27:38:57,  4.02s/it, loss=0.0849, lr=2.38e-05, step=5228]\\rTraining:  17%|█▋        | 5229/30000 [3:08:56<27:38:57,  4.02s/it, loss=0.0922, lr=2.38e-05, step=5229]\\rTraining:  17%|█▋        | 5230/30000 [3:09:00<27:37:19,  4.01s/it, loss=0.0922, lr=2.38e-05, step=5229]\\rTraining:  17%|█▋        | 5230/30000 [3:09:00<27:37:19,  4.01s/it, loss=0.0864, lr=2.38e-05, step=5230]\\rTraining:  17%|█▋        | 5231/30000 [3:09:04<27:46:53,  4.04s/it, loss=0.0864, lr=2.38e-05, step=5230]\\rTraining:  17%|█▋        | 5231/30000 [3:09:04<27:46:53,  4.04s/it, loss=0.0757, lr=2.38e-05, step=5231]\\rTraining:  17%|█▋        | 5232/30000 [3:09:08<27:48:23,  4.04s/it, loss=0.0757, lr=2.38e-05, step=5231]\\rTraining:  17%|█▋        | 5232/30000 [3:09:08<27:48:23,  4.04s/it, loss=0.0789, lr=2.38e-05, step=5232]\\rTraining:  17%|█▋        | 5233/30000 [3:09:12<27:43:13,  4.03s/it, loss=0.0789, lr=2.38e-05, step=5232]\\rTraining:  17%|█▋        | 5233/30000 [3:09:12<27:43:13,  4.03s/it, loss=0.0861, lr=2.38e-05, step=5233]\\rTraining:  17%|█▋        | 5234/30000 [3:09:16<27:49:22,  4.04s/it, loss=0.0861, lr=2.38e-05, step=5233]\\rTraining:  17%|█▋        | 5234/30000 [3:09:16<27:49:22,  4.04s/it, loss=0.0861, lr=2.38e-05, step=5234]\\rTraining:  17%|█▋        | 5235/30000 [3:09:20<27:46:24,  4.04s/it, loss=0.0861, lr=2.38e-05, step=5234]\\rTraining:  17%|█▋        | 5235/30000 [3:09:20<27:46:24,  4.04s/it, loss=0.0906, lr=2.38e-05, step=5235]\\rTraining:  17%|█▋        | 5236/30000 [3:09:24<27:43:59,  4.03s/it, loss=0.0906, lr=2.38e-05, step=5235]\\rTraining:  17%|█▋        | 5236/30000 [3:09:24<27:43:59,  4.03s/it, loss=0.0870, lr=2.38e-05, step=5236]\\rTraining:  17%|█▋        | 5237/30000 [3:09:28<27:43:59,  4.03s/it, loss=0.0870, lr=2.38e-05, step=5236]\\rTraining:  17%|█���        | 5237/30000 [3:09:28<27:43:59,  4.03s/it, loss=0.0646, lr=2.38e-05, step=5237]\\rTraining:  17%|█▋        | 5238/30000 [3:09:32<27:40:05,  4.02s/it, loss=0.0646, lr=2.38e-05, step=5237]\\rTraining:  17%|█▋        | 5238/30000 [3:09:32<27:40:05,  4.02s/it, loss=0.0740, lr=2.38e-05, step=5238]\\rTraining:  17%|█▋        | 5239/30000 [3:09:36<27:35:50,  4.01s/it, loss=0.0740, lr=2.38e-05, step=5238]\\rTraining:  17%|█▋        | 5239/30000 [3:09:36<27:35:50,  4.01s/it, loss=0.0828, lr=2.38e-05, step=5239]\\rTraining:  17%|█▋        | 5240/30000 [3:09:48<43:07:43,  6.27s/it, loss=0.0828, lr=2.38e-05, step=5239]\\rTraining:  17%|█▋        | 5240/30000 [3:09:48<43:07:43,  6.27s/it, loss=0.0854, lr=2.38e-05, step=5240]\\rTraining:  17%|█▋        | 5241/30000 [3:09:52<38:24:16,  5.58s/it, loss=0.0854, lr=2.38e-05, step=5240]\\rTraining:  17%|█▋        | 5241/30000 [3:09:52<38:24:16,  5.58s/it, loss=0.0802, lr=2.38e-05, step=5241]\\rTraining:  17%|█▋        | 5242/30000 [3:09:56<35:22:58,  5.14s/it, loss=0.0802, lr=2.38e-05, step=5241]\\rTraining:  17%|█▋        | 5242/30000 [3:09:56<35:22:58,  5.14s/it, loss=0.1098, lr=2.38e-05, step=5242]\\rTraining:  17%|█▋        | 5243/30000 [3:10:00<32:57:21,  4.79s/it, loss=0.1098, lr=2.38e-05, step=5242]\\rTraining:  17%|█▋        | 5243/30000 [3:10:00<32:57:21,  4.79s/it, loss=0.0885, lr=2.38e-05, step=5243]\\rTraining:  17%|█▋        | 5244/30000 [3:10:04<31:20:51,  4.56s/it, loss=0.0885, lr=2.38e-05, step=5243]\\rTraining:  17%|█▋        | 5244/30000 [3:10:04<31:20:51,  4.56s/it, loss=0.1067, lr=2.38e-05, step=5244]\\rTraining:  17%|█▋        | 5245/30000 [3:10:08<30:10:18,  4.39s/it, loss=0.1067, lr=2.38e-05, step=5244]\\rTraining:  17%|█▋        | 5245/30000 [3:10:08<30:10:18,  4.39s/it, loss=0.0773, lr=2.38e-05, step=5245]\\rTraining:  17%|█▋        | 5246/30000 [3:10:12<29:29:09,  4.29s/it, loss=0.0773, lr=2.38e-05, step=5245]\\rTraining:  17%|█▋        | 5246/30000 [3:10:12<29:29:09,  4.29s/it, loss=0.0830, lr=2.38e-05, step=5246]\\rTraining:  17%|█▋        | 5247/30000 [3:10:16<28:52:15,  4.20s/it, loss=0.0830, lr=2.38e-05, step=5246]\\rTraining:  17%|█▋        | 5247/30000 [3:10:16<28:52:15,  4.20s/it, loss=0.0994, lr=2.38e-05, step=5247]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.55}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "82b5e33e-fb63-42b5-b632-eef10f4a1ed4",
+  "uuid": "6269139d-2f9f-427b-8a47-41265d9987a3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"DIAG: AFTER load - action_in_proj.weight device=cuda:0, mean=-0.000354, std=0.177879\\\\nDIAG: REF from file - mean=-0.000354, std=0.177879\\\\n\\\\rTraining:   8%|▊         | 2500/30000 [00:00<?, ?it/s]/root/miniconda3/lib/python3.12/site-packages/torch/autograd/graph.py:829: UserWarning: Attempting to run cuBLAS, but there was no current CUDA context! Attempting to set the primary context... (Triggered internally at /pytorch/aten/src/ATen/cuda/CublasHandlePool.cpp:179.)\\\\n  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass\\\\n\\\\rTraining:   8%|▊         | 2501/30000 [01:18<600:26:12, 78.61s/it]\\\\rTraining:   8%|▊         | 2501/30000 [01:18<600:26:12, 78.61s/it, loss=0.1826, lr=2.49e-05, step=2501]\\\\rTraining:   8%|▊         | 2502/30000 [01:19<253:11:21, 33.15s/it, loss=0.1826, lr=2.49e-05, step=2501]\\\\rTraining:   8%|▊         | 2502/30000 [01:19<253:11:21, 33.15s/it, loss=0.2590, lr=2.49e-05, step=2502]\\\\rTraining:   8%|▊         | 2503/30000 [01:40<210:27:59, 27.55s/it, loss=0.2590, lr=2.49e-05, step=2502]\\\\rTraining:   8%|▊         | 2503/30000 [01:40<210:27:59, 27.55s/it, loss=0.2069, lr=2.49e-05, step=2503]\\\\rTraining:   8%|▊         | 2504/30000 [01:42<133:03:34, 17.42s/it, loss=0.2069, lr=2.49e-05, step=2503]\\\\rTraining:   8%|▊         | 2504/30000 [01:42<133:03:34, 17.42s/it, loss=0.1957, lr=2.49e-05, step=2504]\\\\rTraining:   8%|▊         | 2505/30000 [02:06<150:37:33, 19.72s/it, loss=0.1957, lr=2.49e-05, step=2504]\\\\rTraining:   8%|▊         | 2505/30000 [02:06<150:37:33, 19.72s/it, loss=0.2405, lr=2.49e-05, step=2505]\\\\rTraining:   8%|▊         | 2506/30000 [02:08<103:31:35, 13.56s/it, loss=0.2405, lr=2.49e-05, step=2505]\\\\rTraining:   8%|▊         | 2506/30000 [02:08<103:31:35, 13.56s/it, loss=0.2447, lr=2.49e-05, step=2506]\\\\rTraining:   8%|▊         | 2507/30000 [02:31<128:21:28, 16.81s/it, loss=0.2447, lr=2.49e-05, step=2506]\\\\rTraining:   8%|▊         | 2507/30000 [02:31<128:21:28, 16.81s/it, loss=0.1861, lr=2.49e-05, step=2507]\\\\rTraining:   8%|▊         | 2508/30000 [02:34<93:35:02, 12.25s/it, loss=0.1861, lr=2.49e-05, step=2507] \\\\rTraining:   8%|▊         | 2508/30000 [02:34<93:35:02, 12.25s/it, loss=0.2398, lr=2.49e-05, step=2\\\\rTraining:   8%|▊         | 2503/30000 [13:34<2152:07:13, 281.76s/it, loss=0.2250, lr=2.49e-05, step=2502]\\\\rTraining:   8%|▊         | 2503/30000 [13:34<2152:07:13, 281.76s/it, loss=0.2463, lr=2.49e-05, step=2503]\\\\rTraining:   8%|▊         | 2504/30000 [18:04<2114:58:24, 276.91s/it, loss=0.2463, lr=2.49e-05, step=2503]\\\\rTraining:   8%|▊         | 2504/30000 [18:04<2114:58:24, 276.91s/it, loss=0.2264, lr=2.49e-05, step=2504]\\\\rTraining:   8%|▊         | 2505/30000 [22:32<2090:26:40, 273.71s/it, loss=0.2264, lr=2.49e-05, step=2504]\\\\rTraining:   8%|▊         | 2505/30000 [22:32<2090:26:40, 273.71s/it, loss=0.2026, lr=2.49e-05, step=2505]\\\\rTraining:   8%|▊         | 2506/30000 [26:57<2068:26:54, 270.84s/it, loss=0.2026, lr=2.49e-05, step=2505]\\\\rTraining:   8%|▊         | 2506/30000 [26:57<2068:26:54, 270.84s/it, loss=0.2322, lr=2.49e-05, step=2506]\\\\rTraining:   8%|▊         | 2507/30000 [31:14<2034:35:05, 266.41s/it, loss=0.2322, lr=2.49e-05, step=2506]\\\\rTraining:   8%|▊         | 2507/30000 [31:14<2034:35:05, 266.41s/it, loss=0.2189, lr=2.49e-05, step=2507]�         | 2514/30000 [03:52<86:09:30, 11.28s/it, loss=0.2056, lr=2.48e-05, step=2513] \\\\rTraining:   8%|▊         | 2514/30000 [03:52<86:09:30, 11.28s/it, loss=0.1764, lr=2.48e-05, step=2514]\\\\rTraining:   8%|▊         | 2515/30000 [04:09<98:36:18, 12.92s/it, loss=0.1764, lr=2.48e-05, step=2514]\\\\rTraining:   8%|▊         | 2515/30000 [04:09<98:36:18, 12.92s/it, loss=0.2584, lr=2.48e-05, step=2515]\\\\rTraining:   8%|▊         | 2516/30000 [04:17<87:35:23, 11.47s/it, loss=0.2584, lr=2.48e-05, step=2515]\\\\rTraining:   8%|▊         | 2516/30000 [04:17<87:35:23, 11.47s/it, loss=0.2146, lr=2.48e-05, step=2516]\\\\rTraining:   8%|▊         | 2517/30000 [04:37<107:48:57, 14.12s/it, loss=0.2146, lr=2.48e-05, step=2516]\\\\rTraining:   8%|▊         | 2517/30000 [04\\\\n\\\\n... [截断: 输出过长，省略 566802 字符] ...\\\\n\\\\nep=5228]\\\\rTraining:  17%|█▋        | 5229/30000 [3:08:56<27:38:57,  4.02s/it, loss=0.0849, lr=2.38e-05, step=5228]\\\\rTraining:  17%|█▋        | 5229/30000 [3:08:56<27:38:57,  4.02s/it, loss=0.0922, lr=2.38e-05, step=5229]\\\\rTraining:  17%|█▋        | 5230/30000 [3:09:00<27:37:19,  4.01s/it, loss=0.0922, lr=2.38e-05, step=5229]\\\\rTraining:  17%|█▋        | 5230/30000 [3:09:00<27:37:19,  4.01s/it, loss=0.0864, lr=2.38e-05, step=5230]\\\\rTraining:  17%|█▋        | 5231/30000 [3:09:04<27:46:53,  4.04s/it, loss=0.0864, lr=2.38e-05, step=5230]\\\\rTraining:  17%|█▋        | 5231/30000 [3:09:04<27:46:53,  4.04s/it, loss=0.0757, lr=2.38e-05, step=5231]\\\\rTraining:  17%|█▋        | 5232/30000 [3:09:08<27:48:23,  4.04s/it, loss=0.0757, lr=2.38e-05, step=5231]\\\\rTraining:  17%|█▋        | 5232/30000 [3:09:08<27:48:23,  4.04s/it, loss=0.0789, lr=2.38e-05, step=5232]\\\\rTraining:  17%|█▋        | 5233/30000 [3:09:12<27:43:13,  4.03s/it, loss=0.0789, lr=2.38e-05, step=5232]\\\\rTraining:  17%|█▋        | 5233/30000 [3:09:12<27:43:13,  4.03s/it, loss=0.0861, lr=2.38e-05, step=5233]\\\\rTraining:  17%|█▋        | 5234/30000 [3:09:16<27:49:22,  4.04s/it, loss=0.0861, lr=2.38e-05, step=5233]\\\\rTraining:  17%|█▋        | 5234/30000 [3:09:16<27:49:22,  4.04s/it, loss=0.0861, lr=2.38e-05, step=5234]\\\\rTraining:  17%|█▋        | 5235/30000 [3:09:20<27:46:24,  4.04s/it, loss=0.0861, lr=2.38e-05, step=5234]\\\\rTraining:  17%|█▋        | 5235/30000 [3:09:20<27:46:24,  4.04s/it, loss=0.0906, lr=2.38e-05, step=5235]\\\\rTraining:  17%|█▋        | 5236/30000 [3:09:24<27:43:59,  4.03s/it, loss=0.0906, lr=2.38e-05, step=5235]\\\\rTraining:  17%|█▋        | 5236/30000 [3:09:24<27:43:59,  4.03s/it, loss=0.0870, lr=2.38e-05, step=5236]\\\\rTraining:  17%|█▋        | 5237/30000 [3:09:28<27:43:59,  4.03s/it, loss=0.0870, lr=2.38e-05, step=5236]\\\\rTraining:  17%|█���        | 5237/30000 [3:09:28<27:43:59,  4.03s/it, loss=0.0646, lr=2.38e-05, step=5237]\\\\rTraining:  17%|█▋        | 5238/30000 [3:09:32<27:40:05,  4.02s/it, loss=0.0646, lr=2.38e-05, step=5237]\\\\rTraining:  17%|█▋        | 5238/30000 [3:09:32<27:40:05,  4.02s/it, loss=0.0740, lr=2.38e-05, step=5238]\\\\rTraining:  17%|█▋        | 5239/30000 [3:09:36<27:35:50,  4.01s/it, loss=0.0740, lr=2.38e-05, step=5238]\\\\rTraining:  17%|█▋        | 5239/30000 [3:09:36<27:35:50,  4.01s/it, loss=0.0828, lr=2.38e-05, step=5239]\\\\rTraining:  17%|█▋        | 5240/30000 [3:09:48<43:07:43,  6.27s/it, loss=0.0828, lr=2.38e-05, step=5239]\\\\rTraining:  17%|█▋        | 5240/30000 [3:09:48<43:07:43,  6.27s/it, loss=0.0854, lr=2.38e-05, step=5240]\\\\rTraining:  17%|█▋        | 5241/30000 [3:09:52<38:24:16,  5.58s/it, loss=0.0854, lr=2.38e-05, step=5240]\\\\rTraining:  17%|█▋        | 5241/30000 [3:09:52<38:24:16,  5.58s/it, loss=0.0802, lr=2.38e-05, step=5241]\\\\rTraining:  17%|█▋        | 5242/30000 [3:09:56<35:22:58,  5.14s/it, loss=0.0802, lr=2.38e-05, step=5241]\\\\rTraining:  17%|█▋        | 5242/30000 [3:09:56<35:22:58,  5.14s/it, loss=0.1098, lr=2.38e-05, step=5242]\\\\rTraining:  17%|█▋        | 5243/30000 [3:10:00<32:57:21,  4.79s/it, loss=0.1098, lr=2.38e-05, step=5242]\\\\rTraining:  17%|█▋        | 5243/30000 [3:10:00<32:57:21,  4.79s/it, loss=0.0885, lr=2.38e-05, step=5243]\\\\rTraining:  17%|█▋        | 5244/30000 [3:10:04<31:20:51,  4.56s/it, loss=0.0885, lr=2.38e-05, step=5243]\\\\rTraining:  17%|█▋        | 5244/30000 [3:10:04<31:20:51,  4.56s/it, loss=0.1067, lr=2.38e-05, step=5244]\\\\rTraining:  17%|█▋        | 5245/30000 [3:10:08<30:10:18,  4.39s/it, loss=0.1067, lr=2.38e-05, step=5244]\\\\rTraining:  17%|█▋        | 5245/30000 [3:10:08<30:10:18,  4.39s/it, loss=0.0773, lr=2.38e-05, step=5245]\\\\rTraining:  17%|█▋        | 5246/30000 [3:10:12<29:29:09,  4.29s/it, loss=0.0773, lr=2.38e-05, step=5245]\\\\rTraining:  17%|█▋        | 5246/30000 [3:10:12<29:29:09,  4.29s/it, loss=0.0830, lr=2.38e-05, step=5246]\\\\rTraining:  17%|█▋        | 5247/30000 [3:10:16<28:52:15,  4.20s/it, loss=0.0830, lr=2.38e-05, step=5246]\\\\rTraining:  17%|█▋        | 5247/30000 [3:10:16<28:52:15,  4.20s/it, loss=0.0994, lr=2.38e-05, step=5247]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.55}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"DIAG: AFTER load - action_in_proj.weight device=cuda:0, mean=-0.000354, std=0.177879\\nDIAG: REF from file - mean=-0.000354, std=0.177879\\n\\rTraining:   8%|▊         | 2500/30000 [00:00<?, ?it/s]/root/miniconda3/lib/python3.12/site-packages/torch/autograd/graph.py:829: UserWarning: Attempting to run cuBLAS, but there was no current CUDA context! Attempting to set the primary context... (Triggered internally at /pytorch/aten/src/ATen/cuda/CublasHandlePool.cpp:179.)\\n  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass\\n\\rTraining:   8%|▊         | 2501/30000 [01:18<600:26:12, 78.61s/it]\\rTraining:   8%|▊         | 2501/30000 [01:18<600:26:12, 78.61s/it, loss=0.1826, lr=2.49e-05, step=2501]\\rTraining:   8%|▊         | 2502/30000 [01:19<253:11:21, 33.15s/it, loss=0.1826, lr=2.49e-05, step=2501]\\rTraining:   8%|▊         | 2502/30000 [01:19<253:11:21, 33.15s/it, loss=0.2590, lr=2.49e-05, step=2502]\\rTraining:   8%|▊         | 2503/30000 [01:40<210:27:59, 27.55s/it, loss=0.2590, lr=2.49e-05, step=2502]\\rTraining:   8%|▊         | 2503/30000 [01:40<210:27:59, 27.55s/it, loss=0.2069, lr=2.49e-05, step=2503]\\rTraining:   8%|▊         | 2504/30000 [01:42<133:03:34, 17.42s/it, loss=0.2069, lr=2.49e-05, step=2503]\\rTraining:   8%|▊         | 2504/30000 [01:42<133:03:34, 17.42s/it, loss=0.1957, lr=2.49e-05, step=2504]\\rTraining:   8%|▊         | 2505/30000 [02:06<150:37:33, 19.72s/it, loss=0.1957, lr=2.49e-05, step=2504]\\rTraining:   8%|▊         | 2505/30000 [02:06<150:37:33, 19.72s/it, loss=0.2405, lr=2.49e-05, step=2505]\\rTraining:   8%|▊         | 2506/30000 [02:08<103:31:35, 13.56s/it, loss=0.2405, lr=2.49e-05, step=2505]\\rTraining:   8%|▊         | 2506/30000 [02:08<103:31:35, 13.56s/it, loss=0.2447, lr=2.49e-05, step=2506]\\rTraining:   8%|▊         | 2507/30000 [02:31<128:21:28, 16.81s/it, loss=0.2447, lr=2.49e-05, step=2506]\\rTraining:   8%|▊         | 2507/30000 [02:31<128:21:28, 16.81s/it, loss=0.1861, lr=2.49e-05, step=2507]\\rTraining:   8%|▊         | 2508/30000 [02:34<93:35:02, 12.25s/it, loss=0.1861, lr=2.49e-05, step=2507] \\rTraining:   8%|▊         | 2508/30000 [02:34<93:35:02, 12.25s/it, loss=0.2398, lr=2.49e-05, step=2\\rTraining:   8%|▊         | 2503/30000 [13:34<2152:07:13, 281.76s/it, loss=0.2250, lr=2.49e-05, step=2502]\\rTraining:   8%|▊         | 2503/30000 [13:34<2152:07:13, 281.76s/it, loss=0.2463, lr=2.49e-05, step=2503]\\rTraining:   8%|▊         | 2504/30000 [18:04<2114:58:24, 276.91s/it, loss=0.2463, lr=2.49e-05, step=2503]\\rTraining:   8%|▊         | 2504/30000 [18:04<2114:58:24, 276.91s/it, loss=0.2264, lr=2.49e-05, step=2504]\\rTraining:   8%|▊         | 2505/30000 [22:32<2090:26:40, 273.71s/it, loss=0.2264, lr=2.49e-05, step=2504]\\rTraining:   8%|▊         | 2505/30000 [22:32<2090:26:40, 273.71s/it, loss=0.2026, lr=2.49e-05, step=2505]\\rTraining:   8%|▊         | 2506/30000 [26:57<2068:26:54, 270.84s/it, loss=0.2026, lr=2.49e-05, step=2505]\\rTraining:   8%|▊         | 2506/30000 [26:57<2068:26:54, 270.84s/it, loss=0.2322, lr=2.49e-05, step=2506]\\rTraining:   8%|▊         | 2507/30000 [31:14<2034:35:05, 266.41s/it, loss=0.2322, lr=2.49e-05, step=2506]\\rTraining:   8%|▊         | 2507/30000 [31:14<2034:35:05, 266.41s/it, loss=0.2189, lr=2.49e-05, step=2507]�         | 2514/30000 [03:52<86:09:30, 11.28s/it, loss=0.2056, lr=2.48e-05, step=2513] \\rTraining:   8%|▊         | 2514/30000 [03:52<86:09:30, 11.28s/it, loss=0.1764, lr=2.48e-05, step=2514]\\rTraining:   8%|▊         | 2515/30000 [04:09<98:36:18, 12.92s/it, loss=0.1764, lr=2.48e-05, step=2514]\\rTraining:   8%|▊         | 2515/30000 [04:09<98:36:18, 12.92s/it, loss=0.2584, lr=2.48e-05, step=2515]\\rTraining:   8%|▊         | 2516/30000 [04:17<87:35:23, 11.47s/it, loss=0.2584, lr=2.48e-05, step=2515]\\rTraining:   8%|▊         | 2516/30000 [04:17<87:35:23, 11.47s/it, loss=0.2146, lr=2.48e-05, step=2516]\\rTraining:   8%|▊         | 2517/30000 [04:37<107:48:57, 14.12s/it, loss=0.2146, lr=2.48e-05, step=2516]\\rTraining:   8%|▊         | 2517/30000 [04\\n\\n... [截断: 输出过长，省略 566802 字符] ...\\n\\nep=5228]\\rTraining:  17%|█▋        | 5229/30000 [3:08:56<27:38:57,  4.02s/it, loss=0.0849, lr=2.38e-05, step=5228]\\rTraining:  17%|█▋        | 5229/30000 [3:08:56<27:38:57,  4.02s/it, loss=0.0922, lr=2.38e-05, step=5229]\\rTraining:  17%|█▋        | 5230/30000 [3:09:00<27:37:19,  4.01s/it, loss=0.0922, lr=2.38e-05, step=5229]\\rTraining:  17%|█▋        | 5230/30000 [3:09:00<27:37:19,  4.01s/it, loss=0.0864, lr=2.38e-05, step=5230]\\rTraining:  17%|█▋        | 5231/30000 [3:09:04<27:46:53,  4.04s/it, loss=0.0864, lr=2.38e-05, step=5230]\\rTraining:  17%|█▋        | 5231/30000 [3:09:04<27:46:53,  4.04s/it, loss=0.0757, lr=2.38e-05, step=5231]\\rTraining:  17%|█▋        | 5232/30000 [3:09:08<27:48:23,  4.04s/it, loss=0.0757, lr=2.38e-05, step=5231]\\rTraining:  17%|█▋        | 5232/30000 [3:09:08<27:48:23,  4.04s/it, loss=0.0789, lr=2.38e-05, step=5232]\\rTraining:  17%|█▋        | 5233/30000 [3:09:12<27:43:13,  4.03s/it, loss=0.0789, lr=2.38e-05, step=5232]\\rTraining:  17%|█▋        | 5233/30000 [3:09:12<27:43:13,  4.03s/it, loss=0.0861, lr=2.38e-05, step=5233]\\rTraining:  17%|█▋        | 5234/30000 [3:09:16<27:49:22,  4.04s/it, loss=0.0861, lr=2.38e-05, step=5233]\\rTraining:  17%|█▋        | 5234/30000 [3:09:16<27:49:22,  4.04s/it, loss=0.0861, lr=2.38e-05, step=5234]\\rTraining:  17%|█▋        | 5235/30000 [3:09:20<27:46:24,  4.04s/it, loss=0.0861, lr=2.38e-05, step=5234]\\rTraining:  17%|█▋        | 5235/30000 [3:09:20<27:46:24,  4.04s/it, loss=0.0906, lr=2.38e-05, step=5235]\\rTraining:  17%|█▋        | 5236/30000 [3:09:24<27:43:59,  4.03s/it, loss=0.0906, lr=2.38e-05, step=5235]\\rTraining:  17%|█▋        | 5236/30000 [3:09:24<27:43:59,  4.03s/it, loss=0.0870, lr=2.38e-05, step=5236]\\rTraining:  17%|█▋        | 5237/30000 [3:09:28<27:43:59,  4.03s/it, loss=0.0870, lr=2.38e-05, step=5236]\\rTraining:  17%|█���        | 5237/30000 [3:09:28<27:43:59,  4.03s/it, loss=0.0646, lr=2.38e-05, step=5237]\\rTraining:  17%|█▋        | 5238/30000 [3:09:32<27:40:05,  4.02s/it, loss=0.0646, lr=2.38e-05, step=5237]\\rTraining:  17%|█▋        | 5238/30000 [3:09:32<27:40:05,  4.02s/it, loss=0.0740, lr=2.38e-05, step=5238]\\rTraining:  17%|█▋        | 5239/30000 [3:09:36<27:35:50,  4.01s/it, loss=0.0740, lr=2.38e-05, step=5238]\\rTraining:  17%|█▋        | 5239/30000 [3:09:36<27:35:50,  4.01s/it, loss=0.0828, lr=2.38e-05, step=5239]\\rTraining:  17%|█▋        | 5240/30000 [3:09:48<43:07:43,  6.27s/it, loss=0.0828, lr=2.38e-05, step=5239]\\rTraining:  17%|█▋        | 5240/30000 [3:09:48<43:07:43,  6.27s/it, loss=0.0854, lr=2.38e-05, step=5240]\\rTraining:  17%|█▋        | 5241/30000 [3:09:52<38:24:16,  5.58s/it, loss=0.0854, lr=2.38e-05, step=5240]\\rTraining:  17%|█▋        | 5241/30000 [3:09:52<38:24:16,  5.58s/it, loss=0.0802, lr=2.38e-05, step=5241]\\rTraining:  17%|█▋        | 5242/30000 [3:09:56<35:22:58,  5.14s/it, loss=0.0802, lr=2.38e-05, step=5241]\\rTraining:  17%|█▋        | 5242/30000 [3:09:56<35:22:58,  5.14s/it, loss=0.1098, lr=2.38e-05, step=5242]\\rTraining:  17%|█▋        | 5243/30000 [3:10:00<32:57:21,  4.79s/it, loss=0.1098, lr=2.38e-05, step=5242]\\rTraining:  17%|█▋        | 5243/30000 [3:10:00<32:57:21,  4.79s/it, loss=0.0885, lr=2.38e-05, step=5243]\\rTraining:  17%|█▋        | 5244/30000 [3:10:04<31:20:51,  4.56s/it, loss=0.0885, lr=2.38e-05, step=5243]\\rTraining:  17%|█▋        | 5244/30000 [3:10:04<31:20:51,  4.56s/it, loss=0.1067, lr=2.38e-05, step=5244]\\rTraining:  17%|█▋        | 5245/30000 [3:10:08<30:10:18,  4.39s/it, loss=0.1067, lr=2.38e-05, step=5244]\\rTraining:  17%|█▋        | 5245/30000 [3:10:08<30:10:18,  4.39s/it, loss=0.0773, lr=2.38e-05, step=5245]\\rTraining:  17%|█▋        | 5246/30000 [3:10:12<29:29:09,  4.29s/it, loss=0.0773, lr=2.38e-05, step=5245]\\rTraining:  17%|█▋        | 5246/30000 [3:10:12<29:29:09,  4.29s/it, loss=0.0830, lr=2.38e-05, step=5246]\\rTraining:  17%|█▋        | 5247/30000 [3:10:16<28:52:15,  4.20s/it, loss=0.0830, lr=2.38e-05, step=5246]\\rTraining:  17%|█▋        | 5247/30000 [3:10:16<28:52:15,  4.20s/it, loss=0.0994, lr=2.38e-05, step=5247]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.55}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-20T11:15:57.113Z_
+
+<details><summary>↩ Tool result · `toolu_01DDeRoqsfC1DegfaD8jejoD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Filesystem      Size  Used Avail Use% Mounted on\\n/dev/md0        250G   49G  202G  20% /root/autodl-tmp\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "82b5e33e-fb63-42b5-b632-eef10f4a1ed4",
+  "uuid": "36dcb2e2-dc0c-43e3-be4c-f4b695751f6b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Filesystem      Size  Used Avail Use% Mounted on\\\\n/dev/md0        250G   49G  202G  20% /root/autodl-tmp\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Filesystem      Size  Used Avail Use% Mounted on\\n/dev/md0        250G   49G  202G  20% /root/autodl-tmp\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me parse the results:
+
+**GPU 0 (cuda:0) - a3_gradient_spatial_bowl_s0:**
+- PID: 71494
+- VRAM: 16898 MiB / 97887 MiB
+- GPU utilization: 0% (momentarily)
+- Latest step: 2924/30000
+- Loss: 0.2606
+- LR: 2.48e-05
+- Speed: ~3.06s/it
+- Runtime: ~3:09:30
+
+
+- **GPU 1 (cuda:1) - a3_gradient_object_pudding_s0:**
+- PID: 73165
+- VRAM: 23926 MiB / 97887 MiB
+- GPU utilization: 100%
+- Latest step: 5247/30000
+- Loss: 0.0994
+- LR: 2.38e-05
+- Speed: ~4.20s/it
+- Runtime: ~3:10:16
+
+The second GPU is running hot at full utilization and has progressed further through its training steps, while the first one is momentarily idle. Both are well beyond the initial 1400+ steps the user expected, and disk usage is sitting at about a fifth of capacity.
+
+Looking at the speed metrics, the bowl experiment is moving at roughly 3 seconds per iteration and should wrap up in about 23 more hours given its current progress, while the pudding experiment is slightly slower at 4.2 seconds per iteration with around 29 hours remaining.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "82b5e33e-fb63-42b5-b632-eef10f4a1ed4",
+  "uuid": "4af5a116-976a-443c-bdb0-40894d498f7f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YSoF8a6v2j7aSoVvryFVJ5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10696,
+      "cache_read_input_tokens": 23512,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10696
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+| GPU | 实验 | PID | Step/30000 | Loss | Speed | VRAM | 状态 |
+|-----|------|-----|-----------|------|-------|------|------|
+| cuda:0 | a3_gradient_spatial_bowl_s0 | 71494 | 2924/30000 (9.7%) | 0.2606 | ~3.06 s/it | 16.9/97.9 GB | 运行中 (util 0%*) |
+| cuda:1 | a3_gradient_object_pudding_s0 | 73165 | 5247/30000 (17.5%) | 0.0994 | ~4.20 s/it | 23.9/97.9 GB | 运行中 (util 100%) |
+
+磁盘: 49G/250G (20%)
+
+*GPU0 utilization 0% 是 nvidia-smi 采样瞬时值，进程在跑（step 在推进，已运行 ~3h09m），正常。
+
+两个进程都远超预期 step（bowl 2924 > 1400+，pudding 5247 > 3800+），训练正常推进中。pudding 的 loss 已降到 ~0.09 区间，bowl 仍在 ~0.26 区间。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "82b5e33e-fb63-42b5-b632-eef10f4a1ed4",
+  "uuid": "096dcb6d-d4a4-4382-8b3b-6f0d3a0d5e99",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YSoF8a6v2j7aSoVvryFVJ5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10696,
+      "cache_read_input_tokens": 23512,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10696
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 21_
+
+| GPU | 实验 | PID | Step/30000 | Loss | Speed | VRAM | 状态 |
+|-----|------|-----|-----------|------|-------|------|------|
+| cuda:0 | a3_gradient_spatial_bowl_s0 | 71494 | 2924/30000 (9.7%) | 0.2606 | ~3.06 s/it | 16.9/97.9 GB | 运行中 (util 0%*) |
+| cuda:1 | a3_gradient_object_pudding_s0 | 73165 | 5247/30000 (17.5%) | 0.0994 | ~4.20 s/it | 23.9/97.9 GB | 运行中 (util 100%) |
+
+磁盘: 49G/250G (20%)
+
+*GPU0 utilization 0% 是 nvidia-smi 采样瞬时值，进程在跑（step 在推进，已运行 ~3h09m），正常。
+
+两个进程都远超预期 step（bowl 2924 > 1400+，pudding 5247 > 3800+），训练正常推进中。pudding 的 loss 已降到 ~0.09 区间，bowl 仍在 ~0.26 区间。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 32564,
+  "duration_api_ms": 32302,
+  "num_turns": 8,
+  "stop_reason": "end_turn",
+  "session_id": "82b5e33e-fb63-42b5-b632-eef10f4a1ed4",
+  "total_cost_usd": 0.20982425000000002,
+  "usage": {
+    "input_tokens": 7,
+    "cache_creation_input_tokens": 22367,
+    "cache_read_input_tokens": 58395,
+    "output_tokens": 1590,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 22367,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 796,
+        "cache_read_input_tokens": 23512,
+        "cache_creation_input_tokens": 10696,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 10696
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 953,
+      "outputTokens": 19,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0010479999999999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 7,
+      "outputTokens": 1590,
+      "cacheReadInputTokens": 58395,
+      "cacheCreationInputTokens": 22367,
+      "webSearchRequests": 0,
+      "costUSD": 0.20877625000000002,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "f1db9cb6-34b4-4974-b5bd-ed896dcfcc54"
+}
+```
+
+</details>
+
+---

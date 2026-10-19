@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3dd119ee87195e8a68b0",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "fix lerobot compat 35807",
+  "task_key": "worker_fix_lerobot-compat-35807_20260529T034201",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_lerobot-compat-35807_20260529T034201_result.json",
+    "occurrence": 1,
+    "bytes": 1082,
+    "sha256": "cbde1eac5dca9382fcbfa819c47f68d5d8b0a4a8952259e4df211bba2546d01c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已正常运行。\n\n## 总结\n\n**1. LeRobot 版本**：两台都是 0.1.0，版本相同。\n\n**2. 根因**：westd-45947 之前已手动 patch 了 3 处 LeRobot 代码以兼容新版 HF datasets API，但 westd-35807 没有这些 patch：\n- `lerobot_dataset.py:508-509` — `torch.stack(hf_dataset[\"timestamp\"])` 改为 `np.array(to_dict()[\"timestamp\"])`\n- `lerobot_dataset.py:511` — `check_timestamps_sync` 用 try/except 包裹（object_pudding 数据集 timestamp 不符合严格校验）\n- `utils.py:272` — `hf_transform_to_torch` 增加 `dict` + `\"bytes\"` 类型处理（图像以 bytes dict 存储）\n- `lerobot_dataset.py:698` — `_query_hf_dataset` 整个方法重写，处理多种数据类型\n\n**3. 修复方案**：方案 B — 把 westd-45947 上的 4 处 patch 逐一移植到 westd-35807。\n\n**4. 训练状态**：\n- PID: 93395，运行 1 分 50 秒，状态 S（正常）\n- GPU 0: 利用率 100%，显存 19061 MiB / 97887 MiB\n- 已完成 step 0-8，loss ~0.10-0.15，速度 ~1.5s/it，预计 ~12.5h 完成 30000 steps"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-lerobot-compat-35807.md"
+}

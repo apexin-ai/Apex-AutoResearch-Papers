@@ -1,0 +1,30 @@
+{
+  "exp_id": "oracle_a3_force_refine_object_v11",
+  "project": "diff_collision_sdf",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T15:33:53.175Z",
+    "updated_at": "2026-05-22T15:40:15.947Z",
+    "hypothesis": "Oracle refinement (--force_refine bypasses sdf_min threshold) on A3 object_pudding checkpoint — tests whether SDF gradient direction is correct when refinement is forced on every step. If CAR improves over A3-no-force (74.5%) and baseline (83%), the SDF decoder learned useful gradients but threshold calibration was wrong. If CAR worsens, gradient direction itself is incorrect. Critical diagnostic: refined_count was 0/200 in A3 v11 — this experiment forces refinement to actually test the core mechanism.",
+    "parent": "eval_a3_v11_object",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate libero && cd /root/colliforce-vla && python scripts/eval_safelibero.py --model_type a3 --checkpoint_dir /root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding --ckpt_step best --scene safelibero_object_all --level levelII --n_episodes 40 --replan_steps 5 --gpu 0 --force_refine --output_path /root/autodl-tmp/eval_results/oracle_force_refine_v11_eval_safelibero_object_all_levelII_best_a3_seed0.json\"",
+      "server": "westd-35807",
+      "gpu": [
+        "cuda:2"
+      ],
+      "data_path": "safelibero_object_all_levelII",
+      "data_count": 40,
+      "model_name": "a3_gradient_object_pudding_best+force_refine",
+      "seed": 0,
+      "checkpoint_source": "a3_gradient_object_pudding_s0",
+      "eval_data": "safelibero_object_all_levelII",
+      "log_path": "/root/autodl-tmp/eval_results/oracle_a3_force_refine.log"
+    }
+  },
+  "timestamp": "2026-05-22T15:40:15.996601+00:00",
+  "trigger": "update_registry"
+}

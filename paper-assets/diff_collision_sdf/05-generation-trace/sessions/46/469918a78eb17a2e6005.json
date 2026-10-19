@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "469918a78eb17a2e6005",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "verify baseline object pudding s0 v2 checkpoint",
+  "task_key": "worker_verify_baseline_object_pudding_s0_v2_checkpoint_20260521T044111",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_baseline_object_pudding_s0_v2_checkpoint_20260521T044111_result.json",
+    "occurrence": 1,
+    "bytes": 1419,
+    "sha256": "8fa43ffc16d4b6f4e1155c7c346fd2c38faedd0e415c0f6b253e2cf6db6ad46b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### baseline_object_pudding_s0_v2 Checkpoint\n\n| 项目 | 详情 |\n|------|------|\n| **checkpoint 路径** | `/root/autodl-tmp/checkpoints/baseline_object_pudding/baseline_object_pudding_seed0/` |\n| **保存的 steps** | 29999, 30000, best |\n| **step 30000 文件** | `model.safetensors` (6.6G) + `optimizer.pt` (12G) + `metadata.pt` (3.2K) |\n| **总目录大小** | 55G |\n| **best loss** | 0.003305 @ step 29999 |\n| **checkpoint 完整性** | **完整** — 三个 step 目录均含 model.safetensors / optimizer.pt / metadata.pt |\n\n另外还有一个 LoRA 变体 checkpoint：`baseline_lora_object_pudding_seed0/`，保存了 step 2000 和 best。\n\n### 磁盘状态\n\n| 总容量 | 已用 | 可用 | 使用率 |\n|--------|------|------|--------|\n| 350G | 223G | 128G | 64% |\n\n### a1_sdf_spatial_bowl_s0_v3 状态\n\n**已崩溃** — 在 step 6499/30000 (22%) 处因磁盘满报错退出：\n```\nsafetensors_rust.SafetensorError: Error while serializing: I/O error: No space left on device (os error 28)\n```\n\n日志路径：`/root/autodl-tmp/logs/a1_sdf_spatial_bowl_s0_v3.log`\n\n现在磁盘已恢复到 128G 可用（可能之前的临时文件已清理），但 a1_sdf 实验需要重新启动。其最新 checkpoint 停留在 step 6000（目录 `/root/autodl-tmp/checkpoints/a1_sdf_object_pudding/a1_sdf_object_pudding_seed0/`，保存了 step 4000 和 6000）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-baseline-object-pudding-s0-v2-checkpoint.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "452fc3a4d85be06f4396",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "analysis negative results systematic",
+  "task_key": "worker_analysis_negative_results_systematic_20260524T220731",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_negative_results_systematic_20260524T220731_result.json",
+    "occurrence": 1,
+    "bytes": 792,
+    "sha256": "b2ede91d1adb42ae45ab6504075e2c8643f9348b0c07db71c19ba0bcb5f5f02c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已注册：`art_20260524_5ecde0`\n\n**核心结论**：16 个阴性实验统一指向一个根本问题——**flow-matching VLA 的 action space 不接受 gradient-based correction**。无论 A1（训练时 SDF loss）还是 A3（推理时 gradient refinement），所有 SDF-gradient-to-action 路径都导致 action collapse（96.7-99.6% fake safety）。即使 GT oracle 最优条件，real safety improvement = 0。\n\n**归因分布**：\n- 结构性限制（7个）：action collapse + EE-only 限制\n- 实现 bug（5个）：M024/M026/M027，但修复后仍不 work\n- 基座特性（4个）：Pi0 collapse 倾向 + capability-safety tradeoff\n\n**建议 pivot**：从 post-hoc action correction 转向 pre-generation conditioning 或 safe rejection sampling。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-negative-results-systematic.md"
+}

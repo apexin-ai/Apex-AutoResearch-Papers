@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1c45ad7ff4cf7e7e3cdf",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "paper fig1 frozen label fix",
+  "task_key": "worker_paper_fig1_frozen_label_fix_20260527T031814",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fig1_frozen_label_fix_20260527T031814_result.json",
+    "occurrence": 1,
+    "bytes": 177,
+    "sha256": "e785e76bda5c6aad1e78ad08c6bd00cf265c8879af618fd57b0f4fd9761a4f2f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "\"frozen\" 标签已改为 coral 色系：文字 `#C0603E`，背景 `#F8E8E3`，虚线框 `#E8846B`（线宽从 0.5 加到 0.7）。PDF 和 PNG 已重新生成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fig1-frozen-label-fix.md"
+}

@@ -1,0 +1,44 @@
+{
+  "exp_id": "eval_a3_object_pudding_refine",
+  "project": "diff_collision_sdf",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T18:15:42.503Z",
+    "updated_at": "2026-05-21T19:49:31.218Z",
+    "hypothesis": "A3 gradient-guided action refinement (best ckpt step 26000) achieves CAR ≥15% improvement over baseline on object_pudding with TSR drop <10% — MVP gate check with refinement enabled.",
+    "parent": "a3_gradient_object_pudding_s0",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python eval_safelibero.py --checkpoint /root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best --suite object_pudding --n_episodes 50",
+      "server": "westd-45947",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "222345",
+      "log_path": "/root/autodl-tmp/eval_results/eval_safelibero_object_task1_levelII_best_a3_seed0.json",
+      "checkpoint_source": "a3_gradient_object_pudding_s0 best (step 26000)",
+      "eval_data": "object_pudding",
+      "data_path": "/root/autodl-tmp/colliforce_data/safelibero_object",
+      "data_count": 50,
+      "model_name": "pi0+A3_gradient_refine",
+      "seed": 0,
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best"
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "TSR": 0,
+      "CAR": 0,
+      "n_episodes": 50,
+      "collision_step_all_zero": true,
+      "refine_count_all_zero": true,
+      "avg_smoothness": 0.01136,
+      "avg_max_displacement": 0.822
+    },
+    "notes": "TSR=0%, CAR=0% across all 50 episodes. Every episode collided at step 0 with refine_count=0 — refinement never activated. Obstacles: mostly moka_pot_obstacle_1, some white_storage_box_obstacle_1. Initial action immediately triggers collision. JSON results: eval_safelibero_object_task1_levelII_best_a3_seed0.json. Note: log was saved as a3_object_pudding_refine.log (no v5 suffix). Earlier no_refine attempt crashed with CUDA invalid device ordinal; v5 retry currently running (PID 235230, GPU 1).",
+    "completed_at": "2026-05-21T19:49:31.218Z"
+  },
+  "timestamp": "2026-05-21T19:49:31.273661+00:00",
+  "trigger": "update_registry"
+}

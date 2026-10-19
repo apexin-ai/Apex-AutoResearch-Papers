@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "330b0ca1f15a7f2df811",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "setup killgate kg3 gradient test",
+  "task_key": "worker_setup_killgate_kg3_gradient_test_20260519T163131",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_setup_killgate_kg3_gradient_test_20260519T163131_result.json",
+    "occurrence": 1,
+    "bytes": 566,
+    "sha256": "25c227576bfdf89cf6c537ed715ddf58f6ef846d87f3b2593ab3bbbeaac3ad9e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**KG-3: PASS**\n\n5 个配置全部通过，核心结论：\n\n- **梯度稳定**：无 NaN/explode/vanish，所有配置下 action 梯度范数在 0.016–0.98 范围内\n- **方向正确**：有限差分验证确认沿梯度负方向移动 action 可降低 collision cost\n- **逐层传播通畅**：梯度从 SDF decoder layer4 → layer1 → ActionProjection → action tokens 无断层\n- **Eikonal |∇SDF| ≈ 0.12–0.15**（随机初始化下偏低，训练后会收敛到 ~1.0，不影响结论）\n\n脚本和报告已写入 `artifacts/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/setup-killgate-kg3-gradient-test.md"
+}

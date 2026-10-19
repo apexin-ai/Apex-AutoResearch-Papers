@@ -1,0 +1,28 @@
+{
+  "exp_id": "eval_spatial_bowl_lora_ctrl_s0",
+  "project": "diff_collision_sdf",
+  "state": "DONE",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-28T00:10:16.286Z",
+    "updated_at": "2026-05-28T00:10:44.156Z",
+    "hypothesis": "LoRA baseline (no SDF) on spatial_bowl at 30K steps will show high TSR but low CAR, confirming that collision avoidance requires explicit SDF training signal",
+    "conclusion": "success",
+    "spec": {
+      "command": "python eval_safelibero.py --suite safelibero_spatial --level II --checkpoint .../pi05_lora_baseline_spatial_bowl_seed0/30000 --model_type lora_baseline --seed 7 --n_episodes 50",
+      "server": "westd-35807",
+      "data_path": "safelibero_spatial",
+      "model_name": "pi05_lora_baseline_spatial_bowl_seed0",
+      "seed": 7,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/a1_sdf_pi05_spatial_bowl/pi05_lora_baseline_spatial_bowl_seed0/30000",
+      "eval_data": "safelibero_spatial_levelII",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/a1_sdf_pi05_spatial_bowl/pi05_lora_baseline_spatial_bowl_seed0/30000",
+      "log_path": "/root/autodl-tmp/eval_results/eval_spatial_bowl_lora_ctrl_s0.log"
+    },
+    "completed_at": "2026-05-28T00:10:44.156Z"
+  },
+  "timestamp": "2026-05-28T00:10:44.363313+00:00",
+  "trigger": "update_registry"
+}

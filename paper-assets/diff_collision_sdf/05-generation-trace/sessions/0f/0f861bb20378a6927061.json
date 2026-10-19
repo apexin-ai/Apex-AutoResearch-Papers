@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0f861bb20378a6927061",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "check pending evals for idle gpus",
+  "task_key": "worker_check_pending_evals_for_idle_gpus_20260527T141850",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_pending_evals_for_idle_gpus_20260527T141850_result.json",
+    "occurrence": 1,
+    "bytes": 2171,
+    "sha256": "065a65099ed69afa279c676171753168b389b3be420d46cc0fe82d59ddfcaa9f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完毕。以下是完整报告。\n\n---\n\n## GPU 状态 (westd-35807)\n\n| GPU | 状态 | 占用 |\n|-----|------|------|\n| cuda:0 | **空闲** (0 MiB) | `train_phase2_lambda0_extra_seed_v2` 已崩溃 (EXIT_CODE=1) |\n| cuda:1 | **空闲** (0 MiB) | `train_phase2_lambda0_extra_seed` 已死 |\n| cuda:2 | **空闲** (0 MiB) | `train_phase2_lambda0_s2_v3` 已崩溃 (EXIT_CODE=1, `RuntimeError: Could not infer dtype of dict`) |\n| cuda:3 | 在用 (27 GB, 100%) | `train_spatial_bowl_lora_control_s0` 运行中 (PID 341425, 已运行 1d 2h) |\n\n## eval_pi05_a1_best_s0_l005 — 不可跑\n\n- `a1_sdf_pi05_object_pudding_seed0_l005/` 下**只有 `30000/`**，无 `best/` 目录\n- 训练脚本 `train_a1_sdf_aux_pi05.py` 没有 `save_best` 逻辑\n- Registry 已标记 conclusion=killed，原因正是 best/ 不存在\n- 该 checkpoint 的 30K eval 已完成 (`reeval_sdf_s0_l005_30k`, CAR=57%)\n\n## 所有主要 30K eval 覆盖情况\n\n| checkpoint | seed0 | seed1 | seed2 |\n|------------|-------|-------|-------|\n| LoRA baseline | 57% ✓ | 52.5% ✓ | **RUNNING** (westd-45947) |\n| λ=0.005 | 57% ✓ | 54% ✓ | 52.5% ✓ |\n| λ=0.01 | 57% ✓ | 57.5% ✓ | 54.5% ✓ |\n| λ=0.1 | 58% ✓ | 58.5% ✓ | **training** (westd-45947) |\n| Phase2 λ=0 | **训练崩溃** | — | 57.5% (10K) ✓ |\n\n**结论：目前没有已完成训练但未 eval 的 checkpoint。** 所有可 eval 的 30K checkpoint 均已覆盖。\n\n## 可利用 cuda:0/1/2 的工作\n\n唯一可以做的是**修复并重跑崩溃的训练**（不是 eval）：\n\n1. **`train_phase2_lambda0_extra_seed_v2`** (cuda:0) — Phase 2 Stage 1 seed0, 崩溃在数据加载阶段\n2. **`train_phase2_lambda0_s2_v3`** (cuda:2) — Phase 2 Stage 2 seed2 (λ=0 resume to 30K), 崩溃于 lerobot 的 `hf_transform_to_torch` (`Could not infer dtype of dict`)\n\nEval 命令模板（供之后使用）:\n```bash\npython scripts/eval_safelibero.py \\\n  --checkpoint <CHECKPOINT_PATH> \\\n  --config_name pi05_libero \\\n  --model_type lora_baseline \\\n  --pi05 \\\n  --suite safelibero_object \\\n  --safety_level II \\\n  --n_episodes 50 \\\n  --seed 7 \\\n  --gpu <GPU_ID>\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-pending-evals-for-idle-gpus.md"
+}

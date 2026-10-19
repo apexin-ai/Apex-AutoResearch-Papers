@@ -1,0 +1,36 @@
+{
+  "exp_id": "analysis_threshold_sensitivity",
+  "project": "diff_collision_sdf",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-26T20:26:45.402Z",
+    "updated_at": "2026-05-26T20:27:15.460Z",
+    "hypothesis": "dfCAR threshold τ_d is robust across [2, 200] mm: the bimodal displacement gap (collapsed < 0.1mm vs active > 270mm) means any threshold in this range produces identical dfCAR values, validating that the metric is not sensitive to threshold selection.",
+    "spec": {
+      "command": "CPU-only analysis of threshold_sensitivity_v2.csv",
+      "server": "local",
+      "data_path": "artifacts/figures/threshold_sensitivity_v2.csv",
+      "data_count": 66,
+      "model_name": "n/a (analysis)",
+      "seed": 0,
+      "checkpoint_path": "n/a",
+      "log_path": "artifacts/figures/threshold_sensitivity_v2.csv"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "dfCAR_stable_range_mm": "[2, 200]",
+      "n_models": 8,
+      "n_thresholds": 8,
+      "n_active_equals_n_total_at_200mm": true,
+      "max_dfCAR_variation_2_to_200mm": 0,
+      "min_displacement_m": 0.271,
+      "conclusion": "dfCAR perfectly invariant across tau_d in [2, 200] mm for all 8 model-seed combinations; only at 300mm do 1-2 episodes fall below threshold"
+    },
+    "completed_at": "2026-05-26T20:27:15.460Z"
+  },
+  "timestamp": "2026-05-26T20:27:15.776278+00:00",
+  "trigger": "update_registry"
+}

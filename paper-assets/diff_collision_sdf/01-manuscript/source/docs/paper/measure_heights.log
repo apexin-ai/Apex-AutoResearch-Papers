@@ -1,0 +1,161 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025/Debian) (preloaded format=pdflatex 2026.5.2)  29 MAY 2026 08:05
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**/tmp/measure_heights.tex
+(/tmp/measure_heights.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2026-01-19>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count275
+\c@section=\count276
+\c@subsection=\count277
+\c@subsubsection=\count278
+\c@paragraph=\count279
+\c@subparagraph=\count280
+\c@figure=\count281
+\c@table=\count282
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen148
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2024/12/31 v1.2e Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
+\KV@toks@=\toks17
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2024/08/06 v1.4g Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 106.
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2025/09/29 v1.2d Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen149
+\Gin@req@width=\dimen150
+)
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count283
+)
+No file measure_heights.aux.
+\openout1 = `measure_heights.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count284
+\scratchdimen=\dimen151
+\scratchbox=\box53
+\nofMPsegments=\count285
+\nofMParguments=\count286
+\everyMPshowfont=\toks18
+\MPscratchCnt=\count287
+\MPscratchDim=\dimen152
+\MPnumerator=\count288
+\makeMPintoPDFobject=\count289
+\everyMPtoPDFconversion=\toks19
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+\imgA=\skip51
+\imgB=\skip52
+<../../artifacts/figures/fig5_lambda_curve.pdf, id=1, 327.54999pt x 192.59749pt
+>
+File: ../../artifacts/figures/fig5_lambda_curve.pdf Graphic file (type pdf)
+<use ../../artifacts/figures/fig5_lambda_curve.pdf>
+Package pdftex.def Info: ../../artifacts/figures/fig5_lambda_curve.pdf  used on
+ input line 7.
+(pdftex.def)             Requested size: 93.0pt x 54.68219pt.
+<../../artifacts/figures/fig_pertask_car_fingerprint.pdf, id=2, 468.43958pt x 2
+75.33336pt>
+File: ../../artifacts/figures/fig_pertask_car_fingerprint.pdf Graphic file (typ
+e pdf)
+<use ../../artifacts/figures/fig_pertask_car_fingerprint.pdf>
+Package pdftex.def Info: ../../artifacts/figures/fig_pertask_car_fingerprint.pd
+f  used on input line 8.
+(pdftex.def)             Requested size: 93.0pt x 54.66237pt.
+\imgAd=\skip53
+\imgBd=\skip54
+File: ../../artifacts/figures/fig5_lambda_curve.pdf Graphic file (type pdf)
+<use ../../artifacts/figures/fig5_lambda_curve.pdf>
+Package pdftex.def Info: ../../artifacts/figures/fig5_lambda_curve.pdf  used on
+ input line 12.
+(pdftex.def)             Requested size: 93.0pt x 54.68219pt.
+File: ../../artifacts/figures/fig_pertask_car_fingerprint.pdf Graphic file (typ
+e pdf)
+<use ../../artifacts/figures/fig_pertask_car_fingerprint.pdf>
+Package pdftex.def Info: ../../artifacts/figures/fig_pertask_car_fingerprint.pd
+f  used on input line 13.
+(pdftex.def)             Requested size: 93.0pt x 54.66237pt.
+
+LAMBDA HEIGHT=54.68219pt, DEPTH=0.0pt
+FINGERPRINT HEIGHT=54.66237pt, DEPTH=0.0pt
+\boxA=\box54
+\boxB=\box55
+File: ../../artifacts/figures/fig5_lambda_curve.pdf Graphic file (type pdf)
+<use ../../artifacts/figures/fig5_lambda_curve.pdf>
+Package pdftex.def Info: ../../artifacts/figures/fig5_lambda_curve.pdf  used on
+ input line 20.
+(pdftex.def)             Requested size: 93.0pt x 54.68219pt.
+File: ../../artifacts/figures/fig_pertask_car_fingerprint.pdf Graphic file (typ
+e pdf)
+<use ../../artifacts/figures/fig_pertask_car_fingerprint.pdf>
+Package pdftex.def Info: ../../artifacts/figures/fig_pertask_car_fingerprint.pd
+f  used on input line 21.
+(pdftex.def)             Requested size: 93.0pt x 54.66237pt.
+LAMBDA TOTALHEIGHT=54.68219pt+0.0pt
+FINGERPRINT TOTALHEIGHT=54.66237pt+0.0pt
+(./measure_heights.aux)
+ ***********
+LaTeX2e <2025-11-01>
+L3 programming layer <2026-01-19>
+ ***********
+ ) 
+Here is how much of TeX's memory you used:
+ 1286 strings out of 469438
+ 21496 string characters out of 5468411
+ 433756 words of memory out of 5000000
+ 29998 multiletter control sequences out of 15000+600000
+ 627721 words of font info for 40 fonts, out of 8000000 for 9000
+ 59 hyphenation exceptions out of 8191
+ 57i,4n,65p,238b,142s stack positions out of 10000i,1000n,20000p,200000b,200000s
+
+No pages of output.
+PDF statistics:
+ 2 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 11 words of extra memory for PDF output out of 10000 (max. 10000000)
+

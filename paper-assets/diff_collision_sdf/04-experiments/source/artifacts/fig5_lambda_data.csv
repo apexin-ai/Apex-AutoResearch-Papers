@@ -1,0 +1,15 @@
+lambda,CAR_mean,CAR_std,CAR_seeds,TSR_mean,TSR_std,step,note
+0,54.83,2.25,"57.0;52.5;55.0",49.7,3.2,30K,LoRA-only (no SDF) 3 seeds
+0.005,54.5,2.29,"57.0;54.0;52.5",54.0,3.0,30K,3 seeds
+0.01,56.33,1.61,"57.0;57.5;54.5",53.83,1.5,30K,3 seeds
+0.1,57.0,2.18,"58.0;58.5;54.5",50.17,3.88,30K,3 seeds
+
+# step-wise sub-table (for inset or supplementary)
+# lambda,step,CAR,TSR,seed,note
+# 0.1,16000,pending,pending,0,best loss checkpoint eval running
+# 0.1,20000,55,54,0,early signal
+# 0.1,20000,56,51,1,early signal
+# 0.1,22000,pending,pending,0,next after 16K
+# 0.1,30000,pending,pending,0,training ~17:00 UTC
+# 0.1,30000,pending,pending,1,training ~17:30 UTC
+# 0.1,30000,pending,pending,2,training ~08:00 UTC 5/28

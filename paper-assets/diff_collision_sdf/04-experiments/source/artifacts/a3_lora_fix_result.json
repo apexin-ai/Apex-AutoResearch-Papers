@@ -1,0 +1,59 @@
+{
+  "status": "success",
+  "server": "westd-45947",
+  "timestamp": "2026-05-21T17:05:00Z",
+  "fixes_applied": [
+    {
+      "file": "/root/colliforce-vla/openpi/src/openpi/models_pytorch/pi0_pytorch.py",
+      "line": 334,
+      "issue": "AttributeError: LoRALinear has no .weight attribute",
+      "fix": "Replaced .weight.dtype with next(q_proj.parameters()).dtype"
+    },
+    {
+      "file": "/root/colliforce-vla/scripts/train_a3_hook.py",
+      "issue": "RuntimeError: dtype mismatch float vs BFloat16 during gradient checkpointing",
+      "fix": "LoRALinear.forward: cast input to base.weight.dtype, compute LoRA in float32"
+    },
+    {
+      "file": "/root/colliforce-vla/scripts/train_a3_hook.py",
+      "issue": "RuntimeError: CPU/CUDA device mismatch on LoRA params",
+      "fix": "LoRALinear.__init__: create lora_A/lora_B with device=base.weight.device"
+    },
+    {
+      "file": "/root/colliforce-vla/scripts/train_a3_hook.py",
+      "issue": "AttributeError: GemmaModel has no attribute 'model'",
+      "fix": "inject_lora: changed language_model.model.layers to language_model.layers"
+    }
+  ],
+  "experiments": {
+    "a3_gradient_spatial_bowl_s0": {
+      "status": "running",
+      "pid": 164420,
+      "gpu": 0,
+      "vram_mb": 16907,
+      "step": 10,
+      "total_steps": 30000,
+      "loss_at_step_10": 0.275,
+      "started_fresh": true,
+      "note": "No checkpoints existed; started from step 0"
+    },
+    "a3_gradient_object_pudding_s0": {
+      "status": "running",
+      "pid": 165984,
+      "gpu": 1,
+      "vram_mb": 23933,
+      "step": 22006,
+      "total_steps": 30000,
+      "loss_at_step_22006": 0.043,
+      "resumed_from_step": 22000
+    }
+  },
+  "root_cause": "LoRALinear wrapper in train_a3_hook.py replaced nn.Linear modules but (1) lacked .weight/.bias properties needed by pi0_pytorch.py:334, (2) created parameters on CPU regardless of model device, (3) did not handle dtype mismatch from gradient checkpointing recomputation, (4) had wrong module path for language_model layers",
+  "verification": {
+    "no_attribute_error": true,
+    "no_device_error": true,
+    "no_dtype_error": true,
+    "loss_below_1": true,
+    "steps_verified": "10+ steps on both experiments with stable losses"
+  }
+}

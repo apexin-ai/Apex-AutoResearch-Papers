@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "16e54259d5ede39711e1",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "research openvla eval prep",
+  "task_key": "worker_research_openvla_eval_prep_20260525T060618",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_openvla_eval_prep_20260525T060618_result.json",
+    "occurrence": 1,
+    "bytes": 5386,
+    "sha256": "206a803fc743b40131e66789ab771e8f92fa2c05645df91317566f34e7bf9aaa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 4 个 agent 已返回。汇总如下：\n\n---\n\n## OpenVLA Zero-Shot Eval on SafeLIBERO — 可行性调研报告\n\n### 1. 兼容性：直接兼容\n\n| | OpenVLA | SafeLIBERO |\n|---|---|---|\n| Action space | 7D delta EE pose `[dx,dy,dz,droll,dpitch,dyaw,gripper]` | 同上（robosuite OSC_POSE） |\n| Action 表示 | 256 bins tokenization → autoregressive 7 tokens | 连续 7D |\n| 输入 | 单张 224×224 图 + text prompt | agentview 256×256 |\n| Proprioception | 不使用 | 可用但非必需 |\n\n**直接兼容，无需 adapter。** OpenVLA 的 `predict_action()` 输出的 7D numpy array 可直接送入 SafeLIBERO `env.step()`，只需做 gripper 符号翻转（OpenVLA: 0=close/1=open → LIBERO: +1=close/-1=open）。\n\n### 2. Checkpoint\n\n| 项目 | 详情 |\n|---|---|\n| Base model | `openvla/openvla-7b`（15.1 GB bf16, MIT license） |\n| 架构 | SigLIP + DINOv2 → Llama-2 7B |\n| **LIBERO fine-tuned** | **有官方 LoRA checkpoint（4个）** |\n| `openvla/openvla-7b-finetuned-libero-spatial` | LoRA r=32, 60K steps |\n| `openvla/openvla-7b-finetuned-libero-object` | 同上 |\n| `openvla/openvla-7b-finetuned-libero-goal` | 同上 |\n| `openvla/openvla-7b-finetuned-libero-10` | 同上（LIBERO-Long） |\n| OpenVLA-OFT 版本 | `moojink/openvla-7b-oft-finetuned-libero-*`（连续 action head, 更快更强） |\n\n### 3. Eval 方案\n\n**推荐方案 B：改我们的 `eval_safelibero.py` 添加 OpenVLA model type。**\n\n理由：\n- 我们的碰撞检测逻辑（obstacle displacement threshold）完全 model-agnostic，直接复用\n- 只需改 2 个函数：`load_policy()` + `get_action_from_policy()`\n- OpenVLA 官方 `run_libero_eval.py` 没有碰撞检测，反向加入更麻烦\n\n需改动的代码：\n\n```python\n# load_policy() — 新增 openvla 分支\nfrom transformers import AutoModelForVision2Seq, AutoProcessor\nvla = AutoModelForVision2Seq.from_pretrained(\n    checkpoint_path, torch_dtype=torch.bfloat16,\n    attn_implementation=\"flash_attention_2\",\n    low_cpu_mem_usage=True, trust_remote_code=True\n).to(\"cuda:0\")\nprocessor = AutoProcessor.from_pretrained(checkpoint_path, trust_remote_code=True)\n\n# get_action_from_policy() — 新增 openvla 分支\nprompt = f\"In: What action should the robot take to {instruction}?\\nOut:\"\ninputs = processor(prompt, image).to(\"cuda:0\", dtype=torch.bfloat16)\naction = vla.predict_action(**inputs, unnorm_key=suite_name, do_sample=False)\n# gripper 后处理: [0,1] → [-1,1], 符号翻转\naction[-1] = -np.sign(2 * action[-1] - 1)\n```\n\n注意事项：\n- 图像预处理需 180° 旋转（`img[::-1, ::-1]`），这是 OpenVLA LIBERO 训练时的 convention\n- Base OpenVLA 是 **single-step prediction**（无 action chunking），`replan_steps` 应设为 1\n- `unnorm_key` 需与 checkpoint 对应的 suite name 匹配\n\n工作量估计：**~2-3 小时代码改动 + 调试**。\n\n### 4. 资源预估\n\n| 项目 | 估值 |\n|---|---|\n| 显存 | ~15 GB bf16（96 GB RTX PRO 6000 绰绰有余） |\n| 推理速度 | ~6 Hz（~167 ms/step） |\n| 每 episode | max 300 steps × 167 ms ≈ **50 秒**（但 single-step replan 每步都要 inference，比 pi0 action chunking 慢） |\n| 800 episodes | 800 × 50s ≈ **~11 小时** |\n| 单卡即可 | 不需要多卡 |\n\n### 5. 已知风险/关键发现\n\n**重大发现：VLSA/AEGIS 论文（arXiv:2512.11891）已在 SafeLIBERO 上跑过 OpenVLA-OFT：**\n\n| Suite | CAR | TSR |\n|---|---|---|\n| Spatial | 12.75% | 35.75% |\n| Goal | 25.00% | 22.50% |\n| Object | 17.25% | 29.50% |\n| Long | 5.50% | 3.50% |\n| **Average** | **15.13%** | **22.81%** |\n\n**这对我们的 \"fake safety\" 论点意义重大：**\n- OpenVLA-OFT CAR 极低（15%）= 大量碰撞 → **没有 action collapse / 冻结**\n- 这与 Pi0/Pi0.5 的 \"高 CAR 但实际是冻结\" 模式**完全不同**\n- 可能的解释：OpenVLA-OFT 用连续 action head + action chunking，不容易产生 token collapse\n- **但 base OpenVLA（autoregressive tokenization）可能不同** — token-based prediction 更容易 collapse 到重复 token\n\n**风险清单：**\n1. **Base OpenVLA 可能也不 collapse** — 如果 OpenVLA 不展现 fake safety，反而削弱我们的 generalizability 论点\n2. **也可能展现 collapse** — autoregressive token prediction 有 known degeneration 问题，可能出现重复 token → 固定小 action → 伪冻结\n3. **VLSA 已有 OFT 结果** — 需确认 base OpenVLA 是否也被评估过（如果有，我们可以直接引用而不用重跑）\n4. **依赖问题** — OpenVLA 需要 `prismatic` 库（自定义 HF 注册类），需确认与我们现有环境兼容\n5. **图像预处理敏感** — 180° 旋转 + JPEG encode/decode + lanczos3 resize 的 pipeline 必须严格复现，否则性能大幅下降\n\n### 建议优先级\n\n1. **先查 VLSA 论文是否有 base OpenVLA（非 OFT）在 SafeLIBERO 的结果** — 如果有，直接引用\n2. **跑 base OpenVLA（autoregressive tokenization）** — 这是最可能展现 action collapse 的版本，因为 token degeneration 是 autoregressive 模型的已知问题\n3. **OFT 结果可以直接引用 VLSA 论文**，不需要重跑\n4. 如果 base OpenVLA 也不 collapse，考虑换角度：不同 VLA 架构展现不同的 failure mode（collapse vs. collision），仍然有论文价值"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-openvla-eval-prep.md"
+}

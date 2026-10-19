@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "35a6290325b3d294c086",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "diagnose baseline lora object pudding s0",
+  "task_key": "worker_diagnose_baseline_lora_object_pudding_s0_20260522T115824",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_baseline_lora_object_pudding_s0_20260522T115824_result.json",
+    "occurrence": 1,
+    "bytes": 1285,
+    "sha256": "80903f48b16aede21f3cfe031db2c86df5c72ed402442759770f8de4688b384d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "日志中无任何 save/checkpoint 记录。**两个训练虽然跑完 30K steps 但没保存 checkpoint。** 这是关键问题。\n\n## 诊断结果\n\n### baseline_lora_object_pudding_s0 (cuda:3, PID 281629)\n- **状态：训练已完成，Cron 误报**\n- Steps: 30000/30000 ✓\n- Final loss: 0.0124\n- Wall time: 33h43m21s (~4.05s/step)\n- 无 error/traceback\n- LoRA params: 33,472,512 (一致到结束)\n\n### baseline_lora_spatial_bowl_s0 (cuda:1, PID 281554)\n- **状态：训练已完成，Cron 误报**\n- Steps: 30000/30000 ✓\n- Final loss: 0.0088\n- Wall time: 33h39m36s (~4.04s/step)\n- 无 error/traceback\n- LoRA params: 33,472,512 (一致到结束)\n\n### ⚠️ 严重问题：两个实验均无 checkpoint 文件\n\n输出目录 (`baseline_lora_obj_s0/` 和 `baseline_lora_spa_s0/`) 只包含 log 文件，无 `.safetensors`、`.pt` 或任何 checkpoint 目录。日志中也没有任何 \"save\"/\"checkpoint\" 相关记录。\n\n整个 `/root/autodl-tmp/` 下唯一的 `.safetensors` 是原始预训练权重 (`openpi_weights/pi0_base/model.safetensors`)。\n\n**训练脚本可能未配置 checkpoint 保存，或保存路径有误。33+ 小时的训练结果丢失。需要检查训练脚本的 checkpoint 保存逻辑后决定是否重跑。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-baseline-lora-object-pudding-s0.md"
+}

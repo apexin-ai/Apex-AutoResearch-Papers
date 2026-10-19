@@ -1,0 +1,38 @@
+{
+  "exp_id": "eval_stepwise_s0_l1_22k",
+  "project": "diff_collision_sdf",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-27T01:20:42.340Z",
+    "updated_at": "2026-05-27T02:05:27.006Z",
+    "hypothesis": "Step-wise eval of Pi0.5+A1 SDF λ=0.1 (seed 0) at 22K checkpoint. Third point in step-wise CAR curve: 16K (CAR=55.5%), 20K (CAR=55%), 22K (this). Expected: within null range if Scenario B holds.",
+    "parent": "train_pi05_a1_obj_s0_l01_high",
+    "spec": {
+      "command": "python scripts/eval_safelibero.py --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0_l1/22000 --config_name pi05_libero --suite safelibero_object --model_type lora_baseline --safety_level II --n_episodes 50 --max_steps 300 --pi05 --seed 7 --gpu 0 --output_path /root/autodl-tmp/eval_results/eval_s0_l1_22k_seed7.json",
+      "server": "westd-35807",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "518041",
+      "data_path": "safelibero_object",
+      "data_count": 200,
+      "model_name": "pi05_a1_sdf_lambda0.1_s0_22k",
+      "seed": 7,
+      "checkpoint_source": "train_pi05_a1_obj_s0_l01_high",
+      "eval_data": "safelibero_object Level II, 200 episodes, seed=7",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0_l1/22000",
+      "log_path": "/root/colliforce-vla/logs/eval_s0_l1_22k.log"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-27T02:05:24.025Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-27T02:05:24.485Z"
+  },
+  "timestamp": "2026-05-27T02:05:27.203952+00:00",
+  "trigger": "update_registry"
+}

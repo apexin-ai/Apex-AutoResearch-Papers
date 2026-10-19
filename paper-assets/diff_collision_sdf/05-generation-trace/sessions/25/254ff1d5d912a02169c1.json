@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "254ff1d5d912a02169c1",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ssh verify baseline status 35807",
+  "task_key": "worker_ssh_verify_baseline_status_35807_20260520T144745",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_verify_baseline_status_35807_20260520T144745_result.json",
+    "occurrence": 1,
+    "bytes": 1320,
+    "sha256": "78e6129d2542010ef51b09dfa98131d4200c83e5e6ffaaf832355874e584c61b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总报告\n\n### GPU 状态（4× NVIDIA RTX PRO 6000 Blackwell, 98GB VRAM each）\n\n| GPU | PID | 进程 | 显存 | GPU利用率 | 运行时间 | 状态 |\n|-----|------|------|------|-----------|----------|------|\n| 0 | 222903 | `train_baseline.py --scene spatial_bowl --seed 0 --resume` | 35738 MiB | 0% | 11min | **存活** ✓ step 14158/30000 (47%) |\n| 1 | 227389 | `train_a1_sdf_aux.py --scene object_pudding --seed 0 --gpu 1` | 550 MiB | 0% | 53s | **刚启动** ✓ 正在初始化 |\n| 2 | 222982 | `train_baseline.py --scene object_pudding --seed 0 --resume` | 35738 MiB | 100% | 11min | **存活** ✓ step 16159/30000 (54%) |\n| 3 | 185994 | `train_a1_sdf_aux.py --scene spatial_bowl --seed 0 --resume` | 13376 MiB | 98% | 6h23m | **存活** ✓ step 12416/30000 (41%) |\n\n### 结论\n\n- **两个 baseline 重启成功**，PID 222903/222982 均在正常训练，从 checkpoint 恢复（spatial_bowl 从 step 14000，object_pudding 从 step 16000）\n- **A1 spatial_bowl**（PID 185994）稳定运行 6h+，step 12416\n- **A1 object_pudding**（PID 227389）刚启动 53s，还在加载模型/数据，尚未出训练日志\n- 旧 PID 100319/95429 已不存在\n- 磁盘 `/root/autodl-tmp`：350G 用了 121G (35%)，充裕\n\n**所有 4 个训练进程均在运行，无异常。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-verify-baseline-status-35807.md"
+}

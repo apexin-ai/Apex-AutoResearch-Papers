@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4a5794d253310a7248a2",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "fix paper sigma correction",
+  "task_key": "worker_fix_paper_sigma_correction_20260527T170749",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_paper_sigma_correction_20260527T170749_result.json",
+    "occurrence": 1,
+    "bytes": 1353,
+    "sha256": "3daeef6b62c0573da2cda4e138574bb9f97e28348a9c69660a613e2b5ccf1c4b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "旧数字全部清除，新数字全部到位。\n\n---\n\n## 修改清单\n\n| 文件 | 行 | 旧值 | 新值 |\n|------|-----|------|------|\n| claim3.tex | 7 | `z=1.85, p≈0.032` | `z=1.76, p≈0.039` |\n| claim3.tex | 33 | `σ=1.94, z=1.85, p≈0.032` | `σ=2.04, z=1.76, p≈0.039` |\n| claim3.tex | 38 | `p≈0.032` | `p≈0.039` |\n| abstract.tex | 7 | `p≈0.032` | `p≈0.039` |\n| introduction.tex | 20 | `p≈0.032` | `p≈0.039` |\n| discussion.tex | 12 | `p≈0.032` | `p≈0.039` |\n| appendix.tex | 170 | `σ 1.94%`, `z=1.85`, `p≈0.032` | `σ 2.04% (Bessel-corrected)`, `z=1.76`, `p≈0.039 (approximate z-test)` |\n| appendix.tex | 170 | `0.9σ` | `0.8σ` (因 σ 变大，z for λ=0.01 从 0.86 降到 0.81) |\n| appendix.tex | 183 | `±1.94%`, `z=1.85, p≈0.032` | `±2.04%`, `z=1.76, p≈0.039` |\n| appendix.tex | 172 | *(新增)* | permutation test 段落 |\n\n## Permutation test 结果\n\n- 8 个值: {57, 52.5, 55, 57, 54, 52.5, 58, 58.5}\n- C(8,2) = 28 种组合\n- 均值 ≥ 58.25 的组合: 仅 {58, 58.5}（均值 = 58.25），共 1 种\n- **exact permutation p = 1/28 ≈ 0.036**\n- 与 approximate z-test p ≈ 0.039 一致\n\n## 验证\n\n全文搜索确认 `docs/paper/` 下所有 .tex 文件中：旧值 (0.032, z=1.85, σ=1.94) 零匹配；新值 (0.039, z=1.76, σ=2.04) 全部到位，共 8 处。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-paper-sigma-correction.md"
+}

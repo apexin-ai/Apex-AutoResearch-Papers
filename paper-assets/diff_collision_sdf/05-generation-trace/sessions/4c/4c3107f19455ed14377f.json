@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4c3107f19455ed14377f",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "research supplementary checklist",
+  "task_key": "worker_research_supplementary_checklist_20260528T191045",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_supplementary_checklist_20260528T191045_result.json",
+    "occurrence": 1,
+    "bytes": 1006,
+    "sha256": "ea8eb7061f7541db533073fce4c6bd894761679eb25c6ee30034ea05f379abc1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已创建 `supplementary_checklist.md` 并注册为 artifact (`art_20260528_a06d89`)。\n\n清单包含 6 大类：\n\n| 编号 | 内容 | 数据完备度 |\n|------|------|-----------|\n| **S1** | Multi-seed 完整结果表（CAR/TSR/EE-disp/per-task, 3 seeds × 4 条件） | 完整 |\n| **S2** | Multi-eval-seed 鲁棒性（LoRA 5 eval seeds, SDF 5 eval seeds） | 完整，缺专属图表 |\n| **S3** | Lambda 消融（λ=0/0.005/0.01/0.1 + permutation test + stepwise curve） | 完整，已有 fig5 |\n| **S4** | Oracle 实验（5 个变体 per-task breakdown + refinement statistics） | 完整，已有 fig_oracle_bar |\n| **S5** | 训练曲线 | **缺失**：registry 无 W&B ID，仅有标量 best/final loss |\n| **S6** | 附加数据（SSR, threshold sensitivity, fake safety, spatial bowl） | 完整 |\n\n待办：\n- 检查服务器上是否存在 W&B runs（registry 未记录）\n- 制作 multi-eval-seed CAR 对比图\n- 制作 stepwise CAR 曲线图（λ=0.1, 16K–30K）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-supplementary-checklist.md"
+}

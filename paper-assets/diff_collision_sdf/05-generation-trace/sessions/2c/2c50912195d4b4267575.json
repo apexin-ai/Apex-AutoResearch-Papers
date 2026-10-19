@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2c50912195d4b4267575",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "diagnose eval a3 v11 object",
+  "task_key": "worker_diagnose_eval_a3_v11_object_20260522T141131",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_a3_v11_object_20260522T141131_result.json",
+    "occurrence": 1,
+    "bytes": 767,
+    "sha256": "ab63cf07f1d2f5dac0f22da3a40d1435d5aed7491ba3032e60056a88bcb527cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Cron 误报确认，eval 已正常完成。** 但结果很差：\n\n| 指标 | 值 |\n|------|-----|\n| **Avg TSR** | **0.0%** (200 episodes 全部失败) |\n| **Avg CAR** | **74.5%** (task 1 仅 48%) |\n\n两个严重问题：\n\n1. **机械臂卡住不动** — 大量 episode 的 max_displacement 在 1e-6 ~ 1e-10 量级，说明模型输出的 action 几乎没有让臂移动\n2. **SDF refinement 从未触发** — 所有 200 episodes 的 refine_count = 0，A3 的 gradient refinement 模块在推理时完全没有生效（SDF min 值始终远高于 refine_margin=0.01）\n\n报告已写入 `artifacts/diagnose_eval_a3_v11_object.md`，结果 JSON 在 `/root/autodl-tmp/eval_results/v11_eval_safelibero_object_all_levelII_best_a3_seed0.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-a3-v11-object.md"
+}

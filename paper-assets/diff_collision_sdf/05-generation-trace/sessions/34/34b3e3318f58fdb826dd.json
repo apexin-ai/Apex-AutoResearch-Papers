@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "34b3e3318f58fdb826dd",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "ops mid eval d012 step10k",
+  "task_key": "worker_ops_mid_eval_d012_step10k_20260523T102039",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_mid_eval_d012_step10k_20260523T102039.log",
+    "occurrence": 1,
+    "bytes": 874837,
+    "sha256": "9fd70f55d01c715adcd568fc116733fcd52d463a37186b31944575e944a94d14"
+  },
+  "statistics": {
+    "messages": 419,
+    "user_turns": 0,
+    "tool_calls": 129,
+    "roles": {
+      "log": 1,
+      "system": 73,
+      "record": 2,
+      "assistant": 66,
+      "tool_call": 129,
+      "tool_result": 129,
+      "result": 19
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 419,
+      "chunks": [
+        {
+          "path": "34b3e3318f58fdb826dd-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "34b3e3318f58fdb826dd-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "34b3e3318f58fdb826dd-part-0003.json",
+          "message_count": 59
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-mid-eval-d012-step10k.md"
+}

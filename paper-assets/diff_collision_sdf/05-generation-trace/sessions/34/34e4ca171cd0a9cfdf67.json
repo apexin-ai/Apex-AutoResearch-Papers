@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "34e4ca171cd0a9cfdf67",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "analyze lora baseline s0 s1",
+  "task_key": "worker_analyze_lora_baseline_s0_s1_20260526T013600",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_lora_baseline_s0_s1_20260526T013600_result.json",
+    "occurrence": 1,
+    "bytes": 769,
+    "sha256": "b68f329e0b103832a9c4a336d8b1eb357f6793a15abb4d95f83790139af4d470"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 LoRA baseline 实验均已完成，registry 已更新为 DONE/success。\n\n## 汇总\n\n| | seed0 | seed1 |\n|---|---|---|\n| **总 steps** | 30,000 | 30,000 |\n| **最终 loss** | 0.01343 | 0.01408 |\n| **best loss** | 0.01025 @ step 24000 | 0.01130 @ step 14000 |\n| **grad_norm** | 0.10538 | 0.10628 |\n| **time/step** | 4.61s | 4.62s |\n| **resume2 耗时** | 7h43m | 7h43m |\n| **30K checkpoint** | `.../pi05_lora_baseline_object_pudding_seed0/30000` | `.../pi05_lora_baseline_object_pudding_seed1/30000` |\n| **best checkpoint** | `.../seed0/best` (step 24000) | `.../seed1/best` (step 14000) |\n\n两个实验无报错，进度条到 100%，checkpoint 30000 和 best 均存在。W&B offline 日志已保存。可用于后续 eval 对照。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-lora-baseline-s0-s1.md"
+}

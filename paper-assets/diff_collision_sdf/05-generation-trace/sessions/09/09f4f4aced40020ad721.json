@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "09f4f4aced40020ad721",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "setup openpi deploy",
+  "task_key": "worker_setup_openpi_deploy_20260519T175542",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_setup_openpi_deploy_20260519T175542.log",
+    "occurrence": 1,
+    "bytes": 1164700,
+    "sha256": "c28874c40b186cde782bb2208c438ae581cb0e80b334356842ab99650a7c4bc8"
+  },
+  "statistics": {
+    "messages": 521,
+    "user_turns": 1,
+    "tool_calls": 188,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "assistant": 137,
+      "record": 1,
+      "tool_call": 188,
+      "tool_result": 188,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 509,
+      "chunks": [
+        {
+          "path": "09f4f4aced40020ad721-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "09f4f4aced40020ad721-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "09f4f4aced40020ad721-part-0003.json",
+          "message_count": 149
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 12,
+      "chunks": [
+        {
+          "path": "09f4f4aced40020ad721-part-0003.json",
+          "message_count": 12
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/setup-openpi-deploy.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2492a945b87dca6423c1",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "diagnose baseline lora failed",
+  "task_key": "worker_diagnose_baseline_lora_failed_20260521T021217",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_baseline_lora_failed_20260521T021217_result.json",
+    "occurrence": 1,
+    "bytes": 1293,
+    "sha256": "b10fad79ed1ab5fb2ce36ef5e406e1a1741e5da109fe0dc74820177137dbad5d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "根因找到了。\n\n## 诊断报告\n\n### 根因\n\ntmux wrapper 启动命令传了 **不存在的参数**：\n\n```\ntrain_baseline.py: error: unrecognized arguments: --gpu 1 --max_steps 30000\ntrain_baseline.py: error: unrecognized arguments: --gpu 3 --max_steps 30000\n```\n\n`train_baseline.py` 的 argparse 不接受 `--gpu` 和 `--max_steps`。正确参数是：\n- GPU 选择：通过 `CUDA_VISIBLE_DEVICES` 环境变量（不是 `--gpu`）\n- 训练步数：`--num_train_steps`（不是 `--max_steps`）\n\n### 当前状态\n\n两个实验实际上**已经在正常运行**（可能是后来用正确命令重新启动的）：\n- `spatial_bowl_s0`: step 4072/30000 (14%), loss=0.0496, 已跑 4h33m\n- `object_pudding_s0`: step 4062/30000 (14%), loss=0.0382, 已跑 4h34m\n\nEXIT_CODE=2 来自 tmux wrapper 的**首次失败启动**，不影响当前正在运行的训练进程。\n\n### 影响范围\n\n- 仅影响 job submission 系统的启动命令模板。训练脚本本身无问题。\n- 如果其他实验的 tmux wrapper 也使用 `--gpu` / `--max_steps` 参数，会遇到同样的失败。\n\n### 修复建议\n\n修改 job submission 模板，将：\n- `--gpu X` → 移到环境变量 `CUDA_VISIBLE_DEVICES=X`\n- `--max_steps N` → `--num_train_steps N`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-baseline-lora-failed.md"
+}

@@ -1,0 +1,27 @@
+# research aegis official repro
+
+**How Action Collapse Creates Illusory Safety in Diffusion-Based VLA Collision Avoidance Evaluation** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_research_aegis_official_repro_20260522T092510_result.json`
+- **Structured JSON:** [`af46ccde9796ca9b1e29.json`](../../sessions/af/af46ccde9796ca9b1e29.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Log line
+
+_source line 1_
+
+{
+  "raw": "## 调查结果\n\n### 1. AEGIS 是否提供官方 checkpoint？\n\n**否。** AEGIS 不是一个新模型，而是一个 **CBF (Control Barrier Function) 安全约束层**，套在现有 VLA 模型上。它没有自己的 checkpoint。\n\n### 2. AEGIS base model\n\n**pi0.5-libero** (π0.5 fine-tuned on LIBERO)\n- openpi config: `pi05_libero`\n- 官方 checkpoint: `gs://openpi-assets/checkpoints/pi05_libero/`\n- openpi 官方成绩：Spatial 98.8, Object 98.2, Goal 98.0, Libero-10 92.4\n\n### 3. AEGIS eval 运行方式\n\n两终端 + 两个独立 Python 环境：\n\n**Terminal 1** — Policy Server (Python 3.11, `.aegis_venv`):\n```bash\nsource .aegis_venv/bin/activate\nuv run scripts/serve_policy.py --env LIBERO\n```\n\n**Terminal 2** — AEGIS Eval Client (Python 3.8, `main/.venv`):\n```bash\nsource main/.venv/bin/activate\nexport PYTHONPATH=$PYTHONPATH:$PWD/safelibero\npython main/main_aegis.py \\\n    --task-suite-name safelibero_spatial \\\n    --safety-level I \\\n    --task-index 0 \\\n    --episode-index 0 1 2 3 4 5\n```\n\n### 4. AEGIS 依赖和外部服务\n\n| 依赖 | 状态 |\n|------|------|\n| pi0.5-libero checkpoint | **缺失** — `vlsa-aegis/checkpoints/` 不存在 |\n| GroundingDINO model | **缺失** — `vlsa-aegis/GroundingDINO/` 不存在 |\n| ZhipuAI API key | **缺失** — `main/utils.py` 中 `api_key = [REDACTED]"\"` 为空 |\n| Python 3.11 venv (openpi) | 需要 torch 2.7.1 + CUDA 12 |\n| Python 3.8 venv (main) | 需要 torch 1.11+cu113 (CUDA 11.3!) |\n\n关键：AEGIS 的 obstacle detection 依赖 **智谱 GLM-4.5V API** 做 VLM 推理识别障碍物，再用 GroundingDINO 定位，这两个都是外部依赖。\n\n### 5. openpi 官方 LIBERO eval\n\n**有。** 路径 `/root/colliforce-vla/openpi/examples/libero/`：\n- `main.py` — 标准 LIBERO eval client\n- `README.md` — 完整文档（Docker/手动两种方式）\n- 支持 `libero_spatial`, `libero_object`, `libero_goal`, `libero_10`\n\n### 6. 复现可行性评估\n\n| 方案 | 可行性 | 难度 |\n|------|--------|------|\n| **复现 AEGIS 完整流程** | 低 | Python 3.8+cu113 与服务器 CUDA 12 不兼容；需智谱 API key；双环境维护复杂 |\n| **跑 pi0.5 baseline on SafeLIBERO** | 高 | 用我们自己的 `eval_safelibero.py --default_policy` 即可，无额外依赖 |\n| **跑 pi0.5 baseline on 原版 LIBERO** | 高 | 用 openpi 官方 `examples/libero/main.py`，只需下载 checkpoint |\n\n**建议**：如果目标是验证 eval 环境正确性，直接用 `eval_safelibero.py --default_policy` 跑 pi0.5 baseline 对比 openpi 官方数字即可，不需要复现 AEGIS 的 CBF 安全层。"
+}
+
+---

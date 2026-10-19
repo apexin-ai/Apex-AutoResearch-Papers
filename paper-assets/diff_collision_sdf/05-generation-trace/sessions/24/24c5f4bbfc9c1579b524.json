@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "24c5f4bbfc9c1579b524",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "analysis claim1 fake safety verification",
+  "task_key": "worker_analysis_claim1_fake_safety_verification_20260525T221006",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_claim1_fake_safety_verification_20260525T221006_result.json",
+    "occurrence": 1,
+    "bytes": 2111,
+    "sha256": "a719aa93e03e7a93150714e5c88c04981ba06c8a032c8a985bfd6c103948c844"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 验证结论\n\n### 1. JSON 文件\n- **路径**: `/root/autodl-tmp/eval_results/a1_rerun_v11_eval_safelibero_object_all_levelII_best_lora_baseline_seed0.json`\n- **800 episodes** (4 tasks × 200), CAR=91.5%, TSR=0%\n\n### 2. Displacement 字段\nEpisode 字段：`['collided', 'collision_obstacle', 'collision_step', 'episode', 'max_displacement', 'smoothness', 'success', 'total_steps']`\n\n**没有 `max_ee_displacement` 字段**（该 eval 用的是旧版脚本）。\n\n### 3. \"99.6% fake safety\" 计算方法\n\n通过 `analyze_displacement.py` 的 **fallback 路径**计算：\n- 脚本检测到无 `max_ee_displacement` → 回退到 `max_displacement`（障碍物位移）\n- 阈值 = 0.0001m (0.1mm)（项目定义 M037）\n- 结果：729/732 safe episodes 的障碍物位移 < 0.1mm → **99.6%**\n- 3 个例外 episode 的 `max_displacement` 分别为 0.18mm、0.46mm、0.65mm（未达碰撞阈值 1mm，但超过 frozen 阈值 0.1mm）\n\n### 4. 结论：**不受 EE displacement bug 影响**\n\n| 项 | 说明 |\n|---|---|\n| 使用的字段 | `max_displacement`（障碍物位移），不是 `max_ee_displacement` |\n| 该字段是否有 bug | 无。障碍物位移 tracking 一直正确 |\n| 99.6% 是否可信 | 数值正确，但语义上是间接证据 |\n\n**\"障碍物没动 < 0.1mm\" ≠ \"机器人没动\"**，但结合以下辅助证据，action collapse 判定成立：\n- TSR = 0%（无一成功）\n- 所有 episode 跑满 300 步（无提前终止）\n- 障碍物中位位移 ~5nm（几乎恒零）\n\n### 5. 是否需要重跑？\n\n**无需重跑来 defend Claim 1 的 99.6%** — 它不依赖 buggy 字段。\n\n但如果 reviewer 质疑 \"obstacle displacement ≠ EE displacement\"，可用已有的 Pi0.5 fixed eval 数据作为补充证据：修复后的脚本在 Pi0.5+A1 30K safe episodes 上显示 `max_ee_displacement` 范围 0.27-1.2m（非零，说明 Pi0.5 不完全 collapse），而 Pi0 模型仍需一次 fixed-script rerun 来获得直接 EE 证据。\n\n**资源估算**（如需）：Pi0+A1 object 4tasks × 200eps，~2.5h on 1 GPU。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-claim1-fake-safety-verification.md"
+}

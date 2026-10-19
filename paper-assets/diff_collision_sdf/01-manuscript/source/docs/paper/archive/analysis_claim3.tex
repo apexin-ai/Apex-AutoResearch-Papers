@@ -1,0 +1,72 @@
+\subsection{Collision Avoidance from Demonstrations, Not Geometry}\label{sec:avoidance_source}
+
+Sections~\ref{sec:fake_safety} and~\ref{sec:ee_only} establish that standard CAR is contaminated by action collapse and that end-effector-only SDF refinement fails structurally. A constructive question remains: when collision avoidance does improve in fine-tuned models, where does the signal originate? We isolate the contribution of explicit SDF geometric supervision from that of LoRA fine-tuning on collision-free demonstration data by comparing models trained with and without the SDF auxiliary loss.
+
+\begin{table}[t]
+\centering
+\caption{Avoidance source attribution on SafeLIBERO (200 episodes per seed). LoRA fine-tuning without SDF produces CAR comparable to SDF-augmented variants; SDF adds no measurable CAR beyond LoRA-only at $\lambda \in \{0.005, 0.01\}$. All fine-tuned models exhibit 0\% frozen rate, confirming active collision avoidance.}
+\label{tab:avoidance_source}
+\vspace{2pt}
+\small
+\begin{tabular}{lccccc}
+\toprule
+Method & Seeds & TSR (\%) & CAR (\%) & EE Disp (m) & Frozen (\%) \\
+\midrule
+Pi0.5 baseline & 3 & 74.7\,$\pm$\,1.5 & 26.8\,$\pm$\,1.6 & 0.367 & 0.0 \\
+\midrule
+LoRA-only (no SDF) & 2 & 6.3 & 55.3 & 0.478 & 0.0 \\
+LoRA+SDF $\lambda{=}0.005$ & 3 & 6.8 & 50.5 & 0.50$^\dagger$ & 0.0 \\
+LoRA+SDF $\lambda{=}0.01$ & 2 & 6.5 & 53.0 & 0.47$^\dagger$ & 0.0 \\
+\bottomrule
+\end{tabular}
+\vspace{1pt}
+{\footnotesize $^\dagger$EE displacement from single-seed eval ($\lambda{=}0.005$: s1; $\lambda{=}0.01$: s0).}
+\end{table}
+
+Table~\ref{tab:avoidance_source} reports the results. LoRA fine-tuning without any SDF objective achieves CAR of 55.3\% across two seeds, comparable to LoRA+SDF at $\lambda = 0.005$ (50.5\%, 3 seeds) and $\lambda = 0.01$ (53.0\%, 2 seeds). All differences fall within seed-to-seed variation. All three configurations produce 0\% frozen episodes and mean end-effector displacement near 0.5\,m, confirming that the collision avoidance reflected in CAR is genuine active motion, not action collapse. TSR is similarly collapsed across conditions (6.3--6.8\%), and per-task CAR patterns are consistent between LoRA-only and SDF variants. At these loss weights, the SDF auxiliary loss contributes no measurable collision avoidance beyond what LoRA fine-tuning on collision-free demonstrations provides.
+
+The collision avoidance signal originates in the training distribution, not in the geometric loss function. The demonstration data used for fine-tuning consists exclusively of collision-free trajectories. A model that imitates these demonstrations will produce trajectories that tend to avoid obstacles present in the training scenes. This implicit signal raises CAR from the Pi0.5 baseline (26.8\%) to 55\%, an improvement of 29 percentage points attributable entirely to fine-tuning on collision-free data. Explicit SDF supervision adds nothing at $\lambda \in \{0.005, 0.01\}$ because the geometric signal is redundant with information already encoded in the demonstration trajectories.
+
+\paragraph{TSR collapse mechanism.}
+All fine-tuned models exhibit severe TSR degradation relative to the Pi0.5 baseline (74.7\% $\to$ 6.3--6.8\%), a reduction of ${\sim}$68 percentage points. SDF is not the cause: LoRA-only collapses by 68.4 points, SDF variants by 67.9--68.4 points. Per-task decomposition (Table~\ref{tab:per_task_tsr}) reveals that the collapse is non-uniform: Chocolate Pudding retains partial task completion (24--25\% across all conditions), while Orange Juice, Milk, and BBQ Sauce collapse to ${\leq}4$\%. The identical per-task pattern between SDF and LoRA-only conditions confirms that the SDF loss term is not responsible for the forgetting.
+
+\begin{table}[t]
+\centering
+\caption{Per-task TSR (\%) at 30K training steps. Chocolate Pudding partially survives fine-tuning across all conditions; the remaining three tasks collapse to near zero. The per-task pattern is indistinguishable between LoRA-only and SDF-augmented training.}
+\label{tab:per_task_tsr}
+\vspace{2pt}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Task & Pi0.5 Base & LoRA-only & SDF $\lambda{=}0.005$ & SDF $\lambda{=}0.01$ \\
+ & (3 seeds) & (2 seeds) & (3 seeds) & (2 seeds) \\
+\midrule
+Orange Juice      & 70.7 & 1.0 & 3.3 & 1.0 \\
+Choco.\ Pudding   & 86.0 & 24.0 & 24.0 & 25.0 \\
+Milk              & 66.0 & 0.0 & 0.0 & 0.0 \\
+BBQ Sauce         & 76.0 & 0.0 & 0.0 & 0.0 \\
+\midrule
+Mean              & 74.7 & 6.3 & 6.8 & 6.5 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The collapse reflects catastrophic forgetting of task semantics, not conservative inhibition of motion. Three lines of evidence support this diagnosis. First, all fine-tuned models retain substantial end-effector motion (mean displacement $0.47$--$0.50$\,m across tasks, 0\% frozen episodes), ruling out action collapse or learned paralysis. Second, mean obstacle displacement drops from 0.143\,m (base) to 0.059\,m (SDF $\lambda{=}0.005$) and 0.060\,m (LoRA-only): the policy avoids obstacles but no longer reaches for target objects. Third, safe failure rate---episodes with neither task completion nor obstacle contact---increases from 0.5\% (base) to 49.8\% (SDF) and 47.5\% (LoRA-only), a $100{\times}$ increase (Figure~\ref{fig:failure_modes}). The robot traverses the workspace without executing goal-directed grasping or placing.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{figures/failure_mode_comparison.pdf}
+\caption{Failure mode distribution across conditions. Fine-tuned models convert collision failures into safe failures (no task completion, no obstacle contact), while total failure rate increases due to TSR collapse. The distribution is indistinguishable between SDF and LoRA-only conditions.}
+\label{fig:failure_modes}
+\end{figure}
+
+This composite mechanism---catastrophic forgetting of manipulation semantics coupled with retained collision avoidance from imitation of collision-free demonstrations---explains the simultaneous CAR improvement and TSR collapse. The partial survival of Chocolate Pudding (${\sim}$25\% vs.\ 0\% for other tasks) suggests task-specific vulnerability to forgetting, potentially reflecting differences in grasp geometry or training distribution coverage across objects.
+
+\begin{figure}[t]
+\centering
+\fbox{\parbox{0.9\linewidth}{\centering\vspace{2em}[Lambda-CAR/TSR curve -- pending $\lambda = 0.1$]\vspace{2em}}}
+\caption{Effect of SDF loss weight $\lambda$ on CAR and TSR for Pi0.5 with LoRA fine-tuning. The $\lambda = 0$ point corresponds to LoRA-only (no SDF). Pending: $\lambda = 0.1$ results.}
+\label{fig:lambda_car}
+\end{figure}
+
+\placeholder{Pending: $\lambda = 0.1$ results will determine whether SDF supervision shows dose-dependent effects at higher loss weights or remains redundant across the full $\lambda$ range. Final narrative deferred until experimental results are available.}

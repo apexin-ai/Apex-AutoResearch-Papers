@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "0cf39758868564b477e8",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "polish abstract intro round2",
+  "task_key": "worker_polish_abstract_intro_round2_20260527T220522",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_polish_abstract_intro_round2_20260527T220522_result.json",
+    "occurrence": 1,
+    "bytes": 2118499,
+    "sha256": "bb16ec46907875bf9a1aa8e703f26ab6c8cfa83c3b915e7ac6b104dfaae1e492"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "0cf39758868564b477e8-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/polish-abstract-intro-round2.md"
+}

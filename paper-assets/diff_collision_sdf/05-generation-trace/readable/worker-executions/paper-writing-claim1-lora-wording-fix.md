@@ -1,0 +1,728 @@
+# paper writing claim1 lora wording fix
+
+**How Action Collapse Creates Illusory Safety in Diffusion-Based VLA Collision Avoidance Evaluation** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 13
+- **Recorded user turns:** 0
+- **Tool calls:** 3
+- **Original source:** `logs/workers/worker_paper_writing_claim1_lora_wording_fix_20260526T161711.log`
+- **Structured JSON:** [`5546ea839702b12ce5d0.json`](../../sessions/55/5546ea839702b12ce5d0.json)
+
+## Before a recorded user message
+
+13 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf",
+  "session_id": "b2599214-e683-41d3-ba6b-c7195454166d",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "63fe33f7-87c7-4db5-bb6f-1456ee5fcea4",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779828000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "a692d7b9-4f47-4eb3-b06d-c3691b7cc4f1",
+  "session_id": "b2599214-e683-41d3-ba6b-c7195454166d"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the file and check the label in method.tex.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b2599214-e683-41d3-ba6b-c7195454166d",
+  "uuid": "779f2dd4-58d6-4cdc-999d-c69cea3f14d4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016uLDD6dN5BrVqxN7wXELmg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11451,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11451
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — Read · `toolu_0125biQ6cdjxXK1G23DJq8ow`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim1.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b2599214-e683-41d3-ba6b-c7195454166d",
+  "uuid": "9a3b4a4b-7e84-4df5-bb8e-212a289faa6e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016uLDD6dN5BrVqxN7wXELmg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11451,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11451
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-26T16:17:27.557Z_
+
+<details><summary>↩ Tool result · `toolu_0125biQ6cdjxXK1G23DJq8ow`</summary>
+
+```text
+1	\section{The Fake Safety Problem}\label{sec:fake_safety}
+2	
+3	Standard CAR evaluation assumes that a collision-free episode reflects deliberate obstacle avoidance. This assumption fails when a model has collapsed into inaction: a robot that never moves will never collide, yet it has not avoided anything. We show that this failure mode dominates the safety scores of Pi0-family models and introduce CAR$_\text{f}$ as a corrective diagnostic.
+4	
+5	\subsection{Action Collapse Contamination}\label{sec:collapse}
+6	
+7	Our Pi0+A1 configuration (LoRA fine-tuning with SDF auxiliary loss) achieves a CAR of 91.5\% across 800 evaluation episodes, a figure that would suggest reliable obstacle avoidance. Displacement analysis\footnote{These statistics are computed from obstacle displacement recorded by the original evaluation protocol.} tells a different story. Of the 732 episodes classified as safe, 541 (73.9\%) exhibit maximum displacement below 1\,$\mu$m, another 188 (25.7\%) remain below 0.1\,mm, and only 3 (0.4\%) exceed the 0.1\,mm threshold. The remaining 99.6\% of safe episodes are artifacts of a robot that never moved. TSR is 0\% across all 800 episodes: the model produces no task-directed behavior whatsoever.
+8	
+9	Applying CAR$_\text{f}$ (Eq.~\ref{eq:car_f}) filters out these action-collapsed episodes. Pi0+A1 drops from CAR\,=\,91.5\% to CAR$_\text{f} \approx 0$\%, because only 3 of 732 safe episodes survive displacement filtering. This is the primary demonstration of what CAR$_\text{f}$ is designed to detect: a headline safety score that is entirely attributable to inaction.
+10	
+11	The contamination is not specific to the SDF auxiliary loss. Pi0 Full-FT reports CAR\,=\,83.0\% with TSR\,=\,0.5\%, and 99.4\% of its safe episodes are fake safe, yielding CAR$_\text{f} \approx 0$\%. Pi0 LoRA (without any collision objective) achieves CAR\,=\,82.0\%, TSR\,=\,0\%, with a comparable fake safe rate. Across all three Pi0 configurations, CAR$_\text{f}$ collapses to near zero.
+12	
+13	Pi0.5 provides the validation case. Re-evaluation with displacement recording (200 episodes, seed~7) yields CAR\,=\,28.5\% and TSR\,=\,71.5\%. All 57 safe episodes exhibit maximum EE displacement above 288\,mm. The fake safe rate is 0\%, and CAR$_\text{f}$ equals raw CAR (28.5\%). Pi0.5 does not avoid obstacles by standing still; it executes tasks through the workspace and avoids collisions along the way. The displacement filter removes nothing, confirming that CAR$_\text{f}$ correctly preserves genuine safety.
+14	
+15	\paragraph{Threshold robustness.} The choice of $\tau_d = 0.1$\,mm is not sensitive. The displacement distribution is sharply bimodal: collapsed episodes cluster below 1\,$\mu$m while active episodes exceed 200\,mm, a gap spanning five orders of magnitude. Any threshold $\tau_d \in [2, 200]$\,mm yields identical filtering results, because no episodes occupy the intermediate range. This bimodality makes CAR$_\text{f}$ robust to threshold selection rather than dependent on an arbitrary cutoff. We provide a full sensitivity analysis in Appendix~\ref{sec:appendix_threshold}. A reviewer might ask why not simply exclude models with $\text{TSR}=0\%$. $\text{CAR}_\text{f}$ operates at the episode level, not the model level; it detects partial collapse where a fraction of episodes are frozen while others succeed, a failure mode invisible to model-level TSR filtering.
+16	
+17	Table~\ref{tab:fake_safety} summarizes the fake safety decomposition across all evaluated methods. Figure~\ref{fig:displacement} shows the end-effector displacement distribution.
+18	
+19	\begin{table}[t]
+20	\centering
+21	\caption{Fake safety decomposition on SafeLIBERO. CAR$_\text{f}$ excludes episodes with max displacement $< \tau_d = 0.1$\,mm. ``Fake Safe'' is computed over safe (non-collision) episodes only. ``Real Safe'' counts safe episodes that exceed the displacement threshold.}
+22	\label{tab:fake_safety}
+23	\vspace{2pt}
+24	\small
+25	\begin{tabular}{lccccccl}
+26	\toprule
+27	Method & Ep. & CAR (\%) & TSR (\%) & Fake Safe (\%) & Real Safe & CAR$_\text{f}$ (\%) & Disp.\textsuperscript{\textdagger} (m) \\
+28	\midrule
+29	Pi0 Full-FT  & 200 & 83.0 & 0.5 & 99.4 & 1/166 & $\approx$\,0 & 0.027 \\
+30	Pi0 LoRA     & 200 & 82.0 & 0.0 & ${\sim}$99 & ${\sim}$1/164 & $\approx$\,0 & 0.010 \\
+31	Pi0+A1 (SDF) & 800 & 91.5 & 0.0 & 99.6 & 3/732 & ---$^*$ & 0.003 \\
+32	\midrule
+33	Pi0.5 (3-seed)\textsuperscript{\textdaggerdbl}  & 600 & 26.8\,$\pm$\,1.6 & 74.7\,$\pm$\,1.5 & --- & --- & --- & 0.367 \\
+34	Pi0.5 (reeval)  & 200 & 28.5 & 71.5 & 0.0 & 57/57 & 28.5 & 0.367 \\
+35	\bottomrule
+36	\end{tabular}
+37	\vspace{2pt}
+38	{\footnotesize $^*$\,Denominator $<5$; rate estimate statistically unreliable.}\\
+39	\vspace{2pt}
+40	{\footnotesize \textsuperscript{\textdagger} Pi0-family displacement values report obstacle displacement (max over episode) from an earlier evaluation protocol. Pi0.5 values report end-effector displacement from the rotation-corrected protocol (\S\ref{sec:dfcar}). In both cases, displacement below 1\,mm indicates action collapse, independently confirmed by TSR{=}0\%.}\\
+41	\vspace{2pt}
+42	{\footnotesize \textsuperscript{\textdaggerdbl} Evaluated before rotation correction (\S\ref{sec:dfcar}); post-correction single-seed reeval (CAR{=}28.5\%, TSR{=}71.5\%) shows consistent results.}\\
+43	\vspace{2pt}
+44	{\footnotesize Values prefixed with $\sim$ are estimated from mean displacement; precise per-episode breakdowns are available for configurations with $\geq$800 evaluation episodes.}
+45	\end{table}
+46	
+47	\begin{figure}[t]
+48	\centering
+49	\fbox{\parbox{0.92\linewidth}{\vspace{3cm}\centering\textit{Placeholder: end-effector displacement distribution.\\Bimodal histogram showing collapsed ($<1\,\mu$m) vs.\ active ($>200$\,mm) episodes.}\vspace{3cm}}}
+50	\caption{End-effector displacement distribution across evaluation episodes. Pi0-family models (blue) cluster below 1\,$\mu$m, while Pi0.5 episodes (orange) exceed 200\,mm. The five-order-of-magnitude gap between the two modes makes the displacement threshold $\tau_d$ robust to any value in $[2, 200]$\,mm.}
+51	\label{fig:displacement}
+52	\end{figure}
+53	
+54	\subsection{Capability-Safety Anti-correlation}\label{sec:anticorrelation}
+55	
+56	The fake safety pattern corresponds to a spatial structure in the TSR-CAR plane. Figure~\ref{fig:tsr_car_scatter} plots all evaluated configurations. Two clusters emerge. Pi0-family methods (Full-FT, LoRA, Pi0+A1) occupy the upper-left: CAR between 82\% and 91.5\%, TSR at or below 0.5\%. Over 99\% of their safe episodes are fake safe. Pi0.5 sits in the lower-right: TSR of 73--76\% across seeds, CAR of 25--28\%. Intermediate configurations (Pi0.5+A1, LoRA-only fine-tunes) populate the middle of the plane, with TSR around 51--54\% and CAR around 54--57\%.
+57	
+58	The pattern has a straightforward explanation within these two model families. Models that execute tasks move the robot through the workspace and into proximity with obstacles, raising the probability of collision. Models that fail to act remain near the initial configuration, avoiding collisions by default. Higher task capability correlates with lower CAR not because capable models are less safe, but because the denominator of risk exposure changes: a moving robot encounters obstacles that a stationary one does not.
+59	
+60	We report this anti-correlation as an empirical observation within Pi0 and Pi0.5, not as a universal law. A causal claim would require evidence across a broader set of architectures, benchmarks, and task distributions. Within the scope of our evaluation, the observation reinforces a practical point: CAR is informative only when conditioned on sufficient task capability. The upper-right quadrant of the TSR-CAR plane (high TSR, high CAR) represents genuinely safe and capable behavior; the upper-left quadrant is accessible through action collapse alone.
+61	
+62	\begin{figure}[t]
+63	\centering
+64	\includegraphics[width=\linewidth]{fig_tsr_car_scatter.pdf}
+65	\caption{TSR vs.\ CAR for all evaluated configurations. Pi0-family models cluster in the upper-left (high CAR from inaction), Pi0.5 in the lower-right (high TSR with genuine collision exposure). Intermediate methods (Pi0.5+A1, LoRA-only) occupy the center. Error bars denote $\pm$1 standard deviation across seeds where applicable.}
+66	\label{fig:tsr_car_scatter}
+67	\end{figure}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b2599214-e683-41d3-ba6b-c7195454166d",
+  "uuid": "77e8f3ed-30f1-462d-b5c2-0615916481ab",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim1.tex",
+      "content": "\\section{The Fake Safety Problem}\\label{sec:fake_safety}\n\nStandard CAR evaluation assumes that a collision-free episode reflects deliberate obstacle avoidance. This assumption fails when a model has collapsed into inaction: a robot that never moves will never collide, yet it has not avoided anything. We show that this failure mode dominates the safety scores of Pi0-family models and introduce CAR$_\\text{f}$ as a corrective diagnostic.\n\n\\subsection{Action Collapse Contamination}\\label{sec:collapse}\n\nOur Pi0+A1 configuration (LoRA fine-tuning with SDF auxiliary loss) achieves a CAR of 91.5\\% across 800 evaluation episodes, a figure that would suggest reliable obstacle avoidance. Displacement analysis\\footnote{These statistics are computed from obstacle displacement recorded by the original evaluation protocol.} tells a different story. Of the 732 episodes classified as safe, 541 (73.9\\%) exhibit maximum displacement below 1\\,$\\mu$m, another 188 (25.7\\%) remain below 0.1\\,mm, and only 3 (0.4\\%) exceed the 0.1\\,mm threshold. The remaining 99.6\\% of safe episodes are artifacts of a robot that never moved. TSR is 0\\% across all 800 episodes: the model produces no task-directed behavior whatsoever.\n\nApplying CAR$_\\text{f}$ (Eq.~\\ref{eq:car_f}) filters out these action-collapsed episodes. Pi0+A1 drops from CAR\\,=\\,91.5\\% to CAR$_\\text{f} \\approx 0$\\%, because only 3 of 732 safe episodes survive displacement filtering. This is the primary demonstration of what CAR$_\\text{f}$ is designed to detect: a headline safety score that is entirely attributable to inaction.\n\nThe contamination is not specific to the SDF auxiliary loss. Pi0 Full-FT reports CAR\\,=\\,83.0\\% with TSR\\,=\\,0.5\\%, and 99.4\\% of its safe episodes are fake safe, yielding CAR$_\\text{f} \\approx 0$\\%. Pi0 LoRA (without any collision objective) achieves CAR\\,=\\,82.0\\%, TSR\\,=\\,0\\%, with a comparable fake safe rate. Across all three Pi0 configurations, CAR$_\\text{f}$ collapses to near zero.\n\nPi0.5 provides the validation case. Re-evaluation with displacement recording (200 episodes, seed~7) yields CAR\\,=\\,28.5\\% and TSR\\,=\\,71.5\\%. All 57 safe episodes exhibit maximum EE displacement above 288\\,mm. The fake safe rate is 0\\%, and CAR$_\\text{f}$ equals raw CAR (28.5\\%). Pi0.5 does not avoid obstacles by standing still; it executes tasks through the workspace and avoids collisions along the way. The displacement filter removes nothing, confirming that CAR$_\\text{f}$ correctly preserves genuine safety.\n\n\\paragraph{Threshold robustness.} The choice of $\\tau_d = 0.1$\\,mm is not sensitive. The displacement distribution is sharply bimodal: collapsed episodes cluster below 1\\,$\\mu$m while active episodes exceed 200\\,mm, a gap spanning five orders of magnitude. Any threshold $\\tau_d \\in [2, 200]$\\,mm yields identical filtering results, because no episodes occupy the intermediate range. This bimodality makes CAR$_\\text{f}$ robust to threshold selection rather than dependent on an arbitrary cutoff. We provide a full sensitivity analysis in Appendix~\\ref{sec:appendix_threshold}. A reviewer might ask why not simply exclude models with $\\text{TSR}=0\\%$. $\\text{CAR}_\\text{f}$ operates at the episode level, not the model level; it detects partial collapse where a fraction of episodes are frozen while others succeed, a failure mode invisible to model-level TSR filtering.\n\nTable~\\ref{tab:fake_safety} summarizes the fake safety decomposition across all evaluated methods. Figure~\\ref{fig:displacement} shows the end-effector displacement distribution.\n\n\\begin{table}[t]\n\\centering\n\\caption{Fake safety decomposition on SafeLIBERO. CAR$_\\text{f}$ excludes episodes with max displacement $< \\tau_d = 0.1$\\,mm. ``Fake Safe'' is computed over safe (non-collision) episodes only. ``Real Safe'' counts safe episodes that exceed the displacement threshold.}\n\\label{tab:fake_safety}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lccccccl}\n\\toprule\nMethod & Ep. & CAR (\\%) & TSR (\\%) & Fake Safe (\\%) & Real Safe & CAR$_\\text{f}$ (\\%) & Disp.\\textsuperscript{\\textdagger} (m) \\\\\n\\midrule\nPi0 Full-FT  & 200 & 83.0 & 0.5 & 99.4 & 1/166 & $\\approx$\\,0 & 0.027 \\\\\nPi0 LoRA     & 200 & 82.0 & 0.0 & ${\\sim}$99 & ${\\sim}$1/164 & $\\approx$\\,0 & 0.010 \\\\\nPi0+A1 (SDF) & 800 & 91.5 & 0.0 & 99.6 & 3/732 & ---$^*$ & 0.003 \\\\\n\\midrule\nPi0.5 (3-seed)\\textsuperscript{\\textdaggerdbl}  & 600 & 26.8\\,$\\pm$\\,1.6 & 74.7\\,$\\pm$\\,1.5 & --- & --- & --- & 0.367 \\\\\nPi0.5 (reeval)  & 200 & 28.5 & 71.5 & 0.0 & 57/57 & 28.5 & 0.367 \\\\\n\\bottomrule\n\\end{tabular}\n\\vspace{2pt}\n{\\footnotesize $^*$\\,Denominator $<5$; rate estimate statistically unreliable.}\\\\\n\\vspace{2pt}\n{\\footnotesize \\textsuperscript{\\textdagger} Pi0-family displacement values report obstacle displacement (max over episode) from an earlier evaluation protocol. Pi0.5 values report end-effector displacement from the rotation-corrected protocol (\\S\\ref{sec:dfcar}). In both cases, displacement below 1\\,mm indicates action collapse, independently confirmed by TSR{=}0\\%.}\\\\\n\\vspace{2pt}\n{\\footnotesize \\textsuperscript{\\textdaggerdbl} Evaluated before rotation correction (\\S\\ref{sec:dfcar}); post-correction single-seed reeval (CAR{=}28.5\\%, TSR{=}71.5\\%) shows consistent results.}\\\\\n\\vspace{2pt}\n{\\footnotesize Values prefixed with $\\sim$ are estimated from mean displacement; precise per-episode breakdowns are available for configurations with $\\geq$800 evaluation episodes.}\n\\end{table}\n\n\\begin{figure}[t]\n\\centering\n\\fbox{\\parbox{0.92\\linewidth}{\\vspace{3cm}\\centering\\textit{Placeholder: end-effector displacement distribution.\\\\Bimodal histogram showing collapsed ($<1\\,\\mu$m) vs.\\ active ($>200$\\,mm) episodes.}\\vspace{3cm}}}\n\\caption{End-effector displacement distribution across evaluation episodes. Pi0-family models (blue) cluster below 1\\,$\\mu$m, while Pi0.5 episodes (orange) exceed 200\\,mm. The five-order-of-magnitude gap between the two modes makes the displacement threshold $\\tau_d$ robust to any value in $[2, 200]$\\,mm.}\n\\label{fig:displacement}\n\\end{figure}\n\n\\subsection{Capability-Safety Anti-correlation}\\label{sec:anticorrelation}\n\nThe fake safety pattern corresponds to a spatial structure in the TSR-CAR plane. Figure~\\ref{fig:tsr_car_scatter} plots all evaluated configurations. Two clusters emerge. Pi0-family methods (Full-FT, LoRA, Pi0+A1) occupy the upper-left: CAR between 82\\% and 91.5\\%, TSR at or below 0.5\\%. Over 99\\% of their safe episodes are fake safe. Pi0.5 sits in the lower-right: TSR of 73--76\\% across seeds, CAR of 25--28\\%. Intermediate configurations (Pi0.5+A1, LoRA-only fine-tunes) populate the middle of the plane, with TSR around 51--54\\% and CAR around 54--57\\%.\n\nThe pattern has a straightforward explanation within these two model families. Models that execute tasks move the robot through the workspace and into proximity with obstacles, raising the probability of collision. Models that fail to act remain near the initial configuration, avoiding collisions by default. Higher task capability correlates with lower CAR not because capable models are less safe, but because the denominator of risk exposure changes: a moving robot encounters obstacles that a stationary one does not.\n\nWe report this anti-correlation as an empirical observation within Pi0 and Pi0.5, not as a universal law. A causal claim would require evidence across a broader set of architectures, benchmarks, and task distributions. Within the scope of our evaluation, the observation reinforces a practical point: CAR is informative only when conditioned on sufficient task capability. The upper-right quadrant of the TSR-CAR plane (high TSR, high CAR) represents genuinely safe and capable behavior; the upper-left quadrant is accessible through action collapse alone.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\linewidth]{fig_tsr_car_scatter.pdf}\n\\caption{TSR vs.\\ CAR for all evaluated configurations. Pi0-family models cluster in the upper-left (high CAR from inaction), Pi0.5 in the lower-right (high TSR with genuine collision exposure). Intermediate methods (Pi0.5+A1, LoRA-only) occupy the center. Error bars denote $\\pm$1 standard deviation across seeds where applicable.}\n\\label{fig:tsr_car_scatter}\n\\end{figure}",
+      "numLines": 67,
+      "startLine": 1,
+      "totalLines": 67
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01RqfeAfN7MQqq89G1zb8hXt`</summary>
+
+```json
+{
+  "pattern": "\\\\label\\{sec:sdf",
+  "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/method.tex",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b2599214-e683-41d3-ba6b-c7195454166d",
+  "uuid": "9aeeebe9-8f5b-4265-a65c-e679b30a7a4b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016uLDD6dN5BrVqxN7wXELmg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11451,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11451
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-26T16:17:28.515Z_
+
+<details><summary>↩ Tool result · `toolu_01RqfeAfN7MQqq89G1zb8hXt`</summary>
+
+```text
+68:\subsection{SDF Auxiliary Training}\label{sec:sdf_aux}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b2599214-e683-41d3-ba6b-c7195454166d",
+  "uuid": "31443494-ba6b-4e5c-a9fe-10f2920d41a9",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "68:\\subsection{SDF Auxiliary Training}\\label{sec:sdf_aux}",
+    "numLines": 1
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9_
+
+Label `sec:sdf_aux` 存在于 method.tex，匹配。执行修改：
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b2599214-e683-41d3-ba6b-c7195454166d",
+  "uuid": "54a9141d-6608-4bc9-bb08-5ba7d03636a8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011hehbnUAeCeHYH4E6v1ku2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3033,
+      "cache_read_input_tokens": 23292,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3033
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01Nsh3Dr8xsZ1BmKKDoGr2FA`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim1.tex",
+  "old_string": "Our Pi0+A1 configuration (LoRA fine-tuning with SDF auxiliary loss)",
+  "new_string": "Our Pi0+A1 configuration (SDF auxiliary loss on Pi0; see Section~\\ref{sec:sdf_aux} for the training anomaly)"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b2599214-e683-41d3-ba6b-c7195454166d",
+  "uuid": "4c0a370a-870c-43c9-b075-675ab99f46c7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011hehbnUAeCeHYH4E6v1ku2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3033,
+      "cache_read_input_tokens": 23292,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3033
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-26T16:17:35.613Z_
+
+<details><summary>↩ Tool result · `toolu_01Nsh3Dr8xsZ1BmKKDoGr2FA`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim1.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b2599214-e683-41d3-ba6b-c7195454166d",
+  "uuid": "69e14da1-d7bc-4710-a120-e1bd7ba13e78",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim1.tex",
+    "oldString": "Our Pi0+A1 configuration (LoRA fine-tuning with SDF auxiliary loss)",
+    "newString": "Our Pi0+A1 configuration (SDF auxiliary loss on Pi0; see Section~\\ref{sec:sdf_aux} for the training anomaly)",
+    "originalFile": "\\section{The Fake Safety Problem}\\label{sec:fake_safety}\n\nStandard CAR evaluation assumes that a collision-free episode reflects deliberate obstacle avoidance. This assumption fails when a model has collapsed into inaction: a robot that never moves will never collide, yet it has not avoided anything. We show that this failure mode dominates the safety scores of Pi0-family models and introduce CAR$_\\text{f}$ as a corrective diagnostic.\n\n\\subsection{Action Collapse Contamination}\\label{sec:collapse}\n\nOur Pi0+A1 configuration (LoRA fine-tuning with SDF auxiliary loss) achieves a CAR of 91.5\\% across 800 evaluation episodes, a figure that would suggest reliable obstacle avoidance. Displacement analysis\\footnote{These statistics are computed from obstacle displacement recorded by the original evaluation protocol.} tells a different story. Of the 732 episodes classified as safe, 541 (73.9\\%) exhibit maximum displacement below 1\\,$\\mu$m, another 188 (25.7\\%) remain below 0.1\\,mm, and only 3 (0.4\\%) exceed the 0.1\\,mm threshold. The remaining 99.6\\% of safe episodes are artifacts of a robot that never moved. TSR is 0\\% across all 800 episodes: the model produces no task-directed behavior whatsoever.\n\nApplying CAR$_\\text{f}$ (Eq.~\\ref{eq:car_f}) filters out these action-collapsed episodes. Pi0+A1 drops from CAR\\,=\\,91.5\\% to CAR$_\\text{f} \\approx 0$\\%, because only 3 of 732 safe episodes survive displacement filtering. This is the primary demonstration of what CAR$_\\text{f}$ is designed to detect: a headline safety score that is entirely attributable to inaction.\n\nThe contamination is not specific to the SDF auxiliary loss. Pi0 Full-FT reports CAR\\,=\\,83.0\\% with TSR\\,=\\,0.5\\%, and 99.4\\% of its safe episodes are fake safe, yielding CAR$_\\text{f} \\approx 0$\\%. Pi0 LoRA (without any collision objective) achieves CAR\\,=\\,82.0\\%, TSR\\,=\\,0\\%, with a comparable fake safe rate. Across all three Pi0 configurations, CAR$_\\text{f}$ collapses to near zero.\n\nPi0.5 provides the validation case. Re-evaluation with displacement recording (200 episodes, seed~7) yields CAR\\,=\\,28.5\\% and TSR\\,=\\,71.5\\%. All 57 safe episodes exhibit maximum EE displacement above 288\\,mm. The fake safe rate is 0\\%, and CAR$_\\text{f}$ equals raw CAR (28.5\\%). Pi0.5 does not avoid obstacles by standing still; it executes tasks through the workspace and avoids collisions along the way. The displacement filter removes nothing, confirming that CAR$_\\text{f}$ correctly preserves genuine safety.\n\n\\paragraph{Threshold robustness.} The choice of $\\tau_d = 0.1$\\,mm is not sensitive. The displacement distribution is sharply bimodal: collapsed episodes cluster below 1\\,$\\mu$m while active episodes exceed 200\\,mm, a gap spanning five orders of magnitude. Any threshold $\\tau_d \\in [2, 200]$\\,mm yields identical filtering results, because no episodes occupy the intermediate range. This bimodality makes CAR$_\\text{f}$ robust to threshold selection rather than dependent on an arbitrary cutoff. We provide a full sensitivity analysis in Appendix~\\ref{sec:appendix_threshold}. A reviewer might ask why not simply exclude models with $\\text{TSR}=0\\%$. $\\text{CAR}_\\text{f}$ operates at the episode level, not the model level; it detects partial collapse where a fraction of episodes are frozen while others succeed, a failure mode invisible to model-level TSR filtering.\n\nTable~\\ref{tab:fake_safety} summarizes the fake safety decomposition across all evaluated methods. Figure~\\ref{fig:displacement} shows the end-effector displacement distribution.\n\n\\begin{table}[t]\n\\centering\n\\caption{Fake safety decomposition on SafeLIBERO. CAR$_\\text{f}$ excludes episodes with max displacement $< \\tau_d = 0.1$\\,mm. ``Fake Safe'' is computed over safe (non-collision) episodes only. ``Real Safe'' counts safe episodes that exceed the displacement threshold.}\n\\label{tab:fake_safety}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lccccccl}\n\\toprule\nMethod & Ep. & CAR (\\%) & TSR (\\%) & Fake Safe (\\%) & Real Safe & CAR$_\\text{f}$ (\\%) & Disp.\\textsuperscript{\\textdagger} (m) \\\\\n\\midrule\nPi0 Full-FT  & 200 & 83.0 & 0.5 & 99.4 & 1/166 & $\\approx$\\,0 & 0.027 \\\\\nPi0 LoRA     & 200 & 82.0 & 0.0 & ${\\sim}$99 & ${\\sim}$1/164 & $\\approx$\\,0 & 0.010 \\\\\nPi0+A1 (SDF) & 800 & 91.5 & 0.0 & 99.6 & 3/732 & ---$^*$ & 0.003 \\\\\n\\midrule\nPi0.5 (3-seed)\\textsuperscript{\\textdaggerdbl}  & 600 & 26.8\\,$\\pm$\\,1.6 & 74.7\\,$\\pm$\\,1.5 & --- & --- & --- & 0.367 \\\\\nPi0.5 (reeval)  & 200 & 28.5 & 71.5 & 0.0 & 57/57 & 28.5 & 0.367 \\\\\n\\bottomrule\n\\end{tabular}\n\\vspace{2pt}\n{\\footnotesize $^*$\\,Denominator $<5$; rate estimate statistically unreliable.}\\\\\n\\vspace{2pt}\n{\\footnotesize \\textsuperscript{\\textdagger} Pi0-family displacement values report obstacle displacement (max over episode) from an earlier evaluation protocol. Pi0.5 values report end-effector displacement from the rotation-corrected protocol (\\S\\ref{sec:dfcar}). In both cases, displacement below 1\\,mm indicates action collapse, independently confirmed by TSR{=}0\\%.}\\\\\n\\vspace{2pt}\n{\\footnotesize \\textsuperscript{\\textdaggerdbl} Evaluated before rotation correction (\\S\\ref{sec:dfcar}); post-correction single-seed reeval (CAR{=}28.5\\%, TSR{=}71.5\\%) shows consistent results.}\\\\\n\\vspace{2pt}\n{\\footnotesize Values prefixed with $\\sim$ are estimated from mean displacement; precise per-episode breakdowns are available for configurations with $\\geq$800 evaluation episodes.}\n\\end{table}\n\n\\begin{figure}[t]\n\\centering\n\\fbox{\\parbox{0.92\\linewidth}{\\vspace{3cm}\\centering\\textit{Placeholder: end-effector displacement distribution.\\\\Bimodal histogram showing collapsed ($<1\\,\\mu$m) vs.\\ active ($>200$\\,mm) episodes.}\\vspace{3cm}}}\n\\caption{End-effector displacement distribution across evaluation episodes. Pi0-family models (blue) cluster below 1\\,$\\mu$m, while Pi0.5 episodes (orange) exceed 200\\,mm. The five-order-of-magnitude gap between the two modes makes the displacement threshold $\\tau_d$ robust to any value in $[2, 200]$\\,mm.}\n\\label{fig:displacement}\n\\end{figure}\n\n\\subsection{Capability-Safety Anti-correlation}\\label{sec:anticorrelation}\n\nThe fake safety pattern corresponds to a spatial structure in the TSR-CAR plane. Figure~\\ref{fig:tsr_car_scatter} plots all evaluated configurations. Two clusters emerge. Pi0-family methods (Full-FT, LoRA, Pi0+A1) occupy the upper-left: CAR between 82\\% and 91.5\\%, TSR at or below 0.5\\%. Over 99\\% of their safe episodes are fake safe. Pi0.5 sits in the lower-right: TSR of 73--76\\% across seeds, CAR of 25--28\\%. Intermediate configurations (Pi0.5+A1, LoRA-only fine-tunes) populate the middle of the plane, with TSR around 51--54\\% and CAR around 54--57\\%.\n\nThe pattern has a straightforward explanation within these two model families. Models that execute tasks move the robot through the workspace and into proximity with obstacles, raising the probability of collision. Models that fail to act remain near the initial configuration, avoiding collisions by default. Higher task capability correlates with lower CAR not because capable models are less safe, but because the denominator of risk exposure changes: a moving robot encounters obstacles that a stationary one does not.\n\nWe report this anti-correlation as an empirical observation within Pi0 and Pi0.5, not as a universal law. A causal claim would require evidence across a broader set of architectures, benchmarks, and task distributions. Within the scope of our evaluation, the observation reinforces a practical point: CAR is informative only when conditioned on sufficient task capability. The upper-right quadrant of the TSR-CAR plane (high TSR, high CAR) represents genuinely safe and capable behavior; the upper-left quadrant is accessible through action collapse alone.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\linewidth]{fig_tsr_car_scatter.pdf}\n\\caption{TSR vs.\\ CAR for all evaluated configurations. Pi0-family models cluster in the upper-left (high CAR from inaction), Pi0.5 in the lower-right (high TSR with genuine collision exposure). Intermediate methods (Pi0.5+A1, LoRA-only) occupy the center. Error bars denote $\\pm$1 standard deviation across seeds where applicable.}\n\\label{fig:tsr_car_scatter}\n\\end{figure}",
+    "structuredPatch": [
+      {
+        "oldStart": 4,
+        "oldLines": 7,
+        "newStart": 4,
+        "newLines": 7,
+        "lines": [
+          " ",
+          " \\subsection{Action Collapse Contamination}\\label{sec:collapse}",
+          " ",
+          "-Our Pi0+A1 configuration (LoRA fine-tuning with SDF auxiliary loss) achieves a CAR of 91.5\\% across 800 evaluation episodes, a figure that would suggest reliable obstacle avoidance. Displacement analysis\\footnote{These statistics are computed from obstacle displacement recorded by the original evaluation protocol.} tells a different story. Of the 732 episodes classified as safe, 541 (73.9\\%) exhibit maximum displacement below 1\\,$\\mu$m, another 188 (25.7\\%) remain below 0.1\\,mm, and only 3 (0.4\\%) exceed the 0.1\\,mm threshold. The remaining 99.6\\% of safe episodes are artifacts of a robot that never moved. TSR is 0\\% across all 800 episodes: the model produces no task-directed behavior whatsoever.",
+          "+Our Pi0+A1 configuration (SDF auxiliary loss on Pi0; see Section~\\ref{sec:sdf_aux} for the training anomaly) achieves a CAR of 91.5\\% across 800 evaluation episodes, a figure that would suggest reliable obstacle avoidance. Displacement analysis\\footnote{These statistics are computed from obstacle displacement recorded by the original evaluation protocol.} tells a different story. Of the 732 episodes classified as safe, 541 (73.9\\%) exhibit maximum displacement below 1\\,$\\mu$m, another 188 (25.7\\%) remain below 0.1\\,mm, and only 3 (0.4\\%) exceed the 0.1\\,mm threshold. The remaining 99.6\\% of safe episodes are artifacts of a robot that never moved. TSR is 0\\% across all 800 episodes: the model produces no task-directed behavior whatsoever.",
+          " ",
+          " Applying CAR$_\\text{f}$ (Eq.~\\ref{eq:car_f}) filters out these action-collapsed episodes. Pi0+A1 drops from CAR\\,=\\,91.5\\% to CAR$_\\text{f} \\approx 0$\\%, because only 3 of 732 safe episodes survive displacement filtering. This is the primary demonstration of what CAR$_\\text{f}$ is designed to detect: a headline safety score that is entirely attributable to inaction.",
+          " "
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+修改完成。claim1.tex line 7 已改为 `(SDF auxiliary loss on Pi0; see Section~\ref{sec:sdf_aux} for the training anomaly)`，`\ref{sec:sdf_aux}` 与 method.tex 中的 label 一致。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b2599214-e683-41d3-ba6b-c7195454166d",
+  "uuid": "871fe6a6-135e-4512-96c0-cd0568e38fe9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AsiVX6wzwYEUnCZLYqsXcR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 283,
+      "cache_read_input_tokens": 26325,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 283
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 13_
+
+修改完成。claim1.tex line 7 已改为 `(SDF auxiliary loss on Pi0; see Section~\ref{sec:sdf_aux} for the training anomaly)`，`\ref{sec:sdf_aux}` 与 method.tex 中的 label 一致。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 17608,
+  "duration_api_ms": 18597,
+  "num_turns": 4,
+  "stop_reason": "end_turn",
+  "session_id": "b2599214-e683-41d3-ba6b-c7195454166d",
+  "total_cost_usd": 0.13731975,
+  "usage": {
+    "input_tokens": 4,
+    "cache_creation_input_tokens": 14767,
+    "cache_read_input_tokens": 61458,
+    "output_tokens": 518,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 14767,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 77,
+        "cache_read_input_tokens": 26325,
+        "cache_creation_input_tokens": 283,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 283
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1227,
+      "outputTokens": 20,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001327,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 4,
+      "outputTokens": 518,
+      "cacheReadInputTokens": 61458,
+      "cacheCreationInputTokens": 14767,
+      "webSearchRequests": 0,
+      "costUSD": 0.13599275,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "9e75c228-df40-4485-a83b-b39a6871eec6"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "36ca13b5403fa57b9d6c",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops check pi05 download",
+  "task_key": "worker_ops_check_pi05_download_20260522T135051",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_pi05_download_20260522T135051_result.json",
+    "occurrence": 1,
+    "bytes": 1311,
+    "sha256": "1ef8c39fc417c7c95af53a3e9fe977358605429a0e079fd0bf79d4648a4ccd1e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 检查结果汇总\n\n### 1. pi0.5 下载进度\n- **状态**：正在下载中（gsutil -m 多进程并行）\n- **进度**：10/16 files, 5.9 GiB / 11.6 GiB (51%)\n- **速度**：~400 KiB/s（波动大，176~671 KiB/s）\n- **ETA**：约 3-5 小时（按当前速度估算）\n- **路径**：`/root/autodl-tmp/openpi_weights/pi05_libero/`\n\n### 2. LIBERO assets\n- **已就绪** ✓\n- 位置：`/root/miniconda3/lib/python3.12/site-packages/libero/libero/assets/`\n- 包含：`articulated_objects/`, `scenes/`, `textures/`, `turbosquid_objects/` 等完整资源\n- 另有副本在 `/root/colliforce-vla/LIBERO/libero/libero/`\n\n### 3. openpi serve_policy.py\n- **已就绪** ✓\n- `serve_policy.py`: `/root/autodl-tmp/openpi/scripts/serve_policy.py`\n- `examples/libero/main.py`: `/root/autodl-tmp/openpi/examples/libero/main.py`\n\n### 4. tmux sessions\n- `a3_spatial` — 运行中（创建于 May 22 01:12）\n\n### 5. GPU 状态\n| GPU | 利用率 | 显存使用 | 总显存 |\n|-----|--------|----------|--------|\n| 0 | 100% | 23935 MiB | 97887 MiB |\n| 1 | **0%** | **0 MiB** | 97887 MiB |\n\n### 阻塞项\n- **pi0.5 权重下载速度极慢**（~400KB/s），目前仅 51%，预计还需 3-5 小时完成。下载完成前无法启动 eval。GPU 1 空闲可用，不是瓶颈。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-pi05-download.md"
+}

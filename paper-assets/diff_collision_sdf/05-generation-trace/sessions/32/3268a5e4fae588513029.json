@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3268a5e4fae588513029",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops gpu check 35807",
+  "task_key": "worker_ops_gpu_check_35807_20260525T112942",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu_check_35807_20260525T112942_result.json",
+    "occurrence": 1,
+    "bytes": 807,
+    "sha256": "655c7e042df3130eb745d1b34189b55837a91f6755aff783ad8c3c27fb4cebf3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 轮 SSH 用完，汇报结果：\n\n## GPU 状态 (westd-35807)\n\n| GPU | 利用率 | 显存 | 温度 | 功耗 |\n|-----|--------|------|------|------|\n| 0 | **100%** | 38.1G / 97.9G | 69°C | 435W/600W |\n| 1 | 空闲 | 0 / 97.9G | 28°C | 33W |\n| 2 | 空闲 | 0 / 97.9G | 28°C | 33W |\n| 3 | 空闲 | 0 / 97.9G | 28°C | 34W |\n\n**GPU 0 上的进程：** PID 166283 (python, 19046MiB) + PID 168730 (python, 19046MiB)\n\n## PID 存活检查\n\n| PID | 状态 | 运行时长 |\n|-----|------|----------|\n| 168730 | **ALIVE** (Rl) | 1h28m |\n| 166274 | **ALIVE** (Ss+) | 1h33m |\n| 170922 | **DEAD** | — |\n| 171068 | **DEAD** | — |\n\n## 日志\n\n`/root/colliforce-vla/logs/` 不存在，项目目录下也无 `.log` 文件。**无法定位 170922 和 171068 的崩溃原因。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-check-35807.md"
+}

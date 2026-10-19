@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "33b1cc579b94f5ae6fbd",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "diagnose eval pi05 a1 30k s0 l01 high",
+  "task_key": "worker_diagnose_eval_pi05_a1_30k_s0_l01_high_20260527T095538",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_pi05_a1_30k_s0_l01_high_20260527T095538_result.json",
+    "occurrence": 1,
+    "bytes": 2076,
+    "sha256": "13a7629d0a0672ae946e6b80bbf238d9eaed77a21ba20f75c6bd4ab72a711a15"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验都没有异常，**均已正常完成**。cron 误报。\n\n---\n\n## 问题 1：eval_pi05_a1_30k_s0_l01_high\n\n**实际状态：正常完成，非 FAILED**\n\n- PID 722752 已退出（预期行为，eval 跑完了）\n- 日志显示 4 个 task 全部跑完，结果已保存：\n\n| Task | TSR | CAR |\n|------|-----|-----|\n| 0 (orange juice) | 30.0% | 60.0% |\n| 1 (chocolate pudding) | 70.0% | 74.0% |\n| 2 (milk) | 24.0% | 68.0% |\n| 3 (bbq sauce) | 64.0% | 30.0% |\n| **Overall** | **47.0%** | **58.0%** |\n\n- 结果文件：`/root/autodl-tmp/eval_results/eval_safelibero_object_all_levelII_30000_lora_baseline_seed7.json`\n- Checkpoint 完整（model.safetensors 7.5GB + optimizer/aux/sdf_decoder 等）\n- GPU 0 当前空闲（1MiB, 0% util）\n\n**误报原因**：eval 脚本没有写 sentinel file，也没有 W&B 集成。cron 检测到进程消失 + 无 sentinel/W&B → 误判为 failed。\n\n**无需重跑。**\n\n---\n\n## 问题 2：train_pi05_a1_obj_s1_l01_high\n\n**实际状态：正常完成，非异常退出**\n\n- PID 274407 已退出（训练跑完了）\n- 日志显示训练 100% 完成（30000/30000 steps），总耗时 ~33h58m\n- 最终 checkpoint 已保存：`/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed1_l1/30000`\n- 末尾 loss ≈ 0.017（action=0.014, sdf=0.035, ee=0.006），收敛正常\n- GPU 2 当前空闲（1MiB, 0% util）\n\n**误报原因**：同上，训练完成后进程正常退出，cron 检测到进程消失 + 无 sentinel → 误判。\n\n**无需重跑。**\n\n---\n\n## 当前 GPU 使用情况\n\n| GPU | 状态 | 占用进程 |\n|-----|------|---------|\n| 0 | 空闲 | — |\n| 1 | 52% util, 9GB | PID 747037 (python) |\n| 2 | 空闲 | — |\n| 3 | 100% util, 27GB | PID 341425 (python) |\n\n## 建议\n\ncron 监控对这两类 job 存在误报问题——它们正常完成但没写 sentinel file。可考虑让 eval/train 脚本在完成时写一个 sentinel 文件（如 `DONE`），或者让 cron 检查日志尾部是否有完成标志。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-pi05-a1-30k-s0-l01-high.md"
+}

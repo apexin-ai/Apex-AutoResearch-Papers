@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "44565e826fd4e6a92b91",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "eval baseline fullft spatial v11",
+  "task_key": "worker_eval_baseline_fullft_spatial_v11_20260522T153711",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_baseline_fullft_spatial_v11_20260522T153711_result.json",
+    "occurrence": 1,
+    "bytes": 866,
+    "sha256": "03b32e7178e18d8f819e66a87bca497d30b122d54bce9124efc0a5b45a9aa7ef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval process confirmed running (PID 690045, 483% CPU). It's in the `torch.compile(max-autotune)` phase — this is CPU-intensive and takes ~5-10 minutes before GPU memory is allocated. Once compilation completes, GPU 1 memory will ramp up and episodes will start.\n\n**Summary:**\n- **Tmux session**: `eval_baseline_fullft_spatial_v11`\n- **GPU**: cuda:1 (via `CUDA_VISIBLE_DEVICES=1`)\n- **Checkpoint**: `/root/autodl-tmp/checkpoints/baseline_spatial_bowl/baseline_spatial_bowl_seed0/best`\n- **Suite**: `safelibero_spatial`, all 4 tasks × 50 episodes = 200 total\n- **Config**: `pi0_libero_low_mem_finetune`, `model_type=baseline`, `replan_steps=5`\n- **Output**: `/root/autodl-tmp/eval_results/baseline_fullft_v11_eval_safelibero_spatial_all_levelII_best_seed0.json`\n- **Log**: `/root/autodl-tmp/eval_results/eval_baseline_fullft_spatial_v11.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-baseline-fullft-spatial-v11.md"
+}

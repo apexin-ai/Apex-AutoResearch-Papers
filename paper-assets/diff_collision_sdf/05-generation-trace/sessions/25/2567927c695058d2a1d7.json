@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2567927c695058d2a1d7",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops collect pi05 safelibero object results",
+  "task_key": "worker_ops_collect_pi05_safelibero_object_results_20260522T212927",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_collect_pi05_safelibero_object_results_20260522T212927_result.json",
+    "occurrence": 1,
+    "bytes": 557,
+    "sha256": "0d6128a4f13bafe33d5d459d1e92cf8deb7b86aeebabb0c795aa58654f14babd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已设置每 4 分钟检查一次 eval 完成状态。eval 完成后会自动：\n1. 收集 per-episode 分析结果\n2. 更新 registry\n3. 启动 spatial eval\n4. 创建 spatial eval 的监控 cron\n\n当前状态：\n- **Task 1** (chocolate_pudding): TSR=86.0%, CAR=56.0% — 碰撞主要来自 moka_pot 和 wine_bottle\n- **Task 2** (milk): 正在跑，ep 36/50，碰撞率很高，几乎每个 ep 都碰到东西（4 个障碍物方向都有碰撞）\n- **serve_policy**: GPU 1 正常运行\n- 预计 ~15 分钟后完成全部 4 个 task"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-collect-pi05-safelibero-object-results.md"
+}

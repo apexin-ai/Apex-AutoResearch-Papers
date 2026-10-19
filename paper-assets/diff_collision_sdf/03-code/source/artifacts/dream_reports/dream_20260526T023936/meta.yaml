@@ -1,0 +1,3896 @@
+dream_id: dream_20260526T023936
+project: diff_collision_sdf
+venue: corl-2026
+focus: 'Claim 4 has fundamentally changed: SDF attribution is zero (D025). LoRA-only
+  CAR=55% ≥ SDF CAR=52%. The paper is now a pure diagnostic/analysis paper. Key narrative:
+  (1) fake safety metric contamination, (2) dfCAR corrective metric, (3) fine-tuning
+  produces real avoidance from implicit demo signals not geometric supervision, (4)
+  SDF is redundant — a valuable negative finding. Evaluate whether this diagnostic-only
+  framing with negative SDF result is viable for CoRL 2026.'
+review_mode: full
+review_visible: true
+writing_visible: true
+what_if: []
+tier_definitions:
+  tiers:
+    best:
+      tier: best
+      meaning: 所有 pending 实验确认 SDF 冗余叙事。论文 framing 完全成立，无需调整 claims。
+      key_assumptions:
+      - LoRA seed2 CAR 与现有 2 seeds 一致 → 3-seed mean ≈ 55%, SE 收窄
+      - SDF 3v3 delta 统计不显著 (p>0.3, δ ∈ [-5, +2]pp)
+      - Phase 2 CAR ≈ LoRA-only (52-58%) → SDF 训练无持久效应
+      - Phase 2 TSR ≈ 6-10% → 无 task performance 恢复，排除 two-phase strategy
+      - Lambda=0.1 CAR ∈ [48, 55]% → lambda 曲线平坦，SDF 在所有剂量均无效
+      - spatial_bowl SDF CAR 与 object_pudding pattern 一致 (±5pp 内)
+      - dfCAR threshold δ∈[2mm, 200mm] 完全稳定 (已有初步证据)
+      number_ranges:
+        lora_3seed_car_mean:
+        - 53
+        - 57
+        sdf_delta_car_3v3:
+        - -5
+        - 2
+        sdf_delta_pvalue:
+        - 0.3
+        - 0.9
+        phase2_car:
+        - 52
+        - 58
+        phase2_tsr:
+        - 4
+        - 10
+        lambda01_car_2seed_mean:
+        - 48
+        - 55
+        lambda_curve_slope:
+        - -0.5
+        - 0.5
+        spatial_bowl_sdf_car:
+        - 20
+        - 40
+        spatial_bowl_sdf_vs_object_delta:
+        - -5
+        - 5
+      narrative_direction: '原始 framing 完全成立。"SDF geometric supervision is redundant
+        across all tested  conditions (3 lambda values × 2 scenes). Collision avoidance
+        comes entirely from  implicit demonstration signals." 4-point lambda 曲线 (0,
+        0.005, 0.01, 0.1) 全平 →  强有力的 dose-independence 证据。Phase 2 无 persistence →
+        SDF 既无即时贡献也无持久影响。 Claim 4 措辞无需任何 hedging。CoRL acceptance 估算 55-65% (2 tasks
+        + 3 models)。
+
+        '
+    median:
+      tier: median
+      meaning: SDF 冗余在基本条件下成立，但高 lambda 或 Phase 2 出现弱信号，需软化 claims。
+      key_assumptions:
+      - LoRA seed2 CAR 略低 (48-53%) → 3-seed mean ≈ 53%, variance 增大但 SDF delta 仍 ≈0
+      - SDF 3v3 delta 边缘 (δ ∈ [-2, +5]pp, p ∈ [0.1, 0.3]) → 不能 claim 'indistinguishable'
+      - Phase 2 CAR 略高于 LoRA (58-65%) → SDF 可能有弱持久效应，但 TSR 仍低 (10-25%)
+      - Lambda=0.1 CAR ∈ [56, 62]% → 弱 dose-response 出现，SDF 在极端 lambda 有微弱效果
+      - spatial_bowl 缺少 LoRA control → 无法做跨场景 SDF 归因 (plan_015 未完成)
+      - dfCAR threshold 稳定 (这部分不受 Claim 4 影响)
+      number_ranges:
+        lora_3seed_car_mean:
+        - 50
+        - 54
+        sdf_delta_car_3v3:
+        - -2
+        - 5
+        sdf_delta_pvalue:
+        - 0.1
+        - 0.3
+        phase2_car:
+        - 58
+        - 65
+        phase2_tsr:
+        - 10
+        - 25
+        lambda01_car_2seed_mean:
+        - 56
+        - 62
+        lambda_curve_slope:
+        - 0.5
+        - 2.0
+        spatial_bowl_sdf_car:
+        - 25
+        - 45
+      narrative_direction: 'Claim 4 从 "SDF is redundant" 降级为 "SDF is redundant at
+        typical lambda values  (≤0.01); extreme lambda shows marginal, statistically
+        ambiguous benefit that does  not justify the added complexity." Phase 2 弱
+        persistence 需承认但 frame 为 "weak  and practically insignificant — TSR remains
+        collapsed." 论文叙事从 "clean negative"  变为 "predominantly negative with boundary
+        conditions." 需补充一段 discussion 解释  lambda dose-response 的 ceiling 和 practical
+        implications。Claim 4 措辞加 hedging:  "largely redundant" / "provides no practically
+        significant benefit."  Claims 1-3 不受影响。CoRL 估算 45-55%。
+
+        '
+    worst:
+      tier: worst
+      meaning: SDF 冗余在高 lambda 或 Phase 2 被推翻，需要 reframe 整篇论文的 Claim 4 角度。
+      key_assumptions:
+      - LoRA seed2 CAR 显著低 (40-48%) → 3-seed mean ≈ 50%, LoRA variance 大
+      - SDF 3v3 delta 变为正且显著 (δ ∈ [+5, +12]pp, p<0.1) → SDF 确实有贡献
+      - Phase 2 CAR 显著高于 LoRA (65-75%) 且 TSR 部分恢复 (30-55%) → two-phase strategy 可行
+      - Lambda=0.1 CAR ∈ [62, 75]% → 明确 dose-response，SDF 在高剂量有效
+      - spatial_bowl 与 object_pudding pattern 不一致 → 跨场景 claim 无法做
+      - 2-seed LoRA vs 3-seed SDF 的 seed 不对称被 reviewer 攻击 → 统计可信度不足
+      number_ranges:
+        lora_3seed_car_mean:
+        - 47
+        - 51
+        sdf_delta_car_3v3:
+        - 5
+        - 12
+        sdf_delta_pvalue:
+        - 0.01
+        - 0.1
+        phase2_car:
+        - 65
+        - 75
+        phase2_tsr:
+        - 30
+        - 55
+        lambda01_car_2seed_mean:
+        - 62
+        - 75
+        lambda_curve_slope:
+        - 2.0
+        - 5.0
+        spatial_bowl_sdf_car:
+        - 35
+        - 55
+      narrative_direction: '"SDF is redundant" claim 不成立，必须 reframe。两条可用 angle（选优者）：
+        (A) Decomposition framing: "Collision avoidance has two channels — implicit  demo
+        signals (dominant, +29pp) and explicit geometric supervision (additive,  +5-12pp
+        at high lambda). Prior work conflates these sources." 论文变为 avoidance  source
+        attribution study，SDF 从 "redundant" 变为 "minor additive contributor  overshadowed
+        by demo-implicit signals." (B) Two-phase discovery (如果 Phase 2 TSR≥40% + CAR≥60%):
+        "Single-phase SDF  training destroys task capability. Two-phase training (geometric
+        supervision →  task-only fine-tuning) recovers both safety and performance
+        — a practical training  recipe." 论文升级为有 positive method contribution，但 novelty
+        需要更多 Phase 2 seeds  验证 (plan_012)。 无论哪条 angle，Claims 1-3 不变 (fake safety +
+        dfCAR + oracle failure)。这些占论文  60% 内容且证据坚实。Claim 4 占比缩小，从 negative finding
+        变为 nuanced finding。 仍冲 CoRL 主会，不降级。CoRL 估算 40-50%。'
+scenarios:
+- tier: best
+  pdf_path: /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/dream_reports/dream_20260526T023936/best/paper.pdf
+  imagined_experiments:
+  - name: LoRA baseline seed2 eval (3v3 统计对齐)
+    plan_id: plan_013
+    description: '第三个 LoRA-only 种子 (seed2) 训练到 30K 后 eval 200 episodes on object_pudding，
+      使 LoRA 3-seed vs SDF 3-seed 的归因对比达到 3v3 统计严格性。
+
+      '
+    expected_results:
+      avg_CAR: 55.0
+      avg_TSR: 6.0
+      avg_ee_disp: 0.481
+      frozen_pct: 0
+      dfCAR_100mm: 55.0
+      task0_orange_juice_CAR: 60
+      task0_orange_juice_TSR: 2
+      task1_chocolate_pudding_CAR: 48
+      task1_chocolate_pudding_TSR: 16
+      task2_milk_CAR: 92
+      task2_milk_TSR: 0
+      task3_bbq_sauce_CAR: 20
+      task3_bbq_sauce_TSR: 6
+      lora_3seed_mean_CAR: 55.2
+      lora_3seed_SD: 0.75
+      lora_3seed_SE: 0.43
+    result_rationale: 'LoRA fine-tuning 在 collision-free demonstrations 上的避碰能力来自训练数据分布中的隐式安全信号
+      （演示轨迹天然避开障碍物），而非随机种子引入的任何随机分量。现有 s0=54.5% 和 s1=56% 已展示极低的 seed-to-seed 方差 (1.5pp)，seed2
+      将落入同一窄区间。Per-task pattern 由任务布局决定： task2(milk) 障碍物小且路径自然远离 → 高 CAR(~92%)；task3(bbq_sauce)
+      双侧走廊 → 低 CAR(~20%)。 这一 pattern 在所有 seeds 和条件下完全一致，确认 task geometry 而非训练信号决定
+      per-task CAR。 3-seed mean 55.2% 与 SE 0.43 将使 95% CI 为 [53.4%, 57.0%]，不包含任何 SDF
+      条件的均值。
+
+      '
+    tables:
+    - name: 'Table: 3v3 LoRA vs SDF 归因对比'
+      columns:
+      - Condition
+      - Seeds
+      - CAR Mean(%)
+      - CAR SD
+      - TSR Mean(%)
+      - EE Disp(m)
+      - Frozen(%)
+      rows:
+      - - LoRA-only (λ=0)
+        - '3'
+        - '55.2'
+        - '0.75'
+        - '6.2'
+        - '0.479'
+        - '0'
+      - - SDF λ=0.005
+        - '3'
+        - '50.5'
+        - '3.0'
+        - '6.1'
+        - '0.483'
+        - '0'
+      - - SDF λ=0.01
+        - '3'
+        - '52.8'
+        - '0.3'
+        - '7.2'
+        - '0.476'
+        - '0'
+      footer: Δ(SDF_best − LoRA) = −2.4pp, p=0.35 (Welch t-test, df≈3), not significant
+    figures_description:
+    - 'Per-seed CAR scatter plot: 9 points (3 conditions × 3 seeds) with condition
+      means ± SE error bars, showing complete overlap between LoRA and SDF distributions'
+    analysis: '3-seed LoRA mean 55.2% ± 0.43 SE vs SDF best (λ=0.01) 52.8% ± 0.17
+      SE。 两样本 Welch t-test: δ = −2.4pp, p ≈ 0.35, Cohen''s d ≈ 0.9（方向为 LoRA 优于 SDF，
+      但 n=3 下 effect size 的 CI 极宽）。结论：SDF 在统计上与 LoRA-only 不可区分， 且方向性上 SDF 反而略低。"SDF
+      adds 0pp" 的 claim 完全成立，无需 hedge。
+
+      '
+  - name: Phase 2 λ=0 ablation eval — seed2
+    plan_id: plan_006
+    description: '从 10K SDF checkpoint (λ=0.005, seed2) resume 训练 20K 步 with λ=0（去除
+      SDF loss）， 测试 SDF 训练是否留下持久安全编码。
+
+      '
+    expected_results:
+      avg_CAR: 55.0
+      avg_TSR: 7.0
+      avg_ee_disp: 0.475
+      frozen_pct: 0
+      dfCAR_100mm: 55.0
+      task0_orange_juice_CAR: 62
+      task0_orange_juice_TSR: 2
+      task1_chocolate_pudding_CAR: 46
+      task1_chocolate_pudding_TSR: 24
+      task2_milk_CAR: 90
+      task2_milk_TSR: 0
+      task3_bbq_sauce_CAR: 22
+      task3_bbq_sauce_TSR: 2
+      phase2_vs_lora_delta: -0.2
+    result_rationale: 'SDF auxiliary loss 在 best tier 下已确认贡献 0pp CAR（即时冗余）。10K 步 SDF
+      训练 实际上没有向模型权重编码任何有意义的碰撞感知信息——SDF loss 梯度被 action loss 主导 （SDF 仅占总 loss 的 0.5%，D013），且
+      EE-only SDF 的梯度方向与实际安全行为不对齐（D009）。 因此，从 SDF checkpoint resume with λ=0 后，模型在剩余
+      20K 步中仅学习 LoRA demonstration signal， 最终收敛到与 LoRA-only 相同的行为模式。10K SDF checkpoint
+      的 eval 已显示 CAR=55.5% （eval_pi05_a1_best_s2_l005_10k），这已等于 LoRA-only 水平——SDF
+      在 10K 时就没有改变模型， 后续 λ=0 训练只是保持这一状态。Phase 2 CAR ≈ LoRA-only → "SDF 无持久效应" 完全确认。
+
+      '
+    tables:
+    - name: 'Table: Phase 2 vs LoRA-only 对比'
+      columns:
+      - Condition
+      - Training Path
+      - CAR(%)
+      - TSR(%)
+      - EE Disp(m)
+      rows:
+      - - LoRA-only (s0)
+        - 30K LoRA
+        - '54.5'
+        - '8.5'
+        - '0.489'
+      - - LoRA-only (s1)
+        - 30K LoRA
+        - '56.0'
+        - '4.0'
+        - '0.467'
+      - - Phase 2 (s2)
+        - 10K SDF → 20K LoRA
+        - '55.0'
+        - '7.0'
+        - '0.475'
+      - - SDF full (s2, λ=0.005)
+        - 30K SDF
+        - '53.0'
+        - '9.0'
+        - '0.505'
+      footer: Phase 2 回归 LoRA-only 水平 → SDF 10K 训练无持久编码
+    figures_description:
+    - 'Training path diagram: 分叉路径图显示 SDF checkpoint 10K → Phase 2 λ=0 → 收敛到 LoRA-only
+      水平，vs SDF full 30K 停在相同水平'
+    analysis: 'Phase 2 CAR=55.0% 完全落入 LoRA-only 区间 [54.5, 56.0]。这排除了两种替代假说： (1) SDF
+      训练造成持久损伤（若如此 CAR 应 < LoRA-only）， (2) SDF 有微妙持久效应（若如此 CAR 应 > LoRA-only）。 模型简单地回到
+      demonstration-driven baseline。TSR=7% 与 LoRA-only 的 4-8.5% 一致， 确认 fine-tuning
+      collapse 是 LoRA adaptation 的固有属性而非 SDF 特有。 "SDF 既无即时贡献也无持久影响" 叙事在此完全封闭。
+
+      '
+  - name: Phase 2 λ=0 additional seed (统计复现)
+    plan_id: plan_012
+    description: 'Phase 2 第二个种子 (seed0 或 seed1)，从对应 10K SDF checkpoint resume with
+      λ=0， 验证 Phase 2 无持久效应结论的跨种子稳定性。
+
+      '
+    expected_results:
+      avg_CAR: 54.0
+      avg_TSR: 8.0
+      avg_ee_disp: 0.47
+      frozen_pct: 0
+      phase2_2seed_mean_CAR: 54.5
+      phase2_2seed_SD: 0.71
+      phase2_vs_lora_delta: -0.7
+    result_rationale: '与 seed2 Phase 2 相同的逻辑——SDF loss 在 10K 步内未编码有意义信息，λ=0 resume
+      后 模型仅学习 demonstration signal。不同种子的 10K SDF checkpoint 起点略有不同 （随机初始化和训练顺序差异），但
+      20K 步 λ=0 训练足以让所有种子收敛到相同的 LoRA-only attractor。 Phase 2 2-seed mean ≈ 54.5% 与
+      LoRA-only 3-seed mean 55.2% 的差异 < 1pp， 远小于 eval 噪声 (±3.5pp per 200-episode eval)。两个
+      Phase 2 种子间的方差也很小（0.71）， 进一步确认 SDF 持久效应为零的结论不受种子选择影响。
+
+      '
+    tables:
+    - name: 'Table: Phase 2 多种子汇总'
+      columns:
+      - Seed
+      - Phase 2 CAR(%)
+      - LoRA-only CAR(%)
+      - Δ(Phase2−LoRA)
+      rows:
+      - - seed2
+        - '55.0'
+        - 55.0 (predicted)
+        - '-0.0'
+      - - seed0/1
+        - '54.0'
+        - 54.5/56.0
+        - -0.5/−2.0
+      - - Mean
+        - '54.5'
+        - '55.2'
+        - '-0.7'
+      footer: Δ < 1pp, 无统计显著性 → SDF 训练零持久效应
+    figures_description:
+    - Phase 2 vs LoRA-only paired bar chart with individual seed points overlaid
+    analysis: '2-seed Phase 2 均回归 LoRA-only baseline 水平。如果 Dream 三档要求 Phase 2 multi-seed，
+      这第二个种子满足最低统计要求。但鉴于 Phase 2 本质上是一个弱实验 （SDF 已确认即时冗余，测试其 "持久效应" 更多是排除性验证），2 seeds
+      足够。 不需要为一个 null result 投入 3 seeds。
+
+      '
+  - name: Lambda=0.1 bracket eval (4-point dose curve)
+    plan_id: plan_010
+    description: 'λ=0.1 (SDF penalty 10× 于 λ=0.01) 两个种子 eval，完成 4-point lambda 曲线
+      (0, 0.005, 0.01, 0.1)，测试 SDF 在极端剂量下是否产生效果。
+
+      '
+    expected_results:
+      s0_CAR: 52.0
+      s0_TSR: 5.5
+      s1_CAR: 50.0
+      s1_TSR: 7.0
+      mean_CAR: 51.0
+      mean_TSR: 6.25
+      avg_ee_disp: 0.465
+      frozen_pct: 0
+      lambda_curve_slope: -0.3
+      lambda_curve_r_squared: 0.12
+      task0_orange_juice_CAR: 60
+      task1_chocolate_pudding_CAR: 42
+      task2_milk_CAR: 82
+      task3_bbq_sauce_CAR: 20
+    result_rationale: 'λ=0.1 将 SDF loss 从总 loss 的 0.5% (λ=0.005) 提升到 ~10%——一个不可忽略的梯度贡献。
+      然而 SDF gradient 的根本问题是结构性的（EE-only → arm body 扫过障碍物, D009）， 不是信号强度问题。更大的 λ 只是放大了一个方向错误的梯度。在
+      best tier 下， 这个放大尚未严重到导致 action collapse（不像旧 Pi0 A1 在 λ=0.1 时的 catastrophic
+      collapse）， 因为 Pi0.5 的 policy 更 robust，LoRA fine-tuning 限制了权重偏移幅度。 CAR ≈ 51%
+      略低于 LoRA-only (55%) 和低 lambda SDF (50.5-52.8%)，但差异在噪声范围内。 关键结论：即使将 SDF 剂量提高
+      20×（0.005→0.1），CAR 也没有任何改善—— dose-independence 是 SDF 冗余的最强证据之一。4-point 曲线完全平坦。
+
+      '
+    tables:
+    - name: 'Table: 4-Point Lambda 曲线完整数据'
+      columns:
+      - Lambda
+      - Method
+      - N Seeds
+      - CAR Mean(%)
+      - CAR SD
+      - TSR Mean(%)
+      - Slope Context
+      rows:
+      - - 0 (LoRA)
+        - LoRA-only
+        - '3'
+        - '55.2'
+        - '0.75'
+        - '6.2'
+        - baseline
+      - - '0.005'
+        - LoRA+SDF
+        - '3'
+        - '50.5'
+        - '3.0'
+        - '6.1'
+        - −
+      - - '0.01'
+        - LoRA+SDF
+        - '3'
+        - '52.8'
+        - '0.3'
+        - '7.2'
+        - −
+      - - '0.1'
+        - LoRA+SDF
+        - '2'
+        - '51.0'
+        - '1.4'
+        - '6.3'
+        - −
+      footer: Linear regression slope = −0.3 pp/unit-λ (p>0.5), R²=0.12 → 完全平坦
+    - name: 'Table: Lambda=0.1 Per-Task 分解'
+      columns:
+      - Task
+      - CAR s0(%)
+      - CAR s1(%)
+      - Mean(%)
+      - LoRA-only Mean(%)
+      - Δ
+      rows:
+      - - orange_juice
+        - '62'
+        - '58'
+        - '60'
+        - '60'
+        - '0'
+      - - chocolate_pudding
+        - '44'
+        - '40'
+        - '42'
+        - '47'
+        - '-5'
+      - - milk
+        - '84'
+        - '80'
+        - '82'
+        - '92'
+        - '-10'
+      - - bbq_sauce
+        - '18'
+        - '22'
+        - '20'
+        - '20'
+        - '0'
+      footer: Per-task pattern 完全由 task geometry 决定，与 λ 无关
+    figures_description:
+    - 'Fig 5 (paper): Lambda-CAR 曲线 — x轴 λ∈{0, 0.005, 0.01, 0.1} (log scale + 0),
+      y轴 CAR(%). 4 points with error bars, flat line with shaded ±SE band. 右侧 y轴叠加
+      TSR(%) 同样平坦。Water-mark horizontal line at LoRA-only level.'
+    - 'Supplementary: Per-task lambda curves — 4 subplots (one per task), each showing
+      4 lambda points. All flat within noise, confirming task-level dose independence.'
+    analysis: '4-point lambda 曲线的线性回归斜率 −0.3 pp/unit-λ，R²=0.12，F-test p>0.5。 这是 SDF
+      冗余的最有力证据：在 20× 剂量范围内 (0.005→0.1)，CAR 完全不响应 SDF 强度变化。 排除了 "SDF 有用但 lambda 选错了"
+      的 reviewer 反驳。λ=0 (LoRA-only) 作为 baseline 甚至是曲线最高点 (55.2%)，但与其他 3 个 lambda 的差异在
+      SE 内。 论文可以 confidently claim: "SDF geometric supervision is dose-independent
+      redundant."
+
+      '
+  - name: spatial_bowl A1 SDF eval (跨场景泛化)
+    plan_id: plan_008
+    description: 'spatial_bowl 场景 SDF 训练 (seed0, λ=0.005) 完成后 eval 200 episodes， 验证
+      SDF 冗余结论是否跨场景一致。
+
+      '
+    expected_results:
+      avg_CAR: 30.0
+      avg_TSR: 3.5
+      avg_ee_disp: 0.31
+      frozen_pct: 0
+      dfCAR_100mm: 30.0
+      task0_pick_bowl_between_CAR: 40
+      task1_pick_bowl_on_ramekin_CAR: 20
+      task2_pick_bowl_on_stove_CAR: 35
+      task3_pick_bowl_on_cabinet_CAR: 25
+      spatial_bowl_sdf_vs_object_delta: 0
+    result_rationale: 'spatial_bowl 的碰撞几何与 object_pudding 根本不同：障碍物是矮而宽的盘子/碗， arm body
+      碰撞占主导（D017 确认 EE-only SDF 无法解决 arm body 碰撞）， Pi0.5 baseline CAR=13% 远低于 object_pudding
+      的 28%。 LoRA fine-tuning 在 spatial_bowl 上同样会从 demonstration signal 中学到避碰行为， 但因
+      task geometry 更难（矮障碍物，arm 必经路径窄），绝对 CAR 低于 object_pudding。 预测 CAR≈30% = Pi0.5
+      baseline 13% + LoRA fine-tuning 提升 ~17pp。 这与 object_pudding 中 LoRA 的相对提升 (+27pp,
+      28%→55%) 在同一数量级， 但因基线更低而绝对值更低。SDF 在此场景下同样不贡献额外 CAR—— EE-only SDF 在 arm-body-dominant
+      碰撞场景下更是结构性无效 (D009, D017)。 TSR collapse 同样发生 (57.5%→3.5%)，确认 fine-tuning 导致保守行为的
+      pattern 跨场景一致。
+
+      '
+    tables:
+    - name: 'Table: 跨场景 SDF 冗余对比'
+      columns:
+      - Scene
+      - Pi0.5 Baseline CAR(%)
+      - SDF CAR(%)
+      - Δ(SDF−Baseline)
+      - object_pudding Δ equiv
+      rows:
+      - - object_pudding
+        - '28.0'
+        - 52.0 (3-seed λ=0.005)
+        - '+24.0'
+        - +24.0 (ref)
+      - - spatial_bowl
+        - '13.0'
+        - 30.0 (1-seed λ=0.005)
+        - '+17.0'
+        - '+17.0'
+      footer: 两场景 Δ 在同一量级；但归因需要 LoRA-only control (plan_015)
+    figures_description:
+    - 'Cross-scene CAR comparison grouped bar chart: object_pudding vs spatial_bowl,
+      three bars each (Baseline, SDF, LoRA-only), showing parallel pattern'
+    analysis: 'spatial_bowl SDF CAR=30% 落入 best tier 区间 [20, 40]。 vs object_pudding
+      SDF mean 50.5%，绝对差距大 (-20pp) 但这完全由 task geometry 解释 （baseline 也差 15pp）。关键 metric:
+      spatial_bowl_sdf_vs_object_delta 定义为 相对提升幅度的差值 = (30-13) - (52-28) = 17 - 24
+      = -7pp，略超 ±5pp 范围。 但如果用比例而非绝对值：17/13=1.31× vs 24/28=0.86×，spatial 的相对提升反而更大，
+      说明 LoRA fine-tuning (含 SDF 冗余信号) 在更困难场景也有效。 完整归因需等 plan_015 (spatial LoRA-only
+      control) 确认 SDF delta ≈ 0。
+
+      '
+  - name: spatial_bowl LoRA-only control (跨场景归因闭环)
+    plan_id: plan_015
+    description: 'spatial_bowl 场景 LoRA-only training (无 SDF loss) 30K + eval， 与 plan_008
+      的 SDF 结果对比完成跨场景 SDF 归因。
+
+      '
+    expected_results:
+      avg_CAR: 28.0
+      avg_TSR: 4.0
+      avg_ee_disp: 0.305
+      frozen_pct: 0
+      spatial_sdf_vs_lora_delta: 2.0
+    result_rationale: '与 object_pudding 中 LoRA-only≥SDF 的结论完全平行。spatial_bowl 的 demonstration
+      data 同样包含隐式避碰信号（演示轨迹天然避开桌上障碍物），LoRA fine-tuning 学到这一信号。 SDF 在 spatial_bowl 中更是结构性无效——矮宽障碍物导致
+      arm body 碰撞为主， EE-only SDF gradient 完全无法感知 arm link 的碰撞风险 (D017)。 spatial LoRA-only
+      CAR ≈ 28% vs SDF CAR ≈ 30%: delta = +2pp (SDF 方向)， 在 200-episode eval 噪声 (±3.5pp)
+      内。这完成了跨场景归因： "SDF is redundant in BOTH object_pudding (CAR delta = −3pp) and
+      spatial_bowl (delta = +2pp)."
+
+      '
+    tables:
+    - name: 'Table: spatial_bowl 归因对比'
+      columns:
+      - Condition
+      - CAR(%)
+      - TSR(%)
+      - EE Disp(m)
+      - Δ vs LoRA-only
+      rows:
+      - - Pi0.5 Baseline
+        - '13.0'
+        - '57.5'
+        - −
+        - ref
+      - - LoRA-only
+        - '28.0'
+        - '4.0'
+        - '0.305'
+        - −
+      - - LoRA+SDF λ=0.005
+        - '30.0'
+        - '3.5'
+        - '0.310'
+        - +2.0pp (n.s.)
+      footer: SDF delta = +2pp, p>0.5 → 跨场景确认冗余
+    figures_description:
+    - 'Paired delta plot: object_pudding SDF delta (−3pp) vs spatial_bowl SDF delta
+      (+2pp), both with 95% CI crossing zero'
+    analysis: '两场景的 SDF delta 方向相反但均不显著：object_pudding −3pp, spatial_bowl +2pp。 如果
+      SDF 真有效，应在两场景同方向 positive。方向不一致本身就是 noise 的证据。 Combined across scenes: mean
+      delta ≈ −0.5pp。论文可 claim： "SDF is redundant across both tested scenes (2/2),
+      with combined δ = −0.5pp (95% CI: [−5, +4])."
+
+      '
+  - name: dfCAR threshold sensitivity analysis (指标稳健性)
+    plan_id: plan_014
+    description: '在已有 eval JSON 数据上计算 dfCAR at δ∈{2mm, 5mm, 10mm, 20mm, 50mm, 100mm,
+      200mm}， 展示 displacement-filtered CAR 对 threshold 选择的完全稳健性。
+
+      '
+    expected_results:
+      dfCAR_at_2mm: 54.5
+      dfCAR_at_5mm: 54.5
+      dfCAR_at_10mm: 54.5
+      dfCAR_at_20mm: 54.5
+      dfCAR_at_50mm: 54.5
+      dfCAR_at_100mm: 54.5
+      dfCAR_at_200mm: 54.5
+      a1_fake_dfCAR_at_2mm: 0.4
+      a1_fake_dfCAR_at_5mm: 0.4
+      a1_fake_dfCAR_at_100mm: 0.0
+      a1_fake_dfCAR_at_200mm: 0.0
+      bimodal_gap_mm: 239
+    result_rationale: 'EE displacement 分布是强双峰的：frozen episodes (A1 fake safety) 的
+      EE disp 几乎为零 (median < 0.001mm，max < 1mm from eval_a1_lora_object_v11_rerun)；active
+      episodes (LoRA fine-tuned) 的 EE disp ≥ 239mm (from eval_pi05_a1_best_s2_l005_10k，
+      所有 episodes 的 EE disp 在 360-580mm 范围)。两个 mode 之间存在 >200mm 的完全空白区间—— 没有任何 episode
+      落在 1mm-239mm 之间。因此，任何 threshold δ ∈ [2mm, 200mm] 都会做出完全相同的 active/frozen 二分，dfCAR
+      完全不变。 这不是巧合：action collapse (frozen, EE disp < 1mm) 和 genuine policy execution
+      (EE disp > 200mm) 是两种质性不同的行为模式，中间不存在 "部分激活" 的连续过渡。 对 A1 fake safety data: 729/732
+      safe episodes 的 obstacle disp < 0.1mm， 3 个 "real safe" episodes 的 obstacle disp
+      在 0.1-1mm 范围 — 用 EE disp filtering 后这 3 个可能保留（如果它们的 EE disp 恰好 > δ）或被过滤。但无论如何
+      A1 dfCAR ≈ 0%。
+
+      '
+    tables:
+    - name: 'Table: dfCAR Threshold Sensitivity'
+      columns:
+      - Threshold δ(mm)
+      - LoRA-only dfCAR(%)
+      - SDF λ=0.005 dfCAR(%)
+      - A1 (Pi0) dfCAR(%)
+      - Pi0.5 Baseline dfCAR(%)
+      rows:
+      - - '2'
+        - '54.5'
+        - '50.5'
+        - '0.4'
+        - '27.5'
+      - - '5'
+        - '54.5'
+        - '50.5'
+        - '0.4'
+        - '27.5'
+      - - '10'
+        - '54.5'
+        - '50.5'
+        - '0.0'
+        - '27.5'
+      - - '20'
+        - '54.5'
+        - '50.5'
+        - '0.0'
+        - '27.5'
+      - - '50'
+        - '54.5'
+        - '50.5'
+        - '0.0'
+        - '27.5'
+      - - '100'
+        - '54.5'
+        - '50.5'
+        - '0.0'
+        - '27.5'
+      - - '200'
+        - '54.5'
+        - '50.5'
+        - '0.0'
+        - '27.5'
+      footer: 所有 active models 的 dfCAR 在 δ∈[2, 200]mm 内完全恒定 → threshold-robust
+    - name: 'Table: EE Displacement 分布统计'
+      columns:
+      - Condition
+      - Min EE Disp(mm)
+      - Median EE Disp(mm)
+      - Max EE Disp(mm)
+      - Bimodal Gap
+      rows:
+      - - A1 fake safe (Pi0)
+        - <0.001
+        - '0.005'
+        - '0.8'
+        - −
+      - - Pi0.5 Baseline
+        - '120'
+        - '350'
+        - '620'
+        - −
+      - - LoRA-only
+        - '239'
+        - '420'
+        - '580'
+        - '>200mm gap'
+      - - LoRA+SDF
+        - '245'
+        - '430'
+        - '590'
+        - '>200mm gap'
+      footer: Frozen → Active 之间 >200mm 空白区间确保 threshold 稳健性
+    figures_description:
+    - 'dfCAR vs threshold step plot: x-axis δ from 1mm to 500mm (log scale), y-axis
+      dfCAR(%). Multiple lines for each condition — all horizontal (flat) in [2, 200]mm
+      range, with a sharp drop for A1 line near δ=0.5mm'
+    - 'EE displacement histogram (bimodal): overlay of frozen distribution (peak at
+      ~0mm) and active distribution (peak at ~400mm), showing the >200mm gap with
+      a shaded ''threshold-insensitive zone'''
+    analysis: 'dfCAR 作为 community tool 的核心卖点是 practitioner-friendly: 无需精确校准 threshold，
+      任何合理选择 (2-200mm) 都给出相同结果。这来自 frozen vs active 的质性二分—— VLA action collapse 不是
+      "减少运动" 而是 "完全冻结"，导致 EE displacement 跨越 5 个数量级的 gap。 论文推荐 δ=10mm 作为默认值（远高于传感器噪声，远低于最小
+      active displacement）， 并展示 sensitivity analysis 证明选择不敏感。 Reviewer 可能的 concern
+      "threshold 选择任意" 被这张表完全化解。
+
+      '
+  - name: LoRA baseline eval 完整 3-seed 统计汇总
+    plan_id: plan_003
+    description: 'LoRA baseline 2 seeds (s0, s1) 已完成 eval。此条目为汇总已有结果 + plan_013 的
+      seed2， 形成 3-seed 完整统计。
+
+      '
+    expected_results:
+      s0_CAR: 54.5
+      s0_TSR: 8.5
+      s1_CAR: 56.0
+      s1_TSR: 4.0
+      s2_CAR: 55.0
+      s2_TSR: 6.0
+      mean_CAR: 55.2
+      mean_TSR: 6.2
+      SE_CAR: 0.43
+      SE_TSR: 1.3
+    result_rationale: 's0 和 s1 已确认完成 (eval_lora_baseline_30k_s0_v2: CAR=54.5%, eval_lora_baseline_30k_s1_v2:
+      CAR=56%)。 seed2 (plan_013) 预测 CAR=55%，基于上述 result_rationale。 3-seed 汇总 mean=55.2%,
+      SE=0.43 将成为 Claim 4 的核心 reference point： "LoRA-only achieves 55.2±0.4% CAR,
+      statistically indistinguishable from any SDF condition."
+
+      '
+    tables:
+    - name: 'Table: LoRA-only 3-Seed 完整结果'
+      columns:
+      - Seed
+      - CAR(%)
+      - TSR(%)
+      - EE Disp(m)
+      - Frozen(%)
+      - dfCAR(%)
+      rows:
+      - - s0
+        - '54.5'
+        - '8.5'
+        - '0.489'
+        - '0'
+        - '54.5'
+      - - s1
+        - '56.0'
+        - '4.0'
+        - '0.467'
+        - '0'
+        - '56.0'
+      - - s2 (pred)
+        - '55.0'
+        - '6.0'
+        - '0.481'
+        - '0'
+        - '55.0'
+      - - Mean ± SE
+        - 55.2 ± 0.4
+        - 6.2 ± 1.3
+        - 0.479 ± 0.006
+        - '0'
+        - 55.2 ± 0.4
+    figures_description: []
+    analysis: 'CAR=dfCAR（所有 episodes 均 active, frozen=0%）再次确认 fine-tuning 产生的避碰是 100%
+      真实的。 EE displacement 均在 0.47-0.49m，远超任何 frozen threshold。 TSR 跨 seed 方差略大（4-8.5%），但均在
+      catastrophic collapse 范围 (baseline 73% → 4-8.5%)。
+
+      '
+  - name: A1 EE displacement re-eval (Claim 1 术语验证)
+    plan_id: plan_001
+    description: '已取消。旧 Pi0 A1 checkpoint 已删除不可恢复，但现有 800ep obstacle displacement
+      + TSR=0% 双证据链充分支持 Claim 1。
+
+      '
+    expected_results:
+      status: cancelled
+      existing_evidence_sufficient: true
+      obstacle_disp_fake_rate: 99.6
+      tsr: 0
+      n_episodes: 800
+    result_rationale: 'eval_a1_lora_object_v11_rerun 提供了 800 episodes 的完整 obstacle
+      displacement 分析： 729/732 safe episodes 的 obstacle displacement < 0.1mm，TSR=0%。
+      EE displacement re-eval 原本用于区分 "obstacle 没动是因为 robot 没动" vs "robot 动了但没碰到"，
+      但 TSR=0% 已独立确认 robot 没有完成任何 task → action collapse。 双证据链 (obstacle disp + TSR)
+      使得 EE displacement 成为 nice-to-have 而非 must-have。 Claim 1 的 dfCAR filtering 展示可以用其他模型的
+      EE data (LoRA, SDF) 完成。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 无需实验。现有证据已充分。
+  - name: OpenVLA zero-shot SafeLIBERO eval (第三 model family)
+    plan_id: plan_002
+    description: '已阻塞。模型下载损坏 + 无 eval script。论文改为 scope limitation acknowledgment。
+
+      '
+    expected_results:
+      status: blocked
+      mitigation: scope limitation in paper
+    result_rationale: 'OpenVLA 7B 下载多次失败（HuggingFace 大文件在 AutoDL 代理下极慢且易损坏）。 即使下载成功，SafeLIBERO
+      无现成 OpenVLA eval script，需要从头集成。 成本效益比不高：论文已有 Pi0 + Pi0.5 两个 model family，OpenVLA
+      作为第三个 会提升 generalizability claim 但不是 blocking requirement。 论文在 Limitations 中声明
+      "验证在 Pi0 系列上完成，其他 VLA 架构有待确认"。 Reviewer concern R1 的应对策略已有 mechanistic argument
+      兜底。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 阻塞项。对 best tier 无影响——2 model families + mechanistic argument 足够。
+  - name: Claim 1 术语验证 / A1 re-eval 决策 (已取消)
+    plan_id: plan_011
+    description: '已取消。依赖 plan_001 的结果，但 plan_001 已取消。 现有 800ep 双证据链足够，无需额外 re-eval。
+
+      '
+    expected_results:
+      status: cancelled
+      reason: plan_001 cancelled; existing 800ep evidence sufficient
+    result_rationale: 'plan_001 取消后此计划自动失效。Claim 1 的核心证据不依赖 EE displacement re-eval。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 无需实验。
+  review_report: '---
+
+    dream_id: dream_20260526T023936
+
+    tier: best
+
+    overall_score: weak reject
+
+    timestamp: 2026-05-26T03:25:06.145215+00:00
+
+    ---
+
+
+    # Dream Review Report — "Rethinking VLA Safety Evaluation: When 98% of Collision
+    Avoidance is an Illusion"
+
+
+    **Target venue**: CoRL 2026 (rating scale 1–10; acceptance rate ~28–33%)
+
+    **Review mode**: full (2 Reviewers → 4-step roundtable)
+
+    **dream_id**: 20260526T023936
+
+
+    ---
+
+
+    ## 1  Roundtable Process Summary
+
+
+    | Step | Description |
+
+    |------|-------------|
+
+    | Step 1 | Independent reviews: R1 (methods + experiments) and R2 (novelty + related
+    work) |
+
+    | Step 2 | Cross-sharing: each reviewer read the other''s review |
+
+    | Step 3 | Convergence discussion: areas of agreement/disagreement identified
+    |
+
+    | Step 4 | This consolidated report |
+
+
+    **Final scores**: R1 = 4/10, R2 = 4/10. Both maintained ratings after cross-reading.
+
+
+    ---
+
+
+    ## 2  Paper Summary
+
+
+    The paper makes four claims:
+
+
+    1. **Fake safety**: Standard CAR is contaminated by action collapse. A Pi0+SDF
+    model (A1) reports 91.5% CAR, but 99.6% of "safe" episodes have obstacle displacement
+    < 0.1 mm and TSR = 0%.
+
+    2. **dfCAR metric**: A displacement-filtered CAR that excludes frozen episodes
+    (EE displacement < δ). Threshold-robust due to bimodal gap > 200 mm.
+
+    3. **SDF redundancy**: LoRA fine-tuning on collision-free demonstrations alone
+    produces +29 pp genuine CAR. Adding SDF auxiliary loss contributes 0 additional
+    pp across a 4-point λ curve (0, 0.005, 0.01, 0.1). Confirmed across 2 scenes.
+
+    4. **Phase 2 persistence**: SDF training (10K steps) followed by 20K steps without
+    SDF → model reverts to LoRA-only baseline. Zero persistent effect.
+
+
+    ---
+
+
+    ## 3  Consolidated Strengths (agreed by both reviewers)
+
+
+    - **Quantitative rigor on the diagnostic claim (Claim 1)**: 800 episodes for A1,
+    per-episode obstacle displacement analysis, dual evidence chain (obstacle displacement
+    + TSR = 0%). The 99.6% fake safety rate is striking and communicates severity
+    effectively.
+
+    - **dfCAR threshold robustness**: The bimodal gap (> 200 mm between frozen and
+    active modes) makes dfCAR genuinely threshold-insensitive across δ ∈ [2, 200]
+    mm. This is a clean property.
+
+    - **4-point λ dose-response curve**: Correct experimental design for testing dose-independence.
+    Flat curve (slope = −0.3, R² = 0.12) across a 20× range is convincing within its
+    scope.
+
+    - **Honest negative result reporting**: The paper does not hide the SDF redundancy
+    finding or the catastrophic TSR collapse.
+
+    - **Clear writing and logical narrative arc**: The flow from fake safety → dfCAR
+    → attribution → SDF redundancy is well-structured.
+
+
+    ---
+
+
+    ## 4  Consolidated Weaknesses
+
+
+    ### 4.1  Statistical Power (R1 primary, R2 concurs)
+
+
+    The SDF redundancy claim (Claim 3) is the paper''s headline finding but is critically
+    underpowered:
+
+
+    - **n = 3 seeds per condition**: The Welch t-test (Δ = −2.4 pp, p = 0.35) has
+    very low power. The 95% CI on the LoRA-vs-SDF difference likely spans ~[−7, +2]
+    pp, so the data cannot distinguish "0 pp effect" from "5 pp effect."
+
+    - **No equivalence testing**: The paper claims "SDF contributes 0 pp" but uses
+    absence-of-significance as evidence-of-absence. A formal TOST equivalence test
+    with a pre-registered margin is needed; current n almost certainly lacks power
+    to pass one.
+
+    - **Phase 2 uses only 2 seeds**: Claiming "zero persistent effect" from n = 2
+    is statistically irresponsible.
+
+    - **spatial_bowl is single-seed per condition**: The cross-scene "replication"
+    (Δ = +2 pp, n.s.) is effectively anecdotal.
+
+
+    ### 4.2  Circular SDF Redundancy Design (R2 primary, R1 concurs after cross-reading)
+
+
+    The paper establishes that EE-only SDF has fundamental structural defects (Section
+    4.7: misses arm-body collisions, gradient direction misaligned with action space).
+    It then tests SDF redundancy using *only* EE-only SDF. This is circular: showing
+    that a known-deficient method adds nothing is uninformative about whether geometric
+    supervision in general is redundant. The paper cannot distinguish between:
+
+
+    - "Geometric supervision is fundamentally redundant for VLA collision avoidance"
+    (strong, novel)
+
+    - "This particular EE-only SDF formulation is too limited to help" (weak, expected)
+
+
+    The title and framing imply the strong claim; the evidence supports only the weak
+    one.
+
+
+    ### 4.3  Narrow Experimental Scope vs. Broad Claims (both reviewers)
+
+
+    - **2 model families** (Pi0, Pi0.5 — architecturally related, same family)
+
+    - **1 benchmark** (SafeLIBERO)
+
+    - **2 scenes** (object_pudding primarily; spatial_bowl single-seed)
+
+    - **Simulation only** (no real-robot validation)
+
+    - **OpenVLA blocked** (model download failures, acknowledged as limitation)
+
+
+    The title ("Rethinking VLA Safety Evaluation") and claims ("SDF geometric supervision
+    is redundant") are stated at a generality the evidence cannot support. The mechanistic
+    argument for Claim 1 (any frozen model gets high CAR) is general, but Claims 3–4
+    are specific to EE-only SDF on SafeLIBERO with Pi0-family models.
+
+
+    ### 4.4  Conceptual Novelty (R2 primary)
+
+
+    - **"Frozen robot = high safety score"** is a specific instance of Goodhart''s
+    Law / specification gaming / reward hacking by inaction, extensively documented
+    in safe RL literature (Amodei et al. 2016; Krakovna et al. 2020; Skalse et al.
+    2022). The observation is real but not conceptually new.
+
+    - **dfCAR** is the most straightforward possible fix: "check if the robot moved
+    before crediting it with safety." No alternative metrics explored, no connection
+    to measurement theory or construct validity, no formal analysis of failure modes.
+
+    - **"Demonstrations encode avoidance"** is expected from imitation learning theory
+    — if collision-free demonstrations are the training data, behavioral cloning learns
+    collision-free behavior. The paper does not engage with IL literature (DAgger,
+    MaxEntIRL, causal confusion).
+
+
+    ### 4.5  Missing Application to Published Methods (both reviewers)
+
+
+    The paper proposes dfCAR as a community metric but never applies it to any prior
+    method (AEGIS, SafeVLA, CAPE, etc.). Demonstrating that dfCAR changes the relative
+    ranking or conclusions about existing published safety methods would dramatically
+    strengthen the practical impact. Without this, the metric''s value is speculative.
+
+
+    ### 4.6  Reproducibility and Internal Consistency (R1 primary, R2 concurs)
+
+
+    - **A1 checkpoint deleted**: The primary Claim 1 evidence (800 episodes) cannot
+    be reproduced.
+
+    - **Internal metric inconsistency**: dfCAR is defined using EE displacement, but
+    the A1 analysis uses obstacle displacement. Two different filtering paradigms
+    are used without reconciliation.
+
+
+    ### 4.7  TSR Collapse Underanalyzed (both reviewers)
+
+
+    Fine-tuning produces +29 pp CAR but −68 pp TSR (73% → 6%). This catastrophic task
+    performance collapse may be the most practically important finding — any method
+    that destroys task success is unusable in deployment. Yet it receives minimal
+    mechanistic analysis. Is this catastrophic forgetting? LoRA rank insufficiency?
+    Distribution shift? The paper treats it as a footnote when it should be a central
+    discussion point.
+
+
+    ---
+
+
+    ## 5  Related Work Gaps (R2)
+
+
+    The paper''s related work section is thin relative to the breadth of its claims.
+    Key missing areas:
+
+
+    | Area | Missing References/Topics |
+
+    |------|--------------------------|
+
+    | Metric validity / Goodhart''s Law | Specification gaming (Krakovna et al. 2020),
+    reward hacking (Skalse et al. 2022) |
+
+    | Conservative/frozen policy failure | Offline RL conservatism (CQL, BCQ), risk-averse
+    policy collapse |
+
+    | Safe RL | CPO (Achiam et al. 2017), Lagrangian CMDP methods |
+
+    | Full-body collision | Configuration-space distance fields, whole-body planning
+    (MoveIt, TrajOpt) |
+
+    | IL theory on demonstration content | DAgger (Ross et al. 2011), MaxEntIRL (Ziebart
+    et al. 2008), causal confusion (de Haan et al. 2019) |
+
+    | Phase 2 / curriculum learning | Scheduled auxiliary losses, progressive training
+    (Bengio et al. 2009) |
+
+    | Other VLA safety benchmarks | RoboCasa, BEHAVIOR, or other safety-adjacent evaluations
+    |
+
+
+    ---
+
+
+    ## 6  Experiment Coverage vs. Plan
+
+
+    | Planned Experiment | Paper Status | Assessment |
+
+    |---|---|---|
+
+    | LoRA baseline 3-seed | 3 seeds reported (Table 1) | ✅ Complete |
+
+    | 3v3 LoRA vs SDF comparison | 3 seeds each reported (Table 2) | ✅ Complete (but
+    underpowered) |
+
+    | 4-point λ dose curve | All 4 points reported (Table 3) | ✅ Complete (λ=0.1 has
+    only 2 seeds) |
+
+    | Phase 2 ablation multi-seed | 2 seeds reported (Tables 6–7) | ⚠️ Marginal (n=2
+    for null claim) |
+
+    | spatial_bowl cross-scene SDF | Single-seed per condition (Table 5) | ⚠️ Underpowered
+    (n=1) |
+
+    | spatial_bowl LoRA-only control | Reported (Table 5) | ⚠️ Single seed |
+
+    | dfCAR threshold sensitivity | 7 thresholds reported (Table 8) | ✅ Complete |
+
+    | A1 re-eval with EE displacement | Cancelled (checkpoint deleted) | ❌ Missing
+    |
+
+    | OpenVLA eval | Blocked (download failures) | ❌ Missing |
+
+    | dfCAR on published methods | Not attempted | ❌ Missing |
+
+
+    ---
+
+
+    ## 7  Questions for Authors (consolidated, prioritized)
+
+
+    1. **Equivalence testing**: Have you considered TOST to formally test SDF redundancy?
+    What equivalence margin would you pre-register, and does n=3 provide adequate
+    power?
+
+    2. **SDF circularity**: Your oracle experiments show EE-only SDF fails structurally.
+    You then test SDF redundancy using only EE-only SDF. How do you distinguish "geometric
+    supervision is redundant" from "this EE-only formulation is too broken to help"?
+
+    3. **dfCAR on published methods**: Can you apply dfCAR to AEGIS or any published
+    safety method''s per-episode data? Even one such demonstration would substantially
+    strengthen the metric contribution.
+
+    4. **TSR collapse mechanism**: Is the 73% → 6% TSR collapse catastrophic forgetting,
+    LoRA rank limitation, or inherent safety-task tradeoff? Have you tried standard
+    mitigations (EWC, replay, lower LR)?
+
+    5. **Bimodal gap universality**: Is the > 200 mm gap a property of SafeLIBERO
+    workspace dimensions? Would it hold on benchmarks with smaller workspaces?
+
+    6. **A1 reproducibility**: Can EE displacement be extracted from existing 800-episode
+    logs (if joint positions were recorded)?
+
+
+    ---
+
+
+    ## 8  Scores
+
+
+    ### R1 (Methods + Experiments)
+
+    | Dimension | Score |
+
+    |-----------|-------|
+
+    | Soundness | 2/4 |
+
+    | Presentation | 3/4 |
+
+    | Contribution | 2/4 |
+
+    | Overall | **4/10** |
+
+    | Confidence | 4/5 |
+
+
+    ### R2 (Novelty + Related Work)
+
+    | Dimension | Score |
+
+    |-----------|-------|
+
+    | Novelty & Significance | 2/4 |
+
+    | Presentation | 3/4 |
+
+    | Overall | **4/10** |
+
+    | Confidence | 4/5 |
+
+
+    ### Consolidated
+
+    | Dimension | Score |
+
+    |-----------|-------|
+
+    | **Overall Rating** | **4/10 (Weak Reject)** |
+
+    | Confidence | 4/5 |
+
+
+    ---
+
+
+    ## 9  Meta-Review / AC Summary
+
+
+    This paper identifies a real and practically relevant problem: standard CAR is
+    contaminated by action collapse in VLA models, and the proposed dfCAR metric is
+    a clean, threshold-robust correction. The 99.6% fake safety rate on Pi0+SDF (A1)
+    is a striking empirical finding.
+
+
+    However, the paper falls short of the CoRL acceptance bar for three interconnected
+    reasons:
+
+
+    1. **The headline negative finding (SDF redundancy) is both underpowered and confounded.**
+    With n=3 seeds and no equivalence testing, the data cannot formally support "zero
+    effect." Worse, the SDF variant tested (EE-only) is already shown to be structurally
+    deficient within the same paper, creating a circular argument.
+
+
+    2. **The experimental scope is narrow relative to the generality of claims.**
+    Two architecturally related models, one benchmark, two scenes (one single-seed),
+    simulation only, and two blocked/cancelled experiments (OpenVLA, A1 re-eval) do
+    not support claims about "VLA Safety Evaluation" in general.
+
+
+    3. **The conceptual novelty is limited.** The core observation ("inaction inflates
+    non-event metrics") is a well-known pattern in evaluation methodology. dfCAR is
+    the most straightforward fix. The paper does not engage with extensive related
+    literatures on specification gaming, imitation learning theory, or metric validity.
+
+
+    **Path to acceptance**: (a) Apply dfCAR to published methods to demonstrate field-wide
+    impact. (b) Test a non-deficient SDF variant (full-body or multi-link) to disambiguate
+    the redundancy claim. (c) Use equivalence testing with adequate sample size. (d)
+    Expand to at least one additional VLA architecture. (e) Analyze the TSR collapse
+    mechanism. (f) Engage with specification gaming, IL theory, and safe RL literatures.
+
+
+    **Estimated acceptance probability at CoRL 2026 in current form: 10–15%.**
+
+
+    ---
+
+
+    *Review conducted 2026-05-26. Two independent reviewers (R1: methods/experiments,
+    R2: novelty/related work) with full 4-step roundtable protocol.*
+
+
+    ---
+
+
+    ## 引用验证结果
+
+
+    **统计**: 40 篇文献 / 29 处引用 / 在线验证 40/40 篇
+
+
+    ### 问题 (24)
+
+
+    - ⚠️ `liu2023libero` — 元数据不匹配: first_author: bib=liu vs api=feng
+
+    - ❌ `karwowski2024goodhart` — 在线验证未找到匹配（疑似虚假引用）: best match similarity 0.29 below
+    threshold 0.82
+
+    - ⚠️ `geoaware2025` — 元数据不匹配: first_author: bib=abouzeid vs api=ali
+
+    - ❌ `stemvla2026` — 在线验证未找到匹配（疑似虚假引用）: no results from any source
+
+    - ❌ `evo02025` — 在线验证未找到匹配（疑似虚假引用）: best match similarity 0.31 below threshold
+    0.82
+
+    - ⚠️ `vasilopoulos2023ramp` — 在 .bib 中但正文未引用
+
+    - ⚠️ `chen2026cssdfnet` — 在 .bib 中但正文未引用
+
+    - ⚠️ `jacquet2025neuralnmpc` — 在 .bib 中但正文未引用
+
+    - ⚠️ `chen2025samp` — 在 .bib 中但正文未引用
+
+    - ⚠️ `ruan2025profrobot` — 在 .bib 中但正文未引用
+
+    - ⚠️ `depthvla2025` — 在 .bib 中但正文未引用
+
+    - ⚠️ `li2025qdepth` — 在 .bib 中但正文未引用
+
+    - ⚠️ `li2025spatialforcing` — 在 .bib 中但正文未引用
+
+    - ⚠️ `3dcavla2025` — 在 .bib 中但正文未引用
+
+    - ⚠️ `geoaware2025` — 在 .bib 中但正文未引用
+
+    - ⚠️ `spatialvla2025` — 在 .bib 中但正文未引用
+
+    - ⚠️ `gstvla2026` — 在 .bib 中但正文未引用
+
+    - ⚠️ `stemvla2026` — 在 .bib 中但正文未引用
+
+    - ⚠️ `stvla2026` — 在 .bib 中但正文未引用
+
+    - ⚠️ `evo02025` — 在 .bib 中但正文未引用
+
+    - ⚠️ `savla2026` — 在 .bib 中但正文未引用
+
+    - ⚠️ `augvla3d2026` — 在 .bib 中但正文未引用
+
+    - ⚠️ `evodepth2026` — 在 .bib 中但正文未引用
+
+    - ⚠️ `chen2026dfmvla` — 在 .bib 中但正文未引用
+
+
+    ### ✅ 通过 (35)'
+  error: ''
+- tier: median
+  pdf_path: /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/dream_reports/dream_20260526T023936/median/paper.pdf
+  imagined_experiments:
+  - name: LoRA baseline eval (2 seeds)
+    plan_id: plan_003
+    description: LoRA-only (无 SDF) 30K checkpoint eval, 2 seeds × 200 episodes
+    expected_results:
+      seed0_avg_CAR: 54.5
+      seed0_avg_TSR: 8.5
+      seed0_avg_ee_disp: 0.489
+      seed0_frozen_pct: 0
+      seed1_avg_CAR: 56.0
+      seed1_avg_TSR: 4.0
+      seed1_avg_ee_disp: 0.467
+      seed1_frozen_pct: 0
+      two_seed_mean_CAR: 55.25
+      two_seed_mean_TSR: 6.25
+      dfCAR_100mm: 55.25
+      fake_safety: false
+    result_rationale: '已确认数据。LoRA fine-tuning on collision-free demonstrations 产生真实碰撞避免:
+
+      EE displacement ~0.48m 证实机器人正常运动 (非 action collapse), frozen_pct=0%,
+
+      dfCAR = raw CAR (无 filtering)。CAR=55% 代表 +29pp vs Pi0.5 baseline (27%),
+
+      完全来自隐式 demo 信号而非几何监督。TSR 从 73% 坍缩至 6.25% 是 catastrophic
+
+      forgetting 的结果——模型学会了保守行为 (conservative avoidance) 而非真正的安全
+
+      感知 (safety awareness)。两个 seed 间 CAR 差异 1.5pp 在评估噪声范围内。
+
+      '
+    tables:
+    - name: LoRA-only Per-Task Breakdown (2 seeds)
+      columns:
+      - Task
+      - s0 CAR
+      - s0 TSR
+      - s0 EE Disp
+      - s1 CAR
+      - s1 TSR
+      - s1 EE Disp
+      rows:
+      - - orange_juice
+        - '62'
+        - '0'
+        - '0.497'
+        - '58'
+        - '2'
+        - '0.483'
+      - - chocolate_pudding
+        - '44'
+        - '34'
+        - '0.504'
+        - '50'
+        - '14'
+        - '0.538'
+      - - milk
+        - '94'
+        - '0'
+        - '0.577'
+        - '90'
+        - '0'
+        - '0.482'
+      - - bbq_sauce
+        - '18'
+        - '0'
+        - '0.377'
+        - '26'
+        - '0'
+        - '0.365'
+      - - Mean
+        - '54.5'
+        - '8.5'
+        - '0.489'
+        - '56.0'
+        - '4.0'
+        - '0.467'
+    figures_description:
+    - 'Bar chart: 4-task CAR for LoRA s0 vs s1, 展示 per-task pattern 一致性 (milk 最高,
+      bbq_sauce 最低)'
+    analysis: 'LoRA-only 已建立真实避障 baseline: CAR=55%, 0% fake safety, EE disp ~0.48m。
+
+      Per-task pattern 由任务布局决定 (milk 障碍物位置有利, bbq_sauce 障碍物遮挡严重),
+
+      这一 pattern 在 SDF 模型中完全复制——进一步说明 CAR 来源是 demo imitation 而非
+
+      geometric supervision。2-seed 数据足以建立 baseline, 但 3v3 统计对比需 seed2。
+
+      '
+  - name: Phase 2 lambda=0 training (seed2)
+    plan_id: plan_005
+    description: 从 train_pi05_a1_obj_s2_l005 的 10K SDF checkpoint resume, λ=0 训练至
+      30K
+    expected_results:
+      final_loss: 0.0118
+      best_loss: 0.0089
+      best_step: 22000
+      total_steps: 30000
+      grad_norm: 0.112
+      time_per_step: 4.6
+      training_stable: true
+    result_rationale: 'Phase 2 从已有 SDF imprint 的 10K checkpoint 出发, 移除 SDF loss (λ=0)
+      继续训练
+
+      20K 步。loss 从 ~0.015 (10K SDF 的 total_loss) 下降到 ~0.012, 因为移除 SDF
+
+      auxiliary loss 后模型只需优化 action loss, 训练变得更容易。但 loss 不会降到
+
+      LoRA-only 水平 (0.010) 因为 10K 步 SDF 训练已改变了模型的 representation
+
+      landscape, 后续优化在不同的 basin 中进行。best_loss 出现在 22K 步 (即 Phase 2
+
+      的 12K 步处), 之后因缺乏 demo 多样性而轻微过拟合。训练稳定, 无 NaN 或梯度爆炸。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: '训练成功完成。loss 轨迹确认 SDF removal 后模型能正常优化, 但 loss 轨迹
+
+      与 LoRA-only 不同, 暗示 SDF 训练确实改变了 model 的 loss landscape。
+
+      '
+  - name: Phase 2 lambda=0 eval (seed2)
+    plan_id: plan_006
+    description: Phase 2 训练完成后 eval, 200 episodes, 提取 TSR/CAR/EE displacement
+    expected_results:
+      avg_CAR: 61
+      avg_TSR: 18
+      n_episodes: 200
+      avg_ee_disp: 0.462
+      frozen_pct: 0
+      dfCAR_100mm: 61
+      task0_CAR: 68
+      task0_TSR: 10
+      task0_ee_disp: 0.478
+      task1_CAR: 48
+      task1_TSR: 48
+      task1_ee_disp: 0.502
+      task2_CAR: 86
+      task2_TSR: 2
+      task2_ee_disp: 0.542
+      task3_CAR: 42
+      task3_TSR: 12
+      task3_ee_disp: 0.326
+    result_rationale: 'Phase 2 CAR=61% 高于 LoRA-only (55%) 和 SDF 30K (50.5%), 暗示 SDF
+      留下了弱
+
+      持久效应。机制解释: 10K 步 SDF 训练在模型 intermediate representations 中
+
+      编码了微弱的几何距离感知, 当 SDF loss 移除后, 这些 representations 部分保留
+
+      (不被后续训练完全覆盖), 产生略高的碰撞避免率。
+
+
+      但这个 +6pp 效应在统计上模糊: 单 seed 评估的 eval noise 约 ±3-5pp (参见
+
+      s0 λ=0.005 两次评估差 3pp)。需要 plan_012 的第二个 Phase 2 seed 确认。
+
+
+      TSR=18% 部分恢复 (vs SDF 30K 的 ~7% 和 baseline 的 73%): 移除 SDF loss
+
+      允许模型在后续 20K 步中部分重新学习 task completion, 但起始点 (10K SDF
+
+      checkpoint) 已经严重偏离 task-optimal trajectory, 恢复有限。task1 (chocolate_pudding)
+
+      恢复最好 (TSR=48%) 因为该任务最 "可学" (baseline TSR=86%); task2 (milk)
+
+      几乎不恢复 (TSR=2%) 因为其 CAR 已经很高 (86%), 模型选择保持保守。
+
+
+      关键: 即使 Phase 2 CAR 偏高, TSR=18% 仍远低于实用要求, 说明 two-phase strategy
+
+      (先学 safety → 再恢复 task) 在当前训练量和 LoRA 配置下不可行。
+
+      '
+    tables:
+    - name: Phase 2 vs LoRA-only vs SDF 30K 对比
+      columns:
+      - Condition
+      - CAR (%)
+      - TSR (%)
+      - EE Disp (m)
+      - Fake Safe
+      - Seeds
+      rows:
+      - - Pi0.5 baseline
+        - '27.0'
+        - '74.7'
+        - '0.15'
+        - 98.2%
+        - '3'
+      - - LoRA-only 30K
+        - '52.8'
+        - '5.8'
+        - '0.48'
+        - 0%
+        - 3*
+      - - SDF lambda=0.005 30K
+        - '50.5'
+        - '6.8'
+        - '0.48'
+        - 0%
+        - '3'
+      - - SDF lambda=0.01 30K
+        - '52.7'
+        - '7.0'
+        - '0.48'
+        - 0%
+        - '3'
+      - - Phase 2 (10K SDF -> 20K lambda=0)
+        - '61.0'
+        - '18.0'
+        - '0.46'
+        - 0%
+        - '1'
+    - name: Phase 2 Per-Task Breakdown (seed2)
+      columns:
+      - Task
+      - CAR (%)
+      - TSR (%)
+      - EE Disp (m)
+      rows:
+      - - orange_juice
+        - '68'
+        - '10'
+        - '0.478'
+      - - chocolate_pudding
+        - '48'
+        - '48'
+        - '0.502'
+      - - milk
+        - '86'
+        - '2'
+        - '0.542'
+      - - bbq_sauce
+        - '42'
+        - '12'
+        - '0.326'
+      - - Mean
+        - '61'
+        - '18'
+        - '0.462'
+    figures_description:
+    - 'Grouped bar chart: CAR/TSR for LoRA-only vs SDF 30K vs Phase 2, 显示 Phase 2
+      的 CAR 略高但 TSR 仍坍缩'
+    - 'Per-task scatter: Phase 2 per-task CAR vs LoRA-only per-task CAR, 预期 Phase
+      2 全面略高但保持同样的 task ordering'
+    analysis: 'Phase 2 呈现弱 persistence 信号: CAR 比 LoRA-only 高 ~6pp, TSR 部分恢复至 18%。
+
+      但单 seed 不足以做统计推断。这个结果需要 hedging: "Phase 2 shows a trend toward
+
+      weak SDF persistence, but with n=1 and evaluation noise of ±5pp, the effect
+      is
+
+      not statistically reliable." TSR=18% 远低于 baseline 73%, 说明 two-phase strategy
+
+      在当前配置下不具实用性。论文中应放在 discussion 而非 main results。
+
+      '
+  - name: spatial_bowl A1 SDF training
+    plan_id: plan_007
+    description: Pi0.5 + LoRA + SDF (λ=0.005) on spatial_bowl scene, seed0, 30K steps
+    expected_results:
+      final_loss: 0.0152
+      best_loss: 0.0128
+      best_step: 20000
+      total_steps: 30000
+      grad_norm: 0.18
+      time_per_step: 4.8
+      training_stable: true
+    result_rationale: 'spatial_bowl 场景的 loss 高于 object_pudding (0.013 vs 0.008) 因为:
+      (1) spatial
+
+      tasks 涉及更复杂的操作路径 (在 plate/ramekin 间取碗), action 预测难度更高;
+
+      (2) SDF loss 在 spatial 场景中贡献更大 (更多 close-proximity 情况), 推高
+
+      total loss。训练稳定, 无异常。best_loss 出现在 20K 步而非 26K, 因为 spatial
+
+      场景的 SDF loss 使训练曲线更不稳定, 过拟合更早出现。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: '训练成功完成。spatial_bowl 训练的 loss 比 object_pudding 高约 60%, 反映场景
+
+      复杂度差异。跨场景 SDF 效果归因需要 plan_015 (LoRA-only control) 完成,
+
+      但在 median tier 下 plan_015 不会在 deadline 前完成。
+
+      '
+  - name: spatial_bowl SDF eval
+    plan_id: plan_008
+    description: spatial_bowl A1 训练完成后 eval, 200 episodes, 验证跨场景 CAR/TSR pattern
+    expected_results:
+      avg_CAR: 35
+      avg_TSR: 3
+      n_episodes: 200
+      avg_ee_disp: 0.248
+      frozen_pct: 0
+      fake_safety: false
+      task0_CAR: 38
+      task0_TSR: 4
+      task0_ee_disp: 0.263
+      task1_CAR: 28
+      task1_TSR: 0
+      task1_ee_disp: 0.231
+      task2_CAR: 48
+      task2_TSR: 6
+      task2_ee_disp: 0.274
+      task3_CAR: 26
+      task3_TSR: 2
+      task3_ee_disp: 0.224
+    result_rationale: 'spatial_bowl SDF CAR=35% 显著低于 object_pudding SDF (50.5%), 原因:
+
+      (1) spatial_bowl 任务布局更紧凑——碗被 plate/ramekin/stove 环绕, 机械臂
+
+      几乎不可能在不碰触障碍物的情况下完成 pick 动作; (2) 碰撞类型以 arm-body
+
+      为主 (EE-only SDF 无法防护); (3) 障碍物体积更大且更密集。
+
+
+      EE displacement ~0.25m 低于 object_pudding (0.48m) 因为 spatial tasks 的
+
+      操作空间更小, 机械臂运动范围受限。fake_safety=0% 确认 SDF LoRA 在
+
+      spatial_bowl 也产生真实运动。
+
+
+      task2 (pick_bowl_on_stove) CAR 最高 (48%) 因为 stove 上方空间较大,
+
+      碰撞风险较低; task3 (pick_bowl_on_cabinet) CAR 最低 (26%) 因为 cabinet
+
+      两侧有遮挡。TSR=3% 极低, 与 object_pudding 的 TSR=7% 一致——都是
+
+      catastrophic forgetting, spatial 更严重因为任务本身更难 (baseline TSR=57.5%)。
+
+
+      关键限制: 没有 spatial_bowl LoRA-only control (plan_015), 无法判断这
+
+      35% CAR 是 SDF 贡献还是 LoRA-only 就能达到。如果 spatial LoRA-only
+
+      CAR 也 ~35%, 则进一步确认 SDF 冗余; 如果 CAR ~26% (接近 baseline),
+
+      则 SDF 可能在 spatial 场景有 +9pp 效应——但无法验证。
+
+      '
+    tables:
+    - name: spatial_bowl Per-Task Breakdown
+      columns:
+      - Task
+      - CAR (%)
+      - TSR (%)
+      - EE Disp (m)
+      rows:
+      - - bowl_between_plate_ramekin
+        - '38'
+        - '4'
+        - '0.263'
+      - - bowl_on_ramekin
+        - '28'
+        - '0'
+        - '0.231'
+      - - bowl_on_stove
+        - '48'
+        - '6'
+        - '0.274'
+      - - bowl_on_cabinet
+        - '26'
+        - '2'
+        - '0.224'
+      - - Mean
+        - '35'
+        - '3'
+        - '0.248'
+    - name: 跨场景对比 (SDF lambda=0.005)
+      columns:
+      - Scene
+      - CAR (%)
+      - TSR (%)
+      - EE Disp (m)
+      - LoRA Control?
+      rows:
+      - - object_pudding
+        - '50.5'
+        - '6.8'
+        - '0.48'
+        - Yes (3 seeds)
+      - - spatial_bowl
+        - '35'
+        - '3'
+        - '0.25'
+        - 'No'
+    figures_description:
+    - 'Side-by-side per-task CAR bar chart: object_pudding vs spatial_bowl, 展示 CAR
+      在 spatial 场景系统性下降'
+    analysis: 'spatial_bowl 数据展示 SDF+LoRA 的跨场景泛化, 但因缺少 LoRA-only control
+
+      (plan_015), 无法做 SDF 归因。在论文中只能呈现为 "SDF+LoRA in spatial_bowl
+
+      achieves 35% CAR with 0% fake safety" 而不能说 "SDF contributes Xpp."
+
+      这是 median tier 的关键 gap: 跨场景 SDF attribution 缺失。
+
+      建议: 论文放在 appendix 作为跨场景泛化的 preliminary observation, 而非
+
+      main claim 的 evidence。
+
+      '
+  - name: Lambda=0.1 bracket training (2 seeds)
+    plan_id: plan_009
+    description: Pi0.5 + LoRA + SDF (λ=0.1) on object_pudding, s0+s1, 30K steps each
+    expected_results:
+      seed0_final_loss: 0.0385
+      seed0_best_loss: 0.0312
+      seed0_best_step: 16000
+      seed1_final_loss: 0.0371
+      seed1_best_loss: 0.0298
+      seed1_best_step: 18000
+      total_steps: 30000
+      training_stable: true
+    result_rationale: 'λ=0.1 的 total loss 显著高于 λ=0.005/0.01 (0.038 vs 0.014) 因为 SDF
+
+      auxiliary loss 在高 lambda 下成为 dominant loss component。action_loss 本身
+
+      可能只有 ~0.012, 但 SDF loss × 0.1 贡献 ~0.025, 使 total loss 翻倍。
+
+      best_loss 出现在 16-18K 步 (比 λ=0.005 的 10-26K 更早), 因为高 lambda
+
+      使训练更不稳定, 过拟合/振荡更早出现。两个 seed 的 loss 轨迹相似,
+
+      seed1 略好因为随机初始化差异。训练稳定, 无梯度爆炸。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: '训练完成但 loss 明显高于低 lambda 配置。高 SDF penalty 压制了 action loss
+
+      优化, 预期 eval 时 TSR 进一步下降。这是 "dose-response" 的训练侧信号:
+
+      更强的几何约束 = 更高的 total loss = 更大的 task 性能牺牲。
+
+      '
+  - name: Lambda=0.1 eval (2 seeds)
+    plan_id: plan_010
+    description: Lambda=0.1 训练完成后 eval, 验证 lambda 递增是否 monotonic 提升 CAR
+    expected_results:
+      seed0_avg_CAR: 57
+      seed0_avg_TSR: 4
+      seed0_ee_disp: 0.445
+      seed1_avg_CAR: 60
+      seed1_avg_TSR: 4
+      seed1_ee_disp: 0.458
+      two_seed_mean_CAR: 58.5
+      two_seed_mean_TSR: 4.0
+      seed0_task0_CAR: 72
+      seed0_task0_TSR: 0
+      seed0_task1_CAR: 46
+      seed0_task1_TSR: 16
+      seed0_task2_CAR: 90
+      seed0_task2_TSR: 0
+      seed0_task3_CAR: 20
+      seed0_task3_TSR: 0
+      seed1_task0_CAR: 70
+      seed1_task0_TSR: 2
+      seed1_task1_CAR: 50
+      seed1_task1_TSR: 14
+      seed1_task2_CAR: 92
+      seed1_task2_TSR: 0
+      seed1_task3_CAR: 28
+      seed1_task3_TSR: 0
+      lambda_curve_slope_pp_per_001lambda: 0.75
+      frozen_pct: 0
+    result_rationale: 'Lambda=0.1 CAR=58.5% 高于 λ=0.005 (50.5%) 和 λ=0.01 (52.7%), 呈现弱
+
+      dose-response: 20× lambda 增幅 → +6pp CAR。机制: 更高的 SDF penalty 迫使
+
+      模型在训练中更强地回避障碍物区域, 产生更保守的 action distribution。
+
+
+      但这个 dose-response 是 sublinear 的: λ 从 0.005→0.01 (2×) 只带来 +2pp;
+
+      λ 从 0.01→0.1 (10×) 带来 +6pp。边际收益递减。且 TSR 从 ~7% 下降到 4%,
+
+      说明更高的 CAR 以更多 task 性能为代价。
+
+
+      Per-task pattern 保持一致 (milk 最高, bbq_sauce 最低), 说明 CAR 分布
+
+      仍由任务布局主导而非 SDF 强度。task0 (orange_juice) CAR 从 ~60%→70%
+
+      提升最大, 可能因为该任务的障碍物位置恰好在 SDF gradient 能有效作用的区域。
+
+
+      统计上: 2-seed 的 SE ≈ 2.1pp, 与 LoRA 3-seed mean (52.8%) 的差异
+
+      = 58.5 - 52.8 = 5.7pp, t ≈ 1.2, p ≈ 0.15 (one-sided)。在 [0.1, 0.3]
+
+      范围内——有 trend 但不显著。这正是 median tier 的 "弱信号": 无法断言
+
+      SDF 在高 lambda 下完全无效, 但效应边缘且代价 (TSR 进一步下降) 使其
+
+      实际无意义。
+
+      '
+    tables:
+    - name: 4-Point Lambda Dose-Response Curve
+      columns:
+      - Lambda
+      - CAR Mean (%)
+      - CAR SD
+      - TSR Mean (%)
+      - n_seeds
+      - Delta vs LoRA
+      rows:
+      - - 0 (LoRA-only)
+        - '52.8'
+        - '4.2'
+        - '5.8'
+        - '3'
+        - ref
+      - - '0.005'
+        - '50.5'
+        - '3.0'
+        - '6.8'
+        - '3'
+        - '-2.3'
+      - - '0.01'
+        - '52.7'
+        - '0.3'
+        - '7.0'
+        - '3'
+        - '-0.1'
+      - - '0.1'
+        - '58.5'
+        - '2.1'
+        - '4.0'
+        - '2'
+        - '+5.7'
+    - name: Lambda=0.1 Per-Task Breakdown (2 seeds)
+      columns:
+      - Task
+      - s0 CAR
+      - s0 TSR
+      - s1 CAR
+      - s1 TSR
+      - Mean CAR
+      rows:
+      - - orange_juice
+        - '72'
+        - '0'
+        - '70'
+        - '2'
+        - '71'
+      - - chocolate_pudding
+        - '46'
+        - '16'
+        - '50'
+        - '14'
+        - '48'
+      - - milk
+        - '90'
+        - '0'
+        - '92'
+        - '0'
+        - '91'
+      - - bbq_sauce
+        - '20'
+        - '0'
+        - '28'
+        - '0'
+        - '24'
+      - - Mean
+        - '57'
+        - '4'
+        - '60'
+        - '4'
+        - '58.5'
+    figures_description:
+    - 'Lambda-CAR curve: x-axis = lambda (log scale, 0.005-0.1), y-axis = CAR (%).
+      含 LoRA baseline 水平虚线 (52.8%). 展示非线性 dose-response, λ=0.1 处斜率开始上翘但仍在 LoRA±SE
+      范围内'
+    - 'Lambda-TSR curve: 同 x-axis, y-axis = TSR (%). 展示 TSR 随 lambda 递减的趋势 (7% → 4%),
+      说明 CAR gain 以 TSR loss 为代价'
+    - 'CAR-TSR tradeoff scatter (Fig 5 候选): 每个 lambda 点画一个点, 连线展示 pareto frontier
+      方向'
+    analysis: 'Lambda dose-response 存在但很弱: regression slope = 0.75 pp/0.01λ (在 [0.5,
+      2.0]
+
+      范围内)。关键 insight: SDF geometric supervision 在极端 lambda 下能"挤出"
+
+      额外 ~6pp CAR, 但 (1) 效果不显著 (p=0.15), (2) 代价是 TSR 进一步下降,
+
+      (3) 收益有 ceiling (已有 53% 来自 demo imitation, SDF 只加 6pp)。
+
+
+      论文写法: "Increasing λ from 0.01 to 0.1 yields a modest CAR increase
+
+      (+6pp), suggesting SDF geometric supervision can provide marginal benefit
+
+      at extreme penalty weights. However, this improvement is not statistically
+
+      significant (p=0.15, 2-seed) and comes at the cost of further task
+
+      performance degradation (TSR: 7%→4%). The practical value of this
+
+      tradeoff is negligible."
+
+
+      需要 discussion 段解释 lambda ceiling: 为什么 10× lambda 只换来 6pp?
+
+      可能原因: (1) EE-only SDF 的 structural limitation (arm-body 碰撞不被覆盖);
+
+      (2) demo signal 已经 capture 了大部分可学的 avoidance behavior;
+
+      (3) 更高 lambda 主要 suppress 运动而非改进轨迹。
+
+      '
+  - name: Phase 2 lambda=0 additional seed (seed0)
+    plan_id: plan_012
+    description: 从 s0 的 10K SDF checkpoint resume with λ=0, 训练至 30K, 然后 eval
+    expected_results:
+      training_final_loss: 0.0124
+      training_best_loss: 0.0092
+      eval_avg_CAR: 58
+      eval_avg_TSR: 15
+      eval_n_episodes: 200
+      eval_avg_ee_disp: 0.455
+      eval_frozen_pct: 0
+      eval_task0_CAR: 66
+      eval_task0_TSR: 6
+      eval_task1_CAR: 46
+      eval_task1_TSR: 40
+      eval_task2_CAR: 82
+      eval_task2_TSR: 0
+      eval_task3_CAR: 38
+      eval_task3_TSR: 14
+      phase2_2seed_mean_CAR: 59.5
+      phase2_2seed_mean_TSR: 16.5
+      phase2_vs_lora_delta: 6.7
+    result_rationale: 'Phase 2 seed0 CAR=58% 与 seed2 (61%) 一致但略低, 展示 Phase 2 结果的
+
+      seed-to-seed variance (~3pp)。两个 Phase 2 seed 的均值 = 59.5%, 比
+
+      LoRA-only (52.8%) 高 6.7pp。
+
+
+      这个 delta 与 Lambda=0.1 的 delta (+5.7pp) 处于同一量级, 暗示两种路径
+
+      (持久效应 vs 强 penalty) 达到相似的 marginal effect ceiling。但 Phase 2
+
+      的 TSR 恢复更好 (16.5% vs 4%), 因为 Phase 2 在 λ=0 阶段有机会重新
+
+      优化 task completion, 而 λ=0.1 始终被高 SDF penalty 压制。
+
+
+      关键: 2-seed Phase 2 的 within-condition variance (SD ≈ 2pp) 比 LoRA
+
+      3-seed variance (SD = 4.2pp) 小, 但因为 n=2 的自由度极低, 统计功效
+
+      不足以做可靠推断。Phase 2 vs LoRA 的 t-test 给出 p ≈ 0.12 (one-sided),
+
+      在 [0.1, 0.3] 边界——suggestive but not conclusive。
+
+      '
+    tables:
+    - name: Phase 2 Multi-Seed Summary
+      columns:
+      - Phase 2 Seed
+      - CAR (%)
+      - TSR (%)
+      - EE Disp (m)
+      rows:
+      - - seed2 (from s2 10K ckpt)
+        - '61'
+        - '18'
+        - '0.462'
+      - - seed0 (from s0 10K ckpt)
+        - '58'
+        - '15'
+        - '0.455'
+      - - Mean
+        - '59.5'
+        - '16.5'
+        - '0.459'
+    - name: Phase 2 Persistence Comparison
+      columns:
+      - Condition
+      - CAR (%)
+      - TSR (%)
+      - Delta CAR vs LoRA
+      - p (one-sided)
+      rows:
+      - - LoRA-only (3 seeds)
+        - '52.8'
+        - '5.8'
+        - ref
+        - ref
+      - - SDF lambda=0.005 30K (3 seeds)
+        - '50.5'
+        - '6.8'
+        - '-2.3'
+        - '0.24'
+      - - SDF lambda=0.01 30K (3 seeds)
+        - '52.7'
+        - '7.0'
+        - '-0.1'
+        - '0.48'
+      - - Phase 2 (2 seeds)
+        - '59.5'
+        - '16.5'
+        - '+6.7'
+        - '0.12'
+      - - Lambda=0.1 (2 seeds)
+        - '58.5'
+        - '4.0'
+        - '+5.7'
+        - '0.15'
+    figures_description:
+    - 'Bar chart: 5 conditions (LoRA, SDF 0.005, SDF 0.01, Phase 2, Lambda=0.1) 的
+      CAR/TSR side-by-side, 展示 Phase 2 和 Lambda=0.1 的 marginal CAR gain 但 TSR 仍坍缩'
+    analysis: 'Phase 2 的 2-seed 均值 (59.5%) 确认弱持久效应。但效应量 (~7pp) 在
+
+      eval noise 范围内 (单次 eval ±3-5pp), 且 n=2 功效不足。
+
+
+      论文写法: "Phase 2 training (removing SDF loss after 10K steps) shows
+
+      a trend toward higher CAR (59.5% vs 52.8% for LoRA-only, p=0.12),
+
+      suggesting SDF training may leave a weak persistent imprint. However,
+
+      task performance remains heavily degraded (TSR=16.5% vs 73% baseline),
+
+      and the effect size is within the range of evaluation noise. We interpret
+
+      this as weak evidence of SDF persistence that does not alter our primary
+
+      conclusion: SDF geometric supervision provides no practically significant
+
+      benefit."
+
+
+      Phase 2 需放在 discussion 中, 不能作为 Claim 4 的反例。Frame 为
+
+      "boundary condition" and "future investigation direction."
+
+      '
+  - name: LoRA baseline seed2 (training + eval)
+    plan_id: plan_013
+    description: 第三个 LoRA-only seed, 使 SDF 归因对比有 3v3 seeds
+    expected_results:
+      training_final_loss: 0.0142
+      training_best_loss: 0.0112
+      training_best_step: 18000
+      training_total_steps: 30000
+      eval_avg_CAR: 48
+      eval_avg_TSR: 5
+      eval_n_episodes: 200
+      eval_avg_ee_disp: 0.458
+      eval_frozen_pct: 0
+      eval_dfCAR_100mm: 48
+      eval_task0_CAR: 54
+      eval_task0_TSR: 0
+      eval_task0_ee_disp: 0.472
+      eval_task1_CAR: 38
+      eval_task1_TSR: 18
+      eval_task1_ee_disp: 0.497
+      eval_task2_CAR: 78
+      eval_task2_TSR: 0
+      eval_task2_ee_disp: 0.521
+      eval_task3_CAR: 22
+      eval_task3_TSR: 2
+      eval_task3_ee_disp: 0.343
+      lora_3seed_mean_CAR: 52.8
+      lora_3seed_sd_CAR: 4.2
+      sdf_delta_l005_vs_lora: -2.3
+      sdf_delta_l01_vs_lora: -0.1
+      welch_t_l005: 0.78
+      welch_p_l005_onesided: 0.24
+      welch_t_l01: 0.07
+      welch_p_l01_onesided: 0.48
+    result_rationale: "LoRA seed2 CAR=48% 低于 s0 (54.5%) 和 s1 (56%), 将 3-seed 均值拉低至\n\
+      52.8%。这个 seed-to-seed 差异 (48-56%, range=8pp) 反映 LoRA fine-tuning\n的随机性: 不同的\
+      \ LoRA adapter 初始化导致模型收敛到不同的 local optima,\n有些 optima 更 \"保守\" (高 CAR, 低 TSR),\
+      \ 有些更 \"积极\" (低 CAR, 高 TSR)。\n\n具体到 seed2: task2 (milk) CAR=78% 明显低于 s0/s1 的\
+      \ 90-94%, 这是主要\n的差异来源。milk 任务在不同 seed 间的 CAR 变化大, 可能因为该任务的\nobstacle 位置恰好在 action\
+      \ distribution 的边界——微小的 policy 差异就能\n导致 \"刚好碰到\" vs \"刚好避开\"。\n\n3v3 统计对比:\n\
+      - vs SDF λ=0.005: delta = -2.3pp, t=0.78, p=0.24 (one-sided)\n  解读: LoRA 可能略优于\
+      \ SDF, 但 p=0.24 不足以 reject \"无差异\" null\n- vs SDF λ=0.01: delta = -0.1pp, t=0.07,\
+      \ p=0.48\n  解读: 几乎完全相同\n\n关键: 高 variance (SD=4.2pp) 来自 LoRA seed2 的异常值。SDF 3-seed\
+      \ 的\nvariance 更小 (λ=0.005: SD=3.0, λ=0.01: SD=0.3), 说明 SDF loss 可能\n有 regularization\
+      \ 效应——压缩 seed-to-seed variance。但这不构成 \"SDF\nis useful\" 的 argument, 因为 variance\
+      \ reduction 不等于 performance gain。\n"
+    tables:
+    - name: 3v3 LoRA vs SDF Seed-Level Comparison
+      columns:
+      - Condition
+      - Seed 0
+      - Seed 1
+      - Seed 2
+      - Mean
+      - SD
+      rows:
+      - - LoRA-only CAR (%)
+        - '54.5'
+        - '56.0'
+        - '48.0'
+        - '52.8'
+        - '4.2'
+      - - LoRA-only TSR (%)
+        - '8.5'
+        - '4.0'
+        - '5.0'
+        - '5.8'
+        - '2.3'
+      - - SDF l=0.005 CAR (%)
+        - '47.0'
+        - '51.5'
+        - '53.0'
+        - '50.5'
+        - '3.0'
+      - - SDF l=0.005 TSR (%)
+        - '7.5'
+        - '4.0'
+        - '9.0'
+        - '6.8'
+        - '2.5'
+      - - SDF l=0.01 CAR (%)
+        - '52.5'
+        - '52.5'
+        - '53.0'
+        - '52.7'
+        - '0.3'
+      - - SDF l=0.01 TSR (%)
+        - '6.5'
+        - '7.5'
+        - '7.5'
+        - '7.2'
+        - '0.6'
+    - name: 3v3 Statistical Tests (CAR)
+      columns:
+      - Comparison
+      - Delta (pp)
+      - Welch t
+      - p (one-sided)
+      - Interpretation
+      rows:
+      - - LoRA vs SDF l=0.005
+        - '-2.3'
+        - '0.78'
+        - '0.24'
+        - trend, not significant
+      - - LoRA vs SDF l=0.01
+        - '-0.1'
+        - '0.07'
+        - '0.48'
+        - no difference
+    - name: LoRA seed2 Per-Task Breakdown
+      columns:
+      - Task
+      - CAR (%)
+      - TSR (%)
+      - EE Disp (m)
+      rows:
+      - - orange_juice
+        - '54'
+        - '0'
+        - '0.472'
+      - - chocolate_pudding
+        - '38'
+        - '18'
+        - '0.497'
+      - - milk
+        - '78'
+        - '0'
+        - '0.521'
+      - - bbq_sauce
+        - '22'
+        - '2'
+        - '0.343'
+      - - Mean
+        - '48'
+        - '5'
+        - '0.458'
+    figures_description:
+    - 'Box plot: 3 LoRA seeds vs 3 SDF seeds (l=0.005 和 l=0.01), 展示 distributions
+      高度重叠, LoRA 有更大 spread'
+    - 'Per-task line plot: 4 tasks × 6 conditions (3 LoRA + 3 SDF), 展示 per-task ordering
+      完全一致 (milk > orange_juice > chocolate_pudding > bbq_sauce)'
+    analysis: 'LoRA seed2 引入的 variance 使 3v3 对比从 "clearly indistinguishable" 变为
+
+      "not statistically distinguishable but with a suggestive trend." p=0.24
+
+      (one-sided) 落在论文写作的 awkward zone: 不能 claim "SDF = LoRA"
+
+      (需 equivalence test, 但 n=3 功效不足), 也不能 claim "SDF < LoRA"
+
+      (p > 0.1)。
+
+
+      论文措辞需从 D025 的 "SDF delta = 0pp" 调整为:
+
+      "The mean CAR difference between LoRA-only (52.8±4.2%) and SDF
+
+      (50.5±3.0% at λ=0.005; 52.7±0.3% at λ=0.01) is not statistically
+
+      significant (p=0.24 and p=0.48, respectively, one-sided Welch t-test).
+
+      We cannot formally claim equivalence with n=3 seeds, but the effect
+
+      size (≤2.3pp) is well within evaluation noise and below any threshold
+
+      of practical significance."
+
+
+      这比 "SDF is redundant" 弱, 但仍支持 "SDF provides no practically
+
+      significant benefit" 的 hedged claim。
+
+      '
+  - name: dfCAR threshold sensitivity analysis
+    plan_id: plan_014
+    description: 'CPU-only 分析: 在 delta={2mm,5mm,10mm,20mm,50mm,100mm} 上计算 dfCAR'
+    expected_results:
+      a1_pi0_raw_CAR: 91.5
+      a1_pi0_dfCAR_2mm: 0.4
+      a1_pi0_dfCAR_5mm: 0.4
+      a1_pi0_dfCAR_10mm: 0.4
+      a1_pi0_dfCAR_20mm: 0
+      a1_pi0_dfCAR_50mm: 0
+      a1_pi0_dfCAR_100mm: 0
+      lora_only_raw_CAR: 52.8
+      lora_only_dfCAR_all_thresholds: 52.8
+      sdf_l01_raw_CAR: 52.7
+      sdf_l01_dfCAR_all_thresholds: 52.7
+      pi05_baseline_raw_CAR: 27.0
+      pi05_baseline_dfCAR_all_thresholds: 27.0
+      threshold_invariance_range: 2mm - 200mm
+      min_active_ee_disp_lora: 0.239
+      max_frozen_ee_disp_a1: 0.001
+    result_rationale: 'dfCAR threshold 稳定的根本原因是 EE displacement 分布的极端双峰性:
+
+
+      (1) A1 (Pi0 full fine-tune, action collapse): 所有 safe episodes 的 EE
+
+      displacement < 1μm (median ~5nm)。只有 3/732 safe episodes 的 disp
+
+      在 0.1-1mm 范围。因此, 任何 δ ≥ 2mm 都会 filter out 几乎所有 safe
+
+      episodes, 只留下碰撞 episodes 中的极少数。dfCAR 从 91.5% 骤降至 <1%。
+
+
+      (2) LoRA-only / SDF (Pi0.5 fine-tune, real movement): 所有 episodes
+
+      的 EE displacement > 239mm (最小值)。任何 δ ≤ 200mm 都不会 filter
+
+      out 任何 episode。dfCAR = raw CAR, 完全不受 threshold 影响。
+
+
+      (3) Pi0.5 baseline (no fine-tune, natural movement): 类似 LoRA/SDF,
+
+      所有 episodes 有高 EE displacement (geometric path safety, not action
+
+      collapse)。dfCAR = raw CAR。
+
+
+      这个 "giant gap" (1μm vs 239mm, 6 orders of magnitude) 意味着
+
+      dfCAR 在 δ ∈ [2mm, 200mm] 范围内完全不变。这不是巧合, 而是 VLA
+
+      行为的 fundamental bimodality 的体现: 模型要么完全冻结 (action collapse),
+
+      要么正常运动。没有 "partial movement" 的中间状态。
+
+
+      这使 dfCAR 成为一个非常 robust 的指标——不需要精心选择 threshold。
+
+      '
+    tables:
+    - name: dfCAR Threshold Sensitivity Matrix
+      columns:
+      - Condition
+      - Raw CAR
+      - d=2mm
+      - d=5mm
+      - d=10mm
+      - d=20mm
+      - d=50mm
+      - d=100mm
+      rows:
+      - - A1 (Pi0, action collapse)
+        - '91.5'
+        - '0.4'
+        - '0.4'
+        - '0.4'
+        - '0.0'
+        - '0.0'
+        - '0.0'
+      - - LoRA-only (Pi0.5)
+        - '52.8'
+        - '52.8'
+        - '52.8'
+        - '52.8'
+        - '52.8'
+        - '52.8'
+        - '52.8'
+      - - SDF l=0.01 (Pi0.5)
+        - '52.7'
+        - '52.7'
+        - '52.7'
+        - '52.7'
+        - '52.7'
+        - '52.7'
+        - '52.7'
+      - - Pi0.5 baseline
+        - '27.0'
+        - '27.0'
+        - '27.0'
+        - '27.0'
+        - '27.0'
+        - '27.0'
+        - '27.0'
+    - name: EE Displacement Distribution Summary
+      columns:
+      - Condition
+      - Min EE Disp
+      - Median EE Disp
+      - Max EE Disp
+      - Gap Factor
+      rows:
+      - - A1 safe episodes
+        - ~5nm
+        - ~5nm
+        - 0.9mm
+        - ref
+      - - LoRA-only all episodes
+        - 239mm
+        - 420mm
+        - 780mm
+        - 239000x
+      - - SDF all episodes
+        - 245mm
+        - 415mm
+        - 765mm
+        - 245000x
+      - - Pi0.5 baseline all
+        - 110mm
+        - 150mm
+        - 580mm
+        - 110000x
+    figures_description:
+    - 'dfCAR vs threshold curve (Fig candidate): x-axis = EE displacement threshold
+      (log scale, 0.001mm to 500mm); y-axis = dfCAR (%). A1 线从 91.5% 在 ~0.1mm 处骤降至
+      0%; 其他 3 条线在整个范围内保持平坦。展示 metric 的 threshold robustness。'
+    - 'EE displacement histogram (supporting): 双 panel, 左=A1 (峰在 ~5nm), 右=LoRA-only
+      (峰在 ~420mm), 展示 6 个数量级的 gap'
+    analysis: 'dfCAR threshold stability 是论文 Claim 1 (metric contribution) 的强有力
+
+      支撑。关键信息: 研究者不需要精心调参——任何 "reasonable" threshold
+
+      (2mm-200mm) 都给出同样结果。这使 dfCAR 成为 community-ready 的
+
+      practical tool, 而非需要 dataset-specific calibration 的 ad hoc metric。
+
+
+      论文写法: "We evaluate dfCAR sensitivity across thresholds spanning
+
+      two orders of magnitude (2mm–100mm). The metric is completely invariant
+
+      to threshold choice (Table X), a consequence of the extreme bimodality
+
+      of VLA end-effector displacement: action-collapsed models exhibit
+
+      displacement <1μm while genuinely active models show displacement
+
+      >200mm. This six-order-of-magnitude gap ensures dfCAR requires no
+
+      threshold tuning in practice."
+
+
+      这段分析不受 Claim 4 median 降级影响, 是独立的方法论贡献。
+
+      '
+  - name: spatial_bowl LoRA-only control (NOT COMPLETED)
+    plan_id: plan_015
+    description: 在 spatial_bowl 训练 LoRA-only (无 SDF), 完成跨场景 SDF 归因
+    expected_results:
+      status: not_completed
+      reason: GPU 资源耗尽, P1 优先级低于 Phase 2 additional seed 和 Lambda=0.1 eval
+      hypothetical_CAR_if_run: 30
+      hypothetical_TSR_if_run: 2
+      hypothetical_sdf_delta_spatial: 5
+    result_rationale: '在 median tier 下, plan_015 未能在 deadline 前完成。原因:
+
+      (1) plan_015 是 P1 优先级, 排在 P0 实验 (Phase 2 additional seed, LoRA seed2) 后面;
+
+      (2) 依赖 plan_007 (spatial_bowl SDF 训练) 先完成, 再占用 GPU 训练 34h;
+
+      (3) 在 plan_007 完成时, 可用 GPU 已被 Lambda=0.1 eval 和 Phase 2 eval 占用;
+
+      (4) 剩余 GPU 时间不足以完成 34h 训练 + eval。
+
+
+      如果能运行, 预测 spatial_bowl LoRA-only CAR ≈ 30% (接近但略低于 SDF 的 35%)。
+
+      差异 ~5pp 无法判断是 SDF 贡献还是 seed noise, 因为只有 1 seed 且无统计功效。
+
+
+      缺失后果: 论文无法做跨场景 SDF attribution。spatial_bowl 结果只能作为
+
+      "SDF+LoRA achieves 35% CAR on spatial_bowl, consistent with real avoidance"
+
+      的观察性报告, 不能声称 "SDF contributes Xpp in spatial_bowl."
+
+      '
+    tables:
+    - name: spatial_bowl Attribution Gap
+      columns:
+      - Scene
+      - SDF+LoRA CAR
+      - LoRA-only CAR
+      - SDF Delta
+      - Attribution Possible?
+      rows:
+      - - object_pudding
+        - 50.5%
+        - 52.8%
+        - -2.3pp
+        - Yes (3v3)
+      - - spatial_bowl
+        - 35%
+        - N/A
+        - N/A
+        - No (missing control)
+    figures_description: []
+    analysis: 'plan_015 未完成是 median tier 的 structural limitation。论文需在 limitations
+
+      section 承认: "Cross-scene SDF attribution was not possible for spatial_bowl
+
+      due to the absence of a LoRA-only control. The 35% CAR observed with SDF+LoRA
+
+      on spatial_bowl may be entirely attributable to LoRA fine-tuning, as was the
+
+      case for object_pudding."
+
+
+      这不影响 Claim 4 的核心 (object_pudding 的 3v3 归因仍成立), 但限制了
+
+      generalizability argument。reviewer 可能会 flag 这个 gap, 但对于一个
+
+      "predominantly negative" 的 finding, 跨场景泛化不是 critical requirement
+
+      ——"SDF is redundant in one scene" 已经是有价值的 negative finding。'
+  review_report: "---\ndream_id: dream_20260526T023936\ntier: median\noverall_score:\
+    \ reject\ntimestamp: 2026-05-26T03:32:59.705861+00:00\n---\n\n# Dream Review Report\
+    \ — \"Rethinking VLA Safety Evaluation: When 98% of Collision Avoidance is an\
+    \ Illusion\"\n\n**Dream ID:** 20260526T023936  \n**Venue:** CoRL 2026  \n**Review\
+    \ Mode:** Full (2 Reviewers + Roundtable)  \n**Venue Calibration:** CoRL 2024\
+    \ acceptance rate ~39%, 1–4 scoring scale. Review dimensions: Originality, Quality,\
+    \ Clarity, Significance, Relevance to robot learning.\n\n---\n\n## I. Reviewer\
+    \ R1 — Methods & Experiments\n\n### Summary\nThe paper identifies systematic contamination\
+    \ in VLA collision avoidance evaluation: standard CAR conflates genuine obstacle\
+    \ avoidance with action collapse (frozen robots scored as collision-free). The\
+    \ authors propose dfCAR as a corrective metric, demonstrate that EE-only SDF refinement\
+    \ structurally fails even with ground-truth geometry, and show that LoRA fine-tuning\
+    \ on collision-free demonstrations produces genuine collision avoidance (+26pp\
+    \ CAR) while SDF auxiliary loss adds nothing at standard λ and marginal benefit\
+    \ at extreme λ.\n\n### Strengths\n- **The fake safety observation is genuine and\
+    \ practically important.** The 6-order-of-magnitude gap in EE displacement between\
+    \ frozen and active episodes (sub-micrometer vs. 200+ mm) makes dfCAR threshold\
+    \ completely insensitive across δ∈[2mm, 200mm]. This bimodal structure is convincing\
+    \ evidence that action collapse is a qualitatively distinct failure mode.\n- **Oracle\
+    \ experiment design is methodologically sound.** Testing three oracle variants\
+    \ (adaptive-alpha, fixed-alpha, feature-space SDF) with ground-truth geometry\
+    \ cleanly separates representation quality from EE-only structural limitation.\
+    \ Consistent negative results across all three variants is strong evidence.\n\
+    - **Honest reporting of the negative result.** The LoRA-only attribution experiment\
+    \ overturns the paper's original hypothesis. The 3-seed × 2-lambda comparison\
+    \ showing LoRA-only CAR=52.8% vs. SDF λ=0.005 CAR=50.5% (p=0.24) with identical\
+    \ per-task patterns is a clean null result.\n- **dfCAR is simple, well-defined,\
+    \ and immediately adoptable.** Threshold invariance across 4 orders of magnitude\
+    \ requires no calibration.\n- **Multiple converging evidence lines.** Fake safety\
+    \ demonstrated across Pi0 and Pi0.5; EE-only limitation shown through 3 oracle\
+    \ variants; SDF redundancy tested across 4 lambda values.\n\n### Weaknesses\n\
+    - **Narrow benchmark scope undermines generalizability.** All primary experiments\
+    \ use a single SafeLIBERO suite (object_pudding, 4 tasks) with one robot embodiment.\
+    \ The spatial_bowl results critically lack the LoRA-only control (plan_015 never\
+    \ completed). The claim \"SDF is redundant across scenes\" rests on a single scene.\n\
+    - **Only two model families tested (Pi0, Pi0.5), both from the same architecture\
+    \ lineage.** No OpenVLA, RT-2, or other architecture tested. The central claim\
+    \ that fake safety is a general VLA problem requires broader evidence.\n- **Statistical\
+    \ power is marginal throughout.** 3 seeds × 200 episodes per condition. The one-sided\
+    \ p=0.24 for LoRA vs. SDF λ=0.005 cannot reject the null, but the power to detect\
+    \ a meaningful 5pp effect is also low at n=3. λ=0.1 tested with only 2 seeds.\
+    \ Phase 2 uses 2 seeds. For a paper whose central claim is a null result, the\
+    \ burden of proof is higher than demonstrated. A formal equivalence test (TOST)\
+    \ is needed.\n- **TSR collapse (73%→6%) not adequately analyzed.** The paper attributes\
+    \ this to \"conservative behavior\" but does not distinguish from catastrophic\
+    \ forgetting. Since both LoRA-only and LoRA+SDF show identical collapse, this\
+    \ is the most practically consequential result but receives insufficient analysis.\n\
+    - **Phase 2 results are preliminary.** 2 seeds, mean CAR=59.5%, p=0.12 vs. LoRA-only.\
+    \ Neither conclusion (real effect vs. noise) is supported at this sample size.\n\
+    - **No real-robot validation or sim-to-real discussion.** The dfCAR threshold\
+    \ of 0.1mm is calibrated for MuJoCo where actuator noise is effectively zero.\
+    \ Real-world sensor noise could require recalibration.\n\n### Questions for Authors\n\
+    1. Can you provide a formal equivalence test (TOST) for the SDF redundancy claim?\
+    \ What minimum detectable effect size at 80% power with n=3?\n2. Do you have any\
+    \ evidence, even indirect, that the +22pp CAR gain over baseline in spatial_bowl\
+    \ is attributable to LoRA rather than SDF? Without this, cross-scene generalization\
+    \ of Claim 4 is unsupported.\n3. Is the 73%→6% TSR drop consistent with standard\
+    \ catastrophic forgetting curves (monotonic decay with training steps)? Did you\
+    \ analyze per-task TSR as a function of training steps?\n4. Have you applied dfCAR\
+    \ to published results from other VLA safety papers? Even a discussion of what\
+    \ published systems would look like under dfCAR would strengthen the contribution.\n\
+    5. Why only object_pudding Level I? SafeLIBERO includes multiple difficulty levels\
+    \ and scene types.\n\n### Scores (R1)\n| Dimension | Score | Rationale |\n|-----------|-------|-----------|\n\
+    | Overall | **2 (Reject)** | Core observation valuable but experimental scope\
+    \ too narrow for claim generality. Missing controls, marginal statistical power\
+    \ for null result, incomplete draft. |\n| Soundness | 2 | Fake safety diagnosis\
+    \ and oracle experiments are sound. SDF redundancy null result lacks adequate\
+    \ power (n=3, no equivalence testing). Phase 2 preliminary (n=2). Missing spatial_bowl\
+    \ control. |\n| Significance | 3 | If fake safety generalizes beyond Pi0/SafeLIBERO\
+    \ (plausible but unverified), it has immediate practical impact. dfCAR is adoption-ready.\
+    \ SDF redundancy finding could redirect community effort. |\n| Clarity | 2 | Written\
+    \ sections are clear and well-structured, but paper has incomplete elements (placeholders,\
+    \ missing figures, outdated sections contradicting current claims). |\n| Confidence\
+    \ | 4 (Expert) | Familiar with VLA architectures, SDF collision methods, SafeLIBERO,\
+    \ and relevant statistical methodology. |\n\n---\n\n## II. Reviewer R2 — Novelty\
+    \ & Related Work\n\n### Summary\nThe paper identifies metric contamination in\
+    \ VLA safety evaluation (action collapse inflating CAR), proposes dfCAR to correct\
+    \ it, demonstrates EE-only SDF structural failure, and shows LoRA fine-tuning\
+    \ alone drives collision avoidance while SDF is redundant. All conditions suffer\
+    \ catastrophic task performance collapse.\n\n### Strengths\n- **The fake safety\
+    \ finding is well-documented and useful.** The demonstration that action collapse\
+    \ *systematically contaminates the primary evaluation metric* is a genuine contribution,\
+    \ even if action collapse itself is individually known.\n- **Oracle SDF experiments\
+    \ are well-designed.** Testing three distinct oracle variants with ground-truth\
+    \ geometry eliminates prediction-error explanations and isolates the fundamental\
+    \ EE-only scope limitation.\n- **The writing is direct and technically precise\
+    \ in diagnostic sections.** The introduction opens effectively and the paper generally\
+    \ avoids overclaiming.\n- **The negative SDF redundancy finding is scientifically\
+    \ valuable.** Showing the avoidance signal comes from demonstration imitation\
+    \ rather than geometric supervision challenges a natural assumption.\n- **dfCAR\
+    \ threshold invariance is elegant.** The six-order-of-magnitude displacement gap\
+    \ eliminates threshold tuning entirely.\n\n### Weaknesses\n- **Related work is\
+    \ severely underdeveloped.** Only 5 references in the submitted draft. Critical\
+    \ omissions include:\n  - SafeVLA (Zhang et al., NeurIPS 2025): most direct competitor,\
+    \ uses constrained MDP for VLA safety. Do their reported CAR numbers suffer from\
+    \ the same contamination?\n  - Configuration-space distance fields (Li et al.,\
+    \ RSS 2024): directly addresses the EE-only SDF limitation by working in C-space.\n\
+    \  - RAIL (Jung et al., ICRA 2025), TamedPUMA (Bakker et al., L4DC 2025): runtime\
+    \ safety filtering methods providing contrasting approaches.\n  - The paper needs\
+    \ a systematic taxonomy: post-hoc correction vs. constrained optimization vs.\
+    \ inference-time guidance vs. training-time supervision.\n- **Novelty of dfCAR\
+    \ is limited.** Filtering a safety metric by displacement to exclude degenerate\
+    \ episodes is straightforward. For a CoRL main track paper, the methodological\
+    \ contribution needs to be either technically deeper or empirically broader. Currently\
+    \ it is neither.\n- **Generalizability is a critical unaddressed weakness.** All\
+    \ evidence comes from SafeLIBERO with Pi0/Pi0.5. No experiments on OpenVLA, RT-2,\
+    \ Octo, or any non-Pi0-family model. For an evaluation methodology paper, the\
+    \ methodology should be validated across the models it claims to evaluate.\n-\
+    \ **SDF redundancy claim is underpowered.** p=0.24 and p=0.48 do not support the\
+    \ *absence* of an effect — they merely fail to reject the null. A formal equivalence\
+    \ test (TOST) with pre-specified equivalence margin is needed. The paper states\
+    \ SDF contributes \"0 additional percentage points\" but confidence intervals\
+    \ likely include meaningful effects in both directions.\n- **Capability-safety\
+    \ anti-correlation (Section 4.4) is trivially obvious.** Models that move more\
+    \ collide more. This should be a motivating paragraph, not a standalone claim.\n\
+    - **Missing spatial_bowl LoRA-only control undermines cross-scene claims.**\n\n\
+    ### Questions for Authors\n1. Have you tested dfCAR on any non-Pi0-family VLA?\
+    \ Even zero-shot evaluation of OpenVLA with displacement logging would substantially\
+    \ strengthen generalizability.\n2. Can you provide formal equivalence tests (TOST)\
+    \ for the SDF redundancy claim?\n3. How do you distinguish \"genuine collision\
+    \ avoidance\" from \"the model learned conservative/hesitant behavior\"? The EE\
+    \ displacement ~0.48m shows the robot moves, but does it move *around* obstacles\
+    \ or just less aggressively overall? Per-trajectory visualization or nearest-obstacle-distance\
+    \ analysis during active episodes would help.\n4. Why does LoRA-only improve CAR\
+    \ by +26pp over baseline? If collision-free demo filtering biases the learned\
+    \ behavior toward conservative trajectories, this is data curation, not genuine\
+    \ safety learning. This mechanism should be discussed.\n5. The title \"98% of\
+    \ Collision Avoidance is an Illusion\" — this is demonstrated only on Pi0/Pi0.5\
+    \ on SafeLIBERO. Does the claim extend to other pipelines?\n\n### Scores (R2)\n\
+    | Dimension | Score | Rationale |\n|-----------|-------|-----------|\n| Overall\
+    \ | **2 (Reject)** | Core finding useful but insufficiently novel for main conference.\
+    \ dfCAR is technically trivial. Experimental scope too narrow for claim breadth.\
+    \ Paper visibly incomplete. |\n| Novelty | 2 | Fake safety observation is a useful\
+    \ diagnostic rather than a methodological advance. dfCAR is a simple threshold\
+    \ filter. SDF redundancy finding is interesting but underpowered. |\n| Significance\
+    \ | 3 | If fake safety generalizes, meaningful impact on VLA safety evaluation.\
+    \ Recommendation to report both CAR and dfCAR is practical and easy to adopt.\
+    \ |\n| Clarity | 2 | Diagnostic sections well-written. Paper incomplete with placeholder\
+    \ values, missing figures, inconsistent framing between sections. |\n| Confidence\
+    \ | 3 | Familiar with VLA evaluation, SDF collision avoidance, and SafeLIBERO.\
+    \ Main uncertainty: whether fake safety is as prevalent as claimed beyond Pi0+SafeLIBERO.\
+    \ |\n\n---\n\n## III. Roundtable Discussion\n\n### Step 2: Cross-Sharing\n\n**R1\
+    \ after reading R2:**\n- Agrees related work is severely underdeveloped; 5 references\
+    \ is inadequate for CoRL\n- Concurs the capability-safety anti-correlation is\
+    \ trivially obvious and should not be a standalone claim\n- Acknowledges dfCAR\
+    \ novelty is technically simple; maintains the empirical bimodal-structure demonstration\
+    \ is non-trivial\n- Agrees \"98%\" title may overstate given single-benchmark\
+    \ evidence\n\n**R2 after reading R1:**\n- Agrees TSR collapse is inadequately\
+    \ analyzed — the most practically consequential result\n- Acknowledges the Pi0.5\
+    \ baseline safe-episode displacement question is a real clarity issue\n- Both\
+    \ reviewers independently flagged the need for equivalence testing (TOST) — strong\
+    \ convergence\n- Concurs Phase 2 with n=2 is too preliminary for any conclusion\n\
+    \n### Step 3: Convergence\n\n**Full agreement (both reviewers):**\n1. **Overall\
+    \ score: 2 (Reject)** — independent convergence\n2. **Significance: 3** — underlying\
+    \ message important IF evidence strengthened\n3. Fake safety finding is genuine\
+    \ and practically useful\n4. dfCAR threshold invariance property is elegant\n\
+    5. Experimental scope too narrow: one benchmark, one model family, n=3\n6. Statistical\
+    \ treatment of null result (SDF redundancy) inadequate — needs equivalence testing\n\
+    7. Paper materially incomplete (placeholders, missing figures)\n8. Missing spatial_bowl\
+    \ LoRA-only control is a significant gap\n9. Paper should be resubmitted after\
+    \ completing experiments and expanding scope\n\n**Remaining divergence:**\n- R1\
+    \ gives dfCAR more credit as a methodological contribution; R2 considers it technically\
+    \ trivial\n- R2 is more critical of related work gaps (identifies specific missing\
+    \ citations); R1 focuses more on experimental gaps\n- On path to acceptance: R1\
+    \ sees a viable path (complete controls + equivalence testing + one more model\
+    \ family); R2 additionally requires substantially expanded related work and questions\
+    \ whether dfCAR alone merits main-conference contribution\n\n---\n\n## IV. Consolidated\
+    \ Assessment\n\n### Overall Score: **2 / 4 (Reject)**\n\n### Headline Assessment\n\
+    The paper identifies a real and practically important problem — fake safety from\
+    \ action collapse contaminates the primary VLA safety metric. The proposed correction\
+    \ (dfCAR) is simple, elegant in its threshold invariance, and immediately adoptable.\
+    \ The negative finding about SDF redundancy is scientifically valuable. However,\
+    \ the paper in its current form has critical gaps that prevent acceptance at CoRL\
+    \ 2026.\n\n### Key Strengths (consensus)\n1. **Fake safety identification is a\
+    \ genuine contribution.** The 6-order-of-magnitude bimodal displacement gap is\
+    \ a striking empirical finding. The community should know about this.\n2. **Oracle\
+    \ SDF experiments are well-designed.** Three variants with ground-truth geometry\
+    \ cleanly isolate the structural EE-only limitation.\n3. **Honest, well-hedged\
+    \ negative result.** The paper does not overclaim SDF redundancy — it provides\
+    \ appropriate statistical caveats.\n4. **dfCAR requires no threshold tuning.**\
+    \ The invariance across [2mm, 200mm] makes it practically deployable.\n\n### Critical\
+    \ Weaknesses (consensus)\n1. **Narrow experimental scope.** One benchmark (SafeLIBERO),\
+    \ one model family (Pi0/Pi0.5), one scene for the core SDF comparison (object_pudding).\
+    \ For a paper claiming to identify a general evaluation problem, this is insufficient.\n\
+    2. **Statistical power inadequate for the null claim.** n=3 seeds with one-sided\
+    \ Welch t-test cannot support \"SDF adds nothing.\" Formal equivalence testing\
+    \ (TOST) with pre-specified margin is required. λ=0.1 and Phase 2 tested with\
+    \ only n=2 seeds.\n3. **Related work severely underdeveloped.** 5 references is\
+    \ far below CoRL standards. Missing critical citations: SafeVLA, C-space distance\
+    \ fields, runtime safety filtering methods (RAIL, TamedPUMA, CAPE), diffusion\
+    \ policy collapse analysis.\n4. **Missing spatial_bowl LoRA-only control.** Prevents\
+    \ cross-scene SDF attribution. The paper's own experiment plan (plan_015) was\
+    \ never completed.\n5. **Paper incomplete.** Placeholder values in tables, missing\
+    \ figures, outdated sections contradicting current claims, inconsistent framing.\n\
+    6. **TSR collapse (73%→6%) insufficiently analyzed.** The most practically consequential\
+    \ result receives superficial treatment. Is this catastrophic forgetting? Conservative\
+    \ behavior? The mechanism matters for the conclusion.\n\n### Experiment Coverage\
+    \ vs. Design\nThe paper completed 8 of 9 planned experiments. The one missing\
+    \ experiment (spatial_bowl LoRA-only control, plan_015) is unfortunately the one\
+    \ needed for cross-scene generalization of the central SDF redundancy claim. The\
+    \ LoRA seed2 anomaly (CAR=48%, pulling the 3-seed mean to 52.8% with SD=4.2pp)\
+    \ weakened the statistical clarity of the originally \"clean negative\" narrative,\
+    \ forcing hedged language throughout.\n\n### Recommendations for Revision\n1.\
+    \ **Complete spatial_bowl LoRA-only control** (plan_015) — essential for cross-scene\
+    \ generalization\n2. **Add at least one non-Pi0-family VLA** (OpenVLA or RT-2)\
+    \ — even zero-shot dfCAR analysis would help\n3. **Perform formal equivalence\
+    \ testing (TOST)** with pre-specified equivalence margin for the SDF redundancy\
+    \ claim\n4. **Expand related work** to 20+ references with systematic taxonomy\
+    \ of safety approaches\n5. **Analyze TSR collapse mechanism** — learning curves,\
+    \ per-task temporal profiles, failure mode categorization\n6. **Complete all tables\
+    \ and figures** — fill placeholders, add the displacement histogram and lambda-CAR\
+    \ curve\n7. **Resolve narrative inconsistencies** — ensure all sections reflect\
+    \ the final \"predominantly negative with boundary conditions\" framing\n8. **Downgrade\
+    \ capability-safety anti-correlation** from a standalone claim to a motivating\
+    \ observation\n\n### Venue Fit\nThe paper addresses a relevant CoRL topic (VLA\
+    \ safety evaluation) and the negative finding about SDF redundancy is the type\
+    \ of result the community needs. However, the combination of narrow scope, insufficient\
+    \ statistical rigor for the central null claim, underdeveloped related work, and\
+    \ incomplete draft places it below the CoRL 2026 acceptance threshold (~39% acceptance\
+    \ rate). A thoroughly revised version addressing the above points could be competitive\
+    \ at CoRL 2027 or ICRA 2027.\n\n### Score Summary\n| Dimension | R1 | R2 | Consensus\
+    \ |\n|-----------|----|----|-----------|\n| Overall | 2 | 2 | **2 (Reject)** |\n\
+    | Soundness/Quality | 2 | — | 2 |\n| Novelty | — | 2 | 2 |\n| Significance | 3\
+    \ | 3 | **3** |\n| Clarity | 2 | 2 | **2** |\n| Confidence | 4 | 3 | 3.5 |\n\n\
+    \n---\n\n## 引用验证结果\n\n**统计**: 40 篇文献 / 29 处引用 / 在线验证 40/40 篇\n\n### 问题 (24)\n\n\
+    - ⚠️ `liu2023libero` — 元数据不匹配: first_author: bib=liu vs api=feng\n- ❌ `karwowski2024goodhart`\
+    \ — 在线验证未找到匹配（疑似虚假引用）: best match similarity 0.29 below threshold 0.82\n- ⚠️ `geoaware2025`\
+    \ — 元数据不匹配: first_author: bib=abouzeid vs api=ali\n- ❌ `stemvla2026` — 在线验证未找到匹配（疑似虚假引用）:\
+    \ no results from any source\n- ❌ `evo02025` — 在线验证未找到匹配（疑似虚假引用）: best match similarity\
+    \ 0.31 below threshold 0.82\n- ⚠️ `vasilopoulos2023ramp` — 在 .bib 中但正文未引用\n- ⚠️\
+    \ `chen2026cssdfnet` — 在 .bib 中但正文未引用\n- ⚠️ `jacquet2025neuralnmpc` — 在 .bib 中但正文未引用\n\
+    - ⚠️ `chen2025samp` — 在 .bib 中但正文未引用\n- ⚠️ `ruan2025profrobot` — 在 .bib 中但正文未引用\n\
+    - ⚠️ `depthvla2025` — 在 .bib 中但正文未引用\n- ⚠️ `li2025qdepth` — 在 .bib 中但正文未引用\n-\
+    \ ⚠️ `li2025spatialforcing` — 在 .bib 中但正文未引用\n- ⚠️ `3dcavla2025` — 在 .bib 中但正文未引用\n\
+    - ⚠️ `geoaware2025` — 在 .bib 中但正文未引用\n- ⚠️ `spatialvla2025` — 在 .bib 中但正文未引用\n\
+    - ⚠️ `gstvla2026` — 在 .bib 中但正文未引用\n- ⚠️ `stemvla2026` — 在 .bib 中但正文未引用\n- ⚠️\
+    \ `stvla2026` — 在 .bib 中但正文未引用\n- ⚠️ `evo02025` — 在 .bib 中但正文未引用\n- ⚠️ `savla2026`\
+    \ — 在 .bib 中但正文未引用\n- ⚠️ `augvla3d2026` — 在 .bib 中但正文未引用\n- ⚠️ `evodepth2026`\
+    \ — 在 .bib 中但正文未引用\n- ⚠️ `chen2026dfmvla` — 在 .bib 中但正文未引用\n\n### ✅ 通过 (35)"
+  error: ''
+- tier: worst
+  pdf_path: /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/dream_reports/dream_20260526T023936/worst/paper.pdf
+  imagined_experiments:
+  - name: Claim 1 A1 EE displacement re-eval
+    plan_id: plan_001
+    description: 用修复后脚本重跑 A1 model eval (50 episodes)，获取真实 EE displacement 验证 Claim
+      1
+    expected_results:
+      avg_TSR: 0
+      avg_CAR: 91
+      avg_ee_displacement: 0.012
+      fake_safe_rate: 0.994
+      n_episodes: 50
+    result_rationale: '此实验结果与档位无关——A1 的 action collapse 是模型固有属性，不受 SDF 归因档位影响。 A1
+      在 Pi0 上 30K 训练后 TSR=0%，EE displacement 极低(~12mm 均值，来自碰撞 episode 拉高)， 安全 episode
+      中 EE displacement 仍为微米级。800ep 已有数据的 50ep 子采样会高度一致。 此数据仅补充 EE displacement 字段，不改变
+      Claim 1 结论。
+
+      '
+    tables:
+    - name: A1 Re-eval EE Displacement Summary
+      columns:
+      - Metric
+      - Value
+      rows:
+      - - TSR
+        - 0%
+      - - CAR
+        - 91%
+      - - EE Disp (safe eps)
+        - 0.005mm
+      - - EE Disp (collision eps)
+        - 45mm
+      - - Fake Safe Rate
+        - 99.4%
+    figures_description:
+    - EE displacement 分布直方图：safe episodes 集中在 <0.01mm，collision episodes 在 10-280mm，双峰分布
+    analysis: 'A1 re-eval 仅为术语验证——确认 EE displacement 与 obstacle displacement 一致地证明
+      action collapse。 结果完全在预期内，不影响任何 claim 的强度。
+
+      '
+  - name: OpenVLA zero-shot SafeLIBERO eval
+    plan_id: plan_002
+    description: Base OpenVLA-7B 在 object_pudding 上 200 episodes zero-shot eval
+    expected_results:
+      avg_TSR: 0
+      avg_CAR: 88
+      fake_safe_rate: 0.99
+      avg_ee_displacement: 0.008
+      n_episodes: 200
+    result_rationale: 'OpenVLA-7B 作为较弱的 VLA，在 SafeLIBERO 上 zero-shot 几乎肯定 TSR≈0%(任务失败)。
+      与 Pi0 类似，低能力模型 → action collapse/极少运动 → 高 CAR 但全是 fake safety。 这将确认 fake safety
+      跨第三个 model family 存在，但模型下载损坏使此实验 BLOCKED。 worst 档位下此数据缺失意味着 generalizability
+      claim 仅有 2 model families， reviewer R1 攻击面更大。
+
+      '
+    tables:
+    - name: OpenVLA Zero-shot Results (Projected)
+      columns:
+      - Metric
+      - Pi0 A1
+      - Pi0.5 Baseline
+      - OpenVLA (projected)
+      rows:
+      - - TSR
+        - 0%
+        - 73%
+        - 0%
+      - - CAR
+        - 91.5%
+        - 28%
+        - 88%
+      - - Fake Safe
+        - 99.6%
+        - 98.2%
+        - ~99%
+      - - EE Disp
+        - 0.003mm
+        - 151mm
+        - ~8mm
+    figures_description:
+    - 三 model family 的 TSR-CAR scatter plot，展示 fake safety 跨模型普遍性
+    analysis: 'BLOCKED 状态。即使能跑，OpenVLA 的 zero-shot 结果大概率确认 fake safety pattern。 论文需在
+      limitation 中 acknowledge 仅 2 model families。对 CoRL 接受率影响 -5-10pp。
+
+      '
+  - name: LoRA baseline eval (2 seeds)
+    plan_id: plan_003
+    description: 已完成训练的 LoRA-only 2 seeds eval，确定 LoRA-only CAR
+    expected_results:
+      seed0_TSR: 8.5
+      seed0_CAR: 54.5
+      seed1_TSR: 4.0
+      seed1_CAR: 56.0
+      avg_TSR: 6.25
+      avg_CAR: 55.25
+      avg_ee_displacement: 0.478
+      frozen_pct: 0
+    result_rationale: 'plan_003 已有实际数据(eval_lora_baseline_30k_s0_v2, eval_lora_baseline_30k_s1_v2)。
+      2-seed 均值 CAR=55.25%，EE displacement ~0.48m，0% frozen，确认真实避障。 但 worst 档的关键在于
+      seed2(plan_013) 将显著拉低均值。此处 2-seed 数据本身是 confirmed。
+
+      '
+    tables:
+    - name: LoRA Baseline 2-seed Eval
+      columns:
+      - Seed
+      - TSR
+      - CAR
+      - EE Disp
+      - Frozen%
+      rows:
+      - - s0
+        - 8.5%
+        - 54.5%
+        - 0.489m
+        - 0%
+      - - s1
+        - 4.0%
+        - 56.0%
+        - 0.467m
+        - 0%
+      - - Mean
+        - 6.25%
+        - 55.25%
+        - 0.478m
+        - 0%
+    figures_description: []
+    analysis: '已有确认数据。在 worst 档下，这 2 seeds 本身不变，但 seed2 的加入将改变 3-seed mean。
+
+      '
+  - name: LoRA baseline training (2 seeds)
+    plan_id: plan_004
+    description: Pi0.5 + LoRA only 训练到 30K
+    expected_results:
+      status: DONE
+      final_loss_s0: 0.01343
+      final_loss_s1: 0.01408
+      best_loss_s0: 0.01025
+      best_loss_s1: 0.0113
+    result_rationale: '已完成。训练 loss 收敛正常，两个 seed loss 一致。 worst 档不影响已完成训练的结果。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 训练已完成，结果已确认。
+  - name: Phase 2 lambda=0 ablation (seed2)
+    plan_id: plan_005
+    description: 从 10K SDF checkpoint resume 训练 with lambda=0，验证 safety encoding persist
+      + task recovery
+    expected_results:
+      final_loss: 0.0098
+      best_loss: 0.0085
+      steps_completed: 30000
+      training_stable: true
+    result_rationale: 'Phase 2 从 SDF 10K checkpoint resume，去除 SDF loss 后 action loss
+      会迅速下降回接近 LoRA-only 水平(~0.01)，因为模型不再受 SDF 辅助 loss 的 gradient 干扰。 训练本身应稳定收敛。worst
+      档的影响在 eval 阶段体现，不在训练阶段。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 训练过程本身应正常。关键在 eval(plan_006)。
+  - name: Phase 2 lambda=0 eval
+    plan_id: plan_006
+    description: Phase 2 训练完成后 eval，提取 TSR/CAR/EE displacement
+    expected_results:
+      avg_TSR: 42.0
+      avg_CAR: 68.0
+      avg_ee_displacement: 0.42
+      frozen_pct: 0
+      dfCAR_100mm: 68.0
+      per_task:
+        task0_TSR: 22
+        task0_CAR: 72
+        task1_TSR: 78
+        task1_CAR: 62
+        task2_TSR: 8
+        task2_CAR: 90
+        task3_TSR: 60
+        task3_CAR: 38
+    result_rationale: 'worst 档核心假设：Phase 2 CAR 显著高于 LoRA-only (65-75%) 且 TSR 部分恢复
+      (30-55%)。 这里预测 CAR=68%，比 LoRA-only 3-seed mean (~50%) 高 +18pp，比 SDF 3-seed mean
+      (~52%) 高 +16pp。TSR=42% 从 LoRA-only 的 6% 大幅恢复，虽远不及 baseline 73%，但证明 two-phase
+      strategy 可部分恢复 task capability。
+
+      机制解释：10K 步 SDF 训练在模型权重中编码了 geometric awareness 的某种残留表征。 当 Phase 2 去除 SDF loss
+      后，模型在 task loss 驱动下恢复 task capability，但 SDF 期间学到的避障倾向作为 inductive bias 被保留——类似
+      curriculum learning 效应。 这与 worst 档 "SDF 确有贡献" 的叙事一致：SDF 不是冗余的，而是作为训练 curriculum
+      的一部分有独立贡献。
+
+      per-task pattern 与 SDF/LoRA 部分一致(task2 milk 仍高 CAR，task3 bbq 仍低)， 但 TSR 恢复主要在
+      task1(chocolate_pudding) 和 task3，因为这些任务的 task completion 路径与避障路径冲突较小。
+
+      '
+    tables:
+    - name: Phase 2 vs LoRA-only vs SDF Comparison
+      columns:
+      - Condition
+      - CAR
+      - TSR
+      - EE Disp
+      - Frozen%
+      rows:
+      - - LoRA-only (3-seed)
+        - ~50%
+        - ~5%
+        - 0.47m
+        - 0%
+      - - SDF l=0.005 (3-seed)
+        - 52.3%
+        - 6.3%
+        - 0.50m
+        - 0%
+      - - Phase 2 l=0 (seed2)
+        - 68%
+        - 42%
+        - 0.42m
+        - 0%
+      - - Pi0.5 baseline (3-seed)
+        - 26.8%
+        - 74.7%
+        - 0.15m
+        - —
+    figures_description:
+    - TSR-CAR scatter 加入 Phase 2 点：Phase 2 位于 LoRA/SDF cluster 右上方，向 baseline 方向偏移但未到达
+    - Phase 2 per-task CAR bar chart 与 LoRA-only 对比，展示跨任务 CAR 提升一致性
+    analysis: 'Phase 2 结果是 worst 档的关键转折点。CAR=68% + TSR=42% 意味着 two-phase strategy
+      是可行的 positive method contribution。但仅 1 seed，统计可信度不足。 如果 Phase 2 确认此水平，论文 Claim
+      4 angle B (two-phase discovery) 成为可用选项。 但需要 plan_012 (additional seed) 验证稳定性后才能作为
+      firm claim。 单 seed Phase 2 + CAR variance ~±8pp → 实际 CAR 可能在 60-76%，TSR 在 34-50%。
+
+      '
+  - name: spatial_bowl A1 训练 (seed0, lambda=0.005)
+    plan_id: plan_007
+    description: 跨场景泛化验证——SDF 效果是否跨 scene 一致
+    expected_results:
+      final_loss: 0.0155
+      best_loss: 0.0135
+      best_step: 16000
+      steps_completed: 30000
+      training_stable: true
+    result_rationale: 'spatial_bowl 场景的 SDF 训练应与 object_pudding 类似收敛。Loss 可能略高因为 spatial_bowl
+      的 bowl 目标物在桌面不同位置，动作空间变异更大。 训练本身预期稳定。worst 档影响在 eval 阶段体现。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 训练预期正常，关键在 eval(plan_008)。
+  - name: spatial_bowl eval
+    plan_id: plan_008
+    description: 训练完成后 eval，验证跨场景 CAR/TSR pattern
+    expected_results:
+      avg_TSR: 3.0
+      avg_CAR: 45.0
+      avg_ee_displacement: 0.35
+      frozen_pct: 0
+      n_episodes: 200
+      per_task:
+        task0_pick_bowl_between: 52
+        task1_pick_bowl_on_ramekin: 48
+        task2_pick_bowl_on_stove: 55
+        task3_pick_bowl_on_cabinet: 25
+    result_rationale: 'worst 档核心假设：spatial_bowl 与 object_pudding pattern 不一致。 object_pudding
+      SDF CAR ~52%, spatial_bowl SDF CAR ~45%。Delta 不同方向： object_pudding 中 SDF delta
+      ≈ 0pp (vs LoRA)，但 spatial_bowl 缺乏 LoRA control 无法计算 delta。
+
+      spatial_bowl baseline CAR=0%(已有数据 eval_baseline_fullft_spatial_v11)， 这意味着 SDF
+      在 spatial_bowl 的 +45pp CAR 看似很大，但没有 LoRA control 无法归因——可能全部来自 LoRA fine-tuning
+      的 implicit signal。
+
+      worst 档进一步假设 spatial_bowl 的 per-task pattern 与 object_pudding 完全不同： object_pudding
+      中 task2(milk) 最高 CAR ~90%，task3(bbq) 最低 ~16%； spatial_bowl 中 pattern 更均匀但整体更低，说明
+      scene geometry 影响避障 pattern。 跨场景 claim 无法做。
+
+      '
+    tables:
+    - name: Cross-Scene CAR Comparison
+      columns:
+      - Scene
+      - SDF CAR
+      - LoRA CAR
+      - SDF Delta
+      - Pattern
+      rows:
+      - - object_pudding
+        - 52%
+        - 55%
+        - -3pp (ns)
+        - task2 high, task3 low
+      - - spatial_bowl
+        - 45%
+        - N/A
+        - N/A
+        - more uniform, overall lower
+    figures_description:
+    - 双场景 per-task CAR 对比 bar chart，展示 pattern 不一致性
+    analysis: 'spatial_bowl 结果在 worst 档下暴露两个问题： (1) 缺乏 LoRA control(plan_015) 使得 SDF
+      attribution 无法做； (2) 与 object_pudding pattern 不一致使跨场景 generalization claim 不可行。
+      论文必须将跨场景分析降级为 appendix 或 limitation。
+
+      '
+  - name: Lambda=0.1 bracket training (2 seeds)
+    plan_id: plan_009
+    description: 构建 4-point lambda 曲线 (0, 0.005, 0.01, 0.1)
+    expected_results:
+      seed0_final_loss: 0.0195
+      seed0_best_loss: 0.0142
+      seed1_final_loss: 0.0188
+      seed1_best_loss: 0.0148
+      steps_completed: 30000
+      training_stable: true
+      sdf_loss_higher: true
+    result_rationale: 'Lambda=0.1 是 0.005/0.01 的 10-20 倍。SDF loss 权重大幅增加会使 total loss
+      更高， action loss 可能被 SDF loss 压制。训练应仍稳定(SDF loss 本身有界)， 但 action loss 收敛会更慢/更差。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 训练预期完成。Lambda=0.1 的 eval 是 worst 档 dose-response claim 的关键。
+  - name: Lambda=0.1 eval
+    plan_id: plan_010
+    description: eval 验证 lambda 递增是否 monotonic 提升 CAR
+    expected_results:
+      seed0_CAR: 68.0
+      seed0_TSR: 2.0
+      seed1_CAR: 66.0
+      seed1_TSR: 3.0
+      avg_CAR: 67.0
+      avg_TSR: 2.5
+      avg_ee_displacement: 0.41
+      frozen_pct: 0
+      n_episodes: 200
+    result_rationale: 'worst 档核心假设：Lambda=0.1 CAR ∈ [62, 75%]，明确高于 lambda=0.005/0.01
+      的 ~52%。 这意味着 SDF 在高剂量下确实有 additive contribution，推翻 "SDF is redundant" 结论。
+
+      机制解释：lambda=0.005/0.01 时 SDF loss gradient 太弱，被 action loss 主导， 模型行为由 LoRA implicit
+      signal 决定。lambda=0.1 时 SDF gradient 足够强， 能够在 action loss 之上施加额外的几何约束，推 EE 远离障碍物。
+      代价是 TSR 进一步下降(2-3% vs 6%)，因为更强的 SDF penalty 使模型更保守。
+
+      4-point curve: lambda=[0, 0.005, 0.01, 0.1] → CAR=[50, 52, 53, 67]% 前三点几乎平坦(SDF
+      太弱，无 marginal effect)，0.1 跳升 ~15pp。 这不是 smooth monotonic curve，而是 threshold
+      effect——SDF 需要足够强的 lambda 才能 overcome demo-implicit signal 的 dominance。 slope
+      ∈ [2.0, 5.0] pp per 0.01 lambda (在 0.01→0.1 段)。
+
+      '
+    tables:
+    - name: Lambda Dose-Response Curve
+      columns:
+      - Lambda
+      - CAR (2-seed mean)
+      - TSR
+      - SDF Delta vs LoRA
+      - Significant?
+      rows:
+      - - 0 (LoRA)
+        - ~50%
+        - ~5%
+        - —
+        - —
+      - - '0.005'
+        - 52.3%
+        - 6.3%
+        - +2pp
+        - No (p>0.3)
+      - - '0.01'
+        - 52.8%
+        - 6.8%
+        - +3pp
+        - No (p>0.2)
+      - - '0.1'
+        - 67%
+        - 2.5%
+        - +17pp
+        - Yes (p<0.05)
+    figures_description:
+    - 4-point Lambda-CAR curve：x=lambda, y=CAR。前三点平坦 ~50-53%，lambda=0.1 跳升至 67%。展示
+      threshold effect 而非 linear dose-response
+    - Lambda-TSR curve 叠加：TSR 从 5-7% 单调下降到 2.5%，更强 SDF → 更保守
+    analysis: 'Lambda=0.1 结果彻底改变 Claim 4 narrative。SDF 不是 redundant——而是在低剂量下 effect
+      size 太小被 noise 淹没，高剂量下有明确 additive contribution。 但 TSR 继续下降意味着 stronger SDF
+      = more conservative = less capable。 论文 Claim 4 必须从 "SDF is redundant" reframe
+      为： "Collision avoidance has two sources: implicit demo signals (dominant, +29pp
+      from baseline) and explicit geometric supervision (additive, +15pp at high lambda
+      but at further TSR cost)."
+
+      '
+  - name: Claim 1 术语验证 → full re-eval 决策
+    plan_id: plan_011
+    description: 决定是否需要 full A1 re-eval (800ep) 还是 50ep sanity check 足够
+    expected_results:
+      decision: 50ep 足够
+      needs_full_reeval: false
+    result_rationale: '已有 800ep obstacle displacement + TSR=0% 双证据链。EE displacement
+      re-eval 仅补充一个字段，50ep 即可确认 EE disp 与 obstacle disp 一致。 worst 档不改变 Claim 1 的证据强度——无论
+      SDF 是否 redundant， A1 的 action collapse 和 fake safety 都是独立事实。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 决策明确：不需要 full re-eval。Claim 1 证据已充分。
+  - name: Phase 2 additional seed (seed0 or seed1)
+    plan_id: plan_012
+    description: 从 10K SDF checkpoint resume with lambda=0, 多 seed 验证 Phase 2 稳定性
+    expected_results:
+      seed_chosen: seed0
+      avg_TSR: 38.0
+      avg_CAR: 64.0
+      avg_ee_displacement: 0.44
+      frozen_pct: 0
+    result_rationale: 'worst 档下 Phase 2 seed2 预测 CAR=68%, TSR=42%。additional seed(seed0)
+      预期 CAR=64%, TSR=38%——方向一致但略低，展示 Phase 2 的 seed variance。 2-seed Phase 2 mean:
+      CAR=66%, TSR=40%，variance ~±4pp。
+
+      这足以 claim two-phase strategy "可行" 但不足以 claim "robust"。 reviewer 会要求更多 seeds
+      或不同 scene 验证。worst 档下这被视为 "promising but preliminary" 结果，论文中作为 future work hint。
+
+      机制：不同 SDF seed 的 10K checkpoint 编码了略不同的 geometric prior， 导致 Phase 2 recovery
+      路径不同。seed0 的 SDF 10K checkpoint 可能 学到了略弱的 geometric awareness(best_loss 在不同
+      step)， 所以 Phase 2 recovery 的 CAR 略低。
+
+      '
+    tables:
+    - name: Phase 2 Multi-seed Summary
+      columns:
+      - Seed
+      - Phase 2 CAR
+      - Phase 2 TSR
+      - EE Disp
+      rows:
+      - - seed2
+        - 68%
+        - 42%
+        - 0.42m
+      - - seed0
+        - 64%
+        - 38%
+        - 0.44m
+      - - Mean
+        - 66%
+        - 40%
+        - 0.43m
+      - - SE
+        - ±2pp
+        - ±2pp
+        - —
+    figures_description:
+    - Phase 2 2-seed 的 TSR-CAR scatter 与 LoRA/SDF cluster 对比
+    analysis: '2-seed Phase 2 mean CAR=66%, TSR=40% 满足 two-phase strategy viability
+      threshold (CAR≥60% + TSR≥40%)。但 2 seeds 统计力不足，reviewer 可攻击。 论文可将此作为 "discovery"
+      而非 "validated method"——降低 claim 强度。
+
+      '
+  - name: LoRA baseline seed2
+    plan_id: plan_013
+    description: 第三个 LoRA-only 种子，使 SDF 归因对比有 3v3 seeds 统计严格性
+    expected_results:
+      avg_TSR: 2.0
+      avg_CAR: 44.0
+      avg_ee_displacement: 0.45
+      frozen_pct: 0
+      n_episodes: 200
+      per_task:
+        task0_TSR: 0
+        task0_CAR: 48
+        task1_TSR: 8
+        task1_CAR: 38
+        task2_TSR: 0
+        task2_CAR: 78
+        task3_TSR: 0
+        task3_CAR: 12
+    result_rationale: "worst 档核心假设：LoRA seed2 CAR 显著低 (40-48%)。这里预测 44%。 机制：LoRA fine-tuning\
+      \ 的 seed variance 来自 LoRA initialization random matrix 和 data shuffling。seed2\
+      \ 可能初始化到了一个 less favorable region， 导致模型学到的 \"保守行为\" 程度不同——less conservative\
+      \ → 更多碰撞 → 低 CAR。\n3-seed LoRA mean: (54.5 + 56.0 + 44.0) / 3 = 51.5% 3-seed\
+      \ LoRA SE: sqrt(var) / sqrt(3) ≈ 3.7pp\n对比 SDF 3-seed mean: - lambda=0.005:\
+      \ (50 + 54 + 53) / 3 = 52.3% - lambda=0.01: (53 + 52.5 + 53) / 3 = 52.8%\nSDF\
+      \ delta 3v3: - vs l=0.005: 52.3 - 51.5 = +0.8pp (仍不显著) - 但 worst 档假设更极端：seed2\
+      \ CAR=44% 时 LoRA mean=51.5%，\n  实际上 delta 变为 +0.8pp 到 +1.3pp，方向变正但 magnitude\
+      \ 很小。\n\n等等——worst 档说 \"SDF 3v3 delta 变为正且显著 (δ ∈ [+5, +12]pp, p<0.1)\"。 这要求\
+      \ LoRA 3-seed mean 更低。如果 seed2 CAR=40%: LoRA mean = (54.5 + 56 + 40) / 3 = 50.2%\
+      \ SDF l=0.005 mean = 52.3% → delta = +2.1pp (仍不够 +5pp)\n要实现 delta ∈ [+5, +12]，需要\
+      \ lambda=0.1 的 SDF (CAR~67%) 参与对比， 或 LoRA seed2 极低(~35%)。重新校准：\nworst 档的 \"\
+      +5-12pp delta\" 是指 lambda=0.1 vs LoRA 3-seed mean 的 delta， 而非 lambda=0.005/0.01\
+      \ vs LoRA。即：67% - 50% = +17pp at lambda=0.1， 而 low lambda delta 仍不显著。\"SDF delta\
+      \ 变为正且显著\" 是在 high lambda condition 下。\n回到 seed2 预测：CAR=44% 使 LoRA variance\
+      \ 大 (SD≈6.5pp)， reviewer 攻击 \"2-seed LoRA vs 3-seed SDF 的 seed 不对称\" 变为 \"3-seed\
+      \ LoRA variance 太大，均值不可靠\"——新攻击面，但至少对称了。\n"
+    tables:
+    - name: LoRA 3-seed Summary (worst tier)
+      columns:
+      - Seed
+      - CAR
+      - TSR
+      - EE Disp
+      rows:
+      - - s0
+        - 54.5%
+        - 8.5%
+        - 0.489m
+      - - s1
+        - 56.0%
+        - 4.0%
+        - 0.467m
+      - - s2 (predicted)
+        - 44.0%
+        - 2.0%
+        - 0.450m
+      - - Mean
+        - 51.5%
+        - 4.8%
+        - 0.469m
+      - - SD
+        - 6.5pp
+        - 3.3pp
+        - —
+    - name: 3v3 Attribution Table (worst tier)
+      columns:
+      - Condition
+      - 3-seed CAR Mean
+      - SE
+      - Delta vs LoRA
+      - p-value
+      rows:
+      - - LoRA-only
+        - 51.5%
+        - 3.7pp
+        - —
+        - —
+      - - SDF l=0.005
+        - 52.3%
+        - 1.5pp
+        - +0.8pp
+        - '>0.5'
+      - - SDF l=0.01
+        - 52.8%
+        - 0.3pp
+        - +1.3pp
+        - '>0.3'
+      - - SDF l=0.1
+        - 67.0%
+        - 1.0pp
+        - +15.5pp
+        - <0.02
+    figures_description:
+    - LoRA 3-seed CAR 分布 vs SDF 3-seed CAR 分布的 box plot，展示 LoRA variance 显著更大
+    analysis: 'seed2 低 CAR (44%) 使 LoRA 3-seed variance 大幅增加 (SD=6.5pp vs SDF SD=1.5pp)。
+      low lambda SDF delta 仍不显著，但 high lambda (0.1) delta=+15.5pp 变为显著。 reviewer 的新攻击点：LoRA
+      variance 太大 → "mean 不可靠" → 无论 SDF delta 多少， 结论都不 robust。论文需在 discussion 中 acknowledge
+      high LoRA variance， 建议 future work 用 5+ seeds 验证。
+
+      '
+  - name: dfCAR threshold sensitivity analysis
+    plan_id: plan_014
+    description: 在 delta={2mm,5mm,10mm,20mm,50mm,100mm} 上计算 filtered CAR/FSR
+    expected_results:
+      thresholds:
+        2mm:
+          dfCAR_A1: 0.4
+          dfCAR_LoRA: 54.5
+          dfCAR_baseline: 83.0
+        5mm:
+          dfCAR_A1: 0.4
+          dfCAR_LoRA: 54.5
+          dfCAR_baseline: 83.0
+        10mm:
+          dfCAR_A1: 0.4
+          dfCAR_LoRA: 54.5
+          dfCAR_baseline: 82.5
+        20mm:
+          dfCAR_A1: 0.4
+          dfCAR_LoRA: 54.5
+          dfCAR_baseline: 82.0
+        50mm:
+          dfCAR_A1: 0.4
+          dfCAR_LoRA: 54.5
+          dfCAR_baseline: 81.0
+        100mm:
+          dfCAR_A1: 0.4
+          dfCAR_LoRA: 54.5
+          dfCAR_baseline: 80.0
+    result_rationale: 'dfCAR threshold sensitivity 与档位无关——这是已有 eval JSON 的 post-hoc
+      分析。 A1 safe episodes 的 EE displacement 在 微米级 (0.001-0.01mm)，所以 2mm-100mm 任何
+      threshold 都会 filter 掉所有 safe episodes → dfCAR ≈ 0.4% (仅 3/732 real safe episodes
+      的 EE disp > 0.1mm)。
+
+      LoRA/SDF models 的 safe episodes EE displacement ~0.35-0.58m (全部 >100mm)， 所以任何
+      threshold ≤ 100mm 都不 filter → dfCAR = raw CAR。
+
+      baseline Pi0.5 的 safe episodes 有 geometric path safety，EE displacement ~0.15m
+      = 150mm，大部分 >100mm 但少数 episode 可能在 50-100mm 之间， 所以高 threshold 会轻微 filter baseline。
+
+      关键结果：dfCAR 在 2mm 到 100mm 范围内几乎完全不变（A1 始终 ~0%， LoRA/SDF 始终 = raw CAR）。这证明 threshold
+      选择 robust—— fake safety (A1) 和 real safety (LoRA) 之间有巨大的 gap (0.01mm vs 400mm)，
+      任何 reasonable threshold 都能完美分离。
+
+      '
+    tables:
+    - name: dfCAR Threshold Sensitivity
+      columns:
+      - Threshold (mm)
+      - A1 dfCAR
+      - LoRA dfCAR
+      - SDF l=0.005 dfCAR
+      - Pi0.5 baseline dfCAR
+      rows:
+      - - '2'
+        - 0.4%
+        - 54.5%
+        - 52.3%
+        - 83.0%
+      - - '5'
+        - 0.4%
+        - 54.5%
+        - 52.3%
+        - 83.0%
+      - - '10'
+        - 0.4%
+        - 54.5%
+        - 52.3%
+        - 82.5%
+      - - '20'
+        - 0.4%
+        - 54.5%
+        - 52.3%
+        - 82.0%
+      - - '50'
+        - 0.4%
+        - 54.5%
+        - 52.3%
+        - 81.0%
+      - - '100'
+        - 0.4%
+        - 54.5%
+        - 52.3%
+        - 80.0%
+    figures_description:
+    - dfCAR vs threshold 曲线：A1 线贴底(~0%)，LoRA/SDF 线在 ~52-55% 完全平坦，baseline 在 80-83%
+      微降。展示 threshold robustness 的 'gap' 特性
+    analysis: 'dfCAR 对 threshold 极不敏感——fake safety 和 real safety 之间存在 3 个数量级的 EE displacement
+      gap (0.01mm vs 400mm)。这是 dfCAR 作为 metric 的最强卖点： 不需要精确调参，任何 reasonable threshold
+      都给出同样结论。 此分析在所有档位下一致，是论文 Claim 1 的重要支撑。
+
+      '
+  - name: spatial_bowl LoRA-only control
+    plan_id: plan_015
+    description: 在 spatial_bowl 场景训练 LoRA-only，完成跨场景归因
+    expected_results:
+      avg_TSR: 1.0
+      avg_CAR: 36.0
+      avg_ee_displacement: 0.32
+      frozen_pct: 0
+      n_episodes: 200
+    result_rationale: 'worst 档核心假设：spatial_bowl SDF CAR (~45%) vs LoRA CAR (~36%)
+      → delta = +9pp。 但这与 object_pudding 的 delta ≈ 0pp 不一致——跨场景 SDF effect 不一致。
+
+      机制解释：spatial_bowl 的 bowl 在桌面不同位置(between plates, on ramekin, on stove, on cabinet)，碰撞
+      geometry 更多样。LoRA implicit signal 在 spatial_bowl 中 效果较弱(CAR=36% vs object_pudding
+      55%)，因为 demo 中的避障 pattern 在不同 spatial layout 下 generalize 更差。SDF geometric supervision
+      在这种情况下 提供了额外的 layout-specific 避障信号，所以 delta 为正(+9pp)。
+
+      但统计显著性存疑：spatial_bowl 仅 1 seed SDF + 1 seed LoRA， p-value 计算需要 bootstrap 或 per-task
+      pairing，预期 p ∈ [0.05, 0.15]—— marginal significance at best。
+
+      这个 pattern 不一致性(object_pudding: delta=0, spatial_bowl: delta=+9pp) 使得跨场景 generalization
+      claim 不可行。论文必须 acknowledge： "SDF contribution is scene-dependent; in geometry-diverse
+      scenes, SDF may provide additional benefit beyond implicit demo signals, but
+      this effect is not universal."
+
+      '
+    tables:
+    - name: Cross-Scene Attribution (worst tier)
+      columns:
+      - Scene
+      - LoRA CAR
+      - SDF CAR
+      - Delta
+      - Interpretation
+      rows:
+      - - object_pudding
+        - 51.5%
+        - 52.3%
+        - +0.8pp (ns)
+        - SDF redundant
+      - - spatial_bowl
+        - 36%
+        - 45%
+        - +9pp (marginal)
+        - SDF additive
+      - - Consistent?
+        - —
+        - —
+        - 'No'
+        - Scene-dependent
+    figures_description:
+    - 双场景 LoRA vs SDF CAR 对比 bar chart with error bars，展示 delta 方向不一致
+    analysis: spatial_bowl LoRA control 揭示 SDF 效果是 scene-dependent 而非 universal。 这是
+      worst 档最致命的发现之一：无法做跨场景 claim。 论文策略：在 object_pudding 上做 primary analysis (3v3
+      seeds, well-powered)， spatial_bowl 作为 exploratory analysis with caveat。 reviewer
+      R1 (generalizability) 攻击面进一步扩大。
+  review_report: '---
+
+    dream_id: dream_20260526T023936
+
+    tier: worst
+
+    overall_score: 5/10 Marginal Reject
+
+    timestamp: 2026-05-26T03:42:03.366291+00:00
+
+    ---
+
+
+
+    # Dream Review Report: Rethinking VLA Safety Evaluation
+
+
+    **Dream ID:** 20260526T023936
+
+    **Venue:** CoRL 2026 (rating scale 1-10, acceptance rate ~40%)
+
+    **Review Mode:** Full (2 Reviewers + Roundtable)
+
+
+    ---
+
+
+    ## Reviewer Assignments
+
+    - **R1:** Methods and Experiments (Soundness, Statistical Rigor, Experimental
+    Coverage)
+
+    - **R2:** Novelty and Related Work (Originality, Positioning, Contribution Scope)
+
+
+    ---
+
+
+    ## R1 Review: Methods and Experiments
+
+
+    ### Summary
+
+    The paper diagnoses systematic contamination of CAR by action collapse ("fake
+    safety"), proposes dfCAR, and conducts ablations decomposing collision avoidance
+    into implicit demonstration signals vs. explicit SDF geometric supervision across
+    6000+ episodes. The central experimental finding is that LoRA fine-tuning alone
+    accounts for the dominant avoidance signal (+29pp CAR), with SDF adding nothing
+    at low lambda but +15.5pp at lambda=0.1 (p<0.02). A two-phase curriculum partially
+    resolves the safety-capability tradeoff (CAR=66%, TSR=40%).
+
+
+    ### Strengths
+
+    - **Well-designed fake safety diagnosis.** The 800-episode A1 evaluation with
+    per-episode displacement analysis provides compelling evidence. The dual evidence
+    chain (99.4% obstacle displacement <0.1mm AND TSR=0%) is methodologically sound.
+    The bimodal displacement gap spanning 3+ orders of magnitude makes the finding
+    robust.
+
+    - **dfCAR threshold robustness is thorough.** Invariance across δ∈[2mm, 100mm]
+    cleanly separates fake from real safety and eliminates the threshold sensitivity
+    objection.
+
+    - **3v3 seed design for SDF attribution (Table 4) is the correct structure.**
+    Matched seed counts with separate SEs and per-lambda p-values follows good practice.
+
+    - **Honest reporting of negative results.** The paper does not hide inconvenient
+    findings (cross-scene inconsistency, OpenVLA blocking, high LoRA variance).
+
+    - **Large cumulative experimental effort.** 6000+ episodes, multiple lambda values,
+    cross-scene validation, two-phase ablation.
+
+
+    ### Weaknesses
+
+    - **3v3 comparison is critically underpowered for a null-result claim (Table 4).**
+    With n=3 seeds, effective df for Welch t-test is ~2-4. LoRA SD=6.5pp (SE=3.7pp)
+    → 95% CI on LoRA-SDF difference at λ=0.005 spans roughly [-8pp, +10pp]. Cannot
+    distinguish "SDF adds 0pp" from "SDF adds 5pp." No formal equivalence test (TOST)
+    with pre-specified margin. Treating absence-of-significance as evidence-of-absence
+    is a classic statistical error.
+
+    - **Lambda=0.1 result (+15.5pp, p<0.02) based on only 2 seeds.** With 2-3 effective
+    df, p<0.02 has fragile coverage. A single additional seed could push p above 0.05.
+    The 10x jump from λ=0.01 to λ=0.1 with no intermediate values (0.03, 0.05, 0.07)
+    leaves the dose-response curve severely under-sampled.
+
+    - **Two-phase training uses only 2 seeds.** CAR=66% (SE~2pp), TSR=40% (SE~2pp).
+    95% CI on TSR spans ~[36%, 44%]. Only one Phase 1 duration (10K) and one lambda
+    (0.005) tested — no ablation over Phase 1 hyperparameters.
+
+    - **Cross-scene results (Table 7) are inconsistent and single-seeded.** SDF effect:
+    +0.8pp (ns) on object_pudding vs. +9pp (marginal) on spatial_bowl. With n=1 per
+    condition for spatial_bowl, cannot distinguish genuine scene effects from seed
+    noise.
+
+    - **dfCAR introduces potential selection bias.** Excluding low-displacement episodes
+    conditions on a post-treatment variable. If SDF training changes the displacement
+    distribution, dfCAR could create or mask treatment effects. Not discussed.
+
+    - **EE-only SDF circularity.** The paper demonstrates EE-only SDF is structurally
+    deficient, then tests SDF redundancy using only EE-only SDF. Cannot distinguish
+    "geometric supervision is fundamentally redundant" from "this particular formulation
+    is too limited to help at low doses."
+
+    - **OpenVLA blocked.** Only projected values reported. Weakens generalization
+    claim to 2 model families from the same Pi0 lineage.
+
+    - **Statistical methodology unreported.** No specification of which test was used,
+    degrees of freedom, or confidence intervals — only p-values.
+
+
+    ### Questions for Authors
+
+    1. What specific test produced the p-values in Tables 4-5? Report test statistic,
+    df, and 95% CIs. Have you considered TOST equivalence testing?
+
+    2. Have you tested intermediate lambda values (0.03, 0.05, 0.07)? Is the jump
+    at λ=0.1 a smooth transition or phase change?
+
+    3. How do you reconcile "SDF adds nothing at low lambda" with "SDF adds 15.5pp
+    at high lambda" — is SDF redundant or under-dosed?
+
+    4. The TSR collapse (73%→5%) is identical across LoRA-only and all SDF variants.
+    Is this catastrophic forgetting from fine-tuning on filtered demos? Have you tried
+    standard mitigations (EWC, replay, lower LR)?
+
+    5. Does dfCAR filtering change the proportion of episodes differently across conditions?
+
+
+    ### Missing Experiments
+
+    - Intermediate lambda values (0.03, 0.05, 0.07) to characterize dose-response
+
+    - Third seed for lambda=0.1 and Phase 2 conditions
+
+    - spatial_bowl LoRA-only control (plan_015)
+
+    - OpenVLA evaluation (even zero-shot)
+
+    - Phase 2 ablation over Phase 1 duration and lambda
+
+    - Real robot validation or discussion of dfCAR in noisy settings
+
+    - Application of dfCAR to published safety methods (AEGIS, SafeVLA)
+
+
+    ### R1 Scores
+
+    - Soundness: 2/4
+
+    - Significance: 2/4
+
+    - Clarity: 3/4
+
+    - Overall: **4/10**
+
+    - Confidence: 4/5
+
+
+    ---
+
+
+    ## R2 Review: Novelty and Related Work
+
+
+    ### Summary
+
+    The paper identifies CAR contamination by action collapse, proposes dfCAR as a
+    corrective, and demonstrates through ablation that collision avoidance arises
+    primarily from implicit demonstration signals rather than explicit SDF supervision.
+    The novelty rests on the empirical documentation of metric contamination and the
+    decomposition of avoidance sources, rather than on methodological innovation.
+
+
+    ### Strengths
+
+    - **Fake safety observation is well-documented and impactful.** The 91.5% CAR
+    / 0% TSR / 99.4% frozen finding is striking. Even if action collapse is conceptually
+    unsurprising, demonstrating its magnitude of metric contamination is a genuine
+    contribution.
+
+    - **dfCAR threshold robustness is convincing.** The bimodal gap rendering dfCAR
+    invariant across [2, 100]mm eliminates the threshold sensitivity objection. Simple,
+    principled, and immediately usable.
+
+    - **4-point lambda dose-response is well-designed.** The flat curve for λ≤0.01
+    with jump at λ=0.1 provides structured evidence of a threshold effect.
+
+    - **Honest limitation disclosure.** Appropriate for a diagnostic paper. The paper
+    acknowledges scope restrictions and distinguishes discovery from validated method.
+
+    - **Per-task breakdown provides mechanistic insight** beyond aggregate numbers.
+
+
+    ### Weaknesses
+
+    - **Action collapse is not novel; documenting its metric contamination is.** Action
+    collapse / mode collapse is extensively documented in RL, generative modeling,
+    and imitation learning. The contribution narrows to "CAR does not account for
+    action collapse" — useful but closer to a benchmark/metrics paper than a conceptual
+    advance. Title "Rethinking VLA Safety Evaluation" overstates this.
+
+    - **Bibliography is critically deficient with fabricated entries.** Multiple placeholder
+    references with "{Authors}" as author field. The project''s own literature map
+    identifies 25+ real papers not cited. At CoRL, fabricated bibliography entries
+    risk desk rejection.
+
+    - **dfCAR is conceptually simple** — displacement thresholding + CAR. The bimodal
+    gap that makes it robust is a property of this specific benchmark/model, not guaranteed
+    for all VLA evaluations. Paper does not discuss partial-collapse scenarios.
+
+    - **SDF redundancy has limited generalization scope.** EE-only SDF on Pi0.5 with
+    LoRA on SafeLIBERO. The paper''s own analysis identifies the structural limitation.
+    Framing "implicit demonstration signals, not explicit geometric supervision" as
+    a general conclusion overgeneralizes from EE-only SDF to all geometric supervision.
+
+    - **"Decomposition framework" is overstated.** This is a two-condition ablation
+    (LoRA vs. LoRA+SDF), not a framework. A genuine decomposition would systematically
+    disentangle data distribution, model capacity, training procedure, and geometric
+    signal.
+
+    - **Only 2 model families from the same Pi0 lineage.** The blocked OpenVLA experiment
+    is a significant gap for a paper claiming to rethink VLA safety evaluation writ
+    large.
+
+    - **TSR collapse (73%→6%) not adequately analyzed.** Does not distinguish learned
+    conservatism (safety-relevant) from catastrophic forgetting (fine-tuning artifact).
+
+
+    ### Missing Related Work
+
+    - Safe RL foundations: CPO (Achiam et al., ICML 2017), Lagrangian constrained
+    MDPs
+
+    - Action/mode collapse: Diffusion Policy (Chi et al., RSS 2023), Dong et al. (2025)
+    loss collapse
+
+    - Other geometric representations: C-space distance fields (Li et al., RSS 2024),
+    full-body SDF
+
+    - VLA foundations: RT-2, OpenVLA, Octo, LIBERO (proper citations needed)
+
+    - Runtime safety: RAIL, TamedPUMA, APEX
+
+    - Spatial/3D-aware VLAs: Spatial Forcing (ICLR 2026), QDepth-VLA
+
+    - Metric validity: Goodhart''s law literature, benchmark saturation
+
+
+    ### R2 Scores
+
+    - Originality: 2/4
+
+    - Significance: 2/4
+
+    - Clarity: 3/4
+
+    - Overall: **5/10**
+
+    - Confidence: 4/5
+
+
+    ---
+
+
+    ## Roundtable Synthesis
+
+
+    ### Step 2: Cross-Sharing Summary
+
+    Both reviewers independently identified the same core strengths (fake safety diagnosis,
+    dfCAR robustness) and weaknesses (statistical underpowering, narrow scope, EE-only
+    SDF circularity, incomplete experiments). The convergence is strong.
+
+
+    ### Step 3: Agreements and Disagreements
+
+
+    **Consensus Points:**
+
+    1. Fake safety / dfCAR is the paper''s strongest and most actionable contribution.
+
+    2. The SDF attribution claim is critically underpowered (n=3 seeds, no equivalence
+    test, high LoRA variance SD=6.5pp).
+
+    3. The lambda=0.1 result (+15.5pp) contradicts the "SDF redundancy" headline —
+    SDF works when dosed sufficiently, undermining the paper''s framing.
+
+    4. Scope is too narrow for the claim generality: 2 model families (same lineage),
+    1 main scene, OpenVLA blocked, spatial_bowl single-seeded and inconsistent.
+
+    5. Two-phase results are promising but preliminary (2 seeds, no hyperparameter
+    ablation).
+
+    6. Bibliography is critically deficient with fabricated/placeholder entries.
+
+    7. The paper is well-written and honestly self-critical about limitations.
+
+
+    **Divergence:**
+
+    - R1 (4/10) weighs statistical rigor failures more heavily; R2 (5/10) gives more
+    credit for practical value of the fake safety observation.
+
+    - R1 uniquely raises dfCAR selection bias (conditioning on post-treatment variable);
+    R2 uniquely raises partial-collapse generality concern.
+
+    - Both concerns are valid and complementary rather than conflicting.
+
+
+    ### Step 4: Consolidated Assessment
+
+
+    **Overall Score: 4.5/10 → 5/10 (Marginal Reject)**
+
+
+    **Justification:**
+
+
+    The paper identifies a genuine and practically important problem — standard CAR
+    is systematically inflated by action collapse in low-capability VLA models. The
+    proposed dfCAR metric is simple, principled, and remarkably robust to threshold
+    choice. These contributions alone have value for the VLA safety evaluation community.
+
+
+    However, the paper suffers from several issues that place it below the CoRL acceptance
+    threshold (~40% acceptance):
+
+
+    1. **Statistical rigor is insufficient for the central claims.** The SDF attribution
+    analysis (the paper''s most ambitious claim) uses n=3 seeds with high variance
+    (SD=6.5pp), no equivalence testing, unreported test methodology, and no confidence
+    intervals. The lambda=0.1 result uses only 2 seeds. These sample sizes cannot
+    support the conclusions drawn.
+
+
+    2. **The SDF redundancy framing is internally contradicted.** The paper''s own
+    lambda=0.1 result shows SDF provides +15.5pp CAR when sufficiently weighted. This
+    means SDF is not redundant — it is under-dosed at low lambda. The paper attempts
+    to reconcile this but the framing remains confused between "SDF is redundant"
+    and "SDF has a dose-dependent effect."
+
+
+    3. **Scope is too narrow for the claim generality.** "Rethinking VLA Safety Evaluation"
+    requires evidence beyond 1 benchmark, 2 scenes, and 2 model families from the
+    same architectural lineage. The OpenVLA gap is particularly damaging.
+
+
+    4. **Bibliography is critically incomplete.** Placeholder/fabricated citations
+    would risk desk rejection at a top venue.
+
+
+    5. **The "decomposition framework" label overstates what is fundamentally a two-condition
+    ablation** (LoRA vs. LoRA+SDF).
+
+
+    **What would raise the score to accept (6-7):**
+
+    - 5+ seeds for LoRA and SDF conditions with proper equivalence testing
+
+    - Intermediate lambda values (0.03, 0.05, 0.07) to characterize the dose-response
+
+    - At least one non-Pi0 model family (OpenVLA or RT-2)
+
+    - Complete bibliography with real citations
+
+    - Reframe from "SDF redundancy" to "dose-dependent decomposition" — which is the
+    actual finding
+
+    - Scope claims to match evidence: "on SafeLIBERO with Pi0 family" not "VLA safety
+    evaluation" broadly
+
+
+    **Experiment Coverage Assessment (vs. review_context.yaml):**
+
+    - plan_001 (A1 re-eval): ✅ Covered (Table 1)
+
+    - plan_002 (OpenVLA): ❌ BLOCKED — only projected values
+
+    - plan_003 (LoRA 2-seed eval): ✅ Covered (Table 3, s0/s1)
+
+    - plan_004 (LoRA training): ✅ Covered
+
+    - plan_005 (Phase 2 training): ✅ Covered
+
+    - plan_006 (Phase 2 eval): ✅ Covered (Table 6)
+
+    - plan_007 (spatial_bowl training): ✅ Covered
+
+    - plan_008 (spatial_bowl eval): ✅ Covered (Table 7)
+
+    - plan_009 (Lambda=0.1 training): ✅ Covered
+
+    - plan_010 (Lambda=0.1 eval): ✅ Covered (Table 5)
+
+    - plan_011 (A1 re-eval decision): ✅ Covered
+
+    - plan_012 (Phase 2 additional seed): ✅ Covered (Table 6, seed 0)
+
+    - plan_013 (LoRA seed2): ✅ Covered (Table 3, s2) — low CAR=44% drives variance
+
+    - plan_014 (dfCAR threshold sensitivity): ✅ Covered (Table 2)
+
+    - plan_015 (spatial_bowl LoRA control): ⚠️ Partially covered (Table 7 reports
+    CAR=36% but only 1 seed)
+
+
+    **Key coverage gaps:** OpenVLA blocked, spatial_bowl underpowered, no intermediate
+    lambda values, no Phase 2 hyperparameter ablation.
+
+
+    ---
+
+
+    ## Final Scores Summary
+
+
+    | Dimension | R1 | R2 | Consensus |
+
+    |-----------|----|----|-----------|
+
+    | Soundness/Originality | 2/4 | 2/4 | 2/4 |
+
+    | Significance | 2/4 | 2/4 | 2/4 |
+
+    | Clarity | 3/4 | 3/4 | 3/4 |
+
+    | Overall | 4/10 | 5/10 | **5/10 (Marginal Reject)** |
+
+    | Confidence | 4/5 | 4/5 | 4/5 |
+
+
+    **Recommendation: Reject (with encouragement to resubmit after addressing statistical
+    rigor, scope, and bibliography issues)**
+
+
+
+    ---
+
+
+    ## 引用验证结果
+
+
+    **统计**: 40 篇文献 / 29 处引用 / 在线验证 40/40 篇
+
+
+    ### 问题 (24)
+
+
+    - ⚠️ `liu2023libero` — 元数据不匹配: first_author: bib=liu vs api=feng
+
+    - ❌ `karwowski2024goodhart` — 在线验证未找到匹配（疑似虚假引用）: best match similarity 0.29 below
+    threshold 0.82
+
+    - ⚠️ `geoaware2025` — 元数据不匹配: first_author: bib=abouzeid vs api=ali
+
+    - ❌ `stemvla2026` — 在线验证未找到匹配（疑似虚假引用）: no results from any source
+
+    - ❌ `evo02025` — 在线验证未找到匹配（疑似虚假引用）: best match similarity 0.31 below threshold
+    0.82
+
+    - ⚠️ `vasilopoulos2023ramp` — 在 .bib 中但正文未引用
+
+    - ⚠️ `chen2026cssdfnet` — 在 .bib 中但正文未引用
+
+    - ⚠️ `jacquet2025neuralnmpc` — 在 .bib 中但正文未引用
+
+    - ⚠️ `chen2025samp` — 在 .bib 中但正文未引用
+
+    - ⚠️ `ruan2025profrobot` — 在 .bib 中但正文未引用
+
+    - ⚠️ `depthvla2025` — 在 .bib 中但正文未引用
+
+    - ⚠️ `li2025qdepth` — 在 .bib 中但正文未引用
+
+    - ⚠️ `li2025spatialforcing` — 在 .bib 中但正文未引用
+
+    - ⚠️ `3dcavla2025` — 在 .bib 中但正文未引用
+
+    - ⚠️ `geoaware2025` — 在 .bib 中但正文未引用
+
+    - ⚠️ `spatialvla2025` — 在 .bib 中但正文未引用
+
+    - ⚠️ `gstvla2026` — 在 .bib 中但正文未引用
+
+    - ⚠️ `stemvla2026` — 在 .bib 中但正文未引用
+
+    - ⚠️ `stvla2026` — 在 .bib 中但正文未引用
+
+    - ⚠️ `evo02025` — 在 .bib 中但正文未引用
+
+    - ⚠️ `savla2026` — 在 .bib 中但正文未引用
+
+    - ⚠️ `augvla3d2026` — 在 .bib 中但正文未引用
+
+    - ⚠️ `evodepth2026` — 在 .bib 中但正文未引用
+
+    - ⚠️ `chen2026dfmvla` — 在 .bib 中但正文未引用
+
+
+    ### ✅ 通过 (35)'
+  error: ''
+errors: {}
+score_anomaly: ''
+created_at: '2026-05-26T03:42:12+00:00'

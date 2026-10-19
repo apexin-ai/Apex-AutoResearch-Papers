@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3ed4c01edf4076d14f4b",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "eval monitor baseline pertask v2",
+  "task_key": "worker_eval_monitor_baseline_pertask_v2_20260528T003705",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_monitor_baseline_pertask_v2_20260528T003705_result.json",
+    "occurrence": 1,
+    "bytes": 989,
+    "sha256": "01a039660011c2f51eb9165caf562846afeb9d21766af23e8f2e40b8000c9a42"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "While waiting for westd-35807, here's what I've collected from westd-45947:\n\n**All reeval JSONs on westd-45947** (all are single-task: orange_juice, 50 episodes, level II, seed 7):\n\n| File | Model | TSR | CAR |\n|------|-------|-----|-----|\n| `lora_baseline_s0_reeval_...` | LoRA baseline seed0 | 32% | **56%** |\n| `pi05_base_reeval_...` | pi0 baseline | 74% | 16% |\n| `reeval_lora_s1_30k` | LoRA baseline seed1 | 34% | 54% |\n| `reeval_sdf_s0_l005_30k` | SDF seed0 λ=0.05 | 38% | 52% |\n| `reeval_sdf_s0_l01_30k` | SDF seed0 λ=0.1 | 28% | 48% |\n| `reeval_sdf_s1_l005_30k` | SDF seed1 λ=0.05 | 28% | 64% |\n| `reeval_sdf_s1_l01_30k` | SDF seed1 λ=0.1 | 22% | 60% |\n| `reeval_sdf_s2_l005_30k` | SDF seed2 λ=0.05 | 34% | 46% |\n| `reeval_sdf_s2_l01_30k` | SDF seed2 λ=0.1 | 24% | 64% |\n\n**LoRA s0 overall CAR = 56.0%** (not 56.5% or 57.0%). If the main table shows s0=57.0%, **MAIN_TABLE_NEEDS_UPDATE: yes**.\n\nPolling westd-35807 PID 932512 in ~2 minutes..."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-monitor-baseline-pertask-v2.md"
+}

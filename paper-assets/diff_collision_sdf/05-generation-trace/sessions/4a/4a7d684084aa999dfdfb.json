@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4a7d684084aa999dfdfb",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "code pi05 a1 sdf integration",
+  "task_key": "worker_code_pi05_a1_sdf_integration_20260522T222344",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_pi05_a1_sdf_integration_20260522T222344_result.json",
+    "occurrence": 1,
+    "bytes": 2534,
+    "sha256": "d6d9aa32793a424db9466fc58c048cba8c037ed1889840414649254b32290e72"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。汇报结果：\n\n---\n\n## 完成汇报\n\n### 1. 文件变更清单\n\n| 文件 | 操作 | 说明 |\n|------|------|------|\n| `scripts/train_a1_sdf_aux_pi05.py` | **新建** | Pi0.5 版 A1 SDF 训练脚本 |\n| `scripts/eval_safelibero.py` | **修改** | 添加 `--pi05` flag，4 处改动 |\n\n### 2. 与 `train_a1_sdf_aux.py` 的代码差异\n\n| 项目 | Pi0 (原) | Pi0.5 (新) |\n|------|----------|-----------|\n| model_config | `Pi0Config(paligemma_variant=\"gemma_2b\", action_expert_variant=\"gemma_300m\")` | `Pi0Config(pi05=True, action_horizon=10, discrete_state_input=False)` |\n| 权重路径 | `pi0_base` | `pi05_libero` |\n| `--lambda_sdf` 默认值 | 0.1 | **0.005** (M030 教训) |\n| config/exp_name 前缀 | `a1_sdf_` | `a1_sdf_pi05_` |\n| SdfAuxHooks / SDFDecoder / EEExtractor / LoRA | 完全不变 | 完全不变 |\n\n### 3. 训练启动命令模板\n\n```bash\n# Dry run 验证\npython scripts/train_a1_sdf_aux_pi05.py --scene spatial_bowl --dry_run --gpu 0\n\n# 正式训练\npython scripts/train_a1_sdf_aux_pi05.py \\\n    --scene spatial_bowl \\\n    --seed 0 \\\n    --gpu 0 \\\n    --batch_size 32 \\\n    --num_train_steps 30000 \\\n    --lambda_sdf 0.005 \\\n    --lambda_ee 0.01 \\\n    --lr 2.5e-5 \\\n    --save_interval 2000\n```\n\n### 4. Eval 使用\n\n```bash\n# A1 评估（baseline/a1 模式直接用 config_name）\npython scripts/eval_safelibero.py \\\n    --model_type a1 \\\n    --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_pi05_spatial_bowl/... \\\n    --config_name pi05_libero \\\n    --suite safelibero_spatial --task_id 0 --n_episodes 50\n\n# A3 评估需要 --pi05 flag\npython scripts/eval_safelibero.py \\\n    --model_type a3 --pi05 \\\n    --checkpoint ... \\\n    --config_name pi05_libero \\\n    --suite safelibero_spatial --task_id 0\n```\n\n### 5. 技术风险\n\n- **权重未同步**：`/root/autodl-tmp/openpi_weights/pi05_libero/` 在 westd-35807 上不存在，需从 westd-45947 的 `/root/autodl-tmp/openpi_weights/pi05_libero/` rsync（~12GB）\n- **action_horizon 影响 mean pooling**：Pi0.5 的 suffix_out 是 `[B, 10, 1024]`（Pi0 是 `[B, 50, 1024]`），mean pooling 粒度变粗，SDFDecoder 收到的特征信息密度不同，可能影响 SDF 预测质量\n- **assets/norm_stats 兼容性**：当前 SCENE_CONFIG 指向 `baseline_spatial_bowl` 的 assets，这是 Pi0 的 norm_stats。Pi0.5 可能需要自己的 norm_stats（取决于 pi05_libero checkpoint 是否包含适用于 SafeLIBERO 数据的统计量）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-pi05-a1-sdf-integration.md"
+}

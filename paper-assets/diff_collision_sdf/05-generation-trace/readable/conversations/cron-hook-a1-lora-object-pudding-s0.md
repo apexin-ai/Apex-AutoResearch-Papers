@@ -1,0 +1,1068 @@
+# cron hook a1 lora object pudding s0
+
+**How Action Collapse Creates Illusory Safety in Diffusion-Based VLA Collision Avoidance Evaluation** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 33
+- **Recorded user turns:** 1
+- **Tool calls:** 16
+- **Original source:** `logs/chats/cron_hook_a1_lora_object_pudding_s0.jsonl`
+- **Structured JSON:** [`b3cfa0076eda636dda26.json`](../../sessions/b3/b3cfa0076eda636dda26.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+33 recorded events
+
+### User
+
+_source line 1 · 2026-05-22T13:53:01.622690+00:00_
+
+[CRON] 实验进程异常退出（失败），需要你诊断原因。
+详情: Process exited without valid W&B metrics
+
+- exp_id: a1_lora_object_pudding_s0
+- project: diff_collision_sdf
+- server: westd-35807
+- log_path: /root/autodl-tmp/colliforce-outputs/a1_lora_obj_s0/train.log
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:a1_lora_object_pudding_s0",
+  "source": "cron:hook"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-22T13:53:12.913406+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_worker_status",
+  "max_results": "10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:a1_lora_object_pudding_s0",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_worker_status",
+    "max_results": "10"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-22T13:53:12.964040+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:a1_lora_object_pudding_s0",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-22T13:53:16.425567+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "diff_collision_sdf",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:a1_lora_object_pudding_s0",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "diff_collision_sdf",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-22T13:53:16.928634+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:a1_lora_object_pudding_s0",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-22T13:53:16.930232+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"a1_lora_object_pudding_s0\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T05:01:36.215Z\", \"updated_at\": \"2026-05-22T13:52:59.544Z\", \"hypothesis\": \"A1 SDF auxiliary task with LoRA injection (rank 16/32, matching A3/baseline config) on object_pudding — Phase 1 SDF warmup (frozen LoRA), Phase 2 joint training (LoRA + SDF). Expects CAR improvement over LoRA baseline with TSR drop <10%. Parent: baseline_lora_object_pudding_s0 establishes same-parameter-budget reference.\", \"parent\": \"baseline_lora_object_pudding_s0\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 JAX_PLATFORMS=cpu WANDB_MODE=disabled python scripts/train_a1_sdf_aux.py --scene object_pudding --seed 0 --num_train_steps 30000 --save_interval 2000 --exp_name a1_lora_object_pudding_seed0 --gpu 2\", \"server\": \"westd-35807\", \"gpu\": [\"cuda:2\"], \"pid\": \"292258\", \"log_path\": \"/root/autodl-tmp/colliforce-outputs/a1_lora_obj_s0/train.log\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/a1_sdf_object_pudding/a1_lora_object_pudding_seed0/\", \"data_path\": \"/root/autodl-tmp/colliforce_data/safelibero_object\", \"data_count\": 50, \"model_name\": \"pi0+LoRA+SDF_aux\", \"seed\": 0}, \"notes\": \"[2026-05-21 05:02] Launched on cuda:2 (freed by baseline_object_pudding_s0_v2 completion). PID 292258, ~3.9s/step, 16873 MiB VRAM. Used --gpu 2 due to M013 (script overrides CUDA_VISIBLE_DEVICES).\", \"reproduce\": {\"finished_at\": \"2026-05-22T13:52:58.859Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-22T13:52:59.544Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-22T13:53:01.579738+00:00\"}]}}, \"eval_a3_v11_object\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T13:30:00.290Z\", \"updated_at\": \"2026-05-22T13:52:15.360
+…[truncated 33182 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:a1_lora_object_pudding_s0",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 504
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-22T13:53:17.384201+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "diff_collision_sdf",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:a1_lora_object_pudding_s0",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "diff_collision_sdf",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-22T13:53:17.384634+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "diff_collision_sdf"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:a1_lora_object_pudding_s0",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "diff_collision_sdf"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-22T13:53:22.157280+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 3, \"results\": [{\"exp_id\": \"a1_lora_spatial_bowl_s0\", \"success\": true, \"actions\": [\"Job still running (pid=299910)\"]}, {\"exp_id\": \"a3_gradient_spatial_bowl_s0\", \"success\": true, \"actions\": [\"Job still running (pid=191747)\"]}, {\"exp_id\": \"eval_a3_v11_object\", \"success\": true, \"actions\": [\"Job still running (pid=564007)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:a1_lora_object_pudding_s0",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 5228
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-22T13:53:22.157972+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-22T13:53:00Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 21 个实验 — DONE 18, RUNNING 3\\n**DONE 分布**: failed 9, killed 2, negative 2, success 5\\n\\n### GPU 占用\\n- **分配**: 6 张 — westd-35807:cuda:0, westd-35807:cuda:1, westd-35807:cuda:2, westd-35807:cuda:3, westd-45947:cuda:0, westd-45947:cuda:1\\n- **实际运行**: 3 张 — westd-45947:cuda:0(a3_gradient_spatial_bowl_s0), westd-35807:cuda:0(a1_lora_spatial_bowl_s0), westd-35807:cuda:3(eval_a3_v11_object)\\n- **空闲（分配了没跑）**: westd-35807:cuda:1, westd-35807:cuda:2, westd-45947:cuda:1\\n\\n### 💾 磁盘余量\\n- **westd-35807**:\\n  - `/init`: 150M/150M 可用（已用 0%）\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\n  - `/usr/bin/nvidia-smi`: 570G/879G 可用（已用 32%）\\n- **westd-45947**:\\n  - `/init`: 150M/150M 可用（已用 0%）\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\n  - `/usr/bin/nvidia-smi`: 400G/439G 可用（已用 4%）\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `a3_gradient_spatial_bowl_s0` | westd-45947 | cuda:0 | 191747 | `/tmp/a3_spatial_bowl.log` |\\n| `a1_lora_spatial_bowl_s0` | westd-35807 | cuda:0 | 299910 | `/root/autodl-tmp/colliforce-outputs/a1_lora_spa_s0/train.log` |\\n| `eval_a3_v11_object` | westd-35807 | cuda:3 | 564007 | `/tmp/eval_a3_v11.log` |\\n\\n### 📌 最近完成 (top 5)\\n- `a1_lora_object_pudding_s0` [failed] — 2026-05-22T13:52:59 — process dead 5× with no sentinel/W&B — auto-resolved as failed\\n- `eval_baseline_v11_object` [negative] — 2026-05-22T13:50:32 — process dead 5× with no sentinel/W&B — auto-resolved as failed\\n- `baseline_lora_object_pudding_s0` [success] — 2026-05-22T11:58:48 — EXIT_CODE=2 (shell misuse / syntax)\\n- `baseline_lora_spatial_bowl_s0` [success] — 2026-05-22T11:56:17 — EXIT_CODE=2 (shell misuse /
+…[truncated 3375 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:a1_lora_object_pudding_s0",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 4773
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-22T13:53:22.208639+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/ROADMAP.md\", \"content\": \"# diff_collision_sdf — Research Dashboard\\n\\n> 最后更新: 2026-05-22 06:07 UTC | 更新原因: Baseline v10 complete: CAR=79%, TSR=0%. MVP gate standard confirmed valid. A3 eval v10 launching.\\n\\n## 核心方向\\nColliForce-VLA：将可微分 workspace SDF 集成到 VLA 前向传播中，通过 SDF 梯度引导动作生成实现碰撞感知。\\n\\n## 当前进展\\n- **阶段**: MVP 验证 — baseline eval v10 完成，A3 eval v10 启动中\\n- **基座模型**: π0/openpi（锁定）\\n- **GPU**: 6/6（5 训练 + 1 A3 eval）\\n\\n### Baseline Eval v10 结果（首个有效 eval）\\n| Task | TSR | CAR | Displacement |\\n|------|-----|-----|-------------|\\n| orange juice | 0% | 74% | 0.048m |\\n| chocolate pudding | 0% | 86% | 0.018m |\\n| milk | 0% | 66% | 0.039m |\\n| bbq sauce | 0% | 90% | 0.013m |\\n| **平均** | **0%** | **79%** | **~0.03m** |\\n\\n- TSR=0% 大概率是训练计算量不足（1GPU×30K vs AEGIS 8×A100×50K-150K），非 eval bug\\n- CAR=79% 为 A3 改善提供充足空间\\n- Displacement 偏低（0.01-0.05m），可能有 action scale 问题，但不阻塞 MVP gate（两个模型同一 pipeline，相对对比有效）\\n\\n### MVP Gate 标准（Reviewer 确认有效）\\n- A3 CAR ≥94%（vs baseline 79%，≥15pp 改善）\\n- A3 TSR ≥0%（baseline=0%，自动满足）\\n- **附加检查**：A3 displacement ≈ baseline displacement（排除\\\"不动就不碰\\\"假象）\\n\\n### A3 Eval v10（进行中）\\n- v10a: A3 with refinement → v10b: A3 no_refine\\n- 预计 ~4-5h/each\\n\\n### 训练状态\\n| 服务器 | GPU | 实验 | 进度 |\\n|--------|-----|------|------|\\n| westd-35807 | cuda:0 | A1 LoRA spatial_bowl s0 | ~65% |\\n| westd-35807 | cuda:1 | LoRA Baseline spatial_bowl s0 | ~77% |\\n| westd-35807 | cuda:2 | A1 LoRA object_pudding s0 | ~72% |\\n| westd-35807 | cuda:3 | LoRA Baseline object_pudding s0 | ~77% |\\n| westd-45947 | cuda:0 | A3 spatial_bowl s0 | ~50% |\\n\\n## 近期任务\\n- [ ] **A3 eval v10a（refine）完成** → MVP gate check\\n- [ ] A3 eval v10b（no_refine）→ 隔离训练 vs 推理效果\\n- [ ] Action scale 调查（并行，不阻塞 MVP）\\n- [ ] 监控 5 个训练实验\\n\\n## GPU 预算\\n- 已消耗: ~230 GPU-hours | MVP 剩余: ~60 GPU-hours\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|--
+…[truncated 864 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:a1_lora_object_pudding_s0",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 4823
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-22T13:53:32.430278+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/.claude/skills/on-experiment-failed.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:a1_lora_object_pudding_s0",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/.claude/skills/on-experiment-failed.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-22T13:53:32.531312+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/.claude/sessions/agent_f2d22d86.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:a1_lora_object_pudding_s0",
+  "tool": "Read",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-22T13:53:33.033230+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:a1_lora_object_pudding_s0",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-22T13:53:33.084607+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/.claude/sessions/agent_f2d22d86.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:a1_lora_object_pudding_s0",
+  "tool": "Read",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-22T13:53:35.844464+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/on-experiment-failed*",
+  "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:a1_lora_object_pudding_s0",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/on-experiment-failed*",
+    "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-22T13:53:36.247586+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:a1_lora_object_pudding_s0",
+  "tool": "Glob",
+  "elapsed_ms": 403
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-22T13:53:36.448680+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation*",
+  "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:a1_lora_object_pudding_s0",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation*",
+    "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-22T13:53:36.449005+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:a1_lora_object_pudding_s0",
+  "tool": "Glob",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-22T13:53:39.559501+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/on-experiment-failed*",
+  "path": "/home/ubuntu/agent-ml-research"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:a1_lora_object_pudding_s0",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/on-experiment-failed*",
+    "path": "/home/ubuntu/agent-ml-research"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-22T13:53:39.912597+00:00_
+
+/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:a1_lora_object_pudding_s0",
+  "tool": "Glob",
+  "elapsed_ms": 353
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-22T13:53:40.114670+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation*",
+  "path": "/home/ubuntu/agent-ml-research"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:a1_lora_object_pudding_s0",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation*",
+    "path": "/home/ubuntu/agent-ml-research"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-22T13:53:40.215461+00:00_
+
+/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:a1_lora_object_pudding_s0",
+  "tool": "Glob",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-22T13:53:43.430582+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:a1_lora_object_pudding_s0",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-22T13:53:43.431189+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:a1_lora_object_pudding_s0",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-22T13:53:43.484718+00:00_
+
+1	---
+2	name: on-experiment-failed
+3	description: 实验失败后的自动诊断工作流——查日志分析原因、更新 registry、通知 Director。[CRON] 实验失败消息到达时使用。
+4	scope: global
+5	tags:
+6	- workflow
+7	- diagnosis
+8	- cron-hook
+9	tools:
+10	- read_registry
+11	- tail_training_logs
+12	- update_registry
+13	- append_idea
+14	- feishu_send_result_card
+15	- spawn_worker
+16	- check_job_status
+17	version: 4
+18	heavy: true
+19	roles:
+20	- agent
+21	---
+22	
+23	# 实验失败诊断工作流
+24	
+25	## 触发方式
+26	由 cron hook 自动触发：进程退出且 W&B 无数据 / W&B state=failed/crashed / NaN 检测到。
+27	
+28	## 步骤
+29	
+30	### Step 0: 读取项目上下文（诊断前必须执行）
+31	先读文档，再看日志——否则诊断方向可能完全错误：
+32	
+33	- `read_project_file("memory.md")` — **最重要**：查是否有相同失败模式的历史记录和已知修复方案
+34	- Worker 通过 `list_repo_tree` + `read_repo_file` 按需从代码仓库读取训练脚本结构
+35	
+36	读完后检查：
+37	- memory.md 里有没有"此类实验曾失败，原因是 X"的记录？→ 直接按已知方案诊断，跳过 Step 2 通用流程
+38	- 代码仓库中的训练入口和参数格式是否与本次实验配置匹配？（Worker 可用 `list_repo_tree` + `read_repo_file` 查看）
+39	
+40	### Step 1: 了解失败背景
+41	- read_registry(exp_id) — 查看状态、conclusion、notes、metrics、log_path
+42	
+43	### Step 2: 浅层日志诊断
+44	有 log_path 时：tail_training_logs(server, **绝对路径**, lines=80)
+45	- 寻找：OOM、CUDA error、NaN、assertion error、数据加载错误、Python Traceback
+46	- 没找到 → 增加行数再查
+47	
+48	### Step 2.5: 深查（满足以下任一条件时 spawn_worker）
+49	- 运行时长 < 5 分钟（初始化阶段崩溃）
+50	- tail 日志中未见明确 Traceback 或错误行
+51	- 同类实验连续失败 ≥ 2 次
+52	
+53	```python
+54	spawn_worker(
+55	    task_type="diagnose:{exp_id}",
+56	    task_prompt="""SSH 到服务器 {server}，诊断实验 {exp_id} 的失败原因。
+57	
+58	项目路径：{project_path}（绝对路径）
+59	日志路径：{log_path}（可能为空）
+60	
+61	执行步骤（按顺序，有结论就停）：
+62	
+63	1. 如果有日志路径：
+64	   - 先看结尾 50 行（找 Traceback / Error / CUDA OOM）
+65	   - 没找到明确错误：再看开头 100 行（初始化崩溃在这里）
+66	   - 日志文件不存在：说明任务启动即失败，跳到步骤 2
+67	
+68	2. 日志无错误或无日志时，检查基础设施：
+69	   - 入口文件是否存在
+70	   - 激活环境并验证 import
+71	   - 检查 configs/ 目录
+72	
+73	3. 检查磁盘/内存（OOM 类）
+74	
+75	最后输出一行 JSON：
+76	{"root_cause":"<引用具体报错行>","error_type":"infrastructure|hyperparameter|resource|data","fix_steps":["步骤1","步骤2"],"can_auto_fix":true}""",
+77	    tool_groups=["ssh"],
+78	)
+79	```
+80	
+81	Worker 返回后，以其结论作为 Step 3 的诊断依据。
+82	
+83	### 
+…[truncated 1766 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:a1_lora_object_pudding_s0",
+  "tool": "Read",
+  "elapsed_ms": 54
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-22T13:53:43.485229+00:00_
+
+1	---
+2	name: resource-saturation
+3	description: "当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。"
+4	always: false
+5	roles:
+6	  - director
+7	  - agent
+8	---
+9	
+10	# 资源饱和度自检（硬约束）
+11	
+12	## A. GPU 分配率检查
+13	
+14	调 `get_project_resource_usage(project)` 看:
+15	- 已分配给本项目的 GPU 总数和具体卡号
+16	- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）
+17	- 分配了但没跑的 GPU 清单 ⚠️
+18	
+19	任何"分配了但没跑"的 GPU = 失职。必须立即:
+20	- 派 Worker 铺 dry-run / 下一批实验代码准备
+21	- 铺 ablation（从 experiment-matrix 空白格子里挑）
+22	- 确实无实验可铺 → 向 Director 汇报"暂无可铺实验"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作
+23	
+24	**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。
+25	
+26	## B. GPU 效率检查
+27	
+28	调 `get_gpu_health(server)`:
+29	- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务
+30	- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）
+31	- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优
+32	
+33	## C. 非 GPU 任务并行
+34	
+35	GPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:
+36	- 下一批实验的数据集下载 / 预处理 / fingerprint
+37	- 下一批实验的代码准备 / dry-run / 环境配置
+38	- 论文文献调研 / related work 检索
+39	- 已完成实验的 log 深度分析 / metric 聚合
+40	- 论文章节起草
+41	- 代码 review / refactor
+42	
+43	**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。
+44	
+45	## D. 汇报格式
+46	
+47	向 Director 汇报时开头必须带资源声明行:
+48	
+49	    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)
+50	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:a1_lora_object_pudding_s0",
+  "tool": "Read",
+  "elapsed_ms": 54
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-22T13:53:56.979692+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "diff_collision_sdf",
+  "file": "memory.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:a1_lora_object_pudding_s0",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "diff_collision_sdf",
+    "file": "memory.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-22T13:53:56.980354+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/memory.md\", \"content\": \"# diff_collision_sdf — Memory\\n\\n## 教训\\n\\n### M012: submit_training_job 的 tmux PID vs 实际 python PID (2026-05-20)\\nsubmit_training_job 返回的 PID 是 tmux wrapper 进程，不是实际的 python 训练进程。tmux wrapper 启动后会 fork 子进程然后退出，导致 cron 跟踪 wrapper PID 后检测到\\\"进程退出\\\"并错误触发 auto-fail（5 miss → 自动标记 failed）。\\n- **修复**：用 `ps aux | grep train_` 找到实际 python PID，手动更新 crons.yaml 中的 pid 字段\\n- **根因**：submit_training_job 注册的 cron PID 应该是 tmux session name 而非 numeric PID，或者应该跟踪子进程\\n- **影响**：baseline_spatial_bowl_s0_v2 和 baseline_object_pudding_s0_v2 被错误标记为 failed，需要手动修正 registry\\n\\n### M013: train_a1_sdf_aux.py 内部覆盖 CUDA_VISIBLE_DEVICES (2026-05-20)\\ntrain_a1_sdf_aux.py 第 284 行有 `os.environ[\\\"CUDA_VISIBLE_DEVICES\\\"] = str(args.gpu)`，会覆盖外部环境变量。因此必须用 `--gpu 1`（直接指定物理 GPU 编号），而不是 `CUDA_VISIBLE_DEVICES=1 --gpu 0`（外部映射 + 内部 0）。后者会被脚本内部覆盖为 `CUDA_VISIBLE_DEVICES=0`。\\n- train_a3_hook.py 可能也有类似行为（之前的 --gpu 默认值=3 问题 M009 暗示如此）\\n\\n### M014: A1 Phase 2 LoRA 解冻从未生效 (2026-05-20)\\nbaseline 和 A1 训练脚本从未注入 LoRA 层——Phase 2 \\\"解冻 LoRA\\\" 实际解冻的是不存在的参数。只有 A3 的 train_a3_hook.py 正确使用了 inject_lora。D006 修复：提取 colliforce/lora_utils.py 共享模块，baseline 和 A1 均使用 inject_lora_pi0。\\n\\n### M015: LoRA baseline 与 full-FT baseline checkpoint 目录冲突 (2026-05-21)\\ntrain_baseline.py 不指定 --exp_name 时使用默认目录名（如 baseline_spatial_bowl_seed0），导致 LoRA baseline 和 full-FT baseline 写入同一目录。SAVE_TOTAL_LIMIT=2 会互相覆盖对方的 checkpoint，结果两个实验都无法保存。\\n- **修复**：LoRA baseline 必须用 `--exp_name baseline_lora_*_seed0` 指定独立目录\\n- **教训**：同一场景不同训练配置（full-FT vs LoRA）并行跑时，必须确保 checkpoint 路径完全独立\\n\\n### M016: W&B offline 模式导致 cron 误报训练完成为 failed (2026-05-21)\\nWANDB_MODE=offline 时，进程正常退出（EXIT_CODE=0）后 cron 检测不到 W&B metrics，报 \\\"Process exited without valid W&B metrics\\\" 并标记 conclusion=failed。实际上训练已完成 30K/30K steps。\\n- **影响**：a3_gradient_object_pudding_s0、baseline_lora 系列、eval_baseline_v1
+…[truncated 4689 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:a1_lora_object_pudding_s0",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-22T13:54:29.251061+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "diagnose:a1_lora_object_pudding_s0",
+  "project": "diff_collision_sdf",
+  "task_prompt": "SSH 到服务器 westd-35807 诊断实验 a1_lora_object_pudding_s0 是否实际完成。\n\n**背景**：此实验使用 WANDB_MODE=disabled，cron 报 \"Process exited without valid W&B metrics\" 并标记 failed。但项目有已知 bug M016——W&B offline/disabled 模式下 cron 会误报完成的训练为 failed。需要确认这是否又是 M016 误报。\n\n**实验信息**：\n- 命令：CUDA_VISIBLE_DEVICES=2 JAX_PLATFORMS=cpu WANDB_MODE=disabled python scripts/train_a1_sdf_aux.py --scene object_pudding --seed 0 --num_train_steps 30000 --save_interval 2000 --exp_name a1_lora_object_pudding_seed0 --gpu 2\n- PID: 292258\n- 日志路径：/root/autodl-tmp/colliforce-outputs/a1_lora_obj_s0/train.log\n- Checkpoint 路径：/root/autodl-tmp/checkpoints/a1_sdf_object_pudding/a1_lora_object_pudding_seed0/\n- 预期 30000 steps，~3.9s/step\n\n**执行步骤**：\n\n1. 读日志尾部 100 行，检查：\n   - 训练是否跑到 30000/30000 steps\n   - 有无 Error/Traceback/OOM\n   - 最终 loss 数值\n   - 是否有 \"Training complete\" 或类似完成信号\n\n2. 检查 checkpoint 目录：\n   - ls -la /root/autodl-tmp/checkpoints/a1_sdf_object_pudding/a1_lora_object_pudding_seed0/\n   - 看有没有 best/ 和最终 step checkpoint\n   - 看文件时间戳和大小\n\n3. 检查进程状态：\n   - ps aux | grep 292258 确认进程已退出\n   - 如果有 exit code 记录，报告出来\n\n4. 如果训练已完成 30K steps：\n   - 读日志提取 best_loss、final_loss、steps_completed\n   - 检查 Phase 1 → Phase 2 过渡是否正常发生（看日志中的 \"Phase 2\" 或 \"Unfreezing LoRA\" 信息）\n   - 检查 LoRA 参数是否真的解冻了（结合 M014 教训，确认日志中有 LoRA inject/unfreeze 相关输出）\n\n5. 如果训练未完成或有错误：\n   - 完整报告错误信息\n   - 检查磁盘：df -h /root/autodl-tmp/\n   - 检查 GPU 状态：nvidia-smi\n\n最后输出 JSON：\n{\"actually_completed\": true/false, \"steps_completed\": N, \"best_loss\": X, \"final_loss\": Y, \"phase2_lora_active\": true/false, \"root_cause\": \"M016 false positive\" 或具体错误, \"checkpoints_found\": [\"list\"], \"error_type\": \"false_positive|infrastructure|resource|other\"}",
+  "tool_groups": "['ssh']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:a1_lora_object_pudding_s0",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "diagnose:a1_lora_object_pudding_s0",
+    "project": "diff_collision_sdf",
+    "task_prompt": "SSH 到服务器 westd-35807 诊断实验 a1_lora_object_pudding_s0 是否实际完成。\n\n**背景**：此实验使用 WANDB_MODE=disabled，cron 报 \"Process exited without valid W&B metrics\" 并标记 failed。但项目有已知 bug M016——W&B offline/disabled 模式下 cron 会误报完成的训练为 failed。需要确认这是否又是 M016 误报。\n\n**实验信息**：\n- 命令：CUDA_VISIBLE_DEVICES=2 JAX_PLATFORMS=cpu WANDB_MODE=disabled python scripts/train_a1_sdf_aux.py --scene object_pudding --seed 0 --num_train_steps 30000 --save_interval 2000 --exp_name a1_lora_object_pudding_seed0 --gpu 2\n- PID: 292258\n- 日志路径：/root/autodl-tmp/colliforce-outputs/a1_lora_obj_s0/train.log\n- Checkpoint 路径：/root/autodl-tmp/checkpoints/a1_sdf_object_pudding/a1_lora_object_pudding_seed0/\n- 预期 30000 steps，~3.9s/step\n\n**执行步骤**：\n\n1. 读日志尾部 100 行，检查：\n   - 训练是否跑到 30000/30000 steps\n   - 有无 Error/Traceback/OOM\n   - 最终 loss 数值\n   - 是否有 \"Training complete\" 或类似完成信号\n\n2. 检查 checkpoint 目录：\n   - ls -la /root/autodl-tmp/checkpoints/a1_sdf_object_pudding/a1_lora_object_pudding_seed0/\n   - 看有没有 best/ 和最终 step checkpoint\n   - 看文件时间戳和大小\n\n3. 检查进程状态：\n   - ps aux | grep 292258 确认进程已退出\n   - 如果有 exit code 记录，报告出来\n\n4. 如果训练已完成 30K steps：\n   - 读日志提取 best_loss、final_loss、steps_completed\n   - 检查 Phase 1 → Phase 2 过渡是否正常发生（看日志中的 \"Phase 2\" 或 \"Unfreezing LoRA\" 信息）\n   - 检查 LoRA 参数是否真的解冻了（结合 M014 教训，确认日志中有 LoRA inject/unfreeze 相关输出）\n\n5. 如果训练未完成或有错误：\n   - 完整报告错误信息\n   - 检查磁盘：df -h /root/autodl-tmp/\n   - 检查 GPU 状态：nvidia-smi\n\n最后输出 JSON：\n{\"actually_completed\": true/false, \"steps_completed\": N, \"best_loss\": X, \"final_loss\": Y, \"phase2_lora_active\": true/false, \"root_cause\": \"M016 false positive\" 或具体错误, \"checkpoints_found\": [\"list\"], \"error_type\": \"false_positive|infrastructure|resource|other\"}",
+    "tool_groups": "['ssh']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-22T13:54:32.019547+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_diagnose_a1_lora_object_pudding_s0_20260522T135429\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/logs/workers/worker_diagnose_a1_lora_object_pudding_s0_20260522T135429.log\", \"setup_data\": {}, \"message\": \"Worker worker_diagnose_a1_lora_object_pudding_s0_20260522T135429 started. Use get_worker_status('worker_diagnose_a1_lora_object_pudding_s0_20260522T135429') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:a1_lora_object_pudding_s0",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 2768
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-22T13:54:44.878292+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "a1_lora_object_pudding_s0",
+  "field": "notes",
+  "value": "[2026-05-21 05:02] Launched on cuda:2 (freed by baseline_object_pudding_s0_v2 completion). PID 292258, ~3.9s/step, 16873 MiB VRAM. Used --gpu 2 due to M013 (script overrides CUDA_VISIBLE_DEVICES). [2026-05-22 13:54] Cron 报 \"exited without valid W&B metrics\"。疑似 M016 误报（WANDB_MODE=disabled）。已派 Worker 诊断：worker_diagnose_a1_lora_object_pudding_s0_20260522T135429",
+  "project": "diff_collision_sdf"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:a1_lora_object_pudding_s0",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "a1_lora_object_pudding_s0",
+    "field": "notes",
+    "value": "[2026-05-21 05:02] Launched on cuda:2 (freed by baseline_object_pudding_s0_v2 completion). PID 292258, ~3.9s/step, 16873 MiB VRAM. Used --gpu 2 due to M013 (script overrides CUDA_VISIBLE_DEVICES). [2026-05-22 13:54] Cron 报 \"exited without valid W&B metrics\"。疑似 M016 误报（WANDB_MODE=disabled）。已派 Worker 诊断：worker_diagnose_a1_lora_object_pudding_s0_20260522T135429",
+    "project": "diff_collision_sdf"
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33 · 2026-05-22T14:13:02.247242+00:00_
+
+诊断 Worker 已派发。更新 registry 记录诊断进展。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:a1_lora_object_pudding_s0"
+}
+```
+
+</details>
+
+---

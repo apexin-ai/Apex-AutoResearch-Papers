@@ -1,0 +1,5 @@
+2026-05-25 23:02:05,596 INFO    core.tools.feishu  create_chat: name='审稿-diff_collision_sdf' → chat_id=oc_ec359a7b7a5e3b28b379b61588c6e853
+2026-05-25 23:02:05,599 INFO    core.tools.dream  [dream] auto-created Group C for project=diff_collision_sdf: oc_ec359a7b7a5e3b28b379b61588c6e853
+2026-05-25 23:10:07,759 INFO    core.tools.dream  [dream] appended reference check results for diff_collision_sdf/best
+2026-05-25 23:18:09,536 INFO    core.tools.dream  [dream] appended reference check results for diff_collision_sdf/median
+2026-05-25 23:26:34,588 INFO    core.tools.dream  [dream] appended reference check results for diff_collision_sdf/worst

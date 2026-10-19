@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_spatial_bowl_lora_ctrl_s0",
+  "project": "diff_collision_sdf",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-28T00:10:16.286Z",
+    "updated_at": "2026-05-28T00:10:21.721Z",
+    "hypothesis": "LoRA baseline (no SDF) on spatial_bowl at 30K steps will show high TSR but low CAR, confirming that collision avoidance requires explicit SDF training signal"
+  },
+  "timestamp": "2026-05-28T00:10:21.947175+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "42c228084096fe1ee429",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops pi05 download rescue",
+  "task_key": "worker_ops_pi05_download_rescue_20260522T152847",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_pi05_download_rescue_20260522T152847_result.json",
+    "occurrence": 1,
+    "bytes": 715,
+    "sha256": "486068ca2149a8450359e887e1fd5633bbf8158edf9c3ef4070496f82a941246"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**下载状态：正在进行中，无需干预。**\n\n| 指标 | 值 |\n|------|-----|\n| gsutil 进程 | 活跃（PID 399238+，19:48 启动，`-m` 多线程并行） |\n| 源地址 | `gs://openpi-assets/checkpoints/pi05_libero/*` |\n| 已下载（du） | **8.0 GiB** |\n| 目标大小（6 个 shard 预分配） | **~11.6 GiB** |\n| 进度 | **~69%** |\n| .gstmp 临时文件 | 6 个，时间戳均为 23:29（持续更新中） |\n| 已完成文件 | 10 个（含 norm_stats.json、metadata、manifest 等） |\n| 磁盘空间 | 161G 可用（充足） |\n\n6 个大 shard 文件正在并行下载，每个 1.5-2.5 GiB。已运行 ~3.5 小时，剩余 ~3.6 GiB，预估 **1.5-2 小时**完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-pi05-download-rescue.md"
+}

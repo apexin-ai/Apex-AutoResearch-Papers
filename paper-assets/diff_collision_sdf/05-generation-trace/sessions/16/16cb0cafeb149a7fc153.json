@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "16cb0cafeb149a7fc153",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ssh check sdf gt 45947",
+  "task_key": "worker_ssh_check_sdf_gt_45947_20260521T071910",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_sdf_gt_45947_20260521T071910_result.json",
+    "occurrence": 1,
+    "bytes": 1554,
+    "sha256": "56461480dba31ee56c851d451cd91d077e5af3d433510ce52b6e0e378434a0a2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### 1. sdf_gt 文件\n\nwestd-45947 上存在的 sdf_gt 文件：\n\n| 文件 | 路径 | 大小 |\n|------|------|------|\n| sdf_gt_object_chocolate.npz | `/root/colliforce-vla/data/` | 114 KB |\n| sdf_gt_spatial_bowl.npz | `/root/colliforce-vla/data/` | 114 KB |\n| sdf_gt_spatial_bowl.npz.bak | `/root/colliforce-vla/data/` | (备份) |\n\n**sdf_gt_object_pudding.npz 不存在**——westd-45947 上也没有。\n\n### 2. A3 Checkpoint\n\n| 实验 | 路径 | 已保存 step | 大小 | best_loss |\n|------|------|------------|------|-----------|\n| spatial_bowl | `/root/autodl-tmp/checkpoints/a3_grad_refine_spatial_bowl/a3_grad_refine_spatial_bowl_seed0/` | 16000, 18000, **20000** (best) | 29G | 0.02306 @ step 20000 |\n| object_pudding | `/root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/` | 18000, 20000 (best), **22000** | 29G | 0.02044 @ step 20000 |\n\n### 3. 服务器间连通性\n\nwestd-45947 上 **没有 ~/.ssh/config**，无法直接 SSH 到 westd-35807。文件传输需通过本地中转或其他方式。\n\n### 4. 磁盘空间\n\n`/root/autodl-tmp`: 250G 总量，71G 已用，**180G 可用 (29%)**\n\n### 5. A3 训练进度\n\n| 实验 | 当前 step | 进度 | 最新 loss | 速度 |\n|------|----------|------|----------|------|\n| spatial_bowl | **20980**/30000 | 70% | ~0.027 | ~4.0 s/it |\n| object_pudding | **23117**/30000 | 77% | ~0.022 | ~4.0 s/it |\n\n两个训练都在正常运行，预计剩余约 10h (spatial_bowl) 和 7.7h (object_pudding)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-sdf-gt-45947.md"
+}

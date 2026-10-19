@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "34eef965c4ba0af72935",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "research task0 vs task1 collapse",
+  "task_key": "worker_research_task0_vs_task1_collapse_20260523T162856",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_task0_vs_task1_collapse_20260523T162856.log",
+    "occurrence": 1,
+    "bytes": 836549,
+    "sha256": "f222294868365079c05f404e94aae563a52721750b56ab97bd02d1b503f53c26"
+  },
+  "statistics": {
+    "messages": 182,
+    "user_turns": 0,
+    "tool_calls": 74,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 30,
+      "tool_call": 74,
+      "tool_result": 74,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 182,
+      "chunks": [
+        {
+          "path": "34eef965c4ba0af72935-part-0001.json",
+          "message_count": 149
+        },
+        {
+          "path": "34eef965c4ba0af72935-part-0002.json",
+          "message_count": 33
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-task0-vs-task1-collapse.md"
+}

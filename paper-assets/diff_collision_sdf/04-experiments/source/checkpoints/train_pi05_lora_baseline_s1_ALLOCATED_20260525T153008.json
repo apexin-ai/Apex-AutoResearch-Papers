@@ -1,0 +1,31 @@
+{
+  "exp_id": "train_pi05_lora_baseline_s1",
+  "project": "diff_collision_sdf",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 1,
+    "created_at": "2026-05-24T11:24:57.585Z",
+    "updated_at": "2026-05-25T15:30:08.382Z",
+    "hypothesis": "Pi0.5 LoRA baseline (no SDF) 30K on object_pudding seed 1: second seed for LoRA-only attribution baseline. Same setup as s0.",
+    "failure_reason": "SSH check failed 5x — last error: [Errno None] Unable to connect to port 45947 on 36.103.198.204",
+    "completed_at": "2026-05-25T04:19:31.027Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-25T04:19:33.859615+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "确认是 LoRA baseline（无 SDF）。训练已从 step 16000 成功 resume (2026-05-25 04:42 UTC)。PID=2353, GPU 1, 27089 MiB。Phase 2 LoRA 解冻已在 step 16000 正确触发（33.47M params）。剩余 14000 steps × 4.6s/step ≈ 18h, ETA ~2026-05-25 22:30 UTC。路径: /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed1/。[2026-05-25 11:00] Cron reconcile 确认 PID 2353 仍在运行。Status=DONE/failed 是旧状态（初次 crash），实际已恢复训练中。"
+      }
+    },
+    "notes": "确认是 LoRA baseline（无 SDF）。训练已从 step 16000 成功 resume (2026-05-25 04:42 UTC)。PID=2353, GPU 1, 27089 MiB。Phase 2 LoRA 解冻已在 step 16000 正确触发（33.47M params）。剩余 14000 steps × 4.6s/step ≈ 18h, ETA ~2026-05-25 22:30 UTC。路径: /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed1/。[2026-05-25 11:00] Cron reconcile 确认 PID 2353 仍在运行。Status=DONE/failed 是旧状态（初次 crash），实际已恢复训练中。"
+  },
+  "timestamp": "2026-05-25T15:30:08.499078+00:00",
+  "trigger": "update_registry"
+}

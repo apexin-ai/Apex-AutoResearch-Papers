@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2f5118cbda1f411f22a8",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops kill v8 deadlock",
+  "task_key": "worker_ops_kill_v8_deadlock_20260521T203931",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill_v8_deadlock_20260521T203931_result.json",
+    "occurrence": 1,
+    "bytes": 272,
+    "sha256": "04c329b7d96b65c170274de1618a3f6b8717c67bf5437cdb399112274e9aa2bb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**GPU 1 已空闲。** \n\n- PID 258452 已不存在（进程已终止或之前已被清理）\n- compile_worker 无残留\n- GPU 0：PID 191747 占用 23926 MiB（100% 利用率，正在运行中）\n- **GPU 1：0 MiB 占用，0% 利用率，完全空闲**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-v8-deadlock.md"
+}

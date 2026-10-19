@@ -1,0 +1,8 @@
+lambda,step,CAR,TSR,seed,note
+0.1,16000,55.5,49.5,0,best loss checkpoint
+0.1,20000,55,54,0,early signal
+0.1,20000,56,51,1,early signal
+0.1,22000,60.5,45.5,0,cron misjudged failed; actual eval complete
+0.1,30000,pending,pending,0,training ~17:00 UTC
+0.1,30000,pending,pending,1,training ~17:30 UTC
+0.1,30000,pending,pending,2,training ~08:00 UTC 5/28

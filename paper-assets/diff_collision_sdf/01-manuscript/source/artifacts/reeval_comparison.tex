@@ -1,0 +1,29 @@
+\begin{table}[t]
+\centering
+\caption{Evaluation results before and after fixing the 180° image rotation bug in \texttt{eval\_safelibero.py}.}
+\label{tab:reeval_comparison}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{l c c c c c c c}
+\toprule
+Model & \multicolumn{2}{c}{TSR (\%)} & $\Delta$TSR & \multicolumn{2}{c}{CAR (\%)} & $\Delta$CAR & EE Disp (m) \\
+\cmidrule(lr){2-3} \cmidrule(lr){5-6}
+ & Before & After & (pp) & Before & After & (pp) & (After) \\
+\midrule
+Pi0.5 baseline s0 & 74.7 & 71.5 & -3.2 & 26.8 & 28.5 & +1.7 & 0.367 \\
+\addlinespace
+LoRA-only s0 & 6.5 & 51.5 & +45.0 & 54.5 & 56.5 & +2.0 & 0.396 \\
+LoRA-only s1 & 6.0 & — & — & 56.0 & — & — & — \\
+\rowcolor{gray!15} \textit{LoRA-only mean} & 6.2$\pm$0.2 & 51.5$\pm$0.0 & +45.2 & 55.2$\pm$0.8 & 56.5$\pm$0.0 & +1.2 & \\
+\addlinespace
+SDF $\lambda$=0.005 s0 & 4.5 & — & — & 53.5 & — & — & — \\
+SDF $\lambda$=0.005 s1 & 9.0 & — & — & 50.0 & — & — & — \\
+SDF $\lambda$=0.005 s2 & 7.0 & — & — & 48.0 & — & — & — \\
+\rowcolor{gray!15} \textit{SDF $\lambda$=0.005 mean} & 6.8$\pm$1.8 & — & — & 50.5$\pm$2.3 & — & — & \\
+\addlinespace
+SDF $\lambda$=0.01 s0 & 8.0 & — & — & 50.0 & — & — & — \\
+SDF $\lambda$=0.01 s1 & 5.5 & — & — & 55.0 & — & — & — \\
+SDF $\lambda$=0.01 s2 & 5.0 & — & — & 54.0 & — & — & — \\
+\rowcolor{gray!15} \textit{SDF $\lambda$=0.01 mean} & 6.2$\pm$1.3 & — & — & 53.0$\pm$2.2 & — & — & \\
+\bottomrule
+\end{tabular}}
+\end{table}

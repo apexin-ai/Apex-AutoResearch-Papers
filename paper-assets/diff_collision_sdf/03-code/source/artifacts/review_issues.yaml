@@ -1,0 +1,463 @@
+# Review Issues Tracker — diff_collision_sdf
+# Round 1 → Round 2 → Round 3 → Round 4 (Fresh Review)
+
+issues:
+  - id: "R1-N1"
+    summary: "Permutation test null distribution 循环论证"
+    category: method
+    severity: critical
+    status: open
+    first_raised_round: 1
+    last_seen_round: 4
+    mentions:
+      - round: 1
+        reviewers: [1, 2, 3]
+        note: "3/3 AGREE"
+      - round: 2
+        reviewers: [1]
+        note: "[RESOLVED-WEAK] Null A/B 段落数学正确，未承认 C(6,3)=20 分辨率局限"
+      - round: 3
+        reviewers: [1]
+        note: "✓ 维持 resolved"
+      - round: 4
+        reviewers: [1, 2]
+        note: "Fresh review 重新识别。R1-MF1: post-hoc null construction 嫌疑。R2 澄清机制合法但论证逻辑有瑕。Null A 缓解但主文讨论不足。两位共识：本质是 n=3 统计力不足的表现。"
+    resolution: ""
+    resolution_round: null
+
+  - id: "R1-N2"
+    summary: "n=3 seeds 统计力严重不足 (absence of evidence ≠ evidence of absence)"
+    category: method
+    severity: critical
+    status: open
+    first_raised_round: 1
+    last_seen_round: 4
+    mentions:
+      - round: 1
+        reviewers: [1, 2, 3]
+        note: "3/3 AGREE"
+      - round: 2
+        reviewers: [1, 2]
+        note: "[RESOLVED-GOOD]"
+      - round: 3
+        reviewers: [1]
+        note: "✓ 全文 'zero benefit'/'no measurable' 已清零，claim 强度一致"
+      - round: 4
+        reviewers: [1, 2]
+        note: "Fresh review 重新识别。R1-MF2: MDE≈5pp, Figure 4 error bars 横跨全效应范围。R2: 完全同意，最致命缺陷。hedged 语言存在但 Section 5 标题仍从 'no sig diff' 跳到 'cannot ensure'。collision-free demos claim 也缺 p-value/CI。"
+    resolution: ""
+    resolution_round: null
+
+  - id: "R1-N3"
+    summary: "实验范围过窄无法支撑通用性声明"
+    category: experiment
+    severity: critical
+    status: open
+    first_raised_round: 1
+    last_seen_round: 4
+    mentions:
+      - round: 1
+        reviewers: [1, 2, 3]
+        note: "3/3 AGREE"
+      - round: 2
+        reviewers: [1]
+        note: "[RESOLVED-GOOD]"
+      - round: 3
+        reviewers: [1]
+        note: "✓ Claim 强度 Abstract↔Intro↔Discussion↔Limitations 一致"
+      - round: 4
+        reviewers: [1, 2]
+        note: "Fresh review 重新识别。R1-MF4 + R2-W2: 仅 2 diffusion/flow-based VLA, 缺 non-diffusion baseline (RT-2, Octo)。R2 补充：无法判断 action collapse 是 diffusion 特有还是 VLA 通病。标题仍为 'VLA Collision Avoidance Evaluation'。"
+    resolution: ""
+    resolution_round: null
+
+  - id: "R1-W1"
+    summary: "Oracle 实验在 99.4% collapsed 模型上进行，生态效度不足"
+    category: experiment
+    severity: critical
+    status: open
+    first_raised_round: 1
+    last_seen_round: 4
+    mentions:
+      - round: 2
+        reviewers: [1]
+        note: "[STILL_OPEN]"
+      - round: 3
+        reviewers: [1]
+        note: "✓ claim2.tex 末句 caveat 已添加"
+      - round: 4
+        reviewers: [1, 2]
+        note: "Fresh review 重新识别。R1-MF3: collapsed policy 上任何辅助信号效果无法评估。R2 AGREE + 叠加 EE-only circularity 构成双重质疑。'structurally counterproductive' claim 缺乏充分 empirical evidence。"
+    resolution: ""
+    resolution_round: null
+
+  - id: "R4-W1"
+    summary: "贡献点冗余 (4→2)，dfCAR 技术新颖性偏轻"
+    category: framing
+    severity: critical
+    status: open
+    first_raised_round: 4
+    last_seen_round: 4
+    mentions:
+      - round: 4
+        reviewers: [1, 2]
+        note: "R2-W1 提出, R1 AGREE。C1(dfCAR)+C3(diagnosis) 是同一发现两面, C4(demo sufficiency) 是推论。dfCAR 本质是位移阈值过滤。R1 补充: 价值在于揭示的严重程度而非技术复杂度。"
+    action_items:
+      - round: 4
+        action: "精简 Introduction 的 contributions 为 2 个核心贡献"
+        assigned_to: main_agent
+        status: open
+    resolution: ""
+    resolution_round: null
+
+  - id: "R4-W2"
+    summary: "缺失关键引用: Demystifying Diffusion Policies (CoRL 2025)"
+    category: writing
+    severity: warning
+    status: open
+    first_raised_round: 4
+    last_seen_round: 4
+    mentions:
+      - round: 4
+        reviewers: [1, 2]
+        note: "R2-W3 提出, R1 AGREE。Zheng et al. action memorization 机制直接解释 action collapse。同 venue 去年论文未引用。⚠️ 两位 Reviewer 均未独立验证引用真实性。"
+    action_items:
+      - round: 4
+        action: "验证引用真实性后补充到 Related Work + Discussion"
+        assigned_to: main_agent
+        status: open
+    resolution: ""
+    resolution_round: null
+
+  - id: "R4-W3"
+    summary: "对 CoRL 受众建设性不足，Future Work 过于 generic"
+    category: framing
+    severity: warning
+    status: open
+    first_raised_round: 4
+    last_seen_round: 4
+    mentions:
+      - round: 4
+        reviewers: [1, 2]
+        note: "R2-W6 提出, R1 AGREE。Future Work 仅三句话，缺具体技术路径。R1 补充: collision-free demos 应发展为 data curation 策略建议。"
+    action_items:
+      - round: 4
+        action: "Discussion 增加 concrete recommendation section"
+        assigned_to: main_agent
+        status: open
+    resolution: ""
+    resolution_round: null
+
+  - id: "R4-W4"
+    summary: "SDF 结论 framing 过强 (EE-only circularity + Section 5 标题)"
+    category: framing
+    severity: warning
+    status: open
+    first_raised_round: 4
+    last_seen_round: 4
+    mentions:
+      - round: 4
+        reviewers: [1, 2]
+        note: "R2-W4 提出 EE-only circularity。R1 PARTIAL REBUT: 论文含 full-body oracle，circularity 不完全成立。但共识: 核心问题是 collapsed policy 上测试无效 (与 R1-W1 关联)。Section 5 标题应更准确归因。"
+    action_items:
+      - round: 4
+        action: "Section 5 标题改为 'Does Not Ensure at Tested Scale'，正文归因于 base policy collapse"
+        assigned_to: main_agent
+        status: open
+    resolution: ""
+    resolution_round: null
+
+  - id: "R4-W5"
+    summary: "dfCAR 阈值 bimodal gap 论证主文讨论不足"
+    category: method
+    severity: warning
+    status: open
+    first_raised_round: 4
+    last_seen_round: 4
+    mentions:
+      - round: 4
+        reviewers: [1, 2]
+        note: "R2-W5 提出阈值敏感性。R1 REBUT 解读方向: Table 5 实际证明鲁棒性而非脆弱性。但 AGREE 主文讨论过简。R1 补充: bimodal gap 可能是 SafeLIBERO artifact。"
+    action_items:
+      - round: 4
+        action: "Section 3.2 增加 bimodal gap 定量描述 + 跨环境适用性讨论"
+        assigned_to: main_agent
+        status: open
+    resolution: ""
+    resolution_round: null
+
+  # --- 以下为历史 issue，Round 4 未再提及 ---
+
+  - id: "R2-N2"
+    summary: "SafeVLA/VLSA 矛盾未解释"
+    category: framing
+    severity: critical
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 3
+    mentions:
+      - round: 1
+        reviewers: [1, 2, 3]
+        note: "3/3 AGREE"
+      - round: 2
+        reviewers: [2]
+        note: "[RESOLVED-GOOD] 含 NEW-1 SafeVLA 事实错误"
+      - round: 3
+        reviewers: [1]
+        note: "✓ 三路径分类 intro/related_work/discussion 一致"
+      - round: 4
+        reviewers: []
+        note: "Round 4 fresh review 未提及，可能已修复，待 Research Director 确认"
+    resolution: "三路径分类 + SafeVLA 修正为 Lagrangian optimization"
+    resolution_round: 2
+
+  - id: "R2-W3"
+    summary: "标题过于耸动"
+    category: framing
+    severity: critical
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 2
+    resolution: "改为 'How Action Collapse Creates Illusory Safety...'"
+    resolution_round: 2
+
+  - id: "R1-W2"
+    summary: "dfCAR 位移测量不一致——Section 3.2 正文化"
+    category: method
+    severity: warning
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 3
+    mentions:
+      - round: 2
+        reviewers: [1]
+        note: "[STILL_OPEN]"
+      - round: 3
+        reviewers: [1]
+        note: "✓ method.tex L36 正文论证 bimodal gap 等价性"
+      - round: 4
+        reviewers: []
+        note: "Round 4 未提及，可能已修复"
+    resolution: "method.tex 正文段落：Pi0 obstacle disp / Pi0.5 EE disp + 5 数量级 gap 等价性"
+    resolution_round: 2
+
+  - id: "R1-W3"
+    summary: "n=3 seeds 统计力度不足"
+    category: experiment
+    severity: warning
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 2
+    resolution: "Power Analysis + Limitations"
+    resolution_round: 2
+
+  - id: "R3-N1"
+    summary: "Limitations 缺 sim-to-real gap"
+    category: writing
+    severity: warning
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 2
+    resolution: "Limitations 扩展完成"
+    resolution_round: 2
+
+  - id: "R3-N2"
+    summary: "Broader Impact 不足"
+    category: writing
+    severity: warning
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 2
+    resolution: "BI 三维度覆盖"
+    resolution_round: 2
+
+  - id: "R3-W2"
+    summary: "术语混用"
+    category: writing
+    severity: warning
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 2
+    resolution: "统一为 action-collapsed"
+    resolution_round: 2
+
+  - id: "R2-W1"
+    summary: "Related Work 遗漏文献"
+    category: writing
+    severity: warning
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 3
+    mentions:
+      - round: 3
+        reviewers: [1]
+        note: "✓ HazardArena + VLA-Risk 已引用"
+      - round: 4
+        reviewers: []
+        note: "Round 4 未提及旧遗漏，但新增 R4-W2 (Demystifying Diffusion Policies)"
+    resolution: "HazardArena + VLA-Risk 补充。D2PPO 留 rebuttal"
+    resolution_round: 2
+
+  - id: "R2-W2"
+    summary: "dfCAR 未与替代 filter 对比讨论"
+    category: method
+    severity: warning
+    status: in_progress
+    first_raised_round: 1
+    last_seen_round: 4
+    mentions:
+      - round: 2
+        reviewers: [1]
+        note: "隐式覆盖 via bimodal gap"
+      - round: 3
+        reviewers: [1]
+        note: "✗ (minor) 未显式列举替代方案名称。Page compression 误删了显式列举内容"
+      - round: 4
+        reviewers: []
+        note: "Round 4 未直接提及，但 R4-W5 (阈值讨论不足) 相关"
+    action_items:
+      - round: 3
+        action: "恢复 method.tex 误删内容：显式列举 action variance / mean velocity / joint-space distance"
+        assigned_to: main_agent
+        status: in_progress
+    resolution: ""
+    resolution_round: null
+
+  - id: "R1-W5"
+    summary: "'20×' 反复强调"
+    category: experiment
+    severity: warning
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 3
+    mentions:
+      - round: 3
+        reviewers: [1]
+        note: "✓ 3 次（claim3.tex L3/L32/L46），Abstract 已移除"
+    resolution: "从 6 次减至 3 次"
+    resolution_round: 2
+
+  - id: "R1-W4"
+    summary: "spatial_bowl 统计局限"
+    category: experiment
+    severity: info
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 2
+    resolution: "Limitations 覆盖"
+    resolution_round: 2
+
+  - id: "R2-W4"
+    summary: "Future work 简略"
+    category: framing
+    severity: warning
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 2
+    resolution: "Acceptable for CoRL"
+    resolution_round: 2
+
+  - id: "REV-1"
+    summary: "Phase 2 数据错误"
+    category: experiment
+    severity: critical
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 2
+    resolution: "58.0% + 18K 脚注"
+    resolution_round: 2
+
+  - id: "REV-2"
+    summary: "p>0.05 for all 循环论证"
+    category: method
+    severity: warning
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 2
+    resolution: "全文改为 λ∈{0.01,0.1}"
+    resolution_round: 2
+
+  - id: "NEW-1"
+    summary: "SafeVLA 被错误描述为 planning-time"
+    category: framing
+    severity: warning
+    status: resolved
+    first_raised_round: 2
+    last_seen_round: 3
+    mentions:
+      - round: 3
+        reviewers: [1]
+        note: "✓ Lagrangian optimization，intro/related_work/discussion 一致"
+      - round: 4
+        reviewers: []
+        note: "Round 4 未提及，可能已修复"
+    resolution: "修正为 constrained optimization + Lagrangian"
+    resolution_round: 2
+
+  - id: "NEW-2"
+    summary: "Abstract 'all' vs Discussion 'nearly all'"
+    category: writing
+    severity: warning
+    status: resolved
+    first_raised_round: 2
+    last_seen_round: 3
+    mentions:
+      - round: 3
+        reviewers: [1]
+        note: "✓ abstract/intro/discussion 均为 'nearly all'"
+      - round: 4
+        reviewers: []
+        note: "Round 4 未提及"
+    resolution: "统一为 'nearly all'"
+    resolution_round: 2
+
+  - id: "NEW-3"
+    summary: "'redundant' 残留与 hedged 语言冲突"
+    category: writing
+    severity: warning
+    status: resolved
+    first_raised_round: 2
+    last_seen_round: 3
+    mentions:
+      - round: 3
+        reviewers: [1]
+        note: "✓ 仅剩 discussion L18 一处，已加 'at the tested scale'"
+      - round: 4
+        reviewers: []
+        note: "Round 4 未提及"
+    resolution: "分层处理完成"
+    resolution_round: 2
+
+  - id: "NEW-4"
+    summary: "Discussion 首句 scope 过宽"
+    category: framing
+    severity: warning
+    status: resolved
+    first_raised_round: 2
+    last_seen_round: 3
+    mentions:
+      - round: 3
+        reviewers: [1]
+        note: "✓ 'CAR-based VLA safety evaluation on SafeLIBERO'"
+      - round: 4
+        reviewers: []
+        note: "Round 4 未提及"
+    resolution: "Scope 限定完成"
+    resolution_round: 2
+
+  - id: "NEW-5"
+    summary: "Abstract 'EE-only' 限定缺失"
+    category: writing
+    severity: warning
+    status: resolved
+    first_raised_round: 2
+    last_seen_round: 3
+    mentions:
+      - round: 3
+        reviewers: [1]
+        note: "✓ abstract L6 'EE-only geometric supervision'"
+      - round: 4
+        reviewers: []
+        note: "Round 4 未提及"
+    resolution: "EE-only 限定已添加"
+    resolution_round: 2

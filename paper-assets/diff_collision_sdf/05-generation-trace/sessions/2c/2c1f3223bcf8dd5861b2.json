@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2c1f3223bcf8dd5861b2",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "research eval collision analysis enhancement",
+  "task_key": "worker_research_eval_collision_analysis_enhancement_20260524T050014",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_eval_collision_analysis_enhancement_20260524T050014_result.json",
+    "occurrence": 1,
+    "bytes": 879,
+    "sha256": "550210e0d422f0fbad7bff50da4afda043e6f37b77590f4e379744cd4d7b7596"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "方案已写入 `artifacts/eval_collision_enhancement_plan.md`。\n\n核心发现：\n\n**现有字段**：`collision_obstacle`（首碰障碍物名）和 `collision_step` 已经可以做基础碰撞分布对比，但不够。\n\n**必须新增**：\n- `per_obstacle_displacement` — 当前 `max_displacement` 是跨所有障碍物的聚合值，无法区分哪个障碍物被撞移\n- `all_collided_obstacles` — 碰撞检测在首次命中后停止（`if not collided:` guard），只记录第一个\n- `per_obstacle_min_ee_distance` — 同样是聚合值\n\n**代码改动量**：约 15 行 diff，合并了原来重复的 `get_obstacle_positions` 调用（实际还快了一点），完全向后兼容。\n\n**不需要**：EE trajectory 存储、碰撞方向向量 — per-obstacle displacement + collision distribution 已足够验证碰撞转移假说。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-eval-collision-analysis-enhancement.md"
+}

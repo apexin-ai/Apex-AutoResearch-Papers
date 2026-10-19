@@ -1,0 +1,2117 @@
+# recon eval status check
+
+**How Action Collapse Creates Illusory Safety in Diffusion-Based VLA Collision Avoidance Evaluation** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 45
+- **Recorded user turns:** 0
+- **Tool calls:** 17
+- **Original source:** `logs/workers/worker_recon_eval-status-check_20260528T101542.log`
+- **Structured JSON:** [`6385d05d327626d1d31a.json`](../../sessions/63/6385d05d327626d1d31a.json)
+
+## Before a recorded user message
+
+45 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf",
+  "session_id": "83b88665-0b1a-4651-944e-d9222cda3cac",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "c103ee66-9baa-4d5b-93d5-a578077481c1",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779974400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "835b51c7-5e80-45d9-806b-a38facf0a171",
+  "session_id": "83b88665-0b1a-4651-944e-d9222cda3cac"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me check the status of 6 eval experiments across two servers. I'll use ssh_read_only for all checks. Let me first load the tool schemas.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83b88665-0b1a-4651-944e-d9222cda3cac",
+  "uuid": "ae3635d3-892e-47b9-a6ab-bb8b139ede00",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011AcMSpGES2EKJZ5mRhED9a",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12757,
+      "cache_read_input_tokens": 11845,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12757
+      },
+      "output_tokens": 34,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01TfzsbyrrhXQ5GAzDhRHJYT`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83b88665-0b1a-4651-944e-d9222cda3cac",
+  "uuid": "169ddfad-398e-45f7-b446-9d750efb11a3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011AcMSpGES2EKJZ5mRhED9a",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12757,
+      "cache_read_input_tokens": 11845,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12757
+      },
+      "output_tokens": 34,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-28T10:15:55.886Z_
+
+<details><summary>↩ Tool result · `toolu_01TfzsbyrrhXQ5GAzDhRHJYT`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83b88665-0b1a-4651-944e-d9222cda3cac",
+  "uuid": "f8869a9c-99a2-4c95-80a0-bf9eb5bd7f62",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me run the checks in parallel across both servers. I'll start with GPU status, process checks, and log checks simultaneously.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83b88665-0b1a-4651-944e-d9222cda3cac",
+  "uuid": "2bc556f2-d113-49fd-876a-1da273cf8554",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HUfnn5mpdCLaKh62mL6UJp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 475,
+      "cache_read_input_tokens": 24602,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 475
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+开始核实 6 个 eval 实验状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83b88665-0b1a-4651-944e-d9222cda3cac",
+  "uuid": "b63fff82-b077-4dd3-aa11-a6e6cf3015ab",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HUfnn5mpdCLaKh62mL6UJp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 475,
+      "cache_read_input_tokens": 24602,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 475
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TjSBTMH9U3zouPWJbe7sKG`</summary>
+
+```json
+{
+  "server": "westd-35807",
+  "command": "nvidia-smi",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83b88665-0b1a-4651-944e-d9222cda3cac",
+  "uuid": "10faad56-4544-4e77-821e-63d6c4838111",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HUfnn5mpdCLaKh62mL6UJp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 475,
+      "cache_read_input_tokens": 24602,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 475
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FguuU2TUQdtVPAay19xF3p`</summary>
+
+```json
+{
+  "server": "westd-45947",
+  "command": "nvidia-smi",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83b88665-0b1a-4651-944e-d9222cda3cac",
+  "uuid": "0ba60375-a204-43c9-accf-77f117eb98c7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HUfnn5mpdCLaKh62mL6UJp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 475,
+      "cache_read_input_tokens": 24602,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 475
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JYwjqP7umk15z4LrbwYLgf`</summary>
+
+```json
+{
+  "server": "westd-35807",
+  "command": "ps -p 85158 -p 85239 -p 85318 -p 85399 -o pid,etime,cmd --no-header",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83b88665-0b1a-4651-944e-d9222cda3cac",
+  "uuid": "c31a4645-b4e0-46d4-8806-2b8f1cb5ec14",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HUfnn5mpdCLaKh62mL6UJp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 475,
+      "cache_read_input_tokens": 24602,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 475
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-28T10:16:01.026Z_
+
+<details><summary>↩ Tool result · `toolu_01TjSBTMH9U3zouPWJbe7sKG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Thu May 28 18:16:00 2026       \\n+-----------------------------------------------------------------------------------------+\\n| NVIDIA-SMI 580.95.05              Driver Version: 580.95.05      CUDA Version: 13.0     |\\n+-----------------------------------------+------------------------+----------------------+\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\n|                                         |                        |               MIG M. |\\n|=========================================+========================+======================|\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:A8:00.0 Off |                  Off |\\n| N/A   33C    P8             35W /  600W |       0MiB /  97887MiB |      0%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:B8:00.0 Off |                  Off |\\n| N/A   34C    P8             34W /  600W |       0MiB /  97887MiB |      0%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n|   2  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:C8:00.0 Off |                  Off |\\n| N/A   34C    P8             34W /  600W |       0MiB /  97887MiB |      0%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n|   3  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:D8:00.0 Off |                  Off |\\n| N/A   34C    P8             35W /  600W |       0MiB /  97887MiB |      0%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n\\n+-----------------------------------------------------------------------------------------+\\n| Processes:                                                                              |\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\n|        ID   ID                                                               Usage      |\\n|=========================================================================================|\\n|  No running processes found                                                             |\\n+-----------------------------------------------------------------------------------------+\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83b88665-0b1a-4651-944e-d9222cda3cac",
+  "uuid": "0581a626-0cd3-4b1c-bc4b-16914dedbf05",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Thu May 28 18:16:00 2026       \\\\n+-----------------------------------------------------------------------------------------+\\\\n| NVIDIA-SMI 580.95.05              Driver Version: 580.95.05      CUDA Version: 13.0     |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\\\n|                                         |                        |               MIG M. |\\\\n|=========================================+========================+======================|\\\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:A8:00.0 Off |                  Off |\\\\n| N/A   33C    P8             35W /  600W |       0MiB /  97887MiB |      0%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:B8:00.0 Off |                  Off |\\\\n| N/A   34C    P8             34W /  600W |       0MiB /  97887MiB |      0%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   2  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:C8:00.0 Off |                  Off |\\\\n| N/A   34C    P8             34W /  600W |       0MiB /  97887MiB |      0%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   3  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:D8:00.0 Off |                  Off |\\\\n| N/A   34C    P8             35W /  600W |       0MiB /  97887MiB |      0%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n\\\\n+-----------------------------------------------------------------------------------------+\\\\n| Processes:                                                                              |\\\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\\\n|        ID   ID                                                               Usage      |\\\\n|=========================================================================================|\\\\n|  No running processes found                                                             |\\\\n+-----------------------------------------------------------------------------------------+\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Thu May 28 18:16:00 2026       \\n+-----------------------------------------------------------------------------------------+\\n| NVIDIA-SMI 580.95.05              Driver Version: 580.95.05      CUDA Version: 13.0     |\\n+-----------------------------------------+------------------------+----------------------+\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\n|                                         |                        |               MIG M. |\\n|=========================================+========================+======================|\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:A8:00.0 Off |                  Off |\\n| N/A   33C    P8             35W /  600W |       0MiB /  97887MiB |      0%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:B8:00.0 Off |                  Off |\\n| N/A   34C    P8             34W /  600W |       0MiB /  97887MiB |      0%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n|   2  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:C8:00.0 Off |                  Off |\\n| N/A   34C    P8             34W /  600W |       0MiB /  97887MiB |      0%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n|   3  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:D8:00.0 Off |                  Off |\\n| N/A   34C    P8             35W /  600W |       0MiB /  97887MiB |      0%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n\\n+-----------------------------------------------------------------------------------------+\\n| Processes:                                                                              |\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\n|        ID   ID                                                               Usage      |\\n|=========================================================================================|\\n|  No running processes found                                                             |\\n+-----------------------------------------------------------------------------------------+\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019XS9rexjfbM2qtb86vGq2h`</summary>
+
+```json
+{
+  "server": "westd-45947",
+  "command": "ps -p 654382 -p 654522 -o pid,etime,cmd --no-header",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83b88665-0b1a-4651-944e-d9222cda3cac",
+  "uuid": "74edc804-5cd7-4f83-9b23-586105fabd90",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HUfnn5mpdCLaKh62mL6UJp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 475,
+      "cache_read_input_tokens": 24602,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 475
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-28T10:16:02.029Z_
+
+<details><summary>↩ Tool result · `toolu_01FguuU2TUQdtVPAay19xF3p`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Thu May 28 18:16:01 2026       \\n+-----------------------------------------------------------------------------------------+\\n| NVIDIA-SMI 595.58.03              Driver Version: 595.58.03      CUDA Version: 13.2     |\\n+-----------------------------------------+------------------------+----------------------+\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\n|                                         |                        |               MIG M. |\\n|=========================================+========================+======================|\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:38:00.0 Off |                  Off |\\n| N/A   33C    P8             35W /  600W |       0MiB /  97887MiB |      0%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:98:00.0 Off |                  Off |\\n| N/A   31C    P8             35W /  600W |       0MiB /  97887MiB |      0%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n\\n+-----------------------------------------------------------------------------------------+\\n| Processes:                                                                              |\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\n|        ID   ID                                                               Usage      |\\n|=========================================================================================|\\n|  No running processes found                                                             |\\n+-----------------------------------------------------------------------------------------+\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.99}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83b88665-0b1a-4651-944e-d9222cda3cac",
+  "uuid": "1c02398c-25f0-4ab9-918d-2ce9c96c9192",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Thu May 28 18:16:01 2026       \\\\n+-----------------------------------------------------------------------------------------+\\\\n| NVIDIA-SMI 595.58.03              Driver Version: 595.58.03      CUDA Version: 13.2     |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\\\n|                                         |                        |               MIG M. |\\\\n|=========================================+========================+======================|\\\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:38:00.0 Off |                  Off |\\\\n| N/A   33C    P8             35W /  600W |       0MiB /  97887MiB |      0%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:98:00.0 Off |                  Off |\\\\n| N/A   31C    P8             35W /  600W |       0MiB /  97887MiB |      0%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n\\\\n+-----------------------------------------------------------------------------------------+\\\\n| Processes:                                                                              |\\\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\\\n|        ID   ID                                                               Usage      |\\\\n|=========================================================================================|\\\\n|  No running processes found                                                             |\\\\n+-----------------------------------------------------------------------------------------+\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.99}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Thu May 28 18:16:01 2026       \\n+-----------------------------------------------------------------------------------------+\\n| NVIDIA-SMI 595.58.03              Driver Version: 595.58.03      CUDA Version: 13.2     |\\n+-----------------------------------------+------------------------+----------------------+\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\n|                                         |                        |               MIG M. |\\n|=========================================+========================+======================|\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:38:00.0 Off |                  Off |\\n| N/A   33C    P8             35W /  600W |       0MiB /  97887MiB |      0%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:98:00.0 Off |                  Off |\\n| N/A   31C    P8             35W /  600W |       0MiB /  97887MiB |      0%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n\\n+-----------------------------------------------------------------------------------------+\\n| Processes:                                                                              |\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\n|        ID   ID                                                               Usage      |\\n|=========================================================================================|\\n|  No running processes found                                                             |\\n+-----------------------------------------------------------------------------------------+\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.99}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-28T10:16:02.527Z_
+
+<details><summary>↩ Tool result · `toolu_01JYwjqP7umk15z4LrbwYLgf`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83b88665-0b1a-4651-944e-d9222cda3cac",
+  "uuid": "6224ba43-b564-4273-ba6e-dc097a2b5fb7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.49}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-28T10:16:02.970Z_
+
+<details><summary>↩ Tool result · `toolu_019XS9rexjfbM2qtb86vGq2h`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83b88665-0b1a-4651-944e-d9222cda3cac",
+  "uuid": "68dca0c0-8be4-404b-a276-c656913da6ba",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+所有 6 个 PID 都已不存在，GPU 显存全部 0MiB —— 进程已结束。检查日志和结果文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83b88665-0b1a-4651-944e-d9222cda3cac",
+  "uuid": "2844130e-fc99-4218-a54f-037611d045ca",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VwDvwi76MCJeZzoD8KNieL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2005,
+      "cache_read_input_tokens": 25077,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2005
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017mnbZbg9oWT5TgitSnX8xN`</summary>
+
+```json
+{
+  "server": "westd-35807",
+  "command": "tail -20 /root/runs/diff_collision_sdf/eval_multiseed_lora_s0_eseed0.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83b88665-0b1a-4651-944e-d9222cda3cac",
+  "uuid": "35acaf3f-3a02-417e-b554-c15f363ba927",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VwDvwi76MCJeZzoD8KNieL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2005,
+      "cache_read_input_tokens": 25077,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2005
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-28T10:16:08.959Z_
+
+<details><summary>↩ Tool result · `toolu_017mnbZbg9oWT5TgitSnX8xN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-28 17:50:57,025 [INFO]   TSR = 68.0% (34/50)\\n2026-05-28 17:50:57,025 [INFO]   CAR = 22.0% (11/50)\\n2026-05-28 17:50:57,025 [INFO]   Avg smoothness = 0.000645\\n2026-05-28 17:50:57,026 [INFO]   Avg max displacement = 0.0932m\\n2026-05-28 17:50:57,026 [INFO] === Overall Results ===\\n2026-05-28 17:50:57,026 [INFO]   Avg TSR = 55.5%\\n2026-05-28 17:50:57,026 [INFO]   Avg CAR = 53.0%\\n2026-05-28 17:50:57,029 [INFO] Results saved to /root/autodl-tmp/eval_results/eval_multiseed_lora_s0_eseed0.json\\n[GPU] Using external CUDA_VISIBLE_DEVICES=0 (ignoring --gpu 0)\\n[info] using task orders [0, 1, 2, 3]\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83b88665-0b1a-4651-944e-d9222cda3cac",
+  "uuid": "45bb91e6-a3a3-4447-b780-7f688ca5808d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-28 17:50:57,025 [INFO]   TSR = 68.0% (34/50)\\\\n2026-05-28 17:50:57,025 [INFO]   CAR = 22.0% (11/50)\\\\n2026-05-28 17:50:57,025 [INFO]   Avg smoothness = 0.000645\\\\n2026-05-28 17:50:57,026 [INFO]   Avg max displacement = 0.0932m\\\\n2026-05-28 17:50:57,026 [INFO] === Overall Results ===\\\\n2026-05-28 17:50:57,026 [INFO]   Avg TSR = 55.5%\\\\n2026-05-28 17:50:57,026 [INFO]   Avg CAR = 53.0%\\\\n2026-05-28 17:50:57,029 [INFO] Results saved to /root/autodl-tmp/eval_results/eval_multiseed_lora_s0_eseed0.json\\\\n[GPU] Using external CUDA_VISIBLE_DEVICES=0 (ignoring --gpu 0)\\\\n[info] using task orders [0, 1, 2, 3]\\\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-28 17:50:57,025 [INFO]   TSR = 68.0% (34/50)\\n2026-05-28 17:50:57,025 [INFO]   CAR = 22.0% (11/50)\\n2026-05-28 17:50:57,025 [INFO]   Avg smoothness = 0.000645\\n2026-05-28 17:50:57,026 [INFO]   Avg max displacement = 0.0932m\\n2026-05-28 17:50:57,026 [INFO] === Overall Results ===\\n2026-05-28 17:50:57,026 [INFO]   Avg TSR = 55.5%\\n2026-05-28 17:50:57,026 [INFO]   Avg CAR = 53.0%\\n2026-05-28 17:50:57,029 [INFO] Results saved to /root/autodl-tmp/eval_results/eval_multiseed_lora_s0_eseed0.json\\n[GPU] Using external CUDA_VISIBLE_DEVICES=0 (ignoring --gpu 0)\\n[info] using task orders [0, 1, 2, 3]\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PZkdywLocQfc2tBs8CQcEi`</summary>
+
+```json
+{
+  "server": "westd-35807",
+  "command": "tail -20 /root/runs/diff_collision_sdf/eval_multiseed_lora_s0_eseed99.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83b88665-0b1a-4651-944e-d9222cda3cac",
+  "uuid": "6a058d21-671f-4294-881e-cb028331ba04",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VwDvwi76MCJeZzoD8KNieL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2005,
+      "cache_read_input_tokens": 25077,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2005
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-28T10:16:09.845Z_
+
+<details><summary>↩ Tool result · `toolu_01PZkdywLocQfc2tBs8CQcEi`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-28 17:49:47,355 [INFO]   TSR = 64.0% (32/50)\\n2026-05-28 17:49:47,355 [INFO]   CAR = 30.0% (15/50)\\n2026-05-28 17:49:47,355 [INFO]   Avg smoothness = 0.000626\\n2026-05-28 17:49:47,355 [INFO]   Avg max displacement = 0.0919m\\n2026-05-28 17:49:47,355 [INFO] === Overall Results ===\\n2026-05-28 17:49:47,355 [INFO]   Avg TSR = 52.0%\\n2026-05-28 17:49:47,355 [INFO]   Avg CAR = 57.5%\\n2026-05-28 17:49:47,358 [INFO] Results saved to /root/autodl-tmp/eval_results/eval_multiseed_lora_s0_eseed99.json\\n[GPU] Using external CUDA_VISIBLE_DEVICES=1 (ignoring --gpu 0)\\n[info] using task orders [0, 1, 2, 3]\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83b88665-0b1a-4651-944e-d9222cda3cac",
+  "uuid": "df1edc64-67ac-49ba-93ea-747cb599af5a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-28 17:49:47,355 [INFO]   TSR = 64.0% (32/50)\\\\n2026-05-28 17:49:47,355 [INFO]   CAR = 30.0% (15/50)\\\\n2026-05-28 17:49:47,355 [INFO]   Avg smoothness = 0.000626\\\\n2026-05-28 17:49:47,355 [INFO]   Avg max displacement = 0.0919m\\\\n2026-05-28 17:49:47,355 [INFO] === Overall Results ===\\\\n2026-05-28 17:49:47,355 [INFO]   Avg TSR = 52.0%\\\\n2026-05-28 17:49:47,355 [INFO]   Avg CAR = 57.5%\\\\n2026-05-28 17:49:47,358 [INFO] Results saved to /root/autodl-tmp/eval_results/eval_multiseed_lora_s0_eseed99.json\\\\n[GPU] Using external CUDA_VISIBLE_DEVICES=1 (ignoring --gpu 0)\\\\n[info] using task orders [0, 1, 2, 3]\\\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-28 17:49:47,355 [INFO]   TSR = 64.0% (32/50)\\n2026-05-28 17:49:47,355 [INFO]   CAR = 30.0% (15/50)\\n2026-05-28 17:49:47,355 [INFO]   Avg smoothness = 0.000626\\n2026-05-28 17:49:47,355 [INFO]   Avg max displacement = 0.0919m\\n2026-05-28 17:49:47,355 [INFO] === Overall Results ===\\n2026-05-28 17:49:47,355 [INFO]   Avg TSR = 52.0%\\n2026-05-28 17:49:47,355 [INFO]   Avg CAR = 57.5%\\n2026-05-28 17:49:47,358 [INFO] Results saved to /root/autodl-tmp/eval_results/eval_multiseed_lora_s0_eseed99.json\\n[GPU] Using external CUDA_VISIBLE_DEVICES=1 (ignoring --gpu 0)\\n[info] using task orders [0, 1, 2, 3]\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BhqBppN6FLeNm7ZJjWFjR9`</summary>
+
+```json
+{
+  "server": "westd-35807",
+  "command": "tail -20 /root/runs/diff_collision_sdf/eval_multiseed_sdf_l01_s0_eseed0.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83b88665-0b1a-4651-944e-d9222cda3cac",
+  "uuid": "970ff225-fa15-4af9-a870-e1ba3600d69b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VwDvwi76MCJeZzoD8KNieL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2005,
+      "cache_read_input_tokens": 25077,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2005
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-28T10:16:10.779Z_
+
+<details><summary>↩ Tool result · `toolu_01BhqBppN6FLeNm7ZJjWFjR9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-28 17:50:08,481 [INFO]   TSR = 68.0% (34/50)\\n2026-05-28 17:50:08,481 [INFO]   CAR = 14.0% (7/50)\\n2026-05-28 17:50:08,481 [INFO]   Avg smoothness = 0.000620\\n2026-05-28 17:50:08,481 [INFO]   Avg max displacement = 0.0748m\\n2026-05-28 17:50:08,481 [INFO] === Overall Results ===\\n2026-05-28 17:50:08,481 [INFO]   Avg TSR = 48.5%\\n2026-05-28 17:50:08,481 [INFO]   Avg CAR = 52.5%\\n2026-05-28 17:50:08,484 [INFO] Results saved to /root/autodl-tmp/eval_results/eval_multiseed_sdf_l01_s0_eseed0.json\\n[GPU] Using external CUDA_VISIBLE_DEVICES=2 (ignoring --gpu 0)\\n[info] using task orders [0, 1, 2, 3]\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83b88665-0b1a-4651-944e-d9222cda3cac",
+  "uuid": "52e66b52-62af-4463-bfc2-6d6d64605ca9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-28 17:50:08,481 [INFO]   TSR = 68.0% (34/50)\\\\n2026-05-28 17:50:08,481 [INFO]   CAR = 14.0% (7/50)\\\\n2026-05-28 17:50:08,481 [INFO]   Avg smoothness = 0.000620\\\\n2026-05-28 17:50:08,481 [INFO]   Avg max displacement = 0.0748m\\\\n2026-05-28 17:50:08,481 [INFO] === Overall Results ===\\\\n2026-05-28 17:50:08,481 [INFO]   Avg TSR = 48.5%\\\\n2026-05-28 17:50:08,481 [INFO]   Avg CAR = 52.5%\\\\n2026-05-28 17:50:08,484 [INFO] Results saved to /root/autodl-tmp/eval_results/eval_multiseed_sdf_l01_s0_eseed0.json\\\\n[GPU] Using external CUDA_VISIBLE_DEVICES=2 (ignoring --gpu 0)\\\\n[info] using task orders [0, 1, 2, 3]\\\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-28 17:50:08,481 [INFO]   TSR = 68.0% (34/50)\\n2026-05-28 17:50:08,481 [INFO]   CAR = 14.0% (7/50)\\n2026-05-28 17:50:08,481 [INFO]   Avg smoothness = 0.000620\\n2026-05-28 17:50:08,481 [INFO]   Avg max displacement = 0.0748m\\n2026-05-28 17:50:08,481 [INFO] === Overall Results ===\\n2026-05-28 17:50:08,481 [INFO]   Avg TSR = 48.5%\\n2026-05-28 17:50:08,481 [INFO]   Avg CAR = 52.5%\\n2026-05-28 17:50:08,484 [INFO] Results saved to /root/autodl-tmp/eval_results/eval_multiseed_sdf_l01_s0_eseed0.json\\n[GPU] Using external CUDA_VISIBLE_DEVICES=2 (ignoring --gpu 0)\\n[info] using task orders [0, 1, 2, 3]\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UMqVhfqnBm38kvUJhs67Ww`</summary>
+
+```json
+{
+  "server": "westd-35807",
+  "command": "tail -20 /root/runs/diff_collision_sdf/eval_multiseed_sdf_l01_s0_eseed99.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83b88665-0b1a-4651-944e-d9222cda3cac",
+  "uuid": "c3420731-37a0-490c-af21-f78818d9060e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VwDvwi76MCJeZzoD8KNieL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2005,
+      "cache_read_input_tokens": 25077,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2005
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-28T10:16:11.750Z_
+
+<details><summary>↩ Tool result · `toolu_01UMqVhfqnBm38kvUJhs67Ww`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-28 17:50:39,912 [INFO]   TSR = 54.0% (27/50)\\n2026-05-28 17:50:39,912 [INFO]   CAR = 28.0% (14/50)\\n2026-05-28 17:50:39,912 [INFO]   Avg smoothness = 0.000621\\n2026-05-28 17:50:39,912 [INFO]   Avg max displacement = 0.0998m\\n2026-05-28 17:50:39,912 [INFO] === Overall Results ===\\n2026-05-28 17:50:39,912 [INFO]   Avg TSR = 46.5%\\n2026-05-28 17:50:39,912 [INFO]   Avg CAR = 57.0%\\n2026-05-28 17:50:39,915 [INFO] Results saved to /root/autodl-tmp/eval_results/eval_multiseed_sdf_l01_s0_eseed99.json\\n[GPU] Using external CUDA_VISIBLE_DEVICES=3 (ignoring --gpu 0)\\n[info] using task orders [0, 1, 2, 3]\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83b88665-0b1a-4651-944e-d9222cda3cac",
+  "uuid": "a149fe0b-d4d8-4da8-8b31-33ca655e78f3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-28 17:50:39,912 [INFO]   TSR = 54.0% (27/50)\\\\n2026-05-28 17:50:39,912 [INFO]   CAR = 28.0% (14/50)\\\\n2026-05-28 17:50:39,912 [INFO]   Avg smoothness = 0.000621\\\\n2026-05-28 17:50:39,912 [INFO]   Avg max displacement = 0.0998m\\\\n2026-05-28 17:50:39,912 [INFO] === Overall Results ===\\\\n2026-05-28 17:50:39,912 [INFO]   Avg TSR = 46.5%\\\\n2026-05-28 17:50:39,912 [INFO]   Avg CAR = 57.0%\\\\n2026-05-28 17:50:39,915 [INFO] Results saved to /root/autodl-tmp/eval_results/eval_multiseed_sdf_l01_s0_eseed99.json\\\\n[GPU] Using external CUDA_VISIBLE_DEVICES=3 (ignoring --gpu 0)\\\\n[info] using task orders [0, 1, 2, 3]\\\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-28 17:50:39,912 [INFO]   TSR = 54.0% (27/50)\\n2026-05-28 17:50:39,912 [INFO]   CAR = 28.0% (14/50)\\n2026-05-28 17:50:39,912 [INFO]   Avg smoothness = 0.000621\\n2026-05-28 17:50:39,912 [INFO]   Avg max displacement = 0.0998m\\n2026-05-28 17:50:39,912 [INFO] === Overall Results ===\\n2026-05-28 17:50:39,912 [INFO]   Avg TSR = 46.5%\\n2026-05-28 17:50:39,912 [INFO]   Avg CAR = 57.0%\\n2026-05-28 17:50:39,915 [INFO] Results saved to /root/autodl-tmp/eval_results/eval_multiseed_sdf_l01_s0_eseed99.json\\n[GPU] Using external CUDA_VISIBLE_DEVICES=3 (ignoring --gpu 0)\\n[info] using task orders [0, 1, 2, 3]\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\n[Warning]: datasets path /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/../datasets does not exist!\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016HkWechZGsT5M9ZbGM91Wk`</summary>
+
+```json
+{
+  "server": "westd-45947",
+  "command": "tail -20 /root/runs/diff_collision_sdf/eval_multiseed_lora_s1_eseed0.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83b88665-0b1a-4651-944e-d9222cda3cac",
+  "uuid": "4680bd9f-75e3-4aa4-a52b-68ac833ddafe",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VwDvwi76MCJeZzoD8KNieL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2005,
+      "cache_read_input_tokens": 25077,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2005
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-28T10:16:12.686Z_
+
+<details><summary>↩ Tool result · `toolu_016HkWechZGsT5M9ZbGM91Wk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-28 17:26:03,344 [INFO] LoRA injected: PaliGemma rank=16 (19611648 params), Expert rank=32 (13860864 params)\\n2026-05-28 17:26:03,344 [INFO] Loading full state dict from /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed1/30000/model.safetensors\\n[GPU] Using external CUDA_VISIBLE_DEVICES=0 (ignoring --gpu 0)\\nTraceback (most recent call last):\\n  File \\\"/root/colliforce-vla/scripts/eval_safelibero.py\\\", line 1363, in &lt;module>\\n    main()\\n  File \\\"/root/colliforce-vla/scripts/eval_safelibero.py\\\", line 1168, in main\\n    policy = load_policy(args)\\n             ^^^^^^^^^^^^^^^^^\\n  File \\\"/root/colliforce-vla/scripts/eval_safelibero.py\\\", line 653, in load_policy\\n    return _load_policy_lora_baseline(args, config)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/colliforce-vla/scripts/eval_safelibero.py\\\", line 782, in _load_policy_lora_baseline\\n    _sft.load_model(model, weight_path)\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/safetensors/torch.py\\\", line 244, in load_model\\n    raise RuntimeError(error)\\nRuntimeError: Error(s) in loading state_dict for PI0Pytorch:\\n    Missing key(s) in state_dict: \\\"action_time_mlp_in.bias\\\", \\\"action_time_mlp_in.weight\\\", \\\"action_time_mlp_out.bias\\\", \\\"action_time_mlp_out.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.0.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.0.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.1.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.1.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.10.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.10.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.11.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.11.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.12.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.12.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.13.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.13.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.14.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.14.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.15.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.15.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.16.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.16.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.17.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.17.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.2.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.2.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.3.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.3.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.4.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.4.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.5.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.5.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.6.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.6.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.7.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.7.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.8.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.\\n\\n... [截断: 输出过长，省略 2743 字符] ...\\n\\night\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.15.input_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.15.input_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.15.post_attention_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.15.post_attention_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.16.input_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.16.input_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.16.post_attention_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.16.post_attention_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.17.input_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.17.input_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.17.post_attention_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.17.post_attention_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.2.input_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.2.input_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.2.post_attention_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.2.post_attention_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.3.input_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.3.input_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.3.post_attention_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.3.post_attention_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.4.input_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.4.input_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.4.post_attention_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.4.post_attention_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.5.input_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.5.input_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.5.post_attention_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.5.post_attention_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.6.input_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.6.input_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.6.post_attention_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.6.post_attention_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.7.input_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.7.input_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.7.post_attention_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.7.post_attention_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.8.input_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.8.input_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.8.post_attention_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.8.post_attention_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.9.input_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.9.input_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.9.post_attention_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.9.post_attention_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.norm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.norm.dense.weight\\\", \\\"time_mlp_in.bias\\\", \\\"time_mlp_in.weight\\\", \\\"time_mlp_out.bias\\\", \\\"time_mlp_out.weight\\\"\\nEXIT_CODE=1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83b88665-0b1a-4651-944e-d9222cda3cac",
+  "uuid": "ac4e39da-52b4-43d5-9d06-2a304bbd96f5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-28 17:26:03,344 [INFO] LoRA injected: PaliGemma rank=16 (19611648 params), Expert rank=32 (13860864 params)\\\\n2026-05-28 17:26:03,344 [INFO] Loading full state dict from /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed1/30000/model.safetensors\\\\n[GPU] Using external CUDA_VISIBLE_DEVICES=0 (ignoring --gpu 0)\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"/root/colliforce-vla/scripts/eval_safelibero.py\\\\\\\", line 1363, in &lt;module>\\\\n    main()\\\\n  File \\\\\\\"/root/colliforce-vla/scripts/eval_safelibero.py\\\\\\\", line 1168, in main\\\\n    policy = load_policy(args)\\\\n             ^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/colliforce-vla/scripts/eval_safelibero.py\\\\\\\", line 653, in load_policy\\\\n    return _load_policy_lora_baseline(args, config)\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/colliforce-vla/scripts/eval_safelibero.py\\\\\\\", line 782, in _load_policy_lora_baseline\\\\n    _sft.load_model(model, weight_path)\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/safetensors/torch.py\\\\\\\", line 244, in load_model\\\\n    raise RuntimeError(error)\\\\nRuntimeError: Error(s) in loading state_dict for PI0Pytorch:\\\\n    Missing key(s) in state_dict: \\\\\\\"action_time_mlp_in.bias\\\\\\\", \\\\\\\"action_time_mlp_in.weight\\\\\\\", \\\\\\\"action_time_mlp_out.bias\\\\\\\", \\\\\\\"action_time_mlp_out.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.0.input_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.0.post_attention_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.1.input_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.1.post_attention_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.10.input_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.10.post_attention_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.11.input_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.11.post_attention_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.12.input_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.12.post_attention_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.13.input_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.13.post_attention_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.14.input_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.14.post_attention_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.15.input_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.15.post_attention_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.16.input_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.16.post_attention_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.17.input_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.17.post_attention_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.2.input_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.2.post_attention_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.3.input_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.3.post_attention_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.4.input_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.4.post_attention_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.5.input_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.5.post_attention_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.6.input_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.6.post_attention_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.7.input_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.7.post_attention_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.8.input_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.\\\\n\\\\n... [截断: 输出过长，省略 2743 字符] ...\\\\n\\\\night\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.15.input_layernorm.dense.bias\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.15.input_layernorm.dense.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.15.post_attention_layernorm.dense.bias\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.15.post_attention_layernorm.dense.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.16.input_layernorm.dense.bias\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.16.input_layernorm.dense.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.16.post_attention_layernorm.dense.bias\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.16.post_attention_layernorm.dense.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.17.input_layernorm.dense.bias\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.17.input_layernorm.dense.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.17.post_attention_layernorm.dense.bias\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.17.post_attention_layernorm.dense.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.2.input_layernorm.dense.bias\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.2.input_layernorm.dense.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.2.post_attention_layernorm.dense.bias\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.2.post_attention_layernorm.dense.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.3.input_layernorm.dense.bias\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.3.input_layernorm.dense.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.3.post_attention_layernorm.dense.bias\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.3.post_attention_layernorm.dense.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.4.input_layernorm.dense.bias\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.4.input_layernorm.dense.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.4.post_attention_layernorm.dense.bias\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.4.post_attention_layernorm.dense.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.5.input_layernorm.dense.bias\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.5.input_layernorm.dense.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.5.post_attention_layernorm.dense.bias\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.5.post_attention_layernorm.dense.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.6.input_layernorm.dense.bias\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.6.input_layernorm.dense.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.6.post_attention_layernorm.dense.bias\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.6.post_attention_layernorm.dense.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.7.input_layernorm.dense.bias\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.7.input_layernorm.dense.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.7.post_attention_layernorm.dense.bias\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.7.post_attention_layernorm.dense.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.8.input_layernorm.dense.bias\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.8.input_layernorm.dense.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.8.post_attention_layernorm.dense.bias\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.8.post_attention_layernorm.dense.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.9.input_layernorm.dense.bias\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.9.input_layernorm.dense.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.9.post_attention_layernorm.dense.bias\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.9.post_attention_layernorm.dense.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.norm.dense.bias\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.norm.dense.weight\\\\\\\", \\\\\\\"time_mlp_in.bias\\\\\\\", \\\\\\\"time_mlp_in.weight\\\\\\\", \\\\\\\"time_mlp_out.bias\\\\\\\", \\\\\\\"time_mlp_out.weight\\\\\\\"\\\\nEXIT_CODE=1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-28 17:26:03,344 [INFO] LoRA injected: PaliGemma rank=16 (19611648 params), Expert rank=32 (13860864 params)\\n2026-05-28 17:26:03,344 [INFO] Loading full state dict from /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed1/30000/model.safetensors\\n[GPU] Using external CUDA_VISIBLE_DEVICES=0 (ignoring --gpu 0)\\nTraceback (most recent call last):\\n  File \\\"/root/colliforce-vla/scripts/eval_safelibero.py\\\", line 1363, in &lt;module>\\n    main()\\n  File \\\"/root/colliforce-vla/scripts/eval_safelibero.py\\\", line 1168, in main\\n    policy = load_policy(args)\\n             ^^^^^^^^^^^^^^^^^\\n  File \\\"/root/colliforce-vla/scripts/eval_safelibero.py\\\", line 653, in load_policy\\n    return _load_policy_lora_baseline(args, config)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/colliforce-vla/scripts/eval_safelibero.py\\\", line 782, in _load_policy_lora_baseline\\n    _sft.load_model(model, weight_path)\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/safetensors/torch.py\\\", line 244, in load_model\\n    raise RuntimeError(error)\\nRuntimeError: Error(s) in loading state_dict for PI0Pytorch:\\n    Missing key(s) in state_dict: \\\"action_time_mlp_in.bias\\\", \\\"action_time_mlp_in.weight\\\", \\\"action_time_mlp_out.bias\\\", \\\"action_time_mlp_out.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.0.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.0.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.1.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.1.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.10.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.10.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.11.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.11.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.12.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.12.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.13.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.13.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.14.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.14.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.15.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.15.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.16.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.16.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.17.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.17.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.2.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.2.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.3.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.3.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.4.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.4.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.5.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.5.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.6.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.6.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.7.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.7.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.8.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.\\n\\n... [截断: 输出过长，省略 2743 字符] ...\\n\\night\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.15.input_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.15.input_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.15.post_attention_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.15.post_attention_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.16.input_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.16.input_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.16.post_attention_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.16.post_attention_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.17.input_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.17.input_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.17.post_attention_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.17.post_attention_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.2.input_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.2.input_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.2.post_attention_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.2.post_attention_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.3.input_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.3.input_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.3.post_attention_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.3.post_attention_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.4.input_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.4.input_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.4.post_attention_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.4.post_attention_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.5.input_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.5.input_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.5.post_attention_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.5.post_attention_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.6.input_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.6.input_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.6.post_attention_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.6.post_attention_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.7.input_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.7.input_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.7.post_attention_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.7.post_attention_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.8.input_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.8.input_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.8.post_attention_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.8.post_attention_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.9.input_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.9.input_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.9.post_attention_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.9.post_attention_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.norm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.norm.dense.weight\\\", \\\"time_mlp_in.bias\\\", \\\"time_mlp_in.weight\\\", \\\"time_mlp_out.bias\\\", \\\"time_mlp_out.weight\\\"\\nEXIT_CODE=1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DNALmh4moNpo9RfdvkM4zu`</summary>
+
+```json
+{
+  "server": "westd-45947",
+  "command": "tail -20 /root/runs/diff_collision_sdf/eval_multiseed_lora_s1_eseed99.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83b88665-0b1a-4651-944e-d9222cda3cac",
+  "uuid": "f88ec47d-8023-494b-baaa-4803fa965073",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VwDvwi76MCJeZzoD8KNieL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2005,
+      "cache_read_input_tokens": 25077,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2005
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-28T10:16:13.647Z_
+
+<details><summary>↩ Tool result · `toolu_01DNALmh4moNpo9RfdvkM4zu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-28 17:26:03,630 [INFO] LoRA injected: PaliGemma rank=16 (19611648 params), Expert rank=32 (13860864 params)\\n2026-05-28 17:26:03,631 [INFO] Loading full state dict from /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed1/30000/model.safetensors\\n[GPU] Using external CUDA_VISIBLE_DEVICES=1 (ignoring --gpu 0)\\nTraceback (most recent call last):\\n  File \\\"/root/colliforce-vla/scripts/eval_safelibero.py\\\", line 1363, in &lt;module>\\n    main()\\n  File \\\"/root/colliforce-vla/scripts/eval_safelibero.py\\\", line 1168, in main\\n    policy = load_policy(args)\\n             ^^^^^^^^^^^^^^^^^\\n  File \\\"/root/colliforce-vla/scripts/eval_safelibero.py\\\", line 653, in load_policy\\n    return _load_policy_lora_baseline(args, config)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/colliforce-vla/scripts/eval_safelibero.py\\\", line 782, in _load_policy_lora_baseline\\n    _sft.load_model(model, weight_path)\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/safetensors/torch.py\\\", line 244, in load_model\\n    raise RuntimeError(error)\\nRuntimeError: Error(s) in loading state_dict for PI0Pytorch:\\n    Missing key(s) in state_dict: \\\"action_time_mlp_in.bias\\\", \\\"action_time_mlp_in.weight\\\", \\\"action_time_mlp_out.bias\\\", \\\"action_time_mlp_out.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.0.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.0.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.1.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.1.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.10.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.10.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.11.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.11.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.12.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.12.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.13.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.13.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.14.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.14.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.15.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.15.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.16.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.16.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.17.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.17.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.2.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.2.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.3.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.3.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.4.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.4.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.5.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.5.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.6.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.6.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.7.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.7.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.8.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.\\n\\n... [截断: 输出过长，省略 2743 字符] ...\\n\\night\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.15.input_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.15.input_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.15.post_attention_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.15.post_attention_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.16.input_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.16.input_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.16.post_attention_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.16.post_attention_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.17.input_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.17.input_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.17.post_attention_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.17.post_attention_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.2.input_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.2.input_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.2.post_attention_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.2.post_attention_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.3.input_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.3.input_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.3.post_attention_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.3.post_attention_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.4.input_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.4.input_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.4.post_attention_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.4.post_attention_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.5.input_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.5.input_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.5.post_attention_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.5.post_attention_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.6.input_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.6.input_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.6.post_attention_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.6.post_attention_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.7.input_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.7.input_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.7.post_attention_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.7.post_attention_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.8.input_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.8.input_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.8.post_attention_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.8.post_attention_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.9.input_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.9.input_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.9.post_attention_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.9.post_attention_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.norm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.norm.dense.weight\\\", \\\"time_mlp_in.bias\\\", \\\"time_mlp_in.weight\\\", \\\"time_mlp_out.bias\\\", \\\"time_mlp_out.weight\\\"\\nEXIT_CODE=1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83b88665-0b1a-4651-944e-d9222cda3cac",
+  "uuid": "4266263a-c5e2-4285-96eb-42da510488f4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-28 17:26:03,630 [INFO] LoRA injected: PaliGemma rank=16 (19611648 params), Expert rank=32 (13860864 params)\\\\n2026-05-28 17:26:03,631 [INFO] Loading full state dict from /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed1/30000/model.safetensors\\\\n[GPU] Using external CUDA_VISIBLE_DEVICES=1 (ignoring --gpu 0)\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"/root/colliforce-vla/scripts/eval_safelibero.py\\\\\\\", line 1363, in &lt;module>\\\\n    main()\\\\n  File \\\\\\\"/root/colliforce-vla/scripts/eval_safelibero.py\\\\\\\", line 1168, in main\\\\n    policy = load_policy(args)\\\\n             ^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/colliforce-vla/scripts/eval_safelibero.py\\\\\\\", line 653, in load_policy\\\\n    return _load_policy_lora_baseline(args, config)\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/colliforce-vla/scripts/eval_safelibero.py\\\\\\\", line 782, in _load_policy_lora_baseline\\\\n    _sft.load_model(model, weight_path)\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/safetensors/torch.py\\\\\\\", line 244, in load_model\\\\n    raise RuntimeError(error)\\\\nRuntimeError: Error(s) in loading state_dict for PI0Pytorch:\\\\n    Missing key(s) in state_dict: \\\\\\\"action_time_mlp_in.bias\\\\\\\", \\\\\\\"action_time_mlp_in.weight\\\\\\\", \\\\\\\"action_time_mlp_out.bias\\\\\\\", \\\\\\\"action_time_mlp_out.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.0.input_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.0.post_attention_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.1.input_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.1.post_attention_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.10.input_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.10.post_attention_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.11.input_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.11.post_attention_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.12.input_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.12.post_attention_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.13.input_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.13.post_attention_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.14.input_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.14.post_attention_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.15.input_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.15.post_attention_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.16.input_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.16.post_attention_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.17.input_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.17.post_attention_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.2.input_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.2.post_attention_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.3.input_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.3.post_attention_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.4.input_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.4.post_attention_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.5.input_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.5.post_attention_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.6.input_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.6.post_attention_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.7.input_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.7.post_attention_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.8.input_layernorm.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.\\\\n\\\\n... [截断: 输出过长，省略 2743 字符] ...\\\\n\\\\night\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.15.input_layernorm.dense.bias\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.15.input_layernorm.dense.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.15.post_attention_layernorm.dense.bias\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.15.post_attention_layernorm.dense.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.16.input_layernorm.dense.bias\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.16.input_layernorm.dense.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.16.post_attention_layernorm.dense.bias\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.16.post_attention_layernorm.dense.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.17.input_layernorm.dense.bias\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.17.input_layernorm.dense.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.17.post_attention_layernorm.dense.bias\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.17.post_attention_layernorm.dense.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.2.input_layernorm.dense.bias\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.2.input_layernorm.dense.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.2.post_attention_layernorm.dense.bias\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.2.post_attention_layernorm.dense.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.3.input_layernorm.dense.bias\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.3.input_layernorm.dense.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.3.post_attention_layernorm.dense.bias\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.3.post_attention_layernorm.dense.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.4.input_layernorm.dense.bias\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.4.input_layernorm.dense.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.4.post_attention_layernorm.dense.bias\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.4.post_attention_layernorm.dense.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.5.input_layernorm.dense.bias\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.5.input_layernorm.dense.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.5.post_attention_layernorm.dense.bias\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.5.post_attention_layernorm.dense.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.6.input_layernorm.dense.bias\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.6.input_layernorm.dense.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.6.post_attention_layernorm.dense.bias\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.6.post_attention_layernorm.dense.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.7.input_layernorm.dense.bias\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.7.input_layernorm.dense.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.7.post_attention_layernorm.dense.bias\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.7.post_attention_layernorm.dense.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.8.input_layernorm.dense.bias\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.8.input_layernorm.dense.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.8.post_attention_layernorm.dense.bias\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.8.post_attention_layernorm.dense.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.9.input_layernorm.dense.bias\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.9.input_layernorm.dense.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.9.post_attention_layernorm.dense.bias\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.layers.9.post_attention_layernorm.dense.weight\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.norm.dense.bias\\\\\\\", \\\\\\\"paligemma_with_expert.gemma_expert.model.norm.dense.weight\\\\\\\", \\\\\\\"time_mlp_in.bias\\\\\\\", \\\\\\\"time_mlp_in.weight\\\\\\\", \\\\\\\"time_mlp_out.bias\\\\\\\", \\\\\\\"time_mlp_out.weight\\\\\\\"\\\\nEXIT_CODE=1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-28 17:26:03,630 [INFO] LoRA injected: PaliGemma rank=16 (19611648 params), Expert rank=32 (13860864 params)\\n2026-05-28 17:26:03,631 [INFO] Loading full state dict from /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed1/30000/model.safetensors\\n[GPU] Using external CUDA_VISIBLE_DEVICES=1 (ignoring --gpu 0)\\nTraceback (most recent call last):\\n  File \\\"/root/colliforce-vla/scripts/eval_safelibero.py\\\", line 1363, in &lt;module>\\n    main()\\n  File \\\"/root/colliforce-vla/scripts/eval_safelibero.py\\\", line 1168, in main\\n    policy = load_policy(args)\\n             ^^^^^^^^^^^^^^^^^\\n  File \\\"/root/colliforce-vla/scripts/eval_safelibero.py\\\", line 653, in load_policy\\n    return _load_policy_lora_baseline(args, config)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/colliforce-vla/scripts/eval_safelibero.py\\\", line 782, in _load_policy_lora_baseline\\n    _sft.load_model(model, weight_path)\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/safetensors/torch.py\\\", line 244, in load_model\\n    raise RuntimeError(error)\\nRuntimeError: Error(s) in loading state_dict for PI0Pytorch:\\n    Missing key(s) in state_dict: \\\"action_time_mlp_in.bias\\\", \\\"action_time_mlp_in.weight\\\", \\\"action_time_mlp_out.bias\\\", \\\"action_time_mlp_out.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.0.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.0.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.1.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.1.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.10.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.10.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.11.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.11.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.12.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.12.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.13.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.13.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.14.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.14.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.15.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.15.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.16.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.16.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.17.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.17.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.2.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.2.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.3.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.3.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.4.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.4.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.5.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.5.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.6.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.6.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.7.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.7.post_attention_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.8.input_layernorm.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.\\n\\n... [截断: 输出过长，省略 2743 字符] ...\\n\\night\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.15.input_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.15.input_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.15.post_attention_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.15.post_attention_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.16.input_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.16.input_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.16.post_attention_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.16.post_attention_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.17.input_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.17.input_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.17.post_attention_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.17.post_attention_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.2.input_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.2.input_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.2.post_attention_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.2.post_attention_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.3.input_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.3.input_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.3.post_attention_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.3.post_attention_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.4.input_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.4.input_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.4.post_attention_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.4.post_attention_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.5.input_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.5.input_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.5.post_attention_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.5.post_attention_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.6.input_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.6.input_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.6.post_attention_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.6.post_attention_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.7.input_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.7.input_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.7.post_attention_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.7.post_attention_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.8.input_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.8.input_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.8.post_attention_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.8.post_attention_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.9.input_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.9.input_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.9.post_attention_layernorm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.layers.9.post_attention_layernorm.dense.weight\\\", \\\"paligemma_with_expert.gemma_expert.model.norm.dense.bias\\\", \\\"paligemma_with_expert.gemma_expert.model.norm.dense.weight\\\", \\\"time_mlp_in.bias\\\", \\\"time_mlp_in.weight\\\", \\\"time_mlp_out.bias\\\", \\\"time_mlp_out.weight\\\"\\nEXIT_CODE=1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014ZPQMFuCNf2qLDhpFpyEyf`</summary>
+
+```json
+{
+  "server": "westd-35807",
+  "command": "ls -la /root/runs/diff_collision_sdf/eval_results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83b88665-0b1a-4651-944e-d9222cda3cac",
+  "uuid": "fe21b6f2-bf3f-4184-86ac-c9e286905ae6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VwDvwi76MCJeZzoD8KNieL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2005,
+      "cache_read_input_tokens": 25077,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2005
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-28T10:16:14.575Z_
+
+<details><summary>↩ Tool result · `toolu_014ZPQMFuCNf2qLDhpFpyEyf`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/runs/diff_collision_sdf/eval_results/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83b88665-0b1a-4651-944e-d9222cda3cac",
+  "uuid": "1a3174d9-db0f-4557-b51b-b82dfad57acd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/runs/diff_collision_sdf/eval_results/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/runs/diff_collision_sdf/eval_results/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HuR4kAmhD62So9VdwbTbwK`</summary>
+
+```json
+{
+  "server": "westd-45947",
+  "command": "ls -la /root/runs/diff_collision_sdf/eval_results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83b88665-0b1a-4651-944e-d9222cda3cac",
+  "uuid": "529f65d1-0330-4355-aa0d-9682e22724a7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VwDvwi76MCJeZzoD8KNieL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2005,
+      "cache_read_input_tokens": 25077,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2005
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-28T10:16:15.057Z_
+
+<details><summary>↩ Tool result · `toolu_01HuR4kAmhD62So9VdwbTbwK`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/runs/diff_collision_sdf/eval_results/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83b88665-0b1a-4651-944e-d9222cda3cac",
+  "uuid": "222770aa-e1ec-4b75-b094-8f668f1cfa9b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/runs/diff_collision_sdf/eval_results/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/runs/diff_collision_sdf/eval_results/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011fh46aZiX1Emb9EWjQC8rn`</summary>
+
+```json
+{
+  "server": "westd-35807",
+  "command": "tmux ls",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83b88665-0b1a-4651-944e-d9222cda3cac",
+  "uuid": "1998b7d4-f32a-4c82-a41a-839d5bb66102",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VwDvwi76MCJeZzoD8KNieL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2005,
+      "cache_read_input_tokens": 25077,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2005
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-28T10:16:15.539Z_
+
+<details><summary>↩ Tool result · `toolu_011fh46aZiX1Emb9EWjQC8rn`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83b88665-0b1a-4651-944e-d9222cda3cac",
+  "uuid": "de9df637-9f9c-4799-9f98-1eae5437f145",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0155iMJCmUPRALtF9g8sbNYB`</summary>
+
+```json
+{
+  "server": "westd-45947",
+  "command": "tmux ls",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83b88665-0b1a-4651-944e-d9222cda3cac",
+  "uuid": "12274ed5-d63c-45c7-b4fd-5caee53cd7de",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VwDvwi76MCJeZzoD8KNieL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2005,
+      "cache_read_input_tokens": 25077,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2005
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-28T10:16:15.715Z_
+
+<details><summary>↩ Tool result · `toolu_0155iMJCmUPRALtF9g8sbNYB`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83b88665-0b1a-4651-944e-d9222cda3cac",
+  "uuid": "e48b6f6d-1b2d-44ff-9002-ed959278ce1c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38_
+
+结果文件路径可能不同，检查实际输出路径。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83b88665-0b1a-4651-944e-d9222cda3cac",
+  "uuid": "f3049a99-b603-49f9-a905-420af703af39",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UhYcbWHKHatTd3kgkdcZRT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11819,
+      "cache_read_input_tokens": 27082,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11819
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BdEswe9vzLYwR8LknVHtiD`</summary>
+
+```json
+{
+  "server": "westd-35807",
+  "command": "ls -la /root/autodl-tmp/eval_results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83b88665-0b1a-4651-944e-d9222cda3cac",
+  "uuid": "44c5c4df-c726-46ee-bb9a-2ebf471d6775",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UhYcbWHKHatTd3kgkdcZRT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11819,
+      "cache_read_input_tokens": 27082,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11819
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-28T10:16:20.721Z_
+
+<details><summary>↩ Tool result · `toolu_01BdEswe9vzLYwR8LknVHtiD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 13964\\ndrwxr-xr-x  3 root root    8192 May 28 17:50 .\\ndrwxr-xr-x 15 root root    4096 May 28 04:17 ..\\ndrwxr-xr-x  6 root root      84 May 25 13:22 30k_evals\\n-rw-r--r--  1 root root   62571 May 23 00:00 a1_lora_v11_eval_safelibero_object_all_levelII_best_seed0.json\\n-rw-r--r--  1 root root  255627 May 23 03:45 a1_lora_v11_eval_safelibero_spatial_all_levelII_best_lora_baseline_seed0.json\\n-rw-r--r--  1 root root  244676 May 23 05:09 a1_rerun_v11_eval_safelibero_object_all_levelII_best_lora_baseline_seed0.json\\n-rw-r--r--  1 root root  336404 May 23 03:49 a3_m024fix_v11_eval_safelibero_object_all_levelII_best_a3_seed0.json\\n-rw-r--r--  1 root root  255640 May 23 03:14 baseline_fullft_v11_eval_safelibero_spatial_all_levelII_best_seed0.json\\n-rw-r--r--  1 root root   62820 May 22 21:07 baseline_v11_eval_safelibero_object_all_levelII_best_seed0.json\\n-rw-r--r--  1 root root    2905 May 26 01:24 displacement_analysis_30k_summary.txt\\n-rw-r--r--  1 root root   21642 May 26 00:36 displacement_hist_30k_batch.pdf\\n-rw-r--r--  1 root root   19064 May 25 23:27 displacement_hist_test.pdf\\n-rw-r--r--  1 root root   13276 May 23 05:09 eval_a1_lora_object_v11_rerun.log\\n-rw-r--r--  1 root root   13336 May 23 03:45 eval_a1_lora_spatial_v11.log\\n-rw-r--r--  1 root root   17497 May 23 03:49 eval_a3_object_m024fix_v11.log\\n-rw-r--r--  1 root root   14530 May 23 03:15 eval_baseline_fullft_spatial_v11.log\\n-rw-r--r--  1 root root   85401 May 28 17:50 eval_multiseed_lora_s0_eseed0.json\\n-rw-r--r--  1 root root   85283 May 28 17:49 eval_multiseed_lora_s0_eseed99.json\\n-rw-r--r--  1 root root   85496 May 28 17:50 eval_multiseed_sdf_l01_s0_eseed0.json\\n-rw-r--r--  1 root root   85298 May 28 17:50 eval_multiseed_sdf_l01_s0_eseed99.json\\n-rw-r--r--  1 root root    9986 May 23 02:30 eval_oracle_a3_m024fix_object_v11.log\\n-rw-r--r--  1 root root  107214 May 23 04:44 eval_oracle_adaptive_alpha_v11.log\\n-rw-r--r--  1 root root    9833 May 23 05:21 eval_oracle_feature_space_v11.log\\n-rw-r--r--  1 root root  107028 May 23 04:44 eval_oracle_fixed_alpha_v11.log\\n-rw-r--r--  1 root root   85286 May 28 13:18 eval_phase2_18k_s2_l0_object.json\\n-rw-r--r--  1 root root   85380 May 28 07:37 eval_pi05_a1_best_s0_l005.json\\n-rw-r--r--  1 root root   27280 May 23 08:10 eval_pi05_safelibero_object_v11_s1.log\\n-rw-r--r--  1 root root   27101 May 23 08:10 eval_pi05_safelibero_object_v11_s2.log\\n-rw-r--r--  1 root root   64083 May 26 03:19 eval_s0_l005_30k_final.json\\n-rw-r--r--  1 root root   85637 May 26 04:46 eval_s0_l005_30k_r4.json\\n-rw-r--r--  1 root root   85492 May 26 05:15 eval_s0_l01_30k_disp.json\\n-rw-r--r--  1 root root   63902 May 26 03:19 eval_s0_l01_30k_final.json\\n-rw-r--r--  1 root root   85361 May 27 09:18 eval_s0_l1_16k_seed7.json\\n-rw-r--r--  1 root root   85329 May 27 07:52 eval_s0_l1_20k_seed7.json\\n-rw-r--r--  1 root root   85177 May 27 09:54 eval_s0_l1_22k_seed7.json\\n-rw-r--r--  1 root root   85327 May 27 12:31 eval_s0_l1_24k_seed7.json\\n-rw-r--r--  1 root root   85352 May 26 04:39 eval_s1_l005_30k_disp.json\\n-rw-r--r--  1 root root   63965 May 25 23:52 eval_s1_l005_30k_v4.json\\n-rw-r--r--  1 root root   85492 May 26 04:33 eval_s1_l005_best_16k.json\\n-rw-r--r--  1 root root   85338 May 27 08:33 eval_s1_l1_20k_seed7.json\\n-rw-r--r--  1 root root   85285 May 27 10:59 eval_s1_l1_22k_seed7.json\\n-rw-r--r--  1 root root   63892 May 25 23:52 eval_s2_l005_30k_v4.json\\n-rw-r--r--  1 root root   85398 May 26 04:02 eval_s2_l005_best_10k.json\\n-rw-r--r--  1 root root   63887 May 25 23:52 eval_s2_l01_30k_v3.json\\n-rw-r--r--  1 root root   85259 May 26 19:53 eval_safelibero_object_all_levelII_10000_lora_baseline_seed2.json\\n-rw-r--r--  1 root root   85459 May 27 14:31 eval_safelibero_object_all_levelII_24000_lora_baseline_seed7.json\\n-rw-r--r--  1 root root   85427 May 27 13:51 eval_safelibero_object_all_levelII_26000_lora_baseline_seed7.json\\n-rw-r--r--  1 root root   85387 May 27 15:49 eval_safelibero_object_all_levelII_28000_lora_baseline_seed7.json\\n-rw-r--r--  1 root root   85244 May 27 18:36 eval_safelibero_object_all_levelII_30000_lora_baseline_seed7.json\\n-rw-r--r--  1 root root   63915 May 25 20:41 eval_safelibero_object_all_levelII__lora_baseline_seed0.json\\n-rw-r--r--  1 root root   64008 May 25 21:49 eval_safelibero_object_all_levelII__lora_baseline_seed1.json\\n-rw-r--r--  1 root root   64090 May 25 21:48 eval_safelibero_object_all_levelII__lora_baseline_seed2.json\\n-rw-r--r--  1 root root   64069 May 25 21:48 eval_safelibero_object_all_levelII__lora_baseline_seed3.json\\n-rw-r--r--  1 root root   62571 May 22 23:50 eval_safelibero_object_all_levelII_best_lora_baseline_seed0.json\\n-rw-r--r--  1 root root    6381 May 22 15:14 eval_safelibero_object_all_levelII_best_seed0.json\\n-rw-r--r--  1 root root   86514 May 28 06:58 eval_safelibero_spatial_all_levelII_30000_lora_baseline_seed7.json\\n-rw-r--r--  1 root root   65435 May 22 23:15 eval_safelibero_spatial_all_levelII_best_lora_baseline_seed0.json\\n-rw-r--r--  1 root root    1136 May 20 17:31 eval_safelibero_spatial_task0_levelII__seed0.json\\n-rw-r--r--  1 root root    8000 May 28 06:58 eval_spatial_bowl_lora_ctrl_s0.log\\n-rw-r--r--  1 root root   86664 May 28 13:24 eval_spatial_lora_ctrl_s0_30k.json\\n-rw-r--r--  1 root root   86647 May 27 12:36 eval_spatial_sdf_s0_l005_30k.json\\n-rw-r--r--  1 root root    4607 May 23 04:00 eval_true_oracle_action_space_v11.log\\n-rw-r--r--  1 root root    6672 May 22 14:25 eval_v11_dryrun.log\\n-rw-r--r--  1 root root    1977 May 23 00:01 lora_baseline_v11_eval_safelibero_object_all_levelII_best_seed0.json\\n-rw-r--r--  1 root root   85393 May 28 11:27 multiseed_lora_s0_eseed123.json\\n-rw-r--r--  1 root root   85305 May 28 11:09 multiseed_lora_s0_eseed42.json\\n-rw-r--r--  1 root root   85218 May 28 11:09 multiseed_sdf_l01_s0_eseed42.json\\n-rw-r--r--  1 root root   10108 May 23 00:23 oracle_a3_force_refine.log\\n-rw-r--r--  1 root root    4977 May 22 23:42 oracle_a3_force_refine_object_v11.log\\n-rw-r--r--  1 root root   69053 May 23 00:23 oracle_force_refine_v11_eval_safelibero_object_all_levelII_best_a3_seed0.json\\n-rw-r--r--  1 root root   68917 May 23 02:30 oracle_m024fix_v11_eval_safelibero_object_all_levelII_best_a3_seed0.json\\n-rw-r--r--  1 root root   77835 May 23 04:44 oracle_true_gt_adaptive_alpha_v11.json\\n-rw-r--r--  1 root root   84654 May 23 05:21 oracle_true_gt_feature_space_v11.json\\n-rw-r--r--  1 root root   78230 May 23 04:44 oracle_true_gt_fixed_alpha_v11.json\\n-rw-r--r--  1 root root   78897 May 23 08:10 pi05_safelibero_object_v11_s1.json\\n-rw-r--r--  1 root root   78811 May 23 08:10 pi05_safelibero_object_v11_s2.json\\n-rw-r--r--  1 root root   86167 May 28 08:57 reeval_baseline_pertask.json\\n-rw-r--r--  1 root root    2729 May 23 08:10 serve_pi05_p8000.log\\n-rw-r--r--  1 root root    2727 May 23 08:10 serve_pi05_p8001.log\\n-rw-r--r--  1 root root      71 May 20 20:10 summary.csv\\n-rw-r--r--  1 root root 2164514 May 23 13:51 train_pi05_a1_obj_s1_l005.log\\n-rw-r--r--  1 root root 2164471 May 23 13:51 train_pi05_a1_obj_s1_l01.log\\n-rw-r--r--  1 root root 2164390 May 23 13:52 train_pi05_a1_obj_s2_l005.log\\n-rw-r--r--  1 root root 2164761 May 23 13:53 train_pi05_a1_obj_s2_l01.log\\n-rw-r--r--  1 root root   85612 May 22 22:00 v11_eval_safelibero_object_all_levelII_best_a3_seed0.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83b88665-0b1a-4651-944e-d9222cda3cac",
+  "uuid": "8d62112d-82d3-4a83-9f84-ce320bff2867",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 13964\\\\ndrwxr-xr-x  3 root root    8192 May 28 17:50 .\\\\ndrwxr-xr-x 15 root root    4096 May 28 04:17 ..\\\\ndrwxr-xr-x  6 root root      84 May 25 13:22 30k_evals\\\\n-rw-r--r--  1 root root   62571 May 23 00:00 a1_lora_v11_eval_safelibero_object_all_levelII_best_seed0.json\\\\n-rw-r--r--  1 root root  255627 May 23 03:45 a1_lora_v11_eval_safelibero_spatial_all_levelII_best_lora_baseline_seed0.json\\\\n-rw-r--r--  1 root root  244676 May 23 05:09 a1_rerun_v11_eval_safelibero_object_all_levelII_best_lora_baseline_seed0.json\\\\n-rw-r--r--  1 root root  336404 May 23 03:49 a3_m024fix_v11_eval_safelibero_object_all_levelII_best_a3_seed0.json\\\\n-rw-r--r--  1 root root  255640 May 23 03:14 baseline_fullft_v11_eval_safelibero_spatial_all_levelII_best_seed0.json\\\\n-rw-r--r--  1 root root   62820 May 22 21:07 baseline_v11_eval_safelibero_object_all_levelII_best_seed0.json\\\\n-rw-r--r--  1 root root    2905 May 26 01:24 displacement_analysis_30k_summary.txt\\\\n-rw-r--r--  1 root root   21642 May 26 00:36 displacement_hist_30k_batch.pdf\\\\n-rw-r--r--  1 root root   19064 May 25 23:27 displacement_hist_test.pdf\\\\n-rw-r--r--  1 root root   13276 May 23 05:09 eval_a1_lora_object_v11_rerun.log\\\\n-rw-r--r--  1 root root   13336 May 23 03:45 eval_a1_lora_spatial_v11.log\\\\n-rw-r--r--  1 root root   17497 May 23 03:49 eval_a3_object_m024fix_v11.log\\\\n-rw-r--r--  1 root root   14530 May 23 03:15 eval_baseline_fullft_spatial_v11.log\\\\n-rw-r--r--  1 root root   85401 May 28 17:50 eval_multiseed_lora_s0_eseed0.json\\\\n-rw-r--r--  1 root root   85283 May 28 17:49 eval_multiseed_lora_s0_eseed99.json\\\\n-rw-r--r--  1 root root   85496 May 28 17:50 eval_multiseed_sdf_l01_s0_eseed0.json\\\\n-rw-r--r--  1 root root   85298 May 28 17:50 eval_multiseed_sdf_l01_s0_eseed99.json\\\\n-rw-r--r--  1 root root    9986 May 23 02:30 eval_oracle_a3_m024fix_object_v11.log\\\\n-rw-r--r--  1 root root  107214 May 23 04:44 eval_oracle_adaptive_alpha_v11.log\\\\n-rw-r--r--  1 root root    9833 May 23 05:21 eval_oracle_feature_space_v11.log\\\\n-rw-r--r--  1 root root  107028 May 23 04:44 eval_oracle_fixed_alpha_v11.log\\\\n-rw-r--r--  1 root root   85286 May 28 13:18 eval_phase2_18k_s2_l0_object.json\\\\n-rw-r--r--  1 root root   85380 May 28 07:37 eval_pi05_a1_best_s0_l005.json\\\\n-rw-r--r--  1 root root   27280 May 23 08:10 eval_pi05_safelibero_object_v11_s1.log\\\\n-rw-r--r--  1 root root   27101 May 23 08:10 eval_pi05_safelibero_object_v11_s2.log\\\\n-rw-r--r--  1 root root   64083 May 26 03:19 eval_s0_l005_30k_final.json\\\\n-rw-r--r--  1 root root   85637 May 26 04:46 eval_s0_l005_30k_r4.json\\\\n-rw-r--r--  1 root root   85492 May 26 05:15 eval_s0_l01_30k_disp.json\\\\n-rw-r--r--  1 root root   63902 May 26 03:19 eval_s0_l01_30k_final.json\\\\n-rw-r--r--  1 root root   85361 May 27 09:18 eval_s0_l1_16k_seed7.json\\\\n-rw-r--r--  1 root root   85329 May 27 07:52 eval_s0_l1_20k_seed7.json\\\\n-rw-r--r--  1 root root   85177 May 27 09:54 eval_s0_l1_22k_seed7.json\\\\n-rw-r--r--  1 root root   85327 May 27 12:31 eval_s0_l1_24k_seed7.json\\\\n-rw-r--r--  1 root root   85352 May 26 04:39 eval_s1_l005_30k_disp.json\\\\n-rw-r--r--  1 root root   63965 May 25 23:52 eval_s1_l005_30k_v4.json\\\\n-rw-r--r--  1 root root   85492 May 26 04:33 eval_s1_l005_best_16k.json\\\\n-rw-r--r--  1 root root   85338 May 27 08:33 eval_s1_l1_20k_seed7.json\\\\n-rw-r--r--  1 root root   85285 May 27 10:59 eval_s1_l1_22k_seed7.json\\\\n-rw-r--r--  1 root root   63892 May 25 23:52 eval_s2_l005_30k_v4.json\\\\n-rw-r--r--  1 root root   85398 May 26 04:02 eval_s2_l005_best_10k.json\\\\n-rw-r--r--  1 root root   63887 May 25 23:52 eval_s2_l01_30k_v3.json\\\\n-rw-r--r--  1 root root   85259 May 26 19:53 eval_safelibero_object_all_levelII_10000_lora_baseline_seed2.json\\\\n-rw-r--r--  1 root root   85459 May 27 14:31 eval_safelibero_object_all_levelII_24000_lora_baseline_seed7.json\\\\n-rw-r--r--  1 root root   85427 May 27 13:51 eval_safelibero_object_all_levelII_26000_lora_baseline_seed7.json\\\\n-rw-r--r--  1 root root   85387 May 27 15:49 eval_safelibero_object_all_levelII_28000_lora_baseline_seed7.json\\\\n-rw-r--r--  1 root root   85244 May 27 18:36 eval_safelibero_object_all_levelII_30000_lora_baseline_seed7.json\\\\n-rw-r--r--  1 root root   63915 May 25 20:41 eval_safelibero_object_all_levelII__lora_baseline_seed0.json\\\\n-rw-r--r--  1 root root   64008 May 25 21:49 eval_safelibero_object_all_levelII__lora_baseline_seed1.json\\\\n-rw-r--r--  1 root root   64090 May 25 21:48 eval_safelibero_object_all_levelII__lora_baseline_seed2.json\\\\n-rw-r--r--  1 root root   64069 May 25 21:48 eval_safelibero_object_all_levelII__lora_baseline_seed3.json\\\\n-rw-r--r--  1 root root   62571 May 22 23:50 eval_safelibero_object_all_levelII_best_lora_baseline_seed0.json\\\\n-rw-r--r--  1 root root    6381 May 22 15:14 eval_safelibero_object_all_levelII_best_seed0.json\\\\n-rw-r--r--  1 root root   86514 May 28 06:58 eval_safelibero_spatial_all_levelII_30000_lora_baseline_seed7.json\\\\n-rw-r--r--  1 root root   65435 May 22 23:15 eval_safelibero_spatial_all_levelII_best_lora_baseline_seed0.json\\\\n-rw-r--r--  1 root root    1136 May 20 17:31 eval_safelibero_spatial_task0_levelII__seed0.json\\\\n-rw-r--r--  1 root root    8000 May 28 06:58 eval_spatial_bowl_lora_ctrl_s0.log\\\\n-rw-r--r--  1 root root   86664 May 28 13:24 eval_spatial_lora_ctrl_s0_30k.json\\\\n-rw-r--r--  1 root root   86647 May 27 12:36 eval_spatial_sdf_s0_l005_30k.json\\\\n-rw-r--r--  1 root root    4607 May 23 04:00 eval_true_oracle_action_space_v11.log\\\\n-rw-r--r--  1 root root    6672 May 22 14:25 eval_v11_dryrun.log\\\\n-rw-r--r--  1 root root    1977 May 23 00:01 lora_baseline_v11_eval_safelibero_object_all_levelII_best_seed0.json\\\\n-rw-r--r--  1 root root   85393 May 28 11:27 multiseed_lora_s0_eseed123.json\\\\n-rw-r--r--  1 root root   85305 May 28 11:09 multiseed_lora_s0_eseed42.json\\\\n-rw-r--r--  1 root root   85218 May 28 11:09 multiseed_sdf_l01_s0_eseed42.json\\\\n-rw-r--r--  1 root root   10108 May 23 00:23 oracle_a3_force_refine.log\\\\n-rw-r--r--  1 root root    4977 May 22 23:42 oracle_a3_force_refine_object_v11.log\\\\n-rw-r--r--  1 root root   69053 May 23 00:23 oracle_force_refine_v11_eval_safelibero_object_all_levelII_best_a3_seed0.json\\\\n-rw-r--r--  1 root root   68917 May 23 02:30 oracle_m024fix_v11_eval_safelibero_object_all_levelII_best_a3_seed0.json\\\\n-rw-r--r--  1 root root   77835 May 23 04:44 oracle_true_gt_adaptive_alpha_v11.json\\\\n-rw-r--r--  1 root root   84654 May 23 05:21 oracle_true_gt_feature_space_v11.json\\\\n-rw-r--r--  1 root root   78230 May 23 04:44 oracle_true_gt_fixed_alpha_v11.json\\\\n-rw-r--r--  1 root root   78897 May 23 08:10 pi05_safelibero_object_v11_s1.json\\\\n-rw-r--r--  1 root root   78811 May 23 08:10 pi05_safelibero_object_v11_s2.json\\\\n-rw-r--r--  1 root root   86167 May 28 08:57 reeval_baseline_pertask.json\\\\n-rw-r--r--  1 root root    2729 May 23 08:10 serve_pi05_p8000.log\\\\n-rw-r--r--  1 root root    2727 May 23 08:10 serve_pi05_p8001.log\\\\n-rw-r--r--  1 root root      71 May 20 20:10 summary.csv\\\\n-rw-r--r--  1 root root 2164514 May 23 13:51 train_pi05_a1_obj_s1_l005.log\\\\n-rw-r--r--  1 root root 2164471 May 23 13:51 train_pi05_a1_obj_s1_l01.log\\\\n-rw-r--r--  1 root root 2164390 May 23 13:52 train_pi05_a1_obj_s2_l005.log\\\\n-rw-r--r--  1 root root 2164761 May 23 13:53 train_pi05_a1_obj_s2_l01.log\\\\n-rw-r--r--  1 root root   85612 May 22 22:00 v11_eval_safelibero_object_all_levelII_best_a3_seed0.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 13964\\ndrwxr-xr-x  3 root root    8192 May 28 17:50 .\\ndrwxr-xr-x 15 root root    4096 May 28 04:17 ..\\ndrwxr-xr-x  6 root root      84 May 25 13:22 30k_evals\\n-rw-r--r--  1 root root   62571 May 23 00:00 a1_lora_v11_eval_safelibero_object_all_levelII_best_seed0.json\\n-rw-r--r--  1 root root  255627 May 23 03:45 a1_lora_v11_eval_safelibero_spatial_all_levelII_best_lora_baseline_seed0.json\\n-rw-r--r--  1 root root  244676 May 23 05:09 a1_rerun_v11_eval_safelibero_object_all_levelII_best_lora_baseline_seed0.json\\n-rw-r--r--  1 root root  336404 May 23 03:49 a3_m024fix_v11_eval_safelibero_object_all_levelII_best_a3_seed0.json\\n-rw-r--r--  1 root root  255640 May 23 03:14 baseline_fullft_v11_eval_safelibero_spatial_all_levelII_best_seed0.json\\n-rw-r--r--  1 root root   62820 May 22 21:07 baseline_v11_eval_safelibero_object_all_levelII_best_seed0.json\\n-rw-r--r--  1 root root    2905 May 26 01:24 displacement_analysis_30k_summary.txt\\n-rw-r--r--  1 root root   21642 May 26 00:36 displacement_hist_30k_batch.pdf\\n-rw-r--r--  1 root root   19064 May 25 23:27 displacement_hist_test.pdf\\n-rw-r--r--  1 root root   13276 May 23 05:09 eval_a1_lora_object_v11_rerun.log\\n-rw-r--r--  1 root root   13336 May 23 03:45 eval_a1_lora_spatial_v11.log\\n-rw-r--r--  1 root root   17497 May 23 03:49 eval_a3_object_m024fix_v11.log\\n-rw-r--r--  1 root root   14530 May 23 03:15 eval_baseline_fullft_spatial_v11.log\\n-rw-r--r--  1 root root   85401 May 28 17:50 eval_multiseed_lora_s0_eseed0.json\\n-rw-r--r--  1 root root   85283 May 28 17:49 eval_multiseed_lora_s0_eseed99.json\\n-rw-r--r--  1 root root   85496 May 28 17:50 eval_multiseed_sdf_l01_s0_eseed0.json\\n-rw-r--r--  1 root root   85298 May 28 17:50 eval_multiseed_sdf_l01_s0_eseed99.json\\n-rw-r--r--  1 root root    9986 May 23 02:30 eval_oracle_a3_m024fix_object_v11.log\\n-rw-r--r--  1 root root  107214 May 23 04:44 eval_oracle_adaptive_alpha_v11.log\\n-rw-r--r--  1 root root    9833 May 23 05:21 eval_oracle_feature_space_v11.log\\n-rw-r--r--  1 root root  107028 May 23 04:44 eval_oracle_fixed_alpha_v11.log\\n-rw-r--r--  1 root root   85286 May 28 13:18 eval_phase2_18k_s2_l0_object.json\\n-rw-r--r--  1 root root   85380 May 28 07:37 eval_pi05_a1_best_s0_l005.json\\n-rw-r--r--  1 root root   27280 May 23 08:10 eval_pi05_safelibero_object_v11_s1.log\\n-rw-r--r--  1 root root   27101 May 23 08:10 eval_pi05_safelibero_object_v11_s2.log\\n-rw-r--r--  1 root root   64083 May 26 03:19 eval_s0_l005_30k_final.json\\n-rw-r--r--  1 root root   85637 May 26 04:46 eval_s0_l005_30k_r4.json\\n-rw-r--r--  1 root root   85492 May 26 05:15 eval_s0_l01_30k_disp.json\\n-rw-r--r--  1 root root   63902 May 26 03:19 eval_s0_l01_30k_final.json\\n-rw-r--r--  1 root root   85361 May 27 09:18 eval_s0_l1_16k_seed7.json\\n-rw-r--r--  1 root root   85329 May 27 07:52 eval_s0_l1_20k_seed7.json\\n-rw-r--r--  1 root root   85177 May 27 09:54 eval_s0_l1_22k_seed7.json\\n-rw-r--r--  1 root root   85327 May 27 12:31 eval_s0_l1_24k_seed7.json\\n-rw-r--r--  1 root root   85352 May 26 04:39 eval_s1_l005_30k_disp.json\\n-rw-r--r--  1 root root   63965 May 25 23:52 eval_s1_l005_30k_v4.json\\n-rw-r--r--  1 root root   85492 May 26 04:33 eval_s1_l005_best_16k.json\\n-rw-r--r--  1 root root   85338 May 27 08:33 eval_s1_l1_20k_seed7.json\\n-rw-r--r--  1 root root   85285 May 27 10:59 eval_s1_l1_22k_seed7.json\\n-rw-r--r--  1 root root   63892 May 25 23:52 eval_s2_l005_30k_v4.json\\n-rw-r--r--  1 root root   85398 May 26 04:02 eval_s2_l005_best_10k.json\\n-rw-r--r--  1 root root   63887 May 25 23:52 eval_s2_l01_30k_v3.json\\n-rw-r--r--  1 root root   85259 May 26 19:53 eval_safelibero_object_all_levelII_10000_lora_baseline_seed2.json\\n-rw-r--r--  1 root root   85459 May 27 14:31 eval_safelibero_object_all_levelII_24000_lora_baseline_seed7.json\\n-rw-r--r--  1 root root   85427 May 27 13:51 eval_safelibero_object_all_levelII_26000_lora_baseline_seed7.json\\n-rw-r--r--  1 root root   85387 May 27 15:49 eval_safelibero_object_all_levelII_28000_lora_baseline_seed7.json\\n-rw-r--r--  1 root root   85244 May 27 18:36 eval_safelibero_object_all_levelII_30000_lora_baseline_seed7.json\\n-rw-r--r--  1 root root   63915 May 25 20:41 eval_safelibero_object_all_levelII__lora_baseline_seed0.json\\n-rw-r--r--  1 root root   64008 May 25 21:49 eval_safelibero_object_all_levelII__lora_baseline_seed1.json\\n-rw-r--r--  1 root root   64090 May 25 21:48 eval_safelibero_object_all_levelII__lora_baseline_seed2.json\\n-rw-r--r--  1 root root   64069 May 25 21:48 eval_safelibero_object_all_levelII__lora_baseline_seed3.json\\n-rw-r--r--  1 root root   62571 May 22 23:50 eval_safelibero_object_all_levelII_best_lora_baseline_seed0.json\\n-rw-r--r--  1 root root    6381 May 22 15:14 eval_safelibero_object_all_levelII_best_seed0.json\\n-rw-r--r--  1 root root   86514 May 28 06:58 eval_safelibero_spatial_all_levelII_30000_lora_baseline_seed7.json\\n-rw-r--r--  1 root root   65435 May 22 23:15 eval_safelibero_spatial_all_levelII_best_lora_baseline_seed0.json\\n-rw-r--r--  1 root root    1136 May 20 17:31 eval_safelibero_spatial_task0_levelII__seed0.json\\n-rw-r--r--  1 root root    8000 May 28 06:58 eval_spatial_bowl_lora_ctrl_s0.log\\n-rw-r--r--  1 root root   86664 May 28 13:24 eval_spatial_lora_ctrl_s0_30k.json\\n-rw-r--r--  1 root root   86647 May 27 12:36 eval_spatial_sdf_s0_l005_30k.json\\n-rw-r--r--  1 root root    4607 May 23 04:00 eval_true_oracle_action_space_v11.log\\n-rw-r--r--  1 root root    6672 May 22 14:25 eval_v11_dryrun.log\\n-rw-r--r--  1 root root    1977 May 23 00:01 lora_baseline_v11_eval_safelibero_object_all_levelII_best_seed0.json\\n-rw-r--r--  1 root root   85393 May 28 11:27 multiseed_lora_s0_eseed123.json\\n-rw-r--r--  1 root root   85305 May 28 11:09 multiseed_lora_s0_eseed42.json\\n-rw-r--r--  1 root root   85218 May 28 11:09 multiseed_sdf_l01_s0_eseed42.json\\n-rw-r--r--  1 root root   10108 May 23 00:23 oracle_a3_force_refine.log\\n-rw-r--r--  1 root root    4977 May 22 23:42 oracle_a3_force_refine_object_v11.log\\n-rw-r--r--  1 root root   69053 May 23 00:23 oracle_force_refine_v11_eval_safelibero_object_all_levelII_best_a3_seed0.json\\n-rw-r--r--  1 root root   68917 May 23 02:30 oracle_m024fix_v11_eval_safelibero_object_all_levelII_best_a3_seed0.json\\n-rw-r--r--  1 root root   77835 May 23 04:44 oracle_true_gt_adaptive_alpha_v11.json\\n-rw-r--r--  1 root root   84654 May 23 05:21 oracle_true_gt_feature_space_v11.json\\n-rw-r--r--  1 root root   78230 May 23 04:44 oracle_true_gt_fixed_alpha_v11.json\\n-rw-r--r--  1 root root   78897 May 23 08:10 pi05_safelibero_object_v11_s1.json\\n-rw-r--r--  1 root root   78811 May 23 08:10 pi05_safelibero_object_v11_s2.json\\n-rw-r--r--  1 root root   86167 May 28 08:57 reeval_baseline_pertask.json\\n-rw-r--r--  1 root root    2729 May 23 08:10 serve_pi05_p8000.log\\n-rw-r--r--  1 root root    2727 May 23 08:10 serve_pi05_p8001.log\\n-rw-r--r--  1 root root      71 May 20 20:10 summary.csv\\n-rw-r--r--  1 root root 2164514 May 23 13:51 train_pi05_a1_obj_s1_l005.log\\n-rw-r--r--  1 root root 2164471 May 23 13:51 train_pi05_a1_obj_s1_l01.log\\n-rw-r--r--  1 root root 2164390 May 23 13:52 train_pi05_a1_obj_s2_l005.log\\n-rw-r--r--  1 root root 2164761 May 23 13:53 train_pi05_a1_obj_s2_l01.log\\n-rw-r--r--  1 root root   85612 May 22 22:00 v11_eval_safelibero_object_all_levelII_best_a3_seed0.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Ntz5UMtCeVWbhE7wFm4DSq`</summary>
+
+```json
+{
+  "server": "westd-45947",
+  "command": "ls -la /root/autodl-tmp/eval_results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83b88665-0b1a-4651-944e-d9222cda3cac",
+  "uuid": "fcde8902-3a4b-4351-a931-31571e2cd1d7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UhYcbWHKHatTd3kgkdcZRT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11819,
+      "cache_read_input_tokens": 27082,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11819
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-28T10:16:21.327Z_
+
+<details><summary>↩ Tool result · `toolu_01Ntz5UMtCeVWbhE7wFm4DSq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 18644\\ndrwxr-xr-x  4 root root    4096 May 28 11:55 .\\ndrwxr-xr-x 14 root root    4096 May 28 03:28 ..\\n-rw-r--r--  1 root root    4526 May 22 03:50 a3_object_pudding_no_refine.log\\n-rw-r--r--  1 root root    4403 May 22 04:00 a3_object_pudding_no_refine_v5.log\\n-rw-r--r--  1 root root    4526 May 22 04:19 a3_object_pudding_no_refine_v8.log\\n-rw-r--r--  1 root root    4666 May 22 02:39 a3_object_pudding_refine.log\\n-rw-r--r--  1 root root    4740 May 22 04:34 a3_object_pudding_refine_v6.log\\n-rw-r--r--  1 root root    4730 May 22 04:28 a3_object_pudding_refine_v8.log\\n-rw-r--r--  1 root root    4968 May 22 04:46 a3_object_pudding_refine_v9.log\\ndrwxr-xr-x  2 root root      10 May 24 18:27 d012_final\\ndrwxr-xr-x  2 root root      93 May 24 00:50 d012_mid10k\\n-rw-r--r--  1 root root    4730 May 22 04:50 eval_50ep_refine.log\\n-rw-r--r--  1 root root   85451 May 26 10:25 eval_lora_baseline_s0.json\\n-rw-r--r--  1 root root   85384 May 26 10:26 eval_lora_baseline_s1.json\\n-rw-r--r--  1 root root   26299 May 23 05:40 eval_pi05_safelibero_object_v11.log\\n-rw-r--r--  1 root root   27072 May 23 06:21 eval_pi05_safelibero_spatial_v11.log\\n-rw-r--r--  1 root root   85384 May 28 09:29 eval_safelibero_object_all_levelII_30000_lora_baseline_seed7.json\\n-rw-r--r--  1 root root   85417 May 22 18:45 eval_safelibero_object_all_levelII_best_a3_seed0.json\\n-rw-r--r--  1 root root   62861 May 22 14:01 eval_safelibero_object_all_levelII_best_seed0.json\\n-rw-r--r--  1 root root    1361 May 22 04:23 eval_safelibero_object_task0_levelII_best_a3_seed0.json\\n-rw-r--r--  1 root root    1725 May 22 19:25 eval_safelibero_object_task0_levelII_best_seed0.json\\n-rw-r--r--  1 root root   22269 May 22 03:45 eval_safelibero_object_task1_levelII_best_a3_refine_seed0.json\\n-rw-r--r--  1 root root    1366 May 22 04:44 eval_safelibero_object_task1_levelII_best_a3_seed0.json\\n-rw-r--r--  1 root root    7917 May 28 09:29 eval_sdf_s2_l1_30k_auto.log\\n-rw-r--r--  1 root root   15037 May 22 18:45 eval_v10_a3_refine.log\\n-rw-r--r--  1 root root    8821 May 22 14:01 eval_v10_baseline.log\\n-rw-r--r--  1 root root    4787 May 22 04:28 eval_v8_master.log\\n-rw-r--r--  1 root root   10303 May 22 09:27 eval_v9_a3_refine.log\\n-rw-r--r--  1 root root    3964 May 22 10:52 eval_v9_baseline.log\\n-rw-r--r--  1 root root   85294 May 26 16:14 lora_baseline_s0_reeval_safelibero_object_levelII_seed7.json\\n-rw-r--r--  1 root root   85248 May 28 11:53 multiseed_sdf_l01_s0_eseed123.json\\n-rw-r--r--  1 root root   85273 May 28 11:55 multiseed_sdf_l01_s0_eseed256.json\\n-rw-r--r--  1 root root   86168 May 26 15:35 pi05_base_reeval_safelibero_object_levelII_seed7.json\\n-rw-r--r--  1 root root   78796 May 23 05:40 pi05_safelibero_object_v11.json\\n-rw-r--r--  1 root root   82935 May 23 06:21 pi05_safelibero_spatial_v11.json\\n-rw-r--r--  1 root root   85463 May 26 17:42 reeval_lora_s1_30k.json\\n-rw-r--r--  1 root root   85324 May 26 18:20 reeval_sdf_s0_l005_30k.json\\n-rw-r--r--  1 root root   85271 May 26 17:03 reeval_sdf_s0_l01_30k.json\\n-rw-r--r--  1 root root   85412 May 26 20:45 reeval_sdf_s1_l005_30k.json\\n-rw-r--r--  1 root root   85256 May 26 21:58 reeval_sdf_s1_l01_30k.json\\n-rw-r--r--  1 root root   85460 May 26 21:21 reeval_sdf_s2_l005_30k.json\\n-rw-r--r--  1 root root   85381 May 26 22:35 reeval_sdf_s2_l01_30k.json\\n-rw-r--r--  1 root root    1697 May 22 19:33 replan1_eval_safelibero_object_task0_levelII_best_seed0.json\\n-rw-r--r--  1 root root    9226 May 26 15:02 sanity_check_pi05_base_rotation_fix.json\\n-rw-r--r--  1 root root 8647782 May 24 18:17 train_pi05_a1_obj_l005.log\\n-rw-r--r--  1 root root 8647711 May 24 18:22 train_pi05_a1_obj_l01.log\\n-rw-r--r--  1 root root    1695 May 22 19:45 v10like_eval_safelibero_object_task0_levelII_best_seed0.json\\n-rw-r--r--  1 root root    1702 May 22 19:37 v11_evalckpt_r1_eval_safelibero_object_task0_levelII_best_seed0.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83b88665-0b1a-4651-944e-d9222cda3cac",
+  "uuid": "2fb5720d-3ddd-485c-b509-d30b72737571",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 18644\\\\ndrwxr-xr-x  4 root root    4096 May 28 11:55 .\\\\ndrwxr-xr-x 14 root root    4096 May 28 03:28 ..\\\\n-rw-r--r--  1 root root    4526 May 22 03:50 a3_object_pudding_no_refine.log\\\\n-rw-r--r--  1 root root    4403 May 22 04:00 a3_object_pudding_no_refine_v5.log\\\\n-rw-r--r--  1 root root    4526 May 22 04:19 a3_object_pudding_no_refine_v8.log\\\\n-rw-r--r--  1 root root    4666 May 22 02:39 a3_object_pudding_refine.log\\\\n-rw-r--r--  1 root root    4740 May 22 04:34 a3_object_pudding_refine_v6.log\\\\n-rw-r--r--  1 root root    4730 May 22 04:28 a3_object_pudding_refine_v8.log\\\\n-rw-r--r--  1 root root    4968 May 22 04:46 a3_object_pudding_refine_v9.log\\\\ndrwxr-xr-x  2 root root      10 May 24 18:27 d012_final\\\\ndrwxr-xr-x  2 root root      93 May 24 00:50 d012_mid10k\\\\n-rw-r--r--  1 root root    4730 May 22 04:50 eval_50ep_refine.log\\\\n-rw-r--r--  1 root root   85451 May 26 10:25 eval_lora_baseline_s0.json\\\\n-rw-r--r--  1 root root   85384 May 26 10:26 eval_lora_baseline_s1.json\\\\n-rw-r--r--  1 root root   26299 May 23 05:40 eval_pi05_safelibero_object_v11.log\\\\n-rw-r--r--  1 root root   27072 May 23 06:21 eval_pi05_safelibero_spatial_v11.log\\\\n-rw-r--r--  1 root root   85384 May 28 09:29 eval_safelibero_object_all_levelII_30000_lora_baseline_seed7.json\\\\n-rw-r--r--  1 root root   85417 May 22 18:45 eval_safelibero_object_all_levelII_best_a3_seed0.json\\\\n-rw-r--r--  1 root root   62861 May 22 14:01 eval_safelibero_object_all_levelII_best_seed0.json\\\\n-rw-r--r--  1 root root    1361 May 22 04:23 eval_safelibero_object_task0_levelII_best_a3_seed0.json\\\\n-rw-r--r--  1 root root    1725 May 22 19:25 eval_safelibero_object_task0_levelII_best_seed0.json\\\\n-rw-r--r--  1 root root   22269 May 22 03:45 eval_safelibero_object_task1_levelII_best_a3_refine_seed0.json\\\\n-rw-r--r--  1 root root    1366 May 22 04:44 eval_safelibero_object_task1_levelII_best_a3_seed0.json\\\\n-rw-r--r--  1 root root    7917 May 28 09:29 eval_sdf_s2_l1_30k_auto.log\\\\n-rw-r--r--  1 root root   15037 May 22 18:45 eval_v10_a3_refine.log\\\\n-rw-r--r--  1 root root    8821 May 22 14:01 eval_v10_baseline.log\\\\n-rw-r--r--  1 root root    4787 May 22 04:28 eval_v8_master.log\\\\n-rw-r--r--  1 root root   10303 May 22 09:27 eval_v9_a3_refine.log\\\\n-rw-r--r--  1 root root    3964 May 22 10:52 eval_v9_baseline.log\\\\n-rw-r--r--  1 root root   85294 May 26 16:14 lora_baseline_s0_reeval_safelibero_object_levelII_seed7.json\\\\n-rw-r--r--  1 root root   85248 May 28 11:53 multiseed_sdf_l01_s0_eseed123.json\\\\n-rw-r--r--  1 root root   85273 May 28 11:55 multiseed_sdf_l01_s0_eseed256.json\\\\n-rw-r--r--  1 root root   86168 May 26 15:35 pi05_base_reeval_safelibero_object_levelII_seed7.json\\\\n-rw-r--r--  1 root root   78796 May 23 05:40 pi05_safelibero_object_v11.json\\\\n-rw-r--r--  1 root root   82935 May 23 06:21 pi05_safelibero_spatial_v11.json\\\\n-rw-r--r--  1 root root   85463 May 26 17:42 reeval_lora_s1_30k.json\\\\n-rw-r--r--  1 root root   85324 May 26 18:20 reeval_sdf_s0_l005_30k.json\\\\n-rw-r--r--  1 root root   85271 May 26 17:03 reeval_sdf_s0_l01_30k.json\\\\n-rw-r--r--  1 root root   85412 May 26 20:45 reeval_sdf_s1_l005_30k.json\\\\n-rw-r--r--  1 root root   85256 May 26 21:58 reeval_sdf_s1_l01_30k.json\\\\n-rw-r--r--  1 root root   85460 May 26 21:21 reeval_sdf_s2_l005_30k.json\\\\n-rw-r--r--  1 root root   85381 May 26 22:35 reeval_sdf_s2_l01_30k.json\\\\n-rw-r--r--  1 root root    1697 May 22 19:33 replan1_eval_safelibero_object_task0_levelII_best_seed0.json\\\\n-rw-r--r--  1 root root    9226 May 26 15:02 sanity_check_pi05_base_rotation_fix.json\\\\n-rw-r--r--  1 root root 8647782 May 24 18:17 train_pi05_a1_obj_l005.log\\\\n-rw-r--r--  1 root root 8647711 May 24 18:22 train_pi05_a1_obj_l01.log\\\\n-rw-r--r--  1 root root    1695 May 22 19:45 v10like_eval_safelibero_object_task0_levelII_best_seed0.json\\\\n-rw-r--r--  1 root root    1702 May 22 19:37 v11_evalckpt_r1_eval_safelibero_object_task0_levelII_best_seed0.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 18644\\ndrwxr-xr-x  4 root root    4096 May 28 11:55 .\\ndrwxr-xr-x 14 root root    4096 May 28 03:28 ..\\n-rw-r--r--  1 root root    4526 May 22 03:50 a3_object_pudding_no_refine.log\\n-rw-r--r--  1 root root    4403 May 22 04:00 a3_object_pudding_no_refine_v5.log\\n-rw-r--r--  1 root root    4526 May 22 04:19 a3_object_pudding_no_refine_v8.log\\n-rw-r--r--  1 root root    4666 May 22 02:39 a3_object_pudding_refine.log\\n-rw-r--r--  1 root root    4740 May 22 04:34 a3_object_pudding_refine_v6.log\\n-rw-r--r--  1 root root    4730 May 22 04:28 a3_object_pudding_refine_v8.log\\n-rw-r--r--  1 root root    4968 May 22 04:46 a3_object_pudding_refine_v9.log\\ndrwxr-xr-x  2 root root      10 May 24 18:27 d012_final\\ndrwxr-xr-x  2 root root      93 May 24 00:50 d012_mid10k\\n-rw-r--r--  1 root root    4730 May 22 04:50 eval_50ep_refine.log\\n-rw-r--r--  1 root root   85451 May 26 10:25 eval_lora_baseline_s0.json\\n-rw-r--r--  1 root root   85384 May 26 10:26 eval_lora_baseline_s1.json\\n-rw-r--r--  1 root root   26299 May 23 05:40 eval_pi05_safelibero_object_v11.log\\n-rw-r--r--  1 root root   27072 May 23 06:21 eval_pi05_safelibero_spatial_v11.log\\n-rw-r--r--  1 root root   85384 May 28 09:29 eval_safelibero_object_all_levelII_30000_lora_baseline_seed7.json\\n-rw-r--r--  1 root root   85417 May 22 18:45 eval_safelibero_object_all_levelII_best_a3_seed0.json\\n-rw-r--r--  1 root root   62861 May 22 14:01 eval_safelibero_object_all_levelII_best_seed0.json\\n-rw-r--r--  1 root root    1361 May 22 04:23 eval_safelibero_object_task0_levelII_best_a3_seed0.json\\n-rw-r--r--  1 root root    1725 May 22 19:25 eval_safelibero_object_task0_levelII_best_seed0.json\\n-rw-r--r--  1 root root   22269 May 22 03:45 eval_safelibero_object_task1_levelII_best_a3_refine_seed0.json\\n-rw-r--r--  1 root root    1366 May 22 04:44 eval_safelibero_object_task1_levelII_best_a3_seed0.json\\n-rw-r--r--  1 root root    7917 May 28 09:29 eval_sdf_s2_l1_30k_auto.log\\n-rw-r--r--  1 root root   15037 May 22 18:45 eval_v10_a3_refine.log\\n-rw-r--r--  1 root root    8821 May 22 14:01 eval_v10_baseline.log\\n-rw-r--r--  1 root root    4787 May 22 04:28 eval_v8_master.log\\n-rw-r--r--  1 root root   10303 May 22 09:27 eval_v9_a3_refine.log\\n-rw-r--r--  1 root root    3964 May 22 10:52 eval_v9_baseline.log\\n-rw-r--r--  1 root root   85294 May 26 16:14 lora_baseline_s0_reeval_safelibero_object_levelII_seed7.json\\n-rw-r--r--  1 root root   85248 May 28 11:53 multiseed_sdf_l01_s0_eseed123.json\\n-rw-r--r--  1 root root   85273 May 28 11:55 multiseed_sdf_l01_s0_eseed256.json\\n-rw-r--r--  1 root root   86168 May 26 15:35 pi05_base_reeval_safelibero_object_levelII_seed7.json\\n-rw-r--r--  1 root root   78796 May 23 05:40 pi05_safelibero_object_v11.json\\n-rw-r--r--  1 root root   82935 May 23 06:21 pi05_safelibero_spatial_v11.json\\n-rw-r--r--  1 root root   85463 May 26 17:42 reeval_lora_s1_30k.json\\n-rw-r--r--  1 root root   85324 May 26 18:20 reeval_sdf_s0_l005_30k.json\\n-rw-r--r--  1 root root   85271 May 26 17:03 reeval_sdf_s0_l01_30k.json\\n-rw-r--r--  1 root root   85412 May 26 20:45 reeval_sdf_s1_l005_30k.json\\n-rw-r--r--  1 root root   85256 May 26 21:58 reeval_sdf_s1_l01_30k.json\\n-rw-r--r--  1 root root   85460 May 26 21:21 reeval_sdf_s2_l005_30k.json\\n-rw-r--r--  1 root root   85381 May 26 22:35 reeval_sdf_s2_l01_30k.json\\n-rw-r--r--  1 root root    1697 May 22 19:33 replan1_eval_safelibero_object_task0_levelII_best_seed0.json\\n-rw-r--r--  1 root root    9226 May 26 15:02 sanity_check_pi05_base_rotation_fix.json\\n-rw-r--r--  1 root root 8647782 May 24 18:17 train_pi05_a1_obj_l005.log\\n-rw-r--r--  1 root root 8647711 May 24 18:22 train_pi05_a1_obj_l01.log\\n-rw-r--r--  1 root root    1695 May 22 19:45 v10like_eval_safelibero_object_task0_levelII_best_seed0.json\\n-rw-r--r--  1 root root    1702 May 22 19:37 v11_evalckpt_r1_eval_safelibero_object_task0_levelII_best_seed0.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me now read the result JSONs for the 4 completed experiments on westd-35807 and check what happened with the 2 failed ones on westd-45947.
+
+From the logs:
+- westd-35807: All 4 experiments completed successfully with EXIT_CODE=0, results saved to /root/autodl-tmp/eval_results/
+- westd-45947: Both experiments FAILED with RuntimeError in loading state_dict - Missing keys in state_dict (model architecture mismatch)
+
+The 4 completed results on westd-35807 show "Overall Results" in the logs:
+
+
+The LoRA experiments are performing better than the SDF variants, with the first LoRA seed achieving the highest TSR at 55.5% while maintaining a solid CAR of 53.0%, though the second seed shows a trade-off with lower TSR but improved CAR at 57.5%.
+
+For westd-45947, the LoRA seed 1 runs both crashed due to a model architecture mismatch in the checkpoint—the saved weights have different layer normalization keys than what the model expects—and the missing result files confirm these experiments failed to complete.
+
+Looking at the four successful evaluations, I can see the performance breakdown across seeds and evaluation seeds. The LoRA baseline with seed 0 performs best overall with average TSR around 52-55%, while the SDF variant with seed 0 shows lower performance in the 46-48% range. The evaluation seed variation (eseed0 vs eseed99) doesn't show a consistent pattern, with some runs performing better on the final task than their overall average suggests.
+
+The last two runs failed due to a state dictionary mismatch—the checkpoint has different layer naming conventions with `layernorm.dense.weight/bias` instead of just `layernorm.weight`, indicating a code or configuration version mismatch between the checkpoint and the current model implementation.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83b88665-0b1a-4651-944e-d9222cda3cac",
+  "uuid": "181bea7a-a47c-4ca5-af4c-5e092cd79e0a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MhyPeCSY5pqngvVVYU3Fvj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6299,
+      "cache_read_input_tokens": 38901,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6299
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44_
+
+## 汇总
+
+| exp_id | 服务器 | 状态 | Avg TSR | Avg CAR |
+|--------|--------|------|---------|---------|
+| eval_multiseed_lora_s0_eseed0 | westd-35807 | **完成** | 55.5% | 53.0% |
+| eval_multiseed_lora_s0_eseed99 | westd-35807 | **完成** | 52.0% | 57.5% |
+| eval_multiseed_sdf_l01_s0_eseed0 | westd-35807 | **完成** | 48.5% | 52.5% |
+| eval_multiseed_sdf_l01_s0_eseed99 | westd-35807 | **完成** | 46.5% | 57.0% |
+| eval_multiseed_lora_s1_eseed0 | westd-45947 | **失败** | — | — |
+| eval_multiseed_lora_s1_eseed99 | westd-45947 | **失败** | — | — |
+
+### westd-35807: 4/4 成功
+
+JSON 已保存到 `/root/autodl-tmp/eval_results/`，均 EXIT_CODE=0。
+
+### westd-45947: 2/2 失败
+
+**原因**: `RuntimeError` — state_dict key 不匹配。checkpoint 路径 `/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed1/30000/model.safetensors` 中的 key 使用 `layernorm.dense.weight/bias` 格式，但模型期望 `layernorm.weight` 格式（无 dense 层）。同时缺少 `action_time_mlp_*` 和 `time_mlp_*` 等 key。
+
+这是代码版本与 checkpoint 不匹配的问题——westd-45947 上的代码或模型配置和 westd-35807 不一致。需要同步代码后重跑这两个 eval，预计单个 eval ~25min，DDL 前可完成。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83b88665-0b1a-4651-944e-d9222cda3cac",
+  "uuid": "36ba2e7d-8508-4586-b0e5-8227eeafd078",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MhyPeCSY5pqngvVVYU3Fvj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6299,
+      "cache_read_input_tokens": 38901,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6299
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 45_
+
+## 汇总
+
+| exp_id | 服务器 | 状态 | Avg TSR | Avg CAR |
+|--------|--------|------|---------|---------|
+| eval_multiseed_lora_s0_eseed0 | westd-35807 | **完成** | 55.5% | 53.0% |
+| eval_multiseed_lora_s0_eseed99 | westd-35807 | **完成** | 52.0% | 57.5% |
+| eval_multiseed_sdf_l01_s0_eseed0 | westd-35807 | **完成** | 48.5% | 52.5% |
+| eval_multiseed_sdf_l01_s0_eseed99 | westd-35807 | **完成** | 46.5% | 57.0% |
+| eval_multiseed_lora_s1_eseed0 | westd-45947 | **失败** | — | — |
+| eval_multiseed_lora_s1_eseed99 | westd-45947 | **失败** | — | — |
+
+### westd-35807: 4/4 成功
+
+JSON 已保存到 `/root/autodl-tmp/eval_results/`，均 EXIT_CODE=0。
+
+### westd-45947: 2/2 失败
+
+**原因**: `RuntimeError` — state_dict key 不匹配。checkpoint 路径 `/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed1/30000/model.safetensors` 中的 key 使用 `layernorm.dense.weight/bias` 格式，但模型期望 `layernorm.weight` 格式（无 dense 层）。同时缺少 `action_time_mlp_*` 和 `time_mlp_*` 等 key。
+
+这是代码版本与 checkpoint 不匹配的问题——westd-45947 上的代码或模型配置和 westd-35807 不一致。需要同步代码后重跑这两个 eval，预计单个 eval ~25min，DDL 前可完成。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 56200,
+  "duration_api_ms": 55931,
+  "num_turns": 18,
+  "stop_reason": "end_turn",
+  "session_id": "83b88665-0b1a-4651-944e-d9222cda3cac",
+  "total_cost_usd": 0.36326925,
+  "usage": {
+    "input_tokens": 8,
+    "cache_creation_input_tokens": 33355,
+    "cache_read_input_tokens": 127507,
+    "output_tokens": 3536,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 33355,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 1527,
+        "cache_read_input_tokens": 38901,
+        "cache_creation_input_tokens": 6299,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 6299
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2522,
+      "outputTokens": 17,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002607,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 8,
+      "outputTokens": 3536,
+      "cacheReadInputTokens": 127507,
+      "cacheCreationInputTokens": 33355,
+      "webSearchRequests": 0,
+      "costUSD": 0.36066224999999996,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "62d9b3c5-2fc5-4239-8d95-fa036f9b2766"
+}
+```
+
+</details>
+
+---

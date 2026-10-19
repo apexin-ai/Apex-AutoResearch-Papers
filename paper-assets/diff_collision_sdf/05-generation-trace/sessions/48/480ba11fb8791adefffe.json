@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "480ba11fb8791adefffe",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops check multieval processes",
+  "task_key": "worker_ops_check-multieval-processes_20260528T030400",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-multieval-processes_20260528T030400_result.json",
+    "occurrence": 1,
+    "bytes": 1207,
+    "sha256": "e306ef14163c70b444433ee6c7bd2d1ab066472ad2b0e022ffea9a765bb4d1c2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n### westd-35807 — 3/3 存活 ✅\n\n| PID | 任务 | 运行时长 | GPU 占用 | 当前进度 |\n|-----|------|---------|---------|---------|\n| 960254 (→960263) | lora_s0_eseed42 | ~29 min | cuda:0, 8991 MiB | Task 3/?, Ep 10/50 |\n| 960399 (→960408) | lora_s0_eseed123 | ~29 min | cuda:1, 8356 MiB | Task 2/?, 刚开始 |\n| 960545 (→960554) | sdf_l01_s0_eseed42 | ~29 min | cuda:3, 8991 MiB | Task 3/?, Ep 10/50 |\n\n三个都在正常跑 eval，日志持续输出。\n\n### westd-45947 — 0/2 存活 ❌\n\n| PID | 任务 | 状态 | 退出原因 |\n|-----|------|------|---------|\n| 594651 | sdf_l01_s0_eseed123 | 已退出 (code=1) | FileNotFoundError |\n| 594793 | sdf_l01_s0_eseed256 | 已退出 (code=1) | FileNotFoundError |\n\n**两个都在启动阶段就崩了**，相同错误：\n\n```\nFileNotFoundError: No such file or directory:\n/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0_l1/30000/model.safetensors\n```\n\ncheckpoint 路径 `/root/autodl-tmp/checkpoints/...` 在 westd-45947 上不存在。需要把该 checkpoint 同步到 45947，或修改 eval 配置指向正确路径后重跑这两个 seed。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-multieval-processes.md"
+}

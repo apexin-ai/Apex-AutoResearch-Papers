@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_stepwise_s0_l1_24k_v2",
+  "project": "diff_collision_sdf",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-27T06:00:33.591Z",
+    "updated_at": "2026-05-27T06:00:42.913Z",
+    "hypothesis": "Re-eval 24K with correct --pi05 flag. Original eval_stepwise_s0_l1_24k produced frozen=29.5% artifact due to missing --pi05. 26K v2 with --pi05 showed frozen=0%. This re-eval verifies whether 24K frozen was also an artifact. Expected: frozen=0%, CAR ≈ 54-56% (baseline range).",
+    "parent": "eval_stepwise_s0_l1_24k"
+  },
+  "timestamp": "2026-05-27T06:00:43.129309+00:00",
+  "trigger": "update_registry"
+}

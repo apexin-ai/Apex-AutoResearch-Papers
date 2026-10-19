@@ -1,0 +1,34 @@
+{
+  "exp_id": "eval_stepwise_s0_l1_26k",
+  "project": "diff_collision_sdf",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-27T04:40:03.608Z",
+    "updated_at": "2026-05-27T05:05:15.592Z",
+    "hypothesis": "λ=0.1 SDF loss at 26K steps (s0) will show improvement over 24K (CAR=55.5%), continuing the upward trend seen at 22K (60.5%) after the 24K dip, as the model further integrates collision-aware representations.",
+    "parent": "a1_sdf_pi05_object_pudding_s0_l1",
+    "spec": {
+      "command": "python scripts/eval_safelibero.py --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0_l1/26000 --config_name pi05_libero --model_type lora_baseline --suite safelibero_object --safety_level II --n_episodes 50 --seed 7 --gpu 0",
+      "server": "westd-35807",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "621277",
+      "data_path": "safelibero_object",
+      "data_count": 200,
+      "model_name": "pi05_a1_sdf_object_pudding_seed0_l1_26k",
+      "seed": 7,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0_l1/26000",
+      "eval_data": "safelibero_object_safety_II",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0_l1/26000",
+      "log_path": "/tmp/eval_s0_26k.log"
+    },
+    "failure_reason": "state_dict key mismatch: 26K checkpoint has AdaLN keys (layernorm.dense.weight/bias, time_mlp_*) but eval used --model_type lora_baseline which expects standard keys (layernorm.weight, action_time_mlp_*). Checkpoint architecture changed between 24K→26K saves. Eval crashed on model loading, no results produced.",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-27T05:05:15.796803+00:00",
+  "trigger": "update_registry"
+}

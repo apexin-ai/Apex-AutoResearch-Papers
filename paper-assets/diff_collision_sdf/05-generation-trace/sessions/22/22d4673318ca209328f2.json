@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "22d4673318ca209328f2",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "eval phase2 18k s2",
+  "task_key": "worker_eval_phase2-18k-s2_20260528T044035",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_phase2-18k-s2_20260528T044035_result.json",
+    "occurrence": 1,
+    "bytes": 81,
+    "sha256": "5d5ce405c360f26e49a11d9e927a8f66a818b0069c9bbb59daf382a3322976bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "监控已超时自动关闭，eval 早已完成，无需 re-arm。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-phase2-18k-s2.md"
+}

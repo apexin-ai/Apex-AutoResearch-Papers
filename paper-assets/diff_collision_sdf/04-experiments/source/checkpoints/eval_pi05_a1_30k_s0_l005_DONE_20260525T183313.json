@@ -1,0 +1,52 @@
+{
+  "exp_id": "eval_pi05_a1_30k_s0_l005",
+  "project": "diff_collision_sdf",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-25T07:42:49.894Z",
+    "updated_at": "2026-05-25T18:33:13.238Z",
+    "hypothesis": "Pi0.5+A1 30K eval (seed0, λ=0.005): completes 3-seed statistical coverage for conservative SDF lambda. Expects CAR ~55% and TSR ~25-30% consistent with seed1/seed2 30K results.",
+    "parent": "train_pi05_a1_obj_s0_l005",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate libero && cd /root/colliforce-vla && python scripts/eval_safelibero.py --checkpoint_path /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0_l005/30000 --config_name pi05_libero --model_type lora_baseline --gpu 1 --output_path /root/autodl-tmp/eval_results/eval_s0_l005_30k_final.json\"",
+      "server": "westd-35807",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "6092",
+      "log_path": "~/runs/diff_collision_sdf/eval_pi05_a1_30k_s0_l005.log",
+      "submitted_at": "2026-05-25T18:32:32.099Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 41.1,
+      "gpu_hours": 0.01
+    },
+    "conclusion": "success",
+    "metrics": {
+      "avg_TSR": 5.5,
+      "avg_CAR": 50,
+      "n_episodes": 200,
+      "task0_TSR": 2,
+      "task0_CAR": 58,
+      "task1_TSR": 20,
+      "task1_CAR": 42,
+      "task2_TSR": 0,
+      "task2_CAR": 86,
+      "task3_TSR": 0,
+      "task3_CAR": 14,
+      "task0_disp": 0.0433,
+      "task1_disp": 0.1055,
+      "task2_disp": 0.0147,
+      "task3_disp": 0.0879
+    },
+    "checkpoint_path": "/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0_l005/30000",
+    "log_path": "~/runs/diff_collision_sdf/eval_pi05_a1_30k_s0_l005.log",
+    "completed_at": "2026-05-25T18:33:13.238Z"
+  },
+  "timestamp": "2026-05-25T18:33:13.379380+00:00",
+  "trigger": "update_registry"
+}

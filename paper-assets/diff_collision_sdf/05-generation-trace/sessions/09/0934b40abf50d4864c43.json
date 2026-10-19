@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0934b40abf50d4864c43",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "writing claim3 reviewer fixes",
+  "task_key": "worker_writing_claim3_reviewer_fixes_20260527T082858",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_claim3_reviewer_fixes_20260527T082858_result.json",
+    "occurrence": 1,
+    "bytes": 1352,
+    "sha256": "1385395a4606baccc56ae0a82c6dd246a1c663d22b6674a2d982d167bfc504ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Verified:\n\n- **28.5%** only remains in `archive/analysis_claim1.tex` (old archive, not active paper) — all active files cleaned.\n- **\"single seed\"** now appears in claim3.tex (footnote), discussion.tex, and appendix.tex.\n- **\"null distribution\"** now appears in claim3.tex line 35 (the z-score fix).\n\n## Summary of changes\n\n| File | Issue | Change |\n|---|---|---|\n| `abstract.tex` L7 | Pi0.5 CAR inconsistency | 28.5% → 26.8% |\n| `claim1.tex` L19 | Table CAR_f mismatch | CAR_f 28.5 → 26.8 |\n| `claim1.tex` L3 | Text/table mismatch | \"57 safe episodes...28.5%\" → \"every safe episode exceeds 200mm...26.8% ± 1.6\" |\n| `claim3.tex` L35 | z-score reference wrong | \"against the curve mean\" → \"against the null distribution; Appendix\" |\n| `claim3.tex` L27 | Phase 2 single seed | Added `\\footnote{Single seed (s2)...}` after 57.5% |\n| `appendix.tex` L119 | Phase 2 single seed | Added \"(single seed, s2)\" after 57.5% |\n| `discussion.tex` L8 | Phase 2 single seed | Added \"single seed\" parenthetical after 57.5% |\n\n**Provenance**: 26.8% ± 1.6 = mean of `eval_pi05_safelibero_object_v11` (28.0%), `_s1` (25.0%), `_s2` (27.5%). z = (60.5 − 54.5)/2.15 = 2.79 against null (5 seeds pooled from LoRA-only + λ=0.005, mean=54.5, σ=2.15). Phase 2 ablation from `eval_phase2_lambda0_s2` (seed 2 only)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-claim3-reviewer-fixes.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "48d20d57d1c9d3bf0eef",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops close spatial eval",
+  "task_key": "worker_ops_close_spatial_eval_20260526T232159",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_close_spatial_eval_20260526T232159_result.json",
+    "occurrence": 1,
+    "bytes": 740,
+    "sha256": "5a1ac938ee880eb22be1b4b125ef76b173d1697f4d53c0af43c639e2c15b2a02"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新完毕。\n\n**eval_spatial_sdf_s0_l005_30k 结果：**\n\n| Task | CAR | TSR | avg_max_disp |\n|------|-----|-----|-------------|\n| task0: bowl_between_plate_ramekin | 0% | 66% | 0.314 |\n| task1: bowl_on_ramekin | 16% | 38% | 0.207 |\n| task2: bowl_on_stove | 4% | 72% | 0.267 |\n| task3: bowl_on_cabinet | **44%** | 36% | 0.100 |\n| **Overall** | **16%** | **53%** | — |\n\n- **Conclusion: success**\n- 与 baseline 对比：Pi0.5 CAR=13%, LoRA CAR=0%, **SDF CAR=16%**\n- SDF 辅助训练恢复了 LoRA 微调丢失的 collision avoidance，整体 CAR 略高于 Pi0.5 base\n- task3 (cabinet) CAR=44% 贡献最大，task0 CAR=0% 最差，task 间方差很大\n- 总 episodes: 200，状态已设为 DONE"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-close-spatial-eval.md"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "train_pi05_a1_obj_s2_l01",
+  "project": "diff_collision_sdf",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T00:22:56.952Z",
+    "updated_at": "2026-05-23T00:23:39.151Z",
+    "hypothesis": "Pi0.5+A1 SDF auxiliary loss (λ_sdf=0.01) seed 2: multi-seed replication of stronger lambda training. Third seed for statistical significance of lambda comparison.",
+    "parent": "train_pi05_a1_obj_l01"
+  },
+  "timestamp": "2026-05-23T00:23:39.237690+00:00",
+  "trigger": "update_registry"
+}

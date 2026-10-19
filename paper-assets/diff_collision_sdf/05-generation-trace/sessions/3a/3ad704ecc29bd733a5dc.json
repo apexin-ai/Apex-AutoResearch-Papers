@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3ad704ecc29bd733a5dc",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "paper final sync compile v2",
+  "task_key": "worker_paper_final-sync-compile-v2_20260528T023624",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_final-sync-compile-v2_20260528T023624_result.json",
+    "occurrence": 1,
+    "bytes": 546,
+    "sha256": "52530dbdb0cbf33213cec02307314ffc9bf3a97a7f24d280cfbdee3f95f8866d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n| 项目 | 结果 |\n|------|------|\n| **Verify** | 全部通过 (21/21 OK，Scenario B 10 + Scenario C 11) |\n| **PDF** | 16 页，578 KB，无 fatal error |\n| **旧数据残留** | 无。grep 命中 2 处均为 appendix.tex 中的合理历史引用：L38 `$n = 200$`（样本量描述）和 L178 `58.25% (2 seeds)` → `57.00%`（叙述第三 seed 如何拉低均值的上下文，属正常内容） |\n| **LaTeX warnings** | 仅 2 个 `'h' float specifier changed to 'ht'`（标准浮动体警告，无影响） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-final-sync-compile-v2.md"
+}

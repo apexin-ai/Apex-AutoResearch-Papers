@@ -1,0 +1,59 @@
+dreams:
+  dream_20260525T223036:
+    dream_id: dream_20260525T223036
+    project: diff_collision_sdf
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: corl-2026
+    focus: 核心关注：(1) "Rethinking VLA Safety Evaluation" 作为 diagnostic paper 的 novelty
+      是否足够 CoRL/ICRA；(2) Claim 4 的 extreme tradeoff (TSR -65pp for CAR +25pp) 是否削弱还是增强论文；(3)
+      Phase 2 λ=0 成功/失败对 acceptance 的影响；(4) 仅 1 scene (object_pudding) + 1 model (Pi0.5)
+      的 SDF 数据够不够
+    what_if: []
+    pid: 2164451
+    chat_id: oc_0db37ddf884a30d7a41b32e7cfe7c3ae
+    card_message_id: om_x100b6e78961f54a0c4446afac439e7d
+    started_at: '2026-05-25T22:30:36+00:00'
+    updated_at: '2026-05-25T23:26:34+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: b4f2b2fb53cf92e7490c05dbcfbf589cb861bba84903ef73664de9b5d3583d60
+    review_quality:
+      best: simulated
+      median: simulated
+      worst: simulated
+  dream_20260526T023936:
+    dream_id: dream_20260526T023936
+    project: diff_collision_sdf
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: corl-2026
+    focus: 'Claim 4 has fundamentally changed: SDF attribution is zero (D025). LoRA-only
+      CAR=55% ≥ SDF CAR=52%. The paper is now a pure diagnostic/analysis paper. Key
+      narrative: (1) fake safety metric contamination, (2) dfCAR corrective metric,
+      (3) fine-tuning produces real avoidance from implicit demo signals not geometric
+      supervision, (4) SDF is redundant — a valuable negative finding. Evaluate whether
+      this diagnostic-only framing with negative SDF result is viable for CoRL 2026.'
+    what_if: []
+    pid: 2204493
+    chat_id: oc_0db37ddf884a30d7a41b32e7cfe7c3ae
+    card_message_id: om_x100b6e643062acb0c45f51ff9aec941
+    started_at: '2026-05-26T02:39:36+00:00'
+    updated_at: '2026-05-26T03:42:12+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: ac3d32c9c57f3999f1f1acdbece77c4962dd93b8bdd21d41bb7ec4167e6dbe7b
+    review_quality:
+      best: simulated
+      median: simulated
+      worst: simulated

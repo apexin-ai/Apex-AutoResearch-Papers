@@ -1,0 +1,48 @@
+\subsection{Training-Time SDF Supervision}\label{sec:a1_pi05}
+
+Sections~\ref{sec:fake_safety}--\ref{sec:ee_only} establish that CAR is contaminated by action collapse, that TSR and CAR are anti-correlated under current methods, and that end-effector-only SDF refinement fails structurally. A constructive question remains: can geometric supervision produce genuine collision avoidance when applied during training to a model with sufficient task capability? We test this by adding an SDF auxiliary loss to Pi0.5 during LoRA fine-tuning, with loss weight $\lambda \in \{0.005, 0.01\}$.
+
+\begin{table}[t]
+\centering
+\caption{Results for Pi0.5 with training-time SDF auxiliary loss on SafeLIBERO (200 episodes per configuration). Frozen rate: fraction of episodes with $d_{\max} < \tau_d$ (action collapse; Section~\ref{sec:metrics}). Pi0.5+A1 produces 0\% frozen episodes at 10K steps, so CAR$_\text{f}$ equals raw CAR.}
+\label{tab:a1_pi05}
+\vspace{2pt}
+\small
+\begin{tabular}{lccccc}
+\toprule
+Method & TSR (\%) & CAR (\%) & CAR$_\text{f}$ (\%) & SSR (\%) & Frozen (\%) \\
+\midrule
+Pi0.5 baseline (3-seed) & 74.7\,$\pm$\,1.5 & 26.8\,$\pm$\,1.6 & $\approx$\,0 & \placeholder{XX.X} & \placeholder{${\sim}$26} \\
+Pi0.5 LoRA-only (no SDF) & \placeholder{XX.X} & \placeholder{XX.X} & \placeholder{XX.X} & \placeholder{XX.X} & \placeholder{XX.X} \\
+\midrule
+\multicolumn{6}{l}{\textit{10K-step checkpoint (seed~0)}} \\
+Pi0.5+A1 $\lambda{=}0.005$ & 47.0 & 58.0 & 58.0 & \placeholder{XX.X} & 0.0 \\
+Pi0.5+A1 $\lambda{=}0.01$ & 49.0 & 56.5 & 56.5 & \placeholder{XX.X} & 0.0 \\
+\midrule
+\multicolumn{6}{l}{\textit{30K-step checkpoint (3-seed mean$\pm$std)}} \\
+Pi0.5+A1 $\lambda{=}0.005$ & \placeholder{XX.X$\pm$XX.X} & \placeholder{XX.X$\pm$XX.X} & \placeholder{XX.X$\pm$XX.X} & \placeholder{XX.X} & \placeholder{XX.X} \\
+Pi0.5+A1 $\lambda{=}0.01$ & \placeholder{XX.X$\pm$XX.X} & \placeholder{XX.X$\pm$XX.X} & \placeholder{XX.X$\pm$XX.X} & \placeholder{XX.X} & \placeholder{XX.X} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:a1_pi05} reports aggregate results. At the 10K-step checkpoint (seed~0), Pi0.5+A1 with $\lambda = 0.005$ achieves CAR of 58.0\% and TSR of 47.0\%, while $\lambda = 0.01$ reaches CAR of 56.5\% and TSR of 49.0\%. Both configurations register a frozen rate of 0\%: every episode exhibits displacement above $\tau_d$, in contrast to the unmodified Pi0.5 baseline where ${\sim}$26\% of all episodes are action-collapsed (equivalently, 98.2\% of the baseline's safe episodes are fake safe; Table~\ref{tab:fake_safety}). Because no episode exhibits action collapse, CAR$_\text{f}$ equals raw CAR: the full improvement over the baseline (26.8\% $\to$ 56.5--58.0\%) reflects genuine collision avoidance rather than inflated safety from inaction. This result contrasts directly with the Pi0-family methods in Section~\ref{sec:fake_safety}, where over 99\% of safe episodes were attributable to a robot that never moved. The mechanism is straightforward: SDF auxiliary loss provides gradients that reshape the policy's generated trajectories toward collision-free paths. When the base model is action-collapsed (Pi0, TSR $\leq$ 0.5\%), it generates near-zero trajectories that provide no meaningful signal for the SDF loss to reshape---the gradient of a distance field evaluated at a stationary point cannot produce a collision-free path. When the base model actively generates trajectories (Pi0.5, TSR = 74.7\%), the SDF loss has real motion to redirect, and the training signal is informative.
+
+Per-task decomposition reveals heterogeneous improvement across workspace configurations. Tasks~0--2 show CAR gains of \placeholder{XX}--\placeholder{XX} percentage points over the Pi0.5 baseline, with TSR reductions of \placeholder{XX}--\placeholder{XX} points. Task~3 (\texttt{bbq\_sauce}) exhibits a distinct pattern discussed below. The non-uniform response across tasks suggests that SDF supervision interacts with workspace layout in ways that require per-task analysis.
+
+Task~3 exposes a collision transfer effect that delimits the method's applicability. The grasp trajectory passes through a ${\sim}$40\,cm corridor formed by \texttt{wine\_bottle} (right) and \texttt{red\_coffee\_mug} (left). The point-wise SDF gradient pushes the end-effector away from whichever obstacle is nearest; in this bilateral geometry, avoiding the right obstacle shifts the trajectory leftward into the left obstacle. At the 10K checkpoint ($\lambda = 0.005$), collisions increase from \placeholder{X} to \placeholder{XX} episodes (CAR drops \placeholder{X}\,pp relative to baseline). Of the \placeholder{XX} collision-free episodes under SDF supervision, only \placeholder{X} complete the task---the remaining episodes avoid both obstacles but deviate sufficiently from the nominal grasp pose to fail. This contrasts with Task~0, where the baseline collision rate exceeds 90\% and SDF supervision reduces it by \placeholder{XX}\,pp, consistent with a scenario where obstacles lie predominantly on one side of the workspace. The collision transfer effect is inherent to point-wise SDF gradients operating in constrained corridors: the gradient at the end-effector position encodes the direction to the nearest surface, not a globally collision-free path. When obstacles bound the trajectory from multiple directions, local gradient descent trades one collision for another.
+
+Isolating the SDF loss contribution from the LoRA fine-tuning procedure itself requires a LoRA-only baseline trained without SDF supervision. This baseline achieves TSR of \placeholder{XX.X}\% and CAR of \placeholder{XX.X}\%. If LoRA fine-tuning alone improves CAR relative to Pi0.5, the attributable effect of SDF supervision is the residual difference between Pi0.5+A1 and the LoRA-only model, which amounts to \placeholder{XX.X} percentage points. This comparison remains pending.
+
+The two loss weights show minimal differentiation at 10K steps: CAR differs by 1.5 percentage points (58.0\% vs.\ 56.5\%) and TSR by 2.0 points (47.0\% vs.\ 49.0\%). The similarity suggests that both weights provide sufficient gradient signal for the model to learn basic collision avoidance at this training stage. At 30K steps, the gap between $\lambda = 0.005$ (\placeholder{XX.X}\% CAR) and $\lambda = 0.01$ (\placeholder{XX.X}\% CAR) may reveal whether sensitivity to the loss weight increases with training duration. Figure~\ref{fig:lambda_car} plots CAR and TSR as a function of $\lambda$.
+
+The improvement in CAR comes at a cost to task performance. TSR drops from 74.7\% to 47.0--49.0\% at the 10K checkpoint, a reduction of 25--28 percentage points. This tradeoff places Pi0.5+A1 in the previously unoccupied central region of the TSR-CAR plane (Figure~\ref{fig:tsr_car_scatter}): it is the only evaluated configuration that achieves non-trivial values on both axes. No Pi0-family method exceeds 0.5\% TSR, and no unmodified model exceeds 30\% CAR without action-collapse contamination. At 30K steps, TSR recovers to \placeholder{XX.X}--\placeholder{XX.X}\%, narrowing the performance gap while maintaining CAR above \placeholder{XX}\%. At 10K steps, task-specific adaptation remains incomplete; the 30K checkpoint is expected to shift the tradeoff toward higher TSR.
+
+\begin{figure}[t]
+\centering
+\fbox{\parbox{0.9\linewidth}{\centering\vspace{2em}[Lambda-CAR curve -- pending]\vspace{2em}}}
+\caption{Effect of SDF loss weight $\lambda$ on CAR and TSR for Pi0.5+A1. Four points: $\lambda \in \{0, 0.005, 0.01, 0.1\}$. The $\lambda = 0$ point corresponds to the Pi0.5 baseline (LoRA only, no SDF loss). Pending: 3-seed results at 30K steps.}
+\label{fig:lambda_car}
+\end{figure}
+
+Training-time SDF auxiliary loss yields substantial collision avoidance improvement on Pi0.5, confirming that geometric supervision can address the action-collapse-contaminated safety identified in Sections~\ref{sec:fake_safety}--\ref{sec:tsr_car}. The path to genuine collision avoidance in VLAs runs through the training objective, not through inference-time refinement of a representation that lacks full-body geometric coverage (Section~\ref{sec:ee_only}).

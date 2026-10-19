@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "284e53da1ae9b72052aa",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops openvla preinstall check",
+  "task_key": "worker_ops_openvla_preinstall_check_20260525T145148",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_openvla_preinstall_check_20260525T145148_result.json",
+    "occurrence": 1,
+    "bytes": 915,
+    "sha256": "93340672eff9626430e594900ebec32a0cc1c9f103b3455073970695f0f3756d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 检查结果\n\n### Eval 脚本\n**不存在。** `eval_safelibero_openvla.py` 未找到。现有 eval 脚本：\n- `eval_safelibero.py`\n- `eval_pi05_safelibero.py`\n\n### 核心依赖\n\n| 包 | 状态 | 版本 |\n|---|---|---|\n| transformers | ✅ 已装 | 4.53.2 |\n| timm | ✅ 已装 | 1.0.27 |\n| accelerate | ✅ 已装 | 1.13.0 |\n| flash_attn | ✅ 已装 | 2.8.3 |\n| prismatic | ❌ 未装 | — |\n\n### 模型权重\n**下载未完成。** `/root/autodl-tmp/openvla-7b-raw/` 有 3 个 safetensors 文件（共 ~15GB），但均有 `.aria2` 残留控制文件，表明下载中断。HF cache 中仅有 config/tokenizer，无权重。\n\n### 待完成清单\n1. **创建** `eval_safelibero_openvla.py` eval 脚本\n2. **安装** `prismatic` 包（OpenVLA 核心依赖）\n3. **重新下载** openvla-7b 模型权重（清理 `.aria2` 文件后重下，或用 HF hub 下载完整版）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-openvla-preinstall-check.md"
+}

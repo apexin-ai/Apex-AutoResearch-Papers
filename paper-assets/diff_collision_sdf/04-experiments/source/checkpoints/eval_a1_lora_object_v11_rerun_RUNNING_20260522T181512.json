@@ -1,0 +1,32 @@
+{
+  "exp_id": "eval_a1_lora_object_v11_rerun",
+  "project": "diff_collision_sdf",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T18:12:11.380Z",
+    "updated_at": "2026-05-22T18:15:12.837Z",
+    "hypothesis": "Clean rerun of A1 (SDF auxiliary loss + LoRA) eval on safelibero_object with 200 episodes (4×50). Original eval_a1_lora_object_v11 data was corrupted by M025 (output file overwritten, only 12 episodes recoverable). This rerun provides complete per-episode displacement data for fake-safety analysis and reliable task-level metrics. Expected CAR ~90% (matching original partial data).",
+    "parent": "eval_a1_lora_object_v11",
+    "spec": {
+      "command": "python scripts/eval_safelibero.py --model_type lora_baseline --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_object_pudding/a1_lora_object_pudding_seed0/best --suite safelibero_object --safety_level II --n_episodes 200 --replan_steps 5 --gpu 3 --output_prefix a1_rerun_v11 --save_dir /root/autodl-tmp/eval_results",
+      "server": "westd-35807",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "tmux:eval_a1_obj_rerun",
+      "data_path": "/root/autodl-tmp/eval_results/a1_rerun_v11_eval_safelibero_object_all_levelII_best_lora_baseline_seed0.json",
+      "data_count": 200,
+      "model_name": "pi0+LoRA+SDF_aux",
+      "seed": 0,
+      "checkpoint_source": "a1_lora_object_pudding_s0",
+      "eval_data": "safelibero_object_all_levelII",
+      "log_path": "/root/autodl-tmp/eval_results/eval_a1_lora_object_v11_rerun.log",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/a1_sdf_object_pudding/a1_lora_object_pudding_seed0/best"
+    }
+  },
+  "timestamp": "2026-05-22T18:15:12.894886+00:00",
+  "trigger": "update_registry"
+}

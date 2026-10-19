@@ -1,0 +1,31 @@
+{
+  "exp_id": "train_pi05_a1_obj_s1_l01",
+  "project": "diff_collision_sdf",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T00:22:54.546Z",
+    "updated_at": "2026-05-25T04:50:58.917Z",
+    "hypothesis": "Pi0.5+A1 SDF auxiliary loss (λ_sdf=0.01) seed 1: multi-seed replication of stronger lambda training. Tests whether higher SDF signal is reproducibly better or worse than conservative lambda.",
+    "spec": {
+      "command": "WANDB_MODE=offline python scripts/train_a1_sdf_aux_pi05.py --scene object_pudding --seed 1 --gpu 1 --batch_size 32 --num_train_steps 30000 --lambda_sdf 0.01 --lambda_ee 0.01 --lr 2.5e-5 --save_interval 2000",
+      "server": "westd-35807",
+      "data_path": "SafeLIBERO object_pudding training data",
+      "data_count": 200,
+      "model_name": "pi05_libero + A1 SDF aux (lambda=0.01)",
+      "seed": 1
+    },
+    "reproduce": {
+      "pid": 349007,
+      "gpu": "cuda:1",
+      "tmux_session": "train_pi05_a1_obj_s1_l01"
+    },
+    "notes": "2026-05-24: 无法诊断训练状态——westd-35807 SSH Authentication failed，需要用户去 SeetaCloud 控制台确认实例状态和 SSH 端口是否变更。",
+    "conclusion": "success",
+    "completed_at": "2026-05-24T13:30:11.363Z"
+  },
+  "timestamp": "2026-05-25T04:50:59.015699+00:00",
+  "trigger": "update_registry"
+}

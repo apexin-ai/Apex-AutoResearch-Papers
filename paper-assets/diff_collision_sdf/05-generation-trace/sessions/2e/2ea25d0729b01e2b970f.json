@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2ea25d0729b01e2b970f",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "code fix m022 norm stats",
+  "task_key": "worker_code_fix_m022_norm_stats_20260522T103020",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_m022_norm_stats_20260522T103020_result.json",
+    "occurrence": 1,
+    "bytes": 2339,
+    "sha256": "e4ae883cbbb799a6df1a1473020859e44978d0cbcae11e5fd5b794a7aba1e881"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两台服务器语法验证通过，修复已部署。\n\n## 结果汇总\n\n### Diff\n\n```diff\n--- a/scripts/eval_safelibero.py\n+++ b/scripts/eval_safelibero.py\n@@ -485,9 +485,23 @@\n     )\n     a3_config = dataclasses.replace(config, model=a3_model_config)\n \n-    # Load base model from pre-trained pi0 weights\n+    # Load norm_stats from A3 checkpoint (not pi0_base)\n+    from openpi.training import checkpoints as _checkpoints\n+    sdf_ckpt = args.sdf_checkpoint or args.checkpoint\n+    a3_norm_stats = None\n+    a3_assets_dir = os.path.join(sdf_ckpt, \"assets\")\n+    if os.path.isdir(a3_assets_dir):\n+        for subdir in os.listdir(a3_assets_dir):\n+            ns_path = os.path.join(a3_assets_dir, subdir, \"norm_stats.json\")\n+            if os.path.isfile(ns_path):\n+                a3_norm_stats = _checkpoints.load_norm_stats(a3_assets_dir, subdir)\n+                logging.info(\"Loaded A3 norm_stats from %s/%s\", a3_assets_dir, subdir)\n+                break\n+    if a3_norm_stats is None:\n+        logging.warning(\"No norm_stats in A3 checkpoint %s, falling back to pi0_base\", sdf_ckpt)\n+\n+    # Load base model from pre-trained pi0 weights, using A3 norm_stats\n     policy = _policy_config.create_trained_policy(\n-        a3_config, PI0_BASE_WEIGHTS, default_prompt=None\n+        a3_config, PI0_BASE_WEIGHTS, default_prompt=None,\n+        norm_stats=a3_norm_stats,\n     )\n```\n\n### A3 checkpoint norm_stats 位置和内容\n\n| Checkpoint | norm_stats 路径 | state.mean 前值 |\n|---|---|---|\n| A3 spatial | `.../a3_grad_refine_spatial_bowl/.../best/assets/safelibero_spatial/norm_stats.json` | **-0.0221...** |\n| A3 object | `.../a3_grad_refine_object_pudding/.../best/assets/safelibero_object/norm_stats.json` | (同结构) |\n| pi0_base (错误来源) | `.../openpi_weights/pi0_base/assets/physical-intelligence/libero/norm_stats.json` | **-0.0633...** |\n\n### 部署状态\n\n| 服务器 | 状态 |\n|---|---|\n| westd-45947 | SYNTAX OK |\n| westd-35807 | SYNTAX OK |\n\n### 修复机制\n\n`create_trained_policy` 接受 `norm_stats` 可选参数（为 `None` 时从 `checkpoint_dir/assets/` 加载）。修复后，先扫描 A3 checkpoint 的 `assets/` 子目录找到 norm_stats，显式传入，避免从 `PI0_BASE_WEIGHTS` 加载错误的归一化统计量。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-m022-norm-stats.md"
+}

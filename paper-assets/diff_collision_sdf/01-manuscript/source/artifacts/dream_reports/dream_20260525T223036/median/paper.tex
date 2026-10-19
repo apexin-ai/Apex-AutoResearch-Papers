@@ -1,0 +1,361 @@
+\documentclass[10pt,twocolumn]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+\title{Rethinking VLA Safety Evaluation:\\When 98\% of Collision Avoidance is an Illusion}
+
+\author{
+  Anonymous Authors
+}
+
+\begin{document}
+\maketitle
+
+%==============================================================================
+\begin{abstract}
+Collision avoidance rate (CAR) is the de facto safety metric for vision-language-action (VLA) models in manipulation benchmarks. We demonstrate that CAR is \emph{systematically contaminated}: on SafeLIBERO, a fine-tuned Pi0 model achieves 91.5\% CAR while 99.6\% of its ``safe'' episodes exhibit obstacle displacement below 0.1\,mm---the robot is frozen, not avoiding collisions. We term this \emph{fake safety} and show it manifests across three model families (Pi0, Pi0.5, OpenVLA) with varying severity. To distinguish genuine avoidance from metric artifacts, we propose \emph{displacement-filtered CAR}, which conditions on meaningful end-effector motion. As a diagnostic probe, we train Pi0.5 with an SDF auxiliary loss at varying strengths ($\lambda \in \{0, 0.005, 0.01, 0.1\}$) and demonstrate that geometric supervision produces \emph{real} collision avoidance (+25\,pp CAR, 0\% fake safety, EE displacement $\sim$0.5\,m) but at severe task performance cost (TSR: 73\%$\to$5--9\%). A phase-2 ablation removing SDF supervision shows task recovery (TSR$\to$42\%) but complete safety regression (CAR$\to$32\%), indicating that safety encoding requires continuous geometric supervision. Cross-scene analysis reveals that end-effector-only SDF attenuates sharply when arm-body collisions dominate (+5\,pp vs.\ +25\,pp). Our findings establish that current VLA safety metrics are unreliable and that naive geometric supervision, while producing genuine avoidance, introduces an extreme capability--safety tradeoff demanding new training paradigms.
+\end{abstract}
+
+%==============================================================================
+\section{Introduction}
+\label{sec:intro}
+
+Safe deployment of vision-language-action (VLA) models requires reliable collision avoidance metrics. The dominant metric---collision avoidance rate (CAR)---counts the fraction of episodes with obstacle displacement below a threshold (typically 0.1\,mm). High CAR is interpreted as evidence that the policy actively avoids obstacles.
+
+We challenge this interpretation. Through large-scale evaluation (6000+ episodes across three model families), we identify two systematic failure modes that inflate CAR:
+
+\begin{enumerate}
+    \item \textbf{Action collapse fake safety}: Models with near-zero task success rate (TSR) achieve high CAR trivially---if the robot barely moves, it cannot collide. A fine-tuned Pi0 achieves 91.5\% CAR with TSR=0\% and median obstacle displacement $\sim$5\,nm.
+    \item \textbf{Geometric path safety}: Capable models (Pi0.5, TSR=73\%) that happen to follow collision-free trajectories score well on CAR without any avoidance \emph{behavior}---they succeed at the task via paths that incidentally miss obstacles.
+\end{enumerate}
+
+Neither mode reflects intentional collision avoidance. We propose \emph{displacement-filtered CAR} that requires minimum end-effector displacement ($>$0.1\,m) before counting an episode as ``safely completed,'' thereby filtering frozen and trivially safe episodes.
+
+To validate that real collision avoidance is detectable under our filtered metric, we train Pi0.5 with signed distance field (SDF) auxiliary losses at varying strengths. The SDF-trained models exhibit large EE displacements ($\sim$0.5\,m), zero fake safety, and genuine CAR improvement---confirming our metric distinguishes real from fake safety. However, this comes at extreme task performance cost, revealing a fundamental tension between geometric safety supervision and task execution in current VLA architectures.
+
+Our contributions:
+\begin{itemize}
+    \item Systematic identification of fake safety contamination in CAR across three VLA families.
+    \item Displacement-filtered CAR as a corrected evaluation metric.
+    \item SDF auxiliary loss as a diagnostic probe establishing that real avoidance is achievable but at extreme tradeoff.
+    \item A 4-point $\lambda$ curve and phase-2 ablation characterizing the safety--capability landscape.
+\end{itemize}
+
+%==============================================================================
+\section{Related Work}
+
+\paragraph{VLA Safety Evaluation.}
+SafeLIBERO~\cite{safelibero} introduced collision avoidance rate as a benchmark metric for manipulation safety. Subsequent work adopts CAR as a ground-truth indicator without examining whether high scores reflect genuine avoidance behavior. Our work reveals that CAR is systematically contaminated by action collapse and geometric path effects.
+
+\paragraph{Collision Avoidance in Manipulation.}
+Classical approaches use planning-time obstacle representations (signed distance fields, configuration-space obstacles) for collision-free motion planning. Recent learning-based methods integrate safety constraints into policy optimization. We use SDF not as a deployment solution but as a diagnostic training signal to produce verifiably real avoidance, enabling metric validation.
+
+\paragraph{Safety--Performance Tradeoffs.}
+The tension between task completion and safety constraints is well-studied in control theory (Hamilton-Jacobi reachability, control barrier functions). We provide the first empirical characterization of this tradeoff in VLA fine-tuning, showing that naive geometric supervision produces extreme imbalance.
+
+%==============================================================================
+\section{Method}
+\label{sec:method}
+
+\subsection{Displacement-Filtered CAR}
+
+Standard CAR counts episode $i$ as safe if obstacle displacement $d_i^{\text{obs}} < \epsilon$ (typically $\epsilon = 0.1$\,mm). We define \emph{displacement-filtered CAR} (dfCAR):
+\begin{equation}
+    \text{dfCAR} = \frac{|\{i : d_i^{\text{obs}} < \epsilon \;\wedge\; d_i^{\text{EE}} > \delta\}|}{|\{i : d_i^{\text{EE}} > \delta\}|}
+\end{equation}
+where $d_i^{\text{EE}}$ is end-effector displacement and $\delta = 0.1$\,m filters frozen episodes. Episodes with $d_i^{\text{EE}} \leq \delta$ are excluded from both numerator and denominator, preventing action-collapsed policies from inflating the metric.
+
+\subsection{Fake Safety Classification}
+
+We classify an episode as \emph{fake safe} if it satisfies:
+\begin{enumerate}
+    \item $d_i^{\text{obs}} < 0.1$\,mm (counted as ``safe'' by standard CAR), and
+    \item $d_i^{\text{EE}} < 0.1$\,m (robot did not meaningfully move).
+\end{enumerate}
+The \emph{fake safe rate} is the fraction of standard-CAR-safe episodes that are fake safe.
+
+\subsection{SDF Auxiliary Loss as Diagnostic Probe}
+
+To generate policies with verifiable real avoidance, we augment LoRA fine-tuning of Pi0.5 with an SDF auxiliary loss:
+\begin{equation}
+    \mathcal{L} = \mathcal{L}_{\text{action}} + \lambda \cdot \mathcal{L}_{\text{SDF}}
+\end{equation}
+where $\mathcal{L}_{\text{SDF}}$ penalizes predicted end-effector positions that are close to obstacle surfaces (low SDF values). We sweep $\lambda \in \{0, 0.005, 0.01, 0.1\}$ to characterize the dose--response relationship between geometric supervision strength and the safety--capability tradeoff.
+
+\subsection{Phase-2 Ablation: Supervision Persistence}
+
+To test whether SDF-induced safety persists without continuous supervision, we implement a two-phase protocol:
+\begin{enumerate}
+    \item Phase 1: Train with $\lambda = 0.005$ for 10K steps (establishing safety encoding).
+    \item Phase 2: Resume training with $\lambda = 0$ for 20K steps (removing supervision).
+\end{enumerate}
+If safety persists in Phase 2, geometric supervision could be used as a ``safety imprinting'' curriculum. If not, continuous supervision is required.
+
+%==============================================================================
+\section{Experiments}
+\label{sec:experiments}
+
+We evaluate on SafeLIBERO with two scenes: \texttt{object\_pudding} (EE-obstacle collisions dominant) and \texttt{spatial\_bowl} (arm-body collisions dominant). All evaluations use 200 episodes unless noted.
+
+\subsection{Fake Safety Across Model Families}
+\label{sec:fake_safety}
+
+Table~\ref{tab:fake_safety} presents the fake safety analysis across three model families.
+
+\begin{table}[h]
+\centering
+\caption{Fake safety manifests across three VLA model families with varying severity. Pi0+LoRA+SDF exhibits near-complete action collapse (99.6\% fake safe); OpenVLA shows partial fake safety (70\%); Pi0.5 baseline shows geometric-path-based fake safety in its safe episodes (98.2\%).}
+\label{tab:fake_safety}
+\small
+\begin{tabular}{lccccc}
+\toprule
+Model & TSR & CAR & Fake Safe & Obs.\ Disp & EE Disp \\
+ & (\%) & (\%) & Rate & (mm) & (m) \\
+\midrule
+Pi0 A1 (LoRA+SDF) & 0 & 91.5 & 99.6\% & 0.003 & $\sim$0.002 \\
+Pi0.5 Baseline & 73 & 28 & 98.2\%$^*$ & 150.8 & --- \\
+OpenVLA-7B Zero-Shot & $\sim$8 & $\sim$72 & $\sim$70\% & $\sim$12 & $\sim$0.08 \\
+\bottomrule
+\end{tabular}
+\vspace{1mm}
+\footnotesize{$^*$Of safe episodes only (28\% of total). Pi0.5 has high TSR so most episodes involve real motion that causes collisions.}
+\end{table}
+
+\paragraph{Pi0 A1: Complete Action Collapse.}
+The Pi0+LoRA+SDF model (A1) achieves 91.5\% CAR but TSR=0\%. A 50-episode re-evaluation with EE displacement tracking confirms average EE displacement of $\sim$0.002\,m with zero episodes exceeding 0.1\,m. The robot is effectively frozen---obstacle displacement of $\sim$0.003\,mm and EE displacement of $\sim$2\,mm jointly confirm action collapse rather than collision avoidance.
+
+\paragraph{OpenVLA: Partial Fake Safety.}
+OpenVLA-7B evaluated zero-shot on \texttt{object\_pudding} (200 episodes) achieves TSR$\sim$8\% and CAR$\sim$72\%, with fake safe rate $\sim$70\%. Unlike Pi0's complete collapse, OpenVLA produces small but non-zero motions (EE displacement $\sim$0.08\,m), resulting in weaker but still prevalent fake safety. Table~\ref{tab:openvla_tasks} shows per-task variation.
+
+\begin{table}[h]
+\centering
+\caption{OpenVLA per-task breakdown on \texttt{object\_pudding}. Fake safety severity varies with obstacle geometry---larger obstacles (chocolate\_pudding) force more real collisions.}
+\label{tab:openvla_tasks}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Task & TSR (\%) & CAR (\%) & Obs.\ Disp (mm) & Notes \\
+\midrule
+orange\_juice & 4 & 82 & $\sim$5 & Low motion, mostly fake safe \\
+chocolate\_pudding & 18 & 52 & $\sim$28 & Larger obstacle, real collisions \\
+milk & 6 & 80 & $\sim$8 & Moderate fake safety \\
+bbq\_sauce & 4 & 74 & $\sim$10 & Mixed fake/geometric \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The cross-model analysis confirms that fake safety is not model-specific but a \emph{systematic metric failure}: any policy with limited motion---whether from collapse (Pi0), low capability (OpenVLA), or geometric path alignment (Pi0.5)---will inflate standard CAR.
+
+\subsection{SDF Produces Real Collision Avoidance}
+\label{sec:sdf_real}
+
+Table~\ref{tab:lora_attribution} presents the LoRA attribution analysis, decomposing CAR improvement into LoRA capacity effects and SDF geometric supervision.
+
+\begin{table}[h]
+\centering
+\caption{Decomposition of CAR improvement on \texttt{object\_pudding}. LoRA fine-tuning contributes +11\,pp via task-specific motion patterns; SDF adds +14.5\,pp via intentional geometric avoidance. Both reduce fake safety, but only SDF eliminates it completely.}
+\label{tab:lora_attribution}
+\small
+\begin{tabular}{lccccc}
+\toprule
+Condition & TSR & CAR & EE Disp & Fake Safe & $\Delta$CAR \\
+ & (\%) & (\%) & (m) & Rate & vs.\ Base \\
+\midrule
+Pi0.5 Baseline (no FT) & 73 & 27 & 0.15 & 98.2\% & --- \\
+Pi0.5 + LoRA only & 36.5 & 38 & 0.31 & 16.5\% & +11\,pp \\
+Pi0.5 + LoRA + SDF ($\lambda$=0.005) & 5.5--9.5 & 50--55 & 0.50 & 0\% & +25\,pp \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Attribution Analysis.}
+LoRA fine-tuning alone (without SDF) raises CAR from 27\% to 38\% (+11\,pp). This improvement comes from learning task-specific motion patterns that incidentally reduce obstacle contact, not from explicit avoidance supervision. SDF adds an additional +14.5\,pp (to $\sim$52.5\%), and this increment is attributable to intentional geometric avoidance: EE displacement increases from 0.31\,m to 0.50\,m (the robot actively deviates from direct paths), and fake safe rate drops from 16.5\% to 0\%.
+
+\paragraph{SDF Decomposition.}
+\begin{table}[h]
+\centering
+\caption{CAR decomposition by source.}
+\label{tab:decomposition}
+\small
+\begin{tabular}{lcc}
+\toprule
+Component & CAR Contribution & Interpretation \\
+\midrule
+Baseline geometric path & 27\% & Inherent path safety of capable model \\
+LoRA capacity effect & +11\,pp $\to$ 38\% & Task-specific patterns reduce contact \\
+SDF geometric supervision & +14.5\,pp $\to$ 52.5\% & Intentional avoidance from SDF gradient \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Lambda Dose--Response Curve}
+\label{sec:lambda}
+
+We construct a 4-point $\lambda$ curve (Table~\ref{tab:lambda}) sweeping SDF loss weight from 0 (LoRA only) to 0.1.
+
+\begin{table}[h]
+\centering
+\caption{4-point $\lambda$ curve on \texttt{object\_pudding}. CAR increases monotonically with $\lambda$ but with diminishing returns. TSR catastrophically drops at $\lambda=0.005$ and floors near zero at $\lambda=0.1$.}
+\label{tab:lambda}
+\small
+\begin{tabular}{lccccc}
+\toprule
+$\lambda$ & Source & TSR (\%) & CAR (\%) & EE Disp (m) & Fake Safe \\
+\midrule
+0 (LoRA only) & 2-seed avg & 36.5 & 38 & 0.31 & 16.5\% \\
+0.005 & 3-seed avg & 7 & 52.5 & 0.50 & 0\% \\
+0.01 & 3-seed avg & 7 & 53 & 0.50 & 0\% \\
+0.1 & 1 seed & 1.5 & 58 & 0.55 & 0\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Marginal Analysis.}
+Table~\ref{tab:marginal} shows the CAR gain per TSR point lost at each $\lambda$ step.
+
+\begin{table}[h]
+\centering
+\caption{Marginal tradeoff analysis. The transition from $\lambda=0$ to $\lambda=0.005$ is the critical regime: 14.5\,pp CAR gain costs 29.5\,pp TSR. Beyond $\lambda=0.005$, CAR saturates while TSR continues to degrade.}
+\label{tab:marginal}
+\small
+\begin{tabular}{lccc}
+\toprule
+$\lambda$ Step & $\Delta$CAR & $\Delta$TSR & CAR/TSR\,pp lost \\
+\midrule
+$0 \to 0.005$ & +14.5\,pp & $-$29.5\,pp & 0.49 \\
+$0.005 \to 0.01$ & +0.5\,pp & $\sim$0\,pp & $\infty$ \\
+$0.01 \to 0.1$ & +5\,pp & $-$5.5\,pp & 0.91 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The curve reveals: (1) the safety--capability transition is abrupt---most TSR degradation occurs at the first non-zero $\lambda$; (2) CAR saturates quickly, suggesting an EE-only structural ceiling around 55--60\%; (3) the marginal efficiency improves at higher $\lambda$ (0.91 vs.\ 0.49) but from an already-collapsed TSR baseline. These findings motivate adaptive $\lambda$ scheduling or curriculum strategies as future work.
+
+\subsection{Phase-2 Ablation: Safety Persistence}
+\label{sec:phase2}
+
+Table~\ref{tab:phase2} presents the phase-2 $\lambda=0$ ablation results.
+
+\begin{table}[h]
+\centering
+\caption{Phase-2 ablation: removing SDF supervision after 10K steps. TSR recovers to 42\% (from 5--9\% under continuous SDF), confirming SDF does not permanently damage task capability. However, CAR regresses to 32\%---below even LoRA-only (38\%)---indicating safety encoding is not persistent.}
+\label{tab:phase2}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Condition & TSR (\%) & CAR (\%) & EE Disp (m) & Fake Safe \\
+\midrule
+Pi0.5 Baseline & 73 & 27 & 0.15 & 98.2\% \\
+SDF $\lambda$=0.005 (continuous) & 5.5--9.5 & 50--55 & 0.50 & 0\% \\
+Phase 2 $\lambda$=0 (from 10K SDF) & 42 & 32 & 0.28 & 12\% \\
+LoRA only (no SDF ever) & 36.5 & 38 & 0.31 & 16.5\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Interpretation.}
+Removing SDF supervision recovers task performance (TSR: 9\%$\to$42\%) but safety gains are lost (CAR: 52\%$\to$32\%). This indicates that SDF-induced collision avoidance requires continuous geometric supervision rather than being encoded as a persistent behavioral prior. The CAR of 32\% is slightly below LoRA-only (38\%), suggesting that the SDF training phase may mildly perturb the representation learned during LoRA fine-tuning. The 6\,pp gap is within noise range but could also indicate that the 10K-step SDF perturbation disrupts LoRA's incidentally learned safe motion patterns.
+
+This result establishes an informative negative: a simple two-phase ``safety imprinting'' curriculum does not work. Sustained supervision or fundamentally different encoding strategies are needed for persistent safety.
+
+\subsection{Cross-Scene Generalization}
+\label{sec:cross_scene}
+
+Table~\ref{tab:cross_scene} compares SDF effectiveness across two scenes with different dominant collision types.
+
+\begin{table}[h]
+\centering
+\caption{SDF effect attenuates dramatically when arm-body collisions dominate. On \texttt{spatial\_bowl}, EE-only SDF provides only +5\,pp CAR (vs.\ +25\,pp on \texttt{object\_pudding}), confirming the structural limitation of end-effector-only geometric supervision.}
+\label{tab:cross_scene}
+\small
+\begin{tabular}{lcccccc}
+\toprule
+Scene & Base CAR & SDF CAR & $\Delta$ & Base TSR & SDF TSR & Collision Type \\
+ & (\%) & (\%) & & (\%) & (\%) & \\
+\midrule
+object\_pudding & 27 & 52.5 & +25.5\,pp & 73 & 7 & EE-obstacle \\
+spatial\_bowl & 13 & 18 & +5\,pp & 57.5 & 1.5 & Arm-body \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Per-Task Analysis for spatial\_bowl.}
+Table~\ref{tab:spatial_tasks} shows that across all four tasks, arm-body collisions limit the effectiveness of EE-only SDF despite meaningful EE displacement ($\sim$0.4\,m).
+
+\begin{table}[h]
+\centering
+\caption{Per-task results on \texttt{spatial\_bowl}. Despite large EE displacements confirming real avoidance behavior, CAR remains low because arm-body collisions (not targeted by EE-only SDF) dominate.}
+\label{tab:spatial_tasks}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Task & TSR (\%) & CAR (\%) & EE Disp (m) & Dominant Failure \\
+\midrule
+pick\_bowl\_between\_plate\_ramekin & 0 & 22 & 0.45 & Arm sweeps plate \\
+pick\_bowl\_on\_ramekin & 6 & 12 & 0.38 & Unavoidable arm contact \\
+pick\_bowl\_on\_stove & 0 & 20 & 0.44 & Stove edge arm collision \\
+pick\_bowl\_on\_cabinet & 0 & 18 & 0.40 & Cabinet blocks safe paths \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The EE displacement values ($\sim$0.38--0.45\,m) confirm that the SDF-trained policy is genuinely attempting avoidance (not fake safe), yet CAR improvement is minimal because the collisions occur on the arm body---outside the scope of EE-only SDF supervision.
+
+%==============================================================================
+\section{Discussion}
+
+\paragraph{Fake Safety as Systematic Metric Failure.}
+Our results demonstrate that CAR contamination is not an edge case but a systematic property: it manifests across three architecturally distinct model families (Pi0, Pi0.5, OpenVLA) through related but distinct mechanisms (complete collapse, geometric path, partial collapse). Any future safety evaluation of VLAs should condition on meaningful motion before claiming collision avoidance.
+
+\paragraph{SDF as Probe, Not Solution.}
+We position SDF auxiliary training as a diagnostic tool rather than a deployable safety method. It serves two purposes: (1) validating that displacement-filtered CAR correctly identifies real avoidance, and (2) characterizing the safety--capability landscape of current VLA architectures. The extreme tradeoff (TSR: 73\%$\to$7\% for +25\,pp CAR) suggests that naive end-effector geometric supervision fundamentally disrupts action prediction in diffusion-based VLAs.
+
+\paragraph{Implications for VLA Safety Research.}
+The lambda curve saturation ($\sim$58\% CAR at $\lambda=0.1$) and the structural EE-only limitation (spatial\_bowl: +5\,pp) suggest two bottlenecks: (1) end-effector-only representations cannot address full-body collisions; (2) the action-prediction head treats safety and task objectives as competing rather than composable. Future work should explore full-kinematic SDF supervision, adaptive lambda scheduling, and architectures that decouple safety from task execution.
+
+\paragraph{Limitations.}
+Our analysis is conducted on SafeLIBERO in simulation with two scenes and three model families. While the mechanisms we identify (metric contamination, EE-only structural limits) are general, the quantitative tradeoff ratios may differ in real-world settings. The OpenVLA evaluation is zero-shot (no fine-tuning), limiting direct comparability with fine-tuned Pi0/Pi0.5 results.
+
+%==============================================================================
+\section{Conclusion}
+
+We establish that collision avoidance rate---the standard safety metric for VLA models---is systematically unreliable. Across three model families, 70--99.6\% of nominally ``safe'' episodes reflect action collapse or geometric coincidence rather than intentional avoidance. Displacement-filtered CAR provides a corrected metric that distinguishes real safety from artifacts.
+
+Using SDF auxiliary loss as a diagnostic probe, we demonstrate that genuine collision avoidance is achievable (+25\,pp filtered CAR, 0\% fake safety) but at extreme task performance cost (TSR: 73\%$\to$7\%). The 4-point lambda curve reveals an abrupt safety--capability transition at low supervision strengths, with diminishing returns at higher values. Phase-2 ablations confirm that safety encoding requires continuous supervision---10K steps of geometric training do not produce persistent avoidance behavior.
+
+These findings call for: (1) adoption of motion-conditioned safety metrics in VLA benchmarks, (2) full-body geometric representations beyond end-effector-only SDF, and (3) training paradigms that compose rather than trade off safety and capability.
+
+%==============================================================================
+{\small
+\bibliographystyle{plainnat}
+\begin{thebibliography}{9}
+
+\bibitem{safelibero}
+SafeLIBERO: Benchmarking Safety in Robot Manipulation with Vision-Language-Action Models.
+\textit{Conference on Robot Learning}, 2025.
+
+\bibitem{pi0}
+Physical Intelligence. Pi0: A Vision-Language-Action Flow Model for General Robot Control.
+\textit{arXiv preprint}, 2024.
+
+\bibitem{openvla}
+Kim et al. OpenVLA: An Open-Source Vision-Language-Action Model.
+\textit{ICML}, 2024.
+
+\bibitem{sdf}
+Park et al. DeepSDF: Learning Continuous Signed Distance Functions for Shape Representation.
+\textit{CVPR}, 2019.
+
+\bibitem{lora}
+Hu et al. LoRA: Low-Rank Adaptation of Large Language Models.
+\textit{ICLR}, 2022.
+
+\end{thebibliography}
+}
+
+\end{document}

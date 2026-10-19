@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "045fa20765b154f03e33",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "analyze train pi05 a1 spatial bowl s0 l005",
+  "task_key": "worker_analyze_train_pi05_a1_spatial_bowl_s0_l005_20260526T223049",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_train_pi05_a1_spatial_bowl_s0_l005_20260526T223049_result.json",
+    "occurrence": 1,
+    "bytes": 1420,
+    "sha256": "6e931cd41b19d9955440a9871b9f8710266cee1566ba0dea5decbfa23ddd2f05"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练结果汇总：\n\n| 项目 | 值 |\n|------|-----|\n| **completion** | ✅ 完成全部 30K 步 |\n| **final_step** | 30000 |\n| **final_loss (total)** | 0.0137 (wandb summary: 0.01585) |\n| **final_action_loss** | 0.0135 (wandb summary: 0.01562) |\n| **final_sdf_loss** | 0.0327 (wandb summary: 0.03258) |\n| **final_ee_loss** | 0.0068 (wandb summary: 0.00603) |\n| **best_loss** | 0.01063 @ step 28000 |\n| **lambda_sdf** | 0.005 ✅ 正确应用，全程恒定 |\n| **checkpoint_path** | `/root/autodl-tmp/checkpoints/a1_sdf_pi05_spatial_bowl/a1_sdf_pi05_spatial_bowl_seed0_l005/30000/` (7.2GB) |\n| **保留的 checkpoints** | 29999, 30000, best (step 28000) |\n| **log_path** | `~/runs/diff_collision_sdf/train_pi05_a1_spatial_bowl_s0_l005.log` |\n| **wandb offline run** | `/root/colliforce-vla/wandb/offline-run-20260526_020142-bwvsek6c/` (21MB) |\n| **总训练时长** | ~28h26m (从 resume 起算), ~4.65s/it |\n| **EXIT_CODE** | 0 |\n| **conclusion** | **success** — 训练正常完成，30K 步全部跑完，loss 曲线单调下降，无异常 |\n\n值得注意：\n- checkpoint 保留策略自动清理了旧 checkpoint（26000、28000 被删除），仅保留 29999、30000 和 best\n- best checkpoint 出现在 step 28000（loss=0.01063），最终 step 30000 的 loss 略高（0.01585），属于正常波动\n- eikonal loss 收敛到极小值 (1e-05)，SDF 正则化正常工作"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-train-pi05-a1-spatial-bowl-s0-l005.md"
+}

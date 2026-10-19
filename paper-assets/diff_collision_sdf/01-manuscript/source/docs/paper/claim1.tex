@@ -1,0 +1,40 @@
+\section{The Action-Collapsed Safety Problem}\label{sec:fake_safety}
+
+Standard CAR assumes that collision-free episodes reflect deliberate avoidance. This assumption is systematically violated: in every Pi0 configuration tested, over 99\% of collision-free episodes are action-collapse artifacts (Table~\ref{tab:fake_safety}). Applying dfCAR collapses all three to ${\approx}$\,0\%. Pi0+A1 achieves the \emph{highest} raw CAR (91.5\%) because more complete action collapse (from a parameter-name mismatch preventing LoRA loading; Table~\ref{tab:configurations}) yields greater CAR inflation. Pi0.5 validates the metric from the opposite direction: every safe episode exceeds 200\,mm displacement, and dfCAR equals raw CAR (28.5\%). The displacement distribution is sharply bimodal (Fig.~\ref{fig:displacement}), with a five-order-of-magnitude gap that makes $\tau_d$ robust.
+
+\begin{table}[t]
+\centering
+\caption{Action-collapse decomposition on SafeLIBERO. dfCAR excludes episodes with displacement $< \tau_d = 0.1$\,mm. Pi0+A1 dfCAR$\,\approx\,$0: only 3/732 safe episodes exceed the threshold.}
+\label{tab:fake_safety}
+\vspace{2pt}
+\footnotesize
+\begin{tabular*}{\columnwidth}{l@{\extracolsep{\fill}}ccccc}
+\toprule
+Method & Ep.\ & CAR & TSR & Coll.\ & dfCAR \\
+ & & (\%) & (\%) & (\%) & (\%) \\
+\midrule
+Pi0 Full-FT  & 200 & 83.0 & 0.5 & 99.4 & $\approx$\,0 \\
+Pi0 LoRA     & 200 & 82.0 & 0.0 & ${\sim}$99 & $\approx$\,0 \\
+Pi0+A1 (SDF) & 800 & 91.5 & 0.0 & 99.6 & $\approx$\,0 \\
+\midrule
+Pi0.5  & 200 & 28.5 & 71.5 & 0.0 & 28.5 \\
+\bottomrule
+\end{tabular*}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{fig3_scatter_and_oracle}
+\caption{(Left) CAR inflation from action collapse. Solid dots: reported CAR; hollow dots: dfCAR. The gap (red lines) quantifies illusory safety; Pi0-family models show 82--91\,pp inflation. (Right) CAR for oracle SDF refinement versus unrefined baselines. All GT oracle variants underperform despite perfect distance information.}
+\label{fig:scatter_and_oracle}
+\end{figure}
+Figure~\ref{fig:scatter_and_oracle} (left) quantifies CAR inflation from action collapse.\label{sec:anticorrelation} Pi0-family models show 82--91\,pp gaps between reported CAR and dfCAR: virtually all apparent safety is illusory. Pi0.5 and fine-tuned variants show no inflation (dfCAR\,=\,CAR), confirming genuine avoidance. Under dfCAR, the apparent safety--capability tradeoff disappears: high raw CAR was an artifact of action-collapse contamination, not deliberate avoidance.
+
+The 0.1\,mm threshold reflects near-total motor inactivity (typical actions produce 1--10\,mm per step). The sharply bimodal distribution (Fig.~\ref{fig:displacement}) makes $\tau_d$ robust: any threshold in $[2, 200]$\,mm yields identical dfCAR (Appendix~\ref{sec:appendix_threshold}).
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.85\columnwidth]{fig2_ee_displacement_distribution}
+\caption{Displacement distribution across evaluation episodes. Pi0-family models (blue) cluster below 1\,$\mu$m, while Pi0.5 episodes (orange) exceed 200\,mm. The five-order-of-magnitude gap makes $\tau_d$ robust to any value in $[2, 200]$\,mm.}
+\label{fig:displacement}
+\end{figure}

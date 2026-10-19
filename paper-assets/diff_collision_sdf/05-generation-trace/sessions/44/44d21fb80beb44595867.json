@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "44d21fb80beb44595867",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops investigate pid 892014",
+  "task_key": "worker_ops_investigate-pid-892014_20260528T024225",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_investigate-pid-892014_20260528T024225_result.json",
+    "occurrence": 1,
+    "bytes": 1095,
+    "sha256": "7a4e9011912a13a3557ecec6c99e9231c2bc302572c950b3e6e47325bda54b9b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PID 892014 是本项目的训练进程，**无需处理**。\n\n### PID 892014 详情\n\n| 项目 | 值 |\n|------|-----|\n| 命令 | `python scripts/train_a1_sdf_aux_pi05.py --scene object_pudding --seed 0 --lambda_sdf 0 --gpu 1 --num_train_steps 30000 --resume` |\n| 运行时长 | 4 小时 7 分钟 |\n| GPU | cuda:1 (GPU-8ec4b84d)，占用 **27036 MiB** |\n\n这是 diff_collision_sdf 项目的 A1 SDF 辅助训练（object_pudding scene, baseline λ_sdf=0）。\n\n### westd-35807 全卡占用情况\n\n| GPU | 显存占用 | 总显存 | 利用率 | 占用进程 |\n|-----|---------|--------|--------|---------|\n| cuda:0 | 9014 MiB | 97887 MiB | 48% | PID 960263 (8995 MiB) |\n| cuda:1 | 36055 MiB | 97887 MiB | 100% | **PID 892014 (27036 MiB)** + PID 960408 (8995 MiB) |\n| cuda:2 | 27045 MiB | 97887 MiB | 100% | PID 856471 (27036 MiB) |\n| cuda:3 | 8978 MiB | 97887 MiB | 4% | PID 960554 (8356 MiB) |\n\n4 张卡都有进程在跑，cuda:1 和 cuda:2 利用率 100%、各占用约 27GB（看起来是主训练进程），cuda:0 和 cuda:3 各有约 9GB 的轻量进程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-investigate-pid-892014.md"
+}

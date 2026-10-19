@@ -1,0 +1,28 @@
+{
+  "exp_id": "train_pi05_a1_obj_s1_l01_high",
+  "project": "diff_collision_sdf",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-25T23:52:52.613Z",
+    "updated_at": "2026-05-25T23:53:14.015Z",
+    "hypothesis": "Pi0.5+A1 SDF training with high lambda=0.1 (seed1, 30K steps). Second seed for lambda=0.1 to provide error bars. Paired with seed0 (GPU 1) to test whether stronger SDF penalty produces faster collision avoidance or earlier over-avoidance onset.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2 python scripts/train_a1_sdf_aux_pi05.py --scene object_pudding --seed 1 --lambda_sdf 0.1 --gpu 2 --num_train_steps 30000",
+      "server": "westd-35807",
+      "gpu": [
+        "cuda:2"
+      ],
+      "data_path": "object_pudding sdf training data",
+      "data_count": 30000,
+      "model_name": "pi05_a1_sdf_seed1_l01_high",
+      "seed": 1,
+      "pid": "274407",
+      "log_path": "/root/colliforce-vla/logs/train_lambda01_s1_gpu2.log"
+    }
+  },
+  "timestamp": "2026-05-25T23:53:14.149159+00:00",
+  "trigger": "update_registry"
+}

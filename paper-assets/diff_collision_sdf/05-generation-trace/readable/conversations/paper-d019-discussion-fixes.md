@@ -1,0 +1,1905 @@
+# paper d019 discussion fixes
+
+**How Action Collapse Creates Illusory Safety in Diffusion-Based VLA Collision Avoidance Evaluation** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 53
+- **Recorded user turns:** 0
+- **Tool calls:** 26
+- **Original source:** `logs/chats/worker_paper_d019_discussion_fixes_20260525T080714.jsonl`
+- **Structured JSON:** [`da2b0efb2cbd51c61cfb.json`](../../sessions/da/da2b0efb2cbd51c61cfb.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+53 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-25T08:11:37.387351+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/paper/section5_5_method_boundaries.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d019_discussion_fixes_20260525T080714",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/paper/section5_5_method_boundaries.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-25T08:11:37.387754+00:00_
+
+1	## 5.5 Method Boundaries
+2	
+3	The preceding analyses identify specific conditions under which SDF-based collision avoidance succeeds or fails. Three boundaries emerge from the negative results, each supported by controlled experiments that isolate a single factor. These boundaries are not incidental failures; they delineate the structural limits of end-effector SDF integration in vision-language-action models and explain why training-time supervision is the only viable path among the approaches we evaluated.
+4	
+5	### Boundary 1: Gradient correction fails on collapsed policies
+6	
+7	Runtime SDF gradient correction assumes the base policy generates trajectories with sufficient displacement for the correction to redirect around obstacles. When the policy has collapsed into near-zero displacement, this assumption breaks down regardless of SDF quality. We test this directly by constructing ground-truth SDF oracles that replace the learned distance predictor with exact signed distances computed from known obstacle meshes (Section 5.3). If the failure of learned SDF refinement were attributable to prediction error, oracle performance should substantially exceed that of unrefined baselines.
+8	
+9	The oracle results refute this hypothesis. All three gradient correction variants produce CAR below that of unrefined baselines:
+10	
+11	| Experiment | Variant | CAR (%) |
+12	|---|---|---|
+13	| `oracle_true_gt_adaptive_alpha_v11` | Action-space, adaptive $\alpha$ | 75.0 |
+14	| `oracle_true_gt_fixed_alpha_v11` | Action-space, fixed $\alpha$=0.005 | 73.1 |
+15	| `oracle_true_gt_feature_object_v11` | Feature-space | 76.9 |
+16	| LoRA baseline (no refine) | -- | 82.0 |
+17	| Full-FT baseline (no refine) | -- | 83.0 |
+18	
+19	The best oracle (feature-space, 76.9%) falls 5.1 pp below the LoRA baseline. The A3 model with a learned SDF head (`eval_a3_object_m024fix_v11`) exhibits a complementary failure: its SDF predictions never fall below the refinement threshold across 160 evaluation episode
+…[truncated 4686 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d019_discussion_fixes_20260525T080714",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-25T08:11:37.387963+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d019_discussion_fixes_20260525T080714",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-25T08:11:37.388109+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d019_discussion_fixes_20260525T080714",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-25T08:11:37.388260+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "diff_collision_sdf",
+  "limit": "0",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d019_discussion_fixes_20260525T080714",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "diff_collision_sdf",
+    "limit": "0",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-25T08:11:37.388811+00:00_
+
+Error: result (96,202 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf/8a63ba01-8e75-4265-b854-67a12663416d/tool-results/mcp-agent-ml-research-read_registry-1779696453734.txt.
+Format: JSON with schema: {result: string}
+Use offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.
+REQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:
+- You MUST read the content from the file at /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf/8a63ba01-8e75-4265-b854-67a12663416d/tool-results/mcp-agent-ml-research-read_registry-1779696453734.txt in sequential chunks until 100% of the content has been read.
+- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.
+- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d019_discussion_fixes_20260525T080714",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-25T08:11:37.389033+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf/8a63ba01-8e75-4265-b854-67a12663416d/tool-results/mcp-agent-ml-research-read_registry-1779696453734.txt | python3 -c \"\nimport json, sys\ndata = json.loads(json.loads(sys.stdin.read())['result'])\n# Find experiments matching our needs\ntargets = ['oracle_true_gt_feature_v11', 'oracle_true_gt_feature_object_v11', '10k', 'baseline']\nfor exp in data:\n    eid = exp.get('exp_id', '')\n    lower_eid = eid.lower()\n    if any(t in lower_eid for t in ['oracle_true_gt_feature', '10k', 'eval_pi05']) or 'baseline' in lower_eid:\n        print(f'--- {eid} ---')\n        print(f'  status: {exp.get(\\\"status\\\", \\\"?\\\")}')\n        print(f'  conclusion: {exp.get(\\\"conclusion\\\", \\\"?\\\")}')\n        metrics = exp.get('metrics', {})\n        if metrics:\n            print(f'  metrics: {json.dumps(metrics, indent=4)}')\n        notes = exp.get('notes', '')\n        if notes:\n            print(f'  notes: {notes[:300]}')\n        print()\n\"\n",
+  "description": "Search registry for oracle, 10k, and baseline experiments"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d019_discussion_fixes_20260525T080714",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf/8a63ba01-8e75-4265-b854-67a12663416d/tool-results/mcp-agent-ml-research-read_registry-1779696453734.txt | python3 -c \"\nimport json, sys\ndata = json.loads(json.loads(sys.stdin.read())['result'])\n# Find experiments matching our needs\ntargets = ['oracle_true_gt_feature_v11', 'oracle_true_gt_feature_object_v11', '10k', 'baseline']\nfor exp in data:\n    eid = exp.get('exp_id', '')\n    lower_eid = eid.lower()\n    if any(t in lower_eid for t in ['oracle_true_gt_feature', '10k', 'eval_pi05']) or 'baseline' in lower_eid:\n        print(f'--- {eid} ---')\n        print(f'  status: {exp.get(\\\"status\\\", \\\"?\\\")}')\n        print(f'  conclusion: {exp.get(\\\"conclusion\\\", \\\"?\\\")}')\n        metrics = exp.get('metrics', {})\n        if metrics:\n            print(f'  metrics: {json.dumps(metrics, indent=4)}')\n        notes = exp.get('notes', '')\n        if notes:\n            print(f'  notes: {notes[:300]}')\n        print()\n\"\n",
+    "description": "Search registry for oracle, 10k, and baseline experiments"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-25T08:11:37.389178+00:00_
+
+Exit code 1
+Traceback (most recent call last):
+  File "&lt;string>", line 7, in &lt;module>
+    eid = exp.get('exp_id', '')
+          ^^^^^^^
+AttributeError: 'str' object has no attribute 'get'
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d019_discussion_fixes_20260525T080714",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-25T08:11:37.389303+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "head -c 500 /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf/8a63ba01-8e75-4265-b854-67a12663416d/tool-results/mcp-agent-ml-research-read_registry-1779696453734.txt",
+  "description": "Check registry file format"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d019_discussion_fixes_20260525T080714",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "head -c 500 /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf/8a63ba01-8e75-4265-b854-67a12663416d/tool-results/mcp-agent-ml-research-read_registry-1779696453734.txt",
+    "description": "Check registry file format"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-25T08:11:37.389465+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_pi05_a1_30k_s0_l01\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-25T07:42:50.507Z\", \"updated_at\": \"2026-05-25T07:43:04.389Z\", \"hypothesis\": \"Pi0.5+A1 30K eval (seed0, λ=0.01): completes 3-seed statistical coverage for stronger SDF lambda. Expects CAR ~54% and TSR ~20-25% consistent with seed1/seed2 30K results.\", \"parent\": \"train_pi05_a1_obj_s0_l01\"}, \"eval_pi05_a1_30k_s0_l005\": {\"s
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d019_discussion_fixes_20260525T080714",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-25T08:11:37.389667+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf/8a63ba01-8e75-4265-b854-67a12663416d/tool-results/mcp-agent-ml-research-read_registry-1779696453734.txt | python3 -c \"\nimport json, sys\nraw = json.loads(sys.stdin.read())['result']\ndata = json.loads(raw)\nexps = data['data']['experiments']\nfor eid, exp in exps.items():\n    lower_eid = eid.lower()\n    if any(t in lower_eid for t in ['oracle_true_gt_feature', '10k', 'eval_pi05_baseline', 'eval_pi0_baseline']):\n        print(f'--- {eid} ---')\n        for k in ['status', 'conclusion', 'metrics', 'notes']:\n            v = exp.get(k)\n            if v:\n                if k == 'metrics':\n                    print(f'  {k}: {json.dumps(v, indent=4)}')\n                elif k == 'notes':\n                    print(f'  {k}: {str(v)[:400]}')\n                else:\n                    print(f'  {k}: {v}')\n        print()\n\"\n",
+  "description": "Parse registry for oracle, 10k, baseline experiments"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d019_discussion_fixes_20260525T080714",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf/8a63ba01-8e75-4265-b854-67a12663416d/tool-results/mcp-agent-ml-research-read_registry-1779696453734.txt | python3 -c \"\nimport json, sys\nraw = json.loads(sys.stdin.read())['result']\ndata = json.loads(raw)\nexps = data['data']['experiments']\nfor eid, exp in exps.items():\n    lower_eid = eid.lower()\n    if any(t in lower_eid for t in ['oracle_true_gt_feature', '10k', 'eval_pi05_baseline', 'eval_pi0_baseline']):\n        print(f'--- {eid} ---')\n        for k in ['status', 'conclusion', 'metrics', 'notes']:\n            v = exp.get(k)\n            if v:\n                if k == 'metrics':\n                    print(f'  {k}: {json.dumps(v, indent=4)}')\n                elif k == 'notes':\n                    print(f'  {k}: {str(v)[:400]}')\n                else:\n                    print(f'  {k}: {v}')\n        print()\n\"\n",
+    "description": "Parse registry for oracle, 10k, baseline experiments"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-25T08:11:37.389831+00:00_
+
+--- oracle_true_gt_feature_object_v11 ---
+  status: DONE
+  conclusion: killed
+  notes: Director 指令变更：cuda:0 改为 fixed alpha=0.005 action-space 对照实验（oracle_true_gt_fixed_alpha_v11），取消 feature-space oracle 计划。
+
+--- oracle_true_gt_feature_v11 ---
+  status: DONE
+  conclusion: negative
+  metrics: {
+    "avg_TSR": 0,
+    "avg_CAR": 76.9,
+    "task_CAR": {
+        "orange_juice": 90,
+        "chocolate_pudding": 47.5,
+        "milk": 82.5,
+        "bbq_sauce": 87.5
+    },
+    "task_displacement": {
+        "orange_juice": 0.0023,
+        "chocolate_pudding": 0.0473,
+        "milk": 0.0086,
+        "bbq_sauce": 0.0097
+    },
+    "task_refine_count_mean": {
+        "orange_juice": 248.5,
+        "chocolate_pudding": 241.8,
+        "milk": 236.7,
+        "bbq_sauce": 240
+    },
+    "task_grad_mag_mean": {
+        "orange_juice": 0.00423,
+        "chocolate_pudding": 0.00609,
+        "milk": 0.00466,
+        "bbq_sauce": 0.00491
+    },
+    "fake_safe_rate": 0.967,
+    "fake_safe_detail": "119/123 safe episodes have displacement<0.1mm",
+    "total_refined_steps": 38679,
+    "avg_refined_per_episode": 241.7,
+    "n_episodes": 160
+}
+  notes: Feature-space oracle GT SDF完成。CAR=76.9% < baseline 79%，TSR=0%。96.7% fake safe（119/123）。与action-space oracle对比：feature-space每步都refine（avg 241.7/ep vs action-space 14），gradient magnitude极小（0.004-0.006 vs action-space 0.18-0.49），说明feature-space梯度更弱但更频繁。M028假设不成立——feature-space并未优于action-space（76.9% vs adaptive 75%/fixed 73.1%）。三组oracle实验统一结论：即使使用GT SDF，任何形式的gradient-based refinement都无法改善CAR，根本原因是refi
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d019_discussion_fixes_20260525T080714",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-25T08:11:37.389995+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf/8a63ba01-8e75-4265-b854-67a12663416d/tool-results/mcp-agent-ml-research-read_registry-1779696453734.txt | python3 -c \"\nimport json, sys\nraw = json.loads(sys.stdin.read())['result']\ndata = json.loads(raw)\nexps = data['data']['experiments']\n# Find 10k experiments\nprint('=== 10K experiments ===')\nfor eid, exp in exps.items():\n    if '10k' in eid.lower():\n        print(f'--- {eid} ---')\n        for k in ['status', 'conclusion', 'metrics', 'notes']:\n            v = exp.get(k)\n            if v:\n                if k == 'metrics':\n                    print(f'  {k}: {json.dumps(v, indent=4)}')\n                elif k == 'notes':\n                    print(f'  {k}: {str(v)[:400]}')\n                else:\n                    print(f'  {k}: {v}')\n        print()\n\"\n",
+  "description": "Find 10K eval experiments in registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d019_discussion_fixes_20260525T080714",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf/8a63ba01-8e75-4265-b854-67a12663416d/tool-results/mcp-agent-ml-research-read_registry-1779696453734.txt | python3 -c \"\nimport json, sys\nraw = json.loads(sys.stdin.read())['result']\ndata = json.loads(raw)\nexps = data['data']['experiments']\n# Find 10k experiments\nprint('=== 10K experiments ===')\nfor eid, exp in exps.items():\n    if '10k' in eid.lower():\n        print(f'--- {eid} ---')\n        for k in ['status', 'conclusion', 'metrics', 'notes']:\n            v = exp.get(k)\n            if v:\n                if k == 'metrics':\n                    print(f'  {k}: {json.dumps(v, indent=4)}')\n                elif k == 'notes':\n                    print(f'  {k}: {str(v)[:400]}')\n                else:\n                    print(f'  {k}: {v}')\n        print()\n\"\n",
+    "description": "Find 10K eval experiments in registry"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-25T08:11:37.390123+00:00_
+
+=== 10K experiments ===
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d019_discussion_fixes_20260525T080714",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-25T08:11:37.390243+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf/8a63ba01-8e75-4265-b854-67a12663416d/tool-results/mcp-agent-ml-research-read_registry-1779696453734.txt | python3 -c \"\nimport json, sys\nraw = json.loads(sys.stdin.read())['result']\ndata = json.loads(raw)\nexps = data['data']['experiments']\n# Find all experiment IDs containing 'eval' and 'pi05' or 'pi0.5'\nprint('=== Pi0.5 eval experiments ===')\nfor eid, exp in sorted(exps.items()):\n    if 'eval' in eid.lower() and ('pi05' in eid.lower() or 'pi0.5' in eid.lower()):\n        metrics = exp.get('metrics', {})\n        task_car = metrics.get('task_CAR', {}) if metrics else {}\n        print(f'{eid}: status={exp.get(\\\"status\\\")}, conclusion={exp.get(\\\"conclusion\\\")}, avg_CAR={metrics.get(\\\"avg_CAR\\\",\\\"?\\\") if metrics else \\\"?\\\"}, task0_CAR={task_car.get(\\\"orange_juice\\\",\\\"?\\\")}, task3_CAR={task_car.get(\\\"bbq_sauce\\\",\\\"?\\\")}')\n\"\n",
+  "description": "List Pi0.5 eval experiments with Task 0 and Task 3 CAR"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d019_discussion_fixes_20260525T080714",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf/8a63ba01-8e75-4265-b854-67a12663416d/tool-results/mcp-agent-ml-research-read_registry-1779696453734.txt | python3 -c \"\nimport json, sys\nraw = json.loads(sys.stdin.read())['result']\ndata = json.loads(raw)\nexps = data['data']['experiments']\n# Find all experiment IDs containing 'eval' and 'pi05' or 'pi0.5'\nprint('=== Pi0.5 eval experiments ===')\nfor eid, exp in sorted(exps.items()):\n    if 'eval' in eid.lower() and ('pi05' in eid.lower() or 'pi0.5' in eid.lower()):\n        metrics = exp.get('metrics', {})\n        task_car = metrics.get('task_CAR', {}) if metrics else {}\n        print(f'{eid}: status={exp.get(\\\"status\\\")}, conclusion={exp.get(\\\"conclusion\\\")}, avg_CAR={metrics.get(\\\"avg_CAR\\\",\\\"?\\\") if metrics else \\\"?\\\"}, task0_CAR={task_car.get(\\\"orange_juice\\\",\\\"?\\\")}, task3_CAR={task_car.get(\\\"bbq_sauce\\\",\\\"?\\\")}')\n\"\n",
+    "description": "List Pi0.5 eval experiments with Task 0 and Task 3 CAR"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-25T08:11:37.390379+00:00_
+
+=== Pi0.5 eval experiments ===
+eval_pi05_a1_30k_s0_l005: status=PREPARING, conclusion=None, avg_CAR=?, task0_CAR=?, task3_CAR=?
+eval_pi05_a1_30k_s0_l01: status=PREPARING, conclusion=None, avg_CAR=?, task0_CAR=?, task3_CAR=?
+eval_pi05_a1_30k_s1_l005: status=RUNNING, conclusion=None, avg_CAR=?, task0_CAR=?, task3_CAR=?
+eval_pi05_a1_30k_s1_l01: status=RUNNING, conclusion=None, avg_CAR=?, task0_CAR=?, task3_CAR=?
+eval_pi05_a1_30k_s2_l005: status=RUNNING, conclusion=None, avg_CAR=?, task0_CAR=?, task3_CAR=?
+eval_pi05_a1_30k_s2_l01: status=RUNNING, conclusion=None, avg_CAR=?, task0_CAR=?, task3_CAR=?
+eval_pi05_safelibero_object_v11: status=DONE, conclusion=negative, avg_CAR=?, task0_CAR=?, task3_CAR=?
+eval_pi05_safelibero_object_v11_s1: status=DONE, conclusion=success, avg_CAR=?, task0_CAR=?, task3_CAR=?
+eval_pi05_safelibero_object_v11_s2: status=DONE, conclusion=success, avg_CAR=?, task0_CAR=?, task3_CAR=?
+eval_pi05_safelibero_spatial_v11: status=DONE, conclusion=negative, avg_CAR=?, task0_CAR=?, task3_CAR=?
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d019_discussion_fixes_20260525T080714",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-25T08:11:37.390543+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf/8a63ba01-8e75-4265-b854-67a12663416d/tool-results/mcp-agent-ml-research-read_registry-1779696453734.txt | python3 -c \"\nimport json, sys\nraw = json.loads(sys.stdin.read())['result']\ndata = json.loads(raw)\nexps = data['data']['experiments']\n\n# Search for experiments with 'train_pi05_a1' - these are the training runs\nprint('=== train_pi05_a1 experiments ===')\nfor eid, exp in sorted(exps.items()):\n    if 'train_pi05_a1' in eid.lower():\n        metrics = exp.get('metrics', {})\n        task_car = metrics.get('task_CAR', {}) if metrics else {}\n        notes = str(exp.get('notes', ''))[:300]\n        print(f'{eid}: status={exp.get(\\\"status\\\")}, conclusion={exp.get(\\\"conclusion\\\")}')\n        if metrics:\n            print(f'  avg_CAR={metrics.get(\\\"avg_CAR\\\",\\\"?\\\")}, task0={task_car.get(\\\"orange_juice\\\",\\\"?\\\")}, task3={task_car.get(\\\"bbq_sauce\\\",\\\"?\\\")}')\n        if '10k' in notes.lower() or '10K' in notes:\n            print(f'  notes(10k ref): {notes}')\n        print()\n\" 2>&1 | head -60\n",
+  "description": "Find Pi0.5+A1 training experiments"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d019_discussion_fixes_20260525T080714",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf/8a63ba01-8e75-4265-b854-67a12663416d/tool-results/mcp-agent-ml-research-read_registry-1779696453734.txt | python3 -c \"\nimport json, sys\nraw = json.loads(sys.stdin.read())['result']\ndata = json.loads(raw)\nexps = data['data']['experiments']\n\n# Search for experiments with 'train_pi05_a1' - these are the training runs\nprint('=== train_pi05_a1 experiments ===')\nfor eid, exp in sorted(exps.items()):\n    if 'train_pi05_a1' in eid.lower():\n        metrics = exp.get('metrics', {})\n        task_car = metrics.get('task_CAR', {}) if metrics else {}\n        notes = str(exp.get('notes', ''))[:300]\n        print(f'{eid}: status={exp.get(\\\"status\\\")}, conclusion={exp.get(\\\"conclusion\\\")}')\n        if metrics:\n            print(f'  avg_CAR={metrics.get(\\\"avg_CAR\\\",\\\"?\\\")}, task0={task_car.get(\\\"orange_juice\\\",\\\"?\\\")}, task3={task_car.get(\\\"bbq_sauce\\\",\\\"?\\\")}')\n        if '10k' in notes.lower() or '10K' in notes:\n            print(f'  notes(10k ref): {notes}')\n        print()\n\" 2>&1 | head -60\n",
+    "description": "Find Pi0.5+A1 training experiments"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-25T08:11:37.390677+00:00_
+
+=== train_pi05_a1 experiments ===
+train_pi05_a1_obj_l005: status=DONE, conclusion=killed
+
+train_pi05_a1_obj_l01: status=DONE, conclusion=killed
+
+train_pi05_a1_obj_s0_l005: status=DONE, conclusion=success
+  avg_CAR=?, task0=?, task3=?
+
+train_pi05_a1_obj_s0_l01: status=DONE, conclusion=success
+  avg_CAR=?, task0=?, task3=?
+
+train_pi05_a1_obj_s1_l005: status=DONE, conclusion=success
+  avg_CAR=?, task0=?, task3=?
+
+train_pi05_a1_obj_s1_l01: status=DONE, conclusion=success
+  avg_CAR=?, task0=?, task3=?
+
+train_pi05_a1_obj_s2_l005: status=DONE, conclusion=success
+  avg_CAR=?, task0=?, task3=?
+
+train_pi05_a1_obj_s2_l01: status=DONE, conclusion=success
+  avg_CAR=?, task0=?, task3=?
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d019_discussion_fixes_20260525T080714",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-25T08:11:37.390806+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects/diff-collision-sdf/8a63ba01-8e75-4265-b854-67a12663416d/tool-results/mcp-agent-ml-research-read_registry-1779696453734.txt | python3 -c \"\nimport json, sys\nraw = json.loads(sys.stdin.read())['result']\ndata = json.loads(raw)\nexps = data['data']['experiments']\n\n# Find ALL experiments with metrics containing task_CAR and search for baseline/eval with pi05\nprint('=== All experiments with task_CAR metrics ===')\nfor eid, exp in sorted(exps.items()):\n    metrics = exp.get('metrics', {})\n    if metrics and 'task_CAR' in metrics:\n        task_car = metrics['task_CAR']\n        t0 = task_car.get('orange_juice', '?')\n        t3 = task_car.get('bbq_sauce', '?')\n        print(f'{eid}: avg_CAR={metrics.get(\\\"avg_CAR\\\",\\\"?\\\")}, task0(oj)={t0}, task3(bbq)={t3}')\n\" 2>&1\n",
+  "description": "Find all experiments with task-level CAR metrics"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d019_discussion_fixes_20260525T080714",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects/diff-collision-sdf/8a63ba01-8e75-4265-b854-67a12663416d/tool-results/mcp-agent-ml-research-read_registry-1779696453734.txt | python3 -c \"\nimport json, sys\nraw = json.loads(sys.stdin.read())['result']\ndata = json.loads(raw)\nexps = data['data']['experiments']\n\n# Find ALL experiments with metrics containing task_CAR and search for baseline/eval with pi05\nprint('=== All experiments with task_CAR metrics ===')\nfor eid, exp in sorted(exps.items()):\n    metrics = exp.get('metrics', {})\n    if metrics and 'task_CAR' in metrics:\n        task_car = metrics['task_CAR']\n        t0 = task_car.get('orange_juice', '?')\n        t3 = task_car.get('bbq_sauce', '?')\n        print(f'{eid}: avg_CAR={metrics.get(\\\"avg_CAR\\\",\\\"?\\\")}, task0(oj)={t0}, task3(bbq)={t3}')\n\" 2>&1\n",
+    "description": "Find all experiments with task-level CAR metrics"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-25T08:11:37.390934+00:00_
+
+Exit code 1
+cat: /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects/diff-collision-sdf/8a63ba01-8e75-4265-b854-67a12663416d/tool-results/mcp-agent-ml-research-read_registry-1779696453734.txt: No such file or directory
+Traceback (most recent call last):
+  File "&lt;string>", line 3, in &lt;module>
+    raw = json.loads(sys.stdin.read())['result']
+          ~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/json/__init__.py", line 352, in loads
+    return _default_decoder.decode(s)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "/usr/lib/python3.14/json/decoder.py", line 345, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/json/decoder.py", line 363, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d019_discussion_fixes_20260525T080714",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-25T08:11:37.391057+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat \"/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf/8a63ba01-8e75-4265-b854-67a12663416d/tool-results/mcp-agent-ml-research-read_registry-1779696453734.txt\" | python3 -c \"\nimport json, sys\nraw = json.loads(sys.stdin.read())['result']\ndata = json.loads(raw)\nexps = data['data']['experiments']\n\n# Find ALL experiments with task_CAR metrics\nprint('=== All experiments with task_CAR metrics ===')\nfor eid, exp in sorted(exps.items()):\n    metrics = exp.get('metrics', {})\n    if metrics and 'task_CAR' in metrics:\n        task_car = metrics['task_CAR']\n        t0 = task_car.get('orange_juice', '?')\n        t3 = task_car.get('bbq_sauce', '?')\n        print(f'{eid}: avg_CAR={metrics.get(\\\"avg_CAR\\\",\\\"?\\\")}, task0(oj)={t0}, task3(bbq)={t3}')\n\"\n",
+  "description": "Find all experiments with task-level CAR metrics"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d019_discussion_fixes_20260525T080714",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat \"/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf/8a63ba01-8e75-4265-b854-67a12663416d/tool-results/mcp-agent-ml-research-read_registry-1779696453734.txt\" | python3 -c \"\nimport json, sys\nraw = json.loads(sys.stdin.read())['result']\ndata = json.loads(raw)\nexps = data['data']['experiments']\n\n# Find ALL experiments with task_CAR metrics\nprint('=== All experiments with task_CAR metrics ===')\nfor eid, exp in sorted(exps.items()):\n    metrics = exp.get('metrics', {})\n    if metrics and 'task_CAR' in metrics:\n        task_car = metrics['task_CAR']\n        t0 = task_car.get('orange_juice', '?')\n        t3 = task_car.get('bbq_sauce', '?')\n        print(f'{eid}: avg_CAR={metrics.get(\\\"avg_CAR\\\",\\\"?\\\")}, task0(oj)={t0}, task3(bbq)={t3}')\n\"\n",
+    "description": "Find all experiments with task-level CAR metrics"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-25T08:11:37.391177+00:00_
+
+=== All experiments with task_CAR metrics ===
+eval_a1_lora_object_v11_rerun: avg_CAR=91.5, task0(oj)=96, task3(bbq)=91
+oracle_true_gt_adaptive_alpha_v11: avg_CAR=75, task0(oj)=82.5, task3(bbq)=85
+oracle_true_gt_feature_v11: avg_CAR=76.9, task0(oj)=90, task3(bbq)=87.5
+oracle_true_gt_fixed_alpha_v11: avg_CAR=73.1, task0(oj)=85, task3(bbq)=80
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d019_discussion_fixes_20260525T080714",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-25T08:11:37.391323+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat \"/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf/8a63ba01-8e75-4265-b854-67a12663416d/tool-results/mcp-agent-ml-research-read_registry-1779696453734.txt\" | python3 -c \"\nimport json, sys\nraw = json.loads(sys.stdin.read())['result']\ndata = json.loads(raw)\nexps = data['data']['experiments']\n\n# Search for baseline experiments\nprint('=== Experiments with \\\"baseline\\\" in ID or notes ===')\nfor eid, exp in sorted(exps.items()):\n    if 'baseline' in eid.lower():\n        print(f'{eid}: status={exp.get(\\\"status\\\")}, metrics={exp.get(\\\"metrics\\\",{})}')\n        print(f'  notes: {str(exp.get(\\\"notes\\\",\\\"\\\"))[:300]}')\n        print()\n\n# Also find eval experiments for the training runs mentioned in the paper\nprint()\nprint('=== Experiments with pi05 + a1 + eval that have metrics ===')\nfor eid, exp in sorted(exps.items()):\n    if 'eval' in eid.lower() and 'pi05' in eid.lower() and 'a1' in eid.lower():\n        metrics = exp.get('metrics', {})\n        if metrics:\n            print(f'{eid}: {json.dumps(metrics, indent=2)[:500]}')\n            print()\n\n# Also search for train_pi05_a1 with metrics  \nprint()\nprint('=== train_pi05_a1 with metrics or notes mentioning task 0 / 10k ===')\nfor eid, exp in sorted(exps.items()):\n    if 'train_pi05_a1' in eid.lower():\n        metrics = exp.get('metrics', {})\n        notes = str(exp.get('notes', ''))\n        if metrics or 'task' in notes.lower() or '10k' in notes.lower() or 'CAR' in notes:\n            print(f'{eid}: metrics={metrics}')\n            print(f'  notes: {notes[:400]}')\n            print()\n\"\n",
+  "description": "Search for baseline and training experiments with per-task data"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d019_discussion_fixes_20260525T080714",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat \"/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf/8a63ba01-8e75-4265-b854-67a12663416d/tool-results/mcp-agent-ml-research-read_registry-1779696453734.txt\" | python3 -c \"\nimport json, sys\nraw = json.loads(sys.stdin.read())['result']\ndata = json.loads(raw)\nexps = data['data']['experiments']\n\n# Search for baseline experiments\nprint('=== Experiments with \\\"baseline\\\" in ID or notes ===')\nfor eid, exp in sorted(exps.items()):\n    if 'baseline' in eid.lower():\n        print(f'{eid}: status={exp.get(\\\"status\\\")}, metrics={exp.get(\\\"metrics\\\",{})}')\n        print(f'  notes: {str(exp.get(\\\"notes\\\",\\\"\\\"))[:300]}')\n        print()\n\n# Also find eval experiments for the training runs mentioned in the paper\nprint()\nprint('=== Experiments with pi05 + a1 + eval that have metrics ===')\nfor eid, exp in sorted(exps.items()):\n    if 'eval' in eid.lower() and 'pi05' in eid.lower() and 'a1' in eid.lower():\n        metrics = exp.get('metrics', {})\n        if metrics:\n            print(f'{eid}: {json.dumps(metrics, indent=2)[:500]}')\n            print()\n\n# Also search for train_pi05_a1 with metrics  \nprint()\nprint('=== train_pi05_a1 with metrics or notes mentioning task 0 / 10k ===')\nfor eid, exp in sorted(exps.items()):\n    if 'train_pi05_a1' in eid.lower():\n        metrics = exp.get('metrics', {})\n        notes = str(exp.get('notes', ''))\n        if metrics or 'task' in notes.lower() or '10k' in notes.lower() or 'CAR' in notes:\n            print(f'{eid}: metrics={metrics}')\n            print(f'  notes: {notes[:400]}')\n            print()\n\"\n",
+    "description": "Search for baseline and training experiments with per-task data"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-25T08:11:37.391521+00:00_
+
+=== Experiments with "baseline" in ID or notes ===
+baseline_lora_object_pudding_s0: status=DONE, metrics={'best_loss': 0.0124, 'steps_completed': 30000}
+  notes: [2026-05-21 02:15] v2 restart with --exp_name for independent ckpt dir. PID 281629, ~5s/step, 23893 MiB VRAM. LoRA 33.5M params. Env: conda libero.
+
+baseline_lora_spatial_bowl_s0: status=DONE, metrics={'best_loss': 0.00876, 'steps_completed': 30000}
+  notes: [2026-05-22 11:55] Cron 报 "exited without valid W&B metrics"。PID 281554 已死。可能是 W&B disabled 误报（同 a3_gradient_object_pudding_s0 先例）。已派 Worker 诊断。cuda:1 暂时空闲。
+
+baseline_object_pudding_s0: status=DONE, metrics={}
+  notes: 
+
+baseline_object_pudding_s0_v2: status=DONE, metrics={'final_loss': 0.005, 'steps_completed': 30000, 'lr_final': 2.5e-06, 'wall_time_hours': 14, 'vram_mib': 35738}
+  notes: [2026-05-21 04:39] 训练完成 30000/30000 steps, EXIT_CODE=0. Final loss ~0.005, lr 2.50e-06. Wall time ~14h (from step 16000 resume). VRAM 35738MiB on cuda:2. 待评估 TSR/CAR。
+
+baseline_spatial_bowl_s0: status=DONE, metrics={}
+  notes: 
+
+baseline_spatial_bowl_s0_v2: status=DONE, metrics={'final_loss': 0.0032, 'best_loss': 0.00316, 'steps_completed': 30000, 'lr_final': 2.5e-06, 'wall_time_hours': 16.1, 'vram_mib': 35738, 'checkpoint_step': 30000, 'avg_it_per_sec': 3.62}
+  notes: [2026-05-21 14:45] 训练完成 30000/30000 steps, EXIT_CODE=0. Final loss 0.0032, best loss 0.00316 (step 30000), lr 2.50e-06. 本次从 step 14000 resume, wall time 16h6m (3.62s/it). VRAM 35738MiB on cuda:0. Checkpoint: 29999, 30000, best. 无 error/exception. 待评估 TSR/CAR。
+
+baseline_spatial_bowl_s1: status=DONE, metrics={}
+  notes: 
+
+baseline_spatial_bowl_s1_v2: status=DONE, metrics={}
+  notes: [2026-05-20 14:32] CRASHED at step 15999/30000 — autodl-tmp 100% full (350G)。checkpoint 14000 完整，tmp_16000 残留 11GB。Error: PytorchStreamWriter failed writing file data/1387。Loss 0.0055, lr 1.31e-05。需清盘后从 step 14000 恢复。
+
+eval_baseline_fullft_spatial_v11: status=DONE, metrics={'TSR_avg': 0.375, 'CAR_avg': 0, 'n_episodes': 800, 'p
+…[truncated 4876 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d019_discussion_fixes_20260525T080714",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-25T08:11:37.391703+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat \"/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf/8a63ba01-8e75-4265-b854-67a12663416d/tool-results/mcp-agent-ml-research-read_registry-1779696453734.txt\" | python3 -c \"\nimport json, sys\nraw = json.loads(sys.stdin.read())['result']\ndata = json.loads(raw)\nexps = data['data']['experiments']\n\n# Find eval experiments for pi05 safelibero object (these should be the step-10K evals)\nfor eid in ['eval_pi05_safelibero_object_v11', 'eval_pi05_safelibero_object_v11_s1', 'eval_pi05_safelibero_object_v11_s2', 'eval_pi05_safelibero_spatial_v11']:\n    if eid in exps:\n        exp = exps[eid]\n        print(f'=== {eid} ===')\n        print(f'status: {exp.get(\\\"status\\\")}')\n        print(f'conclusion: {exp.get(\\\"conclusion\\\")}')\n        print(f'hypothesis: {str(exp.get(\\\"hypothesis\\\",\\\"\\\"))[:300]}')\n        print(f'parent: {exp.get(\\\"parent\\\",\\\"?\\\")}')\n        metrics = exp.get('metrics', {})\n        print(f'metrics: {json.dumps(metrics, indent=2)[:600]}')\n        print(f'notes: {str(exp.get(\\\"notes\\\",\\\"\\\"))[:400]}')\n        print()\n\"\n",
+  "description": "Get details on Pi0.5 safelibero eval experiments"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d019_discussion_fixes_20260525T080714",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat \"/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf/8a63ba01-8e75-4265-b854-67a12663416d/tool-results/mcp-agent-ml-research-read_registry-1779696453734.txt\" | python3 -c \"\nimport json, sys\nraw = json.loads(sys.stdin.read())['result']\ndata = json.loads(raw)\nexps = data['data']['experiments']\n\n# Find eval experiments for pi05 safelibero object (these should be the step-10K evals)\nfor eid in ['eval_pi05_safelibero_object_v11', 'eval_pi05_safelibero_object_v11_s1', 'eval_pi05_safelibero_object_v11_s2', 'eval_pi05_safelibero_spatial_v11']:\n    if eid in exps:\n        exp = exps[eid]\n        print(f'=== {eid} ===')\n        print(f'status: {exp.get(\\\"status\\\")}')\n        print(f'conclusion: {exp.get(\\\"conclusion\\\")}')\n        print(f'hypothesis: {str(exp.get(\\\"hypothesis\\\",\\\"\\\"))[:300]}')\n        print(f'parent: {exp.get(\\\"parent\\\",\\\"?\\\")}')\n        metrics = exp.get('metrics', {})\n        print(f'metrics: {json.dumps(metrics, indent=2)[:600]}')\n        print(f'notes: {str(exp.get(\\\"notes\\\",\\\"\\\"))[:400]}')\n        print()\n\"\n",
+    "description": "Get details on Pi0.5 safelibero eval experiments"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-25T08:11:37.391869+00:00_
+
+=== eval_pi05_safelibero_object_v11 ===
+status: DONE
+conclusion: negative
+hypothesis: Pi0.5 as a stronger base VLA model may have better implicit obstacle avoidance due to superior visual understanding and trajectory planning, resulting in higher CAR than baseline models on SafeLIBERO object suite.
+parent: ?
+metrics: {
+  "overall_TSR": 0.73,
+  "overall_CAR": 0.28,
+  "overall_avg_disp": 0.1508,
+  "real_safe_rate": 0.005,
+  "fake_safe_rate": 0.982,
+  "task0_TSR": 0.64,
+  "task0_CAR": 0.06,
+  "task1_TSR": 0.86,
+  "task1_CAR": 0.56,
+  "task2_TSR": 0.66,
+  "task2_CAR": 0.16,
+  "task3_TSR": 0.76,
+  "task3_CAR": 0.34,
+  "n_episodes": 200
+}
+notes: Pi0.5 has LOWER collision avoidance than baseline (CAR=28.0% vs baseline 83%, A1 91.5%). Real safe rate is only 0.5% (1/200) — nearly all safe episodes are fake (98.2%). Stronger base model is actually MORE collision-prone, not less. Per-task: T0=64%/6%, T1=86%/56%, T2=66%/16%, T3=76%/34% (TSR/CAR). Overall TSR=73% is decent but CAR=28% confirms a stronger VLA does not implicitly avoid obstacles.
+
+=== eval_pi05_safelibero_object_v11_s1 ===
+status: DONE
+conclusion: success
+hypothesis: Pi0.5 baseline multi-seed replication (seed 1): confirm CAR=28% is stable across seeds, establish variance estimate for pass/fail gate.
+parent: eval_pi05_safelibero_object_v11
+metrics: {
+  "TSR": 0.76,
+  "CAR": 0.25,
+  "mean_displacement": 0.153
+}
+notes: 3-seed baseline replication seed 1. Confirms baseline stability: TSR=76%, CAR=25%. Combined 3-seed baseline: TSR=74.7±1.5%, CAR=26.8±1.6%.
+
+=== eval_pi05_safelibero_object_v11_s2 ===
+status: DONE
+conclusion: success
+hypothesis: Pi0.5 baseline multi-seed replication (seed 2): confirm CAR=28% is stable across seeds, establish variance estimate for pass/fail gate.
+parent: eval_pi05_safelibero_object_v11
+metrics: {
+  "TSR": 0.75,
+  "CAR": 0.275,
+  "mean_displacement": 0.132
+}
+notes: 3-seed baseline replication seed 2. Confirms baseline stability: TSR=75%, CAR=27.5%. Combined 3-seed baseline: TSR=74.7±1.5%
+…[truncated 593 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d019_discussion_fixes_20260525T080714",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-25T08:11:37.392038+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat \"/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf/8a63ba01-8e75-4265-b854-67a12663416d/tool-results/mcp-agent-ml-research-read_registry-1779696453734.txt\" | python3 -c \"\nimport json, sys\nraw = json.loads(sys.stdin.read())['result']\ndata = json.loads(raw)\nexps = data['data']['experiments']\n\n# Search in all experiments for references to 10k/10K in notes or hypothesis\nprint('=== Experiments referencing 10k/10K in notes/hypothesis ===')\nfor eid, exp in sorted(exps.items()):\n    notes = str(exp.get('notes', ''))\n    hyp = str(exp.get('hypothesis', ''))\n    if '10k' in notes.lower() or '10k' in hyp.lower():\n        print(f'{eid}: status={exp.get(\\\"status\\\")}, conclusion={exp.get(\\\"conclusion\\\")}')\n        if '10k' in hyp.lower():\n            print(f'  hypothesis: {hyp[:200]}')\n        if '10k' in notes.lower():\n            # Find context around 10k\n            idx = notes.lower().find('10k')\n            start = max(0, idx-50)\n            end = min(len(notes), idx+100)\n            print(f'  notes context: ...{notes[start:end]}...')\n        print()\n\" 2>&1 | head -80\n",
+  "description": "Search for experiments referencing 10K checkpoint"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d019_discussion_fixes_20260525T080714",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat \"/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf/8a63ba01-8e75-4265-b854-67a12663416d/tool-results/mcp-agent-ml-research-read_registry-1779696453734.txt\" | python3 -c \"\nimport json, sys\nraw = json.loads(sys.stdin.read())['result']\ndata = json.loads(raw)\nexps = data['data']['experiments']\n\n# Search in all experiments for references to 10k/10K in notes or hypothesis\nprint('=== Experiments referencing 10k/10K in notes/hypothesis ===')\nfor eid, exp in sorted(exps.items()):\n    notes = str(exp.get('notes', ''))\n    hyp = str(exp.get('hypothesis', ''))\n    if '10k' in notes.lower() or '10k' in hyp.lower():\n        print(f'{eid}: status={exp.get(\\\"status\\\")}, conclusion={exp.get(\\\"conclusion\\\")}')\n        if '10k' in hyp.lower():\n            print(f'  hypothesis: {hyp[:200]}')\n        if '10k' in notes.lower():\n            # Find context around 10k\n            idx = notes.lower().find('10k')\n            start = max(0, idx-50)\n            end = min(len(notes), idx+100)\n            print(f'  notes context: ...{notes[start:end]}...')\n        print()\n\" 2>&1 | head -80\n",
+    "description": "Search for experiments referencing 10K checkpoint"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-25T08:11:37.392180+00:00_
+
+=== Experiments referencing 10k/10K in notes/hypothesis ===
+eval_pi05_a1_30k_s1_l005: status=RUNNING, conclusion=None
+  hypothesis: Pi0.5+A1 30K eval (seed1, λ=0.005): multi-seed replication of 30K training eval. Tests whether conservative SDF signal produces real collision avoidance at full training. Compared to 10K mid-eval (CAR
+
+eval_pi05_a1_30k_s1_l01: status=RUNNING, conclusion=None
+  hypothesis: Pi0.5+A1 30K eval (seed1, λ=0.01): multi-seed replication of 30K training eval. Tests whether stronger SDF signal produces real collision avoidance at full training. Compared to 10K mid-eval (CAR=58%)
+
+train_pi05_phase2_lambda0_s0: status=PREPARING, conclusion=None
+  hypothesis: Phase 1 SDF preheating (10K steps, λ=0.005) encodes collision awareness into LoRA weights. Phase 2 with λ_sdf=0 should restore task performance (TSR ≥40%) while retaining safety gains (CAR ≥45%), addr
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d019_discussion_fixes_20260525T080714",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-25T08:11:37.392315+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat \"/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf/8a63ba01-8e75-4265-b854-67a12663416d/tool-results/mcp-agent-ml-research-read_registry-1779696453734.txt\" | python3 -c \"\nimport json, sys\nraw = json.loads(sys.stdin.read())['result']\ndata = json.loads(raw)\nexps = data['data']['experiments']\n\n# Find the eval experiments for the 10K checkpoint specifically\n# The paper says 'step-10K checkpoint' of Pi0.5+A1 - look for eval experiments that are the seed0 evals\n# Also look for 'a1' eval experiments in general\nprint('=== All eval experiments with a1 in name ===')\nfor eid, exp in sorted(exps.items()):\n    if 'eval' in eid.lower() and 'a1' in eid.lower():\n        metrics = exp.get('metrics', {})\n        print(f'{eid}: status={exp.get(\\\"status\\\")}, conclusion={exp.get(\\\"conclusion\\\")}')\n        if metrics:\n            print(f'  metrics keys: {list(metrics.keys())[:10]}')\n            # Look for per-task CAR\n            for k in sorted(metrics.keys()):\n                if 'car' in k.lower() or 'task' in k.lower():\n                    print(f'    {k}: {metrics[k]}')\n        print()\n\" 2>&1 | head -80\n",
+  "description": "Find A1 eval experiments with per-task data"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d019_discussion_fixes_20260525T080714",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat \"/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf/8a63ba01-8e75-4265-b854-67a12663416d/tool-results/mcp-agent-ml-research-read_registry-1779696453734.txt\" | python3 -c \"\nimport json, sys\nraw = json.loads(sys.stdin.read())['result']\ndata = json.loads(raw)\nexps = data['data']['experiments']\n\n# Find the eval experiments for the 10K checkpoint specifically\n# The paper says 'step-10K checkpoint' of Pi0.5+A1 - look for eval experiments that are the seed0 evals\n# Also look for 'a1' eval experiments in general\nprint('=== All eval experiments with a1 in name ===')\nfor eid, exp in sorted(exps.items()):\n    if 'eval' in eid.lower() and 'a1' in eid.lower():\n        metrics = exp.get('metrics', {})\n        print(f'{eid}: status={exp.get(\\\"status\\\")}, conclusion={exp.get(\\\"conclusion\\\")}')\n        if metrics:\n            print(f'  metrics keys: {list(metrics.keys())[:10]}')\n            # Look for per-task CAR\n            for k in sorted(metrics.keys()):\n                if 'car' in k.lower() or 'task' in k.lower():\n                    print(f'    {k}: {metrics[k]}')\n        print()\n\" 2>&1 | head -80\n",
+    "description": "Find A1 eval experiments with per-task data"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-25T08:11:37.392512+00:00_
+
+=== All eval experiments with a1 in name ===
+eval_a1_lora_object_v11: status=DONE, conclusion=success
+  metrics keys: ['TSR', 'CAR_avg', 'CAR_task0', 'CAR_task1', 'CAR_task2', 'CAR_task3', 'displacement_avg', 'displacement_task0', 'displacement_task1', 'displacement_task2']
+    CAR_avg: 90
+    CAR_task0: 96
+    CAR_task1: 80
+    CAR_task2: 94
+    CAR_task3: 90
+    displacement_task0: 0.0017
+    displacement_task1: 0.0076
+    displacement_task2: 0.0008
+    displacement_task3: 0.0008
+
+eval_a1_lora_object_v11_rerun: status=DONE, conclusion=negative
+  metrics keys: ['avg_TSR', 'avg_CAR', 'n_episodes', 'eps_per_task', 'task_TSR', 'task_CAR', 'fake_safe_rate', 'fake_safe_detail', 'real_safe_count', 'real_safe_rate']
+    avg_CAR: 91.5
+    eps_per_task: 200
+    task_CAR: {'orange_juice': 96, 'chocolate_pudding': 82, 'milk': 97, 'bbq_sauce': 91}
+    task_TSR: {'orange_juice': 0, 'chocolate_pudding': 0, 'milk': 0, 'bbq_sauce': 0}
+    task_avg_disp_mm: {'orange_juice': 0.871, 'chocolate_pudding': 7.491, 'milk': 2.508, 'bbq_sauce': 4.75}
+    task_fake_safe: {'orange_juice': '192/192 (100%)', 'chocolate_pudding': '162/164 (98.8%)', 'milk': '194/194 (100%)', 'bbq_sauce': '181/182 (99.5%)'}
+    task_safe_disp_mean_mm: {'orange_juice': 0.000315, 'chocolate_pudding': 0.007588, 'milk': 0.000288, 'bbq_sauce': 0.001293}
+
+eval_a1_lora_spatial_v11: status=DONE, conclusion=negative
+  metrics keys: ['avg_TSR', 'avg_CAR', 'task0_TSR', 'task0_CAR', 'task0_avg_disp', 'task1_TSR', 'task1_CAR', 'task1_avg_disp', 'task2_TSR', 'task2_CAR']
+    avg_CAR: 0.008
+    task0_CAR: 0.015
+    task0_TSR: 0.005
+    task0_avg_disp: 0.2578
+    task1_CAR: 0
+    task1_TSR: 0
+    task1_avg_disp: 0.1955
+    task2_CAR: 0
+    task2_TSR: 0
+    task2_avg_disp: 0.2142
+    task3_CAR: 0.015
+    task3_TSR: 0
+    task3_avg_disp: 0.1992
+
+eval_pi05_a1_30k_s0_l005: status=PREPARING, conclusion=None
+
+eval_pi05_a1_30k_s0_l01: status=PREPARING, conclusion=None
+
+eval_pi05_a1_30k_s1_l005: status=RUNNING, conclusion=None
+
+eval_pi05
+…[truncated 164 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d019_discussion_fixes_20260525T080714",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-25T08:11:37.392774+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat \"/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf/8a63ba01-8e75-4265-b854-67a12663416d/tool-results/mcp-agent-ml-research-read_registry-1779696453734.txt\" | python3 -c \"\nimport json, sys\nraw = json.loads(sys.stdin.read())['result']\ndata = json.loads(raw)\nexps = data['data']['experiments']\n\n# Look for the actual 10K mid-eval results - might be under different names\n# Search for experiments with per-task CAR showing bbq_sauce ΔCAR -8pp\n# Also check for 'mid' or 'step' or 'ckpt' in experiment names\nfor eid, exp in sorted(exps.items()):\n    if any(x in eid.lower() for x in ['mid', 'step', 'ckpt', 'checkpoint']):\n        print(f'{eid}: status={exp.get(\\\"status\\\")}, conclusion={exp.get(\\\"conclusion\\\")}')\n        print(f'  notes: {str(exp.get(\\\"notes\\\",\\\"\\\"))[:200]}')\n        print()\n\n# Also look for experiments whose notes mention eval + task3 + collision data\nprint('=== Experiments with notes mentioning bbq_sauce or task3 collision ===')\nfor eid, exp in sorted(exps.items()):\n    notes = str(exp.get('notes', '')).lower()\n    if ('bbq' in notes or 'task 3' in notes or 'task3' in notes) and ('car' in notes or 'collision' in notes):\n        print(f'{eid}: status={exp.get(\\\"status\\\")}')\n        n = str(exp.get('notes',''))\n        # find relevant section\n        for term in ['bbq', 'task 3', 'task3']:\n            idx = n.lower().find(term)\n            if idx >= 0:\n                start = max(0, idx-30)\n                end = min(len(n), idx+200)\n                print(f'  ...{n[start:end]}...')\n                break\n        print()\n\" 2>&1 | head -80\n",
+  "description": "Search for 10K mid-eval and Task 3 collision data"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d019_discussion_fixes_20260525T080714",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat \"/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf/8a63ba01-8e75-4265-b854-67a12663416d/tool-results/mcp-agent-ml-research-read_registry-1779696453734.txt\" | python3 -c \"\nimport json, sys\nraw = json.loads(sys.stdin.read())['result']\ndata = json.loads(raw)\nexps = data['data']['experiments']\n\n# Look for the actual 10K mid-eval results - might be under different names\n# Search for experiments with per-task CAR showing bbq_sauce ΔCAR -8pp\n# Also check for 'mid' or 'step' or 'ckpt' in experiment names\nfor eid, exp in sorted(exps.items()):\n    if any(x in eid.lower() for x in ['mid', 'step', 'ckpt', 'checkpoint']):\n        print(f'{eid}: status={exp.get(\\\"status\\\")}, conclusion={exp.get(\\\"conclusion\\\")}')\n        print(f'  notes: {str(exp.get(\\\"notes\\\",\\\"\\\"))[:200]}')\n        print()\n\n# Also look for experiments whose notes mention eval + task3 + collision data\nprint('=== Experiments with notes mentioning bbq_sauce or task3 collision ===')\nfor eid, exp in sorted(exps.items()):\n    notes = str(exp.get('notes', '')).lower()\n    if ('bbq' in notes or 'task 3' in notes or 'task3' in notes) and ('car' in notes or 'collision' in notes):\n        print(f'{eid}: status={exp.get(\\\"status\\\")}')\n        n = str(exp.get('notes',''))\n        # find relevant section\n        for term in ['bbq', 'task 3', 'task3']:\n            idx = n.lower().find(term)\n            if idx >= 0:\n                start = max(0, idx-30)\n                end = min(len(n), idx+200)\n                print(f'  ...{n[start:end]}...')\n                break\n        print()\n\" 2>&1 | head -80\n",
+    "description": "Search for 10K mid-eval and Task 3 collision data"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-25T08:11:37.392971+00:00_
+
+=== Experiments with notes mentioning bbq_sauce or task3 collision ===
+eval_a1_lora_object_v11_rerun: status=DONE
+  ..., safe disp mean=0.000288mm
+- bbq_sauce: CAR=91%, fake=181/182 (99.5%), safe disp mean=0.001293mm
+
+Safe displacement分布: <1μm:541 (74%), 1μm-0.1mm:188 (26%), ≥0.1mm:3 (0.4%)。绝大多数safe episodes中障碍物位移在纳米级——机器人完全frozen/action-collapsed...
+
+eval_pi05_safelibero_spatial_v11: status=DONE
+  ...CAR=13% 几乎全部来自 Task 3 (52%)，其余 task CAR 接近 0%。Pi0.5 在 spatial 场景中碰撞避免极弱，更好的基座模型不能自然解决 arm-body 碰撞。...
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d019_discussion_fixes_20260525T080714",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-25T08:11:37.393114+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat \"/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf/8a63ba01-8e75-4265-b854-67a12663416d/tool-results/mcp-agent-ml-research-read_registry-1779696453734.txt\" | python3 -c \"\nimport json, sys\nraw = json.loads(sys.stdin.read())['result']\ndata = json.loads(raw)\nexps = data['data']['experiments']\n\n# The paper Boundary 2 references train_pi05_a1_obj_s0_l005 and train_pi05_a1_obj_s0_l01\n# It says 'Per-task analysis of Pi0.5+A1 at the step-10K checkpoint'\n# These training runs go to 30K steps, so the 10K results might be stored in the training experiment notes\nfor eid in ['train_pi05_a1_obj_s0_l005', 'train_pi05_a1_obj_s0_l01']:\n    exp = exps[eid]\n    print(f'=== {eid} ===')\n    print(f'Full notes: {exp.get(\\\"notes\\\",\\\"\\\")}')\n    print(f'All keys: {list(exp.keys())}')\n    print()\n\n# Also check if there are separate eval_ entries for 10K\nfor eid, exp in sorted(exps.items()):\n    if 'pi05' in eid and 'a1' in eid and ('10k' in eid.lower() or 'l005' in eid or 'l01' in eid) and 'eval' in eid:\n        print(f'{eid}: {exp.get(\\\"status\\\")}, metrics={exp.get(\\\"metrics\\\",{})}')\n\"\n",
+  "description": "Get full details on seed0 training experiments"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d019_discussion_fixes_20260525T080714",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat \"/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf/8a63ba01-8e75-4265-b854-67a12663416d/tool-results/mcp-agent-ml-research-read_registry-1779696453734.txt\" | python3 -c \"\nimport json, sys\nraw = json.loads(sys.stdin.read())['result']\ndata = json.loads(raw)\nexps = data['data']['experiments']\n\n# The paper Boundary 2 references train_pi05_a1_obj_s0_l005 and train_pi05_a1_obj_s0_l01\n# It says 'Per-task analysis of Pi0.5+A1 at the step-10K checkpoint'\n# These training runs go to 30K steps, so the 10K results might be stored in the training experiment notes\nfor eid in ['train_pi05_a1_obj_s0_l005', 'train_pi05_a1_obj_s0_l01']:\n    exp = exps[eid]\n    print(f'=== {eid} ===')\n    print(f'Full notes: {exp.get(\\\"notes\\\",\\\"\\\")}')\n    print(f'All keys: {list(exp.keys())}')\n    print()\n\n# Also check if there are separate eval_ entries for 10K\nfor eid, exp in sorted(exps.items()):\n    if 'pi05' in eid and 'a1' in eid and ('10k' in eid.lower() or 'l005' in eid or 'l01' in eid) and 'eval' in eid:\n        print(f'{eid}: {exp.get(\\\"status\\\")}, metrics={exp.get(\\\"metrics\\\",{})}')\n\"\n",
+    "description": "Get full details on seed0 training experiments"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-25T08:11:37.393251+00:00_
+
+=== train_pi05_a1_obj_s0_l005 ===
+Full notes: 30000/30000 steps completed. best_loss=0.00786 at step 26000. Checkpoints: best/ (step 26000), 29999/, 30000/. wandb_id=umjcftxp. Checkpoint path: /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0_l005
+All keys: ['status', 'retry_count', 'created_at', 'updated_at', 'hypothesis', 'spec', 'reproduce', 'notes', 'conclusion', 'metrics', 'completed_at']
+
+=== train_pi05_a1_obj_s0_l01 ===
+Full notes: Restarted from step 0 after P0 checkpoint collision fix. Speed ~1.21s/step (faster than initial 1.8s estimate). ETA ~10h from 00:14 UTC start. Loss at step ~716: action ~0.14, sdf ~0.035, ee ~0.10.
+All keys: ['status', 'retry_count', 'created_at', 'updated_at', 'hypothesis', 'spec', 'reproduce', 'notes', 'conclusion', 'completed_at', 'metrics']
+
+eval_pi05_a1_30k_s0_l005: PREPARING, metrics={}
+eval_pi05_a1_30k_s0_l01: PREPARING, metrics={}
+eval_pi05_a1_30k_s1_l005: RUNNING, metrics={}
+eval_pi05_a1_30k_s1_l01: RUNNING, metrics={}
+eval_pi05_a1_30k_s2_l005: RUNNING, metrics={}
+eval_pi05_a1_30k_s2_l01: RUNNING, metrics={}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d019_discussion_fixes_20260525T080714",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-25T08:11:37.393390+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat \"/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf/8a63ba01-8e75-4265-b854-67a12663416d/tool-results/mcp-agent-ml-research-read_registry-1779696453734.txt\" | python3 -c \"\nimport json, sys\nraw = json.loads(sys.stdin.read())['result']\ndata = json.loads(raw)\nexps = data['data']['experiments']\n\n# The 10K eval data might be in a different experiment name. Let me search for ALL experiments\n# that mention collision transfer, ΔCAR, or red_coffee_mug\nfor eid, exp in sorted(exps.items()):\n    notes = str(exp.get('notes', ''))\n    hyp = str(exp.get('hypothesis', ''))\n    combined = notes + hyp\n    if any(x in combined.lower() for x in ['collision transfer', 'delta_car', 'δcar', 'red_coffee', 'corridor', 'redistrib']):\n        print(f'=== {eid} ===')\n        print(f'  notes: {notes[:400]}')\n        print()\n\n# Also look for 'eval_pi05_a1_10k' or any eval with seed0 l005/l01 not at 30k\nprint('=== All eval experiments with pi05 ===')\nfor eid, exp in sorted(exps.items()):\n    if 'eval' in eid and 'pi05' in eid:\n        print(f'  {eid}: status={exp.get(\\\"status\\\")}, conclusion={exp.get(\\\"conclusion\\\")}')\n\"\n",
+  "description": "Search for collision transfer references and all pi05 evals"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d019_discussion_fixes_20260525T080714",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat \"/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf/8a63ba01-8e75-4265-b854-67a12663416d/tool-results/mcp-agent-ml-research-read_registry-1779696453734.txt\" | python3 -c \"\nimport json, sys\nraw = json.loads(sys.stdin.read())['result']\ndata = json.loads(raw)\nexps = data['data']['experiments']\n\n# The 10K eval data might be in a different experiment name. Let me search for ALL experiments\n# that mention collision transfer, ΔCAR, or red_coffee_mug\nfor eid, exp in sorted(exps.items()):\n    notes = str(exp.get('notes', ''))\n    hyp = str(exp.get('hypothesis', ''))\n    combined = notes + hyp\n    if any(x in combined.lower() for x in ['collision transfer', 'delta_car', 'δcar', 'red_coffee', 'corridor', 'redistrib']):\n        print(f'=== {eid} ===')\n        print(f'  notes: {notes[:400]}')\n        print()\n\n# Also look for 'eval_pi05_a1_10k' or any eval with seed0 l005/l01 not at 30k\nprint('=== All eval experiments with pi05 ===')\nfor eid, exp in sorted(exps.items()):\n    if 'eval' in eid and 'pi05' in eid:\n        print(f'  {eid}: status={exp.get(\\\"status\\\")}, conclusion={exp.get(\\\"conclusion\\\")}')\n\"\n",
+    "description": "Search for collision transfer references and all pi05 evals"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-25T08:11:37.393619+00:00_
+
+=== All eval experiments with pi05 ===
+  eval_pi05_a1_30k_s0_l005: status=PREPARING, conclusion=None
+  eval_pi05_a1_30k_s0_l01: status=PREPARING, conclusion=None
+  eval_pi05_a1_30k_s1_l005: status=RUNNING, conclusion=None
+  eval_pi05_a1_30k_s1_l01: status=RUNNING, conclusion=None
+  eval_pi05_a1_30k_s2_l005: status=RUNNING, conclusion=None
+  eval_pi05_a1_30k_s2_l01: status=RUNNING, conclusion=None
+  eval_pi05_safelibero_object_v11: status=DONE, conclusion=negative
+  eval_pi05_safelibero_object_v11_s1: status=DONE, conclusion=success
+  eval_pi05_safelibero_object_v11_s2: status=DONE, conclusion=success
+  eval_pi05_safelibero_spatial_v11: status=DONE, conclusion=negative
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d019_discussion_fixes_20260525T080714",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-25T08:11:37.393773+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "10[kK]|10,?000|step.10",
+  "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/paper",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d019_discussion_fixes_20260525T080714",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "10[kK]|10,?000|step.10",
+    "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/paper",
+    "output_mode": "content"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-25T08:11:37.393896+00:00_
+
+paper/section5_5_method_boundaries.md:27:SDF auxiliary training loss does not uniformly improve collision avoidance across task geometries. Per-task analysis of Pi0.5+A1 at the step-10K checkpoint reveals a failure mode we term *collision transfer*: the SDF gradient pushes the end-effector away from one obstacle and into another.
+paper/section5_5_method_boundaries.md:44:[Omitted long matching line]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d019_discussion_fixes_20260525T080714",
+  "tool": "Grep",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-25T08:11:37.394016+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "10[kK]|step.10000|10K",
+  "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf",
+  "output_mode": "content",
+  "glob": "*.md",
+  "head_limit": "30"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d019_discussion_fixes_20260525T080714",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "10[kK]|step.10000|10K",
+    "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf",
+    "output_mode": "content",
+    "glob": "*.md",
+    "head_limit": "30"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-25T08:11:37.394168+00:00_
+
+paper_framing.md:45:**Claim 措辞上限** (按 Reviewer 预审升级，基于 10K +30pp 证据): "Training-time SDF auxiliary loss yields substantial collision avoidance improvement (+Xpp displacement-filtered CAR, frozen_rate=0%) on Pi0.5, confirming that geometric supervision effectively addresses action-collapse-contaminated safety in capable VLAs — at a moderate task performance cost (TSR: 74.7%→Y%)"（必须包含 TSR tradeoff；禁区: SOTA / consistently outperforms / general solution）
+paper_framing.md:116:| TSR-CAR tradeoff | Pi0.5+A1 10K/30K TSR 下降 | Claim 4 tradeoff 定量（Table 1 已含） |
+paper_framing.md:132:## Contingency Plans (Post Step-10K Eval)
+paper_framing.md:161:- [ ] Step 10K mid-eval — ETA 5/23 ~16:25 UTC
+paper_framing.md:163:- [ ] λ=0.1 bracket (1-seed Pi0.5) — 10K eval 后启动, 4-point lambda 曲线必需
+ROADMAP.md:33:2. **TSR-CAR 负相关** (★★★): Pi0.5 vs Pi0 + 10K 中间点
+ROADMAP.md:35:4. **Pi0.5+A1 真实避碰** (★★★★ 10K): CAR +30pp, frozen=0%
+ROADMAP.md:78:| D020 | 2026-05-25 | D020: 30K TSR退化揭示safety-performance tradeoff——10K是 | eval_pi05_a1_30k_s1_l005, eval_pi05_a1_30k_s1_l01, eval_pi05_a1_30k_s2_l005, eval_pi05_a1_30k_s2_l01 |
+ROADMAP.md:82:| D016 | 2026-05-23 | D016: Step 10K 4-task 完整 mid-eval——D012 gate 技术 FA | train_pi05_a1_obj_s0_l005, train_pi05_a1_obj_s0_l01 |
+ROADMAP.md:83:| D015 | 2026-05-23 | D015: Step 10K mid-eval 结果——CAR +49pp 强 positive 但 | train_pi05_a1_obj_s0_l005, train_pi05_a1_obj_s0_l01 |
+report.md:10:| eval_pi05_a1_30k_s1_l01 | Pi0.5+A1 30K eval (seed1, λ=0.01): multi-seed replication of 30K training eval. Tests whether stronger SDF signal produces real collision avoidance at full training. Compared to 10K mid-eval (CAR=58%) and baseline (CAR=27%). | — | — | — |
+artifacts/eval_commands_d012_final.md:333:3. **Mid-eval 状态**: s0 的 mid-eval (step 10K) JSON 在 westd-45947 的 `d012_mid10k/` 目录。s1/s2 无 mid-eval 结果（训练在 mid-eval 前崩溃）。
+artifacts/task3_collision_matrix_step10k.md:1:# Task 3 (bbq_sauce) Per-Episode Collision Matrix — Step 10K
+artifacts/task3_collision_matrix_step10k.md:4:- A1 s0_l005: 
+…[truncated 2427 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d019_discussion_fixes_20260525T080714",
+  "tool": "Grep",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-25T08:11:37.394333+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/_project/report/mid_eval_d012_step10k_results.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d019_discussion_fixes_20260525T080714",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/_project/report/mid_eval_d012_step10k_results.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-25T08:11:37.394490+00:00_
+
+1	# D012 Mid-Eval Results (Step 10K) — Complete 4-Task
+2	
+3	## Overall
+4	| Model | TSR | CAR | frozen_rate | D012 Gate |
+5	|-------|-----|-----|------------|-----------|
+6	| Baseline (Pi0.5) | 74.7% | 26.8% | — | — |
+7	| s0_l005 (λ=0.005) | 47% | 58% | 0% | FAIL (TSR<50%) |
+8	| s0_l01 (λ=0.01) | 49% | 56.5% | 0% | FAIL (TSR<50%) |
+9	
+10	## Per-Task
+11	| Task | Baseline TSR/CAR | l005 TSR/CAR | l01 TSR/CAR |
+12	|------|-----------------|-------------|------------|
+13	| 0 orange_juice | 70.7%/10.0% | 18%/62% | 26%/56% |
+14	| 1 choc_pudding | 86.0%/56.0% | 70%/72% | 72%/70% |
+15	| 2 salad_dressing | 66.0%/12.0% | 40%/72% | 46%/72% |
+16	| 3 bbq_sauce | 76.0%/29.3% | 60%/26% | 52%/28% |
+17	
+18	## Key Findings
+19	1. CAR passes 33% threshold; TSR fails 50% by 1-3%
+20	2. Task 0 main drag (TSR 18-26%)
+21	3. Task 3 anomaly: CAR decreased from baseline
+22	4. Lambda has minimal effect
+23	5. frozen_rate = 0% (genuine collision avoidance)
+24	
+25	serve_policy cleaned up, training continues.
+26	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d019_discussion_fixes_20260525T080714",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-25T08:11:37.394649+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/_project/data/task3_collision_matrix_step10k.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d019_discussion_fixes_20260525T080714",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/_project/data/task3_collision_matrix_step10k.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-25T08:11:37.394855+00:00_
+
+1	# Task 3 (bbq_sauce) Per-Episode Collision Matrix — Step 10K
+2	
+3	## 数据来源
+4	- A1 s0_l005: eval_d012_s0_l005_step10k.json, Task 3, 50 episodes
+5	- A1 s0_l01: eval_d012_s0_l01_step10k.json, Task 3, 50 episodes
+6	- Baseline: pi05_safelibero_object_v11_s1.json, Task 3, 50 episodes
+7	
+8	## 汇总统计
+9	
+10	### Task-Level Metrics
+11	| Metric | Baseline | A1 l005 | A1 l01 |
+12	|--------|----------|---------|--------|
+13	| TSR | 0.78 | 0.6 | 0.52 |
+14	| CAR | 0.24 | 0.26 | 0.28 |
+15	| n_success | 39 | 30 | 26 |
+16	| n_collision_free | 12 | 13 | 14 |
+17	
+18	### 碰撞对象分布
+19	| 障碍物 | Baseline | A1 l005 | A1 l01 | Δ(l005-base) | Δ(l01-base) |
+20	|--------|----------|---------|--------|-------------|-------------|
+21	| moka_pot | 12 | 12 | 12 | 0 | 0 |
+22	| red_coffee_mug | 10 | 10 | 9 | 0 | -1 |
+23	| wine_bottle | 8 | 11 | 9 | +3 | +1 |
+24	| yellow_book | 8 | 4 | 6 | -4 | -2 |
+25	| **Total** | **38** | **37** | **36** | **-1** | **-2** |
+26	
+27	### 碰撞×成功交叉表
+28	| | Baseline | A1 l005 | A1 l01 |
+29	|---|----------|---------|--------|
+30	| success+safe | 11 | 2 | 3 |
+31	| success+collision | 28 | 28 | 23 |
+32	| fail+safe | 1 | 11 | 11 |
+33	| fail+collision | 10 | 9 | 13 |
+34	
+35	## Per-Episode 明细
+36	
+37	### Baseline
+38	| ep | success | collision | collided_objects | max_displacement | min_ee_dist | steps |
+39	|----|---------|-----------|-----------------|-----------------|-------------|-------|
+40	| 0 | ✗ | ✓ | moka_pot | 0.2213 | - | 300 |
+41	| 1 | ✓ | ✗ | - | 1.81e-04 | - | 139 |
+42	| 2 | ✓ | ✓ | red_coffee_mug | 0.0994 | - | 141 |
+43	| 3 | ✓ | ✗ | - | 1.12e-07 | - | 150 |
+44	| 4 | ✗ | ✓ | moka_pot | 0.1309 | - | 300 |
+45	| 5 | ✓ | ✗ | - | 2.24e-06 | - | 144 |
+46	| 6 | ✓ | ✓ | red_coffee_mug | 0.0131 | - | 140 |
+47	| 7 | ✓ | ✓ | yellow_book | 0.3486 | - | 172 |
+48	| 8 | ✓ | ✓ | moka_pot | 0.2953 | - | 186 |
+49	| 9 | ✓ | ✗ | - | 2.24e-06 | - | 148 |
+50	| 10 | ✓ | ✓ | red_coffee_mug | 0.0367 | - | 141 |
+51	| 11 | ✓ | ✗ | - | 1.12e-07 | - | 191 |
+52	| 12 | ✗ | ✓ | moka_pot | 0.2133 | - | 
+…[truncated 7592 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d019_discussion_fixes_20260525T080714",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-25T08:11:37.395098+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/paper/section5_5_method_boundaries.md",
+  "old_string": "| `oracle_true_gt_feature_object_v11` | Feature-space | 76.9 |",
+  "new_string": "| `oracle_true_gt_feature_v11` | Feature-space | 76.9 |"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d019_discussion_fixes_20260525T080714",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/paper/section5_5_method_boundaries.md",
+    "old_string": "| `oracle_true_gt_feature_object_v11` | Feature-space | 76.9 |",
+    "new_string": "| `oracle_true_gt_feature_v11` | Feature-space | 76.9 |"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-25T08:11:37.395258+00:00_
+
+The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/paper/section5_5_method_boundaries.md has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d019_discussion_fixes_20260525T080714",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-25T08:11:37.395387+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/paper/section5_5_method_boundaries.md",
+  "old_string": "SDF auxiliary training loss does not uniformly improve collision avoidance across task geometries. Per-task analysis of Pi0.5+A1 at the step-10K checkpoint reveals a failure mode we term *collision transfer*: the SDF gradient pushes the end-effector away from one obstacle and into another.",
+  "new_string": "SDF auxiliary training loss does not uniformly improve collision avoidance across task geometries. Per-task analysis of Pi0.5+A1 at the step-10K checkpoint (seed 0 evaluation of `train_pi05_a1_obj_s0_l005` and `train_pi05_a1_obj_s0_l01`; baseline: `eval_pi05_safelibero_object_v11`, 3-seed average) reveals a failure mode we term *collision transfer*: the SDF gradient pushes the end-effector away from one obstacle and into another."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d019_discussion_fixes_20260525T080714",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/paper/section5_5_method_boundaries.md",
+    "old_string": "SDF auxiliary training loss does not uniformly improve collision avoidance across task geometries. Per-task analysis of Pi0.5+A1 at the step-10K checkpoint reveals a failure mode we term *collision transfer*: the SDF gradient pushes the end-effector away from one obstacle and into another.",
+    "new_string": "SDF auxiliary training loss does not uniformly improve collision avoidance across task geometries. Per-task analysis of Pi0.5+A1 at the step-10K checkpoint (seed 0 evaluation of `train_pi05_a1_obj_s0_l005` and `train_pi05_a1_obj_s0_l01`; baseline: `eval_pi05_safelibero_object_v11`, 3-seed average) reveals a failure mode we term *collision transfer*: the SDF gradient pushes the end-effector away from one obstacle and into another."
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-25T08:11:37.395559+00:00_
+
+The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/paper/section5_5_method_boundaries.md has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d019_discussion_fixes_20260525T080714",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-25T08:11:37.395688+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/paper/section5_5_method_boundaries.md",
+  "old_string": "On the same models, Task 0 (orange\\_juice), where a single dominant obstacle stands in open space (baseline CAR = 10%), the SDF loss improves CAR by 49 pp.",
+  "new_string": "On the same models, Task 0 (orange\\_juice), where a single dominant obstacle stands in open space (3-seed average baseline CAR = 10%), the SDF loss improves CAR by 49 pp."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d019_discussion_fixes_20260525T080714",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/paper/section5_5_method_boundaries.md",
+    "old_string": "On the same models, Task 0 (orange\\_juice), where a single dominant obstacle stands in open space (baseline CAR = 10%), the SDF loss improves CAR by 49 pp.",
+    "new_string": "On the same models, Task 0 (orange\\_juice), where a single dominant obstacle stands in open space (3-seed average baseline CAR = 10%), the SDF loss improves CAR by 49 pp."
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-25T08:11:37.395836+00:00_
+
+The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/paper/section5_5_method_boundaries.md has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d019_discussion_fixes_20260525T080714",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-25T08:11:37.395967+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/paper/section5_5_method_boundaries.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d019_discussion_fixes_20260525T080714",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/paper/section5_5_method_boundaries.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-25T08:11:37.396667+00:00_
+
+1	## 5.5 Method Boundaries
+2	
+3	The preceding analyses identify specific conditions under which SDF-based collision avoidance succeeds or fails. Three boundaries emerge from the negative results, each supported by controlled experiments that isolate a single factor. These boundaries are not incidental failures; they delineate the structural limits of end-effector SDF integration in vision-language-action models and explain why training-time supervision is the only viable path among the approaches we evaluated.
+4	
+5	### Boundary 1: Gradient correction fails on collapsed policies
+6	
+7	Runtime SDF gradient correction assumes the base policy generates trajectories with sufficient displacement for the correction to redirect around obstacles. When the policy has collapsed into near-zero displacement, this assumption breaks down regardless of SDF quality. We test this directly by constructing ground-truth SDF oracles that replace the learned distance predictor with exact signed distances computed from known obstacle meshes (Section 5.3). If the failure of learned SDF refinement were attributable to prediction error, oracle performance should substantially exceed that of unrefined baselines.
+8	
+9	The oracle results refute this hypothesis. All three gradient correction variants produce CAR below that of unrefined baselines:
+10	
+11	| Experiment | Variant | CAR (%) |
+12	|---|---|---|
+13	| `oracle_true_gt_adaptive_alpha_v11` | Action-space, adaptive $\alpha$ | 75.0 |
+14	| `oracle_true_gt_fixed_alpha_v11` | Action-space, fixed $\alpha$=0.005 | 73.1 |
+15	| `oracle_true_gt_feature_v11` | Feature-space | 76.9 |
+16	| LoRA baseline (no refine) | -- | 82.0 |
+17	| Full-FT baseline (no refine) | -- | 83.0 |
+18	
+19	The best oracle (feature-space, 76.9%) falls 5.1 pp below the LoRA baseline. The A3 model with a learned SDF head (`eval_a3_object_m024fix_v11`) exhibits a complementary failure: its SDF predictions never fall below the refinement threshold across 160 evaluation episodes, prod
+…[truncated 4837 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d019_discussion_fixes_20260525T080714",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53 · 2026-05-25T08:11:37.396940+00:00_
+
+三个修正完成：
+
+1. **Fix 1** (line 15): `oracle_true_gt_feature_object_v11` → `oracle_true_gt_feature_v11`。被 killed 的实验改为实际有 metrics (CAR=76.9%) 的正确实验 ID。
+
+2. **Fix 2** (line 27): Boundary 2 开头添加了数据溯源——标注 seed 0 evaluation、两个 training exp_id (`train_pi05_a1_obj_s0_l005`, `train_pi05_a1_obj_s0_l01`) 和 baseline 来源 (`eval_pi05_safelibero_object_v11`, 3-seed average)。Registry 中无独立的 10K eval 实验条目，数据来自 D012 mid-eval artifacts。
+
+3. **Fix 3** (line 36): "baseline CAR = 10%" → "3-seed average baseline CAR = 10%"。Registry 显示 seed 0 Task 0 CAR = 6%，D012 报告的 10.0% 是 3-seed 平均值，已标注来源。49pp = avg(62−10, 56−10) 验证一致。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_paper_d019_discussion_fixes_20260525T080714"
+}
+```
+
+</details>
+
+---

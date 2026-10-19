@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0fe762886eb500eb0baa",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "code fix ee displacement m044",
+  "task_key": "worker_code_fix_ee_displacement_m044_20260525T185411",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_ee_displacement_m044_20260525T185411_result.json",
+    "occurrence": 1,
+    "bytes": 748,
+    "sha256": "cdbc89aeeef68a63472304dcf12283e09125e724fb38818d66ec240505dab2f6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "不是 git 仓库，跳过 commit。\n\n改动汇总：\n\n**eval_safelibero.py**:\n- 文件已有 `max_ee_displacement` 追踪（L933 初始化 `initial_eef_pos`，L941 初始化 `max_ee_displacement=0.0`，L1025-1026 逐步更新，L1062 存入 ep_result）— 不需要重复添加\n- **新增** `total_ee_path_length`：L1051-1053 计算累计 EE 路径长度，L1065 存入 ep_result\n- 更新 docstring 提及 EE displacement\n\n**analyze_displacement.py**:\n- frozen 判定从 `e[\"max_displacement\"]`（障碍物位移）改为 `e[\"max_ee_displacement\"]`（EE 位移）\n- 向后兼容：JSON 中无 `max_ee_displacement` 时自动降级到 `max_displacement` 并打印 stderr 警告\n- 更新 docstring 说明逻辑变更"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-ee-displacement-m044.md"
+}

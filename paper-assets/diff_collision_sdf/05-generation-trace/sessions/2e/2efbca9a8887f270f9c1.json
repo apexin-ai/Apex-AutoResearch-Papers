@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2efbca9a8887f270f9c1",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops check pi05 multiseed eval results",
+  "task_key": "worker_ops_check_pi05_multiseed_eval_results_20260523T001236",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_pi05_multiseed_eval_results_20260523T001236_result.json",
+    "occurrence": 1,
+    "bytes": 958,
+    "sha256": "12b66096f005c50b0615b3f0177393338e4aed283682fcef725af2451bb7078f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 seed 均已成功完成，JSON 已生成。200 episodes 全部跑完。\n\n## 结果汇总\n\n| | **Seed 1** | **Seed 2** | **平均** |\n|---|---|---|---|\n| **Task 0** | TSR=72% CAR=10% disp=0.2457 | TSR=76% CAR=14% disp=0.1744 | TSR=74% CAR=12% disp=0.2101 |\n| **Task 1** | TSR=86% CAR=56% disp=0.0744 | TSR=86% CAR=56% disp=0.0812 | TSR=86% CAR=56% disp=0.0778 |\n| **Task 2** | TSR=68% CAR=10% disp=0.1505 | TSR=64% CAR=10% disp=0.1418 | TSR=66% CAR=10% disp=0.1462 |\n| **Task 3** | TSR=78% CAR=24% disp=0.1415 | TSR=74% CAR=30% disp=0.1317 | TSR=76% CAR=27% disp=0.1366 |\n| **Overall** | **TSR=76.0% CAR=25.0% disp=0.1530** | **TSR=75.0% CAR=27.5% disp=0.1323** | **TSR=75.5% CAR=26.25% disp=0.1427** |\n\n两个 seed 结果一致性较好（TSR 相差 1%，CAR 相差 2.5%）。Task 1 表现最好（TSR=86%, CAR=56%），Task 2 最差（TSR=66%, CAR=10%）。每个 seed 均完整跑完 200 episodes（4 tasks × 50 eps）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-pi05-multiseed-eval-results.md"
+}

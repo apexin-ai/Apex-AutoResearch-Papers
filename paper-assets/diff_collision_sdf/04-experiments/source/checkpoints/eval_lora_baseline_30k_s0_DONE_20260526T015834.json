@@ -1,0 +1,32 @@
+{
+  "exp_id": "eval_lora_baseline_30k_s0",
+  "project": "diff_collision_sdf",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-26T01:37:48.287Z",
+    "updated_at": "2026-05-26T01:58:34.256Z",
+    "hypothesis": "LoRA baseline (no SDF) 30K eval on object_pudding seed 0: expects CAR ≈ Pi0.5 baseline (~27%), confirming ColliForce CAR improvement is from SDF not LoRA. Parent: train_pi05_lora_baseline_s0.",
+    "parent": "train_pi05_lora_baseline_s0",
+    "spec": {
+      "command": "python scripts/eval_safelibero.py --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000 --config_name pi05_libero --model_type lora_baseline --suite safelibero_object --pi05 --seed 0 --gpu 0 --output_path /root/autodl-tmp/eval_results/eval_lora_baseline_30k_s0.json",
+      "server": "westd-45947",
+      "gpu": [
+        "cuda:0"
+      ],
+      "data_path": "safelibero_object",
+      "data_count": 50,
+      "model_name": "pi05_lora_baseline_seed0_30k",
+      "seed": 0,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000",
+      "eval_data": "safelibero_object"
+    },
+    "notes": "Eval launched on westd-45947 cuda:0. PID 28196 (wrapper) → python subprocess. Log: /tmp/eval_lora_baseline_30k_s0.log. Started 2026-05-26 09:38 UTC. Model loading in progress.",
+    "conclusion": "failed",
+    "completed_at": "2026-05-26T01:58:34.256Z"
+  },
+  "timestamp": "2026-05-26T01:58:34.396851+00:00",
+  "trigger": "update_registry"
+}

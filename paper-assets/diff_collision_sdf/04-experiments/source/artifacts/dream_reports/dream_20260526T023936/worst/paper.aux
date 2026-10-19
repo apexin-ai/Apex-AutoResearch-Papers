@@ -1,0 +1,47 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{safelibero2025}
+\citation{ratliff2009chomp,zucker2013chomp}
+\citation{driess2022learning}
+\citation{achiam2017constrained}
+\citation{bengio2009curriculum}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Setup}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Displacement-Filtered CAR (dfCAR)}{2}{subsection.3.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Fake safety diagnosis. A1 (Pi0 + SDF, $\lambda =0.005$) achieves high CAR through action collapse, not collision avoidance. Evaluation on \texttt  {object\_pudding}, 50 re-evaluation episodes. ``Safe eps'' and ``collision eps'' denote EE displacement conditioned on episode outcome.}}{3}{table.caption.1}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:fake_safety}{{1}{3}{Fake safety diagnosis. A1 (Pi0 + SDF, $\lambda =0.005$) achieves high CAR through action collapse, not collision avoidance. Evaluation on \texttt {object\_pudding}, 50 re-evaluation episodes. ``Safe eps'' and ``collision eps'' denote EE displacement conditioned on episode outcome}{table.caption.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}SDF Auxiliary Loss}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Two-Phase Training Protocol}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Fake Safety in Action-Collapsed Models}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces dfCAR sensitivity to displacement threshold $\delta $. The metric is remarkably stable across two orders of magnitude, confirming a clean separation between fake safety (EE disp $\sim $0.01mm) and genuine avoidance (EE disp $>$300mm). }}{4}{table.caption.2}\protected@file@percent }
+\newlabel{tab:dfcar}{{2}{4}{dfCAR sensitivity to displacement threshold $\delta $. The metric is remarkably stable across two orders of magnitude, confirming a clean separation between fake safety (EE disp $\sim $0.01mm) and genuine avoidance (EE disp $>$300mm)}{table.caption.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}dfCAR Threshold Robustness}{4}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Task Capability vs.\ Safety}{4}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Decomposing Collision Avoidance Sources}{4}{subsection.4.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces LoRA-only 3-seed evaluation (\texttt  {object\_pudding}, 200 episodes per seed). Seed~2 exhibits lower CAR, increasing inter-seed variance.}}{5}{table.caption.3}\protected@file@percent }
+\newlabel{tab:lora_3seed}{{3}{5}{LoRA-only 3-seed evaluation (\texttt {object\_pudding}, 200 episodes per seed). Seed~2 exhibits lower CAR, increasing inter-seed variance}{table.caption.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces 3-seed SDF attribution (3v3 comparison on \texttt  {object\_pudding}). Low-$\lambda $ SDF adds no significant CAR above LoRA-only. High-$\lambda $ SDF ($\lambda =0.1$) provides a significant +15.5pp additive contribution.}}{5}{table.caption.4}\protected@file@percent }
+\newlabel{tab:attribution}{{4}{5}{3-seed SDF attribution (3v3 comparison on \texttt {object\_pudding}). Low-$\lambda $ SDF adds no significant CAR above LoRA-only. High-$\lambda $ SDF ($\lambda =0.1$) provides a significant +15.5pp additive contribution}{table.caption.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Lambda Dose-Response}{5}{subsection.4.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Two-Phase Training Strategy}{5}{subsection.4.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Lambda dose-response curve across 4 points. CAR is approximately flat for $\lambda \leq 0.01$ and jumps at $\lambda =0.1$, suggesting a threshold effect rather than smooth dose-response. TSR continues to decrease at high $\lambda $.}}{6}{table.caption.5}\protected@file@percent }
+\newlabel{tab:lambda}{{5}{6}{Lambda dose-response curve across 4 points. CAR is approximately flat for $\lambda \leq 0.01$ and jumps at $\lambda =0.1$, suggesting a threshold effect rather than smooth dose-response. TSR continues to decrease at high $\lambda $}{table.caption.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Two-phase training results: Phase 1 (SDF, $\lambda =0.005$, steps 1--10K) $\to $ Phase 2 ($\lambda =0$, steps 10K--30K). Compared to LoRA-only and end-to-end SDF fine-tuning.}}{6}{table.caption.6}\protected@file@percent }
+\newlabel{tab:phase2}{{6}{6}{Two-phase training results: Phase 1 (SDF, $\lambda =0.005$, steps 1--10K) $\to $ Phase 2 ($\lambda =0$, steps 10K--30K). Compared to LoRA-only and end-to-end SDF fine-tuning}{table.caption.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Cross-Scene Analysis}{6}{subsection.4.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}Training Details}{6}{subsection.4.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{6}{section.5}\protected@file@percent }
+\bibstyle{plainnat}
+\bibdata{references}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Cross-scene comparison between \texttt  {object\_pudding} and \texttt  {spatial\_bowl}. SDF effect magnitude differs across scenes, precluding a universal generalization claim. \texttt  {spatial\_bowl} uses 1-seed evaluations (200 episodes each).}}{7}{table.caption.7}\protected@file@percent }
+\newlabel{tab:cross_scene}{{7}{7}{Cross-scene comparison between \texttt {object\_pudding} and \texttt {spatial\_bowl}. SDF effect magnitude differs across scenes, precluding a universal generalization claim. \texttt {spatial\_bowl} uses 1-seed evaluations (200 episodes each)}{table.caption.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Training convergence summary for all conditions. All runs train for 30K steps on Pi0.5 with LoRA.}}{7}{table.caption.8}\protected@file@percent }
+\newlabel{tab:training}{{8}{7}{Training convergence summary for all conditions. All runs train for 30K steps on Pi0.5 with LoRA}{table.caption.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{7}{section.6}\protected@file@percent }
+\gdef \@abspage@last{7}

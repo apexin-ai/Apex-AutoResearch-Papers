@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2d026b836e9d69c11b1d",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ssh quick a1 check",
+  "task_key": "worker_ssh_quick_a1_check_20260520T001222",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_quick_a1_check_20260520T001222_result.json",
+    "occurrence": 1,
+    "bytes": 315,
+    "sha256": "1ed6f14c9eced5c4b161d40087a343ece62669c12a2b29e7677ff2c4d8c91f32"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1. **PID 117514**: 存活，已运行 58 分 37 秒\n2. **A1 训练**: step 950/30000 (3%)，最新 loss=0.2148，lr=2.37e-05，运行约 57 分钟，~3.9s/it\n3. **GPU 3**: 利用率 0%，显存 13385 MiB（未被此训练使用；训练跑在 GPU 0-2，利用率 69%/100%/100%，各占 37367 MiB）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-quick-a1-check.md"
+}

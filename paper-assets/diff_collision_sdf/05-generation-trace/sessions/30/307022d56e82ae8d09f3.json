@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "307022d56e82ae8d09f3",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "figure fingerprint update l01 3seed",
+  "task_key": "worker_figure_fingerprint-update-l01-3seed_20260528T024239",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_fingerprint-update-l01-3seed_20260528T024239_result.json",
+    "occurrence": 1,
+    "bytes": 176,
+    "sha256": "7541d795971da32cf9eab8c1ab87f3e55a1612a8a7c8853c4e66fb5068bf1f41"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "λ=0.1 3-seed 均值：CP=74.0, Milk=69.3, OJ=60.7, BBQ=24.0。图已生成到 `fig_pertask_car_fingerprint.png`，所有 4 组 bar 现在都是 3-seed 数据。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-fingerprint-update-l01-3seed.md"
+}

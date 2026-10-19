@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "19a16bd1b67d04b745d9",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "diagnose 26k ckpt format",
+  "task_key": "worker_diagnose_26k_ckpt_format_20260527T050655",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_26k_ckpt_format_20260527T050655_result.json",
+    "occurrence": 1,
+    "bytes": 1604,
+    "sha256": "6e252792694be7596518f2c9580a18711ba428b0968553519ba1e7032b7b954c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论\n\n### 根因：26K eval 漏传 `--pi05` 参数\n\ncheckpoint 格式没有变化——24K 和 26K 的 key 结构 **完全相同**（1316 keys，zero diff，文件大小均为 7,540,115,784 bytes）。\n\n问题出在 eval 调用方式：\n\n| | 24K eval | 26K eval |\n|---|---|---|\n| `--pi05` | ✅ 传了 | ❌ 没传 |\n| 模型架构 | Pi0.5（`time_mlp_in/out` + AdaLN `layernorm.dense.*`） | 标准 Pi0（`action_time_mlp_in/out` + `layernorm.weight`） |\n| 结果 | keys 匹配，加载成功 | keys 不匹配，RuntimeError |\n\n**证据**：24K 日志中有 `pi05_libero` 资源路径引用，26K 日志完全没有。\n\n### 机制\n\n`eval_safelibero.py` 的 `_load_policy_lora_baseline()` (line 764) 检查 `getattr(args, \"pi05\", False)`：\n- `True` → `Pi0Config(pi05=True, ...)` → 模型含 `time_mlp_in/out` + AdaLN layernorm → 匹配 checkpoint\n- `False` → `Pi0Config(paligemma_variant=\"gemma_2b\", ...)` → 模型含 `action_time_mlp_in/out` + 标准 layernorm → 不匹配\n\n### 30K eval 是否受影响\n\n**不受影响，前提是 eval 命令加上 `--pi05`。** 30K checkpoint 来自同一个训练进程（PID 271266，仍在运行），key 结构不会变。\n\n### 修复\n\n26K 和 30K eval 命令都需要加 `--pi05`：\n\n```bash\npython scripts/eval_safelibero.py --model_type lora_baseline --pi05 \\\n    --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0_l1/26000 \\\n    ... (其他参数)\n```\n\n### 训练进度\n\n当前 ~26947/30000（90%），预计 ~4h 后完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-26k-ckpt-format.md"
+}

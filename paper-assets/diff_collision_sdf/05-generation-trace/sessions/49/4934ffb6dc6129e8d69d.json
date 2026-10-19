@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4934ffb6dc6129e8d69d",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "gpu check westd 45947",
+  "task_key": "worker_gpu-check_westd-45947_20260529T050540",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu-check_westd-45947_20260529T050540_result.json",
+    "occurrence": 1,
+    "bytes": 7115,
+    "sha256": "b895ca8334c12ac5f9b9035b35872eac3656f4b549399344ae4adc4483d32250"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the complete report.\n\n---\n\n## Part 1: westd-45947 服务器状态\n\n| 指标 | 值 |\n|------|-----|\n| **GPU 0** | RTX PRO 6000, 72°C, 464W/600W, 19107/97887 MiB, 100% util |\n| **活跃进程** | `train_a1_sdf_aux_pi05.py --scene object_pudding --seed 3 --lambda_sdf 0.01 --resume` (PID 41134) |\n| **训练进度** | step 3099/30000 (10%), ~1.25s/it, 预计还需 ~9.3h |\n| **磁盘** | /root/autodl-tmp: 204G/250G used (82%), 47G free |\n| **tmux** | 无法检查 (read-only 模式限制) |\n\n---\n\n## Part 2: 实验结果文件完整目录\n\n### 训练日志 (`/root/colliforce-vla/logs/`)\n\n| 文件 | 日期 | 内容 |\n|------|------|------|\n| `a3_obj.log` | May 21 | A3 object 训练 — **FAILED** (AttributeError: 'GemmaModel' no 'model') |\n| `a3_spa.log` | May 21 | A3 spatial 训练 — **FAILED** (同上) |\n| `eval_lora_baseline_s0.log` | May 26 | LoRA baseline s0 eval → Overall TSR=8.5%, CAR=54.5% |\n| `eval_lora_baseline_s1.log` | May 26 | LoRA baseline s1 eval → Overall TSR=4%, CAR=56% |\n| `eval_pi05_baseline_reeval_disp.log` | May 26 | Pi0.5 base reeval (200eps), TSR=0% all tasks (model_type=baseline, 似乎不是 pi0.5 finetuned) |\n\n### 活跃训练 (`/tmp/`)\n- `train_sdf_s3_l01_resume.log` — SDF seed3 lambda=0.01, resumed from step 2000, 当前 step ~3099\n\n---\n\n### Checkpoint 目录 (`/root/autodl-tmp/checkpoints/`)\n\n| 目录 | 子目录数 | 内容 |\n|------|---------|------|\n| `a1_sdf_pi05_object_pudding/` | 13 | 见下方详细列表 |\n| `a1_sdf_pi05_spatial_bowl/` | 1 | seed0 (空) |\n| `a3_grad_refine_object_pudding/` | 1 | seed0 (best + 30000) |\n| `a3_grad_refine_spatial_bowl/` | 1 | seed0 (best + 30000) |\n| `baseline_object_pudding/` | 1 | seed0 (仅 wandb 等小文件) |\n\n**a1_sdf_pi05_object_pudding/ 详细:**\n\n| 子目录 | Checkpoints | 最后修改 |\n|--------|-------------|---------|\n| `seed0_l005` | best + 30000 | May 24 |\n| `seed0_l01` | best + 30000 | May 26 |\n| `seed0_l1` | 30000 only | May 28 |\n| `seed1_l005` | 30000 only | May 26 |\n| `seed1_l01` | 30000 only | May 26 |\n| `seed2_l005` | 30000 only | May 26 |\n| `seed2_l1` | best + 30000 | May 29 |\n| **seed3_l01** | **训练中** | **May 29 (进行中)** |\n| `lora_baseline_seed0` | best + 30000 | May 26 |\n| `lora_baseline_seed1` | best + 30000 | May 26 |\n| `lora_baseline_seed2` | best + 30000 | May 29 |\n\n---\n\n### 评估结果 JSON 完整目录 (`/root/autodl-tmp/eval_results/`)\n\n**28 个文件**，按用途分组。所有 eval 均在 safelibero_object Level II 上评估。\n\n#### A. Pi0.5 Base Model（无微调）\n\n| 文件 | Suite | Tasks | Eps | Seed | **TSR** | **CAR** | avg_max_disp |\n|------|-------|-------|-----|------|---------|---------|-------------|\n| `pi05_safelibero_object_v11.json` | object | 4 | 50 | 7 | **73.0%** | **28.0%** | 0.151 |\n| `pi05_safelibero_spatial_v11.json` | spatial | 4 | 50 | 7 | **57.5%** | **13.0%** | 0.404 |\n| `sanity_check_pi05_base_rotation_fix.json` | object | task0 | 20 | 7 | **85.0%** | **10.0%** | 0.185 |\n| `pi05_base_reeval_safelibero_object_levelII_seed7.json` | object | task0 | 50 | 7 | **74.0%** | **16.0%** | 0.144 |\n\n#### B. LoRA Baseline（无 SDF）\n\n| 文件 | Seed(train) | Ckpt | Tasks | Eps | Eval Seed | **TSR** | **CAR** |\n|------|------------|------|-------|-----|-----------|---------|---------|\n| `eval_lora_baseline_s0.json` | 0 | 30K | 4 | 50 | 0 | **8.5%** | **54.5%** |\n| `eval_lora_baseline_s1.json` | 1 | 30K | 4 | 50 | 0 | **4.0%** | **56.0%** |\n| `lora_baseline_s0_reeval_safelibero_object_levelII_seed7.json` | 0 | 30K | task0 | 50 | 7 | **32.0%** | **56.0%** |\n| `reeval_lora_s1_30k.json` | 1 | 30K | task0 | 50 | 7 | **34.0%** | **54.0%** |\n\n#### C. SDF 模型 Re-eval（seed=7, 30K steps, task0 only, 50 eps）\n\n| 文件 | Train Seed | λ_sdf | **TSR** | **CAR** | avg_max_disp |\n|------|-----------|-------|---------|---------|-------------|\n| `reeval_sdf_s0_l005_30k.json` | 0 | 0.005 | **38%** | **52%** | 0.047 |\n| `reeval_sdf_s1_l005_30k.json` | 1 | 0.005 | **28%** | **64%** | 0.035 |\n| `reeval_sdf_s2_l005_30k.json` | 2 | 0.005 | **34%** | **46%** | 0.060 |\n| `reeval_sdf_s0_l01_30k.json` | 0 | 0.01 | **28%** | **48%** | 0.063 |\n| `reeval_sdf_s1_l01_30k.json` | 1 | 0.01 | **22%** | **60%** | 0.054 |\n| `reeval_sdf_s2_l01_30k.json` | 2 | 0.01 | **24%** | **64%** | 0.038 |\n| `eval_safelibero_object_all_levelII_30000_lora_baseline_seed7.json` | 2 | 0.1¹ | **30%** | **56%** | 0.042 |\n| `multiseed_sdf_l01_s0_eseed123.json` | 0 | 0.1¹ | **26%** | **62%** | 0.052 |\n| `multiseed_sdf_l01_s0_eseed256.json` | 0 | 0.1¹ | **28%** | **60%** | 0.057 |\n\n¹ 注：这些文件的 checkpoint 路径指向 `_l1` 目录（lambda=0.1）\n\n#### D. Mid-training Eval（10K steps, 4 tasks）\n\n| 文件 | Train Seed | λ_sdf | Step | **TSR** | **CAR** |\n|------|-----------|-------|------|---------|---------|\n| `d012_mid10k/eval_d012_s0_l005_step10k.json` | 0 | 0.005 | 10K | **47%** | **58%** |\n| `d012_mid10k/eval_d012_s0_l01_step10k.json` | 0 | 0.01 | 10K | **49%** | **56.5%** |\n\n#### E. A3 Grad Refine（初始 collision 检测 bug，全部无效）\n\n| 文件 | n_eps | 结果 |\n|------|-------|------|\n| `eval_safelibero_object_task1_levelII_best_a3_refine_seed0.json` | 50 | TSR=0%, CAR=0%（step 0 collision bug） |\n| `eval_safelibero_object_task0_levelII_best_a3_seed0.json` | 1 | TSR=0%, CAR=0%（同上） |\n| `eval_safelibero_object_task1_levelII_best_a3_seed0.json` | 1 | TSR=0%, CAR=0% |\n| `eval_safelibero_object_all_levelII_best_a3_seed0.json` | 50 | task0: TSR=0%, CAR=90%; task1: TSR=0%, CAR=0% |\n| `eval_safelibero_object_all_levelII_best_seed0.json` | 50 | baseline task0: TSR=0%, CAR=74% |\n\n#### F. 早期小规模 Debug Evals\n\n| 文件 | n_eps | replan | **TSR** | **CAR** |\n|------|-------|--------|---------|---------|\n| `eval_safelibero_object_task0_levelII_best_seed0.json` | 3 | 5 | 0% | 67% |\n| `replan1_eval_safelibero_object_task0_levelII_best_seed0.json` | 3 | 1 | 0% | 100% |\n| `v11_evalckpt_r1_eval_safelibero_object_task0_levelII_best_seed0.json` | 3 | 1 | 0% | 67% |\n| `v10like_eval_safelibero_object_task0_levelII_best_seed0.json` | 3 | 1 | 0% | 67% |\n\n---\n\n### 关键数字速查（论文审计用）\n\n| 方法 | 条件 | TSR↑ | CAR↑ |\n|------|------|------|------|\n| **Pi0.5 Base** | 4-task, seed=7 | 73.0% | 28.0% |\n| **LoRA Baseline s0** | task0, seed=7 | 32% | 56% |\n| **LoRA Baseline s1** | task0, seed=7 | 34% | 54% |\n| **SDF s0 λ=0.005** | task0, seed=7 | 38% | 52% |\n| **SDF s1 λ=0.005** | task0, seed=7 | 28% | 64% |\n| **SDF s2 λ=0.005** | task0, seed=7 | 34% | 46% |\n| **SDF s0 λ=0.01** | task0, seed=7 | 28% | 48% |\n| **SDF s1 λ=0.01** | task0, seed=7 | 22% | 60% |\n| **SDF s2 λ=0.01** | task0, seed=7 | 24% | 64% |\n| **SDF s0 λ=0.1** | task0, seed=123 | 26% | 62% |\n| **SDF s0 λ=0.1** | task0, seed=256 | 28% | 60% |\n| **SDF s2 λ=0.1** | task0, seed=7 | 30% | 56% |\n| **10K mid: s0 λ=0.005** | 4-task, seed=7 | 47% | 58% |\n| **10K mid: s0 λ=0.01** | 4-task, seed=7 | 49% | 56.5% |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-check-westd-45947.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "233a45ae611e07598600",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "research a3 lora inference audit",
+  "task_key": "worker_research_a3_lora_inference_audit_20260522T095138",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_a3_lora_inference_audit_20260522T095138_result.json",
+    "occurrence": 1,
+    "bytes": 4772,
+    "sha256": "0fd3434fbbf6d374d5cd4050085dd46c5415a394dbdd3c986c35551a514411eb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "I have all the information needed for the audit. Here's the complete analysis.\n\n---\n\n## 审计结果\n\n### 1. LoRA 参数对齐对比\n\n**训练保存 (train_a3_hook.py:365)**:\n```python\nlora_state = {f\"lora_param_{i}\": p.data for i, p in enumerate(self.lora_params)}\n```\n\n**Eval 加载 (eval_safelibero.py:504-508)**:\n```python\nlora_state = torch.load(lora_path, map_location=\"cuda\")\nfor i, p in enumerate(lora_params):\n    key = f\"lora_param_{i}\"\n    if key in lora_state:\n        p.data.copy_(lora_state[key])\n```\n\n| 检查项 | 训练 | Eval | 一致性 |\n|--------|------|------|--------|\n| TARGET_MODULES | `(\"q_proj\",\"k_proj\",\"v_proj\",\"o_proj\",\"gate_proj\",\"up_proj\",\"down_proj\")` | 相同 | ✓ |\n| 遍历顺序 | pali layers → expert layers, 每层按 TARGET_MODULES 顺序 | 相同 | ✓ |\n| Pali 路径 | `.paligemma_with_expert.paligemma.language_model.layers` | 相同 | ✓ |\n| Expert 路径 | `.paligemma_with_expert.gemma_expert.model.layers` | 相同 | ✓ |\n| Rank/Alpha | pali=16/16, expert=32/32 | 相同 | ✓ |\n| 总参数数 | 504 | 504 | ✓ |\n| key 格式 | `lora_param_{i}` | `lora_param_{i}` | ✓ |\n| dtype | float32 | float32 | ✓ |\n\n**LoRA 参数加载通路本身没问题。**\n\n### 2. Checkpoint 内容验证\n\n504 个参数，shapes 符合预期：\n- PaliGemma (18层 × 7模块 × 2 = 252): rank-16 shapes `[2048,16]`/`[16,X]`\n- Expert (18层 × 7模块 × 2 = 252): rank-32 shapes `[1024,32]`/`[32,X]`\n- lora_B std ≈ 0.003（非零，已从初始化的 0 训练偏移），确认 LoRA 参数被训练过\n\n### 3. LoRA forward 是否参与 inference\n\n✓ `_inject_lora` 用 `setattr` 替换 `nn.Linear` → `LoRALinear`，forward 时：\n```python\nbase_out = self.base(x)\nlora_out = (x.float() @ self.lora_A @ self.lora_B) * self.scaling\nreturn base_out + lora_out.to(base_out.dtype)\n```\nLoRA 确实参与了 forward。`_merge_lora` 只定义未调用。\n\n### 4. **根本问题：Norm Stats 不匹配** (CRITICAL BUG)\n\n`_load_policy_a3` (eval_safelibero.py:489-490):\n```python\npolicy = _policy_config.create_trained_policy(\n    a3_config, PI0_BASE_WEIGHTS, default_prompt=None\n)\n```\n\n`create_trained_policy` 从 `checkpoint_dir/assets/` 加载 norm_stats (policy_config.py:64)。这里 `checkpoint_dir = PI0_BASE_WEIGHTS`，所以加载的是 **pi0_base 的 norm_stats**，而非 A3 训练数据的 norm_stats。\n\n**两套 norm_stats 对比**：\n\n| 字段 | pi0_base (eval 使用) | A3 训练 (正确值) | 偏差 |\n|------|---------------------|-----------------|------|\n| state[2] mean (ee_z) | **0.196** | **1.023** | **5.2x** |\n| state[1] mean (ee_y) | -0.038 | 0.132 | 方向相反 |\n| action[0] std | 0.203 | 0.506 | 2.5x |\n| action[2] mean | -0.032 | -0.162 | 5x |\n\n**影响**：模型收到的 normalized state 完全错误。例如真实 ee_z=1.0：\n- pi0_base norm: (1.0 - 0.196) / 0.085 = **9.46**\n- 正确 norm: (1.0 - 1.023) / 0.089 = **-0.26**\n\n模型输出的 action 也用错误的 stats 反归一化，导致 action 幅度极小 → displacement 0.0009m。\n\n### 5. 修复建议\n\n`create_trained_policy` 已有 `norm_stats` 参数可覆盖默认加载。修改 `_load_policy_a3`：\n\n```python\ndef _load_policy_a3(args, config):\n    from openpi.training import checkpoints as _checkpoints\n    \n    a3_model_config = pi0_config.Pi0Config(\n        paligemma_variant=\"gemma_2b\",\n        action_expert_variant=\"gemma_300m\",\n    )\n    a3_config = dataclasses.replace(config, model=a3_model_config)\n    \n    # FIX: 从 A3 checkpoint 加载 norm_stats，而非 pi0_base\n    sdf_ckpt = args.sdf_checkpoint or args.checkpoint\n    a3_norm_stats = _checkpoints.load_norm_stats(\n        os.path.join(sdf_ckpt, \"assets\"), \"safelibero_spatial\"\n    )\n    \n    policy = _policy_config.create_trained_policy(\n        a3_config, PI0_BASE_WEIGHTS, default_prompt=None,\n        norm_stats=a3_norm_stats,  # 传入正确的 norm_stats\n    )\n    # ... 后续 LoRA 注入和加载不变\n```\n\n### 6. 次要问题\n\n- **LoRALinear forward 微小差异**：训练版显式 `.float()` 转换 lora_A/lora_B，eval 版未显式转换。因 lora 参数已是 float32，功能上等价，不影响结果。\n- **LoRA 参数 device**：eval 版在 CPU 创建 lora 参数，通过 `p.data.copy_()` 加载后再 `.cuda()`。功能正确但可简化。\n\n### 结论\n\n**LoRA 加载通路本身完全正确**（参数名、顺序、dtype、数量全部对齐）。根本原因是 **norm_stats 来源错误**：eval 从 pi0_base 加载了原始 LIBERO 数据集的归一化统计量，而模型是在 SafeLIBERO 数据上训练的，两者的状态分布差异极大。修复后 displacement 应显著恢复。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-a3-lora-inference-audit.md"
+}

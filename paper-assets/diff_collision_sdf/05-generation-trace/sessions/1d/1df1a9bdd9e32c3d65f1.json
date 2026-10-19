@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1df1a9bdd9e32c3d65f1",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "viz plan014 threshold sensitivity v2",
+  "task_key": "worker_viz_plan014_threshold_sensitivity_v2_20260526T150421",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_plan014_threshold_sensitivity_v2_20260526T150421_result.json",
+    "occurrence": 1,
+    "bytes": 646,
+    "sha256": "3f1c6bd9f766fa31234154e62455ef0fb8f0cc8198f653fccfde6eacb85103ea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表生成完毕，验证结果：\n\n- **λ 标签正确**：LoRA (λ=0)、SDF (λ=0.005)、SDF (λ=0.01)\n- **dfCAR 在 2–200mm 几乎完全 flat**，仅 300mm 处有极微小波动（个别 episode 的 max_ee_displacement < 300mm 被过滤掉）\n- **数值与 CSV 一致**：SDF λ=0.01 s0 = 57.0%，LoRA s0 = 56.5% 等\n- 竖线标注 δ=100mm Paper threshold\n- 粗实线为 per-λ 均值，细虚线为个体 seed\n- All Pooled 线（蓝色方块）居中\n\n结论不变：dfCAR 对 displacement threshold 不敏感，选择 δ=100mm 不影响结论。输出已覆盖旧版 `fig_threshold_sensitivity.pdf` 和 `.png`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-plan014-threshold-sensitivity-v2.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "048f5c13917a1f0c17e7",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "improve appendix completion",
+  "task_key": "worker_improve_appendix_completion_20260527T220539",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_improve_appendix_completion_20260527T220539.log",
+    "occurrence": 1,
+    "bytes": 557226,
+    "sha256": "fb8c2a8eda9a79dc25334c1a70549023f7463bb62395f11935c221a5e8b96186"
+  },
+  "statistics": {
+    "messages": 221,
+    "user_turns": 0,
+    "tool_calls": 85,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 47,
+      "tool_call": 85,
+      "tool_result": 85,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 221,
+      "chunks": [
+        {
+          "path": "048f5c13917a1f0c17e7-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "048f5c13917a1f0c17e7-part-0002.json",
+          "message_count": 41
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/improve-appendix-completion.md"
+}

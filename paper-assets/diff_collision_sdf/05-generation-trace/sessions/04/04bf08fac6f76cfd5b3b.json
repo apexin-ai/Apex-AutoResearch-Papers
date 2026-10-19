@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "04bf08fac6f76cfd5b3b",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "gpu check westd 35807 status",
+  "task_key": "worker_gpu-check_westd-35807-status_20260525T203319",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu-check_westd-35807-status_20260525T203319_result.json",
+    "occurrence": 1,
+    "bytes": 2222,
+    "sha256": "0a32317ec5050605a1726ce86adf7cbd612f98ee4563de952b369a0fafbb28b3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总如下：\n\n---\n\n## GPU 状态\n\n| GPU | 温度 | 功耗 | 显存占用 | 利用率 | 进程 |\n|-----|------|------|----------|--------|------|\n| cuda:0 | 68°C | 477W/600W | 27GB/98GB | 100% | PID 3717 — spatial_bowl 训练 |\n| cuda:1 | 40°C | 175W/600W | 9GB/98GB | 10% | PID 142394 — eval_s1_l005_30k_disp (**运行中**, 32min) |\n| cuda:2 | 39°C | 88W/600W | 8GB/98GB | 0% | **空闲**（PID 134344 已结束） |\n| cuda:3 | 40°C | 181W/600W | 9GB/98GB | 21% | PID 151915 — eval_s0_l005_30k_r4 (**运行中**, 25min) |\n\n## Eval 进程状态\n\n| Eval | PID | 状态 | 结果文件 |\n|------|-----|------|----------|\n| eval_pi05_a1_best_s1_l005_16k | 134344 | **已完成** | eval_s1_l005_best_16k.json ✓ |\n| eval_pi05_a1_30k_s1_l005_disp | 142394 | **运行中** (32min) | eval_s1_l005_30k_disp.json（未生成） |\n| eval_s0_l005_30k_r4 | 151915 | **运行中** (25min) | eval_s0_l005_30k_r4.json（未生成） |\n\n## eval_s1_l005_best_16k 结果（best checkpoint, seed1）\n\n**avg_TSR = 0.0650, avg_CAR = 0.5300**\n\n| Task | TSR | CAR | avg_max_disp | avg_max_ee_disp |\n|------|-----|-----|-------------|-----------------|\n| pick_up_orange_juice → basket | 0.04 | 0.58 | 0.0416 | 0.5179 |\n| pick_up_chocolate_pudding → basket | 0.22 | 0.50 | 0.1018 | 0.5146 |\n| pick_up_milk → basket | 0.00 | 0.88 | 0.0073 | 0.6475 |\n| pick_up_bbq_sauce → basket | 0.00 | 0.16 | 0.0934 | 0.3707 |\n\nPer-episode 字段包含: `max_displacement`, `max_ee_displacement`, `total_ee_path_length`, `smoothness` — displacement 数据完整。\n\n## spatial_bowl 训练\n\n- PID 3708, 已运行 2h31m\n- 进度: **9929/30000 (33%)**, ~4.63s/it\n- ETA: ~25h48m\n- 当前 loss: ~0.019, sdf: ~0.033, ee: ~0.015\n\n## Tmux Sessions\n\n- `train_pi05_a1_spatial_bowl_s0_l005` — 训练进程\n- `eval_pi05_a1_30k_s1_l005_disp` — eval 进程\n- `eval_pi05_a1_30k_s0_l005_r4` — eval 进程（GPU 3 上的新 eval）\n\n## 磁盘\n\n| 分区 | 容量 | 已用 | 可用 | 使用率 |\n|------|------|------|------|--------|\n| / (root) | 30G | 23G | 7.7G | 75% |\n| /root/autodl-tmp | 350G | 210G | 141G | 60% |\n\n根分区 75%，还有余量但需关注。数据盘充裕。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-check-westd-35807-status.md"
+}

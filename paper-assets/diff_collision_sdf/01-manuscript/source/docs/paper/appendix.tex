@@ -1,0 +1,379 @@
+\section{Complete Multi-Seed Results}
+\label{sec:appendix_multiseed}
+
+Table~\ref{tab:multiseed_full} reports individual-seed CAR and TSR for all fine-tuned conditions at the 30K checkpoint (200 episodes each, evaluation seed\,=\,7). These per-seed values underlie the means reported in Table~\ref{tab:avoidance_source}.
+
+\begin{table}[h]
+\centering
+\caption{Per-seed CAR and TSR (\%) at 30K steps, evaluation seed\,=\,7 (200 episodes). All episodes exhibit displacement $>$\,0.37\,m and 0\% action-collapse rate.}
+\label{tab:multiseed_full}
+\vspace{2pt}
+\footnotesize
+\begin{tabular*}{\columnwidth}{l@{\extracolsep{\fill}}lcccc}
+\toprule
+Condition & Seed & CAR & TSR & Mean CAR & Mean TSR \\
+\midrule
+\multirow{3}{*}{LoRA-only}
+  & s0 & 57.0 & 46.0 & \multirow{3}{*}{54.83$\pm$2.25} & \multirow{3}{*}{49.7$\pm$3.2} \\
+  & s1 & 52.5 & 51.5 & & \\
+  & s2 & 55.0 & 51.5 & & \\
+\midrule
+\multirow{3}{*}{SDF $\lambda{=}0.005$}
+  & s0 & 57.0 & 55.5 & \multirow{3}{*}{54.5$\pm$2.29} & \multirow{3}{*}{54.0$\pm$3.0} \\
+  & s1 & 54.0 & 50.5 & & \\
+  & s2 & 52.5 & 56.0 & & \\
+\midrule
+\multirow{3}{*}{SDF $\lambda{=}0.01$}
+  & s0 & 57.0 & 52.5 & \multirow{3}{*}{56.33$\pm$1.61} & \multirow{3}{*}{53.8$\pm$1.5} \\
+  & s1 & 57.5 & 55.5 & & \\
+  & s2 & 54.5 & 53.5 & & \\
+\midrule
+\multirow{3}{*}{SDF $\lambda{=}0.1$}
+  & s0 & 58.0 & 47.0 & \multirow{3}{*}{57.00$\pm$2.18} & \multirow{3}{*}{50.2$\pm$3.9} \\
+  & s1 & 58.5 & 49.0 & & \\
+  & s2 & 54.5 & 54.5 & & \\
+\bottomrule
+\end{tabular*}
+\end{table}
+
+\section{Displacement Distribution}
+\label{sec:appendix_displacement}
+
+The displacement distribution is shown in Fig.~\ref{fig:displacement} (main text).
+
+\section{Displacement Threshold Sensitivity Analysis}
+\label{sec:appendix_threshold}
+
+To validate the robustness of our displacement threshold $\tau_d$, we evaluate the action-collapse rate across four orders of magnitude. Table~\ref{tab:threshold_sensitivity} shows that the action-collapse pattern persists across all reasonable threshold choices: A1-LoRA exhibits near-total action collapse regardless of threshold, while Pi0.5+A1 maintains 0\% action-collapse rate even at the most conservative setting.
+
+\begin{table}[h]
+\centering
+\caption{Action-collapse rate (\% of episodes with $d_\mathrm{max} < \tau_d$) across threshold values.}
+\label{tab:threshold_sensitivity}
+\begin{tabular}{lccc}
+\toprule
+$\tau_d$ & A1-LoRA (Pi0) & Pi0.5 Baseline & Pi0.5+A1 (SDF aux) \\
+\midrule
+0.001 mm (1\,$\mu$m) & 73.9 & 0.0 & 0.0 \\
+0.1 mm  & 99.6 & 0.0 & 0.0 \\
+1.0 mm  & 100.0 & 0.0 & 0.0 \\
+10 mm   & 100.0 & 0.0 & 0.0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The choice of $\tau_d = 0.1$\,mm represents a conservative threshold: displacement below this value is physically negligible in manipulation tasks where typical action magnitudes are 1--10\,mm per step. Even at $\tau_d = 1$\,$\mu$m, 73.9\% of A1-LoRA safe episodes are classified as action-collapsed, while all Pi0.5 episodes remain above threshold at every level tested.
+
+Table~\ref{tab:dfcar_threshold} extends this analysis to dfCAR across fine-tuned Pi0.5 configurations. All eight model-seed combinations yield identical dfCAR for $\tau_d \in [2, 200]$\,mm. At $\tau_d = 300$\,mm, 0--2 episodes per seed fall below threshold (displacement 200--300\,mm), causing $\leq$0.5\,pp deviation. Our conclusions hold across the entire tested range.
+
+\begin{table}[h]
+\centering
+\caption{dfCAR (\%) across displacement thresholds for fine-tuned Pi0.5 configurations ($n = 200$ episodes per seed). Values are identical across $\tau_d \in [2, 200]$\,mm; at $\tau_d = 300$\,mm, at most 2 episodes are excluded.}
+\label{tab:dfcar_threshold}
+\vspace{2pt}
+\footnotesize
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lcccccccc}
+\toprule
+& \multicolumn{8}{c}{$\tau_d$ (mm)} \\
+\cmidrule(lr){2-9}
+Condition & 2 & 5 & 10 & 20 & 50 & 100 & 200 & 300 \\
+\midrule
+LoRA s0            & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 \\
+LoRA s1            & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 \\
+SDF $\lambda{=}$0.005 s0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.1 \\
+SDF $\lambda{=}$0.005 s1 & 54.0 & 54.0 & 54.0 & 54.0 & 54.0 & 54.0 & 54.0 & 54.0 \\
+SDF $\lambda{=}$0.005 s2 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.3 \\
+SDF $\lambda{=}$0.01 s0  & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 \\
+SDF $\lambda{=}$0.01 s1  & 57.5 & 57.5 & 57.5 & 57.5 & 57.5 & 57.5 & 57.5 & 57.1 \\
+SDF $\lambda{=}$0.01 s2  & 54.5 & 54.5 & 54.5 & 54.5 & 54.5 & 54.5 & 54.5 & 54.0 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+
+\section{Per-Task TSR Breakdown}\label{sec:appendix_tsr_pertask}
+
+Table~\ref{tab:per_task_tsr} decomposes TSR by task for the avoidance source attribution experiments (\S\ref{sec:avoidance_source}). All tasks retain meaningful success rates after fine-tuning, with Chocolate Pudding most resilient and Orange Juice most affected.
+
+\begin{table}[h]
+\centering
+\caption{Per-task TSR (\%) at 30K training steps. Baseline reports the unified seed-7 re-evaluation (aggregate TSR\,=\,71.5\%). LoRA-only reports 3-seed means (re-evaluated with unified seed-7 protocol); SDF conditions report 3-seed means.}
+\label{tab:per_task_tsr}
+\vspace{2pt}
+\footnotesize
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lcccc}
+\toprule
+Task & Pi0.5 Base & LoRA-only & SDF $\lambda{=}$0.005 & SDF $\lambda{=}$0.01 \\
+ & (seed=7) & (3 seeds) & (3 seeds) & (3 seeds) \\
+\midrule
+Orange Juice      & 74.0 & 30.0 & 33.3 & 24.7 \\
+Choco.\ Pudding   & 80.0 & 70.7 & 78.0 & 76.7 \\
+Milk              & 66.0 & 44.7 & 35.3 & 48.7 \\
+BBQ Sauce         & 66.0 & 60.7 & 69.3 & 65.3 \\
+\midrule
+Mean              & 71.5 & 51.5 & 54.0 & 53.8 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\section{Per-Task CAR Breakdown}\label{sec:appendix_pertask_car}
+
+Table~\ref{tab:per_task_car} decomposes CAR by task for all fine-tuned conditions, supporting the claim that per-task ordering is preserved across SDF loss weights (\S\ref{sec:avoidance_source}). BBQ Sauce is consistently lowest across all conditions, including $\lambda = 0.1$, while Chocolate Pudding and Milk contend for the top position (Milk exceeds CP in one eval seed). Orange Juice occupies the middle rank across seeds. This invariance indicates that avoidance patterns reflect the spatial statistics of collision-free demonstrations rather than geometric supervision.
+
+\begin{table}[h]
+\centering
+\caption{Per-task CAR (\%) at 30K steps. $\lambda{=}0.005$, $\lambda{=}0.01$, and $\lambda{=}0.1$ report 3-seed means alongside individual seeds. Broad per-task ordering (BBQ lowest; CP and Milk highest) is preserved across all conditions.}
+\label{tab:per_task_car}
+\vspace{2pt}
+\footnotesize
+\begin{tabular*}{\columnwidth}{l@{\extracolsep{\fill}}ccccc}
+\toprule
+Condition & OJ & CP & Milk & BBQ & Agg. \\
+\midrule
+LoRA s0 & 68 & 74 & 66 & 20 & 57.0 \\
+LoRA s1 & 54 & 68 & 72 & 16 & 52.5 \\
+LoRA s2 & 56 & 76 & 62 & 26 & 55.0 \\
+SDF $\lambda{=}$0.005 (3s) & 54.0 & 72.7 & 71.3 & 20.0 & 54.5 \\
+SDF $\lambda{=}$0.01 (3s) & 57.3 & 72.7 & 72.0 & 23.3 & 56.3 \\
+SDF $\lambda{=}$0.1 s0 & 60 & 74 & 68 & 30 & 58.0 \\
+SDF $\lambda{=}$0.1 s1 & 66 & 72 & 70 & 26 & 58.5 \\
+SDF $\lambda{=}$0.1 s2 & 56 & 76 & 70 & 16 & 54.5 \\
+SDF $\lambda{=}$0.1 (3s) & 60.7 & 74.0 & 69.3 & 24.0 & 57.0 \\
+\bottomrule
+\end{tabular*}
+\end{table}
+
+For the $\lambda = 0.1$ condition, seed~1 records \texttt{avg\_max\_obstacle\_displacement} of 0.0553\,m (per-task: OJ\,=\,0.033, CP\,=\,0.055, Milk\,=\,0.041, BBQ\,=\,0.093), comparable to other fine-tuned conditions and consistent with active manipulation rather than action-collapsed behavior.
+
+\section{Safe Success Rate Analysis}\label{sec:appendix_ssr}
+
+See Table~\ref{tab:ssr} (main text) for SSR and SSR/TSR ratio across conditions.
+
+\section{Per-Task Oracle Analysis}
+\label{sec:appendix_pertask_oracle}
+
+Table~\ref{tab:oracle_pertask} shows per-task CAR for oracle refinement. On task~1 (\texttt{chocolate\_pudding}), where the EE is the primary collision body and the LoRA baseline achieves only 46.0\% CAR, Oracle-adaptive improves to 55.0\% and Oracle-feature to 47.5\%. On the remaining tasks, all oracle variants degrade: Oracle-adaptive reduces task~0 (\texttt{orange\_juice}) from 96.0\% to 82.5\% and task~2 (\texttt{milk}) from 98.0\% to 77.5\%. The SDF gradient pushes the EE away from the nearest surface, but the resulting joint-space displacement rotates intermediate arm links into obstacle volumes.
+
+The feature-space oracle fires on nearly every timestep (241.7 refinements/episode vs.\ 14.2 for Cartesian variants) but with gradient magnitudes two orders of magnitude smaller (0.004--0.006 vs.\ 0.18--0.49), and CAR (76.9\%) shows no advantage despite 17$\times$ more steps. The A3 learned SDF never triggers refinement (0 steps/episode), as its outputs avoid the activation threshold.
+
+\begin{table}[h]
+\centering
+\caption{Per-task CAR (\%) for oracle SDF refinement variants. EE-only refinement helps only on task~1 where the EE is the primary collision body; on other tasks it trades one collision site for another.}
+\label{tab:oracle_pertask}
+\vspace{2pt}
+\footnotesize
+\begin{tabular*}{\columnwidth}{l@{\extracolsep{\fill}}ccccc}
+\toprule
+Method & Task 0 & Task 1 & Task 2 & Task 3 & Agg. \\
+\midrule
+LoRA baseline & 96.0 & 46.0 & 98.0 & 88.0 & 82.0 \\
+\midrule
+Oracle-adaptive & 82.5 & 55.0 & 77.5 & 85.0 & 75.0 \\
+Oracle-fixed & 85.0 & 50.0 & 77.5 & 80.0 & 73.1 \\
+Oracle-feature & 90.0 & 47.5 & 82.5 & 87.5 & 76.9 \\
+\bottomrule
+\end{tabular*}
+\end{table}
+
+
+\paragraph{Oracle on non-collapsed baseline (Pi0.5 LoRA).}
+Table~\ref{tab:oracle_pertask_pi05} reports the per-task breakdown for Oracle-adaptive applied to Pi0.5 LoRA s0 (0\% action-collapse rate). The aggregate CAR drop ($-$5.1\,pp) masks a heterogeneous pattern: refinement improves CAR on \texttt{chocolate\_pudding} ($+$1.0\,pp) and \texttt{milk} ($+$4.0\,pp) but degrades \texttt{orange\_juice} ($-$18.0\,pp) and \texttt{bbq\_sauce} ($-$7.5\,pp). This mirrors the Pi0 oracle pattern in Table~\ref{tab:oracle_pertask}, where the same task-dependent asymmetry appears. The consistency across both model families confirms that the counterproductive effect is structural: EE-only SDF refinement cannot protect intermediate arm links that pass through unmonitored obstacle volumes.
+
+\begin{table}[h]
+\centering
+\caption{Per-task CAR (\%) for Oracle-adaptive on Pi0.5 LoRA s0 (40 ep/task) vs.\ unrefined baseline (50 ep/task). EE-only refinement helps on EE-collision tasks but worsens arm-link collisions.}
+\label{tab:oracle_pertask_pi05}
+\vspace{2pt}
+\footnotesize
+\begin{tabular*}{\columnwidth}{l@{\extracolsep{\fill}}ccccc}
+\toprule
+Method & OJ & CP & Milk & BBQ & Agg. \\
+\midrule
+Pi0.5 LoRA s0 & 68.0 & 74.0 & 66.0 & 20.0 & 57.0 \\
+Pi0.5 Oracle-adpt. & 50.0 & 75.0 & 70.0 & 12.5 & 51.9 \\
+\midrule
+$\Delta$ & $-$18.0 & $+$1.0 & $+$4.0 & $-$7.5 & $-$5.1 \\
+\bottomrule
+\end{tabular*}
+\end{table}
+
+
+\section{Null Distribution for SDF Loss Weight Analysis}
+\label{sec:appendix_null}
+
+We construct a null distribution by pooling the three LoRA-only seeds and three $\lambda = 0.005$ seeds into six per-seed CAR measurements: 57.0\% (LoRA s0, re-evaluated), 52.5\% (LoRA s1), 55.0\% (LoRA s2), 57.0\% ($\lambda{=}0.005$ s0), 54.0\% ($\lambda{=}0.005$ s1), 52.5\% ($\lambda{=}0.005$ s2), yielding mean 54.67\% and standard deviation 2.04\% (Bessel-corrected, $n{-}1 = 5$). We treat these as exchangeable because SDF at $\lambda = 0.005$ produces no separation from LoRA-only. The $\lambda = 0.01$ mean of 56.33\% falls within $0.8\sigma$ of this null ($p > 0.1$), consistent with seed-to-seed variation rather than a treatment effect. The $\lambda = 0.1$ 30K mean of 57.00\% (3 seeds: 58.0\%, 58.5\%, 54.5\%) yields a two-tailed permutation $p = 0.155$ (one-tailed $p = 0.071$). The result is non-significant at conventional thresholds ($\alpha = 0.05$).
+
+The permutation test makes no distributional assumptions. Pooling the six null values $\{57, 52.5, 55, 57, 54, 52.5\}$ and three $\lambda = 0.1$ values $\{58, 58.5, 54.5\}$ into nine measurements, we enumerate all $\binom{9}{3} = 84$ three-element combinations and compute the fraction whose mean $\geq 57.00$. Six combinations meet this threshold, yielding an exact one-tailed permutation $p = 6/84 \approx 0.071$. For the two-tailed test, we additionally count combinations on the lower tail with equal or greater distance from the pooled mean, yielding $p = 13/84 \approx 0.155$. With the third seed ($s_2 = 54.5\%$) pulling the $\lambda = 0.1$ mean from 58.25\% (2 seeds) down to 57.00\%, the marginal signal observed at $n = 2$ dissolves into seed-to-seed variance.
+
+\paragraph{Alternative null construction (Null~A).}
+If only the three LoRA-only seeds are used as the null pool ($\{57.0, 52.5, 55.0\}$), we obtain $\binom{6}{3} = 20$ permutations for each comparison. For $\lambda = 0.1$ (treatment mean 57.00\%): one-tailed $p = 3/20 = 0.150$, two-tailed $p = 5/20 = 0.250$. For $\lambda = 0.01$ (treatment mean 56.33\%): one-tailed $p = 6/20 = 0.300$, two-tailed $p = 12/20 = 0.600$. Under the broader Null~B pool, $\lambda = 0.01$ yields one-tailed $p = 13/84 \approx 0.155$, two-tailed $p = 25/84 \approx 0.298$. All tests are non-significant at $\alpha = 0.05$; the narrower Null~A yields \emph{larger} $p$-values because the LoRA-only pool already contains a high seed (57.0\%), making the treatment means less extreme by comparison.
+
+A Phase~2 ablation reinforces this conclusion. Setting $\lambda = 0$ during Phase~2 (steps 5K--18K), so that SDF supervision is active only during auxiliary head warmup (Phase~1, steps 0--5K), yields CAR of 57.5\% at the 18K checkpoint (13K steps of Phase~2 training, single seed s2; full 30K training did not reach the full 30K-step budget). This value lies within the null range, indicating that SDF training produces no lasting behavioral effect on collision avoidance.
+
+\section{Step-wise Checkpoint Analysis for \texorpdfstring{$\lambda = 0.1$}{lambda = 0.1}}
+\label{sec:appendix_stepwise}
+
+Table~\ref{tab:stepwise_lambda01} reports per-seed CAR at seven checkpoints for $\lambda = 0.1$. Seeds~0 and~1 are available at 16K, 20K, 22K, and 30K; 24K--28K report seed-0 only; seed~2 is available at 30K only. The seed-0 curve shows no monotonic trend through 28K. At 30K, the addition of seed~2 (54.5\%) pulls the three-seed mean to 57.00\%, within the null band ($p = 0.155$).
+
+\begin{table}[h]
+\centering
+\caption{Per-seed CAR (\%) at training checkpoints for $\lambda = 0.1$ (200 episodes each). 24K--28K: seed-0 only. The 30K checkpoint includes all three seeds; the three-seed mean (57.00\%) remains within the null band ($p = 0.155$, two-tailed permutation).}
+\label{tab:stepwise_lambda01}
+\vspace{2pt}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Checkpoint & Seed 0 & Seed 1 & Seed 2 & Mean \\
+\midrule
+16K steps & 55.5 & 56.0 & -- & 55.75 \\
+20K steps & 55.0 & 56.0 & -- & 55.5 \\
+22K steps & 60.5 & 56.5 & -- & 58.5 \\
+24K steps & 52.5 & -- & -- & -- \\
+26K steps & 53.5 & -- & -- & -- \\
+28K steps & 54.5 & -- & -- & -- \\
+30K steps & 58.0 & 58.5 & 54.5 & 57.00 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Individual seeds exhibit checkpoint-to-checkpoint CAR fluctuations of up to 8\,pp (seed~0: 52.5--60.5\%), larger than the cross-seed standard deviation at any fixed checkpoint ($\leq$3\,pp). This is consistent with binomial sampling noise at $n = 50$ episodes per task ($\sigma \approx 7$\,pp per task for $p \approx 0.5$). At 30K, the third seed ($s_2 = 54.5\%$) falls well within the null range, pulling the three-seed mean to 57.00\% and rendering the earlier two-seed departure non-significant ($p = 0.155$). The seed-averaged curve shows no monotonic trend, confirming that SDF loss weight does not produce a progressive training signal.
+
+
+\section{Oracle SDF Refinement Details}
+\label{sec:appendix_oracle}
+
+All oracle variants replace the learned SDF decoder with ground-truth distance fields computed from the simulation geometry. Each is evaluated for 160 episodes (4 tasks $\times$ 40).
+
+\paragraph{Oracle-adaptive.} At each timestep, if the ground-truth SDF at the end-effector position falls below a safety margin, the action is adjusted by a step in the negative SDF gradient direction. The step size $\alpha$ is scaled inversely with distance: smaller distances produce larger corrections. This mimics an adaptive potential field controller.
+
+\paragraph{Oracle-fixed.} Identical to Oracle-adaptive except the step size is fixed at $\alpha = 0.005$ regardless of distance. This isolates the effect of step-size adaptation from the refinement geometry.
+
+\paragraph{Oracle-feature.} Instead of modifying the action directly in Cartesian space, this variant applies the SDF gradient in the policy's latent feature space via backpropagation. The gradient of the ground-truth SDF value with respect to the intermediate features is computed and used to perturb the features before the action head decodes them. This tests whether geometric corrections are more effective when applied in the model's learned representation space. In practice, the feature-space variant fires on nearly every timestep (241.7 refinements per episode vs.\ 14.2 for Cartesian variants) but with gradient magnitudes two orders of magnitude smaller (0.004--0.006 vs.\ 0.18--0.49 in action space).
+
+
+\section{Cross-Scene Validation: spatial\_bowl}
+\label{sec:appendix_spatial_bowl}
+
+Cross-scene validation results are reported in Table~\ref{tab:spatial_bowl} (main text). Both conditions use the same architecture, hyperparameters, and two-phase training schedule (30K steps), with a single training seed (seed~0) and evaluation seed (seed~7, 200 episodes). The \texttt{spatial\_bowl} suite uses a distinct obstacle layout (moka pot, wine bottle, milk carton, red coffee mug, yellow book). The substantially lower CAR (11--12\% vs.\ 54--57\%) reflects greater scene difficulty; both conditions are equally affected ($\Delta$CAR\,=\,$-$0.5\,pp).
+
+
+\section{Evaluation Seed Robustness}
+\label{sec:appendix_eval_seed}
+
+To verify that our conclusions are not artifacts of a particular evaluation seed, we re-evaluate key model configurations under multiple evaluation seeds (200 episodes each). Table~\ref{tab:eval_seed_robustness} reports aggregate CAR and TSR across all tested seeds.
+
+\begin{table}[h]
+\centering
+\caption{Eval-seed robustness: aggregate CAR and TSR (\%) across evaluation seeds (200 episodes each). Dashes indicate untested seeds. CAR ranges overlap across all three conditions, confirming that SDF redundancy is not an eval-seed artifact.}
+\label{tab:eval_seed_robustness}
+\vspace{2pt}
+\footnotesize
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{llccccccl}
+\toprule
+& & \multicolumn{6}{c}{Evaluation seed} & \\
+\cmidrule(lr){3-8}
+Condition & & 0 & 7 & 42 & 99 & 123 & 256 & Mean$\pm$Std \\
+\midrule
+\multirow{2}{*}{LoRA s0}
+  & CAR & 53.0 & 57.0 & 56.5 & 57.5 & 53.0 & --- & 55.4$\pm$2.2 \\
+  & TSR & 55.5 & 46.0 & 46.0 & 52.0 & 50.5 & --- & 50.0$\pm$4.1 \\
+\midrule
+\multirow{2}{*}{SDF $\lambda{=}$0.01 s0}
+  & CAR & 52.5 & 57.0 & --- & 57.0 & --- & 57.0 & 55.9$\pm$2.3 \\
+  & TSR & 48.5 & 52.5 & --- & 46.5 & --- & 48.0 & 48.9$\pm$2.6 \\
+\midrule
+\multirow{2}{*}{SDF $\lambda{=}$0.1 s0}
+  & CAR & --- & 58.0 & 59.0 & 57.0 & 58.5 & 57.0 & 57.9$\pm$0.9 \\
+  & TSR & --- & 47.0 & 52.5 & 46.5 & 53.5 & 48.0 & 49.5$\pm$3.3 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+LoRA s0 CAR ranges from 53.0\% to 57.5\% across five evaluation seeds (std\,=\,2.2\,pp), consistent with binomial sampling noise at $n{=}50$ episodes per task. SDF $\lambda{=}0.01$ s0 produces near-identical mean CAR (55.9\% across four eval seeds vs.\ 55.4\% for LoRA), confirming that the null result holds across eval conditions. SDF $\lambda{=}0.1$ s0 shows a slightly higher mean (57.9\% across five eval seeds), but the ranges overlap with LoRA-only, and the difference (2.5\,pp, ${<}$1.2$\sigma$) remains non-significant. The broad per-task CAR ordering (bbq\_sauce consistently lowest; chocolate\_pudding and milk contending for the top) is preserved across all seeds and conditions, reinforcing the demonstration-driven avoidance hypothesis.
+
+Table~\ref{tab:eval_seed_car_detail} provides per-task CAR for the five-seed LoRA evaluation, the most complete eval-seed battery.
+
+\begin{table}[h]
+\centering
+\caption{Per-task CAR (\%) for LoRA s0 across five evaluation seeds. The broad per-task fingerprint (BBQ lowest; CP and Milk contending for the top) is preserved across all seeds.}
+\label{tab:eval_seed_car_detail}
+\vspace{2pt}
+\footnotesize
+\begin{tabular*}{\columnwidth}{l@{\extracolsep{\fill}}ccccc}
+\toprule
+Eval seed & OJ & CP & Milk & BBQ & Agg. \\
+\midrule
+0   & 46 & 70 & 74 & 22 & 53.0 \\
+7   & 68 & 74 & 66 & 20 & 57.0 \\
+42  & 60 & 70 & 68 & 28 & 56.5 \\
+99  & 58 & 76 & 66 & 30 & 57.5 \\
+123 & 52 & 74 & 66 & 20 & 53.0 \\
+\midrule
+Mean$\pm$Std & 56.8$\pm$8.3 & 72.8$\pm$2.7 & 68.0$\pm$3.5 & 24.0$\pm$4.7 & 55.4$\pm$2.2 \\
+\bottomrule
+\end{tabular*}
+\end{table}
+
+
+\section{Training Details}
+\label{sec:appendix_training}
+
+\paragraph{Architecture.}
+We use LoRA~\cite{hu2022lora} adapters injected into the PaliGemma vision encoder (rank 16, $\alpha$=16) and the action expert (rank 32, $\alpha$=32), following the configuration of OpenPi. The SDF decoder is a 4-layer MLP (hidden dimension 256) with skip connections, taking pooled suffix features (1024-d) and query points (3-d) as input. The end-effector extractor is a 2-layer MLP (1024 $\to$ 256 $\to$ 3).
+
+\paragraph{Training schedule.}
+Training proceeds in two phases:
+\begin{itemize}
+    \item \textbf{Phase 1} (steps 0--5000): Backbone and LoRA parameters are frozen. Only the SDF decoder and EE extractor are trained, allowing them to learn meaningful representations before the policy adapts.
+    \item \textbf{Phase 2} (steps 5000--30000): LoRA parameters are unfrozen with a 100-step gradient warmup ramp. All auxiliary heads continue training jointly with the policy.
+\end{itemize}
+
+\paragraph{Hyperparameters.}
+\begin{table}[h]
+\centering
+\caption{Training hyperparameters.}
+\label{tab:hyperparams}
+\footnotesize
+\begin{tabular*}{\columnwidth}{l@{\extracolsep{\fill}}l}
+\toprule
+Parameter & Value \\
+\midrule
+Base model & Pi0.5 (OpenPi, $\sim$3.5B params) \\
+Optimizer & AdamW \\
+Learning rate & $2.5 \times 10^{-5}$ (cosine to lr/10) \\
+Warmup steps & 1000 \\
+Batch size & 32 \\
+Total steps & 30000 \\
+$\lambda_\mathrm{sdf}$ & \{0.005, 0.01, 0.1\} \\
+$\lambda_\mathrm{ee}$ & 0.01 \\
+SDF query points/step & 64 \\
+SDF clamp $\delta$ & 0.05 m \\
+Eikonal weight & 0.1 \\
+LoRA rank (vision/action) & 16 / 32 \\
+Phase 1 duration & 5000 steps \\
+\bottomrule
+\end{tabular*}
+\end{table}
+
+\paragraph{Evaluation protocol.}
+Each episode runs for at most 300 timesteps. The policy generates a 50-step action trajectory via flow matching and executes the first 5 steps before replanning. An episode terminates early upon task completion. Collision detection uses MuJoCo's built-in contact detection: any contact between the robot and a non-target object registers as a collision. For Pi0.5 evaluations, camera images are rotated 180$^\circ$ to match the pre-training viewpoint convention; this correction was verified to restore TSR from ${\sim}$5\% to ${\sim}$52\% while leaving CAR comparable. Oracle variants use 40 episodes per task (160 total) with a single seed; all other configurations use 50 episodes per task (200 total).
+
+\paragraph{Data.}
+We use the SafeLIBERO object\_pudding suite with pre-computed SDF ground truth. SDF values are computed offline from the obstacle mesh using a dense $64^3$ voxel grid. During training, 64 query points are randomly sampled per step from this grid.
+
+\paragraph{Computational resources.}
+All training and evaluation experiments are conducted on NVIDIA RTX PRO 6000 GPUs (96\,GB). Phase~1 (5K steps) takes approximately 6 hours on a single GPU; Phase~2 (25K steps) takes approximately 32 hours. Evaluation of 200 episodes requires approximately 4 hours. Across 100+ experiments (training runs, evaluations, oracle variants, and ablations), the total computational budget is approximately 700 GPU-hours.
+
+
+\section{TSR Collapse Mechanism Analysis}
+\label{sec:appendix_tsr_collapse}
+
+Fine-tuning Pi0.5 with LoRA alone (no SDF supervision) reduces TSR from 71.5\% to 49.7\,$\pm$\,3.2\%, a drop of 21.8\,pp (Table~\ref{tab:multiseed_full}). Adding SDF supervision does not exacerbate this decline: TSR under $\lambda = 0.005$ is 54.0\,$\pm$\,3.0\% ($-$17.5\,pp), under $\lambda = 0.01$ is 53.8\,$\pm$\,1.5\% ($-$17.7\,pp), and under $\lambda = 0.1$ is 50.2\,$\pm$\,3.9\% ($-$21.3\,pp). All SDF conditions are comparable to the LoRA-only baseline, and the largest SDF drop ($\lambda = 0.1$, $-$21.3\,pp) matches the LoRA-only drop ($-$21.8\,pp) to within 0.5\,pp. This confirms that SDF auxiliary loss is not the cause of TSR degradation.
+
+The mechanism is catastrophic forgetting of task semantics induced by LoRA fine-tuning on a narrow 4-task subset of the pre-training distribution. Qualitative inspection reveals that fine-tuned models retain full motor capability: 0\% action-collapse rate, end-effector displacement $>$\,0.37\,m, and active obstacle interaction (mean obstacle displacement ${\sim}$0.05\,m), but lose goal-directed grasping and placing behavior. The dominant failure mode shifts from collision (baseline safe failure rate 0.5\%) to task incompletion without collision (${\sim}$50\% of episodes), representing a 100$\times$ increase in safe failures. The robot moves purposefully through the workspace but fails to acquire or deliver the target object, consistent with retained low-level motor skills and degraded high-level task understanding.

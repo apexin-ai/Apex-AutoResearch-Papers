@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "32333c7694aecf6ae01e",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ssh fetch method draft",
+  "task_key": "worker_ssh_fetch_method_draft_20260520T224140",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fetch_method_draft_20260520T224140_result.json",
+    "occurrence": 1,
+    "bytes": 158,
+    "sha256": "adfb1f0164d0a9c7683d6a586e493a9028dd765af35abfa1f2fecf9f59417b7a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。文件已写入本地 `artifacts/method_draft.md` 并注册为 `art_20260520_fe96e7`，包含 §3.1–3.5 完整内容（119 行）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fetch-method-draft.md"
+}

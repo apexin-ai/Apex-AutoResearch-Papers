@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1c316e9a91d299bdc08f",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "gpu check westd 35807",
+  "task_key": "worker_gpu-check_westd-35807_20260529T044848",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu-check_westd-35807_20260529T044848_result.json",
+    "occurrence": 1,
+    "bytes": 1455,
+    "sha256": "3a9b9ff9156e4a2a965799cd6da07c2bd27238b9a0b452ee9e4845738b819ea8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-35807 服务器状态汇总\n\n### GPU 状态\n| GPU | 型号 | 显存使用 | 利用率 | 温度 | 功耗 |\n|-----|------|---------|--------|------|------|\n| 0 | RTX PRO 6000 (98GB) | 19.1GB / 98GB | 100% | 63°C | 464W/600W |\n\n**GPU 1-3 空闲**（nvidia-smi 未显示）。\n\n### 活跃训练\n**train_pi05_lora_baseline_s3_v2** — 正在跑\n- PID: 93400（父进程 93395）\n- 命令: `train_pi05_lora_baseline.py --scene object_pudding --seed 3 --gpu 0 --batch_size 32 --num_train_steps 30000`\n- 当前进度: **step 3603 / 30000 (12%)**，运行 1h13m\n- 速度: **~1.20 s/it**（稳定）\n- Loss: ~0.12，lr=2.46e-05\n- 预计剩余: ~8h48m（总约 10h）\n- 日志: `/tmp/train_lora_s3_restart.log`\n\n### eval_pi05_a1_best_s0_l005\n**已完成**。结果文件 `eval_pi05_a1_best_s0_l005.json` 最后修改时间 May 28 07:37，不再有对应进程。\n\n### tmux\n`tmux ls` 被 read-only 限制，无法执行。但从进程列表看，训练是通过 nohup 启动的，非 tmux。\n\n### 磁盘\n| 挂载点 | 总计 | 已用 | 可用 | 使用率 |\n|--------|------|------|------|--------|\n| /root/autodl-tmp | 350G | 282G | 69G | **81%** |\n\n### 最近 eval 结果（/root/autodl-tmp/eval_results/）\n最新: `eval_oracle_pi05_lora_s0.json` — May 29 09:33\n\n### 最近训练日志（/root/colliforce-vla/logs/）\n最新: `eval_s0_l01_30k_seed7.log` — May 27 18:23（2天前，无新日志产出）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-check-westd-35807.md"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_pi05_a1_best_s2_l005_10k",
+  "project": "diff_collision_sdf",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T17:21:50.577Z",
+    "updated_at": "2026-05-25T17:22:07.441Z",
+    "hypothesis": "Pi0.5+A1 best checkpoint eval (seed2, λ=0.005, step 10K): evaluates the sweet-spot checkpoint before action collapse. At 10K the model showed real collision avoidance (~0.4% filtered CAR). Compares with 30K (100% frozen) to demonstrate the collapse phenomenon quantitatively.",
+    "parent": "train_pi05_a1_obj_s2_l005"
+  },
+  "timestamp": "2026-05-25T17:22:07.622403+00:00",
+  "trigger": "update_registry"
+}

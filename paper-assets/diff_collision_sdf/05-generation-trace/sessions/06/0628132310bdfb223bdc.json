@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0628132310bdfb223bdc",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "diagnose gpu status both servers 20260525",
+  "task_key": "worker_diagnose_gpu_status_both_servers_20260525_20260525T203224",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_gpu_status_both_servers_20260525_20260525T203224_result.json",
+    "occurrence": 1,
+    "bytes": 2284,
+    "sha256": "0390694441a97699785926ac07f8437f6b5caaa6e966ae819d63dd8fa844e0f2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### westd-35807（4× RTX PRO 6000 96GB）\n\n| GPU | 显存占用 | 利用率 | 进程 | PID |\n|-----|---------|--------|------|-----|\n| cuda:0 | 27045/97887 MiB | 100% | train_pi05_a1_spatial_bowl_s0_l005 | 3717 |\n| cuda:1 | 9010/97887 MiB | 1% | eval_30k_s1_l005_disp | 142394 |\n| cuda:2 | 9010/97887 MiB | 14% | eval_best_s1_l005_16k | 134344 |\n| cuda:3 | 9016/97887 MiB | 51% | eval_s0_l005_30k_r4 | 151915 |\n\n**Tmux sessions**: train_pi05_a1_spatial_bowl_s0_l005, eval_pi05_a1_30k_s1_l005_disp, eval_pi05_a1_30k_s0_l005_r4\n\n**磁盘**: root 23/30G (75%), autodl-tmp 210/350G (60%)\n\n---\n\n### westd-45947（2× RTX PRO 6000 96GB）\n\n| GPU | 显存占用 | 利用率 | 进程 | PID |\n|-----|---------|--------|------|-----|\n| cuda:0 | 27089/97887 MiB | 100% | train_pi05_lora_baseline_s0 | 3634 |\n| cuda:1 | 27089/97887 MiB | 100% | train_pi05_lora_baseline_s1 | 3724 |\n\n**Tmux sessions**: train_pi05_lora_baseline_s0, train_pi05_lora_baseline_s1\n\n**磁盘**: root 19/30G (61%)\n\n---\n\n### 空闲 GPU\n\n**无**。6 张 GPU 全部占用。\n\n---\n\n### 3 个训练实验进度\n\n| 实验 | 当前 step | 进度 | 速度 | 预估剩余 | 预计完成 (UTC) |\n|------|----------|------|------|---------|---------------|\n| spatial_bowl_s0_l005 | 9917/30000 | 33% | 4.63 s/it | ~25.8h | ~May 27 06:30 |\n| lora_baseline_s0 | 26116/30000 | 87% | 4.62 s/it | ~5.0h | ~May 26 09:30 |\n| lora_baseline_s1 | 26117/30000 | 87% | 4.63 s/it | ~5.0h | ~May 26 09:30 |\n\n---\n\n### 2 个 Eval 实验状态\n\n**eval_pi05_a1_best_s1_l005_16k** — 在跑，即将完成\n- GPU 2, PID 134344, via submit_training_job\n- 进度：Task 3/4（最后一个 task），episode 40/50\n- 预计 ~5 分钟内完成\n- 输出：`/root/autodl-tmp/eval_results/eval_s1_l005_best_16k.json`（尚未生成）\n\n**eval_pi05_a1_30k_s1_l005_disp** — 在跑\n- GPU 1, PID 142394, tmux session\n- 进度：Task 3/4（最后一个 task），episode 10/50\n- 预计 ~10-15 分钟内完成\n- 输出：`/root/autodl-tmp/eval_results/eval_s1_l005_30k_disp.json`（尚未生成）\n\n**额外发现**：GPU 3 还跑着一个 eval_s0_l005_30k_r4（PID 151915, tmux session `eval_pi05_a1_30k_s0_l005_r4`），输出到 `eval_s0_l005_30k_r4.json`，04:08 启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-gpu-status-both-servers-20260525.md"
+}

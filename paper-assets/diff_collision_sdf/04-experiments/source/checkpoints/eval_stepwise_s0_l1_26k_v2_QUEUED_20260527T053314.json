@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_stepwise_s0_l1_26k_v2",
+  "project": "diff_collision_sdf",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-27T05:32:59.417Z",
+    "updated_at": "2026-05-27T05:33:14.646Z",
+    "hypothesis": "Re-run of 26K stepwise eval with correct --pi05 flag. Original eval_stepwise_s0_l1_26k failed due to missing --pi05 causing architecture mismatch. Tests whether frozen rate continues escalating from 24K's 29.5% and whether dfCAR remains below LoRA-only baseline (54.5%).",
+    "parent": "eval_stepwise_s0_l1_24k"
+  },
+  "timestamp": "2026-05-27T05:33:14.853092+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,36 @@
+{
+  "exp_id": "baseline_lora_object_pudding_s0",
+  "project": "diff_collision_sdf",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 2,
+    "created_at": "2026-05-20T21:02:10.943Z",
+    "updated_at": "2026-05-22T11:57:42.669Z",
+    "hypothesis": "LoRA fine-tuned pi0 baseline on object_pudding (rank 16/32, matching A3 config) establishes fair comparison baseline — same trainable parameter budget as A3, expecting TSR >50% and CAR ~0%. Parent baselines (no LoRA) had frozen backbone which is not comparable to A3's LoRA setup.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 JAX_PLATFORMS=cpu WANDB_MODE=disabled python scripts/train_baseline.py --scene object_pudding --seed 0 --num_train_steps 30000 --save_interval 2000 --exp_name baseline_lora_object_pudding_seed0",
+      "server": "westd-35807",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "281629",
+      "log_path": "/root/autodl-tmp/colliforce-outputs/baseline_lora_obj_s0/train_v2.log",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/baseline_object_pudding/baseline_lora_object_pudding_seed0/",
+      "data_path": "/root/autodl-tmp/colliforce_data/safelibero_object",
+      "data_count": 50,
+      "model_name": "pi0+LoRA (rank 16/32)",
+      "seed": 0
+    },
+    "notes": "[2026-05-21 02:15] v2 restart with --exp_name for independent ckpt dir. PID 281629, ~5s/step, 23893 MiB VRAM. LoRA 33.5M params. Env: conda libero.",
+    "reproduce": {
+      "finished_at": "2026-05-22T11:57:19.209Z"
+    },
+    "failure_reason": "EXIT_CODE=2 (shell misuse / syntax)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-22T11:57:42.213Z"
+  },
+  "timestamp": "2026-05-22T11:57:42.714453+00:00",
+  "trigger": "update_registry"
+}

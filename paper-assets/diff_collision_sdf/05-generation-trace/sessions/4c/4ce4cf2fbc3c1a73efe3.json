@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "4ce4cf2fbc3c1a73efe3",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "fix eval pipeline v7 final",
+  "task_key": "worker_fix_eval_pipeline_v7_final_20260521T201444",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_eval_pipeline_v7_final_20260521T201444.log",
+    "occurrence": 1,
+    "bytes": 759619,
+    "sha256": "7743fc387d6a4aa5652945b324cc7d344cccfff1365125c9e9947005be7e11db"
+  },
+  "statistics": {
+    "messages": 357,
+    "user_turns": 0,
+    "tool_calls": 122,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 109,
+      "tool_call": 122,
+      "tool_result": 122,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 357,
+      "chunks": [
+        {
+          "path": "4ce4cf2fbc3c1a73efe3-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "4ce4cf2fbc3c1a73efe3-part-0002.json",
+          "message_count": 177
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-eval-pipeline-v7-final.md"
+}

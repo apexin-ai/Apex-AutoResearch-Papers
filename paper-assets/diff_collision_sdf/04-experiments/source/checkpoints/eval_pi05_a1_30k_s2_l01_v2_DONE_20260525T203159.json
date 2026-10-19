@@ -1,0 +1,44 @@
+{
+  "exp_id": "eval_pi05_a1_30k_s2_l01_v2",
+  "project": "diff_collision_sdf",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-25T12:51:54.690Z",
+    "updated_at": "2026-05-25T20:31:59.394Z",
+    "hypothesis": "Pi0.5+A1 30K eval (seed2, λ=0.01) using /30000/ checkpoint with lora_baseline model type. Third seed for statistical significance of stronger lambda 30K collision avoidance. Completes the 3-seed × 2-lambda eval matrix.",
+    "spec": {
+      "command": "python scripts/eval_safelibero.py --checkpoint .../seed2_l01/30000/ --config_name pi05_libero --model_type lora_baseline --pi05 --seed 0 --gpu 3",
+      "server": "westd-35807",
+      "data_path": "safelibero_object",
+      "data_count": 200,
+      "model_name": "pi05_a1_seed2_l01_30k",
+      "seed": 0,
+      "checkpoint_source": "train_pi05_a1_obj_s2_l01",
+      "eval_data": "safelibero_object_levelII"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "avg_TSR": 7.5,
+      "avg_CAR": 53,
+      "n_episodes": 200,
+      "task0_TSR": 0,
+      "task0_CAR": 62,
+      "task1_TSR": 30,
+      "task1_CAR": 42,
+      "task2_TSR": 0,
+      "task2_CAR": 88,
+      "task3_TSR": 0,
+      "task3_CAR": 20,
+      "source": "v3 JSON with per-episode displacement"
+    },
+    "notes": "Batch 2 完成 (TSR 7.5%, CAR 48%)。Batch 3 重跑(s0_l01_30k_v2)崩溃于 L1325 makedirs(\"\") bug。v3 已启动：PID 410686, cuda:3, westd-35807。--output_path /root/autodl-tmp/eval_results/eval_s2_l01_30k_v3.json",
+    "checkpoint_path": "/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_l01/30000",
+    "log_path": "/root/colliforce-vla/logs/eval_s2_l01_v2_*.log",
+    "completed_at": "2026-05-25T20:31:59.394Z"
+  },
+  "timestamp": "2026-05-25T20:31:59.536359+00:00",
+  "trigger": "update_registry"
+}

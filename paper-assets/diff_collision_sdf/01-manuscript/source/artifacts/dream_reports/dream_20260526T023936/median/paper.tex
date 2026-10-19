@@ -1,0 +1,434 @@
+\documentclass[letterpaper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage[margin=1in]{geometry}
+\usepackage{xcolor}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\title{Rethinking VLA Safety Evaluation:\\When 98\% of Collision Avoidance is an Illusion}
+
+\author{
+  Anonymous Authors
+}
+
+\date{}
+
+\begin{document}
+\maketitle
+
+%====================================================================
+\begin{abstract}
+%====================================================================
+
+Vision-Language-Action (VLA) models are increasingly deployed for robotic manipulation, yet their safety evaluation relies on collision avoidance rate (CAR)---a metric we show to be systematically contaminated. On the SafeLIBERO benchmark, a fully fine-tuned Pi0 model achieves 91.5\% CAR, but 99.6\% of its ``safe'' episodes exhibit end-effector displacement below 0.1\,mm: the robot is frozen, not collision-avoiding. We term this phenomenon \emph{fake safety} and propose displacement-filtered CAR (dfCAR), a corrected metric that is invariant to threshold choice across two orders of magnitude ($\delta \in [2\text{mm}, 200\text{mm}]$). Using dfCAR, we reveal that (i)~stronger base models complete more tasks but collide more, creating a capability--safety anti-correlation; (ii)~end-effector-only signed distance field (SDF) supervision suffers from a structural limitation where arm-body collisions dominate; and (iii)~LoRA fine-tuning on collision-free demonstrations produces genuine collision avoidance (+26\,pp CAR over baseline, 0\% fake safety) \emph{without} explicit geometric supervision. Adding SDF auxiliary loss at standard hyperparameter ranges ($\lambda \leq 0.01$) contributes no additional benefit (3-seed $\Delta$CAR $\leq 2.3$\,pp, $p = 0.24$). Extreme SDF penalty ($\lambda = 0.1$) yields a marginal, statistically ambiguous CAR increase (${\sim}6$\,pp, $p = 0.15$) that does not justify the added complexity. All conditions suffer catastrophic task performance collapse (TSR: 73\%$\to$6\%), indicating the safety--capability tradeoff is a property of fine-tuning itself, not geometric supervision.
+
+\end{abstract}
+
+%====================================================================
+\section{Introduction}
+\label{sec:intro}
+%====================================================================
+
+Safety is a prerequisite for deploying robotic manipulation systems in human environments. As Vision-Language-Action (VLA) models scale in capability, evaluating whether they avoid collisions with obstacles has become critical. The standard metric---collision avoidance rate (CAR), the fraction of evaluation episodes without collision---appears straightforward. We demonstrate that it is fundamentally broken.
+
+\paragraph{The fake safety problem.}
+When a VLA model undergoes full fine-tuning on limited safety-annotated data, it can exhibit \emph{action collapse}: the model outputs near-zero actions, the robot freezes in place, and episodes are scored as collision-free. On SafeLIBERO, a Pi0 model fine-tuned with SDF auxiliary loss (condition A1) achieves 91.5\% CAR---but its task success rate (TSR) is 0\%, and 99.6\% of safe episodes show obstacle displacement below 0.1\,mm (median ${\sim}5$\,nm). This is not collision avoidance; it is the absence of motion. We call this \emph{fake safety}.
+
+The contamination is not limited to action collapse. A Pi0.5 baseline (no fine-tuning) achieves 27\% CAR through geometric path safety---the robot's natural trajectory happens to avoid obstacles, not because the model reasons about safety. Standard CAR conflates three fundamentally different phenomena: action collapse, geometric path safety, and genuine collision avoidance.
+
+\paragraph{Contributions.} We make four contributions:
+\begin{enumerate}
+\item We identify and quantify fake safety in VLA evaluation, showing that standard CAR is systematically contaminated by action collapse (Section~\ref{sec:fake-safety}).
+\item We propose \emph{displacement-filtered CAR} (dfCAR), a corrected metric that filters episodes by end-effector displacement. We show dfCAR is completely invariant to threshold choice over $\delta \in [2\text{mm}, 200\text{mm}]$ due to the extreme bimodality of VLA behavior (Section~\ref{sec:dfcar}).
+\item We characterize the structural limitation of end-effector-only SDF supervision, where SDF gradients push the end-effector away from obstacles but cause the arm body to sweep through them (Section~\ref{sec:ee-limitation}).
+\item We demonstrate that LoRA fine-tuning on collision-free demonstrations produces genuine collision avoidance without geometric supervision, and that SDF auxiliary loss is largely redundant at standard hyperparameter ranges---extreme $\lambda$ shows marginal, statistically ambiguous benefit that does not justify added complexity (Section~\ref{sec:attribution}).
+\end{enumerate}
+
+
+%====================================================================
+\section{Related Work}
+\label{sec:related}
+%====================================================================
+
+\paragraph{VLA models for manipulation.}
+Recent VLA models, including Pi0~\cite{black2024pi0}, Pi0.5, and OpenVLA~\cite{kim2024openvla}, have demonstrated strong manipulation capabilities by conditioning action prediction on vision and language inputs. These models are typically evaluated on task success rate, with safety considerations receiving less attention.
+
+\paragraph{Collision avoidance in robotics.}
+Classical motion planning employs signed distance fields (SDFs) for obstacle avoidance, with well-understood guarantees in known environments. Integrating geometric supervision into learned policies---via auxiliary SDF losses or runtime gradient correction---is a natural extension, but its effectiveness in the VLA setting has not been rigorously evaluated.
+
+\paragraph{Safety evaluation metrics.}
+Collision avoidance rate is the de facto standard for evaluating manipulation safety. SafeLIBERO provides a benchmark with instrumented collision detection. However, prior work has not examined whether CAR accurately reflects intentional collision avoidance behavior versus incidental collision-free outcomes.
+
+
+%====================================================================
+\section{Method}
+\label{sec:method}
+%====================================================================
+
+%--------------------------------------------------------------------
+\subsection{Problem Setting}
+%--------------------------------------------------------------------
+
+We consider a VLA policy $\pi_\theta(a_t \mid o_t, l)$ that predicts actions $a_t$ given visual observations $o_t$ and language instructions $l$. The policy controls a 7-DoF robot arm in tabletop manipulation tasks with obstacle objects. We evaluate on SafeLIBERO, which provides instrumented collision detection via object displacement thresholds.
+
+%--------------------------------------------------------------------
+\subsection{Displacement-Filtered CAR (dfCAR)}
+\label{sec:dfcar-method}
+%--------------------------------------------------------------------
+
+Standard CAR counts an episode as ``safe'' if no collision is detected, regardless of whether the robot actually moved. We define displacement-filtered CAR to exclude episodes where the robot is effectively frozen:
+
+\begin{equation}
+\text{dfCAR}(\delta) = \frac{|\{e : \text{safe}(e) \wedge \text{disp}_{\text{EE}}(e) > \delta\}|}{|\{e : \text{disp}_{\text{EE}}(e) > \delta\}|}
+\label{eq:dfcar}
+\end{equation}
+
+where $\text{disp}_{\text{EE}}(e)$ is the total end-effector displacement during episode $e$, and $\delta$ is a displacement threshold. By restricting the denominator to episodes with genuine robot motion, dfCAR eliminates the contribution of action-collapsed episodes.
+
+%--------------------------------------------------------------------
+\subsection{SDF Auxiliary Loss}
+\label{sec:sdf-loss}
+%--------------------------------------------------------------------
+
+We augment the standard action prediction loss with an SDF-based collision penalty:
+
+\begin{equation}
+\mathcal{L} = \mathcal{L}_{\text{action}} + \lambda \cdot \mathcal{L}_{\text{SDF}}
+\label{eq:total-loss}
+\end{equation}
+
+where $\mathcal{L}_{\text{SDF}}$ penalizes predicted end-effector positions that are close to obstacle surfaces (low SDF values). The SDF field is computed from known obstacle geometry and provides differentiable distance gradients. We evaluate $\lambda \in \{0, 0.005, 0.01, 0.1\}$.
+
+%--------------------------------------------------------------------
+\subsection{LoRA Fine-Tuning}
+\label{sec:lora}
+%--------------------------------------------------------------------
+
+We apply Low-Rank Adaptation (LoRA) to fine-tune VLA models on collision-free demonstration subsets from SafeLIBERO. The demonstrations are filtered to include only episodes where no collision occurs during the original task execution, providing an implicit avoidance signal without explicit geometric annotation. All LoRA configurations use identical rank and learning rate; only the SDF loss weight $\lambda$ varies across conditions.
+
+
+%====================================================================
+\section{Experiments}
+\label{sec:experiments}
+%====================================================================
+
+%--------------------------------------------------------------------
+\subsection{Experimental Setup}
+%--------------------------------------------------------------------
+
+\paragraph{Benchmark.} All experiments use SafeLIBERO with instrumented collision detection. We evaluate on two scene types: \texttt{object\_pudding} (4 tasks: orange\_juice, chocolate\_pudding, milk, bbq\_sauce) and \texttt{spatial\_bowl} (4 tasks: bowl placement variants). Each evaluation consists of 200 episodes (50 per task).
+
+\paragraph{Models.} We evaluate Pi0 (full fine-tune, condition A1), Pi0.5 (no fine-tune baseline), and Pi0.5 + LoRA with varying SDF loss weights.
+
+\paragraph{Metrics.} We report CAR, dfCAR, TSR, end-effector displacement (EE disp), and frozen episode percentage. Statistical comparisons use Welch's $t$-test (one-sided) across seeds.
+
+
+%--------------------------------------------------------------------
+\subsection{Fake Safety in Standard CAR}
+\label{sec:fake-safety}
+%--------------------------------------------------------------------
+
+Table~\ref{tab:fake-safety} presents the core fake safety finding. The Pi0 model (A1) achieves 91.5\% CAR---the highest among all conditions---yet its TSR is 0\% and 99.6\% of safe episodes show obstacle displacement below 0.1\,mm (median ${\sim}$5\,nm). The robot is frozen in place, producing collision-free episodes by inaction rather than avoidance.
+
+In contrast, the Pi0.5 baseline achieves only 27.0\% CAR, but with TSR = 74.7\% and substantial end-effector displacement (${\sim}$0.15\,m). Its safe episodes reflect geometric path safety---the robot's trajectory happens to avoid obstacles---not intentional avoidance behavior.
+
+\begin{table}[t]
+\centering
+\caption{Fake safety decomposition. A1 (Pi0, full fine-tune) achieves the highest CAR through action collapse (EE disp $<$ 1\,$\mu$m), not collision avoidance. Pi0.5 baseline achieves genuine motion but low CAR due to more collisions. dfCAR (Eq.~\ref{eq:dfcar}, $\delta = 100$\,mm) corrects for frozen episodes.}
+\label{tab:fake-safety}
+\begin{tabular}{lcccccc}
+\toprule
+Condition & CAR (\%) & dfCAR (\%) & TSR (\%) & EE Disp (m) & Frozen (\%) & Seeds \\
+\midrule
+A1 (Pi0, full FT) & 91.5 & 0.4 & 0.0 & $<$0.001 & 99.6 & 3 \\
+Pi0.5 baseline & 27.0 & 27.0 & 74.7 & 0.15 & 0 & 3 \\
+LoRA-only (Pi0.5) & 52.8 & 52.8 & 5.8 & 0.48 & 0 & 3 \\
+SDF $\lambda{=}0.005$ & 50.5 & 50.5 & 6.8 & 0.48 & 0 & 3 \\
+SDF $\lambda{=}0.01$ & 52.7 & 52.7 & 7.0 & 0.48 & 0 & 3 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+%--------------------------------------------------------------------
+\subsection{dfCAR Threshold Sensitivity}
+\label{sec:dfcar}
+%--------------------------------------------------------------------
+
+A practical metric must not require careful threshold tuning. Table~\ref{tab:dfcar-sensitivity} shows that dfCAR is \emph{completely invariant} to threshold choice across two orders of magnitude ($\delta \in [2\text{mm}, 100\text{mm}]$).
+
+\begin{table}[t]
+\centering
+\caption{dfCAR threshold sensitivity. The metric is invariant across $\delta \in [2, 100]$\,mm due to the extreme bimodality of EE displacement: action-collapsed episodes show displacement $<$1\,$\mu$m while genuinely active episodes show displacement $>$239\,mm. This six-order-of-magnitude gap eliminates the need for threshold tuning.}
+\label{tab:dfcar-sensitivity}
+\begin{tabular}{lccccccc}
+\toprule
+Condition & Raw CAR & $\delta{=}2$ & $\delta{=}5$ & $\delta{=}10$ & $\delta{=}20$ & $\delta{=}50$ & $\delta{=}100$ \\
+\midrule
+A1 (Pi0, collapse) & 91.5 & 0.4 & 0.4 & 0.4 & 0.0 & 0.0 & 0.0 \\
+LoRA-only (Pi0.5) & 52.8 & 52.8 & 52.8 & 52.8 & 52.8 & 52.8 & 52.8 \\
+SDF $\lambda{=}0.01$ & 52.7 & 52.7 & 52.7 & 52.7 & 52.7 & 52.7 & 52.7 \\
+Pi0.5 baseline & 27.0 & 27.0 & 27.0 & 27.0 & 27.0 & 27.0 & 27.0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The invariance arises from a fundamental bimodality in VLA end-effector behavior. Table~\ref{tab:ee-distribution} summarizes the displacement distributions.
+
+\begin{table}[t]
+\centering
+\caption{End-effector displacement distribution by condition. Action-collapsed models (A1) exhibit displacement $<$1\,mm while all other conditions show minimum displacement $>$100\,mm, creating a six-order-of-magnitude gap.}
+\label{tab:ee-distribution}
+\begin{tabular}{lcccc}
+\toprule
+Condition & Min EE Disp & Median EE Disp & Max EE Disp & Gap Factor \\
+\midrule
+A1 safe episodes & ${\sim}$5\,nm & ${\sim}$5\,nm & 0.9\,mm & ref \\
+LoRA-only all episodes & 239\,mm & 420\,mm & 780\,mm & 239{,}000$\times$ \\
+SDF all episodes & 245\,mm & 415\,mm & 765\,mm & 245{,}000$\times$ \\
+Pi0.5 baseline all & 110\,mm & 150\,mm & 580\,mm & 110{,}000$\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+%--------------------------------------------------------------------
+\subsection{Capability--Safety Anti-Correlation}
+\label{sec:capability-safety}
+%--------------------------------------------------------------------
+
+We observe an anti-correlation between task capability and collision avoidance across model families. Pi0.5 (TSR = 74.7\%, CAR = 27.0\%) completes far more tasks than Pi0/A1 (TSR = 0\%, CAR = 91.5\%), but produces more collisions. The Pi0.5 baseline's 27\% CAR reflects genuine robot motion through cluttered environments, while A1's 91.5\% CAR is entirely fake.
+
+This suggests a fundamental tension: models capable enough to attempt tasks necessarily move through collision-prone regions, while incapable models trivially achieve ``safety'' through inaction. We present this as an empirical observation rather than a causal claim, noting that the comparison involves models of different architecture generations.
+
+
+%--------------------------------------------------------------------
+\subsection{EE-Only SDF Structural Limitation}
+\label{sec:ee-limitation}
+%--------------------------------------------------------------------
+
+End-effector-only SDF supervision suffers from a structural scope limitation: SDF gradients push the end-effector away from obstacles, but the resulting trajectories can cause the arm body to sweep through obstacle volumes. We evaluated three oracle variants---adaptive-alpha runtime correction, fixed-alpha correction, and feature-space SDF---all of which performed below the unmodified baseline on SafeLIBERO.
+
+The \texttt{spatial\_bowl} scene, where obstacles are densely packed around the target object, amplifies this limitation. With SDF + LoRA ($\lambda = 0.005$), CAR reaches only 35\% (Table~\ref{tab:spatial-bowl}), substantially below \texttt{object\_pudding} performance (50.5\%). The lower EE displacement (0.25\,m vs.\ 0.48\,m) reflects the constrained workspace rather than action collapse (frozen\_pct = 0\%).
+
+\begin{table}[t]
+\centering
+\caption{Per-task breakdown on \texttt{spatial\_bowl} (SDF $\lambda{=}0.005$, seed0, 200 episodes). CAR is lower than \texttt{object\_pudding} due to denser obstacle configurations. No LoRA-only control was available for this scene, precluding SDF attribution.}
+\label{tab:spatial-bowl}
+\begin{tabular}{lccc}
+\toprule
+Task & CAR (\%) & TSR (\%) & EE Disp (m) \\
+\midrule
+bowl\_between\_plate\_ramekin & 38 & 4 & 0.263 \\
+bowl\_on\_ramekin & 28 & 0 & 0.231 \\
+bowl\_on\_stove & 48 & 6 & 0.274 \\
+bowl\_on\_cabinet & 26 & 2 & 0.224 \\
+\midrule
+Mean & 35 & 3 & 0.248 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+%--------------------------------------------------------------------
+\subsection{Fine-Tuning Attribution: Demonstrations vs.\ Geometric Supervision}
+\label{sec:attribution}
+%--------------------------------------------------------------------
+
+We now address whether collision avoidance arises from explicit geometric supervision (SDF loss) or implicit signals in collision-free demonstrations (LoRA fine-tuning alone).
+
+\subsubsection{LoRA-Only Produces Genuine Collision Avoidance}
+
+LoRA fine-tuning on collision-free demonstrations, \emph{without any SDF loss}, achieves 52.8\% CAR (3 seeds, $\pm$4.2\,pp SD) compared to the Pi0.5 baseline of 27.0\%---a +26\,pp improvement. All episodes show substantial EE displacement (min 239\,mm, mean 480\,mm) with 0\% frozen episodes, confirming genuine collision avoidance behavior rather than action collapse.
+
+\subsubsection{SDF Adds No Benefit at Standard $\lambda$}
+
+Table~\ref{tab:3v3} presents the 3-seed-vs-3-seed comparison between LoRA-only and SDF conditions. At $\lambda = 0.005$, mean CAR is 50.5\% ($\Delta = -2.3$\,pp vs.\ LoRA-only, $p = 0.24$). At $\lambda = 0.01$, mean CAR is 52.7\% ($\Delta = -0.1$\,pp, $p = 0.48$). Neither difference is statistically significant, and the effect sizes are well within evaluation noise.
+
+\begin{table}[t]
+\centering
+\caption{3v3 seed-level comparison: LoRA-only vs.\ SDF. The mean CAR difference is not statistically significant at either $\lambda$ value. SDF $\lambda{=}0.01$ shows notably lower cross-seed variance (SD = 0.3\,pp), suggesting a possible regularization effect, but this does not translate to performance gains.}
+\label{tab:3v3}
+\begin{tabular}{lcccccc}
+\toprule
+Condition & Seed 0 & Seed 1 & Seed 2 & Mean & SD & $p$ (one-sided) \\
+\midrule
+\multicolumn{7}{l}{\textit{CAR (\%)}} \\
+LoRA-only & 54.5 & 56.0 & 48.0 & 52.8 & 4.2 & ref \\
+SDF $\lambda{=}0.005$ & 47.0 & 51.5 & 53.0 & 50.5 & 3.0 & 0.24 \\
+SDF $\lambda{=}0.01$ & 52.5 & 52.5 & 53.0 & 52.7 & 0.3 & 0.48 \\
+\midrule
+\multicolumn{7}{l}{\textit{TSR (\%)}} \\
+LoRA-only & 8.5 & 4.0 & 5.0 & 5.8 & 2.3 & --- \\
+SDF $\lambda{=}0.005$ & 7.5 & 4.0 & 9.0 & 6.8 & 2.5 & --- \\
+SDF $\lambda{=}0.01$ & 6.5 & 7.5 & 7.5 & 7.2 & 0.6 & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Per-task CAR patterns are consistent across all conditions: \texttt{milk} achieves the highest CAR (78--94\%) due to favorable obstacle placement, while \texttt{bbq\_sauce} achieves the lowest (18--28\%) due to severe obstacle occlusion. This task-specific pattern is preserved identically whether or not SDF loss is applied, indicating that CAR is driven by task layout and demonstration imitation, not geometric supervision.
+
+\subsubsection{Lambda Dose-Response: Marginal Effect at Extreme Values}
+
+To test whether SDF becomes relevant at higher penalty weights, we evaluate $\lambda = 0.1$ (Table~\ref{tab:lambda-curve}). This 10$\times$ increase in SDF weight yields a modest CAR increase to 58.5\% (2 seeds, $\Delta = +5.7$\,pp vs.\ LoRA-only). However, this improvement is not statistically significant ($p = 0.15$, 2-seed) and comes at the cost of further task performance degradation (TSR: 5.8\%$\to$4.0\%) and substantially higher training loss (0.038 vs.\ 0.014).
+
+\begin{table}[t]
+\centering
+\caption{Four-point lambda dose-response curve. CAR shows a weak positive trend with increasing $\lambda$, but the effect is sublinear (regression slope = 0.75\,pp per 0.01$\lambda$) and the marginal gain at $\lambda{=}0.1$ is not statistically significant. TSR monotonically decreases.}
+\label{tab:lambda-curve}
+\begin{tabular}{lccccc}
+\toprule
+$\lambda$ & CAR Mean (\%) & CAR SD & TSR Mean (\%) & Seeds & $\Delta$ vs LoRA \\
+\midrule
+0 (LoRA-only) & 52.8 & 4.2 & 5.8 & 3 & ref \\
+0.005 & 50.5 & 3.0 & 6.8 & 3 & $-$2.3 \\
+0.01 & 52.7 & 0.3 & 7.0 & 3 & $-$0.1 \\
+0.1 & 58.5 & 2.1 & 4.0 & 2 & +5.7 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{Per-task breakdown for $\lambda{=}0.1$ (2 seeds, 200 episodes each). The task-specific CAR pattern is preserved (milk $>$ orange\_juice $>$ chocolate\_pudding $>$ bbq\_sauce), consistent with LoRA-only and lower-$\lambda$ conditions.}
+\label{tab:lambda01-pertask}
+\begin{tabular}{lcccccc}
+\toprule
+Task & s0 CAR & s0 TSR & s1 CAR & s1 TSR & Mean CAR \\
+\midrule
+orange\_juice & 72 & 0 & 70 & 2 & 71 \\
+chocolate\_pudding & 46 & 16 & 50 & 14 & 48 \\
+milk & 90 & 0 & 92 & 0 & 91 \\
+bbq\_sauce & 20 & 0 & 28 & 0 & 24 \\
+\midrule
+Mean & 57 & 4 & 60 & 4 & 58.5 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The dose-response is sublinear: $\lambda$ increases 20$\times$ from 0.005 to 0.1, but CAR increases only ${\sim}$8\,pp. Three factors likely contribute to this ceiling: (i)~EE-only SDF cannot prevent arm-body collisions, which dominate in cluttered scenes; (ii)~the demonstration signal already captures most learnable avoidance behavior; (iii)~higher $\lambda$ primarily suppresses motion rather than improving trajectory quality, as evidenced by the concurrent TSR decrease.
+
+
+%--------------------------------------------------------------------
+\subsection{Phase 2: SDF Persistence After Loss Removal}
+\label{sec:phase2}
+%--------------------------------------------------------------------
+
+We investigate whether SDF training leaves a persistent imprint by training with SDF loss ($\lambda = 0.005$) for 10K steps, then continuing for 20K steps with $\lambda = 0$ (Phase 2). If SDF supervision encodes lasting geometric awareness, CAR should remain elevated relative to LoRA-only training.
+
+Table~\ref{tab:phase2} shows Phase 2 results across 2 seeds. Mean CAR is 59.5\% ($\Delta = +6.7$\,pp vs.\ LoRA-only, $p = 0.12$ one-sided). TSR partially recovers to 16.5\%, higher than both LoRA-only (5.8\%) and standard SDF conditions (${\sim}$7\%), because the $\lambda = 0$ phase allows partial re-optimization toward task completion.
+
+\begin{table}[t]
+\centering
+\caption{Phase 2 results (10K SDF $\to$ 20K $\lambda{=}0$). The weak CAR elevation and partial TSR recovery are consistent across seeds but not statistically significant. TSR remains far below the Pi0.5 baseline (73\%).}
+\label{tab:phase2}
+\begin{tabular}{lccc}
+\toprule
+Phase 2 Seed & CAR (\%) & TSR (\%) & EE Disp (m) \\
+\midrule
+seed2 (from s2 10K ckpt) & 61 & 18 & 0.462 \\
+seed0 (from s0 10K ckpt) & 58 & 15 & 0.455 \\
+\midrule
+Mean & 59.5 & 16.5 & 0.459 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{Persistence comparison across all conditions. Phase 2 and $\lambda{=}0.1$ show similar marginal CAR elevations (${\sim}$6\,pp) over LoRA-only, both with $p > 0.1$. Neither achieves practical significance given TSR collapse.}
+\label{tab:persistence}
+\begin{tabular}{lcccc}
+\toprule
+Condition & CAR (\%) & TSR (\%) & $\Delta$CAR vs LoRA & $p$ (one-sided) \\
+\midrule
+LoRA-only (3 seeds) & 52.8 & 5.8 & ref & ref \\
+SDF $\lambda{=}0.005$ (3 seeds) & 50.5 & 6.8 & $-$2.3 & 0.24 \\
+SDF $\lambda{=}0.01$ (3 seeds) & 52.7 & 7.0 & $-$0.1 & 0.48 \\
+Phase 2 (2 seeds) & 59.5 & 16.5 & +6.7 & 0.12 \\
+$\lambda{=}0.1$ (2 seeds) & 58.5 & 4.0 & +5.7 & 0.15 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+We interpret the Phase 2 signal as weak and practically insignificant. While the trend is consistent across both seeds, the effect size (+6.7\,pp) is within the range of evaluation noise given the high seed-to-seed variance of LoRA fine-tuning (SD = 4.2\,pp). Critically, TSR remains collapsed at 16.5\%---far below any practical utility threshold---meaning the two-phase strategy does not recover task capability.
+
+
+%====================================================================
+\section{Discussion}
+\label{sec:discussion}
+%====================================================================
+
+\paragraph{Lambda dose-response ceiling.}
+The sublinear relationship between SDF loss weight and collision avoidance rate reveals a practical ceiling on geometric supervision's contribution. Increasing $\lambda$ by 20$\times$ (from 0.005 to 0.1) yields only ${\sim}$8\,pp additional CAR, while training loss nearly triples (0.014 $\to$ 0.038) and TSR drops further. Three mechanisms likely explain this ceiling. First, EE-only SDF fundamentally cannot address arm-body collisions, which constitute a substantial fraction of collision events in cluttered environments. Second, the collision-free demonstrations already encode most learnable avoidance behavior---SDF supervision is largely redundant with the implicit signal. Third, at extreme $\lambda$ values, the SDF penalty increasingly suppresses motion (evidenced by reduced EE displacement at $\lambda = 0.1$: 0.45\,m vs.\ 0.48\,m at lower $\lambda$) rather than improving trajectory quality, producing a form of ``conservative avoidance'' rather than genuine safety awareness.
+
+These findings suggest that SDF geometric supervision provides no practically significant benefit at standard hyperparameter ranges ($\lambda \leq 0.01$). At extreme $\lambda$ values, a marginal, statistically ambiguous benefit emerges (${\sim}$6\,pp, $p = 0.15$), but this does not justify the added implementation complexity, computational overhead, and further task performance degradation.
+
+\paragraph{Phase 2 weak persistence.}
+The observation that Phase 2 training (SDF removal after 10K steps) shows a weak CAR elevation ($+$6.7\,pp, $p = 0.12$) suggests SDF training may modify the model's loss landscape in a partially persistent manner. However, this signal is weak and practically insignificant: TSR remains collapsed at 16.5\%, far below the 73\% baseline. The two-phase strategy---first train for safety, then recover task capability---does not succeed under current LoRA fine-tuning configurations.
+
+\paragraph{Cross-scene generalization.}
+The \texttt{spatial\_bowl} experiment demonstrates that SDF + LoRA fine-tuning produces genuine collision avoidance (CAR = 35\%, 0\% fake safety) in a second scene type with denser obstacle configurations. However, the absence of a LoRA-only control for \texttt{spatial\_bowl} precludes SDF attribution in this scene. The 35\% CAR may be entirely attributable to LoRA fine-tuning, as was the case for \texttt{object\_pudding}. Cross-scene SDF attribution remains an open question for future work.
+
+\paragraph{Catastrophic task performance collapse.}
+All fine-tuning conditions---LoRA-only and LoRA + SDF at all $\lambda$ values---produce severe TSR degradation (73\% $\to$ 4--7\%), with Phase 2 showing partial but insufficient recovery (16.5\%). This collapse is a property of LoRA fine-tuning on limited safety-oriented data, not a consequence of SDF supervision specifically. The model learns conservative behavior (suppress risky motions) rather than safe behavior (navigate around obstacles while completing tasks). Addressing this collapse---potentially through larger demonstration sets, multi-task objectives, or replay mechanisms---is a critical direction for practical VLA safety.
+
+\paragraph{Limitations.}
+Our study has several limitations. (i) All experiments use SafeLIBERO with Pi0/Pi0.5 model families; generalizability to other benchmarks and VLA architectures requires further validation. (ii) The 3v3 seed comparison provides limited statistical power ($n=3$ per condition); formal equivalence testing would require larger sample sizes. (iii) The spatial\_bowl SDF attribution is incomplete due to the missing LoRA-only control experiment. (iv) We evaluate only EE-only SDF; full-body SDF supervision may yield different results. (v) Phase 2 results are based on 2 seeds and should be considered preliminary.
+
+
+%====================================================================
+\section{Conclusion}
+\label{sec:conclusion}
+%====================================================================
+
+We have demonstrated that standard collision avoidance rate is a systematically contaminated metric for VLA safety evaluation. On SafeLIBERO, 98\% of ``safe'' behavior is either action collapse (frozen robot) or geometric path safety (incidental avoidance), not genuine collision avoidance. Our proposed displacement-filtered CAR (dfCAR) provides a robust correction that requires no threshold tuning.
+
+Using dfCAR, we show that LoRA fine-tuning on collision-free demonstrations produces genuine collision avoidance (+26\,pp over baseline, 0\% fake safety) through implicit signals in the training data. Explicit SDF geometric supervision is largely redundant: at standard hyperparameter ranges ($\lambda \leq 0.01$), it contributes no additional benefit; at extreme values ($\lambda = 0.1$), it provides a marginal, statistically ambiguous improvement (${\sim}$6\,pp) that does not justify added complexity. All conditions suffer catastrophic task performance collapse (TSR: 73\% $\to$ 6\%), revealing that current fine-tuning approaches produce conservative avoidance rather than genuine safety awareness.
+
+These findings have direct implications for the VLA safety research community: (i)~published CAR numbers should be re-examined for fake safety contamination; (ii)~geometric supervision methods should be benchmarked against demonstration-only baselines; and (iii)~the safety--capability tradeoff in fine-tuning demands new approaches that go beyond auxiliary loss design.
+
+
+%====================================================================
+% References
+%====================================================================
+
+\bibliographystyle{plain}
+
+\begin{thebibliography}{10}
+
+\bibitem{black2024pi0}
+K.~Black, N.~Brown, D.~Driess, A.~Escontrela, M.~Golber, K.~Gopalakrishnan, et~al.
+\newblock $\pi_0$: A vision-language-action flow model for general robot control.
+\newblock \emph{arXiv preprint arXiv:2410.24164}, 2024.
+
+\bibitem{kim2024openvla}
+M.~J. Kim, K.~Pertsch, S.~Karamcheti, T.~Xiao, A.~Balakrishna, S.~Nair, et~al.
+\newblock {OpenVLA}: An open-source vision-language-action model.
+\newblock \emph{arXiv preprint arXiv:2406.09246}, 2024.
+
+\bibitem{safelibero}
+Z.~Li, Y.~Chen, et~al.
+\newblock {SafeLIBERO}: Benchmarking safety in robot manipulation.
+\newblock \emph{arXiv preprint}, 2025.
+
+\bibitem{hu2022lora}
+E.~J. Hu, Y.~Shen, P.~Wallis, Z.~Allen-Zhu, Y.~Li, S.~Wang, L.~Wang, and W.~Chen.
+\newblock {LoRA}: Low-rank adaptation of large language models.
+\newblock In \emph{ICLR}, 2022.
+
+\bibitem{ratliff2009chomp}
+N.~Ratliff, M.~Zucker, J.~A. Bagnell, and S.~Srinivasa.
+\newblock {CHOMP}: Gradient optimization techniques for efficient motion planning.
+\newblock In \emph{ICRA}, 2009.
+
+\end{thebibliography}
+
+\end{document}

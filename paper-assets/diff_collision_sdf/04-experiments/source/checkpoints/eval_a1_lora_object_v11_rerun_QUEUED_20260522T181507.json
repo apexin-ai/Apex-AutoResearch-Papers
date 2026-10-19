@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_a1_lora_object_v11_rerun",
+  "project": "diff_collision_sdf",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T18:12:11.380Z",
+    "updated_at": "2026-05-22T18:15:07.539Z",
+    "hypothesis": "Clean rerun of A1 (SDF auxiliary loss + LoRA) eval on safelibero_object with 200 episodes (4×50). Original eval_a1_lora_object_v11 data was corrupted by M025 (output file overwritten, only 12 episodes recoverable). This rerun provides complete per-episode displacement data for fake-safety analysis and reliable task-level metrics. Expected CAR ~90% (matching original partial data).",
+    "parent": "eval_a1_lora_object_v11"
+  },
+  "timestamp": "2026-05-22T18:15:07.618570+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,28 @@
+{
+  "exp_id": "a1_sdf_object_pudding_s0",
+  "project": "diff_collision_sdf",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T14:49:06.749Z",
+    "updated_at": "2026-05-20T20:50:05.985Z",
+    "spec": {
+      "command": "WANDB_MODE=disabled python scripts/train_a1_sdf_aux.py --scene object_pudding --seed 0 --save_interval 2000 --batch_size 32 --gpu 1",
+      "server": "westd-35807",
+      "data_path": "/root/autodl-tmp/colliforce_data/safelibero_object/",
+      "data_count": 50,
+      "model_name": "pi0+SDF_aux",
+      "seed": 0,
+      "gpu": "cuda:1",
+      "pid": "227389",
+      "log_path": "~/runs/diff_collision_sdf/a1_sdf_object_pudding_s0.log",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/a1_sdf_object_pudding/a1_sdf_object_pudding_seed0/"
+    },
+    "conclusion": "killed",
+    "completed_at": "2026-05-20T20:50:05.985Z"
+  },
+  "timestamp": "2026-05-20T20:50:06.010800+00:00",
+  "trigger": "update_registry"
+}

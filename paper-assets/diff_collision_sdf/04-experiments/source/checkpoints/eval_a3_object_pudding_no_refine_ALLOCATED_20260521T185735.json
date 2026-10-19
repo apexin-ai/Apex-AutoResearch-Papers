@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_a3_object_pudding_no_refine",
+  "project": "diff_collision_sdf",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T18:15:43.035Z",
+    "updated_at": "2026-05-21T18:57:35.359Z",
+    "hypothesis": "A3 trained with SDF gradient loss but evaluated without runtime refinement (--no_refine) — ablation to isolate whether CAR improvement comes from training-time gradient signal alone vs runtime refinement.",
+    "parent": "a3_gradient_object_pudding_s0"
+  },
+  "timestamp": "2026-05-21T18:57:35.393964+00:00",
+  "trigger": "update_registry"
+}

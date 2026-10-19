@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0ee324cb5cab5bf2d528",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "fix paper switch p value",
+  "task_key": "worker_fix_paper_switch_p_value_20260527T205649",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_paper_switch_p_value_20260527T205649_result.json",
+    "occurrence": 1,
+    "bytes": 1085,
+    "sha256": "da5fcfe8582200e6a72194633a1459d9afb0b7c2d124e0f3243dda0d072c564e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成。汇报如下：\n\n### 修改内容\n\n**3 处修改**（文件：`artifacts/paper_switch.py`）：\n\n| 行号 | 修改 |\n|------|------|\n| 411-412 | `v` 字典：`p_value` 从 `p_one` 改为 `p_two`（双尾），新增 `p_one_value`（单尾） |\n| 263-267 | Scenario C dose-response 段落：在 `$p = {p_value}$` 后添加 `\\footnote{}`，含单尾 p + directional prior 说明 |\n| 287-290 | Scenario B dose-response 段落：同上添加脚注，说明即使用单尾检验仍不显著 |\n| 424-425 | 修复打印输出：`p_one` 行打印 `p_one_value`，`p_two` 行打印 `p_value` |\n\n### p 值结果\n\n| 输入 | Scenario | p_one（脚注） | p_two（正文） |\n|------|----------|--------------|--------------|\n| s2=58 | C | 0.012 | 0.036 |\n| s2=55 | B | 0.071 | 0.155 |\n\n### 逻辑确认\n\n- Scenario 判定仍用 `p_one < 0.05`（未改动）\n- 正文所有 `{p_value}` 位置输出双尾 p（保守值）\n- 脚注仅在 dose-response 段落出现，包含单尾 p + directional prior 说明\n- `--dry-run` 功能不受影响"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-paper-switch-p-value.md"
+}

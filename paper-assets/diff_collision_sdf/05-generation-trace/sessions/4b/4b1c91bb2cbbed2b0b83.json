@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4b1c91bb2cbbed2b0b83",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops check spatial eval and a3 progress",
+  "task_key": "worker_ops_check_spatial_eval_and_a3_progress_20260522T152557",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_spatial_eval_and_a3_progress_20260522T152557_result.json",
+    "occurrence": 1,
+    "bytes": 1734,
+    "sha256": "4c4ddf750c2499096719768cd7fd81c59bcb4e2d931e8653eef4b956a88e1802"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### 1. Spatial LoRA Eval — **已完成** ❌\n\n| Task | TSR | CAR | Avg Max Displacement |\n|------|-----|-----|---------------------|\n| 0: bowl between plate & ramekin → plate | 0.0% | 0.0% | 0.2669m |\n| 1: bowl on ramekin → plate | 0.0% | 0.0% | 0.2060m |\n| 2: bowl on stove → plate | 0.0% | 0.0% | 0.2212m |\n| 3: bowl on cabinet → plate | 0.0% | 0.0% | 0.2328m |\n| **Overall** | **0.0%** | **0.0%** | **~0.23m** |\n\n所有 200 个 episode 全部碰撞，碰撞发生极早（step 4-100），displacement 大（0.2-0.4m）。baseline LoRA 在 spatial 上完全失败。\n\n### 2. Object LoRA Eval — **已完成**\n\n| Task | TSR | CAR | Avg Max Displacement |\n|------|-----|-----|---------------------|\n| 0: orange_juice → basket | 0.0% | 96.0% | 0.0072m |\n| 1: chocolate_pudding → basket | 0.0% | 46.0% | 0.0257m |\n| 2: milk → basket | 0.0% | 98.0% | 0.00001m |\n| 3: bbq_sauce → basket | 0.0% | 88.0% | 0.0070m |\n| **Overall** | **0.0%** | **82.0%** | **~0.01m** |\n\nTSR=0%（任务全部失败），但 CAR 尚可（82%，碰撞少），displacement 极小。模型在 object 上避碰能力好但不会完成任务。\n\n### 3. A3 Spatial Bowl Training — **进行中**\n\n- 当前 step: **7894 / 30000** (26.3%)\n- 速度: ~4.0 s/step\n- 已训练: 8h07m\n- 剩余: ~24.5h\n- ETA: 约 5月24日 凌晨\n- loss: ~0.05-0.07（已收敛到合理区间）\n- GPU: cuda:0 100% 利用率, 23.9GB 显存\n\n### 4. pi0.5 Download — **进行中/可能卡住**\n\n- 当前大小: **8.0G / 11.6G** (69%)\n- 文件已下载但部分有 `.gstmp` 后缀（gsutil 临时文件），说明下载仍在进行或中断了\n- 未检测到活跃 gsutil 进程（需进一步确认）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-spatial-eval-and-a3-progress.md"
+}

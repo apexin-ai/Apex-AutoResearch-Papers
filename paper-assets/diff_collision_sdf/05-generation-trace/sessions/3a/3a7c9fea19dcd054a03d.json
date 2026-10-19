@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3a7c9fea19dcd054a03d",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "eval launch oracle a3 m024fix object v11",
+  "task_key": "worker_eval_launch_oracle_a3_m024fix_object_v11_20260522T175220",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_launch_oracle_a3_m024fix_object_v11_20260522T175220_result.json",
+    "occurrence": 1,
+    "bytes": 631,
+    "sha256": "7eb4bd2604ffa662a4ae437acb384f2a5b876dc3f18160a2faceb01fef346c11"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "启动完成。\n\n**启动确认：**\n- **exp_id**: `oracle_a3_m024fix_object_v11`\n- **PID**: 859190\n- **tmux session**: `eval_oracle_m024fix`\n- **GPU**: westd-35807 cuda:3\n- **参数**: `--force_refine --n_episodes 40 --suite safelibero_object --safety_level II`\n- **日志**: `/root/autodl-tmp/eval_results/eval_oracle_a3_m024fix_object_v11.log`\n- **Registry**: RUNNING, cron 监控已注册\n\n注意：用户给的命令行参数有误（`--scene`/`--level`/`--checkpoint_dir`/`--output_path` 不存在），已按实际脚本接口修正为 `--suite`/`--safety_level`/`--checkpoint`/`--output_prefix`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-launch-oracle-a3-m024fix-object-v11.md"
+}

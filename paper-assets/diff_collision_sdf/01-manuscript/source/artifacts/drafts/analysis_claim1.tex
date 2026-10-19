@@ -1,0 +1,34 @@
+\subsection{The Fake Safety Problem}\label{sec:fake_safety}
+
+At first glance, the collision avoidance results for SDF-augmented VLA models appear compelling. Our A1-LoRA model (Pi0 fine-tuned with an SDF auxiliary loss) achieves a Collision Avoidance Rate (CAR) of 91.5\% across 800 evaluation episodes on the SafeLIBERO benchmark~\cite{hu2025vlsa}, a figure that would suggest reliable obstacle avoidance. Yet this headline metric conceals a fundamental problem. When we examine the end-effector displacement of the 732 episodes classified as ``safe,'' the picture changes entirely: 541 episodes (73.9\%) exhibit a maximum displacement below 1\,$\mu$m, and another 188 episodes (25.7\%) remain below 0.1\,mm. Only 3 episodes (0.4\%) show displacement above the 0.1\,mm threshold, the minimum we consider consistent with intentional motion. The remaining 99.6\% of safe episodes are artifacts of a robot that never moved.
+
+We define a safe episode as \emph{fake safe} when the maximum end-effector displacement stays below a threshold $\tau_d = 0.1$\,mm. Under this criterion, 729 of the 732 safe episodes produced by A1-LoRA are fake safe. The robot did not avoid obstacles; it avoided motion altogether. The displacement distribution, shown in Figure~\ref{fig:displacement}, clusters overwhelmingly near zero, with no meaningful spread toward the range that would indicate planned trajectories around obstacles. Table~\ref{tab:fake_safety} summarizes the fake safety statistics across all evaluated methods.
+
+\begin{table}[t]
+\centering
+\caption{Fake safety decomposition across methods on SafeLIBERO. CAR$_\text{f}$ excludes episodes with max displacement $< \tau_d = 0.1$\,mm. Fake safe rate is computed over safe (non-collision) episodes only.}
+\label{tab:fake_safety}
+\vspace{2pt}
+\small
+\begin{tabular}{lccccc}
+\toprule
+Method & CAR (\%) & TSR (\%) & Fake Safe (\%) & Real Safe & CAR$_\text{f}$ (\%) \\
+\midrule
+A1-LoRA (SDF) & 91.5 & 0.0 & 99.6 & 3 / 732 & ---$^\dagger$ \\
+LoRA baseline  & 82.0 & 0.0 & 99.4 & $\approx$\,1 / 164 & $\approx$\,0 \\
+Pi0.5 (3-seed) & 26.8\,$\pm$\,1.6 & 74.7\,$\pm$\,1.5 & 98.2 & 1 / 56 & $\approx$\,0 \\
+\bottomrule
+\end{tabular}
+\vspace{2pt}
+{\footnotesize $^\dagger$ Denominator $< 5$; statistically unreliable.}
+\end{table}
+
+This phenomenon is not an artifact of the SDF auxiliary loss. The LoRA baseline, trained without any collision avoidance objective, reports a CAR of 82.0\% with a Task Success Rate (TSR) of 0\%. Among its 164 safe episodes, 99.4\% are fake safe by the same displacement criterion. The pattern persists even in Pi0.5, a larger, more capable model from the same family (2.5B$\to$3.5B parameters, extended training data). Across three seeds (600 total episodes), Pi0.5 achieves a CAR of 26.8\,$\pm$\,1.6\% and a TSR of 74.7\,$\pm$\,1.5\%. Its lower CAR reflects the fact that Pi0.5 actually moves the robot, which naturally increases collision frequency. Yet among its safe episodes, the fake safe rate remains 98.2\% (55 of 56 safe episodes in seed 0 show near-zero displacement). The conclusion is consistent across methods: when a Pi0-family model does not collide, it is almost certainly because it did not move.
+
+These observations motivate a corrected metric. We define the \emph{displacement-filtered CAR} (CAR$_\text{f}$) as the fraction of safe episodes among only those episodes where the robot exhibits meaningful motion (max displacement $\geq \tau_d$). Formally:
+\begin{equation}
+\text{CAR}_\text{f} = \frac{|\{e : \text{safe}(e) \land d_{\max}(e) \geq \tau_d\}|}{|\{e : d_{\max}(e) \geq \tau_d\}|}
+\end{equation}
+where $d_{\max}(e)$ denotes the maximum end-effector displacement in episode $e$. We provide a sensitivity analysis over $\tau_d \in \{0.01, 0.1, 1, 10\}$\,mm in Appendix~\ref{app:threshold_sensitivity}, showing that conclusions are robust to threshold choice. For A1-LoRA, only 3 of 800 episodes exceed the displacement threshold, all 3 of which happen to be safe, but the denominator is too small to constitute a meaningful rate. For the LoRA baseline and Pi0.5, CAR$_\text{f}$ is similarly near zero. The gap between raw CAR and CAR$_\text{f}$ exposes the scale of contamination: a model can report over 90\% CAR while possessing essentially no collision avoidance capability.
+
+The practical implication is stark. Standard CAR evaluation conflates two behaviors that differ in every meaningful respect: a robot that plans a safe trajectory around an obstacle, and a robot that has collapsed into inaction due to distributional shift. Without displacement filtering, any model suffering from action collapse will receive inflated safety scores, and models that collapse more severely will paradoxically appear safer. This inversion renders CAR, as conventionally computed, unreliable for evaluating collision avoidance in VLA models.

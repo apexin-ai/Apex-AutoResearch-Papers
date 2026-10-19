@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4a8024300ef97689e694",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "analyze lora baseline done and eval 20260526",
+  "task_key": "worker_analyze_lora_baseline_done_and_eval_20260526_20260526T013527",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_lora_baseline_done_and_eval_20260526_20260526T013527_result.json",
+    "occurrence": 1,
+    "bytes": 937,
+    "sha256": "da4c980035ab5233d458d36f27ee27de80c5ca752c6b39cc84c55c3c9b88d88a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### 训练结果\n| Exp | Final Loss | Checkpoint | Status |\n|-----|-----------|------------|--------|\n| train_pi05_lora_baseline_s0 | 0.01343 | 30000/ ✓ (+ best/) | DONE |\n| train_pi05_lora_baseline_s1 | 0.01408 | 30000/ ✓ (+ best/) | DONE |\n\n两个 seed 的 loss 都正常收敛（lr=0 at final step），30K checkpoint 完整（~7.5GB model.safetensors）。\n\n### Eval 启动状态\n| Exp ID | GPU | PID | Log | 状态 |\n|--------|-----|-----|-----|------|\n| eval_lora_baseline_30k_s0 | cuda:0 | 28196 | /tmp/eval_lora_baseline_30k_s0.log | 模型加载中 |\n| eval_lora_baseline_30k_s1 | cuda:1 | 28961 | /tmp/eval_lora_baseline_30k_s1.log | 模型加载中 |\n\n两个 eval 进程都已正确启动，日志确认 checkpoint 加载正确（model_type=lora_baseline, config=pi05_libero, suite=safelibero_object, --pi05）。GPU 内存尚未占用（模型权重加载阶段），无异常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-lora-baseline-done-and-eval-20260526.md"
+}

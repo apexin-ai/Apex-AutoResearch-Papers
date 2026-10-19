@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "015e8101c7d2272dfd28",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "research lambda0 ablation design",
+  "task_key": "worker_research_lambda0_ablation_design_20260523T162831",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_lambda0_ablation_design_20260523T162831_result.json",
+    "occurrence": 1,
+    "bytes": 4424,
+    "sha256": "9692962163275990e8e7325631bf4054a3604dcc7a3d5ff8017b586188252f46"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整代码已读完（355 行）。以下是分析方案：\n\n## λ_sdf=0 Phase 2 Ablation 方案\n\n### 修改文件\n- 文件: `scripts/train_a1_sdf_aux_pi05.py`\n- 修改涉及 3 处：参数定义 (L86)、`__init__` (L123)、`on_loss_computed` (L265)\n\n### 新增参数\n```\n--phase2_lambda_sdf: Phase 2 的 SDF loss 权重（默认 None = 跟随 --lambda_sdf，设为 0 时 = ablation）\n--phase2_lambda_ee:  Phase 2 的 EE loss 权重（默认 None = 跟随 --lambda_ee，设为 0 时一并消除）\n```\n\n### Diff\n\n```diff\n--- a/scripts/train_a1_sdf_aux_pi05.py\n+++ b/scripts/train_a1_sdf_aux_pi05.py\n@@ -88,6 +88,10 @@\n     p.add_argument(\"--sdf_clamp\", type=float, default=0.05)\n     p.add_argument(\"--eikonal_weight\", type=float, default=0.1)\n     p.add_argument(\"--warmup_phase_steps\", type=int, default=5000)\n+    p.add_argument(\"--phase2_lambda_sdf\", type=float, default=None,\n+                   help=\"SDF loss weight in Phase 2 (default: same as --lambda_sdf; set 0 for ablation)\")\n+    p.add_argument(\"--phase2_lambda_ee\", type=float, default=None,\n+                   help=\"EE loss weight in Phase 2 (default: same as --lambda_ee; set 0 for ablation)\")\n     return p.parse_args()\n \n \n@@ -121,6 +125,9 @@\n         self.lambda_sdf = args.lambda_sdf\n         self.lambda_ee = args.lambda_ee\n         self.n_query_points = args.n_query_points\n+        self.phase2_lambda_sdf = args.phase2_lambda_sdf if args.phase2_lambda_sdf is not None else args.lambda_sdf\n+        self.phase2_lambda_ee = args.phase2_lambda_ee if args.phase2_lambda_ee is not None else args.lambda_ee\n \n         self.sdf_decoder = SDFDecoder(feature_dim=1024, hidden_dim=256)\n         self.ee_extractor = EEPositionExtractor(feature_dim=1024, hidden_dim=256)\n@@ -263,7 +270,10 @@\n         ee_pred = self.ee_extractor(pooled)\n         ee_loss = F.mse_loss(ee_pred, ee_gt)\n \n-        total = action_loss + self.lambda_sdf * sdf_losses[\"sdf_total\"] + self.lambda_ee * ee_loss\n+        _lsdf = self.lambda_sdf if self.phase == 1 else self.phase2_lambda_sdf\n+        _lee = self.lambda_ee if self.phase == 1 else self.phase2_lambda_ee\n+        total = action_loss + _lsdf * sdf_losses[\"sdf_total\"] + _lee * ee_loss\n \n         aux_info = {\n             \"action_loss\": action_loss.item(),\n```\n\n### 调用方式\n\n```bash\n# λ_sdf=0 ablation（Phase 1 正常预热，Phase 2 只有 action loss）\npython scripts/train_a1_sdf_aux_pi05.py \\\n    --scene spatial_bowl \\\n    --seed 0 --gpu 0 \\\n    --phase2_lambda_sdf 0 --phase2_lambda_ee 0 \\\n    --exp_name a1_ablation_nosdf_p2_spatial_bowl_seed0\n```\n\n### GPU-Hours 估算\n- 30000 steps × 4.6s/step = 138,000s = **38.3 GPU-hours/run**\n- 推荐 seed 数: **3**（与 A1 主实验对齐）\n- 总计: **~115 GPU-hours**（3 seeds）\n- 如果只跑 1 scene (spatial_bowl): 115 GPU-hours\n- 如果跑 2 scenes: ~230 GPU-hours\n\n### 注意事项\n\n1. **Phase 1 完全不变** — `lambda_sdf`/`lambda_ee` 仅在 Phase 1 使用，`phase2_lambda_*` 只在 `self.phase >= 2` 时生效\n2. **SDF Decoder / EE Extractor 在 Phase 2 仍 forward** — 模块不删除、不冻结，只是 loss 系数为 0。这意味着 SDF/EE forward pass 仍消耗计算，但不产生梯度信号到 LoRA（因为 `0 * sdf_total` 对 LoRA 参数梯度贡献为零）\n3. **Phase 1 预热效果被保留** — SDF Decoder 和 EE Extractor 在前 5000 步正常训练（在 detached features 上），所以 Phase 1 confound 仍存在。这正是实验目的：隔离 \"Phase 1 预热\" vs \"Phase 2 SDF 梯度信号\" 的效果\n4. **`--phase2_lambda_ee 0` 也设为 0** — 否则 EE loss 仍会通过梯度影响 LoRA，不是纯净的 ablation。如果想只 ablate SDF 保留 EE，可以只设 `--phase2_lambda_sdf 0`\n5. **不需要修改 `on_step_start`** — Phase 切换、LoRA 解冻、grad warmup 逻辑完全不变\n6. **exp_name 建议统一命名** 如 `a1_ablation_nosdf_p2_{scene}_seed{seed}`，和 A1 主实验区分\n7. **默认行为向后兼容** — 不传 `--phase2_lambda_sdf` 时行为和原脚本完全一致\n\n### 设计决策备注\n\n**为什么不直接在 Phase 2 跳过 SDF/EE forward？** 跳过 forward 会节省约 5-10% 计算，但引入额外代码路径差异。保持 forward 可以确保唯一的变量是 loss 权重，实验结论更干净。如果 GPU-hours 紧张可以后续优化。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-lambda0-ablation-design.md"
+}

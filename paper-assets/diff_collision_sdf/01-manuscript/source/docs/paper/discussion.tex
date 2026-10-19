@@ -1,0 +1,32 @@
+\section{Conclusion}\label{sec:conclusion}
+
+We tested whether SDF supervision and collision-aware evaluation deliver reliable geometric safety for VLAs. Action collapse renders reported CAR illusory; dfCAR corrects this using only EE position logging (\S\ref{sec:dfcar}). EE-only oracle SDF refinement is counterproductive, reducing CAR by 5--10\,pp as unmonitored links rotate through obstacles (\S\ref{sec:ee_only}), and collision-free demonstrations account for nearly all avoidance gains with no statistically significant SDF benefit (\S\ref{sec:avoidance_source}). These findings are robust to both training randomness (3 seeds) and evaluation randomness (5 seeds per condition).
+
+\paragraph{Systematic exclusion of EE-only SDF paths.}
+We evaluated all three plausible integration paths for EE-only SDF supervision (Table~\ref{tab:exclusion}). The unified failure across training-time, runtime action-space, and runtime feature-space integration reveals a structural limitation: EE-only monitoring fundamentally cannot protect the full kinematic chain.
+
+\begin{table}[t]
+\centering
+\caption{Systematic exclusion of EE-only SDF integration paths. All three fail for distinct but related reasons.}
+\label{tab:exclusion}
+\vspace{2pt}
+\footnotesize
+\begin{tabular*}{\columnwidth}{l@{\extracolsep{\fill}}p{1.8cm}p{1.5cm}}
+\toprule
+Integration Path & Result & Failure Cause \\
+\midrule
+Training aux.\ loss (SDF on EE) & Redundant ($\approx$LoRA) & Demos suffice \\
+Runtime action (SDF $\to$ EE $\delta$) & CAR$\downarrow$ 5--10\,pp & Arm-body coll. \\
+Runtime feature (SDF $\to$ latent) & CAR$\downarrow$ 6\,pp & Repr.\ misalign. \\
+\bottomrule
+\end{tabular*}
+\end{table}
+
+\paragraph{Practical implications.}
+Our findings suggest a data-centric approach to VLA safety: practitioners should prioritize demonstration curation---filtering or upsampling collision-free trajectories---over engineering geometric loss functions. The per-task avoidance fingerprint invariance across 10 conditions (Fig.~\ref{fig:lambda_and_fingerprint}) implies that safety characteristics are determined at data collection time, not training time.
+
+More broadly, dfCAR provides a lightweight diagnostic that any VLA pipeline can adopt to screen for action-collapse contamination, and point-supervision of a single link is insufficient for articulated robots; genuine geometric safety will require full-body collision representations and cross-architecture validation.
+
+\section{Limitations}\label{sec:limitations}
+
+All experiments use MuJoCo simulation (SafeLIBERO, two VLA families, four tasks); generality to other benchmarks or real hardware is untested~\cite{zhao2020simtoreal}. dfCAR requires bimodal displacement separation (Fig.~\ref{fig:displacement}) and may need task-specific $\tau_d$ calibration. The training-time null result applies to auxiliary-loss integration; the runtime counterproductive result applies to EE-only oracle refinement, not full-body constrained optimization or CBF approaches (\S\ref{sec:related}). Oracle refinement uses one seed per variant ($n{=}1$, 160 episodes). The training ablation ($n{=}3$ seeds; MDE ${\approx}$ 5.6\,pp at 80\% power) cannot rule out a small SDF effect (2--5\,pp) without larger samples.

@@ -1,0 +1,37 @@
+{
+  "exp_id": "eval_a3_v11_object",
+  "project": "diff_collision_sdf",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T13:30:00.290Z",
+    "updated_at": "2026-05-22T14:09:54.427Z",
+    "hypothesis": "A3 eval v11 with all fixes (M019 state format + M020 action chunking + M022 norm_stats) on SafeLIBERO Level II object_pudding — first valid A3 eval with correct norm_stats and action chunking. MVP gate check: CAR ≥94% (vs baseline) with TSR drop <10%.",
+    "parent": "a3_gradient_object_pudding_s0",
+    "spec": {
+      "command": "python scripts/eval_safelibero.py --model_type a3 --checkpoint /root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best --suite safelibero_object --n_episodes 50 --max_steps 300 --replan_steps 5 --gpu 3 --refine_alpha 0.1 --refine_margin 0.01",
+      "server": "westd-35807",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "564007",
+      "log_path": "/tmp/eval_a3_v11.log",
+      "data_path": "SafeLIBERO Level II object_pudding (4 tasks)",
+      "data_count": 200,
+      "model_name": "pi0_a3_gradient_object_pudding_s0_step26000",
+      "seed": 0,
+      "checkpoint_source": "a3_gradient_object_pudding_s0 step 26000 best",
+      "eval_data": "SafeLIBERO Level II object_pudding 4 tasks x 50 episodes"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-22T14:09:54.146Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-22T14:09:54.428Z"
+  },
+  "timestamp": "2026-05-22T14:09:54.469863+00:00",
+  "trigger": "update_registry"
+}

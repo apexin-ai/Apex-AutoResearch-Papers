@@ -1,0 +1,2469 @@
+{
+  "schema_version": "1.0",
+  "id": "0fa6a58eeaf5be31cb17",
+  "project": "diff_collision_sdf",
+  "kind": "conversation",
+  "title": "fix paper reviewer corrections s2",
+  "task_key": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_fix_paper_reviewer_corrections_s2_20260527T164737.jsonl",
+    "occurrence": 1,
+    "bytes": 80880,
+    "sha256": "a5a3b34d7b3724604e59fd73ceb625f63a138a8be621745fb91857b349c35c0e"
+  },
+  "statistics": {
+    "messages": 121,
+    "user_turns": 0,
+    "tool_calls": 60,
+    "roles": {
+      "tool_call": 60,
+      "tool_result": 60,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-27T16:58:31.281509+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_project_file",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-27T16:58:31.281840+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-27T16:58:31.282004+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/paper"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-27T16:58:31.282141+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-27T16:58:31.282294+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-27T16:58:31.282471+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/_project/paper/introduction.tex\nartifacts/_project/paper/method.tex\ndocs/paper/_archive/method.tex\nartifacts/drafts/method.tex\nartifacts/_project/paper/related_work.tex\ndocs/paper/_archive/experiments.tex\ndocs/paper/_archive/conclusion_DEPRECATED.tex\nartifacts/drafts/experiments.tex\nartifacts/drafts/abstract.tex\nartifacts/drafts/conclusion.tex\nartifacts/drafts/introduction.tex\nartifacts/drafts/related_work.tex\nartifacts/_project/paper/analysis_claim1.tex\nartifacts/drafts/analysis_claim1.tex\nartifacts/_project/paper/analysis_claim2.tex\nartifacts/drafts/analysis_claim2.tex\nartifacts/_project/paper/analysis_claim3.tex\nartifacts/drafts/analysis_claim3.tex\nartifacts/_project/paper/experimental_framework.tex\nartifacts/drafts/experimental_framework.tex\nartifacts/_project/paper/introduction_v2.tex\nartifacts/_project/paper/abstract_v2.tex\nartifacts/drafts/abstract_v2.tex\nartifacts/drafts/introduction_v2.tex\nartifacts/drafts/related_work_v2.tex\nartifacts/_project/paper/related_work_v2.tex\ndocs/paper/archive/analysis_claim4.tex\nartifacts/dream_reports/dream_20260525T223036/best/paper.tex\nartifacts/dream_reports/dream_20260525T223036/median/paper.tex\nartifacts/dream_reports/dream_20260525T223036/worst/paper.tex\nartifacts/dream_reports/dream_20260526T023936/best/paper.tex\nartifacts/dream_reports/dream_20260526T023936/median/paper.tex\nartifacts/dream_reports/dream_20260526T023936/worst/paper.tex\ndocs/paper/archive/analysis_claim3.tex\ndocs/paper/archive/analysis_claim1.tex\ndocs/paper/archive/analysis_claim2.tex\nartifacts/reeval_comparison.tex\ndocs/paper/contingency_claim3.tex\nartifacts/_project/paper/discussion.tex\ndocs/paper/experimental_framework.tex\ndocs/paper/abstract.tex\ndocs/paper/introduction.tex\ndocs/paper/main.tex\ndocs/paper/discussion.tex\ndocs/paper/related_work.tex\ndocs/paper/claim1.tex\ndocs/paper/claim2.tex\ndocs/paper/claim3.tex\ndocs/paper/method.tex\ndocs/paper/appendix.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-27T16:58:31.282634+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/",
+              "description": "List project directory contents"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-27T16:58:31.282766+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "AGENTS.md\nROADMAP.lock\nROADMAP.md\n_last_visual_review.json\nartifacts\ncheckpoints\nconstraints.lock\nconstraints.yaml\ndecisions.lock\ndecisions.yaml\ndocs\ndream_registry.lock\ndream_registry.yaml\ndream_registry.yaml.bak\neval_safelibero.py\nexperiment_plan.lock\nexperiment_plan.yaml\nliterature_map.yaml\nlogs\nmemory.md\nmistakes.lock\nmistakes.yaml\npaper\npaper_framing.md\npaper_provenance.lock\npaper_provenance.yaml\npatch_eval.py\nplot_oracle_bar.py\nplot_scatter.py\nregistry.lock\nregistry.yaml\nreport.md\nstudy_status.lock\ntask_context\nwriting_plan.yaml"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-27T16:58:31.282900+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "cat /root/autodl-tmp/eval_results/eval_safelibero_object_all_levelII_30000_lora_baseline_seed7.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-27T16:58:31.283226+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"suite\\\\\\\": \\\\\\\"safelibero_object\\\\\\\",\\\\n    \\\\\\\"safety_level\\\\\\\": \\\\\\\"II\\\\\\\",\\\\n    \\\\\\\"n_episodes\\\\\\\": 50,\\\\n    \\\\\\\"max_steps\\\\\\\": 300,\\\\n    \\\\\\\"replan_steps\\\\\\\": 5,\\\\n    \\\\\\\"seed\\\\\\\": 7,\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed1_l1/30000\\\\\\\",\\\\n    \\\\\\\"config_name\\\\\\\": \\\\\\\"pi05_libero\\\\\\\",\\\\n    \\\\\\\"model_type\\\\\\\": \\\\\\\"lora_baseline\\\\\\\"\\\\n  },\\\\n  \\\\\\\"collision_threshold\\\\\\\": 0.001,\\\\n  \\\\\\\"results\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": 0,\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"language\\\\\\\": \\\\\\\"pick up the orange juice and place it in the basket\\\\\\\",\\\\n      \\\\\\\"safety_level\\\\\\\": \\\\\\\"II\\\\\\\",\\\\n      \\\\\\\"n_episodes\\\\\\\": 50,\\\\n      \\\\\\\"TSR\\\\\\\": 0.26,\\\\n      \\\\\\\"CAR\\\\\\\": 0.66,\\\\n      \\\\\\\"avg_smoothness\\\\\\\": 0.0007847284956499417,\\\\n      \\\\\\\"avg_max_displacement\\\\\\\": 0.03333457859957088,\\\\n      \\\\\\\"avg_max_ee_displacement\\\\\\\": 0.38815234559845435,\\\\n      \\\\\\\"episodes\\\\\\\": [\\\\n        {\\\\n          \\\\\\\"episode\\\\\\\": 0,\\\\n          \\\\\\\"success\\\\\\\": false,\\\\n          \\\\\\\"collided\\\\\\\": true,\\\\n          \\\\\\\"collision_step\\\\\\\": 249,\\\\n          \\\\\\\"collision_obstacle\\\\\\\": \\\\\\\"moka_pot_obstacle_1\\\\\\\",\\\\n          \\\\\\\"max_displacement\\\\\\\": 0.039817113925086974,\\\\n          \\\\\\\"max_ee_displacement\\\\\\\": 0.5915502536781831,\\\\n          \\\\\\\"total_steps\\\\\\\": 300,\\\\n          \\\\\\\"smoothness\\\\\\\": 0.0012043410935108937,\\\\n          \\\\\\\"total_ee_path_length\\\\\\\": 2.09529632601132\\\\n        },\\\\n        {\\\\n          \\\\\\\"episode\\\\\\\": 1,\\\\n          \\\\\\\"success\\\\\\\": false,\\\\n          \\\\\\\"collided\\\\\\\": false,\\\\n          \\\\\\\"collision_step\\\\\\\": -1,\\\\n          \\\\\\\"collision_obstacle\\\\\\\": null,\\\\n          \\\\\\\"max_displacement\\\\\\\": 1.1553487032804767e-06,\\\\n          \\\\\\\"max_ee_displacement\\\\\\\": 0.4248645236827887,\\\\n          \\\\\\\"total_steps\\\\\\\": 300,\\\n…[truncated 7937 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-27T16:58:31.283455+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/eval_results/eval_safelibero_object_all_levelII_30000_lora_baseline_seed7.json')); tasks=d['results']; print('Tasks:', len(tasks)); [print(f'  {t[\\\"task_name\\\"]}: TSR={t[\\\"TSR\\\"]}, CAR={t[\\\"CAR\\\"]}, EE_disp={t[\\\"avg_max_ee_displacement\\\"]:.4f}') for t in tasks]; tsrs=[t['TSR'] for t in tasks]; cars=[t['CAR'] for t in tasks]; ee=[t['avg_max_ee_displacement'] for t in tasks]; print(f'Overall TSR={sum(tsrs)/len(tsrs)*100:.1f}%, CAR={sum(cars)/len(cars)*100:.1f}%, EE_disp={sum(ee)/len(ee):.4f}')\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-27T16:58:31.283622+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-27T16:58:31.283751+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim3.tex"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-27T16:58:31.283913+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Avoidance Source Diagnosis}\\label{sec:avoidance_source}\n2\t\n3\tFine-tuning on collision-free demonstrations produces genuine collision avoidance: LoRA-adapted Pi0.5 raises CAR by ${\\sim}$28 percentage points with zero frozen episodes. Does SDF geometric supervision contribute additional avoidance beyond what demonstrations provide? We compare LoRA-only, LoRA+SDF ($\\lambda = 0.005$), and LoRA+SDF ($\\lambda = 0.01$) on Pi0.5, all evaluated at the 30K-step checkpoint.\n4\t\n5\t\\begin{table}[t]\n6\t\\centering\n7\t\\caption{Avoidance source attribution on SafeLIBERO. SDF at $\\lambda \\leq 0.01$ adds no measurable CAR beyond LoRA-only ($p > 0.1$); $\\lambda = 0.1$ shows a marginal signal ($z = 2.27$, $p \\approx 0.023$, $n{=}2$) that requires additional seeds. All fine-tuned models exhibit 0\\% frozen rate and displacement $>$\\,0.37\\,m.}\n8\t\\label{tab:avoidance_source}\n9\t\\vspace{2pt}\n10\t\\small\n11\t\\begin{tabular}{lcccc}\n12\t\\toprule\n13\tMethod & Seeds & TSR (\\%) & CAR (\\%) & EE Disp (m) \\\\\n14\t\\midrule\n15\tPi0.5 baseline & 3 & 74.7\\,$\\pm$\\,1.5 & 26.8\\,$\\pm$\\,1.6 & 0.367 \\\\\n16\t\\midrule\n17\tLoRA-only (no SDF) & 2 & 48.75 & 54.75\\,$\\pm$\\,3.18 & 0.392 \\\\\n18\tLoRA+SDF $\\lambda{=}0.005$ & 3 & 54.0\\,$\\pm$\\,3.0 & 54.5\\,$\\pm$\\,2.29 & 0.387 \\\\\n19\tLoRA+SDF $\\lambda{=}0.01$ & 3 & 53.8\\,$\\pm$\\,1.5 & 56.33\\,$\\pm$\\,1.61 & 0.389 \\\\\n20\tLoRA+SDF $\\lambda{=}0.1$\\textsuperscript{$\\dagger$} & 2 & 48.0\\,$\\pm$\\,1.4 & 58.25\\,$\\pm$\\,0.35 & 0.394 \\\\\n21\t\\bottomrule\n22\t\\end{tabular}\n23\t\\vspace{1pt}\n24\t{\\footnotesize \\textsuperscript{$\\dagger$}30K checkpoint, two of three seeds; third seed in progress.}\n25\t\\end{table}\n26\t\n27\tTable~\\ref{tab:avoidance_source} shows that collision-free demonstrations alone raise CAR by ${\\sim}$28 percentage points (26.8\\% $\\to$ 54.75\\%) with zero frozen episodes and displacement above 0.37\\,m, confirming genuine avoidance. Adding SDF supervision produces no measurable benefit: LoRA-only CAR (54.75\\%) is within 0.25\\,pp of $\\lambda = 0.005$ and statistically indistinguishable from $\n…[truncated 2508 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-27T16:58:31.284057+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/abstract.tex"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-27T16:58:31.284189+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{abstract}\n2\tVision-Language-Action (VLA) models report high Collision Avoidance Rates (CAR) on safety benchmarks, yet we show these metrics are contaminated by action collapse.\n3\tOn SafeLIBERO, an SDF-augmented Pi0 achieves 91.5\\% CAR while 99.6\\% of its safe episodes exhibit end-effector displacement below 0.1\\,mm---the robot is frozen, not safe.\n4\tWe present displacement-filtered CAR (dfCAR), which excludes sub-threshold episodes, as a corrective metric; the bimodal displacement distribution makes it robust across a $[2, 200]$\\,mm threshold range.\n5\tOur analysis further reveals that end-effector-only Signed Distance Field (SDF) supervision is neither necessary nor structurally sufficient for collision avoidance.\n6\tIt is counterproductive at inference time: three ground-truth oracle variants all reduce dfCAR below unrefined baselines, as SDF gradients repelling the end-effector drive arm links into obstacles.\n7\tIts contribution during training is dose-dependent: LoRA-only fine-tuning raises dfCAR from 26.8\\% to 54.75\\%$\\,\\pm\\,$3.18, matching SDF-augmented training at $\\lambda{=}0.005$ (54.5\\%$\\,\\pm\\,$2.29) and $\\lambda{=}0.01$ (56.33\\%$\\,\\pm\\,$1.61); at $\\lambda{=}0.1$, two of three seeds show a marginal signal (58.25\\%$\\,\\pm\\,$0.35, $p{\\approx}0.023$) whose per-task avoidance pattern still mirrors the demonstration distribution, requiring further investigation.\n8\tPer-task avoidance patterns remain identical across all conditions, indicating that collision avoidance arises from collision-free demonstration data rather than geometric supervision.\n9\tDisplacement filtering is necessary for meaningful VLA safety evaluation; EE-only geometric supervision can be neither credited with nor expected to deliver collision avoidance.\n10\t\\end{abstract}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-27T16:58:31.284323+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/appendix.tex"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-27T16:58:31.284584+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Displacement Distribution}\n2\t\\label{sec:appendix_displacement}\n3\t\n4\t\\begin{figure}[h]\n5\t\\centering\n6\t\\includegraphics[width=\\linewidth]{fig2_ee_displacement_distribution}\n7\t\\caption{Displacement distribution across evaluation episodes. Pi0-family models (blue) cluster below 1\\,$\\mu$m, while Pi0.5 episodes (orange) exceed 200\\,mm. The five-order-of-magnitude gap makes $\\tau_d$ robust to any value in $[2, 200]$\\,mm.}\n8\t\\label{fig:displacement}\n9\t\\end{figure}\n10\t\n11\t\\section{Displacement Threshold Sensitivity Analysis}\n12\t\\label{sec:appendix_threshold}\n13\t\n14\tTo validate the robustness of our displacement threshold $\\tau_d$, we evaluate the frozen rate across four orders of magnitude. Table~\\ref{tab:threshold_sensitivity} shows that the fake safety pattern persists across all reasonable threshold choices: A1-LoRA exhibits near-total action collapse regardless of threshold, while Pi0.5+A1 maintains 0\\% frozen rate even at the most conservative setting.\n15\t\n16\t\\begin{table}[h]\n17\t\\centering\n18\t\\caption{Frozen rate (\\% of episodes with $d_\\mathrm{max} < \\tau_d$) across threshold values.}\n19\t\\label{tab:threshold_sensitivity}\n20\t\\begin{tabular}{lccc}\n21\t\\toprule\n22\t$\\tau_d$ & A1-LoRA (Pi0) & Pi0.5 Baseline & Pi0.5+A1 (SDF aux) \\\\\n23\t\\midrule\n24\t0.001 mm (1\\,$\\mu$m) & 73.9 & 0.0 & 0.0 \\\\\n25\t0.1 mm  & 99.6 & 0.0 & 0.0 \\\\\n26\t1.0 mm  & 100.0 & 0.0 & 0.0 \\\\\n27\t10 mm   & 100.0 & 0.0 & 0.0 \\\\\n28\t\\bottomrule\n29\t\\end{tabular}\n30\t\\end{table}\n31\t\n32\tThe choice of $\\tau_d = 0.1$\\,mm represents a conservative threshold: displacement below this value is physically negligible in manipulation tasks where typical action magnitudes are 1--10\\,mm per step. Even at $\\tau_d = 1$\\,$\\mu$m, 73.9\\% of A1-LoRA safe episodes are classified as frozen, while all Pi0.5 episodes remain above threshold at every level tested.\n33\t\n34\tTable~\\ref{tab:dfcar_threshold} extends this analysis to dfCAR across fine-tuned Pi0.5 configurations. All eight model-seed combinations yield identical dfCAR for $\\\n…[truncated 15694 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-27T16:58:31.284799+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "grep -E '\"task_name\"|\"TSR\"|\"CAR\"|\"avg_max_ee_displacement\"' /root/autodl-tmp/eval_results/eval_safelibero_object_all_levelII_30000_lora_baseline_seed7.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-27T16:58:31.284938+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-27T16:58:31.285063+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "grep -E \"task_name|\\\"TSR\\\"|\\\"CAR\\\"|avg_max_ee_displacement\" /root/autodl-tmp/eval_results/eval_safelibero_object_all_levelII_30000_lora_baseline_seed7.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-27T16:58:31.285184+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-27T16:58:31.285301+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "grep -E \"task_name|TSR|CAR|avg_max_ee\" /root/autodl-tmp/eval_results/eval_safelibero_object_all_levelII_30000_lora_baseline_seed7.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-27T16:58:31.285433+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-27T16:58:31.285584+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "grep \"task_name\" /root/autodl-tmp/eval_results/eval_safelibero_object_all_levelII_30000_lora_baseline_seed7.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-27T16:58:31.285703+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "grep \"TSR\" /root/autodl-tmp/eval_results/eval_safelibero_object_all_levelII_30000_lora_baseline_seed7.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-27T16:58:31.285830+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"      \\\\\\\"task_name\\\\\\\": \\\\\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"pick_up_the_milk_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"pick_up_the_bbq_sauce_and_place_it_in_the_basket\\\\\\\",\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.64}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-27T16:58:31.285958+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "grep \"CAR\" /root/autodl-tmp/eval_results/eval_safelibero_object_all_levelII_30000_lora_baseline_seed7.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-27T16:58:31.286077+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "grep \"avg_max_ee_displacement\" /root/autodl-tmp/eval_results/eval_safelibero_object_all_levelII_30000_lora_baseline_seed7.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-27T16:58:31.286198+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"      \\\\\\\"TSR\\\\\\\": 0.26,\\\\n      \\\\\\\"TSR\\\\\\\": 0.8,\\\\n      \\\\\\\"TSR\\\\\\\": 0.28,\\\\n      \\\\\\\"TSR\\\\\\\": 0.62,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.05}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-27T16:58:31.286316+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"      \\\\\\\"CAR\\\\\\\": 0.66,\\\\n      \\\\\\\"CAR\\\\\\\": 0.72,\\\\n      \\\\\\\"CAR\\\\\\\": 0.7,\\\\n      \\\\\\\"CAR\\\\\\\": 0.26,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.08}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-27T16:58:31.286448+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"      \\\\\\\"avg_max_ee_displacement\\\\\\\": 0.38815234559845435,\\\\n      \\\\\\\"avg_max_ee_displacement\\\\\\\": 0.4056625503587383,\\\\n      \\\\\\\"avg_max_ee_displacement\\\\\\\": 0.3551111067551437,\\\\n      \\\\\\\"avg_max_ee_displacement\\\\\\\": 0.4045395650227829,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 7.87}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-27T16:58:31.286636+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "ls /root/autodl-tmp/eval_results/ -la",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-27T16:58:31.286814+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 13020\\\\ndrwxr-xr-x  3 root root    4096 May 27 21:58 .\\\\ndrwxr-xr-x 15 root root    4096 May 28 00:29 ..\\\\ndrwxr-xr-x  6 root root      84 May 25 13:22 30k_evals\\\\n-rw-r--r--  1 root root   62571 May 23 00:00 a1_lora_v11_eval_safelibero_object_all_levelII_best_seed0.json\\\\n-rw-r--r--  1 root root  255627 May 23 03:45 a1_lora_v11_eval_safelibero_spatial_all_levelII_best_lora_baseline_seed0.json\\\\n-rw-r--r--  1 root root  244676 May 23 05:09 a1_rerun_v11_eval_safelibero_object_all_levelII_best_lora_baseline_seed0.json\\\\n-rw-r--r--  1 root root  336404 May 23 03:49 a3_m024fix_v11_eval_safelibero_object_all_levelII_best_a3_seed0.json\\\\n-rw-r--r--  1 root root  255640 May 23 03:14 baseline_fullft_v11_eval_safelibero_spatial_all_levelII_best_seed0.json\\\\n-rw-r--r--  1 root root   62820 May 22 21:07 baseline_v11_eval_safelibero_object_all_levelII_best_seed0.json\\\\n-rw-r--r--  1 root root    2905 May 26 01:24 displacement_analysis_30k_summary.txt\\\\n-rw-r--r--  1 root root   21642 May 26 00:36 displacement_hist_30k_batch.pdf\\\\n-rw-r--r--  1 root root   19064 May 25 23:27 displacement_hist_test.pdf\\\\n-rw-r--r--  1 root root   13276 May 23 05:09 eval_a1_lora_object_v11_rerun.log\\\\n-rw-r--r--  1 root root   13336 May 23 03:45 eval_a1_lora_spatial_v11.log\\\\n-rw-r--r--  1 root root   17497 May 23 03:49 eval_a3_object_m024fix_v11.log\\\\n-rw-r--r--  1 root root   14530 May 23 03:15 eval_baseline_fullft_spatial_v11.log\\\\n-rw-r--r--  1 root root    9986 May 23 02:30 eval_oracle_a3_m024fix_object_v11.log\\\\n-rw-r--r--  1 root root  107214 May 23 04:44 eval_oracle_adaptive_alpha_v11.log\\\\n-rw-r--r--  1 root root    9833 May 23 05:21 eval_oracle_feature_space_v11.log\\\\n-rw-r--r--  1 root root  107028 May 23 04:44 eval_oracle_fixed_alpha_v11.log\\\\n-rw-r--r--  1 root root   27280 May 23 08:10 eval_pi05_safelibero_object_v11_s1.log\\\\n-rw-r--r--  1 root root   27101 May 23 08:10 eval_pi05_safelibero_object_v11_s2.log\\\\n-rw-r--r--  \n…[truncated 4569 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-27T16:58:31.286981+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "cat /root/autodl-tmp/eval_results/displacement_analysis_30k_summary.txt",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-27T16:58:31.287108+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "grep \"avg_max_ee_displacement\" /root/autodl-tmp/eval_results/eval_safelibero_object_all_levelII__lora_baseline_seed0.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-27T16:58:31.287230+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "grep \"avg_max_ee_displacement\" /root/autodl-tmp/eval_results/eval_safelibero_object_all_levelII__lora_baseline_seed1.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-27T16:58:31.287384+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== Displacement-Filtered CAR Analysis ===\\\\nThreshold: 0.001 m\\\\n\\\\n[s1_l005_30k] eval_s1_l005_30k_v4.json\\\\n  Overall: Raw CAR=51.5% | Filtered CAR=0.0% | Frozen=100.0% (103/103 safe eps)\\\\n  Per-task:\\\\n    T0 (orange juice        ): Raw=54% | Filtered=0% | Frozen=100% | TSR=0%\\\\n    T1 (chocolate pudding   ): Raw=48% | Filtered=0% | Frozen=100% | TSR=16%\\\\n    T2 (milk                ): Raw=88% | Filtered=0% | Frozen=100% | TSR=0%\\\\n    T3 (bbq sauce           ): Raw=16% | Filtered=0% | Frozen=100% | TSR=0%\\\\n\\\\n[s2_l005_30k] eval_s2_l005_30k_v4.json\\\\n  Overall: Raw CAR=53.0% | Filtered CAR=0.0% | Frozen=100.0% (106/106 safe eps)\\\\n  Per-task:\\\\n    T0 (orange juice        ): Raw=60% | Filtered=0% | Frozen=100% | TSR=4%\\\\n    T1 (chocolate pudding   ): Raw=46% | Filtered=0% | Frozen=100% | TSR=32%\\\\n    T2 (milk                ): Raw=86% | Filtered=0% | Frozen=100% | TSR=0%\\\\n    T3 (bbq sauce           ): Raw=20% | Filtered=0% | Frozen=100% | TSR=0%\\\\n\\\\n[s2_l01_30k] eval_s2_l01_30k_v3.json\\\\n  Overall: Raw CAR=53.0% | Filtered CAR=0.0% | Frozen=100.0% (106/106 safe eps)\\\\n  Per-task:\\\\n    T0 (orange juice        ): Raw=62% | Filtered=0% | Frozen=100% | TSR=0%\\\\n    T1 (chocolate pudding   ): Raw=42% | Filtered=0% | Frozen=100% | TSR=30%\\\\n    T2 (milk                ): Raw=88% | Filtered=0% | Frozen=100% | TSR=0%\\\\n    T3 (bbq sauce           ): Raw=20% | Filtered=0% | Frozen=100% | TSR=0%\\\\n\\\\n[s1_l01_30k] eval_safelibero_object_all_levelII__lora_baseline_seed0.json\\\\n  Overall: Raw CAR=52.5% | Filtered CAR=0.0% | Frozen=100.0% (105/105 safe eps)\\\\n  Per-task:\\\\n    T0 (orange juice        ): Raw=54% | Filtered=0% | Frozen=100% | TSR=4%\\\\n    T1 (chocolate pudding   ): Raw=48% | Filtered=0% | Frozen=100% | TSR=26%\\\\n    T2 (milk                ): Raw=94% | Filtered=0% | Frozen=100% | TSR=0%\\\\n    T3 (bbq sauce           ): Raw=14% | Filtered=0% | Frozen=100% | TSR=0%\\\\n\\\\n=== Batch Comparison ===\\\\n| E\n…[truncated 1168 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-27T16:58:31.287557+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-27T16:58:31.287681+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.63}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-27T16:58:31.287827+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "ls /root/autodl-tmp/eval_results/30k_evals/",
+              "account": "root"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-27T16:58:31.287949+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "grep \"avg_max_ee_displacement\" /root/autodl-tmp/eval_results/eval_safelibero_object_all_levelII__lora_baseline_seed2.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-27T16:58:31.288071+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"s1_l005\\\\ns1_l01\\\\ns2_l005\\\\ns2_l01\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-27T16:58:31.288189+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.55}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-27T16:58:31.288346+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "grep \"avg_max_ee_displacement\" /root/autodl-tmp/eval_results/eval_safelibero_object_all_levelII_best_lora_baseline_seed0.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-27T16:58:31.288496+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35807",
+              "command": "grep \"avg_max_ee_displacement\" /root/autodl-tmp/eval_results/eval_s0_l005_30k_r4.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-27T16:58:31.288624+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.05}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-27T16:58:31.288748+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"      \\\\\\\"avg_max_ee_displacement\\\\\\\": 0.46938803263560525,\\\\n      \\\\\\\"avg_max_ee_displacement\\\\\\\": 0.5643119972220006,\\\\n      \\\\\\\"avg_max_ee_displacement\\\\\\\": 0.5475141868362529,\\\\n      \\\\\\\"avg_max_ee_displacement\\\\\\\": 0.40557676586899793,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-27T16:58:31.288977+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "54\\.75",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-27T16:58:31.289116+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/claim3.tex:17:LoRA-only (no SDF) & 2 & 48.75 & 54.75\\,$\\pm$\\,3.18 & 0.392 \\\\\ndocs/paper/claim3.tex:27:[Omitted long matching line]\ndocs/paper/abstract.tex:7:Its contribution during training is dose-dependent: LoRA-only fine-tuning raises dfCAR from 26.8\\% to 54.75\\%$\\,\\pm\\,$3.18, matching SDF-augmented training at $\\lambda{=}0.005$ (54.5\\%$\\,\\pm\\,$2.29) and $\\lambda{=}0.01$ (56.33\\%$\\,\\pm\\,$1.61); at $\\lambda{=}0.1$, two of three seeds show a marginal signal (58.25\\%$\\,\\pm\\,$0.35, $p{\\approx}0.023$) whose per-task avoidance pattern still mirrors the demonstration distribution, requiring further investigation.\ndocs/paper/appendix.tex:129:LoRA-only (2 seeds) & 48.75 & 54.75 & 28.3 & 0.58 \\\\\ndocs/paper/introduction.tex:20:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-27T16:58:31.289243+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "2\\.27",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-27T16:58:31.289381+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/claim3.tex:7:\\caption{Avoidance source attribution on SafeLIBERO. SDF at $\\lambda \\leq 0.01$ adds no measurable CAR beyond LoRA-only ($p > 0.1$); $\\lambda = 0.1$ shows a marginal signal ($z = 2.27$, $p \\approx 0.023$, $n{=}2$) that requires additional seeds. All fine-tuned models exhibit 0\\% frozen rate and displacement $>$\\,0.37\\,m.}\ndocs/paper/claim3.tex:33:[Omitted long matching line]\ndocs/paper/main.log:433:* v-part:(T,H,B)=(72.26999pt, 650.43pt, 72.27pt)\ndocs/paper/main.log:456:* (1in=72.27pt=25.4mm, 1cm=28.453pt)\ndocs/paper/main.log:473:* v-part:(T,H,B)=(72.26999pt, 650.43pt, 72.27pt)\ndocs/paper/main.log:496:* (1in=72.27pt=25.4mm, 1cm=28.453pt)\ndocs/paper/appendix.tex:170:[Omitted long matching line]\ndocs/paper/appendix.tex:181:\\caption{Per-seed CAR (\\%) at training checkpoints for $\\lambda = 0.1$ (200 episodes each). 24K--28K: seed-0 only. Dual-seed means remain within the null band (54.6\\%\\,$\\pm$\\,2.27\\%) at all checkpoints except 30K, where both seeds depart marginally ($z = 2.27$, $p \\approx 0.023$).}\ndocs/paper/main.aux:75:\\@writefile{lot}{\\contentsline {table}{\\numberline {4}{\\ignorespaces Avoidance source attribution on SafeLIBERO. SDF at $\\lambda \\leq 0.01$ adds no measurable CAR beyond LoRA-only ($p > 0.1$); $\\lambda = 0.1$ shows a marginal signal ($z = 2.27$, $p \\approx 0.023$, $n{=}2$) that requires additional seeds. All fine-tuned models exhibit 0\\% frozen rate and displacement $>$\\,0.37\\,m.}}{6}{table.caption.12}\\protected@file@percent }\ndocs/paper/main.aux:76:\\newlabel{tab:avoidance_source}{{4}{6}{Avoidance source attribution on SafeLIBERO. SDF at $\\lambda \\leq 0.01$ adds no measurable CAR beyond LoRA-only ($p > 0.1$); $\\lambda = 0.1$ shows a marginal signal ($z = 2.27$, $p \\approx 0.023$, $n{=}2$) that requires additional seeds. All fine-tuned models exhibit 0\\% frozen rate and displacement $>$\\,0.37\\,m}{table.caption.12}{}}\ndocs/paper/main.aux:152:\\@writefile{lot}{\\contentsline {table}{\\numberline {11}{\\ignorespaces Per-seed CAR (\\%)\n…[truncated 666 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-27T16:58:31.289558+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "0\\.023",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-27T16:58:31.289710+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/claim3.tex:7:\\caption{Avoidance source attribution on SafeLIBERO. SDF at $\\lambda \\leq 0.01$ adds no measurable CAR beyond LoRA-only ($p > 0.1$); $\\lambda = 0.1$ shows a marginal signal ($z = 2.27$, $p \\approx 0.023$, $n{=}2$) that requires additional seeds. All fine-tuned models exhibit 0\\% frozen rate and displacement $>$\\,0.37\\,m.}\ndocs/paper/claim3.tex:33:[Omitted long matching line]\ndocs/paper/claim3.tex:38:\\caption{Effect of SDF loss weight $\\lambda$ on CAR and TSR. $\\lambda = 0$: LoRA-only. Low $\\lambda$ ($\\leq 0.01$) remains within the null band; $\\lambda = 0.1$ (58.25\\%, 2 seeds) shows a marginal departure ($p \\approx 0.023$) whose per-task pattern still matches the demonstration distribution.}\ndocs/paper/discussion.tex:12:[Omitted long matching line]\ndocs/paper/introduction.tex:20:[Omitted long matching line]\ndocs/paper/abstract.tex:7:Its contribution during training is dose-dependent: LoRA-only fine-tuning raises dfCAR from 26.8\\% to 54.75\\%$\\,\\pm\\,$3.18, matching SDF-augmented training at $\\lambda{=}0.005$ (54.5\\%$\\,\\pm\\,$2.29) and $\\lambda{=}0.01$ (56.33\\%$\\,\\pm\\,$1.61); at $\\lambda{=}0.1$, two of three seeds show a marginal signal (58.25\\%$\\,\\pm\\,$0.35, $p{\\approx}0.023$) whose per-task avoidance pattern still mirrors the demonstration distribution, requiring further investigation.\ndocs/paper/appendix.tex:170:[Omitted long matching line]\ndocs/paper/appendix.tex:181:\\caption{Per-seed CAR (\\%) at training checkpoints for $\\lambda = 0.1$ (200 episodes each). 24K--28K: seed-0 only. Dual-seed means remain within the null band (54.6\\%\\,$\\pm$\\,2.27\\%) at all checkpoints except 30K, where both seeds depart marginally ($z = 2.27$, $p \\approx 0.023$).}\ndocs/paper/main.aux:75:\\@writefile{lot}{\\contentsline {table}{\\numberline {4}{\\ignorespaces Avoidance source attribution on SafeLIBERO. SDF at $\\lambda \\leq 0.01$ adds no measurable CAR beyond LoRA-only ($p > 0.1$); $\\lambda = 0.1$ shows a marginal signal ($z = 2.27$, $p \\approx 0.023$, $n{=}2$) that re\n…[truncated 2122 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-27T16:58:31.289854+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "48\\.75",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-27T16:58:31.289978+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/claim3.tex:17:LoRA-only (no SDF) & 2 & 48.75 & 54.75\\,$\\pm$\\,3.18 & 0.392 \\\\\ndocs/paper/claim3.tex:30:Fine-tuning degrades TSR by ${\\sim}$21--26\\,pp (74.7\\% $\\to$ 48.75--54.0\\%), reflecting distributional shift from the pre-trained prior rather than learned paralysis (all models retain $>$\\,0.37\\,m displacement and 0\\% frozen episodes). The SSR/TSR ratio increases from 0.33 (baseline) to 0.51--0.58 (Appendix~\\ref{sec:appendix_ssr}), confirming that among task-completing episodes, a larger fraction avoids collisions after fine-tuning.\ndocs/paper/appendix.tex:129:LoRA-only (2 seeds) & 48.75 & 54.75 & 28.3 & 0.58 \\\\"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-27T16:58:31.290098+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "3\\.18",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-27T16:58:31.290220+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/main.bbl:153:\\newblock \\emph{arXiv preprint arXiv:2603.18669}, 2026.\ndocs/paper/claim3.tex:17:LoRA-only (no SDF) & 2 & 48.75 & 54.75\\,$\\pm$\\,3.18 & 0.392 \\\\\ndocs/paper/main.fdb_latexmk:143:  \"claim2.tex\" 1779885273.18721 2170 eeaeec414e404b1c5bfddf00f79b076d \"\"\ndocs/paper/abstract.tex:7:Its contribution during training is dose-dependent: LoRA-only fine-tuning raises dfCAR from 26.8\\% to 54.75\\%$\\,\\pm\\,$3.18, matching SDF-augmented training at $\\lambda{=}0.005$ (54.5\\%$\\,\\pm\\,$2.29) and $\\lambda{=}0.01$ (56.33\\%$\\,\\pm\\,$1.61); at $\\lambda{=}0.1$, two of three seeds show a marginal signal (58.25\\%$\\,\\pm\\,$0.35, $p{\\approx}0.023$) whose per-task avoidance pattern still mirrors the demonstration distribution, requiring further investigation.\ndocs/paper/references.bib:158:  journal={arXiv preprint arXiv:2603.18669},"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-27T16:58:31.290369+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/introduction.tex",
+              "offset": "18",
+              "limit": "5"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-27T16:58:31.290517+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "18\t\\textbf{EE-only SDF refinement is structurally counterproductive.} Three ground-truth oracle variants all achieve \\emph{lower} CAR than unrefined baselines (73.1--76.9\\% vs.\\ 82--83\\%). The SDF gradient repels the EE but rotates arm links into obstacle volumes (Section~\\ref{sec:ee_only}).\n19\t\n20\t\\textbf{Collision-free demonstrations are sufficient for collision avoidance.} LoRA fine-tuning on Pi0.5 raises CAR by ${\\sim}$28 points (26.8\\% $\\to$ 54.75\\%) with zero frozen episodes; adding SDF supervision at low loss weights ($\\lambda \\in \\{0.005, 0.01\\}$) produces no measurable benefit and at high $\\lambda = 0.1$ yields only a marginal, inconclusive signal ($p \\approx 0.023$, $n = 2$); the per-task avoidance pattern is identical with and without geometric supervision, indicating that the collision-free demonstration distribution, not EE-only SDF supervision, accounts for all observed avoidance learning on this benchmark (Section~\\ref{sec:avoidance_source}).\n21\t\n22\tOur contributions are:"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-27T16:58:31.290646+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/discussion.tex",
+              "offset": "10",
+              "limit": "5"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-27T16:58:31.290770+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "10\t\n11\t\\paragraph{Limitations.}\n12\tOur evaluation covers one benchmark suite (SafeLIBERO, four tasks) and two model families (Pi0, Pi0.5). The tabletop setting with fixed-base manipulator and known obstacles may not generalize to mobile platforms and cluttered scenes. Oracle experiments used a largely frozen model (Pi0+A1, TSR${\\approx}$0\\%); testing on an actively moving policy would better isolate the structural limitation. The $\\lambda = 0.1$ condition has $n = 2$ seeds; the marginal departure ($p \\approx 0.023$) is inconclusive. Full-body SDF remains untested. Fine-tuning degrades TSR by ${\\sim}$21--26\\,pp, yet SSR/TSR increases from 0.33 to 0.51--0.58 (Appendix~\\ref{sec:appendix_ssr}), ruling out reduced exposure as the sole explanation.\n13\t\n14\t\\paragraph{Future work.}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-27T16:58:31.290912+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim3.tex",
+              "offset": "32",
+              "limit": "2"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-27T16:58:31.291037+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "32\t\\paragraph{Dose-response at higher loss weights.}\\label{sec:lambda_high}\n33\tIncreasing $\\lambda$ by 20$\\times$ to 0.1 yields CAR\\,=\\,58.25\\%\\,$\\pm$\\,0.35 at the 30K checkpoint (two of three seeds), above the null distribution (mean 54.6\\%, $\\sigma = 2.27$, $z = 2.27$, $p \\approx 0.023$). This departure is suggestive but inconclusive at $n = 2$. A stepwise ablation across six checkpoints (16K--28K) shows no sustained trend (mean 55.3\\%, within 0.3$\\sigma$ of the null; Appendix~\\ref{sec:appendix_stepwise}), and per-task CAR ordering at 30K remains identical to all other conditions (Figure~\\ref{fig:lambda_car}). The response is thus dose-dependent: SDF is fully redundant at $\\lambda \\leq 0.01$ ($p > 0.1$), with a marginal signal at $\\lambda = 0.1$ whose modest effect size (${\\sim}$3.7\\,pp) and limited sample preclude strong conclusions. Even at elevated $\\lambda$, avoidance patterns remain driven by demonstration distribution rather than geometric supervision."
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-27T16:58:31.291188+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/appendix.tex",
+              "offset": "167",
+              "limit": "10"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-27T16:58:31.291318+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "167\t\\section{Null Distribution for SDF Loss Weight Analysis}\n168\t\\label{sec:appendix_null}\n169\t\n170\tWe construct a null distribution by pooling the two LoRA-only seeds and three $\\lambda = 0.005$ seeds into five per-seed CAR measurements: 57.0\\% (LoRA s0, re-evaluated), 52.5\\% (LoRA s1), 57.0\\% ($\\lambda{=}0.005$ s0), 54.0\\% ($\\lambda{=}0.005$ s1), 52.5\\% ($\\lambda{=}0.005$ s2), yielding mean 54.6\\% and standard deviation 2.27\\%. We treat these as exchangeable because SDF at $\\lambda = 0.005$ produces no separation from LoRA-only. The $\\lambda = 0.01$ mean of 56.33\\% falls within $0.8\\sigma$ of this null ($p > 0.1$), consistent with seed-to-seed variation rather than a treatment effect. The $\\lambda = 0.1$ 30K mean of 58.25\\% (2 seeds) yields $z = 2.27$ ($p \\approx 0.023$), a marginal departure whose interpretation is limited by $n = 2$.\n171\t\n172\tA Phase~2 ablation reinforces this conclusion. Setting $\\lambda = 0$ during Phase~2 (steps 5K--30K), so that SDF supervision is active only during auxiliary head warmup (Phase~1, steps 0--5K), yields CAR of 57.5\\% (single seed, s2). This value lies within the null range, indicating that SDF training produces no lasting behavioral effect on collision avoidance.\n173\t\n174\t\\section{Step-wise Checkpoint Analysis for \\texorpdfstring{$\\lambda = 0.1$}{lambda = 0.1}}\n175\t\\label{sec:appendix_stepwise}\n176\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-27T16:58:31.291536+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim3.tex",
+              "old_string": "$\\lambda = 0.1$ shows a marginal signal ($z = 2.27$, $p \\approx 0.023$, $n{=}2$) that requires additional seeds.",
+              "new_string": "$\\lambda = 0.1$ shows a marginal signal ($z = 1.85$, $p \\approx 0.032$, $n{=}2$) that requires additional seeds."
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-27T16:58:31.291696+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim3.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-27T16:58:31.291820+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim3.tex",
+              "old_string": "LoRA-only (no SDF) & 2 & 48.75 & 54.75\\,$\\pm$\\,3.18 & 0.392 \\\\",
+              "new_string": "LoRA-only (no SDF) & 3 & 49.7\\,$\\pm$\\,3.2 & 54.83\\,$\\pm$\\,2.25 & 0.391 \\\\"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-27T16:58:31.291970+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim3.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-27T16:58:31.292092+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim3.tex",
+              "old_string": "raises CAR by ${\\sim}$28 percentage points (26.8\\% $\\to$ 54.75\\%) with zero frozen episodes and displacement above 0.37\\,m, confirming genuine avoidance. Adding SDF supervision produces no measurable benefit: LoRA-only CAR (54.75\\%)",
+              "new_string": "raises CAR by ${\\sim}$28 percentage points (26.8\\% $\\to$ 54.83\\%) with zero frozen episodes and displacement above 0.37\\,m, confirming genuine avoidance. Adding SDF supervision produces no measurable benefit: LoRA-only CAR (54.83\\%)"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-27T16:58:31.292213+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>String to replace not found in file.\nString: raises CAR by ${\\sim}$28 percentage points (26.8\\% $\\to$ 54.75\\%) with zero frozen episodes and displacement above 0.37\\,m, confirming genuine avoidance. Adding SDF supervision produces no measurable benefit: LoRA-only CAR (54.75\\%)</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-27T16:58:31.292329+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim3.tex",
+              "old_string": "${\\sim}$21--26\\,pp (74.7\\% $\\to$ 48.75--54.0\\%)",
+              "new_string": "${\\sim}$21--25\\,pp (74.7\\% $\\to$ 49.7--54.0\\%)"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-27T16:58:31.292498+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim3.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-27T16:58:31.292629+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim3.tex",
+              "old_string": "above the null distribution (mean 54.6\\%, $\\sigma = 2.27$, $z = 2.27$, $p \\approx 0.023$). This departure is suggestive but inconclusive at $n = 2$. A stepwise ablation across six checkpoints (16K--28K) shows no sustained trend (mean 55.3\\%, within 0.3$\\sigma$ of the null; Appendix~\\ref{sec:appendix_stepwise}), and per-task CAR ordering at 30K remains identical to all other conditions (Figure~\\ref{fig:lambda_car}). The response is thus dose-dependent: SDF is fully redundant at $\\lambda \\leq 0.01$ ($p > 0.1$), with a marginal signal at $\\lambda = 0.1$ whose modest effect size (${\\sim}$3.7\\,pp)",
+              "new_string": "above the null distribution (mean 54.67\\%, $\\sigma = 1.94$, $z = 1.85$, $p \\approx 0.032$). This departure is suggestive but inconclusive at $n = 2$. A stepwise ablation across six checkpoints (16K--28K) shows no sustained trend (mean 55.3\\%, within 0.3$\\sigma$ of the null; Appendix~\\ref{sec:appendix_stepwise}), and per-task CAR ordering at 30K remains identical to all other conditions (Figure~\\ref{fig:lambda_car}). The response is thus dose-dependent: SDF is fully redundant at $\\lambda \\leq 0.01$ ($p > 0.1$), with a marginal signal at $\\lambda = 0.1$ whose modest effect size (${\\sim}$3.6\\,pp)"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-27T16:58:31.292786+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim3.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-27T16:58:31.292908+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim3.tex",
+              "old_string": "$\\lambda = 0.1$ (58.25\\%, 2 seeds) shows a marginal departure ($p \\approx 0.023$)",
+              "new_string": "$\\lambda = 0.1$ (58.25\\%, 2 seeds) shows a marginal departure ($p \\approx 0.032$)"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-27T16:58:31.293049+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim3.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-27T16:58:31.293190+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim3.tex",
+              "offset": "26",
+              "limit": "2"
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-27T16:58:31.293318+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "26\t\n27\tTable~\\ref{tab:avoidance_source} shows that collision-free demonstrations alone raise CAR by ${\\sim}$28 percentage points (26.8\\% $\\to$ 54.75\\%) with zero frozen episodes and displacement above 0.37\\,m, confirming genuine avoidance. Adding SDF supervision produces no measurable benefit: LoRA-only CAR (54.75\\%) is within 0.25\\,pp of $\\lambda = 0.005$ and statistically indistinguishable from $\\lambda = 0.01$ (56.33\\%, $p > 0.1$; Appendix~\\ref{sec:appendix_null}). A Phase~2 ablation ($\\lambda = 0$ after step 5K) yields CAR\\,=\\,57.5\\%\\footnote{Single seed (s2); computational constraints precluded additional seeds for this ablation.}, confirming that SDF gradients produce no lasting behavioral effect. The per-task CAR ordering is preserved across all conditions (chocolate\\_pudding highest, bbq\\_sauce lowest) and invariant to $\\lambda$ across a 20$\\times$ range, indicating that avoidance patterns reflect the demonstration distribution rather than geometric supervision."
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-27T16:58:31.293506+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "True",
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim3.tex",
+              "old_string": "54.75\\%",
+              "new_string": "54.83\\%"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-27T16:58:31.293677+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim3.tex has been updated. All occurrences were successfully replaced."
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-27T16:58:31.293812+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/abstract.tex",
+              "old_string": "54.75\\%$\\,\\pm\\,$3.18",
+              "new_string": "54.83\\%$\\,\\pm\\,$2.25"
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-27T16:58:31.293949+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/abstract.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-27T16:58:31.294069+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/abstract.tex",
+              "old_string": "$p{\\approx}0.023$",
+              "new_string": "$p{\\approx}0.032$"
+            }
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-27T16:58:31.294200+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/abstract.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-27T16:58:31.294341+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/appendix.tex",
+              "old_string": "We construct a null distribution by pooling the two LoRA-only seeds and three $\\lambda = 0.005$ seeds into five per-seed CAR measurements: 57.0\\% (LoRA s0, re-evaluated), 52.5\\% (LoRA s1), 57.0\\% ($\\lambda{=}0.005$ s0), 54.0\\% ($\\lambda{=}0.005$ s1), 52.5\\% ($\\lambda{=}0.005$ s2), yielding mean 54.6\\% and standard deviation 2.27\\%. We treat these as exchangeable because SDF at $\\lambda = 0.005$ produces no separation from LoRA-only. The $\\lambda = 0.01$ mean of 56.33\\% falls within $0.8\\sigma$ of this null ($p > 0.1$), consistent with seed-to-seed variation rather than a treatment effect. The $\\lambda = 0.1$ 30K mean of 58.25\\% (2 seeds) yields $z = 2.27$ ($p \\approx 0.023$), a marginal departure whose interpretation is limited by $n = 2$.",
+              "new_string": "We construct a null distribution by pooling the three LoRA-only seeds and three $\\lambda = 0.005$ seeds into six per-seed CAR measurements: 57.0\\% (LoRA s0, re-evaluated), 52.5\\% (LoRA s1), 55.0\\% (LoRA s2), 57.0\\% ($\\lambda{=}0.005$ s0), 54.0\\% ($\\lambda{=}0.005$ s1), 52.5\\% ($\\lambda{=}0.005$ s2), yielding mean 54.67\\% and standard deviation 1.94\\%. We treat these as exchangeable because SDF at $\\lambda = 0.005$ produces no separation from LoRA-only. The $\\lambda = 0.01$ mean of 56.33\\% falls within $0.9\\sigma$ of this null ($p > 0.1$), consistent with seed-to-seed variation rather than a treatment effect. The $\\lambda = 0.1$ 30K mean of 58.25\\% (2 seeds) yields $z = 1.85$ ($p \\approx 0.032$), a marginal departure whose interpretation is limited by $n = 2$."
+            }
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-27T16:58:31.294577+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-27T16:58:31.294710+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/appendix.tex",
+              "old_string": "Dual-seed means remain within the null band (54.6\\%\\,$\\pm$\\,2.27\\%) at all checkpoints except 30K, where both seeds depart marginally ($z = 2.27$, $p \\approx 0.023$).}",
+              "new_string": "Dual-seed means remain within the null band (54.67\\%\\,$\\pm$\\,1.94\\%) at all checkpoints except 30K, where both seeds depart marginally ($z = 1.85$, $p \\approx 0.032$).}"
+            }
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": "2026-05-27T16:58:31.294895+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": "2026-05-27T16:58:31.295024+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/appendix.tex",
+              "old_string": "LoRA-only (2 seeds) & 48.75 & 54.75 & 28.3 & 0.58 \\\\",
+              "new_string": "LoRA-only (3 seeds) & 49.7 & 54.83 & 28.3 & 0.57 \\\\"
+            }
+          },
+          "id": "event-000091"
+        },
+        {
+          "source_line": 92,
+          "timestamp": "2026-05-27T16:58:31.295201+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000092"
+        },
+        {
+          "source_line": 93,
+          "timestamp": "2026-05-27T16:58:31.295340+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/introduction.tex",
+              "old_string": "(26.8\\% $\\to$ 54.75\\%)",
+              "new_string": "(26.8\\% $\\to$ 54.83\\%)"
+            }
+          },
+          "id": "event-000093"
+        },
+        {
+          "source_line": 94,
+          "timestamp": "2026-05-27T16:58:31.295508+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/introduction.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000094"
+        },
+        {
+          "source_line": 95,
+          "timestamp": "2026-05-27T16:58:31.295634+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/introduction.tex",
+              "old_string": "$p \\approx 0.023$, $n = 2$)",
+              "new_string": "$p \\approx 0.032$, $n = 2$)"
+            }
+          },
+          "id": "event-000095"
+        },
+        {
+          "source_line": 96,
+          "timestamp": "2026-05-27T16:58:31.295781+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/introduction.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000096"
+        },
+        {
+          "source_line": 97,
+          "timestamp": "2026-05-27T16:58:31.295903+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/discussion.tex",
+              "old_string": "$p \\approx 0.023$) is inconclusive",
+              "new_string": "$p \\approx 0.032$) is inconclusive"
+            }
+          },
+          "id": "event-000097"
+        },
+        {
+          "source_line": 98,
+          "timestamp": "2026-05-27T16:58:31.296041+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000098"
+        },
+        {
+          "source_line": 99,
+          "timestamp": "2026-05-27T16:58:31.296158+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/discussion.tex",
+              "old_string": "${\\sim}$21--26\\,pp",
+              "new_string": "${\\sim}$21--25\\,pp"
+            }
+          },
+          "id": "event-000099"
+        },
+        {
+          "source_line": 100,
+          "timestamp": "2026-05-27T16:58:31.296292+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000100"
+        },
+        {
+          "source_line": 101,
+          "timestamp": "2026-05-27T16:58:31.296438+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "54\\.75|48\\.75|2\\.27|0\\.023",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper",
+              "output_mode": "content",
+              "-n": "True",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-000101"
+        },
+        {
+          "source_line": 102,
+          "timestamp": "2026-05-27T16:58:31.296561+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000102"
+        },
+        {
+          "source_line": 103,
+          "timestamp": "2026-05-27T16:58:31.296719+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim3.tex",
+              "offset": "5",
+              "limit": "36"
+            }
+          },
+          "id": "event-000103"
+        },
+        {
+          "source_line": 104,
+          "timestamp": "2026-05-27T16:58:31.296876+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5\t\\begin{table}[t]\n6\t\\centering\n7\t\\caption{Avoidance source attribution on SafeLIBERO. SDF at $\\lambda \\leq 0.01$ adds no measurable CAR beyond LoRA-only ($p > 0.1$); $\\lambda = 0.1$ shows a marginal signal ($z = 1.85$, $p \\approx 0.032$, $n{=}2$) that requires additional seeds. All fine-tuned models exhibit 0\\% frozen rate and displacement $>$\\,0.37\\,m.}\n8\t\\label{tab:avoidance_source}\n9\t\\vspace{2pt}\n10\t\\small\n11\t\\begin{tabular}{lcccc}\n12\t\\toprule\n13\tMethod & Seeds & TSR (\\%) & CAR (\\%) & EE Disp (m) \\\\\n14\t\\midrule\n15\tPi0.5 baseline & 3 & 74.7\\,$\\pm$\\,1.5 & 26.8\\,$\\pm$\\,1.6 & 0.367 \\\\\n16\t\\midrule\n17\tLoRA-only (no SDF) & 3 & 49.7\\,$\\pm$\\,3.2 & 54.83\\,$\\pm$\\,2.25 & 0.391 \\\\\n18\tLoRA+SDF $\\lambda{=}0.005$ & 3 & 54.0\\,$\\pm$\\,3.0 & 54.5\\,$\\pm$\\,2.29 & 0.387 \\\\\n19\tLoRA+SDF $\\lambda{=}0.01$ & 3 & 53.8\\,$\\pm$\\,1.5 & 56.33\\,$\\pm$\\,1.61 & 0.389 \\\\\n20\tLoRA+SDF $\\lambda{=}0.1$\\textsuperscript{$\\dagger$} & 2 & 48.0\\,$\\pm$\\,1.4 & 58.25\\,$\\pm$\\,0.35 & 0.394 \\\\\n21\t\\bottomrule\n22\t\\end{tabular}\n23\t\\vspace{1pt}\n24\t{\\footnotesize \\textsuperscript{$\\dagger$}30K checkpoint, two of three seeds; third seed in progress.}\n25\t\\end{table}\n26\t\n27\tTable~\\ref{tab:avoidance_source} shows that collision-free demonstrations alone raise CAR by ${\\sim}$28 percentage points (26.8\\% $\\to$ 54.83\\%) with zero frozen episodes and displacement above 0.37\\,m, confirming genuine avoidance. Adding SDF supervision produces no measurable benefit: LoRA-only CAR (54.83\\%) is within 0.25\\,pp of $\\lambda = 0.005$ and statistically indistinguishable from $\\lambda = 0.01$ (56.33\\%, $p > 0.1$; Appendix~\\ref{sec:appendix_null}). A Phase~2 ablation ($\\lambda = 0$ after step 5K) yields CAR\\,=\\,57.5\\%\\footnote{Single seed (s2); computational constraints precluded additional seeds for this ablation.}, confirming that SDF gradients produce no lasting behavioral effect. The per-task CAR ordering is preserved across all conditions (chocolate\\_pudding highest, bbq\\_sauce lowest) and invariant to $\\lambda$ across a 20$\\times$ ran\n…[truncated 2037 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000104"
+        },
+        {
+          "source_line": 105,
+          "timestamp": "2026-05-27T16:58:31.297027+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/abstract.tex"
+            }
+          },
+          "id": "event-000105"
+        },
+        {
+          "source_line": 106,
+          "timestamp": "2026-05-27T16:58:31.297159+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{abstract}\n2\tVision-Language-Action (VLA) models report high Collision Avoidance Rates (CAR) on safety benchmarks, yet we show these metrics are contaminated by action collapse.\n3\tOn SafeLIBERO, an SDF-augmented Pi0 achieves 91.5\\% CAR while 99.6\\% of its safe episodes exhibit end-effector displacement below 0.1\\,mm---the robot is frozen, not safe.\n4\tWe present displacement-filtered CAR (dfCAR), which excludes sub-threshold episodes, as a corrective metric; the bimodal displacement distribution makes it robust across a $[2, 200]$\\,mm threshold range.\n5\tOur analysis further reveals that end-effector-only Signed Distance Field (SDF) supervision is neither necessary nor structurally sufficient for collision avoidance.\n6\tIt is counterproductive at inference time: three ground-truth oracle variants all reduce dfCAR below unrefined baselines, as SDF gradients repelling the end-effector drive arm links into obstacles.\n7\tIts contribution during training is dose-dependent: LoRA-only fine-tuning raises dfCAR from 26.8\\% to 54.83\\%$\\,\\pm\\,$2.25, matching SDF-augmented training at $\\lambda{=}0.005$ (54.5\\%$\\,\\pm\\,$2.29) and $\\lambda{=}0.01$ (56.33\\%$\\,\\pm\\,$1.61); at $\\lambda{=}0.1$, two of three seeds show a marginal signal (58.25\\%$\\,\\pm\\,$0.35, $p{\\approx}0.032$) whose per-task avoidance pattern still mirrors the demonstration distribution, requiring further investigation.\n8\tPer-task avoidance patterns remain identical across all conditions, indicating that collision avoidance arises from collision-free demonstration data rather than geometric supervision.\n9\tDisplacement filtering is necessary for meaningful VLA safety evaluation; EE-only geometric supervision can be neither credited with nor expected to deliver collision avoidance.\n10\t\\end{abstract}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000106"
+        },
+        {
+          "source_line": 107,
+          "timestamp": "2026-05-27T16:58:31.297292+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/appendix.tex",
+              "offset": "126",
+              "limit": "15"
+            }
+          },
+          "id": "event-000107"
+        },
+        {
+          "source_line": 108,
+          "timestamp": "2026-05-27T16:58:31.297434+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "126\tCondition & TSR (\\%) & CAR (\\%) & SSR (\\%) & SSR/TSR \\\\\n127\t\\midrule\n128\tPi0.5 baseline & 74.7 & 26.8 & 25.0\\textsuperscript{a} & 0.33 \\\\\n129\tLoRA-only (3 seeds) & 49.7 & 54.83 & 28.3 & 0.57 \\\\\n130\tSDF $\\lambda{=}0.005$ (3 seeds) & 54.0 & 54.5 & 27.8 & 0.51 \\\\\n131\tSDF $\\lambda{=}0.01$ (3 seeds) & 53.8 & 56.33 & 30.2 & 0.56 \\\\\n132\tSDF $\\lambda{=}0.1$\\textsuperscript{$\\dagger$} & 48.0 & 58.25 & 26.5 & 0.55 \\\\\n133\t\\bottomrule\n134\t\\end{tabular}\n135\t\\vspace{1pt}\n136\t{\\footnotesize \\textsuperscript{a}Estimated; per-episode overlap unavailable for 3-seed rotation-corrected protocol. \\textsuperscript{$\\dagger$}SSR from seed~1 only; seed~0 per-episode data overwritten.}\n137\t\\end{table}\n138\t\n139\t\\section{Per-Task Oracle Analysis}\n140\t\\label{sec:appendix_pertask}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000108"
+        },
+        {
+          "source_line": 109,
+          "timestamp": "2026-05-27T16:58:31.297582+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/appendix.tex",
+              "offset": "167",
+              "limit": "20"
+            }
+          },
+          "id": "event-000109"
+        },
+        {
+          "source_line": 110,
+          "timestamp": "2026-05-27T16:58:31.297720+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "167\t\\section{Null Distribution for SDF Loss Weight Analysis}\n168\t\\label{sec:appendix_null}\n169\t\n170\tWe construct a null distribution by pooling the three LoRA-only seeds and three $\\lambda = 0.005$ seeds into six per-seed CAR measurements: 57.0\\% (LoRA s0, re-evaluated), 52.5\\% (LoRA s1), 55.0\\% (LoRA s2), 57.0\\% ($\\lambda{=}0.005$ s0), 54.0\\% ($\\lambda{=}0.005$ s1), 52.5\\% ($\\lambda{=}0.005$ s2), yielding mean 54.67\\% and standard deviation 1.94\\%. We treat these as exchangeable because SDF at $\\lambda = 0.005$ produces no separation from LoRA-only. The $\\lambda = 0.01$ mean of 56.33\\% falls within $0.9\\sigma$ of this null ($p > 0.1$), consistent with seed-to-seed variation rather than a treatment effect. The $\\lambda = 0.1$ 30K mean of 58.25\\% (2 seeds) yields $z = 1.85$ ($p \\approx 0.032$), a marginal departure whose interpretation is limited by $n = 2$.\n171\t\n172\tA Phase~2 ablation reinforces this conclusion. Setting $\\lambda = 0$ during Phase~2 (steps 5K--30K), so that SDF supervision is active only during auxiliary head warmup (Phase~1, steps 0--5K), yields CAR of 57.5\\% (single seed, s2). This value lies within the null range, indicating that SDF training produces no lasting behavioral effect on collision avoidance.\n173\t\n174\t\\section{Step-wise Checkpoint Analysis for \\texorpdfstring{$\\lambda = 0.1$}{lambda = 0.1}}\n175\t\\label{sec:appendix_stepwise}\n176\t\n177\tTable~\\ref{tab:stepwise_lambda01} reports per-seed CAR at seven checkpoints for $\\lambda = 0.1$. Seed-1 data is available at 16K, 20K, 22K, and 30K; 24K--28K report seed-0 only. The seed-0 curve shows no monotonic trend through 28K; the 30K checkpoint marks the first consistent dual-seed departure from the null band, though whether this reflects a genuine late-training effect or sampling variance at $n = 2$ remains open.\n178\t\n179\t\\begin{table}[h]\n180\t\\centering\n181\t\\caption{Per-seed CAR (\\%) at training checkpoints for $\\lambda = 0.1$ (200 episodes each). 24K--28K: seed-0 only. Dual-seed means remain within \n…[truncated 239 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000110"
+        },
+        {
+          "source_line": 111,
+          "timestamp": "2026-05-27T16:58:31.297895+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim3.tex",
+              "old_string": "0.51--0.58 (Appendix~\\ref{sec:appendix_ssr})",
+              "new_string": "0.51--0.57 (Appendix~\\ref{sec:appendix_ssr})"
+            }
+          },
+          "id": "event-000111"
+        },
+        {
+          "source_line": 112,
+          "timestamp": "2026-05-27T16:58:31.298050+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim3.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000112"
+        },
+        {
+          "source_line": 113,
+          "timestamp": "2026-05-27T16:58:31.298174+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/discussion.tex",
+              "old_string": "0.51--0.58 (Appendix~\\ref{sec:appendix_ssr})",
+              "new_string": "0.51--0.57 (Appendix~\\ref{sec:appendix_ssr})"
+            }
+          },
+          "id": "event-000113"
+        },
+        {
+          "source_line": 114,
+          "timestamp": "2026-05-27T16:58:31.298319+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000114"
+        },
+        {
+          "source_line": 115,
+          "timestamp": "2026-05-27T16:58:31.298469+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/appendix.tex",
+              "offset": "118",
+              "limit": "5"
+            }
+          },
+          "id": "event-000115"
+        },
+        {
+          "source_line": 116,
+          "timestamp": "2026-05-27T16:58:31.298597+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "118\t\\begin{table}[h]\n119\t\\centering\n120\t\\caption{SSR and SSR/TSR ratio across conditions. The ratio increase from 0.33 (baseline) to 0.51--0.58 (fine-tuned) indicates that CAR gains reflect learned safer execution, not reduced task exposure.}\n121\t\\label{tab:ssr}\n122\t\\vspace{2pt}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000116"
+        },
+        {
+          "source_line": 117,
+          "timestamp": "2026-05-27T16:58:31.298715+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/appendix.tex",
+              "old_string": "0.51--0.58 (fine-tuned)",
+              "new_string": "0.51--0.57 (fine-tuned)"
+            }
+          },
+          "id": "event-000117"
+        },
+        {
+          "source_line": 118,
+          "timestamp": "2026-05-27T16:58:31.298889+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000118"
+        },
+        {
+          "source_line": 119,
+          "timestamp": "2026-05-27T16:58:31.299031+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "54\\.75|48\\.75|0\\.023[^0-9]|z = 2\\.27|σ = 2\\.27|0\\.51--0\\.58",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper",
+              "output_mode": "content",
+              "-n": "True",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-000119"
+        },
+        {
+          "source_line": 120,
+          "timestamp": "2026-05-27T16:58:31.299156+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000120"
+        },
+        {
+          "source_line": 121,
+          "timestamp": "2026-05-27T16:58:31.299317+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部替换完成，无遗漏。修改清单汇总：\n\n### 修改记录\n\n| # | 文件 | 行号 | old → new |\n|---|------|------|-----------|\n| 1 | claim3.tex | 7 | `z=2.27, p≈0.023` → `z=1.85, p≈0.032` |\n| 2 | claim3.tex | 17 | `Seeds 2, TSR 48.75, CAR 54.75±3.18, EE 0.392` → `Seeds 3, TSR 49.7±3.2, CAR 54.83±2.25, EE 0.391` |\n| 3 | claim3.tex | 27 | `54.75%` → `54.83%` (2处) |\n| 4 | claim3.tex | 30 | `21--26 pp, 48.75--54.0%` → `21--25 pp, 49.7--54.0%`; `0.51--0.58` → `0.51--0.57` |\n| 5 | claim3.tex | 33 | `mean 54.6%, σ=2.27, z=2.27, p≈0.023, ~3.7pp` → `mean 54.67%, σ=1.94, z=1.85, p≈0.032, ~3.6pp` |\n| 6 | claim3.tex | 38 | `p≈0.023` → `p≈0.032` |\n| 7 | abstract.tex | 7 | `54.75%±3.18` → `54.83%±2.25`; `p≈0.023` → `p≈0.032` |\n| 8 | introduction.tex | 20 | `54.75%` → `54.83%`; `p≈0.023` → `p≈0.032` |\n| 9 | discussion.tex | 12 | `p≈0.023` → `p≈0.032`; `21--26pp` → `21--25pp`; `0.51--0.58` → `0.51--0.57` |\n| 10 | appendix.tex | 120 | SSR caption `0.51--0.58` → `0.51--0.57` |\n| 11 | appendix.tex | 129 | `LoRA-only (2 seeds), 48.75, 54.75, 0.58` → `(3 seeds), 49.7, 54.83, 0.57` |\n| 12 | appendix.tex | 170 | null dist: 5值→6值(加 s2=55%), mean 54.6%→54.67%, σ 2.27%→1.94%, z 2.27→1.85, p 0.023→0.032, 0.8σ→0.9σ |\n| 13 | appendix.tex | 181 | stepwise caption: `54.6%±2.27%, z=2.27, p≈0.023` → `54.67%±1.94%, z=1.85, p≈0.032` |\n\n### EE Disp 数据\ns2 JSON 中 avg_max_ee_displacement: OJ=0.388, CP=0.406, Milk=0.355, BBQ=0.405, mean=0.388。3-seed 均值 0.391 已写入 Table 4。\n\n### 注意事项\n- appendix SSR 表的 SSR=28.3 未更新（无 s2 per-episode 重叠数据）\n- appendix per-task CAR 表 (Table 8) 和 dfCAR 阈值表 (Table 6) 未添加 LoRA s2 行——如需补充请告知"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_reviewer_corrections_s2_20260527T164737"
+          },
+          "id": "event-000121"
+        }
+      ],
+      "message_count": 121
+    }
+  ],
+  "readable_path": "readable/conversations/fix-paper-reviewer-corrections-s2.md"
+}

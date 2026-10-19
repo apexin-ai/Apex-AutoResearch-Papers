@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "437e6338882a1b462fe8",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops eval best s2 10k cuda3",
+  "task_key": "worker_ops_eval_best_s2_10k_cuda3_20260525T185259",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval_best_s2_10k_cuda3_20260525T185259_result.json",
+    "occurrence": 1,
+    "bytes": 479,
+    "sha256": "226247e6fa589e06b75fd7fa5543336bdebaeee293fffc0ff8351ee66e3da36f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "启动成功。\n\n- **GPU 3**: 8610 MiB 已占用\n- 模型加载完成，LoRA 注入成功（PaliGemma rank=16, Expert rank=32）\n- 正在运行 safelibero_object 评估，Task 0: \"pick up the orange juice and place it in the basket\"\n- 200 episodes，Safety level II\n- tmux session: `eval_pi05_a1_best_s2_l005_10k`\n- 日志: `~/runs/diff_collision_sdf/eval_pi05_a1_best_s2_l005_10k.log`\n- 输出: `/root/autodl-tmp/eval_results/eval_s2_l005_best_10k.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-best-s2-10k-cuda3.md"
+}

@@ -1,0 +1,1527 @@
+# ops eval lora baseline s0 check
+
+**How Action Collapse Creates Illusory Safety in Diffusion-Based VLA Collision Avoidance Evaluation** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 32
+- **Recorded user turns:** 0
+- **Tool calls:** 12
+- **Original source:** `logs/workers/worker_ops_eval_lora_baseline_s0_check_20260526T015751.log`
+- **Structured JSON:** [`14b19964ef9b8f1e3eb5.json`](../../sessions/14/14b19964ef9b8f1e3eb5.json)
+
+## Before a recorded user message
+
+32 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf",
+  "session_id": "e17e5012-2125-4cb5-849f-309050eb5b1d",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "9025c52c-c7bd-4981-a5b4-5272e79049a5",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779772800,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "d15d2873-529a-4a30-98ff-b374813a9ef3",
+  "session_id": "e17e5012-2125-4cb5-849f-309050eb5b1d"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me check the eval status on westd-45947 server. I'll start by checking the log and looking for output files.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e17e5012-2125-4cb5-849f-309050eb5b1d",
+  "uuid": "53954968-41ae-4d72-b9cf-90892462b530",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014ram3hphpnHJgyoEz7KFQB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12136,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12136
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_013U7hvDkxFV2JLneHkYJXRh`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e17e5012-2125-4cb5-849f-309050eb5b1d",
+  "uuid": "4b17b618-1145-4502-ade2-083aa2a7d70c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014ram3hphpnHJgyoEz7KFQB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12136,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12136
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-26T01:58:05.280Z_
+
+<details><summary>↩ Tool result · `toolu_013U7hvDkxFV2JLneHkYJXRh`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e17e5012-2125-4cb5-849f-309050eb5b1d",
+  "uuid": "601098c9-fa42-4aaf-9a6b-13cbfa5e027e",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__read_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Rxjmh7nFA53kumPsc4N9md`</summary>
+
+```json
+{
+  "server": "westd-45947",
+  "command": "tail -50 /tmp/eval_lora_baseline_30k_s0.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e17e5012-2125-4cb5-849f-309050eb5b1d",
+  "uuid": "97c384bf-ecaa-46d6-b254-f7029fd17b0b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QezBzW62Q97oMjv7kWwqzg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1308,
+      "cache_read_input_tokens": 23977,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1308
+      },
+      "output_tokens": 45,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DZumb7FhEYMNXb6DagS9h9`</summary>
+
+```json
+{
+  "server": "westd-45947",
+  "command": "find /root -name \"*lora_baseline*s0*.json\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e17e5012-2125-4cb5-849f-309050eb5b1d",
+  "uuid": "3b47feb2-5420-4e7e-bfa0-5c76d1a609b9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QezBzW62Q97oMjv7kWwqzg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1308,
+      "cache_read_input_tokens": 23977,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1308
+      },
+      "output_tokens": 45,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-26T01:58:14.604Z_
+
+<details><summary>↩ Tool result · `toolu_01Rxjmh7nFA53kumPsc4N9md`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-26 09:38:52,217 [INFO] Loading policy (model_type=lora_baseline)...\\n2026-05-26 09:38:55,393 [INFO] JAX version 0.6.2 available.\\n2026-05-26 09:38:55,634 [INFO] [EVAL CONFIG] extra_delta_transform=False\\n2026-05-26 09:38:55,635 [INFO] Creating PI0Pytorch model and injecting LoRA...\\n2026-05-26 09:39:49,939 [INFO] LoRA injected: PaliGemma rank=16 (19611648 params), Expert rank=32 (13860864 params)\\n2026-05-26 09:39:49,940 [INFO] Loading full state dict from /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000/model.safetensors\\n2026-05-26 09:39:50,990 [INFO] Loaded norm stats from /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000/assets/safelibero_object\\n2026-05-26 09:39:50,990 [INFO] Loaded norm_stats from /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000/assets/safelibero_object\\n2026-05-26 09:39:51,040 [INFO] Norm stats not found in /root/colliforce-vla/assets/pi05_libero/physical-intelligence/libero, skipping.\\n2026-05-26 09:39:52,609 [INFO] Loaded lora_baseline policy from /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000\\n2026-05-26 09:39:52,610 [INFO] Setting up SafeLIBERO benchmark: safelibero_object (level II)\\n[GPU] Setting CUDA_VISIBLE_DEVICES=0 from --gpu flag\\nTraceback (most recent call last):\\n  File \\\"/root/colliforce-vla/scripts/eval_safelibero.py\\\", line 1357, in &lt;module>\\n    main()\\n  File \\\"/root/colliforce-vla/scripts/eval_safelibero.py\\\", line 1270, in main\\n    benchmark_cls = get_benchmark(args.suite)\\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/libero/libero/benchmark/__init__.py\\\", line 28, in get_benchmark\\n    return BENCHMARK_MAPPING[benchmark_name.lower()]\\n           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\\nKeyError: 'safelibero_object'\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.09}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e17e5012-2125-4cb5-849f-309050eb5b1d",
+  "uuid": "7350aa04-8fcc-4950-82c1-a6570aed4a03",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-26 09:38:52,217 [INFO] Loading policy (model_type=lora_baseline)...\\\\n2026-05-26 09:38:55,393 [INFO] JAX version 0.6.2 available.\\\\n2026-05-26 09:38:55,634 [INFO] [EVAL CONFIG] extra_delta_transform=False\\\\n2026-05-26 09:38:55,635 [INFO] Creating PI0Pytorch model and injecting LoRA...\\\\n2026-05-26 09:39:49,939 [INFO] LoRA injected: PaliGemma rank=16 (19611648 params), Expert rank=32 (13860864 params)\\\\n2026-05-26 09:39:49,940 [INFO] Loading full state dict from /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000/model.safetensors\\\\n2026-05-26 09:39:50,990 [INFO] Loaded norm stats from /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000/assets/safelibero_object\\\\n2026-05-26 09:39:50,990 [INFO] Loaded norm_stats from /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000/assets/safelibero_object\\\\n2026-05-26 09:39:51,040 [INFO] Norm stats not found in /root/colliforce-vla/assets/pi05_libero/physical-intelligence/libero, skipping.\\\\n2026-05-26 09:39:52,609 [INFO] Loaded lora_baseline policy from /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000\\\\n2026-05-26 09:39:52,610 [INFO] Setting up SafeLIBERO benchmark: safelibero_object (level II)\\\\n[GPU] Setting CUDA_VISIBLE_DEVICES=0 from --gpu flag\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"/root/colliforce-vla/scripts/eval_safelibero.py\\\\\\\", line 1357, in &lt;module>\\\\n    main()\\\\n  File \\\\\\\"/root/colliforce-vla/scripts/eval_safelibero.py\\\\\\\", line 1270, in main\\\\n    benchmark_cls = get_benchmark(args.suite)\\\\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/libero/libero/benchmark/__init__.py\\\\\\\", line 28, in get_benchmark\\\\n    return BENCHMARK_MAPPING[benchmark_name.lower()]\\\\n           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\\\\nKeyError: 'safelibero_object'\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.09}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-26 09:38:52,217 [INFO] Loading policy (model_type=lora_baseline)...\\n2026-05-26 09:38:55,393 [INFO] JAX version 0.6.2 available.\\n2026-05-26 09:38:55,634 [INFO] [EVAL CONFIG] extra_delta_transform=False\\n2026-05-26 09:38:55,635 [INFO] Creating PI0Pytorch model and injecting LoRA...\\n2026-05-26 09:39:49,939 [INFO] LoRA injected: PaliGemma rank=16 (19611648 params), Expert rank=32 (13860864 params)\\n2026-05-26 09:39:49,940 [INFO] Loading full state dict from /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000/model.safetensors\\n2026-05-26 09:39:50,990 [INFO] Loaded norm stats from /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000/assets/safelibero_object\\n2026-05-26 09:39:50,990 [INFO] Loaded norm_stats from /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000/assets/safelibero_object\\n2026-05-26 09:39:51,040 [INFO] Norm stats not found in /root/colliforce-vla/assets/pi05_libero/physical-intelligence/libero, skipping.\\n2026-05-26 09:39:52,609 [INFO] Loaded lora_baseline policy from /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000\\n2026-05-26 09:39:52,610 [INFO] Setting up SafeLIBERO benchmark: safelibero_object (level II)\\n[GPU] Setting CUDA_VISIBLE_DEVICES=0 from --gpu flag\\nTraceback (most recent call last):\\n  File \\\"/root/colliforce-vla/scripts/eval_safelibero.py\\\", line 1357, in &lt;module>\\n    main()\\n  File \\\"/root/colliforce-vla/scripts/eval_safelibero.py\\\", line 1270, in main\\n    benchmark_cls = get_benchmark(args.suite)\\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/libero/libero/benchmark/__init__.py\\\", line 28, in get_benchmark\\n    return BENCHMARK_MAPPING[benchmark_name.lower()]\\n           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\\nKeyError: 'safelibero_object'\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.09}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Suk1z54v9HYMKAmHAvM5nw`</summary>
+
+```json
+{
+  "server": "westd-45947",
+  "command": "find /root -name \"*lora_baseline*seed0*.json\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e17e5012-2125-4cb5-849f-309050eb5b1d",
+  "uuid": "85f8e5ed-7b04-40de-ae95-124178640013",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QezBzW62Q97oMjv7kWwqzg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1308,
+      "cache_read_input_tokens": 23977,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1308
+      },
+      "output_tokens": 45,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-26T01:58:15.408Z_
+
+<details><summary>↩ Tool result · `toolu_01DZumb7FhEYMNXb6DagS9h9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.79}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e17e5012-2125-4cb5-849f-309050eb5b1d",
+  "uuid": "5b76d0dd-380a-4dbd-81b4-dd183af8f393",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.79}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.79}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-26T01:58:16.240Z_
+
+<details><summary>↩ Tool result · `toolu_01Suk1z54v9HYMKAmHAvM5nw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.82}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e17e5012-2125-4cb5-849f-309050eb5b1d",
+  "uuid": "541a0786-dd83-40c7-9a6a-4c84222882b5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.82}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.82}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The eval failed with a KeyError: 'safelibero_object'. The benchmark name wasn't found in BENCHMARK_MAPPING. No output JSON files were generated.
+
+Let me update the registry and delete the cron.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e17e5012-2125-4cb5-849f-309050eb5b1d",
+  "uuid": "0c892947-052f-4c0f-af62-574034517c02",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QgbVhP6HVbuipEewTKj9Ev",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1432,
+      "cache_read_input_tokens": 25285,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1432
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+评估失败。错误：`KeyError: 'safelibero_object'` — benchmark 名称在 `libero` 包的 `BENCHMARK_MAPPING` 中不存在。没有生成任何输出 JSON 文件。
+
+更新 registry 并删除 cron。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e17e5012-2125-4cb5-849f-309050eb5b1d",
+  "uuid": "7b37234d-53d9-4a3b-a406-e519428e3c84",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QgbVhP6HVbuipEewTKj9Ev",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1432,
+      "cache_read_input_tokens": 25285,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1432
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01GT8A3wDpyTANuP6FxNchn5`</summary>
+
+```json
+{
+  "query": "select:CronDelete",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e17e5012-2125-4cb5-849f-309050eb5b1d",
+  "uuid": "6a6826d8-d0dc-49e6-988b-3ee87f826b57",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QgbVhP6HVbuipEewTKj9Ev",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1432,
+      "cache_read_input_tokens": 25285,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1432
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-26T01:58:22.924Z_
+
+<details><summary>↩ Tool result · `toolu_01GT8A3wDpyTANuP6FxNchn5`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "CronDelete"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e17e5012-2125-4cb5-849f-309050eb5b1d",
+  "uuid": "adde51d3-2659-4be4-8638-58f3cab9352e",
+  "tool_use_result": {
+    "matches": [
+      "CronDelete"
+    ],
+    "query": "select:CronDelete",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01KaWRGimTufapYdrU5KLQJB`</summary>
+
+```json
+{
+  "exp_id": "eval_lora_baseline_30k_s0",
+  "field": "status",
+  "value": "DONE",
+  "project": "diff_collision_sdf"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e17e5012-2125-4cb5-849f-309050eb5b1d",
+  "uuid": "1d2e42f9-ac4a-4596-bc91-4ec730035a6b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013szYDqK3SHQTy95EeniLWF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 356,
+      "cache_read_input_tokens": 26717,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 356
+      },
+      "output_tokens": 43,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — CronDelete · `toolu_016UX3DMKr8UxpMgdFunjKQA`</summary>
+
+```json
+{
+  "id": "eval_lora_baseline_30k_s0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e17e5012-2125-4cb5-849f-309050eb5b1d",
+  "uuid": "e0e37c6a-0d45-4f37-9b24-45a14c5e29ed",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013szYDqK3SHQTy95EeniLWF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 356,
+      "cache_read_input_tokens": 26717,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 356
+      },
+      "output_tokens": 43,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-26T01:58:26.409Z_
+
+<details><summary>↩ Tool result · `toolu_01KaWRGimTufapYdrU5KLQJB`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 0.1922}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e17e5012-2125-4cb5-849f-309050eb5b1d",
+  "uuid": "869af731-9cc3-4ec7-b47e-21b66ff2b3c1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1922}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 0.1922}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-26T01:58:26.410Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_016UX3DMKr8UxpMgdFunjKQA`</summary>
+
+```text
+&lt;tool_use_error>No scheduled job with id 'eval_lora_baseline_30k_s0'&lt;/tool_use_error>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e17e5012-2125-4cb5-849f-309050eb5b1d",
+  "uuid": "c0b7447b-3da1-4aa3-b183-ffa007cb9177",
+  "tool_use_result": "Error: No scheduled job with id 'eval_lora_baseline_30k_s0'"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01Cugdna5J5vsGNQbNWn1khc`</summary>
+
+```json
+{
+  "exp_id": "eval_lora_baseline_30k_s0",
+  "field": "conclusion",
+  "value": "failed",
+  "project": "diff_collision_sdf"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e17e5012-2125-4cb5-849f-309050eb5b1d",
+  "uuid": "49746c9b-f86f-4b89-afe0-043d0c6d32cb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018Qd1Ne9T6iB1Eqa4DWuYGZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 343,
+      "cache_read_input_tokens": 27073,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 343
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-26T01:58:31.703Z_
+
+<details><summary>↩ Tool result · `toolu_01Cugdna5J5vsGNQbNWn1khc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_lora_baseline_30k_s0\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T01:37:48.287Z\", \"updated_at\": \"2026-05-26T01:58:31.529Z\", \"hypothesis\": \"LoRA baseline (no SDF) 30K eval on object_pudding seed 0: expects CAR ≈ Pi0.5 baseline (~27%), confirming ColliForce CAR improvement is from SDF not LoRA. Parent: train_pi05_lora_baseline_s0.\", \"parent\": \"train_pi05_lora_baseline_s0\", \"spec\": {\"command\": \"python scripts/eval_safelibero.py --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000 --config_name pi05_libero --model_type lora_baseline --suite safelibero_object --pi05 --seed 0 --gpu 0 --output_path /root/autodl-tmp/eval_results/eval_lora_baseline_30k_s0.json\", \"server\": \"westd-45947\", \"gpu\": [\"cuda:0\"], \"data_path\": \"safelibero_object\", \"data_count\": 50, \"model_name\": \"pi05_lora_baseline_seed0_30k\", \"seed\": 0, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000\", \"eval_data\": \"safelibero_object\"}, \"notes\": \"Eval launched on westd-45947 cuda:0. PID 28196 (wrapper) → python subprocess. Log: /tmp/eval_lora_baseline_30k_s0.log. Started 2026-05-26 09:38 UTC. Model loading in progress.\", \"conclusion\": \"failed\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3687}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e17e5012-2125-4cb5-849f-309050eb5b1d",
+  "uuid": "5e9e488b-8c8f-451e-96b5-68e8e64c7927",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_lora_baseline_30k_s0\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T01:37:48.287Z\\\", \\\"updated_at\\\": \\\"2026-05-26T01:58:31.529Z\\\", \\\"hypothesis\\\": \\\"LoRA baseline (no SDF) 30K eval on object_pudding seed 0: expects CAR ≈ Pi0.5 baseline (~27%), confirming ColliForce CAR improvement is from SDF not LoRA. Parent: train_pi05_lora_baseline_s0.\\\", \\\"parent\\\": \\\"train_pi05_lora_baseline_s0\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/eval_safelibero.py --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000 --config_name pi05_libero --model_type lora_baseline --suite safelibero_object --pi05 --seed 0 --gpu 0 --output_path /root/autodl-tmp/eval_results/eval_lora_baseline_30k_s0.json\\\", \\\"server\\\": \\\"westd-45947\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"data_path\\\": \\\"safelibero_object\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"pi05_lora_baseline_seed0_30k\\\", \\\"seed\\\": 0, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000\\\", \\\"eval_data\\\": \\\"safelibero_object\\\"}, \\\"notes\\\": \\\"Eval launched on westd-45947 cuda:0. PID 28196 (wrapper) → python subprocess. Log: /tmp/eval_lora_baseline_30k_s0.log. Started 2026-05-26 09:38 UTC. Model loading in progress.\\\", \\\"conclusion\\\": \\\"failed\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3687}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_lora_baseline_30k_s0\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T01:37:48.287Z\", \"updated_at\": \"2026-05-26T01:58:31.529Z\", \"hypothesis\": \"LoRA baseline (no SDF) 30K eval on object_pudding seed 0: expects CAR ≈ Pi0.5 baseline (~27%), confirming ColliForce CAR improvement is from SDF not LoRA. Parent: train_pi05_lora_baseline_s0.\", \"parent\": \"train_pi05_lora_baseline_s0\", \"spec\": {\"command\": \"python scripts/eval_safelibero.py --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000 --config_name pi05_libero --model_type lora_baseline --suite safelibero_object --pi05 --seed 0 --gpu 0 --output_path /root/autodl-tmp/eval_results/eval_lora_baseline_30k_s0.json\", \"server\": \"westd-45947\", \"gpu\": [\"cuda:0\"], \"data_path\": \"safelibero_object\", \"data_count\": 50, \"model_name\": \"pi05_lora_baseline_seed0_30k\", \"seed\": 0, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000\", \"eval_data\": \"safelibero_object\"}, \"notes\": \"Eval launched on westd-45947 cuda:0. PID 28196 (wrapper) → python subprocess. Log: /tmp/eval_lora_baseline_30k_s0.log. Started 2026-05-26 09:38 UTC. Model loading in progress.\", \"conclusion\": \"failed\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3687}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_014CNk98D7h5dwwYejkW1JoD`</summary>
+
+```json
+{
+  "exp_id": "eval_lora_baseline_30k_s0",
+  "field": "status",
+  "value": "DONE",
+  "project": "diff_collision_sdf"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e17e5012-2125-4cb5-849f-309050eb5b1d",
+  "uuid": "09bdd70e-2d97-4e88-ae2c-991a930ebc90",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FPUthu7pGiZdNNe7LkRLsX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 733,
+      "cache_read_input_tokens": 27416,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 733
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-26T01:58:34.731Z_
+
+<details><summary>↩ Tool result · `toolu_014CNk98D7h5dwwYejkW1JoD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_lora_baseline_30k_s0\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-26T01:37:48.287Z\", \"updated_at\": \"2026-05-26T01:58:34.256Z\", \"hypothesis\": \"LoRA baseline (no SDF) 30K eval on object_pudding seed 0: expects CAR ≈ Pi0.5 baseline (~27%), confirming ColliForce CAR improvement is from SDF not LoRA. Parent: train_pi05_lora_baseline_s0.\", \"parent\": \"train_pi05_lora_baseline_s0\", \"spec\": {\"command\": \"python scripts/eval_safelibero.py --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000 --config_name pi05_libero --model_type lora_baseline --suite safelibero_object --pi05 --seed 0 --gpu 0 --output_path /root/autodl-tmp/eval_results/eval_lora_baseline_30k_s0.json\", \"server\": \"westd-45947\", \"gpu\": [\"cuda:0\"], \"data_path\": \"safelibero_object\", \"data_count\": 50, \"model_name\": \"pi05_lora_baseline_seed0_30k\", \"seed\": 0, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000\", \"eval_data\": \"safelibero_object\"}, \"notes\": \"Eval launched on westd-45947 cuda:0. PID 28196 (wrapper) → python subprocess. Log: /tmp/eval_lora_baseline_30k_s0.log. Started 2026-05-26 09:38 UTC. Model loading in progress.\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-26T01:58:34.256Z\"}, \"hint\": \"💡 建议将故障原因写入 memory.md（如何避免再犯）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7004}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e17e5012-2125-4cb5-849f-309050eb5b1d",
+  "uuid": "1f3457dd-aada-4db6-bd74-feb2e59458f5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_lora_baseline_30k_s0\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T01:37:48.287Z\\\", \\\"updated_at\\\": \\\"2026-05-26T01:58:34.256Z\\\", \\\"hypothesis\\\": \\\"LoRA baseline (no SDF) 30K eval on object_pudding seed 0: expects CAR ≈ Pi0.5 baseline (~27%), confirming ColliForce CAR improvement is from SDF not LoRA. Parent: train_pi05_lora_baseline_s0.\\\", \\\"parent\\\": \\\"train_pi05_lora_baseline_s0\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/eval_safelibero.py --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000 --config_name pi05_libero --model_type lora_baseline --suite safelibero_object --pi05 --seed 0 --gpu 0 --output_path /root/autodl-tmp/eval_results/eval_lora_baseline_30k_s0.json\\\", \\\"server\\\": \\\"westd-45947\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"data_path\\\": \\\"safelibero_object\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"pi05_lora_baseline_seed0_30k\\\", \\\"seed\\\": 0, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000\\\", \\\"eval_data\\\": \\\"safelibero_object\\\"}, \\\"notes\\\": \\\"Eval launched on westd-45947 cuda:0. PID 28196 (wrapper) → python subprocess. Log: /tmp/eval_lora_baseline_30k_s0.log. Started 2026-05-26 09:38 UTC. Model loading in progress.\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-26T01:58:34.256Z\\\"}, \\\"hint\\\": \\\"💡 建议将故障原因写入 memory.md（如何避免再犯）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7004}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_lora_baseline_30k_s0\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-26T01:37:48.287Z\", \"updated_at\": \"2026-05-26T01:58:34.256Z\", \"hypothesis\": \"LoRA baseline (no SDF) 30K eval on object_pudding seed 0: expects CAR ≈ Pi0.5 baseline (~27%), confirming ColliForce CAR improvement is from SDF not LoRA. Parent: train_pi05_lora_baseline_s0.\", \"parent\": \"train_pi05_lora_baseline_s0\", \"spec\": {\"command\": \"python scripts/eval_safelibero.py --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000 --config_name pi05_libero --model_type lora_baseline --suite safelibero_object --pi05 --seed 0 --gpu 0 --output_path /root/autodl-tmp/eval_results/eval_lora_baseline_30k_s0.json\", \"server\": \"westd-45947\", \"gpu\": [\"cuda:0\"], \"data_path\": \"safelibero_object\", \"data_count\": 50, \"model_name\": \"pi05_lora_baseline_seed0_30k\", \"seed\": 0, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000\", \"eval_data\": \"safelibero_object\"}, \"notes\": \"Eval launched on westd-45947 cuda:0. PID 28196 (wrapper) → python subprocess. Log: /tmp/eval_lora_baseline_30k_s0.log. Started 2026-05-26 09:38 UTC. Model loading in progress.\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-26T01:58:34.256Z\"}, \"hint\": \"💡 建议将故障原因写入 memory.md（如何避免再犯）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7004}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01NoA4pz9miam7LontFViVXq`</summary>
+
+```json
+{
+  "exp_id": "eval_lora_baseline_30k_s0",
+  "field": "log_path",
+  "value": "/tmp/eval_lora_baseline_30k_s0.log",
+  "project": "diff_collision_sdf"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e17e5012-2125-4cb5-849f-309050eb5b1d",
+  "uuid": "8db1c434-5f65-4143-aee5-f102a893001d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P8sJoZfVNuWz1zfadCtAXd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 892,
+      "cache_read_input_tokens": 28149,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 892
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-26T01:58:37.726Z_
+
+<details><summary>↩ Tool result · `toolu_01NoA4pz9miam7LontFViVXq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_lora_baseline_30k_s0\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-26T01:37:48.287Z\", \"updated_at\": \"2026-05-26T01:58:37.568Z\", \"hypothesis\": \"LoRA baseline (no SDF) 30K eval on object_pudding seed 0: expects CAR ≈ Pi0.5 baseline (~27%), confirming ColliForce CAR improvement is from SDF not LoRA. Parent: train_pi05_lora_baseline_s0.\", \"parent\": \"train_pi05_lora_baseline_s0\", \"spec\": {\"command\": \"python scripts/eval_safelibero.py --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000 --config_name pi05_libero --model_type lora_baseline --suite safelibero_object --pi05 --seed 0 --gpu 0 --output_path /root/autodl-tmp/eval_results/eval_lora_baseline_30k_s0.json\", \"server\": \"westd-45947\", \"gpu\": [\"cuda:0\"], \"data_path\": \"safelibero_object\", \"data_count\": 50, \"model_name\": \"pi05_lora_baseline_seed0_30k\", \"seed\": 0, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000\", \"eval_data\": \"safelibero_object\"}, \"notes\": \"Eval launched on westd-45947 cuda:0. PID 28196 (wrapper) → python subprocess. Log: /tmp/eval_lora_baseline_30k_s0.log. Started 2026-05-26 09:38 UTC. Model loading in progress.\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-26T01:58:34.256Z\", \"log_path\": \"/tmp/eval_lora_baseline_30k_s0.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3664}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e17e5012-2125-4cb5-849f-309050eb5b1d",
+  "uuid": "b11dcad2-1eb0-4b05-8c35-9c80948521cb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_lora_baseline_30k_s0\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T01:37:48.287Z\\\", \\\"updated_at\\\": \\\"2026-05-26T01:58:37.568Z\\\", \\\"hypothesis\\\": \\\"LoRA baseline (no SDF) 30K eval on object_pudding seed 0: expects CAR ≈ Pi0.5 baseline (~27%), confirming ColliForce CAR improvement is from SDF not LoRA. Parent: train_pi05_lora_baseline_s0.\\\", \\\"parent\\\": \\\"train_pi05_lora_baseline_s0\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/eval_safelibero.py --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000 --config_name pi05_libero --model_type lora_baseline --suite safelibero_object --pi05 --seed 0 --gpu 0 --output_path /root/autodl-tmp/eval_results/eval_lora_baseline_30k_s0.json\\\", \\\"server\\\": \\\"westd-45947\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"data_path\\\": \\\"safelibero_object\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"pi05_lora_baseline_seed0_30k\\\", \\\"seed\\\": 0, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000\\\", \\\"eval_data\\\": \\\"safelibero_object\\\"}, \\\"notes\\\": \\\"Eval launched on westd-45947 cuda:0. PID 28196 (wrapper) → python subprocess. Log: /tmp/eval_lora_baseline_30k_s0.log. Started 2026-05-26 09:38 UTC. Model loading in progress.\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-26T01:58:34.256Z\\\", \\\"log_path\\\": \\\"/tmp/eval_lora_baseline_30k_s0.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3664}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_lora_baseline_30k_s0\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-26T01:37:48.287Z\", \"updated_at\": \"2026-05-26T01:58:37.568Z\", \"hypothesis\": \"LoRA baseline (no SDF) 30K eval on object_pudding seed 0: expects CAR ≈ Pi0.5 baseline (~27%), confirming ColliForce CAR improvement is from SDF not LoRA. Parent: train_pi05_lora_baseline_s0.\", \"parent\": \"train_pi05_lora_baseline_s0\", \"spec\": {\"command\": \"python scripts/eval_safelibero.py --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000 --config_name pi05_libero --model_type lora_baseline --suite safelibero_object --pi05 --seed 0 --gpu 0 --output_path /root/autodl-tmp/eval_results/eval_lora_baseline_30k_s0.json\", \"server\": \"westd-45947\", \"gpu\": [\"cuda:0\"], \"data_path\": \"safelibero_object\", \"data_count\": 50, \"model_name\": \"pi05_lora_baseline_seed0_30k\", \"seed\": 0, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000\", \"eval_data\": \"safelibero_object\"}, \"notes\": \"Eval launched on westd-45947 cuda:0. PID 28196 (wrapper) → python subprocess. Log: /tmp/eval_lora_baseline_30k_s0.log. Started 2026-05-26 09:38 UTC. Model loading in progress.\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-26T01:58:34.256Z\", \"log_path\": \"/tmp/eval_lora_baseline_30k_s0.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3664}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_016dzg2ELgkVdCNveTgkhehq`</summary>
+
+```json
+{
+  "exp_id": "eval_lora_baseline_30k_s0",
+  "field": "checkpoint_path",
+  "value": "/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000/",
+  "project": "diff_collision_sdf"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e17e5012-2125-4cb5-849f-309050eb5b1d",
+  "uuid": "3cd47bf5-b299-49a1-b670-65ea5dfc1bca",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P8sJoZfVNuWz1zfadCtAXd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 892,
+      "cache_read_input_tokens": 28149,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 892
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-26T01:58:39.179Z_
+
+<details><summary>↩ Tool result · `toolu_016dzg2ELgkVdCNveTgkhehq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_lora_baseline_30k_s0\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-26T01:37:48.287Z\", \"updated_at\": \"2026-05-26T01:58:39.032Z\", \"hypothesis\": \"LoRA baseline (no SDF) 30K eval on object_pudding seed 0: expects CAR ≈ Pi0.5 baseline (~27%), confirming ColliForce CAR improvement is from SDF not LoRA. Parent: train_pi05_lora_baseline_s0.\", \"parent\": \"train_pi05_lora_baseline_s0\", \"spec\": {\"command\": \"python scripts/eval_safelibero.py --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000 --config_name pi05_libero --model_type lora_baseline --suite safelibero_object --pi05 --seed 0 --gpu 0 --output_path /root/autodl-tmp/eval_results/eval_lora_baseline_30k_s0.json\", \"server\": \"westd-45947\", \"gpu\": [\"cuda:0\"], \"data_path\": \"safelibero_object\", \"data_count\": 50, \"model_name\": \"pi05_lora_baseline_seed0_30k\", \"seed\": 0, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000\", \"eval_data\": \"safelibero_object\"}, \"notes\": \"Eval launched on westd-45947 cuda:0. PID 28196 (wrapper) → python subprocess. Log: /tmp/eval_lora_baseline_30k_s0.log. Started 2026-05-26 09:38 UTC. Model loading in progress.\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-26T01:58:34.256Z\", \"log_path\": \"/tmp/eval_lora_baseline_30k_s0.log\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000/\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3422}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e17e5012-2125-4cb5-849f-309050eb5b1d",
+  "uuid": "ad7fcf39-aff5-47eb-9c5f-8f90037a05f6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_lora_baseline_30k_s0\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T01:37:48.287Z\\\", \\\"updated_at\\\": \\\"2026-05-26T01:58:39.032Z\\\", \\\"hypothesis\\\": \\\"LoRA baseline (no SDF) 30K eval on object_pudding seed 0: expects CAR ≈ Pi0.5 baseline (~27%), confirming ColliForce CAR improvement is from SDF not LoRA. Parent: train_pi05_lora_baseline_s0.\\\", \\\"parent\\\": \\\"train_pi05_lora_baseline_s0\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/eval_safelibero.py --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000 --config_name pi05_libero --model_type lora_baseline --suite safelibero_object --pi05 --seed 0 --gpu 0 --output_path /root/autodl-tmp/eval_results/eval_lora_baseline_30k_s0.json\\\", \\\"server\\\": \\\"westd-45947\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"data_path\\\": \\\"safelibero_object\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"pi05_lora_baseline_seed0_30k\\\", \\\"seed\\\": 0, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000\\\", \\\"eval_data\\\": \\\"safelibero_object\\\"}, \\\"notes\\\": \\\"Eval launched on westd-45947 cuda:0. PID 28196 (wrapper) → python subprocess. Log: /tmp/eval_lora_baseline_30k_s0.log. Started 2026-05-26 09:38 UTC. Model loading in progress.\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-26T01:58:34.256Z\\\", \\\"log_path\\\": \\\"/tmp/eval_lora_baseline_30k_s0.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000/\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3422}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_lora_baseline_30k_s0\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-26T01:37:48.287Z\", \"updated_at\": \"2026-05-26T01:58:39.032Z\", \"hypothesis\": \"LoRA baseline (no SDF) 30K eval on object_pudding seed 0: expects CAR ≈ Pi0.5 baseline (~27%), confirming ColliForce CAR improvement is from SDF not LoRA. Parent: train_pi05_lora_baseline_s0.\", \"parent\": \"train_pi05_lora_baseline_s0\", \"spec\": {\"command\": \"python scripts/eval_safelibero.py --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000 --config_name pi05_libero --model_type lora_baseline --suite safelibero_object --pi05 --seed 0 --gpu 0 --output_path /root/autodl-tmp/eval_results/eval_lora_baseline_30k_s0.json\", \"server\": \"westd-45947\", \"gpu\": [\"cuda:0\"], \"data_path\": \"safelibero_object\", \"data_count\": 50, \"model_name\": \"pi05_lora_baseline_seed0_30k\", \"seed\": 0, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000\", \"eval_data\": \"safelibero_object\"}, \"notes\": \"Eval launched on westd-45947 cuda:0. PID 28196 (wrapper) → python subprocess. Log: /tmp/eval_lora_baseline_30k_s0.log. Started 2026-05-26 09:38 UTC. Model loading in progress.\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-26T01:58:34.256Z\", \"log_path\": \"/tmp/eval_lora_baseline_30k_s0.log\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000/\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3422}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01ULD4eHDuh2p9kavCLWy7zW`</summary>
+
+```json
+{
+  "exp_id": "eval_lora_baseline_30k_s0",
+  "field": "notes",
+  "value": "Failed: KeyError 'safelibero_object' — benchmark name not found in libero BENCHMARK_MAPPING. Model loaded successfully but crashed before any episodes ran. Need to register safelibero_object in libero benchmark mapping or use correct suite name.",
+  "project": "diff_collision_sdf"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e17e5012-2125-4cb5-849f-309050eb5b1d",
+  "uuid": "2e480222-18f6-4b0e-996d-9afe9f9f4954",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P8sJoZfVNuWz1zfadCtAXd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 892,
+      "cache_read_input_tokens": 28149,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 892
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-26T01:58:41.478Z_
+
+<details><summary>↩ Tool result · `toolu_01ULD4eHDuh2p9kavCLWy7zW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_lora_baseline_30k_s0\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-26T01:37:48.287Z\", \"updated_at\": \"2026-05-26T01:58:41.334Z\", \"hypothesis\": \"LoRA baseline (no SDF) 30K eval on object_pudding seed 0: expects CAR ≈ Pi0.5 baseline (~27%), confirming ColliForce CAR improvement is from SDF not LoRA. Parent: train_pi05_lora_baseline_s0.\", \"parent\": \"train_pi05_lora_baseline_s0\", \"spec\": {\"command\": \"python scripts/eval_safelibero.py --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000 --config_name pi05_libero --model_type lora_baseline --suite safelibero_object --pi05 --seed 0 --gpu 0 --output_path /root/autodl-tmp/eval_results/eval_lora_baseline_30k_s0.json\", \"server\": \"westd-45947\", \"gpu\": [\"cuda:0\"], \"data_path\": \"safelibero_object\", \"data_count\": 50, \"model_name\": \"pi05_lora_baseline_seed0_30k\", \"seed\": 0, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000\", \"eval_data\": \"safelibero_object\"}, \"notes\": \"Failed: KeyError 'safelibero_object' — benchmark name not found in libero BENCHMARK_MAPPING. Model loaded successfully but crashed before any episodes ran. Need to register safelibero_object in libero benchmark mapping or use correct suite name.\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-26T01:58:34.256Z\", \"log_path\": \"/tmp/eval_lora_baseline_30k_s0.log\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000/\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3412}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e17e5012-2125-4cb5-849f-309050eb5b1d",
+  "uuid": "d80dfcd1-0dc7-4e3b-be46-bacdd53e90de",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_lora_baseline_30k_s0\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T01:37:48.287Z\\\", \\\"updated_at\\\": \\\"2026-05-26T01:58:41.334Z\\\", \\\"hypothesis\\\": \\\"LoRA baseline (no SDF) 30K eval on object_pudding seed 0: expects CAR ≈ Pi0.5 baseline (~27%), confirming ColliForce CAR improvement is from SDF not LoRA. Parent: train_pi05_lora_baseline_s0.\\\", \\\"parent\\\": \\\"train_pi05_lora_baseline_s0\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/eval_safelibero.py --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000 --config_name pi05_libero --model_type lora_baseline --suite safelibero_object --pi05 --seed 0 --gpu 0 --output_path /root/autodl-tmp/eval_results/eval_lora_baseline_30k_s0.json\\\", \\\"server\\\": \\\"westd-45947\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"data_path\\\": \\\"safelibero_object\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"pi05_lora_baseline_seed0_30k\\\", \\\"seed\\\": 0, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000\\\", \\\"eval_data\\\": \\\"safelibero_object\\\"}, \\\"notes\\\": \\\"Failed: KeyError 'safelibero_object' — benchmark name not found in libero BENCHMARK_MAPPING. Model loaded successfully but crashed before any episodes ran. Need to register safelibero_object in libero benchmark mapping or use correct suite name.\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-26T01:58:34.256Z\\\", \\\"log_path\\\": \\\"/tmp/eval_lora_baseline_30k_s0.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000/\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3412}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_lora_baseline_30k_s0\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-26T01:37:48.287Z\", \"updated_at\": \"2026-05-26T01:58:41.334Z\", \"hypothesis\": \"LoRA baseline (no SDF) 30K eval on object_pudding seed 0: expects CAR ≈ Pi0.5 baseline (~27%), confirming ColliForce CAR improvement is from SDF not LoRA. Parent: train_pi05_lora_baseline_s0.\", \"parent\": \"train_pi05_lora_baseline_s0\", \"spec\": {\"command\": \"python scripts/eval_safelibero.py --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000 --config_name pi05_libero --model_type lora_baseline --suite safelibero_object --pi05 --seed 0 --gpu 0 --output_path /root/autodl-tmp/eval_results/eval_lora_baseline_30k_s0.json\", \"server\": \"westd-45947\", \"gpu\": [\"cuda:0\"], \"data_path\": \"safelibero_object\", \"data_count\": 50, \"model_name\": \"pi05_lora_baseline_seed0_30k\", \"seed\": 0, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000\", \"eval_data\": \"safelibero_object\"}, \"notes\": \"Failed: KeyError 'safelibero_object' — benchmark name not found in libero BENCHMARK_MAPPING. Model loaded successfully but crashed before any episodes ran. Need to register safelibero_object in libero benchmark mapping or use correct suite name.\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-26T01:58:34.256Z\", \"log_path\": \"/tmp/eval_lora_baseline_30k_s0.log\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000/\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3412}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+汇报：
+
+1. **失败** — `KeyError: 'safelibero_object'`。模型加载成功（LoRA 注入完成），但 `libero` 包的 `BENCHMARK_MAPPING` 中没有 `safelibero_object` 这个 key，在启动 episode 前就崩溃了。无输出 JSON 文件。
+2. **原因**：westd-45947 上的 libero 包可能缺少 SafeLIBERO benchmark 注册（其他服务器上可能有自定义注册代码但这台没同步）。
+3. **Registry** 已更新：status=DONE, conclusion=failed, notes 记录了失败原因。
+4. **Cron** 不存在（可能已被删除或在其他 session 创建），无需删除。
+
+需要重跑的话，先检查 westd-45947 上 libero 包是否注册了 `safelibero_object` benchmark，或将 colliforce-vla 中的自定义 benchmark 注册代码同步过去。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e17e5012-2125-4cb5-849f-309050eb5b1d",
+  "uuid": "e6f31300-d664-4947-be4d-658fc3fb670b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QLTerdZdD1Lf6c6J7ZQrwC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2608,
+      "cache_read_input_tokens": 29041,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2608
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 32_
+
+汇报：
+
+1. **失败** — `KeyError: 'safelibero_object'`。模型加载成功（LoRA 注入完成），但 `libero` 包的 `BENCHMARK_MAPPING` 中没有 `safelibero_object` 这个 key，在启动 episode 前就崩溃了。无输出 JSON 文件。
+2. **原因**：westd-45947 上的 libero 包可能缺少 SafeLIBERO benchmark 注册（其他服务器上可能有自定义注册代码但这台没同步）。
+3. **Registry** 已更新：status=DONE, conclusion=failed, notes 记录了失败原因。
+4. **Cron** 不存在（可能已被删除或在其他 session 创建），无需删除。
+
+需要重跑的话，先检查 westd-45947 上 libero 包是否注册了 `safelibero_object` benchmark，或将 colliforce-vla 中的自定义 benchmark 注册代码同步过去。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 50147,
+  "duration_api_ms": 50844,
+  "num_turns": 13,
+  "stop_reason": "end_turn",
+  "session_id": "e17e5012-2125-4cb5-849f-309050eb5b1d",
+  "total_cost_usd": 0.2736775,
+  "usage": {
+    "input_tokens": 14,
+    "cache_creation_input_tokens": 19808,
+    "cache_read_input_tokens": 199499,
+    "output_tokens": 1923,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 19808,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 299,
+        "cache_read_input_tokens": 29041,
+        "cache_creation_input_tokens": 2608,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 2608
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1863,
+      "outputTokens": 24,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001983,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 14,
+      "outputTokens": 1923,
+      "cacheReadInputTokens": 199499,
+      "cacheCreationInputTokens": 19808,
+      "webSearchRequests": 0,
+      "costUSD": 0.2716945,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "5a3138c9-7006-4471-b179-f36f4c591828"
+}
+```
+
+</details>
+
+---

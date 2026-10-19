@@ -1,0 +1,52 @@
+{
+  "exp_id": "eval_a1_lora_spatial_v11",
+  "project": "diff_collision_sdf",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T15:40:45.183Z",
+    "updated_at": "2026-05-22T19:48:17.702Z",
+    "hypothesis": "A1 SDF auxiliary loss + LoRA on spatial_bowl: if SDF training signal teaches meaningful collision avoidance, CAR should exceed the 0% baseline. Null hypothesis: EE-only SDF cannot prevent arm-body collisions in spatial tasks.",
+    "parent": "a1_lora_spatial_bowl_s0",
+    "spec": {
+      "command": "python scripts/eval_safelibero.py --model_type lora_baseline --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_spatial_bowl/a1_lora_spatial_bowl_seed0/best --suite safelibero_spatial --safety_level II --n_episodes 200 --replan_steps 5 --gpu 3 --output_prefix a1_lora_v11 --save_dir /root/autodl-tmp/eval_results",
+      "server": "westd-35807",
+      "gpu": [
+        "cuda:0"
+      ],
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/a1_sdf_spatial_bowl/a1_lora_spatial_bowl_seed0/best",
+      "eval_data": "safelibero_spatial_levelII_200ep",
+      "data_path": "safelibero_spatial",
+      "data_count": 800,
+      "model_name": "pi0_lora_a1_sdf_spatial_bowl",
+      "seed": 0
+    },
+    "notes": "[2026-05-23 00:08] Launched on westd-35807 cuda:0. PID 727358. Tmux session: eval_a1_spatial. Log: /root/autodl-tmp/eval_results/eval_a1_lora_spatial_v11.log. 200 episodes, safelibero_spatial Level II, replan_steps=5.",
+    "log_path": "/root/autodl-tmp/eval_results/eval_a1_lora_spatial_v11.log",
+    "checkpoint_path": "/root/autodl-tmp/checkpoints/a1_sdf_spatial_bowl/a1_lora_spatial_bowl_seed0/best",
+    "metrics": {
+      "avg_TSR": 0.001,
+      "avg_CAR": 0.008,
+      "task0_TSR": 0.005,
+      "task0_CAR": 0.015,
+      "task0_avg_disp": 0.2578,
+      "task1_TSR": 0,
+      "task1_CAR": 0,
+      "task1_avg_disp": 0.1955,
+      "task2_TSR": 0,
+      "task2_CAR": 0,
+      "task2_avg_disp": 0.2142,
+      "task3_TSR": 0,
+      "task3_CAR": 0.015,
+      "task3_avg_disp": 0.1992,
+      "safe_episodes_total": 6,
+      "safe_episodes_with_zero_displacement": 6,
+      "fake_safety": true
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-22T19:48:17.771109+00:00",
+  "trigger": "update_registry"
+}

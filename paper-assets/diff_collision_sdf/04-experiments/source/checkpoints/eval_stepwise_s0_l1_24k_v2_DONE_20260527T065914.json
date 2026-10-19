@@ -1,0 +1,46 @@
+{
+  "exp_id": "eval_stepwise_s0_l1_24k_v2",
+  "project": "diff_collision_sdf",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-27T06:00:33.591Z",
+    "updated_at": "2026-05-27T06:59:14.083Z",
+    "hypothesis": "Re-eval 24K with correct --pi05 flag. Original eval_stepwise_s0_l1_24k produced frozen=29.5% artifact due to missing --pi05. 26K v2 with --pi05 showed frozen=0%. This re-eval verifies whether 24K frozen was also an artifact. Expected: frozen=0%, CAR ≈ 54-56% (baseline range).",
+    "parent": "eval_stepwise_s0_l1_24k",
+    "spec": {
+      "command": "python scripts/eval_safelibero.py --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0_l1/24000 --config_name pi05_libero --model_type lora_baseline --pi05 --suite safelibero_object --safety_level II --n_episodes 50 --seed 7 --gpu 0",
+      "server": "westd-35807",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "669037",
+      "log_path": "/tmp/eval_24k_v2.log",
+      "data_path": "safelibero_object",
+      "data_count": 200,
+      "model_name": "pi05_a1_sdf_object_pudding_seed0_l1_24k",
+      "seed": 7,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0_l1/24000",
+      "eval_data": "safelibero_object_safety_II"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-27T06:41:52.105Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-27T06:41:50.686Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-27T06:41:55.098533+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-27T06:59:14.278281+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "train_pi05_a1_obj_s1_l005",
+  "project": "diff_collision_sdf",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T00:22:52.811Z",
+    "updated_at": "2026-05-23T00:23:36.784Z",
+    "hypothesis": "Pi0.5+A1 SDF auxiliary loss (λ_sdf=0.005) seed 1: multi-seed replication of conservative lambda training. Tests whether SDF-aware collision avoidance is reproducible across seeds.",
+    "parent": "train_pi05_a1_obj_l005"
+  },
+  "timestamp": "2026-05-23T00:23:36.871873+00:00",
+  "trigger": "update_registry"
+}

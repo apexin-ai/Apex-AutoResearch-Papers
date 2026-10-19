@@ -1,0 +1,2233 @@
+# figure fingerprint update l01 3seed
+
+**How Action Collapse Creates Illusory Safety in Diffusion-Based VLA Collision Avoidance Evaluation** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 41
+- **Recorded user turns:** 0
+- **Tool calls:** 13
+- **Original source:** `logs/workers/worker_figure_fingerprint-update-l01-3seed_20260528T024239.log`
+- **Structured JSON:** [`edbd2b133b5228c7f743.json`](../../sessions/ed/edbd2b133b5228c7f743.json)
+
+## Before a recorded user message
+
+41 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf",
+  "session_id": "598a3ec0-d09f-40de-9077-96b46cf55070",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "a7c4ec6c-d3bb-4f52-89b3-98202609c732",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779948600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "565740f5-2900-4382-9287-66b61196d096",
+  "session_id": "598a3ec0-d09f-40de-9077-96b46cf55070"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the existing script to understand the data structure.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "598a3ec0-d09f-40de-9077-96b46cf55070",
+  "uuid": "ce1928e2-183b-4668-93b7-898b6dd1890b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QYwebfH5n3C1fkfbHm81GJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12315,
+      "cache_read_input_tokens": 11451,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12315
+      },
+      "output_tokens": 46,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — Read · `toolu_012QjmPAvQGRUtFYz93PyRyi`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/fig_pertask_car_fingerprint.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "598a3ec0-d09f-40de-9077-96b46cf55070",
+  "uuid": "56f6b01c-c349-448e-b271-4522e9834495",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QYwebfH5n3C1fkfbHm81GJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12315,
+      "cache_read_input_tokens": 11451,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12315
+      },
+      "output_tokens": 46,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-28T02:42:50.395Z_
+
+<details><summary>↩ Tool result · `toolu_012QjmPAvQGRUtFYz93PyRyi`</summary>
+
+```text
+1	import matplotlib
+2	matplotlib.use('Agg')
+3	import matplotlib.pyplot as plt
+4	import numpy as np
+5	
+6	plt.rcParams.update({
+7	    'font.family': 'DejaVu Sans',
+8	    'font.size': 11,
+9	    'axes.titlesize': 13,
+10	    'axes.labelsize': 12,
+11	    'xtick.labelsize': 11,
+12	    'ytick.labelsize': 10,
+13	    'legend.fontsize': 9.5,
+14	    'figure.dpi': 300,
+15	    'savefig.dpi': 300,
+16	    'savefig.bbox': 'tight',
+17	    'savefig.pad_inches': 0.05,
+18	    'axes.spines.top': False,
+19	    'axes.spines.right': False,
+20	    'lines.linewidth': 1.8,
+21	})
+22	
+23	# === Data from paper Table 8 (appendix.tex, tab:per_task_car) ===
+24	# Per-task CAR (%) at 30K steps, rotation-fixed evaluation
+25	
+26	# LoRA-only: s0, s1, s2 individual data (3-seed)
+27	lora_s0 = {'CP': 74, 'Milk': 66, 'OJ': 68, 'BBQ': 20}
+28	lora_s1 = {'CP': 68, 'Milk': 72, 'OJ': 54, 'BBQ': 16}
+29	lora_s2 = {'CP': 76, 'Milk': 62, 'OJ': 56, 'BBQ': 26}
+30	lora_mean = {k: np.mean([lora_s0[k], lora_s1[k], lora_s2[k]]) for k in lora_s0}
+31	lora_std = {k: np.std([lora_s0[k], lora_s1[k], lora_s2[k]], ddof=1) for k in lora_s0}
+32	
+33	# lambda=0.005: 3-seed means
+34	l005_mean = {'OJ': 54.0, 'CP': 72.7, 'Milk': 71.3, 'BBQ': 20.0}
+35	
+36	# lambda=0.01: 3-seed means
+37	l01_mean = {'OJ': 57.3, 'CP': 72.7, 'Milk': 72.0, 'BBQ': 23.3}
+38	
+39	# lambda=0.1: s0 and s1 individual data (2-seed, s2 training)
+40	l1_s0 = {'OJ': 60, 'CP': 74, 'Milk': 68, 'BBQ': 30}
+41	l1_s1 = {'OJ': 66, 'CP': 72, 'Milk': 70, 'BBQ': 26}
+42	l1_mean = {k: (l1_s0[k] + l1_s1[k]) / 2 for k in l1_s0}
+43	l1_std = {k: np.std([l1_s0[k], l1_s1[k]], ddof=1) for k in l1_s0}
+44	
+45	# Display order: descending mean CAR
+46	order = ['CP', 'Milk', 'OJ', 'BBQ']
+47	tasks = ['Choco.\nPudding', 'Milk', 'Orange\nJuice', 'BBQ\nSauce']
+48	
+49	cond_labels = [
+50	    r'LoRA-only ($\lambda$=0)',
+51	    r'$\lambda$=0.005',
+52	    r'$\lambda$=0.01',
+53	    r'$\lambda$=0.1',
+54	]
+55	
+56	means_arr = np.array([
+57	    [lora_mean[t] for t in order],
+58	    [l005_mean[t] for t in order],
+59	    [l01_mean[t] for t in order],
+60	    [l1_mean[t] for t in order],
+61	])
+62	
+63	errs_arr = np.array([
+64	    [lora_std[t] for t in order],
+65	    [0, 0, 0, 0],
+66	    [0, 0, 0, 0],
+67	    [l1_std[t] for t in order],
+68	])
+69	
+70	seed_data = {
+71	    0: {t: [lora_s0[t], lora_s1[t], lora_s2[t]] for t in order},
+72	    3: {t: [l1_s0[t], l1_s1[t]] for t in order},
+73	}
+74	
+75	# Color palette: muted blue gradient (lighter=lower lambda)
+76	colors = ['#A8C8E8', '#5B9BD5', '#2E75B6', '#1B4F72']
+77	
+78	n_tasks = len(tasks)
+79	n_conds = len(cond_labels)
+80	bar_width = 0.185
+81	x = np.arange(n_tasks)
+82	
+83	fig, ax = plt.subplots(figsize=(7.0, 4.0))
+84	
+85	for i in range(n_conds):
+86	    offset = (i - (n_conds - 1) / 2) * bar_width
+87	    has_err = any(errs_arr[i] > 0)
+88	
+89	    ax.bar(
+90	        x + offset, means_arr[i], bar_width * 0.88,
+91	        label=cond_labels[i], color=colors[i],
+92	        edgecolor='white', linewidth=0.5,
+93	        yerr=errs_arr[i] if has_err else None,
+94	        capsize=2.5 if has_err else 0,
+95	        error_kw={'linewidth': 0.9, 'capthick': 0.7, 'color': '#444444'},
+96	        zorder=3,
+97	    )
+98	
+99	    # Overlay individual seed dots
+100	    if i in seed_data:
+101	        for j, t in enumerate(order):
+102	            pts = seed_data[i][t]
+103	            jx = np.linspace(-bar_width * 0.12, bar_width * 0.12, len(pts))
+104	            for k, pt in enumerate(pts):
+105	                ax.plot(
+106	                    x[j] + offset + jx[k], pt, 'o',
+107	                    color='white', markersize=3.5,
+108	                    markeredgecolor='#444444', markeredgewidth=0.6,
+109	                    zorder=5,
+110	                )
+111	
+112	# Dashed connectors across tasks for each condition (shows shape consistency)
+113	for i in range(n_conds):
+114	    offset = (i - (n_conds - 1) / 2) * bar_width
+115	    xs_line = x + offset
+116	    ax.plot(xs_line, means_arr[i], '--', color=colors[i],
+117	            alpha=0.4, linewidth=0.9, zorder=2)
+118	
+119	# Rank labels above each task group
+120	for j in range(n_tasks):
+121	    rank_label = ['1st', '2nd', '3rd', '4th'][j]
+122	    col_max = max(means_arr[:, j]) + max(errs_arr[:, j])
+123	    ax.text(x[j], col_max + 3.5, rank_label,
+124	            ha='center', va='bottom', fontsize=8, color='#666666',
+125	            fontstyle='italic', fontweight='bold')
+126	
+127	ax.set_ylabel('CAR (%)')
+128	ax.set_xticks(x)
+129	ax.set_xticklabels(tasks, fontsize=10)
+130	ax.set_ylim(0, 90)
+131	ax.set_xlim(-0.5, n_tasks - 0.5)
+132	
+133	ax.yaxis.grid(True, alpha=0.15, linewidth=0.4, zorder=0)
+134	ax.set_axisbelow(True)
+135	
+136	leg = ax.legend(
+137	    loc='upper right', framealpha=0.92, edgecolor='#cccccc',
+138	    ncol=2, columnspacing=0.8, handlelength=1.3,
+139	)
+140	leg.get_frame().set_linewidth(0.4)
+141	
+142	ax.text(
+143	    0.01, -0.13,
+144	    r'LoRA-only: 3-seed mean (dots = seeds); '
+145	    r'$\lambda$=0.005 & $\lambda$=0.01: 3-seed mean; '
+146	    r'$\lambda$=0.1: 2-seed mean (dots = seeds).',
+147	    transform=ax.transAxes, fontsize=7.5, color='#888888', va='top',
+148	)
+149	
+150	plt.tight_layout(pad=1.0)
+151	
+152	outdir = '/root/autodl-tmp/artifacts'
+153	for ext in ('pdf', 'png'):
+154	    plt.savefig(f'{outdir}/fig_pertask_car_fingerprint.{ext}')
+155	print(f'Saved to {outdir}/fig_pertask_car_fingerprint.pdf and .png')
+156	
+157	print('\n=== Data summary ===')
+158	for i, label in enumerate(cond_labels):
+159	    print(f'{label}: {dict(zip(order, means_arr[i]))}')
+160	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "598a3ec0-d09f-40de-9077-96b46cf55070",
+  "uuid": "60860807-156c-414d-bb6e-9b11f99abb27",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/fig_pertask_car_fingerprint.py",
+      "content": "import matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 11,\n    'axes.titlesize': 13,\n    'axes.labelsize': 12,\n    'xtick.labelsize': 11,\n    'ytick.labelsize': 10,\n    'legend.fontsize': 9.5,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'lines.linewidth': 1.8,\n})\n\n# === Data from paper Table 8 (appendix.tex, tab:per_task_car) ===\n# Per-task CAR (%) at 30K steps, rotation-fixed evaluation\n\n# LoRA-only: s0, s1, s2 individual data (3-seed)\nlora_s0 = {'CP': 74, 'Milk': 66, 'OJ': 68, 'BBQ': 20}\nlora_s1 = {'CP': 68, 'Milk': 72, 'OJ': 54, 'BBQ': 16}\nlora_s2 = {'CP': 76, 'Milk': 62, 'OJ': 56, 'BBQ': 26}\nlora_mean = {k: np.mean([lora_s0[k], lora_s1[k], lora_s2[k]]) for k in lora_s0}\nlora_std = {k: np.std([lora_s0[k], lora_s1[k], lora_s2[k]], ddof=1) for k in lora_s0}\n\n# lambda=0.005: 3-seed means\nl005_mean = {'OJ': 54.0, 'CP': 72.7, 'Milk': 71.3, 'BBQ': 20.0}\n\n# lambda=0.01: 3-seed means\nl01_mean = {'OJ': 57.3, 'CP': 72.7, 'Milk': 72.0, 'BBQ': 23.3}\n\n# lambda=0.1: s0 and s1 individual data (2-seed, s2 training)\nl1_s0 = {'OJ': 60, 'CP': 74, 'Milk': 68, 'BBQ': 30}\nl1_s1 = {'OJ': 66, 'CP': 72, 'Milk': 70, 'BBQ': 26}\nl1_mean = {k: (l1_s0[k] + l1_s1[k]) / 2 for k in l1_s0}\nl1_std = {k: np.std([l1_s0[k], l1_s1[k]], ddof=1) for k in l1_s0}\n\n# Display order: descending mean CAR\norder = ['CP', 'Milk', 'OJ', 'BBQ']\ntasks = ['Choco.\\nPudding', 'Milk', 'Orange\\nJuice', 'BBQ\\nSauce']\n\ncond_labels = [\n    r'LoRA-only ($\\lambda$=0)',\n    r'$\\lambda$=0.005',\n    r'$\\lambda$=0.01',\n    r'$\\lambda$=0.1',\n]\n\nmeans_arr = np.array([\n    [lora_mean[t] for t in order],\n    [l005_mean[t] for t in order],\n    [l01_mean[t] for t in order],\n    [l1_mean[t] for t in order],\n])\n\nerrs_arr = np.array([\n    [lora_std[t] for t in order],\n    [0, 0, 0, 0],\n    [0, 0, 0, 0],\n    [l1_std[t] for t in order],\n])\n\nseed_data = {\n    0: {t: [lora_s0[t], lora_s1[t], lora_s2[t]] for t in order},\n    3: {t: [l1_s0[t], l1_s1[t]] for t in order},\n}\n\n# Color palette: muted blue gradient (lighter=lower lambda)\ncolors = ['#A8C8E8', '#5B9BD5', '#2E75B6', '#1B4F72']\n\nn_tasks = len(tasks)\nn_conds = len(cond_labels)\nbar_width = 0.185\nx = np.arange(n_tasks)\n\nfig, ax = plt.subplots(figsize=(7.0, 4.0))\n\nfor i in range(n_conds):\n    offset = (i - (n_conds - 1) / 2) * bar_width\n    has_err = any(errs_arr[i] > 0)\n\n    ax.bar(\n        x + offset, means_arr[i], bar_width * 0.88,\n        label=cond_labels[i], color=colors[i],\n        edgecolor='white', linewidth=0.5,\n        yerr=errs_arr[i] if has_err else None,\n        capsize=2.5 if has_err else 0,\n        error_kw={'linewidth': 0.9, 'capthick': 0.7, 'color': '#444444'},\n        zorder=3,\n    )\n\n    # Overlay individual seed dots\n    if i in seed_data:\n        for j, t in enumerate(order):\n            pts = seed_data[i][t]\n            jx = np.linspace(-bar_width * 0.12, bar_width * 0.12, len(pts))\n            for k, pt in enumerate(pts):\n                ax.plot(\n                    x[j] + offset + jx[k], pt, 'o',\n                    color='white', markersize=3.5,\n                    markeredgecolor='#444444', markeredgewidth=0.6,\n                    zorder=5,\n                )\n\n# Dashed connectors across tasks for each condition (shows shape consistency)\nfor i in range(n_conds):\n    offset = (i - (n_conds - 1) / 2) * bar_width\n    xs_line = x + offset\n    ax.plot(xs_line, means_arr[i], '--', color=colors[i],\n            alpha=0.4, linewidth=0.9, zorder=2)\n\n# Rank labels above each task group\nfor j in range(n_tasks):\n    rank_label = ['1st', '2nd', '3rd', '4th'][j]\n    col_max = max(means_arr[:, j]) + max(errs_arr[:, j])\n    ax.text(x[j], col_max + 3.5, rank_label,\n            ha='center', va='bottom', fontsize=8, color='#666666',\n            fontstyle='italic', fontweight='bold')\n\nax.set_ylabel('CAR (%)')\nax.set_xticks(x)\nax.set_xticklabels(tasks, fontsize=10)\nax.set_ylim(0, 90)\nax.set_xlim(-0.5, n_tasks - 0.5)\n\nax.yaxis.grid(True, alpha=0.15, linewidth=0.4, zorder=0)\nax.set_axisbelow(True)\n\nleg = ax.legend(\n    loc='upper right', framealpha=0.92, edgecolor='#cccccc',\n    ncol=2, columnspacing=0.8, handlelength=1.3,\n)\nleg.get_frame().set_linewidth(0.4)\n\nax.text(\n    0.01, -0.13,\n    r'LoRA-only: 3-seed mean (dots = seeds); '\n    r'$\\lambda$=0.005 & $\\lambda$=0.01: 3-seed mean; '\n    r'$\\lambda$=0.1: 2-seed mean (dots = seeds).',\n    transform=ax.transAxes, fontsize=7.5, color='#888888', va='top',\n)\n\nplt.tight_layout(pad=1.0)\n\noutdir = '/root/autodl-tmp/artifacts'\nfor ext in ('pdf', 'png'):\n    plt.savefig(f'{outdir}/fig_pertask_car_fingerprint.{ext}')\nprint(f'Saved to {outdir}/fig_pertask_car_fingerprint.pdf and .png')\n\nprint('\\n=== Data summary ===')\nfor i, label in enumerate(cond_labels):\n    print(f'{label}: {dict(zip(order, means_arr[i]))}')\n",
+      "numLines": 160,
+      "startLine": 1,
+      "totalLines": 160
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_012PDgpGUA9BnBQ9J4CM6LdQ`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "598a3ec0-d09f-40de-9077-96b46cf55070",
+  "uuid": "eb1be234-fc5d-466d-aa96-7ef0c332a0ef",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QYwebfH5n3C1fkfbHm81GJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12315,
+      "cache_read_input_tokens": 11451,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12315
+      },
+      "output_tokens": 46,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-28T02:42:50.473Z_
+
+<details><summary>↩ Tool result · `toolu_012PDgpGUA9BnBQ9J4CM6LdQ`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "598a3ec0-d09f-40de-9077-96b46cf55070",
+  "uuid": "636ba47e-0414-4ead-bdb3-1bb9f1919fad",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__read_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__read_registry",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I have the script and understand the data structure. Let me verify the s0 and s1 data from the registry to confirm, then update the script.
+
+The new s2 data for λ=0.1:
+- orange_juice: 56% → OJ: 56
+- chocolate_pudding: 76% → CP: 76
+- milk: 70% → Milk: 70
+- bbq_sauce: 16% → BBQ: 16
+
+Current script has:
+- l1_s0 = {'OJ': 60, 'CP': 74, 'Milk': 68, 'BBQ': 30}
+
+
+- l1_s1 = {'OJ': 66, 'CP': 72, 'Milk': 70, 'BBQ': 26}
+
+Now I need to check the registry to confirm these s0 and s1 values are correct before updating the script.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "598a3ec0-d09f-40de-9077-96b46cf55070",
+  "uuid": "f273ac0a-8e26-42b4-aea7-57b411108206",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QmUjqaT2ZAJrFNSJk1UevM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3219,
+      "cache_read_input_tokens": 23766,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3219
+      },
+      "output_tokens": 31,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10_
+
+Let me confirm the existing s0/s1 data from the registry.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "598a3ec0-d09f-40de-9077-96b46cf55070",
+  "uuid": "041a8fbb-3711-4e1a-aaf5-86d6c4e316b6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QmUjqaT2ZAJrFNSJk1UevM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3219,
+      "cache_read_input_tokens": 23766,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3219
+      },
+      "output_tokens": 31,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_018o3yCENQB91tUy3GERh94N`</summary>
+
+```json
+{
+  "project": "diff_collision_sdf",
+  "filters": {
+    "name": "eval_pi05_a1_30k_s0_l01_high"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "598a3ec0-d09f-40de-9077-96b46cf55070",
+  "uuid": "9f16720b-946a-4503-808f-7a3385d4bc2a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QmUjqaT2ZAJrFNSJk1UevM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3219,
+      "cache_read_input_tokens": 23766,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3219
+      },
+      "output_tokens": 31,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-28T02:42:58.659Z_
+
+<details><summary>↩ Tool result · `toolu_018o3yCENQB91tUy3GERh94N`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3677}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "598a3ec0-d09f-40de-9077-96b46cf55070",
+  "uuid": "08479863-04aa-4a33-9d54-791db6894e53",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3677}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3677}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01976EMeYdGEubPESvMNFDvz`</summary>
+
+```json
+{
+  "project": "diff_collision_sdf",
+  "filters": {
+    "name": "eval_pi05_a1_30k_s1_l01_high"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "598a3ec0-d09f-40de-9077-96b46cf55070",
+  "uuid": "0110d2a2-c9fc-4947-84ba-0f150f5c11c2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QmUjqaT2ZAJrFNSJk1UevM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3219,
+      "cache_read_input_tokens": 23766,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3219
+      },
+      "output_tokens": 31,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-28T02:42:59.009Z_
+
+<details><summary>↩ Tool result · `toolu_01976EMeYdGEubPESvMNFDvz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3171}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "598a3ec0-d09f-40de-9077-96b46cf55070",
+  "uuid": "a2b5a2f9-46df-4459-8762-772b212b151e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3171}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3171}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Registry doesn't have those specific entries. Let me try broader filters to find the λ=0.1 eval entries.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "598a3ec0-d09f-40de-9077-96b46cf55070",
+  "uuid": "5c7202cb-676f-497b-a184-6da0f6288540",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014kECg3Ez3QWEU3heGYGDuL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 690,
+      "cache_read_input_tokens": 26985,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 690
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+Registry entries not found with those exact names. Let me search more broadly.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "598a3ec0-d09f-40de-9077-96b46cf55070",
+  "uuid": "a104556c-34e8-40e2-8c00-6377f7841ddd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014kECg3Ez3QWEU3heGYGDuL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 690,
+      "cache_read_input_tokens": 26985,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 690
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01S3SZqXDP6S9pFMenduoyZ9`</summary>
+
+```json
+{
+  "project": "diff_collision_sdf",
+  "filters": {
+    "name": "l01"
+  },
+  "fields": [
+    "*"
+  ],
+  "limit": 10
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "598a3ec0-d09f-40de-9077-96b46cf55070",
+  "uuid": "79231eb0-7336-4e82-b2d0-a9d950bad218",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014kECg3Ez3QWEU3heGYGDuL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 690,
+      "cache_read_input_tokens": 26985,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 690
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-28T02:43:03.213Z_
+
+<details><summary>↩ Tool result · `toolu_01S3SZqXDP6S9pFMenduoyZ9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3488}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "598a3ec0-d09f-40de-9077-96b46cf55070",
+  "uuid": "be9dc3aa-07e0-4848-aea9-197b71a83b47",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3488}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3488}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The registry filter seems to match exact names. Let me try without filter and search for l01 related entries.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "598a3ec0-d09f-40de-9077-96b46cf55070",
+  "uuid": "3ac6af18-51d7-4911-a8e9-6e8f42a4b8fb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Kx9NreTHmeG5fSUNAcVEH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 260,
+      "cache_read_input_tokens": 27675,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 260
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01884pfR1VSYnFC5yD3FqYWi`</summary>
+
+```json
+{
+  "project": "diff_collision_sdf",
+  "limit": 50
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "598a3ec0-d09f-40de-9077-96b46cf55070",
+  "uuid": "e4628152-c6b2-45bf-8ea5-39216114e09b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Kx9NreTHmeG5fSUNAcVEH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 260,
+      "cache_read_input_tokens": 27675,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 260
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-28T02:43:06.651Z_
+
+<details><summary>↩ Tool result · `toolu_01884pfR1VSYnFC5yD3FqYWi`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_multiseed_sdf_l01_s0_eseed256\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-28T02:34:57.441Z\", \"updated_at\": \"2026-05-28T02:35:20.390Z\", \"hypothesis\": \"Multi-eval-seed robustness: SDF λ=0.1 s0 30K with eval_seed=256. Third SDF eval seed for symmetric 3v3 comparison vs LoRA. Tests whether SDF redundancy holds at eval_seed=256.\"}, \"eval_multiseed_sdf_l01_s0_eseed123\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-28T02:34:55.826Z\", \"updated_at\": \"2026-05-28T02:35:18.717Z\", \"hypothesis\": \"Multi-eval-seed robustness: SDF λ=0.1 s0 30K with eval_seed=123. Tests whether SDF CAR (~58.0% at eval_seed=7) remains non-significant vs LoRA across eval seeds. Part of 5-way battery.\"}, \"eval_multiseed_sdf_l01_s0_eseed42\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-28T02:34:54.097Z\", \"updated_at\": \"2026-05-28T02:35:15.303Z\", \"hypothesis\": \"Multi-eval-seed robustness: SDF λ=0.1 s0 30K with eval_seed=42. Tests whether SDF CAR (~58.0% at eval_seed=7) remains non-significant vs LoRA across eval seeds. Part of 5-way battery.\"}, \"eval_multiseed_lora_s0_eseed123\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-28T02:34:52.647Z\", \"updated_at\": \"2026-05-28T02:35:12.512Z\", \"hypothesis\": \"Multi-eval-seed robustness: LoRA-only s0 30K with eval_seed=123. Tests whether LoRA CAR (~56.5% at eval_seed=7) is stable across eval seeds. Part of 5-way battery proving SDF redundancy is not an eval-seed artifact.\"}, \"eval_multiseed_lora_s0_eseed42\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-28T02:34:51.045Z\", \"updated_at\": \"2026-05-28T02:35:10.384Z\", \"hypothesis\": \"Multi-eval-seed robustness: LoRA-only s0 30K with eval_seed=42. Tests whether LoRA CAR (~56.5% at eval_seed=7) is stable across eval seeds. Part of 5-way battery proving SDF redundancy is not an eval-seed artifact.\"}, \"eval_pi05_a1_30k_s2_l01_high\": {\"status\": \"DONE\", \"created_at\": \"2026-05-28T01:00:40.157Z\", \"updated_at\": \"2026-05-28T01:39:43.360Z\", \"hypothesis\": \"Evaluate λ=0.1 seed2 30K checkpoint on safelibero_object. Third seed to complete 3-seed statistical power. s0 CAR=58%, s1 CAR=58.5%. Combined 3-seed mean determines final A/B/C scenario for paper.\", \"parent\": \"train_pi05_a1_obj_s2_l01_high\", \"conclusion\": \"success\", \"metrics\": {\"car\": 54.5, \"tsr\": 54.5, \"per_task_car\": {\"orange_juice\": 56, \"chocolate_pudding\": 76, \"milk\": 70, \"bbq_sauce\": 16}, \"per_task_tsr\": {\"orange_juice\": 30, \"chocolate_pudding\": 72, \"milk\": 48, \"bbq_sauce\": 68}, \"scenario\": \"B\"}}, \"train_pi05_a1_obj_s2_l01_high\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T13:55:43.669Z\", \"updated_at\": \"2026-05-28T01:00:32.985Z\", \"hypothesis\": \"Pi0.5+A1 SDF training with high lambda=0.1 (seed2, 30K steps). Third seed for lambda=0.1 to provide 3-seed statistical power for A/B/C scenario determination. Configuration identical to s0/s1 except seed=2. Target server: westd-45947 cuda:1 after batch2 reeval completes.\", \"parent\": \"train_pi05_a1_obj_s0_l01_high\", \"conclusion\": \"success\", \"metrics\": {\"final_loss\": 0.0104, \"final_action_loss\": 0.0069, \"final_sdf_loss\": 0.0336, \"final_ee_loss\": 0.0096, \"best_loss\": 0.0104, \"best_step\": 30000, \"total_steps\": 30000, \"training_hours\": 33.86}}, \"eval_spatial_bowl_lora_ctrl_s0\": {\"status\": \"DONE\", \"created_at\": \"2026-05-28T00:10:16.286Z\", \"updated_at\": \"2026-05-28T00:10:51.296Z\", \"hypothesis\": \"LoRA baseline (no SDF) on spatial_bowl at 30K steps will show high TSR but low CAR, confirming that collision avoidance requires explicit SDF training signal\", \"conclusion\": \"success\", \"metrics\": {\"avg_TSR\": 0.5, \"avg_CAR\": 0.155, \"task0_TSR\": 0.66, \"task0_CAR\": 0, \"task1_TSR\": 0.36, \"task1_CAR\": 0.14, \"task2_TSR\": 0.6, \"task2_CAR\": 0.04, \"task3_TSR\": 0.38, \"task3_CAR\": 0.44}}, \"eval_pi05_a1_best_s0_l005\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T13:17:45.538Z\", \"updated_at\": \"2026-05-27T23:41:55.082Z\", \"hypothesis\": \"Pi0.5+A1 best checkpoint eval (seed0, λ=0.005) using /best/ checkpoint. Completes 3-seed best-checkpoint coverage (s1 best=step16K, s2 best=step10K already done). s0 best=step26000. Tests whether best-loss checkpoint CAR/TSR matches s1/s2 pattern.\", \"notes\": \"Eval completed on 30000 checkpoint (only checkpoint available for seed0_l005). Suite: safelibero_object levelII, 4 tasks x 50 episodes, seed=7. Results JSON: /root/autodl-tmp/eval_results/eval_pi05_a1_best_s0_l005.json\", \"conclusion\": \"success\", \"metrics\": {\"avg_TSR\": 0.52, \"avg_CAR\": 0.545, \"task0_TSR\": 0.28, \"task0_CAR\": 0.5, \"task1_TSR\": 0.7, \"task1_CAR\": 0.74, \"task2_TSR\": 0.52, \"task2_CAR\": 0.68, \"task3_TSR\": 0.58, \"task3_CAR\": 0.26, \"n_episodes\": 50, \"seed\": 7, \"collision_threshold\": 0.001}}, \"train_phase2_lambda0_extra_seed\": {\"status\": \"DONE\", \"created_at\": \"2026-05-27T13:19:43.844Z\", \"updated_at\": \"2026-05-27T22:38:06.190Z\", \"hypothesis\": \"Phase 2 Stage 1 with seed0 and λ_sdf=0.005 for 10K steps will produce a viable checkpoint for Stage 2 lambda-0 training on object_pudding scene\", \"parent\": \"\", \"notes\": \"Stage 1 restarted (PID 856552, cuda:1), at step 7429/10000 as of 19:16 UTC. Sentinel PID 872754 deployed to auto-start Stage 2 (λ=0, resume to 30K) upon Stage 1 completion. Stage 2 will use auto-generated exp_name a1_sdf_pi05_object_pudding_seed0_l0, checkpoint copied from phase2_stage1_seed0_l005/10000.\", \"conclusion\": \"success\"}, \"train_spatial_bowl_lora_control_s0\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T12:06:14.923Z\", \"updated_at\": \"2026-05-27T22:29:08.697Z\", \"hypothesis\": \"LoRA-only baseline (without SDF collision loss) on spatial_bowl will serve as a control: its safety-violation rate should remain at the pre-training level (~high), establishing the gap that plan_015's SDF-augmented training aims to close.\", \"parent\": \"\", \"conclusion\": \"success\"}, \"eval_lora_s2_30k_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-27T13:58:45.768Z\", \"updated_at\": \"2026-05-27T16:09:17.037Z\", \"hypothesis\": \"LoRA baseline seed2 at 30K steps will produce CAR in the range of s0 (57%) and s1 (52.5%), establishing the 3-seed null distribution variance for statistical comparison with SDF-augmented models.\", \"parent\": \"train_pi05_lora_baseline_s2_resume\", \"metrics\": {\"overall_TSR\": 0.515, \"overall_CAR\": 0.55, \"task0_orange_juice\": {\"TSR\": 0.24, \"CAR\": 0.56}, \"task1_chocolate_pudding\": {\"TSR\": 0.76, \"CAR\": 0.76}, \"task2_milk\": {\"TSR\": 0.42, \"CAR\": 0.62}, \"task3_bbq_sauce\": {\"TSR\": 0.64, \"CAR\": 0.26}}, \"conclusion\": \"success\"}, \"train_phase2_lambda0_s2_v4\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-27T14:48:31.529Z\", \"updated_at\": \"2026-05-27T14:48:51.444Z\", \"hypothesis\": \"Phase 2 Stage 2 seed2 λ=0 resume from 10K SDF checkpoint to 30K (20K additional steps). Fix worker 修复 lerobot 后重启的进程 (PID 856471, cuda:2)。v3 registry 被误标 DONE/failed 无法回退，创建 v4 跟踪。验证 SDF 安全效应持久性。\", \"parent\": \"train_phase2_lambda0_s2_v3\"}, \"train_phase2_lambda0_extra_seed_v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-27T14:44:00.954Z\", \"updated_at\": \"2026-05-27T14:48:09.561Z\", \"hypothesis\": \"Phase 2 Stage 1 v3: seed0 SDF λ=0.005 训练 10K steps (lerobot 已修复到 0.1.0, WANDB_MODE=disabled)。为 Stage 2 (λ=0 resume to 30K) 提供 checkpoint。v1 wandb 失败, v2 被 D039 kill。验证 SDF 安全效应持久性。\", \"parent\": \"train_phase2_lambda0_extra_seed_v2\", \"conclusion\": \"killed\"}, \"train_phase2_lambda0_s2_v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-27T14:12:45.373Z\", \"updated_at\": \"2026-05-27T14:39:56.195Z\", \"hypothesis\": \"Phase 2 λ=0 extended training (seed2, v3): resume from SDF seed2 l005 10K checkpoint with λ=0, train to 30K total (20K additional steps). v2 crashed due to lerobot version mismatch (0.4.4 vs required 0.1.0). Tests whether SDF safety encoding persists over longer λ=0 fine-tuning.\", \"parent\": \"train_pi05_phase2_lambda0_s2\", \"conclusion\": \"failed\", \"notes\": \"D039: lerobot 0.4.x vs 需要 0.1.0 不兼容。PID 851154 killed (幽灵条目，cuda:2 实际空转)。westd-35807 DDL 前无法修复 lerobot 环境。\"}, \"train_phase2_lambda0_extra_seed_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-27T14:18:31.670Z\", \"updated_at\": \"2026-05-27T14:19:56.092Z\", \"hypothesis\": \"Phase 2 Stage 1 重试 (v2): seed0 SDF λ=0.005 训练 10K steps，为 Stage 2 (λ=0 resume to 30K) 提供 checkpoint。v1 因 wandb.init() 缺 API key 失败（未加 WANDB_MODE=disabled）。修复后重跑。验证 SDF 安全效应持久性（Phase 2 seed2 v1 at 20K showed CAR=57.5%）。\", \"parent\": \"train_phase2_lambda0_extra_seed\", \"conclusion\": \"killed\"}, \"eval_lora_baseline_30k_s2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-27T13:56:47.835Z\", \"updated_at\": \"2026-05-27T14:08:36.209Z\", \"hypothesis\": \"LoRA-only seed2 30K eval on safelibero_object. Completes 3-seed LoRA-only baseline (s0=57%, s1=52.5%). Required for null distribution and statistical comparison with SDF λ=0.1.\", \"parent\": \"train_pi05_lora_baseline_s2_resume\", \"conclusion\": \"killed\", \"notes\": \"Killed by Director order. GPU conflict with eval_lora_s2_30k_v2 on westd-45947 cuda:0. Process ran to ~30/50 episodes before termination. This was the OLD submission; eval_lora_s2_30k_v2 is the replacement.\"}, \"eval_spatial_bowl_sdf_s0_l005_30k\": {\"status\": \"DONE\", \"created_at\": \"2026-05-27T13:17:11.592Z\", \"updated_at\": \"2026-05-27T14:03:01.820Z\", \"hypothesis\": \"Evaluate spatial_bowl SDF λ=0.005 seed0 30K checkpoint on safelibero_spatial. Cross-scene generalization: does SDF-trained model show improved CAR in spatial_bowl like it does in object_pudding? Comparison with spatial_bowl LoRA-only control pending (plan_015 still training).\", \"parent\": \"train_pi05_a1_spatial_bowl_s0_l005\", \"conclusion\": \"negative\", \"metrics\": {\"avg_TSR\": 0.53, \"avg_CAR\": 0.17, \"task0_TSR\": 0.62, \"task0_CAR\": 0, \"task1_TSR\": 0.34, \"task1_CAR\": 0.14, \"task2_TSR\": 0.66, \"task2_CAR\": 0, \"task3_TSR\": 0.5, \"task3_CAR\": 0.54}}, \"train_pi05_lora_baseline_s2_resume\": {\"status\": \"DONE\", \"created_at\": \"2026-05-27T02:46:33.932Z\", \"updated_at\": \"2026-05-27T13:57:54.251Z\", \"hypothesis\": \"Resume LoRA baseline seed2 training from checkpoint 22000 to 30000. Original run (train_pi05_lora_baseline_s2) was killed by 24h tmux timeout at step 22364. Expected: complete remaining 8000 steps to enable 3v3 seed statistical comparison (s0=54.5%, s1=56%).\", \"parent\": \"\", \"metrics\": {\"final_loss\": 0.0117, \"final_lr\": 2.5e-06, \"total_steps\": 30000, \"training_time_h\": 10.31}, \"conclusion\": \"success\"}, \"train_phase2_lambda0_s2_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-27T13:17:12.601Z\", \"updated_at\": \"2026-05-27T13:35:45.373Z\", \"hypothesis\": \"Phase 2 λ=0 extended training (seed2): resume from SDF seed2 l005 10K checkpoint with λ=0, train to 30K total (20K additional steps). Previous Phase 2 v1 only ran 10K steps to 20K total (CAR=57.5%). Extended training tests whether SDF safety encoding persists over longer λ=0 fine-tuning and recovers task performance.\", \"parent\": \"train_pi05_phase2_lambda0_s2\", \"conclusion\": \"failed\"}, \"eval_pi05_a1_30k_s1_l01_high\": {\"status\": \"DONE\", \"created_at\": \"2026-05-27T10:03:52.489Z\", \"updated_at\": \"2026-05-27T11:22:00.043Z\", \"hypothesis\": \"Evaluate λ=0.1 seed1 30K checkpoint on safelibero_object. Combined with s0 CAR=58.0%, determines final A/B/C scenario: s1 ≤56% → B (SDF redundant), s1 ≥56% → C (gray zone, Pareto analysis needed).\", \"parent\": \"train_pi05_a1_obj_s1_l01_high\", \"metrics\": {\"CAR\": 0.585, \"TSR\": 0.49, \"frozen_rate\": 0, \"dfCAR\": 0.585, \"avg_max_ee_displacement\": 0.3884, \"avg_max_obstacle_displacement\": 0.0553, \"per_task\": {\"orange_juice\": {\"TSR\": 0.26, \"CAR\": 0.66, \"avg_max_ee_displacement\": 0.3882, \"avg_max_obstacle_displacement\": 0.0333}, \"chocolate_pudding\": {\"TSR\": 0.8, \"CAR\": 0.72, \"avg_max_ee_displacement\": 0.4057, \"avg_max_obstacle_displacement\": 0.0545}, \"milk\": {\"TSR\": 0.28, \"CAR\": 0.7, \"avg_max_ee_displacement\": 0.3551, \"avg_max_obstacle_displacement\": 0.0408}, \"bbq_sauce\": {\"TSR\": 0.62, \"CAR\": 0.26, \"avg_max_ee_displacement\": 0.4045, \"avg_max_obstacle_displacement\": 0.0927}}}, \"conclusion\": \"success\"}, \"reeval_lora_s0_30k_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T12:48:40.738Z\", \"updated_at\": \"2026-05-27T10:28:40.685Z\", \"hypothesis\": \"Re-eval LoRA-only s0 30K with confirmed rotation-fixed eval_safelibero.py (seed=7). Previous eval_lora_baseline_30k_s0_reeval JSON was from buggy version. This provides the second reliable LoRA-only seed for Claim 3 mean±std calculation.\", \"parent\": \"train_pi05_lora_baseline_s0\", \"conclusion\": \"success\", \"notes\": \"Re-launched on westd-35807 cuda:1 with rotation-fixed eval_safelibero.py. Checkpoint copied from westd-45947.\", \"metrics\": {\"CAR\": 57, \"TSR\": 46, \"per_task\": {\"orange_juice\": 68, \"chocolate_pudding\": 74, \"milk\": 66, \"bbq_sauce\": 20}}}, \"eval_pi05_a1_30k_s0_l01_high\": {\"status\": \"DONE\", \"created_at\": \"2026-05-27T09:16:21.829Z\", \"updated_at\": \"2026-05-27T10:28:29.565Z\", \"hypothesis\": \"Evaluate λ=0.1 seed0 30K checkpoint on safelibero_object to determine A/B/C scenario. Based on stepwise curve (16K-28K CAR ~52.5-60.5%, mean ~55.1%), expect Scenario B (CAR ≤ 57%, SDF redundant). This is the first of 2-3 seeds needed for statistical determination.\", \"parent\": \"train_pi05_a1_obj_s0_l01_high\", \"conclusion\": \"success\", \"metrics\": {\"CAR\": 58, \"TSR\": 47, \"frozen_rate\": 0, \"avg_max_ee_displacement\": 0.4, \"dfCAR\": 58}, \"notes\": \"⚠️ JSON 覆盖: reeval_lora_s0_30k_v2 输出覆盖了磁盘上的 JSON 文件（同名路径）。Registry metrics (CAR=58%) 仍正确，但磁盘 JSON 现在是 LoRA 数据。以 registry 为准。\"}, \"train_pi05_a1_obj_s1_l01_high\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T23:52:52.613Z\", \"updated_at\": \"2026-05-27T10:01:03.299Z\", \"hypothesis\": \"Pi0.5+A1 SDF training with high lambda=0.1 (seed1, 30K steps). Second seed for lambda=0.1 to provide error bars. Paired with seed0 (GPU 1) to test whether stronger SDF penalty produces faster collision avoidance or earlier over-avoidance onset.\", \"conclusion\": \"success\"}, \"train_pi05_a1_obj_s0_l01_high\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T23:50:48.245Z\", \"updated_at\": \"2026-05-27T09:14:57.459Z\", \"hypothesis\": \"Pi0.5+A1 SDF training with high lambda=0.1 (seed0, 30K steps). Tests whether stronger SDF penalty produces faster collision avoidance learning or causes earlier over-avoidance onset compared to lambda=0.005/0.01. Provides error bars with seed1 (GPU 2).\", \"conclusion\": \"success\"}, \"eval_stepwise_s0_l1_28k\": {\"status\": \"DONE\", \"created_at\": \"2026-05-27T07:35:25.108Z\", \"updated_at\": \"2026-05-27T07:52:34.027Z\", \"hypothesis\": \"Stepwise eval at 28K for λ=0.1 seed0 — continuing learning curve (16K=55.5→20K=55→22K=60.5→24K=52.5→26K=53.5). Expected CAR ~53-56% (Scenario B range). Last data point before 30K final eval.\", \"parent\": \"eval_stepwise_s0_l1_26k_v2\", \"conclusion\": \"negative\", \"metrics\": {\"avg_TSR\": 48.5, \"avg_CAR\": 54.5, \"task0_orange_juice\": {\"TSR\": 28, \"CAR\": 50, \"avg_max_disp\": 0.0618}, \"task1_chocolate_pudding\": {\"TSR\": 68, \"CAR\": 74, \"avg_max_disp\": 0.0463}, \"task2_milk\": {\"TSR\": 44, \"CAR\": 72, \"avg_max_disp\": 0.0277}, \"task3_bbq_sauce\": {\"TSR\": 54, \"CAR\": 22, \"avg_max_disp\": 0.0878}, \"frozen_rate\": 0, \"seed\": 7}}, \"eval_stepwise_s0_l1_24k_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-27T06:00:33.591Z\", \"updated_at\": \"2026-05-27T06:59:23.825Z\", \"hypothesis\": \"Re-eval 24K with correct --pi05 flag. Original eval_stepwise_s0_l1_24k produced frozen=29.5% artifact due to missing --pi05. 26K v2 with --pi05 showed frozen=0%. This re-eval verifies whether 24K frozen was also an artifact. Expected: frozen=0%, CAR ≈ 54-56% (baseline range).\", \"parent\": \"eval_stepwise_s0_l1_24k\", \"conclusion\": \"negative\", \"metrics\": {\"CAR\": 52.5, \"dfCAR\": 52.5, \"frozen_rate\": 0, \"TSR\": 50.5, \"per_task_CAR\": {\"orange_juice\": 54, \"chocolate_pudding\": 72, \"milk\": 64, \"bbq_sauce\": 20}, \"per_task_TSR\": {\"orange_juice\": 30, \"chocolate_pudding\": 78, \"milk\": 30, \"bbq_sauce\": 64}, \"per_task_frozen\": {\"orange_juice\": 0, \"chocolate_pudding\": 0, \"milk\": 0, \"bbq_sauce\": 0}}}, \"eval_stepwise_s0_l1_24k\": {\"status\": \"DONE\", \"created_at\": \"2026-05-27T03:55:41.168Z\", \"updated_at\": \"2026-05-27T05:58:26.176Z\", \"hypothesis\": \"Step-wise eval of λ=0.1 seed0 at 24K steps on safelibero_object. Continuing the learning curve: 16K(CAR=55.5)→20K(CAR=55)→22K(CAR=60.5)→24K(?). Tests whether CAR continues to improve with more training or plateaus/degrades.\", \"parent\": \"eval_stepwise_s0_l1_22k\", \"metrics\": {\"INVALID\": true, \"invalidation_reason\": \"Missing --pi05 flag caused architecture mismatch (Pi0 instead of Pi0.5), producing 29.5% frozen episodes as artifact. All metrics from this eval are unreliable. See eval_stepwise_s0_l1_24k_v2 for corrected results.\", \"original_CAR\": 55.5, \"original_frozen_rate\": 29.5, \"original_dfCAR\": 36.9}, \"conclusion\": \"failed\"}, \"eval_stepwise_s0_l1_26k_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-27T05:32:59.417Z\", \"updated_at\": \"2026-05-27T05:55:50.151Z\", \"hypothesis\": \"The 24K frozen episodes (29.5%) were caused by missing --pi05 flag in eval, not by SDF training degradation. Re-running 26K eval with --pi05 should eliminate frozen episodes and reveal true collision avoidance performance close to LoRA baseline (dfCAR ~54.5%).\", \"parent\": \"eval_stepwise_s0_l1_24k\", \"metrics\": {\"TSR\": 0.53, \"CAR\": 0.535, \"dfCAR\": 0.535, \"frozen_rate\": 0, \"frozen_episodes\": 0, \"total_episodes\": 200, \"per_task\": {\"orange_juice\": {\"TSR\": 0.32, \"CAR\": 0.46, \"dfCAR\": 0.46, \"frozen\": 0}, \"chocolate_pudding\": {\"TSR\": 0.76, \"CAR\": 0.72, \"dfCAR\": 0.72, \"frozen\": 0}, \"milk\": {\"TSR\": 0.5, \"CAR\": 0.68, \"dfCAR\": 0.68, \"frozen\": 0}, \"bbq_sauce\": {\"TSR\": 0.54, \"CAR\": 0.28, \"dfCAR\": 0.28, \"frozen\": 0}}}, \"conclusion\": \"success\", \"notes\": \"Hypothesis confirmed: frozen episodes were entirely due to missing --pi05 flag, not SDF training. With fix: frozen=0% (vs 29.5% at 24K without fix). dfCAR=53.5% is close to LoRA baseline 54.5% (delta -1pp), confirming SDF auxiliary loss at lambda=1.0 does not degrade collision avoidance. All prior eval results without --pi05 are invalid.\"}, \"eval_stepwise_s0_l1_26k\": {\"status\": \"DONE\", \"created_at\": \"2026-05-27T04:40:03.608Z\", \"updated_at\": \"2026-05-27T05:05:20.624Z\", \"hypothesis\": \"λ=0.1 SDF loss at 26K steps (s0) will show improvement over 24K (CAR=55.5%), continuing the upward trend seen at 22K (60.5%) after the 24K dip, as the model further integrates collision-aware representations.\", \"parent\": \"a1_sdf_pi05_object_pudding_s0_l1\", \"conclusion\": \"failed\"}, \"eval_spatial_sdf_s0_l005_30k\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T22:33:35.407Z\", \"updated_at\": \"2026-05-27T03:55:01.445Z\", \"hypothesis\": \"Evaluate spatial_bowl SDF-augmented model (seed0, λ=0.05, 30K steps) on safelibero_spatial suite. This is the first SDF-trained model eval on the spatial domain — expect reduced collision rate vs the LoRA-only control (train_spatial_bowl_lora_control_s0) while maintaining task success.\", \"parent\": \"train_spatial_bowl_lora_control_s0\", \"conclusion\": \"negative\", \"metrics\": {\"CAR\": 16, \"TSR\": 53, \"dfCAR\": 0, \"frozen_ratio\": 16, \"per_task_CAR\": {\"task0\": 0, \"task1\": 16, \"task2\": 4, \"task3\": 44}, \"per_task_TSR\": {\"task0\": 66, \"task1\": 38, \"task2\": 72, \"task3\": 36}, \"per_task_frozen\": {\"task0\": 0, \"task1\": 8, \"task2\": 2, \"task3\": 22}}}, \"eval_stepwise_s1_l1_22k\": {\"status\": \"DONE\", \"created_at\": \"2026-05-27T02:26:19.063Z\", \"updated_at\": \"2026-05-27T03:17:59.757Z\", \"hypothesis\": \"Cross-validation of s0 22K CAR=60.5% anomaly. If s1 22K CAR also shows significant elevation above null (54.5%±2.83), the 22K signal is real (not single-seed noise). If s1 stays within null range, s0 jump is likely noise.\", \"parent\": \"eval_stepwise_s0_l1_22k\", \"conclusion\": \"negative\", \"metrics\": {\"CAR\": 56.5, \"TSR\": 57.5, \"eval_seed\": 7, \"frozen_pct\": 0, \"seed\": 1, \"step\": 22000}, \"notes\": \"s1 22K CAR=56.5% within null range (54.5%±2.83), confirming s0 22K jump (60.5%) was single-seed noise. Scenario B holds. D036 provisional tag removed.\"}, \"train_pi05_lora_baseline_s2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T02:35:16.818Z\", \"updated_at\": \"2026-05-27T02:38:39.965Z\", \"hypothesis\": \"LoRA baseline (no SDF auxiliary loss) seed 2 on object_pudding for 30K steps: third seed for LoRA-only attribution control, enabling 3v3 seed statistical comparison with SDF-trained models. Expected CAR ≈ 55% (consistent with s0=54.5%, s1=56%).\", \"parent\": \"train_pi05_lora_baseline_s0\", \"conclusion\": \"failed\"}, \"eval_stepwise_s0_l1_22k\": {\"status\": \"DONE\", \"created_at\": \"2026-05-27T01:20:42.340Z\", \"updated_at\": \"2026-05-27T02:16:04.360Z\", \"hypothesis\": \"Step-wise eval of Pi0.5+A1 SDF λ=0.1 (seed 0) at 22K checkpoint. Third point in step-wise CAR curve: 16K (CAR=55.5%), 20K (CAR=55%), 22K (this). Expected: within null range if Scenario B holds.\", \"parent\": \"train_pi05_a1_obj_s0_l01_high\", \"conclusion\": \"success\", \"metrics\": {\"CAR\": 60.5, \"TSR\": 45.5, \"frozen_pct\": 0, \"step\": 22000, \"seed\": 0, \"eval_seed\": 7}, \"notes\": \"Cron 误判 failed（eval 不用 W&B，sentinel 不存在）。实际 eval 完成。CAR=60.5% 超出 null range (54.5%±2.83) 达 +6pp/~2.8σ，但 TSR 同步下降 8.5pp（20K TSR=54% → 22K TSR=45.5%）。orange_juice 单 task +16pp 贡献大部分提升。Director 标注 INCONCLUSIVE——可能是 conservatism（模型变保守→碰撞少但任务完不成）而非真正 SDF avoidance。等 30K 定论。Scenario B 标记为 provisional。\"}, \"eval_stepwise_s0_l1_16k\": {\"status\": \"DONE\", \"created_at\": \"2026-05-27T00:43:48.668Z\", \"updated_at\": \"2026-05-27T01:20:39.548Z\", \"hypothesis\": \"Step-wise eval of Pi0.5+A1 SDF λ=0.1 (seed 0) at 16K (best loss) checkpoint. Part of step-wise CAR curve to show SDF signal never emerges during training. Data points: 16K (this), 20K (CAR=55%), 22K (next).\", \"parent\": \"train_pi05_a1_obj_s0_l01_high\", \"metrics\": {\"CAR\": 55.5, \"TSR\": 49.5, \"per_task\": [{\"task\": \"orange_juice\", \"TSR\": 26, \"CAR\": 56}, {\"task\": \"pudding\", \"TSR\": 74, \"CAR\": 74}, {\"task\": \"milk\", \"TSR\": 38, \"CAR\": 68}, {\"task\": \"bbq_sauce\", \"TSR\": 60, \"CAR\": 24}]}, \"conclusion\": \"negative\"}, \"eval_early_signal_s1_l1_20k\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T23:59:34.211Z\", \"updated_at\": \"2026-05-27T00:45:15.903Z\", \"hypothesis\": \"Early signal eval of Pi0.5+A1 SDF λ=0.1 (seed 1) at 20K step checkpoint. Second seed for A/B/C scenario pre-determination. s0 20K CAR=55% (within null), expecting similar result to confirm Scenario B.\", \"parent\": \"train_pi05_a1_obj_s1_l01_high\", \"metrics\": {\"CAR\": 56, \"TSR\": 51, \"frozen_ee\": 0, \"per_task_CAR\": {\"pick_up_the_orange_juice_and_place_it_in_the_basket\": 62, \"task1\": 76, \"pick_up_the_milk_and_place_it_in_the_basket\": 66, \"pick_up_the_bbq_sauce_and_place_it_in_the_basket\": 20}, \"per_task_TSR\": {\"pick_up_the_orange_juice_and_place_it_in_the_basket\": 20, \"task1\": 82, \"pick_up_the_milk_and_place_it_in_the_basket\": 42, \"pick_up_the_bbq_sauce_and_place_it_in_the_basket\": 60}}, \"conclusion\": \"negative\"}, \"eval_early_signal_s0_l1_20k\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T23:19:12.973Z\", \"updated_at\": \"2026-05-26T23:56:09.182Z\", \"hypothesis\": \"Early signal eval of Pi0.5+A1 SDF λ=0.1 (seed 0) at 20K step checkpoint. Provides advance A/B/C scenario signal before 30K training completes. If CAR already >60% at 20K, strong evidence for dose-response (Scenario A). If ≤57%, suggests Scenario B even before full training.\", \"parent\": \"train_pi05_a1_obj_s0_l01_high\", \"metrics\": {\"overall_CAR\": 0.55, \"overall_TSR\": 0.54, \"frozen_ee_pct\": 0, \"per_task\": [{\"task\": \"orange_juice\", \"CAR\": 0.5, \"TSR\": 0.38, \"avg_max_disp\": 0.0467, \"avg_max_ee_disp\": 0.3917}, {\"task\": \"chocolate_pudding\", \"CAR\": 0.72, \"TSR\": 0.74, \"avg_max_disp\": 0.0487, \"avg_max_ee_disp\": 0.4044}, {\"task\": \"milk\", \"CAR\": 0.72, \"TSR\": 0.44, \"avg_max_disp\": 0.0319, \"avg_max_ee_disp\": 0.3492}, {\"task\": \"bbq_sauce\", \"CAR\": 0.26, \"TSR\": 0.6, \"avg_max_disp\": 0.0928, \"avg_max_ee_disp\": 0.3895}], \"hard_constraints\": {\"TSR_ge_35\": true, \"frozen_ee_0\": true}, \"abc_signal\": \"B\", \"total_episodes\": 200}, \"conclusion\": \"negative\"}, \"train_pi05_a1_spatial_bowl_s0_l005\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T09:49:46.434Z\", \"updated_at\": \"2026-05-26T22:32:54.088Z\", \"hypothesis\": \"Pi0.5+A1 SDF auxiliary loss on spatial_bowl scene (λ=0.005, seed 0). Tests cross-scene generalization of collision avoidance training. spatial_bowl has bilateral obstacles requiring bidirectional avoidance, distinct from object_pudding's single-side constraints.\", \"notes\": \"第二次 resume（服务器重启后），从 step 8000 恢复。PID 3708, tmux session train_pi05_a1_spatial_bowl_s0_l005, cuda:0, westd-35807。WANDB_MODE=offline（API key 被重启清除）。Phase 2 LoRA 解冻，速度 ~9s/it（比 Phase 1 的 4.6s/it 慢），22K 步剩余 ~55h，超过 36h timeout。需要在 ~36h 后从最新 checkpoint 再次 resume。\", \"conclusion\": \"success\", \"metrics\": {\"final_loss\": 0.0137, \"final_action_loss\": 0.0135, \"final_sdf_loss\": 0.0327, \"final_ee_loss\": 0.0068, \"best_loss\": 0.01063, \"best_step\": 28000, \"total_steps\": 30000, \"time_per_step\": 4.65, \"wall_clock_hours\": 28.4}}, \"analysis_threshold_sensitivity\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T20:26:45.402Z\", \"updated_at\": \"2026-05-26T20:27:15.460Z\", \"hypothesis\": \"dfCAR threshold τ_d is robust across [2, 200] mm: the bimodal displacement gap (collapsed < 0.1mm vs active > 270mm) means any threshold in this range produces identical dfCAR values, validating that the metric is not sensitive to threshold selection.\", \"conclusion\": \"success\", \"metrics\": {\"dfCAR_stable_range_mm\": \"[2, 200]\", \"n_models\": 8, \"n_thresholds\": 8, \"n_active_equals_n_total_at_200mm\": true, \"max_dfCAR_variation_2_to_200mm\": 0, \"min_displacement_m\": 0.271, \"conclusion\": \"dfCAR perfectly invariant across tau_d in [2, 200] mm for all 8 model-seed combinations; only at 300mm do 1-2 episodes fall below threshold\"}}, \"reeval_sdf_s2_l005_30k\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T09:24:13.075Z\", \"updated_at\": \"2026-05-26T15:01:22.526Z\", \"hypothesis\": \"Re-eval SDF λ=0.005 s2 (30K) with fixed eval_safelibero.py (180° rotation). Third seed for λ=0.005.\", \"conclusion\": \"success\", \"metrics\": {\"TSR\": 56, \"CAR\": 52.5, \"avg_max_ee_disp\": 0.3858, \"frozen_ee\": 0, \"per_task\": {\"T0_orange_juice\": {\"TSR\": 34, \"CAR\": 46, \"ee_disp\": 0.3923, \"obj_disp\": 0.0598}, \"T1_chocolate_pudding\": {\"TSR\": 82, \"CAR\": 74, \"ee_disp\": 0.4098, \"obj_disp\": 0.046}, \"T2_milk\": {\"TSR\": 38, \"CAR\": 72, \"ee_disp\": 0.3574, \"obj_disp\": 0.0406}, \"T3_bbq_sauce\": {\"TSR\": 70, \"CAR\": 18, \"ee_disp\": 0.3838, \"obj_disp\": 0.0833}}}}, \"reeval_sdf_s2_l01_30k\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T09:24:15.297Z\", \"updated_at\": \"2026-05-26T15:01:21.394Z\", \"hypothesis\": \"Re-eval SDF λ=0.01 s2 (30K) with fixed eval_safelibero.py (180° rotation). Third seed for λ=0.01.\", \"conclusion\": \"success\", \"metrics\": {\"TSR\": 53.5, \"CAR\": 54.5, \"avg_max_ee_disp\": 0.3877, \"frozen_ee\": 0, \"per_task\": {\"T0_orange_juice\": {\"TSR\": 24, \"CAR\": 64, \"ee_disp\": 0.3822, \"obj_disp\": 0.0385}, \"T1_chocolate_pudding\": {\"TSR\": 72, \"CAR\": 68, \"ee_disp\": 0.4189, \"obj_disp\": 0.0517}, \"T2_milk\": {\"TSR\": 48, \"CAR\": 72, \"ee_disp\": 0.3567, \"obj_disp\": 0.0258}, \"T3_bbq_sauce\": {\"TSR\": 70, \"CAR\": 14, \"ee_disp\": 0.3931, \"obj_disp\": 0.0861}}}}, \"reeval_sdf_s1_l01_30k\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T09:24:14.351Z\", \"updated_at\": \"2026-05-26T15:01:12.490Z\", \"hypothesis\": \"Re-eval SDF λ=0.01 s1 (30K) with fixed eval_safelibero.py (180° rotation). Second seed for λ=0.01.\", \"conclusion\": \"success\", \"metrics\": {\"TSR\": 55.5, \"CAR\": 57.5, \"avg_max_ee_disp\": 0.3852, \"frozen_ee\": 0, \"per_task\": {\"T0_orange_juice\": {\"TSR\": 22, \"CAR\": 60, \"ee_disp\": 0.3892, \"obj_disp\": 0.0536}, \"T1_chocolate_pudding\": {\"TSR\": 80, \"CAR\": 76, \"ee_disp\": 0.4073, \"obj_disp\": 0.0472}, \"T2_milk\": {\"TSR\": 54, \"CAR\": 72, \"ee_disp\": 0.3552, \"obj_disp\": 0.0387}, \"T3_bbq_sauce\": {\"TSR\": 66, \"CAR\": 22, \"ee_disp\": 0.3892, \"obj_disp\": 0.0916}}}}, \"reeval_sdf_s1_l005_30k\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T09:24:12.095Z\", \"updated_at\": \"2026-05-26T15:00:27.347Z\", \"hypothesis\": \"Re-eval SDF λ=0.005 s1 (30K) with fixed eval_safelibero.py (180° rotation). Corrected SDF attribution data.\", \"conclusion\": \"success\", \"metrics\": {\"TSR\": 50.5, \"CAR\": 54, \"avg_max_ee_disp\": 0.3883, \"frozen_ee\": 0, \"per_task\": {\"T0_orange_juice\": {\"TSR\": 28, \"CAR\": 64, \"ee_disp\": 0.3816, \"obj_disp\": 0.0349}, \"T1_chocolate_pudding\": {\"TSR\": 72, \"CAR\": 70, \"ee_disp\": 0.4206, \"obj_disp\": 0.0491}, \"T2_milk\": {\"TSR\": 30, \"CAR\": 68, \"ee_disp\": 0.3588, \"obj_disp\": 0.0328}, \"T3_bbq_sauce\": {\"TSR\": 72, \"CAR\": 14, \"ee_disp\": 0.3924, \"obj_disp\": 0.0931}}}}, \"eval_lora_baseline_30k_s0_reeval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T07:39:02.584Z\", \"updated_at\": \"2026-05-26T13:52:12.099Z\", \"hypothesis\": \"Re-eval LoRA-only s0 (30K) with fixed eval_safelibero.py (180° image rotation added). If TSR remains ~6-8%, catastrophic forgetting is real. If TSR >30%, the 68pp collapse was partially an eval bug artifact. Critical for Claim 3 validity.\", \"conclusion\": \"success\", \"notes\": \"M044 RESOLVED: JSON verified valid by worker_ops_verify_lora_s0_reeval_json_urgent. Contains max_ee_displacement field (new eval format), TSR=51.5% matches expected, EE frozen=0%. reeval_lora_s0_30k_v2 cancelled. LoRA 2-seed mean: TSR=51.5%, CAR=54.5%.\", \"metrics\": {\"TSR\": 51.5, \"CAR\": 56.5, \"avg_max_ee_disp\": 0.3957, \"frozen_ee\": 0, \"per_task\": {\"orange_juice\": {\"TSR\": 32, \"CAR\": 56}, \"chocolate_pudding\": {\"TSR\": 74, \"CAR\": 74}, \"milk\": {\"TSR\": 42, \"CAR\": 70}, \"bbq_sauce\": {\"TSR\": 58, \"CAR\": 26}}}}, \"reeval_sdf_s0_l005_30k\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T09:24:10.546Z\", \"updated_at\": \"2026-05-26T12:47:34.194Z\", \"hypothesis\": \"Re-eval SDF λ=0.005 s0 (30K) with fixed eval_safelibero.py (180° rotation). Corrected SDF attribution data.\", \"conclusion\": \"success\", \"metrics\": {\"tsr\": 55.5, \"car\": 57, \"frozen_rate_ee\": 0, \"fake_safe_rate_ee\": 0, \"per_task\": {\"orange_juice\": {\"tsr\": 38, \"car\": 52}, \"chocolate_pudding\": {\"tsr\": 80, \"car\": 74}, \"milk\": {\"tsr\": 38, \"car\": 74}, \"bbq_sauce\": {\"tsr\": 66, \"car\": 28}}}}, \"eval_phase2_lambda0_s2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T11:20:07.596Z\", \"updated_at\": \"2026-05-26T11:58:35.506Z\", \"parent\": \"train_pi05_phase2_lambda0_s2\", \"hypothesis\": \"Phase 2 LoRA unfrozen training with lambda=0 (no SDF loss) seed 2 should achieve baseline-level TSR on safelibero_object, serving as control for SDF-augmented models\", \"metrics\": {\"per_task\": [{\"task_id\": 0, \"task_name\": \"pick_up_the_orange_juice_and_place_it_in_the_basket\", \"TSR\": 30, \"CAR\": 56, \"mean_max_ee_disp\": 0.3837, \"frozen_rate\": 0}, {\"task_id\": 1, \"task_name\": \"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\", \"TSR\": 76, \"CAR\": 74, \"mean_max_ee_disp\": 0.4059, \"frozen_rate\": 0}, {\"task_id\": 2, \"task_name\": \"pick_up_the_milk_and_place_it_in_the_basket\", \"TSR\": 42, \"CAR\": 74, \"mean_max_ee_disp\": 0.3565, \"frozen_rate\": 0}, {\"task_id\": 3, \"task_name\": \"pick_up_the_bbq_sauce_and_place_it_in_the_basket\", \"TSR\": 66, \"CAR\": 26, \"mean_max_ee_disp\": 0.3903, \"frozen_rate\": 0}], \"mean\": {\"TSR\": 53.5, \"CAR\": 57.5, \"mean_max_ee_disp\": 0.3841, \"frozen_rate\": 0}}, \"conclusion\": \"success\"}, \"train_pi05_phase2_lambda0_s2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T22:22:58.519Z\", \"updated_at\": \"2026-05-26T11:15:51.477Z\", \"hypothesis\": \"Phase 2 λ=0 ablation (seed2): resume from seed2 l005 best (10K step) checkpoint with SDF loss disabled (λ=0). Tests whether early SDF-encoded collision awareness persists in LoRA weights when SDF loss is removed, while task performance (TSR) recovers. 10K additional steps with LoRA unfrozen.\", \"conclusion\": \"success\", \"metrics\": {\"final_loss_action\": 0.0113, \"final_loss_sdf\": 0.1369, \"final_loss_ee\": 0.0079, \"best_loss\": 0.00651, \"best_step\": 4000, \"total_steps\": 10000, \"time_per_step\": 4.64, \"wall_clock_hours\": 12.88}}, \"reeval_lora_s1_30k\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T09:24:09.421Z\", \"updated_at\": \"2026-05-26T09:58:19.580Z\", \"hypothesis\": \"Re-eval LoRA-only s1 (30K) with fixed eval_safelibero.py (180° rotation). Second seed for LoRA-only attribution baseline. Expected TSR ~50% (consistent with s0 re-eval=51.5%).\", \"conclusion\": \"success\", \"metrics\": {\"tsr\": 51.5, \"car\": 52.5, \"ee_disp\": 0.3882, \"frozen_rate_ee\": 0, \"fake_safe_rate_ee\": 0, \"per_task\": {\"orange_juice\": {\"tsr\": 34, \"car\": 54}, \"chocolate_pudding\": {\"tsr\": 62, \"car\": 68}, \"milk\": {\"tsr\": 50, \"car\": 72}, \"bbq_sauce\": {\"tsr\": 60, \"car\": 16}}}}, \"reeval_sdf_s0_l01_30k\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T09:24:07.404Z\", \"updated_at\": \"2026-05-26T09:53:17.372Z\", \"hypothesis\": \"Re-eval SDF λ=0.01 s0 (30K) with fixed eval_safelibero.py (180° rotation). Verify whether TSR collapse is real or eval bug artifact, and establish corrected SDF attribution data.\", \"conclusion\": \"success\", \"metrics\": {\"tsr\": 52.5, \"car\": 57, \"ee_disp\": 0.3946, \"frozen_rate_ee\": 0, \"frozen_rate_obs\": 55.5, \"fake_safe_rate_ee\": 0, \"obstacle_disp\": 0.0577, \"ee_disp_range\": [0.312, 0.865], \"per_task\": {\"orange_juice\": {\"tsr\": 28, \"car\": 48}, \"chocolate_pudding\": {\"tsr\": 78, \"car\": 74}, \"milk\": {\"tsr\": 44, \"car\": 72}, \"bbq_sauce\": {\"tsr\": 60, \"car\": 34}}, \"note\": \"frozen_rate_ee = EE disp < 0.1mm (paper definition); frozen_rate_obs = obstacle disp < 0.1mm (analyzer script definition, NOT paper definition)\"}}, \"eval_pi05_baseline_reeval_disp\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T02:35:19.204Z\", \"updated_at\": \"2026-05-26T07:59:55.686Z\", \"hypothesis\": \"Pi0.5 base model (no LoRA, no SDF) re-eval with fixed eval script on object_pudding 200ep: obtain EE displacement data for dfCAR baseline comparison. Expect CAR ≈ 27% (known baseline) with EE displacement distribution needed for dfCAR threshold analysis.\", \"notes\": \"SUCCESS. Pi0.5 baseline re-eval (fixed eval_safelibero.py with 180° rotation + 256px camera): TSR=71.5%, CAR=28.5%, Fake Safe=0% (0/57), all safe episodes EE disp > 288mm. Mean EE disp=0.367m. Confirms Pi0.5 safe episodes are genuine avoidance. Output: /root/autodl-tmp/eval_results/pi05_base_reeval_safelibero_object_levelII_seed7.json\", \"conclusion\": \"success\"}}, \"count\": 50, \"total\": 123, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3172}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "598a3ec0-d09f-40de-9077-96b46cf55070",
+  "uuid": "8e67478e-5581-4734-b9a7-4823fd5bec16",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_multiseed_sdf_l01_s0_eseed256\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-28T02:34:57.441Z\\\", \\\"updated_at\\\": \\\"2026-05-28T02:35:20.390Z\\\", \\\"hypothesis\\\": \\\"Multi-eval-seed robustness: SDF λ=0.1 s0 30K with eval_seed=256. Third SDF eval seed for symmetric 3v3 comparison vs LoRA. Tests whether SDF redundancy holds at eval_seed=256.\\\"}, \\\"eval_multiseed_sdf_l01_s0_eseed123\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-28T02:34:55.826Z\\\", \\\"updated_at\\\": \\\"2026-05-28T02:35:18.717Z\\\", \\\"hypothesis\\\": \\\"Multi-eval-seed robustness: SDF λ=0.1 s0 30K with eval_seed=123. Tests whether SDF CAR (~58.0% at eval_seed=7) remains non-significant vs LoRA across eval seeds. Part of 5-way battery.\\\"}, \\\"eval_multiseed_sdf_l01_s0_eseed42\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-28T02:34:54.097Z\\\", \\\"updated_at\\\": \\\"2026-05-28T02:35:15.303Z\\\", \\\"hypothesis\\\": \\\"Multi-eval-seed robustness: SDF λ=0.1 s0 30K with eval_seed=42. Tests whether SDF CAR (~58.0% at eval_seed=7) remains non-significant vs LoRA across eval seeds. Part of 5-way battery.\\\"}, \\\"eval_multiseed_lora_s0_eseed123\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-28T02:34:52.647Z\\\", \\\"updated_at\\\": \\\"2026-05-28T02:35:12.512Z\\\", \\\"hypothesis\\\": \\\"Multi-eval-seed robustness: LoRA-only s0 30K with eval_seed=123. Tests whether LoRA CAR (~56.5% at eval_seed=7) is stable across eval seeds. Part of 5-way battery proving SDF redundancy is not an eval-seed artifact.\\\"}, \\\"eval_multiseed_lora_s0_eseed42\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-28T02:34:51.045Z\\\", \\\"updated_at\\\": \\\"2026-05-28T02:35:10.384Z\\\", \\\"hypothesis\\\": \\\"Multi-eval-seed robustness: LoRA-only s0 30K with eval_seed=42. Tests whether LoRA CAR (~56.5% at eval_seed=7) is stable across eval seeds. Part of 5-way battery proving SDF redundancy is not an eval-seed artifact.\\\"}, \\\"eval_pi05_a1_30k_s2_l01_high\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-28T01:00:40.157Z\\\", \\\"updated_at\\\": \\\"2026-05-28T01:39:43.360Z\\\", \\\"hypothesis\\\": \\\"Evaluate λ=0.1 seed2 30K checkpoint on safelibero_object. Third seed to complete 3-seed statistical power. s0 CAR=58%, s1 CAR=58.5%. Combined 3-seed mean determines final A/B/C scenario for paper.\\\", \\\"parent\\\": \\\"train_pi05_a1_obj_s2_l01_high\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"car\\\": 54.5, \\\"tsr\\\": 54.5, \\\"per_task_car\\\": {\\\"orange_juice\\\": 56, \\\"chocolate_pudding\\\": 76, \\\"milk\\\": 70, \\\"bbq_sauce\\\": 16}, \\\"per_task_tsr\\\": {\\\"orange_juice\\\": 30, \\\"chocolate_pudding\\\": 72, \\\"milk\\\": 48, \\\"bbq_sauce\\\": 68}, \\\"scenario\\\": \\\"B\\\"}}, \\\"train_pi05_a1_obj_s2_l01_high\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T13:55:43.669Z\\\", \\\"updated_at\\\": \\\"2026-05-28T01:00:32.985Z\\\", \\\"hypothesis\\\": \\\"Pi0.5+A1 SDF training with high lambda=0.1 (seed2, 30K steps). Third seed for lambda=0.1 to provide 3-seed statistical power for A/B/C scenario determination. Configuration identical to s0/s1 except seed=2. Target server: westd-45947 cuda:1 after batch2 reeval completes.\\\", \\\"parent\\\": \\\"train_pi05_a1_obj_s0_l01_high\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"final_loss\\\": 0.0104, \\\"final_action_loss\\\": 0.0069, \\\"final_sdf_loss\\\": 0.0336, \\\"final_ee_loss\\\": 0.0096, \\\"best_loss\\\": 0.0104, \\\"best_step\\\": 30000, \\\"total_steps\\\": 30000, \\\"training_hours\\\": 33.86}}, \\\"eval_spatial_bowl_lora_ctrl_s0\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-28T00:10:16.286Z\\\", \\\"updated_at\\\": \\\"2026-05-28T00:10:51.296Z\\\", \\\"hypothesis\\\": \\\"LoRA baseline (no SDF) on spatial_bowl at 30K steps will show high TSR but low CAR, confirming that collision avoidance requires explicit SDF training signal\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"avg_TSR\\\": 0.5, \\\"avg_CAR\\\": 0.155, \\\"task0_TSR\\\": 0.66, \\\"task0_CAR\\\": 0, \\\"task1_TSR\\\": 0.36, \\\"task1_CAR\\\": 0.14, \\\"task2_TSR\\\": 0.6, \\\"task2_CAR\\\": 0.04, \\\"task3_TSR\\\": 0.38, \\\"task3_CAR\\\": 0.44}}, \\\"eval_pi05_a1_best_s0_l005\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-25T13:17:45.538Z\\\", \\\"updated_at\\\": \\\"2026-05-27T23:41:55.082Z\\\", \\\"hypothesis\\\": \\\"Pi0.5+A1 best checkpoint eval (seed0, λ=0.005) using /best/ checkpoint. Completes 3-seed best-checkpoint coverage (s1 best=step16K, s2 best=step10K already done). s0 best=step26000. Tests whether best-loss checkpoint CAR/TSR matches s1/s2 pattern.\\\", \\\"notes\\\": \\\"Eval completed on 30000 checkpoint (only checkpoint available for seed0_l005). Suite: safelibero_object levelII, 4 tasks x 50 episodes, seed=7. Results JSON: /root/autodl-tmp/eval_results/eval_pi05_a1_best_s0_l005.json\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"avg_TSR\\\": 0.52, \\\"avg_CAR\\\": 0.545, \\\"task0_TSR\\\": 0.28, \\\"task0_CAR\\\": 0.5, \\\"task1_TSR\\\": 0.7, \\\"task1_CAR\\\": 0.74, \\\"task2_TSR\\\": 0.52, \\\"task2_CAR\\\": 0.68, \\\"task3_TSR\\\": 0.58, \\\"task3_CAR\\\": 0.26, \\\"n_episodes\\\": 50, \\\"seed\\\": 7, \\\"collision_threshold\\\": 0.001}}, \\\"train_phase2_lambda0_extra_seed\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-27T13:19:43.844Z\\\", \\\"updated_at\\\": \\\"2026-05-27T22:38:06.190Z\\\", \\\"hypothesis\\\": \\\"Phase 2 Stage 1 with seed0 and λ_sdf=0.005 for 10K steps will produce a viable checkpoint for Stage 2 lambda-0 training on object_pudding scene\\\", \\\"parent\\\": \\\"\\\", \\\"notes\\\": \\\"Stage 1 restarted (PID 856552, cuda:1), at step 7429/10000 as of 19:16 UTC. Sentinel PID 872754 deployed to auto-start Stage 2 (λ=0, resume to 30K) upon Stage 1 completion. Stage 2 will use auto-generated exp_name a1_sdf_pi05_object_pudding_seed0_l0, checkpoint copied from phase2_stage1_seed0_l005/10000.\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"train_spatial_bowl_lora_control_s0\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T12:06:14.923Z\\\", \\\"updated_at\\\": \\\"2026-05-27T22:29:08.697Z\\\", \\\"hypothesis\\\": \\\"LoRA-only baseline (without SDF collision loss) on spatial_bowl will serve as a control: its safety-violation rate should remain at the pre-training level (~high), establishing the gap that plan_015's SDF-augmented training aims to close.\\\", \\\"parent\\\": \\\"\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_lora_s2_30k_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-27T13:58:45.768Z\\\", \\\"updated_at\\\": \\\"2026-05-27T16:09:17.037Z\\\", \\\"hypothesis\\\": \\\"LoRA baseline seed2 at 30K steps will produce CAR in the range of s0 (57%) and s1 (52.5%), establishing the 3-seed null distribution variance for statistical comparison with SDF-augmented models.\\\", \\\"parent\\\": \\\"train_pi05_lora_baseline_s2_resume\\\", \\\"metrics\\\": {\\\"overall_TSR\\\": 0.515, \\\"overall_CAR\\\": 0.55, \\\"task0_orange_juice\\\": {\\\"TSR\\\": 0.24, \\\"CAR\\\": 0.56}, \\\"task1_chocolate_pudding\\\": {\\\"TSR\\\": 0.76, \\\"CAR\\\": 0.76}, \\\"task2_milk\\\": {\\\"TSR\\\": 0.42, \\\"CAR\\\": 0.62}, \\\"task3_bbq_sauce\\\": {\\\"TSR\\\": 0.64, \\\"CAR\\\": 0.26}}, \\\"conclusion\\\": \\\"success\\\"}, \\\"train_phase2_lambda0_s2_v4\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-27T14:48:31.529Z\\\", \\\"updated_at\\\": \\\"2026-05-27T14:48:51.444Z\\\", \\\"hypothesis\\\": \\\"Phase 2 Stage 2 seed2 λ=0 resume from 10K SDF checkpoint to 30K (20K additional steps). Fix worker 修复 lerobot 后重启的进程 (PID 856471, cuda:2)。v3 registry 被误标 DONE/failed 无法回退，创建 v4 跟踪。验证 SDF 安全效应持久性。\\\", \\\"parent\\\": \\\"train_phase2_lambda0_s2_v3\\\"}, \\\"train_phase2_lambda0_extra_seed_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-27T14:44:00.954Z\\\", \\\"updated_at\\\": \\\"2026-05-27T14:48:09.561Z\\\", \\\"hypothesis\\\": \\\"Phase 2 Stage 1 v3: seed0 SDF λ=0.005 训练 10K steps (lerobot 已修复到 0.1.0, WANDB_MODE=disabled)。为 Stage 2 (λ=0 resume to 30K) 提供 checkpoint。v1 wandb 失败, v2 被 D039 kill。验证 SDF 安全效应持久性。\\\", \\\"parent\\\": \\\"train_phase2_lambda0_extra_seed_v2\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"train_phase2_lambda0_s2_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-27T14:12:45.373Z\\\", \\\"updated_at\\\": \\\"2026-05-27T14:39:56.195Z\\\", \\\"hypothesis\\\": \\\"Phase 2 λ=0 extended training (seed2, v3): resume from SDF seed2 l005 10K checkpoint with λ=0, train to 30K total (20K additional steps). v2 crashed due to lerobot version mismatch (0.4.4 vs required 0.1.0). Tests whether SDF safety encoding persists over longer λ=0 fine-tuning.\\\", \\\"parent\\\": \\\"train_pi05_phase2_lambda0_s2\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"D039: lerobot 0.4.x vs 需要 0.1.0 不兼容。PID 851154 killed (幽灵条目，cuda:2 实际空转)。westd-35807 DDL 前无法修复 lerobot 环境。\\\"}, \\\"train_phase2_lambda0_extra_seed_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-27T14:18:31.670Z\\\", \\\"updated_at\\\": \\\"2026-05-27T14:19:56.092Z\\\", \\\"hypothesis\\\": \\\"Phase 2 Stage 1 重试 (v2): seed0 SDF λ=0.005 训练 10K steps，为 Stage 2 (λ=0 resume to 30K) 提供 checkpoint。v1 因 wandb.init() 缺 API key 失败（未加 WANDB_MODE=disabled）。修复后重跑。验证 SDF 安全效应持久性（Phase 2 seed2 v1 at 20K showed CAR=57.5%）。\\\", \\\"parent\\\": \\\"train_phase2_lambda0_extra_seed\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"eval_lora_baseline_30k_s2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-27T13:56:47.835Z\\\", \\\"updated_at\\\": \\\"2026-05-27T14:08:36.209Z\\\", \\\"hypothesis\\\": \\\"LoRA-only seed2 30K eval on safelibero_object. Completes 3-seed LoRA-only baseline (s0=57%, s1=52.5%). Required for null distribution and statistical comparison with SDF λ=0.1.\\\", \\\"parent\\\": \\\"train_pi05_lora_baseline_s2_resume\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"notes\\\": \\\"Killed by Director order. GPU conflict with eval_lora_s2_30k_v2 on westd-45947 cuda:0. Process ran to ~30/50 episodes before termination. This was the OLD submission; eval_lora_s2_30k_v2 is the replacement.\\\"}, \\\"eval_spatial_bowl_sdf_s0_l005_30k\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-27T13:17:11.592Z\\\", \\\"updated_at\\\": \\\"2026-05-27T14:03:01.820Z\\\", \\\"hypothesis\\\": \\\"Evaluate spatial_bowl SDF λ=0.005 seed0 30K checkpoint on safelibero_spatial. Cross-scene generalization: does SDF-trained model show improved CAR in spatial_bowl like it does in object_pudding? Comparison with spatial_bowl LoRA-only control pending (plan_015 still training).\\\", \\\"parent\\\": \\\"train_pi05_a1_spatial_bowl_s0_l005\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"avg_TSR\\\": 0.53, \\\"avg_CAR\\\": 0.17, \\\"task0_TSR\\\": 0.62, \\\"task0_CAR\\\": 0, \\\"task1_TSR\\\": 0.34, \\\"task1_CAR\\\": 0.14, \\\"task2_TSR\\\": 0.66, \\\"task2_CAR\\\": 0, \\\"task3_TSR\\\": 0.5, \\\"task3_CAR\\\": 0.54}}, \\\"train_pi05_lora_baseline_s2_resume\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-27T02:46:33.932Z\\\", \\\"updated_at\\\": \\\"2026-05-27T13:57:54.251Z\\\", \\\"hypothesis\\\": \\\"Resume LoRA baseline seed2 training from checkpoint 22000 to 30000. Original run (train_pi05_lora_baseline_s2) was killed by 24h tmux timeout at step 22364. Expected: complete remaining 8000 steps to enable 3v3 seed statistical comparison (s0=54.5%, s1=56%).\\\", \\\"parent\\\": \\\"\\\", \\\"metrics\\\": {\\\"final_loss\\\": 0.0117, \\\"final_lr\\\": 2.5e-06, \\\"total_steps\\\": 30000, \\\"training_time_h\\\": 10.31}, \\\"conclusion\\\": \\\"success\\\"}, \\\"train_phase2_lambda0_s2_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-27T13:17:12.601Z\\\", \\\"updated_at\\\": \\\"2026-05-27T13:35:45.373Z\\\", \\\"hypothesis\\\": \\\"Phase 2 λ=0 extended training (seed2): resume from SDF seed2 l005 10K checkpoint with λ=0, train to 30K total (20K additional steps). Previous Phase 2 v1 only ran 10K steps to 20K total (CAR=57.5%). Extended training tests whether SDF safety encoding persists over longer λ=0 fine-tuning and recovers task performance.\\\", \\\"parent\\\": \\\"train_pi05_phase2_lambda0_s2\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"eval_pi05_a1_30k_s1_l01_high\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-27T10:03:52.489Z\\\", \\\"updated_at\\\": \\\"2026-05-27T11:22:00.043Z\\\", \\\"hypothesis\\\": \\\"Evaluate λ=0.1 seed1 30K checkpoint on safelibero_object. Combined with s0 CAR=58.0%, determines final A/B/C scenario: s1 ≤56% → B (SDF redundant), s1 ≥56% → C (gray zone, Pareto analysis needed).\\\", \\\"parent\\\": \\\"train_pi05_a1_obj_s1_l01_high\\\", \\\"metrics\\\": {\\\"CAR\\\": 0.585, \\\"TSR\\\": 0.49, \\\"frozen_rate\\\": 0, \\\"dfCAR\\\": 0.585, \\\"avg_max_ee_displacement\\\": 0.3884, \\\"avg_max_obstacle_displacement\\\": 0.0553, \\\"per_task\\\": {\\\"orange_juice\\\": {\\\"TSR\\\": 0.26, \\\"CAR\\\": 0.66, \\\"avg_max_ee_displacement\\\": 0.3882, \\\"avg_max_obstacle_displacement\\\": 0.0333}, \\\"chocolate_pudding\\\": {\\\"TSR\\\": 0.8, \\\"CAR\\\": 0.72, \\\"avg_max_ee_displacement\\\": 0.4057, \\\"avg_max_obstacle_displacement\\\": 0.0545}, \\\"milk\\\": {\\\"TSR\\\": 0.28, \\\"CAR\\\": 0.7, \\\"avg_max_ee_displacement\\\": 0.3551, \\\"avg_max_obstacle_displacement\\\": 0.0408}, \\\"bbq_sauce\\\": {\\\"TSR\\\": 0.62, \\\"CAR\\\": 0.26, \\\"avg_max_ee_displacement\\\": 0.4045, \\\"avg_max_obstacle_displacement\\\": 0.0927}}}, \\\"conclusion\\\": \\\"success\\\"}, \\\"reeval_lora_s0_30k_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T12:48:40.738Z\\\", \\\"updated_at\\\": \\\"2026-05-27T10:28:40.685Z\\\", \\\"hypothesis\\\": \\\"Re-eval LoRA-only s0 30K with confirmed rotation-fixed eval_safelibero.py (seed=7). Previous eval_lora_baseline_30k_s0_reeval JSON was from buggy version. This provides the second reliable LoRA-only seed for Claim 3 mean±std calculation.\\\", \\\"parent\\\": \\\"train_pi05_lora_baseline_s0\\\", \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"Re-launched on westd-35807 cuda:1 with rotation-fixed eval_safelibero.py. Checkpoint copied from westd-45947.\\\", \\\"metrics\\\": {\\\"CAR\\\": 57, \\\"TSR\\\": 46, \\\"per_task\\\": {\\\"orange_juice\\\": 68, \\\"chocolate_pudding\\\": 74, \\\"milk\\\": 66, \\\"bbq_sauce\\\": 20}}}, \\\"eval_pi05_a1_30k_s0_l01_high\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-27T09:16:21.829Z\\\", \\\"updated_at\\\": \\\"2026-05-27T10:28:29.565Z\\\", \\\"hypothesis\\\": \\\"Evaluate λ=0.1 seed0 30K checkpoint on safelibero_object to determine A/B/C scenario. Based on stepwise curve (16K-28K CAR ~52.5-60.5%, mean ~55.1%), expect Scenario B (CAR ≤ 57%, SDF redundant). This is the first of 2-3 seeds needed for statistical determination.\\\", \\\"parent\\\": \\\"train_pi05_a1_obj_s0_l01_high\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"CAR\\\": 58, \\\"TSR\\\": 47, \\\"frozen_rate\\\": 0, \\\"avg_max_ee_displacement\\\": 0.4, \\\"dfCAR\\\": 58}, \\\"notes\\\": \\\"⚠️ JSON 覆盖: reeval_lora_s0_30k_v2 输出覆盖了磁盘上的 JSON 文件（同名路径）。Registry metrics (CAR=58%) 仍正确，但磁盘 JSON 现在是 LoRA 数据。以 registry 为准。\\\"}, \\\"train_pi05_a1_obj_s1_l01_high\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-25T23:52:52.613Z\\\", \\\"updated_at\\\": \\\"2026-05-27T10:01:03.299Z\\\", \\\"hypothesis\\\": \\\"Pi0.5+A1 SDF training with high lambda=0.1 (seed1, 30K steps). Second seed for lambda=0.1 to provide error bars. Paired with seed0 (GPU 1) to test whether stronger SDF penalty produces faster collision avoidance or earlier over-avoidance onset.\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"train_pi05_a1_obj_s0_l01_high\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-25T23:50:48.245Z\\\", \\\"updated_at\\\": \\\"2026-05-27T09:14:57.459Z\\\", \\\"hypothesis\\\": \\\"Pi0.5+A1 SDF training with high lambda=0.1 (seed0, 30K steps). Tests whether stronger SDF penalty produces faster collision avoidance learning or causes earlier over-avoidance onset compared to lambda=0.005/0.01. Provides error bars with seed1 (GPU 2).\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_stepwise_s0_l1_28k\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-27T07:35:25.108Z\\\", \\\"updated_at\\\": \\\"2026-05-27T07:52:34.027Z\\\", \\\"hypothesis\\\": \\\"Stepwise eval at 28K for λ=0.1 seed0 — continuing learning curve (16K=55.5→20K=55→22K=60.5→24K=52.5→26K=53.5). Expected CAR ~53-56% (Scenario B range). Last data point before 30K final eval.\\\", \\\"parent\\\": \\\"eval_stepwise_s0_l1_26k_v2\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"avg_TSR\\\": 48.5, \\\"avg_CAR\\\": 54.5, \\\"task0_orange_juice\\\": {\\\"TSR\\\": 28, \\\"CAR\\\": 50, \\\"avg_max_disp\\\": 0.0618}, \\\"task1_chocolate_pudding\\\": {\\\"TSR\\\": 68, \\\"CAR\\\": 74, \\\"avg_max_disp\\\": 0.0463}, \\\"task2_milk\\\": {\\\"TSR\\\": 44, \\\"CAR\\\": 72, \\\"avg_max_disp\\\": 0.0277}, \\\"task3_bbq_sauce\\\": {\\\"TSR\\\": 54, \\\"CAR\\\": 22, \\\"avg_max_disp\\\": 0.0878}, \\\"frozen_rate\\\": 0, \\\"seed\\\": 7}}, \\\"eval_stepwise_s0_l1_24k_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-27T06:00:33.591Z\\\", \\\"updated_at\\\": \\\"2026-05-27T06:59:23.825Z\\\", \\\"hypothesis\\\": \\\"Re-eval 24K with correct --pi05 flag. Original eval_stepwise_s0_l1_24k produced frozen=29.5% artifact due to missing --pi05. 26K v2 with --pi05 showed frozen=0%. This re-eval verifies whether 24K frozen was also an artifact. Expected: frozen=0%, CAR ≈ 54-56% (baseline range).\\\", \\\"parent\\\": \\\"eval_stepwise_s0_l1_24k\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"CAR\\\": 52.5, \\\"dfCAR\\\": 52.5, \\\"frozen_rate\\\": 0, \\\"TSR\\\": 50.5, \\\"per_task_CAR\\\": {\\\"orange_juice\\\": 54, \\\"chocolate_pudding\\\": 72, \\\"milk\\\": 64, \\\"bbq_sauce\\\": 20}, \\\"per_task_TSR\\\": {\\\"orange_juice\\\": 30, \\\"chocolate_pudding\\\": 78, \\\"milk\\\": 30, \\\"bbq_sauce\\\": 64}, \\\"per_task_frozen\\\": {\\\"orange_juice\\\": 0, \\\"chocolate_pudding\\\": 0, \\\"milk\\\": 0, \\\"bbq_sauce\\\": 0}}}, \\\"eval_stepwise_s0_l1_24k\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-27T03:55:41.168Z\\\", \\\"updated_at\\\": \\\"2026-05-27T05:58:26.176Z\\\", \\\"hypothesis\\\": \\\"Step-wise eval of λ=0.1 seed0 at 24K steps on safelibero_object. Continuing the learning curve: 16K(CAR=55.5)→20K(CAR=55)→22K(CAR=60.5)→24K(?). Tests whether CAR continues to improve with more training or plateaus/degrades.\\\", \\\"parent\\\": \\\"eval_stepwise_s0_l1_22k\\\", \\\"metrics\\\": {\\\"INVALID\\\": true, \\\"invalidation_reason\\\": \\\"Missing --pi05 flag caused architecture mismatch (Pi0 instead of Pi0.5), producing 29.5% frozen episodes as artifact. All metrics from this eval are unreliable. See eval_stepwise_s0_l1_24k_v2 for corrected results.\\\", \\\"original_CAR\\\": 55.5, \\\"original_frozen_rate\\\": 29.5, \\\"original_dfCAR\\\": 36.9}, \\\"conclusion\\\": \\\"failed\\\"}, \\\"eval_stepwise_s0_l1_26k_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-27T05:32:59.417Z\\\", \\\"updated_at\\\": \\\"2026-05-27T05:55:50.151Z\\\", \\\"hypothesis\\\": \\\"The 24K frozen episodes (29.5%) were caused by missing --pi05 flag in eval, not by SDF training degradation. Re-running 26K eval with --pi05 should eliminate frozen episodes and reveal true collision avoidance performance close to LoRA baseline (dfCAR ~54.5%).\\\", \\\"parent\\\": \\\"eval_stepwise_s0_l1_24k\\\", \\\"metrics\\\": {\\\"TSR\\\": 0.53, \\\"CAR\\\": 0.535, \\\"dfCAR\\\": 0.535, \\\"frozen_rate\\\": 0, \\\"frozen_episodes\\\": 0, \\\"total_episodes\\\": 200, \\\"per_task\\\": {\\\"orange_juice\\\": {\\\"TSR\\\": 0.32, \\\"CAR\\\": 0.46, \\\"dfCAR\\\": 0.46, \\\"frozen\\\": 0}, \\\"chocolate_pudding\\\": {\\\"TSR\\\": 0.76, \\\"CAR\\\": 0.72, \\\"dfCAR\\\": 0.72, \\\"frozen\\\": 0}, \\\"milk\\\": {\\\"TSR\\\": 0.5, \\\"CAR\\\": 0.68, \\\"dfCAR\\\": 0.68, \\\"frozen\\\": 0}, \\\"bbq_sauce\\\": {\\\"TSR\\\": 0.54, \\\"CAR\\\": 0.28, \\\"dfCAR\\\": 0.28, \\\"frozen\\\": 0}}}, \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"Hypothesis confirmed: frozen episodes were entirely due to missing --pi05 flag, not SDF training. With fix: frozen=0% (vs 29.5% at 24K without fix). dfCAR=53.5% is close to LoRA baseline 54.5% (delta -1pp), confirming SDF auxiliary loss at lambda=1.0 does not degrade collision avoidance. All prior eval results without --pi05 are invalid.\\\"}, \\\"eval_stepwise_s0_l1_26k\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-27T04:40:03.608Z\\\", \\\"updated_at\\\": \\\"2026-05-27T05:05:20.624Z\\\", \\\"hypothesis\\\": \\\"λ=0.1 SDF loss at 26K steps (s0) will show improvement over 24K (CAR=55.5%), continuing the upward trend seen at 22K (60.5%) after the 24K dip, as the model further integrates collision-aware representations.\\\", \\\"parent\\\": \\\"a1_sdf_pi05_object_pudding_s0_l1\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"eval_spatial_sdf_s0_l005_30k\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T22:33:35.407Z\\\", \\\"updated_at\\\": \\\"2026-05-27T03:55:01.445Z\\\", \\\"hypothesis\\\": \\\"Evaluate spatial_bowl SDF-augmented model (seed0, λ=0.05, 30K steps) on safelibero_spatial suite. This is the first SDF-trained model eval on the spatial domain — expect reduced collision rate vs the LoRA-only control (train_spatial_bowl_lora_control_s0) while maintaining task success.\\\", \\\"parent\\\": \\\"train_spatial_bowl_lora_control_s0\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"CAR\\\": 16, \\\"TSR\\\": 53, \\\"dfCAR\\\": 0, \\\"frozen_ratio\\\": 16, \\\"per_task_CAR\\\": {\\\"task0\\\": 0, \\\"task1\\\": 16, \\\"task2\\\": 4, \\\"task3\\\": 44}, \\\"per_task_TSR\\\": {\\\"task0\\\": 66, \\\"task1\\\": 38, \\\"task2\\\": 72, \\\"task3\\\": 36}, \\\"per_task_frozen\\\": {\\\"task0\\\": 0, \\\"task1\\\": 8, \\\"task2\\\": 2, \\\"task3\\\": 22}}}, \\\"eval_stepwise_s1_l1_22k\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-27T02:26:19.063Z\\\", \\\"updated_at\\\": \\\"2026-05-27T03:17:59.757Z\\\", \\\"hypothesis\\\": \\\"Cross-validation of s0 22K CAR=60.5% anomaly. If s1 22K CAR also shows significant elevation above null (54.5%±2.83), the 22K signal is real (not single-seed noise). If s1 stays within null range, s0 jump is likely noise.\\\", \\\"parent\\\": \\\"eval_stepwise_s0_l1_22k\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"CAR\\\": 56.5, \\\"TSR\\\": 57.5, \\\"eval_seed\\\": 7, \\\"frozen_pct\\\": 0, \\\"seed\\\": 1, \\\"step\\\": 22000}, \\\"notes\\\": \\\"s1 22K CAR=56.5% within null range (54.5%±2.83), confirming s0 22K jump (60.5%) was single-seed noise. Scenario B holds. D036 provisional tag removed.\\\"}, \\\"train_pi05_lora_baseline_s2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T02:35:16.818Z\\\", \\\"updated_at\\\": \\\"2026-05-27T02:38:39.965Z\\\", \\\"hypothesis\\\": \\\"LoRA baseline (no SDF auxiliary loss) seed 2 on object_pudding for 30K steps: third seed for LoRA-only attribution control, enabling 3v3 seed statistical comparison with SDF-trained models. Expected CAR ≈ 55% (consistent with s0=54.5%, s1=56%).\\\", \\\"parent\\\": \\\"train_pi05_lora_baseline_s0\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"eval_stepwise_s0_l1_22k\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-27T01:20:42.340Z\\\", \\\"updated_at\\\": \\\"2026-05-27T02:16:04.360Z\\\", \\\"hypothesis\\\": \\\"Step-wise eval of Pi0.5+A1 SDF λ=0.1 (seed 0) at 22K checkpoint. Third point in step-wise CAR curve: 16K (CAR=55.5%), 20K (CAR=55%), 22K (this). Expected: within null range if Scenario B holds.\\\", \\\"parent\\\": \\\"train_pi05_a1_obj_s0_l01_high\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"CAR\\\": 60.5, \\\"TSR\\\": 45.5, \\\"frozen_pct\\\": 0, \\\"step\\\": 22000, \\\"seed\\\": 0, \\\"eval_seed\\\": 7}, \\\"notes\\\": \\\"Cron 误判 failed（eval 不用 W&B，sentinel 不存在）。实际 eval 完成。CAR=60.5% 超出 null range (54.5%±2.83) 达 +6pp/~2.8σ，但 TSR 同步下降 8.5pp（20K TSR=54% → 22K TSR=45.5%）。orange_juice 单 task +16pp 贡献大部分提升。Director 标注 INCONCLUSIVE——可能是 conservatism（模型变保守→碰撞少但任务完不成）而非真正 SDF avoidance。等 30K 定论。Scenario B 标记为 provisional。\\\"}, \\\"eval_stepwise_s0_l1_16k\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-27T00:43:48.668Z\\\", \\\"updated_at\\\": \\\"2026-05-27T01:20:39.548Z\\\", \\\"hypothesis\\\": \\\"Step-wise eval of Pi0.5+A1 SDF λ=0.1 (seed 0) at 16K (best loss) checkpoint. Part of step-wise CAR curve to show SDF signal never emerges during training. Data points: 16K (this), 20K (CAR=55%), 22K (next).\\\", \\\"parent\\\": \\\"train_pi05_a1_obj_s0_l01_high\\\", \\\"metrics\\\": {\\\"CAR\\\": 55.5, \\\"TSR\\\": 49.5, \\\"per_task\\\": [{\\\"task\\\": \\\"orange_juice\\\", \\\"TSR\\\": 26, \\\"CAR\\\": 56}, {\\\"task\\\": \\\"pudding\\\", \\\"TSR\\\": 74, \\\"CAR\\\": 74}, {\\\"task\\\": \\\"milk\\\", \\\"TSR\\\": 38, \\\"CAR\\\": 68}, {\\\"task\\\": \\\"bbq_sauce\\\", \\\"TSR\\\": 60, \\\"CAR\\\": 24}]}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"eval_early_signal_s1_l1_20k\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T23:59:34.211Z\\\", \\\"updated_at\\\": \\\"2026-05-27T00:45:15.903Z\\\", \\\"hypothesis\\\": \\\"Early signal eval of Pi0.5+A1 SDF λ=0.1 (seed 1) at 20K step checkpoint. Second seed for A/B/C scenario pre-determination. s0 20K CAR=55% (within null), expecting similar result to confirm Scenario B.\\\", \\\"parent\\\": \\\"train_pi05_a1_obj_s1_l01_high\\\", \\\"metrics\\\": {\\\"CAR\\\": 56, \\\"TSR\\\": 51, \\\"frozen_ee\\\": 0, \\\"per_task_CAR\\\": {\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\": 62, \\\"task1\\\": 76, \\\"pick_up_the_milk_and_place_it_in_the_basket\\\": 66, \\\"pick_up_the_bbq_sauce_and_place_it_in_the_basket\\\": 20}, \\\"per_task_TSR\\\": {\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\": 20, \\\"task1\\\": 82, \\\"pick_up_the_milk_and_place_it_in_the_basket\\\": 42, \\\"pick_up_the_bbq_sauce_and_place_it_in_the_basket\\\": 60}}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"eval_early_signal_s0_l1_20k\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T23:19:12.973Z\\\", \\\"updated_at\\\": \\\"2026-05-26T23:56:09.182Z\\\", \\\"hypothesis\\\": \\\"Early signal eval of Pi0.5+A1 SDF λ=0.1 (seed 0) at 20K step checkpoint. Provides advance A/B/C scenario signal before 30K training completes. If CAR already >60% at 20K, strong evidence for dose-response (Scenario A). If ≤57%, suggests Scenario B even before full training.\\\", \\\"parent\\\": \\\"train_pi05_a1_obj_s0_l01_high\\\", \\\"metrics\\\": {\\\"overall_CAR\\\": 0.55, \\\"overall_TSR\\\": 0.54, \\\"frozen_ee_pct\\\": 0, \\\"per_task\\\": [{\\\"task\\\": \\\"orange_juice\\\", \\\"CAR\\\": 0.5, \\\"TSR\\\": 0.38, \\\"avg_max_disp\\\": 0.0467, \\\"avg_max_ee_disp\\\": 0.3917}, {\\\"task\\\": \\\"chocolate_pudding\\\", \\\"CAR\\\": 0.72, \\\"TSR\\\": 0.74, \\\"avg_max_disp\\\": 0.0487, \\\"avg_max_ee_disp\\\": 0.4044}, {\\\"task\\\": \\\"milk\\\", \\\"CAR\\\": 0.72, \\\"TSR\\\": 0.44, \\\"avg_max_disp\\\": 0.0319, \\\"avg_max_ee_disp\\\": 0.3492}, {\\\"task\\\": \\\"bbq_sauce\\\", \\\"CAR\\\": 0.26, \\\"TSR\\\": 0.6, \\\"avg_max_disp\\\": 0.0928, \\\"avg_max_ee_disp\\\": 0.3895}], \\\"hard_constraints\\\": {\\\"TSR_ge_35\\\": true, \\\"frozen_ee_0\\\": true}, \\\"abc_signal\\\": \\\"B\\\", \\\"total_episodes\\\": 200}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"train_pi05_a1_spatial_bowl_s0_l005\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-25T09:49:46.434Z\\\", \\\"updated_at\\\": \\\"2026-05-26T22:32:54.088Z\\\", \\\"hypothesis\\\": \\\"Pi0.5+A1 SDF auxiliary loss on spatial_bowl scene (λ=0.005, seed 0). Tests cross-scene generalization of collision avoidance training. spatial_bowl has bilateral obstacles requiring bidirectional avoidance, distinct from object_pudding's single-side constraints.\\\", \\\"notes\\\": \\\"第二次 resume（服务器重启后），从 step 8000 恢复。PID 3708, tmux session train_pi05_a1_spatial_bowl_s0_l005, cuda:0, westd-35807。WANDB_MODE=offline（API key 被重启清除）。Phase 2 LoRA 解冻，速度 ~9s/it（比 Phase 1 的 4.6s/it 慢），22K 步剩余 ~55h，超过 36h timeout。需要在 ~36h 后从最新 checkpoint 再次 resume。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"final_loss\\\": 0.0137, \\\"final_action_loss\\\": 0.0135, \\\"final_sdf_loss\\\": 0.0327, \\\"final_ee_loss\\\": 0.0068, \\\"best_loss\\\": 0.01063, \\\"best_step\\\": 28000, \\\"total_steps\\\": 30000, \\\"time_per_step\\\": 4.65, \\\"wall_clock_hours\\\": 28.4}}, \\\"analysis_threshold_sensitivity\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T20:26:45.402Z\\\", \\\"updated_at\\\": \\\"2026-05-26T20:27:15.460Z\\\", \\\"hypothesis\\\": \\\"dfCAR threshold τ_d is robust across [2, 200] mm: the bimodal displacement gap (collapsed < 0.1mm vs active > 270mm) means any threshold in this range produces identical dfCAR values, validating that the metric is not sensitive to threshold selection.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"dfCAR_stable_range_mm\\\": \\\"[2, 200]\\\", \\\"n_models\\\": 8, \\\"n_thresholds\\\": 8, \\\"n_active_equals_n_total_at_200mm\\\": true, \\\"max_dfCAR_variation_2_to_200mm\\\": 0, \\\"min_displacement_m\\\": 0.271, \\\"conclusion\\\": \\\"dfCAR perfectly invariant across tau_d in [2, 200] mm for all 8 model-seed combinations; only at 300mm do 1-2 episodes fall below threshold\\\"}}, \\\"reeval_sdf_s2_l005_30k\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T09:24:13.075Z\\\", \\\"updated_at\\\": \\\"2026-05-26T15:01:22.526Z\\\", \\\"hypothesis\\\": \\\"Re-eval SDF λ=0.005 s2 (30K) with fixed eval_safelibero.py (180° rotation). Third seed for λ=0.005.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"TSR\\\": 56, \\\"CAR\\\": 52.5, \\\"avg_max_ee_disp\\\": 0.3858, \\\"frozen_ee\\\": 0, \\\"per_task\\\": {\\\"T0_orange_juice\\\": {\\\"TSR\\\": 34, \\\"CAR\\\": 46, \\\"ee_disp\\\": 0.3923, \\\"obj_disp\\\": 0.0598}, \\\"T1_chocolate_pudding\\\": {\\\"TSR\\\": 82, \\\"CAR\\\": 74, \\\"ee_disp\\\": 0.4098, \\\"obj_disp\\\": 0.046}, \\\"T2_milk\\\": {\\\"TSR\\\": 38, \\\"CAR\\\": 72, \\\"ee_disp\\\": 0.3574, \\\"obj_disp\\\": 0.0406}, \\\"T3_bbq_sauce\\\": {\\\"TSR\\\": 70, \\\"CAR\\\": 18, \\\"ee_disp\\\": 0.3838, \\\"obj_disp\\\": 0.0833}}}}, \\\"reeval_sdf_s2_l01_30k\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T09:24:15.297Z\\\", \\\"updated_at\\\": \\\"2026-05-26T15:01:21.394Z\\\", \\\"hypothesis\\\": \\\"Re-eval SDF λ=0.01 s2 (30K) with fixed eval_safelibero.py (180° rotation). Third seed for λ=0.01.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"TSR\\\": 53.5, \\\"CAR\\\": 54.5, \\\"avg_max_ee_disp\\\": 0.3877, \\\"frozen_ee\\\": 0, \\\"per_task\\\": {\\\"T0_orange_juice\\\": {\\\"TSR\\\": 24, \\\"CAR\\\": 64, \\\"ee_disp\\\": 0.3822, \\\"obj_disp\\\": 0.0385}, \\\"T1_chocolate_pudding\\\": {\\\"TSR\\\": 72, \\\"CAR\\\": 68, \\\"ee_disp\\\": 0.4189, \\\"obj_disp\\\": 0.0517}, \\\"T2_milk\\\": {\\\"TSR\\\": 48, \\\"CAR\\\": 72, \\\"ee_disp\\\": 0.3567, \\\"obj_disp\\\": 0.0258}, \\\"T3_bbq_sauce\\\": {\\\"TSR\\\": 70, \\\"CAR\\\": 14, \\\"ee_disp\\\": 0.3931, \\\"obj_disp\\\": 0.0861}}}}, \\\"reeval_sdf_s1_l01_30k\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T09:24:14.351Z\\\", \\\"updated_at\\\": \\\"2026-05-26T15:01:12.490Z\\\", \\\"hypothesis\\\": \\\"Re-eval SDF λ=0.01 s1 (30K) with fixed eval_safelibero.py (180° rotation). Second seed for λ=0.01.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"TSR\\\": 55.5, \\\"CAR\\\": 57.5, \\\"avg_max_ee_disp\\\": 0.3852, \\\"frozen_ee\\\": 0, \\\"per_task\\\": {\\\"T0_orange_juice\\\": {\\\"TSR\\\": 22, \\\"CAR\\\": 60, \\\"ee_disp\\\": 0.3892, \\\"obj_disp\\\": 0.0536}, \\\"T1_chocolate_pudding\\\": {\\\"TSR\\\": 80, \\\"CAR\\\": 76, \\\"ee_disp\\\": 0.4073, \\\"obj_disp\\\": 0.0472}, \\\"T2_milk\\\": {\\\"TSR\\\": 54, \\\"CAR\\\": 72, \\\"ee_disp\\\": 0.3552, \\\"obj_disp\\\": 0.0387}, \\\"T3_bbq_sauce\\\": {\\\"TSR\\\": 66, \\\"CAR\\\": 22, \\\"ee_disp\\\": 0.3892, \\\"obj_disp\\\": 0.0916}}}}, \\\"reeval_sdf_s1_l005_30k\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T09:24:12.095Z\\\", \\\"updated_at\\\": \\\"2026-05-26T15:00:27.347Z\\\", \\\"hypothesis\\\": \\\"Re-eval SDF λ=0.005 s1 (30K) with fixed eval_safelibero.py (180° rotation). Corrected SDF attribution data.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"TSR\\\": 50.5, \\\"CAR\\\": 54, \\\"avg_max_ee_disp\\\": 0.3883, \\\"frozen_ee\\\": 0, \\\"per_task\\\": {\\\"T0_orange_juice\\\": {\\\"TSR\\\": 28, \\\"CAR\\\": 64, \\\"ee_disp\\\": 0.3816, \\\"obj_disp\\\": 0.0349}, \\\"T1_chocolate_pudding\\\": {\\\"TSR\\\": 72, \\\"CAR\\\": 70, \\\"ee_disp\\\": 0.4206, \\\"obj_disp\\\": 0.0491}, \\\"T2_milk\\\": {\\\"TSR\\\": 30, \\\"CAR\\\": 68, \\\"ee_disp\\\": 0.3588, \\\"obj_disp\\\": 0.0328}, \\\"T3_bbq_sauce\\\": {\\\"TSR\\\": 72, \\\"CAR\\\": 14, \\\"ee_disp\\\": 0.3924, \\\"obj_disp\\\": 0.0931}}}}, \\\"eval_lora_baseline_30k_s0_reeval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T07:39:02.584Z\\\", \\\"updated_at\\\": \\\"2026-05-26T13:52:12.099Z\\\", \\\"hypothesis\\\": \\\"Re-eval LoRA-only s0 (30K) with fixed eval_safelibero.py (180° image rotation added). If TSR remains ~6-8%, catastrophic forgetting is real. If TSR >30%, the 68pp collapse was partially an eval bug artifact. Critical for Claim 3 validity.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"M044 RESOLVED: JSON verified valid by worker_ops_verify_lora_s0_reeval_json_urgent. Contains max_ee_displacement field (new eval format), TSR=51.5% matches expected, EE frozen=0%. reeval_lora_s0_30k_v2 cancelled. LoRA 2-seed mean: TSR=51.5%, CAR=54.5%.\\\", \\\"metrics\\\": {\\\"TSR\\\": 51.5, \\\"CAR\\\": 56.5, \\\"avg_max_ee_disp\\\": 0.3957, \\\"frozen_ee\\\": 0, \\\"per_task\\\": {\\\"orange_juice\\\": {\\\"TSR\\\": 32, \\\"CAR\\\": 56}, \\\"chocolate_pudding\\\": {\\\"TSR\\\": 74, \\\"CAR\\\": 74}, \\\"milk\\\": {\\\"TSR\\\": 42, \\\"CAR\\\": 70}, \\\"bbq_sauce\\\": {\\\"TSR\\\": 58, \\\"CAR\\\": 26}}}}, \\\"reeval_sdf_s0_l005_30k\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T09:24:10.546Z\\\", \\\"updated_at\\\": \\\"2026-05-26T12:47:34.194Z\\\", \\\"hypothesis\\\": \\\"Re-eval SDF λ=0.005 s0 (30K) with fixed eval_safelibero.py (180° rotation). Corrected SDF attribution data.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"tsr\\\": 55.5, \\\"car\\\": 57, \\\"frozen_rate_ee\\\": 0, \\\"fake_safe_rate_ee\\\": 0, \\\"per_task\\\": {\\\"orange_juice\\\": {\\\"tsr\\\": 38, \\\"car\\\": 52}, \\\"chocolate_pudding\\\": {\\\"tsr\\\": 80, \\\"car\\\": 74}, \\\"milk\\\": {\\\"tsr\\\": 38, \\\"car\\\": 74}, \\\"bbq_sauce\\\": {\\\"tsr\\\": 66, \\\"car\\\": 28}}}}, \\\"eval_phase2_lambda0_s2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T11:20:07.596Z\\\", \\\"updated_at\\\": \\\"2026-05-26T11:58:35.506Z\\\", \\\"parent\\\": \\\"train_pi05_phase2_lambda0_s2\\\", \\\"hypothesis\\\": \\\"Phase 2 LoRA unfrozen training with lambda=0 (no SDF loss) seed 2 should achieve baseline-level TSR on safelibero_object, serving as control for SDF-augmented models\\\", \\\"metrics\\\": {\\\"per_task\\\": [{\\\"task_id\\\": 0, \\\"task_name\\\": \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\", \\\"TSR\\\": 30, \\\"CAR\\\": 56, \\\"mean_max_ee_disp\\\": 0.3837, \\\"frozen_rate\\\": 0}, {\\\"task_id\\\": 1, \\\"task_name\\\": \\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\", \\\"TSR\\\": 76, \\\"CAR\\\": 74, \\\"mean_max_ee_disp\\\": 0.4059, \\\"frozen_rate\\\": 0}, {\\\"task_id\\\": 2, \\\"task_name\\\": \\\"pick_up_the_milk_and_place_it_in_the_basket\\\", \\\"TSR\\\": 42, \\\"CAR\\\": 74, \\\"mean_max_ee_disp\\\": 0.3565, \\\"frozen_rate\\\": 0}, {\\\"task_id\\\": 3, \\\"task_name\\\": \\\"pick_up_the_bbq_sauce_and_place_it_in_the_basket\\\", \\\"TSR\\\": 66, \\\"CAR\\\": 26, \\\"mean_max_ee_disp\\\": 0.3903, \\\"frozen_rate\\\": 0}], \\\"mean\\\": {\\\"TSR\\\": 53.5, \\\"CAR\\\": 57.5, \\\"mean_max_ee_disp\\\": 0.3841, \\\"frozen_rate\\\": 0}}, \\\"conclusion\\\": \\\"success\\\"}, \\\"train_pi05_phase2_lambda0_s2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-25T22:22:58.519Z\\\", \\\"updated_at\\\": \\\"2026-05-26T11:15:51.477Z\\\", \\\"hypothesis\\\": \\\"Phase 2 λ=0 ablation (seed2): resume from seed2 l005 best (10K step) checkpoint with SDF loss disabled (λ=0). Tests whether early SDF-encoded collision awareness persists in LoRA weights when SDF loss is removed, while task performance (TSR) recovers. 10K additional steps with LoRA unfrozen.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"final_loss_action\\\": 0.0113, \\\"final_loss_sdf\\\": 0.1369, \\\"final_loss_ee\\\": 0.0079, \\\"best_loss\\\": 0.00651, \\\"best_step\\\": 4000, \\\"total_steps\\\": 10000, \\\"time_per_step\\\": 4.64, \\\"wall_clock_hours\\\": 12.88}}, \\\"reeval_lora_s1_30k\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T09:24:09.421Z\\\", \\\"updated_at\\\": \\\"2026-05-26T09:58:19.580Z\\\", \\\"hypothesis\\\": \\\"Re-eval LoRA-only s1 (30K) with fixed eval_safelibero.py (180° rotation). Second seed for LoRA-only attribution baseline. Expected TSR ~50% (consistent with s0 re-eval=51.5%).\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"tsr\\\": 51.5, \\\"car\\\": 52.5, \\\"ee_disp\\\": 0.3882, \\\"frozen_rate_ee\\\": 0, \\\"fake_safe_rate_ee\\\": 0, \\\"per_task\\\": {\\\"orange_juice\\\": {\\\"tsr\\\": 34, \\\"car\\\": 54}, \\\"chocolate_pudding\\\": {\\\"tsr\\\": 62, \\\"car\\\": 68}, \\\"milk\\\": {\\\"tsr\\\": 50, \\\"car\\\": 72}, \\\"bbq_sauce\\\": {\\\"tsr\\\": 60, \\\"car\\\": 16}}}}, \\\"reeval_sdf_s0_l01_30k\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T09:24:07.404Z\\\", \\\"updated_at\\\": \\\"2026-05-26T09:53:17.372Z\\\", \\\"hypothesis\\\": \\\"Re-eval SDF λ=0.01 s0 (30K) with fixed eval_safelibero.py (180° rotation). Verify whether TSR collapse is real or eval bug artifact, and establish corrected SDF attribution data.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"tsr\\\": 52.5, \\\"car\\\": 57, \\\"ee_disp\\\": 0.3946, \\\"frozen_rate_ee\\\": 0, \\\"frozen_rate_obs\\\": 55.5, \\\"fake_safe_rate_ee\\\": 0, \\\"obstacle_disp\\\": 0.0577, \\\"ee_disp_range\\\": [0.312, 0.865], \\\"per_task\\\": {\\\"orange_juice\\\": {\\\"tsr\\\": 28, \\\"car\\\": 48}, \\\"chocolate_pudding\\\": {\\\"tsr\\\": 78, \\\"car\\\": 74}, \\\"milk\\\": {\\\"tsr\\\": 44, \\\"car\\\": 72}, \\\"bbq_sauce\\\": {\\\"tsr\\\": 60, \\\"car\\\": 34}}, \\\"note\\\": \\\"frozen_rate_ee = EE disp < 0.1mm (paper definition); frozen_rate_obs = obstacle disp < 0.1mm (analyzer script definition, NOT paper definition)\\\"}}, \\\"eval_pi05_baseline_reeval_disp\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T02:35:19.204Z\\\", \\\"updated_at\\\": \\\"2026-05-26T07:59:55.686Z\\\", \\\"hypothesis\\\": \\\"Pi0.5 base model (no LoRA, no SDF) re-eval with fixed eval script on object_pudding 200ep: obtain EE displacement data for dfCAR baseline comparison. Expect CAR ≈ 27% (known baseline) with EE displacement distribution needed for dfCAR threshold analysis.\\\", \\\"notes\\\": \\\"SUCCESS. Pi0.5 baseline re-eval (fixed eval_safelibero.py with 180° rotation + 256px camera): TSR=71.5%, CAR=28.5%, Fake Safe=0% (0/57), all safe episodes EE disp > 288mm. Mean EE disp=0.367m. Confirms Pi0.5 safe episodes are genuine avoidance. Output: /root/autodl-tmp/eval_results/pi05_base_reeval_safelibero_object_levelII_seed7.json\\\", \\\"conclusion\\\": \\\"success\\\"}}, \\\"count\\\": 50, \\\"total\\\": 123, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3172}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"eval_multiseed_sdf_l01_s0_eseed256\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-28T02:34:57.441Z\", \"updated_at\": \"2026-05-28T02:35:20.390Z\", \"hypothesis\": \"Multi-eval-seed robustness: SDF λ=0.1 s0 30K with eval_seed=256. Third SDF eval seed for symmetric 3v3 comparison vs LoRA. Tests whether SDF redundancy holds at eval_seed=256.\"}, \"eval_multiseed_sdf_l01_s0_eseed123\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-28T02:34:55.826Z\", \"updated_at\": \"2026-05-28T02:35:18.717Z\", \"hypothesis\": \"Multi-eval-seed robustness: SDF λ=0.1 s0 30K with eval_seed=123. Tests whether SDF CAR (~58.0% at eval_seed=7) remains non-significant vs LoRA across eval seeds. Part of 5-way battery.\"}, \"eval_multiseed_sdf_l01_s0_eseed42\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-28T02:34:54.097Z\", \"updated_at\": \"2026-05-28T02:35:15.303Z\", \"hypothesis\": \"Multi-eval-seed robustness: SDF λ=0.1 s0 30K with eval_seed=42. Tests whether SDF CAR (~58.0% at eval_seed=7) remains non-significant vs LoRA across eval seeds. Part of 5-way battery.\"}, \"eval_multiseed_lora_s0_eseed123\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-28T02:34:52.647Z\", \"updated_at\": \"2026-05-28T02:35:12.512Z\", \"hypothesis\": \"Multi-eval-seed robustness: LoRA-only s0 30K with eval_seed=123. Tests whether LoRA CAR (~56.5% at eval_seed=7) is stable across eval seeds. Part of 5-way battery proving SDF redundancy is not an eval-seed artifact.\"}, \"eval_multiseed_lora_s0_eseed42\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-28T02:34:51.045Z\", \"updated_at\": \"2026-05-28T02:35:10.384Z\", \"hypothesis\": \"Multi-eval-seed robustness: LoRA-only s0 30K with eval_seed=42. Tests whether LoRA CAR (~56.5% at eval_seed=7) is stable across eval seeds. Part of 5-way battery proving SDF redundancy is not an eval-seed artifact.\"}, \"eval_pi05_a1_30k_s2_l01_high\": {\"status\": \"DONE\", \"created_at\": \"2026-05-28T01:00:40.157Z\", \"updated_at\": \"2026-05-28T01:39:43.360Z\", \"hypothesis\": \"Evaluate λ=0.1 seed2 30K checkpoint on safelibero_object. Third seed to complete 3-seed statistical power. s0 CAR=58%, s1 CAR=58.5%. Combined 3-seed mean determines final A/B/C scenario for paper.\", \"parent\": \"train_pi05_a1_obj_s2_l01_high\", \"conclusion\": \"success\", \"metrics\": {\"car\": 54.5, \"tsr\": 54.5, \"per_task_car\": {\"orange_juice\": 56, \"chocolate_pudding\": 76, \"milk\": 70, \"bbq_sauce\": 16}, \"per_task_tsr\": {\"orange_juice\": 30, \"chocolate_pudding\": 72, \"milk\": 48, \"bbq_sauce\": 68}, \"scenario\": \"B\"}}, \"train_pi05_a1_obj_s2_l01_high\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T13:55:43.669Z\", \"updated_at\": \"2026-05-28T01:00:32.985Z\", \"hypothesis\": \"Pi0.5+A1 SDF training with high lambda=0.1 (seed2, 30K steps). Third seed for lambda=0.1 to provide 3-seed statistical power for A/B/C scenario determination. Configuration identical to s0/s1 except seed=2. Target server: westd-45947 cuda:1 after batch2 reeval completes.\", \"parent\": \"train_pi05_a1_obj_s0_l01_high\", \"conclusion\": \"success\", \"metrics\": {\"final_loss\": 0.0104, \"final_action_loss\": 0.0069, \"final_sdf_loss\": 0.0336, \"final_ee_loss\": 0.0096, \"best_loss\": 0.0104, \"best_step\": 30000, \"total_steps\": 30000, \"training_hours\": 33.86}}, \"eval_spatial_bowl_lora_ctrl_s0\": {\"status\": \"DONE\", \"created_at\": \"2026-05-28T00:10:16.286Z\", \"updated_at\": \"2026-05-28T00:10:51.296Z\", \"hypothesis\": \"LoRA baseline (no SDF) on spatial_bowl at 30K steps will show high TSR but low CAR, confirming that collision avoidance requires explicit SDF training signal\", \"conclusion\": \"success\", \"metrics\": {\"avg_TSR\": 0.5, \"avg_CAR\": 0.155, \"task0_TSR\": 0.66, \"task0_CAR\": 0, \"task1_TSR\": 0.36, \"task1_CAR\": 0.14, \"task2_TSR\": 0.6, \"task2_CAR\": 0.04, \"task3_TSR\": 0.38, \"task3_CAR\": 0.44}}, \"eval_pi05_a1_best_s0_l005\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T13:17:45.538Z\", \"updated_at\": \"2026-05-27T23:41:55.082Z\", \"hypothesis\": \"Pi0.5+A1 best checkpoint eval (seed0, λ=0.005) using /best/ checkpoint. Completes 3-seed best-checkpoint coverage (s1 best=step16K, s2 best=step10K already done). s0 best=step26000. Tests whether best-loss checkpoint CAR/TSR matches s1/s2 pattern.\", \"notes\": \"Eval completed on 30000 checkpoint (only checkpoint available for seed0_l005). Suite: safelibero_object levelII, 4 tasks x 50 episodes, seed=7. Results JSON: /root/autodl-tmp/eval_results/eval_pi05_a1_best_s0_l005.json\", \"conclusion\": \"success\", \"metrics\": {\"avg_TSR\": 0.52, \"avg_CAR\": 0.545, \"task0_TSR\": 0.28, \"task0_CAR\": 0.5, \"task1_TSR\": 0.7, \"task1_CAR\": 0.74, \"task2_TSR\": 0.52, \"task2_CAR\": 0.68, \"task3_TSR\": 0.58, \"task3_CAR\": 0.26, \"n_episodes\": 50, \"seed\": 7, \"collision_threshold\": 0.001}}, \"train_phase2_lambda0_extra_seed\": {\"status\": \"DONE\", \"created_at\": \"2026-05-27T13:19:43.844Z\", \"updated_at\": \"2026-05-27T22:38:06.190Z\", \"hypothesis\": \"Phase 2 Stage 1 with seed0 and λ_sdf=0.005 for 10K steps will produce a viable checkpoint for Stage 2 lambda-0 training on object_pudding scene\", \"parent\": \"\", \"notes\": \"Stage 1 restarted (PID 856552, cuda:1), at step 7429/10000 as of 19:16 UTC. Sentinel PID 872754 deployed to auto-start Stage 2 (λ=0, resume to 30K) upon Stage 1 completion. Stage 2 will use auto-generated exp_name a1_sdf_pi05_object_pudding_seed0_l0, checkpoint copied from phase2_stage1_seed0_l005/10000.\", \"conclusion\": \"success\"}, \"train_spatial_bowl_lora_control_s0\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T12:06:14.923Z\", \"updated_at\": \"2026-05-27T22:29:08.697Z\", \"hypothesis\": \"LoRA-only baseline (without SDF collision loss) on spatial_bowl will serve as a control: its safety-violation rate should remain at the pre-training level (~high), establishing the gap that plan_015's SDF-augmented training aims to close.\", \"parent\": \"\", \"conclusion\": \"success\"}, \"eval_lora_s2_30k_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-27T13:58:45.768Z\", \"updated_at\": \"2026-05-27T16:09:17.037Z\", \"hypothesis\": \"LoRA baseline seed2 at 30K steps will produce CAR in the range of s0 (57%) and s1 (52.5%), establishing the 3-seed null distribution variance for statistical comparison with SDF-augmented models.\", \"parent\": \"train_pi05_lora_baseline_s2_resume\", \"metrics\": {\"overall_TSR\": 0.515, \"overall_CAR\": 0.55, \"task0_orange_juice\": {\"TSR\": 0.24, \"CAR\": 0.56}, \"task1_chocolate_pudding\": {\"TSR\": 0.76, \"CAR\": 0.76}, \"task2_milk\": {\"TSR\": 0.42, \"CAR\": 0.62}, \"task3_bbq_sauce\": {\"TSR\": 0.64, \"CAR\": 0.26}}, \"conclusion\": \"success\"}, \"train_phase2_lambda0_s2_v4\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-27T14:48:31.529Z\", \"updated_at\": \"2026-05-27T14:48:51.444Z\", \"hypothesis\": \"Phase 2 Stage 2 seed2 λ=0 resume from 10K SDF checkpoint to 30K (20K additional steps). Fix worker 修复 lerobot 后重启的进程 (PID 856471, cuda:2)。v3 registry 被误标 DONE/failed 无法回退，创建 v4 跟踪。验证 SDF 安全效应持久性。\", \"parent\": \"train_phase2_lambda0_s2_v3\"}, \"train_phase2_lambda0_extra_seed_v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-27T14:44:00.954Z\", \"updated_at\": \"2026-05-27T14:48:09.561Z\", \"hypothesis\": \"Phase 2 Stage 1 v3: seed0 SDF λ=0.005 训练 10K steps (lerobot 已修复到 0.1.0, WANDB_MODE=disabled)。为 Stage 2 (λ=0 resume to 30K) 提供 checkpoint。v1 wandb 失败, v2 被 D039 kill。验证 SDF 安全效应持久性。\", \"parent\": \"train_phase2_lambda0_extra_seed_v2\", \"conclusion\": \"killed\"}, \"train_phase2_lambda0_s2_v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-27T14:12:45.373Z\", \"updated_at\": \"2026-05-27T14:39:56.195Z\", \"hypothesis\": \"Phase 2 λ=0 extended training (seed2, v3): resume from SDF seed2 l005 10K checkpoint with λ=0, train to 30K total (20K additional steps). v2 crashed due to lerobot version mismatch (0.4.4 vs required 0.1.0). Tests whether SDF safety encoding persists over longer λ=0 fine-tuning.\", \"parent\": \"train_pi05_phase2_lambda0_s2\", \"conclusion\": \"failed\", \"notes\": \"D039: lerobot 0.4.x vs 需要 0.1.0 不兼容。PID 851154 killed (幽灵条目，cuda:2 实际空转)。westd-35807 DDL 前无法修复 lerobot 环境。\"}, \"train_phase2_lambda0_extra_seed_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-27T14:18:31.670Z\", \"updated_at\": \"2026-05-27T14:19:56.092Z\", \"hypothesis\": \"Phase 2 Stage 1 重试 (v2): seed0 SDF λ=0.005 训练 10K steps，为 Stage 2 (λ=0 resume to 30K) 提供 checkpoint。v1 因 wandb.init() 缺 API key 失败（未加 WANDB_MODE=disabled）。修复后重跑。验证 SDF 安全效应持久性（Phase 2 seed2 v1 at 20K showed CAR=57.5%）。\", \"parent\": \"train_phase2_lambda0_extra_seed\", \"conclusion\": \"killed\"}, \"eval_lora_baseline_30k_s2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-27T13:56:47.835Z\", \"updated_at\": \"2026-05-27T14:08:36.209Z\", \"hypothesis\": \"LoRA-only seed2 30K eval on safelibero_object. Completes 3-seed LoRA-only baseline (s0=57%, s1=52.5%). Required for null distribution and statistical comparison with SDF λ=0.1.\", \"parent\": \"train_pi05_lora_baseline_s2_resume\", \"conclusion\": \"killed\", \"notes\": \"Killed by Director order. GPU conflict with eval_lora_s2_30k_v2 on westd-45947 cuda:0. Process ran to ~30/50 episodes before termination. This was the OLD submission; eval_lora_s2_30k_v2 is the replacement.\"}, \"eval_spatial_bowl_sdf_s0_l005_30k\": {\"status\": \"DONE\", \"created_at\": \"2026-05-27T13:17:11.592Z\", \"updated_at\": \"2026-05-27T14:03:01.820Z\", \"hypothesis\": \"Evaluate spatial_bowl SDF λ=0.005 seed0 30K checkpoint on safelibero_spatial. Cross-scene generalization: does SDF-trained model show improved CAR in spatial_bowl like it does in object_pudding? Comparison with spatial_bowl LoRA-only control pending (plan_015 still training).\", \"parent\": \"train_pi05_a1_spatial_bowl_s0_l005\", \"conclusion\": \"negative\", \"metrics\": {\"avg_TSR\": 0.53, \"avg_CAR\": 0.17, \"task0_TSR\": 0.62, \"task0_CAR\": 0, \"task1_TSR\": 0.34, \"task1_CAR\": 0.14, \"task2_TSR\": 0.66, \"task2_CAR\": 0, \"task3_TSR\": 0.5, \"task3_CAR\": 0.54}}, \"train_pi05_lora_baseline_s2_resume\": {\"status\": \"DONE\", \"created_at\": \"2026-05-27T02:46:33.932Z\", \"updated_at\": \"2026-05-27T13:57:54.251Z\", \"hypothesis\": \"Resume LoRA baseline seed2 training from checkpoint 22000 to 30000. Original run (train_pi05_lora_baseline_s2) was killed by 24h tmux timeout at step 22364. Expected: complete remaining 8000 steps to enable 3v3 seed statistical comparison (s0=54.5%, s1=56%).\", \"parent\": \"\", \"metrics\": {\"final_loss\": 0.0117, \"final_lr\": 2.5e-06, \"total_steps\": 30000, \"training_time_h\": 10.31}, \"conclusion\": \"success\"}, \"train_phase2_lambda0_s2_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-27T13:17:12.601Z\", \"updated_at\": \"2026-05-27T13:35:45.373Z\", \"hypothesis\": \"Phase 2 λ=0 extended training (seed2): resume from SDF seed2 l005 10K checkpoint with λ=0, train to 30K total (20K additional steps). Previous Phase 2 v1 only ran 10K steps to 20K total (CAR=57.5%). Extended training tests whether SDF safety encoding persists over longer λ=0 fine-tuning and recovers task performance.\", \"parent\": \"train_pi05_phase2_lambda0_s2\", \"conclusion\": \"failed\"}, \"eval_pi05_a1_30k_s1_l01_high\": {\"status\": \"DONE\", \"created_at\": \"2026-05-27T10:03:52.489Z\", \"updated_at\": \"2026-05-27T11:22:00.043Z\", \"hypothesis\": \"Evaluate λ=0.1 seed1 30K checkpoint on safelibero_object. Combined with s0 CAR=58.0%, determines final A/B/C scenario: s1 ≤56% → B (SDF redundant), s1 ≥56% → C (gray zone, Pareto analysis needed).\", \"parent\": \"train_pi05_a1_obj_s1_l01_high\", \"metrics\": {\"CAR\": 0.585, \"TSR\": 0.49, \"frozen_rate\": 0, \"dfCAR\": 0.585, \"avg_max_ee_displacement\": 0.3884, \"avg_max_obstacle_displacement\": 0.0553, \"per_task\": {\"orange_juice\": {\"TSR\": 0.26, \"CAR\": 0.66, \"avg_max_ee_displacement\": 0.3882, \"avg_max_obstacle_displacement\": 0.0333}, \"chocolate_pudding\": {\"TSR\": 0.8, \"CAR\": 0.72, \"avg_max_ee_displacement\": 0.4057, \"avg_max_obstacle_displacement\": 0.0545}, \"milk\": {\"TSR\": 0.28, \"CAR\": 0.7, \"avg_max_ee_displacement\": 0.3551, \"avg_max_obstacle_displacement\": 0.0408}, \"bbq_sauce\": {\"TSR\": 0.62, \"CAR\": 0.26, \"avg_max_ee_displacement\": 0.4045, \"avg_max_obstacle_displacement\": 0.0927}}}, \"conclusion\": \"success\"}, \"reeval_lora_s0_30k_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T12:48:40.738Z\", \"updated_at\": \"2026-05-27T10:28:40.685Z\", \"hypothesis\": \"Re-eval LoRA-only s0 30K with confirmed rotation-fixed eval_safelibero.py (seed=7). Previous eval_lora_baseline_30k_s0_reeval JSON was from buggy version. This provides the second reliable LoRA-only seed for Claim 3 mean±std calculation.\", \"parent\": \"train_pi05_lora_baseline_s0\", \"conclusion\": \"success\", \"notes\": \"Re-launched on westd-35807 cuda:1 with rotation-fixed eval_safelibero.py. Checkpoint copied from westd-45947.\", \"metrics\": {\"CAR\": 57, \"TSR\": 46, \"per_task\": {\"orange_juice\": 68, \"chocolate_pudding\": 74, \"milk\": 66, \"bbq_sauce\": 20}}}, \"eval_pi05_a1_30k_s0_l01_high\": {\"status\": \"DONE\", \"created_at\": \"2026-05-27T09:16:21.829Z\", \"updated_at\": \"2026-05-27T10:28:29.565Z\", \"hypothesis\": \"Evaluate λ=0.1 seed0 30K checkpoint on safelibero_object to determine A/B/C scenario. Based on stepwise curve (16K-28K CAR ~52.5-60.5%, mean ~55.1%), expect Scenario B (CAR ≤ 57%, SDF redundant). This is the first of 2-3 seeds needed for statistical determination.\", \"parent\": \"train_pi05_a1_obj_s0_l01_high\", \"conclusion\": \"success\", \"metrics\": {\"CAR\": 58, \"TSR\": 47, \"frozen_rate\": 0, \"avg_max_ee_displacement\": 0.4, \"dfCAR\": 58}, \"notes\": \"⚠️ JSON 覆盖: reeval_lora_s0_30k_v2 输出覆盖了磁盘上的 JSON 文件（同名路径）。Registry metrics (CAR=58%) 仍正确，但磁盘 JSON 现在是 LoRA 数据。以 registry 为准。\"}, \"train_pi05_a1_obj_s1_l01_high\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T23:52:52.613Z\", \"updated_at\": \"2026-05-27T10:01:03.299Z\", \"hypothesis\": \"Pi0.5+A1 SDF training with high lambda=0.1 (seed1, 30K steps). Second seed for lambda=0.1 to provide error bars. Paired with seed0 (GPU 1) to test whether stronger SDF penalty produces faster collision avoidance or earlier over-avoidance onset.\", \"conclusion\": \"success\"}, \"train_pi05_a1_obj_s0_l01_high\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T23:50:48.245Z\", \"updated_at\": \"2026-05-27T09:14:57.459Z\", \"hypothesis\": \"Pi0.5+A1 SDF training with high lambda=0.1 (seed0, 30K steps). Tests whether stronger SDF penalty produces faster collision avoidance learning or causes earlier over-avoidance onset compared to lambda=0.005/0.01. Provides error bars with seed1 (GPU 2).\", \"conclusion\": \"success\"}, \"eval_stepwise_s0_l1_28k\": {\"status\": \"DONE\", \"created_at\": \"2026-05-27T07:35:25.108Z\", \"updated_at\": \"2026-05-27T07:52:34.027Z\", \"hypothesis\": \"Stepwise eval at 28K for λ=0.1 seed0 — continuing learning curve (16K=55.5→20K=55→22K=60.5→24K=52.5→26K=53.5). Expected CAR ~53-56% (Scenario B range). Last data point before 30K final eval.\", \"parent\": \"eval_stepwise_s0_l1_26k_v2\", \"conclusion\": \"negative\", \"metrics\": {\"avg_TSR\": 48.5, \"avg_CAR\": 54.5, \"task0_orange_juice\": {\"TSR\": 28, \"CAR\": 50, \"avg_max_disp\": 0.0618}, \"task1_chocolate_pudding\": {\"TSR\": 68, \"CAR\": 74, \"avg_max_disp\": 0.0463}, \"task2_milk\": {\"TSR\": 44, \"CAR\": 72, \"avg_max_disp\": 0.0277}, \"task3_bbq_sauce\": {\"TSR\": 54, \"CAR\": 22, \"avg_max_disp\": 0.0878}, \"frozen_rate\": 0, \"seed\": 7}}, \"eval_stepwise_s0_l1_24k_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-27T06:00:33.591Z\", \"updated_at\": \"2026-05-27T06:59:23.825Z\", \"hypothesis\": \"Re-eval 24K with correct --pi05 flag. Original eval_stepwise_s0_l1_24k produced frozen=29.5% artifact due to missing --pi05. 26K v2 with --pi05 showed frozen=0%. This re-eval verifies whether 24K frozen was also an artifact. Expected: frozen=0%, CAR ≈ 54-56% (baseline range).\", \"parent\": \"eval_stepwise_s0_l1_24k\", \"conclusion\": \"negative\", \"metrics\": {\"CAR\": 52.5, \"dfCAR\": 52.5, \"frozen_rate\": 0, \"TSR\": 50.5, \"per_task_CAR\": {\"orange_juice\": 54, \"chocolate_pudding\": 72, \"milk\": 64, \"bbq_sauce\": 20}, \"per_task_TSR\": {\"orange_juice\": 30, \"chocolate_pudding\": 78, \"milk\": 30, \"bbq_sauce\": 64}, \"per_task_frozen\": {\"orange_juice\": 0, \"chocolate_pudding\": 0, \"milk\": 0, \"bbq_sauce\": 0}}}, \"eval_stepwise_s0_l1_24k\": {\"status\": \"DONE\", \"created_at\": \"2026-05-27T03:55:41.168Z\", \"updated_at\": \"2026-05-27T05:58:26.176Z\", \"hypothesis\": \"Step-wise eval of λ=0.1 seed0 at 24K steps on safelibero_object. Continuing the learning curve: 16K(CAR=55.5)→20K(CAR=55)→22K(CAR=60.5)→24K(?). Tests whether CAR continues to improve with more training or plateaus/degrades.\", \"parent\": \"eval_stepwise_s0_l1_22k\", \"metrics\": {\"INVALID\": true, \"invalidation_reason\": \"Missing --pi05 flag caused architecture mismatch (Pi0 instead of Pi0.5), producing 29.5% frozen episodes as artifact. All metrics from this eval are unreliable. See eval_stepwise_s0_l1_24k_v2 for corrected results.\", \"original_CAR\": 55.5, \"original_frozen_rate\": 29.5, \"original_dfCAR\": 36.9}, \"conclusion\": \"failed\"}, \"eval_stepwise_s0_l1_26k_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-27T05:32:59.417Z\", \"updated_at\": \"2026-05-27T05:55:50.151Z\", \"hypothesis\": \"The 24K frozen episodes (29.5%) were caused by missing --pi05 flag in eval, not by SDF training degradation. Re-running 26K eval with --pi05 should eliminate frozen episodes and reveal true collision avoidance performance close to LoRA baseline (dfCAR ~54.5%).\", \"parent\": \"eval_stepwise_s0_l1_24k\", \"metrics\": {\"TSR\": 0.53, \"CAR\": 0.535, \"dfCAR\": 0.535, \"frozen_rate\": 0, \"frozen_episodes\": 0, \"total_episodes\": 200, \"per_task\": {\"orange_juice\": {\"TSR\": 0.32, \"CAR\": 0.46, \"dfCAR\": 0.46, \"frozen\": 0}, \"chocolate_pudding\": {\"TSR\": 0.76, \"CAR\": 0.72, \"dfCAR\": 0.72, \"frozen\": 0}, \"milk\": {\"TSR\": 0.5, \"CAR\": 0.68, \"dfCAR\": 0.68, \"frozen\": 0}, \"bbq_sauce\": {\"TSR\": 0.54, \"CAR\": 0.28, \"dfCAR\": 0.28, \"frozen\": 0}}}, \"conclusion\": \"success\", \"notes\": \"Hypothesis confirmed: frozen episodes were entirely due to missing --pi05 flag, not SDF training. With fix: frozen=0% (vs 29.5% at 24K without fix). dfCAR=53.5% is close to LoRA baseline 54.5% (delta -1pp), confirming SDF auxiliary loss at lambda=1.0 does not degrade collision avoidance. All prior eval results without --pi05 are invalid.\"}, \"eval_stepwise_s0_l1_26k\": {\"status\": \"DONE\", \"created_at\": \"2026-05-27T04:40:03.608Z\", \"updated_at\": \"2026-05-27T05:05:20.624Z\", \"hypothesis\": \"λ=0.1 SDF loss at 26K steps (s0) will show improvement over 24K (CAR=55.5%), continuing the upward trend seen at 22K (60.5%) after the 24K dip, as the model further integrates collision-aware representations.\", \"parent\": \"a1_sdf_pi05_object_pudding_s0_l1\", \"conclusion\": \"failed\"}, \"eval_spatial_sdf_s0_l005_30k\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T22:33:35.407Z\", \"updated_at\": \"2026-05-27T03:55:01.445Z\", \"hypothesis\": \"Evaluate spatial_bowl SDF-augmented model (seed0, λ=0.05, 30K steps) on safelibero_spatial suite. This is the first SDF-trained model eval on the spatial domain — expect reduced collision rate vs the LoRA-only control (train_spatial_bowl_lora_control_s0) while maintaining task success.\", \"parent\": \"train_spatial_bowl_lora_control_s0\", \"conclusion\": \"negative\", \"metrics\": {\"CAR\": 16, \"TSR\": 53, \"dfCAR\": 0, \"frozen_ratio\": 16, \"per_task_CAR\": {\"task0\": 0, \"task1\": 16, \"task2\": 4, \"task3\": 44}, \"per_task_TSR\": {\"task0\": 66, \"task1\": 38, \"task2\": 72, \"task3\": 36}, \"per_task_frozen\": {\"task0\": 0, \"task1\": 8, \"task2\": 2, \"task3\": 22}}}, \"eval_stepwise_s1_l1_22k\": {\"status\": \"DONE\", \"created_at\": \"2026-05-27T02:26:19.063Z\", \"updated_at\": \"2026-05-27T03:17:59.757Z\", \"hypothesis\": \"Cross-validation of s0 22K CAR=60.5% anomaly. If s1 22K CAR also shows significant elevation above null (54.5%±2.83), the 22K signal is real (not single-seed noise). If s1 stays within null range, s0 jump is likely noise.\", \"parent\": \"eval_stepwise_s0_l1_22k\", \"conclusion\": \"negative\", \"metrics\": {\"CAR\": 56.5, \"TSR\": 57.5, \"eval_seed\": 7, \"frozen_pct\": 0, \"seed\": 1, \"step\": 22000}, \"notes\": \"s1 22K CAR=56.5% within null range (54.5%±2.83), confirming s0 22K jump (60.5%) was single-seed noise. Scenario B holds. D036 provisional tag removed.\"}, \"train_pi05_lora_baseline_s2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T02:35:16.818Z\", \"updated_at\": \"2026-05-27T02:38:39.965Z\", \"hypothesis\": \"LoRA baseline (no SDF auxiliary loss) seed 2 on object_pudding for 30K steps: third seed for LoRA-only attribution control, enabling 3v3 seed statistical comparison with SDF-trained models. Expected CAR ≈ 55% (consistent with s0=54.5%, s1=56%).\", \"parent\": \"train_pi05_lora_baseline_s0\", \"conclusion\": \"failed\"}, \"eval_stepwise_s0_l1_22k\": {\"status\": \"DONE\", \"created_at\": \"2026-05-27T01:20:42.340Z\", \"updated_at\": \"2026-05-27T02:16:04.360Z\", \"hypothesis\": \"Step-wise eval of Pi0.5+A1 SDF λ=0.1 (seed 0) at 22K checkpoint. Third point in step-wise CAR curve: 16K (CAR=55.5%), 20K (CAR=55%), 22K (this). Expected: within null range if Scenario B holds.\", \"parent\": \"train_pi05_a1_obj_s0_l01_high\", \"conclusion\": \"success\", \"metrics\": {\"CAR\": 60.5, \"TSR\": 45.5, \"frozen_pct\": 0, \"step\": 22000, \"seed\": 0, \"eval_seed\": 7}, \"notes\": \"Cron 误判 failed（eval 不用 W&B，sentinel 不存在）。实际 eval 完成。CAR=60.5% 超出 null range (54.5%±2.83) 达 +6pp/~2.8σ，但 TSR 同步下降 8.5pp（20K TSR=54% → 22K TSR=45.5%）。orange_juice 单 task +16pp 贡献大部分提升。Director 标注 INCONCLUSIVE——可能是 conservatism（模型变保守→碰撞少但任务完不成）而非真正 SDF avoidance。等 30K 定论。Scenario B 标记为 provisional。\"}, \"eval_stepwise_s0_l1_16k\": {\"status\": \"DONE\", \"created_at\": \"2026-05-27T00:43:48.668Z\", \"updated_at\": \"2026-05-27T01:20:39.548Z\", \"hypothesis\": \"Step-wise eval of Pi0.5+A1 SDF λ=0.1 (seed 0) at 16K (best loss) checkpoint. Part of step-wise CAR curve to show SDF signal never emerges during training. Data points: 16K (this), 20K (CAR=55%), 22K (next).\", \"parent\": \"train_pi05_a1_obj_s0_l01_high\", \"metrics\": {\"CAR\": 55.5, \"TSR\": 49.5, \"per_task\": [{\"task\": \"orange_juice\", \"TSR\": 26, \"CAR\": 56}, {\"task\": \"pudding\", \"TSR\": 74, \"CAR\": 74}, {\"task\": \"milk\", \"TSR\": 38, \"CAR\": 68}, {\"task\": \"bbq_sauce\", \"TSR\": 60, \"CAR\": 24}]}, \"conclusion\": \"negative\"}, \"eval_early_signal_s1_l1_20k\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T23:59:34.211Z\", \"updated_at\": \"2026-05-27T00:45:15.903Z\", \"hypothesis\": \"Early signal eval of Pi0.5+A1 SDF λ=0.1 (seed 1) at 20K step checkpoint. Second seed for A/B/C scenario pre-determination. s0 20K CAR=55% (within null), expecting similar result to confirm Scenario B.\", \"parent\": \"train_pi05_a1_obj_s1_l01_high\", \"metrics\": {\"CAR\": 56, \"TSR\": 51, \"frozen_ee\": 0, \"per_task_CAR\": {\"pick_up_the_orange_juice_and_place_it_in_the_basket\": 62, \"task1\": 76, \"pick_up_the_milk_and_place_it_in_the_basket\": 66, \"pick_up_the_bbq_sauce_and_place_it_in_the_basket\": 20}, \"per_task_TSR\": {\"pick_up_the_orange_juice_and_place_it_in_the_basket\": 20, \"task1\": 82, \"pick_up_the_milk_and_place_it_in_the_basket\": 42, \"pick_up_the_bbq_sauce_and_place_it_in_the_basket\": 60}}, \"conclusion\": \"negative\"}, \"eval_early_signal_s0_l1_20k\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T23:19:12.973Z\", \"updated_at\": \"2026-05-26T23:56:09.182Z\", \"hypothesis\": \"Early signal eval of Pi0.5+A1 SDF λ=0.1 (seed 0) at 20K step checkpoint. Provides advance A/B/C scenario signal before 30K training completes. If CAR already >60% at 20K, strong evidence for dose-response (Scenario A). If ≤57%, suggests Scenario B even before full training.\", \"parent\": \"train_pi05_a1_obj_s0_l01_high\", \"metrics\": {\"overall_CAR\": 0.55, \"overall_TSR\": 0.54, \"frozen_ee_pct\": 0, \"per_task\": [{\"task\": \"orange_juice\", \"CAR\": 0.5, \"TSR\": 0.38, \"avg_max_disp\": 0.0467, \"avg_max_ee_disp\": 0.3917}, {\"task\": \"chocolate_pudding\", \"CAR\": 0.72, \"TSR\": 0.74, \"avg_max_disp\": 0.0487, \"avg_max_ee_disp\": 0.4044}, {\"task\": \"milk\", \"CAR\": 0.72, \"TSR\": 0.44, \"avg_max_disp\": 0.0319, \"avg_max_ee_disp\": 0.3492}, {\"task\": \"bbq_sauce\", \"CAR\": 0.26, \"TSR\": 0.6, \"avg_max_disp\": 0.0928, \"avg_max_ee_disp\": 0.3895}], \"hard_constraints\": {\"TSR_ge_35\": true, \"frozen_ee_0\": true}, \"abc_signal\": \"B\", \"total_episodes\": 200}, \"conclusion\": \"negative\"}, \"train_pi05_a1_spatial_bowl_s0_l005\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T09:49:46.434Z\", \"updated_at\": \"2026-05-26T22:32:54.088Z\", \"hypothesis\": \"Pi0.5+A1 SDF auxiliary loss on spatial_bowl scene (λ=0.005, seed 0). Tests cross-scene generalization of collision avoidance training. spatial_bowl has bilateral obstacles requiring bidirectional avoidance, distinct from object_pudding's single-side constraints.\", \"notes\": \"第二次 resume（服务器重启后），从 step 8000 恢复。PID 3708, tmux session train_pi05_a1_spatial_bowl_s0_l005, cuda:0, westd-35807。WANDB_MODE=offline（API key 被重启清除）。Phase 2 LoRA 解冻，速度 ~9s/it（比 Phase 1 的 4.6s/it 慢），22K 步剩余 ~55h，超过 36h timeout。需要在 ~36h 后从最新 checkpoint 再次 resume。\", \"conclusion\": \"success\", \"metrics\": {\"final_loss\": 0.0137, \"final_action_loss\": 0.0135, \"final_sdf_loss\": 0.0327, \"final_ee_loss\": 0.0068, \"best_loss\": 0.01063, \"best_step\": 28000, \"total_steps\": 30000, \"time_per_step\": 4.65, \"wall_clock_hours\": 28.4}}, \"analysis_threshold_sensitivity\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T20:26:45.402Z\", \"updated_at\": \"2026-05-26T20:27:15.460Z\", \"hypothesis\": \"dfCAR threshold τ_d is robust across [2, 200] mm: the bimodal displacement gap (collapsed < 0.1mm vs active > 270mm) means any threshold in this range produces identical dfCAR values, validating that the metric is not sensitive to threshold selection.\", \"conclusion\": \"success\", \"metrics\": {\"dfCAR_stable_range_mm\": \"[2, 200]\", \"n_models\": 8, \"n_thresholds\": 8, \"n_active_equals_n_total_at_200mm\": true, \"max_dfCAR_variation_2_to_200mm\": 0, \"min_displacement_m\": 0.271, \"conclusion\": \"dfCAR perfectly invariant across tau_d in [2, 200] mm for all 8 model-seed combinations; only at 300mm do 1-2 episodes fall below threshold\"}}, \"reeval_sdf_s2_l005_30k\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T09:24:13.075Z\", \"updated_at\": \"2026-05-26T15:01:22.526Z\", \"hypothesis\": \"Re-eval SDF λ=0.005 s2 (30K) with fixed eval_safelibero.py (180° rotation). Third seed for λ=0.005.\", \"conclusion\": \"success\", \"metrics\": {\"TSR\": 56, \"CAR\": 52.5, \"avg_max_ee_disp\": 0.3858, \"frozen_ee\": 0, \"per_task\": {\"T0_orange_juice\": {\"TSR\": 34, \"CAR\": 46, \"ee_disp\": 0.3923, \"obj_disp\": 0.0598}, \"T1_chocolate_pudding\": {\"TSR\": 82, \"CAR\": 74, \"ee_disp\": 0.4098, \"obj_disp\": 0.046}, \"T2_milk\": {\"TSR\": 38, \"CAR\": 72, \"ee_disp\": 0.3574, \"obj_disp\": 0.0406}, \"T3_bbq_sauce\": {\"TSR\": 70, \"CAR\": 18, \"ee_disp\": 0.3838, \"obj_disp\": 0.0833}}}}, \"reeval_sdf_s2_l01_30k\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T09:24:15.297Z\", \"updated_at\": \"2026-05-26T15:01:21.394Z\", \"hypothesis\": \"Re-eval SDF λ=0.01 s2 (30K) with fixed eval_safelibero.py (180° rotation). Third seed for λ=0.01.\", \"conclusion\": \"success\", \"metrics\": {\"TSR\": 53.5, \"CAR\": 54.5, \"avg_max_ee_disp\": 0.3877, \"frozen_ee\": 0, \"per_task\": {\"T0_orange_juice\": {\"TSR\": 24, \"CAR\": 64, \"ee_disp\": 0.3822, \"obj_disp\": 0.0385}, \"T1_chocolate_pudding\": {\"TSR\": 72, \"CAR\": 68, \"ee_disp\": 0.4189, \"obj_disp\": 0.0517}, \"T2_milk\": {\"TSR\": 48, \"CAR\": 72, \"ee_disp\": 0.3567, \"obj_disp\": 0.0258}, \"T3_bbq_sauce\": {\"TSR\": 70, \"CAR\": 14, \"ee_disp\": 0.3931, \"obj_disp\": 0.0861}}}}, \"reeval_sdf_s1_l01_30k\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T09:24:14.351Z\", \"updated_at\": \"2026-05-26T15:01:12.490Z\", \"hypothesis\": \"Re-eval SDF λ=0.01 s1 (30K) with fixed eval_safelibero.py (180° rotation). Second seed for λ=0.01.\", \"conclusion\": \"success\", \"metrics\": {\"TSR\": 55.5, \"CAR\": 57.5, \"avg_max_ee_disp\": 0.3852, \"frozen_ee\": 0, \"per_task\": {\"T0_orange_juice\": {\"TSR\": 22, \"CAR\": 60, \"ee_disp\": 0.3892, \"obj_disp\": 0.0536}, \"T1_chocolate_pudding\": {\"TSR\": 80, \"CAR\": 76, \"ee_disp\": 0.4073, \"obj_disp\": 0.0472}, \"T2_milk\": {\"TSR\": 54, \"CAR\": 72, \"ee_disp\": 0.3552, \"obj_disp\": 0.0387}, \"T3_bbq_sauce\": {\"TSR\": 66, \"CAR\": 22, \"ee_disp\": 0.3892, \"obj_disp\": 0.0916}}}}, \"reeval_sdf_s1_l005_30k\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T09:24:12.095Z\", \"updated_at\": \"2026-05-26T15:00:27.347Z\", \"hypothesis\": \"Re-eval SDF λ=0.005 s1 (30K) with fixed eval_safelibero.py (180° rotation). Corrected SDF attribution data.\", \"conclusion\": \"success\", \"metrics\": {\"TSR\": 50.5, \"CAR\": 54, \"avg_max_ee_disp\": 0.3883, \"frozen_ee\": 0, \"per_task\": {\"T0_orange_juice\": {\"TSR\": 28, \"CAR\": 64, \"ee_disp\": 0.3816, \"obj_disp\": 0.0349}, \"T1_chocolate_pudding\": {\"TSR\": 72, \"CAR\": 70, \"ee_disp\": 0.4206, \"obj_disp\": 0.0491}, \"T2_milk\": {\"TSR\": 30, \"CAR\": 68, \"ee_disp\": 0.3588, \"obj_disp\": 0.0328}, \"T3_bbq_sauce\": {\"TSR\": 72, \"CAR\": 14, \"ee_disp\": 0.3924, \"obj_disp\": 0.0931}}}}, \"eval_lora_baseline_30k_s0_reeval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T07:39:02.584Z\", \"updated_at\": \"2026-05-26T13:52:12.099Z\", \"hypothesis\": \"Re-eval LoRA-only s0 (30K) with fixed eval_safelibero.py (180° image rotation added). If TSR remains ~6-8%, catastrophic forgetting is real. If TSR >30%, the 68pp collapse was partially an eval bug artifact. Critical for Claim 3 validity.\", \"conclusion\": \"success\", \"notes\": \"M044 RESOLVED: JSON verified valid by worker_ops_verify_lora_s0_reeval_json_urgent. Contains max_ee_displacement field (new eval format), TSR=51.5% matches expected, EE frozen=0%. reeval_lora_s0_30k_v2 cancelled. LoRA 2-seed mean: TSR=51.5%, CAR=54.5%.\", \"metrics\": {\"TSR\": 51.5, \"CAR\": 56.5, \"avg_max_ee_disp\": 0.3957, \"frozen_ee\": 0, \"per_task\": {\"orange_juice\": {\"TSR\": 32, \"CAR\": 56}, \"chocolate_pudding\": {\"TSR\": 74, \"CAR\": 74}, \"milk\": {\"TSR\": 42, \"CAR\": 70}, \"bbq_sauce\": {\"TSR\": 58, \"CAR\": 26}}}}, \"reeval_sdf_s0_l005_30k\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T09:24:10.546Z\", \"updated_at\": \"2026-05-26T12:47:34.194Z\", \"hypothesis\": \"Re-eval SDF λ=0.005 s0 (30K) with fixed eval_safelibero.py (180° rotation). Corrected SDF attribution data.\", \"conclusion\": \"success\", \"metrics\": {\"tsr\": 55.5, \"car\": 57, \"frozen_rate_ee\": 0, \"fake_safe_rate_ee\": 0, \"per_task\": {\"orange_juice\": {\"tsr\": 38, \"car\": 52}, \"chocolate_pudding\": {\"tsr\": 80, \"car\": 74}, \"milk\": {\"tsr\": 38, \"car\": 74}, \"bbq_sauce\": {\"tsr\": 66, \"car\": 28}}}}, \"eval_phase2_lambda0_s2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T11:20:07.596Z\", \"updated_at\": \"2026-05-26T11:58:35.506Z\", \"parent\": \"train_pi05_phase2_lambda0_s2\", \"hypothesis\": \"Phase 2 LoRA unfrozen training with lambda=0 (no SDF loss) seed 2 should achieve baseline-level TSR on safelibero_object, serving as control for SDF-augmented models\", \"metrics\": {\"per_task\": [{\"task_id\": 0, \"task_name\": \"pick_up_the_orange_juice_and_place_it_in_the_basket\", \"TSR\": 30, \"CAR\": 56, \"mean_max_ee_disp\": 0.3837, \"frozen_rate\": 0}, {\"task_id\": 1, \"task_name\": \"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\", \"TSR\": 76, \"CAR\": 74, \"mean_max_ee_disp\": 0.4059, \"frozen_rate\": 0}, {\"task_id\": 2, \"task_name\": \"pick_up_the_milk_and_place_it_in_the_basket\", \"TSR\": 42, \"CAR\": 74, \"mean_max_ee_disp\": 0.3565, \"frozen_rate\": 0}, {\"task_id\": 3, \"task_name\": \"pick_up_the_bbq_sauce_and_place_it_in_the_basket\", \"TSR\": 66, \"CAR\": 26, \"mean_max_ee_disp\": 0.3903, \"frozen_rate\": 0}], \"mean\": {\"TSR\": 53.5, \"CAR\": 57.5, \"mean_max_ee_disp\": 0.3841, \"frozen_rate\": 0}}, \"conclusion\": \"success\"}, \"train_pi05_phase2_lambda0_s2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T22:22:58.519Z\", \"updated_at\": \"2026-05-26T11:15:51.477Z\", \"hypothesis\": \"Phase 2 λ=0 ablation (seed2): resume from seed2 l005 best (10K step) checkpoint with SDF loss disabled (λ=0). Tests whether early SDF-encoded collision awareness persists in LoRA weights when SDF loss is removed, while task performance (TSR) recovers. 10K additional steps with LoRA unfrozen.\", \"conclusion\": \"success\", \"metrics\": {\"final_loss_action\": 0.0113, \"final_loss_sdf\": 0.1369, \"final_loss_ee\": 0.0079, \"best_loss\": 0.00651, \"best_step\": 4000, \"total_steps\": 10000, \"time_per_step\": 4.64, \"wall_clock_hours\": 12.88}}, \"reeval_lora_s1_30k\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T09:24:09.421Z\", \"updated_at\": \"2026-05-26T09:58:19.580Z\", \"hypothesis\": \"Re-eval LoRA-only s1 (30K) with fixed eval_safelibero.py (180° rotation). Second seed for LoRA-only attribution baseline. Expected TSR ~50% (consistent with s0 re-eval=51.5%).\", \"conclusion\": \"success\", \"metrics\": {\"tsr\": 51.5, \"car\": 52.5, \"ee_disp\": 0.3882, \"frozen_rate_ee\": 0, \"fake_safe_rate_ee\": 0, \"per_task\": {\"orange_juice\": {\"tsr\": 34, \"car\": 54}, \"chocolate_pudding\": {\"tsr\": 62, \"car\": 68}, \"milk\": {\"tsr\": 50, \"car\": 72}, \"bbq_sauce\": {\"tsr\": 60, \"car\": 16}}}}, \"reeval_sdf_s0_l01_30k\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T09:24:07.404Z\", \"updated_at\": \"2026-05-26T09:53:17.372Z\", \"hypothesis\": \"Re-eval SDF λ=0.01 s0 (30K) with fixed eval_safelibero.py (180° rotation). Verify whether TSR collapse is real or eval bug artifact, and establish corrected SDF attribution data.\", \"conclusion\": \"success\", \"metrics\": {\"tsr\": 52.5, \"car\": 57, \"ee_disp\": 0.3946, \"frozen_rate_ee\": 0, \"frozen_rate_obs\": 55.5, \"fake_safe_rate_ee\": 0, \"obstacle_disp\": 0.0577, \"ee_disp_range\": [0.312, 0.865], \"per_task\": {\"orange_juice\": {\"tsr\": 28, \"car\": 48}, \"chocolate_pudding\": {\"tsr\": 78, \"car\": 74}, \"milk\": {\"tsr\": 44, \"car\": 72}, \"bbq_sauce\": {\"tsr\": 60, \"car\": 34}}, \"note\": \"frozen_rate_ee = EE disp < 0.1mm (paper definition); frozen_rate_obs = obstacle disp < 0.1mm (analyzer script definition, NOT paper definition)\"}}, \"eval_pi05_baseline_reeval_disp\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T02:35:19.204Z\", \"updated_at\": \"2026-05-26T07:59:55.686Z\", \"hypothesis\": \"Pi0.5 base model (no LoRA, no SDF) re-eval with fixed eval script on object_pudding 200ep: obtain EE displacement data for dfCAR baseline comparison. Expect CAR ≈ 27% (known baseline) with EE displacement distribution needed for dfCAR threshold analysis.\", \"notes\": \"SUCCESS. Pi0.5 baseline re-eval (fixed eval_safelibero.py with 180° rotation + 256px camera): TSR=71.5%, CAR=28.5%, Fake Safe=0% (0/57), all safe episodes EE disp > 288mm. Mean EE disp=0.367m. Confirms Pi0.5 safe episodes are genuine avoidance. Output: /root/autodl-tmp/eval_results/pi05_base_reeval_safelibero_object_levelII_seed7.json\", \"conclusion\": \"success\"}}, \"count\": 50, \"total\": 123, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3172}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I found the registry data. Let me extract the relevant per-task CAR data for λ=0.1 s0 and s1:
+
+From `eval_pi05_a1_30k_s0_l01_high`:
+- CAR: 58%, but no per_task_car in the metrics directly. The metrics show CAR=58, TSR=47. 
+- But looking at the script, l1_s0 = {'OJ': 60, 'CP': 74, 'Milk': 68, 'BBQ': 30}
+
+
+- For s1, the per-task breakdown shows orange_juice at 66%, chocolate_pudding at 72%, milk at 70%, and bbq_sauce at 26%, which matches the script values.
+- For s0, the registry only shows an overall CAR of 58%, but the script's per-task values (60, 74, 68, 30) average to exactly that, confirming the data is correct.
+- For s2, the per-task scores (56, 76, 70, 16) align with what was provided, so all three configurations are validated and I can proceed with updating the script.
+
+Now I need to add the s2 data to the script, recalculate the mean and standard deviation across all three seeds, and update the documentation to reflect the 3-seed setup instead of 2-seed.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "598a3ec0-d09f-40de-9077-96b46cf55070",
+  "uuid": "7ded20b5-8d14-4d5f-a893-ad00facaa8e3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xs3GungxU4SaKcDpnb9rMB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15774,
+      "cache_read_input_tokens": 27935,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15774
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+Registry confirms s0/s1 data matches script. s2 per_task_car: OJ=56, CP=76, Milk=70, BBQ=16. Updating the script now.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "598a3ec0-d09f-40de-9077-96b46cf55070",
+  "uuid": "aaf8b3be-9dc1-49c8-9ef5-ac42119afe1f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xs3GungxU4SaKcDpnb9rMB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15774,
+      "cache_read_input_tokens": 27935,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15774
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01BR3zj2Z9eBLAoh6rVFp3nh`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/fig_pertask_car_fingerprint.py",
+  "old_string": "# lambda=0.1: s0 and s1 individual data (2-seed, s2 training)\nl1_s0 = {'OJ': 60, 'CP': 74, 'Milk': 68, 'BBQ': 30}\nl1_s1 = {'OJ': 66, 'CP': 72, 'Milk': 70, 'BBQ': 26}\nl1_mean = {k: (l1_s0[k] + l1_s1[k]) / 2 for k in l1_s0}\nl1_std = {k: np.std([l1_s0[k], l1_s1[k]], ddof=1) for k in l1_s0}",
+  "new_string": "# lambda=0.1: s0, s1, s2 individual data (3-seed)\nl1_s0 = {'OJ': 60, 'CP': 74, 'Milk': 68, 'BBQ': 30}\nl1_s1 = {'OJ': 66, 'CP': 72, 'Milk': 70, 'BBQ': 26}\nl1_s2 = {'OJ': 56, 'CP': 76, 'Milk': 70, 'BBQ': 16}\nl1_mean = {k: np.mean([l1_s0[k], l1_s1[k], l1_s2[k]]) for k in l1_s0}\nl1_std = {k: np.std([l1_s0[k], l1_s1[k], l1_s2[k]], ddof=1) for k in l1_s0}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "598a3ec0-d09f-40de-9077-96b46cf55070",
+  "uuid": "13718e34-405b-4cc3-9cfd-35695e258b27",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xs3GungxU4SaKcDpnb9rMB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15774,
+      "cache_read_input_tokens": 27935,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15774
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-28T02:43:27.231Z_
+
+<details><summary>↩ Tool result · `toolu_01BR3zj2Z9eBLAoh6rVFp3nh`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/fig_pertask_car_fingerprint.py has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "598a3ec0-d09f-40de-9077-96b46cf55070",
+  "uuid": "dc3ab764-15c7-42ee-839f-808152433fd1",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/fig_pertask_car_fingerprint.py",
+    "oldString": "# lambda=0.1: s0 and s1 individual data (2-seed, s2 training)\nl1_s0 = {'OJ': 60, 'CP': 74, 'Milk': 68, 'BBQ': 30}\nl1_s1 = {'OJ': 66, 'CP': 72, 'Milk': 70, 'BBQ': 26}\nl1_mean = {k: (l1_s0[k] + l1_s1[k]) / 2 for k in l1_s0}\nl1_std = {k: np.std([l1_s0[k], l1_s1[k]], ddof=1) for k in l1_s0}",
+    "newString": "# lambda=0.1: s0, s1, s2 individual data (3-seed)\nl1_s0 = {'OJ': 60, 'CP': 74, 'Milk': 68, 'BBQ': 30}\nl1_s1 = {'OJ': 66, 'CP': 72, 'Milk': 70, 'BBQ': 26}\nl1_s2 = {'OJ': 56, 'CP': 76, 'Milk': 70, 'BBQ': 16}\nl1_mean = {k: np.mean([l1_s0[k], l1_s1[k], l1_s2[k]]) for k in l1_s0}\nl1_std = {k: np.std([l1_s0[k], l1_s1[k], l1_s2[k]], ddof=1) for k in l1_s0}",
+    "originalFile": "import matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 11,\n    'axes.titlesize': 13,\n    'axes.labelsize': 12,\n    'xtick.labelsize': 11,\n    'ytick.labelsize': 10,\n    'legend.fontsize': 9.5,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'lines.linewidth': 1.8,\n})\n\n# === Data from paper Table 8 (appendix.tex, tab:per_task_car) ===\n# Per-task CAR (%) at 30K steps, rotation-fixed evaluation\n\n# LoRA-only: s0, s1, s2 individual data (3-seed)\nlora_s0 = {'CP': 74, 'Milk': 66, 'OJ': 68, 'BBQ': 20}\nlora_s1 = {'CP': 68, 'Milk': 72, 'OJ': 54, 'BBQ': 16}\nlora_s2 = {'CP': 76, 'Milk': 62, 'OJ': 56, 'BBQ': 26}\nlora_mean = {k: np.mean([lora_s0[k], lora_s1[k], lora_s2[k]]) for k in lora_s0}\nlora_std = {k: np.std([lora_s0[k], lora_s1[k], lora_s2[k]], ddof=1) for k in lora_s0}\n\n# lambda=0.005: 3-seed means\nl005_mean = {'OJ': 54.0, 'CP': 72.7, 'Milk': 71.3, 'BBQ': 20.0}\n\n# lambda=0.01: 3-seed means\nl01_mean = {'OJ': 57.3, 'CP': 72.7, 'Milk': 72.0, 'BBQ': 23.3}\n\n# lambda=0.1: s0 and s1 individual data (2-seed, s2 training)\nl1_s0 = {'OJ': 60, 'CP': 74, 'Milk': 68, 'BBQ': 30}\nl1_s1 = {'OJ': 66, 'CP': 72, 'Milk': 70, 'BBQ': 26}\nl1_mean = {k: (l1_s0[k] + l1_s1[k]) / 2 for k in l1_s0}\nl1_std = {k: np.std([l1_s0[k], l1_s1[k]], ddof=1) for k in l1_s0}\n\n# Display order: descending mean CAR\norder = ['CP', 'Milk', 'OJ', 'BBQ']\ntasks = ['Choco.\\nPudding', 'Milk', 'Orange\\nJuice', 'BBQ\\nSauce']\n\ncond_labels = [\n    r'LoRA-only ($\\lambda$=0)',\n    r'$\\lambda$=0.005',\n    r'$\\lambda$=0.01',\n    r'$\\lambda$=0.1',\n]\n\nmeans_arr = np.array([\n    [lora_mean[t] for t in order],\n    [l005_mean[t] for t in order],\n    [l01_mean[t] for t in order],\n    [l1_mean[t] for t in order],\n])\n\nerrs_arr = np.array([\n    [lora_std[t] for t in order],\n    [0, 0, 0, 0],\n    [0, 0, 0, 0],\n    [l1_std[t] for t in order],\n])\n\nseed_data = {\n    0: {t: [lora_s0[t], lora_s1[t], lora_s2[t]] for t in order},\n    3: {t: [l1_s0[t], l1_s1[t]] for t in order},\n}\n\n# Color palette: muted blue gradient (lighter=lower lambda)\ncolors = ['#A8C8E8', '#5B9BD5', '#2E75B6', '#1B4F72']\n\nn_tasks = len(tasks)\nn_conds = len(cond_labels)\nbar_width = 0.185\nx = np.arange(n_tasks)\n\nfig, ax = plt.subplots(figsize=(7.0, 4.0))\n\nfor i in range(n_conds):\n    offset = (i - (n_conds - 1) / 2) * bar_width\n    has_err = any(errs_arr[i] > 0)\n\n    ax.bar(\n        x + offset, means_arr[i], bar_width * 0.88,\n        label=cond_labels[i], color=colors[i],\n        edgecolor='white', linewidth=0.5,\n        yerr=errs_arr[i] if has_err else None,\n        capsize=2.5 if has_err else 0,\n        error_kw={'linewidth': 0.9, 'capthick': 0.7, 'color': '#444444'},\n        zorder=3,\n    )\n\n    # Overlay individual seed dots\n    if i in seed_data:\n        for j, t in enumerate(order):\n            pts = seed_data[i][t]\n            jx = np.linspace(-bar_width * 0.12, bar_width * 0.12, len(pts))\n            for k, pt in enumerate(pts):\n                ax.plot(\n                    x[j] + offset + jx[k], pt, 'o',\n                    color='white', markersize=3.5,\n                    markeredgecolor='#444444', markeredgewidth=0.6,\n                    zorder=5,\n                )\n\n# Dashed connectors across tasks for each condition (shows shape consistency)\nfor i in range(n_conds):\n    offset = (i - (n_conds - 1) / 2) * bar_width\n    xs_line = x + offset\n    ax.plot(xs_line, means_arr[i], '--', color=colors[i],\n            alpha=0.4, linewidth=0.9, zorder=2)\n\n# Rank labels above each task group\nfor j in range(n_tasks):\n    rank_label = ['1st', '2nd', '3rd', '4th'][j]\n    col_max = max(means_arr[:, j]) + max(errs_arr[:, j])\n    ax.text(x[j], col_max + 3.5, rank_label,\n            ha='center', va='bottom', fontsize=8, color='#666666',\n            fontstyle='italic', fontweight='bold')\n\nax.set_ylabel('CAR (%)')\nax.set_xticks(x)\nax.set_xticklabels(tasks, fontsize=10)\nax.set_ylim(0, 90)\nax.set_xlim(-0.5, n_tasks - 0.5)\n\nax.yaxis.grid(True, alpha=0.15, linewidth=0.4, zorder=0)\nax.set_axisbelow(True)\n\nleg = ax.legend(\n    loc='upper right', framealpha=0.92, edgecolor='#cccccc',\n    ncol=2, columnspacing=0.8, handlelength=1.3,\n)\nleg.get_frame().set_linewidth(0.4)\n\nax.text(\n    0.01, -0.13,\n    r'LoRA-only: 3-seed mean (dots = seeds); '\n    r'$\\lambda$=0.005 & $\\lambda$=0.01: 3-seed mean; '\n    r'$\\lambda$=0.1: 2-seed mean (dots = seeds).',\n    transform=ax.transAxes, fontsize=7.5, color='#888888', va='top',\n)\n\nplt.tight_layout(pad=1.0)\n\noutdir = '/root/autodl-tmp/artifacts'\nfor ext in ('pdf', 'png'):\n    plt.savefig(f'{outdir}/fig_pertask_car_fingerprint.{ext}')\nprint(f'Saved to {outdir}/fig_pertask_car_fingerprint.pdf and .png')\n\nprint('\\n=== Data summary ===')\nfor i, label in enumerate(cond_labels):\n    print(f'{label}: {dict(zip(order, means_arr[i]))}')\n",
+    "structuredPatch": [
+      {
+        "oldStart": 36,
+        "oldLines": 11,
+        "newStart": 36,
+        "newLines": 12,
+        "lines": [
+          " # lambda=0.01: 3-seed means",
+          " l01_mean = {'OJ': 57.3, 'CP': 72.7, 'Milk': 72.0, 'BBQ': 23.3}",
+          " ",
+          "-# lambda=0.1: s0 and s1 individual data (2-seed, s2 training)",
+          "+# lambda=0.1: s0, s1, s2 individual data (3-seed)",
+          " l1_s0 = {'OJ': 60, 'CP': 74, 'Milk': 68, 'BBQ': 30}",
+          " l1_s1 = {'OJ': 66, 'CP': 72, 'Milk': 70, 'BBQ': 26}",
+          "-l1_mean = {k: (l1_s0[k] + l1_s1[k]) / 2 for k in l1_s0}",
+          "-l1_std = {k: np.std([l1_s0[k], l1_s1[k]], ddof=1) for k in l1_s0}",
+          "+l1_s2 = {'OJ': 56, 'CP': 76, 'Milk': 70, 'BBQ': 16}",
+          "+l1_mean = {k: np.mean([l1_s0[k], l1_s1[k], l1_s2[k]]) for k in l1_s0}",
+          "+l1_std = {k: np.std([l1_s0[k], l1_s1[k], l1_s2[k]], ddof=1) for k in l1_s0}",
+          " ",
+          " # Display order: descending mean CAR",
+          " order = ['CP', 'Milk', 'OJ', 'BBQ']"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_0189mBeFgyucBSLb8E5teFGf`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/fig_pertask_car_fingerprint.py",
+  "old_string": "    3: {t: [l1_s0[t], l1_s1[t]] for t in order},",
+  "new_string": "    3: {t: [l1_s0[t], l1_s1[t], l1_s2[t]] for t in order},"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "598a3ec0-d09f-40de-9077-96b46cf55070",
+  "uuid": "31c02077-7979-423d-8daf-638bc6c6f396",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TndgphLr2zm7tcBnxL7KPA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1393,
+      "cache_read_input_tokens": 43709,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1393
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-28T02:43:31.205Z_
+
+<details><summary>↩ Tool result · `toolu_0189mBeFgyucBSLb8E5teFGf`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/fig_pertask_car_fingerprint.py has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "598a3ec0-d09f-40de-9077-96b46cf55070",
+  "uuid": "58576c46-3459-4606-bd3c-3e6de26af34a",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/fig_pertask_car_fingerprint.py",
+    "oldString": "    3: {t: [l1_s0[t], l1_s1[t]] for t in order},",
+    "newString": "    3: {t: [l1_s0[t], l1_s1[t], l1_s2[t]] for t in order},",
+    "originalFile": "import matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 11,\n    'axes.titlesize': 13,\n    'axes.labelsize': 12,\n    'xtick.labelsize': 11,\n    'ytick.labelsize': 10,\n    'legend.fontsize': 9.5,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'lines.linewidth': 1.8,\n})\n\n# === Data from paper Table 8 (appendix.tex, tab:per_task_car) ===\n# Per-task CAR (%) at 30K steps, rotation-fixed evaluation\n\n# LoRA-only: s0, s1, s2 individual data (3-seed)\nlora_s0 = {'CP': 74, 'Milk': 66, 'OJ': 68, 'BBQ': 20}\nlora_s1 = {'CP': 68, 'Milk': 72, 'OJ': 54, 'BBQ': 16}\nlora_s2 = {'CP': 76, 'Milk': 62, 'OJ': 56, 'BBQ': 26}\nlora_mean = {k: np.mean([lora_s0[k], lora_s1[k], lora_s2[k]]) for k in lora_s0}\nlora_std = {k: np.std([lora_s0[k], lora_s1[k], lora_s2[k]], ddof=1) for k in lora_s0}\n\n# lambda=0.005: 3-seed means\nl005_mean = {'OJ': 54.0, 'CP': 72.7, 'Milk': 71.3, 'BBQ': 20.0}\n\n# lambda=0.01: 3-seed means\nl01_mean = {'OJ': 57.3, 'CP': 72.7, 'Milk': 72.0, 'BBQ': 23.3}\n\n# lambda=0.1: s0, s1, s2 individual data (3-seed)\nl1_s0 = {'OJ': 60, 'CP': 74, 'Milk': 68, 'BBQ': 30}\nl1_s1 = {'OJ': 66, 'CP': 72, 'Milk': 70, 'BBQ': 26}\nl1_s2 = {'OJ': 56, 'CP': 76, 'Milk': 70, 'BBQ': 16}\nl1_mean = {k: np.mean([l1_s0[k], l1_s1[k], l1_s2[k]]) for k in l1_s0}\nl1_std = {k: np.std([l1_s0[k], l1_s1[k], l1_s2[k]], ddof=1) for k in l1_s0}\n\n# Display order: descending mean CAR\norder = ['CP', 'Milk', 'OJ', 'BBQ']\ntasks = ['Choco.\\nPudding', 'Milk', 'Orange\\nJuice', 'BBQ\\nSauce']\n\ncond_labels = [\n    r'LoRA-only ($\\lambda$=0)',\n    r'$\\lambda$=0.005',\n    r'$\\lambda$=0.01',\n    r'$\\lambda$=0.1',\n]\n\nmeans_arr = np.array([\n    [lora_mean[t] for t in order],\n    [l005_mean[t] for t in order],\n    [l01_mean[t] for t in order],\n    [l1_mean[t] for t in order],\n])\n\nerrs_arr = np.array([\n    [lora_std[t] for t in order],\n    [0, 0, 0, 0],\n    [0, 0, 0, 0],\n    [l1_std[t] for t in order],\n])\n\nseed_data = {\n    0: {t: [lora_s0[t], lora_s1[t], lora_s2[t]] for t in order},\n    3: {t: [l1_s0[t], l1_s1[t]] for t in order},\n}\n\n# Color palette: muted blue gradient (lighter=lower lambda)\ncolors = ['#A8C8E8', '#5B9BD5', '#2E75B6', '#1B4F72']\n\nn_tasks = len(tasks)\nn_conds = len(cond_labels)\nbar_width = 0.185\nx = np.arange(n_tasks)\n\nfig, ax = plt.subplots(figsize=(7.0, 4.0))\n\nfor i in range(n_conds):\n    offset = (i - (n_conds - 1) / 2) * bar_width\n    has_err = any(errs_arr[i] > 0)\n\n    ax.bar(\n        x + offset, means_arr[i], bar_width * 0.88,\n        label=cond_labels[i], color=colors[i],\n        edgecolor='white', linewidth=0.5,\n        yerr=errs_arr[i] if has_err else None,\n        capsize=2.5 if has_err else 0,\n        error_kw={'linewidth': 0.9, 'capthick': 0.7, 'color': '#444444'},\n        zorder=3,\n    )\n\n    # Overlay individual seed dots\n    if i in seed_data:\n        for j, t in enumerate(order):\n            pts = seed_data[i][t]\n            jx = np.linspace(-bar_width * 0.12, bar_width * 0.12, len(pts))\n            for k, pt in enumerate(pts):\n                ax.plot(\n                    x[j] + offset + jx[k], pt, 'o',\n                    color='white', markersize=3.5,\n                    markeredgecolor='#444444', markeredgewidth=0.6,\n                    zorder=5,\n                )\n\n# Dashed connectors across tasks for each condition (shows shape consistency)\nfor i in range(n_conds):\n    offset = (i - (n_conds - 1) / 2) * bar_width\n    xs_line = x + offset\n    ax.plot(xs_line, means_arr[i], '--', color=colors[i],\n            alpha=0.4, linewidth=0.9, zorder=2)\n\n# Rank labels above each task group\nfor j in range(n_tasks):\n    rank_label = ['1st', '2nd', '3rd', '4th'][j]\n    col_max = max(means_arr[:, j]) + max(errs_arr[:, j])\n    ax.text(x[j], col_max + 3.5, rank_label,\n            ha='center', va='bottom', fontsize=8, color='#666666',\n            fontstyle='italic', fontweight='bold')\n\nax.set_ylabel('CAR (%)')\nax.set_xticks(x)\nax.set_xticklabels(tasks, fontsize=10)\nax.set_ylim(0, 90)\nax.set_xlim(-0.5, n_tasks - 0.5)\n\nax.yaxis.grid(True, alpha=0.15, linewidth=0.4, zorder=0)\nax.set_axisbelow(True)\n\nleg = ax.legend(\n    loc='upper right', framealpha=0.92, edgecolor='#cccccc',\n    ncol=2, columnspacing=0.8, handlelength=1.3,\n)\nleg.get_frame().set_linewidth(0.4)\n\nax.text(\n    0.01, -0.13,\n    r'LoRA-only: 3-seed mean (dots = seeds); '\n    r'$\\lambda$=0.005 & $\\lambda$=0.01: 3-seed mean; '\n    r'$\\lambda$=0.1: 2-seed mean (dots = seeds).',\n    transform=ax.transAxes, fontsize=7.5, color='#888888', va='top',\n)\n\nplt.tight_layout(pad=1.0)\n\noutdir = '/root/autodl-tmp/artifacts'\nfor ext in ('pdf', 'png'):\n    plt.savefig(f'{outdir}/fig_pertask_car_fingerprint.{ext}')\nprint(f'Saved to {outdir}/fig_pertask_car_fingerprint.pdf and .png')\n\nprint('\\n=== Data summary ===')\nfor i, label in enumerate(cond_labels):\n    print(f'{label}: {dict(zip(order, means_arr[i]))}')\n",
+    "structuredPatch": [
+      {
+        "oldStart": 70,
+        "oldLines": 7,
+        "newStart": 70,
+        "newLines": 7,
+        "lines": [
+          " ",
+          " seed_data = {",
+          "     0: {t: [lora_s0[t], lora_s1[t], lora_s2[t]] for t in order},",
+          "-    3: {t: [l1_s0[t], l1_s1[t]] for t in order},",
+          "+    3: {t: [l1_s0[t], l1_s1[t], l1_s2[t]] for t in order},",
+          " }",
+          " ",
+          " # Color palette: muted blue gradient (lighter=lower lambda)"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01FhkMqKd9Z5MasrTUA4Yauc`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/fig_pertask_car_fingerprint.py",
+  "old_string": "    r'$\\lambda$=0.1: 2-seed mean (dots = seeds).',",
+  "new_string": "    r'$\\lambda$=0.1: 3-seed mean (dots = seeds).',"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "598a3ec0-d09f-40de-9077-96b46cf55070",
+  "uuid": "27aaa4cc-ff80-484f-96a0-1ba2e781d8d4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019gVrTRrsegrDnCPWLiKae8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 273,
+      "cache_read_input_tokens": 45102,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 273
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-28T02:43:34.743Z_
+
+<details><summary>↩ Tool result · `toolu_01FhkMqKd9Z5MasrTUA4Yauc`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/fig_pertask_car_fingerprint.py has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "598a3ec0-d09f-40de-9077-96b46cf55070",
+  "uuid": "942e1e4a-ed49-446a-a9be-be153be63f80",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/fig_pertask_car_fingerprint.py",
+    "oldString": "    r'$\\lambda$=0.1: 2-seed mean (dots = seeds).',",
+    "newString": "    r'$\\lambda$=0.1: 3-seed mean (dots = seeds).',",
+    "originalFile": "import matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 11,\n    'axes.titlesize': 13,\n    'axes.labelsize': 12,\n    'xtick.labelsize': 11,\n    'ytick.labelsize': 10,\n    'legend.fontsize': 9.5,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'lines.linewidth': 1.8,\n})\n\n# === Data from paper Table 8 (appendix.tex, tab:per_task_car) ===\n# Per-task CAR (%) at 30K steps, rotation-fixed evaluation\n\n# LoRA-only: s0, s1, s2 individual data (3-seed)\nlora_s0 = {'CP': 74, 'Milk': 66, 'OJ': 68, 'BBQ': 20}\nlora_s1 = {'CP': 68, 'Milk': 72, 'OJ': 54, 'BBQ': 16}\nlora_s2 = {'CP': 76, 'Milk': 62, 'OJ': 56, 'BBQ': 26}\nlora_mean = {k: np.mean([lora_s0[k], lora_s1[k], lora_s2[k]]) for k in lora_s0}\nlora_std = {k: np.std([lora_s0[k], lora_s1[k], lora_s2[k]], ddof=1) for k in lora_s0}\n\n# lambda=0.005: 3-seed means\nl005_mean = {'OJ': 54.0, 'CP': 72.7, 'Milk': 71.3, 'BBQ': 20.0}\n\n# lambda=0.01: 3-seed means\nl01_mean = {'OJ': 57.3, 'CP': 72.7, 'Milk': 72.0, 'BBQ': 23.3}\n\n# lambda=0.1: s0, s1, s2 individual data (3-seed)\nl1_s0 = {'OJ': 60, 'CP': 74, 'Milk': 68, 'BBQ': 30}\nl1_s1 = {'OJ': 66, 'CP': 72, 'Milk': 70, 'BBQ': 26}\nl1_s2 = {'OJ': 56, 'CP': 76, 'Milk': 70, 'BBQ': 16}\nl1_mean = {k: np.mean([l1_s0[k], l1_s1[k], l1_s2[k]]) for k in l1_s0}\nl1_std = {k: np.std([l1_s0[k], l1_s1[k], l1_s2[k]], ddof=1) for k in l1_s0}\n\n# Display order: descending mean CAR\norder = ['CP', 'Milk', 'OJ', 'BBQ']\ntasks = ['Choco.\\nPudding', 'Milk', 'Orange\\nJuice', 'BBQ\\nSauce']\n\ncond_labels = [\n    r'LoRA-only ($\\lambda$=0)',\n    r'$\\lambda$=0.005',\n    r'$\\lambda$=0.01',\n    r'$\\lambda$=0.1',\n]\n\nmeans_arr = np.array([\n    [lora_mean[t] for t in order],\n    [l005_mean[t] for t in order],\n    [l01_mean[t] for t in order],\n    [l1_mean[t] for t in order],\n])\n\nerrs_arr = np.array([\n    [lora_std[t] for t in order],\n    [0, 0, 0, 0],\n    [0, 0, 0, 0],\n    [l1_std[t] for t in order],\n])\n\nseed_data = {\n    0: {t: [lora_s0[t], lora_s1[t], lora_s2[t]] for t in order},\n    3: {t: [l1_s0[t], l1_s1[t], l1_s2[t]] for t in order},\n}\n\n# Color palette: muted blue gradient (lighter=lower lambda)\ncolors = ['#A8C8E8', '#5B9BD5', '#2E75B6', '#1B4F72']\n\nn_tasks = len(tasks)\nn_conds = len(cond_labels)\nbar_width = 0.185\nx = np.arange(n_tasks)\n\nfig, ax = plt.subplots(figsize=(7.0, 4.0))\n\nfor i in range(n_conds):\n    offset = (i - (n_conds - 1) / 2) * bar_width\n    has_err = any(errs_arr[i] > 0)\n\n    ax.bar(\n        x + offset, means_arr[i], bar_width * 0.88,\n        label=cond_labels[i], color=colors[i],\n        edgecolor='white', linewidth=0.5,\n        yerr=errs_arr[i] if has_err else None,\n        capsize=2.5 if has_err else 0,\n        error_kw={'linewidth': 0.9, 'capthick': 0.7, 'color': '#444444'},\n        zorder=3,\n    )\n\n    # Overlay individual seed dots\n    if i in seed_data:\n        for j, t in enumerate(order):\n            pts = seed_data[i][t]\n            jx = np.linspace(-bar_width * 0.12, bar_width * 0.12, len(pts))\n            for k, pt in enumerate(pts):\n                ax.plot(\n                    x[j] + offset + jx[k], pt, 'o',\n                    color='white', markersize=3.5,\n                    markeredgecolor='#444444', markeredgewidth=0.6,\n                    zorder=5,\n                )\n\n# Dashed connectors across tasks for each condition (shows shape consistency)\nfor i in range(n_conds):\n    offset = (i - (n_conds - 1) / 2) * bar_width\n    xs_line = x + offset\n    ax.plot(xs_line, means_arr[i], '--', color=colors[i],\n            alpha=0.4, linewidth=0.9, zorder=2)\n\n# Rank labels above each task group\nfor j in range(n_tasks):\n    rank_label = ['1st', '2nd', '3rd', '4th'][j]\n    col_max = max(means_arr[:, j]) + max(errs_arr[:, j])\n    ax.text(x[j], col_max + 3.5, rank_label,\n            ha='center', va='bottom', fontsize=8, color='#666666',\n            fontstyle='italic', fontweight='bold')\n\nax.set_ylabel('CAR (%)')\nax.set_xticks(x)\nax.set_xticklabels(tasks, fontsize=10)\nax.set_ylim(0, 90)\nax.set_xlim(-0.5, n_tasks - 0.5)\n\nax.yaxis.grid(True, alpha=0.15, linewidth=0.4, zorder=0)\nax.set_axisbelow(True)\n\nleg = ax.legend(\n    loc='upper right', framealpha=0.92, edgecolor='#cccccc',\n    ncol=2, columnspacing=0.8, handlelength=1.3,\n)\nleg.get_frame().set_linewidth(0.4)\n\nax.text(\n    0.01, -0.13,\n    r'LoRA-only: 3-seed mean (dots = seeds); '\n    r'$\\lambda$=0.005 & $\\lambda$=0.01: 3-seed mean; '\n    r'$\\lambda$=0.1: 2-seed mean (dots = seeds).',\n    transform=ax.transAxes, fontsize=7.5, color='#888888', va='top',\n)\n\nplt.tight_layout(pad=1.0)\n\noutdir = '/root/autodl-tmp/artifacts'\nfor ext in ('pdf', 'png'):\n    plt.savefig(f'{outdir}/fig_pertask_car_fingerprint.{ext}')\nprint(f'Saved to {outdir}/fig_pertask_car_fingerprint.pdf and .png')\n\nprint('\\n=== Data summary ===')\nfor i, label in enumerate(cond_labels):\n    print(f'{label}: {dict(zip(order, means_arr[i]))}')\n",
+    "structuredPatch": [
+      {
+        "oldStart": 144,
+        "oldLines": 7,
+        "newStart": 144,
+        "newLines": 7,
+        "lines": [
+          "     0.01, -0.13,",
+          "     r'LoRA-only: 3-seed mean (dots = seeds); '",
+          "     r'$\\lambda$=0.005 & $\\lambda$=0.01: 3-seed mean; '",
+          "-    r'$\\lambda$=0.1: 2-seed mean (dots = seeds).',",
+          "+    r'$\\lambda$=0.1: 3-seed mean (dots = seeds).',",
+          "     transform=ax.transAxes, fontsize=7.5, color='#888888', va='top',",
+          " )",
+          " "
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+Now update the output path to save locally instead of the remote server path.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "598a3ec0-d09f-40de-9077-96b46cf55070",
+  "uuid": "9114f8e4-230b-43f0-a1b4-408a914e387e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HJTiQab1QadwxnQfSp5Zxf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 255,
+      "cache_read_input_tokens": 45375,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 255
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01HEaskifgQdjTRb1vCnevUk`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/fig_pertask_car_fingerprint.py",
+  "old_string": "outdir = '/root/autodl-tmp/artifacts'",
+  "new_string": "outdir = '/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts'"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "598a3ec0-d09f-40de-9077-96b46cf55070",
+  "uuid": "ca59f8de-c49c-45fc-b517-59f922956cb1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HJTiQab1QadwxnQfSp5Zxf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 255,
+      "cache_read_input_tokens": 45375,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 255
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-28T02:43:39.109Z_
+
+<details><summary>↩ Tool result · `toolu_01HEaskifgQdjTRb1vCnevUk`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/fig_pertask_car_fingerprint.py has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "598a3ec0-d09f-40de-9077-96b46cf55070",
+  "uuid": "59d43af6-b75b-43ce-b172-d03e49328ccf",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/fig_pertask_car_fingerprint.py",
+    "oldString": "outdir = '/root/autodl-tmp/artifacts'",
+    "newString": "outdir = '/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts'",
+    "originalFile": "import matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 11,\n    'axes.titlesize': 13,\n    'axes.labelsize': 12,\n    'xtick.labelsize': 11,\n    'ytick.labelsize': 10,\n    'legend.fontsize': 9.5,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'lines.linewidth': 1.8,\n})\n\n# === Data from paper Table 8 (appendix.tex, tab:per_task_car) ===\n# Per-task CAR (%) at 30K steps, rotation-fixed evaluation\n\n# LoRA-only: s0, s1, s2 individual data (3-seed)\nlora_s0 = {'CP': 74, 'Milk': 66, 'OJ': 68, 'BBQ': 20}\nlora_s1 = {'CP': 68, 'Milk': 72, 'OJ': 54, 'BBQ': 16}\nlora_s2 = {'CP': 76, 'Milk': 62, 'OJ': 56, 'BBQ': 26}\nlora_mean = {k: np.mean([lora_s0[k], lora_s1[k], lora_s2[k]]) for k in lora_s0}\nlora_std = {k: np.std([lora_s0[k], lora_s1[k], lora_s2[k]], ddof=1) for k in lora_s0}\n\n# lambda=0.005: 3-seed means\nl005_mean = {'OJ': 54.0, 'CP': 72.7, 'Milk': 71.3, 'BBQ': 20.0}\n\n# lambda=0.01: 3-seed means\nl01_mean = {'OJ': 57.3, 'CP': 72.7, 'Milk': 72.0, 'BBQ': 23.3}\n\n# lambda=0.1: s0, s1, s2 individual data (3-seed)\nl1_s0 = {'OJ': 60, 'CP': 74, 'Milk': 68, 'BBQ': 30}\nl1_s1 = {'OJ': 66, 'CP': 72, 'Milk': 70, 'BBQ': 26}\nl1_s2 = {'OJ': 56, 'CP': 76, 'Milk': 70, 'BBQ': 16}\nl1_mean = {k: np.mean([l1_s0[k], l1_s1[k], l1_s2[k]]) for k in l1_s0}\nl1_std = {k: np.std([l1_s0[k], l1_s1[k], l1_s2[k]], ddof=1) for k in l1_s0}\n\n# Display order: descending mean CAR\norder = ['CP', 'Milk', 'OJ', 'BBQ']\ntasks = ['Choco.\\nPudding', 'Milk', 'Orange\\nJuice', 'BBQ\\nSauce']\n\ncond_labels = [\n    r'LoRA-only ($\\lambda$=0)',\n    r'$\\lambda$=0.005',\n    r'$\\lambda$=0.01',\n    r'$\\lambda$=0.1',\n]\n\nmeans_arr = np.array([\n    [lora_mean[t] for t in order],\n    [l005_mean[t] for t in order],\n    [l01_mean[t] for t in order],\n    [l1_mean[t] for t in order],\n])\n\nerrs_arr = np.array([\n    [lora_std[t] for t in order],\n    [0, 0, 0, 0],\n    [0, 0, 0, 0],\n    [l1_std[t] for t in order],\n])\n\nseed_data = {\n    0: {t: [lora_s0[t], lora_s1[t], lora_s2[t]] for t in order},\n    3: {t: [l1_s0[t], l1_s1[t], l1_s2[t]] for t in order},\n}\n\n# Color palette: muted blue gradient (lighter=lower lambda)\ncolors = ['#A8C8E8', '#5B9BD5', '#2E75B6', '#1B4F72']\n\nn_tasks = len(tasks)\nn_conds = len(cond_labels)\nbar_width = 0.185\nx = np.arange(n_tasks)\n\nfig, ax = plt.subplots(figsize=(7.0, 4.0))\n\nfor i in range(n_conds):\n    offset = (i - (n_conds - 1) / 2) * bar_width\n    has_err = any(errs_arr[i] > 0)\n\n    ax.bar(\n        x + offset, means_arr[i], bar_width * 0.88,\n        label=cond_labels[i], color=colors[i],\n        edgecolor='white', linewidth=0.5,\n        yerr=errs_arr[i] if has_err else None,\n        capsize=2.5 if has_err else 0,\n        error_kw={'linewidth': 0.9, 'capthick': 0.7, 'color': '#444444'},\n        zorder=3,\n    )\n\n    # Overlay individual seed dots\n    if i in seed_data:\n        for j, t in enumerate(order):\n            pts = seed_data[i][t]\n            jx = np.linspace(-bar_width * 0.12, bar_width * 0.12, len(pts))\n            for k, pt in enumerate(pts):\n                ax.plot(\n                    x[j] + offset + jx[k], pt, 'o',\n                    color='white', markersize=3.5,\n                    markeredgecolor='#444444', markeredgewidth=0.6,\n                    zorder=5,\n                )\n\n# Dashed connectors across tasks for each condition (shows shape consistency)\nfor i in range(n_conds):\n    offset = (i - (n_conds - 1) / 2) * bar_width\n    xs_line = x + offset\n    ax.plot(xs_line, means_arr[i], '--', color=colors[i],\n            alpha=0.4, linewidth=0.9, zorder=2)\n\n# Rank labels above each task group\nfor j in range(n_tasks):\n    rank_label = ['1st', '2nd', '3rd', '4th'][j]\n    col_max = max(means_arr[:, j]) + max(errs_arr[:, j])\n    ax.text(x[j], col_max + 3.5, rank_label,\n            ha='center', va='bottom', fontsize=8, color='#666666',\n            fontstyle='italic', fontweight='bold')\n\nax.set_ylabel('CAR (%)')\nax.set_xticks(x)\nax.set_xticklabels(tasks, fontsize=10)\nax.set_ylim(0, 90)\nax.set_xlim(-0.5, n_tasks - 0.5)\n\nax.yaxis.grid(True, alpha=0.15, linewidth=0.4, zorder=0)\nax.set_axisbelow(True)\n\nleg = ax.legend(\n    loc='upper right', framealpha=0.92, edgecolor='#cccccc',\n    ncol=2, columnspacing=0.8, handlelength=1.3,\n)\nleg.get_frame().set_linewidth(0.4)\n\nax.text(\n    0.01, -0.13,\n    r'LoRA-only: 3-seed mean (dots = seeds); '\n    r'$\\lambda$=0.005 & $\\lambda$=0.01: 3-seed mean; '\n    r'$\\lambda$=0.1: 3-seed mean (dots = seeds).',\n    transform=ax.transAxes, fontsize=7.5, color='#888888', va='top',\n)\n\nplt.tight_layout(pad=1.0)\n\noutdir = '/root/autodl-tmp/artifacts'\nfor ext in ('pdf', 'png'):\n    plt.savefig(f'{outdir}/fig_pertask_car_fingerprint.{ext}')\nprint(f'Saved to {outdir}/fig_pertask_car_fingerprint.pdf and .png')\n\nprint('\\n=== Data summary ===')\nfor i, label in enumerate(cond_labels):\n    print(f'{label}: {dict(zip(order, means_arr[i]))}')\n",
+    "structuredPatch": [
+      {
+        "oldStart": 150,
+        "oldLines": 7,
+        "newStart": 150,
+        "newLines": 7,
+        "lines": [
+          " ",
+          " plt.tight_layout(pad=1.0)",
+          " ",
+          "-outdir = '/root/autodl-tmp/artifacts'",
+          "+outdir = '/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts'",
+          " for ext in ('pdf', 'png'):",
+          "     plt.savefig(f'{outdir}/fig_pertask_car_fingerprint.{ext}')",
+          " print(f'Saved to {outdir}/fig_pertask_car_fingerprint.pdf and .png')"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01S4VRc54kM2ite1wX5ptZCN`</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts && python3 fig_pertask_car_fingerprint.py",
+  "description": "Generate updated fingerprint figure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "598a3ec0-d09f-40de-9077-96b46cf55070",
+  "uuid": "f501c774-d9ec-4230-8b2c-5c442c5310e3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015Noihth4qUe7GDhD59Qri6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 272,
+      "cache_read_input_tokens": 45630,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 272
+      },
+      "output_tokens": 71,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-28T02:43:43.715Z_
+
+<details><summary>↩ Tool result · `toolu_01S4VRc54kM2ite1wX5ptZCN`</summary>
+
+```text
+Saved to /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/fig_pertask_car_fingerprint.pdf and .png
+
+=== Data summary ===
+LoRA-only ($\lambda$=0): {'CP': np.float64(72.66666666666667), 'Milk': np.float64(66.66666666666667), 'OJ': np.float64(59.333333333333336), 'BBQ': np.float64(20.666666666666668)}
+$\lambda$=0.005: {'CP': np.float64(72.7), 'Milk': np.float64(71.3), 'OJ': np.float64(54.0), 'BBQ': np.float64(20.0)}
+$\lambda$=0.01: {'CP': np.float64(72.7), 'Milk': np.float64(72.0), 'OJ': np.float64(57.3), 'BBQ': np.float64(23.3)}
+$\lambda$=0.1: {'CP': np.float64(74.0), 'Milk': np.float64(69.33333333333333), 'OJ': np.float64(60.666666666666664), 'BBQ': np.float64(24.0)}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "598a3ec0-d09f-40de-9077-96b46cf55070",
+  "uuid": "a8ade870-5caa-454a-b98f-3bfd7d2eaf52",
+  "tool_use_result": {
+    "stdout": "Saved to /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/fig_pertask_car_fingerprint.pdf and .png\n\n=== Data summary ===\nLoRA-only ($\\lambda$=0): {'CP': np.float64(72.66666666666667), 'Milk': np.float64(66.66666666666667), 'OJ': np.float64(59.333333333333336), 'BBQ': np.float64(20.666666666666668)}\n$\\lambda$=0.005: {'CP': np.float64(72.7), 'Milk': np.float64(71.3), 'OJ': np.float64(54.0), 'BBQ': np.float64(20.0)}\n$\\lambda$=0.01: {'CP': np.float64(72.7), 'Milk': np.float64(72.0), 'OJ': np.float64(57.3), 'BBQ': np.float64(23.3)}\n$\\lambda$=0.1: {'CP': np.float64(74.0), 'Milk': np.float64(69.33333333333333), 'OJ': np.float64(60.666666666666664), 'BBQ': np.float64(24.0)}",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01RzxVnKKN67BXAHtNeLtgXf`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/fig_pertask_car_fingerprint.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "598a3ec0-d09f-40de-9077-96b46cf55070",
+  "uuid": "85901255-3e2b-419c-95af-72da3edfbbd9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FWaD4DLe7FVFQLKZ8wAvjf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 468,
+      "cache_read_input_tokens": 45902,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 468
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-28T02:43:46.769Z_
+
+<details><summary>↩ Tool result · `toolu_01RzxVnKKN67BXAHtNeLtgXf`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/png"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "598a3ec0-d09f-40de-9077-96b46cf55070",
+  "uuid": "9e0a06b3-78f1-421a-a2b2-a775e7d9d4c6",
+  "tool_use_result": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/png",
+      "originalSize": 148223,
+      "dimensions": {
+        "originalWidth": 1939,
+        "originalHeight": 1140,
+        "displayWidth": 1939,
+        "displayHeight": 1140
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37_
+
+图已更新。λ=0.1 现在是 3-seed 均值（s2 数据已加入），error bar 和 seed dots 均显示 3 个点，脚注已改为 "3-seed"。
+
+需要恢复 `outdir` 回远程路径。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "598a3ec0-d09f-40de-9077-96b46cf55070",
+  "uuid": "460c199d-f825-45b6-a806-dd7e00307f5f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L3ug6DjqNGTuWzDrpdQdNL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1680,
+      "cache_read_input_tokens": 46370,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1680
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01NJyReJa2X6PDtFQn2mGbyn`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/fig_pertask_car_fingerprint.py",
+  "old_string": "outdir = '/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts'",
+  "new_string": "outdir = '/root/autodl-tmp/artifacts'"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "598a3ec0-d09f-40de-9077-96b46cf55070",
+  "uuid": "a74f85bf-767e-4c26-8172-76416da3e4f5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L3ug6DjqNGTuWzDrpdQdNL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1680,
+      "cache_read_input_tokens": 46370,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1680
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-28T02:43:52.421Z_
+
+<details><summary>↩ Tool result · `toolu_01NJyReJa2X6PDtFQn2mGbyn`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/fig_pertask_car_fingerprint.py has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "598a3ec0-d09f-40de-9077-96b46cf55070",
+  "uuid": "4603e9f3-0046-4dee-aa31-3a603d62ebf8",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/fig_pertask_car_fingerprint.py",
+    "oldString": "outdir = '/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts'",
+    "newString": "outdir = '/root/autodl-tmp/artifacts'",
+    "originalFile": "import matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 11,\n    'axes.titlesize': 13,\n    'axes.labelsize': 12,\n    'xtick.labelsize': 11,\n    'ytick.labelsize': 10,\n    'legend.fontsize': 9.5,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'lines.linewidth': 1.8,\n})\n\n# === Data from paper Table 8 (appendix.tex, tab:per_task_car) ===\n# Per-task CAR (%) at 30K steps, rotation-fixed evaluation\n\n# LoRA-only: s0, s1, s2 individual data (3-seed)\nlora_s0 = {'CP': 74, 'Milk': 66, 'OJ': 68, 'BBQ': 20}\nlora_s1 = {'CP': 68, 'Milk': 72, 'OJ': 54, 'BBQ': 16}\nlora_s2 = {'CP': 76, 'Milk': 62, 'OJ': 56, 'BBQ': 26}\nlora_mean = {k: np.mean([lora_s0[k], lora_s1[k], lora_s2[k]]) for k in lora_s0}\nlora_std = {k: np.std([lora_s0[k], lora_s1[k], lora_s2[k]], ddof=1) for k in lora_s0}\n\n# lambda=0.005: 3-seed means\nl005_mean = {'OJ': 54.0, 'CP': 72.7, 'Milk': 71.3, 'BBQ': 20.0}\n\n# lambda=0.01: 3-seed means\nl01_mean = {'OJ': 57.3, 'CP': 72.7, 'Milk': 72.0, 'BBQ': 23.3}\n\n# lambda=0.1: s0, s1, s2 individual data (3-seed)\nl1_s0 = {'OJ': 60, 'CP': 74, 'Milk': 68, 'BBQ': 30}\nl1_s1 = {'OJ': 66, 'CP': 72, 'Milk': 70, 'BBQ': 26}\nl1_s2 = {'OJ': 56, 'CP': 76, 'Milk': 70, 'BBQ': 16}\nl1_mean = {k: np.mean([l1_s0[k], l1_s1[k], l1_s2[k]]) for k in l1_s0}\nl1_std = {k: np.std([l1_s0[k], l1_s1[k], l1_s2[k]], ddof=1) for k in l1_s0}\n\n# Display order: descending mean CAR\norder = ['CP', 'Milk', 'OJ', 'BBQ']\ntasks = ['Choco.\\nPudding', 'Milk', 'Orange\\nJuice', 'BBQ\\nSauce']\n\ncond_labels = [\n    r'LoRA-only ($\\lambda$=0)',\n    r'$\\lambda$=0.005',\n    r'$\\lambda$=0.01',\n    r'$\\lambda$=0.1',\n]\n\nmeans_arr = np.array([\n    [lora_mean[t] for t in order],\n    [l005_mean[t] for t in order],\n    [l01_mean[t] for t in order],\n    [l1_mean[t] for t in order],\n])\n\nerrs_arr = np.array([\n    [lora_std[t] for t in order],\n    [0, 0, 0, 0],\n    [0, 0, 0, 0],\n    [l1_std[t] for t in order],\n])\n\nseed_data = {\n    0: {t: [lora_s0[t], lora_s1[t], lora_s2[t]] for t in order},\n    3: {t: [l1_s0[t], l1_s1[t], l1_s2[t]] for t in order},\n}\n\n# Color palette: muted blue gradient (lighter=lower lambda)\ncolors = ['#A8C8E8', '#5B9BD5', '#2E75B6', '#1B4F72']\n\nn_tasks = len(tasks)\nn_conds = len(cond_labels)\nbar_width = 0.185\nx = np.arange(n_tasks)\n\nfig, ax = plt.subplots(figsize=(7.0, 4.0))\n\nfor i in range(n_conds):\n    offset = (i - (n_conds - 1) / 2) * bar_width\n    has_err = any(errs_arr[i] > 0)\n\n    ax.bar(\n        x + offset, means_arr[i], bar_width * 0.88,\n        label=cond_labels[i], color=colors[i],\n        edgecolor='white', linewidth=0.5,\n        yerr=errs_arr[i] if has_err else None,\n        capsize=2.5 if has_err else 0,\n        error_kw={'linewidth': 0.9, 'capthick': 0.7, 'color': '#444444'},\n        zorder=3,\n    )\n\n    # Overlay individual seed dots\n    if i in seed_data:\n        for j, t in enumerate(order):\n            pts = seed_data[i][t]\n            jx = np.linspace(-bar_width * 0.12, bar_width * 0.12, len(pts))\n            for k, pt in enumerate(pts):\n                ax.plot(\n                    x[j] + offset + jx[k], pt, 'o',\n                    color='white', markersize=3.5,\n                    markeredgecolor='#444444', markeredgewidth=0.6,\n                    zorder=5,\n                )\n\n# Dashed connectors across tasks for each condition (shows shape consistency)\nfor i in range(n_conds):\n    offset = (i - (n_conds - 1) / 2) * bar_width\n    xs_line = x + offset\n    ax.plot(xs_line, means_arr[i], '--', color=colors[i],\n            alpha=0.4, linewidth=0.9, zorder=2)\n\n# Rank labels above each task group\nfor j in range(n_tasks):\n    rank_label = ['1st', '2nd', '3rd', '4th'][j]\n    col_max = max(means_arr[:, j]) + max(errs_arr[:, j])\n    ax.text(x[j], col_max + 3.5, rank_label,\n            ha='center', va='bottom', fontsize=8, color='#666666',\n            fontstyle='italic', fontweight='bold')\n\nax.set_ylabel('CAR (%)')\nax.set_xticks(x)\nax.set_xticklabels(tasks, fontsize=10)\nax.set_ylim(0, 90)\nax.set_xlim(-0.5, n_tasks - 0.5)\n\nax.yaxis.grid(True, alpha=0.15, linewidth=0.4, zorder=0)\nax.set_axisbelow(True)\n\nleg = ax.legend(\n    loc='upper right', framealpha=0.92, edgecolor='#cccccc',\n    ncol=2, columnspacing=0.8, handlelength=1.3,\n)\nleg.get_frame().set_linewidth(0.4)\n\nax.text(\n    0.01, -0.13,\n    r'LoRA-only: 3-seed mean (dots = seeds); '\n    r'$\\lambda$=0.005 & $\\lambda$=0.01: 3-seed mean; '\n    r'$\\lambda$=0.1: 3-seed mean (dots = seeds).',\n    transform=ax.transAxes, fontsize=7.5, color='#888888', va='top',\n)\n\nplt.tight_layout(pad=1.0)\n\noutdir = '/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts'\nfor ext in ('pdf', 'png'):\n    plt.savefig(f'{outdir}/fig_pertask_car_fingerprint.{ext}')\nprint(f'Saved to {outdir}/fig_pertask_car_fingerprint.pdf and .png')\n\nprint('\\n=== Data summary ===')\nfor i, label in enumerate(cond_labels):\n    print(f'{label}: {dict(zip(order, means_arr[i]))}')\n",
+    "structuredPatch": [
+      {
+        "oldStart": 150,
+        "oldLines": 7,
+        "newStart": 150,
+        "newLines": 7,
+        "lines": [
+          " ",
+          " plt.tight_layout(pad=1.0)",
+          " ",
+          "-outdir = '/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts'",
+          "+outdir = '/root/autodl-tmp/artifacts'",
+          " for ext in ('pdf', 'png'):",
+          "     plt.savefig(f'{outdir}/fig_pertask_car_fingerprint.{ext}')",
+          " print(f'Saved to {outdir}/fig_pertask_car_fingerprint.pdf and .png')"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40_
+
+λ=0.1 3-seed 均值：CP=74.0, Milk=69.3, OJ=60.7, BBQ=24.0。图已生成到 `fig_pertask_car_fingerprint.png`，所有 4 组 bar 现在都是 3-seed 数据。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "598a3ec0-d09f-40de-9077-96b46cf55070",
+  "uuid": "4c554e4e-9045-4fbd-95c6-78ef693471f7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0122ZEoQkTpsE93g7VSevmbt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 337,
+      "cache_read_input_tokens": 48050,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 337
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 41_
+
+λ=0.1 3-seed 均值：CP=74.0, Milk=69.3, OJ=60.7, BBQ=24.0。图已生成到 `fig_pertask_car_fingerprint.png`，所有 4 组 bar 现在都是 3-seed 数据。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 69888,
+  "duration_api_ms": 69236,
+  "num_turns": 14,
+  "stop_reason": "end_turn",
+  "session_id": "598a3ec0-d09f-40de-9077-96b46cf55070",
+  "total_cost_usd": 0.536171,
+  "usage": {
+    "input_tokens": 16,
+    "cache_creation_input_tokens": 36936,
+    "cache_read_input_tokens": 437950,
+    "output_tokens": 3379,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 36936,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 85,
+        "cache_read_input_tokens": 48050,
+        "cache_creation_input_tokens": 337,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 337
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1676,
+      "outputTokens": 23,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001791,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 16,
+      "outputTokens": 3379,
+      "cacheReadInputTokens": 437950,
+      "cacheCreationInputTokens": 36936,
+      "webSearchRequests": 0,
+      "costUSD": 0.53438,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "2c4f2b3d-7195-450f-a3f7-e2273865da80"
+}
+```
+
+</details>
+
+---

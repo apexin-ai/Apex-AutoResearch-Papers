@@ -1,0 +1,58 @@
+{
+  "exp_id": "train_pi05_a1_obj_s2_l01_high",
+  "project": "diff_collision_sdf",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-26T13:55:43.669Z",
+    "updated_at": "2026-05-28T01:00:32.985Z",
+    "hypothesis": "Pi0.5+A1 SDF training with high lambda=0.1 (seed2, 30K steps). Third seed for lambda=0.1 to provide 3-seed statistical power for A/B/C scenario determination. Configuration identical to s0/s1 except seed=2. Target server: westd-45947 cuda:1 after batch2 reeval completes.",
+    "parent": "train_pi05_a1_obj_s0_l01_high",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/colliforce-vla && export WANDB_MODE=disabled && python scripts/train_a1_sdf_aux_pi05.py --scene object_pudding --seed 2 --lambda_sdf 0.1 --gpu 1 --num_train_steps 30000\"",
+      "server": "westd-45947",
+      "gpu": [
+        "cuda:1"
+      ],
+      "data_path": "object_pudding sdf training data",
+      "data_count": 30000,
+      "model_name": "pi05_a1_sdf_seed2_l01_high",
+      "seed": 2,
+      "pid": "425058",
+      "tmux_session": "train_pi05_a1_obj_s2_l01_high",
+      "log_path": "~/runs/diff_collision_sdf/train_pi05_a1_obj_s2_l01_high.log",
+      "checkpoint_source": "pi05_base_weights",
+      "eval_data": "n/a (training experiment)"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-28T00:53:45.784Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-28T00:53:49.668340+00:00"
+        }
+      ]
+    },
+    "checkpoint_path": "/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_l1/30000",
+    "log_path": "~/runs/diff_collision_sdf/train_pi05_a1_obj_s2_l01_high.log",
+    "conclusion": "success",
+    "metrics": {
+      "final_loss": 0.0104,
+      "final_action_loss": 0.0069,
+      "final_sdf_loss": 0.0336,
+      "final_ee_loss": 0.0096,
+      "best_loss": 0.0104,
+      "best_step": 30000,
+      "total_steps": 30000,
+      "training_hours": 33.86
+    },
+    "completed_at": "2026-05-28T01:00:32.985Z"
+  },
+  "timestamp": "2026-05-28T01:00:33.198471+00:00",
+  "trigger": "update_registry"
+}

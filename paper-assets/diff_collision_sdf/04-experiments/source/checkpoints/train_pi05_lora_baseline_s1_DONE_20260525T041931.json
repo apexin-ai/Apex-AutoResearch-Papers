@@ -1,0 +1,37 @@
+{
+  "exp_id": "train_pi05_lora_baseline_s1",
+  "project": "diff_collision_sdf",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-24T11:24:57.585Z",
+    "updated_at": "2026-05-25T04:19:31.027Z",
+    "hypothesis": "Pi0.5 LoRA baseline (no SDF) 30K on object_pudding seed 1: second seed for LoRA-only attribution baseline. Same setup as s0.",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/colliforce-vla && WANDB_MODE=offline PYTHONUNBUFFERED=1 python scripts/train_pi05_lora_baseline.py --scene object_pudding --seed 1 --gpu 1 --num_train_steps 30000 --batch_size 32",
+      "server": "westd-45947",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "757081",
+      "log_path": "~/runs/diff_collision_sdf/train_pi05_lora_baseline_s1.log",
+      "submitted_at": "2026-05-24T11:25:06.066Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "SafeLIBERO object_pudding training data",
+      "data_count": 200,
+      "model_name": "pi05_libero + LoRA only (no SDF)",
+      "seed": 1,
+      "wall_clock_seconds": 60865.0,
+      "gpu_hours": 16.91
+    },
+    "failure_reason": "SSH check failed 5x — last error: [Errno None] Unable to connect to port 45947 on 36.103.198.204",
+    "conclusion": "failed",
+    "completed_at": "2026-05-25T04:19:31.027Z"
+  },
+  "timestamp": "2026-05-25T04:19:31.335972+00:00",
+  "trigger": "update_registry"
+}

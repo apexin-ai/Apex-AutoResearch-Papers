@@ -1,0 +1,1972 @@
+- id: art_20260519_98814b
+  name: baseline_weight_loading_fix_report
+  type: report
+  description: Baseline训练权重加载bug修复报告：根因分析、代码修复、验证结果
+  path: projects/diff_collision_sdf/artifacts/_project/report/baseline_weight_fix_report.md
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T22:25:37.827440+00:00'
+  tags:
+  - baseline
+  - bug-fix
+  - weight-loading
+  - training
+- id: art_20260519_751bbd
+  name: 紧急修复报告-20260520
+  type: report
+  description: Kill seed 0 + 重启 + 验证 baselines + 修复 A1 LoRA + 启动 A1 训练的执行报告
+  path: projects/diff_collision_sdf/artifacts/_project/report/urgent_fix_report_20260520.md
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T22:38:59.810582+00:00'
+  tags:
+  - training
+  - bugfix
+  - baseline
+  - a1
+- id: art_20260520_84b4c5
+  name: training_progress_20260520_1020
+  type: report
+  description: Training progress report for 4 experiments at 2026-05-20 10:20 UTC
+  path: projects/diff_collision_sdf/artifacts/_project/report/training_progress_20260520_1020.md
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T02:24:14.940533+00:00'
+  tags: []
+- id: art_20260520_f5d219
+  name: related_work_outline
+  type: report
+  description: Related work 大纲，按 SDF in Robotics / VLA Safety / Flow Matching / Benchmarks
+    四类整理 18 篇论文，含定位总结
+  path: projects/diff_collision_sdf/artifacts/_project/report/related_work_outline.md
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T11:16:57.199373+00:00'
+  tags:
+  - related-work
+  - paper
+  - outline
+- id: art_20260520_ee8c21
+  name: method_draft_v1
+  type: paper
+  description: Method Section 初稿（§3.1-3.5），从源代码提取所有架构参数。含 Problem Formulation, SDF
+    Integration, Gradient Refinement, Training Protocol, Inference-time Refinement。位于
+    westd-35807:/root/colliforce-vla/docs/method_draft.md
+  path: null
+  url: westd-35807:/root/colliforce-vla/docs/method_draft.md
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T20:26:10.065650+00:00'
+  tags:
+  - paper
+  - method
+  - draft
+- id: art_20260520_fe96e7
+  name: art_method_draft_local
+  type: paper
+  description: Method section draft (§3.1-3.5), copied from westd-35807
+  path: projects/diff_collision_sdf/artifacts/_project/paper/method_draft.md
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T22:43:35.531803+00:00'
+  tags: []
+- id: art_20260520_5fbb2b
+  name: Introduction Draft v1
+  type: paper
+  description: ColliForce-VLA Introduction section LaTeX draft (~1050 words, 5-paragraph
+    structure for CoRL 2026)
+  path: projects/diff_collision_sdf/artifacts/_project/paper/introduction.tex
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T22:57:51.492823+00:00'
+  tags:
+  - paper
+  - introduction
+  - draft-v1
+  - corl2026
+- id: art_20260520_5f2281
+  name: method-section-draft
+  type: paper
+  description: ColliForce-VLA Method section LaTeX draft (~1500 words). Covers Problem
+    Formulation, Differentiable SDF Integration, Gradient-Guided Action Refinement,
+    Training Protocol, and Inference.
+  path: projects/diff_collision_sdf/artifacts/_project/paper/method.tex
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T23:09:29.913627+00:00'
+  tags:
+  - paper
+  - method
+  - latex
+  - draft
+- id: art_20260520_a52472
+  name: related_work_draft_v1
+  type: paper
+  description: 'Related Work section draft (~770 words, 4 subsections: 3D-Aware VLAs,
+    Collision-Safe Robot Policies, SDF in Robotics, Action Refinement in Generative
+    Policies)'
+  path: projects/diff_collision_sdf/artifacts/_project/paper/related_work.tex
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T23:36:25.192756+00:00'
+  tags:
+  - paper
+  - related-work
+  - draft
+- id: art_20260521_593482
+  name: a3_lora_fix_result
+  type: report
+  description: Fix report for LoRALinear AttributeError and 3 additional issues on
+    westd-45947
+  path: projects/diff_collision_sdf/artifacts/_project/report/a3_lora_fix_result.json
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T09:09:30.856660+00:00'
+  tags:
+  - bugfix
+  - lora
+  - a3
+  - westd-45947
+- id: art_20260522_6469f1
+  name: diagnose_eval_a3_v11_object
+  type: report
+  description: A3 eval v11 object 实验诊断报告 — Cron 误报，eval 正常完成但 TSR=0%，机械臂大部分 episode
+    卡住不动
+  path: projects/diff_collision_sdf/artifacts/eval_a3_v11_object/report/diagnose_eval_a3_v11_object.md
+  url: null
+  project: diff_collision_sdf
+  exp_id: eval_a3_v11_object
+  skill: ''
+  created_at: '2026-05-22T14:12:45.670846+00:00'
+  tags:
+  - eval
+  - a3
+  - v11
+  - diagnosis
+- id: art_20260522_3c2f52
+  name: analysis_m022_norm_stats_root_cause
+  type: report
+  description: M022 action collapse 根因分析：norm_stats 不是根因（A3/baseline/A1 完全一致），真正根因是
+    refine_loss 导致 LoRA 退化 + _refine_action_a3() 坐标 bug（delta→absolute 未转换）
+  path: projects/diff_collision_sdf/artifacts/eval_a3_v11_object/report/analysis_m022_norm_stats_root_cause.md
+  url: null
+  project: diff_collision_sdf
+  exp_id: eval_a3_v11_object
+  skill: ''
+  created_at: '2026-05-22T16:01:34.135389+00:00'
+  tags:
+  - diagnosis
+  - M022
+  - action-collapse
+  - A3
+- id: art_20260522_743d19
+  name: M026-M028 Gradient Refinement 综合诊断
+  type: report
+  description: A3 runtime refinement 四重失败诊断：M026 SDF decoder clamp零梯度、M027 oracle死代码、M028
+    train-eval refine不匹配、spatial arm-body碰撞结构性限制
+  path: projects/diff_collision_sdf/artifacts/_project/report/analysis_m026_m027_m028_gradient_refine_diagnosis.md
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T19:41:24.771809+00:00'
+  tags:
+  - diagnosis
+  - M026
+  - M027
+  - M028
+  - gradient
+  - spatial
+  - critical
+- id: art_20260522_c06ecc
+  name: pi05_a1_sdf_feasibility_report
+  type: report
+  description: Pi0.5 + A1 SDF auxiliary loss 集成可行性调研报告。结论：工程可行（~6-9 worker-hours），Pi0/Pi0.5
+    共用 PI0Pytorch 类，仅需 3 行 config 修改。但 A1 方法本身已被证伪（action collapse），集成到 Pi0.5 不会改变结论。
+  path: projects/diff_collision_sdf/artifacts/_project/report/pi05_a1_sdf_feasibility_report.md
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T21:35:03.911163+00:00'
+  tags:
+  - pi0.5
+  - A1
+  - feasibility
+  - integration
+- id: art_20260522_pi05obj
+  name: pi05_object_collision_analysis
+  type: report
+  description: Pi0.5 SafeLIBERO Object 200eps per-episode碰撞深度分析：obstacle分布、碰撞step分布、4分类、displacement、EE-SDF可改善空间估算
+  path: projects/diff_collision_sdf/artifacts/report_pi05_object_collision_analysis.md
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T22:00:00.000000+00:00'
+  tags:
+  - evaluation
+  - pi05
+  - collision-analysis
+  - safelibero-object
+- id: art_20260522_f964d9
+  name: Pi0.5 Object Per-episode Collision Analysis
+  type: report
+  description: Pi0.5 SafeLIBERO object 200eps per-episode 碰撞深度分析：四分类统计、碰撞step分布(75-100集中)、obstacle类型(moka_pot致命/wine_bottle可容忍)、100%
+    fake safe、EE-only SDF改善空间估算(best 0.73 vs conservative 0.36)
+  path: projects/diff_collision_sdf/artifacts/eval_pi05_safelibero_object_v11/report/report_pi05_object_collision_analysis.md
+  url: null
+  project: diff_collision_sdf
+  exp_id: eval_pi05_safelibero_object_v11
+  skill: ''
+  created_at: '2026-05-22T23:14:53.191139+00:00'
+  tags:
+  - collision-analysis
+  - pi05
+  - safelibero
+  - per-episode
+- id: art_20260522_0e7716
+  name: Pi0.5 Spatial+Object Collision Pattern Analysis
+  type: report
+  description: Pi0.5 spatial Task 3 CAR=52%异常原因（cabinet高度优势）+ object task-dependency（目标物体尺寸决定碰撞率）+
+    EE-only SDF适用边界分析
+  path: projects/diff_collision_sdf/artifacts/_project/report/pi05_collision_analysis_report.md
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T23:39:23.734293+00:00'
+  tags:
+  - collision-analysis
+  - pi05
+  - spatial
+  - task-geometry
+- id: art_20260523_a1cb0a
+  name: related_work_survey
+  type: report
+  description: 5方向 related work 文献调研：VLA safety, fake safety/action collapse, SDF
+    in manipulation, safety metrics, auxiliary loss for safety。含 novelty gap 分析。
+  path: projects/diff_collision_sdf/artifacts/_project/report/related_work_survey.md
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T03:21:05.718746+00:00'
+  tags:
+  - literature
+  - related-work
+  - novelty
+- id: art_20260523_4f243f
+  name: step7k_overfit_check
+  type: report
+  description: 'Step 7K+ overfit check report: action_loss, grad_norm, lambda differentiation
+    analysis for 6 A1 SDF runs'
+  path: projects/diff_collision_sdf/artifacts/_project/report/step7k_overfit_check.md
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T10:21:23.223927+00:00'
+  tags:
+  - overfit
+  - training-monitor
+  - d012
+- id: art_20260523_3fdadb
+  name: lambda0_phase2_ablation_design
+  type: report
+  description: 'λ_sdf=0 Phase 2 ablation script design: 3-line diff, GPU-hours estimate,
+    parameter spec'
+  path: projects/diff_collision_sdf/artifacts/_project/report/lambda0_phase2_ablation_design.md
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T16:31:13.459092+00:00'
+  tags:
+  - ablation
+  - reviewer-55
+  - experiment-design
+- id: art_20260523_26b211
+  name: task0_vs_task1_collapse_analysis
+  type: report
+  description: 'Task 0 vs Task 1 TSR collapse analysis: obstacle layout, collision
+    density hypothesis, paper narrative'
+  path: projects/diff_collision_sdf/artifacts/_project/report/task0_vs_task1_collapse_analysis.md
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T16:39:23.992688+00:00'
+  tags:
+  - analysis
+  - mid-eval
+  - paper-narrative
+- id: art_20260523_b0a141
+  name: mid_eval_d012_step10k_full_results
+  type: report
+  description: 'Complete 4-task mid-eval results at step 10K: D012 gate FAIL (TSR
+    47-49% < 50%), CAR 56-58% PASS, Task 3 anomaly'
+  path: projects/diff_collision_sdf/artifacts/_project/report/mid_eval_d012_step10k_results.md
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T16:55:51.255144+00:00'
+  tags:
+  - eval
+  - d012
+  - mid-eval
+  - step-10k
+- id: art_20260524_84804e
+  name: eval_commands_d012_final
+  type: report
+  description: 'Complete final eval commands for 6 A1 SDF models at step 30K: serve_policy
+    + eval pipeline for both servers'
+  path: projects/diff_collision_sdf/artifacts/_project/report/eval_commands_d012_final.md
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T04:49:46.176003+00:00'
+  tags:
+  - eval
+  - d012
+  - final
+  - 30k
+- id: art_20260524_26ca8b
+  name: task3_car_degradation_analysis
+  type: report
+  description: 'Task 3 (bbq_sauce) CAR degradation root cause: collision transfer
+    in bilateral obstacle corridor, per-episode analysis'
+  path: projects/diff_collision_sdf/artifacts/_project/report/task3_car_degradation_analysis.md
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T04:50:37.748171+00:00'
+  tags:
+  - analysis
+  - task3
+  - collision-transfer
+  - paper-narrative
+- id: art_20260524_b078ac
+  name: task3_collision_matrix_step10k
+  type: data
+  description: 'Task 3 (bbq_sauce) per-episode collision matrix at step 10K: baseline
+    vs A1 s0_l005 vs A1 s0_l01. 50 episodes × 3 models, per-obstacle collision distribution,
+    collision×success cross table. Key finding: collision transfer (yellow_book -4,
+    wine_bottle +3), moka_pot unchanged (12/12/12).'
+  path: projects/diff_collision_sdf/artifacts/_project/data/task3_collision_matrix_step10k.md
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T05:11:17.631085+00:00'
+  tags:
+  - collision_transfer
+  - task3
+  - step10k
+  - d017
+  - reviewer62
+- id: art_20260524_42a3d1
+  name: metric_definitions
+  type: report
+  description: 论文 metric 定义：SSR (Safe Success Rate) = success ∧ ¬collided / total;
+    MinObs = 成功 episode 的 min EE-obstacle distance 均值 (cm)。含公式、字段映射、Python 计算脚本、论文表格模板。替代
+    real_safe_cand。
+  path: projects/diff_collision_sdf/artifacts/_project/report/metric_definitions.md
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T06:10:23.256408+00:00'
+  tags:
+  - metric
+  - ssr
+  - minobs
+  - paper
+- id: art_20260524_e59531
+  name: metric_definitions_v2
+  type: report
+  description: 'Metric definitions v2: Reviewer #66 反馈更新——主表 4 列 (TSR/CAR/SSR/FR)
+    + MinObs，新增 frozen_rate 定义，compute 脚本兼容两种 JSON 格式'
+  path: projects/diff_collision_sdf/artifacts/_project/report/metric_definitions_e59531.md
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T06:21:24.393531+00:00'
+  tags:
+  - metric
+  - reviewer-feedback
+  - paper
+- id: art_20260524_c09dcc
+  name: ssh_recovery_execution_plan
+  type: report
+  description: SSH 恢复后的 3-phase 完整执行清单：验证 checkpoint → eval 6 模型 → λ_sdf=0 ablation
+  path: projects/diff_collision_sdf/artifacts/_project/report/ssh_recovery_execution_plan.md
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T14:33:23.723213+00:00'
+  tags: []
+- id: art_20260524_7c4cb0
+  name: paper_data_summary
+  type: report
+  description: 论文数据表草稿：Table 1 + Claim 1/3 数据 + scatter 数据点
+  path: projects/diff_collision_sdf/artifacts/_project/report/paper_data_summary.md
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T16:14:39.765976+00:00'
+  tags: []
+- id: art_20260524_39e836
+  name: analysis_claim1_fake_safety
+  type: paper
+  description: §5.1 The Fake Safety Problem - core finding section revealing action
+    collapse contamination in VLA collision avoidance metrics. ~650 words LaTeX with
+    Table 1 (fake safety decomposition) and CAR_f equation.
+  path: projects/diff_collision_sdf/artifacts/_project/paper/analysis_claim1.tex
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T16:57:29.992233+00:00'
+  tags:
+  - paper
+  - section5.1
+  - fake-safety
+  - draft
+- id: art_20260524_fd76b8
+  name: analysis_claim2_capability_safety_anticorrelation
+  type: paper
+  description: §5.2 Capability-Safety Anti-correlation draft (~400 words). Establishes
+    TSR-CAR anti-correlation observation, fake safety zone concept, and metric interpretation
+    implications.
+  path: projects/diff_collision_sdf/artifacts/_project/paper/analysis_claim2.tex
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T17:03:55.595521+00:00'
+  tags:
+  - paper
+  - section5.2
+  - analysis
+  - draft
+- id: art_20260524_653c9c
+  name: analysis_claim3_ee_only_sdf
+  type: paper
+  description: §5.3 End-Effector-Only SDF Structural Limitation draft (~650 words).
+    Oracle GT SDF experiments showing all variants underperform unrefined baselines,
+    with structural analysis of why EE-only SDF cannot ensure full-body safety.
+  path: projects/diff_collision_sdf/artifacts/_project/paper/analysis_claim3.tex
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T17:40:45.140849+00:00'
+  tags:
+  - paper
+  - section5.3
+  - oracle
+  - ee-only-sdf
+  - draft
+- id: art_20260524_b717e4
+  name: experimental_framework_section
+  type: paper
+  description: §4 Experimental Framework for the analysis paper on fake safety in
+    VLA collision avoidance. Defines benchmark (SafeLIBERO), metrics (TSR, CAR, CAR_f,
+    Frozen Rate, SSR), model configurations (Pi0/Pi0.5 variants), oracle SDF refinement
+    setup, and SDF ground truth.
+  path: projects/diff_collision_sdf/artifacts/_project/paper/experimental_framework.tex
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T18:16:41.875894+00:00'
+  tags:
+  - paper
+  - section4
+  - experimental-framework
+  - draft
+- id: art_20260524_28d356
+  name: introduction_v2
+  type: paper
+  description: §1 Introduction for analysis paper "The Safety Illusion" (v2, rewritten
+    for analysis framing with fake safety hook, R4 preemption, 5 paragraphs + contributions)
+  path: projects/diff_collision_sdf/artifacts/_project/paper/introduction_v2.tex
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T18:54:07.895490+00:00'
+  tags:
+  - paper
+  - introduction
+  - analysis
+  - v2
+- id: art_20260524_d4cdfa
+  name: related_work_v2
+  type: paper
+  description: '§3 Related Work v2 for analysis paper "The Safety Illusion", rewritten
+    for analysis framing with 3 subsections: Collision-Safe VLA Methods, SDF in Robot
+    Manipulation, Evaluation Reliability'
+  path: projects/diff_collision_sdf/artifacts/_project/paper/related_work_v2.tex
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T19:02:58.774667+00:00'
+  tags:
+  - paper
+  - related-work
+  - draft
+- id: art_20260524_c4b9e2
+  name: abstract_v2
+  type: paper
+  description: Abstract v2 for analysis paper "The Safety Illusion" (~211 words).
+    Covers fake safety (91.5% CAR / 99.6% fake), TSR-CAR anti-correlation, EE-only
+    SDF limitation, and preliminary constructive result.
+  path: projects/diff_collision_sdf/artifacts/_project/paper/abstract_v2.tex
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T19:39:26.973378+00:00'
+  tags:
+  - paper
+  - abstract
+  - draft
+- id: art_20260524_37e99e
+  name: discussion.tex
+  type: paper
+  description: Discussion and Conclusion section for the Safety Illusion analysis
+    paper. Covers summary, limitations, future work, and broader impact.
+  path: projects/diff_collision_sdf/artifacts/_project/paper/discussion.tex
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T20:45:49.018111+00:00'
+  tags:
+  - paper
+  - discussion
+  - conclusion
+- id: art_20260524_27b2fa
+  name: fig_tsr_car_scatter
+  type: chart
+  description: TSR vs CAR scatter plot for Fig 3
+  path: projects/diff_collision_sdf/artifacts/_project/chart/fig_tsr_car_scatter.pdf
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T21:03:45.510946+00:00'
+  tags:
+  - paper
+  - figure
+  - scatter
+- id: art_20260524_fbaf88
+  name: fig_oracle_bar
+  type: chart
+  description: Oracle comparison bar chart for Fig 4
+  path: projects/diff_collision_sdf/artifacts/_project/chart/fig_oracle_bar.pdf
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T21:03:46.840278+00:00'
+  tags:
+  - paper
+  - figure
+  - bar
+- id: art_20260524_5ecde0
+  name: negative_results_analysis
+  type: report
+  description: 16 个阴性实验的系统分析：归因分类、改进方向、方法天花板评估
+  path: projects/diff_collision_sdf/artifacts/_project/report/negative_results_analysis.md
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T22:09:57.776959+00:00'
+  tags:
+  - analysis
+  - negative_results
+  - error_case
+  - method_ceiling
+- id: art_20260524_38249a
+  name: fig_displacement_hist
+  type: chart
+  description: 'Displacement distribution histogram (mock) — Fig 2: A1-LoRA vs Pi0.5
+    baseline vs Pi0.5+A1'
+  path: projects/diff_collision_sdf/artifacts/_project/chart/fig_displacement_hist.pdf
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T23:28:51.112336+00:00'
+  tags:
+  - figure
+  - displacement
+  - fake-safety
+  - mock
+- id: art_20260525_4c4bc2
+  name: eval_safelibero_openvla
+  type: data
+  description: OpenVLA base model (openvla-7b) SafeLIBERO evaluation script — fake
+    safety analysis with displacement-filtered metrics, frozen detection, per-episode
+    distribution tracking
+  path: projects/diff_collision_sdf/artifacts/_project/data/eval_safelibero_openvla.py
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T06:23:51.056576+00:00'
+  tags:
+  - openvla
+  - eval
+  - fake_safety
+  - claim2
+- id: art_20260525_d18736
+  name: claim2_coverage_audit
+  type: report
+  description: Claim 2 (generalizability / R1 defense) evidence coverage audit — identifies
+    Pi0 fake_rate gap, OpenVLA necessity, and minimum path to submission standard
+  path: projects/diff_collision_sdf/artifacts/_project/report/claim2_coverage_audit.md
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T08:02:56.507732+00:00'
+  tags:
+  - claim2
+  - audit
+  - coverage
+- id: art_20260525_6ee830
+  name: related_work_literature_update
+  type: report
+  description: '6 papers added for Related Work: 3 collision-aware manipulation (CoFreeVLA,
+    APEX, Safe Learning Survey) + 3 SDF in robotics (C-space SDF RSS24, SDF-SC, Neural
+    NMPC-SDF IJRR25)'
+  path: projects/diff_collision_sdf/artifacts/_project/report/related_work_update_20260525.md
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T08:04:08.732541+00:00'
+  tags:
+  - related_work
+  - literature
+  - collision
+  - sdf
+- id: art_20260525_af8e90
+  name: section5_5_method_boundaries
+  type: paper
+  description: '§5.5 Method Boundaries discussion — D019 Tier A negative results:
+    gradient correction failure on collapsed policies, collision transfer in constrained
+    geometries, training-time integration necessity'
+  path: projects/diff_collision_sdf/artifacts/_project/paper/section5_5_method_boundaries.md
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T08:05:20.697007+00:00'
+  tags:
+  - paper
+  - discussion
+  - negative_results
+  - d019
+- id: art_20260525_8dcea7
+  name: pi0_baseline_fake_rate_analysis
+  type: report
+  description: Pi0 baseline fake_rate quantification — Full-FT 82.5%, LoRA 89.0%,
+    confirms fake safety is inherent to Pi0 pretraining, not introduced by A1 SDF
+  path: projects/diff_collision_sdf/artifacts/_project/report/report_pi0_baseline_fake_rate.md
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T08:27:14.959806+00:00'
+  tags:
+  - claim2
+  - fake_safety
+  - pi0
+  - baseline
+  - P0
+- id: art_20260525_995cc3
+  name: negative_results_classification
+  type: report
+  description: '16 negative results systematic classification: 7 正文讨论 / 6 Appendix
+    / 3 省略, with narrative ordering recommendation and D019 consistency check'
+  path: projects/diff_collision_sdf/artifacts/_project/report/negative_results_classification.md
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T09:12:03.926164+00:00'
+  tags:
+  - negative_results
+  - classification
+  - paper_narrative
+- id: art_20260525_1e990f
+  name: analyze_displacement
+  type: data
+  description: Displacement-filtered CAR 分析脚本：读取 eval JSON，按 displacement threshold
+    过滤 frozen episodes，输出 raw/filtered CAR、frozen ratio、per-task breakdown、batch 对比表、sensitivity
+    分析、displacement histogram (PDF/PNG)
+  path: null
+  url: westd-35807:/root/colliforce-vla/scripts/analyze_displacement.py
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T15:28:52.274717+00:00'
+  tags:
+  - analysis
+  - displacement
+  - CAR
+  - fake-safety
+- id: art_20260525_fe3152
+  name: displacement_hist_30k_batch
+  type: chart
+  description: 30K eval displacement distribution histogram (s1_l01, s1_l005, s2_l005,
+    s2_l01)。确认所有 safe episodes 100% frozen (displacement < 0.001m)。
+  path: null
+  url: westd-35807:/root/autodl-tmp/eval_results/displacement_hist_30k_batch.pdf
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T16:39:36.873243+00:00'
+  tags:
+  - displacement
+  - histogram
+  - 30K
+  - fake-safety
+- id: art_20260525_cda3c5
+  name: displacement_analysis_30k_summary
+  type: data
+  description: '30K checkpoint displacement analysis: all 4 configs (s0/s1/s2 × λ=0.005/0.01)
+    show Filtered CAR=0.0%, Frozen=100%. All "safe" episodes are action-collapsed.
+    Confirms 30K action collapse vs 10K real avoidance.'
+  path: projects/diff_collision_sdf/artifacts/_project/data/displacement_analysis_30k_summary.txt
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T17:46:03.420521+00:00'
+  tags:
+  - displacement
+  - fake-safety
+  - 30k-collapse
+  - claim4
+- id: art_20260526_7c5464
+  name: paper_data_summary
+  type: data
+  description: '论文数据汇总: 所有已确认实验指标整理 (Table 1 Pi0.5+A1矩阵, Claim 1-3 证据, Oracle variants,
+    Over-avoidance分析)'
+  path: projects/diff_collision_sdf/artifacts/_project/data/paper_data_summary.md
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-26T00:53:47.843491+00:00'
+  tags:
+  - paper
+  - data
+  - summary
+  - eval
+- id: art_20260526_101613
+  name: dfCAR Threshold Sensitivity Analysis
+  type: data
+  description: 'Threshold sensitivity analysis for dfCAR metric across δ={2,5,10,20,50,100,200}mm
+    on 1200 episodes from 6 SDF-trained eval runs. Key finding: 0 episodes have ee_disp
+    < 100mm (min=239mm), making δ=100mm extremely robust. CSV + distribution plots
+    + sensitivity curves.'
+  path: projects/diff_collision_sdf/artifacts/_project/data/threshold_sensitivity.csv
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-26T01:09:53.593839+00:00'
+  tags:
+  - dfCAR
+  - threshold
+  - sensitivity
+  - reviewer_response
+  - plan_014
+- id: art_20260526_b41f73
+  name: TSR Collapse Analysis Report
+  type: report
+  description: 'Full text analysis of TSR collapse mechanism. Conclusion: composite
+    mechanism — catastrophic forgetting of task semantics (LoRA fine-tuning disrupts
+    task policy) + learned collision avoidance behavior. SDF loss NOT the cause (LoRA
+    baseline shows identical collapse). Safe failure rate jumps 0.5% → 50%. Robot
+    NOT frozen (EE disp ~0.5m).'
+  path: projects/diff_collision_sdf/artifacts/_project/report/tsr_collapse_analysis_report.md
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-26T04:12:11.238762+00:00'
+  tags:
+  - tsr_collapse
+  - analysis
+  - rebuttal
+  - dream
+- id: art_20260526_c26246
+  name: TSR Collapse Figures
+  type: chart
+  description: '4 figure sets for TSR collapse analysis. Remote path: westd-35807:/root/colliforce-vla/figures/
+    (tsr_collapse_analysis_main, tsr_vs_step_per_task, obstacle_disp_and_steps, per_task_tsr_comparison
+    in PDF+PNG)'
+  path: projects/diff_collision_sdf/artifacts/_project/chart/tsr_collapse_figures_index.md
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-26T04:12:24.541078+00:00'
+  tags:
+  - tsr_collapse
+  - analysis
+  - rebuttal
+  - dream
+- id: art_20260526_3be880
+  name: reeval_comparison_script
+  type: intermediate
+  description: 'Post-reeval comparison script: generates old-vs-new data tables (LaTeX
+    + JSON) for all 180° rotation fix re-evaluations. Run after filling in new results
+    to get complete Claim 3 data comparison.'
+  path: projects/diff_collision_sdf/artifacts/_project/intermediate/reeval_comparison.py
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-26T09:45:21.197822+00:00'
+  tags:
+  - reeval
+  - analysis
+  - claim3
+  - rotation-fix
+- id: art_20260526_64b649
+  name: fig2_ee_displacement_distribution
+  type: chart
+  description: 'Fig 2: EE displacement violin plot showing all fine-tuned Pi0.5 models
+    have genuine active motion (0.27-0.87m), 3000x above frozen threshold (0.1mm).
+    Confirms zero action collapse across all conditions.'
+  path: projects/diff_collision_sdf/artifacts/_project/chart/fig2_ee_displacement_distribution.pdf
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-26T13:45:36.391696+00:00'
+  tags:
+  - paper
+  - claim1
+  - displacement
+  - violin
+- id: art_20260526_91659f
+  name: fig3_tsr_car_scatter
+  type: chart
+  description: 'TSR vs CAR scatter plot with 4-quadrant layout. 5 data points: Pi0.5
+    baseline, LoRA s1, SDF l005 s0, SDF l01 s0, Phase 2 λ=0 s2. Shows safety-capability
+    tradeoff and fake safety zone.'
+  path: projects/diff_collision_sdf/artifacts/_project/chart/fig3_tsr_car_scatter.pdf
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-26T13:52:16.677353+00:00'
+  tags:
+  - paper
+  - figure
+  - claim1
+- id: art_20260526_67c4c7
+  name: fig5_lambda_curve_multiseed
+  type: chart
+  description: λ dose-response curve with multi-seed means ± std. Dual Y-axis (CAR
+    blue, TSR red). λ=0/0.005 with error bars, λ=0.01 hollow marker (n=1), λ=0.1 pending.
+    LoRA-only and Pi0.5 baseline reference lines. Replaces single-seed version.
+  path: projects/diff_collision_sdf/artifacts/_project/chart/fig5_lambda_curve.pdf
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-26T14:36:53.133686+00:00'
+  tags:
+  - paper
+  - figure
+  - claim3
+  - multiseed
+- id: art_20260526_7570b7
+  name: fig_threshold_sensitivity
+  type: chart
+  description: 'Threshold sensitivity analysis: dfCAR vs displacement threshold δ
+    (2-300mm). All conditions show flat dfCAR across 2-200mm range, confirming δ=100mm
+    paper threshold is robust. Only 300mm shows minor uptick.'
+  path: projects/diff_collision_sdf/artifacts/_project/chart/fig_threshold_sensitivity.pdf
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-26T15:02:59.096792+00:00'
+  tags:
+  - paper
+  - figure
+  - threshold
+  - robustness
+- id: art_20260526_7fcb7e
+  name: fig_threshold_sensitivity_v2
+  type: chart
+  description: 'Threshold sensitivity v2 (Reviewer fix): corrected λ labels (0.005/0.01),
+    rotation-fixed reeval data. dfCAR flat across 2-200mm for all conditions. Per-λ
+    means + individual seeds. Replaces v1.'
+  path: projects/diff_collision_sdf/artifacts/_project/chart/fig_threshold_sensitivity_7fcb7e.pdf
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-26T15:07:23.271774+00:00'
+  tags:
+  - paper
+  - figure
+  - threshold
+  - robustness
+  - reviewer-fix
+- id: art_20260526_5f2325
+  name: fig5_lambda_curve_3seed_update
+  type: chart
+  description: 'λ dose-response curve updated: l01 upgraded to 3-seed solid marker
+    (CAR=56.3±1.6), l005/l01 TSR error bars added. All λ≤0.01 now have multi-seed
+    means ± std. λ=0.1 pending.'
+  path: projects/diff_collision_sdf/artifacts/_project/chart/fig5_lambda_curve_5f2325.pdf
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-26T16:01:43.258606+00:00'
+  tags:
+  - paper
+  - figure
+  - claim3
+  - multiseed
+  - 3seed-update
+- id: art_20260526_55962c
+  name: paper_draft_compiled
+  type: paper
+  description: First full LaTeX compilation of paper draft. 17 pages, 0 errors, 0
+    undefined refs/citations. claim3 placeholder from analysis_claim3.tex, appendix
+    added, missing figure replaced with placeholder box.
+  path: projects/diff_collision_sdf/artifacts/_project/paper/paper_draft.pdf
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-26T16:27:02.591383+00:00'
+  tags:
+  - paper
+  - draft
+  - compiled
+- id: art_20260526_3007da
+  name: fig1_teaser
+  type: chart
+  description: 'Figure 1 Teaser: "The Fake Safety Problem" — 三面板对比图 (Standard CAR
+    / Displacement / Filtered CAR)，展示 action collapse 导致的虚假安全指标'
+  path: projects/diff_collision_sdf/artifacts/_project/chart/fig1_teaser.pdf
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-26T18:18:03.612923+00:00'
+  tags:
+  - figure
+  - teaser
+  - paper
+  - CAR
+  - displacement-filtering
+- id: art_20260526_e7187a
+  name: abc_scenario_patches
+  type: paper
+  description: Pre-written paper replacement text for 6 positions × 3 scenarios (A/B/C)
+    conditioned on λ=0.1 CAR results. Covers claim3.tex, discussion.tex, abstract.tex,
+    introduction.tex.
+  path: projects/diff_collision_sdf/artifacts/_project/paper/abc_scenario_patches.md
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-26T23:18:54.396676+00:00'
+  tags:
+  - contingency
+  - lambda-0.1
+  - claim3
+  - paper-patches
+- id: art_20260527_0074f6
+  name: claim3_data_summary
+  type: data
+  description: 'Claim 3 (Avoidance Source Diagnosis) complete data summary: main CAR/TSR
+    table across all λ conditions, null distribution, statistical comparisons, per-task
+    breakdown (TSR from appendix + CAR from eval), and Scenario B narrative points.'
+  path: projects/diff_collision_sdf/artifacts/_project/data/claim3_data_summary.md
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-27T01:18:47.328347+00:00'
+  tags:
+  - claim3
+  - data-summary
+  - scenario-b
+  - null-distribution
+  - paper
+- id: art_20260527_b806e4
+  name: fig5_lambda_data
+  type: data
+  description: 'Fig 5 λ-CAR/TSR curve data: per-λ summary (mean, std, seeds) for plotting.
+    Companion stepwise sub-table in fig5_lambda_stepwise.csv for inset/supplementary.'
+  path: projects/diff_collision_sdf/artifacts/_project/data/fig5_lambda_data.csv
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-27T01:18:50.242055+00:00'
+  tags:
+  - fig5
+  - lambda-sweep
+  - car
+  - tsr
+  - plot-data
+  - paper
+- id: art_20260527_c724a9
+  name: fig1_teaser_design
+  type: intermediate
+  description: Figure 1 teaser conceptual design doc — schematic robot arm layout
+    with fake/genuine safety contrast and CAR_f filtering flow
+  path: projects/diff_collision_sdf/artifacts/_project/intermediate/fig1_teaser_design.md
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-27T02:00:07.679827+00:00'
+  tags:
+  - figure
+  - teaser
+  - design
+  - paper
+- id: art_20260527_4bb269
+  name: fig5_lambda_curve
+  type: chart
+  description: 'Fig 5: λ–CAR/TSR dose-response curve with null distribution band.
+    Shows SDF loss weight redundancy — all λ∈{0,0.005,0.01,0.1} produce CAR within
+    null ±1σ. 3.25-inch single-column, colorblind-safe, PDF+PNG.'
+  path: projects/diff_collision_sdf/artifacts/_project/chart/fig5_lambda_curve_4bb269.pdf
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: draw-paper-figure
+  created_at: '2026-05-27T02:06:24.433331+00:00'
+  tags:
+  - paper
+  - fig5
+  - lambda
+  - CAR
+  - TSR
+  - null-band
+- id: art_20260527_9cf7f0
+  name: fig5_lambda_curve_v2
+  type: chart
+  description: 'Fig 5 lambda-CAR/TSR curve, v2: y-axis label fixed from "Success Rate
+    (%)" to "Rate (%)" per reviewer feedback'
+  path: projects/diff_collision_sdf/artifacts/_project/chart/fig5_lambda_curve.png
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-27T02:27:34.805769+00:00'
+  tags:
+  - fig5
+  - reviewer-fix
+  - lambda-curve
+- id: art_20260527_1a6fe7
+  name: fig1_teaser_v2
+  type: chart
+  description: 'Figure 1 Teaser v2 — robot arm schematic version. Three-panel layout:
+    (a) Fake Safety with frozen gray+coral dashed arm, (b) CAR_f Filtering flow diagram,
+    (c) Genuine Safety with active blue arm and avoidance trajectory. PDF+PNG at 300
+    DPI.'
+  path: projects/diff_collision_sdf/artifacts/_project/chart/fig1_teaser_v2.png
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-27T03:13:49.892410+00:00'
+  tags:
+  - figure1
+  - teaser
+  - robot-arm
+  - schematic
+  - v2
+- id: art_20260527_ba778c
+  name: fig1_teaser_v2_pdf
+  type: chart
+  description: Figure 1 Teaser v2 PDF vector version for LaTeX inclusion.
+  path: projects/diff_collision_sdf/artifacts/_project/chart/fig1_teaser_v2.pdf
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-27T03:13:55.134066+00:00'
+  tags:
+  - figure1
+  - teaser
+  - robot-arm
+  - schematic
+  - v2
+  - pdf
+- id: art_20260527_b523ab
+  name: fig1_teaser_v2
+  type: chart
+  description: 'Figure 1 teaser v2: 三栏 (a) Fake Safety frozen arm + (b) CAR_f Filtering
+    flow + (c) Genuine Safety active arm. A/C 对称设计，CORAL/BLUE 配色。'
+  path: projects/diff_collision_sdf/artifacts/_project/chart/fig1_teaser_v2_b523ab.png
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-27T03:15:41.607643+00:00'
+  tags:
+  - paper
+  - figure1
+  - teaser
+- id: art_20260527_37fafe
+  name: Figure 1 Teaser Design v2
+  type: report
+  description: 'Figure 1 teaser design: 2-panel "Illusion Revealed" — (a) stacked
+    bar decomposing CAR into frozen/genuine/collision, (b) grouped bar showing raw
+    CAR vs dfCAR with dramatic 91.5%→0% drop arrow'
+  path: projects/diff_collision_sdf/artifacts/_project/report/figure1_teaser_design.md
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-27T08:32:21.580122+00:00'
+  tags:
+  - figure
+  - paper
+  - teaser
+  - design
+- id: art_20260527_d60106
+  name: fig1_teaser
+  type: chart
+  description: 'Figure 1 "Illusion Revealed" teaser: 2-panel (5.5x2.5in) showing (a)
+    CAR decomposition into frozen-safe/genuine-safe/collision via stacked horizontal
+    bars, and (b) raw CAR vs dfCAR grouped bars with dramatic 82pp drop arrow for
+    Pi0 models. Pi0 models have ~90% frozen-safe CAR that collapses to <10% dfCAR;
+    Pi0.5 models show no frozen inflation.'
+  path: projects/diff_collision_sdf/artifacts/_project/chart/fig1_teaser_d60106.pdf
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: draw-paper-figure
+  created_at: '2026-05-27T08:45:01.232972+00:00'
+  tags:
+  - figure1
+  - teaser
+  - CAR
+  - frozen
+  - dfCAR
+  - paper
+- id: art_20260527_2172a0
+  name: SSR Analysis
+  type: data
+  description: Safe Success Rate (SSR) analysis across all conditions. SSR = (success
+    AND no_collision) / total. Includes per-seed data, condition averages, and SSR/TSR
+    ratio analysis refuting "reduced exposure" hypothesis.
+  path: projects/diff_collision_sdf/artifacts/_project/data/ssr_analysis.md
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-27T11:39:47.359022+00:00'
+  tags:
+  - ssr
+  - reviewer-response
+  - scenario-c
+- id: art_20260527_8aeb35
+  name: fig5_lambda_car
+  type: chart
+  description: 'Fig 5: Lambda vs CAR/TSR curve with 4 lambda values (0, 0.005, 0.01,
+    0.1), error bars, Pi0.5 baseline, hollow markers for &lt;3 seeds'
+  path: projects/diff_collision_sdf/artifacts/_project/chart/fig5_lambda_car_v4.png
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: draw-paper-figure
+  created_at: '2026-05-27T16:35:23.995192+00:00'
+  tags:
+  - fig5
+  - lambda
+  - CAR
+  - TSR
+  - ablation
+- id: art_20260527_6c65cb
+  name: permutation_test_script
+  type: data
+  description: Exact permutation test + Welch t-test script for SDF λ=0.1 vs LoRA-only
+    baseline. Supports 2-of-8 and 3-of-9 modes.
+  path: projects/diff_collision_sdf/artifacts/_project/data/permutation_test.py
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-27T17:10:13.340983+00:00'
+  tags:
+  - statistics
+  - permutation-test
+  - significance
+- id: art_20260527_7a508a
+  name: permutation_test_results
+  type: data
+  description: 'Full output of exact permutation test: 2-seed baseline + sensitivity
+    analysis (s2=54..59). Includes all 28/84 combinations and summary table.'
+  path: projects/diff_collision_sdf/artifacts/_project/data/permutation_test_results.txt
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-27T17:10:15.700098+00:00'
+  tags:
+  - statistics
+  - permutation-test
+  - significance
+  - results
+- id: art_20260527_1afe4c
+  name: dual_narrative_templates
+  type: paper
+  description: Dual narrative templates (Scenario C vs B) for Claim 3 λ=0.1 results
+    — pre-written replacement text for abstract.tex, claim3.tex, and discussion.tex
+    with 12 modification points, placeholders for final numbers, and switch checklist.
+  path: projects/diff_collision_sdf/artifacts/_project/paper/dual_narrative_templates.md
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-27T17:12:08.011865+00:00'
+  tags:
+  - claim3
+  - lambda-0.1
+  - narrative
+  - contingency
+  - paper-writing
+- id: art_20260527_889c4a
+  name: fig_pertask_car_fingerprint
+  type: chart
+  description: Per-task CAR fingerprint grouped bar chart showing ordering invariance
+    across lambda (CP highest, BBQ lowest across all 4 training conditions). Data
+    from paper Table 8.
+  path: projects/diff_collision_sdf/artifacts/_project/chart/fig_pertask_car_fingerprint.png
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: draw-paper-figure
+  created_at: '2026-05-27T18:16:10.387342+00:00'
+  tags:
+  - paper
+  - claim3
+  - per-task
+  - CAR
+  - fingerprint
+- id: art_20260527_72c0aa
+  name: fallback_2seed
+  type: paper
+  description: Fallback 2-seed PDF for CoRL 2026 submission (DDL 5/28 12:00 UTC).
+    15 pages, compiled from main branch with λ=0.1 2-seed data and †footnote.
+  path: projects/diff_collision_sdf/artifacts/_project/paper/fallback_2seed.pdf
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-27T18:28:40.042066+00:00'
+  tags:
+  - corl2026
+  - fallback
+  - 2seed
+- id: art_20260527_da36d3
+  name: fig_pertask_car_fingerprint
+  type: chart
+  description: Per-task CAR fingerprint chart updated with LoRA-only 3-seed data (s0/s1/s2).
+    Lambda=0.1 remains 2-seed.
+  path: projects/diff_collision_sdf/artifacts/_project/chart/fig_pertask_car_fingerprint_da36d3.png
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-27T19:12:10.181777+00:00'
+  tags:
+  - per-task
+  - car
+  - fingerprint
+  - 3-seed
+- id: art_20260527_0227ab
+  name: paper_switch
+  type: intermediate
+  description: 'Auto-switch script: takes λ=0.1 s2 CAR/TSR, runs permutation test,
+    determines Scenario B/C, replaces 12 locations in abstract/claim3/discussion .tex
+    files, compiles PDF. Usage: python paper_switch.py --s2-car 57.5 --s2-tsr 48.0
+    [--dry-run]'
+  path: projects/diff_collision_sdf/artifacts/_project/intermediate/paper_switch.py
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-27T19:32:46.672017+00:00'
+  tags:
+  - paper
+  - automation
+  - claim3
+  - lambda01
+- id: art_20260528_8fbcbe
+  name: fig2_plan_a_scatter
+  type: chart
+  description: 'Plan A: Improved scatter plot with dfCAR correction arrows, quadrant
+    shading, staggered left cluster'
+  path: projects/diff_collision_sdf/artifacts/_project/chart/fig2_plan_a.png
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-28T13:02:49.967295+00:00'
+  tags:
+  - figure2
+  - layout
+- id: art_20260528_3326bb
+  name: fig2_plan_b_dumbbell
+  type: chart
+  description: 'Plan B: Dumbbell chart showing CAR vs dfCAR inflation gap per model'
+  path: projects/diff_collision_sdf/artifacts/_project/chart/fig2_plan_b.png
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-28T13:02:51.428207+00:00'
+  tags:
+  - figure2
+  - layout
+- id: art_20260528_4d3771
+  name: fig_overview
+  type: chart
+  description: 'Three-panel overview/teaser figure: (a) action-collapsed safety inflates
+    CAR, (b) EE-only SDF redistributes collisions to unmonitored links, (c) demonstrations
+    account for avoidance gains not SDF. matplotlib implementation (PaperBanana blocked
+    on API key).'
+  path: projects/diff_collision_sdf/artifacts/_project/chart/fig_overview.pdf
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-28T16:07:45.596130+00:00'
+  tags:
+  - figure
+  - overview
+  - teaser
+  - paper
+- id: art_20260528_8ac56a
+  name: fig_overview_paperbanana
+  type: chart
+  description: Three-panel overview figure generated by PaperBanana (Gemini VLM).
+    Layout is 2x2 instead of requested 1x3 horizontal. More realistic robot arm rendering
+    than matplotlib version.
+  path: projects/diff_collision_sdf/artifacts/_project/chart/fig_overview_pb.png
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-28T16:11:12.967522+00:00'
+  tags:
+  - figure
+  - overview
+  - teaser
+  - paper
+  - paperbanana
+- id: art_20260528_30bc01
+  name: fig_overview_pb_v2
+  type: chart
+  description: 'Reduced-text three-panel overview figure (PaperBanana v2): panel titles,
+    minimal labels, dramatic arrow contrast. Final version embedded in paper as Figure
+    1.'
+  path: projects/diff_collision_sdf/artifacts/_project/chart/fig_overview_pb_v2.png
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-28T16:28:34.080598+00:00'
+  tags:
+  - figure
+  - overview
+  - teaser
+  - paper
+  - paperbanana
+  - final
+- id: art_20260528_080229
+  name: fig_overview_pb_v4
+  type: chart
+  description: 'Ultra-minimal text overview figure (PaperBanana v4): no explanatory
+    sentences, v1-style Panel(c) arrows, red down-arrow in Panel(b). Best version.'
+  path: projects/diff_collision_sdf/artifacts/_project/chart/fig_overview_pb_v4.png
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-28T16:35:40.911592+00:00'
+  tags:
+  - figure
+  - overview
+  - teaser
+  - paper
+  - paperbanana
+  - v4
+- id: art_20260528_3b29fd
+  name: fig_overview_pb_v5
+  type: chart
+  description: 'Overview figure v5: removed inaccurate p<0.001 from Panel(c) demonstrations
+    source, only green checkmark remains. All other numbers verified accurate.'
+  path: projects/diff_collision_sdf/artifacts/_project/chart/fig_overview_pb_v5.png
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-28T16:52:49.366946+00:00'
+  tags:
+  - figure
+  - overview
+  - teaser
+  - paper
+  - paperbanana
+  - v5
+- id: art_20260528_adec9f
+  name: fig_overview_pb_v6
+  type: chart
+  description: 'Overview figure v6: muted color palette (no bright red), charcoal
+    X marks, muted coral obstacle/collision, 1x3 horizontal layout, all data verified.'
+  path: projects/diff_collision_sdf/artifacts/_project/chart/fig_overview_pb_v6.png
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-28T17:12:08.070015+00:00'
+  tags:
+  - figure
+  - overview
+  - teaser
+  - paper
+  - paperbanana
+  - v6
+- id: art_20260528_240803
+  name: fig_overview_pb_v7
+  type: chart
+  description: 'Overview v7: v5 base with pixel-level color replacement only. Panel(a)
+    red→slate blue, Panel(b) red→warm salmon. Layout/robot arm/design identical to
+    v5.'
+  path: projects/diff_collision_sdf/artifacts/_project/chart/fig_overview_pb_v7.png
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-28T17:19:08.199179+00:00'
+  tags:
+  - figure
+  - overview
+  - teaser
+  - paper
+  - v7
+  - recolor
+- id: art_20260528_66ebf0
+  name: fig_overview_pb_v8
+  type: chart
+  description: 'Overview v8: unified steel blue palette for all negative indicators.
+    Panel(a) #5B7B9A dark steel, Panel(b) #7B97AD light steel. Same color family,
+    harmonious with green positive indicators.'
+  path: projects/diff_collision_sdf/artifacts/_project/chart/fig_overview_pb_v8.png
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-28T17:22:07.675612+00:00'
+  tags:
+  - figure
+  - overview
+  - teaser
+  - paper
+  - v8
+  - recolor
+  - steel-blue
+- id: art_20260528_16f86b
+  name: fig_overview_pb_v9
+  type: chart
+  description: 'Overview v9: 3D rendered metallic robot arms with lighting/shadows
+    + unified steel blue negative indicators. No bright red, no p<0.001. 1x3 horizontal
+    layout.'
+  path: projects/diff_collision_sdf/artifacts/_project/chart/fig_overview_pb_v9.png
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-28T17:29:58.193905+00:00'
+  tags:
+  - figure
+  - overview
+  - teaser
+  - paper
+  - v9
+  - 3d
+  - steel-blue
+- id: art_20260528_bd193b
+  name: fig_overview_pb_v10
+  type: chart
+  description: 'Overview figure v10: high-density 3-panel with realistic VLA robot
+    arms (gripper+wrist camera), SDF contour visualization, displacement histogram,
+    steel blue palette. PaperBanana generated.'
+  path: projects/diff_collision_sdf/artifacts/_project/chart/fig_overview_pb_v10.png
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-28T17:38:43.598336+00:00'
+  tags:
+  - figure
+  - overview
+  - v10
+  - paperbanana
+- id: art_20260528_bfe9aa
+  name: fig_overview_pb_v11
+  type: chart
+  description: 'Overview figure v11: Panel (b) uses realistic cup as obstacle with
+    physical arm-body collision, SDF contours radiating from cup surface. Panel (a)
+    has tabletop objects and histogram. All panels high-density with steel blue palette.'
+  path: projects/diff_collision_sdf/artifacts/_project/chart/fig_overview_pb_v11.png
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-28T17:53:07.333855+00:00'
+  tags:
+  - figure
+  - overview
+  - v11
+  - paperbanana
+- id: art_20260528_7decd8
+  name: fig_overview_pb_v12
+  type: chart
+  description: 'Overview figure v12: Panel (c) optimized with horizontal bar chart
+    comparing demos (+26pp) vs SDF (+2.3pp), extreme visual contrast, clean source
+    attribution flow. Panel (a)(b) maintain v11b quality.'
+  path: projects/diff_collision_sdf/artifacts/_project/chart/fig_overview_pb_v12.png
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-28T18:00:19.618100+00:00'
+  tags:
+  - figure
+  - overview
+  - v12
+  - paperbanana
+- id: art_20260528_333fbc
+  name: fig_overview_pb_v13
+  type: chart
+  description: 'Overview figure v13: Panel (a)(b) pixel-identical to v11b, Panel (c)
+    replaced with optimized version featuring horizontal bar chart (demos +26pp vs
+    SDF +2.3pp), clear source attribution flow, steel blue+green palette.'
+  path: projects/diff_collision_sdf/artifacts/_project/chart/fig_overview_pb_v13.png
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-28T18:07:48.706714+00:00'
+  tags:
+  - figure
+  - overview
+  - v13
+  - paperbanana
+  - spliced
+- id: art_20260528_a06d89
+  name: Supplementary Material Checklist
+  type: report
+  description: 'Complete supplementary material checklist for CoRL 2026 paper: multi-seed
+    tables (S1), multi-eval-seed robustness (S2), lambda ablation with permutation
+    tests (S3), oracle experiments (S4), training curves (S5), and additional data
+    (SSR, threshold sensitivity, fake safety, spatial bowl). Includes data sources,
+    existing figures index, and TODOs.'
+  path: projects/diff_collision_sdf/artifacts/_project/report/supplementary_checklist.md
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-28T19:18:10.160378+00:00'
+  tags:
+  - supplementary
+  - paper
+  - checklist
+  - data-summary
+- id: art_20260528_9360ac
+  name: utilization_audit
+  type: report
+  description: Cross-comparison of 72 registry success experiments vs paper tex files.
+    Maps each experiment to paper references, identifies 3 unused-but-valuable experiments,
+    17 provenance gaps, and 5 prioritized recommendations.
+  path: projects/diff_collision_sdf/artifacts/_project/report/utilization_audit.md
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-28T19:21:52.994152+00:00'
+  tags:
+  - audit
+  - paper
+  - experiments
+  - utilization
+- id: art_20260528_202589
+  name: paper_final_4fixes
+  type: paper
+  description: 'Paper PDF after 4 reviewer fixes: title→Diffusion-Based VLA, contributions
+    4→2, claim2 wording downgrade, limitations expanded to 160 words. Body ≤8 pages
+    confirmed.'
+  path: projects/diff_collision_sdf/artifacts/_project/paper/paper_final_4fixes.pdf
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-28T20:16:49.010032+00:00'
+  tags:
+  - paper
+  - corl2026
+  - final
+- id: art_20260529_31c499
+  name: negative_analysis
+  type: report
+  description: 'Rebuttal preparation: 25 negative experiment failure pattern analysis
+    with reviewer Q&A and framing strategies'
+  path: projects/diff_collision_sdf/artifacts/_project/report/negative_analysis.md
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-29T04:04:26.393751+00:00'
+  tags:
+  - rebuttal
+  - negative-results
+- id: art_20260529_a8bf20
+  name: data_audit_report
+  type: report
+  description: Full-paper data authenticity & traceability audit report for CoRL 2026
+    submission. Covers ~950 numbers across 10 tex files, with reconciliation table,
+    11 issues found (3 source-not-found, 5 mismatch, 3 stale data), fix suggestions,
+    and residual risks.
+  path: projects/diff_collision_sdf/artifacts/_project/report/data_audit_report.md
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-29T05:36:51.697376+00:00'
+  tags:
+  - audit
+  - data-integrity
+  - corl2026
+- id: art_20260529_0fd849
+  name: CoRL 2026 Submission Checklist
+  type: report
+  description: OpenReview submission checklist for CoRL 2026 — field readiness, file
+    status, compliance checks, and action items
+  path: projects/diff_collision_sdf/artifacts/_project/report/submission_checklist.md
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-29T13:22:30.595707+00:00'
+  tags:
+  - submission
+  - corl2026
+  - checklist
+- id: art_20260529_9cf7ac
+  name: supplementary_check_report
+  type: report
+  description: 'Supplementary completeness check: cross-references, number consistency,
+    content coverage for appendix.tex'
+  path: projects/diff_collision_sdf/artifacts/_project/report/supplementary_check_report.md
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-29T13:24:29.036176+00:00'
+  tags:
+  - paper
+  - supplementary
+  - quality-check
+- id: art_20260529_4fd438
+  name: rebuttal_prep
+  type: report
+  description: 'Rebuttal preparation: 25 negative experiments categorized (Method
+    8, Hyperparameter 6, Scale/Generalization 5, Evaluation Artifact 3, Engineering
+    3) with anticipated reviewer questions and response strategies'
+  path: projects/diff_collision_sdf/artifacts/_project/report/rebuttal_prep.md
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-29T13:25:21.292219+00:00'
+  tags:
+  - rebuttal
+  - negative-experiments
+  - CoRL2026
+- id: art_20260529_db582d
+  name: supplementary.zip
+  type: data
+  description: 'CoRL 2026 supplementary material: core training/eval/analysis code,
+    figure generation scripts, and README with reproduction instructions.'
+  path: projects/diff_collision_sdf/artifacts/_project/data/supplementary.zip
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-29T14:08:03.574119+00:00'
+  tags:
+  - corl2026
+  - supplementary
+  - submission
+- id: art_20260529_0c2a0f
+  name: Seed3 Restart Plan
+  type: report
+  description: Restart plan for two failed seed3 experiments (lora_baseline_s3_v2
+    on westd-35807, a1_obj_s3_l01_v2 on westd-45947) after both servers became unreachable.
+    Includes checkpoint status, LeRobot patch details, disk cleanup plan, and step-by-step
+    restart commands.
+  path: projects/diff_collision_sdf/artifacts/_project/report/seed3_restart_plan.md
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-29T15:05:48.093017+00:00'
+  tags:
+  - seed3
+  - restart
+  - westd-35807
+  - westd-45947
+  - ops
+- id: art_20260529_a01313
+  name: Per-Task CAR Breakdown Analysis
+  type: report
+  description: Per-task CAR breakdown across all 12 seeds (4 conditions × 3 seeds)
+    for rebuttal. Includes variance decomposition (94% between-task), fingerprint
+    ordering consistency (CP>Milk>OJ>BBQ in 4/4 conditions), BBQ seed-to-seed variance
+    analysis, and per-task rebuttal points.
+  path: projects/diff_collision_sdf/artifacts/_project/report/per_task_analysis.md
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-29T15:05:58.729265+00:00'
+  tags:
+  - rebuttal
+  - claim3
+  - per-task
+  - car
+  - fingerprint
+- id: art_20260529_06c263
+  name: rebuttal_seed3_versions
+  type: report
+  description: 'Pre-written dual-version rebuttal Q&A for Seed3 results: Version A
+    (null confirmed, Scenario B) and Version B (signal recovered, Scenario C), with
+    placeholder values, decision matrix, and paper impact mapping.'
+  path: projects/diff_collision_sdf/artifacts/_project/report/rebuttal_seed3_versions.md
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-29T17:45:38.519237+00:00'
+  tags:
+  - rebuttal
+  - seed3
+  - claim3
+  - statistics
+- id: art_20260529_8d7c1a
+  name: camera_ready_polish
+  type: report
+  description: 'Camera-ready polish checklist: 8 Priority-A issues (unreferenced fig:overview,
+    CAR singular/plural, undefined abbreviations SSR/MDE, citep/cite mixing, unreferenced
+    equations, cross-ref style inconsistency, duplicate label), 11 Priority-B, 7 Priority-C'
+  path: projects/diff_collision_sdf/artifacts/_project/report/camera_ready_polish.md
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-29T17:46:31.582344+00:00'
+  tags:
+  - paper
+  - camera-ready
+  - checklist
+- id: art_20260529_aaa8ff
+  name: icra2027_venue_analysis
+  type: report
+  description: ICRA 2027 转投差异分析：DDL预估、格式对比、改动量评估、scope fit、时间线
+  path: projects/diff_collision_sdf/artifacts/_project/report/icra2027_venue_analysis.md
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-29T18:59:26.137386+00:00'
+  tags:
+  - venue
+  - icra2027
+  - submission
+- id: art_20260529_410401
+  name: compression_plan
+  type: report
+  description: CoRL→ICRA 正文压缩方案：逐section标注保留/压缩/移supplementary/删除，含figure/table mapping
+  path: projects/diff_collision_sdf/artifacts/_project/report/compression_plan.md
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-29T19:34:25.928381+00:00'
+  tags:
+  - icra2027
+  - compression
+  - venue-adaptation
+- id: art_20260529_8c5a12
+  name: demo_curation_proposal
+  type: report
+  description: Demo curation实验完整方案：碰撞标注(MuJoCo replay + SDF)、curation pipeline、训练矩阵(6条件×3seeds=18runs)、成本估算(756
+    GPU-hours)
+  path: projects/diff_collision_sdf/artifacts/_project/report/demo_curation_proposal.md
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-29T20:12:16.525260+00:00'
+  tags:
+  - demo-curation
+  - experiment-design
+  - icra2027
+  - claim3
+- id: art_20260529_7a23a2
+  name: robocasa_eval_pipeline_spec
+  type: report
+  description: RoboCasa benchmark eval pipeline设计：任务选择(3个PnP任务)、碰撞检测(MuJoCo contact
+    API)、模型适配(Pi0.5 state adapter)、成本估算(378 GPU-hours)
+  path: projects/diff_collision_sdf/artifacts/_project/report/robocasa_eval_pipeline_spec.md
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-29T20:16:37.241557+00:00'
+  tags:
+  - robocasa
+  - benchmark
+  - eval-pipeline
+  - icra2027
+  - breadth-expansion
+- id: art_20260529_c18a72
+  name: demo_collision_label.py
+  type: data
+  description: Demo collision labeling script for SafeLIBERO curation experiment.
+    Method A (MuJoCo replay, full-body) + Method B (SDF EE-only sanity check). Outputs
+    collision_labels.json with per-episode labels.
+  path: projects/diff_collision_sdf/artifacts/_project/data/demo_collision_label.py
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-29T20:23:33.547476+00:00'
+  tags:
+  - demo_curation
+  - labeling
+  - P0
+- id: art_20260529_01c907
+  name: robocasa_eval.py
+  type: data
+  description: RoboCasa safety evaluation script with MuJoCo contact-based collision
+    detection, dfCAR computation, collision body distribution tracking. Supports Pi0.5
+    policy server or local checkpoint.
+  path: projects/diff_collision_sdf/artifacts/_project/data/robocasa_eval.py
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-29T20:27:46.789158+00:00'
+  tags:
+  - robocasa
+  - eval
+  - collision_detection
+  - P1
+- id: art_20260529_701acf
+  name: robocasa_finetune_config.py
+  type: data
+  description: RoboCasa Pi0.5 LoRA fine-tuning config with 16D→8D state adapter, 256→224
+    image adapter, and LoRA injection matching SafeLIBERO protocol (rank 32/16, 30K
+    steps).
+  path: projects/diff_collision_sdf/artifacts/_project/data/robocasa_finetune_config.py
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-29T20:27:49.264521+00:00'
+  tags:
+  - robocasa
+  - finetune
+  - lora
+  - P1
+- id: art_20260529_4d3c0f
+  name: fig_overview_pb_v14
+  type: chart
+  description: 'Overview figure v14: Fixed panel (c) number 54.7% → 54.8% to match
+    LoRA-only 3-seed mean CAR 54.83%. Panels (a)(b) unchanged from v13. Pixel-level
+    text replacement with DemiBold sans-serif font matching.'
+  path: projects/diff_collision_sdf/artifacts/_project/chart/fig_overview_pb_v14.png
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-29T23:16:38.226757+00:00'
+  tags:
+  - figure
+  - overview
+  - v14
+  - patch
+- id: art_20260530_cb35b7
+  name: recovery_checklist.md
+  type: report
+  description: 'Server recovery execution checklist — zero-debug commands for Pi0.5
+    baseline +2 seeds eval, demo collision labeling, D049 #3-6 prep, and fault handling.
+    All commands copy-paste ready.'
+  path: projects/diff_collision_sdf/artifacts/_project/report/recovery_checklist.md
+  url: null
+  project: diff_collision_sdf
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-30T02:08:28.385796+00:00'
+  tags:
+  - recovery
+  - checklist
+  - D049
+  - ICRA

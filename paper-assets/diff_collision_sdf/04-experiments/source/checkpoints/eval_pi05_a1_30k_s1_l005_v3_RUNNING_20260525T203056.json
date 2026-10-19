@@ -1,0 +1,41 @@
+{
+  "exp_id": "eval_pi05_a1_30k_s1_l005_v3",
+  "project": "diff_collision_sdf",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-25T13:17:44.162Z",
+    "updated_at": "2026-05-25T20:30:56.753Z",
+    "hypothesis": "Pi0.5+A1 30K eval (seed1, λ=0.005) rerun with correct --output_path to preserve per-episode displacement data. v2 JSON was overwritten by concurrent evals. Same checkpoint /30000/, model_type=lora_baseline.",
+    "spec": {
+      "command": "python scripts/eval_safelibero.py --checkpoint .../seed1_l005/30000/ --config_name pi05_libero --model_type lora_baseline --pi05 --seed 0 --gpu 1 --output_path eval_s1_l005_30k_v3.json",
+      "server": "westd-35807",
+      "data_path": "safelibero_object",
+      "data_count": 200,
+      "model_name": "pi05_a1_seed1_l005_30k",
+      "seed": 0,
+      "checkpoint_source": "train_pi05_a1_obj_s1_l005",
+      "eval_data": "safelibero_object_levelII"
+    },
+    "notes": "v3 崩溃于 L1325 makedirs(\"\") bug（200 eps 算完但 JSON 未保存）。v4 已启动：PID 410404, cuda:1, westd-35807。代码已修复（L1323-1327 加 dirname 空检查）。--output_path /root/autodl-tmp/eval_results/eval_s1_l005_30k_v4.json",
+    "metrics": {
+      "avg_TSR": 4,
+      "avg_CAR": 51.5,
+      "n_episodes": 200,
+      "task0_TSR": 0,
+      "task0_CAR": 54,
+      "task1_TSR": 16,
+      "task1_CAR": 48,
+      "task2_TSR": 0,
+      "task2_CAR": 88,
+      "task3_TSR": 0,
+      "task3_CAR": 16,
+      "source": "v4 JSON with per-episode displacement"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-25T20:30:56.904492+00:00",
+  "trigger": "update_registry"
+}

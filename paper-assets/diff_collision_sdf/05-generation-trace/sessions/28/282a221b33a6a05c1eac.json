@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "282a221b33a6a05c1eac",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "code checkpoint rotation impl",
+  "task_key": "worker_code_checkpoint_rotation_impl_20260520T071800",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_checkpoint_rotation_impl_20260520T071800_result.json",
+    "occurrence": 1,
+    "bytes": 662,
+    "sha256": "9132112f40a17c55bcba87bdb44d6f881bda1d55150e8ec58985fb83fbb9f20e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两台服务器都已有相同的轮转逻辑。\n\n**结论：任务已完成，无需修改。**\n\n- `openpi/scripts/train_pytorch.py` 的 `save_checkpoint` 函数（L239-249）已包含轮转：`SAVE_TOTAL_LIMIT = 5`，每次保存后自动清理超出 5 个的旧 checkpoint\n- 三个脚本（`train_baseline.py`、`train_a1_sdf_aux.py`、`train_a3_hook.py`）都通过 `train_loop → save_checkpoint` 调用链共享此逻辑\n- 轮转跳过 `tmp_*` 目录和非数字目录（如 `best/`）\n- westd-35807 和 westd-45947 代码一致\n- 当前 checkpoint 状态正常：各实验只有 2-3 个 checkpoint，磁盘占用 42%（144G/350G）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-checkpoint-rotation-impl.md"
+}

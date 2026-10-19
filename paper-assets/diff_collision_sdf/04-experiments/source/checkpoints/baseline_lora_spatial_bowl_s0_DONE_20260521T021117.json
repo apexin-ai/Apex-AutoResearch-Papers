@@ -1,0 +1,36 @@
+{
+  "exp_id": "baseline_lora_spatial_bowl_s0",
+  "project": "diff_collision_sdf",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T21:02:09.939Z",
+    "updated_at": "2026-05-21T02:11:17.493Z",
+    "hypothesis": "LoRA fine-tuned pi0 baseline on spatial_bowl (rank 16/32, matching A3 config) establishes fair comparison baseline — same trainable parameter budget as A3, expecting TSR >50% and CAR ~0%. Parent baselines (no LoRA) had frozen backbone which is not comparable to A3's LoRA setup.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 JAX_PLATFORMS=cpu python scripts/train_baseline.py --scene spatial_bowl --seed 0 --num_train_steps 30000 --save_interval 2000",
+      "server": "westd-35807",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "263726",
+      "log_path": "/root/autodl-tmp/colliforce-outputs/baseline_lora_spa_s0/train.log",
+      "checkpoint_path": "/root/autodl-tmp/colliforce-outputs/baseline_lora_spa_s0/",
+      "data_path": "/root/autodl-tmp/colliforce_data/safelibero_spatial",
+      "data_count": 50,
+      "model_name": "pi0+LoRA (rank 16/32)",
+      "seed": 0
+    },
+    "notes": "[2026-05-20 22:09] D006 relaunch with correct params. LoRA trainable params: 33,472,512 (~33.5M). 4/4 GPU on westd-35807.",
+    "reproduce": {
+      "finished_at": "2026-05-21T02:11:16.090Z"
+    },
+    "failure_reason": "EXIT_CODE=2 (shell misuse / syntax)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-21T02:11:17.493Z"
+  },
+  "timestamp": "2026-05-21T02:11:17.518855+00:00",
+  "trigger": "update_registry"
+}

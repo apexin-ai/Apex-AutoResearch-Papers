@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "39d649cfbb06a08539e9",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "knowledge related work outline",
+  "task_key": "worker_knowledge_related_work_outline_20260520T111549",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_knowledge_related_work_outline_20260520T111549_result.json",
+    "occurrence": 1,
+    "bytes": 624,
+    "sha256": "d07bf05cbe0a9eacece6b2143bd79f6992d32a9bbd029f2bcb526ad9af9be740"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。产出文件 `artifacts/related_work_outline.md`，18 篇论文按 4 个类别整理：\n\n- **SDF in Robotics** (6 篇): DeepSDF → iSDF → DiffCo 等，覆盖 SDF 表示、实时构建、可微碰撞检测\n- **VLA Safety** (7 篇): SafeVLA、VLSA、CAPE 等，区分了外挂安全层 vs. 推理时优化 vs. 辅助损失三条路线\n- **Flow Matching & Diffusion Policy** (5 篇): Flow Matching 基础 + π0/RT-2/OpenVLA/Octo 基座模型\n- **Benchmarks** (1 篇): LIBERO\n\n定位总结突出 ColliForce 的差异化：train-time SDF 辅助监督内在化碰撞感知，零推理开销。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/knowledge-related-work-outline.md"
+}

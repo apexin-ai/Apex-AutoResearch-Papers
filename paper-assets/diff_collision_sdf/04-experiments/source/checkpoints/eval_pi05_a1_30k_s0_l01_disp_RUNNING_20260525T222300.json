@@ -1,0 +1,33 @@
+{
+  "exp_id": "eval_pi05_a1_30k_s0_l01_disp",
+  "project": "diff_collision_sdf",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-25T20:55:55.672Z",
+    "updated_at": "2026-05-25T22:23:00.166Z",
+    "hypothesis": "Pi0.5+A1 30K displacement eval (seed0, λ=0.01): 用修复后的eval脚本重跑seed0 l01 30K checkpoint，获取含max_ee_displacement的完整eval结果。与10K best对比验证30K是否存在action collapse。",
+    "parent": "train_pi05_a1_obj_s0_l01",
+    "spec": {
+      "server": "westd-35807",
+      "gpu": [
+        "cuda:2"
+      ],
+      "account": "root",
+      "pid": "199726",
+      "command": "CUDA_VISIBLE_DEVICES=2 python scripts/eval_safelibero.py --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0_l01/30000 --config_name pi05_libero --model_type lora_baseline --suite safelibero_object --pi05 --gpu 2 --output_path /root/autodl-tmp/eval_results/eval_s0_l01_30k_disp.json",
+      "log_path": "~/runs/diff_collision_sdf/eval_pi05_a1_30k_s0_l01_disp.log",
+      "data_path": "safelibero_object",
+      "data_count": 200,
+      "model_name": "pi05_a1_sdf_seed0_l01_30k",
+      "seed": 0,
+      "checkpoint_source": "train_pi05_a1_obj_s0_l01",
+      "eval_data": "safelibero_object_levelII"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-25T22:23:00.304362+00:00",
+  "trigger": "update_registry"
+}

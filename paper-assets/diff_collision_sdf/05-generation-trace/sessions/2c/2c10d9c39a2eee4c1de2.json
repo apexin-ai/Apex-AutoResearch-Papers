@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2c10d9c39a2eee4c1de2",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops check a3 eval log and json",
+  "task_key": "worker_ops_check_a3_eval_log_and_json_20260522T062306",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_a3_eval_log_and_json_20260522T062306_result.json",
+    "occurrence": 1,
+    "bytes": 1883,
+    "sha256": "306190ccac8cf6be7c43b2a002839cd32e929c93f4dce14208fb5f539fa02791"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### 1. 进程存活 + GPU 占用\n- **eval 进程存活**：PID 343880，CPU 99%，启动于 14:12，正在跑\n- **GPU 占用**：cuda:1 上 8617 MiB（PID 343880）\n- cuda:0 上 23926 MiB 是另一个进程（a3_spatial_bowl 训练，PID 191747）\n- tmux session 存活（从 ps 输出可见 tmux 进程 PID 191740）\n\n### 2. Log 文件状态\n- 最后修改时间：**14:13:14**，大小 9460 bytes，之后未再更新\n- 最后内容停在模型加载完成 + benchmark 初始化阶段（Task 0 BDDL 加载、cuBLAS warning）\n- **原因确认：Python stdout buffering**。进程通过 `2>&1 | tee -a` 管道输出，Python 默认 stdout 是 fully buffered（非 TTY），所以 tee 看不到实时输出。进程实际在正常跑 episode，只是 log 被 buffer 住了。\n\n### 3. JSON 输出逻辑\n- **JSON 结果独立写文件**，不依赖 stdout。脚本在 `main()` 末尾用 `json.dump()` 一次性写入 `args.save_dir`（默认 `/root/autodl-tmp/eval_results/`）\n- 文件名格式：`eval_{suite}_{task_str}_level{level}_{ckpt_name}_{model_type}_seed{seed}.json`\n- 当前跑的命令没指定 `--task_id`，所以会遍历所有 task，最终写 `task_str=all` 的 JSON\n\n### 4. 已有 JSON 结果\n已存在一个 **a3_refine** 的 JSON（之前跑的 task1）：\n- `eval_safelibero_object_task1_levelII_best_a3_refine_seed0.json`（03:45 生成，22KB）\n  - TSR=0%, CAR=0%, 所有 50 个 episode 全部 collision_step=0, refine_count=0\n\n当前跑的是 **不指定 task_id 的全 task 跑**，完成后会生成 `eval_safelibero_object_all_levelII_best_a3_refine_seed0.json`。\n\n### 关键问题\n之前的 task1 结果中 **refine_count 全部为 0**，说明 SDF gradient refinement 根本没触发。结合 collision_step=0（第 0 步就碰撞），可能是初始状态就判定碰撞，refiner 来不及介入。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-a3-eval-log-and-json.md"
+}

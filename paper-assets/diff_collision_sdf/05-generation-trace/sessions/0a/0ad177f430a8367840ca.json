@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "0ad177f430a8367840ca",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "ops reeval queue rotation fix",
+  "task_key": "worker_ops_reeval_queue_rotation_fix_20260526T082104",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_reeval_queue_rotation_fix_20260526T082104.log",
+    "occurrence": 1,
+    "bytes": 1137872,
+    "sha256": "267b86e0325016502135f9344c840b85f0e2067dff30b5bd984e6f1204d96e7a"
+  },
+  "statistics": {
+    "messages": 749,
+    "user_turns": 1,
+    "tool_calls": 279,
+    "roles": {
+      "log": 1,
+      "system": 14,
+      "record": 1,
+      "assistant": 173,
+      "tool_call": 279,
+      "tool_result": 279,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 684,
+      "chunks": [
+        {
+          "path": "0ad177f430a8367840ca-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "0ad177f430a8367840ca-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "0ad177f430a8367840ca-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "0ad177f430a8367840ca-part-0004.json",
+          "message_count": 144
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 65,
+      "chunks": [
+        {
+          "path": "0ad177f430a8367840ca-part-0004.json",
+          "message_count": 36
+        },
+        {
+          "path": "0ad177f430a8367840ca-part-0005.json",
+          "message_count": 29
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-reeval-queue-rotation-fix.md"
+}

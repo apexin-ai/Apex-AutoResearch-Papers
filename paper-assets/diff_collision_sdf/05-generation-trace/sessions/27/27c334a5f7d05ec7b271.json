@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "27c334a5f7d05ec7b271",
+  "project": "diff_collision_sdf",
+  "kind": "history",
+  "title": "agent / loop_1_1779406438.md",
+  "task_key": "loop_1_1779406438",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_1_1779406438.md",
+    "occurrence": 1,
+    "bytes": 4751,
+    "sha256": "2e8efa09dadb88fd1dd6e348e2d72fd164cbb78a06a5356647ef31fc3f9f5042"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 1\nreason: max_wall_time\nupdated: '2026-05-21T23:33:57+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- westd-35807 GPU 白名单: cuda:0/1/2/3。westd-45947 白名单: cuda:0/1。超出必须 push back Director\n- baseline_spatial_bowl_s1 已被 D005 永久停止，不要重启\n- 所有训练命令必须带 `JAX_PLATFORMS=cpu`（JAX 会抢 GPU 导致 CUDA OOM）和 `WANDB_MODE=disabled`（W&B key 缺失会报错）\n- submit_training_job 的命令必须自带 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate libero`（westd-35807）或 `conda activate base`（westd-45947）\n- GPU 编号始终从 0 开始（框架自动注入 CUDA_VISIBLE_DEVICES 映射）\n- SAVE_TOTAL_LIMIT=2 已写入代码，不可放大（M008/M011 两次爆盘教训）\n\n### 2. 🖥️ 基础设施快照\n- **westd-35807** (4× RTX PRO 6000 96GB)\n  - 工作目录: `/root/colliforce-vla`\n  - Python: `/root/miniconda3/envs/libero/bin/python`，conda env = `libero`\n  - 模型权重: `/root/autodl-tmp/openpi_weights/pi0_base/`\n  - 数据: spatial → `/root/autodl-tmp/colliforce_data/safelibero_spatial/`, object → `/root/autodl-tmp/colliforce_data/safelibero_object/`\n  - Checkpoints: `/root/autodl-tmp/checkpoints/baseline_spatial_bowl/`, `/root/autodl-tmp/checkpoints/baseline_object_pudding/`\n  - 磁盘: autodl-tmp ~35% used (~230G 可用)\n- **westd-45947** (2× RTX PRO 6000 96GB)\n  - 工作目录: `/root/colliforce-vla`\n  - Python: `/root/miniconda3/bin/python`，conda env = `base`\n  - Checkpoints: A3 系列在 `/root/autodl-tmp/checkpoints/`\n- **活跃进程（截至 handoff 时刻）**:\n  - westd-35807 cuda:0: baseline_spatial_bowl_s0_v2, PID 222903, step ~28000/30000 (93%), 预计 ~2h 完成\n  - westd-35807 cuda:1: baseline_lora_spatial_bowl_s0, PID 281554\n  - westd-35807 cuda:2: baseline_object_pudding_s0_v2 刚完成（cuda:2 现空闲）\n  - westd-35807 cuda:3: baseline_lora_object_pudding_s0, PID 281629\n  - westd-45947 cuda:0: a3_gradient_spatial_bowl_s0, PID 71489\n  - westd-45947 cuda:1: a3_gradient_object_pudding_s0, PID 73160\n\n### 3. 📊 当前状态\n**刚完成**: baseline_object_pudding_s0_v2 训练完成 30000/30000, loss ~0.005, EXIT_CODE=0。已设 conclusion=success + metrics，但状态卡在 ANALYZING（需设 checkpoint_path 后转 DONE）。\n\n**等待中的回调**:\n- Worker `worker_verify_baseline_object_pudding_s0_v2_checkpoint` 正在验证 checkpoint 路径——回调后用其结果设 checkpoint_path，然后转 DONE\n- Worker `worker_diagnose_baseline_westd35807_double_fail` 诊断之前的误判失败——可能已完成，结果已不重要（实验实际跑完了）\n- Worker `worker_ssh_submit_a1_object_pudding_s0` 之前会话派的，可能在尝试提交 A1 object_pudding 实验\n\n**Registry RUNNING**:\n- baseline_spatial_bowl_s0_v2: 93%, ~2h 完成\n- baseline_lora_spatial_bowl_s0: 刚启动（cuda:1）\n- baseline_lora_object_pudding_s0: 刚启动（cuda:3）\n- a3_gradient_spatial_bowl_s0: westd-45947, 进度未知\n- a3_gradient_object_pudding_s0: westd-45947, 进度未知\n\n**cuda:2 空闲**: baseline_object_pudding_s0_v2 完成后 cuda:2 空出来了，需要填充任务。\n\n### 4. 📋 待办\n- checkpoint 验证 Worker 回调 → 设 checkpoint_path + log_path → 转 DONE → 刷新 report.md\n- baseline_spatial_bowl_s0_v2 完成回调 → 同样流程分析转 DONE\n- cuda:2 空闲 → 考虑提交 eval 实验（baseline_object_pudding eval 50 episodes）或其他训练\n- a3_gradient_* 完成回调 → 分析 A3 vs baseline 的 collision avoidance 效果，这是 MVP gate check 的核心对比\n- 所有 baseline + A3 训练完成 → 启动评估 pipeline（50 episodes × 2 scenes），用已验证的 eval pipeline\n- 已向 Director 汇报了双 baseline 失败（实为误判），需要更正汇报\n\n### 5. 🎯 战略上下文\n- **D001-D005 决策链**: π0/openpi 锁定为 MVP 基座 → Phase B GPU 实验 → SAVE_TOTAL_LIMIT=2 防爆盘 → baseline_s1 永久停止\n- **MVP Pass/Fail 标准**: A3 vs Baseline 碰撞率下降 ≥15%，成功率下降 <10%。这是项目 gate check\n- **两套 baseline 并行**: 原始 baseline（frozen backbone）在 cuda:0/2 完成中；新 LoRA baseline（cuda:1/3）是为了与 A3 公平对比（A3 用了 LoRA，原始 baseline 没用）。Director 意识到这个公平性问题后加的\n- **易踩坑**: \n  - 之前的\"失败\"很多是 cron 误判（进程实际还在跑）。看到 \"process dead 5×\" 先查日志确认，不要急着重启\n  - a1_sdf_spatial_bowl_s0_v3 之前在 cuda:3 上跑，现在 cuda:3 被 baseline_lora_object_pudding_s0 占了——确认 a1 是否已完成/被 kill\n  - westd-45947 的 A3 实验之前多次 crash（GPU fault, 默认 --gpu 3 问题），当前状态需要 SSH 确认\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-1-1779406438.md"
+}

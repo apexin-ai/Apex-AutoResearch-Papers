@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1e1a9866f1ca11dd2817",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "eval lora pertask reeval",
+  "task_key": "worker_eval_lora_pertask_reeval_20260528T002002",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_lora_pertask_reeval_20260528T002002_result.json",
+    "occurrence": 1,
+    "bytes": 1357,
+    "sha256": "be5f9ab4bbae857a98574e70bc4f75f08f481087c346b9892fd69ab18cab5e68"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 SDF 条件的 appendix 数据均与 reeval 完全匹配。问题仅在 LoRA-only s0。\n\n## 结论\n\n**不需要重跑 eval。** 所有 reeval 数据已存在于 westd-45947。\n\n### 详细对比\n\n| 条件 | s0 | s1 | s2 |\n|---|---|---|---|\n| LoRA-only | **不一致** | 一致 ✓ | 一致 ✓ |\n| SDF λ=0.005 | 一致 ✓ | 一致 ✓ | 一致 ✓ |\n| SDF λ=0.01 | 一致 ✓ | 一致 ✓ | 一致 ✓ |\n\n### LoRA-only s0 的问题\n\nAppendix 中的 s0 数据与 reeval JSON 不一致：\n\n| Task | Appendix s0 (错) | Reeval s0 seed=7 (对) |\n|---|---|---|\n| chocolate_pudding | 74 | 74 |\n| milk | **66** | **70** |\n| orange_juice | **68** | **56** |\n| bbq_sauce | **20** | **26** |\n| Per-seed mean | **57.0** | **56.5** |\n\n数据来源文件：`westd-45947:/root/autodl-tmp/eval_results/lora_baseline_s0_reeval_safelibero_object_levelII_seed7.json`\n\n### 需要修正\n\nAppendix `tab:pertask_lora` 表需更新 s0 列为 reeval 值，并重算 overall：\n- 新 overall mean: (56.5 + 52.5 + 55.0) / 3 = **54.67**\n- 新 std: **2.02**\n- 原值: 54.83 ± 2.25\n\n以及 per-task Mean 列也需更新：\n- chocolate_pudding: (74+68+76)/3 = 72.67 → 不变\n- milk: (70+72+62)/3 = **68.00** (原 66.67)\n- orange_juice: (56+54+56)/3 = **55.33** (原 59.33)\n- bbq_sauce: (26+16+26)/3 = **22.67** (原 20.67)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-lora-pertask-reeval.md"
+}

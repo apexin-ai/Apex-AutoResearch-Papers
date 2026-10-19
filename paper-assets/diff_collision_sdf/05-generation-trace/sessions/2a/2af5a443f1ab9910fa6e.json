@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2af5a443f1ab9910fa6e",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "research related work followup",
+  "task_key": "worker_research_related_work_followup_20260523T032252",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_related_work_followup_20260523T032252_result.json",
+    "occurrence": 1,
+    "bytes": 917,
+    "sha256": "5a6780d6946145fd7ac0a3db4ddef4a8cbd557247695485718624875ad8d5e8c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "核查完成。关键发现：\n\n1. **AEGIS 深度核查**：\n   - CAR 定义与我们一致（episode-level binary, obstacle displacement），但无明确阈值\n   - **重要修正**：此前 50.88% 被误认为 Pi0.5 的 obstacle avoidance rate，实际是 task success rate；Pi0.5 CAR = 18.69%（我们 26.8%，反而更高）\n   - AEGIS **完全没有 fake safety 分析**，强力支持 Claim 1\n   - CBF 修正纯推理时，需 RGB-D + 点云，计算开销仅 0.356ms\n\n2. **引用验证**：3 篇全部 ✅ 通过（CoFreeVLA / CompliantVLA-adaptor / VLA Safety Survey）\n\n3. **补充文献**：新增 5 篇引用 — Goodhart's Law in RL（理论支撑 fake safety）、SB-TRPO（safe RL degenerate policy 直接证据）、VLA benchmark evaluation、ICML 2024 negative results position paper、ICBINB workshop series\n\n所有内容已追加到 `artifacts/related_work_survey.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-related-work-followup.md"
+}

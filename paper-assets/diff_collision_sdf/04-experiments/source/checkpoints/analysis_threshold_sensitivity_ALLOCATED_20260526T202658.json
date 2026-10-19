@@ -1,0 +1,15 @@
+{
+  "exp_id": "analysis_threshold_sensitivity",
+  "project": "diff_collision_sdf",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-26T20:26:45.402Z",
+    "updated_at": "2026-05-26T20:26:58.322Z",
+    "hypothesis": "dfCAR threshold τ_d is robust across [2, 200] mm: the bimodal displacement gap (collapsed < 0.1mm vs active > 270mm) means any threshold in this range produces identical dfCAR values, validating that the metric is not sensitive to threshold selection."
+  },
+  "timestamp": "2026-05-26T20:26:58.488240+00:00",
+  "trigger": "update_registry"
+}

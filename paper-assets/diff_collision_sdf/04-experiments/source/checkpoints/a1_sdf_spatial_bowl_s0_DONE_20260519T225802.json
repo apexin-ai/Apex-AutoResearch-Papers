@@ -1,0 +1,42 @@
+{
+  "exp_id": "a1_sdf_spatial_bowl_s0",
+  "project": "diff_collision_sdf",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T22:40:25.549Z",
+    "updated_at": "2026-05-19T22:58:02.752Z",
+    "hypothesis": "SDF auxiliary task (decoder+EE extractor) via train_loop hooks improves collision awareness — Phase 1 warmup SDF decoder, Phase 2 unfreeze LoRA+SDF, expecting CAR improvement over baseline with TSR drop <10%",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 python scripts/train_a1_hook.py --scene spatial_bowl --seed 0",
+      "server": "westd-35807",
+      "data_path": "/root/autodl-tmp/colliforce_data/safelibero_spatial/",
+      "data_count": 5068,
+      "model_name": "pi0_base + SDF decoder (395K) + EE extractor (263K)",
+      "seed": 0,
+      "gpu": "cuda:3",
+      "pid": 101662,
+      "log_path": "/root/autodl-tmp/logs/a1_sdf_spatial_bowl_s0.log",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/a1_sdf_spatial_bowl_0/",
+      "hyperparams": {
+        "lr": "2.5e-5",
+        "batch_size": 2,
+        "num_train_steps": 30000,
+        "sdf_loss_weight": 0.1,
+        "ee_fk_loss_weight": 0.01,
+        "phase1_steps": 5000,
+        "extra_delta_transform": false
+      }
+    },
+    "reproduce": {
+      "finished_at": "2026-05-19T22:58:02.666Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-19T22:58:02.752Z"
+  },
+  "timestamp": "2026-05-19T22:58:02.766812+00:00",
+  "trigger": "update_registry"
+}

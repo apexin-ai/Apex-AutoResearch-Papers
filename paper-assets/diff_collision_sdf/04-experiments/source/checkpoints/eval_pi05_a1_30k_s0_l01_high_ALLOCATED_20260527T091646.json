@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_pi05_a1_30k_s0_l01_high",
+  "project": "diff_collision_sdf",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-27T09:16:21.829Z",
+    "updated_at": "2026-05-27T09:16:46.718Z",
+    "hypothesis": "Evaluate λ=0.1 seed0 30K checkpoint on safelibero_object to determine A/B/C scenario. Based on stepwise curve (16K-28K CAR ~52.5-60.5%, mean ~55.1%), expect Scenario B (CAR ≤ 57%, SDF redundant). This is the first of 2-3 seeds needed for statistical determination.",
+    "parent": "train_pi05_a1_obj_s0_l01_high"
+  },
+  "timestamp": "2026-05-27T09:16:46.915547+00:00",
+  "trigger": "update_registry"
+}

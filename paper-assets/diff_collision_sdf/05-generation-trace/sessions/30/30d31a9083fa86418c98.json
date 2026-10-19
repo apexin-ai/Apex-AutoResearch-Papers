@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "30d31a9083fa86418c98",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops gpu2 openvla fix attempt",
+  "task_key": "worker_ops_gpu2_openvla_fix_attempt_20260525T231108",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu2_openvla_fix_attempt_20260525T231108_result.json",
+    "occurrence": 1,
+    "bytes": 1203,
+    "sha256": "efb4cc23f1d2a02de4de0cd2095c30797ab06b047dc1bdb476de02f222712d0c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报结果：\n\n## OpenVLA Eval 诊断结果: **NO** — 30 分钟内无法跑起来\n\n### 1. 模型文件：不完整，无法加载\n- **safetensors 下载未完成**：3 个 shard 文件均有 `.aria2` 控制文件残留，说明 aria2 下载中断，文件很可能是截断/损坏的\n- **缺少关键文件**：`configuration_prismatic.py`、`modeling_prismatic.py`、tokenizer 系列文件全部缺失\n- 目录中仅有：`config.json`、`generation_config.json`、3 个 safetensors shard、`model.safetensors.index.json`\n\n### 2. Eval 脚本：不存在\n- `eval_safelibero_openvla.py` 不存在\n- 现有 `eval_safelibero.py` 仅支持 `baseline`/`a1`/`a3` 三种模型类型，全部基于 pi0 (openpi)，不支持 OpenVLA\n- 代码库中无任何 openvla 或 prismatic 相关文件\n\n### 3. 具体阻塞点\n1. **模型需重新下载** — safetensors 损坏 + 缺少 6 个必要文件（约 15GB 总量，下载时间不可控）\n2. **需从零写 eval 脚本** — OpenVLA 的推理接口（`AutoModelForVision2Seq` + `AutoProcessor`）与现有 pi0 架构完全不同，无法复用现有脚本，需要编写完整的 OpenVLA 推理 + SafeLIBERO 环境交互逻辑"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu2-openvla-fix-attempt.md"
+}

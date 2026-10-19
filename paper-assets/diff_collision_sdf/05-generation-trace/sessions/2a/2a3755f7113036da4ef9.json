@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2a3755f7113036da4ef9",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "paper tsr collapse integration",
+  "task_key": "worker_paper_tsr_collapse_integration_20260526T062246",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_tsr_collapse_integration_20260526T062246_result.json",
+    "occurrence": 1,
+    "bytes": 993,
+    "sha256": "c1f850484f8ebdc951ecccf8c5fcb2d05a1f23865ff77847ecbdaadb9048ee5c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编辑完成。变更内容：\n\n**Table~\\ref{tab:avoidance_source}**（已有表）：填入 3 个 EE Disp placeholder — Pi0.5 baseline 无数据用 `---`，SDF λ=0.005 填 0.50m，λ=0.01 填 0.47m。\n\n**TSR collapse 段落**：从 1 段扩展为完整小节，包含：\n- **Table~\\ref{tab:per_task_tsr}**：4 任务 × 4 条件的 TSR 分解表，数据来自 11 个 eval JSON（2+4+3+2 seeds）\n- **三条证据链**：EE displacement 0.47–0.50m（非冻结）、obstacle displacement 0.143→0.059m（避障保留）、safe failure rate 0.5%→49.8%（100× 增长）\n- **Figure~\\ref{fig:failure_modes}**：引用 `failure_mode_comparison.pdf`\n- **Chocolate Pudding 异常**：唯一保留 ~25% TSR 的任务，提示 task-specific forgetting vulnerability\n\n已有骨架（avoidance source 表、lambda curve placeholder、λ=0.1 pending 文本）全部保留。图文件需从 `westd-35807:/root/colliforce-vla/figures/` 复制到 `docs/paper/figures/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-tsr-collapse-integration.md"
+}

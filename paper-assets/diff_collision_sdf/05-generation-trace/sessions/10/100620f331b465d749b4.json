@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "100620f331b465d749b4",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops eval s2 l005 best cuda3",
+  "task_key": "worker_ops_eval_s2_l005_best_cuda3_20260525T164117",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval_s2_l005_best_cuda3_20260525T164117_result.json",
+    "occurrence": 1,
+    "bytes": 450,
+    "sha256": "3da6b66ec91ded8fba0815e57181b77792b7b2cf012d40dfef7862f4e03aadeb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程在跑（PID 483300, RSS ~8GB, 运行 47 秒），CPU 端加载模型中。模型加载到 GPU 通常需要 1-2 分钟，之后 cuda:3 显存会上涨。\n\n汇总：\n\n- **Checkpoint**: best/ step 10000, best_loss=0.008740\n- **PID**: 483300，cuda:3\n- **日志**: 模型初始化正常 — `Creating PI0Pytorch model and injecting LoRA...`\n- **状态**: 模型 CPU 加载中（RSS 8GB），等加载完成后会转到 cuda:3"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-s2-l005-best-cuda3.md"
+}

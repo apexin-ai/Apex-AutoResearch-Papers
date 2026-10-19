@@ -1,0 +1,70 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\citation{safelibero}
+\citation{pi0}
+\citation{openvla}
+\@writefile{toc}{\contentsline {paragraph}{Contributions.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{VLA Safety Evaluation.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Vision-Language-Action Models.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Safety through Geometric Supervision.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method: Displacement-Filtered CAR}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Method: Displacement-Filtered CAR}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Standard CAR and Its Failure Modes}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Displacement-Filtered CAR}{2}{subsection.3.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Cross-model fake safety analysis on \texttt  {object\_pudding}. FSR indicates the fraction of nominally safe episodes attributable to non-avoidance mechanisms.}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:fake_safety}{{1}{3}{Cross-model fake safety analysis on \texttt {object\_pudding}. FSR indicates the fraction of nominally safe episodes attributable to non-avoidance mechanisms}{table.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Fake Safety Rate}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\newlabel{sec:experiments}{{4}{3}{Experiments}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Experimental Setup}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Models.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Scenes.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Metrics.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Fake Safety is Pervasive (Claim 1)}{3}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:exp_fake}{{4.2}{3}{Fake Safety is Pervasive (Claim 1)}{subsection.4.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Displacement verification for Pi0 (A1), 50-episode subset. Obstacle and EE displacement confirm action collapse in safe episodes.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:displacement_detail}{{2}{4}{Displacement verification for Pi0 (A1), 50-episode subset. Obstacle and EE displacement confirm action collapse in safe episodes}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces SDF attribution analysis on \texttt  {object\_pudding} (30K steps). LoRA-only achieves equivalent CAR to LoRA+SDF, indicating geometric supervision is unnecessary.}}{4}{table.3}\protected@file@percent }
+\newlabel{tab:sdf_attribution}{{3}{4}{SDF attribution analysis on \texttt {object\_pudding} (30K steps). LoRA-only achieves equivalent CAR to LoRA+SDF, indicating geometric supervision is unnecessary}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}LoRA Capacity is Sufficient for Collision Avoidance}{4}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:exp_lora}{{4.3}{4}{LoRA Capacity is Sufficient for Collision Avoidance}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Interpretation.}{4}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}SDF Effect Does Not Generalize Across Scenes}{4}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:exp_spatial}{{4.4}{4}{SDF Effect Does Not Generalize Across Scenes}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Phase 2: SDF Training Causes Irreversible Damage}{4}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:exp_phase2}{{4.5}{4}{Phase 2: SDF Training Causes Irreversible Damage}{subsection.4.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces SDF effect decomposition. SDF's only identifiable contribution is converting fake safety to real safety at extreme task cost.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:sdf_decomposition}{{4}{5}{SDF effect decomposition. SDF's only identifiable contribution is converting fake safety to real safety at extreme task cost}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Cross-scene SDF effect. The modest CAR gain on \texttt  {spatial\_bowl} (+9\,pp) is likely explained by LoRA capacity rather than geometric supervision.}}{5}{table.5}\protected@file@percent }
+\newlabel{tab:cross_scene}{{5}{5}{Cross-scene SDF effect. The modest CAR gain on \texttt {spatial\_bowl} (+9\,pp) is likely explained by LoRA capacity rather than geometric supervision}{table.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{Mechanistic interpretation.}{5}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Lambda Dose-Response}{5}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:exp_lambda}{{4.6}{5}{Lambda Dose-Response}{subsection.4.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{5}{section.5}\protected@file@percent }
+\newlabel{sec:discussion}{{5}{5}{Discussion}{section.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{What doesn't work and why.}{5}{section*.10}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{safelibero}{SafeLIBERO(2025)}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Per-task results on \texttt  {spatial\_bowl} after SDF training (30K steps, $\lambda $=0.005).}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:spatial_detail}{{6}{6}{Per-task results on \texttt {spatial\_bowl} after SDF training (30K steps, $\lambda $=0.005)}{table.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Phase 2 recovery trajectory. After SDF removal, task performance barely recovers while safety encoding dissipates---the model is strictly worse than LoRA-only on both axes.}}{6}{table.7}\protected@file@percent }
+\newlabel{tab:phase2}{{7}{6}{Phase 2 recovery trajectory. After SDF removal, task performance barely recovers while safety encoding dissipates---the model is strictly worse than LoRA-only on both axes}{table.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{Implications for VLA safety research.}{6}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{6}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{6}{section.6}\protected@file@percent }
+\newlabel{sec:conclusion}{{6}{6}{Conclusion}{section.6}{}}
+\bibcite{pi0}{Pi0(2024)}
+\bibcite{openvla}{OpenVLA(2024)}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Per-task Phase 2 recovery. Only \texttt  {chocolate\_pudding} (the easiest task) shows marginal recovery.}}{7}{table.8}\protected@file@percent }
+\newlabel{tab:phase2_tasks}{{8}{7}{Per-task Phase 2 recovery. Only \texttt {chocolate\_pudding} (the easiest task) shows marginal recovery}{table.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Cancelled Experiments}{7}{appendix.A}\protected@file@percent }
+\newlabel{app:cancelled}{{A}{7}{Cancelled Experiments}{appendix.A}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B}OpenVLA Detailed Results}{7}{appendix.B}\protected@file@percent }
+\newlabel{app:openvla}{{B}{7}{OpenVLA Detailed Results}{appendix.B}{}}
+\gdef \@abspage@last{7}

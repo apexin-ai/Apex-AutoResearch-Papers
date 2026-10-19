@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_baseline_fullft_spatial_v11",
+  "project": "diff_collision_sdf",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T15:36:41.633Z",
+    "updated_at": "2026-05-22T15:42:02.589Z",
+    "hypothesis": "Full-FT baseline eval on safelibero_spatial with action chunking (M020) — fills critical comparison gap. LoRA baseline spatial CAR=0% (all 200 episodes collide). If full-FT also CAR≈0%, spatial_bowl is inherently extremely difficult for collision avoidance. If full-FT CAR >> 0%, LoRA capacity is the bottleneck. Essential reference for interpreting A3 spatial results.",
+    "parent": "baseline_spatial_bowl_s0_v2"
+  },
+  "timestamp": "2026-05-22T15:42:02.643851+00:00",
+  "trigger": "update_registry"
+}

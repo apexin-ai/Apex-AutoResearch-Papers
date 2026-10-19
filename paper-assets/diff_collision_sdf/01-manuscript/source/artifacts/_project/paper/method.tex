@@ -1,0 +1,125 @@
+\section{Method}\label{sec:method}
+
+We present ColliForce-VLA, a framework that integrates differentiable workspace Signed Distance Fields (SDFs) into the forward pass of a pretrained Vision-Language-Action model to enable collision-aware action generation. The method requires no architectural modification to the VLA backbone and adds no extra modules at inference time. We describe the problem formulation (Section~\ref{sec:problem}), the differentiable SDF integration (Section~\ref{sec:sdf_integration}), the gradient-guided action refinement mechanism (Section~\ref{sec:gradient_refinement}), the training protocol (Section~\ref{sec:training}), and inference-time deployment (Section~\ref{sec:inference}).
+
+\subsection{Problem Formulation}\label{sec:problem}
+
+We consider a language-conditioned robotic manipulation setting where a Vision-Language-Action model $\pi_\theta$ generates an action trajectory $\{a_t\}_{t=1}^{H}$ with horizon $H = 50$, conditioned on visual observations $o$ and a language instruction $l$. Each action $a_t \in \mathbb{R}^7$ specifies the desired end-effector (EE) displacement in position ($\Delta x, \Delta y, \Delta z$), orientation ($\Delta q_1, \Delta q_2, \Delta q_3$), and gripper state.
+
+We formalize collision avoidance through the workspace Signed Distance Field $\Phi: \mathbb{R}^3 \to \mathbb{R}$, where $\Phi(\mathbf{x}) > 0$ indicates free space, $\Phi(\mathbf{x}) = 0$ denotes the obstacle boundary, and $\Phi(\mathbf{x}) < 0$ indicates penetration. The objective is to learn a policy satisfying $\Phi(\mathrm{EE}(a_t)) > 0$ for all $t$ while preserving task success.
+
+Our base model is $\pi_0$~\cite{black2024pi0}, a 3.5B-parameter flow-matching VLA comprising a PaliGemma vision-language encoder (Gemma 2B) and a Gemma 300M action expert. The action expert produces a sequence of action tokens through an output projection $W_{\mathrm{out}} \in \mathbb{R}^{1024 \times 32}$ that maps from the expert's hidden dimension to the action token space.
+
+\subsection{Differentiable SDF Integration}\label{sec:sdf_integration}
+
+We augment the VLA with two lightweight auxiliary modules that operate on the action expert's intermediate representations, together adding fewer than 660K parameters.
+
+\paragraph{Feature extraction.} We capture the action expert's suffix output $\mathbf{z} \in \mathbb{R}^{B \times H \times 1024}$, the tensor immediately preceding $W_{\mathrm{out}}$, via a forward hook on \texttt{action\_out\_proj}. Mean-pooling along the action horizon dimension yields a compact representation:
+\begin{equation}\label{eq:pooling}
+\bar{\mathbf{z}} = \frac{1}{H} \sum_{t=1}^{H} \mathbf{z}_t \in \mathbb{R}^{1024}
+\end{equation}
+that summarizes the action expert's spatial understanding of the current scene.
+
+\paragraph{SDF Decoder.} A 4-layer MLP $f_\mathrm{SDF}$ predicts the signed distance value at arbitrary 3D query points given the pooled features:
+\begin{equation}\label{eq:sdf_decoder}
+f_\mathrm{SDF}: (\bar{\mathbf{z}}, \mathbf{x}) \mapsto \hat{\Phi}(\mathbf{x}), \quad \bar{\mathbf{z}} \in \mathbb{R}^{1024},\; \mathbf{x} \in \mathbb{R}^3
+\end{equation}
+The architecture employs hidden dimension 256 with Softplus activation ($\beta = 5$) and a skip connection that re-injects the query coordinates at layer 2:
+\begin{align}
+\mathbf{h}_0 &= \sigma(\mathbf{W}_0 [\bar{\mathbf{z}}; \mathbf{x}] + \mathbf{b}_0), \quad \mathbf{W}_0 \in \mathbb{R}^{256 \times 1027} \label{eq:sdf_layer0} \\
+\mathbf{h}_1 &= \sigma(\mathbf{W}_1 \mathbf{h}_0 + \mathbf{b}_1), \quad \mathbf{W}_1 \in \mathbb{R}^{256 \times 256} \\
+\mathbf{h}_2 &= \sigma(\mathbf{W}_2 [\mathbf{h}_1; \mathbf{x}] + \mathbf{b}_2), \quad \mathbf{W}_2 \in \mathbb{R}^{256 \times 259} \\
+\hat{\Phi}(\mathbf{x}) &= \mathbf{W}_3 \mathbf{h}_2 + \mathbf{b}_3, \quad \mathbf{W}_3 \in \mathbb{R}^{1 \times 256} \label{eq:sdf_output}
+\end{align}
+where $\sigma(\cdot) = \mathrm{Softplus}_{\beta=5}(\cdot)$. The total parameter count is ${\sim}$395K. Spatial gradients $\nabla_{\mathbf{x}} \hat{\Phi}(\mathbf{x})$ are computed via \texttt{torch.autograd.grad} with graph creation enabled during training, which is required for Eikonal regularization and the gradient-guided refinement in Section~\ref{sec:gradient_refinement}.
+
+\paragraph{End-Effector (EE) Extractor.} A 2-layer MLP $g_\mathrm{EE}$ predicts the current EE position from the pooled features:
+\begin{equation}\label{eq:ee_extractor}
+g_\mathrm{EE}: \bar{\mathbf{z}} \mapsto \hat{\mathbf{p}}_\mathrm{EE} \in \mathbb{R}^3, \quad \mathrm{Linear}(1024, 256) \to \mathrm{ReLU} \to \mathrm{Linear}(256, 3)
+\end{equation}
+with ${\sim}$263K parameters. The EE prediction provides the query point for evaluating collision proximity, and its auxiliary loss encourages the action expert features to encode spatial position information.
+
+\paragraph{Auxiliary losses.} The SDF decoder is trained with a clamped L1 loss and Eikonal regularization:
+\begin{equation}\label{eq:loss_sdf}
+\mathcal{L}_\mathrm{SDF} = \frac{1}{N} \sum_{i=1}^{N} \left| \mathrm{clamp}(\hat{\Phi}(\mathbf{x}_i), \pm\delta) - \mathrm{clamp}(\Phi^*(\mathbf{x}_i), \pm\delta) \right| + \lambda_\mathrm{eik} \frac{1}{N} \sum_{i=1}^{N} \left( \|\nabla_{\mathbf{x}} \hat{\Phi}(\mathbf{x}_i)\|_2 - 1 \right)^2
+\end{equation}
+where $\delta = 0.05$ is the clamping threshold, $\lambda_\mathrm{eik} = 0.1$, and $N = 64$ query points are sampled from the ground-truth SDF volume per step. Clamping focuses learning on the near-surface region most relevant for collision detection; the Eikonal term enforces the unit-gradient property of valid distance fields. The EE extractor is trained with MSE loss:
+\begin{equation}\label{eq:loss_ee}
+\mathcal{L}_\mathrm{EE} = \|\hat{\mathbf{p}}_\mathrm{EE} - \mathbf{p}^*_\mathrm{EE}\|_2^2
+\end{equation}
+
+\subsection{SDF Gradient-Guided Action Refinement}\label{sec:gradient_refinement}
+
+The core contribution of ColliForce-VLA is a gradient-based mechanism that steers the action expert's representations away from collision-prone regions during training. Unlike post-hoc action filtering or external safety layers, this approach modifies the feature space directly, enabling the model to internalize collision avoidance behavior into its LoRA parameters.
+
+\paragraph{Refinement procedure.} Given the captured suffix output $\mathbf{z} \in \mathbb{R}^{B \times H \times 1024}$, the refinement proceeds in five steps:
+
+\textbf{Step 1.} Predict EE position and evaluate the SDF:
+\begin{equation}
+\hat{\mathbf{p}}_\mathrm{EE} = g_\mathrm{EE}(\bar{\mathbf{z}}), \quad \hat{d} = f_\mathrm{SDF}(\bar{\mathbf{z}}, \hat{\mathbf{p}}_\mathrm{EE})
+\end{equation}
+
+\textbf{Step 2.} Identify near-collision samples within the batch:
+\begin{equation}\label{eq:collision_set}
+\mathcal{S} = \{i : \hat{\Phi}(\hat{\mathbf{p}}_{\mathrm{EE},i}) < m\}, \quad m = 0.01
+\end{equation}
+
+\textbf{Step 3.} For samples in $\mathcal{S}$, compute the feature-space SDF gradient:
+\begin{equation}\label{eq:feature_grad}
+\nabla_{\mathbf{z}} \hat{\Phi} = \frac{\partial \hat{\Phi}(\hat{\mathbf{p}}_\mathrm{EE})}{\partial \mathbf{z}}
+\end{equation}
+This gradient captures how changes in the action expert's internal representation affect the predicted collision distance. It is distinct from the spatial gradient $\nabla_{\mathbf{x}} \hat{\Phi}$ used in Eikonal regularization: $\nabla_{\mathbf{z}} \hat{\Phi}$ operates in the 1024-dimensional feature space and encodes directions that move the entire action representation toward safety.
+
+\textbf{Step 4.} Perform gradient ascent on the SDF value (toward higher, safer distances):
+\begin{equation}\label{eq:gradient_ascent}
+\mathbf{z}' = \mathbf{z} + \alpha \cdot \mathrm{clip}(\nabla_{\mathbf{z}} \hat{\Phi}, \gamma) \odot \mathbf{m}_\mathcal{S}
+\end{equation}
+where $\alpha = 0.1$ is the step size, $\mathrm{clip}(\cdot, \gamma)$ denotes per-sample L2 norm clipping with threshold $\gamma = 1.0$ for gradient stability, and $\mathbf{m}_\mathcal{S}$ is a binary mask selecting only near-collision samples.
+
+\textbf{Step 5.} Project both original and refined features through the action output head:
+\begin{equation}\label{eq:projection}
+\mathbf{v}_t = W_\mathrm{out}(\mathbf{z}), \quad \mathbf{v}'_t = W_\mathrm{out}(\mathbf{z}')
+\end{equation}
+
+\paragraph{Refinement loss.} The model is trained to directly produce collision-corrected actions by minimizing the discrepancy between original and refined predictions on near-collision samples:
+\begin{equation}\label{eq:loss_refine}
+\mathcal{L}_\mathrm{refine} = \frac{1}{|\mathcal{S}|} \sum_{i \in \mathcal{S}} \|\mathbf{v}_{t,i} - \mathrm{sg}(\mathbf{v}'_{t,i})\|_2^2
+\end{equation}
+where $\mathrm{sg}(\cdot)$ is the stop-gradient operator. The gradient flows only through $\mathbf{v}_t \to \mathbf{z} \to \theta_\mathrm{LoRA}$, training the LoRA adapters to anticipate and avoid collisions. The refined target $\mathbf{v}'_t$ is detached and serves as a teacher signal that encodes collision-aware behavior. Because the student (the LoRA-adapted VLA) learns to replicate the refined actions directly, the SDF gradient computation is not required at inference time; the collision-avoidance capability is absorbed into the model parameters during training.
+
+\subsection{Training Protocol}\label{sec:training}
+
+We adopt a two-phase training protocol that ensures SDF prediction accuracy before engaging gradient-guided refinement.
+
+\paragraph{Phase 1: Auxiliary module warmup ($0 \to 5\mathrm{K}$ steps).} The entire backbone, including LoRA parameters, is frozen. Only the SDF decoder (${\sim}$395K params) and EE extractor (${\sim}$263K params) are trained on detached features ($\bar{\mathbf{z}}.\mathrm{detach}()$) to avoid destabilizing the pretrained backbone. This phase establishes an accurate SDF predictor anchored to the backbone's current feature distribution.
+
+\paragraph{Phase 2: Joint training ($5\mathrm{K} \to 30\mathrm{K}$ steps).} LoRA parameters are unfrozen with a linear gradient warmup over 100 steps. We consider three training variants that differ only in their loss composition:
+
+\textit{Baseline}: Standard LoRA fine-tuning with flow-matching action loss only:
+\begin{equation}
+\mathcal{L}_\mathrm{base} = \mathcal{L}_\mathrm{action}
+\end{equation}
+
+\textit{A1 (SDF auxiliary supervision)}: Adds auxiliary losses without gradient-guided refinement:
+\begin{equation}\label{eq:loss_a1}
+\mathcal{L}_\mathrm{A1} = \mathcal{L}_\mathrm{action} + \lambda_\mathrm{SDF} \cdot \mathcal{L}_\mathrm{SDF} + \lambda_\mathrm{EE} \cdot \mathcal{L}_\mathrm{EE}
+\end{equation}
+with $\lambda_\mathrm{SDF} = 0.1$ and $\lambda_\mathrm{EE} = 0.01$. Gradients flow from the auxiliary losses through the pooled features into the LoRA adapters, encouraging the action expert to develop features that encode workspace geometry.
+
+\textit{A3 (gradient-guided refinement)}: Extends A1 with the refinement loss:
+\begin{equation}\label{eq:loss_a3}
+\mathcal{L}_\mathrm{A3} = \mathcal{L}_\mathrm{action} + \lambda_\mathrm{SDF} \cdot \mathcal{L}_\mathrm{SDF} + \lambda_\mathrm{EE} \cdot \mathcal{L}_\mathrm{EE} + \lambda_\mathrm{refine} \cdot \mathcal{L}_\mathrm{refine}
+\end{equation}
+with $\lambda_\mathrm{refine} = 0.1$. The refinement loss is computed only when near-collision samples exist in the batch ($|\mathcal{S}| > 0$), adding zero overhead for collision-free steps.
+
+\paragraph{LoRA configuration.} Adapters are injected into both the PaliGemma encoder (rank 16, $\alpha = 16$) and the action expert (rank 32, $\alpha = 32$), targeting attention projections ($W_q, W_k, W_v, W_o$) and MLP layers ($W_\mathrm{gate}, W_\mathrm{up}, W_\mathrm{down}$). The total trainable LoRA parameter count is ${\sim}$33.5M. All variants use AdamW optimizer with cosine learning rate decay from $2.5 \times 10^{-5}$ to $2.5 \times 10^{-6}$, batch size 32, and train for 30K steps total.
+
+\subsection{Inference}\label{sec:inference}
+
+At inference, only the base model with trained LoRA adapters is active. The standard forward pass generates actions through iterative flow-matching denoising; neither the auxiliary modules nor gradient computation is required. The LoRA parameters have internalized collision avoidance behavior during training, producing trajectories that maintain clearance from obstacles without additional computation.
+
+For deployment scenarios with out-of-distribution obstacle configurations, ColliForce-VLA supports an optional workspace-frame SDF gradient correction as a complementary safety net. If the predicted SDF at the next EE position falls below the safety margin ($\hat{\Phi}(\hat{\mathbf{p}}_\mathrm{next}) < m$), the position component of the action is corrected:
+\begin{equation}\label{eq:inference_correction}
+a'_t[:3] = a_t[:3] + \alpha \cdot \frac{\nabla_{\mathbf{x}} \hat{\Phi}(\hat{\mathbf{p}}_\mathrm{next})}{\|\nabla_{\mathbf{x}} \hat{\Phi}(\hat{\mathbf{p}}_\mathrm{next})\|_2}
+\end{equation}
+The L2-normalization bounds correction magnitude to $\alpha$ regardless of gradient scale. This mechanism introduces zero additional latency when $\hat{\Phi} \geq m$ and serves primarily as a safety net; the A3-trained model has already learned to avoid collisions and rarely triggers inference-time correction.

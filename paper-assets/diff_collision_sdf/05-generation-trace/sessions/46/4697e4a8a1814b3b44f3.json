@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4697e4a8a1814b3b44f3",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops v4 collect analyze and s0 launch",
+  "task_key": "worker_ops_v4_collect_analyze_and_s0_launch_20260525T163529",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_v4_collect_analyze_and_s0_launch_20260525T163529_result.json",
+    "occurrence": 1,
+    "bytes": 1979,
+    "sha256": "71b707db1253a1993637ebc0e9b374df67abb1a1270f35b3991a6d48ee946919"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 eval 都在运行。cuda:1 加载了 9GB（s0_l005 正在跑 T0），cuda:2 的 s0_l01 还在加载模型阶段。\n\n---\n\n## A. v4 结果表\n\n| Eval | Avg TSR | Avg CAR | T0 TSR/CAR | T1 TSR/CAR | T2 TSR/CAR | T3 TSR/CAR |\n|------|---------|---------|------------|------------|------------|------------|\n| s1_l005_v4 | 4.0% | 51.5% | 0%/54% | 16%/48% | 0%/88% | 0%/16% |\n| s2_l005_v4 | 9.0% | 53.0% | 4%/60% | 32%/46% | 0%/86% | 0%/20% |\n| s2_l01_v3 | 7.5% | 53.0% | 0%/62% | 30%/42% | 0%/88% | 0%/20% |\n\n## B. Displacement 分析\n\n**核心发现：所有模型的 safe episodes 100% 是 frozen（max_displacement < 0.001m）。Filtered CAR = 0%。**\n\n| Eval | Raw CAR | Filtered CAR | Frozen% | TSR |\n|------|---------|-------------|---------|-----|\n| s1_l01_30k | 52.5% | 0.0% | 100.0% | 8% |\n| s1_l005_30k | 51.5% | 0.0% | 100.0% | 4% |\n| s2_l005_30k | 53.0% | 0.0% | 100.0% | 9% |\n| s2_l01_30k | 53.0% | 0.0% | 100.0% | 8% |\n\n**Sensitivity（Filtered CAR at different thresholds）：**\n\n| Threshold | s1_l01_30k | s1_l005_30k | s2_l005_30k | s2_l01_30k |\n|-----------|-----------|-------------|-------------|-----------|\n| 0.0001 | 1.0% (F=98%) | 1.0% (F=98%) | 0.0% (F=100%) | 1.0% (F=98%) |\n| 0.001 | 0.0% (F=100%) | 0.0% (F=100%) | 0.0% (F=100%) | 0.0% (F=100%) |\n| 0.005 | 0.0% (F=100%) | 0.0% (F=100%) | 0.0% (F=100%) | 0.0% (F=100%) |\n| 0.01 | 0.0% (F=100%) | 0.0% (F=100%) | 0.0% (F=100%) | 0.0% (F=100%) |\n\nHistogram 已保存到 `/root/autodl-tmp/eval_results/displacement_hist_30k_batch.pdf`。\n\n## C. s0 补跑状态\n\n| Eval | PID | GPU | 显存 | 状态 |\n|------|-----|-----|------|------|\n| s0_l005_30k | 478653 | cuda:1 | 9012 MiB | 运行中，T0 开始 |\n| s0_l01_30k | 478930 | cuda:2 | 加载中 | 运行中，模型加载 |\n\n- cuda:0 (27GB) = spatial_bowl 训练（PID 168730）未受影响\n- cuda:3 空闲\n- 日志：`/root/colliforce-vla/logs/eval_s0_l005_30k.log` / `eval_s0_l01_30k.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-v4-collect-analyze-and-s0-launch.md"
+}

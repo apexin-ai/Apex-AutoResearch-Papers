@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0a76ac085a48f2b17bbc",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "research utilization audit",
+  "task_key": "worker_research_utilization_audit_20260528T191058",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_utilization_audit_20260528T191058_result.json",
+    "occurrence": 1,
+    "bytes": 952,
+    "sha256": "c9bbda19ac3a6d09046fd89b4df5106a7d7ece691dfebb97d6f14c8ece1a583a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。产出已注册为 `art_20260528_9360ac`。\n\n**核心发现：**\n\n- **利用率 70.8%**（51/72 实验被论文引用），29.2% 未引用的实验中 57% 是因 180° 旋转 bug 被废弃的 pre-fix 评估，属于合理排除。\n- **仅 3 个实验有未被利用的价值：**\n  1. `eval_multiseed_sdf_l01_s0_eseed256`（λ=0.1 第4个 eval seed，CAR=57%）— 可直接加入 appendix eval-seed 表，修复当前 3 vs 5 的不对称\n  2. `reeval_lora_s0_30k_v2`（同一模型重复评估，CAR=57% vs 56.5%）— 量化了 run-to-run 噪声，可支撑 MDE 讨论\n  3. `train_phase2_lambda0_extra_seed`（Phase 2 消融第2个 seed）— 如果做过 eval，可将 Phase 2 消融从 n=1 升至 n=2\n\n- **17 个溯源缺口：** 论文中的 Pi0 Full-FT（83%）、Pi0 LoRA（82%）、Oracle 系列、A3、spatial_bowl SDF 评估、以及 stepwise 16K/20K/24K/28K 数据均无对应 registry 实验记录。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-utilization-audit.md"
+}

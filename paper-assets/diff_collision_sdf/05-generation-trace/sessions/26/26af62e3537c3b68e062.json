@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "26af62e3537c3b68e062",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "eval eval pi05 a1 30k s1 l01 high",
+  "task_key": "worker_eval_eval_pi05_a1_30k_s1_l01_high_20260527T100119",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_eval_pi05_a1_30k_s1_l01_high_20260527T100119_result.json",
+    "occurrence": 1,
+    "bytes": 386,
+    "sha256": "0a10a3af3153df6186bad14d84f26e4dccf960bf53248333a6f1cbf1b5540044"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n| 项目 | 状态 |\n|------|------|\n| Checkpoint | 存在 (7.5GB model.safetensors) |\n| Eval 进程 | PID=760035, cuda:2, `--pi05` 已确认 |\n| 日志 | `/tmp/eval_30k_s1_l1.log`，模型加载中 |\n| Registry | `eval_pi05_a1_30k_s1_l01_high` → RUNNING |\n| Cron 监控 | 每 2 分钟轮询，job ID `db068802` |\n\n预计 30-40 分钟完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-eval-pi05-a1-30k-s1-l01-high.md"
+}

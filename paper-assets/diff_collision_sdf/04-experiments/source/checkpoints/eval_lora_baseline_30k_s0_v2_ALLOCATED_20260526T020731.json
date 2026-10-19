@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_lora_baseline_30k_s0_v2",
+  "project": "diff_collision_sdf",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-26T02:07:15.290Z",
+    "updated_at": "2026-05-26T02:07:30.956Z",
+    "hypothesis": "LoRA baseline (no SDF) 30K eval on object_pudding seed 0 (v2, base env fix): expects CAR ≈ Pi0.5 baseline (~27%), confirming ColliForce CAR improvement is from SDF not LoRA. Critical for Claim 4 SDF attribution + dfCAR ee_displacement data.",
+    "parent": "train_pi05_lora_baseline_s0"
+  },
+  "timestamp": "2026-05-26T02:07:31.095334+00:00",
+  "trigger": "update_registry"
+}

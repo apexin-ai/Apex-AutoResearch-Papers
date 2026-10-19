@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0c2af692583107f412ae",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "eval best s0 l005 cuda3",
+  "task_key": "worker_eval_best_s0_l005_cuda3_20260527T230013",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_best_s0_l005_cuda3_20260527T230013_result.json",
+    "occurrence": 1,
+    "bytes": 810,
+    "sha256": "015e10fb4e305a4d3b8caff698cbec3704f6a15ddef5e527f728bb08b864e8d5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 已成功启动并正在加载模型。\n\n**汇报：**\n\n- **实验 ID**: `eval_pi05_a1_best_s0_l005`\n- **命令**: `CUDA_VISIBLE_DEVICES=3 python scripts/eval_safelibero.py --checkpoint .../seed0_l005/30000 --model_type lora_baseline --pi05 --suite safelibero_object --safety_level II --n_episodes 50 --seed 7 --gpu 0 --output_path /root/autodl-tmp/eval_results/eval_pi05_a1_best_s0_l005.json`\n- **PID**: 907049\n- **日志**: `/root/runs/diff_collision_sdf/eval_pi05_a1_best_s0_l005.log`\n- **预计完成**: ~30-40 分钟（4 tasks × 50 episodes）\n\n**注意**: seed0_l005 没有 `best/` 目录（只有 `30000/`），使用 30000 作为 best checkpoint。seed1 的 best 在 step 16000，seed2 的 best 在 step 10000——seed0 训练时可能未启用 best checkpoint 保存。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-best-s0-l005-cuda3.md"
+}

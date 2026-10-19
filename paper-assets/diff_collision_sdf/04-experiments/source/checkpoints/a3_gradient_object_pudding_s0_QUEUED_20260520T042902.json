@@ -1,0 +1,29 @@
+{
+  "exp_id": "a3_gradient_object_pudding_s0",
+  "project": "diff_collision_sdf",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T02:51:33.509Z",
+    "updated_at": "2026-05-20T04:29:02.323Z",
+    "hypothesis": "SDF gradient-guided action refinement during training (A3) improves collision avoidance on object_pudding Level I — same A3 architecture on a different collision scenario, expecting CAR improvement over baseline. Directly comparable to AEGIS (CAR 32%, TSR 92%) on same task.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/colliforce-vla && WANDB_MODE=disabled python scripts/train_a3_hook.py --scene object_pudding --seed 0 --save_interval 500 --batch_size 32 --gpu 1 2>&1 | tee /root/autodl-tmp/logs/a3_gradient_object_pudding_s0.log\"",
+      "server": "westd-45947",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "38554",
+      "log_path": "~/runs/diff_collision_sdf/a3_gradient_object_pudding_s0.log",
+      "submitted_at": "2026-05-20T04:25:20.076Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "notes": "[2026-05-20 03:16] 启动崩溃: ModuleNotFoundError: No module named 'flax' (train_a3_hook.py → pi0_config.py:4). PID 6621 已退出. 需安装 flax 后重启."
+  },
+  "timestamp": "2026-05-20T04:29:02.348978+00:00",
+  "trigger": "update_registry"
+}

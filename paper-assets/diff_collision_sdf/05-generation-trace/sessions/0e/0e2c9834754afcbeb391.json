@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0e2c9834754afcbeb391",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "code fallback pdf 2seed",
+  "task_key": "worker_code_fallback_pdf_2seed_20260527T193438",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fallback_pdf_2seed_20260527T193438_result.json",
+    "occurrence": 1,
+    "bytes": 859,
+    "sha256": "012edc389901d417f8a8fd1203939083f56618e5985aad34fb1ca44f241c8b02"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇报：\n\n**Fallback 2-seed PDF 编译结果：**\n\n- **页数**: 15 页（CoRL 单栏格式）\n- **大小**: 455 KB\n- **本地路径**: `artifacts/fallback_2seed.pdf`\n- **远程路径**: `westd-45947:/root/colliforce-vla/artifacts/fallback_2seed.pdf`\n\n**2-seed 数据确认（已正确写入论文）：**\n- λ=0.1 CAR: 58.25% ± 0.35（2 seeds）\n- 表格标注: `†` 脚注 \"two of three seeds; third seed in progress\"\n- abstract: \"two of three seeds show a marginal signal (58.25%±0.35, p≈0.039)\"\n- discussion limitations: \"The λ=0.1 condition has n=2 seeds; the marginal departure (p≈0.039) is inconclusive\"\n- dose-response 段: \"suggestive but inconclusive at n=2\"\n\n注意：远程服务器不是 AutoDL 实例，没有 `/root/autodl-tmp/` 路径，已改存到 `/root/colliforce-vla/artifacts/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fallback-pdf-2seed.md"
+}

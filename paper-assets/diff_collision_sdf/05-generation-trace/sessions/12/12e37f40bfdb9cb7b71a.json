@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "12e37f40bfdb9cb7b71a",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "research related work survey",
+  "task_key": "worker_research_related_work_survey_20260523T030015",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_related_work_survey_20260523T030015_result.json",
+    "occurrence": 1,
+    "bytes": 1230,
+    "sha256": "20abb53ff58216e5a8cc40dc887216fcf3221b2b6507a99d244c4411323b1f46"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/related_work_survey.md`。\n\n**核心发现：**\n\n- **方向1 (VLA Safety)**: 找到5篇直接相关论文（SafeVLA, AEGIS, CoFreeVLA, SAFE, CompliantVLA-adaptor）。最直接的竞品是 AEGIS（推理时 CBF 修正）和 SafeVLA（RL 约束优化）。**没有任何工作在训练时用连续 SDF 信号做 auxiliary loss**——这是明确的 novelty gap。\n\n- **方向2 (Fake Safety)**: **显著 novelty gap**。\"overly conservative policy\"被多篇论文提及（FISOR, POLICEd RL），但无人定义指标来检测\"因不动而安全\"。frozen_rate 是原创贡献。\n\n- **方向3 (SDF in Manipulation)**: SDF 在传统规划中成熟（RDF, CDF, iSDF），但从未用于 VLA 模型的 auxiliary training signal。我们在几何规划和端到端 VLA 学习之间架桥。\n\n- **方向4 (Safety Metrics)**: Safety-Gymnasium、GUARD 提供方法论模板，VLA Safety Survey (2026) 直接讨论 VLA 安全评估。\n\n- **方向5 (Auxiliary Loss)**: RAIL（推理时安全滤波）、Reward Training Wheels（自适应权重调度）可借鉴；Diehl et al. 是重要反方——主张硬约束优于软 auxiliary loss，需要在论文中讨论这个 trade-off。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-related-work-survey.md"
+}

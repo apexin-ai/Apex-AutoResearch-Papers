@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2b6984fb2b69a56dad61",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "diagnose eval best s0 l005 exit",
+  "task_key": "worker_diagnose_eval_best_s0_l005_exit_20260527T234016",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_best_s0_l005_exit_20260527T234016_result.json",
+    "occurrence": 1,
+    "bytes": 592,
+    "sha256": "11b78a686ad834b4f4e0f412e993a6dc9d5ad8b04d616abb9b5044ec959b2b8a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论\n\n**eval_pi05_a1_best_s0_l005 正常完成**，无错误。使用 30000 checkpoint（seed0_l005 唯一 checkpoint）。\n\n### 结果\n\n| Task | Name | TSR | CAR |\n|------|------|-----|-----|\n| 0 | pick up orange juice → basket | 28.0% | 50.0% |\n| 1 | (object task) | 70.0% | 74.0% |\n| 2 | pick up milk → basket | 52.0% | 68.0% |\n| 3 | pick up bbq sauce → basket | 58.0% | 26.0% |\n| **Avg** | | **52.0%** | **54.5%** |\n\nTask 3 的 CAR 极低（26%），拖累整体 CAR。Task 0 的 TSR 也很差（28%）。Registry 已更新为 DONE/success。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-best-s0-l005-exit.md"
+}

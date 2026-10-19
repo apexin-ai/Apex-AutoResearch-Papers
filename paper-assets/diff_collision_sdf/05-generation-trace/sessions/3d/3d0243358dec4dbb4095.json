@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3d0243358dec4dbb4095",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops extract pi05 reeval ee disp",
+  "task_key": "worker_ops_extract_pi05_reeval_ee_disp_20260526T073929",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_extract_pi05_reeval_ee_disp_20260526T073929_result.json",
+    "occurrence": 1,
+    "bytes": 2143,
+    "sha256": "8851085d06c60734278e749ac5c4dc07c245df6041b2fa39e91e9f7ddcfd8417"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n```\nPi0.5 baseline re-eval (seed 7, 200ep):\n  TSR: 71.5%\n  CAR: 28.5%\n  Safe episodes: 57\n  Fake safe (EE disp < 0.1mm): 0 / 57 (0.0%)\n  Real safe (EE disp >= 0.1mm): 57 / 57\n  Mean max EE disp (all): 0.366595 m\n  Mean max EE disp (safe only): 0.365770 m\n  Mean max obstacle disp (all): 0.109322 m\n  Mean max obstacle disp (safe only): 0.000035 m\n\n  EE disp distribution (all 200 eps):\n    min=0.271226, max=0.458242, median=0.368375, std=0.031926\n  EE disp distribution (safe 57 eps):\n    min=0.288903, max=0.406447, median=0.370888, std=0.023709\n\n  Per-task metrics (4 tasks):\n  Task                                                       TSR    CAR   AvgMaxEE  AvgMaxObs   FakeSafe\n  ---------------------------------------------------------------------------------------------------\n  pick_up_the_orange_juice_and_place_it_in_the_basket      74.0%  16.0%   0.379925   0.144333        0/8\n  pick_up_the_chocolate_pudding_and_place_it_in_the_bas    80.0%  60.0%   0.384132   0.057071       0/30\n  pick_up_the_milk_and_place_it_in_the_basket              66.0%   6.0%   0.345584   0.123026        0/3\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket         66.0%  32.0%   0.356739   0.112857       0/16\n\n  Safe episode EE disp breakdown:\n    <   0.01mm: 0/57\n    <   0.10mm: 0/57\n    <   0.50mm: 0/57\n    <   1.00mm: 0/57\n    <   5.00mm: 0/57\n    <  10.00mm: 0/57\n    <  50.00mm: 0/57\n\n  Obstacle disp breakdown (all eps):\n    <   0.10mm: 53/200\n    <   1.00mm: 59/200\n    <   5.00mm: 69/200\n    <  10.00mm: 71/200\n    <  50.00mm: 78/200\n```\n\n**关键发现**：\n\n- **Fake safe rate = 0%**。所有 57 个 safe episode 的 max EE displacement 都 >= 50mm（最小值 288.9mm），说明 EE 确实在大幅运动。这些 safe episode 是\"真安全\"——机械臂运动了但没碰到障碍物。\n- Safe vs collision 的 EE disp 分布几乎相同（均值 0.366 vs 0.367），区别主要在 obstacle displacement（safe: 0.035mm vs all: 109.3mm）。\n- `collision_threshold=0.001`（1mm），safe episodes 的 obstacle disp 均值仅 0.035mm，远低于阈值。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-extract-pi05-reeval-ee-disp.md"
+}

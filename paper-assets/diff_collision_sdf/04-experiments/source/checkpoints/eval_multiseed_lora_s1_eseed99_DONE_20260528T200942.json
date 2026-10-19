@@ -1,0 +1,39 @@
+{
+  "exp_id": "eval_multiseed_lora_s1_eseed99",
+  "project": "diff_collision_sdf",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-28T09:24:27.026Z",
+    "updated_at": "2026-05-28T20:09:42.547Z",
+    "hypothesis": "Multi-eval-seed robustness: LoRA-only s1 30K with eval_seed=99. Extends multi-seed battery to LoRA s1.",
+    "parent": "reeval_lora_s1_30k",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python scripts/eval_safelibero.py --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed1/30000 --seed 99 --n_episodes 50 --suite safelibero_object --config_name pi05_libero --model_type lora_baseline",
+      "server": "westd-35807",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "654522",
+      "log_path": "/tmp/eval_eseed99.log",
+      "submitted_at": "2026-05-28T09:24:49.608Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed1/30000",
+      "eval_data": "safelibero_object",
+      "seed": 99,
+      "model_name": "pi05_lora_baseline",
+      "data_path": "safelibero_object",
+      "data_count": 50,
+      "wall_clock_seconds": 38692.9,
+      "gpu_hours": 10.75
+    },
+    "conclusion": "failed",
+    "completed_at": "2026-05-28T20:09:42.547Z"
+  },
+  "timestamp": "2026-05-28T20:09:42.797443+00:00",
+  "trigger": "update_registry"
+}

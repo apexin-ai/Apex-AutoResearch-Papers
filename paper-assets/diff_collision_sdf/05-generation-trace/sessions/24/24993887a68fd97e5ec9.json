@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "24993887a68fd97e5ec9",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops spatial bowl train prep",
+  "task_key": "worker_ops_spatial_bowl_train_prep_20260525T062515",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_spatial_bowl_train_prep_20260525T062515_result.json",
+    "occurrence": 1,
+    "bytes": 1745,
+    "sha256": "f029efe05b8f8e94c0f8ed69aa575c61cc3a050650b146f7439f7cf7a15d8d2e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有依赖项齐全。以下是汇总：\n\n---\n\n## spatial_bowl A1 训练确认\n\n### 完整启动命令\n\n```bash\ncd /root/colliforce-vla && \\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\nCUDA_VISIBLE_DEVICES=0 python scripts/train_a1_sdf_aux_pi05.py \\\n  --scene spatial_bowl \\\n  --lambda_sdf 0.005 \\\n  --seed 0 \\\n  --gpu 0 \\\n  --batch_size 32 \\\n  --num_train_steps 30000 \\\n  --save_interval 2000 \\\n  --log_interval 100\n```\n\n输出 checkpoint 目录将是：`/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_spatial_bowl_seed0_l005/`\n\n### 数据状态\n\n| 资源 | 路径 | 状态 |\n|------|------|------|\n| SafeLIBERO spatial BDDL | `vlsa-aegis/safelibero/.../safelibero_spatial/` | ✓ 4 个 task 文件 |\n| 训练数据 (LeRobot) | `/root/autodl-tmp/colliforce_data/safelibero_spatial/` | ✓ 存在 (data/images/meta) |\n| HDF5 原始数据 | `/root/autodl-tmp/colliforce_data/spatial_bowl_train.hdf5` | ✓ 存在 |\n| SDF GT | `/root/colliforce-vla/data/sdf_gt_spatial_bowl.npz` | ✓ 112KB |\n| Baseline assets (norm_stats) | `assets/baseline_spatial_bowl/safelibero_spatial/norm_stats.json` | ✓ 存在 |\n| Pi0.5 权重 | `/root/autodl-tmp/openpi_weights/pi05_libero/` | ✓ config.json + model.safetensors |\n\n### 参考：object_pudding 已完成的训练\n\ncheckpoints 下已有 6 个 object_pudding 实验（seed 0/1/2 × λ 0.005/0.1），格式为 `a1_sdf_pi05_object_pudding_seed{N}_l{lambda}`。\n\n### 预估训练时长\n\n基于 object_pudding 经验，30K steps 在单张 RTX PRO 6000 上约 **8-12 小时**。\n\n### 阻塞问题\n\n**无阻塞**。所有数据、权重、配置文件均已就绪，可直接提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-spatial-bowl-train-prep.md"
+}

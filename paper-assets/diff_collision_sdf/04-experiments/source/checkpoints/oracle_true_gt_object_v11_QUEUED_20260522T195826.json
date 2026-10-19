@@ -1,0 +1,16 @@
+{
+  "exp_id": "oracle_true_gt_object_v11",
+  "project": "diff_collision_sdf",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T19:44:02.650Z",
+    "updated_at": "2026-05-22T19:58:26.331Z",
+    "hypothesis": "True oracle SDF refinement using GT point cloud + numerical gradient (finite difference δ=1mm) — bypasses learned decoder entirely. Determines theoretical upper bound of action-space SDF gradient refinement. All previous \"oracle\" experiments used learned decoder (M027). Pass criteria: CAR ≥88% (baseline+5pp), moving episode collision rate <50%, displacement >10mm. If pass → method is viable, decoder training needs fixing. If fail → action-space SDF refinement is fundamentally insufficient.",
+    "parent": "oracle_a3_m024fix_object_v11"
+  },
+  "timestamp": "2026-05-22T19:58:26.418370+00:00",
+  "trigger": "update_registry"
+}

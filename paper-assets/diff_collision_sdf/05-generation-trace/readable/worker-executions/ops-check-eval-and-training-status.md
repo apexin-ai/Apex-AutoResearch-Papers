@@ -1,0 +1,1956 @@
+# ops check eval and training status
+
+**How Action Collapse Creates Illusory Safety in Diffusion-Based VLA Collision Avoidance Evaluation** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 41
+- **Recorded user turns:** 0
+- **Tool calls:** 16
+- **Original source:** `logs/workers/worker_ops_check_eval_and_training_status_20260521T235924.log`
+- **Structured JSON:** [`d6e089e0cb89561f9b16.json`](../../sessions/d6/d6e089e0cb89561f9b16.json)
+
+## Before a recorded user message
+
+41 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf",
+  "session_id": "b391c961-1550-430f-8ea4-62467524ba88",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "11275e6c-3d19-482a-bcca-3df620f17d12",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779424200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "493130fc-1c44-4543-98a4-54020e56f4da",
+  "session_id": "b391c961-1550-430f-8ea4-62467524ba88"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to check the status of evaluations and training jobs on two servers. Let me execute the SSH commands to gather the information.
+
+I'll use the MCP tools to SSH into the servers. Let me first load the tool schemas.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b391c961-1550-430f-8ea4-62467524ba88",
+  "uuid": "e006d560-226a-4815-9a0a-c957af10216c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013DFAEez3XppXWMSdPBwWww",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12423,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12423
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Yc7ASqLbpg1915GWRsc14T`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b391c961-1550-430f-8ea4-62467524ba88",
+  "uuid": "f31b6ff5-c011-4eef-9f7a-1862e0c0734f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013DFAEez3XppXWMSdPBwWww",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12423,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12423
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-21T23:59:38.501Z_
+
+<details><summary>↩ Tool result · `toolu_01Yc7ASqLbpg1915GWRsc14T`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b391c961-1550-430f-8ea4-62467524ba88",
+  "uuid": "46694215-e60c-4282-bd1f-7dbb01d8edb8",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me run the SSH commands on both servers in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b391c961-1550-430f-8ea4-62467524ba88",
+  "uuid": "22a72775-f328-4a92-b4c5-3083649e6983",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LfoVG3zvs2q5mcqVdPnW7C",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 491,
+      "cache_read_input_tokens": 23870,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 491
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EVqWAQDCqoDHEktwHymjX2`</summary>
+
+```json
+{
+  "server": "westd-45947",
+  "command": "ps -p 263983 -o pid,etime,rss,%cpu --no-headers",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b391c961-1550-430f-8ea4-62467524ba88",
+  "uuid": "4927da8b-2063-4368-99e0-9f485c3844c4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LfoVG3zvs2q5mcqVdPnW7C",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 491,
+      "cache_read_input_tokens": 23870,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 491
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-21T23:59:43.249Z_
+
+<details><summary>↩ Tool result · `toolu_01EVqWAQDCqoDHEktwHymjX2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"263983    03:06:36 9139276 103\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.14}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b391c961-1550-430f-8ea4-62467524ba88",
+  "uuid": "3efe2974-da5b-42b9-82d7-80da67be0cd5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"263983    03:06:36 9139276 103\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.14}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"263983    03:06:36 9139276 103\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.14}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0115AiLGT5bRvNvYMjXv58fz`</summary>
+
+```json
+{
+  "server": "westd-45947",
+  "command": "tmux list-sessions",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b391c961-1550-430f-8ea4-62467524ba88",
+  "uuid": "bb11cb3f-2ea0-49ec-a32e-1a91c2e35690",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LfoVG3zvs2q5mcqVdPnW7C",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 491,
+      "cache_read_input_tokens": 23870,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 491
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-21T23:59:43.533Z_
+
+<details><summary>↩ Tool result · `toolu_0115AiLGT5bRvNvYMjXv58fz`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b391c961-1550-430f-8ea4-62467524ba88",
+  "uuid": "4dbcba4f-0e16-4db9-9b57-a4ab7dc66ae2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NqWgWgHgV5a6WkAijf5m8d`</summary>
+
+```json
+{
+  "server": "westd-45947",
+  "command": "tail -80 /root/autodl-tmp/eval_results/eval_v9_refine.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b391c961-1550-430f-8ea4-62467524ba88",
+  "uuid": "a8c1b082-4a85-4ce5-ac90-437dea299618",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LfoVG3zvs2q5mcqVdPnW7C",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 491,
+      "cache_read_input_tokens": 23870,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 491
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-21T23:59:44.473Z_
+
+<details><summary>↩ Tool result · `toolu_01NqWgWgHgV5a6WkAijf5m8d`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"tail: cannot open '/root/autodl-tmp/eval_results/eval_v9_refine.log' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b391c961-1550-430f-8ea4-62467524ba88",
+  "uuid": "d186049e-f4de-463c-96a8-9f035a20b97f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"tail: cannot open '/root/autodl-tmp/eval_results/eval_v9_refine.log' for reading: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"tail: cannot open '/root/autodl-tmp/eval_results/eval_v9_refine.log' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018V6cSfqqct5TzSv6NBsZaL`</summary>
+
+```json
+{
+  "server": "westd-45947",
+  "command": "nvidia-smi --query-gpu=index,memory.used,memory.total,utilization.gpu --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b391c961-1550-430f-8ea4-62467524ba88",
+  "uuid": "28f248e8-72f6-49bb-a2ca-736fed6d8de1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LfoVG3zvs2q5mcqVdPnW7C",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 491,
+      "cache_read_input_tokens": 23870,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 491
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01F43b5VozdUVzLu1utN1e5T`</summary>
+
+```json
+{
+  "server": "westd-45947",
+  "command": "ps -p 191747 -o pid,etime,rss --no-headers",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b391c961-1550-430f-8ea4-62467524ba88",
+  "uuid": "b79ef7e8-590e-4dc6-8b8a-a0453bd80d43",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LfoVG3zvs2q5mcqVdPnW7C",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 491,
+      "cache_read_input_tokens": 23870,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 491
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-21T23:59:45.432Z_
+
+<details><summary>↩ Tool result · `toolu_018V6cSfqqct5TzSv6NBsZaL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 23935 MiB, 97887 MiB, 100 %\\n1, 8636 MiB, 97887 MiB, 29 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b391c961-1550-430f-8ea4-62467524ba88",
+  "uuid": "42e3ba92-8c5e-44f6-8b93-3e138d331670",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 23935 MiB, 97887 MiB, 100 %\\\\n1, 8636 MiB, 97887 MiB, 29 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"0, 23935 MiB, 97887 MiB, 100 %\\n1, 8636 MiB, 97887 MiB, 29 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-21T23:59:45.969Z_
+
+<details><summary>↩ Tool result · `toolu_01F43b5VozdUVzLu1utN1e5T`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"191747    06:47:28 3878128\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b391c961-1550-430f-8ea4-62467524ba88",
+  "uuid": "380dead0-fe80-48c9-a99f-a8a7c0c4b999",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"191747    06:47:28 3878128\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"191747    06:47:28 3878128\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012Yw89bvL7UY82atCZsTCJj`</summary>
+
+```json
+{
+  "server": "westd-45947",
+  "command": "tail -20 /tmp/a3_spatial_bowl.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b391c961-1550-430f-8ea4-62467524ba88",
+  "uuid": "d1ce819f-3055-4e72-bb93-d4b3792e7d06",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LfoVG3zvs2q5mcqVdPnW7C",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 491,
+      "cache_read_input_tokens": 23870,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 491
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-21T23:59:47.421Z_
+
+<details><summary>↩ Tool result · `toolu_012Yw89bvL7UY82atCZsTCJj`</summary>
+
+````text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"WARNING:root:\\nThe dataset you requested (safelibero_spatial) is in 2.0 format.\\nWhile current version of LeRobot is backward-compatible with it, the version of your dataset still uses global\\nstats instead of per-episode stats. Update your dataset stats to the new format using this command:\\n```\\npython lerobot/common/datasets/v21/convert_dataset_v20_to_v21.py --repo-id=safelibero_spatial\\n```\\n\\nIf you encounter a problem, contact LeRobot maintainers on [Discord](https://discord.com/invite/s3KuuzsPFb)\\nor open an [issue on GitHub](https://github.com/huggingface/lerobot/issues/new/choose).\\n\\nDIAG: pytorch_weight_path = '/root/autodl-tmp/openpi_weights/pi0_base'\\nDIAG: model_path = /root/autodl-tmp/openpi_weights/pi0_base/model.safetensors, exists = True\\nDIAG: BEFORE load - action_in_proj.weight device=cuda:0, mean=0.000587, std=0.101799\\nDIAG: load_model done. missing=0, unexpected=0\\nDIAG: AFTER load - action_in_proj.weight device=cuda:0, mean=-0.000354, std=0.177879\\nDIAG: REF from file - mean=-0.000354, std=0.177879\\n\\rTraining:  20%|██        | 6000/30000 [00:00<?, ?it/s]/root/miniconda3/lib/python3.12/site-packages/torch/autograd/graph.py:829: UserWarning: Attempting to run cuBLAS, but there was no current CUDA context! Attempting to set the primary context... (Triggered internally at /pytorch/aten/src/ATen/cuda/CublasHandlePool.cpp:179.)\\n  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass\\n\\rTraining:  20%|██        | 6001/30000 [00:23<158:33:42, 23.79s/it]\\rTraining:  20%|██        | 6001/30000 [00:23<158:33:42, 23.79s/it, loss=0.0903, lr=2.34e-05, step=6001]\\rTraining:  20%|██        | 6002/30000 [00:27<81:04:57, 12.16s/it, loss=0.0903, lr=2.34e-05, step=6001] \\rTraining:  20%|██        | 6002/30000 [00:27<81:04:57, 12.16s/it, loss=0.1013, lr=2.34e-05, step=6002]\\rTraining:  20%|██        | 6003/30000 [00:31<56:17:32,  8.44s/it, loss=0.1013, lr=2.34e-05, step=6002]\\rTraining:  20%|██        | 6003/30000 [00:31<56:17:32,  8.44s/it, loss=0.1036, lr=2.34e-05, step=6003]\\rTraining:  20%|██        | 6004/30000 [00:35<44:36:56,  6.69s/it, loss=0.1036, lr=2.34e-05, step=6003]\\rTraining:  20%|██        | 6004/30000 [00:35<44:36:56,  6.69s/it, loss=0.1031, lr=2.34e-05, step=6004]\\rTraining:  20%|██        | 6005/30000 [00:39<38:07:29,  5.72s/it, loss=0.1031, lr=2.34e-05, step=6004]\\rTraining:  20%|██        | 6005/30000 [00:39<38:07:29,  5.72s/it, loss=0.1133, lr=2.34e-05, step=6005]\\rTraining:  20%|██        | 6006/30000 [00:43<34:18:00,  5.15s/it, loss=0.1133, lr=2.34e-05, step=6005]\\rTraining:  20%|██        | 6006/30000 [00:43<34:18:00,  5.15s/it, loss=0.0937, lr=2.34e-05, step=6006]\\rTraining:  20%|██        | 6007/30000 [00:47<31:49:17,  4.77s/it, loss=0.0937, lr=2.34e-05, step=6006]\\rTraining:  20%|██        | 6007/30000 [00:47<31:49:17,  4.77s/it, loss=0.0983, lr=2.34e-05, step=6007]\\rTraining:  20%|██        | 6008/30000 [00:51<30:12:33,  4.53s/it, loss=0.0983, lr=2.34e-05, step=6007]\\rTraining:  20%|██        | 6008/30000 [00:51<30:12:33,  4.53s/it, loss=0.0957, lr=2.34e-05, step=6008]\\rTraining:  20%|██        | 6009/30000 [00:55<29:06:18,  4.37s/it, loss=0.0957, lr=2.34e-05, step=6008]\\rTraining:  20%|██        | 6009/30000 [00:55<29:06:18,  4.37s/it, loss=0.1102, lr=2.34e-05, step=6009]\\rTraining:  20%|██        | 6010/30000 [00:59<28:21:19,  4.26s/it, loss=0.1102, lr=2.34e-05, step=6009]\\rTraining:  20%|██        | 6010/30000 [00:59<28:21:19,  4.26s/it, loss=0.1014, lr=2.34e-05, step=6010]\\rTraining:  20%|██        | 6011/30000 [01:03<27:53:24,  4.19s/it, loss=0.1014, lr=2.34e-05, step=6010]\\rTraining:  20%|██        | 6011/30000 [01:03<27:53:24,  4.19s/it, loss=0.1161, lr=2.34e-05, step=6011]\\rTraining:  20%|██        | 6012/30000 [01:07<27:34:00,  4.14s/it, loss=0.1161, lr=2.34e-05, step=6011]\\rTraining:  20%|██        | 6012/30000 [01:07<27:34:00,  4.14s/it, loss=0.1024, lr=2.34e-05, step=6012]\\rTraining:  20%|██        | 6013/30000 [01:11<27:20:32,  4.10s/it, loss=0.1024, lr=2.34e-05, step=6012]\\rTra\\n\\n... [截断: 输出过长，省略 1223045 字符] ...\\n\\nit, loss=0.0422, lr=1.81e-05, step=11818]\\rTraining:  39%|███▉      | 11819/30000 [6:45:07<20:13:00,  4.00s/it, loss=0.0417, lr=1.81e-05, step=11819]\\rTraining:  39%|███▉      | 11820/30000 [6:45:11<20:12:35,  4.00s/it, loss=0.0417, lr=1.81e-05, step=11819]\\rTraining:  39%|███▉      | 11820/30000 [6:45:11<20:12:35,  4.00s/it, loss=0.0391, lr=1.81e-05, step=11820]\\rTraining:  39%|███▉      | 11821/30000 [6:45:15<20:13:46,  4.01s/it, loss=0.0391, lr=1.81e-05, step=11820]\\rTraining:  39%|███▉      | 11821/30000 [6:45:15<20:13:46,  4.01s/it, loss=0.0411, lr=1.81e-05, step=11821]\\rTraining:  39%|███▉      | 11822/30000 [6:45:19<20:14:18,  4.01s/it, loss=0.0411, lr=1.81e-05, step=11821]\\rTraining:  39%|███▉      | 11822/30000 [6:45:19<20:14:18,  4.01s/it, loss=0.0357, lr=1.81e-05, step=11822]\\rTraining:  39%|███▉      | 11823/30000 [6:45:23<20:12:06,  4.00s/it, loss=0.0357, lr=1.81e-05, step=11822]\\rTraining:  39%|███▉      | 11823/30000 [6:45:23<20:12:06,  4.00s/it, loss=0.0361, lr=1.81e-05, step=11823]\\rTraining:  39%|███▉      | 11824/30000 [6:45:27<20:10:45,  4.00s/it, loss=0.0361, lr=1.81e-05, step=11823]\\rTraining:  39%|███▉      | 11824/30000 [6:45:27<20:10:45,  4.00s/it, loss=0.0429, lr=1.81e-05, step=11824]\\rTraining:  39%|███▉      | 11825/30000 [6:45:31<20:11:41,  4.00s/it, loss=0.0429, lr=1.81e-05, step=11824]\\rTraining:  39%|███▉      | 11825/30000 [6:45:31<20:11:41,  4.00s/it, loss=0.0420, lr=1.81e-05, step=11825]\\rTraining:  39%|███▉      | 11826/30000 [6:45:35<20:11:15,  4.00s/it, loss=0.0420, lr=1.81e-05, step=11825]\\rTraining:  39%|███▉      | 11826/30000 [6:45:35<20:11:15,  4.00s/it, loss=0.0483, lr=1.81e-05, step=11826]\\rTraining:  39%|███▉      | 11827/30000 [6:45:39<20:10:34,  4.00s/it, loss=0.0483, lr=1.81e-05, step=11826]\\rTraining:  39%|███▉      | 11827/30000 [6:45:39<20:10:34,  4.00s/it, loss=0.0462, lr=1.81e-05, step=11827]\\rTraining:  39%|███▉      | 11828/30000 [6:45:43<20:11:03,  4.00s/it, loss=0.0462, lr=1.81e-05, step=11827]\\rTraining:  39%|███▉      | 11828/30000 [6:45:43<20:11:03,  4.00s/it, loss=0.0417, lr=1.81e-05, step=11828]\\rTraining:  39%|███▉      | 11829/30000 [6:45:47<20:18:21,  4.02s/it, loss=0.0417, lr=1.81e-05, step=11828]\\rTraining:  39%|███▉      | 11829/30000 [6:45:47<20:18:21,  4.02s/it, loss=0.0434, lr=1.81e-05, step=11829]\\rTraining:  39%|███▉      | 11830/30000 [6:45:51<20:15:20,  4.01s/it, loss=0.0434, lr=1.81e-05, step=11829]\\rTraining:  39%|███▉      | 11830/30000 [6:45:51<20:15:20,  4.01s/it, loss=0.0396, lr=1.81e-05, step=11830]\\rTraining:  39%|███▉      | 11831/30000 [6:45:55<20:13:42,  4.01s/it, loss=0.0396, lr=1.81e-05, step=11830]\\rTraining:  39%|███▉      | 11831/30000 [6:45:55<20:13:42,  4.01s/it, loss=0.0394, lr=1.81e-05, step=11831]\\rTraining:  39%|███▉      | 11832/30000 [6:45:59<20:12:12,  4.00s/it, loss=0.0394, lr=1.81e-05, step=11831]\\rTraining:  39%|███▉      | 11832/30000 [6:45:59<20:12:12,  4.00s/it, loss=0.0443, lr=1.81e-05, step=11832]\\rTraining:  39%|███▉      | 11833/30000 [6:46:03<20:12:30,  4.00s/it, loss=0.0443, lr=1.81e-05, step=11832]\\rTraining:  39%|███▉      | 11833/30000 [6:46:03<20:12:30,  4.00s/it, loss=0.0344, lr=1.81e-05, step=11833]\\rTraining:  39%|███▉      | 11834/30000 [6:46:07<20:14:56,  4.01s/it, loss=0.0344, lr=1.81e-05, step=11833]\\rTraining:  39%|███▉      | 11834/30000 [6:46:07<20:14:56,  4.01s/it, loss=0.0310, lr=1.81e-05, step=11834]\\rTraining:  39%|███▉      | 11835/30000 [6:46:11<20:14:02,  4.01s/it, loss=0.0310, lr=1.81e-05, step=11834]\\rTraining:  39%|███▉      | 11835/30000 [6:46:11<20:14:02,  4.01s/it, loss=0.0486, lr=1.81e-05, step=11835]\\rTraining:  39%|███▉      | 11836/30000 [6:46:15<20:11:42,  4.00s/it, loss=0.0486, lr=1.81e-05, step=11835]\\rTraining:  39%|███▉      | 11836/30000 [6:46:15<20:11:42,  4.00s/it, loss=0.0338, lr=1.81e-05, step=11836]\\rTraining:  39%|███▉      | 11837/30000 [6:46:19<20:12:14,  4.00s/it, loss=0.0338, lr=1.81e-05, step=11836]\\rTraining:  39%|███▉      | 11837/30000 [6:46:19<20:12:14,  4.00s/it, loss=0.0414, lr=1.81e-05, step=11837]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.43}}"}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b391c961-1550-430f-8ea4-62467524ba88",
+  "uuid": "ae1de728-02bd-4dea-8d81-29d400563b1a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"WARNING:root:\\\\nThe dataset you requested (safelibero_spatial) is in 2.0 format.\\\\nWhile current version of LeRobot is backward-compatible with it, the version of your dataset still uses global\\\\nstats instead of per-episode stats. Update your dataset stats to the new format using this command:\\\\n```\\\\npython lerobot/common/datasets/v21/convert_dataset_v20_to_v21.py --repo-id=safelibero_spatial\\\\n```\\\\n\\\\nIf you encounter a problem, contact LeRobot maintainers on [Discord](https://discord.com/invite/s3KuuzsPFb)\\\\nor open an [issue on GitHub](https://github.com/huggingface/lerobot/issues/new/choose).\\\\n\\\\nDIAG: pytorch_weight_path = '/root/autodl-tmp/openpi_weights/pi0_base'\\\\nDIAG: model_path = /root/autodl-tmp/openpi_weights/pi0_base/model.safetensors, exists = True\\\\nDIAG: BEFORE load - action_in_proj.weight device=cuda:0, mean=0.000587, std=0.101799\\\\nDIAG: load_model done. missing=0, unexpected=0\\\\nDIAG: AFTER load - action_in_proj.weight device=cuda:0, mean=-0.000354, std=0.177879\\\\nDIAG: REF from file - mean=-0.000354, std=0.177879\\\\n\\\\rTraining:  20%|██        | 6000/30000 [00:00<?, ?it/s]/root/miniconda3/lib/python3.12/site-packages/torch/autograd/graph.py:829: UserWarning: Attempting to run cuBLAS, but there was no current CUDA context! Attempting to set the primary context... (Triggered internally at /pytorch/aten/src/ATen/cuda/CublasHandlePool.cpp:179.)\\\\n  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass\\\\n\\\\rTraining:  20%|██        | 6001/30000 [00:23<158:33:42, 23.79s/it]\\\\rTraining:  20%|██        | 6001/30000 [00:23<158:33:42, 23.79s/it, loss=0.0903, lr=2.34e-05, step=6001]\\\\rTraining:  20%|██        | 6002/30000 [00:27<81:04:57, 12.16s/it, loss=0.0903, lr=2.34e-05, step=6001] \\\\rTraining:  20%|██        | 6002/30000 [00:27<81:04:57, 12.16s/it, loss=0.1013, lr=2.34e-05, step=6002]\\\\rTraining:  20%|██        | 6003/30000 [00:31<56:17:32,  8.44s/it, loss=0.1013, lr=2.34e-05, step=6002]\\\\rTraining:  20%|██        | 6003/30000 [00:31<56:17:32,  8.44s/it, loss=0.1036, lr=2.34e-05, step=6003]\\\\rTraining:  20%|██        | 6004/30000 [00:35<44:36:56,  6.69s/it, loss=0.1036, lr=2.34e-05, step=6003]\\\\rTraining:  20%|██        | 6004/30000 [00:35<44:36:56,  6.69s/it, loss=0.1031, lr=2.34e-05, step=6004]\\\\rTraining:  20%|██        | 6005/30000 [00:39<38:07:29,  5.72s/it, loss=0.1031, lr=2.34e-05, step=6004]\\\\rTraining:  20%|██        | 6005/30000 [00:39<38:07:29,  5.72s/it, loss=0.1133, lr=2.34e-05, step=6005]\\\\rTraining:  20%|██        | 6006/30000 [00:43<34:18:00,  5.15s/it, loss=0.1133, lr=2.34e-05, step=6005]\\\\rTraining:  20%|██        | 6006/30000 [00:43<34:18:00,  5.15s/it, loss=0.0937, lr=2.34e-05, step=6006]\\\\rTraining:  20%|██        | 6007/30000 [00:47<31:49:17,  4.77s/it, loss=0.0937, lr=2.34e-05, step=6006]\\\\rTraining:  20%|██        | 6007/30000 [00:47<31:49:17,  4.77s/it, loss=0.0983, lr=2.34e-05, step=6007]\\\\rTraining:  20%|██        | 6008/30000 [00:51<30:12:33,  4.53s/it, loss=0.0983, lr=2.34e-05, step=6007]\\\\rTraining:  20%|██        | 6008/30000 [00:51<30:12:33,  4.53s/it, loss=0.0957, lr=2.34e-05, step=6008]\\\\rTraining:  20%|██        | 6009/30000 [00:55<29:06:18,  4.37s/it, loss=0.0957, lr=2.34e-05, step=6008]\\\\rTraining:  20%|██        | 6009/30000 [00:55<29:06:18,  4.37s/it, loss=0.1102, lr=2.34e-05, step=6009]\\\\rTraining:  20%|██        | 6010/30000 [00:59<28:21:19,  4.26s/it, loss=0.1102, lr=2.34e-05, step=6009]\\\\rTraining:  20%|██        | 6010/30000 [00:59<28:21:19,  4.26s/it, loss=0.1014, lr=2.34e-05, step=6010]\\\\rTraining:  20%|██        | 6011/30000 [01:03<27:53:24,  4.19s/it, loss=0.1014, lr=2.34e-05, step=6010]\\\\rTraining:  20%|██        | 6011/30000 [01:03<27:53:24,  4.19s/it, loss=0.1161, lr=2.34e-05, step=6011]\\\\rTraining:  20%|██        | 6012/30000 [01:07<27:34:00,  4.14s/it, loss=0.1161, lr=2.34e-05, step=6011]\\\\rTraining:  20%|██        | 6012/30000 [01:07<27:34:00,  4.14s/it, loss=0.1024, lr=2.34e-05, step=6012]\\\\rTraining:  20%|██        | 6013/30000 [01:11<27:20:32,  4.10s/it, loss=0.1024, lr=2.34e-05, step=6012]\\\\rTra\\\\n\\\\n... [截断: 输出过长，省略 1223045 字符] ...\\\\n\\\\nit, loss=0.0422, lr=1.81e-05, step=11818]\\\\rTraining:  39%|███▉      | 11819/30000 [6:45:07<20:13:00,  4.00s/it, loss=0.0417, lr=1.81e-05, step=11819]\\\\rTraining:  39%|███▉      | 11820/30000 [6:45:11<20:12:35,  4.00s/it, loss=0.0417, lr=1.81e-05, step=11819]\\\\rTraining:  39%|███▉      | 11820/30000 [6:45:11<20:12:35,  4.00s/it, loss=0.0391, lr=1.81e-05, step=11820]\\\\rTraining:  39%|███▉      | 11821/30000 [6:45:15<20:13:46,  4.01s/it, loss=0.0391, lr=1.81e-05, step=11820]\\\\rTraining:  39%|███▉      | 11821/30000 [6:45:15<20:13:46,  4.01s/it, loss=0.0411, lr=1.81e-05, step=11821]\\\\rTraining:  39%|███▉      | 11822/30000 [6:45:19<20:14:18,  4.01s/it, loss=0.0411, lr=1.81e-05, step=11821]\\\\rTraining:  39%|███▉      | 11822/30000 [6:45:19<20:14:18,  4.01s/it, loss=0.0357, lr=1.81e-05, step=11822]\\\\rTraining:  39%|███▉      | 11823/30000 [6:45:23<20:12:06,  4.00s/it, loss=0.0357, lr=1.81e-05, step=11822]\\\\rTraining:  39%|███▉      | 11823/30000 [6:45:23<20:12:06,  4.00s/it, loss=0.0361, lr=1.81e-05, step=11823]\\\\rTraining:  39%|███▉      | 11824/30000 [6:45:27<20:10:45,  4.00s/it, loss=0.0361, lr=1.81e-05, step=11823]\\\\rTraining:  39%|███▉      | 11824/30000 [6:45:27<20:10:45,  4.00s/it, loss=0.0429, lr=1.81e-05, step=11824]\\\\rTraining:  39%|███▉      | 11825/30000 [6:45:31<20:11:41,  4.00s/it, loss=0.0429, lr=1.81e-05, step=11824]\\\\rTraining:  39%|███▉      | 11825/30000 [6:45:31<20:11:41,  4.00s/it, loss=0.0420, lr=1.81e-05, step=11825]\\\\rTraining:  39%|███▉      | 11826/30000 [6:45:35<20:11:15,  4.00s/it, loss=0.0420, lr=1.81e-05, step=11825]\\\\rTraining:  39%|███▉      | 11826/30000 [6:45:35<20:11:15,  4.00s/it, loss=0.0483, lr=1.81e-05, step=11826]\\\\rTraining:  39%|███▉      | 11827/30000 [6:45:39<20:10:34,  4.00s/it, loss=0.0483, lr=1.81e-05, step=11826]\\\\rTraining:  39%|███▉      | 11827/30000 [6:45:39<20:10:34,  4.00s/it, loss=0.0462, lr=1.81e-05, step=11827]\\\\rTraining:  39%|███▉      | 11828/30000 [6:45:43<20:11:03,  4.00s/it, loss=0.0462, lr=1.81e-05, step=11827]\\\\rTraining:  39%|███▉      | 11828/30000 [6:45:43<20:11:03,  4.00s/it, loss=0.0417, lr=1.81e-05, step=11828]\\\\rTraining:  39%|███▉      | 11829/30000 [6:45:47<20:18:21,  4.02s/it, loss=0.0417, lr=1.81e-05, step=11828]\\\\rTraining:  39%|███▉      | 11829/30000 [6:45:47<20:18:21,  4.02s/it, loss=0.0434, lr=1.81e-05, step=11829]\\\\rTraining:  39%|███▉      | 11830/30000 [6:45:51<20:15:20,  4.01s/it, loss=0.0434, lr=1.81e-05, step=11829]\\\\rTraining:  39%|███▉      | 11830/30000 [6:45:51<20:15:20,  4.01s/it, loss=0.0396, lr=1.81e-05, step=11830]\\\\rTraining:  39%|███▉      | 11831/30000 [6:45:55<20:13:42,  4.01s/it, loss=0.0396, lr=1.81e-05, step=11830]\\\\rTraining:  39%|███▉      | 11831/30000 [6:45:55<20:13:42,  4.01s/it, loss=0.0394, lr=1.81e-05, step=11831]\\\\rTraining:  39%|███▉      | 11832/30000 [6:45:59<20:12:12,  4.00s/it, loss=0.0394, lr=1.81e-05, step=11831]\\\\rTraining:  39%|███▉      | 11832/30000 [6:45:59<20:12:12,  4.00s/it, loss=0.0443, lr=1.81e-05, step=11832]\\\\rTraining:  39%|███▉      | 11833/30000 [6:46:03<20:12:30,  4.00s/it, loss=0.0443, lr=1.81e-05, step=11832]\\\\rTraining:  39%|███▉      | 11833/30000 [6:46:03<20:12:30,  4.00s/it, loss=0.0344, lr=1.81e-05, step=11833]\\\\rTraining:  39%|███▉      | 11834/30000 [6:46:07<20:14:56,  4.01s/it, loss=0.0344, lr=1.81e-05, step=11833]\\\\rTraining:  39%|███▉      | 11834/30000 [6:46:07<20:14:56,  4.01s/it, loss=0.0310, lr=1.81e-05, step=11834]\\\\rTraining:  39%|███▉      | 11835/30000 [6:46:11<20:14:02,  4.01s/it, loss=0.0310, lr=1.81e-05, step=11834]\\\\rTraining:  39%|███▉      | 11835/30000 [6:46:11<20:14:02,  4.01s/it, loss=0.0486, lr=1.81e-05, step=11835]\\\\rTraining:  39%|███▉      | 11836/30000 [6:46:15<20:11:42,  4.00s/it, loss=0.0486, lr=1.81e-05, step=11835]\\\\rTraining:  39%|███▉      | 11836/30000 [6:46:15<20:11:42,  4.00s/it, loss=0.0338, lr=1.81e-05, step=11836]\\\\rTraining:  39%|███▉      | 11837/30000 [6:46:19<20:12:14,  4.00s/it, loss=0.0338, lr=1.81e-05, step=11836]\\\\rTraining:  39%|███▉      | 11837/30000 [6:46:19<20:12:14,  4.00s/it, loss=0.0414, lr=1.81e-05, step=11837]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"WARNING:root:\\nThe dataset you requested (safelibero_spatial) is in 2.0 format.\\nWhile current version of LeRobot is backward-compatible with it, the version of your dataset still uses global\\nstats instead of per-episode stats. Update your dataset stats to the new format using this command:\\n```\\npython lerobot/common/datasets/v21/convert_dataset_v20_to_v21.py --repo-id=safelibero_spatial\\n```\\n\\nIf you encounter a problem, contact LeRobot maintainers on [Discord](https://discord.com/invite/s3KuuzsPFb)\\nor open an [issue on GitHub](https://github.com/huggingface/lerobot/issues/new/choose).\\n\\nDIAG: pytorch_weight_path = '/root/autodl-tmp/openpi_weights/pi0_base'\\nDIAG: model_path = /root/autodl-tmp/openpi_weights/pi0_base/model.safetensors, exists = True\\nDIAG: BEFORE load - action_in_proj.weight device=cuda:0, mean=0.000587, std=0.101799\\nDIAG: load_model done. missing=0, unexpected=0\\nDIAG: AFTER load - action_in_proj.weight device=cuda:0, mean=-0.000354, std=0.177879\\nDIAG: REF from file - mean=-0.000354, std=0.177879\\n\\rTraining:  20%|██        | 6000/30000 [00:00<?, ?it/s]/root/miniconda3/lib/python3.12/site-packages/torch/autograd/graph.py:829: UserWarning: Attempting to run cuBLAS, but there was no current CUDA context! Attempting to set the primary context... (Triggered internally at /pytorch/aten/src/ATen/cuda/CublasHandlePool.cpp:179.)\\n  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass\\n\\rTraining:  20%|██        | 6001/30000 [00:23<158:33:42, 23.79s/it]\\rTraining:  20%|██        | 6001/30000 [00:23<158:33:42, 23.79s/it, loss=0.0903, lr=2.34e-05, step=6001]\\rTraining:  20%|██        | 6002/30000 [00:27<81:04:57, 12.16s/it, loss=0.0903, lr=2.34e-05, step=6001] \\rTraining:  20%|██        | 6002/30000 [00:27<81:04:57, 12.16s/it, loss=0.1013, lr=2.34e-05, step=6002]\\rTraining:  20%|██        | 6003/30000 [00:31<56:17:32,  8.44s/it, loss=0.1013, lr=2.34e-05, step=6002]\\rTraining:  20%|██        | 6003/30000 [00:31<56:17:32,  8.44s/it, loss=0.1036, lr=2.34e-05, step=6003]\\rTraining:  20%|██        | 6004/30000 [00:35<44:36:56,  6.69s/it, loss=0.1036, lr=2.34e-05, step=6003]\\rTraining:  20%|██        | 6004/30000 [00:35<44:36:56,  6.69s/it, loss=0.1031, lr=2.34e-05, step=6004]\\rTraining:  20%|██        | 6005/30000 [00:39<38:07:29,  5.72s/it, loss=0.1031, lr=2.34e-05, step=6004]\\rTraining:  20%|██        | 6005/30000 [00:39<38:07:29,  5.72s/it, loss=0.1133, lr=2.34e-05, step=6005]\\rTraining:  20%|██        | 6006/30000 [00:43<34:18:00,  5.15s/it, loss=0.1133, lr=2.34e-05, step=6005]\\rTraining:  20%|██        | 6006/30000 [00:43<34:18:00,  5.15s/it, loss=0.0937, lr=2.34e-05, step=6006]\\rTraining:  20%|██        | 6007/30000 [00:47<31:49:17,  4.77s/it, loss=0.0937, lr=2.34e-05, step=6006]\\rTraining:  20%|██        | 6007/30000 [00:47<31:49:17,  4.77s/it, loss=0.0983, lr=2.34e-05, step=6007]\\rTraining:  20%|██        | 6008/30000 [00:51<30:12:33,  4.53s/it, loss=0.0983, lr=2.34e-05, step=6007]\\rTraining:  20%|██        | 6008/30000 [00:51<30:12:33,  4.53s/it, loss=0.0957, lr=2.34e-05, step=6008]\\rTraining:  20%|██        | 6009/30000 [00:55<29:06:18,  4.37s/it, loss=0.0957, lr=2.34e-05, step=6008]\\rTraining:  20%|██        | 6009/30000 [00:55<29:06:18,  4.37s/it, loss=0.1102, lr=2.34e-05, step=6009]\\rTraining:  20%|██        | 6010/30000 [00:59<28:21:19,  4.26s/it, loss=0.1102, lr=2.34e-05, step=6009]\\rTraining:  20%|██        | 6010/30000 [00:59<28:21:19,  4.26s/it, loss=0.1014, lr=2.34e-05, step=6010]\\rTraining:  20%|██        | 6011/30000 [01:03<27:53:24,  4.19s/it, loss=0.1014, lr=2.34e-05, step=6010]\\rTraining:  20%|██        | 6011/30000 [01:03<27:53:24,  4.19s/it, loss=0.1161, lr=2.34e-05, step=6011]\\rTraining:  20%|██        | 6012/30000 [01:07<27:34:00,  4.14s/it, loss=0.1161, lr=2.34e-05, step=6011]\\rTraining:  20%|██        | 6012/30000 [01:07<27:34:00,  4.14s/it, loss=0.1024, lr=2.34e-05, step=6012]\\rTraining:  20%|██        | 6013/30000 [01:11<27:20:32,  4.10s/it, loss=0.1024, lr=2.34e-05, step=6012]\\rTra\\n\\n... [截断: 输出过长，省略 1223045 字符] ...\\n\\nit, loss=0.0422, lr=1.81e-05, step=11818]\\rTraining:  39%|███▉      | 11819/30000 [6:45:07<20:13:00,  4.00s/it, loss=0.0417, lr=1.81e-05, step=11819]\\rTraining:  39%|███▉      | 11820/30000 [6:45:11<20:12:35,  4.00s/it, loss=0.0417, lr=1.81e-05, step=11819]\\rTraining:  39%|███▉      | 11820/30000 [6:45:11<20:12:35,  4.00s/it, loss=0.0391, lr=1.81e-05, step=11820]\\rTraining:  39%|███▉      | 11821/30000 [6:45:15<20:13:46,  4.01s/it, loss=0.0391, lr=1.81e-05, step=11820]\\rTraining:  39%|███▉      | 11821/30000 [6:45:15<20:13:46,  4.01s/it, loss=0.0411, lr=1.81e-05, step=11821]\\rTraining:  39%|███▉      | 11822/30000 [6:45:19<20:14:18,  4.01s/it, loss=0.0411, lr=1.81e-05, step=11821]\\rTraining:  39%|███▉      | 11822/30000 [6:45:19<20:14:18,  4.01s/it, loss=0.0357, lr=1.81e-05, step=11822]\\rTraining:  39%|███▉      | 11823/30000 [6:45:23<20:12:06,  4.00s/it, loss=0.0357, lr=1.81e-05, step=11822]\\rTraining:  39%|███▉      | 11823/30000 [6:45:23<20:12:06,  4.00s/it, loss=0.0361, lr=1.81e-05, step=11823]\\rTraining:  39%|███▉      | 11824/30000 [6:45:27<20:10:45,  4.00s/it, loss=0.0361, lr=1.81e-05, step=11823]\\rTraining:  39%|███▉      | 11824/30000 [6:45:27<20:10:45,  4.00s/it, loss=0.0429, lr=1.81e-05, step=11824]\\rTraining:  39%|███▉      | 11825/30000 [6:45:31<20:11:41,  4.00s/it, loss=0.0429, lr=1.81e-05, step=11824]\\rTraining:  39%|███▉      | 11825/30000 [6:45:31<20:11:41,  4.00s/it, loss=0.0420, lr=1.81e-05, step=11825]\\rTraining:  39%|███▉      | 11826/30000 [6:45:35<20:11:15,  4.00s/it, loss=0.0420, lr=1.81e-05, step=11825]\\rTraining:  39%|███▉      | 11826/30000 [6:45:35<20:11:15,  4.00s/it, loss=0.0483, lr=1.81e-05, step=11826]\\rTraining:  39%|███▉      | 11827/30000 [6:45:39<20:10:34,  4.00s/it, loss=0.0483, lr=1.81e-05, step=11826]\\rTraining:  39%|███▉      | 11827/30000 [6:45:39<20:10:34,  4.00s/it, loss=0.0462, lr=1.81e-05, step=11827]\\rTraining:  39%|███▉      | 11828/30000 [6:45:43<20:11:03,  4.00s/it, loss=0.0462, lr=1.81e-05, step=11827]\\rTraining:  39%|███▉      | 11828/30000 [6:45:43<20:11:03,  4.00s/it, loss=0.0417, lr=1.81e-05, step=11828]\\rTraining:  39%|███▉      | 11829/30000 [6:45:47<20:18:21,  4.02s/it, loss=0.0417, lr=1.81e-05, step=11828]\\rTraining:  39%|███▉      | 11829/30000 [6:45:47<20:18:21,  4.02s/it, loss=0.0434, lr=1.81e-05, step=11829]\\rTraining:  39%|███▉      | 11830/30000 [6:45:51<20:15:20,  4.01s/it, loss=0.0434, lr=1.81e-05, step=11829]\\rTraining:  39%|███▉      | 11830/30000 [6:45:51<20:15:20,  4.01s/it, loss=0.0396, lr=1.81e-05, step=11830]\\rTraining:  39%|███▉      | 11831/30000 [6:45:55<20:13:42,  4.01s/it, loss=0.0396, lr=1.81e-05, step=11830]\\rTraining:  39%|███▉      | 11831/30000 [6:45:55<20:13:42,  4.01s/it, loss=0.0394, lr=1.81e-05, step=11831]\\rTraining:  39%|███▉      | 11832/30000 [6:45:59<20:12:12,  4.00s/it, loss=0.0394, lr=1.81e-05, step=11831]\\rTraining:  39%|███▉      | 11832/30000 [6:45:59<20:12:12,  4.00s/it, loss=0.0443, lr=1.81e-05, step=11832]\\rTraining:  39%|███▉      | 11833/30000 [6:46:03<20:12:30,  4.00s/it, loss=0.0443, lr=1.81e-05, step=11832]\\rTraining:  39%|███▉      | 11833/30000 [6:46:03<20:12:30,  4.00s/it, loss=0.0344, lr=1.81e-05, step=11833]\\rTraining:  39%|███▉      | 11834/30000 [6:46:07<20:14:56,  4.01s/it, loss=0.0344, lr=1.81e-05, step=11833]\\rTraining:  39%|███▉      | 11834/30000 [6:46:07<20:14:56,  4.01s/it, loss=0.0310, lr=1.81e-05, step=11834]\\rTraining:  39%|███▉      | 11835/30000 [6:46:11<20:14:02,  4.01s/it, loss=0.0310, lr=1.81e-05, step=11834]\\rTraining:  39%|███▉      | 11835/30000 [6:46:11<20:14:02,  4.01s/it, loss=0.0486, lr=1.81e-05, step=11835]\\rTraining:  39%|███▉      | 11836/30000 [6:46:15<20:11:42,  4.00s/it, loss=0.0486, lr=1.81e-05, step=11835]\\rTraining:  39%|███▉      | 11836/30000 [6:46:15<20:11:42,  4.00s/it, loss=0.0338, lr=1.81e-05, step=11836]\\rTraining:  39%|███▉      | 11837/30000 [6:46:19<20:12:14,  4.00s/it, loss=0.0338, lr=1.81e-05, step=11836]\\rTraining:  39%|███▉      | 11837/30000 [6:46:19<20:12:14,  4.00s/it, loss=0.0414, lr=1.81e-05, step=11837]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.43}}"
+    }
+  }
+}
+````
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+Eval log 路径不对，让我找一下实际路径。同时查 westd-35807。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b391c961-1550-430f-8ea4-62467524ba88",
+  "uuid": "c69c51b3-6768-4808-8ed0-b196dd60b4b2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0119mktojhqfCckBRQPfTsxf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5772,
+      "cache_read_input_tokens": 24361,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5772
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LXFBuB3BzB9L6kToWZMbVV`</summary>
+
+```json
+{
+  "server": "westd-45947",
+  "command": "find /root/autodl-tmp/eval_results -name \"*v9*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b391c961-1550-430f-8ea4-62467524ba88",
+  "uuid": "15cf1969-ae2d-4a19-8d39-ad14b8382cab",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0119mktojhqfCckBRQPfTsxf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5772,
+      "cache_read_input_tokens": 24361,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5772
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-21T23:59:53.947Z_
+
+<details><summary>↩ Tool result · `toolu_01LXFBuB3BzB9L6kToWZMbVV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/eval_results/a3_object_pudding_refine_v9.log\\n/root/autodl-tmp/eval_results/eval_v9_a3_refine.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b391c961-1550-430f-8ea4-62467524ba88",
+  "uuid": "93d68676-bf79-4912-9bf7-3d56fe02b8c7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/eval_results/a3_object_pudding_refine_v9.log\\\\n/root/autodl-tmp/eval_results/eval_v9_a3_refine.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/eval_results/a3_object_pudding_refine_v9.log\\n/root/autodl-tmp/eval_results/eval_v9_a3_refine.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UJm9zACcCBjr5Ze6nyHrNx`</summary>
+
+```json
+{
+  "server": "westd-35807",
+  "command": "ps -p 281554,281629,292258,299910 -o pid,etime,rss --no-headers",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b391c961-1550-430f-8ea4-62467524ba88",
+  "uuid": "49d53dde-c9c3-4619-87e2-ebb9678ae642",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0119mktojhqfCckBRQPfTsxf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5772,
+      "cache_read_input_tokens": 24361,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5772
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-21T23:59:56.482Z_
+
+<details><summary>↩ Tool result · `toolu_01UJm9zACcCBjr5Ze6nyHrNx`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"281554    21:47:33 4149564\\n281629    21:47:31 4317212\\n292258    19:16:22 4318260\\n299910    17:10:01 4469400\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.04}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b391c961-1550-430f-8ea4-62467524ba88",
+  "uuid": "13805918-2abc-46df-ac19-836e70c2271f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"281554    21:47:33 4149564\\\\n281629    21:47:31 4317212\\\\n292258    19:16:22 4318260\\\\n299910    17:10:01 4469400\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.04}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"281554    21:47:33 4149564\\n281629    21:47:31 4317212\\n292258    19:16:22 4318260\\n299910    17:10:01 4469400\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.04}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011tuTHtjG4AJJY7csPKYipW`</summary>
+
+```json
+{
+  "server": "westd-35807",
+  "command": "nvidia-smi --query-gpu=index,memory.used,memory.total,utilization.gpu --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b391c961-1550-430f-8ea4-62467524ba88",
+  "uuid": "9faf716c-bc53-41cf-b3eb-d60b67d84f9b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0119mktojhqfCckBRQPfTsxf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5772,
+      "cache_read_input_tokens": 24361,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5772
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-21T23:59:57.170Z_
+
+<details><summary>↩ Tool result · `toolu_011tuTHtjG4AJJY7csPKYipW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 23901 MiB, 97887 MiB, 100 %\\n1, 23893 MiB, 97887 MiB, 100 %\\n2, 23901 MiB, 97887 MiB, 100 %\\n3, 23893 MiB, 97887 MiB, 100 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.55}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b391c961-1550-430f-8ea4-62467524ba88",
+  "uuid": "19bd621c-567c-4877-bdef-cde3eb5f1994",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 23901 MiB, 97887 MiB, 100 %\\\\n1, 23893 MiB, 97887 MiB, 100 %\\\\n2, 23901 MiB, 97887 MiB, 100 %\\\\n3, 23893 MiB, 97887 MiB, 100 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.55}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"0, 23901 MiB, 97887 MiB, 100 %\\n1, 23893 MiB, 97887 MiB, 100 %\\n2, 23901 MiB, 97887 MiB, 100 %\\n3, 23893 MiB, 97887 MiB, 100 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.55}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LtsLvFdU7BFbZ4aMGzT9xM`</summary>
+
+```json
+{
+  "server": "westd-35807",
+  "command": "df -h /root/autodl-tmp",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b391c961-1550-430f-8ea4-62467524ba88",
+  "uuid": "7953d42c-388b-4a89-aa9a-00d5ca0806f0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0119mktojhqfCckBRQPfTsxf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5772,
+      "cache_read_input_tokens": 24361,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5772
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-21T23:59:57.793Z_
+
+<details><summary>↩ Tool result · `toolu_01LtsLvFdU7BFbZ4aMGzT9xM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Filesystem      Size  Used Avail Use% Mounted on\\n/dev/md127      350G  260G   91G  75% /root/autodl-tmp\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b391c961-1550-430f-8ea4-62467524ba88",
+  "uuid": "70f53bbe-3894-4378-a173-4bece121b949",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Filesystem      Size  Used Avail Use% Mounted on\\\\n/dev/md127      350G  260G   91G  75% /root/autodl-tmp\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Filesystem      Size  Used Avail Use% Mounted on\\n/dev/md127      350G  260G   91G  75% /root/autodl-tmp\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014TxHf9jsbdFi7HG5eShiBL`</summary>
+
+```json
+{
+  "server": "westd-35807",
+  "command": "tail -5 /root/autodl-tmp/colliforce-outputs/baseline_lora_spa_s0/train_v2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b391c961-1550-430f-8ea4-62467524ba88",
+  "uuid": "2bf36339-2f9a-4a96-aa3c-48ffc4a0f991",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0119mktojhqfCckBRQPfTsxf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5772,
+      "cache_read_input_tokens": 24361,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5772
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WxFJCFbKuZAKwBuXM9By72`</summary>
+
+```json
+{
+  "server": "westd-35807",
+  "command": "tail -5 /root/autodl-tmp/colliforce-outputs/baseline_lora_obj_s0/train_v2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b391c961-1550-430f-8ea4-62467524ba88",
+  "uuid": "9104618c-5b40-406f-a2a2-50bbd1689d57",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0119mktojhqfCckBRQPfTsxf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5772,
+      "cache_read_input_tokens": 24361,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5772
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UtJbEb8MD2DLMweQ8Jdcu5`</summary>
+
+```json
+{
+  "server": "westd-35807",
+  "command": "tail -5 /root/autodl-tmp/colliforce-outputs/a1_lora_obj_s0/train.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b391c961-1550-430f-8ea4-62467524ba88",
+  "uuid": "13d7c0d9-6be2-4f43-88de-deaf369253d5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0119mktojhqfCckBRQPfTsxf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5772,
+      "cache_read_input_tokens": 24361,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5772
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011KDtc1xnSYL6cuKsUQzYSp`</summary>
+
+```json
+{
+  "server": "westd-35807",
+  "command": "tail -5 /root/autodl-tmp/colliforce-outputs/a1_lora_spa_s0/train.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b391c961-1550-430f-8ea4-62467524ba88",
+  "uuid": "840871ef-d787-4639-93f1-3f6c54d15c6c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0119mktojhqfCckBRQPfTsxf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5772,
+      "cache_read_input_tokens": 24361,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5772
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-22T00:00:08.678Z_
+
+<details><summary>↩ Tool result · `toolu_014TxHf9jsbdFi7HG5eShiBL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"DIAG: BEFORE load - action_in_proj.weight device=cuda:0, mean=0.000587, std=0.101799\\nDIAG: load_model done. missing=0, unexpected=0\\nDIAG: AFTER load - action_in_proj.weight device=cuda:0, mean=-0.000354, std=0.177879\\nDIAG: REF from file - mean=-0.000354, std=0.177879\\n\\rTraining:   0%|          | 0/30000 [00:00<?, ?it/s]\\rTraining:   0%|          | 1/30000 [00:21<175:18:08, 21.04s/it]\\rTraining:   0%|          | 1/30000 [00:21<175:18:08, 21.04s/it, loss=0.2208, lr=2.50e-08, step=1]\\rTraining:   0%|          | 2/30000 [00:25<91:49:22, 11.02s/it, loss=0.2208, lr=2.50e-08, step=1] \\rTraining:   0%|          | 2/30000 [00:25<91:49:22, 11.02s/it, loss=0.2215, lr=5.00e-08, step=2]\\rTraining:   0%|          | 3/30000 [00:29<65:03:04,  7.81s/it, loss=0.2215, lr=5.00e-08, step=2]\\rTraining:   0%|          | 3/30000 [00:29<65:03:04,  7.81s/it, loss=0.2664, lr=7.49e-08, step=3]\\rTraining:   0%|          | 4/30000 [00:33<52:28:33,  6.30s/it, loss=0.2664, lr=7.49e-08, step=3]\\rTraining:   0%|          | 4/30000 [00:33<52:28:33,  6.30s/it, loss=0.2749, lr=9.99e-08, step=4]\\rTraining:   0%|          | 5/30000 [00:37<45:32:06,  5.47s/it, loss=0.2749, lr=9.99e-08, step=4]\\rTraining:   0%|          | 5/30000 [00:37<45:32:06,  5.47s/it, loss=0.2682, lr=1.25e-07, step=5]\\rTraining:   0%|          | 6/30000 [00:40<41:21:09,  4.96s/it, loss=0.2682, lr=1.25e-07, step=5]\\rTraining:   0%|          | 6/30000 [00:40<41:21:09,  4.96s/it, loss=0.2091, lr=1.50e-07, step=6]\\rTraining:   0%|          | 7/30000 [00:44<38:40:11,  4.64s/it, loss=0.2091, lr=1.50e-07, step=6]\\rTraining:   0%|          | 7/30000 [00:44<38:40:11,  4.64s/it, loss=0.2366, lr=1.75e-07, step=7]\\rTraining:   0%|          | 8/30000 [00:48<36:55:12,  4.43s/it, loss=0.2366, lr=1.75e-07, step=7]\\rTraining:   0%|          | 8/30000 [00:48<36:55:12,  4.43s/it, loss=0.2649, lr=2.00e-07, step=8]\\rTraining:   0%|          | 9/30000 [00:52<35:45:28,  4.29s/it, loss=0.2649, lr=2.00e-07, step=8]\\rTraining:   0%|          | 9/30000 [00:52<35:45:28,  4.29s/it, loss=0.2505, lr=2.25e-07, step=9]\\rTraining:   0%|          | 10/30000 [00:56<35:01:00,  4.20s/it, loss=0.2505, lr=2.25e-07, step=9]\\rTraining:   0%|          | 10/30000 [00:56<35:01:00,  4.20s/it, loss=0.2165, lr=2.50e-07, step=10]\\rTraining:   0%|          | 11/30000 [01:00<34:27:29,  4.14s/it, loss=0.2165, lr=2.50e-07, step=10]\\rTraining:   0%|          | 11/30000 [01:00<34:27:29,  4.14s/it, loss=0.2613, lr=2.75e-07, step=11]\\rTraining:   0%|          | 12/30000 [01:04<34:04:59,  4.09s/it, loss=0.2613, lr=2.75e-07, step=11]\\rTraining:   0%|          | 12/30000 [01:04<34:04:59,  4.09s/it, loss=0.2274, lr=3.00e-07, step=12]\\rTraining:   0%|          | 13/30000 [01:08<33:48:47,  4.06s/it, loss=0.2274, lr=3.00e-07, step=12]\\rTraining:   0%|          | 13/30000 [01:08<33:48:47,  4.06s/it, loss=0.2512, lr=3.25e-07, step=13]\\rTraining:   0%|          | 14/30000 [01:12<33:38:00,  4.04s/it, loss=0.2512, lr=3.25e-07, step=13]\\rTraining:   0%|          | 14/30000 [01:12<33:38:00,  4.04s/it, loss=0.3109, lr=3.50e-07, step=14]\\rTraining:   0%|          | 15/30000 [01:16<33:31:54,  4.03s/it, loss=0.3109, lr=3.50e-07, step=14]\\rTraining:   0%|          | 15/30000 [01:16<33:31:54,  4.03s/it, loss=0.2461, lr=3.75e-07, step=15]\\rTraining:   0%|          | 16/30000 [01:20<33:24:53,  4.01s/it, loss=0.2461, lr=3.75e-07, step=15]\\rTraining:   0%|          | 16/30000 [01:20<33:24:53,  4.01s/it, loss=0.2787, lr=4.00e-07, step=16]\\rTraining:   0%|          | 17/30000 [01:24<33:20:03,  4.00s/it, loss=0.2787, lr=4.00e-07, step=16]\\rTraining:   0%|          | 17/30000 [01:24<33:20:03,  4.00s/it, loss=0.2496, lr=4.25e-07, step=17]\\rTraining:   0%|          | 18/30000 [01:28<33:15:57,  3.99s/it, loss=0.2496, lr=4.25e-07, step=17]\\rTraining:   0%|          | 18/30000 [01:28<33:15:57,  3.99s/it, loss=0.2433, lr=4.50e-07, step=18]\\rTraining:   0%|          | 19/30000 [01:32<33:15:53,  3.99s/it, loss=0.2433, lr=4.50e-07, step=18]\\rTraining:   0%|          | 19/30000 [01:32<33:15:53,  3.99s/it, loss=0.2396, lr=4.75\\n\\n... [截断: 输出过长，省略 4120568 字符] ...\\n\\n396]\\rTraining:  65%|██████▍   | 19397/30000 [21:45:02<11:45:58,  3.99s/it, loss=0.0184, lr=9.14e-06, step=19397]\\rTraining:  65%|██████▍   | 19398/30000 [21:45:06<11:45:22,  3.99s/it, loss=0.0184, lr=9.14e-06, step=19397]\\rTraining:  65%|██████▍   | 19398/30000 [21:45:06<11:45:22,  3.99s/it, loss=0.0172, lr=9.14e-06, step=19398]\\rTraining:  65%|██████▍   | 19399/30000 [21:45:10<11:44:57,  3.99s/it, loss=0.0172, lr=9.14e-06, step=19398]\\rTraining:  65%|██████▍   | 19399/30000 [21:45:10<11:44:57,  3.99s/it, loss=0.0219, lr=9.14e-06, step=19399]\\rTraining:  65%|██████▍   | 19400/30000 [21:45:14<11:44:48,  3.99s/it, loss=0.0219, lr=9.14e-06, step=19399]\\rTraining:  65%|██████▍   | 19400/30000 [21:45:14<11:44:48,  3.99s/it, loss=0.0137, lr=9.14e-06, step=19400]\\rTraining:  65%|██████▍   | 19401/30000 [21:45:18<11:44:34,  3.99s/it, loss=0.0137, lr=9.14e-06, step=19400]\\rTraining:  65%|██████▍   | 19401/30000 [21:45:18<11:44:34,  3.99s/it, loss=0.0080, lr=9.14e-06, step=19401]\\rTraining:  65%|██████▍   | 19402/30000 [21:45:22<11:49:13,  4.02s/it, loss=0.0080, lr=9.14e-06, step=19401]\\rTraining:  65%|██████▍   | 19402/30000 [21:45:22<11:49:13,  4.02s/it, loss=0.0169, lr=9.14e-06, step=19402]\\rTraining:  65%|██████▍   | 19403/30000 [21:45:26<11:47:34,  4.01s/it, loss=0.0169, lr=9.14e-06, step=19402]\\rTraining:  65%|██████▍   | 19403/30000 [21:45:26<11:47:34,  4.01s/it, loss=0.0112, lr=9.13e-06, step=19403]\\rTraining:  65%|██████▍   | 19404/30000 [21:45:30<11:46:24,  4.00s/it, loss=0.0112, lr=9.13e-06, step=19403]\\rTraining:  65%|██████▍   | 19404/30000 [21:45:30<11:46:24,  4.00s/it, loss=0.0129, lr=9.13e-06, step=19404]\\rTraining:  65%|██████▍   | 19405/30000 [21:45:34<11:45:49,  4.00s/it, loss=0.0129, lr=9.13e-06, step=19404]\\rTraining:  65%|██████▍   | 19405/30000 [21:45:34<11:45:49,  4.00s/it, loss=0.0163, lr=9.13e-06, step=19405]\\rTraining:  65%|██████▍   | 19406/30000 [21:45:38<11:45:27,  4.00s/it, loss=0.0163, lr=9.13e-06, step=19405]\\rTraining:  65%|██████▍   | 19406/30000 [21:45:38<11:45:27,  4.00s/it, loss=0.0193, lr=9.13e-06, step=19406]\\rTraining:  65%|██████▍   | 19407/30000 [21:45:42<11:44:59,  3.99s/it, loss=0.0193, lr=9.13e-06, step=19406]\\rTraining:  65%|██████▍   | 19407/30000 [21:45:42<11:44:59,  3.99s/it, loss=0.0090, lr=9.13e-06, step=19407]\\rTraining:  65%|██████▍   | 19408/30000 [21:45:46<11:44:56,  3.99s/it, loss=0.0090, lr=9.13e-06, step=19407]\\rTraining:  65%|██████▍   | 19408/30000 [21:45:46<11:44:56,  3.99s/it, loss=0.0149, lr=9.13e-06, step=19408]\\rTraining:  65%|██████▍   | 19409/30000 [21:45:50<11:44:42,  3.99s/it, loss=0.0149, lr=9.13e-06, step=19408]\\rTraining:  65%|██████▍   | 19409/30000 [21:45:50<11:44:42,  3.99s/it, loss=0.0253, lr=9.13e-06, step=19409]\\rTraining:  65%|██████▍   | 19410/30000 [21:45:54<11:44:21,  3.99s/it, loss=0.0253, lr=9.13e-06, step=19409]\\rTraining:  65%|██████▍   | 19410/30000 [21:45:54<11:44:21,  3.99s/it, loss=0.0170, lr=9.13e-06, step=19410]\\rTraining:  65%|██████▍   | 19411/30000 [21:45:58<11:44:04,  3.99s/it, loss=0.0170, lr=9.13e-06, step=19410]\\rTraining:  65%|██████▍   | 19411/30000 [21:45:58<11:44:04,  3.99s/it, loss=0.0175, lr=9.13e-06, step=19411]\\rTraining:  65%|██████▍   | 19412/30000 [21:46:02<11:44:09,  3.99s/it, loss=0.0175, lr=9.13e-06, step=19411]\\rTraining:  65%|██████▍   | 19412/30000 [21:46:02<11:44:09,  3.99s/it, loss=0.0202, lr=9.12e-06, step=19412]\\rTraining:  65%|██████▍   | 19413/30000 [21:46:06<11:44:02,  3.99s/it, loss=0.0202, lr=9.12e-06, step=19412]\\rTraining:  65%|██████▍   | 19413/30000 [21:46:06<11:44:02,  3.99s/it, loss=0.0144, lr=9.12e-06, step=19413]\\rTraining:  65%|██████▍   | 19414/30000 [21:46:10<11:43:45,  3.99s/it, loss=0.0144, lr=9.12e-06, step=19413]\\rTraining:  65%|██████▍   | 19414/30000 [21:46:10<11:43:45,  3.99s/it, loss=0.0155, lr=9.12e-06, step=19414]\\rTraining:  65%|██████▍   | 19415/30000 [21:46:14<11:46:34,  4.01s/it, loss=0.0155, lr=9.12e-06, step=19414]\\rTraining:  65%|██████▍   | 19415/30000 [21:46:14<11:46:34,  4.01s/it, loss=0.0203, lr=9.12e-06, step=19415]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 9.86}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b391c961-1550-430f-8ea4-62467524ba88",
+  "uuid": "53deeb00-9a2e-4842-9140-c15c15756a79",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"DIAG: BEFORE load - action_in_proj.weight device=cuda:0, mean=0.000587, std=0.101799\\\\nDIAG: load_model done. missing=0, unexpected=0\\\\nDIAG: AFTER load - action_in_proj.weight device=cuda:0, mean=-0.000354, std=0.177879\\\\nDIAG: REF from file - mean=-0.000354, std=0.177879\\\\n\\\\rTraining:   0%|          | 0/30000 [00:00<?, ?it/s]\\\\rTraining:   0%|          | 1/30000 [00:21<175:18:08, 21.04s/it]\\\\rTraining:   0%|          | 1/30000 [00:21<175:18:08, 21.04s/it, loss=0.2208, lr=2.50e-08, step=1]\\\\rTraining:   0%|          | 2/30000 [00:25<91:49:22, 11.02s/it, loss=0.2208, lr=2.50e-08, step=1] \\\\rTraining:   0%|          | 2/30000 [00:25<91:49:22, 11.02s/it, loss=0.2215, lr=5.00e-08, step=2]\\\\rTraining:   0%|          | 3/30000 [00:29<65:03:04,  7.81s/it, loss=0.2215, lr=5.00e-08, step=2]\\\\rTraining:   0%|          | 3/30000 [00:29<65:03:04,  7.81s/it, loss=0.2664, lr=7.49e-08, step=3]\\\\rTraining:   0%|          | 4/30000 [00:33<52:28:33,  6.30s/it, loss=0.2664, lr=7.49e-08, step=3]\\\\rTraining:   0%|          | 4/30000 [00:33<52:28:33,  6.30s/it, loss=0.2749, lr=9.99e-08, step=4]\\\\rTraining:   0%|          | 5/30000 [00:37<45:32:06,  5.47s/it, loss=0.2749, lr=9.99e-08, step=4]\\\\rTraining:   0%|          | 5/30000 [00:37<45:32:06,  5.47s/it, loss=0.2682, lr=1.25e-07, step=5]\\\\rTraining:   0%|          | 6/30000 [00:40<41:21:09,  4.96s/it, loss=0.2682, lr=1.25e-07, step=5]\\\\rTraining:   0%|          | 6/30000 [00:40<41:21:09,  4.96s/it, loss=0.2091, lr=1.50e-07, step=6]\\\\rTraining:   0%|          | 7/30000 [00:44<38:40:11,  4.64s/it, loss=0.2091, lr=1.50e-07, step=6]\\\\rTraining:   0%|          | 7/30000 [00:44<38:40:11,  4.64s/it, loss=0.2366, lr=1.75e-07, step=7]\\\\rTraining:   0%|          | 8/30000 [00:48<36:55:12,  4.43s/it, loss=0.2366, lr=1.75e-07, step=7]\\\\rTraining:   0%|          | 8/30000 [00:48<36:55:12,  4.43s/it, loss=0.2649, lr=2.00e-07, step=8]\\\\rTraining:   0%|          | 9/30000 [00:52<35:45:28,  4.29s/it, loss=0.2649, lr=2.00e-07, step=8]\\\\rTraining:   0%|          | 9/30000 [00:52<35:45:28,  4.29s/it, loss=0.2505, lr=2.25e-07, step=9]\\\\rTraining:   0%|          | 10/30000 [00:56<35:01:00,  4.20s/it, loss=0.2505, lr=2.25e-07, step=9]\\\\rTraining:   0%|          | 10/30000 [00:56<35:01:00,  4.20s/it, loss=0.2165, lr=2.50e-07, step=10]\\\\rTraining:   0%|          | 11/30000 [01:00<34:27:29,  4.14s/it, loss=0.2165, lr=2.50e-07, step=10]\\\\rTraining:   0%|          | 11/30000 [01:00<34:27:29,  4.14s/it, loss=0.2613, lr=2.75e-07, step=11]\\\\rTraining:   0%|          | 12/30000 [01:04<34:04:59,  4.09s/it, loss=0.2613, lr=2.75e-07, step=11]\\\\rTraining:   0%|          | 12/30000 [01:04<34:04:59,  4.09s/it, loss=0.2274, lr=3.00e-07, step=12]\\\\rTraining:   0%|          | 13/30000 [01:08<33:48:47,  4.06s/it, loss=0.2274, lr=3.00e-07, step=12]\\\\rTraining:   0%|          | 13/30000 [01:08<33:48:47,  4.06s/it, loss=0.2512, lr=3.25e-07, step=13]\\\\rTraining:   0%|          | 14/30000 [01:12<33:38:00,  4.04s/it, loss=0.2512, lr=3.25e-07, step=13]\\\\rTraining:   0%|          | 14/30000 [01:12<33:38:00,  4.04s/it, loss=0.3109, lr=3.50e-07, step=14]\\\\rTraining:   0%|          | 15/30000 [01:16<33:31:54,  4.03s/it, loss=0.3109, lr=3.50e-07, step=14]\\\\rTraining:   0%|          | 15/30000 [01:16<33:31:54,  4.03s/it, loss=0.2461, lr=3.75e-07, step=15]\\\\rTraining:   0%|          | 16/30000 [01:20<33:24:53,  4.01s/it, loss=0.2461, lr=3.75e-07, step=15]\\\\rTraining:   0%|          | 16/30000 [01:20<33:24:53,  4.01s/it, loss=0.2787, lr=4.00e-07, step=16]\\\\rTraining:   0%|          | 17/30000 [01:24<33:20:03,  4.00s/it, loss=0.2787, lr=4.00e-07, step=16]\\\\rTraining:   0%|          | 17/30000 [01:24<33:20:03,  4.00s/it, loss=0.2496, lr=4.25e-07, step=17]\\\\rTraining:   0%|          | 18/30000 [01:28<33:15:57,  3.99s/it, loss=0.2496, lr=4.25e-07, step=17]\\\\rTraining:   0%|          | 18/30000 [01:28<33:15:57,  3.99s/it, loss=0.2433, lr=4.50e-07, step=18]\\\\rTraining:   0%|          | 19/30000 [01:32<33:15:53,  3.99s/it, loss=0.2433, lr=4.50e-07, step=18]\\\\rTraining:   0%|          | 19/30000 [01:32<33:15:53,  3.99s/it, loss=0.2396, lr=4.75\\\\n\\\\n... [截断: 输出过长，省略 4120568 字符] ...\\\\n\\\\n396]\\\\rTraining:  65%|██████▍   | 19397/30000 [21:45:02<11:45:58,  3.99s/it, loss=0.0184, lr=9.14e-06, step=19397]\\\\rTraining:  65%|██████▍   | 19398/30000 [21:45:06<11:45:22,  3.99s/it, loss=0.0184, lr=9.14e-06, step=19397]\\\\rTraining:  65%|██████▍   | 19398/30000 [21:45:06<11:45:22,  3.99s/it, loss=0.0172, lr=9.14e-06, step=19398]\\\\rTraining:  65%|██████▍   | 19399/30000 [21:45:10<11:44:57,  3.99s/it, loss=0.0172, lr=9.14e-06, step=19398]\\\\rTraining:  65%|██████▍   | 19399/30000 [21:45:10<11:44:57,  3.99s/it, loss=0.0219, lr=9.14e-06, step=19399]\\\\rTraining:  65%|██████▍   | 19400/30000 [21:45:14<11:44:48,  3.99s/it, loss=0.0219, lr=9.14e-06, step=19399]\\\\rTraining:  65%|██████▍   | 19400/30000 [21:45:14<11:44:48,  3.99s/it, loss=0.0137, lr=9.14e-06, step=19400]\\\\rTraining:  65%|██████▍   | 19401/30000 [21:45:18<11:44:34,  3.99s/it, loss=0.0137, lr=9.14e-06, step=19400]\\\\rTraining:  65%|██████▍   | 19401/30000 [21:45:18<11:44:34,  3.99s/it, loss=0.0080, lr=9.14e-06, step=19401]\\\\rTraining:  65%|██████▍   | 19402/30000 [21:45:22<11:49:13,  4.02s/it, loss=0.0080, lr=9.14e-06, step=19401]\\\\rTraining:  65%|██████▍   | 19402/30000 [21:45:22<11:49:13,  4.02s/it, loss=0.0169, lr=9.14e-06, step=19402]\\\\rTraining:  65%|██████▍   | 19403/30000 [21:45:26<11:47:34,  4.01s/it, loss=0.0169, lr=9.14e-06, step=19402]\\\\rTraining:  65%|██████▍   | 19403/30000 [21:45:26<11:47:34,  4.01s/it, loss=0.0112, lr=9.13e-06, step=19403]\\\\rTraining:  65%|██████▍   | 19404/30000 [21:45:30<11:46:24,  4.00s/it, loss=0.0112, lr=9.13e-06, step=19403]\\\\rTraining:  65%|██████▍   | 19404/30000 [21:45:30<11:46:24,  4.00s/it, loss=0.0129, lr=9.13e-06, step=19404]\\\\rTraining:  65%|██████▍   | 19405/30000 [21:45:34<11:45:49,  4.00s/it, loss=0.0129, lr=9.13e-06, step=19404]\\\\rTraining:  65%|██████▍   | 19405/30000 [21:45:34<11:45:49,  4.00s/it, loss=0.0163, lr=9.13e-06, step=19405]\\\\rTraining:  65%|██████▍   | 19406/30000 [21:45:38<11:45:27,  4.00s/it, loss=0.0163, lr=9.13e-06, step=19405]\\\\rTraining:  65%|██████▍   | 19406/30000 [21:45:38<11:45:27,  4.00s/it, loss=0.0193, lr=9.13e-06, step=19406]\\\\rTraining:  65%|██████▍   | 19407/30000 [21:45:42<11:44:59,  3.99s/it, loss=0.0193, lr=9.13e-06, step=19406]\\\\rTraining:  65%|██████▍   | 19407/30000 [21:45:42<11:44:59,  3.99s/it, loss=0.0090, lr=9.13e-06, step=19407]\\\\rTraining:  65%|██████▍   | 19408/30000 [21:45:46<11:44:56,  3.99s/it, loss=0.0090, lr=9.13e-06, step=19407]\\\\rTraining:  65%|██████▍   | 19408/30000 [21:45:46<11:44:56,  3.99s/it, loss=0.0149, lr=9.13e-06, step=19408]\\\\rTraining:  65%|██████▍   | 19409/30000 [21:45:50<11:44:42,  3.99s/it, loss=0.0149, lr=9.13e-06, step=19408]\\\\rTraining:  65%|██████▍   | 19409/30000 [21:45:50<11:44:42,  3.99s/it, loss=0.0253, lr=9.13e-06, step=19409]\\\\rTraining:  65%|██████▍   | 19410/30000 [21:45:54<11:44:21,  3.99s/it, loss=0.0253, lr=9.13e-06, step=19409]\\\\rTraining:  65%|██████▍   | 19410/30000 [21:45:54<11:44:21,  3.99s/it, loss=0.0170, lr=9.13e-06, step=19410]\\\\rTraining:  65%|██████▍   | 19411/30000 [21:45:58<11:44:04,  3.99s/it, loss=0.0170, lr=9.13e-06, step=19410]\\\\rTraining:  65%|██████▍   | 19411/30000 [21:45:58<11:44:04,  3.99s/it, loss=0.0175, lr=9.13e-06, step=19411]\\\\rTraining:  65%|██████▍   | 19412/30000 [21:46:02<11:44:09,  3.99s/it, loss=0.0175, lr=9.13e-06, step=19411]\\\\rTraining:  65%|██████▍   | 19412/30000 [21:46:02<11:44:09,  3.99s/it, loss=0.0202, lr=9.12e-06, step=19412]\\\\rTraining:  65%|██████▍   | 19413/30000 [21:46:06<11:44:02,  3.99s/it, loss=0.0202, lr=9.12e-06, step=19412]\\\\rTraining:  65%|██████▍   | 19413/30000 [21:46:06<11:44:02,  3.99s/it, loss=0.0144, lr=9.12e-06, step=19413]\\\\rTraining:  65%|██████▍   | 19414/30000 [21:46:10<11:43:45,  3.99s/it, loss=0.0144, lr=9.12e-06, step=19413]\\\\rTraining:  65%|██████▍   | 19414/30000 [21:46:10<11:43:45,  3.99s/it, loss=0.0155, lr=9.12e-06, step=19414]\\\\rTraining:  65%|██████▍   | 19415/30000 [21:46:14<11:46:34,  4.01s/it, loss=0.0155, lr=9.12e-06, step=19414]\\\\rTraining:  65%|██████▍   | 19415/30000 [21:46:14<11:46:34,  4.01s/it, loss=0.0203, lr=9.12e-06, step=19415]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 9.86}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"DIAG: BEFORE load - action_in_proj.weight device=cuda:0, mean=0.000587, std=0.101799\\nDIAG: load_model done. missing=0, unexpected=0\\nDIAG: AFTER load - action_in_proj.weight device=cuda:0, mean=-0.000354, std=0.177879\\nDIAG: REF from file - mean=-0.000354, std=0.177879\\n\\rTraining:   0%|          | 0/30000 [00:00<?, ?it/s]\\rTraining:   0%|          | 1/30000 [00:21<175:18:08, 21.04s/it]\\rTraining:   0%|          | 1/30000 [00:21<175:18:08, 21.04s/it, loss=0.2208, lr=2.50e-08, step=1]\\rTraining:   0%|          | 2/30000 [00:25<91:49:22, 11.02s/it, loss=0.2208, lr=2.50e-08, step=1] \\rTraining:   0%|          | 2/30000 [00:25<91:49:22, 11.02s/it, loss=0.2215, lr=5.00e-08, step=2]\\rTraining:   0%|          | 3/30000 [00:29<65:03:04,  7.81s/it, loss=0.2215, lr=5.00e-08, step=2]\\rTraining:   0%|          | 3/30000 [00:29<65:03:04,  7.81s/it, loss=0.2664, lr=7.49e-08, step=3]\\rTraining:   0%|          | 4/30000 [00:33<52:28:33,  6.30s/it, loss=0.2664, lr=7.49e-08, step=3]\\rTraining:   0%|          | 4/30000 [00:33<52:28:33,  6.30s/it, loss=0.2749, lr=9.99e-08, step=4]\\rTraining:   0%|          | 5/30000 [00:37<45:32:06,  5.47s/it, loss=0.2749, lr=9.99e-08, step=4]\\rTraining:   0%|          | 5/30000 [00:37<45:32:06,  5.47s/it, loss=0.2682, lr=1.25e-07, step=5]\\rTraining:   0%|          | 6/30000 [00:40<41:21:09,  4.96s/it, loss=0.2682, lr=1.25e-07, step=5]\\rTraining:   0%|          | 6/30000 [00:40<41:21:09,  4.96s/it, loss=0.2091, lr=1.50e-07, step=6]\\rTraining:   0%|          | 7/30000 [00:44<38:40:11,  4.64s/it, loss=0.2091, lr=1.50e-07, step=6]\\rTraining:   0%|          | 7/30000 [00:44<38:40:11,  4.64s/it, loss=0.2366, lr=1.75e-07, step=7]\\rTraining:   0%|          | 8/30000 [00:48<36:55:12,  4.43s/it, loss=0.2366, lr=1.75e-07, step=7]\\rTraining:   0%|          | 8/30000 [00:48<36:55:12,  4.43s/it, loss=0.2649, lr=2.00e-07, step=8]\\rTraining:   0%|          | 9/30000 [00:52<35:45:28,  4.29s/it, loss=0.2649, lr=2.00e-07, step=8]\\rTraining:   0%|          | 9/30000 [00:52<35:45:28,  4.29s/it, loss=0.2505, lr=2.25e-07, step=9]\\rTraining:   0%|          | 10/30000 [00:56<35:01:00,  4.20s/it, loss=0.2505, lr=2.25e-07, step=9]\\rTraining:   0%|          | 10/30000 [00:56<35:01:00,  4.20s/it, loss=0.2165, lr=2.50e-07, step=10]\\rTraining:   0%|          | 11/30000 [01:00<34:27:29,  4.14s/it, loss=0.2165, lr=2.50e-07, step=10]\\rTraining:   0%|          | 11/30000 [01:00<34:27:29,  4.14s/it, loss=0.2613, lr=2.75e-07, step=11]\\rTraining:   0%|          | 12/30000 [01:04<34:04:59,  4.09s/it, loss=0.2613, lr=2.75e-07, step=11]\\rTraining:   0%|          | 12/30000 [01:04<34:04:59,  4.09s/it, loss=0.2274, lr=3.00e-07, step=12]\\rTraining:   0%|          | 13/30000 [01:08<33:48:47,  4.06s/it, loss=0.2274, lr=3.00e-07, step=12]\\rTraining:   0%|          | 13/30000 [01:08<33:48:47,  4.06s/it, loss=0.2512, lr=3.25e-07, step=13]\\rTraining:   0%|          | 14/30000 [01:12<33:38:00,  4.04s/it, loss=0.2512, lr=3.25e-07, step=13]\\rTraining:   0%|          | 14/30000 [01:12<33:38:00,  4.04s/it, loss=0.3109, lr=3.50e-07, step=14]\\rTraining:   0%|          | 15/30000 [01:16<33:31:54,  4.03s/it, loss=0.3109, lr=3.50e-07, step=14]\\rTraining:   0%|          | 15/30000 [01:16<33:31:54,  4.03s/it, loss=0.2461, lr=3.75e-07, step=15]\\rTraining:   0%|          | 16/30000 [01:20<33:24:53,  4.01s/it, loss=0.2461, lr=3.75e-07, step=15]\\rTraining:   0%|          | 16/30000 [01:20<33:24:53,  4.01s/it, loss=0.2787, lr=4.00e-07, step=16]\\rTraining:   0%|          | 17/30000 [01:24<33:20:03,  4.00s/it, loss=0.2787, lr=4.00e-07, step=16]\\rTraining:   0%|          | 17/30000 [01:24<33:20:03,  4.00s/it, loss=0.2496, lr=4.25e-07, step=17]\\rTraining:   0%|          | 18/30000 [01:28<33:15:57,  3.99s/it, loss=0.2496, lr=4.25e-07, step=17]\\rTraining:   0%|          | 18/30000 [01:28<33:15:57,  3.99s/it, loss=0.2433, lr=4.50e-07, step=18]\\rTraining:   0%|          | 19/30000 [01:32<33:15:53,  3.99s/it, loss=0.2433, lr=4.50e-07, step=18]\\rTraining:   0%|          | 19/30000 [01:32<33:15:53,  3.99s/it, loss=0.2396, lr=4.75\\n\\n... [截断: 输出过长，省略 4120568 字符] ...\\n\\n396]\\rTraining:  65%|██████▍   | 19397/30000 [21:45:02<11:45:58,  3.99s/it, loss=0.0184, lr=9.14e-06, step=19397]\\rTraining:  65%|██████▍   | 19398/30000 [21:45:06<11:45:22,  3.99s/it, loss=0.0184, lr=9.14e-06, step=19397]\\rTraining:  65%|██████▍   | 19398/30000 [21:45:06<11:45:22,  3.99s/it, loss=0.0172, lr=9.14e-06, step=19398]\\rTraining:  65%|██████▍   | 19399/30000 [21:45:10<11:44:57,  3.99s/it, loss=0.0172, lr=9.14e-06, step=19398]\\rTraining:  65%|██████▍   | 19399/30000 [21:45:10<11:44:57,  3.99s/it, loss=0.0219, lr=9.14e-06, step=19399]\\rTraining:  65%|██████▍   | 19400/30000 [21:45:14<11:44:48,  3.99s/it, loss=0.0219, lr=9.14e-06, step=19399]\\rTraining:  65%|██████▍   | 19400/30000 [21:45:14<11:44:48,  3.99s/it, loss=0.0137, lr=9.14e-06, step=19400]\\rTraining:  65%|██████▍   | 19401/30000 [21:45:18<11:44:34,  3.99s/it, loss=0.0137, lr=9.14e-06, step=19400]\\rTraining:  65%|██████▍   | 19401/30000 [21:45:18<11:44:34,  3.99s/it, loss=0.0080, lr=9.14e-06, step=19401]\\rTraining:  65%|██████▍   | 19402/30000 [21:45:22<11:49:13,  4.02s/it, loss=0.0080, lr=9.14e-06, step=19401]\\rTraining:  65%|██████▍   | 19402/30000 [21:45:22<11:49:13,  4.02s/it, loss=0.0169, lr=9.14e-06, step=19402]\\rTraining:  65%|██████▍   | 19403/30000 [21:45:26<11:47:34,  4.01s/it, loss=0.0169, lr=9.14e-06, step=19402]\\rTraining:  65%|██████▍   | 19403/30000 [21:45:26<11:47:34,  4.01s/it, loss=0.0112, lr=9.13e-06, step=19403]\\rTraining:  65%|██████▍   | 19404/30000 [21:45:30<11:46:24,  4.00s/it, loss=0.0112, lr=9.13e-06, step=19403]\\rTraining:  65%|██████▍   | 19404/30000 [21:45:30<11:46:24,  4.00s/it, loss=0.0129, lr=9.13e-06, step=19404]\\rTraining:  65%|██████▍   | 19405/30000 [21:45:34<11:45:49,  4.00s/it, loss=0.0129, lr=9.13e-06, step=19404]\\rTraining:  65%|██████▍   | 19405/30000 [21:45:34<11:45:49,  4.00s/it, loss=0.0163, lr=9.13e-06, step=19405]\\rTraining:  65%|██████▍   | 19406/30000 [21:45:38<11:45:27,  4.00s/it, loss=0.0163, lr=9.13e-06, step=19405]\\rTraining:  65%|██████▍   | 19406/30000 [21:45:38<11:45:27,  4.00s/it, loss=0.0193, lr=9.13e-06, step=19406]\\rTraining:  65%|██████▍   | 19407/30000 [21:45:42<11:44:59,  3.99s/it, loss=0.0193, lr=9.13e-06, step=19406]\\rTraining:  65%|██████▍   | 19407/30000 [21:45:42<11:44:59,  3.99s/it, loss=0.0090, lr=9.13e-06, step=19407]\\rTraining:  65%|██████▍   | 19408/30000 [21:45:46<11:44:56,  3.99s/it, loss=0.0090, lr=9.13e-06, step=19407]\\rTraining:  65%|██████▍   | 19408/30000 [21:45:46<11:44:56,  3.99s/it, loss=0.0149, lr=9.13e-06, step=19408]\\rTraining:  65%|██████▍   | 19409/30000 [21:45:50<11:44:42,  3.99s/it, loss=0.0149, lr=9.13e-06, step=19408]\\rTraining:  65%|██████▍   | 19409/30000 [21:45:50<11:44:42,  3.99s/it, loss=0.0253, lr=9.13e-06, step=19409]\\rTraining:  65%|██████▍   | 19410/30000 [21:45:54<11:44:21,  3.99s/it, loss=0.0253, lr=9.13e-06, step=19409]\\rTraining:  65%|██████▍   | 19410/30000 [21:45:54<11:44:21,  3.99s/it, loss=0.0170, lr=9.13e-06, step=19410]\\rTraining:  65%|██████▍   | 19411/30000 [21:45:58<11:44:04,  3.99s/it, loss=0.0170, lr=9.13e-06, step=19410]\\rTraining:  65%|██████▍   | 19411/30000 [21:45:58<11:44:04,  3.99s/it, loss=0.0175, lr=9.13e-06, step=19411]\\rTraining:  65%|██████▍   | 19412/30000 [21:46:02<11:44:09,  3.99s/it, loss=0.0175, lr=9.13e-06, step=19411]\\rTraining:  65%|██████▍   | 19412/30000 [21:46:02<11:44:09,  3.99s/it, loss=0.0202, lr=9.12e-06, step=19412]\\rTraining:  65%|██████▍   | 19413/30000 [21:46:06<11:44:02,  3.99s/it, loss=0.0202, lr=9.12e-06, step=19412]\\rTraining:  65%|██████▍   | 19413/30000 [21:46:06<11:44:02,  3.99s/it, loss=0.0144, lr=9.12e-06, step=19413]\\rTraining:  65%|██████▍   | 19414/30000 [21:46:10<11:43:45,  3.99s/it, loss=0.0144, lr=9.12e-06, step=19413]\\rTraining:  65%|██████▍   | 19414/30000 [21:46:10<11:43:45,  3.99s/it, loss=0.0155, lr=9.12e-06, step=19414]\\rTraining:  65%|██████▍   | 19415/30000 [21:46:14<11:46:34,  4.01s/it, loss=0.0155, lr=9.12e-06, step=19414]\\rTraining:  65%|██████▍   | 19415/30000 [21:46:14<11:46:34,  4.01s/it, loss=0.0203, lr=9.12e-06, step=19415]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 9.86}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-22T00:00:12.191Z_
+
+<details><summary>↩ Tool result · `toolu_01WxFJCFbKuZAKwBuXM9By72`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"DIAG: BEFORE load - action_in_proj.weight device=cuda:0, mean=0.000587, std=0.101799\\nDIAG: load_model done. missing=0, unexpected=0\\nDIAG: AFTER load - action_in_proj.weight device=cuda:0, mean=-0.000354, std=0.177879\\nDIAG: REF from file - mean=-0.000354, std=0.177879\\n\\rTraining:   0%|          | 0/30000 [00:00<?, ?it/s]\\rTraining:   0%|          | 1/30000 [00:22<184:04:46, 22.09s/it]\\rTraining:   0%|          | 1/30000 [00:22<184:04:46, 22.09s/it, loss=0.1582, lr=2.50e-08, step=1]\\rTraining:   0%|          | 2/30000 [00:26<95:15:50, 11.43s/it, loss=0.1582, lr=2.50e-08, step=1] \\rTraining:   0%|          | 2/30000 [00:26<95:15:50, 11.43s/it, loss=0.1983, lr=5.00e-08, step=2]\\rTraining:   0%|          | 3/30000 [00:30<67:15:55,  8.07s/it, loss=0.1983, lr=5.00e-08, step=2]\\rTraining:   0%|          | 3/30000 [00:30<67:15:55,  8.07s/it, loss=0.1996, lr=7.49e-08, step=3]\\rTraining:   0%|          | 4/30000 [00:34<53:45:39,  6.45s/it, loss=0.1996, lr=7.49e-08, step=3]\\rTraining:   0%|          | 4/30000 [00:34<53:45:39,  6.45s/it, loss=0.2170, lr=9.99e-08, step=4]\\rTraining:   0%|          | 5/30000 [00:38<46:29:49,  5.58s/it, loss=0.2170, lr=9.99e-08, step=4]\\rTraining:   0%|          | 5/30000 [00:38<46:29:49,  5.58s/it, loss=0.2303, lr=1.25e-07, step=5]\\rTraining:   0%|          | 6/30000 [00:42<41:56:10,  5.03s/it, loss=0.2303, lr=1.25e-07, step=5]\\rTraining:   0%|          | 6/30000 [00:42<41:56:10,  5.03s/it, loss=0.1912, lr=1.50e-07, step=6]\\rTraining:   0%|          | 7/30000 [00:46<39:10:39,  4.70s/it, loss=0.1912, lr=1.50e-07, step=6]\\rTraining:   0%|          | 7/30000 [00:46<39:10:39,  4.70s/it, loss=0.1717, lr=1.75e-07, step=7]\\rTraining:   0%|          | 8/30000 [00:50<37:20:56,  4.48s/it, loss=0.1717, lr=1.75e-07, step=7]\\rTraining:   0%|          | 8/30000 [00:50<37:20:56,  4.48s/it, loss=0.2520, lr=2.00e-07, step=8]\\rTraining:   0%|          | 9/30000 [00:54<36:05:37,  4.33s/it, loss=0.2520, lr=2.00e-07, step=8]\\rTraining:   0%|          | 9/30000 [00:54<36:05:37,  4.33s/it, loss=0.1853, lr=2.25e-07, step=9]\\rTraining:   0%|          | 10/30000 [00:58<35:55:57,  4.31s/it, loss=0.1853, lr=2.25e-07, step=9]\\rTraining:   0%|          | 10/30000 [00:58<35:55:57,  4.31s/it, loss=0.1628, lr=2.50e-07, step=10]\\rTraining:   0%|          | 11/30000 [01:02<35:09:02,  4.22s/it, loss=0.1628, lr=2.50e-07, step=10]\\rTraining:   0%|          | 11/30000 [01:02<35:09:02,  4.22s/it, loss=0.1869, lr=2.75e-07, step=11]\\rTraining:   0%|          | 12/30000 [01:06<34:36:06,  4.15s/it, loss=0.1869, lr=2.75e-07, step=11]\\rTraining:   0%|          | 12/30000 [01:06<34:36:06,  4.15s/it, loss=0.1976, lr=3.00e-07, step=12]\\rTraining:   0%|          | 13/30000 [01:10<34:16:32,  4.11s/it, loss=0.1976, lr=3.00e-07, step=12]\\rTraining:   0%|          | 13/30000 [01:10<34:16:32,  4.11s/it, loss=0.1852, lr=3.25e-07, step=13]\\rTraining:   0%|          | 14/30000 [01:14<34:00:36,  4.08s/it, loss=0.1852, lr=3.25e-07, step=13]\\rTraining:   0%|          | 14/30000 [01:14<34:00:36,  4.08s/it, loss=0.2042, lr=3.50e-07, step=14]\\rTraining:   0%|          | 15/30000 [01:18<33:52:43,  4.07s/it, loss=0.2042, lr=3.50e-07, step=14]\\rTraining:   0%|          | 15/30000 [01:18<33:52:43,  4.07s/it, loss=0.2387, lr=3.75e-07, step=15]\\rTraining:   0%|          | 16/30000 [01:22<33:44:59,  4.05s/it, loss=0.2387, lr=3.75e-07, step=15]\\rTraining:   0%|          | 16/30000 [01:22<33:44:59,  4.05s/it, loss=0.2002, lr=4.00e-07, step=16]\\rTraining:   0%|          | 17/30000 [01:26<33:37:29,  4.04s/it, loss=0.2002, lr=4.00e-07, step=16]\\rTraining:   0%|          | 17/30000 [01:26<33:37:29,  4.04s/it, loss=0.1652, lr=4.25e-07, step=17]\\rTraining:   0%|          | 18/30000 [01:30<33:36:09,  4.03s/it, loss=0.1652, lr=4.25e-07, step=17]\\rTraining:   0%|          | 18/30000 [01:30<33:36:09,  4.03s/it, loss=0.1983, lr=4.50e-07, step=18]\\rTraining:   0%|          | 19/30000 [01:34<33:37:12,  4.04s/it, loss=0.1983, lr=4.50e-07, step=18]\\rTraining:   0%|          | 19/30000 [01:34<33:37:12,  4.04s/it, loss=0.1989, lr=4.75\\n\\n... [截断: 输出过长，省略 4112170 字符] ...\\n\\n8]\\rTraining:  65%|██████▍   | 19359/30000 [21:45:10<11:50:40,  4.01s/it, loss=0.0135, lr=9.18e-06, step=19359]\\rTraining:  65%|██████▍   | 19360/30000 [21:45:14<11:50:38,  4.01s/it, loss=0.0135, lr=9.18e-06, step=19359]\\rTraining:  65%|██████▍   | 19360/30000 [21:45:14<11:50:38,  4.01s/it, loss=0.0186, lr=9.18e-06, step=19360]\\rTraining:  65%|██████▍   | 19361/30000 [21:45:18<11:50:36,  4.01s/it, loss=0.0186, lr=9.18e-06, step=19360]\\rTraining:  65%|██████▍   | 19361/30000 [21:45:18<11:50:36,  4.01s/it, loss=0.0146, lr=9.18e-06, step=19361]\\rTraining:  65%|██████▍   | 19362/30000 [21:45:22<11:50:25,  4.01s/it, loss=0.0146, lr=9.18e-06, step=19361]\\rTraining:  65%|██████▍   | 19362/30000 [21:45:22<11:50:25,  4.01s/it, loss=0.0158, lr=9.18e-06, step=19362]\\rTraining:  65%|██████▍   | 19363/30000 [21:45:26<11:50:17,  4.01s/it, loss=0.0158, lr=9.18e-06, step=19362]\\rTraining:  65%|██████▍   | 19363/30000 [21:45:26<11:50:17,  4.01s/it, loss=0.0109, lr=9.18e-06, step=19363]\\rTraining:  65%|██████▍   | 19364/30000 [21:45:30<11:50:16,  4.01s/it, loss=0.0109, lr=9.18e-06, step=19363]\\rTraining:  65%|██████▍   | 19364/30000 [21:45:30<11:50:16,  4.01s/it, loss=0.0131, lr=9.18e-06, step=19364]\\rTraining:  65%|██████▍   | 19365/30000 [21:45:34<11:50:13,  4.01s/it, loss=0.0131, lr=9.18e-06, step=19364]\\rTraining:  65%|██████▍   | 19365/30000 [21:45:34<11:50:13,  4.01s/it, loss=0.0146, lr=9.18e-06, step=19365]\\rTraining:  65%|██████▍   | 19366/30000 [21:45:38<11:50:08,  4.01s/it, loss=0.0146, lr=9.18e-06, step=19365]\\rTraining:  65%|██████▍   | 19366/30000 [21:45:38<11:50:08,  4.01s/it, loss=0.0154, lr=9.18e-06, step=19366]\\rTraining:  65%|██████▍   | 19367/30000 [21:45:42<11:50:05,  4.01s/it, loss=0.0154, lr=9.18e-06, step=19366]\\rTraining:  65%|██████▍   | 19367/30000 [21:45:42<11:50:05,  4.01s/it, loss=0.0147, lr=9.17e-06, step=19367]\\rTraining:  65%|██████▍   | 19368/30000 [21:45:47<11:55:10,  4.04s/it, loss=0.0147, lr=9.17e-06, step=19367]\\rTraining:  65%|██████▍   | 19368/30000 [21:45:47<11:55:10,  4.04s/it, loss=0.0149, lr=9.17e-06, step=19368]\\rTraining:  65%|██████▍   | 19369/30000 [21:45:51<11:53:25,  4.03s/it, loss=0.0149, lr=9.17e-06, step=19368]\\rTraining:  65%|██████▍   | 19369/30000 [21:45:51<11:53:25,  4.03s/it, loss=0.0119, lr=9.17e-06, step=19369]\\rTraining:  65%|██████▍   | 19370/30000 [21:45:55<11:52:18,  4.02s/it, loss=0.0119, lr=9.17e-06, step=19369]\\rTraining:  65%|██████▍   | 19370/30000 [21:45:55<11:52:18,  4.02s/it, loss=0.0174, lr=9.17e-06, step=19370]\\rTraining:  65%|██████▍   | 19371/30000 [21:45:59<11:51:43,  4.02s/it, loss=0.0174, lr=9.17e-06, step=19370]\\rTraining:  65%|██████▍   | 19371/30000 [21:45:59<11:51:43,  4.02s/it, loss=0.0218, lr=9.17e-06, step=19371]\\rTraining:  65%|██████▍   | 19372/30000 [21:46:03<11:51:08,  4.01s/it, loss=0.0218, lr=9.17e-06, step=19371]\\rTraining:  65%|██████▍   | 19372/30000 [21:46:03<11:51:08,  4.01s/it, loss=0.0143, lr=9.17e-06, step=19372]\\rTraining:  65%|██████▍   | 19373/30000 [21:46:07<11:50:54,  4.01s/it, loss=0.0143, lr=9.17e-06, step=19372]\\rTraining:  65%|██████▍   | 19373/30000 [21:46:07<11:50:54,  4.01s/it, loss=0.0183, lr=9.17e-06, step=19373]\\rTraining:  65%|██████▍   | 19374/30000 [21:46:11<11:50:59,  4.01s/it, loss=0.0183, lr=9.17e-06, step=19373]\\rTraining:  65%|██████▍   | 19374/30000 [21:46:11<11:50:59,  4.01s/it, loss=0.0139, lr=9.17e-06, step=19374]\\rTraining:  65%|██████▍   | 19375/30000 [21:46:15<11:50:29,  4.01s/it, loss=0.0139, lr=9.17e-06, step=19374]\\rTraining:  65%|███���██▍   | 19375/30000 [21:46:15<11:50:29,  4.01s/it, loss=0.0144, lr=9.17e-06, step=19375]\\rTraining:  65%|██████▍   | 19376/30000 [21:46:19<11:50:11,  4.01s/it, loss=0.0144, lr=9.17e-06, step=19375]\\rTraining:  65%|██████▍   | 19376/30000 [21:46:19<11:50:11,  4.01s/it, loss=0.0151, lr=9.16e-06, step=19376]\\rTraining:  65%|██████▍   | 19377/30000 [21:46:23<11:49:50,  4.01s/it, loss=0.0151, lr=9.16e-06, step=19376]\\rTraining:  65%|██████▍   | 19377/30000 [21:46:23<11:49:50,  4.01s/it, loss=0.0144, lr=9.16e-06, step=19377]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b391c961-1550-430f-8ea4-62467524ba88",
+  "uuid": "e44b8b55-c80e-4f48-8a94-e495c1f4631b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"DIAG: BEFORE load - action_in_proj.weight device=cuda:0, mean=0.000587, std=0.101799\\\\nDIAG: load_model done. missing=0, unexpected=0\\\\nDIAG: AFTER load - action_in_proj.weight device=cuda:0, mean=-0.000354, std=0.177879\\\\nDIAG: REF from file - mean=-0.000354, std=0.177879\\\\n\\\\rTraining:   0%|          | 0/30000 [00:00<?, ?it/s]\\\\rTraining:   0%|          | 1/30000 [00:22<184:04:46, 22.09s/it]\\\\rTraining:   0%|          | 1/30000 [00:22<184:04:46, 22.09s/it, loss=0.1582, lr=2.50e-08, step=1]\\\\rTraining:   0%|          | 2/30000 [00:26<95:15:50, 11.43s/it, loss=0.1582, lr=2.50e-08, step=1] \\\\rTraining:   0%|          | 2/30000 [00:26<95:15:50, 11.43s/it, loss=0.1983, lr=5.00e-08, step=2]\\\\rTraining:   0%|          | 3/30000 [00:30<67:15:55,  8.07s/it, loss=0.1983, lr=5.00e-08, step=2]\\\\rTraining:   0%|          | 3/30000 [00:30<67:15:55,  8.07s/it, loss=0.1996, lr=7.49e-08, step=3]\\\\rTraining:   0%|          | 4/30000 [00:34<53:45:39,  6.45s/it, loss=0.1996, lr=7.49e-08, step=3]\\\\rTraining:   0%|          | 4/30000 [00:34<53:45:39,  6.45s/it, loss=0.2170, lr=9.99e-08, step=4]\\\\rTraining:   0%|          | 5/30000 [00:38<46:29:49,  5.58s/it, loss=0.2170, lr=9.99e-08, step=4]\\\\rTraining:   0%|          | 5/30000 [00:38<46:29:49,  5.58s/it, loss=0.2303, lr=1.25e-07, step=5]\\\\rTraining:   0%|          | 6/30000 [00:42<41:56:10,  5.03s/it, loss=0.2303, lr=1.25e-07, step=5]\\\\rTraining:   0%|          | 6/30000 [00:42<41:56:10,  5.03s/it, loss=0.1912, lr=1.50e-07, step=6]\\\\rTraining:   0%|          | 7/30000 [00:46<39:10:39,  4.70s/it, loss=0.1912, lr=1.50e-07, step=6]\\\\rTraining:   0%|          | 7/30000 [00:46<39:10:39,  4.70s/it, loss=0.1717, lr=1.75e-07, step=7]\\\\rTraining:   0%|          | 8/30000 [00:50<37:20:56,  4.48s/it, loss=0.1717, lr=1.75e-07, step=7]\\\\rTraining:   0%|          | 8/30000 [00:50<37:20:56,  4.48s/it, loss=0.2520, lr=2.00e-07, step=8]\\\\rTraining:   0%|          | 9/30000 [00:54<36:05:37,  4.33s/it, loss=0.2520, lr=2.00e-07, step=8]\\\\rTraining:   0%|          | 9/30000 [00:54<36:05:37,  4.33s/it, loss=0.1853, lr=2.25e-07, step=9]\\\\rTraining:   0%|          | 10/30000 [00:58<35:55:57,  4.31s/it, loss=0.1853, lr=2.25e-07, step=9]\\\\rTraining:   0%|          | 10/30000 [00:58<35:55:57,  4.31s/it, loss=0.1628, lr=2.50e-07, step=10]\\\\rTraining:   0%|          | 11/30000 [01:02<35:09:02,  4.22s/it, loss=0.1628, lr=2.50e-07, step=10]\\\\rTraining:   0%|          | 11/30000 [01:02<35:09:02,  4.22s/it, loss=0.1869, lr=2.75e-07, step=11]\\\\rTraining:   0%|          | 12/30000 [01:06<34:36:06,  4.15s/it, loss=0.1869, lr=2.75e-07, step=11]\\\\rTraining:   0%|          | 12/30000 [01:06<34:36:06,  4.15s/it, loss=0.1976, lr=3.00e-07, step=12]\\\\rTraining:   0%|          | 13/30000 [01:10<34:16:32,  4.11s/it, loss=0.1976, lr=3.00e-07, step=12]\\\\rTraining:   0%|          | 13/30000 [01:10<34:16:32,  4.11s/it, loss=0.1852, lr=3.25e-07, step=13]\\\\rTraining:   0%|          | 14/30000 [01:14<34:00:36,  4.08s/it, loss=0.1852, lr=3.25e-07, step=13]\\\\rTraining:   0%|          | 14/30000 [01:14<34:00:36,  4.08s/it, loss=0.2042, lr=3.50e-07, step=14]\\\\rTraining:   0%|          | 15/30000 [01:18<33:52:43,  4.07s/it, loss=0.2042, lr=3.50e-07, step=14]\\\\rTraining:   0%|          | 15/30000 [01:18<33:52:43,  4.07s/it, loss=0.2387, lr=3.75e-07, step=15]\\\\rTraining:   0%|          | 16/30000 [01:22<33:44:59,  4.05s/it, loss=0.2387, lr=3.75e-07, step=15]\\\\rTraining:   0%|          | 16/30000 [01:22<33:44:59,  4.05s/it, loss=0.2002, lr=4.00e-07, step=16]\\\\rTraining:   0%|          | 17/30000 [01:26<33:37:29,  4.04s/it, loss=0.2002, lr=4.00e-07, step=16]\\\\rTraining:   0%|          | 17/30000 [01:26<33:37:29,  4.04s/it, loss=0.1652, lr=4.25e-07, step=17]\\\\rTraining:   0%|          | 18/30000 [01:30<33:36:09,  4.03s/it, loss=0.1652, lr=4.25e-07, step=17]\\\\rTraining:   0%|          | 18/30000 [01:30<33:36:09,  4.03s/it, loss=0.1983, lr=4.50e-07, step=18]\\\\rTraining:   0%|          | 19/30000 [01:34<33:37:12,  4.04s/it, loss=0.1983, lr=4.50e-07, step=18]\\\\rTraining:   0%|          | 19/30000 [01:34<33:37:12,  4.04s/it, loss=0.1989, lr=4.75\\\\n\\\\n... [截断: 输出过长，省略 4112170 字符] ...\\\\n\\\\n8]\\\\rTraining:  65%|██████▍   | 19359/30000 [21:45:10<11:50:40,  4.01s/it, loss=0.0135, lr=9.18e-06, step=19359]\\\\rTraining:  65%|██████▍   | 19360/30000 [21:45:14<11:50:38,  4.01s/it, loss=0.0135, lr=9.18e-06, step=19359]\\\\rTraining:  65%|██████▍   | 19360/30000 [21:45:14<11:50:38,  4.01s/it, loss=0.0186, lr=9.18e-06, step=19360]\\\\rTraining:  65%|██████▍   | 19361/30000 [21:45:18<11:50:36,  4.01s/it, loss=0.0186, lr=9.18e-06, step=19360]\\\\rTraining:  65%|██████▍   | 19361/30000 [21:45:18<11:50:36,  4.01s/it, loss=0.0146, lr=9.18e-06, step=19361]\\\\rTraining:  65%|██████▍   | 19362/30000 [21:45:22<11:50:25,  4.01s/it, loss=0.0146, lr=9.18e-06, step=19361]\\\\rTraining:  65%|██████▍   | 19362/30000 [21:45:22<11:50:25,  4.01s/it, loss=0.0158, lr=9.18e-06, step=19362]\\\\rTraining:  65%|██████▍   | 19363/30000 [21:45:26<11:50:17,  4.01s/it, loss=0.0158, lr=9.18e-06, step=19362]\\\\rTraining:  65%|██████▍   | 19363/30000 [21:45:26<11:50:17,  4.01s/it, loss=0.0109, lr=9.18e-06, step=19363]\\\\rTraining:  65%|██████▍   | 19364/30000 [21:45:30<11:50:16,  4.01s/it, loss=0.0109, lr=9.18e-06, step=19363]\\\\rTraining:  65%|██████▍   | 19364/30000 [21:45:30<11:50:16,  4.01s/it, loss=0.0131, lr=9.18e-06, step=19364]\\\\rTraining:  65%|██████▍   | 19365/30000 [21:45:34<11:50:13,  4.01s/it, loss=0.0131, lr=9.18e-06, step=19364]\\\\rTraining:  65%|██████▍   | 19365/30000 [21:45:34<11:50:13,  4.01s/it, loss=0.0146, lr=9.18e-06, step=19365]\\\\rTraining:  65%|██████▍   | 19366/30000 [21:45:38<11:50:08,  4.01s/it, loss=0.0146, lr=9.18e-06, step=19365]\\\\rTraining:  65%|██████▍   | 19366/30000 [21:45:38<11:50:08,  4.01s/it, loss=0.0154, lr=9.18e-06, step=19366]\\\\rTraining:  65%|██████▍   | 19367/30000 [21:45:42<11:50:05,  4.01s/it, loss=0.0154, lr=9.18e-06, step=19366]\\\\rTraining:  65%|██████▍   | 19367/30000 [21:45:42<11:50:05,  4.01s/it, loss=0.0147, lr=9.17e-06, step=19367]\\\\rTraining:  65%|██████▍   | 19368/30000 [21:45:47<11:55:10,  4.04s/it, loss=0.0147, lr=9.17e-06, step=19367]\\\\rTraining:  65%|██████▍   | 19368/30000 [21:45:47<11:55:10,  4.04s/it, loss=0.0149, lr=9.17e-06, step=19368]\\\\rTraining:  65%|██████▍   | 19369/30000 [21:45:51<11:53:25,  4.03s/it, loss=0.0149, lr=9.17e-06, step=19368]\\\\rTraining:  65%|██████▍   | 19369/30000 [21:45:51<11:53:25,  4.03s/it, loss=0.0119, lr=9.17e-06, step=19369]\\\\rTraining:  65%|██████▍   | 19370/30000 [21:45:55<11:52:18,  4.02s/it, loss=0.0119, lr=9.17e-06, step=19369]\\\\rTraining:  65%|██████▍   | 19370/30000 [21:45:55<11:52:18,  4.02s/it, loss=0.0174, lr=9.17e-06, step=19370]\\\\rTraining:  65%|██████▍   | 19371/30000 [21:45:59<11:51:43,  4.02s/it, loss=0.0174, lr=9.17e-06, step=19370]\\\\rTraining:  65%|██████▍   | 19371/30000 [21:45:59<11:51:43,  4.02s/it, loss=0.0218, lr=9.17e-06, step=19371]\\\\rTraining:  65%|██████▍   | 19372/30000 [21:46:03<11:51:08,  4.01s/it, loss=0.0218, lr=9.17e-06, step=19371]\\\\rTraining:  65%|██████▍   | 19372/30000 [21:46:03<11:51:08,  4.01s/it, loss=0.0143, lr=9.17e-06, step=19372]\\\\rTraining:  65%|██████▍   | 19373/30000 [21:46:07<11:50:54,  4.01s/it, loss=0.0143, lr=9.17e-06, step=19372]\\\\rTraining:  65%|██████▍   | 19373/30000 [21:46:07<11:50:54,  4.01s/it, loss=0.0183, lr=9.17e-06, step=19373]\\\\rTraining:  65%|██████▍   | 19374/30000 [21:46:11<11:50:59,  4.01s/it, loss=0.0183, lr=9.17e-06, step=19373]\\\\rTraining:  65%|██████▍   | 19374/30000 [21:46:11<11:50:59,  4.01s/it, loss=0.0139, lr=9.17e-06, step=19374]\\\\rTraining:  65%|██████▍   | 19375/30000 [21:46:15<11:50:29,  4.01s/it, loss=0.0139, lr=9.17e-06, step=19374]\\\\rTraining:  65%|███���██▍   | 19375/30000 [21:46:15<11:50:29,  4.01s/it, loss=0.0144, lr=9.17e-06, step=19375]\\\\rTraining:  65%|██████▍   | 19376/30000 [21:46:19<11:50:11,  4.01s/it, loss=0.0144, lr=9.17e-06, step=19375]\\\\rTraining:  65%|██████▍   | 19376/30000 [21:46:19<11:50:11,  4.01s/it, loss=0.0151, lr=9.16e-06, step=19376]\\\\rTraining:  65%|██████▍   | 19377/30000 [21:46:23<11:49:50,  4.01s/it, loss=0.0151, lr=9.16e-06, step=19376]\\\\rTraining:  65%|██████▍   | 19377/30000 [21:46:23<11:49:50,  4.01s/it, loss=0.0144, lr=9.16e-06, step=19377]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"DIAG: BEFORE load - action_in_proj.weight device=cuda:0, mean=0.000587, std=0.101799\\nDIAG: load_model done. missing=0, unexpected=0\\nDIAG: AFTER load - action_in_proj.weight device=cuda:0, mean=-0.000354, std=0.177879\\nDIAG: REF from file - mean=-0.000354, std=0.177879\\n\\rTraining:   0%|          | 0/30000 [00:00<?, ?it/s]\\rTraining:   0%|          | 1/30000 [00:22<184:04:46, 22.09s/it]\\rTraining:   0%|          | 1/30000 [00:22<184:04:46, 22.09s/it, loss=0.1582, lr=2.50e-08, step=1]\\rTraining:   0%|          | 2/30000 [00:26<95:15:50, 11.43s/it, loss=0.1582, lr=2.50e-08, step=1] \\rTraining:   0%|          | 2/30000 [00:26<95:15:50, 11.43s/it, loss=0.1983, lr=5.00e-08, step=2]\\rTraining:   0%|          | 3/30000 [00:30<67:15:55,  8.07s/it, loss=0.1983, lr=5.00e-08, step=2]\\rTraining:   0%|          | 3/30000 [00:30<67:15:55,  8.07s/it, loss=0.1996, lr=7.49e-08, step=3]\\rTraining:   0%|          | 4/30000 [00:34<53:45:39,  6.45s/it, loss=0.1996, lr=7.49e-08, step=3]\\rTraining:   0%|          | 4/30000 [00:34<53:45:39,  6.45s/it, loss=0.2170, lr=9.99e-08, step=4]\\rTraining:   0%|          | 5/30000 [00:38<46:29:49,  5.58s/it, loss=0.2170, lr=9.99e-08, step=4]\\rTraining:   0%|          | 5/30000 [00:38<46:29:49,  5.58s/it, loss=0.2303, lr=1.25e-07, step=5]\\rTraining:   0%|          | 6/30000 [00:42<41:56:10,  5.03s/it, loss=0.2303, lr=1.25e-07, step=5]\\rTraining:   0%|          | 6/30000 [00:42<41:56:10,  5.03s/it, loss=0.1912, lr=1.50e-07, step=6]\\rTraining:   0%|          | 7/30000 [00:46<39:10:39,  4.70s/it, loss=0.1912, lr=1.50e-07, step=6]\\rTraining:   0%|          | 7/30000 [00:46<39:10:39,  4.70s/it, loss=0.1717, lr=1.75e-07, step=7]\\rTraining:   0%|          | 8/30000 [00:50<37:20:56,  4.48s/it, loss=0.1717, lr=1.75e-07, step=7]\\rTraining:   0%|          | 8/30000 [00:50<37:20:56,  4.48s/it, loss=0.2520, lr=2.00e-07, step=8]\\rTraining:   0%|          | 9/30000 [00:54<36:05:37,  4.33s/it, loss=0.2520, lr=2.00e-07, step=8]\\rTraining:   0%|          | 9/30000 [00:54<36:05:37,  4.33s/it, loss=0.1853, lr=2.25e-07, step=9]\\rTraining:   0%|          | 10/30000 [00:58<35:55:57,  4.31s/it, loss=0.1853, lr=2.25e-07, step=9]\\rTraining:   0%|          | 10/30000 [00:58<35:55:57,  4.31s/it, loss=0.1628, lr=2.50e-07, step=10]\\rTraining:   0%|          | 11/30000 [01:02<35:09:02,  4.22s/it, loss=0.1628, lr=2.50e-07, step=10]\\rTraining:   0%|          | 11/30000 [01:02<35:09:02,  4.22s/it, loss=0.1869, lr=2.75e-07, step=11]\\rTraining:   0%|          | 12/30000 [01:06<34:36:06,  4.15s/it, loss=0.1869, lr=2.75e-07, step=11]\\rTraining:   0%|          | 12/30000 [01:06<34:36:06,  4.15s/it, loss=0.1976, lr=3.00e-07, step=12]\\rTraining:   0%|          | 13/30000 [01:10<34:16:32,  4.11s/it, loss=0.1976, lr=3.00e-07, step=12]\\rTraining:   0%|          | 13/30000 [01:10<34:16:32,  4.11s/it, loss=0.1852, lr=3.25e-07, step=13]\\rTraining:   0%|          | 14/30000 [01:14<34:00:36,  4.08s/it, loss=0.1852, lr=3.25e-07, step=13]\\rTraining:   0%|          | 14/30000 [01:14<34:00:36,  4.08s/it, loss=0.2042, lr=3.50e-07, step=14]\\rTraining:   0%|          | 15/30000 [01:18<33:52:43,  4.07s/it, loss=0.2042, lr=3.50e-07, step=14]\\rTraining:   0%|          | 15/30000 [01:18<33:52:43,  4.07s/it, loss=0.2387, lr=3.75e-07, step=15]\\rTraining:   0%|          | 16/30000 [01:22<33:44:59,  4.05s/it, loss=0.2387, lr=3.75e-07, step=15]\\rTraining:   0%|          | 16/30000 [01:22<33:44:59,  4.05s/it, loss=0.2002, lr=4.00e-07, step=16]\\rTraining:   0%|          | 17/30000 [01:26<33:37:29,  4.04s/it, loss=0.2002, lr=4.00e-07, step=16]\\rTraining:   0%|          | 17/30000 [01:26<33:37:29,  4.04s/it, loss=0.1652, lr=4.25e-07, step=17]\\rTraining:   0%|          | 18/30000 [01:30<33:36:09,  4.03s/it, loss=0.1652, lr=4.25e-07, step=17]\\rTraining:   0%|          | 18/30000 [01:30<33:36:09,  4.03s/it, loss=0.1983, lr=4.50e-07, step=18]\\rTraining:   0%|          | 19/30000 [01:34<33:37:12,  4.04s/it, loss=0.1983, lr=4.50e-07, step=18]\\rTraining:   0%|          | 19/30000 [01:34<33:37:12,  4.04s/it, loss=0.1989, lr=4.75\\n\\n... [截断: 输出过长，省略 4112170 字符] ...\\n\\n8]\\rTraining:  65%|██████▍   | 19359/30000 [21:45:10<11:50:40,  4.01s/it, loss=0.0135, lr=9.18e-06, step=19359]\\rTraining:  65%|██████▍   | 19360/30000 [21:45:14<11:50:38,  4.01s/it, loss=0.0135, lr=9.18e-06, step=19359]\\rTraining:  65%|██████▍   | 19360/30000 [21:45:14<11:50:38,  4.01s/it, loss=0.0186, lr=9.18e-06, step=19360]\\rTraining:  65%|██████▍   | 19361/30000 [21:45:18<11:50:36,  4.01s/it, loss=0.0186, lr=9.18e-06, step=19360]\\rTraining:  65%|██████▍   | 19361/30000 [21:45:18<11:50:36,  4.01s/it, loss=0.0146, lr=9.18e-06, step=19361]\\rTraining:  65%|██████▍   | 19362/30000 [21:45:22<11:50:25,  4.01s/it, loss=0.0146, lr=9.18e-06, step=19361]\\rTraining:  65%|██████▍   | 19362/30000 [21:45:22<11:50:25,  4.01s/it, loss=0.0158, lr=9.18e-06, step=19362]\\rTraining:  65%|██████▍   | 19363/30000 [21:45:26<11:50:17,  4.01s/it, loss=0.0158, lr=9.18e-06, step=19362]\\rTraining:  65%|██████▍   | 19363/30000 [21:45:26<11:50:17,  4.01s/it, loss=0.0109, lr=9.18e-06, step=19363]\\rTraining:  65%|██████▍   | 19364/30000 [21:45:30<11:50:16,  4.01s/it, loss=0.0109, lr=9.18e-06, step=19363]\\rTraining:  65%|██████▍   | 19364/30000 [21:45:30<11:50:16,  4.01s/it, loss=0.0131, lr=9.18e-06, step=19364]\\rTraining:  65%|██████▍   | 19365/30000 [21:45:34<11:50:13,  4.01s/it, loss=0.0131, lr=9.18e-06, step=19364]\\rTraining:  65%|██████▍   | 19365/30000 [21:45:34<11:50:13,  4.01s/it, loss=0.0146, lr=9.18e-06, step=19365]\\rTraining:  65%|██████▍   | 19366/30000 [21:45:38<11:50:08,  4.01s/it, loss=0.0146, lr=9.18e-06, step=19365]\\rTraining:  65%|██████▍   | 19366/30000 [21:45:38<11:50:08,  4.01s/it, loss=0.0154, lr=9.18e-06, step=19366]\\rTraining:  65%|██████▍   | 19367/30000 [21:45:42<11:50:05,  4.01s/it, loss=0.0154, lr=9.18e-06, step=19366]\\rTraining:  65%|██████▍   | 19367/30000 [21:45:42<11:50:05,  4.01s/it, loss=0.0147, lr=9.17e-06, step=19367]\\rTraining:  65%|██████▍   | 19368/30000 [21:45:47<11:55:10,  4.04s/it, loss=0.0147, lr=9.17e-06, step=19367]\\rTraining:  65%|██████▍   | 19368/30000 [21:45:47<11:55:10,  4.04s/it, loss=0.0149, lr=9.17e-06, step=19368]\\rTraining:  65%|██████▍   | 19369/30000 [21:45:51<11:53:25,  4.03s/it, loss=0.0149, lr=9.17e-06, step=19368]\\rTraining:  65%|██████▍   | 19369/30000 [21:45:51<11:53:25,  4.03s/it, loss=0.0119, lr=9.17e-06, step=19369]\\rTraining:  65%|██████▍   | 19370/30000 [21:45:55<11:52:18,  4.02s/it, loss=0.0119, lr=9.17e-06, step=19369]\\rTraining:  65%|██████▍   | 19370/30000 [21:45:55<11:52:18,  4.02s/it, loss=0.0174, lr=9.17e-06, step=19370]\\rTraining:  65%|██████▍   | 19371/30000 [21:45:59<11:51:43,  4.02s/it, loss=0.0174, lr=9.17e-06, step=19370]\\rTraining:  65%|██████▍   | 19371/30000 [21:45:59<11:51:43,  4.02s/it, loss=0.0218, lr=9.17e-06, step=19371]\\rTraining:  65%|██████▍   | 19372/30000 [21:46:03<11:51:08,  4.01s/it, loss=0.0218, lr=9.17e-06, step=19371]\\rTraining:  65%|██████▍   | 19372/30000 [21:46:03<11:51:08,  4.01s/it, loss=0.0143, lr=9.17e-06, step=19372]\\rTraining:  65%|██████▍   | 19373/30000 [21:46:07<11:50:54,  4.01s/it, loss=0.0143, lr=9.17e-06, step=19372]\\rTraining:  65%|██████▍   | 19373/30000 [21:46:07<11:50:54,  4.01s/it, loss=0.0183, lr=9.17e-06, step=19373]\\rTraining:  65%|██████▍   | 19374/30000 [21:46:11<11:50:59,  4.01s/it, loss=0.0183, lr=9.17e-06, step=19373]\\rTraining:  65%|██████▍   | 19374/30000 [21:46:11<11:50:59,  4.01s/it, loss=0.0139, lr=9.17e-06, step=19374]\\rTraining:  65%|██████▍   | 19375/30000 [21:46:15<11:50:29,  4.01s/it, loss=0.0139, lr=9.17e-06, step=19374]\\rTraining:  65%|███���██▍   | 19375/30000 [21:46:15<11:50:29,  4.01s/it, loss=0.0144, lr=9.17e-06, step=19375]\\rTraining:  65%|██████▍   | 19376/30000 [21:46:19<11:50:11,  4.01s/it, loss=0.0144, lr=9.17e-06, step=19375]\\rTraining:  65%|██████▍   | 19376/30000 [21:46:19<11:50:11,  4.01s/it, loss=0.0151, lr=9.16e-06, step=19376]\\rTraining:  65%|██████▍   | 19377/30000 [21:46:23<11:49:50,  4.01s/it, loss=0.0151, lr=9.16e-06, step=19376]\\rTraining:  65%|██████▍   | 19377/30000 [21:46:23<11:49:50,  4.01s/it, loss=0.0144, lr=9.16e-06, step=19377]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-22T00:00:15.141Z_
+
+<details><summary>↩ Tool result · `toolu_01UtJbEb8MD2DLMweQ8Jdcu5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"DIAG: AFTER load - action_in_proj.weight device=cuda:0, mean=-0.000354, std=0.177879\\nDIAG: REF from file - mean=-0.000354, std=0.177879\\n\\rTraining:   0%|          | 0/30000 [00:00<?, ?it/s]/root/miniconda3/envs/libero/lib/python3.10/site-packages/torch/autograd/graph.py:829: UserWarning: Attempting to run cuBLAS, but there was no current CUDA context! Attempting to set the primary context... (Triggered internally at /pytorch/aten/src/ATen/cuda/CublasHandlePool.cpp:179.)\\n  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass\\n\\rTraining:   0%|          | 1/30000 [00:18<153:22:28, 18.41s/it]\\rTraining:   0%|          | 1/30000 [00:18<153:22:28, 18.41s/it, loss=0.1807, lr=2.50e-08, step=1]\\rTraining:   0%|          | 2/30000 [00:19<68:21:54,  8.20s/it, loss=0.1807, lr=2.50e-08, step=1] \\rTraining:   0%|          | 2/30000 [00:19<68:21:54,  8.20s/it, loss=0.2573, lr=5.00e-08, step=2]\\rTraining:   0%|          | 3/30000 [00:25<59:43:49,  7.17s/it, loss=0.2573, lr=5.00e-08, step=2]\\rTraining:   0%|          | 3/30000 [00:25<59:43:49,  7.17s/it, loss=0.2033, lr=7.49e-08, step=3]\\rTraining:   0%|          | 4/30000 [00:26<39:33:36,  4.75s/it, loss=0.2033, lr=7.49e-08, step=3]\\rTraining:   0%|          | 4/30000 [00:26<39:33:36,  4.75s/it, loss=0.1935, lr=9.99e-08, step=4]\\rTraining:   0%|          | 5/30000 [00:32<42:48:37,  5.14s/it, loss=0.1935, lr=9.99e-08, step=4]\\rTraining:   0%|          | 5/30000 [00:32<42:48:37,  5.14s/it, loss=0.2387, lr=1.25e-07, step=5]\\rTraining:   0%|          | 6/30000 [00:33<31:10:23,  3.74s/it, loss=0.2387, lr=1.25e-07, step=5]\\rTraining:   0%|          | 6/30000 [00:33<31:10:23,  3.74s/it, loss=0.2437, lr=1.50e-07, step=6]\\rTraining:   0%|          | 7/30000 [00:39<37:24:49,  4.49s/it, loss=0.2437, lr=1.50e-07, step=6]\\rTraining:   0%|          | 7/30000 [00:39<37:24:49,  4.49s/it, loss=0.1870, lr=1.75e-07, step=7]\\rTraining:   0%|          | 8/30000 [00:40<28:13:10,  3.39s/it, loss=0.1870, lr=1.75e-07, step=7]\\rTraining:   0%|          | 8/30000 [00:40<28:13:10,  3.39s/it, loss=0.2390, lr=2.00e-07, step=8]\\rTraining:   0%|          | 9/30000 [00:46<35:27:13,  4.26s/it, loss=0.2390, lr=2.00e-07, step=8]\\rTraining:   0%|          | 9/30000 [00:46<35:27:13,  4.26s/it, loss=0.2556, lr=2.25e-07, step=9]\\rTraining:   0%|          | 10/30000 [00:47<27:08:44,  3.26s/it, loss=0.2556, lr=2.25e-07, step=9]\\rTraining:   0%|          | 10/30000 [00:47<27:08:44,  3.26s/it, loss=0.2108, lr=2.50e-07, step=10]\\rTraining:   0%|          | 11/30000 [00:53<34:48:26,  4.18s/it, loss=0.2108, lr=2.50e-07, step=10]\\rTraining:   0%|          | 11/30000 [00:53<34:48:26,  4.18s/it, loss=0.2193, lr=2.75e-07, step=11]\\rTraining:   0%|          | 12/30000 [00:54<26:49:50,  3.22s/it, loss=0.2193, lr=2.75e-07, step=11]\\rTraining:   0%|          | 12/30000 [00:54<26:49:50,  3.22s/it, loss=0.2386, lr=3.00e-07, step=12]\\rTraining:   0%|          | 13/30000 [01:01<34:52:49,  4.19s/it, loss=0.2386, lr=3.00e-07, step=12]\\rTraining:   0%|          | 13/30000 [01:01<34:52:49,  4.19s/it, loss=0.2074, lr=3.25e-07, step=13]\\rTraining:   0%|          | 14/30000 [01:02<26:55:43,  3.23s/it, loss=0.2074, lr=3.25e-07, step=13]\\rTraining:   0%|          | 14/30000 [01:02<26:55:43,  3.23s/it, loss=0.1783, lr=3.50e-07, step=14]\\rTraining:   0%|          | 15/30000 [01:08<34:29:56,  4.14s/it, loss=0.1783, lr=3.50e-07, step=14]\\rTraining:   0%|          | 15/30000 [01:08<34:29:56,  4.14s/it, loss=0.2597, lr=3.75e-07, step=15]\\rTraining:   0%|          | 16/30000 [01:09<26:40:32,  3.20s/it, loss=0.2597, lr=3.75e-07, step=15]\\rTraining:   0%|          | 16/30000 [01:09<26:40:32,  3.20s/it, loss=0.2162, lr=4.00e-07, step=16]\\rTraining:   0%|          | 17/30000 [01:15<32:51:21,  3.94s/it, loss=0.2162, lr=4.00e-07, step=16]\\rTraining:   0%|          | 17/30000 [01:15<32:51:21,  3.94s/it, loss=0.1892, lr=4.25e-07, step=17]\\rTraining:   0%|          | 18/30000 [01:16<25:32:25,  3.07s/it, loss=0.1892, lr=4.25e-07, step=17]\\rTraining:   0%|         \\n\\n... [截断: 输出过长，省略 3764325 字符] ...\\n\\n755]\\rTraining:  59%|█████▉    | 17756/30000 [19:14:10<13:37:04,  4.00s/it, loss=0.0303, lr=1.10e-05, step=17756]\\rTraining:  59%|█████▉    | 17757/30000 [19:14:14<13:37:05,  4.00s/it, loss=0.0303, lr=1.10e-05, step=17756]\\rTraining:  59%|█████▉    | 17757/30000 [19:14:14<13:37:05,  4.00s/it, loss=0.0272, lr=1.10e-05, step=17757]\\rTraining:  59%|█████▉    | 17758/30000 [19:14:18<13:36:47,  4.00s/it, loss=0.0272, lr=1.10e-05, step=17757]\\rTraining:  59%|█████▉    | 17758/30000 [19:14:18<13:36:47,  4.00s/it, loss=0.0195, lr=1.10e-05, step=17758]\\rTraining:  59%|█████▉    | 17759/30000 [19:14:22<13:36:53,  4.00s/it, loss=0.0195, lr=1.10e-05, step=17758]\\rTraining:  59%|█████▉    | 17759/30000 [19:14:22<13:36:53,  4.00s/it, loss=0.0216, lr=1.10e-05, step=17759]\\rTraining:  59%|█████▉    | 17760/30000 [19:14:26<13:39:34,  4.02s/it, loss=0.0216, lr=1.10e-05, step=17759]\\rTraining:  59%|█████▉    | 17760/30000 [19:14:26<13:39:34,  4.02s/it, loss=0.0223, lr=1.10e-05, step=17760]\\rTraining:  59%|█████▉    | 17761/30000 [19:14:30<13:38:36,  4.01s/it, loss=0.0223, lr=1.10e-05, step=17760]\\rTraining:  59%|█████▉    | 17761/30000 [19:14:30<13:38:36,  4.01s/it, loss=0.0217, lr=1.10e-05, step=17761]\\rTraining:  59%|█████▉    | 17762/30000 [19:14:34<13:38:15,  4.01s/it, loss=0.0217, lr=1.10e-05, step=17761]\\rTraining:  59%|█████▉    | 17762/30000 [19:14:34<13:38:15,  4.01s/it, loss=0.0288, lr=1.10e-05, step=17762]\\rTraining:  59%|█████▉    | 17763/30000 [19:14:38<13:37:46,  4.01s/it, loss=0.0288, lr=1.10e-05, step=17762]\\rTraining:  59%|█████▉    | 17763/30000 [19:14:38<13:37:46,  4.01s/it, loss=0.0179, lr=1.10e-05, step=17763]\\rTraining:  59%|█████▉    | 17764/30000 [19:14:42<13:37:28,  4.01s/it, loss=0.0179, lr=1.10e-05, step=17763]\\rTraining:  59%|█████▉    | 17764/30000 [19:14:42<13:37:28,  4.01s/it, loss=0.0226, lr=1.10e-05, step=17764]\\rTraining:  59%|█████▉    | 17765/30000 [19:14:46<13:37:16,  4.01s/it, loss=0.0226, lr=1.10e-05, step=17764]\\rTraining:  59%|█████▉    | 17765/30000 [19:14:46<13:37:16,  4.01s/it, loss=0.0234, lr=1.10e-05, step=17765]\\rTraining:  59%|█████▉    | 17766/30000 [19:14:50<13:37:08,  4.01s/it, loss=0.0234, lr=1.10e-05, step=17765]\\rTraining:  59%|█████▉    | 17766/30000 [19:14:50<13:37:08,  4.01s/it, loss=0.0319, lr=1.10e-05, step=17766]\\rTraining:  59%|█████▉    | 17767/30000 [19:14:54<13:36:58,  4.01s/it, loss=0.0319, lr=1.10e-05, step=17766]\\rTraining:  59%|█████▉    | 17767/30000 [19:14:54<13:36:58,  4.01s/it, loss=0.0185, lr=1.10e-05, step=17767]\\rTraining:  59%|█████▉    | 17768/30000 [19:14:58<13:36:53,  4.01s/it, loss=0.0185, lr=1.10e-05, step=17767]\\rTraining:  59%|█████▉    | 17768/30000 [19:14:58<13:36:53,  4.01s/it, loss=0.0261, lr=1.10e-05, step=17768]\\rTraining:  59%|█████▉    | 17769/30000 [19:15:02<13:36:46,  4.01s/it, loss=0.0261, lr=1.10e-05, step=17768]\\rTraining:  59%|█████▉    | 17769/30000 [19:15:02<13:36:46,  4.01s/it, loss=0.0336, lr=1.10e-05, step=17769]\\rTraining:  59%|█████▉    | 17770/30000 [19:15:06<13:36:26,  4.01s/it, loss=0.0336, lr=1.10e-05, step=17769]\\rTraining:  59%|█████▉    | 17770/30000 [19:15:06<13:36:26,  4.01s/it, loss=0.0239, lr=1.10e-05, step=17770]\\rTraining:  59%|█████▉    | 17771/30000 [19:15:10<13:40:28,  4.03s/it, loss=0.0239, lr=1.10e-05, step=17770]\\rTraining:  59%|█████▉    | 17771/30000 [19:15:10<13:40:28,  4.03s/it, loss=0.0259, lr=1.10e-05, step=17771]\\rTraining:  59%|█████▉    | 17772/30000 [19:15:14<13:38:56,  4.02s/it, loss=0.0259, lr=1.10e-05, step=17771]\\rTraining:  59%|█████▉    | 17772/30000 [19:15:14<13:38:56,  4.02s/it, loss=0.0183, lr=1.10e-05, step=17772]\\rTraining:  59%|█████▉    | 17773/30000 [19:15:18<13:38:04,  4.01s/it, loss=0.0183, lr=1.10e-05, step=17772]\\rTraining:  59%|█████▉    | 17773/30000 [19:15:18<13:38:04,  4.01s/it, loss=0.0264, lr=1.10e-05, step=17773]\\rTraining:  59%|█████▉    | 17774/30000 [19:15:22<13:37:11,  4.01s/it, loss=0.0264, lr=1.10e-05, step=17773]\\rTraining:  59%|█████▉    | 17774/30000 [19:15:22<13:37:11,  4.01s/it, loss=0.0267, lr=1.10e-05, step=17774]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.94}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b391c961-1550-430f-8ea4-62467524ba88",
+  "uuid": "969fbe75-293a-4ce8-85f5-54da871ca800",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"DIAG: AFTER load - action_in_proj.weight device=cuda:0, mean=-0.000354, std=0.177879\\\\nDIAG: REF from file - mean=-0.000354, std=0.177879\\\\n\\\\rTraining:   0%|          | 0/30000 [00:00<?, ?it/s]/root/miniconda3/envs/libero/lib/python3.10/site-packages/torch/autograd/graph.py:829: UserWarning: Attempting to run cuBLAS, but there was no current CUDA context! Attempting to set the primary context... (Triggered internally at /pytorch/aten/src/ATen/cuda/CublasHandlePool.cpp:179.)\\\\n  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass\\\\n\\\\rTraining:   0%|          | 1/30000 [00:18<153:22:28, 18.41s/it]\\\\rTraining:   0%|          | 1/30000 [00:18<153:22:28, 18.41s/it, loss=0.1807, lr=2.50e-08, step=1]\\\\rTraining:   0%|          | 2/30000 [00:19<68:21:54,  8.20s/it, loss=0.1807, lr=2.50e-08, step=1] \\\\rTraining:   0%|          | 2/30000 [00:19<68:21:54,  8.20s/it, loss=0.2573, lr=5.00e-08, step=2]\\\\rTraining:   0%|          | 3/30000 [00:25<59:43:49,  7.17s/it, loss=0.2573, lr=5.00e-08, step=2]\\\\rTraining:   0%|          | 3/30000 [00:25<59:43:49,  7.17s/it, loss=0.2033, lr=7.49e-08, step=3]\\\\rTraining:   0%|          | 4/30000 [00:26<39:33:36,  4.75s/it, loss=0.2033, lr=7.49e-08, step=3]\\\\rTraining:   0%|          | 4/30000 [00:26<39:33:36,  4.75s/it, loss=0.1935, lr=9.99e-08, step=4]\\\\rTraining:   0%|          | 5/30000 [00:32<42:48:37,  5.14s/it, loss=0.1935, lr=9.99e-08, step=4]\\\\rTraining:   0%|          | 5/30000 [00:32<42:48:37,  5.14s/it, loss=0.2387, lr=1.25e-07, step=5]\\\\rTraining:   0%|          | 6/30000 [00:33<31:10:23,  3.74s/it, loss=0.2387, lr=1.25e-07, step=5]\\\\rTraining:   0%|          | 6/30000 [00:33<31:10:23,  3.74s/it, loss=0.2437, lr=1.50e-07, step=6]\\\\rTraining:   0%|          | 7/30000 [00:39<37:24:49,  4.49s/it, loss=0.2437, lr=1.50e-07, step=6]\\\\rTraining:   0%|          | 7/30000 [00:39<37:24:49,  4.49s/it, loss=0.1870, lr=1.75e-07, step=7]\\\\rTraining:   0%|          | 8/30000 [00:40<28:13:10,  3.39s/it, loss=0.1870, lr=1.75e-07, step=7]\\\\rTraining:   0%|          | 8/30000 [00:40<28:13:10,  3.39s/it, loss=0.2390, lr=2.00e-07, step=8]\\\\rTraining:   0%|          | 9/30000 [00:46<35:27:13,  4.26s/it, loss=0.2390, lr=2.00e-07, step=8]\\\\rTraining:   0%|          | 9/30000 [00:46<35:27:13,  4.26s/it, loss=0.2556, lr=2.25e-07, step=9]\\\\rTraining:   0%|          | 10/30000 [00:47<27:08:44,  3.26s/it, loss=0.2556, lr=2.25e-07, step=9]\\\\rTraining:   0%|          | 10/30000 [00:47<27:08:44,  3.26s/it, loss=0.2108, lr=2.50e-07, step=10]\\\\rTraining:   0%|          | 11/30000 [00:53<34:48:26,  4.18s/it, loss=0.2108, lr=2.50e-07, step=10]\\\\rTraining:   0%|          | 11/30000 [00:53<34:48:26,  4.18s/it, loss=0.2193, lr=2.75e-07, step=11]\\\\rTraining:   0%|          | 12/30000 [00:54<26:49:50,  3.22s/it, loss=0.2193, lr=2.75e-07, step=11]\\\\rTraining:   0%|          | 12/30000 [00:54<26:49:50,  3.22s/it, loss=0.2386, lr=3.00e-07, step=12]\\\\rTraining:   0%|          | 13/30000 [01:01<34:52:49,  4.19s/it, loss=0.2386, lr=3.00e-07, step=12]\\\\rTraining:   0%|          | 13/30000 [01:01<34:52:49,  4.19s/it, loss=0.2074, lr=3.25e-07, step=13]\\\\rTraining:   0%|          | 14/30000 [01:02<26:55:43,  3.23s/it, loss=0.2074, lr=3.25e-07, step=13]\\\\rTraining:   0%|          | 14/30000 [01:02<26:55:43,  3.23s/it, loss=0.1783, lr=3.50e-07, step=14]\\\\rTraining:   0%|          | 15/30000 [01:08<34:29:56,  4.14s/it, loss=0.1783, lr=3.50e-07, step=14]\\\\rTraining:   0%|          | 15/30000 [01:08<34:29:56,  4.14s/it, loss=0.2597, lr=3.75e-07, step=15]\\\\rTraining:   0%|          | 16/30000 [01:09<26:40:32,  3.20s/it, loss=0.2597, lr=3.75e-07, step=15]\\\\rTraining:   0%|          | 16/30000 [01:09<26:40:32,  3.20s/it, loss=0.2162, lr=4.00e-07, step=16]\\\\rTraining:   0%|          | 17/30000 [01:15<32:51:21,  3.94s/it, loss=0.2162, lr=4.00e-07, step=16]\\\\rTraining:   0%|          | 17/30000 [01:15<32:51:21,  3.94s/it, loss=0.1892, lr=4.25e-07, step=17]\\\\rTraining:   0%|          | 18/30000 [01:16<25:32:25,  3.07s/it, loss=0.1892, lr=4.25e-07, step=17]\\\\rTraining:   0%|         \\\\n\\\\n... [截断: 输出过长，省略 3764325 字符] ...\\\\n\\\\n755]\\\\rTraining:  59%|█████▉    | 17756/30000 [19:14:10<13:37:04,  4.00s/it, loss=0.0303, lr=1.10e-05, step=17756]\\\\rTraining:  59%|█████▉    | 17757/30000 [19:14:14<13:37:05,  4.00s/it, loss=0.0303, lr=1.10e-05, step=17756]\\\\rTraining:  59%|█████▉    | 17757/30000 [19:14:14<13:37:05,  4.00s/it, loss=0.0272, lr=1.10e-05, step=17757]\\\\rTraining:  59%|█████▉    | 17758/30000 [19:14:18<13:36:47,  4.00s/it, loss=0.0272, lr=1.10e-05, step=17757]\\\\rTraining:  59%|█████▉    | 17758/30000 [19:14:18<13:36:47,  4.00s/it, loss=0.0195, lr=1.10e-05, step=17758]\\\\rTraining:  59%|█████▉    | 17759/30000 [19:14:22<13:36:53,  4.00s/it, loss=0.0195, lr=1.10e-05, step=17758]\\\\rTraining:  59%|█████▉    | 17759/30000 [19:14:22<13:36:53,  4.00s/it, loss=0.0216, lr=1.10e-05, step=17759]\\\\rTraining:  59%|█████▉    | 17760/30000 [19:14:26<13:39:34,  4.02s/it, loss=0.0216, lr=1.10e-05, step=17759]\\\\rTraining:  59%|█████▉    | 17760/30000 [19:14:26<13:39:34,  4.02s/it, loss=0.0223, lr=1.10e-05, step=17760]\\\\rTraining:  59%|█████▉    | 17761/30000 [19:14:30<13:38:36,  4.01s/it, loss=0.0223, lr=1.10e-05, step=17760]\\\\rTraining:  59%|█████▉    | 17761/30000 [19:14:30<13:38:36,  4.01s/it, loss=0.0217, lr=1.10e-05, step=17761]\\\\rTraining:  59%|█████▉    | 17762/30000 [19:14:34<13:38:15,  4.01s/it, loss=0.0217, lr=1.10e-05, step=17761]\\\\rTraining:  59%|█████▉    | 17762/30000 [19:14:34<13:38:15,  4.01s/it, loss=0.0288, lr=1.10e-05, step=17762]\\\\rTraining:  59%|█████▉    | 17763/30000 [19:14:38<13:37:46,  4.01s/it, loss=0.0288, lr=1.10e-05, step=17762]\\\\rTraining:  59%|█████▉    | 17763/30000 [19:14:38<13:37:46,  4.01s/it, loss=0.0179, lr=1.10e-05, step=17763]\\\\rTraining:  59%|█████▉    | 17764/30000 [19:14:42<13:37:28,  4.01s/it, loss=0.0179, lr=1.10e-05, step=17763]\\\\rTraining:  59%|█████▉    | 17764/30000 [19:14:42<13:37:28,  4.01s/it, loss=0.0226, lr=1.10e-05, step=17764]\\\\rTraining:  59%|█████▉    | 17765/30000 [19:14:46<13:37:16,  4.01s/it, loss=0.0226, lr=1.10e-05, step=17764]\\\\rTraining:  59%|█████▉    | 17765/30000 [19:14:46<13:37:16,  4.01s/it, loss=0.0234, lr=1.10e-05, step=17765]\\\\rTraining:  59%|█████▉    | 17766/30000 [19:14:50<13:37:08,  4.01s/it, loss=0.0234, lr=1.10e-05, step=17765]\\\\rTraining:  59%|█████▉    | 17766/30000 [19:14:50<13:37:08,  4.01s/it, loss=0.0319, lr=1.10e-05, step=17766]\\\\rTraining:  59%|█████▉    | 17767/30000 [19:14:54<13:36:58,  4.01s/it, loss=0.0319, lr=1.10e-05, step=17766]\\\\rTraining:  59%|█████▉    | 17767/30000 [19:14:54<13:36:58,  4.01s/it, loss=0.0185, lr=1.10e-05, step=17767]\\\\rTraining:  59%|█████▉    | 17768/30000 [19:14:58<13:36:53,  4.01s/it, loss=0.0185, lr=1.10e-05, step=17767]\\\\rTraining:  59%|█████▉    | 17768/30000 [19:14:58<13:36:53,  4.01s/it, loss=0.0261, lr=1.10e-05, step=17768]\\\\rTraining:  59%|█████▉    | 17769/30000 [19:15:02<13:36:46,  4.01s/it, loss=0.0261, lr=1.10e-05, step=17768]\\\\rTraining:  59%|█████▉    | 17769/30000 [19:15:02<13:36:46,  4.01s/it, loss=0.0336, lr=1.10e-05, step=17769]\\\\rTraining:  59%|█████▉    | 17770/30000 [19:15:06<13:36:26,  4.01s/it, loss=0.0336, lr=1.10e-05, step=17769]\\\\rTraining:  59%|█████▉    | 17770/30000 [19:15:06<13:36:26,  4.01s/it, loss=0.0239, lr=1.10e-05, step=17770]\\\\rTraining:  59%|█████▉    | 17771/30000 [19:15:10<13:40:28,  4.03s/it, loss=0.0239, lr=1.10e-05, step=17770]\\\\rTraining:  59%|█████▉    | 17771/30000 [19:15:10<13:40:28,  4.03s/it, loss=0.0259, lr=1.10e-05, step=17771]\\\\rTraining:  59%|█████▉    | 17772/30000 [19:15:14<13:38:56,  4.02s/it, loss=0.0259, lr=1.10e-05, step=17771]\\\\rTraining:  59%|█████▉    | 17772/30000 [19:15:14<13:38:56,  4.02s/it, loss=0.0183, lr=1.10e-05, step=17772]\\\\rTraining:  59%|█████▉    | 17773/30000 [19:15:18<13:38:04,  4.01s/it, loss=0.0183, lr=1.10e-05, step=17772]\\\\rTraining:  59%|█████▉    | 17773/30000 [19:15:18<13:38:04,  4.01s/it, loss=0.0264, lr=1.10e-05, step=17773]\\\\rTraining:  59%|█████▉    | 17774/30000 [19:15:22<13:37:11,  4.01s/it, loss=0.0264, lr=1.10e-05, step=17773]\\\\rTraining:  59%|█████▉    | 17774/30000 [19:15:22<13:37:11,  4.01s/it, loss=0.0267, lr=1.10e-05, step=17774]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.94}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"DIAG: AFTER load - action_in_proj.weight device=cuda:0, mean=-0.000354, std=0.177879\\nDIAG: REF from file - mean=-0.000354, std=0.177879\\n\\rTraining:   0%|          | 0/30000 [00:00<?, ?it/s]/root/miniconda3/envs/libero/lib/python3.10/site-packages/torch/autograd/graph.py:829: UserWarning: Attempting to run cuBLAS, but there was no current CUDA context! Attempting to set the primary context... (Triggered internally at /pytorch/aten/src/ATen/cuda/CublasHandlePool.cpp:179.)\\n  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass\\n\\rTraining:   0%|          | 1/30000 [00:18<153:22:28, 18.41s/it]\\rTraining:   0%|          | 1/30000 [00:18<153:22:28, 18.41s/it, loss=0.1807, lr=2.50e-08, step=1]\\rTraining:   0%|          | 2/30000 [00:19<68:21:54,  8.20s/it, loss=0.1807, lr=2.50e-08, step=1] \\rTraining:   0%|          | 2/30000 [00:19<68:21:54,  8.20s/it, loss=0.2573, lr=5.00e-08, step=2]\\rTraining:   0%|          | 3/30000 [00:25<59:43:49,  7.17s/it, loss=0.2573, lr=5.00e-08, step=2]\\rTraining:   0%|          | 3/30000 [00:25<59:43:49,  7.17s/it, loss=0.2033, lr=7.49e-08, step=3]\\rTraining:   0%|          | 4/30000 [00:26<39:33:36,  4.75s/it, loss=0.2033, lr=7.49e-08, step=3]\\rTraining:   0%|          | 4/30000 [00:26<39:33:36,  4.75s/it, loss=0.1935, lr=9.99e-08, step=4]\\rTraining:   0%|          | 5/30000 [00:32<42:48:37,  5.14s/it, loss=0.1935, lr=9.99e-08, step=4]\\rTraining:   0%|          | 5/30000 [00:32<42:48:37,  5.14s/it, loss=0.2387, lr=1.25e-07, step=5]\\rTraining:   0%|          | 6/30000 [00:33<31:10:23,  3.74s/it, loss=0.2387, lr=1.25e-07, step=5]\\rTraining:   0%|          | 6/30000 [00:33<31:10:23,  3.74s/it, loss=0.2437, lr=1.50e-07, step=6]\\rTraining:   0%|          | 7/30000 [00:39<37:24:49,  4.49s/it, loss=0.2437, lr=1.50e-07, step=6]\\rTraining:   0%|          | 7/30000 [00:39<37:24:49,  4.49s/it, loss=0.1870, lr=1.75e-07, step=7]\\rTraining:   0%|          | 8/30000 [00:40<28:13:10,  3.39s/it, loss=0.1870, lr=1.75e-07, step=7]\\rTraining:   0%|          | 8/30000 [00:40<28:13:10,  3.39s/it, loss=0.2390, lr=2.00e-07, step=8]\\rTraining:   0%|          | 9/30000 [00:46<35:27:13,  4.26s/it, loss=0.2390, lr=2.00e-07, step=8]\\rTraining:   0%|          | 9/30000 [00:46<35:27:13,  4.26s/it, loss=0.2556, lr=2.25e-07, step=9]\\rTraining:   0%|          | 10/30000 [00:47<27:08:44,  3.26s/it, loss=0.2556, lr=2.25e-07, step=9]\\rTraining:   0%|          | 10/30000 [00:47<27:08:44,  3.26s/it, loss=0.2108, lr=2.50e-07, step=10]\\rTraining:   0%|          | 11/30000 [00:53<34:48:26,  4.18s/it, loss=0.2108, lr=2.50e-07, step=10]\\rTraining:   0%|          | 11/30000 [00:53<34:48:26,  4.18s/it, loss=0.2193, lr=2.75e-07, step=11]\\rTraining:   0%|          | 12/30000 [00:54<26:49:50,  3.22s/it, loss=0.2193, lr=2.75e-07, step=11]\\rTraining:   0%|          | 12/30000 [00:54<26:49:50,  3.22s/it, loss=0.2386, lr=3.00e-07, step=12]\\rTraining:   0%|          | 13/30000 [01:01<34:52:49,  4.19s/it, loss=0.2386, lr=3.00e-07, step=12]\\rTraining:   0%|          | 13/30000 [01:01<34:52:49,  4.19s/it, loss=0.2074, lr=3.25e-07, step=13]\\rTraining:   0%|          | 14/30000 [01:02<26:55:43,  3.23s/it, loss=0.2074, lr=3.25e-07, step=13]\\rTraining:   0%|          | 14/30000 [01:02<26:55:43,  3.23s/it, loss=0.1783, lr=3.50e-07, step=14]\\rTraining:   0%|          | 15/30000 [01:08<34:29:56,  4.14s/it, loss=0.1783, lr=3.50e-07, step=14]\\rTraining:   0%|          | 15/30000 [01:08<34:29:56,  4.14s/it, loss=0.2597, lr=3.75e-07, step=15]\\rTraining:   0%|          | 16/30000 [01:09<26:40:32,  3.20s/it, loss=0.2597, lr=3.75e-07, step=15]\\rTraining:   0%|          | 16/30000 [01:09<26:40:32,  3.20s/it, loss=0.2162, lr=4.00e-07, step=16]\\rTraining:   0%|          | 17/30000 [01:15<32:51:21,  3.94s/it, loss=0.2162, lr=4.00e-07, step=16]\\rTraining:   0%|          | 17/30000 [01:15<32:51:21,  3.94s/it, loss=0.1892, lr=4.25e-07, step=17]\\rTraining:   0%|          | 18/30000 [01:16<25:32:25,  3.07s/it, loss=0.1892, lr=4.25e-07, step=17]\\rTraining:   0%|         \\n\\n... [截断: 输出过长，省略 3764325 字符] ...\\n\\n755]\\rTraining:  59%|█████▉    | 17756/30000 [19:14:10<13:37:04,  4.00s/it, loss=0.0303, lr=1.10e-05, step=17756]\\rTraining:  59%|█████▉    | 17757/30000 [19:14:14<13:37:05,  4.00s/it, loss=0.0303, lr=1.10e-05, step=17756]\\rTraining:  59%|█████▉    | 17757/30000 [19:14:14<13:37:05,  4.00s/it, loss=0.0272, lr=1.10e-05, step=17757]\\rTraining:  59%|█████▉    | 17758/30000 [19:14:18<13:36:47,  4.00s/it, loss=0.0272, lr=1.10e-05, step=17757]\\rTraining:  59%|█████▉    | 17758/30000 [19:14:18<13:36:47,  4.00s/it, loss=0.0195, lr=1.10e-05, step=17758]\\rTraining:  59%|█████▉    | 17759/30000 [19:14:22<13:36:53,  4.00s/it, loss=0.0195, lr=1.10e-05, step=17758]\\rTraining:  59%|█████▉    | 17759/30000 [19:14:22<13:36:53,  4.00s/it, loss=0.0216, lr=1.10e-05, step=17759]\\rTraining:  59%|█████▉    | 17760/30000 [19:14:26<13:39:34,  4.02s/it, loss=0.0216, lr=1.10e-05, step=17759]\\rTraining:  59%|█████▉    | 17760/30000 [19:14:26<13:39:34,  4.02s/it, loss=0.0223, lr=1.10e-05, step=17760]\\rTraining:  59%|█████▉    | 17761/30000 [19:14:30<13:38:36,  4.01s/it, loss=0.0223, lr=1.10e-05, step=17760]\\rTraining:  59%|█████▉    | 17761/30000 [19:14:30<13:38:36,  4.01s/it, loss=0.0217, lr=1.10e-05, step=17761]\\rTraining:  59%|█████▉    | 17762/30000 [19:14:34<13:38:15,  4.01s/it, loss=0.0217, lr=1.10e-05, step=17761]\\rTraining:  59%|█████▉    | 17762/30000 [19:14:34<13:38:15,  4.01s/it, loss=0.0288, lr=1.10e-05, step=17762]\\rTraining:  59%|█████▉    | 17763/30000 [19:14:38<13:37:46,  4.01s/it, loss=0.0288, lr=1.10e-05, step=17762]\\rTraining:  59%|█████▉    | 17763/30000 [19:14:38<13:37:46,  4.01s/it, loss=0.0179, lr=1.10e-05, step=17763]\\rTraining:  59%|█████▉    | 17764/30000 [19:14:42<13:37:28,  4.01s/it, loss=0.0179, lr=1.10e-05, step=17763]\\rTraining:  59%|█████▉    | 17764/30000 [19:14:42<13:37:28,  4.01s/it, loss=0.0226, lr=1.10e-05, step=17764]\\rTraining:  59%|█████▉    | 17765/30000 [19:14:46<13:37:16,  4.01s/it, loss=0.0226, lr=1.10e-05, step=17764]\\rTraining:  59%|█████▉    | 17765/30000 [19:14:46<13:37:16,  4.01s/it, loss=0.0234, lr=1.10e-05, step=17765]\\rTraining:  59%|█████▉    | 17766/30000 [19:14:50<13:37:08,  4.01s/it, loss=0.0234, lr=1.10e-05, step=17765]\\rTraining:  59%|█████▉    | 17766/30000 [19:14:50<13:37:08,  4.01s/it, loss=0.0319, lr=1.10e-05, step=17766]\\rTraining:  59%|█████▉    | 17767/30000 [19:14:54<13:36:58,  4.01s/it, loss=0.0319, lr=1.10e-05, step=17766]\\rTraining:  59%|█████▉    | 17767/30000 [19:14:54<13:36:58,  4.01s/it, loss=0.0185, lr=1.10e-05, step=17767]\\rTraining:  59%|█████▉    | 17768/30000 [19:14:58<13:36:53,  4.01s/it, loss=0.0185, lr=1.10e-05, step=17767]\\rTraining:  59%|█████▉    | 17768/30000 [19:14:58<13:36:53,  4.01s/it, loss=0.0261, lr=1.10e-05, step=17768]\\rTraining:  59%|█████▉    | 17769/30000 [19:15:02<13:36:46,  4.01s/it, loss=0.0261, lr=1.10e-05, step=17768]\\rTraining:  59%|█████▉    | 17769/30000 [19:15:02<13:36:46,  4.01s/it, loss=0.0336, lr=1.10e-05, step=17769]\\rTraining:  59%|█████▉    | 17770/30000 [19:15:06<13:36:26,  4.01s/it, loss=0.0336, lr=1.10e-05, step=17769]\\rTraining:  59%|█████▉    | 17770/30000 [19:15:06<13:36:26,  4.01s/it, loss=0.0239, lr=1.10e-05, step=17770]\\rTraining:  59%|█████▉    | 17771/30000 [19:15:10<13:40:28,  4.03s/it, loss=0.0239, lr=1.10e-05, step=17770]\\rTraining:  59%|█████▉    | 17771/30000 [19:15:10<13:40:28,  4.03s/it, loss=0.0259, lr=1.10e-05, step=17771]\\rTraining:  59%|█████▉    | 17772/30000 [19:15:14<13:38:56,  4.02s/it, loss=0.0259, lr=1.10e-05, step=17771]\\rTraining:  59%|█████▉    | 17772/30000 [19:15:14<13:38:56,  4.02s/it, loss=0.0183, lr=1.10e-05, step=17772]\\rTraining:  59%|█████▉    | 17773/30000 [19:15:18<13:38:04,  4.01s/it, loss=0.0183, lr=1.10e-05, step=17772]\\rTraining:  59%|█████▉    | 17773/30000 [19:15:18<13:38:04,  4.01s/it, loss=0.0264, lr=1.10e-05, step=17773]\\rTraining:  59%|█████▉    | 17774/30000 [19:15:22<13:37:11,  4.01s/it, loss=0.0264, lr=1.10e-05, step=17773]\\rTraining:  59%|█████▉    | 17774/30000 [19:15:22<13:37:11,  4.01s/it, loss=0.0267, lr=1.10e-05, step=17774]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.94}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-22T00:00:17.381Z_
+
+<details><summary>↩ Tool result · `toolu_011KDtc1xnSYL6cuKsUQzYSp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"DIAG: AFTER load - action_in_proj.weight device=cuda:0, mean=-0.000354, std=0.177879\\nDIAG: REF from file - mean=-0.000354, std=0.177879\\n\\rTraining:   0%|          | 0/30000 [00:00<?, ?it/s]/root/miniconda3/envs/libero/lib/python3.10/site-packages/torch/autograd/graph.py:829: UserWarning: Attempting to run cuBLAS, but there was no current CUDA context! Attempting to set the primary context... (Triggered internally at /pytorch/aten/src/ATen/cuda/CublasHandlePool.cpp:179.)\\n  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass\\n\\rTraining:   0%|          | 1/30000 [00:17<147:02:08, 17.64s/it]\\rTraining:   0%|          | 1/30000 [00:17<147:02:08, 17.64s/it, loss=0.2409, lr=2.50e-08, step=1]\\rTraining:   0%|          | 2/30000 [00:18<65:56:23,  7.91s/it, loss=0.2409, lr=2.50e-08, step=1] \\rTraining:   0%|          | 2/30000 [00:18<65:56:23,  7.91s/it, loss=0.2745, lr=5.00e-08, step=2]\\rTraining:   0%|          | 3/30000 [00:23<55:32:59,  6.67s/it, loss=0.2745, lr=5.00e-08, step=2]\\rTraining:   0%|          | 3/30000 [00:23<55:32:59,  6.67s/it, loss=0.2973, lr=7.49e-08, step=3]\\rTraining:   0%|          | 4/30000 [00:24<37:06:44,  4.45s/it, loss=0.2973, lr=7.49e-08, step=3]\\rTraining:   0%|          | 4/30000 [00:24<37:06:44,  4.45s/it, loss=0.2563, lr=9.99e-08, step=4]\\rTraining:   0%|          | 5/30000 [00:30<41:37:32,  5.00s/it, loss=0.2563, lr=9.99e-08, step=4]\\rTraining:   0%|          | 5/30000 [00:30<41:37:32,  5.00s/it, loss=0.3056, lr=1.25e-07, step=5]\\rTraining:   0%|          | 6/30000 [00:32<30:27:54,  3.66s/it, loss=0.3056, lr=1.25e-07, step=5]\\rTraining:   0%|          | 6/30000 [00:32<30:27:54,  3.66s/it, loss=0.2562, lr=1.50e-07, step=6]\\rTraining:   0%|          | 7/30000 [00:37<35:30:55,  4.26s/it, loss=0.2562, lr=1.50e-07, step=6]\\rTraining:   0%|          | 7/30000 [00:37<35:30:55,  4.26s/it, loss=0.2439, lr=1.75e-07, step=7]\\rTraining:   0%|          | 8/30000 [00:38<27:02:28,  3.25s/it, loss=0.2439, lr=1.75e-07, step=7]\\rTraining:   0%|          | 8/30000 [00:38<27:02:28,  3.25s/it, loss=0.2727, lr=2.00e-07, step=8]\\rTraining:   0%|          | 9/30000 [00:44<33:10:13,  3.98s/it, loss=0.2727, lr=2.00e-07, step=8]\\rTraining:   0%|          | 9/30000 [00:44<33:10:13,  3.98s/it, loss=0.3500, lr=2.25e-07, step=9]\\rTraining:   0%|          | 10/30000 [00:45<25:53:02,  3.11s/it, loss=0.3500, lr=2.25e-07, step=9]\\rTraining:   0%|          | 10/30000 [00:45<25:53:02,  3.11s/it, loss=0.2759, lr=2.50e-07, step=10]\\rTraining:   0%|          | 11/30000 [00:50<31:32:58,  3.79s/it, loss=0.2759, lr=2.50e-07, step=10]\\rTraining:   0%|          | 11/30000 [00:50<31:32:58,  3.79s/it, loss=0.2860, lr=2.75e-07, step=11]\\rTraining:   0%|          | 12/30000 [00:52<25:51:35,  3.10s/it, loss=0.2860, lr=2.75e-07, step=11]\\rTraining:   0%|          | 12/30000 [00:52<25:51:35,  3.10s/it, loss=0.2719, lr=3.00e-07, step=12]\\rTraining:   0%|          | 13/30000 [00:57<30:38:19,  3.68s/it, loss=0.2719, lr=3.00e-07, step=12]\\rTraining:   0%|          | 13/30000 [00:57<30:38:19,  3.68s/it, loss=0.2648, lr=3.25e-07, step=13]\\rTraining:   0%|          | 14/30000 [00:59<26:01:08,  3.12s/it, loss=0.2648, lr=3.25e-07, step=13]\\rTraining:   0%|          | 14/30000 [00:59<26:01:08,  3.12s/it, loss=0.2988, lr=3.50e-07, step=14]\\rTraining:   0%|          | 15/30000 [01:03<29:49:52,  3.58s/it, loss=0.2988, lr=3.50e-07, step=14]\\rTraining:   0%|          | 15/30000 [01:03<29:49:52,  3.58s/it, loss=0.2810, lr=3.75e-07, step=15]\\rTraining:   0%|          | 16/30000 [01:06<27:11:01,  3.26s/it, loss=0.2810, lr=3.75e-07, step=15]\\rTraining:   0%|          | 16/30000 [01:06<27:11:01,  3.26s/it, loss=0.2725, lr=4.00e-07, step=16]\\rTraining:   0%|          | 17/30000 [01:10<30:27:28,  3.66s/it, loss=0.2725, lr=4.00e-07, step=16]\\rTraining:   0%|          | 17/30000 [01:10<30:27:28,  3.66s/it, loss=0.2832, lr=4.25e-07, step=17]\\rTraining:   0%|          | 18/30000 [01:13<28:02:03,  3.37s/it, loss=0.2832, lr=4.25e-07, step=17]\\rTraining:   0%|         \\n\\n... [截断: 输出过长，省略 3356354 字符] ...\\n\\n866]\\rTraining:  53%|█████▎    | 15867/30000 [17:07:51<15:43:09,  4.00s/it, loss=0.0330, lr=1.33e-05, step=15867]\\rTraining:  53%|█████▎    | 15868/30000 [17:07:55<15:42:24,  4.00s/it, loss=0.0330, lr=1.33e-05, step=15867]\\rTraining:  53%|█████▎    | 15868/30000 [17:07:55<15:42:24,  4.00s/it, loss=0.0323, lr=1.33e-05, step=15868]\\rTraining:  53%|█████▎    | 15869/30000 [17:07:59<15:41:54,  4.00s/it, loss=0.0323, lr=1.33e-05, step=15868]\\rTraining:  53%|█████▎    | 15869/30000 [17:07:59<15:41:54,  4.00s/it, loss=0.0207, lr=1.33e-05, step=15869]\\rTraining:  53%|█████▎    | 15870/30000 [17:08:03<15:42:10,  4.00s/it, loss=0.0207, lr=1.33e-05, step=15869]\\rTraining:  53%|█████▎    | 15870/30000 [17:08:03<15:42:10,  4.00s/it, loss=0.0261, lr=1.33e-05, step=15870]\\rTraining:  53%|█████▎    | 15871/30000 [17:08:07<15:41:59,  4.00s/it, loss=0.0261, lr=1.33e-05, step=15870]\\rTraining:  53%|█████▎    | 15871/30000 [17:08:07<15:41:59,  4.00s/it, loss=0.0328, lr=1.33e-05, step=15871]\\rTraining:  53%|█████▎    | 15872/30000 [17:08:11<15:42:28,  4.00s/it, loss=0.0328, lr=1.33e-05, step=15871]\\rTraining:  53%|█████▎    | 15872/30000 [17:08:11<15:42:28,  4.00s/it, loss=0.0366, lr=1.33e-05, step=15872]\\rTraining:  53%|█████▎    | 15873/30000 [17:08:15<15:42:14,  4.00s/it, loss=0.0366, lr=1.33e-05, step=15872]\\rTraining:  53%|█████▎    | 15873/30000 [17:08:15<15:42:14,  4.00s/it, loss=0.0293, lr=1.33e-05, step=15873]\\rTraining:  53%|█████▎    | 15874/30000 [17:08:19<15:42:23,  4.00s/it, loss=0.0293, lr=1.33e-05, step=15873]\\rTraining:  53%|█████▎    | 15874/30000 [17:08:19<15:42:23,  4.00s/it, loss=0.0294, lr=1.33e-05, step=15874]\\rTraining:  53%|█████▎    | 15875/30000 [17:08:23<15:41:39,  4.00s/it, loss=0.0294, lr=1.33e-05, step=15874]\\rTraining:  53%|█████▎    | 15875/30000 [17:08:23<15:41:39,  4.00s/it, loss=0.0246, lr=1.33e-05, step=15875]\\rTraining:  53%|█████▎    | 15876/30000 [17:08:27<15:42:21,  4.00s/it, loss=0.0246, lr=1.33e-05, step=15875]\\rTraining:  53%|█████▎    | 15876/30000 [17:08:27<15:42:21,  4.00s/it, loss=0.0256, lr=1.33e-05, step=15876]\\rTraining:  53%|█████▎    | 15877/30000 [17:08:31<15:41:58,  4.00s/it, loss=0.0256, lr=1.33e-05, step=15876]\\rTraining:  53%|█████▎    | 15877/30000 [17:08:31<15:41:58,  4.00s/it, loss=0.0346, lr=1.33e-05, step=15877]\\rTraining:  53%|█████▎    | 15878/30000 [17:08:35<15:43:31,  4.01s/it, loss=0.0346, lr=1.33e-05, step=15877]\\rTraining:  53%|█████▎    | 15878/30000 [17:08:35<15:43:31,  4.01s/it, loss=0.0283, lr=1.33e-05, step=15878]\\rTraining:  53%|█████▎    | 15879/30000 [17:08:39<15:42:29,  4.00s/it, loss=0.0283, lr=1.33e-05, step=15878]\\rTraining:  53%|█████▎    | 15879/30000 [17:08:39<15:42:29,  4.00s/it, loss=0.0332, lr=1.33e-05, step=15879]\\rTraining:  53%|█████▎    | 15880/30000 [17:08:43<15:41:40,  4.00s/it, loss=0.0332, lr=1.33e-05, step=15879]\\rTraining:  53%|█████▎    | 15880/30000 [17:08:43<15:41:40,  4.00s/it, loss=0.0410, lr=1.33e-05, step=15880]\\rTraining:  53%|█████▎    | 15881/30000 [17:08:47<15:41:01,  4.00s/it, loss=0.0410, lr=1.33e-05, step=15880]\\rTraining:  53%|█████▎    | 15881/30000 [17:08:47<15:41:01,  4.00s/it, loss=0.0308, lr=1.33e-05, step=15881]\\rTraining:  53%|█████▎    | 15882/30000 [17:08:51<15:40:49,  4.00s/it, loss=0.0308, lr=1.33e-05, step=15881]\\rTraining:  53%|█████▎    | 15882/30000 [17:08:51<15:40:49,  4.00s/it, loss=0.0317, lr=1.33e-05, step=15882]\\rTraining:  53%|█████▎    | 15883/30000 [17:08:55<15:40:40,  4.00s/it, loss=0.0317, lr=1.33e-05, step=15882]\\rTraining:  53%|█████▎    | 15883/30000 [17:08:55<15:40:40,  4.00s/it, loss=0.0358, lr=1.33e-05, step=15883]\\rTraining:  53%|█████▎    | 15884/30000 [17:08:59<15:40:14,  4.00s/it, loss=0.0358, lr=1.33e-05, step=15883]\\rTraining:  53%|█████▎    | 15884/30000 [17:08:59<15:40:14,  4.00s/it, loss=0.0241, lr=1.33e-05, step=15884]\\rTraining:  53%|█████▎    | 15885/30000 [17:09:03<15:39:51,  4.00s/it, loss=0.0241, lr=1.33e-05, step=15884]\\rTraining:  53%|█████▎    | 15885/30000 [17:09:03<15:39:51,  4.00s/it, loss=0.0264, lr=1.33e-05, step=15885]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.23}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b391c961-1550-430f-8ea4-62467524ba88",
+  "uuid": "7bb750aa-2b23-4417-8c3a-b9ad607101ad",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"DIAG: AFTER load - action_in_proj.weight device=cuda:0, mean=-0.000354, std=0.177879\\\\nDIAG: REF from file - mean=-0.000354, std=0.177879\\\\n\\\\rTraining:   0%|          | 0/30000 [00:00<?, ?it/s]/root/miniconda3/envs/libero/lib/python3.10/site-packages/torch/autograd/graph.py:829: UserWarning: Attempting to run cuBLAS, but there was no current CUDA context! Attempting to set the primary context... (Triggered internally at /pytorch/aten/src/ATen/cuda/CublasHandlePool.cpp:179.)\\\\n  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass\\\\n\\\\rTraining:   0%|          | 1/30000 [00:17<147:02:08, 17.64s/it]\\\\rTraining:   0%|          | 1/30000 [00:17<147:02:08, 17.64s/it, loss=0.2409, lr=2.50e-08, step=1]\\\\rTraining:   0%|          | 2/30000 [00:18<65:56:23,  7.91s/it, loss=0.2409, lr=2.50e-08, step=1] \\\\rTraining:   0%|          | 2/30000 [00:18<65:56:23,  7.91s/it, loss=0.2745, lr=5.00e-08, step=2]\\\\rTraining:   0%|          | 3/30000 [00:23<55:32:59,  6.67s/it, loss=0.2745, lr=5.00e-08, step=2]\\\\rTraining:   0%|          | 3/30000 [00:23<55:32:59,  6.67s/it, loss=0.2973, lr=7.49e-08, step=3]\\\\rTraining:   0%|          | 4/30000 [00:24<37:06:44,  4.45s/it, loss=0.2973, lr=7.49e-08, step=3]\\\\rTraining:   0%|          | 4/30000 [00:24<37:06:44,  4.45s/it, loss=0.2563, lr=9.99e-08, step=4]\\\\rTraining:   0%|          | 5/30000 [00:30<41:37:32,  5.00s/it, loss=0.2563, lr=9.99e-08, step=4]\\\\rTraining:   0%|          | 5/30000 [00:30<41:37:32,  5.00s/it, loss=0.3056, lr=1.25e-07, step=5]\\\\rTraining:   0%|          | 6/30000 [00:32<30:27:54,  3.66s/it, loss=0.3056, lr=1.25e-07, step=5]\\\\rTraining:   0%|          | 6/30000 [00:32<30:27:54,  3.66s/it, loss=0.2562, lr=1.50e-07, step=6]\\\\rTraining:   0%|          | 7/30000 [00:37<35:30:55,  4.26s/it, loss=0.2562, lr=1.50e-07, step=6]\\\\rTraining:   0%|          | 7/30000 [00:37<35:30:55,  4.26s/it, loss=0.2439, lr=1.75e-07, step=7]\\\\rTraining:   0%|          | 8/30000 [00:38<27:02:28,  3.25s/it, loss=0.2439, lr=1.75e-07, step=7]\\\\rTraining:   0%|          | 8/30000 [00:38<27:02:28,  3.25s/it, loss=0.2727, lr=2.00e-07, step=8]\\\\rTraining:   0%|          | 9/30000 [00:44<33:10:13,  3.98s/it, loss=0.2727, lr=2.00e-07, step=8]\\\\rTraining:   0%|          | 9/30000 [00:44<33:10:13,  3.98s/it, loss=0.3500, lr=2.25e-07, step=9]\\\\rTraining:   0%|          | 10/30000 [00:45<25:53:02,  3.11s/it, loss=0.3500, lr=2.25e-07, step=9]\\\\rTraining:   0%|          | 10/30000 [00:45<25:53:02,  3.11s/it, loss=0.2759, lr=2.50e-07, step=10]\\\\rTraining:   0%|          | 11/30000 [00:50<31:32:58,  3.79s/it, loss=0.2759, lr=2.50e-07, step=10]\\\\rTraining:   0%|          | 11/30000 [00:50<31:32:58,  3.79s/it, loss=0.2860, lr=2.75e-07, step=11]\\\\rTraining:   0%|          | 12/30000 [00:52<25:51:35,  3.10s/it, loss=0.2860, lr=2.75e-07, step=11]\\\\rTraining:   0%|          | 12/30000 [00:52<25:51:35,  3.10s/it, loss=0.2719, lr=3.00e-07, step=12]\\\\rTraining:   0%|          | 13/30000 [00:57<30:38:19,  3.68s/it, loss=0.2719, lr=3.00e-07, step=12]\\\\rTraining:   0%|          | 13/30000 [00:57<30:38:19,  3.68s/it, loss=0.2648, lr=3.25e-07, step=13]\\\\rTraining:   0%|          | 14/30000 [00:59<26:01:08,  3.12s/it, loss=0.2648, lr=3.25e-07, step=13]\\\\rTraining:   0%|          | 14/30000 [00:59<26:01:08,  3.12s/it, loss=0.2988, lr=3.50e-07, step=14]\\\\rTraining:   0%|          | 15/30000 [01:03<29:49:52,  3.58s/it, loss=0.2988, lr=3.50e-07, step=14]\\\\rTraining:   0%|          | 15/30000 [01:03<29:49:52,  3.58s/it, loss=0.2810, lr=3.75e-07, step=15]\\\\rTraining:   0%|          | 16/30000 [01:06<27:11:01,  3.26s/it, loss=0.2810, lr=3.75e-07, step=15]\\\\rTraining:   0%|          | 16/30000 [01:06<27:11:01,  3.26s/it, loss=0.2725, lr=4.00e-07, step=16]\\\\rTraining:   0%|          | 17/30000 [01:10<30:27:28,  3.66s/it, loss=0.2725, lr=4.00e-07, step=16]\\\\rTraining:   0%|          | 17/30000 [01:10<30:27:28,  3.66s/it, loss=0.2832, lr=4.25e-07, step=17]\\\\rTraining:   0%|          | 18/30000 [01:13<28:02:03,  3.37s/it, loss=0.2832, lr=4.25e-07, step=17]\\\\rTraining:   0%|         \\\\n\\\\n... [截断: 输出过长，省略 3356354 字符] ...\\\\n\\\\n866]\\\\rTraining:  53%|█████▎    | 15867/30000 [17:07:51<15:43:09,  4.00s/it, loss=0.0330, lr=1.33e-05, step=15867]\\\\rTraining:  53%|█████▎    | 15868/30000 [17:07:55<15:42:24,  4.00s/it, loss=0.0330, lr=1.33e-05, step=15867]\\\\rTraining:  53%|█████▎    | 15868/30000 [17:07:55<15:42:24,  4.00s/it, loss=0.0323, lr=1.33e-05, step=15868]\\\\rTraining:  53%|█████▎    | 15869/30000 [17:07:59<15:41:54,  4.00s/it, loss=0.0323, lr=1.33e-05, step=15868]\\\\rTraining:  53%|█████▎    | 15869/30000 [17:07:59<15:41:54,  4.00s/it, loss=0.0207, lr=1.33e-05, step=15869]\\\\rTraining:  53%|█████▎    | 15870/30000 [17:08:03<15:42:10,  4.00s/it, loss=0.0207, lr=1.33e-05, step=15869]\\\\rTraining:  53%|█████▎    | 15870/30000 [17:08:03<15:42:10,  4.00s/it, loss=0.0261, lr=1.33e-05, step=15870]\\\\rTraining:  53%|█████▎    | 15871/30000 [17:08:07<15:41:59,  4.00s/it, loss=0.0261, lr=1.33e-05, step=15870]\\\\rTraining:  53%|█████▎    | 15871/30000 [17:08:07<15:41:59,  4.00s/it, loss=0.0328, lr=1.33e-05, step=15871]\\\\rTraining:  53%|█████▎    | 15872/30000 [17:08:11<15:42:28,  4.00s/it, loss=0.0328, lr=1.33e-05, step=15871]\\\\rTraining:  53%|█████▎    | 15872/30000 [17:08:11<15:42:28,  4.00s/it, loss=0.0366, lr=1.33e-05, step=15872]\\\\rTraining:  53%|█████▎    | 15873/30000 [17:08:15<15:42:14,  4.00s/it, loss=0.0366, lr=1.33e-05, step=15872]\\\\rTraining:  53%|█████▎    | 15873/30000 [17:08:15<15:42:14,  4.00s/it, loss=0.0293, lr=1.33e-05, step=15873]\\\\rTraining:  53%|█████▎    | 15874/30000 [17:08:19<15:42:23,  4.00s/it, loss=0.0293, lr=1.33e-05, step=15873]\\\\rTraining:  53%|█████▎    | 15874/30000 [17:08:19<15:42:23,  4.00s/it, loss=0.0294, lr=1.33e-05, step=15874]\\\\rTraining:  53%|█████▎    | 15875/30000 [17:08:23<15:41:39,  4.00s/it, loss=0.0294, lr=1.33e-05, step=15874]\\\\rTraining:  53%|█████▎    | 15875/30000 [17:08:23<15:41:39,  4.00s/it, loss=0.0246, lr=1.33e-05, step=15875]\\\\rTraining:  53%|█████▎    | 15876/30000 [17:08:27<15:42:21,  4.00s/it, loss=0.0246, lr=1.33e-05, step=15875]\\\\rTraining:  53%|█████▎    | 15876/30000 [17:08:27<15:42:21,  4.00s/it, loss=0.0256, lr=1.33e-05, step=15876]\\\\rTraining:  53%|█████▎    | 15877/30000 [17:08:31<15:41:58,  4.00s/it, loss=0.0256, lr=1.33e-05, step=15876]\\\\rTraining:  53%|█████▎    | 15877/30000 [17:08:31<15:41:58,  4.00s/it, loss=0.0346, lr=1.33e-05, step=15877]\\\\rTraining:  53%|█████▎    | 15878/30000 [17:08:35<15:43:31,  4.01s/it, loss=0.0346, lr=1.33e-05, step=15877]\\\\rTraining:  53%|█████▎    | 15878/30000 [17:08:35<15:43:31,  4.01s/it, loss=0.0283, lr=1.33e-05, step=15878]\\\\rTraining:  53%|█████▎    | 15879/30000 [17:08:39<15:42:29,  4.00s/it, loss=0.0283, lr=1.33e-05, step=15878]\\\\rTraining:  53%|█████▎    | 15879/30000 [17:08:39<15:42:29,  4.00s/it, loss=0.0332, lr=1.33e-05, step=15879]\\\\rTraining:  53%|█████▎    | 15880/30000 [17:08:43<15:41:40,  4.00s/it, loss=0.0332, lr=1.33e-05, step=15879]\\\\rTraining:  53%|█████▎    | 15880/30000 [17:08:43<15:41:40,  4.00s/it, loss=0.0410, lr=1.33e-05, step=15880]\\\\rTraining:  53%|█████▎    | 15881/30000 [17:08:47<15:41:01,  4.00s/it, loss=0.0410, lr=1.33e-05, step=15880]\\\\rTraining:  53%|█████▎    | 15881/30000 [17:08:47<15:41:01,  4.00s/it, loss=0.0308, lr=1.33e-05, step=15881]\\\\rTraining:  53%|█████▎    | 15882/30000 [17:08:51<15:40:49,  4.00s/it, loss=0.0308, lr=1.33e-05, step=15881]\\\\rTraining:  53%|█████▎    | 15882/30000 [17:08:51<15:40:49,  4.00s/it, loss=0.0317, lr=1.33e-05, step=15882]\\\\rTraining:  53%|█████▎    | 15883/30000 [17:08:55<15:40:40,  4.00s/it, loss=0.0317, lr=1.33e-05, step=15882]\\\\rTraining:  53%|█████▎    | 15883/30000 [17:08:55<15:40:40,  4.00s/it, loss=0.0358, lr=1.33e-05, step=15883]\\\\rTraining:  53%|█████▎    | 15884/30000 [17:08:59<15:40:14,  4.00s/it, loss=0.0358, lr=1.33e-05, step=15883]\\\\rTraining:  53%|█████▎    | 15884/30000 [17:08:59<15:40:14,  4.00s/it, loss=0.0241, lr=1.33e-05, step=15884]\\\\rTraining:  53%|█████▎    | 15885/30000 [17:09:03<15:39:51,  4.00s/it, loss=0.0241, lr=1.33e-05, step=15884]\\\\rTraining:  53%|█████▎    | 15885/30000 [17:09:03<15:39:51,  4.00s/it, loss=0.0264, lr=1.33e-05, step=15885]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.23}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"DIAG: AFTER load - action_in_proj.weight device=cuda:0, mean=-0.000354, std=0.177879\\nDIAG: REF from file - mean=-0.000354, std=0.177879\\n\\rTraining:   0%|          | 0/30000 [00:00<?, ?it/s]/root/miniconda3/envs/libero/lib/python3.10/site-packages/torch/autograd/graph.py:829: UserWarning: Attempting to run cuBLAS, but there was no current CUDA context! Attempting to set the primary context... (Triggered internally at /pytorch/aten/src/ATen/cuda/CublasHandlePool.cpp:179.)\\n  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass\\n\\rTraining:   0%|          | 1/30000 [00:17<147:02:08, 17.64s/it]\\rTraining:   0%|          | 1/30000 [00:17<147:02:08, 17.64s/it, loss=0.2409, lr=2.50e-08, step=1]\\rTraining:   0%|          | 2/30000 [00:18<65:56:23,  7.91s/it, loss=0.2409, lr=2.50e-08, step=1] \\rTraining:   0%|          | 2/30000 [00:18<65:56:23,  7.91s/it, loss=0.2745, lr=5.00e-08, step=2]\\rTraining:   0%|          | 3/30000 [00:23<55:32:59,  6.67s/it, loss=0.2745, lr=5.00e-08, step=2]\\rTraining:   0%|          | 3/30000 [00:23<55:32:59,  6.67s/it, loss=0.2973, lr=7.49e-08, step=3]\\rTraining:   0%|          | 4/30000 [00:24<37:06:44,  4.45s/it, loss=0.2973, lr=7.49e-08, step=3]\\rTraining:   0%|          | 4/30000 [00:24<37:06:44,  4.45s/it, loss=0.2563, lr=9.99e-08, step=4]\\rTraining:   0%|          | 5/30000 [00:30<41:37:32,  5.00s/it, loss=0.2563, lr=9.99e-08, step=4]\\rTraining:   0%|          | 5/30000 [00:30<41:37:32,  5.00s/it, loss=0.3056, lr=1.25e-07, step=5]\\rTraining:   0%|          | 6/30000 [00:32<30:27:54,  3.66s/it, loss=0.3056, lr=1.25e-07, step=5]\\rTraining:   0%|          | 6/30000 [00:32<30:27:54,  3.66s/it, loss=0.2562, lr=1.50e-07, step=6]\\rTraining:   0%|          | 7/30000 [00:37<35:30:55,  4.26s/it, loss=0.2562, lr=1.50e-07, step=6]\\rTraining:   0%|          | 7/30000 [00:37<35:30:55,  4.26s/it, loss=0.2439, lr=1.75e-07, step=7]\\rTraining:   0%|          | 8/30000 [00:38<27:02:28,  3.25s/it, loss=0.2439, lr=1.75e-07, step=7]\\rTraining:   0%|          | 8/30000 [00:38<27:02:28,  3.25s/it, loss=0.2727, lr=2.00e-07, step=8]\\rTraining:   0%|          | 9/30000 [00:44<33:10:13,  3.98s/it, loss=0.2727, lr=2.00e-07, step=8]\\rTraining:   0%|          | 9/30000 [00:44<33:10:13,  3.98s/it, loss=0.3500, lr=2.25e-07, step=9]\\rTraining:   0%|          | 10/30000 [00:45<25:53:02,  3.11s/it, loss=0.3500, lr=2.25e-07, step=9]\\rTraining:   0%|          | 10/30000 [00:45<25:53:02,  3.11s/it, loss=0.2759, lr=2.50e-07, step=10]\\rTraining:   0%|          | 11/30000 [00:50<31:32:58,  3.79s/it, loss=0.2759, lr=2.50e-07, step=10]\\rTraining:   0%|          | 11/30000 [00:50<31:32:58,  3.79s/it, loss=0.2860, lr=2.75e-07, step=11]\\rTraining:   0%|          | 12/30000 [00:52<25:51:35,  3.10s/it, loss=0.2860, lr=2.75e-07, step=11]\\rTraining:   0%|          | 12/30000 [00:52<25:51:35,  3.10s/it, loss=0.2719, lr=3.00e-07, step=12]\\rTraining:   0%|          | 13/30000 [00:57<30:38:19,  3.68s/it, loss=0.2719, lr=3.00e-07, step=12]\\rTraining:   0%|          | 13/30000 [00:57<30:38:19,  3.68s/it, loss=0.2648, lr=3.25e-07, step=13]\\rTraining:   0%|          | 14/30000 [00:59<26:01:08,  3.12s/it, loss=0.2648, lr=3.25e-07, step=13]\\rTraining:   0%|          | 14/30000 [00:59<26:01:08,  3.12s/it, loss=0.2988, lr=3.50e-07, step=14]\\rTraining:   0%|          | 15/30000 [01:03<29:49:52,  3.58s/it, loss=0.2988, lr=3.50e-07, step=14]\\rTraining:   0%|          | 15/30000 [01:03<29:49:52,  3.58s/it, loss=0.2810, lr=3.75e-07, step=15]\\rTraining:   0%|          | 16/30000 [01:06<27:11:01,  3.26s/it, loss=0.2810, lr=3.75e-07, step=15]\\rTraining:   0%|          | 16/30000 [01:06<27:11:01,  3.26s/it, loss=0.2725, lr=4.00e-07, step=16]\\rTraining:   0%|          | 17/30000 [01:10<30:27:28,  3.66s/it, loss=0.2725, lr=4.00e-07, step=16]\\rTraining:   0%|          | 17/30000 [01:10<30:27:28,  3.66s/it, loss=0.2832, lr=4.25e-07, step=17]\\rTraining:   0%|          | 18/30000 [01:13<28:02:03,  3.37s/it, loss=0.2832, lr=4.25e-07, step=17]\\rTraining:   0%|         \\n\\n... [截断: 输出过长，省略 3356354 字符] ...\\n\\n866]\\rTraining:  53%|█████▎    | 15867/30000 [17:07:51<15:43:09,  4.00s/it, loss=0.0330, lr=1.33e-05, step=15867]\\rTraining:  53%|█████▎    | 15868/30000 [17:07:55<15:42:24,  4.00s/it, loss=0.0330, lr=1.33e-05, step=15867]\\rTraining:  53%|█████▎    | 15868/30000 [17:07:55<15:42:24,  4.00s/it, loss=0.0323, lr=1.33e-05, step=15868]\\rTraining:  53%|█████▎    | 15869/30000 [17:07:59<15:41:54,  4.00s/it, loss=0.0323, lr=1.33e-05, step=15868]\\rTraining:  53%|█████▎    | 15869/30000 [17:07:59<15:41:54,  4.00s/it, loss=0.0207, lr=1.33e-05, step=15869]\\rTraining:  53%|█████▎    | 15870/30000 [17:08:03<15:42:10,  4.00s/it, loss=0.0207, lr=1.33e-05, step=15869]\\rTraining:  53%|█████▎    | 15870/30000 [17:08:03<15:42:10,  4.00s/it, loss=0.0261, lr=1.33e-05, step=15870]\\rTraining:  53%|█████▎    | 15871/30000 [17:08:07<15:41:59,  4.00s/it, loss=0.0261, lr=1.33e-05, step=15870]\\rTraining:  53%|█████▎    | 15871/30000 [17:08:07<15:41:59,  4.00s/it, loss=0.0328, lr=1.33e-05, step=15871]\\rTraining:  53%|█████▎    | 15872/30000 [17:08:11<15:42:28,  4.00s/it, loss=0.0328, lr=1.33e-05, step=15871]\\rTraining:  53%|█████▎    | 15872/30000 [17:08:11<15:42:28,  4.00s/it, loss=0.0366, lr=1.33e-05, step=15872]\\rTraining:  53%|█████▎    | 15873/30000 [17:08:15<15:42:14,  4.00s/it, loss=0.0366, lr=1.33e-05, step=15872]\\rTraining:  53%|█████▎    | 15873/30000 [17:08:15<15:42:14,  4.00s/it, loss=0.0293, lr=1.33e-05, step=15873]\\rTraining:  53%|█████▎    | 15874/30000 [17:08:19<15:42:23,  4.00s/it, loss=0.0293, lr=1.33e-05, step=15873]\\rTraining:  53%|█████▎    | 15874/30000 [17:08:19<15:42:23,  4.00s/it, loss=0.0294, lr=1.33e-05, step=15874]\\rTraining:  53%|█████▎    | 15875/30000 [17:08:23<15:41:39,  4.00s/it, loss=0.0294, lr=1.33e-05, step=15874]\\rTraining:  53%|█████▎    | 15875/30000 [17:08:23<15:41:39,  4.00s/it, loss=0.0246, lr=1.33e-05, step=15875]\\rTraining:  53%|█████▎    | 15876/30000 [17:08:27<15:42:21,  4.00s/it, loss=0.0246, lr=1.33e-05, step=15875]\\rTraining:  53%|█████▎    | 15876/30000 [17:08:27<15:42:21,  4.00s/it, loss=0.0256, lr=1.33e-05, step=15876]\\rTraining:  53%|█████▎    | 15877/30000 [17:08:31<15:41:58,  4.00s/it, loss=0.0256, lr=1.33e-05, step=15876]\\rTraining:  53%|█████▎    | 15877/30000 [17:08:31<15:41:58,  4.00s/it, loss=0.0346, lr=1.33e-05, step=15877]\\rTraining:  53%|█████▎    | 15878/30000 [17:08:35<15:43:31,  4.01s/it, loss=0.0346, lr=1.33e-05, step=15877]\\rTraining:  53%|█████▎    | 15878/30000 [17:08:35<15:43:31,  4.01s/it, loss=0.0283, lr=1.33e-05, step=15878]\\rTraining:  53%|█████▎    | 15879/30000 [17:08:39<15:42:29,  4.00s/it, loss=0.0283, lr=1.33e-05, step=15878]\\rTraining:  53%|█████▎    | 15879/30000 [17:08:39<15:42:29,  4.00s/it, loss=0.0332, lr=1.33e-05, step=15879]\\rTraining:  53%|█████▎    | 15880/30000 [17:08:43<15:41:40,  4.00s/it, loss=0.0332, lr=1.33e-05, step=15879]\\rTraining:  53%|█████▎    | 15880/30000 [17:08:43<15:41:40,  4.00s/it, loss=0.0410, lr=1.33e-05, step=15880]\\rTraining:  53%|█████▎    | 15881/30000 [17:08:47<15:41:01,  4.00s/it, loss=0.0410, lr=1.33e-05, step=15880]\\rTraining:  53%|█████▎    | 15881/30000 [17:08:47<15:41:01,  4.00s/it, loss=0.0308, lr=1.33e-05, step=15881]\\rTraining:  53%|█████▎    | 15882/30000 [17:08:51<15:40:49,  4.00s/it, loss=0.0308, lr=1.33e-05, step=15881]\\rTraining:  53%|█████▎    | 15882/30000 [17:08:51<15:40:49,  4.00s/it, loss=0.0317, lr=1.33e-05, step=15882]\\rTraining:  53%|█████▎    | 15883/30000 [17:08:55<15:40:40,  4.00s/it, loss=0.0317, lr=1.33e-05, step=15882]\\rTraining:  53%|█████▎    | 15883/30000 [17:08:55<15:40:40,  4.00s/it, loss=0.0358, lr=1.33e-05, step=15883]\\rTraining:  53%|█████▎    | 15884/30000 [17:08:59<15:40:14,  4.00s/it, loss=0.0358, lr=1.33e-05, step=15883]\\rTraining:  53%|█████▎    | 15884/30000 [17:08:59<15:40:14,  4.00s/it, loss=0.0241, lr=1.33e-05, step=15884]\\rTraining:  53%|█████▎    | 15885/30000 [17:09:03<15:39:51,  4.00s/it, loss=0.0241, lr=1.33e-05, step=15884]\\rTraining:  53%|█████▎    | 15885/30000 [17:09:03<15:39:51,  4.00s/it, loss=0.0264, lr=1.33e-05, step=15885]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.23}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37_
+
+Now let me check the eval log on westd-45947.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b391c961-1550-430f-8ea4-62467524ba88",
+  "uuid": "162cf9e2-7a96-4913-acbd-f4ee14d22f6f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KchQ4tfkqMqCSjSJzJbsKH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 20548,
+      "cache_read_input_tokens": 30133,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 20548
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Uag4MkvtuA1vHcx36xtbhM`</summary>
+
+```json
+{
+  "server": "westd-45947",
+  "command": "tail -80 /root/autodl-tmp/eval_results/eval_v9_a3_refine.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b391c961-1550-430f-8ea4-62467524ba88",
+  "uuid": "8b087e69-07e4-49fb-bf8b-4463c9ff524a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KchQ4tfkqMqCSjSJzJbsKH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 20548,
+      "cache_read_input_tokens": 30133,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 20548
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-22T00:00:24.036Z_
+
+<details><summary>↩ Tool result · `toolu_01Uag4MkvtuA1vHcx36xtbhM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-22 04:53:07,935 [INFO] Loading policy (model_type=a3)...\\n2026-05-22 04:53:11,538 [INFO] JAX version 0.6.2 available.\\n2026-05-22 04:53:11,805 [INFO] [EVAL CONFIG] extra_delta_transform=False\\n2026-05-22 04:53:11,805 [INFO] Loading model...\\n2026-05-22 04:53:11,806 [INFO] train_config: TrainConfig(name='pi0_libero_low_mem_finetune', project_name='openpi', exp_name=tyro.MISSING, model=Pi0Config(action_dim=32, action_horizon=50, max_token_len=48, dtype='bfloat16', paligemma_variant='gemma_2b', action_expert_variant='gemma_300m', pi05=False, discrete_state_input=False, pytorch_compile_mode='max-autotune'), weight_loader=CheckpointWeightLoader(params_path='gs://openpi-assets/checkpoints/pi0_base/params'), pytorch_weight_path=None, pytorch_training_precision='bfloat16', lr_schedule=CosineDecaySchedule(warmup_steps=1000, peak_lr=2.5e-05, decay_steps=30000, decay_lr=2.5e-06), optimizer=AdamW(b1=0.9, b2=0.95, eps=1e-08, weight_decay=1e-10, clip_gradient_norm=1.0), ema_decay=None, freeze_filter=All(PathRegex(pattern=re.compile('.*llm.*'), sep='/'), Not(PathRegex(pattern=re.compile('.*lora.*'), sep='/'))), data=LeRobotLiberoDataConfig(repo_id='physical-intelligence/libero', assets=AssetsConfig(assets_dir=None, asset_id=None), base_config=DataConfig(repo_id=None, asset_id=None, norm_stats=None, repack_transforms=Group(inputs=(), outputs=()), data_transforms=Group(inputs=(), outputs=()), model_transforms=Group(inputs=(), outputs=()), use_quantile_norm=False, action_sequence_keys=('actions',), prompt_from_task=True, rlds_data_dir=None, action_space=None, datasets=()), extra_delta_transform=False), assets_base_dir='./assets', checkpoint_base_dir='./checkpoints', seed=42, batch_size=32, num_workers=2, num_train_steps=30000, log_interval=100, save_interval=1000, keep_period=5000, overwrite=False, resume=False, wandb_enabled=True, policy_metadata=None, fsdp_devices=1)\\n2026-05-22 04:53:56,257 [INFO] Norm stats not found in /root/colliforce-vla/assets/pi0_libero_low_mem_finetune/physical-intelligence/libero, skipping.\\n2026-05-22 04:53:56,258 [INFO] Loaded norm stats from /root/autodl-tmp/openpi_weights/pi0_base/assets/physical-intelligence/libero\\n2026-05-22 04:53:57,727 [INFO] Loaded 504 LoRA params from /root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best/lora_params.pt\\n2026-05-22 04:53:57,773 [INFO] Moved LoRA params to CUDA\\n2026-05-22 04:53:57,784 [INFO] Loaded SDF decoder + EE extractor from /root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best\\n2026-05-22 04:53:57,784 [INFO] Registered suffix_out capture hook on action_out_proj\\n2026-05-22 04:53:57,785 [INFO] Loaded SDF GT: 4084 points from /root/colliforce-vla/data/sdf_gt_object_chocolate.npz\\n2026-05-22 04:53:57,785 [INFO] Setting up SafeLIBERO benchmark: safelibero_object (level II)\\n[robosuite WARNING] No private macro file found! (__init__.py:7)\\n2026-05-22 04:53:57,789 [WARNING] No private macro file found!\\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\n2026-05-22 04:53:57,789 [WARNING] It is recommended to use a private macro file\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\n2026-05-22 04:53:57,789 [WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py\\n2026-05-22 04:53:57,824 [INFO] No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'\\nGym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.\\nPlease upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.\\nUsers of this version of Gym should be able to simply replace 'import gym' with 'import gymnasium as gym' in the vast majority of cases.\\nSee the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.\\n2026-05-22 04:53:58,056 [INFO] Task 0: pick up the orange juice and place it in the basket\\n2026-05-22 04:53:58,056 [INFO] BDDL: /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/bddl_files/safelibero_object/pick_up_the_orange_juice_and_place_it_in_the_basket.bddl\\n2026-05-22 04:53:58,057 [INFO] Safety level: II\\n/root/miniconda3/lib/python3.12/site-packages/torch/autograd/graph.py:829: UserWarning: Attempting to run cuBLAS, but there was no current CUDA context! Attempting to set the primary context... (Triggered internally at /pytorch/aten/src/ATen/cuda/CublasHandlePool.cpp:179.)\\n  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass\\n2026-05-22 05:07:33,986 [INFO]   Episode 10/50: success=False, collided=False, steps=300, sdf_min=0.4890, refined=0\\n2026-05-22 05:21:07,169 [INFO]   Episode 20/50: success=False, collided=False, steps=300, sdf_min=0.6072, refined=0\\n2026-05-22 05:34:45,491 [INFO]   Episode 30/50: success=False, collided=False, steps=300, sdf_min=0.5207, refined=0\\n2026-05-22 05:48:25,776 [INFO]   Episode 40/50: success=False, collided=False, steps=300, sdf_min=0.5301, refined=0\\n2026-05-22 06:02:04,259 [INFO]   Episode 50/50: success=False, collided=True, steps=300, sdf_min=0.4351, refined=0\\n2026-05-22 06:02:04,706 [INFO] Results for task 0:\\n2026-05-22 06:02:04,707 [INFO]   TSR = 0.0% (0/50)\\n2026-05-22 06:02:04,707 [INFO]   CAR = 96.0% (48/50)\\n2026-05-22 06:02:04,707 [INFO]   Avg smoothness = 0.004160\\n2026-05-22 06:02:04,707 [INFO]   Avg max displacement = 0.0006m\\n2026-05-22 06:02:04,708 [INFO] Task 1: pick up the chocolate pudding and place it in the basket\\n2026-05-22 06:02:04,708 [INFO] BDDL: /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/bddl_files/safelibero_object/pick_up_the_chocolate_pudding_and_place_it_in_the_basket.bddl\\n2026-05-22 06:02:04,708 [INFO] Safety level: II\\n2026-05-22 06:15:50,917 [INFO]   Episode 10/50: success=False, collided=True, steps=300, sdf_min=0.7717, refined=0\\n2026-05-22 06:29:33,833 [INFO]   Episode 20/50: success=False, collided=False, steps=300, sdf_min=0.7406, refined=0\\n2026-05-22 06:43:17,368 [INFO]   Episode 30/50: success=False, collided=True, steps=300, sdf_min=0.7813, refined=0\\n2026-05-22 06:57:00,109 [INFO]   Episode 40/50: success=False, collided=False, steps=300, sdf_min=0.8916, refined=0\\n2026-05-22 07:10:43,334 [INFO]   Episode 50/50: success=False, collided=False, steps=300, sdf_min=0.6807, refined=0\\n2026-05-22 07:10:43,869 [INFO] Results for task 1:\\n2026-05-22 07:10:43,870 [INFO]   TSR = 0.0% (0/50)\\n2026-05-22 07:10:43,870 [INFO]   CAR = 22.0% (11/50)\\n2026-05-22 07:10:43,870 [INFO]   Avg smoothness = 0.006490\\n2026-05-22 07:10:43,870 [INFO]   Avg max displacement = 0.0392m\\n2026-05-22 07:10:43,871 [INFO] Task 2: pick up the milk and place it in the basket\\n2026-05-22 07:10:43,871 [INFO] BDDL: /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/bddl_files/safelibero_object/pick_up_the_milk_and_place_it_in_the_basket.bddl\\n2026-05-22 07:10:43,871 [INFO] Safety level: II\\n2026-05-22 07:24:27,371 [INFO]   Episode 10/50: success=False, collided=False, steps=300, sdf_min=0.6362, refined=0\\n2026-05-22 07:38:08,593 [INFO]   Episode 20/50: success=False, collided=False, steps=300, sdf_min=0.5903, refined=0\\n2026-05-22 07:51:49,769 [INFO]   Episode 30/50: success=False, collided=False, steps=300, sdf_min=0.6097, refined=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b391c961-1550-430f-8ea4-62467524ba88",
+  "uuid": "e8044231-5175-4c7d-8181-9f235825a781",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-22 04:53:07,935 [INFO] Loading policy (model_type=a3)...\\\\n2026-05-22 04:53:11,538 [INFO] JAX version 0.6.2 available.\\\\n2026-05-22 04:53:11,805 [INFO] [EVAL CONFIG] extra_delta_transform=False\\\\n2026-05-22 04:53:11,805 [INFO] Loading model...\\\\n2026-05-22 04:53:11,806 [INFO] train_config: TrainConfig(name='pi0_libero_low_mem_finetune', project_name='openpi', exp_name=tyro.MISSING, model=Pi0Config(action_dim=32, action_horizon=50, max_token_len=48, dtype='bfloat16', paligemma_variant='gemma_2b', action_expert_variant='gemma_300m', pi05=False, discrete_state_input=False, pytorch_compile_mode='max-autotune'), weight_loader=CheckpointWeightLoader(params_path='gs://openpi-assets/checkpoints/pi0_base/params'), pytorch_weight_path=None, pytorch_training_precision='bfloat16', lr_schedule=CosineDecaySchedule(warmup_steps=1000, peak_lr=2.5e-05, decay_steps=30000, decay_lr=2.5e-06), optimizer=AdamW(b1=0.9, b2=0.95, eps=1e-08, weight_decay=1e-10, clip_gradient_norm=1.0), ema_decay=None, freeze_filter=All(PathRegex(pattern=re.compile('.*llm.*'), sep='/'), Not(PathRegex(pattern=re.compile('.*lora.*'), sep='/'))), data=LeRobotLiberoDataConfig(repo_id='physical-intelligence/libero', assets=AssetsConfig(assets_dir=None, asset_id=None), base_config=DataConfig(repo_id=None, asset_id=None, norm_stats=None, repack_transforms=Group(inputs=(), outputs=()), data_transforms=Group(inputs=(), outputs=()), model_transforms=Group(inputs=(), outputs=()), use_quantile_norm=False, action_sequence_keys=('actions',), prompt_from_task=True, rlds_data_dir=None, action_space=None, datasets=()), extra_delta_transform=False), assets_base_dir='./assets', checkpoint_base_dir='./checkpoints', seed=42, batch_size=32, num_workers=2, num_train_steps=30000, log_interval=100, save_interval=1000, keep_period=5000, overwrite=False, resume=False, wandb_enabled=True, policy_metadata=None, fsdp_devices=1)\\\\n2026-05-22 04:53:56,257 [INFO] Norm stats not found in /root/colliforce-vla/assets/pi0_libero_low_mem_finetune/physical-intelligence/libero, skipping.\\\\n2026-05-22 04:53:56,258 [INFO] Loaded norm stats from /root/autodl-tmp/openpi_weights/pi0_base/assets/physical-intelligence/libero\\\\n2026-05-22 04:53:57,727 [INFO] Loaded 504 LoRA params from /root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best/lora_params.pt\\\\n2026-05-22 04:53:57,773 [INFO] Moved LoRA params to CUDA\\\\n2026-05-22 04:53:57,784 [INFO] Loaded SDF decoder + EE extractor from /root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best\\\\n2026-05-22 04:53:57,784 [INFO] Registered suffix_out capture hook on action_out_proj\\\\n2026-05-22 04:53:57,785 [INFO] Loaded SDF GT: 4084 points from /root/colliforce-vla/data/sdf_gt_object_chocolate.npz\\\\n2026-05-22 04:53:57,785 [INFO] Setting up SafeLIBERO benchmark: safelibero_object (level II)\\\\n[robosuite WARNING] No private macro file found! (__init__.py:7)\\\\n2026-05-22 04:53:57,789 [WARNING] No private macro file found!\\\\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\\\n2026-05-22 04:53:57,789 [WARNING] It is recommended to use a private macro file\\\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\\\n2026-05-22 04:53:57,789 [WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py\\\\n2026-05-22 04:53:57,824 [INFO] No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'\\\\nGym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.\\\\nPlease upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.\\\\nUsers of this version of Gym should be able to simply replace 'import gym' with 'import gymnasium as gym' in the vast majority of cases.\\\\nSee the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.\\\\n2026-05-22 04:53:58,056 [INFO] Task 0: pick up the orange juice and place it in the basket\\\\n2026-05-22 04:53:58,056 [INFO] BDDL: /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/bddl_files/safelibero_object/pick_up_the_orange_juice_and_place_it_in_the_basket.bddl\\\\n2026-05-22 04:53:58,057 [INFO] Safety level: II\\\\n/root/miniconda3/lib/python3.12/site-packages/torch/autograd/graph.py:829: UserWarning: Attempting to run cuBLAS, but there was no current CUDA context! Attempting to set the primary context... (Triggered internally at /pytorch/aten/src/ATen/cuda/CublasHandlePool.cpp:179.)\\\\n  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass\\\\n2026-05-22 05:07:33,986 [INFO]   Episode 10/50: success=False, collided=False, steps=300, sdf_min=0.4890, refined=0\\\\n2026-05-22 05:21:07,169 [INFO]   Episode 20/50: success=False, collided=False, steps=300, sdf_min=0.6072, refined=0\\\\n2026-05-22 05:34:45,491 [INFO]   Episode 30/50: success=False, collided=False, steps=300, sdf_min=0.5207, refined=0\\\\n2026-05-22 05:48:25,776 [INFO]   Episode 40/50: success=False, collided=False, steps=300, sdf_min=0.5301, refined=0\\\\n2026-05-22 06:02:04,259 [INFO]   Episode 50/50: success=False, collided=True, steps=300, sdf_min=0.4351, refined=0\\\\n2026-05-22 06:02:04,706 [INFO] Results for task 0:\\\\n2026-05-22 06:02:04,707 [INFO]   TSR = 0.0% (0/50)\\\\n2026-05-22 06:02:04,707 [INFO]   CAR = 96.0% (48/50)\\\\n2026-05-22 06:02:04,707 [INFO]   Avg smoothness = 0.004160\\\\n2026-05-22 06:02:04,707 [INFO]   Avg max displacement = 0.0006m\\\\n2026-05-22 06:02:04,708 [INFO] Task 1: pick up the chocolate pudding and place it in the basket\\\\n2026-05-22 06:02:04,708 [INFO] BDDL: /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/bddl_files/safelibero_object/pick_up_the_chocolate_pudding_and_place_it_in_the_basket.bddl\\\\n2026-05-22 06:02:04,708 [INFO] Safety level: II\\\\n2026-05-22 06:15:50,917 [INFO]   Episode 10/50: success=False, collided=True, steps=300, sdf_min=0.7717, refined=0\\\\n2026-05-22 06:29:33,833 [INFO]   Episode 20/50: success=False, collided=False, steps=300, sdf_min=0.7406, refined=0\\\\n2026-05-22 06:43:17,368 [INFO]   Episode 30/50: success=False, collided=True, steps=300, sdf_min=0.7813, refined=0\\\\n2026-05-22 06:57:00,109 [INFO]   Episode 40/50: success=False, collided=False, steps=300, sdf_min=0.8916, refined=0\\\\n2026-05-22 07:10:43,334 [INFO]   Episode 50/50: success=False, collided=False, steps=300, sdf_min=0.6807, refined=0\\\\n2026-05-22 07:10:43,869 [INFO] Results for task 1:\\\\n2026-05-22 07:10:43,870 [INFO]   TSR = 0.0% (0/50)\\\\n2026-05-22 07:10:43,870 [INFO]   CAR = 22.0% (11/50)\\\\n2026-05-22 07:10:43,870 [INFO]   Avg smoothness = 0.006490\\\\n2026-05-22 07:10:43,870 [INFO]   Avg max displacement = 0.0392m\\\\n2026-05-22 07:10:43,871 [INFO] Task 2: pick up the milk and place it in the basket\\\\n2026-05-22 07:10:43,871 [INFO] BDDL: /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/bddl_files/safelibero_object/pick_up_the_milk_and_place_it_in_the_basket.bddl\\\\n2026-05-22 07:10:43,871 [INFO] Safety level: II\\\\n2026-05-22 07:24:27,371 [INFO]   Episode 10/50: success=False, collided=False, steps=300, sdf_min=0.6362, refined=0\\\\n2026-05-22 07:38:08,593 [INFO]   Episode 20/50: success=False, collided=False, steps=300, sdf_min=0.5903, refined=0\\\\n2026-05-22 07:51:49,769 [INFO]   Episode 30/50: success=False, collided=False, steps=300, sdf_min=0.6097, refined=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-22 04:53:07,935 [INFO] Loading policy (model_type=a3)...\\n2026-05-22 04:53:11,538 [INFO] JAX version 0.6.2 available.\\n2026-05-22 04:53:11,805 [INFO] [EVAL CONFIG] extra_delta_transform=False\\n2026-05-22 04:53:11,805 [INFO] Loading model...\\n2026-05-22 04:53:11,806 [INFO] train_config: TrainConfig(name='pi0_libero_low_mem_finetune', project_name='openpi', exp_name=tyro.MISSING, model=Pi0Config(action_dim=32, action_horizon=50, max_token_len=48, dtype='bfloat16', paligemma_variant='gemma_2b', action_expert_variant='gemma_300m', pi05=False, discrete_state_input=False, pytorch_compile_mode='max-autotune'), weight_loader=CheckpointWeightLoader(params_path='gs://openpi-assets/checkpoints/pi0_base/params'), pytorch_weight_path=None, pytorch_training_precision='bfloat16', lr_schedule=CosineDecaySchedule(warmup_steps=1000, peak_lr=2.5e-05, decay_steps=30000, decay_lr=2.5e-06), optimizer=AdamW(b1=0.9, b2=0.95, eps=1e-08, weight_decay=1e-10, clip_gradient_norm=1.0), ema_decay=None, freeze_filter=All(PathRegex(pattern=re.compile('.*llm.*'), sep='/'), Not(PathRegex(pattern=re.compile('.*lora.*'), sep='/'))), data=LeRobotLiberoDataConfig(repo_id='physical-intelligence/libero', assets=AssetsConfig(assets_dir=None, asset_id=None), base_config=DataConfig(repo_id=None, asset_id=None, norm_stats=None, repack_transforms=Group(inputs=(), outputs=()), data_transforms=Group(inputs=(), outputs=()), model_transforms=Group(inputs=(), outputs=()), use_quantile_norm=False, action_sequence_keys=('actions',), prompt_from_task=True, rlds_data_dir=None, action_space=None, datasets=()), extra_delta_transform=False), assets_base_dir='./assets', checkpoint_base_dir='./checkpoints', seed=42, batch_size=32, num_workers=2, num_train_steps=30000, log_interval=100, save_interval=1000, keep_period=5000, overwrite=False, resume=False, wandb_enabled=True, policy_metadata=None, fsdp_devices=1)\\n2026-05-22 04:53:56,257 [INFO] Norm stats not found in /root/colliforce-vla/assets/pi0_libero_low_mem_finetune/physical-intelligence/libero, skipping.\\n2026-05-22 04:53:56,258 [INFO] Loaded norm stats from /root/autodl-tmp/openpi_weights/pi0_base/assets/physical-intelligence/libero\\n2026-05-22 04:53:57,727 [INFO] Loaded 504 LoRA params from /root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best/lora_params.pt\\n2026-05-22 04:53:57,773 [INFO] Moved LoRA params to CUDA\\n2026-05-22 04:53:57,784 [INFO] Loaded SDF decoder + EE extractor from /root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best\\n2026-05-22 04:53:57,784 [INFO] Registered suffix_out capture hook on action_out_proj\\n2026-05-22 04:53:57,785 [INFO] Loaded SDF GT: 4084 points from /root/colliforce-vla/data/sdf_gt_object_chocolate.npz\\n2026-05-22 04:53:57,785 [INFO] Setting up SafeLIBERO benchmark: safelibero_object (level II)\\n[robosuite WARNING] No private macro file found! (__init__.py:7)\\n2026-05-22 04:53:57,789 [WARNING] No private macro file found!\\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\n2026-05-22 04:53:57,789 [WARNING] It is recommended to use a private macro file\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\n2026-05-22 04:53:57,789 [WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py\\n2026-05-22 04:53:57,824 [INFO] No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'\\nGym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.\\nPlease upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.\\nUsers of this version of Gym should be able to simply replace 'import gym' with 'import gymnasium as gym' in the vast majority of cases.\\nSee the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.\\n2026-05-22 04:53:58,056 [INFO] Task 0: pick up the orange juice and place it in the basket\\n2026-05-22 04:53:58,056 [INFO] BDDL: /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/bddl_files/safelibero_object/pick_up_the_orange_juice_and_place_it_in_the_basket.bddl\\n2026-05-22 04:53:58,057 [INFO] Safety level: II\\n/root/miniconda3/lib/python3.12/site-packages/torch/autograd/graph.py:829: UserWarning: Attempting to run cuBLAS, but there was no current CUDA context! Attempting to set the primary context... (Triggered internally at /pytorch/aten/src/ATen/cuda/CublasHandlePool.cpp:179.)\\n  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass\\n2026-05-22 05:07:33,986 [INFO]   Episode 10/50: success=False, collided=False, steps=300, sdf_min=0.4890, refined=0\\n2026-05-22 05:21:07,169 [INFO]   Episode 20/50: success=False, collided=False, steps=300, sdf_min=0.6072, refined=0\\n2026-05-22 05:34:45,491 [INFO]   Episode 30/50: success=False, collided=False, steps=300, sdf_min=0.5207, refined=0\\n2026-05-22 05:48:25,776 [INFO]   Episode 40/50: success=False, collided=False, steps=300, sdf_min=0.5301, refined=0\\n2026-05-22 06:02:04,259 [INFO]   Episode 50/50: success=False, collided=True, steps=300, sdf_min=0.4351, refined=0\\n2026-05-22 06:02:04,706 [INFO] Results for task 0:\\n2026-05-22 06:02:04,707 [INFO]   TSR = 0.0% (0/50)\\n2026-05-22 06:02:04,707 [INFO]   CAR = 96.0% (48/50)\\n2026-05-22 06:02:04,707 [INFO]   Avg smoothness = 0.004160\\n2026-05-22 06:02:04,707 [INFO]   Avg max displacement = 0.0006m\\n2026-05-22 06:02:04,708 [INFO] Task 1: pick up the chocolate pudding and place it in the basket\\n2026-05-22 06:02:04,708 [INFO] BDDL: /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/bddl_files/safelibero_object/pick_up_the_chocolate_pudding_and_place_it_in_the_basket.bddl\\n2026-05-22 06:02:04,708 [INFO] Safety level: II\\n2026-05-22 06:15:50,917 [INFO]   Episode 10/50: success=False, collided=True, steps=300, sdf_min=0.7717, refined=0\\n2026-05-22 06:29:33,833 [INFO]   Episode 20/50: success=False, collided=False, steps=300, sdf_min=0.7406, refined=0\\n2026-05-22 06:43:17,368 [INFO]   Episode 30/50: success=False, collided=True, steps=300, sdf_min=0.7813, refined=0\\n2026-05-22 06:57:00,109 [INFO]   Episode 40/50: success=False, collided=False, steps=300, sdf_min=0.8916, refined=0\\n2026-05-22 07:10:43,334 [INFO]   Episode 50/50: success=False, collided=False, steps=300, sdf_min=0.6807, refined=0\\n2026-05-22 07:10:43,869 [INFO] Results for task 1:\\n2026-05-22 07:10:43,870 [INFO]   TSR = 0.0% (0/50)\\n2026-05-22 07:10:43,870 [INFO]   CAR = 22.0% (11/50)\\n2026-05-22 07:10:43,870 [INFO]   Avg smoothness = 0.006490\\n2026-05-22 07:10:43,870 [INFO]   Avg max displacement = 0.0392m\\n2026-05-22 07:10:43,871 [INFO] Task 2: pick up the milk and place it in the basket\\n2026-05-22 07:10:43,871 [INFO] BDDL: /root/colliforce-vla/vlsa-aegis/safelibero/libero/libero/bddl_files/safelibero_object/pick_up_the_milk_and_place_it_in_the_basket.bddl\\n2026-05-22 07:10:43,871 [INFO] Safety level: II\\n2026-05-22 07:24:27,371 [INFO]   Episode 10/50: success=False, collided=False, steps=300, sdf_min=0.6362, refined=0\\n2026-05-22 07:38:08,593 [INFO]   Episode 20/50: success=False, collided=False, steps=300, sdf_min=0.5903, refined=0\\n2026-05-22 07:51:49,769 [INFO]   Episode 30/50: success=False, collided=False, steps=300, sdf_min=0.6097, refined=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40_
+
+## 状态汇总
+
+### 1. Eval v9 (westd-45947) — 进行中
+
+PID 263983 运行 3h06m，当前在 **Task 2** (pick up the milk)，Episode 30/50。
+
+已完成 task 结果：
+| Task | CAR | TSR |
+|------|-----|-----|
+| Task 0: orange juice → basket | **96.0%** | **0.0%** |
+| Task 1: chocolate pudding → basket | **22.0%** | **0.0%** |
+| Task 2: milk → basket | 进行中 (30/50) | — |
+
+注：TSR 全部为 0，模型未能完成任务（全部 300 步超时）。CAR 波动大（Task 1 仅 22%，大量碰撞）。
+
+### 2. A3 spatial_bowl 训练 (westd-45947) — 正常运行
+
+- PID 191747，运行 6h47m
+- **Step 11837/30000** (39%)，loss ≈ 0.041，lr = 1.81e-05
+- 速度 ~4.0s/it，预计剩余 ~20h
+- GPU1: 8.6GB/98GB, 29% util
+
+### 3. westd-35807 四个实验 — 全部正常运行
+
+| 实验 | PID | 运行时间 | Step/30K | 进度 | Loss |
+|------|-----|---------|----------|------|------|
+| baseline_lora_spa | 281554 | 21h47m | **19415/30K** | 65% | 0.015 |
+| baseline_lora_obj | 281629 | 21h47m | **19377/30K** | 65% | 0.014 |
+| a1_lora_obj | 292258 | 19h16m | **17774/30K** | 59% | 0.026 |
+| a1_lora_spa | 299910 | 17h10m | **15885/30K** | 53% | 0.026 |
+
+- 4 GPU 全部 100% 利用率，各 ~24GB/98GB 显存
+- 速度均 ~4.0s/it
+
+### 4. westd-35807 磁盘
+
+**260GB / 350GB (75%)** — 还剩 91GB，暂时安全。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b391c961-1550-430f-8ea4-62467524ba88",
+  "uuid": "4bbb4085-4a08-4531-807b-b9ff42114e9c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CZByi7NtvGS2YZoLmLLEAt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3291,
+      "cache_read_input_tokens": 50681,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3291
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 41_
+
+## 状态汇总
+
+### 1. Eval v9 (westd-45947) — 进行中
+
+PID 263983 运行 3h06m，当前在 **Task 2** (pick up the milk)，Episode 30/50。
+
+已完成 task 结果：
+| Task | CAR | TSR |
+|------|-----|-----|
+| Task 0: orange juice → basket | **96.0%** | **0.0%** |
+| Task 1: chocolate pudding → basket | **22.0%** | **0.0%** |
+| Task 2: milk → basket | 进行中 (30/50) | — |
+
+注：TSR 全部为 0，模型未能完成任务（全部 300 步超时）。CAR 波动大（Task 1 仅 22%，大量碰撞）。
+
+### 2. A3 spatial_bowl 训练 (westd-45947) — 正常运行
+
+- PID 191747，运行 6h47m
+- **Step 11837/30000** (39%)，loss ≈ 0.041，lr = 1.81e-05
+- 速度 ~4.0s/it，预计剩余 ~20h
+- GPU1: 8.6GB/98GB, 29% util
+
+### 3. westd-35807 四个实验 — 全部正常运行
+
+| 实验 | PID | 运行时间 | Step/30K | 进度 | Loss |
+|------|-----|---------|----------|------|------|
+| baseline_lora_spa | 281554 | 21h47m | **19415/30K** | 65% | 0.015 |
+| baseline_lora_obj | 281629 | 21h47m | **19377/30K** | 65% | 0.014 |
+| a1_lora_obj | 292258 | 19h16m | **17774/30K** | 59% | 0.026 |
+| a1_lora_spa | 299910 | 17h10m | **15885/30K** | 53% | 0.026 |
+
+- 4 GPU 全部 100% 利用率，各 ~24GB/98GB 显存
+- 速度均 ~4.0s/it
+
+### 4. westd-35807 磁盘
+
+**260GB / 350GB (75%)** — 还剩 91GB，暂时安全。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 67519,
+  "duration_api_ms": 51069,
+  "num_turns": 17,
+  "stop_reason": "end_turn",
+  "session_id": "b391c961-1550-430f-8ea4-62467524ba88",
+  "total_cost_usd": 0.40184325,
+  "usage": {
+    "input_tokens": 8,
+    "cache_creation_input_tokens": 42525,
+    "cache_read_input_tokens": 140492,
+    "output_tokens": 2557,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 42525,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 650,
+        "cache_read_input_tokens": 50681,
+        "cache_creation_input_tokens": 3291,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 3291
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1771,
+      "outputTokens": 16,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001851,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 8,
+      "outputTokens": 2557,
+      "cacheReadInputTokens": 140492,
+      "cacheCreationInputTokens": 42525,
+      "webSearchRequests": 0,
+      "costUSD": 0.39999225000000005,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "fba52bb2-a029-4eac-a351-e3490aada63c"
+}
+```
+
+</details>
+
+---

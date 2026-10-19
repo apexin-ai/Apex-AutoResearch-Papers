@@ -1,0 +1,29 @@
+{
+  "exp_id": "train_phase2_lambda0_extra_seed_v3",
+  "project": "diff_collision_sdf",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-27T14:44:00.954Z",
+    "updated_at": "2026-05-27T14:45:02.803Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate libero && cd /root/colliforce-vla && export WANDB_MODE=disabled && python scripts/train_a1_sdf_aux_pi05.py --scene object_pudding --seed 0 --lambda_sdf 0.005 --gpu 0 --num_train_steps 10000 --exp_name phase2_stage1_seed0_l005_v3\"",
+      "server": "westd-35807",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "859963",
+      "log_path": "~/runs/diff_collision_sdf/train_phase2_lambda0_extra_seed_v3.log",
+      "submitted_at": "2026-05-27T14:44:00.648Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "Phase 2 Stage 1 v3: seed0 SDF λ=0.005 训练 10K steps (lerobot 已修复到 0.1.0, WANDB_MODE=disabled)。为 Stage 2 (λ=0 resume to 30K) 提供 checkpoint。v1 wandb 失败, v2 被 D039 kill。验证 SDF 安全效应持久性。",
+    "parent": "train_phase2_lambda0_extra_seed_v2"
+  },
+  "timestamp": "2026-05-27T14:45:03.029532+00:00",
+  "trigger": "update_registry"
+}

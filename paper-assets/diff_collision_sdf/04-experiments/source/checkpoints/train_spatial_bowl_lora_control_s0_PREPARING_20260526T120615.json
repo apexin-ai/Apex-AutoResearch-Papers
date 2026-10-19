@@ -1,0 +1,14 @@
+{
+  "exp_id": "train_spatial_bowl_lora_control_s0",
+  "project": "diff_collision_sdf",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-26T12:06:14.923Z",
+    "updated_at": "2026-05-26T12:06:14.923Z"
+  },
+  "timestamp": "2026-05-26T12:06:15.089216+00:00",
+  "trigger": "update_registry"
+}

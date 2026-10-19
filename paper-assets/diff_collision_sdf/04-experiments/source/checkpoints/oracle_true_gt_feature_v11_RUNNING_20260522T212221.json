@@ -1,0 +1,28 @@
+{
+  "exp_id": "oracle_true_gt_feature_v11",
+  "project": "diff_collision_sdf",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T20:49:11.558Z",
+    "updated_at": "2026-05-22T21:22:21.490Z",
+    "hypothesis": "Feature-space oracle (GT SDF gradient through suffix_out → action_out_proj) will outperform action-space oracle because it matches the training-time refinement pathway, eliminating the train-eval refine mismatch identified in M028.",
+    "spec": {
+      "command": "python scripts/eval_safelibero.py --model_type a3 --suite safelibero_object --safety_level II --n_episodes 40 --gpu 2 --true_oracle --feature_oracle --force_refine_oracle --adaptive_alpha --refine_alpha 0.1 --sdf_gt_path /root/colliforce-vla/data/sdf_gt_object_chocolate.npz --output_path /root/autodl-tmp/eval_results/oracle_true_gt_feature_space_v11.json --checkpoint /root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best",
+      "server": "westd-35807",
+      "data_path": "/root/colliforce-vla/data/sdf_gt_object_chocolate.npz",
+      "data_count": 4084,
+      "model_name": "a3_grad_refine_object_pudding",
+      "seed": 0,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best",
+      "eval_data": "safelibero_object_levelII",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best",
+      "log_path": "/root/autodl-tmp/eval_results/eval_oracle_feature_space_v11.log"
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-22T21:22:21.574990+00:00",
+  "trigger": "update_registry"
+}

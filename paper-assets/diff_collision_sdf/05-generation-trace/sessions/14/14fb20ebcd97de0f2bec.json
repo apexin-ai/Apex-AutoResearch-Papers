@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "14fb20ebcd97de0f2bec",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "fix cleanup and verify",
+  "task_key": "worker_fix_cleanup_and_verify_20260527T201257",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_cleanup_and_verify_20260527T201257_result.json",
+    "occurrence": 1,
+    "bytes": 1749,
+    "sha256": "d90e03b7e498aed99976ba14c5ec0dfc9dc585441aea2113f430b54dc31be16b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个任务结果汇报：\n\n---\n\n### 任务 1：旧 checkpoint 重命名 — ✅ 完成\n\n`a1_sdf_pi05_object_pudding_seed2_l01` → `a1_sdf_pi05_object_pudding_seed2_l01_OLD`\n\n- PID 425058 仍在运行（seed2 lambda=0.1, 30K steps），确认其对该目录无任何打开的文件句柄（`lsof` 验证）\n- 旧目录内容：`30000/model.safetensors`（7.5GB, May 26 16:40），来自前一次训练\n- 新训练完成后会自动创建新的 `seed2_l01/` 目录\n\n---\n\n### 任务 2：per-task fingerprint 图 — ⚠️ PNG 正确，PDF 缺失\n\n图文件位置：本地 `artifacts/fig_pertask_car_fingerprint.png`\n\n**数据验证通过：**\n- LoRA-only 使用了 3-seed 数据：s0={CP:74, Milk:66, OJ:68, BBQ:20}, s1={CP:68, Milk:72, OJ:54, BBQ:16}, s2={CP:76, Milk:62, OJ:56, BBQ:26} ✅\n- LoRA-only bar 上显示 3 个 seed dots ✅\n- 脚注写的是 \"LoRA-only: 3-seed mean (dots = seeds)\" ✅\n- s2 数据匹配预期值（OJ=56, CP=76, Milk=62, BBQ=26）✅\n\n**问题：PDF 不存在。** 脚本 (`fig_pertask_car_fingerprint.py`) 输出路径为 `/root/autodl-tmp/artifacts/`，该目录在 westd-45947 上不存在，两台服务器和本地均未找到 PDF 版本。\n\n---\n\n### 任务 3：appendix per-task table — ❌ appendix.tex 尚未创建\n\n- 两台服务器和本地均无 `appendix.tex` 文件\n- `fig_pertask_car_fingerprint.py` 第 23 行引用了 \"Table 8 (appendix.tex, tab:per_task_car)\"，但该表格/文件从未被创建\n- 现有 `experiments.tex` 全是 TODO 占位符，无实际数据\n- `reeval_comparison.tex` 仅包含旧的 2-seed LoRA 数据（s0, s1），无 s2 行\n- LoRA s2 的 per-task CAR 数据存在于图生成脚本中，但尚未写入任何 tex 表格"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-cleanup-and-verify.md"
+}

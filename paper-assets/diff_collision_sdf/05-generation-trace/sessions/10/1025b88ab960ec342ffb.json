@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1025b88ab960ec342ffb",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ssh gpu status verify both",
+  "task_key": "worker_ssh_gpu_status_verify_both_20260520T120740",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_gpu_status_verify_both_20260520T120740_result.json",
+    "occurrence": 1,
+    "bytes": 653,
+    "sha256": "4598cff1aaa859d126413f3ddf1f3c363ccc77eaafa3c1b22509348c5fafd0cb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "| 实验 | 服务器 | PID | Step | Loss | VRAM | 运行时间 | 状态 |\n|------|--------|-----|------|------|------|----------|------|\n| A1 sdf spatial_bowl s0 v3 | westd-35807 | 185994 | 9732/30000 (32%) | ~0.25 | 13.4 GB | 3h43m | 存活 |\n| baseline spatial_bowl s0 v3 | westd-35807 | (GPU0/1/2) | 13362/30000 (45%) | ~0.007 | 37.4 GB ×3 | 13h31m | 存活 |\n| A3 gradient spatial_bowl s0 | westd-45947 | 71494 | 3806/30000 (13%) | ~0.27 | 16.9 GB | 4h08m | 存活 |\n| A3 gradient object_pudding s0 | westd-45947 | 73165 | 6019/30000 (20%) | ~0.07 | 23.9 GB | 4h07m | 存活 |\n\n全部 4 个实验正常运行，无需干预。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-gpu-status-verify-both.md"
+}

@@ -1,0 +1,60 @@
+{
+  "exp_id": "baseline_spatial_bowl_s0_v2",
+  "project": "diff_collision_sdf",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T22:40:19.501Z",
+    "updated_at": "2026-05-21T07:09:20.444Z",
+    "hypothesis": "Vanilla pi0 fine-tune on LIBERO spatial_bowl (seed 0, extra_delta_transform=False) establishes baseline TSR >50% and CAR ~0% for ColliForce comparison",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate libero && cd /root/colliforce-vla && WANDB_MODE=disabled CUDA_VISIBLE_DEVICES=0 python scripts/train_baseline.py --scene spatial_bowl --seed 0 --save_interval 2000 --resume\"",
+      "server": "westd-35807",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "222903",
+      "log_path": "~/runs/diff_collision_sdf/baseline_spatial_bowl_s0_v2.log",
+      "submitted_at": "2026-05-20T14:37:16.784Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/baseline_spatial_bowl/baseline_spatial_bowl_seed0/",
+      "wall_clock_seconds": 57989,
+      "gpu_hours": 16.1,
+      "seed": 0,
+      "data_path": "/root/autodl-tmp/colliforce_data/safelibero_spatial",
+      "data_count": 50,
+      "model_name": "pi0_base (full-FT, no LoRA)"
+    },
+    "notes": "[2026-05-21 14:45] 训练完成 30000/30000 steps, EXIT_CODE=0. Final loss 0.0032, best loss 0.00316 (step 30000), lr 2.50e-06. 本次从 step 14000 resume, wall time 16h6m (3.62s/it). VRAM 35738MiB on cuda:0. Checkpoint: 29999, 30000, best. 无 error/exception. 待评估 TSR/CAR。",
+    "reproduce": {
+      "finished_at": "2026-05-21T06:46:59.958Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-21T06:47:02.322769+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "final_loss": 0.0032,
+      "best_loss": 0.00316,
+      "steps_completed": 30000,
+      "lr_final": 2.5e-06,
+      "wall_time_hours": 16.1,
+      "vram_mib": 35738,
+      "checkpoint_step": 30000,
+      "avg_it_per_sec": 3.62
+    },
+    "completed_at": "2026-05-21T06:50:14.015Z"
+  },
+  "timestamp": "2026-05-21T07:09:20.475116+00:00",
+  "trigger": "update_registry"
+}

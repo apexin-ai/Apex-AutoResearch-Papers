@@ -1,0 +1,69 @@
+# ops pi05 multiseed eval deploy and launch
+
+**How Action Collapse Creates Illusory Safety in Diffusion-Based VLA Collision Avoidance Evaluation** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_ops_pi05_multiseed_eval_deploy_and_launch_20260522T231401_result.json`
+- **Structured JSON:** [`da380570ac4d8901dcc3.json`](../../sessions/da/da380570ac4d8901dcc3.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+## 部署状态报告
+
+### 1. 权重同步
+- **方式**: 从 GCS 公开桶 `gs://openpi-assets/checkpoints/pi05_libero` 通过 gcsfs 匿名下载（不走 network_turbo 代理，避免 SSL 错误）
+- **本地路径**: `/root/autodl-tmp/.cache/openpi/openpi-assets/checkpoints/pi05_libero`
+- **结果**: 成功，模型已加载到两张 GPU
+
+### 2. serve_policy 状态
+
+| Session | PID | GPU | 显存占用 | 端口 | 状态 |
+|---------|-----|-----|---------|------|------|
+| `serve_pi05_p8000` | 235619 | cuda:0 | 74841/97887 MiB | 8000 | listening, 已连接 eval client |
+| `serve_pi05_p8001` | 235696 | cuda:2 | 73543/97887 MiB | 8001 | listening, 已连接 eval client |
+
+### 3. eval 状态
+
+| Session | PID | Seed | Port | 进度 | 输出路径 |
+|---------|-----|------|------|------|---------|
+| `eval_pi05_obj_s1` | 237424 | 1 | 8000 | Task 0: ep 15/50 | `pi05_safelibero_object_v11_s1.json` |
+| `eval_pi05_obj_s2` | 237608 | 2 | 8001 | Task 0: ep 15/50 | `pi05_safelibero_object_v11_s2.json` |
+
+**初始 episode 日志摘要** (Task 0, ep 1-15):
+
+- **Seed 1**: 12/15 SUCCESS (TSR=80%), 仅 1 ep safe 无碰撞 (CAR=6.7%)
+- **Seed 2**: 13/15 SUCCESS (TSR=86.7%), 仅 2 ep safe 无碰撞 (CAR=13.3%)
+
+碰撞主要来自 moka_pot、wine_bottle、red_coffee_mug、yellow_book 等障碍物，max_disp 范围 0.05-0.65。
+
+### 4. 已解决问题
+
+| 问题 | 解决方案 |
+|------|---------|
+| JAX 回退 CPU（无 CUDA jaxlib） | 安装 `jax[cuda12]`，验证 4 个 CudaDevice |
+| libero 模块不可导入 | 创建缺失的 `LIBERO/libero/__init__.py` + 重新 `pip install -e .` |
+| 根分区仅 11GB，权重 12GB | `OPENPI_DATA_HOME=/root/autodl-tmp/.cache/openpi` 使用数据盘 |
+| network_turbo 导致 gcsfs SSL 失败 | 不启用 network_turbo，gcsfs 匿名访问直连 GCS |
+
+### 5. 预计完成时间
+
+- 每个 eval: 4 tasks × 50 episodes = 200 episodes
+- 当前速度: ~5s/ep（含成功）, ~10s/ep（含失败，走满 300 步）
+- 已完成: 15/200 episodes
+- **预计剩余: ~20-25 分钟**（两个 eval 并行，约 07:05-07:10 UTC 完成）
+
+日志和结果 JSON 均 tee 到 `/root/autodl-tmp/eval_results/`。
+
+---

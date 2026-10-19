@@ -1,0 +1,92 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{safelibero2025}
+\citation{pi02024}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\citation{safelibero2025}
+\citation{sdf_safety2024,safe_diffusion2025}
+\citation{ratliff2009chomp,zucker2013chomp,schulman2014trajopt}
+\citation{neural_sdf2023,diff_sdf2024}
+\citation{safety_metrics2023}
+\citation{hu2022lora}
+\citation{kirkpatrick2017ewc}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{VLA Safety and Collision Avoidance.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{SDF in Robot Motion Planning.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Evaluation Metrics for Robot Safety.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Fine-tuning and Catastrophic Forgetting in Foundation Models.}{2}{section*.4}\protected@file@percent }
+\citation{safelibero2025}
+\citation{pi02024}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Background and Method}{3}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{3}{Background and Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Collision Avoidance Rate and Its Failure Modes}{3}{subsection.3.1}\protected@file@percent }
+\newlabel{sec:car_failure}{{3.1}{3}{Collision Avoidance Rate and Its Failure Modes}{subsection.3.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Displacement-Filtered CAR}{3}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:dfcar_method}{{3.2}{3}{Displacement-Filtered CAR}{subsection.3.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}SDF Auxiliary Loss}{3}{subsection.3.3}\protected@file@percent }
+\newlabel{sec:sdf_loss}{{3.3}{3}{SDF Auxiliary Loss}{subsection.3.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Experimental Setup}{4}{subsection.3.4}\protected@file@percent }
+\newlabel{sec:setup}{{3.4}{4}{Experimental Setup}{subsection.3.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{4}{section.4}\protected@file@percent }
+\newlabel{sec:experiments}{{4}{4}{Experiments}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Fake Safety in Standard CAR}{4}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:fake_safety}{{4.1}{4}{Fake Safety in Standard CAR}{subsection.4.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Capability-Safety Anti-correlation}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:cap_safety}{{4.2}{4}{Capability-Safety Anti-correlation}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Fine-tuning Produces Genuine Collision Avoidance}{4}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:real_avoidance}{{4.3}{4}{Fine-tuning Produces Genuine Collision Avoidance}{subsection.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces LoRA-only fine-tuning (no SDF loss) on Pi0.5, evaluated on \texttt  {object\_pudding}. All episodes are active (0\% frozen); dfCAR equals raw CAR.}}{5}{table.caption.5}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:lora_3seed}{{1}{5}{LoRA-only fine-tuning (no SDF loss) on Pi0.5, evaluated on \texttt {object\_pudding}. All episodes are active (0\% frozen); dfCAR equals raw CAR}{table.caption.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces LoRA-only vs.\ LoRA+SDF on \texttt  {object\_pudding}. Three seeds per condition. $\Delta $ = SDF best $-$ LoRA.}}{5}{table.caption.6}\protected@file@percent }
+\newlabel{tab:3v3}{{2}{5}{LoRA-only vs.\ LoRA+SDF on \texttt {object\_pudding}. Three seeds per condition. $\Delta $ = SDF best $-$ LoRA}{table.caption.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}SDF Geometric Supervision is Redundant}{5}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:sdf_redundant}{{4.4}{5}{SDF Geometric Supervision is Redundant}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.1}Direct Comparison: LoRA-only vs.\ LoRA+SDF (3 vs.\ 3 Seeds)}{5}{subsubsection.4.4.1}\protected@file@percent }
+\newlabel{sec:3v3}{{4.4.1}{5}{Direct Comparison: LoRA-only vs.\ LoRA+SDF (3 vs.\ 3 Seeds)}{subsubsection.4.4.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.2}Dose-Response: 4-Point $\lambda $ Curve}{5}{subsubsection.4.4.2}\protected@file@percent }
+\newlabel{sec:dose_response}{{4.4.2}{5}{Dose-Response: 4-Point $\lambda $ Curve}{subsubsection.4.4.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.3}Cross-Scene Validation}{5}{subsubsection.4.4.3}\protected@file@percent }
+\newlabel{sec:cross_scene}{{4.4.3}{5}{Cross-Scene Validation}{subsubsection.4.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces 4-point $\lambda $ dose-response curve on \texttt  {object\_pudding}. Linear regression over all 4 points: slope $= -0.3$ pp/unit-$\lambda $, $R^2 = 0.12$, $F$-test $p > 0.5$.}}{6}{table.caption.7}\protected@file@percent }
+\newlabel{tab:lambda_curve}{{3}{6}{4-point $\lambda $ dose-response curve on \texttt {object\_pudding}. Linear regression over all 4 points: slope $= -0.3$ pp/unit-$\lambda $, $R^2 = 0.12$, $F$-test $p > 0.5$}{table.caption.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Per-task CAR breakdown at $\lambda = 0.1$ (2 seeds) vs.\ LoRA-only mean (3 seeds) on \texttt  {object\_pudding}.}}{6}{table.caption.8}\protected@file@percent }
+\newlabel{tab:lambda01_pertask}{{4}{6}{Per-task CAR breakdown at $\lambda = 0.1$ (2 seeds) vs.\ LoRA-only mean (3 seeds) on \texttt {object\_pudding}}{table.caption.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Phase 2: SDF Training Has No Persistent Effect}{6}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:phase2}{{4.5}{6}{Phase 2: SDF Training Has No Persistent Effect}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}dfCAR Threshold Robustness}{6}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:dfcar_robust}{{4.6}{6}{dfCAR Threshold Robustness}{subsection.4.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Cross-scene SDF redundancy on \texttt  {spatial\_bowl}. Single seed per condition.}}{7}{table.caption.9}\protected@file@percent }
+\newlabel{tab:spatial}{{5}{7}{Cross-scene SDF redundancy on \texttt {spatial\_bowl}. Single seed per condition}{table.caption.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Phase~2 ablation: 10K SDF $\to $ 20K LoRA-only vs.\ full 30K LoRA-only. Results on \texttt  {object\_pudding}.}}{7}{table.caption.10}\protected@file@percent }
+\newlabel{tab:phase2}{{6}{7}{Phase~2 ablation: 10K SDF $\to $ 20K LoRA-only vs.\ full 30K LoRA-only. Results on \texttt {object\_pudding}}{table.caption.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}EE-only SDF Structural Limitation}{7}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:ee_only}{{4.7}{7}{EE-only SDF Structural Limitation}{subsection.4.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{7}{section.5}\protected@file@percent }
+\newlabel{sec:discussion}{{5}{7}{Discussion}{section.5}{}}
+\bibstyle{plainnat}
+\bibcite{safelibero2025}{{1}{2025}{{SafeLIBERO}}{{}}}
+\bibcite{pi02024}{{2}{2024}{{Pi0}}{{}}}
+\bibcite{sdf_safety2024}{{3}{2024}{{SDF-Safety}}{{}}}
+\bibcite{safe_diffusion2025}{{4}{2025}{{Safe-Diffusion}}{{}}}
+\bibcite{ratliff2009chomp}{{5}{2009}{{Ratliff et~al.}}{{}}}
+\bibcite{zucker2013chomp}{{6}{2013}{{Zucker et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Phase~2 multi-seed summary. $\Delta $ = Phase~2 CAR $-$ corresponding LoRA-only CAR.}}{8}{table.caption.11}\protected@file@percent }
+\newlabel{tab:phase2_multi}{{7}{8}{Phase~2 multi-seed summary. $\Delta $ = Phase~2 CAR $-$ corresponding LoRA-only CAR}{table.caption.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces dfCAR at varying thresholds $\delta $. Values are constant across $\delta \in [2, 200]$\,mm for all active model configurations.}}{8}{table.caption.12}\protected@file@percent }
+\newlabel{tab:dfcar_threshold}{{8}{8}{dfCAR at varying thresholds $\delta $. Values are constant across $\delta \in [2, 200]$\,mm for all active model configurations}{table.caption.12}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{8}{section.6}\protected@file@percent }
+\newlabel{sec:conclusion}{{6}{8}{Conclusion}{section.6}{}}
+\bibcite{schulman2014trajopt}{{7}{2014}{{Schulman et~al.}}{{}}}
+\bibcite{neural_sdf2023}{{8}{2023}{{Neural-SDF}}{{}}}
+\bibcite{diff_sdf2024}{{9}{2024}{{Diff-SDF}}{{}}}
+\bibcite{safety_metrics2023}{{10}{2023}{{Safety-Metrics}}{{}}}
+\bibcite{hu2022lora}{{11}{2022}{{Hu et~al.}}{{}}}
+\bibcite{kirkpatrick2017ewc}{{12}{2017}{{Kirkpatrick et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces End-effector displacement distribution statistics across conditions.}}{9}{table.caption.13}\protected@file@percent }
+\newlabel{tab:ee_dist}{{9}{9}{End-effector displacement distribution statistics across conditions}{table.caption.13}{}}
+\gdef \@abspage@last{9}

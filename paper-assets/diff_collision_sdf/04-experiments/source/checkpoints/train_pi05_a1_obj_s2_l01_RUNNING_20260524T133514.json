@@ -1,0 +1,37 @@
+{
+  "exp_id": "train_pi05_a1_obj_s2_l01",
+  "project": "diff_collision_sdf",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 1,
+    "created_at": "2026-05-23T00:22:56.952Z",
+    "updated_at": "2026-05-24T13:35:14.469Z",
+    "hypothesis": "Pi0.5+A1 SDF auxiliary loss (λ_sdf=0.01) seed 2: multi-seed replication of stronger lambda training. Third seed for statistical significance of whether higher SDF signal improves or degrades collision avoidance.",
+    "reproduce": {
+      "pid": 349011,
+      "gpu": "cuda:3",
+      "tmux_session": "train_pi05_a1_obj_s2_l01"
+    },
+    "notes": "SDF loss 异常: ~0.067 vs 其他 run ~0.033 (2x), 从 step 7K 到 23K+ 持续 13000+ steps 完全平坦无收敛。可能是 seed2 + λ=0.01 组合的固有特性。30K eval 时需特别关注该 run 的 CAR/TSR 是否偏离其他 seed，判断是否为 outlier 需排除。",
+    "completed_at": "2026-05-23T05:56:23.239Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "磁盘满崩溃 step 7999 → 清盘 53G → 从 step 6000 恢复 (~06:02 UTC)。速度 ~1.2s/it (Phase 1 剩余)，预计 ~14:00 UTC 完成 30000 步。"
+      }
+    },
+    "spec": {
+      "command": "WANDB_MODE=offline python scripts/train_a1_sdf_aux_pi05.py --scene object_pudding --seed 2 --gpu 3 --batch_size 32 --num_train_steps 30000 --lambda_sdf 0.01 --lambda_ee 0.01 --lr 2.5e-5 --save_interval 2000 --resume",
+      "server": "westd-35807",
+      "data_path": "SafeLIBERO object_pudding training data",
+      "data_count": 200,
+      "model_name": "pi05_libero + A1 SDF aux (lambda=0.01)",
+      "seed": 2
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-24T13:35:14.586265+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,15 @@
+{
+  "exp_id": "reeval_sdf_s0_l01_30k",
+  "project": "diff_collision_sdf",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-26T09:24:07.404Z",
+    "updated_at": "2026-05-26T09:24:19.698Z",
+    "hypothesis": "Re-eval SDF λ=0.01 s0 (30K) with fixed eval_safelibero.py (180° rotation). Verify whether TSR collapse is real or eval bug artifact, and establish corrected SDF attribution data."
+  },
+  "timestamp": "2026-05-26T09:24:19.870190+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "31b09e37c2488206cbd3",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops save displacement analysis summary",
+  "task_key": "worker_ops_save_displacement_analysis_summary_20260525T172259",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_save_displacement_analysis_summary_20260525T172259_result.json",
+    "occurrence": 1,
+    "bytes": 463,
+    "sha256": "e0f927999d4a7c6eceb6c194e1e8c2e8fb6553f2934c7f10e035f03b9abb3aff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已生成：`/root/autodl-tmp/eval_results/displacement_analysis_30k_summary.txt`（52 行）。\n\n关键结果：所有 4 个 30K checkpoint 的 Filtered CAR 均为 **0.0%**，Frozen 比例 **100%**——所有\"safe\"的 episode 都是 frozen（max_displacement < 0.001m）。即使把阈值降到 0.0005m，除 s2_l01_30k 有 1 个 episode 外，其余全部 frozen。Sensitivity analysis 在 0.0005~0.01 范围内结果几乎无变化。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-save-displacement-analysis-summary.md"
+}

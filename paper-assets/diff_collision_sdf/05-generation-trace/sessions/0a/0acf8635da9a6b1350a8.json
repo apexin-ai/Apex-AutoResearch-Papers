@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0acf8635da9a6b1350a8",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ssh eval precheck",
+  "task_key": "worker_ssh_eval_precheck_20260521T071621",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_eval_precheck_20260521T071621_result.json",
+    "occurrence": 1,
+    "bytes": 3316,
+    "sha256": "f8bf1e4771be517cb5f21db2719ee32903d413c8b3a377d49568c8e8938093f9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有信息已收集完毕。\n\n---\n\n## Eval 预检报告\n\n### 1. L1 norm 修复状态: **OK**\n- `eval_safelibero.py:389` — `displacement = np.sum(np.abs(current_positions[name] - initial_positions[name]))` ✓\n- `COLLISION_THRESHOLD = 0.001` (line 92) ✓\n- `np.linalg.norm` 仅用于 shift_magnitude (305)、jerk smoothness (405)、debug display (627)，均不影响碰撞判定\n\n### 2. eval_batch.sh 状态: **OK，但 A3 checkpoint 目录尚不存在**\n- 语法检查: `bash -n` 通过\n- scenes: `spatial_bowl`, `object_pudding` ✓\n- methods: `baseline a1 a3 a3_no_refine` ✓\n- 碰撞阈值: 继承自 eval_safelibero.py 默认 0.001（eval_batch.sh 不单独传 `--collision_threshold`）✓\n- dry-run baseline spatial_bowl seed0 → 正确解析到 `checkpoints/baseline_spatial_bowl/baseline_spatial_bowl_seed0/30000` ✓\n- dry-run a3 spatial_bowl → **SKIP: checkpoint dir not found** `a3_grad_refine_spatial_bowl/a3_grad_refine_spatial_bowl_seed0`（预期，A3 还在训练中）\n- `--dry_run` 参数可用 ✓\n\n### 3. norm_stats.json 状态: **OK**\n- 每个 checkpoint step 目录内都自带 `assets/<suite>/norm_stats.json`\n- 项目级 `assets/` 目录也有备份副本\n- eval 脚本通过 openpi 的 `load_norm_stats(checkpoint_dir / \"assets\", asset_id)` 加载，无需额外 symlink\n\n### 4. Dry-run / Import 结果: **OK**\n- `python scripts/eval_safelibero.py --help` 正常输出，所有 import 无报错\n- eval_batch.sh dry-run 正确构建命令行\n\n### 5. SDF GT 文件\n- `sdf_gt_spatial_bowl.npz`: **存在** (112KB)\n- `sdf_gt_object_pudding.npz`: **缺失** ⚠️ — A3 eval object_pudding 场景需要此文件\n\n### 6. SCP 命令模板\n- westd-35807 上无 `~/.ssh/config`，无法直接 SSH 到 westd-45947\n- **需要从本地中转**，或在 westd-35807 上配置 SSH key\n- A3 checkpoint 目标路径: `/root/autodl-tmp/checkpoints/a3_grad_refine_spatial_bowl/a3_grad_refine_spatial_bowl_seed0/<step>/`\n- 等 A3 训练完成后需确认 westd-45947 上的实际 checkpoint 路径再拷贝\n\n### 7. Checkpoint 清单\n\n| Method | Scene | Seed | Steps | 状态 |\n|--------|-------|------|-------|------|\n| baseline (full-FT) | spatial_bowl | 0 | 29999, 30000, best | ✅ 完成 |\n| baseline (full-FT) | object_pudding | 0 | 29999, 30000, best | ✅ 完成 |\n| baseline (LoRA) | spatial_bowl | 0 | 2000, 4000, best | ✅ 完成 |\n| baseline (LoRA) | object_pudding | 0 | 2000, 4000, best | ✅ 完成 |\n| A1 (full-FT) | spatial_bowl | 0 | 14000, 16000, 18000, best | ✅ 完成 |\n| A1 (full-FT) | object_pudding | 0 | 4000, 6000, best | ✅ 完成 |\n| A1 (LoRA) | spatial_bowl | 0 | _(空，仅 wandb_id.txt)_ | ⏳ 未开始/刚创建 |\n| A1 (LoRA) | object_pudding | 0 | 2000, best | ✅ 有 checkpoint |\n| A3 | * | * | — | ⏳ 训练中 (westd-45947) |\n\n### 8. 磁盘空间\n- `/root/autodl-tmp`: 350G total, 232G used, **119G free** (67%) — 足够存放 A3 checkpoint\n\n### 需修复项\n\n1. **`sdf_gt_object_pudding.npz` 缺失** — A3 eval object_pudding 需要此文件。需要从训练服务器拷贝或重新生成。\n2. **westd-45947 → westd-35807 SCP 通道** — 两台机器间无直接 SSH 连接，需规划传输方案（本地中转 / 配置 SSH key / 用 autodl-tmp 共享存储等）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-eval-precheck.md"
+}

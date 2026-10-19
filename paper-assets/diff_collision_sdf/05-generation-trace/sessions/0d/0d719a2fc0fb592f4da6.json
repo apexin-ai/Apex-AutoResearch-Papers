@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0d719a2fc0fb592f4da6",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "verify lora pertask tsr from json",
+  "task_key": "worker_verify_lora_pertask_tsr_from_json_20260528T010627",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_lora_pertask_tsr_from_json_20260528T010627_result.json",
+    "occurrence": 1,
+    "bytes": 1108,
+    "sha256": "7c508bcac5e9394900dfcb3fd332a9e444c8041cede72d6e8d8f2e99d232df5b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n## LoRA Per-task TSR from Reeval JSONs (eval_seed=7, 30k checkpoint)\n\n| Seed | OJ | CP | Milk | BBQ | Mean |\n|------|-----|-----|------|-----|------|\n| s0 | 32.0% | 74.0% | 42.0% | 58.0% | 51.5% |\n| s1 | 34.0% | 62.0% | 50.0% | 60.0% | 51.5% |\n| s2 | 24.0% | 76.0% | 42.0% | 64.0% | 51.5% |\n| **Mean** | **30.0%** | **70.7%** | **44.7%** | **60.7%** | **51.5%** |\n\nCAR: 全部 100.0%（LoRA 无碰撞惩罚，符合预期）。\n\n## 对比 Appendix 当前值\n\n| | OJ | CP | Milk | BBQ | Mean |\n|--|-----|-----|------|-----|------|\n| Appendix 现值 (s0) | 18.0% | 72.0% | 32.0% | 62.0% | 46.0% |\n| Reeval s0 (seed7) | 32.0% | 74.0% | 42.0% | 58.0% | 51.5% |\n\n## 结论\n\n**Appendix per-task TSR 数据需要更新。** 现有 appendix 的 LoRA s0 数据 (mean=46.0%) 与主表 (51.5%) 不一致，且不匹配任何现存 JSON 文件——可能来自早期被废弃的 eval run。\n\n正确数据来源是 westd-45947 上的 3 个 reeval JSON（eval_seed=7），三个 seed 均为 51.5%，与主表完全一致。建议用上表 Mean 行更新 appendix。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-lora-pertask-tsr-from-json.md"
+}

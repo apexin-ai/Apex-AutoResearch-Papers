@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "35dd0f887da625c0ad63",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops kill serve policy and dryrun",
+  "task_key": "worker_ops_kill_serve_policy_and_dryrun_20260522T231905",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill_serve_policy_and_dryrun_20260522T231905_result.json",
+    "occurrence": 1,
+    "bytes": 1663,
+    "sha256": "3d78a5fdfcdbfff7d318d73de7815f75e474b77653ade3b7c81b8a1647dd6c5b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程已退出，GPU 完全释放。\n\n## 汇报\n\n### Part 1: serve_policy kill\n- `kill 430540` 成功，GPU 1 显存从 73.5GB 释放至 0MiB\n\n### Part 2: Dry-run 结果\n\n遇到两个 bug 并修复后，5 步训练成功完成：\n\n**修复的 Bug：**\n1. **quantile norm stats 缺失** — Pi0.5 默认 `use_quantile_norm=True`，但 norm_stats.json 中 q01/q99 为 null。从数据集计算了真实 q01/q99 并更新了 `assets/baseline_spatial_bowl/safelibero_spatial/norm_stats.json`\n2. **LoRA dtype 不匹配** — `lora_utils.py` 的 LoRA 参数以 float32 创建，导致 `next(q_proj.parameters()).dtype` 返回 float32，破坏了模型的 bfloat16 dtype 检测链（`gemma_pytorch.py:334`），使 embeddings 未被 cast 到 bfloat16，最终在 `F.linear` 中 float32 input × bfloat16 weight 报错。修复：LoRA 参数使用 base weight 的 dtype 创建，forward 中显式 `.float()` 保证数值精度\n\n**Dry-run 输出：**\n- **Trainable params**: 658,948（SDF decoder + EE extractor；LoRA 在 Phase 1 冻结）\n- **LoRA params**: 0（Phase 1 冻结，Phase 2 在 step 5000 解冻）\n- **每步 loss**:\n  | Step | Total Loss | LR |\n  |------|-----------|-----|\n  | 1 | 0.1296 | 1.25e-05 |\n  | 2 | 0.1152 | 2.50e-05 |\n  | 3 | 0.1524 | 2.17e-05 |\n  | 4 | 0.1423 | 1.38e-05 |\n  | 5 | 0.1254 | 5.80e-06 |\n- **无 NaN**\n- **显存**: GPU 0 峰值 ~19.1GB / 96GB（单卡充裕）\n- **总用时**: 28s（首步 14.5s 含编译，后续 ~1-5s/step）\n- 注：tqdm 输出仅显示 total loss，aux loss 分项（action_loss, sdf_loss, ee_loss）通过 wandb 记录，dry-run 中 wandb disabled 故未显示"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-serve-policy-and-dryrun.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "24ecd4880f3a39410f30",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "paper writing related work",
+  "task_key": "worker_paper_writing_related_work_20260524T185835",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_related_work_20260524T185835_result.json",
+    "occurrence": 1,
+    "bytes": 1131,
+    "sha256": "a16b4540968bcd56191939da1d8d6255e198b253a4880486dd6eedcdcf4fbbf0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `artifacts/drafts/related_work_v2.tex`。\n\n**结构概要：**\n\n- **§3.1 Collision-Safe VLA Methods** (~240 words): 按 post-hoc correction (AEGIS, iKinQP-RL, CoFreeVLA)、constrained optimization (SafeVLA)、inference-time guidance (Li et al., CAPE) 三类组织。Positioning: 所有方法共享 CAR 作为评估指标，无一检验 metric validity。\n- **§3.2 SDF in Robot Manipulation** (~210 words): DeepSDF → iSDF → DiffCo → VoxPoser。Positioning: SDF 在经典规划中有效，但 oracle 实验揭示 EE-only refinement 的结构性缺陷。\n- **§3.3 Evaluation Reliability in Robot Learning** (~220 words): 从 NLP benchmark saturation / Goodhart's law 引入 metric contamination lens，连接 action collapse 与 mode collapse，指出 CAR 的 construct validity 缺失。Positioning: 现有文献未识别 action collapse 对 CAR 的污染。\n\n**待后续处理：**\n- 3 个 `%[CITE-CHECK]` 标记（CoFreeVLA, SafeVLA, chi2023diffusionpolicy）\n- 2 个占位引用（`placeholder_metric_reliability`, `placeholder_goodhart_rl`）需 reference audit 补充真实 bib 条目"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-related-work-copy-3.md"
+}

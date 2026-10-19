@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_a3_v10a_refine",
+  "project": "diff_collision_sdf",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T09:52:47.079Z",
+    "updated_at": "2026-05-22T09:52:52.203Z",
+    "hypothesis": "A3 eval v10a (with refinement) using M019-fixed eval pipeline — measures A3 CAR/TSR on SafeLIBERO Level II object_pudding. Same pipeline as baseline v10 for relative comparison, though action chunking not yet fixed (replan every step).",
+    "parent": "a3_gradient_object_pudding_s0"
+  },
+  "timestamp": "2026-05-22T09:52:52.261123+00:00",
+  "trigger": "update_registry"
+}

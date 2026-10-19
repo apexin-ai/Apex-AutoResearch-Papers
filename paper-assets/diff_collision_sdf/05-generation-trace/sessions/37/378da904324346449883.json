@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "378da904324346449883",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "fix reviewer remaining items",
+  "task_key": "worker_fix_reviewer_remaining_items_20260527T184720",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_reviewer_remaining_items_20260527T184720_result.json",
+    "occurrence": 1,
+    "bytes": 953,
+    "sha256": "049a630390ff3aebab941a6751218fd44b9f9eaa9b22e8808406665f591e2cbf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All three items confirmed:\n\n1. **LoRA s2 per-task CAR row added** (line 104): OJ=56, CP=76, Milk=62, BBQ=26, Agg=55.0 — consistent with the null distribution section which already references LoRA s2 = 55.0%.\n\n2. **Permutation test paragraph updated** (line 173): Added two-tailed $p = 2/28 \\approx 0.071$ alongside the existing one-tailed $p = 1/28 \\approx 0.036$. Both numbers correct.\n\n3. **Fig 5 confirmed correct**: `claim3.tex:37` references `fig5_lambda_curve`, and `artifacts/figures/fig5_lambda_curve.pdf` + `.png` both exist. `\\graphicspath` in `main.tex` points to `../../artifacts/figures/`, which resolves correctly. No changes needed.\n\n**Not addressed**: LoRA s2 per-task TSR — the task description didn't provide s2 TSR data, and the existing TSR table only reports seed 0 (seed 1 excluded due to rotation protocol mismatch). If s2 TSR per-task numbers are available, that row can be added to Table 7 as well."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-reviewer-remaining-items.md"
+}

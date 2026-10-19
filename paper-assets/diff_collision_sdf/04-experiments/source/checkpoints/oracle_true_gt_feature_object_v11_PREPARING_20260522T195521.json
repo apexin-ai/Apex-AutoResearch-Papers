@@ -1,0 +1,14 @@
+{
+  "exp_id": "oracle_true_gt_feature_object_v11",
+  "project": "diff_collision_sdf",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T19:55:21.779Z",
+    "updated_at": "2026-05-22T19:55:21.779Z"
+  },
+  "timestamp": "2026-05-22T19:55:21.847388+00:00",
+  "trigger": "update_registry"
+}

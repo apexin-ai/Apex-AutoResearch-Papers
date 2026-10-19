@@ -1,0 +1,9 @@
+30K Displacement Analysis Summary (remote: /root/autodl-tmp/eval_results/displacement_analysis_30k_summary.txt)
+
+Key Finding: ALL 30K checkpoints show Filtered CAR = 0.0%, Frozen = 100%
+- Every "safe" episode has max_displacement < 0.001m (action collapsed)
+- Sensitivity analysis (threshold 0.0005~0.01m): results unchanged
+- Only exception: s2_l01_30k has 1 episode above 0.0005m threshold
+
+This contrasts with 10K best checkpoints which showed real collision avoidance.
+Supports paper narrative: continuous SDF training beyond ~10K causes action collapse.

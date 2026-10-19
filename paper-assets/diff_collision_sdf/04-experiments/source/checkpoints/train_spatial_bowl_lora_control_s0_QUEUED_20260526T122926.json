@@ -1,0 +1,16 @@
+{
+  "exp_id": "train_spatial_bowl_lora_control_s0",
+  "project": "diff_collision_sdf",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-26T12:06:14.923Z",
+    "updated_at": "2026-05-26T12:29:26.072Z",
+    "hypothesis": "LoRA-only baseline (without SDF collision loss) on spatial_bowl will serve as a control: its safety-violation rate should remain at the pre-training level (~high), establishing the gap that plan_015's SDF-augmented training aims to close.",
+    "parent": "train_pi05_a1_spatial_bowl_s0_l005"
+  },
+  "timestamp": "2026-05-26T12:29:26.244249+00:00",
+  "trigger": "update_registry"
+}

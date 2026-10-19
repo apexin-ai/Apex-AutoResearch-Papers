@@ -1,0 +1,37 @@
+{
+  "exp_id": "eval_a3_object_pudding_no_refine",
+  "project": "diff_collision_sdf",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T18:15:43.035Z",
+    "updated_at": "2026-05-21T20:20:34.183Z",
+    "hypothesis": "A3 trained with SDF gradient loss but evaluated without runtime refinement (--no_refine) — ablation to isolate whether CAR improvement comes from training-time gradient signal alone vs runtime refinement.",
+    "parent": "a3_gradient_object_pudding_s0",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python eval_safelibero.py --checkpoint /root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best --suite object_pudding --n_episodes 50 --no_refine",
+      "server": "westd-45947",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "235230",
+      "log_path": "/root/autodl-tmp/eval_results/a3_object_pudding_no_refine_v5.log",
+      "checkpoint_source": "a3_gradient_object_pudding_s0 best (step 26000)",
+      "eval_data": "object_pudding",
+      "data_path": "/root/autodl-tmp/colliforce_data/safelibero_object",
+      "data_count": 50,
+      "model_name": "pi0+A3_gradient_refine (no_refine ablation)",
+      "seed": 0
+    },
+    "reproduce": {
+      "finished_at": "2026-05-21T20:20:33.806Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-21T20:20:33.653Z"
+  },
+  "timestamp": "2026-05-21T20:20:34.218046+00:00",
+  "trigger": "update_registry"
+}

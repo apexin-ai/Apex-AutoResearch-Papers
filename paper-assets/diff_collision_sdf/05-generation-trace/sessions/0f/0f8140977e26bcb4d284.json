@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0f8140977e26bcb4d284",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops stepwise eval l1 s0",
+  "task_key": "worker_ops_stepwise_eval_l1_s0_20260527T003856",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_stepwise_eval_l1_s0_20260527T003856_result.json",
+    "occurrence": 1,
+    "bytes": 370,
+    "sha256": "b64412b23ce45844dc76e4d20694c674462954842fe8f6b2f06627e523f9e43e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval step 16000 (best) 已在 cuda:0 后台启动（PID 464690）。\n\n**当前状态：**\n- 可用 checkpoint（s0_l1）：16000(best)、20000(已eval)、22000\n- 正在 eval：16000 → 预计 ~30-60min 完成\n- 接下来：eval 22000\n- 总共只有 3 个数据点（中间 checkpoint 已被 keep_period=5000 清理）\n\n10 分钟后检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-stepwise-eval-l1-s0.md"
+}

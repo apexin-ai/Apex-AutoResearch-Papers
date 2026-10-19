@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "4605dc9cfbe843e5c9b6",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "ops verify and fix action chunking",
+  "task_key": "worker_ops_verify_and_fix_action_chunking_20260522T105355",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify_and_fix_action_chunking_20260522T105355.log",
+    "occurrence": 1,
+    "bytes": 602042,
+    "sha256": "09198fa68dbddf0eb4dff725942aa07298f9ea451eecf7d130dff35b73d9e609"
+  },
+  "statistics": {
+    "messages": 223,
+    "user_turns": 0,
+    "tool_calls": 76,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 66,
+      "tool_call": 76,
+      "tool_result": 76,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 223,
+      "chunks": [
+        {
+          "path": "4605dc9cfbe843e5c9b6-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "4605dc9cfbe843e5c9b6-part-0002.json",
+          "message_count": 43
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-verify-and-fix-action-chunking.md"
+}

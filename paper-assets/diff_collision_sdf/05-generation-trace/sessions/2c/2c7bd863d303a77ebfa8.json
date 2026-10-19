@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2c7bd863d303a77ebfa8",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "check spatial bowl lora alive",
+  "task_key": "worker_check_spatial_bowl_lora_alive_20260527T142003",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_spatial_bowl_lora_alive_20260527T142003_result.json",
+    "occurrence": 1,
+    "bytes": 444,
+    "sha256": "da0f6fcf6e139bdefcccccccd317071c6ce3c83101b5abb20ff4179d3c798b7e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程存活：\n\n- **PID**: 341425\n- **运行时间**: 1天1小时52分27秒\n- **命令**: `python scripts/train_pi05_lora_baseline.py --scene spatial_bowl --seed 0 --gpu 3 --batch_size 32 --num_train_steps 30000 --lr 2.5e-5 --save_interval 2000 --log_interval 100`\n- **GPU**: cuda:3，显存占用 27028 MiB\n\n进程正常运行中，不受 lerobot 版本问题影响（走的是 `train_pi05_lora_baseline.py` 脚本）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-spatial-bowl-lora-alive.md"
+}

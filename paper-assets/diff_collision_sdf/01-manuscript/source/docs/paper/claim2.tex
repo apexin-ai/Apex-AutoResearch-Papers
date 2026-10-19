@@ -1,0 +1,35 @@
+\section{EE-Only SDF Refinement is Counterproductive Regardless of Policy Capability}\label{sec:ee_only}
+
+Could a perfect SDF signal enable effective EE-only refinement? We replace the learned SDF with ground-truth distance fields from the simulation geometry (\S\ref{sec:oracle_setup}). Table~\ref{tab:oracle} and Fig.~\ref{fig:scatter_and_oracle} (right) show that all three oracle variants achieve \emph{lower} CAR than unrefined baselines: the best oracle (76.9\%) falls 5.1 points below LoRA (82.0\%). Refinement with perfect distance information produces more collisions, not fewer.
+
+\begin{table}[t]
+\centering
+\caption{Oracle SDF refinement with ground-truth distance fields. All oracle variants achieve lower CAR than unrefined baselines. Per-task breakdown in Appendix~\ref{sec:appendix_pertask_oracle}. Oracle variants use 160 episodes (4 tasks $\times$ 40); all other conditions use 200 episodes (4 tasks $\times$ 50).}
+\label{tab:oracle}
+\vspace{2pt}
+\footnotesize
+\begin{tabular}{lccc}
+\toprule
+Method & CAR (\%) & Coll.\ (\%) & Ref./ep \\
+\midrule
+LoRA baseline & 82.0 & 99.4 & -- \\
+Full-FT baseline & 83.0 & -- & -- \\
+\midrule
+Oracle-adaptive (dyn.\ $\alpha$) & 75.0 & 98.3 & 14.2 \\
+Oracle-fixed ($\alpha{=}0.005$) & 73.1 & 98.3 & 14.8 \\
+Oracle-feature (feat.\ space) & 76.9 & 96.7 & 241.7 \\
+\midrule
+A3 learned SDF & 77.1 & -- & 0.0 \\
+\midrule
+\multicolumn{4}{l}{\textit{Non-collapsed (Pi0.5 LoRA, 0\% action-collapse)}} \\
+Pi0.5 LoRA & 57.0 & 0.0 & -- \\
+Pi0.5 Oracle-adaptive & 51.9 & 0.0 & 14.2 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Regime~1: Action-collapsed baselines (Pi0).}
+The three variants apply the ground-truth SDF gradient differently (distance-adaptive, fixed, or feature-space; Appendix~\ref{sec:appendix_oracle}). Per-task analysis (Appendix~\ref{sec:appendix_pertask_oracle}) reveals the mechanism: on the one task where the EE is the primary collision body, refinement helps (+9\,pp); on the remaining three, the gradient pushes the EE away but rotates intermediate links into obstacles. On \texttt{orange\_juice} (LoRA CAR\,=\,96\%), Oracle-adaptive reduces CAR to 82.5\%. Feature-space application yields no advantage, confirming the failure is geometric. The A3 learned SDF never triggers refinement (0 steps per episode).
+
+\paragraph{Regime~2: Non-collapsed baseline (Pi0.5 LoRA).}
+One might attribute oracle failure to the action-collapsed Pi0 baselines: if the policy is already frozen, refinement cannot improve it. We test this alternative by applying Oracle-adaptive to the non-collapsed Pi0.5 LoRA baseline (0\% action-collapse, TSR\,=\,46.0\%). Oracle refinement reduces CAR from 57.0\% to 51.9\% ($-$5.1\,pp) while maintaining 0\% action-collapse and TSR\,=\,50.6\%, confirming active manipulation throughout (Table~\ref{tab:oracle}). The two-regime result closes the confound: EE-only SDF refinement is counterproductive regardless of whether the base policy is frozen (Regime~1) or actively executing (Regime~2).

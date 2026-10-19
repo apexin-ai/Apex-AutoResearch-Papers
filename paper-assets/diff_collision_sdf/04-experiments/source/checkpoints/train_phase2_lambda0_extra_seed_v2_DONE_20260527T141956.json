@@ -1,0 +1,40 @@
+{
+  "exp_id": "train_phase2_lambda0_extra_seed_v2",
+  "project": "diff_collision_sdf",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-27T14:18:31.670Z",
+    "updated_at": "2026-05-27T14:19:56.092Z",
+    "hypothesis": "Phase 2 Stage 1 重试 (v2): seed0 SDF λ=0.005 训练 10K steps，为 Stage 2 (λ=0 resume to 30K) 提供 checkpoint。v1 因 wandb.init() 缺 API key 失败（未加 WANDB_MODE=disabled）。修复后重跑。验证 SDF 安全效应持久性（Phase 2 seed2 v1 at 20K showed CAR=57.5%）。",
+    "parent": "train_phase2_lambda0_extra_seed",
+    "spec": {
+      "command": "killed before start",
+      "server": "westd-35807",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "850895",
+      "log_path": "~/runs/diff_collision_sdf/train_phase2_lambda0_extra_seed_v2.log",
+      "submitted_at": "2026-05-27T14:18:39.593Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "object_pudding scene",
+      "data_count": "default",
+      "model_name": "pi0.5+A1",
+      "seed": 0,
+      "checkpoint_source": "N/A (fresh training, retry of train_phase2_lambda0_extra_seed)",
+      "eval_data": "N/A (training, not eval)",
+      "checkpoint_path": "N/A",
+      "wall_clock_seconds": 76.5,
+      "gpu_hours": 0.02
+    },
+    "conclusion": "killed",
+    "completed_at": "2026-05-27T14:19:56.092Z"
+  },
+  "timestamp": "2026-05-27T14:19:56.329243+00:00",
+  "trigger": "update_registry"
+}

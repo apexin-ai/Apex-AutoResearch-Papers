@@ -1,0 +1,94 @@
+{
+  "schema_version": "1.0",
+  "id": "174561d56b84bfd59e53",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "research safelibero env",
+  "task_key": "worker_research_safelibero_env_20260519T160654",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_safelibero_env_20260519T160654.log",
+    "occurrence": 1,
+    "bytes": 514241,
+    "sha256": "8ecb3a80eac7f88091160e713d962baa810ed5373c85c3bfdfb81a82ed05cbb2"
+  },
+  "statistics": {
+    "messages": 347,
+    "user_turns": 4,
+    "tool_calls": 110,
+    "roles": {
+      "log": 1,
+      "system": 111,
+      "record": 1,
+      "assistant": 9,
+      "tool_call": 110,
+      "tool_result": 110,
+      "user": 4,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 11,
+      "chunks": [
+        {
+          "path": "174561d56b84bfd59e53-part-0001.json",
+          "message_count": 11
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "174561d56b84bfd59e53-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 18,
+      "chunks": [
+        {
+          "path": "174561d56b84bfd59e53-part-0001.json",
+          "message_count": 18
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 13,
+      "chunks": [
+        {
+          "path": "174561d56b84bfd59e53-part-0001.json",
+          "message_count": 13
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 299,
+      "chunks": [
+        {
+          "path": "174561d56b84bfd59e53-part-0001.json",
+          "message_count": 132
+        },
+        {
+          "path": "174561d56b84bfd59e53-part-0002.json",
+          "message_count": 167
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-safelibero-env.md"
+}

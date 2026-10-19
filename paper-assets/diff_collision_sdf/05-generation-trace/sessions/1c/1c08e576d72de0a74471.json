@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1c08e576d72de0a74471",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "infra gpu check both urgent",
+  "task_key": "worker_infra_gpu-check-both-urgent_20260529T043625",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_gpu-check-both-urgent_20260529T043625_result.json",
+    "occurrence": 1,
+    "bytes": 1046,
+    "sha256": "2cc9bee450bb666bfb2be0b8417ef8f133c7534b39881bc3452df25ea65493fc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### westd-45947 — `train_pi05_a1_obj_s3_l01`\n- **状态: DEAD**\n- **GPU**: 0% 利用率，0 MiB 显存占用（完全空闲）\n- **崩溃原因**: **磁盘满** — `/root/autodl-tmp` 250G 用了 250G（100%，仅剩 4KB）\n- **Traceback**: `shutil.copytree` 在 step 2000 保存 best checkpoint 时触发 `[Errno 28] No space left on device`\n- **崩溃时进度**: step 1999/30000（~7%），loss=0.1440, action=0.1432, sdf=0.0358, ee=0.0425\n- **已有 checkpoint**: step 2000 目录存在（保存成功），但 best 目录复制失败\n\n### westd-35807 — `train_pi05_lora_baseline_s3_v2`\n- **状态: ALIVE** ✓\n- **运行时间**: 47 小时\n- **GPU 0**: 100% 利用率，19061 MiB 显存占用\n- **当前进度**: step 2232/30000（~7%），loss=0.0911, action=0.0911\n- **速度**: 1.21s/it，预计剩余 ~9h20m\n\n### 需要处理\nwestd-45947 数据盘已满，需清理空间后重启训练。可从 step 2000 checkpoint resume。需要清理旧 checkpoint 或无用数据释放空间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-gpu-check-both-urgent.md"
+}

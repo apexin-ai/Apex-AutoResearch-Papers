@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_pi05_safelibero_object_v11",
+  "project": "diff_collision_sdf",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T21:10:20.936Z",
+    "updated_at": "2026-05-22T21:10:31.101Z",
+    "hypothesis": "Pi0.5 (TSR=98.2% on standard LIBERO) as strong baseline: if CAR is also high, a better base model naturally improves safety without SDF. If CAR is low despite high TSR, collision avoidance requires explicit safety mechanisms regardless of base model quality."
+  },
+  "timestamp": "2026-05-22T21:10:31.195828+00:00",
+  "trigger": "update_registry"
+}

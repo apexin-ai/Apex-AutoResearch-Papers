@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_lora_baseline_spatial_v11",
+  "project": "diff_collision_sdf",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T14:20:48.582Z",
+    "updated_at": "2026-05-22T15:03:42.529Z",
+    "hypothesis": "LoRA baseline eval on safelibero_spatial with action chunking (M020) — compares LoRA fine-tuning (same parameter budget as A3) against full-FT baseline. Expected TSR similar to full-FT, CAR ~0%. Provides fair-comparison reference for A1/A3 LoRA methods.",
+    "parent": "baseline_lora_spatial_bowl_s0"
+  },
+  "timestamp": "2026-05-22T15:03:42.571657+00:00",
+  "trigger": "update_registry"
+}

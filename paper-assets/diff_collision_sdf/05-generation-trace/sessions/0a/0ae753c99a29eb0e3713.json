@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0ae753c99a29eb0e3713",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "eval a1 lora object v11",
+  "task_key": "worker_eval_a1_lora_object_v11_20260522T150315",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_a1_lora_object_v11_20260522T150315_result.json",
+    "occurrence": 1,
+    "bytes": 429,
+    "sha256": "e06124b3fc419552c84a1755bf3275eb572cf882f9656c9f02b5106ff15998e7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "A1 LoRA eval 已成功启动并开始 Task 0。\n\n**汇报：**\n- **PID**: 660998\n- **tmux session**: `eval_a1_object`\n- **log 路径**: `/tmp/eval_a1_lora_object_v11.log`\n- **GPU**: cuda:3, 占用 8514 MiB\n- **状态**: 模型加载成功（LoRA 注入 + safetensors 加载无 key mismatch），正在跑 safelibero_object 50 episodes，当前 Task 0: \"pick up the orange juice and place it in the basket\""
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-a1-lora-object-v11.md"
+}

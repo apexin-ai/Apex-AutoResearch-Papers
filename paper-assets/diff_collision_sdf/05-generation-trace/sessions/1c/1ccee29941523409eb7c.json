@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1ccee29941523409eb7c",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops d011 phase1 launch pi05 a1 training v2",
+  "task_key": "worker_ops_d011_phase1_launch_pi05_a1_training_v2_20260522T235656",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d011_phase1_launch_pi05_a1_training_v2_20260522T235656_result.json",
+    "occurrence": 1,
+    "bytes": 1534,
+    "sha256": "e25df8e9e679c37f81a7ca08d06acf5e187e6f8ca0158bb960429d411f062a48"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个训练都在正常运行。汇总结果：\n\n## D011 Phase 1 启动结果\n\n### 1. PID\n- **cuda:0** (λ_sdf=0.005): PID **584408**\n- **cuda:1** (λ_sdf=0.01): PID **584493**\n\n### 2. 前几步 Loss\n\n**cuda:0 — λ_sdf=0.005:**\n| step | loss | action | sdf | ee |\n|------|------|--------|-----|-----|\n| 0 | 0.1231 | 0.1203 | 0.1411 | 0.2107 |\n| 1 | 0.1173 | 0.1145 | 0.1355 | 0.2102 |\n| 2 | 0.1268 | 0.1244 | 0.1418 | 0.1737 |\n| 3 | 0.1487 | 0.1463 | 0.1388 | 0.1759 |\n| 4 | 0.1345 | 0.1316 | 0.1387 | 0.2213 |\n\n**cuda:1 — λ_sdf=0.01:**\n| step | loss | action | sdf | ee |\n|------|------|--------|-----|-----|\n| 0 | 0.1235 | 0.1203 | 0.1188 | 0.2087 |\n| 1 | 0.1177 | 0.1145 | 0.1226 | 0.2026 |\n| 2 | 0.1272 | 0.1244 | 0.1195 | 0.1611 |\n\n### 3. GPU 显存\n- cuda:0: **19107 MiB** / 97887 MiB (19.5%)\n- cuda:1: **19107 MiB** / 97887 MiB (19.5%)\n\n符合预估（~19GB）。\n\n### 4. W&B\n**离线模式**（无 online URL）。westd-45947 从未配置 W&B API key，`WANDB_MODE=online` 会直接报错退出。已改为 `WANDB_MODE=offline` 启动。\n\n### 5. 问题\n- **W&B API key 缺失**：westd-45947 无 `.netrc`、无 `WANDB_API_KEY` 环境变量、无 wandb config。需要配置 key 才能切换到 online 模式。历史所有 run 都是 offline。\n- **无 NaN**，三个 loss 分量都正常\n- Phase 1 warmup 已激活（仅训练 SDF decoder 395777 参数 + EE extractor 263171 参数，LoRA 33.47M 冻结）\n- 速度约 1.6-2.1 s/it，预计 30000 步约 15-17 小时"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d011-phase1-launch-pi05-a1-training-v2.md"
+}

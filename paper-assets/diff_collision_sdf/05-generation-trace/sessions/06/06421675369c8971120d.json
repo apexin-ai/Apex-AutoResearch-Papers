@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "06421675369c8971120d",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "code displacement analysis script",
+  "task_key": "worker_code_displacement_analysis_script_20260525T152443",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_displacement_analysis_script_20260525T152443_result.json",
+    "occurrence": 1,
+    "bytes": 692,
+    "sha256": "c42f2e655c407a304222ddb9bef6f2c52c3f7f11ead2f160171fc6882497091c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过：\n\n1. 脚本无报错\n2. 输出格式正确，task 名称提取正常（orange juice, chocolate pudding, milk, bbq sauce）\n3. Batch Comparison 表格正常\n4. Sensitivity Analysis 正常\n5. Histogram PDF 生成成功\n\n关键发现：**两个模型在 threshold=0.001m 时 Filtered CAR 均为 0%**——所有 \"safe\" episodes 都是 frozen（displacement < 0.001m）。只有在 threshold=0.0001m 时才有 1-1.5% 的 filtered CAR。这证实了几乎所有 \"safety\" 来自 action collapse 而非真实避碰。\n\n脚本已部署到 `/root/colliforce-vla/scripts/analyze_displacement.py`，本地副本在 `artifacts/analyze_displacement.py`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-displacement-analysis-script.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3f8675bf2fce2762a486",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "recon gpu status both servers",
+  "task_key": "worker_recon_gpu-status-both-servers_20260528T090034",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_recon_gpu-status-both-servers_20260528T090034_result.json",
+    "occurrence": 1,
+    "bytes": 2584,
+    "sha256": "d979d660ab4f5282aa8f5ab86e628d8fe7a59e49f0978bf319d04bf97216136c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 1. GPU 使用状态\n\n| 服务器 | GPU | 型号 | 显存占用 | 利用率 |\n|--------|-----|------|---------|--------|\n| westd-35807 | cuda:0-3 | RTX PRO 6000 (96GB) | 全部 0 MiB | 0% |\n| westd-45947 | cuda:0-1 | RTX PRO 6000 (96GB) | 全部 0 MiB | 0% |\n\n**6 张 GPU 全部空闲。**\n\n### 2. 训练/Eval 进程\n\n- **westd-35807**: 有一个 tmux session `train_pi05_a1_spatial_bowl_s0_l005`，但训练已完成（30000/30000 steps, EXIT_CODE=0，5月27日 06:28 完成）。有两个残留的 multiprocessing spawn 子进程（无 GPU 占用）。无 eval 进程。\n- **westd-45947**: 无任何 python/训练/eval 进程。\n\n### 3. Phase 2 s2_v4 Checkpoint\n\n`/root/colliforce-vla/checkpoints/pi05_a1_phase2_lambda0_s2/` **不存在**。Phase 2 相关 checkpoints 在 `/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/` 下有：\n- `phase2_lambda0_s0_stage1`\n- `phase2_stage1_seed0_l005`\n- `phase2_stage1_seed0_l005_v3`\n\n无 s2 的 Phase 2 checkpoint。\n\n### 4. 30K Checkpoint 分布\n\n**LoRA baseline (30K)**:\n\n| Checkpoint | westd-35807 | westd-45947 |\n|-----------|:-----------:|:-----------:|\n| lora_baseline_object_pudding_seed0 | ✓ | ✓ |\n| lora_baseline_object_pudding_seed1 | ✗ | ✓ |\n| lora_baseline_object_pudding_seed2 | ✗ | ✓ |\n| lora_baseline_spatial_bowl_seed0 | ✓ | ✗ |\n\n**SDF λ=0.01 (30K)**:\n\n| Checkpoint | westd-35807 | westd-45947 |\n|-----------|:-----------:|:-----------:|\n| object_pudding_seed0_l01 | ✓ | ✓ |\n| object_pudding_seed1_l01 | ✓ | ✓ |\n| object_pudding_seed2_l01 | ✓ | ✗ |\n\n**SDF λ=0.005 (30K)**:\n\n| Checkpoint | westd-35807 | westd-45947 |\n|-----------|:-----------:|:-----------:|\n| object_pudding_seed{0,1,2}_l005 | ✓ | ✓ |\n| spatial_bowl_seed0_l005 | ✓ | ✗ |\n\n**SDF λ=1.0 (30K)**:\n\n| Checkpoint | westd-35807 | westd-45947 |\n|-----------|:-----------:|:-----------:|\n| object_pudding_seed0_l1 | ✓ | ✓ |\n| object_pudding_seed1_l1 | ✓ | ✗ |\n| object_pudding_seed2_l1 | ✗ | ✓ |\n\n**A3 grad_refine (30K)**: 仅 westd-45947 有 spatial_bowl_seed0 和 object_pudding_seed0。\n\n### 5. Eval 命令格式\n\n主 eval 脚本：`scripts/eval_pi05_safelibero.py` — 通过 websocket 连接已运行的 `serve_policy.py` 服务器。\n\n批量 eval 脚本：\n```bash\nbash scripts/eval_batch.sh \\\n  --checkpoint_root /root/autodl-tmp/checkpoints/ \\\n  --methods \"baseline a1\" \\\n  --scenes \"spatial_bowl object_pudding\" \\\n  --seeds \"0 1\" \\\n  --n_episodes 50 \\\n  --gpu 0 \\\n  --step 30000\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/recon-gpu-status-both-servers.md"
+}

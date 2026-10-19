@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "275530f5e943fa60ebf8",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "analyze train pi05 a1 obj s2 l01 high",
+  "task_key": "worker_analyze_train_pi05_a1_obj_s2_l01_high_20260528T005705",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_train_pi05_a1_obj_s2_l01_high_20260528T005705_result.json",
+    "occurrence": 1,
+    "bytes": 1229,
+    "sha256": "085d419ab7e6142c8c07b9dfea2da6c39ca04a00d13f6783b77938e102d6547b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报如下：\n\n---\n\n## 训练完成确认\n\n| 项目 | 值 |\n|------|---|\n| **Final step** | 30000/30000 (100%) |\n| **Final loss** | 0.0104 (action=0.0069, sdf=0.0336, ee=0.0096) |\n| **Best loss** | 0.0104 @ step 30000 |\n| **Training time** | 33h51m |\n| **Checkpoint** | `/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_l1/30000` |\n| **EXIT_CODE** | 0 (正常退出) |\n\n## W&B\n\n训练命令使用了 `WANDB_MODE=disabled`，无在线 W&B 数据。本地 wandb_id: `w5enizos`（未同步）。\n\n## Eval 状态\n\n**Sentinel 自动触发成功。** Eval 已在 westd-45947 cuda:0 上运行（PID 568277），启动于 08:53 local / 00:53 UTC。\n\n- 脚本：`auto_eval_s2.sh` → `eval_safelibero.py`\n- 配置：safelibero_object, level II, 4 tasks x 50 episodes, seed=7\n- 日志：`/root/autodl-tmp/eval_results/eval_sdf_s2_l1_30k_auto.log`\n- 进度：Task 0 (orange_juice) Episode 10/50 已完成（截至检查时刻）\n- **预计完成时间：~40-60min（约 09:40-10:00 UTC），在 DDL 12:00 UTC 前**\n\n## Registry 已更新\n\n- `train_pi05_a1_obj_s2_l01_high` → DONE (success)\n- `eval_pi05_a1_30k_s2_l01_high` → RUNNING (自动创建)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-train-pi05-a1-obj-s2-l01-high.md"
+}

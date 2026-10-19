@@ -1,0 +1,31 @@
+{
+  "exp_id": "train_pi05_a1_obj_s0_l005",
+  "project": "diff_collision_sdf",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T00:19:00.000Z",
+    "updated_at": "2026-05-24T10:23:28.678Z",
+    "hypothesis": "Pi0.5+A1 SDF auxiliary loss (λ_sdf=0.005) seed 0: restarted after P0 checkpoint collision fix. Tests whether conservative SDF signal can train real collision avoidance without action collapse.",
+    "spec": {
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0_l005",
+      "log_path": "/root/autodl-tmp/eval_results/train_pi05_a1_obj_l005.log"
+    },
+    "reproduce": {
+      "gpu": "cuda:0",
+      "tmux_session": "train_pi05_a1_obj_l005"
+    },
+    "notes": "Restarted from step 0 after P0 checkpoint collision fix. Speed ~1.21s/step (faster than initial 1.8s estimate). ETA ~10h from 00:14 UTC start. Loss at step ~717: action ~0.14, sdf ~0.035, ee ~0.10.",
+    "conclusion": "success",
+    "metrics": {
+      "best_loss": 0.007860926911234856,
+      "best_loss_step": 26000,
+      "steps_completed": 30000
+    },
+    "completed_at": "2026-05-24T10:23:28.678Z"
+  },
+  "timestamp": "2026-05-24T10:23:28.778220+00:00",
+  "trigger": "update_registry"
+}

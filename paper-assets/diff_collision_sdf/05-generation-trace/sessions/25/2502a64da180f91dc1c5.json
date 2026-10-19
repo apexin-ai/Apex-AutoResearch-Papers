@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2502a64da180f91dc1c5",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "code permutation test script",
+  "task_key": "worker_code_permutation_test_script_20260527T170848",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_permutation_test_script_20260527T170848_result.json",
+    "occurrence": 1,
+    "bytes": 681,
+    "sha256": "38ac22afccd348bf39bb157e2c5af59c3c63aefb83c13905ccdd74f9d60e2d1c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本和结果已生成并注册。核心发现：\n\n**2-seed 模式 (当前)**\n- 单尾 p = 0.0357 (1/28) — α=0.05 显著\n- 双尾 p = 0.0714 (2/28) — 仅 α=0.10 边际显著\n- Welch t: 单尾 p = 0.0035\n\n**Sensitivity (3-of-9 模式)**\n\n| s2 | Perm 单尾 | Perm 双尾 | α=0.05? |\n|----|-----------|-----------|---------|\n| 54 | 0.1071 | 0.2143 | NO |\n| 55 | 0.0714 | 0.1548 | NO |\n| **56** | **0.0476** | **0.0833** | **YES** |\n| 57 | 0.0357 | 0.0595 | YES |\n| 58 | 0.0119 | 0.0357 | YES |\n| 59 | 0.0119 | 0.0357 | YES |\n\n确认 Reviewer 判断：**s2 ≥ 56% 是单尾 permutation p < 0.05 的阈值**。s2 ≥ 58 时双尾也 < 0.05。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-permutation-test-script.md"
+}

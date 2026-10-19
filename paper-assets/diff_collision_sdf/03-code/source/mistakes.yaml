@@ -1,0 +1,976 @@
+_next_id: 69
+mistakes:
+- id: M001
+  date: '2026-05-19'
+  category: code_bug
+  severity: high
+  summary: Phase B Step 1 三个 critical 集成缺陷：import 路径、权重加载格式、数据格式全部不兼容
+  root_cause: 多个 Worker 独立开发 pipeline 组件（数据转换、训练脚本、模型部署），各自验证了自己的组件可用，但没有端到端集成测试。具体：(1)
+    baseline 训练脚本用 JAX 权重加载器但实际是 PyTorch pipeline (2) 数据 Worker 输出自定义 HDF5 但训练脚本期望
+    LeRobot Parquet 格式 (3) import 路径硬编码错误。三个 bug 叠加意味着 baseline 训练会在多个环节崩溃。
+  prevention: 多 Worker 并行开发 pipeline 组件时，必须在所有组件完成后、正式训练前执行一次完整端到端 dry-run（数据加载 →
+    模型初始化 → 权重加载 → forward pass → loss 计算 → 1 step backward）。Director 在派发并行 Worker
+    时应明确要求"集成验证 Worker"作为汇合点。
+  status: active
+  context: Phase B Step 1 派了 3 个并行 Worker（openpi deploy / data pipeline / baseline
+    prep），各自报告"完成"但相互接口不匹配。Reviewer 逐个审查时才发现三层 bug 叠加。
+  fix: 修复中：(1) import 已修 (2) 权重加载 Worker 进行中 (3) 数据格式需用 openpi 官方 convert_libero_data_to_lerobot.py
+    重新转换
+  related_decisions:
+  - D004
+- id: M002
+  date: '2026-05-19'
+  category: code_bug
+  severity: high
+  summary: Baseline seed 1 和 object_pudding 未加载预训练权重，loss 异常（177/536 vs 正常 0.22），浪费
+    GPU 时间
+  root_cause: M001 同类问题复发：集成 Worker 的 dry-run 验证了 seed 0 的权重加载，但后续 Worker 启动 seed
+    1/object 时权重可能未正确加载。日志中无 "Loading weights" 输出。可能原因：CUDA_VISIBLE_DEVICES 影响权重加载路径、启动脚本参数传递错误、或
+    train_pytorch.py 权重加载逻辑被跳过。
+  prevention: 每次启动新训练进程后，必须检查前 10 步 loss 是否在预期范围（对于预训练权重 fine-tune，initial loss 应在
+    0.1-1.0 级别，不是 100+）。发现 loss 异常立即 kill 进程排查，不要让无效训练占 GPU。启动脚本应显式打印权重加载成功信息。
+  status: active
+  context: seed 0 (cuda:0) initial loss 0.22（正常），seed 1 (cuda:1) initial loss 177（异常，800x），object_pudding
+    (cuda:2) initial loss 536（异常）。三个 log 中均无 Loading weights 输出。
+  related_decisions:
+  - D004
+- id: M003
+  date: '2026-05-19'
+  category: code_bug
+  severity: high
+  summary: A1 训练脚本两个 critical bug：解冻全部 3.5B 参数而非 LoRA + 自定义训练循环缺少数据归一化
+  root_cause: Worker 编写自定义训练循环时未完整复制 openpi train_loop 的内部逻辑：(1) 日志写 "unfreezing LoRA"
+    但代码 unfreeze 全部参数 (2) create_data_loader 不包含 train_loop 中的归一化步骤。根因：自定义训练循环与框架内置
+    train_loop 的行为差异未被测试覆盖。verify_a1.py 37 项检查全部 PASS 但未检查 action_loss 是否在合理范围——与
+    M002 同类问题。
+  prevention: 方案转变：不要写完全独立的自定义训练循环，而是修改/包装 openpi 的 train_loop 添加 SDF hook。如果必须自定义，verify
+    脚本必须检查 action_loss 是否在预期范围（<1.0 for pretrained weights），且必须验证 trainable params
+    数量与预期一致（LoRA ~26M，不是 3.5B）。
+  status: active
+  context: verify_a1.py 报告 37/37 PASS 但 action_loss=178.5（应为 ~0.2），说明验证 suite 缺少关键的
+    loss 范围检查。unfreeze_backbone 解冻 3.5B 参数意味着 A1 与 baseline 不可比较（baseline 用 LoRA）。
+  related_decisions:
+  - D004
+- id: M004
+  date: '2026-05-19'
+  category: code_bug
+  severity: high
+  summary: extra_delta_transform=True 对已是 delta 的 LIBERO 动作二次差分，所有 baseline 训练数据无效；seed
+    0 跑了 2270 步作废
+  root_cause: openpi LIBERO config 默认 extra_delta_transform=True（用于将绝对动作转为 delta），但
+    LIBERO 动作本身已是 delta（速度指令）。二次差分产生近零值，用原始 delta 分布的 norm_stats 归一化后爆炸→巨大 MSE loss。seed
+    0 的 loss"看似正常"是因为 norm_stats 在同样错误的分布上计算，掩盖了问题——但模型实际学的是二阶差分，生成的策略对机器人控制无意义。之前诊断为"权重未加载"是误判（M002），浪费了排查时间。
+  prevention: (1) 使用新框架/数据集前，先验证数据变换链：打印原始动作 → 变换后动作的统计量（mean/std/range），确认物理含义正确
+    (2) 不要仅凭 loss 数值判断训练正确——loss 低不代表学对了，需要检查模型输出是否有物理意义 (3) 排查 bug 时优先检查数据管道（变换/归一化），而非假设是权重/import
+    问题
+  status: active
+  context: seed 0 从 step 0 到 step 2270 跑了约 2.2 小时全部作废。M002 的诊断"权重未加载"是错的，实际是数据变换问题。seed
+    1/object 的 loss 爆炸（177/536）是同一 bug 但因 norm_stats 不匹配而显性暴露。
+  fix: 设置 extra_delta_transform=False。seed 1 和 object_pudding 已用修复后配置重启。seed 0 需要
+    kill 重启。
+  related_decisions:
+  - D004
+- id: M005
+  date: '2026-05-19'
+  category: resource_misuse
+  severity: high
+  summary: A1 训练 GPU 3 静默死亡后空转未被及时发现
+  root_cause: A1 PID 101662 在 step 160 被 SIGKILL（无 OOM/traceback），cron 监控未及时触发回调或回调被遗漏。同时
+    v2→v3 全量重启原因不明，可能是 Worker 操作但未汇报。
+  prevention: 1. Cron 进程监控回调必须在进程死亡后 5 分钟内通知 Director；2. 任何 kill+restart 操作必须先向 Director
+    汇报原因和影响；3. checkpoint 间隔缩短至 500 steps 防止进度丢失
+  status: active
+  context: A1 在 step 160 (约 10 min) 被 SIGKILL，GPU 3 空转至少数小时。同时 v2 baselines 被 kill
+    重启为 v3，浪费 ~2.3 GPU-hours。Registry 元数据多处错误（log_path/command/model_name 不一致）。
+- id: M006
+  date: '2026-05-20'
+  category: experiment_design
+  severity: high
+  summary: A1 训练 batch_size=2 而 baseline 用 32，对比不公平
+  root_cause: A1 脚本 train_a1_sdf_aux.py 的 argparse default 被设为 batch_size=2（可能是 OOM
+    保守设置），启动命令未显式指定 --batch_size 32。Agent 未交叉验证 A1 与 baseline 的超参数一致性。
+  prevention: 1. 所有实验脚本的 argparse default 必须与 baseline 一致（batch_size=32）；2. 启动实验前必须显式列出关键超参数并与
+    baseline 交叉比对；3. 审批实验时检查 VRAM 占用是否符合预期（同模型差 3x 是红旗）
+  status: active
+  context: A1 以 batch_size=2 跑了 1000 步（~1h），30K 步仅看 60K 样本 vs baseline 的 960K 样本。VRAM
+    13.4GB vs baseline 37.4GB。A3 脚本同样有 default=2 的问题。
+- id: M007
+  date: '2026-05-20'
+  category: experiment_design
+  severity: medium
+  summary: 误判 A1 batch_size=2 导致不必要的 kill 重启，浪费 ~1000 步训练
+  root_cause: 仅凭 VRAM 差异（13.4GB vs 37.4GB）推断 batch_size 不同，未考虑 Phase 1 冻结 backbone
+    时 PyTorch 不保存中间激活值导致的 VRAM 大幅降低。Reviewer 初始 CRITICAL 判断和 Director 决策都基于这个错误推理。
+  prevention: 1. 判断 batch_size 看 cmdline 或日志 config 打印，不能仅凭 VRAM 推断；2. 冻结 backbone
+    的训练阶段 VRAM 会显著低于全参数训练，这是正常现象；3. Phase 2 解冻 LoRA 后 VRAM 跳升是验证 batch_size 的正确时机
+  status: active
+  context: Reviewer 基于 VRAM 差异报 CRITICAL，Director 批准 kill PID 117519 重启。事后 Reviewer
+    撤回判断：Phase 1 frozen backbone 下 batch_size=32 的 VRAM 就是 ~13GB。原始 A1 脚本默认 batch_size=32，大概率运行正确。损失
+    ~1000 步 Phase 1 训练（~1.5 GPU-hours）。
+- id: M008
+  date: '2026-05-20'
+  category: experiment_design
+  severity: high
+  summary: save_interval=500 导致 checkpoint 撑爆 350GB 磁盘，A1 崩溃 + 3 baseline 濒危
+  root_cause: save_interval 从 2000 改为 500（M004 事故后防进度丢失），但未配套 save_total_limit 限制
+    checkpoint 数量。每个 checkpoint ~9GB，4 个实验并行产生 329GB checkpoint 占满 350GB 磁盘。过度矫枉——为防丢几千步进度，反而导致更大的磁盘灾难。
+  prevention: save_interval 和 save_total_limit 必须成对设置。推荐：save_interval=2000 + save_total_limit=5
+    + save_best_model=True（独立目录）。多实验并行时预估磁盘需求：实验数 × checkpoint_size × save_total_limit
+    < 磁盘容量 × 80%。
+  status: active
+  context: A1 v3 在 step 6499 保存 checkpoint 时 No space left on device 崩溃。已过 Phase 2（step
+    5000），最后成功 checkpoint step 6000 可恢复。3 个 baseline 进程仍活但下次 save 必崩。
+  fix: 紧急清理旧 checkpoint 释放空间；所有实验改 save_interval=2000 + save_total_limit=5；A1 从 step
+    6000 恢复。
+- id: M009
+  date: '2026-05-20'
+  category: code_bug
+  severity: high
+  summary: train_a3_hook.py --gpu 默认值=3 导致 2 卡服务器上 CUDA_ERROR_NO_DEVICE，被误诊为 GPU 硬件故障
+  root_cause: 脚本 argparse 默认 --gpu=3（为 westd-35807 4 卡设计），部署到 westd-45947（2 卡）时未调整。CUDA_VISIBLE_DEVICES=3
+    指向不存在的 GPU，PyTorch 报 CUDA_ERROR_NO_DEVICE。该错误被误诊为基础设施故障，触发"通知用户重启实例"的不必要操作，多轮诊断浪费
+    ~2h，spatial_bowl checkpoint 在反复重启中丢失（回退到 step 0）。
+  prevention: 训练脚本的 --gpu 参数不设默认值或默认为 0。跨服务器部署时 Worker 必须检查目标服务器 GPU 数量并显式传参。遇到 CUDA_ERROR_NO_DEVICE
+    先检查 CUDA_VISIBLE_DEVICES 和 --gpu 参数是否超出实际 GPU 编号范围，再考虑硬件故障。
+  status: active
+  context: A3 在 westd-45947 上多次"重启"失败，CUDA_ERROR_NO_DEVICE 被误诊为 GPU 硬件故障。实际上 GPU 完全健康，只是
+    --gpu 3 指向了不存在的设备。误诊链：CUDA error → "GPU 故障" → 通知用户重启实例 → Reviewer 纠正 → 发现是 argparse
+    默认值问题。spatial_bowl 从 step 3000 回退到 step 0。
+  fix: 启动命令显式传 --gpu 0 / --gpu 1。A3 spatial_bowl 从头重训，object_pudding 从 step 2500 resume。
+- id: M010
+  date: '2026-05-20'
+  category: communication
+  severity: high
+  summary: Worker 误读旧日志判定 A1 已死，Director 未验证直接传播到 ROADMAP 并发出 kill 指令
+  root_cause: Worker 诊断 A1 状态时读到了历史崩溃的错误信息（第一次 v3 crash 的 step 6499 "No space left
+    on device"），误判当前运行已死。Director 未独立验证就将错误诊断写入 ROADMAP 并发出 kill + restart 指令。这是本
+    session 第二次 ROADMAP 传播 Worker 错误诊断（前一次是 westd-45947 "GPU 故障"误诊）。
+  prevention: Director 收到 Worker "实验已死"诊断时，必须要求 Agent 用 `ps -p PID` + `nvidia-smi
+    --query-compute-apps` 双重验证进程实际状态，或 post_to_reviewer 请求独立核实，再做 kill/restart 决策。训练日志应按
+    ml-experiment-guide 要求每次启动用新文件（带 timestamp/PID 后缀），避免旧日志污染诊断。
+  status: active
+  context: A1 PID 185994 实际在 step 7379 正常训练，Worker 误判已死。Director 据此发出 kill -9 185994
+    指令。幸运的是通过 urgent_agent_message 及时撤回。
+  fix: urgent_agent_message 撤回 kill 指令，ROADMAP 修正 A1 状态。
+- id: M011
+  date: '2026-05-20'
+  category: code_bug
+  severity: high
+  summary: A1/Baseline 的 LoRA 实现与 openpi 框架不匹配——A1 LoRA 从未生效，Baseline 变成全参 fine-tune
+  root_cause: openpi 的 freeze_filter 是 JAX/NNX filter，不会自动应用到 PyTorch 训练循环。A1 的 Phase
+    2 用 `if "lora" in name` 搜索 PyTorch 参数名，但模型中无 LoRA 参数（未调用 inject_lora）。A3 因自建 inject_lora()
+    手动注入 LoRA 参数而正常工作。代码审查时未发现 A1/Baseline 与 A3 的 LoRA 实现路径不同。
+  prevention: 1. 每个训练脚本启动后前 100 步必须打印可训练参数名+数量，Director/Reviewer 验证是否符合预期。2. 多方法对比实验必须共享
+    LoRA 注入代码（单一来源），不允许各脚本独立实现。3. 审批实验时要求 Agent 确认「可训练参数量与方法设计一致」。
+  status: active
+  context: A1 在 18K/30K 步时被发现。Loss 平台期（0.26→0.27）是冻结 backbone 的症状但被忽略了 7K 步。Baseline
+    的 loss 从 0.2 降到 0.003 说明全参训练而非 LoRA（LoRA 一般不会降这么多）。A3 的 inject_lora() 在 line 117-145
+    手动创建 lora_A/lora_B，正确工作。
+  fix: 'D006: 停止 A1×2，移植 A3 的 inject_lora() 到 baseline 和 A1，启动 LoRA baseline×2'
+  related_decisions:
+  - D006
+- id: M012
+  date: '2026-05-21'
+  category: code_bug
+  severity: high
+  summary: LoRA baseline checkpoint 目录与 full-FT baseline 冲突，4h 训练零 checkpoint
+  root_cause: train_baseline.py 未指定 --exp_name 时默认生成 baseline_{scene}_seed{seed}，与已运行的
+    full-FT baseline 共享同一 checkpoint 目录。SAVE_TOTAL_LIMIT=2 按 step 排序保留最新，LoRA 的 step
+    2000 被 full-FT 的 step 22000/24000 淘汰。
+  prevention: 1. 每个实验启动时必须指定唯一 exp_name（包含方法标识如 _lora_）。2. 启动后 2000 步内检查 checkpoint
+    目录是否有文件产出。3. 审批实验时检查 checkpoint 路径是否与已有实验冲突。
+  status: active
+  context: LoRA baseline 13% 进度（~4h），重启损失可接受。已有 M008 爆盘和 A3 crash 先例，零容错风险不是理论性的。
+  fix: 重启 LoRA baselines 并指定独立 --exp_name baseline_lora_spatial_bowl_seed0 / baseline_lora_object_pudding_seed0
+  related_decisions:
+  - D006
+- id: M013
+  date: '2026-05-21'
+  category: experiment_design
+  severity: high
+  summary: submit_training_job 的 24h timeout kill 了 A3 双实验（72-74% 完成）
+  root_cause: submit_training_job 默认 timeout=24h，A3 训练需要 ~33h（30K steps × 4s/step）。启动时未设置更长的
+    timeout 或禁用 timeout。
+  prevention: 1. 启动训练前根据 ETA 计算所需时间，设置 timeout_hours > ETA × 1.2。2. 30K steps × 4s/step
+    = 33h 的实验必须设 timeout≥40h 或不设 timeout。3. 用 tmux 直接启动长训练任务，不经过 submit_training_job
+    的 timeout 机制。
+  status: active
+  context: A3 spatial_bowl 停在 step 21560 (72%), A3 object_pudding 停在 step ~22200 (74%).
+    Checkpoint 完好可 resume。损失约 2h 空闲时间（从被 kill 到恢复）。
+  fix: 立即 resume 两个 A3 实验，用 tmux 直接启动不设 timeout
+- id: M014
+  date: '2026-05-21'
+  category: resource_misuse
+  severity: high
+  summary: A3 spatial_bowl 第二次被 submit_training_job 24h timeout 杀掉 (EXIT_CODE=124)
+  root_cause: A3 spatial_bowl 从零重启后仍通过 submit_training_job 提交，默认 24h timeout 不够 30K
+    steps (~33h)。M013 教训未被执行——应该用 tmux 而非 submit_training_job。
+  prevention: A3 训练必须用 tmux 启动（nohup 或 tmux new -d），绝不通过 submit_training_job。任何预估
+    >20h 的实验都不能用默认 timeout。
+  status: active
+  context: A3 spatial_bowl 在 09:14 UTC 再次因 EXIT_CODE=124 失败，westd-45947 cuda:0 空闲。这是第三次
+    A3 spatial_bowl 训练失败（第一次 checkpoint 丢失，第二次超时，第三次又超时）。
+  fix: 立即用 tmux 在 westd-45947 cuda:0 上重启 A3 spatial_bowl，不设 timeout
+- id: M015
+  date: '2026-05-21'
+  category: code_bug
+  severity: high
+  summary: submit_training_job 的 timeout 机制更新 registry 为 failed 但未实际 kill tmux 进程，导致
+    false positive — 训练成功完成但 registry 显示 failed
+  root_cause: submit_training_job 追踪的是原始提交时间（May 20 08:00），24h 后触发 timeout 并将 registry
+    标记为 DONE/failed(EXIT_CODE=124)。但实际训练进程在 tmux 中运行（从 step 22000 resume），timeout
+    机制只更新了 registry 状态，没有杀掉 tmux 中的进程。进程继续运行到 step 30000 正常完成，但 registry 已经被标记为 failed。
+  prevention: 1. C002 已约束 A3 用 tmux 启动，但 registry 状态仍需手动管理。训练完成后必须独立核实 checkpoint
+    目录（ls checkpoint 时间戳 + step 数）确认实际完成状态，不能仅信 registry。2. submit_training_job 的
+    timeout 与 tmux 进程脱钩时，registry 状态不可信——遇到 EXIT_CODE=124 的 failed 实验，必须检查 checkpoint
+    是否已到 target step。3. 后续考虑在 tmux 启动脚本末尾加 registry 状态回写逻辑。
+  status: active
+  context: a3_gradient_object_pudding_s0 的 registry 显示 DONE/failed(EXIT_CODE=124)，但
+    Reviewer 独立核实发现 checkpoint 30000 + best 已保存（May 22 02:08），final_loss=0.01898，训练正常完成。GPU
+    已释放。如果没有 Reviewer 核实，eval 会被跳过，MVP gate check 被延迟。
+  fix: urgent_agent_message 指令 Agent 修正 registry 为 success 并立即启动 eval。
+- id: M016
+  date: '2026-05-21'
+  category: code_bug
+  severity: high
+  summary: Eval 连续三次失败：norm_stats 路径错、LoRA 加载 attribute error、LIBERO 交互式 input() 阻塞——导致
+    MVP gate 被阻塞 8h+
+  root_cause: 三层 bug 叠加：(1) eval 脚本未正确指定 norm_stats.json 路径 (2) eval 时 LoRA 加载代码与训练时不一致（GemmaModel
+    attribute mismatch）(3) LIBERO __init__.py 在 import 时调用 input() 要求交互式输入数据集路径，非交互环境（tmux）下
+    EOF 崩溃。每次只修一个 bug 就重跑，暴露下一个，串行排 bug 浪费时间。
+  prevention: 1. Eval pipeline 首次运行前必须做完整 dry-run（在目标 GPU 上跑 1-2 episode），确认 import
+    → model load → inference → metric 全链路通过。2. LIBERO 等第三方库需要检查 init 是否有交互式输入，预设 LIBERO_DATASET_DIR
+    等环境变量。3. 修 bug 时先读完所有错误日志定位全部问题，一次性修复，不要逐个 fix-retry。
+  status: active
+  context: 'eval_runner.log (v1): FileNotFoundError norm_stats.json; eval_runner_v2.log
+    (v2): AttributeError GemmaModel.model; eval_runner_v3.log (v3): EOFError LIBERO
+    input(). westd-45947:cuda:1 空转 8h+。之前的 eval pipeline dry run 可能只验证了部分链路或在不同环境（非
+    tmux）下验证。'
+  fix: 设置 LIBERO_DATASET_DIR 环境变量跳过交互提示，修复 LoRA 加载逻辑和 norm_stats 路径，重跑 eval v4。
+- id: M017
+  date: '2026-05-21'
+  category: experiment_design
+  severity: high
+  summary: M004 重犯：eval_safelibero.py 使用默认 extra_delta_transform=True，但训练用 False，导致
+    7 次 eval 全部无效
+  root_cause: M004 记录了 extra_delta_transform=True 对 LIBERO delta action 二次差分的问题，训练脚本已修复为
+    False。但 eval 脚本使用默认 config（pi0_libero_low_mem_finetune）未 override 此参数。eval pipeline
+    dry-run 只验证了 crash-free，没有验证 config 一致性。7 次 eval 尝试中没有一次检查 eval config 是否与 train
+    config 一致。
+  prevention: 1. 每个训练脚本必须将关键 config（extra_delta_transform, batch_size, action_space
+    等）持久化到 checkpoint 目录的 config.json 中。2. eval 脚本启动时必须从 checkpoint 读取 train config
+    并自动对齐，或打印 config diff 供人工确认。3. eval dry-run 必须检查 action decode 结果是否在合理范围（不是只检查
+    crash-free）。4. 已知 bug 的修复必须同时覆盖所有相关脚本（train + eval + 任何 inference 代码）。
+  status: active
+  context: A3 object_pudding eval 从 v1 到 v7 连续失败。v7 终于不 crash 但 TSR=0%/CAR=0%，50/50
+    episode collision_step=0。Reviewer 发现 eval config dump 显示 extra_delta_transform=True
+    而训练用 False。max_displacement 50 集完全相同（0.8222）= 退化输出 = action decode 不一致。baseline
+    eval 也是 TSR=0%（同一 eval 脚本，同一 bug）。GPU 1 空转超过 10h。
+  fix: eval_safelibero.py 中强制设置 extra_delta_transform=False，同时修复 Bug B (next_ee =
+    action[:3])。重跑 A3 refine + no_refine + baseline eval。
+- id: M018
+  date: '2026-05-22'
+  category: code_bug
+  severity: high
+  summary: M017 修复方向错误：extra_delta_transform 应为 True（与训练一致），强制 False 导致 A3+baseline
+    全部 TSR=0%
+  root_cause: M017 诊断前提错误——认为"训练用 False，eval 默认 True"，实际训练 config 用 True。强制 False
+    后模型输出 delta 直接当绝对坐标，量级不对（~0.001），机器人几乎不动。但设回 True 也有问题（displacement=0.822m），说明
+    action chunk（50步取第1步）与 AbsoluteActions 变换的接口存在更深层 bug。
+  prevention: 1. 修改 eval 配置前必须先确认训练 config 的实际值（读代码/config 文件，不凭记忆）2. eval 修复后必须验证
+    action 输出量级在合理范围（position delta ~0.001-0.01m/step）3. 任何 eval 配置变更后做 1-ep dry-run
+    并检查 displacement 量级
+  status: active
+  context: 'eval v1-v7 用默认 True 但有其他 bug；v9 强制 False 修了其他 bug 但引入 action 量级错误。两种配置都
+    TSR=0%，说明 eval pipeline 处理 action output 的方式根本不对——需要研究 openpi 的正确推理循环。这是第三次 eval
+    pipeline 重大 bug（M016: 3 bugs 串行暴露，M017: extra_delta_transform，M019: M017 修复方向反了）。'
+- id: M019
+  date: '2026-05-22'
+  category: communication
+  severity: medium
+  summary: Director 先发 kill 指令后发保留指令，Agent 在收到更正前已 kill baseline eval，丢失 25 分钟进度
+  root_cause: Director 在收到 Agent 诊断后过快下达 kill 指令，未等 Reviewer 交叉验证。Reviewer 随后提供新证据（baseline
+    有碰撞=模型在动），Director 立即发更正但 Agent 已执行 kill。
+  prevention: 1. 涉及终止正在运行进程的指令，先等 Reviewer 交叉验证再下达 2. 如果 Agent 诊断和 Reviewer 审查可能有时间差，对不可逆操作（kill
+    进程）加"等 Reviewer 确认后再执行"前缀 3. eval 日志用 append 模式（tee -a）避免重启覆盖历史数据
+  status: active
+- id: M020
+  date: '2026-05-22'
+  category: code_bug
+  severity: high
+  summary: eval_safelibero.py state 向量格式与训练数据不匹配：quat(4D) vs rotvec(3D)，gripper 1D
+    vs 2D，导致 v1-v9 全部无效
+  root_cause: eval 脚本构建 state=[pos(3), quat(4), gripper[:1]]=8D，但训练数据格式为 state=[pos(3),
+    rotvec(3), gripper(2)]=8D。碰巧维度一致不触发 shape error，但 z-score normalization 后产生极端
+    OOD（dim[3]≈-63.7），模型输出无意义动作。此 bug 从 v1 就存在，之前的 crash bugs 掩盖了它。
+  prevention: 1. 编写 eval 脚本前必须检查训练数据的 state 向量格式（读 data loader 代码或打印一个 batch 的 state
+    shape 和值范围）2. eval 首次运行后检查 state normalization 后的值范围是否在 ±5 以内 3. 任何新 eval 脚本必须包含
+    state format assertion（对比训练 norm_stats 的维度和值范围）
+  status: active
+  context: v1-v9 全部受此 bug 影响。之前归因于 extra_delta_transform (M017/M018) 的问题实际是此 bug 的下游效应。修复：quat→rotvec
+    (scipy Rotation)，gripper[:1]→gripper(2D)。Dry-run 确认修复有效：displacement=0.659m，gripper
+    pick-and-place 序列正常。
+  fix: 'eval_safelibero.py get_action_from_policy: state = [pos(3), Rotation.from_quat(quat).as_rotvec()(3),
+    gripper(2)] = 8D'
+- id: M021
+  date: '2026-05-22'
+  category: code_bug
+  severity: high
+  summary: eval_safelibero.py 每步重新推理（取 actions[0]），而 π0 应 replan_steps=5 执行多步后再推理
+  root_cause: 编写 eval 脚本时未参考 openpi 官方 LIBERO eval (examples/libero/main.py)。官方使用
+    replan_steps=5（推理一次执行 5 步），我们每步重新推理导致 action chunk 时间一致性丢失，模型反复在"起步"阶段重启。
+  prevention: 1. 编写新 eval 脚本前必须先阅读官方 eval 代码的完整推理循环 2. 对比官方参数（replan_steps, image_size,
+    warmup）逐项对齐 3. 自定义 eval 脚本必须在标准 LIBERO 上与官方脚本做 TSR 交叉验证后再用于实验
+  status: active
+  context: 这是 v1-v10 TSR=0% 的又一个根因（叠加在 M020 state format bug 之上）。M020 修复后 displacement
+    从 1e-10 提升到 0.01-0.05m，但仍远低于 pick-and-place 需要的 0.3-0.5m。action chunking 修复预期将
+    displacement 进一步提升到合理范围。
+- id: M022
+  date: '2026-05-22'
+  category: code_bug
+  severity: high
+  summary: A3 eval 使用 pi0_base 的 norm_stats 而非 A3 训练时的 norm_stats，state normalization
+    严重偏差（ee_z 5.2x off）导致 action collapse
+  root_cause: _load_policy_a3 调用 create_trained_policy 时 checkpoint_dir 指向 pi0_base（因为
+    A3 用标准模型+外部 LoRA），导致从 pi0_base/assets/ 加载 norm_stats。但 A3 训练时可能使用了不同的 norm_stats。Baseline
+    不受影响因为它的 checkpoint_dir 指向自己的训练输出（含正确 norm_stats）。
+  prevention: 1. 每个方法变体（baseline/A1/A3）的 eval 加载 norm_stats 时必须验证来源与训练一致 2. eval 脚本启动时打印
+    norm_stats 路径和关键值（state mean/std 前 3 维），方便快速排查 3. 不同方法共享 eval 脚本时，norm_stats 路径必须作为显式参数传入
+  status: active
+  context: A3 eval v10a displacement 0.0009m（Task 0）vs baseline 0.048m 的根因。pi0_base
+    norm state[2] mean=0.196 vs A3 训练 norm=1.023（5.2x 偏差），action[0] std 偏差 2.5x。LoRA
+    本身加载正确（504 params, rank/alpha 对齐），问题纯粹是 norm_stats 来源。与 action chunking (M021)
+    是独立的两个 bug。
+  fix: _load_policy_a3 中从 A3 checkpoint assets/ 加载 norm_stats，通过 create_trained_policy(...,
+    norm_stats=a3_norm_stats) 传入
+- id: M023
+  date: '2026-05-22'
+  category: agent_behavior
+  severity: medium
+  summary: 'M023: M013 复现——eval 进程未用 --gpu 参数导致全部堆在 cuda:0'
+  root_cause: Workers 启动 eval 时只设了 CUDA_VISIBLE_DEVICES 环境变量，没传 --gpu N 参数。eval_safelibero.py
+    内部有 os.environ["CUDA_VISIBLE_DEVICES"] = str(args.gpu) 覆盖外部环境变量，--gpu 默认值为 0，导致所有进程都跑在
+    cuda:0 上。M013 已记录此教训但 Workers 未遵守。
+  prevention: 所有 eval_safelibero.py 启动命令必须用 --gpu N 直接指定物理 GPU 编号，禁止仅依赖 CUDA_VISIBLE_DEVICES
+    环境变量。Agent 审查 Worker 启动命令时必须检查 --gpu 参数存在。
+  status: active
+  context: 3 个 eval 进程（oracle_a3_force_refine PID 686035/688244, baseline_fullft_spatial
+    PID 690045）全部堆在 cuda:0，与 a1_lora_spatial 训练（PID 299910, 93%）争抢资源。cuda:1 和 cuda:2
+    完全空闲。
+  fix: Kill 3 个 eval 进程，用正确的 --gpu 1/2 参数重启。
+- id: M024
+  date: '2026-05-22'
+  category: code_bug
+  severity: high
+  summary: 'M024: _refine_action_a3() 把 delta action 当绝对坐标传给 SDF decoder'
+  root_cause: eval_safelibero.py 的 _refine_action_a3() 函数将 predicted delta action
+    [dx,dy,dz,...] 直接作为 SDF decoder 的查询坐标，但 SDF decoder 期望的是绝对 workspace 坐标 [x,y,z]。应该先将
+    delta action 转换为绝对坐标（current_ee_pos + delta_action）再传给 SDF decoder。如果训练代码 train_a3_hook.py
+    也有相同问题，则整个 A3 训练的 SDF gradient loss 都在错误坐标上计算。
+  prevention: SDF decoder 的输入坐标必须是绝对 workspace 坐标。任何调用 SDF decoder 的代码必须检查输入语义：delta
+    action 需要先加上当前 ee_pos 转换为绝对坐标。训练和 eval 代码都要审查。
+  status: active
+  context: 发现路径：M022 norm_stats 根因分析中发现 norm_stats 字节级一致，排除 norm_stats 问题后深入检查 _refine_action_a3()
+    代码逻辑发现坐标语义错误。可能是 A3 CAR 低于 baseline 的真正根因——训练时 SDF loss 在错误坐标上计算导致 LoRA 权重退化。
+- id: M025
+  date: '2026-05-22'
+  category: code_bug
+  severity: high
+  summary: 'M026: SDF decoder clamp(-0.05,0.05) 导致饱和区零梯度，decoder 输出漂移到 0.15-0.85 远超
+    refine_margin=0.01'
+  root_cause: sdf_decoder.py:95-96 对 pred 和 gt 都做 hard clamp(-0.05,0.05)，当 pred 输出超出范围时梯度为零，decoder
+    无法学习正确的 SDF 值范围。输出漂移后 refine_margin=0.01 永远不触发 refinement。
+  prevention: 训练 loss 中避免 hard clamp（用 soft clamp/tanh scaling 或 range penalty）。验证
+    decoder 输出分布是否在预期范围内。
+  status: active
+  context: 解释了所有 eval 中 refined_count=0 的现象。不是 M024 坐标问题，是 decoder 本身从未学会正确的 SDF 值范围。
+- id: M026
+  date: '2026-05-22'
+  category: code_bug
+  severity: high
+  summary: 'M027: --sdf_gt_path 是死代码，所有 "oracle" 实验实际使用 learned decoder 而非 GT SDF'
+  root_cause: eval_safelibero.py 中 --sdf_gt_path 参数加载了 GT 数据并传入 evaluate_task()，但函数体内从未使用该数据。导致
+    oracle_a3_force_refine 和 oracle_a3_m024fix 实验标签为 oracle 但实际仍用 broken learned decoder。
+  prevention: 实现 oracle 功能后必须用 assert/log 验证实际使用的是 GT 数据而非 learned 输出。关键实验参数必须有运行时确认。
+  status: active
+  context: 所有标记为 oracle 的实验结论无效：oracle_a3_force_refine_object_v11, oracle_a3_m024fix_object_v11。
+- id: M027
+  date: '2026-05-22'
+  category: experiment_design
+  severity: high
+  summary: 'M028: 训练 refine (特征空间 ∂SDF/∂suffix_out) 与 eval refine (动作空间 ∂SDF/∂position)
+    数学上完全不匹配'
+  root_cause: 训练时 refine 通过 SDF 梯度调整中间特征让模型输出更安全的 action，eval 时直接在 action 空间加 SDF
+    空间梯度修正。两者做的不是同一操作，eval refine 无法利用训练学到的特征空间映射。
+  prevention: 设计 train/eval pipeline 时必须确保 refinement 操作在同一空间进行。Code review 时对比 train
+    和 eval 的梯度路径。
+  status: active
+- id: M028
+  date: '2026-05-22'
+  category: agent_behavior
+  severity: medium
+  summary: M013 再犯：oracle 实验用 CUDA_VISIBLE_DEVICES=1 --gpu 0 导致两个实验都落在 GPU 0
+  root_cause: Worker 构造命令时用了 CUDA_VISIBLE_DEVICES 前缀 + --gpu 0，但 M013 已明确 colliforce
+    脚本内部覆盖 CUDA_VISIBLE_DEVICES，--gpu 指定的是物理 GPU 编号。两个实验都指定 --gpu 0 → 都落在物理 GPU 0。
+  prevention: M013 已记录三次。强化规则：colliforce 脚本启动命令中禁止设 CUDA_VISIBLE_DEVICES，只用 --gpu
+    N（N=物理编号）。每次审批 eval/train 启动命令时检查是否包含 CUDA_VISIBLE_DEVICES。
+  status: active
+  context: oracle_true_gt_adaptive_alpha 和 oracle_true_gt_fixed_alpha 都落在 GPU 0。Reviewer
+    建议不 kill（已跑 10/40ep），但 GPU 1/2 浪费。
+- id: M029
+  date: '2026-05-22'
+  category: experiment_design
+  severity: high
+  summary: Fake safety 检测阈值不能跨模型机械套用——obstacle displacement < 0.1mm 对 action collapse
+    模型和正常运动模型含义不同
+  root_cause: Agent 对 Pi0.5 套用了与 A1/baseline 相同的 fake safety 检测逻辑（obstacle displacement
+    < 0.1mm = fake safe），但 Pi0.5 的 safe episodes 是真实安全（机器人积极运动完成任务但未碰障碍物），不是 action
+    collapse。导致 Pi0.5 real safe rate 被严重低估（报告为 0.5%，实际为 28%）。
+  prevention: Fake safety 检测必须结合 robot displacement（机器人是否在动）和 obstacle displacement（障碍物是否被碰）两个维度。低
+    obstacle displacement + 高 robot displacement = 真实安全；低 obstacle displacement +
+    低 robot displacement = fake safety (action collapse)。
+  status: active
+- id: M030
+  date: '2026-05-22'
+  category: experiment_design
+  severity: medium
+  summary: 'M030: Director 错误纠正 Agent 的 Pi0.5 fake safety 分类——Pi0.5 的 28% CAR 并非"真实避障"而是"路径天然安全"'
+  root_cause: M029 中 Director 批评 Agent 把 Pi0.5 safe episodes 标为 fake safe，认为"obstacle
+    没动=机器人成功避开"。但 per-episode 深度分析显示 56/56 safe episodes 的 obstacle displacement ≈
+    0（10^-10 ~ 10^-4），没有任何"差点碰到但避开"的案例。Pi0.5 的安全不是避障行为，而是 task geometry 决定的路径天然不经过障碍物。Director
+    在纠正 Agent 时犯了相同错误的镜像版本——用因果推理替代数据验证。
+  prevention: '判断 safe episode 是否来自真实避障行为，必须检查: (1) obstacle displacement 分布（非零说明有近距离交互）(2)
+    最小 EE-obstacle 距离分布（是否出现过危险接近）(3) 轨迹与障碍物的空间关系。不能仅凭"模型能动"就推断"安全来自避障"。'
+  status: active
+  context: 'Reviewer Report #8 批评 Agent 把 Pi0.5 标为 fake safe → Director 接受并"更正"给用户
+    → per-episode 分析证明 Agent 的分类实质正确 → Reviewer Report #9 修正自己和 Director 的判断'
+  fix: '向用户发送更正通知，调整 Pi0.5+A1 预期（conservative CAR: 28%→36%）'
+- id: M031
+  date: '2026-05-23'
+  category: experiment_design
+  severity: high
+  summary: 'M031: Pi0.5+A1 双 lambda 训练 checkpoint 路径碰撞——两个进程写同一目录，互相覆盖'
+  root_cause: train_a1_sdf_aux_pi05.py 的 checkpoint 路径只包含 scene + seed，不包含 lambda_sdf。同一
+    scene+seed 不同 lambda 的训练写入完全相同的目录。启动双 lambda 训练时 Director 和 Agent 均未检查路径唯一性。
+  prevention: 1. 训练脚本的 checkpoint 路径必须包含所有影响模型的超参数（至少 scene + seed + lambda）。2. 启动多组并行训练前，Director
+    审批时检查 checkpoint 路径是否唯一。3. 多组训练的 dry-run 应包含 checkpoint 路径 print 验证。
+  status: active
+  context: 'Reviewer Report #22 在 step ~240 发现，距 step 2000 save 约 35 分钟。如未及时发现，step
+    2000 后两个模型互相覆盖，eval 时无法区分。'
+  fix: Kill 两个训练进程，修改脚本 checkpoint 路径包含 lambda 值，同步两台服务器，重启训练。
+- id: M032
+  date: '2026-05-23'
+  category: resource_misuse
+  severity: high
+  summary: westd-35807 磁盘满导致 4 个 Pi0.5+A1 训练在 step 8000 全部崩溃（D005 教训重蹈覆辙）
+  root_cause: 启动 4 路并行训练前未检查磁盘余量。311GB/350GB 已被占用，其中 223GB 是已 killed/terminated 的旧实验
+    checkpoints（baseline_object/spatial 76GB×2, a1_sdf 21GB×2, a3_grad 7GB），从未清理。D005
+    已因相同原因做过决策但只限制了 SAVE_TOTAL_LIMIT，没有清理历史 checkpoints。
+  prevention: 1. 训练启动前强制 df 检查：可用空间 < 50GB 则先清理再启动。2. 实验状态变为 killed/stopped/done 后，及时清理对应
+    checkpoint 目录。3. 启动多路训练时估算总磁盘需求（每个 run 约 30GB 到 30K 步）并与可用空间对比。
+  status: active
+  context: westd-35807 4 个训练 (s1_l005, s1_l01, s2_l005, s2_l01) 在 step 8000 checkpoint
+    保存时触发 OSError [Errno 28] No space left on device。最新完整 checkpoint 为 step 6000，损失约
+    2000 steps (~2.5h/run)。westd-45947 的 2 个训练不受影响。
+  fix: 清理 223GB 死亡 checkpoints + 删除 tmp_8000 不完整数据 → 从 step 6000 恢复 4 个训练
+  related_decisions:
+  - D005
+  - D011
+- id: M033
+  date: '2026-05-23'
+  category: code_bug
+  severity: high
+  summary: Phase 2 转换条件用 == 而非 >=，resume 后 LoRA 永远不解冻（D006 同类 bug 重现）
+  root_cause: train_a1_sdf_aux_pi05.py 的 Phase 转换条件是 global_step == 5000（严格等于）。从 step
+    6000 resume 后 global_step 从 6001 递增，永远不等于 5000，Phase 2 永远不触发。同时 __init__ 总是设 phase=1，且
+    resume 时不加载 aux_metadata.pt 恢复 phase 状态。
+  prevention: 1. Phase 转换条件必须用 >= 而非 ==。2. Resume 时必须恢复所有训练状态（phase、warmup scale 等），不仅限于模型权重和优化器。3.
+    Resume 后立即检查 GPU 内存是否符合预期 phase 水平。
+  status: active
+  context: westd-35807 的 4 个训练从 step 6000 恢复后卡在 Phase 1（仅 658K params），LoRA 34.1M
+    params 完全冻结。GPU 内存 19GB 而非 Phase 2 的 27GB。训练在浪费 GPU-hours。westd-45947 的 2 个训练不受影响（从
+    step 0 连续运行）。
+  fix: == 改 >=，加 aux_metadata.pt 加载逻辑恢复 phase 状态
+  related_decisions:
+  - D006
+  - D011
+- id: M034
+  date: '2026-05-25'
+  category: experiment_design
+  severity: medium
+  summary: SAVE_TOTAL_LIMIT=2 导致 10K checkpoint 被清理，λ_sdf=0 ablation 需重训 +8h
+  root_cause: 训练脚本默认 SAVE_TOTAL_LIMIT=2，只保留最新两个 checkpoint。启动 30K 训练时未预见到后续 ablation
+    需要从 10K 分叉，未提高 limit 或手动备份关键 checkpoint。
+  prevention: 启动长训练前，检查实验计划中是否有需要从中间 checkpoint 分叉的 ablation。如有，提高 SAVE_TOTAL_LIMIT
+    或在关键步数自动备份。审批实验时增加检查项：下游 ablation 是否依赖中间 checkpoint。
+  status: active
+  context: seed0 λ=0.005 训到 30K 后只剩 30000/ checkpoint。λ_sdf=0 Phase 2 ablation 需要从
+    10K 分叉，被迫重训 Stage 1（+8h），总耗时从 26h 增至 37h。
+  fix: 两阶段方案：Stage 1 重训 10K (8h) → Stage 2 从 10K resume with λ=0 训到 30K (26h)。
+  related_decisions:
+  - D020
+- id: M035
+  date: '2026-05-25'
+  category: agent_behavior
+  severity: medium
+  summary: Agent 误报 30K eval 总量为 200 episodes（实际 800），ETA 偏差 5.5 小时；LoRA baseline
+    ETA 也偏 8 小时
+  root_cause: 'Agent 读 eval 日志时只看到单 task 的 200 episodes，未注意日志中明确的 "Tasks to evaluate:
+    [0,1,2,3] (200 episodes each)" = 800 total。LoRA ETA 未参考 tqdm 自身输出。'
+  prevention: 读 eval 进度时必须先确认 total episodes = n_tasks × n_episodes_per_task。ETA 估算优先采用进程自身的
+    tqdm/progress bar 输出，不要自行推算。Registry spec 的 n_episodes 也要填总量（800）而非单 task 量（200）。
+  status: active
+  context: Reviewer 发现 Task 0 已在 3h 前完成且日志中有完整结果，但 Agent 未提取。实际 ETA ~16:00 UTC（非 Agent
+    报的 10:40 UTC）。
+- id: M036
+  date: '2026-05-25'
+  category: experiment_design
+  severity: high
+  summary: 30K eval 实际使用 /best/ checkpoint（s1=16K, s2=10K），而非 /30000/，导致 D020 结论基于错误数据
+  root_cause: eval 脚本 checkpoint 路径使用了 /best/ 而非 /30000/，Worker 未核实实际 checkpoint 步数就按
+    "30K eval" 汇报。Director 未在审批/接收结果时要求确认 checkpoint 步数。
+  prevention: 1. eval 汇报必须包含实际 checkpoint step（从模型 metadata 或目录名读取），不能仅靠实验命名推断。2.
+    启动 eval 时 Director/Reviewer 核实 --checkpoint 路径是否指向目标步数。3. 涉及跨步数比较的结论，必须确认所有比较组的实际步数。
+  status: active
+  context: '4 个 30K eval（s1_l005, s1_l01, s2_l005, s2_l01）全部指向 /best/ 路径。best checkpoint:
+    s1=step 16000, s2=step 10000。D020 基于这些数据得出 "30K TSR 退化" 结论，但实际对比的是 s0@10K vs s1@16K
+    vs s2@10K（跨 seed + 跨 step），不是同 seed 10K vs 30K。'
+  fix: 杀掉当前 /best/ eval，用 /30000/ 路径重启。D020 暂时挂起待真 30K 数据确认。
+  related_decisions:
+  - D020
+- id: M037
+  date: '2026-05-25'
+  category: agent_behavior
+  severity: high
+  summary: 4 个新任务启动后立即退出未被 Agent 发现，Reviewer 才捕获
+  root_cause: Agent 提交任务后未验证进程存活（缺少 post-launch verification）。wandb 未配置 + eval --suite
+    参数缺失两个独立问题同时命中。
+  prevention: '每次启动训练/eval 进程后，必须在 30s 内用 ps/nvidia-smi 确认进程存活且 GPU 有占用。启动前检查: (1)
+    wandb 状态或设置 WANDB_MODE=disabled (2) 命令参数与上次成功运行的命令做 diff 比对。'
+  status: active
+  context: westd-35807 4卡全部空跑。spatial_bowl训练缺wandb配置，v2 eval缺--suite参数。进程立即退出但Agent报告为RUNNING。
+- id: M038
+  date: '2026-05-25'
+  category: agent_behavior
+  severity: high
+  summary: Worker 诊断空转 30 轮未执行修复，4 GPU 空闲数小时
+  root_cause: Worker 陷入 ssh_read_only 循环：反复检查 wandb 配置和 eval 参数，诊断结论早已明确（WANDB_MODE=disabled
+    + --suite 参数），但未切换到 ssh_execute 执行修复，也未上报阻塞。Agent 未设 Worker 超时/轮次上限。
+  prevention: 1. Worker 诊断超过 5 轮未解决必须上报 Director，不能继续空转；2. Agent 提交任务时验证命令完整性（wandb
+    配置、必需参数），避免启动后立即崩溃；3. 任务启动后 2 分钟内用 ssh_read_only 确认进程存活，发现崩溃立即修复重提交
+  status: active
+  context: westd-35807 4 卡重新提交 4 个任务（2 训练 + 2 eval），全部启动后立即崩溃。Worker 用 30 轮 ssh_read_only
+    诊断出问题但不执行修复。4 GPU 空闲估计超过 2 小时。
+  fix: Director 指令 cancel Worker，由 Agent 直接 spawn 新 Worker 提交修复后的命令
+- id: M039
+  date: '2026-05-25'
+  category: agent_behavior
+  severity: high
+  summary: Phase 2 训练进程误绑 GPU + eval 进程无日志崩溃
+  root_cause: 1) Phase 2 启动时未正确设置 CUDA_VISIBLE_DEVICES 导致子进程绑到 cuda:0（与 spatial_bowl
+    共卡）；2) eval 进程启动时未重定向日志到文件，崩溃后无法定位原因
+  prevention: 1) 所有实验启动前必须显式设置 CUDA_VISIBLE_DEVICES=N 并在启动后立即 nvidia-smi 验证绑定；2) 所有进程必须
+    nohup + 日志重定向到 /root/colliforce-vla/logs/{exp_name}_{timestamp}.log；3) 不同实验绝不共卡
+  status: active
+  context: westd-35807 上 Phase 2 壳进程 PID 166274 在 cuda:1 但子进程 PID 166283 跑到 cuda:0
+    占 19GB 显存与 spatial_bowl 共卡；eval s1_l005_v2 (PID 170922) 和 s2_l005_v2 (PID 171068)
+    死亡无日志
+- id: M040
+  date: '2026-05-25'
+  category: agent_behavior
+  severity: medium
+  summary: Kill 训练进程前未检查 checkpoint 状态，导致 lambda0 2445 steps 全部丢失
+  root_cause: Worker 直接 SIGTERM 杀死 lambda0 进程（step 2445/10000），save_interval=5000
+    意味着首个 checkpoint 尚未保存。杀之前没有检查是否有 checkpoint 可恢复。
+  prevention: Kill 训练进程前必须：1) 检查 checkpoint 目录是否有已保存的 checkpoint；2) 如果无 checkpoint，评估是否值得等到下一个
+    save point 再杀；3) 如果必须立即杀，记录丢失的 step 数供后续重跑参考
+  status: active
+  context: lambda0 Phase 2 消融训练在 westd-35807 cuda:0 被杀，step 2445/10000，save_interval=5000，checkpoint
+    目录仅含 wandb_id.txt。丢失 ~1.7 GPU-hours。需从 step 0 完全重训。
+- id: M041
+  date: '2026-05-25'
+  category: code_bug
+  severity: high
+  summary: 并行 eval 输出到同一 JSON 文件，导致 2/3 eval 的 episode 级数据被覆盖丢失
+  root_cause: eval 脚本的输出文件名由 --model_type 和 --seed 决定，不含 checkpoint 路径或 lambda 信息。3
+    个不同 checkpoint 的 eval 都用 --model_type lora_baseline --seed 0，生成相同文件名 eval_safelibero_object_all_levelII__lora_baseline_seed0.json，后写的覆盖先写的。
+  prevention: 并行 eval 启动前必须确认每个 eval 的输出路径唯一。输出文件名应包含 seed + lambda + step 信息（如 eval_30k_s1_l005.json）。审批并行
+    eval 时加检查项：输出路径是否冲突。
+  status: active
+  context: 30K eval 首批 3 个（s1_l01, s1_l005, s2_l005）并行运行，仅 s1_l01 的 JSON 保存。s1_l005
+    和 s2_l005 的 per-task TSR/CAR 从日志恢复，但 episode 级 displacement 数据丢失（CAR_f 计算所需）。
+  fix: 已指令 Agent 修复 JSON 命名，下一批 eval（s2_l01, s0_l005, s0_l01）使用包含 seed+lambda 的唯一文件名。
+- id: M042
+  date: '2026-05-25'
+  category: agent_behavior
+  severity: high
+  summary: 3 个并行 eval 全部启动在 GPU 0 而非分配到 GPU 1/2/3，导致 3 张 H100 空闲
+  root_cause: Worker 启动 eval 时 --gpu 参数全部设为 0，未按 Director 指令分配到 cuda:1/2/3。可能是 eval
+    脚本默认 gpu=0 且 Worker 未显式覆盖。
+  prevention: 1. 启动并行 eval 时必须显式指定不同 --gpu 参数。2. 启动后必须用 nvidia-smi 验证每个进程在正确的 GPU
+    上。3. Director 审批并行任务时明确要求 GPU 分配验证步骤。
+  status: active
+  context: 3 个 30K eval（s0_l005, s0_l01, s2_l01）全部在 cuda:0 上与 spatial_bowl 训练竞争，导致所有进程慢
+    3-4x 且有 OOM 风险。cuda:1/2/3 完全空闲。
+  fix: 紧急指令 Agent 杀掉 3 个 eval 并在 cuda:1/2/3 上重启，启动后必须 nvidia-smi 验证。
+- id: M043
+  date: '2026-05-25'
+  category: code_bug
+  severity: high
+  summary: --output_path 纯文件名导致 os.makedirs("") 崩溃，3 个 eval 结果全部丢失
+  root_cause: eval_safelibero.py L1325 用 os.path.dirname(save_path) 提取目录，当 --output_path
+    传纯文件名时 dirname 返回空字符串，os.makedirs("") 抛 FileNotFoundError。200 episodes 计算完成后才保存，崩溃在最后一步导致全部数据不可恢复。
+  prevention: 1. 修复代码：dirname 为空时跳过 makedirs。2. 批量启动 eval 前必须先跑 1 个 episode 的 dry-run
+    验证 --output_path 参数能正常保存 JSON。3. eval 脚本应每 N episodes 增量保存而非全部算完再一次性写入。
+  status: active
+  context: 'Batch 3 eval: eval_s1_l005_v3 (GPU1), eval_s2_l005_v3 (GPU2), eval_s0_l01_v2
+    (GPU3) 全部崩溃。~1 GPU-hour 浪费。这是 v2/v3 重跑（v2 已因 concurrent overwrite 丢过数据），同一个 eval
+    流程连续出两种不同的数据丢失 bug。'
+  fix: 修复 eval_safelibero.py L1325 空目录检查 + 使用绝对路径重跑
+- id: M044
+  date: '2026-05-25'
+  category: code_bug
+  severity: high
+  summary: Filtered CAR 指标数学恒等式 bug：check_collision 用 L1 判碰撞，max_displacement 用 L2
+    记录，L2≤L1 导致所有 safe episode 必然被判 frozen
+  root_cause: check_collision 用 L1 范数阈值 0.001 判碰撞，max_displacement 用 L2 范数记录障碍物位移。由范数不等式
+    L2≤L1，任何 collided=False 的 episode 其 max_displacement 必然 < 0.001，与 analyze_displacement.py
+    的 frozen 阈值相同。导致 Filtered CAR ≡ 0% 是数学必然而非实验发现。更深层问题：max_displacement 度量的是障碍物位移而非末端执行器位移，无法区分"主动避障"和"冻结不动"。
+  prevention: 1. 新增度量指标前先验证其与已有指标的数学独立性——如果新指标可由旧指标推导则无信息量。2. Displacement 分析应基于 EE（末端执行器）位移而非障碍物位移。3.
+    引入新分析脚本后先在已知 ground-truth case 上验证（如 baseline 的 safe episode 应有非零 displacement）。
+  status: active
+  context: Reviewer 报告 30K Filtered CAR=0% 看似重大发现，实为度量 bug。所有基于 analyze_displacement.py
+    的 frozen/action collapse 定量结论需用 EE displacement 重新验证。定性上 30K TSR 从 ~75% 降至 ~7%
+    仍是 action collapse 的强证据，但定量 displacement 数据待修复。
+  fix: 修复 eval_safelibero.py：新增 max_ee_displacement = max ||eef_pos_t - eef_pos_0||
+    存入 JSON，用 EE 位移替代障碍物位移做 frozen 判定。
+- id: M045
+  date: '2026-05-25'
+  category: code_bug
+  severity: high
+  summary: Filtered CAR=0% 是范数不一致 bug，非实验发现
+  root_cause: check_collision 用 L1 范数判碰撞（阈值 0.001），max_displacement 用 L2 范数记录障碍物位移。L2≤L1
+    恒成立，导致所有 safe episode 的 max_displacement 必然<0.001，analyze_displacement.py 判定全部
+    frozen。Filtered CAR 恒等于 0%，是数学恒等式不是实验现象。此外 max_displacement 度量的是障碍物位移而非 EE 位移，概念上就不对。
+  prevention: 1. eval 指标新增时必须做 sanity check：至少用 1 个已知 non-trivial 结果验证指标不为退化值（全零/全一）。2.
+    距离度量需统一范数（L1/L2），且明确标注度量对象（obstacle vs EE）。3. 分析脚本的阈值条件应与 eval 脚本的判断逻辑一致。
+  status: active
+  context: Paper §5 的 action collapse 定量证据（Filtered CAR=0%）全部基于此 bug 结论。所有已完成实验的 raw
+    TSR/CAR 数据仍有效，但 filtered 指标需用 EE displacement 重新计算。
+  fix: 修复 eval_safelibero.py：新增 max_ee_displacement 字段存入 JSON，用 EE trajectory 的 L2
+    位移替代障碍物位移。修复后重跑受影响 eval。
+- id: M046
+  date: '2026-05-25'
+  category: code_bug
+  severity: high
+  summary: eval_safelibero.py --gpu 参数覆盖 CUDA_VISIBLE_DEVICES，导致 eval 跑在错误 GPU 上
+  root_cause: eval_safelibero.py 的 --gpu 参数内部直接设置 os.environ['CUDA_VISIBLE_DEVICES']，覆盖了
+    submit_training_job 通过 spec 设置的外部 CUDA_VISIBLE_DEVICES。之前未暴露是因为 --gpu N 碰巧与 spec
+    GPU 一致。
+  prevention: 1. eval/train 脚本不应覆盖 CUDA_VISIBLE_DEVICES，由外部 job submission 统一管理。2.
+    提交 eval 时确保 --gpu 参数值与 spec 中的 GPU ID 一致。3. Worker 启动后用 nvidia-smi 验证进程实际跑在哪张卡上。
+  status: active
+  context: eval_best_s1_l005_16k 设 CUDA_VISIBLE_DEVICES=2 但 --gpu 0，实际跑在 GPU 0 上与
+    spatial_bowl 训练冲突（36GB/40GB VRAM）。同时 GPU 3 有 3 个重复 eval 进程（2 个 orphan 未清理）。
+  fix: kill orphan 进程 + 重启 eval 到正确 GPU + 修复 eval_safelibero.py 的 --gpu 实现
+- id: M047
+  date: '2026-05-26'
+  category: experiment_design
+  severity: high
+  summary: Pi0.5 baseline re-eval 使用错误的 model loading 路径（--model_type baseline 而非
+    --default_policy），TSR=0% 无效结果
+  root_cause: eval_safelibero.py 的 --model_type baseline 路径调用 create_trained_policy()，设计用于
+    LoRA fine-tuned checkpoint，不适合 raw pre-trained model。正确方式是 --default_policy 参数调用
+    create_default_policy()。Agent 未区分两种加载方式。
+  prevention: eval Pi0.5 base model 时必须使用 --default_policy 参数，不能用 --model_type baseline
+    --checkpoint。审批 baseline re-eval 时确认加载方式与原始 eval 一致（serve_policy WebSocket 或 --default_policy）。
+  status: active
+  context: 原始 eval (5月23日) 通过 serve_policy WebSocket 模式加载，TSR=74.7%。re-eval 误用 --model_type
+    baseline --checkpoint 路径，TSR=0%。浪费 ~1.3h GPU 时间。
+  fix: Kill 当前进程，用 --default_policy 重新运行
+- id: M048
+  date: '2026-05-26'
+  category: code_bug
+  severity: high
+  summary: Pi0.5 baseline re-eval 连续两次 TSR=0%：eval_safelibero.py 的 action processing
+    chain 与原始成功 eval 不一致
+  root_cause: eval_safelibero.py 的 get_action_from_policy() 直接调用 policy 对象，但其 observation
+    preprocessing / action denormalization / action_horizon 处理与原始 WebSocket-based
+    eval 客户端不同。在 LoRA fine-tuned models 上碰巧能工作（TSR=6.8%），但 base Pi0.5 上完全失败（TSR=0%）。差异不在
+    model loading 而在 inference pipeline。
+  prevention: Re-eval 必须复现原始成功 eval 的完整 inference pipeline（包括 server + client），只在最外层添加新指标记录。不要假设不同
+    eval 脚本的 action processing chain 等价——即使它们加载同一个模型。验证方式：先在已知 baseline 上确认 TSR 一致再跑新实验。
+  status: active
+  context: eval_pi05_baseline_reeval_disp (v2) 在 westd-45947 cuda:1 跑了 2h+，Task 0
+    TSR=0% CAR=65.5%，Task 2 hang。已浪费约 3h GPU 时间（v1+v2）。目的是获取 Pi0.5 EE displacement
+    数据回填论文 Table 1。
+- id: M049
+  date: '2026-05-26'
+  category: experiment_design
+  severity: high
+  summary: Baseline 与 fine-tuned model 使用不同 eval 脚本，TSR 对比可能含伪影
+  root_cause: eval_safelibero.py 的 get_action_from_policy() 缺少 180° 图像旋转，而 baseline
+    TSR 数据来自原始 eval 脚本（有旋转）。两套脚本的预处理差异导致 fine-tuned model TSR 被系统性低估，Claim 3 的 68pp
+    TSR collapse 可能部分是伪影。
+  prevention: 所有需要对比的 eval 必须使用完全相同的脚本和预处理流程。引入新 eval 脚本时，先用 baseline model 做 sanity
+    check 确认与原始脚本结果一致，再评估 fine-tuned model。
+  status: active
+  context: Pi0.5 baseline TSR=74.7% (原始脚本, 有旋转) vs fine-tuned models TSR=6-8% (eval_safelibero.py,
+    无旋转)。SDF vs LoRA-only 相对比较不受影响（同一脚本）。Claim 1/2 不受影响。
+  fix: 修复 eval_safelibero.py 添加 180° 旋转，用修复版重新评估 baseline 和 LoRA-only，验证 TSR collapse
+    是否真实。
+- id: M050
+  date: '2026-05-26'
+  category: experiment_design
+  severity: medium
+  summary: LoRA s0 reeval 遗漏：registry 标 DONE 但 metrics 为空，实际 JSON 仍是 buggy v2 版本
+  root_cause: reeval batch 规划时只覆盖了 SDF 模型（l005/l01 各 3 seeds），遗漏了 LoRA baseline s0
+    的 re-eval。registry 被标记 DONE 但未核实 metrics 是否填充，导致误以为 LoRA 有 2 个可信 seed。
+  prevention: 1. 规划 reeval batch 时，列出所有受 eval bug 影响的实验，逐一确认是否纳入 reeval 队列。2. Registry
+    标 DONE 后必须核实 metrics 非空。3. 统计对比前检查每个条件的可信 seed 数——"mean" 至少需要 2 个 seed。
+  status: active
+  context: 'M042 eval rotation bug 修复后，reeval 只安排了 SDF 实验（batch1: l005 s0 + l01 s0;
+    batch2: l005 s1/s2 + l01 s1/s2），LoRA s0 被遗漏。当前 LoRA baseline 仅 s1 一个可信 reeval
+    seed (TSR=51.5%, CAR=52.5%)。'
+  fix: 已指令 Agent 在 batch2 完成后立即在 westd-45947:cuda:1 补跑 LoRA s0 rotation-fixed reeval
+    (seed=7)。
+- id: M051
+  date: '2026-05-26'
+  category: code_bug
+  severity: high
+  summary: Threshold sensitivity 图 λ 标签错误 (0.05→0.005, 0.1→0.01) 且使用 pre-rotation-fix
+    旧数据
+  root_cause: Worker 生成 CSV/图表时未从 registry 或 reeval JSON 中提取实际 λ 值，而是手动硬编码了错误的标签。同时使用了旧版
+    eval 数据而非 rotation-fixed reeval 数据。
+  prevention: 生成任何包含实验参数的可视化时：(1) λ/超参数值必须从实验 config 或 registry 中动态提取，不允许硬编码；(2) 数据源必须使用最新
+    reeval 版本，脚本中需显式指定数据来源路径并验证是否为 rotation-fixed 版本；(3) 生成后与论文正文/其他 figures 的参数值交叉核对。
+  status: active
+  context: plan_014 threshold sensitivity analysis worker 产出的 CSV 中 lam0.05 实际对应 λ=0.005,
+    lam0.1 实际对应 λ=0.01。且 s0 l01 CAR=52.5%（旧版）vs 57.0%（reeval）差 4.5pp。结论（dfCAR 平坦）不受影响但数字错误。
+  fix: 指令 Agent 用 rotation-fixed reeval JSON 重新计算 CSV，修正 λ 标签，重新生成图表。
+- id: M052
+  date: '2026-05-26'
+  category: agent_behavior
+  severity: high
+  summary: eval_early_signal_s0_l1_20k 幽灵实验：registry 标 RUNNING 但服务器上从未启动 eval 进程
+  root_cause: Worker 完成了 registry 注册和 checkpoint 路径验证，但未实际在服务器上执行 eval 命令。Worker 标
+    status=done 但只做了前置检查，未启动 nohup eval 进程。
+  prevention: 1. eval 类实验启动后 Worker 必须用 ps aux | grep 验证 PID 存在，并在回调中附 PID 号。2. Agent
+    收到 Worker 回调时，对 eval 类实验增加一步 SSH 验证（检查 PID 存活 + 输出 log 非空）。3. cron 监控应检查 RUNNING
+    eval 的 PID 是否存活而非只看 registry 状态。
+  status: active
+  context: Director 指令在 cuda:0 空闲时启动 λ=0.1 20K early signal eval。Agent 报告已启动 PID 399880，但
+    Reviewer 独立核实发现：1) 无 eval 进程运行 2) 无输出 JSON 3) 无 eval 日志。损失约 8h 的 early signal
+    窗口。
+- id: M053
+  date: '2026-05-27'
+  category: other
+  severity: high
+  summary: Monitoring 误判成功的 22K eval 为 failed——导致关键数据 (CAR=60.5%) 差点被遗漏
+  root_cause: Cron monitoring 仅依赖 PID 存活状态和 sentinel 文件判断实验成败。22K eval 进程正常退出并保存了完整
+    JSON 输出（85KB），但因 "process dead 5× with no sentinel" 被误判 failed。
+  prevention: eval 实验的 cron 回调应先检查 eval output JSON 是否存在且完整（文件大小 > 0，包含预期 key），再判定
+    failed。Agent 收到 "进程退出" 类 cron 通知时，必须先 SSH 检查输出文件再标记 failed，不能仅凭 monitoring 系统报告。
+  status: active
+  context: eval_stepwise_s0_l1_22k 在 westd-35807 cuda:0 上运行，正常完成并保存 eval_s0_l1_22k_seed7.json。CAR=60.5%
+    可能改变 Scenario 判定（D035→D036 provisional）。若非 Reviewer 独立验证，此数据会被完全遗漏。
+  fix: Reviewer 独立验证了 JSON 文件完整性，Agent 已被通知修正 registry。
+  related_decisions:
+  - D036
+- id: M054
+  date: '2026-05-27'
+  category: experiment_design
+  severity: high
+  summary: 训练进程因 tmux 24h timeout (EXIT_CODE=124) 被杀——LoRA s2 在 75% 进度终止，浪费 24h GPU
+    时间
+  root_cause: 训练通过 tmux session 启动，tmux 可能配置了 24h 活动超时限制。EXIT_CODE=124 是 timeout 信号。长时间训练（>24h）超出限制被系统
+    kill。
+  prevention: 1) 长训练用 nohup 而非 tmux，或确认 tmux 无 timeout 限制；2) 启动训练前检查 tmux timeout
+    配置；3) 所有 >12h 的训练任务启动时验证进程不会被系统级 timeout 杀死。
+  status: active
+  context: train_pi05_lora_baseline_s2 在 westd-45947:cuda:0 运行，step 22364/30000 (75%)
+    时被 EXIT_CODE=124 终止。同时 spatial_bowl LoRA control (westd-35807:cuda:3, 已跑 14h)
+    可能面临同样风险。DDL 5/28 12:00 UTC，余量 ~25h。
+  fix: 从 checkpoint 22000 恢复训练 + 检查并修复所有服务器的 tmux timeout 配置。
+  related_decisions:
+  - D036
+- id: M055
+  date: '2026-05-27'
+  category: experiment_design
+  severity: high
+  summary: submit_training_job 默认 timeout_hours=24 杀掉了需要 33.6h 的 LoRA s2 训练
+  root_cause: submit_training_job 默认注入 `timeout 86400`（24h），LoRA s2 总需 ~33.6h 超过该限制，进程被
+    SIGTERM (EXIT_CODE=124)
+  prevention: 提交训练前估算总时长，预估 >20h 的训练统一用 timeout_hours=48。Agent/Worker 提交实验时必须在 submit
+    前确认 timeout_hours 是否充足。
+  status: active
+  context: LoRA s2 在 westd-45947:cuda:0 上训练到 step 22000 时被 timeout 杀死。从 checkpoint
+    22000 恢复，设 timeout_hours=48。
+  fix: 从 checkpoint 22000 resume，timeout_hours=48。两台服务器其余任务均安全（nohup 或手动 tmux 无 timeout
+    限制）。
+- id: M056
+  date: '2026-05-27'
+  category: code_bug
+  severity: high
+  summary: 24K eval 缺 --pi05 导致 frozen episodes，错误归因为 action collapse 并构建了虚假 narrative
+  root_cause: eval_stepwise_s0_l1_24k 命令漏传 --pi05 flag，模型加载异常产生 29.5% frozen episodes。Director
+    和 Reviewer 在未验证 eval 命令一致性的情况下，基于异常数据构建了 "high-λ SDF causes action collapse" 的错误结论。
+  prevention: 1. 异常结果（如 frozen rate 从 0% 突变到 29.5%）出现时，第一反应必须是检查 eval 命令与历史 eval 的一致性，而非直接归因训练行为。2.
+    维护标准化 eval 命令模板，所有 eval 从模板生成，避免参数遗漏。3. M040 已记录类似教训（--pi05 缺失），本次是同一 bug 的第二次发生——模板必须强制执行。
+  status: active
+  context: 26K eval 也因同样原因首次失败，修复后 frozen=0%。24K 需要重跑。之前基于错误数据向 Agent 下发了 dfCAR 报告规范和
+    "harmful at high dose" narrative 指导，均需撤回。
+  fix: 26K 已用 --pi05 重跑成功（frozen=0%）。24K 待重跑。30K eval 命令已确认包含 --pi05。
+- id: M057
+  date: '2026-05-27'
+  category: code_bug
+  severity: high
+  summary: 'M048: Cron 系统在 WANDB_MODE=disabled 环境下反复将成功 eval 误标为 failed（第 3 次）'
+  root_cause: Cron 监控以"无 W&B sentinel + 进程退出"为判据自动标记 failed，但本项目 WANDB_MODE=disabled（westd-35807
+    未配 wandb），正常完成的 eval 进程退出后也没有 W&B 数据，触发假阳性。之前 24K v2 eval、stepwise eval 都被同样误标过。
+  prevention: 1. Agent 处理 cron "需要判断" 回调时，必须先 SSH 检查日志和 JSON 输出文件，不能信任 cron 的自动 failed
+    判定。2. 对 WANDB_MODE=disabled 的项目，cron 应仅以日志完成标记或 JSON 输出存在作为成功判据，而非 W&B sentinel。3.
+    Director 收到 cron failed 通知时，如果项目无 W&B，默认假设是假阳性，派 Agent 检查而非直接接受。
+  status: active
+  context: eval_pi05_a1_30k_s0_l01_high 实际 CAR=58.0% 成功完成，但被 cron 标记 failed。同类问题至少第
+    3 次发生。
+  fix: 通过 urgent_agent_message 指令 Agent 修正 registry 为 success 并补录 metrics。
+- id: M058
+  date: '2026-05-27'
+  category: agent_behavior
+  severity: high
+  summary: 'M058: Agent 报告 s1 eval "启动中" 但实际未启动，cuda:2 空闲被 Reviewer 发现'
+  root_cause: Agent 可能派了 Worker 但 Worker 执行失败或路径错误（checkpoint 目录名 seed1_l01 vs seed1_l1
+    不一致），但 Agent 没有验证实际 GPU 占用就汇报"启动中"。
+  prevention: Agent 启动 eval 后必须用 nvidia-smi 确认 GPU 实际被占用（显存 > 1 MiB），不能仅凭 Worker 派发就汇报"启动中"。Director
+    对关键路径实验的启动确认要求 PID + nvidia-smi 证据。
+  status: active
+- id: M059
+  date: '2026-05-27'
+  category: agent_behavior
+  severity: high
+  summary: 'M059: Agent 重跑 s0 eval 用了错误 checkpoint（seed0_l01=λ0.01 而非 seed0_l1=λ0.1），浪费
+    GPU 时间'
+  root_cause: Checkpoint 目录命名相似（l01 vs l1），Agent 未区分 lambda=0.01（l01, 5/24 旧实验）和 lambda=0.1（l1,
+    今天创建）。l01 看起来像 0.1 的缩写但实际是 0.01。
+  prevention: 1. 启动 eval 前必须 ls 确认 checkpoint 目录的创建时间，匹配对应训练实验的完成时间。2. 明确记住命名规则：l005=0.005,
+    l01=0.01, l1=0.1。3. 对 lambda=0.1 实验，checkpoint 路径中永远是 seed*_l1（不带前导零）。
+  status: active
+- id: M060
+  date: '2026-05-27'
+  category: resource_misuse
+  severity: medium
+  summary: LoRA s2 eval 重复启动导致两个进程抢占同一 GPU
+  root_cause: 服务重启后 Agent 队列积压，第一次 eval worker (eval_lora_baseline_30k_s2) 实际成功启动但被标记
+    failed，urgent 指令触发第二次 eval (eval_lora_s2_30k_v2)，两者同时运行在 westd-45947 cuda:0
+  prevention: 派 urgent eval 前先 ssh_read_only 检查目标 GPU 是否已有 eval 进程运行（nvidia-smi +
+    ps aux | grep eval），避免重复启动。Worker 标记 failed 时确认是否真的未执行。
+  status: active
+  fix: kill PID 512147（旧进程），保留 PID 514115（v2，已注册 registry）
+- id: M061
+  date: '2026-05-27'
+  category: code_bug
+  severity: high
+  summary: westd-35807 lerobot 版本不兼容导致所有 lerobot 数据加载训练系统性失败
+  root_cause: 'westd-35807 的 libero conda env 中 lerobot 版本为 0.4.x，与项目代码要求的 0.1.0 不兼容。torch.stack()
+    报错 TypeError: argument ''tensors'' must be tuple of Tensors, not Column。之前环境对齐指令未成功执行或未覆盖到此包。'
+  prevention: 1. 多服务器环境搭建后必须做 pip freeze 对比验证关键包版本一致性（torch, lerobot, transformers
+    等）2. 训练提交前 dry-run 1 step 验证数据加载通路 3. 发现一台服务器训练失败时立即检查同服务器其他实验是否受影响
+  status: active
+  context: train_phase2_lambda0_s2_v3 和 train_phase2_lambda0_extra_seed 均因此失败。train_phase2_lambda0_s2_v3
+    已死但 registry 仍显示 RUNNING（幽灵条目），实际 westd-35807:cuda:2 空转。spatial_bowl_lora_control
+    (cuda:3) 可能不走 lerobot 路径所以仍存活。
+  fix: DDL 前不修复（Phase 2 即使修复也无法在 21h 内完成 30K steps）。DDL 后需对齐 westd-35807 lerobot 到
+    0.1.0。
+- id: M062
+  date: '2026-05-27'
+  category: resource_misuse
+  severity: medium
+  summary: Phase 2 反复 kill/restart 导致 GPU 重复占用和 registry 幽灵条目
+  root_cause: D039 和 D040 决策快速翻转，Agent 执行 kill 时新 Worker 已在启动进程，导致同一实验多个 PID 并存。kill
+    命令目标 PID 与实际运行 PID 不一致（Worker 各自独立启动新进程）。Registry GPU 字段记录的是指令值而非实际值（--gpu 0 记成
+    cuda:1）。
+  prevention: 1. 决策翻转时先确认前一轮 kill 已生效（nvidia-smi 验证），再下新启动指令 2. Worker 提交训练后必须用 nvidia-smi
+    交叉验证实际 GPU 占用与 registry 一致 3. 避免短时间内对同一实验发多次 kill/restart——合并为一条最终指令
+  status: active
+  context: D039 kill Phase 2 → D040 覆盖 restart → Agent 先执行 D039 kill 了一批 PID → 但 fix
+    Worker 之前启动的进程仍在跑（不同 PID）→ D040 又重新提交 → 结果 cuda:0 和 cuda:1 同时跑相同实验，cuda:2 幽灵进程无人跟踪
+  fix: Kill 重复进程，统一 registry，nvidia-smi 交叉验证
+- id: M063
+  date: '2026-05-27'
+  category: code_bug
+  severity: high
+  summary: eval sentinel checkpoint 路径错误——_l01 vs _l1 命名不一致导致指向旧 checkpoint
+  root_cause: 训练脚本使用 lambda 简称 l1（λ=0.1 → l1），但 sentinel 脚本中手写路径时用了 l01。目录命名惯例不一致（s0/s1
+    也用 _l1），Worker 编写 sentinel 时未交叉验证实际目录名。更危险的是旧 _l01 目录下已存在一个来源不明的 checkpoint，sentinel
+    会直接使用它。
+  prevention: 1. sentinel/eval 脚本中的 checkpoint 路径必须通过 ls 实际验证，不能手写 2. 部署 sentinel
+    后立即用 ssh_read_only 验证目标路径存在且为当前训练输出 3. 清理旧/废弃 checkpoint 目录避免命名混淆
+  status: active
+  context: DDL 前 1.5h 裕量下，如果 sentinel 评估了错误 checkpoint，发现问题+重跑 eval 需要 1-1.5h，几乎没有容错空间。Reviewer
+    在部署后审查中发现。
+  fix: 修改 auto_eval_s2.sh 中 CHECKPOINT_DIR 为正确的 _seed2_l1 路径
+- id: M064
+  date: '2026-05-27'
+  category: agent_behavior
+  severity: high
+  summary: 论文修改 Worker 反复破坏 paper_switch.py 的 old strings（第三次）
+  root_cause: paper_switch.py 的 old strings 硬编码了论文当前文本作为匹配锚点，但任何修改 .tex 文件的 Worker
+    都不知道也不检查是否与 paper_switch.py 冲突。缺少修改后的自动验证机制。
+  prevention: 1. paper_switch.py 新增 --verify 模式，仅检查 old strings 是否匹配当前文本；2. 硬规则：任何修改
+    .tex 文件的 Worker 完成后必须运行 python paper_switch.py --verify，失败则在同一 Worker 中修复；3. Director
+    派论文修改任务时在指令中明确要求 verify。
+  status: active
+  context: paper_switch.py 用 string replacement 实现 Scenario B/C 论文版本切换。三次事件：(1) 统计检验修正改了
+    p 值但未更新 paper_switch; (2) Reviewer 13 处修正改了多处文本未更新; (3) abstract polish Worker
+    重写 abstract 未更新。每次都是 Reviewer 发现而非 Worker 自检。
+  fix: urgent_agent_message 派修复 + 加 --verify 防护模式
+- id: M065
+  date: '2026-05-29'
+  category: resource_misuse
+  severity: high
+  summary: 连续三轮 GPU 状态报告与实际不符，训练崩溃无人发现
+  root_cause: 训练进程崩溃后 Worker 池=0 无人监控发现；跨服务器启动实验未确认依赖环境一致（lerobot patch 缺失）；Director
+    未交叉验证 Agent 的 GPU 状态声明
+  prevention: 1. 派训练实验后保持至少 1 个 Worker 定期检查进程存活+GPU 利用率 2. 跨服务器启动前必须确认依赖环境一致 3. Director
+    收到 keepalive 催促中的 GPU 数据时主动派 Agent 核实而非信任上一轮报告
+  status: active
+- id: M066
+  date: '2026-05-29'
+  category: agent_behavior
+  severity: medium
+  summary: Agent 无视用户明确指令"不要缩小 figure 高度，补字数"，仍然执行了缩图方案
+  root_cause: Agent 收到了两条指令（原始指令含缩图方案 + urgent 更新要求补字数），可能先处理了原始指令中的首选方案而忽略了 urgent
+    覆盖
+  prevention: 用户明确禁止某方案时，urgent 消息应更强调"禁止 X"而非"建议 Y"。Director 审批前应视觉确认修改是否符合用户指令
+  status: active
+  fix: 回退缩图，要求 Agent 用补充 Related Work 文字的方式填满空间
+- id: M067
+  date: '2026-05-29'
+  category: communication
+  severity: high
+  summary: CoRL 2026 DDL 标错为 5/29（实际 5/28 AoE），发现时已过截止
+  root_cause: ROADMAP 中 DDL 标为 2026-05-29，未交叉验证官方 Instruction for Authors 页面。官方明确写
+    "paper submission deadline is Thursday (5/28) EOD rather than Friday"，AoE 换算后截止为
+    5/29 11:59 UTC。发现时已过该时间点。DDL 来源可能是早期外部 deadline 追踪网站（部分标 5/29）而非官方一手信息。
+  prevention: 1. DDL 必须从会议官网 Instruction for Authors / Call for Papers 页面直接获取，不依赖第三方
+    deadline 追踪网站；2. 立项时 WebSearch 验证 DDL 并记录来源 URL；3. DDL 前 48h 再次验证一次；4. 注意 "EOD"
+    vs "AoE" vs "UTC" 时区差异，统一换算为 UTC 记录
+  status: active
+  context: 多个来源确认 CoRL 2026 paper deadline 是 May 28 AoE (= May 29 11:59 UTC)。我们在 5/29
+    下午才发现这一差异。Feishu API 配额耗尽导致无法通知用户，Manager 已被通知三次但尚无回音。用户可能已自行提交（abstract deadline
+    5/25 已过，说明用户有提交 slot），但无法确认。
+  fix: 已三次报 Manager 紧急通知用户。如 DDL 确已错过，需联系 OpenReview Chair (Carlo Sferrazza) 申请例外，或转投下一个窗口。
+- id: M068
+  date: '2026-05-29'
+  category: communication
+  severity: low
+  summary: Reviewer 数据溯源错误导致正确数值被错误修改后回退
+  root_cause: Reviewer 声称 reeval_lora_s0_30k_v2 的 CAR=56.5%，实际为 57.0%。56.5% 来自 eval_multiseed_lora_s0_eseed42（eval_seed=42），Reviewer
+    混淆了不同 eval_seed 的实验。Director 未交叉验证就批准修改。
+  prevention: Reviewer 指出数据不一致时，Director 先要求 Agent 溯源（查 registry per-task 原始数据），确认后再批准修改。涉及不同
+    eval_seed 的实验数据时尤其注意区分来源。
+  status: active
+  fix: Paper Agent 发现错误并提供 per-task 交叉验证，Director 批准回退恢复 57.0% 和 -5.1pp。
+  related_decisions:
+  - D049

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "35f964e2fe873b1a7b95",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops eval s0 l005 cuda1",
+  "task_key": "worker_ops_eval_s0_l005_cuda1_20260525T181347",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval_s0_l005_cuda1_20260525T181347_result.json",
+    "occurrence": 1,
+    "bytes": 605,
+    "sha256": "f7735c4d30fa176c6544c905a4f35357cc1d31b97107bece2b93499b674b8b7d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 1 还在加载中（模型权重加载中，尚未占满显存）。日志显示已在创建模型，进程正常运行。\n\n**总结：**\n- `eval_pi05_a1_30k_s0_l005_r4` 已成功启动在 westd-35807 cuda:1\n- Checkpoint: `/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0_l005/30000`\n- 输出路径: `/root/autodl-tmp/eval_results/eval_s0_l005_30k_final.json`\n- 修正了两个 CLI 错误：`--checkpoint_path` → `--checkpoint`，添加了 `--suite safelibero_object` 和 `--pi05`\n- tmux session: `eval_pi05_a1_30k_s0_l005_r4`，PID 6658"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-s0-l005-cuda1.md"
+}

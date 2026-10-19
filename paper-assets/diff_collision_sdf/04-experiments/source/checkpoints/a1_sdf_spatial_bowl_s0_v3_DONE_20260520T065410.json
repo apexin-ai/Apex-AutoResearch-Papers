@@ -1,0 +1,41 @@
+{
+  "exp_id": "a1_sdf_spatial_bowl_s0_v3",
+  "project": "diff_collision_sdf",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T00:45:10.188Z",
+    "updated_at": "2026-05-20T06:54:10.929Z",
+    "hypothesis": "SDF auxiliary task (decoder+EE extractor) improves collision awareness — Phase 1 warmup SDF decoder (frozen backbone), Phase 2 unfreeze LoRA+SDF, expecting CAR improvement over baseline with TSR drop <10%",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 python scripts/train_a1_sdf_aux.py --scene spatial_bowl --seed 0 --save_interval 500 --batch_size 32",
+      "server": "westd-35807",
+      "data_path": "/root/autodl-tmp/colliforce_data/safelibero_spatial/",
+      "data_count": 5068,
+      "model_name": "LoRA fine-tune (gemma_2b_lora + gemma_300m_lora) + SDF decoder + EE extractor",
+      "seed": 0,
+      "gpu": "cuda:3",
+      "pid": 123362,
+      "log_path": "/root/autodl-tmp/logs/a1_sdf_spatial_bowl_s0_v3.log",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/a1_sdf_spatial_bowl/a1_sdf_spatial_bowl_seed0/6000/",
+      "hyperparams": {
+        "lr": "2.5e-5",
+        "batch_size": 32,
+        "num_train_steps": 30000,
+        "sdf_loss_weight": 0.1,
+        "ee_fk_loss_weight": 0.01,
+        "phase1_steps": 5000,
+        "extra_delta_transform": false,
+        "save_interval": 500,
+        "lora_warmup_steps": 100
+      }
+    },
+    "notes": "[2026-05-20 14:47] CRASHED at step 6499/30000 — disk full. Error: safetensors_rust.SafetensorError: I/O error: No space left on device (os error 28). Crashed during save_checkpoint at step 6500. /dev/md127 (autodl-tmp) 350G 100% full. Last successful checkpoint: step 6000. Last loss=0.2779, lr=2.31e-05. Ran ~6h19m. Checkpoint path: /root/autodl-tmp/checkpoints/a1_sdf_spatial_bowl/a1_sdf_spatial_bowl_seed0/ (steps 500-6000 complete, tmp_6500 incomplete).",
+    "conclusion": "failed",
+    "completed_at": "2026-05-20T06:53:07.601Z"
+  },
+  "timestamp": "2026-05-20T06:54:10.955310+00:00",
+  "trigger": "update_registry"
+}

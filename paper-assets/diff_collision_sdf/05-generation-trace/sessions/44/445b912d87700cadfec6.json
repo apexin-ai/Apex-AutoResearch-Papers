@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "445b912d87700cadfec6",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "train lora baseline s2",
+  "task_key": "worker_train_lora_baseline_s2_20260526T023547",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_lora_baseline_s2_20260526T023547_result.json",
+    "occurrence": 1,
+    "bytes": 464,
+    "sha256": "9e1715f645ae03f01f9c69cd98bf61c6234546ea3748b57e6d1c71b4973e136a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功启动并开始迭代：\n\n- **服务器**: westd-45947, GPU 0 (19093 MiB / 97887 MiB)\n- **进度**: step 16/30000，~1.2s/it\n- **Loss**: ~0.13（Phase 1 LoRA frozen，正常初始值）\n- **预估总时长**: ~10h（与 seed0/seed1 的 ~4.6s/step 相比更快，因 RTX PRO 6000 96GB 够大无需 gradient checkpointing 开销；稳定后速度可能回到 ~1.2s/step）\n- **Registry**: `train_pi05_lora_baseline_s2` → RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-lora-baseline-s2.md"
+}

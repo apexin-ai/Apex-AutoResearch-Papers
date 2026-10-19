@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "18d0ab84a892da7a70cd",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops step7k overfit check",
+  "task_key": "worker_ops_step7k_overfit_check_20260523T095945",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_step7k_overfit_check_20260523T095945_result.json",
+    "occurrence": 1,
+    "bytes": 734,
+    "sha256": "448c2cc873d66763c4cecc19f226768babe2036a0660c8e3b4d0c8da8a4f367a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "检查完毕，报告已写入 `artifacts/step7k_overfit_check.md`。核心发现：\n\n**训练状态**：6/6 全部正常运行，GPU 满载 ~27GB。s0 已到 step ~11230 (37%)，s1/s2 在 step ~8700 (29%)。\n\n**Overfit 警告**：\n- s0 的 action_loss 均值已降至 **0.0176-0.0179**，低于 0.02 警戒线\n- s1/s2 在 0.020 边界，预计 step ~11000 也会进入 < 0.02 区域\n\n**Lambda 区分度**：**完全没有**。l005 vs l01 的 action_loss 差异 < 2%，全部在噪声范围内。lambda=0.05 和 0.1 对 action 学习无影响。\n\n**grad_norm**：稳定在 0.09-0.10，无突变，但高于预期的 0.04-0.05。\n\n**异常**：s2_l01 的 SDF loss (~0.067) 是其他 run (~0.034) 的 2 倍。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-step7k-overfit-check.md"
+}

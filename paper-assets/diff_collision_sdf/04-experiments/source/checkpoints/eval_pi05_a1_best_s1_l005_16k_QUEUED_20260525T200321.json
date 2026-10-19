@@ -1,0 +1,29 @@
+{
+  "exp_id": "eval_pi05_a1_best_s1_l005_16k",
+  "project": "diff_collision_sdf",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T19:47:51.137Z",
+    "updated_at": "2026-05-25T20:03:21.554Z",
+    "hypothesis": "Pi0.5+A1 best checkpoint eval (seed1, λ=0.005, step 16000): 验证best-loss checkpoint是否比30K final checkpoint有更好的TSR/CAR平衡。seed1 best_loss=0.01143 at step 16K。与seed2 best(step10K)对比模式一致性。",
+    "parent": "train_pi05_a1_obj_s1_l005",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate libero && cd /root/colliforce-vla && python scripts/eval_safelibero.py --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed1_l005/best --config_name pi05_libero --model_type lora_baseline --suite safelibero_object --pi05 --gpu 2 --output_path /root/autodl-tmp/eval_results/eval_s1_l005_best_16k.json\"",
+      "server": "westd-35807",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "134335",
+      "log_path": "~/runs/diff_collision_sdf/eval_pi05_a1_best_s1_l005_16k.log",
+      "submitted_at": "2026-05-25T19:54:40.176Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-25T20:03:21.682037+00:00",
+  "trigger": "update_registry"
+}

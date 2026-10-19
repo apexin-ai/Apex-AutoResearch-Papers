@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2ebb10a31812c6ba6a25",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "diagnose oracle true gt failed",
+  "task_key": "worker_diagnose_oracle_true_gt_failed_20260522T210819",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_oracle_true_gt_failed_20260522T210819_result.json",
+    "occurrence": 1,
+    "bytes": 1591,
+    "sha256": "f8409c46a7a2ec9b796166a565e902e27ac6361fe823548ac319c701dd2f29f3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论\n\n**两个实验都没有崩溃，而是正常完成了。** cron 报 \"Process exited without valid W&B metrics\" 是误报——这些是 eval-only 的运行，输出 JSON 文件而非 W&B metrics。\n\n### 实验 1: oracle_true_gt_adaptive_alpha_v11\n\n| 项目 | 结果 |\n|------|------|\n| 状态 | **正常完成** |\n| 运行范围 | safelibero_object suite, 4 tasks × 40 episodes = 160 episodes |\n| 运行时间 | 04:04 → 04:44 (~40 min) |\n| Avg TSR | 0.0% |\n| Avg CAR | 75.0% |\n| 结果文件 | `/root/autodl-tmp/eval_results/oracle_true_gt_adaptive_alpha_v11.json` ✓ 完整 |\n\n### 实验 2: oracle_true_gt_fixed_alpha_v11\n\n| 项目 | 结果 |\n|------|------|\n| 状态 | **正常完成** |\n| 运行范围 | safelibero_object suite, 4 tasks × 40 episodes = 160 episodes |\n| 运行时间 | 04:04 → 04:44 (~40 min) |\n| Avg TSR | 0.0% |\n| Avg CAR | 73.1% |\n| 结果文件 | `/root/autodl-tmp/eval_results/oracle_true_gt_fixed_alpha_v11.json` ✓ 完整 |\n\n### \"失败\" 根因\n\n不是代码 bug 也不是资源问题。cron 监控期望 W&B metrics 作为成功信号，但 eval 脚本只输出本地 JSON，不写 W&B。进程 exit code 为 0（正常退出）。\n\n日志中出现的 `OutOfMemoryError: out of resource: triton_mm` 是 PyTorch Inductor autotuning 时某些 triton kernel 配置被跳过的正常警告，不影响执行。\n\n### 结果数据完整可恢复\n\n两个 JSON 文件均包含完整的 4 tasks × 40 episodes 粒度数据（含 per-episode success/collision/sdf_min/refine_count 等字段）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-oracle-true-gt-failed.md"
+}

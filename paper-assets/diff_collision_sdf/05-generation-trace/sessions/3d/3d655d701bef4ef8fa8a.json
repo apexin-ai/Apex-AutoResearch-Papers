@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3d655d701bef4ef8fa8a",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops collect eval a1 lora spatial v11",
+  "task_key": "worker_ops_collect_eval_a1_lora_spatial_v11_20260522T194614",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_collect_eval_a1_lora_spatial_v11_20260522T194614_result.json",
+    "occurrence": 1,
+    "bytes": 2041,
+    "sha256": "8b5d07291207b4ea2db3d9af0497211934c024e66e63124e2892d765035957d3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。以下是完整结果。\n\n---\n\n## eval_a1_lora_spatial_v11 结果：NEGATIVE\n\n### 1. 四任务结果表\n\n| Task | Task Name | TSR | CAR | Avg Max Disp | Safe Episodes |\n|------|-----------|-----|-----|-------------|---------------|\n| 0 | pick bowl between plate & ramekin → plate | 0.5% (1/200) | 1.5% (3/200) | 0.258m | 3 |\n| 1 | pick bowl on ramekin → plate | 0% (0/200) | 0% (0/200) | 0.196m | 0 |\n| 2 | pick bowl next to ramekin → plate | 0% (0/200) | 0% (0/200) | 0.214m | 0 |\n| 3 | pick bowl on stove → plate | 0% (0/200) | 1.5% (3/200) | 0.199m | 3 |\n| **Avg** | | **0.1%** | **0.8%** | **0.217m** | **6/800** |\n\n### 2. Baseline 对比\n\n| 方法 | Avg CAR | Avg TSR |\n|------|---------|---------|\n| LoRA baseline spatial | 0% | — |\n| Full-FT baseline spatial | 0% | — |\n| **A1 SDF aux spatial** | **0.8%** | **0.1%** |\n\n### 3. Fake Safety 诊断：**确认 100% fake safety**\n\n所有 6 个\"安全\" episode 的 `max_displacement = 0.0000`——机器人完全不动（action collapse）。\n\n| Task | Safe Episode | Max Displacement | Steps |\n|------|-------------|-----------------|-------|\n| 0 | ep 33 | 0.0000 | 300 |\n| 0 | ep 119 | 0.0000 | 300 |\n| 0 | ep 183 | 0.0000 | 300 |\n| 3 | ep 29 | 0.0000 | 300 |\n| 3 | ep 142 | 0.0000 | 300 |\n| 3 | ep 169 | 0.0000 | 300 |\n\n碰撞 step 分布（绝大多数碰撞发生在前 20 步）：\n- Task 0: median=12, p75=15\n- Task 1: median=17, p75=61\n- Task 2: median=16, p75=65\n- Task 3: median=18, p75=58\n\n**结论**：过滤 fake safety 后 effective CAR=0%，与两个 baseline 完全一致。EE-only SDF auxiliary loss 在 spatial 场景无效——spatial 碰撞本质是 arm-body 碰撞，EE SDF 信号无法覆盖。\n\n### 4. GPU 状态\n\n| GPU | Memory Used | Utilization | 用途 |\n|-----|------------|-------------|------|\n| 0 | 1 MiB | 0% | 空闲 |\n| 1 | 1 MiB | 0% | 空闲 |\n| 2 | 8608 MiB | 0% | eval_a3_object_m024fix_v11 |\n| 3 | 8546 MiB | 23% | eval_a1_lora_object_v11_rerun |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-collect-eval-a1-lora-spatial-v11.md"
+}

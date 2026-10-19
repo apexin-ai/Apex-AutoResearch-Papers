@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "48e60ca54ae9950609b7",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "recon eval status check",
+  "task_key": "worker_recon_eval-status-check_20260528T101542",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_recon_eval-status-check_20260528T101542_result.json",
+    "occurrence": 1,
+    "bytes": 1333,
+    "sha256": "ab44b900c2c88c8c8b4bb1bbd377350e7c3df2f3fc73898429a92aa9b7603cd3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n| exp_id | 服务器 | 状态 | Avg TSR | Avg CAR |\n|--------|--------|------|---------|---------|\n| eval_multiseed_lora_s0_eseed0 | westd-35807 | **完成** | 55.5% | 53.0% |\n| eval_multiseed_lora_s0_eseed99 | westd-35807 | **完成** | 52.0% | 57.5% |\n| eval_multiseed_sdf_l01_s0_eseed0 | westd-35807 | **完成** | 48.5% | 52.5% |\n| eval_multiseed_sdf_l01_s0_eseed99 | westd-35807 | **完成** | 46.5% | 57.0% |\n| eval_multiseed_lora_s1_eseed0 | westd-45947 | **失败** | — | — |\n| eval_multiseed_lora_s1_eseed99 | westd-45947 | **失败** | — | — |\n\n### westd-35807: 4/4 成功\n\nJSON 已保存到 `/root/autodl-tmp/eval_results/`，均 EXIT_CODE=0。\n\n### westd-45947: 2/2 失败\n\n**原因**: `RuntimeError` — state_dict key 不匹配。checkpoint 路径 `/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed1/30000/model.safetensors` 中的 key 使用 `layernorm.dense.weight/bias` 格式，但模型期望 `layernorm.weight` 格式（无 dense 层）。同时缺少 `action_time_mlp_*` 和 `time_mlp_*` 等 key。\n\n这是代码版本与 checkpoint 不匹配的问题——westd-45947 上的代码或模型配置和 westd-35807 不一致。需要同步代码后重跑这两个 eval，预计单个 eval ~25min，DDL 前可完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/recon-eval-status-check.md"
+}

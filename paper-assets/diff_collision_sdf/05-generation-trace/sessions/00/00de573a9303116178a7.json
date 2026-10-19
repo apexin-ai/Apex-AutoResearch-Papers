@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "00de573a9303116178a7",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "code launch baselines s1 obj",
+  "task_key": "worker_code_launch_baselines_s1_obj_20260519T201140",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_launch_baselines_s1_obj_20260519T201140_result.json",
+    "occurrence": 1,
+    "bytes": 814,
+    "sha256": "13e6dde2bc0160545d7184f54307bb0c5cb6505587eeb0c487af361f0d11b050"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个 GPU 全部在跑：\n\n| GPU | 实验 | PID | 显存 | GPU Util |\n|-----|------|-----|------|----------|\n| cuda:0 | baseline_spatial_bowl seed 0 | 49555 | 37358MiB | 9% |\n| cuda:1 | baseline_spatial_bowl seed 1 | 58919 | 37358MiB | 99% |\n| cuda:2 | baseline_object_pudding seed 0 | 59904 | 20750MiB (加载中) | 100% |\n\n启动完成。\n\n**修正说明**：任务中写的 `--scene object_chocolate` 在脚本中不存在，SCENE_CONFIG 只有 `spatial_bowl` 和 `object_pudding`，已用 `object_pudding` 替代。另外脚本内部会用 `--gpu` 参数覆盖 `CUDA_VISIBLE_DEVICES`，所以需要用 `--gpu 1` / `--gpu 2` 而非环境变量。\n\n日志路径：\n- `/root/autodl-tmp/logs/baseline_spatial_bowl_seed1.log`\n- `/root/autodl-tmp/logs/baseline_object_pudding_seed0.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-launch-baselines-s1-obj.md"
+}

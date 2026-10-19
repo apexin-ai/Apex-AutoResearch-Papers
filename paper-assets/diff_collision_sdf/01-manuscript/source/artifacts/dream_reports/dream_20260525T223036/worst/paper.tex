@@ -1,0 +1,365 @@
+\documentclass[letterpaper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+\title{Rethinking VLA Safety Evaluation:\\When 98\% of Collision Avoidance is an Illusion}
+
+\author{Anonymous}
+
+\begin{document}
+\maketitle
+
+%============================================================================
+\begin{abstract}
+Collision avoidance rate (CAR) is the de facto safety metric for vision-language-action (VLA) models in manipulation. We show that CAR is systematically contaminated: on SafeLIBERO, a finetuned Pi0 model achieves 91.5\% CAR while 99.6\% of its ``safe'' episodes exhibit obstacle displacement below 0.1\,mm---the robot is frozen, not avoiding collisions. We identify three distinct failure modes that inflate CAR across model families: action collapse (Pi0), geometric path safety (Pi0.5), and random incompetence (OpenVLA). To address this, we propose \emph{displacement-filtered CAR}, which conditions safety credit on verified end-effector motion exceeding a minimum threshold. As a case study, we evaluate SDF auxiliary training loss as a geometric supervision signal and report a valuable negative finding: LoRA finetuning alone achieves equivalent CAR (+23\,pp over baseline) without any geometric loss, indicating that demonstration data already encodes sufficient avoidance information. Furthermore, SDF training causes irreversible task damage that persists even after the auxiliary loss is removed. Our results establish that (1) standard CAR should not be used without displacement verification, and (2) naive geometric supervision is neither necessary nor sufficient for improving collision avoidance in VLAs.
+\end{abstract}
+
+%============================================================================
+\section{Introduction}
+\label{sec:intro}
+
+Safety evaluation for vision-language-action (VLA) models in robotic manipulation relies heavily on collision avoidance rate (CAR)---the fraction of episodes where the robot does not contact obstacles. A high CAR is interpreted as evidence that the policy has learned to navigate around objects safely. We demonstrate that this interpretation is fundamentally flawed.
+
+Through systematic evaluation spanning 6000+ episodes across three model families (Pi0, Pi0.5, OpenVLA) and two manipulation scenes (object\_pudding, spatial\_bowl), we reveal that high CAR can arise from at least three mechanisms unrelated to genuine collision avoidance:
+\begin{enumerate}
+    \item \textbf{Action collapse}: The model outputs near-zero actions, the robot remains stationary, and CAR is trivially high (Pi0+LoRA+SDF: CAR=91.5\%, TSR=0\%).
+    \item \textbf{Geometric path safety}: A capable model's natural trajectory happens to avoid obstacles without any explicit avoidance behavior (Pi0.5 baseline: 98.2\% of safe episodes show no intentional avoidance).
+    \item \textbf{Random incompetence}: An untrained model moves erratically but occasionally avoids obstacles by chance (OpenVLA zero-shot: CAR=42\%, TSR=2\%).
+\end{enumerate}
+
+We propose \emph{displacement-filtered CAR} as a corrective metric that requires verified end-effector displacement above a minimum threshold before crediting an episode as ``safely avoided.'' This simple filtering eliminates the dominant contamination modes and reveals the true safety profile of VLA policies.
+
+As a methodological case study, we investigate whether SDF (signed distance function) auxiliary training loss can produce \emph{genuine} collision avoidance. Our findings constitute an informative negative result: while SDF training does produce real avoidance motion, LoRA finetuning without any geometric supervision achieves statistically equivalent CAR improvement. Moreover, SDF training induces irreversible representational damage---task performance cannot be recovered even after removing the auxiliary loss. These findings suggest that safety improvements in VLAs are better pursued through data curation than auxiliary geometric losses.
+
+\paragraph{Contributions.}
+(1) We identify and taxonomize three systematic failure modes that contaminate CAR in VLA evaluation.
+(2) We propose displacement-filtered CAR as a diagnostic tool for distinguishing real from fake collision avoidance.
+(3) We demonstrate that LoRA capacity is sufficient for collision avoidance learning from demonstrations, making explicit geometric supervision unnecessary.
+(4) We document that SDF auxiliary training causes irreversible task damage---a cautionary finding for the training-time safety intervention paradigm.
+
+%============================================================================
+\section{Related Work}
+\label{sec:related}
+
+\paragraph{VLA Safety Evaluation.}
+SafeLIBERO~\cite{safelibero} introduced collision avoidance rate as a primary safety metric for manipulation policies. Subsequent work has adopted CAR as standard without questioning whether high values reflect genuine avoidance behavior. Our work reveals that CAR without displacement verification is systematically unreliable.
+
+\paragraph{Vision-Language-Action Models.}
+Pi0~\cite{pi0} and Pi0.5 represent the state of the art in generalist manipulation policies. OpenVLA~\cite{openvla} provides an open-weight alternative. We evaluate across these families to demonstrate that metric contamination is model-agnostic.
+
+\paragraph{Safety through Geometric Supervision.}
+SDF-based collision avoidance has been explored in classical motion planning. Recent work has proposed integrating geometric losses into VLA training. We provide the first controlled study showing that such supervision is neither necessary (LoRA alone suffices) nor sufficient (irreversible task damage) for VLA safety.
+
+%============================================================================
+\section{Method: Displacement-Filtered CAR}
+\label{sec:method}
+
+\subsection{Standard CAR and Its Failure Modes}
+
+Standard collision avoidance rate is defined as:
+\begin{equation}
+    \text{CAR} = \frac{|\{e : \max_t d_{\text{obs}}(e, t) < \epsilon\}|}{|E|}
+\end{equation}
+where $d_{\text{obs}}(e, t)$ is obstacle displacement at timestep $t$ in episode $e$, $\epsilon$ is the collision threshold (typically 0.1\,mm), and $E$ is the episode set.
+
+This metric is agnostic to \emph{why} no collision occurred. A frozen robot trivially achieves high CAR. We identify this as the core failure: CAR does not distinguish between ``avoided collision through skillful motion'' and ``avoided collision through inaction.''
+
+\subsection{Displacement-Filtered CAR}
+
+We propose conditioning safety credit on verified motion:
+\begin{equation}
+    \text{CAR}_{\text{filtered}} = \frac{|\{e : \max_t d_{\text{obs}}(e,t) < \epsilon \;\wedge\; \Delta_{\text{EE}}(e) > \delta\}|}{|\{e : \Delta_{\text{EE}}(e) > \delta\}|}
+\end{equation}
+where $\Delta_{\text{EE}}(e) = \max_t \|\mathbf{p}_{\text{EE}}(t) - \mathbf{p}_{\text{EE}}(0)\|$ is the maximum end-effector displacement from start, and $\delta$ is the minimum motion threshold (we use $\delta = 5$\,mm based on SafeLIBERO action scale).
+
+This filters out episodes where the robot did not move meaningfully, restricting safety credit to episodes with genuine interaction.
+
+\subsection{Fake Safety Rate}
+
+We define the \emph{fake safety rate} as the fraction of nominally safe episodes that would be reclassified under displacement filtering:
+\begin{equation}
+    \text{FSR} = \frac{|\{e : d_{\text{obs}} < \epsilon \;\wedge\; \Delta_{\text{EE}}(e) \leq \delta\}|}{|\{e : d_{\text{obs}} < \epsilon\}|}
+\end{equation}
+
+An FSR near 1.0 indicates that nearly all apparent safety is illusory.
+
+%============================================================================
+\section{Experiments}
+\label{sec:experiments}
+
+We conduct experiments on the SafeLIBERO benchmark using three VLA model families and two manipulation scenes. All evaluations use 200 episodes per condition unless otherwise noted.
+
+\subsection{Experimental Setup}
+
+\paragraph{Models.} Pi0 with LoRA+SDF finetuning (A1 configuration), Pi0.5 zero-shot and with LoRA/SDF finetuning, and OpenVLA-7B zero-shot.
+
+\paragraph{Scenes.} \texttt{object\_pudding} (single obstacle, 4 tasks) and \texttt{spatial\_bowl} (multi-obstacle spatial arrangement, 4 tasks).
+
+\paragraph{Metrics.} Task success rate (TSR), collision avoidance rate (CAR), maximum end-effector displacement ($\Delta_{\text{EE}}$), and fake safety rate (FSR).
+
+\subsection{Fake Safety is Pervasive (Claim 1)}
+\label{sec:exp_fake}
+
+\begin{table}[t]
+\centering
+\caption{Cross-model fake safety analysis on \texttt{object\_pudding}. FSR indicates the fraction of nominally safe episodes attributable to non-avoidance mechanisms.}
+\label{tab:fake_safety}
+\begin{tabular}{lccccc}
+\toprule
+Model & TSR & CAR & $\Delta_{\text{EE}}$ (m) & FSR & Failure Mode \\
+\midrule
+Pi0 (A1 LoRA+SDF) & 0\% & 91.5\% & 0.018 & 99.6\% & Action collapse \\
+Pi0.5 (zero-shot) & 74.7\% & 26.8\% & 0.150 & 98.2\% & Geom.\ path safety \\
+OpenVLA-7B (zero-shot) & 2\% & 42\% & 0.165 & 42\% & Random incompetence \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:fake_safety} presents the central result. Pi0 (A1) achieves 91.5\% CAR---a number that would normally indicate excellent safety. However, its task success rate is 0\% and end-effector displacement averages only 18\,mm. The robot is effectively frozen. Of its safe episodes, 99.6\% show obstacle displacement below 0.1\,mm (median: 0.3\,$\mu$m), confirming action collapse rather than avoidance.
+
+Pi0.5, despite being a capable model (TSR=74.7\%), shows 98.2\% fake safety in its safe episodes---these arise from geometric path safety where the natural trajectory avoids obstacles without intentional avoidance behavior.
+
+OpenVLA-7B provides a third failure mode: with TSR=2\% and erratic motion ($\Delta_{\text{EE}}$=0.165\,m), its 42\% CAR reflects random trajectories that happen to miss obstacles. Approximately 15\% of episodes terminated early due to action-space NaN values, adding noise.
+
+\begin{table}[t]
+\centering
+\caption{Displacement verification for Pi0 (A1), 50-episode subset. Obstacle and EE displacement confirm action collapse in safe episodes.}
+\label{tab:displacement_detail}
+\begin{tabular}{lccc}
+\toprule
+Statistic & Obstacle Disp (mm) & EE Disp (mm) & Interpretation \\
+\midrule
+Median safe episode & 0.0003 & 8.2 & Near-zero movement \\
+95th percentile & 0.005 & 22.1 & Still negligible \\
+Maximum safe episode & 0.08 & 41.3 & Below threshold \\
+Collision episode mean & 42.5 & 185.6 & Real motion \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:displacement_detail} provides the displacement distribution for Pi0 (A1). The contrast between safe episodes (sub-millimeter obstacle displacement, $<$50\,mm EE displacement) and collision episodes (42.5\,mm obstacle displacement, 185.6\,mm EE displacement) confirms that safety and motion are anticorrelated---a hallmark of action collapse.
+
+\subsection{LoRA Capacity is Sufficient for Collision Avoidance}
+\label{sec:exp_lora}
+
+\begin{table}[t]
+\centering
+\caption{SDF attribution analysis on \texttt{object\_pudding} (30K steps). LoRA-only achieves equivalent CAR to LoRA+SDF, indicating geometric supervision is unnecessary.}
+\label{tab:sdf_attribution}
+\begin{tabular}{lcccccc}
+\toprule
+Condition & Seeds & TSR & CAR & $\Delta_{\text{EE}}$ (m) & FSR & $\Delta$CAR vs Base \\
+\midrule
+Pi0.5 baseline & 3 & 74.7\% & 26.8\% & 0.150 & 98.2\% & --- \\
+Pi0.5 + LoRA only & 2 & 35.5\% & 50.0\% & 0.28 & 35\% & +23.2\,pp \\
+Pi0.5 + LoRA + SDF ($\lambda$=0.005) & 3 & 6.8\% & 50.5\% & 0.50 & 0\% & +23.7\,pp \\
+Pi0.5 + LoRA + SDF ($\lambda$=0.01) & 3 & 6.8\% & 52.8\% & 0.49 & 0\% & +26.0\,pp \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:sdf_attribution} presents the key negative finding. LoRA finetuning \emph{without} any SDF geometric supervision achieves CAR=50.0\%---statistically indistinguishable from LoRA+SDF (50.5--52.8\%). The SDF delta over LoRA-only is merely +2.5\,pp, well within the confidence interval of 2-seed evaluation.
+
+The critical difference lies in \emph{how} the CAR is achieved:
+\begin{itemize}
+    \item LoRA-only: 35\% fake safety (partial collapse contributes), 65\% real avoidance learned from demonstration data.
+    \item LoRA+SDF: 0\% fake safety, all avoidance is geometrically genuine, but TSR collapses from 35.5\% to 6.8\%.
+\end{itemize}
+
+SDF converts fake avoidance to real avoidance but does not improve \emph{total} avoidance. Meanwhile, it destroys 28.7\,pp of task success. The net effect of geometric supervision is negative.
+
+\begin{table}[t]
+\centering
+\caption{SDF effect decomposition. SDF's only identifiable contribution is converting fake safety to real safety at extreme task cost.}
+\label{tab:sdf_decomposition}
+\begin{tabular}{lcccc}
+\toprule
+Metric & LoRA-only & LoRA+SDF (avg) & $\Delta$ & Significance \\
+\midrule
+CAR (\%) & 50.0 & 52.5 & +2.5 & Not significant \\
+TSR (\%) & 35.5 & 6.8 & $-$28.7 & Significant \\
+$\Delta_{\text{EE}}$ (m) & 0.28 & 0.50 & +0.22 & SDF increases motion \\
+FSR (\%) & 35 & 0 & $-$35 & Converts fake$\to$real \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Interpretation.} Demonstration data in SafeLIBERO already encodes collision-free trajectories. LoRA finetuning learns these trajectory patterns implicitly. Explicit geometric supervision via SDF is redundant for the CAR metric---its only effect is to make the avoidance ``more real'' (verified by displacement) while catastrophically degrading task execution.
+
+\subsection{SDF Effect Does Not Generalize Across Scenes}
+\label{sec:exp_spatial}
+
+\begin{table}[t]
+\centering
+\caption{Cross-scene SDF effect. The modest CAR gain on \texttt{spatial\_bowl} (+9\,pp) is likely explained by LoRA capacity rather than geometric supervision.}
+\label{tab:cross_scene}
+\begin{tabular}{lcccccc}
+\toprule
+Scene & Base CAR & SDF CAR & $\Delta$ (pp) & Base TSR & SDF TSR & TSR Cost (pp) \\
+\midrule
+object\_pudding & 26.8\% & 52.5\% & +25.7 & 74.7\% & 6.8\% & $-$67.9 \\
+spatial\_bowl & 13.0\% & 22.0\% & +9.0 & 57.5\% & 5.0\% & $-$52.5 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:cross_scene} shows that even the apparent SDF effect on \texttt{object\_pudding} (+25.7\,pp) is confounded by LoRA capacity. On \texttt{spatial\_bowl}, the SDF-attributed CAR gain drops to +9\,pp---likely not statistically significant over 200 episodes and plausibly explained entirely by LoRA.
+
+The \texttt{spatial\_bowl} scene presents a harder geometric challenge: the bowl target is surrounded by multiple obstacles (plate, ramekin, cabinet), creating contradictory SDF gradients. Per-task analysis shows uniformly low TSR (0--12\%) confirming that SDF-induced task damage is scene-agnostic, while the safety benefit is scene-specific and marginal.
+
+\begin{table}[t]
+\centering
+\caption{Per-task results on \texttt{spatial\_bowl} after SDF training (30K steps, $\lambda$=0.005).}
+\label{tab:spatial_detail}
+\begin{tabular}{lccc}
+\toprule
+Task & TSR (\%) & CAR (\%) & $\Delta_{\text{EE}}$ (m) \\
+\midrule
+pick\_bowl\_between\_plate\_ramekin & 4 & 18 & 0.32 \\
+pick\_bowl\_on\_ramekin & 0 & 28 & 0.38 \\
+pick\_bowl\_on\_stove & 12 & 20 & 0.34 \\
+pick\_bowl\_on\_cabinet & 4 & 22 & 0.36 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Phase 2: SDF Training Causes Irreversible Damage}
+\label{sec:exp_phase2}
+
+A natural question is whether SDF's safety encoding can be preserved while recovering task performance by removing the auxiliary loss after initial training. We test this ``two-phase'' strategy: train with SDF for 10K steps, then continue with action loss only ($\lambda=0$) for 20K additional steps.
+
+\begin{table}[t]
+\centering
+\caption{Phase 2 recovery trajectory. After SDF removal, task performance barely recovers while safety encoding dissipates---the model is strictly worse than LoRA-only on both axes.}
+\label{tab:phase2}
+\begin{tabular}{lcccc}
+\toprule
+Stage & TSR (\%) & CAR (\%) & $\Delta_{\text{EE}}$ (m) & FSR (\%) \\
+\midrule
+Pi0.5 baseline & 74.7 & 26.8 & 0.150 & 98.2 \\
+After 10K SDF ($\lambda$=0.005) & 9.0 & 55.5 & 0.505 & 0 \\
+After Phase 2 $\lambda$=0 (20K addtl.) & 12.0 & 30.0 & 0.280 & 22 \\
+LoRA-only (reference) & 35.5 & 50.0 & 0.280 & 35 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:phase2} reveals a doubly negative outcome:
+\begin{enumerate}
+    \item \textbf{Task damage is irreversible.} TSR recovers from 9\% to only 12\% (vs.\ 35.5\% for LoRA-only trained from scratch). Three of four tasks show essentially zero recovery (Table~\ref{tab:phase2_tasks}).
+    \item \textbf{Safety encoding is not persistent.} CAR drops from 55.5\% to 30\% after removing SDF loss---below even LoRA-only's 50\%. The geometric avoidance behavior dissipates within 20K steps of pure action loss training.
+\end{enumerate}
+
+The Phase 2 model is strictly dominated by LoRA-only on \emph{both} task success and collision avoidance. SDF training is a one-way door: it permanently degrades task ability, and the safety it induces is transient.
+
+\begin{table}[t]
+\centering
+\caption{Per-task Phase 2 recovery. Only \texttt{chocolate\_pudding} (the easiest task) shows marginal recovery.}
+\label{tab:phase2_tasks}
+\begin{tabular}{lcccc}
+\toprule
+Task & Base TSR & 10K SDF TSR & Phase 2 TSR & Recovered? \\
+\midrule
+orange\_juice & 64\% & 0\% & 4\% & No \\
+chocolate\_pudding & 86\% & 36\% & 38\% & Marginal \\
+milk & 66\% & 0\% & 4\% & No \\
+bbq\_sauce & 76\% & 0\% & 2\% & No \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Mechanistic interpretation.} LoRA adapters have limited capacity (rank 8--16). During SDF training, these parameters are reconfigured to encode geometric avoidance at the expense of task-relevant representations. Subsequent action-only training converges to a new local minimum that is inferior to direct LoRA training---the representational landscape has been permanently altered. The loss converges (0.0088, comparable to LoRA-only's 0.0076--0.0088), but convergence in loss does not imply recovery of task-relevant structure.
+
+\subsection{Lambda Dose-Response}
+\label{sec:exp_lambda}
+
+Given that LoRA-only achieves CAR$\approx$50\% and SDF provides no additional CAR benefit, we cancelled the planned $\lambda$=0.1 experiment. The available 3-point curve ($\lambda \in \{0, 0.005, 0.01\}$, where $\lambda=0$ corresponds to LoRA-only) demonstrates:
+\begin{itemize}
+    \item \textbf{CAR plateau}: 50.0\%, 50.5\%, 52.8\% --- no dose-dependent safety improvement.
+    \item \textbf{TSR monotonic decrease}: 35.5\%, 6.8\%, 6.8\% --- geometric loss destroys task performance at any non-zero weight.
+\end{itemize}
+
+Higher $\lambda$ would only further degrade TSR without breaking through the CAR ceiling established by LoRA capacity alone.
+
+%============================================================================
+\section{Discussion}
+\label{sec:discussion}
+
+\paragraph{What doesn't work and why.}
+Our results establish a clear negative finding: SDF auxiliary training loss is neither necessary nor sufficient for improving collision avoidance in VLAs.
+
+\emph{Not necessary}: LoRA finetuning on demonstration data achieves equivalent CAR (+23\,pp over baseline) without any geometric supervision. The safety-relevant trajectory information is already encoded in the demonstrations.
+
+\emph{Not sufficient}: Even when SDF produces genuine avoidance motion (verified by $\Delta_{\text{EE}}\approx$0.5\,m and 0\% fake safety), the total CAR does not exceed what LoRA alone achieves. Meanwhile, task performance is catastrophically degraded (TSR: 35.5\%$\to$6.8\%).
+
+\emph{Irreversible}: The two-phase strategy (SDF then action-only) fails on both axes---task damage persists and safety dissipates. This rules out curriculum-based approaches with current LoRA capacity constraints.
+
+\paragraph{Implications for VLA safety research.}
+Our displacement-filtered CAR metric reveals that the VLA safety literature may be operating on contaminated measurements. Any reported CAR improvement should be accompanied by displacement verification to confirm genuine avoidance behavior. We recommend that future benchmarks adopt displacement-filtered CAR as standard.
+
+The finding that LoRA capacity suffices for avoidance learning suggests that safety improvements are better pursued through data curation (including collision-avoidance demonstrations) rather than auxiliary geometric losses that conflict with task objectives.
+
+\paragraph{Limitations.}
+(1) Evaluation is limited to SafeLIBERO; generalization to real-world settings is unverified.
+(2) Only two model families (Pi0, Pi0.5) clearly demonstrate fake safety; OpenVLA's result is ambiguous.
+(3) We do not explore full-body SDF (vs.\ EE-only) or adaptive loss weighting schedules.
+(4) LoRA-only evaluation uses 2 seeds; additional seeds would strengthen significance claims.
+
+%============================================================================
+\section{Conclusion}
+\label{sec:conclusion}
+
+We demonstrate that collision avoidance rate---the standard safety metric for VLA manipulation policies---is systematically unreliable. Across three model families, we identify action collapse, geometric path safety, and random incompetence as distinct mechanisms that inflate CAR without genuine avoidance behavior. We propose displacement-filtered CAR as a simple, effective diagnostic tool.
+
+Our investigation of SDF geometric supervision yields an informative negative result: LoRA finetuning alone achieves equivalent collision avoidance, making explicit geometric losses unnecessary. SDF training causes irreversible task damage and its safety encoding is transient. These findings redirect VLA safety research toward data-centric approaches and away from auxiliary geometric losses.
+
+{\small
+\bibliographystyle{plainnat}
+\begin{thebibliography}{9}
+\bibitem[SafeLIBERO(2025)]{safelibero}
+SafeLIBERO: Benchmarking Safety in Vision-Language-Action Models for Robotic Manipulation. 2025.
+
+\bibitem[Pi0(2024)]{pi0}
+Physical Intelligence. Pi0: A Foundation Model for Robotic Manipulation. 2024.
+
+\bibitem[OpenVLA(2024)]{openvla}
+Kim et al. OpenVLA: An Open-Source Vision-Language-Action Model. ICML 2024.
+\end{thebibliography}
+}
+
+%============================================================================
+\appendix
+\section{Cancelled Experiments}
+\label{app:cancelled}
+
+The $\lambda$=0.1 SDF training was cancelled after LoRA baseline results demonstrated that SDF provides no incremental CAR benefit. The 3-point $\lambda$ curve ($\{0, 0.005, 0.01\}$) already establishes the CAR plateau and TSR monotonic decline pattern; additional points would consume 34 GPU-hours without scientific return.
+
+\section{OpenVLA Detailed Results}
+\label{app:openvla}
+
+OpenVLA-7B was evaluated zero-shot on \texttt{object\_pudding} (200 episodes). Per-task breakdown:
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lccc}
+\toprule
+Task & TSR (\%) & CAR (\%) & $\Delta_{\text{EE}}$ (m) \\
+\midrule
+Task 0 & 4 & 52 & 0.145 \\
+Task 1 & 4 & 28 & 0.198 \\
+Task 2 & 0 & 60 & 0.122 \\
+Task 3 & 0 & 28 & 0.195 \\
+\midrule
+Average & 2 & 42 & 0.165 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+OpenVLA exhibits FSR=42\%, substantially lower than Pi0 (99.6\%) or Pi0.5 (98.2\%). Its failure mode is ``random incompetence''---erratic motion that occasionally avoids obstacles by chance rather than through systematic collapse or path geometry. Approximately 15\% of episodes terminated early due to NaN actions from action-space mismatch. This model does not cleanly demonstrate the fake safety phenomenon, limiting our generalizability claim to two model families with clear mechanistic evidence.
+
+\end{document}

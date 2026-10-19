@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "28aa739bdd820f8a9283",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ssh training progress check",
+  "task_key": "worker_ssh_training_progress_check_20260520T022159",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_training_progress_check_20260520T022159_result.json",
+    "occurrence": 1,
+    "bytes": 951,
+    "sha256": "07ced0f7b70b9a119ff193a50c57f098f0bf47d8ff4529ee6a271ac92b9f6626"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个实验全部存活，registry 已更新。汇总：\n\n| GPU | 实验 | Step | Loss | VRAM | ETA |\n|-----|------|------|------|------|-----|\n| cuda:0 | baseline_spatial_bowl_s0 | 3719/30000 (12%) | 0.019 | 37.4 GB | ~26h |\n| cuda:1 | baseline_spatial_bowl_s1 | 3948/30000 (13%) | 0.031 | 37.4 GB | ~25h |\n| cuda:2 | baseline_object_pudding_s0 | 3980/30000 (13%) | 0.020 | 37.4 GB | ~26h |\n| cuda:3 | a1_sdf_spatial_bowl_s0 | 1962/30000 (7%) | 0.262 | 13.4 GB | ~30h |\n\n**A1 Phase 2**: 未触发（step 1962 < 5000），VRAM 13.4GB 符合 Phase 1 预期，日志中无 transition 记录。预计 ~3.2h 后触发。\n\n**Checkpoints**: 3 个 baseline 各有 1 个 ckpt（step 2000）；A1 有 5 个 ckpt（steps 1, 2, 500, 1000, 1500）。\n\n**注意**: Registry 中 checkpoint_path 用的是扁平路径（如 `baseline_spatial_bowl_0/`），实际是嵌套结构（`baseline_spatial_bowl/baseline_spatial_bowl_seed0/`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-training-progress-check.md"
+}

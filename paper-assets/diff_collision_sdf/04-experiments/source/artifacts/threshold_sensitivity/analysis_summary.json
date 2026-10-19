@@ -1,0 +1,59 @@
+{
+  "files_found": 6,
+  "total_episodes": 1200,
+  "conditions": {
+    "s1_lam0.05_30k": 400,
+    "s0_lam0.05_30k": 200,
+    "s0_lam0.1_30k": 200,
+    "s1_lam0.05_best": 200,
+    "s2_lam0.05_best": 200
+  },
+  "condition_files": {
+    "s1_lam0.05_30k": [
+      "/root/colliforce-vla/eval_results/eval_30k_s1_l005_disp.json",
+      "/root/autodl-tmp/eval_results/eval_s1_l005_30k_disp.json"
+    ],
+    "s0_lam0.05_30k": [
+      "/root/autodl-tmp/eval_results/eval_s0_l005_30k_r4.json"
+    ],
+    "s0_lam0.1_30k": [
+      "/root/autodl-tmp/eval_results/eval_s0_l01_30k_disp.json"
+    ],
+    "s1_lam0.05_best": [
+      "/root/autodl-tmp/eval_results/eval_s1_l005_best_16k.json"
+    ],
+    "s2_lam0.05_best": [
+      "/root/autodl-tmp/eval_results/eval_s2_l005_best_10k.json"
+    ]
+  },
+  "bimodality_global": {
+    "n": 1200,
+    "min": 0.23896585092807168,
+    "max": 1.2216826418570774,
+    "mean": 0.49825782506444605,
+    "median": 0.4282392927868551,
+    "p10": 0.3152796576954321,
+    "p25": 0.3668398657631894,
+    "p75": 0.6244294296026289,
+    "p90": 0.7785052348740049,
+    "max_gap": 0.0582096335869402,
+    "max_gap_location_m": 1.0605576095493876,
+    "max_gap_location_mm": 1060.5576095493875,
+    "median_gap": 0.00028968288424602306,
+    "gap_ratio": 200.94260569949202,
+    "below_100mm": 0,
+    "above_100mm": 1200
+  },
+  "key_finding": "All 1200 episodes have max_ee_displacement > 239.0mm. The \u03b4=100mm threshold filters out 0 episodes. dfCAR is identical to raw CAR for any \u03b4 < 239mm.",
+  "thresholds_mm": [
+    2,
+    5,
+    10,
+    20,
+    50,
+    100,
+    150,
+    200,
+    300
+  ]
+}

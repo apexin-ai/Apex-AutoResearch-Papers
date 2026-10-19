@@ -1,0 +1,31 @@
+{
+  "exp_id": "eval_a3_object_m024fix_v11",
+  "project": "diff_collision_sdf",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T16:54:33.422Z",
+    "updated_at": "2026-05-22T19:53:24.069Z",
+    "hypothesis": "M024 coordinate bug fix (delta->absolute for SDF query) will improve A3 object eval safety and success rates by enabling correct collision detection during trajectory refinement",
+    "parent": "eval_a3_v11_object",
+    "spec": {
+      "command": "python scripts/eval_safelibero.py --model_type a3 --checkpoint /root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best --suite safelibero_object --safety_level II --n_episodes 200 --replan_steps 5 --gpu 2 --output_prefix a3_m024fix_v11 --save_dir /root/autodl-tmp/eval_results",
+      "server": "westd-35807",
+      "gpu": "cuda:2",
+      "pid": "780772",
+      "data_path": "/root/colliforce-vla/scripts/eval_safelibero.py",
+      "data_count": 200,
+      "model_name": "a3_grad_refine_object_pudding",
+      "seed": 0,
+      "checkpoint_source": "a3_grad_refine_object_pudding_seed0/best",
+      "eval_data": "safelibero_object_all_levelII",
+      "log_path": "/root/autodl-tmp/eval_results/eval_a3_object_m024fix_v11.log",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best"
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-22T19:53:24.152124+00:00",
+  "trigger": "update_registry"
+}

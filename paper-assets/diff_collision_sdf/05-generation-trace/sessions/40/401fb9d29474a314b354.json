@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "401fb9d29474a314b354",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "eval baseline pertask reeval",
+  "task_key": "worker_eval_baseline_pertask_reeval_20260528T001944",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_baseline_pertask_reeval_20260528T001944.log",
+    "occurrence": 1,
+    "bytes": 634292,
+    "sha256": "9b528cf3cdd10df8efbec89434f8ffd417c924ae278ad19bd802c55bdf7ce29b"
+  },
+  "statistics": {
+    "messages": 267,
+    "user_turns": 0,
+    "tool_calls": 94,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 74,
+      "tool_call": 94,
+      "tool_result": 94,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 267,
+      "chunks": [
+        {
+          "path": "401fb9d29474a314b354-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "401fb9d29474a314b354-part-0002.json",
+          "message_count": 87
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-baseline-pertask-reeval.md"
+}

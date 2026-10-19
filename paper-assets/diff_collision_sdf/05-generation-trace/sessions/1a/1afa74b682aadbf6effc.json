@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1afa74b682aadbf6effc",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "research task3 collision matrix persist",
+  "task_key": "worker_research_task3_collision_matrix_persist_20260524T045955",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_task3_collision_matrix_persist_20260524T045955_result.json",
+    "occurrence": 1,
+    "bytes": 934,
+    "sha256": "515d13179eb46ccaa9ac8259f428ccccc7444731605678ea64f9ad91ebd16c1a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Artifact 已生成并验证，数据一致性确认通过。\n\n文件：`artifacts/task3_collision_matrix_step10k.md`\n\n关键发现：\n\n| Metric | Baseline | A1 l005 | A1 l01 |\n|--------|----------|---------|--------|\n| TSR | 0.78 | 0.60 | 0.52 |\n| CAR | 0.24 | 0.26 | 0.28 |\n| n_collision_free | 12 | 13 | 14 |\n\n- **碰撞总数**几乎不变（38→37→36），CAR 提升极微（+2/+4 pct）\n- **碰撞转移效应**：yellow_book 碰撞减少（8→4/6），但 wine_bottle 碰撞增加（8→11/9）——障碍物间碰撞发生了重分布而非整体减少\n- **TSR 代价巨大**：success+safe 从 11 降到 2-3，大量转为 fail+safe（1→11）——模型学会了回避但同时丧失了完成任务的能力\n- **moka_pot 碰撞完全不变**（12/12/12），SDF loss 对该障碍物无效\n- Baseline 的 min_ee_dist 字段缺失（baseline eval 版本不含该字段），标记为 \"-\""
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-task3-collision-matrix-persist.md"
+}

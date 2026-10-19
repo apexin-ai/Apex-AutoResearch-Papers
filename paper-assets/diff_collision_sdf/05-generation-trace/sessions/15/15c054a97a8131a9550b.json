@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "15c054a97a8131a9550b",
+  "project": "diff_collision_sdf",
+  "kind": "history",
+  "title": "agent / loop_2_1779817406.md",
+  "task_key": "loop_2_1779817406",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2_1779817406.md",
+    "occurrence": 1,
+    "bytes": 4110,
+    "sha256": "4d70eb0d2020197814204681f4548e895835bdf46edf34036f5db487624b4e06"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: idle_timeout\nupdated: '2026-05-25T20:29:05+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-35807 cuda:0,1,2,3 + westd-45947 cuda:0,1（共 6 张），不得用其他 GPU\n- westd-45947 是 AutoDL 实例，重启后 SSH 端口会变——连接失败时不要反复重试，提示用户查控制台更新端口\n- submit_training_job 命令必须自带环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/colliforce-vla && ...`\n- WANDB_MODE=offline（两台服务器均无外网 W&B 访问）\n- GPU 编号脚本内始终从 0 开始（框架自动映射物理 GPU）\n- 根分区空间有限，大文件放 /root/autodl-tmp/\n\n### 2. 🖥️ 基础设施快照\n- **westd-45947**（2 GPU）：⚠️ 当前 SSH 不可达（端口 45947），用户曾确认 /gpu 可连，可能端口已变\n  - 工作目录：/root/colliforce-vla\n  - Python：/root/miniconda3/bin/python（conda base 环境）\n  - Checkpoint 输出路径：待确认（连接恢复后检查）\n  - 日志：~/runs/diff_collision_sdf/train_pi05_lora_baseline_s{0,1}.log\n- **westd-35807**（4 GPU）：⚠️ 同样 SSH 不可达（report.md 显示连接失败）\n  - 工作目录：/root/colliforce-vla\n  - Python：/root/miniconda3/bin/python\n  - Checkpoint 路径：/root/autodl-tmp/checkpoints/\n- 活跃进程：无（所有实验已完成或标记 failed）\n- Cron：reconcile 返回 0 条活跃 cron\n\n### 3. 📊 当前状态\n收到 cron 回调：train_pi05_lora_baseline_s1 因 SSH 连接失败被标记 failed（s0 同样）。\n\n已完成：\n- Session-start 初始化（registry + reconcile + report + ROADMAP）\n- 分析确认：失败原因是 SSH 端口不可达，非训练代码错误；两实验已跑 ~17h/16.9 GPU-hours，30K 训练可能已完成\n- 派出 Worker `worker_diagnose_ssh_failure_westd45947_20260525T042100` 诊断 SSH + 检查训练日志/checkpoint\n- 已向 Director 汇报异常情况\n\nRegistry 状态：51 个实验全部 DONE（success 13, negative 16, failed 14, killed 8），无 RUNNING/PREPARING。\n\n**等待中**：\n- Worker `worker_diagnose_ssh_failure_westd45947_20260525T042100` 回调（诊断 SSH 连接 + 训练完成状态）\n- Director 对 SSH 异常汇报的回复\n\n### 4. 📋 待办\n- Worker 诊断回调且连接成功 + 训练完成 → 提取 metrics/checkpoint → update_registry 改 conclusion → 推进 30K eval\n- Worker 诊断回调且连接成功 + 训练未完成 → 检查断点 → 决定是否 resume 或重跑\n- Worker 诊断回调且连接失败 → 向 Director 汇报需用户更新 SSH 端口，所有 GPU 工作阻塞\n- SSH 恢复后 → 同时检查 westd-35807 连接状态 → 恢复 4 张空闲 GPU 利用\n- LoRA baseline 数据就绪 → 6 模型 30K eval（s0/s1 两种 seed × 3 实验条件）→ 填充论文 §5.4 + Table\n- 30K eval 完成 → 真实数据替换 displacement histogram mock + λ-CAR curve figure\n\n### 5. 🎯 战略上下文\n- **项目核心**：ColliForce-VLA，揭示 VLA 安全评估中 action collapse 导致的 metric contamination，提出 displacement-filtered CAR，探索 SDF auxiliary loss\n- **论文状态**：15 页完整初稿，3/5 figures 完成，6 项接受率改进已做。目标 CoRL 2026 Main / ICRA 2027 (D014)\n- **关键发现**：Fake Safety（A1 CAR 99.6% 是 fake）、Pi0.5+A1 真实避碰（CAR +30pp @10K）、EE-only SDF 限制（oracle 均劣于 baseline D010）、gradient correction 对 collapsed policy 无效 (D018)\n- **当前瓶颈**：两台服务器均 SSH 不可达，6 张 GPU 全部空闲。LoRA baseline 是归因实验（证明 CAR 提升来自 SDF 而非 LoRA 本身），是 Claim 4 的关键证据\n- **易错点**：\n  - 不要假设训练丢失就直接重跑——先检查是否有 checkpoint 可恢复\n  - westd-35807 也不可达，别只关注 45947\n  - 已有 eval_lora_baseline_object/spatial_v11（Pi0 时代的 LoRA baseline eval），现在跑的是 Pi0.5 版本的 LoRA baseline，不要混淆\n  - 16 个阴性结果已系统分析 (D018)，gradient-based correction 路线已终止 (D010)，不要重新尝试\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-1779817406.md"
+}

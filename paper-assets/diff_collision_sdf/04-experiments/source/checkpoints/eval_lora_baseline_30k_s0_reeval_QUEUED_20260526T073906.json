@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_lora_baseline_30k_s0_reeval",
+  "project": "diff_collision_sdf",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-26T07:39:02.584Z",
+    "updated_at": "2026-05-26T07:39:06.786Z",
+    "hypothesis": "Re-eval LoRA-only s0 (30K) with fixed eval_safelibero.py (180° image rotation added). If TSR remains ~6-8%, catastrophic forgetting is real. If TSR >30%, the 68pp collapse was partially an eval bug artifact. Critical for Claim 3 validity."
+  },
+  "timestamp": "2026-05-26T07:39:06.967062+00:00",
+  "trigger": "update_registry"
+}

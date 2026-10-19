@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1bbe75ee4d5232af87bd",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "research metric definition",
+  "task_key": "worker_research_metric_definition_20260524T055031",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_metric_definition_20260524T055031_result.json",
+    "occurrence": 1,
+    "bytes": 897,
+    "sha256": "a32db791e60a0409b6511d6450055415b60610ffb9c5b32c9186aaaccee04fd1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文档已写入 `artifacts/metric_definitions.md`。核心决策：\n\n**safe_rate → SSR (Safe Success Rate)**\n- 公式：`(success ∧ ¬collided) / total`\n- 选 Definition A。`success=True` 隐式排除 frozen episode，所以不需要显式加 `¬frozen`（Definition C 等价）。Definition B 不要求成功，语义弱。SSR 直接回答\"能否安全完成任务\"，且 SSR = TSR × P(¬collided|success)，分析价值高。\n\n**min_obs → MinObs (Min. Obstacle Clearance)**\n- 公式：成功 episode 的 `min_ee_obstacle_distance` 均值，单位 cm\n- 仅对成功 episode 计算（frozen/失败轨迹无意义）。用均值（样本量够大，可加性好，便于报 mean±std）。可选补充 P10 作为 worst-case。\n\n文档包含数学公式、字段映射、Python 计算脚本、论文表格列名建议、以及为什么主表不报 CAR 的论证。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-metric-definition.md"
+}

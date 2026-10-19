@@ -1,0 +1,15 @@
+{
+  "exp_id": "baseline_object_pudding_s0",
+  "project": "diff_collision_sdf",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T20:31:29.236Z",
+    "updated_at": "2026-05-19T20:31:40.085Z",
+    "hypothesis": "Vanilla pi0 LoRA fine-tune on LIBERO object_pudding (chocolate pudding to basket) establishes baseline for Level I collision scenario — expecting TSR >50%, CAR ~0%"
+  },
+  "timestamp": "2026-05-19T20:31:40.092956+00:00",
+  "trigger": "update_registry"
+}

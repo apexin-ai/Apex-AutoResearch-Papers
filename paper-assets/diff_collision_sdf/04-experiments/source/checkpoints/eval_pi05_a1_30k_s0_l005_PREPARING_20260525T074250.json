@@ -1,0 +1,14 @@
+{
+  "exp_id": "eval_pi05_a1_30k_s0_l005",
+  "project": "diff_collision_sdf",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-25T07:42:49.894Z",
+    "updated_at": "2026-05-25T07:42:49.895Z"
+  },
+  "timestamp": "2026-05-25T07:42:50.002397+00:00",
+  "trigger": "update_registry"
+}

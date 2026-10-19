@@ -1,0 +1,42 @@
+{
+  "exp_id": "train_pi05_phase2_lambda0_s2",
+  "project": "diff_collision_sdf",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-25T22:22:58.519Z",
+    "updated_at": "2026-05-26T11:15:51.477Z",
+    "hypothesis": "Phase 2 λ=0 ablation (seed2): resume from seed2 l005 best (10K step) checkpoint with SDF loss disabled (λ=0). Tests whether early SDF-encoded collision awareness persists in LoRA weights when SDF loss is removed, while task performance (TSR) recovers. 10K additional steps with LoRA unfrozen.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 python scripts/train_a1_sdf_aux_pi05.py --lambda_sdf 0 --resume_from /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_l005/best --warmup_phase_steps 0 --max_steps 10000 --seed 2 --output_dir /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_phase2_lambda0",
+      "server": "westd-35807",
+      "gpu": [
+        "cuda:3"
+      ],
+      "data_path": "object_pudding sdf training data",
+      "data_count": 30000,
+      "model_name": "pi05_a1_sdf_seed2_phase2_lambda0",
+      "seed": 2,
+      "checkpoint_source": "train_pi05_a1_obj_s2_l005 (best at 10K)",
+      "pid": "254634"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "final_loss_action": 0.0113,
+      "final_loss_sdf": 0.1369,
+      "final_loss_ee": 0.0079,
+      "best_loss": 0.00651,
+      "best_step": 4000,
+      "total_steps": 10000,
+      "time_per_step": 4.64,
+      "wall_clock_hours": 12.88
+    },
+    "checkpoint_path": "/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_l0/10000",
+    "log_path": "/root/colliforce-vla/logs/train_phase2_lambda0_s2_gpu3.log",
+    "completed_at": "2026-05-26T11:15:51.477Z"
+  },
+  "timestamp": "2026-05-26T11:15:51.636930+00:00",
+  "trigger": "update_registry"
+}

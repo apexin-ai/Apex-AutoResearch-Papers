@@ -1,0 +1,26 @@
+{
+  "exp_id": "eval_spatial_bowl_lora_ctrl_s0_v2",
+  "project": "diff_collision_sdf",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-28T04:44:48.276Z",
+    "updated_at": "2026-05-28T04:45:12.314Z",
+    "hypothesis": "Re-evaluate LoRA-only control on safelibero_spatial with consistent eval pipeline to confirm SDF redundancy across scenes.",
+    "parent": "train_spatial_bowl_lora_control_s0",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python scripts/eval_safelibero.py --model_type lora_baseline --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_pi05_spatial_bowl/pi05_lora_baseline_spatial_bowl_seed0/30000 --config_name pi05_libero --suite safelibero_spatial --n_episodes 50 --seed 7 --pi05 --output_path /root/autodl-tmp/eval_results/eval_spatial_lora_ctrl_s0_30k.json",
+      "server": "westd-35807",
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/a1_sdf_pi05_spatial_bowl/pi05_lora_baseline_spatial_bowl_seed0/30000",
+      "eval_data": "safelibero_spatial (4 tasks x 50 episodes, seed=7, safety_level=II)",
+      "model_name": "pi05_lora_baseline_spatial_bowl_seed0",
+      "seed": 7,
+      "data_path": "safelibero_spatial",
+      "data_count": 200
+    }
+  },
+  "timestamp": "2026-05-28T04:45:12.561865+00:00",
+  "trigger": "update_registry"
+}

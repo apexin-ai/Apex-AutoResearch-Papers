@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0b10d654a622110c573f",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "eval analyze 24k v2 results",
+  "task_key": "worker_eval_analyze_24k_v2_results_20260527T065513",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_analyze_24k_v2_results_20260527T065513_result.json",
+    "occurrence": 1,
+    "bytes": 814,
+    "sha256": "d7f738522ac255a93a0fdc971759268767288e08776c5cdd9b8b8a4442f8dfe5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**eval_stepwise_s0_l1_24k_v2 结果（含 --pi05 ✓）：**\n\n| Task | TSR | CAR |\n|------|-----|-----|\n| orange_juice | 30% | 54% |\n| chocolate_pudding | 78% | 72% |\n| milk | 30% | 64% |\n| bbq_sauce | 64% | 20% |\n| **Overall** | **50.5%** | **52.5%** |\n\n- frozen=0%（全 4 task 均为 0），dfCAR=52.5%（= raw CAR）\n- 确认原 24K frozen=29.5% 纯属缺 --pi05 的 artifact\n\n**完整 seed0 learning curve 现在是：** 16K=55.5 → 20K=55 → 22K=60.5 → **24K=52.5** → 26K=53.5\n\nCAR 在 52.5-60.5% 区间波动，围绕 LoRA baseline (54.5%) 持平。Scenario B (redundant) 进一步确认，无任何 collapse 迹象。\n\nRegistry 已更新：status=DONE, conclusion=negative, metrics 已记录。Memory.md 24K 数据点已补入，GPU cuda:0 标为空闲。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-analyze-24k-v2-results.md"
+}

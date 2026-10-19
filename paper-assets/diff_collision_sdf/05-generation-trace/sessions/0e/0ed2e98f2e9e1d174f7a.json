@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0ed2e98f2e9e1d174f7a",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "diagnose eval stepwise s0 l1 24k v2",
+  "task_key": "worker_diagnose_eval_stepwise_s0_l1_24k_v2_20260527T064307",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_stepwise_s0_l1_24k_v2_20260527T064307_result.json",
+    "occurrence": 1,
+    "bytes": 1377,
+    "sha256": "65f4a0bf0057f72d2f1319f4357e3db33b8b24c0429154f2a5a5e34528546e46"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**实验实际上已成功完成，cron 报告是误报。**\n\n### 证据\n\n日志显示 4 个 task 全部跑完，结果已保存：\n\n| Task | TSR | CAR |\n|------|-----|-----|\n| 0: orange juice | 30.0% | 54.0% |\n| 1: chocolate pudding | 78.0% | 72.0% |\n| 2: milk | 30.0% | 64.0% |\n| 3: bbq sauce | 64.0% | 20.0% |\n| **Overall** | **50.5%** | **52.5%** |\n\n结果文件已写入 `/root/autodl-tmp/eval_results/eval_safelibero_object_all_levelII_24000_lora_baseline_seed7.json`，内容完整。\n\n### 误报原因\n\ncron 用 \"sentinel file / W&B signal\" 检测进程是否成功完成。eval 脚本不写 sentinel 也不上报 W&B，所以进程正常退出后 cron 探测 5 次都找不到成功标志，误判为失败。\n\n### 附带发现\n\n24K checkpoint 目录已被删除（训练仍在继续，目前只剩 26000/28000/best）。这不影响本次 eval，因为模型在运行时已加载完毕。但如果需要重跑 24K eval 则无法复现。\n\n### 对比 26K 实验\n\n24K: CAR=52.5%, TSR=50.5%  \n26K: CAR=53.5%（之前报告的）\n\n两者性能接近，24K 略低，符合预期。\n\n### 建议\n\n1. **无需重跑** — 实验已成功，数据完整\n2. **修复 cron 监控** — eval 类任务应支持检测 \"进程退出码=0 + 结果文件存在\" 作为成功条件，而非仅依赖 sentinel/W&B"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-stepwise-s0-l1-24k-v2.md"
+}

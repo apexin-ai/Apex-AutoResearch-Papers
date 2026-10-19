@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4b777a851a120b2adcd3",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "eval launch true oracle action space cuda1",
+  "task_key": "worker_eval_launch_true_oracle_action_space_cuda1_20260522T195419",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_launch_true_oracle_action_space_cuda1_20260522T195419_result.json",
+    "occurrence": 1,
+    "bytes": 713,
+    "sha256": "d8e6ffd771f40eb11cbd803740db752015c6a32938035d7391f6af5930eec169"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**启动确认**:\n- **tmux session**: `oracle_true_gt`\n- **PID**: 84587\n- **GPU**: cuda:1 (8580 MiB)\n\n**GT SDF**: `/root/colliforce-vla/data/sdf_gt_object_chocolate.npz` (4084 points, KDTree built)\n\n**日志确认**:\n- GT SDF oracle 加载成功 ✓\n- LoRA params 加载成功 (504 params) ✓\n- SDF decoder + EE extractor 加载成功 ✓\n- Task 0 已开始: `pick up the orange juice and place it in the basket` ✓\n\n**注意**: 任务描述的参数名与脚本实际参数不一致，已修正：`--scene` → `--suite`，`--level` → `--safety_level`，`--checkpoint_dir/--ckpt_step` → `--checkpoint`，`--output_path` → `--save_dir` + `--output_prefix`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-launch-true-oracle-action-space-cuda1.md"
+}

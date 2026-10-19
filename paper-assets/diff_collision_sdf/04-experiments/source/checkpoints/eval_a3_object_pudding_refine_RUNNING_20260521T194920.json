@@ -1,0 +1,32 @@
+{
+  "exp_id": "eval_a3_object_pudding_refine",
+  "project": "diff_collision_sdf",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T18:15:42.503Z",
+    "updated_at": "2026-05-21T19:49:20.627Z",
+    "hypothesis": "A3 gradient-guided action refinement (best ckpt step 26000) achieves CAR ≥15% improvement over baseline on object_pudding with TSR drop <10% — MVP gate check with refinement enabled.",
+    "parent": "a3_gradient_object_pudding_s0",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python eval_safelibero.py --checkpoint /root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding/a3_grad_refine_object_pudding_seed0/best --suite object_pudding --n_episodes 50",
+      "server": "westd-45947",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "222345",
+      "log_path": "/root/autodl-tmp/eval_results/a3_object_pudding_refine_v5.log",
+      "checkpoint_source": "a3_gradient_object_pudding_s0 best (step 26000)",
+      "eval_data": "object_pudding",
+      "data_path": "/root/autodl-tmp/colliforce_data/safelibero_object",
+      "data_count": 50,
+      "model_name": "pi0+A3_gradient_refine",
+      "seed": 0
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-21T19:49:20.681547+00:00",
+  "trigger": "update_registry"
+}

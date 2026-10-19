@@ -1,0 +1,57 @@
+{
+  "exp_id": "train_pi05_a1_spatial_bowl_s0_l005",
+  "project": "diff_collision_sdf",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-25T09:49:46.434Z",
+    "updated_at": "2026-05-26T22:32:54.088Z",
+    "hypothesis": "Pi0.5+A1 SDF auxiliary loss on spatial_bowl scene (λ=0.005, seed 0). Tests cross-scene generalization of collision avoidance training. spatial_bowl has bilateral obstacles requiring bidirectional avoidance, distinct from object_pudding's single-side constraints.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate libero && cd /root/colliforce-vla && WANDB_MODE=offline python scripts/train_a1_sdf_aux_pi05.py --scene spatial_bowl --seed 0 --gpu 0 --resume\"",
+      "server": "westd-35807",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "3708",
+      "log_path": "~/runs/diff_collision_sdf/train_pi05_a1_spatial_bowl_s0_l005.log",
+      "submitted_at": "2026-05-25T18:01:37.997Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/a1_sdf_pi05_spatial_bowl/a1_sdf_pi05_spatial_bowl_seed0_l005/30000/",
+      "wall_clock_seconds": 102676.1,
+      "gpu_hours": 28.52
+    },
+    "notes": "第二次 resume（服务器重启后），从 step 8000 恢复。PID 3708, tmux session train_pi05_a1_spatial_bowl_s0_l005, cuda:0, westd-35807。WANDB_MODE=offline（API key 被重启清除）。Phase 2 LoRA 解冻，速度 ~9s/it（比 Phase 1 的 4.6s/it 慢），22K 步剩余 ~55h，超过 36h timeout。需要在 ~36h 后从最新 checkpoint 再次 resume。",
+    "reproduce": {
+      "finished_at": "2026-05-26T22:29:27.630Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-26T22:29:31.882554+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "final_loss": 0.0137,
+      "final_action_loss": 0.0135,
+      "final_sdf_loss": 0.0327,
+      "final_ee_loss": 0.0068,
+      "best_loss": 0.01063,
+      "best_step": 28000,
+      "total_steps": 30000,
+      "time_per_step": 4.65,
+      "wall_clock_hours": 28.4
+    },
+    "completed_at": "2026-05-26T22:32:54.088Z"
+  },
+  "timestamp": "2026-05-26T22:32:54.295530+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_pi05_a1_30k_s2_l01_v2",
+  "project": "diff_collision_sdf",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-25T12:51:54.690Z",
+    "updated_at": "2026-05-25T13:59:50.586Z",
+    "hypothesis": "Pi0.5+A1 30K eval (seed2, λ=0.01) using /30000/ checkpoint with lora_baseline model type. Third seed for statistical significance of stronger lambda 30K collision avoidance. Completes the 3-seed × 2-lambda eval matrix."
+  },
+  "timestamp": "2026-05-25T13:59:50.700732+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3c5bf16713771fa99842",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops collect oracle results",
+  "task_key": "worker_ops_collect_oracle_results_20260522T162537",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_collect_oracle_results_20260522T162537_result.json",
+    "occurrence": 1,
+    "bytes": 872,
+    "sha256": "e80c3790775ba345f049cdb603bf11ac1e61838c50e82063122bedb5038be427"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE (negative)。\n\n### 结果总结\n\n| | TSR | CAR | refined_count |\n|---|---|---|---|\n| Baseline (no SDF) | ~0% | **83%** | N/A |\n| A3 v11 (no force) | 0% | 74.5% | 0 |\n| A3 + force_refine | 0% | **81.2%** | 300/step |\n\n**结论 negative**：\n1. force_refine 成功触发了 refinement（每步都 refine），确认正常 A3 中 threshold 阻止了所有 refinement\n2. CAR 从 74.5% 恢复到 81.2%（+6.7pp），但仍低于无 SDF 的 baseline 83%\n3. **梯度坍缩严重**：绝大多数 episode 的 max_displacement 在 1e-6~1e-10 范围，SDF decoder 输出近常数，梯度几乎为零\n4. Task 1 (chocolate_pudding，SDF GT 目标物体) CAR 最差 (57.5%)，是唯一有显著 displacement 的 task（最大 0.35m），说明梯度方向在目标物体附近可能是错的——M024 坐标 bug 可能是原因"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-collect-oracle-results.md"
+}

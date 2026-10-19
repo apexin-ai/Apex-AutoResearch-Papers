@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "416719e34de2c6362b61",
+  "project": "diff_collision_sdf",
+  "kind": "history",
+  "title": "reviewer / loop_8.md",
+  "task_key": "loop_8",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_8.md",
+    "occurrence": 1,
+    "bytes": 3565,
+    "sha256": "bc88363839cae3a8d06b440f5d7480ad2820cce98fcbea71382cc74d65f34a4a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: max_wall_time\nupdated: '2026-05-28T05:44:30+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-35807 cuda:0-3, westd-45947 cuda:0-1。越界即 critical。\n- Phase 2 训练 s2_v4 在 westd-35807 cuda:2 因磁盘满 step 19999 停止，checkpoint 在 18K。论文引用 Phase 2 必须注明 18K（非 30K）。\n- 所有 eval 数据以 JSON 文件为 authoritative source（不是 registry metrics，不是 appendix 手填数据）。三源不一致时信 JSON。\n- claim3.tex L26 Phase 2 CAR 仍写 57.5%（旧 10K eval），appendix 已改为 58.0%（18K eval）。**这个不一致未修复**——下一个审查必须确认主文是否已同步。\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-35807 (root) + westd-45947 (root)\n- 代码根目录：/root/colliforce-vla\n- Checkpoints：/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/\n- Eval results JSON：/root/autodl-tmp/eval_results/\n- 本地 workspace：/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/\n- 论文 tex：上述 workspace 下 docs/paper/\n- 活跃进程：eval_spatial_bowl_lora_ctrl_s0_v2 (RUNNING, westd-45947)；westd-35807 cuda:2 Phase 2 残留进程可能已停\n\n### 3. 📊 当前状态\n**刚完成**：审查 worker_paper_p0-2-5-statistics-phase2 的产出。该 Worker 在 Section 6 添加了 Null A/B 两种 permutation test、power analysis (MDE≈5pp)、eval-seed consistency 段落，appendix 更新了 Phase 2 (18K/58.0%) 和 λ=0.01 exact p-values。统计数值全部独立验证通过。\n\n**Registry RUNNING**: eval_spatial_bowl_lora_ctrl_s0_v2（spatial_bowl LoRA control 补充验证）\n\n**等待中**：\n- Director 对审稿回应方案的最终审批\n- W2 scope narrowing + W3 标题修改 + W4 SafeVLA 区分 等 Worker 尚未启动（或刚启动）\n- DDL: 2026-05-28 12:00 UTC\n\n### 4. 📋 待办\n- W2/W3/W4 Worker 提交 → 审查：abstract/intro/discussion 的绝对措辞（\"no measurable benefit\"/\"fully redundant\"）是否已与 Section 6 新 nuanced framing 对齐\n- claim3.tex L26 Phase 2 \"57.5%\" → 确认是否已改为 58.0%\n- eval_spatial_bowl_lora_ctrl_s0_v2 完成 → 交叉验证 appendix spatial_bowl LoRA control 数据\n- PDF 重编译 → 视觉审查关键页面（P5-6 Table 4, P7 fig5, P13-16 appendix）\n- 标题修改后 → 检查是否去掉了 \"98%\"\n\n### 5. 🎯 战略上下文\n**核心结论**：Scenario B confirmed——SDF 全域冗余（p=0.131 双尾），但 eval-seed 一致性显示 SDF λ=0.1 在所有 matched comparisons 中方向一致地高于 LoRA (+1.5, +2.5, +5.5pp)。论文的关键平衡点是：承认 \"underpowered to resolve ~2.3pp effect\" 但不放弃 \"no significant benefit\" 结论。\n\n**最容易判断错的事**：\n1. Phase 2 eval 有两个不同版本——10K checkpoint (eval_phase2_lambda0_s2, CAR=57.5%, eval_seed=2) vs 18K checkpoint (eval_phase2_18k_s2, CAR=58.0%, eval_seed=7)。appendix 已用 18K，主文可能还用旧值。\n2. \"p > 0.05 for all\" 在 abstract/intro 中对 λ=0.005 是循环论证（λ=0.005 在 null 内）。Null A 下 λ=0.005 均值 54.5% < LoRA 54.67%，所以 p>0.5 trivially non-significant，但论文没有显式说明。\n3. 不要把 Cohen's d 当 equivalence test 用——n=3 时 CI 太宽，无法证明等价。正确策略是 \"we report both null constructions for transparency; conclusion is invariant to choice\"。\n4. spatial_bowl SDF 数据：appendix 已修正为 JSON 源 (CAR=11.5%, TSR=51.5%, ΔCAR=-4.0pp)，但 registry 仍可能残留旧值(22.0%/47.5%)——以 JSON 为准。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-copy-2.md"
+}

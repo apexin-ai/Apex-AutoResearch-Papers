@@ -1,0 +1,26 @@
+{
+  "exp_id": "reeval_sdf_s0_l01_30k",
+  "project": "diff_collision_sdf",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-26T09:24:07.404Z",
+    "updated_at": "2026-05-26T09:29:04.794Z",
+    "hypothesis": "Re-eval SDF λ=0.01 s0 (30K) with fixed eval_safelibero.py (180° rotation). Verify whether TSR collapse is real or eval bug artifact, and establish corrected SDF attribution data.",
+    "spec": {
+      "command": "python eval_safelibero.py --model_type pi0_fast --policy_dir /root/diff_collision_sdf/checkpoints/pi05_a1_sdf_l01_s0/step_30000 --suite object_pudding --level 2 --n_episodes 200 --seed 0",
+      "server": "westd-45947",
+      "gpu": "cuda:1",
+      "checkpoint_source": "train_pi05_a1_obj_l01 (SCP from westd-35807)",
+      "eval_data": "SafeLIBERO object_pudding Level II (200 episodes)",
+      "model_name": "Pi0.5+A1 SDF lambda=0.01 s0 30K",
+      "data_path": "SafeLIBERO object_pudding Level II",
+      "data_count": 200,
+      "seed": 0
+    }
+  },
+  "timestamp": "2026-05-26T09:29:04.957618+00:00",
+  "trigger": "update_registry"
+}

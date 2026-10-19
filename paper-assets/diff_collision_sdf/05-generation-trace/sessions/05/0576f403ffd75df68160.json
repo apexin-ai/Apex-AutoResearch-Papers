@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0576f403ffd75df68160",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops collect baseline fullft spatial results",
+  "task_key": "worker_ops_collect_baseline_fullft_spatial_results_20260522T194154",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_collect_baseline_fullft_spatial_results_20260522T194154_result.json",
+    "occurrence": 1,
+    "bytes": 1420,
+    "sha256": "cf87dfddae810011cd7742383b1732b25a531f7e4161a795468019b8a9649ced"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新完毕。汇总如下：\n\n## eval_baseline_fullft_spatial_v11 结果\n\n**状态**: DONE (800 episodes, 4 tasks × 200 eps)，conclusion = **negative**\n\n### Per-task metrics\n\n| Task | TSR | CAR | Avg Max Disp | Smoothness |\n|------|-----|-----|-------------|------------|\n| T0: pick bowl between plate & ramekin | **1.5%** (3/200) | **0.0%** | 0.3317m | 0.003487 |\n| T1: pick bowl on ramekin | 0.0% | 0.0% | 0.2863m | 0.003260 |\n| T2: pick bowl on stove | 0.0% | 0.0% | 0.2604m | 0.002417 |\n| T3: pick bowl on cabinet | 0.0% | 0.0% | 0.3017m | 0.003154 |\n| **Overall** | **0.4%** | **0.0%** | **0.295m** | - |\n\n### 与 LoRA baseline spatial 对比\n\n| 指标 | LoRA baseline | Full-FT baseline |\n|------|--------------|-----------------|\n| Avg TSR | ~0% | 0.4% |\n| Avg CAR | **0.0%** | **0.0%** |\n| 结论 | 全部碰撞 | 全部碰撞 |\n\n**核心发现**: Full-FT baseline 在 spatial_bowl Level II 上 CAR 也是 0%——几乎所有 episode 都在极早期（step 4-37）碰撞。这不是 LoRA 容量瓶颈问题，而是 **spatial 场景本身对碰撞避免极其困难**（碰撞来自 arm body 而非 end-effector）。\n\n### GPU 状态\n\n| GPU | Memory Used | Utilization |\n|-----|-------------|-------------|\n| 0 | 8634 MiB | 50% |\n| **1** | **1 MiB** | **0%** |\n| 2 | 8640 MiB | 47% |\n| 3 | 8546 MiB | 48% |\n\n**GPU 1 已释放**，空闲可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-collect-baseline-fullft-spatial-results.md"
+}

@@ -1,0 +1,62 @@
+{
+  "exp_id": "train_pi05_lora_baseline_s0",
+  "project": "diff_collision_sdf",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 2,
+    "created_at": "2026-05-24T11:24:55.988Z",
+    "updated_at": "2026-05-26T01:37:02.714Z",
+    "hypothesis": "LoRA baseline (no SDF auxiliary loss) trained on object_pudding for 30K steps serves as attribution control: if CAR ≈ Pi0.5 baseline (~27%), confirms ColliForce improvement is from SDF loss, not LoRA capacity.",
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "completed_at": "2026-05-25T04:19:25.447Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-25T04:19:27.214462+00:00"
+        },
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-25T17:47:57.154130+00:00"
+        },
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-26T01:33:41.377192+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "LoRA baseline（无 SDF）。从 step 16000 resume (2026-05-25 04:42 UTC)。tmux 服务器异常终止导致训练崩溃，停在 step ~25695 (86%)。最后 checkpoint: step 24000, best_loss=0.01025。需从 24000 resume，剩余 ~6000 步 (~7.7h)。Checkpoint: /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/24000/"
+      }
+    },
+    "notes": "LoRA baseline（无 SDF）第三次 resume（resume2），从 step 24000 恢复。PID 3622, cuda:0, westd-45947。启动时间 2026-05-26 01:48 UTC。Checkpoint 加载成功，Phase 2 LoRA 解冻正常（33.47M params）。剩余 6000 steps × ~4.6s/step ≈ 7.7h, ETA ~2026-05-26 09:30 UTC。历史：首次 crash → step 16000 resume → tmux 崩溃停在 25695 → 从 24000 resume2。Checkpoints: 22000, 24000, best (best_loss=0.01025 @ 24000)。",
+    "reproduce": {
+      "finished_at": "2026-05-26T01:33:38.016Z"
+    },
+    "spec": {
+      "command": "bash -c \"export WANDB_MODE=offline && cd /root/colliforce-vla && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python scripts/train_pi05_lora_baseline.py --scene object_pudding --seed 0 --gpu 0 --resume > /tmp/train_pi05_lora_baseline_s0_resume2.log 2>&1\"",
+      "server": "westd-45947",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "3622",
+      "log_path": "/tmp/train_pi05_lora_baseline_s0_resume2.log",
+      "submitted_at": "2026-05-26T01:48:32Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "safelibero_object_pudding",
+      "data_count": 200,
+      "model_name": "pi05_lora_baseline_seed0",
+      "seed": 0
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-26T01:37:02.896160+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,32 @@
+{
+  "exp_id": "baseline_spatial_bowl_s0_v2",
+  "project": "diff_collision_sdf",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T22:40:19.501Z",
+    "updated_at": "2026-05-21T06:47:00.020Z",
+    "hypothesis": "Vanilla pi0 fine-tune on LIBERO spatial_bowl (seed 0, extra_delta_transform=False) establishes baseline TSR >50% and CAR ~0% for ColliForce comparison",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate libero && cd /root/colliforce-vla && WANDB_MODE=disabled CUDA_VISIBLE_DEVICES=0 python scripts/train_baseline.py --scene spatial_bowl --seed 0 --save_interval 2000 --resume\"",
+      "server": "westd-35807",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "222903",
+      "log_path": "~/runs/diff_collision_sdf/baseline_spatial_bowl_s0_v2.log",
+      "submitted_at": "2026-05-20T14:37:16.784Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "notes": "[2026-05-20 20:22] step 19716/30000 (66%), loss 0.0034, lr 8.79e-06, 3.5s/it, VRAM 35738MiB, cuda:0. ETA ~10h. Ckpt: 18000.",
+    "reproduce": {
+      "finished_at": "2026-05-21T06:46:59.958Z"
+    }
+  },
+  "timestamp": "2026-05-21T06:47:00.054185+00:00",
+  "trigger": "update_registry"
+}

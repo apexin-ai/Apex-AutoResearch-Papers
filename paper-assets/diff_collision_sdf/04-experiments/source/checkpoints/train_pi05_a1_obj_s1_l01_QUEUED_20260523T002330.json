@@ -1,0 +1,16 @@
+{
+  "exp_id": "train_pi05_a1_obj_s1_l01",
+  "project": "diff_collision_sdf",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T00:22:54.546Z",
+    "updated_at": "2026-05-23T00:23:30.698Z",
+    "hypothesis": "Pi0.5+A1 SDF auxiliary loss (λ_sdf=0.01) seed 1: multi-seed replication of stronger lambda training. Tests whether higher SDF signal is reproducibly better or worse than conservative lambda.",
+    "parent": "train_pi05_a1_obj_l01"
+  },
+  "timestamp": "2026-05-23T00:23:30.786770+00:00",
+  "trigger": "update_registry"
+}

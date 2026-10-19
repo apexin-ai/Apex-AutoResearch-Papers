@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "275793a9f402abb39e6e",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "eval eval pi05 a1 30k s0 l01 high retry",
+  "task_key": "worker_eval_eval_pi05_a1_30k_s0_l01_high_retry_20260527T095318",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_eval_pi05_a1_30k_s0_l01_high_retry_20260527T095318_result.json",
+    "occurrence": 1,
+    "bytes": 1247,
+    "sha256": "6a222f6822ea99213b97e6e4c4863f79a6c4f4084630fe6ff4d917b2e60ee1aa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 0 已占用 8610 MiB，eval 正常运行中。\n\n## 汇报\n\n### 调查结果\n\n**进程消失原因**：v2 run（2026-05-25 22:03）完成了全部 4 task × 50 episodes 的 eval，但在保存 JSON 时因 `save_path` 为空导致 `FileNotFoundError` 崩溃，结果未保存。\n\n**现有 JSON 结果**（均为 seed=0，非标准 seed=7）：\n\n| 文件 | Avg TSR | Avg CAR |\n|------|---------|---------|\n| `eval_s0_l01_30k_final.json` | 5.50% | 53.00% |\n| `eval_s0_l01_30k_disp.json` | 6.50% | 52.50% |\n\nPer-task（final.json）：\n| Task | TSR | CAR |\n|------|-----|-----|\n| T0: orange juice → basket | 2% | 68% |\n| T1: chocolate pudding → basket | 20% | 46% |\n| T2: milk → basket | 0% | 86% |\n| T3: bbq sauce → basket | 0% | 12% |\n\n### 重跑状态\n\n- **PID**: 751736\n- **GPU**: cuda:0（GPU 1 被 baseline eval PID 747037 占用）\n- **参数**: seed=7, `--pi05`, `--output_path /root/autodl-tmp/eval_results/eval_s0_l01_30k_seed7.json`\n- **Checkpoint**: `/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0_l01/30000`\n- **日志**: `/root/colliforce-vla/logs/eval_s0_l01_30k_seed7.log`\n- **预计耗时**: ~1.5h（根据历史日志每 task ~30min）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-eval-pi05-a1-30k-s0-l01-high-retry.md"
+}

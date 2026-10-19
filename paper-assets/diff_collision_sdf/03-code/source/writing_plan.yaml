@@ -1,0 +1,349 @@
+meta:
+  venue: "CoRL 2026 / ICRA 2027"
+  track: main
+  template: "docs/paper/"  # 当前用 article class + manual margins
+  template_note: "CoRL 2026 官方模板未发布；当前用通用 article 10pt letterpaper，DDL 前替换为官方模板"
+  page_limit: 8
+  deadline: 2026-05-28T12:00:00Z  # 5/28 20:00 北京时间
+  working_title: "Rethinking VLA Safety Evaluation: When 98% of Collision Avoidance is an Illusion"
+  core_claim: >
+    VLA safety 评估存在系统性缺陷：CAR 被 fake safety（action collapse + geometric path safety）严重污染。
+    70+ 实验/6000+ episodes 揭示 fake safety 现象，提出 dfCAR 修正指标，
+    诊断 collision avoidance 的真实来源是 implicit demo learning 而非 geometric supervision。
+  paper_type: diagnostic-analysis  # diagnostic paper with metric contribution
+  created_at: 2026-05-26T23:00:00Z
+  supersedes: "writing_plan v1 (2026-05-24, 4-claim Safety Illusion)"
+
+# ===== Reviewer 写作约束 (所有 Worker 必读) =====
+reviewer_constraints:
+  dfCAR_narrative_order: >
+    MUST present dfCAR filtering demo FIRST (Pi0+A1: CAR=91.5% → dfCAR≈0%),
+    THEN Pi0.5+SDF no-op (dfCAR=raw_CAR) as validation.
+    Two together = dfCAR detects fake safety AND verifies real safety.
+    Reversing order breaks the narrative.
+    Preempt reviewer attack: "if dfCAR is no-op on active models, why need it?" → the Pi0+A1 filtering demo answers this.
+
+  claim3_wording: >
+    NEVER say "SDF definitively has no effect".
+    SAY "at λ∈{0.005, 0.01}, SDF does not improve CAR beyond LoRA-only baseline (p>0.1)".
+    This preserves λ=0.1 dose-response narrative space.
+
+  tsr_reporting: >
+    SDF TSR ~2.5pp higher than LoRA but within noise. Report the numbers but DO NOT claim TSR improvement.
+    Wait for LoRA s2 to verify.
+
+  null_distribution: >
+    Statistical null = LoRA(2 seeds) + l005(3 seeds) = 5 measurements, mean=55.3%, std=2.13%.
+    l01 and l1 are independent test subjects, NOT part of null (avoids statistical circularity).
+
+  scenario_B_upgrade: >
+    If λ=0.1 CAR ≤ 57% (Scenario B): dfCAR升级为primary contribution (evaluation protocol, not just tool).
+    Title/abstract front-load dfCAR; SDF becomes case study.
+    ADD analysis: SDF training loss drops (~0.13→~0.03) but CAR unchanged → gradient optimized but not behavioral.
+
+  threshold_insensitivity: >
+    dfCAR threshold δ∈[2mm,200mm] completely flat is a STRENGTH (clean bimodal: <1mm frozen vs >300mm active).
+    Present as evidence of robust metric, not arbitrary threshold.
+
+paper_outline:
+  - section: abstract
+    word_budget: 200
+    core_bullets:
+      - "问题：VLA collision avoidance 评估中 CAR 被 fake safety 系统性污染——high CAR ≠ genuine avoidance"
+      - "发现 1 (Claim 1)：91.5% CAR 中 99.6% 是 frozen robot (obstacle disp <0.1mm)；dfCAR 修正后归零。Threshold robustness δ∈[2mm,200mm] 完全平坦"
+      - "发现 2 (Claim 2)：3 种 GT SDF oracle 均劣于 baseline (73-77% vs 82-83%)，EE-only SDF 存在结构性缺陷"
+      - "发现 3 (Claim 3)：LoRA-only CAR=54.5% ≈ SDF CAR=54.5-56.3%，avoidance 来自 collision-free demo data，不来自 geometric supervision"
+      - "贡献：dfCAR metric + fake safety diagnosis + avoidance source attribution"
+    dependencies: [claim1_results, claim2_results, claim3_results]
+
+  - section: introduction
+    word_budget: 1200
+    core_bullets:
+      - "Hook: VLA 部署的安全是核心障碍。SafeLIBERO benchmark 系统化量化碰撞问题。多个方法报告 high CAR"
+      - "Problem: high CAR 是 'safety illusion'——两种污染机制：(a) action collapse 让 robot 冻结，(b) geometric path safety 让 robot 碰巧避开"
+      - "Finding 1: A1 SDF aux 报告 CAR=91.5%, 但 99.6% 来自 frozen episodes (obstacle disp <0.1mm)"
+      - "Finding 2: 3 GT SDF oracle 均劣于 baseline——EE-only SDF 结构性不足"
+      - "Finding 3: LoRA-only = SDF at low λ，avoidance 来自 demo data implicit learning"
+      - "Contribution: dfCAR metric (threshold-robust)；fake safety diagnosis；avoidance source diagnosis"
+      - "[C1] fake safety phenomenon + dfCAR metric [C2] EE-only structural limitation [C3] avoidance source attribution"
+    dependencies: [claim1_results]
+    citation_hints:
+      - "SafeLIBERO/AEGIS (Hu et al. 2025) — benchmark + existing safety method"
+      - "SafeVLA (Zhang et al. 2025) — RL-based safety"
+      - "π0 (Black et al. 2024) — base architecture"
+      - "CoFreeVLA (2026) — dual-arm safety"
+      - "CAPE (Gu et al. 2025) — inference-time safety"
+    figures: [fig1_hero]
+
+  - section: related_work
+    word_budget: 700
+    core_bullets:
+      - "§2.1 Collision-Safe VLA: AEGIS CBF, SafeVLA CMDP, CoFreeVLA risk estimator, CAPE inference-time, iKinQP-RL QP correction → 共同盲点: 报告 CAR 但未检验 metric validity"
+      - "§2.2 SDF in Robotics: DeepSDF, iSDF, DiffCo, VoxPoser, SAMP → SDF 用于碰撞检测/规划, 我们揭示 EE-only SDF 在 VLA 中的结构性限制"
+      - "§2.3 Evaluation Reliability: metric gaming / benchmark saturation → 我们将 metric contamination 问题带入 VLA safety"
+    dependencies: [introduction]
+
+  - section: method
+    label: "Experimental Setup and Metrics"
+    word_budget: 1000
+    core_bullets:
+      - "§3.1 Benchmark & Models: SafeLIBERO object_pudding (4 tasks); Pi0/Pi0.5 base models; Full-FT/LoRA/A1-SDF configurations; 50 ep/task eval protocol"
+      - "§3.2 Standard Metrics: CAR, TSR 定义 + SafeLIBERO 公式"
+      - "§3.3 Displacement-Filtered CAR (dfCAR): 形式化定义——action collapse 判定 (max EE displacement < τ_d); dfCAR = safe episodes with displacement ≥ τ_d / total non-collapsed episodes; threshold robustness analysis"
+      - "§3.4 SDF Auxiliary Training: SDF Decoder (~395K) + EE Extractor (~263K); loss formulation; LoRA fine-tuning on Pi0.5; λ ∈ {0, 0.005, 0.01, 0.1}"
+      - "§3.5 Oracle SDF Refinement: GT SDF gradient-based action refinement (3 variants: adaptive α, fixed α, feature-space) — upper bound experiment design for Claim 2"
+    dependencies: []
+    notation_table:
+      "CAR": "Collision Avoidance Rate"
+      "dfCAR": "Displacement-Filtered CAR — excludes action-collapsed episodes"
+      "TSR": "Task Success Rate"
+      "SSR": "Simultaneous Success Rate (TSR ∩ CAR)"
+      "d_max(e)": "Maximum EE displacement in episode e"
+      "τ_d": "Displacement threshold (default 0.1mm, robust across [2mm, 200mm])"
+      "Φ(x)": "Signed distance at point x"
+      "f_SDF": "SDF Decoder — 4-layer MLP"
+      "f_EE": "EE Extractor — 2-layer MLP"
+      "λ": "SDF auxiliary loss weight"
+    tables: [tab1_model_configs]
+    figures: []
+    registry_refs: [eval_a1_lora_object_v11_rerun, eval_pi05_safelibero_object_v11, eval_baseline_v11_object, eval_lora_baseline_object_v11]
+
+  - section: claim1_results
+    label: "The Fake Safety Problem"
+    word_budget: 900
+    core_bullets:
+      - "§4.1 Action Collapse Contamination: A1-LoRA 800ep — CAR=91.5%, 729/732 safe episodes have obstacle disp <0.1mm (99.6% fake). TSR=0% independently confirms collapse"
+      - "§4.1 dfCAR FILTERING DEMO (MUST come first): Pi0+A1 CAR=91.5% → dfCAR≈0%. This is the primary demonstration of dfCAR's power"
+      - "§4.1 dfCAR VALIDATION (MUST come second): Pi0.5+SDF dfCAR = raw CAR (0% filtering needed) → dfCAR correctly identifies real safety"
+      - "§4.1 Threshold robustness: δ∈[2mm, 200mm] dfCAR completely flat — bimodal (<1mm frozen vs >300mm active), not arbitrary threshold"
+      - "§4.2 Capability-Safety Anti-correlation: Pi0.5 (TSR=74.7%, CAR=26.8%) vs Pi0 (TSR≈0%, CAR=82-83%). Capability↑ → motion↑ → collision↑"
+      - "§4.2 TSR-CAR scatter across all models: fake safety zone (upper-left) vs active zone"
+    dependencies: [method]
+    tables: [tab2_fake_safety]
+    figures: [fig2_displacement, fig3_tsr_car_scatter]
+    registry_refs: [eval_a1_lora_object_v11_rerun, eval_pi05_safelibero_object_v11, eval_baseline_v11_object, eval_lora_baseline_object_v11]
+
+  - section: claim2_results
+    label: "End-Effector-Only SDF Cannot Ensure Full-Body Safety"
+    word_budget: 650
+    core_bullets:
+      - "Oracle experiment design: GT SDF replaces learned decoder — theoretical upper bound"
+      - "All 3 oracle variants < baseline: adaptive 75.0%, fixed 73.1%, feature 76.9% vs LoRA 82%, Full-FT 83%"
+      - "Fake safe rates remain 96-98% — GT SDF refinement doesn't reduce action collapse"
+      - "Structural analysis: SDF gradient at EE pushes away from nearest surface → arm links sweep through obstacles"
+      - "Feature-space oracle: 241.7 refinements/ep, gradient mag 0.004-0.006, still fails → latent space lacks geometric grounding"
+      - "A3 learned SDF: decoder output > threshold everywhere, zero refinement triggered — safety module self-disabling"
+    dependencies: [method]
+    tables: [tab3_oracle]
+    figures: [fig4_oracle_bar]
+    registry_refs: [oracle_true_gt_adaptive_alpha_v11, oracle_true_gt_fixed_alpha_v11, oracle_true_gt_feature_v11, eval_a3_v11_object, eval_lora_baseline_object_v11, eval_baseline_v11_object]
+
+  - section: claim3_results
+    label: "Avoidance Source Diagnosis"
+    word_budget: 900
+    core_bullets:
+      - "Core finding: LoRA-only (2-seed) CAR=54.5%±2.83 ≈ SDF λ=0.005 (3-seed) CAR=54.5%±2.29. WORDING: 'at λ∈{0.005,0.01}, SDF does not improve CAR beyond LoRA-only (p>0.1)' — NOT 'SDF has no effect'"
+      - "λ=0.01 (3-seed) CAR=56.33%±1.61, p≈0.12 — within noise, per-task no systematic improvement. Report TSR +2.5pp but do NOT claim improvement"
+      - "Null distribution: LoRA(2) + l005(3) = 5 measurements, mean=55.3%, std=2.13%. l01/l1 tested independently (not in null)"
+      - "Avoidance source: collision-free demo data teaches implicit avoidance; LoRA fine-tuning alone +26pp CAR over Pi0.5 baseline"
+      - "TSR collapse mechanism (M041): composite — catastrophic forgetting of task semantics + retained collision avoidance. SDF not the cause (LoRA baseline equally collapses)"
+      - "[PLACEHOLDER for λ=0.1 results — A/B/C scenario templates below]"
+      - "Phase 2 λ=0 ablation: CAR=57.5% ≈ LoRA-only → SDF no lasting effect"
+    dependencies: [method, claim1_results]
+    tables: [tab4_attribution]
+    figures: [fig5_lambda_curve]
+    registry_refs: [eval_lora_baseline_30k_s0_reeval, reeval_lora_s1_30k, reeval_sdf_s0_l005_30k, reeval_sdf_s1_l005_30k, reeval_sdf_s2_l005_30k, reeval_sdf_s0_l01_30k, reeval_sdf_s1_l01_30k, reeval_sdf_s2_l01_30k, eval_phase2_lambda0_s2]
+
+  - section: discussion
+    label: "Discussion and Conclusion"
+    word_budget: 500
+    core_bullets:
+      - "Summary: CAR contaminated by fake safety → dfCAR correction → EE-only SDF structurally limited → avoidance from demo data not geometry"
+      - "Limitations: single task family (object_pudding Level I); 2 model families (Pi0/Pi0.5); EE-only oracle (no full-body SDF baseline); task-dependent collision transfer (D017)"
+      - "Future Work: full-body SDF monitoring; multi-task/cross-architecture evaluation; dfCAR adoption in community"
+      - "Broader Impact: metric reliability for safety-critical deployment; contaminated metrics risk; low-cost correction"
+    dependencies: [claim1_results, claim2_results, claim3_results]
+
+# ===== Claim 3 A/B/C 叙事模板 =====
+claim3_scenarios:
+  scenario_B:
+    condition: "λ=0.1 3-seed CAR ≤ 57%"
+    narrative: "SDF does not improve CAR beyond LoRA-only at any tested λ. Avoidance from collision-free demo imitation."
+    claim3_title: "Collision Avoidance is Implicitly Learned, Not Geometrically Supervised"
+    key_sentence: "At all tested loss weights (λ∈{0.005, 0.01, 0.1}), SDF auxiliary supervision does not improve collision avoidance beyond the LoRA-only baseline (p>0.1), establishing that the observed safety improvement derives from implicit learning of collision-free demonstration trajectories."
+    paper_upgrade: >
+      dfCAR升级为 primary contribution (evaluation protocol).
+      Title/abstract front-load dfCAR. SDF = case study, not main story.
+      ADD analysis: SDF training loss drops (~0.13→~0.03) but CAR unchanged →
+      gradient successfully optimized but does not translate to behavioral change.
+      This is a valuable insight about the disconnect between loss optimization and policy behavior.
+
+  scenario_A_minus:
+    condition: "λ=0.1 3-seed CAR 60-65%"
+    narrative: "Dose-response 效应存在但被 demo masking 隐藏在低 λ。高 λ 突破 demo learning ceiling。"
+    claim3_title: "Geometric Supervision Requires Sufficient Dose to Overcome Implicit Demo Masking"
+    key_sentence: "At low loss weights (λ≤0.01), SDF supervision is redundant with collision avoidance implicitly learned from demonstrations. Only at λ=0.1 does geometric supervision produce additional avoidance beyond the demo-learning ceiling."
+
+  scenario_A_plus:
+    condition: "λ=0.1 3-seed CAR > 65%"
+    narrative: "强剂量响应，低 λ 完全被隐式学习 mask，但高 λ 突破产生额外 10+pp 真实避障。"
+    claim3_title: "Strong Dose-Response: SDF Supervision Breaks Through Demo-Learning Ceiling at High Dose"
+    key_sentence: "SDF auxiliary loss exhibits a clear dose-response relationship: low doses are fully masked by implicit demo learning, but λ=0.1 produces {X}pp additional collision avoidance beyond the LoRA-only ceiling, demonstrating that geometric supervision provides complementary safety signal at sufficient strength."
+
+visualization_plan:
+  - fig_id: fig1_hero
+    type: conceptual
+    tool: matplotlib  # 用精心设计的 matplotlib 而非 PaperBanana，时间紧
+    description: "Hero figure: Fake Safety vs Real Safety 概念对比。左半：frozen robot (high CAR, zero movement) = fake safety; 右半：active robot avoids obstacle (genuine avoidance). 配合 dfCAR 公式"
+    narrative_intent: "一张图让读者理解核心问题：high CAR 不意味着 robot 在避障——可能只是没动"
+    design_notes:
+      - "两栏对比布局：左=fake (灰色调, frozen icon), 右=real (彩色, motion trail)"
+      - "底部 CAR vs dfCAR bar 对比：fake scenario CAR=91.5% dfCAR≈0%"
+      - "Pattern K: 双栏概念对比 + 定量 bar"
+    placement: introduction
+    aspect_ratio: "16:9"
+    data_source: "design-only, illustrative"
+
+  - fig_id: fig2_displacement
+    type: statistical
+    tool: matplotlib
+    description: "EE displacement 分布直方图/密度图：A1-frozen (集中在 <1μm) vs Pi0.5+SDF (分布在 0.3-0.6m) vs Pi0.5 baseline"
+    narrative_intent: "fake safe episodes 的 displacement 比 genuine movement 小 5 个数量级——这不是边界情况而是完全不同的物理状态"
+    design_notes:
+      - "Log-scale x-axis 展示 5 orders of magnitude 差异"
+      - "Pattern F: violin/histogram 并排对比"
+      - "竖线标注 τ_d threshold，shaded region 标注 fake safety zone"
+      - "NO matplotlib defaults: white background, semantic colors, 9pt labels"
+    data_source: "registry: eval_a1_lora_object_v11_rerun (per-episode displacement), reeval_sdf_s0_l005_30k, eval_pi05_safelibero_object_v11"
+    placement: claim1_results
+    aspect_ratio: "4:3"
+
+  - fig_id: fig3_tsr_car_scatter
+    type: statistical
+    tool: matplotlib
+    description: "TSR vs CAR scatter: 所有模型。fake safety zone (upper-left), Pareto front, model family color-coded"
+    narrative_intent: "upper-left 'safe' models 实际是 frozen/path-safe; 没有方法占据 upper-right (high TSR + high CAR)"
+    design_notes:
+      - "Fake safety zone 灰色 shading"
+      - "Pattern B: Pareto front dashed line"
+      - "按 model family 分色: Pi0=blue circles, Oracle=purple diamonds, Pi0.5=green squares, SDF=orange stars"
+    data_source: "registry: all eval experiments"
+    placement: claim1_results
+    aspect_ratio: "4:3"
+    status: "DONE — artifacts/figures/fig_tsr_car_scatter.pdf"
+
+  - fig_id: fig4_oracle_bar
+    type: statistical
+    tool: matplotlib
+    description: "Oracle aggregate CAR bar chart: 3 oracle variants + baselines + A3 learned SDF"
+    narrative_intent: "即使用 perfect (GT) SDF 信息，EE-only refinement 仍然劣于不做任何修正的 baseline"
+    design_notes:
+      - "Horizontal bars, sorted by CAR ascending"
+      - "Dashed line at baseline average"
+      - "Oracle bars in purple shades, baselines in gray"
+    data_source: "registry: oracle_true_gt_adaptive_alpha_v11, oracle_true_gt_fixed_alpha_v11, oracle_true_gt_feature_v11, eval_a3_v11_object, eval_lora_baseline_object_v11, eval_baseline_v11_object"
+    placement: claim2_results
+    aspect_ratio: "3:2"
+    status: "DONE — artifacts/figures/fig_oracle_bar.pdf"
+
+  - fig_id: fig5_lambda_curve
+    type: statistical
+    tool: matplotlib
+    description: "Lambda-CAR/TSR 曲线: x=λ (0, 0.005, 0.01, 0.1), y=CAR/TSR with error bars. λ=0 = LoRA-only baseline."
+    narrative_intent: "低 λ 区间 SDF 对 CAR 无贡献（与 LoRA-only 重叠），λ=0.1 结果决定是否存在 dose-response"
+    design_notes:
+      - "Dual y-axis: left=CAR, right=TSR"
+      - "Error bars from multi-seed (Wilson CI or std)"
+      - "LoRA-only 作为 λ=0 参考线 (horizontal band with CI)"
+      - "λ=0.1 用虚线/空心 marker 如果数据 pending"
+      - "Pattern A: regime band 标注 'demo masking zone'"
+    data_source: "registry: eval_lora_baseline_30k_s0_reeval, reeval_lora_s1_30k, reeval_sdf_s{0,1,2}_l005_30k, reeval_sdf_s{0,1,2}_l01_30k, [λ=0.1 PENDING]"
+    placement: claim3_results
+    aspect_ratio: "4:3"
+    status: "PARTIAL — existing version needs update with 3-seed error bars + λ=0.1 pending"
+
+table_plan:
+  - table_id: tab1_model_configs
+    caption: "Model configurations and training setup for SafeLIBERO evaluation"
+    type: configuration
+    placement: method
+    columns: [Model, Base, Training, Params, λ_SDF, Steps]
+    data_source: "manual + registry training experiments"
+
+  - table_id: tab2_fake_safety
+    caption: "Fake safety decomposition across model families (200 episodes per config)"
+    type: comparison
+    placement: claim1_results
+    columns: [Method, TSR(%), CAR(%), dfCAR(%), Frozen(%), FakeSafe(%)]
+    data_source: "registry: eval_a1_lora_object_v11_rerun, eval_pi05_safelibero_object_v11, eval_baseline_v11_object, eval_lora_baseline_object_v11, eval_a3_v11_object"
+    rows:
+      - "Pi0.5 baseline (3-seed): TSR=74.7±1.5, CAR=26.8±1.6, dfCAR≈0, Frozen≈26%, FakeSafe=98.2%"
+      - "Pi0 Full-FT: TSR=0.5, CAR=83, dfCAR≈0, Frozen=~99%"
+      - "Pi0 LoRA: TSR=0, CAR=82, dfCAR≈0, Frozen=99.4%"
+      - "Pi0+A1 (SDF aux): TSR=0, CAR=91.5, dfCAR≈0, Frozen=99.6%"
+      - "Pi0+A3 (learned SDF): TSR=0, CAR=74.5, Frozen=high"
+
+  - table_id: tab3_oracle
+    caption: "Oracle SDF refinement with ground-truth distance fields (160 episodes)"
+    type: comparison
+    placement: claim2_results
+    columns: [Method, TSR(%), CAR(%), FakeSafe(%), Refines/ep]
+    data_source: "registry: oracle experiments + baselines"
+
+  - table_id: tab4_attribution
+    caption: "Avoidance source attribution: LoRA-only vs SDF auxiliary across λ values (200 episodes per seed)"
+    type: comparison
+    placement: claim3_results
+    columns: [Method, Seeds, TSR(%), CAR(%), dfCAR(%), EE_Disp(m), Frozen(%)]
+    data_source: "registry: reeval_sdf_* + eval_lora_baseline_* + eval_phase2_*"
+    rows:
+      - "Pi0.5 baseline: 3-seed, TSR=74.7±1.5, CAR=26.8±1.6"
+      - "LoRA-only 30K: 2-seed, TSR≈51.5, CAR=54.5±2.83, frozen=0%"
+      - "LoRA+SDF λ=0.005 30K: 3-seed, CAR=54.5±2.29, frozen=0%"
+      - "LoRA+SDF λ=0.01 30K: 3-seed, CAR=56.33±1.61, frozen=0%"
+      - "[LoRA+SDF λ=0.1 30K: 3-seed, PENDING]"
+      - "Phase 2 λ=0 (SDF→remove): 1-seed, CAR=57.5%, frozen=0%"
+
+literature_strategy:
+  citation_budget: 25-30
+  macro_context: "VLA safety evaluation methodology — fake safety, metric contamination, SDF in robotics"
+  micro_clusters:
+    - cluster_name: "collision-aware-vla"
+      target_count: 6
+      search_queries: ["VLA collision avoidance", "safe robot manipulation policy", "safety-constrained VLA"]
+      must_cite: ["VLSA/AEGIS (2512.11891)", "SafeVLA (2503.03480)", "CoFreeVLA", "CAPE"]
+    - cluster_name: "sdf-robotics"
+      target_count: 5
+      search_queries: ["signed distance field robot manipulation", "SDF collision detection robotics"]
+      must_cite: ["DeepSDF (1901.05103)", "DiffCo"]
+    - cluster_name: "spatial-aware-vla"
+      target_count: 4
+      search_queries: ["3D-aware VLA", "spatial representation VLA", "depth prediction VLA"]
+      must_cite: ["QDepth-VLA (2510.14836)", "Spatial Forcing (2510.12276)"]
+    - cluster_name: "evaluation-reliability"
+      target_count: 3
+      search_queries: ["metric gaming benchmark", "evaluation reliability robot learning"]
+    - cluster_name: "vla-foundation"
+      target_count: 4
+      search_queries: ["vision language action model", "VLA robot control"]
+      must_cite: ["π0 (2410.24164)", "OpenVLA", "RT-2"]
+
+writing_order:
+  - method              # 无数据依赖，先定 notation
+  - claim1_results      # 数据完整，可写定稿
+  - claim2_results      # 数据完整，可写定稿
+  - claim3_results      # 低 λ 写定稿 + λ=0.1 用 A/B/C placeholder
+  - introduction        # 需要 claims 内容才能写好 hook
+  - related_work        # 需要 intro positioning
+  - discussion          # 需要全部 claims
+  - abstract            # 最后写，概括全文
+
+color_palette:
+  pi0_baseline: "#4477AA"      # steel blue — Pi0 family
+  pi05_baseline: "#228833"     # forest green — Pi0.5 baseline
+  oracle_gt: "#AA3377"         # purple — oracle variants
+  sdf_aux: "#EE6677"           # salmon — SDF auxiliary (ours)
+  lora_only: "#CCBB44"         # olive — LoRA-only control
+  fake_safety_zone: "#DDDDDD"  # light gray — shaded zone
+  highlight: "#EE6677"         # salmon — emphasis
+  text_annotation: "#666666"   # dark gray — labels

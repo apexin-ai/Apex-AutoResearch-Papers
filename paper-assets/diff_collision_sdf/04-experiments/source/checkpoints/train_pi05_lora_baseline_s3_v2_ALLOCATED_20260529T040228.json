@@ -1,0 +1,16 @@
+{
+  "exp_id": "train_pi05_lora_baseline_s3_v2",
+  "project": "diff_collision_sdf",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-29T04:02:08.893Z",
+    "updated_at": "2026-05-29T04:02:27.845Z",
+    "hypothesis": "LoRA baseline (no SDF) seed3 on object_pudding 30K steps: 4th seed for rebuttal statistical power. v2 restart after fixing LeRobot dataset API patch on westd-35807 (same 4 patches as westd-45947).",
+    "parent": "train_pi05_lora_baseline_s3"
+  },
+  "timestamp": "2026-05-29T04:02:28.081888+00:00",
+  "trigger": "update_registry"
+}

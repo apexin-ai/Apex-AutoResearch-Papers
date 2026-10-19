@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "24c98fe4da6cf544d08c",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ssh westd45947 code data sync",
+  "task_key": "worker_ssh_westd45947_code_data_sync_20260520T030400",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd45947_code_data_sync_20260520T030400_result.json",
+    "occurrence": 1,
+    "bytes": 1144,
+    "sha256": "50e9164395dab1d62340ce2435cd670561b0eb168d01bb2f62bfbaeed935f2ec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "同步完成，全部验证通过。汇总：\n\n### 同步结果\n\n| 项目 | 状态 | 路径 |\n|------|------|------|\n| **代码仓库** | ✓ | `/root/colliforce-vla/` |\n| `scripts/train_a3_hook.py` | ✓ | 20951 bytes |\n| `scripts/train_baseline.py` | ✓ | 5228 bytes |\n| `scripts/eval_safelibero.py` | ✓ | 33764 bytes |\n| `colliforce/sdf_decoder.py` | ✓ | 3542 bytes |\n| `colliforce/ee_extractor.py` | ✓ | 790 bytes |\n| `colliforce/sdf_gradient_refiner.py` | ✓ | 5830 bytes |\n| **openpi 框架** | ✓ | `/root/autodl-tmp/openpi/` → symlink `/root/colliforce-vla/openpi` |\n| **模型权重** | ✓ | `model.safetensors` = 14,005,618,584 bytes (与源一致) |\n| **SDF GT 数据** | ✓ | `sdf_gt_spatial_bowl.npz` + `sdf_gt_object_chocolate.npz` |\n| **spatial 训练数据** | ✓ | 5 parquet chunks + meta + images |\n| **object 训练数据** | ✓ | 9 parquet chunks + meta + images |\n| **Python import** | ✓ | SDFDecoder, SDFGradientRefiner, ee_extractor 均可导入 |\n\n传输方式：通过 SSH key 建立 45947→35807 直连，rsync 传输。模型权重 ~125MB/s，约 2 分钟完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westd45947-code-data-sync.md"
+}

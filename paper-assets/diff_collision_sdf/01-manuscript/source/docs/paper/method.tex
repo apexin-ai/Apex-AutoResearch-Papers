@@ -1,0 +1,48 @@
+\section{Experimental Setup and Metrics}\label{sec:method}
+
+\subsection{Benchmark and Models}\label{sec:benchmark}
+
+We evaluate on SafeLIBERO~\cite{hu2025vlsa}, the \textit{object\_pudding} suite (Level~II): four tabletop pick-and-place tasks with collision hazards and per-timestep collision detection. Two VLA families are tested: \textbf{Pi0} (${\sim}$2.5B)~\cite{black2024pi0} with flow matching~\cite{lipman2023flow}, and \textbf{Pi0.5} with broader pre-training. Table~\ref{tab:configurations} lists all configurations. Each uses 50 episodes per task (200 total); Pi0.5 multi-seed runs use 3 seeds (600 episodes). All metrics are computed using a fixed evaluation seed (seed\,=\,7); the reported $\pm$ values reflect variance across training seeds, not evaluation stochasticity. The four tasks span varied obstacle configurations and gripper approach trajectories, requiring the policy to generalize avoidance across different geometric contexts rather than memorize a single arrangement. We report Collision Avoidance Rate (CAR), the fraction of collision-free episodes, and Task Success Rate (TSR), the fraction of episodes that complete the task~\cite{hu2025vlsa,zhang2025safevla}.
+
+\begin{table}[t]
+\centering
+\caption{Training configurations. Trainable parameters exclude the frozen backbone. Pi0+A1 LoRA weights were not loaded due to a parameter-name mismatch; only auxiliary heads were trained.}
+\label{tab:configurations}
+\vspace{2pt}
+\footnotesize
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{llr}
+\toprule
+Configuration & Description & Train.\ Params \\
+\midrule
+Pi0 Full-FT & Full fine-tune, flow-matching loss & ${\sim}$2.5B \\
+Pi0 LoRA & LoRA adapters only & ${\sim}$33.5M \\
+Pi0+A1 (SDF aux) & LoRA + SDF decoder + EE extractor & ${\sim}$658K \\
+Pi0+A3 (learned SDF) & LoRA + SDF decoder w/ grad.\ refinement & ${\sim}$34.2M \\
+Pi0.5 (pre-trained) & No fine-tuning & 0 \\
+Pi0.5 LoRA & LoRA fine-tune on Pi0.5 & ${\sim}$33.5M \\
+Pi0.5+A1 (SDF aux) & LoRA + SDF aux, $\lambda \in \{0.005, 0.01, 0.1\}$ & ${\sim}$34.2M \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\subsection{Displacement-Filtered CAR}\label{sec:dfcar}
+
+Standard CAR conflates genuine avoidance with action collapse. We define an episode as \emph{action-collapsed} when $d_{\max}(e) < \tau_d$ ($\tau_d = 0.1$\,mm) and exclude such episodes:
+\begin{equation}
+\text{dfCAR} = \frac{|\{e : \text{safe}(e) \;\land\; d_{\max}(e) \geq \tau_d\}|}{|\{e : d_{\max}(e) \geq \tau_d\}|}
+\end{equation}
+The displacement distribution is sharply bimodal (collapsed episodes below 1\,$\mu$m, active above 200\,mm), making $\tau_d$ robust across $[2, 200]$\,mm (Appendix~\ref{sec:appendix_threshold}). For Pi0 under A1, $d_{\max}$ uses obstacle displacement due to an inconsistent EE reference frame; Pi0.5 uses standard EE displacement.
+
+\subsection{SDF Auxiliary Training and Oracle Refinement}\label{sec:sdf_aux}
+
+We augment LoRA-adapted~\cite{hu2022lora} VLAs with an SDF decoder and an EE position extractor (Appendix~\ref{sec:appendix_training}, Table~\ref{tab:hyperparams}). The total loss is:
+\begin{equation}
+\mathcal{L}_\text{total} = \mathcal{L}_\text{action} + \lambda \left( \mathcal{L}_\text{SDF} + \mathcal{L}_\text{EE} \right)
+\end{equation}
+where $\lambda \in \{0.005, 0.01, 0.1\}$. $\mathcal{L}_\text{SDF}$ trains a 4-layer MLP decoder to predict signed distances, clamped to $[-\delta, \delta]$ ($\delta = 0.05$\,m) with Eikonal regularization (weight 0.1); 64 query points per step are sampled from a precomputed $64^3$ voxel grid. $\mathcal{L}_\text{EE}$ regresses the end-effector position from pooled suffix features via a 2-layer MLP (1024 $\to$ 256 $\to$ 3), providing spatial grounding for the SDF decoder.
+
+Training proceeds in two phases: Phase~1 (steps 0--5K) freezes the backbone and LoRA, training only auxiliary heads to convergence; Phase~2 (steps 5K--30K) unfreezes LoRA with a 100-step warmup ramp to avoid destabilizing learned SDF features.
+
+In Pi0+A1, a parameter-name mismatch prevented LoRA loading and caused action collapse (TSR\,=\,0\%; Table~\ref{tab:configurations}). To test the upper bound of EE-only refinement (\S\ref{sec:ee_only}), we also replace the learned SDF with ground-truth distance fields from the simulation geometry in three oracle variants (Appendix~\ref{sec:appendix_oracle}).\label{sec:oracle_setup}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0c6d38619d307812c64a",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops checkpoint integrity audit",
+  "task_key": "worker_ops_checkpoint_integrity_audit_20260525T194947",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_checkpoint_integrity_audit_20260525T194947_result.json",
+    "occurrence": 1,
+    "bytes": 2316,
+    "sha256": "cbe94721dbae10186cb616be4bc2134bb8444bb70fc42942e6ed7f275319d1f1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。所有 `best/` 目录的 base-only 问题**已经被修复过了**（存在 `model_base_backup.safetensors`）。\n\n## 审计结果\n\n| 目录 | model.safetensors 大小 | 状态 | model_lora.safetensors | 操作 |\n|------|----------------------|------|----------------------|------|\n| seed0_l005/best/ | — | NOT FOUND (无 best/ 目录) | 无 | — |\n| seed0_l005/30000/ | 7,540,115,784 | ✅ OK | 无 | 无需 |\n| seed0_l01/best/ | — | NOT FOUND (无 best/ 目录) | 无 | — |\n| seed0_l01/30000/ | 7,540,115,784 | ✅ OK | 无 | 无需 |\n| seed1_l005/best/ | symlink → model_lora.safetensors | ✅ 已修复 | 有 (7.54GB) | 已修复 |\n| seed1_l005/29999/ | 7,540,115,784 | ✅ OK | 无 | 无需 |\n| seed1_l005/30000/ | 7,540,115,784 | ✅ OK | 无 | 无需 |\n| seed1_l01/best/ | symlink → model_lora.safetensors | ✅ 已修复 | 有 (7.54GB) | 已修复 |\n| seed1_l01/29999/ | 7,540,115,784 | ✅ OK | 无 | 无需 |\n| seed1_l01/30000/ | 7,540,115,784 | ✅ OK | 无 | 无需 |\n| seed2_l005/best/ | symlink → model_lora.safetensors | ✅ 已修复 | 有 (7.54GB) | 已修复 |\n| seed2_l005/29999/ | 7,540,115,784 | ✅ OK | 无 | 无需 |\n| seed2_l005/30000/ | 7,540,115,784 | ✅ OK | 无 | 无需 |\n| seed2_l01/best/ | symlink → model_lora.safetensors | ✅ 已修复 | 有 (7.54GB) | 已修复 |\n| seed2_l01/29999/ | 7,540,115,784 | ✅ OK | 无 | 无需 |\n| seed2_l01/30000/ | 7,540,115,784 | ✅ OK | 无 | 无需 |\n| seed0_l005_p2abl/ | — | 无 checkpoint（仅 wandb_id.txt） | — | — |\n| phase2_lambda0_s0_stage1/ | — | 无 checkpoint（仅 wandb_id.txt） | — | — |\n\n## 总结\n\n- **base-only 问题**：4 个 `best/` 目录曾有此问题（seed1_l005, seed1_l01, seed2_l005, seed2_l01），**全部已修复**（symlink → model_lora.safetensors，原 base-only 文件保留为 model_base_backup.safetensors）\n- **所有数字 checkpoint（29999/, 30000/）**：均为 7,540,115,784 bytes，正确含 LoRA weights，无需修复\n- **seed0_l005 和 seed0_l01 没有 `best/` 目录**：只有 `30000/`，这不是 base-only 问题，而是缺少 best checkpoint 选择。如果 eval 需要用 best/，需要单独处理（可将 30000/ 作为 best 或重新运行 best selection）\n- **无法修复的情况**：0 个"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-checkpoint-integrity-audit.md"
+}

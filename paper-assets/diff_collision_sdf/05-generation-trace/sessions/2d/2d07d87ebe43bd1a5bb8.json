@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2d07d87ebe43bd1a5bb8",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ssh d006 step6 verify lora",
+  "task_key": "worker_ssh_d006_step6_verify_lora_20260520T210247",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d006_step6_verify_lora_20260520T210247_result.json",
+    "occurrence": 1,
+    "bytes": 1625,
+    "sha256": "8b3e8e85dae4f1c732233826389274b74bf058dbd76bc306c50cb1ef9f5c54f7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## D006 Step 6 验证结果\n\n### 两个 LoRA 实验都启动失败\n\n**错误**：启动命令使用了脚本不支持的参数 `--gpu` 和 `--max_steps`。\n\n```\ntrain_baseline.py: error: unrecognized arguments: --gpu 1 --max_steps 30000\ntrain_baseline.py: error: unrecognized arguments: --gpu 3 --max_steps 30000\n```\n\n**正确用法**（脚本文档注释和 argparse 定义）：\n- GPU 选择：`CUDA_VISIBLE_DEVICES=X` 环境变量，不是 `--gpu`\n- 训练步数：`--num_train_steps`，不是 `--max_steps`\n\n### 当前 GPU 状态（只有 2/4 在用，非 6/6）\n\n| GPU | 利用率 | 显存 | 进程 |\n|-----|--------|------|------|\n| 0 | 80% | 35747/97887 MiB | PID 222903 (原 baseline_spatial_bowl_s0_v2) |\n| 1 | **0%** | **0 MiB** | **空闲 — LoRA spatial 失败** |\n| 2 | 100% | 35747/97887 MiB | PID 222982 (原 baseline_object_pudding_s0_v2) |\n| 3 | **0%** | **0 MiB** | **空闲 — LoRA pudding 失败** |\n\n### 需要重新启动的正确命令\n\n```bash\n# spatial_bowl on cuda:1\nCUDA_VISIBLE_DEVICES=1 nohup python scripts/train_baseline.py \\\n  --scene spatial_bowl --seed 0 \\\n  --exp_name baseline_lora_spatial_bowl_s0 \\\n  --num_train_steps 30000 \\\n  > ~/runs/diff_collision_sdf/baseline_lora_spatial_bowl_s0.log 2>&1 &\n\n# object_pudding on cuda:3\nCUDA_VISIBLE_DEVICES=3 nohup python scripts/train_baseline.py \\\n  --scene object_pudding --seed 0 \\\n  --exp_name baseline_lora_object_pudding_s0 \\\n  --num_train_steps 30000 \\\n  > ~/runs/diff_collision_sdf/baseline_lora_object_pudding_s0.log 2>&1 &\n```\n\n是否要我重新启动这两个实验？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-d006-step6-verify-lora.md"
+}

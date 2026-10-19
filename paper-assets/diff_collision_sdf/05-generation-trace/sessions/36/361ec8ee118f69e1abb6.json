@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "361ec8ee118f69e1abb6",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops close stepwise 16k and launch 22k",
+  "task_key": "worker_ops_close_stepwise_16k_and_launch_22k_20260527T011917",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_close_stepwise_16k_and_launch_22k_20260527T011917_result.json",
+    "occurrence": 1,
+    "bytes": 747,
+    "sha256": "240ac73dd7c8f366bd20b5c436b8c9ea2ece2c2cbaad8ced6301660f55a847fa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== 16K eval 结果 ===\nCAR: 55.5%, TSR: 49.5%\nPer-task:\n  Task 0 (orange_juice): TSR=26%, CAR=56%\n  Task 1 (pudding):      TSR=74%, CAR=74%\n  Task 2 (milk):         TSR=38%, CAR=68%\n  Task 3 (bbq_sauce):    TSR=60%, CAR=24%\nRegistry: DONE/negative\n\n=== 22K eval 启动 ===\nPID: 518041\n验证 1 (ps): ✅ PID 518041 running, STAT=S\n验证 2 (nvidia-smi): ✅ GPU 0 = 8610 MiB\n验证 3 (log): ✅ Task 0 已开始 (pick up orange juice), Safety level II\n\n=== Step-wise 曲线更新 ===\n16K: CAR=55.5% (null range, +0.47σ)\n20K: CAR=55%\n22K: running\n```\n\n**注意**: 16K eval JSON 中 checkpoint 路径为 `/best` 而非 `/16000`，可能是 symlink 或启动时参数问题，结果文件名确实是 16k。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-close-stepwise-16k-and-launch-22k.md"
+}

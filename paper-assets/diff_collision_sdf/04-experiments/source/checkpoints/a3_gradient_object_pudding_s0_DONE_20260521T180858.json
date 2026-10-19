@@ -1,0 +1,60 @@
+{
+  "exp_id": "a3_gradient_object_pudding_s0",
+  "project": "diff_collision_sdf",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 2,
+    "created_at": "2026-05-20T02:51:33.509Z",
+    "updated_at": "2026-05-21T18:08:58.793Z",
+    "hypothesis": "SDF gradient-guided action refinement during training (A3) improves collision avoidance on object_pudding Level I — same A3 architecture on a different collision scenario, expecting CAR improvement over baseline. Directly comparable to AEGIS (CAR 32%, TSR 92%) on same task.",
+    "notes": "[2026-05-21 08:12] Resume2 从 step 22000 立即崩溃。代码 bug: pi0_pytorch.py:334 访问 q_proj.weight.dtype，但 LoRA 注入后 q_proj 变成 LoRALinear（无 .weight 属性）。两个 A3 实验同一 bug。需修 pi0_pytorch.py 后重启。",
+    "reproduce": {
+      "finished_at": "2026-05-21T18:08:57.170Z"
+    },
+    "failure_reason": "EXIT_CODE=124 (timeout — exceeded timeout_hours)",
+    "completed_at": "2026-05-20T07:35:27.538Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-20T07:35:29.577551+00:00"
+        },
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-21T08:00:39.279333+00:00"
+        },
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-21T08:12:52.944001+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "Restarted 2026-05-20 after GPU recovery. Resume from step 2500, save_interval=2000, SAVE_TOTAL_LIMIT=3. Previous crash: CUDA_ERROR_NO_DEVICE (transient GPU fault)."
+      }
+    },
+    "spec": {
+      "command": "bash -c \"export JAX_PLATFORMS=cpu && export WANDB_MODE=offline && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/colliforce-vla && python scripts/train_a3_hook.py --scene object_pudding --seed 0 --save_interval 2000 --batch_size 32 --gpu 1 --resume\"",
+      "server": "westd-45947",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "165990",
+      "log_path": "/tmp/object_pudding.log",
+      "submitted_at": "2026-05-20T08:00:17.356Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 86418.8,
+      "gpu_hours": 24.01
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-21T18:08:58.824970+00:00",
+  "trigger": "update_registry"
+}

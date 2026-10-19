@@ -1,0 +1,65 @@
+{
+  "exp_id": "oracle_a3_force_refine_object_v11",
+  "project": "diff_collision_sdf",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T15:33:53.175Z",
+    "updated_at": "2026-05-22T16:27:29.165Z",
+    "hypothesis": "Oracle refinement (--force_refine bypasses sdf_min threshold) on A3 object_pudding checkpoint — tests whether SDF gradient direction is correct when refinement is forced on every step. If CAR improves over A3-no-force (74.5%) and baseline (83%), the SDF decoder learned useful gradients but threshold calibration was wrong. If CAR worsens, gradient direction itself is incorrect. Critical diagnostic: refined_count was 0/200 in A3 v11 — this experiment forces refinement to actually test the core mechanism.",
+    "parent": "eval_a3_v11_object",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate libero && cd /root/colliforce-vla && python scripts/eval_safelibero.py --model_type a3 --checkpoint_dir /root/autodl-tmp/checkpoints/a3_grad_refine_object_pudding --ckpt_step best --scene safelibero_object_all --level levelII --n_episodes 40 --replan_steps 5 --gpu 2 --force_refine --output_path /root/autodl-tmp/eval_results/oracle_force_refine_v11_eval_safelibero_object_all_levelII_best_a3_seed0.json\"",
+      "server": "westd-35807",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "697903",
+      "data_path": "safelibero_object_all_levelII",
+      "data_count": 40,
+      "model_name": "a3_gradient_object_pudding_best+force_refine",
+      "seed": 0,
+      "checkpoint_source": "a3_gradient_object_pudding_s0",
+      "eval_data": "safelibero_object_all_levelII",
+      "log_path": "/root/autodl-tmp/eval_results/oracle_a3_force_refine.log"
+    },
+    "metrics": {
+      "TSR_avg": 0,
+      "CAR_avg": 81.2,
+      "n_episodes": 40,
+      "per_task": {
+        "orange_juice": {
+          "TSR": 0,
+          "CAR": 95,
+          "avg_max_displacement": 0.0005
+        },
+        "chocolate_pudding": {
+          "TSR": 0,
+          "CAR": 57.5,
+          "avg_max_displacement": 0.046
+        },
+        "milk": {
+          "TSR": 0,
+          "CAR": 92.5,
+          "avg_max_displacement": 0.001
+        },
+        "bbq_sauce": {
+          "TSR": 0,
+          "CAR": 80,
+          "avg_max_displacement": 0.0018
+        }
+      },
+      "refined_count_per_episode": 300,
+      "force_refine": true,
+      "refine_alpha": 0.1,
+      "refine_margin": 0.01,
+      "displacement_collapse": "most episodes show max_displacement 1e-6 to 1e-10, gradient near-zero"
+    },
+    "notes": "[2026-05-23 00:23] Eval completed. Results JSON: /root/autodl-tmp/eval_results/oracle_force_refine_v11_eval_safelibero_object_all_levelII_best_a3_seed0.json. Log: /root/autodl-tmp/eval_results/oracle_a3_force_refine.log. Key findings: (1) force_refine successfully triggered refinement on every step (300/300), confirming the threshold was preventing any refinement in normal A3; (2) displacement collapse — gradient magnitude is near-zero (1e-6 to 1e-10) for 37/40 episodes in tasks 0,2,3, suggesting SDF decoder outputs near-constant values with vanishing gradients; (3) task 1 (chocolate_pudding) is the only task with meaningful displacements (up to 0.35m) but also worst CAR (57.5%), suggesting gradient direction is incorrect near the target object; (4) M024 coordinate bug may explain gradient direction issues.",
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-22T16:27:29.221008+00:00",
+  "trigger": "update_registry"
+}

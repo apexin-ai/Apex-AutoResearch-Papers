@@ -1,0 +1,1190 @@
+# ops check westd35807 training
+
+**How Action Collapse Creates Illusory Safety in Diffusion-Based VLA Collision Avoidance Evaluation** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 24
+- **Recorded user turns:** 0
+- **Tool calls:** 8
+- **Original source:** `logs/workers/worker_ops_check_westd35807_training_20260522T094133.log`
+- **Structured JSON:** [`5b069f60d40c20ecef0d.json`](../../sessions/5b/5b069f60d40c20ecef0d.json)
+
+## Before a recorded user message
+
+24 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf",
+  "session_id": "435d0546-b639-4c3d-96cd-e3e1cb6fcfba",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "f1b63b70-126f-497e-9f99-b64b0d70946e",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779457800,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "14e52273-793f-49f2-a1b3-0b5bbf5c8309",
+  "session_id": "435d0546-b639-4c3d-96cd-e3e1cb6fcfba"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to check the training progress of 4 experiments on the westd-35807 server. Let me load the check-training-status skill first, then use ssh_read_only to check all experiments.
+
+Actually, let me just directly use the MCP tools. I need to first load the tool schemas.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "435d0546-b639-4c3d-96cd-e3e1cb6fcfba",
+  "uuid": "38ff6de9-c31b-44b5-b524-06853b149018",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SDFmWNeq6BLd3Y6ncaz8ex",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11967,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11967
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01541gPQ9sB7SVtw8hsmdEWb`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "435d0546-b639-4c3d-96cd-e3e1cb6fcfba",
+  "uuid": "09701951-c621-45a4-8307-7af5e4071bba",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SDFmWNeq6BLd3Y6ncaz8ex",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11967,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11967
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-22T09:41:44.628Z_
+
+<details><summary>↩ Tool result · `toolu_01541gPQ9sB7SVtw8hsmdEWb`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "435d0546-b639-4c3d-96cd-e3e1cb6fcfba",
+  "uuid": "5cbc5777-bb4e-4f87-a1e6-78a40e3758f0",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me run all the checks in parallel - process status, log tails, and GPU utilization.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "435d0546-b639-4c3d-96cd-e3e1cb6fcfba",
+  "uuid": "d10bbf32-3439-43c0-b0ef-0c4cfa0eeefb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015LhrTEDAy5Xk5ibT7yGPUR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 511,
+      "cache_read_input_tokens": 23414,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 511
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FzfQbzwBowYcFBNWAushBM`</summary>
+
+```json
+{
+  "server": "westd-35807",
+  "command": "ps -p 281554 -p 281629 -p 292258 -p 299910 -o pid=,etime=,cmd= 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "435d0546-b639-4c3d-96cd-e3e1cb6fcfba",
+  "uuid": "c0126ce0-5f8c-48a7-bfa9-fdb7c372acc7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015LhrTEDAy5Xk5ibT7yGPUR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 511,
+      "cache_read_input_tokens": 23414,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 511
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-22T09:41:49.780Z_
+
+<details><summary>↩ Tool result · `toolu_01FzfQbzwBowYcFBNWAushBM`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "435d0546-b639-4c3d-96cd-e3e1cb6fcfba",
+  "uuid": "f8fd7747-29f4-4013-a374-5cda7d34f25b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0142uooLgrvXGEPzziycpKb9`</summary>
+
+```json
+{
+  "server": "westd-35807",
+  "command": "tail -10 /root/autodl-tmp/colliforce-outputs/baseline_lora_spa_s0/train_v2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "435d0546-b639-4c3d-96cd-e3e1cb6fcfba",
+  "uuid": "05c5fb04-1d01-4237-9beb-ec49ffd8a732",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015LhrTEDAy5Xk5ibT7yGPUR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 511,
+      "cache_read_input_tokens": 23414,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 511
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VFfvb1bViFewGeEmryWUsS`</summary>
+
+```json
+{
+  "server": "westd-35807",
+  "command": "tail -10 /root/autodl-tmp/colliforce-outputs/baseline_lora_obj_s0/train_v2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "435d0546-b639-4c3d-96cd-e3e1cb6fcfba",
+  "uuid": "c6d90e20-d5f3-4236-8f2c-f8992de033b1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015LhrTEDAy5Xk5ibT7yGPUR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 511,
+      "cache_read_input_tokens": 23414,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 511
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Edv6eCcrQNFX7Rfa9ixuXk`</summary>
+
+```json
+{
+  "server": "westd-35807",
+  "command": "tail -10 /root/autodl-tmp/colliforce-outputs/a1_lora_obj_s0/train.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "435d0546-b639-4c3d-96cd-e3e1cb6fcfba",
+  "uuid": "a32fe3ea-589b-4386-8623-af7a634527d8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015LhrTEDAy5Xk5ibT7yGPUR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 511,
+      "cache_read_input_tokens": 23414,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 511
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HZSVbXbMbjEf37kGraTe7k`</summary>
+
+```json
+{
+  "server": "westd-35807",
+  "command": "tail -10 /root/autodl-tmp/colliforce-outputs/a1_lora_spa_s0/train.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "435d0546-b639-4c3d-96cd-e3e1cb6fcfba",
+  "uuid": "32240054-0ecf-4475-9f78-a6915d2cd908",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015LhrTEDAy5Xk5ibT7yGPUR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 511,
+      "cache_read_input_tokens": 23414,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 511
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NnRgGsKZMHZ9dyegxepbWY`</summary>
+
+```json
+{
+  "server": "westd-35807",
+  "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "435d0546-b639-4c3d-96cd-e3e1cb6fcfba",
+  "uuid": "2ef261d1-7ba7-45e1-8981-b22d8b818245",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015LhrTEDAy5Xk5ibT7yGPUR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 511,
+      "cache_read_input_tokens": 23414,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 511
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-22T09:42:15.826Z_
+
+<details><summary>↩ Tool result · `toolu_0142uooLgrvXGEPzziycpKb9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"wandb: WARNING Data passed to `wandb.Image` should consist of values in the range [0, 255], image data will be normalized to this range, but behavior will be removed in a future version of wandb.\\nDIAG: pytorch_weight_path = '/root/autodl-tmp/openpi_weights/pi0_base'\\nDIAG: model_path = /root/autodl-tmp/openpi_weights/pi0_base/model.safetensors, exists = True\\nDIAG: BEFORE load - action_in_proj.weight device=cuda:0, mean=0.000587, std=0.101799\\nDIAG: load_model done. missing=0, unexpected=0\\nDIAG: AFTER load - action_in_proj.weight device=cuda:0, mean=-0.000354, std=0.177879\\nDIAG: REF from file - mean=-0.000354, std=0.177879\\n\\rTraining:   0%|          | 0/30000 [00:00<?, ?it/s]\\rTraining:   0%|          | 1/30000 [00:21<175:18:08, 21.04s/it]\\rTraining:   0%|          | 1/30000 [00:21<175:18:08, 21.04s/it, loss=0.2208, lr=2.50e-08, step=1]\\rTraining:   0%|          | 2/30000 [00:25<91:49:22, 11.02s/it, loss=0.2208, lr=2.50e-08, step=1] \\rTraining:   0%|          | 2/30000 [00:25<91:49:22, 11.02s/it, loss=0.2215, lr=5.00e-08, step=2]\\rTraining:   0%|          | 3/30000 [00:29<65:03:04,  7.81s/it, loss=0.2215, lr=5.00e-08, step=2]\\rTraining:   0%|          | 3/30000 [00:29<65:03:04,  7.81s/it, loss=0.2664, lr=7.49e-08, step=3]\\rTraining:   0%|          | 4/30000 [00:33<52:28:33,  6.30s/it, loss=0.2664, lr=7.49e-08, step=3]\\rTraining:   0%|          | 4/30000 [00:33<52:28:33,  6.30s/it, loss=0.2749, lr=9.99e-08, step=4]\\rTraining:   0%|          | 5/30000 [00:37<45:32:06,  5.47s/it, loss=0.2749, lr=9.99e-08, step=4]\\rTraining:   0%|          | 5/30000 [00:37<45:32:06,  5.47s/it, loss=0.2682, lr=1.25e-07, step=5]\\rTraining:   0%|          | 6/30000 [00:40<41:21:09,  4.96s/it, loss=0.2682, lr=1.25e-07, step=5]\\rTraining:   0%|          | 6/30000 [00:40<41:21:09,  4.96s/it, loss=0.2091, lr=1.50e-07, step=6]\\rTraining:   0%|          | 7/30000 [00:44<38:40:11,  4.64s/it, loss=0.2091, lr=1.50e-07, step=6]\\rTraining:   0%|          | 7/30000 [00:44<38:40:11,  4.64s/it, loss=0.2366, lr=1.75e-07, step=7]\\rTraining:   0%|          | 8/30000 [00:48<36:55:12,  4.43s/it, loss=0.2366, lr=1.75e-07, step=7]\\rTraining:   0%|          | 8/30000 [00:48<36:55:12,  4.43s/it, loss=0.2649, lr=2.00e-07, step=8]\\rTraining:   0%|          | 9/30000 [00:52<35:45:28,  4.29s/it, loss=0.2649, lr=2.00e-07, step=8]\\rTraining:   0%|          | 9/30000 [00:52<35:45:28,  4.29s/it, loss=0.2505, lr=2.25e-07, step=9]\\rTraining:   0%|          | 10/30000 [00:56<35:01:00,  4.20s/it, loss=0.2505, lr=2.25e-07, step=9]\\rTraining:   0%|          | 10/30000 [00:56<35:01:00,  4.20s/it, loss=0.2165, lr=2.50e-07, step=10]\\rTraining:   0%|          | 11/30000 [01:00<34:27:29,  4.14s/it, loss=0.2165, lr=2.50e-07, step=10]\\rTraining:   0%|          | 11/30000 [01:00<34:27:29,  4.14s/it, loss=0.2613, lr=2.75e-07, step=11]\\rTraining:   0%|          | 12/30000 [01:04<34:04:59,  4.09s/it, loss=0.2613, lr=2.75e-07, step=11]\\rTraining:   0%|          | 12/30000 [01:04<34:04:59,  4.09s/it, loss=0.2274, lr=3.00e-07, step=12]\\rTraining:   0%|          | 13/30000 [01:08<33:48:47,  4.06s/it, loss=0.2274, lr=3.00e-07, step=12]\\rTraining:   0%|          | 13/30000 [01:08<33:48:47,  4.06s/it, loss=0.2512, lr=3.25e-07, step=13]\\rTraining:   0%|          | 14/30000 [01:12<33:38:00,  4.04s/it, loss=0.2512, lr=3.25e-07, step=13]\\rTraining:   0%|          | 14/30000 [01:12<33:38:00,  4.04s/it, loss=0.3109, lr=3.50e-07, step=14]\\rTraining:   0%|          | 15/30000 [01:16<33:31:54,  4.03s/it, loss=0.3109, lr=3.50e-07, step=14]\\rTraining:   0%|          | 15/30000 [01:16<33:31:54,  4.03s/it, loss=0.2461, lr=3.75e-07, step=15]\\rTraining:   0%|          | 16/30000 [01:20<33:24:53,  4.01s/it, loss=0.2461, lr=3.75e-07, step=15]\\rTraining:   0%|          | 16/30000 [01:20<33:24:53,  4.01s/it, loss=0.2787, lr=4.00e-07, step=16]\\rTraining:   0%|          | 17/30000 [01:24<33:20:03,  4.00s/it, loss=0.2787, lr=4.00e-07, step=16]\\rTraining:   0%|          | 17/30000 [01:24<33:20:03,  4.00s/it, loss=0.2496, lr=4.25e-07, step=17]\\rTraining:   0%|      \\n\\n... [截断: 输出过长，省略 5973660 字符] ...\\n\\n, loss=0.0252, lr=2.75e-06, step=28038]\\rTraining:  93%|█████████▎| 28039/30000 [31:26:57<2:10:22,  3.99s/it, loss=0.0153, lr=2.75e-06, step=28039]\\rTraining:  93%|█████████▎| 28040/30000 [31:27:01<2:10:14,  3.99s/it, loss=0.0153, lr=2.75e-06, step=28039]\\rTraining:  93%|█████████▎| 28040/30000 [31:27:01<2:10:14,  3.99s/it, loss=0.0092, lr=2.75e-06, step=28040]\\rTraining:  93%|█████████▎| 28041/30000 [31:27:05<2:10:10,  3.99s/it, loss=0.0092, lr=2.75e-06, step=28040]\\rTraining:  93%|█████████▎| 28041/30000 [31:27:05<2:10:10,  3.99s/it, loss=0.0181, lr=2.75e-06, step=28041]\\rTraining:  93%|█████████▎| 28042/30000 [31:27:09<2:10:03,  3.99s/it, loss=0.0181, lr=2.75e-06, step=28041]\\rTraining:  93%|█████████▎| 28042/30000 [31:27:09<2:10:03,  3.99s/it, loss=0.0140, lr=2.75e-06, step=28042]\\rTraining:  93%|█████████▎| 28043/30000 [31:27:13<2:09:59,  3.99s/it, loss=0.0140, lr=2.75e-06, step=28042]\\rTraining:  93%|█████████▎| 28043/30000 [31:27:13<2:09:59,  3.99s/it, loss=0.0124, lr=2.75e-06, step=28043]\\rTraining:  93%|█████████▎| 28044/30000 [31:27:17<2:09:57,  3.99s/it, loss=0.0124, lr=2.75e-06, step=28043]\\rTraining:  93%|█████████▎| 28044/30000 [31:27:17<2:09:57,  3.99s/it, loss=0.0158, lr=2.75e-06, step=28044]\\rTraining:  93%|█████████▎| 28045/30000 [31:27:21<2:10:52,  4.02s/it, loss=0.0158, lr=2.75e-06, step=28044]\\rTraining:  93%|█████████▎| 28045/30000 [31:27:21<2:10:52,  4.02s/it, loss=0.0132, lr=2.75e-06, step=28045]\\rTraining:  93%|█████████▎| 28046/30000 [31:27:25<2:10:32,  4.01s/it, loss=0.0132, lr=2.75e-06, step=28045]\\rTraining:  93%|█████████▎| 28046/30000 [31:27:25<2:10:32,  4.01s/it, loss=0.0146, lr=2.75e-06, step=28046]\\rTraining:  93%|█████████▎| 28047/30000 [31:27:29<2:10:13,  4.00s/it, loss=0.0146, lr=2.75e-06, step=28046]\\rTraining:  93%|█████████▎| 28047/30000 [31:27:29<2:10:13,  4.00s/it, loss=0.0084, lr=2.75e-06, step=28047]\\rTraining:  93%|███████���█▎| 28048/30000 [31:27:33<2:10:00,  4.00s/it, loss=0.0084, lr=2.75e-06, step=28047]\\rTraining:  93%|█████████▎| 28048/30000 [31:27:33<2:10:00,  4.00s/it, loss=0.0143, lr=2.75e-06, step=28048]\\rTraining:  93%|█████████▎| 28049/30000 [31:27:37<2:09:50,  3.99s/it, loss=0.0143, lr=2.75e-06, step=28048]\\rTraining:  93%|█████████▎| 28049/30000 [31:27:37<2:09:50,  3.99s/it, loss=0.0141, lr=2.75e-06, step=28049]\\rTraining:  94%|█████████▎| 28050/30000 [31:27:41<2:09:39,  3.99s/it, loss=0.0141, lr=2.75e-06, step=28049]\\rTraining:  94%|█████████▎| 28050/30000 [31:27:41<2:09:39,  3.99s/it, loss=0.0176, lr=2.75e-06, step=28050]\\rTraining:  94%|█████████▎| 28051/30000 [31:27:45<2:09:33,  3.99s/it, loss=0.0176, lr=2.75e-06, step=28050]\\rTraining:  94%|█████████▎| 28051/30000 [31:27:45<2:09:33,  3.99s/it, loss=0.0134, lr=2.75e-06, step=28051]\\rTraining:  94%|█████████▎| 28052/30000 [31:27:49<2:09:23,  3.99s/it, loss=0.0134, lr=2.75e-06, step=28051]\\rTraining:  94%|█████████▎| 28052/30000 [31:27:49<2:09:23,  3.99s/it, loss=0.0125, lr=2.75e-06, step=28052]\\rTraining:  94%|█████████▎| 28053/30000 [31:27:52<2:09:17,  3.98s/it, loss=0.0125, lr=2.75e-06, step=28052]\\rTraining:  94%|█████████▎| 28053/30000 [31:27:52<2:09:17,  3.98s/it, loss=0.0158, lr=2.75e-06, step=28053]\\rTraining:  94%|█████████▎| 28054/30000 [31:27:56<2:09:12,  3.98s/it, loss=0.0158, lr=2.75e-06, step=28053]\\rTraining:  94%|█████████▎| 28054/30000 [31:27:56<2:09:12,  3.98s/it, loss=0.0197, lr=2.75e-06, step=28054]\\rTraining:  94%|█████████▎| 28055/30000 [31:28:00<2:09:08,  3.98s/it, loss=0.0197, lr=2.75e-06, step=28054]\\rTraining:  94%|█████████▎| 28055/30000 [31:28:00<2:09:08,  3.98s/it, loss=0.0128, lr=2.75e-06, step=28055]\\rTraining:  94%|█████████▎| 28056/30000 [31:28:04<2:09:04,  3.98s/it, loss=0.0128, lr=2.75e-06, step=28055]\\rTraining:  94%|█████████▎| 28056/30000 [31:28:04<2:09:04,  3.98s/it, loss=0.0127, lr=2.75e-06, step=28056]\\rTraining:  94%|█████████▎| 28057/30000 [31:28:09<2:10:03,  4.02s/it, loss=0.0127, lr=2.75e-06, step=28056]\\rTraining:  94%|█████████▎| 28057/30000 [31:28:09<2:10:03,  4.02s/it, loss=0.0165, lr=2.75e-06, step=28057]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 25.14}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "435d0546-b639-4c3d-96cd-e3e1cb6fcfba",
+  "uuid": "c35742ab-9593-453a-9bf8-d094f7730c9e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"wandb: WARNING Data passed to `wandb.Image` should consist of values in the range [0, 255], image data will be normalized to this range, but behavior will be removed in a future version of wandb.\\\\nDIAG: pytorch_weight_path = '/root/autodl-tmp/openpi_weights/pi0_base'\\\\nDIAG: model_path = /root/autodl-tmp/openpi_weights/pi0_base/model.safetensors, exists = True\\\\nDIAG: BEFORE load - action_in_proj.weight device=cuda:0, mean=0.000587, std=0.101799\\\\nDIAG: load_model done. missing=0, unexpected=0\\\\nDIAG: AFTER load - action_in_proj.weight device=cuda:0, mean=-0.000354, std=0.177879\\\\nDIAG: REF from file - mean=-0.000354, std=0.177879\\\\n\\\\rTraining:   0%|          | 0/30000 [00:00<?, ?it/s]\\\\rTraining:   0%|          | 1/30000 [00:21<175:18:08, 21.04s/it]\\\\rTraining:   0%|          | 1/30000 [00:21<175:18:08, 21.04s/it, loss=0.2208, lr=2.50e-08, step=1]\\\\rTraining:   0%|          | 2/30000 [00:25<91:49:22, 11.02s/it, loss=0.2208, lr=2.50e-08, step=1] \\\\rTraining:   0%|          | 2/30000 [00:25<91:49:22, 11.02s/it, loss=0.2215, lr=5.00e-08, step=2]\\\\rTraining:   0%|          | 3/30000 [00:29<65:03:04,  7.81s/it, loss=0.2215, lr=5.00e-08, step=2]\\\\rTraining:   0%|          | 3/30000 [00:29<65:03:04,  7.81s/it, loss=0.2664, lr=7.49e-08, step=3]\\\\rTraining:   0%|          | 4/30000 [00:33<52:28:33,  6.30s/it, loss=0.2664, lr=7.49e-08, step=3]\\\\rTraining:   0%|          | 4/30000 [00:33<52:28:33,  6.30s/it, loss=0.2749, lr=9.99e-08, step=4]\\\\rTraining:   0%|          | 5/30000 [00:37<45:32:06,  5.47s/it, loss=0.2749, lr=9.99e-08, step=4]\\\\rTraining:   0%|          | 5/30000 [00:37<45:32:06,  5.47s/it, loss=0.2682, lr=1.25e-07, step=5]\\\\rTraining:   0%|          | 6/30000 [00:40<41:21:09,  4.96s/it, loss=0.2682, lr=1.25e-07, step=5]\\\\rTraining:   0%|          | 6/30000 [00:40<41:21:09,  4.96s/it, loss=0.2091, lr=1.50e-07, step=6]\\\\rTraining:   0%|          | 7/30000 [00:44<38:40:11,  4.64s/it, loss=0.2091, lr=1.50e-07, step=6]\\\\rTraining:   0%|          | 7/30000 [00:44<38:40:11,  4.64s/it, loss=0.2366, lr=1.75e-07, step=7]\\\\rTraining:   0%|          | 8/30000 [00:48<36:55:12,  4.43s/it, loss=0.2366, lr=1.75e-07, step=7]\\\\rTraining:   0%|          | 8/30000 [00:48<36:55:12,  4.43s/it, loss=0.2649, lr=2.00e-07, step=8]\\\\rTraining:   0%|          | 9/30000 [00:52<35:45:28,  4.29s/it, loss=0.2649, lr=2.00e-07, step=8]\\\\rTraining:   0%|          | 9/30000 [00:52<35:45:28,  4.29s/it, loss=0.2505, lr=2.25e-07, step=9]\\\\rTraining:   0%|          | 10/30000 [00:56<35:01:00,  4.20s/it, loss=0.2505, lr=2.25e-07, step=9]\\\\rTraining:   0%|          | 10/30000 [00:56<35:01:00,  4.20s/it, loss=0.2165, lr=2.50e-07, step=10]\\\\rTraining:   0%|          | 11/30000 [01:00<34:27:29,  4.14s/it, loss=0.2165, lr=2.50e-07, step=10]\\\\rTraining:   0%|          | 11/30000 [01:00<34:27:29,  4.14s/it, loss=0.2613, lr=2.75e-07, step=11]\\\\rTraining:   0%|          | 12/30000 [01:04<34:04:59,  4.09s/it, loss=0.2613, lr=2.75e-07, step=11]\\\\rTraining:   0%|          | 12/30000 [01:04<34:04:59,  4.09s/it, loss=0.2274, lr=3.00e-07, step=12]\\\\rTraining:   0%|          | 13/30000 [01:08<33:48:47,  4.06s/it, loss=0.2274, lr=3.00e-07, step=12]\\\\rTraining:   0%|          | 13/30000 [01:08<33:48:47,  4.06s/it, loss=0.2512, lr=3.25e-07, step=13]\\\\rTraining:   0%|          | 14/30000 [01:12<33:38:00,  4.04s/it, loss=0.2512, lr=3.25e-07, step=13]\\\\rTraining:   0%|          | 14/30000 [01:12<33:38:00,  4.04s/it, loss=0.3109, lr=3.50e-07, step=14]\\\\rTraining:   0%|          | 15/30000 [01:16<33:31:54,  4.03s/it, loss=0.3109, lr=3.50e-07, step=14]\\\\rTraining:   0%|          | 15/30000 [01:16<33:31:54,  4.03s/it, loss=0.2461, lr=3.75e-07, step=15]\\\\rTraining:   0%|          | 16/30000 [01:20<33:24:53,  4.01s/it, loss=0.2461, lr=3.75e-07, step=15]\\\\rTraining:   0%|          | 16/30000 [01:20<33:24:53,  4.01s/it, loss=0.2787, lr=4.00e-07, step=16]\\\\rTraining:   0%|          | 17/30000 [01:24<33:20:03,  4.00s/it, loss=0.2787, lr=4.00e-07, step=16]\\\\rTraining:   0%|          | 17/30000 [01:24<33:20:03,  4.00s/it, loss=0.2496, lr=4.25e-07, step=17]\\\\rTraining:   0%|      \\\\n\\\\n... [截断: 输出过长，省略 5973660 字符] ...\\\\n\\\\n, loss=0.0252, lr=2.75e-06, step=28038]\\\\rTraining:  93%|█████████▎| 28039/30000 [31:26:57<2:10:22,  3.99s/it, loss=0.0153, lr=2.75e-06, step=28039]\\\\rTraining:  93%|█████████▎| 28040/30000 [31:27:01<2:10:14,  3.99s/it, loss=0.0153, lr=2.75e-06, step=28039]\\\\rTraining:  93%|█████████▎| 28040/30000 [31:27:01<2:10:14,  3.99s/it, loss=0.0092, lr=2.75e-06, step=28040]\\\\rTraining:  93%|█████████▎| 28041/30000 [31:27:05<2:10:10,  3.99s/it, loss=0.0092, lr=2.75e-06, step=28040]\\\\rTraining:  93%|█████████▎| 28041/30000 [31:27:05<2:10:10,  3.99s/it, loss=0.0181, lr=2.75e-06, step=28041]\\\\rTraining:  93%|█████████▎| 28042/30000 [31:27:09<2:10:03,  3.99s/it, loss=0.0181, lr=2.75e-06, step=28041]\\\\rTraining:  93%|█████████▎| 28042/30000 [31:27:09<2:10:03,  3.99s/it, loss=0.0140, lr=2.75e-06, step=28042]\\\\rTraining:  93%|█████████▎| 28043/30000 [31:27:13<2:09:59,  3.99s/it, loss=0.0140, lr=2.75e-06, step=28042]\\\\rTraining:  93%|█████████▎| 28043/30000 [31:27:13<2:09:59,  3.99s/it, loss=0.0124, lr=2.75e-06, step=28043]\\\\rTraining:  93%|█████████▎| 28044/30000 [31:27:17<2:09:57,  3.99s/it, loss=0.0124, lr=2.75e-06, step=28043]\\\\rTraining:  93%|█████████▎| 28044/30000 [31:27:17<2:09:57,  3.99s/it, loss=0.0158, lr=2.75e-06, step=28044]\\\\rTraining:  93%|█████████▎| 28045/30000 [31:27:21<2:10:52,  4.02s/it, loss=0.0158, lr=2.75e-06, step=28044]\\\\rTraining:  93%|█████████▎| 28045/30000 [31:27:21<2:10:52,  4.02s/it, loss=0.0132, lr=2.75e-06, step=28045]\\\\rTraining:  93%|█████████▎| 28046/30000 [31:27:25<2:10:32,  4.01s/it, loss=0.0132, lr=2.75e-06, step=28045]\\\\rTraining:  93%|█████████▎| 28046/30000 [31:27:25<2:10:32,  4.01s/it, loss=0.0146, lr=2.75e-06, step=28046]\\\\rTraining:  93%|█████████▎| 28047/30000 [31:27:29<2:10:13,  4.00s/it, loss=0.0146, lr=2.75e-06, step=28046]\\\\rTraining:  93%|█████████▎| 28047/30000 [31:27:29<2:10:13,  4.00s/it, loss=0.0084, lr=2.75e-06, step=28047]\\\\rTraining:  93%|███████���█▎| 28048/30000 [31:27:33<2:10:00,  4.00s/it, loss=0.0084, lr=2.75e-06, step=28047]\\\\rTraining:  93%|█████████▎| 28048/30000 [31:27:33<2:10:00,  4.00s/it, loss=0.0143, lr=2.75e-06, step=28048]\\\\rTraining:  93%|█████████▎| 28049/30000 [31:27:37<2:09:50,  3.99s/it, loss=0.0143, lr=2.75e-06, step=28048]\\\\rTraining:  93%|█████████▎| 28049/30000 [31:27:37<2:09:50,  3.99s/it, loss=0.0141, lr=2.75e-06, step=28049]\\\\rTraining:  94%|█████████▎| 28050/30000 [31:27:41<2:09:39,  3.99s/it, loss=0.0141, lr=2.75e-06, step=28049]\\\\rTraining:  94%|█████████▎| 28050/30000 [31:27:41<2:09:39,  3.99s/it, loss=0.0176, lr=2.75e-06, step=28050]\\\\rTraining:  94%|█████████▎| 28051/30000 [31:27:45<2:09:33,  3.99s/it, loss=0.0176, lr=2.75e-06, step=28050]\\\\rTraining:  94%|█████████▎| 28051/30000 [31:27:45<2:09:33,  3.99s/it, loss=0.0134, lr=2.75e-06, step=28051]\\\\rTraining:  94%|█████████▎| 28052/30000 [31:27:49<2:09:23,  3.99s/it, loss=0.0134, lr=2.75e-06, step=28051]\\\\rTraining:  94%|█████████▎| 28052/30000 [31:27:49<2:09:23,  3.99s/it, loss=0.0125, lr=2.75e-06, step=28052]\\\\rTraining:  94%|█████████▎| 28053/30000 [31:27:52<2:09:17,  3.98s/it, loss=0.0125, lr=2.75e-06, step=28052]\\\\rTraining:  94%|█████████▎| 28053/30000 [31:27:52<2:09:17,  3.98s/it, loss=0.0158, lr=2.75e-06, step=28053]\\\\rTraining:  94%|█████████▎| 28054/30000 [31:27:56<2:09:12,  3.98s/it, loss=0.0158, lr=2.75e-06, step=28053]\\\\rTraining:  94%|█████████▎| 28054/30000 [31:27:56<2:09:12,  3.98s/it, loss=0.0197, lr=2.75e-06, step=28054]\\\\rTraining:  94%|█████████▎| 28055/30000 [31:28:00<2:09:08,  3.98s/it, loss=0.0197, lr=2.75e-06, step=28054]\\\\rTraining:  94%|█████████▎| 28055/30000 [31:28:00<2:09:08,  3.98s/it, loss=0.0128, lr=2.75e-06, step=28055]\\\\rTraining:  94%|█████████▎| 28056/30000 [31:28:04<2:09:04,  3.98s/it, loss=0.0128, lr=2.75e-06, step=28055]\\\\rTraining:  94%|█████████▎| 28056/30000 [31:28:04<2:09:04,  3.98s/it, loss=0.0127, lr=2.75e-06, step=28056]\\\\rTraining:  94%|█████████▎| 28057/30000 [31:28:09<2:10:03,  4.02s/it, loss=0.0127, lr=2.75e-06, step=28056]\\\\rTraining:  94%|█████████▎| 28057/30000 [31:28:09<2:10:03,  4.02s/it, loss=0.0165, lr=2.75e-06, step=28057]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 25.14}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"wandb: WARNING Data passed to `wandb.Image` should consist of values in the range [0, 255], image data will be normalized to this range, but behavior will be removed in a future version of wandb.\\nDIAG: pytorch_weight_path = '/root/autodl-tmp/openpi_weights/pi0_base'\\nDIAG: model_path = /root/autodl-tmp/openpi_weights/pi0_base/model.safetensors, exists = True\\nDIAG: BEFORE load - action_in_proj.weight device=cuda:0, mean=0.000587, std=0.101799\\nDIAG: load_model done. missing=0, unexpected=0\\nDIAG: AFTER load - action_in_proj.weight device=cuda:0, mean=-0.000354, std=0.177879\\nDIAG: REF from file - mean=-0.000354, std=0.177879\\n\\rTraining:   0%|          | 0/30000 [00:00<?, ?it/s]\\rTraining:   0%|          | 1/30000 [00:21<175:18:08, 21.04s/it]\\rTraining:   0%|          | 1/30000 [00:21<175:18:08, 21.04s/it, loss=0.2208, lr=2.50e-08, step=1]\\rTraining:   0%|          | 2/30000 [00:25<91:49:22, 11.02s/it, loss=0.2208, lr=2.50e-08, step=1] \\rTraining:   0%|          | 2/30000 [00:25<91:49:22, 11.02s/it, loss=0.2215, lr=5.00e-08, step=2]\\rTraining:   0%|          | 3/30000 [00:29<65:03:04,  7.81s/it, loss=0.2215, lr=5.00e-08, step=2]\\rTraining:   0%|          | 3/30000 [00:29<65:03:04,  7.81s/it, loss=0.2664, lr=7.49e-08, step=3]\\rTraining:   0%|          | 4/30000 [00:33<52:28:33,  6.30s/it, loss=0.2664, lr=7.49e-08, step=3]\\rTraining:   0%|          | 4/30000 [00:33<52:28:33,  6.30s/it, loss=0.2749, lr=9.99e-08, step=4]\\rTraining:   0%|          | 5/30000 [00:37<45:32:06,  5.47s/it, loss=0.2749, lr=9.99e-08, step=4]\\rTraining:   0%|          | 5/30000 [00:37<45:32:06,  5.47s/it, loss=0.2682, lr=1.25e-07, step=5]\\rTraining:   0%|          | 6/30000 [00:40<41:21:09,  4.96s/it, loss=0.2682, lr=1.25e-07, step=5]\\rTraining:   0%|          | 6/30000 [00:40<41:21:09,  4.96s/it, loss=0.2091, lr=1.50e-07, step=6]\\rTraining:   0%|          | 7/30000 [00:44<38:40:11,  4.64s/it, loss=0.2091, lr=1.50e-07, step=6]\\rTraining:   0%|          | 7/30000 [00:44<38:40:11,  4.64s/it, loss=0.2366, lr=1.75e-07, step=7]\\rTraining:   0%|          | 8/30000 [00:48<36:55:12,  4.43s/it, loss=0.2366, lr=1.75e-07, step=7]\\rTraining:   0%|          | 8/30000 [00:48<36:55:12,  4.43s/it, loss=0.2649, lr=2.00e-07, step=8]\\rTraining:   0%|          | 9/30000 [00:52<35:45:28,  4.29s/it, loss=0.2649, lr=2.00e-07, step=8]\\rTraining:   0%|          | 9/30000 [00:52<35:45:28,  4.29s/it, loss=0.2505, lr=2.25e-07, step=9]\\rTraining:   0%|          | 10/30000 [00:56<35:01:00,  4.20s/it, loss=0.2505, lr=2.25e-07, step=9]\\rTraining:   0%|          | 10/30000 [00:56<35:01:00,  4.20s/it, loss=0.2165, lr=2.50e-07, step=10]\\rTraining:   0%|          | 11/30000 [01:00<34:27:29,  4.14s/it, loss=0.2165, lr=2.50e-07, step=10]\\rTraining:   0%|          | 11/30000 [01:00<34:27:29,  4.14s/it, loss=0.2613, lr=2.75e-07, step=11]\\rTraining:   0%|          | 12/30000 [01:04<34:04:59,  4.09s/it, loss=0.2613, lr=2.75e-07, step=11]\\rTraining:   0%|          | 12/30000 [01:04<34:04:59,  4.09s/it, loss=0.2274, lr=3.00e-07, step=12]\\rTraining:   0%|          | 13/30000 [01:08<33:48:47,  4.06s/it, loss=0.2274, lr=3.00e-07, step=12]\\rTraining:   0%|          | 13/30000 [01:08<33:48:47,  4.06s/it, loss=0.2512, lr=3.25e-07, step=13]\\rTraining:   0%|          | 14/30000 [01:12<33:38:00,  4.04s/it, loss=0.2512, lr=3.25e-07, step=13]\\rTraining:   0%|          | 14/30000 [01:12<33:38:00,  4.04s/it, loss=0.3109, lr=3.50e-07, step=14]\\rTraining:   0%|          | 15/30000 [01:16<33:31:54,  4.03s/it, loss=0.3109, lr=3.50e-07, step=14]\\rTraining:   0%|          | 15/30000 [01:16<33:31:54,  4.03s/it, loss=0.2461, lr=3.75e-07, step=15]\\rTraining:   0%|          | 16/30000 [01:20<33:24:53,  4.01s/it, loss=0.2461, lr=3.75e-07, step=15]\\rTraining:   0%|          | 16/30000 [01:20<33:24:53,  4.01s/it, loss=0.2787, lr=4.00e-07, step=16]\\rTraining:   0%|          | 17/30000 [01:24<33:20:03,  4.00s/it, loss=0.2787, lr=4.00e-07, step=16]\\rTraining:   0%|          | 17/30000 [01:24<33:20:03,  4.00s/it, loss=0.2496, lr=4.25e-07, step=17]\\rTraining:   0%|      \\n\\n... [截断: 输出过长，省略 5973660 字符] ...\\n\\n, loss=0.0252, lr=2.75e-06, step=28038]\\rTraining:  93%|█████████▎| 28039/30000 [31:26:57<2:10:22,  3.99s/it, loss=0.0153, lr=2.75e-06, step=28039]\\rTraining:  93%|█████████▎| 28040/30000 [31:27:01<2:10:14,  3.99s/it, loss=0.0153, lr=2.75e-06, step=28039]\\rTraining:  93%|█████████▎| 28040/30000 [31:27:01<2:10:14,  3.99s/it, loss=0.0092, lr=2.75e-06, step=28040]\\rTraining:  93%|█████████▎| 28041/30000 [31:27:05<2:10:10,  3.99s/it, loss=0.0092, lr=2.75e-06, step=28040]\\rTraining:  93%|█████████▎| 28041/30000 [31:27:05<2:10:10,  3.99s/it, loss=0.0181, lr=2.75e-06, step=28041]\\rTraining:  93%|█████████▎| 28042/30000 [31:27:09<2:10:03,  3.99s/it, loss=0.0181, lr=2.75e-06, step=28041]\\rTraining:  93%|█████████▎| 28042/30000 [31:27:09<2:10:03,  3.99s/it, loss=0.0140, lr=2.75e-06, step=28042]\\rTraining:  93%|█████████▎| 28043/30000 [31:27:13<2:09:59,  3.99s/it, loss=0.0140, lr=2.75e-06, step=28042]\\rTraining:  93%|█████████▎| 28043/30000 [31:27:13<2:09:59,  3.99s/it, loss=0.0124, lr=2.75e-06, step=28043]\\rTraining:  93%|█████████▎| 28044/30000 [31:27:17<2:09:57,  3.99s/it, loss=0.0124, lr=2.75e-06, step=28043]\\rTraining:  93%|█████████▎| 28044/30000 [31:27:17<2:09:57,  3.99s/it, loss=0.0158, lr=2.75e-06, step=28044]\\rTraining:  93%|█████████▎| 28045/30000 [31:27:21<2:10:52,  4.02s/it, loss=0.0158, lr=2.75e-06, step=28044]\\rTraining:  93%|█████████▎| 28045/30000 [31:27:21<2:10:52,  4.02s/it, loss=0.0132, lr=2.75e-06, step=28045]\\rTraining:  93%|█████████▎| 28046/30000 [31:27:25<2:10:32,  4.01s/it, loss=0.0132, lr=2.75e-06, step=28045]\\rTraining:  93%|█████████▎| 28046/30000 [31:27:25<2:10:32,  4.01s/it, loss=0.0146, lr=2.75e-06, step=28046]\\rTraining:  93%|█████████▎| 28047/30000 [31:27:29<2:10:13,  4.00s/it, loss=0.0146, lr=2.75e-06, step=28046]\\rTraining:  93%|█████████▎| 28047/30000 [31:27:29<2:10:13,  4.00s/it, loss=0.0084, lr=2.75e-06, step=28047]\\rTraining:  93%|███████���█▎| 28048/30000 [31:27:33<2:10:00,  4.00s/it, loss=0.0084, lr=2.75e-06, step=28047]\\rTraining:  93%|█████████▎| 28048/30000 [31:27:33<2:10:00,  4.00s/it, loss=0.0143, lr=2.75e-06, step=28048]\\rTraining:  93%|█████████▎| 28049/30000 [31:27:37<2:09:50,  3.99s/it, loss=0.0143, lr=2.75e-06, step=28048]\\rTraining:  93%|█████████▎| 28049/30000 [31:27:37<2:09:50,  3.99s/it, loss=0.0141, lr=2.75e-06, step=28049]\\rTraining:  94%|█████████▎| 28050/30000 [31:27:41<2:09:39,  3.99s/it, loss=0.0141, lr=2.75e-06, step=28049]\\rTraining:  94%|█████████▎| 28050/30000 [31:27:41<2:09:39,  3.99s/it, loss=0.0176, lr=2.75e-06, step=28050]\\rTraining:  94%|█████████▎| 28051/30000 [31:27:45<2:09:33,  3.99s/it, loss=0.0176, lr=2.75e-06, step=28050]\\rTraining:  94%|█████████▎| 28051/30000 [31:27:45<2:09:33,  3.99s/it, loss=0.0134, lr=2.75e-06, step=28051]\\rTraining:  94%|█████████▎| 28052/30000 [31:27:49<2:09:23,  3.99s/it, loss=0.0134, lr=2.75e-06, step=28051]\\rTraining:  94%|█████████▎| 28052/30000 [31:27:49<2:09:23,  3.99s/it, loss=0.0125, lr=2.75e-06, step=28052]\\rTraining:  94%|█████████▎| 28053/30000 [31:27:52<2:09:17,  3.98s/it, loss=0.0125, lr=2.75e-06, step=28052]\\rTraining:  94%|█████████▎| 28053/30000 [31:27:52<2:09:17,  3.98s/it, loss=0.0158, lr=2.75e-06, step=28053]\\rTraining:  94%|█████████▎| 28054/30000 [31:27:56<2:09:12,  3.98s/it, loss=0.0158, lr=2.75e-06, step=28053]\\rTraining:  94%|█████████▎| 28054/30000 [31:27:56<2:09:12,  3.98s/it, loss=0.0197, lr=2.75e-06, step=28054]\\rTraining:  94%|█████████▎| 28055/30000 [31:28:00<2:09:08,  3.98s/it, loss=0.0197, lr=2.75e-06, step=28054]\\rTraining:  94%|█████████▎| 28055/30000 [31:28:00<2:09:08,  3.98s/it, loss=0.0128, lr=2.75e-06, step=28055]\\rTraining:  94%|█████████▎| 28056/30000 [31:28:04<2:09:04,  3.98s/it, loss=0.0128, lr=2.75e-06, step=28055]\\rTraining:  94%|█████████▎| 28056/30000 [31:28:04<2:09:04,  3.98s/it, loss=0.0127, lr=2.75e-06, step=28056]\\rTraining:  94%|█████████▎| 28057/30000 [31:28:09<2:10:03,  4.02s/it, loss=0.0127, lr=2.75e-06, step=28056]\\rTraining:  94%|█████████▎| 28057/30000 [31:28:09<2:10:03,  4.02s/it, loss=0.0165, lr=2.75e-06, step=28057]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 25.14}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-22T09:42:24.562Z_
+
+<details><summary>↩ Tool result · `toolu_01VFfvb1bViFewGeEmryWUsS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"wandb: WARNING Data passed to `wandb.Image` should consist of values in the range [0, 255], image data will be normalized to this range, but behavior will be removed in a future version of wandb.\\nDIAG: pytorch_weight_path = '/root/autodl-tmp/openpi_weights/pi0_base'\\nDIAG: model_path = /root/autodl-tmp/openpi_weights/pi0_base/model.safetensors, exists = True\\nDIAG: BEFORE load - action_in_proj.weight device=cuda:0, mean=0.000587, std=0.101799\\nDIAG: load_model done. missing=0, unexpected=0\\nDIAG: AFTER load - action_in_proj.weight device=cuda:0, mean=-0.000354, std=0.177879\\nDIAG: REF from file - mean=-0.000354, std=0.177879\\n\\rTraining:   0%|          | 0/30000 [00:00<?, ?it/s]\\rTraining:   0%|          | 1/30000 [00:22<184:04:46, 22.09s/it]\\rTraining:   0%|          | 1/30000 [00:22<184:04:46, 22.09s/it, loss=0.1582, lr=2.50e-08, step=1]\\rTraining:   0%|          | 2/30000 [00:26<95:15:50, 11.43s/it, loss=0.1582, lr=2.50e-08, step=1] \\rTraining:   0%|          | 2/30000 [00:26<95:15:50, 11.43s/it, loss=0.1983, lr=5.00e-08, step=2]\\rTraining:   0%|          | 3/30000 [00:30<67:15:55,  8.07s/it, loss=0.1983, lr=5.00e-08, step=2]\\rTraining:   0%|          | 3/30000 [00:30<67:15:55,  8.07s/it, loss=0.1996, lr=7.49e-08, step=3]\\rTraining:   0%|          | 4/30000 [00:34<53:45:39,  6.45s/it, loss=0.1996, lr=7.49e-08, step=3]\\rTraining:   0%|          | 4/30000 [00:34<53:45:39,  6.45s/it, loss=0.2170, lr=9.99e-08, step=4]\\rTraining:   0%|          | 5/30000 [00:38<46:29:49,  5.58s/it, loss=0.2170, lr=9.99e-08, step=4]\\rTraining:   0%|          | 5/30000 [00:38<46:29:49,  5.58s/it, loss=0.2303, lr=1.25e-07, step=5]\\rTraining:   0%|          | 6/30000 [00:42<41:56:10,  5.03s/it, loss=0.2303, lr=1.25e-07, step=5]\\rTraining:   0%|          | 6/30000 [00:42<41:56:10,  5.03s/it, loss=0.1912, lr=1.50e-07, step=6]\\rTraining:   0%|          | 7/30000 [00:46<39:10:39,  4.70s/it, loss=0.1912, lr=1.50e-07, step=6]\\rTraining:   0%|          | 7/30000 [00:46<39:10:39,  4.70s/it, loss=0.1717, lr=1.75e-07, step=7]\\rTraining:   0%|          | 8/30000 [00:50<37:20:56,  4.48s/it, loss=0.1717, lr=1.75e-07, step=7]\\rTraining:   0%|          | 8/30000 [00:50<37:20:56,  4.48s/it, loss=0.2520, lr=2.00e-07, step=8]\\rTraining:   0%|          | 9/30000 [00:54<36:05:37,  4.33s/it, loss=0.2520, lr=2.00e-07, step=8]\\rTraining:   0%|          | 9/30000 [00:54<36:05:37,  4.33s/it, loss=0.1853, lr=2.25e-07, step=9]\\rTraining:   0%|          | 10/30000 [00:58<35:55:57,  4.31s/it, loss=0.1853, lr=2.25e-07, step=9]\\rTraining:   0%|          | 10/30000 [00:58<35:55:57,  4.31s/it, loss=0.1628, lr=2.50e-07, step=10]\\rTraining:   0%|          | 11/30000 [01:02<35:09:02,  4.22s/it, loss=0.1628, lr=2.50e-07, step=10]\\rTraining:   0%|          | 11/30000 [01:02<35:09:02,  4.22s/it, loss=0.1869, lr=2.75e-07, step=11]\\rTraining:   0%|          | 12/30000 [01:06<34:36:06,  4.15s/it, loss=0.1869, lr=2.75e-07, step=11]\\rTraining:   0%|          | 12/30000 [01:06<34:36:06,  4.15s/it, loss=0.1976, lr=3.00e-07, step=12]\\rTraining:   0%|          | 13/30000 [01:10<34:16:32,  4.11s/it, loss=0.1976, lr=3.00e-07, step=12]\\rTraining:   0%|          | 13/30000 [01:10<34:16:32,  4.11s/it, loss=0.1852, lr=3.25e-07, step=13]\\rTraining:   0%|          | 14/30000 [01:14<34:00:36,  4.08s/it, loss=0.1852, lr=3.25e-07, step=13]\\rTraining:   0%|          | 14/30000 [01:14<34:00:36,  4.08s/it, loss=0.2042, lr=3.50e-07, step=14]\\rTraining:   0%|          | 15/30000 [01:18<33:52:43,  4.07s/it, loss=0.2042, lr=3.50e-07, step=14]\\rTraining:   0%|          | 15/30000 [01:18<33:52:43,  4.07s/it, loss=0.2387, lr=3.75e-07, step=15]\\rTraining:   0%|          | 16/30000 [01:22<33:44:59,  4.05s/it, loss=0.2387, lr=3.75e-07, step=15]\\rTraining:   0%|          | 16/30000 [01:22<33:44:59,  4.05s/it, loss=0.2002, lr=4.00e-07, step=16]\\rTraining:   0%|          | 17/30000 [01:26<33:37:29,  4.04s/it, loss=0.2002, lr=4.00e-07, step=16]\\rTraining:   0%|          | 17/30000 [01:26<33:37:29,  4.04s/it, loss=0.1652, lr=4.25e-07, step=17]\\rTraining:   0%|      \\n\\n... [截断: 输出过长，省略 5963561 字符] ...\\n\\nit, loss=0.0085, lr=2.77e-06, step=27989]\\rTraining:  93%|█████████▎| 27990/30000 [31:27:08<2:14:13,  4.01s/it, loss=0.0128, lr=2.77e-06, step=27990]\\rTraining:  93%|█████████▎| 27991/30000 [31:27:12<2:14:07,  4.01s/it, loss=0.0128, lr=2.77e-06, step=27990]\\rTraining:  93%|█████████▎| 27991/30000 [31:27:12<2:14:07,  4.01s/it, loss=0.0161, lr=2.77e-06, step=27991]\\rTraining:  93%|█████████▎| 27992/30000 [31:27:16<2:14:02,  4.01s/it, loss=0.0161, lr=2.77e-06, step=27991]\\rTraining:  93%|█████████▎| 27992/30000 [31:27:16<2:14:02,  4.01s/it, loss=0.0103, lr=2.77e-06, step=27992]\\rTraining:  93%|█████████▎| 27993/30000 [31:27:20<2:13:59,  4.01s/it, loss=0.0103, lr=2.77e-06, step=27992]\\rTraining:  93%|█████████▎| 27993/30000 [31:27:20<2:13:59,  4.01s/it, loss=0.0164, lr=2.77e-06, step=27993]\\rTraining:  93%|█████████▎| 27994/30000 [31:27:24<2:13:57,  4.01s/it, loss=0.0164, lr=2.77e-06, step=27993]\\rTraining:  93%|█████████▎| 27994/30000 [31:27:24<2:13:57,  4.01s/it, loss=0.0170, lr=2.76e-06, step=27994]\\rTraining:  93%|█████████▎| 27995/30000 [31:27:28<2:14:12,  4.02s/it, loss=0.0170, lr=2.76e-06, step=27994]\\rTraining:  93%|█████████▎| 27995/30000 [31:27:28<2:14:12,  4.02s/it, loss=0.0128, lr=2.76e-06, step=27995]\\rTraining:  93%|█████████▎| 27996/30000 [31:27:32<2:14:03,  4.01s/it, loss=0.0128, lr=2.76e-06, step=27995]\\rTraining:  93%|█████████▎| 27996/30000 [31:27:32<2:14:03,  4.01s/it, loss=0.0105, lr=2.76e-06, step=27996]\\rTraining:  93%|█████████▎| 27997/30000 [31:27:36<2:13:55,  4.01s/it, loss=0.0105, lr=2.76e-06, step=27996]\\rTraining:  93%|█████████▎| 27997/30000 [31:27:36<2:13:55,  4.01s/it, loss=0.0089, lr=2.76e-06, step=27997]\\rTraining:  93%|█████████▎| 27998/30000 [31:27:40<2:13:45,  4.01s/it, loss=0.0089, lr=2.76e-06, step=27997]\\rTraining:  93%|█████████▎| 27998/30000 [31:27:40<2:13:45,  4.01s/it, loss=0.0138, lr=2.76e-06, step=27998]\\rTraining:  93%|█████████▎| 27999/30000 [31:27:44<2:13:31,  4.00s/it, loss=0.0138, lr=2.76e-06, step=27998]\\rTraining:  93%|█████████▎| 27999/30000 [31:27:44<2:13:31,  4.00s/it, loss=0.0120, lr=2.76e-06, step=27999]\\rTraining:  93%|█████████▎| 28000/30000 [31:27:59<4:04:33,  7.34s/it, loss=0.0120, lr=2.76e-06, step=27999]\\rTraining:  93%|█████████▎| 28000/30000 [31:27:59<4:04:33,  7.34s/it, loss=0.0152, lr=2.76e-06, step=28000]\\rTraining:  93%|█████████▎| 28001/30000 [31:28:03<3:31:00,  6.33s/it, loss=0.0152, lr=2.76e-06, step=28000]\\rTraining:  93%|█████████▎| 28001/30000 [31:28:03<3:31:00,  6.33s/it, loss=0.0148, lr=2.76e-06, step=28001]\\rTraining:  93%|█████████▎| 28002/30000 [31:28:07<3:07:32,  5.63s/it, loss=0.0148, lr=2.76e-06, step=28001]\\rTraining:  93%|█████████▎| 28002/30000 [31:28:07<3:07:32,  5.63s/it, loss=0.0090, lr=2.76e-06, step=28002]\\rTraining:  93%|█████████▎| 28003/30000 [31:28:11<2:51:10,  5.14s/it, loss=0.0090, lr=2.76e-06, step=28002]\\rTraining:  93%|█████████▎| 28003/30000 [31:28:11<2:51:10,  5.14s/it, loss=0.0188, lr=2.76e-06, step=28003]\\rTraining:  93%|█████████▎| 28004/30000 [31:28:15<2:39:41,  4.80s/it, loss=0.0188, lr=2.76e-06, step=28003]\\rTraining:  93%|█████████▎| 28004/30000 [31:28:15<2:39:41,  4.80s/it, loss=0.0101, lr=2.76e-06, step=28004]\\rTraining:  93%|█████████▎| 28005/30000 [31:28:19<2:31:37,  4.56s/it, loss=0.0101, lr=2.76e-06, step=28004]\\rTraining:  93%|█████████▎| 28005/30000 [31:28:19<2:31:37,  4.56s/it, loss=0.0126, lr=2.76e-06, step=28005]\\rTraining:  93%|█████████▎| 28006/30000 [31:28:23<2:26:02,  4.39s/it, loss=0.0126, lr=2.76e-06, step=28005]\\rTraining:  93%|█████████▎| 28006/30000 [31:28:23<2:26:02,  4.39s/it, loss=0.0119, lr=2.76e-06, step=28006]\\rTraining:  93%|█████████▎| 28007/30000 [31:28:27<2:22:01,  4.28s/it, loss=0.0119, lr=2.76e-06, step=28006]\\rTraining:  93%|█████████▎| 28007/30000 [31:28:27<2:22:01,  4.28s/it, loss=0.0132, lr=2.76e-06, step=28007]\\rTraining:  93%|█████████▎| 28008/30000 [31:28:31<2:20:33,  4.23s/it, loss=0.0132, lr=2.76e-06, step=28007]\\rTraining:  93%|█████████▎| 28008/30000 [31:28:31<2:20:33,  4.23s/it, loss=0.0202, lr=2.76e-06, step=28008]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 8.72}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "435d0546-b639-4c3d-96cd-e3e1cb6fcfba",
+  "uuid": "eac9c6a1-5929-4130-a2e2-ab2017c93d26",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"wandb: WARNING Data passed to `wandb.Image` should consist of values in the range [0, 255], image data will be normalized to this range, but behavior will be removed in a future version of wandb.\\\\nDIAG: pytorch_weight_path = '/root/autodl-tmp/openpi_weights/pi0_base'\\\\nDIAG: model_path = /root/autodl-tmp/openpi_weights/pi0_base/model.safetensors, exists = True\\\\nDIAG: BEFORE load - action_in_proj.weight device=cuda:0, mean=0.000587, std=0.101799\\\\nDIAG: load_model done. missing=0, unexpected=0\\\\nDIAG: AFTER load - action_in_proj.weight device=cuda:0, mean=-0.000354, std=0.177879\\\\nDIAG: REF from file - mean=-0.000354, std=0.177879\\\\n\\\\rTraining:   0%|          | 0/30000 [00:00<?, ?it/s]\\\\rTraining:   0%|          | 1/30000 [00:22<184:04:46, 22.09s/it]\\\\rTraining:   0%|          | 1/30000 [00:22<184:04:46, 22.09s/it, loss=0.1582, lr=2.50e-08, step=1]\\\\rTraining:   0%|          | 2/30000 [00:26<95:15:50, 11.43s/it, loss=0.1582, lr=2.50e-08, step=1] \\\\rTraining:   0%|          | 2/30000 [00:26<95:15:50, 11.43s/it, loss=0.1983, lr=5.00e-08, step=2]\\\\rTraining:   0%|          | 3/30000 [00:30<67:15:55,  8.07s/it, loss=0.1983, lr=5.00e-08, step=2]\\\\rTraining:   0%|          | 3/30000 [00:30<67:15:55,  8.07s/it, loss=0.1996, lr=7.49e-08, step=3]\\\\rTraining:   0%|          | 4/30000 [00:34<53:45:39,  6.45s/it, loss=0.1996, lr=7.49e-08, step=3]\\\\rTraining:   0%|          | 4/30000 [00:34<53:45:39,  6.45s/it, loss=0.2170, lr=9.99e-08, step=4]\\\\rTraining:   0%|          | 5/30000 [00:38<46:29:49,  5.58s/it, loss=0.2170, lr=9.99e-08, step=4]\\\\rTraining:   0%|          | 5/30000 [00:38<46:29:49,  5.58s/it, loss=0.2303, lr=1.25e-07, step=5]\\\\rTraining:   0%|          | 6/30000 [00:42<41:56:10,  5.03s/it, loss=0.2303, lr=1.25e-07, step=5]\\\\rTraining:   0%|          | 6/30000 [00:42<41:56:10,  5.03s/it, loss=0.1912, lr=1.50e-07, step=6]\\\\rTraining:   0%|          | 7/30000 [00:46<39:10:39,  4.70s/it, loss=0.1912, lr=1.50e-07, step=6]\\\\rTraining:   0%|          | 7/30000 [00:46<39:10:39,  4.70s/it, loss=0.1717, lr=1.75e-07, step=7]\\\\rTraining:   0%|          | 8/30000 [00:50<37:20:56,  4.48s/it, loss=0.1717, lr=1.75e-07, step=7]\\\\rTraining:   0%|          | 8/30000 [00:50<37:20:56,  4.48s/it, loss=0.2520, lr=2.00e-07, step=8]\\\\rTraining:   0%|          | 9/30000 [00:54<36:05:37,  4.33s/it, loss=0.2520, lr=2.00e-07, step=8]\\\\rTraining:   0%|          | 9/30000 [00:54<36:05:37,  4.33s/it, loss=0.1853, lr=2.25e-07, step=9]\\\\rTraining:   0%|          | 10/30000 [00:58<35:55:57,  4.31s/it, loss=0.1853, lr=2.25e-07, step=9]\\\\rTraining:   0%|          | 10/30000 [00:58<35:55:57,  4.31s/it, loss=0.1628, lr=2.50e-07, step=10]\\\\rTraining:   0%|          | 11/30000 [01:02<35:09:02,  4.22s/it, loss=0.1628, lr=2.50e-07, step=10]\\\\rTraining:   0%|          | 11/30000 [01:02<35:09:02,  4.22s/it, loss=0.1869, lr=2.75e-07, step=11]\\\\rTraining:   0%|          | 12/30000 [01:06<34:36:06,  4.15s/it, loss=0.1869, lr=2.75e-07, step=11]\\\\rTraining:   0%|          | 12/30000 [01:06<34:36:06,  4.15s/it, loss=0.1976, lr=3.00e-07, step=12]\\\\rTraining:   0%|          | 13/30000 [01:10<34:16:32,  4.11s/it, loss=0.1976, lr=3.00e-07, step=12]\\\\rTraining:   0%|          | 13/30000 [01:10<34:16:32,  4.11s/it, loss=0.1852, lr=3.25e-07, step=13]\\\\rTraining:   0%|          | 14/30000 [01:14<34:00:36,  4.08s/it, loss=0.1852, lr=3.25e-07, step=13]\\\\rTraining:   0%|          | 14/30000 [01:14<34:00:36,  4.08s/it, loss=0.2042, lr=3.50e-07, step=14]\\\\rTraining:   0%|          | 15/30000 [01:18<33:52:43,  4.07s/it, loss=0.2042, lr=3.50e-07, step=14]\\\\rTraining:   0%|          | 15/30000 [01:18<33:52:43,  4.07s/it, loss=0.2387, lr=3.75e-07, step=15]\\\\rTraining:   0%|          | 16/30000 [01:22<33:44:59,  4.05s/it, loss=0.2387, lr=3.75e-07, step=15]\\\\rTraining:   0%|          | 16/30000 [01:22<33:44:59,  4.05s/it, loss=0.2002, lr=4.00e-07, step=16]\\\\rTraining:   0%|          | 17/30000 [01:26<33:37:29,  4.04s/it, loss=0.2002, lr=4.00e-07, step=16]\\\\rTraining:   0%|          | 17/30000 [01:26<33:37:29,  4.04s/it, loss=0.1652, lr=4.25e-07, step=17]\\\\rTraining:   0%|      \\\\n\\\\n... [截断: 输出过长，省略 5963561 字符] ...\\\\n\\\\nit, loss=0.0085, lr=2.77e-06, step=27989]\\\\rTraining:  93%|█████████▎| 27990/30000 [31:27:08<2:14:13,  4.01s/it, loss=0.0128, lr=2.77e-06, step=27990]\\\\rTraining:  93%|█████████▎| 27991/30000 [31:27:12<2:14:07,  4.01s/it, loss=0.0128, lr=2.77e-06, step=27990]\\\\rTraining:  93%|█████████▎| 27991/30000 [31:27:12<2:14:07,  4.01s/it, loss=0.0161, lr=2.77e-06, step=27991]\\\\rTraining:  93%|█████████▎| 27992/30000 [31:27:16<2:14:02,  4.01s/it, loss=0.0161, lr=2.77e-06, step=27991]\\\\rTraining:  93%|█████████▎| 27992/30000 [31:27:16<2:14:02,  4.01s/it, loss=0.0103, lr=2.77e-06, step=27992]\\\\rTraining:  93%|█████████▎| 27993/30000 [31:27:20<2:13:59,  4.01s/it, loss=0.0103, lr=2.77e-06, step=27992]\\\\rTraining:  93%|█████████▎| 27993/30000 [31:27:20<2:13:59,  4.01s/it, loss=0.0164, lr=2.77e-06, step=27993]\\\\rTraining:  93%|█████████▎| 27994/30000 [31:27:24<2:13:57,  4.01s/it, loss=0.0164, lr=2.77e-06, step=27993]\\\\rTraining:  93%|█████████▎| 27994/30000 [31:27:24<2:13:57,  4.01s/it, loss=0.0170, lr=2.76e-06, step=27994]\\\\rTraining:  93%|█████████▎| 27995/30000 [31:27:28<2:14:12,  4.02s/it, loss=0.0170, lr=2.76e-06, step=27994]\\\\rTraining:  93%|█████████▎| 27995/30000 [31:27:28<2:14:12,  4.02s/it, loss=0.0128, lr=2.76e-06, step=27995]\\\\rTraining:  93%|█████████▎| 27996/30000 [31:27:32<2:14:03,  4.01s/it, loss=0.0128, lr=2.76e-06, step=27995]\\\\rTraining:  93%|█████████▎| 27996/30000 [31:27:32<2:14:03,  4.01s/it, loss=0.0105, lr=2.76e-06, step=27996]\\\\rTraining:  93%|█████████▎| 27997/30000 [31:27:36<2:13:55,  4.01s/it, loss=0.0105, lr=2.76e-06, step=27996]\\\\rTraining:  93%|█████████▎| 27997/30000 [31:27:36<2:13:55,  4.01s/it, loss=0.0089, lr=2.76e-06, step=27997]\\\\rTraining:  93%|█████████▎| 27998/30000 [31:27:40<2:13:45,  4.01s/it, loss=0.0089, lr=2.76e-06, step=27997]\\\\rTraining:  93%|█████████▎| 27998/30000 [31:27:40<2:13:45,  4.01s/it, loss=0.0138, lr=2.76e-06, step=27998]\\\\rTraining:  93%|█████████▎| 27999/30000 [31:27:44<2:13:31,  4.00s/it, loss=0.0138, lr=2.76e-06, step=27998]\\\\rTraining:  93%|█████████▎| 27999/30000 [31:27:44<2:13:31,  4.00s/it, loss=0.0120, lr=2.76e-06, step=27999]\\\\rTraining:  93%|█████████▎| 28000/30000 [31:27:59<4:04:33,  7.34s/it, loss=0.0120, lr=2.76e-06, step=27999]\\\\rTraining:  93%|█████████▎| 28000/30000 [31:27:59<4:04:33,  7.34s/it, loss=0.0152, lr=2.76e-06, step=28000]\\\\rTraining:  93%|█████████▎| 28001/30000 [31:28:03<3:31:00,  6.33s/it, loss=0.0152, lr=2.76e-06, step=28000]\\\\rTraining:  93%|█████████▎| 28001/30000 [31:28:03<3:31:00,  6.33s/it, loss=0.0148, lr=2.76e-06, step=28001]\\\\rTraining:  93%|█████████▎| 28002/30000 [31:28:07<3:07:32,  5.63s/it, loss=0.0148, lr=2.76e-06, step=28001]\\\\rTraining:  93%|█████████▎| 28002/30000 [31:28:07<3:07:32,  5.63s/it, loss=0.0090, lr=2.76e-06, step=28002]\\\\rTraining:  93%|█████████▎| 28003/30000 [31:28:11<2:51:10,  5.14s/it, loss=0.0090, lr=2.76e-06, step=28002]\\\\rTraining:  93%|█████████▎| 28003/30000 [31:28:11<2:51:10,  5.14s/it, loss=0.0188, lr=2.76e-06, step=28003]\\\\rTraining:  93%|█████████▎| 28004/30000 [31:28:15<2:39:41,  4.80s/it, loss=0.0188, lr=2.76e-06, step=28003]\\\\rTraining:  93%|█████████▎| 28004/30000 [31:28:15<2:39:41,  4.80s/it, loss=0.0101, lr=2.76e-06, step=28004]\\\\rTraining:  93%|█████████▎| 28005/30000 [31:28:19<2:31:37,  4.56s/it, loss=0.0101, lr=2.76e-06, step=28004]\\\\rTraining:  93%|█████████▎| 28005/30000 [31:28:19<2:31:37,  4.56s/it, loss=0.0126, lr=2.76e-06, step=28005]\\\\rTraining:  93%|█████████▎| 28006/30000 [31:28:23<2:26:02,  4.39s/it, loss=0.0126, lr=2.76e-06, step=28005]\\\\rTraining:  93%|█████████▎| 28006/30000 [31:28:23<2:26:02,  4.39s/it, loss=0.0119, lr=2.76e-06, step=28006]\\\\rTraining:  93%|█████████▎| 28007/30000 [31:28:27<2:22:01,  4.28s/it, loss=0.0119, lr=2.76e-06, step=28006]\\\\rTraining:  93%|█████████▎| 28007/30000 [31:28:27<2:22:01,  4.28s/it, loss=0.0132, lr=2.76e-06, step=28007]\\\\rTraining:  93%|█████████▎| 28008/30000 [31:28:31<2:20:33,  4.23s/it, loss=0.0132, lr=2.76e-06, step=28007]\\\\rTraining:  93%|█████████▎| 28008/30000 [31:28:31<2:20:33,  4.23s/it, loss=0.0202, lr=2.76e-06, step=28008]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 8.72}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"wandb: WARNING Data passed to `wandb.Image` should consist of values in the range [0, 255], image data will be normalized to this range, but behavior will be removed in a future version of wandb.\\nDIAG: pytorch_weight_path = '/root/autodl-tmp/openpi_weights/pi0_base'\\nDIAG: model_path = /root/autodl-tmp/openpi_weights/pi0_base/model.safetensors, exists = True\\nDIAG: BEFORE load - action_in_proj.weight device=cuda:0, mean=0.000587, std=0.101799\\nDIAG: load_model done. missing=0, unexpected=0\\nDIAG: AFTER load - action_in_proj.weight device=cuda:0, mean=-0.000354, std=0.177879\\nDIAG: REF from file - mean=-0.000354, std=0.177879\\n\\rTraining:   0%|          | 0/30000 [00:00<?, ?it/s]\\rTraining:   0%|          | 1/30000 [00:22<184:04:46, 22.09s/it]\\rTraining:   0%|          | 1/30000 [00:22<184:04:46, 22.09s/it, loss=0.1582, lr=2.50e-08, step=1]\\rTraining:   0%|          | 2/30000 [00:26<95:15:50, 11.43s/it, loss=0.1582, lr=2.50e-08, step=1] \\rTraining:   0%|          | 2/30000 [00:26<95:15:50, 11.43s/it, loss=0.1983, lr=5.00e-08, step=2]\\rTraining:   0%|          | 3/30000 [00:30<67:15:55,  8.07s/it, loss=0.1983, lr=5.00e-08, step=2]\\rTraining:   0%|          | 3/30000 [00:30<67:15:55,  8.07s/it, loss=0.1996, lr=7.49e-08, step=3]\\rTraining:   0%|          | 4/30000 [00:34<53:45:39,  6.45s/it, loss=0.1996, lr=7.49e-08, step=3]\\rTraining:   0%|          | 4/30000 [00:34<53:45:39,  6.45s/it, loss=0.2170, lr=9.99e-08, step=4]\\rTraining:   0%|          | 5/30000 [00:38<46:29:49,  5.58s/it, loss=0.2170, lr=9.99e-08, step=4]\\rTraining:   0%|          | 5/30000 [00:38<46:29:49,  5.58s/it, loss=0.2303, lr=1.25e-07, step=5]\\rTraining:   0%|          | 6/30000 [00:42<41:56:10,  5.03s/it, loss=0.2303, lr=1.25e-07, step=5]\\rTraining:   0%|          | 6/30000 [00:42<41:56:10,  5.03s/it, loss=0.1912, lr=1.50e-07, step=6]\\rTraining:   0%|          | 7/30000 [00:46<39:10:39,  4.70s/it, loss=0.1912, lr=1.50e-07, step=6]\\rTraining:   0%|          | 7/30000 [00:46<39:10:39,  4.70s/it, loss=0.1717, lr=1.75e-07, step=7]\\rTraining:   0%|          | 8/30000 [00:50<37:20:56,  4.48s/it, loss=0.1717, lr=1.75e-07, step=7]\\rTraining:   0%|          | 8/30000 [00:50<37:20:56,  4.48s/it, loss=0.2520, lr=2.00e-07, step=8]\\rTraining:   0%|          | 9/30000 [00:54<36:05:37,  4.33s/it, loss=0.2520, lr=2.00e-07, step=8]\\rTraining:   0%|          | 9/30000 [00:54<36:05:37,  4.33s/it, loss=0.1853, lr=2.25e-07, step=9]\\rTraining:   0%|          | 10/30000 [00:58<35:55:57,  4.31s/it, loss=0.1853, lr=2.25e-07, step=9]\\rTraining:   0%|          | 10/30000 [00:58<35:55:57,  4.31s/it, loss=0.1628, lr=2.50e-07, step=10]\\rTraining:   0%|          | 11/30000 [01:02<35:09:02,  4.22s/it, loss=0.1628, lr=2.50e-07, step=10]\\rTraining:   0%|          | 11/30000 [01:02<35:09:02,  4.22s/it, loss=0.1869, lr=2.75e-07, step=11]\\rTraining:   0%|          | 12/30000 [01:06<34:36:06,  4.15s/it, loss=0.1869, lr=2.75e-07, step=11]\\rTraining:   0%|          | 12/30000 [01:06<34:36:06,  4.15s/it, loss=0.1976, lr=3.00e-07, step=12]\\rTraining:   0%|          | 13/30000 [01:10<34:16:32,  4.11s/it, loss=0.1976, lr=3.00e-07, step=12]\\rTraining:   0%|          | 13/30000 [01:10<34:16:32,  4.11s/it, loss=0.1852, lr=3.25e-07, step=13]\\rTraining:   0%|          | 14/30000 [01:14<34:00:36,  4.08s/it, loss=0.1852, lr=3.25e-07, step=13]\\rTraining:   0%|          | 14/30000 [01:14<34:00:36,  4.08s/it, loss=0.2042, lr=3.50e-07, step=14]\\rTraining:   0%|          | 15/30000 [01:18<33:52:43,  4.07s/it, loss=0.2042, lr=3.50e-07, step=14]\\rTraining:   0%|          | 15/30000 [01:18<33:52:43,  4.07s/it, loss=0.2387, lr=3.75e-07, step=15]\\rTraining:   0%|          | 16/30000 [01:22<33:44:59,  4.05s/it, loss=0.2387, lr=3.75e-07, step=15]\\rTraining:   0%|          | 16/30000 [01:22<33:44:59,  4.05s/it, loss=0.2002, lr=4.00e-07, step=16]\\rTraining:   0%|          | 17/30000 [01:26<33:37:29,  4.04s/it, loss=0.2002, lr=4.00e-07, step=16]\\rTraining:   0%|          | 17/30000 [01:26<33:37:29,  4.04s/it, loss=0.1652, lr=4.25e-07, step=17]\\rTraining:   0%|      \\n\\n... [截断: 输出过长，省略 5963561 字符] ...\\n\\nit, loss=0.0085, lr=2.77e-06, step=27989]\\rTraining:  93%|█████████▎| 27990/30000 [31:27:08<2:14:13,  4.01s/it, loss=0.0128, lr=2.77e-06, step=27990]\\rTraining:  93%|█████████▎| 27991/30000 [31:27:12<2:14:07,  4.01s/it, loss=0.0128, lr=2.77e-06, step=27990]\\rTraining:  93%|█████████▎| 27991/30000 [31:27:12<2:14:07,  4.01s/it, loss=0.0161, lr=2.77e-06, step=27991]\\rTraining:  93%|█████████▎| 27992/30000 [31:27:16<2:14:02,  4.01s/it, loss=0.0161, lr=2.77e-06, step=27991]\\rTraining:  93%|█████████▎| 27992/30000 [31:27:16<2:14:02,  4.01s/it, loss=0.0103, lr=2.77e-06, step=27992]\\rTraining:  93%|█████████▎| 27993/30000 [31:27:20<2:13:59,  4.01s/it, loss=0.0103, lr=2.77e-06, step=27992]\\rTraining:  93%|█████████▎| 27993/30000 [31:27:20<2:13:59,  4.01s/it, loss=0.0164, lr=2.77e-06, step=27993]\\rTraining:  93%|█████████▎| 27994/30000 [31:27:24<2:13:57,  4.01s/it, loss=0.0164, lr=2.77e-06, step=27993]\\rTraining:  93%|█████████▎| 27994/30000 [31:27:24<2:13:57,  4.01s/it, loss=0.0170, lr=2.76e-06, step=27994]\\rTraining:  93%|█████████▎| 27995/30000 [31:27:28<2:14:12,  4.02s/it, loss=0.0170, lr=2.76e-06, step=27994]\\rTraining:  93%|█████████▎| 27995/30000 [31:27:28<2:14:12,  4.02s/it, loss=0.0128, lr=2.76e-06, step=27995]\\rTraining:  93%|█████████▎| 27996/30000 [31:27:32<2:14:03,  4.01s/it, loss=0.0128, lr=2.76e-06, step=27995]\\rTraining:  93%|█████████▎| 27996/30000 [31:27:32<2:14:03,  4.01s/it, loss=0.0105, lr=2.76e-06, step=27996]\\rTraining:  93%|█████████▎| 27997/30000 [31:27:36<2:13:55,  4.01s/it, loss=0.0105, lr=2.76e-06, step=27996]\\rTraining:  93%|█████████▎| 27997/30000 [31:27:36<2:13:55,  4.01s/it, loss=0.0089, lr=2.76e-06, step=27997]\\rTraining:  93%|█████████▎| 27998/30000 [31:27:40<2:13:45,  4.01s/it, loss=0.0089, lr=2.76e-06, step=27997]\\rTraining:  93%|█████████▎| 27998/30000 [31:27:40<2:13:45,  4.01s/it, loss=0.0138, lr=2.76e-06, step=27998]\\rTraining:  93%|█████████▎| 27999/30000 [31:27:44<2:13:31,  4.00s/it, loss=0.0138, lr=2.76e-06, step=27998]\\rTraining:  93%|█████████▎| 27999/30000 [31:27:44<2:13:31,  4.00s/it, loss=0.0120, lr=2.76e-06, step=27999]\\rTraining:  93%|█████████▎| 28000/30000 [31:27:59<4:04:33,  7.34s/it, loss=0.0120, lr=2.76e-06, step=27999]\\rTraining:  93%|█████████▎| 28000/30000 [31:27:59<4:04:33,  7.34s/it, loss=0.0152, lr=2.76e-06, step=28000]\\rTraining:  93%|█████████▎| 28001/30000 [31:28:03<3:31:00,  6.33s/it, loss=0.0152, lr=2.76e-06, step=28000]\\rTraining:  93%|█████████▎| 28001/30000 [31:28:03<3:31:00,  6.33s/it, loss=0.0148, lr=2.76e-06, step=28001]\\rTraining:  93%|█████████▎| 28002/30000 [31:28:07<3:07:32,  5.63s/it, loss=0.0148, lr=2.76e-06, step=28001]\\rTraining:  93%|█████████▎| 28002/30000 [31:28:07<3:07:32,  5.63s/it, loss=0.0090, lr=2.76e-06, step=28002]\\rTraining:  93%|█████████▎| 28003/30000 [31:28:11<2:51:10,  5.14s/it, loss=0.0090, lr=2.76e-06, step=28002]\\rTraining:  93%|█████████▎| 28003/30000 [31:28:11<2:51:10,  5.14s/it, loss=0.0188, lr=2.76e-06, step=28003]\\rTraining:  93%|█████████▎| 28004/30000 [31:28:15<2:39:41,  4.80s/it, loss=0.0188, lr=2.76e-06, step=28003]\\rTraining:  93%|█████████▎| 28004/30000 [31:28:15<2:39:41,  4.80s/it, loss=0.0101, lr=2.76e-06, step=28004]\\rTraining:  93%|█████████▎| 28005/30000 [31:28:19<2:31:37,  4.56s/it, loss=0.0101, lr=2.76e-06, step=28004]\\rTraining:  93%|█████████▎| 28005/30000 [31:28:19<2:31:37,  4.56s/it, loss=0.0126, lr=2.76e-06, step=28005]\\rTraining:  93%|█████████▎| 28006/30000 [31:28:23<2:26:02,  4.39s/it, loss=0.0126, lr=2.76e-06, step=28005]\\rTraining:  93%|█████████▎| 28006/30000 [31:28:23<2:26:02,  4.39s/it, loss=0.0119, lr=2.76e-06, step=28006]\\rTraining:  93%|█████████▎| 28007/30000 [31:28:27<2:22:01,  4.28s/it, loss=0.0119, lr=2.76e-06, step=28006]\\rTraining:  93%|█████████▎| 28007/30000 [31:28:27<2:22:01,  4.28s/it, loss=0.0132, lr=2.76e-06, step=28007]\\rTraining:  93%|█████████▎| 28008/30000 [31:28:31<2:20:33,  4.23s/it, loss=0.0132, lr=2.76e-06, step=28007]\\rTraining:  93%|█████████▎| 28008/30000 [31:28:31<2:20:33,  4.23s/it, loss=0.0202, lr=2.76e-06, step=28008]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 8.72}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-22T09:42:32.069Z_
+
+<details><summary>↩ Tool result · `toolu_01Edv6eCcrQNFX7Rfa9ixuXk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"wandb: WARNING Data passed to `wandb.Image` should consist of values in the range [0, 255], image data will be normalized to this range, but behavior will be removed in a future version of wandb.\\nDIAG: pytorch_weight_path = '/root/autodl-tmp/openpi_weights/pi0_base'\\nDIAG: model_path = /root/autodl-tmp/openpi_weights/pi0_base/model.safetensors, exists = True\\nDIAG: BEFORE load - action_in_proj.weight device=cuda:0, mean=0.000587, std=0.101799\\nDIAG: load_model done. missing=0, unexpected=0\\nDIAG: AFTER load - action_in_proj.weight device=cuda:0, mean=-0.000354, std=0.177879\\nDIAG: REF from file - mean=-0.000354, std=0.177879\\n\\rTraining:   0%|          | 0/30000 [00:00<?, ?it/s]/root/miniconda3/envs/libero/lib/python3.10/site-packages/torch/autograd/graph.py:829: UserWarning: Attempting to run cuBLAS, but there was no current CUDA context! Attempting to set the primary context... (Triggered internally at /pytorch/aten/src/ATen/cuda/CublasHandlePool.cpp:179.)\\n  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass\\n\\rTraining:   0%|          | 1/30000 [00:18<153:22:28, 18.41s/it]\\rTraining:   0%|          | 1/30000 [00:18<153:22:28, 18.41s/it, loss=0.1807, lr=2.50e-08, step=1]\\rTraining:   0%|          | 2/30000 [00:19<68:21:54,  8.20s/it, loss=0.1807, lr=2.50e-08, step=1] \\rTraining:   0%|          | 2/30000 [00:19<68:21:54,  8.20s/it, loss=0.2573, lr=5.00e-08, step=2]\\rTraining:   0%|          | 3/30000 [00:25<59:43:49,  7.17s/it, loss=0.2573, lr=5.00e-08, step=2]\\rTraining:   0%|          | 3/30000 [00:25<59:43:49,  7.17s/it, loss=0.2033, lr=7.49e-08, step=3]\\rTraining:   0%|          | 4/30000 [00:26<39:33:36,  4.75s/it, loss=0.2033, lr=7.49e-08, step=3]\\rTraining:   0%|          | 4/30000 [00:26<39:33:36,  4.75s/it, loss=0.1935, lr=9.99e-08, step=4]\\rTraining:   0%|          | 5/30000 [00:32<42:48:37,  5.14s/it, loss=0.1935, lr=9.99e-08, step=4]\\rTraining:   0%|          | 5/30000 [00:32<42:48:37,  5.14s/it, loss=0.2387, lr=1.25e-07, step=5]\\rTraining:   0%|          | 6/30000 [00:33<31:10:23,  3.74s/it, loss=0.2387, lr=1.25e-07, step=5]\\rTraining:   0%|          | 6/30000 [00:33<31:10:23,  3.74s/it, loss=0.2437, lr=1.50e-07, step=6]\\rTraining:   0%|          | 7/30000 [00:39<37:24:49,  4.49s/it, loss=0.2437, lr=1.50e-07, step=6]\\rTraining:   0%|          | 7/30000 [00:39<37:24:49,  4.49s/it, loss=0.1870, lr=1.75e-07, step=7]\\rTraining:   0%|          | 8/30000 [00:40<28:13:10,  3.39s/it, loss=0.1870, lr=1.75e-07, step=7]\\rTraining:   0%|          | 8/30000 [00:40<28:13:10,  3.39s/it, loss=0.2390, lr=2.00e-07, step=8]\\rTraining:   0%|          | 9/30000 [00:46<35:27:13,  4.26s/it, loss=0.2390, lr=2.00e-07, step=8]\\rTraining:   0%|          | 9/30000 [00:46<35:27:13,  4.26s/it, loss=0.2556, lr=2.25e-07, step=9]\\rTraining:   0%|          | 10/30000 [00:47<27:08:44,  3.26s/it, loss=0.2556, lr=2.25e-07, step=9]\\rTraining:   0%|          | 10/30000 [00:47<27:08:44,  3.26s/it, loss=0.2108, lr=2.50e-07, step=10]\\rTraining:   0%|          | 11/30000 [00:53<34:48:26,  4.18s/it, loss=0.2108, lr=2.50e-07, step=10]\\rTraining:   0%|          | 11/30000 [00:53<34:48:26,  4.18s/it, loss=0.2193, lr=2.75e-07, step=11]\\rTraining:   0%|          | 12/30000 [00:54<26:49:50,  3.22s/it, loss=0.2193, lr=2.75e-07, step=11]\\rTraining:   0%|          | 12/30000 [00:54<26:49:50,  3.22s/it, loss=0.2386, lr=3.00e-07, step=12]\\rTraining:   0%|          | 13/30000 [01:01<34:52:49,  4.19s/it, loss=0.2386, lr=3.00e-07, step=12]\\rTraining:   0%|          | 13/30000 [01:01<34:52:49,  4.19s/it, loss=0.2074, lr=3.25e-07, step=13]\\rTraining:   0%|          | 14/30000 [01:02<26:55:43,  3.23s/it, loss=0.2074, lr=3.25e-07, step=13]\\rTraining:   0%|          | 14/30000 [01:02<26:55:43,  3.23s/it, loss=0.1783, lr=3.50e-07, step=14]\\rTraining:   0%|          | 15/30000 [01:08<34:29:56,  4.14s/it, loss=0.1783, lr=3.50e-07, step=14]\\rTraining:   0%|          | 15/30000 [01:08<34:29:56,  4.14s/it, loss=0.2597, lr=3.75e-07, step=15]\\rTraining:   0%|          | \\n\\n... [截断: 输出过长，省略 5619156 字符] ...\\n\\nit, loss=0.0218, lr=3.35e-06, step=26389]\\rTraining:  88%|████████▊ | 26390/30000 [28:56:12<4:01:01,  4.01s/it, loss=0.0276, lr=3.35e-06, step=26390]\\rTraining:  88%|████████▊ | 26391/30000 [28:56:16<4:00:57,  4.01s/it, loss=0.0276, lr=3.35e-06, step=26390]\\rTraining:  88%|████████▊ | 26391/30000 [28:56:16<4:00:57,  4.01s/it, loss=0.0222, lr=3.35e-06, step=26391]\\rTraining:  88%|████████▊ | 26392/30000 [28:56:20<4:00:51,  4.01s/it, loss=0.0222, lr=3.35e-06, step=26391]\\rTraining:  88%|████████▊ | 26392/30000 [28:56:20<4:00:51,  4.01s/it, loss=0.0226, lr=3.35e-06, step=26392]\\rTraining:  88%|████████▊ | 26393/30000 [28:56:24<4:03:19,  4.05s/it, loss=0.0226, lr=3.35e-06, step=26392]\\rTraining:  88%|████████▊ | 26393/30000 [28:56:24<4:03:19,  4.05s/it, loss=0.0214, lr=3.35e-06, step=26393]\\rTraining:  88%|████████▊ | 26394/30000 [28:56:28<4:02:29,  4.03s/it, loss=0.0214, lr=3.35e-06, step=26393]\\rTraining:  88%|████████▊ | 26394/30000 [28:56:28<4:02:29,  4.03s/it, loss=0.0197, lr=3.35e-06, step=26394]\\rTraining:  88%|████████▊ | 26395/30000 [28:56:39<6:11:17,  6.18s/it, loss=0.0197, lr=3.35e-06, step=26394]\\rTraining:  88%|████████▊ | 26395/30000 [28:56:39<6:11:17,  6.18s/it, loss=0.0219, lr=3.35e-06, step=26395]\\rTraining:  88%|████████▊ | 26396/30000 [28:56:43<5:31:50,  5.52s/it, loss=0.0219, lr=3.35e-06, step=26395]\\rTraining:  88%|████████▊ | 26396/30000 [28:56:43<5:31:50,  5.52s/it, loss=0.0210, lr=3.35e-06, step=26396]\\rTraining:  88%|████████▊ | 26397/30000 [28:56:47<5:04:13,  5.07s/it, loss=0.0210, lr=3.35e-06, step=26396]\\rTraining:  88%|████████▊ | 26397/30000 [28:56:47<5:04:13,  5.07s/it, loss=0.0166, lr=3.35e-06, step=26397]\\rTraining:  88%|████████▊ | 26398/30000 [28:56:51<4:44:52,  4.75s/it, loss=0.0166, lr=3.35e-06, step=26397]\\rTraining:  88%|████████▊ | 26398/30000 [28:56:51<4:44:52,  4.75s/it, loss=0.0249, lr=3.35e-06, step=26398]\\rTraining:  88%|████████▊ | 26399/30000 [28:56:55<4:31:21,  4.52s/it, loss=0.0249, lr=3.35e-06, step=26398]\\rTraining:  88%|████████▊ | 26399/30000 [28:56:55<4:31:21,  4.52s/it, loss=0.0208, lr=3.35e-06, step=26399]\\rTraining:  88%|████████▊ | 26400/30000 [28:56:59<4:21:55,  4.37s/it, loss=0.0208, lr=3.35e-06, step=26399]\\rTraining:  88%|████████▊ | 26400/30000 [28:56:59<4:21:55,  4.37s/it, loss=0.0193, lr=3.35e-06, step=26400]\\rTraining:  88%|████████▊ | 26401/30000 [28:57:03<4:15:09,  4.25s/it, loss=0.0193, lr=3.35e-06, step=26400]\\rTraining:  88%|████████▊ | 26401/30000 [28:57:03<4:15:09,  4.25s/it, loss=0.0178, lr=3.34e-06, step=26401]\\rTraining:  88%|████████▊ | 26402/30000 [28:57:07<4:10:28,  4.18s/it, loss=0.0178, lr=3.34e-06, step=26401]\\rTraining:  88%|████████▊ | 26402/30000 [28:57:07<4:10:28,  4.18s/it, loss=0.0215, lr=3.34e-06, step=26402]\\rTraining:  88%|████████▊ | 26403/30000 [28:57:11<4:07:16,  4.12s/it, loss=0.0215, lr=3.34e-06, step=26402]\\rTraining:  88%|████████▊ | 26403/30000 [28:57:11<4:07:16,  4.12s/it, loss=0.0211, lr=3.34e-06, step=26403]\\rTraining:  88%|████████▊ | 26404/30000 [28:57:15<4:05:03,  4.09s/it, loss=0.0211, lr=3.34e-06, step=26403]\\rTraining:  88%|████████▊ | 26404/30000 [28:57:15<4:05:03,  4.09s/it, loss=0.0202, lr=3.34e-06, step=26404]\\rTraining:  88%|████████▊ | 26405/30000 [28:57:19<4:03:25,  4.06s/it, loss=0.0202, lr=3.34e-06, step=26404]\\rTraining:  88%|████████▊ | 26405/30000 [28:57:19<4:03:25,  4.06s/it, loss=0.0180, lr=3.34e-06, step=26405]\\rTraining:  88%|████████▊ | 26406/30000 [28:57:23<4:02:18,  4.05s/it, loss=0.0180, lr=3.34e-06, step=26405]\\rTraining:  88%|████████▊ | 26406/30000 [28:57:23<4:02:18,  4.05s/it, loss=0.0293, lr=3.34e-06, step=26406]\\rTraining:  88%|████████▊ | 26407/30000 [28:57:27<4:03:46,  4.07s/it, loss=0.0293, lr=3.34e-06, step=26406]\\rTraining:  88%|████████▊ | 26407/30000 [28:57:27<4:03:46,  4.07s/it, loss=0.0245, lr=3.34e-06, step=26407]\\rTraining:  88%|████████▊ | 26408/30000 [28:57:31<4:02:32,  4.05s/it, loss=0.0245, lr=3.34e-06, step=26407]\\rTraining:  88%|████████▊ | 26408/30000 [28:57:31<4:02:32,  4.05s/it, loss=0.0187, lr=3.34e-06, step=26408]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 7.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "435d0546-b639-4c3d-96cd-e3e1cb6fcfba",
+  "uuid": "44e57ab6-a73e-4c18-9168-13f6c4ff5147",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"wandb: WARNING Data passed to `wandb.Image` should consist of values in the range [0, 255], image data will be normalized to this range, but behavior will be removed in a future version of wandb.\\\\nDIAG: pytorch_weight_path = '/root/autodl-tmp/openpi_weights/pi0_base'\\\\nDIAG: model_path = /root/autodl-tmp/openpi_weights/pi0_base/model.safetensors, exists = True\\\\nDIAG: BEFORE load - action_in_proj.weight device=cuda:0, mean=0.000587, std=0.101799\\\\nDIAG: load_model done. missing=0, unexpected=0\\\\nDIAG: AFTER load - action_in_proj.weight device=cuda:0, mean=-0.000354, std=0.177879\\\\nDIAG: REF from file - mean=-0.000354, std=0.177879\\\\n\\\\rTraining:   0%|          | 0/30000 [00:00<?, ?it/s]/root/miniconda3/envs/libero/lib/python3.10/site-packages/torch/autograd/graph.py:829: UserWarning: Attempting to run cuBLAS, but there was no current CUDA context! Attempting to set the primary context... (Triggered internally at /pytorch/aten/src/ATen/cuda/CublasHandlePool.cpp:179.)\\\\n  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass\\\\n\\\\rTraining:   0%|          | 1/30000 [00:18<153:22:28, 18.41s/it]\\\\rTraining:   0%|          | 1/30000 [00:18<153:22:28, 18.41s/it, loss=0.1807, lr=2.50e-08, step=1]\\\\rTraining:   0%|          | 2/30000 [00:19<68:21:54,  8.20s/it, loss=0.1807, lr=2.50e-08, step=1] \\\\rTraining:   0%|          | 2/30000 [00:19<68:21:54,  8.20s/it, loss=0.2573, lr=5.00e-08, step=2]\\\\rTraining:   0%|          | 3/30000 [00:25<59:43:49,  7.17s/it, loss=0.2573, lr=5.00e-08, step=2]\\\\rTraining:   0%|          | 3/30000 [00:25<59:43:49,  7.17s/it, loss=0.2033, lr=7.49e-08, step=3]\\\\rTraining:   0%|          | 4/30000 [00:26<39:33:36,  4.75s/it, loss=0.2033, lr=7.49e-08, step=3]\\\\rTraining:   0%|          | 4/30000 [00:26<39:33:36,  4.75s/it, loss=0.1935, lr=9.99e-08, step=4]\\\\rTraining:   0%|          | 5/30000 [00:32<42:48:37,  5.14s/it, loss=0.1935, lr=9.99e-08, step=4]\\\\rTraining:   0%|          | 5/30000 [00:32<42:48:37,  5.14s/it, loss=0.2387, lr=1.25e-07, step=5]\\\\rTraining:   0%|          | 6/30000 [00:33<31:10:23,  3.74s/it, loss=0.2387, lr=1.25e-07, step=5]\\\\rTraining:   0%|          | 6/30000 [00:33<31:10:23,  3.74s/it, loss=0.2437, lr=1.50e-07, step=6]\\\\rTraining:   0%|          | 7/30000 [00:39<37:24:49,  4.49s/it, loss=0.2437, lr=1.50e-07, step=6]\\\\rTraining:   0%|          | 7/30000 [00:39<37:24:49,  4.49s/it, loss=0.1870, lr=1.75e-07, step=7]\\\\rTraining:   0%|          | 8/30000 [00:40<28:13:10,  3.39s/it, loss=0.1870, lr=1.75e-07, step=7]\\\\rTraining:   0%|          | 8/30000 [00:40<28:13:10,  3.39s/it, loss=0.2390, lr=2.00e-07, step=8]\\\\rTraining:   0%|          | 9/30000 [00:46<35:27:13,  4.26s/it, loss=0.2390, lr=2.00e-07, step=8]\\\\rTraining:   0%|          | 9/30000 [00:46<35:27:13,  4.26s/it, loss=0.2556, lr=2.25e-07, step=9]\\\\rTraining:   0%|          | 10/30000 [00:47<27:08:44,  3.26s/it, loss=0.2556, lr=2.25e-07, step=9]\\\\rTraining:   0%|          | 10/30000 [00:47<27:08:44,  3.26s/it, loss=0.2108, lr=2.50e-07, step=10]\\\\rTraining:   0%|          | 11/30000 [00:53<34:48:26,  4.18s/it, loss=0.2108, lr=2.50e-07, step=10]\\\\rTraining:   0%|          | 11/30000 [00:53<34:48:26,  4.18s/it, loss=0.2193, lr=2.75e-07, step=11]\\\\rTraining:   0%|          | 12/30000 [00:54<26:49:50,  3.22s/it, loss=0.2193, lr=2.75e-07, step=11]\\\\rTraining:   0%|          | 12/30000 [00:54<26:49:50,  3.22s/it, loss=0.2386, lr=3.00e-07, step=12]\\\\rTraining:   0%|          | 13/30000 [01:01<34:52:49,  4.19s/it, loss=0.2386, lr=3.00e-07, step=12]\\\\rTraining:   0%|          | 13/30000 [01:01<34:52:49,  4.19s/it, loss=0.2074, lr=3.25e-07, step=13]\\\\rTraining:   0%|          | 14/30000 [01:02<26:55:43,  3.23s/it, loss=0.2074, lr=3.25e-07, step=13]\\\\rTraining:   0%|          | 14/30000 [01:02<26:55:43,  3.23s/it, loss=0.1783, lr=3.50e-07, step=14]\\\\rTraining:   0%|          | 15/30000 [01:08<34:29:56,  4.14s/it, loss=0.1783, lr=3.50e-07, step=14]\\\\rTraining:   0%|          | 15/30000 [01:08<34:29:56,  4.14s/it, loss=0.2597, lr=3.75e-07, step=15]\\\\rTraining:   0%|          | \\\\n\\\\n... [截断: 输出过长，省略 5619156 字符] ...\\\\n\\\\nit, loss=0.0218, lr=3.35e-06, step=26389]\\\\rTraining:  88%|████████▊ | 26390/30000 [28:56:12<4:01:01,  4.01s/it, loss=0.0276, lr=3.35e-06, step=26390]\\\\rTraining:  88%|████████▊ | 26391/30000 [28:56:16<4:00:57,  4.01s/it, loss=0.0276, lr=3.35e-06, step=26390]\\\\rTraining:  88%|████████▊ | 26391/30000 [28:56:16<4:00:57,  4.01s/it, loss=0.0222, lr=3.35e-06, step=26391]\\\\rTraining:  88%|████████▊ | 26392/30000 [28:56:20<4:00:51,  4.01s/it, loss=0.0222, lr=3.35e-06, step=26391]\\\\rTraining:  88%|████████▊ | 26392/30000 [28:56:20<4:00:51,  4.01s/it, loss=0.0226, lr=3.35e-06, step=26392]\\\\rTraining:  88%|████████▊ | 26393/30000 [28:56:24<4:03:19,  4.05s/it, loss=0.0226, lr=3.35e-06, step=26392]\\\\rTraining:  88%|████████▊ | 26393/30000 [28:56:24<4:03:19,  4.05s/it, loss=0.0214, lr=3.35e-06, step=26393]\\\\rTraining:  88%|████████▊ | 26394/30000 [28:56:28<4:02:29,  4.03s/it, loss=0.0214, lr=3.35e-06, step=26393]\\\\rTraining:  88%|████████▊ | 26394/30000 [28:56:28<4:02:29,  4.03s/it, loss=0.0197, lr=3.35e-06, step=26394]\\\\rTraining:  88%|████████▊ | 26395/30000 [28:56:39<6:11:17,  6.18s/it, loss=0.0197, lr=3.35e-06, step=26394]\\\\rTraining:  88%|████████▊ | 26395/30000 [28:56:39<6:11:17,  6.18s/it, loss=0.0219, lr=3.35e-06, step=26395]\\\\rTraining:  88%|████████▊ | 26396/30000 [28:56:43<5:31:50,  5.52s/it, loss=0.0219, lr=3.35e-06, step=26395]\\\\rTraining:  88%|████████▊ | 26396/30000 [28:56:43<5:31:50,  5.52s/it, loss=0.0210, lr=3.35e-06, step=26396]\\\\rTraining:  88%|████████▊ | 26397/30000 [28:56:47<5:04:13,  5.07s/it, loss=0.0210, lr=3.35e-06, step=26396]\\\\rTraining:  88%|████████▊ | 26397/30000 [28:56:47<5:04:13,  5.07s/it, loss=0.0166, lr=3.35e-06, step=26397]\\\\rTraining:  88%|████████▊ | 26398/30000 [28:56:51<4:44:52,  4.75s/it, loss=0.0166, lr=3.35e-06, step=26397]\\\\rTraining:  88%|████████▊ | 26398/30000 [28:56:51<4:44:52,  4.75s/it, loss=0.0249, lr=3.35e-06, step=26398]\\\\rTraining:  88%|████████▊ | 26399/30000 [28:56:55<4:31:21,  4.52s/it, loss=0.0249, lr=3.35e-06, step=26398]\\\\rTraining:  88%|████████▊ | 26399/30000 [28:56:55<4:31:21,  4.52s/it, loss=0.0208, lr=3.35e-06, step=26399]\\\\rTraining:  88%|████████▊ | 26400/30000 [28:56:59<4:21:55,  4.37s/it, loss=0.0208, lr=3.35e-06, step=26399]\\\\rTraining:  88%|████████▊ | 26400/30000 [28:56:59<4:21:55,  4.37s/it, loss=0.0193, lr=3.35e-06, step=26400]\\\\rTraining:  88%|████████▊ | 26401/30000 [28:57:03<4:15:09,  4.25s/it, loss=0.0193, lr=3.35e-06, step=26400]\\\\rTraining:  88%|████████▊ | 26401/30000 [28:57:03<4:15:09,  4.25s/it, loss=0.0178, lr=3.34e-06, step=26401]\\\\rTraining:  88%|████████▊ | 26402/30000 [28:57:07<4:10:28,  4.18s/it, loss=0.0178, lr=3.34e-06, step=26401]\\\\rTraining:  88%|████████▊ | 26402/30000 [28:57:07<4:10:28,  4.18s/it, loss=0.0215, lr=3.34e-06, step=26402]\\\\rTraining:  88%|████████▊ | 26403/30000 [28:57:11<4:07:16,  4.12s/it, loss=0.0215, lr=3.34e-06, step=26402]\\\\rTraining:  88%|████████▊ | 26403/30000 [28:57:11<4:07:16,  4.12s/it, loss=0.0211, lr=3.34e-06, step=26403]\\\\rTraining:  88%|████████▊ | 26404/30000 [28:57:15<4:05:03,  4.09s/it, loss=0.0211, lr=3.34e-06, step=26403]\\\\rTraining:  88%|████████▊ | 26404/30000 [28:57:15<4:05:03,  4.09s/it, loss=0.0202, lr=3.34e-06, step=26404]\\\\rTraining:  88%|████████▊ | 26405/30000 [28:57:19<4:03:25,  4.06s/it, loss=0.0202, lr=3.34e-06, step=26404]\\\\rTraining:  88%|████████▊ | 26405/30000 [28:57:19<4:03:25,  4.06s/it, loss=0.0180, lr=3.34e-06, step=26405]\\\\rTraining:  88%|████████▊ | 26406/30000 [28:57:23<4:02:18,  4.05s/it, loss=0.0180, lr=3.34e-06, step=26405]\\\\rTraining:  88%|████████▊ | 26406/30000 [28:57:23<4:02:18,  4.05s/it, loss=0.0293, lr=3.34e-06, step=26406]\\\\rTraining:  88%|████████▊ | 26407/30000 [28:57:27<4:03:46,  4.07s/it, loss=0.0293, lr=3.34e-06, step=26406]\\\\rTraining:  88%|████████▊ | 26407/30000 [28:57:27<4:03:46,  4.07s/it, loss=0.0245, lr=3.34e-06, step=26407]\\\\rTraining:  88%|████████▊ | 26408/30000 [28:57:31<4:02:32,  4.05s/it, loss=0.0245, lr=3.34e-06, step=26407]\\\\rTraining:  88%|████████▊ | 26408/30000 [28:57:31<4:02:32,  4.05s/it, loss=0.0187, lr=3.34e-06, step=26408]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 7.49}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"wandb: WARNING Data passed to `wandb.Image` should consist of values in the range [0, 255], image data will be normalized to this range, but behavior will be removed in a future version of wandb.\\nDIAG: pytorch_weight_path = '/root/autodl-tmp/openpi_weights/pi0_base'\\nDIAG: model_path = /root/autodl-tmp/openpi_weights/pi0_base/model.safetensors, exists = True\\nDIAG: BEFORE load - action_in_proj.weight device=cuda:0, mean=0.000587, std=0.101799\\nDIAG: load_model done. missing=0, unexpected=0\\nDIAG: AFTER load - action_in_proj.weight device=cuda:0, mean=-0.000354, std=0.177879\\nDIAG: REF from file - mean=-0.000354, std=0.177879\\n\\rTraining:   0%|          | 0/30000 [00:00<?, ?it/s]/root/miniconda3/envs/libero/lib/python3.10/site-packages/torch/autograd/graph.py:829: UserWarning: Attempting to run cuBLAS, but there was no current CUDA context! Attempting to set the primary context... (Triggered internally at /pytorch/aten/src/ATen/cuda/CublasHandlePool.cpp:179.)\\n  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass\\n\\rTraining:   0%|          | 1/30000 [00:18<153:22:28, 18.41s/it]\\rTraining:   0%|          | 1/30000 [00:18<153:22:28, 18.41s/it, loss=0.1807, lr=2.50e-08, step=1]\\rTraining:   0%|          | 2/30000 [00:19<68:21:54,  8.20s/it, loss=0.1807, lr=2.50e-08, step=1] \\rTraining:   0%|          | 2/30000 [00:19<68:21:54,  8.20s/it, loss=0.2573, lr=5.00e-08, step=2]\\rTraining:   0%|          | 3/30000 [00:25<59:43:49,  7.17s/it, loss=0.2573, lr=5.00e-08, step=2]\\rTraining:   0%|          | 3/30000 [00:25<59:43:49,  7.17s/it, loss=0.2033, lr=7.49e-08, step=3]\\rTraining:   0%|          | 4/30000 [00:26<39:33:36,  4.75s/it, loss=0.2033, lr=7.49e-08, step=3]\\rTraining:   0%|          | 4/30000 [00:26<39:33:36,  4.75s/it, loss=0.1935, lr=9.99e-08, step=4]\\rTraining:   0%|          | 5/30000 [00:32<42:48:37,  5.14s/it, loss=0.1935, lr=9.99e-08, step=4]\\rTraining:   0%|          | 5/30000 [00:32<42:48:37,  5.14s/it, loss=0.2387, lr=1.25e-07, step=5]\\rTraining:   0%|          | 6/30000 [00:33<31:10:23,  3.74s/it, loss=0.2387, lr=1.25e-07, step=5]\\rTraining:   0%|          | 6/30000 [00:33<31:10:23,  3.74s/it, loss=0.2437, lr=1.50e-07, step=6]\\rTraining:   0%|          | 7/30000 [00:39<37:24:49,  4.49s/it, loss=0.2437, lr=1.50e-07, step=6]\\rTraining:   0%|          | 7/30000 [00:39<37:24:49,  4.49s/it, loss=0.1870, lr=1.75e-07, step=7]\\rTraining:   0%|          | 8/30000 [00:40<28:13:10,  3.39s/it, loss=0.1870, lr=1.75e-07, step=7]\\rTraining:   0%|          | 8/30000 [00:40<28:13:10,  3.39s/it, loss=0.2390, lr=2.00e-07, step=8]\\rTraining:   0%|          | 9/30000 [00:46<35:27:13,  4.26s/it, loss=0.2390, lr=2.00e-07, step=8]\\rTraining:   0%|          | 9/30000 [00:46<35:27:13,  4.26s/it, loss=0.2556, lr=2.25e-07, step=9]\\rTraining:   0%|          | 10/30000 [00:47<27:08:44,  3.26s/it, loss=0.2556, lr=2.25e-07, step=9]\\rTraining:   0%|          | 10/30000 [00:47<27:08:44,  3.26s/it, loss=0.2108, lr=2.50e-07, step=10]\\rTraining:   0%|          | 11/30000 [00:53<34:48:26,  4.18s/it, loss=0.2108, lr=2.50e-07, step=10]\\rTraining:   0%|          | 11/30000 [00:53<34:48:26,  4.18s/it, loss=0.2193, lr=2.75e-07, step=11]\\rTraining:   0%|          | 12/30000 [00:54<26:49:50,  3.22s/it, loss=0.2193, lr=2.75e-07, step=11]\\rTraining:   0%|          | 12/30000 [00:54<26:49:50,  3.22s/it, loss=0.2386, lr=3.00e-07, step=12]\\rTraining:   0%|          | 13/30000 [01:01<34:52:49,  4.19s/it, loss=0.2386, lr=3.00e-07, step=12]\\rTraining:   0%|          | 13/30000 [01:01<34:52:49,  4.19s/it, loss=0.2074, lr=3.25e-07, step=13]\\rTraining:   0%|          | 14/30000 [01:02<26:55:43,  3.23s/it, loss=0.2074, lr=3.25e-07, step=13]\\rTraining:   0%|          | 14/30000 [01:02<26:55:43,  3.23s/it, loss=0.1783, lr=3.50e-07, step=14]\\rTraining:   0%|          | 15/30000 [01:08<34:29:56,  4.14s/it, loss=0.1783, lr=3.50e-07, step=14]\\rTraining:   0%|          | 15/30000 [01:08<34:29:56,  4.14s/it, loss=0.2597, lr=3.75e-07, step=15]\\rTraining:   0%|          | \\n\\n... [截断: 输出过长，省略 5619156 字符] ...\\n\\nit, loss=0.0218, lr=3.35e-06, step=26389]\\rTraining:  88%|████████▊ | 26390/30000 [28:56:12<4:01:01,  4.01s/it, loss=0.0276, lr=3.35e-06, step=26390]\\rTraining:  88%|████████▊ | 26391/30000 [28:56:16<4:00:57,  4.01s/it, loss=0.0276, lr=3.35e-06, step=26390]\\rTraining:  88%|████████▊ | 26391/30000 [28:56:16<4:00:57,  4.01s/it, loss=0.0222, lr=3.35e-06, step=26391]\\rTraining:  88%|████████▊ | 26392/30000 [28:56:20<4:00:51,  4.01s/it, loss=0.0222, lr=3.35e-06, step=26391]\\rTraining:  88%|████████▊ | 26392/30000 [28:56:20<4:00:51,  4.01s/it, loss=0.0226, lr=3.35e-06, step=26392]\\rTraining:  88%|████████▊ | 26393/30000 [28:56:24<4:03:19,  4.05s/it, loss=0.0226, lr=3.35e-06, step=26392]\\rTraining:  88%|████████▊ | 26393/30000 [28:56:24<4:03:19,  4.05s/it, loss=0.0214, lr=3.35e-06, step=26393]\\rTraining:  88%|████████▊ | 26394/30000 [28:56:28<4:02:29,  4.03s/it, loss=0.0214, lr=3.35e-06, step=26393]\\rTraining:  88%|████████▊ | 26394/30000 [28:56:28<4:02:29,  4.03s/it, loss=0.0197, lr=3.35e-06, step=26394]\\rTraining:  88%|████████▊ | 26395/30000 [28:56:39<6:11:17,  6.18s/it, loss=0.0197, lr=3.35e-06, step=26394]\\rTraining:  88%|████████▊ | 26395/30000 [28:56:39<6:11:17,  6.18s/it, loss=0.0219, lr=3.35e-06, step=26395]\\rTraining:  88%|████████▊ | 26396/30000 [28:56:43<5:31:50,  5.52s/it, loss=0.0219, lr=3.35e-06, step=26395]\\rTraining:  88%|████████▊ | 26396/30000 [28:56:43<5:31:50,  5.52s/it, loss=0.0210, lr=3.35e-06, step=26396]\\rTraining:  88%|████████▊ | 26397/30000 [28:56:47<5:04:13,  5.07s/it, loss=0.0210, lr=3.35e-06, step=26396]\\rTraining:  88%|████████▊ | 26397/30000 [28:56:47<5:04:13,  5.07s/it, loss=0.0166, lr=3.35e-06, step=26397]\\rTraining:  88%|████████▊ | 26398/30000 [28:56:51<4:44:52,  4.75s/it, loss=0.0166, lr=3.35e-06, step=26397]\\rTraining:  88%|████████▊ | 26398/30000 [28:56:51<4:44:52,  4.75s/it, loss=0.0249, lr=3.35e-06, step=26398]\\rTraining:  88%|████████▊ | 26399/30000 [28:56:55<4:31:21,  4.52s/it, loss=0.0249, lr=3.35e-06, step=26398]\\rTraining:  88%|████████▊ | 26399/30000 [28:56:55<4:31:21,  4.52s/it, loss=0.0208, lr=3.35e-06, step=26399]\\rTraining:  88%|████████▊ | 26400/30000 [28:56:59<4:21:55,  4.37s/it, loss=0.0208, lr=3.35e-06, step=26399]\\rTraining:  88%|████████▊ | 26400/30000 [28:56:59<4:21:55,  4.37s/it, loss=0.0193, lr=3.35e-06, step=26400]\\rTraining:  88%|████████▊ | 26401/30000 [28:57:03<4:15:09,  4.25s/it, loss=0.0193, lr=3.35e-06, step=26400]\\rTraining:  88%|████████▊ | 26401/30000 [28:57:03<4:15:09,  4.25s/it, loss=0.0178, lr=3.34e-06, step=26401]\\rTraining:  88%|████████▊ | 26402/30000 [28:57:07<4:10:28,  4.18s/it, loss=0.0178, lr=3.34e-06, step=26401]\\rTraining:  88%|████████▊ | 26402/30000 [28:57:07<4:10:28,  4.18s/it, loss=0.0215, lr=3.34e-06, step=26402]\\rTraining:  88%|████████▊ | 26403/30000 [28:57:11<4:07:16,  4.12s/it, loss=0.0215, lr=3.34e-06, step=26402]\\rTraining:  88%|████████▊ | 26403/30000 [28:57:11<4:07:16,  4.12s/it, loss=0.0211, lr=3.34e-06, step=26403]\\rTraining:  88%|████████▊ | 26404/30000 [28:57:15<4:05:03,  4.09s/it, loss=0.0211, lr=3.34e-06, step=26403]\\rTraining:  88%|████████▊ | 26404/30000 [28:57:15<4:05:03,  4.09s/it, loss=0.0202, lr=3.34e-06, step=26404]\\rTraining:  88%|████████▊ | 26405/30000 [28:57:19<4:03:25,  4.06s/it, loss=0.0202, lr=3.34e-06, step=26404]\\rTraining:  88%|████████▊ | 26405/30000 [28:57:19<4:03:25,  4.06s/it, loss=0.0180, lr=3.34e-06, step=26405]\\rTraining:  88%|████████▊ | 26406/30000 [28:57:23<4:02:18,  4.05s/it, loss=0.0180, lr=3.34e-06, step=26405]\\rTraining:  88%|████████▊ | 26406/30000 [28:57:23<4:02:18,  4.05s/it, loss=0.0293, lr=3.34e-06, step=26406]\\rTraining:  88%|████████▊ | 26407/30000 [28:57:27<4:03:46,  4.07s/it, loss=0.0293, lr=3.34e-06, step=26406]\\rTraining:  88%|████████▊ | 26407/30000 [28:57:27<4:03:46,  4.07s/it, loss=0.0245, lr=3.34e-06, step=26407]\\rTraining:  88%|████████▊ | 26408/30000 [28:57:31<4:02:32,  4.05s/it, loss=0.0245, lr=3.34e-06, step=26407]\\rTraining:  88%|████████▊ | 26408/30000 [28:57:31<4:02:32,  4.05s/it, loss=0.0187, lr=3.34e-06, step=26408]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 7.49}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-22T09:42:37.801Z_
+
+<details><summary>↩ Tool result · `toolu_01HZSVbXbMbjEf37kGraTe7k`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"wandb: WARNING Data passed to `wandb.Image` should consist of values in the range [0, 255], image data will be normalized to this range, but behavior will be removed in a future version of wandb.\\nDIAG: pytorch_weight_path = '/root/autodl-tmp/openpi_weights/pi0_base'\\nDIAG: model_path = /root/autodl-tmp/openpi_weights/pi0_base/model.safetensors, exists = True\\nDIAG: BEFORE load - action_in_proj.weight device=cuda:0, mean=0.000587, std=0.101799\\nDIAG: load_model done. missing=0, unexpected=0\\nDIAG: AFTER load - action_in_proj.weight device=cuda:0, mean=-0.000354, std=0.177879\\nDIAG: REF from file - mean=-0.000354, std=0.177879\\n\\rTraining:   0%|          | 0/30000 [00:00<?, ?it/s]/root/miniconda3/envs/libero/lib/python3.10/site-packages/torch/autograd/graph.py:829: UserWarning: Attempting to run cuBLAS, but there was no current CUDA context! Attempting to set the primary context... (Triggered internally at /pytorch/aten/src/ATen/cuda/CublasHandlePool.cpp:179.)\\n  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass\\n\\rTraining:   0%|          | 1/30000 [00:17<147:02:08, 17.64s/it]\\rTraining:   0%|          | 1/30000 [00:17<147:02:08, 17.64s/it, loss=0.2409, lr=2.50e-08, step=1]\\rTraining:   0%|          | 2/30000 [00:18<65:56:23,  7.91s/it, loss=0.2409, lr=2.50e-08, step=1] \\rTraining:   0%|          | 2/30000 [00:18<65:56:23,  7.91s/it, loss=0.2745, lr=5.00e-08, step=2]\\rTraining:   0%|          | 3/30000 [00:23<55:32:59,  6.67s/it, loss=0.2745, lr=5.00e-08, step=2]\\rTraining:   0%|          | 3/30000 [00:23<55:32:59,  6.67s/it, loss=0.2973, lr=7.49e-08, step=3]\\rTraining:   0%|          | 4/30000 [00:24<37:06:44,  4.45s/it, loss=0.2973, lr=7.49e-08, step=3]\\rTraining:   0%|          | 4/30000 [00:24<37:06:44,  4.45s/it, loss=0.2563, lr=9.99e-08, step=4]\\rTraining:   0%|          | 5/30000 [00:30<41:37:32,  5.00s/it, loss=0.2563, lr=9.99e-08, step=4]\\rTraining:   0%|          | 5/30000 [00:30<41:37:32,  5.00s/it, loss=0.3056, lr=1.25e-07, step=5]\\rTraining:   0%|          | 6/30000 [00:32<30:27:54,  3.66s/it, loss=0.3056, lr=1.25e-07, step=5]\\rTraining:   0%|          | 6/30000 [00:32<30:27:54,  3.66s/it, loss=0.2562, lr=1.50e-07, step=6]\\rTraining:   0%|          | 7/30000 [00:37<35:30:55,  4.26s/it, loss=0.2562, lr=1.50e-07, step=6]\\rTraining:   0%|          | 7/30000 [00:37<35:30:55,  4.26s/it, loss=0.2439, lr=1.75e-07, step=7]\\rTraining:   0%|          | 8/30000 [00:38<27:02:28,  3.25s/it, loss=0.2439, lr=1.75e-07, step=7]\\rTraining:   0%|          | 8/30000 [00:38<27:02:28,  3.25s/it, loss=0.2727, lr=2.00e-07, step=8]\\rTraining:   0%|          | 9/30000 [00:44<33:10:13,  3.98s/it, loss=0.2727, lr=2.00e-07, step=8]\\rTraining:   0%|          | 9/30000 [00:44<33:10:13,  3.98s/it, loss=0.3500, lr=2.25e-07, step=9]\\rTraining:   0%|          | 10/30000 [00:45<25:53:02,  3.11s/it, loss=0.3500, lr=2.25e-07, step=9]\\rTraining:   0%|          | 10/30000 [00:45<25:53:02,  3.11s/it, loss=0.2759, lr=2.50e-07, step=10]\\rTraining:   0%|          | 11/30000 [00:50<31:32:58,  3.79s/it, loss=0.2759, lr=2.50e-07, step=10]\\rTraining:   0%|          | 11/30000 [00:50<31:32:58,  3.79s/it, loss=0.2860, lr=2.75e-07, step=11]\\rTraining:   0%|          | 12/30000 [00:52<25:51:35,  3.10s/it, loss=0.2860, lr=2.75e-07, step=11]\\rTraining:   0%|          | 12/30000 [00:52<25:51:35,  3.10s/it, loss=0.2719, lr=3.00e-07, step=12]\\rTraining:   0%|          | 13/30000 [00:57<30:38:19,  3.68s/it, loss=0.2719, lr=3.00e-07, step=12]\\rTraining:   0%|          | 13/30000 [00:57<30:38:19,  3.68s/it, loss=0.2648, lr=3.25e-07, step=13]\\rTraining:   0%|          | 14/30000 [00:59<26:01:08,  3.12s/it, loss=0.2648, lr=3.25e-07, step=13]\\rTraining:   0%|          | 14/30000 [00:59<26:01:08,  3.12s/it, loss=0.2988, lr=3.50e-07, step=14]\\rTraining:   0%|          | 15/30000 [01:03<29:49:52,  3.58s/it, loss=0.2988, lr=3.50e-07, step=14]\\rTraining:   0%|          | 15/30000 [01:03<29:49:52,  3.58s/it, loss=0.2810, lr=3.75e-07, step=15]\\rTraining:   0%|          | \\n\\n... [截断: 输出过长，省略 5190876 字符] ...\\n\\nit, loss=0.0244, lr=4.52e-06, step=24385]\\rTraining:  81%|████████▏ | 24386/30000 [26:50:09<6:13:55,  4.00s/it, loss=0.0196, lr=4.52e-06, step=24386]\\rTraining:  81%|████████▏ | 24387/30000 [26:50:13<6:13:45,  4.00s/it, loss=0.0196, lr=4.52e-06, step=24386]\\rTraining:  81%|████████▏ | 24387/30000 [26:50:13<6:13:45,  4.00s/it, loss=0.0208, lr=4.52e-06, step=24387]\\rTraining:  81%|████████▏ | 24388/30000 [26:50:17<6:14:08,  4.00s/it, loss=0.0208, lr=4.52e-06, step=24387]\\rTraining:  81%|████████▏ | 24388/30000 [26:50:17<6:14:08,  4.00s/it, loss=0.0218, lr=4.52e-06, step=24388]\\rTraining:  81%|████████▏ | 24389/30000 [26:50:21<6:14:35,  4.01s/it, loss=0.0218, lr=4.52e-06, step=24388]\\rTraining:  81%|████████▏ | 24389/30000 [26:50:21<6:14:35,  4.01s/it, loss=0.0160, lr=4.52e-06, step=24389]\\rTraining:  81%|████████▏ | 24390/30000 [26:50:25<6:14:01,  4.00s/it, loss=0.0160, lr=4.52e-06, step=24389]\\rTraining:  81%|████████▏ | 24390/30000 [26:50:25<6:14:01,  4.00s/it, loss=0.0154, lr=4.52e-06, step=24390]\\rTraining:  81%|████████▏ | 24391/30000 [26:50:29<6:13:42,  4.00s/it, loss=0.0154, lr=4.52e-06, step=24390]\\rTraining:  81%|████████▏ | 24391/30000 [26:50:29<6:13:42,  4.00s/it, loss=0.0219, lr=4.51e-06, step=24391]\\rTraining:  81%|████████▏ | 24392/30000 [26:50:33<6:13:23,  3.99s/it, loss=0.0219, lr=4.51e-06, step=24391]\\rTraining:  81%|████████▏ | 24392/30000 [26:50:33<6:13:23,  3.99s/it, loss=0.0234, lr=4.51e-06, step=24392]\\rTraining:  81%|████████▏ | 24393/30000 [26:50:37<6:13:08,  3.99s/it, loss=0.0234, lr=4.51e-06, step=24392]\\rTraining:  81%|████████▏ | 24393/30000 [26:50:37<6:13:08,  3.99s/it, loss=0.0370, lr=4.51e-06, step=24393]\\rTraining:  81%|████████▏ | 24394/30000 [26:50:41<6:13:03,  3.99s/it, loss=0.0370, lr=4.51e-06, step=24393]\\rTraining:  81%|████████▏ | 24394/30000 [26:50:41<6:13:03,  3.99s/it, loss=0.0166, lr=4.51e-06, step=24394]\\rTraining:  81%|████████▏ | 24395/30000 [26:50:45<6:13:03,  3.99s/it, loss=0.0166, lr=4.51e-06, step=24394]\\rTraining:  81%|████████▏ | 24395/30000 [26:50:45<6:13:03,  3.99s/it, loss=0.0259, lr=4.51e-06, step=24395]\\rTraining:  81%|████████▏ | 24396/30000 [26:50:49<6:12:54,  3.99s/it, loss=0.0259, lr=4.51e-06, step=24395]\\rTraining:  81%|████████▏ | 24396/30000 [26:50:49<6:12:54,  3.99s/it, loss=0.0301, lr=4.51e-06, step=24396]\\rTraining:  81%|████████▏ | 24397/30000 [26:50:53<6:13:02,  3.99s/it, loss=0.0301, lr=4.51e-06, step=24396]\\rTraining:  81%|████████▏ | 24397/30000 [26:50:53<6:13:02,  3.99s/it, loss=0.0206, lr=4.51e-06, step=24397]\\rTraining:  81%|████████▏ | 24398/30000 [26:50:57<6:13:06,  4.00s/it, loss=0.0206, lr=4.51e-06, step=24397]\\rTraining:  81%|████████▏ | 24398/30000 [26:50:57<6:13:06,  4.00s/it, loss=0.0195, lr=4.51e-06, step=24398]\\rTraining:  81%|████████▏ | 24399/30000 [26:51:01<6:13:18,  4.00s/it, loss=0.0195, lr=4.51e-06, step=24398]\\rTraining:  81%|████████▏ | 24399/30000 [26:51:01<6:13:18,  4.00s/it, loss=0.0220, lr=4.51e-06, step=24399]\\rTraining:  81%|████████▏ | 24400/30000 [26:51:05<6:13:34,  4.00s/it, loss=0.0220, lr=4.51e-06, step=24399]\\rTraining:  81%|████████▏ | 24400/30000 [26:51:05<6:13:34,  4.00s/it, loss=0.0230, lr=4.51e-06, step=24400]\\rTraining:  81%|████████▏ | 24401/30000 [26:51:09<6:13:24,  4.00s/it, loss=0.0230, lr=4.51e-06, step=24400]\\rTraining:  81%|████████▏ | 24401/30000 [26:51:09<6:13:24,  4.00s/it, loss=0.0245, lr=4.51e-06, step=24401]\\rTraining:  81%|████████▏ | 24402/30000 [26:51:13<6:13:09,  4.00s/it, loss=0.0245, lr=4.51e-06, step=24401]\\rTraining:  81%|████████▏ | 24402/30000 [26:51:13<6:13:09,  4.00s/it, loss=0.0225, lr=4.51e-06, step=24402]\\rTraining:  81%|████████▏ | 24403/30000 [26:51:17<6:13:05,  4.00s/it, loss=0.0225, lr=4.51e-06, step=24402]\\rTraining:  81%|████████▏ | 24403/30000 [26:51:17<6:13:05,  4.00s/it, loss=0.0198, lr=4.51e-06, step=24403]\\rTraining:  81%|████████▏ | 24404/30000 [26:51:21<6:15:17,  4.02s/it, loss=0.0198, lr=4.51e-06, step=24403]\\rTraining:  81%|████████▏ | 24404/30000 [26:51:21<6:15:17,  4.02s/it, loss=0.0235, lr=4.51e-06, step=24404]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.71}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "435d0546-b639-4c3d-96cd-e3e1cb6fcfba",
+  "uuid": "ee9dd71a-4e44-4291-aab9-0f27bd9c22f1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"wandb: WARNING Data passed to `wandb.Image` should consist of values in the range [0, 255], image data will be normalized to this range, but behavior will be removed in a future version of wandb.\\\\nDIAG: pytorch_weight_path = '/root/autodl-tmp/openpi_weights/pi0_base'\\\\nDIAG: model_path = /root/autodl-tmp/openpi_weights/pi0_base/model.safetensors, exists = True\\\\nDIAG: BEFORE load - action_in_proj.weight device=cuda:0, mean=0.000587, std=0.101799\\\\nDIAG: load_model done. missing=0, unexpected=0\\\\nDIAG: AFTER load - action_in_proj.weight device=cuda:0, mean=-0.000354, std=0.177879\\\\nDIAG: REF from file - mean=-0.000354, std=0.177879\\\\n\\\\rTraining:   0%|          | 0/30000 [00:00<?, ?it/s]/root/miniconda3/envs/libero/lib/python3.10/site-packages/torch/autograd/graph.py:829: UserWarning: Attempting to run cuBLAS, but there was no current CUDA context! Attempting to set the primary context... (Triggered internally at /pytorch/aten/src/ATen/cuda/CublasHandlePool.cpp:179.)\\\\n  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass\\\\n\\\\rTraining:   0%|          | 1/30000 [00:17<147:02:08, 17.64s/it]\\\\rTraining:   0%|          | 1/30000 [00:17<147:02:08, 17.64s/it, loss=0.2409, lr=2.50e-08, step=1]\\\\rTraining:   0%|          | 2/30000 [00:18<65:56:23,  7.91s/it, loss=0.2409, lr=2.50e-08, step=1] \\\\rTraining:   0%|          | 2/30000 [00:18<65:56:23,  7.91s/it, loss=0.2745, lr=5.00e-08, step=2]\\\\rTraining:   0%|          | 3/30000 [00:23<55:32:59,  6.67s/it, loss=0.2745, lr=5.00e-08, step=2]\\\\rTraining:   0%|          | 3/30000 [00:23<55:32:59,  6.67s/it, loss=0.2973, lr=7.49e-08, step=3]\\\\rTraining:   0%|          | 4/30000 [00:24<37:06:44,  4.45s/it, loss=0.2973, lr=7.49e-08, step=3]\\\\rTraining:   0%|          | 4/30000 [00:24<37:06:44,  4.45s/it, loss=0.2563, lr=9.99e-08, step=4]\\\\rTraining:   0%|          | 5/30000 [00:30<41:37:32,  5.00s/it, loss=0.2563, lr=9.99e-08, step=4]\\\\rTraining:   0%|          | 5/30000 [00:30<41:37:32,  5.00s/it, loss=0.3056, lr=1.25e-07, step=5]\\\\rTraining:   0%|          | 6/30000 [00:32<30:27:54,  3.66s/it, loss=0.3056, lr=1.25e-07, step=5]\\\\rTraining:   0%|          | 6/30000 [00:32<30:27:54,  3.66s/it, loss=0.2562, lr=1.50e-07, step=6]\\\\rTraining:   0%|          | 7/30000 [00:37<35:30:55,  4.26s/it, loss=0.2562, lr=1.50e-07, step=6]\\\\rTraining:   0%|          | 7/30000 [00:37<35:30:55,  4.26s/it, loss=0.2439, lr=1.75e-07, step=7]\\\\rTraining:   0%|          | 8/30000 [00:38<27:02:28,  3.25s/it, loss=0.2439, lr=1.75e-07, step=7]\\\\rTraining:   0%|          | 8/30000 [00:38<27:02:28,  3.25s/it, loss=0.2727, lr=2.00e-07, step=8]\\\\rTraining:   0%|          | 9/30000 [00:44<33:10:13,  3.98s/it, loss=0.2727, lr=2.00e-07, step=8]\\\\rTraining:   0%|          | 9/30000 [00:44<33:10:13,  3.98s/it, loss=0.3500, lr=2.25e-07, step=9]\\\\rTraining:   0%|          | 10/30000 [00:45<25:53:02,  3.11s/it, loss=0.3500, lr=2.25e-07, step=9]\\\\rTraining:   0%|          | 10/30000 [00:45<25:53:02,  3.11s/it, loss=0.2759, lr=2.50e-07, step=10]\\\\rTraining:   0%|          | 11/30000 [00:50<31:32:58,  3.79s/it, loss=0.2759, lr=2.50e-07, step=10]\\\\rTraining:   0%|          | 11/30000 [00:50<31:32:58,  3.79s/it, loss=0.2860, lr=2.75e-07, step=11]\\\\rTraining:   0%|          | 12/30000 [00:52<25:51:35,  3.10s/it, loss=0.2860, lr=2.75e-07, step=11]\\\\rTraining:   0%|          | 12/30000 [00:52<25:51:35,  3.10s/it, loss=0.2719, lr=3.00e-07, step=12]\\\\rTraining:   0%|          | 13/30000 [00:57<30:38:19,  3.68s/it, loss=0.2719, lr=3.00e-07, step=12]\\\\rTraining:   0%|          | 13/30000 [00:57<30:38:19,  3.68s/it, loss=0.2648, lr=3.25e-07, step=13]\\\\rTraining:   0%|          | 14/30000 [00:59<26:01:08,  3.12s/it, loss=0.2648, lr=3.25e-07, step=13]\\\\rTraining:   0%|          | 14/30000 [00:59<26:01:08,  3.12s/it, loss=0.2988, lr=3.50e-07, step=14]\\\\rTraining:   0%|          | 15/30000 [01:03<29:49:52,  3.58s/it, loss=0.2988, lr=3.50e-07, step=14]\\\\rTraining:   0%|          | 15/30000 [01:03<29:49:52,  3.58s/it, loss=0.2810, lr=3.75e-07, step=15]\\\\rTraining:   0%|          | \\\\n\\\\n... [截断: 输出过长，省略 5190876 字符] ...\\\\n\\\\nit, loss=0.0244, lr=4.52e-06, step=24385]\\\\rTraining:  81%|████████▏ | 24386/30000 [26:50:09<6:13:55,  4.00s/it, loss=0.0196, lr=4.52e-06, step=24386]\\\\rTraining:  81%|████████▏ | 24387/30000 [26:50:13<6:13:45,  4.00s/it, loss=0.0196, lr=4.52e-06, step=24386]\\\\rTraining:  81%|████████▏ | 24387/30000 [26:50:13<6:13:45,  4.00s/it, loss=0.0208, lr=4.52e-06, step=24387]\\\\rTraining:  81%|████████▏ | 24388/30000 [26:50:17<6:14:08,  4.00s/it, loss=0.0208, lr=4.52e-06, step=24387]\\\\rTraining:  81%|████████▏ | 24388/30000 [26:50:17<6:14:08,  4.00s/it, loss=0.0218, lr=4.52e-06, step=24388]\\\\rTraining:  81%|████████▏ | 24389/30000 [26:50:21<6:14:35,  4.01s/it, loss=0.0218, lr=4.52e-06, step=24388]\\\\rTraining:  81%|████████▏ | 24389/30000 [26:50:21<6:14:35,  4.01s/it, loss=0.0160, lr=4.52e-06, step=24389]\\\\rTraining:  81%|████████▏ | 24390/30000 [26:50:25<6:14:01,  4.00s/it, loss=0.0160, lr=4.52e-06, step=24389]\\\\rTraining:  81%|████████▏ | 24390/30000 [26:50:25<6:14:01,  4.00s/it, loss=0.0154, lr=4.52e-06, step=24390]\\\\rTraining:  81%|████████▏ | 24391/30000 [26:50:29<6:13:42,  4.00s/it, loss=0.0154, lr=4.52e-06, step=24390]\\\\rTraining:  81%|████████▏ | 24391/30000 [26:50:29<6:13:42,  4.00s/it, loss=0.0219, lr=4.51e-06, step=24391]\\\\rTraining:  81%|████████▏ | 24392/30000 [26:50:33<6:13:23,  3.99s/it, loss=0.0219, lr=4.51e-06, step=24391]\\\\rTraining:  81%|████████▏ | 24392/30000 [26:50:33<6:13:23,  3.99s/it, loss=0.0234, lr=4.51e-06, step=24392]\\\\rTraining:  81%|████████▏ | 24393/30000 [26:50:37<6:13:08,  3.99s/it, loss=0.0234, lr=4.51e-06, step=24392]\\\\rTraining:  81%|████████▏ | 24393/30000 [26:50:37<6:13:08,  3.99s/it, loss=0.0370, lr=4.51e-06, step=24393]\\\\rTraining:  81%|████████▏ | 24394/30000 [26:50:41<6:13:03,  3.99s/it, loss=0.0370, lr=4.51e-06, step=24393]\\\\rTraining:  81%|████████▏ | 24394/30000 [26:50:41<6:13:03,  3.99s/it, loss=0.0166, lr=4.51e-06, step=24394]\\\\rTraining:  81%|████████▏ | 24395/30000 [26:50:45<6:13:03,  3.99s/it, loss=0.0166, lr=4.51e-06, step=24394]\\\\rTraining:  81%|████████▏ | 24395/30000 [26:50:45<6:13:03,  3.99s/it, loss=0.0259, lr=4.51e-06, step=24395]\\\\rTraining:  81%|████████▏ | 24396/30000 [26:50:49<6:12:54,  3.99s/it, loss=0.0259, lr=4.51e-06, step=24395]\\\\rTraining:  81%|████████▏ | 24396/30000 [26:50:49<6:12:54,  3.99s/it, loss=0.0301, lr=4.51e-06, step=24396]\\\\rTraining:  81%|████████▏ | 24397/30000 [26:50:53<6:13:02,  3.99s/it, loss=0.0301, lr=4.51e-06, step=24396]\\\\rTraining:  81%|████████▏ | 24397/30000 [26:50:53<6:13:02,  3.99s/it, loss=0.0206, lr=4.51e-06, step=24397]\\\\rTraining:  81%|████████▏ | 24398/30000 [26:50:57<6:13:06,  4.00s/it, loss=0.0206, lr=4.51e-06, step=24397]\\\\rTraining:  81%|████████▏ | 24398/30000 [26:50:57<6:13:06,  4.00s/it, loss=0.0195, lr=4.51e-06, step=24398]\\\\rTraining:  81%|████████▏ | 24399/30000 [26:51:01<6:13:18,  4.00s/it, loss=0.0195, lr=4.51e-06, step=24398]\\\\rTraining:  81%|████████▏ | 24399/30000 [26:51:01<6:13:18,  4.00s/it, loss=0.0220, lr=4.51e-06, step=24399]\\\\rTraining:  81%|████████▏ | 24400/30000 [26:51:05<6:13:34,  4.00s/it, loss=0.0220, lr=4.51e-06, step=24399]\\\\rTraining:  81%|████████▏ | 24400/30000 [26:51:05<6:13:34,  4.00s/it, loss=0.0230, lr=4.51e-06, step=24400]\\\\rTraining:  81%|████████▏ | 24401/30000 [26:51:09<6:13:24,  4.00s/it, loss=0.0230, lr=4.51e-06, step=24400]\\\\rTraining:  81%|████████▏ | 24401/30000 [26:51:09<6:13:24,  4.00s/it, loss=0.0245, lr=4.51e-06, step=24401]\\\\rTraining:  81%|████████▏ | 24402/30000 [26:51:13<6:13:09,  4.00s/it, loss=0.0245, lr=4.51e-06, step=24401]\\\\rTraining:  81%|████████▏ | 24402/30000 [26:51:13<6:13:09,  4.00s/it, loss=0.0225, lr=4.51e-06, step=24402]\\\\rTraining:  81%|████████▏ | 24403/30000 [26:51:17<6:13:05,  4.00s/it, loss=0.0225, lr=4.51e-06, step=24402]\\\\rTraining:  81%|████████▏ | 24403/30000 [26:51:17<6:13:05,  4.00s/it, loss=0.0198, lr=4.51e-06, step=24403]\\\\rTraining:  81%|████████▏ | 24404/30000 [26:51:21<6:15:17,  4.02s/it, loss=0.0198, lr=4.51e-06, step=24403]\\\\rTraining:  81%|████████▏ | 24404/30000 [26:51:21<6:15:17,  4.02s/it, loss=0.0235, lr=4.51e-06, step=24404]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.71}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"wandb: WARNING Data passed to `wandb.Image` should consist of values in the range [0, 255], image data will be normalized to this range, but behavior will be removed in a future version of wandb.\\nDIAG: pytorch_weight_path = '/root/autodl-tmp/openpi_weights/pi0_base'\\nDIAG: model_path = /root/autodl-tmp/openpi_weights/pi0_base/model.safetensors, exists = True\\nDIAG: BEFORE load - action_in_proj.weight device=cuda:0, mean=0.000587, std=0.101799\\nDIAG: load_model done. missing=0, unexpected=0\\nDIAG: AFTER load - action_in_proj.weight device=cuda:0, mean=-0.000354, std=0.177879\\nDIAG: REF from file - mean=-0.000354, std=0.177879\\n\\rTraining:   0%|          | 0/30000 [00:00<?, ?it/s]/root/miniconda3/envs/libero/lib/python3.10/site-packages/torch/autograd/graph.py:829: UserWarning: Attempting to run cuBLAS, but there was no current CUDA context! Attempting to set the primary context... (Triggered internally at /pytorch/aten/src/ATen/cuda/CublasHandlePool.cpp:179.)\\n  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass\\n\\rTraining:   0%|          | 1/30000 [00:17<147:02:08, 17.64s/it]\\rTraining:   0%|          | 1/30000 [00:17<147:02:08, 17.64s/it, loss=0.2409, lr=2.50e-08, step=1]\\rTraining:   0%|          | 2/30000 [00:18<65:56:23,  7.91s/it, loss=0.2409, lr=2.50e-08, step=1] \\rTraining:   0%|          | 2/30000 [00:18<65:56:23,  7.91s/it, loss=0.2745, lr=5.00e-08, step=2]\\rTraining:   0%|          | 3/30000 [00:23<55:32:59,  6.67s/it, loss=0.2745, lr=5.00e-08, step=2]\\rTraining:   0%|          | 3/30000 [00:23<55:32:59,  6.67s/it, loss=0.2973, lr=7.49e-08, step=3]\\rTraining:   0%|          | 4/30000 [00:24<37:06:44,  4.45s/it, loss=0.2973, lr=7.49e-08, step=3]\\rTraining:   0%|          | 4/30000 [00:24<37:06:44,  4.45s/it, loss=0.2563, lr=9.99e-08, step=4]\\rTraining:   0%|          | 5/30000 [00:30<41:37:32,  5.00s/it, loss=0.2563, lr=9.99e-08, step=4]\\rTraining:   0%|          | 5/30000 [00:30<41:37:32,  5.00s/it, loss=0.3056, lr=1.25e-07, step=5]\\rTraining:   0%|          | 6/30000 [00:32<30:27:54,  3.66s/it, loss=0.3056, lr=1.25e-07, step=5]\\rTraining:   0%|          | 6/30000 [00:32<30:27:54,  3.66s/it, loss=0.2562, lr=1.50e-07, step=6]\\rTraining:   0%|          | 7/30000 [00:37<35:30:55,  4.26s/it, loss=0.2562, lr=1.50e-07, step=6]\\rTraining:   0%|          | 7/30000 [00:37<35:30:55,  4.26s/it, loss=0.2439, lr=1.75e-07, step=7]\\rTraining:   0%|          | 8/30000 [00:38<27:02:28,  3.25s/it, loss=0.2439, lr=1.75e-07, step=7]\\rTraining:   0%|          | 8/30000 [00:38<27:02:28,  3.25s/it, loss=0.2727, lr=2.00e-07, step=8]\\rTraining:   0%|          | 9/30000 [00:44<33:10:13,  3.98s/it, loss=0.2727, lr=2.00e-07, step=8]\\rTraining:   0%|          | 9/30000 [00:44<33:10:13,  3.98s/it, loss=0.3500, lr=2.25e-07, step=9]\\rTraining:   0%|          | 10/30000 [00:45<25:53:02,  3.11s/it, loss=0.3500, lr=2.25e-07, step=9]\\rTraining:   0%|          | 10/30000 [00:45<25:53:02,  3.11s/it, loss=0.2759, lr=2.50e-07, step=10]\\rTraining:   0%|          | 11/30000 [00:50<31:32:58,  3.79s/it, loss=0.2759, lr=2.50e-07, step=10]\\rTraining:   0%|          | 11/30000 [00:50<31:32:58,  3.79s/it, loss=0.2860, lr=2.75e-07, step=11]\\rTraining:   0%|          | 12/30000 [00:52<25:51:35,  3.10s/it, loss=0.2860, lr=2.75e-07, step=11]\\rTraining:   0%|          | 12/30000 [00:52<25:51:35,  3.10s/it, loss=0.2719, lr=3.00e-07, step=12]\\rTraining:   0%|          | 13/30000 [00:57<30:38:19,  3.68s/it, loss=0.2719, lr=3.00e-07, step=12]\\rTraining:   0%|          | 13/30000 [00:57<30:38:19,  3.68s/it, loss=0.2648, lr=3.25e-07, step=13]\\rTraining:   0%|          | 14/30000 [00:59<26:01:08,  3.12s/it, loss=0.2648, lr=3.25e-07, step=13]\\rTraining:   0%|          | 14/30000 [00:59<26:01:08,  3.12s/it, loss=0.2988, lr=3.50e-07, step=14]\\rTraining:   0%|          | 15/30000 [01:03<29:49:52,  3.58s/it, loss=0.2988, lr=3.50e-07, step=14]\\rTraining:   0%|          | 15/30000 [01:03<29:49:52,  3.58s/it, loss=0.2810, lr=3.75e-07, step=15]\\rTraining:   0%|          | \\n\\n... [截断: 输出过长，省略 5190876 字符] ...\\n\\nit, loss=0.0244, lr=4.52e-06, step=24385]\\rTraining:  81%|████████▏ | 24386/30000 [26:50:09<6:13:55,  4.00s/it, loss=0.0196, lr=4.52e-06, step=24386]\\rTraining:  81%|████████▏ | 24387/30000 [26:50:13<6:13:45,  4.00s/it, loss=0.0196, lr=4.52e-06, step=24386]\\rTraining:  81%|████████▏ | 24387/30000 [26:50:13<6:13:45,  4.00s/it, loss=0.0208, lr=4.52e-06, step=24387]\\rTraining:  81%|████████▏ | 24388/30000 [26:50:17<6:14:08,  4.00s/it, loss=0.0208, lr=4.52e-06, step=24387]\\rTraining:  81%|████████▏ | 24388/30000 [26:50:17<6:14:08,  4.00s/it, loss=0.0218, lr=4.52e-06, step=24388]\\rTraining:  81%|████████▏ | 24389/30000 [26:50:21<6:14:35,  4.01s/it, loss=0.0218, lr=4.52e-06, step=24388]\\rTraining:  81%|████████▏ | 24389/30000 [26:50:21<6:14:35,  4.01s/it, loss=0.0160, lr=4.52e-06, step=24389]\\rTraining:  81%|████████▏ | 24390/30000 [26:50:25<6:14:01,  4.00s/it, loss=0.0160, lr=4.52e-06, step=24389]\\rTraining:  81%|████████▏ | 24390/30000 [26:50:25<6:14:01,  4.00s/it, loss=0.0154, lr=4.52e-06, step=24390]\\rTraining:  81%|████████▏ | 24391/30000 [26:50:29<6:13:42,  4.00s/it, loss=0.0154, lr=4.52e-06, step=24390]\\rTraining:  81%|████████▏ | 24391/30000 [26:50:29<6:13:42,  4.00s/it, loss=0.0219, lr=4.51e-06, step=24391]\\rTraining:  81%|████████▏ | 24392/30000 [26:50:33<6:13:23,  3.99s/it, loss=0.0219, lr=4.51e-06, step=24391]\\rTraining:  81%|████████▏ | 24392/30000 [26:50:33<6:13:23,  3.99s/it, loss=0.0234, lr=4.51e-06, step=24392]\\rTraining:  81%|████████▏ | 24393/30000 [26:50:37<6:13:08,  3.99s/it, loss=0.0234, lr=4.51e-06, step=24392]\\rTraining:  81%|████████▏ | 24393/30000 [26:50:37<6:13:08,  3.99s/it, loss=0.0370, lr=4.51e-06, step=24393]\\rTraining:  81%|████████▏ | 24394/30000 [26:50:41<6:13:03,  3.99s/it, loss=0.0370, lr=4.51e-06, step=24393]\\rTraining:  81%|████████▏ | 24394/30000 [26:50:41<6:13:03,  3.99s/it, loss=0.0166, lr=4.51e-06, step=24394]\\rTraining:  81%|████████▏ | 24395/30000 [26:50:45<6:13:03,  3.99s/it, loss=0.0166, lr=4.51e-06, step=24394]\\rTraining:  81%|████████▏ | 24395/30000 [26:50:45<6:13:03,  3.99s/it, loss=0.0259, lr=4.51e-06, step=24395]\\rTraining:  81%|████████▏ | 24396/30000 [26:50:49<6:12:54,  3.99s/it, loss=0.0259, lr=4.51e-06, step=24395]\\rTraining:  81%|████████▏ | 24396/30000 [26:50:49<6:12:54,  3.99s/it, loss=0.0301, lr=4.51e-06, step=24396]\\rTraining:  81%|████████▏ | 24397/30000 [26:50:53<6:13:02,  3.99s/it, loss=0.0301, lr=4.51e-06, step=24396]\\rTraining:  81%|████████▏ | 24397/30000 [26:50:53<6:13:02,  3.99s/it, loss=0.0206, lr=4.51e-06, step=24397]\\rTraining:  81%|████████▏ | 24398/30000 [26:50:57<6:13:06,  4.00s/it, loss=0.0206, lr=4.51e-06, step=24397]\\rTraining:  81%|████████▏ | 24398/30000 [26:50:57<6:13:06,  4.00s/it, loss=0.0195, lr=4.51e-06, step=24398]\\rTraining:  81%|████████▏ | 24399/30000 [26:51:01<6:13:18,  4.00s/it, loss=0.0195, lr=4.51e-06, step=24398]\\rTraining:  81%|████████▏ | 24399/30000 [26:51:01<6:13:18,  4.00s/it, loss=0.0220, lr=4.51e-06, step=24399]\\rTraining:  81%|████████▏ | 24400/30000 [26:51:05<6:13:34,  4.00s/it, loss=0.0220, lr=4.51e-06, step=24399]\\rTraining:  81%|████████▏ | 24400/30000 [26:51:05<6:13:34,  4.00s/it, loss=0.0230, lr=4.51e-06, step=24400]\\rTraining:  81%|████████▏ | 24401/30000 [26:51:09<6:13:24,  4.00s/it, loss=0.0230, lr=4.51e-06, step=24400]\\rTraining:  81%|████████▏ | 24401/30000 [26:51:09<6:13:24,  4.00s/it, loss=0.0245, lr=4.51e-06, step=24401]\\rTraining:  81%|████████▏ | 24402/30000 [26:51:13<6:13:09,  4.00s/it, loss=0.0245, lr=4.51e-06, step=24401]\\rTraining:  81%|████████▏ | 24402/30000 [26:51:13<6:13:09,  4.00s/it, loss=0.0225, lr=4.51e-06, step=24402]\\rTraining:  81%|████████▏ | 24403/30000 [26:51:17<6:13:05,  4.00s/it, loss=0.0225, lr=4.51e-06, step=24402]\\rTraining:  81%|████████▏ | 24403/30000 [26:51:17<6:13:05,  4.00s/it, loss=0.0198, lr=4.51e-06, step=24403]\\rTraining:  81%|████████▏ | 24404/30000 [26:51:21<6:15:17,  4.02s/it, loss=0.0198, lr=4.51e-06, step=24403]\\rTraining:  81%|████████▏ | 24404/30000 [26:51:21<6:15:17,  4.02s/it, loss=0.0235, lr=4.51e-06, step=24404]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.71}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-22T09:42:38.382Z_
+
+<details><summary>↩ Tool result · `toolu_01NnRgGsKZMHZ9dyegxepbWY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 100 %, 23901 MiB, 97887 MiB\\n1, 100 %, 23893 MiB, 97887 MiB\\n2, 100 %, 23901 MiB, 97887 MiB\\n3, 100 %, 23893 MiB, 97887 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.57}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "435d0546-b639-4c3d-96cd-e3e1cb6fcfba",
+  "uuid": "a9e7996e-3e53-4f7e-87b8-af3a11659141",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 100 %, 23901 MiB, 97887 MiB\\\\n1, 100 %, 23893 MiB, 97887 MiB\\\\n2, 100 %, 23901 MiB, 97887 MiB\\\\n3, 100 %, 23893 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.57}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"0, 100 %, 23901 MiB, 97887 MiB\\n1, 100 %, 23893 MiB, 97887 MiB\\n2, 100 %, 23901 MiB, 97887 MiB\\n3, 100 %, 23893 MiB, 97887 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.57}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me parse the results:
+
+1. Process check failed due to shell metacharacter `>` in the command. Let me retry with a different approach.
+
+From the logs:
+1. **baseline_lora_spatial_bowl_s0** (cuda:1, PID 281554): step 28057/30000, loss=0.0165, lr=2.75e-06 — 93.5%
+2. **baseline_lora_object_pudding_s0** (cuda:3, PID 281629): step 28008/30000, loss=0.0202, lr=2.76e-06 — 93.4%
+
+
+3. **a1_lora_object_pudding_s0** (cuda:2, PID 292258): step 26408/30000, loss=0.0187, lr=3.34e-06 — 88.0%
+4. **a1_lora_spatial_bowl_s0** (cuda:0, PID 299910): step 24404/30000, loss=0.0235, lr=4.51e-06 — 81.3%
+
+The baseline models are progressing faster and more efficiently than the a1 variants, with all four GPUs running at full capacity.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "435d0546-b639-4c3d-96cd-e3e1cb6fcfba",
+  "uuid": "610a0d03-25f9-4369-bcd4-e30d19227eae",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DkXkN94YqTsFWkfrq5KQ2e",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19605,
+      "cache_read_input_tokens": 23925,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 19605
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017qv7u4TSJbJ4XMZPrcU3gK`</summary>
+
+```json
+{
+  "server": "westd-35807",
+  "command": "ps -p 281554 -p 281629 -p 292258 -p 299910 -o pid,etime",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "435d0546-b639-4c3d-96cd-e3e1cb6fcfba",
+  "uuid": "790c7528-16df-4f66-a124-0d0e679c0eb7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DkXkN94YqTsFWkfrq5KQ2e",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19605,
+      "cache_read_input_tokens": 23925,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 19605
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-22T09:42:49.700Z_
+
+<details><summary>↩ Tool result · `toolu_017qv7u4TSJbJ4XMZPrcU3gK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   PID     ELAPSED\\n281554  1-07:30:26\\n281629  1-07:30:24\\n292258  1-04:59:15\\n299910  1-02:52:54\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "435d0546-b639-4c3d-96cd-e3e1cb6fcfba",
+  "uuid": "144c95a9-1b73-4c76-b73f-1932f9a9bec0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID     ELAPSED\\\\n281554  1-07:30:26\\\\n281629  1-07:30:24\\\\n292258  1-04:59:15\\\\n299910  1-02:52:54\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"   PID     ELAPSED\\n281554  1-07:30:26\\n281629  1-07:30:24\\n292258  1-04:59:15\\n299910  1-02:52:54\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+4 个进程全部存活。汇总如下：
+
+| 实验 | GPU | Step / 30000 | 进度% | Loss | LR | 运行时长 | 状态 |
+|------|-----|-------------|-------|------|-----|---------|------|
+| baseline_lora_spatial_bowl_s0 | cuda:1 | 28057 / 30000 | **93.5%** | 0.0165 | 2.75e-06 | 1d 7h 30m | 运行中 |
+| baseline_lora_object_pudding_s0 | cuda:3 | 28008 / 30000 | **93.4%** | 0.0202 | 2.76e-06 | 1d 7h 30m | 运行中 |
+| a1_lora_object_pudding_s0 | cuda:2 | 26408 / 30000 | **88.0%** | 0.0187 | 3.34e-06 | 1d 4h 59m | 运行中 |
+| a1_lora_spatial_bowl_s0 | cuda:0 | 24404 / 30000 | **81.3%** | 0.0235 | 4.51e-06 | 1d 2h 53m | 运行中 |
+
+**GPU 利用率：**
+
+| GPU | 利用率 | 显存占用 |
+|-----|--------|---------|
+| cuda:0 | 100% | 23.9 / 97.9 GB |
+| cuda:1 | 100% | 23.9 / 97.9 GB |
+| cuda:2 | 100% | 23.9 / 97.9 GB |
+| cuda:3 | 100% | 23.9 / 97.9 GB |
+
+按 ~4s/step 估算剩余时间：baseline 两组约 **2h 10m** 完成，a1_obj 约 **4h**，a1_spa 约 **6h 15m**。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "435d0546-b639-4c3d-96cd-e3e1cb6fcfba",
+  "uuid": "3ff4916c-904e-4096-898c-38c5436af4e8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XUPSMu7SgjSwNv85GH2LD8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 599,
+      "cache_read_input_tokens": 43530,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 599
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 24_
+
+4 个进程全部存活。汇总如下：
+
+| 实验 | GPU | Step / 30000 | 进度% | Loss | LR | 运行时长 | 状态 |
+|------|-----|-------------|-------|------|-----|---------|------|
+| baseline_lora_spatial_bowl_s0 | cuda:1 | 28057 / 30000 | **93.5%** | 0.0165 | 2.75e-06 | 1d 7h 30m | 运行中 |
+| baseline_lora_object_pudding_s0 | cuda:3 | 28008 / 30000 | **93.4%** | 0.0202 | 2.76e-06 | 1d 7h 30m | 运行中 |
+| a1_lora_object_pudding_s0 | cuda:2 | 26408 / 30000 | **88.0%** | 0.0187 | 3.34e-06 | 1d 4h 59m | 运行中 |
+| a1_lora_spatial_bowl_s0 | cuda:0 | 24404 / 30000 | **81.3%** | 0.0235 | 4.51e-06 | 1d 2h 53m | 运行中 |
+
+**GPU 利用率：**
+
+| GPU | 利用率 | 显存占用 |
+|-----|--------|---------|
+| cuda:0 | 100% | 23.9 / 97.9 GB |
+| cuda:1 | 100% | 23.9 / 97.9 GB |
+| cuda:2 | 100% | 23.9 / 97.9 GB |
+| cuda:3 | 100% | 23.9 / 97.9 GB |
+
+按 ~4s/step 估算剩余时间：baseline 两组约 **2h 10m** 完成，a1_obj 约 **4h**，a1_spa 约 **6h 15m**。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 78831,
+  "duration_api_ms": 35426,
+  "num_turns": 9,
+  "stop_reason": "end_turn",
+  "session_id": "435d0546-b639-4c3d-96cd-e3e1cb6fcfba",
+  "total_cost_usd": 0.3056845,
+  "usage": {
+    "input_tokens": 8,
+    "cache_creation_input_tokens": 32682,
+    "cache_read_input_tokens": 102316,
+    "output_tokens": 1953,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 32682,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 546,
+        "cache_read_input_tokens": 43530,
+        "cache_creation_input_tokens": 599,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 599
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1314,
+      "outputTokens": 17,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001399,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 8,
+      "outputTokens": 1953,
+      "cacheReadInputTokens": 102316,
+      "cacheCreationInputTokens": 32682,
+      "webSearchRequests": 0,
+      "costUSD": 0.30428550000000004,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "7493e93c-843b-402d-9e29-37a219cda3cd"
+}
+```
+
+</details>
+
+---

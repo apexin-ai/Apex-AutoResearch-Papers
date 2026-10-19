@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "34fd3718fb43a79d76b5",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "paper reference audit",
+  "task_key": "worker_paper_reference_audit_20260524T211234",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_reference_audit_20260524T211234_result.json",
+    "occurrence": 1,
+    "bytes": 1093,
+    "sha256": "79dceb3345c4354bf55e748649cfa6674606437ccd3b60ceb9eef478b77cfbef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已生成。以下是审计结果摘要：\n\n---\n\n**CRITICAL（必须修复）：**\n- **21 个 cite key 无对应 bib 条目**，编译会报 `undefined citation`。其中 `placeholder_goodhart_rl` 和 `placeholder_metric_reliability` 是占位符，需替换或移除。其余 19 个（如 `3dcavla2025`, `augvla3d2026`, `spatialvla2025` 等）主要出现在 related_work 章节。\n- **2 个作者姓名错误**：`yang2025cape` 的第一作者应为 \"Rui Heng Yang\" 而非 \"Xinyu\"；`spalter2024ikinqp` 应为 \"Ariana Spalter\" 而非 \"Ariel\"。\n\n**WARNING（应该修复）：**\n- `zhi2021diffco`：IEEE TRO 正式发表于 2022 年，缺 volume/pages 字段\n- `brohan2023rt2`：已发表于 CoRL 2023，建议更新为 @inproceedings\n- 5 个条目作者列表仅 1 人 + \"and others\"，建议至少补全前 3 位\n\n**INFO：**\n- 无 fake citation，18 个现有条目全部验证为真实论文\n- 无孤立 bib 条目\n- `related_work_v2.tex` 中有 2 处 `%[CITE-CHECK]` 标记待清理\n\n报告位于 `artifacts/reference_audit_report.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-reference-audit.md"
+}

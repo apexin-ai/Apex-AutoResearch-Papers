@@ -1,0 +1,96 @@
+{
+  "schema_version": "1.0",
+  "id": "4a7eeddd0a26dbfaa759",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "ops action scale diagnosis",
+  "task_key": "worker_ops_action_scale_diagnosis_20260522T060557",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_action_scale_diagnosis_20260522T060557.log",
+    "occurrence": 1,
+    "bytes": 2978616,
+    "sha256": "adda386093020fabcfe35d3e2ca06d4b8ba7e026762fa7bd13c990f970193b7f"
+  },
+  "statistics": {
+    "messages": 1372,
+    "user_turns": 2,
+    "tool_calls": 561,
+    "roles": {
+      "log": 1,
+      "system": 7,
+      "record": 1,
+      "assistant": 238,
+      "tool_call": 561,
+      "tool_result": 561,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 388,
+      "chunks": [
+        {
+          "path": "4a7eeddd0a26dbfaa759-part-0001.json",
+          "message_count": 171
+        },
+        {
+          "path": "4a7eeddd0a26dbfaa759-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "4a7eeddd0a26dbfaa759-part-0003.json",
+          "message_count": 37
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 625,
+      "chunks": [
+        {
+          "path": "4a7eeddd0a26dbfaa759-part-0003.json",
+          "message_count": 143
+        },
+        {
+          "path": "4a7eeddd0a26dbfaa759-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "4a7eeddd0a26dbfaa759-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "4a7eeddd0a26dbfaa759-part-0006.json",
+          "message_count": 122
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 359,
+      "chunks": [
+        {
+          "path": "4a7eeddd0a26dbfaa759-part-0006.json",
+          "message_count": 58
+        },
+        {
+          "path": "4a7eeddd0a26dbfaa759-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "4a7eeddd0a26dbfaa759-part-0008.json",
+          "message_count": 121
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-action-scale-diagnosis.md"
+}

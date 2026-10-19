@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "08a4511a7206cb4e2040",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops mid eval d012 step10k",
+  "task_key": "worker_ops_mid_eval_d012_step10k_20260523T102039",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_mid_eval_d012_step10k_20260523T102039_result.json",
+    "occurrence": 1,
+    "bytes": 1620,
+    "sha256": "27c81ac527c87fcfcd048e949d089d53d676592ad1dbfa744c8647c97c18c796"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "serve_policy 已 kill，显存恢复到仅训练占用 27GB/GPU。\n\n## D012 Mid-Eval Results (Step 10K)\n\n### s0_l005 (λ=0.005, step 10000)\n- **TSR: 47%**\n- **CAR: 58%**\n- **frozen_rate: 0%**\n- **D012 Gate: FAIL** (TSR 47% < 50% 阈值)\n\n### s0_l01 (λ=0.01, step 10000)\n- **TSR: 49%**\n- **CAR: 56.5%**\n- **frozen_rate: 0%**\n- **D012 Gate: FAIL** (TSR 49% < 50% 阈值)\n\n### Per-Task Breakdown\n\n| Task | s0_l005 TSR | s0_l005 CAR | s0_l01 TSR | s0_l01 CAR |\n|------|-------------|-------------|------------|------------|\n| 0: orange juice → basket | 18% | 62% | 26% | 56% |\n| 1: chocolate pudding → basket | 70% | 72% | 72% | 70% |\n| 2: salad dressing → basket | 40% | 72% | 46% | 72% |\n| 3: bbq sauce → basket | 60% | 26% | 52% | 28% |\n\n### Lambda 对比\n- **TSR**: λ=0.01 (49%) 略优于 λ=0.005 (47%)，差距很小\n- **CAR**: λ=0.005 (58%) 略优于 λ=0.01 (56.5%)，差距也很小\n- **Task 0**: λ=0.01 明显更好 (TSR 26% vs 18%)\n- **Task 3**: λ=0.005 明显更好 (TSR 60% vs 52%)，但 CAR 都很差 (26-28%)\n- **Task 1/2**: 两者 CAR 一致 (70-72%)，TSR 接近\n\n### 初步结论\n- 两个 lambda 的整体表现非常接近，无显著差异\n- **CAR 通过了 33% 阈值**（58%/56.5%），说明 SDF 对 collision avoidance 有明显效果\n- **TSR 差 1-3% 未过 50% 阈值**，主要被 Task 0 拖累（TSR 仅 18-26%）\n- **Task 3 的 CAR 异常低 (26-28%)**，与其他 task 的 70%+ 形成鲜明对比\n- frozen_rate 为 0%，模型没有出现冻住现象\n- Step 10K 是中间 checkpoint，训练到 30K 步后 TSR 有望继续提升"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-mid-eval-d012-step10k.md"
+}

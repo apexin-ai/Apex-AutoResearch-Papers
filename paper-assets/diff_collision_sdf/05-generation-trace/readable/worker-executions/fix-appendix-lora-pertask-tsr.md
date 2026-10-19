@@ -1,0 +1,2091 @@
+# fix appendix lora pertask tsr
+
+**How Action Collapse Creates Illusory Safety in Diffusion-Based VLA Collision Avoidance Evaluation** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 41
+- **Recorded user turns:** 0
+- **Tool calls:** 13
+- **Original source:** `logs/workers/worker_fix_appendix_lora_pertask_tsr_20260528T011106.log`
+- **Structured JSON:** [`241415078c6bfd804146.json`](../../sessions/24/241415078c6bfd804146.json)
+
+## Before a recorded user message
+
+41 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf",
+  "session_id": "1da76313-cd9b-41c6-ab38-b705fd6ac50d",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "ba9534cc-5b38-4058-87c7-ca4f3d0b0502",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-6/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779945600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "9e99745f-0c40-4edb-b9cb-8d9b118e7fb0",
+  "session_id": "1da76313-cd9b-41c6-ab38-b705fd6ac50d"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+Let me start by reading the local appendix.tex to understand the current state of the file.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1da76313-cd9b-41c6-ab38-b705fd6ac50d",
+  "uuid": "c7c80ecc-f967-4376-856b-651ecffaf0ad",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RHYToXwTbQf3JbCozcpPrV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12533,
+      "cache_read_input_tokens": 11451,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12533
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01UN6pKCNDGQqrLQt97Tj2S5`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/appendix.tex",
+  "offset": 60,
+  "limit": 40
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1da76313-cd9b-41c6-ab38-b705fd6ac50d",
+  "uuid": "7563a0f4-1c98-4157-99db-581d94f145e1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RHYToXwTbQf3JbCozcpPrV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12533,
+      "cache_read_input_tokens": 11451,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12533
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-28T01:11:18.227Z_
+
+<details><summary>↩ Tool result · `toolu_01UN6pKCNDGQqrLQt97Tj2S5`</summary>
+
+```text
+60	
+61	\section{Per-Task TSR Breakdown}\label{sec:appendix_tsr_pertask}
+62	
+63	Table~\ref{tab:per_task_tsr} decomposes TSR by task for the avoidance source attribution experiments (Section~\ref{sec:avoidance_source}). All tasks retain meaningful success rates after fine-tuning, with Chocolate Pudding most resilient and Orange Juice most affected.
+64	
+65	\begin{table}[h]
+66	\centering
+67	\caption{Per-task TSR (\%) at 30K training steps. Baseline reports the original 3-seed evaluation (aggregate TSR\,=\,71.5\% under the unified seed-7 protocol; per-task reeval data not available). LoRA-only reports seed~0 (rotation-fixed re-evaluation); SDF conditions report 3-seed means.}
+68	\label{tab:per_task_tsr}
+69	\vspace{2pt}
+70	\small
+71	\begin{tabular}{lcccc}
+72	\toprule
+73	Task & Pi0.5 Base & LoRA-only\textsuperscript{$\dagger$} & SDF $\lambda{=}0.005$ & SDF $\lambda{=}0.01$ \\
+74	 & (3 seeds) & (seed 0) & (3 seeds) & (3 seeds) \\
+75	\midrule
+76	Orange Juice      & 70.7 & 18.0 & 33.3 & 24.7 \\
+77	Choco.\ Pudding   & 86.0 & 72.0 & 78.0 & 76.7 \\
+78	Milk              & 66.0 & 32.0 & 35.3 & 48.7 \\
+79	BBQ Sauce         & 76.0 & 62.0 & 69.3 & 65.3 \\
+80	\midrule
+81	Mean              & 74.7 & 46.0 & 54.0 & 53.8 \\
+82	\bottomrule
+83	\end{tabular}
+84	\vspace{1pt}
+85	{\footnotesize \textsuperscript{$\dagger$}Seeds 1 and 2 are excluded because their rotation protocol differs from seed 0, making per-task TSR non-comparable.}
+86	\end{table}
+87	
+88	\section{Per-Task CAR Breakdown}\label{sec:appendix_pertask_car}
+89	
+90	Table~\ref{tab:per_task_car} decomposes CAR by task for all fine-tuned conditions, supporting the claim that per-task ordering is preserved across SDF loss weights (\S\ref{sec:avoidance_source}). Chocolate Pudding is consistently highest and BBQ Sauce consistently lowest across all conditions, including $\lambda = 0.1$. The intermediate tasks (Orange Juice and Milk) exchange rank between seeds but remain bounded by the extremes. This invariance indicates that avoidance patterns reflect the spatial statistics of collision-free demonstrations rather than geometric supervision.
+91	
+92	\begin{table}[h]
+93	\centering
+94	\caption{Per-task CAR (\%) at 30K steps. $\lambda{=}0.005$ and $\lambda{=}0.01$ report 3-seed means. Per-task ordering (CP highest, BBQ lowest) is preserved across all conditions.}
+95	\label{tab:per_task_car}
+96	\vspace{2pt}
+97	\small
+98	\begin{tabular}{lccccc}
+99	\toprule
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1da76313-cd9b-41c6-ab38-b705fd6ac50d",
+  "uuid": "c523a895-a01a-44dc-9cd8-a0e2faf21347",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/appendix.tex",
+      "content": "\n\\section{Per-Task TSR Breakdown}\\label{sec:appendix_tsr_pertask}\n\nTable~\\ref{tab:per_task_tsr} decomposes TSR by task for the avoidance source attribution experiments (Section~\\ref{sec:avoidance_source}). All tasks retain meaningful success rates after fine-tuning, with Chocolate Pudding most resilient and Orange Juice most affected.\n\n\\begin{table}[h]\n\\centering\n\\caption{Per-task TSR (\\%) at 30K training steps. Baseline reports the original 3-seed evaluation (aggregate TSR\\,=\\,71.5\\% under the unified seed-7 protocol; per-task reeval data not available). LoRA-only reports seed~0 (rotation-fixed re-evaluation); SDF conditions report 3-seed means.}\n\\label{tab:per_task_tsr}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\nTask & Pi0.5 Base & LoRA-only\\textsuperscript{$\\dagger$} & SDF $\\lambda{=}0.005$ & SDF $\\lambda{=}0.01$ \\\\\n & (3 seeds) & (seed 0) & (3 seeds) & (3 seeds) \\\\\n\\midrule\nOrange Juice      & 70.7 & 18.0 & 33.3 & 24.7 \\\\\nChoco.\\ Pudding   & 86.0 & 72.0 & 78.0 & 76.7 \\\\\nMilk              & 66.0 & 32.0 & 35.3 & 48.7 \\\\\nBBQ Sauce         & 76.0 & 62.0 & 69.3 & 65.3 \\\\\n\\midrule\nMean              & 74.7 & 46.0 & 54.0 & 53.8 \\\\\n\\bottomrule\n\\end{tabular}\n\\vspace{1pt}\n{\\footnotesize \\textsuperscript{$\\dagger$}Seeds 1 and 2 are excluded because their rotation protocol differs from seed 0, making per-task TSR non-comparable.}\n\\end{table}\n\n\\section{Per-Task CAR Breakdown}\\label{sec:appendix_pertask_car}\n\nTable~\\ref{tab:per_task_car} decomposes CAR by task for all fine-tuned conditions, supporting the claim that per-task ordering is preserved across SDF loss weights (\\S\\ref{sec:avoidance_source}). Chocolate Pudding is consistently highest and BBQ Sauce consistently lowest across all conditions, including $\\lambda = 0.1$. The intermediate tasks (Orange Juice and Milk) exchange rank between seeds but remain bounded by the extremes. This invariance indicates that avoidance patterns reflect the spatial statistics of collision-free demonstrations rather than geometric supervision.\n\n\\begin{table}[h]\n\\centering\n\\caption{Per-task CAR (\\%) at 30K steps. $\\lambda{=}0.005$ and $\\lambda{=}0.01$ report 3-seed means. Per-task ordering (CP highest, BBQ lowest) is preserved across all conditions.}\n\\label{tab:per_task_car}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lccccc}\n\\toprule",
+      "numLines": 40,
+      "startLine": 60,
+      "totalLines": 273
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture of the file. Let me make all the edits to the local file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1da76313-cd9b-41c6-ab38-b705fd6ac50d",
+  "uuid": "12513158-76a9-4e5b-87a0-5d24b0ddafcf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016mrYnhjfX4tT7ZZjSLovjz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1087,
+      "cache_read_input_tokens": 23984,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1087
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+Now I'll make all the local edits.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1da76313-cd9b-41c6-ab38-b705fd6ac50d",
+  "uuid": "5584fd2c-abd3-40f3-8371-1ce0fbfd476c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016mrYnhjfX4tT7ZZjSLovjz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1087,
+      "cache_read_input_tokens": 23984,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1087
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_014X9R9BYtEMV2zqNu1uSo3S`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/appendix.tex",
+  "old_string": "LoRA-only reports seed~0 (rotation-fixed re-evaluation); SDF conditions report 3-seed means.}",
+  "new_string": "LoRA-only reports 3-seed means (re-evaluated with unified seed-7 protocol); SDF conditions report 3-seed means.}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1da76313-cd9b-41c6-ab38-b705fd6ac50d",
+  "uuid": "20f3c4ee-48ce-466b-bb80-ed4f03bee0df",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016mrYnhjfX4tT7ZZjSLovjz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1087,
+      "cache_read_input_tokens": 23984,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1087
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-28T01:11:23.303Z_
+
+<details><summary>↩ Tool result · `toolu_014X9R9BYtEMV2zqNu1uSo3S`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/appendix.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1da76313-cd9b-41c6-ab38-b705fd6ac50d",
+  "uuid": "44bafcc3-3356-4049-ac82-27899d38d33f",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/appendix.tex",
+    "oldString": "LoRA-only reports seed~0 (rotation-fixed re-evaluation); SDF conditions report 3-seed means.}",
+    "newString": "LoRA-only reports 3-seed means (re-evaluated with unified seed-7 protocol); SDF conditions report 3-seed means.}",
+    "originalFile": "\\section{Displacement Distribution}\n\\label{sec:appendix_displacement}\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\linewidth]{fig2_ee_displacement_distribution}\n\\caption{Displacement distribution across evaluation episodes. Pi0-family models (blue) cluster below 1\\,$\\mu$m, while Pi0.5 episodes (orange) exceed 200\\,mm. The five-order-of-magnitude gap makes $\\tau_d$ robust to any value in $[2, 200]$\\,mm.}\n\\label{fig:displacement}\n\\end{figure}\n\n\\section{Displacement Threshold Sensitivity Analysis}\n\\label{sec:appendix_threshold}\n\nTo validate the robustness of our displacement threshold $\\tau_d$, we evaluate the frozen rate across four orders of magnitude. Table~\\ref{tab:threshold_sensitivity} shows that the fake safety pattern persists across all reasonable threshold choices: A1-LoRA exhibits near-total action collapse regardless of threshold, while Pi0.5+A1 maintains 0\\% frozen rate even at the most conservative setting.\n\n\\begin{table}[h]\n\\centering\n\\caption{Frozen rate (\\% of episodes with $d_\\mathrm{max} < \\tau_d$) across threshold values.}\n\\label{tab:threshold_sensitivity}\n\\begin{tabular}{lccc}\n\\toprule\n$\\tau_d$ & A1-LoRA (Pi0) & Pi0.5 Baseline & Pi0.5+A1 (SDF aux) \\\\\n\\midrule\n0.001 mm (1\\,$\\mu$m) & 73.9 & 0.0 & 0.0 \\\\\n0.1 mm  & 99.6 & 0.0 & 0.0 \\\\\n1.0 mm  & 100.0 & 0.0 & 0.0 \\\\\n10 mm   & 100.0 & 0.0 & 0.0 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe choice of $\\tau_d = 0.1$\\,mm represents a conservative threshold: displacement below this value is physically negligible in manipulation tasks where typical action magnitudes are 1--10\\,mm per step. Even at $\\tau_d = 1$\\,$\\mu$m, 73.9\\% of A1-LoRA safe episodes are classified as frozen, while all Pi0.5 episodes remain above threshold at every level tested.\n\nTable~\\ref{tab:dfcar_threshold} extends this analysis to dfCAR across fine-tuned Pi0.5 configurations. All eight model-seed combinations yield identical dfCAR for $\\tau_d \\in [2, 200]$\\,mm. At $\\tau_d = 300$\\,mm, 0--2 episodes per seed fall below threshold (displacement 200--300\\,mm), causing $\\leq$0.5\\,pp deviation. Our conclusions hold across the entire tested range.\n\n\\begin{table}[h]\n\\centering\n\\caption{dfCAR (\\%) across displacement thresholds for fine-tuned Pi0.5 configurations ($n = 200$ episodes per seed). Values are identical across $\\tau_d \\in [2, 200]$\\,mm; at $\\tau_d = 300$\\,mm, at most 2 episodes are excluded.}\n\\label{tab:dfcar_threshold}\n\\vspace{2pt}\n\\footnotesize\n\\begin{tabular}{lcccccccc}\n\\toprule\n& \\multicolumn{8}{c}{$\\tau_d$ (mm)} \\\\\n\\cmidrule(lr){2-9}\nCondition & 2 & 5 & 10 & 20 & 50 & 100 & 200 & 300 \\\\\n\\midrule\nLoRA s0            & 56.5 & 56.5 & 56.5 & 56.5 & 56.5 & 56.5 & 56.5 & 56.5 \\\\\nLoRA s1            & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 \\\\\nSDF $\\lambda{=}0.005$ s0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.1 \\\\\nSDF $\\lambda{=}0.005$ s1 & 54.0 & 54.0 & 54.0 & 54.0 & 54.0 & 54.0 & 54.0 & 54.0 \\\\\nSDF $\\lambda{=}0.005$ s2 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.3 \\\\\nSDF $\\lambda{=}0.01$ s0  & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 \\\\\nSDF $\\lambda{=}0.01$ s1  & 57.5 & 57.5 & 57.5 & 57.5 & 57.5 & 57.5 & 57.5 & 57.1 \\\\\nSDF $\\lambda{=}0.01$ s2  & 54.5 & 54.5 & 54.5 & 54.5 & 54.5 & 54.5 & 54.5 & 54.0 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\n\\section{Per-Task TSR Breakdown}\\label{sec:appendix_tsr_pertask}\n\nTable~\\ref{tab:per_task_tsr} decomposes TSR by task for the avoidance source attribution experiments (Section~\\ref{sec:avoidance_source}). All tasks retain meaningful success rates after fine-tuning, with Chocolate Pudding most resilient and Orange Juice most affected.\n\n\\begin{table}[h]\n\\centering\n\\caption{Per-task TSR (\\%) at 30K training steps. Baseline reports the original 3-seed evaluation (aggregate TSR\\,=\\,71.5\\% under the unified seed-7 protocol; per-task reeval data not available). LoRA-only reports seed~0 (rotation-fixed re-evaluation); SDF conditions report 3-seed means.}\n\\label{tab:per_task_tsr}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\nTask & Pi0.5 Base & LoRA-only\\textsuperscript{$\\dagger$} & SDF $\\lambda{=}0.005$ & SDF $\\lambda{=}0.01$ \\\\\n & (3 seeds) & (seed 0) & (3 seeds) & (3 seeds) \\\\\n\\midrule\nOrange Juice      & 70.7 & 18.0 & 33.3 & 24.7 \\\\\nChoco.\\ Pudding   & 86.0 & 72.0 & 78.0 & 76.7 \\\\\nMilk              & 66.0 & 32.0 & 35.3 & 48.7 \\\\\nBBQ Sauce         & 76.0 & 62.0 & 69.3 & 65.3 \\\\\n\\midrule\nMean              & 74.7 & 46.0 & 54.0 & 53.8 \\\\\n\\bottomrule\n\\end{tabular}\n\\vspace{1pt}\n{\\footnotesize \\textsuperscript{$\\dagger$}Seeds 1 and 2 are excluded because their rotation protocol differs from seed 0, making per-task TSR non-comparable.}\n\\end{table}\n\n\\section{Per-Task CAR Breakdown}\\label{sec:appendix_pertask_car}\n\nTable~\\ref{tab:per_task_car} decomposes CAR by task for all fine-tuned conditions, supporting the claim that per-task ordering is preserved across SDF loss weights (\\S\\ref{sec:avoidance_source}). Chocolate Pudding is consistently highest and BBQ Sauce consistently lowest across all conditions, including $\\lambda = 0.1$. The intermediate tasks (Orange Juice and Milk) exchange rank between seeds but remain bounded by the extremes. This invariance indicates that avoidance patterns reflect the spatial statistics of collision-free demonstrations rather than geometric supervision.\n\n\\begin{table}[h]\n\\centering\n\\caption{Per-task CAR (\\%) at 30K steps. $\\lambda{=}0.005$ and $\\lambda{=}0.01$ report 3-seed means. Per-task ordering (CP highest, BBQ lowest) is preserved across all conditions.}\n\\label{tab:per_task_car}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lccccc}\n\\toprule\nCondition & OJ & CP & Milk & BBQ & Agg. \\\\\n\\midrule\nLoRA s0 & 56 & 74 & 70 & 26 & 56.5 \\\\\nLoRA s1 & 54 & 68 & 72 & 16 & 52.5 \\\\\nLoRA s2 & 56 & 76 & 62 & 26 & 55.0 \\\\\nSDF $\\lambda{=}0.005$ (3-seed) & 54.0 & 72.7 & 71.3 & 20.0 & 54.5 \\\\\nSDF $\\lambda{=}0.01$ (3-seed) & 57.3 & 72.7 & 72.0 & 23.3 & 56.3 \\\\\nSDF $\\lambda{=}0.1$ s0 & 60 & 74 & 68 & 30 & 58.0 \\\\\nSDF $\\lambda{=}0.1$ s1 & 66 & 72 & 70 & 26 & 58.5 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nFor the $\\lambda = 0.1$ condition, seed~1 records \\texttt{avg\\_max\\_obstacle\\_displacement} of 0.0553\\,m (per-task: OJ\\,=\\,0.033, CP\\,=\\,0.055, Milk\\,=\\,0.041, BBQ\\,=\\,0.093), comparable to other fine-tuned conditions and consistent with active manipulation rather than frozen behavior.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\linewidth]{fig_pertask_car_fingerprint}\n\\caption{Per-task CAR fingerprint across conditions. Each bar shows the 3-seed mean; dots indicate individual seeds. The task ordering (chocolate\\_pudding highest, bbq\\_sauce lowest) is preserved across all $\\lambda$ values, confirming that avoidance patterns reflect the demonstration distribution rather than geometric supervision. LoRA-only: 3-seed mean.}\n\\label{fig:pertask_fingerprint}\n\\end{figure}\n\n\\section{Safe Success Rate Analysis}\\label{sec:appendix_ssr}\n\nTable~\\ref{tab:ssr} reports the Safe Success Rate (SSR\\,=\\,TSR\\,$\\cap$\\,CAR), the fraction of episodes achieving both task completion and collision avoidance. The SSR/TSR ratio quantifies the proportion of successful episodes that are also collision-free, controlling for task-completion rate.\n\n\\begin{table}[h]\n\\centering\n\\caption{SSR and SSR/TSR ratio across conditions. The ratio increase from 0.39 (baseline) to 0.51--0.56 (fine-tuned) indicates that CAR gains reflect learned safer execution, not reduced task exposure.}\n\\label{tab:ssr}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\nCondition & TSR (\\%) & CAR (\\%) & SSR (\\%) & SSR/TSR \\\\\n\\midrule\nPi0.5 baseline & 71.5 & 28.5 & 28.0 & 0.39 \\\\\nLoRA-only (3 seeds) & 51.5 & 54.67 & 27.7 & 0.54 \\\\\nSDF $\\lambda{=}0.005$ (3 seeds) & 54.0 & 54.5 & 27.8 & 0.51 \\\\\nSDF $\\lambda{=}0.01$ (3 seeds) & 53.8 & 56.33 & 30.2 & 0.56 \\\\\nSDF $\\lambda{=}0.1$\\textsuperscript{$\\dagger$} & 48.0 & 58.25 & 26.5 & 0.55 \\\\\n\\bottomrule\n\\end{tabular}\n\\vspace{1pt}\n{\\footnotesize \\textsuperscript{$\\dagger$}SSR from seed~1 only; seed~0 per-episode data overwritten.}\n\\end{table}\n\n\\section{Per-Task Oracle Analysis}\n\\label{sec:appendix_pertask}\n\\label{sec:appendix_pertask_oracle}\n\nTable~\\ref{tab:oracle_pertask} shows per-task CAR for oracle refinement. On task~1 (\\texttt{chocolate\\_pudding}), where the EE is the primary collision body and the LoRA baseline achieves only 46.0\\% CAR, Oracle-adaptive improves to 55.0\\% and Oracle-feature to 47.5\\%. On the remaining tasks, all oracle variants degrade: Oracle-adaptive reduces task~0 (\\texttt{orange\\_juice}) from 96.0\\% to 82.5\\% and task~2 (\\texttt{milk}) from 98.0\\% to 77.5\\%. The SDF gradient pushes the EE away from the nearest surface, but the resulting joint-space displacement rotates intermediate arm links into obstacle volumes.\n\nThe feature-space oracle fires on nearly every timestep (241.7 refinements/episode vs.\\ 14.2 for Cartesian variants) but with gradient magnitudes two orders of magnitude smaller (0.004--0.006 vs.\\ 0.18--0.49), and CAR (76.9\\%) shows no advantage despite 17$\\times$ more steps. The A3 learned SDF never triggers refinement (0 steps/episode), as its outputs avoid the activation threshold.\n\n\\begin{table}[h]\n\\centering\n\\caption{Per-task CAR (\\%) for oracle SDF refinement variants. EE-only refinement helps only on task~1 where the EE is the primary collision body; on other tasks it trades one collision site for another.}\n\\label{tab:oracle_pertask}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lccccc}\n\\toprule\nMethod & Task 0 & Task 1 & Task 2 & Task 3 & Agg. \\\\\n\\midrule\nLoRA baseline & 96.0 & 46.0 & 98.0 & 88.0 & 82.0 \\\\\n\\midrule\nOracle-adaptive & 82.5 & 55.0 & 77.5 & 85.0 & 75.0 \\\\\nOracle-fixed & 85.0 & 50.0 & 77.5 & 80.0 & 73.1 \\\\\nOracle-feature & 90.0 & 47.5 & 82.5 & 87.5 & 76.9 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\n\\section{Null Distribution for SDF Loss Weight Analysis}\n\\label{sec:appendix_null}\n\nWe construct a null distribution by pooling the three LoRA-only seeds and three $\\lambda = 0.005$ seeds into six per-seed CAR measurements: 56.5\\% (LoRA s0, re-evaluated), 52.5\\% (LoRA s1), 55.0\\% (LoRA s2), 57.0\\% ($\\lambda{=}0.005$ s0), 54.0\\% ($\\lambda{=}0.005$ s1), 52.5\\% ($\\lambda{=}0.005$ s2), yielding mean 54.58\\% and standard deviation 1.93\\% (Bessel-corrected, $n{-}1 = 5$). We treat these as exchangeable because SDF at $\\lambda = 0.005$ produces no separation from LoRA-only. The $\\lambda = 0.01$ mean of 56.33\\% falls within $0.8\\sigma$ of this null ($p > 0.1$), consistent with seed-to-seed variation rather than a treatment effect. The $\\lambda = 0.1$ 30K mean of 58.25\\% (2 seeds) yields a two-tailed permutation $p \\approx 0.071$ (one-tailed $p = 0.036$); a $z$-test gives an approximate $p \\approx 0.039$ ($z = 1.76$). This marginal departure is inconclusive at $n = 2$.\n\nThe permutation test makes no distributional assumptions. Pooling the six null values $\\{56.5, 52.5, 55, 57, 54, 52.5\\}$ and two $\\lambda = 0.1$ values $\\{58, 58.5\\}$ into eight measurements, we enumerate all $\\binom{8}{2} = 28$ two-element combinations and compute the fraction whose mean $\\geq 58.25$. Only one combination ($\\{58, 58.5\\}$, mean $= 58.25$) meets this threshold, yielding an exact one-tailed permutation $p = 1/28 \\approx 0.036$ (two-tailed $p = 2/28 \\approx 0.071$, as one combination on the lower tail also reaches equal distance from the pooled mean). The consistency of the exact permutation and approximate $z$-test results confirms that the marginal signal is robust to distributional assumptions but remains inconclusive at $n = 2$.\n\nA Phase~2 ablation reinforces this conclusion. Setting $\\lambda = 0$ during Phase~2 (steps 5K--30K), so that SDF supervision is active only during auxiliary head warmup (Phase~1, steps 0--5K), yields CAR of 57.5\\% (single seed, s2). This value lies within the null range, indicating that SDF training produces no lasting behavioral effect on collision avoidance.\n\n\\section{Step-wise Checkpoint Analysis for \\texorpdfstring{$\\lambda = 0.1$}{lambda = 0.1}}\n\\label{sec:appendix_stepwise}\n\nTable~\\ref{tab:stepwise_lambda01} reports per-seed CAR at seven checkpoints for $\\lambda = 0.1$. Seed-1 data is available at 16K, 20K, 22K, and 30K; 24K--28K report seed-0 only. The seed-0 curve shows no monotonic trend through 28K; the 30K checkpoint marks the first consistent dual-seed departure from the null band, though whether this reflects a genuine late-training effect or sampling variance at $n = 2$ remains open.\n\n\\begin{table}[h]\n\\centering\n\\caption{Per-seed CAR (\\%) at training checkpoints for $\\lambda = 0.1$ (200 episodes each). 24K--28K: seed-0 only. Dual-seed means remain within the null band (54.58\\%\\,$\\pm$\\,1.93\\%) at all checkpoints except 30K, where both seeds depart marginally (two-tailed permutation $p \\approx 0.071$).}\n\\label{tab:stepwise_lambda01}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lccc}\n\\toprule\nCheckpoint & Seed 0 & Seed 1 & Mean \\\\\n\\midrule\n16K steps & 55.5 & 56.0 & 55.75 \\\\\n20K steps & 55.0 & 56.0 & 55.5 \\\\\n22K steps & 60.5 & 56.5 & 58.5 \\\\\n24K steps & 52.5 & -- & -- \\\\\n26K steps & 53.5 & -- & -- \\\\\n28K steps & 54.5 & -- & -- \\\\\n30K steps & 58.0 & 58.5 & 58.25 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nIndividual seeds exhibit checkpoint-to-checkpoint CAR fluctuations of up to 8\\,pp (seed~0: 52.5--60.5\\%), larger than the cross-seed standard deviation at any fixed checkpoint ($\\leq$2.8\\,pp). This is consistent with binomial sampling noise at $n = 50$ episodes per task ($\\sigma \\approx 7$\\,pp per task for $p \\approx 0.5$). The seed-averaged curve shows no monotonic trend, confirming that SDF loss weight does not produce a progressive training signal.\n\n\n\\section{Oracle SDF Refinement Details}\n\\label{sec:appendix_oracle}\n\nAll oracle variants replace the learned SDF decoder with ground-truth distance fields computed from the simulation geometry. Each is evaluated for 160 episodes (4 tasks $\\times$ 40).\n\n\\paragraph{Oracle-adaptive.} At each timestep, if the ground-truth SDF at the end-effector position falls below a safety margin, the action is adjusted by a step in the negative SDF gradient direction. The step size $\\alpha$ is scaled inversely with distance: smaller distances produce larger corrections. This mimics an adaptive potential field controller.\n\n\\paragraph{Oracle-fixed.} Identical to Oracle-adaptive except the step size is fixed at $\\alpha = 0.005$ regardless of distance. This isolates the effect of step-size adaptation from the refinement geometry.\n\n\\paragraph{Oracle-feature.} Instead of modifying the action directly in Cartesian space, this variant applies the SDF gradient in the policy's latent feature space via backpropagation. The gradient of the ground-truth SDF value with respect to the intermediate features is computed and used to perturb the features before the action head decodes them. This tests whether geometric corrections are more effective when applied in the model's learned representation space. In practice, the feature-space variant fires on nearly every timestep (241.7 refinements per episode vs.\\ 14.2 for Cartesian variants) but with gradient magnitudes two orders of magnitude smaller (0.004--0.006 vs.\\ 0.18--0.49 in action space).\n\n\n\\section{Training Details}\n\\label{sec:appendix_training}\n\n\\paragraph{Architecture.}\nWe use LoRA~\\citep{hu2022lora} adapters injected into the PaliGemma vision encoder (rank 16, $\\alpha$=16) and the action expert (rank 32, $\\alpha$=32), following the configuration of OpenPi. The SDF decoder is a 4-layer MLP (hidden dimension 256) with skip connections, taking pooled suffix features (1024-d) and query points (3-d) as input. The end-effector extractor is a 2-layer MLP (1024 $\\to$ 256 $\\to$ 3).\n\n\\paragraph{Training schedule.}\nTraining proceeds in two phases:\n\\begin{itemize}\n    \\item \\textbf{Phase 1} (steps 0--5000): Backbone and LoRA parameters are frozen. Only the SDF decoder and EE extractor are trained, allowing them to learn meaningful representations before the policy adapts.\n    \\item \\textbf{Phase 2} (steps 5000--30000): LoRA parameters are unfrozen with a 100-step gradient warmup ramp. All auxiliary heads continue training jointly with the policy.\n\\end{itemize}\n\n\\paragraph{Hyperparameters.}\n\\begin{table}[h]\n\\centering\n\\caption{Training hyperparameters.}\n\\label{tab:hyperparams}\n\\begin{tabular}{ll}\n\\toprule\nParameter & Value \\\\\n\\midrule\nBase model & Pi0.5 (OpenPi, $\\sim$3.5B parameters) \\\\\nOptimizer & AdamW \\\\\nLearning rate & $2.5 \\times 10^{-5}$ (cosine decay to $\\mathrm{lr}/10$) \\\\\nWarmup steps & 1000 \\\\\nBatch size & 32 \\\\\nTotal steps & 30000 \\\\\n$\\lambda_\\mathrm{sdf}$ & \\{0.005, 0.01, 0.1\\} \\\\\n$\\lambda_\\mathrm{ee}$ & 0.01 \\\\\nSDF query points per step & 64 \\\\\nSDF clamp $\\delta$ & 0.05 m \\\\\nEikonal weight & 0.1 \\\\\nLoRA rank (vision) & 16 \\\\\nLoRA rank (action) & 32 \\\\\nPhase 1 duration & 5000 steps \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Evaluation protocol.}\nEach episode runs for at most 300 timesteps. The policy generates a 50-step action trajectory via flow matching and executes the first 5 steps before replanning. An episode terminates early upon task completion. Collision detection uses MuJoCo's built-in contact detection: any contact between the robot and a non-target object registers as a collision. For Pi0.5 evaluations, camera images are rotated 180$^\\circ$ to match the pre-training viewpoint convention; this correction was verified to restore TSR from ${\\sim}$5\\% to ${\\sim}$52\\% while leaving CAR comparable. Oracle variants use 40 episodes per task (160 total) with a single seed; all other configurations use 50 episodes per task (200 total).\n\n\\paragraph{Data.}\nWe use the SafeLIBERO object\\_pudding suite with pre-computed SDF ground truth. SDF values are computed offline from the obstacle mesh using a dense $64^3$ voxel grid. During training, 64 query points are randomly sampled per step from this grid.\n\n\\paragraph{Computational resources.}\nAll training and evaluation experiments are conducted on NVIDIA RTX PRO 6000 GPUs (96\\,GB). Phase~1 (5K steps) takes approximately 6 hours on a single GPU; Phase~2 (25K steps) takes approximately 32 hours. Evaluation of 200 episodes requires approximately 4 hours. Across 100+ experiments (training runs, evaluations, oracle variants, and ablations), the total computational budget is approximately 700 GPU-hours.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 64,
+        "oldLines": 7,
+        "newStart": 64,
+        "newLines": 7,
+        "lines": [
+          " ",
+          " \\begin{table}[h]",
+          " \\centering",
+          "-\\caption{Per-task TSR (\\%) at 30K training steps. Baseline reports the original 3-seed evaluation (aggregate TSR\\,=\\,71.5\\% under the unified seed-7 protocol; per-task reeval data not available). LoRA-only reports seed~0 (rotation-fixed re-evaluation); SDF conditions report 3-seed means.}",
+          "+\\caption{Per-task TSR (\\%) at 30K training steps. Baseline reports the original 3-seed evaluation (aggregate TSR\\,=\\,71.5\\% under the unified seed-7 protocol; per-task reeval data not available). LoRA-only reports 3-seed means (re-evaluated with unified seed-7 protocol); SDF conditions report 3-seed means.}",
+          " \\label{tab:per_task_tsr}",
+          " \\vspace{2pt}",
+          " \\small"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01VQYEVZJUV6NdhMnLAJrP5f`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/appendix.tex",
+  "old_string": "Task & Pi0.5 Base & LoRA-only\\textsuperscript{$\\dagger$} & SDF $\\lambda{=}0.005$ & SDF $\\lambda{=}0.01$ \\\\\n & (3 seeds) & (seed 0) & (3 seeds) & (3 seeds) \\\\",
+  "new_string": "Task & Pi0.5 Base & LoRA-only & SDF $\\lambda{=}0.005$ & SDF $\\lambda{=}0.01$ \\\\\n & (3 seeds) & (3 seeds) & (3 seeds) & (3 seeds) \\\\"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1da76313-cd9b-41c6-ab38-b705fd6ac50d",
+  "uuid": "1bbbe894-3fcd-4ee7-8a61-0b957722d414",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QwY5EgyHieAHNgkauJ5XZC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 308,
+      "cache_read_input_tokens": 25071,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 308
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-28T01:11:26.806Z_
+
+<details><summary>↩ Tool result · `toolu_01VQYEVZJUV6NdhMnLAJrP5f`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/appendix.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1da76313-cd9b-41c6-ab38-b705fd6ac50d",
+  "uuid": "dcf3901c-e615-4ef4-a9ee-9bbeba5dd224",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/appendix.tex",
+    "oldString": "Task & Pi0.5 Base & LoRA-only\\textsuperscript{$\\dagger$} & SDF $\\lambda{=}0.005$ & SDF $\\lambda{=}0.01$ \\\\\n & (3 seeds) & (seed 0) & (3 seeds) & (3 seeds) \\\\",
+    "newString": "Task & Pi0.5 Base & LoRA-only & SDF $\\lambda{=}0.005$ & SDF $\\lambda{=}0.01$ \\\\\n & (3 seeds) & (3 seeds) & (3 seeds) & (3 seeds) \\\\",
+    "originalFile": "\\section{Displacement Distribution}\n\\label{sec:appendix_displacement}\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\linewidth]{fig2_ee_displacement_distribution}\n\\caption{Displacement distribution across evaluation episodes. Pi0-family models (blue) cluster below 1\\,$\\mu$m, while Pi0.5 episodes (orange) exceed 200\\,mm. The five-order-of-magnitude gap makes $\\tau_d$ robust to any value in $[2, 200]$\\,mm.}\n\\label{fig:displacement}\n\\end{figure}\n\n\\section{Displacement Threshold Sensitivity Analysis}\n\\label{sec:appendix_threshold}\n\nTo validate the robustness of our displacement threshold $\\tau_d$, we evaluate the frozen rate across four orders of magnitude. Table~\\ref{tab:threshold_sensitivity} shows that the fake safety pattern persists across all reasonable threshold choices: A1-LoRA exhibits near-total action collapse regardless of threshold, while Pi0.5+A1 maintains 0\\% frozen rate even at the most conservative setting.\n\n\\begin{table}[h]\n\\centering\n\\caption{Frozen rate (\\% of episodes with $d_\\mathrm{max} < \\tau_d$) across threshold values.}\n\\label{tab:threshold_sensitivity}\n\\begin{tabular}{lccc}\n\\toprule\n$\\tau_d$ & A1-LoRA (Pi0) & Pi0.5 Baseline & Pi0.5+A1 (SDF aux) \\\\\n\\midrule\n0.001 mm (1\\,$\\mu$m) & 73.9 & 0.0 & 0.0 \\\\\n0.1 mm  & 99.6 & 0.0 & 0.0 \\\\\n1.0 mm  & 100.0 & 0.0 & 0.0 \\\\\n10 mm   & 100.0 & 0.0 & 0.0 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe choice of $\\tau_d = 0.1$\\,mm represents a conservative threshold: displacement below this value is physically negligible in manipulation tasks where typical action magnitudes are 1--10\\,mm per step. Even at $\\tau_d = 1$\\,$\\mu$m, 73.9\\% of A1-LoRA safe episodes are classified as frozen, while all Pi0.5 episodes remain above threshold at every level tested.\n\nTable~\\ref{tab:dfcar_threshold} extends this analysis to dfCAR across fine-tuned Pi0.5 configurations. All eight model-seed combinations yield identical dfCAR for $\\tau_d \\in [2, 200]$\\,mm. At $\\tau_d = 300$\\,mm, 0--2 episodes per seed fall below threshold (displacement 200--300\\,mm), causing $\\leq$0.5\\,pp deviation. Our conclusions hold across the entire tested range.\n\n\\begin{table}[h]\n\\centering\n\\caption{dfCAR (\\%) across displacement thresholds for fine-tuned Pi0.5 configurations ($n = 200$ episodes per seed). Values are identical across $\\tau_d \\in [2, 200]$\\,mm; at $\\tau_d = 300$\\,mm, at most 2 episodes are excluded.}\n\\label{tab:dfcar_threshold}\n\\vspace{2pt}\n\\footnotesize\n\\begin{tabular}{lcccccccc}\n\\toprule\n& \\multicolumn{8}{c}{$\\tau_d$ (mm)} \\\\\n\\cmidrule(lr){2-9}\nCondition & 2 & 5 & 10 & 20 & 50 & 100 & 200 & 300 \\\\\n\\midrule\nLoRA s0            & 56.5 & 56.5 & 56.5 & 56.5 & 56.5 & 56.5 & 56.5 & 56.5 \\\\\nLoRA s1            & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 \\\\\nSDF $\\lambda{=}0.005$ s0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.1 \\\\\nSDF $\\lambda{=}0.005$ s1 & 54.0 & 54.0 & 54.0 & 54.0 & 54.0 & 54.0 & 54.0 & 54.0 \\\\\nSDF $\\lambda{=}0.005$ s2 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.3 \\\\\nSDF $\\lambda{=}0.01$ s0  & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 \\\\\nSDF $\\lambda{=}0.01$ s1  & 57.5 & 57.5 & 57.5 & 57.5 & 57.5 & 57.5 & 57.5 & 57.1 \\\\\nSDF $\\lambda{=}0.01$ s2  & 54.5 & 54.5 & 54.5 & 54.5 & 54.5 & 54.5 & 54.5 & 54.0 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\n\\section{Per-Task TSR Breakdown}\\label{sec:appendix_tsr_pertask}\n\nTable~\\ref{tab:per_task_tsr} decomposes TSR by task for the avoidance source attribution experiments (Section~\\ref{sec:avoidance_source}). All tasks retain meaningful success rates after fine-tuning, with Chocolate Pudding most resilient and Orange Juice most affected.\n\n\\begin{table}[h]\n\\centering\n\\caption{Per-task TSR (\\%) at 30K training steps. Baseline reports the original 3-seed evaluation (aggregate TSR\\,=\\,71.5\\% under the unified seed-7 protocol; per-task reeval data not available). LoRA-only reports 3-seed means (re-evaluated with unified seed-7 protocol); SDF conditions report 3-seed means.}\n\\label{tab:per_task_tsr}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\nTask & Pi0.5 Base & LoRA-only\\textsuperscript{$\\dagger$} & SDF $\\lambda{=}0.005$ & SDF $\\lambda{=}0.01$ \\\\\n & (3 seeds) & (seed 0) & (3 seeds) & (3 seeds) \\\\\n\\midrule\nOrange Juice      & 70.7 & 18.0 & 33.3 & 24.7 \\\\\nChoco.\\ Pudding   & 86.0 & 72.0 & 78.0 & 76.7 \\\\\nMilk              & 66.0 & 32.0 & 35.3 & 48.7 \\\\\nBBQ Sauce         & 76.0 & 62.0 & 69.3 & 65.3 \\\\\n\\midrule\nMean              & 74.7 & 46.0 & 54.0 & 53.8 \\\\\n\\bottomrule\n\\end{tabular}\n\\vspace{1pt}\n{\\footnotesize \\textsuperscript{$\\dagger$}Seeds 1 and 2 are excluded because their rotation protocol differs from seed 0, making per-task TSR non-comparable.}\n\\end{table}\n\n\\section{Per-Task CAR Breakdown}\\label{sec:appendix_pertask_car}\n\nTable~\\ref{tab:per_task_car} decomposes CAR by task for all fine-tuned conditions, supporting the claim that per-task ordering is preserved across SDF loss weights (\\S\\ref{sec:avoidance_source}). Chocolate Pudding is consistently highest and BBQ Sauce consistently lowest across all conditions, including $\\lambda = 0.1$. The intermediate tasks (Orange Juice and Milk) exchange rank between seeds but remain bounded by the extremes. This invariance indicates that avoidance patterns reflect the spatial statistics of collision-free demonstrations rather than geometric supervision.\n\n\\begin{table}[h]\n\\centering\n\\caption{Per-task CAR (\\%) at 30K steps. $\\lambda{=}0.005$ and $\\lambda{=}0.01$ report 3-seed means. Per-task ordering (CP highest, BBQ lowest) is preserved across all conditions.}\n\\label{tab:per_task_car}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lccccc}\n\\toprule\nCondition & OJ & CP & Milk & BBQ & Agg. \\\\\n\\midrule\nLoRA s0 & 56 & 74 & 70 & 26 & 56.5 \\\\\nLoRA s1 & 54 & 68 & 72 & 16 & 52.5 \\\\\nLoRA s2 & 56 & 76 & 62 & 26 & 55.0 \\\\\nSDF $\\lambda{=}0.005$ (3-seed) & 54.0 & 72.7 & 71.3 & 20.0 & 54.5 \\\\\nSDF $\\lambda{=}0.01$ (3-seed) & 57.3 & 72.7 & 72.0 & 23.3 & 56.3 \\\\\nSDF $\\lambda{=}0.1$ s0 & 60 & 74 & 68 & 30 & 58.0 \\\\\nSDF $\\lambda{=}0.1$ s1 & 66 & 72 & 70 & 26 & 58.5 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nFor the $\\lambda = 0.1$ condition, seed~1 records \\texttt{avg\\_max\\_obstacle\\_displacement} of 0.0553\\,m (per-task: OJ\\,=\\,0.033, CP\\,=\\,0.055, Milk\\,=\\,0.041, BBQ\\,=\\,0.093), comparable to other fine-tuned conditions and consistent with active manipulation rather than frozen behavior.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\linewidth]{fig_pertask_car_fingerprint}\n\\caption{Per-task CAR fingerprint across conditions. Each bar shows the 3-seed mean; dots indicate individual seeds. The task ordering (chocolate\\_pudding highest, bbq\\_sauce lowest) is preserved across all $\\lambda$ values, confirming that avoidance patterns reflect the demonstration distribution rather than geometric supervision. LoRA-only: 3-seed mean.}\n\\label{fig:pertask_fingerprint}\n\\end{figure}\n\n\\section{Safe Success Rate Analysis}\\label{sec:appendix_ssr}\n\nTable~\\ref{tab:ssr} reports the Safe Success Rate (SSR\\,=\\,TSR\\,$\\cap$\\,CAR), the fraction of episodes achieving both task completion and collision avoidance. The SSR/TSR ratio quantifies the proportion of successful episodes that are also collision-free, controlling for task-completion rate.\n\n\\begin{table}[h]\n\\centering\n\\caption{SSR and SSR/TSR ratio across conditions. The ratio increase from 0.39 (baseline) to 0.51--0.56 (fine-tuned) indicates that CAR gains reflect learned safer execution, not reduced task exposure.}\n\\label{tab:ssr}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\nCondition & TSR (\\%) & CAR (\\%) & SSR (\\%) & SSR/TSR \\\\\n\\midrule\nPi0.5 baseline & 71.5 & 28.5 & 28.0 & 0.39 \\\\\nLoRA-only (3 seeds) & 51.5 & 54.67 & 27.7 & 0.54 \\\\\nSDF $\\lambda{=}0.005$ (3 seeds) & 54.0 & 54.5 & 27.8 & 0.51 \\\\\nSDF $\\lambda{=}0.01$ (3 seeds) & 53.8 & 56.33 & 30.2 & 0.56 \\\\\nSDF $\\lambda{=}0.1$\\textsuperscript{$\\dagger$} & 48.0 & 58.25 & 26.5 & 0.55 \\\\\n\\bottomrule\n\\end{tabular}\n\\vspace{1pt}\n{\\footnotesize \\textsuperscript{$\\dagger$}SSR from seed~1 only; seed~0 per-episode data overwritten.}\n\\end{table}\n\n\\section{Per-Task Oracle Analysis}\n\\label{sec:appendix_pertask}\n\\label{sec:appendix_pertask_oracle}\n\nTable~\\ref{tab:oracle_pertask} shows per-task CAR for oracle refinement. On task~1 (\\texttt{chocolate\\_pudding}), where the EE is the primary collision body and the LoRA baseline achieves only 46.0\\% CAR, Oracle-adaptive improves to 55.0\\% and Oracle-feature to 47.5\\%. On the remaining tasks, all oracle variants degrade: Oracle-adaptive reduces task~0 (\\texttt{orange\\_juice}) from 96.0\\% to 82.5\\% and task~2 (\\texttt{milk}) from 98.0\\% to 77.5\\%. The SDF gradient pushes the EE away from the nearest surface, but the resulting joint-space displacement rotates intermediate arm links into obstacle volumes.\n\nThe feature-space oracle fires on nearly every timestep (241.7 refinements/episode vs.\\ 14.2 for Cartesian variants) but with gradient magnitudes two orders of magnitude smaller (0.004--0.006 vs.\\ 0.18--0.49), and CAR (76.9\\%) shows no advantage despite 17$\\times$ more steps. The A3 learned SDF never triggers refinement (0 steps/episode), as its outputs avoid the activation threshold.\n\n\\begin{table}[h]\n\\centering\n\\caption{Per-task CAR (\\%) for oracle SDF refinement variants. EE-only refinement helps only on task~1 where the EE is the primary collision body; on other tasks it trades one collision site for another.}\n\\label{tab:oracle_pertask}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lccccc}\n\\toprule\nMethod & Task 0 & Task 1 & Task 2 & Task 3 & Agg. \\\\\n\\midrule\nLoRA baseline & 96.0 & 46.0 & 98.0 & 88.0 & 82.0 \\\\\n\\midrule\nOracle-adaptive & 82.5 & 55.0 & 77.5 & 85.0 & 75.0 \\\\\nOracle-fixed & 85.0 & 50.0 & 77.5 & 80.0 & 73.1 \\\\\nOracle-feature & 90.0 & 47.5 & 82.5 & 87.5 & 76.9 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\n\\section{Null Distribution for SDF Loss Weight Analysis}\n\\label{sec:appendix_null}\n\nWe construct a null distribution by pooling the three LoRA-only seeds and three $\\lambda = 0.005$ seeds into six per-seed CAR measurements: 56.5\\% (LoRA s0, re-evaluated), 52.5\\% (LoRA s1), 55.0\\% (LoRA s2), 57.0\\% ($\\lambda{=}0.005$ s0), 54.0\\% ($\\lambda{=}0.005$ s1), 52.5\\% ($\\lambda{=}0.005$ s2), yielding mean 54.58\\% and standard deviation 1.93\\% (Bessel-corrected, $n{-}1 = 5$). We treat these as exchangeable because SDF at $\\lambda = 0.005$ produces no separation from LoRA-only. The $\\lambda = 0.01$ mean of 56.33\\% falls within $0.8\\sigma$ of this null ($p > 0.1$), consistent with seed-to-seed variation rather than a treatment effect. The $\\lambda = 0.1$ 30K mean of 58.25\\% (2 seeds) yields a two-tailed permutation $p \\approx 0.071$ (one-tailed $p = 0.036$); a $z$-test gives an approximate $p \\approx 0.039$ ($z = 1.76$). This marginal departure is inconclusive at $n = 2$.\n\nThe permutation test makes no distributional assumptions. Pooling the six null values $\\{56.5, 52.5, 55, 57, 54, 52.5\\}$ and two $\\lambda = 0.1$ values $\\{58, 58.5\\}$ into eight measurements, we enumerate all $\\binom{8}{2} = 28$ two-element combinations and compute the fraction whose mean $\\geq 58.25$. Only one combination ($\\{58, 58.5\\}$, mean $= 58.25$) meets this threshold, yielding an exact one-tailed permutation $p = 1/28 \\approx 0.036$ (two-tailed $p = 2/28 \\approx 0.071$, as one combination on the lower tail also reaches equal distance from the pooled mean). The consistency of the exact permutation and approximate $z$-test results confirms that the marginal signal is robust to distributional assumptions but remains inconclusive at $n = 2$.\n\nA Phase~2 ablation reinforces this conclusion. Setting $\\lambda = 0$ during Phase~2 (steps 5K--30K), so that SDF supervision is active only during auxiliary head warmup (Phase~1, steps 0--5K), yields CAR of 57.5\\% (single seed, s2). This value lies within the null range, indicating that SDF training produces no lasting behavioral effect on collision avoidance.\n\n\\section{Step-wise Checkpoint Analysis for \\texorpdfstring{$\\lambda = 0.1$}{lambda = 0.1}}\n\\label{sec:appendix_stepwise}\n\nTable~\\ref{tab:stepwise_lambda01} reports per-seed CAR at seven checkpoints for $\\lambda = 0.1$. Seed-1 data is available at 16K, 20K, 22K, and 30K; 24K--28K report seed-0 only. The seed-0 curve shows no monotonic trend through 28K; the 30K checkpoint marks the first consistent dual-seed departure from the null band, though whether this reflects a genuine late-training effect or sampling variance at $n = 2$ remains open.\n\n\\begin{table}[h]\n\\centering\n\\caption{Per-seed CAR (\\%) at training checkpoints for $\\lambda = 0.1$ (200 episodes each). 24K--28K: seed-0 only. Dual-seed means remain within the null band (54.58\\%\\,$\\pm$\\,1.93\\%) at all checkpoints except 30K, where both seeds depart marginally (two-tailed permutation $p \\approx 0.071$).}\n\\label{tab:stepwise_lambda01}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lccc}\n\\toprule\nCheckpoint & Seed 0 & Seed 1 & Mean \\\\\n\\midrule\n16K steps & 55.5 & 56.0 & 55.75 \\\\\n20K steps & 55.0 & 56.0 & 55.5 \\\\\n22K steps & 60.5 & 56.5 & 58.5 \\\\\n24K steps & 52.5 & -- & -- \\\\\n26K steps & 53.5 & -- & -- \\\\\n28K steps & 54.5 & -- & -- \\\\\n30K steps & 58.0 & 58.5 & 58.25 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nIndividual seeds exhibit checkpoint-to-checkpoint CAR fluctuations of up to 8\\,pp (seed~0: 52.5--60.5\\%), larger than the cross-seed standard deviation at any fixed checkpoint ($\\leq$2.8\\,pp). This is consistent with binomial sampling noise at $n = 50$ episodes per task ($\\sigma \\approx 7$\\,pp per task for $p \\approx 0.5$). The seed-averaged curve shows no monotonic trend, confirming that SDF loss weight does not produce a progressive training signal.\n\n\n\\section{Oracle SDF Refinement Details}\n\\label{sec:appendix_oracle}\n\nAll oracle variants replace the learned SDF decoder with ground-truth distance fields computed from the simulation geometry. Each is evaluated for 160 episodes (4 tasks $\\times$ 40).\n\n\\paragraph{Oracle-adaptive.} At each timestep, if the ground-truth SDF at the end-effector position falls below a safety margin, the action is adjusted by a step in the negative SDF gradient direction. The step size $\\alpha$ is scaled inversely with distance: smaller distances produce larger corrections. This mimics an adaptive potential field controller.\n\n\\paragraph{Oracle-fixed.} Identical to Oracle-adaptive except the step size is fixed at $\\alpha = 0.005$ regardless of distance. This isolates the effect of step-size adaptation from the refinement geometry.\n\n\\paragraph{Oracle-feature.} Instead of modifying the action directly in Cartesian space, this variant applies the SDF gradient in the policy's latent feature space via backpropagation. The gradient of the ground-truth SDF value with respect to the intermediate features is computed and used to perturb the features before the action head decodes them. This tests whether geometric corrections are more effective when applied in the model's learned representation space. In practice, the feature-space variant fires on nearly every timestep (241.7 refinements per episode vs.\\ 14.2 for Cartesian variants) but with gradient magnitudes two orders of magnitude smaller (0.004--0.006 vs.\\ 0.18--0.49 in action space).\n\n\n\\section{Training Details}\n\\label{sec:appendix_training}\n\n\\paragraph{Architecture.}\nWe use LoRA~\\citep{hu2022lora} adapters injected into the PaliGemma vision encoder (rank 16, $\\alpha$=16) and the action expert (rank 32, $\\alpha$=32), following the configuration of OpenPi. The SDF decoder is a 4-layer MLP (hidden dimension 256) with skip connections, taking pooled suffix features (1024-d) and query points (3-d) as input. The end-effector extractor is a 2-layer MLP (1024 $\\to$ 256 $\\to$ 3).\n\n\\paragraph{Training schedule.}\nTraining proceeds in two phases:\n\\begin{itemize}\n    \\item \\textbf{Phase 1} (steps 0--5000): Backbone and LoRA parameters are frozen. Only the SDF decoder and EE extractor are trained, allowing them to learn meaningful representations before the policy adapts.\n    \\item \\textbf{Phase 2} (steps 5000--30000): LoRA parameters are unfrozen with a 100-step gradient warmup ramp. All auxiliary heads continue training jointly with the policy.\n\\end{itemize}\n\n\\paragraph{Hyperparameters.}\n\\begin{table}[h]\n\\centering\n\\caption{Training hyperparameters.}\n\\label{tab:hyperparams}\n\\begin{tabular}{ll}\n\\toprule\nParameter & Value \\\\\n\\midrule\nBase model & Pi0.5 (OpenPi, $\\sim$3.5B parameters) \\\\\nOptimizer & AdamW \\\\\nLearning rate & $2.5 \\times 10^{-5}$ (cosine decay to $\\mathrm{lr}/10$) \\\\\nWarmup steps & 1000 \\\\\nBatch size & 32 \\\\\nTotal steps & 30000 \\\\\n$\\lambda_\\mathrm{sdf}$ & \\{0.005, 0.01, 0.1\\} \\\\\n$\\lambda_\\mathrm{ee}$ & 0.01 \\\\\nSDF query points per step & 64 \\\\\nSDF clamp $\\delta$ & 0.05 m \\\\\nEikonal weight & 0.1 \\\\\nLoRA rank (vision) & 16 \\\\\nLoRA rank (action) & 32 \\\\\nPhase 1 duration & 5000 steps \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Evaluation protocol.}\nEach episode runs for at most 300 timesteps. The policy generates a 50-step action trajectory via flow matching and executes the first 5 steps before replanning. An episode terminates early upon task completion. Collision detection uses MuJoCo's built-in contact detection: any contact between the robot and a non-target object registers as a collision. For Pi0.5 evaluations, camera images are rotated 180$^\\circ$ to match the pre-training viewpoint convention; this correction was verified to restore TSR from ${\\sim}$5\\% to ${\\sim}$52\\% while leaving CAR comparable. Oracle variants use 40 episodes per task (160 total) with a single seed; all other configurations use 50 episodes per task (200 total).\n\n\\paragraph{Data.}\nWe use the SafeLIBERO object\\_pudding suite with pre-computed SDF ground truth. SDF values are computed offline from the obstacle mesh using a dense $64^3$ voxel grid. During training, 64 query points are randomly sampled per step from this grid.\n\n\\paragraph{Computational resources.}\nAll training and evaluation experiments are conducted on NVIDIA RTX PRO 6000 GPUs (96\\,GB). Phase~1 (5K steps) takes approximately 6 hours on a single GPU; Phase~2 (25K steps) takes approximately 32 hours. Evaluation of 200 episodes requires approximately 4 hours. Across 100+ experiments (training runs, evaluations, oracle variants, and ablations), the total computational budget is approximately 700 GPU-hours.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 70,
+        "oldLines": 8,
+        "newStart": 70,
+        "newLines": 8,
+        "lines": [
+          " \\small",
+          " \\begin{tabular}{lcccc}",
+          " \\toprule",
+          "-Task & Pi0.5 Base & LoRA-only\\textsuperscript{$\\dagger$} & SDF $\\lambda{=}0.005$ & SDF $\\lambda{=}0.01$ \\\\",
+          "- & (3 seeds) & (seed 0) & (3 seeds) & (3 seeds) \\\\",
+          "+Task & Pi0.5 Base & LoRA-only & SDF $\\lambda{=}0.005$ & SDF $\\lambda{=}0.01$ \\\\",
+          "+ & (3 seeds) & (3 seeds) & (3 seeds) & (3 seeds) \\\\",
+          " \\midrule",
+          " Orange Juice      & 70.7 & 18.0 & 33.3 & 24.7 \\\\",
+          " Choco.\\ Pudding   & 86.0 & 72.0 & 78.0 & 76.7 \\\\"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01CARQbacuipczSo1NQoYfMk`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/appendix.tex",
+  "old_string": "Orange Juice      & 70.7 & 18.0 & 33.3 & 24.7 \\\\\nChoco.\\ Pudding   & 86.0 & 72.0 & 78.0 & 76.7 \\\\\nMilk              & 66.0 & 32.0 & 35.3 & 48.7 \\\\\nBBQ Sauce         & 76.0 & 62.0 & 69.3 & 65.3 \\\\\n\\midrule\nMean              & 74.7 & 46.0 & 54.0 & 53.8 \\\\",
+  "new_string": "Orange Juice      & 70.7 & 30.0 & 33.3 & 24.7 \\\\\nChoco.\\ Pudding   & 86.0 & 70.7 & 78.0 & 76.7 \\\\\nMilk              & 66.0 & 44.7 & 35.3 & 48.7 \\\\\nBBQ Sauce         & 76.0 & 60.7 & 69.3 & 65.3 \\\\\n\\midrule\nMean              & 74.7 & 51.5 & 54.0 & 53.8 \\\\"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1da76313-cd9b-41c6-ab38-b705fd6ac50d",
+  "uuid": "e83c0262-582c-41a3-a51c-461d1ca0a852",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FDXu1er2zrPrXNXyR1Z6KE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 352,
+      "cache_read_input_tokens": 25379,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 352
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-28T01:11:33.517Z_
+
+<details><summary>↩ Tool result · `toolu_01CARQbacuipczSo1NQoYfMk`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/appendix.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1da76313-cd9b-41c6-ab38-b705fd6ac50d",
+  "uuid": "dc0e42e1-161c-4478-a47d-011c2ff96deb",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/appendix.tex",
+    "oldString": "Orange Juice      & 70.7 & 18.0 & 33.3 & 24.7 \\\\\nChoco.\\ Pudding   & 86.0 & 72.0 & 78.0 & 76.7 \\\\\nMilk              & 66.0 & 32.0 & 35.3 & 48.7 \\\\\nBBQ Sauce         & 76.0 & 62.0 & 69.3 & 65.3 \\\\\n\\midrule\nMean              & 74.7 & 46.0 & 54.0 & 53.8 \\\\",
+    "newString": "Orange Juice      & 70.7 & 30.0 & 33.3 & 24.7 \\\\\nChoco.\\ Pudding   & 86.0 & 70.7 & 78.0 & 76.7 \\\\\nMilk              & 66.0 & 44.7 & 35.3 & 48.7 \\\\\nBBQ Sauce         & 76.0 & 60.7 & 69.3 & 65.3 \\\\\n\\midrule\nMean              & 74.7 & 51.5 & 54.0 & 53.8 \\\\",
+    "originalFile": "\\section{Displacement Distribution}\n\\label{sec:appendix_displacement}\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\linewidth]{fig2_ee_displacement_distribution}\n\\caption{Displacement distribution across evaluation episodes. Pi0-family models (blue) cluster below 1\\,$\\mu$m, while Pi0.5 episodes (orange) exceed 200\\,mm. The five-order-of-magnitude gap makes $\\tau_d$ robust to any value in $[2, 200]$\\,mm.}\n\\label{fig:displacement}\n\\end{figure}\n\n\\section{Displacement Threshold Sensitivity Analysis}\n\\label{sec:appendix_threshold}\n\nTo validate the robustness of our displacement threshold $\\tau_d$, we evaluate the frozen rate across four orders of magnitude. Table~\\ref{tab:threshold_sensitivity} shows that the fake safety pattern persists across all reasonable threshold choices: A1-LoRA exhibits near-total action collapse regardless of threshold, while Pi0.5+A1 maintains 0\\% frozen rate even at the most conservative setting.\n\n\\begin{table}[h]\n\\centering\n\\caption{Frozen rate (\\% of episodes with $d_\\mathrm{max} < \\tau_d$) across threshold values.}\n\\label{tab:threshold_sensitivity}\n\\begin{tabular}{lccc}\n\\toprule\n$\\tau_d$ & A1-LoRA (Pi0) & Pi0.5 Baseline & Pi0.5+A1 (SDF aux) \\\\\n\\midrule\n0.001 mm (1\\,$\\mu$m) & 73.9 & 0.0 & 0.0 \\\\\n0.1 mm  & 99.6 & 0.0 & 0.0 \\\\\n1.0 mm  & 100.0 & 0.0 & 0.0 \\\\\n10 mm   & 100.0 & 0.0 & 0.0 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe choice of $\\tau_d = 0.1$\\,mm represents a conservative threshold: displacement below this value is physically negligible in manipulation tasks where typical action magnitudes are 1--10\\,mm per step. Even at $\\tau_d = 1$\\,$\\mu$m, 73.9\\% of A1-LoRA safe episodes are classified as frozen, while all Pi0.5 episodes remain above threshold at every level tested.\n\nTable~\\ref{tab:dfcar_threshold} extends this analysis to dfCAR across fine-tuned Pi0.5 configurations. All eight model-seed combinations yield identical dfCAR for $\\tau_d \\in [2, 200]$\\,mm. At $\\tau_d = 300$\\,mm, 0--2 episodes per seed fall below threshold (displacement 200--300\\,mm), causing $\\leq$0.5\\,pp deviation. Our conclusions hold across the entire tested range.\n\n\\begin{table}[h]\n\\centering\n\\caption{dfCAR (\\%) across displacement thresholds for fine-tuned Pi0.5 configurations ($n = 200$ episodes per seed). Values are identical across $\\tau_d \\in [2, 200]$\\,mm; at $\\tau_d = 300$\\,mm, at most 2 episodes are excluded.}\n\\label{tab:dfcar_threshold}\n\\vspace{2pt}\n\\footnotesize\n\\begin{tabular}{lcccccccc}\n\\toprule\n& \\multicolumn{8}{c}{$\\tau_d$ (mm)} \\\\\n\\cmidrule(lr){2-9}\nCondition & 2 & 5 & 10 & 20 & 50 & 100 & 200 & 300 \\\\\n\\midrule\nLoRA s0            & 56.5 & 56.5 & 56.5 & 56.5 & 56.5 & 56.5 & 56.5 & 56.5 \\\\\nLoRA s1            & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 \\\\\nSDF $\\lambda{=}0.005$ s0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.1 \\\\\nSDF $\\lambda{=}0.005$ s1 & 54.0 & 54.0 & 54.0 & 54.0 & 54.0 & 54.0 & 54.0 & 54.0 \\\\\nSDF $\\lambda{=}0.005$ s2 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.3 \\\\\nSDF $\\lambda{=}0.01$ s0  & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 \\\\\nSDF $\\lambda{=}0.01$ s1  & 57.5 & 57.5 & 57.5 & 57.5 & 57.5 & 57.5 & 57.5 & 57.1 \\\\\nSDF $\\lambda{=}0.01$ s2  & 54.5 & 54.5 & 54.5 & 54.5 & 54.5 & 54.5 & 54.5 & 54.0 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\n\\section{Per-Task TSR Breakdown}\\label{sec:appendix_tsr_pertask}\n\nTable~\\ref{tab:per_task_tsr} decomposes TSR by task for the avoidance source attribution experiments (Section~\\ref{sec:avoidance_source}). All tasks retain meaningful success rates after fine-tuning, with Chocolate Pudding most resilient and Orange Juice most affected.\n\n\\begin{table}[h]\n\\centering\n\\caption{Per-task TSR (\\%) at 30K training steps. Baseline reports the original 3-seed evaluation (aggregate TSR\\,=\\,71.5\\% under the unified seed-7 protocol; per-task reeval data not available). LoRA-only reports 3-seed means (re-evaluated with unified seed-7 protocol); SDF conditions report 3-seed means.}\n\\label{tab:per_task_tsr}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\nTask & Pi0.5 Base & LoRA-only & SDF $\\lambda{=}0.005$ & SDF $\\lambda{=}0.01$ \\\\\n & (3 seeds) & (3 seeds) & (3 seeds) & (3 seeds) \\\\\n\\midrule\nOrange Juice      & 70.7 & 18.0 & 33.3 & 24.7 \\\\\nChoco.\\ Pudding   & 86.0 & 72.0 & 78.0 & 76.7 \\\\\nMilk              & 66.0 & 32.0 & 35.3 & 48.7 \\\\\nBBQ Sauce         & 76.0 & 62.0 & 69.3 & 65.3 \\\\\n\\midrule\nMean              & 74.7 & 46.0 & 54.0 & 53.8 \\\\\n\\bottomrule\n\\end{tabular}\n\\vspace{1pt}\n{\\footnotesize \\textsuperscript{$\\dagger$}Seeds 1 and 2 are excluded because their rotation protocol differs from seed 0, making per-task TSR non-comparable.}\n\\end{table}\n\n\\section{Per-Task CAR Breakdown}\\label{sec:appendix_pertask_car}\n\nTable~\\ref{tab:per_task_car} decomposes CAR by task for all fine-tuned conditions, supporting the claim that per-task ordering is preserved across SDF loss weights (\\S\\ref{sec:avoidance_source}). Chocolate Pudding is consistently highest and BBQ Sauce consistently lowest across all conditions, including $\\lambda = 0.1$. The intermediate tasks (Orange Juice and Milk) exchange rank between seeds but remain bounded by the extremes. This invariance indicates that avoidance patterns reflect the spatial statistics of collision-free demonstrations rather than geometric supervision.\n\n\\begin{table}[h]\n\\centering\n\\caption{Per-task CAR (\\%) at 30K steps. $\\lambda{=}0.005$ and $\\lambda{=}0.01$ report 3-seed means. Per-task ordering (CP highest, BBQ lowest) is preserved across all conditions.}\n\\label{tab:per_task_car}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lccccc}\n\\toprule\nCondition & OJ & CP & Milk & BBQ & Agg. \\\\\n\\midrule\nLoRA s0 & 56 & 74 & 70 & 26 & 56.5 \\\\\nLoRA s1 & 54 & 68 & 72 & 16 & 52.5 \\\\\nLoRA s2 & 56 & 76 & 62 & 26 & 55.0 \\\\\nSDF $\\lambda{=}0.005$ (3-seed) & 54.0 & 72.7 & 71.3 & 20.0 & 54.5 \\\\\nSDF $\\lambda{=}0.01$ (3-seed) & 57.3 & 72.7 & 72.0 & 23.3 & 56.3 \\\\\nSDF $\\lambda{=}0.1$ s0 & 60 & 74 & 68 & 30 & 58.0 \\\\\nSDF $\\lambda{=}0.1$ s1 & 66 & 72 & 70 & 26 & 58.5 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nFor the $\\lambda = 0.1$ condition, seed~1 records \\texttt{avg\\_max\\_obstacle\\_displacement} of 0.0553\\,m (per-task: OJ\\,=\\,0.033, CP\\,=\\,0.055, Milk\\,=\\,0.041, BBQ\\,=\\,0.093), comparable to other fine-tuned conditions and consistent with active manipulation rather than frozen behavior.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\linewidth]{fig_pertask_car_fingerprint}\n\\caption{Per-task CAR fingerprint across conditions. Each bar shows the 3-seed mean; dots indicate individual seeds. The task ordering (chocolate\\_pudding highest, bbq\\_sauce lowest) is preserved across all $\\lambda$ values, confirming that avoidance patterns reflect the demonstration distribution rather than geometric supervision. LoRA-only: 3-seed mean.}\n\\label{fig:pertask_fingerprint}\n\\end{figure}\n\n\\section{Safe Success Rate Analysis}\\label{sec:appendix_ssr}\n\nTable~\\ref{tab:ssr} reports the Safe Success Rate (SSR\\,=\\,TSR\\,$\\cap$\\,CAR), the fraction of episodes achieving both task completion and collision avoidance. The SSR/TSR ratio quantifies the proportion of successful episodes that are also collision-free, controlling for task-completion rate.\n\n\\begin{table}[h]\n\\centering\n\\caption{SSR and SSR/TSR ratio across conditions. The ratio increase from 0.39 (baseline) to 0.51--0.56 (fine-tuned) indicates that CAR gains reflect learned safer execution, not reduced task exposure.}\n\\label{tab:ssr}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\nCondition & TSR (\\%) & CAR (\\%) & SSR (\\%) & SSR/TSR \\\\\n\\midrule\nPi0.5 baseline & 71.5 & 28.5 & 28.0 & 0.39 \\\\\nLoRA-only (3 seeds) & 51.5 & 54.67 & 27.7 & 0.54 \\\\\nSDF $\\lambda{=}0.005$ (3 seeds) & 54.0 & 54.5 & 27.8 & 0.51 \\\\\nSDF $\\lambda{=}0.01$ (3 seeds) & 53.8 & 56.33 & 30.2 & 0.56 \\\\\nSDF $\\lambda{=}0.1$\\textsuperscript{$\\dagger$} & 48.0 & 58.25 & 26.5 & 0.55 \\\\\n\\bottomrule\n\\end{tabular}\n\\vspace{1pt}\n{\\footnotesize \\textsuperscript{$\\dagger$}SSR from seed~1 only; seed~0 per-episode data overwritten.}\n\\end{table}\n\n\\section{Per-Task Oracle Analysis}\n\\label{sec:appendix_pertask}\n\\label{sec:appendix_pertask_oracle}\n\nTable~\\ref{tab:oracle_pertask} shows per-task CAR for oracle refinement. On task~1 (\\texttt{chocolate\\_pudding}), where the EE is the primary collision body and the LoRA baseline achieves only 46.0\\% CAR, Oracle-adaptive improves to 55.0\\% and Oracle-feature to 47.5\\%. On the remaining tasks, all oracle variants degrade: Oracle-adaptive reduces task~0 (\\texttt{orange\\_juice}) from 96.0\\% to 82.5\\% and task~2 (\\texttt{milk}) from 98.0\\% to 77.5\\%. The SDF gradient pushes the EE away from the nearest surface, but the resulting joint-space displacement rotates intermediate arm links into obstacle volumes.\n\nThe feature-space oracle fires on nearly every timestep (241.7 refinements/episode vs.\\ 14.2 for Cartesian variants) but with gradient magnitudes two orders of magnitude smaller (0.004--0.006 vs.\\ 0.18--0.49), and CAR (76.9\\%) shows no advantage despite 17$\\times$ more steps. The A3 learned SDF never triggers refinement (0 steps/episode), as its outputs avoid the activation threshold.\n\n\\begin{table}[h]\n\\centering\n\\caption{Per-task CAR (\\%) for oracle SDF refinement variants. EE-only refinement helps only on task~1 where the EE is the primary collision body; on other tasks it trades one collision site for another.}\n\\label{tab:oracle_pertask}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lccccc}\n\\toprule\nMethod & Task 0 & Task 1 & Task 2 & Task 3 & Agg. \\\\\n\\midrule\nLoRA baseline & 96.0 & 46.0 & 98.0 & 88.0 & 82.0 \\\\\n\\midrule\nOracle-adaptive & 82.5 & 55.0 & 77.5 & 85.0 & 75.0 \\\\\nOracle-fixed & 85.0 & 50.0 & 77.5 & 80.0 & 73.1 \\\\\nOracle-feature & 90.0 & 47.5 & 82.5 & 87.5 & 76.9 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\n\\section{Null Distribution for SDF Loss Weight Analysis}\n\\label{sec:appendix_null}\n\nWe construct a null distribution by pooling the three LoRA-only seeds and three $\\lambda = 0.005$ seeds into six per-seed CAR measurements: 56.5\\% (LoRA s0, re-evaluated), 52.5\\% (LoRA s1), 55.0\\% (LoRA s2), 57.0\\% ($\\lambda{=}0.005$ s0), 54.0\\% ($\\lambda{=}0.005$ s1), 52.5\\% ($\\lambda{=}0.005$ s2), yielding mean 54.58\\% and standard deviation 1.93\\% (Bessel-corrected, $n{-}1 = 5$). We treat these as exchangeable because SDF at $\\lambda = 0.005$ produces no separation from LoRA-only. The $\\lambda = 0.01$ mean of 56.33\\% falls within $0.8\\sigma$ of this null ($p > 0.1$), consistent with seed-to-seed variation rather than a treatment effect. The $\\lambda = 0.1$ 30K mean of 58.25\\% (2 seeds) yields a two-tailed permutation $p \\approx 0.071$ (one-tailed $p = 0.036$); a $z$-test gives an approximate $p \\approx 0.039$ ($z = 1.76$). This marginal departure is inconclusive at $n = 2$.\n\nThe permutation test makes no distributional assumptions. Pooling the six null values $\\{56.5, 52.5, 55, 57, 54, 52.5\\}$ and two $\\lambda = 0.1$ values $\\{58, 58.5\\}$ into eight measurements, we enumerate all $\\binom{8}{2} = 28$ two-element combinations and compute the fraction whose mean $\\geq 58.25$. Only one combination ($\\{58, 58.5\\}$, mean $= 58.25$) meets this threshold, yielding an exact one-tailed permutation $p = 1/28 \\approx 0.036$ (two-tailed $p = 2/28 \\approx 0.071$, as one combination on the lower tail also reaches equal distance from the pooled mean). The consistency of the exact permutation and approximate $z$-test results confirms that the marginal signal is robust to distributional assumptions but remains inconclusive at $n = 2$.\n\nA Phase~2 ablation reinforces this conclusion. Setting $\\lambda = 0$ during Phase~2 (steps 5K--30K), so that SDF supervision is active only during auxiliary head warmup (Phase~1, steps 0--5K), yields CAR of 57.5\\% (single seed, s2). This value lies within the null range, indicating that SDF training produces no lasting behavioral effect on collision avoidance.\n\n\\section{Step-wise Checkpoint Analysis for \\texorpdfstring{$\\lambda = 0.1$}{lambda = 0.1}}\n\\label{sec:appendix_stepwise}\n\nTable~\\ref{tab:stepwise_lambda01} reports per-seed CAR at seven checkpoints for $\\lambda = 0.1$. Seed-1 data is available at 16K, 20K, 22K, and 30K; 24K--28K report seed-0 only. The seed-0 curve shows no monotonic trend through 28K; the 30K checkpoint marks the first consistent dual-seed departure from the null band, though whether this reflects a genuine late-training effect or sampling variance at $n = 2$ remains open.\n\n\\begin{table}[h]\n\\centering\n\\caption{Per-seed CAR (\\%) at training checkpoints for $\\lambda = 0.1$ (200 episodes each). 24K--28K: seed-0 only. Dual-seed means remain within the null band (54.58\\%\\,$\\pm$\\,1.93\\%) at all checkpoints except 30K, where both seeds depart marginally (two-tailed permutation $p \\approx 0.071$).}\n\\label{tab:stepwise_lambda01}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lccc}\n\\toprule\nCheckpoint & Seed 0 & Seed 1 & Mean \\\\\n\\midrule\n16K steps & 55.5 & 56.0 & 55.75 \\\\\n20K steps & 55.0 & 56.0 & 55.5 \\\\\n22K steps & 60.5 & 56.5 & 58.5 \\\\\n24K steps & 52.5 & -- & -- \\\\\n26K steps & 53.5 & -- & -- \\\\\n28K steps & 54.5 & -- & -- \\\\\n30K steps & 58.0 & 58.5 & 58.25 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nIndividual seeds exhibit checkpoint-to-checkpoint CAR fluctuations of up to 8\\,pp (seed~0: 52.5--60.5\\%), larger than the cross-seed standard deviation at any fixed checkpoint ($\\leq$2.8\\,pp). This is consistent with binomial sampling noise at $n = 50$ episodes per task ($\\sigma \\approx 7$\\,pp per task for $p \\approx 0.5$). The seed-averaged curve shows no monotonic trend, confirming that SDF loss weight does not produce a progressive training signal.\n\n\n\\section{Oracle SDF Refinement Details}\n\\label{sec:appendix_oracle}\n\nAll oracle variants replace the learned SDF decoder with ground-truth distance fields computed from the simulation geometry. Each is evaluated for 160 episodes (4 tasks $\\times$ 40).\n\n\\paragraph{Oracle-adaptive.} At each timestep, if the ground-truth SDF at the end-effector position falls below a safety margin, the action is adjusted by a step in the negative SDF gradient direction. The step size $\\alpha$ is scaled inversely with distance: smaller distances produce larger corrections. This mimics an adaptive potential field controller.\n\n\\paragraph{Oracle-fixed.} Identical to Oracle-adaptive except the step size is fixed at $\\alpha = 0.005$ regardless of distance. This isolates the effect of step-size adaptation from the refinement geometry.\n\n\\paragraph{Oracle-feature.} Instead of modifying the action directly in Cartesian space, this variant applies the SDF gradient in the policy's latent feature space via backpropagation. The gradient of the ground-truth SDF value with respect to the intermediate features is computed and used to perturb the features before the action head decodes them. This tests whether geometric corrections are more effective when applied in the model's learned representation space. In practice, the feature-space variant fires on nearly every timestep (241.7 refinements per episode vs.\\ 14.2 for Cartesian variants) but with gradient magnitudes two orders of magnitude smaller (0.004--0.006 vs.\\ 0.18--0.49 in action space).\n\n\n\\section{Training Details}\n\\label{sec:appendix_training}\n\n\\paragraph{Architecture.}\nWe use LoRA~\\citep{hu2022lora} adapters injected into the PaliGemma vision encoder (rank 16, $\\alpha$=16) and the action expert (rank 32, $\\alpha$=32), following the configuration of OpenPi. The SDF decoder is a 4-layer MLP (hidden dimension 256) with skip connections, taking pooled suffix features (1024-d) and query points (3-d) as input. The end-effector extractor is a 2-layer MLP (1024 $\\to$ 256 $\\to$ 3).\n\n\\paragraph{Training schedule.}\nTraining proceeds in two phases:\n\\begin{itemize}\n    \\item \\textbf{Phase 1} (steps 0--5000): Backbone and LoRA parameters are frozen. Only the SDF decoder and EE extractor are trained, allowing them to learn meaningful representations before the policy adapts.\n    \\item \\textbf{Phase 2} (steps 5000--30000): LoRA parameters are unfrozen with a 100-step gradient warmup ramp. All auxiliary heads continue training jointly with the policy.\n\\end{itemize}\n\n\\paragraph{Hyperparameters.}\n\\begin{table}[h]\n\\centering\n\\caption{Training hyperparameters.}\n\\label{tab:hyperparams}\n\\begin{tabular}{ll}\n\\toprule\nParameter & Value \\\\\n\\midrule\nBase model & Pi0.5 (OpenPi, $\\sim$3.5B parameters) \\\\\nOptimizer & AdamW \\\\\nLearning rate & $2.5 \\times 10^{-5}$ (cosine decay to $\\mathrm{lr}/10$) \\\\\nWarmup steps & 1000 \\\\\nBatch size & 32 \\\\\nTotal steps & 30000 \\\\\n$\\lambda_\\mathrm{sdf}$ & \\{0.005, 0.01, 0.1\\} \\\\\n$\\lambda_\\mathrm{ee}$ & 0.01 \\\\\nSDF query points per step & 64 \\\\\nSDF clamp $\\delta$ & 0.05 m \\\\\nEikonal weight & 0.1 \\\\\nLoRA rank (vision) & 16 \\\\\nLoRA rank (action) & 32 \\\\\nPhase 1 duration & 5000 steps \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Evaluation protocol.}\nEach episode runs for at most 300 timesteps. The policy generates a 50-step action trajectory via flow matching and executes the first 5 steps before replanning. An episode terminates early upon task completion. Collision detection uses MuJoCo's built-in contact detection: any contact between the robot and a non-target object registers as a collision. For Pi0.5 evaluations, camera images are rotated 180$^\\circ$ to match the pre-training viewpoint convention; this correction was verified to restore TSR from ${\\sim}$5\\% to ${\\sim}$52\\% while leaving CAR comparable. Oracle variants use 40 episodes per task (160 total) with a single seed; all other configurations use 50 episodes per task (200 total).\n\n\\paragraph{Data.}\nWe use the SafeLIBERO object\\_pudding suite with pre-computed SDF ground truth. SDF values are computed offline from the obstacle mesh using a dense $64^3$ voxel grid. During training, 64 query points are randomly sampled per step from this grid.\n\n\\paragraph{Computational resources.}\nAll training and evaluation experiments are conducted on NVIDIA RTX PRO 6000 GPUs (96\\,GB). Phase~1 (5K steps) takes approximately 6 hours on a single GPU; Phase~2 (25K steps) takes approximately 32 hours. Evaluation of 200 episodes requires approximately 4 hours. Across 100+ experiments (training runs, evaluations, oracle variants, and ablations), the total computational budget is approximately 700 GPU-hours.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 73,
+        "oldLines": 12,
+        "newStart": 73,
+        "newLines": 12,
+        "lines": [
+          " Task & Pi0.5 Base & LoRA-only & SDF $\\lambda{=}0.005$ & SDF $\\lambda{=}0.01$ \\\\",
+          "  & (3 seeds) & (3 seeds) & (3 seeds) & (3 seeds) \\\\",
+          " \\midrule",
+          "-Orange Juice      & 70.7 & 18.0 & 33.3 & 24.7 \\\\",
+          "-Choco.\\ Pudding   & 86.0 & 72.0 & 78.0 & 76.7 \\\\",
+          "-Milk              & 66.0 & 32.0 & 35.3 & 48.7 \\\\",
+          "-BBQ Sauce         & 76.0 & 62.0 & 69.3 & 65.3 \\\\",
+          "+Orange Juice      & 70.7 & 30.0 & 33.3 & 24.7 \\\\",
+          "+Choco.\\ Pudding   & 86.0 & 70.7 & 78.0 & 76.7 \\\\",
+          "+Milk              & 66.0 & 44.7 & 35.3 & 48.7 \\\\",
+          "+BBQ Sauce         & 76.0 & 60.7 & 69.3 & 65.3 \\\\",
+          " \\midrule",
+          "-Mean              & 74.7 & 46.0 & 54.0 & 53.8 \\\\",
+          "+Mean              & 74.7 & 51.5 & 54.0 & 53.8 \\\\",
+          " \\bottomrule",
+          " \\end{tabular}",
+          " \\vspace{1pt}"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01GP2Kh4V2vT82U4RoZ7GsDQ`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/appendix.tex",
+  "old_string": "\\vspace{1pt}\n{\\footnotesize \\textsuperscript{$\\dagger$}Seeds 1 and 2 are excluded because their rotation protocol differs from seed 0, making per-task TSR non-comparable.}\n\\end{table}",
+  "new_string": "\\end{table}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1da76313-cd9b-41c6-ab38-b705fd6ac50d",
+  "uuid": "85318b5e-059e-4be2-bc14-9366408cce3a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AHVibp5UgtCNxJg6Jc8SZ9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 523,
+      "cache_read_input_tokens": 25731,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 523
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-28T01:11:37.976Z_
+
+<details><summary>↩ Tool result · `toolu_01GP2Kh4V2vT82U4RoZ7GsDQ`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/appendix.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1da76313-cd9b-41c6-ab38-b705fd6ac50d",
+  "uuid": "820fd81f-0f33-42ef-b73a-6f91de27c59b",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/appendix.tex",
+    "oldString": "\\vspace{1pt}\n{\\footnotesize \\textsuperscript{$\\dagger$}Seeds 1 and 2 are excluded because their rotation protocol differs from seed 0, making per-task TSR non-comparable.}\n\\end{table}",
+    "newString": "\\end{table}",
+    "originalFile": "\\section{Displacement Distribution}\n\\label{sec:appendix_displacement}\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\linewidth]{fig2_ee_displacement_distribution}\n\\caption{Displacement distribution across evaluation episodes. Pi0-family models (blue) cluster below 1\\,$\\mu$m, while Pi0.5 episodes (orange) exceed 200\\,mm. The five-order-of-magnitude gap makes $\\tau_d$ robust to any value in $[2, 200]$\\,mm.}\n\\label{fig:displacement}\n\\end{figure}\n\n\\section{Displacement Threshold Sensitivity Analysis}\n\\label{sec:appendix_threshold}\n\nTo validate the robustness of our displacement threshold $\\tau_d$, we evaluate the frozen rate across four orders of magnitude. Table~\\ref{tab:threshold_sensitivity} shows that the fake safety pattern persists across all reasonable threshold choices: A1-LoRA exhibits near-total action collapse regardless of threshold, while Pi0.5+A1 maintains 0\\% frozen rate even at the most conservative setting.\n\n\\begin{table}[h]\n\\centering\n\\caption{Frozen rate (\\% of episodes with $d_\\mathrm{max} < \\tau_d$) across threshold values.}\n\\label{tab:threshold_sensitivity}\n\\begin{tabular}{lccc}\n\\toprule\n$\\tau_d$ & A1-LoRA (Pi0) & Pi0.5 Baseline & Pi0.5+A1 (SDF aux) \\\\\n\\midrule\n0.001 mm (1\\,$\\mu$m) & 73.9 & 0.0 & 0.0 \\\\\n0.1 mm  & 99.6 & 0.0 & 0.0 \\\\\n1.0 mm  & 100.0 & 0.0 & 0.0 \\\\\n10 mm   & 100.0 & 0.0 & 0.0 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe choice of $\\tau_d = 0.1$\\,mm represents a conservative threshold: displacement below this value is physically negligible in manipulation tasks where typical action magnitudes are 1--10\\,mm per step. Even at $\\tau_d = 1$\\,$\\mu$m, 73.9\\% of A1-LoRA safe episodes are classified as frozen, while all Pi0.5 episodes remain above threshold at every level tested.\n\nTable~\\ref{tab:dfcar_threshold} extends this analysis to dfCAR across fine-tuned Pi0.5 configurations. All eight model-seed combinations yield identical dfCAR for $\\tau_d \\in [2, 200]$\\,mm. At $\\tau_d = 300$\\,mm, 0--2 episodes per seed fall below threshold (displacement 200--300\\,mm), causing $\\leq$0.5\\,pp deviation. Our conclusions hold across the entire tested range.\n\n\\begin{table}[h]\n\\centering\n\\caption{dfCAR (\\%) across displacement thresholds for fine-tuned Pi0.5 configurations ($n = 200$ episodes per seed). Values are identical across $\\tau_d \\in [2, 200]$\\,mm; at $\\tau_d = 300$\\,mm, at most 2 episodes are excluded.}\n\\label{tab:dfcar_threshold}\n\\vspace{2pt}\n\\footnotesize\n\\begin{tabular}{lcccccccc}\n\\toprule\n& \\multicolumn{8}{c}{$\\tau_d$ (mm)} \\\\\n\\cmidrule(lr){2-9}\nCondition & 2 & 5 & 10 & 20 & 50 & 100 & 200 & 300 \\\\\n\\midrule\nLoRA s0            & 56.5 & 56.5 & 56.5 & 56.5 & 56.5 & 56.5 & 56.5 & 56.5 \\\\\nLoRA s1            & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 \\\\\nSDF $\\lambda{=}0.005$ s0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.1 \\\\\nSDF $\\lambda{=}0.005$ s1 & 54.0 & 54.0 & 54.0 & 54.0 & 54.0 & 54.0 & 54.0 & 54.0 \\\\\nSDF $\\lambda{=}0.005$ s2 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.5 & 52.3 \\\\\nSDF $\\lambda{=}0.01$ s0  & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 & 57.0 \\\\\nSDF $\\lambda{=}0.01$ s1  & 57.5 & 57.5 & 57.5 & 57.5 & 57.5 & 57.5 & 57.5 & 57.1 \\\\\nSDF $\\lambda{=}0.01$ s2  & 54.5 & 54.5 & 54.5 & 54.5 & 54.5 & 54.5 & 54.5 & 54.0 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\n\\section{Per-Task TSR Breakdown}\\label{sec:appendix_tsr_pertask}\n\nTable~\\ref{tab:per_task_tsr} decomposes TSR by task for the avoidance source attribution experiments (Section~\\ref{sec:avoidance_source}). All tasks retain meaningful success rates after fine-tuning, with Chocolate Pudding most resilient and Orange Juice most affected.\n\n\\begin{table}[h]\n\\centering\n\\caption{Per-task TSR (\\%) at 30K training steps. Baseline reports the original 3-seed evaluation (aggregate TSR\\,=\\,71.5\\% under the unified seed-7 protocol; per-task reeval data not available). LoRA-only reports 3-seed means (re-evaluated with unified seed-7 protocol); SDF conditions report 3-seed means.}\n\\label{tab:per_task_tsr}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\nTask & Pi0.5 Base & LoRA-only & SDF $\\lambda{=}0.005$ & SDF $\\lambda{=}0.01$ \\\\\n & (3 seeds) & (3 seeds) & (3 seeds) & (3 seeds) \\\\\n\\midrule\nOrange Juice      & 70.7 & 30.0 & 33.3 & 24.7 \\\\\nChoco.\\ Pudding   & 86.0 & 70.7 & 78.0 & 76.7 \\\\\nMilk              & 66.0 & 44.7 & 35.3 & 48.7 \\\\\nBBQ Sauce         & 76.0 & 60.7 & 69.3 & 65.3 \\\\\n\\midrule\nMean              & 74.7 & 51.5 & 54.0 & 53.8 \\\\\n\\bottomrule\n\\end{tabular}\n\\vspace{1pt}\n{\\footnotesize \\textsuperscript{$\\dagger$}Seeds 1 and 2 are excluded because their rotation protocol differs from seed 0, making per-task TSR non-comparable.}\n\\end{table}\n\n\\section{Per-Task CAR Breakdown}\\label{sec:appendix_pertask_car}\n\nTable~\\ref{tab:per_task_car} decomposes CAR by task for all fine-tuned conditions, supporting the claim that per-task ordering is preserved across SDF loss weights (\\S\\ref{sec:avoidance_source}). Chocolate Pudding is consistently highest and BBQ Sauce consistently lowest across all conditions, including $\\lambda = 0.1$. The intermediate tasks (Orange Juice and Milk) exchange rank between seeds but remain bounded by the extremes. This invariance indicates that avoidance patterns reflect the spatial statistics of collision-free demonstrations rather than geometric supervision.\n\n\\begin{table}[h]\n\\centering\n\\caption{Per-task CAR (\\%) at 30K steps. $\\lambda{=}0.005$ and $\\lambda{=}0.01$ report 3-seed means. Per-task ordering (CP highest, BBQ lowest) is preserved across all conditions.}\n\\label{tab:per_task_car}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lccccc}\n\\toprule\nCondition & OJ & CP & Milk & BBQ & Agg. \\\\\n\\midrule\nLoRA s0 & 56 & 74 & 70 & 26 & 56.5 \\\\\nLoRA s1 & 54 & 68 & 72 & 16 & 52.5 \\\\\nLoRA s2 & 56 & 76 & 62 & 26 & 55.0 \\\\\nSDF $\\lambda{=}0.005$ (3-seed) & 54.0 & 72.7 & 71.3 & 20.0 & 54.5 \\\\\nSDF $\\lambda{=}0.01$ (3-seed) & 57.3 & 72.7 & 72.0 & 23.3 & 56.3 \\\\\nSDF $\\lambda{=}0.1$ s0 & 60 & 74 & 68 & 30 & 58.0 \\\\\nSDF $\\lambda{=}0.1$ s1 & 66 & 72 & 70 & 26 & 58.5 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nFor the $\\lambda = 0.1$ condition, seed~1 records \\texttt{avg\\_max\\_obstacle\\_displacement} of 0.0553\\,m (per-task: OJ\\,=\\,0.033, CP\\,=\\,0.055, Milk\\,=\\,0.041, BBQ\\,=\\,0.093), comparable to other fine-tuned conditions and consistent with active manipulation rather than frozen behavior.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\linewidth]{fig_pertask_car_fingerprint}\n\\caption{Per-task CAR fingerprint across conditions. Each bar shows the 3-seed mean; dots indicate individual seeds. The task ordering (chocolate\\_pudding highest, bbq\\_sauce lowest) is preserved across all $\\lambda$ values, confirming that avoidance patterns reflect the demonstration distribution rather than geometric supervision. LoRA-only: 3-seed mean.}\n\\label{fig:pertask_fingerprint}\n\\end{figure}\n\n\\section{Safe Success Rate Analysis}\\label{sec:appendix_ssr}\n\nTable~\\ref{tab:ssr} reports the Safe Success Rate (SSR\\,=\\,TSR\\,$\\cap$\\,CAR), the fraction of episodes achieving both task completion and collision avoidance. The SSR/TSR ratio quantifies the proportion of successful episodes that are also collision-free, controlling for task-completion rate.\n\n\\begin{table}[h]\n\\centering\n\\caption{SSR and SSR/TSR ratio across conditions. The ratio increase from 0.39 (baseline) to 0.51--0.56 (fine-tuned) indicates that CAR gains reflect learned safer execution, not reduced task exposure.}\n\\label{tab:ssr}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\nCondition & TSR (\\%) & CAR (\\%) & SSR (\\%) & SSR/TSR \\\\\n\\midrule\nPi0.5 baseline & 71.5 & 28.5 & 28.0 & 0.39 \\\\\nLoRA-only (3 seeds) & 51.5 & 54.67 & 27.7 & 0.54 \\\\\nSDF $\\lambda{=}0.005$ (3 seeds) & 54.0 & 54.5 & 27.8 & 0.51 \\\\\nSDF $\\lambda{=}0.01$ (3 seeds) & 53.8 & 56.33 & 30.2 & 0.56 \\\\\nSDF $\\lambda{=}0.1$\\textsuperscript{$\\dagger$} & 48.0 & 58.25 & 26.5 & 0.55 \\\\\n\\bottomrule\n\\end{tabular}\n\\vspace{1pt}\n{\\footnotesize \\textsuperscript{$\\dagger$}SSR from seed~1 only; seed~0 per-episode data overwritten.}\n\\end{table}\n\n\\section{Per-Task Oracle Analysis}\n\\label{sec:appendix_pertask}\n\\label{sec:appendix_pertask_oracle}\n\nTable~\\ref{tab:oracle_pertask} shows per-task CAR for oracle refinement. On task~1 (\\texttt{chocolate\\_pudding}), where the EE is the primary collision body and the LoRA baseline achieves only 46.0\\% CAR, Oracle-adaptive improves to 55.0\\% and Oracle-feature to 47.5\\%. On the remaining tasks, all oracle variants degrade: Oracle-adaptive reduces task~0 (\\texttt{orange\\_juice}) from 96.0\\% to 82.5\\% and task~2 (\\texttt{milk}) from 98.0\\% to 77.5\\%. The SDF gradient pushes the EE away from the nearest surface, but the resulting joint-space displacement rotates intermediate arm links into obstacle volumes.\n\nThe feature-space oracle fires on nearly every timestep (241.7 refinements/episode vs.\\ 14.2 for Cartesian variants) but with gradient magnitudes two orders of magnitude smaller (0.004--0.006 vs.\\ 0.18--0.49), and CAR (76.9\\%) shows no advantage despite 17$\\times$ more steps. The A3 learned SDF never triggers refinement (0 steps/episode), as its outputs avoid the activation threshold.\n\n\\begin{table}[h]\n\\centering\n\\caption{Per-task CAR (\\%) for oracle SDF refinement variants. EE-only refinement helps only on task~1 where the EE is the primary collision body; on other tasks it trades one collision site for another.}\n\\label{tab:oracle_pertask}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lccccc}\n\\toprule\nMethod & Task 0 & Task 1 & Task 2 & Task 3 & Agg. \\\\\n\\midrule\nLoRA baseline & 96.0 & 46.0 & 98.0 & 88.0 & 82.0 \\\\\n\\midrule\nOracle-adaptive & 82.5 & 55.0 & 77.5 & 85.0 & 75.0 \\\\\nOracle-fixed & 85.0 & 50.0 & 77.5 & 80.0 & 73.1 \\\\\nOracle-feature & 90.0 & 47.5 & 82.5 & 87.5 & 76.9 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\n\\section{Null Distribution for SDF Loss Weight Analysis}\n\\label{sec:appendix_null}\n\nWe construct a null distribution by pooling the three LoRA-only seeds and three $\\lambda = 0.005$ seeds into six per-seed CAR measurements: 56.5\\% (LoRA s0, re-evaluated), 52.5\\% (LoRA s1), 55.0\\% (LoRA s2), 57.0\\% ($\\lambda{=}0.005$ s0), 54.0\\% ($\\lambda{=}0.005$ s1), 52.5\\% ($\\lambda{=}0.005$ s2), yielding mean 54.58\\% and standard deviation 1.93\\% (Bessel-corrected, $n{-}1 = 5$). We treat these as exchangeable because SDF at $\\lambda = 0.005$ produces no separation from LoRA-only. The $\\lambda = 0.01$ mean of 56.33\\% falls within $0.8\\sigma$ of this null ($p > 0.1$), consistent with seed-to-seed variation rather than a treatment effect. The $\\lambda = 0.1$ 30K mean of 58.25\\% (2 seeds) yields a two-tailed permutation $p \\approx 0.071$ (one-tailed $p = 0.036$); a $z$-test gives an approximate $p \\approx 0.039$ ($z = 1.76$). This marginal departure is inconclusive at $n = 2$.\n\nThe permutation test makes no distributional assumptions. Pooling the six null values $\\{56.5, 52.5, 55, 57, 54, 52.5\\}$ and two $\\lambda = 0.1$ values $\\{58, 58.5\\}$ into eight measurements, we enumerate all $\\binom{8}{2} = 28$ two-element combinations and compute the fraction whose mean $\\geq 58.25$. Only one combination ($\\{58, 58.5\\}$, mean $= 58.25$) meets this threshold, yielding an exact one-tailed permutation $p = 1/28 \\approx 0.036$ (two-tailed $p = 2/28 \\approx 0.071$, as one combination on the lower tail also reaches equal distance from the pooled mean). The consistency of the exact permutation and approximate $z$-test results confirms that the marginal signal is robust to distributional assumptions but remains inconclusive at $n = 2$.\n\nA Phase~2 ablation reinforces this conclusion. Setting $\\lambda = 0$ during Phase~2 (steps 5K--30K), so that SDF supervision is active only during auxiliary head warmup (Phase~1, steps 0--5K), yields CAR of 57.5\\% (single seed, s2). This value lies within the null range, indicating that SDF training produces no lasting behavioral effect on collision avoidance.\n\n\\section{Step-wise Checkpoint Analysis for \\texorpdfstring{$\\lambda = 0.1$}{lambda = 0.1}}\n\\label{sec:appendix_stepwise}\n\nTable~\\ref{tab:stepwise_lambda01} reports per-seed CAR at seven checkpoints for $\\lambda = 0.1$. Seed-1 data is available at 16K, 20K, 22K, and 30K; 24K--28K report seed-0 only. The seed-0 curve shows no monotonic trend through 28K; the 30K checkpoint marks the first consistent dual-seed departure from the null band, though whether this reflects a genuine late-training effect or sampling variance at $n = 2$ remains open.\n\n\\begin{table}[h]\n\\centering\n\\caption{Per-seed CAR (\\%) at training checkpoints for $\\lambda = 0.1$ (200 episodes each). 24K--28K: seed-0 only. Dual-seed means remain within the null band (54.58\\%\\,$\\pm$\\,1.93\\%) at all checkpoints except 30K, where both seeds depart marginally (two-tailed permutation $p \\approx 0.071$).}\n\\label{tab:stepwise_lambda01}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lccc}\n\\toprule\nCheckpoint & Seed 0 & Seed 1 & Mean \\\\\n\\midrule\n16K steps & 55.5 & 56.0 & 55.75 \\\\\n20K steps & 55.0 & 56.0 & 55.5 \\\\\n22K steps & 60.5 & 56.5 & 58.5 \\\\\n24K steps & 52.5 & -- & -- \\\\\n26K steps & 53.5 & -- & -- \\\\\n28K steps & 54.5 & -- & -- \\\\\n30K steps & 58.0 & 58.5 & 58.25 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nIndividual seeds exhibit checkpoint-to-checkpoint CAR fluctuations of up to 8\\,pp (seed~0: 52.5--60.5\\%), larger than the cross-seed standard deviation at any fixed checkpoint ($\\leq$2.8\\,pp). This is consistent with binomial sampling noise at $n = 50$ episodes per task ($\\sigma \\approx 7$\\,pp per task for $p \\approx 0.5$). The seed-averaged curve shows no monotonic trend, confirming that SDF loss weight does not produce a progressive training signal.\n\n\n\\section{Oracle SDF Refinement Details}\n\\label{sec:appendix_oracle}\n\nAll oracle variants replace the learned SDF decoder with ground-truth distance fields computed from the simulation geometry. Each is evaluated for 160 episodes (4 tasks $\\times$ 40).\n\n\\paragraph{Oracle-adaptive.} At each timestep, if the ground-truth SDF at the end-effector position falls below a safety margin, the action is adjusted by a step in the negative SDF gradient direction. The step size $\\alpha$ is scaled inversely with distance: smaller distances produce larger corrections. This mimics an adaptive potential field controller.\n\n\\paragraph{Oracle-fixed.} Identical to Oracle-adaptive except the step size is fixed at $\\alpha = 0.005$ regardless of distance. This isolates the effect of step-size adaptation from the refinement geometry.\n\n\\paragraph{Oracle-feature.} Instead of modifying the action directly in Cartesian space, this variant applies the SDF gradient in the policy's latent feature space via backpropagation. The gradient of the ground-truth SDF value with respect to the intermediate features is computed and used to perturb the features before the action head decodes them. This tests whether geometric corrections are more effective when applied in the model's learned representation space. In practice, the feature-space variant fires on nearly every timestep (241.7 refinements per episode vs.\\ 14.2 for Cartesian variants) but with gradient magnitudes two orders of magnitude smaller (0.004--0.006 vs.\\ 0.18--0.49 in action space).\n\n\n\\section{Training Details}\n\\label{sec:appendix_training}\n\n\\paragraph{Architecture.}\nWe use LoRA~\\citep{hu2022lora} adapters injected into the PaliGemma vision encoder (rank 16, $\\alpha$=16) and the action expert (rank 32, $\\alpha$=32), following the configuration of OpenPi. The SDF decoder is a 4-layer MLP (hidden dimension 256) with skip connections, taking pooled suffix features (1024-d) and query points (3-d) as input. The end-effector extractor is a 2-layer MLP (1024 $\\to$ 256 $\\to$ 3).\n\n\\paragraph{Training schedule.}\nTraining proceeds in two phases:\n\\begin{itemize}\n    \\item \\textbf{Phase 1} (steps 0--5000): Backbone and LoRA parameters are frozen. Only the SDF decoder and EE extractor are trained, allowing them to learn meaningful representations before the policy adapts.\n    \\item \\textbf{Phase 2} (steps 5000--30000): LoRA parameters are unfrozen with a 100-step gradient warmup ramp. All auxiliary heads continue training jointly with the policy.\n\\end{itemize}\n\n\\paragraph{Hyperparameters.}\n\\begin{table}[h]\n\\centering\n\\caption{Training hyperparameters.}\n\\label{tab:hyperparams}\n\\begin{tabular}{ll}\n\\toprule\nParameter & Value \\\\\n\\midrule\nBase model & Pi0.5 (OpenPi, $\\sim$3.5B parameters) \\\\\nOptimizer & AdamW \\\\\nLearning rate & $2.5 \\times 10^{-5}$ (cosine decay to $\\mathrm{lr}/10$) \\\\\nWarmup steps & 1000 \\\\\nBatch size & 32 \\\\\nTotal steps & 30000 \\\\\n$\\lambda_\\mathrm{sdf}$ & \\{0.005, 0.01, 0.1\\} \\\\\n$\\lambda_\\mathrm{ee}$ & 0.01 \\\\\nSDF query points per step & 64 \\\\\nSDF clamp $\\delta$ & 0.05 m \\\\\nEikonal weight & 0.1 \\\\\nLoRA rank (vision) & 16 \\\\\nLoRA rank (action) & 32 \\\\\nPhase 1 duration & 5000 steps \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Evaluation protocol.}\nEach episode runs for at most 300 timesteps. The policy generates a 50-step action trajectory via flow matching and executes the first 5 steps before replanning. An episode terminates early upon task completion. Collision detection uses MuJoCo's built-in contact detection: any contact between the robot and a non-target object registers as a collision. For Pi0.5 evaluations, camera images are rotated 180$^\\circ$ to match the pre-training viewpoint convention; this correction was verified to restore TSR from ${\\sim}$5\\% to ${\\sim}$52\\% while leaving CAR comparable. Oracle variants use 40 episodes per task (160 total) with a single seed; all other configurations use 50 episodes per task (200 total).\n\n\\paragraph{Data.}\nWe use the SafeLIBERO object\\_pudding suite with pre-computed SDF ground truth. SDF values are computed offline from the obstacle mesh using a dense $64^3$ voxel grid. During training, 64 query points are randomly sampled per step from this grid.\n\n\\paragraph{Computational resources.}\nAll training and evaluation experiments are conducted on NVIDIA RTX PRO 6000 GPUs (96\\,GB). Phase~1 (5K steps) takes approximately 6 hours on a single GPU; Phase~2 (25K steps) takes approximately 32 hours. Evaluation of 200 episodes requires approximately 4 hours. Across 100+ experiments (training runs, evaluations, oracle variants, and ablations), the total computational budget is approximately 700 GPU-hours.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 81,
+        "oldLines": 8,
+        "newStart": 81,
+        "newLines": 6,
+        "lines": [
+          " Mean              & 74.7 & 51.5 & 54.0 & 53.8 \\\\",
+          " \\bottomrule",
+          " \\end{tabular}",
+          "-\\vspace{1pt}",
+          "-{\\footnotesize \\textsuperscript{$\\dagger$}Seeds 1 and 2 are excluded because their rotation protocol differs from seed 0, making per-task TSR non-comparable.}",
+          " \\end{table}",
+          " ",
+          " \\section{Per-Task CAR Breakdown}\\label{sec:appendix_pertask_car}"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+Local edits done. Let me verify the local file, then apply the same changes remotely.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1da76313-cd9b-41c6-ab38-b705fd6ac50d",
+  "uuid": "17f0289b-654e-426f-a3f0-f93c210f957b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XZWiaYStfr8MeJdYTiMvvT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 264,
+      "cache_read_input_tokens": 26254,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 264
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01FKGD5NjR52crB6975JsTnD`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/appendix.tex",
+  "offset": 60,
+  "limit": 30
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1da76313-cd9b-41c6-ab38-b705fd6ac50d",
+  "uuid": "92f7a00d-7885-4e1f-914d-7f53063be522",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XZWiaYStfr8MeJdYTiMvvT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 264,
+      "cache_read_input_tokens": 26254,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 264
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-28T01:11:42.525Z_
+
+<details><summary>↩ Tool result · `toolu_01FKGD5NjR52crB6975JsTnD`</summary>
+
+```text
+60	
+61	\section{Per-Task TSR Breakdown}\label{sec:appendix_tsr_pertask}
+62	
+63	Table~\ref{tab:per_task_tsr} decomposes TSR by task for the avoidance source attribution experiments (Section~\ref{sec:avoidance_source}). All tasks retain meaningful success rates after fine-tuning, with Chocolate Pudding most resilient and Orange Juice most affected.
+64	
+65	\begin{table}[h]
+66	\centering
+67	\caption{Per-task TSR (\%) at 30K training steps. Baseline reports the original 3-seed evaluation (aggregate TSR\,=\,71.5\% under the unified seed-7 protocol; per-task reeval data not available). LoRA-only reports 3-seed means (re-evaluated with unified seed-7 protocol); SDF conditions report 3-seed means.}
+68	\label{tab:per_task_tsr}
+69	\vspace{2pt}
+70	\small
+71	\begin{tabular}{lcccc}
+72	\toprule
+73	Task & Pi0.5 Base & LoRA-only & SDF $\lambda{=}0.005$ & SDF $\lambda{=}0.01$ \\
+74	 & (3 seeds) & (3 seeds) & (3 seeds) & (3 seeds) \\
+75	\midrule
+76	Orange Juice      & 70.7 & 30.0 & 33.3 & 24.7 \\
+77	Choco.\ Pudding   & 86.0 & 70.7 & 78.0 & 76.7 \\
+78	Milk              & 66.0 & 44.7 & 35.3 & 48.7 \\
+79	BBQ Sauce         & 76.0 & 60.7 & 69.3 & 65.3 \\
+80	\midrule
+81	Mean              & 74.7 & 51.5 & 54.0 & 53.8 \\
+82	\bottomrule
+83	\end{tabular}
+84	\end{table}
+85	
+86	\section{Per-Task CAR Breakdown}\label{sec:appendix_pertask_car}
+87	
+88	Table~\ref{tab:per_task_car} decomposes CAR by task for all fine-tuned conditions, supporting the claim that per-task ordering is preserved across SDF loss weights (\S\ref{sec:avoidance_source}). Chocolate Pudding is consistently highest and BBQ Sauce consistently lowest across all conditions, including $\lambda = 0.1$. The intermediate tasks (Orange Juice and Milk) exchange rank between seeds but remain bounded by the extremes. This invariance indicates that avoidance patterns reflect the spatial statistics of collision-free demonstrations rather than geometric supervision.
+89	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1da76313-cd9b-41c6-ab38-b705fd6ac50d",
+  "uuid": "7dce7b49-6b70-4b02-83f8-223f558c075a",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/appendix.tex",
+      "content": "\n\\section{Per-Task TSR Breakdown}\\label{sec:appendix_tsr_pertask}\n\nTable~\\ref{tab:per_task_tsr} decomposes TSR by task for the avoidance source attribution experiments (Section~\\ref{sec:avoidance_source}). All tasks retain meaningful success rates after fine-tuning, with Chocolate Pudding most resilient and Orange Juice most affected.\n\n\\begin{table}[h]\n\\centering\n\\caption{Per-task TSR (\\%) at 30K training steps. Baseline reports the original 3-seed evaluation (aggregate TSR\\,=\\,71.5\\% under the unified seed-7 protocol; per-task reeval data not available). LoRA-only reports 3-seed means (re-evaluated with unified seed-7 protocol); SDF conditions report 3-seed means.}\n\\label{tab:per_task_tsr}\n\\vspace{2pt}\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\nTask & Pi0.5 Base & LoRA-only & SDF $\\lambda{=}0.005$ & SDF $\\lambda{=}0.01$ \\\\\n & (3 seeds) & (3 seeds) & (3 seeds) & (3 seeds) \\\\\n\\midrule\nOrange Juice      & 70.7 & 30.0 & 33.3 & 24.7 \\\\\nChoco.\\ Pudding   & 86.0 & 70.7 & 78.0 & 76.7 \\\\\nMilk              & 66.0 & 44.7 & 35.3 & 48.7 \\\\\nBBQ Sauce         & 76.0 & 60.7 & 69.3 & 65.3 \\\\\n\\midrule\nMean              & 74.7 & 51.5 & 54.0 & 53.8 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Per-Task CAR Breakdown}\\label{sec:appendix_pertask_car}\n\nTable~\\ref{tab:per_task_car} decomposes CAR by task for all fine-tuned conditions, supporting the claim that per-task ordering is preserved across SDF loss weights (\\S\\ref{sec:avoidance_source}). Chocolate Pudding is consistently highest and BBQ Sauce consistently lowest across all conditions, including $\\lambda = 0.1$. The intermediate tasks (Orange Juice and Milk) exchange rank between seeds but remain bounded by the extremes. This invariance indicates that avoidance patterns reflect the spatial statistics of collision-free demonstrations rather than geometric supervision.\n",
+      "numLines": 30,
+      "startLine": 60,
+      "totalLines": 271
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_014nEom3pwdHuLmw8nWHXHUd`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1da76313-cd9b-41c6-ab38-b705fd6ac50d",
+  "uuid": "7e51f74b-a5c9-422e-ac7f-ae5fd7dd58fb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XZWiaYStfr8MeJdYTiMvvT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 264,
+      "cache_read_input_tokens": 26254,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 264
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-28T01:11:43.325Z_
+
+<details><summary>↩ Tool result · `toolu_014nEom3pwdHuLmw8nWHXHUd`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1da76313-cd9b-41c6-ab38-b705fd6ac50d",
+  "uuid": "d162afaa-6451-4831-83e0-16af14297487",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+Local file verified — all 5 changes correct. Now reading the remote file to apply the same edits.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1da76313-cd9b-41c6-ab38-b705fd6ac50d",
+  "uuid": "510c7f59-d1d7-4da3-ada1-b55d12873b68",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0127vWnnnbuAmHkPavTkATtb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1666,
+      "cache_read_input_tokens": 26518,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1666
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JyCDGmGwPM1LR3QC4o7tvb`</summary>
+
+```json
+{
+  "server": "westd-45947",
+  "command": "cat -n /root/colliforce-vla/paper/sections/appendix.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1da76313-cd9b-41c6-ab38-b705fd6ac50d",
+  "uuid": "8da5683d-3685-40f8-8156-5e13d35a0d32",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0127vWnnnbuAmHkPavTkATtb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1666,
+      "cache_read_input_tokens": 26518,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1666
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-28T01:11:48.790Z_
+
+<details><summary>↩ Tool result · `toolu_01JyCDGmGwPM1LR3QC4o7tvb`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/colliforce-vla/paper/sections/appendix.tex: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.98}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1da76313-cd9b-41c6-ab38-b705fd6ac50d",
+  "uuid": "080e355d-d8ff-4c19-b86e-cfc50d282ee4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/colliforce-vla/paper/sections/appendix.tex: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.98}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/colliforce-vla/paper/sections/appendix.tex: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.98}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The file doesn't exist on westd-45947. The task says to SSH to westd-45947 for the remote file, but the project context says server is westd-35807 with project root /root/colliforce-vla. Let me check both servers.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1da76313-cd9b-41c6-ab38-b705fd6ac50d",
+  "uuid": "efa92e2c-cf30-47f5-822f-46377fc2c4db",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C5gFEFi6HE4dXhYRiNVaTG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 254,
+      "cache_read_input_tokens": 28184,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 254
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+File not found on westd-45947. Let me check the correct server (westd-35807) and also search for the file.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1da76313-cd9b-41c6-ab38-b705fd6ac50d",
+  "uuid": "f1eff8cb-6e64-402a-badd-d24cea32b85d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C5gFEFi6HE4dXhYRiNVaTG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 254,
+      "cache_read_input_tokens": 28184,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 254
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Kk19jNZNFT8gg49TZfLzsN`</summary>
+
+```json
+{
+  "server": "westd-35807",
+  "command": "find /root/colliforce-vla/paper -name \"appendix.tex\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1da76313-cd9b-41c6-ab38-b705fd6ac50d",
+  "uuid": "a2840646-dd89-474e-9940-c6d52dc18b9b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C5gFEFi6HE4dXhYRiNVaTG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 254,
+      "cache_read_input_tokens": 28184,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 254
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LcUrCBEcBuGvo4EkQVu9Lv`</summary>
+
+```json
+{
+  "server": "westd-45947",
+  "command": "find /root/colliforce-vla -name \"appendix.tex\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1da76313-cd9b-41c6-ab38-b705fd6ac50d",
+  "uuid": "c04a94b8-e828-4397-8118-83fb73da2dc7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C5gFEFi6HE4dXhYRiNVaTG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 254,
+      "cache_read_input_tokens": 28184,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 254
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-28T01:11:57.921Z_
+
+<details><summary>↩ Tool result · `toolu_01Kk19jNZNFT8gg49TZfLzsN`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"find: '/root/colliforce-vla/paper': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.87}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1da76313-cd9b-41c6-ab38-b705fd6ac50d",
+  "uuid": "fe7d05ef-c6ac-4648-95c5-0cb96b20b11e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"find: '/root/colliforce-vla/paper': No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.87}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"find: '/root/colliforce-vla/paper': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.87}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-28T01:11:58.395Z_
+
+<details><summary>↩ Tool result · `toolu_01LcUrCBEcBuGvo4EkQVu9Lv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/colliforce-vla/docs/paper/appendix.tex\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1da76313-cd9b-41c6-ab38-b705fd6ac50d",
+  "uuid": "b68e0f8e-01bc-429b-97ed-2c5266e5570d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/colliforce-vla/docs/paper/appendix.tex\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/colliforce-vla/docs/paper/appendix.tex\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+Found it on westd-45947 at `/root/colliforce-vla/docs/paper/appendix.tex`. Let me read the relevant section.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1da76313-cd9b-41c6-ab38-b705fd6ac50d",
+  "uuid": "65d99d75-3025-4f30-ac77-a1c659d14af0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LTxQz9dEPU8cLNSYttRB1W",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 589,
+      "cache_read_input_tokens": 28438,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 589
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PtcfuCcLvQ54dpTQvvSsvD`</summary>
+
+```json
+{
+  "server": "westd-45947",
+  "command": "head -90 /root/colliforce-vla/docs/paper/appendix.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1da76313-cd9b-41c6-ab38-b705fd6ac50d",
+  "uuid": "40732e1c-b981-455b-88c8-f282395d8973",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LTxQz9dEPU8cLNSYttRB1W",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 589,
+      "cache_read_input_tokens": 28438,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 589
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-28T01:12:02.106Z_
+
+<details><summary>↩ Tool result · `toolu_01PtcfuCcLvQ54dpTQvvSsvD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\\appendix\\n\\n\\\\section{Per-Task Collision Avoidance Rates}\\\\label{sec:appendix_pertask}\\n\\nTable~\\\\ref{tab:pertask_lora} reports per-task CAR for LoRA-only fine-tuning across three seeds. The ordering is consistent: \\\\texttt{chocolate\\\\_pudding} highest, \\\\texttt{bbq\\\\_sauce} lowest. This ordering is invariant across all SDF conditions (Tables~\\\\ref{tab:pertask_l005}--\\\\ref{tab:pertask_l01}), confirming that avoidance patterns reflect the demonstration distribution rather than geometric supervision.\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\caption{Per-task CAR (\\\\%) for LoRA-only fine-tuning (no SDF), 30K checkpoint. Overall: 54.67\\\\,$\\\\pm$\\\\,2.02.}\\n\\\\label{tab:pertask_lora}\\n\\\\small\\n\\\\begin{tabular}{lcccc}\\n\\\\toprule\\nTask & s0 & s1 & s2 & Mean \\\\\\\\\\n\\\\midrule\\nchocolate\\\\_pudding & 74 & 68 & 76 & 72.67 \\\\\\\\\\nmilk & 70 & 72 & 62 & 68.00 \\\\\\\\\\norange\\\\_juice & 56 & 54 & 56 & 55.33 \\\\\\\\\\nbbq\\\\_sauce & 26 & 16 & 26 & 22.67 \\\\\\\\\\n\\\\midrule\\nPer-seed mean & 56.5 & 52.5 & 55.0 & 54.67 \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\end{table}\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\caption{Per-task CAR (\\\\%) for LoRA+SDF $\\\\lambda{=}0.005$, 30K checkpoint. Overall: 54.5\\\\,$\\\\pm$\\\\,2.29.}\\n\\\\label{tab:pertask_l005}\\n\\\\small\\n\\\\begin{tabular}{lcccc}\\n\\\\toprule\\nTask & s0 & s1 & s2 & Mean \\\\\\\\\\n\\\\midrule\\nchocolate\\\\_pudding & 74 & 70 & 74 & 72.67 \\\\\\\\\\nmilk & 74 & 68 & 72 & 71.33 \\\\\\\\\\norange\\\\_juice & 52 & 64 & 46 & 54.00 \\\\\\\\\\nbbq\\\\_sauce & 28 & 14 & 18 & 20.00 \\\\\\\\\\n\\\\midrule\\nPer-seed mean & 57.0 & 54.0 & 52.5 & 54.50 \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\end{table}\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\caption{Per-task CAR (\\\\%) for LoRA+SDF $\\\\lambda{=}0.01$, 30K checkpoint. Overall: 56.33\\\\,$\\\\pm$\\\\,1.61.}\\n\\\\label{tab:pertask_l01}\\n\\\\small\\n\\\\begin{tabular}{lcccc}\\n\\\\toprule\\nTask & s0 & s1 & s2 & Mean \\\\\\\\\\n\\\\midrule\\nchocolate\\\\_pudding & 74 & 76 & 68 & 72.67 \\\\\\\\\\nmilk & 72 & 72 & 72 & 72.00 \\\\\\\\\\norange\\\\_juice & 48 & 60 & 64 & 57.33 \\\\\\\\\\nbbq\\\\_sauce & 34 & 22 & 14 & 23.33 \\\\\\\\\\n\\\\midrule\\nPer-seed mean & 57.0 & 57.5 & 54.5 & 56.33 \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\end{table}\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\caption{Per-task CAR and TSR (\\\\%) for the Pi0.5 pre-trained baseline (no fine-tuning, single evaluation). Overall CAR: 28.5\\\\%, TSR: 71.5\\\\%.}\\n\\\\label{tab:pertask_baseline}\\n\\\\small\\n\\\\begin{tabular}{lcc}\\n\\\\toprule\\nTask & CAR & TSR \\\\\\\\\\n\\\\midrule\\nchocolate\\\\_pudding & 60 & 80 \\\\\\\\\\norange\\\\_juice & 16 & 74 \\\\\\\\\\nbbq\\\\_sauce & 32 & 66 \\\\\\\\\\nmilk & 6 & 66 \\\\\\\\\\n\\\\midrule\\nMean & 28.5 & 71.5 \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\end{table}\\n\\nThe per-task pattern reveals why \\\\texttt{bbq\\\\_sauce} is hardest: the BBQ sauce bottle is positioned behind a cluster of tall obstacles (moka pot, wine bottle), requiring the end-effector to navigate through a narrow corridor. \\\\texttt{chocolate\\\\_pudding}, placed at the front of the basket with fewer obstructions, is easiest. This ordering is consistent across all $\\\\lambda$ values, including a $20\\\\times$ range from 0.005 to 0.1 (Tables~\\\\ref{tab:pertask_l005}--\\\\ref{tab:pertask_l01}), confirming that task difficulty is determined by demonstration trajectory distribution rather than SDF loss weight.\\n\\n\\n\\\\section{Null Distribution and Permutation Test}\\\\label{sec:appendix_null}\\n\\nWe construct the null distribution from all conditions where SDF supervision is either absent or demonstrably redundant ($p > 0.1$ versus LoRA-only). This yields six per-seed CAR values: three LoRA-only seeds and three $\\\\lambda{=}0.005$ seeds (Table~\\\\ref{tab:null_dist}).\\n\\n\\\\begin{table}[h]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1da76313-cd9b-41c6-ab38-b705fd6ac50d",
+  "uuid": "a01ffe58-f3e4-461b-bf1c-8b46d303e217",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\\appendix\\\\n\\\\n\\\\\\\\section{Per-Task Collision Avoidance Rates}\\\\\\\\label{sec:appendix_pertask}\\\\n\\\\nTable~\\\\\\\\ref{tab:pertask_lora} reports per-task CAR for LoRA-only fine-tuning across three seeds. The ordering is consistent: \\\\\\\\texttt{chocolate\\\\\\\\_pudding} highest, \\\\\\\\texttt{bbq\\\\\\\\_sauce} lowest. This ordering is invariant across all SDF conditions (Tables~\\\\\\\\ref{tab:pertask_l005}--\\\\\\\\ref{tab:pertask_l01}), confirming that avoidance patterns reflect the demonstration distribution rather than geometric supervision.\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\caption{Per-task CAR (\\\\\\\\%) for LoRA-only fine-tuning (no SDF), 30K checkpoint. Overall: 54.67\\\\\\\\,$\\\\\\\\pm$\\\\\\\\,2.02.}\\\\n\\\\\\\\label{tab:pertask_lora}\\\\n\\\\\\\\small\\\\n\\\\\\\\begin{tabular}{lcccc}\\\\n\\\\\\\\toprule\\\\nTask & s0 & s1 & s2 & Mean \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nchocolate\\\\\\\\_pudding & 74 & 68 & 76 & 72.67 \\\\\\\\\\\\\\\\\\\\nmilk & 70 & 72 & 62 & 68.00 \\\\\\\\\\\\\\\\\\\\norange\\\\\\\\_juice & 56 & 54 & 56 & 55.33 \\\\\\\\\\\\\\\\\\\\nbbq\\\\\\\\_sauce & 26 & 16 & 26 & 22.67 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nPer-seed mean & 56.5 & 52.5 & 55.0 & 54.67 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\end{table}\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\caption{Per-task CAR (\\\\\\\\%) for LoRA+SDF $\\\\\\\\lambda{=}0.005$, 30K checkpoint. Overall: 54.5\\\\\\\\,$\\\\\\\\pm$\\\\\\\\,2.29.}\\\\n\\\\\\\\label{tab:pertask_l005}\\\\n\\\\\\\\small\\\\n\\\\\\\\begin{tabular}{lcccc}\\\\n\\\\\\\\toprule\\\\nTask & s0 & s1 & s2 & Mean \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nchocolate\\\\\\\\_pudding & 74 & 70 & 74 & 72.67 \\\\\\\\\\\\\\\\\\\\nmilk & 74 & 68 & 72 & 71.33 \\\\\\\\\\\\\\\\\\\\norange\\\\\\\\_juice & 52 & 64 & 46 & 54.00 \\\\\\\\\\\\\\\\\\\\nbbq\\\\\\\\_sauce & 28 & 14 & 18 & 20.00 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nPer-seed mean & 57.0 & 54.0 & 52.5 & 54.50 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\end{table}\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\caption{Per-task CAR (\\\\\\\\%) for LoRA+SDF $\\\\\\\\lambda{=}0.01$, 30K checkpoint. Overall: 56.33\\\\\\\\,$\\\\\\\\pm$\\\\\\\\,1.61.}\\\\n\\\\\\\\label{tab:pertask_l01}\\\\n\\\\\\\\small\\\\n\\\\\\\\begin{tabular}{lcccc}\\\\n\\\\\\\\toprule\\\\nTask & s0 & s1 & s2 & Mean \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nchocolate\\\\\\\\_pudding & 74 & 76 & 68 & 72.67 \\\\\\\\\\\\\\\\\\\\nmilk & 72 & 72 & 72 & 72.00 \\\\\\\\\\\\\\\\\\\\norange\\\\\\\\_juice & 48 & 60 & 64 & 57.33 \\\\\\\\\\\\\\\\\\\\nbbq\\\\\\\\_sauce & 34 & 22 & 14 & 23.33 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nPer-seed mean & 57.0 & 57.5 & 54.5 & 56.33 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\end{table}\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\caption{Per-task CAR and TSR (\\\\\\\\%) for the Pi0.5 pre-trained baseline (no fine-tuning, single evaluation). Overall CAR: 28.5\\\\\\\\%, TSR: 71.5\\\\\\\\%.}\\\\n\\\\\\\\label{tab:pertask_baseline}\\\\n\\\\\\\\small\\\\n\\\\\\\\begin{tabular}{lcc}\\\\n\\\\\\\\toprule\\\\nTask & CAR & TSR \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nchocolate\\\\\\\\_pudding & 60 & 80 \\\\\\\\\\\\\\\\\\\\norange\\\\\\\\_juice & 16 & 74 \\\\\\\\\\\\\\\\\\\\nbbq\\\\\\\\_sauce & 32 & 66 \\\\\\\\\\\\\\\\\\\\nmilk & 6 & 66 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nMean & 28.5 & 71.5 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\end{table}\\\\n\\\\nThe per-task pattern reveals why \\\\\\\\texttt{bbq\\\\\\\\_sauce} is hardest: the BBQ sauce bottle is positioned behind a cluster of tall obstacles (moka pot, wine bottle), requiring the end-effector to navigate through a narrow corridor. \\\\\\\\texttt{chocolate\\\\\\\\_pudding}, placed at the front of the basket with fewer obstructions, is easiest. This ordering is consistent across all $\\\\\\\\lambda$ values, including a $20\\\\\\\\times$ range from 0.005 to 0.1 (Tables~\\\\\\\\ref{tab:pertask_l005}--\\\\\\\\ref{tab:pertask_l01}), confirming that task difficulty is determined by demonstration trajectory distribution rather than SDF loss weight.\\\\n\\\\n\\\\n\\\\\\\\section{Null Distribution and Permutation Test}\\\\\\\\label{sec:appendix_null}\\\\n\\\\nWe construct the null distribution from all conditions where SDF supervision is either absent or demonstrably redundant ($p > 0.1$ versus LoRA-only). This yields six per-seed CAR values: three LoRA-only seeds and three $\\\\\\\\lambda{=}0.005$ seeds (Table~\\\\\\\\ref{tab:null_dist}).\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\\appendix\\n\\n\\\\section{Per-Task Collision Avoidance Rates}\\\\label{sec:appendix_pertask}\\n\\nTable~\\\\ref{tab:pertask_lora} reports per-task CAR for LoRA-only fine-tuning across three seeds. The ordering is consistent: \\\\texttt{chocolate\\\\_pudding} highest, \\\\texttt{bbq\\\\_sauce} lowest. This ordering is invariant across all SDF conditions (Tables~\\\\ref{tab:pertask_l005}--\\\\ref{tab:pertask_l01}), confirming that avoidance patterns reflect the demonstration distribution rather than geometric supervision.\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\caption{Per-task CAR (\\\\%) for LoRA-only fine-tuning (no SDF), 30K checkpoint. Overall: 54.67\\\\,$\\\\pm$\\\\,2.02.}\\n\\\\label{tab:pertask_lora}\\n\\\\small\\n\\\\begin{tabular}{lcccc}\\n\\\\toprule\\nTask & s0 & s1 & s2 & Mean \\\\\\\\\\n\\\\midrule\\nchocolate\\\\_pudding & 74 & 68 & 76 & 72.67 \\\\\\\\\\nmilk & 70 & 72 & 62 & 68.00 \\\\\\\\\\norange\\\\_juice & 56 & 54 & 56 & 55.33 \\\\\\\\\\nbbq\\\\_sauce & 26 & 16 & 26 & 22.67 \\\\\\\\\\n\\\\midrule\\nPer-seed mean & 56.5 & 52.5 & 55.0 & 54.67 \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\end{table}\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\caption{Per-task CAR (\\\\%) for LoRA+SDF $\\\\lambda{=}0.005$, 30K checkpoint. Overall: 54.5\\\\,$\\\\pm$\\\\,2.29.}\\n\\\\label{tab:pertask_l005}\\n\\\\small\\n\\\\begin{tabular}{lcccc}\\n\\\\toprule\\nTask & s0 & s1 & s2 & Mean \\\\\\\\\\n\\\\midrule\\nchocolate\\\\_pudding & 74 & 70 & 74 & 72.67 \\\\\\\\\\nmilk & 74 & 68 & 72 & 71.33 \\\\\\\\\\norange\\\\_juice & 52 & 64 & 46 & 54.00 \\\\\\\\\\nbbq\\\\_sauce & 28 & 14 & 18 & 20.00 \\\\\\\\\\n\\\\midrule\\nPer-seed mean & 57.0 & 54.0 & 52.5 & 54.50 \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\end{table}\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\caption{Per-task CAR (\\\\%) for LoRA+SDF $\\\\lambda{=}0.01$, 30K checkpoint. Overall: 56.33\\\\,$\\\\pm$\\\\,1.61.}\\n\\\\label{tab:pertask_l01}\\n\\\\small\\n\\\\begin{tabular}{lcccc}\\n\\\\toprule\\nTask & s0 & s1 & s2 & Mean \\\\\\\\\\n\\\\midrule\\nchocolate\\\\_pudding & 74 & 76 & 68 & 72.67 \\\\\\\\\\nmilk & 72 & 72 & 72 & 72.00 \\\\\\\\\\norange\\\\_juice & 48 & 60 & 64 & 57.33 \\\\\\\\\\nbbq\\\\_sauce & 34 & 22 & 14 & 23.33 \\\\\\\\\\n\\\\midrule\\nPer-seed mean & 57.0 & 57.5 & 54.5 & 56.33 \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\end{table}\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\caption{Per-task CAR and TSR (\\\\%) for the Pi0.5 pre-trained baseline (no fine-tuning, single evaluation). Overall CAR: 28.5\\\\%, TSR: 71.5\\\\%.}\\n\\\\label{tab:pertask_baseline}\\n\\\\small\\n\\\\begin{tabular}{lcc}\\n\\\\toprule\\nTask & CAR & TSR \\\\\\\\\\n\\\\midrule\\nchocolate\\\\_pudding & 60 & 80 \\\\\\\\\\norange\\\\_juice & 16 & 74 \\\\\\\\\\nbbq\\\\_sauce & 32 & 66 \\\\\\\\\\nmilk & 6 & 66 \\\\\\\\\\n\\\\midrule\\nMean & 28.5 & 71.5 \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\end{table}\\n\\nThe per-task pattern reveals why \\\\texttt{bbq\\\\_sauce} is hardest: the BBQ sauce bottle is positioned behind a cluster of tall obstacles (moka pot, wine bottle), requiring the end-effector to navigate through a narrow corridor. \\\\texttt{chocolate\\\\_pudding}, placed at the front of the basket with fewer obstructions, is easiest. This ordering is consistent across all $\\\\lambda$ values, including a $20\\\\times$ range from 0.005 to 0.1 (Tables~\\\\ref{tab:pertask_l005}--\\\\ref{tab:pertask_l01}), confirming that task difficulty is determined by demonstration trajectory distribution rather than SDF loss weight.\\n\\n\\n\\\\section{Null Distribution and Permutation Test}\\\\label{sec:appendix_null}\\n\\nWe construct the null distribution from all conditions where SDF supervision is either absent or demonstrably redundant ($p > 0.1$ versus LoRA-only). This yields six per-seed CAR values: three LoRA-only seeds and three $\\\\lambda{=}0.005$ seeds (Table~\\\\ref{tab:null_dist}).\\n\\n\\\\begin{table}[h]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The remote file has a completely different structure from the local file. There's no `tab:per_task_tsr` table on the remote server. The remote file has separate per-task CAR tables (tab:pertask_lora, tab:pertask_l005, tab:pertask_l01) and a baseline table (tab:pertask_baseline), but no combined per-task TSR table like the local one.
+
+Let me search for "per_task_tsr" or "Per-Task TSR" in the remote file to see if it exists elsewhere.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1da76313-cd9b-41c6-ab38-b705fd6ac50d",
+  "uuid": "409c5808-2165-414c-84b8-e51af8a32d29",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014VNhaRib3c5BMAe2J9HYV8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1972,
+      "cache_read_input_tokens": 29027,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1972
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35_
+
+The remote file has a completely different structure — no `tab:per_task_tsr` table. Let me search for it.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1da76313-cd9b-41c6-ab38-b705fd6ac50d",
+  "uuid": "6511fc5f-cb22-4234-b36a-a60e3a93c304",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014VNhaRib3c5BMAe2J9HYV8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1972,
+      "cache_read_input_tokens": 29027,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1972
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PBYLVB1TbzMJ8usQiybYn8`</summary>
+
+```json
+{
+  "server": "westd-45947",
+  "command": "grep -n \"per_task_tsr\\|Per-Task TSR\" /root/colliforce-vla/docs/paper/appendix.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1da76313-cd9b-41c6-ab38-b705fd6ac50d",
+  "uuid": "9aadf16f-c92c-4fd8-b97c-8f4dcdef5b30",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014VNhaRib3c5BMAe2J9HYV8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1972,
+      "cache_read_input_tokens": 29027,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1972
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-28T01:12:10.061Z_
+
+<details><summary>↩ Tool result · `toolu_01PBYLVB1TbzMJ8usQiybYn8`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1da76313-cd9b-41c6-ab38-b705fd6ac50d",
+  "uuid": "9655f0d6-bcc7-4fe3-b426-7b6e825b9e4c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RWnVo2HTGDDh1rbEP5X7df`</summary>
+
+```json
+{
+  "server": "westd-45947",
+  "command": "grep -n \"per_task_tsr\" /root/colliforce-vla/docs/paper/appendix.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1da76313-cd9b-41c6-ab38-b705fd6ac50d",
+  "uuid": "3cb301a8-7d45-4244-ad57-3ac0437e5735",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XQPdt8vT4mPNEBbwtt9r3v",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 400,
+      "cache_read_input_tokens": 30999,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 400
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-28T01:12:13.026Z_
+
+<details><summary>↩ Tool result · `toolu_01RWnVo2HTGDDh1rbEP5X7df`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1da76313-cd9b-41c6-ab38-b705fd6ac50d",
+  "uuid": "bc8a0550-15ca-41b1-a274-47355c50e1f5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40_
+
+远程 appendix.tex 没有 `tab:per_task_tsr` 表——远程文件结构不同（使用的是按条件拆分的 CAR 表，没有合并的 per-task TSR 表）。
+
+**本地修改已完成**，5 处变更全部正确：
+1. Caption: "LoRA-only reports 3-seed means (re-evaluated with unified seed-7 protocol)"
+2. 表头: `LoRA-only` (无 dagger)，`(3 seeds)`
+3. 数据: OJ=30.0, CP=70.7, Milk=44.7, BBQ=60.7
+4. Mean: 51.5
+5. 脚注已删除
+
+**远程文件无需修改** — westd-45947 的 `/root/colliforce-vla/docs/paper/appendix.tex` 没有 `tab:per_task_tsr` 表，结构与本地不同。远程文件的 appendix 仅包含按条件拆分的 per-task CAR 表和 baseline 表，不存在需要更新的 per-task TSR 表。
+
+需要我把本地版本的 per-task TSR 表同步到远程文件吗？
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1da76313-cd9b-41c6-ab38-b705fd6ac50d",
+  "uuid": "b99e35b2-0138-44a7-91c9-ee136c463ba3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011K8Zp8qkKf6BW4ZLibeFGt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 311,
+      "cache_read_input_tokens": 31399,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 311
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 41_
+
+远程 appendix.tex 没有 `tab:per_task_tsr` 表——远程文件结构不同（使用的是按条件拆分的 CAR 表，没有合并的 per-task TSR 表）。
+
+**本地修改已完成**，5 处变更全部正确：
+1. Caption: "LoRA-only reports 3-seed means (re-evaluated with unified seed-7 protocol)"
+2. 表头: `LoRA-only` (无 dagger)，`(3 seeds)`
+3. 数据: OJ=30.0, CP=70.7, Milk=44.7, BBQ=60.7
+4. Mean: 51.5
+5. 脚注已删除
+
+**远程文件无需修改** — westd-45947 的 `/root/colliforce-vla/docs/paper/appendix.tex` 没有 `tab:per_task_tsr` 表，结构与本地不同。远程文件的 appendix 仅包含按条件拆分的 per-task CAR 表和 baseline 表，不存在需要更新的 per-task TSR 表。
+
+需要我把本地版本的 per-task TSR 表同步到远程文件吗？
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 67896,
+  "duration_api_ms": 67252,
+  "num_turns": 14,
+  "stop_reason": "end_turn",
+  "session_id": "1da76313-cd9b-41c6-ab38-b705fd6ac50d",
+  "total_cost_usd": 0.35945725,
+  "usage": {
+    "input_tokens": 16,
+    "cache_creation_input_tokens": 20259,
+    "cache_read_input_tokens": 312435,
+    "output_tokens": 2981,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 20259,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 340,
+        "cache_read_input_tokens": 31399,
+        "cache_creation_input_tokens": 311,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 311
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1896,
+      "outputTokens": 24,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002016,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 16,
+      "outputTokens": 2981,
+      "cacheReadInputTokens": 312435,
+      "cacheCreationInputTokens": 20259,
+      "webSearchRequests": 0,
+      "costUSD": 0.35744125,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "97f935ba-5e7e-46db-be87-a4b0419de9a6"
+}
+```
+
+</details>
+
+---

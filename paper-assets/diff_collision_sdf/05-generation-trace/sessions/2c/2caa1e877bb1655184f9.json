@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2caa1e877bb1655184f9",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "code eval batch script",
+  "task_key": "worker_code_eval_batch_script_20260520T120802",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_eval_batch_script_20260520T120802_result.json",
+    "occurrence": 1,
+    "bytes": 800,
+    "sha256": "517252c04de6d7ed5d6fe93aa56ce38c1fef296e006d2d79a9b3aae3da162f37"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已创建并验证通过。`/root/colliforce-vla/scripts/eval_batch.sh`：\n\n- **三层循环** method × scene × seed，自动推导 checkpoint 路径（取最大数值 step 子目录）\n- **method 映射**：baseline → `--model_type baseline`，a1 → `--model_type a1 --sdf_checkpoint ...`，a3 → `--model_type a3 --sdf_gt_path ...`，a3_no_refine → `--model_type a3 --no_refine`\n- **scene 映射**：spatial_* → safelibero_spatial + Level II，object_* → safelibero_object + Level I\n- **结果提取**：从 eval 输出 JSON 解析 TSR/CAR/ETS/avg_smoothness，追加到 CSV\n- **额外支持**：`--step` 指定 step、`--dry_run` 只打印命令不执行\n- dry run 验证路径推导正确：baseline 取到 step 12000，a1 取到 8000 并带 sdf_decoder.pt"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-eval-batch-script.md"
+}

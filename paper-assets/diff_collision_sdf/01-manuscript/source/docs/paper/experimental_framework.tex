@@ -1,0 +1,53 @@
+\section{Experimental Framework}\label{sec:framework}
+
+This section defines the evaluation platform, metrics, and model configurations that underpin the analyses in Sections~\ref{sec:fake_safety}--\ref{sec:avoidance_source}. Our primary methodological contribution is the displacement-filtered Collision Avoidance Rate (dfCAR), which separates genuine avoidance from action collapse.
+
+\subsection{Benchmark and Evaluation Protocol}
+
+We conduct all experiments on SafeLIBERO~\cite{hu2025vlsa}, a collision-aware evaluation extension of the LIBERO simulation platform~\cite{liu2023libero}. SafeLIBERO augments standard manipulation benchmarks with per-timestep collision detection and non-target obstacle annotations, enabling systematic measurement of both task completion and safety.
+
+We select the \textit{object\_pudding} Level~I suite, which comprises four tabletop manipulation tasks. In each task, a target object is surrounded by non-target obstacles that the robot must avoid during grasping and transport. The MuJoCo physics engine provides collision detection: any contact between the robot (end-effector or arm links) and a non-target object registers as a collision event.
+
+Each method is evaluated for 50 episodes per task (200 episodes total). For multi-seed experiments (Pi0.5), we run 3 seeds to produce 600 episodes per configuration. Initial object configurations are fixed across methods to ensure fair comparison.
+
+\subsection{Evaluation Metrics}\label{sec:metrics}
+
+\paragraph{Standard metrics.} We report two conventional metrics. The \emph{Task Success Rate} (TSR) is the fraction of episodes where the manipulation task reaches completion. The \emph{Collision Avoidance Rate} (CAR) is the fraction of episodes in which no collision occurs between the robot and any non-target object.
+
+\paragraph{Displacement-filtered CAR.} Standard CAR conflates two qualitatively distinct behaviors: a robot that plans a trajectory around obstacles, and a robot that has collapsed into inaction. Both register as ``safe,'' yet only the former reflects collision avoidance capability. We propose the displacement-filtered CAR (dfCAR), which excludes episodes exhibiting action collapse from both numerator and denominator.
+
+We define an episode $e$ as \emph{action-collapsed} when its maximum end-effector displacement satisfies $d_{\max}(e) < \tau_d$, where $\tau_d = 0.1$\,mm. The filtered metric is then:
+\begin{equation}\label{eq:car_f}
+\text{dfCAR} = \frac{|\{e : \text{safe}(e) \;\land\; d_{\max}(e) \geq \tau_d\}|}{|\{e : d_{\max}(e) \geq \tau_d\}|}
+\end{equation}
+where $d_{\max}(e)$ denotes the maximum Euclidean displacement of the end-effector across all timesteps in episode $e$. The threshold $\tau_d = 0.1$\,mm corresponds to sub-actuator-resolution motion. In practice, the displacement distribution is bimodal: collapsed episodes cluster below 1\,$\mu$m and active episodes exceed 200\,mm, with no intermediate population. Consequently, any $\tau_d \in [2, 200]$\,mm produces identical filtering (Appendix~\ref{sec:appendix_threshold}).
+
+\paragraph{Auxiliary metrics.} We additionally report the \emph{Action-Collapse Rate}, the fraction of episodes with $d_{\max} < \tau_d$, which quantifies the severity of action collapse for each method. The \emph{Simultaneous Success Rate} (SSR $= $ TSR $\cap$ CAR) measures the fraction of episodes that achieve both task completion and collision avoidance.
+
+\subsection{Models and Training}
+
+\paragraph{Base architectures.} We evaluate two VLA models from the Pi0 family~\cite{black2024pi0}. \textbf{Pi0} (${\sim}$3B parameters) uses a PaliGemma vision-language encoder paired with a dedicated action expert that generates continuous actions via flow matching~\cite{lipman2023flow}. \textbf{Pi0.5} extends this architecture to ${\sim}$3.5B parameters with broader pre-training data, and serves as a stronger baseline that exhibits less action collapse.
+
+\paragraph{Training configurations.} We evaluate four model variants:
+\begin{itemize}
+\item \textit{Full-FT baseline}: Pi0 with all parameters fine-tuned on SafeLIBERO demonstrations using the flow-matching action loss.
+\item \textit{LoRA baseline}: Pi0 with LoRA adapters (${\sim}$33.5M trainable parameters), same demonstrations and loss.
+\item \textit{A1-LoRA}: Pi0 + LoRA augmented with two auxiliary heads. An SDF Decoder (4-layer MLP, ${\sim}$395K parameters) predicts the signed distance from the end-effector to the nearest obstacle surface, supervised with a clamped $L_1$ loss and an Eikonal regularizer ($\mathcal{L}_\text{SDF}$). An EE Extractor (2-layer MLP, ${\sim}$263K parameters) predicts end-effector position from action expert features ($\mathcal{L}_\text{EE}$, MSE loss). SDF ground truth is computed from known obstacle meshes in simulation.
+\item \textit{Pi0.5 + A1}: The A1 architecture applied to the Pi0.5 backbone. Training proceeds in two phases: Phase~1 (steps 0--5K) trains only the auxiliary heads on detached features with the backbone frozen; Phase~2 (steps 5K--30K) unfreezes LoRA parameters for joint optimization. We evaluate $\lambda_\text{SDF} \in \{0.005, 0.01\}$.
+\end{itemize}
+
+\subsection{Oracle SDF Refinement}
+
+To test the theoretical upper bound of end-effector-only SDF refinement (analyzed in Section~\ref{sec:ee_only}), we replace the learned SDF network with the ground-truth signed distance field computed from simulation geometry. This eliminates prediction error and isolates the structural limitation of the refinement paradigm itself.
+
+We evaluate three oracle variants that differ in how the SDF gradient is applied:
+\begin{itemize}
+\item \textit{Oracle-adaptive}: runtime gradient refinement with a dynamic step size $\alpha$ that scales inversely with gradient magnitude.
+\item \textit{Oracle-fixed}: a constant step size $\alpha = 0.005$.
+\item \textit{Oracle-feature}: gradient applied in the VLA's latent feature space rather than Cartesian action space.
+\end{itemize}
+Each variant is evaluated for 160 episodes (4 tasks $\times$ 40 episodes) with a single seed.
+
+\subsection{SDF Ground Truth}
+
+The workspace signed distance field is computed from the known obstacle meshes available in the LIBERO/MuJoCo simulation environment. SDF values are positive in free space, zero on the obstacle surface, and negative inside the obstacle volume. Ground-truth labels are generated at query points sampled along predicted end-effector trajectories during training.

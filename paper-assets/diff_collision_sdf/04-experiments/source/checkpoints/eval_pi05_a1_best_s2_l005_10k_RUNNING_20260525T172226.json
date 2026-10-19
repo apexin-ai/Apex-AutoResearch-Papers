@@ -1,0 +1,26 @@
+{
+  "exp_id": "eval_pi05_a1_best_s2_l005_10k",
+  "project": "diff_collision_sdf",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-25T17:21:50.577Z",
+    "updated_at": "2026-05-25T17:22:26.326Z",
+    "hypothesis": "Pi0.5+A1 best checkpoint eval (seed2, λ=0.005, step 10K): evaluates the sweet-spot checkpoint before action collapse. At 10K the model showed real collision avoidance (~0.4% filtered CAR). Compares with 30K (100% frozen) to demonstrate the collapse phenomenon quantitatively.",
+    "parent": "train_pi05_a1_obj_s2_l005",
+    "spec": {
+      "command": "python scripts/eval_safelibero.py --config_name pi05_libero --model_type lora_baseline --checkpoint_path /root/autodl-tmp/openpi/checkpoints/a1_sdf_pi05_object_pudding_seed2_l005/best/ --gpu 3 --output_path /root/autodl-tmp/eval_results/eval_s2_l005_best_10k.json",
+      "server": "westd-35807",
+      "data_path": "LIBERO object_pudding levelII",
+      "data_count": 200,
+      "model_name": "pi05_lora_baseline+sdf_seed2_l005_best_step10k",
+      "seed": 2,
+      "checkpoint_source": "train_pi05_a1_obj_s2_l005 best/ (step 10000, best_loss=0.008740)",
+      "eval_data": "4 tasks × 50 episodes"
+    }
+  },
+  "timestamp": "2026-05-25T17:22:26.447531+00:00",
+  "trigger": "update_registry"
+}

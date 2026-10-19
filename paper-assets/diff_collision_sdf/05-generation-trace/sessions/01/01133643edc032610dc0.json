@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "01133643edc032610dc0",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops eval best s2 10k cuda3",
+  "task_key": "worker_ops_eval_best_s2_10k_cuda3_20260525T191645",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval_best_s2_10k_cuda3_20260525T191645_result.json",
+    "occurrence": 1,
+    "bytes": 474,
+    "sha256": "e570db359a9c356b8b52e94c7b08d8d711459bd2d496837bb13abd7532f1362d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已启动成功：\n\n- **tmux session**: `eval_pi05_a1_best_s2_l005_10k`\n- **PID**: 75114\n- **GPU 3**: 17998 MiB / 97887 MiB 已占用，模型正在加载\n- **Checkpoint**: `/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_l005/best/`（注意实际路径与任务描述中的不同，多了一层 `a1_sdf_pi05_object_pudding/` 目录）\n- **日志**: `~/runs/diff_collision_sdf/eval_pi05_a1_best_s2_l005_10k.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-best-s2-10k-cuda3-copy-3.md"
+}

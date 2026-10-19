@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "358a9650ee2addbe6d5f",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ssh root disk cleanup only",
+  "task_key": "worker_ssh_root_disk_cleanup_only_20260520T094958",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_root_disk_cleanup_only_20260520T094958_result.json",
+    "occurrence": 1,
+    "bytes": 651,
+    "sha256": "c7cc45667a069b40f1ade86bc52316a93b61ea085a06058a6fdb9a7bb32ece17"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**A1 PID 185994**: 存活，运行 1h27m，step ~7421/30000 (25%)，loss ~0.26\n\n**磁盘清理对比**:\n| | Used | Avail | Use% |\n|---|---|---|---|\n| 清理前 | 16G | 15G | 53% |\n| 清理后 | 15G | 16G | 50% |\n\n**释放约 1G**，清理内容：\n- HuggingFace datasets cache (`/root/.cache/huggingface/datasets/`) — 2.5G\n- conda pkgs (`/root/miniconda3/pkgs/`) — 553M\n- `/tmp/tmp4tc_1nbo` (临时 zip) — 58M\n- torch/triton/pip cache — 已被上个 Worker 清过，本次 0\n\n**后台运行中**: git gc 正在压缩 vlsa-aegis (.git 348M) 和 LIBERO (.git 214M)，完成后预计再释放 200-400M。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-root-disk-cleanup-only.md"
+}

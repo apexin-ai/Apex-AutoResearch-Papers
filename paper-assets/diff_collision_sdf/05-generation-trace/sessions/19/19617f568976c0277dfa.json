@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "19617f568976c0277dfa",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops p0 checkpoint collision fix",
+  "task_key": "worker_ops_p0_checkpoint_collision_fix_20260523T001157",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_p0_checkpoint_collision_fix_20260523T001157_result.json",
+    "occurrence": 1,
+    "bytes": 171,
+    "sha256": "1bf83119e1ff356841f362c44b19da3fa6b5e90ebfb88f0bd47830d3804b40e6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "后台 sleep 完成，训练已确认正常运行（两个进程都在 ~step 20+，loss 正常下降，checkpoint 路径已分离）。无需额外操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-p0-checkpoint-collision-fix.md"
+}

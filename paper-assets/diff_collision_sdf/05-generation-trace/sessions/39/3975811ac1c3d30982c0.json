@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3975811ac1c3d30982c0",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops download pi05 and study eval",
+  "task_key": "worker_ops_download_pi05_and_study_eval_20260522T092826",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_download_pi05_and_study_eval_20260522T092826_result.json",
+    "occurrence": 1,
+    "bytes": 3544,
+    "sha256": "8f317978fcd765d0152410c0572533c8a6ad4a0fb9fcf6df37dda7c146412e42"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载继续中。注意到 gcsfs 创建了嵌套的 `params/params/` 目录结构，下载完后需要修正。\n\n现在给出完整分析结果：\n\n---\n\n## 产出报告\n\n### 1. pi0.5 checkpoint 下载状态\n\n- **状态**: 下载中 (PID 368719)，当前 ~1.3GB\n- **格式**: JAX ocdbt sharded (非 PyTorch `model.safetensors`)\n- **路径**: `/root/autodl-tmp/openpi_weights/pi05_libero/`\n- **预估大小**: 与 pi0_base (14GB) 相当，需要较长时间\n- **问题**: gcsfs 创建了嵌套 `params/params/` 目录，下载完成后需要修正\n\n> **重要发现**: pi0_base 是 PyTorch 格式 (`model.safetensors`)，pi0.5 是 JAX 格式 (`params/` ocdbt shards)。当前 `eval_safelibero.py` 的 `create_trained_policy()` 会自动检测格式，走 JAX 路径需要 JAX 环境。\n\n### 2. 磁盘空间\n\n`/root/autodl-tmp`: 250GB 总量, 82GB 已用, **169GB 可用** — 充足。\n\n### 3. 官方 eval action 处理流程\n\n`openpi/examples/libero/main.py` 逐步：\n\n1. **渲染图像**: env 以 256×256 渲染 → `image_tools.resize_with_pad` 缩放到 224×224\n2. **构建 state**: `ee_pos(3) + _quat2axisangle(ee_quat)(3) + gripper_qpos(2)` = 8D\n3. **构建 input dict**: `{\"observation/image\", \"observation/wrist_image\", \"observation/state\", \"prompt\"}`\n4. **推理**: `client.infer(element)[\"actions\"]` → 返回 action chunk (多步)\n5. **Action chunk 处理**: 取前 `replan_steps=5` 步放入 deque，每步 popleft 一个 action\n6. **执行**: `env.step(action.tolist())` — 7D action (pos_delta(3) + ori_delta(3) + gripper(1))\n7. **Re-plan**: 5 步用完后重新推理\n8. **Normalization**: 在 server 端由 `transforms.Unnormalize` 自动完成，client 拿到的已经是原始 action space\n\n关键参数：\n- warm-up: 10 步 `[0]*6 + [-1.0]` (gripper closed)\n- seed: 7, 且显式 `env.seed(7)`\n- max_steps: spatial=220, object=280, goal=300\n\n### 4. 差异清单 (官方 vs eval_safelibero.py)\n\n| 维度 | 官方 eval | 我们的 eval | 影响 |\n|------|-----------|------------|------|\n| **Action chunking** | `replan_steps=5`, 每 5 步 re-plan | **每步都 re-plan**, 取 `actions[0]` | **HIGH** — 改变 temporal execution pattern |\n| **Image 渲染分辨率** | 256→resize to 224 | 直接 224 渲染 | **MEDIUM** — 像素级不同 |\n| **Warm-up** | 10 步, gripper=-1 | 50 步, action=zeros (gripper=0) | **LOW-MED** — 初始状态可能略不同 |\n| **Max steps** | suite-specific (spatial=220) | 固定 default=300 | **LOW** — 我们给更多步，不会更差 |\n| **Seed** | default 7 + `env.seed()` | default 0, 无 `env.seed()` | **LOW** — 影响初始状态采样 |\n| **Orientation conversion** | 手写 `_quat2axisangle` | `scipy Rotation.as_rotvec()` | **NONE** — 数学等价 |\n| **Normalization** | server 端 Unnormalize | `policy.infer()` 内含 Unnormalize | **NONE** — 等价 |\n| **Success check** | `done` from env.step | `env.check_success()` | **NONE** — 等价 |\n\n### 5. 建议修复项\n\n**必须修 (影响结果一致性)**:\n1. **加 action chunking**: 加 `replan_steps` 参数，用 deque 缓存 action chunk，每 N 步 re-plan 一次（匹配官方 default=5）\n\n**建议修 (对齐官方)**:\n2. **渲染分辨率**: 改为 `camera_heights=256, camera_widths=256`，推理前 resize 到 224\n3. **Warm-up**: 改为 10 步 + gripper closed (`[0]*6 + [-1.0]`)\n4. **env.seed()**: 添加 `env.seed(args.seed)`\n5. **Suite-specific max_steps**: 添加默认值映射，或保留 300 统一上限"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-download-pi05-and-study-eval.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "432be1d7c5dbfdfd6060",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ssh deep cleanup restart baselines",
+  "task_key": "worker_ssh_deep_cleanup_restart_baselines_20260520T143541",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_deep_cleanup_restart_baselines_20260520T143541_result.json",
+    "occurrence": 1,
+    "bytes": 1050,
+    "sha256": "53d63cc47a7a928cb97d2070744bc175e4613a6394cb0b7619181f5d2f2228fc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 完成总结\n\n### 1. Checkpoint 清理\n- **baseline_spatial_bowl_seed0**: 删除 6000/8000/10000，保留 12000/14000\n- **baseline_object_pudding_seed0**: 删除 6000/8000/10000/12000，保留 14000/16000\n- tmp_* 残留已清理\n\n### 2. Kill 结果\n- PID 100319 (spatial_bowl) → KILLED\n- PID 95429 (object_pudding) → KILLED\n\n### 3. Restart\n| 实验 | 新 PID | GPU | Resume from |\n|------|--------|-----|-------------|\n| baseline_spatial_bowl_s0_v2 | 222903 | cuda:0 | step 14000 |\n| baseline_object_pudding_s0_v2 | 222982 | cuda:2 | step 16000 |\n\n### 4. 磁盘\n`/root/autodl-tmp`: 121G/350G (35%) — 目标达成\n\n### 5. 实验状态\n| GPU | 实验 | 状态 | 显存 |\n|-----|------|------|------|\n| 0 | baseline_spatial_bowl_s0_v2 | training from 14000 | 19.5GB |\n| 1 | 空闲 | — | 0 |\n| 2 | baseline_object_pudding_s0_v2 | training from 16000 | 19.5GB |\n| 3 | a1_sdf_spatial_bowl_s0_v3 | running | 13.4GB |\n\nSAVE_TOTAL_LIMIT=2 已生效，后续新 checkpoint 保存时会自动清理旧的。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-deep-cleanup-restart-baselines.md"
+}

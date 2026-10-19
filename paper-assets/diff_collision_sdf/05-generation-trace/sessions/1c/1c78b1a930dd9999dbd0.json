@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1c78b1a930dd9999dbd0",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "analyze train pi05 lora baseline s2 resume",
+  "task_key": "worker_analyze_train_pi05_lora_baseline_s2_resume_20260527T130943",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_train_pi05_lora_baseline_s2_resume_20260527T130943_result.json",
+    "occurrence": 1,
+    "bytes": 1624,
+    "sha256": "77cea7a84806eb7d790f2cabf71bd3cc684ba85d29eafab39cc51cff58c9c031"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "项目配置中没有 W&B entity。日志中也没有 wandb 相关输出，说明这次 resume 训练的 wandb 可能未正常连接（日志中无 wandb URL）。不过 wandb_id.txt 存在（来自原始 run），可以尝试用已知 entity 查询。\n\n从日志已能获取所有关键信息，汇总如下：\n\n---\n\n## 训练结果汇总：`train_pi05_lora_baseline_s2_resume`\n\n| 项目 | 值 |\n|------|------|\n| **训练是否完成** | 是，正常退出 (EXIT_CODE=0) |\n| **最终 step** | 30000 (100%) |\n| **恢复起点** | step 22000 |\n| **最终 loss** | 0.0117 (step 30000) |\n| **最终 lr** | 2.50e-06 |\n| **best loss** | 0.008163 @ step 26000 |\n| **resume 段耗时** | ~10h18m (22000→30000, ~4.64s/step) |\n| **W&B run ID** | `9sfus56z` |\n| **W&B 状态** | 日志中无 wandb 输出，可能 resume 时未成功连接 W&B（需确认） |\n\n### Checkpoint 路径\n```\n/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed2/\n├── 29999/    (含 model.safetensors 7.0GB + optimizer.pt 124MB)\n├── 30000/    (含 model.safetensors 7.0GB + optimizer.pt 124MB)\n├── best/     (best loss 0.008163 @ step 26000)\n├── best_loss.txt\n└── wandb_id.txt\n```\n\n### 异常\n- W&B 日志中无任何 wandb 相关输出，resume 训练可能未成功上报指标到 W&B（原始 run 的 wandb_id.txt 存在但 resume 段的 W&B 连接状态不明）\n- 项目配置 (`diff_collision_sdf.yaml`) 中缺少 `wandb` entity/project 配置，导致 `fetch_wandb_metrics` 工具无法查询\n- 其余一切正常，无报错"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-train-pi05-lora-baseline-s2-resume.md"
+}

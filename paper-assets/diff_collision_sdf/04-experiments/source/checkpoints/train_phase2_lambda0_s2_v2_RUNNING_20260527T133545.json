@@ -1,0 +1,36 @@
+{
+  "exp_id": "train_phase2_lambda0_s2_v2",
+  "project": "diff_collision_sdf",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-27T13:17:12.601Z",
+    "updated_at": "2026-05-27T13:35:44.825Z",
+    "hypothesis": "Phase 2 λ=0 extended training (seed2): resume from SDF seed2 l005 10K checkpoint with λ=0, train to 30K total (20K additional steps). Previous Phase 2 v1 only ran 10K steps to 20K total (CAR=57.5%). Extended training tests whether SDF safety encoding persists over longer λ=0 fine-tuning and recovers task performance.",
+    "parent": "train_pi05_phase2_lambda0_s2",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2 python scripts/train_a1_sdf_aux_pi05.py --scene object_pudding --seed 2 --lambda_sdf 0 --gpu 2 --num_train_steps 30000 --resume",
+      "server": "westd-35807",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "823640",
+      "tmux_session": "train_phase2_lambda0_s2_v2",
+      "log_path": "~/runs/diff_collision_sdf/train_phase2_lambda0_s2_v2.log",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "safelibero_object_pudding",
+      "data_count": 200,
+      "model_name": "phase2_lambda0_seed2_v2",
+      "seed": 2,
+      "checkpoint_source": "a1_sdf_pi05_object_pudding_seed2_l005/best (step 10000)",
+      "eval_data": "n/a (training experiment)"
+    },
+    "failure_reason": "startup recovery: process dead, no active cron monitor",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-27T13:35:45.098792+00:00",
+  "trigger": "update_registry"
+}

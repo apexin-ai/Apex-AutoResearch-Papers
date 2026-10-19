@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "4c065a529f71c912a015",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "fix westd35807 env phase2",
+  "task_key": "worker_fix_westd35807_env_phase2_20260527T140601",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_westd35807_env_phase2_20260527T140601.log",
+    "occurrence": 1,
+    "bytes": 1023141,
+    "sha256": "27fa318d9780e28f03d7ebd28e1947abf11d02a2a1eaebf73b6beddcc91a79a5"
+  },
+  "statistics": {
+    "messages": 582,
+    "user_turns": 0,
+    "tool_calls": 205,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 168,
+      "tool_call": 205,
+      "tool_result": 205,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 582,
+      "chunks": [
+        {
+          "path": "4c065a529f71c912a015-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "4c065a529f71c912a015-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "4c065a529f71c912a015-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "4c065a529f71c912a015-part-0004.json",
+          "message_count": 42
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-westd35807-env-phase2.md"
+}

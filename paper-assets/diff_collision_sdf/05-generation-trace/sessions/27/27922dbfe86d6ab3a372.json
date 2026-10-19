@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "27922dbfe86d6ab3a372",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "diagnose eval spatial bowl crash",
+  "task_key": "worker_diagnose_eval_spatial_bowl_crash_20260527T140209",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_spatial_bowl_crash_20260527T140209_result.json",
+    "occurrence": 1,
+    "bytes": 897,
+    "sha256": "0139e63e7e959351f876727d251fde841a35f0d19c35aa91e2af446216612948"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**进程死因：正常结束。** 进程未被杀，eval 跑完全部 4 个 task（200 episodes）后正常退出。Cron 监控误报——进程消失是因为已完成，不是崩溃。sentinel 未写是脚本本身不写 sentinel。\n\n**结果数据：**\n\n| Task | TSR | CAR |\n|------|-----|-----|\n| 0: bowl between plate & ramekin | 62% | 0% |\n| 1: bowl on ramekin | 34% | 14% |\n| 2: bowl on stove | 66% | 0% |\n| 3: bowl on wooden cabinet | 50% | 54% |\n| **Overall** | **53%** | **17%** |\n\n结果文件：`/root/autodl-tmp/eval_results/eval_safelibero_spatial_all_levelII_30000_lora_baseline_seed7.json`\n\n**结论：negative。** CAR 17% 很低，4 个 task 中有 2 个 CAR=0%（task 0 和 task 2 全碰撞）。SDF λ=0.005 在 spatial_bowl 上未能有效提升碰撞避免能力。不需要重跑。\n\nRegistry 已更新为 DONE/negative。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-spatial-bowl-crash.md"
+}

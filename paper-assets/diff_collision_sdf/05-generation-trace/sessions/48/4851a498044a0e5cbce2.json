@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4851a498044a0e5cbce2",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "diagnose baseline westd35807 double fail",
+  "task_key": "worker_diagnose_baseline_westd35807_double_fail_20260520T144652",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_baseline_westd35807_double_fail_20260520T144652_result.json",
+    "occurrence": 1,
+    "bytes": 2360,
+    "sha256": "076fe87a380e93d7eb06a21c702d606b6ebb7d832fb738c118904b6b1c2d7401"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断数据收集完毕。以下是报告：\n\n---\n\n## 诊断报告\n\n### 时间线\n\n| 事件 | 时间 (CST/UTC) |\n|------|---------------|\n| v3 训练启动（pudding） | 06:23 CST / 22:23 UTC (前一天) |\n| v3 训练启动（bowl） | 06:35 CST / 22:35 UTC (前一天) |\n| v3 两个进程同时被杀 | ~22:37 CST / 14:37 UTC |\n| v2 两个进程启动（当前） | 22:37 CST / 14:37 UTC |\n\n### 失败原因\n\n**两个 v3 进程被外部信号杀死，不是代码错误。**\n\n证据：\n- 两个 v3 日志中 **零 Traceback、零 Error、零 EXIT_CODE** — 日志在训练进度条输出处突然中断\n- 两个进程在 **完全相同的时刻** 同时死亡\n- v2 进程在 v3 死亡的同一秒启动 → **submit_training_job 系统主动杀掉 v3 并启动 v2 替代**\n\n最可能的解释：v2 任务提交时，系统自动终止了占用同一 GPU 的 v3 进程。这不是\"失败\"，而是**被替换**。\n\n### 训练进度与丢失\n\n| 实验 | v3 最后 step | 最后 checkpoint | 丢失 steps | v2 resume from |\n|------|-------------|----------------|-----------|---------------|\n| object_pudding | 16491 | 16000 | 491 (~29 min) | 16000 |\n| spatial_bowl | 15822 | 14000 | **1822** (~107 min) | 14000 |\n\nspatial_bowl 丢失较多，因为它到了 15822 但 save_interval=2000，上次 checkpoint 在 14000（还没到 16000）。\n\n### Checkpoint 完整性\n\n两组 checkpoint 完整，每个包含 model.safetensors (~6.5GB) + optimizer.pt (~11.7GB) + metadata.pt + norm_stats.json：\n\n- `baseline_object_pudding/.../16000/` — 完整 ✓\n- `baseline_object_pudding/.../14000/` — 完整 ✓\n- `baseline_spatial_bowl/.../14000/` — 完整 ✓\n- `baseline_spatial_bowl/.../12000/` — 完整 ✓\n\n### 当前状态\n\n**两个 v2 进程正在正常运行：**\n- PID 222977 (pudding): step 16000 → 当前 ~16136, 正常训练中\n- PID 222898 (bowl): step 14000 → 当前 ~14138, 正常训练中\n- GPU 0: 35.7/97.9 GB, 61°C ✓\n- GPU 2: 35.7/97.9 GB, 72°C ✓\n- 磁盘: 121/350 GB (35%) ✓\n\n### 结论\n\n**不需要修复。** 实验没有\"失败\"——v3 进程是被 submit_training_job 替换为 v2。当前 v2 已从最后一个 checkpoint 成功 resume，正在正常训练。唯一的代价是 spatial_bowl 丢失了 1822 步（~1.8h）计算量，已无法恢复。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-baseline-westd35807-double-fail.md"
+}

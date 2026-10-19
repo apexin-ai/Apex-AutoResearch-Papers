@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1eabcfba67a40019c964",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "paper p0 2 5 statistics phase2",
+  "task_key": "worker_paper_p0-2-5-statistics-phase2_20260528T053501",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_p0-2-5-statistics-phase2_20260528T053501_result.json",
+    "occurrence": 1,
+    "bytes": 2173,
+    "sha256": "4cd6498019412f5ae19f2949f9bbadcd67e5a6d64f8b768d485aafde3ccc08e1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All edits applied, all paper_switch.py templates verified. Here's the summary:\n\n---\n\n## Changes Made\n\n### claim3.tex (lines 34–41 added)\n\n| Line | Change |\n|------|--------|\n| 34–35 | **NEW** `\\paragraph{Robustness to null construction.}` — Reports Null A (LoRA-only, p_two=0.300) and Null B (p_two=0.131), both non-significant |\n| 37–38 | **NEW** `\\paragraph{Statistical power.}` — MDE ≈ 5.0 pp at 80% power; observed effect ~2.3 pp is underpowered |\n| 40–41 | **NEW** `\\paragraph{Evaluation-seed consistency.}` — References Appendix J (+1.5/+2.5/+5.5 pp, σ=0.9 vs 2.0), concludes with cautious \"cannot be resolved at current sample size\" |\n\n### appendix.tex\n\n| Line | Change |\n|------|--------|\n| 180–181 | **NEW** `\\paragraph{Alternative null construction (Null~A).}` — Exact p-values for λ=0.1 (p_two=0.300) and λ=0.01 (p_two=0.400) under Null A; also λ=0.01 under Null B (p_two=0.262) |\n| 183 | **MODIFIED** Phase 2 ablation: 57.5% → 58.0%, \"steps 5K–30K\" → \"steps 5K–18K\", added \"at the 18K checkpoint (13K steps of Phase~2 training)\" + footnote about disk constraints |\n\n---\n\n## Managed Blocks Requiring Your Attention (flagged, not modified)\n\nThese contain absolute wording (\"redundant\", \"no measurable benefit\", etc.) or the 57.5% value, but are managed by paper_switch.py:\n\n1. **claim3.tex L7** (caption): \"SDF adds no measurable CAR beyond LoRA-only across the full tested range\"\n2. **claim3.tex L26** (body): \"Adding SDF supervision produces no measurable benefit across the full tested range\" + \"confirming that SDF gradients produce no lasting behavioral effect\" + **\"CAR\\,=\\,57.5\\%\"** (Phase 2, needs → 58.0%)\n3. **claim3.tex L32** (dose-response): \"SDF supervision is redundant with the demonstration signal across the full tested range\"\n4. **claim3.tex L46** (fig caption): \"confirming full redundancy of EE-only SDF supervision\"\n\nAll four need updating in `paper_switch.py`'s `old` and `new` templates (both Scenario B and C) to:\n- Replace absolute wording with cautious phrasing\n- Change `57.5\\%` → `58.0\\%` with the 18K checkpoint note"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-p0-2-5-statistics-phase2.md"
+}

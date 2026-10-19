@@ -1,0 +1,16 @@
+{
+  "exp_id": "train_phase2_lambda0_extra_seed",
+  "project": "diff_collision_sdf",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-27T13:19:43.844Z",
+    "updated_at": "2026-05-27T13:27:17.843Z",
+    "hypothesis": "Phase 2 λ=0 second seed (seed0 or seed1, whichever has available 10K SDF checkpoint): resume from 10K SDF l005 checkpoint with λ=0, train to 30K total. Provides multi-seed validation of Phase 2 safety persistence. Phase 2 seed2 v1 at 20K showed CAR=57.5% (positive signal).",
+    "parent": "train_pi05_phase2_lambda0_s2"
+  },
+  "timestamp": "2026-05-27T13:27:18.065113+00:00",
+  "trigger": "update_registry"
+}

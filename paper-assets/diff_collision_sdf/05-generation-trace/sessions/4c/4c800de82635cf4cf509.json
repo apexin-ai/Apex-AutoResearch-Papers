@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4c800de82635cf4cf509",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "eval spatial bowl lora ctrl s0",
+  "task_key": "worker_eval_spatial-bowl-lora-ctrl-s0_20260528T044024",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_spatial-bowl-lora-ctrl-s0_20260528T044024_result.json",
+    "occurrence": 1,
+    "bytes": 645,
+    "sha256": "6dc50f45bb63a50029ade3f36e5da42fc3bcc17a3f3637bdd6c67c9bcfa966eb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 已启动，状态概要：\n\n- **实验**: `eval_spatial_bowl_lora_ctrl_s0_v2`\n- **服务器**: westd-35807, GPU cuda:1\n- **PID**: 31124\n- **Checkpoint**: `.../pi05_lora_baseline_spatial_bowl_seed0/30000`\n- **配置**: `config_name=pi05_libero`, `model_type=lora_baseline`, `seed=7`, `--pi05`\n- **Eval**: safelibero_spatial, 4 tasks × 50 episodes, safety_level=II\n- **输出**: `/root/autodl-tmp/eval_results/eval_spatial_lora_ctrl_s0_30k.json`\n- **日志**: `/root/runs/diff_collision_sdf/eval_spatial_lora_ctrl_s0_30k.log`\n- **预计完成**: ~40-45 分钟（约 13:25-13:30）\n\n270 秒后自动检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-spatial-bowl-lora-ctrl-s0.md"
+}

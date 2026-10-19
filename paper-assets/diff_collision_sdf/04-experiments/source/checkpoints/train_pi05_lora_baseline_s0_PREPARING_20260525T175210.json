@@ -1,0 +1,39 @@
+{
+  "exp_id": "train_pi05_lora_baseline_s0",
+  "project": "diff_collision_sdf",
+  "state": "PREPARING",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 2,
+    "created_at": "2026-05-24T11:24:55.988Z",
+    "updated_at": "2026-05-25T17:52:10.765Z",
+    "hypothesis": "Pi0.5 LoRA baseline (no SDF) 30K on object_pudding seed 0: same LoRA architecture (rank 16/32) and training schedule as ColliForce but without SDF auxiliary loss. Isolates LoRA fine-tuning contribution from SDF-specific gains. Expected CAR ≈ Pi0.5 baseline (~27%), confirming ColliForce CAR improvement is from SDF not LoRA.",
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "completed_at": "2026-05-25T04:19:25.447Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-25T04:19:27.214462+00:00"
+        },
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-25T17:47:57.154130+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "LoRA baseline（无 SDF）。从 step 16000 resume (2026-05-25 04:42 UTC)。tmux 服务器异常终止导致训练崩溃，停在 step ~25695 (86%)。最后 checkpoint: step 24000, best_loss=0.01025。需从 24000 resume，剩余 ~6000 步 (~7.7h)。Checkpoint: /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/24000/"
+      }
+    },
+    "notes": "LoRA baseline（无 SDF）。从 step 16000 resume (2026-05-25 04:42 UTC)。tmux 服务器异常终止导致训练崩溃，停在 step ~25695 (86%)。最后 checkpoint: step 24000, best_loss=0.01025。需从 24000 resume，剩余 ~6000 步 (~7.7h)。Checkpoint: /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/24000/",
+    "reproduce": {
+      "finished_at": "2026-05-25T17:47:50.626Z"
+    }
+  },
+  "timestamp": "2026-05-25T17:52:10.935012+00:00",
+  "trigger": "update_registry"
+}

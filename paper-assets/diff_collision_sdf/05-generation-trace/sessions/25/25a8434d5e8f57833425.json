@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "25a8434d5e8f57833425",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "figure pertask car fingerprint",
+  "task_key": "worker_figure_pertask_car_fingerprint_20260527T180722",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_pertask_car_fingerprint_20260527T180722_result.json",
+    "occurrence": 1,
+    "bytes": 1177,
+    "sha256": "f860dcd9359c6c3951769ac54beb981870a85d6e48cbb268794f320aa16f15ee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n### 产出总结\n\n**图表** — `fig_pertask_car_fingerprint.pdf/.png`（服务器 `/root/autodl-tmp/artifacts/`，已注册 `art_20260527_889c4a`）\n- Grouped bar chart，4 task × 4 condition\n- X 轴按 CAR 降序：Choco. Pudding > Milk > Orange Juice > BBQ Sauce\n- 蓝色渐变：浅→深 = λ 递增（0, 0.005, 0.01, 0.1）\n- LoRA-only 和 λ=0.1 有 individual seed dots + error bars（2-seed）\n- λ=0.005 和 λ=0.01 为 3-seed mean（无 per-task 逐 seed 数据）\n- \"highest\"/\"lowest\" 标注 + \"ordering invariant across λ\" 注释框\n\n**abstract.tex** — line 8 加了 \"EE-only\"：`rather than EE-only geometric supervision`\n\n**实际数据（来自 appendix.tex Table 8）：**\n\n| Condition | CP | Milk | OJ | BBQ |\n|---|---|---|---|---|\n| LoRA-only (s0/s1 mean) | 71.0 | 69.0 | 61.0 | 18.0 |\n| λ=0.005 (3-seed mean) | 72.7 | 71.3 | 54.0 | 20.0 |\n| λ=0.01 (3-seed mean) | 72.7 | 72.0 | 57.3 | 23.3 |\n| λ=0.1 (s0/s1 mean) | 73.0 | 69.0 | 63.0 | 28.0 |\n\n注：LoRA s2 per-task 数据不在论文 Table 8 中（仅 aggregate 55.0% 在 null distribution section）。λ=0.005/0.01 仅有 3-seed 均值。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-pertask-car-fingerprint.md"
+}

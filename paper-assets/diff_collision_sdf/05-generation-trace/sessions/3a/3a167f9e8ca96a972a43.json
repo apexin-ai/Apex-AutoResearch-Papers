@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3a167f9e8ca96a972a43",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "setup eval auto trigger s2",
+  "task_key": "worker_setup_eval_auto_trigger_s2_20260527T190819",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_setup_eval_auto_trigger_s2_20260527T190819_result.json",
+    "occurrence": 1,
+    "bytes": 1136,
+    "sha256": "5f5ce7938a575559ce5a2dfe147ba27ee116b8b0f2c9d0f51c9257eb2df770e4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Sentinel 正在运行：\n\n- **Sentinel PID**: 552915（实际 bash 进程），正在 sleep 60 等待轮询\n- **训练 PID**: 425058（157% CPU，仍在运行 step ~25567/30000）\n- **GPU 0**: 空闲，eval 就绪\n\n---\n\n**报告：**\n\n| 项目 | 值 |\n|------|-----|\n| Sentinel PID | 552915 |\n| Sentinel 日志 | `/root/autodl-tmp/auto_eval_s2_sentinel.log` |\n| 监控的训练 PID | 425058 |\n| Checkpoint 路径 | `/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_l01/30000` |\n| Eval GPU | cuda:0 |\n| Eval 日志 | `/root/autodl-tmp/eval_results/eval_sdf_s2_l01_30k_auto.log` |\n| Eval 命令 | `python scripts/eval_safelibero.py --checkpoint <上述路径> --config_name pi05_libero --model_type lora_baseline --pi05 --suite safelibero_object --safety_level II --n_episodes 50 --seed 7 --gpu 0` |\n| 预计触发时间 | ~08:48 UTC May 27（训练 85%，4433 steps × 4.61s/step ≈ 5.7h） |\n\nEval JSON 会由脚本自动输出到 `/root/autodl-tmp/eval_results/` 目录（文件名由 eval_safelibero.py 自动生成，基于 checkpoint 路径和参数）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/setup-eval-auto-trigger-s2.md"
+}

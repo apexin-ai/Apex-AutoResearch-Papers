@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "07d238970456fe346b01",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "eval monitor baseline pertask and verify lora",
+  "task_key": "worker_eval_monitor_baseline_pertask_and_verify_lora_20260528T003543",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_monitor_baseline_pertask_and_verify_lora_20260528T003543_result.json",
+    "occurrence": 1,
+    "bytes": 221,
+    "sha256": "1b8a0f38c2f66b411307a1bd090320c32675483fc959507961dbd403a4fcd1bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Progress so far:\n- **Task 0 (orange_juice)**: TSR=74.0%, CAR=18.0% (37/50 success, 9/50 collision-free)\n- **Task 1 (chocolate_pudding)**: just started\n\nI'll check back in ~3 minutes for the next update."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-monitor-baseline-pertask-and-verify-lora.md"
+}

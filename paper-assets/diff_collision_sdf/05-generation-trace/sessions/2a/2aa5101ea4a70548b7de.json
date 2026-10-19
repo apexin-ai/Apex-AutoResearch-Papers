@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2aa5101ea4a70548b7de",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "fix paper reviewer corrections s2",
+  "task_key": "worker_fix_paper_reviewer_corrections_s2_20260527T164737",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_paper_reviewer_corrections_s2_20260527T164737_result.json",
+    "occurrence": 1,
+    "bytes": 1839,
+    "sha256": "94995ca7c0dd0f87a058eaf028f5e4afd89dd31c40ec4c36db1106758213cb45"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部替换完成，无遗漏。修改清单汇总：\n\n### 修改记录\n\n| # | 文件 | 行号 | old → new |\n|---|------|------|-----------|\n| 1 | claim3.tex | 7 | `z=2.27, p≈0.023` → `z=1.85, p≈0.032` |\n| 2 | claim3.tex | 17 | `Seeds 2, TSR 48.75, CAR 54.75±3.18, EE 0.392` → `Seeds 3, TSR 49.7±3.2, CAR 54.83±2.25, EE 0.391` |\n| 3 | claim3.tex | 27 | `54.75%` → `54.83%` (2处) |\n| 4 | claim3.tex | 30 | `21--26 pp, 48.75--54.0%` → `21--25 pp, 49.7--54.0%`; `0.51--0.58` → `0.51--0.57` |\n| 5 | claim3.tex | 33 | `mean 54.6%, σ=2.27, z=2.27, p≈0.023, ~3.7pp` → `mean 54.67%, σ=1.94, z=1.85, p≈0.032, ~3.6pp` |\n| 6 | claim3.tex | 38 | `p≈0.023` → `p≈0.032` |\n| 7 | abstract.tex | 7 | `54.75%±3.18` → `54.83%±2.25`; `p≈0.023` → `p≈0.032` |\n| 8 | introduction.tex | 20 | `54.75%` → `54.83%`; `p≈0.023` → `p≈0.032` |\n| 9 | discussion.tex | 12 | `p≈0.023` → `p≈0.032`; `21--26pp` → `21--25pp`; `0.51--0.58` → `0.51--0.57` |\n| 10 | appendix.tex | 120 | SSR caption `0.51--0.58` → `0.51--0.57` |\n| 11 | appendix.tex | 129 | `LoRA-only (2 seeds), 48.75, 54.75, 0.58` → `(3 seeds), 49.7, 54.83, 0.57` |\n| 12 | appendix.tex | 170 | null dist: 5值→6值(加 s2=55%), mean 54.6%→54.67%, σ 2.27%→1.94%, z 2.27→1.85, p 0.023→0.032, 0.8σ→0.9σ |\n| 13 | appendix.tex | 181 | stepwise caption: `54.6%±2.27%, z=2.27, p≈0.023` → `54.67%±1.94%, z=1.85, p≈0.032` |\n\n### EE Disp 数据\ns2 JSON 中 avg_max_ee_displacement: OJ=0.388, CP=0.406, Milk=0.355, BBQ=0.405, mean=0.388。3-seed 均值 0.391 已写入 Table 4。\n\n### 注意事项\n- appendix SSR 表的 SSR=28.3 未更新（无 s2 per-episode 重叠数据）\n- appendix per-task CAR 表 (Table 8) 和 dfCAR 阈值表 (Table 6) 未添加 LoRA s2 行——如需补充请告知"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-paper-reviewer-corrections-s2.md"
+}

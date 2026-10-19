@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "1ea8e5aa1dcbcaf96599",
+  "project": "diff_collision_sdf",
+  "kind": "worker",
+  "title": "code urgent kill restart launch a1",
+  "task_key": "worker_code_urgent_kill_restart_launch_a1_20260519T222705",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_urgent_kill_restart_launch_a1_20260519T222705.log",
+    "occurrence": 1,
+    "bytes": 539165,
+    "sha256": "460ba603d7202234ec3bb3b2b4cb447656cd6d7a01ebddbd84d31453f4699826"
+  },
+  "statistics": {
+    "messages": 266,
+    "user_turns": 0,
+    "tool_calls": 93,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "assistant": 76,
+      "record": 1,
+      "tool_call": 93,
+      "tool_result": 93,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 266,
+      "chunks": [
+        {
+          "path": "1ea8e5aa1dcbcaf96599-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "1ea8e5aa1dcbcaf96599-part-0002.json",
+          "message_count": 86
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-urgent-kill-restart-launch-a1.md"
+}

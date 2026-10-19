@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "15b6a2c9d083b70e9865",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "paper fig1 teaser v2",
+  "task_key": "worker_paper_fig1_teaser_v2_20260527T024918",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fig1_teaser_v2_20260527T024918_result.json",
+    "occurrence": 1,
+    "bytes": 2111310,
+    "sha256": "617e33c964fa148e938cf6b9facf3094205158029ddaca10ee9725766733b678"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "15b6a2c9d083b70e9865-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fig1-teaser-v2.md"
+}

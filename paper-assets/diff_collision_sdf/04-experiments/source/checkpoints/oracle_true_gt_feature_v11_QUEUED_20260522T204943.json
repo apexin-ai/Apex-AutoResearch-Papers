@@ -1,0 +1,15 @@
+{
+  "exp_id": "oracle_true_gt_feature_v11",
+  "project": "diff_collision_sdf",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T20:49:11.558Z",
+    "updated_at": "2026-05-22T20:49:43.377Z",
+    "hypothesis": "Feature-space oracle (GT SDF gradient through suffix_out → action_out_proj) will outperform action-space oracle because it matches the training-time refinement pathway, eliminating the train-eval refine mismatch identified in M028."
+  },
+  "timestamp": "2026-05-22T20:49:43.466955+00:00",
+  "trigger": "update_registry"
+}

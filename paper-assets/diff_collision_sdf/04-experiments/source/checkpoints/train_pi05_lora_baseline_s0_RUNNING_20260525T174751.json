@@ -1,0 +1,43 @@
+{
+  "exp_id": "train_pi05_lora_baseline_s0",
+  "project": "diff_collision_sdf",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 1,
+    "created_at": "2026-05-24T11:24:55.988Z",
+    "updated_at": "2026-05-25T17:47:51.252Z",
+    "hypothesis": "Pi0.5 LoRA baseline (no SDF) 30K on object_pudding seed 0: same LoRA architecture (rank 16/32) and training schedule as ColliForce but without SDF auxiliary loss. Isolates LoRA fine-tuning contribution from SDF-specific gains. Expected CAR ≈ Pi0.5 baseline (~27%), confirming ColliForce CAR improvement is from SDF not LoRA.",
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "completed_at": "2026-05-25T04:19:25.447Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-25T04:19:27.214462+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "确认是 LoRA baseline（无 SDF）。训练已从 step 16000 成功 resume (2026-05-25 04:42 UTC)。PID=2275, GPU 0, 27089 MiB。Phase 2 LoRA 解冻已在 step 16000 正确触发（33.47M params）。剩余 14000 steps × 4.6s/step ≈ 18h, ETA ~2026-05-25 22:30 UTC。路径: /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/。[2026-05-25 11:00] Cron reconcile 确认 PID 2275 仍在运行。Status=DONE/failed 是旧状态（初次 crash），实际已恢复训练中。"
+      }
+    },
+    "notes": "LoRA baseline（无 SDF）。从 step 16000 resume (2026-05-25 04:42 UTC)。tmux 服务器异常终止导致训练崩溃，停在 step ~25695 (86%)。最后 checkpoint: step 24000, best_loss=0.01025。需从 24000 resume，剩余 ~6000 步 (~7.7h)。Checkpoint: /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/24000/",
+    "spec": {
+      "command": "python scripts/train_pi05_lora_baseline.py --scene object_pudding --seed 0 --gpu 0",
+      "server": "westd-45947",
+      "data_path": "object_pudding",
+      "data_count": 200,
+      "model_name": "pi05_lora_baseline_seed0",
+      "seed": 0
+    },
+    "reproduce": {
+      "finished_at": "2026-05-25T17:47:50.626Z"
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-25T17:47:51.387647+00:00",
+  "trigger": "update_registry"
+}

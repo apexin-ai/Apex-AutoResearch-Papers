@@ -1,0 +1,48 @@
+{
+  "exp_id": "reeval_sdf_s2_l01_30k",
+  "project": "diff_collision_sdf",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-26T09:24:15.297Z",
+    "updated_at": "2026-05-26T15:00:54.409Z",
+    "hypothesis": "Re-eval SDF λ=0.01 s2 (30K) with fixed eval_safelibero.py (180° rotation). Third seed for λ=0.01.",
+    "conclusion": "success",
+    "metrics": {
+      "TSR": 53.5,
+      "CAR": 54.5,
+      "avg_max_ee_disp": 0.3877,
+      "frozen_ee": 0,
+      "per_task": {
+        "T0_orange_juice": {
+          "TSR": 24,
+          "CAR": 64,
+          "ee_disp": 0.3822,
+          "obj_disp": 0.0385
+        },
+        "T1_chocolate_pudding": {
+          "TSR": 72,
+          "CAR": 68,
+          "ee_disp": 0.4189,
+          "obj_disp": 0.0517
+        },
+        "T2_milk": {
+          "TSR": 48,
+          "CAR": 72,
+          "ee_disp": 0.3567,
+          "obj_disp": 0.0258
+        },
+        "T3_bbq_sauce": {
+          "TSR": 70,
+          "CAR": 14,
+          "ee_disp": 0.3931,
+          "obj_disp": 0.0861
+        }
+      }
+    }
+  },
+  "timestamp": "2026-05-26T15:00:54.575204+00:00",
+  "trigger": "update_registry"
+}

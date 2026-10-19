@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "08ec088c7f72c25b285b",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops collect eval a1 lora object v11",
+  "task_key": "worker_ops_collect_eval_a1_lora_object_v11_20260522T155254",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_collect_eval_a1_lora_object_v11_20260522T155254_result.json",
+    "occurrence": 1,
+    "bytes": 659,
+    "sha256": "a5500be0405037053395700a0909658887fde6d28a0c99a99a871096cf97743b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n**总结：A1 是目前 object suite 上最好的安全方案。**\n\n- **CAR 90%** — 超过 LoRA baseline（82%）+8pp，超过 full-FT baseline（83%）+7pp\n- 核心发现：task1 chocolate_pudding 从 46%→80%（+34pp），这是 LoRA baseline 最弱的任务，SDF training signal 大幅修复了它\n- A3 runtime refinement 是有害的（74.5% vs 90%），问题定位清晰：**SDF 作为 training signal 有效，作为 runtime refinement 有害**\n- Displacement 也大幅下降（0.0027m vs baseline 0.01m）\n- TSR 仍为 0%（与所有 LoRA 方案一致，TSR 瓶颈不在安全模块）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-collect-eval-a1-lora-object-v11.md"
+}

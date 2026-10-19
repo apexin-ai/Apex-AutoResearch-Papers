@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4008e449551ef29491fe",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "analysis m022 norm stats root cause",
+  "task_key": "worker_analysis_m022_norm_stats_root_cause_20260522T153739",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_m022_norm_stats_root_cause_20260522T153739_result.json",
+    "occurrence": 1,
+    "bytes": 1092,
+    "sha256": "46b24cb42ee880b8d5f114e0346f0cbf8a877830efeb9a9067528b317ef055f7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/analysis_m022_norm_stats_root_cause.md`。\n\n核心结论：\n\n1. **norm_stats 不是根因** — A3/baseline/A1 三者的 norm_stats 字节级一致，加载链路也正确\n2. **SDF 精炼从未触发** — 200 episodes 中 refine_count=0，SDF decoder 对所有位置预测 SDF≥0.46，远超 margin=0.01\n3. **真正的根因是 A3 LoRA 训练退化** — refine_loss（MSE(v_t, v_t_refined.detach())）在 SDF decoder 未充分校准时将 LoRA 拉向保守不动点，模型学会了\"不动=安全\"，导致 pi0_base+A3_LoRA 对真实观测输出近零动作\n4. **附带 bug**：`_refine_action_a3()` 把 delta action 当作绝对坐标传给 SDF decoder（`next_ee = action[:3]` 应为 `next_ee = current_ee + action[:3]`），当前因精炼不触发而潜伏\n\n建议首先用 `--no_refine` 跑 A3 eval 验证 LoRA 退化假设，然后修复坐标 bug，最后调整训练策略重训（降低 λ_refine / 用 curriculum / 用 baseline 权重做 base）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-m022-norm-stats-root-cause.md"
+}

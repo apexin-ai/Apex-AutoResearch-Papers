@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_pi05_a1_30k_s0_l01_disp",
+  "project": "diff_collision_sdf",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T20:55:55.672Z",
+    "updated_at": "2026-05-25T21:15:16.556Z",
+    "hypothesis": "Pi0.5+A1 30K displacement eval (seed0, λ=0.01): 用修复后的eval脚本重跑seed0 l01 30K checkpoint，获取含max_ee_displacement的完整eval结果。与10K best对比验证30K是否存在action collapse。",
+    "parent": "train_pi05_a1_obj_s0_l01"
+  },
+  "timestamp": "2026-05-25T21:15:16.689244+00:00",
+  "trigger": "update_registry"
+}

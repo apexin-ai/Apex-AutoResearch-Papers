@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "13f31dec96db98464aaf",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ssh gpu audit westd45947",
+  "task_key": "worker_ssh_gpu_audit_westd45947_20260520T202039",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_gpu_audit_westd45947_20260520T202039_result.json",
+    "occurrence": 1,
+    "bytes": 1446,
+    "sha256": "1e33ed81ffc64fe46e7cad60af514b81d0c6b0afd17e10bad87e3b33c1da653c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-45947 GPU 全面核查结果\n\n### 逐卡状态\n\n| | cuda:0 | cuda:1 |\n|---|---|---|\n| **GPU** | NVIDIA RTX PRO 6000 Black (98GB) | NVIDIA RTX PRO 6000 Black (98GB) |\n| **PID** | 71494 | 73165 |\n| **实验** | a3_grad_refine_spatial_bowl_s0 | a3_grad_refine_object_pudding_s0 (--resume) |\n| **最新 step** | **11232** / 30000 (37%) | **13334** / 30000 (44%) |\n| **状态** | **alive** (Sl, 运行 12h21m) | **alive** (Rl, 运行 12h20m) |\n| **VRAM** | 23926 MiB / 97887 MiB | 23926 MiB / 97887 MiB |\n| **GPU-Util** | 100% | 100% |\n| **温度/功耗** | 68°C / 489W | 70°C / 470W |\n| **速度** | ~4.0 s/it | ~4.0 s/it |\n| **最新 loss** | 0.0430 (step 11232) | 0.0258 (step 13330 附近) |\n\n### 磁盘\n\n| 分区 | 容量 | 已用 | 可用 | 使用率 |\n|---|---|---|---|---|\n| `/root/autodl-tmp` | 250G | 71G | 180G | 29% |\n| `/` (根) | 30G | 8.6G | 22G | 29% |\n\n### Checkpoint 状态\n\n**a3_grad_refine_spatial_bowl_seed0:**\n- 已保存: step 6000 / 8000 / 10000 + best\n- best = step 10000, loss = 0.0510\n- 最新 ckpt 时间: May 21 02:57\n\n**a3_grad_refine_object_pudding_seed0:**\n- 已保存: step 8000 / 10000 / 12000 + best\n- best = step 12000, loss = 0.0296\n- 最新 ckpt 时间: May 21 02:51\n\n### 小结\n\n两卡满载运行，进程健康，无空闲卡。按 ~4s/it 估算：\n- spatial_bowl: 剩余 18768 步 ≈ **20.8h**\n- object_pudding: 剩余 16666 步 ≈ **18.5h**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-gpu-audit-westd45947.md"
+}

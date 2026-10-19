@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3b90cd125dc43928762d",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ssh a3 status check 45947",
+  "task_key": "worker_ssh_a3_status_check_45947_20260520T092216",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_a3_status_check_45947_20260520T092216_result.json",
+    "occurrence": 1,
+    "bytes": 585,
+    "sha256": "1d4d900d4f4c728d0dcb921480d6ac89d482ac76dc94896988213fbb217e7637"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "| GPU | 实验 | PID | Step/30000 | Loss | Speed(s/it) | VRAM | 状态 |\n|-----|------|-----|------------|------|-------------|------|------|\n| 0 | spatial_bowl | 71494 | 1012/30000 (3%) | 0.2671 | ~3.1s | 16.9/95.6 GB | 运行中 (1h23m) |\n| 1 | object_pudding | 73165 | 3461/30000 (12%) | 0.2275 | ~3.3s | 16.9/95.6 GB | 运行中 (1h22m) |\n\n- object_pudding 从 step 2500 恢复（checkpoint resume），实际已跑 ~961 步新 step\n- GPU utilization 瞬时显示 0%（查询间隙），但训练速度正常\n- 磁盘：/root/autodl-tmp 22G/250G (9%)，充裕"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-a3-status-check-45947.md"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_a3_object_m024fix_v11",
+  "project": "diff_collision_sdf",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T16:54:33.422Z",
+    "updated_at": "2026-05-22T16:57:18.938Z",
+    "hypothesis": "M024 coordinate bug fix (delta->absolute for SDF query) will improve A3 object eval safety and success rates by enabling correct collision detection during trajectory refinement",
+    "parent": "eval_a3_v11_object"
+  },
+  "timestamp": "2026-05-22T16:57:18.994584+00:00",
+  "trigger": "update_registry"
+}

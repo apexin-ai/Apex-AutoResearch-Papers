@@ -1,0 +1,16 @@
+{
+  "exp_id": "oracle_true_gt_fixed_alpha_v11",
+  "project": "diff_collision_sdf",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T20:05:33.998Z",
+    "updated_at": "2026-05-22T20:05:58.711Z",
+    "hypothesis": "True oracle SDF with conservative fixed alpha=0.005 (≈0.5x typical action_norm) as control. If CAR improves over baseline → oracle refinement works even at small alpha. If similar to adaptive → alpha magnitude is not the key factor.",
+    "parent": "oracle_true_gt_object_v11"
+  },
+  "timestamp": "2026-05-22T20:05:58.776692+00:00",
+  "trigger": "update_registry"
+}

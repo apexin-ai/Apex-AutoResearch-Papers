@@ -1,0 +1,29 @@
+\section{Introduction}\label{sec:intro}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{fig_overview_pb}
+\caption{Overview of three findings. \textbf{(a)}~Action-collapsed safety: Pi0+A1 reports 91.5\% CAR, but 99.6\% of safe episodes have displacement ${<}\,0.1$\,mm; dfCAR drops to ${\approx}\,0$\%. \textbf{(b)}~EE-only SDF fails: SDF gradient repels the end-effector (EE) but rotates unmonitored arm links into obstacles; all oracle variants underperform unrefined baselines on collapsed models, and Oracle-adaptive also degrades the non-collapsed Pi0.5 LoRA baseline. \textbf{(c)}~Data drives safety: collision-free demonstrations account for $+$26\,pp CAR; SDF supervision adds only $+$2.2\,pp ($p = 0.155$, n.s.).}
+\label{fig:overview}
+\end{figure*}
+
+Collision avoidance is a prerequisite for deploying Vision-Language-Action (VLA) models in physical environments~\cite{li2026vlasafety}. A single collision can damage hardware, injure humans, or invalidate a task, making reliable safety metrics essential. The SafeLIBERO benchmark~\cite{hu2025vlsa} provides the first systematic protocol for measuring collision avoidance in VLA manipulation. Recent methods report high Collision Avoidance Rate (CAR) through constrained optimization~\cite{zhang2025safevla}, diffusion-process collision costs~\cite{yang2025cape}, and collision risk gating~\cite{cofreeevla2026}. Signed distance fields (SDFs) are a natural candidate: they provide continuous, differentiable proximity information that allows a policy to learn gradient-based obstacle avoidance during training. Our SDF-augmented Pi0~\cite{black2024pi0} (Pi0+A1; Table~\ref{tab:configurations}) reaches 91.5\% CAR across 800 episodes. The problem appears close to solved.
+
+It is not (Fig.~\ref{fig:teaser}). Of the 732 collision-free episodes, 99.6\% exhibit displacement below 0.1\,mm; Task Success Rate (TSR) is 0\% across all 800 episodes. The robot is action-collapsed, not safe. The same pattern holds across all Pi0 configurations (\S\ref{sec:fake_safety}). We term this \emph{action-collapsed safety} (colloquially, ``fake safety''): \emph{action collapse} (near-zero actions producing zero collisions) renders reported CAR illusory, and standard evaluation cannot distinguish inaction from deliberate avoidance~\cite{karwowski2024goodhart}. This is not a Pi0-specific anomaly: any diffusion-based VLA is susceptible to action collapse when training instabilities produce near-zero modes~\cite{dong2025conditioning,he2025demystifying}, making robust displacement filtering a prerequisite for trustworthy safety evaluation.
+
+We present a systematic investigation of this problem across the Pi0 and Pi0.5~\cite{black2024pi0} model families on SafeLIBERO, spanning 100+ experiments and 6000+ evaluation episodes. Three findings emerge (Fig.~\ref{fig:overview}).
+
+\textbf{Action collapse is pervasive.} We introduce displacement-filtered CAR (dfCAR), which excludes episodes below a displacement threshold $\tau_d$. dfCAR collapses Pi0+A1 from 91.5\% to ${\approx}$\,0\% (3/732 safe episodes survive). The bimodal displacement distribution makes $\tau_d$ robust across five orders of magnitude. Pi0.5 validates the metric: TSR\,=\,71.5\%, CAR\,=\,28.5\%, with every safe episode above 288\,mm displacement and dfCAR equal to raw CAR (\S\ref{sec:fake_safety}).
+
+\textbf{EE-only SDF refinement is counterproductive under the tested conditions.} Three ground-truth oracle variants all achieve \emph{lower} CAR than unrefined baselines (73.1--76.9\% vs.\ 82--83\%), and Oracle-adaptive also degrades the non-collapsed Pi0.5 LoRA baseline ($-$5.1\,pp). The SDF gradient repels the EE but rotates arm links into obstacle volumes (\S\ref{sec:ee_only}).
+
+\textbf{Collision-free demonstrations are sufficient for collision avoidance.} LoRA fine-tuning on Pi0.5 with collision-free demonstrations raises CAR by ${\sim}$26 points with zero action-collapsed episodes. SDF supervision shows no statistically significant additional benefit ($p \geq 0.155$ for SDF loss weight $\lambda \in \{0.01, 0.1\}$; \S\ref{sec:avoidance_source}).
+
+Our contributions are: (1)~We introduce \textbf{dfCAR}, a displacement-filtered CAR metric requiring only end-effector position logging, applicable to any simulation-based VLA safety evaluation, and use it to diagnose action collapse across 100+ experiments, revealing that $>$99\% of Pi0 safe episodes are inaction artifacts rather than genuine avoidance. (2)~We show that EE-only oracle SDF refinement \emph{reduces} CAR below unrefined baselines, as unmonitored arm links rotate into obstacles. (3)~We demonstrate that collision-free demonstration data accounts for nearly all CAR gains (${\sim}$26\,pp) with no statistically significant SDF training benefit ($p \geq 0.155$), confirmed across 5 evaluation seeds.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{fig1_teaser}
+\caption{The action-collapsed safety problem in VLA collision avoidance evaluation. Standard CAR classifies an action-collapsed robot as safe because it produces zero collisions (left). dfCAR filters out action-collapsed episodes where displacement falls below $\tau_d$; Pi0+A1's 91.5\% safety score drops to ${\approx}$\,0\% (center). Pi0.5 exhibits genuine avoidance with active motion above 288\,mm in all safe episodes, and dfCAR equals raw CAR (right).}
+\label{fig:teaser}
+\end{figure}

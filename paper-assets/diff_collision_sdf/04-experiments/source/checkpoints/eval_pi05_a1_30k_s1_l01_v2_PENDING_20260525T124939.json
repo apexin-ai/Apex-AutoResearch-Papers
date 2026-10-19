@@ -1,0 +1,17 @@
+{
+  "exp_id": "eval_pi05_a1_30k_s1_l01_v2",
+  "project": "diff_collision_sdf",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-25T12:03:24.703Z",
+    "updated_at": "2026-05-25T12:49:39.541Z",
+    "hypothesis": "Pi0.5+A1 30K eval (seed1, λ=0.01) using /30000/ checkpoint with lora_baseline model type. Corrected re-run: uses verified 30K checkpoint path + correct eval params (config_name=pi05_libero, model_type=lora_baseline). Tests actual 30K training collision avoidance for stronger SDF lambda.",
+    "parent": "train_pi05_a1_obj_s1_l01",
+    "notes": "PID 203540 on cuda:1, westd-35807. 使用 --model_type lora_baseline --config_name pi05_libero --gpu 1。LoRA 注入完成（PaliGemma rank=16, Expert rank=32），checkpoint 和 norm_stats 加载成功，模型初始化中。日志: /root/colliforce-vla/logs/eval_s1_l01_v2_*.log"
+  },
+  "timestamp": "2026-05-25T12:49:39.677034+00:00",
+  "trigger": "update_registry"
+}

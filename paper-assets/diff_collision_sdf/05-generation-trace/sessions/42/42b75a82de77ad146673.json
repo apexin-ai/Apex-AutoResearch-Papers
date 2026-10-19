@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "42b75a82de77ad146673",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "paper seed3 restart plan",
+  "task_key": "worker_paper_seed3-restart-plan_20260529T150143",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_seed3-restart-plan_20260529T150143_result.json",
+    "occurrence": 1,
+    "bytes": 564,
+    "sha256": "478bde9c93076e9cd5fcbfaa86210c9e1f3df750563a3955c3142f8fd55094ea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文档已生成并注册: `artifacts/seed3_restart_plan.md` (art_20260529_0c2a0f)\n\n核心要点:\n- **westd-35807** (lora_baseline_s3_v2): v2 启动后跑了至少 8 steps，可能已跑完（预估 12.5h）。需上线后检查 checkpoint。LeRobot 4 处 patch 需验证\n- **westd-45947** (a1_obj_s3_l01_v2): v1 确认保存 step 2000 checkpoint (11G)，v2 从此 resume 后断连。磁盘 250G 满，需清理 50-90G 再重跑\n- 两台服务器恢复后第一步：更新 SSH 端口 → 检查 checkpoint → 清理磁盘 → tmux 启动训练"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-seed3-restart-plan.md"
+}

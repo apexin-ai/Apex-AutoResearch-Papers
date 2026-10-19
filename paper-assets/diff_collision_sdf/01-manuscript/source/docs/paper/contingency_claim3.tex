@@ -1,0 +1,92 @@
+% contingency_claim3.tex — Three pre-written §6.3 paragraphs for λ=0.1 results.
+% NOT \input'd into main.tex. Copy the matching scenario into claim3.tex
+% when results arrive. Replace {MEAN}, {S0}, {S1} with actual numbers.
+%
+% Scenario selection thresholds:
+%   B: CAR mean ≤ 57%    → full redundancy confirmed
+%   C: CAR mean 57–60%   → inconclusive, flag 2/3 seeds
+%   A: CAR mean > 60%    → dose-response evidence
+%
+% Also includes discussion + abstract patch bullets at the end.
+
+
+%% ====================================================================
+%% SCENARIO B — Full redundancy (CAR ≤ 57%)
+%% ====================================================================
+
+% --- claim3 §6.3 paragraph ---
+\paragraph{Dose-response at higher loss weights.}\label{sec:lambda_high}
+Increasing $\lambda$ by 20$\times$ to 0.1 yields CAR\,=\,{MEAN}\% (seeds: {S0}\%, {S1}\%), within the null distribution (mean 54.5\%, $\sigma = 2.15$). SDF supervision is redundant with the demonstration signal across the full tested range $\lambda \in [0.005, 0.1]$ (Figure~\ref{fig:lambda_car}). This result disambiguates the two-level failure analysis (Section~\ref{sec:conclusion}): because even a 20$\times$ increase in SDF loss weight fails to produce additional avoidance, the binding constraint is not training signal magnitude (Level~A) but the structural mismatch between end-effector monitoring and full-body collision surfaces (Level~B). Stronger geometric supervision cannot compensate for supervising the wrong collision surface.
+
+
+%% ====================================================================
+%% SCENARIO C — Inconclusive / gray zone (CAR 57–60%)
+%% ====================================================================
+
+% --- claim3 §6.3 paragraph ---
+\paragraph{Dose-response at higher loss weights.}\label{sec:lambda_high}
+At $\lambda = 0.1$, CAR\,=\,{MEAN}\% (seeds: {S0}\%, {S1}\%), representing a suggestive but inconclusive separation from the null distribution (mean 54.5\%, $\sigma = 2.15$; Figure~\ref{fig:lambda_car}). The observed increase of {MEAN}$-$54.5\,=\,{DELTA}\,pp falls in a range where seed-to-seed variation and a genuine treatment effect are difficult to distinguish with two seeds. A third seed was in progress at submission; updated results will be provided upon completion. If the separation holds, it would indicate a dose-response threshold between $\lambda = 0.01$ and $\lambda = 0.1$, suggesting that Level~A signal masking (Section~\ref{sec:conclusion}) can be partially overcome at higher loss weights while the Level~B structural limitation of EE-only monitoring remains.
+
+
+%% ====================================================================
+%% SCENARIO A — Dose-response evidence (CAR > 60%)
+%% ====================================================================
+
+% --- claim3 §6.3 paragraph ---
+\paragraph{Dose-response at higher loss weights.}\label{sec:lambda_high}
+Increasing $\lambda$ to 0.1 raises CAR to {MEAN}\% (seeds: {S0}\%, {S1}\%), a {DELTA}\,pp increase beyond the null distribution mean of 54.5\% (Figure~\ref{fig:lambda_car}). This provides preliminary evidence for a dose-response relationship: SDF supervision becomes effective only when $\lambda$ exceeds a threshold between 0.01 and 0.1, below which the geometric gradient is masked by the action loss. In the two-level failure framework (Section~\ref{sec:conclusion}), this result indicates that Level~A signal masking has a breakpoint, while Level~B structural misalignment persists: oracle experiments with perfect SDF still reduce CAR below unrefined baselines regardless of signal strength, confirming that EE-only monitoring remains the binding constraint for full-body safety. Two of three planned seeds are reported; the third was in progress at submission, and updated results will be provided upon completion.
+
+
+%% ====================================================================
+%% DISCUSSION + ABSTRACT PATCH BULLETS (per scenario)
+%% ====================================================================
+
+% --- Scenario B discussion patch ---
+% In "Two-level failure" paragraph, replace the λ=0.1 placeholder with:
+%   "At $\lambda = 0.1$ (20$\times$ higher dose), CAR remains within
+%    the null range ({MEAN}\%), confirming that Level~A signal masking
+%    is not the binding constraint. The failure is architectural:
+%    EE-only supervision cannot prevent arm-body collisions regardless
+%    of loss weight."
+%
+% In abstract, after "LoRA+SDF at $\lambda \in \{0.005, 0.01\}$":
+%   Extend to: "$\lambda \in \{0.005, 0.01, 0.1\}$"
+%   Change "($ p > 0.1$)" scope to cover all three λ values.
+%
+% In limitations, remove the λ=0.1 placeholder entirely.
+
+% --- Scenario C discussion patch ---
+% In "Two-level failure" paragraph, replace the λ=0.1 placeholder with:
+%   "At $\lambda = 0.1$, CAR shows a suggestive increase to {MEAN}\%
+%    (2 seeds), but definitive assessment of whether Level~A masking
+%    has a breakpoint awaits the third seed."
+%
+% In abstract, after "$\lambda \in \{0.005, 0.01\}$ ($p > 0.1$)":
+%   Add: "; $\lambda = 0.1$ shows a suggestive but inconclusive
+%   increase ({MEAN}\%, 2 of 3 seeds)"
+%
+% In limitations, replace λ=0.1 placeholder with:
+%   "The $\lambda = 0.1$ result ({MEAN}\%, 2 seeds) is suggestive
+%    but underpowered; the third seed was in progress at submission."
+
+% --- Scenario A discussion patch ---
+% In "Two-level failure" paragraph, replace the λ=0.1 placeholder with:
+%   "At $\lambda = 0.1$, CAR increases to {MEAN}\% (2 seeds),
+%    indicating that Level~A signal masking has a breakpoint between
+%    $\lambda = 0.01$ and 0.1. Level~B misalignment remains: oracle
+%    CAR stays below baselines regardless of signal strength."
+%
+% In abstract, after "$\lambda \in \{0.005, 0.01\}$ ($p > 0.1$)":
+%   Add: "; at $\lambda = 0.1$, CAR rises to {MEAN}\%, suggesting a
+%   dose-response threshold (2 of 3 seeds; third pending)"
+%
+% In abstract, replace LAST SENTENCE with:
+%   "EE-only geometric supervision is structurally limited by
+%    representation-collision misalignment; at low loss weights
+%    training signals are masked by the demonstration distribution,
+%    but a dose-response threshold exists between $\lambda = 0.01$
+%    and 0.1."
+%
+% In limitations, replace λ=0.1 placeholder with:
+%   "The dose-response result at $\lambda = 0.1$ is based on 2 of 3
+%    planned seeds; the third was in progress at submission."

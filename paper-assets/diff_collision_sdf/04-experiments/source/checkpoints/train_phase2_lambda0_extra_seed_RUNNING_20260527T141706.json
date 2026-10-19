@@ -1,0 +1,48 @@
+{
+  "exp_id": "train_phase2_lambda0_extra_seed",
+  "project": "diff_collision_sdf",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 1,
+    "created_at": "2026-05-27T13:19:43.844Z",
+    "updated_at": "2026-05-27T14:17:05.808Z",
+    "hypothesis": "Phase 2 λ=0 second seed (seed0): two-stage training. Stage 1: fresh SDF training (λ=0.005, 10K steps) to create 10K checkpoint (no existing 10K SDF checkpoint available for seed0/seed1 — intermediate checkpoints from original 30K runs were cleaned). Stage 2: resume from 10K SDF checkpoint with λ=0, train to 30K total. Provides multi-seed validation of Phase 2 safety persistence. Phase 2 seed2 v1 at 20K showed CAR=57.5% (positive signal).",
+    "parent": "",
+    "reproduce": {
+      "finished_at": "2026-05-27T14:13:57.981Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "completed_at": "2026-05-27T14:14:01.928Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-27T14:14:05.764888+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "Stage 1 crashed at step 1768/10000 (18%). Log ends abruptly with no error message — process was killed externally (no CUDA OOM or Python traceback). Checkpoint dir only contains wandb_id.txt, no model checkpoint saved. Training started 2026-05-27 21:32, died ~36min later. No recovery possible without restart from scratch."
+      }
+    },
+    "notes": "Stage 1 crashed at step 1768/10000 (18%). Log ends abruptly with no error message — process was killed externally (no CUDA OOM or Python traceback). Checkpoint dir only contains wandb_id.txt, no model checkpoint saved. Training started 2026-05-27 21:32, died ~36min later. No recovery possible without restart from scratch.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate libero && cd /root/colliforce-vla && export WANDB_MODE=offline && python scripts/train_a1_sdf_aux_pi05.py --scene object_pudding --seed 0 --lambda_sdf 0.005 --gpu 1 --num_train_steps 10000 --exp_name phase2_stage1_seed0_l005\"",
+      "server": "westd-35807",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "850198",
+      "log_path": "~/runs/diff_collision_sdf/train_phase2_lambda0_extra_seed.log",
+      "seed": 0,
+      "model_name": "pi05_a1_sdf",
+      "data_path": "/root/colliforce-vla/data",
+      "data_count": 10000
+    }
+  },
+  "timestamp": "2026-05-27T14:17:06.024851+00:00",
+  "trigger": "update_registry"
+}

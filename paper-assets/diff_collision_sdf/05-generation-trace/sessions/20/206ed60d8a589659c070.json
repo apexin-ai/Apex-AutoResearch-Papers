@@ -1,0 +1,1424 @@
+{
+  "schema_version": "1.0",
+  "id": "206ed60d8a589659c070",
+  "project": "diff_collision_sdf",
+  "kind": "conversation",
+  "title": "paper polish claim1 claim2 discussion",
+  "task_key": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_polish_claim1_claim2_discussion_20260526T062303.jsonl",
+    "occurrence": 1,
+    "bytes": 51446,
+    "sha256": "f1b8842079b38b6bc3e1a8addb9c621044c783a730e21d692d4c582712aac245"
+  },
+  "statistics": {
+    "messages": 69,
+    "user_turns": 0,
+    "tool_calls": 34,
+    "roles": {
+      "tool_call": 34,
+      "tool_result": 34,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-26T06:28:09.890249+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-26T06:28:09.890969+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: paper-writing-norms\n3\tdescription: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。\n4\tallowed-tools: [Read, Write, Edit, Glob, Grep]\n5\tscope: global\n6\tversion: 2\n7\tpriority: 9\n8\ttags:\n9\t  - writing\n10\t  - paper\n11\t  - style\n12\t  - norms\n13\troles:\n14\t  - agent\n15\t  - worker\n16\t  - paper_agent\n17\t---\n18\t\n19\t# 论文写作风格规范\n20\t\n21\t> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。\n22\t\n23\t---\n24\t\n25\t## 一、总体写作哲学\n26\t\n27\t### 1.1 故事驱动，不是数据堆砌\n28\t\n29\t- 论文必须以\"故事线\"为核心展开：问题 → 洞察 → 方法 → 验证\n30\t- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进\n31\t- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌\n32\t- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing\n33\t\n34\t### 1.2 主线统一性\n35\t\n36\t- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**\n37\t- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C\n38\t- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机\n39\t- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线\n40\t\n41\t### 1.3 专有名词必须有定义\n42\t\n43\t- 首次出现的专有名词/缩写必须给出完整定义和解释\n44\t- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）\n45\t- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用\n46\t- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug\n47\t\n48\t### 1.4 写作前必读同类优秀论文\n49\t\n50\t- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可\n51\t- 重点学：\n52\t  - Abstract 怎么用最少篇幅讲完故事\n53\t  - Introduction 怎么从大问题切入到具体贡献\n54\t  - Related Work 怎么 positioning 自己（不是 survey）\n55\t  - Table/Figure 怎么压缩信息密度\n56\t- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大\n57\t- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文\n58\t\n59\t---\n60\t\n61\t## 二、Abstract 写作规范\n62\t\n63\t### 2.1 四个必答问题（150-250 words）\n64\t\n65\tAbstract 必须在很短的篇幅内清楚回答：\n66\t1. **研究什么问题** — 1-2 句话交代背景和痛点\n67\t2. **为什么重要** — 现有方法的不足（不用写太多）\n68\t3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）\n69\t4. **结果说明什么** — 用具体实验结论支撑贡献\n70\t\n71\t### 2.2 禁忌\n72\t\n73\t- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim\n74\t- **\n…[truncated 5709 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-26T06:28:09.891162+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_project_file",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-26T06:28:09.891300+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-26T06:28:09.891467+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "diff_collision_sdf",
+              "file": "paper_framing.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-26T06:28:09.891720+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/paper_framing.md\\\", \\\"content\\\": \\\"# ColliForce-VLA Paper Framing\\\\n\\\\n> 维护者: Director | 最后更新: 2026-05-26 UTC | D028: Claim 结构重组为 3 claims | Post-MVP research phase\\\\n\\\\n## Core Insight\\\\n\\\\nVLA safety 评估存在系统性缺陷：collision avoidance rate (CAR) 被 action collapse 和几何路径安全严重污染，导致 \\\\\\\"安全\\\\\\\" 指标虚高。我们通过大规模实证分析（70+ 实验, 6000+ episodes）揭示这一系统性缺陷，提出 EE displacement-filtered CAR 作为修正指标，并证明 SDF auxiliary loss 能产生真实碰撞避免——但代价极端。\\\\n\\\\n## Working Title\\\\n\\\\n\\\\\\\"Rethinking VLA Safety Evaluation: When 98% of Collision Avoidance is an Illusion\\\\\\\"\\\\n\\\\n> 聚焦评估方法论贡献（影响面广、scope-proof），SDF 作为验证工具而非主贡献\\\\n\\\\n## Target Venue\\\\n\\\\n**Primary**: CoRL 2026 Main / ICRA 2027 (用户明确要求主会)\\\\n**定位**: Diagnostic/evaluation methodology paper with positive method contribution\\\\n**Fit**: Robotics safety track — \\\\\\\"VLA safety metrics are fundamentally broken\\\\\\\" 对社区有直接影响\\\\n\\\\n## Core Claims (D028 重组: 4→3 claims)\\\\n\\\\n### Claim 1: CAR Metric Contaminated by Fake Safety (Primary — 证据强度 ★★★★★)\\\\n\\\\nStandard CAR metric is systematically contaminated by two distinct mechanisms: (a) action collapse producing frozen robots falsely counted as \\\\\\\"safe\\\\\\\", and (b) geometric path safety where capable robots happen to avoid obstacles without any avoidance behavior. \\\\\\\"Collision-free\\\\\\\" ≠ \\\\\\\"collision-avoiding.\\\\\\\"\\\\n\\\\n**Primary evidence — Action collapse (fake safety)**:\\\\n- 800 episodes A1 per-episode analysis: CAR=91.5%, but 99.6% of safe episodes show obstacle displacement < 0.1mm (~5nm median) — robot is frozen\\\\n- TSR=0% 独立确认 action collapse\\\\n- 术语修正 (D023): fake safety 判定以 TSR=0% + obstacle displacement < 0.1mm 双证据链为主\\\\n\\\\n**Supporting evidence — Capability-safety anti-correlation (原 Claim 2)**:\\\\n- Pi0.5 3-seed eval: TSR=74.7±1.5%, CAR=26.8±1.6% — 更强模型完成更多任务但碰撞更多\\\\n- Pi0 baseline: TSR≈0%, CAR=82% — \\\\\\\"高 CAR\\\\\\\" 来自 action collapse\\\\n- Capability↑ → motion↑ → collision↑; 表面安全要么是 \n…[truncated 8228 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-26T06:28:09.891884+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-26T06:28:09.892015+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/_archive/method.tex\ndocs/paper/_archive/experiments.tex\ndocs/paper/_archive/conclusion_DEPRECATED.tex\ndocs/paper/analysis_claim4.tex\ndocs/paper/related_work.tex\ndocs/paper/appendix.tex\ndocs/paper/analysis_claim2.tex\ndocs/paper/analysis_claim3.tex\ndocs/paper/main.tex\ndocs/paper/experimental_framework.tex\ndocs/paper/discussion.tex\ndocs/paper/analysis_claim1.tex\ndocs/paper/introduction.tex\ndocs/paper/abstract.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-26T06:28:09.892168+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/analysis_claim1.tex"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-26T06:28:09.892355+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\subsection{The Fake Safety Problem}\\label{sec:fake_safety}\n2\t\n3\tAt first glance, the collision avoidance results for SDF-augmented VLA models appear compelling. Our A1-LoRA model (Pi0 fine-tuned with an SDF auxiliary loss) achieves a Collision Avoidance Rate (CAR) of 91.5\\% across 800 evaluation episodes on the SafeLIBERO benchmark~\\cite{hu2025vlsa}, a figure that would suggest reliable obstacle avoidance. Yet this headline metric conceals a fundamental problem. When we examine the end-effector displacement of the 732 episodes classified as ``safe,'' the picture changes entirely: 541 episodes (73.9\\%) exhibit a maximum displacement below 1\\,$\\mu$m, and another 188 episodes (25.7\\%) remain below 0.1\\,mm. Only 3 episodes (0.4\\%) show displacement above the 0.1\\,mm threshold, the minimum we consider consistent with intentional motion. An independent measurement confirms the diagnosis: obstacle displacement across these episodes has a median of ${\\sim}$5\\,nm, consistent with numerical noise rather than physical contact. The remaining 99.6\\% of safe episodes are artifacts of a robot that never moved.\n4\t\n5\tWe define a safe episode as \\emph{fake safe} when the maximum end-effector displacement stays below a threshold $\\tau_d = 0.1$\\,mm, the criterion used by the displacement-filtered CAR (Eq.~\\ref{eq:car_f}). Under this definition, 729 of the 732 safe episodes produced by A1-LoRA are fake safe. An independent signal corroborates the diagnosis: TSR is 0\\% across all 800 episodes, confirming that the model produces no meaningful task-directed behavior. The robot did not avoid obstacles; it avoided motion altogether. The displacement distribution, shown in Figure~\\ref{fig:displacement}, clusters overwhelmingly near zero, with no meaningful spread toward the range that would indicate planned trajectories around obstacles. Table~\\ref{tab:fake_safety} summarizes the fake safety statistics across all evaluated methods.\n6\t\n7\t\\begin{table}[t]\n8\t\\centering\n9\t\\caption{Fake safety \n…[truncated 6108 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-26T06:28:09.892550+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/analysis_claim2.tex"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-26T06:28:09.892716+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\subsection{End-Effector-Only SDF Cannot Ensure Full-Body Safety}\\label{sec:ee_only}\n2\t\n3\tThe analysis in Section~\\ref{sec:fake_safety} identifies action collapse and fake safety as pervasive problems, but leaves open a natural question: could a sufficiently accurate SDF prediction still enable effective runtime refinement? To isolate the SDF representation itself from prediction quality, we construct an oracle experiment. We replace the learned SDF network with the ground-truth signed distance field computed directly from the known obstacle geometry. This oracle represents the theoretical upper bound of end-effector-only SDF refinement: it eliminates prediction error entirely, providing the refinement module with a perfect distance signal at every timestep. If the SDF refinement paradigm is sound, oracle performance should exceed that of unrefined baselines by a wide margin.\n4\t\n5\t\\begin{table}[t]\n6\t\\centering\n7\t\\caption{Oracle SDF refinement with ground-truth distance fields (160 episodes, 4 tasks $\\times$ 40). All three variants achieve lower CAR than unrefined baselines (LoRA 82.0\\%, Full-FT 83.0\\%), and fake safe rates remain above 96\\%.}\n8\t\\label{tab:oracle}\n9\t\\vspace{2pt}\n10\t\\small\n11\t\\begin{tabular}{lcccc}\n12\t\\toprule\n13\tMethod & TSR (\\%) & CAR (\\%) & Fake Safe (\\%) & Refines/ep \\\\\n14\t\\midrule\n15\tLoRA baseline (no refine) & 0.0 & 82.0 & 99.4 & -- \\\\\n16\tFull-FT baseline (no refine) & 0.5 & 83.0 & -- & -- \\\\\n17\t\\midrule\n18\tOracle-adaptive (GT, dyn.\\ $\\alpha$) & 0.0 & 75.0 & 98.3 & 14.2 \\\\\n19\tOracle-fixed (GT, $\\alpha{=}0.005$) & 0.0 & 73.1 & 98.3 & 14.8 \\\\\n20\tOracle-feature (GT, feat.\\ space) & 0.0 & 76.9 & 96.7 & 241.7 \\\\\n21\t\\midrule\n22\tA3 learned SDF & 0.0 & 74.5 & -- & 0.0 \\\\\n23\t\\bottomrule\n24\t\\end{tabular}\n25\t\\end{table}\n26\t\n27\tTable~\\ref{tab:oracle} reports the results. All three oracle variants achieve CAR below that of the unrefined baselines. The best oracle (Oracle-feature, 76.9\\%) falls 5.1 percentage points below the LoRA baseline (82.0\\%) and 6.1 \n…[truncated 4419 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-26T06:28:09.892868+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/discussion.tex"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-26T06:28:09.893012+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion and Conclusion}\\label{sec:conclusion}\n2\t\n3\tThis work identifies a systematic contamination in VLA collision avoidance evaluation: standard CAR conflates genuine obstacle avoidance with inaction caused by action collapse. Across all Pi0-family configurations evaluated on SafeLIBERO, over 98\\% of episodes classified as safe exhibit sub-threshold displacement, rendering raw CAR unreliable as a safety metric. Displacement-filtered CAR (CAR$_\\text{f}$) separates these two behaviors by excluding episodes below a displacement threshold $\\tau_d$, providing a metric that credits only active avoidance. Two structural findings reinforce this diagnosis: TSR and CAR are anti-correlated under current methods (Section~\\ref{sec:fake_safety}), and end-effector-only SDF refinement fails to prevent full-body collisions even with ground-truth geometry (Section~\\ref{sec:ee_only}). Fine-tuning on collision-free demonstrations produces non-zero CAR$_\\text{f}$ with zero frozen rate, placing it in a region of the TSR-CAR plane that no other evaluated method occupies (Section~\\ref{sec:avoidance_source}).\n4\t\n5\t\\paragraph{Limitations.}\n6\tThe empirical scope of this study is bounded in several respects. All experiments use the \\texttt{object\\_pudding} Level~I suite from SafeLIBERO (4 tasks). The fake safety mechanism is model-agnostic in principle: any action-collapsed VLA will receive inflated CAR. Direct verification, however, covers only the Pi0 and Pi0.5 model families; whether the same contamination pattern appears in OpenVLA, RT-2, or other VLA architectures requires additional experiments. Preliminary evaluation on the \\texttt{spatial\\_bowl} suite confirms this pattern: all Pi0 variants achieve 0\\% CAR despite substantial end-effector displacement (0.2--0.3\\,m), consistent with arm-body collisions dominating the failure mode. Pi0.5 achieves only 13\\% CAR on this suite, suggesting that spatial tasks with narrow corridors pose additional challenges beyond those captur\n…[truncated 2397 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-26T06:28:09.893155+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/experimental_framework.tex"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-26T06:28:09.893313+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experimental Framework}\\label{sec:framework}\n2\t\n3\tThis section defines the evaluation platform, metrics, and model configurations that underpin the analyses in Sections~\\ref{sec:fake_safety}--\\ref{sec:avoidance_source}. Our primary methodological contribution is the displacement-filtered Collision Avoidance Rate (CAR$_\\text{f}$), which separates genuine avoidance from action collapse.\n4\t\n5\t\\subsection{Benchmark and Evaluation Protocol}\n6\t\n7\tWe conduct all experiments on SafeLIBERO~\\cite{hu2025vlsa}, a collision-aware evaluation extension of the LIBERO simulation platform~\\cite{liu2023libero}. SafeLIBERO augments standard manipulation benchmarks with per-timestep collision detection and non-target obstacle annotations, enabling systematic measurement of both task completion and safety.\n8\t\n9\tWe select the \\textit{object\\_pudding} Level~I suite, which comprises four tabletop manipulation tasks. In each task, a target object is surrounded by non-target obstacles that the robot must avoid during grasping and transport. The MuJoCo physics engine provides collision detection: any contact between the robot (end-effector or arm links) and a non-target object registers as a collision event.\n10\t\n11\tEach method is evaluated for 50 episodes per task (200 episodes total). For multi-seed experiments (Pi0.5), we run 3 seeds to produce 600 episodes per configuration. Initial object configurations are fixed across methods to ensure fair comparison.\n12\t\n13\t\\subsection{Evaluation Metrics}\\label{sec:metrics}\n14\t\n15\t\\paragraph{Standard metrics.} We report two conventional metrics. The \\emph{Task Success Rate} (TSR) is the fraction of episodes where the manipulation task reaches completion. The \\emph{Collision Avoidance Rate} (CAR) is the fraction of episodes in which no collision occurs between the robot and any non-target object.\n16\t\n17\t\\paragraph{Displacement-filtered CAR.} Standard CAR conflates two qualitatively distinct behaviors: a robot that plans a trajectory around ob\n…[truncated 4599 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-26T06:28:09.893514+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/main.tex"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-26T06:28:09.893694+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass[10pt,letterpaper]{article}\n2\t\n3\t\\usepackage[margin=1in]{geometry}\n4\t\\usepackage{amsmath,amssymb}\n5\t\\usepackage{booktabs}\n6\t\\usepackage{graphicx}\n7\t\\usepackage{hyperref}\n8\t\\usepackage{natbib}\n9\t\\usepackage{xcolor}\n10\t\\usepackage{multirow}\n11\t\\graphicspath{{../../artifacts/figures/}}\n12\t\n13\t\\newcommand{\\placeholder}[1]{\\textcolor{red}{\\textbf{[#1]}}}\n14\t\n15\t\\bibliographystyle{plainnat}\n16\t\n17\t\\title{The Safety Illusion: How Action Collapse Contaminates\\\\Collision Avoidance Metrics in Vision-Language-Action Models}\n18\t\n19\t\\author{\n20\t  Anonymous Authors\n21\t}\n22\t\n23\t\\date{}\n24\t\n25\t\\begin{document}\n26\t\n27\t\\maketitle\n28\t\n29\t\\input{abstract}\n30\t\n31\t\\input{introduction}\n32\t\n33\t\\input{related_work}\n34\t\n35\t\\input{experimental_framework}\n36\t\n37\t\\section{Analysis}\\label{sec:analysis}\n38\t\n39\t\\input{analysis_claim1}\n40\t\n41\t\\begin{figure}[t]\n42\t\\centering\n43\t\\fbox{\\parbox{0.9\\linewidth}{\\centering\\vspace{2em}[Displacement distribution histogram — pending]\\vspace{2em}}}\n44\t\\caption{End-effector displacement distribution for A1-LoRA. The overwhelming majority of safe episodes cluster below 1\\,$\\mu$m, indicating action collapse rather than planned avoidance.}\n45\t\\label{fig:displacement}\n46\t\\end{figure}\n47\t\n48\t\\begin{figure}[t]\n49\t\\centering\n50\t\\includegraphics[width=\\linewidth]{fig_tsr_car_scatter.pdf}\n51\t\\caption{TSR vs.\\ CAR for all evaluated methods. The shaded region in the upper-left marks the ``fake safety'' zone where high CAR reflects action collapse rather than obstacle avoidance. Pi0-family models (circles) and oracle variants (diamonds) cluster within this zone at near-zero TSR. Pi0.5 seeds (squares) occupy the lower-right with high TSR but low CAR. Pi0.5+A1 with SDF auxiliary training (stars) uniquely occupies the center region with both moderate TSR and meaningful CAR. The arrow indicates the effect of SDF auxiliary training, shifting from the Pi0.5 baseline toward higher CAR at moderate TSR cost. No evaluated method occupies the upper-right quadrant (hi\n…[truncated 881 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-26T06:28:09.893848+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "Claim [0-9]|claim [0-9]|Claim~[0-9]",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper",
+              "output_mode": "content",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-26T06:28:09.893980+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-26T06:28:09.894102+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "—|–",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper",
+              "output_mode": "content",
+              "glob": "*.tex",
+              "-n": "True"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-26T06:28:09.894228+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/main.tex:43:\\fbox{\\parbox{0.9\\linewidth}{\\centering\\vspace{2em}[Displacement distribution histogram — pending]\\vspace{2em}}}\ndocs/paper/analysis_claim1.tex:27:% TODO: pending Pi0.5 re-eval with EE displacement data — update fake safe characterization once available"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-26T06:28:09.894362+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "---",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper",
+              "output_mode": "content",
+              "glob": "*.tex",
+              "-n": "True"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-26T06:28:09.894505+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/main.tex:60:\\caption{Aggregate collision avoidance rate for oracle SDF refinement variants versus unrefined baselines (160 episodes). All three ground-truth oracle variants achieve lower CAR than both baselines (dashed line: baseline average), confirming that even perfect end-effector distance information---with zero prediction error---does not improve collision avoidance.}\ndocs/paper/analysis_claim1.tex:17:A1-LoRA (SDF) & 91.5 & 0.0 & 99.6 & 3 / 732 & ---$^\\dagger$ \\\\\ndocs/paper/analysis_claim4.tex:29:[Omitted long matching line]\ndocs/paper/analysis_claim4.tex:33:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-26T06:28:09.894628+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "claim.?4|sec:claim4|Claim 4",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper",
+              "output_mode": "content",
+              "glob": "*.tex",
+              "-n": "True",
+              "-i": "True"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-26T06:28:09.894749+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-26T06:28:09.894861+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "ing,|ing the |Furthermore|Moreover|Additionally|Notably|It is worth noting|delve|leverage|utilize|facilitate|myriad|plethora",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper",
+              "output_mode": "content",
+              "glob": "analysis_claim1.tex",
+              "-n": "True"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-26T06:28:09.894975+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/analysis_claim1.tex:32:[Omitted long matching line]\ndocs/paper/analysis_claim1.tex:36:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-26T06:28:09.895084+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "ing,|Furthermore|Moreover|Additionally|Notably|It is worth noting|delve|leverage|utilize|facilitate|myriad|plethora",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper",
+              "output_mode": "content",
+              "glob": "analysis_claim2.tex",
+              "-n": "True"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-26T06:28:09.895197+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-26T06:28:09.895306+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "ing,|Furthermore|Moreover|Additionally|Notably|It is worth noting|delve|leverage|utilize|facilitate|myriad|plethora",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper",
+              "output_mode": "content",
+              "glob": "discussion.tex",
+              "-n": "True"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-26T06:28:09.895434+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/discussion.tex:6:[Omitted long matching line]\ndocs/paper/discussion.tex:12:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-26T06:28:09.895553+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "ing,|Furthermore|Moreover|Additionally|Notably|It is worth noting|delve|leverage|utilize|facilitate|myriad|plethora",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper",
+              "output_mode": "content",
+              "glob": "experimental_framework.tex",
+              "-n": "True"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-26T06:28:09.895667+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-26T06:28:09.895787+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "ing,|Furthermore|Moreover|Additionally|Notably",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/discussion.tex",
+              "output_mode": "content",
+              "-n": "True",
+              "context": "1"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-26T06:28:09.895901+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5-\\paragraph{Limitations.}\n6:[Omitted long matching line]\n7-\n--\n11-\\paragraph{Broader impact.}\n12:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-26T06:28:09.896010+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "rendering|filtering|logging|training|testing",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/analysis_claim1.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-26T06:28:09.896127+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "32:[Omitted long matching line]\n36:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-26T06:28:09.896238+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/discussion.tex",
+              "offset": "5",
+              "limit": "2"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-26T06:28:09.896359+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5\t\\paragraph{Limitations.}\n6\tThe empirical scope of this study is bounded in several respects. All experiments use the \\texttt{object\\_pudding} Level~I suite from SafeLIBERO (4 tasks). The fake safety mechanism is model-agnostic in principle: any action-collapsed VLA will receive inflated CAR. Direct verification, however, covers only the Pi0 and Pi0.5 model families; whether the same contamination pattern appears in OpenVLA, RT-2, or other VLA architectures requires additional experiments. Preliminary evaluation on the \\texttt{spatial\\_bowl} suite confirms this pattern: all Pi0 variants achieve 0\\% CAR despite substantial end-effector displacement (0.2--0.3\\,m), consistent with arm-body collisions dominating the failure mode. Pi0.5 achieves only 13\\% CAR on this suite, suggesting that spatial tasks with narrow corridors pose additional challenges beyond those captured by the \\texttt{object\\_pudding} benchmark. The EE-only SDF oracle (Section~\\ref{sec:ee_only}) tests end-effector-level refinement exclusively; full-body SDF monitoring along the kinematic chain may yield different outcomes. The displacement threshold $\\tau_d = 0.1$\\,mm is empirically robust across four orders of magnitude (Appendix~\\ref{sec:appendix_threshold}), but remains task-dependent in principle. Pi0.5+A1 results are reported at the 10K-step checkpoint (seed~0); the 30K checkpoint is pending, and the final magnitude of the TSR-CAR tradeoff is not yet determined. In narrow-corridor scenarios (Task~3), SDF gradients redistribute collisions between obstacles rather than eliminate them: the point-wise gradient pushes the end-effector away from the nearest surface, but in bilateral obstacle geometries this shifts the trajectory into the opposing obstacle (Section~\\ref{sec:ee_only}). This collision transfer effect defines a boundary condition for training-time SDF supervision."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-26T06:28:09.896507+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/discussion.tex",
+              "offset": "11",
+              "limit": "2"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-26T06:28:09.896625+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "11\t\\paragraph{Broader impact.}\n12\tMetric reliability is a prerequisite for safe deployment of autonomous manipulation systems. Contaminated evaluation metrics create a risk that models with no genuine collision avoidance capability pass safety benchmarks and proceed to deployment. Displacement filtering is a low-cost correction: it requires only end-effector position logging, no additional data collection or model modification. The analysis in this work is conducted entirely in simulation; real-world deployment introduces additional safety considerations (sensor noise, sim-to-real transfer, dynamic obstacles) that fall outside the present scope."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-26T06:28:09.896819+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\label",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/analysis_claim3.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-26T06:28:09.896948+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1:\\subsection{Collision Avoidance from Demonstrations, Not Geometry}\\label{sec:avoidance_source}\n8:\\label{tab:avoidance_source}\n35:\\label{fig:lambda_car}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-26T06:28:09.897065+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\ref\\{sec:avoidance_source\\}",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper",
+              "output_mode": "content",
+              "glob": "*.tex",
+              "-n": "True"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-26T06:28:09.897184+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/analysis_claim2.tex:37:[Omitted long matching line]\ndocs/paper/discussion.tex:3:[Omitted long matching line]\ndocs/paper/experimental_framework.tex:3:This section defines the evaluation platform, metrics, and model configurations that underpin the analyses in Sections~\\ref{sec:fake_safety}--\\ref{sec:avoidance_source}. Our primary methodological contribution is the displacement-filtered Collision Avoidance Rate (CAR$_\\text{f}$), which separates genuine avoidance from action collapse.\ndocs/paper/analysis_claim1.tex:36:[Omitted long matching line]\ndocs/paper/introduction.tex:19:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-26T06:28:09.897300+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "10K|10k|10,000",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper",
+              "output_mode": "content",
+              "glob": "*.tex",
+              "-n": "True"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-26T06:28:09.897433+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/discussion.tex:6:[Omitted long matching line]\ndocs/paper/introduction.tex:13:[Omitted long matching line]\ndocs/paper/introduction.tex:19:[Omitted long matching line]\ndocs/paper/analysis_claim4.tex:7:\\caption{Results for Pi0.5 with training-time SDF auxiliary loss on SafeLIBERO (200 episodes per configuration). Frozen rate: fraction of episodes with $d_{\\max} < \\tau_d$ (action collapse; Section~\\ref{sec:metrics}). Pi0.5+A1 produces 0\\% frozen episodes at 10K steps, so CAR$_\\text{f}$ equals raw CAR.}\ndocs/paper/analysis_claim4.tex:18:\\multicolumn{6}{l}{\\textit{10K-step checkpoint (seed~0)}} \\\\\ndocs/paper/analysis_claim4.tex:29:[Omitted long matching line]\ndocs/paper/analysis_claim4.tex:33:[Omitted long matching line]\ndocs/paper/analysis_claim4.tex:37:[Omitted long matching line]\ndocs/paper/analysis_claim4.tex:39:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-26T06:28:09.897605+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/introduction.tex"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-26T06:28:09.897761+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\n3\tA model that reports 91.5\\% collision avoidance and completes zero tasks has not learned safety; it has learned to stop moving.\n4\t\n5\tVision-Language-Action (VLA) models unify visual perception, language understanding, and continuous action generation in a single architecture. Models such as $\\pi_0$~\\cite{black2024pi0}, OpenVLA~\\cite{kim2024openvla}, and RT-2~\\cite{brohan2023rt2} can follow diverse natural language instructions across manipulation tasks. As these models move toward real-world deployment, a critical failure mode has emerged: frequent collisions with non-target objects in cluttered environments. The demonstration data used for training typically features unobstructed workspaces, and the resulting policies acquire no explicit incentive to maintain clearance from nearby surfaces. Collisions cause task failure, risk damage to the robot and its surroundings, and represent a central barrier to safe deployment. The SafeLIBERO benchmark~\\cite{hu2025vlsa}, comprising 32 collision scenarios across 1,600 evaluation episodes, was introduced to systematically quantify this problem and confirms that even high-performing VLAs exhibit substantial collision rates when non-target objects surround the manipulation target.\n6\t\n7\tSeveral recent methods target collision avoidance in VLAs. AEGIS~\\cite{hu2025vlsa} applies post-hoc Control Barrier Function (CBF) corrections to already-generated trajectories and reports an average Collision Avoidance Rate (CAR) of 77.85\\% across SafeLIBERO scenarios without additional training. SafeVLA~\\cite{zhang2025safevla} formulates safety as a constrained Markov Decision Process and reduces safety violations by 83.58\\% through reward shaping during reinforcement learning. CoFreeVLA~\\cite{cofreeevla2026} trains a risk estimator for dual-arm settings that halts execution when predicted collision risk exceeds a threshold. In our own experiments, a Pi0 model fine-tuned with an auxiliary Signed Distance Field (SDF)\n…[truncated 6165 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-26T06:28:09.897925+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/analysis_claim3.tex",
+              "limit": "15"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-26T06:28:09.898114+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\subsection{Collision Avoidance from Demonstrations, Not Geometry}\\label{sec:avoidance_source}\n2\t\n3\tSections~\\ref{sec:fake_safety} and~\\ref{sec:ee_only} establish that standard CAR is contaminated by action collapse and that end-effector-only SDF refinement fails structurally. A constructive question remains: when collision avoidance does improve in fine-tuned models, where does the signal originate? We isolate the contribution of explicit SDF geometric supervision from that of LoRA fine-tuning on collision-free demonstration data by comparing models trained with and without the SDF auxiliary loss.\n4\t\n5\t\\begin{table}[t]\n6\t\\centering\n7\t\\caption{Avoidance source attribution on SafeLIBERO (200 episodes per seed). LoRA fine-tuning without SDF produces CAR comparable to SDF-augmented variants; the SDF contribution is $0 \\pm 3.5$ percentage points at $\\lambda \\in \\{0.005, 0.01\\}$. All fine-tuned models exhibit 0\\% frozen rate, confirming active collision avoidance.}\n8\t\\label{tab:avoidance_source}\n9\t\\vspace{2pt}\n10\t\\small\n11\t\\begin{tabular}{lccccc}\n12\t\\toprule\n13\tMethod & Seeds & TSR (\\%) & CAR (\\%) & EE Disp (m) & Frozen (\\%) \\\\\n14\t\\midrule\n15\tPi0.5 baseline & 3 & 74.7\\,$\\pm$\\,1.5 & 26.8\\,$\\pm$\\,1.6 & \\placeholder{X.XX} & ${\\sim}$26 \\\\"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-26T06:28:09.898351+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/discussion.tex",
+              "old_string": "over 98\\% of episodes classified as safe exhibit sub-threshold displacement, rendering raw CAR unreliable as a safety metric.",
+              "new_string": "over 98\\% of episodes classified as safe exhibit sub-threshold displacement; raw CAR is therefore unreliable as a safety metric."
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-26T06:28:09.898574+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-26T06:28:09.898720+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/discussion.tex",
+              "old_string": "Fine-tuning on collision-free demonstrations produces non-zero CAR$_\\text{f}$ with zero frozen rate, placing it in a region of the TSR-CAR plane that no other evaluated method occupies (Section~\\ref{sec:avoidance_source}).",
+              "new_string": "Fine-tuning on collision-free demonstrations produces non-zero CAR$_\\text{f}$ with zero frozen rate but suffers catastrophic TSR collapse, placing it in a region of the TSR-CAR plane that no other evaluated method occupies (Section~\\ref{sec:avoidance_source})."
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-26T06:28:09.898871+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-26T06:28:09.898994+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/discussion.tex",
+              "old_string": "Pi0.5+A1 results are reported at the 10K-step checkpoint (seed~0); the 30K checkpoint is pending, and the final magnitude of the TSR-CAR tradeoff is not yet determined.",
+              "new_string": "All fine-tuned models at 30K steps exhibit catastrophic TSR collapse (from 74.7\\% baseline to $<$7\\%), and whether alternative training schedules or regularization can retain task capability while preserving collision avoidance remains untested."
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-26T06:28:09.899143+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-26T06:28:09.899262+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/discussion.tex",
+              "old_string": "Four directions follow from this analysis.",
+              "new_string": "Five directions follow from this analysis."
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-26T06:28:09.899400+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-26T06:28:09.899545+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/discussion.tex",
+              "old_string": "Fourth, we recommend that future VLA safety evaluations report both raw CAR and CAR$_\\text{f}$; the gap between the two quantifies the degree of action-collapse contamination in a given model.",
+              "new_string": "Fourth, we recommend that future VLA safety evaluations report both raw CAR and CAR$_\\text{f}$; the gap between the two quantifies the degree of action-collapse contamination in a given model. Fifth, the catastrophic TSR collapse observed during fine-tuning (Section~\\ref{sec:avoidance_source}) motivates investigation into training strategies that preserve task capability while retaining collision avoidance learned from demonstrations."
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-26T06:28:09.899705+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-26T06:28:09.899825+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/main.tex",
+              "old_string": "confirming that even perfect end-effector distance information---with zero prediction error---does not improve collision avoidance.",
+              "new_string": "confirming that even perfect end-effector distance information (zero prediction error) does not improve collision avoidance."
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-26T06:28:09.899970+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/main.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-26T06:28:09.900102+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/discussion.tex"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-26T06:28:09.900243+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion and Conclusion}\\label{sec:conclusion}\n2\t\n3\tThis work identifies a systematic contamination in VLA collision avoidance evaluation: standard CAR conflates genuine obstacle avoidance with inaction caused by action collapse. Across all Pi0-family configurations evaluated on SafeLIBERO, over 98\\% of episodes classified as safe exhibit sub-threshold displacement; raw CAR is therefore unreliable as a safety metric. Displacement-filtered CAR (CAR$_\\text{f}$) separates these two behaviors by excluding episodes below a displacement threshold $\\tau_d$, providing a metric that credits only active avoidance. Two structural findings reinforce this diagnosis: TSR and CAR are anti-correlated under current methods (Section~\\ref{sec:fake_safety}), and end-effector-only SDF refinement fails to prevent full-body collisions even with ground-truth geometry (Section~\\ref{sec:ee_only}). Fine-tuning on collision-free demonstrations produces non-zero CAR$_\\text{f}$ with zero frozen rate but suffers catastrophic TSR collapse, placing it in a region of the TSR-CAR plane that no other evaluated method occupies (Section~\\ref{sec:avoidance_source}).\n4\t\n5\t\\paragraph{Limitations.}\n6\tThe empirical scope of this study is bounded in several respects. All experiments use the \\texttt{object\\_pudding} Level~I suite from SafeLIBERO (4 tasks). The fake safety mechanism is model-agnostic in principle: any action-collapsed VLA will receive inflated CAR. Direct verification, however, covers only the Pi0 and Pi0.5 model families; whether the same contamination pattern appears in OpenVLA, RT-2, or other VLA architectures requires additional experiments. Preliminary evaluation on the \\texttt{spatial\\_bowl} suite confirms this pattern: all Pi0 variants achieve 0\\% CAR despite substantial end-effector displacement (0.2--0.3\\,m), consistent with arm-body collisions dominating the failure mode. Pi0.5 achieves only 13\\% CAR on this suite, suggesting that spatial tasks with narrow corridors pose \n…[truncated 2761 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-26T06:28:09.900387+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/main.tex",
+              "offset": "57",
+              "limit": "8"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-26T06:28:09.900536+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "57\t\\begin{figure}[t]\n58\t\\centering\n59\t\\includegraphics[width=\\linewidth]{fig_oracle_bar.pdf}\n60\t\\caption{Aggregate collision avoidance rate for oracle SDF refinement variants versus unrefined baselines (160 episodes). All three ground-truth oracle variants achieve lower CAR than both baselines (dashed line: baseline average), confirming that even perfect end-effector distance information (zero prediction error) does not improve collision avoidance.}\n61\t\\label{fig:oracle_bar}\n62\t\\end{figure}\n63\t\n64\t\\input{analysis_claim3}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-26T06:28:09.900703+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All edits verified. Here's the complete change log:\n\n### 改动汇总\n\n**discussion.tex** (5 处):\n1. **Line 3**: `rendering raw CAR unreliable` → `; raw CAR is therefore unreliable` — 消除 trailing -ing 分词短语（AI 风格标志）\n2. **Line 3**: Claim 3 summary 补充 `but suffers catastrophic TSR collapse` — 开篇总结漏提 TSR collapse 这一关键发现\n3. **Line 6 (Limitations)**: `Pi0.5+A1 results are reported at the 10K-step checkpoint (seed~0); the 30K checkpoint is pending...` → 更新为 30K 已完成的 TSR collapse 事实 — 原文与 C3 数据已改为 30K 矛盾\n4. **Line 9 (Future work)**: `Four` → `Five`\n5. **Line 9 (Future work)**: 新增第五个方向：TSR collapse → 训练策略研究 — 原文缺失此方向\n\n**main.tex** (1 处):\n6. **Line 60 (oracle figure caption)**: `---with zero prediction error---` → `(zero prediction error)` — 消除解释性 em-dash\n\n### 检查通过（无需改动）\n\n- **analysis_claim1.tex**: 数据全部与 paper_framing.md 一致（A1 99.6%, Pi0.5 26.8±1.6/74.7±1.5, LoRA 82%, threshold [2,200]mm, 239mm minimum）；Pi0.5 pending‡ 标注一致；dfCAR 描述清晰；Figure/Table 交叉引用正确（`eq:car_f` → experimental_framework, `fig:displacement`/`fig:tsr_car_scatter` → main.tex, `sec:avoidance_source` → analysis_claim3）\n- **analysis_claim2.tex**: 3 oracle 数据完整（75.0/73.1/76.9 vs baselines 82.0/83.0）；arm-body collision 机制描述清晰（定性，无显式比例数据）；标题和 label 反映 EE-only limitation 定位\n- **experimental_framework.tex**: 无旧 claim 编号残留；dfCAR 定义与 analysis_claim1 一致\n- 全文无 Claim 4 引用残留，无旧 section label"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_polish_claim1_claim2_discussion_20260526T062303"
+          },
+          "id": "event-000069"
+        }
+      ],
+      "message_count": 69
+    }
+  ],
+  "readable_path": "readable/conversations/paper-polish-claim1-claim2-discussion.md"
+}

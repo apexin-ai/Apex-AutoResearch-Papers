@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0f33c9291988931dd001",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops gpu1 lambda01 training",
+  "task_key": "worker_ops_gpu1_lambda01_training_20260525T231052",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu1_lambda01_training_20260525T231052_result.json",
+    "occurrence": 1,
+    "bytes": 474,
+    "sha256": "6f834d85049a3b1e7887a7a8247cac4aed14118e8a4595eda8045e381b15c7a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已正常启动。\n\n**汇报：**\n\n| 项目 | 值 |\n|------|-----|\n| PID | 271266（Python 进程） |\n| GPU 1 显存 | 19055 MiB, 利用率 100% |\n| 训练状态 | 正常，Step 4/30000，~2.65s/it |\n| loss | ~0.16（action=0.15, sdf=0.12, ee=0.18） |\n| lambda_sdf | 0.1 |\n| 日志 | `/root/colliforce-vla/logs/train_lambda01_s0_gpu1.log` |\n\n注意：原始命令中的 `--save_total_limit 3` 不是该脚本的合法参数，已去掉。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu1-lambda01-training.md"
+}

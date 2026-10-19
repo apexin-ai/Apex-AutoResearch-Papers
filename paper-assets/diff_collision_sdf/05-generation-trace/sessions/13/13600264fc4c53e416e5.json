@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "13600264fc4c53e416e5",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops verify lora s0 reeval json urgent",
+  "task_key": "worker_ops_verify_lora_s0_reeval_json_urgent_20260526T134657",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify_lora_s0_reeval_json_urgent_20260526T134657_result.json",
+    "occurrence": 1,
+    "bytes": 2158,
+    "sha256": "3f7e5194fc57ea402d241e060b871fc98671c96dd7d73da1cb4b0f2e41dddc55"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据充足，所有关键信息已提取。\n\n## 验证结果\n\n### Config/Metadata\n- `model_type`: `lora_baseline`\n- `checkpoint`: `.../pi05_lora_baseline_object_pudding_seed0/30000`\n- `collision_threshold`: 0.001\n- `seed`: 7, `n_episodes`: 50/task, `max_steps`: 300\n- 文件时间戳: 2026-05-26 16:14\n- **无 eval 脚本版本标记**，但 JSON 包含 `max_ee_displacement` 和 `total_ee_path_length` 字段（新版 eval 格式）\n\n### Per-task 指标\n\n| Task ID | Task Name | TSR | CAR | avg_max_ee_disp | avg_max_disp | avg_smoothness |\n|---------|-----------|-----|-----|-----------------|--------------|----------------|\n| 0 | orange_juice → basket | 32% | 56% | 0.4024 | 0.0621 | 0.000718 |\n| 1 | chocolate_pudding → basket | 74% | 74% | 0.4208 | 0.0519 | 0.000809 |\n| 2 | milk → basket | 42% | 70% | 0.3620 | 0.0339 | 0.000638 |\n| 3 | bbq_sauce → basket | 58% | 26% | 0.3975 | 0.0971 | 0.000658 |\n\n### Overall (200 episodes)\n- **TSR = 51.5%**\n- **CAR = 56.5%**\n- **avg_max_ee_disp = 0.3957**\n- **Frozen(EE<0.0001) = 0%** — 所有 EE displacement 值在 0.305~0.841 范围\n- Frozen(Obs<0.0001) 仅出现在 `collided=false` 的 episode（无碰撞则障碍物不动，属正常行为）\n\n### 关键验证点\n\n| 检查项 | 结果 | 判定 |\n|--------|------|------|\n| `max_ee_displacement` 字段是否存在 | ✓ 存在（含 `total_ee_path_length`） | 新版 eval |\n| EE frozen rate | 0% | 正常 |\n| TSR ≈ 51.5%？ | 精确 51.5% | ✓ 匹配 |\n| 与 s1 reeval 一致？ | s0: TSR=51.5% CAR=56.5% vs s1: TSR=51.5% CAR=52.5% | ✓ 同量级 |\n| TSR ~6-8%（buggy 版本）？ | 否，51.5% | 排除 buggy |\n\n### 结论\n\n**JSON 是 VALID (rotation-fixed)**。\n\n依据：\n1. TSR=51.5% 精确匹配预期，远非 buggy 版本的 6-8%\n2. EE frozen rate = 0%，所有 episode 机器人正常运动\n3. JSON 包含 `max_ee_displacement` / `total_ee_path_length` 新字段，为修复后 eval 脚本产出\n4. 与 s1 reeval 结果处于同一水平（TSR 完全一致，CAR 差 4%，合理波动）\n\n**可用数值**: TSR=51.5%, CAR=56.5%, avg_max_ee_disp=0.3957, Frozen(EE)=0%"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-lora-s0-reeval-json-urgent.md"
+}

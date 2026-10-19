@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3e3e78fd38ebd524c2f2",
+  "project": "diff_collision_sdf",
+  "kind": "result",
+  "title": "ops check eval and training status",
+  "task_key": "worker_ops_check_eval_and_training_status_20260521T233924",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_eval_and_training_status_20260521T233924_result.json",
+    "occurrence": 1,
+    "bytes": 1315,
+    "sha256": "e60d96e5caf2582d9134db1f6a0bbbbbbabe659ef759a08bef35c1b408ce04a1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 1. Eval 进度 (westd-45947, PID 263983)\n\n运行中，已运行 2h47m。\n\n| Task | 描述 | 状态 | TSR | CAR |\n|------|------|------|-----|-----|\n| 0 | (参考) | ✅ 完成 | — | — |\n| 1 | pick up chocolate pudding → basket | ✅ 完成 | **0.0%** (0/50) | **22.0%** (11/50) |\n| 2 | pick up milk → basket | 🔄 20/50 | — | — |\n\n### 2. Baseline Checkpoint\n\n- **westd-45947**: `/root/autodl-tmp/checkpoints/baseline_object_pudding_eval/` **不存在**\n- **westd-35807**: 存在于 `/root/autodl-tmp/checkpoints/baseline_object_pudding/baseline_object_pudding_seed0/best/`，**19GB**（model.safetensors 7GB + optimizer.pt 12.5GB）\n\n需要从 westd-35807 → westd-45947 传输。\n\n### 3. westd-35807 四个训练\n\n全部存活，4 GPU 各占 ~24GB。\n\n| 训练 | PID | Step | 进度 | Loss | 已运行 | 预计剩余 |\n|------|-----|------|------|------|--------|----------|\n| baseline_lora_spa_s0 | 281554 | 19115/30000 | 64% | 0.0183 | 21h27m | ~12h |\n| baseline_lora_obj_s0 | 281629 | 19077/30000 | 64% | 0.0131 | 21h27m | ~12h |\n| a1_lora_spa_s0 | 292258 | 15585/30000 | 52% | 0.0368 | 18h56m | ~16h |\n| a1_lora_obj_s0 | 299910 | 17474/30000 | 58% | 0.0214 | 16h50m | ~14h |\n\n无进程死亡，无训练完成。全部正常推进中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-eval-and-training-status-copy-2.md"
+}
